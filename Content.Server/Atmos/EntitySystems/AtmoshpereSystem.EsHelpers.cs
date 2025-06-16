@@ -22,18 +22,26 @@ public sealed partial class AtmosphereSystem
         var bArr = b.Moles;
         var len = aArr.Length;
 
-        float numerator = 0f, denominatorA = 0f, denominatorB = 0f;
+        var totalA = NumericsHelpers.HorizontalAdd(aArr);
+        var totalB = NumericsHelpers.HorizontalAdd(bArr);
 
-        // Preform a proportional overlap comparison between the two gas mixtures.
+        // If both mixtures are empty, consider them identical.
+        if (totalA <= 0f && totalB <= 0f)
+            return 1f;
+
+        float numerator = 0f, denominator = Math.Max(totalA, totalB);
+
+        // Normalize each gas mole value by dividing it by its total moles
         for (var i = 0; i < len; i++)
         {
-            numerator += Math.Min(aArr[i], bArr[i]);
-            denominatorA += aArr[i];
-            denominatorB += bArr[i];
+            var normalizedA = aArr[i] / totalA;
+            var normalizedB = bArr[i] / totalB;
+
+            numerator += Math.Min(normalizedA, normalizedB);
         }
 
-        var denominator = Math.Max(denominatorA, denominatorB);
-        return denominator == 0f ? 1f : numerator / denominator;
+        // Fall back to 1 if no valid denominator is present
+        return denominator == 0f ? 1f : numerator / 1f; // numerator is already normalized here.
     }
 
     /// <summary>

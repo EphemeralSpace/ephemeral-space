@@ -137,7 +137,7 @@ namespace Content.Server.Shuttles.Components
         /// The maximum efficiency the thruster can reach.
         /// </summary>
         [DataField]
-        public float MaxGasConsumptionEfficiency = 0.1f;
+        public float MaxGasConsumptionEfficiency = 5;
 
         /// <summary>
         /// The minimum thrust multiplier the thruster can reach.
@@ -149,7 +149,7 @@ namespace Content.Server.Shuttles.Components
         /// The minimum efficiency the thruster can reach.
         /// </summary>
         [DataField]
-        public float MinGasConsumptionEfficiency = 5f;
+        public float MinGasConsumptionEfficiency = 0.1f;
 
         /// <summary>
         /// The minimum change from the previous thrust value needed to apply the new thrust value to the thruster.

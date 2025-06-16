@@ -166,23 +166,19 @@ public sealed class ThrusterSystem : EntitySystem
             finalEfficiency *= benefit * mixture.ConsumptionEfficiency;
             finalMultiplier *= benefit * mixture.ThrustMultiplier;
         }
-        var previousMultiplier = ent.Comp.GasThrustMultiplier;
 
         ent.Comp.GasConsumptionEfficiency = Math.Clamp(finalEfficiency,
-            ent.Comp.MinGasThrustMultiplier,
-            ent.Comp.MaxGasThrustMultiplier);
+            ent.Comp.MinGasConsumptionEfficiency,
+            ent.Comp.MaxGasConsumptionEfficiency);
         ent.Comp.GasThrustMultiplier = Math.Clamp(finalMultiplier,
             ent.Comp.MinGasThrustMultiplier,
             ent.Comp.MaxGasThrustMultiplier);
 
-        // Check if the thrust values have changed beyond the tolerance.
-        // Update the grid's ability to move if so.
-        if (Math.Abs(previousMultiplier - ent.Comp.GasThrustMultiplier) > ent.Comp.PreviousValueComparisonTolerance)
-        {
-            ent.Comp.Thrust = ent.Comp.BaseThrust * ent.Comp.GasThrustMultiplier;
-            RefreshThrusterContribution(ent);
-            ent.Comp.PreviousThrust = ent.Comp.Thrust;
-        }
+        // Update the grid's ability to move.
+        ent.Comp.Thrust = ent.Comp.BaseThrust * ent.Comp.GasThrustMultiplier;
+        RefreshThrusterContribution(ent);
+        ent.Comp.PreviousThrust = ent.Comp.Thrust;
+
 
         if (isFueled)
         {
