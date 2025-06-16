@@ -1,0 +1,45 @@
+﻿- type: entity
+  id: GasThruster
+  name: gas thruster
+  parent: [ Thruster, GasUnaryBase ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+      state: pipeUnaryConnectors
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: base
+      map: [ "enum.ThrusterVisualLayers.Base" ]
+    - state: thrust
+      map: [ "enum.ThrusterVisualLayers.ThrustOn" ]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_unshaded
+      map: [ "enum.ThrusterVisualLayers.ThrustingUnshaded" ]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+  - type: PipeColorVisuals
+  - type: AtmosMonitoringConsoleDevice
+    navMapBlip: GasVentOpening
+  - type: Thruster
+    requiresFuel: true
+    inletName: "pipe"
+    gasMixturePair:
+    - mixture:
+        immutable: true
+        volume: 100
+        moles:
+        - 0 # oxygen
+        - 0 # nitrogen
+        - 0 # CO2
+        - 1 # Plasma
+        - 0 # Tritium
+        - 0 # Water vapor
+        - 0 # Ammonia
+        - 0 # N2O
+        - 0 # Frezon
+      thrustMultiplier: 2
+      consumptionEfficiency: 0.5
+      benefitsCondition: Pure
+      previousValueComparisonTolerance: 0.01

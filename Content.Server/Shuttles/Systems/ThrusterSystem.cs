@@ -1,8 +1,13 @@
 using System.Numerics;
+using Content.Server.Atmos.EntitySystems;
+using Content.Server.Atmos.Piping.Components;
 using Content.Server.Audio;
+using Content.Server.NodeContainer.EntitySystems;
+using Content.Server.NodeContainer.Nodes;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
+using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -34,10 +39,33 @@ public sealed class ThrusterSystem : EntitySystem
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
+    #region _ES
+
+    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
+
+    #endregion
+
     // Essentially whenever thruster enables we update the shuttle's available impulses which are used for movement.
     // This is done for each direction available.
 
     public const string BurnFixture = "thruster-burn";
+
+    #region _ES
+
+    /// <summary>
+    /// Cached query for shuttle components,
+    /// since they rarely change, and we need to access them frequently.
+    /// </summary>
+    private EntityQuery<ShuttleComponent> _shuttleQuery;
+
+    /// <summary>
+    /// Cached query for thruster transforms, since
+    /// we need to access them frequently when we preform thruster buff/nerf updates.
+    /// </summary>
+    private EntityQuery<TransformComponent> _thrusterTransformQuery;
+
+    #endregion
 
     public override void Initialize()
     {
@@ -56,7 +84,160 @@ public sealed class ThrusterSystem : EntitySystem
         SubscribeLocalEvent<ThrusterComponent, ExaminedEvent>(OnThrusterExamine);
 
         SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
+
+        #region _ES
+
+        SubscribeLocalEvent<ThrusterComponent, AtmosDeviceUpdateEvent>(OnAtmosUpdateEvent);
+
+        _shuttleQuery = GetEntityQuery<ShuttleComponent>();
+        _thrusterTransformQuery = GetEntityQuery<TransformComponent>();
+
+        #endregion
     }
+
+    #region _ES
+
+    /// <summary>
+    /// Updates thruster performance and its ability to operate based on the inlet gas mixture.
+    /// </summary>
+    /// <param name="ent">The entity with the <see cref="ThrusterComponent"/> to update.</param>
+    /// <param name="args">The atmospheric device update event data containing environmental conditions.</param>
+    private void OnAtmosUpdateEvent(Entity<ThrusterComponent> ent, ref AtmosDeviceUpdateEvent args)
+    {
+        if (!_nodeContainer.TryGetNode(ent.Owner, ent.Comp.InletName, out PipeNode? inlet))
+        {
+            return;
+        }
+
+        // First we need to compute our efficiency and thrust multiplier based on the gas mixture.
+        // Define base thruster benefits/drawbacks.
+        var finalEfficiency = 1f;
+        var finalMultiplier = 1f;
+        var isFueled = !ent.Comp.RequiresFuel;
+
+        // Run over our array
+        // and build a final multiplicative fuel efficiency and thrust multiplier based on the gas mixture's effects.
+        foreach (var mixture in ent.Comp.GasMixturePair)
+        {
+            var benefit = 0f;
+
+            // You'll never catch be writing this shit in upstream in a million years.
+            switch (mixture.BenefitsCondition)
+            {
+                case GasMixtureBenefitsCondition.None:
+                    if (AtmosphereSystem.HasAnyRequiredGas(mixture.Mixture, inlet.Air, Atmospherics.GasMinMoles))
+                    {
+                        benefit = 1f;
+                        isFueled |= mixture.IsFuel;
+                    }
+
+                    break;
+
+                case GasMixtureBenefitsCondition.SingleThreshold:
+                    if (AtmosphereSystem.HasGasesAboveThreshold(mixture.Mixture, inlet.Air))
+                    {
+                        benefit = 1f;
+                        isFueled |= mixture.IsFuel;
+                    }
+
+                    break;
+
+                case GasMixtureBenefitsCondition.SingleThresholdPure:
+                    benefit = AtmosphereSystem.GetPurityRatio(mixture.Mixture, inlet.Air);
+                    if (benefit > 0f)
+                    {
+                        isFueled |= mixture.IsFuel;
+                    }
+
+                    break;
+
+                // If the field is not present(???), fallback to Pure.
+                case GasMixtureBenefitsCondition.Pure:
+                default:
+                    benefit = _atmosphere.GetGasMixtureSimilarity(mixture.Mixture, inlet.Air);
+                    if (benefit > 0f)
+                    {
+                        isFueled |= mixture.IsFuel;
+                    }
+
+                    break;
+            }
+
+            finalEfficiency *= benefit * mixture.ConsumptionEfficiency;
+            finalMultiplier *= benefit * mixture.ThrustMultiplier;
+        }
+        var previousMultiplier = ent.Comp.GasThrustMultiplier;
+
+        ent.Comp.GasConsumptionEfficiency = Math.Clamp(finalEfficiency,
+            ent.Comp.MinGasThrustMultiplier,
+            ent.Comp.MaxGasThrustMultiplier);
+        ent.Comp.GasThrustMultiplier = Math.Clamp(finalMultiplier,
+            ent.Comp.MinGasThrustMultiplier,
+            ent.Comp.MaxGasThrustMultiplier);
+
+        // Check if the thrust values have changed beyond the tolerance.
+        // Update the grid's ability to move if so.
+        if (Math.Abs(previousMultiplier - ent.Comp.GasThrustMultiplier) > ent.Comp.PreviousValueComparisonTolerance)
+        {
+            ent.Comp.Thrust = ent.Comp.BaseThrust * ent.Comp.GasThrustMultiplier;
+            RefreshThrusterContribution(ent);
+            ent.Comp.PreviousThrust = ent.Comp.Thrust;
+        }
+
+        if (isFueled)
+        {
+            ent.Comp.IsAllowedActive = true;
+
+            if (CanEnable(ent.Owner, ent.Comp))
+            {
+                EnableThruster(ent.Owner, ent.Comp);
+            }
+
+            // Actually consume the gas if we're requesting impulse.
+            if (ent.Comp.Firing)
+            {
+                var gasConsumption = ent.Comp.BaseGasConsumptionRate * ent.Comp.GasConsumptionEfficiency;
+                inlet.Air.Remove(gasConsumption);
+            }
+        }
+        else
+        {
+            ent.Comp.IsAllowedActive = false;
+            DisableThruster(ent.Owner, ent.Comp);
+        }
+    }
+
+    /// <summary>
+    /// Refreshes the thruster's contribution to the shuttle's movement.
+    /// </summary>
+    /// <param name="ent">The entity with the <see cref="ThrusterComponent"/>.</param>
+    private void RefreshThrusterContribution(Entity<ThrusterComponent> ent)
+    {
+        var xform = _thrusterTransformQuery.Comp(ent);
+
+        if (!_shuttleQuery.TryComp(xform.GridUid, out var shuttlecomp))
+        {
+            // Sucks to be you.
+            return;
+        }
+
+        var direction = (int)xform.LocalRotation.GetCardinalDir() / 2;
+        var deltaThrust = ent.Comp.Thrust - ent.Comp.PreviousThrust;
+
+        if (ent.Comp.Type == ThrusterType.Linear)
+        {
+            shuttlecomp.LinearThrust[direction] += deltaThrust;
+        }
+
+        // Me using my magical fucking crystal ball to increase the effectiveness of a
+        // gyroscope by feeding it tritium.
+        if (ent.Comp.Type == ThrusterType.Angular)
+        {
+            shuttlecomp.AngularThrust += deltaThrust;
+        }
+    }
+
+    #endregion
 
     private void OnThrusterExamine(EntityUid uid, ThrusterComponent component, ExaminedEvent args)
     {
@@ -137,7 +318,7 @@ public sealed class ThrusterSystem : EntitySystem
 
     private void OnActivateThruster(EntityUid uid, ThrusterComponent component, ActivateInWorldEvent args)
     {
-        if (args.Handled || !args.Complex)
+        if (args.Handled || !args.Complex || component.IsFueledThruster) // ES - Fueled Thrusters - Only allow interactions/toggling through atmos
             return;
 
         component.Enabled ^= true;
@@ -431,6 +612,15 @@ public sealed class ThrusterSystem : EntitySystem
     {
         if (!component.Enabled)
             return false;
+
+        #region _ES
+
+        if (component.IsFueledThruster)
+        {
+            return component.IsAllowedActive;
+        }
+
+        #endregion
 
         if (component.LifeStage > ComponentLifeStage.Running)
             return false;
