@@ -389,7 +389,7 @@ public sealed class ListContainerButton : ContainerButton, IEntityControl
         // {
         //     HorizontalExpand = true,
         //     VerticalExpand = true,
-        //     PanelOverride = new StyleBoxFlat {BackgroundColor = new Color(55, 55, 68)}
+        //     PanelOverride = new StyleBoxFlat {BackgroundColor = new Color(56, 56, 56)}
         // });
     }
 

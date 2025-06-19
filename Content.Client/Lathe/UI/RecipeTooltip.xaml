@@ -3,13 +3,13 @@
          MaxWidth="400">
     <PanelContainer>
         <PanelContainer.PanelOverride>
-            <gfx:StyleBoxFlat 
-                BorderThickness="2" 
-                BorderColor="#464966"
-                BackgroundColor="#25252A"
+            <gfx:StyleBoxFlat
+                BorderThickness="2"
+                BorderColor="#4B4B4B"
+                BackgroundColor="#262626"
             />
         </PanelContainer.PanelOverride>
-        <BoxContainer 
+        <BoxContainer
             Orientation="Vertical"
             RectClipContent="True"
             Margin="4">
