@@ -14,7 +14,7 @@ namespace Content.Client.NetworkConfigurator;
 [GenerateTypedNameReferences]
 public sealed partial class NetworkConfiguratorLinkMenu : FancyWindow
 {
-    private const string PanelBgColor = "#202023";
+    private const string PanelBgColor = "#202020";
 
     private readonly LinksRender _links;
 
