@@ -172,107 +172,11 @@ namespace Content.Server.Shuttles.Components
         /// Holds a pair of GasMixture and information on its associated buffs/nerfs.
         /// </summary>
         [DataField]
-        public ThrusterGasMixturePair[] GasMixturePair = [new()];
+        public ThrusterGasMixture[] GasMixturePair = [new()];
 
         #endregion
 
     }
-
-    #region _ES
-
-    /// <summary>
-    /// Extremely cursed object that pairs a GasMixture with information
-    /// for <see cref="ThrusterComponent"/> to use.
-    /// </summary>
-    /// <remarks>We do this to keep up with whatever happens to <see cref="GasMixture"/>
-    /// upstream, and it's easy to define gas ratios in the array built into it, rather
-    /// than effectively duplicating the code.</remarks>
-    [Serializable]
-    [DataDefinition]
-    public sealed partial class ThrusterGasMixturePair
-    {
-        /// <summary>
-        /// The gas mixture that this pair is based on.
-        /// </summary>
-        [DataField]
-        public GasMixture Mixture = new();
-
-        /// <summary>
-        /// The thrust multiplier that this gas mixture provides.
-        /// This can go in both directions.
-        /// </summary>
-        /// <example>If set to 1.5, the thrust will be increased by 50%.</example>
-        [DataField]
-        public float ThrustMultiplier = 1f;
-
-        /// <summary>
-        /// The gas consumption efficiency that this gas mixture provides.
-        /// This can go in both directions.
-        /// </summary>
-        /// <example>If set to 0.5, the thruster will see 50% fuel consumption.</example>
-        [DataField]
-        public float ConsumptionEfficiency = 1f;
-
-        /// <summary>
-        /// Whether this gas mixture is considered fuel.
-        /// The presence of this gas mixture will allow the thruster to function.
-        /// If no fuel gasses are present, the thruster will simply be disabled.
-        /// If this is set to false, the gas mixture
-        /// </summary>
-        [DataField]
-        public bool IsFuel = true;
-
-        /// <summary>
-        /// Represents the condition for the benefits applied from the gas mixture associated with the thruster.
-        /// </summary>
-        [DataField]
-        public GasMixtureBenefitsCondition BenefitsCondition = GasMixtureBenefitsCondition.None;
-    }
-
-        /// <summary>
-        /// Defines the condition under which a <see cref="ThrusterGasMixturePair"/> gas mixture's benefits apply.
-        /// </summary>
-        [Serializable]
-        public enum GasMixtureBenefitsCondition : byte
-        {
-            /// <summary>
-            /// The benefits apply as long as the required gas is present in the mixture.
-            /// </summary>
-            None,
-
-            /// <summary>
-            /// The gas must be at a certain percentage of the mixture for the benefits to apply.
-            /// </summary>
-            /// <example>
-            /// <para>If the target <see cref="GasMixture"/> contains 50% nitrogen, and the inlet gas contains
-            /// 65% nitrogen, rest partial gasses, all the benefits will be applied.</para>
-            /// </example>
-            /// <para>If the target <see cref="GasMixture"/> is 50% oxygen and 50% nitrogen,
-            /// and the inlet gas contains 49% oxygen and 51% nitrogen,
-            /// no benefits will be applied.</para>
-            SingleThreshold,
-
-            /// <summary>
-            /// Similar to <see cref="SingleThreshold"/>, but the gas must be pure, and its effectiveness
-            /// is reduced based on how pure it is.
-            /// </summary>
-            /// <example>
-            /// <para>If the target <see cref="GasMixture"/> is 50% oxygen and 50% nitrogen, and the inlet gas is
-            /// 25% oxygen, 25% nitrogen, only 50% of the benefits will be applied.</para>
-            /// <para>If the target <see cref="GasMixture"/> is 50% oxygen, and the inlet gas is 25% oxygen,
-            /// rest partial gasses, only 50% of the benefits will be applied.</para>
-            /// </example>
-            SingleThresholdPure,
-
-            /// <summary>
-            /// The similarity of the <see cref="GasMixture"/>s is determined, and the effects are applied
-            /// depending on how similar the two mixtures are.
-            /// </summary>
-            /// <example>If the mixture is 50% pure, it will only give 50% of its benefits.</example>
-            Pure,
-        }
-
-    #endregion
 
     public enum ThrusterType
     {
