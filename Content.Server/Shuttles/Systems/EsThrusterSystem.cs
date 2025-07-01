@@ -87,18 +87,50 @@ public sealed partial class EsThrusterSystem : EntitySystem
     public bool TryEnableThruster(Entity<EsThrusterComponent, TransformComponent?> ent)
     {
         // It's already on.
-        if (ent.Comp1.IsOn || !_thrusterTransformQuery.Resolve(ent, ref ent.Comp2))
+        if (ent.Comp1.IsOn)
         {
             return true;
         }
 
-        if (!_shuttleQuery.TryComp(ent.Comp2.GridUid, out var shuttleComp))
+        if (!_thrusterTransformQuery.Resolve(ent, ref ent.Comp2) ||
+            !_shuttleQuery.TryComp(ent.Comp2.GridUid, out var shuttleComp))
         {
             return false;
         }
 
         // TODO: Finish rest lolxd
         return true;
+    }
+
+    /// <summary>
+    /// Modify the thruster's impulse contribution to the given shuttle grid.
+    /// </summary>
+    /// <param name="ent">The thruster in question:</param>
+    /// <param name="shuttleComp">The <see cref="ShuttleComponent"/> whose thrust directions to modify.</param>
+    /// <param name="deltaThrust">The amount of thrust to add or subtract from the thruster's movement direction orientation.</param>
+    /// <remarks>This method does not automatically calculate the change in thrust from previous ticks and then applies this.
+    /// It is an additive or subtractive application. Therefore, you <i>must</i> calculate thrust deltas yourself.</remarks>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the thruster's type is
+    /// out of range of the types available to calculate contributions.</exception>
+    public void ModifyThrustContribution(Entity<EsThrusterComponent, TransformComponent> ent, ShuttleComponent shuttleComp, float deltaThrust)
+    {
+        switch (ent.Comp1.Type)
+        {
+            // The thruster should already be a part of the list in this instance. If not, then we cry.
+            case EsThrusterType.Linear:
+                var direction = (int)ent.Comp2.LocalRotation.GetCardinalDir() / 2;
+                DebugTools.Assert(shuttleComp.LinearThrusters[direction].Contains(ent));
+                shuttleComp.LinearThrust[direction] += deltaThrust;
+                break;
+
+            case EsThrusterType.Angular:
+                DebugTools.Assert(shuttleComp.AngularThrusters.Contains(ent));
+                shuttleComp.AngularThrust += deltaThrust;
+                break;
+
+            default:
+                throw new ArgumentOutOfRangeException(nameof(deltaThrust), "Invalid thruster type.");
+        }
     }
 
     /// <summary>
