@@ -6,9 +6,12 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Damage;
 using Content.Shared.Maps;
+using Content.Shared.Physics;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Collision.Shapes;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
@@ -76,14 +79,50 @@ public sealed partial class EsThrusterSystem : EntitySystem
 
         if (CanThrusterEnable(ent))
         {
-            // TODO: Implement enabling method here. Goober.
+            TryEnableThruster(ent);
         }
+    }
+
+    /// <summary>
+    /// Tries to disable the thruster. Does nothing if already disabled.
+    /// </summary>
+    /// <param name="ent">The thruster to disable.</param>
+    /// <returns>Whether the thruster was disabled or not, or if it was already disabled.</returns>
+    public bool TryDisableThruster(Entity<EsThrusterComponent, TransformComponent?> ent)
+    {
+        if (ent.Comp1.IsOn || !_thrusterTransformQuery.Resolve(ent, ref ent.Comp2))
+        {
+            return false;
+        }
+
+        if (!_shuttleQuery.TryComp(ent.Comp2.GridUid, out var shuttleComp))
+        {
+            return false;
+        }
+
+        // Null warning suppressed as TransformComponent has been resolved already.
+        ModifyThrustContribution(ent!, shuttleComp, -ent.Comp1.Thrust);
+        RemoveThrusterFromShuttleList(ent!, shuttleComp);
+        RefreshShuttleCenterOfThrust(shuttleComp);
+
+        _fixtureSystem.DestroyFixture(ent, BurnFixture);
+        ent.Comp1.Colliding.Clear();
+
+        UpdateAppearance(ent.Owner, false);
+
+        ent.Comp1.IsOn = false;
+
+        return true;
     }
 
     /// <summary>
     /// Tries to enable the thruster and turn it on. Does nothing if already enabled.
     /// </summary>
+    /// <param name="ent">The thruster to enable.</param>
     /// <returns>Whether the thruster was enabled or not, or if it was already enabled.</returns>
+    /// <remarks>This method does not check for if a thruster is allowed to turn on before doing so,
+    /// it simply just tries to turn it on. You should be checking the return of <see cref="CanThrusterEnable"/>
+    /// if you want to ensure it's allowed to turn on before actually turning it on.</remarks>
     public bool TryEnableThruster(Entity<EsThrusterComponent, TransformComponent?> ent)
     {
         // It's already on.
@@ -98,8 +137,99 @@ public sealed partial class EsThrusterSystem : EntitySystem
             return false;
         }
 
-        // TODO: Finish rest lolxd
+        // Null warning suppressed as TransformComponent has been resolved already.
+        ModifyThrustContribution(ent!, shuttleComp, ent.Comp1.Thrust);
+        AddThrusterToShuttleList(ent!, shuttleComp);
+        TryAddThrusterBurnFixture(ent);
+        RefreshShuttleCenterOfThrust(shuttleComp);
+
+        UpdateAppearance(ent.Owner, true);
+
+        ent.Comp1.IsOn = true;
+
         return true;
+    }
+
+    /// <summary>
+    /// Updates the cosmetics (visuals, light, and ambiance) of the thruster given the provided value.
+    /// </summary>
+    /// <param name="uid">The thruster to update.</param>
+    /// <param name="status">The state (true/false) to set on the thruster.</param>
+    private void UpdateAppearance(EntityUid uid, bool status)
+    {
+        // Might as well use the cached comp. Think of the precious CPU cycles.
+        if (_appearanceQuery.TryComp(uid, out var appearanceComp))
+        {
+            _appearance.SetData(uid, ThrusterVisualState.State, status, appearanceComp);
+        }
+
+        _light.SetEnabled(uid, status);
+        _ambient.SetAmbience(uid, status);
+    }
+
+    /// <summary>
+    /// Attempts to add the thruster burn fixture to the thruster.
+    /// </summary>
+    /// <param name="ent">The thruster to add the fixture to.</param>
+    /// <returns>A true or false depending on whether the addition was successful.</returns>
+    public bool TryAddThrusterBurnFixture(Entity<EsThrusterComponent> ent)
+    {
+        if (ent.Comp.BurnPoly.Count <= 0 || ent.Comp.Type != EsThrusterType.Linear) // Hardcoded just for you <3
+            return false;
+
+        var shape = new PolygonShape();
+        shape.Set(ent.Comp.BurnPoly);
+        return _fixtureSystem.TryCreateFixture(ent, shape, BurnFixture, hard: false, collisionLayer: (int)CollisionGroup.FullTileMask);
+    }
+
+    /// <summary>
+    /// Removes a thruster from the list of thrusters contributing to a shuttle's impulse.
+    /// </summary>
+    /// <param name="ent">The thruster to remove from the list.</param>
+    /// <param name="shuttleComp">The <see cref="ShuttleComponent"/> to remove the thruster from.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the thruster's type is
+    /// out of range of the types available.</exception>
+    public void RemoveThrusterFromShuttleList(Entity<EsThrusterComponent, TransformComponent> ent, ShuttleComponent shuttleComp)
+    {
+        switch (ent.Comp1.Type)
+        {
+            case EsThrusterType.Linear:
+                var direction = (int)ent.Comp2.LocalRotation.GetCardinalDir() / 2;
+                DebugTools.Assert(shuttleComp.LinearThrusters[direction].Contains(ent));
+                shuttleComp.LinearThrusters[direction].Remove(ent);
+                break;
+            case EsThrusterType.Angular:
+                DebugTools.Assert(shuttleComp.AngularThrusters.Contains(ent));
+                shuttleComp.AngularThrusters.Remove(ent);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(ent), "Invalid thruster type.");
+        }
+    }
+
+    /// <summary>
+    /// Adds a thruster to the list of thrusters contributing to a shuttle's impulse.
+    /// </summary>
+    /// <param name="ent">The thruster to add to the list.</param>
+    /// <param name="shuttleComp">The <see cref="ShuttleComponent"/> to add the thruster to.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the thruster's type is
+    /// out of range of the types available.</exception>
+    public void AddThrusterToShuttleList(Entity<EsThrusterComponent, TransformComponent> ent, ShuttleComponent shuttleComp)
+    {
+        switch (ent.Comp1.Type)
+        {
+            case EsThrusterType.Linear:
+                var direction = (int)ent.Comp2.LocalRotation.GetCardinalDir() / 2;
+                DebugTools.Assert(!shuttleComp.LinearThrusters[direction].Contains(ent));
+                shuttleComp.LinearThrusters[direction].Add(ent);
+                break;
+            case EsThrusterType.Angular:
+                DebugTools.Assert(!shuttleComp.AngularThrusters.Contains(ent));
+                shuttleComp.AngularThrusters.Add(ent);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(ent), "Invalid thruster type.");
+        }
     }
 
     /// <summary>
@@ -111,7 +241,7 @@ public sealed partial class EsThrusterSystem : EntitySystem
     /// <remarks>This method does not automatically calculate the change in thrust from previous ticks and then applies this.
     /// It is an additive or subtractive application. Therefore, you <i>must</i> calculate thrust deltas yourself.</remarks>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when the thruster's type is
-    /// out of range of the types available to calculate contributions.</exception>
+    /// out of range of the types available.</exception>
     public void ModifyThrustContribution(Entity<EsThrusterComponent, TransformComponent> ent, ShuttleComponent shuttleComp, float deltaThrust)
     {
         switch (ent.Comp1.Type)
@@ -122,28 +252,26 @@ public sealed partial class EsThrusterSystem : EntitySystem
                 DebugTools.Assert(shuttleComp.LinearThrusters[direction].Contains(ent));
                 shuttleComp.LinearThrust[direction] += deltaThrust;
                 break;
-
             case EsThrusterType.Angular:
                 DebugTools.Assert(shuttleComp.AngularThrusters.Contains(ent));
                 shuttleComp.AngularThrust += deltaThrust;
                 break;
-
             default:
-                throw new ArgumentOutOfRangeException(nameof(deltaThrust), "Invalid thruster type.");
+                throw new ArgumentOutOfRangeException(nameof(ent), "Invalid thruster type.");
         }
     }
 
     /// <summary>
     /// Refreshes a shuttle's center of thrust for movement calculations.
     /// </summary>
-    private void RefreshShuttleCenterOfThrust(Entity<ShuttleComponent> shuttleEnt)
+    private void RefreshShuttleCenterOfThrust(ShuttleComponent shuttleComp)
     {
         // TODO: Only refresh relevant directions.
         var center = Vector2.Zero;
         foreach (var dir in _cardinalDirections)
         {
             var index = (int)dir / 2;
-            var pop = shuttleEnt.Comp.LinearThrusters[index];
+            var pop = shuttleComp.LinearThrusters[index];
             var totalThrust = 0f;
 
             foreach (var thrusterUid in pop)
@@ -157,7 +285,7 @@ public sealed partial class EsThrusterSystem : EntitySystem
             }
 
             center /= pop.Count * totalThrust;
-            shuttleEnt.Comp.CenterOfThrust[index] = center;
+            shuttleComp.CenterOfThrust[index] = center;
         }
     }
 
@@ -193,11 +321,20 @@ public sealed partial class EsThrusterSystem : EntitySystem
 
         if (ent.Comp1.RequireSpace)
         {
-            return false;
+            return IsNozzleExposed(ent);
         }
 
         // TODO: Fuel checking logic in here, or in atmos methods?
         return true;
+    }
+
+    /// <summary>
+    /// Determines if a thruster's exhaust is sitting on a valid tile.
+    /// </summary>
+    /// <param name="ent">Entity with optional <see cref="TransformComponent"/>.</param>
+    private bool IsNozzleExposed(Entity<EsThrusterComponent, TransformComponent?> ent)
+    {
+        return IsNozzleExposed((ent, ent.Comp2));
     }
 
     /// <summary>
