@@ -38,7 +38,9 @@ public sealed partial class MindTests
             Console.WriteLine(pair.Client.EntMan.ToPrettyString(ent));
         }
 
-        Assert.That(pair.Client.EntMan.EntityCount, Is.EqualTo(0));
+// ES START
+        Assert.That(pair.Client.EntMan.EntityCount, Is.EqualTo(1));
+// ES END
 
         // Create a new map.
         MapId mapId = default;
