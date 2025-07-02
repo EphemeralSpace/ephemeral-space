@@ -14,7 +14,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 // ES START
-using Content.Client._ES.Spawning;
+using Content.Client._ES.Spawning.Ui;
 // ES END
 
 namespace Content.Client.Lobby

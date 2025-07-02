@@ -1,6 +1,6 @@
 <controls:ESSpawningWindow
     xmlns="https://spacestation14.io"
-    xmlns:controls="clr-namespace:Content.Client._ES.Spawning"
+    xmlns:controls="clr-namespace:Content.Client._ES.Spawning.Ui"
     xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"

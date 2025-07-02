@@ -224,8 +224,10 @@ public sealed class MindSystem : SharedMindSystem
             mind.OwnedEntity = null;
             Entity<MindComponent> mindEnt = (mindId, mind);
             Entity<MindContainerComponent> containerEnt = (oldEntity.Value, oldContainer);
-            RaiseLocalEvent(oldEntity.Value, new MindRemovedMessage(mindEnt, containerEnt));
-            RaiseLocalEvent(mindId, new MindGotRemovedEvent(mindEnt, containerEnt));
+// ES START
+            RaiseLocalEvent(oldEntity.Value, new MindRemovedMessage(mindEnt, containerEnt), true);
+            RaiseLocalEvent(mindId, new MindGotRemovedEvent(mindEnt, containerEnt), true);
+// ES END
             Dirty(oldEntity.Value, oldContainer);
         }
 
