@@ -5,11 +5,15 @@ using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Damage;
+using Content.Shared.Interaction;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
+using Content.Shared.Power;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Temperature;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -54,6 +58,15 @@ public sealed partial class EsThrusterSystem : EntitySystem
         SubscribeLocalEvent<EsThrusterComponent, ComponentInit>(OnThrusterInit);
         SubscribeLocalEvent<EsThrusterComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<EsThrusterComponent, EndCollideEvent>(OnEndCollide);
+        SubscribeLocalEvent<EsThrusterComponent, ComponentShutdown>(OnThrusterShutdown);
+        SubscribeLocalEvent<EsThrusterComponent, PowerChangedEvent>(OnPowerChangedEvent);
+        SubscribeLocalEvent<EsThrusterComponent, AnchorStateChangedEvent>(OnAnchorChangedEvent);
+        SubscribeLocalEvent<EsThrusterComponent, ActivateInWorldEvent>(OnActivateInWorldEvent);
+        SubscribeLocalEvent<EsThrusterComponent, IsHotEvent>(OnIsHotEvent);
+        SubscribeLocalEvent<EsThrusterComponent, MoveEvent>(OnMoveEvent);
+
+
+        SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChangedEvent);
 
         _shuttleQuery = GetEntityQuery<ShuttleComponent>();
         _thrusterTransformQuery = GetEntityQuery<TransformComponent>();
@@ -84,13 +97,203 @@ public sealed partial class EsThrusterSystem : EntitySystem
     }
 
     /// <summary>
+    /// RUns the shutdown logic when the component is being deleted.
+    /// Ensures that we properly remove our thrust contributions and whatnot
+    /// before we're removed.
+    /// </summary>
+    private void OnThrusterShutdown(Entity<EsThrusterComponent> ent, ref ComponentShutdown args)
+    {
+        TryDisableThruster(ent);
+    }
+
+    /// <summary>
+    /// Turns the thruster on or off depending on if it is allowed to.
+    /// A power change might not allow the thruster to fire anymore,
+    /// or it might be allowed to now.
+    /// </summary>
+    private void OnPowerChangedEvent(Entity<EsThrusterComponent> ent, ref PowerChangedEvent args)
+    {
+        if (CanThrusterEnable(ent))
+        {
+            TryEnableThruster(ent);
+        }
+        else
+        {
+            TryDisableThruster(ent);
+        }
+    }
+
+    /// <summary>
+    /// Turns the thruster on or off depending on if it is allowed to.
+    /// An anchor change might not allow the thruster to fire anymore,
+    /// or it might be allowed to now.
+    /// </summary>
+    private void OnAnchorChangedEvent(Entity<EsThrusterComponent> ent, ref AnchorStateChangedEvent args)
+    {
+        if (CanThrusterEnable(ent))
+        {
+            TryEnableThruster(ent);
+        }
+        else
+        {
+            TryDisableThruster(ent);
+        }
+    }
+
+    /// <summary>
+    /// Toggles the Enabled status on the thruster and enables/disables it depending on that.
+    /// </summary>
+    private void OnActivateInWorldEvent(Entity<EsThrusterComponent> ent, ref ActivateInWorldEvent args)
+    {
+        if (args.Handled || !args.Complex)
+        {
+            return;
+        }
+
+        ent.Comp.Enabled ^= true;
+
+        if (CanThrusterEnable(ent))
+        {
+            TryEnableThruster(ent);
+        }
+        else
+        {
+            TryDisableThruster(ent);
+        }
+    }
+
+    /// <summary>
+    /// Returns if the thruster is hot or not.
+    /// </summary>
+    private void OnIsHotEvent(Entity<EsThrusterComponent> ent, ref IsHotEvent args)
+    {
+        args.IsHot = ent.Comp.Type != EsThrusterType.Angular && ent.Comp.IsOn;
+    }
+
+    /// <summary>
+    /// Changes the thrust contributions of rotated thrusters to the right direction and tries to
+    /// automatically enable/disable them unless disabled by UX.
+    /// </summary>
+    /// <param name="ent">Thruster that was rotated.</param>
+    /// <param name="args">MoveEvent args.</param>
+    private void OnMoveEvent(Entity<EsThrusterComponent> ent, ref MoveEvent args)
+    {
+        // The thruster wasn't on, so it wasn't providing any impulse and thus doesn't need to be checked if
+        // it can be turned on automatically.
+        if (!ent.Comp.Enabled || !_thrusterTransformQuery.TryComp(ent, out var xform) ||
+            !_shuttleQuery.TryComp(xform.GridUid, out var shuttleComp))
+        {
+            return;
+        }
+
+        var newEnt = new Entity<EsThrusterComponent, TransformComponent?>(ent, ent.Comp, xform);
+
+        var canEnable = CanThrusterEnable(newEnt);
+
+        switch (canEnable)
+        {
+            // Don't enable the thruster inadvertently if the thruster wasn't on to begin with and we can't turn it on.
+            case false when !newEnt.Comp1.IsOn:
+                return;
+            // Enable if the thruster was turned off but the new tile is valid.
+            case true when !newEnt.Comp1.IsOn:
+                TryEnableThruster(newEnt);
+                return;
+            // Disable if the new tile is invalid.
+            case false when newEnt.Comp1.IsOn:
+                TryDisableThruster(newEnt, args.OldRotation);
+                break;
+        }
+
+        // Beyond this, the thruster has now rotated and stayed active.
+        // We have to remove the thrust contribution from the old direction and add it
+        // to the new direction.
+
+        var oldDirection = args.OldRotation;
+        var direction = args.NewRotation;
+        var oldShuttleComp = shuttleComp;
+
+        // Angular thrusters don't need to worry if their parent has changed.
+        // Copy-paste but prettier.
+        if (args.ParentChanged && ent.Comp.Type == EsThrusterType.Angular)
+        {
+            oldShuttleComp = Comp<ShuttleComponent>(args.OldPosition.EntityId);
+
+            // xform is resolved already
+            ModifyThrustContribution(newEnt!, oldShuttleComp, -newEnt.Comp1.Thrust, oldDirection);
+            RemoveThrusterFromShuttleList(newEnt!, oldShuttleComp);
+
+            ModifyThrustContribution(newEnt!, shuttleComp, newEnt.Comp1.Thrust, direction);
+            AddThrusterToShuttleList(newEnt!, shuttleComp);
+            return;
+        }
+
+        if (ent.Comp.Type == EsThrusterType.Linear)
+        {
+            // xform is resolved already
+            ModifyThrustContribution(newEnt!, oldShuttleComp, -newEnt.Comp1.Thrust, oldDirection);
+            RemoveThrusterFromShuttleList(newEnt!, oldShuttleComp);
+
+            ModifyThrustContribution(newEnt!, shuttleComp, newEnt.Comp1.Thrust, direction);
+            AddThrusterToShuttleList(newEnt!, shuttleComp);
+        }
+    }
+
+    /// <summary>
+    /// Disables thrusters whose thrust tile may have changed to no longer be a valid tile.
+    /// </summary>
+    /// <param name="ent">The shuttle entity.</param>
+    /// <param name="args">Args from TileChangedEvent.</param>
+    private void OnShuttleTileChangedEvent(Entity<ShuttleComponent> ent, ref TileChangedEvent args)
+    {
+        foreach (var change in args.Changes)
+        {
+            // The changed tile is still space.
+            if (change.NewTile.IsSpace(_tileDefManager) || !change.OldTile.IsSpace(_tileDefManager))
+                continue;
+
+            var tilePos = change.GridIndices;
+            var grid = Comp<MapGridComponent>(ent);
+
+            for (var x = -1; x <= 1; x++)
+            {
+                for (var y = -1; y <= 1; y++)
+                {
+                    if (x != 0 && y != 0)
+                        continue;
+
+                    var checkPos = tilePos + new Vector2i(x, y);
+                    var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(ent, grid, checkPos);
+
+                    while (enumerator.MoveNext(out var uid))
+                    {
+                        if (!_thrusterQuery.TryComp(uid.Value, out var thruster) || !thruster.RequireSpace)
+                            continue;
+
+                        // Work out if the thruster is facing this direction
+                        var xform = _thrusterTransformQuery.GetComponent(uid.Value);
+                        var direction = xform.LocalRotation.ToWorldVec();
+
+                        if (new Vector2i((int)direction.X, (int)direction.Y) != new Vector2i(x, y))
+                            continue;
+
+                        TryDisableThruster((uid.Value, thruster, xform));
+                    }
+                }
+            }
+        }
+
+    }
+
+    /// <summary>
     /// Tries to disable the thruster. Does nothing if already disabled.
     /// </summary>
     /// <param name="ent">The thruster to disable.</param>
+    /// <param name="angle">An optional angle to provide to remove the thrust from, useful if the thruster was rotated.</param>
     /// <returns>Whether the thruster was disabled or not, or if it was already disabled.</returns>
-    public bool TryDisableThruster(Entity<EsThrusterComponent, TransformComponent?> ent)
+    public bool TryDisableThruster(Entity<EsThrusterComponent, TransformComponent?> ent, Angle? angle = null)
     {
-        if (ent.Comp1.IsOn || !_thrusterTransformQuery.Resolve(ent, ref ent.Comp2))
+        if (!ent.Comp1.IsOn || !_thrusterTransformQuery.Resolve(ent, ref ent.Comp2))
         {
             return false;
         }
@@ -238,17 +441,19 @@ public sealed partial class EsThrusterSystem : EntitySystem
     /// <param name="ent">The thruster in question:</param>
     /// <param name="shuttleComp">The <see cref="ShuttleComponent"/> whose thrust directions to modify.</param>
     /// <param name="deltaThrust">The amount of thrust to add or subtract from the thruster's movement direction orientation.</param>
+    /// <param name="angle">The angle (direction) to modify, used to override the current thrust direction contribution, useful when the thruster is rotated.</param>
     /// <remarks>This method does not automatically calculate the change in thrust from previous ticks and then applies this.
     /// It is an additive or subtractive application. Therefore, you <i>must</i> calculate thrust deltas yourself.</remarks>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when the thruster's type is
     /// out of range of the types available.</exception>
-    public void ModifyThrustContribution(Entity<EsThrusterComponent, TransformComponent> ent, ShuttleComponent shuttleComp, float deltaThrust)
+    public void ModifyThrustContribution(Entity<EsThrusterComponent, TransformComponent> ent, ShuttleComponent shuttleComp, float deltaThrust, Angle? angle = null)
     {
         switch (ent.Comp1.Type)
         {
             // The thruster should already be a part of the list in this instance. If not, then we cry.
             case EsThrusterType.Linear:
-                var direction = (int)ent.Comp2.LocalRotation.GetCardinalDir() / 2;
+                angle ??= ent.Comp2.LocalRotation;
+                var direction = (int)angle.Value.GetCardinalDir() / 2;
                 DebugTools.Assert(shuttleComp.LinearThrusters[direction].Contains(ent));
                 shuttleComp.LinearThrust[direction] += deltaThrust;
                 break;
