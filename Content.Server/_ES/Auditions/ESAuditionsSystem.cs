@@ -60,7 +60,8 @@ public sealed class ESAuditionsSystem : ESSharedAuditionsSystem
             weightedMembers.Add(castMember, 4 * MathF.Pow(4, characterComponent.Relationships.Keys.Count(k => cast.Crew.Contains(k))));
         }
 
-        var ent = _random.PickAndTake(weightedMembers);
+        var ent = _random.Pick(weightedMembers);
+        producer.UnusedCharacterPool.Remove(ent);
         return (ent, Comp<MindComponent>(ent), Comp<ESCharacterComponent>(ent));
     }
 

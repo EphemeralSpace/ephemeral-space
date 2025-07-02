@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.CCVar;
 using Content.Shared._ES.Spawning.Components;
 using Content.Shared.Administration.Managers;
+using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
@@ -31,6 +32,7 @@ public abstract class ESSharedSpawningSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly SharedPvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private readonly SharedGameTicker _ticker = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
 
     protected TimeSpan RespawnDelay;
@@ -94,7 +96,7 @@ public abstract class ESSharedSpawningSystem : EntitySystem
         return respawnTime;
     }
 
-    public bool TryGetRespawnTracker([NotNullWhen(true)] out Entity<ESRespawnTrackerComponent>? respawnTracker)
+    public virtual bool TryGetRespawnTracker([NotNullWhen(true)] out Entity<ESRespawnTrackerComponent>? respawnTracker)
     {
         var query = EntityQueryEnumerator<ESRespawnTrackerComponent>();
         while (query.MoveNext(out var u1, out var c1))
