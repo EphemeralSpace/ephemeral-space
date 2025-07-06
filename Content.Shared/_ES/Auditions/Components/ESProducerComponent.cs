@@ -2,7 +2,7 @@ using Content.Shared.Random;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._ES.Auditions;
+namespace Content.Shared._ES.Auditions.Components;
 
 /// <summary>
 /// This is the cast component placed onto the producer entity.

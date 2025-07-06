@@ -1,8 +1,7 @@
 using System.Linq;
-using Content.Shared._ES.CCVar;
+using Content.Shared._ES.Auditions.Components;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.Mind;
-using Content.Shared.Preferences;
-using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
@@ -16,10 +15,10 @@ namespace Content.Shared._ES.Auditions;
 /// <summary>
 /// The main system for handling the creation, integration of relations
 /// </summary>
-public abstract class ESSharedAuditionsSystem : EntitySystem
+public abstract partial class ESSharedAuditionsSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedPvsOverrideSystem _pvs = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -153,33 +152,6 @@ public abstract class ESSharedAuditionsSystem : EntitySystem
     public void IntegrateRelationshipGroup(ESSocialGroupComponent groupComponent)
     {
         IntegrateRelationshipGroup(groupComponent.RelativeContext, groupComponent.Members);
-    }
-
-    /// <summary>
-    /// Generates a character with randomized name, age, gender and appearance.
-    /// </summary>
-    public Entity<MindComponent, ESCharacterComponent> GenerateCharacter([ForbidLiteral] string randomPrototype = "DefaultBackground", ESProducerComponent? producer = null)
-    {
-        producer ??= GetProducer();
-
-        var profile = HumanoidCharacterProfile.RandomWithSpecies();
-
-        var (ent, mind) = _mind.CreateMind(null, profile.Name);
-        var character = EnsureComp<ESCharacterComponent>(ent);
-
-        var year = _config.GetCVar(ESCVars.InGameYear) - profile.Age;
-        var month = _random.Next(1, 12);
-        var day = _random.Next(1, DateTime.DaysInMonth(year, month));
-        character.DateOfBirth = new DateTime(year, month, day);
-        character.Background = _prototypeManager.Index<WeightedRandomPrototype>(randomPrototype).Pick(_random);
-        character.Profile = profile;
-
-        Dirty(ent, character);
-
-        producer.Characters.Add(ent);
-        producer.UnusedCharacterPool.Add(ent);
-
-        return (ent, mind, character);
     }
 
     /// <summary>

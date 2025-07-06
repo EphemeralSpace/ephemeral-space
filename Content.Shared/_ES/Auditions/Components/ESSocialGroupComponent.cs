@@ -1,4 +1,4 @@
-namespace Content.Shared._ES.Auditions;
+namespace Content.Shared._ES.Auditions.Components;
 
 /// <summary>
 /// Tracks social groups in the cast. This can be used for tracking crews, workers unions, friend groups, and more.

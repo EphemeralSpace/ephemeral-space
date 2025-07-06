@@ -4,8 +4,10 @@ using Content.Server._ES.Auditions.Components;
 using Content.Server.Administration;
 using Content.Server.Mind;
 using Content.Shared._ES.Auditions;
+using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
+using Content.Shared.Localizations;
 using Content.Shared.Mind;
 using Content.Shared.Random.Helpers;
 using JetBrains.Annotations;
@@ -139,7 +141,7 @@ public sealed class CastCommand : ToolshedCommand
         }
         else
         {
-            yield return $"{character.Name}, {character.Profile.Age} years old ({character.DateOfBirth.ToShortDateString()})\nBackground: {character.Background}\nRelationships\n";
+            yield return $"{character.Name}, {character.Profile.Age} years old ({character.DateOfBirth.ToShortDateString()})\nBackground: {character.Background}\nPersonality: {ContentLocalizationManager.FormatList(character.PersonalityTraits.Select(p => Loc.GetString(p)).ToList())}\nRelationships";
             Dictionary<string, List<EntityUid>> relationships = new();
             foreach (var relationship in character.Relationships)
             {
@@ -167,6 +169,8 @@ public sealed class CastCommand : ToolshedCommand
             {
                 yield return line;
             }
+
+            yield return string.Empty;
         }
     }
 }

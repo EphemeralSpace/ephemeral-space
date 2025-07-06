@@ -1,0 +1,11 @@
+- type: localizedDataset
+  id: ESPersonalityTemperament
+  values:
+    prefix: es-character-temperament-
+    count: 24
+
+- type: localizedDataset
+  id: ESPersonalityTendency
+  values:
+    prefix: es-character-tendency-
+    count: 36
