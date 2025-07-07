@@ -53,7 +53,7 @@ public sealed partial class ThrusterComponent : Component
     /// The type of thrust this thruster contributes to the shuttle.
     /// </summary>
     [DataField]
-    public ThrusterType Type = ThrusterType.Linear;
+    public ThrusterType ThrusterType = ThrusterType.Linear;
 
     /// <summary>
     /// Whether this thruster requires exposure to space.

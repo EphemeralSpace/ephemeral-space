@@ -172,7 +172,7 @@ public sealed partial class ThrusterSystem : EntitySystem
     /// </summary>
     private void OnIsHotEvent(Entity<ThrusterComponent> ent, ref IsHotEvent args)
     {
-        args.IsHot = ent.Comp.Type != ThrusterType.Angular && ent.Comp.IsOn;
+        args.IsHot = ent.Comp.ThrusterType != ThrusterType.Angular && ent.Comp.IsOn;
     }
 
     /// <summary>
@@ -220,7 +220,7 @@ public sealed partial class ThrusterSystem : EntitySystem
 
         // Angular thrusters don't need to worry if their parent has changed.
         // Copy-paste but prettier.
-        if (args.ParentChanged && ent.Comp.Type == ThrusterType.Angular)
+        if (args.ParentChanged && ent.Comp.ThrusterType == ThrusterType.Angular)
         {
             oldShuttleComp = Comp<ShuttleComponent>(args.OldPosition.EntityId);
 
@@ -233,7 +233,7 @@ public sealed partial class ThrusterSystem : EntitySystem
             return;
         }
 
-        if (ent.Comp.Type == ThrusterType.Linear)
+        if (ent.Comp.ThrusterType == ThrusterType.Linear)
         {
             // xform is resolved already
             ModifyThrustContribution(newEnt, oldShuttleComp, -newEnt.Comp1.Thrust, oldDirection);
@@ -257,7 +257,7 @@ public sealed partial class ThrusterSystem : EntitySystem
         {
             args.PushMarkup(enabled);
 
-            if (ent.Comp.Type == ThrusterType.Linear &&
+            if (ent.Comp.ThrusterType == ThrusterType.Linear &&
                 _thrusterTransformQuery.TryComp(ent, out var xform) &&
                 xform.Anchored)
             {
@@ -376,9 +376,6 @@ public sealed partial class ThrusterSystem : EntitySystem
         newEnt.Comp1.Thrust = newThrust;
         newEnt.Comp1.HasFuel = isFueled;
 
-        ModifyThrustContribution(newEnt, shuttleComp, deltaThrust);
-        RefreshShuttleCenterOfThrust(shuttleComp);
-
         if (CanThrusterEnable(ent))
         {
             TryEnableThruster(ent);
@@ -386,6 +383,12 @@ public sealed partial class ThrusterSystem : EntitySystem
         else
         {
             TryDisableThruster(ent);
+        }
+
+        if (ent.Comp.IsOn)
+        {
+            ModifyThrustContribution(newEnt, shuttleComp, deltaThrust);
+            RefreshShuttleCenterOfThrust(shuttleComp);
         }
 
         if (ent.Comp.Firing)
@@ -459,7 +462,6 @@ public sealed partial class ThrusterSystem : EntitySystem
             return false;
         }
 
-        // Null warning suppressed as TransformComponent has been resolved already.
         ModifyThrustContribution(ent, shuttleComp, -ent.Comp1.Thrust);
         RemoveThrusterFromShuttleList(ent, shuttleComp);
         RefreshShuttleCenterOfThrust(shuttleComp);
@@ -496,9 +498,8 @@ public sealed partial class ThrusterSystem : EntitySystem
             return false;
         }
 
-        // Null warning suppressed as TransformComponent has been resolved already.
-        ModifyThrustContribution(ent, shuttleComp, ent.Comp1.Thrust);
         AddThrusterToShuttleList(ent, shuttleComp);
+        ModifyThrustContribution(ent, shuttleComp, ent.Comp1.Thrust);
         TryAddThrusterBurnFixture(ent);
         RefreshShuttleCenterOfThrust(shuttleComp);
 
@@ -533,7 +534,7 @@ public sealed partial class ThrusterSystem : EntitySystem
     /// <returns>A true or false depending on whether the addition was successful.</returns>
     public bool TryAddThrusterBurnFixture(Entity<ThrusterComponent> ent)
     {
-        if (ent.Comp.BurnPoly.Count <= 0 || ent.Comp.Type != ThrusterType.Linear) // Hardcoded just for you <3
+        if (ent.Comp.BurnPoly.Count <= 0 || ent.Comp.ThrusterType != ThrusterType.Linear) // Hardcoded just for you <3
             return false;
 
         var shape = new PolygonShape();
@@ -553,7 +554,7 @@ public sealed partial class ThrusterSystem : EntitySystem
         _thrusterTransformQuery.Resolve(ent, ref ent.Comp2);
         Debug.Assert(ent.Comp2 != null);
 
-        switch (ent.Comp1.Type)
+        switch (ent.Comp1.ThrusterType)
         {
             case ThrusterType.Linear:
                 var direction = (int)ent.Comp2.LocalRotation.GetCardinalDir() / 2;
@@ -581,7 +582,7 @@ public sealed partial class ThrusterSystem : EntitySystem
         _thrusterTransformQuery.Resolve(ent, ref ent.Comp2);
         Debug.Assert(ent.Comp2 != null);
 
-        switch (ent.Comp1.Type)
+        switch (ent.Comp1.ThrusterType)
         {
             case ThrusterType.Linear:
                 var direction = (int)ent.Comp2.LocalRotation.GetCardinalDir() / 2;
@@ -613,7 +614,7 @@ public sealed partial class ThrusterSystem : EntitySystem
         _thrusterTransformQuery.Resolve(ent, ref ent.Comp2);
         Debug.Assert(ent.Comp2 != null);
 
-        switch (ent.Comp1.Type)
+        switch (ent.Comp1.ThrusterType)
         {
             // The thruster should already be a part of the list in this instance. If not, then we cry.
             case ThrusterType.Linear:
@@ -689,14 +690,14 @@ public sealed partial class ThrusterSystem : EntitySystem
             return false;
         }
 
+        if (ent.Comp1 is { RequiresFuel: true, HasFuel: false })
+        {
+            return false;
+        }
+
         if (ent.Comp1.RequireSpace)
         {
             return IsNozzleExposed(ent);
-        }
-
-        if (ent.Comp1.RequiresFuel)
-        {
-            return ent.Comp1.HasFuel;
         }
 
         return true;
