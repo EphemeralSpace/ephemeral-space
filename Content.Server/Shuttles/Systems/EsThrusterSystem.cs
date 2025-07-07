@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
@@ -18,9 +19,7 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Temperature;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
@@ -78,6 +77,7 @@ public sealed partial class EsThrusterSystem : EntitySystem
         _shuttleQuery = GetEntityQuery<ShuttleComponent>();
         _thrusterTransformQuery = GetEntityQuery<TransformComponent>();
         _thrusterQuery = GetEntityQuery<EsThrusterComponent>();
+        _appearanceQuery = GetEntityQuery<AppearanceComponent>();
     }
 
     private void OnMapInit(Entity<EsThrusterComponent> ent, ref MapInitEvent args)
@@ -227,22 +227,22 @@ public sealed partial class EsThrusterSystem : EntitySystem
             oldShuttleComp = Comp<ShuttleComponent>(args.OldPosition.EntityId);
 
             // xform is resolved already
-            ModifyThrustContribution(newEnt!, oldShuttleComp, -newEnt.Comp1.Thrust, oldDirection);
-            RemoveThrusterFromShuttleList(newEnt!, oldShuttleComp);
+            ModifyThrustContribution(newEnt, oldShuttleComp, -newEnt.Comp1.Thrust, oldDirection);
+            RemoveThrusterFromShuttleList(newEnt, oldShuttleComp);
 
-            ModifyThrustContribution(newEnt!, shuttleComp, newEnt.Comp1.Thrust, direction);
-            AddThrusterToShuttleList(newEnt!, shuttleComp);
+            ModifyThrustContribution(newEnt, shuttleComp, newEnt.Comp1.Thrust, direction);
+            AddThrusterToShuttleList(newEnt, shuttleComp);
             return;
         }
 
         if (ent.Comp.Type == EsThrusterType.Linear)
         {
             // xform is resolved already
-            ModifyThrustContribution(newEnt!, oldShuttleComp, -newEnt.Comp1.Thrust, oldDirection);
-            RemoveThrusterFromShuttleList(newEnt!, oldShuttleComp);
+            ModifyThrustContribution(newEnt, oldShuttleComp, -newEnt.Comp1.Thrust, oldDirection);
+            RemoveThrusterFromShuttleList(newEnt, oldShuttleComp);
 
-            ModifyThrustContribution(newEnt!, shuttleComp, newEnt.Comp1.Thrust, direction);
-            AddThrusterToShuttleList(newEnt!, shuttleComp);
+            ModifyThrustContribution(newEnt, shuttleComp, newEnt.Comp1.Thrust, direction);
+            AddThrusterToShuttleList(newEnt, shuttleComp);
         }
     }
 
@@ -303,7 +303,7 @@ public sealed partial class EsThrusterSystem : EntitySystem
             return;
         }
 
-        var newEnt = new Entity<EsThrusterComponent, TransformComponent>(ent.Owner, ent.Comp, xform);
+        var newEnt = new Entity<EsThrusterComponent, TransformComponent?>(ent.Owner, ent.Comp, xform);
 
         // First we need to compute our efficiency and thrust multiplier based on the gas mixture.
         // Define base thruster benefits/drawbacks.
@@ -462,8 +462,8 @@ public sealed partial class EsThrusterSystem : EntitySystem
         }
 
         // Null warning suppressed as TransformComponent has been resolved already.
-        ModifyThrustContribution(ent!, shuttleComp, -ent.Comp1.Thrust);
-        RemoveThrusterFromShuttleList(ent!, shuttleComp);
+        ModifyThrustContribution(ent, shuttleComp, -ent.Comp1.Thrust);
+        RemoveThrusterFromShuttleList(ent, shuttleComp);
         RefreshShuttleCenterOfThrust(shuttleComp);
 
         _fixtureSystem.DestroyFixture(ent, BurnFixture);
@@ -499,8 +499,8 @@ public sealed partial class EsThrusterSystem : EntitySystem
         }
 
         // Null warning suppressed as TransformComponent has been resolved already.
-        ModifyThrustContribution(ent!, shuttleComp, ent.Comp1.Thrust);
-        AddThrusterToShuttleList(ent!, shuttleComp);
+        ModifyThrustContribution(ent, shuttleComp, ent.Comp1.Thrust);
+        AddThrusterToShuttleList(ent, shuttleComp);
         TryAddThrusterBurnFixture(ent);
         RefreshShuttleCenterOfThrust(shuttleComp);
 
@@ -550,8 +550,11 @@ public sealed partial class EsThrusterSystem : EntitySystem
     /// <param name="shuttleComp">The <see cref="ShuttleComponent"/> to remove the thruster from.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when the thruster's type is
     /// out of range of the types available.</exception>
-    public void RemoveThrusterFromShuttleList(Entity<EsThrusterComponent, TransformComponent> ent, ShuttleComponent shuttleComp)
+    public void RemoveThrusterFromShuttleList(Entity<EsThrusterComponent, TransformComponent?> ent, ShuttleComponent shuttleComp)
     {
+        _thrusterTransformQuery.Resolve(ent, ref ent.Comp2);
+        Debug.Assert(ent.Comp2 != null);
+
         switch (ent.Comp1.Type)
         {
             case EsThrusterType.Linear:
@@ -575,8 +578,11 @@ public sealed partial class EsThrusterSystem : EntitySystem
     /// <param name="shuttleComp">The <see cref="ShuttleComponent"/> to add the thruster to.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when the thruster's type is
     /// out of range of the types available.</exception>
-    public void AddThrusterToShuttleList(Entity<EsThrusterComponent, TransformComponent> ent, ShuttleComponent shuttleComp)
+    public void AddThrusterToShuttleList(Entity<EsThrusterComponent, TransformComponent?> ent, ShuttleComponent shuttleComp)
     {
+        _thrusterTransformQuery.Resolve(ent, ref ent.Comp2);
+        Debug.Assert(ent.Comp2 != null);
+
         switch (ent.Comp1.Type)
         {
             case EsThrusterType.Linear:
@@ -604,8 +610,11 @@ public sealed partial class EsThrusterSystem : EntitySystem
     /// It is an additive or subtractive application. Therefore, you <i>must</i> calculate thrust deltas yourself.</remarks>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when the thruster's type is
     /// out of range of the types available.</exception>
-    public void ModifyThrustContribution(Entity<EsThrusterComponent, TransformComponent> ent, ShuttleComponent shuttleComp, float deltaThrust, Angle? angle = null)
+    public void ModifyThrustContribution(Entity<EsThrusterComponent, TransformComponent?> ent, ShuttleComponent shuttleComp, float deltaThrust, Angle? angle = null)
     {
+        _thrusterTransformQuery.Resolve(ent, ref ent.Comp2);
+        Debug.Assert(ent.Comp2 != null);
+
         switch (ent.Comp1.Type)
         {
             // The thruster should already be a part of the list in this instance. If not, then we cry.
