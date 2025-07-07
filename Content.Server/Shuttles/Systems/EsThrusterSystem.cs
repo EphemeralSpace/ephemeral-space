@@ -5,7 +5,9 @@ using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Damage;
+using Content.Shared.Examine;
 using Content.Shared.Interaction;
+using Content.Shared.Localizations;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Power;
@@ -64,6 +66,7 @@ public sealed partial class EsThrusterSystem : EntitySystem
         SubscribeLocalEvent<EsThrusterComponent, ActivateInWorldEvent>(OnActivateInWorldEvent);
         SubscribeLocalEvent<EsThrusterComponent, IsHotEvent>(OnIsHotEvent);
         SubscribeLocalEvent<EsThrusterComponent, MoveEvent>(OnMoveEvent);
+        SubscribeLocalEvent<EsThrusterComponent, ExaminedEvent>(OnExaminedEvent);
 
 
         SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChangedEvent);
@@ -236,6 +239,41 @@ public sealed partial class EsThrusterSystem : EntitySystem
 
             ModifyThrustContribution(newEnt!, shuttleComp, newEnt.Comp1.Thrust, direction);
             AddThrusterToShuttleList(newEnt!, shuttleComp);
+        }
+    }
+
+    /// <summary>
+    /// Pushes relevant examine text including on/off state and direction if it's a linear type thruster.
+    /// </summary>
+    /// <param name="ent">The thruster entity to push examine info to.</param>
+    /// <param name="args">Args from ExaminedEvent.</param>
+    private void OnExaminedEvent(Entity<EsThrusterComponent> ent, ref ExaminedEvent args)
+    {
+        var enabled = Loc.GetString(ent.Comp.Enabled ? "thruster-comp-enabled" : "thruster-comp-disabled");
+
+        using (args.PushGroup(nameof(ThrusterComponent)))
+        {
+            args.PushMarkup(enabled);
+
+            if (ent.Comp.Type == EsThrusterType.Linear &&
+                _thrusterTransformQuery.TryComp(ent, out var xform) &&
+                xform.Anchored)
+            {
+                var nozzleLocalization = ContentLocalizationManager
+                    .FormatDirection(xform.LocalRotation.Opposite().ToWorldVec().GetDir())
+                    .ToLower();
+                var nozzleDir = Loc.GetString("thruster-comp-nozzle-direction",
+                    ("direction", nozzleLocalization));
+
+                args.PushMarkup(nozzleDir);
+
+                var exposed = IsNozzleExposed((ent, ent.Comp, xform));
+
+                var nozzleText =
+                    Loc.GetString(exposed ? "thruster-comp-nozzle-exposed" : "thruster-comp-nozzle-not-exposed");
+
+                args.PushMarkup(nozzleText);
+            }
         }
     }
 
