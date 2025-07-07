@@ -1,9 +1,12 @@
 using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Atmos.Piping.Components;
 using Content.Server.Audio;
 using Content.Server.NodeContainer.EntitySystems;
+using Content.Server.NodeContainer.Nodes;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
+using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -67,6 +70,7 @@ public sealed partial class EsThrusterSystem : EntitySystem
         SubscribeLocalEvent<EsThrusterComponent, IsHotEvent>(OnIsHotEvent);
         SubscribeLocalEvent<EsThrusterComponent, MoveEvent>(OnMoveEvent);
         SubscribeLocalEvent<EsThrusterComponent, ExaminedEvent>(OnExaminedEvent);
+        SubscribeLocalEvent<EsThrusterComponent, AtmosDeviceUpdateEvent>(OnAtmosDeviceUpdateEvent);
 
 
         SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChangedEvent);
@@ -274,6 +278,122 @@ public sealed partial class EsThrusterSystem : EntitySystem
 
                 args.PushMarkup(nozzleText);
             }
+        }
+    }
+
+    /// <summary>
+    /// Updates thruster performance and its ability to operate based on the inlet gas mixture.
+    /// </summary>
+    /// <param name="ent">The entity with the <see cref="ThrusterComponent"/> to update.</param>
+    /// <param name="args">Args provided to us via AtmosDeviceUpdateEvent</param>
+    private void OnAtmosDeviceUpdateEvent(Entity<EsThrusterComponent> ent, ref AtmosDeviceUpdateEvent args)
+    {
+        if (!_nodeContainer.TryGetNode(ent.Owner, ent.Comp.InletName, out PipeNode? inlet))
+        {
+            return;
+        }
+
+        if (!_thrusterTransformQuery.TryComp(ent, out var xform))
+        {
+            return;
+        }
+
+        if (!_shuttleQuery.TryComp(xform.GridUid, out var shuttleComp))
+        {
+            return;
+        }
+
+        var newEnt = new Entity<EsThrusterComponent, TransformComponent>(ent.Owner, ent.Comp, xform);
+
+        // First we need to compute our efficiency and thrust multiplier based on the gas mixture.
+        // Define base thruster benefits/drawbacks.
+        var finalEfficiency = 1f;
+        var finalMultiplier = 1f;
+        var isFueled = !newEnt.Comp1.RequiresFuel;
+
+        // Run over our array
+        // and build a final multiplicative fuel efficiency and thrust multiplier based on the gas mixture's effects.
+        foreach (var mixture in newEnt.Comp1.GasMixturePair)
+        {
+            var benefit = 0f;
+
+            // You'll never catch me writing this shit in upstream in a million years.
+            switch (mixture.BenefitsCondition)
+            {
+                case GasMixtureBenefitsCondition.None:
+                    if (AtmosphereSystem.HasAnyRequiredGas(mixture.Mixture, inlet.Air, Atmospherics.GasMinMoles))
+                    {
+                        benefit = 1f;
+                        isFueled |= mixture.IsFuel;
+                    }
+
+                    break;
+
+                case GasMixtureBenefitsCondition.SingleThreshold:
+                    if (AtmosphereSystem.HasGasesAboveThreshold(mixture.Mixture, inlet.Air))
+                    {
+                        benefit = 1f;
+                        isFueled |= mixture.IsFuel;
+                    }
+
+                    break;
+
+                case GasMixtureBenefitsCondition.SingleThresholdPure:
+                    benefit = AtmosphereSystem.GetPurityRatio(mixture.Mixture, inlet.Air);
+                    if (benefit > 0f)
+                    {
+                        isFueled |= mixture.IsFuel;
+                    }
+
+                    break;
+
+                // If the field is not present(???), fallback to Pure.
+                case GasMixtureBenefitsCondition.Pure:
+                    benefit = _atmosphere.GetGasMixtureSimilarity(mixture.Mixture, inlet.Air);
+                    if (benefit > 0f)
+                    {
+                        isFueled |= mixture.IsFuel;
+                    }
+
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(ent), "Invalid GasMixtureBenefitsCondition type.");
+            }
+
+            finalEfficiency *= benefit * mixture.ConsumptionEfficiency;
+            finalMultiplier *= benefit * mixture.ThrustMultiplier;
+        }
+
+        newEnt.Comp1.GasConsumptionEfficiency = Math.Clamp(finalEfficiency,
+            newEnt.Comp1.MinGasConsumptionEfficiency,
+            newEnt.Comp1.MaxGasConsumptionEfficiency);
+        newEnt.Comp1.GasThrustMultiplier = Math.Clamp(finalMultiplier,
+            newEnt.Comp1.MinGasThrustMultiplier,
+            newEnt.Comp1.MaxGasThrustMultiplier);
+
+        var newThrust = newEnt.Comp1.GasThrustMultiplier * newEnt.Comp1.BaseThrust;
+        var deltaThrust = newThrust - newEnt.Comp1.Thrust;
+
+        newEnt.Comp1.Thrust = newThrust;
+        newEnt.Comp1.HasFuel = isFueled;
+
+        ModifyThrustContribution(newEnt, shuttleComp, deltaThrust);
+        RefreshShuttleCenterOfThrust(shuttleComp);
+
+        if (CanThrusterEnable(ent))
+        {
+            TryEnableThruster(ent);
+        }
+        else
+        {
+            TryDisableThruster(ent);
+        }
+
+        if (ent.Comp.Firing)
+        {
+            var gasConsumption = ent.Comp.BaseGasConsumptionRate * ent.Comp.GasConsumptionEfficiency;
+            inlet.Air.Remove(gasConsumption);
         }
     }
 
@@ -567,7 +687,11 @@ public sealed partial class EsThrusterSystem : EntitySystem
             return IsNozzleExposed(ent);
         }
 
-        // TODO: Fuel checking logic in here, or in atmos methods?
+        if (ent.Comp1.RequiresFuel)
+        {
+            return ent.Comp1.HasFuel;
+        }
+
         return true;
     }
 

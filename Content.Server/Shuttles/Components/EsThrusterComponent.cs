@@ -142,6 +142,12 @@ public sealed partial class EsThrusterComponent : Component
     public bool RequiresFuel;
 
     /// <summary>
+    /// Whether this thruster is currently fueled with a valid fuel gas.
+    /// </summary>
+    [DataField]
+    public bool HasFuel;
+
+    /// <summary>
     /// Name of the inlet port for the thruster.
     /// </summary>
     [DataField]
