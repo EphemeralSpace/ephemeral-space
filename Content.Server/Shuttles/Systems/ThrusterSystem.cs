@@ -1,34 +1,36 @@
+using System.Diagnostics;
 using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Audio;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
+using Content.Shared.Localizations;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
+using Content.Shared.Power;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Temperature;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Collision.Shapes;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.Localizations;
-using Content.Shared.Power;
 
 namespace Content.Server.Shuttles.Systems;
 
-public sealed class ThrusterSystem : EntitySystem
+/// <summary>
+/// Updates a thruster entity's thrust contribution to the ShuttleComponent that they are attached to.
+/// </summary>
+public sealed partial class ThrusterSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
@@ -38,90 +40,282 @@ public sealed class ThrusterSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-
-    #region _ES
-
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
 
-    #endregion
-
-    // Essentially whenever thruster enables we update the shuttle's available impulses which are used for movement.
-    // This is done for each direction available.
-
+    // TODO: Unhardcode this.
     public const string BurnFixture = "thruster-burn";
+    private readonly Direction[] _cardinalDirections = [Direction.South, Direction.East, Direction.North, Direction.West];
 
-    #region _ES
-
-    /// <summary>
-    /// Cached query for shuttle components,
-    /// since they rarely change, and we need to access them frequently.
-    /// </summary>
+    // Queries for frequently used components.
     private EntityQuery<ShuttleComponent> _shuttleQuery;
-
-    /// <summary>
-    /// Cached query for thruster transforms, since
-    /// we need to access them frequently when we preform thruster buff/nerf updates.
-    /// </summary>
     private EntityQuery<TransformComponent> _thrusterTransformQuery;
-
-    #endregion
+    private EntityQuery<ThrusterComponent> _thrusterQuery;
+    private EntityQuery<AppearanceComponent> _appearanceQuery;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ThrusterComponent, ActivateInWorldEvent>(OnActivateThruster);
-        SubscribeLocalEvent<ThrusterComponent, ComponentInit>(OnThrusterInit);
+
         SubscribeLocalEvent<ThrusterComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<ThrusterComponent, ComponentShutdown>(OnThrusterShutdown);
-        SubscribeLocalEvent<ThrusterComponent, PowerChangedEvent>(OnPowerChange);
-        SubscribeLocalEvent<ThrusterComponent, AnchorStateChangedEvent>(OnAnchorChange);
-        SubscribeLocalEvent<ThrusterComponent, MoveEvent>(OnRotate);
-        SubscribeLocalEvent<ThrusterComponent, IsHotEvent>(OnIsHotEvent);
+        SubscribeLocalEvent<ThrusterComponent, ComponentInit>(OnThrusterInit);
         SubscribeLocalEvent<ThrusterComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<ThrusterComponent, EndCollideEvent>(OnEndCollide);
+        SubscribeLocalEvent<ThrusterComponent, ComponentShutdown>(OnThrusterShutdown);
+        SubscribeLocalEvent<ThrusterComponent, PowerChangedEvent>(OnPowerChangedEvent);
+        SubscribeLocalEvent<ThrusterComponent, AnchorStateChangedEvent>(OnAnchorChangedEvent);
+        SubscribeLocalEvent<ThrusterComponent, ActivateInWorldEvent>(OnActivateInWorldEvent);
+        SubscribeLocalEvent<ThrusterComponent, IsHotEvent>(OnIsHotEvent);
+        SubscribeLocalEvent<ThrusterComponent, MoveEvent>(OnMoveEvent);
+        SubscribeLocalEvent<ThrusterComponent, ExaminedEvent>(OnExaminedEvent);
+        SubscribeLocalEvent<ThrusterComponent, AtmosDeviceUpdateEvent>(OnAtmosDeviceUpdateEvent);
 
-        SubscribeLocalEvent<ThrusterComponent, ExaminedEvent>(OnThrusterExamine);
-
-        SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
-
-        #region _ES
-
-        SubscribeLocalEvent<ThrusterComponent, AtmosDeviceUpdateEvent>(OnAtmosUpdateEvent);
+        SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChangedEvent);
 
         _shuttleQuery = GetEntityQuery<ShuttleComponent>();
         _thrusterTransformQuery = GetEntityQuery<TransformComponent>();
-
-        #endregion
+        _thrusterQuery = GetEntityQuery<ThrusterComponent>();
+        _appearanceQuery = GetEntityQuery<AppearanceComponent>();
     }
 
-    #region _ES
+    private void OnMapInit(Entity<ThrusterComponent> ent, ref MapInitEvent args)
+    {
+        // Set the next update time on the component to the current time
+        // so things are properly synced.
+        ent.Comp.NextFire = _timing.CurTime + ent.Comp.DamageCooldown;
+    }
+
+    private void OnThrusterInit(Entity<ThrusterComponent> ent, ref ComponentInit args)
+    {
+        _ambient.SetAmbience(ent, false);
+
+        // It came into life wanting to be disabled, so keep it disabled.
+        if (!ent.Comp.Enabled)
+        {
+            return;
+        }
+
+        if (CanThrusterEnable(ent))
+        {
+            TryEnableThruster(ent);
+        }
+    }
+
+    /// <summary>
+    /// RUns the shutdown logic when the component is being deleted.
+    /// Ensures that we properly remove our thrust contributions and whatnot
+    /// before we're removed.
+    /// </summary>
+    private void OnThrusterShutdown(Entity<ThrusterComponent> ent, ref ComponentShutdown args)
+    {
+        TryDisableThruster(ent);
+    }
+
+    /// <summary>
+    /// Turns the thruster on or off depending on if it is allowed to.
+    /// A power change might not allow the thruster to fire anymore,
+    /// or it might be allowed to now.
+    /// </summary>
+    private void OnPowerChangedEvent(Entity<ThrusterComponent> ent, ref PowerChangedEvent args)
+    {
+        if (CanThrusterEnable(ent))
+        {
+            TryEnableThruster(ent);
+        }
+        else
+        {
+            TryDisableThruster(ent);
+        }
+    }
+
+    /// <summary>
+    /// Turns the thruster on or off depending on if it is allowed to.
+    /// An anchor change might not allow the thruster to fire anymore,
+    /// or it might be allowed to now.
+    /// </summary>
+    private void OnAnchorChangedEvent(Entity<ThrusterComponent> ent, ref AnchorStateChangedEvent args)
+    {
+        if (CanThrusterEnable(ent))
+        {
+            TryEnableThruster(ent);
+        }
+        else
+        {
+            TryDisableThruster(ent);
+        }
+    }
+
+    /// <summary>
+    /// Toggles the Enabled status on the thruster and enables/disables it depending on that.
+    /// </summary>
+    private void OnActivateInWorldEvent(Entity<ThrusterComponent> ent, ref ActivateInWorldEvent args)
+    {
+        if (args.Handled || !args.Complex)
+        {
+            return;
+        }
+
+        ent.Comp.Enabled ^= true;
+
+        if (CanThrusterEnable(ent))
+        {
+            TryEnableThruster(ent);
+        }
+        else
+        {
+            TryDisableThruster(ent);
+        }
+    }
+
+    /// <summary>
+    /// Returns if the thruster is hot or not.
+    /// </summary>
+    private void OnIsHotEvent(Entity<ThrusterComponent> ent, ref IsHotEvent args)
+    {
+        args.IsHot = ent.Comp.Type != ThrusterType.Angular && ent.Comp.IsOn;
+    }
+
+    /// <summary>
+    /// Changes the thrust contributions of rotated thrusters to the right direction and tries to
+    /// automatically enable/disable them unless disabled by UX.
+    /// </summary>
+    /// <param name="ent">Thruster that was rotated.</param>
+    /// <param name="args">MoveEvent args.</param>
+    private void OnMoveEvent(Entity<ThrusterComponent> ent, ref MoveEvent args)
+    {
+        // The thruster wasn't on, so it wasn't providing any impulse and thus doesn't need to be checked if
+        // it can be turned on automatically.
+        if (!ent.Comp.Enabled || !_thrusterTransformQuery.TryComp(ent, out var xform) ||
+            !_shuttleQuery.TryComp(xform.GridUid, out var shuttleComp))
+        {
+            return;
+        }
+
+        var newEnt = new Entity<ThrusterComponent, TransformComponent?>(ent, ent.Comp, xform);
+
+        var canEnable = CanThrusterEnable(newEnt);
+
+        switch (canEnable)
+        {
+            // Don't enable the thruster inadvertently if the thruster wasn't on to begin with and we can't turn it on.
+            case false when !newEnt.Comp1.IsOn:
+                return;
+            // Enable if the thruster was turned off but the new tile is valid.
+            case true when !newEnt.Comp1.IsOn:
+                TryEnableThruster(newEnt);
+                return;
+            // Disable if the new tile is invalid.
+            case false when newEnt.Comp1.IsOn:
+                TryDisableThruster(newEnt, args.OldRotation);
+                break;
+        }
+
+        // Beyond this, the thruster has now rotated and stayed active.
+        // We have to remove the thrust contribution from the old direction and add it
+        // to the new direction.
+
+        var oldDirection = args.OldRotation;
+        var direction = args.NewRotation;
+        var oldShuttleComp = shuttleComp;
+
+        // Angular thrusters don't need to worry if their parent has changed.
+        // Copy-paste but prettier.
+        if (args.ParentChanged && ent.Comp.Type == ThrusterType.Angular)
+        {
+            oldShuttleComp = Comp<ShuttleComponent>(args.OldPosition.EntityId);
+
+            // xform is resolved already
+            ModifyThrustContribution(newEnt, oldShuttleComp, -newEnt.Comp1.Thrust, oldDirection);
+            RemoveThrusterFromShuttleList(newEnt, oldShuttleComp);
+
+            ModifyThrustContribution(newEnt, shuttleComp, newEnt.Comp1.Thrust, direction);
+            AddThrusterToShuttleList(newEnt, shuttleComp);
+            return;
+        }
+
+        if (ent.Comp.Type == ThrusterType.Linear)
+        {
+            // xform is resolved already
+            ModifyThrustContribution(newEnt, oldShuttleComp, -newEnt.Comp1.Thrust, oldDirection);
+            RemoveThrusterFromShuttleList(newEnt, oldShuttleComp);
+
+            ModifyThrustContribution(newEnt, shuttleComp, newEnt.Comp1.Thrust, direction);
+            AddThrusterToShuttleList(newEnt, shuttleComp);
+        }
+    }
+
+    /// <summary>
+    /// Pushes relevant examine text including on/off state and direction if it's a linear type thruster.
+    /// </summary>
+    /// <param name="ent">The thruster entity to push examine info to.</param>
+    /// <param name="args">Args from ExaminedEvent.</param>
+    private void OnExaminedEvent(Entity<ThrusterComponent> ent, ref ExaminedEvent args)
+    {
+        var enabled = Loc.GetString(ent.Comp.Enabled ? "thruster-comp-enabled" : "thruster-comp-disabled");
+
+        using (args.PushGroup(nameof(ThrusterComponent)))
+        {
+            args.PushMarkup(enabled);
+
+            if (ent.Comp.Type == ThrusterType.Linear &&
+                _thrusterTransformQuery.TryComp(ent, out var xform) &&
+                xform.Anchored)
+            {
+                var nozzleLocalization = ContentLocalizationManager
+                    .FormatDirection(xform.LocalRotation.Opposite().ToWorldVec().GetDir())
+                    .ToLower();
+                var nozzleDir = Loc.GetString("thruster-comp-nozzle-direction",
+                    ("direction", nozzleLocalization));
+
+                args.PushMarkup(nozzleDir);
+
+                var exposed = IsNozzleExposed((ent, ent.Comp, xform));
+
+                var nozzleText =
+                    Loc.GetString(exposed ? "thruster-comp-nozzle-exposed" : "thruster-comp-nozzle-not-exposed");
+
+                args.PushMarkup(nozzleText);
+            }
+        }
+    }
 
     /// <summary>
     /// Updates thruster performance and its ability to operate based on the inlet gas mixture.
     /// </summary>
     /// <param name="ent">The entity with the <see cref="ThrusterComponent"/> to update.</param>
-    /// <param name="args">The atmospheric device update event data containing environmental conditions.</param>
-    private void OnAtmosUpdateEvent(Entity<ThrusterComponent> ent, ref AtmosDeviceUpdateEvent args)
+    /// <param name="args">Args provided to us via AtmosDeviceUpdateEvent</param>
+    private void OnAtmosDeviceUpdateEvent(Entity<ThrusterComponent> ent, ref AtmosDeviceUpdateEvent args)
     {
         if (!_nodeContainer.TryGetNode(ent.Owner, ent.Comp.InletName, out PipeNode? inlet))
         {
             return;
         }
 
+        if (!_thrusterTransformQuery.TryComp(ent, out var xform))
+        {
+            return;
+        }
+
+        if (!_shuttleQuery.TryComp(xform.GridUid, out var shuttleComp))
+        {
+            return;
+        }
+
+        var newEnt = new Entity<ThrusterComponent, TransformComponent?>(ent.Owner, ent.Comp, xform);
+
         // First we need to compute our efficiency and thrust multiplier based on the gas mixture.
         // Define base thruster benefits/drawbacks.
         var finalEfficiency = 1f;
         var finalMultiplier = 1f;
-        var isFueled = !ent.Comp.RequiresFuel;
+        var isFueled = !newEnt.Comp1.RequiresFuel;
 
         // Run over our array
         // and build a final multiplicative fuel efficiency and thrust multiplier based on the gas mixture's effects.
-        foreach (var mixture in ent.Comp.GasMixturePair)
+        foreach (var mixture in newEnt.Comp1.GasMixturePair)
         {
             var benefit = 0f;
 
-            // You'll never catch be writing this shit in upstream in a million years.
+            // You'll never catch me writing this shit in upstream in a million years.
             switch (mixture.BenefitsCondition)
             {
                 case GasMixtureBenefitsCondition.None:
@@ -153,7 +347,6 @@ public sealed class ThrusterSystem : EntitySystem
 
                 // If the field is not present(???), fallback to Pure.
                 case GasMixtureBenefitsCondition.Pure:
-                default:
                     benefit = _atmosphere.GetGasMixtureSimilarity(mixture.Mixture, inlet.Air);
                     if (benefit > 0f)
                     {
@@ -161,126 +354,62 @@ public sealed class ThrusterSystem : EntitySystem
                     }
 
                     break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(ent), "Invalid GasMixtureBenefitsCondition type.");
             }
 
             finalEfficiency *= benefit * mixture.ConsumptionEfficiency;
             finalMultiplier *= benefit * mixture.ThrustMultiplier;
         }
 
-        ent.Comp.GasConsumptionEfficiency = Math.Clamp(finalEfficiency,
-            ent.Comp.MinGasConsumptionEfficiency,
-            ent.Comp.MaxGasConsumptionEfficiency);
-        ent.Comp.GasThrustMultiplier = Math.Clamp(finalMultiplier,
-            ent.Comp.MinGasThrustMultiplier,
-            ent.Comp.MaxGasThrustMultiplier);
+        newEnt.Comp1.GasConsumptionEfficiency = Math.Clamp(finalEfficiency,
+            newEnt.Comp1.MinGasConsumptionEfficiency,
+            newEnt.Comp1.MaxGasConsumptionEfficiency);
+        newEnt.Comp1.GasThrustMultiplier = Math.Clamp(finalMultiplier,
+            newEnt.Comp1.MinGasThrustMultiplier,
+            newEnt.Comp1.MaxGasThrustMultiplier);
 
-        // Update the grid's ability to move.
-        ent.Comp.Thrust = ent.Comp.BaseThrust * ent.Comp.GasThrustMultiplier;
-        RefreshThrusterContribution(ent);
-        ent.Comp.PreviousThrust = ent.Comp.Thrust;
+        var newThrust = newEnt.Comp1.GasThrustMultiplier * newEnt.Comp1.BaseThrust;
+        var deltaThrust = newThrust - newEnt.Comp1.Thrust;
 
+        newEnt.Comp1.Thrust = newThrust;
+        newEnt.Comp1.HasFuel = isFueled;
 
-        if (isFueled)
+        ModifyThrustContribution(newEnt, shuttleComp, deltaThrust);
+        RefreshShuttleCenterOfThrust(shuttleComp);
+
+        if (CanThrusterEnable(ent))
         {
-            ent.Comp.IsAllowedActive = true;
-
-            if (CanEnable(ent.Owner, ent.Comp))
-            {
-                EnableThruster(ent.Owner, ent.Comp);
-            }
-
-            // Actually consume the gas if we're requesting impulse.
-            if (ent.Comp.Firing)
-            {
-                var gasConsumption = ent.Comp.BaseGasConsumptionRate * ent.Comp.GasConsumptionEfficiency;
-                inlet.Air.Remove(gasConsumption);
-            }
+            TryEnableThruster(ent);
         }
         else
         {
-            ent.Comp.IsAllowedActive = false;
-            DisableThruster(ent.Owner, ent.Comp);
+            TryDisableThruster(ent);
+        }
+
+        if (ent.Comp.Firing)
+        {
+            var gasConsumption = ent.Comp.BaseGasConsumptionRate * ent.Comp.GasConsumptionEfficiency;
+            inlet.Air.Remove(gasConsumption);
         }
     }
 
     /// <summary>
-    /// Refreshes the thruster's contribution to the shuttle's movement.
+    /// Disables thrusters whose thrust tile may have changed to no longer be a valid tile.
     /// </summary>
-    /// <param name="ent">The entity with the <see cref="ThrusterComponent"/>.</param>
-    private void RefreshThrusterContribution(Entity<ThrusterComponent> ent)
-    {
-        var xform = _thrusterTransformQuery.Comp(ent);
-
-        if (!_shuttleQuery.TryComp(xform.GridUid, out var shuttlecomp))
-        {
-            // Sucks to be you.
-            return;
-        }
-
-        var direction = (int)xform.LocalRotation.GetCardinalDir() / 2;
-        var deltaThrust = ent.Comp.Thrust - ent.Comp.PreviousThrust;
-
-        if (ent.Comp.Type == ThrusterType.Linear)
-        {
-            shuttlecomp.LinearThrust[direction] += deltaThrust;
-        }
-
-        // Me using my magical fucking crystal ball to increase the effectiveness of a
-        // gyroscope by feeding it tritium.
-        if (ent.Comp.Type == ThrusterType.Angular)
-        {
-            shuttlecomp.AngularThrust += deltaThrust;
-        }
-    }
-
-    #endregion
-
-    private void OnThrusterExamine(EntityUid uid, ThrusterComponent component, ExaminedEvent args)
-    {
-        // Powered is already handled by other power components
-        var enabled = Loc.GetString(component.Enabled ? "thruster-comp-enabled" : "thruster-comp-disabled");
-
-        using (args.PushGroup(nameof(ThrusterComponent)))
-        {
-            args.PushMarkup(enabled);
-
-            if (component.Type == ThrusterType.Linear &&
-                EntityManager.TryGetComponent(uid, out TransformComponent? xform) &&
-                xform.Anchored)
-            {
-                var nozzleLocalization = ContentLocalizationManager.FormatDirection(xform.LocalRotation.Opposite().ToWorldVec().GetDir()).ToLower();
-                var nozzleDir = Loc.GetString("thruster-comp-nozzle-direction",
-                    ("direction", nozzleLocalization));
-
-                args.PushMarkup(nozzleDir);
-
-                var exposed = NozzleExposed(xform);
-
-                var nozzleText =
-                    Loc.GetString(exposed ? "thruster-comp-nozzle-exposed" : "thruster-comp-nozzle-not-exposed");
-
-                args.PushMarkup(nozzleText);
-            }
-        }
-    }
-
-    private void OnIsHotEvent(EntityUid uid, ThrusterComponent component, IsHotEvent args)
-    {
-        args.IsHot = component.Type != ThrusterType.Angular && component.IsOn;
-    }
-
-    private void OnShuttleTileChange(EntityUid uid, ShuttleComponent component, ref TileChangedEvent args)
+    /// <param name="ent">The shuttle entity.</param>
+    /// <param name="args">Args from TileChangedEvent.</param>
+    private void OnShuttleTileChangedEvent(Entity<ShuttleComponent> ent, ref TileChangedEvent args)
     {
         foreach (var change in args.Changes)
         {
-            // If the old tile was space but the new one isn't then disable all adjacent thrusters
+            // The changed tile is still space.
             if (change.NewTile.IsSpace(_tileDefManager) || !change.OldTile.IsSpace(_tileDefManager))
                 continue;
 
             var tilePos = change.GridIndices;
-            var grid = Comp<MapGridComponent>(uid);
-            var xformQuery = GetEntityQuery<TransformComponent>();
-            var thrusterQuery = GetEntityQuery<ThrusterComponent>();
+            var grid = Comp<MapGridComponent>(ent);
 
             for (var x = -1; x <= 1; x++)
             {
@@ -290,21 +419,21 @@ public sealed class ThrusterSystem : EntitySystem
                         continue;
 
                     var checkPos = tilePos + new Vector2i(x, y);
-                    var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, grid, checkPos);
+                    var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(ent, grid, checkPos);
 
-                    while (enumerator.MoveNext(out var ent))
+                    while (enumerator.MoveNext(out var uid))
                     {
-                        if (!thrusterQuery.TryGetComponent(ent.Value, out var thruster) || !thruster.RequireSpace)
+                        if (!_thrusterQuery.TryComp(uid.Value, out var thruster) || !thruster.RequireSpace)
                             continue;
 
                         // Work out if the thruster is facing this direction
-                        var xform = xformQuery.GetComponent(ent.Value);
+                        var xform = _thrusterTransformQuery.GetComponent(uid.Value);
                         var direction = xform.LocalRotation.ToWorldVec();
 
                         if (new Vector2i((int)direction.X, (int)direction.Y) != new Vector2i(x, y))
                             continue;
 
-                        DisableThruster(ent.Value, thruster, xform.GridUid);
+                        TryDisableThruster((uid.Value, thruster, xform));
                     }
                 }
             }
@@ -312,435 +441,417 @@ public sealed class ThrusterSystem : EntitySystem
 
     }
 
-    private void OnActivateThruster(EntityUid uid, ThrusterComponent component, ActivateInWorldEvent args)
+    /// <summary>
+    /// Tries to disable the thruster. Does nothing if already disabled.
+    /// </summary>
+    /// <param name="ent">The thruster to disable.</param>
+    /// <param name="angle">An optional angle to provide to remove the thrust from, useful if the thruster was rotated.</param>
+    /// <returns>Whether the thruster was disabled or not, or if it was already disabled.</returns>
+    public bool TryDisableThruster(Entity<ThrusterComponent, TransformComponent?> ent, Angle? angle = null)
     {
-        if (args.Handled || !args.Complex || component.IsFueledThruster) // ES - Fueled Thrusters - Only allow interactions/toggling through atmos
-            return;
-
-        component.Enabled ^= true;
-
-        if (!component.Enabled)
+        if (!ent.Comp1.IsOn || !_thrusterTransformQuery.Resolve(ent, ref ent.Comp2))
         {
-            DisableThruster(uid, component);
-            args.Handled = true;
+            return false;
         }
-        else if (CanEnable(uid, component))
+
+        if (!_shuttleQuery.TryComp(ent.Comp2.GridUid, out var shuttleComp))
         {
-            EnableThruster(uid, component);
-            args.Handled = true;
+            return false;
         }
+
+        // Null warning suppressed as TransformComponent has been resolved already.
+        ModifyThrustContribution(ent, shuttleComp, -ent.Comp1.Thrust);
+        RemoveThrusterFromShuttleList(ent, shuttleComp);
+        RefreshShuttleCenterOfThrust(shuttleComp);
+
+        _fixtureSystem.DestroyFixture(ent, BurnFixture);
+        ent.Comp1.Colliding.Clear();
+
+        UpdateAppearance(ent.Owner, false);
+
+        ent.Comp1.IsOn = false;
+
+        return true;
     }
 
     /// <summary>
-    /// If the thruster rotates change the direction where the linear thrust is applied
+    /// Tries to enable the thruster and turn it on. Does nothing if already enabled.
     /// </summary>
-    private void OnRotate(EntityUid uid, ThrusterComponent component, ref MoveEvent args)
+    /// <param name="ent">The thruster to enable.</param>
+    /// <returns>Whether the thruster was enabled or not, or if it was already enabled.</returns>
+    /// <remarks>This method does not check for if a thruster is allowed to turn on before doing so,
+    /// it simply just tries to turn it on. You should be checking the return of <see cref="CanThrusterEnable"/>
+    /// if you want to ensure it's allowed to turn on before actually turning it on.</remarks>
+    public bool TryEnableThruster(Entity<ThrusterComponent, TransformComponent?> ent)
     {
-        // TODO: Disable visualizer for old direction
-        // TODO: Don't make them rotatable and make it require anchoring.
-
-        if (!component.Enabled ||
-            !EntityManager.TryGetComponent(uid, out TransformComponent? xform) ||
-            !EntityManager.TryGetComponent(xform.GridUid, out ShuttleComponent? shuttleComponent))
+        // It's already on.
+        if (ent.Comp1.IsOn)
         {
-            return;
+            return true;
         }
 
-        var canEnable = CanEnable(uid, component);
-
-        // If it's not on then don't enable it inadvertantly (given we don't have an old rotation)
-        if (!canEnable && !component.IsOn)
-            return;
-
-        // Enable it if it was turned off but new tile is valid
-        if (!component.IsOn && canEnable)
+        if (!_thrusterTransformQuery.Resolve(ent, ref ent.Comp2) ||
+            !_shuttleQuery.TryComp(ent.Comp2.GridUid, out var shuttleComp))
         {
-            EnableThruster(uid, component);
-            return;
+            return false;
         }
 
-        // Disable if new tile invalid
-        if (component.IsOn && !canEnable)
-        {
-            DisableThruster(uid, component, args.OldPosition.EntityId, xform, args.OldRotation);
-            return;
-        }
+        // Null warning suppressed as TransformComponent has been resolved already.
+        ModifyThrustContribution(ent, shuttleComp, ent.Comp1.Thrust);
+        AddThrusterToShuttleList(ent, shuttleComp);
+        TryAddThrusterBurnFixture(ent);
+        RefreshShuttleCenterOfThrust(shuttleComp);
 
-        var oldDirection = (int)args.OldRotation.GetCardinalDir() / 2;
-        var direction = (int)args.NewRotation.GetCardinalDir() / 2;
-        var oldShuttleComponent = shuttleComponent;
+        UpdateAppearance(ent.Owner, true);
 
-        if (args.ParentChanged)
-        {
-            oldShuttleComponent = Comp<ShuttleComponent>(args.OldPosition.EntityId);
+        ent.Comp1.IsOn = true;
 
-            // If no parent change doesn't matter for angular.
-            if (component.Type == ThrusterType.Angular)
-            {
-                oldShuttleComponent.AngularThrust -= component.Thrust;
-                DebugTools.Assert(oldShuttleComponent.AngularThrusters.Contains(uid));
-                oldShuttleComponent.AngularThrusters.Remove(uid);
-
-                shuttleComponent.AngularThrust += component.Thrust;
-                DebugTools.Assert(!shuttleComponent.AngularThrusters.Contains(uid));
-                shuttleComponent.AngularThrusters.Add(uid);
-                return;
-            }
-        }
-
-        if (component.Type == ThrusterType.Linear)
-        {
-            oldShuttleComponent.LinearThrust[oldDirection] -= component.Thrust;
-            DebugTools.Assert(oldShuttleComponent.LinearThrusters[oldDirection].Contains(uid));
-            oldShuttleComponent.LinearThrusters[oldDirection].Remove(uid);
-
-            shuttleComponent.LinearThrust[direction] += component.Thrust;
-            DebugTools.Assert(!shuttleComponent.LinearThrusters[direction].Contains(uid));
-            shuttleComponent.LinearThrusters[direction].Add(uid);
-        }
-    }
-
-    private void OnAnchorChange(EntityUid uid, ThrusterComponent component, ref AnchorStateChangedEvent args)
-    {
-        if (args.Anchored && CanEnable(uid, component))
-        {
-            EnableThruster(uid, component);
-        }
-        else
-        {
-            DisableThruster(uid, component);
-        }
-    }
-
-    private void OnThrusterInit(EntityUid uid, ThrusterComponent component, ComponentInit args)
-    {
-        _ambient.SetAmbience(uid, false);
-
-        if (!component.Enabled)
-        {
-            return;
-        }
-
-        if (CanEnable(uid, component))
-        {
-            EnableThruster(uid, component);
-        }
-    }
-
-    private void OnMapInit(Entity<ThrusterComponent> ent, ref MapInitEvent args)
-    {
-        ent.Comp.NextFire = _timing.CurTime + ent.Comp.FireCooldown;
-    }
-
-    private void OnThrusterShutdown(EntityUid uid, ThrusterComponent component, ComponentShutdown args)
-    {
-        DisableThruster(uid, component);
-    }
-
-    private void OnPowerChange(EntityUid uid, ThrusterComponent component, ref PowerChangedEvent args)
-    {
-        if (args.Powered && CanEnable(uid, component))
-        {
-            EnableThruster(uid, component);
-        }
-        else
-        {
-            DisableThruster(uid, component);
-        }
+        return true;
     }
 
     /// <summary>
-    /// Tries to enable the thruster and turn it on. If it's already enabled it does nothing.
+    /// Updates the cosmetics (visuals, light, and ambiance) of the thruster given the provided value.
     /// </summary>
-    public void EnableThruster(EntityUid uid, ThrusterComponent component, TransformComponent? xform = null)
+    /// <param name="uid">The thruster to update.</param>
+    /// <param name="status">The state (true/false) to set on the thruster.</param>
+    private void UpdateAppearance(EntityUid uid, bool status)
     {
-        if (component.IsOn ||
-            !Resolve(uid, ref xform))
+        // Might as well use the cached comp. Think of the precious CPU cycles.
+        if (_appearanceQuery.TryComp(uid, out var appearanceComp))
         {
-            return;
+            _appearance.SetData(uid, ThrusterVisualState.State, status, appearanceComp);
         }
 
-        component.IsOn = true;
+        _light.SetEnabled(uid, status);
+        _ambient.SetAmbience(uid, status);
+    }
 
-        if (!EntityManager.TryGetComponent(xform.GridUid, out ShuttleComponent? shuttleComponent))
-            return;
+    /// <summary>
+    /// Attempts to add the thruster burn fixture to the thruster.
+    /// </summary>
+    /// <param name="ent">The thruster to add the fixture to.</param>
+    /// <returns>A true or false depending on whether the addition was successful.</returns>
+    public bool TryAddThrusterBurnFixture(Entity<ThrusterComponent> ent)
+    {
+        if (ent.Comp.BurnPoly.Count <= 0 || ent.Comp.Type != ThrusterType.Linear) // Hardcoded just for you <3
+            return false;
 
-        // Logger.DebugS("thruster", $"Enabled thruster {uid}");
+        var shape = new PolygonShape();
+        shape.Set(ent.Comp.BurnPoly);
+        return _fixtureSystem.TryCreateFixture(ent, shape, BurnFixture, hard: false, collisionLayer: (int)CollisionGroup.FullTileMask);
+    }
 
-        switch (component.Type)
+    /// <summary>
+    /// Removes a thruster from the list of thrusters contributing to a shuttle's impulse.
+    /// </summary>
+    /// <param name="ent">The thruster to remove from the list.</param>
+    /// <param name="shuttleComp">The <see cref="ShuttleComponent"/> to remove the thruster from.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the thruster's type is
+    /// out of range of the types available.</exception>
+    public void RemoveThrusterFromShuttleList(Entity<ThrusterComponent, TransformComponent?> ent, ShuttleComponent shuttleComp)
+    {
+        _thrusterTransformQuery.Resolve(ent, ref ent.Comp2);
+        Debug.Assert(ent.Comp2 != null);
+
+        switch (ent.Comp1.Type)
         {
             case ThrusterType.Linear:
-                var direction = (int)xform.LocalRotation.GetCardinalDir() / 2;
-
-                shuttleComponent.LinearThrust[direction] += component.Thrust;
-                DebugTools.Assert(!shuttleComponent.LinearThrusters[direction].Contains(uid));
-                shuttleComponent.LinearThrusters[direction].Add(uid);
-
-                // Don't just add / remove the fixture whenever the thruster fires because perf
-                if (EntityManager.TryGetComponent(uid, out PhysicsComponent? physicsComponent) &&
-                    component.BurnPoly.Count > 0)
-                {
-                    var shape = new PolygonShape();
-                    shape.Set(component.BurnPoly);
-                    _fixtureSystem.TryCreateFixture(uid, shape, BurnFixture, hard: false, collisionLayer: (int)CollisionGroup.FullTileMask, body: physicsComponent);
-                }
-
+                var direction = (int)ent.Comp2.LocalRotation.GetCardinalDir() / 2;
+                DebugTools.Assert(shuttleComp.LinearThrusters[direction].Contains(ent));
+                shuttleComp.LinearThrusters[direction].Remove(ent);
                 break;
             case ThrusterType.Angular:
-                shuttleComponent.AngularThrust += component.Thrust;
-                DebugTools.Assert(!shuttleComponent.AngularThrusters.Contains(uid));
-                shuttleComponent.AngularThrusters.Add(uid);
+                DebugTools.Assert(shuttleComp.AngularThrusters.Contains(ent));
+                shuttleComp.AngularThrusters.Remove(ent);
                 break;
             default:
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(ent), "Invalid thruster type.");
         }
-
-        if (EntityManager.TryGetComponent(uid, out AppearanceComponent? appearance))
-        {
-            _appearance.SetData(uid, ThrusterVisualState.State, true, appearance);
-        }
-
-        if (_light.TryGetLight(uid, out var pointLightComponent))
-        {
-            _light.SetEnabled(uid, true, pointLightComponent);
-        }
-
-        _ambient.SetAmbience(uid, true);
-        RefreshCenter(uid, shuttleComponent);
     }
 
     /// <summary>
-    /// Refreshes the center of thrust for movement calculations.
+    /// Adds a thruster to the list of thrusters contributing to a shuttle's impulse.
     /// </summary>
-    private void RefreshCenter(EntityUid uid, ShuttleComponent shuttle)
+    /// <param name="ent">The thruster to add to the list.</param>
+    /// <param name="shuttleComp">The <see cref="ShuttleComponent"/> to add the thruster to.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the thruster's type is
+    /// out of range of the types available.</exception>
+    public void AddThrusterToShuttleList(Entity<ThrusterComponent, TransformComponent?> ent, ShuttleComponent shuttleComp)
+    {
+        _thrusterTransformQuery.Resolve(ent, ref ent.Comp2);
+        Debug.Assert(ent.Comp2 != null);
+
+        switch (ent.Comp1.Type)
+        {
+            case ThrusterType.Linear:
+                var direction = (int)ent.Comp2.LocalRotation.GetCardinalDir() / 2;
+                DebugTools.Assert(!shuttleComp.LinearThrusters[direction].Contains(ent));
+                shuttleComp.LinearThrusters[direction].Add(ent);
+                break;
+            case ThrusterType.Angular:
+                DebugTools.Assert(!shuttleComp.AngularThrusters.Contains(ent));
+                shuttleComp.AngularThrusters.Add(ent);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(ent), "Invalid thruster type.");
+        }
+    }
+
+    /// <summary>
+    /// Modify the thruster's impulse contribution to the given shuttle grid.
+    /// </summary>
+    /// <param name="ent">The thruster in question:</param>
+    /// <param name="shuttleComp">The <see cref="ShuttleComponent"/> whose thrust directions to modify.</param>
+    /// <param name="deltaThrust">The amount of thrust to add or subtract from the thruster's movement direction orientation.</param>
+    /// <param name="angle">The angle (direction) to modify, used to override the current thrust direction contribution, useful when the thruster is rotated.</param>
+    /// <remarks>This method does not automatically calculate the change in thrust from previous ticks and then applies this.
+    /// It is an additive or subtractive application. Therefore, you <i>must</i> calculate thrust deltas yourself.</remarks>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the thruster's type is
+    /// out of range of the types available.</exception>
+    public void ModifyThrustContribution(Entity<ThrusterComponent, TransformComponent?> ent, ShuttleComponent shuttleComp, float deltaThrust, Angle? angle = null)
+    {
+        _thrusterTransformQuery.Resolve(ent, ref ent.Comp2);
+        Debug.Assert(ent.Comp2 != null);
+
+        switch (ent.Comp1.Type)
+        {
+            // The thruster should already be a part of the list in this instance. If not, then we cry.
+            case ThrusterType.Linear:
+                angle ??= ent.Comp2.LocalRotation;
+                var direction = (int)angle.Value.GetCardinalDir() / 2;
+                DebugTools.Assert(shuttleComp.LinearThrusters[direction].Contains(ent));
+                shuttleComp.LinearThrust[direction] += deltaThrust;
+                break;
+            case ThrusterType.Angular:
+                DebugTools.Assert(shuttleComp.AngularThrusters.Contains(ent));
+                shuttleComp.AngularThrust += deltaThrust;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(ent), "Invalid thruster type.");
+        }
+    }
+
+    /// <summary>
+    /// Refreshes a shuttle's center of thrust for movement calculations.
+    /// </summary>
+    private void RefreshShuttleCenterOfThrust(ShuttleComponent shuttleComp)
     {
         // TODO: Only refresh relevant directions.
         var center = Vector2.Zero;
-        var thrustQuery = GetEntityQuery<ThrusterComponent>();
-        var xformQuery = GetEntityQuery<TransformComponent>();
-
-        foreach (var dir in new[]
-                     { Direction.South, Direction.East, Direction.North, Direction.West })
+        foreach (var dir in _cardinalDirections)
         {
             var index = (int)dir / 2;
-            var pop = shuttle.LinearThrusters[index];
+            var pop = shuttleComp.LinearThrusters[index];
             var totalThrust = 0f;
 
-            foreach (var ent in pop)
+            foreach (var thrusterUid in pop)
             {
-                if (!thrustQuery.TryGetComponent(ent, out var thruster) || !xformQuery.TryGetComponent(ent, out var xform))
+                if (!_thrusterQuery.TryComp(thrusterUid, out var thrusterComp) ||
+                    !_thrusterTransformQuery.TryComp(thrusterUid, out var xform))
                     continue;
 
-                center += xform.LocalPosition * thruster.Thrust;
-                totalThrust += thruster.Thrust;
+                center += xform.LocalPosition * thrusterComp.Thrust;
+                totalThrust += thrusterComp.Thrust;
             }
 
             center /= pop.Count * totalThrust;
-            shuttle.CenterOfThrust[index] = center;
+            shuttleComp.CenterOfThrust[index] = center;
         }
-    }
-
-    public void DisableThruster(EntityUid uid, ThrusterComponent component, TransformComponent? xform = null, Angle? angle = null)
-    {
-        if (!Resolve(uid, ref xform)) return;
-        DisableThruster(uid, component, xform.GridUid, xform);
     }
 
     /// <summary>
-    /// Tries to disable the thruster.
+    /// Determines whether a thruster is capable of entering its idle (ready to fire) state.
     /// </summary>
-    public void DisableThruster(EntityUid uid, ThrusterComponent component, EntityUid? gridId, TransformComponent? xform = null, Angle? angle = null)
+    /// <returns>A true or false determining whether the thruster meets the conditions to provide impulse.</returns>
+    public bool CanThrusterEnable(Entity<ThrusterComponent, TransformComponent?> ent)
     {
-        if (!component.IsOn ||
-            !Resolve(uid, ref xform))
+        // Someone has explicitly disabled their thruster through UX.
+        if (!ent.Comp1.Enabled)
         {
-            return;
+            return false;
         }
 
-        component.IsOn = false;
-
-        if (!EntityManager.TryGetComponent(gridId, out ShuttleComponent? shuttleComponent))
-            return;
-
-        // Logger.DebugS("thruster", $"Disabled thruster {uid}");
-
-        switch (component.Type)
+        // Component is being thanos snapped right now.
+        if (ent.Comp1.LifeStage > ComponentLifeStage.Running)
         {
-            case ThrusterType.Linear:
-                angle ??= xform.LocalRotation;
-                var direction = (int)angle.Value.GetCardinalDir() / 2;
-
-                shuttleComponent.LinearThrust[direction] -= component.Thrust;
-                DebugTools.Assert(shuttleComponent.LinearThrusters[direction].Contains(uid));
-                shuttleComponent.LinearThrusters[direction].Remove(uid);
-                break;
-            case ThrusterType.Angular:
-                shuttleComponent.AngularThrust -= component.Thrust;
-                DebugTools.Assert(shuttleComponent.AngularThrusters.Contains(uid));
-                shuttleComponent.AngularThrusters.Remove(uid);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
+            return false;
         }
 
-        if (EntityManager.TryGetComponent(uid, out AppearanceComponent? appearance))
+        // Unanchored.
+        if (_thrusterTransformQuery.Resolve(ent, ref ent.Comp2) && !ent.Comp2.Anchored)
         {
-            _appearance.SetData(uid, ThrusterVisualState.State, false, appearance);
+            return false;
         }
 
-        if (_light.TryGetLight(uid, out var pointLightComponent))
+        // Needs power.
+        if (ent.Comp1.RequirePower && !this.IsPowered(ent.Owner, EntityManager))
         {
-            _light.SetEnabled(uid, false, pointLightComponent);
+            return false;
         }
 
-        _ambient.SetAmbience(uid, false);
-
-        if (EntityManager.TryGetComponent(uid, out PhysicsComponent? physicsComponent))
+        if (ent.Comp1.RequireSpace)
         {
-            _fixtureSystem.DestroyFixture(uid, BurnFixture, body: physicsComponent);
+            return IsNozzleExposed(ent);
         }
 
-        component.Colliding.Clear();
-        RefreshCenter(uid, shuttleComponent);
+        if (ent.Comp1.RequiresFuel)
+        {
+            return ent.Comp1.HasFuel;
+        }
+
+        return true;
     }
 
-    public bool CanEnable(EntityUid uid, ThrusterComponent component)
+    /// <summary>
+    /// Determines if a thruster's exhaust is sitting on a valid tile.
+    /// </summary>
+    /// <param name="ent">Entity with optional <see cref="TransformComponent"/>.</param>
+    private bool IsNozzleExposed(Entity<ThrusterComponent, TransformComponent?> ent)
     {
-        if (!component.Enabled)
-            return false;
-
-        #region _ES
-
-        if (component.IsFueledThruster)
-        {
-            return component.IsAllowedActive;
-        }
-
-        #endregion
-
-        if (component.LifeStage > ComponentLifeStage.Running)
-            return false;
-
-        var xform = Transform(uid);
-
-        if (!xform.Anchored || !this.IsPowered(uid, EntityManager))
-        {
-            return false;
-        }
-
-        if (!component.RequireSpace)
-            return true;
-
-        return NozzleExposed(xform);
+        return IsNozzleExposed((ent, ent.Comp2));
     }
 
-    private bool NozzleExposed(TransformComponent xform)
+    /// <summary>
+    /// Determines if a thruster's exhaust is sitting on a valid tile.
+    /// </summary>
+    /// <param name="ent">Entity with optional <see cref="TransformComponent"/>.</param>
+    private bool IsNozzleExposed(Entity<TransformComponent?> ent)
     {
-        if (xform.GridUid == null)
+        if (!_thrusterTransformQuery.Resolve(ent, ref ent.Comp))
+        {
+            /*
+                    No TransformComponent?
+              ⠀ ⣞⢽⢪⢣⢣⢣⢫⡺⡵⣝⡮⣗⢷⢽⢽⢽⣮⡷⡽⣜⣜⢮⢺⣜⢷⢽⢝⡽⣝
+               ⠸⡸⠜⠕⠕⠁⢁⢇⢏⢽⢺⣪⡳⡝⣎⣏⢯⢞⡿⣟⣷⣳⢯⡷⣽⢽⢯⣳⣫⠇
+               ⠀⠀⢀⢀⢄⢬⢪⡪⡎⣆⡈⠚⠜⠕⠇⠗⠝⢕⢯⢫⣞⣯⣿⣻⡽⣏⢗⣗⠏⠀
+               ⠀⠪⡪⡪⣪⢪⢺⢸⢢⢓⢆⢤⢀⠀⠀⠀⠀⠈⢊⢞⡾⣿⡯⣏⢮⠷⠁⠀⠀
+               ⠀⠀⠀⠈⠊⠆⡃⠕⢕⢇⢇⢇⢇⢇⢏⢎⢎⢆⢄⠀⢑⣽⣿⢝⠲⠉⠀⠀⠀⠀
+               ⠀⠀⠀⠀⠀⡿⠂⠠⠀⡇⢇⠕⢈⣀⠀⠁⠡⠣⡣⡫⣂⣿⠯⢪⠰⠂⠀⠀⠀⠀
+               ⠀⠀⠀⠀⡦⡙⡂⢀⢤⢣⠣⡈⣾⡃⠠⠄⠀⡄⢱⣌⣶⢏⢊⠂⠀⠀⠀⠀⠀⠀
+               ⠀⠀⠀⠀⢝⡲⣜⡮⡏⢎⢌⢂⠙⠢⠐⢀⢘⢵⣽⣿⡿⠁⠁⠀⠀⠀⠀⠀⠀⠀
+               ⠀⠀⠀⠀⠨⣺⡺⡕⡕⡱⡑⡆⡕⡅⡕⡜⡼⢽⡻⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+               ⠀⠀⠀⠀⣼⣳⣫⣾⣵⣗⡵⡱⡡⢣⢑⢕⢜⢕⡝⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+               ⠀⠀⠀⣴⣿⣾⣿⣿⣿⡿⡽⡑⢌⠪⡢⡣⣣⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+               ⠀⠀⠀⡟⡾⣿⢿⢿⢵⣽⣾⣼⣘⢸⢸⣞⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+               ⠀⠀⠀⠀⠁⠇⠡⠩⡫⢿⣝⡻⡮⣒⢽⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+             */
+            return false;
+        }
+
+        if (ent.Comp.GridUid == null)
             return true;
 
-        var (x, y) = xform.LocalPosition + xform.LocalRotation.Opposite().ToWorldVec();
-        var mapGrid = Comp<MapGridComponent>(xform.GridUid.Value);
-        var tile = _mapSystem.GetTileRef(xform.GridUid.Value, mapGrid, new Vector2i((int)Math.Floor(x), (int)Math.Floor(y)));
+        // Get the location of the tile directly behind the thruster relative to the world.
+        var (x, y) = ent.Comp.LocalPosition + ent.Comp.LocalRotation.Opposite().ToWorldVec();
+
+        // Get the actual tile at this location.
+        var mapGrid = Comp<MapGridComponent>(ent.Comp.GridUid.Value);
+        var tile = _mapSystem.GetTileRef(ent.Comp.GridUid.Value,
+            mapGrid,
+            new Vector2i((int)Math.Floor(x), (int)Math.Floor(y)));
 
         return tile.Tile.IsSpace();
     }
 
-    #region Burning
+    /// <summary>
+    /// Adds an entity who has started to collide with our <see cref="BurnFixture"/> to the colliding list.
+    /// </summary>
+    private void OnStartCollide(Entity<ThrusterComponent> ent, ref StartCollideEvent args)
+    {
+        if (args.OurFixtureId != BurnFixture)
+            return;
 
+        ent.Comp.Colliding.Add(args.OtherEntity);
+    }
+
+    /// <summary>
+    /// Removes an entity who has started to collide with our <see cref="BurnFixture"/> from the colliding list.
+    /// </summary>
+    private void OnEndCollide(Entity<ThrusterComponent> ent, ref EndCollideEvent args)
+    {
+        if (args.OurFixtureId != BurnFixture)
+            return;
+
+        ent.Comp.Colliding.Remove(args.OtherEntity);
+    }
+
+    /// <summary>
+    /// Handles applying damage to entities currently in the colliding list.
+    /// </summary>
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<ThrusterComponent>();
         var curTime = _timing.CurTime;
 
+        var query = EntityQueryEnumerator<ThrusterComponent>();
         while (query.MoveNext(out var comp))
         {
             if (comp.NextFire > curTime)
                 continue;
 
-            comp.NextFire += comp.FireCooldown;
+            comp.NextFire += comp.DamageCooldown;
 
-            if (!comp.Firing || comp.Colliding.Count == 0 || comp.Damage == null)
+            if (!comp.Firing || comp.Damage == null || comp.Colliding.Count == 0)
                 continue;
 
-            foreach (var uid in comp.Colliding.ToArray())
+            foreach (var uid in comp.Colliding)
             {
                 _damageable.TryChangeDamage(uid, comp.Damage);
             }
         }
     }
 
-    private void OnStartCollide(EntityUid uid, ThrusterComponent component, ref StartCollideEvent args)
-    {
-        if (args.OurFixtureId != BurnFixture)
-            return;
-
-        component.Colliding.Add(args.OtherEntity);
-    }
-
-    private void OnEndCollide(EntityUid uid, ThrusterComponent component, ref EndCollideEvent args)
-    {
-        if (args.OurFixtureId != BurnFixture)
-            return;
-
-        component.Colliding.Remove(args.OtherEntity);
-    }
-
     /// <summary>
-    /// Considers a thrust direction as being active.
+    /// Sets an entire shuttle thruster direction to the firing state, updating its appearance.
     /// </summary>
-    public void EnableLinearThrustDirection(ShuttleComponent component, DirectionFlag direction)
+    public void EnableLinearThrustDirection(ShuttleComponent shuttleComp, DirectionFlag direction)
     {
-        if ((component.ThrustDirections & direction) != 0x0)
+        if ((shuttleComp.ThrustDirections & direction) != 0x0)
+        {
             return;
+        }
 
-        component.ThrustDirections |= direction;
+        shuttleComp.ThrustDirections |= direction;
 
         var index = GetFlagIndex(direction);
-        var appearanceQuery = GetEntityQuery<AppearanceComponent>();
-        var thrusterQuery = GetEntityQuery<ThrusterComponent>();
 
-        foreach (var uid in component.LinearThrusters[index])
+        foreach (var uid in shuttleComp.LinearThrusters[index])
         {
-            if (!thrusterQuery.TryGetComponent(uid, out var comp))
+            if (!_thrusterQuery.TryComp(uid, out var comp))
                 continue;
 
-            comp.Firing = true;
-            appearanceQuery.TryGetComponent(uid, out var appearance);
-            _appearance.SetData(uid, ThrusterVisualState.Thrusting, true, appearance);
+            SetThrusterFiringState((uid, comp), true);
         }
     }
 
     /// <summary>
-    /// Disables a thrust direction.
+    /// Sets an entire shuttle thruster direction to the idle state, updating its appearance.
     /// </summary>
-    public void DisableLinearThrustDirection(ShuttleComponent component, DirectionFlag direction)
+    public void DisableLinearThrustDirection(ShuttleComponent shuttleComp, DirectionFlag direction)
     {
-        if ((component.ThrustDirections & direction) == 0x0)
+        if ((shuttleComp.ThrustDirections & direction) == 0x0)
             return;
 
-        component.ThrustDirections &= ~direction;
+        shuttleComp.ThrustDirections &= ~direction;
 
         var index = GetFlagIndex(direction);
-        var appearanceQuery = GetEntityQuery<AppearanceComponent>();
-        var thrusterQuery = GetEntityQuery<ThrusterComponent>();
 
-        foreach (var uid in component.LinearThrusters[index])
+        foreach (var uid in shuttleComp.LinearThrusters[index])
         {
-            if (!thrusterQuery.TryGetComponent(uid, out var comp))
+            if (!_thrusterQuery.TryComp(uid, out var comp))
                 continue;
 
-            appearanceQuery.TryGetComponent(uid, out var appearance);
-            comp.Firing = false;
-            _appearance.SetData(uid, ThrusterVisualState.Thrusting, false, appearance);
+            SetThrusterFiringState((uid, comp), false);
         }
     }
 
+    /// <summary>
+    /// Disable all thrusters in all directions.
+    /// </summary>
     public void DisableLinearThrusters(ShuttleComponent component)
     {
-        foreach (DirectionFlag dir in Enum.GetValues(typeof(DirectionFlag)))
+        foreach (var dir in Enum.GetValues<DirectionFlag>())
         {
             DisableLinearThrustDirection(component, dir);
         }
@@ -748,41 +859,58 @@ public sealed class ThrusterSystem : EntitySystem
         DebugTools.Assert(component.ThrustDirections == DirectionFlag.None);
     }
 
+    /// <summary>
+    /// Sets the angular thrust on a ShuttleComponent.
+    /// </summary>
+    /// <param name="component"></param>
+    /// <param name="on"></param>
     public void SetAngularThrust(ShuttleComponent component, bool on)
     {
-        var appearanceQuery = GetEntityQuery<AppearanceComponent>();
-        var thrusterQuery = GetEntityQuery<ThrusterComponent>();
-
         if (on)
         {
             foreach (var uid in component.AngularThrusters)
             {
-                if (!thrusterQuery.TryGetComponent(uid, out var comp))
+                if (!_thrusterQuery.TryComp(uid, out var comp))
                     continue;
 
-                appearanceQuery.TryGetComponent(uid, out var appearance);
-                comp.Firing = true;
-                _appearance.SetData(uid, ThrusterVisualState.Thrusting, true, appearance);
+                SetThrusterFiringState((uid, comp), true);
             }
         }
         else
         {
             foreach (var uid in component.AngularThrusters)
             {
-                if (!thrusterQuery.TryGetComponent(uid, out var comp))
+                if (!_thrusterQuery.TryComp(uid, out var comp))
                     continue;
 
-                appearanceQuery.TryGetComponent(uid, out var appearance);
-                comp.Firing = false;
-                _appearance.SetData(uid, ThrusterVisualState.Thrusting, false, appearance);
+                SetThrusterFiringState((uid, comp), false);
             }
         }
     }
 
-    #endregion
-
-    private int GetFlagIndex(DirectionFlag flag)
+    /// <summary>
+    /// Sets the visual and firing state of a thruster.
+    /// </summary>
+    public void SetThrusterFiringState(Entity<ThrusterComponent, AppearanceComponent?> ent, bool state)
     {
+        ent.Comp1.Firing = state;
+
+        // Use our cached lookup for AppearanceComponent.
+        // Making up for that update loop, okay?
+        // TODO: Deviantart wolf pondering JPEG for if this needs to be logged
+        _appearanceQuery.Resolve(ent, ref ent.Comp2, false);
+        _appearance.SetData(ent, ThrusterVisualState.Thrusting, state, ent.Comp2);
+    }
+
+    /// <summary>
+    /// Converts a given <see cref="DirectionFlag"/> to its corresponding zero-based index.
+    /// </summary>
+    /// <example>South = 0, East = 1, North = 2, West = 3</example>
+    /// <param name="flag">The <see cref="DirectionFlag"/> to convert.</param>
+    /// <returns>The zero-based index of the given flag, derived from its bit position.</returns>
+    private static int GetFlagIndex(DirectionFlag flag)
+    {
+        // TODO: Is this something that already exists in engine Direction?
         return (int)Math.Log2((int)flag);
     }
 }
