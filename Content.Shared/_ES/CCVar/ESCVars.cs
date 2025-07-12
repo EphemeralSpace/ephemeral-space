@@ -20,7 +20,9 @@ public sealed partial class ESCVars : CVars
         CVarDef.Create("ic.year", 2186, CVar.SERVER);
 
     // RESPAWNING
+    public static readonly CVarDef<bool> ESRespawnEnabled =
+        CVarDef.Create("es_respawn.enabled", false, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<float> ESRespawnDelay =
-        CVarDef.Create("respawn.es_respawn_delay", 60f * 10, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("es_respawn.delay", 60f * 10, CVar.SERVER | CVar.REPLICATED);
 }
