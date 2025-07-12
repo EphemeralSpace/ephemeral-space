@@ -1,7 +1,9 @@
 using Content.Server._ES.Multistation.Components;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
+using Content.Shared._ES.CCVar;
 using Robust.Server.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
@@ -15,6 +17,7 @@ namespace Content.Server._ES.Multistation;
 /// </summary>
 public sealed class ESMultistationSystem : EntitySystem
 {
+    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -22,22 +25,34 @@ public sealed class ESMultistationSystem : EntitySystem
 
     private static readonly ProtoId<ESMultistationConfigPrototype> DefaultConfig = "ESDefault";
 
+    private bool _enabled;
+    private string _currentConfig = DefaultConfig;
+
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<LoadingMapsEvent>(OnLoadingMaps);
         SubscribeLocalEvent<ESPostLoadingMapsEvent>(OnPostLoadingMaps);
+
+        Subs.CVar(_config, ESCVars.ESMultistationEnabled, value => _enabled = value, true);
+        Subs.CVar(_config, ESCVars.ESMultistationCurrentConfig, value => _currentConfig = value, true);
     }
 
     private void OnLoadingMaps(LoadingMapsEvent ev)
     {
+        if (!_enabled)
+            return;
+
         ev.Maps.Clear();
     }
 
     private void OnPostLoadingMaps(ref ESPostLoadingMapsEvent ev)
     {
-        // TODO: make this properly selectable
-        var config = _prototype.Index(DefaultConfig);
+        if (!_enabled)
+            return;
+
+        if (!_prototype.TryIndex<ESMultistationConfigPrototype>(_currentConfig, out var config))
+            config = _prototype.Index(DefaultConfig);
 
         var configComp = EnsureComp<ESMultistationMapComponent>(ev.DefaultMap);
         configComp.Config = config.ID;
