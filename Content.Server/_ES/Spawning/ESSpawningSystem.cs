@@ -40,6 +40,9 @@ public sealed class ESSpawningSystem : ESSharedSpawningSystem
         // in game, check reqs
         if (_gameTicker.PlayerGameStatuses.TryGetValue(args.SenderSession.UserId, out var status) && status == PlayerGameStatus.JoinedGame)
         {
+            if (!RespawnsEnabled)
+                return;
+
             // don't allow respawning as a non-ghost
             if (!HasComp<GhostComponent>(args.SenderSession.AttachedEntity))
                 return;
