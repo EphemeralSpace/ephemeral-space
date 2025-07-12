@@ -73,9 +73,6 @@ public abstract class ESSharedSpawningSystem : EntitySystem
 
     public void ResetRespawnTimer(ICommonSession session)
     {
-        if (!RespawnsEnabled)
-            return;
-
         if (!TryGetRespawnTracker(out var tracker))
             return;
 
@@ -101,6 +98,10 @@ public abstract class ESSharedSpawningSystem : EntitySystem
 
     public virtual bool TryGetRespawnTracker([NotNullWhen(true)] out Entity<ESRespawnTrackerComponent>? respawnTracker)
     {
+        respawnTracker = null;
+        if (!RespawnsEnabled)
+            return false;
+
         var query = EntityQueryEnumerator<ESRespawnTrackerComponent>();
         while (query.MoveNext(out var u1, out var c1))
         {
@@ -109,10 +110,7 @@ public abstract class ESSharedSpawningSystem : EntitySystem
         }
 
         if (_net.IsClient)
-        {
-            respawnTracker = null;
             return false;
-        }
 
         var uid = Spawn();
         var comp = AddComp<ESRespawnTrackerComponent>(uid);
