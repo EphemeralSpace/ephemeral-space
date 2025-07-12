@@ -1,0 +1,5 @@
+- type: esMultistationConfig
+  id: ESDefault
+  stationDistance: 128
+  mapPool:
+  - ESTestMap

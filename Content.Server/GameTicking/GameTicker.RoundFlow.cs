@@ -24,6 +24,9 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+// ES START
+using Content.Server._ES.Multistation;
+// ES END
 
 namespace Content.Server.GameTicking
 {
@@ -136,6 +139,10 @@ namespace Content.Server.GameTicking
             {
                 _map.CreateMap(out var mapId, runMapInit: false);
                 DefaultMap = mapId;
+// ES START
+               var esPostEv = new ESPostLoadingMapsEvent(DefaultMap, _map.GetMap(DefaultMap));
+                RaiseLocalEvent(ref esPostEv);
+// ES END
                 return;
             }
 

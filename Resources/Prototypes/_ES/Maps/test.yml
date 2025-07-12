@@ -1,0 +1,18 @@
+- type: gameMap
+  id: ESTestMap
+  isGrid: true
+  mapName: 'Test'
+  mapPath: /Maps/_ES/estestship_grid.yml
+  minPlayers: 0
+  stations:
+    Test:
+      stationProto: ESBaseStationNeutral
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Test Ship {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: 'ES'
+        - type: StationJobs
+          availableJobs:
+            Passenger: [ -1, -1 ]
