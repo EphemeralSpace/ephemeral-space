@@ -11,7 +11,7 @@ public sealed partial class AtmosphereSystem
     /// <param name="a">The first <see cref="GasMixture"/> to compare.</param>
     /// <param name="b">The second <see cref="GasMixture"/> to compare.</param>
     /// <returns>A float between 0 and 1 based on how similar the gas mixtures are,
-    /// based on percent compositions.</returns>
+    /// based on percent compositions. This method will also return zero if one compared GasMixture is empty.</returns>
     public float GetGasMixtureSimilarity(GasMixture? a, GasMixture? b)
     {
         // Naive.
@@ -34,14 +34,16 @@ public sealed partial class AtmosphereSystem
         // Normalize each gas mole value by dividing it by its total moles
         for (var i = 0; i < len; i++)
         {
-            var normalizedA = aArr[i] / totalA;
-            var normalizedB = bArr[i] / totalB;
+            // Protect against Div/0 for each normalization
+            var normalizedA = totalA > 0f ? aArr[i] / totalA : 0f;
+            var normalizedB = totalB > 0f ? bArr[i] / totalB : 0f;
 
             numerator += Math.Min(normalizedA, normalizedB);
         }
 
         // Fall back to 1 if no valid denominator is present
-        return denominator == 0f ? 1f : numerator / 1f; // numerator is already normalized here.
+        // Abs comparison because platform dependent FPU behavior
+        return Math.Abs(denominator) < 0.001f ? 1f : numerator;
     }
 
     /// <summary>
