@@ -452,7 +452,12 @@ public sealed partial class ThrusterSystem : EntitySystem
     /// <returns>Whether the thruster was disabled or not, or if it was already disabled.</returns>
     public bool TryDisableThruster(Entity<ThrusterComponent, TransformComponent?> ent, Angle? angle = null)
     {
-        if (!ent.Comp1.IsOn || !_thrusterTransformQuery.Resolve(ent, ref ent.Comp2))
+        if (!ent.Comp1.IsOn)
+        {
+            return false;
+        }
+
+        if (!_thrusterTransformQuery.Resolve(ent, ref ent.Comp2))
         {
             return false;
         }
