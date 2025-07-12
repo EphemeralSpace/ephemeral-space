@@ -4,8 +4,8 @@ meta:
   engineVersion: 263.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/11/2025 22:58:00
-  entityCount: 313
+  time: 07/12/2025 20:49:47
+  entityCount: 315
 maps: []
 grids:
 - 1
@@ -1808,6 +1808,18 @@ entities:
         141:
         - - Pressed
           - Toggle
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 314
+    components:
+    - type: Transform
+      pos: 11.5,1.5
+      parent: 1
+  - uid: 315
+    components:
+    - type: Transform
+      pos: 11.5,-0.5
+      parent: 1
 - proto: SpawnPointPassenger
   entities:
   - uid: 191
