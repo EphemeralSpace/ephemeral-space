@@ -73,6 +73,9 @@ public abstract class ESSharedSpawningSystem : EntitySystem
 
     public void ResetRespawnTimer(ICommonSession session)
     {
+        if (!RespawnsEnabled)
+            return;
+
         if (!TryGetRespawnTracker(out var tracker))
             return;
 
