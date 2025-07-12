@@ -6,6 +6,8 @@ using Robust.Client.UserInterface.XAML;
 // ES START
 using Content.Client._ES.Spawning;
 using Content.Client._ES.Spawning.Ui;
+using Content.Shared._ES.CCVar;
+using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 // ES END
 
@@ -37,6 +39,7 @@ public sealed partial class GhostGui : UIWidget
         GhostRolesButton.OnPressed += _ => GhostRolesPressed?.Invoke();
         GhostRolesButton.OnPressed += _ => GhostRolesButton.StyleClasses.Remove(StyleBase.ButtonCaution);
 // ES START
+        IoCManager.Resolve<IConfigurationManager>().OnValueChanged(ESCVars.ESRespawnEnabled, val => ESRespawnButton.Visible = val, true);
         ESRespawnButton.OnPressed += _ =>
         {
             _esSpawningWindow ??= new ESSpawningWindow();
@@ -76,6 +79,8 @@ public sealed partial class GhostGui : UIWidget
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
+        if (!ESRespawnButton.Visible)
+            return;
         _esEntityManager ??= IoCManager.Resolve<IEntityManager>();
         _esGameTiming ??= IoCManager.Resolve<IGameTiming>();
 
