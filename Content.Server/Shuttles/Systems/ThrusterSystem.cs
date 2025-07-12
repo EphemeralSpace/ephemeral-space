@@ -467,7 +467,7 @@ public sealed partial class ThrusterSystem : EntitySystem
             return false;
         }
 
-        ModifyThrustContribution(ent, shuttleComp, -ent.Comp1.Thrust);
+        ModifyThrustContribution(ent, shuttleComp, -ent.Comp1.Thrust, angle);
         RemoveThrusterFromShuttleList(ent, shuttleComp);
         RefreshShuttleCenterOfThrust(shuttleComp);
 
