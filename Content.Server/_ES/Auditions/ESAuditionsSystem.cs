@@ -41,7 +41,7 @@ public sealed class ESAuditionsSystem : ESSharedAuditionsSystem
 
     public EntityUid GetRandomCharacterFromPool(Entity<ESProducerComponent?> station)
     {
-        if (!Resolve(station, ref station.Comp))
+        if (!Resolve(station, ref station.Comp, false))
             return _mind.CreateMind(null);
 
         var cast = EnsureComp<ESStationCastComponent>(station);
