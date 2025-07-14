@@ -8,7 +8,6 @@ using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
 using Content.Shared.Localizations;
-using Content.Shared.Mind;
 using Content.Shared.Random.Helpers;
 using JetBrains.Annotations;
 using Robust.Shared.Random;
@@ -40,20 +39,21 @@ public sealed class ESAuditionsSystem : ESSharedAuditionsSystem
         cast.Crew.Add(mind);
     }
 
-    public Entity<MindComponent, ESCharacterComponent> GetRandomCharacterFromPool(EntityUid station)
+    public EntityUid GetRandomCharacterFromPool(Entity<ESProducerComponent?> station)
     {
-        var producer = GetProducer();
+        if (!Resolve(station, ref station.Comp))
+            return _mind.CreateMind(null);
 
         var cast = EnsureComp<ESStationCastComponent>(station);
 
-        if (producer.UnusedCharacterPool.Count < producer.PoolRefreshSize)
+        if (station.Comp.UnusedCharacterPool.Count < station.Comp.PoolRefreshSize)
         {
-            Log.Debug($"Pool depleted below refresh size ({producer.PoolRefreshSize}). Replenishing pool.");
-            GenerateCast(producer.PoolSize - producer.UnusedCharacterPool.Count, producer);
+            Log.Debug($"Pool depleted below refresh size ({station.Comp.PoolRefreshSize}). Replenishing pool.");
+            GenerateCast((station, station.Comp), station.Comp.PoolSize - station.Comp.UnusedCharacterPool.Count);
         }
 
         var weightedMembers = new Dictionary<EntityUid, float>();
-        foreach (var castMember in producer.UnusedCharacterPool)
+        foreach (var castMember in station.Comp.UnusedCharacterPool)
         {
             if (!TryComp<ESCharacterComponent>(castMember, out var characterComponent))
                 continue;
@@ -63,17 +63,15 @@ public sealed class ESAuditionsSystem : ESSharedAuditionsSystem
         }
 
         var ent = _random.Pick(weightedMembers);
-        producer.UnusedCharacterPool.Remove(ent);
-        return (ent, Comp<MindComponent>(ent), Comp<ESCharacterComponent>(ent));
+        station.Comp.UnusedCharacterPool.Remove(ent);
+        return ent;
     }
 
     /// <summary>
     /// Hires a cast, and integrates relationships between all of the characters.
     /// </summary>
-    public void GenerateCast(int count, ESProducerComponent? producer = null)
+    public void GenerateCast(Entity<ESProducerComponent> producer, int count)
     {
-        producer ??= GetProducer();
-
         var preEvt = new ESPreCastGenerateEvent(producer);
         RaiseLocalEvent(ref preEvt);
 
@@ -88,7 +86,7 @@ public sealed class ESAuditionsSystem : ESSharedAuditionsSystem
         var psgEvt = new ESPostShipGenerateEvent(producer);
         RaiseLocalEvent(ref psgEvt);
 
-        foreach (var group in producer.SocialGroups)
+        foreach (var group in producer.Comp.SocialGroups)
         {
             var comp = EnsureComp<ESSocialGroupComponent>(group);
             if (comp.Integrated)
@@ -106,7 +104,7 @@ public sealed class ESAuditionsSystem : ESSharedAuditionsSystem
             RaiseLocalEvent(ref post);
         }
 
-        IntegrateRelationshipGroup(producer.IntercrewContext, newCharacters);
+        IntegrateRelationshipGroup(producer.Comp.IntercrewContext, newCharacters);
 
         var postEvt = new ESPostCastGenerateEvent(producer);
         RaiseLocalEvent(ref postEvt);
@@ -119,14 +117,17 @@ public sealed class CastCommand : ToolshedCommand
     private ESAuditionsSystem? _auditions;
 
     [CommandImplementation("generate")]
-    public IEnumerable<string> Generate(int crewSize = 10)
+    public IEnumerable<string> Generate([PipedArgument] EntityUid station, int crewSize = 10)
     {
+        if (!TryComp<ESProducerComponent>(station, out var producer))
+            yield break;
+
         _auditions ??= GetSys<ESAuditionsSystem>();
 
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        _auditions.GenerateCast(crewSize);
+        _auditions.GenerateCast((station, producer), crewSize);
 
         yield return $"Generated cast in {stopwatch.Elapsed.TotalMilliseconds} ms.";
     }
@@ -159,10 +160,12 @@ public sealed class CastCommand : ToolshedCommand
     }
 
     [CommandImplementation("viewAll")]
-    public IEnumerable<string> ViewAll()
+    public IEnumerable<string> ViewAll([PipedArgument] EntityUid station)
     {
+        if (!TryComp<ESProducerComponent>(station, out var producer))
+            yield break;
+
         _auditions ??= GetSys<ESAuditionsSystem>();
-        var producer = _auditions.GetProducer();
         foreach (var character in producer.Characters)
         {
             foreach (var line in View(character))

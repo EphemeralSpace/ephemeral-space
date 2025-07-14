@@ -84,10 +84,8 @@ public abstract partial class ESSharedAuditionsSystem
     /// <summary>
     /// Generates a character with randomized name, age, gender and appearance.
     /// </summary>
-    public Entity<MindComponent, ESCharacterComponent> GenerateCharacter([ForbidLiteral] string randomPrototype = "DefaultBackground", ESProducerComponent? producer = null)
+    public Entity<MindComponent, ESCharacterComponent> GenerateCharacter(Entity<ESProducerComponent> producer, [ForbidLiteral] string randomPrototype = "DefaultBackground")
     {
-        producer ??= GetProducer();
-
         var profile = HumanoidCharacterProfile.RandomWithSpecies();
         var species = _prototypeManager.Index(profile.Species);
 
@@ -119,7 +117,7 @@ public abstract partial class ESSharedAuditionsSystem
         var (ent, mind) = _mind.CreateMind(null, profile.Name);
         var character = EnsureComp<ESCharacterComponent>(ent);
 
-        var year = _config.GetCVar(ESCVars.InGameYear) - profile.Age;
+        var year = _config.GetCVar(ESCVars.ESInGameYear) - profile.Age;
         var month = _random.Next(1, 12);
         var day = _random.Next(1, DateTime.DaysInMonth(year, month));
         character.DateOfBirth = new DateTime(year, month, day);
@@ -131,8 +129,8 @@ public abstract partial class ESSharedAuditionsSystem
 
         Dirty(ent, character);
 
-        producer.Characters.Add(ent);
-        producer.UnusedCharacterPool.Add(ent);
+        producer.Comp.Characters.Add(ent);
+        producer.Comp.UnusedCharacterPool.Add(ent);
 
         return (ent, mind, character);
     }

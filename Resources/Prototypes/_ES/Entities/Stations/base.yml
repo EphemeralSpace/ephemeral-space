@@ -4,6 +4,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
+  - type: ESProducer
   - type: GridSpawn
     groups:
       trade: !type:GridSpawnGroup

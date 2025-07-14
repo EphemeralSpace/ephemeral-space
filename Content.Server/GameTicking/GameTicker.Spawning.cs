@@ -29,6 +29,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 // ES START
 using Content.Server._ES.Auditions;
+using Content.Shared._ES.Auditions.Components;
 // ES END
 
 namespace Content.Server.GameTicking
@@ -221,8 +222,12 @@ namespace Content.Server.GameTicking
                 character = HumanoidCharacterProfile.RandomWithSpecies(speciesId);
             }
 // ES START
-            var (newMind, mindComp, characterComp) = _esAuditions.GetRandomCharacterFromPool(station);
-            character = characterComp.Profile;
+            EntityUid newMind = default;
+            if (_esAuditions.RandomCharactersEnabled)
+            {
+                newMind = _esAuditions.GetRandomCharacterFromPool(station);
+                character = CompOrNull<ESCharacterComponent>(newMind)?.Profile ?? character;
+            }
 // ES END
 
             // We raise this event to allow other systems to handle spawning this player themselves. (e.g. late-join wizard, etc)
@@ -273,7 +278,8 @@ namespace Content.Server.GameTicking
             DebugTools.AssertNotNull(data);
 
 // ES START
-            //var newMind = _mind.CreateMind(data!.UserId, character.Name);
+            if (newMind == default)
+                newMind = _mind.CreateMind(data!.UserId, character.Name);
             _mind.SetUserId(newMind, data!.UserId);
 // ES END
 
