@@ -1,7 +1,7 @@
 ﻿- type: entity
-  id: GasThruster
+  id: ESGasThruster
   name: gas thruster
-  parent: [ Thruster, GasUnaryBase ]
+  parent: Thruster
   components:
   - type: Sprite
     layers:
@@ -22,10 +22,23 @@
   - type: PipeColorVisuals
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasVentOpening
+  - type: ApcPowerReciever
+    needsPower: false
+  - type: GasThermoMachine
+  - type: AtmosPipeColor
+  - type: AtmosDevice
+  - type: PipeRestrictOverlap
+  - type: NodeContainer
+    nodes:
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
   - type: Thruster
     isFueledThruster: true
     maxGasThrustMultiplier: 500
     requiresFuel: true
+    requirePower: false
     inletName: "pipe"
     gasMixturePair:
     - mixture:

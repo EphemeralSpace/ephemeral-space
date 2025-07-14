@@ -1,3 +1,7 @@
+// ES START
+// This completely overwrites the upstream thruster code. that's not great.
+// Either port and merge these or break this out.
+// ES END
 using System.Diagnostics;
 using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
