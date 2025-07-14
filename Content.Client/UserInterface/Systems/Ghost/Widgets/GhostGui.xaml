@@ -5,5 +5,8 @@
         <Button Name="ReturnToBodyButton" Text="{Loc ghost-gui-return-to-body-button}" />
         <Button Name="GhostWarpButton" Text="{Loc ghost-gui-ghost-warp-button}" />
         <Button Name="GhostRolesButton" />
+<!-- ES START -->
+        <Button Name="ESRespawnButton" MinWidth="170" StyleClasses="Caution"/>
+<!-- ES END -->
     </BoxContainer>
 </widgets:GhostGui>

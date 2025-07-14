@@ -1,0 +1,40 @@
+#ship walls
+- type: entity
+  parent: WallSolid
+  id: ESWallTube
+  name: steel tube wall
+  description: Looks almost bouncy. Almost.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Walls/tube.rsi
+    state: full
+  - type: Icon
+    sprite: _ES/Structures/Walls/tube.rsi
+    state: full
+  - type: IconSmooth
+    key: walls
+    base: state
+  - type: Construction
+    graph: Girder
+    node: ESWallTube
+
+- type: entity
+  parent: WallSolidDiagonal
+  id: ESWallTubeDiagonal
+  name: steel tube wall
+  description: Looks almost bouncy. Almost.
+  suffix: diagonal
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _ES/Structures/Walls/tube_diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: _ES/Structures/Walls/tube_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    key: walls
+    base: state
+  - type: Construction
+    graph: Girder
+    node: ESWallDiagonalTube

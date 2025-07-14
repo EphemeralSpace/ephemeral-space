@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/78a56e1a22ba1d8d6023ed9bdae55a6de7fe8a39/icons/obj/module.dmi, https://github.com/vgstation-coders/vgstation13/blob/d24b03ea04c7372810f97f2a0f6117504e58cbd3/icons/mob/in-hand/right/electronics.dmi, https://github.com/vgstation-coders/vgstation13/blob/d24b03ea04c7372810f97f2a0f6117504e58cbd3/icons/mob/in-hand/left/electronics.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "std_mod"
+    },
+    {
+      "name": "blank_mod"
+    },
+    {
+      "name": "card_mod"
+    },
+    {
+      "name": "power_mod"
+    },
+    {
+      "name": "id_mod"
+    },
+    {
+      "name": "mainboard"
+    },
+    {
+      "name": "mcontroller"
+    },
+    {
+      "name": "cyborg_upgrade"
+    },
+    {
+      "name": "cyborg_upgrade1"
+    },
+    {
+      "name": "cyborg_upgrade2"
+    },
+    {
+      "name": "cyborg_upgrade3"
+    },
+    {
+      "name": "cyborg_upgrade4"
+    },
+    {
+      "name": "planning_frame"
+    },
+    {
+      "name": "gooncode"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    }
+  ]
+}

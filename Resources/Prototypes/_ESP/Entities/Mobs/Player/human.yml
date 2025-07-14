@@ -1,0 +1,8 @@
+- type: entity
+  save: false
+  name: NeoUrist McHands
+  suffix: ESP
+  parent: ESPBaseMobHuman
+  id: MobHumanNeo
+
+# TODO more prototypes

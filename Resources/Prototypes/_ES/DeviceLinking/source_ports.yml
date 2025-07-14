@@ -1,0 +1,11 @@
+- type: sourcePort
+  id: ESKeypadUnlock
+  name: es-source-port-keypad-unlock-name
+  description: es-source-port-keypad-unlock-desc
+  defaultLinks: [ On, Open, Forward, Trigger, Timer ]
+
+- type: sourcePort
+  id: ESKeypadLock
+  name: es-source-port-keypad-lock-name
+  description: es-source-port-keypad-lock-name
+  defaultLinks: [ Off, Close ]

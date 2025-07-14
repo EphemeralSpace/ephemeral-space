@@ -12,6 +12,9 @@ using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+// ES START
+using Content.Shared._ES.CCVar;
+// ES END
 
 namespace Content.IntegrationTests.Tests.Round;
 
@@ -189,6 +192,9 @@ public sealed class JobTest
         var ticker = pair.Server.System<GameTicker>();
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
         Assert.That(pair.Client.AttachedEntity, Is.Null);
+// ES START
+        pair.Server.CfgMan.SetCVar(ESCVars.ESRandomCharacters, false);
+// ES END
 
         await pair.Server.AddDummySessions(5);
         await pair.RunTicksSync(5);

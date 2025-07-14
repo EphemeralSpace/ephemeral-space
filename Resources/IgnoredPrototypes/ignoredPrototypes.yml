@@ -6,3 +6,8 @@
 #
 # - /Prototypes/Guidebook
 # - /Prototypes/Catalog/uplink_catalog.yml
+
+# ES START
+- /Prototypes/lobbyscreens.yml
+- /Prototypes/SoundCollections/lobby.yml
+# ES END

@@ -26,6 +26,9 @@
   - type: GuideHelp
     guides:
     - Radio
+# ES START
+  - type: ESRadioFalloff
+# ES END
 
 - type: entity
   parent: ClothingHeadset

@@ -1,0 +1,122 @@
+- type: entity
+  id: ESBaseKeypad
+  abstract: true
+  components:
+  - type: Sprite
+    noRot: false
+    drawdepth: SmallObjects
+    sprite: _ES/Structures/Wallmounts/keypad.rsi
+  - type: Appearance
+  - type: Clickable
+  - type: WallMount
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Construction
+    graph: ESKeypad
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+
+- type: entity
+  parent: ESBaseKeypad
+  id: ESKeypadFrame
+  name: keypad frame
+  description: With a blistering 0 digits.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
+  components:
+  - type: Sprite
+    layers:
+    - state: frame-0
+      map: ["base"]
+  - type: Construction
+    node: frame
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        base:
+          frame: { state: frame-0 }
+          wired: { state: frame-1 }
+          electronics: { state: frame-2 }
+
+- type: entity
+  parent: ESBaseKeypad
+  id: ESKeypad
+  name: keypad
+  description: Did you know a simple-4 digit keypad has over 2.6 billion combinations?
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: unlocked
+      map: ["light"]
+      shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.ESKeypadVisuals.Locked:
+        light:
+          True: { state: locked }
+          False: { state: unlocked }
+      enum.PowerDeviceVisuals.Powered:
+        light:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#33ff33"
+    castShadows: false
+  - type: LitOnPowered
+  - type: ESKeypad
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+  - type: WirelessNetworkConnection
+    range: 100
+  - type: DeviceLinkSource
+    ports:
+    - ESKeypadUnlock
+    - ESKeypadLock
+  - type: ActivatableUI
+    key: enum.ESKeypadUiKey.Key
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.ESKeypadUiKey.Key:
+        type: ESKeypadBui
+  - type: ExtensionCableReceiver
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: Construction
+    node: keypad
+  - type: ContainerFill
+    containers:
+      board: [ ESKeypadElectronics ]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+          params:
+            volume: -4

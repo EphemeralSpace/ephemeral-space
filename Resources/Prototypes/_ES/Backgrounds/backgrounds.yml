@@ -1,0 +1,70 @@
+- type: esBackground
+  id: Colonist
+  name: background-colonist-name
+  description: background-colonist-description
+
+- type: esBackground
+  id: ColonistPrisoner
+  name: background-colonist-penal-name
+  description: background-colonist-penal-description
+
+- type: esBackground
+  id: Criminal
+  name: background-criminal-name
+  description: background-criminal-description
+
+- type: esBackground
+  id: Doctor
+  name: background-doctor-name
+  description: background-doctor-description
+
+- type: esBackground
+  id: Drifter
+  name: background-drifter-name
+  description: background-drifter-description
+
+- type: esBackground
+  id: Mercenary
+  name: background-mercenary-name
+  description: background-mercenary-description
+
+- type: esBackground
+  id: Mechanic
+  name: background-mechanic-name
+  description: background-mechanic-description
+
+- type: esBackground
+  id: Merchant
+  name: background-merchant-name
+  description: background-merchant-description
+
+- type: esBackground
+  id: Pilot
+  name: background-pilot-name
+  description: background-pilot-description
+
+- type: esBackground
+  id: Spaceborn
+  name: background-spaceborn-name
+  description: background-spaceborn-description
+
+- type: esBackground
+  id: Soldier
+  name: background-soldier-name
+  description: background-soldier-description
+
+- type: esBackground
+  id: WorkerCollarBrown
+  name: background-worker-quarry-name
+  description: background-worker-quarry-description
+
+- type: esBackground
+  id: WorkerCollarBlue
+  name: background-worker-factory-name
+  description: background-worker-factory-description
+
+- type: esBackground
+  id: WorkerCollarWhite
+  name: background-worker-office-name
+  description: background-worker-office-description
+

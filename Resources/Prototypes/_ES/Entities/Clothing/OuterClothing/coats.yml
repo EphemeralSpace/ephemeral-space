@@ -1,0 +1,29 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ESClothingOuterCoatCaptain
+  name: captain's coat
+  description: A dark coat fit for a captain. Its stripes match the color of Pomelo Interspace Transit.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/OuterClothing/Coats/captain.rsi
+    layers:
+    - state: icon
+    - state: icon-color
+      color: "#e9744a"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-color
+        color: "#e9744a"
+      right:
+      - state: inhand-right
+      - state: inhand-right-color
+        color: "#e9744a"
+  - type: Clothing
+    sprite: _ES/Clothing/OuterClothing/Coats/captain.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+      - state: equipped-OUTERCLOTHING-color
+        color: "#e9744a"

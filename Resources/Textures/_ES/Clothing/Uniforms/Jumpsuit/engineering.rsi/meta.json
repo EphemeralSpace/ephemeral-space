@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-NC-SA-4.0",
+  "copyright": "thesaladmancer on Discord / Twitter / Github",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon-jumpsuit"
+    },
+    {
+      "name": "icon-shirt"
+    },
+    {
+      "name": "equipped-INNERCLOTHING-jumpsuit",
+      "directions": 4
+    },
+    {
+      "name": "equipped-INNERCLOTHING-shirt",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-jumpsuit",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-shirt",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-jumpsuit",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-shirt",
+      "directions": 4
+    }
+  ]
+}

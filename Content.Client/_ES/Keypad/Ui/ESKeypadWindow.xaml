@@ -1,0 +1,9 @@
+<controls:ESKeypadWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._ES.Keypad.Ui"
+    MinSize="150 205"
+    Resizable="False">
+    <BoxContainer Margin="10 5 10 10" HorizontalAlignment="Center">
+        <controls:ESKeypadControl Name="Keypad"/>
+    </BoxContainer>
+</controls:ESKeypadWindow>

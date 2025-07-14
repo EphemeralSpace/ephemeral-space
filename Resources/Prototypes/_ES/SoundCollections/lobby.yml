@@ -1,0 +1,4 @@
+- type: soundCollection
+  id: LobbyMusicES
+  files:
+    - /Audio/_ES/Lobby/vast.ogg

@@ -1,0 +1,5 @@
+es-radio-falloff-interjection-1 = [italic]--BZZT--[/italic]
+es-radio-falloff-interjection-2 = [italic]--KRSSH--[/italic]
+es-radio-falloff-interjection-3 = [italic]--CRACKLE--[/italic]
+es-radio-falloff-interjection-4 = [italic]--PSSSHT--[/italic]
+es-radio-falloff-interjection-5 = [italic]--PZZAT--[/italic]

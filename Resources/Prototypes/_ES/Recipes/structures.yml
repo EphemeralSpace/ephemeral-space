@@ -1,0 +1,26 @@
+- type: construction
+  id: ESWallTube
+  graph: Girder
+  startNode: start
+  targetNode: ESWallTube
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESWallDiagonalTube
+  name: es-construction-recipe-diagonal-tube-wall
+  graph: Girder
+  startNode: start
+  targetNode: ESWallDiagonalTube
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

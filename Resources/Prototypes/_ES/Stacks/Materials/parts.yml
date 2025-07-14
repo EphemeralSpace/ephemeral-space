@@ -1,0 +1,5 @@
+- type: stack
+  id: ESPartTape
+  name: stack-tape
+  spawn: ESPartTape1
+  maxCount: 30

@@ -40,6 +40,9 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] Grids =
         {
+// ES START
+            "/Maps/_ES/estestship_grid.yml",
+// ES END
             "/Maps/centcomm.yml",
             AdminTestArenaSystem.ArenaMapPath
         };
@@ -57,6 +60,9 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] GameMaps =
         {
+// ES START
+            "ESTestMap",
+// ES END
             "Dev",
             "TestTeg",
             "Fland",
@@ -74,7 +80,7 @@ namespace Content.IntegrationTests.Tests
             "Elkridge",
             "Relic",
             "dm01-entryway",
-
+            "Exo",
         };
 
         /// <summary>

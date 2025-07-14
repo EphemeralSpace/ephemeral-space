@@ -1,0 +1,31 @@
+- type: esRelationship
+  id: Friend
+  name: relationship-name-friend
+  color: "#00ff00"
+
+- type: esRelationship
+  id: Acquaintance
+  name: relationship-name-acquaintance
+  color: "#59bd57"
+
+- type: esRelationship
+  id: Rival
+  name: relationship-name-rival
+  color: "#eda724"
+
+- type: esRelationship
+  id: Enemy
+  name: relationship-name-enemy
+  color: "#ff0000"
+
+- type: esRelationship
+  id: Cousin
+  name: relationship-name-cousin
+  color: "#689efd"
+  forceMutual: true
+
+- type: esRelationship
+  id: Exes
+  name: relationship-name-ex
+  color: "#f983ef"
+  forceMutual: true

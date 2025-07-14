@@ -1,0 +1,56 @@
+
+- type: entity
+  parent: BaseItem
+  id: ESPartTape
+  name: duct tape
+  description: If it worked for Apollo 13, it'll work for you.
+  suffix: 30, Full
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Materials/tape.rsi
+    state: icon3
+    layers:
+    - state: icon3
+      map: ["base"]
+  - type: Item
+    sprite: _ES/Objects/Materials/tape.rsi
+    storedRotation: -90
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 15
+  - type: Appearance
+  - type: Stack
+    stackType: ESPartTape
+    baseLayer: base
+    layerStates:
+    - icon
+    - icon2
+    - icon3
+  # - type: GuideHelp # todo: make guide on suit repairs
+  #   guides:
+  #   -
+
+- type: entity
+  parent: ESPartTape
+  id: ESPartTapeLinger
+  suffix: 0, Linger
+  components:
+  - type: Stack
+    lingering: true
+    count: 0
+
+- type: entity
+  parent: ESPartTape
+  id: ESPartTape1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: ESPartTape
+  id: ESPartTape10
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10

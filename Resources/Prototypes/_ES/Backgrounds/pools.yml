@@ -1,0 +1,17 @@
+- type: weightedRandom
+  id: DefaultBackground
+  weights:
+    Colonist: 5
+    ColonistPrisoner: 4
+    Criminal: 3
+    Doctor: 2
+    Drifter: 3
+    Mercenary: 3
+    Mechanic: 5
+    Merchant: 5
+    Pilot: 3
+    Spaceborn: 3
+    Soldier: 4
+    WorkerCollarBrown: 5
+    WorkerCollarBlue: 5
+    WorkerCollarWhite: 5

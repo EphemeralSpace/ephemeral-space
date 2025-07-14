@@ -1,13 +1,10 @@
-﻿- type: constructionGraph
+- type: constructionGraph
   id: Girder
   start: start
   graph:
     - node: start
       edges:
         - to: girder
-          completed:
-            - !type:SnapToGrid
-              southRotation: true
           steps:
             - material: Steel
               amount: 2
@@ -134,8 +131,67 @@
               amount: 2
               doAfter: 2
 
+# ES START
+        - to: ESWallTube
+          completed:
+          - !type:SnapToGrid
+            southRotation: true
+          conditions:
+          - !type:EntityAnchored {}
+          steps:
+          - material: MetalRod
+            amount: 4
+            doAfter: 2
+
+        - to: ESWallDiagonalTube
+          conditions:
+          - !type:EntityAnchored { }
+          steps:
+          - tool: Screwing
+            doAfter: 1
+          - material: MetalRod
+            amount: 4
+            doAfter: 2
+
+    - node: ESWallTube
+      entity: ESWallTube
+      edges:
+      - to: girder
+        completed:
+        - !type:GivePrototype
+          prototype: PartRodMetal1
+          amount: 4
+        steps:
+        - tool: Welding
+          doAfter: 10
+
+    - node: ESWallDiagonalTube
+      entity: ESWallTubeDiagonal
+      edges:
+      - to: girder
+        completed:
+        - !type:SpawnPrototype
+          prototype: PartRodMetal1
+          amount: 4
+        steps:
+        - tool: Welding
+          doAfter: 10
+# ES END
+
     - node: wall
       entity: WallSolid
+      edges:
+        - to: girder
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Welding
+              doAfter: 10
+
+    - node: wallChitin
+      entity: WallSolidChitin
       edges:
         - to: girder
           completed:
@@ -348,6 +404,58 @@
             - tool: Cutting
               doAfter: 1
 
+    - node: reinforcedWallChitin
+      entity: WallReinforcedChitin
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+                  data: 5
+            - tool: Screwing
+              doAfter: 1
+            - tool: Welding
+              doAfter: 5
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+                  data: 4
+            - tool: Prying
+              doAfter: 1
+            - tool: Anchoring
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+                  data: 3
+            - tool: Welding
+              doAfter: 10
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+                  data: 2
+            - tool: Prying
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+                  data: 1
+            - tool: Screwing
+              doAfter: 1
+              completed:
+                - !type:VisualizerDataInt
+                  key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+                  data: 0
+            - tool: Cutting
+              doAfter: 1
+
     - node: shuttleWall
       entity: WallShuttle
       edges:
@@ -454,3 +562,4 @@
           steps:
             - tool: Welding
               doAfter: 5
+

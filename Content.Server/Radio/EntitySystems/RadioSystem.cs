@@ -14,6 +14,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+// ES START
+using Content.Server._ES.Radio;
+// ES END
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -28,6 +31,9 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+// ES START
+    [Dependency] private readonly ESRadioSystem _esRadio = default!;
+// ES END
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
@@ -145,6 +151,26 @@ public sealed class RadioSystem : EntitySystem
             RaiseLocalEvent(receiver, ref attemptEv);
             if (attemptEv.Cancelled)
                 continue;
+// ES START
+            var distortedMessage = _esRadio.DistortMessage(radioSource, receiver, FormattedMessage.EscapeText(message));
+            var distortedWrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
+                ("color", channel.Color),
+                ("fontType", speech.FontId),
+                ("fontSize", speech.FontSize),
+                ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
+                ("channel", $"\\[{channel.LocalizedName}\\]"),
+                ("name", name),
+                ("message", distortedMessage));
+
+            chat = new ChatMessage(
+                ChatChannel.Radio,
+                distortedMessage,
+                distortedWrappedMessage,
+                NetEntity.Invalid,
+                null);
+            chatMsg = new MsgChatMessage { Message = chat };
+            ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg);
+// ES END
 
             // send the message
             RaiseLocalEvent(receiver, ref ev);

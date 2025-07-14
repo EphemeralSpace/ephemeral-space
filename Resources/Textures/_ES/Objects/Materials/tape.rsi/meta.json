@@ -1,0 +1,28 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "icon derived from /tg/station 13 at https://github.com/tgstation/tgstation/commit/1561c6f118485bd1033f0b6abbf4d637059b51e7 by K-Dynamic (github), inhand* derived from /tg/station 13 at https://github.com/tgstation/tgstation/commit/3c0159b143373ad531539cfabc0944a39df4b899 by K-Dynamic, icon2 and icon3 by K-Dynamic.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "icon2"
+        },
+        {
+            "name": "icon3"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4
+        }
+    ]
+}

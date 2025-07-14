@@ -1,0 +1,24 @@
+- type: weightedRandom
+  id: RelationshipPoolCrew
+  weights:
+    Friend: 10
+    Acquaintance: 8
+    Rival: 3
+    Enemy: 1
+
+- type: weightedRandom
+  id: RelationshipPoolCaptains
+  weights:
+    Friend: 3
+    Acquaintance: 5
+    Rival: 3
+    Enemy: 1
+
+- type: weightedRandom
+  id: RelationshipPoolIntercrew
+  weights:
+    Friend: 3
+    Cousin: 4
+    Exes: 1
+    Rival: 2
+    Enemy: 3

@@ -1,0 +1,34 @@
+- type: entity
+  parent: BaseStorageItem
+  id: ESWallet
+  name: wallet
+  description: A basic wallet, fit for all your monetary needs.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _ES/Objects/Misc/wallet.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+    - Belt
+  - type: Item
+    size: Small
+  - type: Storage
+    grid:
+    - 0,0,2,1
+    maxItemSize: Small
+
+- type: entity
+  parent: ESWallet
+  id: ESWalletPIT
+  name: PIT wallet
+  description: A basic Pomelo Interspace Transit brand wallet.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/wallet.rsi
+    layers:
+    - state: icon
+    - state: icon-logo-PIT

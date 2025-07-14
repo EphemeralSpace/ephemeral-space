@@ -1,0 +1,81 @@
+# The new prototypes for mobs for Psycho-Med, use these whenever possible to avoid using old med
+# General format is id: ESP[Name of Prototype we're replacing] so ESPMobDamageable replaces MobDamageable
+# If a prototype doesn't have a replacement here, that means it probably works fine without BodySystem
+# If a prototype doesn't work fine without BodySystem and isn't here, PR a new one and contact FSP or Princess
+
+# Used for mobs that have health and can take damage.
+- type: entity
+  save: false
+  id: ESPMobDamageable
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+  - type: RadiationReceiver
+  - type: Stamina
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritFakeDeath
+      - ActionCritLastWords
+  - type: Deathgasp
+  - type: HealthExaminable
+    examinableTypes:
+    - Blunt
+    - Slash
+    - Piercing
+    - Heat
+    - Shock
+    - Cold
+    - Caustic
+    - Asphyxiation
+    - Radiation
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: Pullable
+  - type: LightningTarget
+    priority: 2
+    lightningExplode: false
+
+- type: entity
+  save: false
+  id: ESPMobHands
+  abstract: true
+  components:
+  - type: Hands
+    hands:
+      hand_right:
+        location: Right
+      hand_left:
+        location: Left
+    sortedHands:
+    - hand_right
+    - hand_left

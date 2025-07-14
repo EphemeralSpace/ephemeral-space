@@ -1,0 +1,21 @@
+- type: entity
+  parent: [ ESPBaseMobSpeciesOrganic, ESPMobHands ]
+  id: ESPBaseMobHuman
+  name: NeoUrist McHands
+  abstract: true
+  components:
+  - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
+  - type: HumanoidAppearance
+    species: Human
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

@@ -1,0 +1,83 @@
+- type: constructionGraph
+  id: ESKeypad
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: frame
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 2.0
+
+  - node: frame
+    entity: ESKeypadFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: wired
+      steps:
+      - material: Cable
+        amount: 2
+    - to: start
+      completed:
+      - !type:GivePrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 3
+
+  - node: wired
+    entity: ESKeypadFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: electronics
+      steps:
+      - tag: ESElectronicsKeypad
+        store: board
+        name: es-construction-graph-tag-keypad-circuit-board
+        icon:
+          sprite: _ES/Objects/Devices/circuits.rsi
+          state: id_mod
+    - to: frame
+      completed:
+      - !type:GivePrototype
+        prototype: CableApcStack1
+        amount: 2
+      steps:
+      - tool: Cutting
+        doAfter: 1
+
+  - node: electronics
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: wired
+      steps:
+      - tool: Prying
+        doAfter: 1
+    - to: keypad
+      steps:
+      - tool: Screwing
+        doAfter: 1
+
+  - node: keypad
+    entity: ESKeypad
+    edges:
+    - to: wired
+      conditions:
+      - !type:AllWiresCut
+      - !type:WirePanel
+      - !type:ContainerNotEmpty
+        container: board
+      - !type:ESKeypadUnlockedCondition
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Prying
+        doAfter: 1

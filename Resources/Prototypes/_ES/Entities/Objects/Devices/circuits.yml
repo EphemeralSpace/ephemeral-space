@@ -1,0 +1,14 @@
+- type: entity
+  id: ESKeypadElectronics
+  parent: BaseElectronics
+  name: keypad circuit board
+  description: An circuit board used in keypads.
+  components:
+  - type: Item
+    storedRotation: 0
+  - type: Sprite
+    sprite: _ES/Objects/Devices/circuits.rsi
+    state: id_mod
+  - type: Tag
+    tags:
+    - ESElectronicsKeypad

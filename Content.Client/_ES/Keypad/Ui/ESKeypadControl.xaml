@@ -1,0 +1,36 @@
+<controls:ESKeypadControl
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._ES.Keypad.Ui"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    Orientation="Vertical">
+    <BoxContainer Orientation="Horizontal">
+        <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat BackgroundColor="#000000"/>
+            </PanelContainer.PanelOverride>
+            <BoxContainer Margin="5">
+                <RichTextLabel Name="InputLabel" HorizontalExpand="True" HorizontalAlignment="Center"/>
+            </BoxContainer>
+        </PanelContainer>
+        <TextureRect Name="LockedIndicator"
+                     Stretch="KeepAspectCentered"
+                     TexturePath="/Textures/Interface/NavMap/beveled_circle.png"
+                     SetSize="16 16"
+                     Margin="10 0 0 0"/>
+    </BoxContainer>
+    <Control MinHeight="5"/>
+    <GridContainer Columns="3">
+        <Button Name="Button1" Text="{Loc 'es-keypad-ui-button-1'}" StyleClasses="OpenBoth" MinWidth="40"/>
+        <Button Name="Button2" Text="{Loc 'es-keypad-ui-button-2'}" StyleClasses="OpenBoth" MinWidth="40"/>
+        <Button Name="Button3" Text="{Loc 'es-keypad-ui-button-3'}" StyleClasses="OpenLeft" MinWidth="40"/>
+        <Button Name="Button4" Text="{Loc 'es-keypad-ui-button-4'}" StyleClasses="OpenBoth"/>
+        <Button Name="Button5" Text="{Loc 'es-keypad-ui-button-5'}" StyleClasses="OpenBoth"/>
+        <Button Name="Button6" Text="{Loc 'es-keypad-ui-button-6'}" StyleClasses="OpenBoth"/>
+        <Button Name="Button7" Text="{Loc 'es-keypad-ui-button-7'}" StyleClasses="OpenBoth"/>
+        <Button Name="Button8" Text="{Loc 'es-keypad-ui-button-8'}" StyleClasses="OpenBoth"/>
+        <Button Name="Button9" Text="{Loc 'es-keypad-ui-button-9'}" StyleClasses="OpenBoth"/>
+        <Button Name="ButtonC" Text="{Loc 'es-keypad-ui-button-C'}" StyleClasses="OpenRight"/>
+        <Button Name="Button0" Text="{Loc 'es-keypad-ui-button-0'}" StyleClasses="OpenBoth"/>
+        <Button Name="ButtonReturn" Text="{Loc 'es-keypad-ui-button-return'}" StyleClasses="OpenBoth"/>
+    </GridContainer>
+</controls:ESKeypadControl>

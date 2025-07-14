@@ -1,0 +1,12 @@
+- type: construction
+  id: ESKeypadFrame
+  graph: ESKeypad
+  startNode: start
+  targetNode: keypad
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition
