@@ -22,7 +22,7 @@
   - type: PipeColorVisuals
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasVentOpening
-  - type: ApcPowerReciever
+  - type: ApcPowerReceiver
     needsPower: false
   - type: GasThermoMachine
   - type: AtmosPipeColor
