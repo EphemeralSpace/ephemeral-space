@@ -57,4 +57,4 @@
       thrustMultiplier: 400
       consumptionEfficiency: 0.5
       benefitsCondition: Pure
-      previousValueComparisonTolerance: 0.01
+    previousValueComparisonTolerance: 0.01
