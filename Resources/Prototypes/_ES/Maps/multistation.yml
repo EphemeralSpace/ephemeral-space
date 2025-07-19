@@ -1,5 +1,28 @@
 - type: esMultistationConfig
   id: ESDefault
-  stationDistance: 128
+  stationDistance: 256
   mapPool:
   - ESTestMap
+  dungeons:
+  - configs: [ "VGRoid" ]
+    count: 1
+    distance: 0
+    name: NamesBorer
+    forcePos: true
+    components:
+    - type: Gravity
+      enabled: true
+      inherent: true
+    - type: IFF
+      color: "#d67e27"
+  - configs: [ "ChunkDebris" ]
+    count: 16, 20
+    distance: 312, 450
+    components:
+    - type: Gravity
+      enabled: true
+      inherent: true
+    - type: IFF
+      flags: HideLabel
+      color: "#88b0d1"
+

@@ -1,9 +1,9 @@
 using Content.Server.Maps;
 using Content.Shared.Dataset;
-using Content.Shared.Destructible.Thresholds;
+using Content.Shared.EntityTable.ValueSelector;
+using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
-using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Multistation;
 
@@ -31,4 +31,47 @@ public sealed partial class ESMultistationConfigPrototype : IPrototype, IInherit
 
     [DataField]
     public List<ProtoId<GameMapPrototype>> MapPool = new();
+
+    /// <summary>
+    /// procgen grids to spawn
+    /// </summary>
+    [DataField]
+    public List<ESMultistationDungeonDef> Dungeons = new();
+}
+
+/// <summary>
+/// Contains data for spawning in a procgen grid
+/// </summary>
+[DataDefinition]
+public partial struct ESMultistationDungeonDef
+{
+    /// <summary>
+    /// The number of this grid
+    /// </summary>
+    [DataField]
+    public NumberSelector Count = new ConstantNumberSelector(1);
+
+    /// <summary>
+    /// How far from the center they will spawn
+    /// </summary>
+    [DataField]
+    public NumberSelector Distance = new ConstantNumberSelector(128);
+
+    /// <summary>
+    /// List of configs that will be chosen from.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<DungeonConfigPrototype>> Configs = new();
+
+    /// <summary>
+    /// Components added to each grid.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry Components = new();
+
+    [DataField]
+    public bool ForcePos;
+
+    [DataField]
+    public ProtoId<LocalizedDatasetPrototype>? Name;
 }

@@ -7,4 +7,7 @@ public sealed partial class ESMultistationMapComponent : Component
 {
     [DataField]
     public ProtoId<ESMultistationConfigPrototype> Config;
+
+    [DataField]
+    public bool GridsLoaded;
 }
