@@ -17,6 +17,13 @@ public sealed partial class PressureProtectionComponent : Component
 
     [DataField]
     public float LowPressureModifier;
+
+    /// <summary>
+    /// If the entity is also Damageable, the total damage that can be dealt before this pressure protection is
+    /// compromised.
+    /// </summary>
+    [DataField]
+    public float CompromisedDamageThreshold = 50f;
 }
 
 /// <summary>

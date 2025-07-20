@@ -5,6 +5,7 @@ using Content.Shared.Alert;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Database;
+using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
@@ -29,6 +30,8 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<PressureProtectionComponent, GotUnequippedEvent>(OnPressureProtectionUnequipped);
             SubscribeLocalEvent<PressureProtectionComponent, ComponentInit>(OnUpdateResistance);
             SubscribeLocalEvent<PressureProtectionComponent, ComponentRemove>(OnUpdateResistance);
+            SubscribeLocalEvent<BarotraumaComponent, DamageChangedEvent>(OnDamaged);
+            SubscribeLocalEvent<PressureProtectionComponent, ExaminedEvent>(OnExamine);
 
             SubscribeLocalEvent<PressureImmunityComponent, ComponentInit>(OnPressureImmuneInit);
             SubscribeLocalEvent<PressureImmunityComponent, ComponentRemove>(OnPressureImmuneRemove);
@@ -194,6 +197,13 @@ namespace Content.Server.Atmos.EntitySystems
             highModifier = ev.HighPressureModifier;
             lowMultiplier = ev.LowPressureMultiplier;
             lowModifier = ev.LowPressureModifier;
+
+            // If damaged beyond compromised threshold, we don't offer any protection.
+            if (TryComp<DamageableComponent>(ent.Owner, out var damage)) {
+                if (damage.TotalDamage > comp.CompromisedDamageThreshold) {
+                    return false;
+                }
+            }
             return true;
         }
 
@@ -286,6 +296,25 @@ namespace Content.Server.Atmos.EntitySystems
                     }
                 }
             }
+        }
+
+        private void OnDamaged(EntityUid uid, BarotraumaComponent comp, DamageChangedEvent args)
+        {
+            // We actually only care that the entity with an equipped PressureProtectionComponent has been damaged. But
+            // since there's no (easy?) way to get the wearer of an item, and since we know that if the worn item is
+            // damaged then the wearer must be too, have the wearer subscribe to this event instead.
+            UpdateCachedResistances(uid, comp);
+        }
+
+        private void OnExamine(Entity<PressureProtectionComponent> ent, ref ExaminedEvent args)
+        {
+            if (TryComp<DamageableComponent>(ent.Owner, out var damage)) {
+                if (damage.TotalDamage > ent.Comp.CompromisedDamageThreshold) {
+                    args.PushMarkup(Loc.GetString("pressure-protection-compromised"));
+                    return;
+                }
+            }
+            args.PushMarkup(Loc.GetString("pressure-protection-working"));
         }
     }
 }
