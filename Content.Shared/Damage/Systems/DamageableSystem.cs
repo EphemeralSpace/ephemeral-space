@@ -192,6 +192,8 @@ namespace Content.Shared.Damage
             if (before.Cancelled)
                 return null;
 
+            // ES START
+
             // Hit anything the target is wearing, too. But on recursive hits, only pass positive values. Healing the
             // player shouldn't also fix their hardsuit.
             // TODO: The player drinking acid shouldn't deal heat damage to worn items. However, DamageSystem doesn't
@@ -202,6 +204,8 @@ namespace Content.Shared.Damage
                 // We're recursing on a different uid, so don't pass the DamageableComponent in.
                 TryChangeDamage(item, dp, ignoreResistances, interruptsDoAfters, null, origin);
             }
+
+            // ES END
 
             // Apply resistances
             if (!ignoreResistances)

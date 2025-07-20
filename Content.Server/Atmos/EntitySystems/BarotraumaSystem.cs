@@ -30,8 +30,10 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<PressureProtectionComponent, GotUnequippedEvent>(OnPressureProtectionUnequipped);
             SubscribeLocalEvent<PressureProtectionComponent, ComponentInit>(OnUpdateResistance);
             SubscribeLocalEvent<PressureProtectionComponent, ComponentRemove>(OnUpdateResistance);
+            // ES START
             SubscribeLocalEvent<BarotraumaComponent, DamageChangedEvent>(OnDamaged);
             SubscribeLocalEvent<PressureProtectionComponent, ExaminedEvent>(OnExamine);
+            // ES END
 
             SubscribeLocalEvent<PressureImmunityComponent, ComponentInit>(OnPressureImmuneInit);
             SubscribeLocalEvent<PressureImmunityComponent, ComponentRemove>(OnPressureImmuneRemove);
@@ -198,12 +200,14 @@ namespace Content.Server.Atmos.EntitySystems
             lowMultiplier = ev.LowPressureMultiplier;
             lowModifier = ev.LowPressureModifier;
 
+            // ES START
             // If damaged beyond compromised threshold, we don't offer any protection.
             if (TryComp<DamageableComponent>(ent.Owner, out var damage)) {
                 if (damage.TotalDamage > comp.CompromisedDamageThreshold) {
                     return false;
                 }
             }
+            // ES END
             return true;
         }
 
@@ -298,6 +302,7 @@ namespace Content.Server.Atmos.EntitySystems
             }
         }
 
+        // ES START
         private void OnDamaged(EntityUid uid, BarotraumaComponent comp, DamageChangedEvent args)
         {
             // We actually only care that the entity with an equipped PressureProtectionComponent has been damaged. But
@@ -305,6 +310,7 @@ namespace Content.Server.Atmos.EntitySystems
             // damaged then the wearer must be too, have the wearer subscribe to this event instead.
             UpdateCachedResistances(uid, comp);
         }
+        // ES END
 
         private void OnExamine(Entity<PressureProtectionComponent> ent, ref ExaminedEvent args)
         {
