@@ -25,6 +25,7 @@ namespace Content.Shared.Damage
         [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
         [Dependency] private readonly IConfigurationManager _config = default!;
         [Dependency] private readonly SharedChemistryGuideDataSystem _chemistryGuideData = default!;
+        [Dependency] private readonly InventorySystem _inv = default!;
 
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;
@@ -190,6 +191,17 @@ namespace Content.Shared.Damage
 
             if (before.Cancelled)
                 return null;
+
+            // Hit anything the target is wearing, too. But on recursive hits, only pass positive values. Healing the
+            // player shouldn't also fix their hardsuit.
+            // TODO: The player drinking acid shouldn't deal heat damage to worn items. However, DamageSystem doesn't
+            // currently support this kind of modeling.
+            var dp = DamageSpecifier.GetPositive(damage);
+            var e = _inv.GetSlotEnumerator(uid.Value);
+            while (e.NextItem(out var item)) {
+                // We're recursing on a different uid, so don't pass the DamageableComponent in.
+                TryChangeDamage(item, dp, ignoreResistances, interruptsDoAfters, null, origin);
+            }
 
             // Apply resistances
             if (!ignoreResistances)
