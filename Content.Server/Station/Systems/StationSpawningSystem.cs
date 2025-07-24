@@ -22,6 +22,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+// ES START
+using Content.Shared._ES.Spawning.Components;
+// ES END
 
 namespace Content.Server.Station.Systems;
 
@@ -141,16 +144,27 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             }
         }
 
-        if (loadout != null)
+// ES START
+        if (job != null &&
+            TryComp<ESStationGearOverrideComponent>(station, out var esJobOverride) &&
+            esJobOverride.Overrides.TryGetValue(job.Value, out var esGearOverride))
         {
-            EquipRoleLoadout(entity.Value, loadout, roleProto!);
+            EquipStartingGear(entity.Value, _prototypeManager.Index(esGearOverride), raiseEvent: false);
         }
+        else
+        {
+            if (loadout != null)
+            {
+                EquipRoleLoadout(entity.Value, loadout, roleProto!);
+            }
 
-        if (prototype?.StartingGear != null)
-        {
-            var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
-            EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+            else if (prototype?.StartingGear != null)
+            {
+                var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
+                EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+            }
         }
+// ES END
 
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
         RaiseLocalEvent(entity.Value, ref gearEquippedEv);
