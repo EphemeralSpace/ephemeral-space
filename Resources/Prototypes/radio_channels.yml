@@ -5,7 +5,7 @@
   frequency: 1459
   color: "#2cdb2c"
 # ES START
-  sendWhitelist:
+  senderWhitelist:
     components:
     - Intercom
 # ES END
