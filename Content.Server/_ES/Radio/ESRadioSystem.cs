@@ -1,6 +1,7 @@
 using System.Text;
 using Content.Server._ES.Radio.Components;
 using Content.Server.Radio;
+using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -11,12 +12,24 @@ public sealed class ESRadioSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
+        SubscribeLocalEvent<RadioSendAttemptEvent>(OnSendAttempt);
         SubscribeLocalEvent<ESRadioFalloffComponent, RadioReceiveAttemptEvent>(OnFalloffReceiveAttempt);
+    }
+
+    private void OnSendAttempt(ref RadioSendAttemptEvent ev)
+    {
+        if (ev.Cancelled)
+            return;
+
+        if (_whitelist.IsWhitelistPassOrNull(ev.Channel.SenderWhitelist, ev.RadioSource))
+            return;
+        ev.Cancelled = true;
     }
 
     private void OnFalloffReceiveAttempt(Entity<ESRadioFalloffComponent> ent, ref RadioReceiveAttemptEvent args)

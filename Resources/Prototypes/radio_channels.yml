@@ -4,6 +4,11 @@
   keycode: ";"
   frequency: 1459
   color: "#2cdb2c"
+# ES START
+  sendWhitelist:
+    components:
+    - Intercom
+# ES END
 
 - type: radioChannel
   id: CentCom
