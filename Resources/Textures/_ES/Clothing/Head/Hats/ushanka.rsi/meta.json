@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/62f0102b87d4c5f8ab87b9b71980b1972f6d6df6/icons/mob/head.dmi, https://github.com/vgstation-coders/vgstation13/blob/62f0102b87d4c5f8ab87b9b71980b1972f6d6df6/icons/obj/clothing/hats.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ushankaup"
+    },
+    {
+      "name": "ushanka"
+    },
+    {
+      "name": "equipped-HELMET",
+      "directions": 4
+    },
+    {
+      "name": "up-equipped-HELMET",
+      "directions": 4
+    }
+  ]
+}

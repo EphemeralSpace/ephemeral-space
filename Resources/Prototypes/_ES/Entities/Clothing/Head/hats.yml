@@ -31,3 +31,40 @@
     tags:
     - ClothMade
     - Recyclable
+
+# Ushanka
+
+- type: entity
+  parent: [ClothingHeadBase, BaseFoldable]
+  id: ESClothingHeadUshanka
+  name: ushanka
+  description: A robust fur hat given to senior officers of the USSP.
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Head/Hats/ushanka.rsi
+    layers:
+    - state: ushanka
+      map: [ "unfoldedLayer" ]
+    - state: ushankaup
+      map: ["foldedLayer"]
+      visible: false
+  - type: Appearance
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: up
+    foldedHeldPrefix: up
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+      HeadTop: HEAD
+
+- type: entity
+  parent: ESClothingHeadUshanka
+  id: ESClothingHeadUshankaSecurity
+  name: security ushanka
+  description: A robust fur hat given to distinguished security officers of the USSP.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Head/Hats/ushanka_red.rsi
