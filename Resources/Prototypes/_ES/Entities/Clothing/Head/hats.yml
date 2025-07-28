@@ -56,6 +56,7 @@
     foldedEquippedPrefix: up
     foldedHeldPrefix: up
   - type: HideLayerClothing
+    slots: []
     layers:
       Hair: HEAD
       HeadTop: HEAD
