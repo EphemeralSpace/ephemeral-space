@@ -1,0 +1,6 @@
+- type: guideEntry
+  id: ESRules
+  name: guide-entry-rules
+  ruleEntry: true
+  priority: 10
+  text: "/ServerInfo/_ES/Guidebook/Rules.xml"

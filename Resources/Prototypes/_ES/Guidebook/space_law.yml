@@ -1,0 +1,4 @@
+- type: guideEntry
+  id: SpaceLaw # No prefix as this hard-replaces the other space law
+  name: guide-entry-rules-space-law
+  text: "/ServerInfo/_ES/Guidebook/SpaceLaw.xml"
