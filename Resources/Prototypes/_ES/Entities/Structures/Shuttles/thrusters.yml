@@ -36,7 +36,7 @@
         pipeDirection: South
   - type: Thruster
     isFueledThruster: true
-    maxGasThrustMultiplier: 500
+    maxGasThrustMultiplier: 2.5
     requiresFuel: true
     requirePower: false
     inletName: "pipe"

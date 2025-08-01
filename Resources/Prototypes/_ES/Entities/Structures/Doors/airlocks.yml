@@ -1,0 +1,11 @@
+
+- type: entity
+  parent: AirlockShuttle
+  id: ESAirlockExternalShuttlePod
+  suffix: External, Pod 7x6, Docking
+  components:
+  - type: GridFill
+    path: /Maps/_ES/Shuttles/space_pod.yml
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
