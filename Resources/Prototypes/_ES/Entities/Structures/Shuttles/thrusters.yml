@@ -22,8 +22,9 @@
   - type: PipeColorVisuals
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasVentOpening
-  - type: ApcPowerReceiver
+  - type: ApcPowerReceiver # TODO: reparent so that we don't have all this power receiver crud
     needsPower: false
+    powerLoad: 0
   - type: GasThermoMachine
   - type: AtmosPipeColor
   - type: AtmosDevice

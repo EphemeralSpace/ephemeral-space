@@ -220,6 +220,11 @@
   components:
   - type: PowerSupplier
     supplyRate: 6000
+# ES START
+    voltage: Apc
+    supplyRampRate: 500
+    supplyRampTolerance: 1000
+# ES END
   - type: Construction
     graph: WallmountGenerator
     node: APU
@@ -234,6 +239,17 @@
   - type: GuideHelp
     guides:
     - ShuttleCraft
+# ES START
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: Apc # Shuttle APU outputs to LV
+  - type: PowerProvider
+    voltage: Apc
+  - type: ExtensionCableProvider
+# ES END
 
 # RTG - no fuel requirement
 
