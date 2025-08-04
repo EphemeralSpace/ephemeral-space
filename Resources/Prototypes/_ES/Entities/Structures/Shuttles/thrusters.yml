@@ -29,6 +29,11 @@
     damageModifierSet: Electronic
   - type: Construction
     graph: ESThruster
+    containers:
+    - engine
+  - type: ContainerContainer
+    containers:
+      engine: !type:Container
   - type: GuideHelp
     guides:
     - ShuttleCraft
@@ -62,12 +67,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-  - type: Construction
-    containers:
-    - engine
-  - type: ContainerContainer
-    containers:
-      engine: !type:Container
   - type: StaticPrice
     price: 300
 

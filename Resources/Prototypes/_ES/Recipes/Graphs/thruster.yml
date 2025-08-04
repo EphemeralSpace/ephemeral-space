@@ -39,7 +39,6 @@
       steps:
       - material: Steel
         amount: 1
-        doAfter: 3
       - tool: Welding
         doAfter: 5
     - to: frame
