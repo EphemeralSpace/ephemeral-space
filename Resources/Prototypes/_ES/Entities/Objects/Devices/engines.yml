@@ -1,0 +1,36 @@
+- type: entity
+  parent: BaseItem
+  id: ESBaseEngineThruster
+  suffix: ES
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Devices/engine.rsi
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+
+- type: entity
+  parent: ESBaseEngineThruster
+  id: ESEngineThrusterIon
+  name: ion thruster engine
+  description: A mass-produced engine designed to power ion thrusters.
+  components:
+  - type: Sprite
+    state: icon-ion
+  - type: Tag
+    tags:
+    - ESThrusterEngineIon
+
+- type: entity
+  parent: ESBaseEngineThruster
+  id: ESEngineThrusterGas
+  name: gas thruster engine
+  description: A mass-produced engine designed to power gas thrusters.
+  components:
+  - type: Sprite
+    state: icon-gas
+  - type: Tag
+    tags:
+    - ESThrusterEngineGas

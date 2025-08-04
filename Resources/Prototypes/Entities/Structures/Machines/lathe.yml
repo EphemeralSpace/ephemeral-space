@@ -131,6 +131,9 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
+# ES START
+    - ESAutolathePack
+# ES END
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SecurityAmmoStatic

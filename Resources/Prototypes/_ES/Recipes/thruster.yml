@@ -1,0 +1,11 @@
+- type: construction
+  id: ESThrusterGas
+  graph: ESThruster
+  startNode: start
+  targetNode: gas
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

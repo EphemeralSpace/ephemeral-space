@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseFlatpack
+  id: ESThrusterGasFlatpack
+  name: gas thruster flatpack
+  description: A flatpack used for constructing a gas thruster.
+  components:
+  - type: Flatpack
+    entity: ESGasThruster
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#cec8ac"
+    - state: icon-default

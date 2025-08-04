@@ -1,0 +1,9 @@
+- type: latheRecipe
+  id: ESEngineThrusterGas
+  result: ESEngineThrusterGas
+  completetime: 3
+  categories:
+  - Parts
+  materials:
+    Steel: 1500
+    Plastic: 500
