@@ -121,8 +121,8 @@ public abstract class ESSharedSpawningSystem : EntitySystem
 }
 
 [Serializable, NetSerializable]
-public sealed class ESSpawnPlayerEvent(NetEntity station, ProtoId<JobPrototype> jobId) : EntityEventArgs
+public sealed class ESSpawnPlayerEvent(List<NetEntity> stations, ProtoId<JobPrototype> jobId) : EntityEventArgs
 {
-    public NetEntity Station = station;
+    public List<NetEntity> Stations = stations;
     public ProtoId<JobPrototype> JobId = jobId;
 }

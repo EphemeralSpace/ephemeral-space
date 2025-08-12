@@ -1,0 +1,10 @@
+<controls:ESStationCheckbox
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._ES.Spawning.Ui"
+    Orientation="Horizontal"
+    MouseFilter="Stop"
+    HorizontalExpand="False"
+    VerticalExpand="False">
+    <CheckBox Name="CheckBox" VerticalAlignment="Center" VerticalExpand="False"/>
+    <RichTextLabel Name="StationLabel" VerticalExpand="False"/>
+</controls:ESStationCheckbox>

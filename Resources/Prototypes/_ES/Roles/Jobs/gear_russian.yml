@@ -3,6 +3,7 @@
   equipment:
     id: PassengerPDA
     ears: ClothingHeadsetGrey
-    jumpsuit: ClothingUniformJumpsuitColorGrey
-    shoes: ClothingShoesColorBlack
+    head: ESClothingHeadUshanka
+    jumpsuit: ESClothingUniformJumpsuitRussianColorGrey
+    shoes: ClothingShoesColorBrown
     back: ClothingBackpack

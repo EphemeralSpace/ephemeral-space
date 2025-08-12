@@ -8,21 +8,37 @@
   - Quartermaster
   - SalvageSpecialist
 
+# ES START
+- type: department
+  id: ESService
+  name: department-Service
+  description: department-Service-description
+  color: "#639137"
+  weight: -5
+  roles:
+  - Bartender
+  - Botanist
+  - Chef
+  - Janitor
+  - ServiceWorker
+# ES END
+
 - type: department
   id: Civilian
   name: department-Civilian
   description: department-Civilian-description
-  color: "#9FED58"
+# ES START
+  color: "#6e6e6e"
   weight: -10
   roles:
-  - Bartender
-  - Botanist
+#  - Bartender
+#  - Botanist
+#  - Chef
+#  - Janitor
   - Boxer
   - Chaplain
-  - Chef
   - Clown
   - HeadOfPersonnel
-  - Janitor
   - Lawyer
   - Librarian
   - Mime
@@ -31,7 +47,8 @@
   - Reporter
   - Visitor
   - Zookeeper
-  - ServiceWorker
+#  - ServiceWorker
+# ES END
 
 - type: department
   id: CentralCommand
@@ -80,7 +97,9 @@
   id: Engineering
   name: department-Engineering
   description: department-Engineering-description
-  color: "#EFB341"
+# ES START
+  color: "#f39f27"
+# ES END
   roles:
   - AtmosphericTechnician
   - ChiefEngineer
@@ -91,7 +110,9 @@
   id: Medical
   name: department-Medical
   description: department-Medical-description
-  color: "#52B4E9"
+# ES START
+  color: "#57b8f0"
+# ES END
   roles:
   - Chemist
   - ChiefMedicalOfficer
