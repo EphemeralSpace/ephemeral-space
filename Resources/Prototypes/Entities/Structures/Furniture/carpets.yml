@@ -97,13 +97,13 @@
                 min: 1
                 max: 1
 
-# ES Start
-# mirgrations.yml can only exist in one place, so the most simple solution is to soft-remove the carpets that have no proper sprite equivalent.
 - type: entity
   id: CarpetPink
   parent: CarpetBase
+# ES START
   suffix: Pink, DO NOT MAP
   categories: [ HideSpawnMenu ]
+# ES END
   components:
   - type: Clickable
   - type: Sprite
@@ -112,24 +112,23 @@
     sprite: Structures/Furniture/Carpets/pink_carpet.rsi
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 10
-      behaviors:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
-        - !type:SpawnEntitiesBehavior
-          spawn:
-            FloorCarpetItemPink:
-              min: 1
-              max: 1
-# ES End
+      - trigger:
+          !type:DamageTrigger
+          damage: 10
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              FloorCarpetItemPink:
+                min: 1
+                max: 1
 
 - type: entity
   id: CarpetBlue
@@ -221,12 +220,13 @@
                 min: 1
                 max: 1
 
-# ES Start
 - type: entity
   id: CarpetSBlue
   parent: CarpetBase
+# ES START
   suffix: Sky Blue, DO NOT MAP
   categories: [ HideSpawnMenu ]
+# ES END
   components:
   - type: Clickable
   - type: Sprite
@@ -235,24 +235,23 @@
     sprite: Structures/Furniture/Carpets/skyblue_carpet.rsi
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 10
-      behaviors:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
-        - !type:SpawnEntitiesBehavior
-          spawn:
-            FloorCarpetItemSkyBlue:
-              min: 1
-              max: 1
-# ES End
+      - trigger:
+          !type:DamageTrigger
+          damage: 10
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              FloorCarpetItemSkyBlue:
+                min: 1
+                max: 1
 
 - type: entity
   id: CarpetPurple
@@ -314,12 +313,13 @@
                 min: 1
                 max: 1
 
-# ES Start
 - type: entity
   id: CarpetWhite
   parent: CarpetBase
+# ES Start
   suffix: White, DO NOT MAP
   categories: [ HideSpawnMenu ]
+# ES End
   components:
   - type: Clickable
   - type: Sprite
@@ -345,7 +345,6 @@
               FloorCarpetItemWhite:
                 min: 1
                 max: 1
-# ES End
 
 # TODO nuke this once tiles support rotating sprites
 - type: entity

@@ -87,8 +87,6 @@
     doAfter: 0.5
     removeOnInteract: true
 
-# ES Start
-# mirgrations.yml can only exist in one place, so the most simple solution is to soft-remove the carpets that have no proper sprite equivalent.
 - type: entity
   parent: FloorCarpetItemRed
   id: FloorCarpetItemSkyBlue
