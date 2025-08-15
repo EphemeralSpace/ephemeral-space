@@ -19,6 +19,7 @@ namespace Content.Client.Lobby.UI
             SetAnchorPreset(MainContainer, LayoutPreset.Wide);
             // ES START
             SetAnchorPreset(MainViewport, LayoutPreset.Wide);
+            SetAnchorPreset(ViewportContainer, LayoutPreset.Wide);
             // ES END
 
             LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));
