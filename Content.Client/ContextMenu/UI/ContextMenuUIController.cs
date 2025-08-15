@@ -2,6 +2,7 @@ using System.Numerics;
 using System.Threading;
 using Content.Client.CombatMode;
 using Content.Client.Gameplay;
+using Content.Client.Lobby;
 using Content.Client.Mapping;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
@@ -17,7 +18,11 @@ namespace Content.Client.ContextMenu.UI
     /// <remarks>
     ///     This largely involves setting up timers to open and close sub-menus when hovering over other menu elements.
     /// </remarks>
-    public sealed class ContextMenuUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>, IOnSystemChanged<CombatModeSystem>, IOnStateEntered<MappingState>, IOnStateExited<MappingState>
+    public sealed class ContextMenuUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>, IOnSystemChanged<CombatModeSystem>, IOnStateEntered<MappingState>, IOnStateExited<MappingState>,
+        // ES START
+        IOnStateEntered<LobbyState>,
+        IOnStateExited<LobbyState>
+        // ES END
     {
         public static readonly TimeSpan HoverDelay = TimeSpan.FromSeconds(0.2);
 
@@ -64,6 +69,19 @@ namespace Content.Client.ContextMenu.UI
         {
             Shutdown();
         }
+
+        // ES START
+        // this is starting to feel a little silly
+        public void OnStateEntered(LobbyState state)
+        {
+            Setup();
+        }
+
+        public void OnStateExited(LobbyState state)
+        {
+            Shutdown();
+        }
+        // ES END
 
         public void Setup()
         {
