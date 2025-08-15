@@ -5,6 +5,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using System.Text;
 using Content.Shared.CCVar;
+using Content.Shared.Players;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -43,7 +44,7 @@ namespace Content.Server.GameTicking
         // ES START
         public MapId? DiegeticLobbyMapId = null;
         // todo mirror lobby change
-        private static readonly EntProtoId DefaultGuy = "MobObserver";
+        private static readonly EntProtoId TheatergoerEntity = "ESTheatergoer";
 
         // ES START
         // Manages loading the diegetic lobby world and spawning players into it.
@@ -83,18 +84,30 @@ namespace Content.Server.GameTicking
             if (_runLevel != GameRunLevel.PreRoundLobby || session.AttachedEntity != null)
                 return;
 
+            if (session.ContentData() is not { } data || data.LobbyEntity != null)
+                return;
+
             _sawmill.Info($"Creating lobby character for {session.Name}");
             var spawnPosition = GetObserverSpawnPoint();
-            var theatergoer = SpawnAtPosition(DefaultGuy, spawnPosition);
+            var theatergoer = SpawnAtPosition(TheatergoerEntity, spawnPosition);
             _playerManager.SetAttachedEntity(session, theatergoer, true);
+            data.LobbyEntity = theatergoer;
         }
 
+        // called on round restart ? (??) (idk)
         private void CleanupLobbyWorld()
         {
             // no cleanup necessary
             if (DiegeticLobbyMapId == null)
                 return;
 
+            // FOR MIRROR NOTES
+            // lobby persists thru restarts
+            // create once at server start
+            // characters also persist
+            // persistence needed because people can ready up u cant just delete the map idiot
+            // diegetic mechanism for readying = chairs diegetic mechanism for marking as observer = uhh idk lol
+            // maptext for directions, 'projector' entit ythat shows maptext, use a different font, idk
             _sawmill.Info("Cleaning up lobby world");
 
             // it might be necessary to raise RoundRestartCleanup
