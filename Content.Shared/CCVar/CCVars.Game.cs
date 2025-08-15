@@ -1,5 +1,6 @@
 using Content.Shared.Roles;
 using Robust.Shared.Configuration;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.CCVar;
 
@@ -22,6 +23,16 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<int>
         GameLobbyDuration = CVarDef.Create("game.lobbyduration", 150, CVar.ARCHIVE);
+
+    // ES START
+
+    /// <summary>
+    ///     Path to the map to use as the diegetic lobby.
+    /// </summary>
+    public static readonly CVarDef<string>
+        GameDiegeticLobbyMap = CVarDef.Create("game.diegeticlobbymap", "/Maps/Test/dev_map.yml", CVar.ARCHIVE | CVar.SERVERONLY);
+
+    // ES END
 
     /// <summary>
     ///     Controls if players can latejoin at all.

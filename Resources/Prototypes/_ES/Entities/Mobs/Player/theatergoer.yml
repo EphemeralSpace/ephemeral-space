@@ -1,0 +1,20 @@
+- type: entity
+  id: ESMobTheatergoer
+  parent: BaseMob
+  name: a kind of guy
+  description: he is a sort of guy
+  components:
+  - type: Sprite
+    sprite: Mobs/Ghosts/ghost_human.rsi
+    color: "#fff8"
+    layers:
+    - state: animated
+      shader: unshaded
+  - type: ContentEye
+    maxZoom: 1.44,1.44
+  - type: Eye
+    drawFov: false
+  - type: Input
+    context: "ghost"
+  - type: Examiner
+    skipChecks: true

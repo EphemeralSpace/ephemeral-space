@@ -4,6 +4,11 @@ using Content.Server.Station.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using System.Text;
+using Content.Shared.CCVar;
+using Robust.Shared.EntitySerialization;
+using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server.GameTicking
 {
@@ -34,6 +39,78 @@ namespace Content.Server.GameTicking
         /// The game status of a players user Id. May contain disconnected players
         /// </summary>
         public IReadOnlyDictionary<NetUserId, PlayerGameStatus> PlayerGameStatuses => _playerGameStatuses;
+
+        // ES START
+        public MapId? DiegeticLobbyMapId = null;
+        private static readonly EntProtoId DefaultGuy = "ESMobTheatergoer";
+
+        // ES START
+        // Manages loading the diegetic lobby world and spawning players into it.
+        // TODO MIRROR LOBBY ideal flow is we have no map preloading,
+        // so we can just create the lobby world, flush entities and maps, then
+        // in the 'curtains' transition we can create the game map, and hopefully not have to worry about
+        // any side effects of having both around at the same time.
+        private void CreateLobbyWorld()
+        {
+            if (_runLevel != GameRunLevel.PreRoundLobby)
+                return;
+
+            var mapPath = _cfg.GetCVar(CCVars.GameDiegeticLobbyMap);
+
+            _sawmill.Info("Creating diegetic lobby..");
+            var opts = DeserializationOptions.Default with {InitializeMaps = true};
+            if (!_loader.TryLoadMap(new ResPath(mapPath),
+                    out var map,
+                    out var grids,
+                    opts))
+            {
+                throw new Exception($"Failed to load diegetic lobby map");
+            }
+
+            DiegeticLobbyMapId = map.Value.Comp.MapId;
+            _sawmill.Info($"Created diegetic lobby at map ID {DiegeticLobbyMapId.Value}");
+
+            // Create a guy for everyone in the server
+            foreach (var player in _playerManager.Sessions)
+            {
+                EnsureLobbyCharacterForPlayer(player);
+            }
+        }
+
+        private void EnsureLobbyCharacterForPlayer(ICommonSession session)
+        {
+            if (_runLevel != GameRunLevel.PreRoundLobby || session.AttachedEntity != null)
+                return;
+
+            _sawmill.Info($"Creating lobby character for {session.Name}");
+            var spawnPosition = GetObserverSpawnPoint();
+            var theatergoer = SpawnAtPosition(DefaultGuy, spawnPosition);
+            _playerManager.SetAttachedEntity(session, theatergoer, true);
+        }
+
+        private void CleanupLobbyWorld()
+        {
+            // no cleanup necessary
+            if (DiegeticLobbyMapId == null)
+                return;
+
+            _sawmill.Info("Cleaning up lobby world");
+
+            // it might be necessary to raise RoundRestartCleanup
+            // I really don't want bugs where bad entity systems persist data from the diegetic lobby
+            // into the actual game, so it should be fine to trick them a little bit, but also
+            // I think it'll introduce more weirdness with stuff that assumes we were actually in game?
+            // so for now I'm not doing it
+            // ideally, we just have nothing in the diegetic lobby that actually relies on anything that would need
+            // to be cleaned up, and nothing subscribing to roundrestartcleanup that doesn't care about roundflow
+            // but this is probably a pipe dream.
+
+            // TODO MIRROR LOBBY we actually do probably want to persist the lobby world into the real game to some extent
+            // because I want to do things like the ghost bar being in the same place
+            // but we are not going to worry about that right now.
+            _map.DeleteMap(DiegeticLobbyMapId.Value);
+        }
+        // ES END
 
         public void UpdateInfoText()
         {

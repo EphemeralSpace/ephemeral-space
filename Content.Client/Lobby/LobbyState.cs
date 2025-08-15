@@ -16,11 +16,22 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 // ES START
 using Content.Client._ES.Spawning.Ui;
+using Content.Client.Gameplay;
+using Content.Client.UserInterface.Controls;
+using Content.Client.UserInterface.Screens;
+using Content.Client.UserInterface.Systems.Gameplay;
+using Content.Client.Viewport;
+using Robust.Client.Graphics;
+
 // ES END
 
 namespace Content.Client.Lobby
 {
-    public sealed class LobbyState : Robust.Client.State.State
+    // ES NOTES
+    // it is slightly cursed for lobbystate to inherit gameplaystatebase, yeah
+    // things we do not need: ingamescreen, separated chat stuff ; we are not going to use any of the
+    // resizing stuff that that allows bc we just will not allow resizing the chat in lobby i think
+    public sealed class LobbyState : GameplayStateBase, IMainViewportState
     {
         [Dependency] private readonly IBaseClient _baseClient = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -31,6 +42,12 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!;
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
+
+        // ES START
+        [Dependency] private readonly IEyeManager _eyeManager = default!;
+        public MainViewport Viewport => _userInterfaceManager.ActiveScreen!.GetWidget<MainViewport>()!;
+        private GameplayStateLoadController _loadController = default!;
+        // ES END
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
@@ -46,6 +63,11 @@ namespace Content.Client.Lobby
             }
 
             Lobby = (LobbyGui) _userInterfaceManager.ActiveScreen;
+
+            // ES START
+            _loadController = _userInterfaceManager.GetUIController<GameplayStateLoadController>();
+            _loadController.LoadScreen();
+            // ES END
 
             var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
             _gameTicker = _entityManager.System<ClientGameTicker>();
@@ -257,6 +279,9 @@ namespace Content.Client.Lobby
 
         private void UpdateLobbyBackground()
         {
+            // ES START
+            // TODO MIRROR LOBBY readd backgrounds somehow
+            /*
             if (_gameTicker.LobbyBackground != null)
             {
                 Lobby!.Background.Texture = _resourceCache.GetResource<TextureResource>(_gameTicker.LobbyBackground );
@@ -265,7 +290,8 @@ namespace Content.Client.Lobby
             {
                 Lobby!.Background.Texture = null;
             }
-
+            */
+            // ES END
         }
 
         private void SetReady(bool newReady)

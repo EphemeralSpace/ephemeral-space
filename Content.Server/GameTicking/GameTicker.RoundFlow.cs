@@ -370,6 +370,8 @@ namespace Content.Server.GameTicking
             if (RoundId == 0)
                 IncrementRoundNumber();
 
+            CleanupLobbyWorld();
+
             ReplayStartRound();
 
             DebugTools.Assert(RunLevel == GameRunLevel.PreRoundLobby);
@@ -684,6 +686,7 @@ namespace Content.Server.GameTicking
 
                 SendStatusToAll();
                 UpdateInfoText();
+                CreateLobbyWorld();
 
                 ReqWindowAttentionAll();
             }
