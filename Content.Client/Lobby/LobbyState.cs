@@ -22,6 +22,7 @@ using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.Viewport;
 using Robust.Client.Graphics;
+using Robust.Client.Input;
 
 // ES END
 
@@ -57,6 +58,10 @@ namespace Content.Client.Lobby
 
         protected override void Startup()
         {
+            // ES START
+            base.Startup();
+            // ES END
+
             if (_userInterfaceManager.ActiveScreen == null)
             {
                 return;
@@ -102,6 +107,13 @@ namespace Content.Client.Lobby
 
         protected override void Shutdown()
         {
+            // ES START
+            // needed for gameplaystatebase
+            base.Shutdown();
+            _eyeManager.MainViewport = UserInterfaceManager.MainViewport;
+            _loadController.UnloadScreen();
+            // ES END
+
             var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
             chatController.SetMainChat(false);
             _gameTicker.InfoBlobUpdated -= UpdateLobbyUi;
@@ -305,5 +317,15 @@ namespace Content.Client.Lobby
 
             _consoleHost.ExecuteCommand($"toggleready {newReady}");
         }
+
+        // ES START
+        protected override void OnKeyBindStateChanged(ViewportBoundKeyEventArgs args)
+        {
+            if (args.Viewport == null)
+                base.OnKeyBindStateChanged(new ViewportBoundKeyEventArgs(args.KeyEventArgs, Viewport.Viewport));
+            else
+                base.OnKeyBindStateChanged(args);
+        }
+        // ES END
     }
 }

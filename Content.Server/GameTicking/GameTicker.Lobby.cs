@@ -42,7 +42,8 @@ namespace Content.Server.GameTicking
 
         // ES START
         public MapId? DiegeticLobbyMapId = null;
-        private static readonly EntProtoId DefaultGuy = "ESMobTheatergoer";
+        // todo mirror lobby change
+        private static readonly EntProtoId DefaultGuy = "MobObserver";
 
         // ES START
         // Manages loading the diegetic lobby world and spawning players into it.

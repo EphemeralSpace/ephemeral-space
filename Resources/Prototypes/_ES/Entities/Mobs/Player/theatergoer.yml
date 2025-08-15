@@ -13,7 +13,6 @@
   - type: ContentEye
     maxZoom: 1.44,1.44
   - type: Eye
-    drawFov: false
   - type: Input
     context: "ghost"
   - type: Examiner
