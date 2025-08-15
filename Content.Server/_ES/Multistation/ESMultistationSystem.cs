@@ -4,6 +4,7 @@ using Content.Server.Maps;
 using Content.Server.Procedural;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._ES.CCVar;
+using Content.Shared._ES.Light.Components;
 using Content.Shared.CCVar;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
@@ -79,6 +80,8 @@ public sealed class ESMultistationSystem : EntitySystem
         if (!_prototype.TryIndex<ESMultistationConfigPrototype>(_currentConfig, out var config))
             config = _prototype.Index(DefaultConfig);
 
+        EntityManager.AddComponents(ev.DefaultMap, config.MapComponents);
+
         var configComp = EnsureComp<ESMultistationMapComponent>(ev.DefaultMap);
         configComp.Config = config.ID;
 
@@ -105,6 +108,9 @@ public sealed class ESMultistationSystem : EntitySystem
             {
                 throw new Exception($"Failed to load game-map grid {station.ID}");
             }
+
+            // TODO: more robust system, potentially?
+            AddComp<ESTileBasedRoofComponent>(grid.Value);
 
             var g = new List<EntityUid> { grid.Value.Owner };
             RaiseLocalEvent(new PostGameMapLoad(station, ev.DefaultMapId, g, null));

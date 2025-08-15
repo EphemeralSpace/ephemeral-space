@@ -29,6 +29,12 @@ public sealed partial class ESMultistationConfigPrototype : IPrototype, IInherit
     [DataField]
     public float StationDistance = 128f;
 
+    /// <summary>
+    /// Components applied to the map.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry MapComponents = new();
+
     [DataField]
     public List<ProtoId<GameMapPrototype>> MapPool = new();
 

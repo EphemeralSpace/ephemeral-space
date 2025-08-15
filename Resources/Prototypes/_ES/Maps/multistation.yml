@@ -4,6 +4,9 @@
   minStations: 2
   mapPool:
   - ESTestMap
+  mapComponents:
+  - type: MapLight
+    ambientLightColor: '#ffffff'
   dungeons:
   - configs: [ "VGRoid" ]
     count: 1
@@ -16,6 +19,7 @@
       inherent: true
     - type: IFF
       color: "#d67e27"
+    - type: ESTileBasedRoof
   - configs: [ "ChunkDebris" ]
     count: 16, 20
     distance: 312, 450
