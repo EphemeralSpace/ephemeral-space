@@ -1,0 +1,17 @@
+- type: stack
+  id: ESCarpetFancyBlue
+  name: es-stack-fancy-blue-carpet-tile
+  spawn: ESFloorCarpetItemFancyBlue
+  maxCount: 30
+
+- type: stack
+  id: ESCarpetFancyBlack
+  name: es-stack-fancy-black-carpet-tile
+  spawn: ESFloorCarpetItemFancyBlack
+  maxCount: 30
+
+- type: stack
+  id: ESCarpetFancyRed
+  name: es-stack-fancy-red-carpet-tile
+  spawn: ESFloorCarpetItemFancyRed
+  maxCount: 30

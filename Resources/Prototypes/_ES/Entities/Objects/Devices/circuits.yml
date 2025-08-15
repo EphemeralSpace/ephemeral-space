@@ -12,3 +12,15 @@
   - type: Tag
     tags:
     - ESElectronicsKeypad
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ESComputerEvacBeaconCircuitBoard
+  name: emergency beacon console circuit board
+  description: A computer printed circuit board for a emergency beacon console.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Devices/circuits.rsi
+    state: mainboard
+  - type: ComputerBoard
+    prototype: ESComputerEvacBeacon

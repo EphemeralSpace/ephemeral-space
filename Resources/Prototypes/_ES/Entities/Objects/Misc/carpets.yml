@@ -1,0 +1,53 @@
+- type: entity
+  parent: FloorCarpetItemRed
+  id: ESFloorCarpetItemFancyBlack
+  suffix: ES, Fancy Black
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Tiles/carpets.rsi
+    state: carpet-fancyblack
+  - type: Item
+    sprite: _ES/Objects/Tiles/carpets.rsi
+    heldPrefix: carpet-fancyblack
+  - type: Stack
+    stackType: ESCarpetFancyBlack
+  - type: SpawnAfterInteract #Nuke after convert to FloorTile
+    prototype: ESCarpetFancyBlack
+    doAfter: 0.5
+    removeOnInteract: true
+
+- type: entity
+  parent: FloorCarpetItemRed
+  id: ESFloorCarpetItemFancyBlue
+  suffix: Fancy Blue
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Tiles/carpets.rsi
+    state: carpet-fancyblue
+  - type: Item
+    sprite: _ES/Objects/Tiles/carpets.rsi
+    heldPrefix: carpet-fancyblue
+  - type: Stack
+    stackType: ESCarpetFancyBlue
+  - type: SpawnAfterInteract #Nuke after convert to FloorTile
+    prototype: ESCarpetFancyBlue
+    doAfter: 0.5
+    removeOnInteract: true
+
+- type: entity
+  parent: FloorCarpetItemRed
+  id: ESFloorCarpetItemFancyRed
+  suffix: ES, Fancy Red
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Tiles/carpets.rsi
+    state: carpet-fancyred
+  - type: Item
+    sprite: _ES/Objects/Tiles/carpets.rsi
+    heldPrefix: carpet-fancyred
+  - type: Stack
+    stackType: ESCarpetFancyRed
+  - type: SpawnAfterInteract #Nuke after convert to FloorTile
+    prototype: ESCarpetFancyRed
+    doAfter: 0.5
+    removeOnInteract: true

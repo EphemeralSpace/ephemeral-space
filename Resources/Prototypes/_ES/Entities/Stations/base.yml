@@ -5,6 +5,13 @@
   - type: ESStationArrivals
 
 - type: entity
+  id: ESBaseStationEvacuation
+  abstract: true
+  components:
+  - type: ESEvacStation
+  - type: StationEmergencyShuttle
+
+- type: entity
   id: ESBaseStationNeutral
   parent:
   - BaseStation
@@ -15,7 +22,6 @@
   - BaseStationGateway
   - BaseStationShuttles
   - BaseStationCentcomm
-  - BaseStationEvacuation
   - BaseStationAlertLevels
   - BaseStationMagnet
   - BaseStationExpeditions
@@ -25,6 +31,7 @@
   - BaseStationNanotrasen
   - BaseStationDeliveries
   - ESBaseStationArrivals
+  - ESBaseStationEvacuation
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform

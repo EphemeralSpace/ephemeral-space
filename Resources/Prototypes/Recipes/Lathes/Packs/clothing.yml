@@ -193,13 +193,17 @@
   recipes:
   - Carpet
   - CarpetBlack
-  - CarpetPink
+# ES START
+#  - CarpetPink
+# ES END
   - CarpetBlue
   - CarpetGreen
   - CarpetOrange
   - CarpetPurple
   - CarpetCyan
-  - CarpetWhite
+# ES START
+#  - CarpetWhite
+# ES END
 
 - type: latheRecipePack
   id: ClothingCentComm

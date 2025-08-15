@@ -1,0 +1,89 @@
+- type: entity
+  id: ESCarpetFancyBlue
+  parent: CarpetBase
+  suffix: ES, Fancy Blue
+  components:
+  - type: Clickable
+  - type: Sprite
+    sprite: _ES/Structures/Furniture/Carpets/fancy_blue_carpet.rsi
+  - type: Icon
+    sprite: _ES/Structures/Furniture/Carpets/fancy_blue_carpet.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ESFloorCarpetItemFancyBlue:
+            min: 1
+            max: 1
+
+- type: entity
+  id: ESCarpetFancyBlack
+  parent: CarpetBase
+  suffix: ES, Fancy Black
+  components:
+  - type: Clickable
+  - type: Sprite
+    sprite: _ES/Structures/Furniture/Carpets/fancy_black_carpet.rsi
+  - type: Icon
+    sprite: _ES/Structures/Furniture/Carpets/fancy_black_carpet.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ESFloorCarpetItemFancyBlack:
+            min: 1
+            max: 1
+
+- type: entity
+  id: ESCarpetFancyRed
+  parent: CarpetBase
+  suffix: ES, Fancy Red
+  components:
+  - type: Clickable
+  - type: Sprite
+    sprite: _ES/Structures/Furniture/Carpets/fancy_red_carpet.rsi
+  - type: Icon
+    sprite: _ES/Structures/Furniture/Carpets/fancy_red_carpet.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ESFloorCarpetItemFancyRed:
+            min: 1
+            max: 1

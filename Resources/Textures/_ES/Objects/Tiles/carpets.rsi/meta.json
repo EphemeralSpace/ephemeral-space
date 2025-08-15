@@ -1,0 +1,66 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24, carpet-black icon, carpet-fancyred & carpet-cyan icons & inhands made by Flareguy (github)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "carpet-black-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "carpet-black-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "carpet-cyan-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "carpet-cyan-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "carpet-fancyblue-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "carpet-fancyblue-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "carpet-fancyblack-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "carpet-fancyblack-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "carpet-fancyred-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "carpet-fancyred-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "carpet-black"
+        },
+        {
+            "name": "carpet-cyan"
+        },
+        {
+            "name": "carpet-fancyblue"
+        },
+        {
+            "name": "carpet-fancyblack"
+        },
+        {
+            "name": "carpet-fancyred"
+        }
+    ]
+}

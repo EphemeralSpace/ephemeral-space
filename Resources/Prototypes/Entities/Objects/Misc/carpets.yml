@@ -24,10 +24,14 @@
   id: FloorCarpetItemBlack
   suffix: Black
   components:
+# ES START
   - type: Sprite
+    sprite: _ES/Objects/Tiles/carpets.rsi
     state: carpet-black
   - type: Item
+    sprite: _ES/Objects/Tiles/carpets.rsi
     heldPrefix: carpet-black
+# ES END
   - type: Stack
     stackType: FloorCarpetBlack
   - type: SpawnAfterInteract #Nuke after convert to FloorTile
@@ -86,7 +90,10 @@
 - type: entity
   parent: FloorCarpetItemRed
   id: FloorCarpetItemSkyBlue
-  suffix: Sky Blue
+# ES START
+  suffix: Sky Blue, DO NOT MAP
+  categories: [ HideSpawnMenu ]
+# ES END
   components:
   - type: Sprite
     state: carpet-skyblue
@@ -118,7 +125,10 @@
 - type: entity
   parent: FloorCarpetItemRed
   id: FloorCarpetItemPink
-  suffix: Pink
+# ES START
+  suffix: Pink, DO NOT MAP
+  categories: [ HideSpawnMenu ]
+# ES END
   components:
   - type: Sprite
     state: carpet-pink
@@ -136,10 +146,14 @@
   id: FloorCarpetItemCyan
   suffix: Cyan
   components:
+# ES START
   - type: Sprite
+    sprite: _ES/Objects/Tiles/carpets.rsi
     state: carpet-cyan
   - type: Item
+    sprite: _ES/Objects/Tiles/carpets.rsi
     heldPrefix: carpet-cyan
+# ES END
   - type: Stack
     stackType: FloorCarpetCyan
   - type: SpawnAfterInteract #Nuke after convert to FloorTile
@@ -150,7 +164,10 @@
 - type: entity
   parent: FloorCarpetItemRed
   id: FloorCarpetItemWhite
-  suffix: White
+# ES START
+  suffix: White, DO NOT MAP
+  categories: [ HideSpawnMenu ]
+# ES END
   components:
   - type: Sprite
     state: carpet-white

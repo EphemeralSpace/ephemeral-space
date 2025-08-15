@@ -42,8 +42,8 @@ public abstract class ESSharedSpawningSystem : EntitySystem
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<MindRemovedMessage>(OnMindRemoved);
 
-        _config.OnValueChanged(ESCVars.ESRespawnEnabled, v => RespawnsEnabled = v, true);
-        _config.OnValueChanged(ESCVars.ESRespawnDelay, d => RespawnDelay = TimeSpan.FromSeconds(d), true);
+        Subs.CVar(_config, ESCVars.ESRespawnEnabled, v => RespawnsEnabled = v, true);
+        Subs.CVar(_config, ESCVars.ESRespawnDelay, d => RespawnDelay = TimeSpan.FromSeconds(d), true);
     }
 
     private void OnMobStateChanged(MobStateChangedEvent ev)
@@ -121,8 +121,8 @@ public abstract class ESSharedSpawningSystem : EntitySystem
 }
 
 [Serializable, NetSerializable]
-public sealed class ESSpawnPlayerEvent(NetEntity station, ProtoId<JobPrototype> jobId) : EntityEventArgs
+public sealed class ESSpawnPlayerEvent(List<NetEntity> stations, ProtoId<JobPrototype> jobId) : EntityEventArgs
 {
-    public NetEntity Station = station;
+    public List<NetEntity> Stations = stations;
     public ProtoId<JobPrototype> JobId = jobId;
 }

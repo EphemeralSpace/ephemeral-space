@@ -100,7 +100,10 @@
 - type: entity
   id: CarpetPink
   parent: CarpetBase
-  suffix: Pink
+# ES START
+  suffix: Pink, DO NOT MAP
+  categories: [ HideSpawnMenu ]
+# ES END
   components:
   - type: Clickable
   - type: Sprite
@@ -220,7 +223,10 @@
 - type: entity
   id: CarpetSBlue
   parent: CarpetBase
-  suffix: Sky Blue
+# ES START
+  suffix: Sky Blue, DO NOT MAP
+  categories: [ HideSpawnMenu ]
+# ES END
   components:
   - type: Clickable
   - type: Sprite
@@ -310,7 +316,10 @@
 - type: entity
   id: CarpetWhite
   parent: CarpetBase
-  suffix: White
+# ES Start
+  suffix: White, DO NOT MAP
+  categories: [ HideSpawnMenu ]
+# ES End
   components:
   - type: Clickable
   - type: Sprite

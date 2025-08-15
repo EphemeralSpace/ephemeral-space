@@ -25,7 +25,7 @@ public abstract partial class ESSharedAuditionsSystem : EntitySystem
     {
         base.Initialize();
 
-        _config.OnValueChanged(ESCVars.ESRandomCharacters, val => RandomCharactersEnabled = val, true);
+        Subs.CVar(_config, ESCVars.ESRandomCharacters, val => RandomCharactersEnabled = val, true);
     }
 
     /// <summary>

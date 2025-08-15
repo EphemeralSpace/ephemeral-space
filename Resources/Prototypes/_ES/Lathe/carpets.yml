@@ -1,0 +1,14 @@
+- type: latheRecipe
+  parent: BaseCarpetRecipe
+  id: ESCarpetFancyBlue
+  result: ESFloorCarpetItemFancyBlue
+
+- type: latheRecipe
+  parent: BaseCarpetRecipe
+  id: ESCarpetFancyBlack
+  result: ESFloorCarpetItemFancyBlack
+
+- type: latheRecipe
+  parent: BaseCarpetRecipe
+  id: ESCarpetFancyRed
+  result: ESFloorCarpetItemFancyRed
