@@ -4,11 +4,13 @@ using Content.Server.Station.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using System.Text;
+using Content.Server.Spawners.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Server.GameTicking
@@ -94,11 +96,39 @@ namespace Content.Server.GameTicking
             }
 
             _sawmill.Info($"Creating lobby character for {session.Name}");
-            var spawnPosition = GetObserverSpawnPoint();
+            var spawnPosition = GetTheatergoerSpawnPoint();
             var theatergoer = SpawnAtPosition(TheatergoerEntity, spawnPosition);
             _playerManager.SetAttachedEntity(session, theatergoer, true);
             _metaData.SetEntityName(theatergoer, session.Name);
             data.LobbyEntity = theatergoer;
+        }
+
+        private EntityCoordinates GetTheatergoerSpawnPoint()
+        {
+            if (DiegeticLobbyMapId == null)
+                return EntityCoordinates.Invalid;
+
+            var possible = new List<EntityCoordinates>();
+            var spawnPointQuery = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+            while (spawnPointQuery.MoveNext(out var uid, out var point, out var transform))
+            {
+                if (point.SpawnType != SpawnPointType.Theatergoer
+                    || TerminatingOrDeleted(uid)
+                    || transform.MapUid == null
+                    || TerminatingOrDeleted(transform.MapUid.Value)
+                    || transform.MapID != DiegeticLobbyMapId)
+                {
+                    continue;
+                }
+
+                possible.Add(transform.Coordinates);
+            }
+
+            if (possible.Count != 0)
+                return _robustRandom.Pick(possible);
+
+            _sawmill.Error("Can't find any theatergoer spawn points!");
+            return EntityCoordinates.Invalid;
         }
 
         // called on round restart

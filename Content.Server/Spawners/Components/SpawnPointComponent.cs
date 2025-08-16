@@ -27,4 +27,7 @@ public enum SpawnPointType
     LateJoin,
     Job,
     Observer,
+    // ES START
+    Theatergoer
+    // ES END
 }
