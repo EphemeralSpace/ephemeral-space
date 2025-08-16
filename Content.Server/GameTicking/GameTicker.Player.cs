@@ -89,7 +89,7 @@ namespace Content.Server.GameTicking
                         if (LobbyEnabled)
                         {
                             PlayerJoinLobby(session);
-                            EnsureLobbyCharacterForPlayer(session);
+                            AttachPlayerToLobbyCharacter(session);
                         }
                         else
                             SpawnWaitDb();

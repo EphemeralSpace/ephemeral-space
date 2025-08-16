@@ -48,6 +48,12 @@ namespace Content.Server.GameTicking
 
         // ES START
         // Manages loading the diegetic lobby world and spawning players into it.
+        // FOR MIRROR NOTES
+        // lobby persists thru restarts (?)
+        // create once at server start
+        // characters also persist
+        // diegetic mechanism for readying = chairs diegetic mechanism for marking as observer = uhh idk lol
+        // maptext for directions, 'projector' entit ythat shows maptext, use a different font, idk
         private void CreateLobbyWorld()
         {
             if (_runLevel != GameRunLevel.PreRoundLobby)
@@ -71,17 +77,21 @@ namespace Content.Server.GameTicking
             // invent a guy for everyone in the server
             foreach (var player in _playerManager.Sessions)
             {
-                EnsureLobbyCharacterForPlayer(player);
+                AttachPlayerToLobbyCharacter(player);
             }
         }
 
-        private void EnsureLobbyCharacterForPlayer(ICommonSession session)
+        private void AttachPlayerToLobbyCharacter(ICommonSession session)
         {
-            if (_runLevel != GameRunLevel.PreRoundLobby)
+            if (session.ContentData() is not { } data)
                 return;
 
-            if (session.ContentData() is not { } data || data.LobbyEntity != null)
+            if (data.LobbyEntity != null)
+            {
+                _sawmill.Info($"Attaching {session.Name} to existing lobby character");
+                _playerManager.SetAttachedEntity(session, data.LobbyEntity.Value, true);
                 return;
+            }
 
             _sawmill.Info($"Creating lobby character for {session.Name}");
             var spawnPosition = GetObserverSpawnPoint();
@@ -91,19 +101,9 @@ namespace Content.Server.GameTicking
             data.LobbyEntity = theatergoer;
         }
 
-        // called on round restart ? (??) (idk)
+        // called on round restart
         private void CleanupLobbyWorld()
         {
-            // no cleanup necessary
-            if (DiegeticLobbyMapId == null)
-                return;
-
-            // FOR MIRROR NOTES
-            // lobby persists thru restarts (?)
-            // create once at server start
-            // characters also persist
-            // diegetic mechanism for readying = chairs diegetic mechanism for marking as observer = uhh idk lol
-            // maptext for directions, 'projector' entit ythat shows maptext, use a different font, idk
             _sawmill.Info("Cleaning up lobby world");
 
             // it might be necessary to raise RoundRestartCleanup
