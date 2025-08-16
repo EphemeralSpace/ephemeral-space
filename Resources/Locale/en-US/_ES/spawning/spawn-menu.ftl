@@ -11,4 +11,4 @@ es-spawn-menu-job-department-format = [font="DefaultBold" size=16][color=white]{
 es-spawn-menu-job-slot-capped = ({$amount} open)
 es-spawn-menu-job-slot-uncapped = (∞ open)
 es-spawn-menu-job-slot-excluded = [bold][color=red](-{$amount})[/colpr][/bold]
-es-spawn-menu-job-slot-excluded-uncapped = [bold][color=red](-∞)[/colpr][/bold]
+es-spawn-menu-job-slot-excluded-uncapped = [bold][color=red](-[/bold]∞[bold])[/colpr][/bold]

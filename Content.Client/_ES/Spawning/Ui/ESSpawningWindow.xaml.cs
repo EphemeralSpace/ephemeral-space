@@ -298,8 +298,10 @@ public sealed class ESJobButton : ContainerButton
             : Loc.GetString("es-spawn-menu-job-slot-uncapped");
 
         // We don't care if the number of available slots increases by infinity. that is meaningless.
-        JobFilteredAmountLabel.Visible = filteredAmount != 0 && filteredAmount != null;
-        JobFilteredAmountLabel.Text = Loc.GetString("es-spawn-menu-job-slot-excluded", ("amount", filteredAmount ?? 0));
+        JobFilteredAmountLabel.Visible = filteredAmount != 0 && amount != null;
+        JobFilteredAmountLabel.Text = filteredAmount != null
+            ? Loc.GetString("es-spawn-menu-job-slot-excluded", ("amount", filteredAmount))
+            : Loc.GetString("es-spawn-menu-job-slot-excluded-uncapped");
 
         if (!Disabled && amount == 0)
             Disabled = true;
