@@ -729,7 +729,9 @@ namespace Content.Server.GameTicking
             var ev = new RoundRestartCleanupEvent();
             RaiseLocalEvent(ev);
 
+            // ES START
             CleanupLobbyWorld();
+            // ES END
 
             // So clients' entity systems can clean up too...
             RaiseNetworkEvent(ev);

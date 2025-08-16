@@ -32,11 +32,13 @@ public sealed class ContentPlayerData
     [ViewVariables, Access(typeof(SharedMindSystem), typeof(SharedGameTicker))]
     public EntityUid? Mind { get; set; }
 
+    // ES START
     /// <summary>
     ///     The lobby entity associated with a session, so they can be returned to their character
-    ///     on round restarts.
+    ///     on death and on round restart.
     /// </summary>
     public EntityUid? LobbyEntity { get; set; }
+    // ES END
 
     /// <summary>
     /// If true, the admin will not show up in adminwho except to admins with the <see cref="AdminFlags.Stealth"/> flag.

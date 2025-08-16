@@ -48,10 +48,6 @@ namespace Content.Server.GameTicking
 
         // ES START
         // Manages loading the diegetic lobby world and spawning players into it.
-        // TODO MIRROR LOBBY ideal flow is we have no map preloading,
-        // so we can just create the lobby world, flush entities and maps, then
-        // in the 'curtains' transition we can create the game map, and hopefully not have to worry about
-        // any side effects of having both around at the same time.
         private void CreateLobbyWorld()
         {
             if (_runLevel != GameRunLevel.PreRoundLobby)
@@ -72,7 +68,7 @@ namespace Content.Server.GameTicking
             DiegeticLobbyMapId = map.Value.Comp.MapId;
             _sawmill.Info($"Created diegetic lobby at map ID {DiegeticLobbyMapId.Value}");
 
-            // Create a guy for everyone in the server
+            // invent a guy for everyone in the server
             foreach (var player in _playerManager.Sessions)
             {
                 EnsureLobbyCharacterForPlayer(player);
@@ -103,10 +99,9 @@ namespace Content.Server.GameTicking
                 return;
 
             // FOR MIRROR NOTES
-            // lobby persists thru restarts
+            // lobby persists thru restarts (?)
             // create once at server start
             // characters also persist
-            // persistence needed because people can ready up u cant just delete the map idiot
             // diegetic mechanism for readying = chairs diegetic mechanism for marking as observer = uhh idk lol
             // maptext for directions, 'projector' entit ythat shows maptext, use a different font, idk
             _sawmill.Info("Cleaning up lobby world");
