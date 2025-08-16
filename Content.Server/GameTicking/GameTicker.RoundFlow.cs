@@ -370,7 +370,9 @@ namespace Content.Server.GameTicking
             if (RoundId == 0)
                 IncrementRoundNumber();
 
-            CleanupLobbyWorld();
+            // ES START
+            // CleanupLobbyWorld();
+            // ES END
 
             ReplayStartRound();
 
@@ -726,6 +728,8 @@ namespace Content.Server.GameTicking
             // Round restart cleanup event, so entity systems can reset.
             var ev = new RoundRestartCleanupEvent();
             RaiseLocalEvent(ev);
+
+            CleanupLobbyWorld();
 
             // So clients' entity systems can clean up too...
             RaiseNetworkEvent(ev);

@@ -1,19 +1,26 @@
 - type: entity
   id: ESMobTheatergoer
   parent: BaseMob
-  name: a kind of guy
-  description: he is a sort of guy
+  name: theatergoer
+  description: A member of your troupe.
   components:
   - type: Sprite
-    sprite: Mobs/Ghosts/ghost_human.rsi
-    color: "#fff8"
+    sprite: _ES/Mobs/Ghosts/theatergoer.rsi
     layers:
-    - state: animated
-      shader: unshaded
-  - type: ContentEye
-    maxZoom: 1.44,1.44
+    - state: body
+    - state: head-1
+      map: [ "face" ]
+  - type: RandomSprite
+    available:
+    - face:
+        head-1: ""
+        head-2: ""
+        head-3: ""
+        head-4: ""
+        head-5: ""
+        head-6: ""
+        head-7: ""
   - type: Eye
   - type: Input
-    context: "ghost"
+    context: "human"
   - type: Examiner
-    skipChecks: true

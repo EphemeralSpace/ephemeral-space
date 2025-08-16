@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "size":
+  {
+    "x": 32,
+    "y": 32
+  },
+  "copyright": "Created by EmoGarbage404, adapted from sprites taken from /vg/station at commit https://github.com/vgstation-coders/vgstation13/commit/23303188abe6fe31b114a218a1950d7325a23730",
+  "license": "CC-BY-SA-3.0",
+  "states":
+  [
+    {
+      "name": "body",
+      "directions": 4
+    },
+    {
+      "name": "head-1",
+      "directions": 4
+    },
+    {
+      "name": "head-2",
+      "directions": 4
+    },
+    {
+      "name": "head-3",
+      "directions": 4
+    },
+    {
+      "name": "head-4",
+      "directions": 4
+    },
+    {
+      "name": "head-5",
+      "directions": 4
+    },
+    {
+      "name": "head-6",
+      "directions": 4
+    },
+    {
+      "name": "head-7",
+      "directions": 4
+    }
+  ]
+}

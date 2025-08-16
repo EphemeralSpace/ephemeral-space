@@ -44,7 +44,7 @@ namespace Content.Server.GameTicking
         // ES START
         public MapId? DiegeticLobbyMapId = null;
         // todo mirror lobby change
-        private static readonly EntProtoId TheatergoerEntity = "ESTheatergoer";
+        private static readonly EntProtoId TheatergoerEntity = "ESMobTheatergoer";
 
         // ES START
         // Manages loading the diegetic lobby world and spawning players into it.
@@ -81,7 +81,7 @@ namespace Content.Server.GameTicking
 
         private void EnsureLobbyCharacterForPlayer(ICommonSession session)
         {
-            if (_runLevel != GameRunLevel.PreRoundLobby || session.AttachedEntity != null)
+            if (_runLevel != GameRunLevel.PreRoundLobby)
                 return;
 
             if (session.ContentData() is not { } data || data.LobbyEntity != null)
@@ -91,6 +91,7 @@ namespace Content.Server.GameTicking
             var spawnPosition = GetObserverSpawnPoint();
             var theatergoer = SpawnAtPosition(TheatergoerEntity, spawnPosition);
             _playerManager.SetAttachedEntity(session, theatergoer, true);
+            _metaData.SetEntityName(theatergoer, session.Name);
             data.LobbyEntity = theatergoer;
         }
 
@@ -111,6 +112,7 @@ namespace Content.Server.GameTicking
             _sawmill.Info("Cleaning up lobby world");
 
             // it might be necessary to raise RoundRestartCleanup
+            // (for when lobby transitions to gameplay)
             // I really don't want bugs where bad entity systems persist data from the diegetic lobby
             // into the actual game, so it should be fine to trick them a little bit, but also
             // I think it'll introduce more weirdness with stuff that assumes we were actually in game?
@@ -119,10 +121,13 @@ namespace Content.Server.GameTicking
             // to be cleaned up, and nothing subscribing to roundrestartcleanup that doesn't care about roundflow
             // but this is probably a pipe dream.
 
-            // TODO MIRROR LOBBY we actually do probably want to persist the lobby world into the real game to some extent
-            // because I want to do things like the ghost bar being in the same place
-            // but we are not going to worry about that right now.
-            _map.DeleteMap(DiegeticLobbyMapId.Value);
+            foreach (var player in _playerManager.Sessions)
+            {
+                if (player.ContentData() is not { } data)
+                    continue;
+
+                data.LobbyEntity = null;
+            }
         }
         // ES END
 
