@@ -60,14 +60,12 @@
     - FootstepSound
   - type: Puller
     needsHands: false
-  - type: PointLight
-    radius: 1.2
-    energy: 2
-    color: "#4faffb"
-  - type: GhostTakeoverAvailable
+# ES Start
+# ES End
   - type: Speech
     speechVerb: LargeMob
 
+# ES Start
 - type: entity
   name: space bear
   id: MobBearSpace
@@ -80,9 +78,6 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: bear
-    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-      state: glow
-      shader: unshaded
   - type: DamageStateVisuals
     states:
       Alive:
@@ -110,6 +105,7 @@
     interactFailureString: petting-failure-bear
     interactSuccessSound:
       path: /Audio/Animals/sloth_squeak.ogg
+# ES End
 
 - type: entity
   id: MobBearSpaceSalvage

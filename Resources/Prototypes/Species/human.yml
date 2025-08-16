@@ -8,20 +8,20 @@
   dollPrototype: MobHumanDummy
   skinColoration: HumanToned
 # ES START
-  maxAge: 80 # y'know its the apocalypse people live shorter lives.
+  maxAge: 90
   maleHair:
   - HumanHairBalding
   - HumanHairBedhead
   - HumanHairBedheadv2
-  - HumanHairBedheadv3
+  # - HumanHairBedheadv3
   - HumanHairBoddicker
   - HumanHairBowlcut
   - HumanHairBowlcut2
-  - HumanHairCoffeehouse
+  # - HumanHairCoffeehouse
   - HumanHairCombover
   - HumanHairC
   - HumanHairDandypompadour
-  - HumanHairDevilock
+  # - HumanHairDevilock
   - HumanHairNofade
   - HumanHairHighfade
   - HumanHairMedfade
@@ -32,7 +32,7 @@
   - HumanHairBigflattop
   - HumanHairFlow
   - HumanHairHedgehog
-  - HumanHairHitop
+  # - HumanHairHitop
   - HumanHairJoestar
   - HumanHairMegaeyebrows
   - HumanHairReversemohawk
@@ -48,36 +48,36 @@
   - HumanHairE
   femaleHair:
   - HumanHairAntenna
-  - HumanHairBeehive
-  - HumanHairBeehivev2
-  - HumanHairBob
-  - HumanHairBob2
+  #  - HumanHairBeehive
+  #  - HumanHairBeehivev2
+  #  - HumanHairBob
+  #  - HumanHairBob2
   - HumanHairBobcut
   - HumanHairBob4
-  - HumanHairBob5
-  - HumanHairBraid
-  - HumanHairBraided
-  - HumanHairBraidfront
-  - HumanHairBraid2
-  - HumanHairHbraid
-  - HumanHairShortbraid
+  #  - HumanHairBob5
+  #  - HumanHairBraid
+  #  - HumanHairBraided
+  # - HumanHairBraidfront
+  # - HumanHairBraid2
+  # - HumanHairHbraid
+  # - HumanHairShortbraid
   - HumanHairBraidtail
   - HumanHairBun
   - HumanHairBunhead2
   - HumanHairBun3
-  - HumanHairLargebun
-  - HumanHairClassicFloorlengthBedhead
-  - HumanHairClassicWisp
+  # - HumanHairLargebun
+  # - HumanHairClassicFloorlengthBedhead
+  # - HumanHairClassicWisp
   - HumanHairCurls
   - HumanHairDoublebun
-  - HumanHairDoublebunLong
+  # - HumanHairDoublebunLong
   - HumanHairDrillruru
   - HumanHairDrillhairextended
   - HumanHairHimecut
   - HumanHairHimecut2
   - HumanHairShorthime
   - HumanHairHimeup
-  - HumanHairNitori
+  # - HumanHairNitori
   - HumanHairOdango
   - HumanHairOmbre
   - HumanHairKagami
@@ -87,31 +87,31 @@
   - HumanHairPonytail2
   - HumanHairPonytail3
   - HumanHairPonytail4
-  - HumanHairPonytail5
-  - HumanHairPonytail6
+  # - HumanHairPonytail5
+  # - HumanHairPonytail6
   - HumanHairPonytail7
   - HumanHairHighponytail
   - HumanHairStail
   - HumanHairLongstraightponytail
   - HumanHairCountry
   - HumanHairFringetail
-  - HumanHairSidetail
+  # - HumanHairSidetail
   - HumanHairSidetail2
   - HumanHairSidetail3
-  - HumanHairSidetail4
+  # - HumanHairSidetail4
   - HumanHairSpikyponytail
   - HumanHairTwintail
   - HumanHairUpdo
   - HumanHairWisp
-  - HumanHairLongBow
-  - HumanHairLongWithBangs
+  # - HumanHairLongBow
+  # - HumanHairLongWithBangs
   unisexHair:
   - HumanHairAfro
   - HumanHairAfro2
   - HumanHairBigafro
-  - HumanHairPulato
+  # - HumanHairPulato
   - HumanHairLongBedhead
-  - HumanHairLongBedhead2
+  # - HumanHairLongBedhead2
   - HumanHairFloorlengthBedhead
   - HumanHairBobcurl
   - HumanHairTightbun
@@ -120,44 +120,44 @@
   - HumanHairBusiness2
   - HumanHairBusiness3
   - HumanHairBusiness4
-  - HumanHairBuzzcut
+  # - HumanHairBuzzcut
   - HumanHairCia
-  - HumanHairClassicAfro
-  - HumanHairClassicBigAfro
-  - HumanHairClassicBusiness
-  - HumanHairClassicCia
-  - HumanHairClassicCornrows2
-  - HumanHairClassicModern
-  - HumanHairClassicMulder
+  # - HumanHairClassicAfro
+  # - HumanHairClassicBigAfro
+  # - HumanHairClassicBusiness
+  # - HumanHairClassicCia
+  # - HumanHairClassicCornrows2
+  # - HumanHairClassicModern
+  # - HumanHairClassicMulder
   - HumanHairCornrows
   - HumanHairCornrows2
   - HumanHairCornrowbun
   - HumanHairCornrowbraid
   - HumanHairCornrowtail
   - HumanHairCrewcut
-  - HumanHairCrewcut2
+  # - HumanHairCrewcut2
   - HumanHairDreads
   - HumanHairEmo
   - HumanHairEmofringe
   - HumanHairFeather
   - HumanHairFlair
-  - HumanHairGelled
+  # - HumanHairGelled
   - HumanHairGentle
   - HumanHairHalfbang
   - HumanHairHalfbang2
   - HumanHairHalfshaved
-  - HumanHairJade
+  # - HumanHairJade
   - HumanHairJensen
   - HumanHairKeanu
   - HumanHairKusanagi
-  - HumanHairLong
-  - HumanHairLong2
-  - HumanHairLong3
+  # - HumanHairLong
+  # - HumanHairLong2
+  # - HumanHairLong3
   - HumanHairLongovereye
   - HumanHairLbangs
   - HumanHairLongemo
   - HumanHairLongfringe
-  - HumanHairLongsidepart
+  # - HumanHairLongsidepart
   - HumanHairMessy
   - HumanHairModern
   - HumanHairMohawk
@@ -169,24 +169,24 @@
   - HumanHairParted
   - HumanHairPart
   - HumanHairPonytail
-  - HumanHairPoofy
+  # - HumanHairPoofy
   - HumanHairQuiff
-  - HumanHairRonin
+  # - HumanHairRonin
   - HumanHairShaved
   - HumanHairShavedpart
   - HumanHairShortbangs
   - HumanHairA
   - HumanHairShorthair2
-  - HumanHairShorthair3
+  # - HumanHairShorthair3
   - HumanHairD
   - HumanHairF
   - HumanHairShorthairg
   - HumanHair80s
-  - HumanHairRosa
+  # - HumanHairRosa
   - HumanHairB
   - HumanHairSidecut
   - HumanHairProtagonist
-  - HumanHairSpookyLong
+  # - HumanHairSpookyLong
   - HumanHairSwept
   - HumanHairSwept2
   - HumanHairBAlt
@@ -194,21 +194,21 @@
   - HumanHairTressshoulder
   - HumanHairTrimmed
   - HumanHairTrimflat
-  - HumanHairTwoStrands
+  # - HumanHairTwoStrands
   - HumanHairUndercut
   - HumanHairUndercutleft
   - HumanHairUndercutright
-  - HumanHairUnkept
+  # - HumanHairUnkept
   - HumanHairVlong
   - HumanHairLongest
   - HumanHairLongest2
   - HumanHairVeryshortovereyealternate
   - HumanHairVlongfringe
   - HumanHairVolaju
-  - HumanHairUneven
-  - HumanHairClassicLong2
-  - HumanHairClassicLong3
-  - HumanHairShaped
+  # - HumanHairUneven
+  # - HumanHairClassicLong2
+  # - HumanHairClassicLong3
+  # - HumanHairShaped
 # ES END
 
 # The lack of a layer means that
