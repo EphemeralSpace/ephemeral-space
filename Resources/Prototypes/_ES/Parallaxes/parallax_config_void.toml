@@ -1,0 +1,4 @@
+# Clear to black.
+[[layers]]
+type = "clear"
+color = "#000000"

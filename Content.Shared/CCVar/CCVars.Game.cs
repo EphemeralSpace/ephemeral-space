@@ -30,7 +30,7 @@ public sealed partial class CCVars
     ///     Path to the map to use as the diegetic lobby.
     /// </summary>
     public static readonly CVarDef<string>
-        GameDiegeticLobbyMap = CVarDef.Create("game.diegeticlobbymap", "/Maps/Test/dev_map.yml", CVar.ARCHIVE | CVar.SERVERONLY);
+        GameDiegeticLobbyMap = CVarDef.Create("game.diegeticlobbymap", "/Maps/_ES/Lobby/lobby_theater.yml", CVar.ARCHIVE | CVar.SERVERONLY);
 
     // ES END
 

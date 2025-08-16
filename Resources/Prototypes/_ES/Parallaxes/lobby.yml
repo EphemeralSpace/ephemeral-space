@@ -1,0 +1,8 @@
+- type: parallax
+  id: ESLobbyTheater
+  layers:
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_void"
+        configPath: "/Prototypes/_ES/Parallaxes/parallax_config_void.toml"
+  layersLQUseHQ: true
