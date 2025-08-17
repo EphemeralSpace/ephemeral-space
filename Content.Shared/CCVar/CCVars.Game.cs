@@ -32,6 +32,9 @@ public sealed partial class CCVars
     public static readonly CVarDef<string>
         GameDiegeticLobbyMap = CVarDef.Create("game.diegeticlobbymap", "/Maps/_ES/Lobby/lobby_theater.yml", CVar.ARCHIVE | CVar.SERVERONLY);
 
+    public static readonly CVarDef<bool>
+        GameLobbyCurtainAnimation = CVarDef.Create("game.lobbycurtainanimation", true, CVar.ARCHIVE | CVar.CLIENTONLY);
+
     // ES END
 
     /// <summary>
