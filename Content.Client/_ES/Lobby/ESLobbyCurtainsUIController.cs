@@ -25,8 +25,9 @@ public sealed class ESLobbyCurtainsUIController : UIController
     [Dependency] private readonly IConsoleHost _conHost = default!;
     [Dependency] private readonly IResourceCache _resCache = default!;
 
+    public LobbyCurtainState CurtainState { get; private set; } = LobbyCurtainState.Open;
+
     private bool _showAnimation = true;
-    private LobbyCurtainState _curtainState = LobbyCurtainState.Open;
 
     private LayoutContainer _curtainRoot = default!;
     private TextureRect _leftCurtain = default!;
@@ -47,7 +48,7 @@ public sealed class ESLobbyCurtainsUIController : UIController
         base.Initialize();
 
         _cfg.OnValueChanged(CCVars.GameLobbyCurtainAnimation, b => _showAnimation = b, true);
-        _conHost.RegisterCommand("togglelobbycurtains", "Toggles the lobby curtains animation", "togglelobbycurtains", (_, _, _) => StartCurtainAnimation(_curtainState < LobbyCurtainState.Opening));
+        _conHost.RegisterCommand("togglelobbycurtains", "Toggles the lobby curtains animation", "togglelobbycurtains", (_, _, _) => StartCurtainAnimation(CurtainState < LobbyCurtainState.Opening));
 
         CreateCurtainControls();
     }
@@ -56,7 +57,7 @@ public sealed class ESLobbyCurtainsUIController : UIController
     {
         base.FrameUpdate(args);
 
-        if (_curtainState is LobbyCurtainState.Closed)
+        if (CurtainState is LobbyCurtainState.Closed)
         {
             _timeSpentClosed += args.DeltaSeconds;
             if (_timeSpentClosed > ClosedPanicOpenTime.TotalSeconds)
@@ -67,18 +68,22 @@ public sealed class ESLobbyCurtainsUIController : UIController
                 return;
             }
         }
+        else
+        {
+            _timeSpentClosed = 0f;
+        }
 
-        if (_curtainState is not (LobbyCurtainState.Closing or LobbyCurtainState.Opening))
+        if (CurtainState is not (LobbyCurtainState.Closing or LobbyCurtainState.Opening))
             return;
 
         _accumulatedTime += args.DeltaSeconds;
 
         var t = Math.Clamp(_accumulatedTime / _currentTargetTime, 0f, 1f);
 
-        var leftTargetXPos = _curtainState is LobbyCurtainState.Opening
+        var leftTargetXPos = CurtainState is LobbyCurtainState.Opening
             ? -_leftCurtain.SetWidth
             : 0;
-        var rightTargetXPos = _curtainState is LobbyCurtainState.Opening
+        var rightTargetXPos = CurtainState is LobbyCurtainState.Opening
             ? _curtainRoot.Width
             : _rightCurtain.SetWidth - 2 * ExtraWidth;
 
@@ -93,14 +98,14 @@ public sealed class ESLobbyCurtainsUIController : UIController
 
         _accumulatedTime = 0f;
 
-        _curtainState = _curtainState switch
+        CurtainState = CurtainState switch
         {
             LobbyCurtainState.Closing => LobbyCurtainState.Closed,
             LobbyCurtainState.Opening => LobbyCurtainState.Open,
-            _ => _curtainState,
+            _ => CurtainState,
         };
 
-        if (_curtainState == LobbyCurtainState.Open)
+        if (CurtainState == LobbyCurtainState.Open)
         {
             _leftCurtain.Visible = false;
             _rightCurtain.Visible = false;
@@ -133,21 +138,21 @@ public sealed class ESLobbyCurtainsUIController : UIController
         _curtainRoot.AddChild(_rightCurtain);
     }
 
-    private void StartCurtainAnimation(bool toOpen, TimeSpan? animationTimeOverride = null)
+    public void StartCurtainAnimation(bool toOpen, TimeSpan? animationTimeOverride = null)
     {
         if (!_showAnimation)
             return;
 
-        if ((toOpen && _curtainState > LobbyCurtainState.Closing) ||
-            (!toOpen && _curtainState < LobbyCurtainState.Opening))
+        if ((toOpen && CurtainState > LobbyCurtainState.Closing) ||
+            (!toOpen && CurtainState < LobbyCurtainState.Opening))
             return;
 
-        _curtainState = toOpen ? LobbyCurtainState.Opening : LobbyCurtainState.Closing;
+        CurtainState = toOpen ? LobbyCurtainState.Opening : LobbyCurtainState.Closing;
         _currentTargetTime = animationTimeOverride is not null
             ? (float)animationTimeOverride.Value.TotalSeconds
             : (float)DefaultAnimationTime.TotalSeconds;
 
-        Log.Info($"Playing curtain animation: {_curtainState} for {Math.Round(_currentTargetTime / 1000, 2)} seconds");
+        Log.Info($"Playing curtain animation: {CurtainState} for {Math.Round(_currentTargetTime / 1000, 2)} seconds");
 
         _leftCurtain.SetWidth = (_curtainRoot.Width / 2) + ExtraWidth; // slightly larger than half the window?
         _leftCurtain.SetHeight = _curtainRoot.Height;

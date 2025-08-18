@@ -22,7 +22,7 @@ public sealed partial class CCVars
     ///     Controls the duration of the lobby timer in seconds. Defaults to 2 minutes and 30 seconds.
     /// </summary>
     public static readonly CVarDef<int>
-        GameLobbyDuration = CVarDef.Create("game.lobbyduration", 150, CVar.ARCHIVE);
+        GameLobbyDuration = CVarDef.Create("game.lobbyduration", 15, CVar.ARCHIVE);
 
     // ES START
 
@@ -361,8 +361,9 @@ public sealed partial class CCVars
     ///     The time in seconds that the server should wait before restarting the round.
     ///     Defaults to 2 minutes.
     /// </summary>
+    // ES EDIT: changed to be replicated, shouldn't be a problem
     public static readonly CVarDef<float> RoundRestartTime =
-        CVarDef.Create("game.round_restart_time", 120f, CVar.SERVERONLY);
+        CVarDef.Create("game.round_restart_time", 15f, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     The prototype to use for secret weights.

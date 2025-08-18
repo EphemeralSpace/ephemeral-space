@@ -1,7 +1,9 @@
+using Content.Client._ES.Lobby;
 using Content.Client.Administration.Managers;
 using Content.Client.Gameplay;
 using Content.Client.Lobby;
 using Content.Client.RoundEnd;
+using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.GameWindow;
 using Content.Shared.Roles;
@@ -11,6 +13,8 @@ using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
+using Robust.Shared.Configuration;
+using Robust.Shared.Timing;
 
 namespace Content.Client.GameTicking.Managers
 {
@@ -21,6 +25,11 @@ namespace Content.Client.GameTicking.Managers
         [Dependency] private readonly IClientAdminManager _admin = default!;
         [Dependency] private readonly IClyde _clyde = default!;
         [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
+        // ES START
+        [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        private ESLobbyCurtainsUIController _lobbyCurtains = default!;
+        // ES END
 
         private Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>  _jobsAvailable = new();
         private Dictionary<NetEntity, string> _stationNames = new();
@@ -33,6 +42,15 @@ namespace Content.Client.GameTicking.Managers
         [ViewVariables] public string? ServerInfoBlob { get; private set; }
         [ViewVariables] public TimeSpan StartTime { get; private set; }
         [ViewVariables] public new bool Paused { get; private set; }
+
+        // ES START
+        [ViewVariables] public TimeSpan? ESExpectedRoundEndTime { get; private set; }
+
+        // time to start the opening curtain animation, a few seconds after the screen actually changes
+        // (so we dont lag)
+        private TimeSpan? _startOpenAnimationTime;
+
+        // ES END
 
         [ViewVariables] public IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailable => _jobsAvailable;
         [ViewVariables] public IReadOnlyDictionary<NetEntity, string> StationNames => _stationNames;
@@ -58,8 +76,48 @@ namespace Content.Client.GameTicking.Managers
             SubscribeNetworkEvent<TickerJobsAvailableEvent>(UpdateJobsAvailable);
 
             _admin.AdminStatusUpdated += OnAdminUpdated;
+            _lobbyCurtains = _userInterfaceManager.GetUIController<ESLobbyCurtainsUIController>();
             OnAdminUpdated();
         }
+
+        // ES START
+        // Handles playing the closing curtain animations at the correct time to preempt a screen change
+        // the opening animations
+        public override void FrameUpdate(float frameTime)
+        {
+            base.FrameUpdate(frameTime);
+
+            var curTime = _timing.CurTime;
+            var realTime = _timing.RealTime;
+
+            // lobby->game closing
+            if (AreWeReady
+                && StartTime > curTime
+                && _lobbyCurtains.CurtainState == LobbyCurtainState.Open
+                && StartTime - curTime <= TimeSpan.FromSeconds(3))
+            {
+                _lobbyCurtains.StartCurtainAnimation(false);
+            }
+
+            // roundend->lobby closing
+            if (ESExpectedRoundEndTime > curTime
+                && _lobbyCurtains.CurtainState == LobbyCurtainState.Open
+                && ESExpectedRoundEndTime - curTime <= TimeSpan.FromSeconds(3))
+            {
+                _lobbyCurtains.StartCurtainAnimation(false);
+                ESExpectedRoundEndTime = null;
+            }
+
+            // queued opening anim
+            // realtime bc not tied to any existing timespan
+            if (_startOpenAnimationTime != null
+                && realTime > _startOpenAnimationTime.Value)
+            {
+                _lobbyCurtains.StartCurtainAnimation(true);
+                _startOpenAnimationTime = null;
+            }
+        }
+        // ES END
 
         public override void Shutdown()
         {
@@ -109,6 +167,9 @@ namespace Content.Client.GameTicking.Managers
         private void JoinLobby(TickerJoinLobbyEvent message)
         {
             _stateManager.RequestStateChange<LobbyState>();
+            // ES START
+            _startOpenAnimationTime = _timing.RealTime + TimeSpan.FromSeconds(0.5);
+            // ES END
         }
 
         private void ConnectionStatus(TickerConnectionStatusEvent message)
@@ -138,6 +199,9 @@ namespace Content.Client.GameTicking.Managers
         private void JoinGame(TickerJoinGameEvent message)
         {
             _stateManager.RequestStateChange<GameplayState>();
+            // ES START
+            _startOpenAnimationTime = _timing.RealTime + TimeSpan.FromSeconds(1.5);
+            // ES END
         }
 
         private void LobbyCountdown(TickerLobbyCountdownEvent message)
@@ -151,6 +215,13 @@ namespace Content.Client.GameTicking.Managers
             // Force an update in the event of this song being the same as the last.
             RestartSound = message.RestartSound;
 
+            // ES START
+            // if you are testing this you need to use restartround not endround. endround doesnt start the countdown Lol
+            // emisse said its possible to delay this
+            // but i think its only possible to delay the shuttle timer going off?
+            // not the round restart timer.
+            ESExpectedRoundEndTime = _timing.CurTime + TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.RoundRestartTime));
+            // ES END
             _userInterfaceManager.GetUIController<RoundEndSummaryUIController>().OpenRoundEndSummaryWindow(message);
         }
     }
