@@ -27,8 +27,6 @@ public sealed class ESLobbyCurtainsUIController : UIController
 
     public LobbyCurtainState CurtainState { get; private set; } = LobbyCurtainState.Open;
 
-    private bool _showAnimation = true;
-
     private LayoutContainer _curtainRoot = default!;
     private TextureRect _leftCurtain = default!;
     private TextureRect _rightCurtain = default!;
@@ -47,7 +45,6 @@ public sealed class ESLobbyCurtainsUIController : UIController
     {
         base.Initialize();
 
-        _cfg.OnValueChanged(CCVars.GameLobbyCurtainAnimation, b => _showAnimation = b, true);
         _conHost.RegisterCommand("togglelobbycurtains", "Toggles the lobby curtains animation", "togglelobbycurtains", (_, _, _) => StartCurtainAnimation(CurtainState < LobbyCurtainState.Opening));
 
         CreateCurtainControls();
@@ -112,6 +109,11 @@ public sealed class ESLobbyCurtainsUIController : UIController
         }
     }
 
+    private bool IsAnimationDisabled()
+    {
+        return !_cfg.GetCVar(CCVars.GameLobbyCurtainAnimation) || _cfg.GetCVar(CCVars.ReducedMotion);
+    }
+
     /// <summary>
     ///     Creates the controls for the curtain animation and attaches them to the UI root
     /// </summary>
@@ -140,7 +142,7 @@ public sealed class ESLobbyCurtainsUIController : UIController
 
     public void StartCurtainAnimation(bool toOpen, TimeSpan? animationTimeOverride = null)
     {
-        if (!_showAnimation)
+        if (IsAnimationDisabled())
             return;
 
         if ((toOpen && CurtainState > LobbyCurtainState.Closing) ||
