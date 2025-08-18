@@ -152,7 +152,7 @@ public sealed class ESLobbyCurtainsUIController : UIController
             ? (float)animationTimeOverride.Value.TotalSeconds
             : (float)DefaultAnimationTime.TotalSeconds;
 
-        Log.Info($"Playing curtain animation: {CurtainState} for {Math.Round(_currentTargetTime / 1000, 2)} seconds");
+        Log.Info($"Playing curtain animation: {CurtainState} for {Math.Round(_currentTargetTime, 2)} seconds");
 
         _leftCurtain.SetWidth = (_curtainRoot.Width / 2) + ExtraWidth; // slightly larger than half the window?
         _leftCurtain.SetHeight = _curtainRoot.Height;
