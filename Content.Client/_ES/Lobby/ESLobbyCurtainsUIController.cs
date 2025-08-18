@@ -13,6 +13,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._ES.Lobby;
 
+/// <summary>
+///     Handles the opening/closing curtains animation when lobby->game or gameend->lobby transitions
+///     Creates controls on init and attaches them to the root control, sorry
+/// </summary>
 [UsedImplicitly]
 public sealed class ESLobbyCurtainsUIController : UIController
 {
@@ -30,9 +34,11 @@ public sealed class ESLobbyCurtainsUIController : UIController
 
     private const int ExtraWidth = 100;
 
-    private static readonly TimeSpan DefaultAnimationTime = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan DefaultAnimationTime = TimeSpan.FromSeconds(1.5);
+    private static readonly TimeSpan ClosedPanicOpenTime = TimeSpan.FromSeconds(10);
     private float _currentTargetTime = 0f;
     private float _accumulatedTime = 0f;
+    private float _timeSpentClosed = 0f; // measured so we can panic-open the curtains if theyre closed for too long for some reason
     private float _leftStartingX = 0f;
     private float _rightStartingX = 0f;
 
@@ -49,6 +55,18 @@ public sealed class ESLobbyCurtainsUIController : UIController
     public override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
+
+        if (_curtainState is LobbyCurtainState.Closed)
+        {
+            _timeSpentClosed += args.DeltaSeconds;
+            if (_timeSpentClosed > ClosedPanicOpenTime.TotalSeconds)
+            {
+                Log.Warning("");
+                StartCurtainAnimation(true, TimeSpan.FromSeconds(0.5));
+                _timeSpentClosed = 0f;
+                return;
+            }
+        }
 
         if (_curtainState is not (LobbyCurtainState.Closing or LobbyCurtainState.Opening))
             return;
@@ -128,6 +146,8 @@ public sealed class ESLobbyCurtainsUIController : UIController
         _currentTargetTime = animationTimeOverride is not null
             ? (float)animationTimeOverride.Value.TotalSeconds
             : (float)DefaultAnimationTime.TotalSeconds;
+
+        Log.Info($"Playing curtain animation: {_curtainState} for {Math.Round(_currentTargetTime / 1000, 2)} seconds");
 
         _leftCurtain.SetWidth = (_curtainRoot.Width / 2) + ExtraWidth; // slightly larger than half the window?
         _leftCurtain.SetHeight = _curtainRoot.Height;
