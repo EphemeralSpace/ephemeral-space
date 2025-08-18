@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Client.Lobby;
 using Content.Client.Resources;
 using Content.Shared.CCVar;
+using JetBrains.Annotations;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
@@ -12,6 +13,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._ES.Lobby;
 
+[UsedImplicitly]
 public sealed class ESLobbyCurtainsUIController : UIController
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -25,7 +27,14 @@ public sealed class ESLobbyCurtainsUIController : UIController
     private LayoutContainer _curtainRoot = default!;
     private TextureRect _leftCurtain = default!;
     private TextureRect _rightCurtain = default!;
-    private TextureRect _curtainBar = default!;
+
+    private const int ExtraWidth = 100;
+
+    private static readonly TimeSpan DefaultAnimationTime = TimeSpan.FromSeconds(2);
+    private float _currentTargetTime = 0f;
+    private float _accumulatedTime = 0f;
+    private float _leftStartingX = 0f;
+    private float _rightStartingX = 0f;
 
     public override void Initialize()
     {
@@ -44,32 +53,39 @@ public sealed class ESLobbyCurtainsUIController : UIController
         if (_curtainState is not (LobbyCurtainState.Closing or LobbyCurtainState.Opening))
             return;
 
-        var sign = _curtainState is LobbyCurtainState.Opening ? -1 : 1;
-        // TODO uhh this should be based on width not
-        // absolute px
-        // actually interpolate it girl
-        var absoluteAmountToMove = args.DeltaSeconds * 500; // px per sec
+        _accumulatedTime += args.DeltaSeconds;
 
-        // dude this shit is frying my brain im so tired.
-        LayoutContainer.SetPosition(_leftCurtain, new Vector2(_leftCurtain.Position.X + absoluteAmountToMove * sign, 0));
-        LayoutContainer.SetPosition(_rightCurtain, new Vector2(_rightCurtain.Position.X + -absoluteAmountToMove * sign, 0));
+        var t = Math.Clamp(_accumulatedTime / _currentTargetTime, 0f, 1f);
 
-        // this control flow doesn't make any sense i think lol whatever
-        if ((_curtainState is LobbyCurtainState.Closing && _leftCurtain.Position.X >= -10) // small leeway
-            || (_curtainState is LobbyCurtainState.Opening && _leftCurtain.Position.X < -_leftCurtain.SetWidth - 10))
+        var leftTargetXPos = _curtainState is LobbyCurtainState.Opening
+            ? -_leftCurtain.SetWidth
+            : 0;
+        var rightTargetXPos = _curtainState is LobbyCurtainState.Opening
+            ? _curtainRoot.Width
+            : _rightCurtain.SetWidth - 2 * ExtraWidth;
+
+        var leftPos = MathHelper.Lerp(_leftStartingX, leftTargetXPos, t);
+        var rightPos = MathHelper.Lerp(_rightStartingX, rightTargetXPos, t);
+
+        LayoutContainer.SetPosition(_leftCurtain, new Vector2(leftPos, 0));
+        LayoutContainer.SetPosition(_rightCurtain, new Vector2(rightPos, 0));
+
+        if (_accumulatedTime < _currentTargetTime)
+            return;
+
+        _accumulatedTime = 0f;
+
+        _curtainState = _curtainState switch
         {
-            _curtainState = _curtainState switch
-            {
-                LobbyCurtainState.Closing => LobbyCurtainState.Closed,
-                LobbyCurtainState.Opening => LobbyCurtainState.Open,
-                _ => _curtainState,
-            };
+            LobbyCurtainState.Closing => LobbyCurtainState.Closed,
+            LobbyCurtainState.Opening => LobbyCurtainState.Open,
+            _ => _curtainState,
+        };
 
-            if (_curtainState == LobbyCurtainState.Open)
-            {
-                _leftCurtain.Visible = false;
-                _rightCurtain.Visible = false;
-            }
+        if (_curtainState == LobbyCurtainState.Open)
+        {
+            _leftCurtain.Visible = false;
+            _rightCurtain.Visible = false;
         }
     }
 
@@ -85,55 +101,55 @@ public sealed class ESLobbyCurtainsUIController : UIController
         {
             Stretch = TextureRect.StretchMode.Scale,
             Texture =
-                _resCache.GetTexture("/Textures/_ES/Interface/Lobby/curtains.png"),
-            // TODO MIRROR LOBBY uhhh
+                _resCache.GetTexture("/Textures/_ES/Interface/Lobby/curtains-left.png"),
             Visible = false,
         };
         _rightCurtain = new TextureRect
         {
             Stretch = TextureRect.StretchMode.Scale,
             Texture =
-                _resCache.GetTexture("/Textures/_ES/Interface/Lobby/curtains.png"),
-            // TODO MIRROR LOBBY uhhh
+                _resCache.GetTexture("/Textures/_ES/Interface/Lobby/curtains-right.png"),
             Visible = false,
         };
         _curtainRoot.AddChild(_leftCurtain);
         _curtainRoot.AddChild(_rightCurtain);
-        // LayoutContainer.SetAnchorPreset(_leftCurtain, LayoutContainer.LayoutPreset.Wide);
-        // LayoutContainer.SetAnchorPreset(_rightCurtain, LayoutContainer.LayoutPreset.TopRight);
     }
 
-    private void StartCurtainAnimation(bool toOpen)
+    private void StartCurtainAnimation(bool toOpen, TimeSpan? animationTimeOverride = null)
     {
         if (!_showAnimation)
             return;
-
-        var old = _curtainState;
 
         if ((toOpen && _curtainState > LobbyCurtainState.Closing) ||
             (!toOpen && _curtainState < LobbyCurtainState.Opening))
             return;
 
         _curtainState = toOpen ? LobbyCurtainState.Opening : LobbyCurtainState.Closing;
-        Logger.Info($"Current status {old} next status {_curtainState}");
-        var extraWidth = 100;
+        _currentTargetTime = animationTimeOverride is not null
+            ? (float)animationTimeOverride.Value.TotalSeconds
+            : (float)DefaultAnimationTime.TotalSeconds;
 
-        _leftCurtain.SetWidth = (_curtainRoot.Width / 2) + extraWidth; // slightly larger than half the window?
+        _leftCurtain.SetWidth = (_curtainRoot.Width / 2) + ExtraWidth; // slightly larger than half the window?
+        _leftCurtain.SetHeight = _curtainRoot.Height;
         _leftCurtain.Visible = true;
 
-        _rightCurtain.SetWidth = (_curtainRoot.Width / 2) + extraWidth;
+        _rightCurtain.SetWidth = (_curtainRoot.Width / 2) + ExtraWidth;
+        _rightCurtain.SetHeight = _curtainRoot.Height;
         _rightCurtain.Visible = true;
 
-        if (toOpen)
-        {
-            LayoutContainer.SetPosition(_leftCurtain, Vector2.Zero);
-            LayoutContainer.SetPosition(_rightCurtain, new Vector2(_rightCurtain.SetWidth - 2 * extraWidth, 0));
-        }
-        else
+        if (!toOpen)
         {
             LayoutContainer.SetPosition(_leftCurtain, new Vector2(-_leftCurtain.SetWidth, 0));
             LayoutContainer.SetPosition(_rightCurtain, new Vector2(_curtainRoot.Width, 0));
         }
+        else
+        {
+            LayoutContainer.SetPosition(_leftCurtain, Vector2.Zero);
+            LayoutContainer.SetPosition(_rightCurtain, new Vector2(_rightCurtain.SetWidth - 2 * ExtraWidth, 0));
+        }
+
+        _leftStartingX = _leftCurtain.Position.X;
+        _rightStartingX = _rightCurtain.Position.X;
     }
 }
 
