@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/blob/02b9f6894af4419c9f7e699a22c402b086d8067e/icons/obj/stools-chairs-beds.dmi \n, meat.png is CC0-1.0 by EmoGarbage404 (github) for Space Station 14. steel by SonicHDC, brass chair.png taken from tgstation at https://github.com/tgstation/tgstation/blob/b7e7779c19b76449c290aaf2150fb93545b1a79a/icons/obj/chairs.dmi, wooden bench by Ko4erga (discord)",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/6665eec76c98a4f3f89bebcd10b34b47dcc0b8ae, chair and chair_greyscale modified by EmoGarbage404 for Space Station 14. shuttle chair taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/02b9f6894af4419c9f7e699a22c402b086d8067e/icons/obj/stools-chairs-beds.dmi. meat.png is CC0-1.0 by EmoGarbage404 (github) for Space Station 14. steel by SonicHDC, brass chair.png taken from tgstation at https://github.com/tgstation/tgstation/blob/b7e7779c19b76449c290aaf2150fb93545b1a79a/icons/obj/chairs.dmi, wooden bench by Ko4erga (discord)",
     "size": {
         "x": 32,
         "y": 32
