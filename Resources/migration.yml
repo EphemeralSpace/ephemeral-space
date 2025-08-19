@@ -703,3 +703,19 @@ ClothingNeckHeadphones: ClothingMultipleHeadphones
 
 # 2025-08-01
 FoodDonutJellySlugcat: FoodDonutJellyScurret
+
+# ES Start
+# 2025-18-8
+# Lockers that are redundant to begin with / we will probably never use
+ClosetJanitorBomb: ClosetBomb
+LockerBrigmedic: LockerSecurity
+LockerBrigmedicFilled: LockerSecurityFilled
+LockerClown: LockerSteel
+LockerMime: LockerSteel
+LockerRepresentative: LockerSteel
+LockerParamedic: LockerMedical
+LockerParamedicFilled: LockerMedicalFilled
+LockerEvacRepair: ClosetEmergency
+LockerEvacRepairFilled: ClosetEmergencyFilledRandom
+LockerWallEvacRepair: ClosetWallEmergency
+LockerWallEvacRepairFilled: ClosetWallEmergencyFilledRandom
