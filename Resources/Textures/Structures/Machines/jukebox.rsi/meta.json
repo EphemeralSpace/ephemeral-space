@@ -5,7 +5,7 @@
     "y": 32
   },
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from https://github.com/tgstation/tgstation at f349b842c84f500399bd5673e5e34a6bc45b001a, direct dmi link https://github.com/tgstation/tgstation/blob/f349b842c84f500399bd5673e5e34a6bc45b001a/icons/obj/stationobjs.dmi",
+  "copyright": "Taken from Baystation12 at commit https://github.com/Baystation12/Baystation12/blob/9adb94ff5511f33a2f643140b222686ba2d33c36/icons/obj/jukebox.dmi and modified for Ephemeral Space",
   "states": [
     {
       "name": "on"
@@ -15,14 +15,23 @@
     },
     {
       "name": "select",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "broken",
 	  "delays": [
         [
           0.1,
           0.1,
           0.1,
           0.1,
-		  0.1,
-		  0.1,
 		  0.1
         ]
       ]
