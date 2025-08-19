@@ -30,13 +30,15 @@ public sealed class MapMigrationSystem : EntitySystem
         SubscribeLocalEvent<BeforeEntityReadEvent>(OnBeforeReadEvent);
 
 #if DEBUG
-        if (!TryReadFile(out var mappings))
+// ES START
+        if (!TryGetMigrations(out var mappings))
             return;
 
         // Verify that all of the entries map to valid entity prototypes.
-        foreach (var node in mappings.Children.Values)
+        foreach (var node in mappings.Values)
         {
-            var newId = ((ValueDataNode) node).Value;
+            var newId = (node);
+// ES END
             if (!string.IsNullOrEmpty(newId) && newId != "null")
                 DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(newId), $"{newId} is not an entity prototype.");
         }
@@ -60,20 +62,48 @@ public sealed class MapMigrationSystem : EntitySystem
         return true;
     }
 
-    private void OnBeforeReadEvent(BeforeEntityReadEvent ev)
+// ES START
+    public bool TryGetMigrations(out Dictionary<string, string> migrations)
     {
+        migrations = new Dictionary<string, string>();
         if (!TryReadFile(out var mappings))
-            return;
+            return false;
 
+        var parsedMappings = new Dictionary<string, string>();
         foreach (var (key, value) in mappings)
         {
             if (value is not ValueDataNode valueNode)
                 continue;
 
-            if (string.IsNullOrWhiteSpace(valueNode.Value) || valueNode.Value == "null")
+            parsedMappings.Add(key, valueNode.Value);
+        }
+
+        foreach (var key in parsedMappings.Keys)
+        {
+            var currentMapping = parsedMappings[key];
+            while (parsedMappings.TryGetValue(currentMapping, out currentMapping))
+            {
+                // Do nothing
+            }
+            parsedMappings[key] = currentMapping ?? string.Empty;
+        }
+
+        migrations = parsedMappings;
+        return true;
+    }
+
+    private void OnBeforeReadEvent(BeforeEntityReadEvent ev)
+    {
+        if (!TryGetMigrations(out var mappings))
+            return;
+
+        foreach (var (key, value) in mappings)
+        {
+            if (string.IsNullOrWhiteSpace(value) || value == "null")
                 ev.DeletedPrototypes.Add(key);
             else
-                ev.RenamedPrototypes.Add(key, valueNode.Value);
+                ev.RenamedPrototypes.Add(key, value);
+// ES END
         }
     }
 }
