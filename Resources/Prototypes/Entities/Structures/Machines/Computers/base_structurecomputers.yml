@@ -22,6 +22,7 @@
   - type: ActivatableUIRequiresPower
   - type: Sprite
     sprite: Structures/Machines/computers.rsi
+    noRot: true
     layers:
     - map: ["computerLayerBody"]
       state: computer

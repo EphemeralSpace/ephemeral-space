@@ -49,6 +49,7 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/parts.rsi
+    noRot: true
     layers:
     - state: 0
       map: [ "enum.ConstructionVisuals.Layer" ]
@@ -76,6 +77,7 @@
     sprite: Structures/Machines/computers.rsi
     drawdepth: Objects
     state: broken
+    noRot: true
   - type: Destructible
     thresholds:
     - trigger:
