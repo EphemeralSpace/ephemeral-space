@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.GameTicking;
+using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.Spawning;
 using Content.Shared.CCVar;
@@ -40,12 +41,16 @@ public sealed class ESSpawningSystem : ESSharedSpawningSystem
         var jobPrototype = _prototype.Index(msg.JobId);
 
         var selectedStations = msg.Stations.Select(GetEntity);
-        var potentialStations = new List<EntityUid>();
+        var potentialStations = new List<(EntityUid, int)>();
         foreach (var uid in selectedStations)
         {
-            if (!_stationJobs.TryGetJobSlot(uid, jobPrototype,  out var slots) || slots == 0)
+            if (!TryComp<StationJobsComponent>(uid, out var jobs))
                 continue;
-            potentialStations.Add(uid);
+
+            if (!_stationJobs.TryGetJobSlot(uid, jobPrototype,  out var slots, jobs) || slots == 0)
+                continue;
+
+            potentialStations.Add((uid, jobs.PlayerJobs.Values.Sum(p => p.Count)));
         }
 
         if (potentialStations.Count == 0)
@@ -54,7 +59,11 @@ public sealed class ESSpawningSystem : ESSharedSpawningSystem
             return;
         }
 
-        var station = _random.Pick(potentialStations);
+        // We favor sending people to less-populated stations.
+        // This still lets stations get unbalanced from intentional joining, but uh...
+        // I don't give a fuck.
+        _random.Shuffle(potentialStations);
+        var station = potentialStations.MinBy(p => p.Item2).Item1;
 
         // in game, check reqs
         if (_gameTicker.PlayerGameStatuses.TryGetValue(args.SenderSession.UserId, out var status) && status == PlayerGameStatus.JoinedGame)

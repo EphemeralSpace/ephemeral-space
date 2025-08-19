@@ -21,6 +21,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
+using Content.Shared.GameTicking;
 using Content.Shared.Power;
 
 namespace Content.Server.Light.EntitySystems
@@ -41,6 +42,9 @@ namespace Content.Server.Light.EntitySystems
         [Dependency] private readonly PointLightSystem _pointLight = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly DamageOnInteractSystem _damageOnInteractSystem = default!;
+        // ES START
+        [Dependency] private readonly SharedGameTicker _ticker = default!;
+        // ES END
 
         private static readonly TimeSpan ThunkDelay = TimeSpan.FromSeconds(2);
         public const string LightBulbContainer = "light_bulb";
@@ -268,11 +272,15 @@ namespace Content.Server.Light.EntitySystems
                         SetLight(uid, true, lightBulb.Color, light, lightBulb.LightRadius, lightBulb.LightEnergy, lightBulb.LightSoftness);
                         _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.On, appearance);
                         var time = _gameTiming.CurTime;
-                        if (time > light.LastThunk + ThunkDelay)
+                        // ES START
+                        // dont play light sound if round just started
+                        if (time > light.LastThunk + ThunkDelay
+                            && _gameTiming.CurTime - _ticker.RoundStartTimeSpan > TimeSpan.FromSeconds(30))
                         {
                             light.LastThunk = time;
                             _audio.PlayPvs(light.TurnOnSound, uid, light.TurnOnSound.Params.AddVolume(-10f));
                         }
+                        // ES END
                     }
                     else
                     {

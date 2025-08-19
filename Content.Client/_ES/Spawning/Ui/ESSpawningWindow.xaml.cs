@@ -131,6 +131,11 @@ public sealed partial class ESSpawningWindow : FancyWindow
                 if (!JobIsSupported(job))
                     continue;
 
+                // Q: WHAT THE FUCK IS THIS LINQ
+                // A: If a job is in multiple departments, only show it for the lowest-ranking department it appears in
+                if (_prototypeManager.EnumeratePrototypes<DepartmentPrototype>().Where(p => p.Roles.Contains(job)).MinBy(p => p.Weight) != department)
+                    continue;
+
                 GetJobCount(job, out var count, out var filteredCount);
 
                 var button = new ESJobButton(job, count, filteredCount, _prototypeManager, _sprites)
@@ -292,10 +297,15 @@ public sealed class ESJobButton : ContainerButton
             ? Loc.GetString("es-spawn-menu-job-slot-capped", ("amount", amount))
             : Loc.GetString("es-spawn-menu-job-slot-uncapped");
 
-        JobFilteredAmountLabel.Visible = filteredAmount != 0;
+        // We don't care if the number of available slots increases by infinity. that is meaningless.
+        JobFilteredAmountLabel.Visible = filteredAmount != 0 && amount != null;
         JobFilteredAmountLabel.Text = filteredAmount != null
             ? Loc.GetString("es-spawn-menu-job-slot-excluded", ("amount", filteredAmount))
             : Loc.GetString("es-spawn-menu-job-slot-excluded-uncapped");
+
+        if (!Disabled && amount == 0)
+            Disabled = true;
+
     }
 }
 
