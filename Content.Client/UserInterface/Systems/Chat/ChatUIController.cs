@@ -906,6 +906,7 @@ public sealed partial class ChatUIController : UIController
                     // current limitations of styling them.
                     AddSpeechBubble(msg, SpeechBubble.SpeechType.Say);
                 break;
+            // ES END
         }
     }
 
