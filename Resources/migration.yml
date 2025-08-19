@@ -341,10 +341,7 @@ soda_dispenser: SodaDispenser
 chem_master: ChemMaster
 
 # 2024-05-21
-# ES START
-# this breaks if its not edited because double migrations dont exist
-CrateJanitorExplosive: ClosetBombFilled
-# ES End
+CrateJanitorExplosive: ClosetJanitorBombFilled
 
 # 2024-05-27
 DoorRemoteFirefight: null
