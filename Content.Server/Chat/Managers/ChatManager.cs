@@ -285,7 +285,12 @@ internal sealed partial class ChatManager : IChatManager
         }
 
         //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
-        ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);
+
+        // ES START
+        // OOC messages generally won't have an attached entity in upstream,
+        // but here they probably will (and so we'll include them if they exist)
+        ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, player.AttachedEntity ?? EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);
+        // ES END
         _discordLink.SendMessage(message, player.Name, ChatChannel.OOC);
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"OOC from {player:Player}: {message}");
     }

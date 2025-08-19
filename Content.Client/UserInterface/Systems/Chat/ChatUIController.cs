@@ -9,6 +9,7 @@ using Content.Client.Chat.UI;
 using Content.Client.Examine;
 using Content.Client.Gameplay;
 using Content.Client.Ghost;
+using Content.Client.Lobby.UI;
 using Content.Client.Mind;
 using Content.Client.Roles;
 using Content.Client.Stylesheets;
@@ -893,6 +894,17 @@ public sealed partial class ChatUIController : UIController
             case ChatChannel.LOOC:
                 if (_config.GetCVar(CCVars.LoocAboveHeadShow))
                     AddSpeechBubble(msg, SpeechBubble.SpeechType.Looc);
+                break;
+
+            // ES START
+            case ChatChannel.OOC:
+                // runlevel is uhh, not networked, otherwise i'd probably jsut check for
+                // runlevel != ingame?
+                // this is so chatbubbles show in the diegetic lobby, by the way
+                if (UIManager.ActiveScreen is LobbyGui)
+                    // could probably use a different styled speechbubble but I didn't have any great ideas with the
+                    // current limitations of styling them.
+                    AddSpeechBubble(msg, SpeechBubble.SpeechType.Say);
                 break;
         }
     }
