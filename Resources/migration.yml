@@ -708,6 +708,7 @@ FoodDonutJellySlugcat: FoodDonutJellyScurret
 # 2025-18-8
 # Lockers that are redundant to begin with / we will probably never use
 ClosetJanitorBomb: ClosetBomb
+ClosetJanitorBombFilled: ClosetBomb
 LockerBrigmedic: LockerSecurity
 LockerBrigmedicFilled: LockerSecurityFilled
 LockerClown: LockerSteel
