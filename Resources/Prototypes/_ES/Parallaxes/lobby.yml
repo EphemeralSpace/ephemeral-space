@@ -9,6 +9,6 @@
   layersLQ:
   - texture:
       !type:GeneratedParallaxTextureSource
-      id: ""
+      id: "void"
       configPath: "/Prototypes/_ES/Parallaxes/parallax_config_void.toml"
   layersLQUseHQ: false
