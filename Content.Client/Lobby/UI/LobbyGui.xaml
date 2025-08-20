@@ -1,3 +1,5 @@
+<!-- ES START
+significantly modified from old lobbygui, basically everything diff-->
 <lobbyUi:LobbyGui
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -19,6 +21,11 @@
     <!-- ES START -->
     <SplitContainer Name="ScreenContainer" HorizontalExpand="True" VerticalExpand="True" SplitWidth="0" StretchDirection="TopLeft">
         <LayoutContainer Name="ViewportContainer" HorizontalExpand="True" VerticalExpand="True">
+            <BoxContainer Orientation="Vertical" SeparationOverride="4" Name="VoteContainer"
+                          Access="Public" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 8" />
+            <!-- Character setup state -->
+            <!-- This is injected on startup. Funky! -->
+            <Control Access="Public" Visible="False" Name="CharacterSetupState" VerticalExpand="True" />
             <controls:MainViewport Name="MainViewport"/>
             <!--<widgets:GhostGui Name="Ghost" Access="Protected" />
             <inventory:InventoryGui Name="Inventory" Access="Protected"/>
