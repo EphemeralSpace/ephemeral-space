@@ -319,7 +319,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
         if (_stateManager.CurrentState is LobbyState lobby)
         {
-            //lobby.Lobby?.CharacterSetupState.AddChild(_characterSetup);
+            lobby.Lobby?.CharacterSetupState.AddChild(_characterSetup);
         }
 
         return (_characterSetup, _profileEditor);

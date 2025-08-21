@@ -38,25 +38,16 @@ namespace Content.Client.Lobby.UI
 
         public void SwitchState(LobbyGuiState state)
         {
-            //DefaultState.Visible = false;
-            //CharacterSetupState.Visible = false;
+            ViewportContainer.Visible = false;
+            CharacterSetupState.Visible = false;
 
             switch (state)
             {
                 case LobbyGuiState.Default:
-                    //DefaultState.Visible = true;
-                    //RightSide.Visible = true;
+                    ViewportContainer.Visible = true;
                     break;
                 case LobbyGuiState.CharacterSetup:
-                    //CharacterSetupState.Visible = true;
-
-                    var actualWidth = (float) UserInterfaceManager.RootControl.PixelWidth;
-                    //var setupWidth = (float) LeftSide.PixelWidth;
-
-                    //if (1 - (setupWidth / actualWidth) > 0.30)
-                    {
-                        //RightSide.Visible = false;
-                    }
+                    CharacterSetupState.Visible = true;
 
                     UserInterfaceManager.GetUIController<LobbyUIController>().ReloadCharacterSetup();
 

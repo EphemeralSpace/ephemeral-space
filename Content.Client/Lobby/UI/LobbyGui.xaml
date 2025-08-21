@@ -21,11 +21,12 @@ significantly modified from old lobbygui, basically everything diff-->
     <!--<TextureRect Access="Public" VerticalExpand="True" HorizontalExpand="True" Name="Background"
                  Stretch="KeepAspectCovered" />-->
     <!-- ES START -->
+    <Control Access="Public" Visible="False" Name="CharacterSetupState" VerticalExpand="True" />
+
     <SplitContainer Name="ScreenContainer" HorizontalExpand="True" VerticalExpand="True" SplitWidth="0" StretchDirection="TopLeft">
         <LayoutContainer Name="ViewportContainer" HorizontalExpand="True" VerticalExpand="True">
             <!-- Character setup state -->
             <!-- This is injected on startup. Funky! -->
-            <Control Access="Public" Visible="False" Name="CharacterSetupState" VerticalExpand="True" />
             <controls:MainViewport Name="MainViewport"/>
             <hotbar:HotbarGui Name="Hotbar" Access="Protected"/>
             <BoxContainer Name="TopLeftContainer" Orientation="Vertical">
