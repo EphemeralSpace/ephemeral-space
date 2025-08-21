@@ -24,3 +24,4 @@
   - type: Input
     context: "human"
   - type: Examiner
+  - type: ESTheatergoerMarker

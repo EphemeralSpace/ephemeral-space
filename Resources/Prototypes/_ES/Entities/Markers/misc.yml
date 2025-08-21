@@ -1,0 +1,30 @@
+- type: entity
+  id: ESInvisibleWall
+  name: invisible wall marker
+  parent: MarkerBase
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: PlacementReplacement
+    key: walls
+  - type: Airtight
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    layers:
+    - state: red
+    - sprite: Structures/Magic/forcewall.rsi
+      state: forcewall

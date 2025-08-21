@@ -1,0 +1,8 @@
+- type: entity
+  name: theater chair
+  description: You're always allowed to just sit and watch the play from afar.
+  id: ESChairTheater
+  parent: ChairWood
+  components:
+  - type: ESObserverChair
+  # todo custom sprites

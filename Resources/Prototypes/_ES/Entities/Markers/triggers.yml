@@ -1,0 +1,27 @@
+- type: entity
+  name: readyup marker
+  id: ESMarkerReady
+  parent: MarkerBase
+  components:
+  - type: ESReadyAreaMarker
+    behavior: Ready
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    layers:
+    - state: green
+    - sprite: _ES/Mobs/Ghosts/theatergoer.rsi
+      state: head-1
+
+- type: entity
+  name: unready marker
+  id: ESMarkerUnready
+  parent: MarkerBase
+  components:
+  - type: ESReadyAreaMarker
+    behavior: Unready
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    layers:
+    - state: red
+    - sprite: _ES/Mobs/Ghosts/theatergoer.rsi
+      state: head-3
