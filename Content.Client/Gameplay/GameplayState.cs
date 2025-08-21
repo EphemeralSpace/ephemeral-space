@@ -121,12 +121,18 @@ namespace Content.Client.Gameplay
 
             switch (screenType)
             {
+                // ES START
+                // we force separated game chat in either case
+                // it's better to do it here (rather than changing the cvar or something)
+                // so we don't accidentally save this to clients configs and overwrite their value
+                // on other servers.
                 case ScreenType.Default:
-                    _uiManager.LoadScreen<DefaultGameScreen>();
+                    _uiManager.LoadScreen<SeparatedChatGameScreen>();
                     break;
                 case ScreenType.Separated:
                     _uiManager.LoadScreen<SeparatedChatGameScreen>();
                     break;
+                // ES END
             }
 
             _loadController.LoadScreen();
