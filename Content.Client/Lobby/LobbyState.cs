@@ -163,7 +163,7 @@ namespace Content.Client.Lobby
         {
             if (_gameTicker.IsGameStarted)
             {
-                //Lobby!.StartTime.Text = string.Empty;
+                Lobby!.StartTime.Text = string.Empty;
                 var roundTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
                 Lobby!.StationTime.Text = Loc.GetString("lobby-state-player-status-round-time", ("hours", roundTime.Hours), ("minutes", roundTime.Minutes));
                 return;
@@ -178,7 +178,7 @@ namespace Content.Client.Lobby
             }
             else if (_gameTicker.StartTime < _gameTiming.CurTime)
             {
-                //Lobby!.StartTime.Text = Loc.GetString("lobby-state-soon");
+                Lobby!.StartTime.Text = Loc.GetString("lobby-state-soon");
                 return;
             }
             else
@@ -199,7 +199,7 @@ namespace Content.Client.Lobby
                 }
             }
 
-            //Lobby!.StartTime.Text = Loc.GetString("lobby-state-round-start-countdown-text", ("timeLeft", text));
+            Lobby!.StartTime.Text = Loc.GetString("lobby-state-round-start-countdown-text", ("timeLeft", text));
         }
 
         private void LobbyStatusUpdated()
@@ -215,30 +215,33 @@ namespace Content.Client.Lobby
 
         private void UpdateLobbyUi()
         {
-            /*
+
             if (_gameTicker.IsGameStarted)
             {
-                Lobby!.ReadyButton.Text = Loc.GetString("lobby-state-ready-button-join-state");
+                // ES START
+                /*Lobby!.ReadyButton.Text = Loc.GetString("lobby-state-ready-button-join-state");
                 Lobby!.ReadyButton.ToggleMode = false;
                 Lobby!.ReadyButton.Pressed = false;
-                Lobby!.ObserveButton.Disabled = false;
+                Lobby!.ObserveButton.Disabled = false;*/
             }
             else
             {
                 Lobby!.StartTime.Text = string.Empty;
-                Lobby!.ReadyButton.Text = Loc.GetString(Lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready": "lobby-state-player-status-not-ready");
+                /*Lobby!.ReadyButton.Text = Loc.GetString(Lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready": "lobby-state-player-status-not-ready");
                 Lobby!.ReadyButton.ToggleMode = true;
                 Lobby!.ReadyButton.Disabled = false;
                 Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
-                Lobby!.ObserveButton.Disabled = true;
+                Lobby!.ObserveButton.Disabled = true;*/
+                // ES END
             }
-            */
+
 
             if (_gameTicker.ServerInfoBlob != null)
             {
                 Lobby!.ServerInfo.SetInfoBlob(_gameTicker.ServerInfoBlob);
             }
 
+            // ES START
             var minutesToday = _playtimeTracking.PlaytimeMinutesToday;
             if (minutesToday > 60)
             {
@@ -258,13 +261,14 @@ namespace Content.Client.Lobby
             }
             //else
                 //Lobby!.PlaytimeComment.Visible = false;
+            // ES END
         }
 
         private void UpdateLobbySoundtrackInfo(LobbySoundtrackChangedEvent ev)
         {
             if (ev.SoundtrackFilename == null)
             {
-                //Lobby!.LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));
+                Lobby!.LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));
             }
             else if (
                 ev.SoundtrackFilename != null
@@ -285,7 +289,7 @@ namespace Content.Client.Lobby
                     ("songTitle", title),
                     ("songArtist", artist));
 
-                //Lobby!.LobbySong.SetMarkup(markup);
+                Lobby!.LobbySong.SetMarkup(markup);
             }
         }
 
