@@ -35,3 +35,8 @@
     attributes:
       proper: true
       gender: epicene
+  - type: TypingIndicator
+  - type: Tag
+    tags:
+    - FootstepSound
+    - DoorBumpOpener
