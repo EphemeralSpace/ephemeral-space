@@ -140,6 +140,11 @@ public sealed class ESLobbyCurtainsUIController : UIController
         _curtainRoot.AddChild(_rightCurtain);
     }
 
+    /// <summary>
+    /// starts a curtain animation, either opening or closing
+    /// </summary>
+    /// <param name="toOpen">whether to open or close the curtains</param>
+    /// <param name="animationTimeOverride">the amount of time the animation should take</param>
     public void StartCurtainAnimation(bool toOpen, TimeSpan? animationTimeOverride = null)
     {
         if (IsAnimationDisabled())

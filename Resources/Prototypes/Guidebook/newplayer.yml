@@ -1,3 +1,6 @@
+# ES START
+# i dont think (?) we can comment in the xml files so,
+# this is very much rewritten for ES lobby stuff
 - type: guideEntry
   id: NewPlayer
   name: guide-entry-newplayer
@@ -6,6 +9,7 @@
   children:
   - Controls
   - CharacterCreation
+# ES END
 
 - type: guideEntry
   id: Controls
