@@ -3,6 +3,8 @@ using System.Numerics;
 using Content.Client.CombatMode;
 using Content.Client.ContextMenu.UI;
 using Content.Client.Gameplay;
+using Content.Client.Lobby;
+using Content.Client.Lobby.UI;
 using Content.Client.Mapping;
 using Content.Shared.Input;
 using Content.Shared.Verbs;
@@ -25,7 +27,10 @@ namespace Content.Client.Verbs.UI
     /// </remarks>
     public sealed class VerbMenuUIController : UIController,
         IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>,
-        IOnStateEntered<MappingState>, IOnStateExited<MappingState>
+        IOnStateEntered<MappingState>, IOnStateExited<MappingState>,
+        // ES START
+        IOnStateEntered<LobbyState>, IOnStateExited<LobbyState>
+        // ES END
     {
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly ContextMenuUIController _context = default!;
@@ -43,30 +48,46 @@ namespace Content.Client.Verbs.UI
         /// </summary>
         public ContextMenuPopup? OpenMenu = null;
 
+        // ES START
+        // again mostly just moving stuff around into a new func + new hanldlers
         public void OnStateEntered(GameplayState state)
         {
-            _context.OnContextKeyEvent += OnKeyBindDown;
-            _context.OnContextClosed += Close;
-            _verbSystem.OnVerbsResponse += HandleVerbsResponse;
+            EnterState();
         }
 
         public void OnStateExited(GameplayState state)
         {
-            _context.OnContextKeyEvent -= OnKeyBindDown;
-            _context.OnContextClosed -= Close;
-            if (_verbSystem != null)
-                _verbSystem.OnVerbsResponse -= HandleVerbsResponse;
-            Close();
+            ExitState();
         }
 
         public void OnStateEntered(MappingState state)
+        {
+            EnterState();
+        }
+
+        public void OnStateExited(MappingState state)
+        {
+            ExitState();
+        }
+
+        public void OnStateEntered(LobbyState state)
+        {
+            EnterState();
+        }
+
+        public void OnStateExited(LobbyState state)
+        {
+            ExitState();
+        }
+
+        private void EnterState()
         {
             _context.OnContextKeyEvent += OnKeyBindDown;
             _context.OnContextClosed += Close;
             _verbSystem.OnVerbsResponse += HandleVerbsResponse;
         }
 
-        public void OnStateExited(MappingState state)
+        private void ExitState()
         {
             _context.OnContextKeyEvent -= OnKeyBindDown;
             _context.OnContextClosed -= Close;
@@ -74,6 +95,7 @@ namespace Content.Client.Verbs.UI
                 _verbSystem.OnVerbsResponse -= HandleVerbsResponse;
             Close();
         }
+        // ES END
 
         /// <summary>
         ///     Open a verb menu and fill it with verbs applicable to the given target entity.

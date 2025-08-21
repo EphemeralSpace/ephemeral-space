@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Client.CombatMode;
 using Content.Client.Examine;
 using Content.Client.Gameplay;
+using Content.Client.Lobby;
 using Content.Client.Verbs;
 using Content.Client.Verbs.UI;
 using Content.Shared.CCVar;
@@ -33,7 +34,11 @@ namespace Content.Client.ContextMenu.UI
     ///     a list of entities near the mouse position, add them to the context menu grouped by prototypes, and remove
     ///     them from the menu as they move out of sight.
     /// </remarks>
-    public sealed partial class EntityMenuUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
+    public sealed partial class EntityMenuUIController : UIController,
+        IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>,
+        // ES START
+        IOnStateEntered<LobbyState>, IOnStateExited<LobbyState>
+        // ES END
     {
         [Dependency] private readonly IEntitySystemManager _systemManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
@@ -62,7 +67,29 @@ namespace Content.Client.ContextMenu.UI
         /// </remarks>
         public Dictionary<EntityUid, EntityMenuElement> Elements = new();
 
+        // ES START
+        // mostly just moving the logic into a separate function + add new handlers
         public void OnStateEntered(GameplayState state)
+        {
+            EnterState();
+        }
+
+        public void OnStateExited(GameplayState state)
+        {
+            ExitState();
+        }
+
+        public void OnStateEntered(LobbyState state)
+        {
+            EnterState();
+        }
+
+        public void OnStateExited(LobbyState state)
+        {
+            ExitState();
+        }
+
+        private void EnterState()
         {
             _updating = true;
             _cfg.OnValueChanged(CCVars.EntityMenuGroupingType, OnGroupingChanged, true);
@@ -73,7 +100,7 @@ namespace Content.Client.ContextMenu.UI
                 .Register<EntityMenuUIController>();
         }
 
-        public void OnStateExited(GameplayState state)
+        private void ExitState()
         {
             _updating = false;
             Elements.Clear();
@@ -81,6 +108,7 @@ namespace Content.Client.ContextMenu.UI
             _context.OnContextKeyEvent -= OnKeyBindDown;
             CommandBinds.Unregister<EntityMenuUIController>();
         }
+        // ES END
 
         /// <summary>
         ///     Given a list of entities, sort them into groups and them to a new entity menu.
