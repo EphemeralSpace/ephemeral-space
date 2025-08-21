@@ -164,21 +164,3 @@
       prob: 0.5
     - id: NettleSeeds
       prob: 0.7
-
-- type: entity
-  id: ClosetJanitorBombFilled
-  parent: ClosetJanitorBomb
-  suffix: DO NOT MAP, Filled
-  categories: [ DoNotMap ]
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillClosetJanitorBomb
-
-- type: entityTable
-  id: FillClosetJanitorBomb
-  table: !type:AllSelector
-    children:
-    - id: ClothingHeadHelmetJanitorBombSuit
-    - id: ClothingOuterSuitJanitorBomb

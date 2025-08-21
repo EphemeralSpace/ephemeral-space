@@ -1,3 +1,5 @@
+# ES Start
+# Removes the removed lockers as paintables (see migration.yml for what got removed)
 - type: paintableGroup
   id: Locker
   cost: 2
@@ -6,29 +8,24 @@
     atmospherics: LockerAtmospherics
     basic: ClosetSteelBase
     botanist: LockerBotanist
-    brigmedic: LockerBrigmedic
     captain: LockerCaptain
     ce: LockerChiefEngineer
     chemical: LockerChemistry
-    clown: LockerClown
     cmo: LockerChiefMedicalOfficer
     doctor: LockerMedical
     electrical: LockerElectricalSupplies
     engineer: LockerEngineer
-    evac: LockerEvacRepair
     hop: LockerHeadOfPersonnel
     hos: LockerHeadOfSecurity
-    mime: LockerMime
     medicine: LockerMedicine
-    paramedic: LockerParamedic
     quartermaster: LockerQuarterMaster
     rd: LockerResearchDirector
-    representative: LockerRepresentative
     salvage: LockerSalvageSpecialist
     scientist: LockerScientist
     security: LockerSecurity
     welding: LockerWeldingSupplies
 
+# ES Start
 - type: paintableGroup
   id: Closet
   cost: 2
@@ -41,7 +38,6 @@
     biohazard-security: ClosetL3Security
     biohazard-virology: ClosetL3Virology
     bomb: ClosetBomb
-    bomb-janitor: ClosetJanitorBomb
     chef: ClosetChef
     fire: ClosetFire
     janitor: ClosetJanitor
@@ -50,6 +46,7 @@
     oxygen: ClosetEmergency
     radiation: ClosetRadiationSuit
     tool: ClosetTool
+# ES End
 
 - type: paintableGroup
   id: WallCloset
@@ -71,10 +68,11 @@
     white: ClosetWallWhite
     yellow: ClosetWallYellow
 
+# ES Start
 - type: paintableGroup
   id: WallLocker
   cost: 2
   defaultStyle: medical
   styles:
-    evac: LockerWallEvacRepair
     medical: LockerWallMedical
+# ES End

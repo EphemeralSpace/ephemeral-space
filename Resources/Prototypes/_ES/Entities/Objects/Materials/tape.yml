@@ -32,15 +32,6 @@
 
 - type: entity
   parent: ESPartTape
-  id: ESPartTapeLinger
-  suffix: 0, Linger
-  components:
-  - type: Stack
-    lingering: true
-    count: 0
-
-- type: entity
-  parent: ESPartTape
   id: ESPartTape1
   suffix: 1
   components:

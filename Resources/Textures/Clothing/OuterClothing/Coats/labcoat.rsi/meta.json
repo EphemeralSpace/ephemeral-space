@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Made by Flareguy for Space Station 14, original base sprite from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e",
+  "copyright": "Made by Flareguy for Space Station 14, original base sprite from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e. equipped-OUTERCLOTHING and open-equipped-OUTERCLOTHING taken from vgstation13 at commit https://github.com/vgstation-coders/vgstation13/commit/007d5331319533f9e7fac8d4c43908b9532c648a and modified by Flareguy for Ephemeral Space",
   "size": {
     "x": 32,
     "y": 32

@@ -163,19 +163,6 @@
     access: [["Medical"]]
 
 - type: entity
-  parent: BaseWallLocker
-  id: LockerWallEvacRepair
-  name: emergency shuttle emergency wall locker
-  description: It's emergencies all the way down.
-  components:
-  - type: EntityStorageVisuals
-    stateBaseClosed: eng
-    stateDoorOpen: eng_open
-    stateDoorClosed: eng_evac_door
-  - type: AccessReader
-    access: [["Engineering"]]
-
-- type: entity
   parent: [ GenpopBase , BaseWallLocker ]
   id: LockerWallBasePrisoner
   name: prisoner wall closet

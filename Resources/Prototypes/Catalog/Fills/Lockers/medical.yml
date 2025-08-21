@@ -114,31 +114,3 @@
     containers:
       entity_storage: !type:NestedSelector
         tableId: LockerFillChemistry
-
-- type: entityTable
-  id: LockerFillParamedic
-  table: !type:AllSelector
-    children:
-    - id: ClothingOuterHardsuitVoidParamed
-    - id: ClothingOuterCoatParamedicWB
-    - id: ClothingHeadHatParamedicsoft
-    - id: ClothingOuterWinterPara
-    - id: ClothingUniformJumpsuitParamedic
-    - id: ClothingUniformJumpskirtParamedic
-    - id: ClothingEyesHudMedical
-    - id: ClothingHandsGlovesLatex
-    - id: ClothingHeadsetMedical
-    - id: ClothingMaskSterile
-    - id: HandheldGPSBasic
-    - id: MedkitFilled
-      prob: 0.3
-
-- type: entity
-  parent: LockerParamedic
-  id: LockerParamedicFilled
-  suffix: Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: LockerFillParamedic

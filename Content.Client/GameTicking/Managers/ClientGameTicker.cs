@@ -43,6 +43,8 @@ namespace Content.Client.GameTicking.Managers
         [ViewVariables] public TimeSpan StartTime { get; private set; }
         [ViewVariables] public new bool Paused { get; private set; }
 
+        public override IReadOnlyList<(TimeSpan, string)> AllPreviousGameRules => new List<(TimeSpan, string)>();
+
         // ES START
         [ViewVariables] public TimeSpan? ESExpectedRoundEndTime { get; private set; }
 

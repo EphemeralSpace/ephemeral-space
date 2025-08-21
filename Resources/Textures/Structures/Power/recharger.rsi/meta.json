@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "https://github.com/discordia-space/CEV-Eris/raw/9ea3eccbe22e18d24653949067f3d7dd12194ea9/icons/obj/stationobjs.dmi",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/662c08272acd7be79531550919f56f846726eabb/icons/obj/stationobjs.dmi and modified for Ephemeral Space",
     "states": [
         {
             "name": "empty"
@@ -27,8 +27,8 @@
             "name": "light-empty",
             "delays": [
                 [
-                    1,
-                    0.2
+                    0.5,
+                    0.1
                 ]
             ]
         },
@@ -36,9 +36,6 @@
             "name": "light-charging",
             "delays": [
                 [
-                    0.1,
-                    0.1,
-                    0.1,
                     0.1,
                     0.1,
                     0.1,

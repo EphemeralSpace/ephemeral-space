@@ -2,3 +2,11 @@
   id: LobbyMusicES
   files:
     - /Audio/_ES/Lobby/vast.ogg
+
+- type: soundCollection
+  id: ESShuttleMusic
+  files:
+  - /Audio/Lobby/title2.ogg
+  - /Audio/Lobby/title3.ogg
+  - /Audio/Lobby/mod.flip-flap.ogg
+  - /Audio/_ES/Lobby/hello-1997.ogg

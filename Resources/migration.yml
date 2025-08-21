@@ -8,6 +8,25 @@
 # WallSolid: Window
 # Table: null
 
+# ES Start
+# 2025-18-8
+# Lockers that are redundant to begin with / we will probably never use
+ClosetJanitorBomb: ClosetBomb
+ClosetJanitorBombFilled: ClosetBomb
+LockerBrigmedic: LockerSecurity
+LockerBrigmedicFilled: LockerSecurityFilled
+LockerClown: LockerSteel
+LockerMime: LockerSteel
+LockerRepresentative: LockerSteel
+LockerParamedic: LockerMedical
+LockerParamedicFilled: LockerMedicalFilled
+LockerEvacRepair: ClosetEmergency
+LockerEvacRepairFilled: ClosetEmergencyFilledRandom
+LockerWallEvacRepair: ClosetWallEmergency
+LockerWallEvacRepairFilled: ClosetWallEmergencyFilledRandom
+
+# ES END
+
 # 2023-07-03
 ClothingHeadHelmetHelmet: ClothingHeadHelmetBasic
 ClothingHeadHelmetHelmetOld: ClothingHeadHelmetBasic
@@ -703,3 +722,7 @@ ClothingNeckHeadphones: ClothingMultipleHeadphones
 
 # 2025-08-01
 FoodDonutJellySlugcat: FoodDonutJellyScurret
+
+# 2025-08-11
+ClothingUniformJumpsuitChiefEngineerNT: ClothingUniformJumpsuitChiefEngineer
+ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
