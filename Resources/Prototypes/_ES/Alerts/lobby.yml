@@ -1,0 +1,25 @@
+# these could theoretically be one alert with differing severity,
+# but I can't change the description/name like that, so
+- type: alert
+  id: ESReadiedUp
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/lobby.rsi
+    state: ready
+  name: alerts-readied-up-name
+  description: alerts-vow-silence-desc
+
+- type: alert
+  id: ESNotReadiedUp
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/lobby.rsi
+    state: notready
+  name: alerts-not-readied-up-name
+  description: alerts-not-readied-up-desc
+
+- type: alert
+  id: ESObserving
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/lobby.rsi
+    state: observing
+  name: alerts-observing-name
+  description: alerts-observing-desc

@@ -70,7 +70,7 @@ significantly modified from old lobbygui, basically everything diff-->
                            Access="Public"
                            Align="Left"
                            FontColorOverride="{x:Static maths:Color.DarkGray}"
-                           StyleClasses="LabelBig" HorizontalExpand="True" />
+                           HorizontalExpand="True" />
                     <RichTextLabel Name="LobbySong" Access="Public" HorizontalAlignment="Center" />
                     <!-- Gold line -->
                     <controls:HLine Color="{x:Static style:StyleNano.NanoGold}" Thickness="2" Access="Public" />
