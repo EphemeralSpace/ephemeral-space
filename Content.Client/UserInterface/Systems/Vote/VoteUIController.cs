@@ -1,3 +1,4 @@
+using Content.Client.Lobby.UI;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.Voting;
@@ -29,6 +30,11 @@ public sealed class VoteUIController : UIController
             case SeparatedChatGameScreen separated:
                 _votes.SetPopupContainer(separated.VoteMenu);
                 break;
+            // ES START
+            case LobbyGui lobby:
+                _votes.SetPopupContainer(lobby.VoteMenu);
+                break;
+            // ES END
         }
     }
 

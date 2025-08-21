@@ -22,6 +22,9 @@ namespace Content.Client.Lobby.UI
             // ES START
             SetAnchorPreset(MainViewport, LayoutPreset.Wide);
             SetAnchorPreset(ViewportContainer, LayoutPreset.Wide);
+            SetAnchorAndMarginPreset(TopLeftContainer, LayoutPreset.TopLeft, margin: 10);
+            SetAnchorAndMarginPreset(Hotbar, LayoutPreset.BottomWide, margin: 5);
+            SetAnchorAndMarginPreset(Alerts, LayoutPreset.CenterRight, margin: 10);
             // ES END
 
             //LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));

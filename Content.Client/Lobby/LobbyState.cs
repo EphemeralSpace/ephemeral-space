@@ -80,8 +80,6 @@ namespace Content.Client.Lobby
             _contentAudioSystem.LobbySoundtrackChanged += UpdateLobbySoundtrackInfo;
 
             chatController.SetMainChat(true);
-
-            //_voteManager.SetPopupContainer(Lobby.VoteContainer);
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
 
             var lobbyNameCvar = _cfg.GetCVar(CCVars.ServerLobbyName);

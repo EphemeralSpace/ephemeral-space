@@ -12,6 +12,8 @@ significantly modified from old lobbygui, basically everything diff-->
     xmlns:info="clr-namespace:Content.Client.Info"
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets"
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:hotbar="clr-namespace:Content.Client.UserInterface.Systems.Hotbar.Widgets"
+    xmlns:alerts="clr-namespace:Content.Client.UserInterface.Systems.Alerts.Widgets"
     VerticalExpand="False"
     VerticalAlignment="Bottom"
     HorizontalAlignment="Center">
@@ -21,20 +23,15 @@ significantly modified from old lobbygui, basically everything diff-->
     <!-- ES START -->
     <SplitContainer Name="ScreenContainer" HorizontalExpand="True" VerticalExpand="True" SplitWidth="0" StretchDirection="TopLeft">
         <LayoutContainer Name="ViewportContainer" HorizontalExpand="True" VerticalExpand="True">
-            <BoxContainer Orientation="Vertical" SeparationOverride="4" Name="VoteContainer"
-                          Access="Public" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 8" />
             <!-- Character setup state -->
             <!-- This is injected on startup. Funky! -->
             <Control Access="Public" Visible="False" Name="CharacterSetupState" VerticalExpand="True" />
             <controls:MainViewport Name="MainViewport"/>
-            <!--<widgets:GhostGui Name="Ghost" Access="Protected" />
-            <inventory:InventoryGui Name="Inventory" Access="Protected"/>
             <hotbar:HotbarGui Name="Hotbar" Access="Protected"/>
             <BoxContainer Name="TopLeftContainer" Orientation="Vertical">
-                <actions:ActionsBar Name="Actions" Access="Protected" />
                 <BoxContainer Name="VoteMenu" Access="Public" Orientation="Vertical"/>
             </BoxContainer>
-            <alerts:AlertsUI Name="Alerts" Access="Protected" />-->
+            <alerts:AlertsUI Name="Alerts" Access="Protected" />
         </LayoutContainer>
         <PanelContainer Name="SeparatedChatPanel" MinWidth="300">
             <PanelContainer.PanelOverride>
@@ -66,11 +63,9 @@ significantly modified from old lobbygui, basically everything diff-->
                                      Margin="3 3 3 3" MaxWidth="400" HorizontalAlignment="Left" />
                     <Label Name="StationTime" Access="Public" FontColorOverride="{x:Static maths:Color.LightGray}"
                            Margin="3 3 3 3" HorizontalAlignment="Left" />
-<!-- ES START -->
                     <controls:HSpacer Spacing="5" Visible="False"/>
                     <lobbyUi:LobbyCharacterPreviewPanel Name="CharacterPreview" Access="Public" Visible="False"/>
                     <controls:HSpacer Spacing="5" Visible="False"/>
-<!-- ES END -->
                     <BoxContainer MinHeight="10" />
                     <!-- Gold line -->
                     <controls:HLine Color="{x:Static style:StyleNano.NanoGold}" Thickness="2" Access="Public" />
