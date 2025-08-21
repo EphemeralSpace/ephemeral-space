@@ -11,7 +11,7 @@ using Robust.Shared.Timing;
 namespace Content.Server._ES.Lobby;
 
 /// <summary>
-/// This handles...
+/// handles serverside diegetic lobby stuff, notably readying on trigger
 /// </summary>
 public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
 {

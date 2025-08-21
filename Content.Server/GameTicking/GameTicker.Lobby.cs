@@ -286,7 +286,9 @@ namespace Content.Server.GameTicking
             }
         }
 
+        // ES START
         public void ToggleReady(ICommonSession player, PlayerGameStatus ready)
+        // ES END
         {
             if (!_playerGameStatuses.ContainsKey(player.UserId))
                 return;
@@ -323,6 +325,7 @@ namespace Content.Server.GameTicking
             _alerts.ShowAlert(player.AttachedEntity.Value, alert);
         }
 
+        // TODO clear alerts on theatergoers when evry1 goes ingame
         private void ClearReadyStatusAlert(ICommonSession player)
         {
             if (player.AttachedEntity == null)

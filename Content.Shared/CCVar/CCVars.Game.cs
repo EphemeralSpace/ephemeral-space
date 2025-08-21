@@ -16,13 +16,13 @@ public sealed partial class CCVars
     ///     Controls if the lobby is enabled. If it is not, and there are no available jobs, you may get stuck on a black screen.
     /// </summary>
     public static readonly CVarDef<bool>
-        GameLobbyEnabled = CVarDef.Create("game.lobbyenabled", true, CVar.ARCHIVE);
+        GameLobbyEnabled = CVarDef.Create("game.lobbyenabled", false, CVar.ARCHIVE);
 
     /// <summary>
     ///     Controls the duration of the lobby timer in seconds. Defaults to 2 minutes and 30 seconds.
     /// </summary>
     public static readonly CVarDef<int>
-        GameLobbyDuration = CVarDef.Create("game.lobbyduration", 30, CVar.ARCHIVE);
+        GameLobbyDuration = CVarDef.Create("game.lobbyduration", 150, CVar.ARCHIVE);
 
     // ES START
 
@@ -363,7 +363,7 @@ public sealed partial class CCVars
     /// </summary>
     // ES EDIT: changed to be replicated, shouldn't be a problem
     public static readonly CVarDef<float> RoundRestartTime =
-        CVarDef.Create("game.round_restart_time", 15f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("game.round_restart_time", 120f, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     The prototype to use for secret weights.

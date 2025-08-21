@@ -337,7 +337,7 @@ namespace Content.Server.GameTicking
             return gridUids;
         }
 
-        // ES: does not count 'ready to observe' players
+        // ES START: does not count 'ready to observe' players
         public int ReadyPlayerCount()
         {
             var total = 0;
@@ -347,6 +347,7 @@ namespace Content.Server.GameTicking
                 // so im keeping parity in case its relevant
                 if (LobbyEnabled && status is not (PlayerGameStatus.ReadyToPlay or PlayerGameStatus.JoinedGame))
                     continue;
+                // ES END
 
                 if (!_playerManager.TryGetSessionById(userId, out _))
                     continue;
@@ -371,10 +372,6 @@ namespace Content.Server.GameTicking
 
             if (RoundId == 0)
                 IncrementRoundNumber();
-
-            // ES START
-            // CleanupLobbyWorld();
-            // ES END
 
             ReplayStartRound();
 
@@ -708,7 +705,9 @@ namespace Content.Server.GameTicking
 
                 SendStatusToAll();
                 UpdateInfoText();
+                // ES START
                 CreateLobbyWorld();
+                // ES END
 
                 ReqWindowAttentionAll();
             }

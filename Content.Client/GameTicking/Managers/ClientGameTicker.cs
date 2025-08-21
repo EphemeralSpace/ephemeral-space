@@ -34,7 +34,9 @@ namespace Content.Client.GameTicking.Managers
         private Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>  _jobsAvailable = new();
         private Dictionary<NetEntity, string> _stationNames = new();
 
+        // ES START
         [ViewVariables] public PlayerGameStatus ReadyStatus { get; private set; }
+        // ES END
         [ViewVariables] public bool IsGameStarted { get; private set; }
         [ViewVariables] public ResolvedSoundSpecifier? RestartSound { get; private set; }
         [ViewVariables] public string? LobbyBackground { get; private set; }
@@ -78,7 +80,9 @@ namespace Content.Client.GameTicking.Managers
             SubscribeNetworkEvent<TickerJobsAvailableEvent>(UpdateJobsAvailable);
 
             _admin.AdminStatusUpdated += OnAdminUpdated;
+            // ES START
             _lobbyCurtains = _userInterfaceManager.GetUIController<ESLobbyCurtainsUIController>();
+            // ES END
             OnAdminUpdated();
         }
 
