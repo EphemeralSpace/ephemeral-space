@@ -1,4 +1,5 @@
 using Content.Shared.Administration;
+using Content.Shared.GameTicking;
 using Robust.Shared.Console;
 
 namespace Content.Server.GameTicking.Commands
@@ -26,7 +27,7 @@ namespace Content.Server.GameTicking.Commands
             }
 
             var ticker = _e.System<GameTicker>();
-            ticker.ToggleReady(player, bool.Parse(args[0]));
+            ticker.ToggleReady(player, bool.Parse(args[0]) ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay);
         }
     }
 }

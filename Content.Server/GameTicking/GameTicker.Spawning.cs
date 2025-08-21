@@ -460,10 +460,15 @@ namespace Content.Server.GameTicking
             // Fallback to a random grid.
             if (_possiblePositions.Count == 0)
             {
-                var query = AllEntityQuery<MapGridComponent>();
-                while (query.MoveNext(out var uid, out var grid))
+                var query = AllEntityQuery<MapGridComponent, TransformComponent>();
+                while (query.MoveNext(out var uid, out var grid, out var xform))
                 {
                     if (!metaQuery.TryGetComponent(uid, out var meta) || meta.EntityPaused || TerminatingOrDeleted(uid))
+                    {
+                        continue;
+                    }
+
+                    if (_transform.GetMapId((uid, xform)) == DiegeticLobbyMapId)
                     {
                         continue;
                     }

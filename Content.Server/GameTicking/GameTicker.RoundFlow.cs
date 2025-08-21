@@ -337,12 +337,15 @@ namespace Content.Server.GameTicking
             return gridUids;
         }
 
+        // ES: does not count 'ready to observe' players
         public int ReadyPlayerCount()
         {
             var total = 0;
             foreach (var (userId, status) in _playerGameStatuses)
             {
-                if (LobbyEnabled && status == PlayerGameStatus.NotReadyToPlay)
+                // ES: it seems weird to have this count ingame but the old code did that
+                // so im keeping parity in case its relevant
+                if (LobbyEnabled && status is not (PlayerGameStatus.ReadyToPlay or PlayerGameStatus.JoinedGame))
                     continue;
 
                 if (!_playerManager.TryGetSessionById(userId, out _))
@@ -381,11 +384,15 @@ namespace Content.Server.GameTicking
             SendServerMessage(Loc.GetString("game-ticker-start-round"));
 
             var readyPlayers = new List<ICommonSession>();
+            // ES START
+            var observing = new List<ICommonSession>();
+            // ES END
             var readyPlayerProfiles = new Dictionary<NetUserId, HumanoidCharacterProfile>();
             var autoDeAdmin = _cfg.GetCVar(CCVars.AdminDeadminOnJoin);
             foreach (var (userId, status) in _playerGameStatuses)
             {
-                if (LobbyEnabled && status != PlayerGameStatus.ReadyToPlay) continue;
+                // ES START
+                if (LobbyEnabled && status is not (PlayerGameStatus.Observing or PlayerGameStatus.ReadyToPlay)) continue;
                 if (!_playerManager.TryGetSessionById(userId, out var session)) continue;
 
                 if (autoDeAdmin && _adminManager.IsAdmin(session))
@@ -395,6 +402,13 @@ namespace Content.Server.GameTicking
 #if DEBUG
                 DebugTools.Assert(_userDb.IsLoadComplete(session), $"Player was readied up but didn't have user DB data loaded yet??");
 #endif
+
+                if (status is PlayerGameStatus.Observing)
+                {
+                    observing.Add(session);
+                    continue;
+                }
+                // ES END
 
                 readyPlayers.Add(session);
                 HumanoidCharacterProfile profile;
@@ -437,6 +451,13 @@ namespace Content.Server.GameTicking
             _map.InitializeMap(DefaultMap);
 
             SpawnPlayers(readyPlayers, readyPlayerProfiles, force);
+
+            // ES START
+            foreach (var player in observing)
+            {
+                JoinAsObserver(player);
+            }
+            // ES END
 
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;

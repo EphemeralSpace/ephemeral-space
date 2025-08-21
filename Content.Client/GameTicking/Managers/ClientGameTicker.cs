@@ -34,7 +34,7 @@ namespace Content.Client.GameTicking.Managers
         private Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>  _jobsAvailable = new();
         private Dictionary<NetEntity, string> _stationNames = new();
 
-        [ViewVariables] public bool AreWeReady { get; private set; }
+        [ViewVariables] public PlayerGameStatus ReadyStatus { get; private set; }
         [ViewVariables] public bool IsGameStarted { get; private set; }
         [ViewVariables] public ResolvedSoundSpecifier? RestartSound { get; private set; }
         [ViewVariables] public string? LobbyBackground { get; private set; }
@@ -93,7 +93,7 @@ namespace Content.Client.GameTicking.Managers
             var realTime = _timing.RealTime;
 
             // lobby->game closing
-            if (AreWeReady
+            if (ReadyStatus is (PlayerGameStatus.Observing or PlayerGameStatus.ReadyToPlay)
                 && StartTime > curTime
                 && _lobbyCurtains.CurtainState == LobbyCurtainState.Open
                 && StartTime - curTime <= TimeSpan.FromSeconds(3))
@@ -184,7 +184,7 @@ namespace Content.Client.GameTicking.Managers
             StartTime = message.StartTime;
             RoundStartTimeSpan = message.RoundStartTimeSpan;
             IsGameStarted = message.IsRoundStarted;
-            AreWeReady = message.YouAreReady;
+            ReadyStatus = message.ReadyStatus;
             LobbyBackground = message.LobbyBackground;
             Paused = message.Paused;
 

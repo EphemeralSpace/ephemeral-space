@@ -3,25 +3,51 @@
   id: ESMarkerReady
   parent: MarkerBase
   components:
-  - type: ESReadyAreaMarker
-    behavior: Ready
+  - type: ESReadyTriggerMarker
+    behavior: ReadyToPlay
   - type: Sprite
     sprite: Markers/cross.rsi
     layers:
     - state: green
     - sprite: _ES/Mobs/Ghosts/theatergoer.rsi
       state: head-1
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
 
 - type: entity
   name: unready marker
   id: ESMarkerUnready
   parent: MarkerBase
   components:
-  - type: ESReadyAreaMarker
-    behavior: Unready
+  - type: ESReadyTriggerMarker
+    behavior: NotReadyToPlay
   - type: Sprite
     sprite: Markers/cross.rsi
     layers:
     - state: red
     - sprite: _ES/Mobs/Ghosts/theatergoer.rsi
       state: head-3
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false

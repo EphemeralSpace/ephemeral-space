@@ -7,7 +7,7 @@
     state: ready
   name: alerts-readied-up-name
   description: alerts-readied-up-desc
-  category: ESLobbyReadyState
+  category: ESReadyStatus
 
 - type: alert
   id: ESNotReadiedUp
@@ -16,7 +16,7 @@
     state: notready
   name: alerts-not-readied-up-name
   description: alerts-not-readied-up-desc
-  category: ESLobbyReadyState
+  category: ESReadyStatus
 
 - type: alert
   id: ESObserving
@@ -25,4 +25,4 @@
     state: observing
   name: alerts-observing-name
   description: alerts-observing-desc
-  category: ESLobbyReadyState
+  category: ESReadyStatus

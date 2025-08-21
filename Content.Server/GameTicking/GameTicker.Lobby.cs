@@ -5,6 +5,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using System.Text;
 using Content.Server.Spawners.Components;
+using Content.Shared.Alert;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Robust.Shared.EntitySerialization;
@@ -48,7 +49,11 @@ namespace Content.Server.GameTicking
         // todo mirror lobby change
         private static readonly EntProtoId TheatergoerEntity = "ESMobTheatergoer";
 
-        // ES START
+        private static readonly ProtoId<AlertPrototype> ReadiedAlert = "ESReadiedUp";
+        private static readonly ProtoId<AlertPrototype> NotReadiedAlert = "ESNotReadiedUp";
+        private static readonly ProtoId<AlertPrototype> ObservingAlert = "ESObserving";
+        private static readonly ProtoId<AlertCategoryPrototype> ReadyAlertCategory = "ESReadyStatus";
+
         // Manages loading the diegetic lobby world and spawning players into it.
         // FOR MIRROR NOTES
         // lobby persists thru restarts (?)
@@ -67,10 +72,10 @@ namespace Content.Server.GameTicking
             var opts = DeserializationOptions.Default with {InitializeMaps = true};
             if (!_loader.TryLoadMap(new ResPath(mapPath),
                     out var map,
-                    out var grids,
+                    out _,
                     opts))
             {
-                throw new Exception($"Failed to load diegetic lobby map");
+                throw new Exception($"Failed to load diegetic lobby map {mapPath}");
             }
 
             DiegeticLobbyMapId = map.Value.Comp.MapId;
@@ -215,7 +220,7 @@ namespace Content.Server.GameTicking
         private TickerLobbyStatusEvent GetStatusMsg(ICommonSession session)
         {
             _playerGameStatuses.TryGetValue(session.UserId, out var status);
-            return new TickerLobbyStatusEvent(RunLevel != GameRunLevel.PreRoundLobby, LobbyBackground, status == PlayerGameStatus.ReadyToPlay, _roundStartTime, RoundPreloadTime, RoundStartTimeSpan, Paused);
+            return new TickerLobbyStatusEvent(RunLevel != GameRunLevel.PreRoundLobby, LobbyBackground, status, _roundStartTime, RoundPreloadTime, RoundStartTimeSpan, Paused);
         }
 
         private void SendStatusToAll()
@@ -281,7 +286,7 @@ namespace Content.Server.GameTicking
             }
         }
 
-        public void ToggleReady(ICommonSession player, bool ready)
+        public void ToggleReady(ICommonSession player, PlayerGameStatus ready)
         {
             if (!_playerGameStatuses.ContainsKey(player.UserId))
                 return;
@@ -294,13 +299,39 @@ namespace Content.Server.GameTicking
                 return;
             }
 
-            var status = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
-            _playerGameStatuses[player.UserId] = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
+            _playerGameStatuses[player.UserId] = ready;
             RaiseNetworkEvent(GetStatusMsg(player), player.Channel);
             // update server info to reflect new ready count
+            TryShowReadyStatusAlert(player, ready);
             UpdateInfoText();
         }
 
+        // ES START
+        private void TryShowReadyStatusAlert(ICommonSession player, PlayerGameStatus ready)
+        {
+            if (player.AttachedEntity is null || ready == PlayerGameStatus.JoinedGame)
+                return;
+
+            var alert = ready switch
+            {
+                PlayerGameStatus.NotReadyToPlay => NotReadiedAlert,
+                PlayerGameStatus.ReadyToPlay => ReadiedAlert,
+                PlayerGameStatus.Observing => ObservingAlert,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
+            _alerts.ShowAlert(player.AttachedEntity.Value, alert);
+        }
+
+        private void ClearReadyStatusAlert(ICommonSession player)
+        {
+            if (player.AttachedEntity == null)
+                return;
+
+            _alerts.ClearAlertCategory(player.AttachedEntity.Value, ReadyAlertCategory);
+        }
+
+        // ES END
         public bool UserHasJoinedGame(ICommonSession session)
             => UserHasJoinedGame(session.UserId);
 

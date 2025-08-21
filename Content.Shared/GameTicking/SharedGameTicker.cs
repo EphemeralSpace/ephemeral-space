@@ -91,27 +91,30 @@ namespace Content.Shared.GameTicking
         }
     }
 
+    // ES START
+    // ready -> enum
     [Serializable, NetSerializable]
     public sealed class TickerLobbyStatusEvent : EntityEventArgs
     {
         public bool IsRoundStarted { get; }
         public string? LobbyBackground { get; }
-        public bool YouAreReady { get; }
+        public PlayerGameStatus ReadyStatus { get; }
         // UTC.
         public TimeSpan StartTime { get; }
         public TimeSpan RoundStartTimeSpan { get; }
         public bool Paused { get; }
 
-        public TickerLobbyStatusEvent(bool isRoundStarted, string? lobbyBackground, bool youAreReady, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
+        public TickerLobbyStatusEvent(bool isRoundStarted, string? lobbyBackground, PlayerGameStatus readyStatus, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
         {
             IsRoundStarted = isRoundStarted;
             LobbyBackground = lobbyBackground;
-            YouAreReady = youAreReady;
+            ReadyStatus = readyStatus;
             StartTime = startTime;
             RoundStartTimeSpan = roundStartTimeSpan;
             Paused = paused;
         }
     }
+    // ES END
 
     [Serializable, NetSerializable]
     public sealed class TickerLobbyInfoEvent : EntityEventArgs
@@ -229,5 +232,10 @@ namespace Content.Shared.GameTicking
         NotReadyToPlay = 0,
         ReadyToPlay,
         JoinedGame,
+        // ES START
+        // when the game starts, this player will observe
+        // instead of joining the game
+        Observing,
+        // ES END
     }
 }

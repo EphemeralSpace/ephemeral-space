@@ -1,3 +1,4 @@
+using Content.Shared.GameTicking;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
@@ -9,15 +10,8 @@ namespace Content.Shared._ES.Lobby;
 /// readyup marker also handles allowing players to latejoin.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class ESReadyAreaMarkerComponent : Component
+public sealed partial class ESReadyTriggerMarkerComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public ESReadyMarkerBehavior Behavior = ESReadyMarkerBehavior.Ready;
-}
-
-[Serializable, NetSerializable]
-public enum ESReadyMarkerBehavior
-{
-    Ready,
-    Unready
+    public PlayerGameStatus Behavior = PlayerGameStatus.ReadyToPlay;
 }
