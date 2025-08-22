@@ -127,6 +127,8 @@ public abstract partial class ESSharedAuditionsSystem
         character.PersonalityTraits.Add(_random.Pick(_prototypeManager.Index(TendencyDataset)));
         character.PersonalityTraits.Add(_random.Pick(_prototypeManager.Index(TemperamentDataset)));
 
+        character.Station = producer;
+
         Dirty(ent, character);
 
         producer.Comp.Characters.Add(ent);

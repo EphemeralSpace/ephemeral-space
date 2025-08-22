@@ -1,7 +1,7 @@
 - type: esMultistationConfig
   id: ESDefault
   stationDistance: 256
-  minStations: 2
+  minStations: 1
   mapPool:
   - ESTestMap
   mapComponents:

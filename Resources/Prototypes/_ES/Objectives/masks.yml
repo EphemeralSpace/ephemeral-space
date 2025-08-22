@@ -1,0 +1,56 @@
+- type: entity
+  parent: BaseObjective
+  id: ESBaseMaskObjective
+  abstract: true
+  components:
+  - type: Objective
+    issuer: es-objective-issuer-mask # placeholder, do not show in UI
+    difficulty: 1 # not needed for anything but we have to include it here for some fuckin reason.
+    unique: false # none of these should be unique, really
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESMaskObjectiveRandomStationKill
+  description: Make sure they don't survive.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Weapons/Melee/kitchen_knife.rsi
+      state: icon
+  - type: TargetObjective
+    title: objective-condition-kill-person-title
+  - type: PickRandomPerson
+    filters:
+    # You can only get kill objectives for people on your station.
+    - !type:ESShareStationFilter
+    # Can't have multiple objectives to kill the same person.
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - KillPersonCondition
+  - type: KillPersonCondition
+    requireDead: true
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESMaskObjectiveRandomStationKeepAlive
+  description: Make sure they don't die.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Specific/Medical/firstaidkits.rsi
+      state: firstaid
+  - type: TargetObjective
+    title: es-objective-condition-crewmember-alive-title
+  - type: PickRandomPerson
+    filters:
+    # You can only get kill objectives for people on your station.
+    - !type:ESShareStationFilter
+    # Can't have multiple objectives to keep the same person alive.
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - HelpProgressCondition
+        - KeepAliveCondition
+  - type: KeepAliveCondition
+

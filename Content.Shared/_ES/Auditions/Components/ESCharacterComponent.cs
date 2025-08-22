@@ -29,4 +29,7 @@ public sealed partial class ESCharacterComponent : Component
 
     [DataField, AutoNetworkedField]
     public HumanoidCharacterProfile Profile;
+
+    [DataField, AutoNetworkedField]
+    public EntityUid Station;
 }

@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Numerics;
 using Content.Server._ES.Arrivals.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
@@ -12,7 +14,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
-using Content.Shared.Mobs.Components;
+using Content.Shared.GameTicking;
 using Content.Shared.Movement.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Tag;
@@ -56,6 +58,7 @@ public sealed class ESArrivalsSystem : EntitySystem
         SubscribeLocalEvent<ESArrivalsShuttleComponent, FTLCompletedEvent>(OnFTLCompleted);
 
         SubscribeLocalEvent<PlayerSpawningEvent>(HandlePlayerSpawning, before: [typeof(SpawnPointSystem)]);
+        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
 
         _config.OnValueChanged(CCVars.ArrivalsShuttles, OnArrivalsConfigChanged, true);
     }
@@ -114,13 +117,22 @@ public sealed class ESArrivalsSystem : EntitySystem
         if (_station.GetLargestGrid(ent.Comp.Station) is not { } grid)
             return;
 
-        var mobQuery = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
+        var passengerQuery = EntityQueryEnumerator<ESArrivalsPassengerComponent, TransformComponent>();
+        var passengers = new ValueList<EntityUid>();
         var toMove = new ValueList<Entity<TransformComponent>>();
-        while (mobQuery.MoveNext(out var uid, out _, out var xform))
+        while (passengerQuery.MoveNext(out var uid, out var passenger, out var xform))
         {
-            if (xform.GridUid != ent)
+            // They are a passenger for another station.
+            if (passenger.Station != ent.Comp.Station)
                 continue;
-            toMove.Add((uid, xform));
+
+            // They're still on the grid. Queue them to be moved.
+            if (xform.GridUid == ent)
+                toMove.Add((uid, xform));
+
+            passengers.Add(uid);
+            RemCompDeferred<ESArrivalsPassengerComponent>(uid);
+            RemCompDeferred<AutoOrientComponent>(uid);
         }
 
         var spawnQuery = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
@@ -134,6 +146,9 @@ public sealed class ESArrivalsSystem : EntitySystem
                 continue;
             spawns.Add(xform.Coordinates);
         }
+
+        var ev = new ESPlayersArrivedEvent(passengers.ToList());
+        RaiseLocalEvent(ent.Comp.Station, ref ev, true);
 
         if (spawns.Count == 0)
             return;
@@ -185,18 +200,29 @@ public sealed class ESArrivalsSystem : EntitySystem
             possiblePositions.Add(xform.Coordinates);
         }
 
-        if (possiblePositions.Count <= 0)
-            return;
-
-        var spawnLoc = _random.Pick(possiblePositions);
+        var spawnLoc = possiblePositions.Count > 0 ? _random.Pick(possiblePositions) : new EntityCoordinates(grid, Vector2.Zero);
         ev.SpawnResult = _stationSpawning.SpawnPlayerMob(
             spawnLoc,
             ev.Job,
             ev.HumanoidCharacterProfile,
             ev.Station);
 
-        EnsureComp<PendingClockInComponent>(ev.SpawnResult.Value);
         EnsureComp<AutoOrientComponent>(ev.SpawnResult.Value);
+        var passenger = EnsureComp<ESArrivalsPassengerComponent>(ev.SpawnResult.Value);
+        passenger.Station = ev.Station.Value;
+    }
+
+    private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args)
+    {
+        // Exists solely as a remedial testing thing for if someone
+        // spawns in without arrivals. We don't handle basic roundstart behavior because uhh...
+        // Fuck you! That's why. We don't have typical roundflow so go fuck yourself.
+        if (_arrivalsEnabled || HasComp<ESArrivalsPassengerComponent>(args.Mob))
+            return;
+
+        // Match the one above.
+        var ev = new ESPlayersArrivedEvent([args.Mob]);
+        RaiseLocalEvent(args.Station, ref ev, true);
     }
 
     public void SetupShuttle(Entity<ESStationArrivalsComponent> ent)
@@ -245,3 +271,6 @@ public sealed class ESArrivalsSystem : EntitySystem
         }
     }
 }
+
+[ByRefEvent]
+public readonly record struct ESPlayersArrivedEvent(List<EntityUid> Players);
