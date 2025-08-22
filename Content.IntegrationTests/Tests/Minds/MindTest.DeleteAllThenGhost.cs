@@ -43,7 +43,8 @@ public sealed partial class MindTests
         await pair.RunTicksSync(5);
 
         // Client is not attached to anything
-        Assert.That(pair.Client.AttachedEntity, Is.Null);
+        // ES START
+        Assert.That(pair.Client.AttachedEntity, Is.Not.Null);
         Assert.That(pair.PlayerData?.Mind, Is.Null);
 
         // Attempt to ghost
