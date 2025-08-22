@@ -13,7 +13,7 @@
   components:
   - type: Objective
     issuer: es-objective-issuer-mask # placeholder, do not show in UI
-    difficulty: 1 # not needed for anything but we have to include it here for some fuckin reason.
+    difficulty: 0 # not needed for anything but we have to include it here for some fuckin reason.
     unique: false # none of these should be unique, really
   - type: RoleRequirement
     roles: # You know how much i dont like doing this shit
