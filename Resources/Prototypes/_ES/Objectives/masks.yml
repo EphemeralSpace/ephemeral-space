@@ -1,4 +1,12 @@
 - type: entity
+  parent: BaseMindRole
+  id: ESMindRoleMask
+  name: Mask Role
+  components:
+  - type: MindRole
+  - type: ESMaskRole
+
+- type: entity
   parent: BaseObjective
   id: ESBaseMaskObjective
   abstract: true
@@ -7,6 +15,9 @@
     issuer: es-objective-issuer-mask # placeholder, do not show in UI
     difficulty: 1 # not needed for anything but we have to include it here for some fuckin reason.
     unique: false # none of these should be unique, really
+  - type: RoleRequirement
+    roles: # You know how much i dont like doing this shit
+    - ESMaskRole
 
 - type: entity
   parent: ESBaseMaskObjective
@@ -18,7 +29,7 @@
       sprite: Objects/Weapons/Melee/kitchen_knife.rsi
       state: icon
   - type: TargetObjective
-    title: objective-condition-kill-person-title
+    title: es-objective-condition-crewmember-kill-title
   - type: PickRandomPerson
     filters:
     # You can only get kill objectives for people on your station.

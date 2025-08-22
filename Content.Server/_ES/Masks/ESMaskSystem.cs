@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server._ES.Arrivals;
+using Content.Server._ES.Masks.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Mind;
 using Content.Server.Roles;
@@ -24,6 +25,8 @@ public sealed class ESMaskSystem : EntitySystem
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _role = default!;
+
+    private static readonly EntProtoId<ESMaskRoleComponent> MindRole = "ESMindRoleMask";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -78,6 +81,7 @@ public sealed class ESMaskSystem : EntitySystem
     public void ApplyMask(Entity<MindComponent> mind, ProtoId<ESMaskPrototype> maskId)
     {
         var mask = _prototypeManager.Index(maskId);
+        _role.MindAddRole(mind, MindRole, mind, true);
 
         var objectives = _entityTable.GetSpawns(mask.Objectives);
         foreach (var objective in objectives)

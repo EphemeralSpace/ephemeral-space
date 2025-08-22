@@ -5,6 +5,7 @@ es-mask-guardian-desc = You must lay down your life and [bold]protect[/bold] you
 
 es-objective-issuer-mask = Mask
 
+es-objective-condition-crewmember-kill-title = Kill {$targetName}, {CAPITALIZE($job)}.
 es-objective-condition-crewmember-alive-title = Ensure {$targetName}, {CAPITALIZE($job)} stays alive.
 
 es-mask-selected-chat-message =
