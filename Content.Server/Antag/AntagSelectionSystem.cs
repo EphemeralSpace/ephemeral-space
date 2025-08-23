@@ -570,7 +570,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
 // ES START
         if (HasComp<ESTheatergoerMarkerComponent>(entity))
-            return false;
+            return true;
 // ES END
 
         if (HasComp<PendingClockInComponent>(entity))
