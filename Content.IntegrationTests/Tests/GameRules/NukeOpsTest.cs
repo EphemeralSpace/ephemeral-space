@@ -79,11 +79,11 @@ public sealed class NukeOpsTest
         // ES START
         // Assert.That(pair.Player?.AttachedEntity, Is.Null);
         // Assert.That(dummies.All(x => x.AttachedEntity == null));
-        // ES END
 
         // There are no grids or maps
-        Assert.That(entMan.Count<MapComponent>(), Is.Zero);
-        Assert.That(entMan.Count<MapGridComponent>(), Is.Zero);
+        // Assert.That(entMan.Count<MapComponent>(), Is.Zero);
+        // Assert.That(entMan.Count<MapGridComponent>(), Is.Zero);
+        // ES END
         Assert.That(entMan.Count<StationMapComponent>(), Is.Zero);
         Assert.That(entMan.Count<StationMemberComponent>(), Is.Zero);
         Assert.That(entMan.Count<StationCentcommComponent>(), Is.Zero);

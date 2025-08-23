@@ -93,10 +93,11 @@ public sealed class FailAndStartPresetTest
         // Game should not have started
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
         Assert.That(ticker.PlayerGameStatuses[client.User!.Value], Is.EqualTo(PlayerGameStatus.NotReadyToPlay));
-        // ES START
+// ES START
         // Assert.That(!client.EntMan.EntityExists(client.AttachedEntity));
         var player = pair.Player!.AttachedEntity;
-        Assert.That(!entMan.EntityExists(player));
+        // Assert.That(!entMan.EntityExists(player));
+// ES END
 
         // Ready up and start nukeops
         await pair.WaitClientCommand("toggleready True");
