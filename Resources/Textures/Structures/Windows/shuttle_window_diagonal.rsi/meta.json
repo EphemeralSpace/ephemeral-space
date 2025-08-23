@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Made by brainfood1183 (github), transparency tweaked by Ubaser.",
+    "copyright": "Created by Flareguy, based on shuttle windows from https://github.com/vgstation-coders/vgstation13/raw/99cc2ab62d65a3a7b554dc7b21ff5f57c835f973",
     "states": [
         {
             "name": "state0"
