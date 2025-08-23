@@ -35,11 +35,11 @@ public sealed class ESLobbyCurtainsUIController : UIController
 
     private static readonly TimeSpan DefaultAnimationTime = TimeSpan.FromSeconds(1.5);
     private static readonly TimeSpan ClosedPanicOpenTime = TimeSpan.FromSeconds(10);
-    private float _currentTargetTime = 0f;
-    private float _accumulatedTime = 0f;
-    private float _timeSpentClosed = 0f; // measured so we can panic-open the curtains if theyre closed for too long for some reason
-    private float _leftStartingX = 0f;
-    private float _rightStartingX = 0f;
+    private float _currentTargetTime;
+    private float _accumulatedTime;
+    private float _timeSpentClosed; // measured so we can panic-open the curtains if theyre closed for too long for some reason
+    private float _leftStartingX;
+    private float _rightStartingX;
 
     public override void Initialize()
     {
@@ -59,7 +59,7 @@ public sealed class ESLobbyCurtainsUIController : UIController
             _timeSpentClosed += args.DeltaSeconds;
             if (_timeSpentClosed > ClosedPanicOpenTime.TotalSeconds)
             {
-                Log.Warning("");
+                Log.Info("Closed panic time exceeded: forcing curtains open.");
                 StartCurtainAnimation(true, TimeSpan.FromSeconds(0.5));
                 _timeSpentClosed = 0f;
                 return;

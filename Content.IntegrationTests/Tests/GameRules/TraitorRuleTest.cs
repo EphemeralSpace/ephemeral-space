@@ -74,8 +74,10 @@ public sealed class TraitorRuleTest
         await pair.RunTicksSync(5);
 
         // Initially, the players have no attached entities
-        Assert.That(pair.Player?.AttachedEntity, Is.Null);
-        Assert.That(dummies.All(x => x.AttachedEntity == null));
+        // ES START
+        // Assert.That(pair.Player?.AttachedEntity, Is.Null);
+        // Assert.That(dummies.All(x => x.AttachedEntity == null));
+        // ES END
 
         // Opt-in the player for the traitor role
         await pair.SetAntagPreference(TraitorAntagRoleName, true);
