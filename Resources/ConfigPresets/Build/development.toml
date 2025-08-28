@@ -46,4 +46,7 @@ ssd_sleep_time = 3600
 # ES START
 [es_multistation]
 enabled = true
+
+[audio]
+attenuation = 2 # inversedistanceclamped 1 << 2, see audioparams.cs
 # ES END
