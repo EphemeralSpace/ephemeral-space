@@ -586,7 +586,7 @@
   id: Scurret
   params:
     variation: 0.125
-  sounds:
+#  sounds:
 #    Thump:
 #      path: /Audio/Effects/soft_thump.ogg
 #      params:
