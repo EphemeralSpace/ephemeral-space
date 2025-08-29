@@ -48,5 +48,5 @@ ssd_sleep_time = 3600
 enabled = true
 
 [audio]
-attenuation = 2 # inversedistanceclamped 1 << 2, see audioparams.cs
+attenuation = 4 # inversedistanceclamped 1 << 2, see audioparams.cs
 # ES END

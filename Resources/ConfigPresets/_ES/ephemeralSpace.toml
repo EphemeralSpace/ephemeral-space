@@ -3,4 +3,4 @@ desc             = "WIP"
 lobbyenabled     = true
 
 [audio]
-attenuation = 2 # inversedistanceclamped 1 << 2, see audioparams.cs
+attenuation = 4 # inversedistanceclamped 1 << 2, see audioparams.cs
