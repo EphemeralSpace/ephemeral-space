@@ -92,13 +92,14 @@
         acts: [ "Destruction" ]
   - type: CableVisualizer
     statePrefix: hvcable_
-  # TODO make this change on power
-  - type: AmbientSound
-    enabled: false
-    volume: -14
-    range: 2
-    sound:
-      path: /Audio/Ambience/Objects/emf_buzz.ogg
+  # ES START
+  #- type: AmbientSound
+  #  enabled: false
+  #  volume: -14
+  #  range: 2
+  #  sound:
+  #    path: /Audio/Ambience/Objects/emf_buzz.ogg
+  # ES END
 
 - type: entity
   id: CableHVUncuttable

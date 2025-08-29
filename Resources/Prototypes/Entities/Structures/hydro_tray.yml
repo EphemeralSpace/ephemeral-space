@@ -88,9 +88,12 @@
   - type: Machine
     board: HydroponicsTrayMachineCircuitboard
   - type: WiresPanel
+  # ES START
+  - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
-    range: 5
+    range: 2
+  # ES END
     sound:
       path: /Audio/Ambience/Objects/flowing_water_open.ogg
   - type: GuideHelp

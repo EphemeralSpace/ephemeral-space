@@ -8,12 +8,14 @@
     mode: SnapgridCenter
   components:
   - type: StationAiWhitelist
-  - type: AmbientOnPowered
-  - type: AmbientSound
-    volume: -9
-    range: 2
-    sound:
-      path: /Audio/Ambience/Objects/hdd_buzz.ogg
+  # ES START
+  #- type: AmbientOnPowered
+  #- type: AmbientSound
+  #  volume: -9
+  #  range: 2
+  #  sound:
+  #    path: /Audio/Ambience/Objects/hdd_buzz.ogg
+  # ES END
   - type: PointLight
     radius: 1.5
     energy: 1.6

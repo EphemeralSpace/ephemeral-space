@@ -145,12 +145,14 @@
     enabled: true
   - type: PoweredLight
     hasLampOnSpawn: LightTube
-  - type: AmbientOnPowered
-  - type: AmbientSound
-    volume: -15
-    range: 2
-    sound:
-      path: /Audio/Ambience/Objects/light_hum.ogg
+  # ES START
+  # - type: AmbientOnPowered
+  # - type: AmbientSound
+  #  volume: -15
+  #  range: 2
+  #  sound:
+  #    path: /Audio/Ambience/Objects/light_hum.ogg
+  # ES END
   - type: DamageOnInteract
     damage:
       types:
@@ -254,6 +256,9 @@
   parent: AlwaysPoweredWallLight
   components:
     - type: AmbientSound
+      # ES START
+      enabled: false
+      # ES END
       volume: -15
       range: 2
       sound:

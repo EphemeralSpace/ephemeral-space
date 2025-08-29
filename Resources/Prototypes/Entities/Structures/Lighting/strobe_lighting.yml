@@ -5,6 +5,9 @@
   suffix: Always powered
   components:
   - type: AmbientSound
+    # ES START
+    enabled: false
+    # ES END
     volume: -15
     range: 2
     sound:
@@ -135,6 +138,9 @@
   parent: PoweredStrobeLightEmpty
   components:
   - type: AmbientSound
+    # ES START
+    enabled: false
+    # ES END
     volume: 0
     range: 10
     sound:

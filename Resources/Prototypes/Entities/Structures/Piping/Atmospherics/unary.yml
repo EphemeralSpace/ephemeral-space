@@ -64,12 +64,14 @@
       graph: GasUnary
       node: ventpump
     - type: VentCritterSpawnLocation
-    - type: AmbientSound
-      enabled: true
-      volume: -12
-      range: 5
-      sound:
-        path: /Audio/Ambience/Objects/gas_vent.ogg
+    # ES START
+    #- type: AmbientSound
+    #  enabled: true
+    #  volume: -12
+    #  range: 5
+    #  sound:
+    #    path: /Audio/Ambience/Objects/gas_vent.ogg
+    # ES END
     - type: Weldable
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
@@ -154,12 +156,14 @@
     - type: Construction
       graph: GasUnary
       node: ventscrubber
-    - type: AmbientSound
-      enabled: true
-      volume: -12
-      range: 5
-      sound:
-        path: /Audio/Ambience/Objects/gas_vent.ogg
+    # ES START
+    #- type: AmbientSound
+    #  enabled: true
+    #  volume: -12
+    #  range: 5
+    #  sound:
+    #    path: /Audio/Ambience/Objects/gas_vent.ogg
+    # ES END
     - type: Weldable
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentScrubber

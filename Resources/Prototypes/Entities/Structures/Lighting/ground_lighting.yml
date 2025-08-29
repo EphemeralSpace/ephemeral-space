@@ -128,12 +128,14 @@
     enabled: true
   - type: PoweredLight
     hasLampOnSpawn: LightTube
-  - type: AmbientOnPowered
-  - type: AmbientSound
-    volume: -15
-    range: 3
-    sound:
-      path: /Audio/Ambience/Objects/light_hum.ogg
+  # ES START
+  # - type: AmbientOnPowered
+  # - type: AmbientSound
+  #  volume: -15
+  #  range: 3
+  #  sound:
+  #    path: /Audio/Ambience/Objects/light_hum.ogg
+  # ES END
   - type: DamageOnInteract
     damage:
       types:
@@ -157,12 +159,14 @@
     color: "#EEEEFF"
   - type: PoweredLight
     hasLampOnSpawn: LedLightTube
-  - type: AmbientOnPowered
-  - type: AmbientSound
-    volume: -15
-    range: 3
-    sound:
-      path: /Audio/Ambience/Objects/light_hum.ogg
+  # ES START
+  # - type: AmbientOnPowered
+  # - type: AmbientSound
+  #  volume: -15
+  #  range: 3
+  #  sound:
+  #    path: /Audio/Ambience/Objects/light_hum.ogg
+  # ES END
   - type: DamageOnInteract
     damage:
       types:
