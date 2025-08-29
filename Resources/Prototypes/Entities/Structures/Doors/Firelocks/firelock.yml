@@ -97,7 +97,9 @@
       openSound:
         path: /Audio/Machines/airlock_open.ogg
       closeSound:
-        path: /Audio/Machines/airlock_close.ogg
+        # ES START
+        path: /Audio/_ES/Machines/airlock_close.ogg
+        # ES END
       denySound:
         path: /Audio/Machines/airlock_deny.ogg
       openingAnimationTime: 0.6
