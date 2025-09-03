@@ -196,7 +196,7 @@ public sealed class ThrowingSystem : EntitySystem
             {
                 // ES START
                 // We step the amount of 'full spins' according to distance
-                // less than 3m we dont want to spin at all, then 1 more full spin each 3 more
+                // less than 4m we dont want to spin at all, then 1 more full spin each 4 more
                 // this is so we can normalize the rotation to 0 at the end of the throw without it looking weird
                 // (we want to avoid arbitrarily rotated items where possible for readability reasons)
                 var spins = MathF.Floor(direction.Length() / ESThrowSpinStep);
