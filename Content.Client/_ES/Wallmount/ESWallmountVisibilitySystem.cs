@@ -46,7 +46,7 @@ public sealed class ESWallmountVisibilitySystem : EntitySystem
             if (xform.MapID != _eye.CurrentEye.Position.MapId)
                 continue;
 
-            if (!_eye.CurrentEye.DrawFov && sprite.Visible == false)
+            if (!_eye.CurrentEye.DrawFov)
             {
                 _sprite.SetVisible((uid, sprite), true);
                 continue;
