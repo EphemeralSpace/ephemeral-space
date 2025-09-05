@@ -15,7 +15,7 @@
   # ES START
   # - type: WallMount
   #  arc: 360
-  - type: ESAllowInteractionIfBlocked
+  - type: ESInteractionIgnoreAnchoredInTile
   # ES END
   - type: Tag
     tags:
@@ -136,7 +136,7 @@
   # ES START
   # - type: WallMount
   #  arc: 360
-  - type: ESAllowInteractionIfBlocked
+  - type: ESInteractionIgnoreAnchoredInTile
   # ES END
   - type: Tag
     tags:

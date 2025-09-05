@@ -59,7 +59,7 @@
     # ES START
     # - type: WallMount
     #  arc: 360
-    - type: ESAllowInteractionIfBlocked
+    - type: ESInteractionIgnoreAnchoredInTile
     # ES END
 
 - type: entity

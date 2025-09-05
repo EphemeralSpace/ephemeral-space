@@ -87,7 +87,8 @@ namespace Content.Shared.Interaction
         private EntityQuery<UseDelayComponent> _delayQuery;
         private EntityQuery<ActivatableUIComponent> _uiQuery;
         // ES START
-        private EntityQuery<ESAllowInteractionIfBlockedComponent> _esInteractQuery;
+        private EntityQuery<ESInteractionIgnoreAnchoredInTileComponent> _esInteractQuery;
+        // ES END
 
         /// <summary>
         /// The collision mask used by default for
@@ -117,7 +118,7 @@ namespace Content.Shared.Interaction
             _delayQuery = GetEntityQuery<UseDelayComponent>();
             _uiQuery = GetEntityQuery<ActivatableUIComponent>();
             // ES START
-            _esInteractQuery = GetEntityQuery<ESAllowInteractionIfBlockedComponent>();
+            _esInteractQuery = GetEntityQuery<ESInteractionIgnoreAnchoredInTileComponent>();
             // ES END
 
             SubscribeLocalEvent<BoundUserInterfaceCheckRangeEvent>(HandleUserInterfaceRangeCheck);

@@ -14,7 +14,7 @@
     soundGroups:
       Brute:
         collection: GlassSmack
-  - type: ESAllowInteractionIfBlocked
+  - type: ESInteractionIgnoreAnchoredInTile
   - type: Tag
     tags:
       - ForceFixRotations

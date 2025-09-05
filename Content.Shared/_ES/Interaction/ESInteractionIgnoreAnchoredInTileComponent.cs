@@ -11,6 +11,6 @@ namespace Content.Shared._ES.Interaction;
 ///     So I chose to special case their behavior into a new component rather than reusing wallmount
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class ESAllowInteractionIfBlockedComponent : Component
+public sealed partial class ESInteractionIgnoreAnchoredInTileComponent : Component
 {
 }
