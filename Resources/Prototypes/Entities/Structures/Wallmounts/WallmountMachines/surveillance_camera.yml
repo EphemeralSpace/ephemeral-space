@@ -39,7 +39,10 @@
   - type: Electrified
     enabled: false
     usesApcPower: true
+  # ES START
   - type: WallMount
+    arc: 360
+  # ES END
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: Eye
@@ -233,7 +236,10 @@
     - type: Construction
       graph: SurveillanceCamera
       node: assembly
+    # ES START
     - type: WallMount
+      arc: 360
+    # ES END
     - type: Transform
       anchored: true
     - type: Damageable

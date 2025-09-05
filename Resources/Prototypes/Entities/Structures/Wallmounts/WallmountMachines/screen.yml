@@ -33,6 +33,10 @@
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: ShuttleTimer
+  # ES START
+  - type: WallMount
+    arc: 360
+  # ES END
 
 - type: entity
   id: ArrivalsShuttleTimer
