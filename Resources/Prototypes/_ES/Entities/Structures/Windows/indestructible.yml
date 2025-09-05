@@ -14,8 +14,7 @@
     soundGroups:
       Brute:
         collection: GlassSmack
-  - type: WallMount
-    arc: 360 # interact despite grilles
+  - type: ESAllowInteractionIfBlocked
   - type: Tag
     tags:
       - ForceFixRotations

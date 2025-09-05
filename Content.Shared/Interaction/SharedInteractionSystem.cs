@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._ES.Interaction;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
@@ -85,6 +86,8 @@ namespace Content.Shared.Interaction
         private EntityQuery<WallMountComponent> _wallMountQuery;
         private EntityQuery<UseDelayComponent> _delayQuery;
         private EntityQuery<ActivatableUIComponent> _uiQuery;
+        // ES START
+        private EntityQuery<ESAllowInteractionIfBlockedComponent> _esInteractQuery;
 
         /// <summary>
         /// The collision mask used by default for
@@ -113,6 +116,9 @@ namespace Content.Shared.Interaction
             _wallMountQuery = GetEntityQuery<WallMountComponent>();
             _delayQuery = GetEntityQuery<UseDelayComponent>();
             _uiQuery = GetEntityQuery<ActivatableUIComponent>();
+            // ES START
+            _esInteractQuery = GetEntityQuery<ESAllowInteractionIfBlockedComponent>();
+            // ES END
 
             SubscribeLocalEvent<BoundUserInterfaceCheckRangeEvent>(HandleUserInterfaceRangeCheck);
 
@@ -899,6 +905,13 @@ namespace Content.Shared.Interaction
                 if (ignoreAnchored && _mapManager.TryFindGridAt(targetCoords, out var gridUid, out var grid))
                     ignored.UnionWith(_map.GetAnchoredEntities((gridUid, grid), targetCoords));
             }
+            // ES START
+            else if (_esInteractQuery.HasComp(target))
+            {
+                if (_mapManager.TryFindGridAt(targetCoords, out var gridUid, out var grid))
+                    ignored.UnionWith(_map.GetAnchoredEntities((gridUid, grid), targetCoords));
+            }
+            // ES END
 
             Ignored combinedPredicate = e => e == target || (predicate?.Invoke(e) ?? false) || ignored.Contains(e);
             return combinedPredicate;

@@ -124,8 +124,11 @@
       enabled: false
     - type: Occluder
       enabled: false
-    - type: WallMount
-      arc: 360
+    # ES START
+    # - type: WallMount
+    #  arc: 360
+    - type: ESAllowInteractionIfBlocked
+    # ES END
     - type: StaticPrice
       price: 150
     - type: AccessReader

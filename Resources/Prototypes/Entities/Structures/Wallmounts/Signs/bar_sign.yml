@@ -4,8 +4,11 @@
   name: bar sign
   abstract: true
   components:
-  - type: WallMount
-    arc: 360
+  # ES START
+  # - type: WallMount
+  #  arc: 360
+  - type: ESAllowInteractionIfBlocked
+  # ES END
   - type: Sprite
     sprite: Structures/Wallmounts/barsign.rsi
     state: empty
