@@ -1,0 +1,4 @@
+- type: edgeSpreader
+  id: ESAntimatter
+  updatesPerSecond: 32
+  preventSpreadOnSpaced: false

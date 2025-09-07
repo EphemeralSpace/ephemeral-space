@@ -1,0 +1,193 @@
+- type: entity
+  id: ESAntimatter
+  name: antimatter
+  description: A perfect void of darkness, capable of annihilating everything that comes into contact. Best to stay away.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Power/antimatter.rsi
+    state: icon
+    color: "#ffffff00"
+  - type: Appearance
+  - type: ESAntimatter
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        layer:
+        - MidImpassable
+        - Impassable
+  - type: AtmosDevice
+  - type: EdgeSpreader
+    id: ESAntimatter
+  - type: EventHorizon
+    consumerFixtureId: fix1
+    consumeTiles: false
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 60
+    intensitySlope: 5
+    maxIntensity: 30
+    canCreateVacuum: false
+
+- type: entity
+  id: ESNegentropyAccumulator
+  name: negentropy accumulator
+  description: A device capable of neutralizing antimatter to produce large bursts of energy.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Power/negentropy.rsi
+    noRot: true
+    layers:
+    - state: icon
+      map: ["base"]
+    - state: draining
+      visible: false
+      shader: unshaded
+      map: ["glow"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ESAntimatterConverterVisuals.Draining:
+        glow:
+          True: { visible: true }
+          False: { visible: false }
+      enum.ESAntimatterConverterVisuals.Broken:
+        base:
+          True: { state: broken }
+          False: { state: icon }
+  - type: ESAntimatterConverter
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: input
+    collectionName: negentropy
+    sprite: _ES/Structures/Power/negentropy.rsi
+    state: draining
+  - type: Battery
+    maxCharge: 5000000
+    startingCharge: 0
+  - type: BatteryDischarger
+  - type: PowerNetworkBattery
+    maxSupply: 350000
+    supplyRampTolerance: 350000
+  - type: PointLight
+    enabled: false
+    radius: 1.5
+    energy: 3
+    color: "#00AAFF"
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 110
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Anchorable
+  - type: Rotatable
+  - type: Pullable
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Repairable
+    fuelCost: 15
+    doAfterDelay: 3
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+
+- type: entity
+  parent: BaseStructure
+  id: ESAntimatterCapsule
+  name: antimatter capsule
+  description: A highly-experimental container used for transporting antimatter. Safe enough, short of throwing explosives at it. But you'd never do that...
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Power/antican.rsi
+    noRot: true
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Transform
+    anchored: false
+    noRot: true
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ESAntimatter:
+            min: 1
+            max: 1
+      - !type:SpawnGasBehavior
+        gasMixture:
+          volume: 1000
+          moles:
+          - 0 # oxygen
+          - 0 # nitrogen
+          - 0 # carbon dioxide
+          - 100 # plasma
+          temperature: 373.15
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Physics
+    bodyType: Dynamic
+  - type: Pullable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 400
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: StaticPrice
+    price: 7500
