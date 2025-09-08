@@ -24,11 +24,8 @@ public sealed class ESAntimatterOverlay : Overlay
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
-    private IRenderTexture? _aoTarget;
-    private IRenderTexture? _aoBlurBuffer;
-
-    // Couldn't figure out a way to avoid this so if you can then please do.
-    private IRenderTexture? _aoStencilTarget;
+    private IRenderTexture? _renderTarget;
+    private IRenderTexture? _blurBuffer;
 
     public ESAntimatterOverlay()
     {
@@ -50,30 +47,24 @@ public sealed class ESAntimatterOverlay : Overlay
 
         var reducedMotion = _cfgManager.GetCVar(CCVars.ReducedMotion);
 
-        if (_aoTarget?.Texture.Size != target.Size)
+        if (_renderTarget?.Texture.Size != target.Size)
         {
-            _aoTarget?.Dispose();
-            _aoTarget = _clyde.CreateRenderTarget(target.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "ambient-occlusion-target");
+            _renderTarget?.Dispose();
+            _renderTarget = _clyde.CreateRenderTarget(target.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "ambient-occlusion-target");
         }
 
-        if (_aoBlurBuffer?.Texture.Size != target.Size)
+        if (_blurBuffer?.Texture.Size != target.Size)
         {
-            _aoBlurBuffer?.Dispose();
-            _aoBlurBuffer = _clyde.CreateRenderTarget(target.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "ambient-occlusion-blur-target");
-        }
-
-        if (_aoStencilTarget?.Texture.Size != target.Size)
-        {
-            _aoStencilTarget?.Dispose();
-            _aoStencilTarget = _clyde.CreateRenderTarget(target.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "ambient-occlusion-stencil-target");
+            _blurBuffer?.Dispose();
+            _blurBuffer = _clyde.CreateRenderTarget(target.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "ambient-occlusion-blur-target");
         }
 
         // Draw the texture data to the texture.
-        args.WorldHandle.RenderInRenderTarget(_aoTarget,
+        args.WorldHandle.RenderInRenderTarget(_renderTarget,
             () =>
             {
                 worldHandle.UseShader(_proto.Index(UnshadedShader).Instance());
-                var invMatrix = _aoTarget.GetWorldToLocalMatrix(viewport.Eye!, scale);
+                var invMatrix = _renderTarget.GetWorldToLocalMatrix(viewport.Eye!, scale);
 
                 _antimatterSet.Clear();
                 lookups.GetEntitiesIntersecting(mapId, worldBounds.Enlarged(2), _antimatterSet);
@@ -102,9 +93,9 @@ public sealed class ESAntimatterOverlay : Overlay
         var offset = !reducedMotion
             ? _random.NextFloat(-2, 2)
             : 0;
-        _clyde.BlurRenderTarget(viewport, _aoTarget, _aoBlurBuffer, viewport.Eye!, 14f * 2 + offset);
+        _clyde.BlurRenderTarget(viewport, _renderTarget, _blurBuffer, viewport.Eye!, 14f * 2 + offset);
 
-        worldHandle.DrawTextureRect(_aoTarget!.Texture, worldBounds, Color.Black);
+        worldHandle.DrawTextureRect(_renderTarget!.Texture, worldBounds, Color.Black);
 
         args.WorldHandle.SetTransform(Matrix3x2.Identity);
         args.WorldHandle.UseShader(null);

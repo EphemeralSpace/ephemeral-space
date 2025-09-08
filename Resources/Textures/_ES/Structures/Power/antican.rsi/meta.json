@@ -8,10 +8,14 @@
     },
     "states": [
         {
-            "name": "icon"
-        },
-        {
-            "name": "unshaded"
+            "name": "icon",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
         }
     ]
 }

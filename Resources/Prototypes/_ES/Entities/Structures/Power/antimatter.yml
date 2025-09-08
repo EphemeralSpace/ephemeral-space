@@ -133,15 +133,13 @@
   parent: BaseStructure
   id: ESAntimatterCapsule
   name: antimatter capsule
-  description: A highly-experimental container used for transporting antimatter. Safe enough, short of throwing explosives at it. But you'd never do that...
+  description: A bisected container used for transporting antimatter for experimental station usage. Simply blast it open, and the plasma gas inside will fuel the antimatter seed into a workable-sized substance.
   components:
   - type: Sprite
     sprite: _ES/Structures/Power/antican.rsi
     noRot: true
     layers:
     - state: icon
-    - state: unshaded
-      shader: unshaded
   - type: InteractionOutline
   - type: Clickable
   - type: Transform
