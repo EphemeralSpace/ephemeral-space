@@ -1,5 +1,6 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._ES.Power.Antimatter.Components;
 
@@ -10,7 +11,7 @@ public sealed partial class ESAntimatterConverterComponent : Component
     /// <summary>
     /// when the next update will occur.
     /// </summary>
-    [DataField, AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextUpdateTime;
 
     /// <summary>
