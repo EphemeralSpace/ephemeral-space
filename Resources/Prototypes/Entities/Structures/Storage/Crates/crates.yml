@@ -17,24 +17,29 @@
   - type: RadiationBlockingContainer
     resistance: 2.5
 
+# ES Start
+# Plastic crates have been removed so that all of them can look like painted steel.
+# Instead of removing this prototype, changing the ones that use it, and eating the conflicts, we can just make it identical to the steel crate.
 - type: entity
   parent: CrateBaseWeldable
   id: CratePlastic
-  name: plastic crate
+  categories: [ HideSpawnMenu ]
+  name: crate
   components:
   - type: Icon
-    sprite: Structures/Storage/Crates/plastic.rsi
+    sprite: Structures/Storage/Crates/generic.rsi
   - type: Sprite
-    sprite: Structures/Storage/Crates/plastic.rsi
-  - type: Construction
-    graph: CratePlastic
-    node: crateplastic
-    containers:
-    - entity_storage
-  - type: StaticPrice
-    price: 100
+    sprite: Structures/Storage/Crates/generic.rsi
+  - type: Reflect
+    reflects:
+    - Energy
+    reflectProb: 0.2
+    spread: 90
   - type: Paintable
-    group: CratePlastic
+    group: CrateSteel
+  - type: RadiationBlockingContainer
+    resistance: 2.5
+# ES End
 
 - type: entity
   parent: CratePlastic
@@ -54,7 +59,7 @@
     containers:
     - entity_storage
   - type: Paintable
-    group: null
+    group: CrateFreezer
 
 - type: entity
   parent: CratePlastic
@@ -668,28 +673,14 @@
     stateDoorOpen: crate_open
     stateDoorClosed: crate_door
 
+# ES Start
 - type: entity
-  parent: CratePirate
+  parent: CrateGenericSteel
   id: CrateToyBox
   name: toy box
   suffix: Empty
   description: A box overflowing with fun.
-  components:
-  - type: Sprite
-    sprite: Structures/Storage/Crates/toybox.rsi
-    layers:
-    - state: crate
-      map: ["enum.StorageVisualLayers.Base"]
-    - state: crate_door
-      map: ["enum.StorageVisualLayers.Door"]
-    - state: welded
-      visible: false
-      map: ["enum.WeldableLayers.BaseWelded"]
-    - state: paper
-      map: ["enum.PaperLabelVisuals.Layer"]
-  - type: Icon
-    sprite: Structures/Storage/Crates/toybox.rsi
-    state: crate_icon
+# ES End
 
 - type: entity
   parent: CrateGeneric
@@ -817,16 +808,18 @@
     sprite: Structures/Storage/Crates/stone_grave.rsi
     state: base
 
+# ES Start
 - type: entity
   parent: CrateGenericSteel
   id: CrateSyndicate
   name: Syndicate crate
-  description: A dark steel crate with red bands and a letter S embossed on the front.
+  description: A steel crate with red bands and a letter S embossed on the front.
   components:
   - type: Icon
     sprite: Structures/Storage/Crates/syndicate.rsi
   - type: Sprite
     sprite: Structures/Storage/Crates/syndicate.rsi
+# ES End
 
 - type: entity
   parent: [StructureWheeled, CrateBaseWeldable]

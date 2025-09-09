@@ -31,13 +31,15 @@
   category: construction-category-storage
   objectType: Structure
 
-- type: construction
-  id: CratePlastic
-  graph: CratePlastic
-  startNode: start
-  targetNode: crateplastic
-  category: construction-category-storage
-  objectType: Structure
+# ES Start
+#- type: construction
+#  id: CratePlastic
+#  graph: CratePlastic
+#  startNode: start
+#  targetNode: crateplastic
+#  category: construction-category-storage
+#  objectType: Structure
+# ES End
 
 - type: construction
   id: BigBox

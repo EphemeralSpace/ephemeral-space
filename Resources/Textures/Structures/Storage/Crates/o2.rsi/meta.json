@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Created by EmoGarbage404 (github) for Space Station 14.",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/6fdefe3e73d9ce9366e1a4adf925e18e2cbc8d21/icons/obj/crates.dmi and modified for Ephemeral Space. 'welded' state taken from Citadelstation at commit https://github.com/Citadel-Station-13/Citadel-Station-13/commit/85186a971453b0653bacfb3fae88f978dc1be689 and modified by Flareguy for Ephemeral Space",
   "size": {
     "x": 32,
     "y": 32

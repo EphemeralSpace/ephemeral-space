@@ -13,7 +13,9 @@
   id: Crates
   groups:
   - CrateSteel
-  - CratePlastic
+# ES Start
+  - CrateFreezer
+# ES End
   - CrateSecure
 
 - type: paintableGroupCategory
