@@ -8,7 +8,7 @@ using Robust.Shared.Physics;
 namespace Content.Client._ES.Wallmount.Systems;
 
 /// <summary>
-///     Handles updating the component tree for wallmount visibility purposes, so we can query it fast in <see cref="ESWallMountVisibilitySystem"/>
+///     Handles updating the component tree for wallmount visibility purposes, so we can query it fast in <see cref="ESWallMountVisibilityOverlay"/>
 /// </summary>
 public sealed class ESWallMountTreeSystem : ComponentTreeSystem<ESWallMountTreeComponent, WallMountComponent>
 {
