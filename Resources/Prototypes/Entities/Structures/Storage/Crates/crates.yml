@@ -133,7 +133,9 @@
     sprite: Structures/Storage/Crates/science.rsi
 
 - type: entity
-  parent: CrateGenericSteel
+# ES Start
+  parent: CrateFreezer
+# ES Start
   id: CrateSurgery
   name: surgery crate
   components:
