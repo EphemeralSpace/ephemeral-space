@@ -726,3 +726,13 @@ FoodDonutJellySlugcat: FoodDonutJellyScurret
 # 2025-08-11
 ClothingUniformJumpsuitChiefEngineerNT: ClothingUniformJumpsuitChiefEngineer
 ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
+
+# 2025-13-9
+UraniumWindow: PlasmaWindow
+UraniumWindowDiagonal: PlasmaWindowDiagonal
+UraniumWindowDirectional: PlasmaWindowDirectional
+ReinforcedUraniumWindow: ReinforcedPlasmaWindow
+UraniumReinforcedWindowDirectional: PlasmaReinforcedWindowDirectional
+ReinforcedUraniumWindowDiagonal: ReinforcedPlasmaWindowDiagonal
+XenoborgWindow: PlastitaniumWindow
+XenoResinWindow: ReinforcedWindow
