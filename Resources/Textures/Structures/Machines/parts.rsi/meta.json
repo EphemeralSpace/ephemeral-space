@@ -5,7 +5,7 @@
     "y": 32
   },
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/0d9c9a8233dfc3fc55edc538955a761a6328bee0, computer frames adapted from sprites from Baystation12 by EmoGarbage404, Machine frames sprites remade by Ubaser",
+  "copyright": "computer frames adapted from sprites from Baystation12 at commit https://github.com/Baystation12/Baystation12/commit/1277065ea25011f2db6540c9c2e908f3fc746c68 by EmoGarbage404. Machine frames sprites taken from tgstation at commit https://github.com/tgstation/tgstation/commit/f959e719255fcfaacb64807d9de8ba325a044d7 and modified for Ephemeral Space by Flareguy.",
   "states": [
     {
       "name": "0"
@@ -30,18 +30,6 @@
     },
     {
       "name": "box_2"
-    },
-    {
-      "name": "vbox_0"
-    },
-    {
-      "name": "vbox_1"
-    },
-    {
-      "name": "vbox_2"
-    },
-    {
-      "name": "vbox_3"
     },
     {
       "name": "destroyed"
