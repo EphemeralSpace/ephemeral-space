@@ -9,7 +9,7 @@
 # Table: null
 
 # ES Start
-# 2025-18-8
+# 2025-8-18
 # Lockers that are redundant to begin with / we will probably never use
 ClosetJanitorBomb: ClosetBomb
 ClosetJanitorBombFilled: ClosetBomb
@@ -24,6 +24,15 @@ LockerEvacRepair: ClosetEmergency
 LockerEvacRepairFilled: ClosetEmergencyFilledRandom
 LockerWallEvacRepair: ClosetWallEmergency
 LockerWallEvacRepairFilled: ClosetWallEmergencyFilledRandom
+# 2025-9-13
+# Lights we dont want
+BoxWarmLightbulb: BoxLightbulb
+WarmLightBulb: LightBulb
+PoweredWarmSmallLight: PoweredSmallLight
+LedLightBulb: LightBulb
+PoweredLEDSmallLight: PoweredSmallLight
+LedLightTube: LightTube
+PoweredlightLED: Poweredlight
 
 # ES END
 
