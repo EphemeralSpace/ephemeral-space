@@ -33,7 +33,11 @@ public sealed class PoweredLightVisualizerSystem : VisualizerSystem<PoweredLight
         {
             if (TryComp<PointLightComponent>(uid, out var light))
             {
-                SpriteSystem.LayerSetColor((uid, args.Sprite), PoweredLightLayers.Glow, light.Color);
+                var col = light.Color;
+                // ES START
+                // some alpha on glow
+                SpriteSystem.LayerSetColor((uid, args.Sprite), PoweredLightLayers.Glow, col.WithAlpha(comp.GlowAlpha));
+                // ES END
             }
 
             SpriteSystem.LayerSetVisible((uid, args.Sprite), PoweredLightLayers.Glow, state == PoweredLightState.On);
