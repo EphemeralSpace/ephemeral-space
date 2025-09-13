@@ -87,10 +87,12 @@
     maxCharge: 2500000
     startingCharge: 0
   - type: PointLight
-    radius: 1.5
+    # ES START
+    radius: 2.5
+    falloff: 10
     energy: 1
     color: "#ff6900"
-    castShadows: false
+    # ES END
   - type: PowerMonitoringDevice
     sprite: Structures/Power/substation.rsi
     state: substation_static

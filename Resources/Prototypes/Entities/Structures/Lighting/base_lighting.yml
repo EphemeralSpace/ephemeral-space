@@ -142,6 +142,9 @@
   - type: Sprite
     state: base
   - type: PointLight
+  # ES START
+    falloff: 20
+  # ES END
     enabled: true
   - type: PoweredLight
     hasLampOnSpawn: LightTube

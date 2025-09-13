@@ -87,6 +87,7 @@ entities:
     - type: Transform
       pos: 0.4558292,0.42837813
       parent: 943
+    - type: ESTileBasedRoof
     - type: MapGrid
       chunks:
         0,-1:
