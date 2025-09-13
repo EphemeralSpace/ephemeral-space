@@ -35,13 +35,5 @@
         "name": "plasma_reinforced_window",
         "directions": 4
     },
-    {
-        "name": "uranium_window",
-        "directions": 4
-    },
-    {
-        "name": "uranium_reinforced_window",
-        "directions": 4
-    }
   ]
 }
