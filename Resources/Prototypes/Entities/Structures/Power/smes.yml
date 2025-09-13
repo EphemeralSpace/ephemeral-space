@@ -69,7 +69,7 @@
       energy: 3
       falloff: 10
       color: "#c9c042"
-      curveType: InverseQuadratic
+      curveFactor: 1.0
       # ES END
     - type: WiresPanel
     - type: WiresVisuals
