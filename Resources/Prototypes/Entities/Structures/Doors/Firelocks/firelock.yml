@@ -138,7 +138,7 @@
     # ES START
     - type: PointLight
       energy: 1
-      falloff: 20c
+      falloff: 20
       radius: 1.75
       color: Red
       enabled: false
