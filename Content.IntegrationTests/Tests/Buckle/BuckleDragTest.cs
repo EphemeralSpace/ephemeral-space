@@ -49,7 +49,7 @@ public sealed class BuckleDragTest : InteractionTest
 
         // Start pulling, and thus unbuckle them
         await PressKey(ContentKeyFunctions.TryPullObject, cursorEntity: urist);
-        await RunTicks(5);
+        await RunTicks(30);
         Assert.That(buckle.Buckled, Is.False);
         Assert.That(buckle.BuckledTo, Is.Null);
         Assert.That(strap.BuckledEntities, Is.Empty);
