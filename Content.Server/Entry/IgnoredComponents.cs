@@ -20,7 +20,10 @@ namespace Content.Server.Entry
             "LightFade",
             "HolidayRsiSwap",
             "OptionsVisualizer",
-            "MultipartMachineGhost"
+            "MultipartMachineGhost",
+            // ES START
+            "ESInherentLight",
+            // ES END
         };
     }
 }

@@ -4,6 +4,9 @@
   save: false
   id: BaseMob
   abstract: true
+  # ES START
+  parent: [ ESBaseMob ]
+  # ES END
   components:
   - type: Sprite
     noRot: true
