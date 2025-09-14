@@ -101,6 +101,10 @@ namespace Content.Shared.Interaction
         public const float MaxRaycastRange = 100f;
         public const string RateLimitKey = "Interaction";
 
+        // ES START
+        public const float ESPullRange = 1.0f;
+        // ES END
+
         private static readonly ProtoId<TagPrototype> BypassInteractionRangeChecksTag = "BypassInteractionRangeChecks";
 
         public delegate bool Ignored(EntityUid entity);
@@ -277,8 +281,10 @@ namespace Content.Shared.Interaction
             if (Deleted(uid))
                 return false;
 
-            if (!InRangeUnobstructed(userEntity.Value, uid, popup: true))
+            // ES START
+            if (!InRangeUnobstructed(userEntity.Value, uid, range: ESPullRange, popup: true))
                 return false;
+            // ES END
 
             _pullSystem.TogglePull(uid, userEntity.Value);
             return false;
