@@ -1,17 +1,23 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._ES.Weapons.Ranged.Attachments.Components;
+using Content.Shared.ActionBlocker;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Weapons.Ranged.Attachments;
 
 public abstract class ESSharedGunAttachmentsSystem : EntitySystem
 {
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedGunSystem _gun = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     private EntityQuery<ESGunAttachmentComponent> _attachmentQuery;
 
@@ -21,13 +27,14 @@ public abstract class ESSharedGunAttachmentsSystem : EntitySystem
         SubscribeLocalEvent<ESAttachableGunComponent, EntInsertedIntoContainerMessage>(OnEntInsertedIntoContainer);
         SubscribeLocalEvent<ESAttachableGunComponent, EntRemovedFromContainerMessage>(OnEntRemovedFromContainer);
         SubscribeLocalEvent<ESAttachableGunComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
+        SubscribeLocalEvent<ESAttachableGunComponent, InteractUsingEvent>(OnAfterInteract, before: [typeof(ItemSlotsSystem)]);
 
-        SubscribeLocalEvent<ESGunAttachmentComponent, AfterInteractEvent>(OnAttachmentAfterInteract);
+        SubscribeAllEvent<ESAttachableGunModifySlotEvent>(OnAttachableGunModifySlots);
 
         _attachmentQuery = GetEntityQuery<ESGunAttachmentComponent>();
     }
 
-    private void OnEntInsertedIntoContainer(Entity<ESAttachableGunComponent> ent, ref EntInsertedIntoContainerMessage args)
+    protected virtual void OnEntInsertedIntoContainer(Entity<ESAttachableGunComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
         var containerId = args.Container.ID;
         if (!ent.Comp.Slots.Any(s => s.ContainerId.Equals(containerId)))
@@ -35,7 +42,7 @@ public abstract class ESSharedGunAttachmentsSystem : EntitySystem
         _gun.RefreshModifiers(ent.Owner);
     }
 
-    private void OnEntRemovedFromContainer(Entity<ESAttachableGunComponent> ent, ref EntRemovedFromContainerMessage args)
+    protected virtual void OnEntRemovedFromContainer(Entity<ESAttachableGunComponent> ent, ref EntRemovedFromContainerMessage args)
     {
         var containerId = args.Container.ID;
         if (!ent.Comp.Slots.Any(s => s.ContainerId.Equals(containerId)))
@@ -51,15 +58,36 @@ public abstract class ESSharedGunAttachmentsSystem : EntitySystem
         }
     }
 
-    private void OnAttachmentAfterInteract(Entity<ESGunAttachmentComponent> ent, ref AfterInteractEvent args)
+    private void OnAfterInteract(Entity<ESAttachableGunComponent> ent, ref InteractUsingEvent args)
     {
-        if (args.Target is not { } target)
+        if (args.Handled)
             return;
 
-        if (!TryFindEmptyValidSlot(target, ent.AsNullable(), out var slot))
+        if (!TryFindEmptyValidSlot(ent.AsNullable(), args.Used, out var slot))
+            return;
+        args.Handled = TryInsertAttachment(ent.AsNullable(), args.Used, slot.Value);
+    }
+
+    private void OnAttachableGunModifySlots(ESAttachableGunModifySlotEvent msg, EntitySessionEventArgs args)
+    {
+        if (args.SenderSession.AttachedEntity is not { } user ||
+            !TryGetEntity(msg.Gun, out var gunUid) ||
+            !TryComp<ESAttachableGunComponent>(gunUid, out var gunComp) ||
+            !gunComp.Slots.TryGetValue(msg.SlotIndex, out var slot))
             return;
 
-        args.Handled = TryInsertAttachment(target, ent.AsNullable(), slot.Value);
+        if (!_actionBlocker.CanInteract(user, gunUid))
+            return;
+
+        if (TryGetAttachment((gunUid.Value, gunComp), slot, out var attachment))
+        {
+            _container.Remove(attachment.Value.Owner, _container.GetContainer(gunUid.Value, slot.ContainerId));
+            _hands.TryPickupAnyHand(user, attachment.Value);
+        }
+        else if (_hands.TryGetActiveItem(user, out var held))
+        {
+            TryInsertAttachment((gunUid.Value, gunComp), held.Value, slot);
+        }
     }
 
     public bool HasAttachment(Entity<ESAttachableGunComponent> ent, ESGunAttachmentSlot slot)
@@ -97,7 +125,7 @@ public abstract class ESSharedGunAttachmentsSystem : EntitySystem
     {
         outSlot = null;
         if (!Resolve(gun, ref gun.Comp) ||
-            !Resolve(attachment, ref attachment.Comp))
+            !Resolve(attachment, ref attachment.Comp, false))
             return false;
 
         foreach (var slot in gun.Comp.Slots)
@@ -118,7 +146,7 @@ public abstract class ESSharedGunAttachmentsSystem : EntitySystem
     public bool TryInsertAttachment(Entity<ESAttachableGunComponent?> gun, Entity<ESGunAttachmentComponent?> attachment, ESGunAttachmentSlot slot)
     {
         if (!Resolve(gun, ref gun.Comp) ||
-            !Resolve(attachment, ref attachment.Comp))
+            !Resolve(attachment, ref attachment.Comp, false))
             return false;
 
         if (HasAttachment((gun, gun.Comp), slot) || !IsAttachmentValid(attachment, slot))

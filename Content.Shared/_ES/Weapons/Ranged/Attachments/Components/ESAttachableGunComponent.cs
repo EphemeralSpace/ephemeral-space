@@ -41,3 +41,16 @@ public partial record struct ESGunAttachmentSlot
     [DataField(required: true)]
     public HashSet<ProtoId<TagPrototype>> AttachmentTags = new();
 }
+
+[Serializable, NetSerializable]
+public sealed class ESAttachableGunModifySlotEvent(NetEntity gun, int slotIndex) : EntityEventArgs
+{
+    public NetEntity Gun = gun;
+    public int SlotIndex = slotIndex;
+}
+
+[Serializable, NetSerializable]
+public enum ESAttachableGunUiKey : byte
+{
+    Key,
+}
