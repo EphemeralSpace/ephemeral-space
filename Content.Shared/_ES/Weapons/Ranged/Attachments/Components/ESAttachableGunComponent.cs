@@ -1,6 +1,5 @@
-using Content.Shared.Tag;
+using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Weapons.Ranged.Attachments.Components;
@@ -36,10 +35,10 @@ public partial record struct ESGunAttachmentSlot
     public string ContainerId;
 
     /// <summary>
-    /// Tags used to whitelist which particular attachments can be used with this slot.
+    /// Whitelist used to define which particular attachments can be used with this slot.
     /// </summary>
     [DataField(required: true)]
-    public HashSet<ProtoId<TagPrototype>> AttachmentTags = new();
+    public EntityWhitelist Whitelist = new();
 }
 
 [Serializable, NetSerializable]

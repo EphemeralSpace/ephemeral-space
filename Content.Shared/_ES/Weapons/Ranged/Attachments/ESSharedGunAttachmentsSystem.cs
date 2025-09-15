@@ -7,6 +7,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 
@@ -16,6 +17,7 @@ public abstract class ESSharedGunAttachmentsSystem : EntitySystem
 {
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private readonly SharedGunSystem _gun = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
 
@@ -116,7 +118,7 @@ public abstract class ESSharedGunAttachmentsSystem : EntitySystem
         if (!_attachmentQuery.Resolve(ent, ref ent.Comp))
             return false;
 
-        return slot.AttachmentTags.Intersect(ent.Comp.AttachmentTags).Any();
+        return _entityWhitelist.IsWhitelistPass(slot.Whitelist, ent);
     }
 
     public bool TryFindEmptyValidSlot(Entity<ESAttachableGunComponent?> gun,
