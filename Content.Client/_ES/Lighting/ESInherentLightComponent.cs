@@ -18,4 +18,7 @@ public sealed partial class ESInherentLightComponent : Component
     /// </summary>
     [DataField]
     public EntProtoId LightPrototype = "ESMobDefaultInherentLight";
+
+    [DataField]
+    public bool Enabled = true;
 }

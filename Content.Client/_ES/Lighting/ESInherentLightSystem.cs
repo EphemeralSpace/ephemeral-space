@@ -19,25 +19,60 @@ public sealed class ESInherentLightSystem : EntitySystem
         SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnPlayerDetach);
     }
 
+    #region Public API
+
+    public void SetEnabled(Entity<ESInherentLightComponent?> entity, bool value)
+    {
+        if (!Resolve(entity, ref entity.Comp, false))
+            return;
+
+        entity.Comp.Enabled = value;
+        if (value)
+        {
+            CreateAndAttachPointLight(entity!);
+        }
+        else
+        {
+            CleanupPointLight(entity!);
+        }
+    }
+
+    #endregion
+
     private void OnPlayerAttach(LocalPlayerAttachedEvent ev)
     {
-        if (!TryComp<ESInherentLightComponent>(ev.Entity, out var light)
-            || light.LightEntity != null)
+        if (!TryComp<ESInherentLightComponent>(ev.Entity, out var light))
             return;
 
-        // Don't enable inherent light if the mob already has a pointlight on itself
-        if (TryComp<PointLightComponent>(ev.Entity, out var selfPointLight) && selfPointLight.Enabled)
-            return;
-
-        light.LightEntity = SpawnAttachedTo(light.LightPrototype, new EntityCoordinates(ev.Entity, Vector2.Zero));
-        _light.SetEnabled(light.LightEntity.Value, true);
+        CreateAndAttachPointLight((ev.Entity, light));
     }
 
     private void OnPlayerDetach(LocalPlayerDetachedEvent ev)
     {
-        if (!TryComp<ESInherentLightComponent>(ev.Entity, out var light)
-            || light.LightEntity == null
-            || !TryComp<PointLightComponent>(light.LightEntity, out var inherentPointLight))
+        if (!TryComp<ESInherentLightComponent>(ev.Entity, out var light))
+            return;
+
+        CleanupPointLight((ev.Entity, light));
+    }
+
+    private void CreateAndAttachPointLight(Entity<ESInherentLightComponent> entity)
+    {
+        var light = entity.Comp;
+        if (light.LightEntity != null || !light.Enabled)
+            return;
+
+        // Don't enable inherent light if the mob already has a pointlight on itself
+        if (TryComp<PointLightComponent>(entity, out var selfPointLight) && selfPointLight.Enabled)
+            return;
+
+        light.LightEntity = SpawnAttachedTo(light.LightPrototype, new EntityCoordinates(entity, Vector2.Zero));
+        _light.SetEnabled(light.LightEntity.Value, true);
+    }
+
+    private void CleanupPointLight(Entity<ESInherentLightComponent> entity)
+    {
+        var light = entity.Comp;
+        if (light.LightEntity == null)
             return;
 
         QueueDel(light.LightEntity);
