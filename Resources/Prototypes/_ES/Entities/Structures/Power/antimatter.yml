@@ -57,6 +57,7 @@
       shader: unshaded
       map: ["glow"]
   - type: Appearance
+  - type: SyncSprite
   - type: GenericVisualizer
     visuals:
       enum.ESAntimatterConverterVisuals.Draining:
