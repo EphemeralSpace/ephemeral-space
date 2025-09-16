@@ -72,7 +72,9 @@ public sealed class ESInherentLightSystem : EntitySystem
     private void CleanupPointLight(Entity<ESInherentLightComponent> entity)
     {
         var light = entity.Comp;
-        if (light.LightEntity == null)
+
+        // if we're being deleted don't bother
+        if (light.LightEntity == null || LifeStage(entity) >= EntityLifeStage.Terminating)
             return;
 
         QueueDel(light.LightEntity);
