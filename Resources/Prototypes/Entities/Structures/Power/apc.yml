@@ -24,7 +24,7 @@
     mask: /Textures/Effects/LightMasks/cone.png
     offset: 0,-0.2
     falloff: 20
-    curveType: InverseQuadratic
+    curveFactor: 1.0
     autoRot: true
   # ES END
   - type: AccessReader
