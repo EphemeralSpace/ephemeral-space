@@ -4,7 +4,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 
-namespace Content.Client._ES.Multistation.Ui;
+namespace Content.Client._ES.Station.Ui;
 
 [GenerateTypedNameReferences]
 public sealed partial class ESDepartmentHeader : BoxContainer

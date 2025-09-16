@@ -34,10 +34,10 @@ public sealed partial class ESCVars : CVars
     public static readonly CVarDef<float> ESRespawnDelay =
         CVarDef.Create("es_respawn.delay", 60f * 10, CVar.SERVER | CVar.REPLICATED);
 
-    // MULTISTATION
-    public static readonly CVarDef<bool> ESMultistationEnabled =
-        CVarDef.Create("es_multistation.enabled", false, CVar.SERVER);
+    // ES-SPECIFIC STATION HANDLING
+    public static readonly CVarDef<bool> ESStationEnabled =
+        CVarDef.Create("es_station.enabled", false, CVar.SERVER);
 
-    public static readonly CVarDef<string> ESMultistationCurrentConfig =
-        CVarDef.Create("es_multistation.current_config", "ESDefault", CVar.SERVER);
+    public static readonly CVarDef<string> ESStationCurrentConfig =
+        CVarDef.Create("es_station.current_config", "ESDefault", CVar.SERVER);
 }

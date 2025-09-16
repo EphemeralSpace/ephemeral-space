@@ -1,12 +1,12 @@
 using Content.Shared._ES.Lobby;
-using Content.Shared._ES.Multistation;
+using Content.Shared._ES.Station;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._ES.Multistation;
+namespace Content.Client._ES.Station;
 
 /// <inheritdoc/>
-public sealed class ESMultistationSystem : ESSharedMultistationSystem
+public sealed class ESStationSystem : ESSharedStationSystem
 {
     public Dictionary<ProtoId<JobPrototype>, int?> AvailableRoundstartJobs { get; private set; } = new();
     public Dictionary<ProtoId<JobPrototype>, int> ReadiedJobCounts { get; private set; } = new();

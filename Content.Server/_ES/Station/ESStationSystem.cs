@@ -1,4 +1,5 @@
-using Content.Server._ES.Multistation.Components;
+using System.Linq;
+using Content.Server._ES.Station.Components;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
 using Content.Server.Procedural;
@@ -6,7 +7,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Shared._ES.CCVar;
 using Content.Shared._ES.Light.Components;
-using Content.Shared._ES.Multistation;
+using Content.Shared._ES.Station;
 using Content.Shared.CCVar;
 using Content.Shared.Roles;
 using Robust.Server.GameObjects;
@@ -20,18 +21,20 @@ using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server._ES.Multistation;
+namespace Content.Server._ES.Station;
 
 /// <summary>
-/// This handles spawning in multiple stations in a round
+///     Handles ES-specific station handling -- technically supports multistation, though we aren't using it initially
+///     Better support for dungeons/debris/map components and what not than normal station configs
 /// </summary>
-public sealed class ESMultistationSystem : ESSharedMultistationSystem
+public sealed class ESStationSystem : ESSharedStationSystem
 {
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IGameMapManager _gameMap = default!;
     [Dependency] private readonly DungeonSystem _dungeon = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
@@ -40,7 +43,7 @@ public sealed class ESMultistationSystem : ESSharedMultistationSystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
-    private static readonly ProtoId<ESMultistationConfigPrototype> DefaultConfig = "ESDefault";
+    private static readonly ProtoId<ESStationConfigPrototype> DefaultConfig = "ESDefault";
 
     private bool _enabled;
     private string _currentConfig = DefaultConfig;
@@ -55,10 +58,11 @@ public sealed class ESMultistationSystem : ESSharedMultistationSystem
         SubscribeLocalEvent<ESLobbyWorldCreatedEvent>(OnLobbyWorldCreated);
 
         SubscribeLocalEvent<LoadingMapsEvent>(OnLoadingMaps);
-        SubscribeLocalEvent<ESPostLoadingMapsEvent>(OnPostLoadingMaps);
+        SubscribeLocalEvent<PostGameMapLoad>(OnPostGameMapLoad);
+        SubscribeLocalEvent<ESLoadIntoDefaultMapEvent>(OnPostLoadingMaps);
 
-        Subs.CVar(_config, ESCVars.ESMultistationEnabled, value => _enabled = value, true);
-        Subs.CVar(_config, ESCVars.ESMultistationCurrentConfig, OnMultistationCurrentConfigChanged, true);
+        Subs.CVar(_config, ESCVars.ESStationEnabled, value => _enabled = value, true);
+        Subs.CVar(_config, ESCVars.ESStationCurrentConfig, OnStationCurrentConfigChanged, true);
 
         _config.OnValueChanged(CCVars.GridFill, OnGridFillChanged);
 
@@ -81,7 +85,7 @@ public sealed class ESMultistationSystem : ESSharedMultistationSystem
         if (!obj)
             return;
 
-        var mapQuery = EntityQueryEnumerator<ESMultistationMapComponent>();
+        var mapQuery = EntityQueryEnumerator<ESStationMapComponent>();
         while (mapQuery.MoveNext(out var uid, out var comp))
         {
             LoadExtraGrids((uid, comp));
@@ -93,53 +97,75 @@ public sealed class ESMultistationSystem : ESSharedMultistationSystem
         if (!_enabled)
             return;
 
+        // if stationcount is 1 then the map will be loaded by
+        // normal mapload logic
+        // otherwise we should clear
+        var config = GetConfig();
+
+        if (GetStationCount(config) == 1)
+            return;
+
         ev.Maps.Clear();
     }
 
-    private void OnPostLoadingMaps(ref ESPostLoadingMapsEvent ev)
+    private void OnPostGameMapLoad(PostGameMapLoad ev)
+    {
+        var config = GetConfig();
+
+        foreach (var grid in ev.Grids)
+        {
+            EntityManager.AddComponents(grid, config.StationGridComponents);
+        }
+    }
+
+    private void OnPostLoadingMaps(ref ESLoadIntoDefaultMapEvent ev)
     {
         if (!_enabled)
             return;
 
-        if (!_prototype.TryIndex<ESMultistationConfigPrototype>(_currentConfig, out var config))
-            config = _prototype.Index(DefaultConfig);
+        var config = GetConfig();
+        var stationCount = GetStationCount(config);
 
-        EntityManager.AddComponents(ev.DefaultMap, config.MapComponents);
-
-        var configComp = EnsureComp<ESMultistationMapComponent>(ev.DefaultMap);
-        configComp.Config = config.ID;
-
-        var stationCount = Math.Max(_playerManager.PlayerCount / config.PlayersPerStation, config.MinStations);
-
-        var stations = GetMapsFromConfig();
+        var map = _gameMap.GetSelectedMap();
+        if (map == null)
+            return;
 
         var baseAngle = _random.NextAngle();
-        for (var i = 0; i < stationCount; i++)
+
+        // if we have more than 1 station assume these are all grids
+        // and load them ourselves
+        if (stationCount != 1)
         {
-            baseAngle += Math.Tau / stationCount;
-
-            var station = _prototype.Index(_random.PickAndTake(stations));
-            if (!_mapLoader.TryLoadGrid(ev.DefaultMapId,
-                    station.MapPath,
-                    out var grid,
-                    DeserializationOptions.Default,
-                    baseAngle.ToVec() * config.StationDistance,
-                    _random.NextAngle()))
+            for (var i = 0; i < stationCount; i++)
             {
-                throw new Exception($"Failed to load game-map grid {station.ID}");
+                baseAngle += Math.Tau / stationCount;
+
+                if (!_mapLoader.TryLoadGrid(ev.DefaultMapId,
+                        map.MapPath,
+                        out var grid,
+                        DeserializationOptions.Default,
+                        baseAngle.ToVec() * config.StationDistance,
+                        _random.NextAngle()))
+                {
+                    throw new Exception($"Failed to load game-map grid {map.ID}");
+                }
+
+                var g = new List<EntityUid> { grid.Value.Owner };
+                RaiseLocalEvent(new PostGameMapLoad(map, ev.DefaultMapId, g, null));
             }
-
-            // TODO: more robust system, potentially?
-            AddComp<ESTileBasedRoofComponent>(grid.Value);
-
-            var g = new List<EntityUid> { grid.Value.Owner };
-            RaiseLocalEvent(new PostGameMapLoad(station, ev.DefaultMapId, g, null));
         }
+
+        // Add map-specific things after loading
+        // not before, in case they get overwritten by loading a map
+        EntityManager.AddComponents(ev.DefaultMap, config.MapComponents);
+
+        var configComp = EnsureComp<ESStationMapComponent>(ev.DefaultMap);
+        configComp.Config = config.ID;
 
         LoadExtraGrids(ev.DefaultMap);
     }
 
-    private void OnMultistationCurrentConfigChanged(string value)
+    private void OnStationCurrentConfigChanged(string value)
     {
         if (_currentConfig == value)
             return;
@@ -148,7 +174,20 @@ public sealed class ESMultistationSystem : ESSharedMultistationSystem
         RefreshAvailableJobs();
     }
 
-    private async void LoadExtraGrids(Entity<ESMultistationMapComponent?> map)
+    private ESStationConfigPrototype GetConfig()
+    {
+        if (!_prototype.TryIndex<ESStationConfigPrototype>(_currentConfig, out var config))
+            config = _prototype.Index(DefaultConfig);
+
+        return config;
+    }
+
+    private int GetStationCount(ESStationConfigPrototype config)
+    {
+        return Math.Clamp(_playerManager.PlayerCount / config.PlayersPerStation, config.MinStations, config.MaxStations);
+    }
+
+    private async void LoadExtraGrids(Entity<ESStationMapComponent?> map)
     {
         if (!_config.GetCVar(CCVars.GridFill))
             return;
@@ -205,33 +244,19 @@ public sealed class ESMultistationSystem : ESSharedMultistationSystem
         map.Comp.GridsLoaded = true;
     }
 
-    public List<ProtoId<GameMapPrototype>> GetMapsFromConfig()
-    {
-        if (!_prototype.TryIndex<ESMultistationConfigPrototype>(_currentConfig, out var config))
-            config = _prototype.Index(DefaultConfig);
-
-        var stationCount = Math.Max(_playerManager.PlayerCount / config.PlayersPerStation, config.MinStations);
-
-        var rand = new Random(_gameTicker.RoundId);
-
-        var stations = new List<ProtoId<GameMapPrototype>>(stationCount);
-        for (var i = 0; i < stationCount; i++)
-        {
-            stations.Add(rand.Pick(config.MapPool));
-        }
-
-        return stations;
-    }
-
     public void RefreshAvailableJobs()
     {
+        var config = GetConfig();
+
         _availableRoundstartJobs.Clear();
-        var maps = GetMapsFromConfig();
 
-        foreach (var mapId in maps)
+        // balls logic because of old mutistation
+        var map = _gameMap.GetSelectedMap();
+        if (map == null)
+            return;
+
+        for (int i = 0; i < GetStationCount(config); i++)
         {
-            var map = _prototype.Index(mapId);
-
             foreach (var station in map.Stations.Values)
             {
                 // Yes, we basically just rely on the jobs to be specified here.
@@ -259,8 +284,11 @@ public sealed class ESMultistationSystem : ESSharedMultistationSystem
     }
 }
 
+/// <summary>
+/// BALLS
+/// </summary>
 [ByRefEvent]
-public readonly record struct ESPostLoadingMapsEvent(MapId DefaultMapId, EntityUid DefaultMap)
+public readonly record struct ESLoadIntoDefaultMapEvent(MapId DefaultMapId, EntityUid DefaultMap)
 {
     public readonly MapId DefaultMapId = DefaultMapId;
     public readonly EntityUid DefaultMap = DefaultMap;

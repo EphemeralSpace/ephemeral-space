@@ -1,6 +1,6 @@
 <controls:ESJobPrefToggleButton
     xmlns="https://spacestation14.io"
-    xmlns:controls="clr-namespace:Content.Client._ES.Multistation.Ui"
+    xmlns:controls="clr-namespace:Content.Client._ES.Station.Ui"
     HorizontalExpand="True"
     VerticalExpand="True">
     <ContainerButton Name="ToggleButton" Access="Public" HorizontalExpand="True" VerticalExpand="True" ToggleMode="True" StyleClasses="button">

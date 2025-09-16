@@ -5,16 +5,16 @@ using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
-namespace Content.Server._ES.Multistation;
+namespace Content.Server._ES.Station;
 
-[Prototype("esMultistationConfig")]
-public sealed partial class ESMultistationConfigPrototype : IPrototype, IInheritingPrototype
+[Prototype("esStationConfig")]
+public sealed partial class ESStationConfigPrototype : IPrototype, IInheritingPrototype
 {
     /// <inheritdoc/>
     [IdDataField]
     public string ID { get; } = default!;
 
-    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ESMultistationConfigPrototype>))]
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ESStationConfigPrototype>))]
     public string[]? Parents { get; private set; }
 
     [AbstractDataField]
@@ -27,6 +27,9 @@ public sealed partial class ESMultistationConfigPrototype : IPrototype, IInherit
     public int MinStations = 2;
 
     [DataField]
+    public int MaxStations = int.MaxValue;
+
+    [DataField]
     public float StationDistance = 128f;
 
     /// <summary>
@@ -35,21 +38,24 @@ public sealed partial class ESMultistationConfigPrototype : IPrototype, IInherit
     [DataField]
     public ComponentRegistry MapComponents = new();
 
+    /// <summary>
+    /// Components applied to all station grids.
+    /// </summary>
     [DataField]
-    public List<ProtoId<GameMapPrototype>> MapPool = new();
+    public ComponentRegistry StationGridComponents = new();
 
     /// <summary>
     /// procgen grids to spawn
     /// </summary>
     [DataField]
-    public List<ESMultistationDungeonDef> Dungeons = new();
+    public List<ESStationDungeonDef> Dungeons = new();
 }
 
 /// <summary>
 /// Contains data for spawning in a procgen grid
 /// </summary>
 [DataDefinition]
-public partial struct ESMultistationDungeonDef
+public partial struct ESStationDungeonDef
 {
     /// <summary>
     /// The number of this grid

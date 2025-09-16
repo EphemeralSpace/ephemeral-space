@@ -1,6 +1,6 @@
 <controls:ESDepartmentHeader
     xmlns="https://spacestation14.io"
-    xmlns:controls="clr-namespace:Content.Client._ES.Multistation.Ui"
+    xmlns:controls="clr-namespace:Content.Client._ES.Station.Ui"
     Orientation="Vertical"
     HorizontalExpand="True">
     <PanelContainer Name="BackgroundPanel" MinHeight="30" HorizontalExpand="True">

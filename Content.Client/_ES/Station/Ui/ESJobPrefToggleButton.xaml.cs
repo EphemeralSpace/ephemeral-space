@@ -1,3 +1,4 @@
+using Content.Client._ES.Station;
 using Content.Client.Lobby;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Shared.Preferences;
@@ -9,7 +10,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Client._ES.Multistation.Ui;
+namespace Content.Client._ES.Station.Ui;
 
 [GenerateTypedNameReferences]
 public sealed partial class ESJobPrefToggleButton : Control
@@ -19,7 +20,7 @@ public sealed partial class ESJobPrefToggleButton : Control
     [Dependency] private readonly IClientPreferencesManager _preferences = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    private readonly ESMultistationSystem _multistation;
+    private readonly ESStationSystem _station;
     private readonly SpriteSystem _sprite;
 
     public ProtoId<JobPrototype> JobId { get; private set; }
@@ -29,7 +30,7 @@ public sealed partial class ESJobPrefToggleButton : Control
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
-        _multistation = _entityManager.System<ESMultistationSystem>();
+        _station = _entityManager.System<ESStationSystem>();
         _sprite = _entityManager.System<SpriteSystem>();
 
         LockedPanel.Texture = _sprite.Frame0(new SpriteSpecifier.Texture(new("/Textures/Interface/Nano/lock.svg.192dpi.png")));
@@ -41,11 +42,11 @@ public sealed partial class ESJobPrefToggleButton : Control
             _preferences.UpdateCharacter(profile.WithJobPriority(JobId, ToggleButton.Pressed ? JobPriority.Medium : JobPriority.Never), 0);
         };
 
-        _multistation.OnReadiedJobCountsChanged += () =>
+        _station.OnReadiedJobCountsChanged += () =>
         {
             ReadyCountLabel.Text = Loc.GetString("es-job-prefs-slot-available-count",
-                ("queued", _multistation.ReadiedJobCounts.GetValueOrDefault(JobId, 0)),
-                ("slots", _multistation.AvailableRoundstartJobs.GetValueOrDefault(JobId) ?? 0));
+                ("queued", _station.ReadiedJobCounts.GetValueOrDefault(JobId, 0)),
+                ("slots", _station.AvailableRoundstartJobs.GetValueOrDefault(JobId) ?? 0));
         };
     }
 
@@ -61,8 +62,8 @@ public sealed partial class ESJobPrefToggleButton : Control
         JobNameLabel.Text = job.LocalizedName;
 
         ReadyCountLabel.Text = Loc.GetString("es-job-prefs-slot-available-count",
-            ("queued", _multistation.ReadiedJobCounts.GetValueOrDefault(JobId, 0)),
-            ("slots", _multistation.AvailableRoundstartJobs.GetValueOrDefault(JobId) ?? 0));
+            ("queued", _station.ReadiedJobCounts.GetValueOrDefault(JobId, 0)),
+            ("slots", _station.AvailableRoundstartJobs.GetValueOrDefault(JobId) ?? 0));
 
         if (!_jobRequirements.IsAllowed(job, (HumanoidCharacterProfile?)_preferences.Preferences?.SelectedCharacter, out var reason))
         {

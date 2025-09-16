@@ -1,12 +1,13 @@
-- type: esMultistationConfig
+- type: esStationConfig
   id: ESDefault
   stationDistance: 256
   minStations: 1
-  mapPool:
-  - ESTestMap
+  maxStations: 1
   mapComponents:
   - type: MapLight
     ambientLightColor: '#ffffff'
+  stationGridComponents:
+  - type: ESTileBasedRoof
   dungeons:
   - configs: [ "VGRoid" ]
     count: 1

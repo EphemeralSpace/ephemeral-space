@@ -1,9 +1,11 @@
 ﻿[game]
 # Straight in-game baby
 lobbyenabled = false
-# Dev map for faster loading & convenience
-map = "Dev"
 role_timers = false
+# ES START
+# test map for faster loading & convenience
+map = "ESTestMap"
+# ES END
 
 [events]
 enabled = false
@@ -44,7 +46,7 @@ random_species_weights = ""
 ssd_sleep_time = 3600
 
 # ES START
-[es_multistation]
+[es_station]
 enabled = true
 
 [audio]
