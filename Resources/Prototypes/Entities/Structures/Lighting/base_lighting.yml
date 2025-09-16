@@ -143,8 +143,7 @@
     state: base
   - type: PointLight
   # ES START
-    falloff: 40
-    curveFactor: 0.75
+    falloff: 30
   # ES END
     enabled: true
   - type: PoweredLight
@@ -274,8 +273,8 @@
       energy: 1.0
       radius: 6
       # ES START
-      falloff: 45
-      curveFactor: 1.0
+      falloff: 60
+      curveType: InverseQuadratic
       # ES END
       enabled: true
     - type: Physics

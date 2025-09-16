@@ -89,7 +89,7 @@
     radius: 6.0
     energy: 7.5
     falloff: 20
-    curveFactor: 1.0
+    curveType: InverseQuadratic
     color: "#E25822"
   - type: PyroclasticAnomaly
   - type: TempAffectingAnomaly
@@ -143,7 +143,7 @@
   - type: PointLight
     radius: 5.0
     energy: 15
-    curveFactor: 1.0
+    curveType: InverseQuadratic
     color: "#1e070e"
   - type: GravityAnomaly
   - type: GravityWell
@@ -178,7 +178,7 @@
     radius: 2.0
     energy: 8.0
     falloff: 40
-    curveFactor: 1.0
+    curveType: InverseQuadratic
     color: "#ffffaa"
   - type: ElectricityAnomaly
   - type: Electrified
@@ -207,7 +207,7 @@
     energy: 8.0
     color: "#cb5b7e"
     falloff: 40
-    curveFactor: 1.0
+    curveType: InverseQuadratic
   - type: TileSpawnAnomaly
     entries:
     - settings:
@@ -296,7 +296,7 @@
     energy: 8.0
     color: "#00ccff"
     falloff: 40
-    curveFactor: 1.0
+    curveType: InverseQuadratic
   - type: BluespaceAnomaly
   - type: Portal
   - type: Fixtures
@@ -347,7 +347,7 @@
     energy: 5.0
     color: "#befaff"
     falloff: 40
-    curveFactor: 1.0
+    curveType: InverseQuadratic
   - type: Anomaly
     corePrototype: AnomalyCoreIce
     coreInertPrototype: AnomalyCoreIceInert
@@ -411,7 +411,7 @@
     color: "#5ca8cb"
     energy: 8.0
     falloff: 40
-    curveFactor: 1.0
+    curveType: InverseQuadratic
   - type: TileSpawnAnomaly
     entries:
     - settings:
@@ -781,7 +781,7 @@
     radius: 8.0
     energy: 8.5
     falloff: 20
-    curveFactor: 1.0
+    curveType: InverseQuadratic
     color: "#6270bb"
   - type: Anomaly
     animationTime: 6
@@ -889,7 +889,7 @@
     radius: 4.0
     energy: 6.0
     falloff: 30
-    curveFactor: 1.0
+    curveType: InverseQuadratic
     color: "#bbbbbb"
   - type: BadFood
   - type: Anomaly
@@ -1002,7 +1002,7 @@
     radius: 2.0
     energy: 12.5
     falloff: 10
-    curveFactor: 1.0
+    curveType: InverseQuadratic
     color: "#793a80"
   - type: AmbientSound
     range: 5
@@ -1073,7 +1073,7 @@
     radius: 6.5
     energy: 6.0
     falloff: 20
-    curveFactor: 1.0
+    curveType: InverseQuadratic
     color: "#56c1e8"
   - type: Anomaly
     corePrototype: AnomalyCoreTech
