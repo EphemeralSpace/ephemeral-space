@@ -63,15 +63,9 @@
   - type: Tag
     tags:
     - BypassInteractionRangeChecks
-  - type: PointLight
-    netsync: false
-    radius: 6
-    castShadows: false
-    enabled: false
   # ES START
-  # ghosts handle this specially and I don't want to replace their behavior right now
-  # (also they want it off by default anyway)
   - type: ESInherentLight
+    lightPrototype: ESMobObserverInherentLight
     enabled: false
   # ES END
 

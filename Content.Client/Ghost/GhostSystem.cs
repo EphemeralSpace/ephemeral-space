@@ -1,3 +1,4 @@
+using Content.Client._ES.Lighting;
 using Content.Client.Movement.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Ghost;
@@ -16,6 +17,9 @@ namespace Content.Client.Ghost
         [Dependency] private readonly PointLightSystem _pointLightSystem = default!;
         [Dependency] private readonly ContentEyeSystem _contentEye = default!;
         [Dependency] private readonly SpriteSystem _sprite = default!;
+        // ES START
+        [Dependency] private readonly ESInherentLightSystem _inherentLight = default!;
+        // ES END
 
         public int AvailableGhostRoleCount { get; private set; }
 
@@ -81,7 +85,9 @@ namespace Content.Client.Ghost
             if (args.Handled)
                 return;
 
-            TryComp<PointLightComponent>(uid, out var light);
+            // ES START
+            // pointlight to inherentlight
+            TryComp<ESInherentLightComponent>(uid, out var light);
 
             if (!component.DrawLight)
             {
@@ -89,19 +95,20 @@ namespace Content.Client.Ghost
                 Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-lighting-manager-popup-normal"), args.Performer);
                 _contentEye.RequestEye(component.DrawFov, true);
             }
-            else if (!light?.Enabled ?? false) // skip this option if we have no PointLightComponent
+            else if (!light?.Enabled ?? false) // skip this option if we have no ESInherentLightComponent
             {
                 // enable personal light
                 Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-lighting-manager-popup-personal-light"), args.Performer);
-                _pointLightSystem.SetEnabled(uid, true, light);
+                _inherentLight.SetEnabled((uid, light), true);
             }
             else
             {
                 // fullbright mode
                 Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-lighting-manager-popup-fullbright"), args.Performer);
                 _contentEye.RequestEye(component.DrawFov, false);
-                _pointLightSystem.SetEnabled(uid, false, light);
+                _inherentLight.SetEnabled((uid, light), false);
             }
+            // ES END
             args.Handled = true;
         }
 
