@@ -73,8 +73,8 @@ public sealed class ESInherentLightSystem : EntitySystem
     {
         var light = entity.Comp;
 
-        // if we're being deleted don't bother
-        if (light.LightEntity == null || LifeStage(entity) >= EntityLifeStage.Terminating)
+        // the latter shouldnt even be possible but. idk. tests.
+        if (light.LightEntity == null || !IsClientSide(light.LightEntity.Value))
             return;
 
         QueueDel(light.LightEntity);
