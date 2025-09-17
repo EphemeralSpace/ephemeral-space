@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._ES.Viewcone;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class ViewconeComponent : Component
+public sealed partial class ESViewconeComponent : Component
 {
     [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public float ConeAngle = 270f;

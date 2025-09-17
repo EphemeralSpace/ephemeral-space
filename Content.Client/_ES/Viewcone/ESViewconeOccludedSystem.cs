@@ -9,7 +9,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._ES.Viewcone;
 
-public sealed class ViewconeOccludedSystem : EntitySystem
+public sealed class ESViewconeOccludedSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -22,26 +22,26 @@ public sealed class ViewconeOccludedSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ViewconeOccludedComponent, ComponentStartup>(OnOcclusionStart);
-        SubscribeLocalEvent<ViewconeOccludedComponent, ComponentShutdown>(OnOcclusionShutdown);
-        SubscribeLocalEvent<ViewconeOccludedComponent, AnchorStateChangedEvent>(OnOcclusionAnchorUpdate);
+        SubscribeLocalEvent<ESViewconeOccludedComponent, ComponentStartup>(OnOcclusionStart);
+        SubscribeLocalEvent<ESViewconeOccludedComponent, ComponentShutdown>(OnOcclusionShutdown);
+        SubscribeLocalEvent<ESViewconeOccludedComponent, AnchorStateChangedEvent>(OnOcclusionAnchorUpdate);
     }
 
-    private void OnOcclusionStart(Entity<ViewconeOccludedComponent> entity, ref ComponentStartup args)
+    private void OnOcclusionStart(Entity<ESViewconeOccludedComponent> entity, ref ComponentStartup args)
     {
         if (!_entityManager.TryGetComponent<SpriteComponent>(entity, out var sprite))
             return;
         entity.Comp.BaseAlpha = sprite.Color.A;
     }
 
-    private void OnOcclusionShutdown(Entity<ViewconeOccludedComponent> entity, ref ComponentShutdown args)
+    private void OnOcclusionShutdown(Entity<ESViewconeOccludedComponent> entity, ref ComponentShutdown args)
     {
         if (!_entityManager.TryGetComponent<SpriteComponent>(entity, out var sprite))
             return;
         sprite.Color = sprite.Color.WithAlpha(entity.Comp.BaseAlpha);
     }
 
-    private void OnOcclusionAnchorUpdate(Entity<ViewconeOccludedComponent> entity, ref AnchorStateChangedEvent args)
+    private void OnOcclusionAnchorUpdate(Entity<ESViewconeOccludedComponent> entity, ref AnchorStateChangedEvent args)
     {
         if (!_entityManager.TryGetComponent<SpriteComponent>(entity, out var sprite))
             return;
@@ -62,7 +62,7 @@ public sealed class ViewconeOccludedSystem : EntitySystem
         if (playerEntity == null)
             return;
 
-        if (!_entityManager.TryGetComponent<ViewconeManagerComponent>(playerEntity, out var cone))
+        if (!_entityManager.TryGetComponent<ESViewconeManagerComponent>(playerEntity, out var cone))
             return;
 
         var playerTransform = Transform(playerEntity.Value);
@@ -78,7 +78,7 @@ public sealed class ViewconeOccludedSystem : EntitySystem
         var radConeAngle = MathHelper.DegreesToRadians(cone.ConeAngle);
         var radConeFeather = MathHelper.DegreesToRadians(cone.ConeFeather);
 
-        var query = AllEntityQuery<ViewconeOccludedComponent>();
+        var query = AllEntityQuery<ESViewconeOccludedComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
             if (uid == playerEntity)

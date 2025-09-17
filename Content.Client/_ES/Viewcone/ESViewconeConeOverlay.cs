@@ -9,7 +9,7 @@ using Content.Shared._ES.Viewcone;
 
 namespace Content.Client._ES.Viewcone;
 
-public sealed class ViewconeOverlay : Overlay
+public sealed class ESViewconeConeOverlay : Overlay
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -29,7 +29,7 @@ public sealed class ViewconeOverlay : Overlay
 
     private float _viewAngle;
 
-    public ViewconeOverlay()
+    public ESViewconeConeOverlay()
     {
         IoCManager.InjectDependencies(this);
         _transform = _entityManager.System<SharedTransformSystem>();
@@ -38,7 +38,7 @@ public sealed class ViewconeOverlay : Overlay
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        if (!_entityManager.TryGetComponent(_playerManager.LocalSession?.AttachedEntity, out ViewconeManagerComponent? viewComp))
+        if (!_entityManager.TryGetComponent(_playerManager.LocalSession?.AttachedEntity, out ESViewconeManagerComponent? viewComp))
             return false;
 
         _coneAngle = viewComp.ConeAngle;
