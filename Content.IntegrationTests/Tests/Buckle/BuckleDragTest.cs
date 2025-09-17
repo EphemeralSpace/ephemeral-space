@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.IntegrationTests.Tests.Interaction;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
@@ -8,6 +9,8 @@ namespace Content.IntegrationTests.Tests.Buckle;
 
 public sealed class BuckleDragTest : InteractionTest
 {
+    protected override Vector2 TargetCoordsOffset => new(1.0f, 0.5f);
+
     // Check that dragging a buckled player unbuckles them.
     [Test]
     public async Task BucklePullTest()
@@ -49,7 +52,7 @@ public sealed class BuckleDragTest : InteractionTest
 
         // Start pulling, and thus unbuckle them
         await PressKey(ContentKeyFunctions.TryPullObject, cursorEntity: urist);
-        await RunTicks(30);
+        await RunTicks(5);
         Assert.That(buckle.Buckled, Is.False);
         Assert.That(buckle.BuckledTo, Is.Null);
         Assert.That(strap.BuckledEntities, Is.Empty);
