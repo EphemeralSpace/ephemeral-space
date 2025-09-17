@@ -5,7 +5,6 @@ using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Content.Shared._ES.Viewcone;
 
 namespace Content.Client._ES.Viewcone;
 
@@ -38,7 +37,7 @@ public sealed class ESViewconeConeOverlay : Overlay
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        if (!_entityManager.TryGetComponent(_playerManager.LocalSession?.AttachedEntity, out ESViewconeManagerComponent? viewComp))
+        if (!_entityManager.TryGetComponent(_playerManager.LocalSession?.AttachedEntity, out ESViewconeComponent? viewComp))
             return false;
 
         _coneAngle = viewComp.ConeAngle;

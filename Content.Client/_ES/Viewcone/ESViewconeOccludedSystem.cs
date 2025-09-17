@@ -1,4 +1,3 @@
-using Content.Shared._ES.Viewcone;
 using Content.Shared.MouseRotator;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -62,7 +61,7 @@ public sealed class ESViewconeOccludedSystem : EntitySystem
         if (playerEntity == null)
             return;
 
-        if (!_entityManager.TryGetComponent<ESViewconeManagerComponent>(playerEntity, out var cone))
+        if (!_entityManager.TryGetComponent<ESViewconeComponent>(playerEntity, out var cone))
             return;
 
         var playerTransform = Transform(playerEntity.Value);

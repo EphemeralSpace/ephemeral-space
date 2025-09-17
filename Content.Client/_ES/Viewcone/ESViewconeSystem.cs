@@ -1,5 +1,3 @@
-using Content.Client._ES.Viewcone;
-using Content.Shared._ES.Viewcone;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -7,7 +5,7 @@ using Robust.Shared.Player;
 
 namespace Content.Client._ES.Viewcone;
 
-public sealed class ESViewconeManagerSystem : EntitySystem
+public sealed class ESViewconeSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
@@ -18,35 +16,35 @@ public sealed class ESViewconeManagerSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ESViewconeManagerComponent, ComponentInit>(OnConeManInit);
-        SubscribeLocalEvent<ESViewconeManagerComponent, ComponentShutdown>(OnConeManShutdown);
+        SubscribeLocalEvent<ESViewconeComponent, ComponentInit>(OnConeManInit);
+        SubscribeLocalEvent<ESViewconeComponent, ComponentShutdown>(OnConeManShutdown);
 
-        SubscribeLocalEvent<ESViewconeManagerComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<ESViewconeManagerComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<ESViewconeComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<ESViewconeComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
 
-        SubscribeLocalEvent<ESViewconeManagerComponent, ViewconeUpdateEvent>(OnViewconeUpdate);
+        SubscribeLocalEvent<ESViewconeComponent, ViewconeUpdateEvent>(OnViewconeUpdate);
 
         _coneOverlay = new();
     }
 
-    private void OnPlayerAttached(Entity<ESViewconeManagerComponent> entity, ref LocalPlayerAttachedEvent args)
+    private void OnPlayerAttached(Entity<ESViewconeComponent> entity, ref LocalPlayerAttachedEvent args)
     {
         _overlayMan.AddOverlay(_coneOverlay);
     }
 
-    private void OnPlayerDetached(Entity<ESViewconeManagerComponent> entity, ref LocalPlayerDetachedEvent args)
+    private void OnPlayerDetached(Entity<ESViewconeComponent> entity, ref LocalPlayerDetachedEvent args)
     {
         _overlayMan.RemoveOverlay(_coneOverlay);
         ResetOccludedAlpha();
     }
 
-    private void OnConeManInit(Entity<ESViewconeManagerComponent> entity, ref ComponentInit args)
+    private void OnConeManInit(Entity<ESViewconeComponent> entity, ref ComponentInit args)
     {
         if (_playerManager.LocalSession?.AttachedEntity == entity.Owner)
             _overlayMan.AddOverlay(_coneOverlay);
     }
 
-    private void OnConeManShutdown(Entity<ESViewconeManagerComponent> entity, ref ComponentShutdown args)
+    private void OnConeManShutdown(Entity<ESViewconeComponent> entity, ref ComponentShutdown args)
     {
         if (_playerManager.LocalSession?.AttachedEntity == entity.Owner)
         {
@@ -67,12 +65,12 @@ public sealed class ESViewconeManagerSystem : EntitySystem
         }
     }
 
-    private void OnViewconeUpdate(Entity<ESViewconeManagerComponent> entity, ref ViewconeUpdateEvent args)
+    private void OnViewconeUpdate(Entity<ESViewconeComponent> entity, ref ViewconeUpdateEvent args)
     {
         UpdateViewcone(entity);
     }
 
-    public void UpdateViewcone(Entity<ESViewconeManagerComponent> entity)
+    public void UpdateViewcone(Entity<ESViewconeComponent> entity)
     {
 
     }

@@ -1,7 +1,7 @@
 namespace Content.Client._ES.Viewcone;
 
 [RegisterComponent]
-public sealed partial class ESViewconeManagerComponent : Component
+public sealed partial class ESViewconeComponent : Component
 {
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float ConeAngle;
