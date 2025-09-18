@@ -1,8 +1,10 @@
 - type: esTroupe
   id: ESCrew
+  name: es-troupe-crew-name
 
 - type: esTroupe
   id: ESTraitor
+  name: es-troupe-traitor-name
   prohibitedJobs:
   # Command
   - Captain

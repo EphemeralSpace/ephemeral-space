@@ -5,7 +5,6 @@
   name: es-mask-traitor-name
   troupe: ESTraitor
   description: es-mask-traitor-desc
-  blockNonAntagJobs: true
   weight: 1
   objectives:
     id: ESMaskObjectiveRandomStationKill
