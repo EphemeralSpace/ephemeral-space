@@ -9,12 +9,12 @@ uniform highp float ConeIgnoreFeather; //= 0.1;
 uniform highp float ViewAngle;
 
 const highp float grainFramerate = 16.0;
-const highp float grainTimeAffect = 1000.0;
+const highp float grainTimeAffect = 500.0;
 const highp float grainScale = 400.0;
-const highp float grainMult = 0.25;
-const highp float grainAdd = 0.4;
+const highp float grainMult = 0.5;
+const highp float grainAdd = 0.6;
 
-const highp float grayscaleFactor = 0.85;
+const highp float grayscaleFactor = 0.72;
 
 void fragment(){
     highp vec2 pixelSize = vec2(1.0/SCREEN_PIXEL_SIZE.x, 1.0/SCREEN_PIXEL_SIZE.y);

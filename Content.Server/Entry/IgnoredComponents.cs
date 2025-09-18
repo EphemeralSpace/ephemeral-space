@@ -23,6 +23,8 @@ namespace Content.Server.Entry
             "MultipartMachineGhost",
             // ES START
             "ESInherentLight",
+            "ESViewcone",
+            "ESViewconeOccluded",
             // ES END
         };
     }

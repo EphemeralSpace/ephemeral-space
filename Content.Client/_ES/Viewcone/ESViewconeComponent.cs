@@ -3,15 +3,15 @@ namespace Content.Client._ES.Viewcone;
 [RegisterComponent]
 public sealed partial class ESViewconeComponent : Component
 {
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ConeAngle;
+    [DataField]
+    public float ConeAngle = 270f;
 
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ConeFeather;
+    [DataField]
+    public float ConeFeather = 10f;
 
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ConeIgnoreRadius;
+    [DataField]
+    public float ConeIgnoreRadius = 0.85f;
 
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ConeIgnoreFeather;
+    [DataField]
+    public float ConeIgnoreFeather = 0.25f;
 }

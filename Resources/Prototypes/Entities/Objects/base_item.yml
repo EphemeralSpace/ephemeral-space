@@ -44,6 +44,9 @@
     noRot: false
   - type: Pullable
   - type: DamageExaminable
+  # ES START
+  - type: ESViewconeOccluded
+  # ES END
 
 - type: entity
   name: "storage item"
