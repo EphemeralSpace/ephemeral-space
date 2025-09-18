@@ -87,8 +87,17 @@ public sealed class ESMaskSystem : EntitySystem
             var player = _random.PickAndTake(filteredPlayers);
             players.Remove(player);
 
-            Debug.Assert(_mind.TryGetMind(player, out var mind, out var mindComp), $"Failed to get mind for session {player}");
-            Debug.Assert(TryGetMask((mind, mindComp), troupe, out var mask), $"Failed to get mask for session {player} on troupe {troupe.ID}");
+            if (!_mind.TryGetMind(player, out var mind, out var mindComp))
+            {
+                Log.Warning($"Failed to get mind for session {player}");
+                continue;
+            }
+
+            if (!TryGetMask((mind, mindComp), troupe, out var mask))
+            {
+                Log.Warning($"Failed to get mask for session {player} on troupe {troupe.ID} ({ToPrettyString(ent)}");
+                continue;
+            }
 
             ApplyMask(ent, (mind, mindComp), mask.Value);
         }
