@@ -3,7 +3,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.Masks.Components;
 
+/// <summary>
+/// Handles assigning masks to players when they join into the round.
+/// </summary>
 [RegisterComponent]
+[Access(typeof(ESMaskSystem))]
 public sealed partial class ESTroupeRuleComponent : Component
 {
     /// <summary>
