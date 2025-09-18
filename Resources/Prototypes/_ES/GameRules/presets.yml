@@ -1,0 +1,11 @@
+- type: gamePreset
+  id: ESTraitors
+  name: es-preset-traitor-title
+  description: es-preset-traitor-desc
+  showInVote: true
+  rules:
+  - ESTroupeRuleCrew
+  - ESTroupeRuleTraitor
+  - BasicStationEventScheduler # TODO: Create new event scheduler with more reasonable events.
+  - MeteorSwarmScheduler
+  - BasicRoundstartVariation

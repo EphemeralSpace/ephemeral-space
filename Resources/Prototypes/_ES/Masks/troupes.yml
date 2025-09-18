@@ -1,0 +1,14 @@
+- type: esTroupe
+  id: ESCrew
+
+- type: esTroupe
+  id: ESTraitor
+  prohibitedJobs:
+  # Command
+  - Captain
+  - HeadOfPersonnel
+  - HeadOfSecurity
+  # Security
+  - Warden
+  - SecurityOfficer
+  - Detective

@@ -141,4 +141,21 @@ public abstract partial class ESSharedAuditionsSystem : EntitySystem
 
         return (newCrew, component);
     }
+
+    /// <summary>
+    /// Returns the number of characters on the station.
+    /// Only counts the number of people that have been spawned across the round,
+    /// does not account for people leaving or disconnecting.
+    /// </summary>
+    public int GetPlayerCount()
+    {
+        var count = 0;
+        var query = EntityQueryEnumerator<ESProducerComponent>();
+        while (query.MoveNext(out var comp))
+        {
+            count += comp.Characters.Count - comp.UnusedCharacterPool.Count;
+        }
+
+        return count;
+    }
 }
