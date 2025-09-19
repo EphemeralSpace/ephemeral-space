@@ -85,7 +85,10 @@
   components:
   - type: Sprite
     sprite: Structures/Piping/disposal.rsi
-    snapCardinals: true
+# ES START
+    snapCardinals: false
+    noRot: true
+# ES END
   - type: Construction
     graph: DisposalMachine
     node: disposal_unit
