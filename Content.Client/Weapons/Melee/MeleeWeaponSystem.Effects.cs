@@ -194,7 +194,7 @@ public sealed partial class MeleeWeaponSystem
     /// </summary>
     private Animation GetLungeAnimation(Vector2 direction)
     {
-        const float length = 0.1f;
+        const float length = 0.3f;
 
         return new Animation
         {
@@ -208,8 +208,9 @@ public sealed partial class MeleeWeaponSystem
                     InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(direction.Normalized() * 0.15f, 0f),
-                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, length)
+                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, 0f),
+                        new AnimationTrackProperty.KeyFrame(direction.Normalized() * 0.25f, 0.1f, Easings.InBack),
+                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, 0.2f, Easings.InOutSine)
                     }
                 }
             }
