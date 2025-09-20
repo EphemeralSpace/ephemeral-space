@@ -67,7 +67,7 @@ public sealed class RotationVisualizerSystem : SharedRotationVisualsSystem
                     InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(spriteComp.Rotation, 0),
+                        new AnimationTrackProperty.KeyFrame(spriteComp.Rotation, 0, Easings.OutCubic),
                         new AnimationTrackProperty.KeyFrame(rotation, animationTime)
                     }
                 }
