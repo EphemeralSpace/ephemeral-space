@@ -68,7 +68,7 @@ public sealed class EntityPickupAnimationSystem : EntitySystem
 
         _animations.Play(new Entity<AnimationPlayerComponent>(animatableClone, animations), new Animation
         {
-            Length = TimeSpan.FromMilliseconds(125),
+            Length = TimeSpan.FromMilliseconds(300),
             AnimationTracks =
             {
                 new AnimationTrackComponentProperty
@@ -78,8 +78,8 @@ public sealed class EntityPickupAnimationSystem : EntitySystem
                     InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new KeyFrame(initial.Position, 0),
-                        new KeyFrame(final, 0.125f)
+                        new KeyFrame(initial.Position, 0, Easings.OutQuad),
+                        new KeyFrame(final, 0.300f)
                     }
                 },
             }
