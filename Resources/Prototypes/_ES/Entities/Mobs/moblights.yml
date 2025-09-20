@@ -8,9 +8,8 @@
     color: "#ffffff"
     energy: 2.5
     radius: 1.35
-    # ES TODO uncomment once engine lighting done
-    # falloff: 30
-    # curveFactor: 1.0
+    falloff: 30
+    curveFactor: 1.0
     castShadows: false
     enabled: false
 
