@@ -24,3 +24,14 @@
     state: mainboard
   - type: ComputerBoard
     prototype: ESComputerEvacBeacon
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ESComputerWarehouseManifestCircuitBoard
+  name: warehouse manifest console circuit board
+  description: A computer printed circuit board for a warehouse manifest console.
+  components:
+  - type: Sprite
+    state: mainboard
+  - type: ComputerBoard
+    prototype: ESComputerWarehouseManifest

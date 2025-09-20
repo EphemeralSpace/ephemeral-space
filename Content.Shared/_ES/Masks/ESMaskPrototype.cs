@@ -33,6 +33,9 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     [DataField]
     public LocId Name;
 
+    [DataField]
+    public ProtoId<ESTroupePrototype> Troupe;
+
     /// <summary>
     /// Description of what this role does.
     /// </summary>
@@ -44,10 +47,4 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     /// </summary>
     [DataField]
     public EntityTableSelector Objectives = new NoneSelector();
-
-    /// <summary>
-    /// Whether crew that aren't allowed to be antags (command, sec) can play this role
-    /// </summary>
-    [DataField]
-    public bool BlockNonAntagJobs;
 }

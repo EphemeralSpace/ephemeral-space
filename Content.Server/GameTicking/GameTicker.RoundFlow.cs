@@ -24,7 +24,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 // ES START
-using Content.Server._ES.Multistation;
+using Content.Server._ES.Station;
 // ES END
 
 namespace Content.Server.GameTicking
@@ -138,10 +138,6 @@ namespace Content.Server.GameTicking
             {
                 _map.CreateMap(out var mapId, runMapInit: false);
                 DefaultMap = mapId;
-// ES START
-               var esPostEv = new ESPostLoadingMapsEvent(DefaultMap, _map.GetMap(DefaultMap));
-                RaiseLocalEvent(ref esPostEv);
-// ES END
                 return;
             }
 
@@ -153,6 +149,12 @@ namespace Content.Server.GameTicking
                 if (i == 0)
                     DefaultMap = mapId;
             }
+
+            // ES START
+            // this is pig poop balls but whatever.
+            var esPostEv = new ESLoadIntoDefaultMapEvent(DefaultMap, _map.GetMap(DefaultMap));
+            RaiseLocalEvent(ref esPostEv);
+            // ES END
         }
 
         public PreGameMapLoad RaisePreLoad(
@@ -760,8 +762,6 @@ namespace Content.Server.GameTicking
             _mapManager.Restart();
 
             _banManager.Restart();
-
-            _bugManager.Restart();
 
             _gameMapManager.ClearSelectedMap();
 

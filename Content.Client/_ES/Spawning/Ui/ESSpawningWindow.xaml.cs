@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Numerics;
-using Content.Client._ES.Multistation.Ui;
+using Content.Client._ES.Station.Ui;
 using Content.Client.GameTicking.Managers;
 using Content.Client.Lobby;
 using Content.Client.Players.PlayTimeTracking;

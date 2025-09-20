@@ -3,8 +3,8 @@
 - type: esMask
   id: ESTraitor # This isn't your mama's traitor
   name: es-mask-traitor-name
+  troupe: ESTraitor
   description: es-mask-traitor-desc
-  blockNonAntagJobs: true
   weight: 1
   objectives:
     id: ESMaskObjectiveRandomStationKill
@@ -12,6 +12,7 @@
 - type: esMask
   id: ESGuardian
   name: es-mask-guardian-name
+  troupe: ESCrew
   description: es-mask-guardian-desc
   weight: 1
   objectives:

@@ -36,3 +36,37 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ESComputerWarehouseManifest
+  name: warehouse manifest console
+  description: A computer for cataloguing and viewing the goods inside the cargo bay.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ESCargoManifestComputer
+  - type: ActivatableUI
+    key: enum.ESCargoManifestUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ESCargoManifestUiKey.Key:
+        type: ESWarehouseManifestBui
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: ESComputerWarehouseManifestCircuitBoard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"

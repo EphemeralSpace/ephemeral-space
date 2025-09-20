@@ -1,0 +1,45 @@
+- type: entity
+  parent: BaseStructure
+  id: ESBaseWarehousePallet
+  name: warehouse pallet
+  description: A highly advanced construct of plywood, capable of interfacing with advanced station warehouse management software.
+  components:
+  - type: Sprite
+    drawdepth: FloorTiles
+    layers:
+    - sprite: _ES/Structures/Specific/Cargo/pallet.rsi
+      state: icon
+  - type: ESStoreroomPallet
+    goodsWhitelist:
+      components:
+      - GasCanister
+      - EntityStorage
+      - PaperLabel
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: CollideOnAnchor
+    enable: true
+  - type: Physics
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 15
+        hard: false
+        mask:
+        - Impassable
+        - HighImpassable
+        - LowImpassable
+        layer:
+        - Impassable
+        - HighImpassable
+        - LowImpassable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: GuideHelp
+    guides:
+    - Cargo

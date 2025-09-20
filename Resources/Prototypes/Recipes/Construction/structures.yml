@@ -504,62 +504,6 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: UraniumWindow
-  graph: Window
-  startNode: start
-  targetNode: uraniumWindow
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-    - !type:EmptyOrWindowValidInTile
-    - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-
-- type: construction
-  id: ReinforcedUraniumWindow
-  graph: Window
-  startNode: start
-  targetNode: reinforcedUraniumWindow
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-    - !type:EmptyOrWindowValidInTile
-    - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-
-- type: construction
-  id: UraniumWindowDiagonal
-  name: construction-recipe-uranium-window-diagonal
-  graph: WindowDiagonal
-  startNode: start
-  targetNode: uraniumWindowDiagonal
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-    - !type:EmptyOrWindowValidInTile
-    - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
-
-- type: construction
-  id: ReinforcedUraniumWindowDiagonal
-  name: construction-recipe-reinforced-uranium-window-diagonal
-  graph: WindowDiagonal
-  startNode: start
-  targetNode: reinforcedUraniumWindowDiagonal
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-    - !type:EmptyOrWindowValidInTile
-    - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
-
-- type: construction
   id: Firelock
   graph: Firelock
   startNode: start
@@ -1312,6 +1256,19 @@
   category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StationAiCore
+  graph: StationAiCore
+  startNode: start
+  targetNode: stationAiCore
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
