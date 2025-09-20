@@ -31,11 +31,11 @@ public sealed class LightFadeSystem : EntitySystem
                 {
                     Property = nameof(PointLightComponent.Energy),
                     ComponentType = typeof(PointLightComponent),
-                    InterpolationMode = AnimationInterpolationMode.Cubic,
+                    InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
                         new AnimationTrackProperty.KeyFrame(light.Energy, 0f),
-                        new AnimationTrackProperty.KeyFrame(0f, component.Duration)
+                        new AnimationTrackProperty.KeyFrame(0f, component.Duration, Easings.InOutCubic)
                     }
                 }
             }
