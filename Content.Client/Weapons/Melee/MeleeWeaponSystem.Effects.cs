@@ -1,3 +1,8 @@
+// ES START
+// modified to tweak a lot of magic constants
+// so it dont look like shit no more
+// anything else is marked i just didnt wanna mark every individual constant change
+
 using System.Numerics;
 using Content.Client.Animations;
 using Content.Client.Weapons.Melee.Components;
@@ -57,6 +62,7 @@ public sealed partial class MeleeWeaponSystem
                 angle *= -1;
 
             // ES START
+            // todo mirror datafield for sprite flipping here (sowrd)
             if (meleeWeaponComponent.SwapNextSwing)
                 angle *= -1;
 
@@ -168,6 +174,7 @@ public sealed partial class MeleeWeaponSystem
         };
     }
 
+    // ES START
     private Animation GetFadeAnimation(SpriteComponent sprite, float delay, float length)
     {
         return new Animation
@@ -188,6 +195,7 @@ public sealed partial class MeleeWeaponSystem
                 }
             }
         };
+        // ES END
     }
 
     /// <summary>

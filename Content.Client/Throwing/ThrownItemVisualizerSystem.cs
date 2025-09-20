@@ -74,9 +74,11 @@ public sealed class ThrownItemVisualizerSystem : EntitySystem
                     Property = nameof(SpriteComponent.Scale),
                     KeyFrames =
                     {
+                        // ES START
                         new AnimationTrackProperty.KeyFrame(scale, 0.0f),
-                        new AnimationTrackProperty.KeyFrame(scale * 1.5f, lenFloat * 0.5f, Easings.OutQuad),
+                        new AnimationTrackProperty.KeyFrame(scale * 1.4f, lenFloat * 0.5f, Easings.OutQuad),
                         new AnimationTrackProperty.KeyFrame(scale, lenFloat * 0.5f, Easings.InQuad)
+                        // ES END
                     },
                     InterpolationMode = AnimationInterpolationMode.Linear
                 }

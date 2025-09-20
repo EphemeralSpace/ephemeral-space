@@ -68,6 +68,7 @@ public sealed class EntityPickupAnimationSystem : EntitySystem
 
         _animations.Play(new Entity<AnimationPlayerComponent>(animatableClone, animations), new Animation
         {
+            // ES START
             Length = TimeSpan.FromMilliseconds(175),
             AnimationTracks =
             {
@@ -94,6 +95,7 @@ public sealed class EntityPickupAnimationSystem : EntitySystem
                     }
                 },
             }
+            // ES END
         }, "fancy_pickup_anim");
     }
 }
