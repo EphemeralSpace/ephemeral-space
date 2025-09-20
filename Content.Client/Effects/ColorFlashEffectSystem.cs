@@ -89,8 +89,8 @@ public sealed class ColorFlashEffectSystem : SharedColorFlashEffectSystem
                     InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(color, 0f, Easings.OutQuint),
-                        new AnimationTrackProperty.KeyFrame(sprite.Color, AnimationLength)
+                        new AnimationTrackProperty.KeyFrame(color, 0f),
+                        new AnimationTrackProperty.KeyFrame(sprite.Color, AnimationLength, Easings.OutQuint)
                     }
                 }
             }

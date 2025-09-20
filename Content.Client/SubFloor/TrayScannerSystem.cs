@@ -125,8 +125,8 @@ public sealed class TrayScannerSystem : SharedTrayScannerSystem
                             Property = nameof(SpriteComponent.Color),
                             KeyFrames =
                             {
-                                new AnimationTrackProperty.KeyFrame(sprite.Color.WithAlpha(0f), 0f, Easings.OutCubic),
-                                new AnimationTrackProperty.KeyFrame(sprite.Color.WithAlpha(SubfloorRevealAlpha), (float) AnimationLength)
+                                new AnimationTrackProperty.KeyFrame(sprite.Color.WithAlpha(0f), 0f),
+                                new AnimationTrackProperty.KeyFrame(sprite.Color.WithAlpha(SubfloorRevealAlpha), (float) AnimationLength, Easings.OutCubic)
                             }
                         }
                     }
@@ -160,8 +160,8 @@ public sealed class TrayScannerSystem : SharedTrayScannerSystem
                             Property = nameof(SpriteComponent.Color),
                             KeyFrames =
                             {
-                                new AnimationTrackProperty.KeyFrame(sprite.Color, 0f, Easings.InCubic),
-                                new AnimationTrackProperty.KeyFrame(sprite.Color.WithAlpha(0f), (float) AnimationLength)
+                                new AnimationTrackProperty.KeyFrame(sprite.Color, 0f),
+                                new AnimationTrackProperty.KeyFrame(sprite.Color.WithAlpha(0f), (float) AnimationLength, Easings.InCubic)
                             }
                         }
                     }

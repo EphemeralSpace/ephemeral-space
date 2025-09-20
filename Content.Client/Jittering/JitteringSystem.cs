@@ -95,8 +95,8 @@ namespace Content.Client.Jittering
                         Property = nameof(SpriteComponent.Offset),
                         KeyFrames =
                         {
-                            new AnimationTrackProperty.KeyFrame(sprite.Offset, 0f, Easings.InOutQuad),
-                            new AnimationTrackProperty.KeyFrame(jittering.StartOffset + offset, length),
+                            new AnimationTrackProperty.KeyFrame(sprite.Offset, 0f),
+                            new AnimationTrackProperty.KeyFrame(jittering.StartOffset + offset, length, Easings.InOutQuad),
                         }
                     }
                 }

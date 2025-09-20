@@ -46,8 +46,8 @@ public sealed partial class PointingSystem : SharedPointingSystem
                     KeyFrames =
                     {
                         // We pad here to prevent improper looping and tighten the overshoot, just a touch
-                        new AnimationTrackProperty.KeyFrame(startPosition, 0f, Easings.OutCubic),
-                        new AnimationTrackProperty.KeyFrame(offset, PointKeyTimeMove, Easings.OutQuad),
+                        new AnimationTrackProperty.KeyFrame(startPosition, 0f),
+                        new AnimationTrackProperty.KeyFrame(offset, PointKeyTimeMove, Easings.OutCubic),
                         new AnimationTrackProperty.KeyFrame(Vector2.Zero, PointKeyTimeHover, Easings.InQuad),
                         new AnimationTrackProperty.KeyFrame(offset, PointKeyTimeHover, Easings.OutQuad),
                         new AnimationTrackProperty.KeyFrame(Vector2.Zero, PointKeyTimeHover, Easings.InQuad),
@@ -56,7 +56,7 @@ public sealed partial class PointingSystem : SharedPointingSystem
                         new AnimationTrackProperty.KeyFrame(offset, PointKeyTimeHover, Easings.OutQuad),
                         new AnimationTrackProperty.KeyFrame(Vector2.Zero, PointKeyTimeHover, Easings.InQuad),
                         new AnimationTrackProperty.KeyFrame(offset, PointKeyTimeHover, Easings.OutQuad),
-                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, PointKeyTimeHover),
+                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, PointKeyTimeHover, Easings.InQuad),
                     }
                     // ES END
                 }

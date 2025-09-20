@@ -78,8 +78,8 @@ public sealed class EntityPickupAnimationSystem : EntitySystem
                     InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new KeyFrame(initial.Position, 0, Easings.OutQuad),
-                        new KeyFrame(final, 0.175f)
+                        new KeyFrame(initial.Position, 0),
+                        new KeyFrame(final, 0.175f, Easings.OutQuad)
                     }
                 },
             }

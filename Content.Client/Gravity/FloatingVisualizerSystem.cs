@@ -40,9 +40,9 @@ public sealed class FloatingVisualizerSystem : SharedFloatingVisualizerSystem
                     InterpolationMode = AnimationInterpolationMode.Linear,
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, 0f, Easings.InOutSine),
+                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, 0f),
                         new AnimationTrackProperty.KeyFrame(offset, animationTime, Easings.InOutSine),
-                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, animationTime),
+                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, animationTime, Easings.InOutSine),
                     }
                 }
             }
