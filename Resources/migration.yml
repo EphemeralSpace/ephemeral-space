@@ -2,6 +2,13 @@
 # is intended to allow maps to load without having to manually edit them. An empty or "null" string results in the
 # entity getting deleted.
 
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!! EPHEMERAL SPACE WARNING !!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!! PUT STUFF AT THE TOP OF FILE !!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!! IN THE ES BLOCK INSTEAD OF !!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!!!!!! AT THE BOTTOM !!!!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 # e.g., you can swap all walls with windows and delete all tables by adding lines like:
 #
 # Window: WallSolid
@@ -9,6 +16,7 @@
 # Table: null
 
 # ES Start
+
 # 2025-18-8
 # Lockers that are redundant to begin with / we will probably never use
 ClosetJanitorBomb: ClosetBomb
@@ -27,8 +35,6 @@ LockerWallEvacRepairFilled: ClosetWallEmergencyFilledRandom
 
 # 2025-9-13
 # Windows
-
-# 2025-13-9
 UraniumWindow: PlasmaWindow
 UraniumWindowDiagonal: PlasmaWindowDiagonal
 UraniumWindowDirectional: PlasmaWindowDirectional
