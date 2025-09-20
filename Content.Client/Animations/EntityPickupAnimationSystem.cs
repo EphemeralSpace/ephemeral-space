@@ -91,7 +91,18 @@ public sealed class EntityPickupAnimationSystem : EntitySystem
                     KeyFrames =
                     {
                         new KeyFrame(sprite.Scale, 0),
-                        new KeyFrame(new Vector2(0.25f, 0.25f), 0.135f, Easings.OutQuad)
+                        new KeyFrame(new Vector2(0.5f, 0.5f), 0.175f, Easings.OutQuad)
+                    }
+                },
+                new AnimationTrackComponentProperty
+                {
+                    ComponentType = typeof(SpriteComponent),
+                    Property = nameof(SpriteComponent.Color),
+                    InterpolationMode = AnimationInterpolationMode.Linear,
+                    KeyFrames =
+                    {
+                        new KeyFrame(sprite.Color, 0),
+                        new KeyFrame(sprite.Color.WithAlpha(0f), 0.175f, Easings.OutQuad)
                     }
                 },
             }
