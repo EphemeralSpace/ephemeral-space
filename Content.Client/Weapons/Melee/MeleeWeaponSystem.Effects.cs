@@ -77,14 +77,14 @@ public sealed partial class MeleeWeaponSystem
                 track.User = user;
                 _animation.Play(animationUid, GetSlashAnimation(sprite, angle, spriteRotation), SlashAnimationKey);
                 if (arcComponent.Fadeout)
-                    _animation.Play(animationUid, GetFadeAnimation(sprite, 0.065f, 0.065f + 0.05f), FadeAnimationKey);
+                    _animation.Play(animationUid, GetFadeAnimation(sprite, 0.15f, 0.25f), FadeAnimationKey);
                 break;
             case WeaponArcAnimation.Thrust:
                 track = EnsureComp<TrackUserComponent>(animationUid);
                 track.User = user;
                 _animation.Play(animationUid, GetThrustAnimation((animationUid, sprite), distance, spriteRotation), ThrustAnimationKey);
                 if (arcComponent.Fadeout)
-                    _animation.Play(animationUid, GetFadeAnimation(sprite, 0.05f, 0.15f), FadeAnimationKey);
+                    _animation.Play(animationUid, GetFadeAnimation(sprite, 0.15f, 0.25f), FadeAnimationKey);
                 break;
             case WeaponArcAnimation.None:
                 var (mapPos, mapRot) = TransformSystem.GetWorldPositionRotation(userXform);
@@ -99,8 +99,8 @@ public sealed partial class MeleeWeaponSystem
 
     private Animation GetSlashAnimation(SpriteComponent sprite, Angle arc, Angle spriteRotation)
     {
-        const float slashDelay = 0.03f;
-        const float slashLength = 0.065f;
+        const float slashDelay = 0.05f;
+        const float slashLength = 0.25f;
         const float length = slashLength + slashDelay;
         var startRotation = sprite.Rotation + arc / 2;
         var endRotation = sprite.Rotation - arc / 2;
@@ -122,7 +122,7 @@ public sealed partial class MeleeWeaponSystem
                     {
                         new AnimationTrackProperty.KeyFrame(startRotation, 0f),
                         new AnimationTrackProperty.KeyFrame(startRotation, slashDelay),
-                        new AnimationTrackProperty.KeyFrame(endRotation, slashLength, Easings.InExpo)
+                        new AnimationTrackProperty.KeyFrame(endRotation, slashLength, Easings.OutQuart)
                     }
                 },
                 new AnimationTrackComponentProperty()
@@ -133,7 +133,7 @@ public sealed partial class MeleeWeaponSystem
                     {
                         new AnimationTrackProperty.KeyFrame(startRotationOffset, 0f),
                         new AnimationTrackProperty.KeyFrame(startRotationOffset, slashDelay),
-                        new AnimationTrackProperty.KeyFrame(endRotationOffset, slashLength, Easings.InExpo)
+                        new AnimationTrackProperty.KeyFrame(endRotationOffset, slashLength, Easings.OutQuad)
                     }
                 },
             }
@@ -142,10 +142,10 @@ public sealed partial class MeleeWeaponSystem
 
     private Animation GetThrustAnimation(Entity<SpriteComponent> sprite, float distance, Angle spriteRotation)
     {
-        const float thrustEnd = 0.05f;
-        const float length = 0.15f;
-        var startOffset = sprite.Comp.Rotation.RotateVec(new Vector2(0f, -distance / 5f));
-        var endOffset = sprite.Comp.Rotation.RotateVec(new Vector2(0f, -distance));
+        const float delay = 0.05f;
+        const float length = 0.25f;
+        var startOffset = sprite.Comp.Rotation.RotateVec(new Vector2(0f, -distance / 2f));
+        var endOffset = sprite.Comp.Rotation.RotateVec(new Vector2(0f, -distance * 1.5f));
         _sprite.SetRotation(sprite.AsNullable(), sprite.Comp.Rotation + spriteRotation);
 
         return new Animation()
@@ -160,19 +160,19 @@ public sealed partial class MeleeWeaponSystem
                     KeyFrames =
                     {
                         new AnimationTrackProperty.KeyFrame(startOffset, 0f),
-                        new AnimationTrackProperty.KeyFrame(endOffset, thrustEnd),
-                        new AnimationTrackProperty.KeyFrame(endOffset, length),
+                        new AnimationTrackProperty.KeyFrame(startOffset, delay),
+                        new AnimationTrackProperty.KeyFrame(endOffset, length, Easings.OutQuint),
                     }
                 },
             }
         };
     }
 
-    private Animation GetFadeAnimation(SpriteComponent sprite, float start, float end)
+    private Animation GetFadeAnimation(SpriteComponent sprite, float delay, float length)
     {
         return new Animation
         {
-            Length = TimeSpan.FromSeconds(end),
+            Length = TimeSpan.FromSeconds(length + delay),
             AnimationTracks =
             {
                 new AnimationTrackComponentProperty()
@@ -181,8 +181,9 @@ public sealed partial class MeleeWeaponSystem
                     Property = nameof(SpriteComponent.Color),
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(sprite.Color, start),
-                        new AnimationTrackProperty.KeyFrame(sprite.Color.WithAlpha(0f), end, Easings.InQuad)
+                        new AnimationTrackProperty.KeyFrame(sprite.Color, 0f),
+                        new AnimationTrackProperty.KeyFrame(sprite.Color, delay),
+                        new AnimationTrackProperty.KeyFrame(sprite.Color.WithAlpha(0f), length, Easings.InQuad)
                     }
                 }
             }
