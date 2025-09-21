@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using Content.Shared._ES.Area.Components;
+using Content.Shared._ES.SpawnRegion.Components;
 using Content.Shared.Examine;
 using Content.Shared.Ghost;
 using Content.Shared.Maps;
@@ -14,9 +14,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Shared._ES.Area;
+namespace Content.Shared._ES.SpawnRegion;
 
-public abstract class ESSharedAreaSystem : EntitySystem
+public abstract class ESSharedSpawnRegionSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
@@ -25,7 +25,7 @@ public abstract class ESSharedAreaSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    private readonly List<Entity<ESAreaMarkerComponent>> _markers = new();
+    private readonly List<Entity<ESSpawnRegionMarkerComponent>> _markers = new();
     private readonly HashSet<EntityUid> _lookupSet = new();
     private readonly HashSet<Entity<ActorComponent>> _actors = new();
 
@@ -48,7 +48,7 @@ public abstract class ESSharedAreaSystem : EntitySystem
     /// <summary>
     /// Selects a random coordinate inside a given area, filtering primarily by station.
     /// </summary>
-    /// <param name="area">The Area prototype ID used for generally filtering areas.</param>
+    /// <param name="region">The Spawn Region prototype ID used for generally filtering areas.</param>
     /// <param name="station">The station that the area must be on</param>
     /// <param name="outCoords">The randomly selected coordinate. May be null</param>
     /// <param name="blockLayer"><see cref="CollisionGroup"/> used for determining if a given coordinate is "blocked"</param>
@@ -58,7 +58,7 @@ public abstract class ESSharedAreaSystem : EntitySystem
     /// <param name="checkAtmosTemperature">If true, unsafe atmospheric temperature will invalidate a coordinate</param>
     /// <param name="pred">Generic predicate for determining if a coordinate is valid</param>
     /// <returns>If <see cref="outCoords"/> was successfully found in a reasonable amount of time.</returns>
-    public bool TryGetRandomAreaCoords(ProtoId<ESAreaPrototype> area,
+    public bool TryGetRandomAreaCoords(ProtoId<ESSpawnRegionPrototype> region,
         Entity<StationDataComponent?> station,
         [NotNullWhen(true)] out EntityCoordinates? outCoords,
         CollisionGroup blockLayer = CollisionGroup.MobMask | CollisionGroup.Opaque,
@@ -73,7 +73,7 @@ public abstract class ESSharedAreaSystem : EntitySystem
         if (!Resolve(station, ref station.Comp))
             return false;
 
-        return TryGetRandomAreaCoords(area,
+        return TryGetRandomAreaCoords(region,
             station.Comp.Grids,
             out outCoords,
             blockLayer,
@@ -87,7 +87,7 @@ public abstract class ESSharedAreaSystem : EntitySystem
     /// <summary>
     /// Selects a random coordinate inside a given area, filtering primarily by grid
     /// </summary>
-    /// <param name="area">The Area prototype ID used for generally filtering areas.</param>
+    /// <param name="region">The Spawn Region prototype ID used for generally filtering areas.</param>
     /// <param name="gridSet">A set of grids that the area must be located on</param>
     /// <param name="outCoords">The randomly selected coordinate. May be null</param>
     /// <param name="blockLayer"><see cref="CollisionGroup"/> used for determining if a given coordinate is "blocked"</param>
@@ -97,7 +97,7 @@ public abstract class ESSharedAreaSystem : EntitySystem
     /// <param name="checkAtmosTemperature">If true, unsafe atmospheric temperature will invalidate a coordinate</param>
     /// <param name="pred">Generic predicate for determining if a coordinate is valid</param>
     /// <returns>If <see cref="outCoords"/> was successfully found in a reasonable amount of time.</returns>
-    public bool TryGetRandomAreaCoords(ProtoId<ESAreaPrototype> area,
+    public bool TryGetRandomAreaCoords(ProtoId<ESSpawnRegionPrototype> region,
         HashSet<EntityUid> gridSet,
         [NotNullWhen(true)] out EntityCoordinates? outCoords,
         CollisionGroup blockLayer = CollisionGroup.MobMask | CollisionGroup.Opaque,
@@ -111,7 +111,7 @@ public abstract class ESSharedAreaSystem : EntitySystem
         outCoords = null;
 
         _markers.Clear();
-        var query = EntityQueryEnumerator<ESAreaMarkerComponent>();
+        var query = EntityQueryEnumerator<ESSpawnRegionMarkerComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
             _markers.Add((uid, comp));
@@ -129,9 +129,9 @@ public abstract class ESSharedAreaSystem : EntitySystem
         }
         return false;
 
-        bool IsMarkerValid(Entity<ESAreaMarkerComponent> ent)
+        bool IsMarkerValid(Entity<ESSpawnRegionMarkerComponent> ent)
         {
-            if (ent.Comp.Area != area)
+            if (ent.Comp.Area != region)
                 return false;
 
             var xform = Transform(ent);
@@ -206,12 +206,12 @@ public abstract class ESSharedAreaSystem : EntitySystem
         }
     }
 
-    protected virtual bool IsMarkerPressureSafe(Entity<ESAreaMarkerComponent, TransformComponent> ent)
+    protected virtual bool IsMarkerPressureSafe(Entity<ESSpawnRegionMarkerComponent, TransformComponent> ent)
     {
         return true;
     }
 
-    protected virtual bool IsMarkerTemperatureSafe(Entity<ESAreaMarkerComponent, TransformComponent> ent)
+    protected virtual bool IsMarkerTemperatureSafe(Entity<ESSpawnRegionMarkerComponent, TransformComponent> ent)
     {
         return true;
     }

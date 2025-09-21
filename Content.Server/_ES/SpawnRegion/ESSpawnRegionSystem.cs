@@ -1,15 +1,15 @@
 using Content.Server.Atmos.EntitySystems;
-using Content.Shared._ES.Area;
-using Content.Shared._ES.Area.Components;
+using Content.Shared._ES.SpawnRegion;
+using Content.Shared._ES.SpawnRegion.Components;
 using Content.Shared.Atmos;
 
-namespace Content.Server._ES.Area;
+namespace Content.Server._ES.SpawnRegion;
 
-public sealed class ESAreaSystem : ESSharedAreaSystem
+public sealed class ESSpawnRegionSystem : ESSharedSpawnRegionSystem
 {
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
 
-    protected override bool IsMarkerPressureSafe(Entity<ESAreaMarkerComponent, TransformComponent> ent)
+    protected override bool IsMarkerPressureSafe(Entity<ESSpawnRegionMarkerComponent, TransformComponent> ent)
     {
         if (_atmosphere.GetTileMixture((ent, ent)) is not { } tileMixture)
             return false;
@@ -24,7 +24,7 @@ public sealed class ESAreaSystem : ESSharedAreaSystem
         return true;
     }
 
-    protected override bool IsMarkerTemperatureSafe(Entity<ESAreaMarkerComponent, TransformComponent> ent)
+    protected override bool IsMarkerTemperatureSafe(Entity<ESSpawnRegionMarkerComponent, TransformComponent> ent)
     {
         if (_atmosphere.GetTileMixture((ent, ent)) is not { } tileMixture)
             return false;
