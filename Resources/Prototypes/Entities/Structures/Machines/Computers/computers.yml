@@ -384,7 +384,7 @@
       state: generic_keyboard
 # ES Start
     - map: ["computerLayerScreen"]
-      state: sec
+      state: security
 # ES End
     - map: ["computerLayerKeys"]
       state: security_key

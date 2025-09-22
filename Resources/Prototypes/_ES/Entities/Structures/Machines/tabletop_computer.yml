@@ -105,7 +105,7 @@
     - map: ["computerLayerBody"]
       state: computer
     - map: ["computerLayerScreen"]
-      state: sec
+      state: security
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: PointLight
