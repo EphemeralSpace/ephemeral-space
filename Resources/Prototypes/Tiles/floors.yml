@@ -624,10 +624,11 @@
   itemDrop: FloorTileItemTechmaintDark
   heatCapacity: 10000
 
+# ES Start
 - type: tile
   id: FloorReinforced
   name: tiles-reinforced-floor
-  sprite: /Textures/Tiles/reinforced.png
+  sprite: /Textures/_ES/Tiles/reinforced.png
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
@@ -635,6 +636,7 @@
     collection: FootstepHull
   itemDrop: PartRodMetal1
   heatCapacity: 10000
+# ES End
 
 - type: tile
   id: FloorMono
