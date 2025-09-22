@@ -6,7 +6,7 @@ namespace Content.Shared._ES.Cargo.Requests.Components;
 /// <summary>
 /// Manages central data for all cargo requests.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 [Access(typeof(ESSharedCargoRequestSystem))]
 public sealed partial class ESCargoRequestStationComponent : Component
 {
@@ -30,6 +30,7 @@ public enum ESCargoRequestStatus : byte
     InProgress,
     Completed,
     Cancelled,
+    Denied,
 }
 
 [Serializable, NetSerializable]

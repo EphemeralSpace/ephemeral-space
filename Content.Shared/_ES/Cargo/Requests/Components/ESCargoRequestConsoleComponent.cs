@@ -1,6 +1,5 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._ES.Cargo.Requests.Components;
 
@@ -10,9 +9,6 @@ public sealed partial class ESCargoRequestConsoleComponent : Component
 {
     public const int MaxBodyLength = 512;
 
-    [DataField(customTypeSerializer: typeof(FlagSerializer<ESCargoRequestStatus>))]
-    public ESCargoRequestStatus SettableStatuses = ESCargoRequestStatus.Pending | ESCargoRequestStatus.Cancelled;
-
     [DataField]
     public bool UpdateIndicator;
 
@@ -21,6 +17,9 @@ public sealed partial class ESCargoRequestConsoleComponent : Component
 
     [DataField, AutoNetworkedField]
     public string DepartmentString = string.Empty;
+
+    [DataField]
+    public LocId BaseDepartmentString = "es-cargo-request-console-dept-default";
 }
 
 [Serializable, NetSerializable]

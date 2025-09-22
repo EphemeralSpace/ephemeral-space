@@ -38,7 +38,7 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
     {
         if (!string.IsNullOrWhiteSpace(ent.Comp.DepartmentString))
             return;
-        ent.Comp.DepartmentString = Loc.GetString("es-cargo-request-console-dept-default");
+        ent.Comp.DepartmentString = Loc.GetString(ent.Comp.BaseDepartmentString);
         Dirty(ent);
     }
 
@@ -49,7 +49,7 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
 
     private void OnCreateCargoRequest(Entity<ESCargoRequestConsoleComponent> ent, ref ESCreateCargoRequestMessage args)
     {
-        if (!ent.Comp.SettableStatuses.HasFlag(ESCargoRequestStatus.Pending))
+        if (ent.Comp.MasterConsole)
             return;
 
         var body = FormattedMessage.RemoveMarkupPermissive(args.Body);
@@ -68,7 +68,7 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
 
     private void OnSetCargoRequestStatus(Entity<ESCargoRequestConsoleComponent> ent, ref ESSetCargoRequestStatusMessage args)
     {
-        if (!CanSetStatus(ent, args.NewStatus))
+        if (!ent.Comp.MasterConsole && args.NewStatus != ESCargoRequestStatus.Cancelled)
             return;
 
         if (_station.GetOwningStation(ent) is not { } station ||
@@ -107,11 +107,6 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
         return true;
     }
 
-    public bool CanSetStatus(Entity<ESCargoRequestConsoleComponent> ent, ESCargoRequestStatus status)
-    {
-        return ent.Comp.SettableStatuses.HasFlag(status);
-    }
-
     public void SetRelevantUpdateIndicators(string department, bool val)
     {
         var query = EntityQueryEnumerator<ESCargoRequestConsoleComponent>();
@@ -143,6 +138,7 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
             ESCargoRequestStatus.InProgress => "es-cargo-request-status-in-progress",
             ESCargoRequestStatus.Completed => "es-cargo-request-status-completed",
             ESCargoRequestStatus.Cancelled => "es-cargo-request-status-cancelled",
+            ESCargoRequestStatus.Denied => "es-cargo-request-status-denied",
             _ => throw new ArgumentOutOfRangeException(nameof(status), status, null),
         };
     }

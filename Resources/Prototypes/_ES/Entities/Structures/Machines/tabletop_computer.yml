@@ -3,7 +3,7 @@
 
 - type: entity
   parent: BaseComputer
-  id: BaseTabletopComputer
+  id: ESBaseTabletopComputer
   name: computer
   suffix: Tabletop
   components:
@@ -56,8 +56,8 @@
         - BulletImpassable
 
 - type: entity
-  parent: BaseTabletopComputer
-  id: BaseTabletopComputerAiAccess
+  parent: ESBaseTabletopComputer
+  id: ESBaseTabletopComputerAiAccess
   components:
   - type: StationAiWhitelist
   - type: Wires
@@ -65,8 +65,8 @@
     layoutId: ComputerAi
 
 - type: entity
-  parent: BaseTabletopComputerAiAccess
-  id: ComputerMedicalRecordsTabletop
+  parent: ESBaseTabletopComputerAiAccess
+  id: ESComputerMedicalRecordsTabletop
   name: medical records computer
   description: This can be used to check medical records.
   components:
@@ -86,8 +86,8 @@
     board: MedicalRecordsComputerCircuitboard
 
 - type: entity
-  parent: BaseTabletopComputerAiAccess
-  id: ComputerCriminalRecordsTabletop
+  parent: ESBaseTabletopComputerAiAccess
+  id: ESComputerCriminalRecordsTabletop
   name: criminal records computer
   description: This can be used to check criminal records. Only security can modify them.
   components:
@@ -121,8 +121,8 @@
     - CriminalRecords
 
 - type: entity
-  parent: BaseTabletopComputerAiAccess
-  id: ComputerStationRecordsTabletop
+  parent: ESBaseTabletopComputerAiAccess
+  id: ESComputerStationRecordsTabletop
   name: station records computer
   description: This can be used to check station records.
   components:
@@ -146,8 +146,8 @@
     - Forensics
 
 - type: entity
-  parent: BaseTabletopComputerAiAccess
-  id: ComputerCrewMonitoringTabletop
+  parent: ESBaseTabletopComputerAiAccess
+  id: ESComputerCrewMonitoringTabletop
   name: crew monitoring console
   description: Used to monitor active health sensors built into most of the crew's uniforms.
   components:
@@ -181,8 +181,8 @@
     range: 1200
 
 - type: entity
-  parent: BaseTabletopComputerAiAccess
-  id: ComputerIdTabletop
+  parent: ESBaseTabletopComputerAiAccess
+  id: ESComputerIdTabletop
   name: ID card computer
   description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
   components:
@@ -243,8 +243,8 @@
       IdCardConsole-targetId: !type:ContainerSlot
 
 - type: entity
-  parent: BaseTabletopComputer
-  id: ComputerSurveillanceCameraMonitorTabletop
+  parent: ESBaseTabletopComputer
+  id: ESComputerSurveillanceCameraMonitorTabletop
   name: camera monitor
   description: A surveillance camera monitor. You're watching them. Maybe.
   components:
@@ -278,8 +278,8 @@
           type: WiresBoundUserInterface
 
 - type: entity
-  parent: BaseTabletopComputer
-  id: ComputerSurveillanceWirelessCameraMonitorTabletop
+  parent: ESBaseTabletopComputer
+  id: ESComputerSurveillanceWirelessCameraMonitorTabletop
   name: wireless camera monitor
   description: A wireless surveillance camera monitor. You're watching them. Maybe.
   components:
@@ -313,3 +313,16 @@
           type: SurveillanceCameraMonitorBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+
+- type: entity
+  parent: [ ESBaseComputerWarehouseRequest, ESBaseTabletopComputer ]
+  id: ESComputerWarehouseRequestTabletop
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerScreen"]
+      state: request-0
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open

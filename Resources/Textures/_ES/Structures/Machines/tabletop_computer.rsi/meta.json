@@ -7,7 +7,6 @@
     "y": 32
   },
   "states": [
-
     {
       "name": "computer"
     },
@@ -24,7 +23,10 @@
       "name": "supply"
     },
     {
-      "name": "request"
+      "name": "request-0"
+    },
+    {
+      "name": "request-1"
     },
     {
         "name": "cameras",
