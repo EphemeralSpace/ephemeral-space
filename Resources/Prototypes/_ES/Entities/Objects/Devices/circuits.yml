@@ -35,3 +35,14 @@
     state: mainboard
   - type: ComputerBoard
     prototype: ESComputerWarehouseManifest
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ESComputerSupplyRequestCircuitBoard
+  name: supply request console circuit board
+  description: A computer printed circuit board for a supply request console.
+  components:
+  - type: Sprite
+    state: mainboard
+  - type: ComputerBoard
+    prototype: ESComputerSupplyRequest

@@ -315,8 +315,8 @@
           type: WiresBoundUserInterface
 
 - type: entity
-  parent: [ ESBaseComputerWarehouseRequest, ESBaseTabletopComputer ]
-  id: ESComputerWarehouseRequestTabletop
+  parent: [ ESBaseComputerSupplyRequest, ESBaseTabletopComputer ]
+  id: ESComputerSupplyRequestTabletop
   components:
   - type: Sprite
     layers:

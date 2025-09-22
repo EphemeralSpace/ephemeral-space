@@ -19,7 +19,7 @@ public sealed class ESCargoRequestSystem : ESSharedCargoRequestSystem
     private void OnAfterAutoHandleStateEvent(Entity<ESCargoRequestStationComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         var query = EntityQueryEnumerator<ESCargoRequestConsoleComponent, UserInterfaceComponent>();
-        while (query.MoveNext(out var uid, out var comp, out var ui))
+        while (query.MoveNext(out var uid, out _, out var ui))
         {
             if (_userInterface.TryGetOpenUi((uid, ui), ESCargoRequestConsoleUiKey.Key, out var bui))
                 bui.Update();

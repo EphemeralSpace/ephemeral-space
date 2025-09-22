@@ -72,8 +72,8 @@
     color: "#b89f25"
 
 - type: entity
-  id: ESBaseComputerWarehouseRequest
-  name: warehouse request console
+  id: ESBaseComputerSupplyRequest
+  name: supply request console
   description: A link into the central request system for the cargo department. Place your supply requests here and pray for them to be fulfilled.
   abstract: true
   components:
@@ -86,14 +86,14 @@
         type: ESWarehouseManifestBui
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-  # - type: Computer
-  #   board: ESComputerWarehouseManifestCircuitBoard
+  - type: Computer
+    board: ESComputerSupplyRequestCircuitBoard
   - type: PointLight
     color: "#b89f25"
 
 - type: entity
-  parent: [ ESBaseComputerWarehouseRequest, BaseComputerAiAccess ]
-  id: ESComputerWarehouseRequest
+  parent: [ ESBaseComputerSupplyRequest, BaseComputerAiAccess ]
+  id: ESComputerSupplyRequest
   components:
   - type: Sprite
     layers:
