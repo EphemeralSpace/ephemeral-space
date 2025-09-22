@@ -382,8 +382,10 @@
       state: computer
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
+# ES Start
     - map: ["computerLayerScreen"]
-      state: explosive
+      state: sec
+# ES End
     - map: ["computerLayerKeys"]
       state: security_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
