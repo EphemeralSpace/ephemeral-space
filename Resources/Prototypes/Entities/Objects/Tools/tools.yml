@@ -139,12 +139,12 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/multitool_drop.ogg
+# ES Start
   - type: Sprite
     sprite: Objects/Tools/multitool.rsi
     layers:
     - state: icon
-    - state: green-unlit
-      shader: unshaded
+# ES End
   - type: Item
     size: Small
   - type: Clothing
