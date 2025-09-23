@@ -76,6 +76,7 @@
   name: supply request console
   description: A link into the central request system for the cargo department. Place your supply requests here and pray for them to be fulfilled.
   abstract: true
+  suffix: ES
   components:
   - type: ESCargoRequestConsole
   - type: ActivatableUI
@@ -83,7 +84,7 @@
   - type: UserInterface
     interfaces:
       enum.ESCargoRequestConsoleUiKey.Key:
-        type: ESWarehouseManifestBui
+        type: ESCargoRequestConsoleBui
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: Computer

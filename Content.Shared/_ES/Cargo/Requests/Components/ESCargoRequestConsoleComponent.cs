@@ -3,11 +3,13 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Cargo.Requests.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 [Access(typeof(ESSharedCargoRequestSystem))]
 public sealed partial class ESCargoRequestConsoleComponent : Component
 {
     public const int MaxBodyLength = 512;
+
+    public const int MaxIdLength = 24;
 
     [DataField]
     public bool UpdateIndicator;
@@ -32,6 +34,12 @@ public enum ESCargoRequestConsoleVisuals : byte
 public enum ESCargoRequestConsoleUiKey : byte
 {
     Key,
+}
+
+[Serializable, NetSerializable]
+public sealed class ESSetDepartmentIdMessage(string body) : BoundUserInterfaceMessage
+{
+    public string DepartmentId = body;
 }
 
 [Serializable, NetSerializable]

@@ -9,7 +9,7 @@ namespace Content.Shared._ES.Cargo.Requests;
 public abstract class ESSharedCargoRequestSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
     [Dependency] private readonly SharedStationSystem _station = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
 
@@ -23,6 +23,7 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
             subs =>
             {
                 subs.Event<BoundUIOpenedEvent>(OnConsoleUiOpened);
+                subs.Event<ESSetDepartmentIdMessage>(OnSetDepartmentId);
                 subs.Event<ESCreateCargoRequestMessage>(OnCreateCargoRequest);
                 subs.Event<ESSetCargoRequestStatusMessage>(OnSetCargoRequestStatus);
             });
@@ -45,6 +46,15 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
     private void OnConsoleUiOpened(EntityUid uid, ESCargoRequestConsoleComponent component, BoundUIOpenedEvent args)
     {
         SetUpdateIndicator((uid, component), false);
+    }
+
+    protected virtual void OnSetDepartmentId(Entity<ESCargoRequestConsoleComponent> ent, ref ESSetDepartmentIdMessage args)
+    {
+        if (!ValidateDepartmentId(args.DepartmentId))
+            return;
+
+        ent.Comp.DepartmentString = FormattedMessage.RemoveMarkupPermissive(args.DepartmentId);
+        Dirty(ent);
     }
 
     private void OnCreateCargoRequest(Entity<ESCargoRequestConsoleComponent> ent, ref ESCreateCargoRequestMessage args)
@@ -127,7 +137,13 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
             return;
 
         ent.Comp.UpdateIndicator = val;
-        _appearance.SetData(ent.Owner, ESCargoRequestConsoleVisuals.Update, val);
+        Appearance.SetData(ent.Owner, ESCargoRequestConsoleVisuals.Update, val);
+    }
+
+    public static bool ValidateDepartmentId(string id)
+    {
+        var realId = FormattedMessage.RemoveMarkupPermissive(id);
+        return realId.Length <= ESCargoRequestConsoleComponent.MaxIdLength && !string.IsNullOrWhiteSpace(realId);
     }
 
     public static LocId GetLocalizedText(ESCargoRequestStatus status)
