@@ -1,4 +1,6 @@
+using System.Linq;
 using Content.Client.Message;
+using Content.Client.Station;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._ES.Cargo.Requests;
 using Content.Shared._ES.Cargo.Requests.Components;
@@ -11,9 +13,11 @@ namespace Content.Client._ES.Cargo.Requests.Ui;
 public sealed partial class ESCargoRequestConsoleWindow : FancyWindow
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    private readonly StationSystem _station;
 
     public event Action<string>? OnDepartmentIdChanged;
     public event Action<string>? OnCreateRequest;
+    public event Action<int, ESCargoRequestStatus>? OnStatusChanged;
 
     private ESRequestCreationWindow? _requestCreationWindow;
 
@@ -21,6 +25,8 @@ public sealed partial class ESCargoRequestConsoleWindow : FancyWindow
     {
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
+
+        _station = _entityManager.System<StationSystem>();
 
         DepartmentIdButtonEdit.OnPressed += _ =>
         {
@@ -65,6 +71,31 @@ public sealed partial class ESCargoRequestConsoleWindow : FancyWindow
         DepartmentIdEdit.Text = comp.DepartmentString;
 
         CreateRequestButton.Visible = !comp.MasterConsole;
+
+        UpdateRequests((owner, comp));
+    }
+
+    public void UpdateRequests(Entity<ESCargoRequestConsoleComponent> ent)
+    {
+        if (_station.GetOwningStation(ent) is not { } station ||
+            !_entityManager.TryGetComponent<ESCargoRequestStationComponent>(station, out var comp))
+            return;
+
+        RequestsContainer.Children.Clear();
+
+        var departmentId = ent.Comp.DepartmentString;
+        var requests = comp.Requests.OrderByDescending(p => p.Value.Status).ThenByDescending(p => p.Key);
+        foreach (var (rid, request) in requests)
+        {
+            if (request.Department != departmentId)
+                continue;
+
+            var entry = new ESRequestEntry(request, rid, ent.Comp.MasterConsole);
+            entry.OnStatusChanged += OnStatusChanged;
+            RequestsContainer.AddChild(entry);
+        }
+
+        NoRequestsLabel.Visible = !RequestsContainer.Children.Any();
     }
 }
 

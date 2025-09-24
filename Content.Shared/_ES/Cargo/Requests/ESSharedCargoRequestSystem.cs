@@ -1,4 +1,5 @@
 using Content.Shared._ES.Cargo.Requests.Components;
+using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Station;
 using Robust.Shared.Random;
@@ -18,6 +19,7 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
     {
         SubscribeLocalEvent<ESCargoRequestStationComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ESCargoRequestConsoleComponent, MapInitEvent>(OnConsoleMapInit);
+        SubscribeLocalEvent<ESCargoRequestConsoleComponent, ExaminedEvent>(OnExamined);
 
         Subs.BuiEvents<ESCargoRequestConsoleComponent>(ESCargoRequestConsoleUiKey.Key,
             subs =>
@@ -41,6 +43,12 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
             return;
         ent.Comp.DepartmentString = Loc.GetString(ent.Comp.BaseDepartmentString);
         Dirty(ent);
+    }
+
+    private void OnExamined(Entity<ESCargoRequestConsoleComponent> ent, ref ExaminedEvent args)
+    {
+        if (ent.Comp.UpdateIndicator)
+            args.PushMarkup(Loc.GetString("es-cargo-request-examine-update"));
     }
 
     private void OnConsoleUiOpened(EntityUid uid, ESCargoRequestConsoleComponent component, BoundUIOpenedEvent args)
@@ -78,7 +86,7 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
 
     private void OnSetCargoRequestStatus(Entity<ESCargoRequestConsoleComponent> ent, ref ESSetCargoRequestStatusMessage args)
     {
-        if (!ent.Comp.MasterConsole && args.NewStatus != ESCargoRequestStatus.Cancelled)
+        if (!ent.Comp.MasterConsole)
             return;
 
         if (_station.GetOwningStation(ent) is not { } station ||

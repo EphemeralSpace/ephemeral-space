@@ -11,7 +11,7 @@
             <PanelContainer.PanelOverride>
                 <graphics:StyleBoxFlat BackgroundColor="{xNamespace:Static style:StyleNano.PanelDark}" />
             </PanelContainer.PanelOverride>
-            <TextEdit Name="BodyLineEdit" HorizontalExpand="True" VerticalExpand="True"/>
+            <TextEdit Name="BodyLineEdit" HorizontalExpand="True" VerticalExpand="True" Margin="5"/>
         </PanelContainer>
         <Control MinHeight="5"/>
         <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right">

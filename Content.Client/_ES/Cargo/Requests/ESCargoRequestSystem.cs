@@ -49,7 +49,7 @@ public sealed class ESCargoRequestSystem : ESSharedCargoRequestSystem
         if (Appearance.TryGetData<bool>(ent, ESCargoRequestConsoleVisuals.Update, out var update, args.Component))
         {
             // Hardcoded appearance? More likely than you think.
-            var state = update ? "request-1" : "request-0";
+            var state = $"request-{(update ? "1" : "0")}";
             _sprite.LayerSetRsiState((ent, args.Sprite), "computerLayerScreen", state);
         }
     }

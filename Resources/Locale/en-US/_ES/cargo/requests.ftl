@@ -5,10 +5,16 @@ es-cargo-request-ui-container-tooltip-id = A generic ID, used for tracking your 
 
 es-cargo-request-ui-label-no-requests = No Requests to Display
 es-cargo-request-ui-button-create-request = Create Request
+es-cargo-request-ui-entry-label-requester = [bold]Requester:[/bold] {$name}
+es-cargo-request-ui-entry-label-department = [bold]Console ID:[/bold] {$name}
+es-cargo-request-ui-entry-label-id = [bold]RID#{$name}[/bold]
+es-cargo-request-ui-entry-label-body = [font size=12]{$text}[/font]
 
 es-cargo-request-ui-popup-title = Create Request
 es-cargo-request-ui-popup-button-finish = Done
 es-cargo-request-ui-popup-button-cancel = Cancel
+
+es-cargo-request-examine-update = [color=red]One of your requests has been updated![/color]
 
 es-cargo-request-status-pending = Pending
 es-cargo-request-status-in-progress = In Progress

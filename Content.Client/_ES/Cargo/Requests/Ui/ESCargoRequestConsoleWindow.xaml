@@ -5,8 +5,7 @@
     xmlns:xNamespace="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     Title="{Loc 'es-cargo-request-ui-title'}"
-    MinSize="420 300"
-    >
+    MinSize="420 500">
     <BoxContainer Orientation="Vertical" Margin="10">
         <BoxContainer Orientation="Horizontal">
             <BoxContainer SetWidth="400">
@@ -31,9 +30,10 @@
             <PanelContainer.PanelOverride>
                 <graphics:StyleBoxFlat BackgroundColor="{xNamespace:Static style:StyleNano.PanelDark}" />
             </PanelContainer.PanelOverride>
-            <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True" Margin="10 10 0 10">
+            <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
                 <BoxContainer Orientation="Vertical">
-                    <RichTextLabel Text="{Loc 'es-cargo-request-ui-label-no-requests'}"/>
+                    <BoxContainer Orientation="Vertical" Name="RequestsContainer"/>
+                    <RichTextLabel Name="NoRequestsLabel" Text="{Loc 'es-cargo-request-ui-label-no-requests'}" VerticalExpand="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </BoxContainer>
             </ScrollContainer>
         </PanelContainer>
