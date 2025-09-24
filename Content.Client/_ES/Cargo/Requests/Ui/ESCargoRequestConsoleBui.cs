@@ -17,6 +17,7 @@ public sealed class ESCargoRequestConsoleBui(EntityUid owner, Enum uiKey) : Boun
         _window.Update(Owner);
 
         _window.OnDepartmentIdChanged += id => SendPredictedMessage(new ESSetDepartmentIdMessage(id));
+        _window.OnCreateRequest += body => SendPredictedMessage(new ESCreateCargoRequestMessage(body));
     }
 
     public override void Update()

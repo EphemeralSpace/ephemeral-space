@@ -37,8 +37,6 @@ public enum ESCargoRequestStatus : byte
 [DataDefinition]
 public sealed partial class ESCargoRequest
 {
-    [DataField] public int Id;
-
     [DataField] public string User = string.Empty;
     [DataField] public string Department = string.Empty;
     [DataField] public string RequestBody = string.Empty;

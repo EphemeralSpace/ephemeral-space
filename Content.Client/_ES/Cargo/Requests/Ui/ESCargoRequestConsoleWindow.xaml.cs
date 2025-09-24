@@ -13,6 +13,9 @@ public sealed partial class ESCargoRequestConsoleWindow : FancyWindow
     [Dependency] private readonly IEntityManager _entityManager = default!;
 
     public event Action<string>? OnDepartmentIdChanged;
+    public event Action<string>? OnCreateRequest;
+
+    private ESRequestCreationWindow? _requestCreationWindow;
 
     public ESCargoRequestConsoleWindow()
     {
@@ -35,6 +38,23 @@ public sealed partial class ESCargoRequestConsoleWindow : FancyWindow
         };
         DepartmentIdEdit.OnTextEntered += _ => DepartmentIdEdit.ReleaseKeyboardFocus();
         DepartmentIdEdit.IsValid = ESSharedCargoRequestSystem.ValidateDepartmentId;
+
+        CreateRequestButton.OnPressed += _ =>
+        {
+            if (_requestCreationWindow != null)
+                return;
+
+            _requestCreationWindow = new ESRequestCreationWindow();
+            _requestCreationWindow.OpenCenteredRight();
+            OnClose += _requestCreationWindow.Close;
+
+            _requestCreationWindow.OnRequestConfirm += OnCreateRequest;
+            _requestCreationWindow.OnClose += () =>
+            {
+                _requestCreationWindow.OnRequestConfirm -= OnCreateRequest;
+                _requestCreationWindow = null;
+            };
+        };
     }
 
     public void Update(EntityUid owner)

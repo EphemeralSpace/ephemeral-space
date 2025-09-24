@@ -16,6 +16,7 @@
   abstract: true
   components:
   - type: ESStoreroomStation
+  - type: ESCargoRequestStation
 
 - type: entity
   id: ESBaseStationNeutral
