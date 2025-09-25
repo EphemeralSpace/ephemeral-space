@@ -1,4 +1,6 @@
 using Content.Shared._ES.Cargo.Requests.Components;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Station;
@@ -9,6 +11,7 @@ namespace Content.Shared._ES.Cargo.Requests;
 
 public abstract class ESSharedCargoRequestSystem : EntitySystem
 {
+    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
     [Dependency] private readonly SharedStationSystem _station = default!;
@@ -61,8 +64,11 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
         if (!ValidateDepartmentId(args.DepartmentId))
             return;
 
-        ent.Comp.DepartmentString = FormattedMessage.RemoveMarkupPermissive(args.DepartmentId);
+        var oldId = ent.Comp.DepartmentString;
+        var newId = FormattedMessage.RemoveMarkupPermissive(args.DepartmentId);
+        ent.Comp.DepartmentString = newId;
         Dirty(ent);
+        _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.Actor):player} changed request console {ToPrettyString(ent)}\'s ID from {oldId} to {newId}");
     }
 
     private void OnCreateCargoRequest(Entity<ESCargoRequestConsoleComponent> ent, ref ESCreateCargoRequestMessage args)
@@ -81,7 +87,7 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
         var userName = Identity.Name(args.Actor, EntityManager);
         CreateRequest((station, stationComp), userName, ent.Comp.DepartmentString, body);
         SetRelevantUpdateIndicators(ent.Comp.DepartmentString, true);
-        // LOG
+        _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.Actor):player} added request RID#{stationComp.NextRequestId - 1} for \"{body}\"");
     }
 
     private void OnSetCargoRequestStatus(Entity<ESCargoRequestConsoleComponent> ent, ref ESSetCargoRequestStatusMessage args)
@@ -94,10 +100,11 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
             !stationComp.Requests.TryGetValue(args.RequestId, out var request))
             return;
 
+        var oldStatus = request.Status;
         if (!TrySetRequestStatus((station, stationComp), args.RequestId, args.NewStatus))
             return;
         SetRelevantUpdateIndicators(request.Department, true);
-        // LOG
+        _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.Actor):player} set cargo status of RID#{args.RequestId} from {oldStatus} to {args.NewStatus}");
     }
 
     public ESCargoRequest CreateRequest(Entity<ESCargoRequestStationComponent> ent, string user, string department, string requestBody)

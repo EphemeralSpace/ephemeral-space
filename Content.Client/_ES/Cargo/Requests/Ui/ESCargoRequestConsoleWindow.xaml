@@ -7,7 +7,7 @@
     Title="{Loc 'es-cargo-request-ui-title'}"
     MinSize="420 500">
     <BoxContainer Orientation="Vertical" Margin="10">
-        <BoxContainer Orientation="Horizontal">
+        <BoxContainer Orientation="Horizontal" Name="IdMetaContainer">
             <BoxContainer SetWidth="400">
                 <BoxContainer Name="IdDisplayContainer" Orientation="Horizontal" HorizontalExpand="True" ToolTip="{Loc 'es-cargo-request-ui-container-tooltip-id'}" MouseFilter="Pass">
                     <RichTextLabel Text="{Loc 'es-cargo-request-ui-label-dept-id'}" StyleClasses="LabelKeyText"/>
@@ -24,8 +24,8 @@
                     <LineEdit Name="DepartmentIdEdit" HorizontalExpand="True" Margin="5 0"/>
                 </BoxContainer>
             </BoxContainer>
+            <Control MinHeight="10"/>
         </BoxContainer>
-        <Control MinHeight="10"/>
         <PanelContainer Margin="5" HorizontalExpand="True" VerticalExpand="True">
             <PanelContainer.PanelOverride>
                 <graphics:StyleBoxFlat BackgroundColor="{xNamespace:Static style:StyleNano.PanelDark}" />

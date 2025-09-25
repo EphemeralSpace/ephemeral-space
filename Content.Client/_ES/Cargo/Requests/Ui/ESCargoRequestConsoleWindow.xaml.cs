@@ -71,6 +71,10 @@ public sealed partial class ESCargoRequestConsoleWindow : FancyWindow
         DepartmentIdEdit.Text = comp.DepartmentString;
 
         CreateRequestButton.Visible = !comp.MasterConsole;
+        IdMetaContainer.Visible = !comp.MasterConsole;
+        Title = comp.MasterConsole
+            ? Loc.GetString("es-cargo-request-ui-title-master")
+            : Loc.GetString("es-cargo-request-ui-title");
 
         UpdateRequests((owner, comp));
     }
@@ -84,14 +88,16 @@ public sealed partial class ESCargoRequestConsoleWindow : FancyWindow
         RequestsContainer.Children.Clear();
 
         var departmentId = ent.Comp.DepartmentString;
-        var requests = comp.Requests.OrderByDescending(p => p.Value.Status).ThenByDescending(p => p.Key);
+        var requests = comp.Requests
+            .OrderBy(p => p.Value.Status)
+            .ThenByDescending(p => p.Key);
         foreach (var (rid, request) in requests)
         {
             if (request.Department != departmentId)
                 continue;
 
             var entry = new ESRequestEntry(request, rid, ent.Comp.MasterConsole);
-            entry.OnStatusChanged += OnStatusChanged;
+            entry.OnStatusChanged += (i, status) => { OnStatusChanged?.Invoke(i, status); };
             RequestsContainer.AddChild(entry);
         }
 

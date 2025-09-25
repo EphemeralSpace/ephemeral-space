@@ -35,5 +35,13 @@ public sealed partial class ESRequestEntry : BoxContainer
             StatusOption.SelectId(args.Id);
             OnStatusChanged?.Invoke(rid, (ESCargoRequestStatus) args.Id);
         };
+
+        Modulate = request.Status switch
+        {
+            ESCargoRequestStatus.Denied => Color.Red,
+            ESCargoRequestStatus.Completed => Color.Green,
+            ESCargoRequestStatus.Cancelled => Color.DarkGray,
+            _ => Color.White,
+        };
     }
 }

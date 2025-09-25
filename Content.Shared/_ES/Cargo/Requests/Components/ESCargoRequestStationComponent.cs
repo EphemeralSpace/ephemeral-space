@@ -11,7 +11,7 @@ namespace Content.Shared._ES.Cargo.Requests.Components;
 public sealed partial class ESCargoRequestStationComponent : Component
 {
     /// <summary>
-    /// The next ID to be used for <see cref="ESCargoRequest.Id"/>
+    /// The next ID to be used for <see cref="Requests"/>
     /// </summary>
     [DataField, AutoNetworkedField]
     public int NextRequestId;
@@ -29,8 +29,8 @@ public enum ESCargoRequestStatus : byte
     Pending,
     InProgress,
     Completed,
-    Cancelled,
     Denied,
+    Cancelled,
 }
 
 [Serializable, NetSerializable]

@@ -1,4 +1,5 @@
 es-cargo-request-ui-title = Supply Request Computer
+es-cargo-request-ui-title-master = Master Supply Request Computer
 es-cargo-request-ui-label-dept-id = [bold]Console ID:[/bold]
 es-cargo-request-ui-button-edit-dept-id = Edit
 es-cargo-request-ui-container-tooltip-id = A generic ID, used for tracking your orders.
