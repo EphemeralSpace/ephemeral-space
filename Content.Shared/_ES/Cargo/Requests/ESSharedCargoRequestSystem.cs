@@ -42,9 +42,9 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
 
     private void OnConsoleMapInit(Entity<ESCargoRequestConsoleComponent> ent, ref MapInitEvent args)
     {
-        if (!string.IsNullOrWhiteSpace(ent.Comp.DepartmentString))
+        if (!string.IsNullOrWhiteSpace(ent.Comp.ConsoleId))
             return;
-        ent.Comp.DepartmentString = Loc.GetString(ent.Comp.BaseDepartmentString);
+        ent.Comp.ConsoleId = Loc.GetString(ent.Comp.DefaultConsoleId);
         Dirty(ent);
     }
 
@@ -64,9 +64,9 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
         if (!ValidateDepartmentId(args.DepartmentId))
             return;
 
-        var oldId = ent.Comp.DepartmentString;
+        var oldId = ent.Comp.ConsoleId;
         var newId = FormattedMessage.RemoveMarkupPermissive(args.DepartmentId);
-        ent.Comp.DepartmentString = newId;
+        ent.Comp.ConsoleId = newId;
         Dirty(ent);
         _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.Actor):player} changed request console {ToPrettyString(ent)}\'s ID from {oldId} to {newId}");
     }
@@ -85,8 +85,8 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
             return;
 
         var userName = Identity.Name(args.Actor, EntityManager);
-        CreateRequest((station, stationComp), userName, ent.Comp.DepartmentString, body);
-        SetRelevantUpdateIndicators(ent.Comp.DepartmentString, true);
+        CreateRequest((station, stationComp), userName, ent.Comp.ConsoleId, body);
+        SetRelevantUpdateIndicators(ent.Comp.ConsoleId, true);
         _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.Actor):player} added request RID#{stationComp.NextRequestId - 1} for \"{body}\"");
     }
 
@@ -137,7 +137,7 @@ public abstract class ESSharedCargoRequestSystem : EntitySystem
         var query = EntityQueryEnumerator<ESCargoRequestConsoleComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (comp.DepartmentString != department || comp.MasterConsole)
+            if (comp.ConsoleId != department && !comp.MasterConsole)
                 continue;
             SetUpdateIndicator((uid, comp), val);
         }

@@ -26,7 +26,7 @@ public sealed class ESCargoRequestSystem : ESSharedCargoRequestSystem
     {
         base.OnSetDepartmentId(ent, ref args);
 
-        if (!_timing.IsFirstTimePredicted)
+        if (!_timing.ApplyingState)
             return;
 
         if (_userInterface.TryGetOpenUi(ent.Owner, ESCargoRequestConsoleUiKey.Key, out var bui))
@@ -35,7 +35,7 @@ public sealed class ESCargoRequestSystem : ESSharedCargoRequestSystem
 
     private void OnAfterAutoHandleStateEvent(Entity<ESCargoRequestStationComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (!_timing.IsFirstTimePredicted)
+        if (!_timing.ApplyingState)
             return;
 
         var query = EntityQueryEnumerator<ESCargoRequestConsoleComponent, UserInterfaceComponent>();
@@ -48,7 +48,7 @@ public sealed class ESCargoRequestSystem : ESSharedCargoRequestSystem
 
     private void OnConsoleAfterHandleStateEvent(Entity<ESCargoRequestConsoleComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (!_timing.IsFirstTimePredicted)
+        if (!_timing.ApplyingState)
             return;
 
         if (_userInterface.TryGetOpenUi(ent.Owner, ESCargoRequestConsoleUiKey.Key, out var bui))

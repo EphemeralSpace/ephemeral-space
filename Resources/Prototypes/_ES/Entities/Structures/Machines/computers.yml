@@ -111,6 +111,54 @@
       state: generic_panel_open
 
 - type: entity
+  parent: ESComputerSupplyRequest
+  id: ESComputerSupplyRequestCivilian
+  suffix: ES, Civilian
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Civilian
+
+- type: entity
+  parent: ESComputerSupplyRequest
+  id: ESComputerSupplyRequestEngineering
+  suffix: ES, Engineering
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Engineering
+
+- type: entity
+  parent: ESComputerSupplyRequest
+  id: ESComputerSupplyRequestMedical
+  suffix: ES, Medical
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Medical
+
+- type: entity
+  parent: ESComputerSupplyRequest
+  id: ESComputerSupplyRequestScience
+  suffix: ES, Science
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Science
+
+- type: entity
+  parent: ESComputerSupplyRequest
+  id: ESComputerSupplyRequestSecurity
+  suffix: ES, Security
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Security
+
+- type: entity
+  parent: ESComputerSupplyRequest
+  id: ESComputerSupplyRequestService
+  suffix: ES, Service
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Service
+
+- type: entity
   parent: [ ESBaseComputerSupplyRequest, BaseComputerAiAccess ]
   id: ESComputerSupplyRequestMaster
   name: master supply request console

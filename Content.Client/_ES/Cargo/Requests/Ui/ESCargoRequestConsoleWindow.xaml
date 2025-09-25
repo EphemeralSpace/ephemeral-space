@@ -5,10 +5,11 @@
     xmlns:xNamespace="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     Title="{Loc 'es-cargo-request-ui-title'}"
-    MinSize="420 500">
+    MinSize="420 500"
+    SetSize="480 500">
     <BoxContainer Orientation="Vertical" Margin="10">
         <BoxContainer Orientation="Horizontal" Name="IdMetaContainer">
-            <BoxContainer SetWidth="400">
+            <BoxContainer MinWidth="400" HorizontalExpand="True">
                 <BoxContainer Name="IdDisplayContainer" Orientation="Horizontal" HorizontalExpand="True" ToolTip="{Loc 'es-cargo-request-ui-container-tooltip-id'}" MouseFilter="Pass">
                     <RichTextLabel Text="{Loc 'es-cargo-request-ui-label-dept-id'}" StyleClasses="LabelKeyText"/>
                     <PanelContainer Margin="5 0" HorizontalExpand="True">

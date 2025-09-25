@@ -327,3 +327,52 @@
       state: request-0
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
+
+# There are only tabletop variants for departments rn because they are more broadly usable.
+- type: entity
+  parent: ESComputerSupplyRequestTabletop
+  id: ESComputerSupplyRequestTabletopCivilian
+  suffix: ES, Civilian
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Civilian
+
+- type: entity
+  parent: ESComputerSupplyRequestTabletop
+  id: ESComputerSupplyRequestTabletopEngineering
+  suffix: ES, Engineering
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Engineering
+
+- type: entity
+  parent: ESComputerSupplyRequestTabletop
+  id: ESComputerSupplyRequestTabletopMedical
+  suffix: ES, Medical
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Medical
+
+- type: entity
+  parent: ESComputerSupplyRequestTabletop
+  id: ESComputerSupplyRequestTabletopScience
+  suffix: ES, Science
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Science
+
+- type: entity
+  parent: ESComputerSupplyRequestTabletop
+  id: ESComputerSupplyRequestTabletopSecurity
+  suffix: ES, Security
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Security
+
+- type: entity
+  parent: ESComputerSupplyRequestTabletop
+  id: ESComputerSupplyRequestTabletopService
+  suffix: ES, Service
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Service

@@ -67,8 +67,8 @@ public sealed partial class ESCargoRequestConsoleWindow : FancyWindow
     {
         if (!_entityManager.TryGetComponent<ESCargoRequestConsoleComponent>(owner, out var comp))
             return;
-        DepartmentIdLabel.SetMarkup($"[font=\"Monospace\"]{comp.DepartmentString}[/font]");
-        DepartmentIdEdit.Text = comp.DepartmentString;
+        DepartmentIdLabel.SetMarkup($"[font=\"Monospace\"]{comp.ConsoleId}[/font]");
+        DepartmentIdEdit.Text = comp.ConsoleId;
 
         CreateRequestButton.Visible = !comp.MasterConsole;
         IdMetaContainer.Visible = !comp.MasterConsole;
@@ -87,13 +87,13 @@ public sealed partial class ESCargoRequestConsoleWindow : FancyWindow
 
         RequestsContainer.Children.Clear();
 
-        var departmentId = ent.Comp.DepartmentString;
+        var departmentId = ent.Comp.ConsoleId;
         var requests = comp.Requests
             .OrderBy(p => p.Value.Status)
             .ThenByDescending(p => p.Key);
         foreach (var (rid, request) in requests)
         {
-            if (request.Department != departmentId)
+            if (request.Department != departmentId && !ent.Comp.MasterConsole)
                 continue;
 
             var entry = new ESRequestEntry(request, rid, ent.Comp.MasterConsole);

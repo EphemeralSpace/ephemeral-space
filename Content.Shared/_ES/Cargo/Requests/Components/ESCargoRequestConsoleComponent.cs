@@ -3,6 +3,9 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Cargo.Requests.Components;
 
+/// <summary>
+/// A client that interfaces with <see cref="ESCargoRequestStationComponent"/> to create requests and change their status
+/// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 [Access(typeof(ESSharedCargoRequestSystem))]
 public sealed partial class ESCargoRequestConsoleComponent : Component
@@ -11,17 +14,29 @@ public sealed partial class ESCargoRequestConsoleComponent : Component
 
     public const int MaxIdLength = 24;
 
+    /// <summary>
+    /// Whether the update indicator is currently enabled
+    /// </summary>
     [DataField]
     public bool UpdateIndicator;
 
+    /// <summary>
+    /// If this is the master console, then it can make status updates and view all orders
+    /// </summary>
     [DataField]
     public bool MasterConsole;
 
+    /// <summary>
+    /// Unique ID used for identifying where orders are from and who has visibility
+    /// </summary>
     [DataField, AutoNetworkedField]
-    public string DepartmentString = string.Empty;
+    public string ConsoleId = string.Empty;
 
+    /// <summary>
+    /// Base value of <see cref="ConsoleId"/>
+    /// </summary>
     [DataField]
-    public LocId BaseDepartmentString = "es-cargo-request-console-dept-default";
+    public LocId DefaultConsoleId = "es-cargo-request-console-dept-default";
 }
 
 [Serializable, NetSerializable]

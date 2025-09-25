@@ -7,7 +7,7 @@
         <BoxContainer Orientation="Vertical"
                       HorizontalExpand="True">
             <BoxContainer Orientation="Horizontal">
-                <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Center">
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Center" RectClipContent="True">
                     <RichTextLabel Name="RewardLabel"/>
                     <RichTextLabel Name="ManifestLabel"/>
                 </BoxContainer>
