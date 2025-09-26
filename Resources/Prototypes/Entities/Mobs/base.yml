@@ -45,7 +45,7 @@
   abstract: true
   save: false
   # ES START
-  parent: [ BaseControllable, ESBaseMob ]
+  parent: BaseControllable
   # ES END
   id: BaseMob
   components:
