@@ -1,0 +1,48 @@
+- type: entity
+  parent: [ BaseItem, BaseSecurityContraband ]
+  id: ESBaseSpeedLoader357
+  name: .357 speed loader
+  description: A cowboy's friend; let's you slam 6 shots into your revolver in an instant. Holds .357 rounds.
+  suffix: ES
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ES357Round
+    capacity: 6
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Tag
+    tags:
+    - ES357SpeedLoader
+
+- type: entity
+  parent: ESBaseSpeedLoader357
+  id: SpeedLoader357
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: base-6
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Appearance
+  - type: BallisticAmmoProvider
+    proto: ESRound357
+  - type: MagazineVisuals
+    magState: base
+    steps: 7
+    zeroVisible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo

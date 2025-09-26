@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Flareguy for Ephemeral Space",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "computer"
+    },
+    {
+      "name": "broken"
+    },
+    {
+      "name": "generic_panel_open"
+    },
+    {
+      "name": "security"
+    },
+    {
+      "name": "supply"
+    },
+    {
+      "name": "request-0"
+    },
+    {
+      "name": "request-1"
+    },
+    {
+        "name": "cameras",
+        "delays": [
+            [
+                1.8,
+                0.1,
+                1.8,
+                0.1,
+                1.8,
+                0.1
+            ]
+        ]
+    },
+    {
+      "name": "id",
+       "delays": [
+           [
+               2,
+               0.1,
+               2,
+               0.1,
+               2,
+               0.1
+           ]
+       ]
+    },
+    {
+      "name": "crew",
+       "delays": [
+           [
+               0.1,
+               0.1,
+               0.1,
+               0.1,
+               0.1,
+               0.1,
+               0.1,
+               0.1
+           ]
+       ]
+   },
+    {
+      "name": "medcomp",
+       "delays": [
+           [
+               0.5,
+               0.1,
+               0.1,
+               0.1,
+               0.1,
+               0.5,
+               0.1,
+               0.1
+           ]
+       ]
+   },
+   {
+      "name": "generic",
+      "delays": [
+        [
+          0.2,
+          0.2
+        ]
+      ]
+    }
+  ]
+}

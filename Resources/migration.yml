@@ -2,6 +2,13 @@
 # is intended to allow maps to load without having to manually edit them. An empty or "null" string results in the
 # entity getting deleted.
 
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!! EPHEMERAL SPACE WARNING !!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!! PUT STUFF AT THE TOP OF FILE !!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!! IN THE ES BLOCK INSTEAD OF !!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!!!!!! AT THE BOTTOM !!!!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 # e.g., you can swap all walls with windows and delete all tables by adding lines like:
 #
 # Window: WallSolid
@@ -9,7 +16,7 @@
 # Table: null
 
 # ES Start
-# 2025-18-8
+# 2025-08-18
 # Lockers that are redundant to begin with / we will probably never use
 ClosetJanitorBomb: ClosetBomb
 ClosetJanitorBombFilled: ClosetBomb
@@ -24,6 +31,27 @@ LockerEvacRepair: ClosetEmergency
 LockerEvacRepairFilled: ClosetEmergencyFilledRandom
 LockerWallEvacRepair: ClosetWallEmergency
 LockerWallEvacRepairFilled: ClosetWallEmergencyFilledRandom
+
+# 2025-9-13
+# Lights we dont want
+BoxWarmLightbulb: BoxLightbulb
+WarmLightBulb: LightBulb
+PoweredWarmSmallLight: PoweredSmallLight
+LedLightBulb: LightBulb
+PoweredLEDSmallLight: PoweredSmallLight
+LedLightTube: LightTube
+PoweredlightLED: Poweredlight
+
+# 2025-9-13
+# Windows
+UraniumWindow: PlasmaWindow
+UraniumWindowDiagonal: PlasmaWindowDiagonal
+UraniumWindowDirectional: PlasmaWindowDirectional
+ReinforcedUraniumWindow: ReinforcedPlasmaWindow
+UraniumReinforcedWindowDirectional: PlasmaReinforcedWindowDirectional
+ReinforcedUraniumWindowDiagonal: ReinforcedPlasmaWindowDiagonal
+XenoborgWindow: PlastitaniumWindow
+XenoResinWindow: ReinforcedWindow
 
 # ES END
 
@@ -720,6 +748,12 @@ BarSignWhiskeyEchoesAlignTile: BarSignWhiskeyEchoes
 # 2025-06-21
 ClothingNeckHeadphones: ClothingMultipleHeadphones
 
+# 2025-07-17
+RipleyChassis: null
+HonkerChassis: null
+HamtrChassis: null
+VimChassis: null
+
 # 2025-08-01
 FoodDonutJellySlugcat: FoodDonutJellyScurret
 
@@ -727,12 +761,5 @@ FoodDonutJellySlugcat: FoodDonutJellyScurret
 ClothingUniformJumpsuitChiefEngineerNT: ClothingUniformJumpsuitChiefEngineer
 ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
 
-# 2025-13-9
-UraniumWindow: PlasmaWindow
-UraniumWindowDiagonal: PlasmaWindowDiagonal
-UraniumWindowDirectional: PlasmaWindowDirectional
-ReinforcedUraniumWindow: ReinforcedPlasmaWindow
-UraniumReinforcedWindowDirectional: PlasmaReinforcedWindowDirectional
-ReinforcedUraniumWindowDiagonal: ReinforcedPlasmaWindowDiagonal
-XenoborgWindow: PlastitaniumWindow
-XenoResinWindow: ReinforcedWindow
+# 2025-08-29
+PrefilledSyringe: Syringe

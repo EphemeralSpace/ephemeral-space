@@ -1,0 +1,23 @@
+- type: entity
+  parent: [ BaseItem, BaseSecurityContraband ]
+  id: ESGunAttachmentSilencer
+  name: silencer
+  description: Shh...
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Guns/Attachments/silencer.rsi
+    state: icon
+  - type: Item
+    size: Small
+    storedRotation: -90
+  - type: ESGunAttachment
+  - type: ESGunSoundAttachment
+    sound:
+      path: /Audio/_ES/Weapons/Guns/Gunshots/pistol_shot_suppressed.ogg
+      params:
+        maxDistance: 3
+  - type: Tag
+    tags:
+    - ESGunAttachmentBallisticBarrel
+    - ESSilencer

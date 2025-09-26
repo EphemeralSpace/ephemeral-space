@@ -1,5 +1,23 @@
 - type: Tag
+  id: ES357Round
+
+- type: Tag
+  id: ES357SpeedLoader
+
+- type: Tag
+  id: ES9mmRound
+
+- type: Tag
+  id: ES9mmMagazine
+
+- type: Tag
   id: ESElectronicsKeypad
+
+- type: Tag
+  id: ESGunAttachmentBallisticBarrel
+
+- type: Tag
+  id: ESSilencer
 
 - type: Tag
   id: ESThrusterEngineGas

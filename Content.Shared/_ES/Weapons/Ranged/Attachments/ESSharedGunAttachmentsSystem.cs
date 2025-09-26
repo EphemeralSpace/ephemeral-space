@@ -3,8 +3,10 @@ using System.Linq;
 using Content.Shared._ES.Weapons.Ranged.Attachments.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Examine;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.Localizations;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Whitelist;
@@ -30,8 +32,11 @@ public abstract class ESSharedGunAttachmentsSystem : EntitySystem
         SubscribeLocalEvent<ESAttachableGunComponent, EntRemovedFromContainerMessage>(OnEntRemovedFromContainer);
         SubscribeLocalEvent<ESAttachableGunComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
         SubscribeLocalEvent<ESAttachableGunComponent, InteractUsingEvent>(OnAfterInteract, before: [typeof(ItemSlotsSystem)]);
+        SubscribeLocalEvent<ESAttachableGunComponent, ExaminedEvent>(OnExamined);
 
         SubscribeAllEvent<ESAttachableGunModifySlotEvent>(OnAttachableGunModifySlots);
+
+        SubscribeLocalEvent<ESGunSoundAttachmentComponent, GunRefreshModifiersEvent>(OnGunSoundRefreshModifiers);
 
         _attachmentQuery = GetEntityQuery<ESGunAttachmentComponent>();
     }
@@ -70,6 +75,16 @@ public abstract class ESSharedGunAttachmentsSystem : EntitySystem
         args.Handled = TryInsertAttachment(ent.AsNullable(), args.Used, slot.Value);
     }
 
+    private void OnExamined(Entity<ESAttachableGunComponent> ent, ref ExaminedEvent args)
+    {
+        var attachments = EnumerateAttachments(ent).ToList();
+        if (attachments.Count == 0)
+            return;
+
+        var attachmentString = ContentLocalizationManager.FormatList(attachments.Select(e => Name(e)).ToList());
+        args.PushMarkup(Loc.GetString("es-gun-attachment-examine-text", ("attachments", attachmentString)));
+    }
+
     private void OnAttachableGunModifySlots(ESAttachableGunModifySlotEvent msg, EntitySessionEventArgs args)
     {
         if (args.SenderSession.AttachedEntity is not { } user ||
@@ -90,6 +105,11 @@ public abstract class ESSharedGunAttachmentsSystem : EntitySystem
         {
             TryInsertAttachment((gunUid.Value, gunComp), held.Value, slot);
         }
+    }
+
+    private void OnGunSoundRefreshModifiers(Entity<ESGunSoundAttachmentComponent> ent, ref GunRefreshModifiersEvent args)
+    {
+        args.SoundGunshot = ent.Comp.Sound;
     }
 
     public bool HasAttachment(Entity<ESAttachableGunComponent> ent, ESGunAttachmentSlot slot)

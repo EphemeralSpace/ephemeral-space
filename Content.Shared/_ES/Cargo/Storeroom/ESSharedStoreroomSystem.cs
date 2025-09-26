@@ -140,7 +140,7 @@ public abstract class ESSharedStoreroomSystem : EntitySystem
         var meta = MetaData(palletGood);
         var container = new ESStoreroomContainerEntry(meta.EntityPrototype?.ID, meta.EntityName);
 
-        SharedEntityStorageComponent? entityStorage = null;
+        EntityStorageComponent? entityStorage = null;
         if (_entityStorage.ResolveStorage(palletGood, ref entityStorage))
         {
             foreach (var content in entityStorage.Contents.ContainedEntities)

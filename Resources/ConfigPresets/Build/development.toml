@@ -2,6 +2,7 @@
 # Straight in-game baby
 lobbyenabled = false
 role_timers = false
+role_loadout_timers = false
 # ES START
 # test map for faster loading & convenience
 map = "ESTestMap"

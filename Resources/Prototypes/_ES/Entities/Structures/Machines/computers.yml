@@ -70,3 +70,114 @@
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
+
+- type: entity
+  id: ESBaseComputerSupplyRequest
+  name: supply request console
+  description: A link into the central request system for the cargo department. Place your supply requests here and pray for them to be fulfilled.
+  abstract: true
+  suffix: ES
+  components:
+  - type: ESCargoRequestConsole
+  - type: ActivatableUI
+    key: enum.ESCargoRequestConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ESCargoRequestConsoleUiKey.Key:
+        type: ESCargoRequestConsoleBui
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: ESComputerSupplyRequestCircuitBoard
+  - type: PointLight
+    color: "#b89f25"
+
+- type: entity
+  parent: [ ESBaseComputerSupplyRequest, BaseComputerAiAccess ]
+  id: ESComputerSupplyRequest
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: request-0
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+
+- type: entity
+  parent: ESComputerSupplyRequest
+  id: ESComputerSupplyRequestCivilian
+  suffix: ES, Civilian
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Civilian
+
+- type: entity
+  parent: ESComputerSupplyRequest
+  id: ESComputerSupplyRequestEngineering
+  suffix: ES, Engineering
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Engineering
+
+- type: entity
+  parent: ESComputerSupplyRequest
+  id: ESComputerSupplyRequestMedical
+  suffix: ES, Medical
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Medical
+
+- type: entity
+  parent: ESComputerSupplyRequest
+  id: ESComputerSupplyRequestScience
+  suffix: ES, Science
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Science
+
+- type: entity
+  parent: ESComputerSupplyRequest
+  id: ESComputerSupplyRequestSecurity
+  suffix: ES, Security
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Security
+
+- type: entity
+  parent: ESComputerSupplyRequest
+  id: ESComputerSupplyRequestService
+  suffix: ES, Service
+  components:
+  - type: ESCargoRequestConsole
+    defaultConsoleId: department-Service
+
+- type: entity
+  parent: [ ESBaseComputerSupplyRequest, BaseComputerAiAccess ]
+  id: ESComputerSupplyRequestMaster
+  name: master supply request console
+  description: The linchpin of the request system, able to field, view, and manipulate supply requests from accross the station.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: request-0
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ESCargoRequestConsole
+    masterConsole: true
+  - type: Computer
+    board: ESComputerSupplyRequestMasterCircuitBoard

@@ -1,0 +1,28 @@
+- type: entity
+  parent: MarkerBase
+  id: ESBaseMarkerSpawnRegion
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _ES/Markers/areas.rsi
+    snapCardinals: true
+  - type: ESSpawnRegionMarker
+  - type: Transform
+    noRot: true
+  - type: PlacementReplacement
+    key: AreaMarker
+
+- type: entity
+  parent: ESBaseMarkerSpawnRegion
+  id: ESMarkerSpawnRegionMaintenance
+  name: Maintenance Spawn Region
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#777777"
+      shader: unshaded
+    - state: maints
+      shader: unshaded
+  - type: ESSpawnRegionMarker
+    area: ESMaintenance

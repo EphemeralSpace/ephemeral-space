@@ -1,0 +1,86 @@
+- type: entity
+  parent: [BaseWeaponPistol, BaseSecurityContraband]
+  id: ESWeaponPistol9mm
+  name: 9mm handgun
+  description: A righteous handgun. Uses 9mm ammo.
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Guns/9mm.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+    - map: ["barrelAttachment"]
+  - type: Item
+    storedOffset: -2,0
+  - type: Clothing
+    sprite: _ES/Objects/Weapons/Guns/9mm.rsi
+  - type: Gun
+    fireRate: 5
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      attachment_barrel: !type:ContainerSlot
+  - type: ESAttachableGun
+    slots:
+    - name: es-gun-attachments-slot-name-barrel
+      containerId: attachment_barrel
+      whitelist:
+        tags:
+        - ESGunAttachmentBallisticBarrel
+  - type: ActivatableUI
+    key: enum.ESAttachableGunUiKey.Key
+    verbOnly: true
+    verbText: es-gun-attachments-verb-text
+  - type: UserInterface
+    interfaces:
+      enum.ESAttachableGunUiKey.Key:
+        type: ESGunAttachmentBui
+  - type: ESItemMapper
+    mappings:
+      barrelAttachment:
+      - containerId: attachment_barrel
+        state: silencer
+        whitelist:
+          tags:
+          - ESSilencer
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - ES9mmRound
+      gun_magazine:
+        name: Magazine
+        startingItem: ESMagazine9mm
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - ES9mmMagazine
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      attachment_barrel:
+        priority: 0
+        whitelist:
+          tags:
+          - ESGunAttachmentBallisticBarrel
+
+- type: entity
+  parent: ESWeaponPistol9mm
+  id: ESWeaponPistol9mmSilenced
+  suffix: ES, Silenced
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      attachment_barrel:
+        id: ESGunAttachmentSilencer

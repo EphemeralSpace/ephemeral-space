@@ -624,10 +624,11 @@
   itemDrop: FloorTileItemTechmaintDark
   heatCapacity: 10000
 
+# ES Start
 - type: tile
   id: FloorReinforced
   name: tiles-reinforced-floor
-  sprite: /Textures/Tiles/reinforced.png
+  sprite: /Textures/_ES/Tiles/reinforced.png
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
@@ -635,6 +636,7 @@
     collection: FootstepHull
   itemDrop: PartRodMetal1
   heatCapacity: 10000
+# ES End
 
 - type: tile
   id: FloorMono
@@ -2015,6 +2017,24 @@
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemJungleAstroGrass
 
+- type: tile
+  parent: FloorGrassDark
+  id: FloorDarkAstroGrass
+  name: tiles-dark-astro-grass
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Cutting ]
+  itemDrop: FloorTileItemDarkAstroGrass
+
+- type: tile
+  parent: FloorGrassLight
+  id: FloorLightAstroGrass
+  name: tiles-light-astro-grass
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Cutting ]
+  itemDrop: FloorTileItemLightAstroGrass
+
 # Ice
 - type: tile
   id: FloorAstroIce
@@ -2057,6 +2077,16 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   itemDrop: FloorTileItemAstroAsteroidSand
+  weather: false
+
+- type: tile
+  parent: FloorDesert
+  id: FloorDesertAstroSand
+  name: tiles-desert-astro-sand
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemDesertAstroSand
   weather: false
 
 - type: tile

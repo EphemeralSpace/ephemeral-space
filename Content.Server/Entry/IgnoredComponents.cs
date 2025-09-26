@@ -1,9 +1,21 @@
 // ReSharper disable ArrangeTrailingCommaInMultilineLists
 namespace Content.Server.Entry
 {
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // !!!!!!!!!!!!!!!!!!!! EPHEMERAL SPACE WARNING !!!!!!!!!!!!!!!!!!!!
+    // !!!!!!!!!!!!!!!!!! PUT STUFF AT THE TOP OF FILE !!!!!!!!!!!!!!!!!
+    // !!!!!!!!!!!!!!!!!!! IN THE ES BLOCK INSTEAD OF !!!!!!!!!!!!!!!!!!
+    // !!!!!!!!!!!!!!!!!!!!!!!! AT THE BOTTOM !!!!!!!!!!!!!!!!!!!!!!!!!!
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     public static class IgnoredComponents
     {
         public static string[] List => new[] {
+            // ES START
+            "ESInherentLight",
+            "ESViewcone",
+            "ESViewconeOccluded",
+            // ES END
             "ConstructionGhost",
             "IconSmooth",
             "InteractionOutline",
@@ -20,12 +32,8 @@ namespace Content.Server.Entry
             "LightFade",
             "HolidayRsiSwap",
             "OptionsVisualizer",
+            "AnomalyScannerScreen",
             "MultipartMachineGhost",
-            // ES START
-            "ESInherentLight",
-            "ESViewcone",
-            "ESViewconeOccluded",
-            // ES END
         };
     }
 }

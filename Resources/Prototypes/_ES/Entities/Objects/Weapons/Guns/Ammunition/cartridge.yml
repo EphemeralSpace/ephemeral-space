@@ -1,0 +1,59 @@
+- type: entity
+  parent: [ BaseCartridge, BaseSecurityContraband ]
+  id: ESBaseRound
+  name: round
+  suffix: ES
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: CartridgeAmmo
+  - type: Tag
+
+- type: entity
+  parent: ESBaseRound
+  id: ESBaseRound9mm
+  name: 9mm round
+  description: A standard round for a 9mm handgun.
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Tag
+    tags:
+    - Cartridge
+    - ES9mmRound
+
+- type: entity
+  parent: ESBaseRound9mm
+  id: ESRound9mm
+  components:
+  - type: CartridgeAmmo
+    proto: ESBullet9mm
+
+- type: entity
+  parent: ESBaseRound
+  id: ESBaseRound357
+  name: .357 round
+  description: A standard round for a .357 revolver.
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Tag
+    tags:
+    - Cartridge
+    - ES357Round
+
+- type: entity
+  parent: ESBaseRound357
+  id: ESRound357
+  components:
+  - type: CartridgeAmmo
+    proto: ESBullet357

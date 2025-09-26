@@ -1,0 +1,22 @@
+- type: entity
+  parent: [BaseWeaponRevolver, BaseSecurityContraband]
+  id: ESWeaponRevolver357
+  name: .357 Revolver
+  description: A suspicious revolver. Uses .357 ammo.
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Guns/357.rsi
+  - type: Clothing
+    sprite: _ES/Objects/Weapons/Guns/357.rsi
+  - type: Item
+    storedOffset: 0,-2
+  - type: RevolverAmmoProvider
+    capacity: 6
+    proto: ESRound357
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+    whitelist:
+      tags:
+      - ES357Round
+      - ES357SpeedLoader

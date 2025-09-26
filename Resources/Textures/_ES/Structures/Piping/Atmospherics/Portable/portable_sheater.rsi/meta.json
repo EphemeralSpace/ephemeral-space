@@ -1,0 +1,50 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from goonstation-r4407 at https://github.com/goonstation/goonstation-r4407/commit/d85bb2611048f66e101c391fc0152111add3a708 | sheaterHeat modified, sheaterPanelOpen derived from goonstation-r4407, sheaterCool derived from /vg/station https://github.com/vgstation-coders/vgstation13/commit/f25aacc6d890d7eca4696c77f82fa5b6d73e309f by K-Dynamic",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "sheaterOff"
+        },
+        {
+            "name": "sheaterCool",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "sheaterHeat",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "sheaterPanelOpen"
+        },
+        {
+            "name": "sheaterStandby"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+- type: entity
+  parent: BaseBullet
+  id: ESBullet9mm
+  name: 9mm bullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 18
+
+- type: entity
+  parent: BaseBullet
+  id: ESBullet357
+  name: .357 bullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 40

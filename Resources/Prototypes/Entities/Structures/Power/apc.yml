@@ -15,13 +15,18 @@
   #  range: 2
   #  sound:
   #    path: /Audio/Ambience/Objects/hdd_buzz.ogg
-  # ES END
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
+    radius: 1.8
+    energy: 3
     color: "#3db83b"
     castShadows: false
     netsync: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    offset: 0,-0.2
+    falloff: 20
+    curveFactor: 1.0
+    autoRot: true
+  # ES END
   - type: AccessReader
     access: [["Engineering"]]
   - type: Sprite

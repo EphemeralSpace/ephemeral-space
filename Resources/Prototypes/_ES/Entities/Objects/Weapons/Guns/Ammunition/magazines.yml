@@ -1,0 +1,46 @@
+- type: entity
+  parent: [ BaseItem, BaseSecurityContraband ]
+  id: ESBaseMagazine9mm
+  name: 9mm magazine
+  description:
+  suffix: ES
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Guns/Ammunition/9mm_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - ES9mmRound
+    capacity: 10
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Tag
+    tags:
+    - ES9mmMagazine
+
+- type: entity
+  parent: ESBaseMagazine9mm
+  id: ESMagazine9mm
+  components:
+  - type: BallisticAmmoProvider
+    proto: ESRound9mm

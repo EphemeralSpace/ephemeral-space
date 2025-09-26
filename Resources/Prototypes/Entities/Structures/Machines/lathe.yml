@@ -1,3 +1,20 @@
+# ES Start
+
+# This is a seperate prototype so that if the pointlight is ever modifed, it will be modified on all machines.
+# All hyperlathes have the funny light, so we can add that to the base prototype, but the same is not true for all lathe-type machines.
+- type: entity
+  id: ESAutolatheLight
+  abstract: true
+  components:
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 2
+    energy: 2
+    falloff: 40
+    curveFactor: 0.75
+    color: "#99ffff"
+# ES End
+
 - type: entity
   id: BaseLathe
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -84,10 +101,21 @@
     modifiers:
       SpaceLube: 0.8 # being faster means less heat so lube needs to be nerfed
       SpaceGlue: 5 # no change from normal lathe, overheat!!!
+# ES Start
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 2
+    energy: 2
+    falloff: 40
+    curveFactor: 0.75
+    color: "#fd7e4f"
+# ES End
 
 - type: entity
   id: Autolathe
-  parent: BaseLatheLube
+# ES Start
+  parent: [BaseLatheLube, ESAutolatheLight]
+# ES End
   name: autolathe
   description: It produces basic items using metal and glass. Has the ability to process blueprints to print new recipes.
   components:
@@ -95,11 +123,15 @@
     sprite: Structures/Machines/autolathe.rsi
     snapCardinals: true
     layers:
+# ES Start
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
+      cycle: true
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
+      cycle: true
+# ES End
     - state: inserting
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
@@ -123,6 +155,7 @@
     - PartsStatic
     - AtmosStatic
     - CablesStatic
+    - PaperworkStatic
     - CargoStatic
     - MaterialsStatic
     - BasicChemistryStatic
@@ -152,7 +185,10 @@
 
 - type: entity
   id: AutolatheHyperConvection
-  parent: [Autolathe, BaseHyperlathe]
+# ES Start
+# Parent order needs to be swapped for the pointlight to take precedence.
+  parent: [BaseHyperlathe, Autolathe]
+# ES End
   name: hyper convection autolathe
   description: A highly-experimental autolathe that harnesses the power of extreme heat to slowly create objects more cost-effectively.
   components:
@@ -163,7 +199,9 @@
 
 - type: entity
   id: Protolathe
-  parent: BaseLatheLube
+# ES Start
+  parent: [BaseLatheLube, ESAutolatheLight]
+# ES End
   name: protolathe
   description: Converts raw materials into advanced items.
   components:
@@ -172,10 +210,14 @@
     snapCardinals: true
     layers:
     - state: icon
+# ES Start
       map: ["enum.LatheVisualLayers.IsRunning"]
+      cycle: true
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
+      cycle: true
+# ES End
     - state: inserting
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
@@ -221,7 +263,10 @@
 
 - type: entity
   id: ProtolatheHyperConvection
-  parent: [Protolathe, BaseHyperlathe]
+# ES Start
+# Parent order needs to be swapped for the pointlight to take precedence.
+  parent: [BaseHyperlathe, Protolathe]
+# ES End
   name: hyper convection protolathe
   description: A highly-experimental protolathe that harnesses the power of extreme heat to slowly create objects more cost-effectively.
   components:
@@ -283,7 +328,10 @@
 
 - type: entity
   id: CircuitImprinterHyperConvection
-  parent: [CircuitImprinter, BaseHyperlathe]
+# ES Start
+# Parent order needs to be swapped for the pointlight to take precedence.
+  parent: [BaseHyperlathe, CircuitImprinter]
+# ES End
   name: hyper convection circuit imprinter
   description: A highly-experimental circuit imprinter that harnesses the power of extreme heat to slowly create objects more cost-effectively.
   components:
