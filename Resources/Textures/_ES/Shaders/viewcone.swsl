@@ -8,11 +8,8 @@ uniform highp float ConeIgnoreFeather; //= 0.1;
 
 uniform highp float ViewAngle;
 
-const highp float grainFramerate = 16.0;
-const highp float grainTimeAffect = 500.0;
-const highp float grainScale = 400.0;
-const highp float grainMult = 0.5;
-const highp float grainAdd = 0.6;
+const highp float grainMult = 0.35;
+const highp float grainBase = 0.6;
 
 const highp float grayscaleFactor = 0.72;
 
@@ -42,12 +39,11 @@ void fragment(){
 
     mask = 1.0 - clamp(mask, 0.0, 1.0);
 
-    // Just a lil bit of film grain
-    highp float theframe = (floor(fract(TIME) * grainFramerate) * grainTimeAffect);
-    highp float filmgrain = zNoise(vec2(Pos.x, Pos.y / aspectratio) * (grainScale * Zoom) + theframe);
+    // So grim.. so dark
+    highp float grain = zRandom(FRAGCOORD.xy * sin(TIME * 0.01)).x;
 
     // Lil bit of grayscale for good measure, too
-    highp float grayscale = zGrayscale(color.rgb) * (filmgrain * grainMult + grainAdd);
+    highp float grayscale = zGrayscale(color.rgb) * (grain * grainMult + grainBase);
 
     COLOR = vec4(mix(color.rgb, vec3(grayscale), mask * grayscaleFactor), color.a);
 }
