@@ -45,7 +45,7 @@
   - type: Pullable
   - type: DamageExaminable
   # ES START
-  - type: ESViewconeOccluded
+  - type: ESViewconeOccludable
   # ES END
 
 - type: entity

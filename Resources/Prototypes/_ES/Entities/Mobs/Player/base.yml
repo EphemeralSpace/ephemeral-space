@@ -5,6 +5,6 @@
   components:
   - type: ESInherentLight
   - type: ESViewcone
-  - type: ESViewconeOccluded
+  - type: ESViewconeOccludable
   - type: MouseRotator
   - type: NoRotateOnMove
