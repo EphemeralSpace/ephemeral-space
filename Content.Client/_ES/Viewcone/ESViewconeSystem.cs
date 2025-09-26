@@ -1,3 +1,4 @@
+using Content.Shared._ES.Viewcone;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;

@@ -1,3 +1,4 @@
+using Content.Shared._ES.Viewcone;
 using Content.Shared.MouseRotator;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -109,7 +110,7 @@ public sealed class ESViewconeOccludedSystem : EntitySystem
             var angleDist = Angle.ShortestDistance(dist.ToWorldAngle(), playerRot);
 
             var angleAlpha = (float) Math.Clamp((Math.Abs(angleDist.Theta) - (radConeAngle * 0.5f)) + (radConeFeather * 0.5f), 0f, radConeFeather) / radConeFeather;
-            var distAlpha = (float) Math.Clamp((distLength - cone.ConeIgnoreRadius) + (cone.ConeIgnoreFeather * 0.5f), 0f, cone.ConeIgnoreFeather) / cone.ConeIgnoreFeather;
+            var distAlpha = Math.Clamp((distLength - cone.ConeIgnoreRadius) + (cone.ConeIgnoreFeather * 0.5f), 0f, cone.ConeIgnoreFeather) / cone.ConeIgnoreFeather;
             var targetAlpha = Math.Max(1f - angleAlpha, 1f - distAlpha);
 
             sprite.Color = sprite.Color.WithAlpha(targetAlpha * comp.BaseAlpha);

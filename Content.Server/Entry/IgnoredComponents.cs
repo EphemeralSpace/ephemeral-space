@@ -13,8 +13,6 @@ namespace Content.Server.Entry
         public static string[] List => new[] {
             // ES START
             "ESInherentLight",
-            "ESViewcone",
-            "ESViewconeOccluded",
             // ES END
             "ConstructionGhost",
             "IconSmooth",

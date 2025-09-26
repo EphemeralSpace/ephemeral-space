@@ -1,3 +1,4 @@
+using Content.Shared._ES.Viewcone;
 using Content.Shared.MouseRotator;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
