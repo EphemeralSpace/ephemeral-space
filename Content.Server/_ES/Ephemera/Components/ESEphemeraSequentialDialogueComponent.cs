@@ -1,13 +1,12 @@
-using Robust.Shared.Audio;
-
-namespace Content.Server._ES.Extras.Components;
+namespace Content.Server._ES.Ephemera.Components;
 
 /// <summary>
-/// This is used for an in-game "Extra" that can be spoken to.
+/// Holds dialogue for <see cref="ESEphemeraSpeakerComponent"/>.
+/// The dialogue is played line by line, resetting after reaching the end or after a delay.
 /// </summary>
 [RegisterComponent, AutoGenerateComponentPause]
-[Access(typeof(ESExtraSpeechSystem))]
-public sealed partial class ESExtraSpeakerComponent : Component
+[Access(typeof(ESEphemeraSpeechSystem))]
+public sealed partial class ESEphemeraSequentialDialogueComponent : Component
 {
     /// <summary>
     /// The dialogue that this character speaks when interacted with, in order
@@ -22,12 +21,6 @@ public sealed partial class ESExtraSpeakerComponent : Component
     public int DialogueIndex;
 
     /// <summary>
-    /// The time at which regular speech can happen again
-    /// </summary>
-    [DataField, AutoPausedField]
-    public TimeSpan NextCanSpeakTime;
-
-    /// <summary>
     /// The time at which <see cref="DialogueIndex"/> is automatically reset to 0.
     /// </summary>
     [DataField, AutoPausedField]
@@ -38,10 +31,4 @@ public sealed partial class ESExtraSpeakerComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan DialogueResetDelay = TimeSpan.FromSeconds(10);
-
-    /// <summary>
-    /// Sound that plays when dialogue occurs.
-    /// </summary>
-    [DataField]
-    public SoundSpecifier? SpeakSound;
 }
