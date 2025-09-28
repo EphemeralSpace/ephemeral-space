@@ -2,6 +2,9 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+// ES START
+using Robust.Shared.Audio;
+// ES END
 
 namespace Content.Shared.Weapons.Ranged.Components;
 
@@ -42,6 +45,19 @@ public sealed partial class BatteryWeaponFireMode
     /// </summary>
     [DataField]
     public float FireCost = 100;
+
+// ES START
+    // NOTE: values correspond with fields on GunRefreshModifiersEvent
+    [DataField] public SoundSpecifier? SoundGunshot;
+    [DataField] public float? CameraRecoilScalar;
+    [DataField] public Angle? AngleIncrease;
+    [DataField] public Angle? AngleDecay;
+    [DataField] public Angle? MaxAngle;
+    [DataField] public Angle? MinAngle;
+    [DataField] public int? ShotsPerBurst;
+    [DataField] public float? FireRate;
+    [DataField] public float? ProjectileSpeed;
+// ES END
 }
 
 [Serializable, NetSerializable]
