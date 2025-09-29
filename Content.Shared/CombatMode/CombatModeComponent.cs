@@ -47,6 +47,6 @@ namespace Content.Shared.CombatMode
         ///     to entities with this flag enabled that enter combat mode, and vice versa for removal.
         /// </summary>
         [DataField, AutoNetworkedField]
-        public bool ToggleMouseRotator = false;
+        public bool ToggleMouseRotator = true;
     }
 }

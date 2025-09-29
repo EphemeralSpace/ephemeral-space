@@ -6,5 +6,4 @@
   - type: ESInherentLight
   - type: ESViewcone
   - type: ESViewconeOccludable
-  - type: MouseRotator
-  - type: NoRotateOnMove
+  - type: ESHoldToFace
