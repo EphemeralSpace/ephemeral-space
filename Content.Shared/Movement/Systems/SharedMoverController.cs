@@ -224,6 +224,7 @@ public abstract partial class SharedMoverController : VirtualController
         float accel;
         Vector2 wishDir;
         var velocity = physicsComponent.LinearVelocity;
+        var worldRot = _transform.GetWorldRotation(xform);
 
         // Get current tile def for things like speed/friction mods
         ContentTileDefinition? tileDef = null;
@@ -274,7 +275,14 @@ public abstract partial class SharedMoverController : VirtualController
             var walkSpeed = moveSpeedComponent?.CurrentWalkSpeed ?? MovementSpeedModifierComponent.DefaultBaseWalkSpeed;
             var sprintSpeed = moveSpeedComponent?.CurrentSprintSpeed ?? MovementSpeedModifierComponent.DefaultBaseSprintSpeed;
 
-            wishDir = AssertValidWish(mover, walkSpeed, sprintSpeed);
+            var backwardsAngle = moveSpeedComponent?.BackwardsAngle ?? MovementSpeedModifierComponent.ESDefaultBackwardsAngle;
+            var rotNorm = worldRot.ToWorldVec().Normalized();
+            var velNorm = velocity.Normalized();
+            var cosAngle = Vector2.Dot(velNorm, rotNorm);
+            var threshold = new Angle(MathF.PI) - (backwardsAngle / 2);
+
+            var forceWalk = cosAngle < Math.Cos(threshold.Theta);
+            wishDir = AssertValidWish(mover, walkSpeed, sprintSpeed, forceWalk);
 
             if (wishDir != Vector2.Zero)
             {
@@ -331,8 +339,6 @@ public abstract partial class SharedMoverController : VirtualController
             {
                 // TODO apparently this results in a duplicate move event because "This should have its event run during
                 // island solver"??. So maybe SetRotation needs an argument to avoid raising an event?
-                var worldRot = _transform.GetWorldRotation(xform);
-
                 _transform.SetLocalRotation(uid, xform.LocalRotation + wishDir.ToWorldAngle() - worldRot, xform);
             }
 
@@ -616,9 +622,9 @@ public abstract partial class SharedMoverController : VirtualController
         return sound != null;
     }
 
-    private Vector2 AssertValidWish(InputMoverComponent mover, float walkSpeed, float sprintSpeed)
+    private Vector2 AssertValidWish(InputMoverComponent mover, float walkSpeed, float sprintSpeed, bool forceWalk=false)
     {
-        var (walkDir, sprintDir) = GetVelocityInput(mover);
+        var (walkDir, sprintDir) = GetVelocityInput(mover, forceWalk);
 
         var total = walkDir * walkSpeed + sprintDir * sprintSpeed;
 
