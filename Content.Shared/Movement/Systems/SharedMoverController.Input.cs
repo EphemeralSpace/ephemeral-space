@@ -373,7 +373,10 @@ namespace Content.Shared.Movement.Systems
             SetSprinting((uid, moverComp), subTick, walking);
         }
 
+        // ES START
+        // forceWalk
         public (Vector2 Walking, Vector2 Sprinting) GetVelocityInput(InputMoverComponent mover, bool forceWalk=false)
+        // ES END
         {
             if (!Timing.InSimulation)
             {
