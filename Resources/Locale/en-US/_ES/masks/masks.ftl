@@ -3,6 +3,9 @@ es-mask-traitor-desc = You must engage in treacherous deceit and [bold]kill[/bol
 es-mask-guardian-name = Guardian
 es-mask-guardian-desc = You must lay down your life and [bold]protect[/bold] your target.
 
+es-mask-marauder-name = Marauder
+es-mask-marauder-desc = Engage in loud, brute force assasinations and combat.
+
 es-objective-issuer-mask = Mask
 
 es-objective-condition-crewmember-kill-title = Kill {$targetName}, {CAPITALIZE($job)}.

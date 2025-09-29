@@ -168,6 +168,8 @@ public sealed class ESMaskSystem : EntitySystem
     public void ApplyMask(Entity<ESTroupeRuleComponent> troupe, Entity<MindComponent> mind, ProtoId<ESMaskPrototype> maskId)
     {
         var mask = _prototypeManager.Index(maskId);
+
+        troupe.Comp.TroupeMemberMinds.Add(mind);
         _role.MindAddRole(mind, MindRole, mind, true);
 
         var objectives = _entityTable.GetSpawns(mask.Objectives);
@@ -185,6 +187,6 @@ public sealed class ESMaskSystem : EntitySystem
             _chat.ChatMessageToOne(ChatChannel.Server, msg, msg, default, false, session.Channel, Color.Plum);
         }
 
-        troupe.Comp.TroupeMemberMinds.Add(mind);
+        EntityManager.AddComponents(mind, mask.MindComponents);
     }
 }

@@ -1,14 +1,4 @@
-# Actual masks
-
-- type: esMask
-  id: ESTraitor # This isn't your mama's traitor
-  name: es-mask-traitor-name
-  troupe: ESTraitor
-  description: es-mask-traitor-desc
-  weight: 1
-  objectives:
-    id: ESMaskObjectiveRandomStationKill
-
+# Crew masks
 - type: esMask
   id: ESGuardian
   name: es-mask-guardian-name
@@ -17,3 +7,15 @@
   weight: 1
   objectives:
     id: ESMaskObjectiveRandomStationKeepAlive
+
+# Traitor Masks
+- type: esMask
+  id: ESMarauder
+  name: es-mask-marauder-name
+  troupe: ESTraitor
+  description: es-mask-marauder-desc
+  weight: 1
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorMarauder

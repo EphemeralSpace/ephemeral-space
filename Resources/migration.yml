@@ -75,6 +75,10 @@ WeaponLaserCarbine: ESWeaponEnergyRifle
 WeaponDisabler: ESWeaponHybridTaser
 WeaponTaser: ESWeaponHybridTaser
 
+# 2025-9-29
+# Amends a prototype that was missing a prefix.
+SpeedLoader357: ESSpeedLoader357
+
 # ES END
 
 # 2023-07-03

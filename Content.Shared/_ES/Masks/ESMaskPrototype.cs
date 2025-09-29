@@ -42,6 +42,9 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     [DataField]
     public LocId Description;
 
+    [DataField]
+    public ComponentRegistry MindComponents = new();
+
     /// <summary>
     /// Objectives to assign
     /// </summary>

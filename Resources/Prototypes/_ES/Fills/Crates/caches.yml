@@ -1,0 +1,33 @@
+- type: entity # TODO: move outside of fills
+  parent: CrateGenericSteel
+  id: ESCrateCache
+  name: equipment cache
+  description: A secret cache hidden in the ceiling. Good thing nobody looks up there.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Structures/Storage/Crates/syndicate.rsi
+  - type: Icon
+    sprite: Structures/Storage/Crates/syndicate.rsi
+
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheTraitorMarauder
+  suffix: ES, Marauder Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESTraitorCacheMarauder
+
+- type: entityTable
+  id: ESTraitorCacheMarauder
+  table: !type:AllSelector
+    children:
+    - id: ESWeaponRevolver357
+    - id: ESSpeedLoader357
+      amount: 2
+    - id: KitchenKnife
+    - id: ClothingOuterArmorBasic
+    - id: ExGrenade
+      amount: 2
