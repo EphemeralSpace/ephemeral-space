@@ -14,7 +14,7 @@ namespace Content.Client._ES.Viewcone;
 
 /// <summary>
 ///     Handles adding and removing the viewcone overlays, as well as ferrying data between them
-///     Also handles calculating
+///     Also handles calculating desired view angle for active viewcones so overlays can use it
 /// </summary>
 public sealed class ESViewconeOverlayManagementSystem : EntitySystem
 {
