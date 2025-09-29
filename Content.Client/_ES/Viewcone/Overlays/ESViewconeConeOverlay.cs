@@ -6,6 +6,7 @@ using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client._ES.Viewcone.Overlays;
 
@@ -15,6 +16,7 @@ namespace Content.Client._ES.Viewcone.Overlays;
 public sealed class ESViewconeConeOverlay : Overlay
 {
     [Dependency] private readonly IEntityManager _ent = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IInputManager _input = default!;
     [Dependency] private readonly IEyeManager _eye = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -31,6 +33,14 @@ public sealed class ESViewconeConeOverlay : Overlay
     private float _coneFeather;
     private float _coneIgnoreRadius;
     private float _coneIgnoreFeather;
+
+    private float _viewAngle;
+    private float _desiredViewAngle;
+    private float _lastMouseRotationAngle;
+    private float _lastWorldRotationAngle;
+    private TimeSpan _lastFrame = TimeSpan.Zero;
+
+    private const float LerpHalfLife = 0.05f;
 
     public ESViewconeConeOverlay()
     {
@@ -73,19 +83,51 @@ public sealed class ESViewconeConeOverlay : Overlay
         var zoom = _eyeEntity.Value.Comp1.Zoom.X;
         var eyeAngle = (float) _eyeEntity.Value.Comp1.Rotation.Theta;
         var playerAngle = (float) _xform.GetWorldRotation(_eyeEntity.Value.Comp2).Theta;
+        _lastWorldRotationAngle = playerAngle;
 
         if (_ent.HasComponent<MouseRotatorComponent>(_eyeEntity))
         {
             var mousePos = _eye.PixelToMap(_input.MouseScreenPosition);
             if (mousePos.MapId != MapId.Nullspace)
                 playerAngle = (float) (mousePos.Position - _xform.GetMapCoordinates(_eyeEntity.Value).Position).ToAngle().Theta + MathHelper.DegreesToRadians(90f);
+
+            _lastMouseRotationAngle = playerAngle;
+        }
+        else if (_lastMouseRotationAngle != 0f)
+        {
+            // if last frame we had a mouse rotation angle, but now we dont,
+            // that means it was disabled
+            // but, we should keep the old mouse angle for viewcone, at least until the real angle actually changes
+            if (MathHelper.CloseToPercent(_lastWorldRotationAngle, playerAngle))
+            {
+                playerAngle = _lastMouseRotationAngle;
+            }
+            else
+            {
+                _lastMouseRotationAngle = 0f;
+            }
         }
 
-        var viewAngle = playerAngle + eyeAngle;
+        _desiredViewAngle = playerAngle + eyeAngle;
+
+        // lastframe zero means first frame, so just set it to desired immediately
+        if (_lastFrame == TimeSpan.Zero)
+        {
+            _viewAngle = _desiredViewAngle;
+        }
+        else
+        {
+            // otherwise, framerate-independent lerp
+            var dt = (float) (_timing.RealTime - _lastFrame).TotalSeconds;
+            // https://twitter.com/FreyaHolmer/status/1757836988495847568
+            _viewAngle = MathHelper.Lerp(_viewAngle, _desiredViewAngle, 1f - MathF.Pow(2f, -(dt / LerpHalfLife)));
+        }
+
+        _lastFrame = _timing.RealTime;
 
         _viewconeShader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
         _viewconeShader.SetParameter("Zoom", zoom);
-        _viewconeShader.SetParameter("ViewAngle", viewAngle);
+        _viewconeShader.SetParameter("ViewAngle", _viewAngle);
         _viewconeShader.SetParameter("ConeAngle", _coneAngle);
         _viewconeShader.SetParameter("ConeFeather", _coneFeather);
         _viewconeShader.SetParameter("ConeIgnoreRadius", _coneIgnoreRadius);
