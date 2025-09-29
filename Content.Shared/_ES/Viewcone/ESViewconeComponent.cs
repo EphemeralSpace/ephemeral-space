@@ -42,4 +42,11 @@ public sealed partial class ESViewconeComponent : Component
 
     [DataField, AutoNetworkedField]
     public float ConeIgnoreFeather = 0.25f;
+
+    // Clientside, used for lerping view angle
+    // and keeping it consistent across all overlays
+    public Angle ViewAngle;
+    public Angle? DesiredViewAngle = null;
+    public Angle LastMouseRotationAngle;
+    public Angle LastWorldRotationAngle;
 }

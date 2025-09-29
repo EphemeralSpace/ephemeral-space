@@ -18,8 +18,6 @@ namespace Content.Client._ES.Viewcone.Overlays;
 public sealed class ESViewconeSetAlphaOverlay : Overlay
 {
     [Dependency] private readonly IEntityManager _ent = default!;
-    [Dependency] private readonly IEyeManager _eye = default!;
-    [Dependency] private readonly IInputManager _input = default!;
     private readonly ESViewconeOverlayManagementSystem _cone;
     private readonly ESViewconeOccludableTreeSystem _tree;
     private readonly TransformSystem _xform;
@@ -70,26 +68,12 @@ public sealed class ESViewconeSetAlphaOverlay : Overlay
         var (ent, eye, cone) = _nextEye.Value;
 
         var eyeTransform = _ent.GetComponent<TransformComponent>(ent);
-        var (eyePos, eyeRot) = _xform.GetWorldPositionRotation(eyeTransform);
+        var eyePos = _xform.GetWorldPosition(eyeTransform);
+        var eyeRot = cone.ViewAngle - eye.Rotation; // subtract rotation cuz idk. the lerp adds it but this doesnt want it for some reason idk.
 
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // !! Thank You Bhijn God (TYBG) for 95% of the rest of this methods code !!
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        if (_ent.HasComponent<MouseRotatorComponent>(ent))
-        {
-            // this should work for multiviewport. at least, about as well as people will expect
-            // this wont run for other eye entities that have viewcones
-            // (if any even end up existing.. I probably made all this code viewport agnostic for no reason)
-            // (but it'd be nice to have cameras that have viewcones. right. right)
-            // (Withers )
-            // but for a separate viewport following the same mouserotator entity, idk, it probably works fine.
-            // when is that even going to happen.
-            var mousePos = _eye.PixelToMap(_input.MouseScreenPosition);
-            if (mousePos.MapId == eyeTransform.MapID)
-                eyeRot = (mousePos.Position - _xform.GetMapCoordinates(eyeTransform).Position).ToWorldAngle();
-        }
-
         var radConeAngle = MathHelper.DegreesToRadians(cone.ConeAngle);
         var radConeFeather = MathHelper.DegreesToRadians(cone.ConeFeather);
 
