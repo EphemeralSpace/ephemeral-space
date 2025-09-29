@@ -635,10 +635,9 @@ public abstract partial class SharedMoverController : VirtualController
     // ES START
     // forceWalk
     private Vector2 AssertValidWish(InputMoverComponent mover, float walkSpeed, float sprintSpeed, bool forceWalk=false)
-    // ES END
     {
         var (walkDir, sprintDir) = GetVelocityInput(mover, forceWalk);
-
+        // ES END
         var total = walkDir * walkSpeed + sprintDir * sprintSpeed;
 
         var parentRotation = GetParentGridAngle(mover);

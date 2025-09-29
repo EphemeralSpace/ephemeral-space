@@ -376,7 +376,6 @@ namespace Content.Shared.Movement.Systems
         // ES START
         // forceWalk
         public (Vector2 Walking, Vector2 Sprinting) GetVelocityInput(InputMoverComponent mover, bool forceWalk=false)
-        // ES END
         {
             if (!Timing.InSimulation)
             {
@@ -418,6 +417,7 @@ namespace Content.Shared.Movement.Systems
             // Logger.Info($"{curDir}{walk}{sprint}");
             return (walk, sprint);
         }
+        // ES END
 
         /// <summary>
         ///     Toggles one of the four cardinal directions. Each of the four directions are
