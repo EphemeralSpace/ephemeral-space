@@ -1,20 +1,17 @@
 - type: entity
-  id: ESRandomWardrobeSpawner
-  parent: ESMarkerBase
+  id: ESSpawnerRandomWardrobe
+  parent: ESSpawnerBase
   name: Random Wardrobe Spawner
-  suffix: ES
   components:
     - type: Sprite
       layers:
         - state: wardrobe
         - state: random
         - state: es
+        - state: c100
     - type: EntityTableSpawner
       table: !type:NestedSelector
         tableId: ESWardrobeTypes
-      offset: 0.0
-  placement:
-    mode: AlignTileAny
 
 - type: entityTable
   id: ESWardrobeTypes

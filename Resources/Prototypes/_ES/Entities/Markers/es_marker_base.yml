@@ -2,9 +2,24 @@
   id: ESMarkerBase
   parent: MarkerBase
   abstract: true
+  suffix: ES
   placement:
     mode: SnapgridCenter
   components:
   - type: Sprite
     drawdepth: Overdoors
     sprite: _ES/Markers/spawners.rsi
+    noRot: false
+
+- type: entity
+  parent: ESMarkerBase
+  id: ESSpawnerBase
+  abstract: true
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Sprite
+    # It sucks not having this functionality.
+    # shader: unshaded
+  - type: EntityTableSpawner
+    offset: 0.0

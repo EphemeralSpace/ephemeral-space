@@ -640,6 +640,9 @@
     - type: Sprite
       sprite: Structures/Storage/canister.rsi
       state: grey-1
+# ES START
+      noRot: true
+# ES END
     - type: Physics
       bodyType: Dynamic
     - type: Fixtures

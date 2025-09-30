@@ -24,9 +24,19 @@ public sealed class WeldableSystem : EntitySystem
         SubscribeLocalEvent<WeldableComponent, WeldFinishedEvent>(OnWeldFinished);
         SubscribeLocalEvent<LayerChangeOnWeldComponent, WeldableChangedEvent>(OnWeldChanged);
         SubscribeLocalEvent<WeldableComponent, ExaminedEvent>(OnExamine);
+// ES START
+        SubscribeLocalEvent<WeldableComponent, ComponentStartup>(OnWeldableStartup);
+// ES END
 
         _query = GetEntityQuery<WeldableComponent>();
     }
+
+// ES START
+    private void OnWeldableStartup(Entity<WeldableComponent> ent, ref ComponentStartup args)
+    {
+        _appearance.SetData(ent.Owner, WeldableVisuals.IsWelded, ent.Comp.IsWelded);
+    }
+// ES END
 
     public bool IsWelded(EntityUid uid, WeldableComponent? component = null)
     {

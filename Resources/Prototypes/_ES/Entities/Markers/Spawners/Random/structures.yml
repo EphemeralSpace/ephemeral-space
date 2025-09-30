@@ -1,0 +1,182 @@
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomGrille25
+  name: Grille Spawner
+  suffix: ES, Full/Empty, 25
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/grille.rsi
+      state: grille
+    - state: random
+    - state: empty
+    - state: es
+    - state: c25
+  - type: EntityTableSpawner
+    table:
+      id: Grille
+      prob: 0.25
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomGrille50
+  name: Grille Spawner
+  suffix: ES, Full/Empty, 50
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/grille.rsi
+      state: grille
+    - state: random
+    - state: empty
+    - state: es
+    - state: c50
+  - type: EntityTableSpawner
+    table:
+      id: Grille
+      prob: 0.50
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomGrille75
+  name: Grille Spawner
+  suffix: ES, Full/Empty, 75
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/grille.rsi
+      state: grille
+    - state: random
+    - state: empty
+    - state: es
+    - state: c75
+  - type: EntityTableSpawner
+    table:
+      id: Grille
+      prob: 0.75
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomGrilleBroken25
+  name: Grille Spawner
+  suffix: ES, Full/Broken, 25
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/grille.rsi
+      state: grille
+    - state: random
+    - state: broken
+    - state: es
+    - state: c25
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: Grille
+        weight: 1
+      - id: GrilleBroken
+        weight: 3
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomGrilleBroken50
+  name: Grille Spawner
+  suffix: ES, Full/Broken, 50
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/grille.rsi
+      state: grille
+    - state: random
+    - state: broken
+    - state: es
+    - state: c50
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: Grille
+      - id: GrilleBroken
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomGrilleBroken75
+  name: Grille Spawner
+  suffix: ES, Full/Broken, 75
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/grille.rsi
+      state: grille
+    - state: random
+    - state: broken
+    - state: es
+    - state: c75
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: Grille
+        weight: 3
+      - id: GrilleBroken
+        weight: 1
+
+# Secret Door Spawners
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomSecretDoor25
+  name: Secret Door Spawner
+  suffix: ES, 25
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Doors/secret_door.rsi
+      state: open
+    - state: random
+    - state: es
+    - state: c25
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: SolidSecretDoor
+        weight: 1
+      - id: WallSolid
+        weight: 3
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomSecretDoor50
+  name: Secret Door Spawner
+  suffix: ES, 50
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Doors/secret_door.rsi
+      state: open
+    - state: random
+    - state: es
+    - state: c50
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: SolidSecretDoor
+      - id: WallSolid
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomSecretDoor75
+  name: Secret Door Spawner
+  suffix: ES, 75
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Doors/secret_door.rsi
+      state: open
+    - state: random
+    - state: es
+    - state: c75
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: SolidSecretDoor
+        weight: 3
+      - id: WallSolid
+        weight: 1

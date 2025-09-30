@@ -11,16 +11,73 @@
             "name": "es"
         },
         {
-            "name": "random"
+            "name": "c10"
         },
         {
-            "name": "50-percent"
+            "name": "c20"
+        },
+        {
+            "name": "c25"
+        },
+        {
+            "name": "c30"
+        },
+        {
+            "name": "c40"
+        },
+        {
+            "name": "c50"
+        },
+        {
+            "name": "c60"
+        },
+        {
+            "name": "c70"
+        },
+        {
+            "name": "c75"
+        },
+        {
+            "name": "c80"
+        },
+        {
+            "name": "c90"
+        },
+        {
+            "name": "c100"
+        },
+        {
+            "name": "canister"
+        },
+        {
+            "name": "canister-broken"
+        },
+        {
+            "name": "combo"
+        },
+        {
+            "name": "door"
+        },
+        {
+            "name": "emergency"
+        },
+        {
+            "name": "random"
         },
         {
             "name": "maint"
         },
         {
+            "name": "broken"
+        },
+        {
+            "name": "empty"
+        },
+        {
             "name": "crate"
+        },
+        {
+            "name": "tank"
         },
         {
             "name": "wardrobe"
