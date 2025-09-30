@@ -81,6 +81,9 @@
         },
         {
             "name": "wardrobe"
+        },
+        {
+            "name": "wall"
         }
     ]
 }

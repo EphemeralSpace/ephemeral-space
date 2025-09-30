@@ -164,9 +164,35 @@
         children:
         - id: AirlockMaintLocked
         - id: BarricadeBlock
-      - id: SolidSecretDoor
-        weight: 0.5
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMaintDoorVariantImpassable
+  name: Walled Maint Door Variant Spawner
+  description: Can sometimes be a wall.
+  components:
+  - type: Sprite
+    layers:
+    - state: door
+    - state: random
+    - state: maint
+    - state: wall
+      offset: 0, -0.1875
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: AirlockMaintLocked
+        weight: 1.5
+      - id: ESAirlockMaintLockedWelded
+      - id: ESAirlockMaintLockedBolted
+      - !type:AllSelector
+        children:
+        - id: AirlockMaintLocked
+        - id: BarricadeBlock
       - id: WallSolid
+      - id: SolidSecretDoor
         weight: 0.5
 
 - type: entity
