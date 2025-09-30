@@ -1,0 +1,21 @@
+- type: entity
+  parent: MarkerBase
+  id: ESMarkerTraitorCeilingCache
+  name: traitor ceiling cache marker
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Storage/Crates/syndicate.rsi
+      state: icon
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-1.45,1.45,1.45"
+        density: 60
+        hard: false
+        mask:
+        - Impassable

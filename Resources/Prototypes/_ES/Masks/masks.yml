@@ -17,5 +17,4 @@
   weight: 1
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheTraitorMarauder
+    cacheProto: ESCrateCacheTraitorMarauder
