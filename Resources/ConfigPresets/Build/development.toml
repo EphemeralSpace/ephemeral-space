@@ -45,12 +45,3 @@ see_own_notes = true
 random_characters = true
 random_species_weights = ""
 ssd_sleep_time = 3600
-
-# ES START
-[es_station]
-enabled = true
-
-[audio]
-attenuation = 4 # inversedistanceclamped 1 << 2, see audioparams.cs
-z_offset = -2
-# ES END
