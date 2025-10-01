@@ -36,7 +36,7 @@ public sealed partial class ESCVars : CVars
 
     // ES-SPECIFIC STATION HANDLING
     public static readonly CVarDef<bool> ESStationEnabled =
-        CVarDef.Create("es_station.enabled", false, CVar.SERVER);
+        CVarDef.Create("es_station.enabled", true, CVar.SERVER);
 
     public static readonly CVarDef<string> ESStationCurrentConfig =
         CVarDef.Create("es_station.current_config", "ESDefault", CVar.SERVER);

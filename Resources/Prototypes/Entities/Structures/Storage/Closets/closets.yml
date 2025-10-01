@@ -136,9 +136,9 @@
     stateDoorClosed: bio_jan_door
 
 # Maintenance closet
+# ES Start - we don't want this to be named
 - type: entity
   id: ClosetMaintenance
-  name: maintenance closet
   parent: ClosetSteelBase
   description: It's a storage unit.
   components:
@@ -146,6 +146,7 @@
   - type: EntityStorageVisuals
     stateDoorOpen: generic_open
     stateDoorClosed: generic_door
+# ES End
 
 # Syndicate
 - type: entity

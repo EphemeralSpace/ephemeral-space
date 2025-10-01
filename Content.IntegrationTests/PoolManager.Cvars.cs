@@ -1,4 +1,5 @@
 #nullable enable
+using Content.Shared._ES.CCVar;
 using Content.Shared.CCVar;
 using Robust.Shared;
 using Robust.Shared.Configuration;
@@ -12,6 +13,9 @@ public static partial class PoolManager
     private static readonly (string cvar, string value)[] TestCvars =
     {
         // @formatter:off
+        // ES START
+        (ESCVars.ESStationEnabled.Name,       "false"),
+        // ES END
         (CCVars.DatabaseSynchronous.Name,     "true"),
         (CCVars.DatabaseSqliteDelay.Name,     "0"),
         (CCVars.HolidaysEnabled.Name,         "false"),

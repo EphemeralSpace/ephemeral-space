@@ -15,8 +15,12 @@ public sealed partial class CCVars
     ///     Loaded presets must be located under the <c>ConfigPresets/</c> resource directory and end with the <c>.toml</c> extension.
     ///     Only the file name (without extension) must be given for this variable.
     /// </remarks>
+    // ES START
+    // this must be changed here and not in a config preset, because, uh
+    // this is the config preset
     public static readonly CVarDef<string> ConfigPresets =
-        CVarDef.Create("config.presets", "", CVar.SERVERONLY);
+        CVarDef.Create("config.presets", "_ES/base", CVar.SERVERONLY);
+    // ES END
 
     /// <summary>
     ///     Whether to load the preset development CVars.

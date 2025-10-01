@@ -54,30 +54,33 @@
       entity_storage: !type:NestedSelector
         tableId: FillWardrobeMixed
 
+# ES Start
 - type: entityTable
   id: FillWardrobeMixed
   table: !type:AllSelector
     children:
-    - id: ClothingShoesColorBlack
-    - id: ClothingShoesColorBrown
-    - id: ClothingShoesColorWhite
-    - id: ClothingOuterCoatBomber
-      prob: 0.4
-    - id: ClothingOuterCoatGentle
-      prob: 0.3
-    - id: ClothingUniformRandomShorts
-      amount: 3
-    - id: ClothingUniformRandomBra
-      amount: 5
-    - !type:AllSelector
-      rolls: 5
-      children:
-      - id: ClothingUniformRandomArmless
-        prob: 0.8
-      - id: ClothingUniformRandomStandard
-        prob: 0.8
-      - id: ClothingUniformRandomShirt
-        prob: 0.8
+# Shoes
+    - !type:NestedSelector
+      tableId: ESMixedLockerShoesTable
+      rolls: !type:RangeNumberSelector
+        range: 1, 2
+# Jumpsuits
+    - !type:NestedSelector
+      tableId: ESMixedLockerJumpsuitTable
+      rolls: !type:RangeNumberSelector
+        range: 2, 4
+# Jumpskirts
+    - !type:NestedSelector
+      tableId: ESMixedLockerJumpskirtTable
+      rolls: !type:RangeNumberSelector
+        range: 1, 3
+# Bonus (Hats, bandanas, etc.)
+    - !type:NestedSelector
+      tableId: ESMixedLockerBonusTable
+      prob: 0.33
+      rolls: !type:RangeNumberSelector
+        range: 1, 2
+# ES End
 
 - type: entity
   id: WardrobeYellowFilled

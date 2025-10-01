@@ -1,0 +1,15 @@
+# Base config for ES
+# aka "replicated/server cvar changes from upstream so we dont modify ccvars"
+# Loaded in both dev and regular server, after dev config preset
+# These don't work for client cvars, so those must be changed in ccvars
+
+[audio]
+attenuation = 4 # inversedistanceclamped 1 << 2, see audioparams.cs
+z_offset = -2
+
+# No mob crawling + mob push tweaks
+[movement]
+crawling = false
+mob_pushing = true
+penetration_cap = 0.35
+push_mass_cap = 1.2

@@ -43,6 +43,12 @@
     drawdepth: Items
     noRot: false
   - type: Pullable
+    # ES START
+    # we want to avoid arbitrary visual rotations, and pulling sprite norot things like items can cause them.
+    # items are really the only ones that matter that I can think of, so we just set fixedrotation for them here on pull
+    # it shouldn't really affect many things because its not that common for items to get pulled anyway.
+    fixedRotation: true
+    # ES END
   - type: DamageExaminable
   # ES START
   - type: ESViewconeOccludable

@@ -49,6 +49,8 @@ public abstract partial class InteractionTest
 
     protected MapId MapId => MapData.MapId;
 
+
+
     /// <summary>
     /// Target coordinates. Note that this does not necessarily correspond to the position of the <see cref="Target"/>
     /// entity.
@@ -60,6 +62,12 @@ public abstract partial class InteractionTest
     /// <see cref="Player"/> entity.
     /// </summary>
     protected NetCoordinates PlayerCoords;
+
+    // ES START
+    protected virtual Vector2 TargetCoordsOffset => new(1.5f, 0.5f);
+
+    protected virtual Vector2 PlayerCoordsOffset => new(0.5f, 0.5f);
+    // ES END
 
     /// <summary>
     /// The player entity that performs all these interactions. Defaults to an admin-observer with 1 hand.
@@ -198,8 +206,8 @@ public abstract partial class InteractionTest
         // Setup map.
         await Pair.CreateTestMap();
 
-        PlayerCoords = SEntMan.GetNetCoordinates(Transform.WithEntityId(MapData.GridCoords.Offset(new Vector2(0.5f, 0.5f)), MapData.MapUid));
-        TargetCoords = SEntMan.GetNetCoordinates(Transform.WithEntityId(MapData.GridCoords.Offset(new Vector2(1.5f, 0.5f)), MapData.MapUid));
+        PlayerCoords = SEntMan.GetNetCoordinates(Transform.WithEntityId(MapData.GridCoords.Offset(PlayerCoordsOffset), MapData.MapUid));
+        TargetCoords = SEntMan.GetNetCoordinates(Transform.WithEntityId(MapData.GridCoords.Offset(TargetCoordsOffset), MapData.MapUid));
         await SetTile(Plating, grid: MapData.Grid);
 
         // Get player data
