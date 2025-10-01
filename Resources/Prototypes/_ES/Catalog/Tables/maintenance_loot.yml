@@ -1,5 +1,5 @@
 - type: entityTable
-  id: ESMaintLootCombo
+  id: ESMaintLoot
   table:
     group:
     - tableId: ESMaintLootWorthless
@@ -35,6 +35,7 @@
     - id: Pen
     - id: MaterialCardboard1
     - id: BoxCardboard
+    - id: CheapLighter
 
     - id: Ash
     - id: CigaretteSpent
@@ -48,10 +49,19 @@
     - id: DrinkGlass
 
     - id: ClothingMaskBreath
+    - id: ClothingMaskSterile
+      weight: 0.125
     - id: ShardGlass
 
     - id: MicroManipulatorStockPart
       weight: 0.125
+
+    - group:
+      - id: ESRound9mm
+      - id: ESRound357
+      - id: ESShellShotgunBuckshot
+      - id: ESShellShotgunBeanbag
+      weight: 0.25
 
 - type: entityTable
   id: ESMaintLootCommon
@@ -60,6 +70,7 @@
     - id: GasAnalyzer
     - id: Crowbar
     - id: GeigerCounter
+    - id: HandheldGPSBasic
     - id: MopItem
     - id: Bucket
     - id: Screwdriver
@@ -88,6 +99,10 @@
     - id: ClothingBeltStorageWaistbag
 
     - id: CableApcStack
+    - id: CableMVStack
+      weight: 0.5
+    - id: CableHVStack
+      weight: 0.5
     - id: PartRodMetal10
     - id: SheetSteel10
     - id: SheetPlasma1
@@ -99,6 +114,13 @@
     - id: RemoteSignaller
     - id: TimerTrigger
     - id: ESParcelWrap10
+
+    - id: DoorElectronics
+    - id: APCElectronics
+    - id: FirelockElectronics
+    - id: FireAlarmElectronics
+    - id: AirAlarmElectronics
+    - id: IntercomElectronics
 
     - id: CleanerGrenade
     - id: Beaker
@@ -115,13 +137,16 @@
 
     - id: DrinkBeerBottleFull
     - id: DrinkHotCoffee
+    - id: StrangePill
 
-    - id: BodyBag
+    - id: BodyBagFolded
     - id: FireExtinguisher
     - id: SmokeGrenade # TODO: sus?
     - id: RadioHandheld
     - id: EmergencyOxygenTank
     - id: SprayPainterAmmo
+    - id: ClothingHeadHatCone
+    - id: Lighter
 
     - group:
       - id: GlowstickBase
@@ -152,6 +177,8 @@
     - id: EmergencyRollerBedSpawnFolded
     - id: Spear
     - id: WelderIndustrial
+    - id: Plunger
+    - id: Shovel
 
     - id: ClothingEyesHudDiagnostic
     - id: ClothingEyesHudMedical
@@ -159,6 +186,7 @@
     - id: ClothingMaskMuzzle
     - id: ClothingBeltMedical
     - id: ClothingBeltUtility
+    - id: ClothingHeadHelmetBasic
 
     - id: DefaultStationBeaconUnanchored
     - id: Soap # TODO: soap pool?
@@ -168,6 +196,7 @@
       weight: 0.5
     - id: BoxHug
     - id: ModularReceiver
+    - id: RifleStock
 
     - id: Brutepack1
     - id: Ointment1
@@ -177,6 +206,9 @@
 
     - id: DrinkVodkaBottleFull
     - id: DrinkFourteenLokoCan
+    - id: DrinkSpaceGlue
+    - id: DrinkSpaceLube
+    - id: DrinkMopwataBottleRandom
 
     - id: SprayBottle
     - id: SprayBottleSpaceCleaner
@@ -197,10 +229,62 @@
       weight: 0.5
     - id: SpaceVillainArcadeComputerCircuitboard
       weight: 0.5
-    - id: SpectralLocator
+    - id: SMESMachineCircuitboard
+    - id: SubstationMachineCircuitboard
 
-    - id: ClothingShoesBootsJack
+    - all:
+      - id: ClothingOuterCoatJensen
+      - id: ClothingEyesGlassesJensen
+    - group:
+      - id: ClothingNeckLGBTPin
+      - id: ClothingNeckAllyPin
+      - id: ClothingNeckAromanticPin
+      - id: ClothingNeckAsexualPin
+      - id: ClothingNeckAroacePin
+      - id: ClothingNeckBisexualPin
+      - id: ClothingNeckGayPin
+      - id: ClothingNeckIntersexPin
+      - id: ClothingNeckLesbianPin
+      - id: ClothingNeckNonBinaryPin
+      - id: ClothingNeckPansexualPin
+      - id: ClothingNeckPluralPin
+      - id: ClothingNeckOmnisexualPin
+      - id: ClothingNeckGenderqueerPin
+      - id: ClothingNeckGenderfluidPin
+      - id: ClothingNeckTransPin
+      - id: ClothingNeckAutismPin
+      - id: ClothingNeckGoldAutismPin
+      weight: 0.5
+    - group:
+      - id: ClothingNeckCloakTrans
+      - id: ClothingNeckCloakAdmin
+      - id: ClothingNeckCloakMoth
+      - id: ClothingNeckCloakVoid
+      - id: ClothingNeckCloakGoliathCloak
+      - id: ClothingNeckCloakAce
+      - id: ClothingNeckCloakAro
+      - id: ClothingNeckCloakAroace
+      - id: ClothingNeckCloakBi
+      - id: ClothingNeckCloakIntersex
+      - id: ClothingNeckCloakLesbian
+      - id: ClothingNeckCloakGay
+      - id: ClothingNeckCloakEnby
+      - id: ClothingNeckCloakPan
+      weight: 0.5
+    - id: ClothingEyesEyepatch
+      weight: 0.5
+    - id: ClothingOuterCoatGentle
+      weight: 0.5
+    - all:
+      - id: ClothingOuterCoatJensen
+      - id: ClothingEyesGlassesJensen
+      weight: 0.5
+    - id: ClothingShoesBootsLaceup
+    - id: ClothingShoesLeather
+
+    - id: SpectralLocator
     - id: d20Dice
+    - id: Wristwatch
 
 - type: entityTable
   id: ESMaintLootRare
@@ -210,12 +294,32 @@
     - id: Handcuffs
     - id: MakeshiftShield
     - id: WelderIndustrialAdvanced
+    - id: CombatKnife
+    - id: BaseBallBat
+    - id: Binoculars
 
     - id: ClothingEyesHudSecurity
     - id: ClothingEyesGlassesSunglasses
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingHandsGlovesCombat
     - id: ClothingBeltSecurity
+    - id: ClothingShoesBootsJack
+    - id: ClothingHeadHelmetJustice
+
+    - all: # Russian Outfit
+      - id: ESClothingHeadUshanka
+      - id: ESClothingUniformJumpsuitRussianColorGrey
+      - id: ClothingShoesColorBrown
+      weight: 0.5
+    - group: # Funny Shoes
+      - id: ClothingShoeSlippersDuck
+      - id: ClothingUnderSocksBee
+      - id: ClothingUnderSocksCoder
+      weight: 0.5
+    - all:
+      - id: ClothingOuterCoatPirate
+      - id: ClothingHeadHatPirateTricord
+      weight: 0.5
 
     - group:
       - id: Medkit
@@ -223,4 +327,13 @@
       - id: Ointment
       - id: Gauze
 
-    - id: NukeDiskFake
+    - group: # Goofy items
+      - id: NukeDiskFake
+      - id: LidSalami
+      - id: Skub
+      - id: PonderingOrb
+      - id: CigarGold
+      - id: WristwatchGold
+      - id: RubberStampGreytide
+      - id: GoldenPersonalAI
+      - id: ClothingNeckBling
