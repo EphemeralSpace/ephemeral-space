@@ -1,0 +1,226 @@
+- type: entityTable
+  id: ESMaintLootCombo
+  table:
+    group:
+    - tableId: ESMaintLootWorthless
+      weight: 45
+    - tableId: ESMaintLootCommon
+      weight: 45
+    - tableId: ESMaintLootUncommon
+      weight: 9
+    - tableId: ESMaintLootRare
+      weight: 1
+
+- type: entityTable
+  id: ESMaintLootWorthless
+  table:
+    group:
+    - tableId: GenericTrashItems
+      weight: 8
+    - id: ESFlareSpent
+    - id: Candle
+    - id: CandleSmall
+      weight: 0.5
+
+    - group:
+      - id: BoxFolderBase
+      - id: BoxFolderRed
+      - id: BoxFolderBlue
+      - id: BoxFolderYellow
+      - id: BoxFolderGrey
+      - id: BoxFolderBlack
+      - id: BoxFolderGreen
+    - id: HandLabeler
+    - id: Paper
+    - id: Pen
+    - id: MaterialCardboard1
+    - id: BoxCardboard
+
+    - id: Ash
+    - id: CigaretteSpent
+    - id: TreasureCoinIron
+    - id: LightTube
+    - id: LightBulb
+    - id: LightTubeBroken
+      weight: 0.5
+    - id: LightBulbBroken
+      weight: 0.5
+    - id: DrinkGlass
+
+    - id: ClothingMaskBreath
+    - id: ShardGlass
+
+    - id: MicroManipulatorStockPart
+      weight: 0.125
+
+- type: entityTable
+  id: ESMaintLootCommon
+  table:
+    group:
+    - id: GasAnalyzer
+    - id: Crowbar
+    - id: GeigerCounter
+    - id: MopItem
+    - id: Bucket
+    - id: Screwdriver
+    - id: trayScanner
+    - id: Welder
+    - id: Wirecutter
+    - id: Wrench
+    - id: SprayPainter
+
+    - tableId: ESMixedBasicGloves
+    - id: ClothingEyesGlassesMeson
+    - id: ClothingEyesGlassesChemical
+    - id: ClothingHandsGlovesColorYellowBudget
+    - id: ClothingMaskGas
+    - id: ClothingShoesColorBlack
+    - id: ClothingOuterVestHazard
+    - id: ClothingOuterCoatLab
+    - group:
+      - id: ClothingUniformJumpsuitColorGrey
+      - id: ClothingUniformJumpskirtColorGrey
+    - id: ClothingHeadsetGrey
+    - group:
+      - id: ClothingBackpack
+      - id: ClothingBackpackSatchel
+      - id: ClothingBackpackDuffel
+    - id: ClothingBeltStorageWaistbag
+
+    - id: CableApcStack
+    - id: PartRodMetal10
+    - id: SheetSteel10
+    - id: SheetPlasma1
+    - id: PowerCellSmall
+
+    - id: Igniter
+    - id: Mousetrap
+    - id: ProximitySensor
+    - id: RemoteSignaller
+    - id: TimerTrigger
+    - id: ESParcelWrap10
+
+    - id: CleanerGrenade
+    - id: Beaker
+    - id: ChemistryEmptyBottle01
+      weight: 2
+    - id: RagItem
+    - id: Syringe
+    - id: Matchbox
+    - group:
+      - id: CigPackGreen
+      - id: CigPackRed
+      - id: CigPackBlue
+      - id: CigPackBlack
+
+    - id: DrinkBeerBottleFull
+    - id: DrinkHotCoffee
+
+    - id: BodyBag
+    - id: FireExtinguisher
+    - id: SmokeGrenade # TODO: sus?
+    - id: RadioHandheld
+    - id: EmergencyOxygenTank
+    - id: SprayPainterAmmo
+
+    - group:
+      - id: GlowstickBase
+      - id: GlowstickBlue
+      - id: GlowstickPurple
+      - id: GlowstickRed
+      - id: GlowstickYellow
+    - group:
+      - id: ClothingHeadHatHardhatRed
+      - id: ClothingHeadHatHardhatBlue
+      - id: ClothingHeadHatHardhatOrange
+      - id: ClothingHeadHatHardhatWhite
+      - id: ClothingHeadHatHardhatYellow
+      - id: ClothingHeadHatHardhatYellowDark
+    - id: FlashlightLantern
+    - id: Flare # dode
+
+- type: entityTable
+  id: ESMaintLootUncommon
+  table:
+    group:
+    - id: FireBombEmpty
+    - id: HydroponicsToolHatchet
+    - id: Multitool
+    - id: LuxuryPen
+    - id: Cablecuffs
+    - id: Bola
+    - id: EmergencyRollerBedSpawnFolded
+    - id: Spear
+    - id: WelderIndustrial
+
+    - id: ClothingEyesHudDiagnostic
+    - id: ClothingEyesHudMedical
+    - tableId: FillWelderSupplies # Welding masks
+    - id: ClothingMaskMuzzle
+    - id: ClothingBeltMedical
+    - id: ClothingBeltUtility
+
+    - id: DefaultStationBeaconUnanchored
+    - id: Soap # TODO: soap pool?
+    - id: MaterialWoodPlank
+    - id: PowerCellMedium
+    - id: PowerCellHigh
+      weight: 0.5
+    - id: BoxHug
+    - id: ModularReceiver
+
+    - id: Brutepack1
+    - id: Ointment1
+    - id: Gauze1
+
+    - id: EmergencyMedipen
+
+    - id: DrinkVodkaBottleFull
+    - id: DrinkFourteenLokoCan
+
+    - id: SprayBottle
+    - id: SprayBottleSpaceCleaner
+
+    - id: FoodTinPeachesMaint
+    - id: FoodBoxDonkpocket
+    - group:
+      - id: FoodBoxDonkpocketSpicy
+      - id: FoodBoxDonkpocketTeriyaki
+      - id: FoodBoxDonkpocketPizza
+      - id: FoodBoxDonkpocketStonkD
+      - id: FoodBoxDonkpocketCarp
+      - id: FoodBoxDonkpocketBerry
+      - id: FoodBoxDonkpocketHonk
+    - id: MonkeyCube
+
+    - id: BlockGameArcadeComputerCircuitboard
+      weight: 0.5
+    - id: SpaceVillainArcadeComputerCircuitboard
+      weight: 0.5
+    - id: SpectralLocator
+
+    - id: ClothingShoesBootsJack
+    - id: d20Dice
+
+- type: entityTable
+  id: ESMaintLootRare
+  table:
+    group:
+    - id: KitchenKnife
+    - id: Handcuffs
+    - id: MakeshiftShield
+    - id: WelderIndustrialAdvanced
+
+    - id: ClothingEyesHudSecurity
+    - id: ClothingEyesGlassesSunglasses
+    - id: ClothingHandsGlovesColorYellow
+    - id: ClothingHandsGlovesCombat
+    - id: ClothingBeltSecurity
+
+    - group:
+      - id: Medkit
+      - id: Brutepack
+      - id: Ointment
+      - id: Gauze
+
+    - id: NukeDiskFake

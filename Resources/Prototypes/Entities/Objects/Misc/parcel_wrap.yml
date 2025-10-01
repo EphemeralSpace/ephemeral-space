@@ -98,3 +98,13 @@
     - ParcelWrapBlacklist # No exponential wrapper trash-splosions.
     - Recyclable
   - type: SpaceGarbage
+
+# ES START
+- type: entity
+  parent: ParcelWrap
+  id: ESParcelWrap10
+  suffix: ES, 10
+  components:
+  - type: LimitedCharges
+    lastCharges: 10
+# ES END

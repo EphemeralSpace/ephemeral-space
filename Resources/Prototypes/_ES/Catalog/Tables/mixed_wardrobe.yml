@@ -64,41 +64,63 @@
   id: ESMixedLockerBonusTable
   table: !type:GroupSelector
     children:
-    - !type:GroupSelector
-      children:
 # Gloves
-      - id: ClothingHandsGlovesColorWhite
-      - id: ClothingHandsGlovesColorGray
-      - id: ClothingHandsGlovesColorBrown
-      - id: ClothingHandsGlovesColorLightBrown
-      - id: ClothingHandsGlovesColorOrange
-      - id: ClothingHandsGlovesColorRed
-      - id: ClothingHandsGlovesColorBlue
-      - id: ClothingHandsGlovesColorTeal
-      - id: ClothingHandsGlovesColorGreen
+    - tableId: ESMixedBasicGloves
 # Soft caps
-      - id: ClothingHeadHatMimesoft
-      - id: ClothingHeadHatGreysoft
-      - id: ClothingHeadHatBlacksoft
-      - id: ClothingHeadHatOrangesoft
-      - id: ClothingHeadHatRedsoft
-      - id: ClothingHeadHatGreensoft
-      - id: ClothingHeadHatBluesoft
-      - id: ClothingHeadHatYellowsoft
+    - tableId: ESMixedBasicHatSoft
 # Bandanas
-      - id: ClothingHeadBandGrey
-      - id: ClothingHeadBandBlack
-      - id: ClothingHeadBandRed
-      - id: ClothingHeadBandGold
-      - id: ClothingHeadBandBrown
-      - id: ClothingHeadBandGreen
-      - id: ClothingHeadBandBlue
+    - tableId: ESMixedBasicBandana
 # Scarfs
-      - id: ClothingNeckScarfStripedBlack
-      - id: ClothingNeckScarfStripedRed
-      - id: ClothingNeckScarfStripedOrange
-      - id: ClothingNeckScarfStripedBrown
-      - id: ClothingNeckScarfStripedGreen
-      - id: ClothingNeckScarfStripedBlue
-      - id: ClothingNeckScarfStripedPurple
-      - id: ClothingNeckScarfStripedLightBlue
+    - tableId: ESMixedBasicScarfs
+
+- type: entityTable
+  id: ESMixedBasicGloves
+  table:
+    group:
+    - id: ClothingHandsGlovesColorWhite
+    - id: ClothingHandsGlovesColorGray
+    - id: ClothingHandsGlovesColorBrown
+    - id: ClothingHandsGlovesColorLightBrown
+    - id: ClothingHandsGlovesColorOrange
+    - id: ClothingHandsGlovesColorRed
+    - id: ClothingHandsGlovesColorBlue
+    - id: ClothingHandsGlovesColorTeal
+    - id: ClothingHandsGlovesColorGreen
+
+- type: entityTable
+  id: ESMixedBasicHatSoft
+  table:
+    group:
+    - id: ClothingHeadHatMimesoft
+    - id: ClothingHeadHatGreysoft
+    - id: ClothingHeadHatBlacksoft
+    - id: ClothingHeadHatOrangesoft
+    - id: ClothingHeadHatRedsoft
+    - id: ClothingHeadHatGreensoft
+    - id: ClothingHeadHatBluesoft
+    - id: ClothingHeadHatYellowsoft
+
+- type: entityTable
+  id: ESMixedBasicBandana
+  table:
+    group:
+    - id: ClothingHeadBandGrey
+    - id: ClothingHeadBandBlack
+    - id: ClothingHeadBandRed
+    - id: ClothingHeadBandGold
+    - id: ClothingHeadBandBrown
+    - id: ClothingHeadBandGreen
+    - id: ClothingHeadBandBlue
+
+- type: entityTable
+  id: ESMixedBasicScarfs
+  table:
+    group:
+    - id: ClothingNeckScarfStripedBlack
+    - id: ClothingNeckScarfStripedRed
+    - id: ClothingNeckScarfStripedOrange
+    - id: ClothingNeckScarfStripedBrown
+    - id: ClothingNeckScarfStripedGreen
+    - id: ClothingNeckScarfStripedBlue
+    - id: ClothingNeckScarfStripedPurple
+    - id: ClothingNeckScarfStripedLightBlue
