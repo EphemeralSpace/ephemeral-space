@@ -11,29 +11,25 @@
       - state: es
       - state: c100
   - type: EntityTableSpawner
-    table: !type:NestedSelector
+    table:
       tableId: ESMaintenanceStructures
 
-# TODO: Add spawners for more things like canisters, fuel tanks, and emergency closets. I've personally refrained from doing this for now since there's no loot tables and I don't want to contribute to the organizational nightmare that is current spawners
 - type: entityTable
   id: ESMaintenanceStructures
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector
-      children:
+  table:
+    group:
+    - group:
       - id: ClosetMaintenanceFilledRandom
         weight: 35
       - id: ESCrateMaintenanceFilledRandom
         weight: 35
-      - !type:NestedSelector
-        tableId: LowValueCrateTable
+      - tableId: LowValueCrateTable
         weight: 15
       - id: ClosetL3Filled
         weight: 5
       - id: Spaceshroom
         weight: 5
-      - !type:NestedSelector
-        tableId: ESWardrobeTypes
+      - tableId: ESWardrobeTypes
         weight: 5
 
 - type: entity
@@ -49,13 +45,13 @@
     - state: es
     - state: c100
   - type: EntityTableSpawner
-    table: !type:NestedSelector
+    table:
       tableId: ESMaintenanceTanks
 
 - type: entityTable
   id: ESMaintenanceTanks
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: WaterTankFull
     - id: WeldingFuelTankFull
 
@@ -72,14 +68,12 @@
     - state: es
     - state: c100
   - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
-      - !type:NestedSelector
+    table:
+      group:
+      - tableId: ESMaintenanceCanisters
         weight: 95
-        tableId: ESMaintenanceCanisters
-      - !type:NestedSelector
+      - tableId: ESMaintenanceCanistersBroken
         weight: 5
-        tableId: ESMaintenanceCanistersBroken
 
 - type: entity
   id: ESSpawnerRandomMaintCanisterBroken
@@ -94,52 +88,48 @@
     - state: es
     - state: c100
   - type: EntityTableSpawner
-    table: !type:NestedSelector
+    table:
       tableId: ESMaintenanceCanistersBroken
 
 - type: entityTable
   id: ESMaintenanceCanisters
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector
-      weight: 90
-      children:
+  table:
+    group:
+    - group:
       - id: OxygenCanister
       - id: NitrogenCanister
       - id: AirCanister
         weight: 0.5
       - id: StorageCanister
         weight: 0.25
-    - !type:GroupSelector
-      weight: 10
-      children:
+      weight: 90
+    - group:
       - id: CarbonDioxideCanister
       - id: WaterVaporCanister
       - id: NitrousOxideCanister
       - id: PlasmaCanister
         weight: 0.25
+      weight: 10
 
 - type: entityTable
   id: ESMaintenanceCanistersBroken
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector
-      weight: 90
-      children:
+  table:
+    group:
+    - group:
       - id: OxygenCanisterBroken
       - id: NitrogenCanisterBroken
       - id: AirCanisterBroken
         weight: 0.5
       - id: StorageCanisterBroken
         weight: 0.25
-    - !type:GroupSelector
-      weight: 10
-      children:
+      weight: 90
+    - group:
       - id: CarbonDioxideCanisterBroken
       - id: WaterVaporCanisterBroken
       - id: NitrousOxideCanisterBroken
       - id: PlasmaCanisterBroken
         weight: 0.25
+      weight: 10
 
 - type: entity
   parent: ESSpawnerBase
@@ -154,14 +144,13 @@
     - state: es
     - state: c100
   - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
+    table:
+      group:
       - id: AirlockMaintLocked
         weight: 1.5
       - id: ESAirlockMaintLockedWelded
       - id: ESAirlockMaintLockedBolted
-      - !type:AllSelector
-        children:
+      - all:
         - id: AirlockMaintLocked
         - id: BarricadeBlock
 
@@ -181,14 +170,13 @@
     - state: es
     - state: c100
   - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
+    table:
+      group:
       - id: AirlockMaintLocked
         weight: 1.5
       - id: ESAirlockMaintLockedWelded
       - id: ESAirlockMaintLockedBolted
-      - !type:AllSelector
-        children:
+      - all:
         - id: AirlockMaintLocked
         - id: BarricadeBlock
       - id: WallSolid
@@ -208,24 +196,22 @@
     - state: es
     - state: c100
   - type: EntityTableSpawner
-    table: !type:NestedSelector
+    table:
       tableId: ESMaintenanceClosetsEmergency
 
 - type: entityTable
   id: ESMaintenanceClosetsEmergency
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector
-      weight: 95
-      children:
+  table:
+    group:
+    - group:
       - id: ClosetEmergencyFilledRandom
         weight: 2
       - id: ClosetFireFilled
         weight: 1
-    - !type:GroupSelector
-      weight: 5
-      children:
+      weight: 95
+    - group:
       - id: ClosetEmergency
         weight: 2
       - id: ClosetFire
         weight: 1
+      weight: 5

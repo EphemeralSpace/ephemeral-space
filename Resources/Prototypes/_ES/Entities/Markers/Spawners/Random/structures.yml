@@ -70,8 +70,8 @@
     - state: es
     - state: c25
   - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
+    table:
+      group:
       - id: Grille
         weight: 1
       - id: GrilleBroken
@@ -92,8 +92,8 @@
     - state: es
     - state: c50
   - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
+    table:
+      group:
       - id: Grille
       - id: GrilleBroken
 
@@ -112,8 +112,8 @@
     - state: es
     - state: c75
   - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
+    table:
+      group:
       - id: Grille
         weight: 3
       - id: GrilleBroken
@@ -134,8 +134,8 @@
     - state: es
     - state: c25
   - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
+    table:
+      group:
       - id: SolidSecretDoor
         weight: 1
       - id: WallSolid
@@ -155,8 +155,8 @@
     - state: es
     - state: c50
   - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
+    table:
+      group:
       - id: SolidSecretDoor
       - id: WallSolid
 
@@ -174,8 +174,8 @@
     - state: es
     - state: c75
   - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
+    table:
+      group:
       - id: SolidSecretDoor
         weight: 3
       - id: WallSolid
