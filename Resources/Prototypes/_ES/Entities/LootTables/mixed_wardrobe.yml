@@ -1,0 +1,104 @@
+- type: entityTable
+  id: ESMixedLockerShoesTable
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: ClothingShoesColorWhite
+      - id: ClothingShoesColorBlack
+      - id: ClothingShoesColorBrown
+      - id: ClothingShoesColorRed
+      - id: ClothingShoesColorOrange
+      - id: ClothingShoesColorYellow
+      - id: ClothingShoesColorGreen
+      - id: ClothingShoesColorBlue
+      - id: ClothingShoesColorPurple
+
+- type: entityTable
+  id: ESMixedLockerJumpsuitTable
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: ClothingUniformJumpsuitColorWhite
+      - id: ClothingUniformJumpsuitColorGrey
+      - id: ClothingUniformJumpsuitColorBlack
+      - id: ClothingUniformJumpsuitColorBrown
+      - id: ClothingUniformJumpsuitColorLightBrown
+      - id: ClothingUniformJumpsuitColorRed
+      - id: ClothingUniformJumpsuitColorMaroon
+      - id: ClothingUniformJumpsuitColorPink
+      - id: ClothingUniformJumpsuitColorOrange
+      - id: ClothingUniformJumpsuitColorYellow
+      - id: ClothingUniformJumpsuitColorDarkBlue
+      - id: ClothingUniformJumpsuitColorBlue
+      - id: ClothingUniformJumpsuitColorTeal
+      - id: ClothingUniformJumpsuitColorGreen
+      - id: ClothingUniformJumpsuitColorDarkGreen
+      - id: ClothingUniformJumpsuitColorPurple
+
+- type: entityTable
+  id: ESMixedLockerJumpskirtTable
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: ClothingUniformJumpskirtColorWhite
+      - id: ClothingUniformJumpskirtColorGrey
+      - id: ClothingUniformJumpskirtColorBlack
+      - id: ClothingUniformJumpskirtColorBrown
+      - id: ClothingUniformJumpskirtColorLightBrown
+      - id: ClothingUniformJumpskirtColorRed
+      - id: ClothingUniformJumpskirtColorMaroon
+      - id: ClothingUniformJumpskirtColorPink
+      - id: ClothingUniformJumpskirtColorOrange
+      - id: ClothingUniformJumpskirtColorYellow
+      - id: ClothingUniformJumpskirtColorDarkBlue
+      - id: ClothingUniformJumpskirtColorBlue
+      - id: ClothingUniformJumpskirtColorTeal
+      - id: ClothingUniformJumpskirtColorGreen
+      - id: ClothingUniformJumpskirtColorDarkGreen
+      - id: ClothingUniformJumpskirtColorPurple
+
+- type: entityTable
+  id: ESMixedLockerBonusTable
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+# Gloves
+      - id: ClothingHandsGlovesColorWhite
+      - id: ClothingHandsGlovesColorGray
+      - id: ClothingHandsGlovesColorBrown
+      - id: ClothingHandsGlovesColorLightBrown
+      - id: ClothingHandsGlovesColorOrange
+      - id: ClothingHandsGlovesColorRed
+      - id: ClothingHandsGlovesColorBlue
+      - id: ClothingHandsGlovesColorTeal
+      - id: ClothingHandsGlovesColorGreen
+# Soft caps
+      - id: ClothingHeadHatMimesoft
+      - id: ClothingHeadHatGreysoft
+      - id: ClothingHeadHatBlacksoft
+      - id: ClothingHeadHatOrangesoft
+      - id: ClothingHeadHatRedsoft
+      - id: ClothingHeadHatGreensoft
+      - id: ClothingHeadHatBluesoft
+      - id: ClothingHeadHatYellowsoft
+# Bandanas
+      - id: ClothingHeadBandGrey
+      - id: ClothingHeadBandBlack
+      - id: ClothingHeadBandRed
+      - id: ClothingHeadBandGold
+      - id: ClothingHeadBandBrown
+      - id: ClothingHeadBandGreen
+      - id: ClothingHeadBandBlue
+# Scarfs
+      - id: ClothingNeckScarfStripedBlack
+      - id: ClothingNeckScarfStripedRed
+      - id: ClothingNeckScarfStripedOrange
+      - id: ClothingNeckScarfStripedBrown
+      - id: ClothingNeckScarfStripedGreen
+      - id: ClothingNeckScarfStripedBlue
+      - id: ClothingNeckScarfStripedPurple
+      - id: ClothingNeckScarfStripedLightBlue

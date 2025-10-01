@@ -1,3 +1,4 @@
+using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -11,5 +12,10 @@ namespace Content.Shared.Construction.Components
     {
         [DataField("prototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
         public string? Prototype { get; private set; }
+
+// ES START
+        [DataField]
+        public Dictionary<ProtoId<TagPrototype>, EntProtoId> AlternatePrototype = new();
+// ES END
     }
 }

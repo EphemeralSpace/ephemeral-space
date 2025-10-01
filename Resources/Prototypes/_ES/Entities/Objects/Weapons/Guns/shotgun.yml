@@ -1,0 +1,64 @@
+- type: entity
+  parent: [BaseWeaponShotgun, BaseSecurityContraband]
+  id: ESWeaponShotgun
+  name: riot shotgun
+  description: A powerful shotgun, useful for "apprehending" criminals. Uses shotgun shells as ammo.
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Guns/shotgun.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    storedOffset: -2,0
+    sprite: _ES/Objects/Weapons/Guns/shotgun_inhands_64x.rsi
+  - type: Clothing
+    sprite: _ES/Objects/Weapons/Guns/shotgun.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 7
+    proto: ESShellShotgunBuckshot
+  - type: Gun
+    fireRate: 2
+    availableModes:
+    - SemiAuto
+  - type: GunSpreadModifier
+    spread: 0.6
+
+- type: entity
+  parent: [ESWeaponShotgun, BaseSecurityBartenderZookeeperContraband]
+  id: ESWeaponDoubleBarrelShotgun
+  name: double-barrel shotgun
+  description: An immortal classic. Uses shotgun shells as ammo.
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Guns/db_shotgun.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    storedOffset: -2,0
+    sprite: _ES/Objects/Weapons/Guns/db_shotgun_inhands_64x.rsi
+  - type: Clothing
+    sprite: _ES/Objects/Weapons/Guns/shotgun.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 2
+    proto: ESShellShotgunBuckshot
+  - type: Gun
+    fireRate: 4
+
+- type: entity
+  parent: ESWeaponDoubleBarrelShotgun
+  id: ESWeaponDoubleBarrelShotgunNonlethal
+  components:
+  - type: BallisticAmmoProvider
+    proto: ESShellShotgunBeanbag
+  - type: Gun
+    fireRate: 4

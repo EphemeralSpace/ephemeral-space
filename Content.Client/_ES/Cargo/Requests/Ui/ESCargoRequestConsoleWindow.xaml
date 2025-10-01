@@ -1,0 +1,43 @@
+<controls:ESCargoRequestConsoleWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._ES.Cargo.Requests.Ui"
+    xmlns:style="clr-namespace:Content.Client.Stylesheets"
+    xmlns:xNamespace="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    Title="{Loc 'es-cargo-request-ui-title'}"
+    MinSize="420 500"
+    SetSize="480 500">
+    <BoxContainer Orientation="Vertical" Margin="10">
+        <BoxContainer Orientation="Horizontal" Name="IdMetaContainer">
+            <BoxContainer MinWidth="400" HorizontalExpand="True">
+                <BoxContainer Name="IdDisplayContainer" Orientation="Horizontal" HorizontalExpand="True" ToolTip="{Loc 'es-cargo-request-ui-container-tooltip-id'}" MouseFilter="Pass">
+                    <RichTextLabel Text="{Loc 'es-cargo-request-ui-label-dept-id'}" StyleClasses="LabelKeyText"/>
+                    <PanelContainer Margin="5 0" HorizontalExpand="True">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BackgroundColor="{xNamespace:Static style:StyleNano.PanelDark}" />
+                        </PanelContainer.PanelOverride>
+                    <RichTextLabel Name="DepartmentIdLabel" Margin="5 0"/>
+                    </PanelContainer>
+                    <Button Name="DepartmentIdButtonEdit" Text="{Loc 'es-cargo-request-ui-button-edit-dept-id'}" HorizontalAlignment="Right"/>
+                </BoxContainer>
+                <BoxContainer Name="IdEditContainer" Orientation="Horizontal" Visible="False" HorizontalExpand="True">
+                    <RichTextLabel Text="{Loc 'es-cargo-request-ui-label-dept-id'}" StyleClasses="LabelKeyText"/>
+                    <LineEdit Name="DepartmentIdEdit" HorizontalExpand="True" Margin="5 0"/>
+                </BoxContainer>
+            </BoxContainer>
+            <Control MinHeight="10"/>
+        </BoxContainer>
+        <PanelContainer Margin="5" HorizontalExpand="True" VerticalExpand="True">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat BackgroundColor="{xNamespace:Static style:StyleNano.PanelDark}" />
+            </PanelContainer.PanelOverride>
+            <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Orientation="Vertical">
+                    <BoxContainer Orientation="Vertical" Name="RequestsContainer"/>
+                    <RichTextLabel Name="NoRequestsLabel" Text="{Loc 'es-cargo-request-ui-label-no-requests'}" VerticalExpand="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </BoxContainer>
+            </ScrollContainer>
+        </PanelContainer>
+        <Button Name="CreateRequestButton" Text="{Loc 'es-cargo-request-ui-button-create-request'}" HorizontalExpand="False" HorizontalAlignment="Right" Margin="0 5 0 0"/>
+    </BoxContainer>
+</controls:ESCargoRequestConsoleWindow>

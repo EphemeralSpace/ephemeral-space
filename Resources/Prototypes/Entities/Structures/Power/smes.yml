@@ -64,10 +64,13 @@
       supplyRampTolerance: 5000
       supplyRampRate: 1000
     - type: PointLight
-      radius: 1.5
-      energy: 1.6
+      # ES START
+      radius: 1.8
+      energy: 3
+      falloff: 10
       color: "#c9c042"
-      castShadows: false
+      curveFactor: 1.0
+      # ES END
     - type: WiresPanel
     - type: WiresVisuals
     - type: Machine

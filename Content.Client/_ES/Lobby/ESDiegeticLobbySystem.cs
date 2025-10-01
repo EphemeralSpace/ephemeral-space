@@ -1,5 +1,5 @@
-using Content.Client._ES.Multistation.Ui;
 using Content.Client._ES.Spawning.Ui;
+using Content.Client._ES.Station.Ui;
 using Content.Client.GameTicking.Managers;
 using Content.Client.Lobby.UI;
 using Content.Shared._ES.Lobby;

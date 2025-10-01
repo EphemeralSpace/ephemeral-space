@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "Created by Flareguy for Ephemeral Space. 'random' state taken from tgstation at commit https://github.com/tgstation/tgstation/commit/6665eec76c98a4f3f89bebcd10b34b47dcc0b8ae",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "es"
+        },
+        {
+            "name": "random"
+        },
+        {
+            "name": "50-percent"
+        },
+        {
+            "name": "maint"
+        },
+        {
+            "name": "crate"
+        },
+        {
+            "name": "wardrobe"
+        }
+    ]
+}

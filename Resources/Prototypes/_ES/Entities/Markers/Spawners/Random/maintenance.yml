@@ -1,0 +1,40 @@
+- type: entity
+  id: ESRandomMaintStructureSpawner
+  parent: ESMarkerBase
+  name: Maintenance Structure Spawner
+  suffix: ES
+  components:
+    - type: Sprite
+      layers:
+        - state: crate
+        - state: random
+        - state: maint
+        - state: es
+    - type: EntityTableSpawner
+      table: !type:NestedSelector
+        tableId: ESMaintenanceStructures
+      offset: 0.0
+  placement:
+    mode: AlignTileAny
+
+# TODO: Add spawners for more things like canisters, fuel tanks, and emergency closets. I've personally refrained from doing this for now since there's no loot tables and I don't want to contribute to the organizational nightmare that is current spawners
+- type: entityTable
+  id: ESMaintenanceStructures
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: ClosetMaintenanceFilledRandom
+        weight: 35
+      - id: ESCrateMaintenanceFilledRandom
+        weight: 35
+      - !type:NestedSelector
+        tableId: LowValueCrateTable
+        weight: 15
+      - id: ClosetL3Filled
+        weight: 5
+      - id: Spaceshroom
+        weight: 5
+      - !type:NestedSelector
+        tableId: ESWardrobeTypes
+        weight: 5

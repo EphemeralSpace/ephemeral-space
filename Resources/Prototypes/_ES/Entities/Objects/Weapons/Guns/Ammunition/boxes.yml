@@ -1,0 +1,74 @@
+# Shotgun Ammunition Boxes
+# Doesn't have an itemmapper because doing that shit is miserable and I am not going to bother with that right now
+- type: entity
+  id: ESShotgunShellsBox
+  parent: BaseStorageItem
+  name: shotgun shell box
+  description: An ammunition box containing shotgun shells.
+  suffix: ES
+  abstract: true
+  components:
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
+  - type: Appearance
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
+  - type: Item
+    size: Normal
+
+- type: entity
+  id: ESShotgunShellsBoxBuckshot
+  suffix: ES, Buckshot
+  parent: ESShotgunShellsBox
+  components:
+  - type: StorageFill
+    contents:
+      - id: ESShellShotgunBuckshot
+        amount: 12
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-4
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: lethal
+
+- type: entity
+  id: ESShotgunShellsBoxSlug
+  name: shotgun slug box
+  description: An ammunition box containing shotgun slugs.
+  suffix: ES, Slug
+  parent: ESShotgunShellsBox
+  components:
+  - type: StorageFill
+    contents:
+      - id: ESShellShotgunSlug
+        amount: 12
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-slug-4
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: slug
+
+- type: entity
+  id: ESShotgunShellsBoxBeanbag
+  name: beanbag slug box
+  description: An ammunition box containing non-lethal shotgun slugs.
+  suffix: ES, Beanbag
+  parent: ESShotgunShellsBox
+  components:
+  - type: StorageFill
+    contents:
+      - id: ESShellShotgunBeanbag
+        amount: 12
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-beanbag-4
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: beanbag

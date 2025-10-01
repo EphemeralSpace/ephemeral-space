@@ -1,0 +1,29 @@
+- type: entity
+  parent: WardrobeBlack
+  id: ESWardrobeBartender
+  name: bartender's wardrobe
+
+- type: entity
+  parent: WardrobeWhite
+  id: ESWardrobeChef
+  name: chef's wardrobe
+
+- type: entity
+  parent: WardrobePink
+  id: ESWardrobeClown
+  name: clown's wardrobe
+
+- type: entity
+  parent: WardrobeSecurity
+  id: ESWardrobeDetective
+  name: detective's wardrobe
+
+- type: entity
+  parent: WardrobeMixed
+  id: ESWardrobeJanitor
+  name: janitor's wardrobe
+
+- type: entity
+  parent: WardrobeBlack
+  id: ESWardrobeReporter
+  name: reporter's wardrobe

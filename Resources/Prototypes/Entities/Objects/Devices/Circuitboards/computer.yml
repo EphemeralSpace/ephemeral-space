@@ -62,6 +62,10 @@
       state: cpu_medical
     - type: ComputerBoard
       prototype: ComputerMedicalRecords
+# ES START
+      alternatePrototype:
+        ESComputerTabletop: ESComputerMedicalRecordsTabletop
+# ES END
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -73,6 +77,10 @@
       state: cpu_security
     - type: ComputerBoard
       prototype: ComputerCriminalRecords
+# ES START
+      alternatePrototype:
+        ESComputerTabletop: ESComputerCriminalRecordsTabletop
+# ES END
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -84,6 +92,10 @@
       state: cpu_command
     - type: ComputerBoard
       prototype: ComputerStationRecords
+# ES START
+      alternatePrototype:
+        ESComputerTabletop: ESComputerStationRecordsTabletop
+# ES END
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -246,6 +258,10 @@
     state: cpu_security
   - type: ComputerBoard
     prototype: ComputerSurveillanceCameraMonitor
+# ES START
+    alternatePrototype:
+      ESComputerTabletop: ESComputerSurveillanceCameraMonitorTabletop
+# ES END
   - type: Tag
     tags:
     - SurveillanceCameraMonitorCircuitboard
@@ -260,7 +276,11 @@
     state: cpu_service
   - type: ComputerBoard
     prototype: ComputerSurveillanceWirelessCameraMonitor
-  
+# ES START
+    alternatePrototype:
+      ESComputerTabletop: ESComputerSurveillanceWirelessCameraMonitorTabletop
+# ES END
+
 - type: entity
   parent: BaseComputerCircuitboard
   id: XenoborgCameraMonitorCircuitboard
@@ -327,6 +347,10 @@
     state: cpu_medical
   - type: ComputerBoard
     prototype: ComputerCrewMonitoring
+# ES START
+    alternatePrototype:
+      ESComputerTabletop: ESComputerCrewMonitoringTabletop
+# ES END
 
 - type: entity
   parent: [BaseComputerCircuitboard, BaseCommandContraband]
@@ -338,6 +362,10 @@
       state: cpu_command
     - type: ComputerBoard
       prototype: ComputerId
+# ES START
+      alternatePrototype:
+        ESComputerTabletop: ESComputerIdTabletop
+# ES END
     - type: StaticPrice
       price: 750
     - type: Tag
@@ -554,9 +582,20 @@
   parent: BaseComputerCircuitboard
   id: StationAiUploadCircuitboard
   name: AI upload console board
-  description: A computer printed circuit board for a AI upload console.
+  description: A computer printed circuit board for an AI upload console.
   components:
     - type: Sprite
       state: cpu_science
     - type: ComputerBoard
       prototype: StationAiUploadComputer
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: StationAiFixerCircuitboard
+  name: AI restoration console
+  description: A computer printed circuit board for an AI restoration console console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: StationAiFixerComputer

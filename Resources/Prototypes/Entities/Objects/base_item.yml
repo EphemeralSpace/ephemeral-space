@@ -50,6 +50,9 @@
     fixedRotation: true
     # ES END
   - type: DamageExaminable
+  # ES START
+  - type: ESViewconeOccludable
+  # ES END
 
 - type: entity
   name: "storage item"

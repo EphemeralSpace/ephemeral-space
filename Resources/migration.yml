@@ -2,6 +2,13 @@
 # is intended to allow maps to load without having to manually edit them. An empty or "null" string results in the
 # entity getting deleted.
 
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!! EPHEMERAL SPACE WARNING !!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!! PUT STUFF AT THE TOP OF FILE !!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!! IN THE ES BLOCK INSTEAD OF !!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!!!!!! AT THE BOTTOM !!!!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 # e.g., you can swap all walls with windows and delete all tables by adding lines like:
 #
 # Window: WallSolid
@@ -9,7 +16,7 @@
 # Table: null
 
 # ES Start
-# 2025-18-8
+# 2025-08-18
 # Lockers that are redundant to begin with / we will probably never use
 ClosetJanitorBomb: ClosetBomb
 ClosetJanitorBombFilled: ClosetBomb
@@ -24,6 +31,49 @@ LockerEvacRepair: ClosetEmergency
 LockerEvacRepairFilled: ClosetEmergencyFilledRandom
 LockerWallEvacRepair: ClosetWallEmergency
 LockerWallEvacRepairFilled: ClosetWallEmergencyFilledRandom
+
+# 2025-9-13
+# Lights we dont want
+BoxWarmLightbulb: BoxLightbulb
+WarmLightBulb: LightBulb
+PoweredWarmSmallLight: PoweredSmallLight
+LedLightBulb: LightBulb
+PoweredLEDSmallLight: PoweredSmallLight
+LedLightTube: LightTube
+PoweredlightLED: Poweredlight
+
+# 2025-9-13
+# Windows
+UraniumWindow: PlasmaWindow
+UraniumWindowDiagonal: PlasmaWindowDiagonal
+UraniumWindowDirectional: PlasmaWindowDirectional
+ReinforcedUraniumWindow: ReinforcedPlasmaWindow
+UraniumReinforcedWindowDirectional: PlasmaReinforcedWindowDirectional
+ReinforcedUraniumWindowDiagonal: ReinforcedPlasmaWindowDiagonal
+XenoborgWindow: PlastitaniumWindow
+XenoResinWindow: ReinforcedWindow
+
+# 2025-9-26
+# Migrates over some existing weapon-related stuff to their proper ES counterparts. As of writing, these currently still exist in the code, but it's good to have this so that nobody can map them.
+# This is extremely far from being a cohesive list of all of the kinds of things that need to be migrated, and only targets things that have been *directly* replaced by ES items thus far. More will definitely need to be done in the future.
+BoxBeanbag: ESShotgunShellsBoxBeanbag
+BoxLethalshot: ESShotgunShellsBoxBuckshot
+BoxShotgunSlug: ESShotgunShellsBoxSlug
+WeaponPistolMk58: ESWeaponPistol9mm
+WeaponPistolViper: ESWeaponPistol9mm
+WeaponPistolCobra: ESWeaponPistol9mmSilenced
+WeaponRevolverInspector: ESWeaponRevolver357
+WeaponRevolverDeckard: ESWeaponRevolver357
+WeaponRevolverPython: ESWeaponRevolver357
+WeaponRevolverPythonAP: ESWeaponRevolver357
+WeaponShotgunKammerer: ESWeaponShotgun
+WeaponShotgunEnforcer: ESWeaponShotgun
+WeaponShotgunEnforcerRubber: ESWeaponDoubleBarrelShotgunNonlethal
+WeaponShotgunDoubleBarreled: ESWeaponDoubleBarrelShotgun
+WeaponShotgunDoubleBarreledRubber: ESWeaponDoubleBarrelShotgunNonlethal
+WeaponLaserCarbine: ESWeaponEnergyRifle
+WeaponDisabler: ESWeaponHybridTaser
+WeaponTaser: ESWeaponHybridTaser
 
 # ES END
 
@@ -720,9 +770,18 @@ BarSignWhiskeyEchoesAlignTile: BarSignWhiskeyEchoes
 # 2025-06-21
 ClothingNeckHeadphones: ClothingMultipleHeadphones
 
+# 2025-07-17
+RipleyChassis: null
+HonkerChassis: null
+HamtrChassis: null
+VimChassis: null
+
 # 2025-08-01
 FoodDonutJellySlugcat: FoodDonutJellyScurret
 
 # 2025-08-11
 ClothingUniformJumpsuitChiefEngineerNT: ClothingUniformJumpsuitChiefEngineer
 ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
+
+# 2025-08-29
+PrefilledSyringe: Syringe

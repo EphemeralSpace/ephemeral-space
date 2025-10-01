@@ -1,0 +1,8 @@
+- type: construction
+  id: ESTabletopComputer
+  graph: ESTabletopComputer
+  startNode: start
+  targetNode: computer
+  category: construction-category-machines
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false

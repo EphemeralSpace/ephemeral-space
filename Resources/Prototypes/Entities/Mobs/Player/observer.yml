@@ -63,11 +63,11 @@
   - type: Tag
     tags:
     - BypassInteractionRangeChecks
-  - type: PointLight
-    netsync: false
-    radius: 6
-    castShadows: false
+  # ES START
+  - type: ESInherentLight
+    lightPrototype: ESMobObserverInherentLight
     enabled: false
+  # ES END
 
 # proto for player ghosts specifically
 - type: entity

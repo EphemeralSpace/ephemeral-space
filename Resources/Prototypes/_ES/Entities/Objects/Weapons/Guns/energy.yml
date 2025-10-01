@@ -1,0 +1,79 @@
+- type: entity
+  id: ESWeaponEnergyRifle
+  name: energy rifle
+  suffix: ES
+  description: A energy-based longarm that can fire pulse bolts that go through windows. Colloquially referred to as a "laser gun."
+  parent: BaseWeaponBattery
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Guns/laser_gun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: Clothing
+    sprite: _ES/Objects/Weapons/Guns/laser_gun.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    projectileSpeed: 20
+  - type: ProjectileBatteryAmmoProvider
+    proto: ESEnergyBolt
+    fireCost: 100
+  - type: StaticPrice
+    price: 420
+
+# TODO: Try giving this a small pointlight to see if it looks good, make its disabler bolts go through windows, and make this actually use the disable mode sprites.
+- type: entity
+  parent: [BaseWeaponBatterySmall, BaseSecurityContraband]
+  id: ESWeaponHybridTaser
+  name: hybrid taser
+  suffix: ES
+  description: An energy-based stun gun used by security teams to subdue targets nonlethally.
+  components:
+  - type: Tag
+    tags:
+    - Taser
+    - Sidearm
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Guns/hybrid_taser.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    heldPrefix: taser4
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletTaser
+    fireCost: 200
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletTaser
+      fireCost: 200
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/taser.ogg
+    - proto: BulletDisabler
+      fireCost: 62.5
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance

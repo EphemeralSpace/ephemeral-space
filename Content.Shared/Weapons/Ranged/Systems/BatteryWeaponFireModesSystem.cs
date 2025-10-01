@@ -17,6 +17,9 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+// ES START
+    [Dependency] private readonly SharedGunSystem _gun = default!;
+// ES END
 
     public override void Initialize()
     {
@@ -25,7 +28,33 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, UseInHandEvent>(OnUseInHandEvent);
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, GetVerbsEvent<Verb>>(OnGetVerb);
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, ExaminedEvent>(OnExamined);
+// ES START
+        SubscribeLocalEvent<BatteryWeaponFireModesComponent, GunRefreshModifiersEvent>(ESOnRefreshModifiers);
     }
+
+    private void ESOnRefreshModifiers(Entity<BatteryWeaponFireModesComponent> ent, ref GunRefreshModifiersEvent args)
+    {
+        var mode = GetMode(ent);
+        if (mode.SoundGunshot != null)
+            args.SoundGunshot = mode.SoundGunshot;
+        if (mode.CameraRecoilScalar != null)
+            args.CameraRecoilScalar = mode.CameraRecoilScalar.Value;
+        if (mode.AngleIncrease != null)
+            args.AngleIncrease = mode.AngleIncrease.Value;
+        if (mode.AngleDecay != null)
+            args.AngleDecay = mode.AngleDecay.Value;
+        if (mode.MaxAngle != null)
+            args.MaxAngle = mode.MaxAngle.Value;
+        if (mode.MinAngle != null)
+            args.MinAngle = mode.MinAngle.Value;
+        if (mode.ShotsPerBurst != null)
+            args.ShotsPerBurst = mode.ShotsPerBurst.Value;
+        if (mode.FireRate != null)
+            args.FireRate = mode.FireRate.Value;
+        if (mode.ProjectileSpeed != null)
+            args.ProjectileSpeed = mode.ProjectileSpeed.Value;
+    }
+// ES END
 
     private void OnExamined(EntityUid uid, BatteryWeaponFireModesComponent component, ExaminedEvent args)
     {
@@ -142,5 +171,8 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
             var updateClientAmmoEvent = new UpdateClientAmmoEvent();
             RaiseLocalEvent(uid, ref updateClientAmmoEvent);
         }
+// ES START
+        _gun.RefreshModifiers(uid);
+// ES END
     }
 }

@@ -5,6 +5,10 @@
   name: firelock
   description: Apply crowbar.
   components:
+    - type: Anchorable
+      flags:
+      - Anchorable
+    - type: Rotatable
     - type: AtmosAlarmable
       syncWith:
         - FireAlarm
@@ -133,14 +137,18 @@
       price: 150
     - type: AccessReader
       access: [ [ "Engineering" ] ]
+      examinationText: access-reader-examination-functionality-restricted
     - type: PryUnpowered
       pryModifier: 0.5
+    # ES START
     - type: PointLight
-      energy: 0.5
+      energy: 1
+      falloff: 20
       radius: 1.75
       color: Red
       enabled: false
       castShadows: false
+    # ES END
     - type: NavMapDoor
     - type: GuideHelp
       guides:

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Created by UbaserB (GitHub) for SS14",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/6f959e719255fcfaacb64807d9de8ba325a044d7 with caution sign taken from tgstation at commit https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a and modified for Ephemeral Space by Flareguy",
   "size": {
     "x": 32,
     "y": 32
@@ -20,16 +20,12 @@
       "name": "building",
       "delays": [
         [
-          0.10,
-          0.10,
-          0.10,
-          0.10,
-          0.10,
-          0.10,
-          0.10,
-          0.10,
-          0.10,
-          0.10
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.2
         ]
       ]
     },
@@ -37,16 +33,12 @@
       "name": "unlit-building",
       "delays": [
         [
-          0.10,
-          0.10,
-          0.10,
-          0.10,
-          0.10,
-          0.10,
-          0.10,
-          0.10,
-          0.10,
-          0.10
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.2
         ]
       ]
     },
@@ -54,14 +46,11 @@
       "name": "inserting",
       "delays": [
         [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
         ]
       ]
     }

@@ -1,0 +1,123 @@
+- type: entity
+  parent: ESWardrobeBartender
+  id: ESWardrobeBartenderFilled
+  name: bartender's wardrobe
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillWardrobeBartender
+
+- type: entityTable
+  id: ESFillWardrobeBartender
+  table: !type:AllSelector
+    children:
+    - id: ClothingBackpack
+    - id: ClothingShoesColorBlack
+    - id: ClothingUniformJumpskirtBartender
+    - id: ClothingUniformJumpsuitBartender
+
+- type: entity
+  parent: ESWardrobeChef
+  id: ESWardrobeChefFilled
+  name: chef's wardrobe
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillWardrobeChef
+
+- type: entityTable
+  id: ESFillWardrobeChef
+  table: !type:AllSelector
+    children:
+    - id: ClothingBackpack
+    - id: ClothingOuterApronChef
+    - id: ClothingShoesChef
+    - id: ClothingUniformJumpskirtChef
+    - id: ClothingUniformJumpsuitChef
+
+- type: entity
+  parent: ESWardrobeClown
+  id: ESWardrobeClownFilled
+  name: clown's wardrobe
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillWardrobeClown
+
+- type: entityTable
+  id: ESFillWardrobeClown
+  table: !type:AllSelector
+    children:
+    - id: ClothingBackpackClown
+    - id: ClothingMaskClown
+    - id: ClothingShoesClown
+    - id: ClothingUniformJumpskirtClown
+    - id: ClothingUniformJumpsuitClown
+
+- type: entity
+  parent: ESWardrobeDetective
+  id: ESWardrobeDetectiveFilled
+  name: detective's wardrobe
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillWardrobeDetective
+
+- type: entityTable
+  id: ESFillWardrobeDetective
+  table: !type:AllSelector
+    children:
+    - id: ClothingHeadHatFedoraBrown
+    - id: ClothingBackpackSecurity
+    - id: ClothingShoesBootsJackFilled
+    - id: ClothingUniformJumpskirtDetective
+    - id: ClothingUniformJumpsuitDetective
+
+- type: entity
+  parent: ESWardrobeJanitor
+  id: ESWardrobeJanitorFilled
+  name: janitor's wardrobe
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillWardrobeJanitor
+
+- type: entityTable
+  id: ESFillWardrobeJanitor
+  table: !type:AllSelector
+    children:
+    - id: ClothingBackpack
+    - id: ClothingHandsGlovesJanitor
+    - id: ClothingHeadHatPurplesoft
+    - id: ClothingShoesColorBlack
+    - id: ClothingUniformJumpskirtJanitor
+    - id: ClothingUniformJumpsuitJanitor
+
+- type: entity
+  parent: ESWardrobeReporter
+  id: ESWardrobeReporterFilled
+  name: reporter's wardrobe
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillWardrobeReporter
+
+- type: entityTable
+  id: ESFillWardrobeReporter
+  table: !type:AllSelector
+    children:
+    - id: ClothingBackpack
+    - id: ClothingShoesColorWhite
+    - id: ClothingUniformJumpsuitReporter

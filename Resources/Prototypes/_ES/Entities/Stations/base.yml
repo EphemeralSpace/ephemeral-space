@@ -12,6 +12,13 @@
   - type: StationEmergencyShuttle
 
 - type: entity
+  id: ESBaseStationStoreroom
+  abstract: true
+  components:
+  - type: ESStoreroomStation
+  - type: ESCargoRequestStation
+
+- type: entity
   id: ESBaseStationNeutral
   parent:
   - BaseStation
@@ -32,6 +39,7 @@
   - BaseStationDeliveries
   - ESBaseStationArrivals
   - ESBaseStationEvacuation
+  - ESBaseStationStoreroom
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform

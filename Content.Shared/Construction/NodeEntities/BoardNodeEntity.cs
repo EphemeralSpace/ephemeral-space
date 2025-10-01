@@ -1,6 +1,8 @@
 using Content.Shared.Construction.Components;
+using Content.Shared.Tag;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Construction.NodeEntities;
 
@@ -12,7 +14,13 @@ namespace Content.Shared.Construction.NodeEntities;
 [DataDefinition]
 public sealed partial class BoardNodeEntity : IGraphNodeEntity
 {
-    [DataField("container")] public string Container { get; private set; } = string.Empty;
+    [DataField]
+    public string Container { get; private set; } = string.Empty;
+
+// ES START
+    [DataField]
+    public ProtoId<TagPrototype>? AlternateComputerTag;
+// ES END
 
     public string? GetId(EntityUid? uid, EntityUid? userUid, GraphNodeEntityArgs args)
     {
@@ -27,12 +35,21 @@ public sealed partial class BoardNodeEntity : IGraphNodeEntity
 
         var board = container.ContainedEntities[0];
 
-        // There should not be a case where both of these components exist on the same entity...
+        // There should not be a case where more than one of these components exist on the same entity
         if (args.EntityManager.TryGetComponent(board, out MachineBoardComponent? machine))
             return machine.Prototype;
 
+// ES START
         if (args.EntityManager.TryGetComponent(board, out ComputerBoardComponent? computer))
+        {
+            if (AlternateComputerTag is { } tag && computer.AlternatePrototype.TryGetValue(tag, out var proto))
+                return proto;
             return computer.Prototype;
+        }
+// ES END
+
+        if (args.EntityManager.TryGetComponent(board, out ElectronicsBoardComponent? electronics))
+            return electronics.Prototype;
 
         return null;
     }

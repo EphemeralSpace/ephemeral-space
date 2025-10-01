@@ -127,7 +127,7 @@
   - type: ApcPowerReceiver
     powerDisabled: true #starts off
   - type: Sprite
-    sprite: Structures/Piping/Atmospherics/Portable/portable_sheater.rsi
+    sprite: _ES/Structures/Piping/Atmospherics/Portable/portable_sheater.rsi # ES modified
     noRot: true
     layers:
     - state: sheaterOff

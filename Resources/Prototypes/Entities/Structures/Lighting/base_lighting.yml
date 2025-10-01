@@ -83,6 +83,8 @@
       - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
+  - type: PlacementReplacement
+    key: lights
   placement:
     mode: SnapgridCenter
     snap:
@@ -142,6 +144,10 @@
   - type: Sprite
     state: base
   - type: PointLight
+  # ES START
+    falloff: 40
+    curveFactor: 0.75
+  # ES END
     enabled: true
   - type: PoweredLight
     hasLampOnSpawn: LightTube
@@ -269,7 +275,10 @@
     - type: PointLight
       energy: 1.0
       radius: 6
-      softness: 1.1
+      # ES START
+      falloff: 45
+      curveFactor: 1.0
+      # ES END
       enabled: true
     - type: Physics
       bodyType: Static
@@ -389,9 +398,14 @@
     radius: 5
     energy: 0.5
     softness: 3
+    # ES START
+    falloff: 80
+    # ES END
     color: "#ba473f"
   - type: PoweredLight
     hasLampOnSpawn: DimLightBulb
+  - type: PoweredLightVisuals
+    glowAlpha: 0.3
   - type: DamageOnInteract
     damage:
       types:

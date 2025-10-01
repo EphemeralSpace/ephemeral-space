@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseGameRule
+  id: ESTroupeRuleCrew
+  components:
+  - type: ESTroupeRule
+    troupe: ESCrew
+    priority: 10 # Highest priority: serves as fallback troupe.
+    minTargetMembers: 1
+    playersPerTargetMember: 1
+
+- type: entity
+  parent: BaseGameRule
+  id: ESTroupeRuleTraitor
+  components:
+  - type: ESTroupeRule
+    troupe: ESTraitor
+    minTargetMembers: 1
+    maxTargetMembers: 5
+    playersPerTargetMember: 6 # 1/6 Players
