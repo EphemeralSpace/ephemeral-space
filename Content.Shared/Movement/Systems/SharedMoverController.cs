@@ -220,8 +220,8 @@ public abstract partial class SharedMoverController : VirtualController
 
         var moveSpeedComponent = ModifierQuery.CompOrNull(uid);
 
-        // jank to get around movebuttons
         // ES START
+        // jank to get around movebuttons, passed to functions below
         bool forceWalk = false;
         // ES END
         float friction;
@@ -280,14 +280,19 @@ public abstract partial class SharedMoverController : VirtualController
             var sprintSpeed = moveSpeedComponent?.CurrentSprintSpeed ?? MovementSpeedModifierComponent.DefaultBaseSprintSpeed;
 
             // ES START
-            var backwardsAngle = moveSpeedComponent?.BackwardsAngle ?? MovementSpeedModifierComponent.ESDefaultBackwardsAngle;
-            var rotNorm = worldRot.ToWorldVec().Normalized();
-            var velNorm = velocity.Normalized();
-            var cosAngle = Vector2.Dot(velNorm, rotNorm);
-            var threshold = new Angle(MathF.PI) - (backwardsAngle / 2);
+            // if facing backwards, start walking
+            // only applies in the non-weightless path
+            {
+                var backwardsAngle = moveSpeedComponent?.BackwardsAngle ??
+                                     MovementSpeedModifierComponent.ESDefaultBackwardsAngle;
+                var rotNorm = worldRot.ToWorldVec().Normalized();
+                var velNorm = velocity.Normalized();
+                var cosAngle = Vector2.Dot(velNorm, rotNorm);
+                var threshold = new Angle(MathF.PI) - (backwardsAngle / 2);
 
-            forceWalk = cosAngle < Math.Cos(threshold.Theta);
-            wishDir = AssertValidWish(mover, walkSpeed, sprintSpeed, forceWalk);
+                forceWalk = cosAngle < Math.Cos(threshold.Theta);
+                wishDir = AssertValidWish(mover, walkSpeed, sprintSpeed, forceWalk);
+            }
             // ES END
 
             if (wishDir != Vector2.Zero)
@@ -633,7 +638,7 @@ public abstract partial class SharedMoverController : VirtualController
     }
 
     // ES START
-    // forceWalk
+    // forceWalk in args to pass to GetVelocityInput
     private Vector2 AssertValidWish(InputMoverComponent mover, float walkSpeed, float sprintSpeed, bool forceWalk=false)
     {
         var (walkDir, sprintDir) = GetVelocityInput(mover, forceWalk);

@@ -374,7 +374,9 @@ namespace Content.Shared.Movement.Systems
         }
 
         // ES START
-        // forceWalk
+        // forceWalk arg to override mover.Sprinting
+        // + check it for out of simulation
+        // jank but walking/sprinting being handled this low down is already jank
         public (Vector2 Walking, Vector2 Sprinting) GetVelocityInput(InputMoverComponent mover, bool forceWalk=false)
         {
             if (!Timing.InSimulation)
@@ -384,6 +386,7 @@ namespace Content.Shared.Movement.Systems
                 // Physics system will have the correct time step anyways.
                 var immediateDir = DirVecForButtons(mover.HeldMoveButtons);
                 return mover.Sprinting && !forceWalk ? (Vector2.Zero, immediateDir) : (immediateDir, Vector2.Zero);
+                // ES END
             }
 
             Vector2 walk;
@@ -405,7 +408,10 @@ namespace Content.Shared.Movement.Systems
 
             var curDir = DirVecForButtons(mover.HeldMoveButtons) * remainingFraction;
 
+            // ES START
+            // check forcewalk in addition to sprinting
             if (mover.Sprinting && !forceWalk)
+            // ES END
             {
                 sprint += curDir;
             }
@@ -417,7 +423,6 @@ namespace Content.Shared.Movement.Systems
             // Logger.Info($"{curDir}{walk}{sprint}");
             return (walk, sprint);
         }
-        // ES END
 
         /// <summary>
         ///     Toggles one of the four cardinal directions. Each of the four directions are
