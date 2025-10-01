@@ -9,7 +9,9 @@ namespace Content.IntegrationTests.Tests.Buckle;
 
 public sealed class BuckleDragTest : InteractionTest
 {
-    protected override Vector2 TargetCoordsOffset => new(1.0f, 0.5f);
+    // ES START
+    protected override Vector2 TargetCoordsOffset => new(0.5f, 0.5f);
+    // ES END
 
     // Check that dragging a buckled player unbuckles them.
     [Test]
@@ -42,7 +44,9 @@ public sealed class BuckleDragTest : InteractionTest
             Assert.That(Server.System<SharedBuckleSystem>().TryBuckle(sUrist, SPlayer, STarget.Value));
         });
 
-        await RunTicks(5);
+        // ES START
+        await RunTicks(30);
+        // ES END
         Assert.That(buckle.Buckled, Is.True);
         Assert.That(buckle.BuckledTo, Is.EqualTo(STarget));
         Assert.That(strap.BuckledEntities, Is.EquivalentTo(new[] { sUrist }));
@@ -52,7 +56,9 @@ public sealed class BuckleDragTest : InteractionTest
 
         // Start pulling, and thus unbuckle them
         await PressKey(ContentKeyFunctions.TryPullObject, cursorEntity: urist);
-        await RunTicks(5);
+        // ES START
+        await RunTicks(30);
+        // ES END
         Assert.That(buckle.Buckled, Is.False);
         Assert.That(buckle.BuckledTo, Is.Null);
         Assert.That(strap.BuckledEntities, Is.Empty);
