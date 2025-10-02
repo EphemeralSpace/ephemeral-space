@@ -109,4 +109,8 @@
     - flare
   - type: NameModifier
     baseName: emergency flare
+  - type: ContainerContainer
+    containers:
+      flare: !type:Container
+      solution@flare: !type:ContainerSlot
 # ES END
