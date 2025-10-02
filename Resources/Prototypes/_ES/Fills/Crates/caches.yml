@@ -1,14 +1,10 @@
-- type: entity # TODO: move outside of fills
+- type: entity
   parent: CrateGenericSteel
   id: ESCrateCache
-  name: equipment cache
-  description: A secret cache hidden in the ceiling. Good thing nobody looks up there.
+  # name: equipment cache
+  # description: A secret cache hidden in the ceiling. Good thing nobody looks up there.
+  suffix: ES
   abstract: true
-  components:
-  - type: Sprite
-    sprite: Structures/Storage/Crates/syndicate.rsi
-  - type: Icon
-    sprite: Structures/Storage/Crates/syndicate.rsi
 
 - type: entity
   parent: ESCrateCache

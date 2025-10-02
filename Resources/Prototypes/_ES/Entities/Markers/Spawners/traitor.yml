@@ -17,5 +17,5 @@
           bounds: "-1.45,-1.45,1.45,1.45"
         density: 60
         hard: false
-        mask:
+        layer:
         - Impassable

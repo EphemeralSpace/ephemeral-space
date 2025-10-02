@@ -5,6 +5,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._ES.Masks.Traitor.Components;
 
 [RegisterComponent]
+[Access(typeof(ESMaskCacheSystem))]
 public sealed partial class ESMaskCacheSpawnerComponent : Component
 {
     [DataField]

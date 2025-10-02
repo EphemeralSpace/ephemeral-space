@@ -1,0 +1,8 @@
+- type: alert
+  id: ESCeilingCache
+  clickEvent: !type:ESRevealCacheAlertEvent
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/cache.rsi
+    state: icon
+  name: es-alert-ceiling-cache-name
+  description: es-alert-ceiling-cache-desc
