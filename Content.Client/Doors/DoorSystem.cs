@@ -187,6 +187,9 @@ public sealed class DoorSystem : SharedDoorSystem
             case DoorState.Denying:
                 // ES START
                 // AnimationKey -> DenyKey
+                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.DenyKey))
+                    return;
+
                 _animationSystem.Play(entity, (Animation)entity.Comp.DenyingAnimation, DoorComponent.DenyKey);
                 // ES END
 
@@ -194,6 +197,9 @@ public sealed class DoorSystem : SharedDoorSystem
             case DoorState.Emagging:
                 // ES START
                 // AnimationKey -> DenyKey
+                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.EmagKey))
+                    return;
+
                 _animationSystem.Play(entity, (Animation)entity.Comp.EmaggingAnimation, DoorComponent.EmagKey);
                 // ES END
 
