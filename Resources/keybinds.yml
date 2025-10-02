@@ -48,7 +48,9 @@ binds:
   key: S
 - function: Walk
   type: State
-  key: Shift
+# ES START
+  key: Space
+# ES END
 # Shuttle
 - function: ShuttleStrafeUp
   type: State

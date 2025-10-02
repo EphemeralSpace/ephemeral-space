@@ -1,0 +1,9 @@
+- type: entity
+  id: ESCrateMaintenanceFilledRandom
+  suffix: Filled, Random
+  parent: CrateGenericSteel
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: MaintenanceLockerLoot

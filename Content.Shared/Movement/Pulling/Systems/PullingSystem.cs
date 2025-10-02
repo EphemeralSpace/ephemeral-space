@@ -560,7 +560,11 @@ public sealed class PullingSystem : EntitySystem
             // This maximum has to be there because if the object is constrained too closely, the clamping goes backwards and asserts.
             // Internally, the joint length has been set to the distance between the pivots.
             // Add an additional 15cm (pretty arbitrary) to the maximum length for the hard limit.
-            joint.MaxLength = joint.Length + 0.15f;
+            // ES START
+            // we want a shorter (and more consistent) maxlength
+            // default to the pull length (which is the max you can pull from anyway)
+            joint.MaxLength = SharedInteractionSystem.ESPullRange;
+            // ES END
             joint.MinLength = 0f;
             // Set the spring stiffness to zero. The joint won't have any effect provided
             // the current length is beteen MinLength and MaxLength. At those limits, the

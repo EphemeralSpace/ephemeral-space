@@ -24,10 +24,14 @@ public sealed partial class PullerComponent : Component
     [DataField]
     public TimeSpan ThrowCooldown = TimeSpan.FromSeconds(1);
 
+    // ES START
+    // Default to 1 always,
+    // any slowdown will come from the object being heavy anyway
     // Before changing how this is updated, please see SharedPullerSystem.RefreshMovementSpeed
-    public float WalkSpeedModifier => Pulling == default ? 1.0f : 0.95f;
+    public float WalkSpeedModifier => 1.0f;
 
-    public float SprintSpeedModifier => Pulling == default ? 1.0f : 0.95f;
+    public float SprintSpeedModifier => 1.0f;
+    // ES END
 
     /// <summary>
     /// Entity currently being pulled if applicable.

@@ -1,0 +1,10 @@
+- type: entity
+  id: ESMarkerBase
+  parent: MarkerBase
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: Overdoors
+    sprite: _ES/Markers/spawners.rsi

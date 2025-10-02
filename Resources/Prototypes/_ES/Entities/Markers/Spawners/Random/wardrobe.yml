@@ -1,0 +1,44 @@
+- type: entity
+  id: ESRandomWardrobeSpawner
+  parent: ESMarkerBase
+  name: Random Wardrobe Spawner
+  suffix: ES
+  components:
+    - type: Sprite
+      layers:
+        - state: wardrobe
+        - state: random
+        - state: es
+    - type: EntityTableSpawner
+      table: !type:NestedSelector
+        tableId: ESWardrobeTypes
+      offset: 0.0
+  placement:
+    mode: AlignTileAny
+
+- type: entityTable
+  id: ESWardrobeTypes
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 95
+      children:
+      - id: WardrobeGreyFilled
+      - id: WardrobeMixedFilled
+      - id: WardrobeYellowFilled
+      - id: WardrobeWhiteFilled
+      - id: WardrobeBlueFilled
+      - id: WardrobePinkFilled
+      - id: WardrobeBlackFilled
+      - id: WardrobeGreenFilled
+    - !type:GroupSelector
+      weight: 5 # Rare chance to spawn empty
+      children:
+      - id: WardrobeGrey
+      - id: WardrobeMixed
+      - id: WardrobeYellow
+      - id: WardrobeWhite
+      - id: WardrobeBlue
+      - id: WardrobePink
+      - id: WardrobeBlack
+      - id: WardrobeGreen

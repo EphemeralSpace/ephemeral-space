@@ -220,10 +220,15 @@ public abstract partial class SharedMoverController : VirtualController
 
         var moveSpeedComponent = ModifierQuery.CompOrNull(uid);
 
+        // ES START
+        // jank to get around movebuttons, passed to functions below
+        bool forceWalk = false;
+        // ES END
         float friction;
         float accel;
         Vector2 wishDir;
         var velocity = physicsComponent.LinearVelocity;
+        var worldRot = _transform.GetWorldRotation(xform);
 
         // Get current tile def for things like speed/friction mods
         ContentTileDefinition? tileDef = null;
@@ -274,7 +279,21 @@ public abstract partial class SharedMoverController : VirtualController
             var walkSpeed = moveSpeedComponent?.CurrentWalkSpeed ?? MovementSpeedModifierComponent.DefaultBaseWalkSpeed;
             var sprintSpeed = moveSpeedComponent?.CurrentSprintSpeed ?? MovementSpeedModifierComponent.DefaultBaseSprintSpeed;
 
-            wishDir = AssertValidWish(mover, walkSpeed, sprintSpeed);
+            // ES START
+            // if facing backwards, start walking
+            // only applies in the non-weightless path
+            {
+                var backwardsAngle = moveSpeedComponent?.BackwardsAngle ??
+                                     MovementSpeedModifierComponent.ESDefaultBackwardsAngle;
+                var rotNorm = worldRot.ToWorldVec().Normalized();
+                var velNorm = velocity.Normalized();
+                var cosAngle = Vector2.Dot(velNorm, rotNorm);
+                var threshold = new Angle(MathF.PI) - (backwardsAngle / 2);
+
+                forceWalk = cosAngle < Math.Cos(threshold.Theta);
+                wishDir = AssertValidWish(mover, walkSpeed, sprintSpeed, forceWalk);
+            }
+            // ES END
 
             if (wishDir != Vector2.Zero)
             {
@@ -331,14 +350,16 @@ public abstract partial class SharedMoverController : VirtualController
             {
                 // TODO apparently this results in a duplicate move event because "This should have its event run during
                 // island solver"??. So maybe SetRotation needs an argument to avoid raising an event?
-                var worldRot = _transform.GetWorldRotation(xform);
-
                 _transform.SetLocalRotation(uid, xform.LocalRotation + wishDir.ToWorldAngle() - worldRot, xform);
             }
 
+            // ES START
+            // no footsteps on walk
             if (!weightless && MobMoverQuery.TryGetComponent(uid, out var mobMover) &&
+                mover.Sprinting && !forceWalk &&
                 TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, tileDef: tileDef))
             {
+                // ES END
                 var soundModifier = mover.Sprinting ? 3.5f : 1.5f;
 
                 var audioParams = sound.Params
@@ -616,10 +637,12 @@ public abstract partial class SharedMoverController : VirtualController
         return sound != null;
     }
 
-    private Vector2 AssertValidWish(InputMoverComponent mover, float walkSpeed, float sprintSpeed)
+    // ES START
+    // forceWalk in args to pass to GetVelocityInput
+    private Vector2 AssertValidWish(InputMoverComponent mover, float walkSpeed, float sprintSpeed, bool forceWalk=false)
     {
-        var (walkDir, sprintDir) = GetVelocityInput(mover);
-
+        var (walkDir, sprintDir) = GetVelocityInput(mover, forceWalk);
+        // ES END
         var total = walkDir * walkSpeed + sprintDir * sprintSpeed;
 
         var parentRotation = GetParentGridAngle(mover);
