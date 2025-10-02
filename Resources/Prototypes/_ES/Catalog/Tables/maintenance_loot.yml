@@ -12,6 +12,25 @@
       weight: 1
 
 - type: entityTable
+  id: ESMaintLootExposed # for placing on racks or tables
+  table:
+    group:
+    - tableId: ESMaintLootCommon
+      weight: 50
+    - tableId: ESMaintLootUncommon
+      weight: 45
+    - weight: 3
+      group:
+      - id: ToolboxEmergencyFilled
+        weight: 1.5
+      - id: ToolboxElectricalFilled
+      - id: ToolboxMechanicalFilled
+      - id: ToolboxArtisticFilled
+        weight: 0.1
+    - tableId: ESMaintLootRare
+      weight: 2
+
+- type: entityTable
   id: ESMaintLootValuable
   table:
     group:

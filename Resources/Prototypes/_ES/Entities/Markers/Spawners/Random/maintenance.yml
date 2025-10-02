@@ -33,6 +33,77 @@
         weight: 5
 
 - type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMaintLootExposed25
+  name: Exposed Maint Loot Spawner
+  suffix: ES, 25
+  components:
+  - type: Sprite
+    layers:
+    - state: box
+    - state: random
+    - state: maint
+    - state: es
+    - state: c25
+  - type: EntityTableSpawner
+    table:
+      tableId: ESMaintLootExposed
+      prob: 0.25
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMaintLootExposed50
+  name: Exposed Maint Loot Spawner
+  suffix: ES, 50
+  components:
+  - type: Sprite
+    layers:
+    - state: box
+    - state: random
+    - state: maint
+    - state: es
+    - state: c50
+  - type: EntityTableSpawner
+    table:
+      tableId: ESMaintLootExposed
+      prob: 0.50
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMaintLootExposed75
+  name: Exposed Maint Loot Spawner
+  suffix: ES, 75
+  components:
+  - type: Sprite
+    layers:
+    - state: box
+    - state: random
+    - state: maint
+    - state: es
+    - state: c75
+  - type: EntityTableSpawner
+    table:
+      tableId: ESMaintLootExposed
+      prob: 0.75
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMaintLootExposed100
+  name: Exposed Maint Loot Spawner
+  suffix: ES, 100
+  components:
+  - type: Sprite
+    layers:
+    - state: box
+    - state: random
+    - state: maint
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    table:
+      tableId: ESMaintLootExposed
+
+- type: entity
   id: ESSpawnerRandomMaintTank
   parent: ESSpawnerBase
   name: Tank Spawner
