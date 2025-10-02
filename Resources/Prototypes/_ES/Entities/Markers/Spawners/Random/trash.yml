@@ -1,0 +1,220 @@
+# Combo food/junk spawners
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomTrashCombo25
+  name: Trash Spawner
+  suffix: ES, 25
+  components:
+  - type: Sprite
+    layers:
+    - state: trash
+    - state: random
+    - state: combo
+    - state: es
+    - state: c25
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: ESTrashCombo
+      prob: 0.25
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomTrashCombo50
+  name: Trash Spawner
+  suffix: ES, 50
+  components:
+  - type: Sprite
+    layers:
+    - state: trash
+    - state: random
+    - state: combo
+    - state: es
+    - state: c50
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: ESTrashCombo
+      prob: 0.5
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomTrashCombo75
+  name: Trash Spawner
+  suffix: ES, 75
+  components:
+  - type: Sprite
+    layers:
+    - state: trash
+    - state: random
+    - state: combo
+    - state: es
+    - state: c75
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: ESTrashCombo
+      prob: 0.75
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomTrashCombo100
+  name: Trash Spawner
+  suffix: ES, 100
+  components:
+  - type: Sprite
+    layers:
+    - state: trash
+    - state: random
+    - state: combo
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: ESTrashCombo
+
+# Junk trash spawners
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomTrashJunk25
+  name: Trash Junk Spawner
+  suffix: ES, 25
+  components:
+  - type: Sprite
+    layers:
+    - state: trash
+    - state: random
+    - state: es
+    - state: c25
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: ESTrashJunk
+      prob: 0.25
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomTrashJunk50
+  name: Trash Junk Spawner
+  suffix: ES, 50
+  components:
+  - type: Sprite
+    layers:
+    - state: trash
+    - state: random
+    - state: es
+    - state: c50
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: ESTrashJunk
+      prob: 0.5
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomTrashJunk75
+  name: Trash Junk Spawner
+  suffix: ES, 75
+  components:
+  - type: Sprite
+    layers:
+    - state: trash
+    - state: random
+    - state: es
+    - state: c75
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: ESTrashJunk
+      prob: 0.75
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomTrashJunk100
+  name: Trash Junk Spawner
+  suffix: ES, 100
+  components:
+  - type: Sprite
+    layers:
+    - state: trash
+    - state: random
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: ESTrashJunk
+
+# Food trash spawners
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomTrashFood25
+  name: Food Trash Spawner
+  suffix: ES, 25
+  components:
+  - type: Sprite
+    layers:
+    - state: trash-food
+    - state: random
+    - state: es
+    - state: c25
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: ESTrashFood
+      prob: 0.25
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomTrashFood50
+  name: Food Trash Spawner
+  suffix: ES, 50
+  components:
+  - type: Sprite
+    layers:
+    - state: trash-food
+    - state: random
+    - state: es
+    - state: c50
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: ESTrashFood
+      prob: 0.50
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomTrashFood75
+  name: Food Trash Spawner
+  suffix: ES, 75
+  components:
+  - type: Sprite
+    layers:
+    - state: trash-food
+    - state: random
+    - state: es
+    - state: c75
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: ESTrashFood
+      prob: 0.75
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomTrashFood100
+  name: Food Trash Spawner
+  suffix: ES, 100
+  components:
+  - type: Sprite
+    layers:
+    - state: trash-food
+    - state: random
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: ESTrashFood
+

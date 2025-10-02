@@ -12,22 +12,7 @@
   id: ESTrashBinLoot # A version of MaintenanceLockerLoot, but with lower probabilities
   table: !type:AllSelector
     children:
-    - id: StrangePill
-      prob: 0.1
-    - !type:NestedSelector
-      tableId: GenericTrashItems
-      prob: 0.7
-      rolls: !type:RangeNumberSelector
-        range: 0, 2
-    # Tools
-    - !type:NestedSelector
-      tableId: MaintToolsTable
-      prob: 0.025
-    # Fluff
-    - !type:NestedSelector
-      tableId: MaintFluffTable
-      prob: 0.025
-    # Syndie Loot
-    - !type:NestedSelector
-      tableId: SyndieMaintLoot
-      prob: 0.001
+    - tableId: ESMaintLoot
+      rolls: !type:BinomialNumberSelector
+        trials: 4
+        chance: 0.4

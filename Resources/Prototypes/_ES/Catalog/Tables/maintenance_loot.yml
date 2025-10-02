@@ -12,12 +12,22 @@
       weight: 1
 
 - type: entityTable
+  id: ESMaintLootValuable
+  table:
+    group:
+    - tableId: ESMaintLootCommon
+      weight: 45
+    - tableId: ESMaintLootUncommon
+      weight: 9
+    - tableId: ESMaintLootRare
+      weight: 1
+
+- type: entityTable
   id: ESMaintLootWorthless
   table:
     group:
-    - tableId: GenericTrashItems
-      weight: 8
-    - id: ESFlareSpent
+    - tableId: ESTrashCombo
+      weight: 22
     - id: Candle
     - id: CandleSmall
       weight: 0.5
@@ -31,37 +41,22 @@
       - id: BoxFolderBlack
       - id: BoxFolderGreen
     - id: HandLabeler
-    - id: Paper
-    - id: Pen
-    - id: MaterialCardboard1
-    - id: BoxCardboard
+    - id: FloorTileItemSteel
     - id: CheapLighter
-
-    - id: Ash
-    - id: CigaretteSpent
     - id: TreasureCoinIron
     - id: LightTube
     - id: LightBulb
-    - id: LightTubeBroken
-      weight: 0.5
-    - id: LightBulbBroken
-      weight: 0.5
+    - id: Matchstick
     - id: DrinkGlass
-
-    - id: ClothingMaskBreath
-    - id: ClothingMaskSterile
-      weight: 0.125
-    - id: ShardGlass
 
     - id: MicroManipulatorStockPart
       weight: 0.125
-
     - group:
       - id: ESRound9mm
       - id: ESRound357
       - id: ESShellShotgunBuckshot
       - id: ESShellShotgunBeanbag
-      weight: 0.25
+      weight: 0.125
 
 - type: entityTable
   id: ESMaintLootCommon
@@ -129,6 +124,7 @@
     - id: RagItem
     - id: Syringe
     - id: Matchbox
+    - id: Lighter
     - group:
       - id: CigPackGreen
       - id: CigPackRed
@@ -146,7 +142,6 @@
     - id: EmergencyOxygenTank
     - id: SprayPainterAmmo
     - id: ClothingHeadHatCone
-    - id: Lighter
 
     - group:
       - id: GlowstickBase

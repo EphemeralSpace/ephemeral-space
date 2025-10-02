@@ -1,0 +1,60 @@
+- type: entityTable
+  id: ESTrashCombo
+  table:
+    group:
+    - tableId: ESTrashFood
+      weight: 1
+    - tableId: ESTrashJunk
+      weight: 2
+
+- type: entityTable
+  id: ESTrashJunk
+  table:
+    group:
+    - id: ESFlareSpent
+    - id: Paper
+    - id: Pen
+    - id: MaterialCardboard1
+    - id: BoxCardboard
+    - id: Ash
+    - id: CigaretteSpent
+    - id: MatchstickSpent
+    - id: CigarSpent
+      weight: 0.125
+    - id: LightTubeBroken
+    - id: LightBulbBroken
+    - id: ClothingMaskBreath
+    - id: ClothingMaskSterile
+      weight: 0.125
+    - id: ShardGlass
+
+- type: entityTable
+  id: ESTrashFood
+  table:
+    group:
+    - group:
+      - id: FoodPacketBoritosTrash
+      - id: FoodPacketCheesieTrash
+      - id: FoodPacketChipsTrash
+      - id: FoodPacketChocolateTrash
+      - id: FoodPacketChowMeinTrash
+      - id: FoodPacketCnDsTrash
+      - id: FoodPacketDanDanTrash
+      - id: FoodPacketPistachioTrash
+      - id: FoodPacketEnergyTrash
+      - id: FoodPacketPopcornTrash
+      - id: FoodPacketRaisinsTrash
+      - id: FoodPacketSemkiTrash
+      - id: FoodPacketSusTrash
+      - id: FoodPacketSyndiTrash
+      weight: 8
+    - id: BrokenBottle
+    - id: DrinkColaCanEmpty
+    - id: FoodPlateSmallTrash
+      weight: 0.25
+    - id: FoodPlateTrash
+      weight: 0.25
+    - id: FoodBowlBigTrash
+      weight: 0.25
+    - id: TrashBananaPeel
+      weight: 0.1
