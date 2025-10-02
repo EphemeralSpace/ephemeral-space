@@ -1,56 +1,34 @@
-using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.Masks.Traitor.Components;
-using Content.Shared._ES.SpawnRegion;
 using Content.Shared.Alert;
 using Content.Shared.DoAfter;
 using Content.Shared.Mind;
-using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Masks.Traitor;
 
-public sealed class ESMaskCacheSystem : EntitySystem
+public abstract class ESSharedMaskCacheSystem : EntitySystem
 {
-    [Dependency] private readonly ESSharedSpawnRegionSystem _spawnRegion = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
 
-    private static readonly EntProtoId<ESCeilingCacheComponent> CeilingCachePrototype = "ESMarkerTraitorCeilingCache";
+    protected static readonly EntProtoId<ESCeilingCacheComponent> CeilingCachePrototype = "ESMarkerTraitorCeilingCache";
 
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<ESMaskCacheSpawnerComponent, MapInitEvent>(OnMapInit);
-
         SubscribeLocalEvent<ESCeilingCacheComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<ESCeilingCacheComponent, EndCollideEvent>(OnEndCollide);
         SubscribeLocalEvent<ESCeilingCacheComponent, ESRevealCacheDoAfterEvent>(OnRevealCacheDoAfter);
 
         SubscribeLocalEvent<ESCeilingCacheContactingComponent, ESRevealCacheAlertEvent>(OnRevealCacheAlert);
-    }
-
-    private void OnMapInit(Entity<ESMaskCacheSpawnerComponent> ent, ref MapInitEvent args)
-    {
-        if (!TryComp<ESCharacterComponent>(ent, out var character))
-            return;
-
-        if (!_spawnRegion.TryGetRandomAreaCoords(ent.Comp.Region, character.Station, out var coords, CollisionGroup.MachineLayer))
-        {
-            Log.Debug("Failed to find spawn region!");
-            return;
-        }
-
-        var spawner = PredictedSpawnAtPosition(CeilingCachePrototype, coords.Value);
-        var comp = EnsureComp<ESCeilingCacheComponent>(spawner);
-        comp.MindId = ent;
-        comp.CacheLoot = ent.Comp.CacheProto;
-        Dirty(spawner, comp);
     }
 
     private void OnStartCollide(Entity<ESCeilingCacheComponent> ent, ref StartCollideEvent args)
@@ -104,11 +82,11 @@ public sealed class ESMaskCacheSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        var pos = _transform.GetMapCoordinates(ent);
-        var cache = PredictedSpawnAtPosition(ent.Comp.CacheLoot, _transform.ToCoordinates(pos));
+        var pos = TransformSystem.GetMapCoordinates(ent);
+        var cache = PredictedSpawnAtPosition(ent.Comp.CacheLoot, TransformSystem.ToCoordinates(pos));
         PredictedQueueDel(ent);
         _popup.PopupPredicted(Loc.GetString("es-ceiling-cache-popup"), cache, args.User);
-        // SFX
+        _audio.PlayPredicted(ent.Comp.RevealSound, cache, args.User);
     }
 }
 

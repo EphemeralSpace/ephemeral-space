@@ -41,6 +41,9 @@ public sealed class RoleSystem : SharedRoleSystem
             RaiseLocalEvent(role, ref ev);
         }
 
+// ES START
+        RaiseLocalEvent(mindId.Value, ref ev);
+// ES END
         return ev.Briefing;
     }
 
