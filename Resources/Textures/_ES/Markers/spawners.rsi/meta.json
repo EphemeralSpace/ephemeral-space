@@ -89,6 +89,12 @@
             "name": "trash-food"
         },
         {
+            "name": "vendor-drink"
+        },
+        {
+            "name": "vendor-snack"
+        },
+        {
             "name": "wardrobe"
         },
         {

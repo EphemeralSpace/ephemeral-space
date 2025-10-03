@@ -34,6 +34,10 @@ public abstract partial class SharedVendingMachineSystem
         EntityUid user,
         EntityUid target)
     {
+// ES START
+        if (component.CanRestock.Count == 0)
+            return true;
+// ES END
         if (!component.CanRestock.Contains(machineComponent.PackPrototypeId))
         {
             Popup.PopupPredictedCursor(Loc.GetString("vending-machine-restock-invalid-inventory", ("this", uid), ("user", user),

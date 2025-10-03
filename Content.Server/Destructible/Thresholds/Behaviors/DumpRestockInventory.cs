@@ -28,6 +28,10 @@ namespace Content.Server.Destructible.Thresholds.Behaviors
             if (!system.EntityManager.TryGetComponent<VendingMachineRestockComponent>(owner, out var packagecomp) ||
                 !system.EntityManager.TryGetComponent<TransformComponent>(owner, out var xform))
                 return;
+// ES START
+            if (packagecomp.CanRestock.Count == 0)
+                return;
+// ES END
 
             var randomInventory = system.Random.Pick(packagecomp.CanRestock);
 

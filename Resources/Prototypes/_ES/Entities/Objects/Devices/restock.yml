@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseVendingMachineRestock
+  id: ESVendingMachineRestockGlobal
+  categories: [ ]
+  suffix: ES
+  components:
+  - type: VendingMachineRestock
+    restockDelay: 3
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_games
+    - state: refill_custom

@@ -1,0 +1,37 @@
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomVendorSnack
+  name: Random Snack Vendor Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: vendor-snack
+    - state: random
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    table:
+      group:
+      - id: ESVendingMachineSnack
+      - id: ESVendingMachineSnackBlue
+      - id: ESVendingMachineSnackOrange
+      - id: ESVendingMachineSnackGreen
+      - id: ESVendingMachineSnackTeal
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomVendorDrink
+  name: Random Drink Vendor Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: vendor-drink
+    - state: random
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    table:
+      group:
+      - id: ESVendingMachineCola
+      - id: ESVendingMachineColaBlack
+      - id: ESVendingMachineColaRed
