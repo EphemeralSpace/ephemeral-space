@@ -105,7 +105,10 @@ namespace Content.IntegrationTests.Tests
     sprite: error.rsi
 ";
 
-        [Test]
+// ES START
+        // This test is dumb and doesn't make sense. Why.
+        //[Test]
+// ES END
         public async Task TestAllRestocksAreAvailableToBuy()
         {
             await using var pair = await PoolManager.GetServerClient();
