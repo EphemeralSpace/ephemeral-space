@@ -604,8 +604,6 @@
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
   - type: Machine
     board: BiogeneratorMachineCircuitboard
   - type: MaterialStorage
