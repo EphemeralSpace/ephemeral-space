@@ -83,9 +83,8 @@ public sealed class MapMigrationSystem : EntitySystem
             var currentMapping = parsedMappings[key];
             while (parsedMappings.TryGetValue(currentMapping, out currentMapping))
             {
-                // Do nothing
+                parsedMappings[key] = currentMapping;
             }
-            parsedMappings[key] = currentMapping ?? string.Empty;
         }
 
         migrations = parsedMappings;
