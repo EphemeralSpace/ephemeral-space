@@ -5,8 +5,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeGrey
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeGrey
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entity
   id: ClosetWallWardrobeGreyFilled
@@ -15,8 +19,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeGrey
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeGrey
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entityTable
   id: FillWardrobeGrey
@@ -29,8 +37,6 @@
     - id: ClothingShoesColorBlack
       amount: 3
     - id: ClothingHeadHatGreysoft
-    - id: ClothingBackpackDuffel
-      prob: 0.5
     - id: ClothingOuterCoatBomber
       prob: 0.3
 
@@ -41,8 +47,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeMixed
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeMixed
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entity
   id: ClosetWallWardrobeMixedFilled
@@ -51,8 +61,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeMixed
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeMixed
+        - tableId: ESBackpackItems
+# ES End
 
 # ES Start
 - type: entityTable
@@ -89,8 +103,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeYellow
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeYellow
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entity
   id: ClosetWallWardrobeYellowFilled
@@ -99,8 +117,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeYellow
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeYellow
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entityTable
   id: FillWardrobeYellow
@@ -120,8 +142,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeWhite
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeWhite
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entity
   id: ClosetWallWardrobeWhiteFilled
@@ -130,8 +156,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeWhite
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeWhite
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entityTable
   id: FillWardrobeWhite
@@ -150,8 +180,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeBlue
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeBlue
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entity
   id: ClosetWallWardrobeBlueFilled
@@ -160,8 +194,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeBlue
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeBlue
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entityTable
   id: FillWardrobeBlue
@@ -179,8 +217,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobePink
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobePink
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entity
   id: ClosetWallWardrobePinkFilled
@@ -189,8 +231,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobePink
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobePink
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entityTable
   id: FillWardrobePink
@@ -208,8 +254,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeBlack
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeBlack
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entity
   id: ClosetWallWardrobeBlackFilled
@@ -218,8 +268,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeBlack
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeBlack
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entityTable
   id: FillWardrobeBlack
@@ -240,8 +294,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeGreen
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeGreen
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entity
   id: ClosetWallWardrobeGreenFilled
@@ -250,8 +308,12 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeGreen
+# ES Start
+      entity_storage: 
+        all:
+        - tableId: FillWardrobeGreen
+        - tableId: ESBackpackItems
+# ES End
 
 - type: entityTable
   id: FillWardrobeGreen
