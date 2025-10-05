@@ -20,9 +20,9 @@
     group:
     - group:
       - id: ClosetMaintenanceFilledRandom
-        weight: 32.5
+        weight: 30
       - id: ESCrateMaintenanceFilledRandom
-        weight: 32.5
+        weight: 30
       - tableId: LowValueCrateTable
         weight: 15
       - tableId: ESMaintenanceClosetsTertiary
@@ -32,6 +32,8 @@
       - tableId: ESMaintenanceClosetsEmergency
         weight: 5
       - tableId: ESMaintenanceTanks
+        weight: 5
+      - tableId: ESMaintenanceCanisters
         weight: 5
 
 - type: entity
@@ -325,6 +327,32 @@
       - id: ClosetRadiationSuit
         weight: 1
       weight: 5
+
+- type: entity
+  id: ESSpawnerRandomMaintClosetsEmergencyOrTertiary
+  parent: ESSpawnerBase
+  name: Tertiary or Emergency Maint Closet Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: emergency-biohazard
+    - state: random
+    - state: maint
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    table:
+      tableId: ESMaintenanceClosetsTertiaryOrEmergency
+
+- type: entityTable
+  id: ESMaintenanceClosetsTertiaryOrEmergency
+  table:
+    group:
+    - group:
+      - tableId: ESMaintenanceClosetsEmergency
+        weight: 3
+      - tableId: ESMaintenanceClosetsTertiary
+        weight: 1
 
 - type: entity
   id: ESSpawnerRandomMaintGirderOrGrilleSpawner

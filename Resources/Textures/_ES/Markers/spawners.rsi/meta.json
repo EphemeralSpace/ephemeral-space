@@ -68,6 +68,9 @@
             "name": "emergency"
         },
         {
+            "name": "emergency-biohazard"
+        },
+        {
             "name": "random"
         },
         {
