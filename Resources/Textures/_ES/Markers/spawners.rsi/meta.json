@@ -47,6 +47,9 @@
             "name": "c100"
         },
         {
+            "name": "biohazard"
+        },
+        {
             "name": "box"
         },
         {
@@ -78,6 +81,9 @@
         },
         {
             "name": "crate"
+        },
+        {
+            "name": "girder"
         },
         {
             "name": "tank"
