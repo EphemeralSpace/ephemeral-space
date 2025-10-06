@@ -109,6 +109,25 @@
   - type: BypassInteractionChecks
   - type: ExplosionResistance
     damageCoefficient: 0
+# ES START TODO TESTING
+  - type: ESVoter
+
+- type: entity
+  id: TestVote
+  name: Test Vote
+  components:
+  - type: ESVote
+  - type: ESEntityPrototypeVote
+    options:
+      all:
+      - id: PlushieAtmosian
+      - id: PlushieDiona
+      - id: PlushieXeno
+      - id: PlushieHampter
+      - id: PlushieMoth
+      - id: PlushieArachind
+      - id: PlushiePenguin
+# ES END
 
 - type: entity
   abstract: true
