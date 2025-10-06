@@ -60,6 +60,12 @@
       enum.GeneralStationRecordConsoleKey.Key:
       # who the fuck named this bruh
         type: GeneralStationRecordConsoleBoundUserInterface
+# ES START
+      enum.ESVoterUiKey.Key:
+        type: ESVoterBui
+  - type: ActivatableUI
+    key: enum.ESVoterUiKey.Key
+# ES END
   - type: IntrinsicUI
     uis:
       enum.SolarControlConsoleUiKey.Key:

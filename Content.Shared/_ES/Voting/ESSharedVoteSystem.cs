@@ -93,6 +93,15 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
         PredictedQueueDel(ent);
     }
 
+    public IEnumerable<Entity<ESVoteComponent>> EnumerateVotes()
+    {
+        var query = EntityQueryEnumerator<ESVoteComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            yield return (uid, comp);
+        }
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);

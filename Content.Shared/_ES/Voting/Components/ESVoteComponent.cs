@@ -7,7 +7,7 @@ namespace Content.Shared._ES.Voting.Components;
 /// <summary>
 /// An entity that holds data regarding a vote for <see cref="ESVoterComponent"/> entities.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), AutoGenerateComponentPause]
 [Access(typeof(ESSharedVoteSystem))]
 public sealed partial class ESVoteComponent : Component
 {
@@ -46,7 +46,7 @@ public record struct ESGetVoteOptionsEvent()
     /// <summary>
     /// The options for voting.
     /// </summary>
-    public List<ESVoteOption> Options = new();
+    public readonly List<ESVoteOption> Options = new();
 }
 
 /// <summary>

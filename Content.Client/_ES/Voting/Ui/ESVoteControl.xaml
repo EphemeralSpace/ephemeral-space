@@ -1,0 +1,8 @@
+<controls:ESVoteControl
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._ES.Voting.Ui">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True">
+        <RichTextLabel Name="VoteNameLabel"/>
+        <GridContainer Name="OptionsContainer" Columns="3"/>
+    </BoxContainer>
+</controls:ESVoteControl>

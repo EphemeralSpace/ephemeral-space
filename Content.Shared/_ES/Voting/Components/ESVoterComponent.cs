@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Voting.Components;
 
@@ -9,3 +10,16 @@ namespace Content.Shared._ES.Voting.Components;
 [RegisterComponent, NetworkedComponent]
 [Access(typeof(ESSharedVoteSystem))]
 public sealed partial class ESVoterComponent : Component;
+
+[Serializable, NetSerializable]
+public enum ESVoterUiKey : byte
+{
+    Key,
+}
+
+[Serializable, NetSerializable]
+public sealed class ESSetVoteMessage(NetEntity vote, ESVoteOption option) : BoundUserInterfaceMessage
+{
+    public NetEntity Vote = vote;
+    public ESVoteOption Option = option;
+}
