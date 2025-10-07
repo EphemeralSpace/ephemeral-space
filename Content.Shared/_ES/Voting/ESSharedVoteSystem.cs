@@ -28,6 +28,11 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
 
         SubscribeLocalEvent<ESVoterComponent, PlayerAttachedEvent>(OnVoterPlayerAttached);
         SubscribeLocalEvent<ESVoterComponent, PlayerDetachedEvent>(OnVoterPlayerDetached);
+        Subs.BuiEvents<ESVoterComponent>(ESVoterUiKey.Key,
+            subs =>
+            {
+                subs.Event<ESSetVoteMessage>(OnSetVote);
+            });
 
         InitializeOptions();
         InitializeResults();
@@ -68,6 +73,27 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
         {
             _pvsOverride.RemoveSessionOverride(uid, args.Player);
         }
+    }
+
+    private void OnSetVote(Entity<ESVoterComponent> ent, ref ESSetVoteMessage args)
+    {
+        if (!TryGetEntity(args.Vote, out var voteUid) ||
+            !TryComp<ESVoteComponent>(voteUid, out var voteComp))
+            return;
+
+        // This vote doesn't contain this option.
+        if (!voteComp.VoteOptions.Contains(args.Option))
+            return;
+
+        var voteNetEnt = GetNetEntity(ent);
+        foreach (var (option, votes) in voteComp.Votes)
+        {
+            if (option == args.Option) // add our vote
+                votes.Add(voteNetEnt);
+            else // clear our old votes
+                votes.Remove(voteNetEnt);
+        }
+        Dirty(voteUid.Value, voteComp);
     }
 
     public void EndVote(Entity<ESVoteComponent> ent)

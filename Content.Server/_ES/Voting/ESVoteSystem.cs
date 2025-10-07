@@ -38,6 +38,15 @@ public sealed class ESVoteCommand : ToolshedCommand
         }
     }
 
+    [CommandImplementation("tally")]
+    public IEnumerable<string> Tally([PipedArgument] Entity<ESVoteComponent> vote)
+    {
+        foreach (var (option, votes) in vote.Comp.Votes)
+        {
+            yield return $"{option.DisplayString}: {votes.Count}";
+        }
+    }
+
     [CommandImplementation("end")]
     public void End([PipedArgument] Entity<ESVoteComponent> vote)
     {
