@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._ES.Voting;
 using Content.Shared._ES.Voting.Components;
@@ -12,6 +13,8 @@ public sealed partial class ESVotingWindow : FancyWindow
     [Dependency] private readonly IEntityManager _entityManager = default!;
     private readonly ESVoteSystem _vote;
 
+    private List<Entity<ESVoteComponent>> _lastVotes = new();
+
     public event Action<Entity<ESVoteComponent>, ESVoteOption>? OnVoteChanged;
 
     public ESVotingWindow()
@@ -24,12 +27,31 @@ public sealed partial class ESVotingWindow : FancyWindow
 
     public void Update(EntityUid owner)
     {
-        VotesContainer.Children.Clear();
-        foreach (var vote in _vote.EnumerateVotes())
+        var votes = _vote.EnumerateVotes().ToList();
+
+        if (votes.Count != _lastVotes.Count || votes.Intersect(_lastVotes).Count() != votes.Count)
         {
-            var voteControl = new ESVoteControl(vote, _entityManager);
-            voteControl.OnVoteChanged += OnVoteChanged;
-            VotesContainer.AddChild(voteControl);
+            VotesContainer.Children.Clear();
+            foreach (var vote in votes)
+            {
+                var voteControl = new ESVoteControl
+                {
+                    Vote = vote,
+                };
+                voteControl.OnVoteChanged += (arg1, arg2) => OnVoteChanged?.Invoke(arg1, arg2);
+                VotesContainer.AddChild(voteControl);
+            }
+        }
+
+        _lastVotes = votes;
+
+        foreach (var child in VotesContainer.Children)
+        {
+            if (child is ESVoteControl ctrl)
+            {
+                var comp = _entityManager.GetComponent<ESVoteComponent>(ctrl.Vote);
+                ctrl.Update((ctrl.Vote, comp), _entityManager, owner);
+            }
         }
     }
 }
