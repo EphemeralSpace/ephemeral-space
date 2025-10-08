@@ -113,10 +113,13 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
         var ev = new ESVoteCompletedEvent(result);
         RaiseLocalEvent(ent, ref ev);
 
-        // TODO: sfx
-        // TODO: chat announcement
-
+        SendVoteResultAnnouncement(ent, result);
         PredictedQueueDel(ent);
+    }
+
+    protected virtual void SendVoteResultAnnouncement(Entity<ESVoteComponent> ent, ESVoteOption result)
+    {
+
     }
 
     public IEnumerable<Entity<ESVoteComponent>> EnumerateVotes()

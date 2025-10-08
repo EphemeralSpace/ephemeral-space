@@ -1,7 +1,13 @@
 using Content.Server.Administration;
+using Content.Server.Administration.Logs;
+using Content.Server.Chat.Managers;
 using Content.Shared._ES.Voting;
 using Content.Shared._ES.Voting.Components;
 using Content.Shared.Administration;
+using Content.Shared.Chat;
+using Content.Shared.Database;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Toolshed;
 
 namespace Content.Server._ES.Voting;
@@ -9,10 +15,25 @@ namespace Content.Server._ES.Voting;
 /// <inheritdoc/>
 public sealed class ESVoteSystem : ESSharedVoteSystem
 {
-    /// <inheritdoc/>
-    public override void Initialize()
+    [Dependency] private readonly IAdminLogManager _adminLog = default!;
+    [Dependency] private readonly IChatManager _chat = default!;
+
+    protected override void SendVoteResultAnnouncement(Entity<ESVoteComponent> ent, ESVoteOption result)
     {
-        base.Initialize();
+        var voters = new List<INetChannel>();
+        var query = EntityQueryEnumerator<ESVoterComponent, ActorComponent>();
+        while (query.MoveNext(out _, out _, out var actor))
+        {
+            voters.Add(actor.PlayerSession.Channel);
+        }
+
+        var msg = Loc.GetString("es-voter-chat-announce-result",
+            ("query", Loc.GetString(ent.Comp.QueryString)),
+            ("result", result.DisplayString));
+        var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
+        _chat.ChatMessageToMany(ChatChannel.Server, msg, wrappedMsg, ent, false, true, voters, Color.Plum);
+        _adminLog.Add(LogType.Vote, LogImpact.Medium, $"Finished vote for {ToPrettyString(ent)}. Vote conclusion: \"{msg}\"");
+        // TODO: sfx
     }
 }
 

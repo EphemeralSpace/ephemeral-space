@@ -34,6 +34,13 @@ public sealed partial class ESVoteComponent : Component
     /// </summary>
     [ViewVariables]
     public List<ESVoteOption> VoteOptions => Votes.Keys.ToList();
+
+    /// <summary>
+    /// String that is used in chat when the vote completes.
+    /// This is a line of text appended directly by the vote's <see cref="ESVoteOption.DisplayString"/>
+    /// </summary>
+    [DataField]
+    public LocId QueryString = "es-voter-chat-announce-query-default";
 }
 
 /// <summary>
