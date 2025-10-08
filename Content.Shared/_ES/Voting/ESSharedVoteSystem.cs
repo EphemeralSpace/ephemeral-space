@@ -88,7 +88,7 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
         var voteNetEnt = GetNetEntity(ent);
         foreach (var (option, votes) in voteComp.Votes)
         {
-            if (option == args.Option) // add our vote
+            if (option.Equals(args.Option)) // add our vote
                 votes.Add(voteNetEnt);
             else // clear our old votes
                 votes.Remove(voteNetEnt);
