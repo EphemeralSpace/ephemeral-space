@@ -18,6 +18,8 @@ public sealed class ESVoteSystem : ESSharedVoteSystem
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IChatManager _chat = default!;
 
+    private const string VoteSound = "/Audio/Effects/voteding.ogg";
+
     protected override void SendVoteResultAnnouncement(Entity<ESVoteComponent> ent, ESVoteOption result)
     {
         var voters = new List<INetChannel>();
@@ -31,9 +33,8 @@ public sealed class ESVoteSystem : ESSharedVoteSystem
             ("query", Loc.GetString(ent.Comp.QueryString)),
             ("result", result.DisplayString));
         var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
-        _chat.ChatMessageToMany(ChatChannel.Server, msg, wrappedMsg, ent, false, true, voters, Color.Plum);
+        _chat.ChatMessageToMany(ChatChannel.Server, msg, wrappedMsg, ent, false, true, voters, Color.Plum, audioPath: VoteSound);
         _adminLog.Add(LogType.Vote, LogImpact.Medium, $"Finished vote for {ToPrettyString(ent)}. Vote conclusion: \"{msg}\"");
-        // TODO: sfx
     }
 }
 
