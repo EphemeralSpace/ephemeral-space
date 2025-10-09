@@ -50,7 +50,7 @@ public sealed partial class ESVotingWindow : FancyWindow
             if (child is ESVoteControl ctrl)
             {
                 var comp = _entityManager.GetComponent<ESVoteComponent>(ctrl.Vote);
-                ctrl.Update((ctrl.Vote, comp), _entityManager, owner);
+                ctrl.Update((ctrl.Vote, comp), owner);
             }
         }
     }

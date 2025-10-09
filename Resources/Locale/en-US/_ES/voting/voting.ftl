@@ -1,4 +1,5 @@
 es-voter-ui-title = Voting
+es-voter-ui-header-text-format = [bold]{$title}[/bold]
 es-voter-ui-button-text-option-format = {$count} | [bold]{$option}[/bold]
 
 es-voter-chat-announce-query-default = The vote has concluded. Result:
