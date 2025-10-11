@@ -1,0 +1,23 @@
+- type: entity
+  id: ESSpawnerRandomTraitorCache
+  parent: ESSpawnerBase
+  name: Traitor Equipment Cache Spawner
+  components:
+  - type: Sprite
+    layers:
+      - sprite: Structures/Storage/Crates/syndicate.rsi
+        state: icon
+      - state: random
+      - state: es
+  - type: EntityTableSpawner
+    table:
+      tableId: ESTraitorCaches
+
+- type: entityTable
+  id: ESTraitorCaches
+  table:
+    group:
+    - group:
+      - id: ESCrateCacheTraitorMarauder
+      - id: ESCrateCacheTraitorAssassin
+      - id: ESCrateCacheTraitorInfiltrator

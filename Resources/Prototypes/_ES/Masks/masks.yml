@@ -8,6 +8,16 @@
   objectives:
     id: ESMaskObjectiveRandomStationKeepAlive
 
+- type: esMask
+  id: ESMercenary
+  name: es-mask-mercenary-name
+  troupe: ESCrew
+  description: es-mask-mercenary-desc
+  weight: 1
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto: ESSpawnerRandomTraitorCache
+
 # Traitor Masks
 - type: esMask
   id: ESMarauder
@@ -18,3 +28,23 @@
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorMarauder
+
+- type: esMask
+  id: ESMAssassin
+  name: es-mask-assassin-name
+  troupe: ESTraitor
+  description: es-mask-assassin-desc
+  weight: 1
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto: ESCrateCacheTraitorAssassin
+
+- type: esMask
+  id: ESInfiltrator
+  name: es-mask-infiltrator-name
+  troupe: ESTraitor
+  description: es-mask-infiltrator-desc
+  weight: 1
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto: ESCrateCacheTraitorInfiltrator
