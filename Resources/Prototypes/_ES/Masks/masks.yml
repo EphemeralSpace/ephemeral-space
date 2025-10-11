@@ -30,7 +30,7 @@
     cacheProto: ESCrateCacheTraitorMarauder
 
 - type: esMask
-  id: ESMAssassin
+  id: ESAssassin
   name: es-mask-assassin-name
   troupe: ESTraitor
   description: es-mask-assassin-desc

@@ -1,9 +1,9 @@
 - type: entity
+  id: ESSleepyPen
+  parent: Pen # It is just like normal pen, isn't it?
   name: pen
   suffix: Sleepy Pen
-  parent: Pen # It is just like normal pen, isn't it?
   description: A dark ink pen.
-  id: ESSleepyPen
   components:
   - type: SolutionContainerManager
     solutions:

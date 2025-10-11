@@ -15,19 +15,20 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESTraitorCacheAssassin
 
 - type: entityTable
   id: ESTraitorCacheAssassin
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ESWeaponPistol9mmSilenced
     - id: ESMagazine9mm
       amount: 2
     - id: ESSleepyPen
       amount: 2
-      
+    - id: EmpGrenade
+
 # Infiltrator
 - type: entity
   parent: ESCrateCache
@@ -36,15 +37,17 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESTraitorCacheInfiltrator
 
 - type: entityTable
   id: ESTraitorCacheInfiltrator
-  table: !type:AllSelector
-    children:
-    - id: ClothingBackpackChameleon
+  table:
+    all:
+    - id: ClothingBackpackChameleonFilled
     - id: ESEmag
+    - id: SmokeGrenade
+      amount: 2
 
 # Marauder
 - type: entity
@@ -54,13 +57,13 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESTraitorCacheMarauder
 
 - type: entityTable
   id: ESTraitorCacheMarauder
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ESWeaponRevolver357
     - id: ESSpeedLoader357
       amount: 2
