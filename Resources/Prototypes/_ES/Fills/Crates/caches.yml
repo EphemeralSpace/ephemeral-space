@@ -44,7 +44,7 @@
   id: ESTraitorCacheInfiltrator
   table:
     all:
-    - id: ClothingBackpackChameleonFilled
+    - id: ClothingBackpackChameleonFill
     - id: ESEmag
     - id: SmokeGrenade
       amount: 2
