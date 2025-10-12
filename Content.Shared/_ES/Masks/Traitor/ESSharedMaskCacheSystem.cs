@@ -82,11 +82,11 @@ public abstract class ESSharedMaskCacheSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        var pos = TransformSystem.GetMapCoordinates(ent);
-        var cache = PredictedSpawnAtPosition(ent.Comp.CacheLoot, TransformSystem.ToCoordinates(pos));
+        var pos = Transform(ent).Coordinates;
+        var cache = PredictedSpawnAtPosition(ent.Comp.CacheLoot, pos);
         PredictedQueueDel(ent);
         _popup.PopupPredicted(Loc.GetString("es-ceiling-cache-popup"), cache, args.User);
-        _audio.PlayPredicted(ent.Comp.RevealSound, cache, args.User);
+        _audio.PlayPredicted(ent.Comp.RevealSound, pos, args.User);
     }
 }
 
