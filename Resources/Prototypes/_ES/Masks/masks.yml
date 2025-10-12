@@ -1,14 +1,5 @@
 # Crew masks
 - type: esMask
-  id: ESGuardian
-  name: es-mask-guardian-name
-  troupe: ESCrew
-  description: es-mask-guardian-desc
-  weight: 1
-  objectives:
-    id: ESMaskObjectiveRandomStationKeepAlive
-
-- type: esMask
   id: ESMercenary
   name: es-mask-mercenary-name
   troupe: ESCrew
