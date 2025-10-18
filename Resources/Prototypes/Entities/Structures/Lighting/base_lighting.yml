@@ -347,11 +347,6 @@
     deviceNetId: Apc
     receiveFrequencyId: SmartLight
   - type: ApcNetworkConnection
-  - type: DeviceLinkSink
-  #  ports:
-  #    - On
-  #    - Off
-  #    - Toggle
 # ES END
   - type: Appearance
   - type: PoweredLightVisuals
@@ -362,10 +357,12 @@
       broken: broken
       burned: burned
   - type: DeviceLinkSink
-    ports:
-      - On
-      - Off
-      - Toggle
+# ES START
+  #  ports:
+  #    - On
+  #    - Off
+  #    - Toggle
+# ES END
   - type: DamageOnInteract
     damage:
       types:
