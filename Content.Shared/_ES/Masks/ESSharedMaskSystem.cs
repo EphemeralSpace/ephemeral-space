@@ -1,5 +1,6 @@
 using Content.Shared._ES.Masks.Components;
 using Content.Shared.Administration.Managers;
+using Content.Shared.Antag;
 using Content.Shared.Examine;
 using Content.Shared.Verbs;
 using Robust.Shared.GameStates;
@@ -29,6 +30,13 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
         if (args.Player?.AttachedEntity is not { } attachedEntity)
             return;
+
+        if (HasComp<ShowAntagIconsComponent>(attachedEntity))
+        {
+            args.Cancelled = false;
+            return;
+        }
+
         if (!TryComp<ESTroupeFactionIconComponent>(attachedEntity, out var component))
             return;
         if (ent.Comp.Troupe != component.Troupe)
