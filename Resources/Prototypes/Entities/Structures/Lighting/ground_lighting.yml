@@ -87,15 +87,16 @@
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: DeviceNetwork
-    deviceNetId: Wireless
+# ES START
+    deviceNetId: Apc
     receiveFrequencyId: SmartLight
-  - type: WirelessNetworkConnection
-    range: 200
-  - type: DeviceLinkSink
-    ports:
-      - On
-      - Off
-      - Toggle
+  - type: ApcNetworkConnection
+  #- type: DeviceLinkSink
+  #  ports:
+  #    - On
+  #    - Off
+  #    - Toggle
+# ES END
   - type: Construction
     graph: LightFixture
     node: groundLight
