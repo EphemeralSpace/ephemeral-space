@@ -114,7 +114,7 @@
     deviceNetId: Apc
     receiveFrequencyId: SmartLight
   - type: ApcNetworkConnection
-  #- type: DeviceLinkSink
+  - type: DeviceLinkSink
   #  ports:
   #    - On
   #    - Off
@@ -347,7 +347,7 @@
     deviceNetId: Apc
     receiveFrequencyId: SmartLight
   - type: ApcNetworkConnection
-  #- type: DeviceLinkSink
+  - type: DeviceLinkSink
   #  ports:
   #    - On
   #    - Off
