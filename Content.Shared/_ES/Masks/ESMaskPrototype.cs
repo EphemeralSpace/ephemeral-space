@@ -18,6 +18,7 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ESMaskPrototype>))]
     public string[]? Parents { get; }
 
+    [NeverPushInheritance]
     [AbstractDataField]
     public bool Abstract { get; }
 
@@ -41,6 +42,9 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     /// </summary>
     [DataField]
     public LocId Description;
+
+    [DataField]
+    public ComponentRegistry Components = new();
 
     [DataField]
     public ComponentRegistry MindComponents = new();

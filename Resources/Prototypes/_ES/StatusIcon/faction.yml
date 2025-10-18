@@ -19,3 +19,14 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Nanotrasen
+
+- type: factionIcon
+  id: ESTraitor
+  locationPreference: Right
+  showTo:
+    components:
+    - ShowAntagIcons
+    - ESTroupeFactionIcon
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Syndicate

@@ -7,6 +7,7 @@ es-mask-mercenary-desc = Utilize your dubiously-legal gear to aid in the complet
 
 
 # Traitor masks
+es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete the objectives.
 
 es-mask-assassin-name = Assassin
 es-mask-assassin-desc =  Aid your fellow traitors & complete your objectives to detonate the nuke. You have recieved been trained by the syndicate for stealthy assasinations.

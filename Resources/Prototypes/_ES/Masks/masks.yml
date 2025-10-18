@@ -11,31 +11,39 @@
 
 # Traitor Masks
 - type: esMask
+  id: ESBaseTraitor
+  abstract: true
+  troupe: ESTraitor
+  weight: 1
+  components:
+  - type: ESTroupeFactionIcon
+    icon: ESTraitor
+    troupe: ESTraitor
+    examineString: es-mask-troupe-traitor-examine
+
+- type: esMask
+  parent: ESBaseTraitor
   id: ESMarauder
   name: es-mask-marauder-name
-  troupe: ESTraitor
   description: es-mask-marauder-desc
-  weight: 1
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorMarauder
 
 - type: esMask
+  parent: ESBaseTraitor
   id: ESAssassin
   name: es-mask-assassin-name
-  troupe: ESTraitor
   description: es-mask-assassin-desc
-  weight: 1
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorAssassin
 
 - type: esMask
+  parent: ESBaseTraitor
   id: ESInfiltrator
   name: es-mask-infiltrator-name
-  troupe: ESTraitor
   description: es-mask-infiltrator-desc
-  weight: 1
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorInfiltrator

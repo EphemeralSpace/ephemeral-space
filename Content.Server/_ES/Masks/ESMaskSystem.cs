@@ -28,7 +28,6 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 {
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ESAuditionsSystem _esAuditions = default!;
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
@@ -54,7 +53,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
     private void OnMapInit(Entity<ESTroupeRuleComponent> ent, ref MapInitEvent args)
     {
-        var troupe = _prototypeManager.Index(ent.Comp.Troupe);
+        var troupe = PrototypeManager.Index(ent.Comp.Troupe);
         var objectives = _entityTable.GetSpawns(troupe.Objectives);
 
         var dummyMind = _mind.CreateMind(null);
@@ -94,7 +93,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
             !TryComp<ActorComponent>(args.Target, out var actorComp))
             return;
 
-        foreach (var mask in _prototypeManager.EnumeratePrototypes<ESMaskPrototype>())
+        foreach (var mask in PrototypeManager.EnumeratePrototypes<ESMaskPrototype>())
         {
             if (mask.Abstract)
                 continue;
@@ -104,7 +103,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
                 Category = ESMask,
                 Text = Loc.GetString("es-verb-apply-mask-name",
                     ("name", Loc.GetString(mask.Name)),
-                    ("troupe", Loc.GetString(_prototypeManager.Index(mask.Troupe).Name))),
+                    ("troupe", Loc.GetString(PrototypeManager.Index(mask.Troupe).Name))),
                 Message = Loc.GetString("es-verb-apply-mask-desc", ("mask", Loc.GetString(mask.Name))),
                 Priority = HashCode.Combine(mask.Troupe, mask.Name),
                 ConfirmationPopup = true,
@@ -140,7 +139,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
     public bool TryAssignToTroupe(Entity<ESTroupeRuleComponent> ent, ref List<ICommonSession> players)
     {
-        var troupe = _prototypeManager.Index(ent.Comp.Troupe);
+        var troupe = PrototypeManager.Index(ent.Comp.Troupe);
 
         var filteredPlayers = players.Where(s => IsPlayerValid(troupe, s)).ToList();
 
@@ -215,7 +214,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         mask = null;
 
         var weights = new Dictionary<ESMaskPrototype, float>();
-        foreach (var maskProto in _prototypeManager.EnumeratePrototypes<ESMaskPrototype>())
+        foreach (var maskProto in PrototypeManager.EnumeratePrototypes<ESMaskPrototype>())
         {
             if (maskProto.Abstract)
                 continue;
@@ -235,7 +234,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
     public void ApplyMask(Entity<MindComponent> mind, ProtoId<ESMaskPrototype> maskId, Entity<ESTroupeRuleComponent>? troupe)
     {
-        var mask = _prototypeManager.Index(maskId);
+        var mask = PrototypeManager.Index(maskId);
 
         _role.MindAddRole(mind, MindRole, mind, true);
 
@@ -254,6 +253,8 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
             _chat.ChatMessageToOne(ChatChannel.Server, msg, msg, default, false, session.Channel, Color.Plum);
         }
 
+        if (mind.Comp.OwnedEntity is { } ownedEntity)
+            EntityManager.AddComponents(ownedEntity, mask.Components);
         EntityManager.AddComponents(mind, mask.MindComponents);
 
         // TODO: eventually, this should be required.
