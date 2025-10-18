@@ -1,3 +1,4 @@
+using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
@@ -28,4 +29,10 @@ public sealed partial class ESTroupePrototype : IPrototype, IInheritingPrototype
     /// </summary>
     [DataField]
     public HashSet<ProtoId<JobPrototype>> ProhibitedJobs = new();
+
+    /// <summary>
+    /// The objectives that this troupe gives to its members
+    /// </summary>
+    [DataField]
+    public EntityTableSelector Objectives = new NoneSelector();
 }

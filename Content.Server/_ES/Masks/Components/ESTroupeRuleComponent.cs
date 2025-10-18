@@ -47,4 +47,10 @@ public sealed partial class ESTroupeRuleComponent : Component
     /// </summary>
     [DataField]
     public List<EntityUid> TroupeMemberMinds = new();
+
+    /// <summary>
+    /// Objective entities this troupe has spawned
+    /// </summary>
+    [DataField]
+    public List<EntityUid> AssociatedObjectives = new();
 }
