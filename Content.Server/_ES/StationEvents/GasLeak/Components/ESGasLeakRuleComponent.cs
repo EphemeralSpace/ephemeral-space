@@ -10,16 +10,6 @@ namespace Content.Server._ES.StationEvents.GasLeak.Components;
 public sealed partial class ESGasLeakRuleComponent : Component
 {
     [DataField]
-    public List<Gas> Gasses =
-    [
-        Gas.Ammonia,
-        Gas.Plasma,
-        Gas.Tritium,
-        Gas.Frezon,
-        Gas.WaterVapor, // the fog
-    ];
-
-    [DataField]
     public Gas LeakGas;
 
     [DataField]

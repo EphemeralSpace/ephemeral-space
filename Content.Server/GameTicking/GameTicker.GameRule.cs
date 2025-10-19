@@ -10,6 +10,10 @@ using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Localization;
+// ES START
+using Content.Server.StationEvents.Components;
+using Content.Shared._ES.Voting.Components;
+// ES END
 
 namespace Content.Server.GameTicking;
 
@@ -83,8 +87,15 @@ public sealed partial class GameTicker
 #endif
         Log.Info(str);
 
-        var ev = new GameRuleAddedEvent(ruleEntity, ruleId);
-        RaiseLocalEvent(ruleEntity, ref ev, true);
+// ES START
+        // Synchronized vote managers start their own logic AFTER their votes have concluded.
+        if (!HasComp<ESSynchronizedVoteManagerComponent>(ruleEntity))
+        {
+            Comp<GameRuleComponent>(ruleEntity).Added = true;
+            var ev = new GameRuleAddedEvent(ruleEntity, ruleId);
+            RaiseLocalEvent(ruleEntity, ref ev, true);
+        }
+// ES END
 
         var currentTime = RunLevel == GameRunLevel.PreRoundLobby ? TimeSpan.Zero : RoundDuration();
         if (!HasComp<RoundstartStationVariationRuleComponent>(ruleEntity) && !HasComp<StationVariationPassRuleComponent>(ruleEntity))
@@ -134,6 +145,7 @@ public sealed partial class GameTicker
         if (!RemComp<DelayedStartRuleComponent>(ruleEntity) && ruleData.Delay != null)
         {
             var delayTime = TimeSpan.FromSeconds(ruleData.Delay.Value.Next(_robustRandom));
+            Log.Debug($"delaying start for rule {ToPrettyString(ruleEntity)}. time: {delayTime}");
 
             if (delayTime > TimeSpan.Zero)
             {
@@ -219,7 +231,9 @@ public sealed partial class GameTicker
 
     public bool IsGameRuleAdded(EntityUid ruleEntity, GameRuleComponent? component = null)
     {
-        return Resolve(ruleEntity, ref component) && !HasComp<EndedGameRuleComponent>(ruleEntity);
+// ES START
+        return Resolve(ruleEntity, ref component) && !HasComp<EndedGameRuleComponent>(ruleEntity) && component.Added;
+// ES END
     }
 
     public bool IsGameRuleAdded(string rule)
@@ -354,8 +368,11 @@ public sealed partial class GameTicker
             var ent = AddGameRule(rule);
 
             // Start rule if we're already in the middle of a round
-            if(RunLevel == GameRunLevel.InRound)
+// ES START
+            // Don't start them immediately if its a station event
+            if(RunLevel == GameRunLevel.InRound && !HasComp<StationEventComponent>(ent))
                 StartGameRule(ent);
+// ES END
 
         }
     }

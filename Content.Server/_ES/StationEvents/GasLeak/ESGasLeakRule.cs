@@ -1,36 +1,53 @@
 using Content.Server._ES.StationEvents.GasLeak.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Unary.Components;
+using Content.Server.Pinpointer;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
+using Content.Shared._ES.Voting.Components;
+using Content.Shared._ES.Voting.Results;
 using Content.Shared.GameTicking.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.Collections;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server._ES.StationEvents.GasLeak;
 
 public sealed class ESGasLeakRule : StationEventSystem<ESGasLeakRuleComponent>
 {
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
-    protected override void Started(EntityUid uid, ESGasLeakRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    public override void Initialize()
     {
-        base.Started(uid, component, gameRule, args);
+        base.Initialize();
 
-        component.NextLeakTime = Timing.CurTime;
-        component.LeakGas = RobustRandom.Pick(component.Gasses);
-        component.LeakRate = RobustRandom.NextFloat(component.LeakRateRange.X, component.LeakRateRange.Y);
-        var moles = RobustRandom.NextFloat(component.LeakMolesRange.X, component.LeakMolesRange.Y);
-        Comp<StationEventComponent>(uid).EndTime = Timing.CurTime + TimeSpan.FromSeconds(moles / component.LeakRate) + TimeSpan.FromSeconds(1);
+        SubscribeLocalEvent<ESGasLeakRuleComponent, ESSynchronizedVotesCompletedEvent>(OnSynchronizedVotesCompleted);
+        SubscribeLocalEvent<ESGasVentVoteComponent, ESGetVoteOptionsEvent>(OnGetVoteOptions);
+    }
 
+    private void OnSynchronizedVotesCompleted(Entity<ESGasLeakRuleComponent> ent, ref ESSynchronizedVotesCompletedEvent args)
+    {
+        if (!args.TryGetResult<ESGasVoteOption>(0, out var gasResult) ||
+            !args.TryGetResult<ESEntityVoteOption>(1, out var ventResult) ||
+            !TryGetEntity(ventResult.Entity, out var vent))
+        {
+            ForceEndSelf(ent);
+            return;
+        }
+
+        ent.Comp.LeakGas = gasResult.Gas;
+        ent.Comp.LeakOrigin = vent.Value;
+    }
+
+    private void OnGetVoteOptions(Entity<ESGasVentVoteComponent> ent, ref ESGetVoteOptionsEvent args)
+    {
         if (!TryGetRandomStation(out var station))
             return;
-
-        var ventList = new ValueList<Entity<TransformComponent>>();
+        var ventList = new List<Entity<TransformComponent>>();
         var query = EntityQueryEnumerator<GasVentPumpComponent, TransformComponent>();
         while (query.MoveNext(out var ventUid, out _, out var xform))
         {
@@ -38,10 +55,27 @@ public sealed class ESGasLeakRule : StationEventSystem<ESGasLeakRuleComponent>
                 ventList.Add((ventUid, xform));
         }
 
-        if (ventList.Count == 0)
-            return;
+        var count = Math.Min(ent.Comp.Count, ventList.Count);
+        for (var i = 0; i < count; i++)
+        {
+            var vent = RobustRandom.PickAndTake(ventList);
+            var location = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(vent.AsNullable()));
+            args.Options.Add(new ESEntityVoteOption
+            {
+                DisplayString = location,
+                Entity = GetNetEntity(vent),
+            });
+        }
+    }
 
-        component.LeakOrigin = RobustRandom.Pick(ventList);
+    protected override void Started(EntityUid uid, ESGasLeakRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    {
+        base.Started(uid, component, gameRule, args);
+
+        component.NextLeakTime = Timing.CurTime;
+        component.LeakRate = RobustRandom.NextFloat(component.LeakRateRange.X, component.LeakRateRange.Y);
+        var moles = RobustRandom.NextFloat(component.LeakMolesRange.X, component.LeakMolesRange.Y);
+        Comp<StationEventComponent>(uid).EndTime = Timing.CurTime + TimeSpan.FromSeconds(moles / component.LeakRate) + TimeSpan.FromSeconds(1);
     }
 
     protected override void ActiveTick(EntityUid uid, ESGasLeakRuleComponent component, GameRuleComponent gameRule, float frameTime)

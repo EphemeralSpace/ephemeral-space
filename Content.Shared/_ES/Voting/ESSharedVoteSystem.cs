@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Shared._ES.Voting.Components;
+using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.EntityTable;
+using Robust.Shared.Collections;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -18,6 +20,7 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedAtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
     [Dependency] private readonly SharedPvsOverrideSystem _pvsOverride = default!;
 
@@ -36,6 +39,7 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
 
         InitializeOptions();
         InitializeResults();
+        InitializeSynchronized();
     }
 
     private void OnVoteMapInit(Entity<ESVoteComponent> ent, ref MapInitEvent args)
@@ -116,8 +120,8 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
         var result = _random.Pick(winningOptions);
         SendVoteResultAnnouncement(ent, result);
 
-        var ev = new ESVoteCompletedEvent(result);
-        RaiseLocalEvent(ent, ref ev);
+        var ev = new ESVoteCompletedEvent(ent, result);
+        RaiseLocalEvent(ent, ref ev, true);
 
         PredictedQueueDel(ent);
     }
@@ -140,12 +144,18 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        var votes = new ValueList<Entity<ESVoteComponent>>();
         var query = EntityQueryEnumerator<ESVoteComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
             if (_timing.CurTime < comp.EndTime)
                 continue;
-            EndVote((uid, comp));
+            votes.Add((uid, comp));
+        }
+
+        foreach (var vote in votes)
+        {
+            EndVote(vote);
         }
     }
 }

@@ -24,6 +24,8 @@
       max: 65
 
 # Event Prototypes
+
+## Breaker Flip
 - type: entity
   parent: ESBaseStationEvent
   id: ESStationEventBreakerFlip
@@ -31,6 +33,7 @@
   components:
   - type: BreakerFlipRule
 
+## Gas Leak
 - type: entity
   parent: ESBaseStationEvent
   id: ESStationEventGasLeak
@@ -40,7 +43,37 @@
     startAnnouncement: station-event-gas-leak-start-announcement
     endAnnouncement: station-event-gas-leak-end-announcement
   - type: ESGasLeakRule
+  - type: ESSynchronizedVoteManager
+    votes:
+    - ESVoteGasLeakGases
+    - ESVoteGasLeakLocation
 
+- type: entity
+  id: ESVoteGasLeakGases
+  name: Which Gas Will Leak?
+  components:
+  - type: ESVote
+    queryString: es-voter-query-string-gas-leak-gas
+    duration: 15
+  - type: ESGasVote
+    gases:
+    - Ammonia
+    - Plasma
+    - Tritium
+    - Frezon
+    - WaterVapor # The Fog...
+    count: 2
+
+- type: entity
+  id: ESVoteGasLeakLocation
+  name: Where Will the Gas Leak?
+  components:
+  - type: ESVote
+    queryString: es-voter-query-string-gas-leak-location
+    duration: 15
+  - type: ESGasVentVote
+
+## Power Grid Check
 - type: entity
   parent: ESBaseStationEvent
   id: ESStationEventPowerGridCheck
@@ -57,6 +90,7 @@
     maxDuration: 120
   - type: PowerGridCheckRule
 
+## Solar Flare
 - type: entity
   parent: ESBaseStationEvent
   id: ESStationEventSolarFlare
@@ -83,6 +117,7 @@
     lightBreakChancePerSecond: 0.0003
     doorToggleChancePerSecond: 0.001
 
+## Vent Clog
 - type: entity
   parent: ESBaseStationEventDelayed
   id: ESStationEventVentClog
@@ -92,6 +127,7 @@
     startAnnouncement: station-event-vent-clog-start-announcement
   - type: VentClogRule
 
+## Meteor Swarm
 - type: entity
   parent: ESBaseStationEventDelayed
   id: ESStationEventMeteorSwarm
@@ -104,6 +140,7 @@
     meteors:
       ESMeteor: 1
 
+## Space Dust
 - type: entity
   parent: ESBaseStationEventDelayed
   id: ESStationEventSpaceDust
