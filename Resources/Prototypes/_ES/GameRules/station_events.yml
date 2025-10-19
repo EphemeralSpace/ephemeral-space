@@ -50,7 +50,7 @@
 
 - type: entity
   id: ESVoteGasLeakGases
-  name: Which Gas Will Leak?
+  name: Which gas should leak?
   components:
   - type: ESVote
     queryString: es-voter-query-string-gas-leak-gas
