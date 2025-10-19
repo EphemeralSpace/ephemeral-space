@@ -54,7 +54,7 @@
   components:
   - type: ESVote
     queryString: es-voter-query-string-gas-leak-gas
-    duration: 15
+    duration: 30
   - type: ESGasVote
     gases:
     - Ammonia
@@ -70,7 +70,7 @@
   components:
   - type: ESVote
     queryString: es-voter-query-string-gas-leak-location
-    duration: 15
+    duration: 30
   - type: ESGasVentVote
 
 ## Power Grid Check
