@@ -8,7 +8,7 @@ namespace Content.Shared._ES.Voting.Components;
 
 /// <summary>
 /// This is used for an entity which spawns multiple child <see cref="ESVoteComponent"/> entities.
-/// These votes are run in tandem and, when completed,
+/// These votes are run in tandem and, when completed, raise an event to handle combined behavior.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(ESSharedVoteSystem))]
