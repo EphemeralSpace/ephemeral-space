@@ -66,7 +66,7 @@
 
 - type: entity
   id: ESVoteGasLeakLocation
-  name: Where Will the Gas Leak?
+  name: Where should the gas leak?
   components:
   - type: ESVote
     queryString: es-voter-query-string-gas-leak-location
