@@ -14,7 +14,7 @@ public sealed partial class ESGreyTideVirusComponent : Component
     /// Entities with this access level will be interfered with.
     /// </summary>
     [DataField]
-    public ProtoId<AccessGroupPrototype> AccessGroup;
+    public ProtoId<AccessGroupPrototype> AccessGroup = "Research";
 
     /// <summary>
     /// Entities with this access level will be ignored.
