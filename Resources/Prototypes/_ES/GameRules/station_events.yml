@@ -23,6 +23,20 @@
       min: 55
       max: 65
 
+# General Tables for Station Events
+- type: entityTable
+  id: ESStationEvents
+  table:
+    all:
+    - id: ESStationEventBreakerFlip
+    - id: ESStationEventGasLeak
+    - id: ESStationEventGreyTideVirus
+    - id: ESStationEventPowerGridCheck
+    - id: ESStationEventSolarFlare
+    - id: ESStationEventVentClog
+    - id: ESStationEventMeteorSwarm
+    - id: ESStationEventSpaceDust
+
 # Event Prototypes
 
 ## Breaker Flip
@@ -72,6 +86,38 @@
     queryString: es-voter-query-string-gas-leak-location
     duration: 30
   - type: ESGasVentVote
+
+## Grey Tide Virus
+- type: entity
+  parent: ESBaseStationEventDelayed
+  id: ESStationEventGreyTideVirus
+  name: Grey Tide Virus
+  components:
+  - type: StationEvent
+    maxOccurrences: 2
+  - type: ESGreyTideVirus
+    blacklist:
+    - External
+  - type: ESSynchronizedVoteManager
+    votes:
+    - ESVoteGreyTideVirusAccess
+
+- type: entity
+  id: ESVoteGreyTideVirusAccess
+  name: Which department should be compromised?
+  components:
+  - type: ESVote
+    queryString: es-voter-query-string-grey-tide-access
+    duration: 30
+  - type: ESAccessGroupVote
+    options:
+    - Cargo
+    - Command
+    - Engineering
+    - Research
+    - Security
+    - Service
+    count: 2
 
 ## Power Grid Check
 - type: entity

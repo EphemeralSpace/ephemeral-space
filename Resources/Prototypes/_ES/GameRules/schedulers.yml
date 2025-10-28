@@ -25,16 +25,3 @@
     queryString: es-voter-query-string-station-event
     duration: 60
   - type: ESEventVote
-
-# General Tables for Station Events
-- type: entityTable
-  id: ESStationEvents
-  table:
-    all:
-    - id: ESStationEventBreakerFlip
-    - id: ESStationEventGasLeak
-    - id: ESStationEventPowerGridCheck
-    - id: ESStationEventSolarFlare
-    - id: ESStationEventVentClog
-    - id: ESStationEventMeteorSwarm
-    - id: ESStationEventSpaceDust
