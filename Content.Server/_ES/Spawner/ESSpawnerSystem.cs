@@ -59,8 +59,11 @@ public sealed class ESSpawnerSystem : EntitySystem
 
         var tables = new List<EntityTableSelector>(ent.Comp.Tables);
         var spawnPoints = Math.Min(markers.Count, ent.Comp.Tables.Count);
-        var iterations = (int) MathF.Ceiling((float) ent.Comp.Tables.Count / spawnPoints);
+        var iterations = (int) MathF.Floor((float) ent.Comp.Tables.Count / spawnPoints);
         var picklist = new List<Entity<ESDistributedSpawnerMarkerComponent>>();
+
+        // Calculate the remainder from dividing our iterations out into spawn points
+        var extraIterations = tables.Count - iterations * spawnPoints;
 
         var spawns = new List<EntProtoId>();
         for (var i = 0; i < spawnPoints; i++)
@@ -70,8 +73,12 @@ public sealed class ESSpawnerSystem : EntitySystem
                 picklist.AddRange(markers);
             }
 
+            var adjustedIterations = extraIterations-- > 0
+                ? iterations + 1
+                : iterations;
+
             spawns.Clear();
-            for (var j = 0; j < iterations; j++)
+            for (var j = 0; j < adjustedIterations; j++)
             {
                 if (tables.Count == 0)
                     break;
