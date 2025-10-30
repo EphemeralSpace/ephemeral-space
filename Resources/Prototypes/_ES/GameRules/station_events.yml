@@ -89,7 +89,7 @@
 
 ## Grey Tide Virus
 - type: entity
-  parent: ESBaseStationEventDelayed
+  parent: ESBaseStationEvent
   id: ESStationEventGreyTideVirus
   name: Grey Tide Virus
   components:

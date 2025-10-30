@@ -64,8 +64,9 @@ public sealed class ESGreyTideVirusRule : StationEventSystem<ESGreyTideVirusComp
 
         var firelockQuery = GetEntityQuery<FirelockComponent>();
 
-        var lockQuery = EntityQueryEnumerator<LockComponent, AccessReaderComponent, TransformComponent>();
-        while (lockQuery.MoveNext(out var lockUid, out var lockComp, out var accessComp, out var xform))
+        // Unlock secure lockers
+        var lockQuery = EntityQueryEnumerator<ESGreyTideVirusTargetComponent, LockComponent, AccessReaderComponent, TransformComponent>();
+        while (lockQuery.MoveNext(out var lockUid,  out _, out var lockComp, out var accessComp, out var xform))
         {
             if (RobustRandom.Prob(component.IgnoreChance))
                 continue;
@@ -76,7 +77,7 @@ public sealed class ESGreyTideVirusRule : StationEventSystem<ESGreyTideVirusComp
 
             // check access
             // the AreAccessTagsAllowed function is a little weird because it technically has support for certain tags to be locked out of opening something
-            // which might have unintened side effects (see the comments in the function itself)
+            // which might have unintended side effects (see the comments in the function itself)
             // but no one uses that yet, so it is fine for now
             if (!_accessReader.AreAccessTagsAllowed(accessGroup.Tags, accessComp) ||
                 _accessReader.AreAccessTagsAllowed(component.Blacklist, accessComp))
@@ -85,7 +86,8 @@ public sealed class ESGreyTideVirusRule : StationEventSystem<ESGreyTideVirusComp
             _lock.Unlock(lockUid, null, lockComp);
         }
 
-        var airlockQuery = EntityQueryEnumerator<ESGreyTideVirusBoltTargetComponent, AirlockComponent, DoorComponent, TransformComponent>();
+        // Bolt open doors
+        var airlockQuery = EntityQueryEnumerator<ESGreyTideVirusTargetComponent, AirlockComponent, DoorComponent, TransformComponent>();
         while (airlockQuery.MoveNext(out var airlockUid, out _, out var airlockComp, out var doorComp, out var xform))
         {
             if (RobustRandom.Prob(component.IgnoreChance))

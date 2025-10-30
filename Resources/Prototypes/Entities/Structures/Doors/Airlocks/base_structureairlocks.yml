@@ -186,7 +186,7 @@
     - WirePanels
     - Networking
 # ES START
-  - type: ESGreyTideVirusBoltTarget
+  - type: ESGreyTideVirusTarget
 # ES END
   placement:
     mode: SnapgridCenter
