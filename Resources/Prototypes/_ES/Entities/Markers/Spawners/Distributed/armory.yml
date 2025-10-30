@@ -1,0 +1,46 @@
+- type: entity
+  id: ESSpawnerRandomDistributedArmory
+  parent: ESMarkerBase
+  name: Armory Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: gun
+    - state: rand-dist
+    - state: es
+    - state: c100
+  - type: ESDistributedSpawner
+    id: ESSpawnerArmory
+    tables:
+    - id: ESWeaponPistol9mm
+      amount: 3
+    - id: ESWeaponShotgun
+      amount: 3
+    - id: ESWeaponEnergyRifle
+      amount: 3
+    - id: ESMagazine9mm
+      amount: 3
+    - all:
+      - id: ESShotgunShellsBoxBuckshot
+      - group:
+        - id: ESShotgunShellsBoxSlug
+        - id: ESShotgunShellsBoxBeanbag
+    - all:
+      - id: ClothingOuterArmorRiot
+        amount: 2
+      - id: ClothingHeadHelmetRiot
+        amount: 2
+    offset: 0.25
+
+- type: entity
+  id: ESSpawnerMarkerDistributedArmory
+  parent: ESMarkerBase
+  name: Armory Marker
+  components:
+  - type: Sprite
+    layers:
+    - state: gun
+    - state: marker
+    - state: es
+  - type: ESDistributedSpawnerMarker
+    id: ESSpawnerArmory

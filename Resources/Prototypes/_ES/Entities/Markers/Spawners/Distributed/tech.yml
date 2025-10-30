@@ -1,0 +1,89 @@
+- type: entity
+  id: ESSpawnerRandomDistributedTechStorage
+  parent: ESMarkerBase
+  name: Tech Storage Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: id
+    - state: rand-dist
+    - state: tech
+    - state: es
+    - state: c100
+  - type: ESDistributedSpawner
+    id: ESSpawnerTechStorage
+    tables: # TODO: currently copied from upstream totes with minor pruning. eventually needs a full pass
+    # Cargo
+    - id: CargoBountyComputerCircuitboard
+    - id: CargoRequestComputerCircuitboard
+    - id: CargoSaleComputerCircuitboard
+    - id: CargoShuttleConsoleCircuitboard
+    - id: SalvageMagnetMachineCircuitboard
+    - id: SalvageJobBoardComputerCircuitboard
+    - id: MailTeleporterMachineCircuitboard
+    # Engi
+    - id: AlertsComputerCircuitboard
+    - id: AtmosMonitoringComputerCircuitboard
+    - id: PowerComputerCircuitboard
+    - id: SolarControlComputerCircuitboard
+    # Command
+    - id: StationRecordsComputerCircuitboard
+    # Med
+    - id: MedicalTechFabCircuitboard
+    # Sci
+    - id: CircuitImprinterMachineCircuitboard
+    - id: ProtolatheMachineCircuitboard
+    - id: ResearchComputerCircuitboard
+    - id: AnalysisComputerCircuitboard
+    - id: ArtifactAnalyzerMachineCircuitboard
+    # Sec
+    - id: SecurityTechFabCircuitboard
+    - id: CriminalRecordsComputerCircuitboard
+    - id: SurveillanceCameraMonitorCircuitboard
+
+- type: entity
+  id: ESSpawnerMarkerDistributedTechStorage
+  parent: ESMarkerBase
+  name: Tech Storage Marker
+  components:
+  - type: Sprite
+    layers:
+    - state: id
+    - state: marker
+    - state: tech
+    - state: es
+  - type: ESDistributedSpawnerMarker
+    id: ESSpawnerTechStorage
+
+- type: entity
+  id: ESSpawnerRandomDistributedTechStorageSecure
+  parent: ESMarkerBase
+  name: Secure Tech Storage Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: id
+    - state: rand-dist
+    - state: vault
+    - state: es
+    - state: c100
+  - type: ESDistributedSpawner
+    id: ESSpawnerSecureTechStorage
+    tables:
+    - id: IDComputerCircuitboard
+    - id: CommsComputerCircuitboard
+    - id: CrewMonitoringComputerCircuitboard
+
+- type: entity
+  id: ESSpawnerMarkerDistributedTechStorageSecure
+  parent: ESMarkerBase
+  name: Secure Tech Storage Marker
+  components:
+  - type: Sprite
+    layers:
+    - state: id
+    - state: marker
+    - state: vault
+    - state: es
+  - type: ESDistributedSpawnerMarker
+    id: ESSpawnerSecureTechStorage

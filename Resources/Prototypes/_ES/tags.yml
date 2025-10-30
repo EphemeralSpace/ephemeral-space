@@ -32,6 +32,15 @@
   id: ESSilencer
 
 - type: Tag
+  id: ESSpawnerArmory
+
+- type: Tag
+  id: ESSpawnerSecureTechStorage
+
+- type: Tag
+  id: ESSpawnerTechStorage
+
+- type: Tag
   id: ESSuitEVACaptain
 
 - type: Tag

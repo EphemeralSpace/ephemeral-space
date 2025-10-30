@@ -71,10 +71,19 @@
             "name": "emergency-biohazard"
         },
         {
+            "name": "id"
+        },
+        {
             "name": "random"
         },
         {
+            "name": "rand-dist"
+        },
+        {
             "name": "maint"
+        },
+        {
+            "name": "marker"
         },
         {
             "name": "broken"
@@ -89,13 +98,25 @@
             "name": "girder"
         },
         {
+            "name": "gun"
+        },
+        {
+            "name": "secure"
+        },
+        {
             "name": "tank"
+        },
+        {
+            "name": "tech"
         },
         {
             "name": "trash"
         },
         {
             "name": "trash-food"
+        },
+        {
+            "name": "vault"
         },
         {
             "name": "vendor-drink"
