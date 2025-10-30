@@ -1,6 +1,8 @@
-using System.Numerics;
 using Content.Server._ES.Spawner.Components;
+using Content.Shared._ES.Core.Entity;
 using Content.Shared.EntityTable;
+using Content.Shared.EntityTable.EntitySelectors;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._ES.Spawner;
@@ -33,16 +35,18 @@ public sealed class ESSpawnerSystem : EntitySystem
     {
         if (TerminatingOrDeleted(ent) || !Exists(ent))
             return;
+        if (ent.Comp.Tables.Count == 0)
+            return;
+
         var xform = Transform(ent);
 
+        _markers.Clear();
         _entityLookup.GetEntitiesInRange(xform.Coordinates, ent.Comp.Range, _markers);
         var markers = new List<Entity<ESDistributedSpawnerMarkerComponent>>();
-
         foreach (var marker in _markers)
         {
             if (marker.Comp.Id != ent.Comp.Id)
                 continue;
-
             markers.Add(marker);
         }
 
@@ -53,27 +57,32 @@ public sealed class ESSpawnerSystem : EntitySystem
         }
         _random.Shuffle(markers);
 
+        var tables = new List<EntityTableSelector>(ent.Comp.Tables);
+        var spawnPoints = Math.Min(markers.Count, ent.Comp.Tables.Count); // 4
+        var iterations = (int) MathF.Ceiling((float) ent.Comp.Tables.Count / spawnPoints); // 21f / 4
+        Log.Debug($"tableCount: {tables.Count}. spawns: {spawnPoints}. itrs: {iterations}");
         var picklist = new List<Entity<ESDistributedSpawnerMarkerComponent>>();
-        foreach (var table in ent.Comp.Tables)
+
+        var spawns = new List<EntProtoId>();
+        for (var i = 0; i < spawnPoints; i++)
         {
             if (picklist.Count == 0)
             {
                 picklist.AddRange(markers);
             }
 
-            var spawns = _entityTable.GetSpawns(table);
+            spawns.Clear();
+            for (var j = 0; j < iterations; j++)
+            {
+                if (tables.Count == 0)
+                    break;
+                var table = _random.PickAndTake(tables);
+                spawns.AddRange(_entityTable.GetSpawns(table));
+            }
+
             var marker = _random.PickAndTake(picklist);
             var coords = Transform(marker).Coordinates;
-
-            foreach (var proto in spawns)
-            {
-                // TODO: Spawn in a path, either horizontal or diagonal
-                var xOffset = _random.NextFloat(-ent.Comp.Offset, ent.Comp.Offset);
-                var yOffset = _random.NextFloat(-ent.Comp.Offset, ent.Comp.Offset);
-                var trueCoords = coords.Offset(new Vector2(xOffset, yOffset));
-
-                SpawnAtPosition(proto, trueCoords);
-            }
+            EntityManager.SpawnAtPosition(spawns, coords, ent.Comp.Strategy, ent.Comp.Offset);
         }
     }
 }

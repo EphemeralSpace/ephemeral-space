@@ -25,12 +25,11 @@
       - group:
         - id: ESShotgunShellsBoxSlug
         - id: ESShotgunShellsBoxBeanbag
-    - all:
+    - all: # intentionally alternating for spawning reasons
       - id: ClothingOuterArmorRiot
-        amount: 2
       - id: ClothingHeadHelmetRiot
-        amount: 2
-    offset: 0.25
+      - id: ClothingOuterArmorRiot
+      - id: ClothingHeadHelmetRiot
 
 - type: entity
   id: ESSpawnerMarkerDistributedArmory

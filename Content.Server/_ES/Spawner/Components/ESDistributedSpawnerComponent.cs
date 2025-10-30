@@ -1,4 +1,5 @@
 using Content.Server.Spawners.Components;
+using Content.Shared._ES.Core.Entity;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
@@ -22,7 +23,13 @@ public sealed partial class ESDistributedSpawnerComponent : Component
     /// Used to determine which nearby markers are in-range and able to be used
     /// </summary>
     [DataField]
-    public float Range = 5f;
+    public float Range = 7f;
+
+    /// <summary>
+    /// The strategy used for determining how the entities will be spawned.
+    /// </summary>
+    [DataField]
+    public ESSpawnStrategy Strategy = ESSpawnStrategy.Diagonal;
 
     /// <summary>
     /// List of tables that are used for determining what is spawned.
