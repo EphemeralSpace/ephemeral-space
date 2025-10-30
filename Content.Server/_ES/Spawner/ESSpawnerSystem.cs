@@ -58,9 +58,8 @@ public sealed class ESSpawnerSystem : EntitySystem
         _random.Shuffle(markers);
 
         var tables = new List<EntityTableSelector>(ent.Comp.Tables);
-        var spawnPoints = Math.Min(markers.Count, ent.Comp.Tables.Count); // 4
-        var iterations = (int) MathF.Ceiling((float) ent.Comp.Tables.Count / spawnPoints); // 21f / 4
-        Log.Debug($"tableCount: {tables.Count}. spawns: {spawnPoints}. itrs: {iterations}");
+        var spawnPoints = Math.Min(markers.Count, ent.Comp.Tables.Count);
+        var iterations = (int) MathF.Ceiling((float) ent.Comp.Tables.Count / spawnPoints);
         var picklist = new List<Entity<ESDistributedSpawnerMarkerComponent>>();
 
         var spawns = new List<EntProtoId>();
