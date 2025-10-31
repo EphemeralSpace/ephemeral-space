@@ -1,0 +1,104 @@
+# Door spawners
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMaintDoorVariant
+  name: Maint Door Variant Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: door
+    - state: random
+    - state: maint
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    table:
+      group:
+      - id: AirlockMaintLocked
+        weight: 1.5
+      - id: ESAirlockMaintLockedWelded
+      - id: ESAirlockMaintLockedBolted
+      - all:
+        - id: AirlockMaintLocked
+        - id: BarricadeBlock
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMaintDoorVariantImpassable
+  name: Walled Maint Door Variant Spawner
+  description: Can sometimes be a wall.
+  components:
+  - type: Sprite
+    layers:
+    - state: door
+    - state: random
+    - state: maint
+    - state: wall
+      offset: 0, -0.1875
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    table:
+      group:
+      - id: AirlockMaintLocked
+        weight: 1.5
+      - id: ESAirlockMaintLockedWelded
+      - id: ESAirlockMaintLockedBolted
+      - all:
+        - id: AirlockMaintLocked
+        - id: BarricadeBlock
+      - id: WallSolid
+      - id: SolidSecretDoor
+        weight: 0.5
+
+# Obstructions (random girders/grilles/etc.)
+- type: entity
+  id: ESSpawnerRandomMaintGirderOrGrilleSpawner
+  parent: ESSpawnerBase
+  name: Girder or Grille Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: girder
+    - state: random
+    - state: maint
+    - state: es
+    - state: c50
+  - type: EntityTableSpawner
+    table:
+      tableId: ESGirderOrGrille
+
+- type: entityTable
+  id: ESGirderOrGrille
+  table:
+    group:
+    - id: Girder
+    - id: Grille
+
+- type: entity
+  id: ESSpawnerRandomMaintObstructionSpawner
+  parent: ESSpawnerBase
+  name: Maintenance Obstruction Spawner
+  suffix: ES
+  components:
+  - type: Sprite
+    layers:
+    - state: girder
+    - state: random
+    - state: maint
+    - state: wall
+      offset: 0, -0.1875
+    - state: es
+    - state: c25
+  - type: EntityTableSpawner
+    table:
+      tableId: ESGMaintenanceObstruction
+
+- type: entityTable
+  id: ESGMaintenanceObstruction
+  table:
+    group:
+    - id: Girder
+    - id: Grille
+    - id: WallSolid
+    - id: GrilleBroken

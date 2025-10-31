@@ -9,7 +9,7 @@
   - type: Sprite
     drawdepth: Overdoors
     sprite: _ES/Markers/spawners.rsi
-    noRot: false
+    noRot: true # if your spawner needs to convey directionality, use the "directional" state
 
 - type: entity
   parent: ESMarkerBase

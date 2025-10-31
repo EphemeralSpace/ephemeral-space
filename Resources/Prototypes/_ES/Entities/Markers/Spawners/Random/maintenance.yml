@@ -1,7 +1,9 @@
+# Basic loot spawners
+# Maintenance loot spawner
 - type: entity
-  id: ESSpawnerRandomMaintStructure
+  id: ESSpawnerRandomMaintLootStructure
   parent: ESSpawnerBase
-  name: Maintenance Structure Spawner
+  name: Maintenance Loot Structure Spawner
   components:
   - type: Sprite
     layers:
@@ -12,10 +14,10 @@
       - state: c100
   - type: EntityTableSpawner
     table:
-      tableId: ESMaintenanceStructures
+      tableId: ESMaintenanceLootStructures
 
 - type: entityTable
-  id: ESMaintenanceStructures
+  id: ESMaintenanceLootStructures
   table:
     group:
     - group:
@@ -32,6 +34,7 @@
       - tableId: ESMaintenanceClosetsEmergency
         weight: 5
 
+# Exposed maint loot spawner
 - type: entity
   parent: ESSpawnerBase
   id: ESSpawnerRandomMaintLootExposed25
@@ -103,6 +106,8 @@
     table:
       tableId: ESMaintLootExposed
 
+# Stuff that is more specific but still important
+# Random tank spawner
 - type: entity
   id: ESSpawnerRandomMaintTank
   parent: ESSpawnerBase
@@ -126,6 +131,7 @@
     - id: WaterTankFull
     - id: WeldingFuelTankFull
 
+# Random maintenance canister spawner
 - type: entity
   id: ESSpawnerRandomMaintCanister
   parent: ESSpawnerBase
@@ -202,58 +208,7 @@
         weight: 0.25
       weight: 10
 
-- type: entity
-  parent: ESSpawnerBase
-  id: ESSpawnerRandomMaintDoorVariant
-  name: Maint Door Variant Spawner
-  components:
-  - type: Sprite
-    layers:
-    - state: door
-    - state: random
-    - state: maint
-    - state: es
-    - state: c100
-  - type: EntityTableSpawner
-    table:
-      group:
-      - id: AirlockMaintLocked
-        weight: 1.5
-      - id: ESAirlockMaintLockedWelded
-      - id: ESAirlockMaintLockedBolted
-      - all:
-        - id: AirlockMaintLocked
-        - id: BarricadeBlock
-
-- type: entity
-  parent: ESSpawnerBase
-  id: ESSpawnerRandomMaintDoorVariantImpassable
-  name: Walled Maint Door Variant Spawner
-  description: Can sometimes be a wall.
-  components:
-  - type: Sprite
-    layers:
-    - state: door
-    - state: random
-    - state: maint
-    - state: wall
-      offset: 0, -0.1875
-    - state: es
-    - state: c100
-  - type: EntityTableSpawner
-    table:
-      group:
-      - id: AirlockMaintLocked
-        weight: 1.5
-      - id: ESAirlockMaintLockedWelded
-      - id: ESAirlockMaintLockedBolted
-      - all:
-        - id: AirlockMaintLocked
-        - id: BarricadeBlock
-      - id: WallSolid
-      - id: SolidSecretDoor
-        weight: 0.5
-
+# Emergency closets/firelocker spawner
 - type: entity
   id: ESSpawnerRandomMaintClosetsEmergency
   parent: ESSpawnerBase
@@ -287,6 +242,7 @@
         weight: 1
       weight: 5
 
+# Tertiary closet spawner (biosuit/tools/radsuit/etc.)
 - type: entity
   id: ESSpawnerRandomMaintClosetsTertiary
   parent: ESSpawnerBase
@@ -311,7 +267,7 @@
       - id: ClosetL3Filled
         weight: 2
       - id: ClosetToolFilled
-        weight: 1
+        weight: 2
       - id: ClosetRadiationSuitFilled
         weight: 1
       weight: 95
@@ -324,6 +280,70 @@
         weight: 1
       weight: 5
 
+# Niche special-case variants
+# Closet-only maintenance loot spawner
+- type: entity
+  id: ESSpawnerRandomMaintCloset
+  parent: ESSpawnerBase
+  name: Maintenance Closet Only Spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: closet
+      - state: closet_text
+        offset: 0, -0.1875
+      - state: random
+      - state: maint
+      - state: es
+      - state: c100
+  - type: EntityTableSpawner
+    table:
+      tableId: ESMaintenanceLootStructuresClosetOnly
+
+- type: entityTable
+  id: ESMaintenanceLootStructuresClosetOnly
+  table:
+    group:
+    - group:
+      - id: ClosetMaintenanceFilledRandom
+        weight: 75
+      - tableId: ESMaintenanceClosetsTertiary
+        weight: 5
+      - tableId: ESWardrobeTypes
+        weight: 5
+      - tableId: ESMaintenanceClosetsEmergency
+        weight: 5
+
+# Crate-only maintenance loot spawner
+- type: entity
+  id: ESSpawnerRandomMaintCrate
+  parent: ESSpawnerBase
+  name: Maintenance Crate Only Spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: crate
+      - state: crate_text
+        offset: 0, -0.1875
+      - state: random
+      - state: maint
+      - state: es
+      - state: c100
+  - type: EntityTableSpawner
+    table:
+      tableId: ESMaintenanceLootStructuresCrateOnly
+
+- type: entityTable
+  id: ESMaintenanceLootStructuresCrateOnly
+  table:
+    group:
+    - group:
+      - id: ESCrateMaintenanceFilledRandom
+        weight: 70
+      - tableId: LowValueCrateTable
+        weight: 30
+
+# Tertiary or emergency closet spawner
 - type: entity
   id: ESSpawnerRandomMaintClosetsEmergencyOrTertiary
   parent: ESSpawnerBase
@@ -349,26 +369,3 @@
         weight: 3
       - tableId: ESMaintenanceClosetsTertiary
         weight: 1
-
-- type: entity
-  id: ESSpawnerRandomMaintGirderOrGrilleSpawner
-  parent: ESSpawnerBase
-  name: Girder or Grille Spawner
-  components:
-  - type: Sprite
-    layers:
-    - state: girder
-    - state: random
-    - state: maint
-    - state: es
-    - state: c50
-  - type: EntityTableSpawner
-    table:
-      tableId: ESGirderOrGrille
-
-- type: entityTable
-  id: ESGirderOrGrille
-  table:
-    group:
-    - id: Girder
-    - id: Grille

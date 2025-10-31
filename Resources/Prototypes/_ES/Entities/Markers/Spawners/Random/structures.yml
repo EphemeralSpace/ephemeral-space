@@ -180,3 +180,24 @@
         weight: 3
       - id: WallSolid
         weight: 1
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomArcadeOrPiano
+  name: Arcade Machine or Piano Spawner
+  suffix: ES, 50
+  components:
+  - type: Sprite
+    layers:
+    - state: arcade
+    - state: random
+    - state: es
+    - state: directional
+    - state: c50
+  - type: EntityTableSpawner
+    table:
+      group:
+      - id: RandomArcade
+        weight: 2
+      - id: PianoInstrument
+        weight: 1

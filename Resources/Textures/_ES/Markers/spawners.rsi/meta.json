@@ -23,6 +23,9 @@
             "name": "c30"
         },
         {
+            "name": "c33"
+        },
+        {
             "name": "c40"
         },
         {
@@ -47,6 +50,9 @@
             "name": "c100"
         },
         {
+            "name": "arcade"
+        },
+        {
             "name": "biohazard"
         },
         {
@@ -59,10 +65,20 @@
             "name": "canister-broken"
         },
         {
+            "name": "closet"
+        },
+        {
+            "name": "closet_text"
+        },
+        {
             "name": "combo"
         },
         {
             "name": "door"
+        },
+        {
+            "name": "directional",
+            "directions": 4
         },
         {
             "name": "emergency"
@@ -93,6 +109,9 @@
         },
         {
             "name": "crate"
+        },
+        {
+            "name": "crate_text"
         },
         {
             "name": "girder"

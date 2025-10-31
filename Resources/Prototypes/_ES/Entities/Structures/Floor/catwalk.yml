@@ -1,0 +1,14 @@
+# TODO move this to tiles once tile smoothing is supported
+- type: entity
+  id: ESCatwalkGrey
+  parent: Catwalk
+  name: catwalk
+  suffix: ES, grey
+  description: A catwalk for easier cable placement.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Floor/catwalk_grey.rsi
+    drawdepth: FloorTiles
+  - type: Icon
+    sprite: Structures/catwalk.rsi
+    state: catwalk_preview
