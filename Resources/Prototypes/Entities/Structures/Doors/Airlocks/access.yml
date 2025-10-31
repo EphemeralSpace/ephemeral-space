@@ -880,17 +880,6 @@
     containers:
       board: [ DoorElectronicsMaintenance ]
 
-# ES START
-- type: entity
-  parent: AirlockHatchMaintenance
-  id: ESAirlockHatchMaintenanceLocked
-  suffix: ES, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsMaintenance ]
-# ES END
-
 - type: entity
   parent: AirlockXeno
   id: AirlockXenoMaintLocked
@@ -912,8 +901,9 @@
 - type: entity
   parent: AirlockSalvageLocked
   id: AirlockMaintSalvageLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -923,8 +913,9 @@
 - type: entity
   parent: AirlockCargoLocked
   id: AirlockMaintCargoLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -934,8 +925,9 @@
 - type: entity
   parent: AirlockCommandLocked
   id: AirlockMaintCommandLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -945,8 +937,9 @@
 - type: entity
   parent: AirlockEngineeringLocked
   id: AirlockMaintEngiLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -956,8 +949,9 @@
 - type: entity
   parent: AirlockAtmosphericsLocked
   id: AirlockMaintAtmoLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -967,8 +961,9 @@
 - type: entity
   parent: AirlockBarLocked
   id: AirlockMaintBarLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -978,8 +973,9 @@
 - type: entity
   parent: AirlockBarKitchenLocked
   id: AirlockMaintBarKitchenLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -989,8 +985,9 @@
 - type: entity
   parent: AirlockChapelLocked
   id: AirlockMaintChapelLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1000,8 +997,9 @@
 - type: entity
   parent: AirlockHydroponicsLocked
   id: AirlockMaintHydroLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1011,8 +1009,9 @@
 - type: entity
   parent: AirlockJanitorLocked
   id: AirlockMaintJanitorLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1022,8 +1021,9 @@
 - type: entity
   parent: AirlockLawyerLocked
   id: AirlockMaintLawyerLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1033,8 +1033,9 @@
 - type: entity
   parent: AirlockServiceLocked
   id: AirlockMaintServiceLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1044,8 +1045,9 @@
 - type: entity
   parent: AirlockTheatreLocked
   id: AirlockMaintTheatreLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1055,8 +1057,9 @@
 - type: entity
   parent: AirlockServiceTheatreLocked
   id: AirlockMaintServiceTheatreLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1066,8 +1069,9 @@
 - type: entity
   parent: AirlockKitchenLocked
   id: AirlockMaintKitchenLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1077,8 +1081,9 @@
 - type: entity
   parent: AirlockFreezerKitchenHydroLocked
   id: AirlockMaintKitchenHydroLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1088,8 +1093,9 @@
 - type: entity
   parent: AirlockMedicalLocked
   id: AirlockMaintMedLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1099,8 +1105,9 @@
 - type: entity
   parent: AirlockMedicalMorgueLocked
   id: AirlockMedicalMorgueMaintLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1110,8 +1117,9 @@
 - type: entity
   parent: AirlockChemistryLocked
   id: AirlockMaintChemLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1121,8 +1129,9 @@
 - type: entity
   parent: AirlockScienceLocked
   id: AirlockMaintRnDLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1132,8 +1141,9 @@
 - type: entity
   parent: AirlockMedicalScienceLocked
   id: AirlockMaintRnDMedLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1143,8 +1153,9 @@
 - type: entity
   parent: AirlockSecurityLocked
   id: AirlockMaintSecLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1154,8 +1165,9 @@
 - type: entity
   parent: AirlockDetectiveLocked
   id: AirlockMaintDetectiveLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1165,8 +1177,9 @@
 - type: entity
   parent: AirlockHeadOfPersonnelLocked
   id: AirlockMaintHOPLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1176,8 +1189,9 @@
 - type: entity
   parent: AirlockCaptainLocked
   id: AirlockMaintCaptainLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1187,8 +1201,9 @@
 - type: entity
   parent: AirlockChiefEngineerLocked
   id: AirlockMaintChiefEngineerLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1198,8 +1213,9 @@
 - type: entity
   parent: AirlockChiefMedicalOfficerLocked
   id: AirlockMaintChiefMedicalOfficerLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1209,8 +1225,9 @@
 - type: entity
   parent: AirlockHeadOfSecurityLocked
   id: AirlockMaintHeadOfSecurityLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1220,8 +1237,9 @@
 - type: entity
   parent: AirlockResearchDirectorLocked
   id: AirlockMaintResearchDirectorLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1231,8 +1249,9 @@
 - type: entity
   parent: AirlockQuartermasterLocked
   id: AirlockMaintQuartermasterLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
@@ -1242,8 +1261,9 @@
 - type: entity
   parent: AirlockArmoryLocked
   id: AirlockMaintArmoryLocked
-  components:
 # ES START - hatch dept. maint airlocks
+  name: maintenance hatch
+  components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
