@@ -1,3 +1,14 @@
+# ES START
+- type: paintableGroup
+  id: ESAirlockHatch
+  time: 3
+  cost: 3
+  defaultStyle: maintenance
+  styles:
+    maintenance: AirlockHatchMaintenance
+    substation: ESAirlockHatchEngineeringLocked
+# ES END
+
 - type: paintableGroup
   id: AirlockStandard
   time: 3

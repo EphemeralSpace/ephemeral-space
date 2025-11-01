@@ -178,7 +178,9 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
   - type: Paintable
-    group: null
+# ES START
+    group: ESAirlockHatch
+# ES END
 
 - type: entity
   parent: Airlock

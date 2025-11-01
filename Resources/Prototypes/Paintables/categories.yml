@@ -3,6 +3,9 @@
   groups:
   - AirlockStandard
   - AirlockGlass
+# ES START
+  - ESAirlockHatch
+# ES END
 
 - type: paintableGroupCategory
   id: Canisters

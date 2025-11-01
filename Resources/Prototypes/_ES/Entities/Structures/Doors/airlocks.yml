@@ -10,6 +10,20 @@
     containers:
       board: [ DoorElectronicsExternal ]
 
+# Department
+
+- type: entity
+  parent: AirlockEngineeringLocked
+  id: ESAirlockHatchEngineeringLocked
+  suffix: ES, Substation, Locked
+  name: substation hatch
+  description: "An engineering hatch leading into a substation. Warning: shocking."
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Doors/Airlocks/Standard/hatch_engi.rsi
+  - type: Paintable
+    group: ESAirlockHatch
+
 # Maints Variants
 
 - type: entity
