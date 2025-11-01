@@ -5,9 +5,9 @@
   id: ESPosterAny
   table:
     group:
-    - tableId: ESPostersLegit
+    - tableId: ESPosterLegit
       weight: 1
-    - tableId: ESPostersContraband
+    - tableId: ESPosterContraband
       weight: 1
 
 - type: entityTable
