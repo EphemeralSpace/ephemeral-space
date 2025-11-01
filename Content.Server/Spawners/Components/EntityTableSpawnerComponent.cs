@@ -29,7 +29,7 @@ public sealed partial class EntityTableSpawnerComponent : Component
 
 // ES START
     /// <summary>
-    /// If true, the spawned items will inherit the direction of the spawner.
+    /// If true, the spawned items will inherit the rotation of the spawner.
     /// </summary>
     [DataField]
     public bool Directional;
