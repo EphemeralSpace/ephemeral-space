@@ -3,10 +3,6 @@
   id: ExtinguisherCabinet
   name: extinguisher cabinet
   description: A small wall mounted cabinet designed to hold a fire extinguisher.
-  # ES START
-  placement:
-    mode: SnapgridBorder
-  # ES END
   components:
     - type: Sprite
       sprite: Structures/Wallmounts/extinguisher_cabinet.rsi
