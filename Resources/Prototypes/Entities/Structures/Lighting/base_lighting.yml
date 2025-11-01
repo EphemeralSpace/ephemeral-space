@@ -145,8 +145,10 @@
     state: base
   - type: PointLight
   # ES START
-    falloff: 40
-    curveFactor: 0.75
+    color: "#FFEFE1"
+    energy: 0.9
+    falloff: 10
+    curveFactor: 0.5
   # ES END
     enabled: true
   - type: PoweredLight
@@ -276,7 +278,8 @@
       energy: 1.0
       radius: 6
       # ES START
-      falloff: 45
+      color: "#FFC392"
+      falloff: 32
       curveFactor: 1.0
       # ES END
       enabled: true
@@ -395,11 +398,11 @@
     state: base
   - type: PointLight
     enabled: true
-    radius: 5
     energy: 0.5
     softness: 3
     # ES START
-    falloff: 80
+    radius: 4
+    falloff: 60
     # ES END
     color: "#ba473f"
   - type: PoweredLight

@@ -237,8 +237,8 @@
   - type: LightBulb
     # ES START
     color: "#FFEFE1" # 5600K color temp
+    lightEnergy: 0.9
     # ES END
-    lightEnergy: 0.7
     lightRadius: 10
     lightSoftness: 1
     PowerUse: 25
