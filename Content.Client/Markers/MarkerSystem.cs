@@ -49,6 +49,7 @@ public sealed class MarkerSystem : EntitySystem
                 _sprite.LayerSetVisible((uid, sprite), layer, MarkersVisible);
             }
         }
+        // ES END
     }
 
     private void UpdateMarkers()
