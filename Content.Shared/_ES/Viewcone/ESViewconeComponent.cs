@@ -32,7 +32,7 @@ namespace Content.Shared._ES.Viewcone;
 public sealed partial class ESViewconeComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public float ConeAngle = 270f;
+    public float ConeAngle = 225f;
 
     [DataField, AutoNetworkedField]
     public float ConeFeather = 10f;

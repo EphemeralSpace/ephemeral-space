@@ -29,7 +29,7 @@ namespace Content.Shared.Movement.Components
         public const float DefaultBaseSprintSpeed = 4.5f;
 
         // ES START
-        public static Angle ESDefaultBackwardsAngle = Angle.FromDegrees(150);
+        public static Angle ESDefaultBackwardsAngle = Angle.FromDegrees(140);
         // ES END
 
         #endregion
