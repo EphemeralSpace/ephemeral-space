@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/01/2025 16:58:42
+  time: 11/01/2025 18:43:02
   entityCount: 14304
 maps:
 - 3
@@ -38993,7 +38993,7 @@ entities:
   - uid: 23
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      rot: 1.5707963267948966 rad
       pos: -3.5,-8.5
       parent: 2
 - proto: ESSpawnerRandomDistributedArmory

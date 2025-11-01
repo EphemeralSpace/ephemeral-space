@@ -185,7 +185,7 @@
   parent: ESSpawnerBase
   id: ESSpawnerRandomArcadeOrPiano
   name: Arcade Machine or Piano Spawner
-  suffix: ES, 50
+  suffix: ES
   components:
   - type: Sprite
     layers:
@@ -193,7 +193,7 @@
     - state: random
     - state: es
     - state: directional
-    - state: c50
+    - state: c100
   - type: EntityTableSpawner
     table:
       group:

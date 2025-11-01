@@ -56,6 +56,7 @@
   id: ESSpawnerRandomMaintGirderOrGrilleSpawner
   parent: ESSpawnerBase
   name: Girder or Grille Spawner
+  description: 50/50 grille or girder will be spawned
   components:
   - type: Sprite
     layers:
@@ -63,7 +64,7 @@
     - state: random
     - state: maint
     - state: es
-    - state: c50
+    - state: c100
   - type: EntityTableSpawner
     table:
       tableId: ESGirderOrGrille
@@ -79,6 +80,7 @@
   id: ESSpawnerRandomMaintObstructionSpawner
   parent: ESSpawnerBase
   name: Maintenance Obstruction Spawner
+  description: Spawns either a grille, girder, wall, or broken grille.
   suffix: ES
   components:
   - type: Sprite
@@ -89,7 +91,7 @@
     - state: wall
       offset: 0, -0.1875
     - state: es
-    - state: c25
+    - state: c100
   - type: EntityTableSpawner
     table:
       tableId: ESMaintenanceObstruction
