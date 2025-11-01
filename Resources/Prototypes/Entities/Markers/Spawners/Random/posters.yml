@@ -2,6 +2,9 @@
   parent: MarkerBase
   id: RandomPosterAny
   name: random poster spawner
+  # ES START
+  categories: [ HideSpawnMenu ]
+  # ES END
   components:
   - type: Sprite
     layers:
@@ -21,6 +24,9 @@
 - type: entity
   parent: MarkerBase
   id: RandomPosterContraband
+  # ES START
+  categories: [ HideSpawnMenu ]
+  # ES END
   name: random contraband poster spawner
   components:
   - type: Sprite
@@ -100,6 +106,9 @@
 - type: entity
   parent: MarkerBase
   id: RandomPosterLegit
+  # ES START
+  categories: [ HideSpawnMenu ]
+  # ES END
   name: random legit poster spawner
   components:
   - type: Sprite

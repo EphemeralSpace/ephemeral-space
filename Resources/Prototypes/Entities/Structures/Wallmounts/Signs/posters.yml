@@ -25,6 +25,7 @@
   - type: Marker
     layers: ["directional"]
   - type: WallMount
+    arc: 180
   # ES END
   - type: Damageable
     damageContainer: StructuralInorganic

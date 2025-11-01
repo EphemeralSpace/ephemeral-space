@@ -1,0 +1,139 @@
+# This is an ES file obviously but I'm using commenting to represent "this is changed from upstream poster spawners"
+# just for clarity's sake
+
+- type: entityTable
+  id: ESPosterAny
+  table:
+    group:
+    - tableId: ESPostersLegit
+      weight: 1
+    - tableId: ESPostersContraband
+      weight: 1
+
+- type: entityTable
+  id: ESPosterLegit
+  table:
+    group:
+    - id: PosterBroken
+    - id: PosterLegitHereForYourSafety
+    - id: PosterLegitNanotrasenLogo
+    - id: PosterLegitCleanliness
+    - id: PosterLegitHelpOthers
+    - id: PosterLegitBuild
+    - id: PosterLegitBlessThisSpess
+    - id: PosterLegitScience
+    - id: PosterLegitIan
+    - id: PosterLegitObey
+    - id: PosterLegitWalk
+    - id: PosterLegitStateLaws
+    - id: PosterLegitLoveIan
+    - id: PosterLegitSpaceCops
+    - id: PosterLegitUeNo
+    - id: PosterLegitGetYourLEGS
+    - id: PosterLegitDoNotQuestion
+    - id: PosterLegitWorkForAFuture
+    - id: PosterLegitSoftCapPopArt
+    - id: PosterLegitSafetyInternals
+    - id: PosterLegitSafetyEyeProtection
+    - id: PosterLegitSafetyReport
+    - id: PosterLegitReportCrimes
+    - id: PosterLegitIonRifle
+    - id: PosterLegitFoamForceAd
+    - id: PosterLegitCohibaRobustoAd
+    - id: PosterLegit50thAnniversaryVintageReprint
+    - id: PosterLegitFruitBowl
+    - id: PosterLegitPDAAd
+    - id: PosterLegitEnlist
+    - id: PosterLegitNanomichiAd
+    - id: PosterLegit12Gauge
+    - id: PosterLegitHighClassMartini
+    - id: PosterLegitTheOwl
+    - id: PosterLegitNoERP
+    - id: PosterLegitCarbonDioxide
+    - id: PosterLegitDickGumshue
+    - id: PosterLegitThereIsNoGasGiant
+    - id: PosterLegitJustAWeekAway
+    - id: PosterLegitSecWatch
+    - id: PosterLegitVacation
+    - id: PosterLegitRenault
+    - id: PosterLegitNTTGC
+    - id: PosterLegitSafetyMothDelam
+    - id: PosterLegitSafetyMothEpi
+    - id: PosterLegitSafetyMothPiping
+    - id: PosterLegitSafetyMothMeth
+    - id: PosterLegitSafetyMothHardhat
+    - id: PosterLegitSafetyMothSSD
+    - id: PosterLegitOppenhopper
+    - id: PosterLegitTyrone
+    - id: PosterLegitHelio
+    - id: PosterLegitBotanyFear
+
+- type: entityTable
+  id: ESPosterContraband
+  table:
+    group:
+    - id: PosterBroken
+    - id: PosterContrabandFreeTonto
+    - id: PosterContrabandAtmosiaDeclarationIndependence
+    - id: PosterContrabandFunPolice
+    - id: PosterContrabandRealExomorph
+    - id: PosterContrabandSyndicateRecruitment
+    - id: PosterContrabandClown
+    - id: PosterContrabandSmoke
+    - id: PosterContrabandGreyTide
+    - id: PosterContrabandMissingGloves
+    - id: PosterContrabandHackingGuide
+    - id: PosterContrabandRIPBadger
+    - id: PosterContrabandAmbrosiaVulgaris
+    - id: PosterContrabandDonutCorp
+    - id: PosterContrabandEAT
+    - id: PosterContrabandTools
+    - id: PosterContrabandPower
+    - id: PosterContrabandSpaceCube
+    - id: PosterContrabandCommunistState
+    - id: PosterContrabandLamarr
+    - id: PosterContrabandBorgFancy
+    - id: PosterContrabandBorgFancyv2
+    - id: PosterContrabandKosmicheskayaStantsiya
+    - id: PosterContrabandRebelsUnite
+    - id: PosterContrabandC20r
+    - id: PosterContrabandHaveaPuff
+    - id: PosterContrabandRevolver
+    - id: PosterContrabandDDayPromo
+    - id: PosterContrabandSyndicatePistol
+    - id: PosterContrabandEnergySwords
+    - id: PosterContrabandRedRum
+    - id: PosterContrabandCC64KAd
+    - id: PosterContrabandPunchShit
+    - id: PosterContrabandTheGriffin
+    - id: PosterContrabandFreeDrone
+    - id: PosterContrabandRouny
+    - id: PosterContrabandRobustSoftdrinks
+    - id: PosterContrabandShamblersJuice
+    - id: PosterContrabandPwrGame
+    - id: PosterContrabandSunkist
+    - id: PosterContrabandSpaceCola
+    - id: PosterContrabandSpaceUp
+    - id: PosterContrabandKudzu
+    - id: PosterContrabandMaskedMen
+    - id: PosterContrabandUnreadableAnnouncement
+    - id: PosterContrabandFreeSyndicateEncryptionKey
+    - id: PosterContrabandBountyHunters
+    - id: PosterContrabandTheBigGasTruth
+    - id: PosterContrabandWehWatches
+    - id: PosterContrabandVoteWeh
+    - id: PosterContrabandBeachStarYamamoto
+    - id: PosterContrabandHighEffectEngineering
+    - id: PosterContrabandNuclearDeviceInformational
+    - id: PosterContrabandRevolt
+    - id: PosterContrabandRise
+    - id: PosterContrabandMoth
+    - id: PosterContrabandCybersun600
+    - id: PosterContrabandDonk
+    - id: PosterContrabandEnlistGorlex
+    - id: PosterContrabandInterdyne
+    - id: PosterContrabandWaffleCorp
+    - id: PosterContrabandMissingSpacepen
+    - id: PosterContrabandExoAcid
+    - id: PosterContrabandExoRun
+    - id: PosterContrabandExoChomp

@@ -1,0 +1,57 @@
+- type: entity
+  parent: ESSpawnerBase
+  id: ESRandomPosterAny
+  name: random poster spawner
+  suffix: ES
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Wallmounts/posters.rsi
+      state: random_anything
+    - state: random
+    - state: combo
+    - state: es
+    - state: directional
+    - state: c100
+  - type: EntityTableSpawner
+    table:
+      tableId: ESPosterAny
+    directional: true
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESRandomPosterContraband
+  name: random contraband poster spawner
+  suffix: ES
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Wallmounts/posters.rsi
+      state: random_contraband
+    - state: random
+    - state: es
+    - state: directional
+    - state: c100
+  - type: EntityTableSpawner
+    table:
+      tableId: ESPosterContraband
+    directional: true
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESRandomPosterLegit
+  name: random legit poster spawner
+  suffix: ES
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Wallmounts/posters.rsi
+      state: random_legit
+    - state: random
+    - state: es
+    - state: directional
+    - state: c100
+  - type: EntityTableSpawner
+    table:
+      tableId: ESPosterLegit
+    directional: true

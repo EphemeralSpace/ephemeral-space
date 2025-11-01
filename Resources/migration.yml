@@ -170,8 +170,15 @@ VendingMachineRestockSecTech: ESVendingMachineRestockGlobal
 VendingMachineRestockCondimentStation: ESVendingMachineRestockGlobal
 VendingMachineRestockTankDispenser: ESVendingMachineRestockGlobal
 
-# 2024-10-31
+# 2025-10-31
 ESSpawnerRandomMaintStructure: ESSpawnerRandomMaintLootStructure
+
+# 2025-11-01
+RandomPosterLegit: ESRandomPosterLegit
+RandomPosterAny: ESRandomPosterAny
+RandomPosterContraband: ESRandomPosterContraband
+
+
 # ES END
 
 # 2023-07-03

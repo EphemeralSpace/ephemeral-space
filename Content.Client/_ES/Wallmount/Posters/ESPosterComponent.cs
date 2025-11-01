@@ -2,8 +2,11 @@ using Robust.Shared.Serialization;
 
 namespace Content.Client._ES.Wallmount.Posters;
 
-// Exists because posters currently just set a single state at the base of spritecomp
-// and because we want directional posters for directionality purposes
+
+/// <summary>
+/// Exists because posters currently just set a single state at the base of spritecomp
+/// and because we want directional posters for directionality purposes
+/// </summary>
 [RegisterComponent]
 public sealed partial class ESPosterComponent : Component
 {
@@ -12,7 +15,7 @@ public sealed partial class ESPosterComponent : Component
     public string State = default!;
 }
 
-[Serializable, NetSerializable]
+[Serializable]
 public enum ESPosterVisuals : byte
 {
     Base
