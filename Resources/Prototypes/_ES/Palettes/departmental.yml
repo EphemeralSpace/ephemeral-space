@@ -3,6 +3,7 @@
   name: Departmental (ES)
   colors:
     command: "#334E6DB0"
+    cargo: "#C089067D"
     medical: "#52B4E97D"
     green: "#9FED587D"
     yellow: "#EFB3417D"

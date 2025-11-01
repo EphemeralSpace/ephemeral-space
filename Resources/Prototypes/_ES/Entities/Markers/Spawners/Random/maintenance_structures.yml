@@ -92,10 +92,10 @@
     - state: c25
   - type: EntityTableSpawner
     table:
-      tableId: ESGMaintenanceObstruction
+      tableId: ESMaintenanceObstruction
 
 - type: entityTable
-  id: ESGMaintenanceObstruction
+  id: ESMaintenanceObstruction
   table:
     group:
     - id: Girder
