@@ -14,6 +14,7 @@ namespace Content.Server.Entry
             // ES START
             "ESInherentLight",
             "ESGenericPointLightVisualizer",
+            "ESPoster",
             // ES END
             "ConstructionGhost",
             "IconSmooth",

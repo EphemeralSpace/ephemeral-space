@@ -1,10 +1,31 @@
+# ES START
+# heavily modified file, changes all `Sprite` comps after the abstract base to `ESPoster`
+# so that we can have the directional sprite on top of posters for mapping
+# + have directional posters at all
+
 - type: entity
   parent: BaseSign
   id: PosterBase
   abstract: true
   components:
   - type: Sprite
-    sprite: Structures/Wallmounts/posters.rsi
+  # ES START
+  # TODO broken posters kind of stupid
+    snapCardinals: true
+    granularLayersRendering: true
+    layers:
+    - map: ["enum.ESPosterVisuals.Base"]
+      sprite: Structures/Wallmounts/posters.rsi
+      state: random_anything
+    - map: ["directional"]
+      sprite: _ES/Markers/spawners.rsi
+      state: directional
+      renderingStrategy: Default
+      visible: false
+  - type: Marker
+    layers: ["directional"]
+  - type: WallMount
+  # ES END
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Card
@@ -41,7 +62,7 @@
   name: broken poster
   description: "You can't make out anything from the poster's original print. It's ruined."
   components:
-  - type: Sprite
+  - type: ESPoster
     drawdepth: WallTops
     sprite: Structures/Wallmounts/posters.rsi
     state: poster_broken
@@ -64,7 +85,7 @@
   name: "Free Tonto"
   description: "A salvaged shred of a much larger flag, colors bled together and faded from age."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster1_contraband
 
 - type: entity
@@ -73,7 +94,7 @@
   name: "Atmosia Declaration of Independence"
   description: "A relic of a failed rebellion."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster2_contraband
 
 - type: entity
@@ -82,7 +103,7 @@
   name: "Fun Police"
   description: "A poster condemning the station's security forces."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster3_contraband
 
 - type: entity
@@ -91,7 +112,7 @@
   name: "Real! Exomorph"
   description: "A conspiratorial poster about dangerous alien lifeforms."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster4_contraband
 
 - type: entity
@@ -100,7 +121,7 @@
   name: "Syndicate Recruitment"
   description: "See the galaxy! Shatter corrupt megacorporations! Join today!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster5_contraband
 
 - type: entity
@@ -109,7 +130,7 @@
   name: "Clown"
   description: "Honk."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster6_contraband
 
 - type: entity
@@ -118,7 +139,7 @@
   name: "Smoke"
   description: "A poster advertising a rival corporate brand of cigarettes."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster7_contraband
 
 - type: entity
@@ -127,7 +148,7 @@
   name: "Grey Tide"
   description: "A rebellious poster symbolizing passenger solidarity."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster8_contraband
 
 - type: entity
@@ -136,7 +157,7 @@
   name: "Missing Gloves"
   description: "This poster references the uproar that followed Nanotrasen's financial cuts toward insulated-glove purchases."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster9_contraband
 
 - type: entity
@@ -145,7 +166,7 @@
   name: "Hacking Guide"
   description: "This poster details the internal workings of the common Nanotrasen airlock. Sadly, it appears out of date."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster10_contraband
 
 - type: entity
@@ -154,7 +175,7 @@
   name: "RIP Badger"
   description: "This seditious poster references Nanotrasen's genocide of a space station full of badgers."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster11_contraband
 
 - type: entity
@@ -163,7 +184,7 @@
   name: "Ambrosia Vulgaris"
   description: "This poster is lookin' pretty trippy man."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster12_contraband
 
 - type: entity
@@ -172,7 +193,7 @@
   name: "Donut Corp."
   description: "This poster is an unauthorized advertisement for Donut Corp."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster13_contraband
 
 - type: entity
@@ -181,7 +202,7 @@
   name: "EAT."
   description: "This poster promotes rank gluttony."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster14_contraband
 
 - type: entity
@@ -190,7 +211,7 @@
   name: "Tools"
   description: "This poster looks like an advertisement for tools, but is in fact a subliminal jab at the tools at CentComm."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster15_contraband
 
 - type: entity
@@ -199,7 +220,7 @@
   name: "Power"
   description: "A poster that positions the seat of power outside Nanotrasen."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster16_contraband
 
 - type: entity
@@ -208,7 +229,7 @@
   name: "Space Cube"
   description: "Ignorant of Nature's Harmonic 6 Side Space Cube Creation, the Spacemen are Dumb, Educated Singularity Stupid and Evil."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster17_contraband
 
 - type: entity
@@ -217,7 +238,7 @@
   name: "Communist State"
   description: "All hail the Communist party!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster18_contraband
 
 - type: entity
@@ -226,7 +247,7 @@
   name: "Lamarr"
   description: "This poster depicts Lamarr. Probably made by a traitorous Research Director."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster19_contraband
 
 - type: entity
@@ -235,7 +256,7 @@
   name: "Borg Fancy"
   description: "Being fancy can be for any borg, just need a suit."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster20_contraband
 
 - type: entity
@@ -244,7 +265,7 @@
   name: "Borg Fancy v2"
   description: "Borg Fancy, Now only taking the most fancy."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster21_contraband
 
 - type: entity
@@ -253,7 +274,7 @@
   name: "Kosmicheskaya Stantsiya 13 Does Not Exist"
   description: "A poster mocking CentComm's denial of the existence of the derelict station near Space Station 13."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster22_contraband
 
 - type: entity
@@ -262,7 +283,7 @@
   name: "Rebels Unite"
   description: "A poster urging the viewer to rebel against Nanotrasen."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster23_contraband
 
 - type: entity
@@ -271,7 +292,7 @@
   name: "C-20r"
   description: "A poster advertising the Scarborough Arms C-20r."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster24_contraband
 
 - type: entity
@@ -280,7 +301,7 @@
   name: "Have a Puff"
   description: "Who cares about lung cancer when you're high as a kite?"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster25_contraband
 
 - type: entity
@@ -289,7 +310,7 @@
   name: "Revolver"
   description: "Because seven shots are all you need."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster26_contraband
 
 - type: entity
@@ -298,7 +319,7 @@
   name: "D-Day Promo"
   description: "A promotional poster for some rapper."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster27_contraband
 
 - type: entity
@@ -307,7 +328,7 @@
   name: "Syndicate Pistol"
   description: "A poster advertising syndicate pistols as being 'classy as fuck'. It's covered in faded gang tags."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster28_contraband
 
 - type: entity
@@ -316,7 +337,7 @@
   name: "Energy Swords"
   description: "All the colors of the bloody murder rainbow."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster29_contraband
 
 - type: entity
@@ -325,7 +346,7 @@
   name: "Red Rum"
   description: "Looking at this poster makes you want to kill."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster30_contraband
 
 - type: entity
@@ -334,7 +355,7 @@
   name: "CC 64K Ad"
   description: "The latest portable computer from Comrade Computing, with a whole 64kB of ram!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster31_contraband
 
 - type: entity
@@ -343,7 +364,7 @@
   name: "Punch Shit"
   description: "Fight things for no reason, like a man!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster32_contraband
 
 - type: entity
@@ -352,7 +373,7 @@
   name: "The Griffin"
   description: "The Griffin commands you to be the worst you can be. Will you?"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster33_contraband
 
 - type: entity
@@ -361,7 +382,7 @@
   name: "Free Drone"
   description: "This poster commemorates the bravery of the rogue drone; once exiled, and then ultimately destroyed by CentComm."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster35_contraband
 
 - type: entity
@@ -370,7 +391,7 @@
   name: "Have You Seen Him?"
   description: "An old poster for a missing alien. Where did he run off to?"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster36_contraband
 
 - type: entity
@@ -379,7 +400,7 @@
   name: "Robust Softdrinks"
   description: "Robust Softdrinks: More robust than a toolbox to the head!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster37_contraband
 
 - type: entity
@@ -388,7 +409,7 @@
   name: "Shambler's Juice"
   description: "~Shake me up some of that Shambler's Juice!~"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster38_contraband
 
 - type: entity
@@ -397,7 +418,7 @@
   name: "Pwr Game"
   description: "The POWER that gamers CRAVE! In partnership with Vlad's Salad."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster39_contraband
 
 - type: entity
@@ -406,7 +427,7 @@
   name: "Sun-kist"
   description: "Drink the stars!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster40_contraband
 
 - type: entity
@@ -415,7 +436,7 @@
   name: "Space Cola"
   description: "Your favorite cola, in space."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster41_contraband
 
 - type: entity
@@ -424,7 +445,7 @@
   name: "Space-Up!"
   description: "Sucked out into space by the FLAVOR!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster42_contraband
 
 - type: entity
@@ -433,7 +454,7 @@
   name: "Kudzu"
   description: "A poster advertising a movie about plants. How dangerous could they possibly be?"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster43_contraband
 
 - type: entity
@@ -442,7 +463,7 @@
   name: "Masked Men"
   description: "A poster advertising a movie about some masked men."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster44_contraband
 
 - type: entity
@@ -451,7 +472,7 @@
   name: "Unreadable Announcement"
   description: "A poster announcing something by someone, oddly enough they seem to have forgotten making it readable."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster45_contraband
 
 - type: entity
@@ -460,7 +481,7 @@
   name: "Free Syndicate Encryption Key"
   description: "A poster about traitors begging for more."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster46_contraband
 
 - type: entity
@@ -469,7 +490,7 @@
   name: "Bounty Hunters"
   description: "A poster advertising bounty hunting services. \"I hear you got a problem.\""
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster47_contraband
 
 - type: entity
@@ -478,7 +499,7 @@
   name: "The Big Gas Giant Truth"
   description: "Don't believe everything you see on a poster, patriots. All the lizards at central command don't want to answer this SIMPLE QUESTION: WHERE IS THE GAS MINER MINING FROM, CENTCOMM?"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster48_contraband
 
 - type: entity
@@ -487,7 +508,7 @@
   name: "Weh Watches"
   description: "A poster depicting a loveable green lizard."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster50_contraband
 
 - type: entity
@@ -496,7 +517,7 @@
   name: "Vote Weh"
   description: "A stylish, sleek, and well illustrated poster for a \"Weh\"nderful new progressive candidate coming this election season."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster51_contraband
 
 # These 3 originally from VEEGEE
@@ -506,7 +527,7 @@
   name: "Beach Star Yamamoto!"
   description: "A wall scroll depicting an old swimming anime with girls in small swim suits. You feel more weebish the longer you look at it."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster52_contraband
 
 - type: entity
@@ -515,7 +536,7 @@
   name: "High Effect Engineering"
   description: "There are 3 shards and a singularity.  The shards are singing.  The engineers are crying."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster53_contraband
 
 - type: entity
@@ -524,7 +545,7 @@
   name: "Nuclear Device Informational"
   description: "This poster depicts an image of an old style nuclear explosive device, as well as some helpful information on what to do if one has been set. It suggests lying on the floor and crying."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster54_contraband
 
 - type: entity
@@ -533,7 +554,7 @@
   name: "Rise Up"
   description: "A poster depicting a grey shirted man holding a crowbar with the word Rise written below it."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster55_contraband
 
 - type: entity
@@ -542,7 +563,7 @@
   name: "Revolt"
   description: "Revolutionist propaganda, manufactured by the Syndicate."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster56_contraband
 
 - type: entity
@@ -551,7 +572,7 @@
   name: "Syndie Moth - Nuclear Operation"
   description: "A Syndicate-commissioned poster that uses Syndie Moth™ to tell the viewer to keep the nuclear authentication disk unsecured. \"Peace was never an option!\" No good employee would listen to this nonsense."
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster57_contraband
 
 - type: entity
@@ -560,7 +581,7 @@
   name: "Cybersun: 600 Years Commemorative Poster"
   description: "An artistic poster commemorating 600 years of continual business for Cybersun Industries."
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster58_contraband
 
 - type: entity
@@ -569,7 +590,7 @@
   name: "DONK CO. BRAND MICROWAVEABLE FOOD"
   description: "DONK CO. BRAND MICROWAVABLE FOOD: MADE BY STARVING COLLEGE STUDENTS, FOR STARVING COLLEGE STUDENTS."
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster59_contraband
 
 - type: entity
@@ -578,7 +599,7 @@
   name: "Enlist"
   description: "Enlist with the Gorlex Marauders today! See the galaxy, kill corpos, get paid!"
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster60_contraband
 
 - type: entity
@@ -587,7 +608,7 @@
   name: "Interdyne Pharmaceutics: For the Health of Humankind"
   description: "An advertisement for Interdyne Pharmaceutics' GeneClean clinics. 'Become the master of your own body!'"
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster61_contraband
 
 - type: entity
@@ -596,7 +617,7 @@
   name: "Make Mine a Waffle Corp: Fine Rifles, Economic Prices"
   description: "An old advertisement for Waffle Corp rifles. 'Better weapons, lower prices!'"
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster62_contraband
 
 - type: entity
@@ -605,7 +626,7 @@
   name: "Missing Spacepen"
   description: "This poster depicts something you will never find."
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster63_contraband
 
 - type: entity
@@ -614,7 +635,7 @@
   name: "Exomorph Warning: Acid Spit!"
   description: "This poster warns you about an exomorph's acidic spit. Not that such exomorphs are real... Right?"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster64_contraband
 
 - type: entity
@@ -623,7 +644,7 @@
   name: "Exomorph Warning: Run Away!"
   description: "This poster warns you about an athletic exomorph capable of dragging away anyone who gets caught; so don't get caught!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster65_contraband
 
 - type: entity
@@ -632,7 +653,7 @@
   name: "Exomorph Warning: Dangerous Bites!"
   description: "This poster warns you about the lethal bites exomorphs can have. Don't become an alien snack!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster66_contraband
 
 # Legit
@@ -642,7 +663,7 @@
   name: "Here For Your Safety"
   description: "A poster glorifying the station's security force."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster1_legit
 
 - type: entity
@@ -651,7 +672,7 @@
   name: "Nanotrasen Logo"
   description: "A poster depicting the Nanotrasen logo."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster2_legit
 
 - type: entity
@@ -660,7 +681,7 @@
   name: "Cleanliness"
   description: "A poster warning of the dangers of poor hygiene."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster3_legit
 
 - type: entity
@@ -669,7 +690,7 @@
   name: "Help Others"
   description: "A poster encouraging you to help fellow crewmembers."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster4_legit
 
 - type: entity
@@ -678,7 +699,7 @@
   name: "Build"
   description: "A poster glorifying the engineering team."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster5_legit
 
 - type: entity
@@ -687,7 +708,7 @@
   name: "Bless This Spess"
   description: "A poster blessing this area."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster6_legit
 
 - type: entity
@@ -696,7 +717,7 @@
   name: "Science"
   description: "A poster depicting an atom."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster7_legit
 
 - type: entity
@@ -705,7 +726,7 @@
   name: "Ian"
   description: "Arf arf. Yap."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster8_legit
 
 - type: entity
@@ -714,7 +735,7 @@
   name: "Obey"
   description: "A poster instructing the viewer to obey authority."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster9_legit
 
 - type: entity
@@ -723,7 +744,7 @@
   name: "Walk"
   description: "A poster instructing the viewer to walk instead of running."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster10_legit
 
 - type: entity
@@ -732,7 +753,7 @@
   name: "State Laws"
   description: "A poster instructing cyborgs to state their laws."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster11_legit
 
 - type: entity
@@ -741,7 +762,7 @@
   name: "Love Ian"
   description: "Ian is love, Ian is life."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster12_legit
 
 - type: entity
@@ -750,7 +771,7 @@
   name: "Space Cops."
   description: "A poster advertising the television show Space Cops."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster13_legit
 
 - type: entity
@@ -759,7 +780,7 @@
   name: "Ue No."
   description: "This thing is all in Japanese."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster14_legit
 
 - type: entity
@@ -768,7 +789,7 @@
   name: "Get Your LEGS"
   description: "LEGS: Leadership, Experience, Genius, Subordination."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster15_legit
 
 - type: entity
@@ -777,7 +798,7 @@
   name: "Do Not Question"
   description: "A poster instructing the viewer not to ask about things they aren't meant to know."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster16_legit
 
 - type: entity
@@ -786,7 +807,7 @@
   name: "Work For A Future"
   description: " A poster encouraging you to work for your future."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster17_legit
 
 - type: entity
@@ -795,7 +816,7 @@
   name: "Soft Cap Pop Art"
   description: "A poster reprint of some cheap pop art."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster18_legit
 
 - type: entity
@@ -804,7 +825,7 @@
   name: "Safety: Internals"
   description: "A poster instructing the viewer to wear internals in the rare environments where there is no oxygen or the air has been rendered toxic."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster19_legit
 
 - type: entity
@@ -813,7 +834,7 @@
   name: "Safety: Eye Protection"
   description: "A poster instructing the viewer to wear eye protection when dealing with chemicals, smoke, or bright lights."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster20_legit
 
 - type: entity
@@ -822,7 +843,7 @@
   name: "Safety: Report"
   description: "A poster instructing the viewer to report suspicious activity to the security force."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster21_legit
 
 - type: entity
@@ -831,7 +852,7 @@
   name: "Report Crimes"
   description: "A poster encouraging the swift reporting of crime or seditious behavior to station security."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster22_legit
 
 - type: entity
@@ -840,7 +861,7 @@
   name: "Ion Rifle"
   description: "A poster displaying an Ion Rifle."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster23_legit
 
 - type: entity
@@ -849,7 +870,7 @@
   name: "Foam Force Ad"
   description: "Foam Force, it's Foam or be Foamed!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster24_legit
 
 - type: entity
@@ -858,7 +879,7 @@
   name: "Cohiba Robusto Ad"
   description: "Cohiba Robusto, the classy cigar."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster25_legit
 
 - type: entity
@@ -867,7 +888,7 @@
   name: "50th Anniversary Vintage Reprint"
   description: "A reprint of a poster from 2505, commemorating the 50th Anniversary of Nanoposters Manufacturing, a subsidiary of Nanotrasen."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster26_legit
 
 - type: entity
@@ -876,7 +897,7 @@
   name: "Fruit Bowl"
   description: " Simple, yet awe-inspiring."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster27_legit
 
 - type: entity
@@ -885,7 +906,7 @@
   name: "PDA Ad"
   description: "A poster advertising the latest PDA from Nanotrasen suppliers."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster28_legit
 
 - type: entity
@@ -894,7 +915,7 @@
   name: "Enlist"
   description: "Enlist in the Nanotrasen Deathsquadron reserves today!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster29_legit
 
 - type: entity
@@ -903,7 +924,7 @@
   name: "Nanomichi Ad"
   description: " A poster advertising Nanomichi brand audio cassettes."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster30_legit
 
 - type: entity
@@ -912,7 +933,7 @@
   name: "12 gauge"
   description: "A poster boasting about the superiority of 12 gauge shotgun shells."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster31_legit
 
 - type: entity
@@ -921,7 +942,7 @@
   name: "High-Class Martini"
   description: "I told you to shake it, no stirring."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster32_legit
 
 - type: entity
@@ -930,7 +951,7 @@
   name: "The Owl"
   description: "The Owl would do his best to protect the station. Will you?"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster33_legit
 
 - type: entity
@@ -939,7 +960,7 @@
   name: "No ERP"
   description: "This poster reminds the crew that Eroticism and Pornography are banned on Nanotrasen stations."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster34_legit
 
 - type: entity
@@ -948,7 +969,7 @@
   name: "Carbon Dioxide"
   description: "This informational poster teaches the viewer what carbon dioxide is."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster35_legit
 
 - type: entity
@@ -957,7 +978,7 @@
   name: "Dick Gumshue"
   description: "A poster advertising the escapades of Dick Gumshue, mouse detective. Encouraging crew to bring the might of justice down upon wire saboteurs."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster36_legit
 
 - type: entity
@@ -966,7 +987,7 @@
   name: "There Is No Gas Giant"
   description: "Nanotrasen has issued posters, like this one, to all stations reminding them that rumours of a gas giant are false."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster37_legit
 
 - type: entity
@@ -975,7 +996,7 @@
   name: "Just a Week Away..."
   description: A poster advertising a long delayed project, it still claims it to be 'just a week away...'
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster38_legit
 
 - type: entity
@@ -984,7 +1005,7 @@
   name: "Sec is Watching You"
   description: "A poster reminding you that security is watching your every move."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster39_legit
 
 - type: entity
@@ -993,7 +1014,7 @@
   name: "Anatomy of a spessman"
   description: "A poster showing the bits and bobs that makes you... you!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster40_legit
 
 - type: entity
@@ -1002,7 +1023,7 @@
   name: "Mime Postmodern"
   description: "A postmodern depiction of a mime, superb!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster41_legit
 
 - type: entity
@@ -1011,7 +1032,7 @@
   name: "Wall-mounted Carp"
   description: "Carpe diem!"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster42_legit
 
 - type: entity
@@ -1020,7 +1041,7 @@
   name: "Safety Moth - Delamination Safety Precautions"
   description: "This informational poster uses Safety Moth™ to tell the viewer to hide in lockers when the Supermatter Crystal has delaminated, to prevent hallucinations. Evacuating might be a better strategy."
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster43_legit
 
 - type: entity
@@ -1029,7 +1050,7 @@
   name: "Safety Moth - Epinephrine"
   description: "This informational poster uses Safety Moth™ to inform the viewer to help injured/deceased crewmen with their epinephrine injectors. \"Prevent organ rot with this one simple trick!\""
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster44_legit
 
 - type: entity
@@ -1038,7 +1059,7 @@
   name: "Safety Moth - Piping"
   description: "This informational poster uses Safety Moth™ to tell atmospheric technicians correct types of piping to be used. \"Pipes, not Pumps! Proper pipe placement prevents poor performance!\""
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster45_legit
 
 - type: entity
@@ -1047,7 +1068,7 @@
   name: "Safety Moth - Methamphetamine"
   description: "This informational poster uses Safety Moth™ to tell the viewer to seek CMO approval before cooking methamphetamine. \"Stay close to the target temperature, and never go over!\" ...You shouldn't ever be making this."
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster46_legit
 
 - type: entity
@@ -1056,7 +1077,7 @@
   name: "Safety Moth - Hardhats"
   description: "This informational poster uses Safety Moth™ to tell the viewer to wear hardhats in cautious areas. \"It's like a lamp for your head!\""
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster47_legit
 
 - type: entity
@@ -1065,7 +1086,7 @@
   name: "Nanotrasen Corporate Perks: Vacation"
   description: "This informational poster provides information on some of the prizes available via the NT Corporate Perks program, including a two-week vacation for two on the resort world Idyllus."
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster48_legit
 
 - type: entity
@@ -1074,7 +1095,7 @@
   name: "Periodic Table of the Elements"
   description: "A periodic table of the elements, from Hydrogen to Oganesson, and everything inbetween."
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster49_legit
 
 - type: entity
@@ -1083,7 +1104,7 @@
   name: "Renault Poster"
   description: "Yap."
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster50_legit
 
 - type: entity
@@ -1092,7 +1113,7 @@
   name: "Nanotrasen Tactical Game Cards"
   description: "An advertisement for Nanotrasen's TCG cards: BUY MORE CARDS."
   components:
-    - type: Sprite
+    - type: ESPoster
       state: poster51_legit
 
 - type: entity
@@ -1101,7 +1122,7 @@
   name: "Safety Moth - Space Sleep Disorder"
   description: "This informational poster uses Safety Moth™ to tell the viewer about Space Sleep Disorder (SSD), a condition where the person stops reacting to things. \"Treat SSD crew with care! They might wake up at any time!\""
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster52_legit
 
 - type: entity
@@ -1110,7 +1131,7 @@
   name: "Oppenhopper"
   description: "A poster for a long-forgotten movie. It follows a group of tenacious greenhorns from the Grasshopper Sector as they defend against onslaughts of the infamous Nuclear Operatives. The tagline reads: \"Nuke Ops will continue until robustness improves.\""
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster53_legit
 
 - type: entity
@@ -1119,7 +1140,7 @@
   name: "Tyrone's Guide to Space"
   description: "A poster advertising online schooling about space. The classes listed seem to cover things from the basic usage of station equipment to complicated subjects like creating pipebombs or covering entire hallways in spacelube. A disclaimer reads \"It's never THAT bad, and at the end you might even get a tortilla.\""
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster54_legit
 
 - type: entity
@@ -1128,7 +1149,7 @@
   name: Helio Logistics ad
   description: "A poster advertising Helio Logistics and their adorable mascot. The slogan reads 'Come rain or shine, we deliver on time.'"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster55_legit
 
 - type: entity
@@ -1137,7 +1158,7 @@
   name: "Fear of hydroponics"
   description: "Think three times before opening the airlock to hydroponics, a red threat might be hiding there."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: poster56_legit
 
 #maps
@@ -1148,7 +1169,7 @@
   name: "Bagel Map"
   description: "A map of Bagel Station."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: bagelmap
 
 - type: entity
@@ -1157,7 +1178,7 @@
   name: "Delta Map"
   description: "A map of Delta Station."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: deltamap
 
 - type: entity
@@ -1166,7 +1187,7 @@
   name: "Marathon Map"
   description: "A map of Marathon Station."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: marathonmap
 
 - type: entity
@@ -1175,7 +1196,7 @@
   name: "Moose Map"
   description: "A map of Moose Station."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: moosemap
 
 - type: entity
@@ -1184,7 +1205,7 @@
   name: "Packed Map"
   description: "A map of Packed Station."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: packedmap
 
 - type: entity
@@ -1193,7 +1214,7 @@
   name: "Pillar Map"
   description: "A map of NSS Pillar."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: pillarmap
 
 - type: entity
@@ -1202,7 +1223,7 @@
   name: "Saltern Map"
   description: "A map of Saltern Station."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: salternmap
 
 - type: entity
@@ -1211,7 +1232,7 @@
   name: "Split Station Map"
   description: "A map of Split Station."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: splitmap
 
 - type: entity
@@ -1220,7 +1241,7 @@
   name: "Lighthouse Map"
   description: "A map of Lighthouse."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: lighthousemap
 
 - type: entity
@@ -1229,7 +1250,7 @@
   name: "Waystation Map"
   description: "A map of Waystation... wait isn't this packed upside down?"
   components:
-  - type: Sprite
+  - type: ESPoster
     state: waystationmap
 
 - type: entity
@@ -1238,5 +1259,5 @@
   name: "origin map"
   description: "A map of Origin Station."
   components:
-  - type: Sprite
+  - type: ESPoster
     state: originmap
