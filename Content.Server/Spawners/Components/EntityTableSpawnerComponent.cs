@@ -26,5 +26,13 @@ public sealed partial class EntityTableSpawnerComponent : Component
     /// </summary>
     [DataField]
     public bool DeleteSpawnerAfterSpawn = true;
+
+// ES START
+    /// <summary>
+    /// If true, the spawned items will inherit the rotation of the spawner.
+    /// </summary>
+    [DataField]
+    public bool Directional;
+// ES END
 }
 

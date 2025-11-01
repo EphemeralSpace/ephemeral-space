@@ -6,6 +6,9 @@ using Content.Shared.GameTicking.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+// ES START
+using Robust.Server.GameObjects;
+// ES END
 
 namespace Content.Server.Spawners.EntitySystems
 {
@@ -15,6 +18,9 @@ namespace Content.Server.Spawners.EntitySystems
         [Dependency] private readonly IRobustRandom _robustRandom = default!;
         [Dependency] private readonly GameTicker _ticker = default!;
         [Dependency] private readonly EntityTableSystem _entityTable = default!;
+// ES START
+        [Dependency] private readonly TransformSystem _esTransform = default!;
+// ES END
 
         public override void Initialize()
         {
@@ -126,7 +132,10 @@ namespace Content.Server.Spawners.EntitySystems
             if (TerminatingOrDeleted(ent) || !Exists(ent))
                 return;
 
-            var coords = Transform(ent).Coordinates;
+// ES START
+            var xform = Transform(ent);
+            var coords = xform.Coordinates;
+// ES END
 
             var spawns = _entityTable.GetSpawns(ent.Comp.Table);
             foreach (var proto in spawns)
@@ -135,7 +144,13 @@ namespace Content.Server.Spawners.EntitySystems
                 var yOffset = _robustRandom.NextFloat(-ent.Comp.Offset, ent.Comp.Offset);
                 var trueCoords = coords.Offset(new Vector2(xOffset, yOffset));
 
-                SpawnAtPosition(proto, trueCoords);
+// ES START
+                // We change the SpawnAtPosition to a Spawn with Map Coordinates.
+                // This is the same behavior internally but this lets us pass in a rotation.
+                var mapCoords = _esTransform.ToMapCoordinates(trueCoords);
+                var rotation = ent.Comp.Directional ? xform.LocalRotation : default;
+                Spawn(proto, mapCoords, rotation: rotation);
+// ES END
             }
         }
     }
