@@ -27,7 +27,13 @@ public sealed class ParallaxManager : IParallaxManager
 
     public ParallaxLayerPrepared[] GetParallaxLayers(string name)
     {
-        if (_configurationManager.GetCVar(CCVars.ParallaxLowQuality))
+        // ES START
+        // also load lq parallax on lores viewport,
+        // because default parallax has subpixel scale and it looks bad on lores viewport
+        // (lq parallax just isnt scaled)
+        if (_configurationManager.GetCVar(CCVars.ParallaxLowQuality)
+            || !_configurationManager.GetCVar(CCVars.ViewportScaleRender))
+        // ES END
         {
             return !_parallaxesLQ.TryGetValue(name, out var lq) ? Array.Empty<ParallaxLayerPrepared>() : lq;
         }
