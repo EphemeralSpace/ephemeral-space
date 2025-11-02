@@ -3,6 +3,7 @@
   mapName: 'Toast Station'
   mapPath: /Maps/_ES/toast.yml
   minPlayers: 0
+  randomRotation: false # makes space look better
   stations:
     Toast:
       stationProto: ESBaseStationNeutral
