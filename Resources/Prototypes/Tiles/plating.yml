@@ -4,7 +4,9 @@
 - type: tile
   id: Plating
   name: tiles-plating
-  sprite: /Textures/Tiles/plating.png
+  # ES START
+  sprite: /Textures/_ES/Tiles/plating.png
+  # ES END
   baseTurf: Lattice
   isSubfloor: true
   footstepSounds:
@@ -14,7 +16,9 @@
 - type: tile
   id: PlatingDamaged
   name: tiles-plating
-  sprite: /Textures/Tiles/plating_damaged.png
+  # ES START
+  sprite: /Textures/_ES/Tiles/plating_damaged.png
+  # ES END
   variants: 3
   placementVariants:
   - 1.0
@@ -29,7 +33,9 @@
 - type: tile
   id: PlatingAsteroid
   name: tiles-asteroid-plating
-  sprite: /Textures/Tiles/Asteroid/asteroid_plating.png
+  # ES START
+  sprite: /Textures/_ES/Tiles/plating_asteroid.png
+  # ES END
   baseTurf: Lattice
   isSubfloor: true
   footstepSounds:
