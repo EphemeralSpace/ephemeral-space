@@ -6,6 +6,12 @@
   name: tiles-plating
   # ES START
   sprite: /Textures/_ES/Tiles/plating.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
   # ES END
   baseTurf: Lattice
   isSubfloor: true
@@ -18,12 +24,21 @@
   name: tiles-plating
   # ES START
   sprite: /Textures/_ES/Tiles/plating_damaged.png
-  # ES END
-  variants: 3
+  variants: 12
   placementVariants:
   - 1.0
   - 1.0
   - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  # ES END
   baseTurf: Lattice
   isSubfloor: true
   footstepSounds:
