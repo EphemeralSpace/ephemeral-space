@@ -93,7 +93,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         var filteredPlayers = players.Where(s => IsPlayerValid(troupe, s)).ToList();
 
         var playerCount = _esAuditions.GetPlayerCount();
-        var targetCount = Math.Clamp(playerCount / ent.Comp.PlayersPerTargetMember, ent.Comp.MinTargetMembers, ent.Comp.MaxTargetMembers);
+        var targetCount = Math.Clamp((int)MathF.Ceiling((float) playerCount / ent.Comp.PlayersPerTargetMember), ent.Comp.MinTargetMembers, ent.Comp.MaxTargetMembers);
         var targetDiff = Math.Min(targetCount - ent.Comp.TroupeMemberMinds.Count, filteredPlayers.Count);
         if (targetDiff <= 0)
             return false;
