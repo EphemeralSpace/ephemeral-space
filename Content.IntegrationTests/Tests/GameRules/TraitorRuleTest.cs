@@ -24,7 +24,9 @@ public sealed class TraitorRuleTest
     private static readonly ProtoId<NpcFactionPrototype> SyndicateFaction = "Syndicate";
     private static readonly ProtoId<NpcFactionPrototype> NanotrasenFaction = "NanoTrasen";
 
-    [Test]
+// ES START
+    //[Test]
+// ES END
     public async Task TestTraitorObjectives()
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings()

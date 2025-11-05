@@ -81,3 +81,7 @@
     - type: GuideHelp
       guides:
       - Medical
+# ES START
+  # This is a traitor sabotage objective
+    - type: ESSabotageTarget
+# ES END

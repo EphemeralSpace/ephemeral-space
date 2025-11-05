@@ -45,18 +45,8 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
     private void OnMapInit(Entity<ESTroupeRuleComponent> ent, ref MapInitEvent args)
     {
-        var troupe = PrototypeManager.Index(ent.Comp.Troupe);
-        var objectives = _entityTable.GetSpawns(troupe.Objectives);
-
-        var dummyMind = Mind.CreateMind(null);
-
-        foreach (var objective in objectives)
-        {
-            if (!_objectives.TryCreateObjective(dummyMind, objective, out var objectiveUid))
-                continue;
-            ent.Comp.AssociatedObjectives.Add(objectiveUid.Value);
-        }
-        Del(dummyMind);
+        if (_gameTicker.RunLevel == GameRunLevel.InRound)
+            InitializeTroupeObjectives(ent);
     }
 
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev)
@@ -69,6 +59,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
     private void OnRulePlayerJobsAssigned(RulePlayerJobsAssignedEvent args)
     {
         AssignPlayersToTroupe(args.Players.ToList());
+        InitializeTroupeObjectives();
     }
 
     public void AssignPlayersToTroupe(List<ICommonSession> players)
@@ -84,6 +75,41 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         {
             Log.Warning($"Failed to assign all players to troupes! Leftover count: {players.Count}");
         }
+    }
+
+    public void InitializeTroupeObjectives()
+    {
+        var query = EntityQueryEnumerator<ESTroupeRuleComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            InitializeTroupeObjectives((uid, comp));
+        }
+    }
+
+    public void InitializeTroupeObjectives(Entity<ESTroupeRuleComponent> rule)
+    {
+        var (uid, comp) = rule;
+        var troupe = PrototypeManager.Index(comp.Troupe);
+        var objectives = _entityTable.GetSpawns(troupe.Objectives).ToList();
+        if (objectives.Count == 0)
+            return;
+        // Yes. This sucks. Yell at me when objectives aren't dogshit
+        EnsureComp<MindComponent>(uid);
+
+        var dummyMind = Mind.CreateMind(null);
+
+        foreach (var objective in objectives)
+        {
+            if (!_objectives.TryCreateObjective(dummyMind, objective, out var objectiveUid))
+                continue;
+            comp.AssociatedObjectives.Add(objectiveUid.Value);
+            foreach (var mind in comp.TroupeMemberMinds)
+            {
+                var mindComp = Comp<MindComponent>(mind);
+                Mind.AddObjective(mind, mindComp, objectiveUid.Value);
+            }
+        }
+        Del(dummyMind);
     }
 
     public bool TryAssignToTroupe(Entity<ESTroupeRuleComponent> ent, ref List<ICommonSession> players)
@@ -118,29 +144,6 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
             ApplyMask((mind, mindComp), mask.Value, ent);
         }
         return true;
-    }
-
-    public List<Entity<ESTroupeRuleComponent>> GetOrderedTroupes()
-    {
-        var troupes = new List<Entity<ESTroupeRuleComponent>>();
-        var query = EntityQueryEnumerator<ESTroupeRuleComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            if (!_gameTicker.IsGameRuleActive(uid))
-                continue;
-
-            troupes.Add((uid, comp));
-        }
-
-        troupes.Sort((a, b) =>
-        {
-            var c = a.Comp.Priority.CompareTo(b.Comp.Priority);
-            if (c != 0)
-                return c;
-            return _random.Next() % 2 == 0 ? -1 : 1; // For members of equal priority, sort them randomly.
-        });
-
-        return troupes;
     }
 
     public bool IsPlayerValid(ESTroupePrototype troupe, ICommonSession player)
@@ -181,7 +184,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         return true;
     }
 
-    public override void ApplyMask(Entity<MindComponent> mind, ProtoId<ESMaskPrototype> maskId, Entity<ESTroupeRuleComponent>? troupe)
+    public override void ApplyMask(Entity<MindComponent> mind, ProtoId<ESMaskPrototype> maskId, Entity<ESTroupeRuleComponent> troupe)
     {
         var mask = PrototypeManager.Index(maskId);
 
@@ -211,13 +214,8 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
             EntityManager.AddComponents(ownedEntity, mask.Components);
         EntityManager.AddComponents(mind, mask.MindComponents);
 
-        // TODO: eventually, this should be required.
-        if (troupe == null)
-            return;
-
-        troupe.Value.Comp.TroupeMemberMinds.Add(mind);
-
-        foreach (var objective in troupe.Value.Comp.AssociatedObjectives)
+        troupe.Comp.TroupeMemberMinds.Add(mind);
+        foreach (var objective in troupe.Comp.AssociatedObjectives)
         {
             Mind.AddObjective(mind, mind, objective);
         }

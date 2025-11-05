@@ -37,7 +37,15 @@ public sealed class ESCryptoNukeConsoleBuiState : BoundUserInterfaceState
     public List<NetCoordinates> DiskLocations = new();
 
     public List<string> Codes = new();
+
+    // This kinda sucks having to network this to all clients
+    // but there's not much else I can do really.
+    // TODO: make this unnecessary once we have better objectives
+    public bool CanHack;
 }
+
+[Serializable, NetSerializable]
+public sealed class ESHackCryptoNukeConsoleBuiMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
 public enum ESCryptoNukeConsoleUiKey : byte

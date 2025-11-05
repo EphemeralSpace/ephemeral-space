@@ -112,6 +112,9 @@
       key_slots: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
+# ES START
+  - type: ESSabotageTarget
+# ES END
 
 - type: entity
   parent: TelecomServer

@@ -177,6 +177,7 @@
   - type: GuideHelp
     guides:
     - CriminalRecords
+  - type: ESSabotageTarget
 
 - type: entity
   parent: ESBaseTabletopComputerAiAccess
@@ -299,6 +300,7 @@
       board: !type:Container
       IdCardConsole-privilegedId: !type:ContainerSlot
       IdCardConsole-targetId: !type:ContainerSlot
+  - type: ESSabotageTarget
 
 - type: entity
   parent: ESBaseTabletopComputer

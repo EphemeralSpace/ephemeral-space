@@ -8,7 +8,7 @@ namespace Content.Server._ES.Nuke;
 /// <inheritdoc/>
 public sealed class ESCryptoNukeSystem : ESSharedCryptoNukeSystem
 {
-    private void UpdateUiState(Entity<ESCryptoNukeConsoleComponent, UserInterfaceComponent> ent)
+    protected override void UpdateUiState(Entity<ESCryptoNukeConsoleComponent, UserInterfaceComponent> ent)
     {
         var state = new ESCryptoNukeConsoleBuiState();
 
@@ -28,6 +28,8 @@ public sealed class ESCryptoNukeSystem : ESSharedCryptoNukeSystem
                     state.Codes.Add(nukeComp.Code);
             }
         }
+
+        state.CanHack = ArePreRequisiteObjectivesDone();
 
         UserInterface.SetUiState((ent, ent), ESCryptoNukeConsoleUiKey.Key, state);
     }

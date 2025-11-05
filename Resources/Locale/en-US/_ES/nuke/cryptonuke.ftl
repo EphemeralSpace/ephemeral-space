@@ -1,12 +1,12 @@
 es-cryptonuke-ui-window-title = Nuclear Cryptographic Terminal
 es-cryptonuke-ui-label-compromised = [color=red][font="Monospace"]STATUS: {$state ->
-    [true] COMPROMISED
+    [true] [color=white]COMPROMISED[/color]
     *[false] NOMINAL
 }[/font][/color]
-es-cryptonuke-ui-label-code-header = [color=red][font="Monospace"]NUCLEAR CODE: {$codes}[/font][/color]
-es-cryptonuke-ui-label-code-placeholder = LOCKED
+es-cryptonuke-ui-label-code-header = [color=red][font="Monospace"]NUCLEAR CODE: [color=white]{$codes}[/color][/font][/color]
+es-cryptonuke-ui-label-code-placeholder = [color=red]LOCKED[/color]
 es-cryptonuke-ui-label-disk-header = [color=red][font="Monospace"]PINPOINTED DISK:[/font][/color]
-es-cryptonuke-ui-label-disk-fmt = [color=red][font="Monospace"]({NATURALFIXED($x, 2)}, {NATURALFIXED($y, 2)})[/font][/color]
+es-cryptonuke-ui-label-disk-fmt = [color=white][font="Monospace"]({NATURALFIXED($x, 2)}, {NATURALFIXED($y, 2)})[/font][/color]
 es-cryptonuke-ui-label-flavor = [color=red][font="Monospace"]VERIFYING TRACKING PROTOCOLS
     {""}...TRIANGULATION_PROCESS:100%
     {""}...DISK_MICROSERVICE:100%
@@ -30,5 +30,6 @@ es-cryptonuke-ui-label-flavor = [color=red][font="Monospace"]VERIFYING TRACKING 
     {""}01010011   01000101   01000101
     {""}[/font][/color]
 es-cryptonuke-ui-button-hack = Hack
+es-cryptonuke-ui-button-hack-tooltip = The syndicate's tasks aren't finished! Unable to hack.
 
 es-cryptonuke-examine-compromised = This terminal has been [color=red][bold]hacked[/color][/bold]!

@@ -10,6 +10,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
 using Content.Shared.Verbs;
 using Robust.Shared.GameStates;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -18,6 +19,7 @@ namespace Content.Shared._ES.Masks;
 public abstract class ESSharedMaskSystem : EntitySystem
 {
     [Dependency] protected readonly ISharedAdminManager AdminManager = default!;
+    [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
     [Dependency] protected readonly SharedMindSystem Mind = default!;
     [Dependency] protected readonly SharedRoleSystem Role = default!;
@@ -49,6 +51,12 @@ public abstract class ESSharedMaskSystem : EntitySystem
             !TryComp<ActorComponent>(args.Target, out var actorComp))
             return;
 
+        if (_netManager.IsClient)
+        {
+            args.ExtraCategories.Add(ESMask);
+            return;
+        }
+
         var idx = 0;
         var masks = PrototypeManager.EnumeratePrototypes<ESMaskPrototype>()
             .OrderBy(p => Loc.GetString(PrototypeManager.Index(p.Troupe).Name))
@@ -58,24 +66,27 @@ public abstract class ESSharedMaskSystem : EntitySystem
             if (mask.Abstract)
                 continue;
 
+            TryGetTroupeEntity(mask.Troupe, out var troupe);
+
             var verb = new Verb
             {
                 Category = ESMask,
                 Text = Loc.GetString("es-verb-apply-mask-name",
                     ("name", Loc.GetString(mask.Name)),
                     ("troupe", Loc.GetString(PrototypeManager.Index(mask.Troupe).Name))),
-                Message = Loc.GetString("es-verb-apply-mask-desc", ("mask", Loc.GetString(mask.Name))),
+                Message = troupe.HasValue
+                    ? Loc.GetString("es-verb-apply-mask-desc", ("mask", Loc.GetString(mask.Name)))
+                    : Loc.GetString("es-verb-tooltip-no-troupe", ("troupe", Loc.GetString(PrototypeManager.Index(mask.Troupe).Name))),
                 Priority = idx++,
                 ConfirmationPopup = true,
+                Disabled = !troupe.HasValue,
                 Act = () =>
                 {
+                    if (troupe is null)
+                        return;
                     if (!Mind.TryGetMind(actorComp.PlayerSession, out var mind, out var mindComp))
                         return;
-                    // TODO: We may need to associate these with a troupe rule ent in the future.
-                    // For now, this is just for testing and doesn't need to necessarily support everything
-                    // In a future ideal implementation, every troupe should have an associated "minimum viable rule"
-                    // such that if a given troupe does not have a corresponding rule, one can be created.
-                    ApplyMask((mind, mindComp), mask, null);
+                    ApplyMask((mind, mindComp), mask, troupe.Value);
                 },
             };
             args.Verbs.Add(verb);
@@ -169,9 +180,58 @@ public abstract class ESSharedMaskSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Variant of <see cref="TryGetTroupe(Robust.Shared.GameObjects.EntityUid,out Robust.Shared.Prototypes.ProtoId{Content.Shared._ES.Masks.ESTroupePrototype}?)"/>
+    /// </summary>
+    public ProtoId<ESTroupePrototype>? GetTroupeOrNull(EntityUid uid)
+    {
+        TryGetTroupe(uid, out var troupe);
+        return troupe;
+    }
+
+    /// <summary>
+    /// Variant of <see cref="TryGetTroupe(Robust.Shared.GameObjects.EntityUid,out Robust.Shared.Prototypes.ProtoId{Content.Shared._ES.Masks.ESTroupePrototype}?)"/>
+    /// </summary>
+    public ProtoId<ESTroupePrototype>? GetTroupeOrNull(Entity<MindComponent?> mind)
+    {
+        TryGetTroupe(mind, out var troupe);
+        return troupe;
+    }
+
+    public List<Entity<ESTroupeRuleComponent>> GetOrderedTroupes()
+    {
+        var troupes = new List<Entity<ESTroupeRuleComponent>>();
+        var query = EntityQueryEnumerator<ESTroupeRuleComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            troupes.Add((uid, comp));
+        }
+
+        return troupes
+            .OrderBy(t => t.Comp.Priority)
+            .ThenBy(t => t.Comp.PlayersPerTargetMember)
+            .ToList();
+    }
+
+    public bool TryGetTroupeEntity(ProtoId<ESTroupePrototype> proto,
+        [NotNullWhen(true)] out Entity<ESTroupeRuleComponent>? troupe)
+    {
+        troupe = null;
+        var query = EntityQueryEnumerator<ESTroupeRuleComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.Troupe != proto)
+                continue;
+            troupe = (uid, comp);
+            break;
+        }
+
+        return troupe != null;
+    }
+
     public virtual void ApplyMask(Entity<MindComponent> mind,
         ProtoId<ESMaskPrototype> maskId,
-        Entity<ESTroupeRuleComponent>? troupe)
+        Entity<ESTroupeRuleComponent> troupe)
     {
         // No Op
     }

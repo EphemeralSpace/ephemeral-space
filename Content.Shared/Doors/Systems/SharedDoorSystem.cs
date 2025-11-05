@@ -24,6 +24,9 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
+// ES START
+using Content.Shared._ES.Degradation;
+// ES END
 
 namespace Content.Shared.Doors.Systems;
 
@@ -61,6 +64,9 @@ public abstract partial class SharedDoorSystem : EntitySystem
         base.Initialize();
 
         InitializeBolts();
+// ES START
+        SubscribeLocalEvent<DoorComponent, ESUndergoDegradationEvent>(OnUndergoDegradation);
+// ES END
 
         SubscribeLocalEvent<DoorComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<DoorComponent, ComponentRemove>(OnRemove);
@@ -78,6 +84,19 @@ public abstract partial class SharedDoorSystem : EntitySystem
         SubscribeLocalEvent<DoorComponent, GetPryTimeModifierEvent>(OnPryTimeModifier);
         SubscribeLocalEvent<DoorComponent, GotEmaggedEvent>(OnEmagged);
     }
+
+// ES START
+    private void OnUndergoDegradation(Entity<DoorComponent> ent, ref ESUndergoDegradationEvent args)
+    {
+        if (args.Handled)
+            return;
+        // Don't do this if there's no power, but do it if it's bolted or locked or smth.
+        if (!_powerReceiver.IsPowered(ent.Owner) ||
+            !TryComp<DoorBoltComponent>(ent.Owner, out var bolt))
+            return;
+        args.Handled = TrySetBoltDown((ent, bolt), true, args.User, true);
+    }
+// ES END
 
     protected virtual void OnComponentInit(Entity<DoorComponent> ent, ref ComponentInit args)
     {

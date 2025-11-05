@@ -14,3 +14,16 @@
   - Warden
   - SecurityOfficer
   - Detective
+  objectives:
+    all:
+    - pick:
+        all:
+        - id: ESObjectiveTraitorKillRandom
+          amount: 2
+        - id: ESObjectiveTraitorSabotageCommunications
+        - id: ESObjectiveTraitorSabotageCrewMonitoring
+        - id: ESObjectiveTraitorSabotageIDComputer
+        - id: ESObjectiveTraitorSabotageCriminalRecords
+        - id: ESObjectiveTraitorSabotageTelecom
+      amount: 4
+    - id: ESObjectiveTraitorHackCryptoNukeConsoles

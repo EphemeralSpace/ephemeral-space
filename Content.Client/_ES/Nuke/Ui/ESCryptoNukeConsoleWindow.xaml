@@ -18,10 +18,10 @@
                     <Control MinHeight="15"/>
                     <RichTextLabel Text="{Loc 'es-cryptonuke-ui-label-disk-header'}"/>
                     <RichTextLabel Name="LocationsLabel"/>
-                    <Control MinHeight="30"/>
+                    <Control MinHeight="15"/>
                     <RichTextLabel Text="{Loc 'es-cryptonuke-ui-label-flavor'}"/>
                     <Control VerticalExpand="True"/>
-                    <Button Visible="False" Name="HackButton" Text="{Loc 'es-cryptonuke-ui-button-hack'}" VerticalAlignment="Bottom" StyleClasses="Caution"/>
+                    <Button Visible="False" Name="HackButton" Text="{Loc 'es-cryptonuke-ui-button-hack'}" VerticalAlignment="Bottom" StyleClasses="negative"/>
                 </BoxContainer>
                 <Control HorizontalExpand="True"/>
             </BoxContainer>
