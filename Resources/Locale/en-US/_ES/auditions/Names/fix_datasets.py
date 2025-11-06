@@ -66,7 +66,7 @@ def main():
         return
 
     for name_file in name_files:
-        process_name_file(name_files)
+        process_name_file(name_file)
 
 if __name__ == '__main__':
     main()
