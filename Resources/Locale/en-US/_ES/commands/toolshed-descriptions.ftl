@@ -4,6 +4,8 @@ command-description-cast-view =
     Views the relationship data of this castmember.
 command-description-cast-viewAll =
     Views the relationship data of all castmembers.
+command-description-cast-generateNames =
+    Generate random names.
 command-description-esstoreroom-viewStock =
     Displays the warehouse stock on the station, using the cached value.
 command-description-esstoreroom-calculateStock =

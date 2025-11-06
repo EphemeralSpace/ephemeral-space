@@ -8,8 +8,10 @@ using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
 using Content.Shared.Localizations;
+using Content.Shared.Preferences;
 using Content.Shared.Random.Helpers;
 using JetBrains.Annotations;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Toolshed;
 
@@ -114,6 +116,8 @@ public sealed class ESAuditionsSystem : ESSharedAuditionsSystem
 [ToolshedCommand, AdminCommand(AdminFlags.Round)]
 public sealed class CastCommand : ToolshedCommand
 {
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+
     private ESAuditionsSystem? _auditions;
 
     [CommandImplementation("generate")]
@@ -174,6 +178,21 @@ public sealed class CastCommand : ToolshedCommand
             }
 
             yield return string.Empty;
+        }
+    }
+
+    [CommandImplementation("generateNames")]
+    public IEnumerable<string> GenerateNames(int count)
+    {
+        _auditions ??= GetSys<ESAuditionsSystem>();
+
+        for (var i = 0; i < count; i++)
+        {
+            var profile = HumanoidCharacterProfile.RandomWithSpecies();
+            var species = _prototype.Index(profile.Species);
+
+            _auditions.GenerateName(profile, species);
+            yield return profile.Name;
         }
     }
 }
