@@ -234,6 +234,7 @@ es-names-first-dataset-male-231 = Plump
 es-names-first-dataset-male-232 = Hoagie
 es-names-first-dataset-male-233 = Hero
 es-names-first-dataset-male-234 = Gyro
+Jerry
 # names from collab
 es-names-first-dataset-male-235 = Burten
 es-names-first-dataset-male-236 = Scorn
