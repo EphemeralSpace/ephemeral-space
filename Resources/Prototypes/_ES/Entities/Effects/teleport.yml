@@ -9,10 +9,12 @@
     noRot: true
     loop: false
   - type: TimedDespawn
-    lifetime: 1
+    lifetime: 1.3
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/Lightning/lightningbolt.ogg
+      params:
+        variation: 0.125
   - type: PointLight
     radius: 3
     energy: 2.5
