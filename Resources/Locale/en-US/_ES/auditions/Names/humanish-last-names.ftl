@@ -268,6 +268,7 @@ es-names-last-dataset-265 = Doorknob
 es-names-last-dataset-266 = Desktop
 es-names-last-dataset-267 = Dessert
 es-names-last-dataset-268 = Microwave
+Email
 # names from collab
 es-names-last-dataset-269 = Bifel
 es-names-last-dataset-270 = Playstation
@@ -304,7 +305,7 @@ es-names-last-dataset-300 = Dugnutt
 es-names-last-dataset-301 = Gride
 es-names-last-dataset-302 = Sernandez
 es-names-last-dataset-303 = Bonzalez
-es-names-last-dataset-304 = Booner
+es-names-last-dataset-304 = Boner
 es-names-last-dataset-305 = Gluener
 es-names-last-dataset-306 = Buttermilk
 es-names-last-dataset-307 = Lottery

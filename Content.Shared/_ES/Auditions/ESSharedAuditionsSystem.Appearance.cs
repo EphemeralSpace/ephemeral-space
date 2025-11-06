@@ -142,16 +142,17 @@ public abstract partial class ESSharedAuditionsSystem
     }
 
     private const float GenderlessFirstNameChance = 0.65f; // the future is woke
-    private const float HyphenatedFirstNameChance = 0.05f;
-    private const float HyphenatedLastNameChance = 0.10f;
-    private const float AbbreviatedMiddleChance = 0.10f;
-    private const float AbbreviatedFirstMiddleChance = 0.05f;
-    private const float AbbreviatedFirstMiddleAltChance = 0.25f;
-    private const float SuffixChance = 0.05f;
-    private const float PrefixChance = 0.03f;
+    private const float DoubleFirstNameChance = 0.04f;
+    private const float HyphenatedFirstNameChance = 0.025f;
+    private const float HyphenatedLastNameChance = 0.07f;
+    private const float AbbreviatedMiddleChance = 0.15f;
+    private const float AbbreviatedFirstMiddleChance = 0.08f;
+    private const float AbbreviatedFirstMiddleAltChance = 0.35f;
+    private const float SuffixChance = 0.06f;
+    private const float PrefixChance = 0.04f;
     private const float PrefixGenderlessChance = 0.5f;
     private const float PrefixFirstNameless = 0.3f;
-    private const float LastNameless = 0.01f;
+    private const float LastNameless = 0.02f;
 
     private static readonly ProtoId<LocalizedDatasetPrototype> SuffixDataset = "ESNameSuffix";
     private static readonly ProtoId<LocalizedDatasetPrototype> PrefixGenderlessDataset = "ESNamePrefixGenderless";
@@ -206,7 +207,7 @@ public abstract partial class ESSharedAuditionsSystem
         return _random.Pick(_prototypeManager.Index(prefixDataSet));
     }
 
-    private string FirstName(LocalizedDatasetPrototype dataset)
+    private string FirstName(LocalizedDatasetPrototype dataset, bool noAbbreviatedMiddle = false)
     {
         var firstName = _random.Pick(dataset);
 
@@ -217,7 +218,7 @@ public abstract partial class ESSharedAuditionsSystem
                 ("second", _random.Pick(dataset)));
         }
 
-        if (_random.Prob(AbbreviatedMiddleChance))
+        if (_random.Prob(AbbreviatedMiddleChance) && !noAbbreviatedMiddle)
         {
             firstName = Loc.GetString("es-name-middle-abbr-fmt", ("first", firstName), ("letter", RandomFirstLetter(dataset)));
         }
@@ -227,6 +228,12 @@ public abstract partial class ESSharedAuditionsSystem
                 ? "es-name-first-middle-abbr-fmt-alt"
                 : "es-name-first-middle-abbr-fmt";
             firstName = Loc.GetString(locId, ("letter1", RandomFirstLetter(dataset)), ("letter2", RandomFirstLetter(dataset)));
+        }
+
+        // yes, this can generate some abominations
+        if (_random.Prob(DoubleFirstNameChance))
+        {
+            firstName = Loc.GetString("es-name-double-fmt", ("first", firstName), ("second", FirstName(dataset, true)));
         }
 
         return firstName;

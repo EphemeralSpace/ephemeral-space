@@ -1,4 +1,5 @@
 es-name-hyphenation-fmt = {$first}-{$second}
+es-name-double-fmt = {$first} {$second}
 es-name-middle-abbr-fmt = {$first} {$letter}.
 es-name-first-middle-abbr-fmt = {$letter1}.{$letter2}.
 es-name-first-middle-abbr-fmt-alt = {$letter1}{$letter2}
@@ -21,5 +22,5 @@ es-name-suffix-dataset-4 = I
 es-name-suffix-dataset-5 = II
 es-name-suffix-dataset-6 = III
 es-name-suffix-dataset-7 = IV
-es-name-suffix-dataset-8 = , Ph.D
+es-name-suffix-dataset-8 = Ph.D
 
