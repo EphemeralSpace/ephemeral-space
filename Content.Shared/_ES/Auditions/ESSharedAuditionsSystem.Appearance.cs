@@ -144,70 +144,109 @@ public abstract partial class ESSharedAuditionsSystem
     private const float HyphenatedFirstNameChance = 0.05f;
     private const float HyphenatedLastNameChance = 0.10f;
     private const float AbbreviatedMiddleChance = 0.10f;
-    private const float AbbreviatedFirstMiddleChance = 0.02f;
+    private const float AbbreviatedFirstMiddleChance = 0.05f;
+    private const float AbbreviatedFirstMiddleAltChance = 0.25f;
     private const float SuffixChance = 0.05f;
     private const float PrefixChance = 0.05f;
+    private const float PrefixGenderlessChance = 0.5f;
+    private const float PrefixFirstNameless = 0.7f;
     private const float LastNameless = 0.01f;
 
     private static readonly ProtoId<LocalizedDatasetPrototype> SuffixDataset = "ESNameSuffix";
-    private static readonly ProtoId<LocalizedDatasetPrototype> PrefixDataset = "ESNamePrefix";
+    private static readonly ProtoId<LocalizedDatasetPrototype> PrefixGenderlessDataset = "ESNamePrefixGenderless";
+    private static readonly ProtoId<LocalizedDatasetPrototype> PrefixMaleDataset = "ESNamePrefixMale";
+    private static readonly ProtoId<LocalizedDatasetPrototype> PrefixFemaleDataset = "ESNamePrefixFemale";
+    private static readonly ProtoId<LocalizedDatasetPrototype> PrefixNonbinaryDataset = "ESNamePrefixNonbinary";
 
     public void GenerateName(HumanoidCharacterProfile profile, SpeciesPrototype species)
     {
         var firstNameDataSet = _prototypeManager.Index(profile.Gender == Gender.Female ? species.FemaleFirstNames : species.MaleFirstNames);
         var lastNameDataSet = _prototypeManager.Index(species.LastNames);
 
-        var prefix = string.Empty;
-        var suffix = string.Empty;
-        var firstName = _random.Pick(firstNameDataSet);
-        var lastName = _random.Pick(lastNameDataSet);
+        var prefix = Prefix(profile.Gender);
+        var suffix = Suffix();
+        var firstName = FirstName(firstNameDataSet);
+        var lastName = LastName(lastNameDataSet);
+
+        if (prefix != string.Empty && _random.Prob(PrefixFirstNameless))
+            firstName = string.Empty;
+
+        if (_random.Prob(LastNameless))
+            lastName = string.Empty;
+
+        // double-spaces can occur when firstname/lastname are removed and a prefix/suffix exists
+        profile.Name = $"{prefix} {firstName} {lastName} {suffix}".Trim().Replace("  ", " ");
+    }
+
+    private string Prefix(Gender gender)
+    {
+        if (!_random.Prob(PrefixChance))
+            return string.Empty;
+
+        var prefixDataSet = gender switch
+        {
+            Gender.Male => PrefixMaleDataset,
+            Gender.Female => PrefixFemaleDataset,
+            _ => PrefixNonbinaryDataset
+        };
+
+        if (_random.Prob(PrefixGenderlessChance))
+            prefixDataSet = PrefixGenderlessDataset;
+
+        return _random.Pick(_prototypeManager.Index(prefixDataSet));
+    }
+
+    private string FirstName(LocalizedDatasetPrototype dataset)
+    {
+        var firstName = _random.Pick(dataset);
 
         if (_random.Prob(HyphenatedFirstNameChance))
         {
             firstName = Loc.GetString("es-name-hyphenation-fmt",
-                ("first", _random.Pick(firstNameDataSet)),
-                ("second", _random.Pick(firstNameDataSet)));
-        }
-
-        if (_random.Prob(HyphenatedLastNameChance))
-        {
-            lastName = Loc.GetString("es-name-hyphenation-fmt",
-                ("first", _random.Pick(lastNameDataSet)),
-                ("second", _random.Pick(lastNameDataSet)));
+                ("first", _random.Pick(dataset)),
+                ("second", _random.Pick(dataset)));
         }
 
         if (_random.Prob(AbbreviatedMiddleChance))
         {
-            firstName = Loc.GetString("es-name-middle-abbr-fmt", ("first", firstName), ("letter", RandomLetter()));
+            firstName = Loc.GetString("es-name-middle-abbr-fmt", ("first", firstName), ("letter", RandomFirstLetter(dataset)));
         }
-
-        if (_random.Prob(AbbreviatedFirstMiddleChance))
+        else if (_random.Prob(AbbreviatedFirstMiddleChance))
         {
-            firstName = Loc.GetString("es-name-first-middle-abbr-fmt", ("letter1", RandomLetter()), ("letter2", RandomLetter()));
+            var locId = _random.Prob(AbbreviatedFirstMiddleAltChance)
+                ? "es-name-first-middle-abbr-fmt-alt"
+                : "es-name-first-middle-abbr-fmt";
+            firstName = Loc.GetString(locId, ("letter1", RandomFirstLetter(dataset)), ("letter2", RandomFirstLetter(dataset)));
         }
 
-        if (_random.Prob(SuffixChance))
-        {
-            var suffixDataSet = _prototypeManager.Index(SuffixDataset);
-            suffix = _random.Pick(suffixDataSet);
-        }
-
-        if (_random.Prob(PrefixChance))
-        {
-            var prefixDataSet = _prototypeManager.Index(PrefixDataset);
-            prefix = _random.Pick(prefixDataSet);
-        }
-
-        if (_random.Prob(LastNameless))
-        {
-            lastName = string.Empty;
-        }
-
-        profile.Name = $"{prefix} {firstName} {lastName} {suffix}".Trim();
+        return firstName;
     }
 
-    private string RandomLetter()
+    private string LastName(LocalizedDatasetPrototype dataset)
     {
-        return $"{(char) _random.Next('A', 'Z')}";
+        var lastName = _random.Pick(dataset);
+
+        if (_random.Prob(HyphenatedLastNameChance))
+        {
+            lastName = Loc.GetString("es-name-hyphenation-fmt",
+                ("first", _random.Pick(dataset)),
+                ("second", _random.Pick(dataset)));
+        }
+
+        return lastName;
+    }
+
+    private string Suffix()
+    {
+        if (!_random.Prob(SuffixChance))
+            return string.Empty;
+
+        var suffixDataSet = _prototypeManager.Index(SuffixDataset);
+        return _random.Pick(suffixDataSet);
+    }
+
+    private string RandomFirstLetter(LocalizedDatasetPrototype dataset)
+    {
+        return _random.Pick(dataset).Substring(0, 1);
     }
 }

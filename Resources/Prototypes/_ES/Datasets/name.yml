@@ -2,10 +2,28 @@
   id: ESNameSuffix
   values:
     prefix: es-name-suffix-dataset-
-    count: 7
+    count: 8
 
 - type: localizedDataset
-  id: ESNamePrefix
+  id: ESNamePrefixGenderless
   values:
-    prefix: es-name-prefix-dataset-
-    count: 5
+    prefix: es-name-prefix-dataset-genderless-
+    count: 4
+
+- type: localizedDataset
+  id: ESNamePrefixMale
+  values:
+    prefix: es-name-prefix-dataset-male-
+    count: 1
+
+- type: localizedDataset
+  id: ESNamePrefixFemale
+  values:
+    prefix: es-name-prefix-dataset-female-
+    count: 2
+
+- type: localizedDataset
+  id: ESNamePrefixNonbinary
+  values:
+    prefix: es-name-prefix-dataset-nonbinary-
+    count: 1
