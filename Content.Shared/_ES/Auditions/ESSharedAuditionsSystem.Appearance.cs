@@ -142,7 +142,7 @@ public abstract partial class ESSharedAuditionsSystem
     }
 
     private const float GenderlessFirstNameChance = 0.5f; // the future is woke
-    private const float DoubleFirstNameChance = 0.04f;
+    private const float DoubleFirstNameChance = 0.025f;
     private const float HyphenatedFirstMiddleNameChance = 0.02f;
     private const float QuotedMiddleNameChance = 0.02f;
     private const float HyphenatedLastNameChance = 0.05f;
