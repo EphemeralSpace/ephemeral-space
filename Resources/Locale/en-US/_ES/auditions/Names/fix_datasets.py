@@ -35,7 +35,7 @@ def process_name_file(filepath):
 
     for line in lines[1:]:
         stripped = line.strip()
-        if not stripped or stripped[0] == '#'
+        if not stripped or stripped[0] == '#':
             new_lines.append(line)
             continue
 
