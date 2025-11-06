@@ -132,7 +132,6 @@ es-names-first-dataset-genderless-129 = Science
 es-names-first-dataset-genderless-130 = Intelligence
 es-names-first-dataset-genderless-131 = Wedge
 es-names-first-dataset-genderless-132 = Sprite
-es-names-first-dataset-genderless-133 = Fanta
 es-names-first-dataset-genderless-134 = Drink
 es-names-first-dataset-genderless-135 = Glitch
 es-names-first-dataset-genderless-136 = Pretzel
@@ -142,6 +141,9 @@ es-names-first-dataset-genderless-139 = Snack
 es-names-first-dataset-genderless-140 = Email
 es-names-first-dataset-genderless-141 = Visual
 es-names-first-dataset-genderless-142 = Dope
+Vial
+Sugar
+Slug
 # names from collab
 es-names-first-dataset-genderless-143 = Thimble
 es-names-first-dataset-genderless-144 = Grub
@@ -169,6 +171,8 @@ es-names-first-dataset-genderless-165 = Steam
 es-names-first-dataset-genderless-166 = Shift
 es-names-first-dataset-genderless-167 = Medical
 es-names-first-dataset-genderless-168 = Pluck
+Happy
+Zodiac
 # other real/fictional char names
 # spacey names
 es-names-first-dataset-genderless-169 = Terra
@@ -193,3 +197,36 @@ es-names-first-dataset-genderless-187 = Proteus
 es-names-first-dataset-genderless-188 = Thalassa
 es-names-first-dataset-genderless-189 = Nix
 es-names-first-dataset-genderless-190 = Ceres
+Vega
+Antares
+Aldebaran
+Epsilon
+Gliese
+Mu
+Procyon
+Alderamin
+Miram
+# more normal names cause we need them
+Farah
+Trinidad
+Jimin
+Krishna
+Aria
+Hinata
+Asahi
+Lee
+Tsumugi
+Koharu
+Poppy
+Yara
+Apricot
+Aubergine
+Egalite
+Liberte
+Rhubarbe
+Lyublen
+Elem
+Iskra
+Ninel
+Mels
+Minerve

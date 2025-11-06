@@ -1,5 +1,5 @@
 es-name-hyphenation-fmt = {$first}-{$second}
-es-name-double-fmt = {$first} {$second}
+es-name-normal-fmt = {$first} {$second}
 es-name-quoted-fmt = {$first} "{$second}"
 es-name-middle-abbr-fmt = {$first} {$letter}.
 es-name-first-middle-abbr-fmt = {$letter1}.{$letter2}.
@@ -25,3 +25,8 @@ es-name-suffix-dataset-6 = III
 es-name-suffix-dataset-7 = IV
 es-name-suffix-dataset-8 = Ph.D
 
+es-name-particle-dataset-1 = von
+es-name-particle-dataset-2 = van
+es-name-particle-dataset-3 = de
+es-name-particle-dataset-4 = da
+es-name-particle-dataset-5 = le

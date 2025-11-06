@@ -142,19 +142,22 @@ public abstract partial class ESSharedAuditionsSystem
     }
 
     private const float GenderlessFirstNameChance = 0.5f; // the future is woke
-    private const float DoubleFirstNameChance = 0.025f;
+    private const float DoubleFirstNameChance = 0.02f;
     private const float HyphenatedFirstMiddleNameChance = 0.02f;
     private const float QuotedMiddleNameChance = 0.02f;
     private const float HyphenatedLastNameChance = 0.05f;
     private const float AbbreviatedMiddleChance = 0.10f;
-    private const float AbbreviatedFirstMiddleChance = 0.08f;
-    private const float AbbreviatedFirstMiddleAltChance = 0.35f;
-    private const float SuffixChance = 0.03f;
-    private const float PrefixChance = 0.03f;
-    private const float PrefixGenderlessChance = 0.5f;
-    private const float PrefixFirstNameless = 0.45f;
+    private const float AbbreviatedFirstMiddleChance = 0.07f;
+    private const float AbbreviatedFirstMiddleAltChance = 0.4f;
+    private const float ParticleChance = 0.03f;
+    private const float SuffixChance = 0.04f;
+    private const float PrefixChance = 0.04f;
+    private const float PrefixGenderlessChance = 0.6f;
+    private const float PrefixFirstNameless = 0.5f;
     private const float LastNameless = 0.015f;
+    private const float FirstNameless = 0.005f;
 
+    private static readonly ProtoId<LocalizedDatasetPrototype> ParticleDataset = "ESNameParticle";
     private static readonly ProtoId<LocalizedDatasetPrototype> SuffixDataset = "ESNameSuffix";
     private static readonly ProtoId<LocalizedDatasetPrototype> PrefixGenderlessDataset = "ESNamePrefixGenderless";
     private static readonly ProtoId<LocalizedDatasetPrototype> PrefixMaleDataset = "ESNamePrefixMale";
@@ -185,6 +188,8 @@ public abstract partial class ESSharedAuditionsSystem
 
         if (_random.Prob(LastNameless))
             lastName = string.Empty;
+        else if (_random.Prob(FirstNameless))
+            firstName = string.Empty;
 
         // double-spaces can occur when firstname/lastname are removed and a prefix/suffix exists
         profile.Name = $"{prefix} {firstName} {lastName} {suffix}".Trim().Replace("  ", " ");
@@ -236,11 +241,16 @@ public abstract partial class ESSharedAuditionsSystem
                 : "es-name-first-middle-abbr-fmt";
             firstName = Loc.GetString(locId, ("letter1", RandomFirstLetter(dataset)), ("letter2", RandomFirstLetter(dataset)));
         }
+        else if (_random.Prob(ParticleChance))
+        {
+            var particleDataSet = _prototypeManager.Index(SuffixDataset);
+            firstName = Loc.GetString("es-name-normal-fmt", ("first", firstName), ("second", _random.Pick(particleDataSet)));
+        }
 
         // yes, this can generate some abominations
         if (_random.Prob(DoubleFirstNameChance))
         {
-            firstName = Loc.GetString("es-name-double-fmt", ("first", firstName), ("second", FirstName(dataset, true)));
+            firstName = Loc.GetString("es-name-normal-fmt", ("first", firstName), ("second", FirstName(dataset, true)));
         }
 
         return firstName;

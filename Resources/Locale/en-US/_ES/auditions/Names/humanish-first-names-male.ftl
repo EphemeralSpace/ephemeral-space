@@ -234,8 +234,6 @@ es-names-first-dataset-male-231 = Plump
 es-names-first-dataset-male-232 = Hoagie
 es-names-first-dataset-male-233 = Hero
 es-names-first-dataset-male-234 = Gyro
-es-names-first-dataset-male-235 = Jerry
-es-names-first-dataset-male-236 = Alistair
 es-names-first-dataset-male-237 = Dracula
 # names from collab
 es-names-first-dataset-male-238 = Burten
@@ -254,6 +252,8 @@ es-names-first-dataset-male-250 = Gregor
 es-names-first-dataset-male-251 = Cluny
 es-names-first-dataset-male-252 = Bimmy
 es-names-first-dataset-male-253 = Gub
+Gimble
+Macintosh
 # other real/fictional char names
 es-names-first-dataset-male-254 = Sherlock
 es-names-first-dataset-male-255 = Hercule
@@ -271,3 +271,49 @@ es-names-first-dataset-male-265 = Dwayne
 es-names-first-dataset-male-266 = Orion
 es-names-first-dataset-male-267 = Iapetus
 es-names-first-dataset-male-268 = Charon
+Sirius
+Altair
+Arcturus
+Rigel
+Gacrux
+# more normal names cause we need them
+es-names-first-dataset-male-235 = Jerry
+es-names-first-dataset-male-236 = Alistair
+Seojun
+Jiho
+Minjun
+Donghyeon
+Bobby
+Mohammed
+Ibrahim
+Ali
+Santiago
+Thiago
+Ram
+Riku
+Sora
+Goofy
+Amire
+Mehmet
+Yusuf
+Mikhail
+Thanasis
+Yannis
+Fionn
+Archie
+Lukass
+Dragan
+Nikola
+Artyom
+Luka
+Pol
+Oihan
+Lev
+Maksym
+Matija
+Nemanja
+Evir
+Avtomat
+Kahurangi
+Revmir
+Vilen

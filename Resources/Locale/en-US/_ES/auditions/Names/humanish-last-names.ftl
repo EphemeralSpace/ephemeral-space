@@ -35,7 +35,7 @@ es-names-last-dataset-33 = Bousum
 es-names-last-dataset-34 = Brandenburg
 es-names-last-dataset-35 = Braun
 es-names-last-dataset-36 = Briggs
-es-names-last-dataset-37 = Brindle
+es-names-last-dataset-37 = Bindle
 es-names-last-dataset-38 = Briner
 es-names-last-dataset-39 = Brown
 es-names-last-dataset-40 = Bullard
@@ -276,6 +276,13 @@ es-names-last-dataset-273 = Carseat
 es-names-last-dataset-274 = Advance
 es-names-last-dataset-275 = Soundsystem
 es-names-last-dataset-276 = Dode
+Magdalene
+Bomb
+Windows
+Linux
+Nights
+Laser
+Cannonblast
 # names from collab
 es-names-last-dataset-277 = Bifel
 es-names-last-dataset-278 = Playstation
@@ -312,7 +319,7 @@ es-names-last-dataset-308 = Dugnutt
 es-names-last-dataset-309 = Gride
 es-names-last-dataset-310 = Sernandez
 es-names-last-dataset-311 = Bonzalez
-es-names-last-dataset-312 = Boner
+es-names-last-dataset-312 = Bohner
 es-names-last-dataset-313 = Gluener
 es-names-last-dataset-314 = Buttermilk
 es-names-last-dataset-315 = Lottery
@@ -403,6 +410,10 @@ es-names-last-dataset-399 = Comtent
 es-names-last-dataset-400 = Zimble
 es-names-last-dataset-401 = Kafka
 es-names-last-dataset-402 = Gim
+Happymeal
+Subscription
+Prime
+Percentage
 # other real/fictional char names
 es-names-last-dataset-403 = Presley
 es-names-last-dataset-404 = Shakespeare
@@ -424,3 +435,41 @@ es-names-last-dataset-419 = Jekyll
 es-names-last-dataset-420 = Hyde
 # spacey names
 es-names-last-dataset-421 = Triton
+Tauri
+Persei
+Cephei
+Ceti
+Lalande
+Centauri
+Cygni
+Serpentis
+# more normal names cause we need them
+Montgomery
+Huang
+Nguyen
+Truong
+Zhao
+Yang
+Liu
+Zhang
+Liang
+Xiao
+Kim
+Gyo
+Yun
+Chae
+Seok
+Kobayashi
+Suzuki
+Watanabe
+Tanaka
+Abe
+Ogawa
+Kojima
+Miyamoto
+Ueno
+Swanhild
+Tokarev
+Kalashnikova
+Ron
+Loveletter

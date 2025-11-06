@@ -26,6 +26,12 @@
 # Ancillary stuff
 
 - type: localizedDataset
+  id: ESNameParticle
+  values:
+    prefix: es-name-particle-dataset-
+    count: 5
+
+- type: localizedDataset
   id: ESNameSuffix
   values:
     prefix: es-name-suffix-dataset-

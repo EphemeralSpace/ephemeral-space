@@ -238,3 +238,34 @@ es-names-first-dataset-female-231 = Andromeda
 es-names-first-dataset-female-232 = Juno
 es-names-first-dataset-female-233 = Vesta
 es-names-first-dataset-female-234 = Calypso
+Bellatrix
+# more normal names cause we need them
+Jude
+Yeongsuk
+Jihye
+Seoyun
+Maryam
+Fanta
+Patience
+Blessing
+Beatrice
+Marjorie
+Nagisa
+Yui
+Mio
+Siobhan
+Saoirse
+Freyja
+Linnea
+Lilja
+Ljot
+Ludovica
+Noor
+Nanao
+Astrid
+Kateryna
+Kommuna
+Serpina
+Tui
+Aroha
+Revmira
