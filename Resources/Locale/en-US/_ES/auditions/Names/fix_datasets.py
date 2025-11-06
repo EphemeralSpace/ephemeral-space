@@ -55,7 +55,7 @@ def process_name_file(filepath):
 
 def main():
     result = subprocess.run(['git', 'status'],capture_output=True,text=True,check=True)
-    if "nothing to commit" not in result:
+    if "nothing to commit" not in result.stdout:
         print("git status is not clean, commit or stash changes first")
         return
 
