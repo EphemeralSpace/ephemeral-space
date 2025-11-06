@@ -141,15 +141,15 @@ public abstract partial class ESSharedAuditionsSystem
         return (ent, mind, character);
     }
 
-    private const float GenderlessFirstNameChance = 0.5f; // the future is woke
+    private const float GenderlessFirstNameChance = 0.65f; // the future is woke
     private const float HyphenatedFirstNameChance = 0.05f;
     private const float HyphenatedLastNameChance = 0.10f;
     private const float AbbreviatedMiddleChance = 0.10f;
     private const float AbbreviatedFirstMiddleChance = 0.05f;
     private const float AbbreviatedFirstMiddleAltChance = 0.25f;
     private const float SuffixChance = 0.05f;
-    private const float PrefixChance = 0.05f;
-    private const float PrefixGenderlessChance = 0.6f;
+    private const float PrefixChance = 0.03f;
+    private const float PrefixGenderlessChance = 0.5f;
     private const float PrefixFirstNameless = 0.3f;
     private const float LastNameless = 0.01f;
 
@@ -165,7 +165,7 @@ public abstract partial class ESSharedAuditionsSystem
         {
             Gender.Male => species.MaleFirstNames,
             Gender.Female => species.FemaleFirstNames,
-            _ => species.GenderlessFirstNames,
+            _ => _random.Pick(new []{species.FemaleFirstNames, species.GenderlessFirstNames, species.MaleFirstNames}),
         });
 
         if (_random.Prob(GenderlessFirstNameChance))
