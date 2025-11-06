@@ -141,6 +141,7 @@ public abstract partial class ESSharedAuditionsSystem
         return (ent, mind, character);
     }
 
+    private const float GenderlessFirstNameChance = 0.5f; // the future is woke
     private const float HyphenatedFirstNameChance = 0.05f;
     private const float HyphenatedLastNameChance = 0.10f;
     private const float AbbreviatedMiddleChance = 0.10f;
@@ -160,7 +161,16 @@ public abstract partial class ESSharedAuditionsSystem
 
     public void GenerateName(HumanoidCharacterProfile profile, SpeciesPrototype species)
     {
-        var firstNameDataSet = _prototypeManager.Index(profile.Gender == Gender.Female ? species.FemaleFirstNames : species.MaleFirstNames);
+        var firstNameDataSet = _prototypeManager.Index(profile.Gender switch
+        {
+            Gender.Male => species.MaleFirstNames,
+            Gender.Female => species.FemaleFirstNames,
+            _ => species.GenderlessFirstNames,
+        });
+
+        if (_random.Prob(GenderlessFirstNameChance))
+            firstNameDataSet = _prototypeManager.Index(species.GenderlessFirstNames);
+
         var lastNameDataSet = _prototypeManager.Index(species.LastNames);
 
         var prefix = Prefix(profile.Gender);
@@ -187,7 +197,7 @@ public abstract partial class ESSharedAuditionsSystem
         {
             Gender.Male => PrefixMaleDataset,
             Gender.Female => PrefixFemaleDataset,
-            _ => PrefixNonbinaryDataset
+            _ => PrefixNonbinaryDataset,
         };
 
         if (_random.Prob(PrefixGenderlessChance))

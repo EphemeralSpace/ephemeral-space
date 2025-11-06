@@ -83,14 +83,22 @@ public sealed partial class SpeciesPrototype : IPrototype
     [DataField(required: true)]
     public ProtoId<SkinColorationPrototype> SkinColoration { get; private set; }
 
+    // ES START
+    // changed to default to ES lists
+    // + added genderless
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype> MaleFirstNames { get; private set; } = "NamesFirstMale";
+    public ProtoId<LocalizedDatasetPrototype> MaleFirstNames { get; private set; } = "ESNamesFirstMale";
 
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype> FemaleFirstNames { get; private set; } = "NamesFirstFemale";
+    public ProtoId<LocalizedDatasetPrototype> FemaleFirstNames { get; private set; } = "ESNamesFirstFemale";
+
+    // this doesnt mean 'Stereotypical Nonbinary Names' or whatever this just means names anyone could have.
+    [DataField]
+    public ProtoId<LocalizedDatasetPrototype> GenderlessFirstNames { get; private set; } = "ESNamesFirstGenderless";
 
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype> LastNames { get; private set; } = "NamesLast";
+    public ProtoId<LocalizedDatasetPrototype> LastNames { get; private set; } = "ESNamesLast";
+    // ES END
 
     [DataField]
     public SpeciesNaming Naming { get; private set; } = SpeciesNaming.FirstLast;
