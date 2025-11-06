@@ -223,18 +223,18 @@ es-names-first-dataset-female-221 = Zoey
 # came up with randomly
 
 # names from collab
-Mildred
-Milly
-Halimede
-Balala
-Jilt
-Garmacy
-Revolver
+es-names-first-dataset-female-222 = Mildred
+es-names-first-dataset-female-223 = Milly
+es-names-first-dataset-female-224 = Halimede
+es-names-first-dataset-female-225 = Balala
+es-names-first-dataset-female-226 = Jilt
+es-names-first-dataset-female-227 = Garmacy
+es-names-first-dataset-female-228 = Revolver
 # other real/fictional char names
-Herlock
+es-names-first-dataset-female-229 = Herlock
 # spacey names
-Aurora
-Andromeda
-Juno
-Vesta
-Calypso # ive just had this
+es-names-first-dataset-female-230 = Aurora
+es-names-first-dataset-female-231 = Andromeda
+es-names-first-dataset-female-232 = Juno
+es-names-first-dataset-female-233 = Vesta
+es-names-first-dataset-female-234 = Calypso # ive just had this
