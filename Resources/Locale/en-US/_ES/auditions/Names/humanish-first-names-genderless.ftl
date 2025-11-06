@@ -1,3 +1,4 @@
+names-first-male-dataset-17 = Alex
 names-first-female-dataset-20 = Alexandria
 names-first-female-dataset-11 = Ainsley
 names-first-female-dataset-22 = Alexis
@@ -6,10 +7,6 @@ names-first-female-dataset-51 = Ambrosine
 names-first-female-dataset-62 = Angel
 names-first-female-dataset-58 = Anahi
 names-first-female-dataset-56 = Amya
-Thud
-Boink
-Trud
-Thimble
 names-first-female-dataset-87 = Asia
 names-first-female-dataset-88 = Astor
 names-first-female-dataset-95 = Aurora
@@ -53,7 +50,6 @@ names-first-female-dataset-450 = Lacey
 names-first-female-dataset-421 = Keegan
 names-first-female-dataset-475 = Lexus
 names-first-female-dataset-489 = Lindy
-Lock
 names-first-female-dataset-492 = Logan
 names-first-female-dataset-494 = London
 names-first-female-dataset-499 = Lucian
@@ -86,3 +82,36 @@ names-first-female-dataset-743 = Trinity
 names-first-female-dataset-761 = Wisdom
 names-first-female-dataset-771 = Zune
 names-first-female-dataset-763 = Wynter
+
+names-first-male-dataset-27 = Amari
+names-first-male-dataset-39 = Apple
+names-first-male-dataset-43 = Art
+names-first-male-dataset-48 = August
+names-first-male-dataset-50 = Avery
+names-first-male-dataset-90 = Butch
+names-first-male-dataset-106 = Casey
+names-first-male-dataset-107 = Cash
+names-first-male-dataset-152 = Dallas
+names-first-male-dataset-227 = Ezekiel
+names-first-male-dataset-228 = Ezra
+names-first-male-dataset-236 = Flint
+names-first-male-dataset-237 = Flip
+names-first-male-dataset-241 = Frankie
+names-first-male-dataset-243 = Fridge
+names-first-male-dataset-244 = Fulton
+names-first-male-dataset-286 = Huffie
+names-first-male-dataset-288 = Hungry
+names-first-male-dataset-291 = Irvine
+names-first-male-dataset-323 = Jasper
+names-first-male-dataset-340 = Jemmy
+names-first-male-dataset-344 = Jerrie
+names-first-male-dataset-377 = Justice
+names-first-male-dataset-550 = River
+names-first-male-dataset-576 = Sam
+
+Margarine
+Lock
+Thud
+Bink
+Trud
+Thimble

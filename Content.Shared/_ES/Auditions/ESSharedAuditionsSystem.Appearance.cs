@@ -149,8 +149,8 @@ public abstract partial class ESSharedAuditionsSystem
     private const float AbbreviatedFirstMiddleAltChance = 0.25f;
     private const float SuffixChance = 0.05f;
     private const float PrefixChance = 0.05f;
-    private const float PrefixGenderlessChance = 0.5f;
-    private const float PrefixFirstNameless = 0.7f;
+    private const float PrefixGenderlessChance = 0.6f;
+    private const float PrefixFirstNameless = 0.3f;
     private const float LastNameless = 0.01f;
 
     private static readonly ProtoId<LocalizedDatasetPrototype> SuffixDataset = "ESNameSuffix";
