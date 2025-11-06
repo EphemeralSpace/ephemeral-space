@@ -269,6 +269,13 @@ es-names-last-dataset-266 = Desktop
 es-names-last-dataset-267 = Dessert
 es-names-last-dataset-268 = Microwave
 es-names-last-dataset-269 = Email
+Mania
+Crazy
+Dope
+Sauce
+Carseat
+Advance
+Soundsystem
 # names from collab
 es-names-last-dataset-270 = Bifel
 es-names-last-dataset-271 = Playstation
@@ -391,6 +398,11 @@ es-names-last-dataset-387 = Anger
 es-names-last-dataset-388 = Fallacy
 es-names-last-dataset-389 = Grub
 es-names-last-dataset-390 = Ducktape
+Gooball
+Comtent
+Zimble
+Kafka
+Gim
 # other real/fictional char names
 es-names-last-dataset-391 = Presley
 es-names-last-dataset-392 = Shakespeare
