@@ -141,18 +141,19 @@ public abstract partial class ESSharedAuditionsSystem
         return (ent, mind, character);
     }
 
-    private const float GenderlessFirstNameChance = 0.65f; // the future is woke
+    private const float GenderlessFirstNameChance = 0.5f; // the future is woke
     private const float DoubleFirstNameChance = 0.04f;
-    private const float HyphenatedFirstNameChance = 0.025f;
-    private const float HyphenatedLastNameChance = 0.07f;
-    private const float AbbreviatedMiddleChance = 0.15f;
+    private const float HyphenatedFirstMiddleNameChance = 0.02f;
+    private const float QuotedMiddleNameChance = 0.02f;
+    private const float HyphenatedLastNameChance = 0.05f;
+    private const float AbbreviatedMiddleChance = 0.10f;
     private const float AbbreviatedFirstMiddleChance = 0.08f;
     private const float AbbreviatedFirstMiddleAltChance = 0.35f;
-    private const float SuffixChance = 0.06f;
-    private const float PrefixChance = 0.04f;
+    private const float SuffixChance = 0.03f;
+    private const float PrefixChance = 0.03f;
     private const float PrefixGenderlessChance = 0.5f;
-    private const float PrefixFirstNameless = 0.3f;
-    private const float LastNameless = 0.02f;
+    private const float PrefixFirstNameless = 0.45f;
+    private const float LastNameless = 0.015f;
 
     private static readonly ProtoId<LocalizedDatasetPrototype> SuffixDataset = "ESNameSuffix";
     private static readonly ProtoId<LocalizedDatasetPrototype> PrefixGenderlessDataset = "ESNamePrefixGenderless";
@@ -207,18 +208,24 @@ public abstract partial class ESSharedAuditionsSystem
         return _random.Pick(_prototypeManager.Index(prefixDataSet));
     }
 
-    private string FirstName(LocalizedDatasetPrototype dataset, bool noAbbreviatedMiddle = false)
+    private string FirstName(LocalizedDatasetPrototype dataset, bool recursive = false)
     {
         var firstName = _random.Pick(dataset);
 
-        if (_random.Prob(HyphenatedFirstNameChance))
+        if (_random.Prob(HyphenatedFirstMiddleNameChance))
         {
             firstName = Loc.GetString("es-name-hyphenation-fmt",
                 ("first", _random.Pick(dataset)),
                 ("second", _random.Pick(dataset)));
         }
+        else if (_random.Prob(QuotedMiddleNameChance) && !recursive)
+        {
+            firstName = Loc.GetString("es-name-quoted-fmt",
+                ("first", _random.Pick(dataset)),
+                ("second", _random.Pick(dataset)));
+        }
 
-        if (_random.Prob(AbbreviatedMiddleChance) && !noAbbreviatedMiddle)
+        if (_random.Prob(AbbreviatedMiddleChance) && !recursive)
         {
             firstName = Loc.GetString("es-name-middle-abbr-fmt", ("first", firstName), ("letter", RandomFirstLetter(dataset)));
         }

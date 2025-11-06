@@ -235,6 +235,8 @@ es-names-first-dataset-male-232 = Hoagie
 es-names-first-dataset-male-233 = Hero
 es-names-first-dataset-male-234 = Gyro
 es-names-first-dataset-male-235 = Jerry
+Alistair
+Dracula
 # names from collab
 es-names-first-dataset-male-236 = Burten
 es-names-first-dataset-male-237 = Scorn

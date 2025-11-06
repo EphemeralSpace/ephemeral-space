@@ -1,5 +1,6 @@
 es-name-hyphenation-fmt = {$first}-{$second}
 es-name-double-fmt = {$first} {$second}
+es-name-quoted-fmt = {$first} "{$second}"
 es-name-middle-abbr-fmt = {$first} {$letter}.
 es-name-first-middle-abbr-fmt = {$letter1}.{$letter2}.
 es-name-first-middle-abbr-fmt-alt = {$letter1}{$letter2}
