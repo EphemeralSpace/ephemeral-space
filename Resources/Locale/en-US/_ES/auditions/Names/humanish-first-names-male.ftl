@@ -26,6 +26,7 @@ es-names-first-dataset-male-24 = Brick
 es-names-first-dataset-male-25 = Brock
 es-names-first-dataset-male-26 = Brodie
 es-names-first-dataset-male-27 = Bryce
+Bob
 es-names-first-dataset-male-28 = Buck
 es-names-first-dataset-male-29 = Burt
 es-names-first-dataset-male-30 = Calvin
@@ -219,11 +220,51 @@ es-names-first-dataset-male-217 = Vinny
 es-names-first-dataset-male-218 = Walter
 es-names-first-dataset-male-219 = Ward
 es-names-first-dataset-male-220 = Warner
-es-names-first-dataset-male-221 = Wayne
-es-names-first-dataset-male-222 = Whitaker
 es-names-first-dataset-male-223 = William
 es-names-first-dataset-male-224 = Willy
 es-names-first-dataset-male-225 = Xavier
 es-names-first-dataset-male-226 = Zander
 es-names-first-dataset-male-227 = Zion
-es-names-first-dataset-male-228 = Luigi
+# came up with randomly
+Chunk
+Plonk
+Whomp
+Plunge
+Plump
+Hoagie
+Hero
+Gyro
+# names from collab
+Burten
+Scorn
+Sleve
+Anatoli
+Bobson
+Dwigt
+Jorb
+Jimbo
+Pontiff
+Nubby
+Graggle
+Jeromy
+Gregor
+Cluny
+Bimmy
+Gub
+# other real/fictional char names
+Sherlock
+Hercule
+Ahab
+Ebenezer
+Inigo
+Huckleberry
+Hannibal
+Yuri
+Ponyboy
+Manny
+LeBron
+Dwayne
+# spacey names
+Orion
+Iapetus
+Charon

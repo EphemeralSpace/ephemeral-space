@@ -83,7 +83,6 @@ es-names-first-dataset-genderless-81 = Trinity
 es-names-first-dataset-genderless-82 = Wisdom
 es-names-first-dataset-genderless-83 = Zune
 es-names-first-dataset-genderless-84 = Wynter
-
 es-names-first-dataset-genderless-85 = Amari
 es-names-first-dataset-genderless-86 = Apple
 es-names-first-dataset-genderless-87 = Art
@@ -109,10 +108,85 @@ es-names-first-dataset-genderless-106 = Jerrie
 es-names-first-dataset-genderless-107 = Justice
 es-names-first-dataset-genderless-108 = River
 es-names-first-dataset-genderless-109 = Sam
-
+# came up with randomly
 es-names-first-dataset-genderless-110 = Margarine
 es-names-first-dataset-genderless-111 = Lock
 es-names-first-dataset-genderless-112 = Thud
 es-names-first-dataset-genderless-113 = Bink
 es-names-first-dataset-genderless-114 = Trud
+Soup
+Weld
+Wii
+Wrench
+Pixel
+Pepsi
+Clonk
+Crumb
+Noodle
+Toggle
+Biscuit
+Widget
+Sprocket
+Mist
+Science
+Intelligence
+Wedge
+Sprite
+Fanta
+Drink
+Glitch
+Pretzel
+Pickle
+Velcro
+Snack
+# names from collab
 es-names-first-dataset-genderless-115 = Thimble
+Grub
+Hammer
+Soda
+Jojo
+Fruit
+Sharex
+Spunch
+Scorn
+Thibby
+Dud
+Plip
+Clip
+Pill
+Envy
+Lum
+Amazon
+Barter
+Carp
+Cheese
+Pistol
+Tilt
+Steam
+Shift
+Medical
+Pluck
+# other real/fictional char names
+# spacey names
+Terra
+Mars
+Ares
+Venus
+Mercury
+Pollux
+Comet
+Hygiea
+Pallas
+Nemesis
+Europa
+Ganymede
+Callisto
+Io
+Hyperion
+Janus
+Umbriel
+Oberon
+Proteus
+Thalassa
+Nix
+Ceres

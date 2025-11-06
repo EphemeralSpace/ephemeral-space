@@ -2,6 +2,7 @@
 # works if theyre just loose names or if they have the assignment but just the wrong number or whatever
 # wont alphabetize or any shit like that
 # doesnt run if u have uncommitted changes
+# also doesnt bulldoze comments
 
 import os
 import sys

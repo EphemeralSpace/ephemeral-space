@@ -220,3 +220,21 @@ es-names-first-dataset-female-218 = Ximena
 es-names-first-dataset-female-219 = Zelda
 es-names-first-dataset-female-220 = Zoe
 es-names-first-dataset-female-221 = Zoey
+# came up with randomly
+
+# names from collab
+Mildred
+Milly
+Halimede
+Balala
+Jilt
+Garmacy
+Revolver
+# other real/fictional char names
+Herlock
+# spacey names
+Aurora
+Andromeda
+Juno
+Vesta
+Calypso # ive just had this
