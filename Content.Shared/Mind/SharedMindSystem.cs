@@ -447,6 +447,20 @@ public abstract partial class SharedMindSystem : EntitySystem
         objective = default;
         return false;
     }
+// ES START
+    public IEnumerable<Entity<T>> ESGetObjectivesComp<T>(Entity<MindComponent?> mind) where T : IComponent
+    {
+        if (!Resolve(mind, ref mind.Comp))
+            yield break;
+
+        var query = GetEntityQuery<T>();
+        foreach (var objective in mind.Comp.Objectives)
+        {
+            if (query.TryGetComponent(objective, out var objectiveComp))
+                yield return (objective, objectiveComp);
+        }
+    }
+// ES END
 
     /// <summary>
     /// Copies objectives from one mind to another, so that they are shared between two players.

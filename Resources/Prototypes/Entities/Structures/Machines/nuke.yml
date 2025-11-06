@@ -75,6 +75,11 @@
     enabled: false
   - type: NukeLabel
   - type: Nuke
+# ES START
+    timer: 60
+    minimumTime: 60
+    disarmDoafterLength: 5
+# ES END
     explosionType: Default
     maxIntensity: 100
     intensitySlope: 5

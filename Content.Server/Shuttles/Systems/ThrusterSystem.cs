@@ -12,7 +12,7 @@ using Content.Server.NodeContainer.Nodes;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Atmos;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Localizations;

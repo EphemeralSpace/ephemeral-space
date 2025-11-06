@@ -13,6 +13,7 @@
   - type: Rotatable
   - type: StationAiWhitelist
   - type: Sprite
+    noRot: true
     sprite: Structures/Doors/Shutters/shutters.rsi
     drawdepth: BlastDoors
     layers:

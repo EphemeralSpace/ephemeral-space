@@ -4,90 +4,18 @@
   name: telecommunication server
   description: When powered and filled with encryption keys it allows radio headset communication.
   components:
+# ES Start
   - type: Sprite
-    sprite: Structures/Machines/telecomms.rsi
-    snapCardinals: true
+    sprite: _ES/Structures/Machines/telecomms.rsi
     layers:
     - state: telecom-nopower
-    - state: telecom-stripe
     - state: telecom-on
       shader: unshaded
       visible: false
       map: ["telecom-on"]
-    - state: variant-nokey
-      map: ["variant-nokey"]
-    - state: variant-default
-      map: ["variant-default"]
-    - state: variant-common
-      map: ["variant-common"]
-    - state: variant-cargo
-      map: ["variant-cargo"]
-    - state: variant-engineering
-      map: ["variant-engineering"]
-    - state: variant-medical
-      map: ["variant-medical"]
-    - state: variant-science
-      map: ["variant-science"]
-    - state: variant-sec
-      map: ["variant-sec"]
-    - state: variant-service
-      map: ["variant-service"]
-    - state: variant-command
-      map: ["variant-command"]
-    - state: variant-multiple
-      map: ["variant-multiple"]
     - state: telecom-open
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: ItemMapper
-    sprite: Structures/Machines/telecomms.rsi
-    mapLayers:
-      variant-nokey:
-        whitelist:
-          components:
-          - EncryptionKey  #Shown when no keys are present
-        minCount: 0
-      variant-default:
-        whitelist:
-          components:
-          - EncryptionKey
-        minCount: 1
-      variant-common:
-        whitelist:
-          tags:
-          - EncryptionCommon
-      variant-cargo:
-        whitelist:
-          tags:
-          - EncryptionCargo
-      variant-engineering:
-        whitelist:
-          tags:
-          - EncryptionEngineering
-      variant-medical:
-        whitelist:
-          tags:
-          - EncryptionMedical
-      variant-science:
-        whitelist:
-          tags:
-          - EncryptionScience
-      variant-sec:
-        whitelist:
-          tags:
-          - EncryptionSecurity
-      variant-service:
-        whitelist:
-          tags:
-          - EncryptionService
-      variant-command:
-        whitelist:
-          tags:
-          - EncryptionCommand
-      variant-multiple:
-        whitelist:
-          components:
-          - EncryptionKey  #Shown when multiple keys are present
-        minCount: 2
+# ES End
   - type: PointLight
     enabled: false
     castShadows: false
@@ -184,6 +112,9 @@
       key_slots: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
+# ES START
+  - type: ESSabotageTarget
+# ES END
 
 - type: entity
   parent: TelecomServer

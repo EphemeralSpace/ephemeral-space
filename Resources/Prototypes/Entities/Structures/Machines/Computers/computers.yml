@@ -401,6 +401,9 @@
   - type: GuideHelp
     guides:
     - CriminalRecords
+# ES START
+  - type: ESSabotageTarget
+# ES END
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -625,6 +628,7 @@
       board: !type:Container
       IdCardConsole-privilegedId: !type:ContainerSlot
       IdCardConsole-targetId: !type:ContainerSlot
+  - type: ESSabotageTarget
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -683,6 +687,10 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+# ES START
+  # This is a traitor sabotage objective
+  - type: ESSabotageTarget
+# ES END
 
 - type: entity
   parent: ComputerComms

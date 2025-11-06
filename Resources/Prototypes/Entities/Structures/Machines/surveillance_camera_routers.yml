@@ -17,16 +17,17 @@
           type: SurveillanceCameraSetupBoundUi
     - type: Machine
       board: SurveillanceCameraRouterCircuitboard
+# ES Start
     - type: Sprite
-      sprite: Structures/Machines/server.rsi
-      snapCardinals: true
+      sprite: _ES/Structures/Machines/camera_router.rsi
       layers:
-        - state: server-off
-        - state: server-on
+        - state: telecom-nopower
+        - state: telecom-on
           visible: false
           map: ["enum.PowerDeviceVisualLayers.Powered"]
-        - state: server_o
+        - state: telecom-open
           map: ["enum.WiresVisualLayers.MaintenancePanel"]
+# ES End
     - type: GenericVisualizer
       visuals:
         enum.PowerDeviceVisuals.Powered:

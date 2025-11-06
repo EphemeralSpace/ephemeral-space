@@ -17,3 +17,6 @@
     minTargetMembers: 1
     maxTargetMembers: 5
     playersPerTargetMember: 6 # 1/6 Players
+  - type: ESTraitorRule
+  - type: LoadMapRule
+    mapPath: /Maps/_ES/syndiebase.yml

@@ -1,0 +1,11 @@
+- type: localizedDataset
+  id: ESNameSuffix
+  values:
+    prefix: es-name-suffix-dataset-
+    count: 7
+
+- type: localizedDataset
+  id: ESNamePrefix
+  values:
+    prefix: es-name-prefix-dataset-
+    count: 5

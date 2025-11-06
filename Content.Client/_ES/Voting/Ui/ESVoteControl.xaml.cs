@@ -102,7 +102,7 @@ public sealed partial class ESVoteControl : PanelContainer
         public ESVoteButton()
         {
             StyleClasses.Add(StyleClassButton);
-            StyleClasses.Add(StyleBase.ButtonOpenBoth);
+            StyleClasses.Add(StyleClass.ButtonOpenBoth);
             ToggleMode = true;
 
             Label = new RichTextLabel();

@@ -1,4 +1,12 @@
-- files: ["reinforced_ES.png"]
+- files: ["reinforced.png"]
   license: "CC-BY-SA-3.0"
   copyright: "Taken from Baystation12 at commit 2b812da425eb004aaf866b9459c0735890475a58 and modified for Ephemeral Space by github user @Flareguy"
   source: "https://github.com/Baystation12/Baystation12/blob/2b812da425eb004aaf866b9459c0735890475a58/icons/turf/flooring/tiles.dmi"
+- files: ["plating_asteroid.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from /vg/station at commit edaa4b129bf6e7353cb465ac9ade1f12da726917"
+  source: "https://github.com/vgstation-coders/vgstation13/blob/edaa4b129bf6e7353cb465ac9ade1f12da726917/icons/turf/floors.dmi"
+- files: ["plating.png", "plating_damaged.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Based on tiles from /vg/station at commit edaa4b129bf6e7353cb465ac9ade1f12da726917, modified by @EmoGarbage404 and variants by @mirrorcult"
+  source: "https://github.com/vgstation-coders/vgstation13/blob/edaa4b129bf6e7353cb465ac9ade1f12da726917/icons/turf/floors.dmi"

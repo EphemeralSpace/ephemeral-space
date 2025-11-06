@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared.EntityTable;
 using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.EntityTable.ValueSelector;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -20,12 +21,18 @@ public sealed partial class ESPickSelector : EntityTableSelector
     [DataField(DataFieldTag, required: true)]
     public EntityTableSelector Child;
 
+    [DataField]
+    public NumberSelector Amount = new ConstantNumberSelector(1);
+
     protected override IEnumerable<EntProtoId> GetSpawnsImplementation(System.Random rand,
         IEntityManager entMan,
         IPrototypeManager proto,
         EntityTableContext ctx)
     {
-        var pool = Child.GetSpawns(rand, entMan, proto, ctx).ToList();
-        yield return rand.Pick(pool);
+        // This is mildly evil but uh...
+        // We violate spec sometimes.
+        var r = new RobustRandom();
+        var pool = Child.GetSpawns(rand, entMan, proto, ctx).ToArray();
+        return r.GetItems(pool, Amount.Get(rand), allowDuplicates: false);
     }
 }

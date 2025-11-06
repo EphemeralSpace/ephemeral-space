@@ -5,10 +5,12 @@ using Content.Shared._ES.Random;
 using Content.Shared.Dataset;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mind;
 using Content.Shared.Preferences;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
+using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -89,6 +91,8 @@ public abstract partial class ESSharedAuditionsSystem
         var profile = HumanoidCharacterProfile.RandomWithSpecies();
         var species = _prototypeManager.Index(profile.Species);
 
+        GenerateName(profile, species);
+
         profile.Age = _random.Next(species.MinAge, species.MaxAge);
 
         IReadOnlyList<Color> hairColors;
@@ -135,5 +139,75 @@ public abstract partial class ESSharedAuditionsSystem
         producer.Comp.UnusedCharacterPool.Add(ent);
 
         return (ent, mind, character);
+    }
+
+    private const float HyphenatedFirstNameChance = 0.05f;
+    private const float HyphenatedLastNameChance = 0.10f;
+    private const float AbbreviatedMiddleChance = 0.10f;
+    private const float AbbreviatedFirstMiddleChance = 0.02f;
+    private const float SuffixChance = 0.05f;
+    private const float PrefixChance = 0.05f;
+    private const float LastNameless = 0.01f;
+
+    private static readonly ProtoId<LocalizedDatasetPrototype> SuffixDataset = "ESNameSuffix";
+    private static readonly ProtoId<LocalizedDatasetPrototype> PrefixDataset = "ESNamePrefix";
+
+    public void GenerateName(HumanoidCharacterProfile profile, SpeciesPrototype species)
+    {
+        var firstNameDataSet = _prototypeManager.Index(profile.Gender == Gender.Female ? species.FemaleFirstNames : species.MaleFirstNames);
+        var lastNameDataSet = _prototypeManager.Index(species.LastNames);
+
+        var prefix = string.Empty;
+        var suffix = string.Empty;
+        var firstName = _random.Pick(firstNameDataSet);
+        var lastName = _random.Pick(lastNameDataSet);
+
+        if (_random.Prob(HyphenatedFirstNameChance))
+        {
+            firstName = Loc.GetString("es-name-hyphenation-fmt",
+                ("first", _random.Pick(firstNameDataSet)),
+                ("second", _random.Pick(firstNameDataSet)));
+        }
+
+        if (_random.Prob(HyphenatedLastNameChance))
+        {
+            lastName = Loc.GetString("es-name-hyphenation-fmt",
+                ("first", _random.Pick(lastNameDataSet)),
+                ("second", _random.Pick(lastNameDataSet)));
+        }
+
+        if (_random.Prob(AbbreviatedMiddleChance))
+        {
+            firstName = Loc.GetString("es-name-middle-abbr-fmt", ("first", firstName), ("letter", RandomLetter()));
+        }
+
+        if (_random.Prob(AbbreviatedFirstMiddleChance))
+        {
+            firstName = Loc.GetString("es-name-first-middle-abbr-fmt", ("letter1", RandomLetter()), ("letter2", RandomLetter()));
+        }
+
+        if (_random.Prob(SuffixChance))
+        {
+            var suffixDataSet = _prototypeManager.Index(SuffixDataset);
+            suffix = _random.Pick(suffixDataSet);
+        }
+
+        if (_random.Prob(PrefixChance))
+        {
+            var prefixDataSet = _prototypeManager.Index(PrefixDataset);
+            prefix = _random.Pick(prefixDataSet);
+        }
+
+        if (_random.Prob(LastNameless))
+        {
+            lastName = string.Empty;
+        }
+
+        profile.Name = $"{prefix} {firstName} {lastName} {suffix}".Trim();
+    }
+
+    private string RandomLetter()
+    {
+        return $"{(char) _random.Next('A', 'Z')}";
     }
 }
