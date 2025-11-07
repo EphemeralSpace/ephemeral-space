@@ -3,7 +3,7 @@
   id: ESNamesFirstMale
   values:
     prefix: es-names-first-dataset-male-
-    count: 358
+    count: 359
 
 - type: localizedDataset
   id: ESNamesFirstFemale
@@ -15,13 +15,13 @@
   id: ESNamesFirstGenderless
   values:
     prefix: es-names-first-dataset-genderless-
-    count: 252
+    count: 256
 
 - type: localizedDataset
   id: ESNamesLast
   values:
     prefix: es-names-last-dataset-
-    count: 586
+    count: 598
 
 # Ancillary stuff
 
