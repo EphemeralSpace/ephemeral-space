@@ -146,16 +146,16 @@ public abstract partial class ESSharedAuditionsSystem
     private const float HyphenatedFirstMiddleNameChance = 0.02f;
     private const float QuotedMiddleNameChance = 0.02f;
     private const float HyphenatedLastNameChance = 0.05f;
-    private const float AbbreviatedMiddleChance = 0.10f;
+    private const float AbbreviatedMiddleChance = 0.12f;
     private const float AbbreviatedFirstMiddleChance = 0.07f;
     private const float AbbreviatedFirstMiddleAltChance = 0.4f;
     private const float ParticleChance = 0.03f;
-    private const float SuffixChance = 0.04f;
+    private const float SuffixChance = 0.05f;
     private const float PrefixChance = 0.04f;
     private const float PrefixGenderlessChance = 0.6f;
     private const float PrefixFirstNameless = 0.5f;
-    private const float LastNameless = 0.015f;
-    private const float FirstNameless = 0.005f;
+    private const float LastNameless = 0.008f;
+    private const float FirstNameless = 0.004f;
 
     private static readonly ProtoId<LocalizedDatasetPrototype> ParticleDataset = "ESNameParticle";
     private static readonly ProtoId<LocalizedDatasetPrototype> SuffixDataset = "ESNameSuffix";

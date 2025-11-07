@@ -398,6 +398,18 @@ es-names-last-dataset-394 = Weekly
 es-names-last-dataset-395 = Binks
 es-names-last-dataset-396 = Solution
 es-names-last-dataset-397 = Reagent
+Animal
+Chicken
+Goose
+Ravioli
+Fritter
+Roach
+Trud
+Beastmode
+Hohenzollern
+Ming
+Habsburg
+Yum
 # names from collab
 es-names-last-dataset-398 = Bifel
 es-names-last-dataset-399 = Playstation

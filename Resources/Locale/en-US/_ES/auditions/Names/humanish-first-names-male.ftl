@@ -300,6 +300,7 @@ es-names-first-dataset-male-295 = Hog
 es-names-first-dataset-male-296 = Errol
 es-names-first-dataset-male-297 = Geromy
 es-names-first-dataset-male-298 = Bertrand
+Roach
 # other real/fictional char names
 es-names-first-dataset-male-299 = Sherlock
 es-names-first-dataset-male-300 = Hercule

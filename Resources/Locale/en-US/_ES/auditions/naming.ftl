@@ -7,8 +7,9 @@ es-name-first-middle-abbr-fmt-alt = {$letter1}{$letter2}
 
 es-name-prefix-dataset-genderless-1 = Dr.
 es-name-prefix-dataset-genderless-2 = Doctor
-es-name-prefix-dataset-genderless-3 = Prof.
-es-name-prefix-dataset-genderless-4 = Professor
+es-name-prefix-dataset-genderless-3 = Doc
+es-name-prefix-dataset-genderless-4 = Prof.
+es-name-prefix-dataset-genderless-5 = Professor
 es-name-prefix-dataset-male-1 = Mr.
 es-name-prefix-dataset-male-2 = Sir
 es-name-prefix-dataset-female-1 = Mrs.

@@ -147,6 +147,10 @@ es-names-first-dataset-genderless-144 = Email
 es-names-first-dataset-genderless-145 = Visual
 es-names-first-dataset-genderless-146 = Dope
 es-names-first-dataset-genderless-147 = Slug
+Fritter
+Serpent
+Revive
+Yum
 # coolstation mostly
 es-names-first-dataset-genderless-148 = Toxic
 es-names-first-dataset-genderless-149 = Donut
