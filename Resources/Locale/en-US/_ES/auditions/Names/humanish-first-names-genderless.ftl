@@ -77,6 +77,11 @@ es-names-first-dataset-genderless-75 = Serenity
 es-names-first-dataset-genderless-76 = Skylar
 es-names-first-dataset-genderless-77 = Star
 es-names-first-dataset-genderless-78 = Sunshine
+Sunset
+Dawn
+Dusk
+Sunrise
+Bubble
 es-names-first-dataset-genderless-79 = Tansy
 es-names-first-dataset-genderless-80 = Topaz
 es-names-first-dataset-genderless-81 = Trinity
@@ -141,9 +146,27 @@ es-names-first-dataset-genderless-138 = Snack
 es-names-first-dataset-genderless-139 = Email
 es-names-first-dataset-genderless-140 = Visual
 es-names-first-dataset-genderless-141 = Dope
-es-names-first-dataset-genderless-142 = Vial
-es-names-first-dataset-genderless-143 = Sugar
 es-names-first-dataset-genderless-144 = Slug
+# coolstation mostly
+Toxic
+Donut
+Fiberglass
+Beastmode
+Fentanyl
+Boston
+Marijuana
+Clump
+Explosive
+Enola
+Fancy
+Cup
+Sprout
+Chips
+Quality
+Mold
+Urist
+Doink
+Crimes
 # names from collab
 es-names-first-dataset-genderless-145 = Thimble
 es-names-first-dataset-genderless-146 = Grub
@@ -173,6 +196,7 @@ es-names-first-dataset-genderless-169 = Medical
 es-names-first-dataset-genderless-170 = Pluck
 es-names-first-dataset-genderless-171 = Happy
 es-names-first-dataset-genderless-172 = Zodiac
+Best
 # other real/fictional char names
 # spacey names
 es-names-first-dataset-genderless-173 = Terra
@@ -230,3 +254,6 @@ es-names-first-dataset-genderless-223 = Iskra
 es-names-first-dataset-genderless-224 = Ninel
 es-names-first-dataset-genderless-225 = Mels
 es-names-first-dataset-genderless-226 = Minerve
+Mirror
+Adachi
+

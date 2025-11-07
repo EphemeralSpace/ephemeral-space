@@ -162,6 +162,7 @@ es-names-first-dataset-male-160 = Maxwell
 es-names-first-dataset-male-161 = Maynard
 es-names-first-dataset-male-162 = Mekhi
 es-names-first-dataset-male-163 = Mike
+Baldric
 es-names-first-dataset-male-164 = Montague
 es-names-first-dataset-male-165 = Monte
 es-names-first-dataset-male-166 = Nasir
@@ -254,6 +255,51 @@ es-names-first-dataset-male-250 = Bimmy
 es-names-first-dataset-male-251 = Gub
 es-names-first-dataset-male-252 = Gimble
 es-names-first-dataset-male-253 = Macintosh
+Flare
+Cone
+Luigi's
+Mario's
+Horace
+Saxton
+Jole
+Cobalt
+Jimothy
+Johhhny
+Merlin
+Kirby
+Hrolf
+Thom
+Shown
+Ronnis
+Ozzie
+Emitri
+Bip
+# coolstation mostly
+Bart
+Gunk
+Hieronymus
+Thelonius
+Beef
+Shiv
+Dick
+Eiffel
+Stughetti
+Pim
+Vesto
+Christophorus
+Donny
+Ralph
+Dewey
+Big
+Rupert
+Paddington
+Crump
+Al
+Scooter
+Hog
+Errol
+Geromy
+Bertrand
 # other real/fictional char names
 es-names-first-dataset-male-254 = Sherlock
 es-names-first-dataset-male-255 = Hercule

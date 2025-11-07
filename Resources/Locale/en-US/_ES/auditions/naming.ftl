@@ -14,6 +14,7 @@ es-name-prefix-dataset-male-2 = Sir
 es-name-prefix-dataset-female-1 = Mrs.
 es-name-prefix-dataset-female-2 = Ms.
 es-name-prefix-dataset-female-3 = Madame
+es-name-prefix-dataset-female-4 = Lady
 es-name-prefix-dataset-nonbinary-1 = Mx.
 
 es-name-suffix-dataset-1 = Jr.

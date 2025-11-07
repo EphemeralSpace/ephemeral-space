@@ -221,7 +221,17 @@ es-names-first-dataset-female-219 = Zelda
 es-names-first-dataset-female-220 = Zoe
 es-names-first-dataset-female-221 = Zoey
 # came up with randomly
-
+Emisse
+Janet
+Root
+Cammy
+Valerate
+Cold
+Daphne
+Lauren
+Snapple
+Cauliflower
+Shrimp
 # names from collab
 es-names-first-dataset-female-222 = Mildred
 es-names-first-dataset-female-223 = Milly

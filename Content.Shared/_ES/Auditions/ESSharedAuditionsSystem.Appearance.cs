@@ -243,7 +243,7 @@ public abstract partial class ESSharedAuditionsSystem
         }
         else if (_random.Prob(ParticleChance))
         {
-            var particleDataSet = _prototypeManager.Index(SuffixDataset);
+            var particleDataSet = _prototypeManager.Index(ParticleDataset);
             firstName = Loc.GetString("es-name-normal-fmt", ("first", firstName), ("second", _random.Pick(particleDataSet)));
         }
 
