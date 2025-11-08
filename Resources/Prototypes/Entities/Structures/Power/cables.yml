@@ -131,6 +131,7 @@
   components:
   - type: Sprite
 # ES START
+    drawdepth: ThickWire
     sprite: _ES/Structures/Power/Cables/mv_cable.rsi
     layers:
     - state: mvcable_0
