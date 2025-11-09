@@ -29,6 +29,7 @@ public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
 
         SubscribeLocalEvent<TickerJoinGameEvent>(OnTickerJoinGame);
         SubscribeLocalEvent<ESTheatergoerMarkerComponent, BuckledEvent>(OnTheatergoerBuckled);
+        SubscribeLocalEvent<ESTheatergoerMarkerComponent, ESConfigurePrefsToggleActionEvent>(OnConfigurePrefsToggleAction);
     }
 
     private void OnTickerJoinGame(TickerJoinGameEvent ev)
@@ -51,19 +52,23 @@ public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
         }
 
         if (!_ticker.IsGameStarted)
-        {
-            if (_jobPrefsWindow?.IsOpen != true)
-            {
-                _jobPrefsWindow ??= new ESJobPrefsWindow();
-                _jobPrefsWindow.OpenCentered();
-            }
             return;
-        }
 
         if (_spawningWindow?.IsOpen == true)
             return;
         _spawningWindow ??= new ESSpawningWindow();
         _spawningWindow.OpenCentered();
+    }
+
+    private void OnConfigurePrefsToggleAction(Entity<ESTheatergoerMarkerComponent> ent, ref ESConfigurePrefsToggleActionEvent args)
+    {
+        _jobPrefsWindow ??= new ESJobPrefsWindow();
+        if (!_jobPrefsWindow.IsOpen)
+            _jobPrefsWindow.OpenCentered();
+        else
+            _jobPrefsWindow.Close();
+
+        args.Handled = true;
     }
 
     private void OnTheatergoerBuckled(Entity<ESTheatergoerMarkerComponent> ent, ref BuckledEvent args)

@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseAction
+  id: ESActionToggleConfigurePrefsWindow
+  name: Configure Job Preferences
+  description: Set job preferences for the next round.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/theater.rsi
+      state: job
+    clientExclusive: true
+  - type: InstantAction
+    event: !type:ESConfigurePrefsToggleActionEvent

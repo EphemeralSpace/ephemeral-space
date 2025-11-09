@@ -35,7 +35,6 @@ public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ESOnPlayerReadyToggled>(OnPlayerReadyToggled);
         SubscribeLocalEvent<ESTheatergoerMarkerComponent, ComponentInit>(OnTheatergoerInit);
         // buckling (to observe) is handled on the client
         // opens the observe window, which just calls the observe command if u click yes
@@ -54,8 +53,9 @@ public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
         _preferences.ESOnAfterCharacterUpdated += RefreshReadiedJobCounts;
     }
 
-    private void OnPlayerReadyToggled(ref ESOnPlayerReadyToggled ev)
+    protected override void OnPlayerReadyToggled(ref ESOnPlayerReadyToggled ev)
     {
+        base.OnPlayerReadyToggled(ref ev);
         RefreshReadiedJobCounts();
     }
 
