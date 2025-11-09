@@ -45,7 +45,7 @@ public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
 
         _player.PlayerStatusChanged += (_, args) =>
         {
-            if (args.NewStatus is not SessionStatus.Disconnected and not SessionStatus.Zombie)
+            if (args.NewStatus is SessionStatus.Disconnected or SessionStatus.Zombie or SessionStatus.Connecting)
                 return;
 
             var ev = new ESUpdatePlayerReadiedJobCounts(_readiedJobCounts);
