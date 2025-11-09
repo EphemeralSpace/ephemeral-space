@@ -10,24 +10,10 @@ public sealed class ESUsernameEntityNameSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<ESUsernameEntityNameComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ESUsernameEntityNameComponent, PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<ESUsernameEntityNameComponent, PlayerDetachedEvent>(OnPlayerDetached);
     }
-
-    private void OnStartup(Entity<ESUsernameEntityNameComponent> ent, ref ComponentStartup args)
-    {
-        ent.Comp.OriginalName = Name(ent);
-        Dirty(ent);
-    }
-
     private void OnPlayerAttached(Entity<ESUsernameEntityNameComponent> ent, ref PlayerAttachedEvent args)
     {
         _metaData.SetEntityName(ent, args.Player.Name);
-    }
-
-    private void OnPlayerDetached(Entity<ESUsernameEntityNameComponent> ent, ref PlayerDetachedEvent args)
-    {
-        _metaData.SetEntityName(ent, ent.Comp.OriginalName);
     }
 }

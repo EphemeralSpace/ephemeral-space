@@ -34,7 +34,7 @@
       enum.ESVoterUiKey.Key:
         toggleAction: ESActionStagehandVote
   - type: ESVoter
-  - type: ESInherentActions
+  - type: ActionGrant
     actions:
     - ESActionStagehandChangeLighting
     - ESActionStagehandToggleFOV
