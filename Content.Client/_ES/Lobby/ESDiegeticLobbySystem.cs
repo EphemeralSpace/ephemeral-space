@@ -1,6 +1,4 @@
-using Content.Client._ES.Spawning.Ui;
 using Content.Client._ES.Station.Ui;
-using Content.Client.GameTicking.Managers;
 using Content.Client.Lobby.UI;
 using Content.Shared._ES.Lobby;
 using Content.Shared._ES.Lobby.Components;
@@ -16,11 +14,9 @@ public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IDynamicTypeFactory _type = default!;
-    [Dependency] private readonly ClientGameTicker _ticker = default!;
 
     private ObserveWarningWindow? _observeWindow;
     private ESJobPrefsWindow? _jobPrefsWindow;
-    private ESSpawningWindow? _spawningWindow;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -34,7 +30,6 @@ public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
 
     private void OnTickerJoinGame(TickerJoinGameEvent ev)
     {
-        _spawningWindow?.Close();
         _jobPrefsWindow?.Close();
     }
 
@@ -44,20 +39,9 @@ public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
             || args.OtherEntity != _player.LocalEntity)
             return;
 
-        if (ent.Comp.Behavior is not PlayerGameStatus.ReadyToPlay)
-        {
-            _spawningWindow?.Close();
-            _jobPrefsWindow?.Close();
+        if (ent.Comp.Behavior is PlayerGameStatus.ReadyToPlay)
             return;
-        }
-
-        if (!_ticker.IsGameStarted)
-            return;
-
-        if (_spawningWindow?.IsOpen == true)
-            return;
-        _spawningWindow ??= new ESSpawningWindow();
-        _spawningWindow.OpenCentered();
+        _jobPrefsWindow?.Close();
     }
 
     private void OnConfigurePrefsToggleAction(Entity<ESTheatergoerMarkerComponent> ent, ref ESConfigurePrefsToggleActionEvent args)
