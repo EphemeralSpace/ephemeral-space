@@ -36,10 +36,8 @@ public sealed class ESEphemeraSpeechSystem : EntitySystem
 
     private void OnActivateInWorld(Entity<ESEphemeraSpeakerComponent> ent, ref ActivateInWorldEvent args)
     {
-        if (args.Handled)
-            return;
-
-        args.Handled = TrySpeakDialogue(ent);
+        // Intentionally do not handle, as we want to allow other actions to happen simultaneously.
+        TrySpeakDialogue(ent);
     }
 
     private void OnSequentialGetDialogue(Entity<ESEphemeraSequentialDialogueComponent> ent, ref ESEphemeraGetDialogueEvent args)

@@ -1,0 +1,15 @@
+<controls:ESStagehandJoinWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._ES.Stagehand.Ui"
+    Resizable="False"
+    SetWidth="550"
+    Title="{Loc 'es-stagehand-ui-title'}">
+    <BoxContainer Orientation="Vertical" Margin="10 5 10 10">
+        <RichTextLabel Text="{Loc 'es-stagehand-ui-label-explanation'}" HorizontalAlignment="Center" Margin="0 10"/>
+        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="AcceptButton" Text="{Loc 'es-stagehand-ui-button-text-accept'}" StyleClasses="negative"/>
+            <Control MinWidth="20"/>
+            <Button Name="DenyButton" Text="{Loc 'es-stagehand-ui-button-text-deny'}"/>
+        </BoxContainer>
+    </BoxContainer>
+</controls:ESStagehandJoinWindow>

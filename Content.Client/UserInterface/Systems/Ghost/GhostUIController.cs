@@ -58,6 +58,11 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 
     public void UpdateGui()
     {
+// ES START
+        if (Gui is not null)
+            Gui.Visible = false;
+        return;
+// ES END
         if (Gui == null)
         {
             return;
