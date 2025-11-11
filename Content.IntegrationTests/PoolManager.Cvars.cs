@@ -14,6 +14,9 @@ public static partial class PoolManager
         // @formatter:off
         // ES START
         (ESCVars.ESStationEnabled.Name,       "false"),
+        // TODO ES temp until deltap stuff looked at on LINDA
+        (CCVars.MonstermosDepressurization.Name, "true"),
+        (CCVars.MonstermosEqualization.Name, "true"),
         // ES END
         (CCVars.DatabaseSynchronous.Name,     "true"),
         (CCVars.DatabaseSqliteDelay.Name,     "0"),
