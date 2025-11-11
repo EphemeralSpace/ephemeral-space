@@ -13,3 +13,8 @@ crawling = false
 mob_pushing = true
 penetration_cap = 0.35
 push_mass_cap = 1.2
+
+# LINDAfy
+[atmos]
+monstermos_depressurization = false
+monstermos_equalization = false
