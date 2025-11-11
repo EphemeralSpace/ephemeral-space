@@ -172,7 +172,10 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
             return;
         }
 
+        // ES START
+        // xform -> entity<xform>
         ProcessNearbyAmbience((player.Value, xform));
+        // ES END
     }
 
     private void ClearSounds()
