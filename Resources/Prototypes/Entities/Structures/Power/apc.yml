@@ -11,7 +11,7 @@
   # ES START
   - type: AmbientOnPowered
   - type: AmbientSound
-    volume: -10
+    volume: -12
     range: 10 # max range
     sound:
       path: /Audio/Ambience/shipambience.ogg # plays nonpositionally, so this is stereo
