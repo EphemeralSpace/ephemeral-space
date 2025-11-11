@@ -1,11 +1,62 @@
+# First / last names
+- type: localizedDataset
+  id: ESNamesFirstMale
+  values:
+    prefix: es-names-first-dataset-male-
+    count: 359
+
+- type: localizedDataset
+  id: ESNamesFirstFemale
+  values:
+    prefix: es-names-first-dataset-female-
+    count: 275
+
+- type: localizedDataset
+  id: ESNamesFirstGenderless
+  values:
+    prefix: es-names-first-dataset-genderless-
+    count: 256
+
+- type: localizedDataset
+  id: ESNamesLast
+  values:
+    prefix: es-names-last-dataset-
+    count: 598
+
+# Ancillary stuff
+
+- type: localizedDataset
+  id: ESNameParticle
+  values:
+    prefix: es-name-particle-dataset-
+    count: 5
+
 - type: localizedDataset
   id: ESNameSuffix
   values:
     prefix: es-name-suffix-dataset-
-    count: 7
+    count: 8
 
 - type: localizedDataset
-  id: ESNamePrefix
+  id: ESNamePrefixGenderless
   values:
-    prefix: es-name-prefix-dataset-
+    prefix: es-name-prefix-dataset-genderless-
     count: 5
+
+- type: localizedDataset
+  id: ESNamePrefixMale
+  values:
+    prefix: es-name-prefix-dataset-male-
+    count: 2
+
+- type: localizedDataset
+  id: ESNamePrefixFemale
+  values:
+    prefix: es-name-prefix-dataset-female-
+    count: 4
+
+- type: localizedDataset
+  id: ESNamePrefixNonbinary
+  values:
+    prefix: es-name-prefix-dataset-nonbinary-
+    count: 1

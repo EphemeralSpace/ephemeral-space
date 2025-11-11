@@ -65,11 +65,15 @@
   description: An orange high voltage power cable.
   components:
   - type: Sprite
-    sprite: Structures/Power/Cables/hv_cable.rsi
+# ES START
+    sprite: _ES/Structures/Power/Cables/hv_cable.rsi
+# ES END
     state: hvcable_0
     drawdepth: ThickWire
   - type: Icon
-    sprite: Structures/Power/Cables/hv_cable.rsi
+# ES START
+    sprite: _ES/Structures/Power/Cables/hv_cable.rsi
+# ES END
     state: hvcable_4
   - type: NodeContainer
     nodes:
@@ -126,13 +130,14 @@
   description: A medium voltage power cable.
   components:
   - type: Sprite
-    sprite: Structures/Power/Cables/mv_cable.rsi
+# ES START
+    drawdepth: ThickWire
+    sprite: _ES/Structures/Power/Cables/mv_cable.rsi
     layers:
     - state: mvcable_0
-      color: Yellow
-    - state: mvstripes_0
   - type: Icon
-    sprite: Structures/Power/Cables/mv_cable.rsi
+    sprite: _ES/Structures/Power/Cables/mv_cable.rsi
+# ES END
     state: mvcable_4
   - type: NodeContainer
     nodes:
@@ -163,7 +168,6 @@
         acts: [ "Destruction" ]
   - type: CableVisualizer
     statePrefix: mvcable_
-    extraLayerPrefix: mvstripes_
 # ES START
   - type: Electrified
     siemensCoefficient: 1.5
@@ -184,11 +188,14 @@
   description: A cable used to connect machines to an APC. #APCs aren't area defined anymore so need this cable to connect things to the APC. This description should be dynamic in future.
   components:
   - type: Sprite
-    color: Green
-    sprite: Structures/Power/Cables/lv_cable.rsi
+# ES START
+    sprite: _ES/Structures/Power/Cables/lv_cable.rsi
+# ES END
     state: lvcable_0
   - type: Icon
-    sprite: Structures/Power/Cables/lv_cable.rsi
+# ES START
+    sprite: _ES/Structures/Power/Cables/lv_cable.rsi
+# ES END
     state: lvcable_4
   - type: NodeContainer
     nodes:
