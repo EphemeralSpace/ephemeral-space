@@ -91,12 +91,12 @@
     deviceNetId: Apc
     receiveFrequencyId: SmartLight
   - type: ApcNetworkConnection
-  - type: DeviceLinkSink
-  #  ports:
-  #    - On
-  #    - Off
-  #    - Toggle
 # ES END
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
   - type: Construction
     graph: LightFixture
     node: groundLight

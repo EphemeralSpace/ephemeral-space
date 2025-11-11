@@ -114,12 +114,12 @@
     deviceNetId: Apc
     receiveFrequencyId: SmartLight
   - type: ApcNetworkConnection
-  - type: DeviceLinkSink
-  #  ports:
-  #    - On
-  #    - Off
-  #    - Toggle
 # ES END
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
   - type: Appearance
   - type: PoweredLightVisuals
     blinkingSound:
@@ -357,12 +357,10 @@
       broken: broken
       burned: burned
   - type: DeviceLinkSink
-# ES START
-  #  ports:
-  #    - On
-  #    - Off
-  #    - Toggle
-# ES END
+    ports:
+      - On
+      - Off
+      - Toggle
   - type: DamageOnInteract
     damage:
       types:

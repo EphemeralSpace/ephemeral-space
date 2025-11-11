@@ -120,12 +120,10 @@
       off: base
       on: base
   - type: DeviceLinkSink
-# ES START
-  #  ports:
-  #    - On
-  #    - Off
-  #    - Toggle
-# ES END
+    ports:
+      - On
+      - Off
+      - Toggle
   - type: Construction
     graph: LightFixture
     node: strobeLight
