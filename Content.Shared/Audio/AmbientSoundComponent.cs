@@ -44,10 +44,18 @@ public sealed partial class AmbientSoundComponent : Component, IComponentTreeEnt
     public bool TreeUpdateQueued { get; set; }
 
     // ES START
-    // If this is nonnull, the sound used by this ambience source will not
-    // be added if there are already this many sounds of that type
+    /// <summary>
+    ///     If this is nonnull, the sound used by this ambience source will not
+    ///     be added if there are already this many sounds of that type
+    /// </summary>
     [DataField]
     public int? MaxSoundOverride = null;
+
+    /// <summary>
+    ///     If this is false, sources will play non-positionally instead of at the ambience source
+    /// </summary>
+    [DataField]
+    public bool PlayPositional = true;
     // ES END
 }
 

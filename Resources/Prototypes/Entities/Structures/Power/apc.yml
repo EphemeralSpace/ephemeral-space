@@ -11,12 +11,12 @@
   # ES START
   - type: AmbientOnPowered
   - type: AmbientSound
-    volume: -9
-    range: 8
+    volume: -10
+    range: 10 # max range
     sound:
-      path: /Audio/_ES/Ambience/shipambience.ogg
-      rolloffFactor: 0.1
+      path: /Audio/Ambience/shipambience.ogg # plays nonpositionally, so this is stereo
     maxSoundOverride: 1
+    playPositional: false
   - type: PointLight
     radius: 1.8
     energy: 3
