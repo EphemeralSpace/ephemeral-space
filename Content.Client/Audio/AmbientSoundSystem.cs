@@ -52,7 +52,8 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
     /// <summary>
     /// How many times we can be playing 1 particular sound at once.
     /// </summary>
-    private int MaxSingleSound => (int) (_maxAmbientCount / (16.0f / 6.0f));
+    // private int MaxSingleSound => (int) (_maxAmbientCount / (16.0f / 6.0f));
+    private int MaxSingleSound => 1;
 
     private readonly Dictionary<Entity<AmbientSoundComponent>, (EntityUid? Stream, SoundSpecifier Sound, string Path)> _playingSounds = new();
     private readonly Dictionary<string, int> _playingCount = new();
@@ -292,9 +293,6 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
             {
                 var uid = sourceEntity.Owner;
                 var comp = sourceEntity.Comp;
-
-                if (playingCount > comp.MaxSoundOverride)
-                    continue;
 
                 if (_playingSounds.ContainsKey(sourceEntity) ||
                     metaQuery.GetComponent(uid).EntityPaused)
