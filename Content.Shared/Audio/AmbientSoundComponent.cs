@@ -42,6 +42,13 @@ public sealed partial class AmbientSoundComponent : Component, IComponentTreeEnt
     public bool AddToTree => Enabled;
 
     public bool TreeUpdateQueued { get; set; }
+
+    // ES START
+    // If this is nonnull, the sound used by this ambience source will not
+    // be added if there are already this many sounds of that type
+    [DataField]
+    public int? MaxSoundOverride = null;
+    // ES END
 }
 
 [Serializable, NetSerializable]

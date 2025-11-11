@@ -8,6 +8,7 @@
     mode: SnapgridCenter
   components:
   - type: StationAiWhitelist
+  # ES START
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
@@ -15,6 +16,7 @@
     sound:
       path: /Audio/_ES/Ambience/shipambience.ogg
       rolloffFactor: 0.1
+    maxSoundOverride: 1
   - type: PointLight
     radius: 1.8
     energy: 3
