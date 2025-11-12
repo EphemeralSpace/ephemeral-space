@@ -25,7 +25,7 @@
   - type: Examiner
     skipChecks: true
   - type: Ghost # TODO: reason about the implications of this
-    toggleLightingAction: ActionToggleLighting
+    toggleLightingAction: ESActionStagehandChangeLighting
     toggleFoVAction: ESActionStagehandToggleFOV
   - type: ESStagehand
   - type: ESUsernameEntityName
