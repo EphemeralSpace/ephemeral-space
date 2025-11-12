@@ -354,4 +354,25 @@ es-names-first-dataset-female-346 = Thelma
 es-names-first-dataset-female-347 = Tracie
 es-names-first-dataset-female-348 = Virgina
 es-names-first-dataset-female-349 = Xim
-
+# Gundam
+es-names-first-dataset-female-350 = Sayla
+es-names-first-dataset-female-351 = Mirai
+es-names-first-dataset-female-352 = Fraw
+es-names-first-dataset-female-353 = Kycillia
+es-names-first-dataset-female-354 = Lalah
+es-names-first-dataset-female-355 = Kamaria
+es-names-first-dataset-female-356 = Icelina
+es-names-first-dataset-female-357 = Reccoa
+es-names-first-dataset-female-358 = Fa
+es-names-first-dataset-female-359 = Mouar
+es-names-first-dataset-female-360 = Rosamia
+es-names-first-dataset-female-361 = Haman
+es-names-first-dataset-female-362 = Elle
+es-names-first-dataset-female-363 = Chara
+es-names-first-dataset-female-364 = Leina
+es-names-first-dataset-female-365 = Roux
+es-names-first-dataset-female-366 = Emary
+es-names-first-dataset-female-367 = Mineva
+es-names-first-dataset-female-368 = Cheimin
+es-names-first-dataset-female-369 = Chan
+es-names-first-dataset-female-370 = Hilda
