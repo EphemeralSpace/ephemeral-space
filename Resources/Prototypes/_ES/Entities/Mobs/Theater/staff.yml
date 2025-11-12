@@ -4,6 +4,7 @@
 - type: entity
   parent: [ BaseMob, BaseStructure ]
   id: ESBaseMobTheaterStaff
+  suffix: ES, Theater Staff
   abstract: true
   components:
   - type: Sprite
@@ -13,13 +14,16 @@
     energy: 10.0 # high energy spotlight
     falloff: 3
     color: "#FFE4CE"
+  - type: Grammar
+    attributes:
+      proper: true
   - type: SyncSprite
   - type: ESEphemeraSpeaker
 
 - type: entity
   parent: ESBaseMobTheaterStaff
   id: ESMobTheaterStaffStagehand
-  name: Stagehand Director
+  name: stagehand director
   description: The leader of the valiant stagehands, silent faces who run the show.
   components:
   - type: Sprite
@@ -42,3 +46,30 @@
   values:
     prefix: es-ephemera-line-stagehand-director-
     count: 4
+
+- type: entity
+  parent: ESBaseMobTheaterStaff
+  id: ESMobTheaterStaffSpawning
+  name: casting director
+  description: The best in the biz, here to find the talent in you!
+  components:
+  - type: Sprite
+    layers:
+    - state: body_red
+    - state: joe
+    - state: alert
+      shader: unshaded
+  - type: UserInterface
+    interfaces:
+      enum.ESJoinStagehandUiKey.Key:
+        type: ESSpawningBui
+  - type: ActivatableUI
+    key: enum.ESJoinStagehandUiKey.Key
+  - type: ESEphemeraRandomDialogue
+    dialogue: ESEphemeraDialogueCastingDirector
+
+- type: localizedDataset
+  id: ESEphemeraDialogueCastingDirector
+  values:
+    prefix: es-ephemera-line-casting-director-
+    count: 6
