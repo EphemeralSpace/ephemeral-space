@@ -512,3 +512,7 @@ es-names-first-dataset-male-501 = Reginald
 es-names-first-dataset-male-502 = Greasebean
 es-names-first-dataset-male-503 = Jace
 es-names-first-dataset-male-504 = Gonggong
+es-names-first-dataset-male-504 = Goku
+es-names-first-dataset-male-504 = Binner
+es-names-first-dataset-male-370 = Ostrik
+es-names-first-dataset-male-370 = Eyond
