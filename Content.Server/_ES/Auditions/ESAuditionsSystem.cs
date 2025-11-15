@@ -146,7 +146,8 @@ public sealed class CastCommand : ToolshedCommand
         }
         else
         {
-            yield return $"{character.Name}, {character.Profile.Age} years old ({character.DateOfBirth.ToShortDateString()})\nBackground: {character.Background}\nPersonality: {ContentLocalizationManager.FormatList(character.PersonalityTraits.Select(p => Loc.GetString(p)).ToList())}\nRelationships";
+            var gender = Loc.GetString($"humanoid-profile-editor-pronouns-{character.Profile.Gender.ToString().ToLower()}-text");
+            yield return $"{character.Name} ({gender}), {character.Profile.Age} years old ({character.DateOfBirth.ToShortDateString()})\nBackground: {character.Background}\nPersonality: {ContentLocalizationManager.FormatList(character.PersonalityTraits.Select(p => Loc.GetString(p)).ToList())}\nRelationships";
             Dictionary<string, List<EntityUid>> relationships = new();
             foreach (var relationship in character.Relationships)
             {

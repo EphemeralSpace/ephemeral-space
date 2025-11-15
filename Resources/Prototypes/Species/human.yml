@@ -8,7 +8,6 @@
   dollPrototype: MobHumanDummy
   skinColoration: HumanToned
 # ES START
-  maxAge: 90
   maleHair:
   - HumanHairBalding
   - HumanHairBedhead
