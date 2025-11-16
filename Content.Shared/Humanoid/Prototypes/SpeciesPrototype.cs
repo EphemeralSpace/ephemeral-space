@@ -104,7 +104,10 @@ public sealed partial class SpeciesPrototype : IPrototype
     public SpeciesNaming Naming { get; private set; } = SpeciesNaming.FirstLast;
 
     [DataField]
-    public List<Sex> Sexes { get; private set; } = new() { Sex.Male, Sex.Female };
+// ES START
+    // YEAH. We're Woke Now.
+    public List<Sex> Sexes { get; private set; } = new() { Sex.Male, Sex.Female, Sex.Unsexed };
+// ES END
 
     /// <summary>
     ///     Characters younger than this are too young to be hired by Nanotrasen.

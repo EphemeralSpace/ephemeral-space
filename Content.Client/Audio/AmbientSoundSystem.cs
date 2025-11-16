@@ -172,7 +172,10 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
             return;
         }
 
-        ProcessNearbyAmbience(xform);
+        // ES START
+        // xform -> entity<xform>
+        ProcessNearbyAmbience((player.Value, xform));
+        // ES END
     }
 
     private void ClearSounds()
@@ -224,8 +227,11 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
         else
             key = ((SoundCollectionSpecifier)ambientComp.Sound).Collection ?? string.Empty;
 
-        // Prioritize far away & loud sounds.
-        var importance = range * (ambientComp.Volume + 32);
+        // ES START
+        // prioritize closer sounds, not further sounds..
+        // Prioritize close & loud sounds.
+        var importance = (1f / range) * (ambientComp.Volume + 32);
+        // ES END
         state.SourceDict.GetOrNew(key).Add((importance, (value.Uid, ambientComp)));
         return true;
     }
@@ -233,7 +239,10 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
     /// <summary>
     /// Get a list of ambient components in range and determine which ones to start playing.
     /// </summary>
-    private void ProcessNearbyAmbience(TransformComponent playerXform)
+    // ES START
+    // xform -> entity<xform>
+    private void ProcessNearbyAmbience(Entity<TransformComponent> playerXform)
+    // ES END
     {
         var query = GetEntityQuery<TransformComponent>();
         var metaQuery = GetEntityQuery<MetaDataComponent>();
@@ -250,14 +259,16 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
                 // Don't keep playing sounds that have changed since.
                 sound.Sound == comp.Sound &&
                 query.TryGetComponent(owner, out var xform) &&
-                xform.MapID == playerXform.MapID &&
+                // ES START
+                // playerXform.* -> playerXform.Comp.*
+                xform.MapID == playerXform.Comp.MapID &&
                 !metaQuery.GetComponent(owner).EntityPaused)
             {
                 // TODO: This is just trydistance for coordinates.
-                var distance = (xform.ParentUid == playerXform.ParentUid)
-                    ? xform.LocalPosition - playerXform.LocalPosition
+                var distance = (xform.ParentUid == playerXform.Comp.ParentUid)
+                    ? xform.LocalPosition - playerXform.Comp.LocalPosition
                     : _xformSystem.GetWorldPosition(xform) - mapPos.Position;
-
+                // ES END
                 if (distance.LengthSquared() < comp.Range * comp.Range)
                     continue;
             }
@@ -293,6 +304,11 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
                 var uid = sourceEntity.Owner;
                 var comp = sourceEntity.Comp;
 
+                // ES START
+                if (playingCount > comp.MaxSoundOverride)
+                    continue;
+                // ES END
+
                 if (_playingSounds.ContainsKey(sourceEntity) ||
                     metaQuery.GetComponent(uid).EntityPaused)
                     continue;
@@ -303,7 +319,13 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
                     .WithPlayOffset(_random.NextFloat(0.0f, 100.0f))
                     .WithMaxDistance(comp.Range);
 
-                var stream = _audio.PlayEntity(comp.Sound, Filter.Local(), uid, false, audioParams);
+                // ES START
+                // playPositional
+                var stream = comp.PlayPositional
+                    ? _audio.PlayEntity(comp.Sound, Filter.Local(), uid, false, audioParams)
+                    : _audio.PlayGlobal(comp.Sound, Filter.Local(), false, audioParams);
+                // ES END
+
                 if (stream == null)
                     continue;
 

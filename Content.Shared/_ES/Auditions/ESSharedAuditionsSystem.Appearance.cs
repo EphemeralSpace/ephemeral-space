@@ -76,9 +76,32 @@ public abstract partial class ESSharedAuditionsSystem
         Color.FromHex("#020202"),
     };
 
-    public const float CrazyHairChance = 0.025f;
+    /// <summary>
+    /// Eye colors, selected for variance and contrast with human skin tones
+    /// </summary>
+    public static readonly IReadOnlyList<Color> EyeColors =
+    [
+        Color.Black,
+        Color.Gray,
+        Color.MediumPurple,
+        Color.Violet,
+        Color.Azure,
+        Color.ForestGreen,
+        Color.LimeGreen,
+        Color.DarkOrange,
+        Color.IndianRed,
+        Color.DarkKhaki,
+        Color.FromHex("#3b1d0d"),
+        Color.FromHex("#2a1100"),
+    ];
+
+    public const float CrazyHairChance = 0.10f;
 
     public const float ShavenChance = 0.55f;
+
+    public const float YoungWeight = 5;
+    public const float MiddleAgeWeight = 4;
+    public const float OldAgeWeight = 1;
 
     private static readonly ProtoId<LocalizedDatasetPrototype> TendencyDataset = "ESPersonalityTendency";
     private static readonly ProtoId<LocalizedDatasetPrototype> TemperamentDataset = "ESPersonalityTemperament";
@@ -93,7 +116,12 @@ public abstract partial class ESSharedAuditionsSystem
 
         GenerateName(profile, species);
 
-        profile.Age = _random.Next(species.MinAge, species.MaxAge);
+        profile.Age = _random.Pick(new Dictionary<int, float>
+        {
+            { _random.Next(species.MinAge, species.YoungAge), YoungWeight }, // Young age
+            { _random.Next(species.YoungAge, species.OldAge), MiddleAgeWeight }, // Middle age
+            { _random.Next(species.OldAge, species.MaxAge), OldAgeWeight }, // Old age
+        });
 
         IReadOnlyList<Color> hairColors;
         if (profile.Age >= species.OldAge)
@@ -106,6 +134,8 @@ public abstract partial class ESSharedAuditionsSystem
         var hairColor = _random.Prob(CrazyHairChance) ? _random.NextColor() : _random.Pick(hairColors);
         profile.Appearance.HairColor = hairColor;
         profile.Appearance.FacialHairColor = hairColor;
+
+        profile.Appearance.EyeColor = _random.Pick(EyeColors);
 
         List<ProtoId<MarkingPrototype>> hairOptions;
         if (_random.Prob(CrazyHairChance))

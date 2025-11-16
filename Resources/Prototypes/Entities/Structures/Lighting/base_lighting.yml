@@ -85,6 +85,9 @@
           collection: GlassBreak
   - type: PlacementReplacement
     key: lights
+# ES START
+  - type: ESSparkOnHit
+# ES END
   placement:
     mode: SnapgridCenter
     snap:
@@ -110,10 +113,11 @@
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: DeviceNetwork
-    deviceNetId: Wireless
+# ES START
+    deviceNetId: Apc
     receiveFrequencyId: SmartLight
-  - type: WirelessNetworkConnection
-    range: 200
+  - type: ApcNetworkConnection
+# ES END
   - type: DeviceLinkSink
     ports:
       - On
@@ -345,10 +349,11 @@
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: DeviceNetwork
-    deviceNetId: Wireless
+# ES START
+    deviceNetId: Apc
     receiveFrequencyId: SmartLight
-  - type: WirelessNetworkConnection
-    range: 200
+  - type: ApcNetworkConnection
+# ES END
   - type: Appearance
   - type: PoweredLightVisuals
     spriteStateMap:

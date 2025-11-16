@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Shared.Atmos;
-using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server._ES.StationEvents.GasLeak.Components;
@@ -27,9 +26,6 @@ public sealed partial class ESGasLeakRuleComponent : Component
     [DataField]
     public EntityUid LeakOrigin;
 
-    // TODO: replace with real sparks
-    [DataField]
-    public SoundSpecifier? SparkSound = new SoundCollectionSpecifier("sparks");
     [DataField]
     public float SparkChance = 0.05f;
 }

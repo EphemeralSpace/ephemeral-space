@@ -122,8 +122,11 @@
     transmitFrequencyId: SmartLight # assuming people want to use it for light switches.
   - type: ApcNetworkConnection
   - type: ApcNetSwitch
+# ES START
+    state: true
   - type: Transform
-    anchored: false
+    #anchored: false
+# ES END
   - type: Construction
     graph: LightSwitchGraph
     node: LightSwitchNode
@@ -165,6 +168,17 @@
   - type: Construction
     graph: LightSwitchDirectionalGraph
     node: LightSwitchDirectionalNode
+
+# ES START
+- type: entity
+  parent: ApcNetSwitchDirectional
+  id: ESApcNetSwitchLight
+  name: light switch
+  suffix: directional
+  components:
+  - type: WallMount
+    arc: 175
+# ES END
 
 # lockable buttons
 

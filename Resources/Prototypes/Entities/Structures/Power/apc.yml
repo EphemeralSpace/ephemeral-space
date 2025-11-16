@@ -9,12 +9,14 @@
   components:
   - type: StationAiWhitelist
   # ES START
-  #- type: AmbientOnPowered
-  #- type: AmbientSound
-  #  volume: -9
-  #  range: 2
-  #  sound:
-  #    path: /Audio/Ambience/Objects/hdd_buzz.ogg
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -12
+    range: 10 # max range
+    sound:
+      path: /Audio/Ambience/shipambience.ogg # plays nonpositionally, so this is stereo
+    maxSoundOverride: 1
+    playPositional: false
   - type: PointLight
     radius: 1.8
     energy: 3

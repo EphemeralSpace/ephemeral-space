@@ -106,10 +106,11 @@
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: DeviceNetwork
-    deviceNetId: Wireless
+# ES START
+    deviceNetId: Apc
     receiveFrequencyId: SmartLight
-  - type: WirelessNetworkConnection
-    range: 200
+  - type: ApcNetworkConnection
+# ES END
   - type: Appearance
   - type: PoweredLightVisuals
     spriteStateMap:

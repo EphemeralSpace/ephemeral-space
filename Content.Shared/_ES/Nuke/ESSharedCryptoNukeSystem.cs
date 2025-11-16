@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Nuke.Components;
+using Content.Shared._ES.Sparks;
 using Content.Shared.Examine;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
@@ -16,6 +17,7 @@ public abstract class ESSharedCryptoNukeSystem : EntitySystem
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] private readonly ESSharedMaskSystem _mask = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
+    [Dependency] private readonly ESSparksSystem _sparks = default!;
     [Dependency] protected readonly SharedStationSystem Station = default!;
     [Dependency] protected readonly SharedUserInterfaceSystem UserInterface = default!;
 
@@ -63,6 +65,8 @@ public abstract class ESSharedCryptoNukeSystem : EntitySystem
 
         if (!ArePreRequisiteObjectivesDone())
             return;
+
+        _sparks.DoSparks(ent);
 
         ent.Comp.Compromised = true;
         Dirty(ent);

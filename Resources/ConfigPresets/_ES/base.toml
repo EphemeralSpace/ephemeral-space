@@ -7,6 +7,9 @@
 attenuation = 4 # inversedistanceclamped 1 << 2, see audioparams.cs
 z_offset = -2
 
+[ambience]
+range = 10# APCs
+
 # No mob crawling + mob push tweaks
 [movement]
 crawling = false
@@ -18,3 +21,7 @@ push_mass_cap = 1.2
 [atmos]
 monstermos_depressurization = false
 monstermos_equalization = false
+
+# Square viewport
+[viewport]
+maximum_width = 15

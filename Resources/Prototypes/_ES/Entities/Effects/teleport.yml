@@ -8,19 +8,25 @@
     drawdepth: Effects
     noRot: true
     loop: false
-  - type: TimedDespawn
-    lifetime: 1.3
+  - type: Appearance
+  - type: ESTimedDespawn
+    lifetime: 2.0
   - type: EmitSoundOnSpawn
+    positional: true
     sound:
-      path: /Audio/Effects/Lightning/lightningbolt.ogg
+      path: /Audio/_ES/Effects/teleport.ogg
       params:
-        variation: 0.125
+        variation: 0.05
+  - type: ESTimedDespawnLightFade
+    fadeTime: 1.5
+  - type: AnimationPlayer
   - type: PointLight
     radius: 3
     energy: 2.5
     falloff: 10
     curveFactor: 0.5
     color: "#aaff7a"
+    netsync: false
   - type: Tag
     tags:
     - HideContextMenu
@@ -31,7 +37,11 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    state: teleport_gray
-    color: "#7D1500"
+    layers:
+    - state: teleport_gray
+      color: "#ff5555"
+    - state: teleport_gray_electric
+      color: "#ff5555"
+    - state: teleport_gray_center
   - type: PointLight
     color: "#fa2a00"

@@ -5,10 +5,10 @@ using Content.Server.Pinpointer;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
+using Content.Shared._ES.Sparks;
 using Content.Shared._ES.Voting.Components;
 using Content.Shared._ES.Voting.Results;
 using Content.Shared.GameTicking.Components;
-using Robust.Server.GameObjects;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -18,8 +18,8 @@ public sealed class ESGasLeakRule : StationEventSystem<ESGasLeakRuleComponent>
 {
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
+    [Dependency] private readonly ESSparksSystem _sparks = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -103,11 +103,6 @@ public sealed class ESGasLeakRule : StationEventSystem<ESGasLeakRuleComponent>
         if (!Exists(component.LeakOrigin) || TerminatingOrDeleted(component.LeakOrigin))
             return;
 
-        if (Transform(component.LeakOrigin).GridUid is not { } grid)
-            return;
-
-        var indices = _transform.GetGridTilePositionOrDefault(component.LeakOrigin);
-        _atmosphere.HotspotExpose(grid, indices, 700f, 50f, null, true);
-        Audio.PlayPvs(component.SparkSound, uid);
+        _sparks.DoSparks(component.LeakOrigin, 5);
     }
 }
