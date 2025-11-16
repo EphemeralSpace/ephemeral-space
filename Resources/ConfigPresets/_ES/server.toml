@@ -1,3 +1,6 @@
 [game]
 desc             = "WIP"
 lobbyenabled     = true
+
+[es_arrivals]
+enabled = true

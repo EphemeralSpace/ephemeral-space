@@ -46,3 +46,8 @@ new_player_threshold = 120
 random_characters = true
 random_species_weights = ""
 ssd_sleep_time = 3600
+
+# ES START
+[es_arrivals]
+ftl_time = 35 # not used by default, but useful if its enabled so it doesnt take 5 minutes
+# ES END

@@ -6,7 +6,7 @@ namespace Content.Server._ES.Arrivals.Components;
 public sealed partial class ESStationArrivalsComponent : Component
 {
     [DataField]
-    public ResPath ShuttlePath = new("/Maps/Shuttles/arrivals.yml");
+    public ResPath ShuttlePath = new("/Maps/_ES/Shuttles/arrivals.yml");
 
     [DataField]
     public EntityUid? ShuttleUid;

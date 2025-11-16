@@ -414,7 +414,11 @@ public sealed partial class ShuttleSystem
         comp.StateTime = StartEndTime.FromCurTime(_gameTiming, comp.TravelTime - DefaultArrivalTime);
 
         Enable(uid, component: body);
-        _physics.SetLinearVelocity(uid, new Vector2(0f, 20f), body: body);
+        // ES START
+        // slower ftl to look better w parallax
+        // also east instead of north/south smile
+        _physics.SetLinearVelocity(uid, new Vector2(5f, 0f), body: body);
+        // ES END
         _physics.SetAngularVelocity(uid, 0f, body: body);
 
         _dockSystem.SetDockBolts(uid, true);
@@ -424,9 +428,12 @@ public sealed partial class ShuttleSystem
         RaiseLocalEvent(uid, ref ev, true);
 
         // Audio
-        var wowdio = _audio.PlayPvs(comp.TravelSound, uid);
+        // ES START
+        // no travel audio. it sounds really bad man
+        /*var wowdio = _audio.PlayPvs(comp.TravelSound, uid);
         comp.TravelStream = wowdio?.Entity;
-        _audio.SetGridAudio(wowdio);
+        _audio.SetGridAudio(wowdio);*/
+        // ES END
     }
 
     /// <summary>
@@ -451,7 +458,10 @@ public sealed partial class ShuttleSystem
         }
 
         _thruster.DisableLinearThrusters(shuttle);
-        _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.South);
+        // ES START
+        // hardcodey but whatever its equally as hardcodey as upstream.
+        _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.West);
+        // ES END
 
         _console.RefreshShuttleConsoles(entity.Owner);
     }

@@ -40,4 +40,13 @@ public sealed partial class ESCVars : CVars
 
     public static readonly CVarDef<string> ESStationCurrentConfig =
         CVarDef.Create("es_station.current_config", "ESDefault", CVar.SERVER);
+
+    // ES-SPECIFIC ARRIVALS HANDLING
+    // Used so regular arrivals shit can stay disabled easily
+    public static readonly CVarDef<bool> ESArrivalsEnabled =
+        CVarDef.Create("es_arrivals.enabled", false, CVar.SERVER);
+
+    // How long in seconds it takes from roundstart->the shuttle arriving at the station
+    public static readonly CVarDef<float> ESArrivalsFTLTime =
+        CVarDef.Create("es_arrivals.ftl_time", 60 * 5f, CVar.SERVER);
 }
