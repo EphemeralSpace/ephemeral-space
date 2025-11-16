@@ -125,7 +125,7 @@ public sealed class ESArrivalsSystem : EntitySystem
             ev.Station);
 
         // TODO MIRROR one-way arrivals, use these for a turnstile check or something + remove on exiting arrivals
-        EnsureComp<AutoOrientComponent>(ev.SpawnResult.Value);
+        // EnsureComp<AutoOrientComponent>(ev.SpawnResult.Value);
         var passenger = EnsureComp<ESArrivalsPassengerComponent>(ev.SpawnResult.Value);
         passenger.Station = ev.Station.Value;
     }
