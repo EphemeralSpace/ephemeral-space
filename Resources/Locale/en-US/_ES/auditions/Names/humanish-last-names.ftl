@@ -720,6 +720,7 @@ es-names-last-dataset-709 = Winwal
 es-names-last-dataset-710 = Bimberlin
 es-names-last-dataset-711 = Plier
 es-names-last-dataset-712 = Wawa
+es-names-last-dataset-712 = Stalemate
 # same batch, more normal names, still a bit off-kilter (as most names should be) but not as weird
 es-names-last-dataset-713 = Peppermint
 es-names-last-dataset-714 = Stakes
