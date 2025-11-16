@@ -56099,6 +56099,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -21.5,-50.5
       parent: 2
+- proto: ESAntimatterGasPressurePump
+  entities:
+  - uid: 3882
+    components:
+    - type: Transform
+      pos: -43.5,-17.5
+      parent: 2
 - proto: GasPressurePump
   entities:
   - uid: 554
@@ -56132,15 +56139,6 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#0335FCFF'
-  - uid: 3882
-    components:
-    - type: MetaData
-      name: engine fuel pump
-    - type: Transform
-      pos: -43.5,-17.5
-      parent: 2
-    - type: GasPressurePump
-      targetPressure: 10
   - uid: 9263
     components:
     - type: Transform

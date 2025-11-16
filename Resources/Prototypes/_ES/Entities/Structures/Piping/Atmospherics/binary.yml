@@ -1,0 +1,10 @@
+# Clamped variant of pressure pump (lower max pressure) for less insane destruction by default
+- type: entity
+  parent: GasPressurePump
+  id: ESAntimatterGasPressurePump
+  name: engine fuel pump
+  description: A pump that moves gas by pressure into the antimatter chamber. Clamped for safety.
+  components:
+  - type: GasPressurePump
+    targetPressure: 10
+    maxTargetPressure: 50
