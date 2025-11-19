@@ -8,6 +8,8 @@
   abstract: true
   components:
   - type: Sprite
+    noRot: true
+    drawdepth: Mobs
     sprite: _ES/Mobs/Theater/theater_crew.rsi
   - type: PointLight # Spotlight, for visibility
     radius: 1.5
@@ -16,7 +18,7 @@
     color: "#FFE4CE"
   - type: MobCollision
   - type: Physics
-    bodyType: KinematicController
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
