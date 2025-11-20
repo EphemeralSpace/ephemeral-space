@@ -69,6 +69,9 @@ namespace Content.Server.Light.EntitySystems
 
         private void OnGetActions(EntityUid uid, HandheldLightComponent component, GetItemActionsEvent args)
         {
+// ES START
+            return;
+// ES END
             args.AddAction(ref component.ToggleActionEntity, component.ToggleAction);
         }
 
@@ -92,6 +95,9 @@ namespace Content.Server.Light.EntitySystems
 
         private void OnMapInit(Entity<HandheldLightComponent> ent, ref MapInitEvent args)
         {
+// ES START
+            return;
+// ES END
             var component = ent.Comp;
             _actionContainer.EnsureAction(ent, ref component.ToggleActionEntity, component.ToggleAction);
             _actions.AddAction(ent, ref component.SelfToggleActionEntity, component.ToggleAction);

@@ -157,6 +157,7 @@ namespace Content.Client.Options.UI.Tabs
             AddHeader("ui-options-header-es");
             AddButton(ContentKeyFunctions.ESHoldToFace);
             AddButton(ContentKeyFunctions.ESToggleInternals);
+            AddButton(ContentKeyFunctions.ESToggleFlashlight);
             // ES END
 
             AddHeader("ui-options-header-movement");
