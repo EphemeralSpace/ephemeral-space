@@ -62,7 +62,7 @@ alerts-no-battery-desc = You don't have a battery, rendering you unable to charg
 
 alerts-internals-name = Toggle internals
 # ES START
-alerts-internals-desc = [color=yellow]Click[/color] or press [color=yellow][keybind="ESToggleInternals"][/color] to toggle your gas tank internals on and off.
+alerts-internals-desc = [color=yellow]Click[/color] here or press [color=yellow][keybind="ESToggleInternals"][/color] to toggle your gas tank internals on and off.
 # ES END
 
 alerts-piloting-name = Piloting Shuttle

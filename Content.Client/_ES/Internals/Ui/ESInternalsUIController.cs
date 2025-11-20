@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client.Atmos.EntitySystems;
 using Content.Client.Gameplay;
+using Content.Client.Hands.Systems;
 using Content.Client.Inventory;
 using Content.Client.Popups;
 using Content.Client.UserInterface.Controls;
@@ -23,6 +24,7 @@ public sealed class ESInternalsUIController : UIController, IOnStateChanged<Game
     [Dependency] private readonly IPlayerManager _player = default!;
 
     [UISystemDependency] private readonly GasTankSystem _gasTank = default!;
+    [UISystemDependency] private readonly HandsSystem _hands = default!;
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly PopupSystem _popup = default!;
 
@@ -69,35 +71,56 @@ public sealed class ESInternalsUIController : UIController, IOnStateChanged<Game
         }
 
         // Find candidate tanks
-        var tanks = new HashSet<Entity<GasTankComponent>>();
-        foreach (var entity in _inventory.GetHandOrInventoryEntities(player))
+        var tanks = new HashSet<(EntityUid Tank, string)>();
+        var slotEnumerator = _inventory.GetSlotEnumerator(player);
+        while (slotEnumerator.MoveNext(out var inventorySlot))
         {
+            if (inventorySlot.ContainedEntity is not { } entity)
+                continue;
+
             if (!EntityManager.TryGetComponent<GasTankComponent>(entity, out var gasTank) ||
                 !_gasTank.CanConnectToInternals((entity, gasTank)))
                 continue;
 
-            tanks.Add((entity, gasTank));
+            _inventory.TryGetSlot(player, inventorySlot.ID, out var def);
+            var identifier = def?.DisplayName.ToLowerInvariant() ?? string.Empty;
+            tanks.Add((entity, identifier));
         }
 
-        if (tanks.Count == 1)
+        foreach (var handId in _hands.EnumerateHands(player))
         {
-            SendToggleMessage(tanks.First());
+            if (!_hands.TryGetHeldItem(player, handId, out var held) ||
+                !_hands.TryGetHand(player, handId, out var hand))
+                continue;
+
+            if (!EntityManager.TryGetComponent<GasTankComponent>(held, out var gasTank) ||
+                !_gasTank.CanConnectToInternals((held.Value, gasTank)))
+                continue;
+
+            // TODO: this should be pulled out to a common place.
+            var slotName = Loc.GetString("es-internals-ui-hand-fmt", ("location", hand.Value.Location.ToString().ToLowerInvariant()));
+            tanks.Add((held.Value, slotName));
         }
-        else if (tanks.Count > 1)
+
+        switch (tanks.Count)
         {
-            _menu?.OpenOverMouseScreenPosition();
-            _menu?.SetButtons(GetButtons(tanks));
-        }
-        else
-        {
-            _popup.PopupPredictedCursor(Loc.GetString("internals-self-no-tank"), player, PopupType.Medium);
+            case 0:
+                _popup.PopupPredictedCursor(Loc.GetString("internals-self-no-tank"), player, PopupType.Medium);
+                break;
+            case 1:
+                SendToggleMessage(tanks.First().Tank);
+                break;
+            case > 1:
+                _menu?.OpenOverMouseScreenPosition();
+                _menu?.SetButtons(GetButtons(tanks));
+                break;
         }
         return true;
     }
 
-    private IEnumerable<RadialMenuOptionBase> GetButtons(HashSet<Entity<GasTankComponent>> ent)
+    private IEnumerable<RadialMenuOptionBase> GetButtons(HashSet<(EntityUid, string)> set)
     {
-        foreach (var tank in ent)
+        foreach (var (tank, slot) in set)
         {
             var metaData = EntityManager.GetComponent<MetaDataComponent>(tank);
 
@@ -105,7 +128,7 @@ public sealed class ESInternalsUIController : UIController, IOnStateChanged<Game
             {
                 // BUG: Using the sprite view causes items in the inventory to be invisible.
                 IconSpecifier = RadialMenuIconSpecifier.With(metaData.EntityPrototype?.ID),
-                ToolTip = metaData.EntityName,
+                ToolTip = Loc.GetString("es-internals-ui-name-fmt", ("name", metaData.EntityName), ("slot", slot)),
             };
             yield return option;
         }
