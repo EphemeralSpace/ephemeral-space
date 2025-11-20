@@ -7,6 +7,7 @@ namespace Content.Shared.Input
     {
         // ES START
         public static readonly BoundKeyFunction ESHoldToFace = "ESHoldToFace";
+        public static readonly BoundKeyFunction ESToggleInternals = "ESToggleInternals";
         // ES END
         public static readonly BoundKeyFunction ToggleKnockdown = "ToggleKnockdown";
         public static readonly BoundKeyFunction UseItemInHand = "ActivateItemInHand";

@@ -67,6 +67,10 @@ public abstract class SharedGasTankSystem : EntitySystem
 
     private void OnGetActions(EntityUid uid, GasTankComponent component, GetItemActionsEvent args)
     {
+// ES START
+        // No more internal actions!!!
+        return;
+// ES END
         args.AddAction(ref component.ToggleActionEntity, component.ToggleAction);
         Dirty(uid, component);
     }
@@ -82,6 +86,9 @@ public abstract class SharedGasTankSystem : EntitySystem
             args.PushMarkup(Loc.GetString("comp-gas-tank-connected"));
 
         args.PushMarkup(Loc.GetString(component.IsValveOpen ? "comp-gas-tank-examine-open-valve" : "comp-gas-tank-examine-closed-valve"));
+// ES START
+        args.PushMarkup(Loc.GetString("es-internals-examine-key"));
+// ES END
     }
 
     private void OnActionToggle(Entity<GasTankComponent> gasTank, ref ToggleActionEvent args)
@@ -216,7 +223,10 @@ public abstract class SharedGasTankSystem : EntitySystem
         return true;
     }
 
-    private bool ToggleInternals(Entity<GasTankComponent> ent, EntityUid? user = null)
+// ES START
+    // private -> public
+    public bool ToggleInternals(Entity<GasTankComponent> ent, EntityUid? user = null)
+// ES END
     {
         if (ent.Comp.IsConnected)
         {

@@ -4,6 +4,9 @@ binds:
 - function: ESHoldToFace
   type: State
   key: Shift
+- function: ESToggleInternals
+  type: State
+  key: R
 # ES END
 - function: UIClick
   type: State
