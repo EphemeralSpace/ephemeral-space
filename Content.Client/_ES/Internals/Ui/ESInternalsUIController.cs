@@ -57,7 +57,7 @@ public sealed class ESInternalsUIController : UIController, IOnStateChanged<Game
         // If they can't connect to a tank, notify them!
         if (internals.BreathTools.Count == 0)
         {
-            _popup.PopupPredictedCursor(Loc.GetString("es-internals-popup-no-breathing-tool"), player, PopupType.Medium);
+            _popup.PopupPredictedCursor(Loc.GetString("internals-self-no-breath-tool"), player, PopupType.Medium);
             return true;
         }
 
@@ -90,7 +90,7 @@ public sealed class ESInternalsUIController : UIController, IOnStateChanged<Game
         }
         else
         {
-            _popup.PopupPredictedCursor(Loc.GetString("es-internals-popup-no-tanks"), player, PopupType.Medium);
+            _popup.PopupPredictedCursor(Loc.GetString("internals-self-no-tank"), player, PopupType.Medium);
         }
         return true;
     }

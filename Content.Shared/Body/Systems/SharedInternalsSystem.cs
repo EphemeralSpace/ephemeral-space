@@ -84,8 +84,17 @@ public abstract class SharedInternalsSystem : EntitySystem
         // Check if a mask is present.
         if (internals.BreathTools.Count == 0)
         {
-            var message = user == target ? Loc.GetString("internals-self-no-breath-tool") : Loc.GetString("internals-other-no-breath-tool", ("ent", Identity.Name(target, EntityManager, user)));
-            _popupSystem.PopupClient(message, target, user);
+// ES START
+            var message = user == target ? Loc.GetString("internals-self-no-breath-tool") : Loc.GetString("internals-other-no-breath-tool", ("ent", Identity.Entity(target, EntityManager, user)));
+            if (user == target)
+            {
+                _popupSystem.PopupPredictedCursor(message, user, PopupType.Medium);
+            }
+            else
+            {
+                _popupSystem.PopupClient(message, target, user, PopupType.Medium);
+            }
+// ES END
             return false;
         }
 
@@ -95,8 +104,17 @@ public abstract class SharedInternalsSystem : EntitySystem
         // If they're not on then check if we have a mask to use
         if (tank == null)
         {
-            var message = user == target ? Loc.GetString("internals-self-no-tank") : Loc.GetString("internals-other-no-tank", ("ent", Identity.Name(target, EntityManager, user)));
-            _popupSystem.PopupClient(message, target, user);
+// ES START
+            var message = user == target ? Loc.GetString("internals-self-no-tank") : Loc.GetString("internals-other-no-tank", ("ent", Identity.Entity(target, EntityManager, user)));
+            if (user == target)
+            {
+                _popupSystem.PopupPredictedCursor(message, user, PopupType.Medium);
+            }
+            else
+            {
+                _popupSystem.PopupClient(message, target, user, PopupType.Medium);
+            }
+// ES END
             return false;
         }
 
