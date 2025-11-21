@@ -1,6 +1,8 @@
 using Content.Shared.ActionBlocker;
+using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Light;
+using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Robust.Shared.Serialization;
 
@@ -16,7 +18,14 @@ public sealed class ESFlashlightSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
+        SubscribeLocalEvent<UnpoweredFlashlightComponent, ExaminedEvent>(OnExamine);
+        
         SubscribeAllEvent<ESToggleFlashlightEvent>(OnToggleFlashlight);
+    }
+
+    private void OnExamine(Entity<UnpoweredFlashlightComponent> ent, ref ExaminedEvent args)
+    {
+        args.PushMarkup(Loc.GetString("es-flashlight-toggle-examine-keybind"));
     }
 
     private void OnToggleFlashlight(ESToggleFlashlightEvent msg, EntitySessionEventArgs args)

@@ -148,9 +148,14 @@ namespace Content.Server.Light.EntitySystems
 
         private void OnExamine(EntityUid uid, HandheldLightComponent component, ExaminedEvent args)
         {
+// ES START
+            using var _ = args.PushGroup(nameof(HandheldLightComponent));
+
             args.PushMarkup(component.Activated
                 ? Loc.GetString("handheld-light-component-on-examine-is-on-message")
                 : Loc.GetString("handheld-light-component-on-examine-is-off-message"));
+            args.PushMarkup(Loc.GetString("es-flashlight-toggle-examine-keybind"));
+// ES END
         }
 
         public override void Shutdown()
