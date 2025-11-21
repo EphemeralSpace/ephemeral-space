@@ -157,7 +157,11 @@ public sealed partial class SimpleRadialMenu : RadialMenu
             SetSize = new Vector2(48, 48),
             VerticalAlignment = VAlignment.Center,
             HorizontalAlignment = HAlignment.Center,
-            Stretch = SpriteView.StretchMode.Fill,
+// ES START
+            // the "fill" stretch mode property causes some items to not display correctly in the UI.
+            // Do not ask me why.
+            Scale = Vector2.One * 2f,
+// ES END
         };
         entProtoView.SetPrototype(protoId);
         return entProtoView;
@@ -170,7 +174,11 @@ public sealed partial class SimpleRadialMenu : RadialMenu
             SetSize = new Vector2(48, 48),
             VerticalAlignment = VAlignment.Center,
             HorizontalAlignment = HAlignment.Center,
-            Stretch = SpriteView.StretchMode.Fill,
+// ES START
+            // the "fill" stretch mode property causes some items to not display correctly in the UI.
+            // Do not ask me why.
+            Scale = Vector2.One * 2f,
+// ES END
         };
         entView.SetEntity(entityForSpriteView);
         return entView;
@@ -369,7 +377,10 @@ public sealed class SimpleRadialMenuSettings
     /// <summary>
     /// Default container draw radius. Is going to be further affected by per sector increment.
     /// </summary>
-    public int DefaultContainerRadius = 100;
+// ES START
+    // Decrease 100 -> 75. looks better
+    public int DefaultContainerRadius = 75;
+// ES END
 
     /// <summary>
     /// Marker, if sector-buttons should be used.

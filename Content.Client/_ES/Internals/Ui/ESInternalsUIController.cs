@@ -126,8 +126,7 @@ public sealed class ESInternalsUIController : UIController, IOnStateChanged<Game
 
             var option = new RadialMenuActionOption<EntityUid>(SendToggleMessage, tank)
             {
-                // BUG: Using the sprite view causes items in the inventory to be invisible.
-                IconSpecifier = RadialMenuIconSpecifier.With(metaData.EntityPrototype?.ID),
+                IconSpecifier = RadialMenuIconSpecifier.With(tank),
                 ToolTip = Loc.GetString("es-internals-ui-name-fmt", ("name", metaData.EntityName), ("slot", slot)),
             };
             yield return option;
