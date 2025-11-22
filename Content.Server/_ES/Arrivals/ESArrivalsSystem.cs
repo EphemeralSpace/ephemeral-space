@@ -1,7 +1,8 @@
 using System.Numerics;
 using Content.Server._ES.Arrivals.Components;
+using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
-using Content.Server.Gravity;
+using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
@@ -11,10 +12,9 @@ using Content.Server.Station.Systems;
 using Content.Shared._ES.CCVar;
 using Content.Shared._ES.Light.Components;
 using Content.Shared.Bed.Cryostorage;
-using Content.Shared.CCVar;
-using Content.Shared.GameTicking;
+using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Gravity;
-using Content.Shared.Movement.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
@@ -32,6 +32,7 @@ public sealed class ESArrivalsSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
@@ -40,6 +41,7 @@ public sealed class ESArrivalsSystem : EntitySystem
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
 
     private bool _arrivalsEnabled = true;
+    private float _flightTime;
 
     private static readonly ProtoId<TagPrototype> DockTagProto = "DockArrivals";
 
@@ -49,11 +51,12 @@ public sealed class ESArrivalsSystem : EntitySystem
         SubscribeLocalEvent<ESStationArrivalsComponent, StationPostInitEvent>(OnStationPostInit);
 
         SubscribeLocalEvent<ESArrivalsShuttleComponent, FTLTagEvent>(OnShuttleTag);
+        SubscribeLocalEvent<ESArrivalsShuttleComponent, FTLStartedEvent>(OnFTLStarted);
 
         SubscribeLocalEvent<PlayerSpawningEvent>(HandlePlayerSpawning, before: [typeof(SpawnPointSystem)]);
-        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
 
         _config.OnValueChanged(ESCVars.ESArrivalsEnabled, OnArrivalsConfigChanged, true);
+        _config.OnValueChanged(ESCVars.ESArrivalsFTLTime, (f => _flightTime = f), true);
     }
 
     private void OnArrivalsConfigChanged(bool val)
@@ -93,6 +96,22 @@ public sealed class ESArrivalsSystem : EntitySystem
         args.Tag = DockTagProto;
     }
 
+    private void OnFTLStarted(Entity<ESArrivalsShuttleComponent> ent, ref FTLStartedEvent args)
+    {
+        if (!TryComp<DeviceNetworkComponent>(ent, out var netComp))
+            return;
+
+        var payload = new NetworkPayload
+        {
+            [ShuttleTimerMasks.ShuttleMap] = Transform(ent).MapUid,
+            [ShuttleTimerMasks.SourceMap] = args.FromMapUid,
+            [ShuttleTimerMasks.ShuttleTime] = _flightTime,
+            [ShuttleTimerMasks.SourceTime] = _flightTime,
+        };
+
+        _deviceNetwork.QueuePacket(ent, null, payload, netComp.TransmitFrequency);
+    }
+
     private void HandlePlayerSpawning(PlayerSpawningEvent ev)
     {
         if (ev.SpawnResult != null)
@@ -127,20 +146,6 @@ public sealed class ESArrivalsSystem : EntitySystem
         // EnsureComp<AutoOrientComponent>(ev.SpawnResult.Value);
         var passenger = EnsureComp<ESArrivalsPassengerComponent>(ev.SpawnResult.Value);
         passenger.Station = ev.Station.Value;
-    }
-
-    // TODO MIRROR why does this even exist
-    private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args)
-    {
-        // Exists solely as a remedial testing thing for if someone
-        // spawns in without arrivals. We don't handle basic roundstart behavior because uhh...
-        // Fuck you! That's why. We don't have typical roundflow so go fuck yourself.
-        if (_arrivalsEnabled || HasComp<ESArrivalsPassengerComponent>(args.Mob))
-            return;
-
-        // Match the one above.
-        var ev = new ESPlayersArrivedEvent([args.Mob]);
-        RaiseLocalEvent(args.Station, ref ev, true);
     }
 
     private void SetupShuttle(Entity<ESStationArrivalsComponent> ent)
@@ -183,8 +188,7 @@ public sealed class ESArrivalsSystem : EntitySystem
         if (_station.GetLargestGrid(ent.Comp.Station) is not { } grid)
             return;
 
-        var flightTime = _config.GetCVar(ESCVars.ESArrivalsFTLTime);
-        _shuttle.FTLToDock(ent, Comp<ShuttleComponent>(ent), grid, startupTime: 0f, hyperspaceTime: flightTime);
+        _shuttle.FTLToDock(ent, Comp<ShuttleComponent>(ent), grid, startupTime: 0f, hyperspaceTime: _flightTime);
     }
 }
 
