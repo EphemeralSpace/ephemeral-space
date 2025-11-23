@@ -15,5 +15,8 @@ public sealed partial class ESRunLevelDoorComponent : Component
     /// All other run levels will cause it to close.
     /// </summary>
     [DataField]
-    public GameRunLevel OpenRunLevel = GameRunLevel.InRound;
+    public GameRunLevel OpenRunLevel = GameRunLevel.PreRoundLobby;
+
+    [DataField]
+    public bool Invert = true;
 }

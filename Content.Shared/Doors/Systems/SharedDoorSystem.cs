@@ -334,6 +334,10 @@ public abstract partial class SharedDoorSystem : EntitySystem
     {
         if (!Resolve(uid, ref door))
             return false;
+// ES START
+        if (door.State is DoorState.Open)
+            return true;
+// ES END
 
         if (!CanOpen(uid, door, user, quiet))
             return false;

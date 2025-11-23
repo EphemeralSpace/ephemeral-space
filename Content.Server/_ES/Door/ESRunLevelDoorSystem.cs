@@ -23,7 +23,7 @@ public sealed class ESRunLevelDoorSystem : EntitySystem
         var query = EntityQueryEnumerator<ESRunLevelDoorComponent, DoorComponent>();
         while (query.MoveNext(out var uid, out var comp, out var door))
         {
-            var open = ev.New == comp.OpenRunLevel;
+            var open = (ev.New == comp.OpenRunLevel) ^ comp.Invert;
 
             if (open)
             {
