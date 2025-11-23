@@ -5,6 +5,7 @@ using Content.Server.Chat.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Interaction;
 using Robust.Server.Audio;
+using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -19,6 +20,8 @@ public sealed class ESEphemeraSpeechSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
 
     // This is only meant to be like an anti-spam system, so it doesn't have to
     // really reflect how long it would take a person to read the dialogue.
@@ -36,10 +39,12 @@ public sealed class ESEphemeraSpeechSystem : EntitySystem
 
     private void OnActivateInWorld(Entity<ESEphemeraSpeakerComponent> ent, ref ActivateInWorldEvent args)
     {
-        if (args.Handled)
+        if (!TrySpeakDialogue(ent))
             return;
 
-        args.Handled = TrySpeakDialogue(ent);
+        var mapCoords = _transform.GetMapCoordinates(args.User);
+        _rotateToFace.TryFaceCoordinates(ent, mapCoords.Position);
+        // Intentionally do not handle, as we want to allow other actions to happen simultaneously.
     }
 
     private void OnSequentialGetDialogue(Entity<ESEphemeraSequentialDialogueComponent> ent, ref ESEphemeraGetDialogueEvent args)

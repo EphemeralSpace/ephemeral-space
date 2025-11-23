@@ -1,0 +1,43 @@
+- type: entity
+  id: ESCurtainsTheaterStage
+  parent: BaseStructure
+  name: stage curtains
+  description: The gateway into the realm beyond what the audience is meant to see. Harrowing...
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    snapCardinals: true
+    sprite: Structures/Decoration/Curtains/red.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Occluder
+  - type: AnimationPlayer
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - AirlockLayer
+  - type: ESRunLevelDoor
+  - type: Door
+    canCrush: false
+    performCollisionCheck: false
+    bumpOpen: false
+    clickOpen: false
+    closeTimeOne: 0.5
+    closeTimeTwo: 0.1
+    openTimeOne: 0.5
+    openTimeTwo: 0.1
+    openSound:
+      path: /Audio/Effects/curtain_openclose.ogg
+    closeSound:
+      path: /Audio/Effects/curtain_openclose.ogg
+  - type: Appearance
+  - type: ESInteractionIgnoreAnchoredInTile

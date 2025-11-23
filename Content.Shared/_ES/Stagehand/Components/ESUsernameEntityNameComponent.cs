@@ -5,13 +5,6 @@ namespace Content.Shared._ES.Stagehand.Components;
 /// <summary>
 /// Used for entities which show the player's username when they are occupied, rather than an IC name.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
 [Access(typeof(ESUsernameEntityNameSystem))]
-public sealed partial class ESUsernameEntityNameComponent : Component
-{
-    /// <summary>
-    /// The original name for this entity.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public string OriginalName = string.Empty;
-}
+public sealed partial class ESUsernameEntityNameComponent : Component;

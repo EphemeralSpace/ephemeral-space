@@ -122,6 +122,11 @@ public abstract class SharedItemSystem : EntitySystem
             !_handsSystem.CanPickupAnyHand(args.User, args.Target, handsComp: args.Hands, item: component))
             return;
 
+        // ES START
+        // No pickup verb
+        return;
+        // ES START
+
         InteractionVerb verb = new();
         verb.Act = () => _handsSystem.TryPickupAnyHand(args.User, args.Target, checkActionBlocker: false,
             handsComp: args.Hands, item: component);

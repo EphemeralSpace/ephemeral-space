@@ -3,7 +3,13 @@ action-description-internals-toggle-on = Breathe from the equipped gas tank. Als
 action-name-internals-toggle-off = Toggle Internals Off
 action-description-internals-toggle-off = Breathe from the environment.
 
-internals-self-no-breath-tool = You are not wearing a breathing tool
-internals-other-no-breath-tool = {$ent} is not wearing a breathing tool
-internals-self-no-tank = You are not wearing a gas tank
-internals-other-no-tank = {$ent} is not wearing a gas tank
+# ES START
+internals-self-no-breath-tool = No breathing tool!
+internals-other-no-breath-tool = {CAPITALIZE(SUBJECT($ent))} {CONJUGATE-BASIC($ent, "don't", "doesn't")} have a breathing tool!
+internals-self-no-tank = No gas tank!
+internals-other-no-tank = {CAPITALIZE(SUBJECT($ent))} {CONJUGATE-BASIC($ent, "don't", "doesn't")} have a gas tank!
+
+es-internals-examine-key = Press [color=yellow][keybind="ESToggleInternals"][/color] when equipped to toggle internals.
+es-internals-ui-name-fmt = {$name} ({$slot})
+es-internals-ui-hand-fmt = {$location} hand
+# ES END

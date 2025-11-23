@@ -308,7 +308,10 @@ namespace Content.Shared.Verbs
     public sealed class AlternativeVerb : Verb
     {
         public override int TypePriority => 2;
-        public new static string DefaultTextStyleClass = "AlternativeVerb";
+        // ES START
+        // Basic styling
+        public new static string DefaultTextStyleClass = "Verb";
+        // ES END
         public override bool DefaultDoContactInteraction => true;
 
         public AlternativeVerb() : base()
@@ -330,7 +333,10 @@ namespace Content.Shared.Verbs
     public sealed class ActivationVerb : Verb
     {
         public override int TypePriority => 1;
-        public new static string DefaultTextStyleClass = "ActivationVerb";
+        // ES START
+        // Basic styling
+        public new static string DefaultTextStyleClass = "Verb";
+        // ES END
         public override bool DefaultDoContactInteraction => true;
 
         public ActivationVerb() : base()

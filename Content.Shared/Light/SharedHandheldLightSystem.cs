@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Clothing.EntitySystems;
+using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Light;
 using Content.Shared.Light.Components;
@@ -106,4 +107,15 @@ public abstract class SharedHandheldLightSystem : EntitySystem
 
     public abstract bool TurnOff(Entity<HandheldLightComponent> ent, bool makeNoise = true);
     public abstract bool TurnOn(EntityUid user, Entity<HandheldLightComponent> uid);
+// ES START
+    public bool TryToggleLight(Entity<HandheldLightComponent?> ent, EntityUid user)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        return ent.Comp.Activated
+            ? TurnOff((ent, ent.Comp))
+            : TurnOn(user, (ent, ent.Comp));
+    }
+// ES END
 }

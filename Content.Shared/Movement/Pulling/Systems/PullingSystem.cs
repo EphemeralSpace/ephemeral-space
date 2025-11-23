@@ -256,6 +256,11 @@ public sealed class PullingSystem : EntitySystem
         if (!args.CanAccess || !args.CanInteract)
             return;
 
+        // ES START
+        // No pull verbs
+        return;
+        // ES END
+
         // Are they trying to pull themselves up by their bootstraps?
         if (args.User == args.Target)
             return;

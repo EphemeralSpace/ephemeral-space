@@ -40,6 +40,11 @@ public sealed partial class PointingSystem : SharedPointingSystem
         if (!CanPoint(args.User))
             return;
 
+        // ES START
+        // No pointing verb
+        return;
+        // ES END
+
         // We won't check in range or visibility, as this verb is currently only executable via the context menu,
         // and that should already have checked that, as well as handling the FOV-toggle stuff.
 

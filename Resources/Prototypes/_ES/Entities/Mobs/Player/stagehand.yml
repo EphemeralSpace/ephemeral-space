@@ -15,14 +15,21 @@
     maxZoom: 1.44,1.44
   - type: Eye
     drawFov: false
+    visMask:
+    - Normal
+    - Ghost
   - type: Input
     context: "ghost"
   - type: Visibility
     layer: 2 #ghost vis layer
   - type: Examiner
     skipChecks: true
+  - type: Ghost # TODO: reason about the implications of this
+    toggleLightingAction: ESActionStagehandChangeLighting
+    toggleFoVAction: ESActionStagehandToggleFOV
   - type: ESStagehand
   - type: ESUsernameEntityName
+  - type: ESBlockInteraction
   - type: ShowElectrocutionHUD
   - type: ShowAntagIcons
   - type: UserInterface
@@ -34,10 +41,6 @@
       enum.ESVoterUiKey.Key:
         toggleAction: ESActionStagehandVote
   - type: ESVoter
-  - type: ESInherentActions
-    actions:
-    - ESActionStagehandChangeLighting
-    - ESActionStagehandToggleFOV
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
     receiveAllChannels: true
@@ -60,6 +63,7 @@
       sprite: _ES/Actions/stagehands.rsi
       state: ballot
     checkCanInteract: false
+    checkConsciousness: false
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent
       key: enum.ESVoterUiKey.Key

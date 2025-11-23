@@ -130,6 +130,11 @@ namespace Content.Client.Examine
             if (!CanExamine(args.User, args.Target))
                 return;
 
+            // ES START
+            // No basic examine verb
+            return;
+            // ES END
+
             // Basic examine verb.
             ExamineVerb verb = new();
             verb.Category = VerbCategory.Examine;

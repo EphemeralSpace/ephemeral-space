@@ -1,6 +1,38 @@
+# Base config for Ephemeral Space Servers
+
 [game]
-desc             = "WIP"
+desc             = "Testing Server for Ephemral Space."
+soft_max_players = 50
 lobbyenabled     = true
+lobbyduration    = 300 # 5 minutes lobby timer
+
+[infolinks]
+bug_report = "https://github.com/EphemeralSpace/ephemeral-space/issues/new/choose"
+discord    = "https://discord.gg/jxbFUnER75"
+github     = "https://github.com/EphemeralSpace/ephemeral-space"
+wiki       = "https://ephemeralspace.github.io/docs/"
+
+[server]
+rules_file = "ESRules"
+
+[net]
+max_connections = 1024
+
+[vote]
+restart_required_ratio = 0.7
+
+[netres]
+limit = 10.0
+
+[admin]
+see_own_notes = true
+deadmin_on_join = true
+new_player_threshold = 600
+alert.min_players_sharing_connection = 2
+allow_multi_server_play = false
+
+[atmos]
+max_explosion_range = 10
 
 [es_arrivals]
 enabled = true

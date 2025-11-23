@@ -107,7 +107,6 @@ namespace Content.Server.GameTicking
             var spawnPosition = GetTheatergoerSpawnPoint();
             var theatergoer = SpawnAtPosition(TheatergoerEntity, spawnPosition);
             _playerManager.SetAttachedEntity(session, theatergoer, true);
-            _metaData.SetEntityName(theatergoer, session.Name);
             data.LobbyEntity = theatergoer;
         }
 

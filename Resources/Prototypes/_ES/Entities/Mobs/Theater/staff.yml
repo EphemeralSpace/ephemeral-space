@@ -1,0 +1,118 @@
+# Generally holds theater NPCs which
+# - Do not move
+# - Have unique interactions / UI stuff going on
+- type: entity
+  parent: BaseStructure
+  id: ESBaseMobTheaterStaff
+  suffix: ES, Theater Staff
+  abstract: true
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    sprite: _ES/Mobs/Theater/theater_crew.rsi
+  - type: PointLight # Spotlight, for visibility
+    radius: 1.5
+    energy: 10.0 # high energy spotlight
+    falloff: 3
+    color: "#FFE4CE"
+  - type: MobCollision
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Clickable
+  - type: InteractionOutline
+  - type: RotationVisuals
+    defaultRotation: 0
+    horizontalRotation: 0
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: SyncSprite
+  - type: ESEphemeraSpeaker
+
+- type: entity
+  parent: ESBaseMobTheaterStaff
+  id: ESMobTheaterStaffStagehand
+  name: stagehand director
+  description: The leader of the valiant stagehands, silent faces who run the show.
+  components:
+  - type: Sprite
+    layers:
+    - state: body_white
+    - state: pheem
+    - state: alert
+      shader: unshaded
+  - type: UserInterface
+    interfaces:
+      enum.ESJoinStagehandUiKey.Key:
+        type: ESJoinStagehandBui
+  - type: ActivatableUI
+    key: enum.ESJoinStagehandUiKey.Key
+  - type: ESEphemeraRandomDialogue
+    dialogue: ESEphemeraDialogueStagehandDirector
+
+- type: localizedDataset
+  id: ESEphemeraDialogueStagehandDirector
+  values:
+    prefix: es-ephemera-line-stagehand-director-
+    count: 4
+
+- type: entity
+  parent: ESBaseMobTheaterStaff
+  id: ESMobTheaterStaffSpawning
+  name: casting director
+  description: The best in the biz, here to find the talent in you!
+  components:
+  - type: Sprite
+    layers:
+    - state: body_red
+    - state: joe
+    - state: alert
+      shader: unshaded
+  - type: UserInterface
+    interfaces:
+      enum.ESJoinStagehandUiKey.Key:
+        type: ESSpawningBui
+  - type: ActivatableUI
+    key: enum.ESJoinStagehandUiKey.Key
+  - type: ESEphemeraRandomDialogue
+    dialogue: ESEphemeraDialogueCastingDirector
+
+- type: localizedDataset
+  id: ESEphemeraDialogueCastingDirector
+  values:
+    prefix: es-ephemera-line-casting-director-
+    count: 6
+
+- type: entity
+  parent: ESBaseMobTheaterStaff
+  id: ESMobTheaterStaffGhostRoles
+  name: extras director
+  description: "Not everyone is the lead: someone has to play the extras!"
+  components:
+  - type: Sprite
+    layers:
+    - state: body_red
+    - state: clown
+    - state: alert
+      shader: unshaded
+  # TODO: needs unique implementation
+  - type: ESEphemeraRandomDialogue
+    dialogue: ESEphemeraDialogueExtrasDirector
+
+- type: localizedDataset
+  id: ESEphemeraDialogueExtrasDirector
+  values:
+    prefix: es-ephemera-line-extras-director-
+    count: 5

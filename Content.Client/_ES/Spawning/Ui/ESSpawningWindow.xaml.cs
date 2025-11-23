@@ -126,7 +126,6 @@ public sealed partial class ESSpawningWindow : FancyWindow
                 {
                     var ev = new ESSpawnPlayerEvent(GetNetSelectedStations().ToList(), job);
                     _entityManager.EntityNetManager.SendSystemNetworkMessage(ev);
-                    Close();
                 };
                 button.OnMouseEntered += _ =>
                 {

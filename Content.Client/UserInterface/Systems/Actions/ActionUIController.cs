@@ -36,10 +36,16 @@ using static Robust.Client.UserInterface.Controls.MultiselectOptionButton<
     Content.Client.UserInterface.Systems.Actions.Windows.ActionsWindow.Filters>;
 using static Robust.Client.UserInterface.Controls.TextureRect;
 using static Robust.Shared.Input.Binding.PointerInputCmdHandler;
+// ES START
+using Content.Client.Lobby;
+// ES END
 
 namespace Content.Client.UserInterface.Systems.Actions;
 
 public sealed class ActionUIController : UIController, IOnStateChanged<GameplayState>, IOnSystemChanged<ActionsSystem>
+// ES START
+    , IOnStateChanged<LobbyState>
+// ES END
 {
     [Dependency] private readonly IOverlayManager _overlays = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -88,6 +94,61 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         gameplayStateLoad.OnScreenLoad += OnScreenLoad;
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
     }
+
+// ES START
+    // Copypasted? yeah.
+    public void OnStateEntered(LobbyState state)
+    {
+        if (_actionsSystem != null)
+        {
+            _actionsSystem.OnActionAdded += OnActionAdded;
+            _actionsSystem.OnActionRemoved += OnActionRemoved;
+            _actionsSystem.ActionsUpdated += OnActionsUpdated;
+        }
+
+        UpdateFilterLabel();
+        QueueWindowUpdate();
+
+        _dragShadow.Orphan();
+        UIManager.PopupRoot.AddChild(_dragShadow);
+
+        var builder = CommandBinds.Builder;
+        var hotbarKeys = ContentKeyFunctions.GetHotbarBoundKeys();
+        for (var i = 0; i < hotbarKeys.Length; i++)
+        {
+            var boundId = i; // This is needed, because the lambda captures it.
+            var boundKey = hotbarKeys[i];
+            builder = builder.Bind(boundKey, new PointerInputCmdHandler((in PointerInputCmdArgs args) =>
+            {
+                if (args.State != BoundKeyState.Down)
+                    return false;
+
+                TriggerAction(boundId);
+                return true;
+            }, false, true));
+        }
+
+        builder
+            .Bind(ContentKeyFunctions.OpenActionsMenu,
+                InputCmdHandler.FromDelegate(_ => ToggleWindow()))
+            .BindBefore(EngineKeyFunctions.Use, new PointerInputCmdHandler(TargetingOnUse, outsidePrediction: true),
+                typeof(ConstructionSystem), typeof(DragDropSystem))
+            .BindBefore(EngineKeyFunctions.UIRightClick, new PointerInputCmdHandler(TargetingCancel, outsidePrediction: true))
+            .Register<ActionUIController>();
+    }
+
+    public void OnStateExited(LobbyState state)
+    {
+        if (_actionsSystem != null)
+        {
+            _actionsSystem.OnActionAdded -= OnActionAdded;
+            _actionsSystem.OnActionRemoved -= OnActionRemoved;
+            _actionsSystem.ActionsUpdated -= OnActionsUpdated;
+        }
+
+        CommandBinds.Unregister<ActionUIController>();
+    }
+// ES END
 
     private void OnScreenLoad()
     {

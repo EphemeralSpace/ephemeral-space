@@ -688,7 +688,7 @@
     ejectState: normal-unshaded
     denyState: deny-unshaded
   - type: Sprite
-    sprite: _ES/Structures/Vendors//cart.rsi
+    sprite: _ES/Structures/Vendors/cart.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
