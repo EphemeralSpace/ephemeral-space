@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/16/2025 08:48:03
-  entityCount: 703
+  time: 11/22/2025 23:35:43
+  entityCount: 708
 maps: []
 grids:
 - 1
@@ -74,6 +74,10 @@ entities:
     - type: SpreaderGrid
     - type: Shuttle
       dampingModifier: 0.25
+    - type: DeviceNetwork
+      configurators: []
+      deviceLists: []
+      transmitFrequencyId: ArrivalsShuttleTimer
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -321,6 +325,43 @@ entities:
     - type: Transform
       pos: 29.5,3.5
       parent: 1
+- proto: ESArrivalsShuttleTimer
+  entities:
+  - uid: 704
+    components:
+    - type: Transform
+      pos: 23.5,0.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 705
+    components:
+    - type: Transform
+      pos: 34.5,-4.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 706
+    components:
+    - type: Transform
+      pos: 10.5,-1.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 707
+    components:
+    - type: Transform
+      pos: 27.5,10.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 708
+    components:
+    - type: Transform
+      pos: 32.5,10.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 694

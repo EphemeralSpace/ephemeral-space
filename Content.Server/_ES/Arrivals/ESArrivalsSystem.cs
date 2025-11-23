@@ -105,8 +105,8 @@ public sealed class ESArrivalsSystem : EntitySystem
         {
             [ShuttleTimerMasks.ShuttleMap] = Transform(ent).MapUid,
             [ShuttleTimerMasks.SourceMap] = args.FromMapUid,
-            [ShuttleTimerMasks.ShuttleTime] = _flightTime,
-            [ShuttleTimerMasks.SourceTime] = _flightTime,
+            [ShuttleTimerMasks.ShuttleTime] = TimeSpan.FromSeconds(_flightTime),
+            [ShuttleTimerMasks.SourceTime] = TimeSpan.FromSeconds(_flightTime),
         };
 
         _deviceNetwork.QueuePacket(ent, null, payload, netComp.TransmitFrequency);
