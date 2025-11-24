@@ -10,3 +10,5 @@ command-description-esstoreroom-viewStock =
     Displays the warehouse stock on the station, using the cached value.
 command-description-esstoreroom-calculateStock =
     Displays the warehouse stock on the station, calculating it on the fly.
+command-description-stationvariation-runPass =
+    Spawns and raises the variation pass event on a variation game rule entity.
