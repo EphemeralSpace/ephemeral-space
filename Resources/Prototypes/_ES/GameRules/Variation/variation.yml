@@ -74,12 +74,14 @@
         # parallaxes
         - group:
           - id: ESVariationParallaxDefault
-            weight: 8
+            weight: 9
           - id: ESVariationParallaxNoStars
-            weight: 2
+            weight: 3
+          - id: ESVariationParallaxEmptiness
           - group:
             - id: ESVariationParallaxBlue
             - id: ESVariationParallaxRed
             - id: ESVariationParallaxYellow
             - id: ESVariationParallaxPurple
+            weight: 2
         weight: 1
