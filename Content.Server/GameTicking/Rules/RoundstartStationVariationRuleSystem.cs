@@ -2,6 +2,7 @@
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
+using Content.Shared.EntityTable;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
 using Content.Shared.Storage;
@@ -13,6 +14,9 @@ namespace Content.Server.GameTicking.Rules;
 public sealed class RoundstartStationVariationRuleSystem : GameRuleSystem<RoundstartStationVariationRuleComponent>
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    // ES START
+    [Dependency] private readonly EntityTableSystem _table = default!;
+    // ES END
 
     public override void Initialize()
     {
@@ -28,6 +32,14 @@ public sealed class RoundstartStationVariationRuleSystem : GameRuleSystem<Rounds
         {
             GameTicker.AddGameRule(rule);
         }
+
+        // ES START
+        var spawnsTable = _table.GetSpawns(component.RulesTable);
+        foreach (var rule in spawnsTable)
+        {
+            GameTicker.AddGameRule(rule);
+        }
+        // ES END
     }
 
     private void OnStationPostInit(ref StationPostInitEvent ev)

@@ -1,4 +1,5 @@
-﻿using Content.Shared.Storage;
+﻿using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.Storage;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Rules.Components;
@@ -16,4 +17,9 @@ public sealed partial class RoundstartStationVariationRuleComponent : Component
     /// </summary>
     [DataField(required: true)]
     public List<EntitySpawnEntry> Rules = new();
+
+    // ES START
+    // oh god i just want it to be an entity table im sorry when ifirst made this system those didnt exist
+    public EntityTableSelector RulesTable = new NoneSelector();
+    // ES END
 }

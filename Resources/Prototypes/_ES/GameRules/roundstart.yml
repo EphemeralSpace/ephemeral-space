@@ -1,0 +1,25 @@
+# ES variation pass
+- type: entity
+  id: ESBasicRoundstartVariation
+  parent: BaseGameRule
+  components:
+  - type: RoundstartStationVariationRule
+    rulesTable:
+      all:
+      - id: BasicPoweredLightVariationPass
+      - id: BasicTrashVariationPass
+      - id: SolidWallRustingVariationPass
+      - id: ReinforcedWallRustingVariationPass
+      - id: CutWireVariationPass
+      - group:
+        - id: BasicPuddleMessVariationPass
+          weight: 99
+        - id: BloodbathPuddleMessVariationPass
+          weight: 1
+      - id: SmugglerStashVariationPass
+        prob: 0.90
+      - id: SolarPanelDamageVariationPass
+      - id: SolarPanelEmptyVariationPass
+      - id: BasicDecalDirtVariationPass
+      - id: BasicDecalGraffitiVariationPass
+      - id: BasicDecalDirtMonospaceVariationPass
