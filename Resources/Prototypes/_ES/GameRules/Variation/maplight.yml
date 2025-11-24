@@ -3,11 +3,18 @@
   parent: BaseVariationPass
   components:
   - type: ESMapLightVariationPass
-    light: '#bbbbbb'
+    light: '#999999'
 
 - type: entity
-  id: ESVariationMaplightDarkSpace
+  id: ESVariationMaplightBrightSpace
   parent: BaseVariationPass
   components:
   - type: ESMapLightVariationPass
-    light: '#999999'
+    light: '#cfcfcf'
+
+- type: entity
+  id: ESVariationMaplightDarkVoidSpace
+  parent: BaseVariationPass
+  components:
+  - type: ESMapLightVariationPass
+    light: '#333333'

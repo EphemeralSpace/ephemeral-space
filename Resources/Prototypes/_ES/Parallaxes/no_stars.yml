@@ -2,7 +2,7 @@
 
 # no layer6 (stars)
 - type: parallax
-  id: ESParallaxSpaceEmptiness
+  id: ESParallaxSpaceNoStars
   layers:
   - texture:
       !type:ImageParallaxTextureSource

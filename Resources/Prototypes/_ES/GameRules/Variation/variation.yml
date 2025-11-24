@@ -33,7 +33,7 @@
       # pairs of maplight/parallax that specifically work together
       - group:
         - all:
-          - id: ESVariationMaplightDarkSpace
+          - id: ESVariationMaplightDarkVoidSpace
           - id: ESVariationParallaxEmptiness
       # independently selected maplight + parallax
       - all:
@@ -41,10 +41,13 @@
         - group:
           - id: ESVariationMaplightDefault
             weight: 3
-          - id: ESVariationMaplightDarkSpace
+          - id: ESVariationMaplightBrightSpace
+          - id: ESVariationMaplightDarkVoidSpace
         # parallaxes
         - group:
           - id: ESVariationParallaxDefault
-            weight: 3
+            #weight: 12
+          - id: ESVariationParallaxNoStars
+            #weight: 4
           - id: ESVariationParallaxEmptiness
         weight: 3
