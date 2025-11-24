@@ -23,3 +23,28 @@
       - id: BasicDecalDirtVariationPass
       - id: BasicDecalGraffitiVariationPass
       - id: BasicDecalDirtMonospaceVariationPass
+      - tableId: ESMaplightParallaxVariationTable
+
+# Maplight/parallax table
+- type: entityTable
+  id: ESMaplightParallaxVariationTable
+  table:
+    group:
+      # pairs of maplight/parallax that specifically work together
+      - group:
+        - all:
+          - id: ESVariationMaplightDarkSpace
+          - id: ESVariationParallaxEmptiness
+      # independently selected maplight + parallax
+      - all:
+        # maplights
+        - group:
+          - id: ESVariationMaplightDefault
+            weight: 3
+          - id: ESVariationMaplightDarkSpace
+        # parallaxes
+        - group:
+          - id: ESVariationParallaxDefault
+            weight: 3
+          - id: ESVariationParallaxEmptiness
+        weight: 3

@@ -3,9 +3,6 @@
   stationDistance: 256
   minStations: 1
   maxStations: 1
-  mapComponents:
-  - type: MapLight
-    ambientLightColor: '#ffffff'
   stationGridComponents:
   - type: ESTileBasedRoof
   dungeons:

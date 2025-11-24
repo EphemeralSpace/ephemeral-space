@@ -1,0 +1,13 @@
+- type: entity
+  id: ESVariationMaplightDefault
+  parent: BaseVariationPass
+  components:
+  - type: ESMapLightVariationPass
+    light: '#bbbbbb'
+
+- type: entity
+  id: ESVariationMaplightDarkSpace
+  parent: BaseVariationPass
+  components:
+  - type: ESMapLightVariationPass
+    light: '#999999'

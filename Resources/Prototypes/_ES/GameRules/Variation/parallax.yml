@@ -1,0 +1,13 @@
+- type: entity
+  id: ESVariationParallaxDefault
+  parent: BaseVariationPass
+  components:
+  - type: ESParallaxVariationPass
+    parallax: Default
+
+- type: entity
+  id: ESVariationParallaxEmptiness
+  parent: BaseVariationPass
+  components:
+  - type: ESParallaxVariationPass
+    parallax: ESParallaxSpaceEmptiness

@@ -1,0 +1,52 @@
+# not the main ones, see the id: Default parallax modified from upstream for the one used most of the time
+
+# no layer6 (stars)
+- type: parallax
+  id: ESParallaxSpaceEmptiness
+  layers:
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer1.png"
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer2.png"
+    slowness: 0.996625
+    scale: "0.5, 0.5"
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer3.png"
+    slowness: 0.989375
+    scale: "0.5, 0.5"
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer4.png"
+    slowness: 0.987265625
+    scale: "0.5, 0.5"
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer5.png"
+    slowness: 0.984352
+    scale: "0.5, 0.5"
+  # lq layers are unscaled in order to look better w
+  # lores viewport (which auto enables lq parallax)
+  layersLQ:
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer1.png"
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer2.png"
+    slowness: 0.996625
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer3.png"
+    slowness: 0.989375
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer4.png"
+    slowness: 0.987265625
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer5.png"
+    slowness: 0.984352
+  layersLQUseHQ: false
