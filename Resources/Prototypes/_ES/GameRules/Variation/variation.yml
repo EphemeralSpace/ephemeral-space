@@ -35,19 +35,51 @@
         - all:
           - id: ESVariationMaplightDarkVoidSpace
           - id: ESVariationParallaxEmptiness
+          weight: 1
+        - all:
+          - id: ESVariationMaplightDefault
+          - id: ESVariationParallaxDefault
+          weight: 6
+        - group:
+          - all:
+            - id: ESVariationMaplightBlue
+            - id: ESVariationParallaxBlue
+          - all:
+            - id: ESVariationMaplightRed
+            - id: ESVariationParallaxRed
+          - all:
+            - id: ESVariationMaplightYellow
+            - id: ESVariationParallaxYellow
+          - all:
+            - id: ESVariationMaplightPurple
+            - id: ESVariationParallaxPurple
+          weight: 3
+        weight: 2
       # independently selected maplight + parallax
       - all:
         # maplights
         - group:
           - id: ESVariationMaplightDefault
-            weight: 3
+            weight: 7
           - id: ESVariationMaplightBrightSpace
+            weight: 2
           - id: ESVariationMaplightDarkVoidSpace
+          - group:
+            - id: ESVariationMaplightBlue
+              weight: 2 # this one just looks cooler
+            - id: ESVariationMaplightRed
+            - id: ESVariationMaplightYellow
+            - id: ESVariationMaplightPurple
+            weight: 3
         # parallaxes
         - group:
           - id: ESVariationParallaxDefault
-            #weight: 12
+            weight: 8
           - id: ESVariationParallaxNoStars
-            #weight: 4
-          - id: ESVariationParallaxEmptiness
-        weight: 3
+            weight: 2
+          - group:
+            - id: ESVariationParallaxBlue
+            - id: ESVariationParallaxRed
+            - id: ESVariationParallaxYellow
+            - id: ESVariationParallaxPurple
+        weight: 1

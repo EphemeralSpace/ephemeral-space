@@ -18,3 +18,32 @@
   components:
   - type: ESParallaxVariationPass
     parallax: ESParallaxSpaceEmptiness
+
+# tinted
+- type: entity
+  id: ESVariationParallaxBlue
+  parent: BaseVariationPass
+  components:
+  - type: ESParallaxVariationPass
+    parallax: ESParallaxSpaceBlue
+
+- type: entity
+  id: ESVariationParallaxRed
+  parent: BaseVariationPass
+  components:
+  - type: ESParallaxVariationPass
+    parallax: ESParallaxSpaceRed
+
+- type: entity
+  id: ESVariationParallaxYellow
+  parent: BaseVariationPass
+  components:
+  - type: ESParallaxVariationPass
+    parallax: ESParallaxSpaceYellow
+
+- type: entity
+  id: ESVariationParallaxPurple
+  parent: BaseVariationPass
+  components:
+  - type: ESParallaxVariationPass
+    parallax: ESParallaxSpacePurple

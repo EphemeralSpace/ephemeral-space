@@ -1,0 +1,132 @@
+# colored variants
+- type: parallax
+  id: ESParallaxSpaceBlue
+  layers:
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer1-bluetint.png"
+  - &layer2
+    texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer2.png"
+    slowness: 0.996625
+    scale: "0.5, 0.5"
+  - &layer3
+    texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer3.png"
+    slowness: 0.989375
+    scale: "0.5, 0.5"
+  - &layer4
+    texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer4.png"
+    slowness: 0.987265625
+    scale: "0.5, 0.5"
+  - &layer5
+    texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer5.png"
+    slowness: 0.984352
+    scale: "0.5, 0.5"
+  - &layer6
+    texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer6.png"
+    slowness: 0.980298
+    scale: "0.5, 0.5"
+  # lq layers are unscaled in order to look better w
+  # lores viewport (which auto enables lq parallax)
+  layersLQ:
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer1-bluetint.png"
+  - &layer2LQ
+    texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer2.png"
+    slowness: 0.996625
+  - &layer3LQ
+    texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer3.png"
+    slowness: 0.989375
+  - &layer4LQ
+    texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer4.png"
+    slowness: 0.987265625
+  - &layer5LQ
+    texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer5.png"
+    slowness: 0.984352
+  - &layer6LQ
+    texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer6.png"
+    slowness: 0.980298
+  layersLQUseHQ: false
+
+- type: parallax
+  id: ESParallaxSpaceRed
+  layers:
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer1-redtint.png"
+  - *layer2
+  - *layer3
+  - *layer4
+  - *layer5
+  - *layer6
+  layersLQ:
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer1-redtint.png"
+  - *layer2LQ
+  - *layer3LQ
+  - *layer4LQ
+  - *layer5LQ
+  - *layer6LQ
+
+- type: parallax
+  id: ESParallaxSpaceYellow
+  layers:
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer1-yellowtint.png"
+  - *layer2
+  - *layer3
+  - *layer4
+  - *layer5
+  - *layer6
+  layersLQ:
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer1-yellowtint.png"
+  - *layer2LQ
+  - *layer3LQ
+  - *layer4LQ
+  - *layer5LQ
+  - *layer6LQ
+
+- type: parallax
+  id: ESParallaxSpacePurple
+  layers:
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer1-purpletint.png"
+  - *layer2
+  - *layer3
+  - *layer4
+  - *layer5
+  - *layer6
+  layersLQ:
+  - texture:
+      !type:ImageParallaxTextureSource
+      path: "/Textures/_ES/Parallaxes/layer1-purpletint.png"
+  - *layer2LQ
+  - *layer3LQ
+  - *layer4LQ
+  - *layer5LQ
+  - *layer6LQ
