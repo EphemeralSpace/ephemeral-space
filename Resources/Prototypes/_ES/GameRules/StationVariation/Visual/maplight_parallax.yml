@@ -43,7 +43,7 @@
   parent: BaseVariationPass
   components:
   - type: ESMapLightVariationPass
-    light: '#cccc99'
+    light: '#aaaa99'
 
 - type: entity
   id: ESVariationMaplightPurple
