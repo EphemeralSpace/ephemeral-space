@@ -18,7 +18,7 @@
     tilesPerEntityStdDev: 30
     entities:
     - id: DecalSpawnerGraffiti
-#
+
 - type: entity
   id: ESBasicDecalDirtMonospaceVariationPass
   parent: BaseVariationPass
