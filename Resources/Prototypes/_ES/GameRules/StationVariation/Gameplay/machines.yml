@@ -28,3 +28,7 @@
   parent: BaseVariationPass
   components:
   - type: PoweredLightVariationPass
+    # holy shit what was wrong with me picking the original numbers for this component
+    lightBreakChance: 0.02
+    lightAgingChance: 0
+    agedLightTubeFlickerChance: 0

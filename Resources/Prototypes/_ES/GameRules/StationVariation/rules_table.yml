@@ -7,7 +7,7 @@
     rulesTable:
       all:
       - id: ESBasicPoweredLightVariationPass
-      - id: ESBasicTrashVariationPass
+      - id: ESFoodTrashVariationPass
       - id: ESSolidWallRustingVariationPass
       - id: ESReinforcedWallRustingVariationPass
       - group:

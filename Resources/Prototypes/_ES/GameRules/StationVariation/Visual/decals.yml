@@ -14,13 +14,13 @@
   parent: BaseVariationPass
   components:
   - type: EntitySpawnVariationPass
-    tilesPerEntityAverage: 200
-    tilesPerEntityStdDev: 5
+    tilesPerEntityAverage: 280
+    tilesPerEntityStdDev: 30
     entities:
     - id: DecalSpawnerGraffiti
-
+#
 - type: entity
-  id: BasicDecalDirtMonospaceVariationPass
+  id: ESBasicDecalDirtMonospaceVariationPass
   parent: BaseVariationPass
   components:
   - type: EntitySpawnVariationPass
