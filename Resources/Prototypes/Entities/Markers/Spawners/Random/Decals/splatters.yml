@@ -80,7 +80,10 @@
     - toolbox
     - uboa
     radius: 0.5
-    randomRotation: true
+    # ES START
+    # randomRotation: true
+    snapPosition: true
+    # ES END
     maxDecals: 1
     zIndex: 2
     randomColorList:

@@ -1,0 +1,73 @@
+#########
+# Trash #
+#########
+
+- type: entity
+  id: ESFoodTrashVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: EntitySpawnVariationPass
+    tilesPerEntityAverage: 70
+    tilesPerEntityStdDev: 4
+    entities:
+    - id: ESTrashFood
+
+###########
+# Puddles #
+###########
+
+- type: weightedRandomFillSolution
+  id: ESRandomFillTrashPuddle
+  fills:
+  - quantity: 80
+    weight: 5
+    reagents:
+    - Vomit
+    - InsectBlood
+    - WeldingFuel
+    - Mold
+  - quantity: 55
+    weight: 4
+    reagents:
+    - PlantBGone
+    - Potassium # :trollface:
+    - VentCrud
+    - Carbon
+    - Hydrogen
+    - Fat
+    - SpaceGlue
+    - Sulfur
+    - Acetone
+    - Bleach
+  - quantity: 40
+    weight: 3
+    reagents:
+    - Blood
+    - CopperBlood
+    - Slime
+  - quantity: 25
+    weight: 1
+    reagents:
+    - Omnizine
+    - Desoxyephedrine
+    - Napalm
+    - Radium
+    - Gold
+    - Silver
+    - Sodium
+
+- type: entity
+  id: ESBasicPuddleMessVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: PuddleMessVariationPass
+    randomPuddleSolutionFill: ESRandomFillTrashPuddle
+
+- type: entity
+  id: ESBloodbathPuddleMessVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: PuddleMessVariationPass
+    tilesPerSpillAverage: 40
+    tilesPerSpillStdDev: 10
+    randomPuddleSolutionFill: RandomFillTrashPuddleBloodbath # upstream

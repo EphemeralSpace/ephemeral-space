@@ -1,0 +1,30 @@
+# Gameplay variation passes that affect power stuff/machines/etc shit
+
+- type: entity
+  id: ESSolarPanelDamageVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: SolarPanelReplaceVariationPass
+  - type: EntityReplaceVariationPass
+    entitiesPerReplacementAverage: 30
+    entitiesPerReplacementStdDev: 5
+    replacements:
+    - id: SolarPanelBroken
+
+- type: entity
+  id: ESSolarPanelEmptyVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: SolarPanelReplaceVariationPass
+  - type: EntityReplaceVariationPass
+    entitiesPerReplacementAverage: 30
+    entitiesPerReplacementStdDev: 5
+    replacements:
+    - id: SolarAssembly
+
+# Lighting
+- type: entity
+  id: ESBasicPoweredLightVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: PoweredLightVariationPass

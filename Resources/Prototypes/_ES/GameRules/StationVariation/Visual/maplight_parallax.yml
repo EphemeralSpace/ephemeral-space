@@ -1,0 +1,168 @@
+############
+# Maplight #
+############
+
+- type: entity
+  id: ESVariationMaplightDefault
+  parent: BaseVariationPass
+  components:
+  - type: ESMapLightVariationPass
+    light: '#999999'
+
+- type: entity
+  id: ESVariationMaplightBrightSpace
+  parent: BaseVariationPass
+  components:
+  - type: ESMapLightVariationPass
+    light: '#cfcfcf'
+
+- type: entity
+  id: ESVariationMaplightDarkVoidSpace
+  parent: BaseVariationPass
+  components:
+  - type: ESMapLightVariationPass
+    light: '#333333'
+
+# tints
+- type: entity
+  id: ESVariationMaplightBlue
+  parent: BaseVariationPass
+  components:
+  - type: ESMapLightVariationPass
+    light: '#9999cc'
+
+- type: entity
+  id: ESVariationMaplightRed
+  parent: BaseVariationPass
+  components:
+  - type: ESMapLightVariationPass
+    light: '#cc9999'
+
+- type: entity
+  id: ESVariationMaplightYellow
+  parent: BaseVariationPass
+  components:
+  - type: ESMapLightVariationPass
+    light: '#cccc99'
+
+- type: entity
+  id: ESVariationMaplightPurple
+  parent: BaseVariationPass
+  components:
+  - type: ESMapLightVariationPass
+    light: '#cc99cc'
+
+############
+# Parallax #
+############
+
+- type: entity
+  id: ESVariationParallaxDefault
+  parent: BaseVariationPass
+  components:
+  - type: ESParallaxVariationPass
+    parallax: Default
+
+- type: entity
+  id: ESVariationParallaxNoStars
+  parent: BaseVariationPass
+  components:
+  - type: ESParallaxVariationPass
+    parallax: ESParallaxSpaceNoStars
+
+- type: entity
+  id: ESVariationParallaxEmptiness
+  parent: BaseVariationPass
+  components:
+  - type: ESParallaxVariationPass
+    parallax: ESParallaxSpaceEmptiness
+
+# tinted
+- type: entity
+  id: ESVariationParallaxBlue
+  parent: BaseVariationPass
+  components:
+  - type: ESParallaxVariationPass
+    parallax: ESParallaxSpaceBlue
+
+- type: entity
+  id: ESVariationParallaxRed
+  parent: BaseVariationPass
+  components:
+  - type: ESParallaxVariationPass
+    parallax: ESParallaxSpaceRed
+
+- type: entity
+  id: ESVariationParallaxYellow
+  parent: BaseVariationPass
+  components:
+  - type: ESParallaxVariationPass
+    parallax: ESParallaxSpaceYellow
+
+- type: entity
+  id: ESVariationParallaxPurple
+  parent: BaseVariationPass
+  components:
+  - type: ESParallaxVariationPass
+    parallax: ESParallaxSpacePurple
+
+### Maplight/parallax table
+- type: entityTable
+  id: ESMaplightParallaxVariationTable
+  table:
+    group:
+    # pairs of maplight/parallax that specifically work together
+    - group:
+      - all:
+        - id: ESVariationMaplightDarkVoidSpace
+        - id: ESVariationParallaxEmptiness
+        weight: 1
+      - all:
+        - id: ESVariationMaplightDefault
+        - id: ESVariationParallaxDefault
+        weight: 6
+      - group:
+        - all:
+          - id: ESVariationMaplightBlue
+          - id: ESVariationParallaxBlue
+        - all:
+          - id: ESVariationMaplightRed
+          - id: ESVariationParallaxRed
+        - all:
+          - id: ESVariationMaplightYellow
+          - id: ESVariationParallaxYellow
+        - all:
+          - id: ESVariationMaplightPurple
+          - id: ESVariationParallaxPurple
+        weight: 3
+      weight: 2
+    # independently selected maplight + parallax
+    - all:
+      # maplights
+      - group:
+        - id: ESVariationMaplightDefault
+          weight: 7
+        - id: ESVariationMaplightBrightSpace
+          weight: 2
+        - id: ESVariationMaplightDarkVoidSpace
+        - group:
+          - id: ESVariationMaplightBlue
+            weight: 2 # this one just looks cooler
+          - id: ESVariationMaplightRed
+          - id: ESVariationMaplightYellow
+          - id: ESVariationMaplightPurple
+          weight: 3
+      # parallaxes
+      - group:
+        - id: ESVariationParallaxDefault
+          weight: 9
+        - id: ESVariationParallaxNoStars
+          weight: 3
+        - id: ESVariationParallaxEmptiness
+        - group:
+          - id: ESVariationParallaxBlue
+          - id: ESVariationParallaxRed
+          - id: ESVariationParallaxYellow
+          - id: ESVariationParallaxPurple
+          weight: 2
+      weight: 1
