@@ -64,7 +64,7 @@ public sealed class ESViewconeOverlayManagementSystem : EntitySystem
         while (enumerator.MoveNext(out var uid, out _, out var eye, out var viewcone, out var xform))
         {
             var eyeAngle = eye.Rotation;
-            var rotation = _xform.GetWorldRotation(xform);
+            var (position, rotation) = _xform.GetWorldPositionRotation(xform);
             var playerAngle = rotation;
             var desiredWasNull = viewcone.DesiredViewAngle == null;
 
@@ -81,7 +81,9 @@ public sealed class ESViewconeOverlayManagementSystem : EntitySystem
                 // if last frame we had a mouse rotation angle, but now we dont,
                 // that means it was disabled
                 // but, we should keep the old mouse angle for viewcone, at least until the real angle actually changes
-                if (MathHelper.CloseToPercent(viewcone.LastWorldRotationAngle, playerAngle, .000001d))
+                // or they move
+                if (MathHelper.CloseToPercent(viewcone.LastWorldRotationAngle, playerAngle, .001d)
+                    && viewcone.LastWorldPos == position)
                 {
                     playerAngle = viewcone.LastMouseRotationAngle;
                 }
@@ -91,6 +93,7 @@ public sealed class ESViewconeOverlayManagementSystem : EntitySystem
                 }
             }
 
+            viewcone.LastWorldPos = position;
             viewcone.LastWorldRotationAngle = rotation;
             viewcone.DesiredViewAngle = playerAngle + eyeAngle;
 
