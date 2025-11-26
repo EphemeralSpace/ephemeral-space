@@ -1,6 +1,3 @@
-using Content.Shared.Speech;
-using Robust.Shared.Prototypes;
-
 namespace Content.Server._ES.Chat.Obfuscation.Components;
 
 /// <summary>
@@ -9,8 +6,4 @@ namespace Content.Server._ES.Chat.Obfuscation.Components;
 /// </summary>
 [RegisterComponent]
 [Access(typeof(ESVoiceObfuscatorSystem))]
-public sealed partial class ESVoiceObfuscatorComponent : Component
-{
-    [DataField]
-    public ProtoId<SpeechVerbPrototype> SpeechVerb = "DefaultMumble";
-}
+public sealed partial class ESVoiceObfuscatorComponent : Component;
