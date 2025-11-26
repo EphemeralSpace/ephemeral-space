@@ -2,6 +2,9 @@
 es-mask-crewmember-name = Crewmember
 es-mask-crewmember-desc = Work with your other crewmembers to complete the station objective.
 
+es-mask-citizen-name = Citizen
+es-mask-citizen-desc = Confirm your innocence with the assistance of your fancy citizenship card. Help your crewmembers complete the station objective.
+
 es-mask-mercenary-name = Mercenary
 es-mask-mercenary-desc = Utilize your dubiously-legal gear to aid in the completion of the station's objective.
 

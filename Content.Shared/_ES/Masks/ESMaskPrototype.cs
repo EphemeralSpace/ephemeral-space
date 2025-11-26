@@ -26,7 +26,7 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     /// Selection weight
     /// </summary>
     [DataField]
-    public int Weight = 1;
+    public float Weight = 1;
 
     /// <summary>
     /// UI Name
@@ -48,6 +48,12 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
 
     [DataField]
     public ComponentRegistry MindComponents = new();
+
+    /// <summary>
+    /// Items spawned in the player's bag/hands when they receive this mask.
+    /// </summary>
+    [DataField]
+    public EntityTableSelector Gear = new NoneSelector();
 
     /// <summary>
     /// Objectives to assign

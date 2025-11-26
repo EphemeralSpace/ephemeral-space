@@ -1,0 +1,15 @@
+- type: entity
+  parent: Clothing
+  id: ESItemCardCitizenship
+  name: citizenship card
+  description: An off-white and tastefully thick certificate, indicating that the holder is a verified citizen of Nanotrasen and is not aligned with any outside organizations (Syndicate, cultists, Mormons, etc). It even has a watermark.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/citizenship_card.rsi
+    state: icon
+  - type: Clothing
+    slots:
+    - idcard
+  - type: Item
+    size: Small
+    storedRotation: -90

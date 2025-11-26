@@ -5,6 +5,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Objectives;
 using Content.Server.Roles.Jobs;
+using Content.Shared._ES.Core.Entity;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Masks.Components;
 using Content.Shared.Chat;
@@ -211,7 +212,10 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         }
 
         if (mind.Comp.OwnedEntity is { } ownedEntity)
+        {
+            EntityManager.SpawnInBag(_entityTable.GetSpawns(mask.Gear), ownedEntity);
             EntityManager.AddComponents(ownedEntity, mask.Components);
+        }
         EntityManager.AddComponents(mind, mask.MindComponents);
 
         troupe.Comp.TroupeMemberMinds.Add(mind);

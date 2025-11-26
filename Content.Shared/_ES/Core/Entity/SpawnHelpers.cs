@@ -1,6 +1,9 @@
 using System.Linq;
 using System.Numerics;
+using Content.Shared.Inventory;
+using Content.Shared.Storage;
 using JetBrains.Annotations;
+using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -101,5 +104,28 @@ public static class SpawnHelpers
             var coords = new EntityCoordinates(startPos.EntityId, x, y);
             yield return entityManager.SpawnAtPosition(prototypes[i], coords);
         }
+    }
+
+    [PublicAPI]
+    public static IEnumerable<EntityUid> SpawnInBag(
+        this IEntityManager entityManager,
+        IEnumerable<EntProtoId> prototypes,
+        EntityUid uid)
+    {
+        if (!entityManager.TryGetComponent<InventoryComponent>(uid, out var inventory))
+            return [];
+
+        var inventorySys = entityManager.System<InventorySystem>();
+        if (!inventorySys.TryGetSlotEntity(uid, "back", out var bag, inventory) ||
+            !entityManager.TryGetComponent<StorageComponent>(bag, out var storage))
+            return [];
+
+        var ents = new ValueList<EntityUid>();
+        foreach (var spawn in prototypes)
+        {
+            ents.Add(entityManager.SpawnInContainerOrDrop(spawn, bag.Value, storage.Container.ID));
+        }
+
+        return ents;
     }
 }
