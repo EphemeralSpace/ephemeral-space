@@ -149,6 +149,9 @@
     layers:
       Hair: HEAD
       Snout: HEAD
+# ES START
+  - type: ESVoiceObfuscator
+# ES END
 
 #Janitorial Bombsuit Helmet
 - type: entity

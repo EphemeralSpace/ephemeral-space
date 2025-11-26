@@ -9,6 +9,7 @@
     sprite: _ES/Clothing/Head/Helmets/spacebowl.rsi
   - type: Clothing
     sprite: _ES/Clothing/Head/Helmets/spacebowl.rsi
+  - type: ESVoiceObfuscator
   - type: Tag
     tags:
     - HelmetEVA

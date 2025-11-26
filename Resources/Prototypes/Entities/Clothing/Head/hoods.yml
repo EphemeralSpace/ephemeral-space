@@ -25,6 +25,9 @@
       Snout: HEAD
       HeadTop: HEAD
       HeadSide: HEAD
+# ES START
+  - type: ESVoiceObfuscator
+# ES END
 
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
@@ -172,6 +175,9 @@
     - Snout
     - HeadTop
     - HeadSide
+# ES START
+  - type: ESVoiceObfuscator
+# ES END
 
 - type: entity
   parent: ClothingHeadBase
