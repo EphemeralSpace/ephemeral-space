@@ -91,6 +91,7 @@
       !type:ImageParallaxTextureSource
       path: "/Textures/_ES/Parallaxes/layer6-redtint.png"
     slowness: 0.980298
+  layersLQUseHQ: false
 
 - type: parallax
   id: ESParallaxSpaceYellow
@@ -115,6 +116,7 @@
       !type:ImageParallaxTextureSource
       path: "/Textures/_ES/Parallaxes/layer6-yellowtint.png"
     slowness: 0.980298
+  layersLQUseHQ: false
 
 - type: parallax
   id: ESParallaxSpacePurple
@@ -139,3 +141,4 @@
       !type:ImageParallaxTextureSource
       path: "/Textures/_ES/Parallaxes/layer6-purpletint.png"
     slowness: 0.980298
+  layersLQUseHQ: false
