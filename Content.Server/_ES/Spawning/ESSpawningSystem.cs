@@ -3,13 +3,17 @@ using Content.Server.Administration.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared._ES.Core.Timer;
+using Content.Shared._ES.Core.Timer.Components;
 using Content.Shared._ES.Spawning;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Robust.Shared.Configuration;
+using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Serialization;
 
 namespace Content.Server._ES.Spawning;
 
@@ -20,6 +24,7 @@ public sealed class ESSpawningSystem : ESSharedSpawningSystem
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ESEntityTimerSystem _timer = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
 
@@ -29,13 +34,25 @@ public sealed class ESSpawningSystem : ESSharedSpawningSystem
         base.Initialize();
 
         SubscribeNetworkEvent<ESSpawnPlayerEvent>(OnSpawnPlayer);
+        SubscribeLocalEvent<ESSpawnPlayerAfterCurtainsEvent>(OnAfterCurtains);
     }
 
     private void OnSpawnPlayer(ESSpawnPlayerEvent msg, EntitySessionEventArgs args)
     {
+        if (_gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
+            return;
+
+        _timer.SpawnTimer(TimeSpan.FromSeconds(1.5f), new ESSpawnPlayerAfterCurtainsEvent(msg, args));
+    }
+
+    private void OnAfterCurtains(ESSpawnPlayerAfterCurtainsEvent ev)
+    {
+        var args = ev.Args;
+        var msg = ev.Msg;
         var player = args.SenderSession;
 
-        if (_gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
+        // could have disconnected in the time it took to fire
+        if (player.Status != SessionStatus.InGame)
             return;
 
         // TODO: communicate this in the ui
@@ -98,5 +115,17 @@ public sealed class ESSpawningSystem : ESSharedSpawningSystem
         }
 
         _gameTicker.MakeJoinGame(args.SenderSession, EntityUid.Invalid);
+    }
+}
+
+public sealed partial class ESSpawnPlayerAfterCurtainsEvent : ESEntityTimerEvent
+{
+    public ESSpawnPlayerEvent Msg;
+    public EntitySessionEventArgs Args;
+
+    public ESSpawnPlayerAfterCurtainsEvent(ESSpawnPlayerEvent msg, EntitySessionEventArgs args)
+    {
+        Msg = msg;
+        Args = args;
     }
 }

@@ -27,9 +27,6 @@ public sealed partial class ESEntityTimerComponent : Component
 /// <summary>
 /// Generic event that all timer events must inherit from
 /// </summary>
-/// <remarks>
-/// Inheritors must be marked with the <see cref="SerializableAttribute"/> and <see cref="NetSerializableAttribute"/>.
-/// </remarks>
 [Serializable, NetSerializable]
 [ImplicitDataDefinitionForInheritors]
 public abstract partial class ESEntityTimerEvent : EntityEventArgs;

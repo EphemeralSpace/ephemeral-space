@@ -74,7 +74,7 @@ public sealed class ESLobbyCurtainsUIController : UIController
 
         _accumulatedTime += args.DeltaSeconds;
 
-        var t = Easings.InOutQuint(Math.Clamp(_accumulatedTime / _currentTargetTime, 0f, 1f));
+        var t = Easings.InOutQuad(Math.Clamp(_accumulatedTime / _currentTargetTime, 0f, 1f));
 
         var leftTargetXPos = CurtainState is LobbyCurtainState.Opening
             ? -_leftCurtain.SetWidth
