@@ -149,7 +149,7 @@
     state: base
   - type: PointLight
   # ES START
-    color: "#FFEFE1"
+    color: "#cec4bf"
     energy: 0.9
     falloff: 10
     curveFactor: 0.5

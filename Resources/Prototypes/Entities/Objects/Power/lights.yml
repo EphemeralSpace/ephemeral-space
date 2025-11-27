@@ -114,6 +114,7 @@
 # Lighting color values gathered from
 # https://andi-siess.de/rgb-to-color-temperature/
 # https://academo.org/demos/colour-temperature-relationship/
+# and some bullshit
 - type: entity
   parent: BaseLightbulb
   name: incandescent light bulb
@@ -123,7 +124,7 @@
   - type: LightBulb
     bulb: Bulb
     # ES START
-    color: "#FFC392" # 3600K color temp
+    color: "#f2ab6f"
     # ES END
     lightEnergy: 1.0
     lightRadius: 6
@@ -236,7 +237,7 @@
   components:
   - type: LightBulb
     # ES START
-    color: "#FFEFE1" # 5600K color temp
+    color: "#cec4bf"
     lightEnergy: 0.9
     # ES END
     lightRadius: 10
