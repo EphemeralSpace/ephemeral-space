@@ -50,7 +50,7 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     public ComponentRegistry MindComponents = new();
 
     /// <summary>
-    /// Items spawned in the player's bag/hands when they receive this mask.
+    /// Items spawned in the player's bag when they receive this mask.
     /// </summary>
     [DataField]
     public EntityTableSelector Gear = new NoneSelector();
