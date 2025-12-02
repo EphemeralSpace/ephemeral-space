@@ -3,12 +3,12 @@
   parent: ApcNetSwitchDirectional
   id: ESApcNetSwitchLight
   name: light switch
-  suffix: directional
+  suffix: ES, directional
   components:
   - type: WallMount
     arc: 180
   - type: PointLight
-    radius: 2.2
+    radius: 1.2
     energy: 3
     color: "#fc9928"
     castShadows: false

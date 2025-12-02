@@ -5,8 +5,8 @@
   suffix: ES
   components:
   - type: LightBulb
-    color: "#f5eae5"
-    lightEnergy: 1.45
+    color: "#ece2dd"
+    lightEnergy: 1.35
     lightSoftness: 2
 
 - type: entity
