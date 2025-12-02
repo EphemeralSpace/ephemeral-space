@@ -75,7 +75,9 @@
       - state: lighttube
   - type: StorageFill
     contents:
-      - id: LightTube
+      # ES START
+      - id: ESPoweredLightDepartment
+      # ES END
         amount: 12
 
 - type: entity
@@ -89,7 +91,9 @@
       - state: lightmixed
   - type: StorageFill
     contents:
-      - id: LightTube
+      # ES START
+      - id: ESPoweredLightDepartment
+      # ES END
         amount: 6
       - id: LightBulb
         amount: 6

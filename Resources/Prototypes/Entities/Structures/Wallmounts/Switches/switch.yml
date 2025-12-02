@@ -169,17 +169,6 @@
     graph: LightSwitchDirectionalGraph
     node: LightSwitchDirectionalNode
 
-# ES START
-- type: entity
-  parent: ApcNetSwitchDirectional
-  id: ESApcNetSwitchLight
-  name: light switch
-  suffix: directional
-  components:
-  - type: WallMount
-    arc: 175
-# ES END
-
 # lockable buttons
 
 - type: entity

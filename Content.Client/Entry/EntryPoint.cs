@@ -151,6 +151,13 @@ namespace Content.Client.Entry
             _configManager.SetCVar("interface.resolutionAutoScaleLowerCutoffX", 520);
             _configManager.SetCVar("interface.resolutionAutoScaleLowerCutoffY", 240);
             _configManager.SetCVar("interface.resolutionAutoScaleMinimum", 0.5f);
+
+            // ES START
+            // we cant set engine cvars by changing the file,
+            // and cant set client-only non-replicated cvars with configpresets
+            // so
+            _configManager.SetCVar("light.blur_factor", 0.0037f);
+            // ES END
         }
 
         public override void PostInit()

@@ -178,6 +178,10 @@ RandomPosterLegit: ESRandomPosterLegit
 RandomPosterAny: ESRandomPosterAny
 RandomPosterContraband: ESRandomPosterContraband
 
+# 2025-12-01
+# More lighting stuff
+LightTube: ESLightTubeDepartment
+Poweredlight: ESPoweredLightDepartment
 
 # ES END
 

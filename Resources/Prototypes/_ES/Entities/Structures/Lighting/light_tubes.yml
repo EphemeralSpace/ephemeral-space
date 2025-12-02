@@ -1,0 +1,21 @@
+# See light_fixtures.yml for what these are for
+- type: entity
+  id: ESLightTubeDepartment
+  parent: LightTube
+  suffix: ES
+  components:
+  - type: LightBulb
+    color: "#f5eae5"
+    lightEnergy: 1.45
+    lightSoftness: 2
+
+- type: entity
+  id: ESLightTubeHallway
+  parent: LightTube
+  name: hallway fluorescent light tube
+  description: A light fixture. Dimmer than regular department lights.
+  suffix: ES
+  components:
+  - type: LightBulb
+    color: "#929291"
+    lightSoftness: 2

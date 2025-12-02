@@ -11,7 +11,9 @@
     sprite: Objects/Specific/Janitorial/light_replacer.rsi
   - type: LightReplacer
     contents:
-    - id: LightTube
+    # ES START
+    - id: ESPoweredLightDepartment
+    # ES END
       amount: 8
     - id: LightBulb
       amount: 5
@@ -28,5 +30,7 @@
   components:
   - type: LightReplacer
     contents:
-    - id: LightTube
+    # ES START
+    - id: ESPoweredLightDepartment
+    # ES END
       amount: 0
