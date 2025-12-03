@@ -13,7 +13,7 @@
   components:
   - type: PointLight
     color: "#ece2dd"
-    energy: 1.38
+    energy: 1.45
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeDepartment
 

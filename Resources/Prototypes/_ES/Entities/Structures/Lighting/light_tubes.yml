@@ -6,7 +6,7 @@
   components:
   - type: LightBulb
     color: "#ece2dd"
-    lightEnergy: 1.35
+    lightEnergy: 1.45
     lightSoftness: 2
 
 - type: entity

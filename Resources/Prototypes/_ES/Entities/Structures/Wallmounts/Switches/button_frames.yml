@@ -1,0 +1,40 @@
+# Directional variants of button frames
+- type: entity
+  id: ESButtonFrameGreyDirectional
+  parent: ButtonFrameGrey
+  suffix: grey, directional
+  components:
+  - type: WallMount
+    arc: 180
+
+- type: entity
+  id: ESButtonFrameCautionDirectional
+  parent: ButtonFrameCaution
+  suffix: caution, directional
+  components:
+  - type: WallMount
+    arc: 180
+
+- type: entity
+  id: ESButtonFrameCautionSecurityDirectional
+  parent: ButtonFrameCautionSecurity
+  suffix: caution, directional
+  components:
+  - type: WallMount
+    arc: 180
+
+- type: entity
+  id: ESButtonFrameExitDirectional
+  parent: ButtonFrameExit
+  suffix: exit, directional
+  components:
+  - type: WallMount
+    arc: 180
+
+- type: entity
+  id: ESButtonFrameJanitorDirectional
+  parent: ButtonFrameJanitor
+  suffix: janitor, directional
+  components:
+  - type: WallMount
+    arc: 180
