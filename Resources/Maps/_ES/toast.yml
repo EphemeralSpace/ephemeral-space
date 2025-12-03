@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 12/03/2025 06:13:53
-  entityCount: 14366
+  time: 12/03/2025 06:45:59
+  entityCount: 14357
 maps:
 - 3
 grids:
@@ -10513,21 +10513,6 @@ entities:
     - type: Transform
       pos: -16.5,-21.5
       parent: 2
-  - uid: 6815
-    components:
-    - type: Transform
-      pos: 6.5,-10.5
-      parent: 2
-  - uid: 6820
-    components:
-    - type: Transform
-      pos: 7.5,-14.5
-      parent: 2
-  - uid: 6822
-    components:
-    - type: Transform
-      pos: 8.5,-17.5
-      parent: 2
   - uid: 6823
     components:
     - type: Transform
@@ -10537,16 +10522,6 @@ entities:
     components:
     - type: Transform
       pos: 9.5,-16.5
-      parent: 2
-  - uid: 6841
-    components:
-    - type: Transform
-      pos: 7.5,-21.5
-      parent: 2
-  - uid: 6844
-    components:
-    - type: Transform
-      pos: 8.5,-21.5
       parent: 2
   - uid: 6902
     components:
@@ -36450,40 +36425,6 @@ entities:
     - type: Transform
       pos: -43.5,-17.5
       parent: 2
-- proto: ESApcNetSwitchLight
-  entities:
-  - uid: 6814
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 6.5,-10.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
-  - uid: 6817
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 7.5,-14.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
-  - uid: 6821
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 8.5,-17.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
-  - uid: 6825
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 8.5,-21.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
 - proto: ESBaseComputerTerminalCryptoNuke
   entities:
   - uid: 3834
