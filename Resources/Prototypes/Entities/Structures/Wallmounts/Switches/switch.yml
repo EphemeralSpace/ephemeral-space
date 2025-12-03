@@ -452,7 +452,9 @@
   components:
   - type: Clickable
   - type: WallMount
-    arc: 360
+    # ES START
+    arc: 180
+    # ES END
   - type: Physics
     canCollide: false
   - type: Sprite
