@@ -63,7 +63,7 @@
     - id: FloorTileItemSteel
     - id: CheapLighter
     - id: TreasureCoinIron
-    - id: ESPoweredLightDepartment
+    - id: ESLightTubeDepartment
     - id: LightBulb
     - id: Matchstick
     - id: DrinkGlass

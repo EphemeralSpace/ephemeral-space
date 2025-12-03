@@ -76,7 +76,7 @@
   - type: StorageFill
     contents:
       # ES START
-      - id: ESPoweredLightDepartment
+      - id: ESLightTubeDepartment
       # ES END
         amount: 12
 
@@ -92,7 +92,7 @@
   - type: StorageFill
     contents:
       # ES START
-      - id: ESPoweredLightDepartment
+      - id: ESLightTubeDepartment
       # ES END
         amount: 6
       - id: LightBulb
