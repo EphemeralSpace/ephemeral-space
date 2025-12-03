@@ -156,7 +156,7 @@ namespace Content.Client.Entry
             // we cant set engine cvars by changing the file,
             // and cant set client-only non-replicated cvars with configpresets
             // so
-            _configManager.SetCVar("light.blur_factor", 0.0037f);
+            _configManager.SetCVar("light.blur_factor", 0.0025f);
             // ES END
         }
 

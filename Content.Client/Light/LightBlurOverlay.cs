@@ -43,7 +43,12 @@ public sealed class LightBlurOverlay : Overlay
 
         var target = beforeLightRes.EnlargedLightTarget;
         // Yeah that's all this does keep walkin.
-        _clyde.BlurRenderTarget(args.Viewport, target, res.BlurTarget, args.Viewport.Eye, 14f * 5f);
+        // ES START
+        // blur multiplier is reduced by a factor, to reduce lightleak that already occurs as a result of this
+        // as well as to account for the fact that we have changed light.blur_factor (which is the baseline this is multiplied by)
+        // otherwise, stuff leaks really badly
+        _clyde.BlurRenderTarget(args.Viewport, target, res.BlurTarget, args.Viewport.Eye, 4f * 5f);
+        // ES END
     }
 
     protected override void DisposeBehavior()
