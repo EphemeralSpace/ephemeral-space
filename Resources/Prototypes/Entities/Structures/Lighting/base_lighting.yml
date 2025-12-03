@@ -419,6 +419,11 @@
       types:
         Heat: 1
     popupText: powered-light-component-burn-hand
+  # ES START
+  # no responding to light switches
+  - type: DeviceNetwork
+    receiveFrequencyId: null
+  # ES END
 
 - type: entity
   id: PoweredWarmSmallLight

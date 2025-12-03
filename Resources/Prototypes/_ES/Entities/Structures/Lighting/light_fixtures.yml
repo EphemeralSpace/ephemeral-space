@@ -9,11 +9,11 @@
   parent: Poweredlight
   name: light fixture
   description: Draws power and produces light when equipped with a light tube.
-  suffix: ES
+  suffix: ES, Departments
   components:
   - type: PointLight
     color: "#ece2dd"
-    energy: 1.35
+    energy: 1.38
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeDepartment
 
@@ -21,19 +21,23 @@
 - type: entity
   id: ESPoweredLightHallway
   parent: Poweredlight
-  name: hallway light fixture
-  description: Draws power and produces light when equipped with a light tube. Dimmer than room lighting and unresponsive to light switches.
-  suffix: ES
+  name: light fixture
+  description: Draws power and produces light when equipped with a light tube. Unresponsive to light switches.
+  suffix: ES, Hallway
   components:
   - type: PointLight
     color: "#929291"
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeHallway
+  - type: DeviceNetwork
+    receiveFrequencyId: null
 
 # Small light fixtures used in maint or elsewhere (just so they're unresponsive to light switches)
-#- type: entity
-#  id: ESPoweredSmallLightMaintenance
-#  parent: PoweredSmallLight
-#  components:
-#  - type: PoweredLight
-#    hasLampOnSpawn: ESLightTubeHallway
+# Separate from regular ones, which get used in rooms normally and should still turn on/off
+- type: entity
+  id: ESPoweredSmallLightMaintenance
+  parent: PoweredSmallLight
+  suffix: Maintenance
+  components:
+  - type: DeviceNetwork
+    receiveFrequencyId: null

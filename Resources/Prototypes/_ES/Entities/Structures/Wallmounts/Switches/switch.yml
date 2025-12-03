@@ -8,7 +8,7 @@
   - type: WallMount
     arc: 180
   - type: PointLight
-    radius: 1.2
+    radius: 1.1
     energy: 3
     color: "#fc9928"
     castShadows: false
