@@ -32402,11 +32402,6 @@ entities:
     - type: Transform
       pos: -0.5,7.5
       parent: 2
-  - uid: 5796
-    components:
-    - type: Transform
-      pos: -2.5,8.5
-      parent: 2
 - proto: DefaultStationBeaconHOSRoom
   entities:
   - uid: 5794
