@@ -10,7 +10,9 @@
   - type: Sprite
     sprite: Objects/Devices/station_beacon.rsi
     drawdepth: BelowFloor
+# ES START
     noRot: true
+# ES END
     layers:
     - state: blink
       map: ["base"]
