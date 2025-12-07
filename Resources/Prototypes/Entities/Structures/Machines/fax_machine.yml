@@ -36,7 +36,9 @@
         type: FaxBoundUi
   - type: StationAiWhitelist
   - type: ApcPowerReceiver
-    powerLoad: 250
+    # ES START
+    powerLoad: 200
+    # ES END
   - type: Faxecute
     damage:
       types:

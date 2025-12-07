@@ -49,7 +49,9 @@
   id: BaseMachinePowered
   components:
   - type: ApcPowerReceiver
-    powerLoad: 1000
+    # ES START
+    powerLoad: 100
+    # ES END
   - type: ExtensionCableReceiver
   - type: LightningTarget
     priority: 1

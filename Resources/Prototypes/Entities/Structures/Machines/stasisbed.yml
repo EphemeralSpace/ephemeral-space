@@ -27,7 +27,9 @@
           False: { visible: false }
   - type: Appearance
   - type: ApcPowerReceiver
-    powerLoad: 1000
+    # ES START
+    powerLoad: 300
+    # ES END
   - type: ExtensionCableReceiver
   - type: Damageable
     damageContainer: Inorganic

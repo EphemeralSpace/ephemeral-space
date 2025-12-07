@@ -40,7 +40,9 @@
   - type: LightningTarget
     priority: 1
   - type: ApcPowerReceiver
-    powerLoad: 200
+    # ES START
+    powerLoad: 20
+    # ES END
   - type: Rotatable
   - type: Transform
     noRot: false
@@ -104,7 +106,9 @@
     - type: LightningTarget
       priority: 1
     - type: ApcPowerReceiver
-      powerLoad: 200
+      # ES START
+      powerLoad: 20
+      # ES END
     - type: Rotatable
     - type: Transform
       noRot: false

@@ -39,7 +39,9 @@
     - map: [ "grinder" ]
       state: "grinder_empty"
   - type: ApcPowerReceiver
-    powerLoad: 300
+    # ES START
+    powerLoad: 100
+    # ES END
   - type: ItemSlots
     slots:
       beakerSlot:

@@ -37,7 +37,9 @@
     - type: Appearance
     - type: ThrusterVisuals
     - type: ApcPowerReceiver
-      powerLoad: 1500
+      # ES START
+      powerLoad: 600
+      # ES END
     - type: ExtensionCableReceiver
     - type: Damageable
       damageContainer: StructuralInorganic

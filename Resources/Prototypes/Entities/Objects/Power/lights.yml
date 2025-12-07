@@ -242,7 +242,6 @@
     # ES END
     lightRadius: 10
     lightSoftness: 1
-    PowerUse: 25
 
 - type: entity
   parent: LightTube

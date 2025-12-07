@@ -98,7 +98,9 @@
     canCreateVacuum: false
     deleteAfterExplosion: false
   - type: ApcPowerReceiver
-    powerLoad: 400
+    # ES START
+    powerLoad: 200
+    # ES END
   - type: Machine
     board: MicrowaveMachineCircuitboard
   - type: ContainerContainer

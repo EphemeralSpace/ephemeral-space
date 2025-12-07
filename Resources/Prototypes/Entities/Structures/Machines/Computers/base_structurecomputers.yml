@@ -17,7 +17,9 @@
       - board
   - type: Computer
   - type: ApcPowerReceiver
-    powerLoad: 200
+    # ES START
+    powerLoad: 100
+    # ES END
   - type: ExtensionCableReceiver
   - type: ActivatableUIRequiresPower
   - type: Sprite

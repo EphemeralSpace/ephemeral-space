@@ -71,7 +71,9 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
   - type: ApcPowerReceiver
-    powerLoad: 3000
+    # ES START
+    powerLoad: 800
+    # ES END
   - type: ExtensionCableReceiver
   - type: NodeContainer
     nodes:

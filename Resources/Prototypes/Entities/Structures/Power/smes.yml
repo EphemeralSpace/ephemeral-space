@@ -34,7 +34,9 @@
     - type: Appearance
     - type: Battery
       startingCharge: 0
-      maxCharge: 8000000
+      # ES START
+      maxCharge: 18000000
+      # ES END
     - type: ExaminableBattery
     - type: NodeContainer
       examinable: true
@@ -119,11 +121,13 @@
 - type: entity
   parent: BaseSMES
   id: SMESBasic
-  suffix: Basic, 8MJ
+  # ES START
+  suffix: Basic, 18MJ
   components:
   - type: Battery
-    maxCharge: 8000000
-    startingCharge: 8000000
+    maxCharge: 18000000
+    startingCharge: 18000000
+  # ES END
 
 - type: entity
   parent: SMESBasic

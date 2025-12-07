@@ -504,7 +504,9 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: ApcPowerReceiver
-    powerLoad: 1000
+    # ES START
+    powerLoad: 200
+    # ES END
   - type: Computer
     board: ResearchComputerCircuitboard
   - type: AccessReader
@@ -555,7 +557,9 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: ApcPowerReceiver
-    powerLoad: 1000
+    # ES START
+    powerLoad: 200
+    # ES END
   - type: Computer
     board: AnalysisComputerCircuitboard
   - type: PointLight
@@ -637,7 +641,9 @@
   description: A body scanner.
   components:
   - type: ApcPowerReceiver
-    powerLoad: 500
+    # ES START
+    powerLoad: 200
+    # ES END
   - type: Computer
     board: BodyScannerComputerCircuitboard
   - type: PointLight
@@ -1553,7 +1559,9 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: ApcPowerReceiver
-    powerLoad: 1000
+    # ES START
+    powerLoad: 200
+    # ES END
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: RoboticsConsole
@@ -1619,7 +1627,9 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: ApcPowerReceiver
-    powerLoad: 1000
+    # ES START
+    powerLoad: 200
+    # ES END
   - type: Computer
     board: StationAiUploadCircuitboard
   - type: AccessReader
@@ -1695,7 +1705,9 @@
           True: { visible: false }
           False: { visible: true }
   - type: ApcPowerReceiver
-    powerLoad: 1000
+    # ES START
+    powerLoad: 200
+    # ES END
   - type: Computer
     board: StationAiFixerCircuitboard
   - type: AccessReader

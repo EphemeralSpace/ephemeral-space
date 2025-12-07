@@ -51,7 +51,9 @@
       containers:
         board: !type:Container
     - type: ApcPowerReceiver
-      powerLoad: 200
+      # ES START
+      powerLoad: 20
+      # ES END
     - type: Construction
       graph: StationMap
       node: station_map
