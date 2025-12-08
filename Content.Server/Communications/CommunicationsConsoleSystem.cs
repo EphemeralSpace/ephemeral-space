@@ -105,7 +105,7 @@ namespace Content.Server.Communications
             UpdateCommsConsoleInterface(uid, comp);
         }
 // ES START
-        private static readonly SoundSpecifier DegradationSoundEffect = new SoundPathSpecifier("/Audio/_ES/announcements/announcementdegraded.ogg");
+        private static readonly SoundSpecifier DegradationSoundEffect = new SoundPathSpecifier("/Audio/_ES/Announcements/announcementdegraded.ogg");
 
         private static readonly ProtoId<LocalizedDatasetPrototype> DegradationAnnouncements = "ESCommunicationConsoleDegradationAnnouncement";
 
