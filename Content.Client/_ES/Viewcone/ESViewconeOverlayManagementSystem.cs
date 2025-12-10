@@ -27,7 +27,7 @@ public sealed class ESViewconeOverlayManagementSystem : EntitySystem
     private ESViewconeSetAlphaOverlay _setAlphaOverlay = default!;
     private ESViewconeResetAlphaOverlay _resetAlphaOverlay = default!;
 
-    private const float LerpHalfLife = 0.05f;
+    private const float LerpHalfLife = 0.1f;
 
     // slightly balls state management, but
     // done so we don't have to requery within the same frame
