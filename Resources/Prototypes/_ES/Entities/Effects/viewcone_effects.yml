@@ -29,14 +29,15 @@
 - type: entity
   id: ESViewconeEffectFootstep
   parent: ESBaseViewconeEffect
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: footstep
 
-# TODO UNUSED
 - type: entity
   id: ESViewconeEffectAttack
   parent: ESBaseViewconeEffect
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: attack
@@ -45,22 +46,16 @@
 - type: entity
   id: ESViewconeEffectForcefield
   parent: ESBaseViewconeEffect
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: forcefield
 
 # TODO UNUSED
 - type: entity
-  id: ESViewconeEffectGunfire
-  parent: ESBaseViewconeEffect
-  components:
-  - type: Sprite
-    state: gunfire
-
-# TODO UNUSED
-- type: entity
   id: ESViewconeEffectTalk
   parent: ESBaseViewconeEffect
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: talk

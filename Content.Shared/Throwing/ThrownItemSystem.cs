@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._ES.Viewcone;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Gravity;
@@ -9,6 +10,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Throwing
@@ -27,6 +29,9 @@ namespace Content.Shared.Throwing
         [Dependency] private readonly SharedGravitySystem _gravity = default!;
         // ES START
         [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly ESViewconeEffectSystem _effect = default!;
+
+        public static EntProtoId LandViewconeEffect = "ESViewconeEffectAttack";
         // ES END
 
         private const string ThrowingFixture = "throw-fixture";
@@ -132,6 +137,10 @@ namespace Content.Shared.Throwing
             // ES START
             _transform.SetLocalRotation(uid, Angle.Zero);
             _physics.SetAngularVelocity(uid, 0f, body: physics);
+
+            // play effect if there was a thrower
+            if (thrownItem.Thrower != null)
+                _effect.SpawnEffect(uid, LandViewconeEffect);
             // ES END
 
             _broadphase.RegenerateContacts((uid, physics));
