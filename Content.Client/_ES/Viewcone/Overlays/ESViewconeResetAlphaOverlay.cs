@@ -33,6 +33,7 @@ public sealed class ESViewconeResetAlphaOverlay : Overlay
         foreach (var (ent, baseAlpha) in _cone.CachedBaseAlphas)
         {
             _sprite.SetColor(ent!, ent.Comp.Color.WithAlpha(baseAlpha));
+            _sprite.SetVisible(ent!, baseAlpha > 0f);
         }
 
         _cone.CachedBaseAlphas.Clear();

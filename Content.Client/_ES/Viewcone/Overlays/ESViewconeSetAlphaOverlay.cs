@@ -108,6 +108,7 @@ public sealed class ESViewconeSetAlphaOverlay : Overlay
 
             var alpha = comp.Inverted ? 1f - targetAlpha : targetAlpha;
             _sprite.SetColor((uid, sprite), sprite.Color.WithAlpha(alpha));
+            _sprite.SetVisible((uid, sprite), alpha > 0f);
         }
     }
 }
