@@ -73,6 +73,7 @@
   - type: ESImbibeReagentObjective
     canBeFromFood: false # you're GUZZLING not MUNCHING.
     descriptionLoc: es-imbibe-reagent-guzzler-desc
+    titleLoc: es-guzzle-specific-objective-title
     possibleConsumeTargets:
     - Beer
     - WeldingFuel # Excuse to really annoy engineering, AND medical.
@@ -91,7 +92,6 @@
     - SpaceCleaner
     - SpaceLube
   - type: ESCounterObjective
-    title: es-guzzle-specific-objective-title
     target: 100
     maxTarget: 200
     targetIncrement: 10
