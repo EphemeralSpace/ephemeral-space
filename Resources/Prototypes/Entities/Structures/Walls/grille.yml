@@ -134,6 +134,7 @@
   - type: Tag
     tags:
     - ForceNoFixRotations
+    - ESGrille # ES change - used for daredevil
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: FlimsyMetallic

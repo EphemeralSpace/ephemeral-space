@@ -1,4 +1,5 @@
 ﻿using Content.Shared.FixedPoint;
+using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.Masks.Objectives.Components;
@@ -11,13 +12,13 @@ public sealed partial class ESTakeDamageFromSourceObjectiveComponent : Component
     ///     Diffrent types of damages one can roll
     /// </summary>
     [DataField]
-    public List<ProtoId<EntityPrototype>> PossibleSources = new();
+    public List<ProtoId<TagPrototype>>? PossibleSources = new();
 
     /// <summary>
     ///     The source selected
     /// </summary>
     [DataField]
-    public EntityPrototype? SelectedSource;
+    public ProtoId<TagPrototype> SelectedSource;
 
     /// <summary>
     ///     The total type of damage objective haver has taken

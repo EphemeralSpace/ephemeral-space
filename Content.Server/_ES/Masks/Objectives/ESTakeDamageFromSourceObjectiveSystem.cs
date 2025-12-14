@@ -5,6 +5,7 @@ using Content.Server.Administration.Logs;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Database;
+using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -18,6 +19,7 @@ public sealed class ESTakeDamageFromSourceObjectiveSystem : ESBaseObjectiveSyste
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     public override void Initialize()
     {
@@ -31,21 +33,18 @@ public sealed class ESTakeDamageFromSourceObjectiveSystem : ESBaseObjectiveSyste
     {
         base.InitializeObjective(ent, ref args);
 
-        ent.Comp.SelectedSource = _proto.Index(_random.Pick(ent.Comp.PossibleSources));
+        if (ent.Comp.PossibleSources != null)
+            ent.Comp.SelectedSource = _random.Pick(ent.Comp.PossibleSources);
 
-        _meta.SetEntityDescription(ent, Loc.GetString(ent.Comp.DescriptionLoc, ("damagesource", ent.Comp.SelectedSource.Name)));
+        _meta.SetEntityDescription(ent, Loc.GetString(ent.Comp.DescriptionLoc, ("damagesource", ent.Comp.SelectedSource)));
     }
 
     private void OnDamageChanged(Entity<ESTakeDamageFromSourceObjectiveComponent> ent, ref ESDamageTakenEvent args)
     {
-        if (!TryComp<MetaDataComponent>(args.Origin, out var metaData))
+        if (!TryComp<TagComponent>(args.Origin, out var tag))
             return;
 
-        _adminLogger.Add(LogType.Action,
-            LogImpact.Medium,
-            $"{metaData.EntityPrototype} erased all messages on {ToPrettyString(ent)}");
-
-        if (metaData.EntityPrototype != ent.Comp.SelectedSource!)
+        if (_tag.HasTag(args.Body, ent.Comp.SelectedSource))
             return;
 
 

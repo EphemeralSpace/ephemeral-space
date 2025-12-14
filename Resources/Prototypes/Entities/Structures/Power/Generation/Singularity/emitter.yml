@@ -103,3 +103,8 @@
       - On
       - Off
       - Toggle
+  # ES change - adds tags for dardevil
+  - type: Tag
+    tags:
+    - ESEmitter
+  # ES end

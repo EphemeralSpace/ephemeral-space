@@ -148,10 +148,9 @@
   - type: ESTakeDamageFromSourceObjective
     descriptionLoc: es-daredevil-source-desc
     possibleSources:
-    - Emitter
-    - Grille
-    - MobMonkey
-    - MobKobold
+    - ESGrille
+    - ESEmitter
+    - ESAncestor
   - type: ESCounterObjective
     title: es-daredevil-source-objective-title
     target: 100
