@@ -33,7 +33,7 @@
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
    #pocket1: WeaponPistolMk58 - ES Change removes roundstart gun, replaces it with taser
-    pocket1: WeaponTaser
+    pocket1: ESWeaponHybridTaser
     pocket2: BookSecurity
   storage:
     back:
