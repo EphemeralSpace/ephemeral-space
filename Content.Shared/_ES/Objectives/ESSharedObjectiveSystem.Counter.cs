@@ -49,6 +49,18 @@ public abstract partial class ESSharedObjectiveSystem
     }
 
     /// <summary>
+    /// Adjusts the counter for all objectives with component <see cref="T"/>
+    /// </summary>
+    /// <param name="val">How much to add or remove from the counter</param>
+    public void AdjustObjectiveCounter<T>(float val = 1) where T : Component
+    {
+        foreach (var objective in GetObjectives<T>())
+        {
+            AdjustObjectiveCounter((objective.Owner, objective.Comp2), val);
+        }
+    }
+
+    /// <summary>
     /// Sets the counter for the objective to <see cref="val"/>
     /// </summary>
     /// <param name="ent">Objective entity</param>
