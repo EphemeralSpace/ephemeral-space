@@ -3950,23 +3950,6 @@ entities:
     - type: Transform
       pos: 0.5,-2.5
       parent: 2
-- proto: SpawnPointObserver
-  entities:
-  - uid: 4
-    components:
-    - type: Transform
-      pos: -1.5,0.5
-      parent: 2
-  - uid: 818
-    components:
-    - type: Transform
-      pos: -2.5,0.5
-      parent: 2
-  - uid: 822
-    components:
-    - type: Transform
-      pos: -0.5,0.5
-      parent: 2
 - proto: Stool
   entities:
   - uid: 60
