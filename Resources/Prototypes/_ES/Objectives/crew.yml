@@ -112,3 +112,47 @@
     title: es-guzzle-unique-reagents-objective-title
     target: 15
     maxTarget: 25
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveTakeDamage
+  name: TakeDamage
+  description: Take as much of a certain damage type as you can.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Tools/bucket.rsi
+      state: icon
+  - type: ESTakeDamageObjective
+    descriptionLoc: es-daredevil-desc
+    requiredDamages:
+    - Brute
+    - Burn
+    - Airloss
+    - Airloss
+  - type: ESCounterObjective
+    title: es-daredevil-objective-title
+    target: 250
+    maxTarget: 500
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveTakeDamageFromSource
+  name: TakeDamage
+  description: Take as much of a certain damage type as you can.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Tools/bucket.rsi
+      state: icon
+  - type: ESTakeDamageFromSourceObjective
+    descriptionLoc: es-daredevil-source-desc
+    possibleSources:
+    - CaptainSabre
+    - KitchenKnife
+    - ESBullet9mm
+    - ESPelletShotgun
+  - type: ESCounterObjective
+    title: es-daredevil-objective-title
+    target: 100
+    maxTarget: 250

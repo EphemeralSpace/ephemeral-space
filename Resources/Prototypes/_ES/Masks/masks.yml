@@ -75,6 +75,18 @@
     - id: ESObjectiveGuzzleUniqueReagents
     - id: ESObjectiveGuzzleSpecialInterest
 
+- type: esMask
+  id: ESDaredevil
+  name: es-mask-daredevil-name
+  troupe: ESCrew
+  description: es-mask-daredevil-desc
+  color: maroon
+  weight: 1
+  objectives:
+    all:
+    - id: ESObjectiveTakeDamage
+    - id: ESObjectiveTakeDamageFromSource
+
 # Traitor Masks
 - type: esMask
   id: ESBaseTraitor

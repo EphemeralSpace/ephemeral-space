@@ -20,6 +20,9 @@ es-mask-veteran-desc = Help the station by using your trusty sidearm to take car
 es-mask-guzzler-name = Guzzler
 es-mask-guzzler-desc = You have nothing but an endless desire to Consume Liquid, guzzle everything you can get your hands on.
 
+es-mask-daredevil-name = Daredevil
+es-mask-daredevil-desc = You live an intense lifestyle, constantly seeking new ways to kill yourself faster.
+
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete the objectives.
 
