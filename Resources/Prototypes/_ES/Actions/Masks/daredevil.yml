@@ -1,0 +1,11 @@
+﻿- type: entity
+  parent: BaseAction
+  id: ESActionMaskAdrenalinePump
+  name: Adrenaline Pump
+  description: Use this to pump yourself with adrenaline when crit.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/masks/extract.rsi
+      state: arms-dealer
+  - type: InstantAction
