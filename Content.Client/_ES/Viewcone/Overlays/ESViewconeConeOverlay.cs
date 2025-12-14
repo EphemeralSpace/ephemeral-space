@@ -19,7 +19,7 @@ public sealed class ESViewconeConeOverlay : Overlay
     [Dependency] private readonly IEntityManager _ent = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
-    public override OverlaySpace Space => OverlaySpace.WorldSpace;
+    public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
     public override bool RequestScreenTexture => true;
 
     public static ProtoId<ShaderPrototype> ShaderPrototype = "Viewcone";
