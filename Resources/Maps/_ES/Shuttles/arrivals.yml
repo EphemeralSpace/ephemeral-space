@@ -4,8 +4,8 @@ meta:
   engineVersion: 268.1.0
   forkId: ""
   forkVersion: ""
-  time: 12/14/2025 07:48:02
-  entityCount: 727
+  time: 12/14/2025 16:57:16
+  entityCount: 725
 maps: []
 grids:
 - 1
@@ -223,7 +223,7 @@ entities:
       parent: 1
 - proto: AirlockCaptainLocked
   entities:
-  - uid: 229
+  - uid: 188
     components:
     - type: Transform
       pos: 35.5,-4.5
@@ -256,6 +256,8 @@ entities:
     - type: Transform
       pos: 10.5,-7.5
       parent: 1
+    - type: AccessReader
+      accessListsOriginal: []
 - proto: AirlockGlass
   entities:
   - uid: 76
@@ -355,6 +357,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 37.5,-5.5
       parent: 1
+- proto: BoxFolderClipboardEmpty
+  entities:
+  - uid: 359
+    components:
+    - type: Transform
+      pos: 36.523506,1.5257988
+      parent: 1
 - proto: Brutepack
   entities:
   - uid: 491
@@ -369,7 +378,7 @@ entities:
     - type: Transform
       pos: 33.5,4.5
       parent: 1
-  - uid: 274
+  - uid: 190
     components:
     - type: Transform
       pos: 11.5,4.5
@@ -379,12 +388,12 @@ entities:
     - type: Transform
       pos: 33.5,6.5
       parent: 1
-  - uid: 359
+  - uid: 319
     components:
     - type: Transform
       pos: 12.5,4.5
       parent: 1
-  - uid: 361
+  - uid: 353
     components:
     - type: Transform
       pos: 13.5,4.5
@@ -1271,6 +1280,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 25.5,9.5
       parent: 1
+- proto: CigarGold
+  entities:
+  - uid: 420
+    components:
+    - type: Transform
+      pos: 34.64186,-6.395215
+      parent: 1
 - proto: ClosetEmergencyFilledRandom
   entities:
   - uid: 372
@@ -1324,7 +1340,7 @@ entities:
       parent: 1
 - proto: ComputerEmergencyShuttle
   entities:
-  - uid: 353
+  - uid: 274
     components:
     - type: Transform
       pos: 37.5,-0.5
@@ -1348,7 +1364,7 @@ entities:
       parent: 1
 - proto: ComputerRadar
   entities:
-  - uid: 349
+  - uid: 229
     components:
     - type: Transform
       pos: 37.5,-2.5
@@ -1688,6 +1704,14 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+  - uid: 524
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 13.5,4.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 535
     components:
     - type: Transform
@@ -1704,14 +1728,6 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - Engineering
-    - type: Fixtures
-      fixtures: {}
-  - uid: 613
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 13.5,4.5
-      parent: 1
     - type: Fixtures
       fixtures: {}
   - uid: 636
@@ -1849,7 +1865,7 @@ entities:
       parent: 1
 - proto: DresserCaptainFilled
   entities:
-  - uid: 360
+  - uid: 349
     components:
     - type: Transform
       pos: 34.5,-8.5
@@ -1863,7 +1879,7 @@ entities:
       parent: 1
 - proto: DrinkCognacBottleFull
   entities:
-  - uid: 609
+  - uid: 481
     components:
     - type: Transform
       pos: 12.43466,5.7269
@@ -1887,14 +1903,14 @@ entities:
       parent: 1
 - proto: DrinkMeadGlass
   entities:
-  - uid: 385
+  - uid: 382
     components:
     - type: Transform
       pos: 11.637785,5.50815
       parent: 1
 - proto: DrinkWineGlass
   entities:
-  - uid: 524
+  - uid: 472
     components:
     - type: Transform
       pos: 12.012785,5.7269
@@ -2055,24 +2071,24 @@ entities:
     - type: Transform
       pos: 30.5,0.5
       parent: 1
-  - uid: 365
+  - uid: 361
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 28.5,5.5
       parent: 1
-  - uid: 366
+  - uid: 365
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 22.5,4.5
       parent: 1
-  - uid: 368
+  - uid: 366
     components:
     - type: Transform
       pos: 27.5,9.5
       parent: 1
-  - uid: 382
+  - uid: 368
     components:
     - type: Transform
       pos: 32.5,9.5
@@ -2663,6 +2679,13 @@ entities:
     components:
     - type: Transform
       pos: 24.5,5.5
+      parent: 1
+- proto: ESVendingMachineCoffee
+  entities:
+  - uid: 418
+    components:
+    - type: Transform
+      pos: 7.5,-9.5
       parent: 1
 - proto: ESWallShuttleArrivals
   entities:
@@ -3464,13 +3487,6 @@ entities:
     - type: Transform
       pos: 27.5,-9.5
       parent: 1
-- proto: ESWeaponHybridTaser
-  entities:
-  - uid: 418
-    components:
-    - type: Transform
-      pos: 36.526455,3.7783108
-      parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
   - uid: 558
@@ -3511,18 +3527,13 @@ entities:
     - type: Transform
       pos: 32.5,0.5
       parent: 1
-  - uid: 695
+  - uid: 609
     components:
     - type: Transform
       pos: 35.5,4.5
       parent: 1
 - proto: FlashlightLantern
   entities:
-  - uid: 420
-    components:
-    - type: Transform
-      pos: 32.464684,-2.431329
-      parent: 1
   - uid: 541
     components:
     - type: Transform
@@ -3540,10 +3551,10 @@ entities:
       parent: 1
 - proto: FoodBoxDonut
   entities:
-  - uid: 427
+  - uid: 419
     components:
     - type: Transform
-      pos: 36.504814,1.5722729
+      pos: 31.477188,5.593898
       parent: 1
 - proto: Grille
   entities:
@@ -3821,10 +3832,17 @@ entities:
       parent: 1
 - proto: Handcuffs
   entities:
-  - uid: 319
+  - uid: 223
     components:
     - type: Transform
       pos: 36.51715,3.440202
+      parent: 1
+- proto: Matchbox
+  entities:
+  - uid: 427
+    components:
+    - type: Transform
+      pos: 34.500557,-6.147576
       parent: 1
 - proto: MedkitFilled
   entities:
@@ -3862,6 +3880,13 @@ entities:
     - type: Transform
       pos: 22.672077,2.8415976
       parent: 1
+- proto: PaperBin10
+  entities:
+  - uid: 360
+    components:
+    - type: Transform
+      pos: 37.5,1.5
+      parent: 1
 - proto: PortableScrubber
   entities:
   - uid: 424
@@ -3876,10 +3901,10 @@ entities:
       parent: 1
 - proto: PowerCellRecharger
   entities:
-  - uid: 419
+  - uid: 389
     components:
     - type: Transform
-      pos: 37.5,1.5
+      pos: 37.5,-3.5
       parent: 1
   - uid: 553
     components:
@@ -4039,13 +4064,6 @@ entities:
     - type: Transform
       pos: 12.5,4.5
       parent: 1
-- proto: Stunbaton
-  entities:
-  - uid: 389
-    components:
-    - type: Transform
-      pos: 36.446022,3.3828962
-      parent: 1
 - proto: Table
   entities:
   - uid: 342
@@ -4154,17 +4172,10 @@ entities:
       parent: 1
 - proto: ToolboxEmergencyFilled
   entities:
-  - uid: 472
+  - uid: 385
     components:
     - type: Transform
-      pos: 37.412506,-3.4647658
-      parent: 1
-- proto: VendingMachineClothing
-  entities:
-  - uid: 481
-    components:
-    - type: Transform
-      pos: 7.5,-9.5
+      pos: 36.54841,-3.4216282
       parent: 1
 - proto: WallShuttleDiagonal
   entities:
@@ -4264,23 +4275,6 @@ entities:
     components:
     - type: Transform
       pos: 8.5,-1.5
-      parent: 1
-- proto: WeaponCapacitorRecharger
-  entities:
-  - uid: 188
-    components:
-    - type: Transform
-      pos: 31.5,5.5
-      parent: 1
-  - uid: 190
-    components:
-    - type: Transform
-      pos: 36.5,-3.5
-      parent: 1
-  - uid: 223
-    components:
-    - type: Transform
-      pos: 34.5,-6.5
       parent: 1
 - proto: Windoor
   entities:
