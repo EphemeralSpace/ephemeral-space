@@ -42,5 +42,6 @@ public sealed class ESDamageTakerRelaySystem : ESBaseMindRelay
 /// <param name="Body">The body in question.</param>
 /// <param name="DamageIncreased">Did damage increase or not?
 /// <param name="DamageDone">The amount of damage done</param>
+/// <param name="Origin">The origin of damage</param>
 [ByRefEvent]
 public readonly record struct ESDamageTakenEvent(EntityUid Body, bool DamageIncreased, DamageSpecifier DamageDone, EntityUid? Origin);

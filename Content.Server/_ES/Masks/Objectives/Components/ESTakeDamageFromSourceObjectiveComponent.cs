@@ -26,7 +26,7 @@ public sealed partial class ESTakeDamageFromSourceObjectiveComponent : Component
     public float TotalDamage = 0;
 
     /// <summary>
-    ///     The description for this objective, where $reagent will become the reagent name.
+    ///     The description for this objective, where $damagetype will become the damage type
     /// </summary>
     [DataField(required: true)]
     public LocId DescriptionLoc { get; private set; }
