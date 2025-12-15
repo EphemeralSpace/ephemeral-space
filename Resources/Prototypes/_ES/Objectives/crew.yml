@@ -124,6 +124,7 @@
       sprite: Objects/Weapons/Melee/baseball_bat.rsi
       state: icon
   - type: ESTakeDamageObjective
+    nameLoc: es-daredevil-objective-title
     descriptionLoc: es-daredevil-desc
     requiredDamages:
     - Brute
@@ -131,9 +132,9 @@
     - Airloss
     - Airloss
   - type: ESCounterObjective
-    title: es-daredevil-objective-title
     target: 250
     maxTarget: 500
+    targetIncrement: 10
 
 - type: entity
   parent: ESBaseMaskObjective
@@ -146,12 +147,11 @@
       sprite: Objects/Weapons/Melee/baseball_bat.rsi
       state: icon
   - type: ESTakeDamageFromSourceObjective
-    descriptionLoc: es-daredevil-source-desc
     possibleSources:
     - ESGrille
     - ESEmitter
     - ESAncestor
   - type: ESCounterObjective
-    title: es-daredevil-source-objective-title
     target: 100
     maxTarget: 250
+    targetIncrement: 10

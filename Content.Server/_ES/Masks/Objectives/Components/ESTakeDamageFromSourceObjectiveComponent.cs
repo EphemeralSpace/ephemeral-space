@@ -19,16 +19,4 @@ public sealed partial class ESTakeDamageFromSourceObjectiveComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<TagPrototype> SelectedSource = "ESGrille";
-
-    /// <summary>
-    ///     The total type of damage objective haver has taken
-    /// </summary>
-    [DataField]
-    public float TotalDamage = 0;
-
-    /// <summary>
-    ///     The description for this objective, where $damagetype will become the damage type
-    /// </summary>
-    [DataField(required: true)]
-    public LocId DescriptionLoc { get; private set; }
 }

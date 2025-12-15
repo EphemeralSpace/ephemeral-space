@@ -33,10 +33,13 @@ public sealed class ESTakeDamageFromSourceObjectiveSystem : ESBaseObjectiveSyste
     {
         base.InitializeObjective(ent, ref args);
 
+        if (!TryComp<ESCounterObjectiveComponent>(ent, out var counterObjective))
+            return;
 
         ent.Comp.SelectedSource = _random.Pick(ent.Comp.PossibleSources);
 
-        _meta.SetEntityDescription(ent, Loc.GetString(ent.Comp.DescriptionLoc, ("damagesource", ent.Comp.SelectedSource)));
+        _meta.SetEntityName(ent, Loc.GetString($"es-daredevil-source-objective-title-{ent.Comp.SelectedSource}", ("count", counterObjective!.Target)));
+        _meta.SetEntityDescription(ent, Loc.GetString($"es-daredevil-source-objective-desc-{ent.Comp.SelectedSource}"));
     }
 
     private void OnDamageChanged(Entity<ESTakeDamageFromSourceObjectiveComponent> ent, ref ESDamageTakenEvent args)
@@ -52,8 +55,6 @@ public sealed class ESTakeDamageFromSourceObjectiveSystem : ESBaseObjectiveSyste
 
         var totaldamage = args.DamageDone.GetTotal();
 
-        ent.Comp.TotalDamage = (float)totaldamage + ent.Comp.TotalDamage;
-
-        ObjectivesSys.SetObjectiveCounter(ent.Owner, ent.Comp.TotalDamage);
+        ObjectivesSys.AdjustObjectiveCounter(ent.Owner, (float)totaldamage);
     }
 }

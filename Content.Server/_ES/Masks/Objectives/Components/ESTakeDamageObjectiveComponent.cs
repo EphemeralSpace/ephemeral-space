@@ -20,14 +20,14 @@ public sealed partial class ESTakeDamageObjectiveComponent : Component
     public DamageGroupPrototype? SelectedDamage;
 
     /// <summary>
-    ///     The total type of damage objective haver has taken
+    ///     The description for this objective, where $damagesource will become the source
     /// </summary>
-    [DataField]
-    public float TotalDamage = 0;
+    [DataField(required: true)]
+    public LocId DescriptionLoc { get; private set; }
 
     /// <summary>
     ///     The description for this objective, where $damagesource will become the source
     /// </summary>
     [DataField(required: true)]
-    public LocId DescriptionLoc { get; private set; }
+    public LocId NameLoc { get; private set; }
 }

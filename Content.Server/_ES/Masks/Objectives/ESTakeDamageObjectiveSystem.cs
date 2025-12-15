@@ -12,7 +12,6 @@ public sealed class ESTakeDamageObjectiveSystem : ESBaseObjectiveSystem<ESTakeDa
 {
     public override Type[] RelayComponents => new[] { typeof(ESDamageTakerRelayComponent) };
 
-
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -24,13 +23,16 @@ public sealed class ESTakeDamageObjectiveSystem : ESBaseObjectiveSystem<ESTakeDa
         SubscribeLocalEvent<ESTakeDamageObjectiveComponent,  ESDamageTakenEvent>(OnDamageTaken);
     }
 
-
     protected override void InitializeObjective(Entity<ESTakeDamageObjectiveComponent> ent, ref ESInitializeObjectiveEvent args)
     {
         base.InitializeObjective(ent, ref args);
 
+        if (!TryComp<ESCounterObjectiveComponent>(ent, out var counterObjective))
+            return;
+
         ent.Comp.SelectedDamage = _proto.Index(_random.Pick(ent.Comp.RequiredDamages));
 
+        _meta.SetEntityName(ent, Loc.GetString(ent.Comp.NameLoc, ("damagetype", ent.Comp.SelectedDamage.ID), ("count", counterObjective!.Target)));
         _meta.SetEntityDescription(ent, Loc.GetString(ent.Comp.DescriptionLoc, ("damagetype", ent.Comp.SelectedDamage.ID)));
     }
 
@@ -47,8 +49,6 @@ public sealed class ESTakeDamageObjectiveSystem : ESBaseObjectiveSystem<ESTakeDa
 
         var currentDamage = (float)damage;
 
-        ent.Comp.TotalDamage = currentDamage + ent.Comp.TotalDamage;
-
-        ObjectivesSys.SetObjectiveCounter(ent.Owner, ent.Comp.TotalDamage);
+        ObjectivesSys.AdjustObjectiveCounter(ent.Owner, currentDamage);
     }
 }

@@ -1,6 +1,4 @@
-﻿using Content.Server.Database.Migrations.Sqlite;
-using Content.Server.Popups;
-using Content.Shared.Chemistry.Components;
+﻿using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Mobs.Components;
@@ -11,17 +9,15 @@ namespace Content.Server._ES.Masks.Chemicalnjection;
 
 public sealed class ChemicalInjectorSystem : EntitySystem
 {
-
-    [Dependency] protected readonly SharedSolutionContainerSystem _SolutionContainer = default!;
-    [Dependency] protected readonly MobStateSystem _mobState = default!;
-    [Dependency] protected readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _SolutionContainer = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<ESChemicalInjectorEvent>(OnChemicalInjection);
-
     }
 
     private void OnChemicalInjection(ESChemicalInjectorEvent args)
@@ -52,5 +48,4 @@ public sealed class ChemicalInjectorSystem : EntitySystem
 
         args.Handled = true;
     }
-
 }
