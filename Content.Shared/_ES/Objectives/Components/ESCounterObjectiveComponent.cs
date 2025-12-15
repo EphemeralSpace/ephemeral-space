@@ -7,7 +7,7 @@ namespace Content.Shared._ES.Objectives.Components;
 /// Essentially a giant helper system that
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(ESSharedObjectiveSystem), Other = AccessPermissions.Read)]
+[Access(typeof(ESSharedObjectiveSystem), Other = AccessPermissions.None)]
 public sealed partial class ESCounterObjectiveComponent : Component
 {
     /// <summary>

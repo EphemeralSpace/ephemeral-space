@@ -36,6 +36,18 @@ public abstract partial class ESSharedObjectiveSystem
     }
 
     /// <summary>
+    /// Returns the counter's target value.
+    /// If there's no target, returns -1
+    /// </summary>
+    public float GetObjectiveCounterTarget(Entity<ESCounterObjectiveComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return -1;
+
+        return ent.Comp.Target;
+    }
+
+    /// <summary>
     /// Adjusts the counter for the objective by <see cref="val"/>
     /// </summary>
     /// <param name="ent">Objective entity</param>

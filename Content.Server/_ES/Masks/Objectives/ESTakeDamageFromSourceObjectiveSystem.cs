@@ -1,12 +1,9 @@
 ﻿using Content.Server._ES.Masks.Objectives.Components;
 using Content.Server._ES.Masks.Objectives.Relays;
 using Content.Server._ES.Masks.Objectives.Relays.Components;
-using Content.Server.Administration.Logs;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
-using Content.Shared.Database;
 using Content.Shared.Tag;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._ES.Masks.Objectives;
@@ -17,8 +14,6 @@ public sealed class ESTakeDamageFromSourceObjectiveSystem : ESBaseObjectiveSyste
 
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
     public override void Initialize()
@@ -28,33 +23,24 @@ public sealed class ESTakeDamageFromSourceObjectiveSystem : ESBaseObjectiveSyste
         SubscribeLocalEvent<ESTakeDamageFromSourceObjectiveComponent, ESDamageTakenEvent>(OnDamageChanged);
     }
 
-
     protected override void InitializeObjective(Entity<ESTakeDamageFromSourceObjectiveComponent> ent, ref ESInitializeObjectiveEvent args)
     {
         base.InitializeObjective(ent, ref args);
 
-        if (!TryComp<ESCounterObjectiveComponent>(ent, out var counterObjective))
-            return;
-
         ent.Comp.SelectedSource = _random.Pick(ent.Comp.PossibleSources);
 
-        _meta.SetEntityName(ent, Loc.GetString($"es-daredevil-source-objective-title-{ent.Comp.SelectedSource}", ("count", counterObjective!.Target)));
+        _meta.SetEntityName(ent, Loc.GetString($"es-daredevil-source-objective-title-{ent.Comp.SelectedSource}", ("count", ObjectivesSys.GetObjectiveCounterTarget(ent.Owner))));
         _meta.SetEntityDescription(ent, Loc.GetString($"es-daredevil-source-objective-desc-{ent.Comp.SelectedSource}"));
     }
 
     private void OnDamageChanged(Entity<ESTakeDamageFromSourceObjectiveComponent> ent, ref ESDamageTakenEvent args)
     {
-        if (!TryComp<TagComponent>(args.Origin, out var tag))
+        if (!args.DamageIncreased)
             return;
 
         if (!_tag.HasTag(args.Body, ent.Comp.SelectedSource))
             return;
 
-        if (!args.DamageIncreased)
-            return;
-
-        var totaldamage = args.DamageDone.GetTotal();
-
-        ObjectivesSys.AdjustObjectiveCounter(ent.Owner, (float)totaldamage);
+        ObjectivesSys.AdjustObjectiveCounter(ent.Owner, args.DamageDone.GetTotal().Float());
     }
 }

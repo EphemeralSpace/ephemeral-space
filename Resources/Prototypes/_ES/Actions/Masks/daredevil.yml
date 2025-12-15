@@ -14,12 +14,14 @@
   - type: SolutionContainerManager
     solutions:
       Injector:
-        maxVol: 15
+        maxVol: 25
         reagents:
-        - ReagentId: Epinephrine
+        - ReagentId: Epinephrine # get out of crit
           Quantity: 12
-        - ReagentId: TranexamicAcid
+        - ReagentId: TranexamicAcid # stop bleeding
           Quantity: 3
+        - ReagentId: Omnizine # regenerate some health
+          Quantity: 10
   - type: InstantAction
     event: !type:ESChemicalInjectorEvent
 

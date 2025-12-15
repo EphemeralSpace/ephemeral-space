@@ -1,15 +1,12 @@
-﻿using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.Components.SolutionManager;
-using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Mobs.Components;
+﻿using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 
-namespace Content.Server._ES.Masks.Chemicalnjection;
+namespace Content.Shared._ES.Masks.ChemicalInjector;
 
 public sealed class ChemicalInjectorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _SolutionContainer = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
@@ -27,24 +24,15 @@ public sealed class ChemicalInjectorSystem : EntitySystem
 
         if (!_mobState.IsCritical(args.Performer) && args.OnlyUsableWhileCrit)
         {
-            _popupSystem.PopupEntity(Loc.GetString(args.NotCrit), args.Performer, args.Performer, PopupType.Medium);
+            _popupSystem.PopupPredicted(Loc.GetString(args.FailMessage), args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 
-        if (!TryComp<SolutionContainerManagerComponent>(args.Action.Owner, out var solutionManager))
+        if (!_solutionContainer.TryGetSolution(args.Action.Owner, args.SolutionName, out _, out var solution) ||
+            !_solutionContainer.TryGetInjectableSolution(args.Performer, out var targetSolution, out _))
             return;
 
-        if (!TryComp<InjectableSolutionComponent>(args.Performer, out var injectableSolutionComponent))
-            return;
-
-        _SolutionContainer.TryGetSolution((args.Action.Owner, solutionManager), args.SolutionName, out var entity, out var solution);
-
-        _SolutionContainer.TryGetInjectableSolution((args.Performer, injectableSolutionComponent), out var entitysolution, out var injectableSolution);
-
-        if (solution == null)
-            return;
-
-        _SolutionContainer.AddSolution((Entity<SolutionComponent>)entitysolution!, solution);
+        _solutionContainer.AddSolution(targetSolution.Value, solution);
 
         args.Handled = true;
     }

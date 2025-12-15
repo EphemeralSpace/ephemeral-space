@@ -12,9 +12,9 @@ public sealed class ESTakeDamageObjectiveSystem : ESBaseObjectiveSystem<ESTakeDa
 {
     public override Type[] RelayComponents => new[] { typeof(ESDamageTakerRelayComponent) };
 
+    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
 
     public override void Initialize()
     {
@@ -27,28 +27,24 @@ public sealed class ESTakeDamageObjectiveSystem : ESBaseObjectiveSystem<ESTakeDa
     {
         base.InitializeObjective(ent, ref args);
 
-        if (!TryComp<ESCounterObjectiveComponent>(ent, out var counterObjective))
-            return;
-
         ent.Comp.SelectedDamage = _proto.Index(_random.Pick(ent.Comp.RequiredDamages));
+        var damageProto = _proto.Index(ent.Comp.SelectedDamage);
 
-        _meta.SetEntityName(ent, Loc.GetString(ent.Comp.NameLoc, ("damagetype", ent.Comp.SelectedDamage.ID), ("count", counterObjective!.Target)));
-        _meta.SetEntityDescription(ent, Loc.GetString(ent.Comp.DescriptionLoc, ("damagetype", ent.Comp.SelectedDamage.ID)));
+        _meta.SetEntityName(ent, Loc.GetString(ent.Comp.NameLoc, ("damagetype", damageProto.LocalizedName.ToLowerInvariant()), ("count", ObjectivesSys.GetObjectiveCounterTarget(ent.Owner))));
+        _meta.SetEntityDescription(ent, Loc.GetString(ent.Comp.DescriptionLoc, ("damagetype", damageProto.LocalizedName.ToLowerInvariant())));
     }
 
     private void OnDamageTaken(Entity<ESTakeDamageObjectiveComponent> ent, ref ESDamageTakenEvent args)
     {
-        if (!args.DamageIncreased)
+        if (!args.DamageIncreased || ent.Comp.SelectedDamage == null)
             return;
 
-        if (!args.DamageDone.DamageDict.TryGetValue(ent.Comp.SelectedDamage!.ID, out var damage))
+        if (!args.DamageDone.DamageDict.TryGetValue(ent.Comp.SelectedDamage, out var damage))
             return;
 
         if (damage <= 0)
             return;
 
-        var currentDamage = (float)damage;
-
-        ObjectivesSys.AdjustObjectiveCounter(ent.Owner, currentDamage);
+        ObjectivesSys.AdjustObjectiveCounter(ent.Owner, damage.Float());
     }
 }

@@ -8,6 +8,9 @@ es-mask-arms-dealer-desc = Help the crew complete the station objective by handi
 es-mask-citizen-name = Citizen
 es-mask-citizen-desc = Confirm your innocence with the assistance of your fancy citizenship card. Help your crewmembers complete the station objective.
 
+es-mask-daredevil-name = Daredevil
+es-mask-daredevil-desc = You live an intense lifestyle, constantly seeking new ways to kill yourself faster.
+
 es-mask-fruit-vendor-name = Fruit Vendor
 es-mask-fruit-vendor-desc = Dispense delicious fruits to aid in the completion of the station objective.
 
@@ -19,9 +22,6 @@ es-mask-veteran-desc = Help the station by using your trusty sidearm to take car
 
 es-mask-guzzler-name = Guzzler
 es-mask-guzzler-desc = You have nothing but an endless desire to Consume Liquid, guzzle everything you can get your hands on.
-
-es-mask-daredevil-name = Daredevil
-es-mask-daredevil-desc = You live an intense lifestyle, constantly seeking new ways to kill yourself faster.
 
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete the objectives.

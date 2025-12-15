@@ -40,7 +40,7 @@ public sealed class ESDamageTakerRelaySystem : ESBaseMindRelay
 ///     Raised directed on the mind when the body has taken damage.
 /// </summary>
 /// <param name="Body">The body in question.</param>
-/// <param name="DamageIncreased">Did damage increase or not?
+/// <param name="DamageIncreased">Did damage increase or not?</param>
 /// <param name="DamageDone">The amount of damage done</param>
 /// <param name="Origin">The origin of damage</param>
 [ByRefEvent]
