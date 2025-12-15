@@ -2,7 +2,4 @@
 
 [RegisterComponent]
 [Access(typeof(ESDamageTakerRelaySystem))]
-public sealed partial class ESDamageTakerRelayComponent : Component
-{
-
-}
+public sealed partial class ESDamageTakerRelayComponent : Component;
