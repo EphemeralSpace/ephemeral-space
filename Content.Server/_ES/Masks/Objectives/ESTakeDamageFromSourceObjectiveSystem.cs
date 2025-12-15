@@ -33,8 +33,8 @@ public sealed class ESTakeDamageFromSourceObjectiveSystem : ESBaseObjectiveSyste
     {
         base.InitializeObjective(ent, ref args);
 
-        if (ent.Comp.PossibleSources != null)
-            ent.Comp.SelectedSource = _random.Pick(ent.Comp.PossibleSources);
+
+        ent.Comp.SelectedSource = _random.Pick(ent.Comp.PossibleSources);
 
         _meta.SetEntityDescription(ent, Loc.GetString(ent.Comp.DescriptionLoc, ("damagesource", ent.Comp.SelectedSource)));
     }

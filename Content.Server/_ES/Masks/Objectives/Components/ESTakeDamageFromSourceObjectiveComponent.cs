@@ -12,7 +12,7 @@ public sealed partial class ESTakeDamageFromSourceObjectiveComponent : Component
     ///     Diffrent types of damages one can roll
     /// </summary>
     [DataField]
-    public List<ProtoId<TagPrototype>>? PossibleSources = new();
+    public List<ProtoId<TagPrototype>> PossibleSources = new();
 
     /// <summary>
     ///     The source selected

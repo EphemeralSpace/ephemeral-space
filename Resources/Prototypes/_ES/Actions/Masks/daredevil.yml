@@ -1,11 +1,25 @@
 ﻿- type: entity
-  parent: BaseAction
+  parent: BaseMentalAction
   id: ESActionMaskAdrenalinePump
   name: Adrenaline Pump
   description: Use this to pump yourself with adrenaline when crit.
   components:
+  - type: LimitedCharges
+    maxCharges: 1
   - type: Action
+    checkCanInteract: false
     icon:
-      sprite: _ES/Actions/masks/extract.rsi
-      state: arms-dealer
+      sprite: Objects/Specific/Medical/medipen.rsi
+      state: medipen
+  - type: SolutionContainerManager
+    solutions:
+      Injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 12
+        - ReagentId: TranexamicAcid
+          Quantity: 3
   - type: InstantAction
+    event: !type:ESChemicalInjectorEvent
+
