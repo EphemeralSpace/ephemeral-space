@@ -47,7 +47,6 @@ public sealed class ESTakeDamageFromSourceObjectiveSystem : ESBaseObjectiveSyste
         if (_tag.HasTag(args.Body, ent.Comp.SelectedSource))
             return;
 
-
         if (!args.DamageIncreased)
             return;
 

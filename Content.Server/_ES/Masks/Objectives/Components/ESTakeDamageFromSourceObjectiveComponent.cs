@@ -18,7 +18,7 @@ public sealed partial class ESTakeDamageFromSourceObjectiveComponent : Component
     ///     The source selected
     /// </summary>
     [DataField]
-    public ProtoId<TagPrototype> SelectedSource;
+    public ProtoId<TagPrototype> SelectedSource = "ESGrille";
 
     /// <summary>
     ///     The total type of damage objective haver has taken
