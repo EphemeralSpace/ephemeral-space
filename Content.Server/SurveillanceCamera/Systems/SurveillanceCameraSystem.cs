@@ -383,6 +383,13 @@ public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
 
         var key = SurveillanceCameraVisuals.Disabled;
 
+        // ES Start
+        if (component.EMPd)
+        {
+            key = SurveillanceCameraVisuals.Emp;
+        }
+        // ES End
+
         if (component.Active)
         {
             key = SurveillanceCameraVisuals.Active;
