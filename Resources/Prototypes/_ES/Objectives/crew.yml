@@ -134,7 +134,7 @@
     - Slash
     - Piercing
     - Poison
-    - Brute
+    - Blunt
   - type: ESCounterObjective
     target: 250
     maxTarget: 500
@@ -158,4 +158,22 @@
   - type: ESCounterObjective
     target: 100
     maxTarget: 250
+    targetIncrement: 10
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveTakeTotalDamage
+  name: TakeTotalDamage
+  description: Take a total amount of damage
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Weapons/Melee/baseball_bat.rsi
+      state: icon
+  - type: ESTakeTotalDamageObjective
+  - type: ESCounterObjective
+    title: es-daredevil-total-objective-title
+    description: es-daredevil-total-objective-desc
+    target: 750
+    maxTarget: 1250
     targetIncrement: 10

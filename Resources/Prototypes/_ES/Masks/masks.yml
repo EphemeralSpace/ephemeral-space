@@ -86,6 +86,7 @@
     all:
     - id: ESObjectiveTakeDamage
     - id: ESObjectiveTakeDamageFromSource
+    - id: ESObjectiveTakeTotalDamage
   components:
   - type: ActionGrant
     actions:
