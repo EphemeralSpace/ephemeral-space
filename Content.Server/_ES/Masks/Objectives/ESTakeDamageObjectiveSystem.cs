@@ -41,7 +41,7 @@ public sealed class ESTakeDamageObjectiveSystem : ESBaseObjectiveSystem<ESTakeDa
         if (!args.DamageIncreased)
             return;
 
-        if (!args.DamageDone.TryGetDamageInGroup(ent.Comp.SelectedDamage!, out var damage))
+        if (!args.DamageDone.DamageDict.TryGetValue(ent.Comp.SelectedDamage!.ID, out var damage))
             return;
 
         if (damage <= 0)

@@ -11,13 +11,13 @@ public sealed partial class ESTakeDamageObjectiveComponent : Component
     ///     Diffrent types of damages one can roll
     /// </summary>
     [DataField]
-    public List<ProtoId<DamageGroupPrototype>> RequiredDamages;
+    public List<ProtoId<DamageTypePrototype>> RequiredDamages;
 
     /// <summary>
     ///     The damage type selected
     /// </summary>
     [DataField]
-    public DamageGroupPrototype? SelectedDamage;
+    public DamageTypePrototype? SelectedDamage;
 
     /// <summary>
     ///     The description for this objective, where $damagesource will become the source

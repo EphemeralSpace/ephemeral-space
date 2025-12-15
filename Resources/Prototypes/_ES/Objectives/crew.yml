@@ -127,10 +127,14 @@
     nameLoc: es-daredevil-objective-title
     descriptionLoc: es-daredevil-desc
     requiredDamages:
+    - Heat
+    - Shock
+    - Cold
+    - Caustic
+    - Slash
+    - Piercing
+    - Poison
     - Brute
-    - Burn
-    - Airloss
-    - Airloss
   - type: ESCounterObjective
     target: 250
     maxTarget: 500
