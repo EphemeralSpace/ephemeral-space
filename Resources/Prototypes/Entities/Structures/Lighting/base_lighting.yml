@@ -413,7 +413,6 @@
   - type: PoweredLight
     hasLampOnSpawn: DimLightBulb
   - type: PoweredLightVisuals
-    glowAlpha: 0.3
   - type: DamageOnInteract
     damage:
       types:
