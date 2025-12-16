@@ -416,7 +416,7 @@
   - DetectiveJumpsuit
   - SecurityBackpack
   - DetectiveOuterClothing
-  - SecurityShoes
+  - ESDetectiveShoes
   - SurvivalSecurity
   - Trinkets
   - DetectiveJobTrinkets
@@ -517,6 +517,9 @@
 - type: roleLoadout
   id: JobReporter
   groups:
+# ES Start
+  - ESDetectiveShoes # they are gonna be the same anyways, so lets save the headache of defining a loadout option
+# ES End
   - GroupTankHarness
   - ReporterJumpsuit
   - CommonBackpack
