@@ -1053,7 +1053,9 @@
 - type: loadoutGroup
   id: ScientistNeck
   name: loadout-group-scientist-neck
-  minLimit: 0
+# ES Start
+#  minLimit: 0
+# ES End
   loadouts:
   - ScientistTie
 
@@ -1091,9 +1093,11 @@
   id: ScientistShoes
   name: loadout-group-scientist-shoes
   loadouts:
-  - WhiteShoes
-  - BlackShoes
-  - ScienceWinterBoots
+# ES Start
+  - ESScienceShoes
+#  - BlackShoes
+#  - ScienceWinterBoots
+# ES End
 
 - type: loadoutGroup
   id: ScientistGloves
