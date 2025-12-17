@@ -64,30 +64,33 @@
 - type: entity
   parent: ClothingHandsGlovesSyntheticBase
   id: ClothingHandsGlovesColorBlue
-  name: blue gloves
-  description: Regular blue gloves that do not keep you from frying.
+# ES Start
+# Turned in to nitrile gloves
+  name: nitrile gloves
+  description: High-quality nitrile gloves. Expensive medical PPE.
   components:
   - type: Sprite
     sprite: Clothing/Hands/Gloves/Color/color.rsi
     layers:
     - state: icon
-      color: "#0089EF"
+      color: "#4da3ff"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#0089EF"
+        color: "#4da3ff"
       right:
       - state: inhand-right
-        color: "#0089EF"
+        color: "#4da3ff"
   - type: Clothing
     sprite: Clothing/Hands/Gloves/Color/color.rsi
     clothingVisuals:
       gloves:
       - state: equipped-HAND
-        color: "#0089EF"
+        color: "#4da3ff"
+# ES End
   - type: Fiber
-    fiberColor: fibers-blue
+    fiberColor: fibers-nitrile
 
 # Teal Gloves
 - type: entity

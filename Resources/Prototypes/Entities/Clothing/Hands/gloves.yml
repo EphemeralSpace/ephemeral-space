@@ -145,19 +145,22 @@
     fiberMaterial: fibers-latex
   - type: FingerprintMask
 
-- type: entity
-  parent: ClothingHandsButcherable
-  id: ClothingHandsGlovesNitrile
-  name: nitrile gloves
-  description: High-quality nitrile gloves. Expensive medical PPE.
-  components:
-  - type: Sprite
-    sprite: Clothing/Hands/Gloves/nitrile.rsi
-  - type: Clothing
-    sprite: Clothing/Hands/Gloves/nitrile.rsi
-  - type: Fiber
-    fiberMaterial: fibers-nitrile
-  - type: FingerprintMask
+# ES Start
+# ES Nitrile gloves are now renamed blue gloves!
+#- type: entity
+#  parent: ClothingHandsButcherable
+#  id: ClothingHandsGlovesNitrile
+#  name: nitrile gloves
+#  description: High-quality nitrile gloves. Expensive medical PPE.
+#  components:
+#  - type: Sprite
+#    sprite: Clothing/Hands/Gloves/nitrile.rsi
+#  - type: Clothing
+#    sprite: Clothing/Hands/Gloves/nitrile.rsi
+#  - type: Fiber
+#    fiberMaterial: fibers-nitrile
+#  - type: FingerprintMask
+# ES End
 
 - type: entity
   parent: ClothingHandsButcherable
