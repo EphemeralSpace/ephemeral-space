@@ -347,3 +347,5 @@ es-names-first-dataset-female-349 = Sobie
 es-names-first-dataset-female-350 = Sobbi
 es-names-first-dataset-female-351 = Ornania
 es-names-first-dataset-female-352 = Oriana
+# 2025-12-17
+Gherkin

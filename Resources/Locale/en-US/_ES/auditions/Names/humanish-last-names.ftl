@@ -749,3 +749,13 @@ es-names-last-dataset-778 = Plasma
 es-names-last-dataset-779 = Carbon
 es-names-last-dataset-780 = Dioxide
 es-names-last-dataset-781 = Beastmode
+# 2025-12-17
+Notomaton
+Tubular
+Formula
+Glockenspiel
+Ducky
+Scrabbenhammer
+Pheemy
+Decimal
+

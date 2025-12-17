@@ -449,3 +449,6 @@ es-names-first-dataset-male-460 = Binner
 es-names-first-dataset-male-461 = Ostrik
 es-names-first-dataset-male-462 = Eyond
 es-names-first-dataset-male-463 = Thrash
+# 2025-12-17
+Dewey
+Aggregor

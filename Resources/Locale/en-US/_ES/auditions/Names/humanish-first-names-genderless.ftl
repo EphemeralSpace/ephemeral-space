@@ -323,3 +323,7 @@ es-names-first-dataset-genderless-312 = Hack
 es-names-first-dataset-genderless-313 = Twurt
 es-names-first-dataset-genderless-314 = Twig
 es-names-first-dataset-genderless-315 = Captcha
+# 2025-12-17
+Lockheed
+Varius
+Noon
