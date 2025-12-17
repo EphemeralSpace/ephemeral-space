@@ -237,7 +237,11 @@
   - GroupTankHarness
   - CargoTechnicianHead
   - CargoTechnicianJumpsuit
-  - CargoTechnicianBackpack
+# ES Start
+# I detest you, pointless backpacks
+  - CommonBackpack
+#  - CargoTechnicianBackpack
+# ES End
   - CargoTechnicianOuterClothing
   - CargoTechnicianShoes
   - CargoTechnicianID
@@ -307,7 +311,10 @@
   groups:
   - GroupTankHarness
   - AtmosphericTechnicianJumpsuit
-  - AtmosphericTechnicianBackpack
+# ES Start
+# I detest you, pointless backpacks
+  - StationEngineerBackpack
+# ES End
   - AtmosphericTechnicianOuterClothing
   - AtmosphericTechnicianShoes
   - SurvivalExtended
