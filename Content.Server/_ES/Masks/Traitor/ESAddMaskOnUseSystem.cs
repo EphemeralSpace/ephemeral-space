@@ -44,7 +44,7 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         if (!_mind.TryGetMind((EntityUid)args.Target!, out var mind, out var mindComponent)) // No SSD people
             return;
 
-        _mask.TryGetTroupe(mind, out var troupe);
+        _mask.TryGetTroupe((mind, mindComponent), out var troupe);
 
         if (troupe == component.TroupeToAdd)
             return;

@@ -120,6 +120,7 @@
   id: ESRecruit
   name: es-mask-recruit-name
   description: es-mask-recruit-desc
+  weight: 0
 
 - type: esMask
   parent: ESBaseTraitor
