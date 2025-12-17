@@ -44,9 +44,7 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         if (!_mind.TryGetMind((EntityUid)args.Target!, out var mind, out var mindComponent)) // No SSD people
             return;
 
-        _mask.TryGetTroupe((mind, mindComponent), out var troupe);
-
-        if (troupe == component.TroupeToAdd)
+        if (_mask.GetTroupeOrNull((mind, mindComponent)) == component.TroupeToAdd)
             return;
 
         if (component.Used)
@@ -68,14 +66,15 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         _doafter.TryStartDoAfter(DoAfterArgs);
 
         _popup.PopupEntity(Loc.GetString("subverter-chip-implanting"), uid, PopupType.MediumCaution);
-
     }
+
     private void OnDoAfter(EntityUid uid, ESAddMaskOnUseComponent component, ESAddMaskOnUseDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled)
             return;
 
-        var target = (EntityUid)args.Target!;
+        if (args.Target is not { } target)
+            return;
 
         if (_mobState.IsCritical(target) && component.RequireCrit)
         {
