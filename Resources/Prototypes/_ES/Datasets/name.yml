@@ -29,7 +29,7 @@
   id: ESNameParticle
   values:
     prefix: es-name-particle-dataset-
-    count: 5
+    count: 6
 
 - type: localizedDataset
   id: ESNameSuffix
@@ -41,7 +41,7 @@
   id: ESNamePrefixGenderless
   values:
     prefix: es-name-prefix-dataset-genderless-
-    count: 5
+    count: 8
 
 - type: localizedDataset
   id: ESNamePrefixMale
