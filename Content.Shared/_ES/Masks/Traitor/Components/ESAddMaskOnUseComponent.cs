@@ -29,8 +29,14 @@ public sealed partial class ESAddMaskOnUseComponent : Component
     public ProtoId<ESMaskPrototype> MaskToAdd;
 
     [DataField]
-    public ProtoId<ESTroupePrototype> TroupeToAdd;
+    public string UsedMessage = "subverter-chip-used";
 
     [DataField]
-    public List<ICommonSession>? Targets = new List<ICommonSession>(); // Used for AssignTroupe
+    public string UsingMessage = "subverter-chip-implanting";
+
+    [DataField]
+    public string NotUsedExamineMessage = "subverter-chip-examined-usable";
+
+    [DataField]
+    public string UsedExamineMessage = "subverter-chip-examined-used";
 }
