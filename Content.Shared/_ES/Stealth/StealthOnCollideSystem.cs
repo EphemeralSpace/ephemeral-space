@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
+using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Events;
 
 namespace Content.Shared._ES.Stealth;
@@ -7,6 +8,7 @@ namespace Content.Shared._ES.Stealth;
 public sealed class StealthOnCollideSystem : EntitySystem
 {
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
     public override void Initialize()
     {
@@ -16,14 +18,14 @@ public sealed class StealthOnCollideSystem : EntitySystem
 
     private void OnCollide(EntityUid uid, StealthOnCollideComponent component, ref StartCollideEvent args)
     {
+
         if (!HasComp<StealthComponent>(uid))
             return;
 
-        var CurrentStealth = _stealth.GetVisibility(uid);
+        if (!_whitelist.IsWhitelistPass(component.Whitelist, args.OtherEntity))
+            return;
 
-        var NewStealth = (CurrentStealth + component.StealthToChange);
-
-        _stealth.SetVisibility(uid, NewStealth);
+        _stealth.ModifyVisibility(uid, component.StealthToChange);
     }
 
     private void OnGetVisibilityModifiers(EntityUid uid, StealthOnCollideComponent component, SharedStealthSystem.GetVisibilityModifiersEvent args)

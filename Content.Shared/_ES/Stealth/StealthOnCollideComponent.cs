@@ -1,10 +1,15 @@
-﻿namespace Content.Shared._ES.Stealth;
+﻿using Content.Shared.Whitelist;
+
+namespace Content.Shared._ES.Stealth;
 
 [RegisterComponent]
 public sealed partial class StealthOnCollideComponent : Component
 {
     [DataField]
-    public float StealthToChange = 0.5f;
+    public float StealthToChange = 0.1f;
+
+    [DataField]
+    public EntityWhitelist Whitelist;
 
     /// <summary>
     /// Rate that effects how fast an entity's visibility passively changes.

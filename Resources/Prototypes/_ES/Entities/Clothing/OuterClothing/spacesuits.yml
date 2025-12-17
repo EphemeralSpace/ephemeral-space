@@ -92,7 +92,9 @@
       minVisibility: 0.1
       lastVisibility: 1
     - type: StealthOnCollide
-      stealthToChange: 0.2
+      whitelist:
+        components:
+        - MobState
   - type: PowerCellDraw
     drawRate: 1.8
   - type: ToggleCellDraw
