@@ -6,6 +6,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.Masks.Traitor.Components;
 
+/// <summary>
+/// Adds a mask upon use of an entity
+///
+/// </summary>
 [RegisterComponent]
 public sealed partial class ESAddMaskOnUseComponent : Component
 {
@@ -28,5 +32,5 @@ public sealed partial class ESAddMaskOnUseComponent : Component
     public ProtoId<ESTroupePrototype> TroupeToAdd;
 
     [DataField]
-    public List<ICommonSession>? Targets = new(); // Used for AssignTroupe
+    public List<ICommonSession>? Targets = new List<ICommonSession>(); // Used for AssignTroupe
 }
