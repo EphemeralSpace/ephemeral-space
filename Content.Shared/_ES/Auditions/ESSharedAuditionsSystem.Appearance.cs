@@ -177,7 +177,7 @@ public abstract partial class ESSharedAuditionsSystem
     private const float QuotedMiddleNameChance = 0.03f;
     private const float HyphenatedLastNameChance = 0.05f;
     private const float AbbreviatedMiddleChance = 0.07f;
-    private const float AbbreviatedFirstMiddleChance = 0.05f;
+    private const float AbbreviatedFirstMiddleChance = 0.07f;
     private const float AbbreviatedFirstMiddleAltChance = 0.4f;
     private const float ParticleChance = 0.03f;
     private const float SuffixChance = 0.05f;
