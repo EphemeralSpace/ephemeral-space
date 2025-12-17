@@ -190,7 +190,7 @@ public abstract class SharedStealthSystem : EntitySystem
     /// <summary>
     ///     Used to run through any stealth effecting components on the entity.
     /// </summary>
-    private sealed class GetVisibilityModifiersEvent : EntityEventArgs
+    public sealed class GetVisibilityModifiersEvent : EntityEventArgs // ES Change - makes public
     {
         public readonly StealthComponent Stealth;
         public readonly float SecondsSinceUpdate;

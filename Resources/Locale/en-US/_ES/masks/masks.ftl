@@ -32,6 +32,8 @@ es-mask-infiltrator-desc =  Aid your fellow traitors & complete your objectives 
 es-mask-marauder-name = Marauder
 es-mask-marauder-desc = Aid your fellow traitors & complete your objectives to detonate the nuke. You have recieved been trained by the syndicate for loud, brute-force attacks.
 
+es-mask-spy-name = Spy
+es-mask-spy-desc = You are an elite operative designed to aid other traitors, you've been provided a special spy suit that allows you to sneak around the station.
 # Meta
 es-objective-issuer-mask = Mask
 

@@ -114,3 +114,12 @@
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorInfiltrator
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: ESSpy
+  name: es-mask-spy-name
+  description: es-mask-spy-desc
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto: ESCrateCacheTraitorSpy

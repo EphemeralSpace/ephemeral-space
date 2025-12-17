@@ -72,6 +72,24 @@
     - id: ExGrenade
       amount: 2
 
+# Spy
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheTraitorSpy
+  suffix: ES, Spy Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESTraitorCacheSpy
+
+- type: entityTable
+  id: ESTraitorCacheSpy
+  table:
+    all:
+    - id: CombatKnife
+    - id: ESClothingOuterSpaceSuitEVASpySuit
+
 # Veteran
 - type: entity
   parent: ESCrateCache

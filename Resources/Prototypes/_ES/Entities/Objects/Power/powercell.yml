@@ -1,0 +1,9 @@
+﻿- type: entity
+  parent: PowerCellSmall
+  id: PowerCellSmallSpySuit
+  name: Spy Suit Micro Cell
+  description: A self rechargeable power cell, designed for fast recharge rate at the expense of capacity.
+  components:
+  - type: PredictedBatterySelfRecharger
+    autoRechargeRate: 15
+    autoRechargePauseTime: 15

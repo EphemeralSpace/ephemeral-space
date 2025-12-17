@@ -71,3 +71,44 @@
     - ESSuitEVACaptain
     - MonkeyWearable
     - WhitelistChameleon
+
+- type: entity
+  parent: [ESBaseClothingOuterSpaceSuit, BaseToggleClothing, BaseSyndicateContraband]
+  id: ESClothingOuterSpaceSuitEVASpySuit
+  name: spy suit
+  description: High tech syndicate suit used for discrete operations
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/OuterClothing/SpaceSuits/command_space.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/OuterClothing/SpaceSuits/command_space.rsi
+  - type: ToggleClothing
+    action: ActionToggleSpySuit
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.1
+      lastVisibility: 1
+    - type: StealthOnCollide
+      stealthToChange: 0.2
+  - type: PowerCellDraw
+    drawRate: 1.8
+  - type: ToggleCellDraw
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        disableEject: true
+        insertOnInteract: false
+        whitelist:
+          tags:
+          - PowerCell

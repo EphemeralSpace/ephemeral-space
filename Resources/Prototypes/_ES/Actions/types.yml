@@ -1,0 +1,10 @@
+﻿- type: entity
+  parent: BaseAction
+  id: ActionToggleSpySuit
+  name: Spy Suit
+  description: Toggle your suits high tech stealth feature.
+  components:
+  - type: Action
+    useDelay: 3
+  - type: InstantAction
+    event: !type:ToggleActionEvent
