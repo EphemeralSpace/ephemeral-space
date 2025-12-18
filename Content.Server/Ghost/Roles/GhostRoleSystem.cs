@@ -35,6 +35,9 @@ using Content.Shared.Verbs;
 using Robust.Shared.Collections;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.Roles.Components;
+// ES START
+using Content.Server.Administration;
+// ES END
 
 namespace Content.Server.Ghost.Roles;
 
@@ -918,7 +921,10 @@ public sealed class GhostRoleSystem : EntitySystem
     }
 }
 
-[AnyCommand]
+// ES START
+//[AnyCommand]
+[AdminCommand(AdminFlags.Debug)]
+// ES END
 public sealed class GhostRoles : IConsoleCommand
 {
     [Dependency] private readonly IEntityManager _e = default!;

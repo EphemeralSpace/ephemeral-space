@@ -93,6 +93,10 @@ public sealed partial class GhostComponent : Component
     /// <remarks>Used to allow admins to change ghost colors. Should be removed if the capability to edit existing sprite colors is ever added back.</remarks>
     [DataField, AutoNetworkedField]
     public Color Color = Color.White;
+// ES START
+    [DataField]
+    public bool DeleteOnDetach = true;
+// ES END
 }
 
 public sealed partial class ToggleFoVActionEvent : InstantActionEvent { }

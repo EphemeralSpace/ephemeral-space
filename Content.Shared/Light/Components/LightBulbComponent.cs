@@ -61,6 +61,14 @@ public sealed partial class LightBulbComponent : Component
     public int PowerUse = 20;
     // ES END
 
+    // ES START
+    /// <summary>
+    ///     Overrides the color used for the light glow overlay when this bulb is inserted into a fixture.
+    /// </summary>
+    [DataField]
+    public Color? GlowColorOverride = null;
+    // ES END
+
     /// <summary>
     /// The sound produced when the lightbulb breaks.
     /// </summary>

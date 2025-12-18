@@ -5,27 +5,4 @@
   maxStations: 1
   stationGridComponents:
   - type: ESTileBasedRoof
-  dungeons:
-  - configs: [ "VGRoid" ]
-    count: 1
-    distance: 0
-    name: NamesBorer
-    forcePos: true
-    components:
-    - type: Gravity
-      enabled: true
-      inherent: true
-    - type: IFF
-      color: "#d67e27"
-    - type: ESTileBasedRoof
-  - configs: [ "ChunkDebris" ]
-    count: 16, 20
-    distance: 312, 450
-    components:
-    - type: Gravity
-      enabled: true
-      inherent: true
-    - type: IFF
-      flags: HideLabel
-      color: "#88b0d1"
 

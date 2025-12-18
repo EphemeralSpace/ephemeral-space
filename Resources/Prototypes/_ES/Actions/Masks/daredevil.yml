@@ -1,0 +1,27 @@
+﻿- type: entity
+  parent: BaseMentalAction
+  id: ESActionMaskAdrenalinePump
+  name: Adrenaline Pump
+  description: Use this to pump yourself with adrenaline when crit.
+  components:
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: Action
+    checkCanInteract: false
+    icon:
+      sprite: Objects/Specific/Medical/medipen.rsi
+      state: medipen
+  - type: SolutionContainerManager
+    solutions:
+      Injector:
+        maxVol: 25
+        reagents:
+        - ReagentId: Epinephrine # get out of crit
+          Quantity: 12
+        - ReagentId: TranexamicAcid # stop bleeding
+          Quantity: 3
+        - ReagentId: Omnizine # regenerate some health
+          Quantity: 10
+  - type: InstantAction
+    event: !type:ESChemicalInjectorEvent
+

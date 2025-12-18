@@ -39,17 +39,23 @@
 - type: loadout
   id: CargoTechnicianBackpack
   equipment:
-    back: ClothingBackpackCargo
+# ES Start
+    back: ClothingBackpack
+# ES End
 
 - type: loadout
   id: CargoTechnicianSatchel
   equipment:
-    back: ClothingBackpackSatchelCargo
+# ES Start
+    back: ClothingBackpackSatchel
+# ES End
 
 - type: loadout
   id: CargoTechnicianDuffel
   equipment:
-    back: ClothingBackpackDuffelCargo
+# ES Start
+    back: ClothingBackpackDuffel
+# ES End
 
 # OuterClothing
 - type: loadout

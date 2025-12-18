@@ -1446,6 +1446,7 @@
     - VimPilot
     - DoorBumpOpener
     - AnomalyHost
+    - ESAncestor # ES change
   - type: Reactive
     groups:
       Flammable: [ Touch ]

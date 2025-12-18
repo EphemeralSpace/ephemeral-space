@@ -9,8 +9,21 @@
   - type: Sprite
     sprite: _ES/Mobs/Ghosts/theatergoer.rsi
     layers:
-    - state: body
+    - state: stagehand
       shader: unshaded
+    - state: head-1
+      map: [ "face" ]
+      shader: unshaded
+  - type: RandomSprite
+    available:
+    - face:
+        head-1: ""
+        head-2: ""
+        head-3: ""
+        head-4: ""
+        head-5: ""
+        head-6: ""
+        head-7: ""
   - type: ContentEye
     maxZoom: 1.44,1.44
   - type: Eye
@@ -27,8 +40,10 @@
   - type: Ghost # TODO: reason about the implications of this
     toggleLightingAction: ESActionStagehandChangeLighting
     toggleFoVAction: ESActionStagehandToggleFOV
+    deleteOnDetach: false
   - type: ESStagehand
   - type: ESUsernameEntityName
+  - type: ESMindVisuals
   - type: ESBlockInteraction
   - type: ShowElectrocutionHUD
   - type: ShowAntagIcons
