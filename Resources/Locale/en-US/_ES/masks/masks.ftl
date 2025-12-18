@@ -29,6 +29,11 @@ es-mask-guzzler-desc = You have nothing but an endless desire to Consume Liquid,
 es-mask-glutton-name = Glutton
 es-mask-glutton-desc = Your stomach is an abyss which begs to be filled. Consume all you can and become the most gluttonous crew member.
 
+es-mask-survivalist-name = Survivalist
+es-mask-survivalist-desc = Survive at all costs. Rely on your MedAlert (TM) to broadcast messages when you enter critical condition, and find your cache of prepper supplies.
+es-mask-survivalist-medalert-crit-message = MedAlert Notice: {$name} is in critical condition {$location}!
+es-mask-survivalist-medalert-death-message = MedAlert Notice: A tragedy has befallen us. {$name} has perished {$location}.
+
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete the objectives.
 

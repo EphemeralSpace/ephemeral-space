@@ -109,9 +109,15 @@
   id: ESCrewCacheSurvivalist
   table:
     group:
-    - all:
-      - id: ESWeaponRevolver357
     - group:
-      - id: ESWeaponPistol9mm
-        weight: 2
-      - id: ESWeaponPistol9mmSilenced
+      - id: MedkitFilled
+      - id: MedkitOxygenFilled
+      - id: MedkitBurnFilled
+      - id: MedkitBruteFilled
+      - id: MedkitToxinFilled
+    - group:
+      - id: ToolboxEmergencyFilled
+      - id: ToolboxMechanicalFilled
+      - id: ToolboxElectricalFilled
+    - tableId: ESMaintLootRare
+      rolls: 2
