@@ -5,5 +5,4 @@
   description: A self rechargeable power cell,
   components:
   - type: PredictedBatterySelfRecharger
-    autoRechargeRate: 15
-    autoRechargePauseTime: 15
+    autoRechargeRate: 5

@@ -96,7 +96,7 @@
         components:
         - MobState
   - type: PowerCellDraw
-    drawRate: 1.8
+    drawRate: 6.8
   - type: ToggleCellDraw
   - type: PowerCellSlot
     cellSlotId: cell_slot
@@ -108,7 +108,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: PowerCellSmallSpySuit
         disableEject: true
         insertOnInteract: false
         whitelist:
