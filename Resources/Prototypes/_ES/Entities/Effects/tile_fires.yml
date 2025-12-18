@@ -56,11 +56,17 @@
     deleteOnExtinguish: true
     basicFireSpread: true
   - type: Temperature
-    currentTemperature: 373.15
+    currentTemperature: 423.15
   - type: AtmosExposed
   - type: Reactive
     groups:
       Extinguish: [ Touch ]
+  # TODO ES probably use a better sound collection for this.
+  # and scale sound with stages
+  - type: AmbientSound
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
   - type: Appearance
   - type: ESGenericPointLightVisualizer
     visuals:
@@ -72,12 +78,11 @@
           energy: 16
           radius: 2.0
         2:
-          radius: 2.5
-          castShadows: true
-        3:
           energy: 20
-          radius: 3
-          castShadows: true
+          radius: 2.0
+        3:
+          energy: 30
+          radius: 2.0
   - type: GenericVisualizer
     visuals:
       enum.FireVisuals.FireStacks:

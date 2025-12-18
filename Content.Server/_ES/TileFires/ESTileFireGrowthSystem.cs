@@ -22,13 +22,25 @@ public sealed class ESTileFireGrowthSystem : EntitySystem
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<ESTileFireComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ESTileFireComponent, SpreadNeighborsEvent>(OnSpreadNeighbors);
+    }
+
+    private void OnMapInit(Entity<ESTileFireComponent> ent, ref MapInitEvent args)
+    {
+        var xform = Transform(ent);
+        if (xform.GridUid is not { } grid || !TryComp<MapGridComponent>(grid, out var mapGrid))
+            return;
+
+        var tile = _map.GetTileRef((grid, mapGrid), xform.Coordinates);
+        _atmos.TryAddBurntDecalsToTile(grid, tile.GridIndices, _random.Next(1, 3));
     }
 
     private void OnSpreadNeighbors(Entity<ESTileFireComponent> ent, ref SpreadNeighborsEvent args)
@@ -71,7 +83,10 @@ public sealed class ESTileFireGrowthSystem : EntitySystem
                 score *= 2;
 
             // TODO ES fires dont actually fizzle out if theres no oxygen in the tile -after- they spread
-            // TODO and they dont use oxygen either
+            // TODO ES and tile fires dont use oxygen either
+            // TODO ES also it'd be nice if they did something similar to smoke, where it can also choose to
+            // spread more fire into a tile that already has fire on it, instead of having to spread to
+            // a new tile
             if (mixture.GetMoles(Gas.Oxygen) < ent.Comp.MinimumOxyMolesToSpread)
                 score *= 0;
             if (_atmos.GetHeatCapacity(mixture, false) < Atmospherics.MinimumHeatCapacity)
