@@ -10,4 +10,3 @@
     state: crypt_red
   - type: ESAddMaskOnUse
     maskToAdd: ESRecruit
-    troupeToAdd: ESTraitor
