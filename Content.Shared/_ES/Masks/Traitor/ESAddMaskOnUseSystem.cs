@@ -95,10 +95,14 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         if (_mask.GetTroupeOrNull((mind, mindComponent)) == Troupe)
             return;
 
-        _mask.ApplyMask((mind, mindComponent), component.MaskToAdd, (Entity<ESTroupeRuleComponent>)troupe);
+        // Removes any previous troupes
+        if (_mask.TryGetTroupe(target, out var troupeTarget))
+        {
+            _mask.TryGetTroupeEntity((ProtoId<ESTroupePrototype>)troupeTarget!, out var EntityTargetTroupe);
+            EntityTargetTroupe!.Value.Comp.TroupeMemberMinds.Remove(mind);
+        }
 
-        if (!TryComp<ActorComponent>(args.Target, out var actor))
-            return;
+        _mask.ApplyMask((mind, mindComponent), component.MaskToAdd, (Entity<ESTroupeRuleComponent>)troupe);
 
         component.Used = true;
         args.Handled = true;

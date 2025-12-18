@@ -139,6 +139,7 @@
   id: ESRecruit
   name: es-mask-recruit-name
   description: es-mask-recruit-desc
+  color: pink
   weight: 0
 
 - type: esMask
@@ -146,6 +147,7 @@
   id: ESSubverter
   name: es-mask-subverter-name
   description: es-mask-subverter-desc
+  color: gray
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorSubverter
