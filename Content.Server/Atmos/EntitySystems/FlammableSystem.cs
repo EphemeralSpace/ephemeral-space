@@ -147,6 +147,10 @@ namespace Content.Server.Atmos.EntitySystems
 
             _fixture.TryCreateFixture(uid, component.FlammableCollisionShape, component.FlammableFixtureID, hard: false,
                 collisionMask: (int) CollisionGroup.FullTileLayer, body: body);
+
+            // ES START
+            UpdateAppearance(uid, component);
+            // ES END
         }
 
         private void OnInteractUsing(EntityUid uid, FlammableComponent flammable, InteractUsingEvent args)
@@ -270,7 +274,10 @@ namespace Content.Server.Atmos.EntitySystems
                 return;
 
             _appearance.SetData(uid, FireVisuals.OnFire, flammable.OnFire, appearance);
-            _appearance.SetData(uid, FireVisuals.FireStacks, flammable.FireStacks, appearance);
+            // ES START
+            // floor + int firestacks for appearance purposes
+            _appearance.SetData(uid, FireVisuals.FireStacks, (int) MathF.Floor(flammable.FireStacks), appearance);
+            // ES END
 
             // Also enable toggleable-light visuals
             // This is intended so that matches & candles can re-use code for un-shaded layers on in-hand sprites.
@@ -465,7 +472,11 @@ namespace Content.Server.Atmos.EntitySystems
                     if (_inventoryQuery.TryComp(uid, out var inv))
                         _inventory.RelayEvent((uid, inv), ref ev);
 
-                    _damageableSystem.TryChangeDamage(uid, flammable.Damage * flammable.FireStacks * ev.Multiplier, interruptsDoAfters: false);
+                    // ES START
+                    // allow empty damage
+                    if (!flammable.Damage.Empty)
+                        _damageableSystem.TryChangeDamage(uid, flammable.Damage * flammable.FireStacks * ev.Multiplier, interruptsDoAfters: false);
+                    // ES END
 
                     AdjustFireStacks(uid, flammable.FirestackFade * (flammable.Resisting ? 10f : 1f), flammable, flammable.OnFire);
                 }
