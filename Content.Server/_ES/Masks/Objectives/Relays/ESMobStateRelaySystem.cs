@@ -21,7 +21,7 @@ public sealed class ESMobStateRelaySystem : ESBaseMindRelay
             return;
 
         var ev = new ESMobStateChanged((args.Target, args.Component), args.OldMobState, args.NewMobState, args.Origin);
-        RaiseLocalEvent(mindId, ref ev);
+        RaiseMindEvent((mindId, mindComp), ref ev);
     }
 }
 
