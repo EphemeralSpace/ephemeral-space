@@ -13,13 +13,14 @@
     fixtures:
       fix1:
         hard: false
-        density: 7
+        density: 150
         shape:
           !type:PhysShapeAabb
           bounds: "-0.5,-0.5,0.5,0.5"
         layer:
         - MidImpassable
   - type: Clickable
+  - type: SpriteFade
   - type: Sprite
     sprite: _ES/Effects/tile_fire.rsi
     noRot: true
@@ -44,12 +45,20 @@
     sprintSpeedModifier: 0.8
   - type: Flammable
     firestacksOnIgnite: 0.0
-    firestackFade: 0.02
+    firestackFade: 0.18
     onFire: true
-    fireStacks: 1
+    fireStacks: 3
     minimumFireStacks: 0
-    maximumFireStacks: 4
+    maximumFireStacks: 15
     fireSpread: true
+    # max 15 firestacks -> stage 3
+    firestackVisualDivisor: 5
+    deleteOnExtinguish: true
+    basicFireSpread: true
+    noSpreadTo: true
+  - type: Temperature
+    currentTemperature: 373.15
+  - type: AtmosExposed
   - type: Reactive
     groups:
       Extinguish: [ Touch ]
@@ -57,16 +66,16 @@
   - type: ESGenericPointLightVisualizer
     visuals:
       enum.FireVisuals.FireStacks:
-        1:
+        0:
           energy: 12
           radius: 1.6
-        2:
+        1:
           energy: 16
           radius: 2.0
-        3:
+        2:
           radius: 2.5
           castShadows: true
-        4:
+        3:
           energy: 20
           radius: 3
           castShadows: true
@@ -74,28 +83,28 @@
     visuals:
       enum.FireVisuals.FireStacks:
         base:
-          1: { state: red_1 }
-          2: { state: red_2 }
-          3: { state: red_3 }
-          4: { state: red_4 }
+          0: { state: red_1 }
+          1: { state: red_2 }
+          2: { state: red_3 }
+          3: { state: red_4 }
 
 - type: entity
   id: ESTileFireStage2
   parent: ESTileFire
   components:
   - type: Flammable
-    fireStacks: 2
+    fireStacks: 7
 
 - type: entity
   id: ESTileFireStage3
   parent: ESTileFire
   components:
   - type: Flammable
-    fireStacks: 3
+    fireStacks: 11
 
 - type: entity
   id: ESTileFireStage4
   parent: ESTileFire
   components:
   - type: Flammable
-    fireStacks: 4
+    fireStacks: 15
