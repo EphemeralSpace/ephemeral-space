@@ -228,7 +228,8 @@
     icon:
       sprite: Interface/Alerts/human_alive.rsi
       state: health0
-  - type: ESSurviveObjective
+  - type: ESMobStateObjective
+    desiredStates: [Alive, Critical]
   - type: ESCounterObjective
     target: 1
     counter: 1
