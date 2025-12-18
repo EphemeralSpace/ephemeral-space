@@ -114,6 +114,21 @@
     - id: ESObjectiveEatUniqueFoods
     - id: ESObjectiveEatFood
 
+- type: esMask
+  id: ESSurvivalist
+  name: es-mask-survivalist-name
+  troupe: ESCrew
+  description: es-mask-survivalist-desc
+  color: forestgreen
+  components:
+  - type: ESMedAlertRadioAnnouncer
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto: ESCrateCacheCrewSurvivalist
+  objectives:
+    all:
+    - id: ESObjectiveSurvive
+
 # Traitor Masks
 - type: esMask
   id: ESBaseTraitor
