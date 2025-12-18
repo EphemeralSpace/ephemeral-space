@@ -160,6 +160,7 @@
         - LowImpassable
       fly-by: *flybyfixture
   - type: Ammo
+    muzzleFlash: MuzzleFlashEffectOmnilaser
   - type: StaminaDamageOnCollide
     damage: 33
   - type: Projectile
@@ -211,7 +212,7 @@
       path: "/Audio/Weapons/Guns/Hits/taser_hit.ogg"
     forceSound: true
   - type: TimedDespawn
-    lifetime: 0.170 # Very short range
+    lifetime: 0.20 # Very short range
   - type: StunOnCollide
     stunAmount: 0
     knockdownAmount: 2.5 # Enough to subdue and follow up with a stun baton

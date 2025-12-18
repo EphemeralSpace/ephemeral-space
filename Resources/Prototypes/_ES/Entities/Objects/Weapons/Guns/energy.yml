@@ -61,17 +61,17 @@
     - Belt
   - type: Gun
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+      path: /_ES/Audio/Weapons/Guns/Gunshots/taser.ogg
     projectileSpeed: 20
   - type: BatteryAmmoProvider
-    proto: BulletTaser
+    proto: ESTaserBolt
     fireCost: 200
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: ESTaserBolt
       fireCost: 200
       soundGunshot:
-        path: /Audio/Weapons/Guns/Gunshots/taser.ogg
+        path: /Audio/_ES/Weapons/Guns/Gunshots/taser.ogg
     - proto: ESDisablerBolt
       fireCost: 62.5
       soundGunshot:
