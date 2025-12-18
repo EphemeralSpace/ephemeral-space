@@ -6,24 +6,26 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Maps;
 using Content.Shared.Random.Helpers;
+using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._ES.TileFires;
 
 /// <summary>
 ///     Server-side logic for tile fire growth logic, e.g. stages, requiring oxygen, etc.
-///     See <see cref="ESTileFireSystem"/> for the shared API for actually spawning them.
+///     Also spawning logic.
 /// </summary>
-public sealed class ESTileFireGrowthSystem : EntitySystem
+public sealed class ESTileFireSystem : ESSharedTileFireSystem
 {
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly FlammableSystem _flammable = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+
+    private static EntProtoId _stage1Fire = "ESTileFire";
 
     public override void Initialize()
     {
@@ -33,13 +35,14 @@ public sealed class ESTileFireGrowthSystem : EntitySystem
         SubscribeLocalEvent<ESTileFireComponent, SpreadNeighborsEvent>(OnSpreadNeighbors);
     }
 
+    #region Events
     private void OnMapInit(Entity<ESTileFireComponent> ent, ref MapInitEvent args)
     {
         var xform = Transform(ent);
         if (xform.GridUid is not { } grid || !TryComp<MapGridComponent>(grid, out var mapGrid))
             return;
 
-        var tile = _map.GetTileRef((grid, mapGrid), xform.Coordinates);
+        var tile = MapSys.GetTileRef((grid, mapGrid), xform.Coordinates);
         _atmos.TryAddBurntDecalsToTile(grid, tile.GridIndices, _random.Next(1, 3));
     }
 
@@ -92,7 +95,7 @@ public sealed class ESTileFireGrowthSystem : EntitySystem
             if (_atmos.GetHeatCapacity(mixture, false) < Atmospherics.MinimumHeatCapacity)
                 score *= 0;
 
-            var coords = _map.GridTileToLocal(neighbor.Tile.GridUid, neighbor.Grid, neighbor.Tile.GridIndices);
+            var coords = MapSys.GridTileToLocal(neighbor.Tile.GridUid, neighbor.Grid, neighbor.Tile.GridIndices);
             weights.Add(coords, score);
         }
 
@@ -108,4 +111,33 @@ public sealed class ESTileFireGrowthSystem : EntitySystem
             args.Updates--;
         }
     }
+    #endregion
+
+    #region API
+
+    [PublicAPI]
+    public override bool TryDoTileFire(EntityCoordinates coords, EntityUid? originatingUser = null, int stage = 1)
+    {
+        var xform = Transform(coords.EntityId);
+        if (xform.GridUid is not { } grid || !TryComp<MapGridComponent>(grid, out var mapGrid))
+            return false;
+
+        var tile = XformSys.GetGridTilePositionOrDefault((coords.EntityId, xform), mapGrid);
+
+        if (_atmos.IsTileAirBlocked(grid, tile, mapGridComp: mapGrid))
+            return false;
+
+        // ESTileFire vs ESTileFireStage2/3/4
+        EntProtoId proto = stage == 1 ? _stage1Fire : $"{_stage1Fire}Stage{stage}";
+
+        SpawnAtPosition(proto, coords);
+
+        var ev = new ESTileFireCreatedEvent(coords, originatingUser, stage);
+        RaiseLocalEvent(ref ev);
+
+        // TODO arsonist update counter objective for originating user u get the idea etc etc
+        return true;
+    }
+
+    #endregion
 }

@@ -95,6 +95,7 @@
 - type: entity
   id: ESTileFireStage2
   parent: ESTileFire
+  suffix: Stage 2
   components:
   - type: Flammable
     fireStacks: 7
@@ -102,6 +103,7 @@
 - type: entity
   id: ESTileFireStage3
   parent: ESTileFire
+  suffix: Stage 3
   components:
   - type: Flammable
     fireStacks: 11
@@ -109,6 +111,7 @@
 - type: entity
   id: ESTileFireStage4
   parent: ESTileFire
+  suffix: Stage 4
   components:
   - type: Flammable
     fireStacks: 15
