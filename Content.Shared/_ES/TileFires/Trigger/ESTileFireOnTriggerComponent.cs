@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._ES.TileFires.Trigger;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ESTileFireOnTriggerComponent : BaseXOnTriggerComponent
 {
     /// <summary>

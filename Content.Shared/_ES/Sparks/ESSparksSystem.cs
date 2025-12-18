@@ -46,7 +46,7 @@ public sealed class ESSparksSystem : EntitySystem
 
         // TODO sparks should take in user and pass it in here also (arsonist core)
         if (_random.Prob(tileFireChance))
-            _tileFire.TryDoTileFire(coordinates, null, _random.Next(1, 3));
+            _tileFire.TryDoTileFire(coordinates, null, _random.Next(1, 4));
     }
 
     private void PreventCollide(EntityUid sparks, EntityUid? ignored)
