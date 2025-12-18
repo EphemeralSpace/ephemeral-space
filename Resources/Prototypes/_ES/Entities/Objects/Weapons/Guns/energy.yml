@@ -61,7 +61,7 @@
     - Belt
   - type: Gun
     soundGunshot:
-      path: /_ES/Audio/Weapons/Guns/Gunshots/taser.ogg
+      path: /Audio/_ES/Weapons/Guns/Gunshots/taser.ogg
     projectileSpeed: 20
   - type: BatteryAmmoProvider
     proto: ESTaserBolt
