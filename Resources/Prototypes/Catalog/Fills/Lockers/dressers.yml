@@ -8,12 +8,17 @@
       storagebase: !type:AllSelector
         children:
         - id: ClothingHeadHatCaptain
-        - id: ClothingHeadHatCapcap
-        - id: ClothingUniformJumpsuitCapFormal
-        - id: ClothingUniformJumpskirtCapFormalDress
+# ES Start
+#        - id: ClothingHeadHatCapcap
+#        - id: ClothingUniformJumpsuitCapFormal
+#        - id: ClothingUniformJumpskirtCapFormalDress
         - id: ClothingHandsGlovesCaptain
-        - id: ClothingOuterWinterCap
-        - id: ClothingNeckCloakCap
+        - id: ClothingUniformJumpsuitCaptain
+        - id: ClothingUniformJumpskirtCaptain
+        - id: ClothingShoesColorBrown
+#        - id: ClothingOuterWinterCap
+#        - id: ClothingNeckCloakCap
+# ES End
 
 - type: entity
   id: DresserChiefEngineerFilled
@@ -58,9 +63,14 @@
       storagebase: !type:AllSelector
         children:
         - id: ClothingHeadHatHopcap
-        - id: ClothingOuterWinterHoP
-        - id: ClothingEyesGlasses
-        - id: ClothingNeckCloakHop
+# ES Start
+#        - id: ClothingOuterWinterHoP
+        - id: ClothingEyesHudSecurity
+        - id: ClothingUniformJumpsuitHoP
+        - id: ClothingUniformJumpskirtHoP
+        - id: ClothingShoesColorBrown
+#        - id: ClothingNeckCloakHop
+# ES End
 
 - type: entity
   id: DresserHeadOfSecurityFilled
@@ -73,13 +83,18 @@
         children:
         - id: ClothingHeadHatBeretHoS
         - id: ClothingHeadHatHoshat
-        - id: ClothingMaskNeckGaiter
-        - id: ClothingUniformJumpskirtHoSAlt
-        - id: ClothingUniformJumpsuitHoSAlt
-        - id: ClothingUniformJumpskirtHosFormal
-        - id: ClothingUniformJumpsuitHosFormal
-        - id: ClothingOuterWinterHoS
-        - id: ClothingNeckCloakHos
+        - id: ClothingEyesHudSecurity
+        - id: ClothingUniformJumpsuitHoS
+        - id: ClothingUniformJumpskirtHoS
+# ES Start
+#        - id: ClothingMaskNeckGaiter
+#        - id: ClothingUniformJumpskirtHoSAlt
+#        - id: ClothingUniformJumpsuitHoSAlt
+#        - id: ClothingUniformJumpskirtHosFormal
+#        - id: ClothingUniformJumpsuitHosFormal
+#        - id: ClothingOuterWinterHoS
+#        - id: ClothingNeckCloakHos
+# ES End
 
 - type: entity
   id: DresserQuarterMasterFilled

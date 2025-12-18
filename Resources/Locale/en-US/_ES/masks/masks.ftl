@@ -5,8 +5,11 @@ es-mask-crewmember-desc = Work with your other crewmembers to complete the stati
 es-mask-arms-dealer-name = Arms Dealer
 es-mask-arms-dealer-desc = Help the crew complete the station objective by handing out guns, but make sure they don't kill anyone.
 
-es-mask-citizen-name = Citizen
-es-mask-citizen-desc = Confirm your innocence with the assistance of your fancy citizenship card. Help your crewmembers complete the station objective.
+es-mask-vip-name = VIP
+es-mask-vip-desc = Confirm your innocence with the assistance of your fancy VIP card. Help your crewmembers complete the station objective.
+
+es-mask-daredevil-name = Daredevil
+es-mask-daredevil-desc = You live an intense lifestyle, constantly seeking new ways to kill yourself faster.
 
 es-mask-fruit-vendor-name = Fruit Vendor
 es-mask-fruit-vendor-desc = Dispense delicious fruits to aid in the completion of the station objective.

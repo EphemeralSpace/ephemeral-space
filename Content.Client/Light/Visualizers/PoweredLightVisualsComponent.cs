@@ -57,12 +57,4 @@ public sealed partial class PoweredLightVisualsComponent : Component
     public bool IsBlinking;
 
     #endregion Blinking
-
-    // ES START
-    /// <summary>
-    ///     Affects the alpha of the light glow layer.
-    /// </summary>
-    [DataField]
-    public float GlowAlpha = 1.0f;
-    // ES END
 }

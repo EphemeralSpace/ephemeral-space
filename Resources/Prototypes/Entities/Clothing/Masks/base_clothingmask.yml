@@ -16,8 +16,10 @@
   abstract: true
   parent: ClothingMaskBase
   id: ClothingMaskPullableBase
-  components:
-  - type: Mask
+  # ES START
+  # components:
+  # - type: Mask
+  # ES END
 
 - type: entity
   parent: BaseAction

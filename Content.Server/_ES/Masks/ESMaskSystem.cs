@@ -267,6 +267,6 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         EntityManager.AddComponents(mind, mask.MindComponents);
 
         troupe.Comp.TroupeMemberMinds.Add(mind);
-        Objective.RefreshObjectives(mind.Owner);
+        Objective.RegenerateObjectiveList(mind.Owner);
     }
 }

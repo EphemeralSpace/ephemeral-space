@@ -80,21 +80,28 @@
         damage: 400
       behaviors:
       - !type:GibBehavior { }
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Heat
-        damage: 1500
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawnInContainer: true
-        spawn:
-          Ash:
-            min: 1
-            max: 1
-      - !type:BurnBodyBehavior { }
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MeatLaserImpact
+    # ES START
+    # TODO ES eventually we should be using our own mob prototypes for this stuff
+    # which i think maybe exist already?
+    # comments out heat trigger threshold
+    # gib behavior is disabled in the thresholdbehavior itself, since we kinda dont ever want it on damage
+    # this is harder to disable that way, bc i dont want situations where it spawns ash and stuff repeatedly or something
+    #- trigger:
+    #    !type:DamageTypeTrigger
+    #    damageType: Heat
+    #    damage: 1500
+    #  behaviors:
+    #  - !type:SpawnEntitiesBehavior
+    #    spawnInContainer: true
+    #    spawn:
+    #      Ash:
+    #        min: 1
+    #        max: 1
+    #  - !type:BurnBodyBehavior { }
+    #  - !type:PlaySoundBehavior
+    #    sound:
+    #      collection: MeatLaserImpact
+    # ES END
     - trigger:
         !type:DamageTypeTrigger
         damageType: Radiation

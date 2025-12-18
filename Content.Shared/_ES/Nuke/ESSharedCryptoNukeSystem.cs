@@ -3,6 +3,7 @@ using System.Linq;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Nuke.Components;
 using Content.Shared._ES.Objectives;
+using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Sparks;
 using Content.Shared.Examine;
 using Content.Shared.Objectives.Components;
@@ -29,7 +30,7 @@ public abstract class ESSharedCryptoNukeSystem : EntitySystem
         SubscribeLocalEvent<ESCryptoNukeConsoleComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ESCryptoNukeConsoleComponent, ExaminedEvent>(OnExamined);
 
-        SubscribeLocalEvent<ESCryptoNukeHackObjectiveComponent, ObjectiveGetProgressEvent>(OnGetProgress);
+        SubscribeLocalEvent<ESCryptoNukeHackObjectiveComponent, ESGetObjectiveProgressEvent>(OnGetProgress);
 
         Subs.BuiEvents<ESCryptoNukeConsoleComponent>(ESCryptoNukeConsoleUiKey.Key,
             subs =>
@@ -50,7 +51,7 @@ public abstract class ESSharedCryptoNukeSystem : EntitySystem
         args.PushMarkup(Loc.GetString("es-cryptonuke-examine-compromised"));
     }
 
-    private void OnGetProgress(Entity<ESCryptoNukeHackObjectiveComponent> ent, ref ObjectiveGetProgressEvent args)
+    private void OnGetProgress(Entity<ESCryptoNukeHackObjectiveComponent> ent, ref ESGetObjectiveProgressEvent args)
     {
         args.Progress = GetCompromisedTerminalPercent();
     }
@@ -71,6 +72,7 @@ public abstract class ESSharedCryptoNukeSystem : EntitySystem
         ent.Comp.Compromised = true;
         Dirty(ent);
         UpdateUiState((ent, ent, Comp<UserInterfaceComponent>(ent)));
+        _objective.RefreshObjectiveProgress<ESCryptoNukeHackObjectiveComponent>();
     }
 
     protected virtual void UpdateUiState(Entity<ESCryptoNukeConsoleComponent, UserInterfaceComponent> ent)

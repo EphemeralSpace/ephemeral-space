@@ -1,8 +1,10 @@
 - type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesChef
-  name: chef shoes
-  description: Sturdy shoes that minimize injury from falling objects or knives.
+# ES Start
+  name: leather shoes
+  description: Sturdy, polished orangeish-brown shoes. The mark of a professional.
+# ES End
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Specific/chef.rsi

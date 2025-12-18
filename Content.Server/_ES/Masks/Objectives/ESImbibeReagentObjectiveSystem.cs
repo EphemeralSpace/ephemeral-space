@@ -38,6 +38,10 @@ public sealed class ESImbibeReagentObjectiveSystem : ESBaseObjectiveSystem<ESImb
         var reagentName = _proto.Index(ent.Comp.ConsumeTarget).LocalizedName;
 
         _meta.SetEntityDescription(ent, Loc.GetString(ent.Comp.DescriptionLoc, ("reagent", reagentName)));
+        _meta.SetEntityName(ent,
+            TryComp<ESCounterObjectiveComponent>(ent, out var counter)
+                ? Loc.GetString(ent.Comp.TitleLoc, ("reagent", reagentName), ("count", counter.Target))
+                : Loc.GetString(ent.Comp.TitleLoc, ("reagent", reagentName)));
     }
 
     private void OnBodyIngesting(Entity<ESImbibeReagentObjectiveComponent> ent, ref ESBodyIngestingEvent args)

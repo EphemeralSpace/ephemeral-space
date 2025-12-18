@@ -1,3 +1,7 @@
+# Used for daredevil objectives
+- type: Tag
+  id: ESAncestor
+
 - type: Tag
   id: ES357Round
 
@@ -15,6 +19,14 @@
 
 - type: Tag
   id: ESElectronicsKeypad
+
+# Used for daredevil objectives
+- type: Tag
+  id: ESEmitter
+
+# Used for daredevil objectives
+- type: Tag
+  id: ESGrille
 
 - type: Tag
   id: ESGunAttachmentBallisticBarrel
@@ -54,3 +66,4 @@
 
 - type: Tag
   id: ESThrusterEngineIon
+

@@ -47,11 +47,12 @@
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
-    pocket1: WeaponPistolMk58
+    #pocket1: WeaponPistolMk58 - ES Change removes roundstart gun, replaces it with taser
+    pocket1: ESWeaponHybridTaser
   storage:
     back:
     - Flash
-    - MagazinePistol
+    #- MagazinePistol - ES Change removes roundstart gun, replaces it with taser
 
 - type: chameleonOutfit
   id: HeadOfSecurityChameleonOutfit

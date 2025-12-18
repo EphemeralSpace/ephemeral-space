@@ -211,8 +211,16 @@ namespace Content.Client.ContextMenu.UI
 
             var coords = _xform.ToMapCoordinates(args.Coordinates);
 
-            if (_verbSystem.TryGetEntityMenuEntities(coords, out var entities))
+            // ES START
+            // open verb menu directly if 1 entity
+            if (!_verbSystem.TryGetEntityMenuEntities(coords, out var entities))
+                return false;
+
+            if (entities.Count == 1)
+                _verb.OpenVerbMenu(entities[0]);
+            else
                 OpenRootMenu(entities);
+            // ES END
 
             return false;
         }

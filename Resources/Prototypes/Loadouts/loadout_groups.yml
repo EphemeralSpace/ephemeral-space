@@ -1053,7 +1053,9 @@
 - type: loadoutGroup
   id: ScientistNeck
   name: loadout-group-scientist-neck
-  minLimit: 0
+# ES Start
+#  minLimit: 0
+# ES End
   loadouts:
   - ScientistTie
 
@@ -1091,9 +1093,11 @@
   id: ScientistShoes
   name: loadout-group-scientist-shoes
   loadouts:
-  - WhiteShoes
-  - BlackShoes
-  - ScienceWinterBoots
+# ES Start
+  - ESScienceShoes
+#  - BlackShoes
+#  - ScienceWinterBoots
+# ES End
 
 - type: loadoutGroup
   id: ScientistGloves
@@ -1295,9 +1299,16 @@
   id: DetectiveOuterClothing
   name: loadout-group-detective-outerclothing
   loadouts:
-  - DetectiveArmorVest
+# ES Start
   - DetectiveCoat
-  - DetectiveCoatGrey
+#  - DetectiveCoatGrey
+
+- type: loadoutGroup
+  id: ESDetectiveShoes
+  name: loadout-group-detective-outerclothing # we dont have loadouts so it doesnt matter what the loc string is
+  loadouts:
+  - ESDetectiveShoes
+# ES End
 
 - type: loadoutGroup
   id: DetectiveJobTrinkets

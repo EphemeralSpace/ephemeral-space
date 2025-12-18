@@ -14,6 +14,11 @@ namespace Content.Server.Destructible.Thresholds.Behaviors
 
         public void Execute(EntityUid owner, DestructibleSystem system, EntityUid? cause = null)
         {
+            // ES START
+            // no gib behavior on damage
+            return;
+            // ES END
+            
             if (system.EntityManager.TryGetComponent(owner, out BodyComponent? body))
             {
                 system.BodySystem.GibBody(owner, _recursive, body);
