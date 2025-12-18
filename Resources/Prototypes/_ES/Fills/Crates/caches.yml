@@ -108,7 +108,7 @@
 - type: entityTable
   id: ESCrewCacheSurvivalist
   table:
-    group:
+    all:
     - group:
       - id: MedkitFilled
       - id: MedkitOxygenFilled
