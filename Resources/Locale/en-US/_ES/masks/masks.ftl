@@ -33,11 +33,10 @@ es-mask-marauder-name = Marauder
 es-mask-marauder-desc = Aid your fellow traitors & complete your objectives to detonate the nuke. You have recieved been trained by the syndicate for loud, brute-force attacks.
 
 es-mask-recruit-name = Recruit
-es-mask-recruit-desc = Youve been recruited to the syndicate for their nefarious plot, help them at all costs.
+es-mask-recruit-desc = Youve been recruited to the syndicate, Aid your fellow traitors & complete your objectives to detonate the nuke.
 
 es-mask-subverter-name = Subverter
-es-mask-subverter-desc = Youve been sent by the sendicate to recruit new pupils, youve been given two brain altering microchips to achieve this
-
+es-mask-subverter-desc = Aid your fellow traitors & complete your objectives to detonate the nuke. You have recieved two brain-alterin chips to convert two crewmembers to the syndicates side
 
 # Meta
 es-objective-issuer-mask = Mask
