@@ -5,6 +5,7 @@ using Content.Shared._ES.Masks.Traitor.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.EntityEffects;
+using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Mind;
 using Content.Shared.Mindshield.Components;
@@ -30,6 +31,7 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
     {
         SubscribeLocalEvent<ESAddMaskOnUseComponent, AfterInteractEvent>(OnInteract);
         SubscribeLocalEvent<ESAddMaskOnUseComponent, ESAddMaskOnUseDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<ESAddMaskOnUseComponent, ExaminedEvent>(OnExamine);
     }
 
     private void OnInteract(EntityUid uid, ESAddMaskOnUseComponent component, ref AfterInteractEvent args)
@@ -100,5 +102,17 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
 
         component.Used = true;
         args.Handled = true;
+    }
+
+    private void OnExamine(EntityUid uid, ESAddMaskOnUseComponent component, ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        if (component.Used)
+            args.PushMarkup(Loc.GetString(component.UsedExamineMessage));
+        else
+            args.PushMarkup(Loc.GetString(component.NotUsedExamineMessage));
+
     }
 }
