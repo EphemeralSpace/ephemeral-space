@@ -113,6 +113,10 @@ namespace Content.Client.ContextMenu.UI
         /// </summary>
         public void Close()
         {
+            // ES START
+            // properly close submenus on root close
+            CloseSubMenus(RootMenu);
+            // ES END
             RootMenu.MenuBody.RemoveAllChildren();
             CancelOpen?.Cancel();
             CancelClose?.Cancel();

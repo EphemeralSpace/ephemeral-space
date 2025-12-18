@@ -1,4 +1,5 @@
 using Content.Shared.Light;
+using Content.Shared.Light.Components;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
@@ -23,6 +24,11 @@ public sealed class PoweredLightVisualizerSystem : VisualizerSystem<PoweredLight
         if (args.Sprite == null)
             return;
 
+        // ES START
+        if (!TryComp<PoweredLightComponent>(uid, out var poweredLight))
+            return;
+        // ES END
+
         if (!AppearanceSystem.TryGetData<PoweredLightState>(uid, PoweredLightVisuals.BulbState, out var state, args.Component))
             return;
 
@@ -31,14 +37,17 @@ public sealed class PoweredLightVisualizerSystem : VisualizerSystem<PoweredLight
 
         if (SpriteSystem.LayerExists((uid, args.Sprite), PoweredLightLayers.Glow))
         {
-            if (TryComp<PointLightComponent>(uid, out var light))
+            // ES START
+            // use color from bulb instead of fixture
+            // allow color overriding from bulb
+            if (poweredLight.LightBulbContainer.ContainedEntity is { } bulb &&
+                TryComp<LightBulbComponent>(bulb, out var lightBulb))
             {
-                var col = light.Color;
-                // ES START
-                // some alpha on glow
-                SpriteSystem.LayerSetColor((uid, args.Sprite), PoweredLightLayers.Glow, col.WithAlpha(comp.GlowAlpha));
-                // ES END
+                var col = lightBulb.GlowColorOverride ?? lightBulb.Color;
+
+                SpriteSystem.LayerSetColor((uid, args.Sprite), PoweredLightLayers.Glow, col);
             }
+            // ES END
 
             SpriteSystem.LayerSetVisible((uid, args.Sprite), PoweredLightLayers.Glow, state == PoweredLightState.On);
         }

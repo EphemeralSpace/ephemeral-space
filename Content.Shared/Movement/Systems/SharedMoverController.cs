@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using Content.Shared._ES.Viewcone;
 using Content.Shared.ActionBlocker;
 using Content.Shared.CCVar;
 using Content.Shared.Friction;
@@ -24,6 +23,10 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
+// ES START
+using Content.Shared._ES.Audio.Components;
+using Content.Shared._ES.Viewcone;
+// ES END
 
 namespace Content.Shared.Movement.Systems;
 
@@ -63,6 +66,9 @@ public abstract partial class SharedMoverController : VirtualController
     protected EntityQuery<RelayInputMoverComponent> RelayQuery;
     protected EntityQuery<PullableComponent> PullableQuery;
     protected EntityQuery<TransformComponent> XformQuery;
+    // ES START
+    protected EntityQuery<ESIgnoreBarefootSoundsComponent> ESIgnoreBarefootSoundsQuery;
+    // ES END
 
     private static readonly ProtoId<TagPrototype> FootstepSoundTag = "FootstepSound";
 
@@ -100,6 +106,9 @@ public abstract partial class SharedMoverController : VirtualController
         FootstepModifierQuery = GetEntityQuery<FootstepModifierComponent>();
         MapGridQuery = GetEntityQuery<MapGridComponent>();
         MapQuery = GetEntityQuery<MapComponent>();
+        // ES START
+        ESIgnoreBarefootSoundsQuery = GetEntityQuery<ESIgnoreBarefootSoundsComponent>();
+        // ES END
 
         SubscribeLocalEvent<MovementSpeedModifierComponent, TileFrictionEvent>(OnTileFriction);
 
@@ -575,6 +584,11 @@ public abstract partial class SharedMoverController : VirtualController
             sound = modifier.FootstepSoundCollection;
             return sound != null;
         }
+        // ES START
+        // Disable the foot sounds here by setting shoes to non null.
+        if (ESIgnoreBarefootSoundsQuery.HasComp(uid))
+            shoes = EntityUid.Invalid;
+        // ES END
 
         return TryGetFootstepSound(uid, xform, shoes != null, out sound, tileDef: tileDef);
     }

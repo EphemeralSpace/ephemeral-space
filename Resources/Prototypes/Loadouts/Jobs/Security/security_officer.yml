@@ -128,7 +128,9 @@
 - type: loadout
   id: JackBoots
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+# ES Start
+    shoes: ClothingShoesBootsJack
+# ES End
 
 - type: loadout
   id: SecurityWinterBoots

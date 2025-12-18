@@ -18,7 +18,7 @@
 
 - type: entity # Vote Entity (for above)
   id: ESVoteStationEvent
-  name: Next station event...
+  name: Next station event
   categories: [ HideSpawnMenu ]
   components:
   - type: ESVote
@@ -40,7 +40,7 @@
 
 - type: entity
   id: ESVoteDegradationEvent
-  name: Next degradation event...
+  name: Next degradation event
   categories: [ HideSpawnMenu ]
   components:
   - type: ESVote

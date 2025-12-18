@@ -237,7 +237,11 @@
   - GroupTankHarness
   - CargoTechnicianHead
   - CargoTechnicianJumpsuit
-  - CargoTechnicianBackpack
+# ES Start
+# I detest you, pointless backpacks
+  - CommonBackpack
+#  - CargoTechnicianBackpack
+# ES End
   - CargoTechnicianOuterClothing
   - CargoTechnicianShoes
   - CargoTechnicianID
@@ -307,7 +311,10 @@
   groups:
   - GroupTankHarness
   - AtmosphericTechnicianJumpsuit
-  - AtmosphericTechnicianBackpack
+# ES Start
+# I detest you, pointless backpacks
+  - StationEngineerBackpack
+# ES End
   - AtmosphericTechnicianOuterClothing
   - AtmosphericTechnicianShoes
   - SurvivalExtended
@@ -416,7 +423,7 @@
   - DetectiveJumpsuit
   - SecurityBackpack
   - DetectiveOuterClothing
-  - SecurityShoes
+  - ESDetectiveShoes
   - SurvivalSecurity
   - Trinkets
   - DetectiveJobTrinkets
@@ -517,6 +524,9 @@
 - type: roleLoadout
   id: JobReporter
   groups:
+# ES Start
+  - ESDetectiveShoes # they are gonna be the same anyways, so lets save the headache of defining a loadout option
+# ES End
   - GroupTankHarness
   - ReporterJumpsuit
   - CommonBackpack

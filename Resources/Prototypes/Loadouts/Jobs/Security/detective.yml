@@ -51,3 +51,11 @@
   id: DetectiveCoatGrey
   equipment:
     outerClothing: ClothingOuterCoatDetectiveLoadoutGrey
+
+# ES Start
+# Shoes
+- type: loadout
+  id: ESDetectiveShoes
+  equipment:
+    shoes: ClothingShoesColorBrown
+# ES End

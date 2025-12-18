@@ -105,7 +105,7 @@ public abstract class ESSharedMaskSystem : EntitySystem
     {
         foreach (var mind in ent.Comp.TroupeMemberMinds)
         {
-            Objective.RefreshObjectives(mind);
+            Objective.RegenerateObjectiveList(mind);
         }
     }
 

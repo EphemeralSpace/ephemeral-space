@@ -15,14 +15,14 @@
     - ESActionMaskSummonGun
 
 - type: esMask
-  id: ESCitizen
-  name: es-mask-citizen-name
+  id: ESVIP
+  name: es-mask-vip-name
   troupe: ESCrew
-  description: es-mask-citizen-desc
+  description: es-mask-vip-desc
   color: gold
   weight: 0.5
   gear:
-    id: ESItemCardCitizenship
+    id: ESItemCardVIP
 
 - type: esMask
   id: ESFruitVendor
@@ -75,13 +75,29 @@
     - id: ESObjectiveGuzzleUniqueReagents
     - id: ESObjectiveGuzzleSpecialInterest
 
+- type: esMask
+  id: ESDaredevil
+  name: es-mask-daredevil-name
+  troupe: ESCrew
+  description: es-mask-daredevil-desc
+  color: orangered
+  weight: 1
+  objectives:
+    all:
+    - id: ESObjectiveTakeDamage
+    - id: ESObjectiveTakeDamageFromSource
+    - id: ESObjectiveTakeTotalDamage
+  components:
+  - type: ActionGrant
+    actions:
+    - ESActionMaskAdrenalinePump
+
 # Traitor Masks
 - type: esMask
   id: ESBaseTraitor
-  abstract: true
   troupe: ESTraitor
-  color: red
   weight: 1
+  abstract: true
   components:
   - type: ESTroupeFactionIcon
     icon: ESTraitor
@@ -93,6 +109,7 @@
   id: ESMarauder
   name: es-mask-marauder-name
   description: es-mask-marauder-desc
+  color: coral
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorMarauder
@@ -102,6 +119,7 @@
   id: ESAssassin
   name: es-mask-assassin-name
   description: es-mask-assassin-desc
+  color: hotpink
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorAssassin
@@ -111,6 +129,7 @@
   id: ESInfiltrator
   name: es-mask-infiltrator-name
   description: es-mask-infiltrator-desc
+  color: yellow
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorInfiltrator

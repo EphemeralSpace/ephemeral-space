@@ -160,7 +160,9 @@
     sprite: Clothing/Uniforms/Jumpsuit/chef.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+# ES START - Remove Foldable
+  parent: ClothingUniformBase
+# ES End
   id: ClothingUniformJumpsuitChemistry
   name: chemistry jumpsuit
   description: There's some odd stains on this jumpsuit. Hm.
@@ -285,7 +287,9 @@
       sprite: Clothing/Uniforms/Jumpsuit/detective_grey.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+# ES START - Remove Foldable
+  parent: ClothingUniformBase
+# ES END
   id: ClothingUniformJumpsuitEngineering
   name: engineering jumpsuit
   description: If this suit was non-conductive, maybe engineers would actually do their damn job.
@@ -421,7 +425,9 @@
     sprite: Clothing/Uniforms/Jumpsuit/kimono.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+# ES START - Remove Foldable
+  parent: ClothingUniformBase
+# ES End
   id: ClothingUniformJumpsuitMedicalDoctor
   name: medical doctor jumpsuit
   description: It's made of a special fiber that provides minor protection against biohazards. It has a cross on the chest denoting that the wearer is trained medical personnel.
@@ -576,7 +582,9 @@
     sprite: Clothing/Uniforms/Jumpsuit/roboticist.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseSecurityContraband, ClothingUniformFoldableBase]
+# ES START - Remove Foldable
+  parent: [ClothingUniformBase, BaseSecurityContraband]
+# ES End
   id: ClothingUniformJumpsuitSec
   name: security jumpsuit
   description: A jumpsuit made of strong material, providing robust protection.

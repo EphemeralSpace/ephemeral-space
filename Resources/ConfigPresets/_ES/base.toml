@@ -14,6 +14,7 @@ range = 10 # APCs
 map_pool = "ESMapPool"
 defaultpreset = "ESTraitors"
 fallbackpreset = "ESTraitors,ESExtended"
+role_timers = false
 
 # No mob crawling + mob push tweaks
 [movement]
@@ -30,3 +31,7 @@ monstermos_equalization = false
 # Square viewport
 [viewport]
 maximum_width = 15
+
+# No gridfill
+[shuttle]
+grid_fill = false
