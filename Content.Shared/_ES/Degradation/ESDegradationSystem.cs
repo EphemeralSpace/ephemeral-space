@@ -44,7 +44,7 @@ public sealed class ESDegradationSystem : EntitySystem
         if (!ev.Handled)
             return false;
 
-        _sparks.DoSparks(target);
+        _sparks.DoSparks(target, tileFireChance: 0.5f);
 
         if (user.HasValue)
         {
