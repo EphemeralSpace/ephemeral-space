@@ -33,8 +33,7 @@ es-mask-marauder-name = Marauder
 es-mask-marauder-desc = Aid your fellow traitors & complete your objectives to detonate the nuke. You have recieved been trained by the syndicate for loud, brute-force attacks.
 
 es-mask-spy-name = Spy
-es-mask-spy-desc = You are an elite operative designed to aid other traitors, you've been provided a special spy suit that allows you to sneak around the station.
-# Meta
+es-mask-spy-desc = Aid your fellow traitors & complete your objectives to detonate the nuke. You have recieved been given a special stealth suit for this operation.
 es-objective-issuer-mask = Mask
 
 es-objective-condition-crewmember-kill-title = Kill {$targetName}, {CAPITALIZE($job)}

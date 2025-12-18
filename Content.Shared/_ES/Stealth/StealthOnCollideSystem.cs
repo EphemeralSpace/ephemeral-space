@@ -18,7 +18,6 @@ public sealed class StealthOnCollideSystem : EntitySystem
 
     private void OnCollide(EntityUid uid, StealthOnCollideComponent component, ref StartCollideEvent args)
     {
-
         if (!HasComp<StealthComponent>(uid))
             return;
 
