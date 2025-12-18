@@ -88,10 +88,15 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void OnExtinguishEvent(Entity<FlammableComponent> ent, ref ExtinguishEvent args)
         {
+            // ES START
+            // ?????? ok come on man
+            // removes the extinguish call that existed for no reason, this is supposed to adjust fire stacks,
+            // not extinguish the entire thing immediately!!!
+
             // You know I'm really not sure if having AdjustFireStacks *after* Extinguish,
             // but I'm just moving this code, not questioning it.
-            Extinguish(ent, ent.Comp);
             AdjustFireStacks(ent, args.FireStacksAdjustment, ent.Comp);
+            // ES END
         }
 
         private void OnMeleeHit(EntityUid uid, IgniteOnMeleeHitComponent component, MeleeHitEvent args)
@@ -206,12 +211,17 @@ namespace Content.Server.Atmos.EntitySystems
             if (args.OtherFixtureId != flammable.FlammableFixtureID && args.OurFixtureId != flammable.FlammableFixtureID)
                 return;
 
-            if (!flammable.FireSpread)
+            // ES START
+            // vaguely move around logic until this shit works
+            // basic fire spread should be able to occur even if the mob entity doesnt have firespread on,
+            // because its not the sharing-fire-stacks kind (idk why this kind even exists its not really even
+            // good gameplay to literally share firestacks by mass like this come on just like make more fire
+            // thats how fire works it makes more fire dude when you walk into a fire you dont STEAL THE FIRE
+            // from the FIRE it LIGHTS YOU ON FIRE man)
+            if (!TryComp(otherUid, out FlammableComponent? otherFlammable) || (!otherFlammable.FireSpread && !flammable.BasicFireSpread))
                 return;
 
-            // ES START
-            // no spread to
-            if (!TryComp(otherUid, out FlammableComponent? otherFlammable) || !otherFlammable.FireSpread || otherFlammable.NoSpreadTo)
+            if (!flammable.FireSpread && !otherFlammable.BasicFireSpread)
                 return;
             // ES END
 
@@ -223,7 +233,14 @@ namespace Content.Server.Atmos.EntitySystems
             if (flammable.BasicFireSpread)
             {
                 // just pass some of our firestacks
-                AdjustFireStacks(otherUid, flammable.FireStacks * flammable.BasicFireSpreadStackPercentage, otherFlammable);
+                AdjustFireStacks(otherUid, flammable.FireStacks * flammable.BasicFireSpreadStackPercentage, otherFlammable, true);
+                return;
+            }
+            // case where the other entity is handling this event because apparently flammable checks fucking entuid to guarantee one event??
+            if (otherFlammable.BasicFireSpread)
+            {
+                // just pass some of their firestacks to us
+                AdjustFireStacks(uid, otherFlammable.FireStacks * otherFlammable.BasicFireSpreadStackPercentage, flammable, true);
                 return;
             }
             // ES END

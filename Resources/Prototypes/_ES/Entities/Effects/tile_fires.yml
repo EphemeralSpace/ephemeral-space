@@ -55,7 +55,6 @@
     firestackVisualDivisor: 5
     deleteOnExtinguish: true
     basicFireSpread: true
-    noSpreadTo: true
   - type: Temperature
     currentTemperature: 373.15
   - type: AtmosExposed

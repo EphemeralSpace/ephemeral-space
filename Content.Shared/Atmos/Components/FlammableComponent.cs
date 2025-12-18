@@ -104,6 +104,7 @@ namespace Content.Shared.Atmos.Components
 
         /// <summary>
         ///     Use basic fire spread logic (no mass sharing, just gives some firestacks)
+        ///     Will not receive any firestacks from other entities--just gives to others
         /// </summary>
         [DataField]
         public bool BasicFireSpread = false;
@@ -112,14 +113,6 @@ namespace Content.Shared.Atmos.Components
         ///     What % of this entities firestacks will be added to other entities, if basic spread is on.
         /// </summary>
         [DataField]
-        public float BasicFireSpreadStackPercentage = 0.33f;
-
-        /// <summary>
-        ///     Can this entity have fire spread to it, if <see cref="FireSpread"/> is on?
-        ///     Otherwise, it will only spread its fire to other entities.
-        /// </summary>
-        [DataField]
-        public bool NoSpreadTo = false;
-        // ES END
+        public float BasicFireSpreadStackPercentage = 0.1f;
     }
 }
