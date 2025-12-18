@@ -147,10 +147,6 @@ namespace Content.Server.Atmos.EntitySystems
 
             _fixture.TryCreateFixture(uid, component.FlammableCollisionShape, component.FlammableFixtureID, hard: false,
                 collisionMask: (int) CollisionGroup.FullTileLayer, body: body);
-
-            // ES START
-            UpdateAppearance(uid, component);
-            // ES END
         }
 
         private void OnInteractUsing(EntityUid uid, FlammableComponent flammable, InteractUsingEvent args)
@@ -213,11 +209,24 @@ namespace Content.Server.Atmos.EntitySystems
             if (!flammable.FireSpread)
                 return;
 
-            if (!TryComp(otherUid, out FlammableComponent? otherFlammable) || !otherFlammable.FireSpread)
+            // ES START
+            // no spread to
+            if (!TryComp(otherUid, out FlammableComponent? otherFlammable) || !otherFlammable.FireSpread || otherFlammable.NoSpreadTo)
                 return;
+            // ES END
 
             if (!flammable.OnFire && !otherFlammable.OnFire)
                 return; // Neither are on fire
+
+            // ES START
+            // basic fire spread
+            if (flammable.BasicFireSpread)
+            {
+                // just pass some of our firestacks
+                AdjustFireStacks(otherUid, flammable.FireStacks * flammable.BasicFireSpreadStackPercentage, otherFlammable);
+                return;
+            }
+            // ES END
 
             // Both are on fire -> equalize fire stacks.
             // Weight each thing's firestacks by its mass
@@ -276,7 +285,8 @@ namespace Content.Server.Atmos.EntitySystems
             _appearance.SetData(uid, FireVisuals.OnFire, flammable.OnFire, appearance);
             // ES START
             // floor + int firestacks for appearance purposes
-            _appearance.SetData(uid, FireVisuals.FireStacks, (int) MathF.Floor(flammable.FireStacks), appearance);
+            // and divisor
+            _appearance.SetData(uid, FireVisuals.FireStacks, (int) MathF.Floor(flammable.FireStacks / flammable.FirestackVisualDivisor), appearance);
             // ES END
 
             // Also enable toggleable-light visuals
@@ -328,6 +338,11 @@ namespace Content.Server.Atmos.EntitySystems
 
             var extinguished = new ExtinguishedEvent();
             RaiseLocalEvent(uid, ref extinguished);
+
+            // ES START
+            if (flammable.DeleteOnExtinguish)
+                QueueDel(uid);
+            // ES END
 
             UpdateAppearance(uid, flammable);
         }
