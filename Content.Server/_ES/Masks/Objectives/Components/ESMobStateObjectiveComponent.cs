@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Server._ES.Masks.Objectives.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent]
 [Access(typeof(ESMobStateObjectiveSystem))]
 public sealed partial class ESMobStateObjectiveComponent : Component
 {
@@ -13,3 +13,4 @@ public sealed partial class ESMobStateObjectiveComponent : Component
     [DataField]
     public HashSet<MobState> DesiredStates = [MobState.Alive, MobState.Critical];
 }
+

@@ -2,6 +2,7 @@ using Content.Server.Pinpointer;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mobs;
+using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks.Survivalist;
 
@@ -29,8 +30,8 @@ public sealed class ESMedAlertRadioAnnouncerSystem : EntitySystem
         if (locId is null)
             return;
 
-        var location = _navMap.GetNearestBeaconString(ent.Owner);
-        var msg = Loc.GetString(locId, ("location", location), ("name", Identity.Name(ent.Owner, EntityManager)));
+        var location = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(ent.Owner));
+        var msg = Loc.GetString(locId, ("location", location), ("name", Name(ent.Owner)));
         _radio.SendRadioMessage(ent.Owner, msg, ent.Comp.Channel, ent.Owner);
     }
 }
