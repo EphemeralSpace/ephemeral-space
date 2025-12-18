@@ -1,8 +1,8 @@
 ﻿- type: entity
   parent: [BaseItem, BaseSyndicateContraband]
   id: ESSubverterChip
-  name: Subverter Chip
-  description: A brain altering chip used to recruit people to the syndicate
+  name: subverter chip
+  description: A brain altering chip used to recruit people to the syndicate.
   suffix: ES
   components:
   - type: Sprite
