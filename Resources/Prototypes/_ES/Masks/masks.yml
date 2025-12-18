@@ -139,6 +139,7 @@
   id: ESSpy
   name: es-mask-spy-name
   description: es-mask-spy-desc
+  color: green
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorSpy
