@@ -133,7 +133,7 @@
       spawnGas: WaterVapor
 
 - type: entity
-  name: ammonia gas miner
+  name: miasma gas miner
   parent: GasMinerBase
   id: GasMinerAmmonia
   components:

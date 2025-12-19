@@ -1,5 +1,5 @@
 names-regal-rat-kingdom-dataset-1 = Plague
-names-regal-rat-kingdom-dataset-2 = Ammonia
+names-regal-rat-kingdom-dataset-2 = Miasma
 names-regal-rat-kingdom-dataset-3 = Maintenance
 names-regal-rat-kingdom-dataset-4 = Trash
 names-regal-rat-kingdom-dataset-5 = Garbage

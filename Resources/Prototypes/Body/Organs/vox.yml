@@ -18,7 +18,7 @@
   parent: OrganHumanStomach
   id: OrganVoxStomach
   name: stomach
-  description: "A stomach that smells of ammonia."
+  description: "A stomach that smells of miasma."
   components:
   - type: Metabolizer #Skreeeee!
     metabolizerTypes: [Vox]
