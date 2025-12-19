@@ -4,7 +4,6 @@
   id: ESLockerFillCaptain
   table: !type:AllSelector
     children:
-    - id: CaptainIDCard
     - id: CigarGoldCase
       prob: 0.25
     - id: ClothingHeadsetAltCommand
@@ -13,7 +12,6 @@
     - id: NukeDisk
     - id: PinpointerNuclear
     - id: RubberStampCaptain
-    - id: SpaceCash1000
     - id: ESWeaponHybridTaser
     - id: ClothingEyesGlassesSecurity
 
@@ -69,11 +67,6 @@
     - id: ClothingOuterCoatWarden
     - id: RubberStampWarden
     - id: BookSpaceLaw
-    - id: ClothingBackpackElectropack
-      amount: 2
-    - id: RemoteSignaller
-      amount: 2
-    - id: Multitool
     - id: Binoculars
 
 - type: entityTable
