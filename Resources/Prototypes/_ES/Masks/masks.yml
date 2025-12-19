@@ -15,14 +15,14 @@
     - ESActionMaskSummonGun
 
 - type: esMask
-  id: ESCitizen
-  name: es-mask-citizen-name
+  id: ESVIP
+  name: es-mask-vip-name
   troupe: ESCrew
-  description: es-mask-citizen-desc
+  description: es-mask-vip-desc
   color: gold
   weight: 0.5
   gear:
-    id: ESItemCardCitizenship
+    id: ESItemCardVIP
 
 - type: esMask
   id: ESFruitVendor
@@ -63,6 +63,17 @@
     cacheProto: ESCrateCacheCrewVeteran
 
 - type: esMask
+  id: ESEmpath
+  name: es-mask-empath-name
+  troupe: ESCrew
+  description: es-mask-empath-desc
+  color: plum
+  components:
+  - type: ActionGrant
+    actions:
+    - ESActionMaskDetectAura
+
+- type: esMask
   id: ESGuzzler
   name: es-mask-guzzler-name
   troupe: ESCrew
@@ -75,13 +86,55 @@
     - id: ESObjectiveGuzzleUniqueReagents
     - id: ESObjectiveGuzzleSpecialInterest
 
+- type: esMask
+  id: ESDaredevil
+  name: es-mask-daredevil-name
+  troupe: ESCrew
+  description: es-mask-daredevil-desc
+  color: orangered
+  weight: 1
+  objectives:
+    all:
+    - id: ESObjectiveTakeDamage
+    - id: ESObjectiveTakeDamageFromSource
+    - id: ESObjectiveTakeTotalDamage
+  components:
+  - type: ActionGrant
+    actions:
+    - ESActionMaskAdrenalinePump
+
+- type: esMask
+  id: ESGlutton
+  name: es-mask-glutton-name
+  troupe: ESCrew
+  description: es-mask-glutton-desc
+  color: yellowgreen
+  objectives:
+    all:
+    - id: ESObjectiveEatUniqueFoods
+    - id: ESObjectiveEatFood
+
+- type: esMask
+  id: ESSurvivalist
+  name: es-mask-survivalist-name
+  troupe: ESCrew
+  description: es-mask-survivalist-desc
+  color: forestgreen
+  components:
+  - type: ESMedAlertRadioAnnouncer
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto: ESCrateCacheCrewSurvivalist
+  objectives:
+    all:
+    - id: ESObjectiveSurvive
+
 # Traitor Masks
 - type: esMask
   id: ESBaseTraitor
-  abstract: true
   troupe: ESTraitor
-  color: red
   weight: 1
+  abstract: true
   components:
   - type: ESTroupeFactionIcon
     icon: ESTraitor
@@ -93,6 +146,7 @@
   id: ESMarauder
   name: es-mask-marauder-name
   description: es-mask-marauder-desc
+  color: coral
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorMarauder
@@ -102,6 +156,7 @@
   id: ESAssassin
   name: es-mask-assassin-name
   description: es-mask-assassin-desc
+  color: hotpink
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorAssassin
@@ -111,6 +166,7 @@
   id: ESInfiltrator
   name: es-mask-infiltrator-name
   description: es-mask-infiltrator-desc
+  color: yellow
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorInfiltrator

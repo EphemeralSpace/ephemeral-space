@@ -71,24 +71,27 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#0089EF"    
+# ES Start
+# Consistency with new nitrile gloves
+      color: "#4da3ff"    
     - state: soles-icon
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#0089EF"
+        color: "#4da3ff"
       - state: soles-inhand-left
       right:
       - state: inhand-right
-        color: "#0089EF"
+        color: "#4da3ff"
       - state: soles-inhand-right
   - type: Clothing
     sprite: Clothing/Shoes/color.rsi
     clothingVisuals:
       shoes:
       - state: equipped-FEET
-        color: "#0089EF"
+        color: "#4da3ff"
+# ES End
       - state: soles-equipped-FEET
 
 # Brown Shoes

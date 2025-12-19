@@ -6,6 +6,7 @@
   components:
   - type: LightBulb
     color: "#ece2dd"
+    glowColorOverride: "#ffffff"
     lightEnergy: 1.45
     lightSoftness: 2
 
@@ -18,4 +19,5 @@
   components:
   - type: LightBulb
     color: "#929291"
+    glowColorOverride: "#dddddd"
     lightSoftness: 2

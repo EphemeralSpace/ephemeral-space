@@ -264,7 +264,10 @@ namespace Content.Server.Ghost
 
         private void OnPlayerDetached(EntityUid uid, GhostComponent component, PlayerDetachedEvent args)
         {
-            DeleteEntity(uid);
+// ES START
+            if (component.DeleteOnDetach)
+                DeleteEntity(uid);
+// ES END
         }
 
         private void DeleteEntity(EntityUid uid)

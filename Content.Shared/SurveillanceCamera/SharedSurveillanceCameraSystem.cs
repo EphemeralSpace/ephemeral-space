@@ -34,6 +34,7 @@ public abstract class SharedSurveillanceCameraSystem : EntitySystem
     {
         if (component.Active)
         {
+            component.EMPd = true; // ES Change - sets EMPd to true to change CamereVisualKey
             args.Affected = true;
             args.Disabled = true;
             SetActive(uid, false);
@@ -42,6 +43,7 @@ public abstract class SharedSurveillanceCameraSystem : EntitySystem
 
     private void OnEmpDisabledRemoved(EntityUid uid, SurveillanceCameraComponent component, ref EmpDisabledRemovedEvent args)
     {
+        component.EMPd = false; // ES Change - sets EMPd to false to change CamereVisualKey
         SetActive(uid, true);
     }
 

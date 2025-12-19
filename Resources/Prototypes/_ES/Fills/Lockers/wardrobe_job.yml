@@ -77,7 +77,7 @@
     children:
     - id: ClothingHeadHatFedoraBrown
     - id: ClothingBackpackSecurity
-    - id: ClothingShoesBootsJackFilled
+    - id: ClothingShoesColorBrown
     - id: ClothingUniformJumpskirtDetective
     - id: ClothingUniformJumpsuitDetective
 
@@ -143,5 +143,5 @@
   table: !type:AllSelector
     children:
     - id: ClothingBackpack
-    - id: ClothingShoesColorWhite
+    - id: ClothingShoesColorBrown
     - id: ClothingUniformJumpsuitReporter

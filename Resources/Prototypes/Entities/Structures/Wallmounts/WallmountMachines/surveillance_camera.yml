@@ -70,6 +70,7 @@
       Active: camera
       Disabled: camera_off
       InUse: camera_in_use
+      Emp: camera_emp # ES change - adds EMP state
   - type: UserInterface
     interfaces:
       enum.SurveillanceCameraSetupUiKey.Camera:

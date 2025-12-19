@@ -14,7 +14,9 @@
       sound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
     - type: Sprite
-      sprite: Structures/Power/smes.rsi
+# ES START
+      sprite: _ES/Structures/Power/smes.rsi
+# ES END
       snapCardinals: true
       layers:
         - state: smes
@@ -52,7 +54,9 @@
       sourceNode: input
       loadNode: output
       collectionName: smes
-      sprite: Structures/Power/smes.rsi
+# ES START
+      sprite: _ES/Structures/Power/smes.rsi
+# ES END
       state: static
     - type: BatteryDischarger
       voltage: High

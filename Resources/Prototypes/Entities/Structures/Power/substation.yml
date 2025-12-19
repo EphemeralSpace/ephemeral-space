@@ -75,7 +75,9 @@
     mode: SnapgridCenter
   components:
   - type: Sprite # TODO: add sprite for maintenance panel open
-    sprite: Structures/Power/substation.rsi
+# ES START
+    sprite: _ES/Structures/Power/substation.rsi
+# ES END
     snapCardinals: true
     layers:
     - state: substation
@@ -94,7 +96,9 @@
     color: "#ff6900"
     # ES END
   - type: PowerMonitoringDevice
-    sprite: Structures/Power/substation.rsi
+# ES START
+    sprite: _ES/Structures/Power/substation.rsi
+# ES END
     state: substation_static
   - type: Destructible
     thresholds:

@@ -16,9 +16,6 @@ public sealed class ESDetonateNukeObjectiveSystem : ESBaseObjectiveSystem<ESDeto
 
     private void OnNukeExploded(NukeExplodedEvent ev)
     {
-        foreach (var objective in ObjectivesSys.GetObjectives<ESDetonateNukeObjectiveComponent>())
-        {
-            ObjectivesSys.AdjustObjectiveCounter(objective.Owner);
-        }
+        ObjectivesSys.AdjustObjectiveCounter<ESDetonateNukeObjectiveComponent>();
     }
 }

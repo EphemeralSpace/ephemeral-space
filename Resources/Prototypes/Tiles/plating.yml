@@ -18,6 +18,9 @@
   footstepSounds:
     collection: FootstepPlating
   heatCapacity: 10000
+  # ES START
+  flammability: 0.5
+  # ES END
 
 - type: tile
   id: PlatingDamaged
@@ -44,6 +47,9 @@
   footstepSounds:
     collection: FootstepPlating
   heatCapacity: 10000
+  # ES START
+  flammability: 0.5
+  # ES END
 
 - type: tile
   id: PlatingAsteroid
@@ -56,6 +62,9 @@
   footstepSounds:
     collection: FootstepPlating
   heatCapacity: 10000
+  # ES START
+  flammability: 0.5
+  # ES END
 
 - type: tile
   id: PlatingBrass

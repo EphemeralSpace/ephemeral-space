@@ -203,6 +203,8 @@ public sealed class NukeSystem : EntitySystem
         }
         else
         {
+/* ES START
+            // Disable the anchoring check for nukes
             if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
                 return;
 
@@ -218,6 +220,7 @@ public sealed class NukeSystem : EntitySystem
 
                 return;
             }
+ES END */
 
             _transform.SetCoordinates(uid, xform, xform.Coordinates.SnapToGrid());
             _transform.AnchorEntity(uid, xform);

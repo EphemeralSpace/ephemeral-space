@@ -172,20 +172,21 @@ public abstract partial class ESSharedAuditionsSystem
     }
 
     private const float GenderlessFirstNameChance = 0.5f; // the future is woke
-    private const float DoubleFirstNameChance = 0.02f;
-    private const float HyphenatedFirstMiddleNameChance = 0.02f;
-    private const float QuotedMiddleNameChance = 0.02f;
+    private const float DoubleFirstNameChance = 0.015f;
+    private const float HyphenatedFirstMiddleNameChance = 0.015f;
+    private const float QuotedMiddleNameChance = 0.03f;
     private const float HyphenatedLastNameChance = 0.05f;
-    private const float AbbreviatedMiddleChance = 0.12f;
+    private const float AbbreviatedMiddleChance = 0.07f;
     private const float AbbreviatedFirstMiddleChance = 0.07f;
     private const float AbbreviatedFirstMiddleAltChance = 0.4f;
     private const float ParticleChance = 0.03f;
     private const float SuffixChance = 0.05f;
-    private const float PrefixChance = 0.04f;
+    private const float PrefixChance = 0.07f;
     private const float PrefixGenderlessChance = 0.6f;
     private const float PrefixFirstNameless = 0.5f;
-    private const float LastNameless = 0.008f;
-    private const float FirstNameless = 0.004f;
+    private const float LastNameless = 0.009f;
+    private const float FirstNameless = 0.006f;
+    private const int AlliterationTotalChances = 6;
 
     private static readonly ProtoId<LocalizedDatasetPrototype> ParticleDataset = "ESNameParticle";
     private static readonly ProtoId<LocalizedDatasetPrototype> SuffixDataset = "ESNameSuffix";
@@ -211,7 +212,19 @@ public abstract partial class ESSharedAuditionsSystem
         var prefix = Prefix(profile.Gender);
         var suffix = Suffix();
         var firstName = FirstName(firstNameDataSet);
-        var lastName = LastName(lastNameDataSet);
+
+        // when generating the lastname, we want to artificially boost the chance
+        // that alliteration happens, because alliteration is usually really funny
+        // we do this by essentially just generating the last name a few extra times
+        // and if we generate an alliterative name, then we stop. otherwise, we just
+        // take the last one that got generated
+        var lastName = string.Empty;
+        for (var i = 0; i < AlliterationTotalChances; i++)
+        {
+            lastName = LastName(lastNameDataSet);
+            if (firstName.First() == lastName.First())
+                break;
+        }
 
         if (prefix != string.Empty && _random.Prob(PrefixFirstNameless))
             firstName = string.Empty;

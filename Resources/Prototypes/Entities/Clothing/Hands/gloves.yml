@@ -145,19 +145,25 @@
     fiberMaterial: fibers-latex
   - type: FingerprintMask
 
+# ES Start
+# ES Nitrile gloves are now renamed blue gloves!
 - type: entity
   parent: ClothingHandsButcherable
   id: ClothingHandsGlovesNitrile
-  name: nitrile gloves
-  description: High-quality nitrile gloves. Expensive medical PPE.
+  categories: [ HideSpawnMenu ]
+  name: DEPRECATED
+  suffix: DEPRECATED
+  description: You should not have this item. Please take a screenshot and report this if you see this!
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/nitrile.rsi
+    sprite: deprecated.rsi
+    state: deprecated
   - type: Clothing
     sprite: Clothing/Hands/Gloves/nitrile.rsi
   - type: Fiber
     fiberMaterial: fibers-nitrile
   - type: FingerprintMask
+# ES End
 
 - type: entity
   parent: ClothingHandsButcherable

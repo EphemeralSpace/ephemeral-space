@@ -773,7 +773,10 @@ namespace Content.Server.GameTicking
 
             _banManager.Restart();
 
-            _gameMapManager.ClearSelectedMap();
+// ES START
+            // We need to have the map chosen in the lobby for job selection purposes.
+            _gameMapManager.SelectMapByConfigRules();
+// ES END
 
             // Clear up any game rules.
             ClearGameRules();

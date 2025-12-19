@@ -54,6 +54,9 @@ public sealed class ForceMapTest
 
         await server.WaitAssertion(() =>
         {
+// ES START
+            gameMapMan.ClearSelectedMap();
+// ES END
             // Make sure we're set to the default map
             Assert.That(gameMapMan.GetSelectedMap()?.ID, Is.EqualTo(DefaultMapName),
                 $"Test didn't start on expected map ({DefaultMapName})!");

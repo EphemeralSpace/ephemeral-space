@@ -87,6 +87,7 @@
     key: lights
 # ES START
   - type: ESSparkOnHit
+    tileFireChance: 0.05
 # ES END
   placement:
     mode: SnapgridCenter
@@ -413,7 +414,6 @@
   - type: PoweredLight
     hasLampOnSpawn: DimLightBulb
   - type: PoweredLightVisuals
-    glowAlpha: 0.3
   - type: DamageOnInteract
     damage:
       types:

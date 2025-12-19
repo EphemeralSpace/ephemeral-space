@@ -28,6 +28,13 @@ public sealed partial class ESImbibeReagentObjectiveComponent : Component
     public LocId DescriptionLoc { get; private set; }
 
     /// <summary>
+    ///     The title for this objective, where $reagent will become the reagent name,
+    ///     and $count will become the objective's counter target, if it exists.
+    /// </summary>
+    [DataField(required: true)]
+    public LocId TitleLoc { get; private set; }
+
+    /// <summary>
     ///     The target reagent we need to consume.
     /// </summary>
     [DataField]

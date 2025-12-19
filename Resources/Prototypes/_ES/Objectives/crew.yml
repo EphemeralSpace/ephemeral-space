@@ -73,6 +73,7 @@
   - type: ESImbibeReagentObjective
     canBeFromFood: false # you're GUZZLING not MUNCHING.
     descriptionLoc: es-imbibe-reagent-guzzler-desc
+    titleLoc: es-guzzle-specific-objective-title
     possibleConsumeTargets:
     - Beer
     - WeldingFuel # Excuse to really annoy engineering, AND medical.
@@ -82,7 +83,6 @@
     - JuiceApple
     - Milk
     - Bicaridine
-    - THC
     - Sugar
     - Blood
     - Fiber
@@ -91,7 +91,6 @@
     - SpaceCleaner
     - SpaceLube
   - type: ESCounterObjective
-    title: es-guzzle-specific-objective-title
     target: 100
     maxTarget: 200
     targetIncrement: 10
@@ -112,3 +111,125 @@
     title: es-guzzle-unique-reagents-objective-title
     target: 15
     maxTarget: 25
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveTakeDamage
+  name: Take damage
+  description: Take as much of a certain damage type as you can.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Weapons/Melee/baseball_bat.rsi
+      state: icon
+  - type: ESTakeDamageObjective
+    nameLoc: es-daredevil-objective-title
+    descriptionLoc: es-daredevil-desc
+    requiredDamages:
+    - Heat
+    - Shock
+    - Cold
+    - Caustic
+    - Slash
+    - Piercing
+    - Poison
+    - Blunt
+  - type: ESCounterObjective
+    target: 250
+    maxTarget: 500
+    targetIncrement: 50
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveTakeDamageFromSource
+  name: Take damage from source
+  description: Take as much of a certain damage type as you can.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Specific/Medical/medical.rsi
+      state: bloodpack
+  - type: ESTakeDamageFromSourceObjective
+    possibleSources:
+    - ESGrille
+    - ESEmitter
+    - ESAncestor
+  - type: ESCounterObjective
+    target: 100
+    maxTarget: 250
+    targetIncrement: 10
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveTakeTotalDamage
+  name: Take total damage
+  description: Take a total amount of damage.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Species/Skeleton/parts.rsi
+      state: skull_icon
+  - type: ESTakeTotalDamageObjective
+  - type: ESCounterObjective
+    title: es-daredevil-total-objective-title
+    description: es-daredevil-total-objective-desc
+    target: 750
+    maxTarget: 1250
+    targetIncrement: 50
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveEatUniqueFoods
+  name: Eat unique foods
+  description: Your stomach yearns for the unknown, seek out all the different tastes of the world!
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Species/Human/organs.rsi
+      state: stomach
+  - type: ESEatUniqueFoodsObjective
+  - type: ESCounterObjective
+    title: es-eat-unique-foods-objective-title
+    target: 25
+    maxTarget: 40
+    targetIncrement: 5
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveEatFood
+  name: Eat a food
+  description: You have a particularly exotic craving. Make sure you satiate it!
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Consumable/Food/plates.rsi
+      state: plate
+  - type: ESEatFoodObjective
+    foods:
+    - FoodMeatCorgi
+    - MaterialSmileExtract
+    - FoodJellyAmanita
+    - FoodBurgerBear
+    - FoodSoupChiliClown
+    - FoodSoupMonkey
+    - FoodMeatAnomaly
+    - FoodBurgerClown
+    - FoodPizzaDank
+  - type: ESCounterObjective
+    target: 1
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveSurvive
+  name: Survive
+  description: Survive until the end of the shift at all costs.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Interface/Alerts/human_alive.rsi
+      state: health0
+  - type: ESMobStateObjective
+    desiredStates: [Alive, Critical]
+  - type: ESCounterObjective
+    target: 1
+    counter: 1
