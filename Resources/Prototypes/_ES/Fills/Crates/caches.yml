@@ -43,12 +43,17 @@
 - type: entityTable
   id: ESTraitorCacheInfiltrator
   table:
-    all:
-    - id: ClothingBackpackChameleonFill
-    - id: ESEmag
-    - id: SmokeGrenade
-      amount: 2
-
+    group:
+    - all:
+      - id: ClothingBackpackChameleonFill
+      - id: ESEmag
+      - id: SmokeGrenade
+        amount: 2
+    - all:
+      - id: SyndicateJawsOfLife
+      - id: ScramImplanter
+      - id: C4
+        amount: 2
 # Marauder
 - type: entity
   parent: ESCrateCache
@@ -63,14 +68,22 @@
 - type: entityTable
   id: ESTraitorCacheMarauder
   table:
-    all:
-    - id: ESWeaponRevolver357
-    - id: ESSpeedLoader357
-      amount: 2
-    - id: KitchenKnife
-    - id: ClothingOuterArmorBasic
-    - id: ExGrenade
-      amount: 2
+    group:
+    - all:
+      - id: ESWeaponRevolver357
+      - id: ESSpeedLoader357
+        amount: 2
+      - id: KitchenKnife
+      - id: ClothingOuterArmorBasic
+      - id: ExGrenade
+        amount: 2
+    - all:
+      - id: EnergySword
+      - id: ClothingOuterArmorBasic
+      - group:
+          - id: EmpGrenade
+          - id: GrenadeStinger
+      - id: ClothingHeadHelmetBasic
 
 # Veteran
 - type: entity
