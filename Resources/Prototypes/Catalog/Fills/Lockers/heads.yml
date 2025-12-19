@@ -54,18 +54,14 @@
       tableId: LockerFillCaptainNoLaser
     - id: WeaponAntiqueLaser
 
-# ES Start
-# Don't want people mapping the captain's hardsuit, so this is disabled.
 - type: entityTable
   id: FillCaptainHardsuit
-  categories: [ HideSpawnMenu ]
   table: !type:AllSelector
     children:
     - id: ClothingOuterHardsuitCap
     - id: ClothingMaskGasCaptain
     - id: JetpackCaptainFilled
     - id: OxygenTankFilled
-# ES End
 
 # No laser locker, used when the antique laser is placed in the special display crate
 - type: entity
