@@ -10,7 +10,9 @@ job-description-cargotech = Deal with requisitions and deliveries, pilot the car
 job-description-ce = Manage the Engineering department to ensure power, atmospherics, and the hull are in perfect shape.
 job-description-centcomoff = Act as an ambassador to the newest state-of-the-art space station in Nanotrasen's fleet.
 job-description-chaplain = Preach the good word of your deity and religion, and conduct spiritual healing and miracles with your bible.
+<!-- ES START -->
 job-description-chef = Keep the station fed with a variety of food items, butcher dead animals to ensure miasma doesn't leak, and help keep the bar lively.
+<!-- ES END -->
 job-description-chemist = Produce medicinal drugs for the doctors to use, research ethically dubious rare chemicals, and produce weapons of war when enemies of the station arrive.
 job-description-clown = Entertain the crew through elaborate slapstick routines or terrible jokes.
 job-description-cmo = Manage the resources and personnel of the Medical department to keep the crew alive.

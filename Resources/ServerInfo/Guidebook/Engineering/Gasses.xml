@@ -110,13 +110,19 @@
     <GuideEntityEmbed Entity="EmergencyFunnyOxygenTank" Caption=""/>
   </Box>
   A recreational and waste gas, produced by slimes and the combination of frezon and nitrogen.
-
-  ## Ammonia
+  <!-- ES START
+  -->
+  ## Miasma
+  <!-- ES END
+  -->
   <Box>
     <GuideEntityEmbed Entity="AmmoniaCanister" Caption=""/>
   </Box>
   A gas produced by the decomposition of bodies.
 
+  <!-- ES START
+  -->
   Can be condensed to create miasma, which can be used to make space cleaner.
-
+  <!-- ES END
+  -->
 </Document>

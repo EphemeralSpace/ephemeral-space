@@ -75391,8 +75391,9 @@ entities:
 
         The lower the temperature on the freezer, the faster the patient will cool. If Leporazine is available to raise body temperature after treatment, the freezer may safely be set to its lowest possible temperature.
 
-
+#ES START
         The gas filter removes unwanted gasses from the pipe loop. This is most commonly carbon dioxide produced by the patient exhaling, but miasma may also be produced by Vox patients or those experiencing decomposition. The removed gas will be routed directly into the room’s waste pipe, while filtered air will go back into the cryogenic tubes.
+#ES END
       editingDisabled: True
   - uid: 7936
     components:

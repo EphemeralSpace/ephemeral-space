@@ -50,7 +50,9 @@ xenoarch-trigger-tip-water = Water
 xenoarch-trigger-tip-co2 = Carbon dioxide
 xenoarch-trigger-tip-plasma = Non-solid plasma
 xenoarch-trigger-tip-tritium = Tritium
+<!-- ES START -->
 xenoarch-trigger-tip-ammonia = Miasma
+<!-- ES END -->
 xenoarch-trigger-tip-n2o = Nitrous oxide
 xenoarch-trigger-tip-frezon = Frezon
 xenoarch-trigger-tip-radiation = Radiation

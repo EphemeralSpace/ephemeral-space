@@ -16,7 +16,12 @@ reagent-desc-robust-harvest = A highly effective fertilizer with a limited poten
 reagent-name-weed-killer = weed killer
 reagent-desc-weed-killer = A mixture that targets weeds. Very effective against kudzu. While useful it slowly poisons plants with toxins, be careful when using it.
 
-reagent-name-ammonia = Miasma
+<!-- ES START -->
+reagent-name-miasma = miasma
+reagent-desc-miasma = Decayed organic matter. Serves as a good source of nutrients for plants.
+<!-- ES END -->
+
+reagent-name-ammonia = ammonia
 reagent-desc-ammonia = An effective fertilizer, it gives your plants some nutrients.
 
 reagent-name-diethylamine = diethylamine

@@ -18,7 +18,9 @@
   parent: OrganHumanStomach
   id: OrganVoxStomach
   name: stomach
+  #ES START
   description: "A stomach that smells of miasma."
+  #ES END
   components:
   - type: Metabolizer #Skreeeee!
     metabolizerTypes: [Vox]

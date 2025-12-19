@@ -40,7 +40,7 @@ book-text-agrichemkit-manual = Thank you for choosing the safe-for-all-ages Nano
 
       Second Experiment: Miasma and Diethylamine
       Mix 3 parts hydrogen to 1 part nitrogen to make miasma. It's a healthy, nutritious treat for your crops that aren't at their best.
-      But if you want to impress the judges at your local NanoTrasen-sponsored County Fair, you'll need to add an equal amount of ethanol to your miasma.
+      But if you want to impress the judges at your local NanoTrasen-sponsored County Fair, you'll need to add an equal amount of ethanol to your ammonia.
       This will mix into Diethylamine, a miracle fertilizer that can make plants grow faster AND live longer! Keep the crops you love with you longer thanks to Diethylamine.
 
       Third Experiment: Unstable Mutagen

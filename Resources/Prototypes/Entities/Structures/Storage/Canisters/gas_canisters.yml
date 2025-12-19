@@ -485,8 +485,10 @@
 - type: entity
   parent: GasCanister
   id: AmmoniaCanister
+  #ES START
   name: miasma canister
   description: A canister that can contain any type of gas. This one is supposed to contain miasma. It can be attached to connector ports using a wrench.
+  #ES END
   components:
     - type: Sprite
       layers:

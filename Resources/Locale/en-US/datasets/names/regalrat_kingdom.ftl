@@ -1,5 +1,7 @@
 names-regal-rat-kingdom-dataset-1 = Plague
+<!-- ES START -->
 names-regal-rat-kingdom-dataset-2 = Miasma
+<!-- ES END -->
 names-regal-rat-kingdom-dataset-3 = Maintenance
 names-regal-rat-kingdom-dataset-4 = Trash
 names-regal-rat-kingdom-dataset-5 = Garbage

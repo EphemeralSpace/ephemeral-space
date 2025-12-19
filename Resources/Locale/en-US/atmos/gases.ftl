@@ -1,4 +1,6 @@
-gas-ammonia-abbreviation = NH₃
+<!-- ES START -->
+gas-ammonia-abbreviation = Mias
+<!-- ES END -->
 gas-carbon-dioxide-abbreviation = CO₂
 gas-frezon-abbreviation = F
 gas-nitrogen-abbreviation = N₂
