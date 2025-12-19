@@ -22,12 +22,12 @@
       entity_storage: !type:NestedSelector
         tableId: FillLockerWarden
 
-# ES Start
 - type: entityTable
   id: FillLockerWarden
   table: !type:AllSelector
     children:
     - id: FlashlightSeclite
+# ES Start
     - id: ESWeaponHybridTaser
     - id: ClothingBeltSecurityFilled
     - id: Flash

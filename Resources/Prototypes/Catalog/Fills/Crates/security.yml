@@ -94,7 +94,7 @@
   id: CrateSecurityTrackingMindshieldImplants
   name: implanter crate
 # ES Start
-# Mindshields are not used so they ahve been removed
+# Mindshields are not used, so they have been removed
   description: Contains 4 tracking implants. Requires Security access to open.
   components:
   - type: EntityTableContainerFill

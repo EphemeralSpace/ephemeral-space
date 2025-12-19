@@ -104,7 +104,6 @@
         - !type:NestedSelector
           tableId: FillCaptainHardsuit
 
-# ES Start
 - type: entityTable
   id: LockerFillHeadOfPersonnel
   table: !type:AllSelector
@@ -112,6 +111,7 @@
     - id: AccessConfigurator
     - id: BoxEncryptionKeyPassenger
     - id: BoxEncryptionKeyService
+# ES Start
     - id: BoxHeadset
     - id: BoxHoPStamps
     - id: BoxID
@@ -297,11 +297,11 @@
         - !type:NestedSelector
           tableId: FillResearchDirectorHardsuit
 
-# ES Start
 - type: entityTable
   id: LockerFillHeadOfSecurityNoHardsuit
   table: !type:AllSelector
     children:
+# ES Start
     - id: ESWeaponHybridTaser
     - id: BookSpaceLaw
     - id: BoxEncryptionKeySecurity
