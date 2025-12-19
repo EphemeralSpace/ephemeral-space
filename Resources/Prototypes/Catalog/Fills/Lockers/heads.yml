@@ -23,8 +23,7 @@
       entity_storage: !type:NestedSelector
         tableId: LockerFillQuarterMaster
 
-# ES Start
-# Replaces all of the stuff with its proper ES equivalent, and the saber because the captain doesn't really have a good reason to have that.
+# No laser table
 - type: entityTable
   id: LockerFillCaptainNoLaser
   table: !type:AllSelector
@@ -32,8 +31,11 @@
     - id: CaptainIDCard
     - id: CigarGoldCase
       prob: 0.25
+    - id: ClothingBeltSheathFilled
     - id: ClothingHeadsetAltCommand
     - id: ClothingOuterArmorCaptainCarapace
+    - id: BoxCaptainCircuitboards
+    - id: DoorRemoteCustom
     - id: MedalCase
     - id: NukeDisk
     - id: PinpointerNuclear
@@ -41,9 +43,12 @@
       prob: 0.1
     - id: RubberStampCaptain
     - id: SpaceCash1000
-    - id: ESWeaponHybridTaser
-    - id: ClothingEyesGlassesSecurity
-# ES End
+    - id: WeaponDisabler
+    - id: ClothingEyesGlassesCommand
+    - id: HeadSkeleton # A skull to accompany your skeleton crew
+      conditions:
+      - !type:PlayerCountCondition
+        max: 15
 
 # No laser table + Laser table
 - type: entityTable
@@ -51,9 +56,12 @@
   table: !type:AllSelector
     children:
     - !type:NestedSelector
-      tableId: LockerFillCaptainNoLaser
+# ES Start
+      tableId: ESLockerFillCaptain
+# ES End
     - id: WeaponAntiqueLaser
 
+# Hardsuit table, used for suit storage as well
 - type: entityTable
   id: FillCaptainHardsuit
   table: !type:AllSelector
@@ -72,7 +80,9 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillCaptainNoLaser
+# ES Start
+        tableId: ESLockerFillCaptain
+# ES End
 
 # No Laser + Laser locker
 - type: entity
@@ -107,8 +117,8 @@
     - id: AccessConfigurator
     - id: BoxEncryptionKeyPassenger
     - id: BoxEncryptionKeyService
-# ES Start
     - id: BoxHeadset
+    - id: BoxHoPCircuitboards
     - id: BoxHoPStamps
     - id: BoxID
     - id: BoxPDA
@@ -116,12 +126,14 @@
       prob: 0.25
       # Fuck the HoP they don't deserve fucking cigars.
       # Yes they do fuck you.
+    - id: ClothingBackpackIan
+      prob: 0.5
     - id: ClothingHeadsetCommand
     - id: ClothingNeckGoldmedal
+    - id: DoorRemoteService
     - id: HoPIDCard
-    - id: ESWeaponHybridTaser
-    - id: ClothingEyesHudSecurity
-# ES End
+    - id: WeaponDisabler
+    - id: ClothingEyesHudCommand
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -131,7 +143,9 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillHeadOfPersonnel
+# ES Start
+        tableId: ESLockerFillHeadOfPersonnel
+# ES End
 
 # No hardsuit table
 - type: entityTable
@@ -293,12 +307,12 @@
         - !type:NestedSelector
           tableId: FillResearchDirectorHardsuit
 
+# No hardsuit table
 - type: entityTable
   id: LockerFillHeadOfSecurityNoHardsuit
   table: !type:AllSelector
     children:
-# ES Start
-    - id: ESWeaponHybridTaser
+    - id: WeaponEnergyMagnum
     - id: BookSpaceLaw
     - id: BoxEncryptionKeySecurity
     - id: CigarGoldCase
@@ -309,9 +323,14 @@
     - id: ClothingOuterCoatHoSTrench
     - id: ClothingShoesBootsJack
     - id: FlashlightSeclite
+    - id: DoorRemoteSecurity
+    - id: HoloprojectorSecurity
     - id: RubberStampHos
+    - id: BoxHoSCircuitboards
+    - id: WeaponDisabler
+    - id: WeaponTaser
+    - id: WantedListCartridge
     - id: DrinkHosFlask
-# ES End
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -332,7 +351,9 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillHeadOfSecurityNoHardsuit
+# ES Start
+        tableId: ESLockerFillHeadOfSecurity
+# ES End
 
 # No hardsuit + Hardsuit locker
 - type: entity

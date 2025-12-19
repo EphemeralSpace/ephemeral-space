@@ -20,30 +20,34 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillLockerWarden
+# ES Start
+        tableId: ESFillLockerWarden
+# ES End
 
 - type: entityTable
   id: FillLockerWarden
   table: !type:AllSelector
     children:
     - id: FlashlightSeclite
-# ES Start
-    - id: ESWeaponHybridTaser
+    - id: WeaponDisabler
+    - id: WeaponTaser
     - id: ClothingBeltSecurityFilled
     - id: Flash
     - id: ClothingEyesGlassesSecurity
-    - id: ClothingHandsGlovesColorBlack
+    - id: ClothingHandsGlovesCombat
     - id: ClothingShoesBootsJack
     - id: ClothingOuterCoatWarden
+    - id: ClothingOuterWinterWarden
     - id: RubberStampWarden
+    - id: DoorRemoteArmory
+    - id: HoloprojectorSecurity
     - id: BookSpaceLaw
     - id: ClothingBackpackElectropack
       amount: 2
     - id: RemoteSignaller
       amount: 2
-    - id: Multitool
+    - id: NetworkConfigurator
     - id: Binoculars
-# ES End
 
 - type: entityTable
   id: FillLockerWardenHarduit
@@ -61,16 +65,20 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillLockerSecurity
-
 # ES Start
+        tableId: ESFillLockerSecurity
+# ES End
+
 - type: entityTable
   id: FillLockerSecurity
   table: !type:AllSelector
     children:
     - id: FlashlightSeclite
       prob: 0.8
-    - id: ESWeaponHybridTaser
+    - id: WeaponDisabler
+    - id: WeaponTaser
+    - id: ClothingUniformJumpsuitSecGrey
+      prob: 0.3
     - id: ClothingHeadHelmetBasic
     - id: ClothingOuterArmorBasic
     - id: ClothingBeltSecurityFilled
@@ -80,9 +88,12 @@
     - id: ClothingHeadsetSecurity
     - id: ClothingHandsGlovesColorBlack
     - id: ClothingShoesBootsJack
+    - id: WeaponMeleeNeedle
+      prob: 0.1
+    - id: HoloprojectorSecurity
+      prob: 0.6
     - id: BookSpaceLaw
       prob: 0.5
-# ES End
 
 - type: entity
   id: LockerDetectiveFilled
@@ -92,30 +103,30 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillLockerDetective
-
 # ES Start
+        tableId: ESFillLockerDetective
+# ES End
+
 - type: entityTable
   id: FillLockerDetective
   table: !type:AllSelector
     children:
     - id: ClothingEyesGlassesNoir
-    - id: ESWeaponRevolver357 # sure, the other security roles don't get guns, but what is a detective without their revolver?
     - id: ClothingHeadHatDetGadget
-      prob: 0.15
     - id: ClothingNeckTieDet
     - id: ClothingOuterVestDetective
     - id: ClothingOuterCoatDetectiveLoadout
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
     - id: ForensicScanner
+    - id: LogProbeCartridge
     - id: BoxForensicPad
     - id: DrinkDetFlask
     - id: ClothingHandsGlovesForensic
     - id: RubberStampDetective
+    - id: HoloprojectorSecurity
     - id: BoxEvidenceMarkers
     - id: HandLabeler
-# ES End
 
 - type: entity
   id: ClosetBombFilled
