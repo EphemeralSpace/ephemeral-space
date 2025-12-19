@@ -14,8 +14,10 @@ public sealed partial class PerishableComponent : Component
     /// <summary>
     /// How long it takes after death to start rotting.
     /// </summary>
+    /// ES START
     [DataField]
-    public TimeSpan RotAfter = TimeSpan.FromMinutes(10);
+    public TimeSpan RotAfter = TimeSpan.FromMinutes(1);
+    /// ES END
 
     /// <summary>
     /// How much rotting has occured
