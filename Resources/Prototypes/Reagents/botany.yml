@@ -199,10 +199,10 @@
 
 #ES START
 - type: reagent
-  id: Ammonia
-  name: reagent-name-ammonia
+  id: Miasma
+  name: reagent-name-miasma
   group: Botanical
-  desc: reagent-desc-ammonia
+  desc: reagent-desc-miasma
   physicalDesc: reagent-physical-desc-pungent
   flavor: bitter
   color: "#77b58e"
