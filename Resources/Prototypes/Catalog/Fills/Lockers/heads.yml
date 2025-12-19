@@ -23,7 +23,8 @@
       entity_storage: !type:NestedSelector
         tableId: LockerFillQuarterMaster
 
-# No laser table
+# ES Start
+# Replaces all of the stuff with its proper ES equivalent, and the saber because the captain doesn't really have a good reason to have that.
 - type: entityTable
   id: LockerFillCaptainNoLaser
   table: !type:AllSelector
@@ -31,11 +32,8 @@
     - id: CaptainIDCard
     - id: CigarGoldCase
       prob: 0.25
-    - id: ClothingBeltSheathFilled
     - id: ClothingHeadsetAltCommand
     - id: ClothingOuterArmorCaptainCarapace
-    - id: BoxCaptainCircuitboards
-    - id: DoorRemoteCustom
     - id: MedalCase
     - id: NukeDisk
     - id: PinpointerNuclear
@@ -43,12 +41,9 @@
       prob: 0.1
     - id: RubberStampCaptain
     - id: SpaceCash1000
-    - id: WeaponDisabler
-    - id: ClothingEyesGlassesCommand
-    - id: HeadSkeleton # A skull to accompany your skeleton crew
-      conditions:
-      - !type:PlayerCountCondition
-        max: 15
+    - id: ESWeaponHybridTaser
+    - id: ClothingEyesGlassesSecurity
+# ES End
 
 # No laser table + Laser table
 - type: entityTable
@@ -59,15 +54,18 @@
       tableId: LockerFillCaptainNoLaser
     - id: WeaponAntiqueLaser
 
-# Hardsuit table, used for suit storage as well
+# ES Start
+# Don't want people mapping the captain's hardsuit, so this is disabled.
 - type: entityTable
   id: FillCaptainHardsuit
+  categories: [ HideSpawnMenu ]
   table: !type:AllSelector
     children:
     - id: ClothingOuterHardsuitCap
     - id: ClothingMaskGasCaptain
     - id: JetpackCaptainFilled
     - id: OxygenTankFilled
+# ES End
 
 # No laser locker, used when the antique laser is placed in the special display crate
 - type: entity
@@ -106,6 +104,7 @@
         - !type:NestedSelector
           tableId: FillCaptainHardsuit
 
+# ES Start
 - type: entityTable
   id: LockerFillHeadOfPersonnel
   table: !type:AllSelector
@@ -114,7 +113,6 @@
     - id: BoxEncryptionKeyPassenger
     - id: BoxEncryptionKeyService
     - id: BoxHeadset
-    - id: BoxHoPCircuitboards
     - id: BoxHoPStamps
     - id: BoxID
     - id: BoxPDA
@@ -122,14 +120,12 @@
       prob: 0.25
       # Fuck the HoP they don't deserve fucking cigars.
       # Yes they do fuck you.
-    - id: ClothingBackpackIan
-      prob: 0.5
     - id: ClothingHeadsetCommand
     - id: ClothingNeckGoldmedal
-    - id: DoorRemoteService
     - id: HoPIDCard
-    - id: WeaponDisabler
-    - id: ClothingEyesHudCommand
+    - id: ESWeaponHybridTaser
+    - id: ClothingEyesHudSecurity
+# ES End
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -301,12 +297,12 @@
         - !type:NestedSelector
           tableId: FillResearchDirectorHardsuit
 
-# No hardsuit table
+# ES Start
 - type: entityTable
   id: LockerFillHeadOfSecurityNoHardsuit
   table: !type:AllSelector
     children:
-    - id: WeaponEnergyMagnum
+    - id: ESWeaponHybridTaser
     - id: BookSpaceLaw
     - id: BoxEncryptionKeySecurity
     - id: CigarGoldCase
@@ -317,14 +313,9 @@
     - id: ClothingOuterCoatHoSTrench
     - id: ClothingShoesBootsJack
     - id: FlashlightSeclite
-    - id: DoorRemoteSecurity
-    - id: HoloprojectorSecurity
     - id: RubberStampHos
-    - id: BoxHoSCircuitboards
-    - id: WeaponDisabler
-    - id: WeaponTaser
-    - id: WantedListCartridge
     - id: DrinkHosFlask
+# ES End
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
