@@ -114,7 +114,7 @@
   - type: ESReincarnateMind
   objectives:
     all:
-    - id: ESObjectiveBeKilled
+    - id: ESObjectivePhantomDie
     - id: ESObjectivePhantomAvenge
 
 - type: esMask
