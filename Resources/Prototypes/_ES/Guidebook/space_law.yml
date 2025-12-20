@@ -7,6 +7,6 @@
 # dummy entry to replace upstream one since I think it got removed at some point .
 - type: guideEntry
   id: SpaceLaw
-  hidden: false
+  hidden: true
   name: guide-entry-rules-space-law
   text: "/ServerInfo/_ES/Guidebook/SpaceLaw.xml"
