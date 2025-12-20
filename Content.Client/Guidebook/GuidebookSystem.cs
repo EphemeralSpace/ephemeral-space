@@ -111,14 +111,17 @@ public sealed class GuidebookSystem : EntitySystem
             return;
 
         // ES START
-        component.Guides = TryInterpretGuidesWithESPrefix(component.Guides);
+        var guides = TryInterpretGuidesWithESPrefix(component.Guides);
         // ES END
 
         args.Verbs.Add(new()
         {
             Text = Loc.GetString("guide-help-verb"),
             Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/information.svg.192dpi.png")),
-            Act = () => OnGuidebookOpen?.Invoke(component.Guides, null, null, component.IncludeChildren, component.Guides[0]),
+            // ES START
+            // component.Guides -> guides
+            Act = () => OnGuidebookOpen?.Invoke(guides, null, null, component.IncludeChildren, guides[0]),
+            // ES END
             ClientExclusive = true,
             CloseMenu = true
         });
@@ -143,10 +146,11 @@ public sealed class GuidebookSystem : EntitySystem
             return;
 
         // ES START
-        component.Guides = TryInterpretGuidesWithESPrefix(component.Guides);
-        // ES END
+        var guides = TryInterpretGuidesWithESPrefix(component.Guides);
 
-        OnGuidebookOpen?.Invoke(component.Guides, null, null, component.IncludeChildren, component.Guides[0]);
+        // ES component.Guides -> guides
+        OnGuidebookOpen?.Invoke(guides, null, null, component.IncludeChildren, guides[0]);
+        // ES END
         args.Handled = true;
     }
 
