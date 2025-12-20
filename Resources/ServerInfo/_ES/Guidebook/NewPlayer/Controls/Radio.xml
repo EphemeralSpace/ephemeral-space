@@ -25,7 +25,7 @@ Your radio, and intercoms, allows you to communicate across the entire station a
   <GuideEntityEmbed Entity="ClothingHeadsetGrey"/>
 </Box>
 
-To send a [color=#a4885c]station-wide[/color] message over the radio preface, find an [color=cyan]intercom[/color], turn it's microphone on, and use the [color=#32cd32]Common[/color] channel by beginning your text with [color=#32cd32]semi-colon (;)[/color].
+To send a [color=#a4885c]station-wide[/color] message over the radio, find an [color=cyan]intercom[/color], turn its microphone on, and use the [color=#32cd32]Common[/color] channel by beginning your text with [color=#32cd32]semi-colon (;)[/color].
 People standing right next to you might catch bits of your radio message, even if they don't have the access to the relevant radio channel. Watch for eavesdroppers.
 
 Unlike other servers, Ephemeral Space does not have [color=#32cd32]Common[/color] microphone access on regular headsets.
