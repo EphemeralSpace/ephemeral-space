@@ -6,6 +6,7 @@ using Content.Shared._ES.Objectives;
 using Content.Shared.Body.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mind.Components;
+using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Robust.Shared.Player;
 
@@ -32,14 +33,13 @@ public sealed class ESSacrificeHealObjectiveSystem : ESBaseObjectiveSystem<ESSac
 
     private void OnMobStateChanged(Entity<ESSacrificeHealObjectiveComponent> ent, ref ESMobStateChanged args)
     {
-        if (args.NewMobState != ent.Comp.TriggerMobState)
+        if (args.NewMobState != MobState.Dead)
             return;
 
         var coords = Transform(args.Mob.Owner).Coordinates;
 
         var count = 0;
-        var msg = Loc.GetString("es-sacrifice-popup-heroic-sacrifice",
-            ("name", Identity.Name(args.Mob.Owner, EntityManager)));
+        var msg = Loc.GetString(ent.Comp.SacrificePopupMessage, ("name", Identity.Name(args.Mob.Owner, EntityManager)));
 
         foreach (var otherMob in _lookup.GetEntitiesInRange<MindContainerComponent>(coords, ent.Comp.Radius, LookupFlags.Uncontained))
         {

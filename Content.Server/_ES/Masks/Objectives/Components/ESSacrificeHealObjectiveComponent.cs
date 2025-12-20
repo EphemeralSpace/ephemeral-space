@@ -15,10 +15,10 @@ namespace Content.Server._ES.Masks.Objectives.Components;
 public sealed partial class ESSacrificeHealObjectiveComponent : Component
 {
     /// <summary>
-    ///     Mob state that will trigger the effect & objective completion.
+    ///     Popup message to be shown to players healed by the sacrifice's death.
     /// </summary>
     [DataField]
-    public MobState TriggerMobState = MobState.Dead;
+    public LocId SacrificePopupMessage = "es-sacrifice-popup-heroic-sacrifice";
 
     /// <summary>
     ///     Radius to apply effect in.
