@@ -1,0 +1,4 @@
+﻿- type: soundCollection
+  id: NukeMusicES
+  files:
+    - /Audio/_ES/StationEvents/descent.ogg
