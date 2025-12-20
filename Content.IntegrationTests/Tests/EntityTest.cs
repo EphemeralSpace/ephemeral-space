@@ -20,7 +20,11 @@ namespace Content.IntegrationTests.Tests
     {
         private static readonly ProtoId<EntityCategoryPrototype> SpawnerCategory = "Spawner";
 
-        [Test]
+        // ES START
+        // SpawnAndDirtyAllEntities does literally the same thing, but with more checks
+        // this doesnt need to be two separate tests
+        // [Test]
+        // ES END
         public async Task SpawnAndDeleteAllEntitiesOnDifferentMaps()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
