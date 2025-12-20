@@ -34,6 +34,9 @@ es-mask-survivalist-desc = Survive at all costs. Rely on your MedAlert (TM) to b
 es-mask-survivalist-medalert-crit-message = MedAlert Notice: {$name} is in critical condition {$location}!
 es-mask-survivalist-medalert-death-message = MedAlert Notice: A tragedy has befallen us. {$name} has perished {$location}.
 
+es-mask-sacrifice-name = Sacrifice
+es-mask-sacrifice-desc = Find an opportunity to heroically sacrifice yourself, and heal others in your presence massively by doing so.
+
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete the objectives.
 
