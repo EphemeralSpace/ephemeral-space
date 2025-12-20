@@ -514,7 +514,10 @@ namespace Content.IntegrationTests.Tests
             return resultCount;
         }
 
-        [Test]
+        // ES START
+        // we are deliberately removing maps from tests, this is not a meaningful test anymore
+        // [Test]
+        // ES END
         public async Task AllMapsTested()
         {
             await using var pair = await PoolManager.GetServerClient();
