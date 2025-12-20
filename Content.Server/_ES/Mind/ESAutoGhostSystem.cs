@@ -1,4 +1,5 @@
 using Content.Server.Ghost;
+using Content.Server.KillTracking;
 using Content.Server.Mind;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Mind;
@@ -25,7 +26,7 @@ public sealed class ESAutoGhostSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<GhostOnMoveComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<GhostOnMoveComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<GhostOnMoveComponent, MobStateChangedEvent>(OnMobStateChanged, after: [typeof(KillTrackingSystem)]);
 
         SubscribeLocalEvent<MindContainerComponent, ESAutoGhostEvent>(OnAutoGhost);
     }

@@ -1,0 +1,29 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectivePhantomDie
+  name: Be killed
+  description: Die, preferably at someone else's hand.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
+  - type: ESTargetObjective
+  - type: ESTargetSelfObjective
+  - type: ESKillTargetObjective
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectivePhantomAvenge
+  name: Avenge yourself
+  description: After death, kill your murderer and find peace.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Weapons/Melee/kitchen_knife.rsi
+      state: icon
+  - type: ESTargetObjective
+    title: es-phantom-avenge-objective-title
+  - type: ESAvengeSelfObjective
+  - type: ESKillTargetObjective
+    defaultProgress: 0 # if no one kills you, then you LOSE

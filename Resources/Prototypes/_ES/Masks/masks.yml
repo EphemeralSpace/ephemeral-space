@@ -104,6 +104,20 @@
     - ESActionMaskAdrenalinePump
 
 - type: esMask
+  id: ESPhantom
+  name: es-mask-phantom-name
+  troupe: ESCrew
+  description: es-mask-phantom-desc
+  color: lavender
+  weight: 0.5
+  mindComponents:
+  - type: ESReincarnateMind
+  objectives:
+    all:
+    - id: ESObjectivePhantomDie
+    - id: ESObjectivePhantomAvenge
+
+- type: esMask
   id: ESGlutton
   name: es-mask-glutton-name
   troupe: ESCrew
