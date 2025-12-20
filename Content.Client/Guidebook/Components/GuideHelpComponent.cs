@@ -14,7 +14,12 @@ public sealed partial class GuideHelpComponent : Component
     /// What guides to include show when opening the guidebook. The first entry will be used to select the currently
     /// selected guidebook.
     /// </summary>
-    [DataField(required: true)]
+    // ES START
+    // dont write yaml for this
+    // bc we are sometimes modifying it to try and point to our prototypes instead
+    // also theres no reason for this to write anyway. its client so it wont. but like yknow
+    [DataField(required: true, readOnly: true)]
+    // ES END
     public List<ProtoId<GuideEntryPrototype>> Guides = new();
 
     /// <summary>
