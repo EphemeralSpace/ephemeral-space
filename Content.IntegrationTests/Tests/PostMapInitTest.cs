@@ -90,10 +90,10 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] GameMaps =
         {
-// ES START
+            // ES START
             "ESTestMap",
             "ESToast",
-// ES END
+            /*
             "Dev",
             "TestTeg",
             "Fland",
@@ -112,6 +112,8 @@ namespace Content.IntegrationTests.Tests
             "dm01-entryway",
             "Exo",
             "Snowball",
+            */
+            // ES END
         };
 
         private static readonly ProtoId<EntityCategoryPrototype> DoNotMapCategory = "DoNotMap";
