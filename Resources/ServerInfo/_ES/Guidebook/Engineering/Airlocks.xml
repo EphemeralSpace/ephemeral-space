@@ -22,7 +22,7 @@
     <GuideEntityEmbed Entity="DoorElectronics" Caption=""/>
   </Box>
 
-  Airlocks block gas flow, so they can be used to seal off areas in case of a [textlink="hull breach" link="Spacing"] or a [textlink="fire." link="Fires"]
+  Airlocks block gas flow, so they can be used to seal off areas in case of a [textlink="hull breach" link="ESSpacing"] or a [textlink="fire." link="ESFires"]
   They also store gas on their tile, even when closed, so be careful when opening them during or after a gas leak.
 
   ## Bolting and Emergency Access
@@ -57,7 +57,7 @@
   They can open, close, bolt, and set to emergency access using these remotes.
 
   ## Linking
-  Airlocks can be linked using the [textlink="Link" link="Networking"] system to other devices.
+  Airlocks can be linked using the [textlink="Link" link="ESNetworking"] system to other devices.
   This allows for proper station airlocks to space, or to link multiple airlocks together.
 
   ## Styling
