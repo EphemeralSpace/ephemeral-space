@@ -4,11 +4,10 @@
   name: guide-entry-engineering
   text: "/ServerInfo/_ES/Guidebook/Engineering/Engineering.xml"
   children:
-  - Construction
-  - Power
-  - Atmospherics
-  - ShuttleCraft
-  - Networking
+  - ESConstruction
+  - ESPower
+  - ESAtmospherics
+  - ESNetworking
 
 - type: guideEntry
   id: ESConstruction
@@ -16,9 +15,9 @@
   name: guide-entry-construction
   text: "/ServerInfo/_ES/Guidebook/Engineering/Construction.xml"
   children:
-  - Airlocks
-  - ExpandingRepairingStation
-  - WirePanels
+  - ESAirlocks
+  - ESExpandingRepairingStation
+  - ESWirePanels
 
 - type: guideEntry
   id: ESExpandingRepairingStation
@@ -32,7 +31,7 @@
   name: guide-entry-airlocks
   text: "/ServerInfo/_ES/Guidebook/Engineering/Airlocks.xml"
   children:
-  - AirlockSecurity
+  - ESAirlockSecurity
 
 - type: guideEntry
   id: ESWirePanels
@@ -52,11 +51,11 @@
   name: guide-entry-atmospherics
   text: "/ServerInfo/_ES/Guidebook/Engineering/Atmospherics.xml"
   children:
-  - GasManipulation
-  - AtmosphericsSystems
-  - AtmosphericUpsets
-  - AtmosTools
-  - Gasses
+  - ESGasManipulation
+  - ESAtmosphericsSystems
+  - ESAtmosphericUpsets
+  - ESAtmosTools
+  - ESGasses
 
 - type: guideEntry
   id: ESGasManipulation
@@ -304,12 +303,6 @@
   hidden: false
   name: guide-entry-gasses
   text: "/ServerInfo/_ES/Guidebook/Engineering/Gasses.xml"
-
-- type: guideEntry
-  id: ESShuttleCraft
-  hidden: false
-  name: guide-entry-shuttle-craft
-  text: "/ServerInfo/_ES/Guidebook/Engineering/Shuttlecraft.xml"
 
 - type: guideEntry
   id: ESNetworking
