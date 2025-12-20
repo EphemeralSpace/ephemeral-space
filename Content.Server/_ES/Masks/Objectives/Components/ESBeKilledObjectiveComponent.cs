@@ -12,5 +12,6 @@ public sealed partial class ESBeKilledObjectiveComponent : Component
     /// <summary>
     ///     If non-null, the killer must be of this troupe in order to count as a completion.
     /// </summary>
+    [DataField]
     public ProtoId<ESTroupePrototype>? TroupeRequired = null;
 }
