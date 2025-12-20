@@ -4,16 +4,16 @@
   name: guide-entry-chemicals
   text: "/ServerInfo/_ES/Guidebook/Chemicals.xml"
   children:
-  - Elements
-  - Medicine
-  - Narcotics
-  - Pyrotechnic
-  - Toxins
-  - Foods
-  - Botanical
-  - Biological
-  - Special
-  - Others
+  - ESElements
+  - ESMedicine
+  - ESNarcotics
+  - ESPyrotechnic
+  - ESToxins
+  - ESFoods
+  - ESBotanical
+  - ESBiological
+  - ESSpecial
+  - ESOthers
   filterEnabled: True
 
 - type: guideEntry

@@ -5,10 +5,10 @@
   priority: 30
   text: "/ServerInfo/_ES/Guidebook/References.xml"
   children:
-  - Chemicals
-  - Drinks
-  - FoodRecipes
-  - Writing
+  - ESChemicals
+  - ESDrinks
+  - ESFoodRecipes
+  - ESWriting
   - Lawsets
 
 - type: guideEntry
@@ -25,21 +25,20 @@
   text: "/ServerInfo/_ES/Guidebook/Service/FoodRecipes.xml"
   filterEnabled: True
   children:
-  - PizzaRecipes
-  - SavoryRecipes
-  - BreadRecipes
-  - BreakfastRecipes
-  - MothRecipes
-  - PastaRecipes
-  - DessertRecipes
-  - SoupRecipes
-  - PieRecipes
-  - BarsAndCookiesRecipes
-  - CakeRecipes
-  - SaladRecipes
-  - OtherRecipes
-  - MedicinalRecipes
-  - SecretRecipes
+  - ESPizzaRecipes
+  - ESSavoryRecipes
+  - ESBreadRecipes
+  - ESBreakfastRecipes
+  - ESPastaRecipes
+  - ESDessertRecipes
+  - ESSoupRecipes
+  - ESPieRecipes
+  - ESBarsAndCookiesRecipes
+  - ESCakeRecipes
+  - ESSaladRecipes
+  - ESOtherRecipes
+  - ESMedicinalRecipes
+  - ESSecretRecipes
 
 - type: guideEntry
   id: ESPizzaRecipes
@@ -67,13 +66,6 @@
   hidden: false
   name: guide-entry-breakfast-recipes
   text: "/ServerInfo/_ES/Guidebook/Service/BreakfastRecipes.xml"
-  filterEnabled: True
-
-- type: guideEntry
-  id: ESMothRecipes
-  hidden: false
-  name: guide-entry-moth-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/MothRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
@@ -151,10 +143,3 @@
   hidden: false
   name: guide-entry-writing
   text: "/ServerInfo/_ES/Guidebook/Writing.xml"
-
-- type: guideEntry
-  id: ESLawsets
-  hidden: false
-  name: guide-entry-lawsets
-  text: "/ServerInfo/_ES/Guidebook/ReferenceTables/Lawsets.xml"
-  filterEnabled: True

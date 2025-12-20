@@ -5,10 +5,10 @@
   priority: 20
   text: "/ServerInfo/_ES/Guidebook/SpaceStation14.xml"
   children:
-  - Jobs
-  - Survival
-  - Antagonists
-  - Glossary
+  - ESJobs
+  - ESSurvival
+  - ESAntagonists
+  - ESGlossary
 
 - type: guideEntry
   id: ESGlossary

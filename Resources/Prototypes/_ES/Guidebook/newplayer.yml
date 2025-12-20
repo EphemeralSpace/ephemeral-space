@@ -1,6 +1,3 @@
-# ES START
-# i dont think (?) we can comment in the xml files so,
-# this is very much rewritten for ES lobby stuff
 - type: guideEntry
   id: ESNewPlayer
   hidden: false
@@ -8,9 +5,7 @@
   priority: 0
   text: "/ServerInfo/_ES/Guidebook/NewPlayer/NewPlayer.xml"
   children:
-  - Controls
-  - CharacterCreation
-# ES END
+  - ESControls
 
 - type: guideEntry
   id: ESControls
@@ -18,25 +13,10 @@
   name: guide-entry-controls
   text: "/ServerInfo/_ES/Guidebook/NewPlayer/Controls/Controls.xml"
   children:
-  - Radio
+  - ESRadio
 
 - type: guideEntry
   id: ESRadio
   hidden: false
   name: guide-entry-radio
   text: "/ServerInfo/_ES/Guidebook/NewPlayer/Controls/Radio.xml"
-
-- type: guideEntry
-  id: ESCharacterCreation
-  hidden: false
-  name: guide-entry-charactercreation
-  text: "/ServerInfo/_ES/Guidebook/NewPlayer/CharacterCreation.xml"
-  children:
-  - YourFirstCharacter
-  - Species
-
-- type: guideEntry
-  id: ESYourFirstCharacter
-  hidden: false
-  name: guide-entry-yourfirstcharacter
-  text: "/ServerInfo/_ES/Guidebook/NewPlayer/YourFirstCharacter.xml"

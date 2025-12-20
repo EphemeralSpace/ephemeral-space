@@ -3,18 +3,3 @@
   hidden: false
   name: guide-entry-cargo
   text: "/ServerInfo/_ES/Guidebook/Cargo/Cargo.xml"
-  children:
-  - CargoBounties
-  - Salvage
-
-- type: guideEntry
-  id: ESCargoBounties
-  hidden: false
-  name: guide-entry-cargo-bounties
-  text: "/ServerInfo/_ES/Guidebook/Cargo/CargoBounties.xml"
-
-- type: guideEntry
-  id: ESSalvage
-  hidden: false
-  name: guide-entry-salvage
-  text: "/ServerInfo/_ES/Guidebook/Cargo/Salvage.xml"

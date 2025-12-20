@@ -4,10 +4,9 @@
   name: guide-entry-security
   text: "/ServerInfo/_ES/Guidebook/Security/Security.xml"
   children:
-  - Forensics
-  - Defusal
-  - CriminalRecords
-  - SpaceLaw
+  - ESForensics
+  - ESDefusal
+  - ESCriminalRecords
 
 - type: guideEntry
   id: ESForensics
@@ -26,19 +25,3 @@
   hidden: false
   name: guide-entry-criminal-records
   text: "/ServerInfo/_ES/Guidebook/Security/CriminalRecords.xml"
-
-# ES START
-#- type: guideEntry
-#  id: ESSpaceLaw
-  hidden: false
-#  name: guide-entry-rules-space-law
-#  text: "/ServerInfo/_ES/Guidebook/ServerRules/SpaceLaw/SpaceLaw.xml"
-#  children:
-#  - SpaceLawCrimeList
-# ES END
-
-- type: guideEntry
-  id: ESSpaceLawCrimeList
-  hidden: false
-  name: guide-entry-rules-sl-crime-list
-  text: "/ServerInfo/_ES/Guidebook/ServerRules/SpaceLaw/SLCrimeList.xml"

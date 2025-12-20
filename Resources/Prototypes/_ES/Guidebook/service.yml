@@ -5,10 +5,10 @@
   text: "/ServerInfo/_ES/Guidebook/Service/Service.xml"
   filterEnabled: True
   children:
-  - Bartender
-  - Botany
-  - Chef
-  - Janitorial
+  - ESBartender
+  - ESBotany
+  - ESChef
+  - ESJanitorial
 
 - type: guideEntry
   id: ESBartender

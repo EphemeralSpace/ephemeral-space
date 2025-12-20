@@ -4,66 +4,10 @@
   name: guide-entry-antagonists
   text: "/ServerInfo/_ES/Guidebook/Antagonist/Antagonists.xml"
   children:
-  - Traitors
-  - Thieves
-  - Revolutionaries
-  - NuclearOperatives
-  - SpaceNinja
-  - Wizard
-  - Zombies
-  - Xenoborgs
-  - MinorAntagonists
+  - ESTraitors
 
 - type: guideEntry
   id: ESTraitors
   hidden: false
   name: guide-entry-traitors
   text: "/ServerInfo/_ES/Guidebook/Antagonist/Traitors.xml"
-
-- type: guideEntry
-  id: ESNuclearOperatives
-  hidden: false
-  name: guide-entry-nuclear-operatives
-  text: "/ServerInfo/_ES/Guidebook/Antagonist/Nuclear Operatives.xml"
-
-- type: guideEntry
-  id: ESZombies
-  hidden: false
-  name: guide-entry-zombies
-  text: "/ServerInfo/_ES/Guidebook/Antagonist/Zombies.xml"
-
-- type: guideEntry
-  id: ESRevolutionaries
-  hidden: false
-  name: guide-entry-revolutionaries
-  text: "/ServerInfo/_ES/Guidebook/Antagonist/Revolutionaries.xml"
-
-- type: guideEntry
-  id: ESMinorAntagonists
-  hidden: false
-  name: guide-entry-minor-antagonists
-  text: "/ServerInfo/_ES/Guidebook/Antagonist/MinorAntagonists.xml"
-
-- type: guideEntry
-  id: ESSpaceNinja
-  hidden: false
-  name: guide-entry-space-ninja
-  text: "/ServerInfo/_ES/Guidebook/Antagonist/SpaceNinja.xml"
-
-- type: guideEntry
-  id: ESThieves
-  hidden: false
-  name: guide-entry-thieves
-  text: "/ServerInfo/_ES/Guidebook/Antagonist/Thieves.xml"
-
-- type: guideEntry
-  id: ESWizard
-  hidden: false
-  name: guide-entry-wizard
-  text: "/ServerInfo/_ES/Guidebook/Antagonist/Wizard.xml"
-
-- type: guideEntry
-  id: ESXenoborgs
-  hidden: false
-  name: guide-entry-xenoborgs
-  text: "/ServerInfo/_ES/Guidebook/Antagonist/Xenoborgs.xml"

@@ -4,22 +4,15 @@
   name: guide-entry-medical
   text: "/ServerInfo/_ES/Guidebook/Medical/Medical.xml"
   children:
-  - MedicalDoctor
-  - Chemist
-  - Cloning
-  - Cryogenics
+  - ESMedicalDoctor
+  - ESChemist
+  - ESCryogenics
 
 - type: guideEntry
   id: ESMedicalDoctor
   hidden: false
   name: guide-entry-medicaldoctor
   text: "/ServerInfo/_ES/Guidebook/Medical/MedicalDoctor.xml"
-
-- type: guideEntry
-  id: ESCloning
-  hidden: false
-  name: guide-entry-cloning
-  text: "/ServerInfo/_ES/Guidebook/Medical/Cloning.xml"
 
 - type: guideEntry
   id: ESCryogenics
@@ -36,8 +29,8 @@
   # - Medicine
   # Duplicate guide entries are currently not supported
   # TODO GUIDEBOOK Maybe allow duplicate entries?
-  - Botanicals
-  - AdvancedBrute
+  - ESBotanicals
+  - ESAdvancedBrute
 
 - type: guideEntry
   id: ESMedicine

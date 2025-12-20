@@ -4,10 +4,10 @@
   name: guide-entry-science
   text: "/ServerInfo/_ES/Guidebook/Science/Science.xml"
   children:
-  - Technologies
-  - AnomalousResearch
-  - Xenoarchaeology
-  - Robotics
+  - ESTechnologies
+  - ESAnomalousResearch
+  - ESXenoarchaeology
+  - ESRobotics
 
 - type: guideEntry
   id: ESTechnologies
@@ -22,8 +22,8 @@
   name: guide-entry-anomalous-research
   text: "/ServerInfo/_ES/Guidebook/Science/AnomalousResearch.xml"
   children:
-  - APE
-  - ScannersAndVessels
+  - ESAPE
+  - ESScannersAndVessels
 
 - type: guideEntry
   id: ESScannersAndVessels
@@ -43,8 +43,8 @@
   name: guide-entry-xenoarchaeology
   text: "/ServerInfo/_ES/Guidebook/Science/Xenoarchaeology.xml"
   children:
-    - AnalysisConsole
-    - XenoarchaeologyUnlockingNodes
+    - ESAnalysisConsole
+    - ESXenoarchaeologyUnlockingNodes
 
 - type: guideEntry
   id: ESXenoarchaeologyUnlockingNodes
@@ -63,11 +63,3 @@
   hidden: false
   name: guide-entry-robotics
   text: "/ServerInfo/_ES/Guidebook/Science/Robotics.xml"
-  children:
-  - Cyborgs
-
-- type: guideEntry
-  id: ESCyborgs
-  hidden: false
-  name: guide-entry-cyborgs
-  text: "/ServerInfo/_ES/Guidebook/Science/Cyborgs.xml"

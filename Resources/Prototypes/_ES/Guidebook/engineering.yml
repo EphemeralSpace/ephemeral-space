@@ -64,15 +64,15 @@
   name: guide-entry-gasmanipulation
   text: "/ServerInfo/_ES/Guidebook/Engineering/GasManipulation.xml"
   children:
-  - AtmosphereInOut
-  - Pipes
-  - Pumps
-  - Valves
-  - MixingAndFiltering
-  - GasCanisters
-  - Thermomachines
-  - GasCondensing
-  - GasRecycling
+  - ESAtmosphereInOut
+  - ESPipes
+  - ESPumps
+  - ESValves
+  - ESMixingAndFiltering
+  - ESGasCanisters
+  - ESThermomachines
+  - ESGasCondensing
+  - ESGasRecycling
 
 - type: guideEntry
   id: ESPipes
@@ -92,11 +92,11 @@
   name: guide-entry-atmosphereinout
   text: "/ServerInfo/_ES/Guidebook/Engineering/AtmosphereInOut.xml"
   children:
-  - AirVent
-  - PassiveVent
-  - AirInjector
-  - AirScrubber
-  - PortableScrubber
+  - ESAirVent
+  - ESPassiveVent
+  - ESAirInjector
+  - ESAirScrubber
+  - ESPortableScrubber
 
 - type: guideEntry
   id: ESAirVent
@@ -134,11 +134,11 @@
   name: guide-entry-valves
   text: "/ServerInfo/_ES/Guidebook/Engineering/Valves.xml"
   children:
-  - ManualValve
-  - SignalValve
-  - PneumaticValve
-  - PassiveGate
-  - PressureRegulator
+  - ESManualValve
+  - ESSignalValve
+  - ESPneumaticValve
+  - ESPassiveGate
+  - ESPressureRegulator
 
 - type: guideEntry
   id: ESManualValve
@@ -214,10 +214,10 @@
   name: guide-entry-atmosphericssystems
   text: "/ServerInfo/_ES/Guidebook/Engineering/AtmosphericsSystems.xml"
   children:
-  - PipeNetworks
-  - DeviceMonitoringAndControl
-  - FireAndGasControl
-  - GasMiningAndStorage
+  - ESPipeNetworks
+  - ESDeviceMonitoringAndControl
+  - ESFireAndGasControl
+  - ESGasMiningAndStorage
 
 - type: guideEntry
   id: ESPipeNetworks
@@ -231,9 +231,9 @@
   name: guide-entry-devicemonitoringandcontrol
   text: "/ServerInfo/_ES/Guidebook/Engineering/DeviceMonitoringAndControl.xml"
   children:
-  - AirAlarms
-  - AtmosphericAlertsComputer
-  - AtmosphericNetworkMonitor
+  - ESAirAlarms
+  - ESAtmosphericAlertsComputer
+  - ESAtmosphericNetworkMonitor
 
 - type: guideEntry
   id: ESAirAlarms
@@ -271,9 +271,9 @@
   name: guide-entry-atmosphericupsets
   text: "/ServerInfo/_ES/Guidebook/Engineering/AtmosphericUpsets.xml"
   children:
-  - Fires
-  - Spacing
-  - DeltaPressure
+  - ESFires
+  - ESSpacing
+  - ESDeltaPressure
 
 - type: guideEntry
   id: ESFires
@@ -331,11 +331,11 @@
   name: guide-entry-power
   text: "/ServerInfo/_ES/Guidebook/Engineering/Power.xml"
   children:
-    - Generators
-    - InspectingPower
-    - PowerStorage
-    - Ramping
-    - VoltageNetworks
+    - ESGenerators
+    - ESInspectingPower
+    - ESPowerStorage
+    - ESRamping
+    - ESVoltageNetworks
 
 - type: guideEntry
   id: ESInspectingPower
@@ -367,51 +367,15 @@
   name: guide-entry-generators
   text: "/ServerInfo/_ES/Guidebook/Engineering/Generators.xml"
   children:
-  - PortableGenerator
-  - AME
-  - SingularityTeslaEngine
-  - TEG
-  - RTG
-  - SolarPanels
+  - ESAME
+  - ESPortableGenerator
+  - ESSolarPanels
 
 - type: guideEntry
   id: ESAME
   hidden: false
   name: guide-entry-ame
   text: "/ServerInfo/_ES/Guidebook/Engineering/AME.xml"
-
-- type: guideEntry
-  id: ESSingularityTeslaEngine
-  hidden: false
-  name: guide-entry-singularityteslaengine
-  text: "/ServerInfo/_ES/Guidebook/Engineering/SingularityTeslaEngine.xml"
-  children:
-  - SingularityEngine
-  - TeslaEngine
-
-- type: guideEntry
-  id: ESSingularityEngine
-  hidden: false
-  name: guide-entry-singularityengine
-  text: "/ServerInfo/_ES/Guidebook/Engineering/SingularityEngine.xml"
-
-- type: guideEntry
-  id: ESTeslaEngine
-  hidden: false
-  name: guide-entry-teslaengine
-  text: "/ServerInfo/_ES/Guidebook/Engineering/TeslaEngine.xml"
-
-- type: guideEntry
-  id: ESTEG
-  hidden: false
-  name: guide-entry-teg
-  text: "/ServerInfo/_ES/Guidebook/Engineering/TEG.xml"
-
-- type: guideEntry
-  id: ESRTG
-  hidden: false
-  name: guide-entry-rtg
-  text: "/ServerInfo/_ES/Guidebook/Engineering/RTG.xml"
 
 - type: guideEntry
   id: ESPortableGenerator
