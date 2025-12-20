@@ -62,6 +62,7 @@
 - type: entity
   id: ESBaseObjectiveSabotageCrewMonitoring
   name: Sabotage the crew monitoring server
+  abstract: true
   components:
   - type: ESObjective
     icon: # TODO: proper icon once it's resprited
@@ -88,6 +89,7 @@
 - type: entity
   id: ESBaseObjectiveSabotageIDComputer
   name: Sabotage the ID card computer
+  abstract: true
   components:
   - type: ESObjective
     icon:
@@ -114,6 +116,7 @@
 - type: entity
   id: ESBaseObjectiveSabotageCriminalRecords
   name: Sabotage the criminal records
+  abstract: true
   components:
   - type: ESObjective
     icon:
@@ -140,6 +143,7 @@
 - type: entity
   id: ESBaseObjectiveSabotageTelecom
   name: Sabotage the telecom server
+  abstract: true
   components:
   - type: ESObjective
     icon:
