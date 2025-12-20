@@ -43,10 +43,10 @@ es-mask-sacrifice-desc = Find an opportunity to heroically sacrifice yourself, a
 es-mask-vandal-name = Vandal
 es-mask-vandal-desc = Sabotage random machines around the station for a little bit of fun. Try not to get pinned as a Traitor.
 
-es-mask-blessed-name = Blessed
-es-mask-blessed-desc = You are a beautiful soul. Be killed by another crewmember in order to ascend to heaven and drag them to hell.
-es-mask-blessed-killer-quickdialog-title = Bad choice
-es-mask-blessed-killer-quickdialog-msg = You killed a Blessed soul, and you will suffer the consequences by dying violently in 5 minutes. Get your affairs in order.
+es-mask-martyr-name = Martyr
+es-mask-martyr-desc = You are a beautiful soul. Be killed by another crewmember in order to ascend to heaven and drag them to hell.
+es-mask-martyr-killer-quickdialog-title = Bad choice
+es-mask-martyr-killer-quickdialog-msg = You killed a lovely martyr, and you will suffer the consequences by dying violently in 5 minutes. Get your affairs in order.
 
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete the objectives.

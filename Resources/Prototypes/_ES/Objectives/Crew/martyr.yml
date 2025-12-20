@@ -1,6 +1,6 @@
 - type: entity
   parent: ESBaseMaskObjective
-  id: ESObjectiveBlessedBeKilled
+  id: ESObjectiveMartyrBeKilled
   name: Be killed by a crewmember
   description: Unjustly perish by someone else's hand.
   components:

@@ -174,16 +174,16 @@
       amount: 1, 2
 
 - type: esMask
-  id: ESBlessed
-  name: es-mask-blessed-name
+  id: ESMartyr
+  name: es-mask-martyr-name
   troupe: ESCrew
-  description: es-mask-blessed-desc
+  description: es-mask-martyr-desc
   color: gold
   mindComponents:
-  - type: ESBlessed
+  - type: ESMartyr
   objectives:
     all:
-    - id: ESObjectiveBlessedBeKilled
+    - id: ESObjectiveMartyrBeKilled
 
 # Traitor Masks
 - type: esMask
