@@ -187,7 +187,7 @@
   name: guide-entry-thermomachines
   text: "/ServerInfo/_ES/Guidebook/Engineering/Thermomachines.xml"
   children:
-  - Radiators
+  - ESRadiators
 
 - type: guideEntry
   id: ESGasCondensing
@@ -310,7 +310,7 @@
   name: guide-entry-networking
   text: "/ServerInfo/_ES/Guidebook/Engineering/Networking.xml"
   children:
-  - AccessConfigurator
+  - ESAccessConfigurator
 
 - type: guideEntry
   id: ESAccessConfigurator
