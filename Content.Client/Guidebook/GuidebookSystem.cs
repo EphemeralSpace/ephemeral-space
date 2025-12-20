@@ -69,11 +69,20 @@ public sealed class GuidebookSystem : EntitySystem
             // this includes any upstream prototypes that aren't hidden (of which there are none i think, but)
             // and also our own ES prototypes, which don't need to get translated
             if (_proto.Index(guide) is { Hidden: false })
+            {
                 newGuides.Add(guide);
+                continue;
+            }
 
             var translatedId = $"ES{guide.Id}";
             if (_proto.HasIndex<GuideEntryPrototype>(translatedId))
                 newGuides.Add(translatedId);
+            else
+            {
+                // if neither are true, then we have a guide that
+                // isn't an ES guide, but also has no ES equivalent, so just add it anyway and let it be blank
+                newGuides.Add(guide);
+            }
         }
 
         return newGuides;
