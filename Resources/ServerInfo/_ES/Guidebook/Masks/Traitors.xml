@@ -1,0 +1,15 @@
+<Document>
+  # Traitors
+
+  <Box>
+    [color=#999999][italic]"WHISKEY. ECHO. WHISKEY. LIMA. ALPHA. DELTA. AGENT, YOU HAVE BEEN ACTIVATED."[/italic][/color]
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="PosterContrabandSyndicateRecruitment" Caption=""/>
+  </Box>
+  Traitors are antagonists employed by the [color=#ff0000]Syndicate.[/color]
+
+  [color=red]TODO ES write the rest lol[/color]
+
+  [color=red]TODO ES autogenerate mask entries[/color]
+</Document>

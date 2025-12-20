@@ -1,0 +1,22 @@
+- type: guideEntry
+  id: ESNewPlayer
+  hidden: false
+  name: guide-entry-newplayer
+  priority: 0
+  text: "/ServerInfo/_ES/Guidebook/NewPlayer/NewPlayer.xml"
+  children:
+  - ESControls
+
+- type: guideEntry
+  id: ESControls
+  hidden: false
+  name: guide-entry-controls
+  text: "/ServerInfo/_ES/Guidebook/NewPlayer/Controls/Controls.xml"
+  children:
+  - ESRadio
+
+- type: guideEntry
+  id: ESRadio
+  hidden: false
+  name: guide-entry-radio
+  text: "/ServerInfo/_ES/Guidebook/NewPlayer/Controls/Radio.xml"

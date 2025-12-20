@@ -208,6 +208,10 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         var parent = forcedRoot == null ? null : AddEntry(forcedRoot.Value, null, addedEntries);
         foreach (var entry in GetSortedEntries(roots))
         {
+            // ES START
+            if (entry.Hidden)
+                continue;
+            // ES END
             AddEntry(entry.Id, parent, addedEntries);
         }
 

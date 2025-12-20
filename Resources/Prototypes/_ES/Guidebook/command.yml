@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESCommand
+  hidden: false
+  name: guide-entry-command
+  text: "/ServerInfo/_ES/Guidebook/Command.xml"

@@ -1,0 +1,13 @@
+- type: guideEntry
+  id: ESJobs
+  hidden: false
+  name: guide-entry-jobs
+  text: "/ServerInfo/_ES/Guidebook/Jobs.xml"
+  children:
+  - ESService
+  - ESCargo
+  - ESMedical
+  - ESScience
+  - ESEngineering
+  - ESSecurity
+  - ESCommand
