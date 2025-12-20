@@ -233,3 +233,24 @@
   - type: ESCounterObjective
     target: 1
     counter: 1
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveSacrificeHeal
+  name: Sacrifice yourself
+  description: Heal others by dying near them.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Interface/Alerts/human_dead.rsi
+      state: dead
+  - type: ESSacrificeHealObjective
+    sacrificeSolution:
+      maxVol: 40
+      reagents:
+      - ReagentId: Omnizine
+        Quantity: 40
+  - type: ESCounterObjective
+    title: es-sacrifice-objective-title
+    target: 2
+    maxTarget: 4
