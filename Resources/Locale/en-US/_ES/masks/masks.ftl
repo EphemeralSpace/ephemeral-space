@@ -45,8 +45,8 @@ es-mask-vandal-desc = Sabotage random machines around the station for a little b
 
 es-mask-blessed-name = Blessed
 es-mask-blessed-desc = You are a beautiful soul. Be killed by another crewmember in order to ascend to heaven and drag them to hell.
-es-mask-blessed-killer-quickdialog-title = Wrong choice
-es-mask-blessed-killer-quickdialog-msg = You killed a Blessed soul, and you will suffer the consequences by violently dying in 5 minutes. Get your affairs in order.
+es-mask-blessed-killer-quickdialog-title = Bad choice
+es-mask-blessed-killer-quickdialog-msg = You killed a Blessed soul, and you will suffer the consequences by dying violently in 5 minutes. Get your affairs in order.
 
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete the objectives.

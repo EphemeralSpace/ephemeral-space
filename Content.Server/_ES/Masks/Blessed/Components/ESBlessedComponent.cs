@@ -5,7 +5,7 @@ namespace Content.Server._ES.Masks.Blessed.Components;
 ///     <see cref="ESBlessedKillerMarkerComponent"/> added to them and later be killed.
 /// </summary>
 [RegisterComponent]
-public sealed class ESBlessedComponent : Component
+public sealed partial class ESBlessedComponent : Component
 {
     /// <summary>
     ///     it da amount time for how much time da killer has after they kill da blessed before they You Must Die (cdi ganon voice)

@@ -4,11 +4,11 @@ using Content.Server._ES.Masks.Objectives.Relays;
 using Content.Server.Administration;
 using Content.Server.Chat;
 using Content.Shared._ES.Core.Timer;
-using Content.Shared._ES.Core.Timer.Components;
 using Content.Shared._ES.Masks;
 using Content.Shared.Body.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared._ES.Masks.Blessed;
 
 namespace Content.Server._ES.Masks.Blessed;
 
@@ -34,10 +34,10 @@ public sealed class ESBlessedSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<ESBlessedComponent, ESKillReportedEvent>(OnKillReported);
-        SubscribeLocalEvent<ESBlessedKillerMarkerComponent, ESBlessedKillerTimeToDie>(OnTimeToDie);
+        SubscribeLocalEvent<ESBlessedKillerMarkerComponent, ESBlessedKillerTimeToDieEvent>(OnTimeToDie);
     }
 
-    private void OnTimeToDie(Entity<ESBlessedKillerMarkerComponent> ent, ref ESBlessedKillerTimeToDie args)
+    private void OnTimeToDie(Entity<ESBlessedKillerMarkerComponent> ent, ref ESBlessedKillerTimeToDieEvent args)
     {
         if (!_suicide.Suicide(ent))
         {
@@ -58,7 +58,7 @@ public sealed class ESBlessedSystem : EntitySystem
             return;
 
         EnsureComp<ESBlessedKillerMarkerComponent>(killerBody);
-        _timer.SpawnTimer(killerBody, ent.Comp.TimeBeforeKillerDeath, new ESBlessedKillerTimeToDie());
+        _timer.SpawnTimer(killerBody, ent.Comp.TimeBeforeKillerDeath, new ESBlessedKillerTimeToDieEvent());
 
         if (!TryComp<ActorComponent>(killerBody, out var actor))
             return;
@@ -71,8 +71,3 @@ public sealed class ESBlessedSystem : EntitySystem
         _quickDialog.OpenDialog<string>(actor.PlayerSession, title, msg, _ => {});
     }
 }
-
-/// <summary>
-///     Raised directed after a time on the Blessed's killer when it's their time to die.
-/// </summary>
-public sealed partial class ESBlessedKillerTimeToDie : ESEntityTimerEvent;
