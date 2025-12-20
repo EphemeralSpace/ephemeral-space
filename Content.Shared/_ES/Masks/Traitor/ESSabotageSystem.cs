@@ -3,8 +3,10 @@ using Content.Shared._ES.Masks.Traitor.Components;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
 using Content.Shared.DoAfter;
+using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using JetBrains.Annotations;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Masks.Traitor;
@@ -16,6 +18,7 @@ public sealed class ESSabotageSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly ESSharedMaskSystem _mask = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -24,10 +27,27 @@ public sealed class ESSabotageSystem : EntitySystem
         SubscribeLocalEvent<ESSabotageTargetComponent, ESSabotageDoAfterEvent>(OnSabotage);
     }
 
+    /// <summary>
+    ///     Returns true if the user should be capable of sabotaging the given target.
+    /// </summary>
+    [PublicAPI]
+    public bool CanSabotage(EntityUid user, Entity<ESSabotageTargetComponent> target)
+    {
+        // for localhost debugging
+        if (_admin.HasAdminFlag(user, AdminFlags.Debug))
+            return true;
+
+        // overriding, for vandal etc
+        if (HasComp<ESCanAlwaysSabotageComponent>(user)
+            || (_mind.GetMind(user) is { } mind && HasComp<ESCanAlwaysSabotageComponent>(mind)))
+            return true;
+
+        return _mask.GetTroupeOrNull(user) == target.Comp.SabotageTroupe;
+    }
+
     private void OnGetVerbs(Entity<ESSabotageTargetComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
-        if (_mask.GetTroupeOrNull(args.User) != ent.Comp.SabotageTroupe
-            && !_admin.HasAdminFlag(args.User, AdminFlags.Debug))
+        if (!CanSabotage(args.User, ent))
             return;
 
         var user = args.User;
@@ -59,6 +79,9 @@ public sealed class ESSabotageSystem : EntitySystem
     private void OnSabotage(Entity<ESSabotageTargetComponent> ent, ref ESSabotageDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled)
+            return;
+
+        if (!CanSabotage(args.User, ent))
             return;
 
         _degradation.Degrade(ent, args.User);

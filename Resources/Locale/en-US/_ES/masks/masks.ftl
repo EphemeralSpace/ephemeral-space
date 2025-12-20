@@ -34,6 +34,9 @@ es-mask-survivalist-desc = Survive at all costs. Rely on your MedAlert (TM) to b
 es-mask-survivalist-medalert-crit-message = MedAlert Notice: {$name} is in critical condition {$location}!
 es-mask-survivalist-medalert-death-message = MedAlert Notice: A tragedy has befallen us. {$name} has perished {$location}.
 
+es-mask-vandal-name = Vandal
+es-mask-vandal-desc = Sabotage random machines around the station for a little bit of fun. Try not to get pinned as a Traitor.
+
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete the objectives.
 

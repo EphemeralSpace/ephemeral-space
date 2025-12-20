@@ -129,6 +129,26 @@
     all:
     - id: ESObjectiveSurvive
 
+- type: esMask
+  id: ESVandal
+  name: es-mask-vandal-name
+  troupe: ESCrew
+  description: es-mask-vandal-desc
+  color: tomato
+  mindComponents:
+  - type: ESCanAlwaysSabotage
+  objectives:
+    all:
+    - pick:
+        all:
+        - id: ESObjectiveVandalSabotageCommunications
+        - id: ESObjectiveVandalSabotageCrewMonitoring
+        - id: ESObjectiveVandalSabotageIDComputer
+        - id: ESObjectiveVandalSabotageCriminalRecords
+        - id: ESObjectiveVandalSabotageTelecom
+          weight: 2
+      amount: 1, 2
+
 # Traitor Masks
 - type: esMask
   id: ESBaseTraitor

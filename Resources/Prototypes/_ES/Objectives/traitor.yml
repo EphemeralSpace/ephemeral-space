@@ -28,11 +28,14 @@
     invert: true
   - type: ESKillTargetObjective
 
+### Sabotage objectives
+# These are split into base + traitor/vandal variants, since vandal wants a separate description, and no nuke prereq
+
+# Communications
 - type: entity
-  parent: ESBaseTraitorObjectiveMinor
-  id: ESObjectiveTraitorSabotageCommunications
+  id: ESBaseObjectiveSabotageCommunications
   name: Sabotage the communications computer
-  description: The syndicate is trying to calculate the station trajectory. It can be extracted from the communications computer.
+  abstract: true
   components:
   - type: ESObjective
     icon:
@@ -45,10 +48,20 @@
       - CommunicationsConsole
 
 - type: entity
-  parent: ESBaseTraitorObjectiveMinor
-  id: ESObjectiveTraitorSabotageCrewMonitoring
+  id: ESObjectiveTraitorSabotageCommunications
+  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCommunications]
+  description: The syndicate is trying to calculate the station trajectory. It can be extracted from the communications computer.
+
+- type: entity
+  id: ESObjectiveVandalSabotageCommunications
+  parent: [ESBaseMaskObjective, ESBaseObjectiveSabotageCommunications]
+  description: It'd be pretty funny to see everybody freak out about a scary announcement message. Let's tinker with the communications computer.
+
+
+# Crew monitoring
+- type: entity
+  id: ESBaseObjectiveSabotageCrewMonitoring
   name: Sabotage the crew monitoring server
-  description: The syndicate is trying to acquire sensitive crew medical records. It can be extracted from the crew monitoring server.
   components:
   - type: ESObjective
     icon: # TODO: proper icon once it's resprited
@@ -61,10 +74,20 @@
       - CrewMonitoringServer
 
 - type: entity
-  parent: ESBaseTraitorObjectiveMinor
-  id: ESObjectiveTraitorSabotageIDComputer
+  id: ESObjectiveTraitorSabotageCrewMonitoring
+  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCrewMonitoring]
+  description: The syndicate is trying to acquire sensitive crew medical records. It can be extracted from the crew monitoring server.
+
+- type: entity
+  id: ESObjectiveVandalSabotageCrewMonitoring
+  parent: [ESBaseMaskObjective, ESBaseObjectiveSabotageCrewMonitoring]
+  description: I wonder what everyone's weird medical secrets are. How about checking the crew monitoring server?
+
+
+# ID card computer
+- type: entity
+  id: ESBaseObjectiveSabotageIDComputer
   name: Sabotage the ID card computer
-  description: The syndicate want to steal the crew manifest data. It can be extracted from the ID card computer.
   components:
   - type: ESObjective
     icon:
@@ -77,10 +100,20 @@
       - IdCardConsole
 
 - type: entity
-  parent: ESBaseTraitorObjectiveMinor
-  id: ESObjectiveTraitorSabotageCriminalRecords
+  id: ESObjectiveTraitorSabotageIDComputer
+  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageIDComputer]
+  description: The syndicate want to steal the crew manifest data. It can be extracted from the ID card computer.
+
+- type: entity
+  id: ESObjectiveVandalSabotageIDComputer
+  parent: [ESBaseMaskObjective, ESBaseObjectiveSabotageIDComputer]
+  description: The heads of staff are always so stuck-up about proper identification. Messing with the ID card computer should teach them a lesson.
+
+
+# Criminal records
+- type: entity
+  id: ESBaseObjectiveSabotageCriminalRecords
   name: Sabotage the criminal records
-  description: The syndicate needs information on its imprisoned members. It can be extracted from the criminal records computer.
   components:
   - type: ESObjective
     icon:
@@ -93,10 +126,20 @@
       - CriminalRecordsConsole
 
 - type: entity
-  parent: ESBaseTraitorObjectiveMinor
-  id: ESObjectiveTraitorSabotageTelecom
+  id: ESObjectiveTraitorSabotageCriminalRecords
+  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCriminalRecords]
+  description: The syndicate needs information on its imprisoned members. It can be extracted from the criminal records computer.
+
+- type: entity
+  id: ESObjectiveVandalSabotageCriminalRecords
+  parent: [ESBaseMaskObjective, ESBaseObjectiveSabotageCriminalRecords]
+  description: I really should try and make sure my long arrest history is a little more hidden. Scrambling the criminal records computer's database might be fun.
+
+
+# Telecomms servers
+- type: entity
+  id: ESBaseObjectiveSabotageTelecom
   name: Sabotage the telecom server
-  description: The syndicate needs to decode encrypted communication logs from Nanotrasen. They can be found in one of the station telecom servers.
   components:
   - type: ESObjective
     icon:
@@ -108,6 +151,18 @@
       components:
       - TelecomServer
 
+- type: entity
+  id: ESObjectiveTraitorSabotageTelecom
+  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageTelecom]
+  description: The syndicate needs to decode encrypted communication logs from Nanotrasen. They can be found in one of the station telecom servers.
+
+- type: entity
+  id: ESObjectiveVandalSabotageTelecom
+  parent: [ESBaseMaskObjective, ESBaseObjectiveSabotageTelecom]
+  description: Those telecom servers have a whole heap of mandatory "diagnostic logging" built in. Why not let everyone know by hacking one?
+
+
+### Main traitor objectives
 - type: entity
   parent: ESBaseTraitorObjective
   id: ESObjectiveTraitorHackCryptoNukeConsoles
