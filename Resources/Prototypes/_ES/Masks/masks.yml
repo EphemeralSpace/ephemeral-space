@@ -114,7 +114,7 @@
   - type: ESReincarnateMind
   objectives:
     all:
-    - id: ESObjectivePhantomDie
+    - id: ESObjectiveBeKilled
     - id: ESObjectivePhantomAvenge
 
 - type: esMask
@@ -172,6 +172,18 @@
         - id: ESObjectiveVandalSabotageTelecom
           weight: 2
       amount: 1, 2
+
+- type: esMask
+  id: ESBlessed
+  name: es-mask-blessed-name
+  troupe: ESCrew
+  description: es-mask-blessed-desc
+  color: gold
+  mindComponents:
+  - type: ESBlessed
+  objectives:
+    all:
+    - id: ESObjectiveBlessedBeKilled
 
 # Traitor Masks
 - type: esMask
