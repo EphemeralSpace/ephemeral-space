@@ -8,23 +8,27 @@ Local is normal speech at normal volume.
 
 Whisper can only be heard when nearby somebody. You automatically whisper into your radio to send messages over it.
 
-Emotes are gestures that you make. Can be recieved by anyone who is not blinded. You will often see mimes do many emotes.
+Emotes are gestures that you make. Can be received by anyone who is not blinded.
 
 Whisper messages can be sent by starting your message with [color=#a4885c][keybind="FocusWhisperChatWindow"/][/color] and Emotes can be sent by starting your message with ([color=#a4885c]@[/color]).
 You can also cycle through all of these text channels by pressing [keybind="CycleChatChannelForward"/].
 
 People may not be able to make out all of what you're saying if you're standing too far away from them. This is especially important if you're whispering.
 
+[color=red]TODO ES discuss lobby/stagehand text speech[/color]
+
 ## Radio
 
-Your radio allows you to communicate across the entire station and to your specific [color=#a4885c]department[/color].
+Your radio, and intercoms, allows you to communicate across the entire station and to your specific [color=#a4885c]department[/color].
 
 <Box>
   <GuideEntityEmbed Entity="ClothingHeadsetGrey"/>
 </Box>
 
-To send a [color=#a4885c]station-wide[/color] message over the radio preface, use the [color=#32cd32]Common[/color] channel by beginning your text with [color=#32cd32]semi-colon (;)[/color].
+To send a [color=#a4885c]station-wide[/color] message over the radio preface, find an [color=cyan]intercom[/color], turn it's microphone on, and use the [color=#32cd32]Common[/color] channel by beginning your text with [color=#32cd32]semi-colon (;)[/color].
 People standing right next to you might catch bits of your radio message, even if they don't have the access to the relevant radio channel. Watch for eavesdroppers.
+
+Unlike other servers, Ephemeral Space does not have [color=#32cd32]Common[/color] microphone access on regular headsets.
 
 ## Departmental Radio
 
@@ -44,10 +48,9 @@ For example, if you're a Station Engineer then [color=#a4885c]:h[/color] will de
 ## Encryption Keys
 [color=#a4885c]Encryption keys[/color] give you access to their respective channel.
 
-Examining our engineering headset from earlier shows us [color=#32cd32]Common[/color] and [color=#f37746]Engineering[/color] because an engineer's headset starts with those [color=#a4885c]encryption keys[/color].
+Examining our engineering headset from earlier shows us [color=#f37746]Engineering[/color] because an engineer's headset starts with that [color=#a4885c]encryption key[/color].
 
 <Box>
-  <GuideEntityEmbed Entity="EncryptionKeyCommon"/>
   <GuideEntityEmbed Entity="EncryptionKeyEngineering"/>
 </Box>
 
@@ -55,10 +58,4 @@ You can take out encryption keys by using a [color=#a4885c]screwdriver[/color] o
 
 All command members have extras of their relevant encryption key, but you can also request one at the HoP's office when you're getting your job changed.
 
-## OOC Channels
-OOC (out-of-character) channels exist outside of the game world. They are LOOC, OOC and Dead chat.
-
-LOOC is on during the rounds, OOC is typically off until the round ends and you can only see and talk in Dead chat when you are, well, dead.
-
-Do not discuss the current round in the Discord or in OOC if it's on during the round.
 </Document>
