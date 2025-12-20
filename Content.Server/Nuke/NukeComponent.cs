@@ -86,7 +86,7 @@ namespace Content.Server.Nuke
 
         // ES Start
         [DataField("armMusic")]
-        public SoundSpecifier ArmMusic = new SoundCollectionSpecifier("NukeMusicES");
+        public SoundSpecifier ArmMusic = new SoundCollectionSpecifier("ESNukeMusic");
         // ES End
 
         // These datafields here are duplicates of those in explosive component. But I'm hesitant to use explosive
