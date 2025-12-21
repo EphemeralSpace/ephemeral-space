@@ -122,7 +122,7 @@ public sealed class ESTileFireSystem : ESSharedTileFireSystem
         if (xform.GridUid is not { } grid || !TryComp<MapGridComponent>(grid, out var mapGrid))
             return false;
 
-        var tile = XformSys.GetGridTilePositionOrDefault((coords.EntityId, xform), mapGrid);
+        var tile = MapSys.CoordinatesToTile(grid, mapGrid, coords);
 
         if (_atmos.IsTileAirBlocked(grid, tile, mapGridComp: mapGrid))
             return false;

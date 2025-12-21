@@ -216,6 +216,12 @@ public abstract class ESSharedSpawnRegionSystem : EntitySystem
             dict.Add(((grid, comp), tiles), tiles.Count);
         }
 
+        if (dict.Count == 0)
+        {
+            outCoords = null;
+            return false;
+        }
+
         for (var i = 0; i < RandomAttempts; i++)
         {
             var (grid, tiles) = _random.Pick(dict);

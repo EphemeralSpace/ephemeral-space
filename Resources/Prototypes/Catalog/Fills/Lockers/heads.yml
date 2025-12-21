@@ -56,7 +56,9 @@
   table: !type:AllSelector
     children:
     - !type:NestedSelector
-      tableId: LockerFillCaptainNoLaser
+# ES Start
+      tableId: ESLockerFillCaptain
+# ES End
     - id: WeaponAntiqueLaser
 
 # Hardsuit table, used for suit storage as well
@@ -78,7 +80,9 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillCaptainNoLaser
+# ES Start
+        tableId: ESLockerFillCaptain
+# ES End
 
 # No Laser + Laser locker
 - type: entity
@@ -139,7 +143,9 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillHeadOfPersonnel
+# ES Start
+        tableId: ESLockerFillHeadOfPersonnel
+# ES End
 
 # No hardsuit table
 - type: entityTable
@@ -345,7 +351,9 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillHeadOfSecurityNoHardsuit
+# ES Start
+        tableId: ESLockerFillHeadOfSecurity
+# ES End
 
 # No hardsuit + Hardsuit locker
 - type: entity

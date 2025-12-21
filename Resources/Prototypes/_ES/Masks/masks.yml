@@ -104,6 +104,20 @@
     - ESActionMaskAdrenalinePump
 
 - type: esMask
+  id: ESPhantom
+  name: es-mask-phantom-name
+  troupe: ESCrew
+  description: es-mask-phantom-desc
+  color: lavender
+  weight: 0.5
+  mindComponents:
+  - type: ESReincarnateMind
+  objectives:
+    all:
+    - id: ESObjectivePhantomDie
+    - id: ESObjectivePhantomAvenge
+
+- type: esMask
   id: ESGlutton
   name: es-mask-glutton-name
   troupe: ESCrew
@@ -128,6 +142,48 @@
   objectives:
     all:
     - id: ESObjectiveSurvive
+
+- type: esMask
+  id: ESSacrifice
+  name: es-mask-sacrifice-name
+  troupe: ESCrew
+  description: es-mask-sacrifice-desc
+  color: lightgoldenrodyellow
+  objectives:
+    all:
+    - id: ESObjectiveSacrificeHeal
+
+- type: esMask
+  id: ESVandal
+  name: es-mask-vandal-name
+  troupe: ESCrew
+  description: es-mask-vandal-desc
+  color: tomato
+  mindComponents:
+  - type: ESCanAlwaysSabotage
+  objectives:
+    all:
+    - pick:
+        all:
+        - id: ESObjectiveVandalSabotageCommunications
+        - id: ESObjectiveVandalSabotageCrewMonitoring
+        - id: ESObjectiveVandalSabotageIDComputer
+        - id: ESObjectiveVandalSabotageCriminalRecords
+        - id: ESObjectiveVandalSabotageTelecom
+          weight: 2
+      amount: 1, 2
+
+- type: esMask
+  id: ESMartyr
+  name: es-mask-martyr-name
+  troupe: ESCrew
+  description: es-mask-martyr-desc
+  color: gold
+  mindComponents:
+  - type: ESMartyr
+  objectives:
+    all:
+    - id: ESObjectiveMartyrBeKilled
 
 # Traitor Masks
 - type: esMask

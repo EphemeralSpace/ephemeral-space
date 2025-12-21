@@ -1,0 +1,20 @@
+- type: guideEntry
+  id: ESTroupesAndMasks
+  hidden: false
+  name: es-guide-entry-troupes-and-masks
+  text: "/ServerInfo/_ES/Guidebook/Masks/TroupesAndMasks.xml"
+  children:
+  - ESCrew
+  - ESTraitors
+
+- type: guideEntry
+  id: ESCrew
+  hidden: false
+  name: es-guide-entry-crew
+  text: "/ServerInfo/_ES/Guidebook/Masks/Crew.xml"
+
+- type: guideEntry
+  id: ESTraitors
+  hidden: false
+  name: guide-entry-traitors
+  text: "/ServerInfo/_ES/Guidebook/Masks/Traitors.xml"

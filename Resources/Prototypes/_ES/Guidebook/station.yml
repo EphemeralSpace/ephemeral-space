@@ -1,0 +1,23 @@
+- type: guideEntry
+  id: ESSS14
+  hidden: false
+  name: guide-entry-ss14
+  priority: 20
+  text: "/ServerInfo/_ES/Guidebook/SpaceStation14.xml"
+  children:
+  - ESJobs
+  - ESSurvival
+  - ESTroupesAndMasks
+  - ESGlossary
+
+- type: guideEntry
+  id: ESGlossary
+  hidden: false
+  name: guide-entry-glossary
+  text: "/ServerInfo/_ES/Guidebook/Glossary.xml"
+
+- type: guideEntry
+  id: ESSurvival
+  hidden: false
+  name: guide-entry-survival
+  text: "/ServerInfo/_ES/Guidebook/Survival.xml"

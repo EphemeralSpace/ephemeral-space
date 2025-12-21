@@ -1,0 +1,65 @@
+- type: guideEntry
+  id: ESScience
+  hidden: false
+  name: guide-entry-science
+  text: "/ServerInfo/_ES/Guidebook/Science/Science.xml"
+  children:
+  - ESTechnologies
+  - ESAnomalousResearch
+  - ESXenoarchaeology
+  - ESRobotics
+
+- type: guideEntry
+  id: ESTechnologies
+  hidden: false
+  name: guide-entry-technologies
+  text: "/ServerInfo/_ES/Guidebook/Science/Technologies.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESAnomalousResearch
+  hidden: false
+  name: guide-entry-anomalous-research
+  text: "/ServerInfo/_ES/Guidebook/Science/AnomalousResearch.xml"
+  children:
+  - ESAPE
+  - ESScannersAndVessels
+
+- type: guideEntry
+  id: ESScannersAndVessels
+  hidden: false
+  name: guide-entry-scanners-and-vessels
+  text: "/ServerInfo/_ES/Guidebook/Science/ScannersAndVessels.xml"
+
+- type: guideEntry
+  id: ESAPE
+  hidden: false
+  name: guide-entry-ape
+  text: "/ServerInfo/_ES/Guidebook/Science/APE.xml"
+
+- type: guideEntry
+  id: ESXenoarchaeology
+  hidden: false
+  name: guide-entry-xenoarchaeology
+  text: "/ServerInfo/_ES/Guidebook/Science/Xenoarchaeology.xml"
+  children:
+    - ESAnalysisConsole
+    - ESXenoarchaeologyUnlockingNodes
+
+- type: guideEntry
+  id: ESXenoarchaeologyUnlockingNodes
+  hidden: false
+  name: guide-entry-xenoarchaeologyunlockingnodes
+  text: "/ServerInfo/_ES/Guidebook/Science/UnlockingNodes.xml"
+
+- type: guideEntry
+  id: ESAnalysisConsole
+  hidden: false
+  name: guide-entry-analysisconsole
+  text: "/ServerInfo/_ES/Guidebook/Science/AnalysisConsole.xml"
+
+- type: guideEntry
+  id: ESRobotics
+  hidden: false
+  name: guide-entry-robotics
+  text: "/ServerInfo/_ES/Guidebook/Science/Robotics.xml"

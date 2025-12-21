@@ -1,5 +1,6 @@
 using Content.Shared._ES.Core.Timer.Components;
 using JetBrains.Annotations;
+using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
@@ -66,12 +67,19 @@ public sealed class ESEntityTimerSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        var firingTimers = new ValueList<Entity<ESEntityTimerComponent, TransformComponent>>();
         var query = EntityQueryEnumerator<ESEntityTimerComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var timer, out var xform))
         {
             if (_timing.CurTime < timer.TimerEnd)
                 continue;
 
+            firingTimers.Add((uid, timer, xform));
+        }
+
+        // loop over firing timers separately to avoid collection exceptions from adding new timers in an event raise
+        foreach (var (uid, timer, xform) in firingTimers)
+        {
             var target = xform.ParentUid;
 
             // broadcast

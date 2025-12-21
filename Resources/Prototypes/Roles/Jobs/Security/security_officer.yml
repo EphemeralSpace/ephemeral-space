@@ -38,7 +38,8 @@
   job: SecurityOfficer
   hasMindShield: true
   equipment:
-    head: ClothingHeadHatBeretSecurity
+# ES Start
+    head: ClothingHeadHelmetBasic
+# ES End
     mask: ClothingMaskGasSecurity
-    neck: Dinkystar
     gloves: ClothingHandsGlovesColorBlack

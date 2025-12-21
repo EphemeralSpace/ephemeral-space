@@ -23,6 +23,16 @@
       min: 55
       max: 65
 
+- type: entity # Variant for events which have no delay between announcing and starting
+  parent: ESBaseStationEvent
+  id: ESBaseStationEventNoDelay
+  abstract: true
+  components:
+  - type: GameRule
+    delay:
+      min: 0
+      max: 0
+
 # General Tables for Station Events
 - type: entityTable
   id: ESStationEvents
@@ -36,6 +46,7 @@
     - id: ESStationEventVentClog
     - id: ESStationEventMeteorSwarm
     - id: ESStationEventSpaceDust
+    - id: ESStationEventElectricalFire
 
 # Event Prototypes
 
@@ -207,3 +218,25 @@
     meteorsPerWave:
       min: 8
       max: 12
+
+## Electrical Fire
+- type: entity
+  parent: ESBaseStationEventNoDelay
+  id: ESStationEventElectricalFire
+  name: Electrical Fire
+  components:
+  - type: ESElectricalFireRule
+  - type: ESSynchronizedVoteManager
+    votes:
+    - ESVoteElectricalFireLocation
+
+- type: entity
+  id: ESVoteElectricalFireLocation
+  name: Where should the fire start?
+  components:
+  - type: ESVote
+    queryString: es-voter-query-string-electrical-fire-location
+    duration: 30
+  - type: ESRandomLocationVote
+    count: 6
+    checkLOS: false

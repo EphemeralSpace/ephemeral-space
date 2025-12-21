@@ -9,7 +9,9 @@ public sealed class EndRoundCommand : LocalizedEntityCommands
 {
     [Dependency] private readonly GameTicker _gameTicker = default!;
 
-    public override string Command => "endround";
+// ES START
+    public override string Command => "beginpostround";
+// ES END
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {

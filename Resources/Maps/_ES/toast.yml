@@ -4,8 +4,8 @@ meta:
   engineVersion: 268.1.0
   forkId: ""
   forkVersion: ""
-  time: 12/15/2025 23:16:21
-  entityCount: 14514
+  time: 12/19/2025 05:05:47
+  entityCount: 14522
 maps:
 - 3
 grids:
@@ -4904,7 +4904,7 @@ entities:
       pos: -11.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -866.85114
+      secondsUntilStateChange: -1429.6743
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -44095,6 +44095,7 @@ entities:
   - uid: 2156
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -5.5,-34.5
       parent: 2
     - type: Fixtures
@@ -44165,6 +44166,60 @@ entities:
     components:
     - type: Transform
       pos: -44.5,12.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 14502
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -30.5,-38.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 14517
+    components:
+    - type: Transform
+      pos: -48.5,-0.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 14518
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -42.5,-28.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 14519
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -26.5,-24.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 14520
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -34.5,-0.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 14521
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 21.5,10.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 14522
+    components:
+    - type: Transform
+      pos: -4.5,-40.5
       parent: 2
     - type: Fixtures
       fixtures: {}
@@ -86712,6 +86767,13 @@ entities:
     components:
     - type: Transform
       pos: -40.5,-37.5
+      parent: 2
+- proto: WardrobeScienceFilled
+  entities:
+  - uid: 14382
+    components:
+    - type: Transform
+      pos: 13.5,-13.5
       parent: 2
 - proto: WardrobeSecurityFilled
   entities:

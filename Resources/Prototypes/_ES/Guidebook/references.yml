@@ -1,0 +1,145 @@
+- type: guideEntry
+  id: ESReferences
+  hidden: false
+  name: guide-entry-references
+  priority: 30
+  text: "/ServerInfo/_ES/Guidebook/References.xml"
+  children:
+  - ESChemicals
+  - ESDrinks
+  - ESFoodRecipes
+  - ESWriting
+  - Lawsets
+
+- type: guideEntry
+  id: ESDrinks
+  hidden: false
+  name: guide-entry-drinks
+  text: "/ServerInfo/_ES/Guidebook/ReferenceTables/Drinks.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESFoodRecipes
+  hidden: false
+  name: guide-entry-foodrecipes
+  text: "/ServerInfo/_ES/Guidebook/Service/FoodRecipes.xml"
+  filterEnabled: True
+  children:
+  - ESPizzaRecipes
+  - ESSavoryRecipes
+  - ESBreadRecipes
+  - ESBreakfastRecipes
+  - ESPastaRecipes
+  - ESDessertRecipes
+  - ESSoupRecipes
+  - ESPieRecipes
+  - ESBarsAndCookiesRecipes
+  - ESCakeRecipes
+  - ESSaladRecipes
+  - ESOtherRecipes
+  - ESMedicinalRecipes
+  - ESSecretRecipes
+
+- type: guideEntry
+  id: ESPizzaRecipes
+  hidden: false
+  name: guide-entry-pizza-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/PizzaRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESSavoryRecipes
+  hidden: false
+  name: guide-entry-savory-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/SavoryRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESBreadRecipes
+  hidden: false
+  name: guide-entry-bread-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/BreadRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESBreakfastRecipes
+  hidden: false
+  name: guide-entry-breakfast-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/BreakfastRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESPastaRecipes
+  hidden: false
+  name: guide-entry-pasta-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/PastaRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESDessertRecipes
+  hidden: false
+  name: guide-entry-dessert-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/DessertRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESSoupRecipes
+  hidden: false
+  name: guide-entry-soup-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/SoupRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESPieRecipes
+  hidden: false
+  name: guide-entry-pie-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/PieRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESBarsAndCookiesRecipes
+  hidden: false
+  name: guide-entry-barsandcookies-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/BarsAndCookiesRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESCakeRecipes
+  hidden: false
+  name: guide-entry-cake-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/CakeRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESSaladRecipes
+  hidden: false
+  name: guide-entry-salad-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/SaladRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESOtherRecipes
+  hidden: false
+  name: guide-entry-other-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/OtherRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESMedicinalRecipes
+  hidden: false
+  name: guide-entry-medicinal-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/MedicinalRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESSecretRecipes
+  hidden: false
+  name: guide-entry-secret-recipes
+  text: "/ServerInfo/_ES/Guidebook/Service/SecretRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESWriting
+  hidden: false
+  name: guide-entry-writing
+  text: "/ServerInfo/_ES/Guidebook/Writing.xml"

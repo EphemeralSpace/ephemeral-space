@@ -1,0 +1,14 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveMartyrBeKilled
+  name: Be killed by a crewmember
+  description: Unjustly perish by someone else's hand.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
+  - type: ESBeKilledObjective
+    troupeRequired: ESCrew
+  - type: ESCounterObjective
+    target: 1

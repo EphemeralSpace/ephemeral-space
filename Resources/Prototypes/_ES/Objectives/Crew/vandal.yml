@@ -1,0 +1,24 @@
+- type: entity
+  id: ESObjectiveVandalSabotageCommunications
+  parent: [ESBaseMaskObjective, ESBaseObjectiveSabotageCommunications]
+  description: It'd be pretty funny to see everybody freak out about a scary announcement message. Let's tinker with the communications computer.
+
+- type: entity
+  id: ESObjectiveVandalSabotageCrewMonitoring
+  parent: [ESBaseMaskObjective, ESBaseObjectiveSabotageCrewMonitoring]
+  description: I wonder what everyone's weird medical secrets are. How about checking the crew monitoring server?
+
+- type: entity
+  id: ESObjectiveVandalSabotageIDComputer
+  parent: [ESBaseMaskObjective, ESBaseObjectiveSabotageIDComputer]
+  description: The heads of staff are always so stuck-up about proper identification. Messing with the ID card computer should teach them a lesson.
+
+- type: entity
+  id: ESObjectiveVandalSabotageCriminalRecords
+  parent: [ESBaseMaskObjective, ESBaseObjectiveSabotageCriminalRecords]
+  description: I really should try and make sure my long arrest history is a little more hidden. Scrambling the criminal records computer's database might be fun.
+
+- type: entity
+  id: ESObjectiveVandalSabotageTelecom
+  parent: [ESBaseMaskObjective, ESBaseObjectiveSabotageTelecom]
+  description: Those telecom servers have a whole heap of mandatory "diagnostic logging" built in. Why not let everyone know by hacking one?

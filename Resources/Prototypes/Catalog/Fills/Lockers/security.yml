@@ -20,7 +20,9 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillLockerWarden
+# ES Start
+        tableId: ESFillLockerWarden
+# ES End
 
 - type: entityTable
   id: FillLockerWarden
@@ -63,7 +65,9 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillLockerSecurity
+# ES Start
+        tableId: ESFillLockerSecurity
+# ES End
 
 - type: entityTable
   id: FillLockerSecurity
@@ -99,7 +103,9 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillLockerDetective
+# ES Start
+        tableId: ESFillLockerDetective
+# ES End
 
 - type: entityTable
   id: FillLockerDetective

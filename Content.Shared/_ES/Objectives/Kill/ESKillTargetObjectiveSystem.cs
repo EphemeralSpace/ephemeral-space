@@ -37,7 +37,7 @@ public sealed class ESKillTargetObjectiveSystem : ESBaseObjectiveSystem<ESKillTa
     {
         if (!_targetObjective.TryGetTarget(ent.Owner, out var target))
         {
-            args.Progress = 1;
+            args.Progress = ent.Comp.DefaultProgress;
             return;
         }
 

@@ -21,6 +21,10 @@ public sealed class StationPowerTests
 
     private static readonly string[] GameMaps =
     [
+        // ES START
+        // test toast, dont test upstream maps
+        "ESToast",
+        /*
         "Bagel",
         "Box",
         "Elkridge",
@@ -33,6 +37,8 @@ public sealed class StationPowerTests
         "Snowball",
         "Reach",
         "Exo",
+        */
+        // ES END
     ];
 
     [Explicit]

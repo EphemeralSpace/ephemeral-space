@@ -10,8 +10,6 @@ namespace Content.Server._ES.Masks.Objectives;
 /// <seealso cref="ESKillTroupeObjectiveComponent"/>
 public sealed class ESKillTroupeObjectiveSystem : ESBaseObjectiveSystem<ESKillTroupeObjectiveComponent>
 {
-    [Dependency] private readonly ESMaskSystem _mask = default!;
-
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -28,7 +26,7 @@ public sealed class ESKillTroupeObjectiveSystem : ESBaseObjectiveSystem<ESKillTr
 
         foreach (var objective in ObjectivesSys.GetObjectives<ESKillTroupeObjectiveComponent>(mind.Value.Owner))
         {
-            if (!_mask.TryGetTroupe(args.Entity, out var troupe))
+            if (!MaskSys.TryGetTroupe(args.Entity, out var troupe))
                 return;
 
             if ((troupe == objective.Comp.Troupe) ^ objective.Comp.Invert)

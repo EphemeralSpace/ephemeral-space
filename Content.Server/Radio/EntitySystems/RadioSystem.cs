@@ -15,6 +15,8 @@ using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 // ES START
 using Content.Server._ES.Radio;
+using Content.Shared._ES.Degradation;
+using Content.Shared.Animals.Components;
 // ES END
 
 namespace Content.Server.Radio.EntitySystems;
@@ -45,8 +47,47 @@ public sealed class RadioSystem : EntitySystem
         SubscribeLocalEvent<IntrinsicRadioReceiverComponent, RadioReceiveEvent>(OnIntrinsicReceive);
         SubscribeLocalEvent<IntrinsicRadioTransmitterComponent, EntitySpokeEvent>(OnIntrinsicSpeak);
 
+        // ES START
+        SubscribeLocalEvent<TelecomServerComponent, TransformSpeakerNameEvent>(OnTransformServerName);
+        SubscribeLocalEvent<TelecomServerComponent, ESUndergoDegradationEvent>(OnServerDegraded);
+        // ES END
+
         _exemptQuery = GetEntityQuery<TelecomExemptComponent>();
     }
+
+    // ES START
+    private void OnServerDegraded(Entity<TelecomServerComponent> ent, ref ESUndergoDegradationEvent args)
+    {
+        // tcomms servers have parrot memory, for the radio channel they listen on
+        // we pull one from there, scramble it, then send it on this channel
+        if (!TryComp<ParrotMemoryComponent>(ent, out var memory))
+            return;
+
+        if (!TryComp<EncryptionKeyHolderComponent>(ent, out var keys))
+            return;
+
+        // pick 1 memory for the message
+        // we don't distort it here, because its probably already distorted
+        var msg = _random.Pick(memory.SpeechMemories).Message;
+
+        foreach (var channel in keys.Channels)
+        {
+            SendRadioMessage(ent.Owner, msg, channel, ent.Owner);
+        }
+
+        args.Handled = true;
+    }
+
+    private void OnTransformServerName(EntityUid uid, TelecomServerComponent component, TransformSpeakerNameEvent args)
+    {
+        if (!TryComp<ParrotMemoryComponent>(uid, out var memory))
+            return;
+
+        // use a random name from memories to transform whatever message we send (thru sabotage, usually)
+        var source = _random.Pick(memory.SpeechMemories);
+        args.VoiceName = source.EntityName;
+    }
+    // ES END
 
     private void OnIntrinsicSpeak(EntityUid uid, IntrinsicRadioTransmitterComponent component, EntitySpokeEvent args)
     {
