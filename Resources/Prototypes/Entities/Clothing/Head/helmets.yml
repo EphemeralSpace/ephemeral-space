@@ -273,8 +273,16 @@
   components:
   - type: Sprite
     sprite: Clothing/Head/Helmets/firehelmet.rsi
+    layers:
+# ES Start
+    - state: icon
+    - state: light-icon
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
   - type: Clothing
     sprite: Clothing/Head/Helmets/firehelmet.rsi
+    equippedPrefix: off
     quickEquip: true
   - type: IngestionBlocker
   - type: TemperatureProtection
@@ -282,7 +290,7 @@
     coolingCoefficient: 0.8
   - type: FireProtection
     reduction: 0.15 # not fully sealed so less protection
-  - type: IdentityBlocker
+# ES End
   - type: Tag
     tags:
     - WhitelistChameleon
