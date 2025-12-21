@@ -4,7 +4,7 @@ meta:
   engineVersion: 268.1.0
   forkId: ""
   forkVersion: ""
-  time: 12/14/2025 16:57:16
+  time: 12/21/2025 23:17:24
   entityCount: 725
 maps: []
 grids:
@@ -1863,7 +1863,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 23.5,7.5
       parent: 1
-- proto: DresserCaptainFilled
+- proto: Dresser
   entities:
   - uid: 349
     components:
