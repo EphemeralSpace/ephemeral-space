@@ -12,6 +12,9 @@
       map: ["enum.GunVisualLayers.Base"]
   - type: Item
     storedOffset: -2,0
+    size: Huge
+    shape:
+    - 0,0,7,1
     sprite: _ES/Objects/Weapons/Guns/shotgun_inhands_64x.rsi
   - type: Clothing
     sprite: _ES/Objects/Weapons/Guns/shotgun.rsi
@@ -42,6 +45,7 @@
       map: ["enum.GunVisualLayers.Base"]
   - type: Item
     storedOffset: -2,0
+    size: Huge
     sprite: _ES/Objects/Weapons/Guns/db_shotgun_inhands_64x.rsi
   - type: Clothing
     sprite: _ES/Objects/Weapons/Guns/shotgun.rsi
