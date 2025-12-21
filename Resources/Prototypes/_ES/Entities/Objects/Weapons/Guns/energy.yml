@@ -95,9 +95,13 @@
   id: ESWeaponCaptainEnergyGun
   name: captain's antique energy gun
   suffix: ES
-  description: This is an antique laser gun. All craftsmanship is of the highest quality. It is decorated with a mahogany grip and chrome filigree. The object menaces with spikes of energy. On the item is an image of a captain and a clown. The clown is dead. The captain is striking a heroic pose.
+  description: This is an antique energy gun. All craftsmanship is of the highest quality. It is decorated with a mahogany grip and chrome filigree. The object menaces with spikes of energy. On the item is an image of a captain and a clown. The clown is dead. The captain is striking a heroic pose.
   parent: ESWeaponEnergyRifle
   components:
+  - type: Tag
+    tags:
+    - HighRiskItem
+    - WeaponAntiqueLaser
   - type: Item
     storedOffset: -2,0
     size: Huge

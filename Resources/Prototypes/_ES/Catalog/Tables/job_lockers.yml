@@ -109,6 +109,25 @@
     - id: BoxEvidenceMarkers
     - id: HandLabeler
 
+# Service
+- type: entityTable
+  id: ESFillLockerBooze
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterVest
+    - id: ESWeaponDoubleBarrelShotgunNonlethal
+    - id: DrinkShaker
+    - id: ClothingEyesHudBeer
+    - id: HandLabeler
+    - id: DrinkBeerBottleFull
+      amount: !type:BinomialNumberSelector
+        trials: 3
+    - !type:AllSelector
+      rolls: 2
+      children:
+      - id: ESShotgunShellsBoxBeanbag
+      - id: RagItem
+
 # Science
 - type: entityTable
   id: ESFillLockerScientist
