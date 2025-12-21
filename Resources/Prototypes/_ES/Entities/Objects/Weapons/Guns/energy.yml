@@ -126,7 +126,9 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: BatteryAmmoProvider
-    proto: ESEnergyBolt
-    fireCost: 95
+    proto: ESEnergyBoltCaptain
+    fireCost: 70
+  - type: PredictedBatterySelfRecharger
+    autoRechargeRate: 5
   - type: StaticPrice
     price: 420
