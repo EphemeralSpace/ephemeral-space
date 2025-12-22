@@ -74,6 +74,9 @@ public sealed class ESTileFireSystem : ESSharedTileFireSystem
                 continue;
 
             var tileDef = _turf.GetContentTileDefinition(neighbor.Tile);
+            if (tileDef.Flammability <= 0)
+                continue;
+
             var score = tileDef.Flammability;
 
             // no atmosphere = definitely dont score this tile (shouldnt be possible anyway afaik)
@@ -96,12 +99,14 @@ public sealed class ESTileFireSystem : ESSharedTileFireSystem
                 score *= 0;
 
             var coords = MapSys.GridTileToLocal(neighbor.Tile.GridUid, neighbor.Grid, neighbor.Tile.GridIndices);
-            weights.Add(coords, score);
+
+            if (score > 0)
+                weights.Add(coords, score);
         }
 
         while (args.Updates > 0)
         {
-            if (flammable.FireStacks < ent.Comp.MinFirestacksToSpread)
+            if (flammable.FireStacks < ent.Comp.MinFirestacksToSpread || weights.Count == 0)
                 return;
 
             var coords = _random.PickAndTake(weights);
