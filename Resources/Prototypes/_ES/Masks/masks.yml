@@ -159,6 +159,7 @@
   troupe: ESCrew
   description: es-mask-vandal-desc
   color: tomato
+  weight: 0.2
   mindComponents:
   - type: ESCanAlwaysSabotage
   objectives:
@@ -179,6 +180,7 @@
   troupe: ESCrew
   description: es-mask-martyr-desc
   color: gold
+  weight: 0.5
   mindComponents:
   - type: ESMartyr
   objectives:

@@ -56,9 +56,9 @@
   - type: ESGuzzleObjective
   - type: ESCounterObjective
     title: es-guzzle-objective-title
-    target: 1000
-    maxTarget: 2000
-    targetIncrement: 100
+    target: 500
+    maxTarget: 1200
+    targetIncrement: 50
 
 - type: entity
   parent: ESBaseMaskObjective
@@ -91,8 +91,8 @@
     - SpaceCleaner
     - SpaceLube
   - type: ESCounterObjective
-    target: 100
-    maxTarget: 200
+    target: 70
+    maxTarget: 150
     targetIncrement: 10
 
 - type: entity
@@ -135,15 +135,15 @@
     - Poison
     - Blunt
   - type: ESCounterObjective
-    target: 250
-    maxTarget: 500
-    targetIncrement: 50
+    target: 75
+    maxTarget: 200
+    targetIncrement: 25
 
 - type: entity
   parent: ESBaseMaskObjective
   id: ESObjectiveTakeDamageFromSource
   name: Take damage from source
-  description: Take as much of a certain damage type as you can.
+  description: Take as much damage from a certain source as you can.
   components:
   - type: ESObjective
     icon:
@@ -155,9 +155,9 @@
     - ESEmitter
     - ESAncestor
   - type: ESCounterObjective
-    target: 100
-    maxTarget: 250
-    targetIncrement: 10
+    target: 75
+    maxTarget: 150
+    targetIncrement: 25
 
 - type: entity
   parent: ESBaseMaskObjective
@@ -173,9 +173,9 @@
   - type: ESCounterObjective
     title: es-daredevil-total-objective-title
     description: es-daredevil-total-objective-desc
-    target: 750
-    maxTarget: 1250
-    targetIncrement: 50
+    target: 300
+    maxTarget: 500
+    targetIncrement: 20
 
 - type: entity
   parent: ESBaseMaskObjective
@@ -190,9 +190,9 @@
   - type: ESEatUniqueFoodsObjective
   - type: ESCounterObjective
     title: es-eat-unique-foods-objective-title
-    target: 25
-    maxTarget: 40
-    targetIncrement: 5
+    target: 16
+    maxTarget: 30
+    targetIncrement: 2
 
 - type: entity
   parent: ESBaseMaskObjective
