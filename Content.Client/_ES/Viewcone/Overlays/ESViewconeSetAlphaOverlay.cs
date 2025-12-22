@@ -84,6 +84,10 @@ public sealed class ESViewconeSetAlphaOverlay : Overlay
             var (comp, xform) = entry;
             var uid = entry.Uid; // this uses component.Owner.. oh well
 
+            // dynamic clientside disabling, for effects like pulled entities
+            if (_ent.HasComponent<ESViewconeClientNoOccludeComponent>(uid))
+                continue;
+
             if (!_ent.TryGetComponent<SpriteComponent>(uid, out var sprite))
                 continue;
 

@@ -2,6 +2,7 @@ using Content.Client._ES.Viewcone.Overlays;
 using Content.Client.Eye;
 using Content.Shared._ES.Viewcone;
 using Content.Shared.MouseRotator;
+using Content.Shared.Movement.Pulling.Events;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -9,6 +10,7 @@ using Robust.Client.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Client._ES.Viewcone;
 
@@ -18,6 +20,7 @@ namespace Content.Client._ES.Viewcone;
 /// </summary>
 public sealed class ESViewconeOverlayManagementSystem : EntitySystem
 {
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
     [Dependency] private readonly IInputManager _input = default!;
@@ -47,6 +50,9 @@ public sealed class ESViewconeOverlayManagementSystem : EntitySystem
 
         SubscribeLocalEvent<ESViewconeComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<ESViewconeComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
+
+        SubscribeLocalEvent<ESViewconeOccludableComponent, PullStartedMessage>(OnPullStarted);
+        SubscribeLocalEvent<ESViewconeOccludableComponent, PullStoppedMessage>(OnPullStopped);
 
         _coneOverlay = new();
         _setAlphaOverlay = new();
@@ -149,5 +155,29 @@ public sealed class ESViewconeOverlayManagementSystem : EntitySystem
         _overlayMan.RemoveOverlay(_coneOverlay);
         _overlayMan.RemoveOverlay(_setAlphaOverlay);
         _overlayMan.RemoveOverlay(_resetAlphaOverlay);
+    }
+
+    // Logic for disabling occluding of entities that you're currently pulling.
+    private void OnPullStarted(Entity<ESViewconeOccludableComponent> ent, ref PullStartedMessage args)
+    {
+        // can this even happen? idk
+        if (args.PullerUid != _playerManager.LocalEntity || !_gameTiming.IsFirstTimePredicted)
+            return;
+
+        EnsureComp<ESViewconeClientNoOccludeComponent>(ent);
+    }
+
+    private void OnPullStopped(Entity<ESViewconeOccludableComponent> ent, ref PullStoppedMessage args)
+    {
+        if (args.PullerUid != _playerManager.LocalEntity)
+            return;
+
+        // why the fuck can this even happen? it stops the pull clientside and never restarts it?
+        // is clientside pulling just bugged upstream?
+        // the flow is "applying state -> reset virtual hand ent -> delete it (??) -> AUGHHHH THAT MEANS STOP PULLING I GUESS
+        if (_gameTiming.ApplyingState)
+            return;
+
+        RemComp<ESViewconeClientNoOccludeComponent>(ent);
     }
 }
