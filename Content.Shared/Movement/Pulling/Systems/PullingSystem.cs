@@ -606,7 +606,6 @@ public sealed class PullingSystem : EntitySystem
         // specifically, to make pulling less ass
         // (and much faster) by just reducing the density of pulled items
         // yes this probably has weird knock on effects but I can't think of a better way to do this right now
-        // we /100 to avoid storing state, and then just *100 in stoppulling
         var fix = Comp<FixturesComponent>(pullableUid);
         pullableComp.OldFixtureDensities = new();
         foreach (var (id, fixture) in fix.Fixtures)
