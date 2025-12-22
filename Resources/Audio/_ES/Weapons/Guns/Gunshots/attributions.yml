@@ -2,3 +2,23 @@
   license: "CC-BY-SA-3.0"
   copyright: "Taken from tgstation"
   source: "https://github.com/tgstation/tgstation/commit/436ba869ebcd0b60b63973fb7562f447ee655205/"
+
+- files: ["pistol_shot.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation, modified by pigeonbeans"
+  source: "https://github.com/tgstation/tgstation/commit/436ba869ebcd0b60b63973fb7562f447ee655205/"
+
+- files: ["revolver_shot.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation, modified by pigeonbeans"
+  source: "https://github.com/tgstation/tgstation/commit/436ba869ebcd0b60b63973fb7562f447ee655205/"
+
+- files: ["shotgun_shot.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation, modified by pigeonbeans"
+  source: "https://github.com/tgstation/tgstation/commit/436ba869ebcd0b60b63973fb7562f447ee655205/"
+
+- files: ["doublebarrel_shot.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation, modified by pigeonbeans"
+  source: "https://github.com/tgstation/tgstation/commit/436ba869ebcd0b60b63973fb7562f447ee655205/"

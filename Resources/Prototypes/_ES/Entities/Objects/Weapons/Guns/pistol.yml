@@ -22,7 +22,7 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      path: /Audio/_ES/Weapons/Guns/Gunshots/pistol_shot.ogg
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

@@ -26,6 +26,8 @@
     proto: ESShellShotgunBuckshot
   - type: Gun
     fireRate: 2
+    soundGunshot:
+      path: /Audio/_ES/Weapons/Guns/Gunshots/shotgun_shot.ogg
     availableModes:
     - SemiAuto
   - type: GunSpreadModifier
@@ -57,6 +59,8 @@
     proto: ESShellShotgunBuckshot
   - type: Gun
     fireRate: 4
+    soundGunshot:
+      path: /Audio/_ES/Weapons/Guns/Gunshots/doublebarrel_shot.ogg
 
 - type: entity
   parent: ESWeaponDoubleBarrelShotgun
