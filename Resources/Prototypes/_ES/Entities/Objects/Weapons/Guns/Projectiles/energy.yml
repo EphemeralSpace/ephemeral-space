@@ -40,6 +40,8 @@
   - type: Ammo
   - type: Projectile
     impactEffect: BulletImpactEffectOrangeDisabler
+    soundHit:
+      path: /Audio/_ES/Weapons/Guns/Hits/sear.ogg
     damage:
       types:
         Heat: 18
@@ -51,7 +53,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
-    impactEffect: BulletImpactEffectOrangeDisabler
     damage:
       types:
         Heat: 10
@@ -83,11 +84,11 @@
     damage: 33
   - type: Projectile
     impactEffect: BulletImpactEffectDisabler
+    soundHit:
+      path: /Audio/_ES/Weapons/Guns/Hits/disabler_sear.ogg
     damage:
       types:
         Heat: 0
-    soundHit:
-      collection: WeakHit
     forceSound: true
 
 - type: entity

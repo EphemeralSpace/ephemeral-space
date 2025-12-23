@@ -26,6 +26,8 @@
   - type: Clothing
     sprite: _ES/Objects/Weapons/Guns/laser_gun.rsi
   - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
       path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
     selectedMode: SemiAuto
