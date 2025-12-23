@@ -27,7 +27,7 @@
     sprite: _ES/Objects/Weapons/Guns/laser_gun.rsi
   - type: Gun
     soundEmpty:
-      path: /Audio/_ES/Weapons/Guns/Empty/Empty.ogg
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto

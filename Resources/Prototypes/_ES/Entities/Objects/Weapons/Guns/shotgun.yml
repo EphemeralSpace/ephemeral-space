@@ -24,6 +24,8 @@
       - ShellShotgun
     capacity: 7
     proto: ESShellShotgunBuckshot
+    soundInsert:
+      path: /Audio/_ES/Weapons/Guns/MagIn/shotgun_insert.ogg
   - type: Gun
     fireRate: 2
     soundGunshot:
