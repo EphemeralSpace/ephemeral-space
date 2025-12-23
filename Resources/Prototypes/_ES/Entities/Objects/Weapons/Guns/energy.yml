@@ -68,7 +68,7 @@
     soundGunshot:
       path: /Audio/_ES/Weapons/Guns/Gunshots/taser.ogg
     soundEmpty:
-      path: /Audio/_ES/Weapons/Guns/Empty/Empty.ogg
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
     projectileSpeed: 20
   - type: BatteryAmmoProvider
     proto: ESTaserBolt
@@ -130,7 +130,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
-      path: /Audio/_ES/Weapons/Guns/Empty/Empty.ogg
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
   - type: BatteryAmmoProvider
     proto: ESEnergyBoltCaptain
     fireCost: 70
