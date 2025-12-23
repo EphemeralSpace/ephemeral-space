@@ -108,7 +108,7 @@
     shape:
     - 0,0,4,3 #illogically bulky, but it's for game design reasons
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi
+    sprite: _ES/Objects/Weapons/Guns/antiquelasergun.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -116,7 +116,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi
+    sprite: _ES/Objects/Weapons/Guns/antiquelasergun.rsi
   - type: Gun
     selectedMode: Burst
     availableModes:
