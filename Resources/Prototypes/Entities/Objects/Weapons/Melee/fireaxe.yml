@@ -11,8 +11,10 @@
   - type: Execution
     doAfterDuration: 4.0
   - type: Sprite
-    sprite: Objects/Weapons/Melee/fireaxe.rsi
+# ES Start
+    sprite: _ES/Objects/Weapons/Melee/fireaxe.rsi
     state: icon
+# ES End
   - type: MeleeWeapon
     wideAnimationRotation: 135
     swingLeft: true
@@ -33,8 +35,10 @@
         Structural: 40
   - type: Item
     size: Ginormous
+# ES Start
   - type: Clothing
-    sprite: Objects/Weapons/Melee/fireaxe.rsi
+    sprite: _ES/Objects/Weapons/Melee/fireaxe.rsi
+# ES End
     quickEquip: false
     slots:
     - back
