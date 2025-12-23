@@ -1,0 +1,4 @@
+﻿- files: ["bullet_hit.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation, modified by pigeonbeans"
+  source: "https://github.com/tgstation/tgstation/commit/436ba869ebcd0b60b63973fb7562f447ee655205/"

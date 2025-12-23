@@ -26,6 +26,8 @@
   - type: Clothing
     sprite: _ES/Objects/Weapons/Guns/laser_gun.rsi
   - type: Gun
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/Empty.ogg
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -65,6 +67,8 @@
   - type: Gun
     soundGunshot:
       path: /Audio/_ES/Weapons/Guns/Gunshots/taser.ogg
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/Empty.ogg
     projectileSpeed: 20
   - type: BatteryAmmoProvider
     proto: ESTaserBolt
@@ -125,6 +129,8 @@
     projectileSpeed: 20
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/Empty.ogg
   - type: BatteryAmmoProvider
     proto: ESEnergyBoltCaptain
     fireCost: 70

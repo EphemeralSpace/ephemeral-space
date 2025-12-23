@@ -28,6 +28,8 @@
     fireRate: 2
     soundGunshot:
       path: /Audio/_ES/Weapons/Guns/Gunshots/shotgun_shot.ogg
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/Empty.ogg
     availableModes:
     - SemiAuto
   - type: GunSpreadModifier
@@ -61,6 +63,8 @@
     fireRate: 4
     soundGunshot:
       path: /Audio/_ES/Weapons/Guns/Gunshots/doublebarrel_shot.ogg
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/Empty.ogg
 
 - type: entity
   parent: ESWeaponDoubleBarrelShotgun

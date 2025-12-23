@@ -9,6 +9,8 @@
     damage:
       types:
         Piercing: 18
+    soundHit:
+      path: /Audio/_ES/Weapons/Guns/Hits/bullet_hit.ogg
 
 - type: entity
   parent: BaseBullet
@@ -20,6 +22,8 @@
     damage:
       types:
         Piercing: 40
+    soundHit:
+      path: /Audio/_ES/Weapons/Guns/Hits/bullet_hit.ogg
 
 # Shotgun bullets
 - type: entity
@@ -35,6 +39,8 @@
     damage:
       types:
         Piercing: 10
+    soundHit:
+      path: /Audio/_ES/Weapons/Guns/Hits/bullet_hit.ogg
 
 - type: entity
   id: ESPelletShotgunSpread
@@ -42,7 +48,7 @@
   parent: ESPelletShotgun
   components:
   - type: ProjectileSpread
-    proto: PelletShotgun
+    proto: ESPelletShotgun
     count: 6
     spread: 15
 
@@ -59,6 +65,8 @@
     damage:
       types:
         Piercing: 40
+    soundHit:
+      path: /Audio/_ES/Weapons/Guns/Hits/bullet_hit.ogg
 
 - type: entity
   id: ESPelletShotgunBeanbag
@@ -73,5 +81,7 @@
     damage:
       types:
         Blunt: 10
+    soundHit:
+      path: /Audio/_ES/Weapons/Guns/Hits/bullet_hit.ogg
   - type: StaminaDamageOnCollide
     damage: 40 # 3 hits to stun

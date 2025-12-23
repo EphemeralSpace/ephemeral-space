@@ -12,6 +12,8 @@
   - type: Gun
     soundGunshot:
       path: /Audio/_ES/Weapons/Guns/Gunshots/revolver_shot.ogg
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/Empty.ogg
   - type: Item
     storedOffset: 0,-2
   - type: RevolverAmmoProvider
