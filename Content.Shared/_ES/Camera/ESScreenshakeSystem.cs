@@ -13,7 +13,7 @@ namespace Content.Shared._ES.Camera;
 ///     Handles sending rotational or translational screenshake to an entity, managing the screenshake commands
 ///     of every entity currently screenshaking, and setting offset/rotation based on
 /// </summary>
-public sealed class ESSharedScreenshakeSystem : EntitySystem
+public sealed class ESScreenshakeSystem : EntitySystem
 {
     [Dependency] private readonly SharedContentEyeSystem _contentEye = default!;
     [Dependency] private readonly INetManager _net = default!;
