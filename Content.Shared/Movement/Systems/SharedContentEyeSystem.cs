@@ -169,7 +169,7 @@ public abstract class SharedContentEyeSystem : EntitySystem
     // ES START
     public void UpdateEyeRotation(Entity<EyeComponent> eye)
     {
-        var ev = new ESGetEyeRotationEvent(eye.Comp.Rotation);
+        var ev = new ESGetEyeRotationEvent();
         RaiseLocalEvent(eye, ref ev);
 
         _eye.SetRotation(eye, ev.Rotation, eye);

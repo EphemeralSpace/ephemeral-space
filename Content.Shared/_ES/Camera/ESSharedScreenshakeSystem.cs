@@ -1,7 +1,10 @@
 using System.Linq;
+using System.Numerics;
 using Content.Shared.Camera;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Random.Helpers;
 using Robust.Shared.Network;
+using Robust.Shared.Noise;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Camera;
@@ -49,7 +52,7 @@ public sealed class ESSharedScreenshakeSystem : EntitySystem
         UpdateScreenshakers(frameTime);
     }
 
-    public void UpdateScreenshakers(float frameTime)
+    private void UpdateScreenshakers(float frameTime)
     {
         base.Update(frameTime);
 
@@ -79,6 +82,15 @@ public sealed class ESSharedScreenshakeSystem : EntitySystem
 
     private void OnGetEyeOffset(Entity<ESScreenshakeComponent> ent, ref GetEyeOffsetEvent args)
     {
+        if (!TryComp<EyeComponent>(ent, out var eye))
+            return;
+
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
+        var noise = new FastNoiseLite(seed);
+        noise.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2);
+
+        var accumulatedOffset = Vector2.Zero;
+        var maxOffset = new Vector2(0.25f, 0.25f);
         foreach (var command in ent.Comp.Commands)
         {
             var trauma =
@@ -86,19 +98,39 @@ public sealed class ESSharedScreenshakeSystem : EntitySystem
             if (trauma <= 0)
                 continue;
 
-
+            var offsetX = (maxOffset.X * (trauma / 100f)) * noise.GetNoise((float) _timing.CurTime.TotalSeconds, 0f);
+            noise.SetSeed(seed + 1);
+            var offsetY = (maxOffset.Y * (trauma / 100f)) * noise.GetNoise((float) _timing.CurTime.TotalSeconds, 0f);
+            accumulatedOffset += new Vector2(offsetX, offsetY);
         }
+
+        args.Offset = eye.Offset + accumulatedOffset;
     }
 
     private void OnGetEyeRotation(Entity<ESScreenshakeComponent> ent, ref ESGetEyeRotationEvent args)
     {
+        if (!TryComp<EyeComponent>(ent, out var eye))
+            return;
+
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
+        var noise = new FastNoiseLite(seed);
+        noise.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2);
+
+        // 20deg max
+        var accumulatedAngle = Angle.Zero;
+        var maxAngle = Angle.FromDegrees(20f);
         foreach (var command in ent.Comp.Commands)
         {
             var trauma =
                 CalculateTraumaValueForCurrentTime(command.RotationalTrauma, ent.Comp.RotationalDecayRate, command.Start);
             if (trauma <= 0)
                 continue;
+
+            var angle = (maxAngle * (trauma / 100f)) * noise.GetNoise((float)_timing.CurTime.TotalSeconds, 0f);
+            accumulatedAngle += new Angle(angle);
         }
+
+        args.Rotation = eye.Rotation + accumulatedAngle;
     }
 
     private void OnEntityUnpaused(Entity<ESScreenshakeComponent> ent, ref EntityUnpausedEvent args)
