@@ -13,14 +13,11 @@ namespace Content.Shared._ES.Camera;
 
 /// <summary>
 ///     Handles sending rotational or translational screenshake to an entity, managing the screenshake commands
-///     of every entity currently screenshaking, and setting offset/rotation based on
+///     of every entity currently screenshaking, and setting offset/rotation when updated
 /// </summary>
 public sealed class ESScreenshakeSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContentEyeSystem _contentEye = default!;
-    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IConsoleHost _host = default!;
 
     #region Internal
 
@@ -31,46 +28,10 @@ public sealed class ESScreenshakeSystem : EntitySystem
         SubscribeLocalEvent<ESScreenshakeComponent, ESGetEyeRotationEvent>(OnGetEyeRotation);
         SubscribeLocalEvent<ESScreenshakeComponent, GetEyeOffsetEvent>(OnGetEyeOffset);
         SubscribeLocalEvent<ESScreenshakeComponent, EntityUnpausedEvent>(OnEntityUnpaused);
-
-        _host.RegisterCommand("screenshake", ScreenshakeCommand);
     }
 
-    private void ScreenshakeCommand(IConsoleShell shell, string argStr, string[] args)
-    {
-        if (!float.TryParse(args[0], out var traum))
-        {
-            return;
-        }
-
-        if (shell.Player?.AttachedEntity is not { } ent)
-            return;
-
-        Screenshake(ent, traum, traum);
-    }
-
-    // frameupdate on client, tick update on server
-    public override void FrameUpdate(float frameTime)
-    {
-        base.FrameUpdate(frameTime);
-
-        // don't think this can even happen but
-        if (!_net.IsClient)
-            return;
-
-        UpdateScreenshakers(frameTime);
-    }
 
     public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        if (_net.IsClient)
-            return;
-
-        UpdateScreenshakers(frameTime);
-    }
-
-    private void UpdateScreenshakers(float frameTime)
     {
         base.Update(frameTime);
 
@@ -92,9 +53,6 @@ public sealed class ESScreenshakeSystem : EntitySystem
                 shake.Commands.Remove(command);
                 Dirty(ent, shake);
             }
-
-            _contentEye.UpdateEyeOffset((ent, eye));
-            _contentEye.UpdateEyeRotation((ent, eye));
         }
     }
 
@@ -108,7 +66,7 @@ public sealed class ESScreenshakeSystem : EntitySystem
         noise.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2);
 
         var accumulatedOffset = Vector2.Zero;
-        var maxOffset = new Vector2(0.25f, 0.25f);
+        var maxOffset = new Vector2(0.15f, 0.15f);
         foreach (var command in ent.Comp.Commands)
         {
             var trauma =
@@ -116,13 +74,14 @@ public sealed class ESScreenshakeSystem : EntitySystem
             if (trauma <= 0)
                 continue;
 
-            var offsetX = (maxOffset.X * (trauma / 100f)) * noise.GetNoise((float) _timing.CurTime.TotalSeconds, 0f);
-            noise.SetSeed(seed + 1);
-            var offsetY = (maxOffset.Y * (trauma / 100f)) * noise.GetNoise((float) _timing.CurTime.TotalSeconds, 0f);
+            var offsetX = (maxOffset.X * trauma) * noise.GetNoise((float) _timing.CurTime.TotalSeconds, 0f);
+            noise.SetSeed(++seed);
+            var offsetY = (maxOffset.Y * trauma) * noise.GetNoise((float) _timing.CurTime.TotalSeconds, 0f);
+            noise.SetSeed(++seed);
             accumulatedOffset += new Vector2(offsetX, offsetY);
         }
 
-        args.Offset = eye.Offset + accumulatedOffset;
+        args.Offset += accumulatedOffset;
     }
 
     private void OnGetEyeRotation(Entity<ESScreenshakeComponent> ent, ref ESGetEyeRotationEvent args)
@@ -130,13 +89,14 @@ public sealed class ESScreenshakeSystem : EntitySystem
         if (!TryComp<EyeComponent>(ent, out var eye))
             return;
 
-        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
+        // +10 to avoid reusing same values as other shit
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id) + 10;
         var noise = new FastNoiseLite(seed);
         noise.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2);
 
         // 20deg max
         var accumulatedAngle = Angle.Zero;
-        var maxAngle = Angle.FromDegrees(20f);
+        var maxAngleDegrees = 20f;
         foreach (var command in ent.Comp.Commands)
         {
             var trauma =
@@ -144,11 +104,13 @@ public sealed class ESScreenshakeSystem : EntitySystem
             if (trauma <= 0)
                 continue;
 
-            var angle = (maxAngle * (trauma / 100f)) * noise.GetNoise((float)_timing.CurTime.TotalSeconds, 0f);
-            accumulatedAngle += new Angle(angle);
+            var angle = (maxAngleDegrees * trauma) * noise.GetNoise((float)_timing.CurTime.TotalSeconds, 0f);
+            noise.SetSeed(++seed);
+            accumulatedAngle += Angle.FromDegrees(angle);
         }
 
-        args.Rotation = eye.Rotation + accumulatedAngle;
+        // TODO ughhh this shit breaks with something idk
+        args.Rotation += accumulatedAngle;
     }
 
     private void OnEntityUnpaused(Entity<ESScreenshakeComponent> ent, ref EntityUnpausedEvent args)

@@ -14,7 +14,7 @@ public sealed partial class ESScreenshakeComponent : Component
 {
     /// <summary>
     ///     A set of screenshake commands which this entity is currently processing.
-    ///     A "trauma" of 0 means no change, and a trauma of 100 means max angle/offset.
+    ///     Trauma is 0..1, with 0 being no shake and 1 being maximum shake.
     /// </summary>
     /// <remarks>
     ///     This is a set, because order doesn't matter, and we don't want to accidentally readd the same command twice.
@@ -23,10 +23,10 @@ public sealed partial class ESScreenshakeComponent : Component
     public HashSet<ESScreenshakeCommand> Commands = new();
 
     [DataField, AutoNetworkedField]
-    public float TranslationalDecayRate = 2f;
+    public float TranslationalDecayRate = 1.2f;
 
     [DataField, AutoNetworkedField]
-    public float RotationalDecayRate = 2f;
+    public float RotationalDecayRate = 1.2f;
 
     public override bool SendOnlyToOwner => true;
 }
