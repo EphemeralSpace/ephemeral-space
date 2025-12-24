@@ -36,5 +36,5 @@ public sealed partial class ESScreenshakeComponent : Component
 ///     and the client that controls that entity will use the trauma values in each command, and their start time,
 ///     to calculate multipliers on the current eye offset & rotation modifiers.
 /// </summary>
-[DataDefinition, Serializable, NetSerializable]
-public record struct ESScreenshakeCommand(float TranslationalTrauma, float RotationalTrauma, TimeSpan Start, TimeSpan CalculatedEnd);
+[DataRecord, Serializable, NetSerializable]
+public partial record struct ESScreenshakeCommand(float TranslationalTrauma, float RotationalTrauma, TimeSpan Start, TimeSpan CalculatedEnd);
