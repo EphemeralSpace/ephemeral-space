@@ -3,8 +3,10 @@ using System.Numerics;
 using Content.Shared.Camera;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Random.Helpers;
+using Robust.Shared.Console;
 using Robust.Shared.Network;
 using Robust.Shared.Noise;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Camera;
@@ -18,6 +20,7 @@ public sealed class ESScreenshakeSystem : EntitySystem
     [Dependency] private readonly SharedContentEyeSystem _contentEye = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IConsoleHost _host = default!;
 
     #region Internal
 
@@ -28,6 +31,21 @@ public sealed class ESScreenshakeSystem : EntitySystem
         SubscribeLocalEvent<ESScreenshakeComponent, ESGetEyeRotationEvent>(OnGetEyeRotation);
         SubscribeLocalEvent<ESScreenshakeComponent, GetEyeOffsetEvent>(OnGetEyeOffset);
         SubscribeLocalEvent<ESScreenshakeComponent, EntityUnpausedEvent>(OnEntityUnpaused);
+
+        _host.RegisterCommand("screenshake", ScreenshakeCommand);
+    }
+
+    private void ScreenshakeCommand(IConsoleShell shell, string argStr, string[] args)
+    {
+        if (!float.TryParse(args[0], out var traum))
+        {
+            return;
+        }
+
+        if (shell.Player?.AttachedEntity is not { } ent)
+            return;
+
+        Screenshake(ent, traum, traum);
     }
 
     // frameupdate on client, tick update on server
@@ -155,7 +173,7 @@ public sealed class ESScreenshakeSystem : EntitySystem
     /// <summary>
     ///     Calculates when both traumas will be at least = 0 given the decay rate and start time.
     /// </summary>
-    private TimeSpan CalculateEndTimeForCommand(Entity<ESScreenshakeComponent> ent, float rotationalTrauma, float translationalTrauma, TimeSpan start)
+    private TimeSpan CalculateEndTimeForCommand(Entity<ESScreenshakeComponent> ent, float translationalTrauma, float rotationalTrauma, TimeSpan start)
     {
         // https://www.desmos.com/calculator/optip8eucx
         var secsUntilRotationalEnd = MathF.Sqrt(rotationalTrauma / ent.Comp.RotationalDecayRate);
@@ -187,6 +205,20 @@ public sealed class ESScreenshakeSystem : EntitySystem
     #endregion
 
     #region Public API
+
+    public void Screenshake(EntityUid uid, float translationalTrauma, float rotationalTrauma, float frequency = 0.01f)
+    {
+        if (!HasComp<EyeComponent>(uid))
+            return;
+
+        var comp = EnsureComp<ESScreenshakeComponent>(uid);
+        var time = _timing.CurTime;
+        var end = CalculateEndTimeForCommand((uid, comp), translationalTrauma, rotationalTrauma, time);
+        var command = new ESScreenshakeCommand(translationalTrauma, rotationalTrauma, time, end, frequency);
+
+        comp.Commands.Add(command);
+        Dirty(uid, comp);
+    }
 
     #endregion
 }
