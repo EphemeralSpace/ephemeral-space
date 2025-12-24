@@ -571,7 +571,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         }
 
         // ES START
-        _shake.Screenshake(user, 0.15f, 0.7f);
+        _shake.Screenshake(user, 0.6f, 0.15f);
         // ES END
 
         _meleeSound.PlayHitSound(target.Value, user, GetHighestDamageSound(modifiedDamage, _protoManager), hitEvent.HitSoundOverride, component);
