@@ -2064,7 +2064,7 @@ entities:
     - type: Transform
       pos: 9.5,-1.5
       parent: 1
-- proto: ESPoweredLightDepartment
+- proto: ESPoweredLightNightshift
   entities:
   - uid: 356
     components:
