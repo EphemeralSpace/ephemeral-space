@@ -5,6 +5,9 @@
   components:
   - type: ESNightshiftVariationPass
   - type: EntityReplaceVariationPass
+    # avg/stddev not used, just didnt want to change required on the datafield
+    entitiesPerReplacementAverage: 1
+    entitiesPerReplacementStdDev: 1
     replaceAll: true
     replacements:
     - id: ESPoweredLightNightshift

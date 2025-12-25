@@ -54,5 +54,5 @@
   - type: IconSmooth
     key: walls
     base: ame
-  - type: ReinforcedWallReplacementMarkerComponent
+  - type: ReinforcedWallReplacementMarker
     replace: false
