@@ -570,15 +570,19 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         }
 
-        // ES START
-        _shake.Screenshake(user, 0.6f, 0.15f);
-        // ES END
-
         _meleeSound.PlayHitSound(target.Value, user, GetHighestDamageSound(modifiedDamage, _protoManager), hitEvent.HitSoundOverride, component);
 
         if (damageResult.GetTotal() > FixedPoint2.Zero)
         {
             DoDamageEffect(targets, user, targetXform);
+
+            // ES START
+            _shake.Screenshake(user, 0f, 0.4f, 0.002f);
+            foreach (var shakeTarget in targets)
+            {
+                _shake.Screenshake(shakeTarget, 0.2f, 0f);
+            }
+            // ES END
         }
     }
 

@@ -74,6 +74,8 @@ public sealed class ESScreenshakeSystem : EntitySystem
             if (trauma <= 0)
                 continue;
 
+            noise.SetFrequency(command.Frequency);
+
             var offsetX = (maxOffset.X * trauma) * noise.GetNoise((float) _timing.CurTime.TotalSeconds, 0f);
             noise.SetSeed(++seed);
             var offsetY = (maxOffset.Y * trauma) * noise.GetNoise((float) _timing.CurTime.TotalSeconds, 0f);
@@ -103,6 +105,8 @@ public sealed class ESScreenshakeSystem : EntitySystem
                 CalculateTraumaValueForCurrentTime(command.RotationalTrauma, ent.Comp.RotationalDecayRate, command.Start);
             if (trauma <= 0)
                 continue;
+
+            noise.SetFrequency(command.Frequency);
 
             var angle = (maxAngleDegrees * trauma) * noise.GetNoise((float)_timing.CurTime.TotalSeconds, 0f);
             noise.SetSeed(++seed);
