@@ -16,6 +16,7 @@
     energy: 1.45
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeDepartment
+  - type: ESNightshiftReplacementMarker
 
 # Nightshift lighting. Replaces department lighting randomly at roundstart.
 # Also used on the arrivals shuttle. Sleepytime city for the shuttlers

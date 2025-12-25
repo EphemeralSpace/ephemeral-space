@@ -1,0 +1,10 @@
+# Replaces department lights with nightshift lights (mellower, yellower)
+- type: entity
+  id: ESNightshiftVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: ESNightshiftVariationPass
+  - type: EntityReplaceVariationPass
+    replaceAll: true
+    replacements:
+    - id: ESPoweredLightNightshift
