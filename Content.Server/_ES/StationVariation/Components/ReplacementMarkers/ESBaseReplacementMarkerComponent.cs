@@ -3,10 +3,8 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._ES.StationVariation.Components.ReplacementMarkers;
 
 // todo mirror support overriding prototypes when you need that too
-// not now
 /// <summary>
-///     Base class for entity replacement markers, which allows you or disable replacement, per entity.
-///
+///     Base class for entity replacement markers, which allows you to disable replacement per entity.
 /// </summary>
 /// <remarks>
 ///     Disabling replacement is done for ents that inherit from something with a marker, which don't want to be replaced.
