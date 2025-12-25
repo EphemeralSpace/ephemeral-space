@@ -260,6 +260,12 @@ public abstract class ESSharedMaskSystem : EntitySystem
         // No Op
     }
 
+    public virtual void RemoveMask(Entity<MindComponent> mind,
+        ProtoId<ESMaskPrototype> maskId,
+        Entity<ESTroupeRuleComponent> troupe)
+    {
+    }
+
     public List<FormattedMessage> GetCharacterInfoBlurb(Entity<MindComponent> mind)
     {
         var ev = new ESGetCharacterInfoBlurbEvent();

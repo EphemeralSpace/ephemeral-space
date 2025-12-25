@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server._ES.Auditions;
+using Content.Server._ES.Masks.Objectives;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Roles.Jobs;
@@ -8,11 +9,13 @@ using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.Core.Entity;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Masks.Components;
+using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Chat;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Random.Helpers;
+using Content.Shared.Roles.Components;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -267,6 +270,23 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         EntityManager.AddComponents(mind, mask.MindComponents);
 
         troupe.Comp.TroupeMemberMinds.Add(mind);
+        Objective.RegenerateObjectiveList(mind.Owner);
+    }
+
+    public override void RemoveMask(Entity<MindComponent> mind, ProtoId<ESMaskPrototype> maskId, Entity<ESTroupeRuleComponent> troupe)
+    {
+        var mask = PrototypeManager.Index(maskId);
+
+        Role.MindRemoveRole(mind!, new EntProtoId<MindRoleComponent>(MindRole));
+
+        if (mind.Comp.OwnedEntity is { } ownedEntity)
+        {
+            EntityManager.RemoveComponents(ownedEntity, mask.Components);
+        }
+        EntityManager.RemoveComponents(mind, mask.MindComponents);
+
+        troupe.Comp.TroupeMemberMinds.Remove(mind);
+
         Objective.RegenerateObjectiveList(mind.Owner);
     }
 }

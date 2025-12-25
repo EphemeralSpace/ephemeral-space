@@ -53,7 +53,7 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
 
         if (component.Used)
         {
-            _popup.PopupEntity(Loc.GetString("subverter-chip-used"), args.User, args.User, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString(component.UsedMessage), args.User, args.User, PopupType.Medium);
             return;
         }
 
@@ -72,6 +72,7 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString(component.UsingMessage), uid, PopupType.MediumCaution);
 
     }
+
     private void OnDoAfter(EntityUid uid, ESAddMaskOnUseComponent component, ESAddMaskOnUseDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled)
@@ -95,16 +96,21 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         if (_mask.GetTroupeOrNull((mind, mindComponent)) == Troupe)
             return;
 
-        // Removes any previous troupes
-        if (_mask.TryGetTroupe(target, out var troupeTarget))
+        if (!_mask.TryGetTroupe((mind, mindComponent), out var troupeTarget)  && !component.RemovePreviousMask)
+            return;
+
+        if (!_mask.TryGetTroupeEntity((ProtoId<ESTroupePrototype>)troupeTarget!, out var troupeTargetEnt) && !component.RemovePreviousMask)
+            return;
+
+        if (_mask.TryGetMask((mind, mindComponent), out var mask) && troupeTargetEnt != null && component.RemovePreviousMask)
         {
-            _mask.TryGetTroupeEntity((ProtoId<ESTroupePrototype>)troupeTarget!, out var EntityTargetTroupe);
-            EntityTargetTroupe!.Value.Comp.TroupeMemberMinds.Remove(mind);
+            _mask.RemoveMask((mind, mindComponent), (ProtoId<ESMaskPrototype>)mask!, (Entity<ESTroupeRuleComponent>)troupeTargetEnt!);
         }
 
         _mask.ApplyMask((mind, mindComponent), component.MaskToAdd, (Entity<ESTroupeRuleComponent>)troupe);
 
         component.Used = true;
+        Dirty(uid, component);
         args.Handled = true;
     }
 

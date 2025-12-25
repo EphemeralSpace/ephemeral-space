@@ -299,6 +299,39 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         return true;
     }
 
+    public bool TryRemoveObjective(
+        Entity<ESObjectiveHolderComponent?> ent,
+        EntityUid protoId,
+        [NotNullWhen(true)] out Entity<ESObjectiveComponent>? objective)
+    {
+        objective = null;
+
+        if (!Resolve(ent, ref ent.Comp))
+            return false; ;
+
+        var objectiveComp = Comp<ESObjectiveComponent>(protoId);
+        objective = (protoId, objectiveComp);
+
+        if (!CanAddObjective(objective.Value, ent))
+        {
+            Del(objective);
+            return false;
+        }
+
+
+        ent.Comp.OwnedObjectives.Remove(objective.Value);
+        RegenerateObjectiveList(ent);
+        return true;
+    }
+
+    /// <summary>
+    /// <inheritdoc cref="TryRemoveObjective(Robust.Shared.GameObjects.Entity{Content.Shared._ES.Objectives.Components.ESObjectiveHolderComponent?},Robust.Shared.Prototypes.EntProtoId,out Robust.Shared.GameObjects.Entity{Content.Shared._ES.Objectives.Components.ESObjectiveComponent}?)"/>
+    /// </summary>
+    public bool TryRemoveObjective(Entity<ESObjectiveHolderComponent?> ent, EntityUid protoId)
+    {
+        return TryRemoveObjective(ent, protoId, out _);
+    }
+
     public string GetObjectiveString(Entity<ESObjectiveComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp))

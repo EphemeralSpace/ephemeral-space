@@ -1,6 +1,7 @@
 ﻿using Content.Shared._ES.Masks;
 using Content.Shared._ES.Masks.Components;
 using Content.Shared.EntityEffects;
+using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -10,7 +11,7 @@ namespace Content.Server._ES.Masks.Traitor.Components;
 /// Adds a mask upon use of an entity
 ///
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ESAddMaskOnUseComponent : Component
 {
     [DataField]
@@ -19,7 +20,7 @@ public sealed partial class ESAddMaskOnUseComponent : Component
     [DataField]
     public bool MindshieldPrevent = true;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool Used = false;
 
     [DataField]
@@ -29,14 +30,17 @@ public sealed partial class ESAddMaskOnUseComponent : Component
     public ProtoId<ESMaskPrototype> MaskToAdd;
 
     [DataField]
-    public string UsedMessage = "subverter-chip-used";
+    public LocId UsedMessage = "subverter-chip-used";
 
     [DataField]
-    public string UsingMessage = "subverter-chip-implanting";
+    public LocId UsingMessage = "subverter-chip-implanting";
 
     [DataField]
-    public string NotUsedExamineMessage = "subverter-chip-examined-usable";
+    public LocId NotUsedExamineMessage = "subverter-chip-examined-usable";
 
     [DataField]
-    public string UsedExamineMessage = "subverter-chip-examined-used";
+    public LocId UsedExamineMessage = "subverter-chip-examined-used";
+
+    [DataField]
+    public bool RemovePreviousMask = true;
 }
