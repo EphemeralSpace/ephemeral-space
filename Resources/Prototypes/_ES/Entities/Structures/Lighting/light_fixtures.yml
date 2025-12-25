@@ -28,7 +28,7 @@
   suffix: ES, Nightshift
   components:
   - type: PointLight
-    color: "#8c785a"
+    color: "#7b5e50"
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeNightshift
   - type: DeviceNetwork

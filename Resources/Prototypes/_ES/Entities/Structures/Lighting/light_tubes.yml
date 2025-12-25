@@ -16,8 +16,8 @@
   suffix: ES, Nightshift
   components:
   - type: LightBulb
-    color: "#8c785a"
-    glowColorOverride: "#e2cc9f"
+    color: "#7b5e50"
+    glowColorOverride: "#d8753d"
     lightEnergy: 1.45
     lightSoftness: 2
 
