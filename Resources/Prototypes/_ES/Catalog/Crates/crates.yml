@@ -357,7 +357,7 @@
           amount: 2
         - id: FireExtinguisher
           amount: 2
-        - id: ClothingHeadFireHelmet
+        - id: ClothingHeadHelmetFire
           amount: 2
         - id: ClothingMaskGas
           amount: 2
