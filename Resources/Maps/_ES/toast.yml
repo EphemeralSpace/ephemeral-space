@@ -4,7 +4,7 @@ meta:
   engineVersion: 268.1.0
   forkId: ""
   forkVersion: ""
-  time: 12/22/2025 03:11:59
+  time: 12/26/2025 14:37:42
   entityCount: 14544
 maps:
 - 3
@@ -341,8 +341,8 @@ entities:
             746: -16,-34
             776: 6,-16
             777: 9,-18
-            778: -27,-24
             903: -1,-53
+            977: -27,-24
         - node:
             color: '#FFFFFFFF'
             id: BotGreyscale
@@ -4908,7 +4908,7 @@ entities:
       pos: -11.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -4893.9717
+      secondsUntilStateChange: -6466.977
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -6608,6 +6608,11 @@ entities:
       parent: 2
 - proto: BriefcaseBrown
   entities:
+  - uid: 206
+    components:
+    - type: Transform
+      pos: -13.488834,-15.328978
+      parent: 2
   - uid: 1148
     components:
     - type: Transform
@@ -31179,83 +31184,25 @@ entities:
     - type: Transform
       pos: 32.5,7.5
       parent: 2
-- proto: ComputerCargoBounty
+- proto: ComputerBroken
   entities:
-  - uid: 4616
+  - uid: 432
+    components:
+    - type: Transform
+      pos: 3.5,-5.5
+      parent: 2
+  - uid: 1498
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-33.5
+      parent: 2
+  - uid: 1712
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,-33.5
       parent: 2
-- proto: ComputerCargoOrders
-  entities:
-  - uid: 1498
-    components:
-    - type: Transform
-      pos: -3.5,-36.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Cargo
-  - uid: 1505
-    components:
-    - type: Transform
-      pos: -3.5,-33.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Cargo
-- proto: ComputerCargoOrdersEngineering
-  entities:
-  - uid: 3947
-    components:
-    - type: Transform
-      pos: -39.5,-16.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
-- proto: ComputerCargoOrdersMedical
-  entities:
-  - uid: 1246
-    components:
-    - type: Transform
-      pos: 6.5,7.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Medical
-- proto: ComputerCargoOrdersScience
-  entities:
-  - uid: 2554
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 16.5,-13.5
-      parent: 2
-- proto: ComputerCargoOrdersSecurity
-  entities:
-  - uid: 6858
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -25.5,-23.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-- proto: ComputerCargoOrdersService
-  entities:
-  - uid: 3690
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -13.5,-15.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Service
-      - - Theatre
 - proto: ComputerComms
   entities:
   - uid: 2089
@@ -31263,6 +31210,9 @@ entities:
     - type: Transform
       pos: 31.5,-33.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Command
   - uid: 2443
     components:
     - type: Transform
@@ -31298,6 +31248,9 @@ entities:
     - type: Transform
       pos: 25.5,-38.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Security
 - proto: ComputerFrame
   entities:
   - uid: 7576
@@ -31339,16 +31292,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 20.5,-42.5
       parent: 2
-- proto: ComputerFundingAllocation
-  entities:
-  - uid: 1093
-    components:
-    - type: Transform
-      pos: -4.5,9.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - HeadOfPersonnel
 - proto: ComputerId
   entities:
   - uid: 2090
@@ -31446,16 +31389,6 @@ entities:
     - type: Transform
       pos: -0.5,-56.5
       parent: 2
-- proto: ComputerResearchAndDevelopment
-  entities:
-  - uid: 432
-    components:
-    - type: Transform
-      pos: 3.5,-5.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Research
 - proto: ComputerRoboticsControl
   entities:
   - uid: 586
@@ -31463,21 +31396,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,-18.5
-      parent: 2
-- proto: ComputerSalvageJobBoard
-  entities:
-  - uid: 2656
-    components:
-    - type: Transform
-      pos: 7.5,-42.5
-      parent: 2
-- proto: ComputerShuttleCargo
-  entities:
-  - uid: 1785
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-44.5
       parent: 2
 - proto: ComputerSolarControl
   entities:
@@ -31921,58 +31839,6 @@ entities:
     - type: Transform
       pos: 35.5,-11.5
       parent: 2
-- proto: CrateFilledSpawner
-  entities:
-  - uid: 14146
-    components:
-    - type: Transform
-      pos: -3.5,-43.5
-      parent: 2
-  - uid: 14147
-    components:
-    - type: Transform
-      pos: -3.5,-42.5
-      parent: 2
-  - uid: 14148
-    components:
-    - type: Transform
-      pos: -2.5,-42.5
-      parent: 2
-  - uid: 14149
-    components:
-    - type: Transform
-      pos: -2.5,-44.5
-      parent: 2
-  - uid: 14150
-    components:
-    - type: Transform
-      pos: -3.5,-45.5
-      parent: 2
-  - uid: 14151
-    components:
-    - type: Transform
-      pos: 1.5,-44.5
-      parent: 2
-  - uid: 14152
-    components:
-    - type: Transform
-      pos: 2.5,-45.5
-      parent: 2
-  - uid: 14153
-    components:
-    - type: Transform
-      pos: 2.5,-44.5
-      parent: 2
-  - uid: 14154
-    components:
-    - type: Transform
-      pos: 2.5,-43.5
-      parent: 2
-  - uid: 14155
-    components:
-    - type: Transform
-      pos: 1.5,-42.5
-      parent: 2
 - proto: CrateFreezer
   entities:
   - uid: 1872
@@ -32010,27 +31876,6 @@ entities:
     components:
     - type: Transform
       pos: 9.5,-47.5
-      parent: 2
-- proto: CrateLockBoxEngineering
-  entities:
-  - uid: 4240
-    components:
-    - type: Transform
-      pos: -35.5,-23.5
-      parent: 2
-- proto: CrateLockBoxMedical
-  entities:
-  - uid: 358
-    components:
-    - type: Transform
-      pos: 15.5,4.5
-      parent: 2
-- proto: CrateLockBoxScience
-  entities:
-  - uid: 1906
-    components:
-    - type: Transform
-      pos: 3.5,-9.5
       parent: 2
 - proto: CrateMedical
   entities:
@@ -36097,6 +35942,11 @@ entities:
     - type: Transform
       pos: -30.5,-7.5
       parent: 2
+  - uid: 3690
+    components:
+    - type: Transform
+      pos: -26.5,-23.5
+      parent: 2
   - uid: 3691
     components:
     - type: Transform
@@ -36151,11 +36001,6 @@ entities:
     components:
     - type: Transform
       pos: -31.5,9.5
-      parent: 2
-  - uid: 6859
-    components:
-    - type: Transform
-      pos: -26.5,-23.5
       parent: 2
   - uid: 7529
     components:
@@ -37180,6 +37025,20 @@ entities:
     - type: Transform
       pos: -26.5,6.5
       parent: 2
+- proto: ESComputerWarehouseManifest
+  entities:
+  - uid: 1505
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-36.5
+      parent: 2
+  - uid: 1713
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-44.5
+      parent: 2
 - proto: ESCrateTrashBin
   entities:
   - uid: 4429
@@ -37287,6 +37146,13 @@ entities:
     components:
     - type: Transform
       pos: -68.5,-35.5
+      parent: 2
+- proto: ESDisplayCaseCaptainEnergyGun
+  entities:
+  - uid: 2425
+    components:
+    - type: Transform
+      pos: 32.5,-16.5
       parent: 2
 - proto: ESGunAttachmentSilencer
   entities:
@@ -40006,6 +39872,124 @@ entities:
     - type: Transform
       pos: -18.5,-19.5
       parent: 2
+- proto: ESSpawnerMarkerDistributedCargo
+  entities:
+  - uid: 1098
+    components:
+    - type: Transform
+      pos: -2.5,-45.5
+      parent: 2
+  - uid: 1103
+    components:
+    - type: Transform
+      pos: -2.5,-44.5
+      parent: 2
+  - uid: 1246
+    components:
+    - type: Transform
+      pos: -2.5,-43.5
+      parent: 2
+  - uid: 1714
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -9.5,-46.5
+      parent: 2
+  - uid: 1718
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -9.5,-47.5
+      parent: 2
+  - uid: 1785
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -9.5,-45.5
+      parent: 2
+  - uid: 1906
+    components:
+    - type: Transform
+      pos: 1.5,-42.5
+      parent: 2
+  - uid: 2554
+    components:
+    - type: Transform
+      pos: 1.5,-43.5
+      parent: 2
+  - uid: 2571
+    components:
+    - type: Transform
+      pos: -3.5,-43.5
+      parent: 2
+  - uid: 2572
+    components:
+    - type: Transform
+      pos: -3.5,-42.5
+      parent: 2
+  - uid: 2650
+    components:
+    - type: Transform
+      pos: -3.5,-44.5
+      parent: 2
+  - uid: 2651
+    components:
+    - type: Transform
+      pos: -3.5,-45.5
+      parent: 2
+  - uid: 2656
+    components:
+    - type: Transform
+      pos: -2.5,-42.5
+      parent: 2
+  - uid: 4616
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -8.5,-45.5
+      parent: 2
+  - uid: 14148
+    components:
+    - type: Transform
+      pos: 1.5,-44.5
+      parent: 2
+  - uid: 14149
+    components:
+    - type: Transform
+      pos: 1.5,-45.5
+      parent: 2
+  - uid: 14150
+    components:
+    - type: Transform
+      pos: 2.5,-42.5
+      parent: 2
+  - uid: 14151
+    components:
+    - type: Transform
+      pos: 2.5,-43.5
+      parent: 2
+  - uid: 14152
+    components:
+    - type: Transform
+      pos: 2.5,-44.5
+      parent: 2
+  - uid: 14153
+    components:
+    - type: Transform
+      pos: 2.5,-45.5
+      parent: 2
+  - uid: 14155
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -8.5,-46.5
+      parent: 2
+  - uid: 14290
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -8.5,-47.5
+      parent: 2
 - proto: ESSpawnerMarkerDistributedTechStorage
   entities:
   - uid: 6163
@@ -40059,6 +40043,13 @@ entities:
     components:
     - type: Transform
       pos: -19.5,-18.5
+      parent: 2
+- proto: ESSpawnerRandomDistributedCargo
+  entities:
+  - uid: 14154
+    components:
+    - type: Transform
+      pos: -0.5,-42.5
       parent: 2
 - proto: ESSpawnerRandomDistributedTechStorage
   entities:
@@ -40860,26 +40851,6 @@ entities:
       parent: 2
 - proto: ESSpawnerRandomMaintCrate
   entities:
-  - uid: 1712
-    components:
-    - type: Transform
-      pos: -9.5,-47.5
-      parent: 2
-  - uid: 1713
-    components:
-    - type: Transform
-      pos: -8.5,-47.5
-      parent: 2
-  - uid: 1714
-    components:
-    - type: Transform
-      pos: -9.5,-46.5
-      parent: 2
-  - uid: 1718
-    components:
-    - type: Transform
-      pos: -8.5,-46.5
-      parent: 2
   - uid: 11771
     components:
     - type: Transform
@@ -43824,13 +43795,6 @@ entities:
     components:
     - type: Transform
       pos: 7.5,-15.5
-      parent: 2
-- proto: ESVendingMachineSalvage
-  entities:
-  - uid: 9472
-    components:
-    - type: Transform
-      pos: 7.5,-41.5
       parent: 2
 - proto: ESVendingMachineSec
   entities:
@@ -59631,13 +59595,6 @@ entities:
     - type: Transform
       pos: -13.5,16.5
       parent: 2
-- proto: GlassBoxLaserFilled
-  entities:
-  - uid: 2425
-    components:
-    - type: Transform
-      pos: 32.5,-16.5
-      parent: 2
 - proto: GravityGenerator
   entities:
   - uid: 4276
@@ -63208,6 +63165,14 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+  - uid: 12284
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -10.5,-48.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: JanitorialTrolley
   entities:
   - uid: 5318
@@ -63731,16 +63696,15 @@ entities:
     - type: Transform
       pos: 21.5,-28.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
 - proto: LockerHeadOfPersonnelFilled
   entities:
-  - uid: 1098
+  - uid: 358
     components:
     - type: Transform
-      pos: -3.5,9.5
+      pos: -4.5,9.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - HeadOfPersonnel
 - proto: LockerHeadOfSecurityFilled
   entities:
   - uid: 1605
@@ -63818,18 +63782,6 @@ entities:
     components:
     - type: Transform
       pos: -27.5,-15.5
-      parent: 2
-- proto: LockerSalvageSpecialistFilledHardsuit
-  entities:
-  - uid: 2650
-    components:
-    - type: Transform
-      pos: 5.5,-46.5
-      parent: 2
-  - uid: 2651
-    components:
-    - type: Transform
-      pos: 5.5,-45.5
       parent: 2
 - proto: LockerScienceFilled
   entities:
@@ -63945,16 +63897,14 @@ entities:
       parent: 2
 - proto: MachineAnomalyVessel
   entities:
-  - uid: 2571
+  - uid: 6858
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 19.5,-17.5
       parent: 2
-  - uid: 2572
+  - uid: 6859
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 19.5,-16.5
       parent: 2
 - proto: MachineAPE
@@ -64027,6 +63977,16 @@ entities:
       parent: 2
 - proto: MachineFrameDestroyed
   entities:
+  - uid: 1093
+    components:
+    - type: Transform
+      pos: 7.5,-41.5
+      parent: 2
+  - uid: 3947
+    components:
+    - type: Transform
+      pos: 7.5,-42.5
+      parent: 2
   - uid: 6725
     components:
     - type: Transform
@@ -64044,6 +64004,11 @@ entities:
     components:
     - type: Transform
       pos: -51.5,-34.5
+      parent: 2
+  - uid: 14146
+    components:
+    - type: Transform
+      pos: -0.5,-58.5
       parent: 2
 - proto: MaintenanceFluffSpawner
   entities:
@@ -64513,10 +64478,9 @@ entities:
     - type: Transform
       pos: -4.5090218,-38.769787
       parent: 2
-  - uid: 12284
+  - uid: 9472
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 1.5,9.5
       parent: 2
   - uid: 13263
@@ -68598,13 +68562,6 @@ entities:
     - type: Transform
       pos: 30.534254,-35.974808
       parent: 2
-- proto: ResearchAndDevelopmentServer
-  entities:
-  - uid: 206
-    components:
-    - type: Transform
-      pos: 22.5,-28.5
-      parent: 2
 - proto: RevolverCapGun
   entities:
   - uid: 8445
@@ -68632,13 +68589,6 @@ entities:
     components:
     - type: Transform
       pos: -4.5320687,-38.213356
-      parent: 2
-- proto: SalvageMagnet
-  entities:
-  - uid: 14290
-    components:
-    - type: Transform
-      pos: -0.5,-58.5
       parent: 2
 - proto: Saw
   entities:
@@ -73217,11 +73167,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 17.5,-17.5
       parent: 2
-  - uid: 1103
-    components:
-    - type: Transform
-      pos: 1.5,9.5
-      parent: 2
   - uid: 1104
     components:
     - type: Transform
@@ -73616,6 +73561,11 @@ entities:
     components:
     - type: Transform
       pos: -41.5,-17.5
+      parent: 2
+  - uid: 4240
+    components:
+    - type: Transform
+      pos: -13.5,-15.5
       parent: 2
   - uid: 4405
     components:
@@ -74085,6 +74035,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -70.5,-37.5
+      parent: 2
+  - uid: 14147
+    components:
+    - type: Transform
+      pos: 1.5,9.5
       parent: 2
   - uid: 14184
     components:
