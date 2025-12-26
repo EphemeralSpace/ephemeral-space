@@ -4,7 +4,7 @@ meta:
   engineVersion: 268.1.0
   forkId: ""
   forkVersion: ""
-  time: 12/26/2025 14:37:42
+  time: 12/26/2025 14:55:05
   entityCount: 14544
 maps:
 - 3
@@ -4908,7 +4908,7 @@ entities:
       pos: -11.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -6466.977
+      secondsUntilStateChange: -6598.7007
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -36306,6 +36306,11 @@ entities:
     - type: Transform
       pos: 1.5,-45.5
       parent: 2
+  - uid: 4616
+    components:
+    - type: Transform
+      pos: -9.5,-45.5
+      parent: 2
   - uid: 4823
     components:
     - type: Transform
@@ -36370,11 +36375,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-43.5
-      parent: 2
-  - uid: 7506
-    components:
-    - type: Transform
-      pos: -9.5,-45.5
       parent: 2
   - uid: 7507
     components:
@@ -39889,24 +39889,6 @@ entities:
     - type: Transform
       pos: -2.5,-43.5
       parent: 2
-  - uid: 1714
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -9.5,-46.5
-      parent: 2
-  - uid: 1718
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -9.5,-47.5
-      parent: 2
-  - uid: 1785
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -9.5,-45.5
-      parent: 2
   - uid: 1906
     components:
     - type: Transform
@@ -39942,12 +39924,6 @@ entities:
     - type: Transform
       pos: -2.5,-42.5
       parent: 2
-  - uid: 4616
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -8.5,-45.5
-      parent: 2
   - uid: 14148
     components:
     - type: Transform
@@ -39977,18 +39953,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-45.5
-      parent: 2
-  - uid: 14155
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -8.5,-46.5
-      parent: 2
-  - uid: 14290
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -8.5,-47.5
       parent: 2
 - proto: ESSpawnerMarkerDistributedTechStorage
   entities:
@@ -42324,6 +42288,21 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -12.5,-51.5
       parent: 2
+  - uid: 1714
+    components:
+    - type: Transform
+      pos: -9.5,-46.5
+      parent: 2
+  - uid: 1718
+    components:
+    - type: Transform
+      pos: -9.5,-47.5
+      parent: 2
+  - uid: 1785
+    components:
+    - type: Transform
+      pos: -8.5,-47.5
+      parent: 2
   - uid: 2600
     components:
     - type: Transform
@@ -42469,6 +42448,11 @@ entities:
     components:
     - type: Transform
       pos: -70.5,2.5
+      parent: 2
+  - uid: 7506
+    components:
+    - type: Transform
+      pos: -9.5,-45.5
       parent: 2
   - uid: 7623
     components:
@@ -42695,6 +42679,11 @@ entities:
     - type: Transform
       pos: -71.5,-30.5
       parent: 2
+  - uid: 14155
+    components:
+    - type: Transform
+      pos: -8.5,-45.5
+      parent: 2
   - uid: 14157
     components:
     - type: Transform
@@ -42714,6 +42703,11 @@ entities:
     components:
     - type: Transform
       pos: 10.5,-40.5
+      parent: 2
+  - uid: 14290
+    components:
+    - type: Transform
+      pos: -8.5,-46.5
       parent: 2
 - proto: ESSpawnerRandomMaintObstructionSpawner
   entities:
