@@ -29,33 +29,33 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         SubscribeLocalEvent<ESAddMaskOnUseComponent, ExaminedEvent>(OnExamine);
     }
 
-    private void OnInteract(EntityUid uid, ESAddMaskOnUseComponent component, ref AfterInteractEvent args)
+    private void OnInteract(Entity<ESAddMaskOnUseComponent> ent, ref AfterInteractEvent args)
     {
         if (args.Target == null)
             return;
 
-        if (component.MindshieldPrevent && HasComp<MindShieldComponent>(args.Target))
+        if (ent.Comp.MindshieldPrevent && HasComp<MindShieldComponent>(args.Target))
             return;
 
         if (!_mind.TryGetMind((EntityUid)args.Target!, out var mind, out var mindComponent)) // No SSD people
             return;
 
-        if (_mask.GetTroupeOrNull((mind, mindComponent)) == _proto.Index(component.MaskToAdd).Troupe)
+        if (_mask.GetTroupeOrNull((mind, mindComponent)) == _proto.Index(ent.Comp.MaskToAdd).Troupe)
             return;
 
-        if (component.RequireCrit && !_mobState.IsCritical((EntityUid)args.Target))
+        if (ent.Comp.RequireCrit && !_mobState.IsCritical((EntityUid)args.Target))
         {
-            _popup.PopupClient(Loc.GetString(component.NotCritMessage), args.User, args.User);
+            _popup.PopupClient(Loc.GetString(ent.Comp.NotCritMessage), args.User, args.User);
             return;
         }
 
-        if (component.Used)
+        if (ent.Comp.Used)
         {
-            _popup.PopupClient(Loc.GetString(component.UsedMessage), args.User, args.User, PopupType.Medium);
+            _popup.PopupClient(Loc.GetString(ent.Comp.UsedMessage), args.User, args.User, PopupType.Medium);
             return;
         }
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.Delay, new ESAddMaskOnUseDoAfterEvent(), eventTarget: uid, args.Target, used: uid)
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.Delay, new ESAddMaskOnUseDoAfterEvent(), eventTarget: ent, args.Target, used: ent)
         {
             BlockDuplicate = true,
             BreakOnMove = true,
@@ -67,7 +67,7 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
 
         _doafter.TryStartDoAfter(doAfterArgs);
 
-        _popup.PopupPredicted(Loc.GetString(component.UsingMessage), uid, uid, PopupType.MediumCaution);
+        _popup.PopupPredicted(Loc.GetString(ent.Comp.UsingMessage), ent, ent, PopupType.MediumCaution);
     }
 
     private void OnDoAfter(Entity<ESAddMaskOnUseComponent> ent, ref ESAddMaskOnUseDoAfterEvent args)

@@ -250,6 +250,7 @@
   name: es-mask-subverter-name
   description: es-mask-subverter-desc
   color: gray
+  weight: 0.5
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorSubverter
