@@ -223,6 +223,17 @@ public abstract class ESSharedMaskSystem : EntitySystem
             .ToList();
     }
 
+    /// <summary>
+    ///     Gets the troupe rule for the given mask.
+    /// </summary>
+    public bool TryGetTroupeEntityForMask(
+        ProtoId<ESMaskPrototype> mask,
+        [NotNullWhen(true)] out Entity<ESTroupeRuleComponent>? troupe
+        )
+    {
+        return TryGetTroupeEntity(PrototypeManager.Index(mask).Troupe, out troupe);
+    }
+
     public bool TryGetTroupeEntity(ProtoId<ESTroupePrototype> proto,
         [NotNullWhen(true)] out Entity<ESTroupeRuleComponent>? troupe)
     {
@@ -239,6 +250,13 @@ public abstract class ESSharedMaskSystem : EntitySystem
         return troupe != null;
     }
 
+    /// <summary>
+    ///     Applies the given mask to a mind, without any checks.
+    /// </summary>
+    /// <remarks>
+    ///     This allows "bad" game states like giving masks to roles they're incompatible with.
+    ///
+    /// </remarks>
     public virtual void ApplyMask(Entity<MindComponent> mind,
         ProtoId<ESMaskPrototype> maskId,
         Entity<ESTroupeRuleComponent> troupe)

@@ -63,6 +63,13 @@
     cacheProto: ESCrateCacheCrewVeteran
 
 - type: esMask
+  id: ESCrewmember
+  name: es-mask-crewmember-name
+  troupe: ESCrew
+  description: es-mask-crewmember-desc
+  color: white
+
+- type: esMask
   id: ESEmpath
   name: es-mask-empath-name
   troupe: ESCrew

@@ -1,0 +1,95 @@
+- type: entity
+  parent: BaseMachinePowered
+  id: ESMachineScienceTelepad
+  name: telepad
+  description: Beam me up, Scotty!
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Machines/Telesci/telepad.rsi
+    drawdepth: HighFloorObjects
+    noRot: true
+    layers:
+    - state: base
+      map: [ "base" ]
+  - type: Appearance
+  - type: ESTelesciRewardPad
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Physics
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.00"
+        density: 190
+        mask:
+        - MachineMask
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: AnimationPlayer
+
+- type: entity
+  parent: BaseMachine
+  id: ESMachineSciencePortalGenerator
+  name: portal generator
+  description: Beam me up, Scotty!
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Machines/Telesci/portalgen.rsi
+    noRot: true
+    layers:
+    - state: base
+    - state: cube-off
+      map: [ "cube" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ESPortalGeneratorVisuals.Charged:
+        cube:
+          True:
+            state: cube
+            shader: unshaded
+          False:
+            state: cube-off
+            shader: shaded
+  - type: PointLight
+    enabled: false
+    radius: 8
+    energy: 15
+    color: "#3399ff"
+    netsync: false
+  - type: ESGenericPointLightVisualizer
+    visuals:
+      enum.ESPortalGeneratorVisuals.Charged:
+        True:
+          enabled: true
+        False:
+          enabled: false
+  - type: ESPortalGenerator
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: PowerConsumer
+    drawRate: 1000
+    voltage: Medium
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: MVPower
+  - type: Anchorable
+    flags:
+    - Anchorable

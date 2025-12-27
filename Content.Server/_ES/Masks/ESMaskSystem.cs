@@ -122,7 +122,19 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
     {
         if (!ev.LateJoin)
             return;
-        AssignPlayersToTroupe([ev.Player]);
+
+        // TODO: Refactor this to not simply fall back to random selection logic.
+        // All of this logic should probably live in MasqueradeKind, and be reworked
+        // to prefer ensuring a balanced set of masks over potentially compromising
+        // due to too many command players for all the traitors to be assigned.
+        // The entire random selection thing should be moved to RandomMasquerade,
+        // and a general API should be added to MasqueradeKind for getting masks for
+        // players.
+        var ev2 = new AssignLatejoinerToTroupeEvent(false, ev.Player);
+        RaiseLocalEvent(ref ev2);
+
+        if (!ev2.Handled)
+            AssignPlayersToTroupe([ev.Player]);
     }
 
     private void OnRulePlayerJobsAssigned(RulePlayerJobsAssignedEvent args)
@@ -133,11 +145,25 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
     public void AssignPlayersToTroupe(List<ICommonSession> players)
     {
-        foreach (var troupe in GetOrderedTroupes())
+        // TODO: See comment in OnPlayerSpawnComplete, this needs refactored.
+        // but I don't want to change and test the existing logic for an already
+        // massive PR that blocks others' work.
+
+        var ev = new AssignPlayersToTroupeEvent(false, players);
+        RaiseLocalEvent(ref ev);
+
+        if (!ev.Handled)
         {
-            if (players.Count == 0)
-                break;
-            TryAssignToTroupe(troupe, ref players);
+            var playerCount = players.Count;
+
+            Log.Info("Nobody handled player assignment, doing it randomly.");
+            foreach (var troupe in GetOrderedTroupes())
+            {
+                if (players.Count == 0)
+                    break;
+
+                TryAssignToTroupe(troupe, ref players, playerCount);
+            }
         }
 
         if (players.Count > 0)
@@ -161,13 +187,12 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         Objective.TryAddObjective(rule.Owner, troupe.Objectives);
     }
 
-    public bool TryAssignToTroupe(Entity<ESTroupeRuleComponent> ent, ref List<ICommonSession> players)
+    public bool TryAssignToTroupe(Entity<ESTroupeRuleComponent> ent, ref List<ICommonSession> players, int playerCount)
     {
         var troupe = PrototypeManager.Index(ent.Comp.Troupe);
 
         var filteredPlayers = players.Where(s => IsPlayerValid(troupe, s)).ToList();
 
-        var playerCount = _esAuditions.GetPlayerCount();
         var targetCount = Math.Clamp((int)MathF.Ceiling((float) playerCount / ent.Comp.PlayersPerTargetMember), ent.Comp.MinTargetMembers, ent.Comp.MaxTargetMembers);
         var targetDiff = Math.Min(targetCount - ent.Comp.TroupeMemberMinds.Count, filteredPlayers.Count);
         if (targetDiff <= 0)
@@ -270,3 +295,17 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         Objective.RegenerateObjectiveList(mind.Owner);
     }
 }
+
+/// <summary>
+///     Fired when players are being assigned to a troupe. Old random assignment algorithm kicks in
+///     if not handled. (This is a mild hack.)
+/// </summary>
+[ByRefEvent]
+public record struct AssignPlayersToTroupeEvent(bool Handled, List<ICommonSession> Players);
+
+/// <summary>
+///     Fired when players are latejoining. Old random assignment algorithm kicks in
+///     if not handled. (This is a mild hack.)
+/// </summary>
+[ByRefEvent]
+public record struct AssignLatejoinerToTroupeEvent(bool Handled, ICommonSession Victim);

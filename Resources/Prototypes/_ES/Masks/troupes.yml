@@ -3,6 +3,9 @@
   name: es-troupe-crew-name
   color: yellow
   metaIcon: ESCrew
+  objectives:
+    all:
+    - id: ESObjectiveResearchTelescience
 
 - type: esTroupe
   id: ESTraitor

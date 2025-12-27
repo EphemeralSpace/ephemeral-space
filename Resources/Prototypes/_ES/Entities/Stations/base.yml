@@ -19,6 +19,32 @@
   - type: ESCargoRequestStation
 
 - type: entity
+  id: ESBaseStationTelesci
+  abstract: true
+  components:
+  - type: ESTelesciStation
+    stages:
+    - announcement: es-telesci-announcement-stage-1
+      rewards:
+        tableId: ESTelesciRewards
+      events:
+        id: ESPortalEventAnomalies
+        amount: 3
+    - announcement: es-telesci-announcement-stage-2
+      rewards:
+        tableId: ESTelesciRewards
+      events:
+        id: ESPortalEventAnomalies
+        amount: 5
+    - announcement: es-telesci-announcement-stage-3
+      rewards:
+        tableId: ESTelesciRewards
+      events:
+        id: ESPortalEventAnomalies
+        amount: 7
+    - announcement: es-telesci-announcement-stage-4
+
+- type: entity
   id: ESBaseStationNeutral
   parent:
   - BaseStation
@@ -40,6 +66,7 @@
   - ESBaseStationArrivals
   - ESBaseStationEvacuation
   - ESBaseStationStoreroom
+  - ESBaseStationTelesci
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform

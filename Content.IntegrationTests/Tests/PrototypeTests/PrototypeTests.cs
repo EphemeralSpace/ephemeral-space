@@ -1,5 +1,7 @@
 #nullable enable
 using System.Collections.Generic;
+using System.Linq;
+using Content.Shared._ES.Masks;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
@@ -10,6 +12,15 @@ namespace Content.IntegrationTests.Tests.PrototypeTests;
 
 public sealed class PrototypeTests
 {
+    // ES CHANGE
+    public static Type[] ExcludedKinds =
+    [
+        // MasqueradePrototype makes this particular test sad, it's not reaaallly meant to be writable.
+        // and does a bunch of things strictly for readability.
+        typeof(ESMasqueradePrototype),
+    ];
+    // END ES CHANGE
+
     /// <summary>
     /// This test writes all known server prototypes as yaml files, then validates that the result is valid yaml.
     /// Can help prevent instances where prototypes have bad C# default values.
@@ -99,6 +110,11 @@ public sealed class PrototypeTests
             {
                 foreach (var kind in protoMan.EnumeratePrototypeKinds())
                 {
+                    // ES CHANGE
+                    if (ExcludedKinds.Contains(kind))
+                        continue;
+                    // END ES CHANGE
+
                     foreach (var proto in protoMan.EnumeratePrototypes(kind))
                     {
                         var noException = TrySaveLoadSavePrototype(

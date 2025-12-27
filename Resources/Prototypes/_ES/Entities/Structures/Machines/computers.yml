@@ -315,3 +315,34 @@
         type: ESCryptoNukeConsoleBui
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+
+- type: entity
+  parent: ESBaseComputerTerminal
+  id: ESBaseComputerTerminalTelesci
+  name: telescience terminal
+  description: A hefty terminal that controls the advanced portal generator in the heart of science.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
+    - map: ["computerLayerKeyboard"]
+      state: teleport_key_off
+    - map: ["computerLayerScreen"]
+      state: teleport
+    - map: ["computerLayerKeys"]
+      state: teleport_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ESPortalGeneratorConsole
+  - type: PointLight
+    color: "#0099ff"
+  - type: ActivatableUI
+    key: enum.ESPortalGeneratorConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ESPortalGeneratorConsoleUiKey.Key:
+        type: ESPortalGeneratorConsoleBui
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
