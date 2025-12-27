@@ -123,6 +123,5 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
             args.PushMarkup(Loc.GetString(component.UsedExamineMessage));
         else
             args.PushMarkup(Loc.GetString(component.NotUsedExamineMessage));
-
     }
 }
