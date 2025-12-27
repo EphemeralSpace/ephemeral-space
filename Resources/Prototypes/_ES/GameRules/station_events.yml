@@ -156,6 +156,10 @@
       path: /Audio/_ES/Announcements/power_off.ogg
       params:
         volume: -4
+    endAudio:
+      path: /Audio/_ES/Announcements/power_on.ogg
+      params:
+        volume: -4
     duration: 60
     maxDuration: 120
   - type: PowerGridCheckRule

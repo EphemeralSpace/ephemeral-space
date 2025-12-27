@@ -45,8 +45,10 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         // we don't want to send to players who aren't in game (i.e. in the lobby)
         Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
 
+        //ES Start
         if (stationEvent.StartAnnouncement != null)
-            ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.StartAnnouncement), playSound: false, colorOverride: stationEvent.StartAnnouncementColor);
+            ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.StartAnnouncement), playSound: false, colorOverride: stationEvent.StartAnnouncementColor, sender: "Station Automated Alerts");
+        //ES End
 
         Audio.PlayGlobal(stationEvent.StartAudio, allPlayersInGame, true);
     }
