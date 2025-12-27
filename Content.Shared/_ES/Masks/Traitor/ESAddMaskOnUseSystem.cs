@@ -34,12 +34,6 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         if (args.Target == null)
             return;
 
-        if (component.RequireCrit && !_mobState.IsCritical((EntityUid)args.Target))
-        {
-            _popup.PopupClient(Loc.GetString(component.NotCritMessage), args.User, args.User);
-            return;
-        }
-
         if (component.MindshieldPrevent && HasComp<MindShieldComponent>(args.Target))
             return;
 
@@ -48,6 +42,12 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
 
         if (_mask.GetTroupeOrNull((mind, mindComponent)) == _proto.Index(component.MaskToAdd).Troupe)
             return;
+
+        if (component.RequireCrit && !_mobState.IsCritical((EntityUid)args.Target))
+        {
+            _popup.PopupClient(Loc.GetString(component.NotCritMessage), args.User, args.User);
+            return;
+        }
 
         if (component.Used)
         {
