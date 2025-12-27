@@ -1,21 +1,16 @@
-﻿using Content.Server._ES.Masks.Traitor.Components;
-using Content.Shared._ES.Masks;
-using Content.Shared._ES.Masks.Components;
+﻿using Content.Shared._ES.Masks.Traitor.Components;
 using Content.Shared._ES.Masks.Traitor.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
-using Content.Shared.EntityEffects;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Mind;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
-using Microsoft.CodeAnalysis;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._ES.Masks.Traitor;
+namespace Content.Shared._ES.Masks.Traitor;
 
 public sealed class ESAddMaskOnUseSystem : EntitySystem
 {
@@ -39,10 +34,13 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         if (args.Target == null)
             return;
 
-        if (!_mobState.IsCritical((EntityUid)args.Target) && component.RequireCrit)
+        if (component.RequireCrit && !_mobState.IsCritical((EntityUid)args.Target))
+        {
+            _popup.PopupClient(Loc.GetString(component.NotCritMessage), args.User, args.User);
             return;
+        }
 
-        if (HasComp<MindShieldComponent>(args.Target) && component.MindshieldPrevent)
+        if (component.MindshieldPrevent && HasComp<MindShieldComponent>(args.Target))
             return;
 
         if (!_mind.TryGetMind((EntityUid)args.Target!, out var mind, out var mindComponent)) // No SSD people
@@ -53,34 +51,31 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
 
         if (component.Used)
         {
-            _popup.PopupEntity(Loc.GetString(component.UsedMessage), args.User, args.User, PopupType.Medium);
+            _popup.PopupClient(Loc.GetString(component.UsedMessage), args.User, args.User, PopupType.Medium);
             return;
         }
 
-        var DoAfterArgs = new DoAfterArgs(EntityManager, args.User, component.Delay, new ESAddMaskOnUseDoAfterEvent(), eventTarget: uid, args.Target, used: uid)
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.Delay, new ESAddMaskOnUseDoAfterEvent(), eventTarget: uid, args.Target, used: uid)
         {
             BlockDuplicate = true,
             BreakOnMove = true,
             BreakOnDamage = true,
             BreakOnDropItem = true,
             NeedHand = true,
-            MovementThreshold = 0.5f
+            MovementThreshold = 0.5f,
         };
 
-        _doafter.TryStartDoAfter(DoAfterArgs);
+        _doafter.TryStartDoAfter(doAfterArgs);
 
-        _popup.PopupEntity(Loc.GetString(component.UsingMessage), uid, PopupType.MediumCaution);
-
+        _popup.PopupPredicted(Loc.GetString(component.UsingMessage), uid, uid, PopupType.MediumCaution);
     }
 
-    private void OnDoAfter(EntityUid uid, ESAddMaskOnUseComponent component, ESAddMaskOnUseDoAfterEvent args)
+    private void OnDoAfter(Entity<ESAddMaskOnUseComponent> ent, ref ESAddMaskOnUseDoAfterEvent args)
     {
-        if (args.Cancelled || args.Handled)
+        if (args.Cancelled || args.Handled || args.Target is not { } target)
             return;
 
-        var target = (EntityUid)args.Target!;
-
-        if (_mobState.IsCritical(target) && component.RequireCrit)
+        if (_mobState.IsCritical(target) && ent.Comp.RequireCrit)
         {
             _damageableSystem.SetAllDamage(target, 0);
         }
@@ -88,40 +83,30 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         if (!_mind.TryGetMind(target, out var mind, out var mindComponent))
             return;
 
-        var Troupe = _proto.Index(component.MaskToAdd).Troupe;
+        var toAddTroupe = _proto.Index(ent.Comp.MaskToAdd).Troupe;
 
-        if (!_mask.TryGetTroupeEntity(Troupe, out var troupe))
+        if (!_mask.TryGetTroupeEntity(toAddTroupe, out var troupe))
             return;
 
-        if (_mask.GetTroupeOrNull((mind, mindComponent)) == Troupe)
+        if (_mask.GetTroupeOrNull((mind, mindComponent)) == toAddTroupe)
             return;
 
-        if (!_mask.TryGetTroupe((mind, mindComponent), out var troupeTarget)  && !component.RemovePreviousMask)
-            return;
+        _mask.RemoveMask((mind, mindComponent));
+        _mask.ApplyMask((mind, mindComponent), ent.Comp.MaskToAdd, troupe.Value);
 
-        if (!_mask.TryGetTroupeEntity((ProtoId<ESTroupePrototype>)troupeTarget!, out var troupeTargetEnt) && !component.RemovePreviousMask)
-            return;
-
-        if (_mask.TryGetMask((mind, mindComponent), out var mask) && troupeTargetEnt != null && component.RemovePreviousMask)
-        {
-            _mask.RemoveMask((mind, mindComponent), (ProtoId<ESMaskPrototype>)mask!, (Entity<ESTroupeRuleComponent>)troupeTargetEnt!);
-        }
-
-        _mask.ApplyMask((mind, mindComponent), component.MaskToAdd, (Entity<ESTroupeRuleComponent>)troupe);
-
-        component.Used = true;
-        Dirty(uid, component);
+        ent.Comp.Used = true;
+        Dirty(ent);
         args.Handled = true;
     }
 
-    private void OnExamine(EntityUid uid, ESAddMaskOnUseComponent component, ExaminedEvent args)
+    private void OnExamine(Entity<ESAddMaskOnUseComponent> ent, ref ExaminedEvent args)
     {
         if (!args.IsInDetailsRange)
             return;
 
-        if (component.Used)
-            args.PushMarkup(Loc.GetString(component.UsedExamineMessage));
+        if (ent.Comp.Used)
+            args.PushMarkup(Loc.GetString(ent.Comp.UsedExamineMessage));
         else
-            args.PushMarkup(Loc.GetString(component.NotUsedExamineMessage));
+            args.PushMarkup(Loc.GetString(ent.Comp.NotUsedExamineMessage));
     }
 }

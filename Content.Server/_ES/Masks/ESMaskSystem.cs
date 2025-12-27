@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server._ES.Auditions;
-using Content.Server._ES.Masks.Objectives;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Roles.Jobs;
@@ -9,7 +8,6 @@ using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.Core.Entity;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Masks.Components;
-using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Chat;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking;
@@ -273,8 +271,11 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         Objective.RegenerateObjectiveList(mind.Owner);
     }
 
-    public override void RemoveMask(Entity<MindComponent> mind, ProtoId<ESMaskPrototype> maskId, Entity<ESTroupeRuleComponent> troupe)
+    public override void RemoveMask(Entity<MindComponent> mind)
     {
+        if (!TryGetMask(mind.AsNullable(), out var maskId))
+            return;
+
         var mask = PrototypeManager.Index(maskId);
 
         Role.MindRemoveRole(mind!, new EntProtoId<MindRoleComponent>(MindRole));
@@ -285,7 +286,15 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         }
         EntityManager.RemoveComponents(mind, mask.MindComponents);
 
-        troupe.Comp.TroupeMemberMinds.Remove(mind);
+        foreach (var objective in Objective.GetOwnedObjectives<ESMaskObjectiveComponent>(mind.Owner))
+        {
+            Objective.TryRemoveObjective(mind.Owner, objective.Owner);
+        }
+
+        if (TryGetTroupeEntity(mask.Troupe, out var troupeEntity))
+        {
+            troupeEntity.Value.Comp.TroupeMemberMinds.Remove(mind);
+        }
 
         Objective.RegenerateObjectiveList(mind.Owner);
     }

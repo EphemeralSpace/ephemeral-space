@@ -217,6 +217,27 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     }
 
     /// <summary>
+    /// Returns all owned objectives on an entity that have a given component
+    /// </summary>
+    public List<Entity<T>> GetOwnedObjectives<T>(Entity<ESObjectiveHolderComponent?> ent) where T : Component
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return [];
+
+        var objectives = new List<Entity<T>>();
+
+        foreach (var objective in ent.Comp.OwnedObjectives)
+        {
+            if (!TryComp<T>(objective, out var comp))
+                continue;
+
+            objectives.Add((objective, comp));
+        }
+
+        return objectives;
+    }
+
+    /// <summary>
     /// <inheritdoc cref="CanAddObjective(Robust.Shared.GameObjects.Entity{Content.Shared._ES.Objectives.Components.ESObjectiveComponent?},Robust.Shared.GameObjects.Entity{Content.Shared._ES.Objectives.Components.ESObjectiveHolderComponent?})"/>
     /// </summary>
     [PublicAPI]
@@ -299,37 +320,15 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         return true;
     }
 
-    public bool TryRemoveObjective(
-        Entity<ESObjectiveHolderComponent?> ent,
-        EntityUid protoId,
-        [NotNullWhen(true)] out Entity<ESObjectiveComponent>? objective)
+    public bool TryRemoveObjective(Entity<ESObjectiveHolderComponent?> ent, Entity<ESObjectiveComponent?> objective)
     {
-        objective = null;
-
-        if (!Resolve(ent, ref ent.Comp))
-            return false; ;
-
-        var objectiveComp = Comp<ESObjectiveComponent>(protoId);
-        objective = (protoId, objectiveComp);
-
-        if (!CanAddObjective(objective.Value, ent))
-        {
-            Del(objective);
+        if (!Resolve(ent, ref ent.Comp) || !Resolve(objective, ref objective.Comp))
             return false;
-        }
 
-
-        ent.Comp.OwnedObjectives.Remove(objective.Value);
+        ent.Comp.OwnedObjectives.Remove(objective);
         RegenerateObjectiveList(ent);
+        Del(objective);
         return true;
-    }
-
-    /// <summary>
-    /// <inheritdoc cref="TryRemoveObjective(Robust.Shared.GameObjects.Entity{Content.Shared._ES.Objectives.Components.ESObjectiveHolderComponent?},Robust.Shared.Prototypes.EntProtoId,out Robust.Shared.GameObjects.Entity{Content.Shared._ES.Objectives.Components.ESObjectiveComponent}?)"/>
-    /// </summary>
-    public bool TryRemoveObjective(Entity<ESObjectiveHolderComponent?> ent, EntityUid protoId)
-    {
-        return TryRemoveObjective(ent, protoId, out _);
     }
 
     public string GetObjectiveString(Entity<ESObjectiveComponent?> ent)

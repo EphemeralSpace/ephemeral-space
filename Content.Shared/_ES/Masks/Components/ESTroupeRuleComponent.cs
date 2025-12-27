@@ -9,7 +9,7 @@ namespace Content.Shared._ES.Masks.Components;
 /// Logic only present on server.
 /// </remarks>
 [RegisterComponent]
-[Access(typeof(ESSharedMaskSystem), Other = AccessPermissions.ReadExecute)]
+[Access(typeof(ESSharedMaskSystem))]
 public sealed partial class ESTroupeRuleComponent : Component
 {
     /// <summary>

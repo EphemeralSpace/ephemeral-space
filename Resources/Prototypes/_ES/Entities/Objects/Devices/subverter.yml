@@ -6,7 +6,7 @@
   suffix: ES
   components:
   - type: Sprite
-    sprite: Objects/Devices/encryption_keys.rsi
-    state: crypt_red
+    sprite: _ES/Objects/Devices/subverter.rsi
+    state: icon
   - type: ESAddMaskOnUse
     maskToAdd: ESRecruit
