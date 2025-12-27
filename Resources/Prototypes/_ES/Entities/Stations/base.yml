@@ -25,24 +25,40 @@
   - type: ESTelesciStation
     stages:
     - announcement: es-telesci-announcement-stage-1
+      announceSound:
+        path: /Audio/_ES/Announcements/attention_high.ogg
+        params:
+          volume: -4
       rewards:
         tableId: ESTelesciRewards
       events:
         id: ESPortalEventAnomalies
         amount: 3
     - announcement: es-telesci-announcement-stage-2
+      announceSound:
+        path: /Audio/_ES/Announcements/attention_high.ogg
+        params:
+          volume: -4
       rewards:
         tableId: ESTelesciRewards
       events:
         id: ESPortalEventAnomalies
         amount: 5
     - announcement: es-telesci-announcement-stage-3
+      announceSound:
+        path: /Audio/_ES/Announcements/attention_high.ogg
+        params:
+          volume: -4
       rewards:
         tableId: ESTelesciRewards
       events:
         id: ESPortalEventAnomalies
         amount: 7
     - announcement: es-telesci-announcement-stage-4
+      announceSound:
+        path: /Audio/_ES/Announcements/attention_high.ogg
+        params:
+          volume: -4
 
 - type: entity
   id: ESBaseStationNeutral
