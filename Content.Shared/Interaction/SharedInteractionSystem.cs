@@ -102,7 +102,7 @@ namespace Content.Shared.Interaction
         public const string RateLimitKey = "Interaction";
 
         // ES START
-        public const float ESPullRange = 1.0f;
+        public const float ESPullRange = 0.7f;
         // ES END
 
         private static readonly ProtoId<TagPrototype> BypassInteractionRangeChecksTag = "BypassInteractionRangeChecks";

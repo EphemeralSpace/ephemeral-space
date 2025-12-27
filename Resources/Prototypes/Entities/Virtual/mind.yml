@@ -10,4 +10,5 @@
         ents: []
 # ES START
   - type: ESObjectiveHolder
-# ESE ND
+  - type: ESStagehandAware
+# ES END

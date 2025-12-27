@@ -37,7 +37,6 @@
     - id: AnalysisComputerCircuitboard
     - id: ArtifactAnalyzerMachineCircuitboard
     # Sec
-    - id: SecurityTechFabCircuitboard
     - id: CriminalRecordsComputerCircuitboard
     - id: SurveillanceCameraMonitorCircuitboard
 

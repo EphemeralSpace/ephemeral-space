@@ -1,0 +1,6 @@
+- type: esMaskSet
+  id: Freaks
+  masks:
+    ESGlutton: 1
+    ESDaredevil: 1
+    ESGuzzler: 1

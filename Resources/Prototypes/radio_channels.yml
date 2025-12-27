@@ -8,6 +8,7 @@
   senderWhitelist:
     components:
     - Intercom
+    - ESMedAlertRadioAnnouncer
 # ES END
 
 - type: radioChannel

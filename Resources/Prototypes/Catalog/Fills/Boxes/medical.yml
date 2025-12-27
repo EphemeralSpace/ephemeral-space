@@ -87,8 +87,10 @@
   - type: EntityTableContainerFill
     containers:
       storagebase:
-        id: ClothingHandsGlovesNitrile
+# ES Start
+        id: ClothingHandsGlovesColorBlue
         amount: 4
+# ES End
   - type: Sprite
     layers:
       - state: box

@@ -29,7 +29,7 @@
 - type: loadout
   id: ChemistLabCoat
   equipment:
-    outerClothing: ClothingOuterCoatLabChem
+    outerClothing: ClothingOuterCoatLabChemOpened
 
 - type: loadout
   id: ChemistWintercoat

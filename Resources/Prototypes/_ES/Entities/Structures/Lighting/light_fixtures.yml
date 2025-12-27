@@ -12,12 +12,29 @@
   suffix: ES, Departments
   components:
   - type: PointLight
-    color: "#ece2dd"
+    color: "#ccc2be"
     energy: 1.45
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeDepartment
+  - type: ESNightshiftReplacementMarker
 
-# Used in hallways. Dimmer light, to contrast with department lights (below)
+# Nightshift lighting. Replaces department lighting randomly at roundstart.
+# Also used on the arrivals shuttle. Sleepytime city for the shuttlers
+- type: entity
+  id: ESPoweredLightNightshift
+  parent: Poweredlight
+  name: light fixture
+  description: Draws power and produces light when equipped with a light tube. Unresponsive to light switches.
+  suffix: ES, Nightshift
+  components:
+  - type: PointLight
+    color: "#7b5e50"
+  - type: PoweredLight
+    hasLampOnSpawn: ESLightTubeNightshift
+  - type: DeviceNetwork
+    receiveFrequencyId: null
+
+# Used in hallways. Dimmer light, to contrast with department lights (above)
 - type: entity
   id: ESPoweredLightHallway
   parent: Poweredlight
@@ -26,7 +43,7 @@
   suffix: ES, Hallway
   components:
   - type: PointLight
-    color: "#929291"
+    color: "#7f8082"
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeHallway
   - type: DeviceNetwork

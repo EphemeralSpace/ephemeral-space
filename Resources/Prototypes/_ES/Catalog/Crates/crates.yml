@@ -1,0 +1,387 @@
+#Engineering
+- type: entity
+  parent: CrateElectrical
+  id: ESCrateEngineeringCableBulk
+  name: bulk cable crate
+  description: 2 coils each for every cable type.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: CableHVStack
+          amount: 2
+        - id: CableMVStack
+          amount: 2
+        - id: CableApcStack
+          amount: 2
+          
+- type: entity
+  parent: CrateGenericSteel
+  id: ESCrateMaterialGlass
+  name: glass sheet crate
+  description: 90 sheets of glass, packed with care.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: SheetGlass
+        amount: 3
+        
+- type: entity
+  parent: CrateGenericSteel
+  id: ESCrateMaterialSteel
+  name: steel sheet crate
+  description: 90 sheets of steel.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: SheetSteel
+        amount: 3
+        
+- type: entity
+  parent: CrateGenericSteel
+  id: ESCrateMaterialPlastic
+  name: plastic sheet crate
+  description: 90 sheets of plastic.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: SheetPlastic
+        amount: 3
+        
+- type: entity
+  parent: CrateGenericSteel
+  id: ESCrateMaterialPlasteel
+  name: plasteel crate
+  description: 30 sheets of plasteel.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: SheetPlasteel
+
+- type: entity
+  parent: CrateEngineeringSecure
+  id: ESAdvancedToolsCrate
+  name: advanced tools crate
+  description: With these, you might almost feel ready for a promotion!
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: WelderExperimental
+        - id: PowerDrill
+        - id: JawsOfLife
+
+#Medical
+- type: entity
+  parent: CrateMedical
+  id: ESCrateMedicalSupplies
+  name: medical supplies crate
+  description: Crate filled with some medkits, gauze, bloodpacks, and spare syringes.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: MedkitFilled
+          amount: 2
+        - id: Gauze
+          amount: 2
+        - id: Bloodpack
+          amount: 2
+        - id: BoxSyringe
+
+- type: entity
+  parent: CrateMedical
+  id: ESCrateEmergencySpecializedKits
+  name: specialized medical kit
+  description: Crate filled with a burn, brute and radiation treatment kit.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: MedkitBurnFilled
+        - id: MedkitBruteFilled
+        - id: MedkitRadiationFilled
+
+- type: entity
+  parent: CrateEmergencyAdvancedKit
+  id: ESCrateEmergencyAdvancedKits
+  name: advanced medical kit
+  description: Crate filled with two advanced medical kits.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+          id: MedkitAdvancedFilled
+          amount: 2
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ESCrateRestock
+  name: vending machine restock crate
+  description: Contains a box used for restocking vending machines.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: ESVendingMachineRestockGlobal
+
+#Security
+- type: entity
+  parent: CrateSecgear
+  id: ESCrateSecurityArmor
+  name: armor crate
+  description: Contains two armor vests and two helmets. Requires Security access to open.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: ClothingOuterArmorBasic
+          amount: 2
+        - id: ClothingHeadHelmetBasic
+          amount: 2
+
+- type: entity
+  parent: CrateSecgear
+  id: ESCrateSecurityAmmo
+  name: ammo crate
+  description: Contains two mags of 9mm, and a box of each shotgun shell. Requires Security access to open.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: ESMagazine9mm
+          amount: 2
+        - id: ESShotgunShellsBoxBeanbag
+        - id: ESShotgunShellsBoxBuckshot
+
+- type: entity
+  parent: CrateSecNonlethalThrowables
+  id: ESCrateSecurityThrowables
+  name: security throwables crate
+  description: Contains four flashbangs, teargas, and bolas. Requires Security access to open.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: BoxFlashbang
+        - id: BoxTearGas
+        - id: Bola
+          amount: 4
+
+- type: entity
+  parent: CrateArmoryPistols
+  id: ESCrateSecurityPistols
+  name: pistol crate
+  description: Contains two 9mm pistols and a spare mag for each. Requires Armory access to open.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: ESWeaponPistol9mm
+          amount: 2
+        - id: ESMagazine9mm
+          amount: 2
+
+- type: entity
+  parent: CrateArmoryShotgun
+  id: ESCrateSecurityShotgun
+  name: shotgun crate
+  description: Contains one shotgun and two boxes of shells. Requires Armory access to open.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: ESShotgunShellsBoxBuckshot
+        - id: ESWeaponShotgun
+        
+- type: entity
+  parent: CrateSecurityNonlethal
+  id: ESCrateSecurityNonlethals
+  name: nonlethals crate
+  description: Contains two tasers, two batons, and three flashes. Requires Security access to open.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: ESWeaponHybridTaser
+          amount: 2
+        - id: Flash
+          amount: 3
+        - id: Stunbaton
+          amount: 2
+
+- type: entity
+  parent: CrateArmoryLaser
+  id: ESCrateSecurityEnergyRifles
+  name: energy rifle crate
+  description: Contains two energy rifles. Requires Armory access to open.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: ESWeaponEnergyRifle
+        amount: 2
+
+#Service
+- type: entity
+  parent: CrateFreezer
+  id: ESCrateFoodCooking
+  name: kitchen supplies crate
+  description: Extra kitchen supplies, perfect for the lunch rush.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: ReagentContainerFlour
+          amount: 2
+        - id: ReagentContainerRice
+          amount: 2
+        - id: DrinkMilkCarton
+          amount: 3
+        - id: DrinkSoyMilkCarton
+          amount: 2
+        - id: ReagentContainerSugar
+          amount: 2
+        - id: FoodCondimentPacketSalt
+          amount: 3
+        - id: FoodCondimentBottleEnzyme
+          amount: 2
+        - id: FoodContainerEgg
+          amount: 2
+
+- type: entity
+  parent: CratePlastic
+  id: ESCrateServiceJanitorialSupplies
+  name: janitorial supplies crate
+  description: Fight back against dirt and grime with Nanotrasen's Janitorial Essentials(tm)!
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: MopItem
+        - id: Bucket
+          amount: 2
+        - id: Soap
+        - id: SprayBottleSpaceCleaner
+          amount: 2
+        - id: TrashBag
+          amount: 2
+        - id: Plunger
+          amount: 1
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ESCrateServiceReplacementLights
+  name: replacement lights crate
+  description: May the light of Aether shine upon this station! Or at least, the light of twelve fluorescent light tubes and twelve incandescent light bulbs.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: BoxLighttube
+        - id: BoxLightbulb
+
+#General
+  
+- type: entity
+  parent: CrateGenericSteel
+  id: ESGeneralToolsCrate
+  name: tool crate
+  description: Filled with assorted tools sure to make your assistants happy.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: Crowbar
+          amount: 2
+        - id: Welder
+          amount: 2
+        - id: Wirecutter
+          amount: 2
+        - id: Screwdriver
+          amount: 2
+        - id: Wrench
+          amount: 2
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ESCrateEmergencyFire
+  name: firefighting crate
+  description: Only you can prevent station fires. Partner up with two sets of firefighting gear, and a spare flashlight!
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: FlashlightLantern
+          amount: 2
+        - id: FireExtinguisher
+          amount: 2
+        - id: ClothingHeadHelmetFire
+          amount: 2
+        - id: ClothingMaskGas
+          amount: 2
+        - id: ClothingOuterSuitFire
+          amount: 2
+        - id: OxygenTankFilled
+          amount: 2
+          
+- type: entity
+  parent: CrateInternals
+  id: ESCrateEmergencyEVA
+  name: EVA crate
+  description: Master your life energy and control your breathing.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        all:
+        - id: ESClothingHeadHelmetSpace
+          amount: 3
+        - id: ClothingMaskBreath
+          amount: 3
+        - id: OxygenTankFilled
+          amount: 3
+        - id: ESClothingOuterSpaceSuitEVA
+          amount: 3

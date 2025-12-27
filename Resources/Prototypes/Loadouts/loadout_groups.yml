@@ -1393,15 +1393,10 @@
 - type: loadoutGroup
   id: MedicalDoctorHead
   name: loadout-group-medical-doctor-head
-  minLimit: 0
+# ES Start
   loadouts:
-  - MedicalBeret
-  - SeniorPhysicianBeret
-  - MedicalHeadMirror
   - BlueSurgeryCap
-  - GreenSurgeryCap
-  - PurpleSurgeryCap
-  - NurseHat
+# ES End
 
 - type: loadoutGroup
   id: MedicalDoctorJumpsuit
@@ -1449,7 +1444,6 @@
   id: MedicalGloves
   name: loadout-group-medical-gloves
   loadouts:
-  - LatexGloves
   - NitrileGloves
 
 - type: loadoutGroup

@@ -113,3 +113,31 @@
       - id: ESWeaponPistol9mm
         weight: 2
       - id: ESWeaponPistol9mmSilenced
+
+# Survivalist
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewSurvivalist
+  suffix: ES, Survivalist Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESCrewCacheSurvivalist
+
+- type: entityTable
+  id: ESCrewCacheSurvivalist
+  table:
+    all:
+    - group:
+      - id: MedkitFilled
+      - id: MedkitOxygenFilled
+      - id: MedkitBurnFilled
+      - id: MedkitBruteFilled
+      - id: MedkitToxinFilled
+    - group:
+      - id: ToolboxEmergencyFilled
+      - id: ToolboxMechanicalFilled
+      - id: ToolboxElectricalFilled
+    - tableId: ESMaintLootRare
+      rolls: 2

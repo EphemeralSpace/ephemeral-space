@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._ES.Mind;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.EntityTable;
 using Content.Shared.EntityTable.EntitySelectors;
@@ -33,6 +34,9 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
 
         SubscribeLocalEvent<ESObjectiveHolderComponent, MindGotAddedEvent>(OnMindGotAdded);
         SubscribeLocalEvent<ESObjectiveHolderComponent, MindGotRemovedEvent>(OnMindGotRemoved);
+
+        SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerDetachedEvent>(OnPlayerDetached);
     }
 
     private void OnMindGotAdded(Entity<ESObjectiveHolderComponent> ent, ref MindGotAddedEvent args)
@@ -48,6 +52,22 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         foreach (var objective in GetObjectives(ent.AsNullable()))
         {
             RaiseLocalEvent(objective, args);
+        }
+    }
+
+    private void OnPlayerAttached(Entity<ESObjectiveHolderComponent> ent, ref ESMindPlayerAttachedEvent args)
+    {
+        foreach (var objective in GetObjectives(ent.AsNullable()))
+        {
+            _pvsOverride.AddSessionOverride(objective, args.Player);
+        }
+    }
+
+    private void OnPlayerDetached(Entity<ESObjectiveHolderComponent> ent, ref ESMindPlayerDetachedEvent args)
+    {
+        foreach (var objective in GetObjectives(ent.AsNullable()))
+        {
+            _pvsOverride.RemoveSessionOverride(objective, args.Player);
         }
     }
 

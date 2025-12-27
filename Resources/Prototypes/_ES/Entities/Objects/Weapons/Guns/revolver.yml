@@ -9,6 +9,11 @@
     sprite: _ES/Objects/Weapons/Guns/357.rsi
   - type: Clothing
     sprite: _ES/Objects/Weapons/Guns/357.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_ES/Weapons/Guns/Gunshots/revolver_shot.ogg
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
   - type: Item
     storedOffset: 0,-2
   - type: RevolverAmmoProvider

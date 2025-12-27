@@ -2,3 +2,7 @@
   id: ESAntimatter
   updatesPerSecond: 32
   preventSpreadOnSpaced: false
+
+- type: edgeSpreader
+  id: ESTileFire
+  updatesPerSecond: 1

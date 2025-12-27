@@ -380,6 +380,21 @@ public sealed class PullingSystem : EntitySystem
         pullableComp.Puller = null;
         Dirty(pullableUid, pullableComp);
 
+        // ES START
+        // HACK HACK HACK HACK
+        var fix = Comp<FixturesComponent>(pullableUid);
+        foreach (var (id, fixture) in fix.Fixtures)
+        {
+            if (pullableComp.OldFixtureDensities == null)
+                break;
+
+            if (!pullableComp.OldFixtureDensities.TryGetValue(id, out var oldDensity))
+                continue;
+
+            _physics.SetDensity(pullableUid, id, fixture, oldDensity, manager: fix);
+        }
+        // ES END
+
         // No more joints with puller -> force stop pull.
         if (TryComp<PullerComponent>(oldPuller, out var pullerComp))
         {
@@ -585,6 +600,20 @@ public sealed class PullingSystem : EntitySystem
 
             _physics.SetFixedRotation(pullableUid, pullableComp.FixedRotationOnPull, body: pullablePhysics);
         }
+
+        // ES START
+        // HACK HACK HACK HACK
+        // specifically, to make pulling less ass
+        // (and much faster) by just reducing the density of pulled items
+        // yes this probably has weird knock on effects but I can't think of a better way to do this right now
+        var fix = Comp<FixturesComponent>(pullableUid);
+        pullableComp.OldFixtureDensities = new();
+        foreach (var (id, fixture) in fix.Fixtures)
+        {
+            pullableComp.OldFixtureDensities.Add(id, fixture.Density);
+            _physics.SetDensity(pullableUid, id, fixture, 1f, manager: fix);
+        }
+        // ES END
 
         // Messaging
         var message = new PullStartedMessage(pullerUid, pullableUid);

@@ -14,7 +14,7 @@ public sealed partial class ESVoteControl : PanelContainer
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
-    public event Action<Entity<ESVoteComponent>, ESVoteOption>? OnVoteChanged;
+    public event Action<Entity<ESVoteComponent>, ESVoteOption, bool>? OnVoteChanged;
 
     public EntityUid Vote { get; init; } = EntityUid.Invalid;
 
@@ -40,23 +40,20 @@ public sealed partial class ESVoteControl : PanelContainer
         var name = _entityManager.GetComponentOrNull<MetaDataComponent>(vote)?.EntityName ?? string.Empty;
         VoteNameLabel.Text = Loc.GetString("es-voter-ui-header-text-format", ("title", name));
 
-        var group = new ButtonGroup();
-
         if (OptionsContainer.ChildCount == 0)
         {
             foreach (var (option, votes) in vote.Comp.Votes)
             {
                 var button = new ESVoteButton
                 {
-                    Group = group,
                     Option = option,
                     HorizontalExpand = true,
                     Pressed = votes.Contains(netOwner),
                 };
 
-                button.OnPressed += _ =>
+                button.OnPressed += args =>
                 {
-                    OnVoteChanged?.Invoke(vote, option);
+                    OnVoteChanged?.Invoke(vote, option, args.Button.Pressed);
                 };
 
                 OptionsContainer.AddChild(button);
@@ -68,6 +65,7 @@ public sealed partial class ESVoteControl : PanelContainer
         {
             if (child is ESVoteButton voteButton)
             {
+                voteButton.Pressed = vote.Comp.Votes.GetValueOrDefault(voteButton.Option)?.Contains(netOwner) ?? false;
                 var votes = vote.Comp.Votes.GetValueOrDefault(voteButton.Option) ?? [];
                 if (vote.Comp.ShowCount)
                 {

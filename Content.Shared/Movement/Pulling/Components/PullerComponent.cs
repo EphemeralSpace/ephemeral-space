@@ -25,12 +25,12 @@ public sealed partial class PullerComponent : Component
     public TimeSpan ThrowCooldown = TimeSpan.FromSeconds(1);
 
     // ES START
-    // Default to 1 always,
-    // any slowdown will come from the object being heavy anyway
+    // slight base slowdown since we dont really have mass-slowdown anymore
+    // and this balances it so you dont run the same speed as people not pulling things
     // Before changing how this is updated, please see SharedPullerSystem.RefreshMovementSpeed
-    public float WalkSpeedModifier => 1.0f;
+    public float WalkSpeedModifier => Pulling == null ? 1f : 0.85f;
 
-    public float SprintSpeedModifier => 1.0f;
+    public float SprintSpeedModifier => Pulling == null ? 1f : 0.85f;
     // ES END
 
     /// <summary>

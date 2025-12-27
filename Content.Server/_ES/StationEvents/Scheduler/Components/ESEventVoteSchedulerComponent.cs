@@ -31,7 +31,7 @@ public sealed partial class ESEventVoteSchedulerComponent : Component
     /// Delayed added on top of the event delay for the first event ran.
     /// </summary>
     [DataField]
-    public TimeSpan BaseFirstEventDelay = TimeSpan.FromMinutes(2.5f);
+    public TimeSpan BaseFirstEventDelay = TimeSpan.FromMinutes(7.5f);
 
     /// <summary>
     /// Minimum amount of time between votes being created.

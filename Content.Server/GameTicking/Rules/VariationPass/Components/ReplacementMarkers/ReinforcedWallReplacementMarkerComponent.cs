@@ -1,9 +1,14 @@
-﻿namespace Content.Server.GameTicking.Rules.VariationPass.Components.ReplacementMarkers;
+﻿using Content.Server._ES.StationVariation.Components.ReplacementMarkers;
+
+namespace Content.Server.GameTicking.Rules.VariationPass.Components.ReplacementMarkers;
 
 /// <summary>
 /// This component marks replaceable reinforced walls for use with fast queries in variation passes.
 /// </summary>
 [RegisterComponent]
-public sealed partial class ReinforcedWallReplacementMarkerComponent : Component
+// ES START
+// different base
+public sealed partial class ReinforcedWallReplacementMarkerComponent : ESBaseReplacementMarkerComponent
+// ES END
 {
 }

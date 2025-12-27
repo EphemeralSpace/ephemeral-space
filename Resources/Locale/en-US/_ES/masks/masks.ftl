@@ -11,17 +11,42 @@ es-mask-vip-desc = Confirm your innocence with the assistance of your fancy VIP 
 es-mask-daredevil-name = Daredevil
 es-mask-daredevil-desc = You live an intense lifestyle, constantly seeking new ways to kill yourself faster.
 
+es-mask-empath-name = Empath
+es-mask-empath-desc = Use your tuned-in emotional connection to read the auras of others.
+
 es-mask-fruit-vendor-name = Fruit Vendor
 es-mask-fruit-vendor-desc = Dispense delicious fruits to aid in the completion of the station objective.
 
 es-mask-mercenary-name = Mercenary
 es-mask-mercenary-desc = Utilize your dubiously-legal gear to aid in the completion of the station's objective.
 
+es-mask-phantom-name = Phantom
+es-mask-phantom-desc = Reincarnate as a vengeful spirit on death and haunt your murder until they also die.
+
 es-mask-veteran-name = Veteran
 es-mask-veteran-desc = Help the station by using your trusty sidearm to take care of anybody who isn't aligned with the crew.
 
 es-mask-guzzler-name = Guzzler
 es-mask-guzzler-desc = You have nothing but an endless desire to Consume Liquid, guzzle everything you can get your hands on.
+
+es-mask-glutton-name = Glutton
+es-mask-glutton-desc = Your stomach is an abyss which begs to be filled. Consume all you can and become the most gluttonous crew member.
+
+es-mask-survivalist-name = Survivalist
+es-mask-survivalist-desc = Survive at all costs. Rely on your MedAlert (TM) to broadcast messages when you enter critical condition, and find your cache of prepper supplies.
+es-mask-survivalist-medalert-crit-message = MedAlert Notice: {$name} is in critical condition {$location}!
+es-mask-survivalist-medalert-death-message = MedAlert Notice: A tragedy has befallen us. {$name} has perished {$location}.
+
+es-mask-sacrifice-name = Sacrifice
+es-mask-sacrifice-desc = Find an opportunity to heroically sacrifice yourself, and heal others in your presence massively by doing so.
+
+es-mask-vandal-name = Vandal
+es-mask-vandal-desc = Sabotage random machines around the station for a little bit of fun. Try not to get pinned as a Traitor.
+
+es-mask-martyr-name = Martyr
+es-mask-martyr-desc = You are a beautiful soul. Be killed by another crewmember in order to ascend to heaven and drag them to hell.
+es-mask-martyr-killer-quickdialog-title = Bad choice
+es-mask-martyr-killer-quickdialog-msg = You killed a lovely martyr, and you will suffer the consequences by dying violently in 5 minutes. Get your affairs in order.
 
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete the objectives.

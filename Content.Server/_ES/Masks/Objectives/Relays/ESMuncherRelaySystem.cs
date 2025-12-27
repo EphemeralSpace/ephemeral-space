@@ -1,7 +1,7 @@
 using Content.Server._ES.Masks.Objectives.Relays.Components;
 using Content.Server.Mind;
+using Content.Shared._ES.Mind;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Mind;
 using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;

@@ -1,0 +1,53 @@
+- type: guideEntry
+  id: ESMedical
+  hidden: false
+  name: guide-entry-medical
+  text: "/ServerInfo/_ES/Guidebook/Medical/Medical.xml"
+  children:
+  - ESMedicalDoctor
+  - ESChemist
+  - ESCryogenics
+
+- type: guideEntry
+  id: ESMedicalDoctor
+  hidden: false
+  name: guide-entry-medicaldoctor
+  text: "/ServerInfo/_ES/Guidebook/Medical/MedicalDoctor.xml"
+
+- type: guideEntry
+  id: ESCryogenics
+  hidden: false
+  name: guide-entry-cryogenics
+  text: "/ServerInfo/_ES/Guidebook/Medical/Cryogenics.xml"
+
+- type: guideEntry
+  id: ESChemist
+  hidden: false
+  name: guide-entry-chemist
+  text: "/ServerInfo/_ES/Guidebook/Medical/Chemist.xml"
+  children:
+  # - Medicine
+  # Duplicate guide entries are currently not supported
+  # TODO GUIDEBOOK Maybe allow duplicate entries?
+  - ESBotanicals
+  - ESAdvancedBrute
+
+- type: guideEntry
+  id: ESMedicine
+  hidden: false
+  name: guide-entry-medicine
+  text: "/ServerInfo/_ES/Guidebook/Medical/Medicine.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESBotanicals
+  hidden: false
+  name: guide-entry-botanicals
+  text: "/ServerInfo/_ES/Guidebook/Medical/Botanicals.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESAdvancedBrute
+  hidden: false
+  name: guide-entry-brute
+  text: "/ServerInfo/_ES/Guidebook/Medical/AdvancedBrute.xml"

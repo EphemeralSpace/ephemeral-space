@@ -1,6 +1,16 @@
-# Handgun bullets
+# Base bullet for hitsound
 - type: entity
   parent: BaseBullet
+  id: ESBaseBullet
+  components:
+  - type: Projectile
+    soundHit:
+      path: /Audio/_ES/Weapons/Guns/Hits/bullet_hit.ogg
+
+
+# Handgun bullets
+- type: entity
+  parent: ESBaseBullet
   id: ESBullet9mm
   name: 9mm bullet
   categories: [ HideSpawnMenu ]
@@ -11,7 +21,7 @@
         Piercing: 18
 
 - type: entity
-  parent: BaseBullet
+  parent: ESBaseBullet
   id: ESBullet357
   name: .357 bullet
   categories: [ HideSpawnMenu ]
@@ -26,7 +36,7 @@
   id: ESPelletShotgun
   name: pellet
   categories: [ HideSpawnMenu ]
-  parent: BaseBullet
+  parent: ESBaseBullet
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -42,7 +52,7 @@
   parent: ESPelletShotgun
   components:
   - type: ProjectileSpread
-    proto: PelletShotgun
+    proto: ESPelletShotgun
     count: 6
     spread: 15
 
@@ -50,7 +60,7 @@
   id: ESPelletShotgunSlug
   name: slug pellet
   categories: [ HideSpawnMenu ]
-  parent: BaseBullet
+  parent: ESBaseBullet
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -64,7 +74,7 @@
   id: ESPelletShotgunBeanbag
   name: beanbag pellet
   categories: [ HideSpawnMenu ]
-  parent: BaseBullet
+  parent: ESBaseBullet
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -75,49 +85,3 @@
         Blunt: 10
   - type: StaminaDamageOnCollide
     damage: 40 # 3 hits to stun
-
-# Energy ""bullets""
-- type: entity
-  name: laser bolt
-  id: ESEnergyBolt
-  parent: BulletEnergyTurretLaser
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Reflective
-    reflective:
-    - Energy
-  - type: FlyBySound
-    sound:
-      collection: EnergyMiss
-      params:
-        volume: 5
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-    layers:
-    - state: heavylaser
-      shader: unshaded
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.15,-0.3,0.15,0.3"
-        hard: false
-        mask:
-        - Opaque
-      fly-by: &flybyfixture
-        shape: !type:PhysShapeCircle
-          radius: 1.5
-        layer:
-        - Impassable
-        - MidImpassable
-        - HighImpassable
-        - LowImpassable
-        hard: False
-  - type: Ammo
-  - type: Projectile
-    impactEffect: BulletImpactEffectOrangeDisabler
-    damage:
-      types:
-        Heat: 18

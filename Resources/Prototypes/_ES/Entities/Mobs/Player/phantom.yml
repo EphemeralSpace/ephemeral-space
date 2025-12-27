@@ -1,0 +1,80 @@
+- type: entity
+  id: ESMobPhantom
+  parent:
+  - Incorporeal
+  - BaseMob
+  - ESBaseMob
+  name: vengeful phantom
+  description: A vengeful phantom who walks this station seeking retribution.
+  components:
+  - type: Sprite
+    sprite: Mobs/Ghosts/ghost_human.rsi
+    layers:
+    - state: animated
+      map: ["base"]
+      color: "#691f1faa"
+      shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.ESPhantomVisuals.Materialized:
+        base:
+          True: { color: "#f00a" }
+          False: { color: "#691f1faa" }
+  - type: PointLight
+    energy: 5
+    radius: 1.75
+    falloff: 6
+    color: "#f00"
+    castShadows: false
+    netsync: false
+  - type: ESGenericPointLightVisualizer
+    visuals:
+      enum.ESPhantomVisuals.Materialized:
+        True:
+          energy: 8
+          radius: 2
+        False:
+          energy: 5
+          radius: 1.75
+  - type: ESPhantom
+  - type: Hands
+    hands:
+      hand_right:
+        location: Right
+      hand_left:
+        location: Left
+    sortedHands:
+    - hand_right
+    - hand_left
+  - type: ComplexInteraction
+  - type: ESBlockInteraction
+  - type: Damageable
+    damageContainer: ManifestedSpirit
+    damageModifierSet: ManifestedSpirit
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 6
+    baseWalkSpeed: 4
+  - type: NoSlip
+  - type: Speech
+    speechVerb: Ghost
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: epicene
+  - type: Tag
+    tags:
+    - SlowImmune
+    - KnockdownImmune
+
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionPhantomMaterialize
+  name: Materialize
+  description: Take physical form and terrorize the station!
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/masks/phantom.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:ESPhantomMaterializeActionEvent

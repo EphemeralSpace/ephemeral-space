@@ -1,0 +1,13 @@
+- type: esMasquerade
+  id: Random
+  name: Random
+  description: A truly random traitors round.
+  weight: 10
+  minPlayers: 0
+  gameRules:
+    - ESTroupeRuleCrew
+    - ESTroupeRuleTraitor
+    - ESSchedulerRuleStationEventVote
+    - ESSchedulerRuleDegradationEventVote
+  masquerade: !type:RandomMasquerade
+    defaultMask: "ESCrewmember"

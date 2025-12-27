@@ -1,4 +1,5 @@
-﻿using Content.Server.GameTicking.Rules.VariationPass.Components;
+﻿using Content.Server._ES.StationVariation.Components.ReplacementMarkers;
+using Content.Server.GameTicking.Rules.VariationPass.Components;
 using Content.Shared.Storage;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
@@ -16,7 +17,10 @@ namespace Content.Server.GameTicking.Rules.VariationPass;
 ///     See <see cref="WallReplaceVariationPassSystem"/>
 /// </summary>
 public abstract class BaseEntityReplaceVariationPassSystem<TEntComp, TGameRuleComp> : VariationPassSystem<TGameRuleComp>
-    where TEntComp: IComponent
+    // ES START
+    // different bound so we can have more control
+    where TEntComp: ESBaseReplacementMarkerComponent
+    // ES END
     where TGameRuleComp: IComponent
 {
     /// <summary>
@@ -42,12 +46,21 @@ public abstract class BaseEntityReplaceVariationPassSystem<TEntComp, TGameRuleCo
             return;
 
         var enumerator = AllEntityQuery<TEntComp, TransformComponent>();
-        while (enumerator.MoveNext(out var uid, out _, out var xform))
+        // ES START
+        // comp in enumerator + replacement disabling
+        while (enumerator.MoveNext(out var uid, out var comp, out var xform))
         {
+            if (!comp.Replace)
+                continue;
+            // ES END
+
             if (!IsMemberOfStation((uid, xform), ref args))
                 continue;
 
-            if (RobustRandom.Prob(prob))
+            // ES START
+            // replaceall
+            if (pass.ReplaceAll || RobustRandom.Prob(prob))
+            // ES END
                 QueueReplace((uid, xform), pass.Replacements);
         }
 

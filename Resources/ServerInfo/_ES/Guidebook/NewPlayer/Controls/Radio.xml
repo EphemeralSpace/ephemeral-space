@@ -1,0 +1,61 @@
+<Document>
+# Speech and Text Channels
+Talking is a key part of Ephemeral Space. You can press [keybind="FocusChatInputWindow"/] to jump to the text box.
+
+The word next to the text box is the [color=#a4885c]text channel[/color] you're about to send the message to, or rather how you're about to say what you've typed.
+
+Local is normal speech at normal volume.
+
+Whisper can only be heard when nearby somebody. You automatically whisper into your radio to send messages over it.
+
+Emotes are gestures that you make. Can be received by anyone who is not blinded.
+
+Whisper messages can be sent by starting your message with [color=#a4885c][keybind="FocusWhisperChatWindow"/][/color] and Emotes can be sent by starting your message with ([color=#a4885c]@[/color]).
+You can also cycle through all of these text channels by pressing [keybind="CycleChatChannelForward"/].
+
+People may not be able to make out all of what you're saying if you're standing too far away from them. This is especially important if you're whispering.
+
+[color=red]TODO ES discuss lobby/stagehand text speech[/color]
+
+## Radio
+
+Your radio, and intercoms, allows you to communicate across the entire station and to your specific [color=#a4885c]department[/color].
+
+<Box>
+  <GuideEntityEmbed Entity="ClothingHeadsetGrey"/>
+</Box>
+
+To send a [color=#a4885c]station-wide[/color] message over the radio, find an [color=cyan]intercom[/color], turn its microphone on, and use the [color=#32cd32]Common[/color] channel by beginning your text with [color=#32cd32]semi-colon (;)[/color].
+People standing right next to you might catch bits of your radio message, even if they don't have the access to the relevant radio channel. Watch for eavesdroppers.
+
+Unlike other servers, Ephemeral Space does not have [color=#32cd32]Common[/color] microphone access on regular headsets.
+
+## Departmental Radio
+
+You are able to send messages over your departmental radio channels using [color=#32cd32]colon (:)[/color] followed by the department letter as long as you're wearing a headset with your department's encryption key.
+
+Examine your headset to see the department channels available to you.
+
+<Box>
+  <GuideEntityEmbed Entity="ClothingHeadsetEngineering"/>
+</Box>
+
+Examining an unmodified engineering headset would show you the prefixes for the [color=#32cd32]Common[/color] and [color=#f37746]Engineering[/color] channels.
+
+It is also possible to use [color=#a4885c]:h[/color]. This hotkey will automatically default to your department radio channel.
+For example, if you're a Station Engineer then [color=#a4885c]:h[/color] will default to [color=#f37746]:e[/color].
+
+## Encryption Keys
+[color=#a4885c]Encryption keys[/color] give you access to their respective channel.
+
+Examining our engineering headset from earlier shows us [color=#f37746]Engineering[/color] because an engineer's headset starts with that [color=#a4885c]encryption key[/color].
+
+<Box>
+  <GuideEntityEmbed Entity="EncryptionKeyEngineering"/>
+</Box>
+
+You can take out encryption keys by using a [color=#a4885c]screwdriver[/color] on a headset. New encryption keys are put into headsets by clicking on one with an encryption key in your hand.
+
+All command members have extras of their relevant encryption key, but you can also request one at the HoP's office when you're getting your job changed.
+
+</Document>

@@ -1,0 +1,9 @@
+- type: constructionGraph
+  id: ESPiano
+  start: start
+  graph:
+  - node: start
+    entity: ESInstrumentPiano
+
+  - node: broken # No piano repairmen in space
+    entity: ESInstrumentPianoBroken

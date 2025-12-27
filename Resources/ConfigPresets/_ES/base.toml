@@ -12,7 +12,7 @@ range = 10 # APCs
 
 [game]
 map_pool = "ESMapPool"
-defaultpreset = "ESTraitors"
+defaultpreset = "ESMasqueradeManaged"
 fallbackpreset = "ESTraitors,ESExtended"
 role_timers = false
 

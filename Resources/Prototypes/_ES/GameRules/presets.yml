@@ -1,6 +1,13 @@
 # Standard modes
 
 - type: gamePreset
+  id: ESMasqueradeManaged
+  name: es-preset-extended-title
+  description: es-preset-extended-desc
+  rules:
+  - ESMasqueradeGameRule
+
+- type: gamePreset
   id: ESExtended
   name: es-preset-extended-title
   description: es-preset-extended-desc

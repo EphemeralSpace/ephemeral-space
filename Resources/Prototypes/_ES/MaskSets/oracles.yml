@@ -1,0 +1,4 @@
+- type: esMaskSet
+  id: Oracles
+  masks:
+    ESEmpath: 1

@@ -6,7 +6,9 @@
     mode: SnapgridCenter
   components:
     - type: Sprite
-      sprite: Structures/Power/cable_terminal.rsi
+# ES START
+      sprite: _ES/Structures/Power/cable_terminal.rsi
+# ES END
       state: term
       drawdepth: BelowFloor
     - type: Clickable

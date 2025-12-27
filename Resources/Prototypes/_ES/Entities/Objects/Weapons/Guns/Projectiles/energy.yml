@@ -1,0 +1,132 @@
+# Energy ""bullets""
+- type: entity
+  name: energy bolt
+  id: ESEnergyBolt
+  parent: BulletEnergyTurretLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      shader: unshaded
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.3,0.15,0.3"
+        hard: false
+        mask:
+        - Opaque
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: Ammo
+  - type: Projectile
+    impactEffect: BulletImpactEffectOrangeDisabler
+    soundHit:
+      path: /Audio/_ES/Weapons/Guns/Hits/sear.ogg
+    damage:
+      types:
+        Heat: 18
+
+- type: entity
+  name: weak energy bolt
+  id: ESEnergyBoltCaptain
+  parent: ESEnergyBolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 10
+
+# Disabler & taser are effectively copies of the upstream projectiles as of 12/18/25. They are used so that no upstream changes happen to mess with their balance.
+# TODO: make the disabler bolt shoot through windows. the fixture data appears to be identical to the energy bolt, why doesn't it work?
+- type: entity
+  name: diasbler bolt
+  id: ESDisablerBolt
+  parent: BulletEnergyTurretLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser
+      shader: unshaded
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectOmnilaser
+  - type: StaminaDamageOnCollide
+    damage: 33
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    soundHit:
+      path: /Audio/_ES/Weapons/Guns/Hits/disabler_sear.ogg
+    damage:
+      types:
+        Heat: 0
+    forceSound: true
+
+- type: entity
+  name: taser bolt
+  id: ESTaserBolt
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    noRot: true
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    color: "#ffff33"
+    layers:
+    - state: spark
+      shader: unshaded
+  - type: Ammo
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
+    soundHit:
+      path: "/Audio/Weapons/Guns/Hits/taser_hit.ogg"
+    forceSound: true
+  - type: TimedDespawn
+    lifetime: 0.20 # Very short range
+  - type: StunOnCollide
+    stunAmount: 0
+    knockdownAmount: 2.5 # Enough to subdue and follow up with a stun baton
+    drop: false #Ranged KD and item drop are too strong in one package
+    slowdownAmount: 2.5
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+  - type: ESSparkOnProjectileHit
+    count: 3
+  - type: ESSparkOnDespawn
+    count: 1

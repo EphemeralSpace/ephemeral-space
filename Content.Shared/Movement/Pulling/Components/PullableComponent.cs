@@ -39,6 +39,18 @@ public sealed partial class PullableComponent : Component
     [AutoNetworkedField, DataField]
     public bool PrevFixedRotation;
 
+    // ES START
+    // we have to do some state bookkeeping because just trying to do it with arithmetic
+    // introduces dogshit bugs for some reason
+    // but this is to make it so we can dynamically reduce density on pull and then restore it on stop pull
+    /// <summary>
+    ///     AAAAAAAAAAAAA
+    /// </summary>
+    [Access(typeof(Systems.PullingSystem))]
+    [DataField, AutoNetworkedField]
+    public Dictionary<string, float>? OldFixtureDensities;
+    // ES END
+
     [DataField]
     public ProtoId<AlertPrototype> PulledAlert = "Pulled";
 }

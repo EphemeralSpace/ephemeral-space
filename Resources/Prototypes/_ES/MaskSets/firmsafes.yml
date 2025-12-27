@@ -1,0 +1,8 @@
+- type: esMaskSet
+  id: Firmsafes # Assorted masks that can confirm themselves in some capacity.
+                # This is funny guys like the VIP with obvious tells, and also
+                # those who have visible actions they can perform on a dime.
+  masks:
+    ESVIP: 1 # Look it's right here I have my c-
+    ESFruitVendor: 1
+    ESArmsDealer: 1

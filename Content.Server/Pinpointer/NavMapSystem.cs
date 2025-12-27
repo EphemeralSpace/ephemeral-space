@@ -407,6 +407,10 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
             if (!navBeacon.Enabled)
                 continue;
 
+// ES START
+            if (!xform.Anchored)
+                continue;
+// ES END
             if (navBeacon.Text == null)
                 continue;
 

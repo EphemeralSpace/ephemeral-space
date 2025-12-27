@@ -93,16 +93,17 @@
   parent: CrateSecgear
   id: CrateSecurityTrackingMindshieldImplants
   name: implanter crate
-  description: Contains 4 MindShield implants and 4 tracking implant. Requires Security access to open.
+# ES Start
+# Mindshields are not used, so they have been removed
+  description: Contains 4 tracking implants. Requires Security access to open.
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: MindShieldImplanter
-          amount: 4
         - id: TrackingImplanter
           amount: 4
+# ES End
 
 - type: entity
   parent: CrateSecgear

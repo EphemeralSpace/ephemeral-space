@@ -103,6 +103,6 @@ public sealed class ESGasLeakRule : StationEventSystem<ESGasLeakRuleComponent>
         if (!Exists(component.LeakOrigin) || TerminatingOrDeleted(component.LeakOrigin))
             return;
 
-        _sparks.DoSparks(component.LeakOrigin, 5);
+        _sparks.DoSparks(component.LeakOrigin, 5, cooldown: false);
     }
 }

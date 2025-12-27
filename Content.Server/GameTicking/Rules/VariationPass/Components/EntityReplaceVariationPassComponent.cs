@@ -25,6 +25,14 @@ public sealed partial class EntityReplaceVariationPassComponent : Component
     [DataField(required: true)]
     public float EntitiesPerReplacementStdDev;
 
+    // ES START
+    /// <summary>
+    ///     Should every entity we come across be replaced?
+    /// </summary>
+    [DataField]
+    public bool ReplaceAll = false;
+    // ES END
+
     /// <summary>
     ///     Prototype(s) to replace matched entities with.
     /// </summary>

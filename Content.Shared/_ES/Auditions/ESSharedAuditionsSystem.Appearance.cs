@@ -186,6 +186,7 @@ public abstract partial class ESSharedAuditionsSystem
     private const float PrefixFirstNameless = 0.5f;
     private const float LastNameless = 0.009f;
     private const float FirstNameless = 0.006f;
+    private const int AlliterationTotalChances = 6;
 
     private static readonly ProtoId<LocalizedDatasetPrototype> ParticleDataset = "ESNameParticle";
     private static readonly ProtoId<LocalizedDatasetPrototype> SuffixDataset = "ESNameSuffix";
@@ -211,7 +212,19 @@ public abstract partial class ESSharedAuditionsSystem
         var prefix = Prefix(profile.Gender);
         var suffix = Suffix();
         var firstName = FirstName(firstNameDataSet);
-        var lastName = LastName(lastNameDataSet);
+
+        // when generating the lastname, we want to artificially boost the chance
+        // that alliteration happens, because alliteration is usually really funny
+        // we do this by essentially just generating the last name a few extra times
+        // and if we generate an alliterative name, then we stop. otherwise, we just
+        // take the last one that got generated
+        var lastName = string.Empty;
+        for (var i = 0; i < AlliterationTotalChances; i++)
+        {
+            lastName = LastName(lastNameDataSet);
+            if (firstName.First() == lastName.First())
+                break;
+        }
 
         if (prefix != string.Empty && _random.Prob(PrefixFirstNameless))
             firstName = string.Empty;

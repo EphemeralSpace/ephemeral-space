@@ -72,7 +72,7 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
         }
     }
 
-    private void OnSetVote(ESSetVoteMessage args, EntitySessionEventArgs ev)
+    protected virtual void OnSetVote(ESSetVoteMessage args, EntitySessionEventArgs ev)
     {
         if (ev.SenderSession.AttachedEntity is not { } attachedEntity ||
             !HasComp<ESVoterComponent>(attachedEntity))
@@ -90,9 +90,20 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
         foreach (var (option, votes) in voteComp.Votes)
         {
             if (option.Equals(args.Option)) // add our vote
-                votes.Add(voteNetEnt);
-            else // clear our old votes
+            {
+                if (args.Selected)
+                {
+                    votes.Add(voteNetEnt);
+                }
+                else
+                {
+                    votes.Remove(voteNetEnt);
+                }
+            }
+            else if (!voteComp.MultiVote) // clear our old votes if only one is allowed
+            {
                 votes.Remove(voteNetEnt);
+            }
         }
         Dirty(voteUid.Value, voteComp);
     }
@@ -128,7 +139,7 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
             case ResultStrategy.WeightedPick:
                 // Convert each option into a weight based on counts
                 var weights = ent.Comp.Votes
-                    .Select(p => (p.Key, 1f + p.Value.Count)) // + 1 so every option can be chosen
+                    .Select(p => (p.Key, (float) (1 + p.Value.Count))) // + 1 so every option can be chosen
                     .ToDictionary();
                 result = _random.Pick(weights);
                 break;

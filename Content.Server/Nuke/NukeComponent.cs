@@ -84,8 +84,10 @@ namespace Content.Server.Nuke
         [DataField("disarmSound")]
         public SoundSpecifier DisarmSound = new SoundPathSpecifier("/Audio/Misc/notice2.ogg");
 
+        // ES Start
         [DataField("armMusic")]
-        public SoundSpecifier ArmMusic = new SoundCollectionSpecifier("NukeMusic");
+        public SoundSpecifier ArmMusic = new SoundCollectionSpecifier("ESNukeMusic");
+        // ES End
 
         // These datafields here are duplicates of those in explosive component. But I'm hesitant to use explosive
         // component, just in case at some point, somehow, when grenade crafting added in someone manages to wire up a

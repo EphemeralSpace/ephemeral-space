@@ -183,6 +183,9 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         if (guides == null)
         {
             guides = _prototypeManager.EnumeratePrototypes<GuideEntryPrototype>()
+                // ES START
+                .Where(x => !x.Hidden)
+                // ES END
                 .ToDictionary(x => new ProtoId<GuideEntryPrototype>(x.ID), x => (GuideEntry) x);
         }
         else if (includeChildren)

@@ -15,7 +15,7 @@ public sealed partial class ESVotingWindow : FancyWindow
 
     private List<Entity<ESVoteComponent>> _lastVotes = new();
 
-    public event Action<Entity<ESVoteComponent>, ESVoteOption>? OnVoteChanged;
+    public event Action<Entity<ESVoteComponent>, ESVoteOption, bool>? OnVoteChanged;
 
     public ESVotingWindow()
     {
@@ -38,7 +38,7 @@ public sealed partial class ESVotingWindow : FancyWindow
                 {
                     Vote = vote,
                 };
-                voteControl.OnVoteChanged += (arg1, arg2) => OnVoteChanged?.Invoke(arg1, arg2);
+                voteControl.OnVoteChanged += (arg1, arg2, arg3) => OnVoteChanged?.Invoke(arg1, arg2, arg3);
                 VotesContainer.AddChild(voteControl);
             }
         }

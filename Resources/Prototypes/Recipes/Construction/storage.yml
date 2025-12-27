@@ -36,17 +36,19 @@
     - !type:TileNotBlocked
 
 # ItemCabinets
-- type: construction
-  id: ShowCase
-  graph: GlassBox
-  startNode: start
-  targetNode: glassBox
-  category: construction-category-storage
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
+# ES START
+#- type: construction
+#  id: ShowCase
+#  graph: GlassBox
+#  startNode: start
+#  targetNode: glassBox
+#  category: construction-category-storage
+#  objectType: Structure
+#  placementMode: SnapgridCenter
+#  canBuildInImpassable: false
+#  conditions:
+#    - !type:TileNotBlocked
+# ES END
 
 # Shelfs
 # Normals

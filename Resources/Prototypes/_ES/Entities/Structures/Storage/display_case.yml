@@ -1,0 +1,97 @@
+- type: entity
+  parent: BaseStructure
+  id: ESDisplayCase
+  name: display case
+  description: A glass case for displaying valuables.
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/display_case.rsi
+    layers:
+    - state: light
+      color: "#fff5"
+      map: ["light"]
+    - state: base
+    - state: back
+      map: ["glass-back"]
+    - map: ["fill"]
+    - state: front
+      map: ["glass-front"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ESDisplayCaseVisuals.Broken:
+        glass-front:
+          True: { state: front-broken }
+          False: { state: front }
+        glass-back:
+          True: { state: back-broken }
+          False: { state: back }
+        light:
+          True: { visible: false }
+          False: { visible: true }
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: ESDisplayCase
+  - type: ESItemMapper
+    mappings:
+      fill:
+      - containerId: display-case
+        state: fill
+  - type: ItemSlots
+    slots:
+      display-case:
+        priority: 0
+        ejectOnInteract: true
+        whitelist:
+          tags:
+          - ESDisplayCaseItem
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 10
+      - !type:DoActsBehavior
+        acts: [ "Breakage" ]
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: RequireProjectileTarget
+  - type: ContainerContainer
+    containers:
+      display-case: !type:ContainerSlot
+
+- type: entity
+  parent: ESDisplayCase
+  id: ESDisplayCaseCaptainEnergyGun
+  description: A robust glass case for displaying the Captain's prized sidearm.
+  suffix: ES, Captain's Energy Gun
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      display-case:
+        id: ESWeaponCaptainEnergyGun

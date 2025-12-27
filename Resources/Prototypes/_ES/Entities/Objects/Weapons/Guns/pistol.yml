@@ -22,7 +22,16 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      path: /Audio/_ES/Weapons/Guns/Gunshots/pistol_shot.ogg
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_ES/Weapons/Guns/Cock/pistol_cock.ogg
+    soundBoltClosed:
+      path: /Audio/_ES/Weapons/Guns/Bolt/pistol_bolt_closed.ogg
+    soundBoltOpened:
+      path: /Audio/_ES/Weapons/Guns/Bolt/pistol_bolt_open.ogg
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -62,8 +71,8 @@
       gun_magazine:
         name: Magazine
         startingItem: ESMagazine9mm
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        insertSound: /Audio/_ES/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/_ES/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:

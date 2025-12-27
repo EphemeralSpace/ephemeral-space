@@ -25,7 +25,10 @@ namespace Content.IntegrationTests.Tests
             }
         }
 
-        [Test]
+        // ES START
+        // not relevant with our roundflow
+        //[Test]
+        // ES END
         public async Task Test()
         {
             await using var pair = await PoolManager.GetServerClient(new PoolSettings

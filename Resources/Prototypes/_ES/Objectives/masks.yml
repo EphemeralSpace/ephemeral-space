@@ -12,3 +12,4 @@
   components:
   - type: ESObjective
   - type: ESMaskObjective
+  - type: ESStagehandAware

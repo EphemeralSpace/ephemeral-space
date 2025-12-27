@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Goonstation at commit https://github.com/goonstation/goonstation/commit/4f88b9314336631929c9cdddb1567fc08f83bf9e and modified by potato1234x (github), then again by EmoGarbage404 (github) for ss14",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/6f959e719255fcfaacb64807d9de8ba325a044d7 and modified for Ephemeral Space by Flareguy",
     "states": [
         {
             "name": "light-off"

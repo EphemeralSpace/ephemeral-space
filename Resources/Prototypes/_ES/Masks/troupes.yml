@@ -2,11 +2,16 @@
   id: ESCrew
   name: es-troupe-crew-name
   color: yellow
+  metaIcon: ESCrew
+  objectives:
+    all:
+    - id: ESObjectiveResearchTelescience
 
 - type: esTroupe
   id: ESTraitor
   name: es-troupe-traitor-name
   color: red
+  metaIcon: ESTraitor
   prohibitedJobs:
   # Command
   - Captain

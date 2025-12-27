@@ -1,4 +1,12 @@
 - type: guideEntry
-  id: SpaceLaw # No prefix as this hard-replaces the other space law
+  id: ESSpaceLaw
+  hidden: false
+  name: guide-entry-rules-space-law
+  text: "/ServerInfo/_ES/Guidebook/SpaceLaw.xml"
+
+# dummy entry to replace upstream one since I think it got removed at some point .
+- type: guideEntry
+  id: SpaceLaw
+  hidden: true
   name: guide-entry-rules-space-law
   text: "/ServerInfo/_ES/Guidebook/SpaceLaw.xml"

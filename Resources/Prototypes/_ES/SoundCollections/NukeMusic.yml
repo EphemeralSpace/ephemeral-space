@@ -1,0 +1,4 @@
+﻿- type: soundCollection
+  id: ESNukeMusic
+  files:
+    - /Audio/_ES/StationEvents/descent.ogg

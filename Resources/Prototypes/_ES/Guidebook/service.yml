@@ -1,0 +1,36 @@
+- type: guideEntry
+  id: ESService
+  hidden: false
+  name: guide-entry-service
+  text: "/ServerInfo/_ES/Guidebook/Service/Service.xml"
+  filterEnabled: True
+  children:
+  - ESBartender
+  - ESBotany
+  - ESChef
+  - ESJanitorial
+
+- type: guideEntry
+  id: ESBartender
+  hidden: false
+  name: guide-entry-bartender
+  text: "/ServerInfo/_ES/Guidebook/Service/Bartender.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: ESBotany
+  hidden: false
+  name: guide-entry-botany
+  text: "/ServerInfo/_ES/Guidebook/Service/Botany.xml"
+
+- type: guideEntry
+  id: ESChef
+  hidden: false
+  name: guide-entry-chef
+  text: "/ServerInfo/_ES/Guidebook/Service/Chef.xml"
+
+- type: guideEntry
+  id: ESJanitorial
+  hidden: false
+  name: guide-entry-janitorial
+  text: "/ServerInfo/_ES/Guidebook/Service/Janitorial.xml"

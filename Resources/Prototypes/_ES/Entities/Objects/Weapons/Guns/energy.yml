@@ -6,7 +6,10 @@
   parent: BaseWeaponBattery
   components:
   - type: Item
-    size: Large
+    storedOffset: -2,0
+    size: Huge
+    shape:
+    - 0,0,5,2 # possible to reasonably store without sacrificing massive amounts of space, if not extremely annoying
   - type: Sprite
     sprite: _ES/Objects/Weapons/Guns/laser_gun.rsi
     layers:
@@ -23,17 +26,21 @@
   - type: Clothing
     sprite: _ES/Objects/Weapons/Guns/laser_gun.rsi
   - type: Gun
+    soundGunshot:
+      path: /Audio/_ES/Weapons/Guns/Gunshots/laser.ogg
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
     projectileSpeed: 20
   - type: BatteryAmmoProvider
     proto: ESEnergyBolt
-    fireCost: 100
+    fireCost: 70
   - type: StaticPrice
     price: 420
 
-# TODO: Try giving this a small pointlight to see if it looks good, make its disabler bolts go through windows, and make this actually use the disable mode sprites.
+# TODO: Try giving this a small pointlight to see if it looks good.
 - type: entity
   parent: [BaseWeaponBatterySmall, BaseSecurityContraband]
   id: ESWeaponHybridTaser
@@ -50,6 +57,9 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
   - type: Item
     heldPrefix: taser4
   - type: Clothing
@@ -58,22 +68,76 @@
     - Belt
   - type: Gun
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+      path: /Audio/_ES/Weapons/Guns/Gunshots/taser.ogg
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
+    projectileSpeed: 20
   - type: BatteryAmmoProvider
-    proto: BulletTaser
+    proto: ESTaserBolt
     fireCost: 200
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: BulletTaser
+    - proto: ESTaserBolt
       fireCost: 200
       soundGunshot:
-        path: /Audio/Weapons/Guns/Gunshots/taser.ogg
-    - proto: BulletDisabler
+        path: /Audio/_ES/Weapons/Guns/Gunshots/taser.ogg
+    - proto: ESDisablerBolt
       fireCost: 62.5
       soundGunshot:
         path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: GenericVisualizer
+    visuals:
+      enum.BatteryWeaponFireModeVisuals.State:
+        enum.GunVisualLayers.MagUnshaded:
+          ESTaserBolt: { sprite: _ES/Objects/Weapons/Guns/hybrid_taser.rsi }
+          ESDisablerBolt: { sprite: _ES/Objects/Weapons/Guns/hybrid_taser_disable.rsi }
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  id: ESWeaponCaptainEnergyGun
+  name: captain's antique energy gun
+  suffix: ES
+  description: This is an antique energy gun. All craftsmanship is of the highest quality. It is decorated with a mahogany grip and chrome filigree. The object menaces with spikes of energy. On the item is an image of a captain and a clown. The clown is dead. The captain is striking a heroic pose.
+  parent: ESWeaponEnergyRifle
+  components:
+  - type: Tag
+    tags:
+    - HighRiskItem
+    - WeaponAntiqueLaser
+    - ESDisplayCaseItem
+  - type: Item
+    storedOffset: -2,0
+    size: Huge
+    shape:
+    - 0,0,4,3 #illogically bulky, but it's for game design reasons
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Guns/antiquelasergun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _ES/Objects/Weapons/Guns/antiquelasergun.rsi
+  - type: Gun
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    shotsPerBurst: 2
+    projectileSpeed: 20
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
+  - type: BatteryAmmoProvider
+    proto: ESEnergyBoltCaptain
+    fireCost: 70
+  - type: PredictedBatterySelfRecharger
+    autoRechargeRate: 5
+  - type: StaticPrice
+    price: 420

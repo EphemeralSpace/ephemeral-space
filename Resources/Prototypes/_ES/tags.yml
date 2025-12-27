@@ -24,6 +24,10 @@
 - type: Tag
   id: ESEmitter
 
+# Items that can be stored in the display case
+- type: Tag
+  id: ESDisplayCaseItem
+
 # Used for daredevil objectives
 - type: Tag
   id: ESGrille
@@ -54,6 +58,9 @@
 
 - type: Tag
   id: ESSuitEVACaptain
+  
+- type: Tag
+  id: ESSpawnerCargo
 
 - type: Tag
   id: ESSuitEVAEngi

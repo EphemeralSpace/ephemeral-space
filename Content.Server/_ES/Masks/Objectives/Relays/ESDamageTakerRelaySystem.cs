@@ -1,5 +1,6 @@
 using Content.Server._ES.Masks.Objectives.Relays.Components;
 using Content.Server.Mind;
+using Content.Shared._ES.Mind;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
