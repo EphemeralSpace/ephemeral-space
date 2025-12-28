@@ -473,7 +473,10 @@ namespace Content.Server.GameTicking
             SendStatusToAll();
             ReqWindowAttentionAll();
             UpdateLateJoinStatus();
-            AnnounceRound();
+            // ES START
+            // we hijack this
+            // AnnounceRound();
+            // ES END
             UpdateInfoText();
             SendRoundStartedDiscordMessage();
 
@@ -835,7 +838,10 @@ namespace Content.Server.GameTicking
             }
         }
 
-        private void AnnounceRound()
+        // ES START
+        // public
+        public void AnnounceRound()
+        // ES END
         {
             if (CurrentPreset == null) return;
 

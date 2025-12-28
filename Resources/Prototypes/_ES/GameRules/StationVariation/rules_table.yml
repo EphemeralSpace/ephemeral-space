@@ -22,4 +22,4 @@
       - id: ESBasicDecalDirtMonospaceVariationPass
       - tableId: ESMaplightParallaxVariationTable
       - id: ESNightshiftVariationPass
-        prob: 0.15
+        prob: 0.20
