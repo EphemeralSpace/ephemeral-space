@@ -31,6 +31,7 @@ public enum ESPortalGeneratorConsoleUiKey : byte
 public sealed class ESPortalGeneratorConsoleBuiState : BoundUserInterfaceState
 {
     public float Charge;
+    public bool Charging;
     public int CurrentResearchStage;
     public int MaxResearchStage;
 }

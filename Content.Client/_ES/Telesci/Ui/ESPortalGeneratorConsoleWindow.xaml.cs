@@ -26,7 +26,9 @@ public sealed partial class ESPortalGeneratorConsoleWindow : FancyWindow
     {
         StatusLabel.SetMarkup(state.Charge >= 1
             ? Loc.GetString("es-ui-portalgen-console-label-status-ready")
-            : Loc.GetString("es-ui-portalgen-console-label-status-charging"));
+            : state.Charging
+                ? Loc.GetString("es-ui-portalgen-console-label-status-charging")
+                : Loc.GetString("es-ui-portalgen-console-label-status-nopower"));
 
         ActivateButton.Disabled = state.Charge < 1;
 

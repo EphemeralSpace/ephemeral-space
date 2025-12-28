@@ -141,6 +141,7 @@ public abstract class ESSharedTelesciSystem : EntitySystem
         var state = new ESPortalGeneratorConsoleBuiState
         {
             Charge = (float) Math.Clamp(generator.Value.Comp.AccumulatedChargeTime.TotalSeconds / generator.Value.Comp.ChargeDuration.TotalSeconds, 0, 1),
+            Charging = generator.Value.Comp.Powered,
             CurrentResearchStage = stationComp.Stage,
             MaxResearchStage = stationComp.MaxStage,
         };
