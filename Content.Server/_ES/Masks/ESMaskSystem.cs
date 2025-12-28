@@ -13,6 +13,7 @@ using Content.Shared.EntityTable;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Random.Helpers;
+using Content.Shared.Roles.Components;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -292,6 +293,34 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         EntityManager.AddComponents(mind, mask.MindComponents);
 
         troupe.Comp.TroupeMemberMinds.Add(mind);
+        Objective.RegenerateObjectiveList(mind.Owner);
+    }
+
+    public override void RemoveMask(Entity<MindComponent> mind)
+    {
+        if (!TryGetMask(mind.AsNullable(), out var maskId))
+            return;
+
+        var mask = PrototypeManager.Index(maskId);
+
+        Role.MindRemoveRole(mind!, new EntProtoId<MindRoleComponent>(MindRole));
+
+        if (mind.Comp.OwnedEntity is { } ownedEntity)
+        {
+            EntityManager.RemoveComponents(ownedEntity, mask.Components);
+        }
+        EntityManager.RemoveComponents(mind, mask.MindComponents);
+
+        foreach (var objective in Objective.GetOwnedObjectives<ESMaskObjectiveComponent>(mind.Owner))
+        {
+            Objective.TryRemoveObjective(mind.Owner, objective.Owner);
+        }
+
+        if (TryGetTroupeEntity(mask.Troupe, out var troupeEntity))
+        {
+            troupeEntity.Value.Comp.TroupeMemberMinds.Remove(mind);
+        }
+
         Objective.RegenerateObjectiveList(mind.Owner);
     }
 }

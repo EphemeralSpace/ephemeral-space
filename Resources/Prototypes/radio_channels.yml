@@ -4,12 +4,6 @@
   keycode: ";"
   frequency: 1459
   color: "#2cdb2c"
-# ES START
-  senderWhitelist:
-    components:
-    - Intercom
-    - ESMedAlertRadioAnnouncer
-# ES END
 
 - type: radioChannel
   id: CentCom

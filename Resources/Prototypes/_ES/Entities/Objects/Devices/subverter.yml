@@ -1,0 +1,12 @@
+﻿- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: ESSubverterChip
+  name: subverter chip
+  description: A brain altering chip used to recruit people to the syndicate.
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Devices/subverter.rsi
+    state: icon
+  - type: ESAddMaskOnUse
+    maskToAdd: ESRecruit
