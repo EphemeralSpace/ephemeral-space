@@ -1,15 +1,8 @@
 - type: job
   id: ESWarden
-  name: job-name-warden
-  description: job-description-warden
+  name: ESjob-name-warden
+  description: ESjob-description-warden
   playTimeTracker: ESJobWarden
-  requirements:
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 5h
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 10h
   weight: 5
   startingGear: ESWardenGear
   icon: "JobIconWarden"

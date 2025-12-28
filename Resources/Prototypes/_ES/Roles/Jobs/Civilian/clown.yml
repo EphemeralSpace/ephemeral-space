@@ -1,7 +1,7 @@
 - type: job
   id: ESClown
-  name: job-name-clown
-  description: job-description-clown
+  name: ESjob-name-clown
+  description: ESjob-description-clown
   playTimeTracker: ESJobClown
   startingGear: ESClownGear
   icon: "JobIconClown"

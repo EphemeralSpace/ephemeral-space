@@ -1,7 +1,7 @@
 - type: job
   id: ESReporter
-  name: job-name-reporter
-  description: job-description-reporter
+  name: ESjob-name-reporter
+  description: ESjob-description-reporter
   playTimeTracker: ESJobReporter
   startingGear: ESReporterGear
   icon: "JobIconReporter"

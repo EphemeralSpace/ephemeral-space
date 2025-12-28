@@ -27,29 +27,16 @@
       - state: green
       - state: cargo_tech
 
-- type: entity
-  id: ESSpawnPointSalvageSpecialist
-  parent: SpawnPointJobBase
-  name: salvagespecialist
-  suffix: ES
-  components:
-  - type: SpawnPoint
-    job_id: ESSalvageSpecialist
-  - type: Sprite
-    layers:
-      - state: green
-      - state: salvagespecialist
-
 # Civilian
 
 - type: entity
-  id: ESSpawnPointPassenger
+  id: ESSpawnPointAssistant
   parent: SpawnPointJobBase
   name: assistant
   suffix: ES
   components:
   - type: SpawnPoint
-    job_id: ESPassenger
+    job_id: ESAssistant
   - type: Sprite
     layers:
       - state: green

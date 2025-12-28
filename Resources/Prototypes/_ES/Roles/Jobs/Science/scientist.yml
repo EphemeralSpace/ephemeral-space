@@ -1,15 +1,11 @@
 - type: job
   id: ESScientist
-  name: job-name-scientist
-  description: job-description-scientist
+  name: ESjob-name-scientist
+  description: ESjob-description-scientist
   playTimeTracker: ESJobScientist
-  requirements:
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 2.5h
   startingGear: ESScientistGear
   icon: "JobIconScientist"
-  supervisors: job-supervisors-rd
+  supervisors: job-supervisors-hop
   access:
   - Research
   - Maintenance

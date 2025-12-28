@@ -1,7 +1,7 @@
 - type: job
   id: ESBotanist
-  name: job-name-botanist
-  description: job-description-botanist
+  name: ESjob-name-botanist
+  description: ESjob-description-botanist
   playTimeTracker: ESJobBotanist
   startingGear: ESBotanistGear
   icon: "JobIconBotanist"
@@ -13,10 +13,6 @@
   extendedAccess:
   - Kitchen
   - Bar
-  special:
-  - !type:GiveItemOnHolidaySpecial
-    holiday: FourTwenty
-    prototype: CannabisSeeds
 
 - type: startingGear
   id: ESBotanistGear

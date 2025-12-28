@@ -193,8 +193,7 @@ GlassBoxLaserFilled: ESDisplayCaseCaptainEnergyGun
 
 # 2025-12-26
 SpawnPointCargoTechnician: ESSpawnPointCargoTechnician
-SpawnPointSalvageSpecialist: ESSpawnPointSalvageSpecialist
-SpawnPointPassenger: ESSpawnPointPassenger
+SpawnPointPassenger: ESSpawnPointAssistant
 SpawnPointClown: ESSpawnPointClown
 SpawnPointReporter: ESSpawnPointReporter
 SpawnPointBartender: ESSpawnPointBartender

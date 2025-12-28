@@ -1,7 +1,7 @@
 - type: job
   id: ESCargoTechnician
-  name: job-name-cargotech
-  description: job-description-cargotech
+  name: ESjob-name-cargotech
+  description: ESjob-description-cargotech
   playTimeTracker: ESJobCargoTechnician
   startingGear: ESCargoTechGear
   icon: "JobIconCargoTechnician"
@@ -11,10 +11,6 @@
   - Maintenance
   extendedAccess:
   - Salvage
-  special:
-  - !type:GiveItemOnHolidaySpecial
-    holiday: BoxingDay
-    prototype: BoxCardboard
 
 - type: startingGear
   id: ESCargoTechGear

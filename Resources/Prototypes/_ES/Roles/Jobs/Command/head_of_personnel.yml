@@ -1,24 +1,8 @@
 - type: job
   id: ESHeadOfPersonnel
-  name: job-name-hop
-  description: job-description-hop
+  name: ESjob-name-hop
+  description: ESjob-description-hop
   playTimeTracker: ESJobHeadOfPersonnel
-  requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 2.5h
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 2.5h
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 2.5h
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 2.5h
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 2.5h
   weight: 20
   startingGear: ESHoPGear
   icon: "JobIconHeadOfPersonnel"

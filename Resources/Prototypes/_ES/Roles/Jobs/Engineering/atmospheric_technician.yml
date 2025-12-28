@@ -1,24 +1,16 @@
 - type: job
   id: ESAtmosphericTechnician
-  name: job-name-atmostech
-  description: job-description-atmostech
+  name: ESjob-name-atmostech
+  description: ESjob-description-atmostech
   playTimeTracker: ESJobAtmosphericTechnician
-  requirements:
-  - !type:DepartmentTimeRequirement
-    department: Engineering
-    time: 2.5h
   startingGear: ESAtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
-  supervisors: job-supervisors-ce
+  supervisors: job-supervisors-hop
   access:
   - Maintenance
   - Engineering
   - External
   - Atmospherics
-  special:
-  - !type:GiveItemOnHolidaySpecial
-    holiday: FirefighterDay
-    prototype: FireAxe
 
 - type: startingGear
   id: ESAtmosphericTechnicianGear

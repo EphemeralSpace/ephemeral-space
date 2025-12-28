@@ -5,7 +5,6 @@
   color: "#A46106"
   roles:
   - ESCargoTechnician
-  - ESSalvageSpecialist
 
 - type: department
   id: ESService
@@ -28,7 +27,7 @@
   roles:
   - ESClown
   - ESHeadOfPersonnel
-  - ESPassenger
+  - ESAssistant
   - ESReporter
 
 - type: department

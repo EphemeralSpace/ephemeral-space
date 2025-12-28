@@ -1,15 +1,11 @@
 - type: job
   id: ESStationEngineer
-  name: job-name-engineer
-  description: job-description-engineer
+  name: ESjob-name-engineer
+  description: ESjob-description-engineer
   playTimeTracker: ESJobStationEngineer
-  requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 2.5h
   startingGear: ESStationEngineerGear
   icon: "JobIconStationEngineer"
-  supervisors: job-supervisors-ce
+  supervisors: job-supervisors-hop
   access:
   - Maintenance
   - Engineering

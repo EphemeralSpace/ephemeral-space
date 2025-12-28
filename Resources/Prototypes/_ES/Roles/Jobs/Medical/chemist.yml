@@ -1,15 +1,11 @@
 - type: job
   id: ESChemist
-  name: job-name-chemist
-  description: job-description-chemist
+  name: ESjob-name-chemist
+  description: ESjob-description-chemist
   playTimeTracker: ESJobChemist
-  requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 5h
   startingGear: ESChemistGear
   icon: "JobIconChemist"
-  supervisors: job-supervisors-cmo
+  supervisors: job-supervisors-hop
   access:
   - Medical
   - Chemistry

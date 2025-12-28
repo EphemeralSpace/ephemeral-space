@@ -1,24 +1,16 @@
 - type: job
   id: ESMedicalDoctor
-  name: job-name-doctor
-  description: job-description-doctor
+  name: ESjob-name-doctor
+  description: ESjob-description-doctor
   playTimeTracker: ESJobMedicalDoctor
-  requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 2.5h
   startingGear: ESDoctorGear
   icon: "JobIconMedicalDoctor"
-  supervisors: job-supervisors-cmo
+  supervisors: job-supervisors-hop
   access:
   - Medical
   - Maintenance
   extendedAccess:
   - Chemistry
-  special:
-  - !type:GiveItemOnHolidaySpecial
-    holiday: DoctorDay
-    prototype: WehMedipen
 
 - type: startingGear
   id: ESDoctorGear

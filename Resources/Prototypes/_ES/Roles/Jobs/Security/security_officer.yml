@@ -1,12 +1,8 @@
 - type: job
   id: ESSecurityOfficer
-  name: job-name-security
-  description: job-description-security
+  name: ESjob-name-security
+  description: ESjob-description-security
   playTimeTracker: ESJobSecurityOfficer
-  requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 2.5h
   startingGear: ESSecurityOfficerGear
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-hos

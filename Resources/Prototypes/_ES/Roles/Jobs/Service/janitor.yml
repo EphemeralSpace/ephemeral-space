@@ -1,7 +1,7 @@
 - type: job
   id: ESJanitor
-  name: job-name-janitor
-  description: job-description-janitor
+  name: ESjob-name-janitor
+  description: ESjob-description-janitor
   playTimeTracker: ESJobJanitor
   startingGear: ESJanitorGear
   icon: "JobIconJanitor"
@@ -10,10 +10,6 @@
   - Service
   - Janitor
   - Maintenance
-  special:
-  - !type:GiveItemOnHolidaySpecial
-    holiday: GarbageDay
-    prototype: WeaponRevolverInspector
 
 - type: startingGear
   id: ESJanitorGear

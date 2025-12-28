@@ -1,21 +1,8 @@
 - type: job
   id: ESHeadOfSecurity
-  name: job-name-hos
-  description: job-description-hos
+  name: ESjob-name-hos
+  description: ESjob-description-hos
   playTimeTracker: ESJobHeadOfSecurity
-  requirements:
-    - !type:RoleTimeRequirement
-      role: JobWarden
-      time: 1h
-    - !type:RoleTimeRequirement
-      role: JobDetective
-      time: 1h # knowing how to use the tools is important
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 5h
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 10h
   weight: 10
   startingGear: ESHoSGear
   icon: "JobIconHeadOfSecurity"

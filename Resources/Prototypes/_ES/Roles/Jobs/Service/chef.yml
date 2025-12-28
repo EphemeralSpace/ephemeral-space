@@ -1,12 +1,8 @@
 - type: job
   id: ESChef
-  name: job-name-chef
-  description: job-description-chef
+  name: ESjob-name-chef
+  description: ESjob-description-chef
   playTimeTracker: ESJobChef
-  requirements:
-    - !type:DepartmentTimeRequirement
-      department: Civilian
-      time: 0.5h
   startingGear: ESChefGear
   icon: "JobIconChef"
   supervisors: job-supervisors-hop

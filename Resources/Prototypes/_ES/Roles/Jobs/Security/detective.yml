@@ -1,12 +1,8 @@
 - type: job
   id: ESDetective
-  name: job-name-detective
-  description: job-description-detective
+  name: ESjob-name-detective
+  description: ESjob-description-detective
   playTimeTracker: ESJobDetective
-  requirements:
-  - !type:RoleTimeRequirement
-    role: JobSecurityOfficer
-    time: 5h
   startingGear: ESDetectiveGear
   icon: "JobIconDetective"
   supervisors: job-supervisors-hos
