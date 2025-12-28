@@ -3,16 +3,22 @@
   parent: BaseGameRule
   components:
   - type: ESRadstormRoundEndRule
+    radstormDamagePerSecond:
+      types:
+        Radiation: 8
     radstormPhases:
-    - timeBeforeEnd: 30m
+    - timeAfterStart: 15s
+      announcementText: es-radstorm-arrivals-announcement
+      announcementSound: /Audio/_ES/Announcements/attention_high.ogg
+    - timeBeforeEnd: 30s
       announcementText: es-radstorm-30min-announcement
       announcementSound: /Audio/_ES/Announcements/radstorm_30mins.ogg
-    - timeBeforeEnd: 15m
+    - timeBeforeEnd: 15s
       announcementText: es-radstorm-15min-announcement
       announcementDistortion: 0.1
       announcementSound: /Audio/_ES/Announcements/radstorm_15mins.ogg
       mapLight: "#003805ff"
-    - timeBeforeEnd: 5m
+    - timeBeforeEnd: 8s
       announcementText: es-radstorm-5min-announcement
       announcementDistortion: 0.4
       announcementSound: /Audio/_ES/Announcements/radstorm_5mins.ogg

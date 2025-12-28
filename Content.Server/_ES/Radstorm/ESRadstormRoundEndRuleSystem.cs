@@ -14,6 +14,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Radstorm;
 
@@ -89,7 +90,7 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
 
                 // only count mobs which actually end up taking damage from this
                 var dmg = _damage.ChangeDamage((mob, damageable), component.RadstormDamagePerSecond, true, false);
-                if (dmg.GetTotal() > FixedPoint2.Zero && state.CurrentState == MobState.Alive)
+                if (dmg.GetTotal() > FixedPoint2.Zero && state.CurrentState != MobState.Dead)
                     stillAlive += 1;
             }
 
@@ -105,7 +106,12 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
             if (phase.Completed)
                 continue;
 
-            var phaseStart = component.RadstormStartTime - phase.TimeBeforeEnd;
+            var phaseStart = TimeSpan.Zero;
+            if (phase.TimeBeforeEnd != null)
+                phaseStart = component.RadstormStartTime - phase.TimeBeforeEnd.Value;
+            else if (phase.TimeAfterStart != null)
+                phaseStart = _ticker.RoundStartTimeSpan + phase.TimeAfterStart.Value;
+
             if (_timing.CurTime < phaseStart)
                 continue;
 
@@ -119,9 +125,9 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
         {
             var msg = Loc.GetString(phase.AnnouncementText);
             if (phase.AnnouncementDistortion > 0f)
-                msg = ESRadioSystem.DistortRadioMessage(msg, phase.AnnouncementDistortion, _proto, _random, Loc);
+                msg = FormattedMessage.RemoveMarkupPermissive(ESRadioSystem.DistortRadioMessage(msg, phase.AnnouncementDistortion, _proto, _random, Loc));
             _chat.DispatchGlobalAnnouncement(
-                Loc.GetString(phase.AnnouncementText),
+                msg,
                 Loc.GetString("es-radstorm-announcer"),
                 announcementSound: phase.AnnouncementSound,
                 colorOverride: Color.LightSeaGreen);

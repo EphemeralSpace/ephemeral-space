@@ -4,7 +4,7 @@ using Robust.Shared.Audio;
 namespace Content.Server._ES.Radstorm;
 
 [RegisterComponent, AutoGenerateComponentPause]
-public sealed class ESRadstormRoundEndRuleComponent : Component
+public sealed partial class ESRadstormRoundEndRuleComponent : Component
 {
     [DataField(required: true)]
     public List<ESRadstormPhaseConfig> RadstormPhases = new();
@@ -16,13 +16,13 @@ public sealed class ESRadstormRoundEndRuleComponent : Component
     ///     Average time that the radstorm can start at. Used when randomly picking <see cref="RadstormStartTime"/>.
     /// </summary>
     [DataField]
-    public TimeSpan RadstormStartTimeAvg = TimeSpan.FromMinutes(60f);
+    public TimeSpan RadstormStartTimeAvg = TimeSpan.FromMinutes(0.5f);
 
     /// <summary>
     ///     Standard deviation for time that the radstorm can start at. Used when randomly picking <see cref="RadstormStartTime"/>.
     /// </summary>
     [DataField]
-    public TimeSpan RadstormStartTimeStdDev = TimeSpan.FromMinutes(5f);
+    public TimeSpan RadstormStartTimeStdDev = TimeSpan.FromMinutes(0.01f);
 
     /// <summary>
     ///     Picked randomly when the rule is added. Time into the round that the radstorm should start (i.e. when people should start dying),
@@ -47,14 +47,33 @@ public sealed class ESRadstormRoundEndRuleComponent : Component
     public bool SpaceDangerous = false;
 }
 
-[DataRecord]
-public partial record ESRadstormPhaseConfig(
-    TimeSpan TimeBeforeEnd,
-    float AnnouncementDistortion = 0f,
-    LocId? AnnouncementText = null,
-    SoundSpecifier? AnnouncementSound = null,
-    Color? MapLight = null,
-    bool SpaceDangerous = false)
+// no this cant be a fucking record because apparently you cant have datarecords that also have properties.
+[DataDefinition]
+public partial class ESRadstormPhaseConfig
 {
     public bool Completed = false;
+
+    [DataField]
+    public TimeSpan? TimeBeforeEnd;
+
+    /// <summary>
+    ///     Optional, allows you to have a phase relative to roundstart rather than from the end.
+    /// </summary>
+    [DataField]
+    public TimeSpan? TimeAfterStart;
+
+    [DataField]
+    public float AnnouncementDistortion;
+
+    [DataField]
+    public LocId? AnnouncementText;
+
+    [DataField]
+    public SoundSpecifier? AnnouncementSound;
+
+    [DataField]
+    public Color? MapLight;
+
+    [DataField]
+    public bool SpaceDangerous;
 }
