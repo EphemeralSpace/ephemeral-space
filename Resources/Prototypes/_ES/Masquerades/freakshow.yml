@@ -6,9 +6,6 @@
   minPlayers: 4
   gameRules:
     - ESTroupeRuleCrew
-    - ESSchedulerRuleStationEventVote
-    - ESSchedulerRuleDegradationEventVote
-    - ESRoundEndRuleRadstorm
   masquerade: !type:MasqueradeRoleSet
     defaultMask: "ESCrewmember"
     roles:

@@ -7,8 +7,5 @@
   gameRules:
     - ESTroupeRuleCrew
     - ESTroupeRuleTraitor
-    - ESSchedulerRuleStationEventVote
-    - ESSchedulerRuleDegradationEventVote
-    - ESRoundEndRuleRadstorm
   masquerade: !type:RandomMasquerade
     defaultMask: "ESCrewmember"
