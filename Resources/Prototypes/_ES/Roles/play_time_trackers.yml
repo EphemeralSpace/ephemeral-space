@@ -1,5 +1,8 @@
 # Jobs - It REALLY doesn't like when you reuse these so heres some ES ones
 - type: playTimeTracker
+  id: ESJobAssistant
+
+- type: playTimeTracker
   id: ESJobAtmosphericTechnician
 
 - type: playTimeTracker
@@ -39,16 +42,7 @@
   id: ESJobMedicalDoctor
 
 - type: playTimeTracker
-  id: ESJobMedicalIntern
-
-- type: playTimeTracker
-  id: ESJobPassenger
-
-- type: playTimeTracker
   id: ESJobReporter
-
-- type: playTimeTracker
-  id: ESJobSalvageSpecialist
 
 - type: playTimeTracker
   id: ESJobScientist
