@@ -47,7 +47,7 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
 
         // account for arrivals time
         if (_cfg.GetCVar(ESCVars.ESArrivalsEnabled))
-            randomMins += _cfg.GetCVar(ESCVars.ESArrivalsFTLTime);
+            randomMins += (_cfg.GetCVar(ESCVars.ESArrivalsFTLTime) / 60f);
 
         // round to nearest minute
         randomMins = Math.Round(randomMins);
