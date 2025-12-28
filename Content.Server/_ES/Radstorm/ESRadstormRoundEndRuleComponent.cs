@@ -16,13 +16,13 @@ public sealed partial class ESRadstormRoundEndRuleComponent : Component
     ///     Average time that the radstorm can start at. Used when randomly picking <see cref="RadstormStartTime"/>.
     /// </summary>
     [DataField]
-    public TimeSpan RadstormStartTimeAvg = TimeSpan.FromMinutes(0.5f);
+    public TimeSpan RadstormStartTimeAvg = TimeSpan.FromMinutes(60f);
 
     /// <summary>
     ///     Standard deviation for time that the radstorm can start at. Used when randomly picking <see cref="RadstormStartTime"/>.
     /// </summary>
     [DataField]
-    public TimeSpan RadstormStartTimeStdDev = TimeSpan.FromMinutes(0.01f);
+    public TimeSpan RadstormStartTimeStdDev = TimeSpan.FromMinutes(5f);
 
     /// <summary>
     ///     Picked randomly when the rule is added. Time into the round that the radstorm should start (i.e. when people should start dying),

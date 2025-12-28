@@ -123,7 +123,8 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
     {
         if (phase.AnnouncementText != null)
         {
-            var msg = Loc.GetString(phase.AnnouncementText);
+            var minutes = (int) Math.Round((comp.RadstormStartTime - _ticker.RoundStartTimeSpan).TotalMinutes);
+            var msg = Loc.GetString(phase.AnnouncementText, ("minutes", (minutes)));
             if (phase.AnnouncementDistortion > 0f)
                 msg = FormattedMessage.RemoveMarkupPermissive(ESRadioSystem.DistortRadioMessage(msg, phase.AnnouncementDistortion, _proto, _random, Loc));
             _chat.DispatchGlobalAnnouncement(
