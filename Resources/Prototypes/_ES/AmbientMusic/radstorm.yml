@@ -1,0 +1,18 @@
+- type: ambientMusic
+  id: ESRadstorm
+  sound:
+    params:
+      volume: -8
+    collection: ESAmbienceRadstorm
+  rules: ESRadstormRules
+  priority: 4
+
+- type: rules
+  id: ESRadstormRules
+  rules:
+  - !type:NearbyComponentsRule
+    anchored: true
+    count: 2
+    components:
+    - type: Morgue
+    range: 3
