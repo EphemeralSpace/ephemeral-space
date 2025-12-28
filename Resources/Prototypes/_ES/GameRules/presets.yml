@@ -16,6 +16,7 @@
   - ESSchedulerRuleStationEventVote
   - ESSchedulerRuleDegradationEventVote
   - ESBasicRoundstartVariation
+  - ESRoundEndRuleRadstorm
 
 - type: gamePreset
   id: ESTraitors
@@ -28,6 +29,7 @@
   - ESSchedulerRuleStationEventVote
   - ESSchedulerRuleDegradationEventVote
   - ESBasicRoundstartVariation
+  - ESRoundEndRuleRadstorm
 
 # Nonstandard modes
 

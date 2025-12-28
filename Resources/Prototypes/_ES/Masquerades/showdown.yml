@@ -9,6 +9,7 @@
     - ESTroupeRuleTraitor
     - ESSchedulerRuleStationEventVote
     - ESSchedulerRuleDegradationEventVote
+    - ESRoundEndRuleRadstorm
   masquerade: !type:MasqueradeRoleSet
     defaultMask: "ESCrewmember"
     roles:
