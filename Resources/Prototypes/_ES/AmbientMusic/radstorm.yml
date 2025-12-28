@@ -10,9 +10,5 @@
 - type: rules
   id: ESRadstormRules
   rules:
-  - !type:NearbyComponentsRule
-    anchored: true
-    count: 2
-    components:
-    - type: Morgue
-    range: 3
+  - !type:ESAfterRoundTimeRule
+    time: 40m
