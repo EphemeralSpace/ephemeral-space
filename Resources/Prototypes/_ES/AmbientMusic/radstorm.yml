@@ -11,4 +11,4 @@
   id: ESRadstormRules
   rules:
   - !type:ESAfterRoundTimeRule
-    time: 40m
+    time: 55m
