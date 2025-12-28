@@ -95,7 +95,9 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
             }
 
             // show is over
-            if (stillAlive == 0)
+            // (make sure we only actually do this if after time and not just deadly space)
+            // (i kind of implemented that in a weird way huh)
+            if (stillAlive == 0 && _timing.CurTime >= component.RadstormStartTime)
                 _ticker.EndRound();
 
             return;
