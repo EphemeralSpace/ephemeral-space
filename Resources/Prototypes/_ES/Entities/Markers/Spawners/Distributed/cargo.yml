@@ -18,7 +18,7 @@
     - id: ESCrateEmergencySpecializedKits
     - id: ESCrateEmergencyAdvancedKits
       weight: 0.25
-    - id: ESCrateChemVendRestock
+    - id: ESCrateRestock
       weight: 0.5 # Maybe this should be moved to a seperate roll
 
 - type: entityTable
@@ -44,7 +44,7 @@
     - id: ESCrateFoodCooking
     - id: ESCrateServiceJanitorialSupplies
     - id: ESCrateServiceReplacementLights
-    - id: ESCrateChefVendRestock
+    - id: ESCrateRestock
       weight: 0.25
       
 - type: entityTable
@@ -56,6 +56,7 @@
     - id: WaterTankHighCapacity
     - id: ESCrateEmergencyEVA
     - id: ESAdvancedToolsCrate
+    - id: ESCrateRestock
       weight: 0.25
 
 - type: entity

@@ -38,7 +38,7 @@
   - type: Construction
     graph: Girder
     node: ESWallDiagonalTube
- 
+
 # AME containment
 - type: entity
   parent: WallReinforced
@@ -54,3 +54,5 @@
   - type: IconSmooth
     key: walls
     base: ame
+  - type: ReinforcedWallReplacementMarker
+    replace: false

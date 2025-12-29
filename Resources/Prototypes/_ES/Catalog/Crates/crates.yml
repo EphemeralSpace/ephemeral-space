@@ -71,8 +71,8 @@
 - type: entity
   parent: CrateEngineeringSecure
   id: ESAdvancedToolsCrate
-  name: advanced tool crate
-  description: With these you might almost feel ready for a promotion!
+  name: advanced tools crate
+  description: With these, you might almost feel ready for a promotion!
   suffix: ES
   components:
   - type: EntityTableContainerFill
@@ -132,30 +132,30 @@
           amount: 2
 
 - type: entity
-  parent: CrateVendingMachineRestockChemVendFilled
-  id: ESCrateChemVendRestock
-  name: ChemVend restock crate
-  description: Contains a restock box for the ChemVend.
+  parent: CrateGenericSteel
+  id: ESCrateRestock
+  name: vending machine restock crate
+  description: Contains a box used for restocking vending machines.
   suffix: ES
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage:
-        id: VendingMachineRestockChemVend
+        id: ESVendingMachineRestockGlobal
 
 #Security
 - type: entity
   parent: CrateSecgear
   id: ESCrateSecurityArmor
   name: armor crate
-  description: Contains two bulletproof vests and two helmets. Requires Security access to open.
+  description: Contains two armor vests and two helmets. Requires Security access to open.
   suffix: ES
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage:
         all:
-        - id: ClothingOuterArmorBulletproof
+        - id: ClothingOuterArmorBasic
           amount: 2
         - id: ClothingHeadHelmetBasic
           amount: 2
@@ -180,7 +180,7 @@
   parent: CrateSecNonlethalThrowables
   id: ESCrateSecurityThrowables
   name: security throwables crate
-  description: Contains four flashbangs, stingers, teargas, and bolas. Requires Security access to open.
+  description: Contains four flashbangs, teargas, and bolas. Requires Security access to open.
   suffix: ES
   components:
   - type: EntityTableContainerFill
@@ -188,7 +188,6 @@
       entity_storage:
         all:
         - id: BoxFlashbang
-        - id: BoxStinger
         - id: BoxTearGas
         - id: Bola
           amount: 4
@@ -284,18 +283,6 @@
           amount: 2
 
 - type: entity
-  parent: CrateVendingMachineRestockChefvendFilled
-  id: ESCrateChefVendRestock
-  name: ChefVend restock crate
-  description: Contains a restock box for the ChefVend.
-  suffix: ES
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        id: VendingMachineRestockChefvend
-
-- type: entity
   parent: CratePlastic
   id: ESCrateServiceJanitorialSupplies
   name: janitorial supplies crate
@@ -358,8 +345,8 @@
 - type: entity
   parent: CrateGenericSteel
   id: ESCrateEmergencyFire
-  name: firefighting crates
-  description: Only you can prevent station fires. Partner up with two firefighter suits, gas masks, flashlights, large oxygen tanks, extinguishers, and hardhats!
+  name: firefighting crate
+  description: Only you can prevent station fires. Partner up with two sets of firefighting gear, and a spare flashlight!
   suffix: ES
   components:
   - type: EntityTableContainerFill
@@ -370,7 +357,7 @@
           amount: 2
         - id: FireExtinguisher
           amount: 2
-        - id: ClothingHeadHatHardhatYellow
+        - id: ClothingHeadHelmetFire
           amount: 2
         - id: ClothingMaskGas
           amount: 2

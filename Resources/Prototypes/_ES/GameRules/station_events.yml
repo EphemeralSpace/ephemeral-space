@@ -5,7 +5,7 @@
   abstract: true
   components:
   - type: StationEvent
-    startAudio: /Audio/Announcements/attention.ogg # Station events should always have announcements
+    startAudio: /Audio/_ES/Announcements/attention_low.ogg # Station events should always have announcements
     earliestStart: 0
     weight: 10
   - type: GameRule
@@ -57,6 +57,11 @@
   name: Breaker Flip
   components:
   - type: BreakerFlipRule
+  - type: StationEvent
+    startAudio:
+      path: /Audio/_ES/Announcements/breaker_flip.ogg
+      params:
+        volume: -4
 
 ## Gas Leak
 - type: entity
@@ -67,6 +72,10 @@
   - type: StationEvent
     startAnnouncement: station-event-gas-leak-start-announcement
     endAnnouncement: station-event-gas-leak-end-announcement
+    startAudio:
+      path: /Audio/_ES/Announcements/gas_leak.ogg
+      params:
+        volume: -4
   - type: ESGasLeakRule
   - type: ESSynchronizedVoteManager
     votes:
@@ -105,6 +114,10 @@
   name: Grey Tide Virus
   components:
   - type: StationEvent
+    startAudio:
+      path: /Audio/_ES/Announcements/greytide.ogg
+      params:
+        volume: -4
     maxOccurrences: 2
   - type: ESGreyTideVirus
     blacklist:
@@ -140,12 +153,16 @@
     startAnnouncement: station-event-power-grid-check-start-announcement
     endAnnouncement: station-event-power-grid-check-end-announcement
     startAudio:
-      path: /Audio/Announcements/power_off.ogg
+      path: /Audio/_ES/Announcements/power_off.ogg
       params:
         volume: -4
     duration: 60
     maxDuration: 120
   - type: PowerGridCheckRule
+    powerOnSound:
+      path: /Audio/_ES/Announcements/power_on.ogg
+      params:
+        volume: -4
 
 ## Solar Flare
 - type: entity
@@ -154,6 +171,10 @@
   name: Solar Flare
   components:
   - type: StationEvent
+    startAudio:
+      path: /Audio/_ES/Announcements/solar_flare.ogg
+      params:
+        volume: -4
     startAnnouncement: station-event-solar-flare-start-announcement
     endAnnouncement: station-event-solar-flare-end-announcement
     duration: 120
@@ -181,6 +202,10 @@
   name: Vent Clog
   components:
   - type: StationEvent
+    startAudio:
+      path: /Audio/_ES/Announcements/vent_foam.ogg
+      params:
+        volume: -4
     startAnnouncement: station-event-vent-clog-start-announcement
   - type: VentClogRule
 
@@ -194,6 +219,10 @@
     startAudio: null
     earliestStart: 30
   - type: MeteorSwarm
+    announcementSound:
+      path: /Audio/_ES/Announcements/meteors.ogg
+      params:
+        volume: -4
     meteors:
       ESMeteor: 1
 
@@ -208,7 +237,10 @@
     earliestStart: 30
   - type: MeteorSwarm
     announcement: station-event-space-dust-start-announcement
-    announcementSound: null
+    announcementSound:
+      path: /Audio/_ES/Announcements/space_dust.ogg
+      params:
+        volume: -4
     nonDirectional: true
     meteors:
       MeteorSpaceDust: 1
@@ -225,6 +257,11 @@
   id: ESStationEventElectricalFire
   name: Electrical Fire
   components:
+  - type: StationEvent
+    startAudio:
+      path: /Audio/_ES/Announcements/electrical_fire.ogg
+      params:
+        volume: -4
   - type: ESElectricalFireRule
   - type: ESSynchronizedVoteManager
     votes:

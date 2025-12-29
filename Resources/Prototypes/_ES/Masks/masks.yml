@@ -63,6 +63,13 @@
     cacheProto: ESCrateCacheCrewVeteran
 
 - type: esMask
+  id: ESCrewmember
+  name: es-mask-crewmember-name
+  troupe: ESCrew
+  description: es-mask-crewmember-desc
+  color: white
+
+- type: esMask
   id: ESEmpath
   name: es-mask-empath-name
   troupe: ESCrew
@@ -228,3 +235,22 @@
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorInfiltrator
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: ESRecruit
+  name: es-mask-recruit-name
+  description: es-mask-recruit-desc
+  color: pink
+  weight: 0
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: ESSubverter
+  name: es-mask-subverter-name
+  description: es-mask-subverter-desc
+  color: gray
+  weight: 0.5
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto: ESCrateCacheTraitorSubverter

@@ -144,7 +144,7 @@
   parent: ESBaseTraitorObjective
   id: ESObjectiveTraitorHackCryptoNukeConsoles
   name: Hack the nuclear cryptographic terminals
-  description: Once the objectives above are completed, hack the terminals to unlock the code for the nuke.
+  description: Once the objectives above are completed, hack the terminals to unlock the code for the nuke. The terminals are located in the HoS's office, captain's office, and secure tech storage.
   components:
   - type: ESObjective
     icon:
@@ -156,7 +156,7 @@
   parent: ESBaseTraitorObjective
   id: ESObjectiveTraitorDetonateNuke
   name: Detonate the nuclear fission explosive
-  description: Using the captain's authentication disk, arm the nuke and prevent the crew from stopping the detonation.
+  description: Once all other objectives are complete, use the captain's authentication disk to arm the nuke and prevent the crew from stopping the detonation.
   components:
   - type: ESObjective
     icon:

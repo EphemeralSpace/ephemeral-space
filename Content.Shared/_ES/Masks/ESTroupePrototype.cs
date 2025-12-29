@@ -11,13 +11,13 @@ public sealed partial class ESTroupePrototype : IPrototype, IInheritingPrototype
 {
     /// <inheritdoc/>
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; }  = default!;
 
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ESTroupePrototype>))]
-    public string[]? Parents { get; }
+    public string[]? Parents { get; private set; }
 
     [AbstractDataField]
-    public bool Abstract { get; }
+    public bool Abstract { get; private set; }
 
     /// <summary>
     /// Name of the troupe, in plain text.
