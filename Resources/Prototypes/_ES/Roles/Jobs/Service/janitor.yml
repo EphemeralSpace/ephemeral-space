@@ -10,6 +10,10 @@
   - Service
   - Janitor
   - Maintenance
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: GarbageDay
+    prototype: ESWeaponRevolver357
 
 - type: startingGear
   id: ESJanitorGear
