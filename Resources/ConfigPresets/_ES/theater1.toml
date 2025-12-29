@@ -3,3 +3,7 @@ hostname = "[EN][SRL] Ephemeral Space Theater I [US East]"
 
 [hub]
 tags = "lang:en,region:am_n_e"
+
+[whitelist]
+enabled = true
+prototype_list = "ESWhitelistDefault"

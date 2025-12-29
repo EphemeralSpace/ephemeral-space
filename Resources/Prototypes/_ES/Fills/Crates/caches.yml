@@ -72,6 +72,26 @@
     - id: ExGrenade
       amount: 2
 
+# Subverter
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheTraitorSubverter
+  suffix: ES, Subverter Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId:  ESTraitorCacheTraitorSubverter
+
+- type: entityTable
+  id: ESTraitorCacheTraitorSubverter
+  table:
+    all:
+    - id: ESSubverterChip
+      amount: 2
+    - id: ESWeaponPistol9mm
+    - id: ESMagazine9mm
+
 # Veteran
 - type: entity
   parent: ESCrateCache

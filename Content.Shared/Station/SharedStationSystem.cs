@@ -1,4 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._ES.Telesci.Components;
 using Content.Shared.Station.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
@@ -179,4 +181,28 @@ public abstract partial class SharedStationSystem : EntitySystem
 
         return null;
     }
+
+// ES START
+    public IEnumerable<EntityUid> GetGrids(Entity<StationDataComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return [];
+
+        return ent.Comp.Grids;
+    }
+
+    public bool TryGetOwningStation<TComponent>(EntityUid? entity, [NotNullWhen(true)] out Entity<TComponent>? station)
+        where TComponent : Component
+    {
+        station = null;
+        if (GetOwningStation(entity) is not { } stationUid)
+            return false;
+
+        if (!TryComp<TComponent>(stationUid, out var stationComp))
+            return false;
+
+        station = (stationUid, stationComp);
+        return true;
+    }
+// ES END
 }
