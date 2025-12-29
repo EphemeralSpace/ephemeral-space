@@ -30,14 +30,14 @@
 - type: startingGear
   id: ESClownGear
   equipment:
+    shoes: ClothingShoesClown
     mask: ClothingMaskClown
-    pocket1: BikeHorn
-    pocket2: ClownRecorder
     id: ClownPDA
     ears: ClothingHeadsetService
-    head: ClothingMaskClown
     jumpsuit: ClothingUniformJumpsuitClown
     back: ClothingBackpackClown
+    pocket1: BikeHorn
+    pocket2: ClownRecorder
   storage:
     back:
     - RubberStampClown
