@@ -1,0 +1,14 @@
+- type: latheRecipe
+  parent: BaseLightRecipe
+  id: ESLightTubeDepartment
+  result: ESLightTubeDepartment
+
+- type: latheRecipe
+  parent: BaseLightRecipe
+  id: ESLightTubeHallway
+  result: ESLightTubeHallway
+
+- type: latheRecipe
+  parent: BaseLightRecipe
+  id: ESLightTubeNightshift
+  result: ESLightTubeNightshift

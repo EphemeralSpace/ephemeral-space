@@ -115,6 +115,7 @@ VendingMachineMedicalBase: ESVendingMachineMedical
 VendingMachineChefvend: ESVendingMachineChefvend
 VendingMachineDinnerware: ESVendingMachineDinnerware
 VendingMachineSeedsUnlocked: ESVendingMachineSeedsUnlocked
+VendingMachineSeeds: ESVendingMachineSeedsUnlocked
 VendingMachineNutri: ESVendingMachineNutri
 VendingMachineCart: ESVendingMachineCart
 VendingMachineRobotics: ESVendingMachineRobotics
@@ -190,6 +191,9 @@ ClothingHandsGlovesNitrile: ClothingHandsGlovesColorBlue
 # 2025-12-23
 # New laser box prototype
 GlassBoxLaserFilled: ESDisplayCaseCaptainEnergyGun
+
+# 2025-12-28
+Autolathe: ESAutolathe
 
 # ES END
 
