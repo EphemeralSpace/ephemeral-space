@@ -159,8 +159,7 @@ public abstract partial class ESSharedAuditionsSystem
         profile.Appearance.SkinColor = strategy.InputType switch
         {
             SkinColorationStrategyInput.Unary => strategy.FromUnary(random.NextFloat(0f, 100f)),
-            SkinColorationStrategyInput.Color => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1))),
-            _ => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1))),
+            _ => strategy.ClosestSkinColor(_random.NextColor()),
         };
 
         profile.Age = random.Pick(new Dictionary<int, float>
