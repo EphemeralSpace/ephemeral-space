@@ -60,6 +60,7 @@
     - ESElectronicsStatic
     - ESAmmunition
     - ESFluff
+    - ESTopicalsStatic
   - type: BlueprintReceiver
     whitelist:
       tags:

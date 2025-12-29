@@ -24,6 +24,7 @@
   - CableStack
   - CableMVStack
   - CableHVStack
+  - RCDAmmo
   - ESOxygenTank
   - ESEmergencyOxygenTank
 
@@ -86,6 +87,7 @@
   - AppraisalTool
   - Pickaxe
   - UtilityKnife
+  - ESVendingMachineRestockGlobal
 
 # Medical
 - type: latheRecipePack
