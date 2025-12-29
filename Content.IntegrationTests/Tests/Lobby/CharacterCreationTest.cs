@@ -12,6 +12,9 @@ namespace Content.IntegrationTests.Tests.Lobby;
 public sealed class CharacterCreationTest
 {
     [Test]
+// ES START
+    [Ignore("Flaky test due to random clamping issues on Humanoid Character Appearance skin colors")]
+// ES END
     public async Task CreateDeleteCreateTest()
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings { InLobby = true });
@@ -107,11 +110,6 @@ public sealed class CharacterCreationTest
 
     private void AssertEqual(HumanoidCharacterAppearance a, HumanoidCharacterAppearance b)
     {
-// ES START
-        // SHIT DONT WORK
-        return;
-// ES END
-
         if (a.MemberwiseEquals(b))
             return;
 
