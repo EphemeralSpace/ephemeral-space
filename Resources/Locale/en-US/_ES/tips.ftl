@@ -5,6 +5,7 @@ es-tips-dataset-2 = You can view and edit all keybindings used in-game at any ti
 es-tips-dataset-3 = You can access the in-game guidebook through the escape menu, or by pressing Numpad 0 by default.
 es-tips-dataset-4 = Some entities ingame have guidebook entries associated with them, which you can view by examining the entity and clicking the question mark icon.
 es-tips-dataset-5 = You can avoid slipping on most puddles by walking. However, some strong chemicals like space lube will slip people anyway.
+es-tips-dataset-6 = If you want to stop your prisoner from escaping from the cell right after being uncuffed, turn on combat mode while uncuffing - this will shove the prisoner down.
 es-tips-dataset-7 = Mopping up puddles and draining them into other containers conserves the reagents found in the puddle.
 es-tips-dataset-8 = Floor drains, usually found in the chef's freezer or janitor's office, rapidly consume reagent found in puddles around them--including blood.
 es-tips-dataset-9 = Fire extinguishers can be loaded with any reagent in the game.
@@ -83,7 +84,6 @@ es-tips-dataset-81 = By examining a player, and then clicking the heart icon, yo
 es-tips-dataset-82 = You can tell if an area with firelocks up is spaced by looking to see if the firelocks have lights beside them.
 es-tips-dataset-83 = Instead of picking it up, you can alt-click food to eat it. This also works for mice and other creatures without hands.
 es-tips-dataset-84 = If you're trapped behind an electrified door, disable the APC or throw your ID at the door to avoid getting shocked!
-es-tips-dataset-85 = If you want to stop your prisoner from escaping from the cell right after being uncuffed, turn on combat mode while uncuffing - this will shove the prisoner down.
 # es-specific tips
-es-tips-dataset-86 = As a stagehand, you can use the Verb Menu to orbit around and follow any entity in game automatically.
-es-tips-dataset-87 = The antimatter engine is a high-priority target and is easily sabotaged. Make sure to set up the Solars so that you don't run out of power if it blows.
+es-tips-dataset-85 = As a stagehand, you can use the Verb Menu to orbit around and follow any entity in game automatically.
+es-tips-dataset-86 = The antimatter engine is a high-priority target and is easily sabotaged. Make sure to set up the Solars so that you don't run out of power if it blows.
