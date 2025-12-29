@@ -40,6 +40,7 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
         SubscribeLocalEvent<ESTroupeFactionIconComponent, ComponentGetStateAttemptEvent>(OnComponentGetStateAttempt);
         SubscribeLocalEvent<ESTroupeFactionIconComponent, ExaminedEvent>(OnExaminedEvent);
+        SubscribeLocalEvent<ESTroupeFactionIconComponent, ComponentStartup>(OnFactionIconStartup);
 
         SubscribeLocalEvent<MindComponent, ESGetAdditionalObjectivesEvent>(OnMindGetObjectives);
     }
@@ -129,6 +130,24 @@ public abstract class ESSharedMaskSystem : EntitySystem
             return;
 
         args.PushMarkup(Loc.GetString(str));
+    }
+
+    private void OnFactionIconStartup(Entity<ESTroupeFactionIconComponent> ent, ref ComponentStartup args)
+    {
+        // When someone receives this component, we need to essentially refresh all other instances of faction icons
+        // so that they can see the icons of all other players. The only way to do this is apparently just dirtying every
+        // instance of the component, which sucks and is terrible. But so is this entire API so i don't give a shit.
+
+        // This logic is based on the similar implementation in SharedRevolutionarySystem so i'll just assume it's correct.
+
+        var query = EntityQueryEnumerator<ESTroupeFactionIconComponent, MetaDataComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var meta))
+        {
+            // THANK YOU
+            // THANK YOU
+            // THANK YOU
+            Dirty(uid, comp, meta);
+        }
     }
 
     private void OnMindGetObjectives(Entity<MindComponent> ent, ref ESGetAdditionalObjectivesEvent args)
