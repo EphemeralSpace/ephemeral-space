@@ -122,6 +122,16 @@ public sealed class IVSystem : EntitySystem
         if (bloodTransferAmount > 0)
         {
             var taken = solution.SplitSolution(bloodTransferAmount);
+            var reference = target.Comp2.BloodReferenceSolution;
+
+            for (var i = 0; i < taken.Contents.Count; i++)
+            {
+                var old = taken.Contents[i];
+                if (!reference.ContainsPrototype(old.Reagent.Prototype))
+                    continue;
+
+                taken.Contents[i] = new(new(old.Reagent.Prototype, _bloodstream.GetEntityBloodData((target, target))), old.Quantity);
+            }
 
             _bloodstream.TryAddToBloodstream((target.Owner, target.Comp2), taken);
         }
