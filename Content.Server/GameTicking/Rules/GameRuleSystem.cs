@@ -18,6 +18,11 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly MapSystem _map = default!;
 
+    // ES CHANGE: Ordering of round end text is important.
+    public virtual Type[]? RoundEndTextBefore => null;
+    public virtual Type[]? RoundEndTextAfter => null;
+    // END ES CHANGE
+
     public override void Initialize()
     {
         base.Initialize();
@@ -26,7 +31,9 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
         SubscribeLocalEvent<T, GameRuleAddedEvent>(OnGameRuleAdded);
         SubscribeLocalEvent<T, GameRuleStartedEvent>(OnGameRuleStarted);
         SubscribeLocalEvent<T, GameRuleEndedEvent>(OnGameRuleEnded);
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndTextAppend);
+        // ES CHANGE: Ordering of round end text is important.
+        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndTextAppend, before: RoundEndTextBefore, after: RoundEndTextAfter);
+        // END ES CHANGE
     }
 
     private void OnStartAttempt(RoundStartAttemptEvent args)

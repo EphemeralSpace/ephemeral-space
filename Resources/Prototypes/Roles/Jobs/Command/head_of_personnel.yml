@@ -65,9 +65,7 @@
     id: HoPPDA
     ears: ClothingHeadsetAltCommand
     belt: BoxFolderClipboardThreePapers
-# ES START
-    eyes: ClothingEyesHudSecurity
-# ES END
+    eyes: ClothingEyesHudCommand
   storage:
     back:
     - Flash

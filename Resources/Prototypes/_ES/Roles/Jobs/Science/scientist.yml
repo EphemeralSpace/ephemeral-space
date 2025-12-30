@@ -1,0 +1,22 @@
+- type: job
+  id: ESScientist
+  name: ESjob-name-scientist
+  description: ESjob-description-scientist
+  playTimeTracker: ESJobScientist
+  startingGear: ESScientistGear
+  icon: "JobIconScientist"
+  supervisors: job-supervisors-hop
+  access:
+  - Research
+  - Maintenance
+
+- type: startingGear
+  id: ESScientistGear
+  equipment:
+    shoes: ClothingShoesChef
+    id: SciencePDA
+    neck: ClothingNeckTieSci
+    ears: ClothingHeadsetScience
+    jumpsuit: ClothingUniformJumpsuitScientist
+    outerClothing: ClothingOuterCoatLabOpened
+    back: ClothingBackpackScience

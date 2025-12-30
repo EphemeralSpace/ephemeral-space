@@ -1,5 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.Masks.Masquerades;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using YamlDotNet.Serialization.Utilities;
@@ -10,11 +12,11 @@ namespace Content.Shared._ES.Masks;
 /// This is a prototype for a Masquerade, a set of roles to give for given player counts.
 /// </summary>
 [Prototype("esMasquerade")]
-public sealed class ESMasqueradePrototype : IPrototype, ISerializationHooks
+public sealed partial class ESMasqueradePrototype : IPrototype, ISerializationHooks
 {
     /// <inheritdoc/>
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; }  = default!;
 
     /// <summary>
     ///     The name for this masquerade. Can be overwritten by localization.
@@ -103,13 +105,15 @@ public abstract partial class MasqueradeKind
     ///     The default mask used for post-start latejoiners.
     /// </summary>
     [DataField(readOnly: true, required: true)]
-    public MasqueradeEntry DefaultMask { get; set; }
+    public MasqueradeEntry DefaultMask { get; set; } = default!;
 
     internal virtual void Init() {}
-};
 
-/// <summary>
-///     A truly random masquerade. This mimics the pre-masquerades game behavior of using weights on roles.
-/// </summary>
-[DataDefinition]
-public sealed partial class RandomMasquerade : MasqueradeKind;
+    /// <summary>
+    ///     Attempts to get a mask list for the current player count.
+    /// </summary>
+    /// <remarks>
+    ///     While the masks are random, the order in the output list is not.
+    /// </remarks>
+    public abstract bool TryGetMasks(int playerCount, IRobustRandom rng, IPrototypeManager proto, [NotNullWhen(true)] out List<ProtoId<ESMaskPrototype>>? masks);
+};

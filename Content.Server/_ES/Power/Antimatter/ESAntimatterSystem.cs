@@ -220,7 +220,8 @@ public sealed class ESAntimatterSystem : ESSharedAntimatterSystem
             {
                 var toRemove = Math.Min(antimatter.Comp.Mass, comp.RemovalAmount);
                 SetMass(antimatter, antimatter.Comp.Mass - toRemove);
-                _battery.SetCharge((uid, battery), battery.CurrentCharge + toRemove * comp.EnergyPerMass);
+                var currentCharge = _battery.GetCharge((uid, battery));
+                _battery.SetCharge((uid, battery), currentCharge + toRemove * comp.EnergyPerMass);
             }
 
             Appearance.SetData(uid, ESAntimatterConverterVisuals.Draining, _antimatterSet.Count != 0);

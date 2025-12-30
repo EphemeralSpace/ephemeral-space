@@ -1,0 +1,84 @@
+- type: department
+  id: ESCargo
+  name: department-Cargo
+  description: department-Cargo-description
+  color: "#A46106"
+  roles:
+  - ESCargoTechnician
+
+- type: department
+  id: ESService
+  name: department-Service
+  description: department-Service-description
+  color: "#639137"
+  weight: -5
+  roles:
+  - ESBartender
+  - ESBotanist
+  - ESChef
+  - ESJanitor
+
+- type: department
+  id: ESCivilian
+  name: department-Civilian
+  description: department-Civilian-description
+  color: "#6e6e6e"
+  weight: -10
+  roles:
+  - ESClown
+  - ESHeadOfPersonnel
+  - ESAssistant
+  - ESReporter
+
+- type: department
+  id: ESCommand
+  name: department-Command
+  description: department-Command-description
+  color: "#334E6D"
+  roles:
+  - ESCaptain
+  - ESHeadOfPersonnel
+  - ESHeadOfSecurity
+  primary: false
+  weight: 100
+
+- type: department
+  id: ESEngineering
+  name: department-Engineering
+  description: department-Engineering-description
+  color: "#f39f27"
+  weight: 10
+  roles:
+  - ESAtmosphericTechnician
+  - ESStationEngineer
+
+- type: department
+  id: ESMedical
+  name: department-Medical
+  description: department-Medical-description
+  color: "#57b8f0"
+  weight: 5
+  roles:
+  - ESChemist
+  - ESMedicalDoctor
+
+- type: department
+  id: ESSecurity
+  name: department-Security
+  description: department-Security-description
+  color: "#DE3A3A"
+  weight: 20
+  roles:
+  - ESHeadOfSecurity
+  - ESSecurityOfficer
+  - ESDetective
+  - ESWarden
+
+- type: department
+  id: ESScience
+  name: department-Science
+  description: department-Science-description
+  color: "#D381C9"
+  weight: 4
+  roles:
+  - ESScientist

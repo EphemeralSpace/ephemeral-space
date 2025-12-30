@@ -26,20 +26,18 @@
   equipment:
     eyes: ClothingEyesGlassesSecurity
     ears: ClothingHeadsetSecurity
-    #pocket1: WeaponPistolMk58 - ES Change removes roundstart gun, replaces it with taser
-    pocket1: ESWeaponHybridTaser
+    pocket1: WeaponPistolMk58
   storage:
     back:
     - Flash
-    #- MagazinePistol - ES Change removes roundstart gun
+    - MagazinePistol
 
 - type: chameleonOutfit
   id: SecurityOfficerChameleonOutfit
   job: SecurityOfficer
   hasMindShield: true
   equipment:
-# ES Start
-    head: ClothingHeadHelmetBasic
-# ES End
+    head: ClothingHeadHatBeretSecurity
     mask: ClothingMaskGasSecurity
+    neck: Dinkystar
     gloves: ClothingHandsGlovesColorBlack

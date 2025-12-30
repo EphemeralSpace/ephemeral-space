@@ -124,18 +124,8 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         if (!ev.LateJoin)
             return;
 
-        // TODO: Refactor this to not simply fall back to random selection logic.
-        // All of this logic should probably live in MasqueradeKind, and be reworked
-        // to prefer ensuring a balanced set of masks over potentially compromising
-        // due to too many command players for all the traitors to be assigned.
-        // The entire random selection thing should be moved to RandomMasquerade,
-        // and a general API should be added to MasqueradeKind for getting masks for
-        // players.
         var ev2 = new AssignLatejoinerToTroupeEvent(false, ev.Player);
         RaiseLocalEvent(ref ev2);
-
-        if (!ev2.Handled)
-            AssignPlayersToTroupe([ev.Player]);
     }
 
     private void OnRulePlayerJobsAssigned(RulePlayerJobsAssignedEvent args)
@@ -146,31 +136,8 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
     public void AssignPlayersToTroupe(List<ICommonSession> players)
     {
-        // TODO: See comment in OnPlayerSpawnComplete, this needs refactored.
-        // but I don't want to change and test the existing logic for an already
-        // massive PR that blocks others' work.
-
         var ev = new AssignPlayersToTroupeEvent(false, players);
         RaiseLocalEvent(ref ev);
-
-        if (!ev.Handled)
-        {
-            var playerCount = players.Count;
-
-            Log.Info("Nobody handled player assignment, doing it randomly.");
-            foreach (var troupe in GetOrderedTroupes())
-            {
-                if (players.Count == 0)
-                    break;
-
-                TryAssignToTroupe(troupe, ref players, playerCount);
-            }
-        }
-
-        if (players.Count > 0)
-        {
-            Log.Warning($"Failed to assign all players to troupes! Leftover count: {players.Count}");
-        }
     }
 
     public void InitializeTroupeObjectives()
@@ -188,39 +155,6 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         Objective.TryAddObjective(rule.Owner, troupe.Objectives);
     }
 
-    public bool TryAssignToTroupe(Entity<ESTroupeRuleComponent> ent, ref List<ICommonSession> players, int playerCount)
-    {
-        var troupe = PrototypeManager.Index(ent.Comp.Troupe);
-
-        var filteredPlayers = players.Where(s => IsPlayerValid(troupe, s)).ToList();
-
-        var targetCount = Math.Clamp((int)MathF.Ceiling((float) playerCount / ent.Comp.PlayersPerTargetMember), ent.Comp.MinTargetMembers, ent.Comp.MaxTargetMembers);
-        var targetDiff = Math.Min(targetCount - ent.Comp.TroupeMemberMinds.Count, filteredPlayers.Count);
-        if (targetDiff <= 0)
-            return false;
-
-        for (var i = 0; i < targetDiff; i++)
-        {
-            var player = _random.PickAndTake(filteredPlayers);
-            players.Remove(player);
-
-            if (!Mind.TryGetMind(player, out var mind, out var mindComp))
-            {
-                Log.Warning($"Failed to get mind for session {player}");
-                continue;
-            }
-
-            if (!TryGetAssignableMaskFromTroupe((mind, mindComp), troupe, out var mask))
-            {
-                Log.Warning($"Failed to get mask for session {player} on troupe {troupe.ID} ({ToPrettyString(ent)}");
-                continue;
-            }
-
-            ApplyMask((mind, mindComp), mask.Value, ent);
-        }
-        return true;
-    }
-
     public bool IsPlayerValid(ESTroupePrototype troupe, ICommonSession player)
     {
         if (!Mind.TryGetMind(player, out var mind, out _))
@@ -236,35 +170,18 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         return true;
     }
 
-    public bool TryGetAssignableMaskFromTroupe(Entity<MindComponent> mind, ESTroupePrototype troupe, [NotNullWhen(true)] out ProtoId<ESMaskPrototype>? mask)
-    {
-        mask = null;
-
-        var weights = new Dictionary<ESMaskPrototype, float>();
-        foreach (var maskProto in PrototypeManager.EnumeratePrototypes<ESMaskPrototype>())
-        {
-            if (maskProto.Abstract)
-                continue;
-
-            if (maskProto.Troupe != troupe)
-                continue;
-
-            // TODO: check the mask has valid objectives.
-            // Don't assign masks if their objectives can't be done.
-
-            weights.Add(maskProto, maskProto.Weight);
-        }
-
-        if (weights.Count == 0)
-            return false;
-
-        mask = _random.Pick(weights);
-        return true;
-    }
-
-    public override void ApplyMask(Entity<MindComponent> mind, ProtoId<ESMaskPrototype> maskId, Entity<ESTroupeRuleComponent> troupe)
+    public override void ApplyMask(Entity<MindComponent> mind, ProtoId<ESMaskPrototype> maskId, Entity<ESTroupeRuleComponent>? troupe)
     {
         var mask = PrototypeManager.Index(maskId);
+
+        if (troupe is null)
+        {
+            if (!TryGetTroupeEntityForMask(mask, out troupe))
+            {
+                _gameTicker.StartGameRule(PrototypeManager.Index(mask.Troupe).GameRule, out var troupeEnt);
+                troupe = (troupeEnt, Comp<ESTroupeRuleComponent>(troupeEnt));
+            }
+        }
 
         // Only exists because the AddRole API does not return the newly added role (why???)
         Role.MindAddRole(mind, MindRole, mind, true);
@@ -292,7 +209,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         }
         EntityManager.AddComponents(mind, mask.MindComponents);
 
-        troupe.Comp.TroupeMemberMinds.Add(mind);
+        troupe.Value.Comp.TroupeMemberMinds.Add(mind);
         Objective.RegenerateObjectiveList(mind.Owner);
     }
 

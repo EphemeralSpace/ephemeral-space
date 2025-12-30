@@ -16,42 +16,44 @@ using Robust.Shared.Serialization.Manager;
 namespace Content.IntegrationTests.Tests._ES.Masquerades;
 
 [TestFixture]
-public sealed class MasqueradeTests
+public sealed class MasqueradeTests : GameTest
 {
-    [GameTest(RunOnSide = Side.Server)]
-    public void TestMasqueradeSerialization(
-        [SidedDependency(Side.Server)] ISerializationManager ser,
-        [SidedDependency(Side.Server)] IPrototypeManager proto
-        )
+    [SidedDependency(Side.Server)] private readonly ISerializationManager _ser = default!;
+    [SidedDependency(Side.Server)] private readonly IPrototypeManager _proto = default!;
+    [SidedDependency(Side.Server)] private readonly IRobustRandom _globalRng = default!;
+
+    [Test]
+    [RunOnSide(Side.Server)]
+    public void TestMasqueradeSerialization()
     {
         // We don't support this yet, so whichever shmuck adds it is gonna need to write tests.
         // My advice is to do a round-trip test where you deserialize entries, then reserialize them and verify they're string equal.
         Assert.Throws<NotImplementedException>(() =>
         {
-            ser.WriteValue<MasqueradeEntry>(
+            _ser.WriteValue<MasqueradeEntry>(
                 new MasqueradeEntry.DirectEntry(new HashSet<ProtoId<ESMaskPrototype>>() { "Foo", "Bar" }, 1, false));
         });
     }
 
-    [GameTest(RunOnSide = Side.Server, Description = "Ensures that selecting masks from MasqueradeEntry is deterministic.")]
-    public void MasqueradeEntryDeterminism(
-        [SidedDependency(Side.Server)] IPrototypeManager proto,
-        [SidedDependency(Side.Server)] IRobustRandom globalRng
-    )
+    [Test]
+    [RunOnSide(Side.Server)]
+    public void MasqueradeEntryDeterminism()
     {
         void TestOnEntry(MasqueradeEntry entry)
         {
             // This can in theory flake so let's try a few times.
             for (var i = 0; i < 100; i++)
             {
-                var rngSeed = new RngSeed(globalRng);
+                var rngSeed = new RngSeed(_globalRng);
                 var rng1 = rngSeed.IntoRandomizer();
                 var rng2 = rngSeed.IntoRandomizer();
 
-                var masks1 = entry!.PickMasks(rng1, proto);
-                var masks2 = entry!.PickMasks(rng2, proto);
+                var masks1 = entry!.PickMasks(rng1, _proto);
+                var masks2 = entry!.PickMasks(rng2, _proto);
 
-                Assert.That(masks1, Is.EqualTo(masks2), $"Expected two calls from the same seed to be identical, and they weren't. Seed is {rngSeed.ToString()}");
+                Assert.That(masks1,
+                    Is.EqualTo(masks2),
+                    $"Expected two calls from the same seed to be identical, and they weren't. Seed is {rngSeed.ToString()}");
             }
         }
 
@@ -72,93 +74,96 @@ public sealed class MasqueradeTests
         }
     }
 
-    [GameTest(RunOnSide = Side.Server, Description = "Ensures that masquerade mask selection itself is deterministic.")]
-    public void MasqueradeDeterminism(
-        [SidedDependency(Side.Server)] IPrototypeManager proto,
-        [SidedDependency(Side.Server)] IRobustRandom globalRng
-    )
+    [Test]
+    [RunOnSide(Side.Server)]
+    public void MasqueradeDeterminism()
     {
-        #pragma warning disable RA0033
-        var freakshow = proto.Index<ESMasqueradePrototype>("Freakshow");
-        #pragma warning restore RA0033
+#pragma warning disable RA0033
+        var freakshow = _proto.Index<ESMasqueradePrototype>("Freakshow");
+#pragma warning restore RA0033
 
         for (var i = 0; i < 100; i++)
         {
-            var rngSeed = new RngSeed(globalRng);
+            var rngSeed = new RngSeed(_globalRng);
             var rng1 = rngSeed.IntoRandomizer();
             var rng2 = rngSeed.IntoRandomizer();
 
             var masquerade = (MasqueradeRoleSet)freakshow.Masquerade;
 
-            Assert.That(masquerade.TryGetMasks(30, rng1, proto, out var masks1));
-            Assert.That(masquerade.TryGetMasks(30, rng2, proto, out var masks2));
+            Assert.That(masquerade.TryGetMasks(30, rng1, _proto, out var masks1));
+            Assert.That(masquerade.TryGetMasks(30, rng2, _proto, out var masks2));
 
             Assert.That(masks1!, Is.EquivalentTo(masks2!));
         }
     }
 
-    public sealed class MasqueradeTestData : GameTestData
+    [Test]
+    [RunOnSide(Side.Server)]
+    public void MaskSetsHaveMasks()
     {
-        // We need to get to run a mode.
-        public override PoolSettings PoolSettings { get; } = new()
+        foreach (var maskSet in _proto.EnumeratePrototypes<ESMaskSetPrototype>())
         {
-            Dirty = true,
-            DummyTicker = false,
-            Connected = true, // Have one real client connected just to catch oddities.
-            InLobby = true,
-            Destructive = true, // fuck it. We set the preset which is destructive.
-        };
-
-        [SidedDependency(Side.Server)] public readonly IPrototypeManager Proto = default!;
-
-        [System(Side.Server)] public readonly GameTicker SGameticker = default!;
-
-        [System(Side.Server)] public readonly ESMasqueradeSystem MasqueradeSys = default!;
+            Assert.That(maskSet.AllMasks(), Is.Not.Empty);
+        }
     }
+}
 
-    [GameTest<MasqueradeTestData>("Random")]
-    [GameTest<MasqueradeTestData>("Freakshow")]
-    [GameTest<MasqueradeTestData>("Showdown")]
-    public async Task TestMasqueradeStart(MasqueradeTestData data, string protoStr)
+public sealed class MasqueradeRunTests : GameTest
+{
+    [SidedDependency(Side.Server)] private readonly IPrototypeManager _proto = default!;
+
+    [System(Side.Server)] private readonly GameTicker _sGameticker = default!;
+    [System(Side.Server)] private readonly ESMasqueradeSystem _sMasqueradeSys = default!;
+
+    public override PoolSettings PoolSettings { get; } = new()
     {
-        var proto = data.Proto.Index<ESMasqueradePrototype>(protoStr);
+        Dirty = true,
+        DummyTicker = false,
+        Connected = true, // Have one real client connected just to catch oddities.
+        InLobby = true,
+        Destructive = true, // fuck it. We set the preset which is destructive.
+    };
+
+    [TestCase("Random", 35)]
+    [TestCase("Freakshow", 35)]
+    [TestCase("Freakshow", 21)]
+    [TestCase("Showdown", 35)]
+    public async Task TestMasqueradeStart(string protoStr, int userCount)
+    {
+        var proto = _proto.Index<ESMasqueradePrototype>(protoStr);
         // A smattering of people. Not including the real client.
-        var userCount = (proto.Masquerade.MaxPlayers) ?? 35;
-        await data.Server.AddDummySessions(userCount - 1);
+        await AddDummySessionsSync(userCount - 1);
 
-        await data.Pair.ReallyBeIdle();
-
-        await data.Server.WaitAssertion(() =>
+        await Server.WaitAssertion(() =>
         {
             // Ready everyone up.
-            data.SGameticker.ToggleReadyAll(true);
+            _sGameticker.ToggleReadyAll(true);
 
             // Force a masquerade.
-
-            data.SGameticker.SetGamePreset("ESMasqueradeManaged");
-            data.MasqueradeSys.ForceMasquerade(proto);
+            _sGameticker.SetGamePreset("ESMasqueradeManaged");
+            _sMasqueradeSys.ForceMasquerade(proto);
 
             // Start the round.
-            data.SGameticker.StartRound();
+            _sGameticker.StartRound();
         });
 
-        await data.SyncTicks(10);
+        await SyncTicks(10);
 
         // Game should have started
-        Assert.That(data.SGameticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
-        Assert.That(data.SGameticker.PlayerGameStatuses.Values.All(x => x == PlayerGameStatus.JoinedGame));
+        Assert.That(_sGameticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
+        Assert.That(_sGameticker.PlayerGameStatuses.Values.All(x => x == PlayerGameStatus.JoinedGame));
 
-        await data.Server.WaitAssertion(() =>
+        await Server.WaitAssertion(() =>
         {
             // Get the game rule, ensure it's running, ensure we don't have any leftover masks.
-            Assert.That(data.SQuerySingle(out Entity<ESMasqueradeRuleComponent>? rule),
+            Assert.That(SQuerySingle(out Entity<ESMasqueradeRuleComponent>? rule),
                 "Masquerade didn't start correctly, no rule was found.");
 
             Assert.That(rule?.Comp.Masquerade,
                 Is.Not.Null,
                 "By the time the round starts, the masquerade should exist.");
 
-            Assert.That(data.SQueryCount<ESMaskRoleComponent>(),
+            Assert.That(SQueryCount<ESMaskRoleComponent>(),
                 Is.EqualTo(userCount),
                 "Expected in-game players with everyone assigned masks.");
 
@@ -166,11 +171,11 @@ public sealed class MasqueradeTests
             if (rule.Value.Comp.Masquerade!.Masquerade is MasqueradeRoleSet set)
             {
                 var roles =
-                    data.SQueryList<ESMaskRoleComponent>()
+                    SQueryList<ESMaskRoleComponent>()
                         .Select(x => x.Comp.Mask!.Value.Id)
                         .OrderDescending();
 
-                Assert.That(set.TryGetMasks(userCount, rule.Value.Comp.Seed.IntoRandomizer(), data.Proto, out var expectedRoles));
+                Assert.That(set.TryGetMasks(userCount, rule.Value.Comp.Seed.IntoRandomizer(), _proto, out var expectedRoles));
 
                 // We don't care about order so we sort both.
                 Assert.That(
@@ -180,10 +185,7 @@ public sealed class MasqueradeTests
                     );
             }
 
-            data.SGameticker.RestartRound();
+            _sGameticker.RestartRound();
         });
-
-        // Clear out our crowd.
-        await data.Server.RemoveAllDummySessions();
     }
 }

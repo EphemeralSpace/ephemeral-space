@@ -51,7 +51,7 @@ public sealed class ESSacrificeHealObjectiveSystem : ESBaseObjectiveSystem<ESSac
                 continue;
 
             // add chems, increment count, and show popup
-            if (!_bloodstream.TryAddToChemicals((otherMob.Owner, bloodstream), ent.Comp.SacrificeSolution.Clone()))
+            if (!_bloodstream.TryAddToBloodstream((otherMob.Owner, bloodstream), ent.Comp.SacrificeSolution.Clone()))
                 continue;
 
             count++;
