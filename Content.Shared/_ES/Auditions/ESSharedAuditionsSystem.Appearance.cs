@@ -215,7 +215,7 @@ public abstract partial class ESSharedAuditionsSystem
     private const float AbbreviatedMiddleChance = 0.07f;
     private const float AbbreviatedFirstMiddleChance = 0.07f;
     private const float AbbreviatedFirstMiddleAltChance = 0.4f;
-    private const float ParticleChance = 0.03f;
+    private const float ParticleChance = 0.025f;
     private const float SuffixChance = 0.05f;
     private const float PrefixChance = 0.07f;
     private const float PrefixGenderlessChance = 0.6f;
@@ -320,11 +320,6 @@ public abstract partial class ESSharedAuditionsSystem
                 : "es-name-first-middle-abbr-fmt";
             firstName = Loc.GetString(locId, ("letter1", RandomFirstLetter(dataset)), ("letter2", RandomFirstLetter(dataset)));
         }
-        else if (_random.Prob(ParticleChance))
-        {
-            var particleDataSet = _prototypeManager.Index(ParticleDataset);
-            firstName = Loc.GetString("es-name-normal-fmt", ("first", firstName), ("second", _random.Pick(particleDataSet)));
-        }
 
         // yes, this can generate some abominations
         if (_random.Prob(DoubleFirstNameChance))
@@ -344,6 +339,14 @@ public abstract partial class ESSharedAuditionsSystem
             lastName = Loc.GetString("es-name-hyphenation-fmt",
                 ("first", _random.Pick(dataset)),
                 ("second", _random.Pick(dataset)));
+        }
+
+        if (_random.Prob(ParticleChance))
+        {
+            var particleDataSet = _prototypeManager.Index(ParticleDataset);
+            lastName = Loc.GetString("es-name-normal-fmt",
+                ("first", _random.Pick(particleDataSet)),
+                ("second", lastName));
         }
 
         return lastName;
