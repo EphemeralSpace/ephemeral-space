@@ -63,21 +63,23 @@ public sealed partial class ESVoteControl : PanelContainer
 
         foreach (var child in OptionsContainer.Children)
         {
-            if (child is ESVoteButton voteButton)
+            if (child is not ESVoteButton voteButton)
+                continue;
+
+            voteButton.Pressed = vote.Comp.Votes.GetValueOrDefault(voteButton.Option)?.Contains(netOwner) ?? false;
+            voteButton.ToolTip = string.IsNullOrEmpty(voteButton.Option.Tooltip) ? null : voteButton.Option.Tooltip;
+
+            var votes = vote.Comp.Votes.GetValueOrDefault(voteButton.Option) ?? [];
+            if (vote.Comp.ShowCount)
             {
-                voteButton.Pressed = vote.Comp.Votes.GetValueOrDefault(voteButton.Option)?.Contains(netOwner) ?? false;
-                var votes = vote.Comp.Votes.GetValueOrDefault(voteButton.Option) ?? [];
-                if (vote.Comp.ShowCount)
-                {
-                    voteButton.Label.Text = Loc.GetString("es-voter-ui-button-text-option-format",
-                        ("option", voteButton.Option.DisplayString),
-                        ("count", votes.Count));
-                }
-                else
-                {
-                    voteButton.Label.Text = Loc.GetString("es-voter-ui-button-text-option-format-no-count",
-                        ("option", voteButton.Option.DisplayString));
-                }
+                voteButton.Label.Text = Loc.GetString("es-voter-ui-button-text-option-format",
+                    ("option", voteButton.Option.DisplayString),
+                    ("count", votes.Count));
+            }
+            else
+            {
+                voteButton.Label.Text = Loc.GetString("es-voter-ui-button-text-option-format-no-count",
+                    ("option", voteButton.Option.DisplayString));
             }
         }
     }

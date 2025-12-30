@@ -1,0 +1,35 @@
+- type: job
+  id: ESSecurityOfficer
+  name: ESjob-name-security
+  description: ESjob-description-security
+  playTimeTracker: ESJobSecurityOfficer
+  startingGear: ESSecurityOfficerGear
+  icon: "JobIconSecurityOfficer"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - External
+  - Cryogenics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: ESSecurityOfficerGear
+  equipment:
+    shoes: ClothingShoesBootsJack
+    eyes: ClothingEyesGlassesSecurity
+    id: SecurityPDA
+    ears: ClothingHeadsetSecurity
+    head: ClothingHeadHelmetBasic
+    belt: ClothingBeltSecurityFilled
+    jumpsuit: ClothingUniformJumpsuitSec
+    outerClothing: ClothingOuterArmorBasic
+    back: ClothingBackpackSecurity
+    pocket1: ESWeaponHybridTaser
+  storage:
+    back:
+    - Flash

@@ -1,0 +1,35 @@
+- type: job
+  id: ESCaptain
+  name: ESjob-name-captain
+  description: ESjob-description-captain
+  playTimeTracker: ESJobCaptain
+  weight: 20
+  startingGear: ESCaptainGear
+  icon: "JobIconCaptain"
+  joinNotifyCrew: true
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+
+- type: startingGear
+  id: ESCaptainGear
+  equipment:
+    shoes: ClothingShoesColorBrown
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCaptain
+    id: CaptainPDA
+    ears: ClothingHeadsetAltCommand
+    head: ClothingHeadHatCaptain
+    jumpsuit: ClothingUniformJumpsuitCaptain
+    outerClothing: ClothingOuterArmorCaptainCarapace
+    back: ClothingBackpackCaptain
+  storage:
+    back:
+    - Flash

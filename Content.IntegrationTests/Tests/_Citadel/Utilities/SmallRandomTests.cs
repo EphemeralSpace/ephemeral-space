@@ -40,14 +40,20 @@ public sealed class SmallRandomTests
         Assert.That(myRandom.Next(), Is.Not.EqualTo(myRandom.Next()));
 #pragma warning restore NUnit2009
     }
+}
 
-    [GameTest(Description = "Serializes a SmallRandom and then deserializes it again with YAML serialization, asserting that it remains the same over a round trip.")]
-    public void Serialize([SidedDependency(Side.Server)] ISerializationManager ser)
+public sealed class SmallRandomGameTests : GameTest
+{
+    [SidedDependency(Side.Server)] private ISerializationManager _ser;
+
+    [Test]
+    [RunOnSide(Side.Server)]
+    public void Serialize()
     {
         Assert.That(RngSeed.TryFromStringAsSeed("colon-three", out var myRandomNullable));
         var myRandom = myRandomNullable!.Value.IntoRandomizer();
 
-        var node = (MappingDataNode)ser.WriteValue(new SmallRandomTestSer(myRandom));
+        var node = (MappingDataNode)_ser.WriteValue(new SmallRandomTestSer(myRandom));
         var document = new YamlStream {new(node.ToYaml())};
         var writer = new StringWriter();
         document.Save(writer);
@@ -58,7 +64,7 @@ public sealed class SmallRandomTests
 
         var mapping = (MappingDataNode) readDocument.Root;
 
-        var parsedMyRandom = ser.Read<SmallRandomTestSer>(mapping).MyRandom;
+        var parsedMyRandom = _ser.Read<SmallRandomTestSer>(mapping).MyRandom;
 
         Assert.That(myRandom.DebugCheckByteEquality(parsedMyRandom));
     }

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Administration;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
@@ -20,14 +21,17 @@ public sealed class MasqueradeCommands : ToolshedCommand
     public static readonly ProtoId<GamePresetPrototype> MasqueradePreset = "ESMasqueradeManaged";
 
     [CommandImplementation("pickFromMaskSet")]
-    public ProtoId<ESMaskPrototype> PickFromMaskSet([CommandArgument] ProtoId<ESMaskSetPrototype> maskSet,
-        [CommandArgument] RngSeed seed)
+    public List<ProtoId<ESMaskPrototype>> PickFromMaskSet(
+        [CommandArgument] ProtoId<ESMaskSetPrototype> maskSet,
+        [CommandArgument] RngSeed seed,
+        [CommandArgument] int count
+        )
     {
         var rng = seed.IntoRandomizer();
 
         var set = _proto.Index(maskSet);
 
-        return set.Pick(rng);
+        return set.Pick(rng, count);
     }
 
     [CommandImplementation("force")]

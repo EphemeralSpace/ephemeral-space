@@ -27,7 +27,7 @@ public sealed partial class MasqueradeRoleSet : MasqueradeKind
     /// <remarks>
     ///     While the masks are random, the order in the output list is not.
     /// </remarks>
-    public bool TryGetMasks(int playerCount, IRobustRandom rng, IPrototypeManager proto, [NotNullWhen(true)] out List<ProtoId<ESMaskPrototype>>? masks)
+    public override bool TryGetMasks(int playerCount, IRobustRandom rng, IPrototypeManager proto, [NotNullWhen(true)] out List<ProtoId<ESMaskPrototype>>? masks)
     {
         if (!TryGetEntriesForPop(playerCount, out var entries))
         {
@@ -42,10 +42,16 @@ public sealed partial class MasqueradeRoleSet : MasqueradeKind
             masks.AddRange(entry.PickMasks(rng, proto));
         }
 
-        while (masks.Count != playerCount)
+        var failsafe = 0;
+
+        while (masks.Count < playerCount && failsafe < 256)
         {
             masks.AddRange(DefaultMask.PickMasks(rng, proto));
+            failsafe++;
         }
+
+        if (failsafe > 256)
+            throw new Exception("A masquerade would've spun forever during selection, loudly breaking instead.");
 
         DebugTools.AssertEqual(masks.Count, playerCount);
         return true;
@@ -147,6 +153,7 @@ public sealed partial class MasqueradeRoleSet : MasqueradeKind
         var rollingSet = new Dictionary<MqKey, MasqueradeEntry>();
 
         var minPlayers = _roles.Keys.Min();
+        var maxSpecifiedPlayers = _roles.Keys.Max();
 
         DebugTools.Assert(minPlayers > 0, "You can't have any roles without players, minPlayers must be at least 1.");
         DebugTools.Assert(minPlayers == MinPlayers, $"Minimum players should match the first specified set of entries (expected {MinPlayers}, found {minPlayers})");
@@ -159,8 +166,10 @@ public sealed partial class MasqueradeRoleSet : MasqueradeKind
             for (var i = lastAt; i < popCount - 1; i++)
             {
                 // Don't actually clone, this is all immutable anyway.
-                _bakedRoles.Add(_bakedRoles[lastAt - minPlayers]);
+                _bakedRoles.Add(_bakedRoles[^1]);
             }
+
+            DebugTools.AssertEqual(_bakedRoles.Count, popCount - minPlayers);
 
             DebugTools.AssertEqual(
                 _roles[popCount].Select(MqKey.FromEntry).ToHashSet().Count,
@@ -178,11 +187,20 @@ public sealed partial class MasqueradeRoleSet : MasqueradeKind
                 DebugTools.Assert(entry.Value.Subtract == false, $"You subtracted too much at {popCount} with the entry {entry}.");
             }
 
-            _bakedRoles.Add(rollingSet.Values.ToList());
+            _bakedRoles.Add(rollingSet.Values.Select(x => x with {}).ToList());
 
-            DebugTools.Assert(_bakedRoles[^1].Sum(x => x.Count) <= popCount);
+            DebugTools.Assert(rollingSet.Values.Sum(x => x.Count) <= popCount);
 
             lastAt = popCount;
         }
+
+        // Go back through and assert that the numbers make sense, don't want any funny business with by-ref again.
+        for (var popCount = minPlayers; popCount < maxSpecifiedPlayers; popCount++)
+        {
+            var entry = _bakedRoles[popCount - minPlayers];
+            DebugTools.Assert(entry.Sum(x => x.Count) <= popCount);
+        }
+
+        DebugTools.AssertEqual(_bakedRoles.Count, _roles.Keys.Max() - minPlayers + 1, "Role baking didn't output the right number of entries.");
     }
 }

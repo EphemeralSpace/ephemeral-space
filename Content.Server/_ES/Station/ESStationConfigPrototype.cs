@@ -12,7 +12,7 @@ public sealed partial class ESStationConfigPrototype : IPrototype, IInheritingPr
 {
     /// <inheritdoc/>
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; }  = default!;
 
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ESStationConfigPrototype>))]
     public string[]? Parents { get; private set; }
@@ -55,7 +55,7 @@ public sealed partial class ESStationConfigPrototype : IPrototype, IInheritingPr
 /// Contains data for spawning in a procgen grid
 /// </summary>
 [DataDefinition]
-public partial struct ESStationDungeonDef
+public partial struct ESStationDungeonDef()
 {
     /// <summary>
     /// The number of this grid
@@ -82,8 +82,8 @@ public partial struct ESStationDungeonDef
     public ComponentRegistry Components = new();
 
     [DataField]
-    public bool ForcePos;
+    public bool ForcePos = false;
 
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype>? Name;
+    public ProtoId<LocalizedDatasetPrototype>? Name = null;
 }

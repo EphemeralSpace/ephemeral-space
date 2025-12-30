@@ -1,11 +1,10 @@
 - type: esMasquerade
   id: Freakshow
   name: Freakshow
-  description: Packs the round with almost nothing but high noise crew masks.
+  description: packs the round with almost nothing but high noise crew masks, no traitors in sight
   weight: 1
   minPlayers: 4
-  gameRules:
-    - ESTroupeRuleCrew
+  gameRules: []
   masquerade: !type:MasqueradeRoleSet
     defaultMask: "ESCrewmember"
     roles:

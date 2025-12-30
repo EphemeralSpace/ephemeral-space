@@ -568,6 +568,11 @@ namespace Content.Server.GameTicking
             var pvsOverride = _cfg.GetCVar(CCVars.RoundEndPVSOverrides);
             while (allMinds.MoveNext(out var mindId, out var mind))
             {
+// ES START
+                // Don't show minds that were never taken by players
+                if (mind.OriginalOwnerUserId == null)
+                    continue;
+// ES END
                 // TODO don't list redundant observer roles?
                 // I.e., if a player was an observer ghost, then a hamster ghost role, maybe just list hamster and not
                 // the observer role?
