@@ -21,7 +21,7 @@
             <BoxContainer>
                 <RichTextLabel Name="InfoBlurbText" HorizontalExpand="False"/>
             </BoxContainer>
-            <RichTextLabel Text="{Loc 'es-character-window-objective-title'}" Margin="0 0 0 5"/>
+            <RichTextLabel Name="ObjectiveHeaderLabel" Text="{Loc 'es-character-window-objective-title'}" Margin="0 0 0 5"/>
             <PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="PanelDark">
                 <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
                     <GridContainer Name="ObjectivesContainer" Columns="1" RectClipContent="True" Margin="10 10"/>

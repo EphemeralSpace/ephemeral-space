@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Client._ES.Core;
 using Content.Client._ES.Lobby;
 using Content.Client._ES.Station.Ui;
 using Content.Client.GameTicking.Managers;
@@ -287,9 +288,9 @@ public sealed class ESJobButton : ContainerButton
 
         // We don't care if the number of available slots increases by infinity. that is meaningless.
         JobFilteredAmountLabel.Visible = filteredAmount != 0 && amount != null;
-        JobFilteredAmountLabel.Text = filteredAmount != null
+        JobFilteredAmountLabel.UnsafeSetMarkup(filteredAmount != null
             ? Loc.GetString("es-spawn-menu-job-slot-excluded", ("amount", filteredAmount))
-            : Loc.GetString("es-spawn-menu-job-slot-excluded-uncapped");
+            : Loc.GetString("es-spawn-menu-job-slot-excluded-uncapped"));
 
         if (!Disabled && amount == 0)
             Disabled = true;
