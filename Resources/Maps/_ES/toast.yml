@@ -6602,11 +6602,6 @@ entities:
     - type: Transform
       pos: -4.5,-18.5
       parent: 2
-  - uid: 14589
-    components:
-    - type: Transform
-      pos: -15.299164,-35.545246
-      parent: 2
   - uid: 3101
     components:
     - type: Transform
@@ -45135,12 +45130,12 @@ entities:
     - type: Transform
       pos: -19.5,-20.5
       parent: 2
-  - uid: 15001
+  - uid: 14587
     components:
     - type: Transform
       pos: -7.5,-9.5
       parent: 2
-  - uid: 15002
+  - uid: 14588
     components:
     - type: Transform
       pos: -8.5,-9.5
@@ -62966,7 +62961,7 @@ entities:
       parent: 2
 - proto: HydroponicsToolClippers
   entities:
-  - uid: 15000
+  - uid: 14589
     components:
     - type: Transform
       pos: -27.54183,-7.4620256
@@ -75387,16 +75382,6 @@ entities:
     components:
     - type: Transform
       pos: -83.5,-11.5
-      parent: 2
-  - uid: 14587
-    components:
-    - type: Transform
-      pos: -11.37136,-36.65018
-      parent: 2
-  - uid: 14588
-    components:
-    - type: Transform
-      pos: -11.163027,-36.53552
       parent: 2
 - proto: TurnstileGenpopEnter
   entities:
