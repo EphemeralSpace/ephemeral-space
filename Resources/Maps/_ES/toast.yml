@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/30/2025 21:51:53
-  entityCount: 14596
+  time: 12/30/2025 23:00:09
+  entityCount: 14599
 maps:
 - 3
 grids:
@@ -4899,7 +4899,7 @@ entities:
       pos: -11.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -15072.687
+      secondsUntilStateChange: -15123.472
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -6611,6 +6611,11 @@ entities:
     components:
     - type: Transform
       pos: -15.502963,-35.44067
+      parent: 2
+  - uid: 14599
+    components:
+    - type: Transform
+      pos: -15.414694,-35.54006
       parent: 2
 - proto: ButtonFrameCaution
   entities:
@@ -75378,10 +75383,20 @@ entities:
       parent: 2
 - proto: TrashBag
   entities:
+  - uid: 6814
+    components:
+    - type: Transform
+      pos: -11.200347,-36.65449
+      parent: 2
   - uid: 9075
     components:
     - type: Transform
       pos: -83.5,-11.5
+      parent: 2
+  - uid: 14598
+    components:
+    - type: Transform
+      pos: -11.366871,-36.526394
       parent: 2
 - proto: TurnstileGenpopEnter
   entities:
