@@ -62,7 +62,7 @@
     noRot: true
   - type: Anchorable
   - type: Pullable
-
+  - type: VitalsMonitorStrap # Offbrand
 
 - type: entity
   parent: Bed

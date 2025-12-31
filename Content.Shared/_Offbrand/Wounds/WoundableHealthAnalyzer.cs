@@ -22,10 +22,16 @@ public sealed partial class WoundableHealthAnalyzerData
     public int HeartRate;
 
     [DataField]
+    public float HeartStrain;
+
+    [DataField]
     public int Etco2;
 
     [DataField]
     public int RespiratoryRate;
+
+    [DataField]
+    public float RespiratoryRateModifier;
 
     [DataField]
     public float Spo2;
@@ -144,8 +150,10 @@ public abstract class SharedWoundableHealthAnalyzerSystem : EntitySystem
                 HeartHealth = heartHealth,
                 BloodPressure = (upper, lower),
                 HeartRate = _heart.HeartRate((uid, heartrate)),
+                HeartStrain = _heart.Strain((uid, heartrate)),
                 Etco2 = _heart.Etco2((uid, heartrate)),
                 RespiratoryRate = _heart.RespiratoryRate((uid, heartrate)),
+                RespiratoryRateModifier = _heart.ComputeRespiratoryRateModifier((uid, heartrate)),
                 Spo2 = _heart.Spo2((uid, heartrate)).Float(),
                 LungHealth = lungHealth,
                 AnyVitalCritical = _shockThresholds.IsCritical(uid) || _brainDamage.IsCritical(uid) || _heart.IsCritical(uid),

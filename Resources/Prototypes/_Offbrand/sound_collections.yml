@@ -20,3 +20,18 @@
   files:
   - /Audio/_Offbrand/Surgery/scalpel1.ogg
   - /Audio/_Offbrand/Surgery/scalpel2.ogg
+
+- type: soundCollection
+  id: VitalsAsystole
+  files:
+  - /Audio/_Offbrand/Vitals/asystole.ogg
+
+- type: soundCollection
+  id: VitalsPulseNormal
+  files:
+  - /Audio/_Offbrand/Vitals/pulse.ogg
+
+- type: soundCollection
+  id: VitalsPulseDouble
+  files:
+  - /Audio/_Offbrand/Vitals/pulse_double.ogg
