@@ -73,28 +73,20 @@ public abstract class ESSharedMaskSystem : EntitySystem
         {
             if (mask.Abstract)
                 continue;
-
-            TryGetTroupeEntity(mask.Troupe, out var troupe);
-
             var verb = new Verb
             {
                 Category = ESMask,
                 Text = Loc.GetString("es-verb-apply-mask-name",
                     ("name", Loc.GetString(mask.Name)),
                     ("troupe", Loc.GetString(PrototypeManager.Index(mask.Troupe).Name))),
-                Message = troupe.HasValue
-                    ? Loc.GetString("es-verb-apply-mask-desc", ("mask", Loc.GetString(mask.Name)))
-                    : Loc.GetString("es-verb-tooltip-no-troupe", ("troupe", Loc.GetString(PrototypeManager.Index(mask.Troupe).Name))),
+                Message = Loc.GetString("es-verb-apply-mask-desc", ("mask", Loc.GetString(mask.Name))),
                 Priority = idx++,
                 ConfirmationPopup = true,
-                Disabled = !troupe.HasValue,
                 Act = () =>
                 {
-                    if (troupe is null)
-                        return;
                     if (!Mind.TryGetMind(actorComp.PlayerSession, out var mind, out var mindComp))
                         return;
-                    ApplyMask((mind, mindComp), mask, troupe.Value);
+                    ApplyMask((mind, mindComp), mask, null);
                 },
             };
             args.Verbs.Add(verb);
@@ -181,6 +173,20 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
         mask = role.Value.Comp2.Mask;
         return mask != null;
+    }
+
+    public ProtoId<ESMaskPrototype>? GetMaskOrNull(EntityUid uid)
+    {
+        if (!Mind.TryGetMind(uid, out var mindUid, out var mindComp))
+            return null;
+
+        return GetMaskOrNull((mindUid, mindComp));
+    }
+
+    public ProtoId<ESMaskPrototype>? GetMaskOrNull(Entity<MindComponent?> mind)
+    {
+        TryGetMask(mind, out var mask);
+        return mask;
     }
 
     /// <summary>

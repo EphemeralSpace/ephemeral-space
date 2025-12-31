@@ -4,7 +4,10 @@ using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Shared._ES.Lobby.Components;
 using Content.Shared._ES.Stagehand;
+using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.Database;
+using Content.Shared.Follower;
+using Content.Shared.Mind;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -16,6 +19,7 @@ namespace Content.Server._ES.Stagehand;
 public sealed class ESStagehandSystem : EntitySystem
 {
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
+    [Dependency] private readonly FollowerSystem _follower = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _role = default!;
@@ -27,6 +31,7 @@ public sealed class ESStagehandSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeNetworkEvent<ESJoinStagehandMessage>(OnJoinStagehand);
+        SubscribeNetworkEvent<ESWarpToMindMessage>(OnWarpToMind);
     }
 
     private void OnJoinStagehand(ESJoinStagehandMessage args, EntitySessionEventArgs msg)
@@ -44,6 +49,25 @@ public sealed class ESStagehandSystem : EntitySystem
 
         _gameTicker.PlayerJoinGame(msg.SenderSession);
         SpawnStagehand(msg.SenderSession);
+    }
+
+    private void OnWarpToMind(ESWarpToMindMessage args, EntitySessionEventArgs msg)
+    {
+        if (msg.SenderSession.AttachedEntity is not { } entity)
+            return;
+
+        if (!HasComp<ESStagehandComponent>(entity))
+            return;
+
+        if (!TryGetEntity(args.Mind, out var targetMind) ||
+            !TryComp<MindComponent>(targetMind, out var mind))
+            return;
+
+        if (!TryGetEntity(mind.OriginalOwnedEntity, out var target) ||
+            TerminatingOrDeleted(target))
+            return;
+
+        _follower.StartFollowingEntity(entity, target.Value);
     }
 
     public void SpawnStagehand(ICommonSession player)
