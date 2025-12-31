@@ -1,6 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server._ES.Auditions;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Roles.Jobs;
@@ -11,13 +9,12 @@ using Content.Shared._ES.Masks.Components;
 using Content.Shared.Chat;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Roles.Components;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Server._ES.Masks;
 
@@ -25,8 +22,6 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 {
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ESAuditionsSystem _esAuditions = default!;
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly JobSystem _job = default!;
@@ -40,7 +35,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndTextAppend);
 
-        SubscribeLocalEvent<ESTroupeRuleComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<ESTroupeRuleComponent, GameRuleStartedEvent>(OnGameRuleStarted);
 
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnRulePlayerJobsAssigned);
@@ -113,7 +108,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         }
     }
 
-    private void OnMapInit(Entity<ESTroupeRuleComponent> ent, ref MapInitEvent args)
+    private void OnGameRuleStarted(Entity<ESTroupeRuleComponent> ent, ref GameRuleStartedEvent args)
     {
         if (_gameTicker.RunLevel == GameRunLevel.InRound)
             InitializeTroupeObjectives(ent);
@@ -174,13 +169,13 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
     {
         var mask = PrototypeManager.Index(maskId);
 
-        if (troupe is null)
+        // If we are spawning a new rule, we should initialize the objectives *after*
+        // the first player is added to ensure targeting shenanigans don't happen.
+        var ruleExists = troupe.HasValue;
+        if (troupe is null && !TryGetTroupeEntityForMask(mask, out troupe))
         {
-            if (!TryGetTroupeEntityForMask(mask, out troupe))
-            {
-                _gameTicker.StartGameRule(PrototypeManager.Index(mask.Troupe).GameRule, out var troupeEnt);
-                troupe = (troupeEnt, Comp<ESTroupeRuleComponent>(troupeEnt));
-            }
+            var troupeEnt = _gameTicker.AddGameRule(PrototypeManager.Index(mask.Troupe).GameRule);
+            troupe = (troupeEnt, Comp<ESTroupeRuleComponent>(troupeEnt));
         }
 
         // Only exists because the AddRole API does not return the newly added role (why???)
@@ -197,7 +192,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
             ("role", Loc.GetString(mask.Name)),
             ("description", Loc.GetString(mask.Description)));
 
-        if (mind.Comp.UserId is { } userId && _player.TryGetSessionById(userId, out var session))
+        if (_player.TryGetSessionById(mind.Comp.UserId, out var session))
         {
             _chat.ChatMessageToOne(ChatChannel.Server, msg, msg, default, false, session.Channel, Color.Plum);
         }
@@ -211,6 +206,10 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
         troupe.Value.Comp.TroupeMemberMinds.Add(mind);
         Objective.RegenerateObjectiveList(mind.Owner);
+
+        // Our rule was only added in the beginning, now we should start it properly.
+        if (!ruleExists)
+            _gameTicker.StartGameRule(troupe.Value);
     }
 
     public override void RemoveMask(Entity<MindComponent> mind)
