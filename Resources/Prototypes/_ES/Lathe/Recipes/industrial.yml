@@ -20,7 +20,7 @@
   result: EmergencyOxygenTank
   completetime: 2
   materials:
-    Steel: 60
+    Steel: 100
 
 - type: latheRecipe
   parent: BasePartRecipe
