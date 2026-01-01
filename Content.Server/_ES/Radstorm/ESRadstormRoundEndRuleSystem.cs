@@ -2,6 +2,7 @@ using Content.Server._ES.Radio;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
+using Content.Server.RoundEnd;
 using Content.Shared._ES.CCVar;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -26,9 +27,9 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
 {
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly ESRadioSystem _radio = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -98,7 +99,7 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
             // (make sure we only actually do this if after time and not just deadly space)
             // (i kind of implemented that in a weird way huh)
             if (stillAlive == 0 && _timing.CurTime >= component.RadstormStartTime)
-                _ticker.EndRound();
+                _roundEnd.EndRound();
 
             return;
         }

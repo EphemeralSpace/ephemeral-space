@@ -95,7 +95,7 @@ public sealed class ESTelesciSystem : ESSharedTelesciSystem
     {
         if (!base.TryCallShuttle(ent))
             return false;
-        _roundEnd.RequestRoundEnd(ent.Comp.EvacTime, checkCooldown: false, cantRecall: true);
+        _roundEnd.EndRound();
         return true;
     }
 }
