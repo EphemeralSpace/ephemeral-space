@@ -1,0 +1,95 @@
+- type: entity
+  parent: OFMOrganBase
+  id: OFMOrganMoth
+  abstract: true
+  suffix: moth
+
+- type: entity
+  parent: OFMOrganMoth
+  id: OFMOrganMothVisual
+  abstract: true
+  components:
+  - type: OFMVisualOrgan
+    data:
+      sprite: Mobs/Species/Moth/parts.rsi
+
+- type: entity
+  parent: [ OFMOrganBaseTorso, OFMOrganMothVisual ]
+  id: OFMOrganMothTorso
+
+- type: entity
+  parent: [ OFMOrganBaseHead, OFMOrganMothVisual ]
+  id: OFMOrganMothHead
+
+- type: entity
+  parent: [ OFMOrganBaseArmLeft, OFMOrganMothVisual ]
+  id: OFMOrganMothArmLeft
+
+- type: entity
+  parent: [ OFMOrganBaseArmRight, OFMOrganMothVisual ]
+  id: OFMOrganMothArmRight
+
+- type: entity
+  parent: [ OFMOrganBaseHandLeft, OFMOrganMothVisual ]
+  id: OFMOrganMothHandLeft
+
+- type: entity
+  parent: [ OFMOrganBaseHandRight, OFMOrganMothVisual ]
+  id: OFMOrganMothHandRight
+
+- type: entity
+  parent: [ OFMOrganBaseLegLeft, OFMOrganMothVisual ]
+  id: OFMOrganMothLegLeft
+
+- type: entity
+  parent: [ OFMOrganBaseLegRight, OFMOrganMothVisual ]
+  id: OFMOrganMothLegRight
+
+- type: entity
+  parent: [ OFMOrganBaseFootLeft, OFMOrganMothVisual ]
+  id: OFMOrganMothFootLeft
+
+- type: entity
+  parent: [ OFMOrganBaseFootRight, OFMOrganMothVisual ]
+  id: OFMOrganMothFootRight
+
+- type: entity
+  parent: [ OFMOrganBaseBrain, OFMOrganMoth ]
+  id: OFMOrganMothBrain
+
+- type: entity
+  parent: [ OFMOrganMothVisual, OFMOrganBaseEyes ]
+  name: eyes
+  id: OFMOrganMothEyes
+
+- type: entity
+  parent: [ OFMOrganBaseTongue, OFMOrganMoth ]
+  id: OFMOrganMothTongue
+
+- type: entity
+  parent: [ OFMOrganBaseAppendix, OFMOrganMoth ]
+  id: OFMOrganMothAppendix
+
+- type: entity
+  parent: [ OFMOrganBaseEars, OFMOrganMoth ]
+  id: OFMOrganMothEars
+
+- type: entity
+  parent: [ OFMOrganBaseLungs, OFMOrganMoth ]
+  id: OFMOrganMothLungs
+
+- type: entity
+  parent: [ OFMOrganBaseHeart, OFMOrganMoth ]
+  id: OFMOrganMothHeart
+
+- type: entity
+  parent: [ OFMOrganBaseStomach, OFMOrganMoth ]
+  id: OFMOrganMothStomach
+
+- type: entity
+  parent: [ OFMOrganBaseLiver, OFMOrganMoth ]
+  id: OFMOrganMothLiver
+
+- type: entity
+  parent: [ OFMOrganBaseKidneys, OFMOrganMoth ]
+  id: OFMOrganMothKidneys
