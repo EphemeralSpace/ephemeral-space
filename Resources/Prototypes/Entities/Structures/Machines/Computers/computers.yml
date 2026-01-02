@@ -723,10 +723,8 @@
       state: syndie_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-# ES Start
-#  - type: AccessReader
-#    access: [[ "NuclearOperative" ]]
-# ES End
+  - type: AccessReader
+    access: [[ "NuclearOperative" ]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-nukie
     color: "#ff0000"
@@ -759,10 +757,8 @@
       state: wizard_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-# ES Start
-#  - type: AccessReader
-#    access: [[ "Wizard" ]]
-# ES End
+  - type: AccessReader
+    access: [[ "Wizard" ]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-wizard
     color: "#ff00ff"
@@ -795,10 +791,8 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-# ES Start
-#  - type: AccessReader
-#    access: [[ "CentralCommand" ]]
-# ES End
+  - type: AccessReader
+    access: [[ "CentralCommand" ]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-centcom
     color: "#1d8bad"

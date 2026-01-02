@@ -132,7 +132,6 @@
 # ES Start
 #    - type: AccessReader
 #      access: [["Atmospherics"], ["Engineering"], ["Research"]]
-#
 #    - type: Lock
 #      locked: false
 # ES End
