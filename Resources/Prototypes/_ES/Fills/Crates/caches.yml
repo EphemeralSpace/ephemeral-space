@@ -92,6 +92,25 @@
     - id: ESWeaponPistol9mm
     - id: ESMagazine9mm
 
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheTraitorDemolitionist
+  suffix: ES, Demolitionist Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId:  ESTraitorCacheTraitorDemolitionist
+
+- type: entityTable
+  id: ESTraitorCacheTraitorDemolitionist
+  table:
+    all:
+    - id: C4
+      amount: 2
+    - id: SyndieMiniBomb
+      amount: 2
+    - id: ESMicroBombImplanter
 # Veteran
 - type: entity
   parent: ESCrateCache
