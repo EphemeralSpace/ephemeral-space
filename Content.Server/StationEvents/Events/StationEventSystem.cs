@@ -119,4 +119,12 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             }
         }
     }
+// ES START
+    public void SetStartAnnouncement(Entity<StationEventComponent?> ent, string? announcement)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+        ent.Comp.StartAnnouncement = announcement;
+    }
+// ES END
 }
