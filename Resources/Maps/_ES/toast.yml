@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/30/2025 23:00:09
-  entityCount: 14599
+  time: 01/02/2026 08:08:29
+  entityCount: 14601
 maps:
 - 3
 grids:
@@ -6008,24 +6008,6 @@ entities:
     - type: Transform
       pos: -63.5,-7.5
       parent: 2
-- proto: Autolathe
-  entities:
-  - uid: 430
-    components:
-    - type: Transform
-      pos: 2.5,-5.5
-      parent: 2
-  - uid: 1512
-    components:
-    - type: Transform
-      pos: 2.5,-35.5
-      parent: 2
-    - type: TechnologyDatabase
-      supportedDisciplines:
-      - Industrial
-      - Arsenal
-      - Experimental
-      - CivilianServices
 - proto: BannerRevolution
   entities:
   - uid: 8438
@@ -36261,6 +36243,24 @@ entities:
     - type: Transform
       pos: -43.5,-17.5
       parent: 2
+- proto: ESAutolathe
+  entities:
+  - uid: 430
+    components:
+    - type: Transform
+      pos: 2.5,-5.5
+      parent: 2
+  - uid: 1512
+    components:
+    - type: Transform
+      pos: 2.5,-35.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
 - proto: ESBaseComputerTerminalCryptoNuke
   entities:
   - uid: 3834
@@ -43710,6 +43710,204 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,-49.5
+      parent: 2
+- proto: ESSpawnPointAssistant
+  entities:
+  - uid: 12358
+    components:
+    - type: Transform
+      pos: -20.5,-34.5
+      parent: 2
+  - uid: 12359
+    components:
+    - type: Transform
+      pos: -19.5,-34.5
+      parent: 2
+  - uid: 12360
+    components:
+    - type: Transform
+      pos: -18.5,-34.5
+      parent: 2
+- proto: ESSpawnPointAtmos
+  entities:
+  - uid: 195
+    components:
+    - type: Transform
+      pos: -36.5,-13.5
+      parent: 2
+  - uid: 4935
+    components:
+    - type: Transform
+      pos: -36.5,-12.5
+      parent: 2
+- proto: ESSpawnPointBartender
+  entities:
+  - uid: 3190
+    components:
+    - type: Transform
+      pos: -11.5,-6.5
+      parent: 2
+- proto: ESSpawnPointBotanist
+  entities:
+  - uid: 3187
+    components:
+    - type: Transform
+      pos: -8.5,-22.5
+      parent: 2
+  - uid: 3188
+    components:
+    - type: Transform
+      pos: -8.5,-20.5
+      parent: 2
+- proto: ESSpawnPointCaptain
+  entities:
+  - uid: 3182
+    components:
+    - type: Transform
+      pos: 27.5,-17.5
+      parent: 2
+- proto: ESSpawnPointCargoTechnician
+  entities:
+  - uid: 1750
+    components:
+    - type: Transform
+      pos: -1.5,-44.5
+      parent: 2
+  - uid: 3184
+    components:
+    - type: Transform
+      pos: -1.5,-43.5
+      parent: 2
+- proto: ESSpawnPointChef
+  entities:
+  - uid: 3189
+    components:
+    - type: Transform
+      pos: -8.5,-15.5
+      parent: 2
+- proto: ESSpawnPointChemist
+  entities:
+  - uid: 3193
+    components:
+    - type: Transform
+      pos: 13.5,-4.5
+      parent: 2
+  - uid: 3194
+    components:
+    - type: Transform
+      pos: 12.5,-4.5
+      parent: 2
+- proto: ESSpawnPointClown
+  entities:
+  - uid: 12361
+    components:
+    - type: Transform
+      pos: 9.5,-35.5
+      parent: 2
+- proto: ESSpawnPointDetective
+  entities:
+  - uid: 5275
+    components:
+    - type: Transform
+      pos: -27.5,-34.5
+      parent: 2
+- proto: ESSpawnPointHeadOfPersonnel
+  entities:
+  - uid: 3197
+    components:
+    - type: Transform
+      pos: -0.5,7.5
+      parent: 2
+- proto: ESSpawnPointHeadOfSecurity
+  entities:
+  - uid: 5276
+    components:
+    - type: Transform
+      pos: -26.5,5.5
+      parent: 2
+- proto: ESSpawnPointJanitor
+  entities:
+  - uid: 12356
+    components:
+    - type: Transform
+      pos: -14.5,-35.5
+      parent: 2
+  - uid: 12357
+    components:
+    - type: Transform
+      pos: -12.5,-35.5
+      parent: 2
+- proto: ESSpawnPointMedicalDoctor
+  entities:
+  - uid: 3195
+    components:
+    - type: Transform
+      pos: 8.5,8.5
+      parent: 2
+  - uid: 3196
+    components:
+    - type: Transform
+      pos: 8.5,7.5
+      parent: 2
+- proto: ESSpawnPointReporter
+  entities:
+  - uid: 4923
+    components:
+    - type: Transform
+      pos: -9.5,6.5
+      parent: 2
+- proto: ESSpawnPointScientist
+  entities:
+  - uid: 191
+    components:
+    - type: Transform
+      pos: 4.5,-12.5
+      parent: 2
+  - uid: 3191
+    components:
+    - type: Transform
+      pos: 5.5,-12.5
+      parent: 2
+  - uid: 3192
+    components:
+    - type: Transform
+      pos: 6.5,-12.5
+      parent: 2
+- proto: ESSpawnPointSecurityOfficer
+  entities:
+  - uid: 7373
+    components:
+    - type: Transform
+      pos: -27.5,-22.5
+      parent: 2
+  - uid: 9455
+    components:
+    - type: Transform
+      pos: -25.5,-22.5
+      parent: 2
+  - uid: 11271
+    components:
+    - type: Transform
+      pos: -26.5,-22.5
+      parent: 2
+- proto: ESSpawnPointStationEngineer
+  entities:
+  - uid: 4237
+    components:
+    - type: Transform
+      pos: -37.5,-26.5
+      parent: 2
+  - uid: 4238
+    components:
+    - type: Transform
+      pos: -37.5,-24.5
+      parent: 2
+- proto: ESSpawnPointWarden
+  entities:
+  - uid: 4857
+    components:
+    - type: Transform
+      pos: -24.5,-18.5
       parent: 2
 - proto: ESSuitStorageFilledEVA
   entities:
@@ -62635,10 +62833,20 @@ entities:
       parent: 2
 - proto: HandLabeler
   entities:
+  - uid: 6814
+    components:
+    - type: Transform
+      pos: 14.613748,-7.471539
+      parent: 2
   - uid: 13262
     components:
     - type: Transform
       pos: -3.5,26.5
+      parent: 2
+  - uid: 14598
+    components:
+    - type: Transform
+      pos: 14.395985,-7.317824
       parent: 2
 - proto: HandTeleporter
   entities:
@@ -72104,115 +72312,6 @@ entities:
     - type: Transform
       pos: 6.5,-7.5
       parent: 2
-- proto: SpawnPointAtmos
-  entities:
-  - uid: 195
-    components:
-    - type: Transform
-      pos: -36.5,-13.5
-      parent: 2
-  - uid: 4935
-    components:
-    - type: Transform
-      pos: -36.5,-12.5
-      parent: 2
-- proto: SpawnPointBartender
-  entities:
-  - uid: 3190
-    components:
-    - type: Transform
-      pos: -11.5,-6.5
-      parent: 2
-- proto: SpawnPointBotanist
-  entities:
-  - uid: 3187
-    components:
-    - type: Transform
-      pos: -8.5,-22.5
-      parent: 2
-  - uid: 3188
-    components:
-    - type: Transform
-      pos: -8.5,-20.5
-      parent: 2
-- proto: SpawnPointCaptain
-  entities:
-  - uid: 3182
-    components:
-    - type: Transform
-      pos: 27.5,-17.5
-      parent: 2
-- proto: SpawnPointCargoTechnician
-  entities:
-  - uid: 1750
-    components:
-    - type: Transform
-      pos: -1.5,-44.5
-      parent: 2
-  - uid: 3184
-    components:
-    - type: Transform
-      pos: -1.5,-43.5
-      parent: 2
-- proto: SpawnPointChef
-  entities:
-  - uid: 3189
-    components:
-    - type: Transform
-      pos: -8.5,-15.5
-      parent: 2
-- proto: SpawnPointChemist
-  entities:
-  - uid: 3193
-    components:
-    - type: Transform
-      pos: 13.5,-4.5
-      parent: 2
-  - uid: 3194
-    components:
-    - type: Transform
-      pos: 12.5,-4.5
-      parent: 2
-- proto: SpawnPointClown
-  entities:
-  - uid: 12361
-    components:
-    - type: Transform
-      pos: 9.5,-35.5
-      parent: 2
-- proto: SpawnPointDetective
-  entities:
-  - uid: 5275
-    components:
-    - type: Transform
-      pos: -27.5,-34.5
-      parent: 2
-- proto: SpawnPointHeadOfPersonnel
-  entities:
-  - uid: 3197
-    components:
-    - type: Transform
-      pos: -0.5,7.5
-      parent: 2
-- proto: SpawnPointHeadOfSecurity
-  entities:
-  - uid: 5276
-    components:
-    - type: Transform
-      pos: -26.5,5.5
-      parent: 2
-- proto: SpawnPointJanitor
-  entities:
-  - uid: 12356
-    components:
-    - type: Transform
-      pos: -14.5,-35.5
-      parent: 2
-  - uid: 12357
-    components:
-    - type: Transform
-      pos: -12.5,-35.5
-      parent: 2
 - proto: SpawnPointLatejoin
   entities:
   - uid: 8014
@@ -72275,48 +72374,12 @@ entities:
     - type: Transform
       pos: -37.5,-45.5
       parent: 2
-- proto: SpawnPointMedicalDoctor
-  entities:
-  - uid: 3195
-    components:
-    - type: Transform
-      pos: 8.5,8.5
-      parent: 2
-  - uid: 3196
-    components:
-    - type: Transform
-      pos: 8.5,7.5
-      parent: 2
 - proto: SpawnPointObserver
   entities:
   - uid: 1
     components:
     - type: Transform
       pos: -0.5,-0.5
-      parent: 2
-- proto: SpawnPointPassenger
-  entities:
-  - uid: 12358
-    components:
-    - type: Transform
-      pos: -20.5,-34.5
-      parent: 2
-  - uid: 12359
-    components:
-    - type: Transform
-      pos: -19.5,-34.5
-      parent: 2
-  - uid: 12360
-    components:
-    - type: Transform
-      pos: -18.5,-34.5
-      parent: 2
-- proto: SpawnPointReporter
-  entities:
-  - uid: 4923
-    components:
-    - type: Transform
-      pos: -9.5,6.5
       parent: 2
 - proto: SpawnPointSalvageSpecialist
   entities:
@@ -72330,23 +72393,6 @@ entities:
     - type: Transform
       pos: 0.5,-43.5
       parent: 2
-- proto: SpawnPointScientist
-  entities:
-  - uid: 191
-    components:
-    - type: Transform
-      pos: 4.5,-12.5
-      parent: 2
-  - uid: 3191
-    components:
-    - type: Transform
-      pos: 5.5,-12.5
-      parent: 2
-  - uid: 3192
-    components:
-    - type: Transform
-      pos: 6.5,-12.5
-      parent: 2
 - proto: SpawnPointSecurityCadet
   entities:
   - uid: 6921
@@ -72358,42 +72404,6 @@ entities:
     components:
     - type: Transform
       pos: -27.5,-26.5
-      parent: 2
-- proto: SpawnPointSecurityOfficer
-  entities:
-  - uid: 7373
-    components:
-    - type: Transform
-      pos: -27.5,-22.5
-      parent: 2
-  - uid: 9455
-    components:
-    - type: Transform
-      pos: -25.5,-22.5
-      parent: 2
-  - uid: 11271
-    components:
-    - type: Transform
-      pos: -26.5,-22.5
-      parent: 2
-- proto: SpawnPointStationEngineer
-  entities:
-  - uid: 4237
-    components:
-    - type: Transform
-      pos: -37.5,-26.5
-      parent: 2
-  - uid: 4238
-    components:
-    - type: Transform
-      pos: -37.5,-24.5
-      parent: 2
-- proto: SpawnPointWarden
-  entities:
-  - uid: 4857
-    components:
-    - type: Transform
-      pos: -24.5,-18.5
       parent: 2
 - proto: Spoon
   entities:
