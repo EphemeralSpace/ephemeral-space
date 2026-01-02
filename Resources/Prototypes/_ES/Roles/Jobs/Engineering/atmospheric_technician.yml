@@ -1,0 +1,24 @@
+- type: job
+  id: ESAtmosphericTechnician
+  name: ESjob-name-atmostech
+  description: ESjob-description-atmostech
+  playTimeTracker: ESJobAtmosphericTechnician
+  startingGear: ESAtmosphericTechnicianGear
+  icon: "JobIconAtmosphericTechnician"
+  supervisors: job-supervisors-hop
+  access:
+  - Maintenance
+  - Engineering
+  - External
+  - Atmospherics
+
+- type: startingGear
+  id: ESAtmosphericTechnicianGear
+  equipment:
+    shoes: ClothingShoesColorWhite
+    eyes: ClothingEyesGlassesMeson
+    id: AtmosPDA
+    belt: ClothingBeltUtilityEngineering
+    ears: ClothingHeadsetEngineering
+    jumpsuit: ClothingUniformJumpsuitAtmos
+    back: ClothingBackpackEngineering

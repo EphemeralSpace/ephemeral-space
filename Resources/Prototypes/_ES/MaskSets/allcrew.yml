@@ -1,0 +1,4 @@
+- type: esMaskSet
+  id: AllCrew # Just every crew member, with their mask's weight.
+  maskProvider: !type:ESTroupeMasksProvider
+    troupe: ESCrew

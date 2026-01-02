@@ -103,14 +103,16 @@ public sealed class ESViewconeSetAlphaOverlay : Overlay
             var distLength = dist.Length();
             var angleDist = Angle.ShortestDistance(dist.ToWorldAngle(), eyeRot);
 
+            var baseAlpha = sprite.Color.A;
             var angleAlpha = (float) Math.Clamp((Math.Abs(angleDist.Theta) - (radConeAngle * 0.5f)) + (radConeFeather * 0.5f), 0f, radConeFeather) / radConeFeather;
             var distAlpha = Math.Clamp((distLength - cone.ConeIgnoreRadius) + (cone.ConeIgnoreFeather * 0.5f), 0f, cone.ConeIgnoreFeather) / cone.ConeIgnoreFeather;
             var targetAlpha = Math.Max(1f - angleAlpha, 1f - distAlpha);
 
             // save the results so we can use it in resetalpha overlay
-            _cone.CachedBaseAlphas.Add(((uid, sprite), sprite.Color.A));
+            _cone.CachedBaseAlphas.Add(((uid, sprite), baseAlpha));
 
-            var alpha = comp.Inverted ? 1f - targetAlpha : targetAlpha;
+            // multiply by the base alpha of the sprite (sprites which were already invisible for other reasons should stay invisible)
+            var alpha = (comp.Inverted ? 1f - targetAlpha : targetAlpha) * baseAlpha;
             _sprite.SetColor((uid, sprite), sprite.Color.WithAlpha(alpha));
             _sprite.SetVisible((uid, sprite), alpha > 0f);
         }

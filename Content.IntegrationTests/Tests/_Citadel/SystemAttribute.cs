@@ -1,9 +1,10 @@
 ﻿namespace Content.IntegrationTests.Tests._Citadel;
 
 /// <summary>
-///     Marks a field on a GameTestData inheritor as needing to be populated with a system from the given side.
+///     Marks a field on a GameTest inheritor as needing to be populated with a system from the given side.
 /// </summary>
-/// <seealso cref="GameTestData"/>
+/// <seealso cref="GameTest"/>
+[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
 public sealed class SystemAttribute : Attribute
 {
     public SystemAttribute(Side side)
@@ -20,9 +21,10 @@ public sealed class SystemAttribute : Attribute
 }
 
 /// <summary>
-///     Marks a field on a GameTestData inheritor as needing to be populated with an IoC dependency from the given side.
+///     Marks a field on a GameTest inheritor as needing to be populated with an IoC dependency from the given side.
 /// </summary>
-/// <seealso cref="GameTestData"/>
+/// <seealso cref="GameTest"/>
+[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
 public sealed class SidedDependencyAttribute : Attribute
 {
     public SidedDependencyAttribute(Side side)

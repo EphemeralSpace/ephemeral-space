@@ -1,0 +1,39 @@
+- type: job
+  id: ESWarden
+  name: ESjob-name-warden
+  description: ESjob-description-warden
+  playTimeTracker: ESJobWarden
+  weight: 5
+  startingGear: ESWardenGear
+  icon: "JobIconWarden"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  access:
+  - Security
+  - Brig
+  - Armory
+  - Maintenance
+  - External
+  - Detective
+  - Cryogenics
+  - GenpopEnter
+  - GenpopLeave
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: ESWardenGear
+  equipment:
+    shoes: ClothingShoesBootsJack
+    eyes: ClothingEyesGlassesSecurity
+    id: WardenPDA
+    ears: ClothingHeadsetSecurity
+    head: ClothingHeadHatWarden
+    jumpsuit: ClothingUniformJumpsuitWarden
+    outerClothing: ClothingOuterCoatWarden
+    back: ClothingBackpackSecurity
+    pocket1: ESWeaponHybridTaser
+  storage:
+    back:
+    - Flash

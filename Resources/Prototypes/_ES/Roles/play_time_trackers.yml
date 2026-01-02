@@ -1,0 +1,57 @@
+# Jobs - It REALLY doesn't like when you reuse these so heres some ES ones
+- type: playTimeTracker
+  id: ESJobAssistant
+
+- type: playTimeTracker
+  id: ESJobAtmosphericTechnician
+
+- type: playTimeTracker
+  id: ESJobBartender
+
+- type: playTimeTracker
+  id: ESJobBotanist
+
+- type: playTimeTracker
+  id: ESJobCaptain
+
+- type: playTimeTracker
+  id: ESJobCargoTechnician
+
+- type: playTimeTracker
+  id: ESJobChef
+
+- type: playTimeTracker
+  id: ESJobChemist
+
+- type: playTimeTracker
+  id: ESJobClown
+
+- type: playTimeTracker
+  id: ESJobDetective
+
+- type: playTimeTracker
+  id: ESJobHeadOfPersonnel
+
+- type: playTimeTracker
+  id: ESJobHeadOfSecurity
+
+- type: playTimeTracker
+  id: ESJobJanitor
+
+- type: playTimeTracker
+  id: ESJobMedicalDoctor
+
+- type: playTimeTracker
+  id: ESJobReporter
+
+- type: playTimeTracker
+  id: ESJobScientist
+
+- type: playTimeTracker
+  id: ESJobSecurityOfficer
+
+- type: playTimeTracker
+  id: ESJobStationEngineer
+
+- type: playTimeTracker
+  id: ESJobWarden

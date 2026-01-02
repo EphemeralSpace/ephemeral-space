@@ -31,48 +31,46 @@
 
 # Head
 
-# ES Start
-# - type: loadout
-  # id: SeniorPhysicianBeret
-  # effects:
-  # - !type:GroupLoadoutEffect
-    # proto: SeniorPhysician
-  # equipment:
-    # head: ClothingHeadHatBeretSeniorPhysician
+- type: loadout
+  id: SeniorPhysicianBeret
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysician
+  equipment:
+    head: ClothingHeadHatBeretSeniorPhysician
 
-# - type: loadout
-  # id: MedicalHeadMirror
-  # effects:
-  # - !type:GroupLoadoutEffect
-    # proto: MedicalHeadMirrorTimer
-  # equipment:
-    # head: ClothingHeadMirror
+- type: loadout
+  id: MedicalHeadMirror
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MedicalHeadMirrorTimer
+  equipment:
+    head: ClothingHeadMirror
 
-# - type: loadout
-  # id: MedicalBeret
-  # equipment:
-    # head: ClothingHeadHatBeretMedic
+- type: loadout
+  id: MedicalBeret
+  equipment:
+    head: ClothingHeadHatBeretMedic
 
 - type: loadout
   id: BlueSurgeryCap
   equipment:
     head: ClothingHeadHatSurgcapBlue
 
-# - type: loadout
-  # id: GreenSurgeryCap
-  # equipment:
-    # head: ClothingHeadHatSurgcapGreen
+- type: loadout
+  id: GreenSurgeryCap
+  equipment:
+    head: ClothingHeadHatSurgcapGreen
 
-# - type: loadout
-  # id: PurpleSurgeryCap
-  # equipment:
-    # head: ClothingHeadHatSurgcapPurple
+- type: loadout
+  id: PurpleSurgeryCap
+  equipment:
+    head: ClothingHeadHatSurgcapPurple
 
-# - type: loadout
-  # id: NurseHat
-  # equipment:
-    # head: ClothingHeadNurseHat
-# ES End
+- type: loadout
+  id: NurseHat
+  equipment:
+    head: ClothingHeadNurseHat
 
 # Jumpsuit
 - type: loadout
@@ -170,9 +168,7 @@
 - type: loadout
   id: NitrileGloves
   equipment:
-# ES Start
-    gloves: ClothingHandsGlovesColorBlue
-# ES End
+    gloves: ClothingHandsGlovesNitrile
 
 #Masks
 - type: loadout

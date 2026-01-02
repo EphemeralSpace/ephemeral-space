@@ -1,0 +1,46 @@
+- type: job
+  id: ESHeadOfSecurity
+  name: ESjob-name-hos
+  description: ESjob-description-hos
+  playTimeTracker: ESJobHeadOfSecurity
+  weight: 10
+  startingGear: ESHoSGear
+  icon: "JobIconHeadOfSecurity"
+  supervisors: job-supervisors-captain
+  canBeAntag: false
+  access:
+  - HeadOfSecurity
+  - Command
+  - Brig
+  - Security
+  - Armory
+  - Maintenance
+  - External
+  - Detective
+  - Cryogenics
+  - GenpopEnter
+  - GenpopLeave
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+
+- type: startingGear
+  id: ESHoSGear
+  equipment:
+    shoes: ClothingShoesBootsJack
+    eyes: ClothingEyesGlassesSecurity
+    id: HoSPDA
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltSecurity
+    head: ClothingHeadHatHoshat
+    belt: ClothingBeltSecurityFilled
+    jumpsuit: ClothingUniformJumpsuitHoS
+    outerClothing: ClothingOuterCoatHoSTrench
+    back: ClothingBackpackSecurity
+    pocket1: ESWeaponHybridTaser
+  storage:
+    back:
+    - Flash

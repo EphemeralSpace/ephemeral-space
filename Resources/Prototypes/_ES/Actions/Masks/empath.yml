@@ -22,17 +22,26 @@
 
 # Default aura. Shown if nothing else is detected
 - type: esAura
-  id: ESBasic
+  id: Basic
   description: es-aura-basic
   popupType: Large
   priority: -1 # shown only by default
 
 # Killing intent. Used for anyone who wants to murder someone, even themselves!
 - type: esAura
-  id: ESKillingIntent
+  id: KillingIntent
   description: es-aura-killing-intent
   objectiveWhitelist:
     components:
     - ESKillTroupeObjective
     - ESKillTargetObjective
     - ESDetonateNukeObjective
+
+# Wise aura, for oracle identification. Oracles
+- type: esAura
+  id: Oracle
+  description: es-aura-oracle
+  objectiveWhitelist: {}
+  priority: 10 # A murderous oracle is still an oracle.
+  maskOverrides:
+  - ESEmpath

@@ -328,12 +328,10 @@
 - type: loadoutGroup
   id: ChefOuterClothing
   name: loadout-group-chef-outerclothing
-# ES END
-  #minLimit: 0
+  minLimit: 0
   loadouts:
-  - ChefJacket
   - ChefApron
-# ES START
+  - ChefJacket
   - ChefWintercoat
 
 - type: loadoutGroup
@@ -929,9 +927,6 @@
   id: StationEngineerShoes
   name: loadout-group-station-engineer-shoes
   loadouts:
-# ES START
-  - ESEngineerShoes
-# ES END
   - WorkBoots
   - EngineeringWinterBoots
 
@@ -1053,9 +1048,7 @@
 - type: loadoutGroup
   id: ScientistNeck
   name: loadout-group-scientist-neck
-# ES Start
-#  minLimit: 0
-# ES End
+  minLimit: 0
   loadouts:
   - ScientistTie
 
@@ -1093,11 +1086,9 @@
   id: ScientistShoes
   name: loadout-group-scientist-shoes
   loadouts:
-# ES Start
-  - ESScienceShoes
-#  - BlackShoes
-#  - ScienceWinterBoots
-# ES End
+  - WhiteShoes
+  - BlackShoes
+  - ScienceWinterBoots
 
 - type: loadoutGroup
   id: ScientistGloves
@@ -1299,16 +1290,8 @@
   id: DetectiveOuterClothing
   name: loadout-group-detective-outerclothing
   loadouts:
-# ES Start
   - DetectiveCoat
-#  - DetectiveCoatGrey
-
-- type: loadoutGroup
-  id: ESDetectiveShoes
-  name: loadout-group-detective-outerclothing # we dont have loadouts so it doesnt matter what the loc string is
-  loadouts:
-  - ESDetectiveShoes
-# ES End
+  - DetectiveCoatGrey
 
 - type: loadoutGroup
   id: DetectiveJobTrinkets
@@ -1393,10 +1376,15 @@
 - type: loadoutGroup
   id: MedicalDoctorHead
   name: loadout-group-medical-doctor-head
-# ES Start
+  minLimit: 0
   loadouts:
+  - MedicalBeret
+  - SeniorPhysicianBeret
+  - MedicalHeadMirror
   - BlueSurgeryCap
-# ES End
+  - GreenSurgeryCap
+  - PurpleSurgeryCap
+  - NurseHat
 
 - type: loadoutGroup
   id: MedicalDoctorJumpsuit
@@ -1484,11 +1472,9 @@
 - type: loadoutGroup
   id: ChemistOuterClothing
   name: loadout-group-chemist-outerclothing
-# ES START
   loadouts:
-  - ChemistLabCoat
   - RegularLabCoat
-# ES END
+  - ChemistLabCoat
   - ChemistWintercoat
 
 - type: loadoutGroup

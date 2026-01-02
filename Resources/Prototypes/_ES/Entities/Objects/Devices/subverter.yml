@@ -2,7 +2,7 @@
   parent: [BaseItem, BaseSyndicateContraband]
   id: ESSubverterChip
   name: subverter chip
-  description: A brain altering chip used to recruit people to the syndicate.
+  description: A brain altering chip used to recruit people to the syndicate. When used on someone in a critical state, it will brainwash and convert them into a member of the Syndicate. No take-backs!
   suffix: ES
   components:
   - type: Sprite

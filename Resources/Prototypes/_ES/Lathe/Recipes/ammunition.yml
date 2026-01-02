@@ -1,0 +1,39 @@
+# Handgun
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: ESMagazine9mm
+  result: ESMagazine9mm
+  materials:
+    Steel: 145
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: ESSpeedLoader357
+  result: ESSpeedLoader357
+  materials:
+    Steel: 190
+
+# Shotgun
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: ESShellShotgunBuckshot
+  result: ESShellShotgunBuckshot
+  materials:
+    Steel: 240
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: ESShellShotgunBeanbag
+  result: ESShellShotgunBeanbag
+  materials:
+    Steel: 150
+    Plastic: 140
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: ESShellShotgunSlug
+  result: ESShellShotgunSlug
+  materials:
+    Steel: 190
+    Plastic: 100

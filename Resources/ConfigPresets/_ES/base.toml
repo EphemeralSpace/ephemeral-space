@@ -35,3 +35,8 @@ maximum_width = 15
 # No gridfill
 [shuttle]
 grid_fill = false
+
+# Tips
+[tips]
+dataset = "ESTips"
+login_dataset = "ESTips"

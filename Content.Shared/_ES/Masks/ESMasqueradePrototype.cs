@@ -1,5 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.Masks.Masquerades;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using YamlDotNet.Serialization.Utilities;
@@ -106,10 +108,12 @@ public abstract partial class MasqueradeKind
     public MasqueradeEntry DefaultMask { get; set; } = default!;
 
     internal virtual void Init() {}
-};
 
-/// <summary>
-///     A truly random masquerade. This mimics the pre-masquerades game behavior of using weights on roles.
-/// </summary>
-[DataDefinition]
-public sealed partial class RandomMasquerade : MasqueradeKind;
+    /// <summary>
+    ///     Attempts to get a mask list for the current player count.
+    /// </summary>
+    /// <remarks>
+    ///     While the masks are random, the order in the output list is not.
+    /// </remarks>
+    public abstract bool TryGetMasks(int playerCount, IRobustRandom rng, IPrototypeManager proto, [NotNullWhen(true)] out List<ProtoId<ESMaskPrototype>>? masks);
+};

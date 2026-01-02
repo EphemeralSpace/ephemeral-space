@@ -115,6 +115,7 @@ VendingMachineMedicalBase: ESVendingMachineMedical
 VendingMachineChefvend: ESVendingMachineChefvend
 VendingMachineDinnerware: ESVendingMachineDinnerware
 VendingMachineSeedsUnlocked: ESVendingMachineSeedsUnlocked
+VendingMachineSeeds: ESVendingMachineSeedsUnlocked
 VendingMachineNutri: ESVendingMachineNutri
 VendingMachineCart: ESVendingMachineCart
 VendingMachineRobotics: ESVendingMachineRobotics
@@ -190,6 +191,30 @@ ClothingHandsGlovesNitrile: ClothingHandsGlovesColorBlue
 # 2025-12-23
 # New laser box prototype
 GlassBoxLaserFilled: ESDisplayCaseCaptainEnergyGun
+
+# 2025-12-26
+SpawnPointCargoTechnician: ESSpawnPointCargoTechnician
+SpawnPointPassenger: ESSpawnPointAssistant
+SpawnPointClown: ESSpawnPointClown
+SpawnPointReporter: ESSpawnPointReporter
+SpawnPointBartender: ESSpawnPointBartender
+SpawnPointChef: ESSpawnPointChef
+SpawnPointBotanist: ESSpawnPointBotanist
+SpawnPointJanitor: ESSpawnPointJanitor
+SpawnPointCaptain: ESSpawnPointCaptain
+SpawnPointHeadOfPersonnel: ESSpawnPointHeadOfPersonnel
+SpawnPointHeadOfSecurity: ESSpawnPointHeadOfSecurity
+SpawnPointStationEngineer: ESSpawnPointStationEngineer
+SpawnPointAtmos: ESSpawnPointAtmos
+SpawnPointMedicalDoctor: ESSpawnPointMedicalDoctor
+SpawnPointChemist: ESSpawnPointChemist
+SpawnPointScientist: ESSpawnPointScientist
+SpawnPointWarden: ESSpawnPointWarden
+SpawnPointSecurityOfficer: ESSpawnPointSecurityOfficer
+SpawnPointDetective: ESSpawnPointDetective
+
+# 2025-12-29
+Autolathe: ESAutolathe
 
 # ES END
 

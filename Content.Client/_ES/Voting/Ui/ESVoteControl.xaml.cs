@@ -1,3 +1,4 @@
+using Content.Client._ES.Core;
 using Content.Client.Stylesheets;
 using Content.Shared._ES.Voting;
 using Content.Shared._ES.Voting.Components;
@@ -38,7 +39,7 @@ public sealed partial class ESVoteControl : PanelContainer
         _endTime = vote.Comp.EndTime;
 
         var name = _entityManager.GetComponentOrNull<MetaDataComponent>(vote)?.EntityName ?? string.Empty;
-        VoteNameLabel.Text = Loc.GetString("es-voter-ui-header-text-format", ("title", name));
+        VoteNameLabel.UnsafeSetMarkup(Loc.GetString("es-voter-ui-header-text-format", ("title", name)));
 
         if (OptionsContainer.ChildCount == 0)
         {
@@ -63,21 +64,23 @@ public sealed partial class ESVoteControl : PanelContainer
 
         foreach (var child in OptionsContainer.Children)
         {
-            if (child is ESVoteButton voteButton)
+            if (child is not ESVoteButton voteButton)
+                continue;
+
+            voteButton.Pressed = vote.Comp.Votes.GetValueOrDefault(voteButton.Option)?.Contains(netOwner) ?? false;
+            voteButton.ToolTip = string.IsNullOrEmpty(voteButton.Option.Tooltip) ? null : voteButton.Option.Tooltip;
+
+            var votes = vote.Comp.Votes.GetValueOrDefault(voteButton.Option) ?? [];
+            if (vote.Comp.ShowCount)
             {
-                voteButton.Pressed = vote.Comp.Votes.GetValueOrDefault(voteButton.Option)?.Contains(netOwner) ?? false;
-                var votes = vote.Comp.Votes.GetValueOrDefault(voteButton.Option) ?? [];
-                if (vote.Comp.ShowCount)
-                {
-                    voteButton.Label.Text = Loc.GetString("es-voter-ui-button-text-option-format",
-                        ("option", voteButton.Option.DisplayString),
-                        ("count", votes.Count));
-                }
-                else
-                {
-                    voteButton.Label.Text = Loc.GetString("es-voter-ui-button-text-option-format-no-count",
-                        ("option", voteButton.Option.DisplayString));
-                }
+                voteButton.Label.UnsafeSetMarkup(Loc.GetString("es-voter-ui-button-text-option-format",
+                    ("option", voteButton.Option.DisplayString),
+                    ("count", votes.Count)));
+            }
+            else
+            {
+                voteButton.Label.UnsafeSetMarkup(Loc.GetString("es-voter-ui-button-text-option-format-no-count",
+                    ("option", voteButton.Option.DisplayString)));
             }
         }
     }

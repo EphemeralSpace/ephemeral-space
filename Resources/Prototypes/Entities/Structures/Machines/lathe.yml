@@ -1,20 +1,3 @@
-# ES Start
-
-# This is a seperate prototype so that if the pointlight is ever modifed, it will be modified on all machines.
-# All hyperlathes have the funny light, so we can add that to the base prototype, but the same is not true for all lathe-type machines.
-- type: entity
-  id: ESAutolatheLight
-  abstract: true
-  components:
-  - type: LitOnPowered
-  - type: PointLight
-    radius: 2
-    energy: 2
-    falloff: 40
-    curveFactor: 0.75
-    color: "#99ffff"
-# ES End
-
 - type: entity
   id: BaseLathe
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -165,9 +148,6 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
-# ES START
-    - ESAutolathePack
-# ES END
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SecurityAmmoStatic

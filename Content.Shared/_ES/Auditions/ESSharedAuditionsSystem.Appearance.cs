@@ -111,42 +111,10 @@ public abstract partial class ESSharedAuditionsSystem
     /// </summary>
     public Entity<MindComponent, ESCharacterComponent> GenerateCharacter(Entity<ESProducerComponent> producer, [ForbidLiteral] string randomPrototype = "DefaultBackground")
     {
-        var profile = HumanoidCharacterProfile.RandomWithSpecies();
+        var profile = RandomProfile(_random);
         var species = _prototypeManager.Index(profile.Species);
 
         GenerateName(profile, species);
-
-        profile.Age = _random.Pick(new Dictionary<int, float>
-        {
-            { _random.Next(species.MinAge, species.YoungAge), YoungWeight }, // Young age
-            { _random.Next(species.YoungAge, species.OldAge), MiddleAgeWeight }, // Middle age
-            { _random.Next(species.OldAge, species.MaxAge), OldAgeWeight }, // Old age
-        });
-
-        IReadOnlyList<Color> hairColors;
-        if (profile.Age >= species.OldAge)
-            hairColors = RealisticAgedHairColors;
-        else if (profile.Age <= species.YoungAge)
-            hairColors = RealisticHairColors;
-        else
-            hairColors = RealisticHairColors.Union(RealisticAgedHairColors).ToList();
-
-        var hairColor = _random.Prob(CrazyHairChance) ? _random.NextColor() : _random.Pick(hairColors);
-        profile.Appearance.HairColor = hairColor;
-        profile.Appearance.FacialHairColor = hairColor;
-
-        profile.Appearance.EyeColor = _random.Pick(EyeColors);
-
-        List<ProtoId<MarkingPrototype>> hairOptions;
-        if (_random.Prob(CrazyHairChance))
-            hairOptions = species.UnisexHair.Union(species.FemaleHair).Union(species.MaleHair).ToList();
-        else
-            hairOptions = species.UnisexHair.Union(profile.Sex == Sex.Male ? species.MaleHair : species.FemaleHair).ToList();
-
-        profile.Appearance.HairStyleId = _random.Pick(hairOptions);
-
-        if (_random.Prob(ShavenChance))
-            profile.Appearance.FacialHairStyleId = HairStyles.DefaultFacialHairStyle;
 
         var (ent, mind) = _mind.CreateMind(null, profile.Name);
         var character = EnsureComp<ESCharacterComponent>(ent);
@@ -171,6 +139,74 @@ public abstract partial class ESSharedAuditionsSystem
         return (ent, mind, character);
     }
 
+    public HumanoidCharacterProfile RandomProfile(IRobustRandom random, ProtoId<SpeciesPrototype>? speciesId = null)
+    {
+        speciesId ??= SharedHumanoidAppearanceSystem.DefaultSpecies;
+
+        var species = _prototypeManager.Index(speciesId);
+
+        var sex = random.Pick(species.Sexes);
+        var gender = sex switch
+        {
+            Sex.Male => Gender.Male,
+            Sex.Female => Gender.Female,
+            _ => Gender.Epicene,
+        };
+
+        var profile = HumanoidCharacterProfile.DefaultWithSpecies(speciesId).WithSex(sex).WithGender(gender);
+
+        var strategy = _prototypeManager.Index(species.SkinColoration).Strategy;
+        profile.Appearance.SkinColor = strategy.InputType switch
+        {
+            SkinColorationStrategyInput.Unary => strategy.FromUnary(random.NextFloat(0f, 100f)),
+            _ => strategy.ClosestSkinColor(_random.NextColor()),
+        };
+
+        profile.Age = random.Pick(new Dictionary<int, float>
+        {
+            { random.Next(species.MinAge, species.YoungAge), YoungWeight }, // Young age
+            { random.Next(species.YoungAge, species.OldAge), MiddleAgeWeight }, // Middle age
+            { random.Next(species.OldAge, species.MaxAge), OldAgeWeight }, // Old age
+        });
+
+        IReadOnlyList<Color> hairColors;
+        if (profile.Age >= species.OldAge)
+            hairColors = RealisticAgedHairColors;
+        else if (profile.Age <= species.YoungAge)
+            hairColors = RealisticHairColors;
+        else
+            hairColors = RealisticHairColors.Union(RealisticAgedHairColors).ToList();
+
+        var hairColor = random.Prob(CrazyHairChance) ? random.NextColor() : random.Pick(hairColors);
+        profile.Appearance.HairColor = hairColor;
+        profile.Appearance.FacialHairColor = hairColor;
+
+        profile.Appearance.EyeColor = random.Pick(EyeColors);
+
+        List<ProtoId<MarkingPrototype>> hairOptions;
+        if (random.Prob(CrazyHairChance))
+        {
+            hairOptions = species.UnisexHair.Union(species.FemaleHair).Union(species.MaleHair).ToList();
+        }
+        else
+        {
+            hairOptions = species.UnisexHair.Union(profile.Gender switch
+            {
+                Gender.Male => species.MaleHair,
+                Gender.Female => species.FemaleHair,
+                _ => species.MaleHair.Union(species.FemaleHair).ToList(),
+            })
+            .ToList();
+        }
+
+        profile.Appearance.HairStyleId = random.Pick(hairOptions);
+
+        if (random.Prob(ShavenChance))
+            profile.Appearance.FacialHairStyleId = HairStyles.DefaultFacialHairStyle;
+
+        return profile;
+    }
+
     private const float GenderlessFirstNameChance = 0.5f; // the future is woke
     private const float DoubleFirstNameChance = 0.015f;
     private const float HyphenatedFirstMiddleNameChance = 0.015f;
@@ -179,7 +215,7 @@ public abstract partial class ESSharedAuditionsSystem
     private const float AbbreviatedMiddleChance = 0.07f;
     private const float AbbreviatedFirstMiddleChance = 0.07f;
     private const float AbbreviatedFirstMiddleAltChance = 0.4f;
-    private const float ParticleChance = 0.03f;
+    private const float ParticleChance = 0.025f;
     private const float SuffixChance = 0.05f;
     private const float PrefixChance = 0.07f;
     private const float PrefixGenderlessChance = 0.6f;
@@ -284,11 +320,6 @@ public abstract partial class ESSharedAuditionsSystem
                 : "es-name-first-middle-abbr-fmt";
             firstName = Loc.GetString(locId, ("letter1", RandomFirstLetter(dataset)), ("letter2", RandomFirstLetter(dataset)));
         }
-        else if (_random.Prob(ParticleChance))
-        {
-            var particleDataSet = _prototypeManager.Index(ParticleDataset);
-            firstName = Loc.GetString("es-name-normal-fmt", ("first", firstName), ("second", _random.Pick(particleDataSet)));
-        }
 
         // yes, this can generate some abominations
         if (_random.Prob(DoubleFirstNameChance))
@@ -308,6 +339,14 @@ public abstract partial class ESSharedAuditionsSystem
             lastName = Loc.GetString("es-name-hyphenation-fmt",
                 ("first", _random.Pick(dataset)),
                 ("second", _random.Pick(dataset)));
+        }
+
+        if (_random.Prob(ParticleChance))
+        {
+            var particleDataSet = _prototypeManager.Index(ParticleDataset);
+            lastName = Loc.GetString("es-name-normal-fmt",
+                ("first", _random.Pick(particleDataSet)),
+                ("second", lastName));
         }
 
         return lastName;

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Content.IntegrationTests.Pair;
-using JetBrains.Annotations;
 using Robust.Shared.Analyzers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
@@ -11,21 +10,14 @@ using Robust.UnitTesting;
 
 namespace Content.IntegrationTests.Tests._Citadel;
 
-/// <summary>
-///     A base class for data automatically injected by a game test.
-///     Can also be used directly in lieu of a parent class if you don't need much.
-/// </summary>
-/// <remarks>
-///     GameTest is powerful, but does not address multi-client nor multi-server situations.
-///     If you need multiple clients you currently must fall back to using testpairs yourself.
-/// </remarks>
-[Virtual]
-public partial class GameTestData
+[TestFixture]
+[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+public abstract partial class GameTest
 {
     private bool _pairDirty;
 
-    private List<EntityUid> _serverEntitiesToClean = new();
-    private List<EntityUid> _clientEntitiesToClean = new();
+    private readonly List<EntityUid> _serverEntitiesToClean = new();
+    private readonly List<EntityUid> _clientEntitiesToClean = new();
 
     /// <summary>
     ///     Settings for the client/server pair. By default, this gets you a client and server that have connected together.
@@ -59,18 +51,8 @@ public partial class GameTestData
     /// </summary>
     public IEntityManager CEntMan => Server.EntMan;
 
-    /// <summary>
-    ///     Marks the test pair as dirty, ensuring it is returned as such.
-    /// </summary>
-    public void MarkDirty()
-    {
-        _pairDirty = true;
-    }
-
-    /// <summary>
-    ///     Internal function to do initial setup. Don't use this..
-    /// </summary>
-    public async Task DoSetup()
+    [SetUp]
+    public virtual async Task DoSetup()
     {
         _pairDirty = false;
         Pair = await PoolManager.GetServerClient(PoolSettings);
@@ -104,9 +86,7 @@ public partial class GameTestData
         }
     }
 
-    /// <summary>
-    ///     Internal function to do post-test teardown. Don't use this..
-    /// </summary>
+    [TearDown]
     public async Task DoTeardown()
     {
         try
@@ -146,6 +126,5 @@ public partial class GameTestData
                 await Pair.DisposeAsync();
         }
     }
-
 
 }

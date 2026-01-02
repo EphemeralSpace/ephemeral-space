@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -57,9 +58,22 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
     public sealed record DirectEntry(IReadOnlySet<ProtoId<ESMaskPrototype>> Masks, int Count, bool Subtract)
         : MasqueradeEntry(Count, Subtract)
     {
-        protected override ProtoId<ESMaskPrototype> Pick(IRobustRandom random, IPrototypeManager proto)
+        public override List<ProtoId<ESMaskPrototype>> PickMasks(IRobustRandom random, IPrototypeManager proto)
         {
-            return random.Pick(Masks);
+            DebugTools.Assert(!Subtract, "Subtractive entries shouldn't ever be picked from.");
+
+            var list = new List<ProtoId<ESMaskPrototype>>(Count);
+
+            for (var i = 0; i < Count; i++)
+            {
+                list.Add(random.Pick(Masks));
+            }
+
+            return list;
+        }
+        public override string ToString()
+        {
+            return base.ToString();
         }
     }
 
@@ -69,9 +83,16 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
     public sealed record SetEntry(ProtoId<ESMaskSetPrototype> MaskSet, int Count, bool Subtract)
         : MasqueradeEntry(Count, Subtract)
     {
-        protected override ProtoId<ESMaskPrototype> Pick(IRobustRandom random, IPrototypeManager proto)
+        public override List<ProtoId<ESMaskPrototype>> PickMasks(IRobustRandom random, IPrototypeManager proto)
         {
-            return proto.Index(MaskSet).Pick(random);
+            var set = proto.Index(MaskSet);
+
+            return set.Pick(random, Count);
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
         }
     }
 
@@ -155,21 +176,7 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
         }
     }
 
-    protected abstract ProtoId<ESMaskPrototype> Pick(IRobustRandom random, IPrototypeManager proto);
-
-    public List<ProtoId<ESMaskPrototype>> PickMasks(IRobustRandom random, IPrototypeManager proto)
-    {
-        DebugTools.Assert(!Subtract, "Subtractive entries shouldn't ever be picked from.");
-
-        var list = new List<ProtoId<ESMaskPrototype>>(Count);
-
-        for (var i = 0; i < Count; i++)
-        {
-            list.Add(Pick(random, proto));
-        }
-
-        return list;
-    }
+    public abstract List<ProtoId<ESMaskPrototype>> PickMasks(IRobustRandom random, IPrototypeManager proto);
 
     public int Count { get; private set; } = Count;
     public bool Subtract { get; private set; } = Subtract;

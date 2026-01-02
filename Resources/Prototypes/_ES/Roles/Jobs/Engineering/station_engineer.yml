@@ -1,0 +1,26 @@
+- type: job
+  id: ESStationEngineer
+  name: ESjob-name-engineer
+  description: ESjob-description-engineer
+  playTimeTracker: ESJobStationEngineer
+  startingGear: ESStationEngineerGear
+  icon: "JobIconStationEngineer"
+  supervisors: job-supervisors-hop
+  access:
+  - Maintenance
+  - Engineering
+  - External
+  extendedAccess:
+  - Atmospherics
+
+- type: startingGear
+  id: ESStationEngineerGear
+  equipment:
+    shoes: ClothingShoesColorOrange
+    eyes: ClothingEyesGlassesMeson
+    id: EngineerPDA
+    belt: ClothingBeltUtilityEngineering
+    ears: ClothingHeadsetEngineering
+    head: ClothingHeadHatHardhatYellow
+    jumpsuit: ClothingUniformJumpsuitEngineering
+    outerClothing: ClothingOuterVestHazard

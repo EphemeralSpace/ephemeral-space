@@ -3,6 +3,7 @@
   name: es-troupe-crew-name
   color: yellow
   metaIcon: ESCrew
+  gameRule: ESTroupeRuleCrew
   objectives:
     all:
     - id: ESObjectiveResearchTelescience
@@ -12,6 +13,7 @@
   name: es-troupe-traitor-name
   color: red
   metaIcon: ESTraitor
+  gameRule: ESTroupeRuleTraitor
   prohibitedJobs:
   # Command
   - Captain

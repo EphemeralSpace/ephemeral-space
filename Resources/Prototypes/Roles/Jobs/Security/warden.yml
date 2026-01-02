@@ -35,12 +35,11 @@
     eyes: ClothingEyesGlassesSecurity
     id: WardenPDA
     ears: ClothingHeadsetSecurity
-    #pocket1: WeaponPistolMk58 - ES Change removes roundstart gun, replaces it with taser
-    pocket1: ESWeaponHybridTaser
+    pocket1: WeaponPistolMk58
   storage:
     back:
     - Flash
-    #- MagazinePistol - ES Change removes roundstart gun, replaces it with taser
+    - MagazinePistol
 
 - type: chameleonOutfit
   id: WardenChameleonOutfit

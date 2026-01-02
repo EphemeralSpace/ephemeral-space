@@ -28,7 +28,7 @@ public sealed partial class ESStationCheckbox : BoxContainer
         {
             OnPressed?.Invoke(station);
         };
-        StationLabel.Text = entMan.GetComponent<MetaDataComponent>(station).EntityName;
+        StationLabel.SetMessage(entMan.GetComponent<MetaDataComponent>(station).EntityName);
         Station = station;
     }
 

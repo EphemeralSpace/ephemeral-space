@@ -10,6 +10,7 @@ namespace Content.Shared._ES.Auditions.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ESCharacterComponent : Component
 {
+    [ViewVariables]
     public string Name => Profile.Name;
 
     [DataField, AutoNetworkedField]

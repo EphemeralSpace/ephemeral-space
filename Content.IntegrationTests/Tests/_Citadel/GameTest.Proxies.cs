@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.IntegrationTests.Tests._Citadel;
 
-public partial class GameTestData
+public abstract partial class GameTest
 {
+    /// <summary>
+    ///     Marks the test pair as dirty, ensuring it is returned as such.
+    /// </summary>
+    public void MarkDirty()
+    {
+        _pairDirty = true;
+    }
+
     public TestMapData? TestMap => Pair.TestMap;
 
     /// <summary>
@@ -281,5 +290,14 @@ public partial class GameTestData
 
         ent = null;
         return false;
+    }
+
+    public async Task<ICommonSession[]> AddDummySessionsSync(int count = 1)
+    {
+        var res = await Server.AddDummySessions(count);
+
+        await Pair.ReallyBeIdle(); // That takes a while.
+
+        return res;
     }
 }

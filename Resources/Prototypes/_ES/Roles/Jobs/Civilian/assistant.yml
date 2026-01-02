@@ -1,0 +1,19 @@
+- type: job
+  id: ESAssistant
+  name: ESjob-name-assistant
+  description: ESjob-description-assistant
+  playTimeTracker: ESJobAssistant
+  startingGear: ESAssistantGear
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-everyone
+  access:
+  - Maintenance
+
+- type: startingGear
+  id: ESAssistantGear
+  equipment:
+    shoes: ClothingShoesColorBlack
+    id: PassengerPDA
+    ears: ClothingHeadsetGrey
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    back: ClothingBackpack

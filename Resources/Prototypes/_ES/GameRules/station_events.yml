@@ -55,6 +55,7 @@
   parent: ESBaseStationEvent
   id: ESStationEventBreakerFlip
   name: Breaker Flip
+  description: Disable random APCs on the station, forcing engineering to seek them out and reenable them.
   components:
   - type: BreakerFlipRule
   - type: StationEvent
@@ -68,6 +69,7 @@
   parent: ESBaseStationEvent
   id: ESStationEventGasLeak
   name: Gas Leak
+  description: Choose a location to be flooded with a gas of your choice.
   components:
   - type: StationEvent
     startAnnouncement: station-event-gas-leak-start-announcement
@@ -112,6 +114,7 @@
   parent: ESBaseStationEvent
   id: ESStationEventGreyTideVirus
   name: Grey Tide Virus
+  description: Infect a department with the Grey Tide virus, bolting open random doors and unlocking crates and closets.
   components:
   - type: StationEvent
     startAudio:
@@ -148,6 +151,7 @@
   parent: ESBaseStationEvent
   id: ESStationEventPowerGridCheck
   name: Power Grid Check
+  description: Initiate a station-wide power grid check, cutting all station power for a few minutes.
   components:
   - type: StationEvent
     startAnnouncement: station-event-power-grid-check-start-announcement
@@ -169,6 +173,7 @@
   parent: ESBaseStationEvent
   id: ESStationEventSolarFlare
   name: Solar Flare
+  description: Start a solar flare, interfering with radio communications and breaking lights
   components:
   - type: StationEvent
     startAudio:
@@ -200,6 +205,7 @@
   parent: ESBaseStationEventDelayed
   id: ESStationEventVentClog
   name: Vent Clog
+  description: Cause a scrubber overflow, shooting potentially deadly foam all over the station.
   components:
   - type: StationEvent
     startAudio:
@@ -214,6 +220,7 @@
   parent: ESBaseStationEventDelayed
   id: ESStationEventMeteorSwarm
   name: Meteor Swarm
+  description: Launch deadly meteors at the exterior of the station that smash through walls.
   components:
   - type: StationEvent
     startAudio: null
@@ -231,6 +238,7 @@
   parent: ESBaseStationEventDelayed
   id: ESStationEventSpaceDust
   name: Space Dust
+  description: Send waves of space dust that batter the station from all sides.
   components:
   - type: StationEvent
     startAudio: null
@@ -256,6 +264,7 @@
   parent: ESBaseStationEventNoDelay
   id: ESStationEventElectricalFire
   name: Electrical Fire
+  description: Start a raging fire somewhere on the station.
   components:
   - type: StationEvent
     startAudio:

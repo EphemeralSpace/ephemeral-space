@@ -1,3 +1,4 @@
+using Content.Shared._ES.Masks.Components;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
@@ -48,4 +49,7 @@ public sealed partial class ESTroupePrototype : IPrototype, IInheritingPrototype
     /// </summary>
     [DataField]
     public EntityTableSelector Objectives = new NoneSelector();
+
+    [DataField(required: true)]
+    public EntProtoId<ESTroupeRuleComponent> GameRule = default!;
 }

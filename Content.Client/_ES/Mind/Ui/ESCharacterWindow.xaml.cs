@@ -1,7 +1,7 @@
+using Content.Client._ES.Core;
 using Content.Client._ES.Masks;
 using Content.Client._ES.Objectives;
 using Content.Client._ES.Objectives.Ui;
-using Content.Client.Message;
 using Content.Client.Mind;
 using Content.Client.Roles;
 using Content.Client.UserInterface.Controls;
@@ -35,6 +35,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
         _mind = _ent.System<MindSystem>();
         _objective = _ent.System<ESObjectiveSystem>();
 
+        ObjectiveHeaderLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-objective-title"));
         Update();
     }
 
@@ -50,21 +51,21 @@ public sealed partial class ESCharacterWindow : FancyWindow
             return;
 
         if (_ent.TryGetComponent<ESCharacterComponent>(mind, out var character))
-            NameLabel.SetMarkup(Loc.GetString("es-character-window-name-fmt", ("name", character.Name)));
+            NameLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-name-fmt", ("name", character.Name)));
 
         if (_mask.TryGetMask((mind, mindComp), out var maskId))
         {
             if (_job.MindTryGetJob(mind, out var job))
             {
-                JobLabel.SetMarkup(Loc.GetString("es-character-window-job-fmt", ("name", job.LocalizedName)));
+                JobLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-job-fmt", ("name", job.LocalizedName)));
             }
 
             var mask = _prototype.Index(maskId);
             var troupe = _prototype.Index(mask.Troupe);
-            MaskLabel.SetMarkup(Loc.GetString("es-character-window-mask-fmt",
+            MaskLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-mask-fmt",
                 ("name", Loc.GetString(mask.Name)),
                 ("color", mask.Color)));
-            TroupeLabel.SetMarkup(Loc.GetString("es-character-window-troupe-fmt",
+            TroupeLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-troupe-fmt",
                 ("name", Loc.GetString(troupe.Name)),
                 ("color", troupe.Color)));
         }

@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: ESTips
+  values:
+    prefix: es-tips-dataset-
+    count: 86
