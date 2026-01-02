@@ -1,14 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server._ES.Masks.Masquerades;
 using Content.Server.Chat.Managers;
-using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
 using Content.Shared._Citadel.Utilities;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Masks.Components;
-using Content.Shared._ES.Masks.Masquerades;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Random.Helpers;
@@ -27,12 +24,11 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly ESMaskSystem _mask = default!;
     [Dependency] private readonly MindSystem _mind = default!;
 
     // Icky global state.
-    private ProtoId<ESMasqueradePrototype>? _forcedMasquerade = null;
+    private ProtoId<ESMasqueradePrototype>? _forcedMasquerade;
 
     public override Type[]? RoundEndTextBefore => [typeof(ESMaskSystem)];
 
@@ -64,6 +60,15 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
 
         ev.Handled = true;
 
+        // Add all of our game rules ahead of time so that they don't get started inside ApplyMask
+        // This is because they may have logic that is dependent on having members assigned when they start.
+        var troupeRules = new List<EntityUid>();
+        foreach (var troupeId in GetTroupesFromMasquerade(rule.Masquerade, ev.Players.Count, rule.Seed.IntoRandomizer()))
+        {
+            var troupe = _proto.Index(troupeId);
+            troupeRules.Add(GameTicker.AddGameRule(troupe.GameRule));
+        }
+
         // Ensure no funny business with the player list, as the order masquerades output masks isn't random.
         rule.Rng.Shuffle(ev.Players);
 
@@ -83,7 +88,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
                 if (!_mask.IsPlayerValid(troupe, player))
                     continue;
 
-                _mask.ApplyMask(mind.Value, mask, null);
+                _mask.ApplyMask(mind.Value, mask);
 
                 players.RemoveAt(i);
                 goto exit; // escape to next mask.
@@ -97,7 +102,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
                 if (!TryGetMindOrLog(player, out var mind))
                     continue;
 
-                _mask.ApplyMask(mind.Value, mask, null);
+                _mask.ApplyMask(mind.Value, mask);
 
                 players.RemoveAt(i);
                 goto exit; // escape to next mask.
@@ -108,6 +113,13 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
             Log.Error($"Was unable to assign {mask} to any player.");
 
             exit: ;
+        }
+
+        // Now that all of our roles have been assigned, we can start the rules
+        // Which will create objectives and run other logic as necessary.
+        foreach (var troupeRule in troupeRules)
+        {
+            GameTicker.StartGameRule(troupeRule);
         }
     }
 
@@ -177,17 +189,16 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         // Random seed to roll with.
         component.Seed = new RngSeed(_random);
         component.Rng = component.Seed.IntoRandomizer();
-        component.Masquerade = SelectMasquerade(_gameTicker.ReadyPlayerCount());
+        component.Masquerade = SelectMasquerade(GameTicker.ReadyPlayerCount());
 
         if (component.Masquerade is null)
             return;
 
         _chat.SendAdminAlert($"Upcoming masquerade is {component.Masquerade.ID}.");
 
-        // TODO: Masquerades should auto-discover the necessary troupe rules.
         foreach (var rule in component.Masquerade.GameRules)
         {
-            _gameTicker.StartGameRule(rule);
+            GameTicker.StartGameRule(rule);
         }
     }
 
@@ -202,12 +213,35 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
             var weighted = _proto.EnumeratePrototypes<ESMasqueradePrototype>()
                 .Where(x => x.Weight is not null)
                 .Where(x => players >= x.Masquerade.MinPlayers && (x.Masquerade.MaxPlayers >= players || x.Masquerade.MaxPlayers is null))
-                .ToDictionary(x => x, x => (float)x.Weight!.Value);
+                .ToDictionary(x => x, x => x.Weight!.Value);
 
             if (weighted.Count == 0)
                 return null;
 
             return _random.Pick(weighted);
         }
+    }
+
+    /// <summary>
+    /// For a given masquerade at a specified playercount and random seed, returns the troupes that will be present.
+    /// </summary>
+    public HashSet<ProtoId<ESTroupePrototype>> GetTroupesFromMasquerade(ESMasqueradePrototype masquerade, int playerCount, IRobustRandom random)
+    {
+        // Try and get the unique masks we'll have at this pop level for this seed
+        if (!masquerade.Masquerade.TryGetMasks(playerCount, random, _proto,  out var masks))
+            return [];
+
+        foreach (var mask in masquerade.Masquerade.DefaultMask.PickMasks(random, _proto))
+        {
+            masks.Add(mask);
+        }
+
+        var troupes = new HashSet<ProtoId<ESTroupePrototype>>();
+        foreach (var mask in masks)
+        {
+            troupes.Add(_proto.Index(mask).Troupe);
+        }
+
+        return troupes;
     }
 }

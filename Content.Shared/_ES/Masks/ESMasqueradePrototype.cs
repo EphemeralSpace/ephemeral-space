@@ -3,8 +3,6 @@ using Content.Shared._ES.Masks.Masquerades;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
-using YamlDotNet.Serialization.Utilities;
 
 namespace Content.Shared._ES.Masks;
 
@@ -79,8 +77,8 @@ public sealed partial class ESMasqueradePrototype : IPrototype, ISerializationHo
     /// <summary>
     ///     The gamerules to use for this masquerade.
     /// </summary>
-    [DataField(required: true, serverOnly: true)]
-    public IReadOnlyList<EntProtoId> GameRules { get; private set; } = default!;
+    [DataField(serverOnly: true)]
+    public IReadOnlyList<EntProtoId> GameRules { get; private set; } = [];
 
     [DataField(required: true, priority: 1)]
     public MasqueradeKind Masquerade { get; private set; } = default!;

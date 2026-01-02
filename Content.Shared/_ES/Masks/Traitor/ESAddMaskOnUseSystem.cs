@@ -89,7 +89,7 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
             return;
 
         _mask.RemoveMask((mind, mindComponent));
-        _mask.ApplyMask((mind, mindComponent), ent.Comp.MaskToAdd, null);
+        _mask.ApplyMask((mind, mindComponent), ent.Comp.MaskToAdd);
 
         ent.Comp.Used = true;
         Dirty(ent);

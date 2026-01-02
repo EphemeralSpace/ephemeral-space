@@ -86,7 +86,7 @@ public abstract class ESSharedMaskSystem : EntitySystem
                 {
                     if (!Mind.TryGetMind(actorComp.PlayerSession, out var mind, out var mindComp))
                         return;
-                    ApplyMask((mind, mindComp), mask, null);
+                    ApplyMask((mind, mindComp), mask);
                 },
             };
             args.Verbs.Add(verb);
@@ -284,7 +284,7 @@ public abstract class ESSharedMaskSystem : EntitySystem
     /// </remarks>
     public virtual void ApplyMask(Entity<MindComponent> mind,
         ProtoId<ESMaskPrototype> maskId,
-        Entity<ESTroupeRuleComponent>? troupe)
+        Entity<ESTroupeRuleComponent>? troupe = null)
     {
         // No Op
     }

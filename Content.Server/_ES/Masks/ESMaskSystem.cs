@@ -165,7 +165,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         return true;
     }
 
-    public override void ApplyMask(Entity<MindComponent> mind, ProtoId<ESMaskPrototype> maskId, Entity<ESTroupeRuleComponent>? troupe)
+    public override void ApplyMask(Entity<MindComponent> mind, ProtoId<ESMaskPrototype> maskId, Entity<ESTroupeRuleComponent>? troupe = null)
     {
         var mask = PrototypeManager.Index(maskId);
 
