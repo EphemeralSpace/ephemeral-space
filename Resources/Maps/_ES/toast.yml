@@ -6612,10 +6612,10 @@ entities:
     - type: Transform
       pos: -15.502963,-35.44067
       parent: 2
-  - uid: 14599
+  - uid: 14589
     components:
     - type: Transform
-      pos: -15.414694,-35.54006
+      pos: -15.299164,-35.545246
       parent: 2
 - proto: ButtonFrameCaution
   entities:
@@ -45135,12 +45135,12 @@ entities:
     - type: Transform
       pos: -19.5,-20.5
       parent: 2
-  - uid: 14587
+  - uid: 15000
     components:
     - type: Transform
       pos: -7.5,-9.5
       parent: 2
-  - uid: 14588
+  - uid: 15001
     components:
     - type: Transform
       pos: -8.5,-9.5
@@ -62966,7 +62966,7 @@ entities:
       parent: 2
 - proto: HydroponicsToolClippers
   entities:
-  - uid: 14589
+  - uid: 15002
     components:
     - type: Transform
       pos: -27.54183,-7.4620256
@@ -75383,20 +75383,20 @@ entities:
       parent: 2
 - proto: TrashBag
   entities:
-  - uid: 6814
-    components:
-    - type: Transform
-      pos: -11.200347,-36.65449
-      parent: 2
   - uid: 9075
     components:
     - type: Transform
       pos: -83.5,-11.5
       parent: 2
-  - uid: 14598
+  - uid: 14587
     components:
     - type: Transform
-      pos: -11.366871,-36.526394
+      pos: -11.37136,-36.65018
+      parent: 2
+  - uid: 14588
+    components:
+    - type: Transform
+      pos: -11.163027,-36.53552
       parent: 2
 - proto: TurnstileGenpopEnter
   entities:
