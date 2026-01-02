@@ -7,5 +7,5 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponRevolverInspector
-        - id: SpeedLoaderMagnum
+        - id: ESWeaponRevolver357
+        - id: ESSpeedLoader357
