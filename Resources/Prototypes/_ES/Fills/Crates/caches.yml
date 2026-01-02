@@ -92,6 +92,7 @@
     - id: ESWeaponPistol9mm
     - id: ESMagazine9mm
 
+# Demolitionist
 - type: entity
   parent: ESCrateCache
   id: ESCrateCacheTraitorDemolitionist
@@ -108,9 +109,10 @@
     all:
     - id: C4
       amount: 2
-    - id: SyndieMiniBomb
+    - id: ExGrenade
       amount: 2
     - id: ESMicroBombImplanter
+
 # Veteran
 - type: entity
   parent: ESCrateCache
