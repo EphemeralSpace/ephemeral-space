@@ -33,6 +33,7 @@
     shoes: ClothingShoesBootsJack
     eyes: ClothingEyesGlassesSecurity
     id: HoSPDA
+    gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
     head: ClothingHeadHatHoshat
     belt: ClothingBeltSecurityFilled

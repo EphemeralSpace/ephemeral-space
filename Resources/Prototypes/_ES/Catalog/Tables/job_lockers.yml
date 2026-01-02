@@ -14,7 +14,6 @@
     - id: RubberStampCaptain
     - id: ESWeaponHybridTaser
     - id: ClothingEyesGlassesSecurity
-    - id: ClothingHandsGlovesCaptain
 
 - type: entityTable
   id: ESLockerFillHeadOfPersonnel
@@ -50,7 +49,6 @@
     - id: ClothingHeadsetAltSecurity
     - id: ClothingOuterCoatHoSTrench
     - id: ClothingShoesBootsJack
-    - id: ClothingHandsGlovesColorBlack
     - id: FlashlightSeclite
     - id: RubberStampHos
     - id: DrinkHosFlask
@@ -158,4 +156,3 @@
     - id: ClothingEyesHudMedical
     - id: ClothingHeadHatSurgcapBlue
     - id: ClothingMaskSterile
-    - id: ClothingHandsGlovesColorBlue

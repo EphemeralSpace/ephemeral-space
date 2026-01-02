@@ -15,6 +15,7 @@
   equipment:
     shoes: ClothingShoesChef
     id: SciencePDA
+    gloves: ClothingHandsGlovesLatex
     neck: ClothingNeckTieSci
     ears: ClothingHeadsetScience
     jumpsuit: ClothingUniformJumpsuitScientist

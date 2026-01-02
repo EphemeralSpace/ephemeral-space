@@ -17,6 +17,7 @@
   equipment:
     shoes: ClothingShoesColorWhite
     id: MedicalPDA
+    gloves: ClothingHandsGlovesColorBlue
     head: ClothingHeadHatSurgcapBlue
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled

@@ -17,12 +17,12 @@
     shoes: ClothingShoesColorWhite
     eyes: ClothingEyesGlassesChemical
     id: ChemistryPDA
+    gloves: ClothingHandsGlovesColorBlue
     ears: ClothingHeadsetMedical
     belt: ChemBag
     jumpsuit: ClothingUniformJumpsuitChemistry
     outerClothing: ClothingOuterCoatLabChemOpened
     back: ClothingBackpackChemistry
-    pocket1: HandLabeler
   storage:
     back:
     - ESBoxSurvivalMedical

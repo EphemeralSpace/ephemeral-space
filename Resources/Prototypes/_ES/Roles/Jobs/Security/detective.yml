@@ -24,6 +24,7 @@
     shoes: ClothingShoesColorBrown
     eyes: ClothingEyesGlassesSecurity
     id: DetectivePDA
+    gloves: ClothingHandsGlovesForensic
     ears: ClothingHeadsetSecurity
     head: ClothingHeadHatFedoraBrown
     neck: ClothingNeckTieDet

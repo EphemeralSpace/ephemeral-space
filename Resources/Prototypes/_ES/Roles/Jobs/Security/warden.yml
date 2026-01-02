@@ -28,6 +28,7 @@
     shoes: ClothingShoesBootsJack
     eyes: ClothingEyesGlassesSecurity
     id: WardenPDA
+    gloves: ClothingHandsGlovesColorBlack
     ears: ClothingHeadsetSecurity
     head: ClothingHeadHatWarden
     jumpsuit: ClothingUniformJumpsuitWarden

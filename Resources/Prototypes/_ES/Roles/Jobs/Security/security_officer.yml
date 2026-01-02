@@ -23,6 +23,7 @@
     shoes: ClothingShoesBootsJack
     eyes: ClothingEyesGlassesSecurity
     id: SecurityPDA
+    gloves: ClothingHandsGlovesColorBlack
     ears: ClothingHeadsetSecurity
     head: ClothingHeadHelmetBasic
     belt: ClothingBeltSecurityFilled

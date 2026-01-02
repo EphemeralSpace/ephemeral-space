@@ -24,6 +24,7 @@
     shoes: ClothingShoesColorBrown
     eyes: ClothingEyesGlassesSecurity
     id: CaptainPDA
+    gloves: ClothingHandsGlovesCaptain
     ears: ClothingHeadsetAltCommand
     head: ClothingHeadHatCaptain
     jumpsuit: ClothingUniformJumpsuitCaptain

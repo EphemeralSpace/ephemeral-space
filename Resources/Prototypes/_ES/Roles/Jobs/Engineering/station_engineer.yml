@@ -19,6 +19,7 @@
     shoes: ClothingShoesColorOrange
     eyes: ClothingEyesGlassesMeson
     id: EngineerPDA
+    gloves: ClothingHandsGlovesColorYellow
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
     head: ClothingHeadHatHardhatYellow
