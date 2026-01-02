@@ -24,7 +24,6 @@
     all:
     - id: ESWeaponPistol9mmSilenced
     - id: ESMagazine9mm
-      amount: 2
     - id: ESSleepyPen
       amount: 2
     - id: EmpGrenade
@@ -66,7 +65,6 @@
     all:
     - id: ESWeaponRevolver357
     - id: ESSpeedLoader357
-      amount: 2
     - id: KitchenKnife
     - id: ClothingOuterArmorBasic
     - id: ExGrenade

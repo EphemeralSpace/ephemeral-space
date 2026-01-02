@@ -96,9 +96,11 @@
   name: emergency shuttle console
   description: Handles authorization to early launch the shuttle.
   components:
-  - type: AccessReader
-    access:
-    - [ Command ]
+# ES Start
+#  - type: AccessReader
+#    access:
+#    - [ Command ]
+# ES End
   - type: EmergencyShuttleConsole
   - type: ActivatableUI
     key: enum.EmergencyConsoleUiKey.Key
@@ -397,8 +399,10 @@
     color: "#1f8c28"
   - type: Computer
     board: CriminalRecordsComputerCircuitboard
-  - type: AccessReader
-    access: [["Security"]]
+# ES Start
+#  - type: AccessReader
+#    access: [["Security"]]
+# ES End
   - type: GuideHelp
     guides:
     - CriminalRecords
@@ -670,8 +674,10 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: AccessReader
-    access: [[ "Command" ]]
+# ES Start
+#  - type: AccessReader
+#    access: [[ "Command" ]]
+# ES End
   - type: CommunicationsConsole
     title: comms-console-announcement-title-station
   - type: DeviceNetwork
@@ -717,8 +723,10 @@
       state: syndie_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: AccessReader
-    access: [[ "NuclearOperative" ]]
+# ES Start
+#  - type: AccessReader
+#    access: [[ "NuclearOperative" ]]
+# ES End
   - type: CommunicationsConsole
     title: comms-console-announcement-title-nukie
     color: "#ff0000"
@@ -751,8 +759,10 @@
       state: wizard_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: AccessReader
-    access: [[ "Wizard" ]]
+# ES Start
+#  - type: AccessReader
+#    access: [[ "Wizard" ]]
+# ES End
   - type: CommunicationsConsole
     title: comms-console-announcement-title-wizard
     color: "#ff00ff"
@@ -785,8 +795,10 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: AccessReader
-    access: [[ "CentralCommand" ]]
+# ES Start
+#  - type: AccessReader
+#    access: [[ "CentralCommand" ]]
+# ES End
   - type: CommunicationsConsole
     title: comms-console-announcement-title-centcom
     color: "#1d8bad"
@@ -1467,8 +1479,10 @@
     board: ComputerMassMediaCircuitboard
   - type: DeviceNetworkRequiresPower
   - type: NewsWriter
-  - type: AccessReader
-    access: [[ "Service" ]]
+# ES Start
+#  - type: AccessReader
+#    access: [[ "Service" ]]
+# ES End
   - type: ActivatableUI
     key: enum.NewsWriterUiKey.Key
   - type: ActivatableUIRequiresVision

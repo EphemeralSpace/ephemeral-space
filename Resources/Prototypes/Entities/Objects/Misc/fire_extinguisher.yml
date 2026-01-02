@@ -11,7 +11,11 @@
       map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Item
     sprite: Objects/Misc/fire_extinguisher.rsi
-    size: Normal
+# ES Start
+    # Consistency with gas tanks + makes pocket extinguishers more valuable
+    size: Large
+    storedRotation: -90
+# ES END
   - type: SolutionContainerManager
     solutions:
       spray:
