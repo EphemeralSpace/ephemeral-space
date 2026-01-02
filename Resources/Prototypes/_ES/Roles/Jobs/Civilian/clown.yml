@@ -40,5 +40,6 @@
     pocket2: ClownRecorder
   storage:
     back:
+    - ESBoxHug
     - RubberStampClown
     - CrayonRainbow

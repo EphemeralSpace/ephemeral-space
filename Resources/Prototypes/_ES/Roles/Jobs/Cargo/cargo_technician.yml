@@ -21,3 +21,6 @@
     head: ClothingHeadHatCargosoft
     jumpsuit: ClothingUniformJumpsuitCargo
     back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival

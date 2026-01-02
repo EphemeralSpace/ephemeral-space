@@ -17,3 +17,6 @@
     ears: ClothingHeadsetGrey
     jumpsuit: ClothingUniformJumpsuitColorGrey
     back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival

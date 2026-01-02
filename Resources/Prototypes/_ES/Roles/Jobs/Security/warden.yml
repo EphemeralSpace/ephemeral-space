@@ -36,4 +36,5 @@
     pocket1: ESWeaponHybridTaser
   storage:
     back:
+    - ESBoxSurvival
     - Flash

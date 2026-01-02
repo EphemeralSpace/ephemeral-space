@@ -24,3 +24,6 @@
     jumpsuit: ClothingUniformJumpsuitBartender
     outerClothing: ClothingOuterVest
     back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival

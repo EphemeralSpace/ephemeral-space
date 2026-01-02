@@ -55,4 +55,5 @@
     back: ClothingBackpack
   storage:
     back:
+    - ESBoxSurvival
     - Flash

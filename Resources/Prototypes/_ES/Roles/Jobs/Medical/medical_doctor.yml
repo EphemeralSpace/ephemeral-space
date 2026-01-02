@@ -17,11 +17,12 @@
   equipment:
     shoes: ClothingShoesColorWhite
     id: MedicalPDA
-    gloves: ClothingHandsGlovesColorBlue
     head: ClothingHeadHatSurgcapBlue
-    mask: ClothingMaskSterile
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
     jumpsuit: ClothingUniformJumpsuitMedicalDoctor
     outerClothing: ClothingOuterCoatLabOpened
     back: ClothingBackpackMedical
+  storage:
+    back:
+    - ESBoxSurvivalMedical

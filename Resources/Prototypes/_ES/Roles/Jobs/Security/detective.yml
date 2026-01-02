@@ -27,12 +27,13 @@
     ears: ClothingHeadsetSecurity
     head: ClothingHeadHatFedoraBrown
     neck: ClothingNeckTieDet
-    belt: ClothingBeltHolsterFilled
+    belt: ESClothingBeltHolsterFilled
     jumpsuit: ClothingUniformJumpsuitDetective
     outerClothing: ClothingOuterCoatDetectiveLoadout
     back: ClothingBackpackSecurity
   storage:
     back:
+    - ESBoxSurvival
     - Flash
     - ForensicPad
     - ForensicScanner

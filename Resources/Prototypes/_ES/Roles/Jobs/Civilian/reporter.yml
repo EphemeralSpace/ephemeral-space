@@ -19,3 +19,6 @@
     head: ClothingHeadHatFedoraGrey
     jumpsuit: ClothingUniformJumpsuitReporter
     back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival

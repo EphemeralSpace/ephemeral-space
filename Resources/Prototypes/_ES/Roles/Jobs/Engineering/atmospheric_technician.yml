@@ -22,3 +22,6 @@
     ears: ClothingHeadsetEngineering
     jumpsuit: ClothingUniformJumpsuitAtmos
     back: ClothingBackpackEngineering
+  storage:
+    back:
+    - ESBoxSurvival

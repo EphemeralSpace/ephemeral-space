@@ -20,3 +20,6 @@
     jumpsuit: ClothingUniformJumpsuitScientist
     outerClothing: ClothingOuterCoatLabOpened
     back: ClothingBackpackScience
+  storage:
+    back:
+    - ESBoxSurvival

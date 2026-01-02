@@ -25,3 +25,6 @@
     belt: ClothingBeltJanitorFilled
     jumpsuit: ClothingUniformJumpsuitJanitor
     back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival
