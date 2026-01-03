@@ -25,6 +25,7 @@
       mapLight: "#00a80eff"
     - timeBeforeEnd: 1s
       announcementText: es-radstorm-starting-announcement
-      announcementSound: /Audio/_ES/Announcements/attention_high.ogg
+      announcementSound: /Audio/_ES/Announcements/radstorm_start.ogg
       announcementDistortion: 0.8
+      forceStationLightColor: "#3c923aff"
       mapLight: "#00ff15ff"

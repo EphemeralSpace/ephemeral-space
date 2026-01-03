@@ -75,5 +75,8 @@ public partial class ESRadstormPhaseConfig
     public Color? MapLight;
 
     [DataField]
+    public Color? ForceStationLightColor;
+
+    [DataField]
     public bool SpaceDangerous;
 }

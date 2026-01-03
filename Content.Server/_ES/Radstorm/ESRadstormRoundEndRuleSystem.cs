@@ -8,8 +8,10 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Light.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
@@ -30,6 +32,7 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private readonly PointLightSystem _pointlight = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -142,6 +145,20 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
         {
             mapLight.AmbientLightColor = phase.MapLight.Value;
             Dirty(map, mapLight);
+        }
+
+        // todo this is silly jank do it better like with postprocess etc
+        // but i just want some minor juice for now
+        if (phase.ForceStationLightColor != null)
+        {
+            var query = EntityQueryEnumerator<PoweredLightComponent, TransformComponent>();
+            while (query.MoveNext(out var uid, out _, out var xform))
+            {
+                if (xform.MapID != _ticker.DefaultMap)
+                    continue;
+
+                _pointlight.SetColor(uid, phase.ForceStationLightColor.Value);
+            }
         }
 
         if (phase.SpaceDangerous)
