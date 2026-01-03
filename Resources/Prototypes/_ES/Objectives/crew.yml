@@ -1,5 +1,17 @@
 - type: entity
   parent: ESBaseMaskObjective
+  id: ESObjectiveResearchTelescience
+  name: Research telescience
+  description: Work with the science team to teleport the station out of the way of the coming radiation storm.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: _ES/Structures/Machines/Telesci/portalgen.rsi
+      state: cube
+  - type: ESTelesciObjective
+
+- type: entity
+  parent: ESBaseMaskObjective
   id: ESObjectiveEatSummonedFruit
   description: Use your ability to manifest delicious fruits and feed them to the people on the station.
   components:
@@ -56,9 +68,9 @@
   - type: ESGuzzleObjective
   - type: ESCounterObjective
     title: es-guzzle-objective-title
-    target: 1000
-    maxTarget: 2000
-    targetIncrement: 100
+    target: 500
+    maxTarget: 1200
+    targetIncrement: 50
 
 - type: entity
   parent: ESBaseMaskObjective
@@ -91,8 +103,8 @@
     - SpaceCleaner
     - SpaceLube
   - type: ESCounterObjective
-    target: 100
-    maxTarget: 200
+    target: 70
+    maxTarget: 150
     targetIncrement: 10
 
 - type: entity
@@ -135,15 +147,15 @@
     - Poison
     - Blunt
   - type: ESCounterObjective
-    target: 250
-    maxTarget: 500
-    targetIncrement: 50
+    target: 75
+    maxTarget: 200
+    targetIncrement: 25
 
 - type: entity
   parent: ESBaseMaskObjective
   id: ESObjectiveTakeDamageFromSource
   name: Take damage from source
-  description: Take as much of a certain damage type as you can.
+  description: Take as much damage from a certain source as you can.
   components:
   - type: ESObjective
     icon:
@@ -155,9 +167,9 @@
     - ESEmitter
     - ESAncestor
   - type: ESCounterObjective
-    target: 100
-    maxTarget: 250
-    targetIncrement: 10
+    target: 75
+    maxTarget: 150
+    targetIncrement: 25
 
 - type: entity
   parent: ESBaseMaskObjective
@@ -173,6 +185,84 @@
   - type: ESCounterObjective
     title: es-daredevil-total-objective-title
     description: es-daredevil-total-objective-desc
-    target: 750
-    maxTarget: 1250
-    targetIncrement: 50
+    target: 300
+    maxTarget: 500
+    targetIncrement: 20
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveEatUniqueFoods
+  name: Eat unique foods
+  description: Your stomach yearns for the unknown, seek out all the different tastes of the world!
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Species/Human/organs.rsi
+      state: stomach
+  - type: ESEatUniqueFoodsObjective
+  - type: ESCounterObjective
+    title: es-eat-unique-foods-objective-title
+    target: 16
+    maxTarget: 30
+    targetIncrement: 2
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveEatFood
+  name: Eat a food
+  description: You have a particularly exotic craving. Make sure you satiate it!
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Consumable/Food/plates.rsi
+      state: plate
+  - type: ESEatFoodObjective
+    foods:
+    - FoodMeatCorgi
+    - MaterialSmileExtract
+    - FoodJellyAmanita
+    - FoodBurgerBear
+    - FoodSoupChiliClown
+    - FoodSoupMonkey
+    - FoodMeatAnomaly
+    - FoodBurgerClown
+    - FoodPizzaDank
+  - type: ESCounterObjective
+    target: 1
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveSurvive
+  name: Survive
+  description: Survive until the end of the shift at all costs.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Interface/Alerts/human_alive.rsi
+      state: health0
+  - type: ESMobStateObjective
+    desiredStates: [Alive, Critical]
+  - type: ESCounterObjective
+    target: 1
+    counter: 1
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveSacrificeHeal
+  name: Sacrifice yourself
+  description: Heal others by dying near them.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Interface/Alerts/human_dead.rsi
+      state: dead
+  - type: ESSacrificeHealObjective
+    sacrificeSolution:
+      maxVol: 40
+      reagents:
+      - ReagentId: Omnizine
+        Quantity: 40
+  - type: ESCounterObjective
+    title: es-sacrifice-objective-title
+    target: 2
+    maxTarget: 4

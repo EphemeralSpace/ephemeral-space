@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by Flareguy for Ephemeral Space",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "back"
+    },
+    {
+      "name": "back-broken"
+    },
+    {
+      "name": "base"
+    },
+    {
+      "name": "light"
+    },
+    {
+      "name": "fill"
+    },
+    {
+      "name": "front"
+    },
+    {
+      "name": "front-broken"
+    }
+  ]
+}

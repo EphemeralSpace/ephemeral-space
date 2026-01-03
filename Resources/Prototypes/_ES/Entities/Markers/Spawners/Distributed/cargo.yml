@@ -1,0 +1,101 @@
+- type: entityTable
+  id: ESCargoEngineeringCratesTable
+  table:
+    group:
+    - id: ESCrateMaterialGlass
+    - id: ESCrateMaterialSteel
+    - id: ESCrateMaterialPlastic
+    - id: ESCrateMaterialPlasteel
+      weight: 0.5
+    - id: ESCrateEngineeringCableBulk
+      weight: 0.25  #I'm not sure how useful this will be but I don't want to remove it yet
+
+- type: entityTable
+  id: ESCargoMedicalCratesTable
+  table:
+    group:
+    - id: ESCrateMedicalSupplies
+    - id: ESCrateEmergencySpecializedKits
+    - id: ESCrateEmergencyAdvancedKits
+      weight: 0.25
+    - id: ESCrateRestock
+      weight: 0.5 # Maybe this should be moved to a seperate roll
+
+- type: entityTable
+  id: ESCargoSecurityCratesTable
+  table:
+    group:
+    - id: ESCrateSecurityArmor
+    - id: ESCrateSecurityAmmo
+    - id: ESCrateSecurityPistols
+    - id: ESCrateSecurityShotgun
+      weight: 0.5
+    - id: ESCrateSecurityNonlethals
+      weight: 0.5
+    - id: ESCrateSecurityEnergyRifles
+      weight: 0.5
+    - id: ESCrateSecurityThrowables
+      weight: 0.5
+      
+- type: entityTable
+  id: ESCargoServiceCratesTable
+  table:
+    group:
+    - id: ESCrateFoodCooking
+    - id: ESCrateServiceJanitorialSupplies
+    - id: ESCrateServiceReplacementLights
+    - id: ESCrateRestock
+      weight: 0.25
+      
+- type: entityTable
+  id: ESCargoGeneralCratesTable
+  table:
+    group:
+    - id: ESGeneralToolsCrate
+    - id: ESCrateEmergencyFire
+    - id: WaterTankHighCapacity
+    - id: ESCrateEmergencyEVA
+    - id: ESAdvancedToolsCrate
+    - id: ESCrateRestock
+      weight: 0.25
+
+- type: entity
+  id: ESSpawnerRandomDistributedCargo
+  parent: ESMarkerBase
+  name: Cargo Crate Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: crate
+    - state: rand-dist
+    - state: cargo
+    - state: es
+    - state: c100
+  - type: ESDistributedSpawner
+    id: ESSpawnerCargo
+    tables:
+      - tableId: ESCargoEngineeringCratesTable
+      - tableId: ESCargoEngineeringCratesTable
+      - tableId: ESCargoEngineeringCratesTable
+      - tableId: ESCargoEngineeringCratesTable
+      - tableId: ESCargoMedicalCratesTable
+      - tableId: ESCargoMedicalCratesTable
+      - tableId: ESCargoSecurityCratesTable
+      - tableId: ESCargoServiceCratesTable
+      - tableId: ESCargoServiceCratesTable
+      - tableId: ESCargoGeneralCratesTable
+      - tableId: ESCargoGeneralCratesTable
+
+- type: entity
+  id: ESSpawnerMarkerDistributedCargo
+  parent: ESMarkerBase
+  name: Cargo Marker
+  components:
+  - type: Sprite
+    layers:
+    - state: crate
+    - state: marker
+    - state: cargo
+    - state: es
+  - type: ESDistributedSpawnerMarker
+    id: ESSpawnerCargo

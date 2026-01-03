@@ -1,0 +1,14 @@
+- type: ambientMusic
+  id: ESRadstorm
+  sound:
+    params:
+      volume: -8
+    collection: ESAmbienceRadstorm
+  rules: ESRadstormRules
+  priority: 4
+
+- type: rules
+  id: ESRadstormRules
+  rules:
+  - !type:ESAfterRoundTimeRule
+    time: 55m

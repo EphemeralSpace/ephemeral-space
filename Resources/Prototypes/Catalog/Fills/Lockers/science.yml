@@ -6,7 +6,9 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillLockerScientist
+# ES Start
+        tableId: ESFillLockerScientist
+# ES End
 
 - type: entityTable
   id: FillLockerScientist

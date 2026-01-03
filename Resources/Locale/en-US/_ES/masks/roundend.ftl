@@ -8,3 +8,6 @@ es-roundend-mask-player-summary = {$name} [color=gray]({$username})[/color] play
     *[Other] with the following objectives:
 }
 es-roundend-mask-player-group = [font size=14][color={$color}][bold]{$name}[/bold][/color][/font]
+
+es-roundend-masquerade-reveal = [font size=16]Annnd that's a wrap! Today's show was themed "{$masquerade}",
+                                which {$description}.[/font]

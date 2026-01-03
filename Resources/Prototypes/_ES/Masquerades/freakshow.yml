@@ -1,0 +1,25 @@
+- type: esMasquerade
+  id: Freakshow
+  name: Freakshow
+  description: packs the round with almost nothing but high noise crew masks, no traitors in sight
+  weight: 1
+  minPlayers: 4
+  gameRules: []
+  masquerade: !type:MasqueradeRoleSet
+    defaultMask: "ESCrewmember"
+    roles:
+      4: ["#Jesters", "ESVandal", "#Oracles"] # 1 generic crew.
+      5: ["ESMercenary"]
+      6: ["#Firmsafes"]
+      8: ["#Jesters", "#Freaks"]
+      10: ["#CrewGunners"] # 2 generic crew.
+      11: ["ESVandal"]
+      13: ["#CrewGunners(2)"]
+      15: ["-ESMercenary", "#Jesters(2)"] # 3 generic crew.
+      18: ["ESPhantom", "#Firmsafes", "#Reaped"] # 3 generic crew. If there isn't already a phantom, make sure of it.
+      20: ["#Oracles"] # You can finally have another oracle. 5 generic crew.
+      23: ["#Freaks", "#Firmsafes"] # 6 generic crew.
+      25: ["#CrewGunners", "#Freaks(2)"] # 5 generic crew. The freaks are banding together.
+      27: ["#Jesters"] # 6 generic crew.
+      30: ["#Jesters", "#Oracles"] # This is kind of a problem. I hope the oracles don't lose their mind here.
+

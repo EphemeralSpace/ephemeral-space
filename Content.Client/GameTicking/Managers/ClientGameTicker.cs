@@ -99,6 +99,7 @@ namespace Content.Client.GameTicking.Managers
 
             // lobby->game closing
             if (ReadyStatus is (PlayerGameStatus.Observing or PlayerGameStatus.ReadyToPlay)
+                && !Paused
                 && StartTime > curTime
                 && _lobbyCurtains.CurtainState == LobbyCurtainState.Open
                 && StartTime - curTime <= TimeSpan.FromSeconds(3))

@@ -20,7 +20,11 @@ namespace Content.IntegrationTests.Tests
     {
         private static readonly ProtoId<EntityCategoryPrototype> SpawnerCategory = "Spawner";
 
-        [Test]
+        // ES START
+        // SpawnAndDirtyAllEntities does literally the same thing, but with more checks
+        // this doesnt need to be two separate tests
+        // [Test]
+        // ES END
         public async Task SpawnAndDeleteAllEntitiesOnDifferentMaps()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
@@ -225,9 +229,12 @@ namespace Content.IntegrationTests.Tests
         /// the original entity is gone.
         ///
         /// Note that this isn't really a strict requirement, and there are probably quite a few edge cases. Its a pretty
-        /// crude test to try catch issues like this, and possibly should just be disabled.
+        /// crude test to try catch issues like this, and possibly should just be disabled. // aye aye captain
         /// </remarks>
-        [Test]
+        // ES START
+        // this test really does not catch anything useful -- yes, unsurprisingly, entities will want to spawn other entities sometimes
+        // [Test]
+        // ES END
         public async Task SpawnAndDeleteEntityCountTest()
         {
             var settings = new PoolSettings { Connected = true, Dirty = true };

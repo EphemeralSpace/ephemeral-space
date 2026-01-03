@@ -199,6 +199,6 @@
       group:
       - id: RandomArcade
         weight: 2
-      - id: PianoInstrument
+      - id: ESInstrumentPiano
         weight: 1
     directional: true

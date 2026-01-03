@@ -84,6 +84,7 @@
   - type: Battery
     maxCharge: 5000000
     startingCharge: 0
+    netsync: false
   - type: BatteryDischarger
   - type: PowerNetworkBattery
     maxSupply: 350000

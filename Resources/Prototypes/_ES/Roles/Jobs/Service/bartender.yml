@@ -1,0 +1,29 @@
+- type: job
+  id: ESBartender
+  name: ESjob-name-bartender
+  description: ESjob-description-bartender
+  playTimeTracker: ESJobBartender
+  startingGear: ESBartenderGear
+  icon: "JobIconBartender"
+  supervisors: job-supervisors-hop
+  access:
+  - Service
+  - Maintenance
+  - Bar
+  extendedAccess:
+  - Kitchen
+  - Hydroponics
+
+- type: startingGear
+  id: ESBartenderGear
+  equipment:
+    shoes: ClothingShoesColorBlack
+    id: BartenderPDA
+    ears: ClothingHeadsetService
+    head: ClothingHeadHatTophat
+    jumpsuit: ClothingUniformJumpsuitBartender
+    outerClothing: ClothingOuterVest
+    back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival

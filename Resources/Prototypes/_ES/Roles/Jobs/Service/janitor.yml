@@ -1,0 +1,30 @@
+- type: job
+  id: ESJanitor
+  name: ESjob-name-janitor
+  description: ESjob-description-janitor
+  playTimeTracker: ESJobJanitor
+  startingGear: ESJanitorGear
+  icon: "JobIconJanitor"
+  supervisors: job-supervisors-hop
+  access:
+  - Service
+  - Janitor
+  - Maintenance
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: GarbageDay
+    prototype: ESWeaponRevolver357
+
+- type: startingGear
+  id: ESJanitorGear
+  equipment:
+    shoes: ClothingShoesGaloshes
+    id: JanitorPDA
+    ears: ClothingHeadsetService
+    head: ClothingHeadHatPurplesoft
+    belt: ClothingBeltJanitorFilled
+    jumpsuit: ClothingUniformJumpsuitJanitor
+    back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival

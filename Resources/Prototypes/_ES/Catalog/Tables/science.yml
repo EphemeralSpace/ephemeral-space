@@ -1,0 +1,20 @@
+- type: entityTable
+  id: ESTelesciRewards
+  table:
+    group:
+    - id: DeviceQuantumSpinInverter
+      amount: 12
+    - id: ClothingShoesBootsSpeed
+      amount: 12
+    - id: ClothingBackpackHolding
+      amount: 12
+    - id: WeaponForceGun
+      amount: 12
+    - id: WeaponTetherGun
+      amount: 12
+    - id: DeviceDesynchronizer
+      amount: 12
+    - id: WelderExperimental
+      amount: 12
+    - id: HoloprojectorField
+      amount: 12

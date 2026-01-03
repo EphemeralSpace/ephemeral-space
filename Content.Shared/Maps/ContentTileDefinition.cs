@@ -19,7 +19,7 @@ namespace Content.Shared.Maps
 
         public const string SpaceID = "Space";
 
-        [ParentDataFieldAttribute(typeof(AbstractPrototypeIdArraySerializer<ContentTileDefinition>))]
+        [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ContentTileDefinition>))]
         public string[]? Parents { get; private set; }
 
         [NeverPushInheritance]
@@ -87,6 +87,15 @@ namespace Content.Shared.Maps
         [DataField("placementVariants")] public float[] PlacementVariants { get; set; } = { 1f };
 
         [DataField("thermalConductivity")] public float ThermalConductivity = 0.04f;
+
+        // ES START
+        // tile flammability
+        // higher = more flammable, used as a weighted score, not a multiplier on anything
+        // opted to do this instead of reusing thermalconductivity etc because thats used for mostly unrelated conceptually atmos stuff
+        // afaict. easier to do this
+        [DataField]
+        public float Flammability = 1f;
+        // ES END
 
         // Heat capacity is opt-in, not opt-out.
         [DataField("heatCapacity")] public float HeatCapacity = Atmospherics.MinimumHeatCapacity;

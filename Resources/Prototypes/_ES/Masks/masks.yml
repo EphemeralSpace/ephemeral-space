@@ -63,6 +63,24 @@
     cacheProto: ESCrateCacheCrewVeteran
 
 - type: esMask
+  id: ESCrewmember
+  name: es-mask-crewmember-name
+  troupe: ESCrew
+  description: es-mask-crewmember-desc
+  color: white
+
+- type: esMask
+  id: ESEmpath
+  name: es-mask-empath-name
+  troupe: ESCrew
+  description: es-mask-empath-desc
+  color: plum
+  components:
+  - type: ActionGrant
+    actions:
+    - ESActionMaskDetectAura
+
+- type: esMask
   id: ESGuzzler
   name: es-mask-guzzler-name
   troupe: ESCrew
@@ -91,6 +109,90 @@
   - type: ActionGrant
     actions:
     - ESActionMaskAdrenalinePump
+
+- type: esMask
+  id: ESPhantom
+  name: es-mask-phantom-name
+  troupe: ESCrew
+  description: es-mask-phantom-desc
+  color: lavender
+  weight: 0.5
+  mindComponents:
+  - type: ESReincarnateMind
+  objectives:
+    all:
+    - id: ESObjectivePhantomDie
+    - id: ESObjectivePhantomAvenge
+
+- type: esMask
+  id: ESGlutton
+  name: es-mask-glutton-name
+  troupe: ESCrew
+  description: es-mask-glutton-desc
+  color: yellowgreen
+  objectives:
+    all:
+    - id: ESObjectiveEatUniqueFoods
+    - id: ESObjectiveEatFood
+
+- type: esMask
+  id: ESSurvivalist
+  name: es-mask-survivalist-name
+  troupe: ESCrew
+  description: es-mask-survivalist-desc
+  color: forestgreen
+  components:
+  - type: ESMedAlertRadioAnnouncer
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto: ESCrateCacheCrewSurvivalist
+  objectives:
+    all:
+    - id: ESObjectiveSurvive
+
+- type: esMask
+  id: ESSacrifice
+  name: es-mask-sacrifice-name
+  troupe: ESCrew
+  description: es-mask-sacrifice-desc
+  color: lightgoldenrodyellow
+  objectives:
+    all:
+    - id: ESObjectiveSacrificeHeal
+
+- type: esMask
+  id: ESVandal
+  name: es-mask-vandal-name
+  troupe: ESCrew
+  description: es-mask-vandal-desc
+  color: tomato
+  weight: 0.2
+  mindComponents:
+  - type: ESCanAlwaysSabotage
+  objectives:
+    all:
+    - pick:
+        all:
+        - id: ESObjectiveVandalSabotageCommunications
+        - id: ESObjectiveVandalSabotageCrewMonitoring
+        - id: ESObjectiveVandalSabotageIDComputer
+        - id: ESObjectiveVandalSabotageCriminalRecords
+        - id: ESObjectiveVandalSabotageTelecom
+          weight: 2
+      amount: 1, 2
+
+- type: esMask
+  id: ESMartyr
+  name: es-mask-martyr-name
+  troupe: ESCrew
+  description: es-mask-martyr-desc
+  color: gold
+  weight: 0.5
+  mindComponents:
+  - type: ESMartyr
+  objectives:
+    all:
+    - id: ESObjectiveMartyrBeKilled
 
 # Traitor Masks
 - type: esMask
@@ -136,6 +238,7 @@
 
 - type: esMask
   parent: ESBaseTraitor
+
   id: ESSpy
   name: es-mask-spy-name
   description: es-mask-spy-desc
@@ -143,3 +246,20 @@
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorSpy
+
+  id: ESRecruit
+  name: es-mask-recruit-name
+  description: es-mask-recruit-desc
+  color: pink
+  weight: 0
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: ESSubverter
+  name: es-mask-subverter-name
+  description: es-mask-subverter-desc
+  color: gray
+  weight: 0.5
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto: ESCrateCacheTraitorSubverter

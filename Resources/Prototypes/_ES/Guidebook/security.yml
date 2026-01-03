@@ -1,0 +1,27 @@
+﻿- type: guideEntry
+  id: ESSecurity
+  hidden: false
+  name: guide-entry-security
+  text: "/ServerInfo/_ES/Guidebook/Security/Security.xml"
+  children:
+  - ESForensics
+  - ESDefusal
+  - ESCriminalRecords
+
+- type: guideEntry
+  id: ESForensics
+  hidden: false
+  name: guide-entry-forensics
+  text: "/ServerInfo/_ES/Guidebook/Security/Forensics.xml"
+
+- type: guideEntry
+  id: ESDefusal
+  hidden: false
+  name: guide-entry-defusal
+  text: "/ServerInfo/_ES/Guidebook/Security/Defusal.xml"
+
+- type: guideEntry
+  id: ESCriminalRecords
+  hidden: false
+  name: guide-entry-criminal-records
+  text: "/ServerInfo/_ES/Guidebook/Security/CriminalRecords.xml"

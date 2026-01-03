@@ -13,14 +13,9 @@
 - type: startingGear
   id: ReporterGear
   equipment:
-# ES Start
-    shoes: ClothingShoesColorBrown
-# ES End
+    shoes: ClothingShoesColorWhite
     id: ReporterPDA
     ears: ClothingHeadsetService
-# ES START
-    head: ClothingHeadHatFedoraGrey
-# ES END
   #storage:
     #back:
     #- Stuff

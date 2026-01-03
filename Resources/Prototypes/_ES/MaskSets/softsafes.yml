@@ -1,0 +1,5 @@
+- type: esMaskSet
+  id: Softsafes # Masks who's activates are counterproductive enough to probably be safe.
+  parent: [Firmsafes, Freaks]
+  masks:
+    ESSurvivalist: 1

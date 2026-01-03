@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client._ES.Core;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Nuke;
@@ -27,6 +28,9 @@ public sealed partial class ESCryptoNukeConsoleWindow : FancyWindow
 
         HackButton.OnPressed += _ => OnHackButtonPressed?.Invoke();
 
+        HeaderLabel.UnsafeSetMarkup(Loc.GetString("es-cryptonuke-ui-label-disk-header"));
+        FlavorLabel.UnsafeSetMarkup(Loc.GetString("es-cryptonuke-ui-label-flavor"));
+
         NavMap.WallColor = Color.Red;
         NavMap.TileColor = Color.Black;
     }
@@ -49,19 +53,19 @@ public sealed partial class ESCryptoNukeConsoleWindow : FancyWindow
                 .Select(c => (_entityManager.GetCoordinates(c), (true, Color.White)))
                 .ToDictionary();
 
-            LocationsLabel.Text = string.Join('\n',
+            LocationsLabel.UnsafeSetMarkup(string.Join('\n',
                 state.DiskLocations
-                    .Select(c => Loc.GetString("es-cryptonuke-ui-label-disk-fmt", ("x", c.X), ("y", c.Y))));
+                    .Select(c => Loc.GetString("es-cryptonuke-ui-label-disk-fmt", ("x", c.X), ("y", c.Y)))));
 
             HackButton.Disabled = !state.CanHack || comp.Compromised;
         }
 
         HackButton.ToolTip = HackButton.Disabled ? Loc.GetString("es-cryptonuke-ui-button-hack-tooltip") : null;
-        CompromisedLabel.Text = Loc.GetString("es-cryptonuke-ui-label-compromised", ("state", comp.Compromised));
+        CompromisedLabel.UnsafeSetMarkup(Loc.GetString("es-cryptonuke-ui-label-compromised", ("state", comp.Compromised)));
 
         var codes = state?.Codes is { Count: > 0}
             ? string.Join(",", state.Codes)
             : Loc.GetString("es-cryptonuke-ui-label-code-placeholder");
-        CodesLabel.Text = Loc.GetString("es-cryptonuke-ui-label-code-header", ("codes", codes));
+        CodesLabel.UnsafeSetMarkup(Loc.GetString("es-cryptonuke-ui-label-code-header", ("codes", codes)));
     }
 }

@@ -58,4 +58,7 @@ public sealed partial class ParrotMemoryComponent : Component
 }
 
 [Serializable, NetSerializable]
-public record struct SpeechMemory(NetUserId? NetUserId, string Message);
+// ES START
+// add entity name
+public record struct SpeechMemory(NetUserId? NetUserId, string Message, string EntityName);
+// ES END

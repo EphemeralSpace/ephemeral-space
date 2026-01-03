@@ -1,0 +1,383 @@
+﻿- type: guideEntry
+  id: ESEngineering
+  hidden: false
+  name: guide-entry-engineering
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Engineering.xml"
+  children:
+  - ESConstruction
+  - ESPower
+  - ESAtmospherics
+  - ESNetworking
+
+- type: guideEntry
+  id: ESConstruction
+  hidden: false
+  name: guide-entry-construction
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Construction.xml"
+  children:
+  - ESAirlocks
+  - ESExpandingRepairingStation
+  - ESWirePanels
+
+- type: guideEntry
+  id: ESExpandingRepairingStation
+  hidden: false
+  name: guide-entry-expandingrepairingstation
+  text: "/ServerInfo/_ES/Guidebook/Engineering/ExpandingRepairingStation.xml"
+
+- type: guideEntry
+  id: ESAirlocks
+  hidden: false
+  name: guide-entry-airlocks
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Airlocks.xml"
+  children:
+  - ESAirlockSecurity
+
+- type: guideEntry
+  id: ESWirePanels
+  hidden: false
+  name: guide-entry-wirepanels
+  text: "/ServerInfo/_ES/Guidebook/Engineering/WirePanels.xml"
+
+- type: guideEntry
+  id: ESAirlockSecurity
+  hidden: false
+  name: guide-entry-airlock-security
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AirlockSecurity.xml"
+
+- type: guideEntry
+  id: ESAtmospherics
+  hidden: false
+  name: guide-entry-atmospherics
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Atmospherics.xml"
+  children:
+  - ESGasManipulation
+  - ESAtmosphericsSystems
+  - ESAtmosphericUpsets
+  - ESAtmosTools
+  - ESGasses
+
+- type: guideEntry
+  id: ESGasManipulation
+  hidden: false
+  name: guide-entry-gasmanipulation
+  text: "/ServerInfo/_ES/Guidebook/Engineering/GasManipulation.xml"
+  children:
+  - ESAtmosphereInOut
+  - ESPipes
+  - ESPumps
+  - ESValves
+  - ESMixingAndFiltering
+  - ESGasCanisters
+  - ESThermomachines
+  - ESGasCondensing
+  - ESGasRecycling
+
+- type: guideEntry
+  id: ESPipes
+  hidden: false
+  name: guide-entry-pipes
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Pipes.xml"
+
+- type: guideEntry
+  id: ESPumps
+  hidden: false
+  name: guide-entry-pumps
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Pumps.xml"
+
+- type: guideEntry
+  id: ESAtmosphereInOut
+  hidden: false
+  name: guide-entry-atmosphereinout
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AtmosphereInOut.xml"
+  children:
+  - ESAirVent
+  - ESPassiveVent
+  - ESAirInjector
+  - ESAirScrubber
+  - ESPortableScrubber
+
+- type: guideEntry
+  id: ESAirVent
+  hidden: false
+  name: guide-entry-airvent
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AirVent.xml"
+
+- type: guideEntry
+  id: ESPassiveVent
+  hidden: false
+  name: guide-entry-passivevent
+  text: "/ServerInfo/_ES/Guidebook/Engineering/PassiveVent.xml"
+
+- type: guideEntry
+  id: ESAirInjector
+  hidden: false
+  name: guide-entry-airinjector
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AirInjector.xml"
+
+- type: guideEntry
+  id: ESAirScrubber
+  hidden: false
+  name: guide-entry-airscrubber
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AirScrubber.xml"
+
+- type: guideEntry
+  id: ESPortableScrubber
+  hidden: false
+  name: guide-entry-portablescrubber
+  text: "/ServerInfo/_ES/Guidebook/Engineering/PortableScrubber.xml"
+
+- type: guideEntry
+  id: ESValves
+  hidden: false
+  name: guide-entry-valves
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Valves.xml"
+  children:
+  - ESManualValve
+  - ESSignalValve
+  - ESPneumaticValve
+  - ESPassiveGate
+  - ESPressureRegulator
+
+- type: guideEntry
+  id: ESManualValve
+  hidden: false
+  name: guide-entry-manualvalve
+  text: "/ServerInfo/_ES/Guidebook/Engineering/ManualValve.xml"
+
+- type: guideEntry
+  id: ESSignalValve
+  hidden: false
+  name: guide-entry-signalvalve
+  text: "/ServerInfo/_ES/Guidebook/Engineering/SignalValve.xml"
+
+- type: guideEntry
+  id: ESPneumaticValve
+  hidden: false
+  name: guide-entry-pneumaticvalve
+  text: "/ServerInfo/_ES/Guidebook/Engineering/PneumaticValve.xml"
+
+- type: guideEntry
+  id: ESPassiveGate
+  hidden: false
+  name: guide-entry-passivegate
+  text: "/ServerInfo/_ES/Guidebook/Engineering/PassiveGate.xml"
+
+- type: guideEntry
+  id: ESPressureRegulator
+  hidden: false
+  name: guide-entry-ressureregulator
+  text: "/ServerInfo/_ES/Guidebook/Engineering/PressureRegulator.xml"
+
+- type: guideEntry
+  id: ESMixingAndFiltering
+  hidden: false
+  name: guide-entry-mixingandfiltering
+  text: "/ServerInfo/_ES/Guidebook/Engineering/MixingAndFiltering.xml"
+
+- type: guideEntry
+  id: ESGasCanisters
+  hidden: false
+  name: guide-entry-gascanisters
+  text: "/ServerInfo/_ES/Guidebook/Engineering/GasCanisters.xml"
+
+- type: guideEntry
+  id: ESThermomachines
+  hidden: false
+  name: guide-entry-thermomachines
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Thermomachines.xml"
+  children:
+  - ESRadiators
+
+- type: guideEntry
+  id: ESGasCondensing
+  hidden: false
+  name: guide-entry-gascondensing
+  text: "/ServerInfo/_ES/Guidebook/Engineering/GasCondensing.xml"
+
+- type: guideEntry
+  id: ESGasRecycling
+  hidden: false
+  name: guide-entry-gasrecycling
+  text: "/ServerInfo/_ES/Guidebook/Engineering/GasRecycling.xml"
+
+- type: guideEntry
+  id: ESRadiators
+  hidden: false
+  name: guide-entry-radiators
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Radiators.xml"
+
+- type: guideEntry
+  id: ESAtmosphericsSystems
+  hidden: false
+  name: guide-entry-atmosphericssystems
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AtmosphericsSystems.xml"
+  children:
+  - ESPipeNetworks
+  - ESDeviceMonitoringAndControl
+  - ESFireAndGasControl
+  - ESGasMiningAndStorage
+
+- type: guideEntry
+  id: ESPipeNetworks
+  hidden: false
+  name: guide-entry-pipenetworks
+  text: "/ServerInfo/_ES/Guidebook/Engineering/PipeNetworks.xml"
+
+- type: guideEntry
+  id: ESDeviceMonitoringAndControl
+  hidden: false
+  name: guide-entry-devicemonitoringandcontrol
+  text: "/ServerInfo/_ES/Guidebook/Engineering/DeviceMonitoringAndControl.xml"
+  children:
+  - ESAirAlarms
+  - ESAtmosphericAlertsComputer
+  - ESAtmosphericNetworkMonitor
+
+- type: guideEntry
+  id: ESAirAlarms
+  hidden: false
+  name: guide-entry-airalarms
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AirAlarms.xml"
+
+- type: guideEntry
+  id: ESAtmosphericAlertsComputer
+  hidden: false
+  name: guide-entry-atmosphericalertscomputer
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AtmosphericAlertsComputer.xml"
+
+- type: guideEntry
+  id: ESAtmosphericNetworkMonitor
+  hidden: false
+  name: guide-entry-atmosphericnetworkmonitor
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AtmosphericNetworkMonitor.xml"
+
+- type: guideEntry
+  id: ESFireAndGasControl
+  hidden: false
+  name: guide-entry-fireandgascontrol
+  text: "/ServerInfo/_ES/Guidebook/Engineering/FireAndGasControl.xml"
+
+- type: guideEntry
+  id: ESGasMiningAndStorage
+  hidden: false
+  name: guide-entry-gasminingandstorage
+  text: "/ServerInfo/_ES/Guidebook/Engineering/GasMiningAndStorage.xml"
+
+- type: guideEntry
+  id: ESAtmosphericUpsets
+  hidden: false
+  name: guide-entry-atmosphericupsets
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AtmosphericUpsets.xml"
+  children:
+  - ESFires
+  - ESSpacing
+  - ESDeltaPressure
+
+- type: guideEntry
+  id: ESFires
+  hidden: false
+  name: guide-entry-fires
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Fires.xml"
+
+- type: guideEntry
+  id: ESSpacing
+  hidden: false
+  name: guide-entry-spacing
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Spacing.xml"
+
+- type: guideEntry
+  id: ESDeltaPressure
+  hidden: false
+  name: guide-entry-deltapressure
+  text: "/ServerInfo/_ES/Guidebook/Engineering/DeltaPressure.xml"
+
+- type: guideEntry
+  id: ESAtmosTools
+  hidden: false
+  name: guide-entry-atmostools
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AtmosTools.xml"
+
+- type: guideEntry
+  id: ESGasses
+  hidden: false
+  name: guide-entry-gasses
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Gasses.xml"
+
+- type: guideEntry
+  id: ESNetworking
+  hidden: false
+  name: guide-entry-networking
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Networking.xml"
+  children:
+  - ESAccessConfigurator
+
+- type: guideEntry
+  id: ESAccessConfigurator
+  hidden: false
+  name: guide-entry-access-configurator
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AccessConfigurator.xml"
+
+- type: guideEntry
+  id: ESPower
+  hidden: false
+  name: guide-entry-power
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Power.xml"
+  children:
+    - ESGenerators
+    - ESInspectingPower
+    - ESPowerStorage
+    - ESRamping
+    - ESVoltageNetworks
+
+- type: guideEntry
+  id: ESInspectingPower
+  hidden: false
+  name: guide-entry-inspectingpower
+  text: "/ServerInfo/_ES/Guidebook/Engineering/InspectingPower.xml"
+
+- type: guideEntry
+  id: ESPowerStorage
+  hidden: false
+  name: guide-entry-powerstorage
+  text: "/ServerInfo/_ES/Guidebook/Engineering/PowerStorage.xml"
+
+- type: guideEntry
+  id: ESRamping
+  hidden: false
+  name: guide-entry-ramping
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Ramping.xml"
+
+- type: guideEntry
+  id: ESVoltageNetworks
+  hidden: false
+  name: guide-entry-voltagenetworks
+  text: "/ServerInfo/_ES/Guidebook/Engineering/VoltageNetworks.xml"
+
+- type: guideEntry
+  id: ESGenerators
+  hidden: false
+  name: guide-entry-generators
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Generators.xml"
+  children:
+  - ESAME
+  - ESPortableGenerator
+  - ESSolarPanels
+
+- type: guideEntry
+  id: ESAME
+  hidden: false
+  name: guide-entry-ame
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AME.xml"
+
+- type: guideEntry
+  id: ESPortableGenerator
+  hidden: false
+  name: guide-entry-portable-generator
+  text: "/ServerInfo/_ES/Guidebook/Engineering/PortableGenerator.xml"
+
+- type: guideEntry
+  id: ESSolarPanels
+  hidden: false
+  name: guide-entry-solarpanels
+  text: "/ServerInfo/_ES/Guidebook/Engineering/SolarPanels.xml"

@@ -5,7 +5,6 @@ using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
-using Content.Shared.Antag;
 using Content.Shared.Examine;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -41,6 +40,7 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
         SubscribeLocalEvent<ESTroupeFactionIconComponent, ComponentGetStateAttemptEvent>(OnComponentGetStateAttempt);
         SubscribeLocalEvent<ESTroupeFactionIconComponent, ExaminedEvent>(OnExaminedEvent);
+        SubscribeLocalEvent<ESTroupeFactionIconComponent, ComponentStartup>(OnFactionIconStartup);
 
         SubscribeLocalEvent<MindComponent, ESGetAdditionalObjectivesEvent>(OnMindGetObjectives);
     }
@@ -73,28 +73,20 @@ public abstract class ESSharedMaskSystem : EntitySystem
         {
             if (mask.Abstract)
                 continue;
-
-            TryGetTroupeEntity(mask.Troupe, out var troupe);
-
             var verb = new Verb
             {
                 Category = ESMask,
                 Text = Loc.GetString("es-verb-apply-mask-name",
                     ("name", Loc.GetString(mask.Name)),
                     ("troupe", Loc.GetString(PrototypeManager.Index(mask.Troupe).Name))),
-                Message = troupe.HasValue
-                    ? Loc.GetString("es-verb-apply-mask-desc", ("mask", Loc.GetString(mask.Name)))
-                    : Loc.GetString("es-verb-tooltip-no-troupe", ("troupe", Loc.GetString(PrototypeManager.Index(mask.Troupe).Name))),
+                Message = Loc.GetString("es-verb-apply-mask-desc", ("mask", Loc.GetString(mask.Name))),
                 Priority = idx++,
                 ConfirmationPopup = true,
-                Disabled = !troupe.HasValue,
                 Act = () =>
                 {
-                    if (troupe is null)
-                        return;
                     if (!Mind.TryGetMind(actorComp.PlayerSession, out var mind, out var mindComp))
                         return;
-                    ApplyMask((mind, mindComp), mask, troupe.Value);
+                    ApplyMask((mind, mindComp), mask);
                 },
             };
             args.Verbs.Add(verb);
@@ -111,22 +103,10 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
     private void OnComponentGetStateAttempt(Entity<ESTroupeFactionIconComponent> ent, ref ComponentGetStateAttemptEvent args)
     {
-        args.Cancelled = true;
-
         if (args.Player?.AttachedEntity is not { } attachedEntity)
             return;
 
-        if (HasComp<ShowAntagIconsComponent>(attachedEntity))
-        {
-            args.Cancelled = false;
-            return;
-        }
-
-        if (!TryComp<ESTroupeFactionIconComponent>(attachedEntity, out var component))
-            return;
-        if (ent.Comp.Troupe != component.Troupe)
-            return;
-        args.Cancelled = false;
+        args.Cancelled = GetTroupeOrNull(attachedEntity) != ent.Comp.Troupe;
     }
 
     private void OnExaminedEvent(Entity<ESTroupeFactionIconComponent> ent, ref ExaminedEvent args)
@@ -138,11 +118,28 @@ public abstract class ESSharedMaskSystem : EntitySystem
         if (ent.Comp.ExamineString is not { } str)
             return;
 
-        if (!TryComp<ESTroupeFactionIconComponent>(args.Examiner, out var component) ||
-            component.Troupe != ent.Comp.Troupe)
+        if (GetTroupeOrNull(args.Examiner) != ent.Comp.Troupe)
             return;
 
         args.PushMarkup(Loc.GetString(str));
+    }
+
+    private void OnFactionIconStartup(Entity<ESTroupeFactionIconComponent> ent, ref ComponentStartup args)
+    {
+        // When someone receives this component, we need to essentially refresh all other instances of faction icons
+        // so that they can see the icons of all other players. The only way to do this is apparently just dirtying every
+        // instance of the component, which sucks and is terrible. But so is this entire API so i don't give a shit.
+
+        // This logic is based on the similar implementation in SharedRevolutionarySystem so i'll just assume it's correct.
+
+        var query = EntityQueryEnumerator<ESTroupeFactionIconComponent, MetaDataComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var meta))
+        {
+            // THANK YOU
+            // THANK YOU
+            // THANK YOU
+            Dirty(uid, comp, meta);
+        }
     }
 
     private void OnMindGetObjectives(Entity<MindComponent> ent, ref ESGetAdditionalObjectivesEvent args)
@@ -176,6 +173,20 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
         mask = role.Value.Comp2.Mask;
         return mask != null;
+    }
+
+    public ProtoId<ESMaskPrototype>? GetMaskOrNull(EntityUid uid)
+    {
+        if (!Mind.TryGetMind(uid, out var mindUid, out var mindComp))
+            return null;
+
+        return GetMaskOrNull((mindUid, mindComp));
+    }
+
+    public ProtoId<ESMaskPrototype>? GetMaskOrNull(Entity<MindComponent?> mind)
+    {
+        TryGetMask(mind, out var mask);
+        return mask;
     }
 
     /// <summary>
@@ -237,6 +248,17 @@ public abstract class ESSharedMaskSystem : EntitySystem
             .ToList();
     }
 
+    /// <summary>
+    ///     Gets the troupe rule for the given mask.
+    /// </summary>
+    public bool TryGetTroupeEntityForMask(
+        ProtoId<ESMaskPrototype> mask,
+        [NotNullWhen(true)] out Entity<ESTroupeRuleComponent>? troupe
+        )
+    {
+        return TryGetTroupeEntity(PrototypeManager.Index(mask).Troupe, out troupe);
+    }
+
     public bool TryGetTroupeEntity(ProtoId<ESTroupePrototype> proto,
         [NotNullWhen(true)] out Entity<ESTroupeRuleComponent>? troupe)
     {
@@ -253,11 +275,23 @@ public abstract class ESSharedMaskSystem : EntitySystem
         return troupe != null;
     }
 
+    /// <summary>
+    ///     Applies the given mask to a mind, without any checks.
+    /// </summary>
+    /// <remarks>
+    ///     This allows "bad" game states like giving masks to roles they're incompatible with, and will automatically
+    ///     start troupes as necessary.
+    /// </remarks>
     public virtual void ApplyMask(Entity<MindComponent> mind,
         ProtoId<ESMaskPrototype> maskId,
-        Entity<ESTroupeRuleComponent> troupe)
+        Entity<ESTroupeRuleComponent>? troupe = null)
     {
         // No Op
+    }
+
+    public virtual void RemoveMask(Entity<MindComponent> mind)
+    {
+
     }
 
     public List<FormattedMessage> GetCharacterInfoBlurb(Entity<MindComponent> mind)

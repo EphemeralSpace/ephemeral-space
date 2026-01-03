@@ -28,6 +28,12 @@ public sealed partial class SurveillanceCameraComponent : Component
     [DataField]
     public bool Active = true;
 
+    // ES Start
+    // Used for detecting if the Camera is EMPd or not, used for CameraVisualState
+    [DataField]
+    public bool EMPd = false;
+    // ES End
+
     // This one isn't easy to deal with. Will require a UI
     // to change/set this so mapping these in isn't
     // the most terrible thing possible.

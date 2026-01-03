@@ -1,0 +1,9 @@
+- type: latheRecipe
+  parent: BasePartRecipe
+  id: ESVendingMachineRestockGlobal
+  result: ESVendingMachineRestockGlobal
+  completetime: 8
+  materials:
+    Steel: 1000
+    Plastic: 1000
+    Glass: 600

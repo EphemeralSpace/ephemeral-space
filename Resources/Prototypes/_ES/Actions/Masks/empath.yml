@@ -1,0 +1,47 @@
+- type: entity
+  parent: BaseAction
+  id: ESActionMaskDetectAura
+  name: Detect Aura
+  description: Use this on someone to detect their [bold]aura[/bold] and get a sense of their [bold]motives.[/bold]
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/masks/aura.rsi
+      state: aura
+    iconOn:
+      sprite: _ES/Actions/masks/aura.rsi
+      state: aura-on
+    useDelay: 5m
+  - type: TargetAction
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - MindContainer
+    event: !type:ESSenseAuraEvent
+
+# Default aura. Shown if nothing else is detected
+- type: esAura
+  id: Basic
+  description: es-aura-basic
+  popupType: Large
+  priority: -1 # shown only by default
+
+# Killing intent. Used for anyone who wants to murder someone, even themselves!
+- type: esAura
+  id: KillingIntent
+  description: es-aura-killing-intent
+  objectiveWhitelist:
+    components:
+    - ESKillTroupeObjective
+    - ESKillTargetObjective
+    - ESDetonateNukeObjective
+
+# Wise aura, for oracle identification. Oracles
+- type: esAura
+  id: Oracle
+  description: es-aura-oracle
+  objectiveWhitelist: {}
+  priority: 10 # A murderous oracle is still an oracle.
+  maskOverrides:
+  - ESEmpath

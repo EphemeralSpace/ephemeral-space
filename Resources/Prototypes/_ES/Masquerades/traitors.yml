@@ -1,0 +1,23 @@
+- type: esMasquerade
+  id: Traitors
+  name: Traitors
+  description: standard, balanced cast of crew and traitors
+  weight: 10
+  minPlayers: 6
+  gameRules: []
+  masquerade: !type:MasqueradeRoleSet
+    defaultMask: "ESCrewmember" # God help you.
+    roles:
+      6: ["ESMarauder", "ESInfiltrator", "#Oracles", "#Softsafes", "#Gunners"] # 1 generic crew, 2 traitors
+      8: ["#Softsafes"] # 2 generic crew, 2 traitors.
+      10: ["#Jesters"] # 3 generic crew, 2 traitors.
+      12: ["-ESInfiltrator", "#Traitors"] # 4 generic crew, 2 traitors.
+      14: ["#Gunners", "#Softsafes"] # 4 generic crew, 2 traitors.
+      16: ["#Firmsafes"] # 5 generic crew, 2 traitors.
+      18: ["#Traitors", "#Reaped"] # 5 generic crew, 3 traitors.
+      20: ["#Softsafes(2)"]
+      22: ["#Jesters", "#Softsafes"] # 5 generic crew, 3 traitors.
+      24: ["#Firmsafes", "#Traitors"] # 5 generic crew, 4 traitors.
+      26: ["#Oracles"] # 6 generic crew, 4 traitors.
+      28: ["#Gunners"] # 7 generic crew, 4 traitors.
+      30: ["#Traitors"] # 8 generic crew, 5 traitors.

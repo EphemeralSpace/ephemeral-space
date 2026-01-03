@@ -14,7 +14,9 @@
       sound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
     - type: Sprite
-      sprite: Structures/Power/smes.rsi
+# ES START
+      sprite: _ES/Structures/Power/smes.rsi
+# ES END
       snapCardinals: true
       layers:
         - state: smes
@@ -33,6 +35,11 @@
     - type: Smes
     - type: Appearance
     - type: Battery
+      # Very important:
+      # Disable networking to prevent the battery getting continuously dirtied every tick as it interacts with the power network.
+      # This can not be done by changing the charge rate as the power supply ramps up over time.
+      # This disables prediction for this battery.
+      netsync: false
       startingCharge: 0
       # ES START
       maxCharge: 18000000
@@ -52,7 +59,9 @@
       sourceNode: input
       loadNode: output
       collectionName: smes
-      sprite: Structures/Power/smes.rsi
+# ES START
+      sprite: _ES/Structures/Power/smes.rsi
+# ES END
       state: static
     - type: BatteryDischarger
       voltage: High

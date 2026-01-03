@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._ES.Mind;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.EntityTable;
 using Content.Shared.EntityTable.EntitySelectors;
@@ -33,6 +34,9 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
 
         SubscribeLocalEvent<ESObjectiveHolderComponent, MindGotAddedEvent>(OnMindGotAdded);
         SubscribeLocalEvent<ESObjectiveHolderComponent, MindGotRemovedEvent>(OnMindGotRemoved);
+
+        SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerDetachedEvent>(OnPlayerDetached);
     }
 
     private void OnMindGotAdded(Entity<ESObjectiveHolderComponent> ent, ref MindGotAddedEvent args)
@@ -48,6 +52,22 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         foreach (var objective in GetObjectives(ent.AsNullable()))
         {
             RaiseLocalEvent(objective, args);
+        }
+    }
+
+    private void OnPlayerAttached(Entity<ESObjectiveHolderComponent> ent, ref ESMindPlayerAttachedEvent args)
+    {
+        foreach (var objective in GetObjectives(ent.AsNullable()))
+        {
+            _pvsOverride.AddSessionOverride(objective, args.Player);
+        }
+    }
+
+    private void OnPlayerDetached(Entity<ESObjectiveHolderComponent> ent, ref ESMindPlayerDetachedEvent args)
+    {
+        foreach (var objective in GetObjectives(ent.AsNullable()))
+        {
+            _pvsOverride.RemoveSessionOverride(objective, args.Player);
         }
     }
 
@@ -217,6 +237,27 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     }
 
     /// <summary>
+    /// Returns all owned objectives on an entity that have a given component
+    /// </summary>
+    public List<Entity<T>> GetOwnedObjectives<T>(Entity<ESObjectiveHolderComponent?> ent) where T : Component
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return [];
+
+        var objectives = new List<Entity<T>>();
+
+        foreach (var objective in ent.Comp.OwnedObjectives)
+        {
+            if (!TryComp<T>(objective, out var comp))
+                continue;
+
+            objectives.Add((objective, comp));
+        }
+
+        return objectives;
+    }
+
+    /// <summary>
     /// <inheritdoc cref="CanAddObjective(Robust.Shared.GameObjects.Entity{Content.Shared._ES.Objectives.Components.ESObjectiveComponent?},Robust.Shared.GameObjects.Entity{Content.Shared._ES.Objectives.Components.ESObjectiveHolderComponent?})"/>
     /// </summary>
     [PublicAPI]
@@ -296,6 +337,17 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         ent.Comp.OwnedObjectives.Add(objective.Value);
         RegenerateObjectiveList(ent);
         RefreshObjectiveProgress(objective.Value.AsNullable());
+        return true;
+    }
+
+    public bool TryRemoveObjective(Entity<ESObjectiveHolderComponent?> ent, Entity<ESObjectiveComponent?> objective)
+    {
+        if (!Resolve(ent, ref ent.Comp) || !Resolve(objective, ref objective.Comp))
+            return false;
+
+        ent.Comp.OwnedObjectives.Remove(objective);
+        RegenerateObjectiveList(ent);
+        Del(objective);
         return true;
     }
 

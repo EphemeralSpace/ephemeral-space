@@ -42,4 +42,18 @@ public sealed class ESVoteSystem : ESSharedVoteSystem
                 bui.Update();
         }
     }
+
+    protected override void OnSetVote(ESSetVoteMessage args, EntitySessionEventArgs ev)
+    {
+        if (_timing.ApplyingState)
+            return;
+
+        base.OnSetVote(args, ev);
+
+        if (ev.SenderSession.AttachedEntity is not { } attachedEntity)
+            return;
+
+        if (_userInterface.TryGetOpenUi(attachedEntity, ESVoterUiKey.Key, out var bui))
+            bui.Update();
+    }
 }

@@ -1,0 +1,29 @@
+- type: job
+  id: ESBotanist
+  name: ESjob-name-botanist
+  description: ESjob-description-botanist
+  playTimeTracker: ESJobBotanist
+  startingGear: ESBotanistGear
+  icon: "JobIconBotanist"
+  supervisors: job-supervisors-hop
+  access:
+  - Service
+  - Maintenance
+  - Hydroponics
+  extendedAccess:
+  - Kitchen
+  - Bar
+
+- type: startingGear
+  id: ESBotanistGear
+  equipment:
+    shoes: ClothingShoesColorBrown
+    id: BotanistPDA
+    ears: ClothingHeadsetService
+    belt: ClothingBeltPlantFilled
+    jumpsuit: ClothingUniformJumpsuitHydroponics
+    outerClothing: ClothingOuterApronBotanist
+    back: ClothingBackpackHydroponics
+  storage:
+    back:
+    - ESBoxSurvival

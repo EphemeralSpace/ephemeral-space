@@ -1,0 +1,26 @@
+- type: job
+  id: ESCargoTechnician
+  name: ESjob-name-cargotech
+  description: ESjob-description-cargotech
+  playTimeTracker: ESJobCargoTechnician
+  startingGear: ESCargoTechGear
+  icon: "JobIconCargoTechnician"
+  supervisors: job-supervisors-qm
+  access:
+  - Cargo
+  - Maintenance
+  extendedAccess:
+  - Salvage
+
+- type: startingGear
+  id: ESCargoTechGear
+  equipment:
+    shoes: ClothingShoesColorBlack
+    id: CargoPDA
+    ears: ClothingHeadsetCargo
+    head: ClothingHeadHatCargosoft
+    jumpsuit: ClothingUniformJumpsuitCargo
+    back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival

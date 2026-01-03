@@ -20,6 +20,7 @@
 # ES Start
     - type: Sprite
       sprite: _ES/Structures/Machines/camera_router.rsi
+      noRot: true
       layers:
         - state: telecom-nopower
         - state: telecom-on

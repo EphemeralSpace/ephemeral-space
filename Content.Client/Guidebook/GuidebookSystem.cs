@@ -22,6 +22,9 @@ namespace Content.Client.Guidebook;
 /// </summary>
 public sealed class GuidebookSystem : EntitySystem
 {
+    // ES START
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    // ES END
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly VerbSystem _verbSystem = default!;
@@ -51,6 +54,40 @@ public sealed class GuidebookSystem : EntitySystem
             OnGuidebookControlsTestGetAlternateVerbs);
     }
 
+    // ES START
+    /// <summary>
+    ///     Takes a list of guide entries, and tries to translate their IDs to the ES equivalent with a prefix,
+    ///     if one exists.
+    /// </summary>
+    private List<ProtoId<GuideEntryPrototype>> TryInterpretGuidesWithESPrefix(List<ProtoId<GuideEntryPrototype>> guides)
+    {
+        List<ProtoId<GuideEntryPrototype>> newGuides = new(guides.Count);
+
+        foreach (var guide in guides)
+        {
+            // non-hidden prototypes shouldn't get translated
+            // this includes any upstream prototypes that aren't hidden (of which there are none i think, but)
+            // and also our own ES prototypes, which don't need to get translated
+            if (_proto.Index(guide) is { Hidden: false })
+            {
+                newGuides.Add(guide);
+                continue;
+            }
+
+            var translatedId = $"ES{guide.Id}";
+            if (_proto.HasIndex<GuideEntryPrototype>(translatedId))
+                newGuides.Add(translatedId);
+            else
+            {
+                // if neither are true, then we have a guide that
+                // isn't an ES guide, but also has no ES equivalent, so just add it anyway and let it be blank
+                newGuides.Add(guide);
+            }
+        }
+
+        return newGuides;
+    }
+
     /// <summary>
     /// Gets a user entity to use for verbs and examinations. If the player has no attached entity, this will use a
     /// dummy client-side entity so that users can still use the guidebook when not attached to anything (e.g., in the
@@ -73,11 +110,18 @@ public sealed class GuidebookSystem : EntitySystem
         if (component.Guides.Count == 0 || _tags.HasTag(uid, GuideEmbedTag))
             return;
 
+        // ES START
+        var guides = TryInterpretGuidesWithESPrefix(component.Guides);
+        // ES END
+
         args.Verbs.Add(new()
         {
             Text = Loc.GetString("guide-help-verb"),
             Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/information.svg.192dpi.png")),
-            Act = () => OnGuidebookOpen?.Invoke(component.Guides, null, null, component.IncludeChildren, component.Guides[0]),
+            // ES START
+            // component.Guides -> guides
+            Act = () => OnGuidebookOpen?.Invoke(guides, null, null, component.IncludeChildren, guides[0]),
+            // ES END
             ClientExclusive = true,
             CloseMenu = true
         });
@@ -85,6 +129,11 @@ public sealed class GuidebookSystem : EntitySystem
 
     public void OpenHelp(List<ProtoId<GuideEntryPrototype>> guides)
     {
+        // ES START
+        // translate guide entry IDs to ES guide entry IDs
+        guides = TryInterpretGuidesWithESPrefix(guides);
+        // ES END
+
         OnGuidebookOpen?.Invoke(guides, null, null, true, guides[0]);
     }
 
@@ -96,7 +145,12 @@ public sealed class GuidebookSystem : EntitySystem
         if (!component.OpenOnActivation || component.Guides.Count == 0 || _tags.HasTag(uid, GuideEmbedTag))
             return;
 
-        OnGuidebookOpen?.Invoke(component.Guides, null, null, component.IncludeChildren, component.Guides[0]);
+        // ES START
+        var guides = TryInterpretGuidesWithESPrefix(component.Guides);
+
+        // ES component.Guides -> guides
+        OnGuidebookOpen?.Invoke(guides, null, null, component.IncludeChildren, guides[0]);
+        // ES END
         args.Handled = true;
     }
 

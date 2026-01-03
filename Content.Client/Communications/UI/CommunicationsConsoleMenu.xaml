@@ -52,10 +52,14 @@
 
                 <RichTextLabel Name="CountdownLabel"/>
 
+                <!-- ES START -->
+                <!-- change tooltip and disable by default -->
                 <Button Name="EmergencyShuttleButton"
-                    Access="Public" 
+                    Access="Public"
                     Text="Placeholder Text"
-                    ToolTip="{Loc 'comms-console-menu-emergency-shuttle-button-tooltip'}"/>
+                    Disabled="True"
+                    ToolTip="{Loc 'es-comms-console-menu-emergency-shuttle-button-tooltip'}"/>
+                    <!-- ES END -->
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>

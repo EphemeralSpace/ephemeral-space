@@ -18,10 +18,10 @@ public sealed class ESVoterBui(EntityUid owner, Enum uiKey) : BoundUserInterface
         _window.OpenCenteredAt(new Vector2(0.25f, 0.25f));
         _window.Update(Owner);
 
-        _window.OnVoteChanged += (entity, option) =>
+        _window.OnVoteChanged += (entity, option, selected) =>
         {
             var netEnt = EntMan.GetNetEntity(entity);
-            EntMan.RaisePredictiveEvent(new ESSetVoteMessage(netEnt, option));
+            EntMan.RaisePredictiveEvent(new ESSetVoteMessage(netEnt, option, selected));
         };
     }
 

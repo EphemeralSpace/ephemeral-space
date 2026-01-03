@@ -96,9 +96,11 @@
   name: emergency shuttle console
   description: Handles authorization to early launch the shuttle.
   components:
-  - type: AccessReader
-    access:
-    - [ Command ]
+# ES Start
+#  - type: AccessReader
+#    access:
+#    - [ Command ]
+# ES End
   - type: EmergencyShuttleConsole
   - type: ActivatableUI
     key: enum.EmergencyConsoleUiKey.Key
@@ -283,6 +285,7 @@
     allowedFlags:
       - Hide
       - HideLabel
+    hideOnInit: true
   - type: ActivatableUI
     key: enum.IFFConsoleUiKey.Key
   - type: UserInterface
@@ -396,8 +399,10 @@
     color: "#1f8c28"
   - type: Computer
     board: CriminalRecordsComputerCircuitboard
-  - type: AccessReader
-    access: [["Security"]]
+# ES Start
+#  - type: AccessReader
+#    access: [["Security"]]
+# ES End
   - type: GuideHelp
     guides:
     - CriminalRecords
@@ -669,8 +674,10 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: AccessReader
-    access: [[ "Command" ]]
+# ES Start
+#  - type: AccessReader
+#    access: [[ "Command" ]]
+# ES End
   - type: CommunicationsConsole
     title: comms-console-announcement-title-station
   - type: DeviceNetwork
@@ -1466,8 +1473,10 @@
     board: ComputerMassMediaCircuitboard
   - type: DeviceNetworkRequiresPower
   - type: NewsWriter
-  - type: AccessReader
-    access: [[ "Service" ]]
+# ES Start
+#  - type: AccessReader
+#    access: [[ "Service" ]]
+# ES End
   - type: ActivatableUI
     key: enum.NewsWriterUiKey.Key
   - type: ActivatableUIRequiresVision
@@ -1532,7 +1541,7 @@
   parent: BaseComputerAiAccess
   id: ComputerRoboticsControl
   name: robotics control console
-  description: Used to remotely monitor, disable and destroy the station's cyborgs.
+  description: Used to remotely monitor the station's cyborgs.
   components:
   - type: Sprite
     layers:
@@ -1547,6 +1556,7 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: RoboticsConsole
+    allowBorgControl: false
   - type: ActiveRadio
     channels:
     - Science

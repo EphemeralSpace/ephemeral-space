@@ -531,8 +531,11 @@ namespace Content.Server.Ghost
                     _adminLog.Add(LogType.Mind, $"{ToPrettyString(playerEntity.Value):player} is attempting to ghost via command");
             }
 
-            var handleEv = new GhostAttemptHandleEvent(mind, canReturnGlobal);
-            RaiseLocalEvent(handleEv);
+// ES START
+            // Pass in the whole mind entity
+            var handleEv = new GhostAttemptHandleEvent((mindId, mind), canReturnGlobal);
+            RaiseLocalEvent(mindId, handleEv);
+// ES END
 
             // Something else has handled the ghost attempt for us! We return its result.
             if (handleEv.Handled)
@@ -556,15 +559,6 @@ namespace Content.Server.Ghost
             {
                 _mind.UnVisit(mindId, mind: mind);
             }
-
-// ES START
-            // Handle sending people back to the theater.
-            if (_player.TryGetSessionById(mind.UserId, out var player) &&
-                _gameTicker.PlayerJoinLobby(player, true))
-            {
-                return true;
-            }
-// ES END
 
             var position = Exists(playerEntity)
                 ? Transform(playerEntity.Value).Coordinates
@@ -612,6 +606,15 @@ namespace Content.Server.Ghost
             if (playerEntity != null)
                 _adminLog.Add(LogType.Mind, $"{ToPrettyString(playerEntity.Value):player} ghosted{(!canReturn ? " (non-returnable)" : "")}");
 
+// ES START
+            // Handle sending people back to the theater.
+            if (_player.TryGetSessionById(mind.UserId, out var player) &&
+                _gameTicker.PlayerJoinLobby(player, true))
+            {
+                return true;
+            }
+// ES END
+
             var ghost = SpawnGhost((mindId, mind), position, canReturn);
 
             if (ghost == null)
@@ -621,9 +624,12 @@ namespace Content.Server.Ghost
         }
     }
 
-    public sealed class GhostAttemptHandleEvent(MindComponent mind, bool canReturnGlobal) : HandledEntityEventArgs
+// ES START
+    // Change the mind comp to a entity<T>
+    public sealed class GhostAttemptHandleEvent(Entity<MindComponent> mind, bool canReturnGlobal) : HandledEntityEventArgs
     {
-        public MindComponent Mind { get; } = mind;
+        public Entity<MindComponent> Mind { get; } = mind;
+// ES END
         public bool CanReturnGlobal { get; } = canReturnGlobal;
         public bool Result { get; set; }
     }

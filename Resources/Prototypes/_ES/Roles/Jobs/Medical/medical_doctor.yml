@@ -1,0 +1,29 @@
+- type: job
+  id: ESMedicalDoctor
+  name: ESjob-name-doctor
+  description: ESjob-description-doctor
+  playTimeTracker: ESJobMedicalDoctor
+  startingGear: ESDoctorGear
+  icon: "JobIconMedicalDoctor"
+  supervisors: job-supervisors-hop
+  access:
+  - Medical
+  - Maintenance
+  extendedAccess:
+  - Chemistry
+
+- type: startingGear
+  id: ESDoctorGear
+  equipment:
+    shoes: ClothingShoesColorWhite
+    id: MedicalPDA
+    gloves: ClothingHandsGlovesColorBlue
+    head: ClothingHeadHatSurgcapBlue
+    ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalFilled
+    jumpsuit: ClothingUniformJumpsuitMedicalDoctor
+    outerClothing: ClothingOuterCoatLabOpened
+    back: ClothingBackpackMedical
+  storage:
+    back:
+    - ESBoxSurvivalMedical

@@ -46,4 +46,15 @@ public class GuideEntry
     ///     If the guide is the child of some other guide, the order simply determined by the order of children in <see cref="Children"/>.
     /// </summary>
     [DataField] public int Priority = 0;
+
+    // ES START
+    // all guidebook protos are hidden by default
+    // we deliberately unhide ones we want to show on ES
+    /// <summary>
+    ///     Defines whether a guidebook entry can be shown.
+    ///     If true, will filter out of both a full guidebook open (like with the key) and an entry opened by GuideHelpComponent.
+    /// </summary>
+    [DataField]
+    public bool Hidden = true;
+    // ES END
 }

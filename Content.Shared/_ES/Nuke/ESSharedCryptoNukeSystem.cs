@@ -67,7 +67,7 @@ public abstract class ESSharedCryptoNukeSystem : EntitySystem
         if (!ArePreRequisiteObjectivesDone())
             return;
 
-        _sparks.DoSparks(ent);
+        _sparks.DoSparks(ent, user: args.Actor, cooldown: false);
 
         ent.Comp.Compromised = true;
         Dirty(ent);

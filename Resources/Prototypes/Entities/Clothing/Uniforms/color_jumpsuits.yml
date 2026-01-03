@@ -98,24 +98,27 @@
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     layers:
     - state: icon
-      color: "#52aecc"
+# ES Start
+# Updated for consistency with the other blue items
+      color: "#8cc4ff"
     - state: trinkets-icon
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#52aecc"
+        color: "#8cc4ff"
       - state: trinkets-inhand-left
       right:
       - state: inhand-right
-        color: "#52aecc"
+        color: "#8cc4ff"
       - state: trinkets-inhand-right
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     clothingVisuals:
       jumpsuit:
       - state: equipped-INNERCLOTHING
-        color: "#52aecc"
+        color: "#8cc4ff"
+# ES End
       - state: trinkets-equipped-INNERCLOTHING
 
 # Dark Blue Jumpsuit

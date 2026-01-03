@@ -52,6 +52,7 @@ public sealed class ESArrivalsSystem : EntitySystem
 
         SubscribeLocalEvent<ESArrivalsShuttleComponent, FTLTagEvent>(OnShuttleTag);
         SubscribeLocalEvent<ESArrivalsShuttleComponent, FTLStartedEvent>(OnFTLStarted);
+        SubscribeLocalEvent<ESArrivalsShuttleComponent, FTLCompletedEvent>(OnFTLCompleted);
 
         SubscribeLocalEvent<PlayerSpawningEvent>(HandlePlayerSpawning, before: [typeof(SpawnPointSystem)]);
 
@@ -146,6 +147,11 @@ public sealed class ESArrivalsSystem : EntitySystem
         // EnsureComp<AutoOrientComponent>(ev.SpawnResult.Value);
         var passenger = EnsureComp<ESArrivalsPassengerComponent>(ev.SpawnResult.Value);
         passenger.Station = ev.Station.Value;
+    }
+
+    private void OnFTLCompleted(Entity<ESArrivalsShuttleComponent> ent, ref FTLCompletedEvent args)
+    {
+        _gameTicker.AnnounceRound();
     }
 
     private void SetupShuttle(Entity<ESStationArrivalsComponent> ent)

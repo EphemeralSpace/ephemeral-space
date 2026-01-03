@@ -115,6 +115,7 @@ VendingMachineMedicalBase: ESVendingMachineMedical
 VendingMachineChefvend: ESVendingMachineChefvend
 VendingMachineDinnerware: ESVendingMachineDinnerware
 VendingMachineSeedsUnlocked: ESVendingMachineSeedsUnlocked
+VendingMachineSeeds: ESVendingMachineSeedsUnlocked
 VendingMachineNutri: ESVendingMachineNutri
 VendingMachineCart: ESVendingMachineCart
 VendingMachineRobotics: ESVendingMachineRobotics
@@ -183,6 +184,38 @@ RandomPosterContraband: ESRandomPosterContraband
 LightTube: ESLightTubeDepartment
 Poweredlight: ESPoweredLightDepartment
 
+# 2025-12-17
+# ES nitrile gloves migration
+ClothingHandsGlovesNitrile: ClothingHandsGlovesColorBlue
+
+# 2025-12-23
+# New laser box prototype
+GlassBoxLaserFilled: ESDisplayCaseCaptainEnergyGun
+
+# 2025-12-26
+SpawnPointCargoTechnician: ESSpawnPointCargoTechnician
+SpawnPointPassenger: ESSpawnPointAssistant
+SpawnPointClown: ESSpawnPointClown
+SpawnPointReporter: ESSpawnPointReporter
+SpawnPointBartender: ESSpawnPointBartender
+SpawnPointChef: ESSpawnPointChef
+SpawnPointBotanist: ESSpawnPointBotanist
+SpawnPointJanitor: ESSpawnPointJanitor
+SpawnPointCaptain: ESSpawnPointCaptain
+SpawnPointHeadOfPersonnel: ESSpawnPointHeadOfPersonnel
+SpawnPointHeadOfSecurity: ESSpawnPointHeadOfSecurity
+SpawnPointStationEngineer: ESSpawnPointStationEngineer
+SpawnPointAtmos: ESSpawnPointAtmos
+SpawnPointMedicalDoctor: ESSpawnPointMedicalDoctor
+SpawnPointChemist: ESSpawnPointChemist
+SpawnPointScientist: ESSpawnPointScientist
+SpawnPointWarden: ESSpawnPointWarden
+SpawnPointSecurityOfficer: ESSpawnPointSecurityOfficer
+SpawnPointDetective: ESSpawnPointDetective
+
+# 2025-12-29
+Autolathe: ESAutolathe
+
 # ES END
 
 # 2023-07-03
@@ -232,7 +265,7 @@ MagazineBoxLightRifleHighVelocity: MagazineBoxLightRifle
 MagazineBoxMagnumHighVelocity: MagazineBoxMagnum
 MagazineBoxPistolHighVelocity: MagazineBoxPistol
 MagazineBoxRifleHighVelocity: MagazineBoxRifle
-MagazineCaselessRifleHighVelocity: MagazineCaselessRifle
+MagazineCaselessRifleHighVelocity: MagazinePistolCaselessRifle
 MagazineCaselessRifleShortHighVelocity: null
 MagazineLightRifleHighVelocity: MagazineLightRifle
 MagazineMagnumSubMachineGunHighVelocity: null
@@ -242,7 +275,7 @@ MagazinePistolHighVelocity: MagazinePistol
 MagazinePistolSubMachineGunHighVelocity: MagazinePistolSubMachineGun
 MagazineRifleHighVelocity: MagazineRifle
 SpeedLoaderMagnumHighVelocity: SpeedLoaderMagnum
-SpeedLoaderPistolHighVelocity: SpeedLoaderPistol
+SpeedLoaderPistolHighVelocity: null
 
 # 2023-08-07
 #If the name is anything to go off of, these are presumably just CEV-Eris versions of the snow rock (which we already have.)
@@ -482,9 +515,9 @@ MagazineMagnumRubber: MagazineMagnum
 MagazineMagnumSubMachineGunRubber: null
 MagazineLightRifleRubber: MagazineLightRifle
 MagazineRifleRubber: MagazineRifle
-MagazineCaselessRifleRubber: MagazineCaselessRifle
+MagazineCaselessRifleRubber: MagazinePistolCaselessRifle
 MagazineCaselessRifleShortRubber: null
-SpeedLoaderPistolRubber: SpeedLoaderPistol
+SpeedLoaderPistolRubber: null
 SpeedLoaderMagnumRubber: SpeedLoaderMagnum
 MagazineBoxPistolRubber: MagazineBoxPistol
 # RIP box of magnum rubbers 202X to 2024
@@ -915,9 +948,24 @@ ToySkeleton: ToyFigurineSkeleton
 # 2025-10-28
 DrinkKiraSpecial: DrinkOrangeLimeSodaGlass
 
+# 2025-11-08
+DebugSMES: SMESBasicEmpty
+DebugSubstation: SubstationBasicEmpty
+DebugSubstationWall: BaseSubstationWall
+DebugAPC: BaseAPC
+MagazineCaselessRifle: MagazinePistolCaselessRifle
+MagazineCaselessRiflePractice: MagazinePistolCaselessRiflePractice
+SpeedLoaderPistol: null
+SpeedLoaderPistolPractice: null
+
 # 2025-12-05
 GlowstickBase: GlowstickGreen
 
 # 2025-12-06
 SpawnPointZookeeper: null
 SpawnPointBoxer: null
+
+# 2025-12-07
+FigureSpawner: MechFigurineSpawner50
+ToySpawner: PlushieSpawner50
+SpacemenFigureSpawner: SpacemenFigurineSpawner90

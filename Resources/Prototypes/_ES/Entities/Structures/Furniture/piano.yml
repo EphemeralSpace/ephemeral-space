@@ -1,0 +1,101 @@
+- type: entity
+  parent: BaseStructureDynamic
+  id: ESBaseStructurePiano
+  suffix: ES
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Fun/piano.rsi
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 15
+            max: 15
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 80
+        mask:
+        - Impassable
+        - MidImpassable
+        layer:
+        - Opaque
+        - MidImpassable
+        - BulletImpassable
+  - type: Construction
+    graph: ESPiano
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Climbable
+  - type: RequireProjectileTarget
+
+- type: entity
+  parent: ESBaseStructurePiano
+  id: ESInstrumentPiano
+  name: piano
+  description: I'm sure everyone would love to hear your well-rehearsed Billy Joel impression!
+  components:
+  - type: Sprite
+    state: piano
+  - type: Instrument
+    program: 1
+  - type: ActivatableUI
+    blockSpectators: true # otherwise they can play client-side music
+    inHandsOnly: false
+    singleUser: true
+    requiresComplex: true
+    verbText: verb-instrument-openui
+    key: enum.InstrumentUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: broken
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:PlaySoundBehavior # it's not a guitar, but it has a beautiful quality to it...
+        sound:
+          path: /Audio/Weapons/guitarsmash.ogg
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    node: start
+  - type: StaticPrice
+    price: 5000 # these things are expensive, y'know?
+
+- type: entity
+  parent: ESBaseStructurePiano
+  id: ESInstrumentPianoBroken
+  name: broken piano
+  description: Fuuuuuccckk dude. My MIDIs!!!
+  components:
+  - type: Sprite
+    state: piano-broken
+  - type: Construction
+    node: broken

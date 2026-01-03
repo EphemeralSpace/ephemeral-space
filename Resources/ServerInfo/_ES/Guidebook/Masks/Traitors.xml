@@ -1,0 +1,27 @@
+<Document>
+  # Traitors
+
+  <Box>
+    [color=#999999][italic]"WHISKEY. ECHO. WHISKEY. LIMA. ALPHA. DELTA. AGENT, YOU HAVE BEEN ACTIVATED."[/italic][/color]
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="PosterContrabandSyndicateRecruitment" Caption=""/>
+  </Box>
+  Traitors are antagonists employed by the [color=#ff0000]Syndicate.[/color]
+
+  Unlike other servers, Traitors on Ephemeral Space are a team antagonist--closer to a mix of Traitors and Nuclear Operatives.
+
+  Traitors have three phases of objectives: completing their basic objectives, hacking the nuclear cryptographic terminals, and then detonating the nuke.
+  Each phase of objectives must be completed before the next can be attempted: the terminals can't be hacked without the basic objectives done, and the nuke can't be detonated if the terminals aren't hacked.
+
+  Basic objectives include things like killing specific targets and sabotaging certain machines around the station.
+
+  Hacking the terminals is done simply by opening their UI and clicking the button. Terminals show you the location of the disk as a blinking white dot, and anyone who checks them can see that they're hacked after it's done.
+  The terminals are located in [bold]the HoS's office, the captain's office, and secure tech storage.[/bold]
+
+  The nuke can be disarmed--but the detonation timer is significantly shorter than normal, at only 60 seconds. If you fail at that point, it's your own fault.
+
+  [color=red]TODO ES write the rest lol[/color]
+
+  [color=red]TODO ES autogenerate mask entries[/color]
+</Document>

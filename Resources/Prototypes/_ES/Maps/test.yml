@@ -15,4 +15,4 @@
             prefixCreator: 'ES'
         - type: StationJobs
           availableJobs:
-            Passenger: [ -1, -1 ]
+            ESAssistant: [ -1, -1 ]

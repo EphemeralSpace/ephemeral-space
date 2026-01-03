@@ -64,6 +64,9 @@
         {
             "name": "canister-broken"
         },
+		{
+			"name": "cargo"
+		},
         {
             "name": "closet"
         },

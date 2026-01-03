@@ -1,6 +1,17 @@
 # Standard modes
 
 - type: gamePreset
+  id: ESMasqueradeManaged
+  name: es-preset-masquerade-title
+  description: es-preset-masquerade-desc
+  rules:
+  - ESMasqueradeGameRule
+  - ESSchedulerRuleStationEventVote
+  - ESSchedulerRuleDegradationEventVote
+  - ESBasicRoundstartVariation
+  - ESRoundEndRuleRadstorm
+
+- type: gamePreset
   id: ESExtended
   name: es-preset-extended-title
   description: es-preset-extended-desc
@@ -9,6 +20,7 @@
   - ESSchedulerRuleStationEventVote
   - ESSchedulerRuleDegradationEventVote
   - ESBasicRoundstartVariation
+  - ESRoundEndRuleRadstorm
 
 - type: gamePreset
   id: ESTraitors
@@ -21,6 +33,7 @@
   - ESSchedulerRuleStationEventVote
   - ESSchedulerRuleDegradationEventVote
   - ESBasicRoundstartVariation
+  - ESRoundEndRuleRadstorm
 
 # Nonstandard modes
 

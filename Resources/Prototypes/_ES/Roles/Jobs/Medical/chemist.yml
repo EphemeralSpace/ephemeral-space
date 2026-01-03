@@ -1,0 +1,28 @@
+- type: job
+  id: ESChemist
+  name: ESjob-name-chemist
+  description: ESjob-description-chemist
+  playTimeTracker: ESJobChemist
+  startingGear: ESChemistGear
+  icon: "JobIconChemist"
+  supervisors: job-supervisors-hop
+  access:
+  - Medical
+  - Chemistry
+  - Maintenance
+
+- type: startingGear
+  id: ESChemistGear
+  equipment:
+    shoes: ClothingShoesColorWhite
+    eyes: ClothingEyesGlassesChemical
+    id: ChemistryPDA
+    gloves: ClothingHandsGlovesColorBlue
+    ears: ClothingHeadsetMedical
+    belt: ChemBag
+    jumpsuit: ClothingUniformJumpsuitChemistry
+    outerClothing: ClothingOuterCoatLabChemOpened
+    back: ClothingBackpackChemistry
+  storage:
+    back:
+    - ESBoxSurvivalMedical

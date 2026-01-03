@@ -1,0 +1,11 @@
+- type: playerConnectionWhitelist
+  id: ESWhitelistDefault
+  conditions:
+  - !type:ConditionManualWhitelistMembership # Allow whitelisted players
+    action: Allow
+  - !type:ConditionPlayerCount # Allow when > 25 players are online
+    minimumPlayers: 25
+    maximumPlayers: 99
+    action: Allow
+  - !type:ConditionAlwaysMatch
+    action: Deny

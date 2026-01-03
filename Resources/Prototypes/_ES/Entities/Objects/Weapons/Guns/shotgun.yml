@@ -12,6 +12,9 @@
       map: ["enum.GunVisualLayers.Base"]
   - type: Item
     storedOffset: -2,0
+    size: Huge
+    shape:
+    - 0,0,7,1
     sprite: _ES/Objects/Weapons/Guns/shotgun_inhands_64x.rsi
   - type: Clothing
     sprite: _ES/Objects/Weapons/Guns/shotgun.rsi
@@ -21,8 +24,14 @@
       - ShellShotgun
     capacity: 7
     proto: ESShellShotgunBuckshot
+    soundInsert:
+      path: /Audio/_ES/Weapons/Guns/MagIn/shotgun_insert.ogg
   - type: Gun
     fireRate: 2
+    soundGunshot:
+      path: /Audio/_ES/Weapons/Guns/Gunshots/shotgun_shot.ogg
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
     availableModes:
     - SemiAuto
   - type: GunSpreadModifier
@@ -42,6 +51,7 @@
       map: ["enum.GunVisualLayers.Base"]
   - type: Item
     storedOffset: -2,0
+    size: Huge
     sprite: _ES/Objects/Weapons/Guns/db_shotgun_inhands_64x.rsi
   - type: Clothing
     sprite: _ES/Objects/Weapons/Guns/shotgun.rsi
@@ -53,12 +63,15 @@
     proto: ESShellShotgunBuckshot
   - type: Gun
     fireRate: 4
+    soundGunshot:
+      path: /Audio/_ES/Weapons/Guns/Gunshots/doublebarrel_shot.ogg
+    soundEmpty:
+      path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
 
 - type: entity
   parent: ESWeaponDoubleBarrelShotgun
   id: ESWeaponDoubleBarrelShotgunNonlethal
+  suffix: ES, Non-Lethal
   components:
   - type: BallisticAmmoProvider
     proto: ESShellShotgunBeanbag
-  - type: Gun
-    fireRate: 4

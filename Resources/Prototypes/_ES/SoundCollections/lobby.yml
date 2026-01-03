@@ -2,6 +2,7 @@
   id: LobbyMusicES
   files:
     - /Audio/_ES/Lobby/vast.ogg
+    - /Audio/_ES/Lobby/cosmologicalsolution.ogg
 
 - type: soundCollection
   id: ESShuttleMusic

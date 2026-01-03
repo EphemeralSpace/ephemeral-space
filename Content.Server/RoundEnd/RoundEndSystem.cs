@@ -168,6 +168,11 @@ namespace Content.Server.RoundEnd
         /// <param name="cantRecall">if the station shouldn't be able to recall the shuttle</param>
         public void RequestRoundEnd(TimeSpan countdownTime, EntityUid? requester = null, bool checkCooldown = true, string text = "round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement", bool cantRecall = false)
         {
+            // ES START
+            // no shuttles allowed
+            return;
+            // ES END
+
             if (_gameTicker.RunLevel != GameRunLevel.InRound)
                 return;
 
