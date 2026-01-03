@@ -68,19 +68,11 @@
   - BaseStationCargo
   - BaseStationJobsSpawning
   - BaseStationRecords
-  - BaseStationGateway
-  - BaseStationShuttles
-  - BaseStationCentcomm
   - BaseStationAlertLevels
-  - BaseStationMagnet
-  - BaseStationExpeditions
-  - BaseStationSalvageJobs
-  - BaseStationSiliconLawCrewsimov
   - BaseStationAllEventsEligible
   - BaseStationNanotrasen
   - BaseStationDeliveries
   - ESBaseStationArrivals
-  - ESBaseStationEvacuation
   - ESBaseStationStoreroom
   - ESBaseStationTelesci
   categories: [ HideSpawnMenu ]
