@@ -4,6 +4,9 @@ hostname = "[EN][SRL] Ephemeral Space Theater I [US East]"
 [hub]
 tags = "lang:en,region:am_n_e"
 
+[replay]
+auto_record = true
+
 [whitelist]
 enabled = true
 prototype_list = "ESWhitelistDefault"

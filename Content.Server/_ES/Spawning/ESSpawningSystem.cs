@@ -4,7 +4,6 @@ using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.Core.Timer;
-using Content.Shared._ES.Core.Timer.Components;
 using Content.Shared._ES.Spawning;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
@@ -13,7 +12,6 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Serialization;
 
 namespace Content.Server._ES.Spawning;
 
@@ -47,21 +45,22 @@ public sealed class ESSpawningSystem : ESSharedSpawningSystem
 
     private void OnAfterCurtains(ESSpawnPlayerAfterCurtainsEvent ev)
     {
-        var args = ev.Args;
-        var msg = ev.Msg;
-        var player = args.SenderSession;
+        if (!Player.TryGetSessionById(ev.UserId, out var session))
+            return;
+
+        var player = session;
 
         // could have disconnected in the time it took to fire
         if (player.Status != SessionStatus.InGame)
             return;
 
         // TODO: communicate this in the ui
-        if (_gameTicker.JoinedPlayers.Contains(args.SenderSession.UserId))
+        if (_gameTicker.JoinedPlayers.Contains(player.UserId))
             return;
 
-        var jobPrototype = _prototype.Index(msg.JobId);
+        var jobPrototype = _prototype.Index(ev.JobId);
 
-        var selectedStations = msg.Stations.Select(GetEntity);
+        var selectedStations = ev.Stations.Select(GetEntity);
         var potentialStations = new List<(EntityUid, int)>();
         foreach (var uid in selectedStations)
         {
@@ -87,16 +86,16 @@ public sealed class ESSpawningSystem : ESSharedSpawningSystem
         var station = potentialStations.MinBy(p => p.Item2).Item1;
 
         // in game, check reqs
-        if (_gameTicker.PlayerGameStatuses.TryGetValue(args.SenderSession.UserId, out var status) && status == PlayerGameStatus.JoinedGame)
+        if (_gameTicker.PlayerGameStatuses.TryGetValue(player.UserId, out var status) && status == PlayerGameStatus.JoinedGame)
         {
             if (!RespawnsEnabled)
                 return;
 
             // don't allow respawning as a non-ghost
-            if (!HasComp<GhostComponent>(args.SenderSession.AttachedEntity))
+            if (!HasComp<GhostComponent>(player.AttachedEntity))
                 return;
 
-            if (GetRespawnTime(args.SenderSession) > Timing.CurTime)
+            if (GetRespawnTime(player) > Timing.CurTime)
                 return;
         }
 
@@ -110,22 +109,10 @@ public sealed class ESSpawningSystem : ESSharedSpawningSystem
                 _adminManager.DeAdmin(player);
             }
 
-            _gameTicker.MakeJoinGame(args.SenderSession, station, msg.JobId);
+            _gameTicker.MakeJoinGame(player, station, ev.JobId);
             return;
         }
 
-        _gameTicker.MakeJoinGame(args.SenderSession, EntityUid.Invalid);
-    }
-}
-
-public sealed partial class ESSpawnPlayerAfterCurtainsEvent : ESEntityTimerEvent
-{
-    public ESSpawnPlayerEvent Msg;
-    public EntitySessionEventArgs Args;
-
-    public ESSpawnPlayerAfterCurtainsEvent(ESSpawnPlayerEvent msg, EntitySessionEventArgs args)
-    {
-        Msg = msg;
-        Args = args;
+        _gameTicker.MakeJoinGame(player, EntityUid.Invalid);
     }
 }
