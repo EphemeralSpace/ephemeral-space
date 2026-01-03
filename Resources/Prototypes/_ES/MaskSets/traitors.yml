@@ -1,7 +1,8 @@
 - type: esMaskSet
   id: Traitors
   masks:
-    ESMarauder: 2
+    ESMarauder: 1.5
     ESAssassin: 1
     ESInfiltrator: 1
     ESSubverter: 0.5
+    ESDemolitionist: 0.3

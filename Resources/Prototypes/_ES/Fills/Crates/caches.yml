@@ -106,9 +106,9 @@
   table:
     all:
     - id: C4
-      amount: 2
+      amount: 3
     - id: ExGrenade
-      amount: 2
+      amount: 3
     - id: ESMicroBombImplanter
 
 # Veteran

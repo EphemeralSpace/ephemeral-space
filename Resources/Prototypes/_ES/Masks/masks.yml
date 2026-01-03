@@ -264,4 +264,4 @@
   weight: 0.5
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheTraitorSubverter
+    cacheProto: ESCrateCacheTraitorDemolitionist
