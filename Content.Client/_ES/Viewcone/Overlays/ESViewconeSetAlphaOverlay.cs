@@ -112,7 +112,7 @@ public sealed class ESViewconeSetAlphaOverlay : Overlay
             _cone.CachedBaseAlphas.Add(((uid, sprite), baseAlpha));
 
             // multiply by the base alpha of the sprite (sprites which were already invisible for other reasons should stay invisible)
-            var alpha = (comp.Inverted ? 1f - targetAlpha : targetAlpha) * baseAlpha;
+            var alpha = (comp.Inverted ? 1f - targetAlpha : targetAlpha) * (comp.OverrideBaseAlpha ? 1f : baseAlpha);
             _sprite.SetColor((uid, sprite), sprite.Color.WithAlpha(alpha));
             _sprite.SetVisible((uid, sprite), alpha > 0f);
         }
