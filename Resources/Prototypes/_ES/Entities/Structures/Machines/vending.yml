@@ -6,6 +6,7 @@
   abstract: true
   components:
   - type: Sprite
+    noRot: true
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
