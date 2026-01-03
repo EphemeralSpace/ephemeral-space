@@ -1,6 +1,7 @@
 - type: guideEntry
   id: ESTroupesAndMasks
   hidden: false
+  priority: 5
   name: es-guide-entry-troupes-and-masks
   text: "/ServerInfo/_ES/Guidebook/Masks/TroupesAndMasks.xml"
   children:

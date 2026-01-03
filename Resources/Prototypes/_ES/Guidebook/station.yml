@@ -7,7 +7,6 @@
   children:
   - ESJobs
   - ESSurvival
-  - ESTroupesAndMasks
   - ESGlossary
 
 - type: guideEntry

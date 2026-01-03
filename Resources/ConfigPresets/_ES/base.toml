@@ -40,3 +40,6 @@ grid_fill = false
 [tips]
 dataset = "ESTips"
 login_dataset = "ESTips"
+
+[server]
+default_guide = "ESNewPlayerES"

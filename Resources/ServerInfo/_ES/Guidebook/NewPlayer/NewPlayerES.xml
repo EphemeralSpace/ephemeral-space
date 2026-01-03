@@ -1,0 +1,27 @@
+<Document>
+  # Welcome to Ephemeral Space!
+
+  [color=red][bold]Please read, even if you've played ES before!! Very important information here I promise[/color][/bold]
+
+  Things might seem a little strange right now if you're used to regular Space Station 14 gameplay.
+
+  In Ephemeral Space, [bold]you start the game in the lobby[/bold], which is an entire world unto itself. Here, you are a theatergoer attending the performance of an immersive play themed around a chaotic space station environment. In the theater (the lobby), you can explore the area, chat with other theatergoers about the upcoming performance, and interact with various objects.
+
+  [bold]In order to ready up, or join the performance if it's already started, head down past the curtains separating the main theater area and the lobby, and walk onto the stage.[/bold] If you'd prefer to observe instead, take a seat in the audience by clicking on an open chair.
+
+  Beyond that, let's talk about some very important differences between Ephemeral Space and regular servers that you should know before playing.
+
+  - Our ruleset is [bold]very[/bold] different. You should give it a read, and note what [italic]isn't[/italic] there--this server is intended to be much more of an open playground for roleplay and player expression, and our goal is to just design around bad gameplay rather than using rules.
+  - When the round starts, you'll be given a [textlink="mask" link="ESTroupesAndMasks"]--a hidden role which gives you unique objectives, abilities, or items, and defines your round. You are also part of a [textlink="troupe" link="ESTroupesAndMasks"], or a collection of players with shared central objectives. The two troupes currently are [bold]crew[/bold] and [bold]traitors[/bold].
+  - The character menu is very important here, and you should check it to see your mask objectives and troupe objectives. You can do so using [keybind="OpenCharacterMenu"].
+  - Rather than ending with the emergency shuttle, rounds on Ephemeral Space can end in one of three ways at the moment: a [bold]crew win[/bold], where they complete the telescience objectives and teleport the station to safety; a [bold]traitor win[/bold], where they complete their objectives and detonate the nuke; and a [bold]round fail[/bold], where both groups take too much time and the radstorm kills everybody on the station.
+  - Once dead, [bold]you cannot return to the round[/bold] and do not immediately become a ghost. Instead, you're sent to the lobby, and can become a [bold]stagehand[/bold] by interacting with an NPC below the lobby's stage. This allows you to observe as normal, vote on station events, and see all character's masks and objectives using an action.
+
+  Furthermore, we have some new controls that you should be aware of:
+  - [keybind="ESHoldToFace"] points your character in the direction of your cursor, without having to enable combat mode.
+  - [keybind="ESToggleFlashlight"] toggles your PDA flashlight, or opens a radial menu allowing you to toggle any lights you're carrying. These used to be actions.
+  - [keybind="ESToggleInternals"] toggles your internals if applicable. This used to be an action, though clicking the alert still works.
+  - Walking has been moved to space by default, but you may have already rebound this key.
+
+  [color=lavender]Enjoy the show![/color]
+</Document>

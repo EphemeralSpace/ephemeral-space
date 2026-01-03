@@ -3,6 +3,7 @@ using Content.Client.Administration.Managers;
 using Content.Client.Gameplay;
 using Content.Client.Lobby;
 using Content.Client.RoundEnd;
+using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Prototypes;
@@ -177,6 +178,7 @@ namespace Content.Client.GameTicking.Managers
             _stateManager.RequestStateChange<LobbyState>();
             // ES START
             _startOpenAnimationTime = _timing.RealTime + TimeSpan.FromSeconds(0.5);
+            _userInterfaceManager.GetUIController<GuidebookUIController>().ToggleGuidebook();
             // ES END
         }
 
