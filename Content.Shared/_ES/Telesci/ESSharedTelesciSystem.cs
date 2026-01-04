@@ -104,9 +104,10 @@ public abstract class ESSharedTelesciSystem : EntitySystem
         ent.Comp.Stage = stageIdx;
         Dirty(ent);
 
-        TryCallShuttle((ent, ent.Comp));
-
         _objective.RefreshObjectiveProgress<ESTelesciObjectiveComponent>();
+
+        // End the round after we refresh progress so the EoR screen is always correct.
+        TryCallShuttle((ent, ent.Comp));
     }
 
     protected virtual void SpawnEvents(Entity<ESTelesciStationComponent> ent, ESTelesciStage stage)
