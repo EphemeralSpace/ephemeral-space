@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 01/04/2026 00:38:54
-  entityCount: 14602
+  time: 01/04/2026 00:57:16
+  entityCount: 14610
 maps:
 - 3
 grids:
@@ -4965,6 +4965,23 @@ entities:
     components:
     - type: Transform
       pos: -1.5,17.5
+      parent: 2
+- proto: AnomalyLocator
+  entities:
+  - uid: 14605
+    components:
+    - type: Transform
+      pos: 9.1596775,-16.13976
+      parent: 2
+  - uid: 14606
+    components:
+    - type: Transform
+      pos: 9.448313,-16.347767
+      parent: 2
+  - uid: 14607
+    components:
+    - type: Transform
+      pos: 9.680185,-16.542042
       parent: 2
 - proto: APCBasic
   entities:
@@ -74446,6 +74463,16 @@ entities:
     - type: Transform
       pos: -9.5,-53.5
       parent: 2
+  - uid: 14600
+    components:
+    - type: Transform
+      pos: 9.5,-15.5
+      parent: 2
+  - uid: 14601
+    components:
+    - type: Transform
+      pos: 9.5,-16.5
+      parent: 2
 - proto: TableCarpet
   entities:
   - uid: 2462
@@ -87513,6 +87540,23 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -38.5,-39.5
+      parent: 2
+- proto: WeaponPistolCHIMP
+  entities:
+  - uid: 14602
+    components:
+    - type: Transform
+      pos: 9.270334,-15.219348
+      parent: 2
+  - uid: 14603
+    components:
+    - type: Transform
+      pos: 9.431589,-15.348376
+      parent: 2
+  - uid: 14604
+    components:
+    - type: Transform
+      pos: 9.588083,-15.569018
       parent: 2
 - proto: Welder
   entities:
