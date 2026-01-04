@@ -26,7 +26,8 @@
     - id: ESMagazine9mm
     - id: ESSleepyPen
       amount: 2
-    - id: EmpGrenade
+    - id: SmokeGrenade
+      amount: 2
 
 # Infiltrator
 - type: entity
@@ -45,7 +46,7 @@
     all:
     - id: ClothingBackpackChameleonFill
     - id: ESEmag
-    - id: SmokeGrenade
+    - id: C4
       amount: 2
 
 # Marauder

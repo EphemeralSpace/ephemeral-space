@@ -21,3 +21,6 @@
     - id: ESCrateCacheTraitorAssassin
     - id: ESCrateCacheTraitorInfiltrator
     - id: ESCrateCacheTraitorSubverter
+      weight: 0.5
+    - id: ESTraitorCacheTraitorDemolitionist
+      weight: 0.5
