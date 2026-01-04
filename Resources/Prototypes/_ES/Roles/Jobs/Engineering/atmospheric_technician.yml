@@ -18,7 +18,6 @@
     shoes: ClothingShoesColorWhite
     eyes: ClothingEyesGlassesMeson
     id: AtmosPDA
-    gloves: ClothingHandsGlovesColorYellow
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
     jumpsuit: ClothingUniformJumpsuitAtmos
