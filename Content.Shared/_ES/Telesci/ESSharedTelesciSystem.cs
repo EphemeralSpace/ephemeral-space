@@ -16,7 +16,7 @@ public abstract class ESSharedTelesciSystem : EntitySystem
     [Dependency] protected readonly EntityTableSystem EntityTable = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly ESSharedObjectiveSystem _objective = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
+    [Dependency] protected readonly SharedStationSystem Station = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
 
     /// <inheritdoc/>
@@ -50,10 +50,10 @@ public abstract class ESSharedTelesciSystem : EntitySystem
         if (!TryGetPortalGenerator(out var generator))
             return;
 
-        if (!generator.Value.Comp.Charged)
+        if (!generator.Value.Comp.Charged || generator.Value.Comp.ThreatsLeft > 0)
             return;
 
-        if (!_station.TryGetOwningStation<ESTelesciStationComponent>(ent, out var station))
+        if (!Station.TryGetOwningStation<ESTelesciStationComponent>(ent, out var station))
             return;
 
         AdvanceTelesciStage(station.Value.AsNullable());
@@ -96,7 +96,7 @@ public abstract class ESSharedTelesciSystem : EntitySystem
         SendAnnouncement(ent, stage);
 
         // TODO: replace with real screen shake once we have it
-        foreach (var grid in _station.GetGrids(ent.Owner))
+        foreach (var grid in Station.GetGrids(ent.Owner))
         {
             _gravity.StartGridShake(grid);
         }
@@ -131,7 +131,7 @@ public abstract class ESSharedTelesciSystem : EntitySystem
 
     private void UpdateUiState(Entity<ESPortalGeneratorConsoleComponent, UserInterfaceComponent> ent)
     {
-        if (_station.GetOwningStation(ent) is not { } station ||
+        if (Station.GetOwningStation(ent) is not { } station ||
             !TryComp<ESTelesciStationComponent>(station, out var stationComp))
             return;
 
@@ -144,6 +144,7 @@ public abstract class ESSharedTelesciSystem : EntitySystem
             Charging = generator.Value.Comp.Powered,
             CurrentResearchStage = stationComp.Stage,
             MaxResearchStage = stationComp.MaxStage,
+            ThreatsLeft = generator.Value.Comp.ThreatsLeft
         };
         _userInterface.SetUiState((ent, ent.Comp2), ESPortalGeneratorConsoleUiKey.Key, state);
     }

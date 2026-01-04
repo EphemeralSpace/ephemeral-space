@@ -30,10 +30,13 @@ public sealed partial class ESPortalGeneratorConsoleWindow : FancyWindow
                 ? Loc.GetString("es-ui-portalgen-console-label-status-charging")
                 : Loc.GetString("es-ui-portalgen-console-label-status-nopower"));
 
-        ActivateButton.Disabled = state.Charge < 1;
+        ActivateButton.Disabled = state.Charge < 1 || state.ThreatsLeft > 0;
 
         ChargeLabel.UnsafeSetMarkup(Loc.GetString("es-ui-portalgen-console-label-charge-fmt",
             ("charge", (int) (state.Charge * 100))));
+
+        ThreatsLeftLabel.UnsafeSetMarkup(Loc.GetString("es-ui-portalgen-console-label-status-stillthreats",
+            ("threats", state.ThreatsLeft)));
 
         ChargeBar.Value = state.Charge;
         ResearchBar.Value = (float) state.CurrentResearchStage / state.MaxResearchStage;

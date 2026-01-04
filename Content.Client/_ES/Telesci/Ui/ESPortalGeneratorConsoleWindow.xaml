@@ -20,6 +20,7 @@
                 <BoxContainer Orientation="Vertical" VerticalAlignment="Center" VerticalExpand="True">
                     <RichTextLabel Text="{ Loc 'es-ui-portalgen-console-label-charge-header'}" HorizontalAlignment="Left"/>
                     <RichTextLabel Name="ChargeLabel" HorizontalAlignment="Left"/>
+                    <RichTextLabel Name="ThreatsLeftLabel" HorizontalAlignment="Left"/>
                 </BoxContainer>
                 <Control MinWidth="5"/>
                 <ProgressBar Name="ChargeBar" MaxValue="1" HorizontalExpand="True" SetHeight="50"/>

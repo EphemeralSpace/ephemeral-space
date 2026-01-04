@@ -43,6 +43,12 @@ public sealed partial class ESPortalGeneratorComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Powered;
+
+    /// <summary>
+    /// How many portal event threats are left from the last wave.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int ThreatsLeft = 0;
 }
 
 [Serializable, NetSerializable]
