@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 01/02/2026 08:08:29
-  entityCount: 14601
+  time: 01/04/2026 00:38:54
+  entityCount: 14602
 maps:
 - 3
 grids:
@@ -30482,10 +30482,10 @@ entities:
       parent: 2
 - proto: CircuitImprinter
   entities:
-  - uid: 433
+  - uid: 7417
     components:
     - type: Transform
-      pos: 3.5,-7.5
+      pos: 7.5,-42.5
       parent: 2
 - proto: ClosetChefFilled
   entities:
@@ -31195,16 +31195,24 @@ entities:
       pos: 31.5,-33.5
       parent: 2
     - type: AccessReader
+      accessLog: []
+      accessKeys: []
       accessListsOriginal:
       - - Command
+      access: []
+      denyTags: []
   - uid: 2443
     components:
     - type: Transform
       pos: 30.5,-22.5
       parent: 2
     - type: AccessReader
+      accessLog: []
+      accessKeys: []
       accessListsOriginal:
       - - Command
+      access: []
+      denyTags: []
 - proto: ComputerCrewMonitoring
   entities:
   - uid: 35
@@ -31225,16 +31233,24 @@ entities:
       pos: 0.5,9.5
       parent: 2
     - type: AccessReader
+      accessLog: []
+      accessKeys: []
       accessListsOriginal:
       - - Security
+      access: []
+      denyTags: []
   - uid: 2099
     components:
     - type: Transform
       pos: 25.5,-38.5
       parent: 2
     - type: AccessReader
+      accessLog: []
+      accessKeys: []
       accessListsOriginal:
       - - Security
+      access: []
+      denyTags: []
 - proto: ComputerFrame
   entities:
   - uid: 7576
@@ -31291,8 +31307,12 @@ entities:
       pos: -9.5,3.5
       parent: 2
     - type: AccessReader
+      accessLog: []
+      accessKeys: []
       accessListsOriginal:
       - - Service
+      access: []
+      denyTags: []
 - proto: ComputerMedicalRecords
   entities:
   - uid: 1101
@@ -36245,11 +36265,6 @@ entities:
       parent: 2
 - proto: ESAutolathe
   entities:
-  - uid: 430
-    components:
-    - type: Transform
-      pos: 2.5,-5.5
-      parent: 2
   - uid: 1512
     components:
     - type: Transform
@@ -37073,6 +37088,27 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-44.5
+      parent: 2
+- proto: ESCrateMaterialGlass
+  entities:
+  - uid: 433
+    components:
+    - type: Transform
+      pos: -8.5,-46.5
+      parent: 2
+- proto: ESCrateMaterialPlastic
+  entities:
+  - uid: 1785
+    components:
+    - type: Transform
+      pos: -8.5,-47.5
+      parent: 2
+- proto: ESCrateMaterialSteel
+  entities:
+  - uid: 1714
+    components:
+    - type: Transform
+      pos: -9.5,-45.5
       parent: 2
 - proto: ESCrateTrashBin
   entities:
@@ -42437,20 +42473,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -12.5,-51.5
       parent: 2
-  - uid: 1714
-    components:
-    - type: Transform
-      pos: -9.5,-46.5
-      parent: 2
   - uid: 1718
     components:
     - type: Transform
       pos: -9.5,-47.5
-      parent: 2
-  - uid: 1785
-    components:
-    - type: Transform
-      pos: -8.5,-47.5
       parent: 2
   - uid: 2600
     components:
@@ -42467,6 +42493,11 @@ entities:
     components:
     - type: Transform
       pos: 7.5,-25.5
+      parent: 2
+  - uid: 3947
+    components:
+    - type: Transform
+      pos: -9.5,-46.5
       parent: 2
   - uid: 5216
     components:
@@ -42597,11 +42628,6 @@ entities:
     components:
     - type: Transform
       pos: -70.5,2.5
-      parent: 2
-  - uid: 7506
-    components:
-    - type: Transform
-      pos: -9.5,-45.5
       parent: 2
   - uid: 7623
     components:
@@ -42852,11 +42878,6 @@ entities:
     components:
     - type: Transform
       pos: 10.5,-40.5
-      parent: 2
-  - uid: 14290
-    components:
-    - type: Transform
-      pos: -8.5,-46.5
       parent: 2
 - proto: ESSpawnerRandomMaintObstructionSpawner
   entities:
@@ -64380,6 +64401,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 11.5,-15.5
       parent: 2
+  - uid: 7506
+    components:
+    - type: Transform
+      pos: -53.5,10.5
+      parent: 2
   - uid: 14571
     components:
     - type: Transform
@@ -64391,6 +64417,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 11.5,-17.5
+      parent: 2
+  - uid: 14599
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -56.5,9.5
       parent: 2
 - proto: MachineCentrifuge
   entities:
@@ -64441,6 +64473,16 @@ entities:
       parent: 2
 - proto: MachineFrameDestroyed
   entities:
+  - uid: 430
+    components:
+    - type: Transform
+      pos: 3.5,-7.5
+      parent: 2
+  - uid: 431
+    components:
+    - type: Transform
+      pos: 2.5,-5.5
+      parent: 2
   - uid: 479
     components:
     - type: Transform
@@ -64456,23 +64498,10 @@ entities:
     - type: Transform
       pos: 7.5,-41.5
       parent: 2
-  - uid: 3947
-    components:
-    - type: Transform
-      pos: 7.5,-42.5
-      parent: 2
   - uid: 6725
     components:
     - type: Transform
       pos: -7.5,-56.5
-      parent: 2
-  - uid: 7417
-    components:
-    - type: MetaData
-      desc: Stinky!
-      name: destroyed laundry machine
-    - type: Transform
-      pos: -53.5,10.5
       parent: 2
   - uid: 7904
     components:
@@ -64483,6 +64512,11 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-58.5
+      parent: 2
+  - uid: 14290
+    components:
+    - type: Transform
+      pos: 2.5,-7.5
       parent: 2
 - proto: MaintenanceFluffSpawner
   entities:
@@ -66903,13 +66937,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 9.5,-48.5
-      parent: 2
-- proto: Protolathe
-  entities:
-  - uid: 431
-    components:
-    - type: Transform
-      pos: 2.5,-7.5
       parent: 2
 - proto: Rack
   entities:
