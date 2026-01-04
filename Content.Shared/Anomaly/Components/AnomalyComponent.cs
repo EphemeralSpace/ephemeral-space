@@ -152,7 +152,8 @@ public sealed partial class AnomalyComponent : Component
     /// +/- 0.2 from perfect stability (0.5)
     /// </remarks>
     [DataField]
-    public (float, float) InitialStabilityRange = (0.4f, 0.6f);
+    // ES START
+    public (float, float) InitialStabilityRange = (0.3f, 0.5f);
 
     /// <summary>
     /// The range of initial values for severity
@@ -161,7 +162,9 @@ public sealed partial class AnomalyComponent : Component
     /// Between 0 and 0.5, which should be all mild effects
     /// </remarks>
     [DataField]
-    public (float, float) InitialSeverityRange = (0.1f, 0.5f);
+    // ES START
+    public (float, float) InitialSeverityRange = (0.5f, 0.7f);
+    // ES END
 
     /// <summary>
     /// The particle type that increases the severity of the anomaly.

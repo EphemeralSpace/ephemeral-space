@@ -7,6 +7,9 @@
   name: anomaly
   description: An impossible object. Should you be standing this close to it?
   components:
+  # ES START
+  - type: ESPortalEventThreat
+  # ES END
   - type: Anomaly
     offset: 0, 0.15
     pulseSound:
