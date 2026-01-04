@@ -35,7 +35,7 @@ public sealed class ESTelesciSystem : ESSharedTelesciSystem
 
         // Threats
         SubscribeLocalEvent<ESPortalEventThreatComponent, ComponentStartup>(OnThreatStartup);
-        SubscribeLocalEvent<ESPortalEventThreatComponent, ComponentRemove>(OnThreatRemove);
+        SubscribeLocalEvent<ESPortalEventThreatComponent, EntityTerminatingEvent>(OnThreatTerminating);
     }
 
     private void OnPowerConsumerReceivedChanged(Entity<ESPortalGeneratorComponent> ent, ref PowerConsumerReceivedChanged args)
@@ -66,7 +66,7 @@ public sealed class ESTelesciSystem : ESSharedTelesciSystem
         }
     }
 
-    private void OnThreatRemove(Entity<ESPortalEventThreatComponent> ent, ref ComponentRemove args)
+    private void OnThreatTerminating(Entity<ESPortalEventThreatComponent> ent, ref EntityTerminatingEvent args)
     {
         var query = EntityQueryEnumerator<ESPortalGeneratorComponent>();
 
@@ -76,8 +76,8 @@ public sealed class ESTelesciSystem : ESSharedTelesciSystem
             generator.ThreatsLeft -= 1;
             Dirty(uid, generator);
 
-            // no announcement if not charged
-            if (!generator.Charged)
+            // no announcement if not powered
+            if (!generator.Powered)
                 continue;
 
             // Make an announcement depending on threats left
