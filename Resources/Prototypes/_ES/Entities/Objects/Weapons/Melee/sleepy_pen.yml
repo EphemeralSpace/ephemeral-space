@@ -2,6 +2,8 @@
   id: ESSleepyPen
   parent: EmergencyMedipen # Looks like a normal medipen.
   suffix: Sleepy Pen
+  name: knockout medipen
+  description: A single-dose, non-refillable medipen containing a nasty mix of chems that'll knock out even the toughest of captains. After use, it's indistinguishable from a normal emergency medipen.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -12,12 +14,6 @@
           Quantity: 10
         - ReagentId: MuteToxin
           Quantity: 5
-  - type: ExaminableSolution
-    heldOnly: false # need to do this for now for conveyance reasons - this *should* signal to the player what the item is for pretty effectively without messing with the "stealth" flavor. ideally, we would support mask-specific examine text later.
-  - type: Injector
-    solutionName: pen
-    ignoreClosed: false
-    currentTransferAmount: null
-    activeModeProtoId: ESSleepyPenMode
-    allowedModes:
-    - ESSleepyPenMode
+  - type: ESDisguiseOnSolutionEmpty
+    solution: pen
+    disguise: EmergencyMedipen
