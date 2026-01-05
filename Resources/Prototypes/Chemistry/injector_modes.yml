@@ -152,3 +152,12 @@
 - type: injectorMode
   parent: [ BaseAdvancedJetInjectorMode, BaseDynamicMode ]
   id: AdvancedJetInjectorDynamicMode
+
+# ES - START
+- type: injectorMode
+  parent: [ BaseInjectMode ]
+  id: ESSleepyPenMode
+  injectSound: /Audio/Items/hypospray.ogg
+  injectPopupTarget: injector-component-feel-prick-message
+  delayPerVolume: 0
+  mobTime: 0

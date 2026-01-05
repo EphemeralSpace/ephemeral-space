@@ -1,13 +1,11 @@
 - type: entity
   id: ESSleepyPen
-  parent: Pen # It is just like normal pen, isn't it?
-  name: pen
+  parent: ChemicalMedipen # Looks like a normal medipen.
   suffix: Sleepy Pen
-  description: A dark ink pen.
   components:
   - type: SolutionContainerManager
     solutions:
-      injector:
+      pen:
         maxVol: 15
         reagents:
         - ReagentId: ChloralHydrate
@@ -15,17 +13,10 @@
         - ReagentId: MuteToxin
           Quantity: 5
   - type: ExaminableSolution
-    solution: injector
     heldOnly: false # need to do this for now for conveyance reasons - this *should* signal to the player what the item is for pretty effectively without messing with the "stealth" flavor. ideally, we would support mask-specific examine text later.
-    exactVolume: true
   - type: Injector
+    solutionName: pen
     ignoreClosed: false
-    activeModeProtoId: HyposprayInjectMode
+    activeModeProtoId: ESSleepyPenMode
     allowedModes:
-    - HyposprayInjectMode
-  - type: UseDelay
-    delay: 0.20
-  - type: StaticPrice
-    price: 75
-  - type: EmitSoundOnUse
-    handle: false # don't want the sound to stop the self-inject from triggering
+    - ESSleepyPenMode
