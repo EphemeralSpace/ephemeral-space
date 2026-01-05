@@ -14,9 +14,13 @@
             </BoxContainer>
             <SpriteView Name="SelfView" OverrideDirection="South" Scale="4 4" HorizontalAlignment="Center" Margin="5 5 5 15"/>
             <RichTextLabel Name="NameLabel" HorizontalAlignment="Center" Margin="10 0"/>
-            <RichTextLabel Name="JobLabel" HorizontalAlignment="Center"/>
+            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextureRect Name="JobIconTexture" TextureScale="2 2" VerticalAlignment="Center"/>
+                <Control MinWidth="5"/>
+                <RichTextLabel Name="JobLabel" VerticalAlignment="Center"/>
+            </BoxContainer>
         </BoxContainer>
-        <customControls:VSeparator Margin="5"/>
+        <PanelContainer StyleClasses="LowDivider" />
         <BoxContainer HorizontalExpand="True" Orientation="Vertical" Margin="5">
             <BoxContainer>
                 <RichTextLabel Name="InfoBlurbText" HorizontalExpand="False"/>

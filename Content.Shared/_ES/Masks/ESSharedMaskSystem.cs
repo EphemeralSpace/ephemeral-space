@@ -84,9 +84,10 @@ public abstract class ESSharedMaskSystem : EntitySystem
                 ConfirmationPopup = true,
                 Act = () =>
                 {
-                    if (!Mind.TryGetMind(actorComp.PlayerSession, out var mind, out var mindComp))
+                    if (!Mind.TryGetMind(actorComp.PlayerSession.UserId, out var mind))
                         return;
-                    ApplyMask((mind, mindComp), mask);
+                    RemoveMask(mind.Value);
+                    ApplyMask(mind.Value, mask);
                 },
             };
             args.Verbs.Add(verb);

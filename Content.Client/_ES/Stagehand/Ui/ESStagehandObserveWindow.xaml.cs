@@ -37,6 +37,24 @@ public sealed partial class ESStagehandObserveWindow : FancyWindow
         _objective = _entityManager.System<ESObjectiveSystem>();
 
         WarpButton.OnPressed += InvokeWarp;
+
+        _mask.OnMaskChanged += (_, _) =>
+        {
+            if (Disposed)
+                return;
+
+            Update();
+            UpdateInfoPanel();
+        };
+
+        _objective.OnObjectivesChanged += mind =>
+        {
+            if (Disposed)
+                return;
+
+            if (mind == CurrentMind)
+                UpdateInfoPanel();
+        };
     }
 
     public void Update()
@@ -72,6 +90,15 @@ public sealed partial class ESStagehandObserveWindow : FancyWindow
             };
             MindsContainer.AddChild(button);
         }
+    }
+
+    public void UpdateInfoPanel()
+    {
+        if (!_entityManager.TryGetComponent<MindComponent>(CurrentMind, out var mind) ||
+            !_entityManager.TryGetComponent<ESCharacterComponent>(CurrentMind, out var character))
+            return;
+
+        SetInfoPanel((CurrentMind.Value, mind, character));
     }
 
     public void SetInfoPanel(Entity<MindComponent, ESCharacterComponent> ent)
