@@ -80,8 +80,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (_loocEnabled == val) return;
 
         _loocEnabled = val;
-        _chatManager.DispatchServerAnnouncement(
-            Loc.GetString(val ? "chat-manager-looc-chat-enabled-message" : "chat-manager-looc-chat-disabled-message"));
+// ES START
+        // This crashes if you change it on the server config so fuck this ig.
+        //_chatManager.DispatchServerAnnouncement(
+        //    Loc.GetString(val ? "chat-manager-looc-chat-enabled-message" : "chat-manager-looc-chat-disabled-message"));
+// ES END
     }
 
     private void OnDeadLoocEnabledChanged(bool val)
