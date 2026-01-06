@@ -1,7 +1,7 @@
 - type: esMasquerade
   id: Traitors
   name: Traitors
-  description: standard, balanced cast of crew and traitors
+  description: is a standard, balanced cast of crew and traitors
   weight: 10
   minPlayers: 6
   gameRules: []
