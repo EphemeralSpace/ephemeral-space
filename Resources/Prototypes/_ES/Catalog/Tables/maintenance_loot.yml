@@ -152,7 +152,7 @@
 
     - id: DrinkBeerBottleFull
     - id: DrinkHotCoffee
-    - id: StrangePill
+    - id: ESStrangePill
 
     - id: BodyBagFolded
     - id: FireExtinguisher

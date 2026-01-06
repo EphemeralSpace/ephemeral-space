@@ -1,22 +1,24 @@
 ﻿- type: entity
   parent: SmartFridge
-  id: ESSmartFridge
-  suffix: Pheemy
+  id: ESSmartFridgeMedical
+  suffix: ES, Medical
   components:
   - type: SmartFridge
     flavorText: smart-fridge-request-chemistry
   - type: EntityTableContainerFill
     containers:
       smart_fridge_inventory:
-        tableId: ESSmartFridgeFill
+        tableId: ESSmartFridgeMedicalFill
 
 - type: entityTable
-  id: ESSmartFridgeFill
+  id: ESSmartFridgeMedicalFill
   table:
     all:
-    - id: ESJugBicaridine
-    - id: ESJugDermaline
-    - id: ESJugInaprovaline
-    - id: ESJugTricordrazine
-    - id: ESJugCryoxadone
-    - id: ESJugEpinephrine
+    - id: ESLargeBeakerBicaridine
+      amount: 2
+    - id: ESLargeBeakerCryoxadone
+      amount: 2
+    - id: ESLargeBeakerDermaline
+    - id: ESLargeBeakerInaprovaline
+    - id: ESLargeBeakerTricordrazine
+    - id: ESLargeBeakerEpinephrine

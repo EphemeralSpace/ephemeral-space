@@ -74,9 +74,13 @@
 
 - type: reagent
   id: Diphenhydramine
-  name: reagent-name-benadryl
+# ES START
+  name: es-reagent-name-benadryl
+# ES END
   group: Medicine
-  desc: reagent-desc-benadryl
+# ES START
+  desc: es-reagent-desc-benadryl
+# ES END
   physicalDesc: reagent-physical-desc-chalky
   flavor: medicine
   color: "#64ffe6"

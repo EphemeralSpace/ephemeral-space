@@ -315,6 +315,22 @@
   products:
     Desoxyephedrine: 4 #I kinda remember having to heat this up, and if you heated it up too much, it went boom, I can't remember the specific values tho.
 
+# ES START
+#- type: reaction
+#  id: Stimulants
+#  impact: Medium
+#  minTemp: 370
+#  reactants:
+#    Ephedrine:
+#      amount: 1
+#    Vestine:
+#      amount: 1
+#    Oxygen:
+#      amount: 2
+#  products:
+#    Stimulants: 2
+# ES END
+
 - type: reaction
   id: Ephedrine
   impact: Medium
@@ -329,6 +345,22 @@
      amount: 1
   products:
     Ephedrine: 4
+
+# ES START
+#- type: reaction
+#  id: MuteToxin
+#  impact: Medium
+#  minTemp: 370
+#  reactants:
+#    Uranium:
+#      amount: 1
+#    Vestine:
+#      amount: 2
+#    SpaceGlue:
+#      amount: 2
+#  products:
+#    MuteToxin: 2
+# ES END
 
 - type: reaction
   id: ChloralHydrate
@@ -472,6 +504,30 @@
       amount: 1
   products:
     SodiumPolyacrylate: 4
+
+# ES START
+#- type: reaction
+#  id: Nocturine
+#  impact: High
+#  reactants:
+#    Impedrezene:
+#      amount: 2
+#    Vestine:
+#      amount: 1
+#  products:
+#    Nocturine: 1
+#
+#- type: reaction
+#  id: Tazinide
+#  impact: Medium
+#  reactants:
+#    Licoxide:
+#      amount: 1
+#    Vestine:
+#      amount: 1
+#  products:
+#    Tazinide: 1
+# ES END
 
 - type: reaction
   id: ArtifactGlue
