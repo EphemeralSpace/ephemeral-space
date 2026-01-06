@@ -1,11 +1,13 @@
 using Content.Shared._ES.Degradation;
 using Content.Shared._ES.Masks.Traitor.Components;
+using Content.Shared._ES.Objectives;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
 using Content.Shared.DoAfter;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Content.Shared.Whitelist;
 using JetBrains.Annotations;
 using Robust.Shared.Serialization;
 
@@ -16,7 +18,8 @@ public sealed class ESSabotageSystem : EntitySystem
     [Dependency] private readonly ISharedAdminManager _admin = default!;
     [Dependency] private readonly ESDegradationSystem _degradation = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly ESSharedMaskSystem _mask = default!;
+    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private readonly ESSharedObjectiveSystem _objective = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
 
@@ -37,12 +40,20 @@ public sealed class ESSabotageSystem : EntitySystem
         if (_admin.HasAdminFlag(user, AdminFlags.Debug))
             return true;
 
+        if (_mind.GetMind(user) is not { } mind)
+            return false;
+
         // overriding, for vandal etc
-        if (HasComp<ESCanAlwaysSabotageComponent>(user)
-            || (_mind.GetMind(user) is { } mind && HasComp<ESCanAlwaysSabotageComponent>(mind)))
+        if (HasComp<ESCanAlwaysSabotageComponent>(user) || HasComp<ESCanAlwaysSabotageComponent>(mind))
             return true;
 
-        return _mask.GetTroupeOrNull(user) == target.Comp.SabotageTroupe;
+        foreach (var objective in _objective.GetObjectives<ESSabotageConditionComponent>(mind))
+        {
+            if (_entityWhitelist.IsWhitelistPass(objective.Comp.Whitelist, target))
+                return true;
+        }
+
+        return false;
     }
 
     private void OnGetVerbs(Entity<ESSabotageTargetComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
@@ -66,6 +77,7 @@ public sealed class ESSabotageSystem : EntitySystem
                         ent)
                     {
                         BlockDuplicate = true,
+                        DuplicateCondition = DuplicateConditions.SameEvent,
                         BreakOnMove = true,
                         BreakOnDamage = true,
                     }))

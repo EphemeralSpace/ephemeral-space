@@ -68,13 +68,15 @@ public sealed class RadioSystem : EntitySystem
 
         // pick 1 memory for the message
         // we don't distort it here, because its probably already distorted
-        var msg = _random.Pick(memory.SpeechMemories).Message;
-
-        foreach (var channel in keys.Channels)
+        if (memory.SpeechMemories.Count != 0)
         {
-            SendRadioMessage(ent.Owner, msg, channel, ent.Owner);
-        }
+            var msg = _random.Pick(memory.SpeechMemories).Message;
 
+            foreach (var channel in keys.Channels)
+            {
+                SendRadioMessage(ent.Owner, msg, channel, ent.Owner);
+            }
+        }
         args.Handled = true;
     }
 

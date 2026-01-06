@@ -167,8 +167,6 @@
   description: es-mask-vandal-desc
   color: tomato
   weight: 0.2
-  mindComponents:
-  - type: ESCanAlwaysSabotage
   objectives:
     all:
     - pick:
