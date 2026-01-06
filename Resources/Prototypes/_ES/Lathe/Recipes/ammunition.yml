@@ -4,14 +4,14 @@
   id: ESMagazine9mm
   result: ESMagazine9mm
   materials:
-    Steel: 145
+    Steel: 400
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: ESSpeedLoader357
   result: ESSpeedLoader357
   materials:
-    Steel: 190
+    Steel: 500
 
 # Shotgun
 
@@ -37,3 +37,12 @@
   materials:
     Steel: 190
     Plastic: 100
+
+# Misc.
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: ESMiniSyringe
+  result: MiniSyringe
+  materials:
+    Steel: 200

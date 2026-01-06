@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.0.0
   forkId: ""
   forkVersion: ""
-  time: 01/06/2026 01:13:52
-  entityCount: 14536
+  time: 01/06/2026 01:47:19
+  entityCount: 14539
 maps:
 - 3
 grids:
@@ -62922,13 +62922,6 @@ entities:
     - type: Transform
       pos: -10.5,-18.5
       parent: 2
-- proto: Hypospray
-  entities:
-  - uid: 1277
-    components:
-    - type: Transform
-      pos: 6.5,4.5
-      parent: 2
 - proto: IngotGold
   entities:
   - uid: 2215
@@ -63698,6 +63691,13 @@ entities:
     - type: Transform
       pos: 10.5,-36.5
       parent: 2
+- proto: LauncherSyringe
+  entities:
+  - uid: 11520
+    components:
+    - type: Transform
+      pos: 6.4526405,4.72605
+      parent: 2
 - proto: Lighter
   entities:
   - uid: 8046
@@ -64281,6 +64281,23 @@ entities:
     components:
     - type: Transform
       pos: 6.7048693,9.728001
+      parent: 2
+- proto: MiniSyringe
+  entities:
+  - uid: 541
+    components:
+    - type: Transform
+      pos: 6.4853315,4.397655
+      parent: 2
+  - uid: 544
+    components:
+    - type: Transform
+      pos: 6.62885,4.397655
+      parent: 2
+  - uid: 1277
+    components:
+    - type: Transform
+      pos: 6.767739,4.399701
       parent: 2
 - proto: Mirror
   entities:
