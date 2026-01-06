@@ -48,6 +48,9 @@
   - type: PdaVisuals
   - type: Item
     size: Small
+# ES Start
+  - type: HandheldGPS
+# ES End
   - type: ContainerContainer
     containers:
       PDA-id: !type:ContainerSlot {}
