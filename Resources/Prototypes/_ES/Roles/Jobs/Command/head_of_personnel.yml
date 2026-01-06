@@ -3,7 +3,6 @@
   name: ESjob-name-hop
   description: ESjob-description-hop
   playTimeTracker: ESJobHeadOfPersonnel
-  weight: 20
   startingGear: ESHoPGear
   icon: "JobIconHeadOfPersonnel"
   supervisors: job-supervisors-captain

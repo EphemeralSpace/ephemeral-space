@@ -3,7 +3,7 @@
   name: ESjob-name-captain
   description: ESjob-description-captain
   playTimeTracker: ESJobCaptain
-  weight: 20
+  weight: 20 # The only guy with a higher weight, he is picked first for objective protection reasons.
   startingGear: ESCaptainGear
   icon: "JobIconCaptain"
   joinNotifyCrew: true

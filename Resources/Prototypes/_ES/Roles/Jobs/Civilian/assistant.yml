@@ -3,6 +3,7 @@
   name: ESjob-name-assistant
   description: ESjob-description-assistant
   playTimeTracker: ESJobAssistant
+  weight: -99999 # pick these guys last we don't need more of them.
   startingGear: ESAssistantGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-everyone

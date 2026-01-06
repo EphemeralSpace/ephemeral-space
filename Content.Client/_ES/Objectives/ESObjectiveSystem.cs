@@ -6,6 +6,7 @@ namespace Content.Client._ES.Objectives;
 /// <inheritdoc/>
 public sealed class ESObjectiveSystem : ESSharedObjectiveSystem
 {
+    public event Action<Entity<ESObjectiveHolderComponent>>? OnObjectivesChanged;
     public event Action<Entity<ESObjectiveComponent>>? OnObjectiveProgressChanged;
 
     /// <inheritdoc/>
@@ -13,7 +14,13 @@ public sealed class ESObjectiveSystem : ESSharedObjectiveSystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<ESObjectiveHolderComponent, AfterAutoHandleStateEvent>(OnHolderAfterAutoHandleStateEvent);
         SubscribeLocalEvent<ESObjectiveComponent, AfterAutoHandleStateEvent>(OnObjectiveAfterAutoHandleState);
+    }
+
+    private void OnHolderAfterAutoHandleStateEvent(Entity<ESObjectiveHolderComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        OnObjectivesChanged?.Invoke(ent);
     }
 
     private void OnObjectiveAfterAutoHandleState(Entity<ESObjectiveComponent> ent, ref AfterAutoHandleStateEvent args)

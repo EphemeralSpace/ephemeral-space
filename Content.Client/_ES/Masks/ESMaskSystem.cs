@@ -3,20 +3,35 @@ using Content.Shared._ES.Masks.Components;
 using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.StatusIcon.Components;
+using Robust.Client.GameObjects;
 using Robust.Client.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client._ES.Masks;
 
 public sealed class ESMaskSystem : ESSharedMaskSystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
+
+    public event Action<EntityUid, ProtoId<ESMaskPrototype>?>? OnMaskChanged;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<ESMaskRoleComponent, AfterAutoHandleStateEvent>(OnRoleAfterHandleState);
+
         SubscribeLocalEvent<MindContainerComponent, GetStatusIconsEvent>(OnGetStagehandStatusIcons);
         SubscribeLocalEvent<ESTroupeFactionIconComponent, GetStatusIconsEvent>(OnGetStatusIcons);
+    }
+
+    private void OnRoleAfterHandleState(Entity<ESMaskRoleComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        if (!_container.TryGetContainingContainer(ent.Owner, out var roleContainer))
+            return;
+        var mind = roleContainer.Owner;
+        OnMaskChanged?.Invoke(mind, ent.Comp.Mask);
     }
 
     private void OnGetStagehandStatusIcons(Entity<MindContainerComponent> ent, ref GetStatusIconsEvent args)

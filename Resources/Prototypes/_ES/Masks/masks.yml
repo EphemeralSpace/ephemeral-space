@@ -212,6 +212,7 @@
   name: es-mask-marauder-name
   description: es-mask-marauder-desc
   color: coral
+  weight: 1.5
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorMarauder
@@ -261,7 +262,7 @@
   name: es-mask-demolitionist-name
   description: es-mask-demolitionist-desc
   color: orangered
-  weight: 0.5
+  weight: 0.3
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorDemolitionist

@@ -13,12 +13,12 @@
       10: ["#Traitors"] # 1 generic crew, 3 traitors.
       11: ["ESArmsDealer"] # Guarantee an arms dealer, this is definitely balanced around an armed crew.
       13: ["#Reaped"] # 2 generic crew, 3 traitors.
-      15: ["#Traitors", "ESMercenary"] # 2 generic crew, 4 traitors.
+      15: ["#PowerTraitors", "ESMercenary"] # 2 generic crew, 4 traitors.
       16: ["#Firmsafes"]
       17: ["#Traitors"] # 2 generic crew, 5 traitors.
       18: ["#Oracles"] # 2 generic crew, 5 traitors.
       20: ["#Traitors"] # 3 generic crew, 6 traitors.
       22: ["#Gunners"] # 4 generic crew, 6 traitors.
-      25: ["#Jesters(2)", "#Traitors"] # 4 generic crew, 7 traitors.
+      25: ["#Jesters(2)", "#PowerTraitors"] # 4 generic crew, 7 traitors.
       26: ["#Freaks"]
       30: ["#Softsafes(2)", "#Traitors"] # 5 generic crew, 8 traitors.

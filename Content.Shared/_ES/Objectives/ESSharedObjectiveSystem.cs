@@ -37,6 +37,8 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
 
         SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerDetachedEvent>(OnPlayerDetached);
+
+        SubscribeLocalEvent<ESObjectiveComponent, EntityRenamedEvent>(OnObjectiveRenamed);
     }
 
     private void OnMindGotAdded(Entity<ESObjectiveHolderComponent> ent, ref MindGotAddedEvent args)
@@ -69,6 +71,12 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         {
             _pvsOverride.RemoveSessionOverride(objective, args.Player);
         }
+    }
+
+    private void OnObjectiveRenamed(Entity<ESObjectiveComponent> ent, ref EntityRenamedEvent args)
+    {
+        // We need to dirty when we get renamed so that we can raise events on the client and update UIs.
+        Dirty(ent);
     }
 
     /// <summary>

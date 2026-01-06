@@ -16,13 +16,13 @@
   gameRule: ESTroupeRuleTraitor
   prohibitedJobs:
   # Command
-  - Captain
-  - HeadOfPersonnel
-  - HeadOfSecurity
+  - ESCaptain
+  - ESHeadOfPersonnel
+  - ESHeadOfSecurity
   # Security
-  - Warden
-  - SecurityOfficer
-  - Detective
+  - ESWarden
+  - ESSecurityOfficer
+  - ESDetective
   objectives:
     all:
     - pick:

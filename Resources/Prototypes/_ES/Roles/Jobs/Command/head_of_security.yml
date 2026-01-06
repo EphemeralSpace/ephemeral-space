@@ -3,7 +3,6 @@
   name: ESjob-name-hos
   description: ESjob-description-hos
   playTimeTracker: ESJobHeadOfSecurity
-  weight: 10
   startingGear: ESHoSGear
   icon: "JobIconHeadOfSecurity"
   supervisors: job-supervisors-captain

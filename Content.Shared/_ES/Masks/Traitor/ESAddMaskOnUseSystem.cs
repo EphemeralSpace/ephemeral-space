@@ -34,14 +34,17 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         if (args.Target == null)
             return;
 
-        if (ent.Comp.MindshieldPrevent && HasComp<MindShieldComponent>(args.Target))
-            return;
-
         if (!_mind.TryGetMind((EntityUid)args.Target!, out var mind, out var mindComponent)) // No SSD people
             return;
 
         if (_mask.GetTroupeOrNull((mind, mindComponent)) == _proto.Index(ent.Comp.MaskToAdd).Troupe)
             return;
+
+        if (ent.Comp.MindshieldPrevent && HasComp<MindShieldComponent>(args.Target))
+        {
+            _popup.PopupClient(Loc.GetString(ent.Comp.MindshieldedMessage), args.User, args.User);
+            return;
+        }
 
         if (ent.Comp.RequireCrit && !_mobState.IsCritical((EntityUid)args.Target))
         {
