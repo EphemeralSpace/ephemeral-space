@@ -107,7 +107,9 @@
     enabled: false
     usesApcPower: true
   - type: WiresPanel
-  - type: WiresPanelSecurity
+# ES START
+  #- type: WiresPanelSecurity
+# ES END
   - type: Wires
     boardName: wires-board-name-airlock
     layoutId: Airlock

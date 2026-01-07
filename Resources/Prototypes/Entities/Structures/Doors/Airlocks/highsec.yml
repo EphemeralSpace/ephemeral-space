@@ -101,8 +101,10 @@
     enabled: false
     usesApcPower: true
   - type: WiresPanel
-  - type: WiresPanelSecurity
-    securityLevel: maxSecurity
+# ES START
+  #- type: WiresPanelSecurity
+  #  securityLevel: maxSecurity
+# ES END
   - type: Wires
     boardName: wires-board-name-highsec
     layoutId: HighSec
@@ -128,7 +130,9 @@
         acts: ["Destruction"]
   - type: Construction
     graph: Airlock
-    node: highSecDoor
+# ES START
+    node: airlock # make it basic bitch
+# ES END
   - type: Tag
     tags:
       - HighSecDoor
