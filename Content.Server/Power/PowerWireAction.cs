@@ -3,7 +3,6 @@ using Content.Shared.Electrocution;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Wires;
-using Content.Shared._ES.Sparks;
 using Content.Shared.Power;
 using Content.Shared.Wires;
 
@@ -190,12 +189,8 @@ public sealed partial class PowerWireAction : BaseWireAction
     public override bool Cut(EntityUid user, Wire wire)
     {
         base.Cut(user, wire);
-// ES START
-        // Cutting the power wire doesn't shock you, but mending it does.
-        SetElectrified(wire.Owner, true);
-        if (IsPowered(wire.Owner))
-            EntityManager.System<ESSparksSystem>().DoSparks(wire.Owner, user: user, cooldown: false, tileFireChance: 0.1f);
-// ES END
+        if (!TrySetElectrocution(user, wire))
+            return false;
 
         SetWireCuts(wire.Owner, true);
 
