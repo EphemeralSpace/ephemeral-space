@@ -24,7 +24,9 @@
     sprite: Objects/Weapons/Guns/Pistols/viper.rsi
     quickEquip: false
     slots:
-    - suitStorage
+# ES START
+    # - suitStorage
+# ES END
     - Belt
   - type: Gun
     fireRate: 6

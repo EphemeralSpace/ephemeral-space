@@ -46,7 +46,9 @@
     sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
     quickEquip: false
     slots:
-    - suitStorage
+# ES START
+    # - suitStorage
+# ES END
     - Belt
   - type: UseDelay
     delay: 1

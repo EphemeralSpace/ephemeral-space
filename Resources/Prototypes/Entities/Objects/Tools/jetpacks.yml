@@ -159,7 +159,9 @@
     sprite: Objects/Tanks/Jetpacks/captain.rsi
     slots:
       - Back
-      - SuitStorage
+# ES START
+      # - SuitStorage
+# ES END
   - type: Item
     sprite: Objects/Tanks/Jetpacks/captain.rsi
     size: Normal
@@ -202,7 +204,9 @@
       sprite: Objects/Tanks/Jetpacks/mini.rsi
       slots:
         - Back
-        - suitStorage
+# ES START
+        # - suitStorage
+# ES END
         - Belt
     - type: GasTank
       outputPressure: 42.6
@@ -273,7 +277,9 @@
     sprite: Objects/Tanks/Jetpacks/void.rsi
     slots:
       - Back
-      - suitStorage
+# ES START
+      # - suitStorage
+# ES END
       - Belt
 
 # Filled void
