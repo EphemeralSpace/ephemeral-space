@@ -1,0 +1,118 @@
+﻿- type: decal
+  id: ESGoldTrimBox
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_box
+
+- type: decal
+  id: ESGoldTrimCornerNe
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_corner_ne
+
+- type: decal
+  id: ESGoldTrimCornerSe
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_corner_se
+
+- type: decal
+  id: ESGoldTrimCornerNw
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_corner_nw
+
+- type: decal
+  id: ESGoldTrimCornerSw
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_corner_sw
+
+- type: decal
+  id: ESGoldTrimInnerNe
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_inner_ne
+
+- type: decal
+  id: ESGoldTrimInnerSe
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_inner_se
+
+- type: decal
+  id: ESGoldTrimInnerNw
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_inner_nw
+
+- type: decal
+  id: ESGoldTrimInnerSw
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_inner_sw
+
+- type: decal
+  id: ESGoldTrimEndN
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_end_n
+
+- type: decal
+  id: ESGoldTrimEndE
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_end_e
+
+- type: decal
+  id: ESGoldTrimEndS
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_end_s
+
+- type: decal
+  id: ESGoldTrimEndW
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_end_w
+
+- type: decal
+  id: ESGoldTrimLineN
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_line_n
+
+- type: decal
+  id: ESGoldTrimLineE
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_line_e
+
+- type: decal
+  id: ESGoldTrimLineS
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_line_s
+
+- type: decal
+  id: ESGoldTrimLineW
+  tags: ["theater", "markings"]
+  sprite:
+    sprite: _ES/Decals/gold_trim.rsi
+    state: thin_line_w
