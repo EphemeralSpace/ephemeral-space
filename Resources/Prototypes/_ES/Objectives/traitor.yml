@@ -60,9 +60,9 @@
   abstract: true
   components:
   - type: ESObjective
-    icon: # TODO: proper icon once it's resprited
-      sprite: Objects/Tools/wrench.rsi
-      state: icon
+    icon:
+      sprite: Structures/Machines/server.rsi
+      state: server
   - type: ESCounterObjective
   - type: ESSabotageCondition
     whitelist:
