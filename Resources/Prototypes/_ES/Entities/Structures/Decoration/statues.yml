@@ -6,19 +6,19 @@
   components:
   - type: Sprite
     noRot: true
-    sprite: Structures/Decoration/statues.rsi
+    sprite: _ES/Structures/Decoration/statues.rsi
     state: vaporwave
     drawdepth: Mobs
     
 - type: entity
   id: StatueKarlMarx
-  parent: karl marx statue
-  name: statue of a pure maiden
+  parent: BaseStructure
+  name: karl marx statue
   description: A bronze statue depicting Karl Marx. "From each according to his ability, to each according to his needs."
   components:
   - type: Sprite
     noRot: true
-    sprite: Structures/Decoration/statues.rsi
+    sprite: _ES/Structures/Decoration/statues.rsi
     state: karlmarx
     drawdepth: Mobs
 
@@ -30,6 +30,6 @@
   components:
   - type: Sprite
     noRot: true
-    sprite: Structures/Decoration/statues.rsi
+    sprite: _ES/Structures/Decoration/statues.rsi
     state: fungus
     drawdepth: Mobs
