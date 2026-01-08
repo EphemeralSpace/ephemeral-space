@@ -128,15 +128,16 @@
     selectedMode: Burst
     availableModes:
     - Burst
-    shotsPerBurst: 2
+    shotsPerBurst: 3
     projectileSpeed: 20
+    fireRate: 3
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
       path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
   - type: BatteryAmmoProvider
     proto: ESEnergyBoltCaptain
-    fireCost: 70
+    fireCost: 48
   - type: BatterySelfRecharger
     autoRechargeRate: 5
   - type: StaticPrice
