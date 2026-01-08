@@ -349,3 +349,23 @@ es-names-first-dataset-female-339 = Ornania
 es-names-first-dataset-female-340 = Oriana
 # 2025-12-17
 es-names-first-dataset-female-341 = Gherkin
+# 2026-01-07
+es-names-first-dataset-female-341 = Io
+es-names-first-dataset-female-341 = Areti
+es-names-first-dataset-female-341 = Despina
+es-names-first-dataset-female-341 = Sappho
+es-names-first-dataset-female-341 = Kiyomi
+es-names-first-dataset-female-341 = Fotini
+es-names-first-dataset-female-341 = Roze
+es-names-first-dataset-female-341 = Ulla
+es-names-first-dataset-female-341 = Ulrika
+es-names-first-dataset-female-341 = Maja
+es-names-first-dataset-female-341 = Xiao
+es-names-first-dataset-female-341 = Hui
+es-names-first-dataset-female-341 = Bao
+es-names-first-dataset-female-341 = Mei
+es-names-first-dataset-female-341 = Ling
+es-names-first-dataset-female-341 = Yili
+es-names-first-dataset-female-341 = Juba
+es-names-first-dataset-female-341 = Ingrid
+es-names-first-dataset-female-341 = Garden

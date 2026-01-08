@@ -452,3 +452,15 @@ es-names-first-dataset-male-441 = Thrash
 # 2025-12-17
 es-names-first-dataset-male-442 = Dewey
 es-names-first-dataset-male-443 = Aggregor
+# 2026-01-07
+es-names-first-dataset-male-443 = Mats
+es-names-first-dataset-male-443 = Fotis
+es-names-first-dataset-male-443 = Xristos
+es-names-first-dataset-male-443 = Spyridon
+es-names-first-dataset-male-443 = Vasilis
+es-names-first-dataset-male-443 = Ioannis
+es-names-first-dataset-male-443 = Apollon
+es-names-first-dataset-male-443 = Mao
+es-names-first-dataset-male-443 = Ziyan
+es-names-first-dataset-male-443 = Qin
+es-names-first-dataset-male-443 = Qing

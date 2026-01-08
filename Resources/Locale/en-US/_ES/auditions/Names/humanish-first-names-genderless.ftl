@@ -327,3 +327,14 @@ es-names-first-dataset-genderless-315 = Captcha
 es-names-first-dataset-genderless-316 = Lockheed
 es-names-first-dataset-genderless-317 = Varius
 es-names-first-dataset-genderless-318 = Noon
+# 2026-01-07
+es-names-first-dataset-genderless-316 = Wob
+es-names-first-dataset-genderless-316 = Sasha
+es-names-first-dataset-genderless-316 = Li
+es-names-first-dataset-genderless-316 = Lu
+es-names-first-dataset-genderless-316 = Yao
+es-names-first-dataset-genderless-316 = Meowdy
+es-names-first-dataset-genderless-316 = Classic
+es-names-first-dataset-genderless-316 = Magical
+es-names-first-dataset-genderless-316 = Jubilent
+es-names-first-dataset-genderless-341 = Juno
