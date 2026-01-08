@@ -67,6 +67,8 @@
       path: /Audio/_ES/Weapons/Guns/Gunshots/doublebarrel_shot.ogg
     soundEmpty:
       path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
+  - type: GunSpreadModifier
+    spread: 1
 
 - type: entity
   parent: ESWeaponDoubleBarrelShotgun

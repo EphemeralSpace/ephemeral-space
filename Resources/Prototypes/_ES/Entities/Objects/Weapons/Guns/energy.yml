@@ -33,7 +33,7 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    projectileSpeed: 20
+    projectileSpeed: 22.5
   - type: BatteryAmmoProvider
     proto: ESEnergyBolt
     fireCost: 70
@@ -71,7 +71,7 @@
       path: /Audio/_ES/Weapons/Guns/Gunshots/taser.ogg
     soundEmpty:
       path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
-    projectileSpeed: 20
+    projectileSpeed: 22.5
   - type: BatteryAmmoProvider
     proto: ESTaserBolt
     fireCost: 200
@@ -129,7 +129,7 @@
     availableModes:
     - Burst
     shotsPerBurst: 3
-    projectileSpeed: 20
+    projectileSpeed: 22.5
     fireRate: 3
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
