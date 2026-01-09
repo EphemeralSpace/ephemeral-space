@@ -7,3 +7,5 @@ es-stagehand-notification-kill-environment = {$entity} ({$username}) was killed 
 es-stagehand-notification-kill-npc = {$entity} ({$username}) was killed by a non-player {$attacker}!
 es-stagehand-notification-kill-player = {$entity} ({$username}) was killed by {$playerEnt} ({$attackerUsername})!
 
+es-stagehand-notification-objective-completed = {$entity} successfully completed their objective "{$objective}"!
+es-stagehand-notification-objective-failed = {$entity} failed their objective "{$objective}"!

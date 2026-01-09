@@ -1,8 +1,8 @@
 using Content.Server.Chat.Managers;
 using Content.Server.KillTracking;
+using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.Chat;
-using Content.Shared.Players;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Network;
@@ -23,14 +23,16 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<KillReportedEvent>(OnKillReported);
+        SubscribeLocalEvent<ESObjectiveProgressChangedEvent>(OnObjectiveProgressChanged);
     }
 
-    private void OnKillReported(KillReportedEvent ev)
+    private void OnKillReported(ref KillReportedEvent ev)
     {
         if (!TryComp<ActorComponent>(ev.Entity, out var actor))
             return;
 
         string? msg = null;
+        var severity = ESStagehandNotificationSeverity.Medium;
 
         if (ev.Suicide)
         {
@@ -56,6 +58,7 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
             if (!_player.TryGetSessionById(player.PlayerId, out var attackerSession) || attackerSession.AttachedEntity is not { } attackerEnt)
                 return;
 
+            severity = ESStagehandNotificationSeverity.High;
             msg = Loc.GetString("es-stagehand-notification-kill-player",
                 ("entity", ev.Entity),
                 ("username", actor.PlayerSession.Name),
@@ -64,7 +67,49 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
         }
 
         if (msg != null)
-            SendStagehandNotification(msg);
+            SendStagehandNotification(msg, severity);
+    }
+
+    private void OnObjectiveProgressChanged(ref ESObjectiveProgressChangedEvent ev)
+    {
+        LocId? msgId;
+
+        switch (ev)
+        {
+            // Only announce relevant situations
+            // just completed
+            case { NewProgress: >= 1f, OldProgress: < 1f }:
+                msgId = "es-stagehand-notification-objective-completed";
+                break;
+            // failed (1 -> <1, technically reversible so multiple msgs could spawn but cant think of any situations where that would actually occur?)
+            case { NewProgress: < 1f, OldProgress: >= 1f }:
+                msgId = "es-stagehand-notification-objective-failed";
+                break;
+            default:
+                return;
+        }
+
+        if (msgId == null)
+            return;
+
+        // since we know it's significant, figure out the holding entity
+        EntityUid? foundHolder = null;
+        var query = EntityQueryEnumerator<ESObjectiveHolderComponent>();
+        while (query.MoveNext(out var uid, out var holder))
+        {
+            if (!holder.OwnedObjectives.Contains(ev.Objective.Owner))
+                continue;
+
+            // this assumes only one holder can own an objective, which I think is true right now, and the purpose of owned objectives anyway?
+            foundHolder = uid;
+            break;
+        }
+
+        if (foundHolder is null)
+            return;
+
+        var resolvedMessage = Loc.GetString(msgId, ("entity", foundHolder.Value), ("objective", ev.Objective.Owner));
+        SendStagehandNotification(resolvedMessage);
     }
 
     /// <summary>
@@ -75,11 +120,11 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
     [PublicAPI]
     public void SendStagehandNotification(string msg, ESStagehandNotificationSeverity severity = ESStagehandNotificationSeverity.Medium)
     {
-        var voters = new List<INetChannel>();
+        var stagehands = new List<INetChannel>();
         var query = EntityQueryEnumerator<ESStagehandComponent, ActorComponent>();
         while (query.MoveNext(out _, out _, out var actor))
         {
-            voters.Add(actor.PlayerSession.Channel);
+            stagehands.Add(actor.PlayerSession.Channel);
         }
 
         var locId = severity switch
@@ -90,7 +135,7 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
         };
 
         var wrappedMsg = Loc.GetString(locId, ("message", msg));
-        _chat.ChatMessageToMany(ChatChannel.Server, msg, wrappedMsg, default, false, true, voters, Color.Plum);
+        _chat.ChatMessageToMany(ChatChannel.Server, msg, wrappedMsg, default, false, true, stagehands, Color.Plum);
     }
 }
 

@@ -100,7 +100,7 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         ent.Comp.Progress = newProgress;
 
         var afterEv = new ESObjectiveProgressChangedEvent((ent, ent.Comp), oldProgress, newProgress);
-        RaiseLocalEvent(ent, ref afterEv);
+        RaiseLocalEvent(ent, ref afterEv, true);
 
         Dirty(ent);
     }
