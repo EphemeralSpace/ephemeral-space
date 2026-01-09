@@ -83,7 +83,6 @@
           types:
             Poison: 1.5
 
-
 - type: reagent
   id: GastroToxin
   name: reagent-name-gastrotoxin
