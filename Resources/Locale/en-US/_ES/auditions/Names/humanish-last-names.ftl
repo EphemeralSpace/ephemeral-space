@@ -810,3 +810,5 @@ es-names-last-dataset-795 = Desperation
 es-names-last-dataset-796 = Shockwave
 es-names-last-dataset-797 = Photoshop
 es-names-last-dataset-798 = Illustrator
+es-names-last-dataset-799 = Bigturky
+es-names-last-dataset-800 = Hurtenball
