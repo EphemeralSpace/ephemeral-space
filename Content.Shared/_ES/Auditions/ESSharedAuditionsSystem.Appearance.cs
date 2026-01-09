@@ -8,7 +8,6 @@ using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mind;
 using Content.Shared.Preferences;
-using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
@@ -109,12 +108,12 @@ public abstract partial class ESSharedAuditionsSystem
     /// <summary>
     /// Generates a character with randomized name, age, gender and appearance.
     /// </summary>
-    public Entity<MindComponent, ESCharacterComponent> GenerateCharacter(Entity<ESProducerComponent> producer, [ForbidLiteral] string randomPrototype = "DefaultBackground")
+    public Entity<MindComponent, ESCharacterComponent> GenerateCharacter(Entity<ESProducerComponent> producer)
     {
         var profile = RandomProfile(_random);
         var species = _prototypeManager.Index(profile.Species);
 
-        GenerateName(profile, species);
+        GenerateName(profile, species, out var baseName);
 
         var (ent, mind) = _mind.CreateMind(null, profile.Name);
         var character = EnsureComp<ESCharacterComponent>(ent);
@@ -123,8 +122,9 @@ public abstract partial class ESSharedAuditionsSystem
         var month = _random.Next(1, 12);
         var day = _random.Next(1, DateTime.DaysInMonth(year, month));
         character.DateOfBirth = new DateTime(year, month, day);
-        character.Background = _prototypeManager.Index<WeightedRandomPrototype>(randomPrototype).Pick(_random);
         character.Profile = profile;
+
+        character.BaseName = baseName;
 
         character.PersonalityTraits.Add(_random.Pick(_prototypeManager.Index(TendencyDataset)));
         character.PersonalityTraits.Add(_random.Pick(_prototypeManager.Index(TemperamentDataset)));
@@ -231,7 +231,9 @@ public abstract partial class ESSharedAuditionsSystem
     private static readonly ProtoId<LocalizedDatasetPrototype> PrefixFemaleDataset = "ESNamePrefixFemale";
     private static readonly ProtoId<LocalizedDatasetPrototype> PrefixNonbinaryDataset = "ESNamePrefixNonbinary";
 
-    public void GenerateName(HumanoidCharacterProfile profile, SpeciesPrototype species)
+    public void GenerateName(HumanoidCharacterProfile profile, SpeciesPrototype species) => GenerateName(profile, species, out _);
+
+    public void GenerateName(HumanoidCharacterProfile profile, SpeciesPrototype species, out string baseName)
     {
         var firstNameDataSet = _prototypeManager.Index(profile.Gender switch
         {
@@ -272,6 +274,7 @@ public abstract partial class ESSharedAuditionsSystem
 
         // double-spaces can occur when firstname/lastname are removed and a prefix/suffix exists
         profile.Name = $"{prefix} {firstName} {lastName} {suffix}".Trim().Replace("  ", " ");
+        baseName = $"{firstName} {lastName}".Replace("  ", " ");
     }
 
     private string Prefix(Gender gender)
