@@ -3,6 +3,7 @@ using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Humanoid;
 using Robust.Shared.Collections;
 using Robust.Shared.ColorNaming;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Shared._ES.Auditions;
@@ -13,6 +14,7 @@ namespace Content.Shared._ES.Auditions;
 /// </summary>
 public sealed class ESCluesSystem : EntitySystem
 {
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
 
@@ -28,21 +30,27 @@ public sealed class ESCluesSystem : EntitySystem
                 candidates.Add(character);
         }
 
-        return candidates.Any() ? $"{_random.Pick(candidates)}" : "?";
+        var initial = candidates.Any() ? $"{_random.Pick(candidates)}" : "?";
+        return Loc.GetString("es-clue-initial-fmt", ("initial", initial));
     }
 
     public string GetEyeColorClue(Entity<ESCharacterComponent?> mind)
     {
         Resolve(mind, ref mind.Comp);
         var color = mind.Comp?.Profile.Appearance.EyeColor ?? Color.Black;
-        return ColorNaming.Describe(color, Loc);
+        return Loc.GetString("es-clue-eye-fmt", ("color", ColorNaming.Describe(color, Loc)));
     }
 
     public string GetHairColorClue(Entity<ESCharacterComponent?> mind)
     {
-        Resolve(mind, ref mind.Comp);
-        var color = mind.Comp?.Profile.Appearance.HairColor ?? Color.Black;
-        return ColorNaming.Describe(color, Loc);
+        if (!Resolve(mind, ref mind.Comp))
+            return string.Empty;
+
+        var colorString = ColorNaming.Describe(mind.Comp.Profile.Appearance.HairColor, Loc);
+        if (_prototype.TryIndex(mind.Comp.Profile.Appearance.HairColorGroup, out var hairColor))
+            colorString = Loc.GetString(hairColor.Name);
+
+        return Loc.GetString("es-clue-hair-fmt", ("color", colorString));
     }
 
     public string GetAgeClue(Entity<ESCharacterComponent?> mind)

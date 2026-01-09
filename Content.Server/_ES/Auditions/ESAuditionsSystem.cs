@@ -103,12 +103,12 @@ public sealed class CastCommand : ToolshedCommand
         var gender = Loc.GetString($"humanoid-profile-editor-pronouns-{character.Profile.Gender.ToString().ToLower()}-text");
         yield return
             $"{character.Name} ({gender}), {character.Profile.Age} years old ({character.DateOfBirth.ToShortDateString()})\n" +
-            $"\tInitial: \"{_clues.GetSignificantInitialClue(castMember)}\"\n" +
+            $"\t{_clues.GetSignificantInitialClue(castMember)}\n" +
             $"\tSex: {_clues.GetSexClue(castMember)}\n" +
-            $"\tEye Color: {_clues.GetEyeColorClue(castMember)}\n" +
-            $"\tHair Color: {_clues.GetHairColorClue(castMember)}\n" +
-            $"\tAge: {_clues.GetAgeClue(castMember)}\n" +
-            $"\tZodiac: {_clues.GetZodiacClue(castMember)}";
+            $"\t{_clues.GetAgeClue(castMember)}\n" +
+            $"\t{_clues.GetEyeColorClue(castMember)}\n" +
+            $"\t{_clues.GetHairColorClue(castMember)}\n" +
+            $"\t{_clues.GetZodiacClue(castMember)}";
     }
 
     [CommandImplementation("viewAll")]

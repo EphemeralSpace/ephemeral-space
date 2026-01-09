@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Numerics;
+using Content.Shared._ES.Auditions;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Prototypes;
@@ -14,6 +15,14 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 {
     [DataField("hair")]
     public string HairStyleId { get; set; } = HairStyles.DefaultHairStyle;
+
+// ES START
+    /// <summary>
+    /// General "category" of hair color. Can be null if none applies.
+    /// </summary>
+    [DataField]
+    public ProtoId<ESHairColorPrototype>? HairColorGroup;
+// ES END
 
     [DataField]
     public Color HairColor { get; set; } = Color.Black;

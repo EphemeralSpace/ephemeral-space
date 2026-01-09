@@ -9,6 +9,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mind;
 using Content.Shared.Preferences;
 using Content.Shared.Random.Helpers;
+using JetBrains.Annotations;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -20,61 +21,6 @@ namespace Content.Shared._ES.Auditions;
 /// </summary>
 public abstract partial class ESSharedAuditionsSystem
 {
-    // TODO: re-examine when we get species.
-    /// <remarks>
-    /// I stole this list of hair colors off a wiki for some random MMO.
-    /// </remarks>
-    public static readonly IReadOnlyList<Color> RealisticHairColors = new List<Color>
-    {
-        Color.FromHex("#1c1f21"),
-        Color.FromHex("#272a2c"),
-        Color.FromHex("#312e2c"),
-        Color.FromHex("#35261c"),
-        Color.FromHex("#4b321f"),
-        Color.FromHex("#5c3b24"),
-        Color.FromHex("#6d4c35"),
-        Color.FromHex("#6b503b"),
-        Color.FromHex("#765c45"),
-        Color.FromHex("#7f684e"),
-        Color.FromHex("#99815d"),
-        Color.FromHex("#a79369"),
-        Color.FromHex("#af9c70"),
-        Color.FromHex("#bba063"),
-        Color.FromHex("#d6b97b"),
-        Color.FromHex("#dac38e"),
-        Color.FromHex("#9f7f59"),
-        Color.FromHex("#845039"),
-        Color.FromHex("#682b1f"),
-        Color.FromHex("#7c140f"),
-        Color.FromHex("#b64b28"),
-        Color.FromHex("#a2502f"),
-        Color.FromHex("#aa4e2b"),
-        Color.FromHex("#1f1814"),
-        Color.FromHex("#291f19"),
-        Color.FromHex("#2e221b"),
-        Color.FromHex("#37291e"),
-        Color.FromHex("#2e2218"),
-        Color.FromHex("#231b15"),
-        Color.FromHex("#020202"),
-        Color.FromHex("#9d7a50"),
-    };
-
-    public static readonly IReadOnlyList<Color> RealisticAgedHairColors = new List<Color>
-    {
-        Color.FromHex("#626262"),
-        Color.FromHex("#808080"),
-        Color.FromHex("#aaaaaa"),
-        Color.FromHex("#c5c5c5"),
-        Color.FromHex("#706c66"),
-        Color.FromHex("#1c1f21"),
-        Color.FromHex("#272a2c"),
-        Color.FromHex("#312e2c"),
-        Color.FromHex("#1f1814"),
-        Color.FromHex("#291f19"),
-        Color.FromHex("#231b15"),
-        Color.FromHex("#020202"),
-    };
-
     /// <summary>
     /// Eye colors, selected for variance and contrast with human skin tones
     /// </summary>
@@ -84,14 +30,12 @@ public abstract partial class ESSharedAuditionsSystem
         Color.Gray,
         Color.MediumPurple,
         Color.Violet,
-        Color.Azure,
+        Color.White,
         Color.ForestGreen,
         Color.LimeGreen,
         Color.DarkOrange,
         Color.IndianRed,
         Color.DarkKhaki,
-        Color.FromHex("#3b1d0d"),
-        Color.FromHex("#2a1100"),
     ];
 
     public const float CrazyHairChance = 0.10f;
@@ -108,6 +52,7 @@ public abstract partial class ESSharedAuditionsSystem
     /// <summary>
     /// Generates a character with randomized name, age, gender and appearance.
     /// </summary>
+    [PublicAPI]
     public Entity<MindComponent, ESCharacterComponent> GenerateCharacter(Entity<ESProducerComponent> producer)
     {
         var profile = RandomProfile(_random);
@@ -169,16 +114,9 @@ public abstract partial class ESSharedAuditionsSystem
             { random.Next(species.OldAge, species.MaxAge), OldAgeWeight }, // Old age
         });
 
-        IReadOnlyList<Color> hairColors;
-        if (profile.Age >= species.OldAge)
-            hairColors = RealisticAgedHairColors;
-        else if (profile.Age <= species.YoungAge)
-            hairColors = RealisticHairColors;
-        else
-            hairColors = RealisticHairColors.Union(RealisticAgedHairColors).ToList();
-
-        var hairColor = random.Prob(CrazyHairChance) ? random.NextColor() : random.Pick(hairColors);
+        var (hairColor, hairColorGroup) = GenerateHairColor(profile, species, random);
         profile.Appearance.HairColor = hairColor;
+        profile.Appearance.HairColorGroup = hairColorGroup;
         profile.Appearance.FacialHairColor = hairColor;
 
         profile.Appearance.EyeColor = random.Pick(EyeColors);
@@ -205,6 +143,28 @@ public abstract partial class ESSharedAuditionsSystem
             profile.Appearance.FacialHairStyleId = HairStyles.DefaultFacialHairStyle;
 
         return profile;
+    }
+
+    public (Color, ProtoId<ESHairColorPrototype>?) GenerateHairColor(HumanoidCharacterProfile profile, SpeciesPrototype species, IRobustRandom random)
+    {
+        if (random.Prob(CrazyHairChance))
+            return (random.NextColor(), null);
+
+        var colors = new Dictionary<ESHairColorPrototype, float>();
+        foreach (var colorProto in _prototypeManager.EnumeratePrototypes<ESHairColorPrototype>())
+        {
+            if (colorProto.Abstract)
+                continue;
+
+            if (profile.Age < colorProto.MinAge || profile.Age > colorProto.MaxAge)
+                continue;
+
+            colors.Add(colorProto, colorProto.Weight);
+        }
+
+        var colorType = _random.Pick(colors);
+        var color = _random.Pick(colorType.Colors);
+        return (color, colorType);
     }
 
     private const float GenderlessFirstNameChance = 0.5f; // the future is woke
