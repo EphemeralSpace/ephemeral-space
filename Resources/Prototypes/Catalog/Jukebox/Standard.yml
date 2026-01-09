@@ -39,29 +39,3 @@
   name: PigeonBeans - Sunset
   path:
     path: /Audio/Jukebox/sunset.ogg
-
-# ES START
-- type: jukebox
-  id: ESHello1997
-  name: Jeroen Tel - Hello 1997
-  path:
-    path: /Audio/_ES/Music/hello-1997.ogg
-
-- type: jukebox
-  id: ESAthleticLove
-  name: RRThiel arranged by John 'Joy' Tay - Athletic Love
-  path:
-    path: /Audio/_ES/Music/athletic-love.ogg
-
-- type: jukebox
-  id: ESSurfingOnASineWave
-  name: Fearofdark - Surfing On A Sine Wave
-  path:
-    path: /Audio/_ES/Music/surfing-on-a-sine-wave.ogg
-
-- type: jukebox
-  id: ESRobocop
-  name: Chef Boyardee - Robocop
-  path:
-    path: /Audio/_ES/Music/title2.ogg
-# ES END

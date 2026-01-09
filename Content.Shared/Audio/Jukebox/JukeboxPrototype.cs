@@ -20,4 +20,12 @@ public sealed partial class JukeboxPrototype : IPrototype
 
     [DataField(required: true)]
     public SoundPathSpecifier Path = default!;
+
+    // ES START
+    /// <summary>
+    ///     Hides a jukebox prototype from being played.
+    /// </summary>
+    [DataField]
+    public bool Hidden = true;
+    // ES END
 }
