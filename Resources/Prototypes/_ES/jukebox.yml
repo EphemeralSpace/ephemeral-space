@@ -39,3 +39,10 @@
   hidden: false
   path:
     path: /Audio/_ES/Music/title2_mono.ogg
+
+- type: jukebox
+  id: ESComicBakery
+  name: Stuart Wilson - Not Another Comic Bakery Remix
+  hidden: false
+  path:
+    path: /Audio/_ES/Music/not-another-comic-bakery-remix_mono.ogg
