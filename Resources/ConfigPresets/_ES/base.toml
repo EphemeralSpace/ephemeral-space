@@ -6,6 +6,7 @@
 [audio]
 attenuation = 4 # inversedistanceclamped 1 << 2, see audioparams.cs
 z_offset = -2
+lobby_music_collection = "ESLobbyMusic"
 
 [ambience]
 range = 10 # APCs

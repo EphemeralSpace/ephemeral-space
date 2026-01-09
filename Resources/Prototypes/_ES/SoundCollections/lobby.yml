@@ -1,5 +1,5 @@
 - type: soundCollection
-  id: LobbyMusicES
+  id: ESLobbyMusic
   files:
     - /Audio/_ES/Lobby/vast.ogg
     - /Audio/_ES/Lobby/cosmologicalsolution.ogg
