@@ -103,12 +103,11 @@ public sealed class CastCommand : ToolshedCommand
         var gender = Loc.GetString($"humanoid-profile-editor-pronouns-{character.Profile.Gender.ToString().ToLower()}-text");
         yield return
             $"{character.Name} ({gender}), {character.Profile.Age} years old ({character.DateOfBirth.ToShortDateString()})\n" +
-            $"\t{_clues.GetSignificantInitialClue(castMember)}\n" +
-            $"\tSex: {_clues.GetSexClue(castMember)}\n" +
-            $"\t{_clues.GetAgeClue(castMember)}\n" +
-            $"\t{_clues.GetEyeColorClue(castMember)}\n" +
-            $"\t{_clues.GetHairColorClue(castMember)}\n" +
-            $"\t{_clues.GetZodiacClue(castMember)}";
+            $"\t{_clues.GetSignificantInitialClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.Initial)})\n" +
+            $"\t{_clues.GetSexClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.Sex)})\n" +
+            $"\t{_clues.GetAgeClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.Age)})\n" +
+            $"\t{_clues.GetEyeColorClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.EyeColor)})\n" +
+            $"\t{_clues.GetHairColorClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.HairColor)})";
     }
 
     [CommandImplementation("viewAll")]
@@ -119,6 +118,24 @@ public sealed class CastCommand : ToolshedCommand
 
         _auditions ??= GetSys<ESAuditionsSystem>();
         foreach (var character in producer.Characters)
+        {
+            foreach (var line in View(character))
+            {
+                yield return line;
+            }
+
+            yield return string.Empty;
+        }
+    }
+
+    [CommandImplementation("viewPresent")]
+    public IEnumerable<string> ViewPresent([PipedArgument] EntityUid station)
+    {
+        if (!TryComp<ESProducerComponent>(station, out var producer))
+            yield break;
+
+        _auditions ??= GetSys<ESAuditionsSystem>();
+        foreach (var character in producer.UsedCharacters)
         {
             foreach (var line in View(character))
             {

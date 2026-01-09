@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Citadel.Utilities;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Humanoid;
 using Robust.Shared.Collections;
@@ -16,6 +17,7 @@ public sealed class ESCluesSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ESSharedAuditionsSystem _auditions = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
 
     public string GetSignificantInitialClue(Entity<ESCharacterComponent?> mind)
@@ -30,7 +32,8 @@ public sealed class ESCluesSystem : EntitySystem
                 candidates.Add(character);
         }
 
-        var initial = candidates.Any() ? $"{_random.Pick(candidates)}" : "?";
+        var seed = new RngSeed().SeedForStep(mind.Owner.Id);
+        var initial = candidates.Any() ? $"{seed.IntoRandomizer().Pick(candidates)}" : "?";
         return Loc.GetString("es-clue-initial-fmt", ("initial", initial));
     }
 
@@ -74,40 +77,61 @@ public sealed class ESCluesSystem : EntitySystem
         };
     }
 
-    public string GetZodiacClue(Entity<ESCharacterComponent?> mind)
+    public IEnumerable<string> GetClues(Entity<ESCharacterComponent?> mind, int count, int minFreq = 2)
     {
         if (!Resolve(mind, ref mind.Comp))
-            return string.Empty;
+            yield break;
 
-        var day = mind.Comp.DateOfBirth.Day;
-        var month = mind.Comp.DateOfBirth.Month;
+        var clueOptions = new List<ESClue>();
+        foreach (var clue in Enum.GetValues<ESClue>())
+        {
+            if (GetClueFrequency(mind, clue) < minFreq)
+                continue;
+            clueOptions.Add(clue);
+        }
 
-        var sign = "generic-unknown-title";
-        if (month == 1 && day >= 20 || month == 2 && day <= 18)
-            sign = "es-clue-zodiac-aquarius";
-        if (month == 2 && day >= 19 || month == 3 && day <= 20)
-            sign = "es-clue-zodiac-pisces";
-        if (month == 3 && day >= 21 || month == 4 && day <= 19)
-            sign = "es-clue-zodiac-aries";
-        if (month == 4 && day >= 20 || month == 5 && day <= 20)
-            sign = "es-clue-zodiac-taurus";
-        if (month == 5 && day >= 21 || month == 6 && day <= 20)
-            sign = "es-clue-zodiac-gemini";
-        if (month == 6 && day >= 21 || month == 7 && day <= 22)
-            sign = "es-clue-zodiac-cancer";
-        if (month == 7 && day >= 23 || month == 8 && day <= 22)
-            sign = "es-clue-zodiac-leo";
-        if (month == 8 && day >= 23 || month == 9 && day <= 22)
-            sign = "es-clue-zodiac-virgo";
-        if (month == 9 && day >= 23 || month == 10 && day <= 22)
-            sign = "es-clue-zodiac-libra";
-        if (month == 10 && day >= 23 || month == 11 && day <= 21)
-            sign = "es-clue-zodiac-scorpio";
-        if (month == 11 && day >= 22 || month == 12 && day <= 21)
-            sign = "es-clue-zodiac-sagittarius";
-        if (month == 12 && day >= 22 || month == 1 && day <= 19)
-            sign = "es-clue-zodiac-capricorn";
-
-        return Loc.GetString(sign);
+        var clues = _random.GetItems(clueOptions, Math.Min(clueOptions.Count, count));
+        foreach (var clue in clues)
+        {
+            yield return GetClue(mind, clue);
+        }
     }
+
+    public string GetClue(Entity<ESCharacterComponent?> mind, ESClue clue)
+    {
+        return clue switch
+        {
+            ESClue.Initial => GetSignificantInitialClue(mind),
+            ESClue.HairColor => GetHairColorClue(mind),
+            ESClue.EyeColor => GetEyeColorClue(mind),
+            ESClue.Age => GetAgeClue(mind),
+            ESClue.Sex => GetSexClue(mind),
+            _ => throw new ArgumentOutOfRangeException(nameof(clue), clue, null)
+        };
+    }
+
+    /// <summary>
+    /// Returns the number of times a given clue occurs among the players in the game.
+    /// </summary>
+    public int GetClueFrequency(Entity<ESCharacterComponent?> mind, ESClue clue)
+    {
+        var clueValue = GetClue(mind, clue);
+
+        var frequency = 0;
+        foreach (var character in _auditions.GetCharacters())
+        {
+            if (GetClue(character.AsNullable(), clue) == clueValue)
+                frequency++;
+        }
+        return frequency;
+    }
+}
+
+public enum ESClue : byte
+{
+    Initial,
+    HairColor,
+    EyeColor,
+    Age,
+    Sex,
 }

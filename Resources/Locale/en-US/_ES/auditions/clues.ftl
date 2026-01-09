@@ -1,10 +1,10 @@
-es-clue-initial-fmt = identified as "{$initial}"
+es-clue-initial-fmt = known as "{$initial}"
 es-clue-hair-fmt = {$color} hair
 es-clue-eye-fmt = {$color} eyes
 
-es-clue-sex-male = Male
-es-clue-sex-female = Female
-es-clue-sex-nb = Non-Binary
+es-clue-sex-male = male
+es-clue-sex-female = female
+es-clue-sex-nb = nonbinary
 
 es-clue-zodiac-aries = Aries
 es-clue-zodiac-taurus = Taurus

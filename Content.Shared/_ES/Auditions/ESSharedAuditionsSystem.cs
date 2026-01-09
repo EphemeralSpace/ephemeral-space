@@ -27,18 +27,6 @@ public abstract partial class ESSharedAuditionsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Generates a completely empty crew entity.
-    /// </summary>
-    public Entity<ESSocialGroupComponent> GenerateEmptySocialGroup(Entity<ESProducerComponent> producer)
-    {
-        var newCrew = EntityManager.Spawn();
-        var component = EnsureComp<ESSocialGroupComponent>(newCrew);
-        producer.Comp.SocialGroups.Add(newCrew);
-
-        return (newCrew, component);
-    }
-
-    /// <summary>
     /// Returns the number of characters on the station.
     /// Only counts the number of people that have been spawned across the round,
     /// does not account for people leaving or disconnecting.
@@ -53,5 +41,18 @@ public abstract partial class ESSharedAuditionsSystem : EntitySystem
         }
 
         return count;
+    }
+
+    public IEnumerable<Entity<ESCharacterComponent>> GetCharacters()
+    {
+        var query = EntityQueryEnumerator<ESProducerComponent>();
+        while (query.MoveNext(out var comp))
+        {
+            foreach (var character in comp.UsedCharacters)
+            {
+                if (TryComp<ESCharacterComponent>(character, out var c))
+                    yield return (character, c);
+            }
+        }
     }
 }
