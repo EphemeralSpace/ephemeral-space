@@ -1,8 +1,8 @@
 - type: soundCollection
   id: ESLobbyMusic
   files:
-    - /Audio/_ES/Lobby/vast.ogg
-    - /Audio/_ES/Lobby/cosmologicalsolution.ogg
+    - /Audio/_ES/Music/Lobby/vast.ogg
+    - /Audio/_ES/Music/Lobby/cosmologicalsolution.ogg
 
 - type: soundCollection
   id: ESRoundEndMusic
@@ -10,6 +10,6 @@
   - /Audio/Lobby/title2.ogg
   - /Audio/Lobby/title3.ogg
   - /Audio/Lobby/mod.flip-flap.ogg
-  - /Audio/_ES/hello-1997.ogg
-  - /Audio/_ES/athletic-love.ogg
-  - /Audio/_ES/surfing-on-a-sine-wave.ogg
+  - /Audio/_ES/Music/hello-1997.ogg
+  - /Audio/_ES/Music/athletic-love.ogg
+  - /Audio/_ES/Music/surfing-on-a-sine-wave.ogg
