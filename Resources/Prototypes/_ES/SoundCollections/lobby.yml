@@ -5,9 +5,11 @@
     - /Audio/_ES/Lobby/cosmologicalsolution.ogg
 
 - type: soundCollection
-  id: ESShuttleMusic
+  id: ESRoundEndMusic
   files:
   - /Audio/Lobby/title2.ogg
   - /Audio/Lobby/title3.ogg
   - /Audio/Lobby/mod.flip-flap.ogg
-  - /Audio/_ES/Lobby/hello-1997.ogg
+  - /Audio/_ES/hello-1997.ogg
+  - /Audio/_ES/athletic-love.ogg
+  - /Audio/_ES/surfing-on-a-sine-wave.ogg
