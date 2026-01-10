@@ -25,7 +25,7 @@ public abstract class ESSharedMaskCacheSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<ESMaskCacheSpawnerComponent, ESGetCharacterInfoBlurbEvent>(OnGetCharacterInfoBlurb);
+        SubscribeLocalEvent<ESMaskCacheSpawnerComponent, ESGetCharacterInfoBlurbEvent>(OnGetCharacterInfoBlurb, after: new [] { typeof(ESSharedMaskSystem)});
 
         SubscribeLocalEvent<ESCeilingCacheComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<ESCeilingCacheComponent, EndCollideEvent>(OnEndCollide);
