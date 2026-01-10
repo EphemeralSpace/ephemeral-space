@@ -43,6 +43,7 @@ public abstract class ESSharedMaskSystem : EntitySystem
         SubscribeLocalEvent<ESTroupeFactionIconComponent, ComponentStartup>(OnFactionIconStartup);
 
         SubscribeLocalEvent<MindComponent, ESGetAdditionalObjectivesEvent>(OnMindGetObjectives);
+        SubscribeLocalEvent<ESMaskRoleComponent, ESGetCharacterInfoBlurbEvent>(OnMaskGetCharacterBlurb);
     }
 
     private void GetVerbs(GetVerbsEvent<Verb> args)
@@ -306,6 +307,17 @@ public abstract class ESSharedMaskSystem : EntitySystem
         }
 
         return ev.Info;
+    }
+
+    private void OnMaskGetCharacterBlurb(Entity<ESMaskRoleComponent> ent, ref ESGetCharacterInfoBlurbEvent args)
+    {
+        if (ent.Comp.Mask == null)
+            return;
+
+        var mask = PrototypeManager.Index(ent.Comp.Mask);
+        args.Info.Add(FormattedMessage.FromMarkupOrThrow(Loc.GetString(mask.Description)));
+        var troupe = PrototypeManager.Index(mask.Troupe);
+        args.Info.Add(FormattedMessage.FromMarkupOrThrow(Loc.GetString(troupe.Description)));
     }
 }
 

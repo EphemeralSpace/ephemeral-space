@@ -26,6 +26,9 @@ public sealed partial class ESTroupePrototype : IPrototype, IInheritingPrototype
     [DataField(required: true)]
     public LocId Name;
 
+    [DataField(required: true)]
+    public LocId Description;
+
     /// <summary>
     /// Color used in UI
     /// </summary>
