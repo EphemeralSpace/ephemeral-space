@@ -61,7 +61,7 @@ es-mask-marauder-name = Marauder
 es-mask-marauder-desc = As a Marauder, you have been trained by the syndicate for loud, brute-force attacks and destruction.
 
 es-mask-recruit-name = Recruit
-es-mask-recruit-desc = As a recruit, you've been newly recruited to the syndicate by a Subverter's brainwashing chip. Help them out.
+es-mask-recruit-desc = As a Recruit, you've been newly recruited to the syndicate by a Subverter's brainwashing chip. Help them out.
 
 es-mask-subverter-name = Subverter
 es-mask-subverter-desc = As a Subverter, you have received two brain-altering chips which you can use to convert non-mindshielded crew into fresh syndicate recruits.

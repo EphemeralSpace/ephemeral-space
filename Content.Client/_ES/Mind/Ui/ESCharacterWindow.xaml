@@ -3,9 +3,9 @@
     xmlns:controls="clr-namespace:Content.Client._ES.Mind.Ui"
     xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
     Title="{Loc 'character-info-title'}"
-    MinSize="675 425"
-    SetHeight="875"
-    SetWidth="625">
+    MinSize="725 425"
+    SetWidth="725"
+    SetHeight="575">
     <BoxContainer Orientation="Horizontal" Margin="10 5 10 10">
         <BoxContainer Orientation="Vertical" Margin="5" VerticalAlignment="Center" SetWidth="250">
             <BoxContainer Orientation="Vertical" HorizontalAlignment="Center">
