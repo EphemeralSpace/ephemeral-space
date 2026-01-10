@@ -295,6 +295,38 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
     }
 
+    /// <summary>
+    /// Returns all minds who are members of a given troupe.
+    /// </summary>
+    public IEnumerable<EntityUid> GetTroupeMembers(ProtoId<ESTroupePrototype> troupe)
+    {
+        if (!TryGetTroupeEntity(troupe, out var troupeEnt))
+            yield break;
+
+        foreach (var mind in troupeEnt.Value.Comp.TroupeMemberMinds)
+        {
+            yield return mind;
+        }
+    }
+
+    /// <summary>
+    /// Returns all minds who are members of a troupe that is NOT the specified troupe.
+    /// Set difference between all player minds and <see cref="GetTroupeMembers"/>
+    /// </summary>
+    public IEnumerable<EntityUid> GetNotTroupeMembers(ProtoId<ESTroupePrototype> troupe)
+    {
+        foreach (var troupeEnt in GetOrderedTroupes())
+        {
+            if (troupeEnt.Comp.Troupe == troupe)
+                continue;
+
+            foreach (var mind in troupeEnt.Comp.TroupeMemberMinds)
+            {
+                yield return mind;
+            }
+        }
+    }
+
     public List<FormattedMessage> GetCharacterInfoBlurb(Entity<MindComponent> mind)
     {
         var ev = new ESGetCharacterInfoBlurbEvent();

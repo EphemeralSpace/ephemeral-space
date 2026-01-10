@@ -121,7 +121,7 @@ public sealed class ESCluesSystem : EntitySystem
             clueOptions.Add(clue);
         }
 
-        var clues = _random.GetItems(clueOptions, Math.Min(clueOptions.Count, count));
+        var clues = _random.GetItems(clueOptions, Math.Min(clueOptions.Count, count), allowDuplicates: false);
         foreach (var clue in clues)
         {
             yield return GetClue(mind, clue);

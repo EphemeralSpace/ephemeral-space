@@ -1,0 +1,6 @@
+- type: entity
+  parent: BoxFolderYellowEmpty
+  id: ESBoxFolderFilledInsider
+  suffix: ES, Insider
+  components:
+  - type: ESTroupeDossier
