@@ -12,7 +12,7 @@
   suffix: ES, Departments
   components:
   - type: PointLight
-    color: "#ccc2be"
+    color: "#ece2dd"
     energy: 1.45
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeDepartment
@@ -28,7 +28,7 @@
   suffix: ES, Nightshift
   components:
   - type: PointLight
-    color: "#7b5e50"
+    color: "#8f6e5d"
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeNightshift
   - type: DeviceNetwork
@@ -43,7 +43,7 @@
   suffix: ES, Hallway
   components:
   - type: PointLight
-    color: "#7f8082"
+    color: "#828281"
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeHallway
   - type: DeviceNetwork

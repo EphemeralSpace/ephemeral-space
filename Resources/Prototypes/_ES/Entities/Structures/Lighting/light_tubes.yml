@@ -5,7 +5,7 @@
   suffix: ES, Department
   components:
   - type: LightBulb
-    color: "#ccc2be"
+    color: "#ece2dd"
     glowColorOverride: "#ffffff"
     lightEnergy: 1.45
     lightSoftness: 2
@@ -16,8 +16,8 @@
   suffix: ES, Nightshift
   components:
   - type: LightBulb
-    color: "#7b5e50"
-    glowColorOverride: "#d8753d"
+    color: "#8f6e5d"
+    glowColorOverride: "#e9732b"
     lightEnergy: 1.45
     lightSoftness: 2
 
@@ -29,6 +29,6 @@
   suffix: ES, Hallway
   components:
   - type: LightBulb
-    color: "#6c6d6f"
-    glowColorOverride: "#cccccc"
+    color: "#828281"
+    glowColorOverride: "#aaaaaa"
     lightSoftness: 2
