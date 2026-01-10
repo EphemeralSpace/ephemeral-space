@@ -31,7 +31,8 @@ public abstract class ESSharedVoiceObfuscatorSystem : EntitySystem
             if (TryComp<ESGenericVoiceComponent>(ent, out var voice))
                 return Loc.GetString(voice.Voice);
 
-            return Prototype(ent)?.Name ?? string.Empty;
+            var voiceStr = Prototype(ent)?.Name ?? string.Empty;
+            return Loc.GetString("es-voice-obfuscator-voice-fmt", ("voice", voiceStr));
         }
 
         var species = ent.Comp.Species;
@@ -42,6 +43,6 @@ public abstract class ESSharedVoiceObfuscatorSystem : EntitySystem
         var ageRepresentation = _humanoidAppearance.GetAgeRepresentation(species, age);
         var identityRepresentation = new IdentityRepresentation(name, gender, ageRepresentation);
 
-        return identityRepresentation.ToStringUnknown();
+        return Loc.GetString("es-voice-obfuscator-voice-fmt", ("voice", identityRepresentation.ToStringUnknown()));
     }
 }
