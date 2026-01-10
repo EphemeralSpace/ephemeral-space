@@ -1,5 +1,6 @@
 using Content.Server.Chat.Managers;
 using Content.Server.KillTracking;
+using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.Chat;
@@ -15,6 +16,7 @@ namespace Content.Server._ES.Stagehand;
 /// </summary>
 public sealed class ESStagehandNotificationsSystem : EntitySystem
 {
+    [Dependency] private readonly ESSharedObjectiveSystem _objectives = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
 
@@ -93,22 +95,10 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
             return;
 
         // since we know it's significant, figure out the holding entity
-        EntityUid? foundHolder = null;
-        var query = EntityQueryEnumerator<ESObjectiveHolderComponent>();
-        while (query.MoveNext(out var uid, out var holder))
-        {
-            if (!holder.OwnedObjectives.Contains(ev.Objective.Owner))
-                continue;
-
-            // this assumes only one holder can own an objective, which I think is true right now, and the purpose of owned objectives anyway?
-            foundHolder = uid;
-            break;
-        }
-
-        if (foundHolder is null)
+        if (!_objectives.TryFindObjectiveHolder((ev.Objective.Owner, ev.Objective.Comp), out var holder))
             return;
 
-        var resolvedMessage = Loc.GetString(msgId, ("entity", foundHolder.Value), ("objective", ev.Objective.Owner));
+        var resolvedMessage = Loc.GetString(msgId, ("entity", holder.Value), ("objective", ev.Objective.Owner));
         SendStagehandNotification(resolvedMessage);
     }
 
