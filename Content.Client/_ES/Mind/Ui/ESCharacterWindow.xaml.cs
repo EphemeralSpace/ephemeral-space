@@ -129,6 +129,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
         {
             formattedMsg.AddMessage(msg);
             formattedMsg.PushNewline();
+            formattedMsg.PushNewline();
         }
         InfoBlurbText.SetMessage(formattedMsg);
         InfoBlurbText.Visible = !formattedMsg.IsEmpty;

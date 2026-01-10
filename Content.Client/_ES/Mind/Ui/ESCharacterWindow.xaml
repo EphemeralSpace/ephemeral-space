@@ -4,7 +4,8 @@
     xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
     Title="{Loc 'character-info-title'}"
     MinSize="675 425"
-    SetWidth="650">
+    SetHeight="875"
+    SetWidth="625">
     <BoxContainer Orientation="Horizontal" Margin="10 5 10 10">
         <BoxContainer Orientation="Vertical" Margin="5" VerticalAlignment="Center" SetWidth="250">
             <BoxContainer Orientation="Vertical" HorizontalAlignment="Center">
