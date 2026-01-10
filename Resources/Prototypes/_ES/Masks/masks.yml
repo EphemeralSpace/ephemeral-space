@@ -192,6 +192,16 @@
     all:
     - id: ESObjectiveMartyrBeKilled
 
+- type: esMask
+  id: ESInsider
+  name: es-mask-insider-name
+  troupe: ESCrew
+  description: es-mask-insider-desc
+  color: cornflowerblue
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto: ESCrateCacheCrewInsider
+
 # Traitor Masks
 - type: esMask
   id: ESBaseTraitor

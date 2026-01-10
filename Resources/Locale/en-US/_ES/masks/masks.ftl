@@ -48,6 +48,9 @@ es-mask-martyr-desc = You are a beautiful soul. Be killed by another crewmember 
 es-mask-martyr-killer-quickdialog-title = Bad choice
 es-mask-martyr-killer-quickdialog-msg = You killed a lovely martyr, and you will suffer the consequences by dying violently in 5 minutes. Get your affairs in order.
 
+es-mask-insider-name = Insider
+es-mask-insider-desc = As an insider, investigate the people on station and try to find out their alleigances using your special dossier.
+
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete the objectives.
 

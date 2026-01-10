@@ -161,3 +161,20 @@
       - id: ToolboxElectricalFilled
     - tableId: ESMaintLootRare
       rolls: 2
+
+# Insider
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewInsider
+  suffix: ES, Insider Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESCrewCacheInsider
+
+- type: entityTable
+  id: ESCrewCacheInsider
+  table:
+    all:
+    - id: ESBoxFolderFilledInsider
