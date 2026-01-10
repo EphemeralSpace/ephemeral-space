@@ -1,6 +1,7 @@
 - type: esTroupe
   id: ESCrew
   name: es-troupe-crew-name
+  description: es-troupe-crew-description
   color: yellow
   metaIcon: ESCrew
   gameRule: ESTroupeRuleCrew
@@ -11,6 +12,7 @@
 - type: esTroupe
   id: ESTraitor
   name: es-troupe-traitor-name
+  description: es-troupe-traitor-description
   color: red
   metaIcon: ESTraitor
   gameRule: ESTroupeRuleTraitor
