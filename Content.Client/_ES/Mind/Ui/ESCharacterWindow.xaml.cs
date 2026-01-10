@@ -127,8 +127,9 @@ public sealed partial class ESCharacterWindow : FancyWindow
         var formattedMsg = new FormattedMessage();
         foreach (var msg in info)
         {
+            if (info.IndexOf(msg) != 0)
+                formattedMsg.PushNewline();
             formattedMsg.AddMessage(msg);
-            formattedMsg.PushNewline();
             formattedMsg.PushNewline();
         }
         InfoBlurbText.SetMessage(formattedMsg);
