@@ -57,15 +57,22 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
         }
         else if (ev.Primary is KillPlayerSource player)
         {
-            if (!_player.TryGetSessionById(player.PlayerId, out var attackerSession) || attackerSession.AttachedEntity is not { } attackerEnt)
-                return;
-
             severity = ESStagehandNotificationSeverity.High;
-            msg = Loc.GetString("es-stagehand-notification-kill-player",
-                ("entity", ev.Entity),
-                ("username", actor.PlayerSession.Name),
-                ("attacker", attackerEnt),
-                ("attackerUsername", attackerSession.Name));
+            if (!_player.TryGetSessionById(player.PlayerId, out var attackerSession) ||
+                attackerSession.AttachedEntity is not { } attackerEnt)
+            {
+                msg = Loc.GetString("es-stagehand-notification-kill-player-unknown",
+                    ("entity", ev.Entity),
+                    ("username", actor.PlayerSession.Name));
+            }
+            else
+            {
+                msg = Loc.GetString("es-stagehand-notification-kill-player",
+                    ("entity", ev.Entity),
+                    ("username", actor.PlayerSession.Name),
+                    ("attacker", attackerEnt),
+                    ("attackerUsername", attackerSession.Name));
+            }
         }
 
         if (msg != null)

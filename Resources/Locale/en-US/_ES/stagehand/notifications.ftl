@@ -6,6 +6,7 @@ es-stagehand-notification-kill-suicide = {$entity} ({$username}) committed suici
 es-stagehand-notification-kill-environment = {$entity} ({$username}) was killed by the environment!
 es-stagehand-notification-kill-npc = {$entity} ({$username}) was killed by a non-player {$attacker}!
 es-stagehand-notification-kill-player = {$entity} ({$username}) was killed by {$playerEnt} ({$attackerUsername})!
+es-stagehand-notification-kill-player-unknown = {$entity} ({$username}) was killed by an unknown player!
 
 es-stagehand-notification-objective-completed = {$entity} successfully completed their objective "{$objective}"!
 es-stagehand-notification-objective-failed = {$entity} failed their objective "{$objective}"!
