@@ -52,22 +52,22 @@ es-mask-martyr-killer-quickdialog-msg = You killed a lovely martyr, and you will
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete your group objectives.
 
 es-mask-assassin-name = Assassin
-es-mask-assassin-desc =  As an Assassin, you have been trained by the syndicate for deadly single-target assassinations.
+es-mask-assassin-desc =  As an Assassin, you have been trained by the Syndicate for deadly single-target assassinations.
 
 es-mask-infiltrator-name = Infiltrator
-es-mask-infiltrator-desc =  As an Infiltrator, you have been trained by the syndicate for covert operations, including breaking-and-entering and sabotage.
+es-mask-infiltrator-desc =  As an Infiltrator, you have been trained by the Syndicate for covert operations, including breaking-and-entering and sabotage.
 
 es-mask-marauder-name = Marauder
-es-mask-marauder-desc = As a Marauder, you have been trained by the syndicate for loud, brute-force attacks and destruction.
+es-mask-marauder-desc = As a Marauder, you have been trained by the Syndicate for loud, brute-force attacks and destruction.
 
 es-mask-recruit-name = Recruit
-es-mask-recruit-desc = As a Recruit, you've been newly recruited to the syndicate by a Subverter's brainwashing chip. Help them out.
+es-mask-recruit-desc = As a Recruit, you've been newly recruited to the Syndicate by a Subverter's brainwashing chip. Help them out.
 
 es-mask-subverter-name = Subverter
-es-mask-subverter-desc = As a Subverter, you have received two brain-altering chips which you can use to convert non-mindshielded crew into fresh syndicate recruits.
+es-mask-subverter-desc = As a Subverter, you have received two brain-altering chips which you can use to convert non-mindshielded crew into fresh Syndicate recruits.
 
 es-mask-demolitionist-name = Demolitionist
-es-mask-demolitionist-desc = As a Demolitionist, you have trained by the syndicate for both controlled and uncontrolled "demolitions"--including in the use of explosive implants, should things turn out that way.
+es-mask-demolitionist-desc = As a Demolitionist, you have trained by the Syndicate for both controlled and uncontrolled "demolitions"--including in the use of explosive implants, should things turn out that way.
 
 # Meta
 es-objective-issuer-mask = Mask
