@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._Citadel.Utilities;
 using Content.Shared._ES.Auditions.Components;
@@ -49,11 +50,41 @@ public sealed class ESCluesSystem : EntitySystem
         if (!Resolve(mind, ref mind.Comp))
             return string.Empty;
 
-        var colorString = ColorNaming.Describe(mind.Comp.Profile.Appearance.HairColor, Loc);
-        if (_prototype.TryIndex(mind.Comp.Profile.Appearance.HairColorGroup, out var hairColor))
-            colorString = Loc.GetString(hairColor.Name);
+        return Loc.GetString("es-clue-hair-fmt", ("color", GetHairColorString(mind.Comp.Profile.Appearance.HairColor)));
+    }
 
-        return Loc.GetString("es-clue-hair-fmt", ("color", colorString));
+    /// <summary>
+    /// Gives a descriptor of a given hair color.
+    /// If it's a preset, it'll use the proper name (blond, auburn, etc.)
+    /// If not, it'll use a generic fallback.
+    /// </summary>
+    public string GetHairColorString(Color color)
+    {
+        if (TryGetHairColorGroupFromColor(color, out var hairColor))
+            return Loc.GetString(hairColor.Name);
+        return ColorNaming.Describe(color, Loc);
+    }
+
+    /// <summary>
+    /// Tries to get the "type" of hair color based on a color.
+    /// Fails if it's not a preset hair color.
+    /// </summary>
+    public bool TryGetHairColorGroupFromColor(Color color, [NotNullWhen(true)] out ESHairColorPrototype? colorGroup)
+    {
+        colorGroup = null;
+        foreach (var prototype in _prototype.EnumeratePrototypes<ESHairColorPrototype>())
+        {
+            if (prototype.Abstract)
+                continue;
+
+            if (!prototype.Colors.Contains(color))
+                continue;
+
+            colorGroup = prototype;
+            return true;
+        }
+
+        return false;
     }
 
     public string GetAgeClue(Entity<ESCharacterComponent?> mind)

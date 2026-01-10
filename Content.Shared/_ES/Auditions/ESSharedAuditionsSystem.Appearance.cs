@@ -29,7 +29,7 @@ public abstract partial class ESSharedAuditionsSystem
         Color.Black,
         Color.Gray,
         Color.MediumPurple,
-        Color.Violet,
+        Color.FromHex("#f29bdf"), // Light Pink
         Color.White,
         Color.ForestGreen,
         Color.LimeGreen,
@@ -114,9 +114,8 @@ public abstract partial class ESSharedAuditionsSystem
             { random.Next(species.OldAge, species.MaxAge), OldAgeWeight }, // Old age
         });
 
-        var (hairColor, hairColorGroup) = GenerateHairColor(profile, species, random);
+        var hairColor = GenerateHairColor(profile, species, random);
         profile.Appearance.HairColor = hairColor;
-        profile.Appearance.HairColorGroup = hairColorGroup;
         profile.Appearance.FacialHairColor = hairColor;
 
         profile.Appearance.EyeColor = random.Pick(EyeColors);
@@ -145,10 +144,10 @@ public abstract partial class ESSharedAuditionsSystem
         return profile;
     }
 
-    public (Color, ProtoId<ESHairColorPrototype>?) GenerateHairColor(HumanoidCharacterProfile profile, SpeciesPrototype species, IRobustRandom random)
+    public Color GenerateHairColor(HumanoidCharacterProfile profile, SpeciesPrototype species, IRobustRandom random)
     {
         if (random.Prob(CrazyHairChance))
-            return (random.NextColor(), null);
+            return random.NextColor();
 
         var colors = new Dictionary<ESHairColorPrototype, float>();
         foreach (var colorProto in _prototypeManager.EnumeratePrototypes<ESHairColorPrototype>())
@@ -164,7 +163,7 @@ public abstract partial class ESSharedAuditionsSystem
 
         var colorType = _random.Pick(colors);
         var color = _random.Pick(colorType.Colors);
-        return (color, colorType);
+        return color;
     }
 
     private const float GenderlessFirstNameChance = 0.5f; // the future is woke

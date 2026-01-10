@@ -1,6 +1,6 @@
 es-hair-color-blond = blond
 es-hair-color-dark-blond = dark blond
-es-hair-color-medium-brown = medium brown
+es-hair-color-medium-brown = brown
 es-hair-color-dark-brown = dark brown
 es-hair-color-black = black
 es-hair-color-auburn = auburn
