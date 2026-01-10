@@ -36,3 +36,6 @@ max_explosion_range = 10
 
 [es_arrivals]
 enabled = true
+
+[es_ic]
+open_character_menu_on_spawn = true

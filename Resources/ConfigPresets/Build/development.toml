@@ -50,4 +50,7 @@ ssd_sleep_time = 3600
 # ES START
 [es_arrivals]
 ftl_time = 35 # not used by default, but useful if its enabled so it doesnt take 5 minutes
+
+[es_ic]
+open_character_menu_on_spawn = false
 # ES END
