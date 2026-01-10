@@ -36,6 +36,7 @@
     - ESKillTroupeObjective
     - ESKillTargetObjective
     - ESDetonateNukeObjective
+    - ESBeKilledObjective
 
 # Wise aura, for oracle identification. Oracles
 - type: esAura
