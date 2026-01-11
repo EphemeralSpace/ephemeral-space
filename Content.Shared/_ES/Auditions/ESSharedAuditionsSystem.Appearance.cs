@@ -104,7 +104,7 @@ public abstract partial class ESSharedAuditionsSystem
         profile.Appearance.SkinColor = strategy.InputType switch
         {
             SkinColorationStrategyInput.Unary => strategy.FromUnary(random.NextFloat(0f, 100f)),
-            _ => strategy.ClosestSkinColor(_random.NextColor()),
+            _ => strategy.ClosestSkinColor(random.NextColor()),
         };
 
         profile.Age = random.Pick(new Dictionary<int, float>
@@ -114,7 +114,7 @@ public abstract partial class ESSharedAuditionsSystem
             { random.Next(species.OldAge, species.MaxAge), OldAgeWeight }, // Old age
         });
 
-        var hairColor = GenerateHairColor(profile, species, random);
+        var hairColor = GenerateHairColor(profile, random);
         profile.Appearance.HairColor = hairColor;
         profile.Appearance.FacialHairColor = hairColor;
 
@@ -144,7 +144,7 @@ public abstract partial class ESSharedAuditionsSystem
         return profile;
     }
 
-    public Color GenerateHairColor(HumanoidCharacterProfile profile, SpeciesPrototype species, IRobustRandom random)
+    public Color GenerateHairColor(HumanoidCharacterProfile profile, IRobustRandom random)
     {
         if (random.Prob(CrazyHairChance))
             return random.NextColor();
@@ -161,8 +161,8 @@ public abstract partial class ESSharedAuditionsSystem
             colors.Add(colorProto, colorProto.Weight);
         }
 
-        var colorType = _random.Pick(colors);
-        var color = _random.Pick(colorType.Colors);
+        var colorType = random.Pick(colors);
+        var color = random.Pick(colorType.Colors);
         return color;
     }
 
