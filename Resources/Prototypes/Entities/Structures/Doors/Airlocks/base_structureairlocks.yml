@@ -9,6 +9,7 @@
 #    flags:
 #    - Anchorable
 #  - type: Rotatable
+  - type: ESDestroyOnUnanchor
 # ES END
   - type: StationAiWhitelist
   - type: MeleeSound

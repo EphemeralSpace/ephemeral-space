@@ -10,6 +10,7 @@
 #    flags:
 #    - Anchorable
 #  - type: Rotatable
+  - type: ESDestroyOnUnanchor
 # ES END
   - type: Sprite
     sprite: Structures/plastic_flaps.rsi

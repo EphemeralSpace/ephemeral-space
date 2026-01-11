@@ -11,6 +11,7 @@
 #    flags:
 #    - Anchorable
 #  - type: Rotatable
+  - type: ESDestroyOnUnanchor
 # ES END
   - type: MeleeSound
     soundGroups:

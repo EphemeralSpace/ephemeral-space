@@ -10,6 +10,7 @@
 #    flags:
 #    - Anchorable
 #  - type: Rotatable
+  - type: ESDestroyOnUnanchor
 # ES END
   - type: InteractionOutline
   - type: Sprite
