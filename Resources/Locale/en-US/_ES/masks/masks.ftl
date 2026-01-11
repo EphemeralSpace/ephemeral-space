@@ -70,7 +70,7 @@ es-mask-subverter-name = Subverter
 es-mask-subverter-desc = As a Subverter, you have received two brain-altering chips which you can use to convert non-mindshielded crew into fresh Syndicate recruits.
 
 es-mask-demolitionist-name = Demolitionist
-es-mask-demolitionist-desc = As a Demolitionist, you have trained by the Syndicate for both controlled and uncontrolled "demolitions"--including in the use of explosive implants, should things turn out that way.
+es-mask-demolitionist-desc = As a Demolitionist, you have been trained by the Syndicate for both controlled and uncontrolled "demolitions"--including in the use of explosive implants, should things turn out that way.
 
 # Meta
 es-objective-issuer-mask = Mask
