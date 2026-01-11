@@ -18,6 +18,9 @@ public sealed class ESDestroyOnUnanchorSystem : EntitySystem
         if (args.Anchored || args.Detaching)
             return;
 
+        if (TerminatingOrDeleted(ent))
+            return;
+
         _destructible.DestroyEntity(ent.Owner);
     }
 }
