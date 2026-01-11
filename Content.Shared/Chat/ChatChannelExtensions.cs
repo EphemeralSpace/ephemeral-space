@@ -11,7 +11,7 @@ public static class ChatChannelExtensions
             ChatChannel.LOOC => Color.MediumTurquoise,
             // ES START
             ChatChannel.OOC => Color.Plum,
-            ChatChannel.Dead => Color.Lavender,
+            ChatChannel.Dead => Color.FromHex("#b9b9f8"),
             // ES END
             ChatChannel.Admin => Color.Red,
             ChatChannel.AdminAlert => Color.Red,

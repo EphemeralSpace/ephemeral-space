@@ -63,7 +63,7 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
             ChatSelectChannel.LOOC => Color.MediumTurquoise,
             // ES START
             ChatSelectChannel.OOC => Color.Plum,
-            ChatSelectChannel.Dead => Color.Lavender,
+            ChatSelectChannel.Dead => Color.FromHex("#b9b9f8"),
             // ES END
             ChatSelectChannel.Admin => Color.HotPink,
             _ => Color.DarkGray
