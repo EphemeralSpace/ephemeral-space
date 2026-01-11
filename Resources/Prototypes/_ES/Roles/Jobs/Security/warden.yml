@@ -35,3 +35,8 @@
     back:
     - ESBoxSurvival
     - Flash
+
+- type: chameleonOutfit
+  id: ESWarden
+  job: ESWarden
+  hidden: false

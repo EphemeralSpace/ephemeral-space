@@ -22,3 +22,8 @@
   storage:
     back:
     - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESReporter
+  job: ESReporter
+  hidden: false

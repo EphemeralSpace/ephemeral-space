@@ -35,3 +35,8 @@
     - Flash
     - ForensicPad
     - ForensicScanner
+
+- type: chameleonOutfit
+  id: ESDetective
+  job: ESDetective
+  hidden: false
