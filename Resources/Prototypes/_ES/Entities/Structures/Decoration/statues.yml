@@ -1,5 +1,5 @@
 - type: entity
-  id: StatueBeautiful
+  id: ESStatueBeautiful
   parent: BaseStructure
   name: beautiful statue
   description: A marble statue. It's beautiful.
@@ -11,7 +11,7 @@
     drawdepth: Mobs
     
 - type: entity
-  id: StatueKarlMarx
+  id: ESStatueKarlMarx
   parent: BaseStructure
   name: karl marx statue
   description: A bronze statue depicting Karl Marx. "From each according to his ability, to each according to his needs."
@@ -23,7 +23,7 @@
     drawdepth: Mobs
 
 - type: entity
-  id: StatueFungus
+  id: ESStatueFungus
   parent: BaseStructure
   name: dancing fungus statue
   description: A painstakingly chiseled statue commemorating the best dance ever performed in all of existence.
