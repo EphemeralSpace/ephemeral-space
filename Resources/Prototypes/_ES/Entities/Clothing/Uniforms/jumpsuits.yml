@@ -53,93 +53,29 @@
     sprite: _ES/Clothing/Uniforms/Jumpsuit/ru_color.rsi
 
 - type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorWhite ]
-  id: ESClothingUniformJumpsuitRussianColorWhite
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorGrey ]
+  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformBase ]
   id: ESClothingUniformJumpsuitRussianColorGrey
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorBlack ]
-  id: ESClothingUniformJumpsuitRussianColorBlack
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorBlue ]
-  id: ESClothingUniformJumpsuitRussianColorBlue
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorDarkBlue ]
-  id: ESClothingUniformJumpsuitRussianColorDarkBlue
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorTeal ]
-  id: ESClothingUniformJumpsuitRussianColorTeal
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorGreen ]
-  id: ESClothingUniformJumpsuitRussianColorGreen
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorDarkGreen ]
-  id: ESClothingUniformJumpsuitRussianColorDarkGreen
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorOrange ]
-  id: ESClothingUniformJumpsuitRussianColorOrange
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorPink ]
-  id: ESClothingUniformJumpsuitRussianColorPink
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorRed ]
-  id: ESClothingUniformJumpsuitRussianColorRed
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorYellow ]
-  id: ESClothingUniformJumpsuitRussianColorYellow
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorPurple ]
-  id: ESClothingUniformJumpsuitRussianColorPurple
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorLightBrown ]
-  id: ESClothingUniformJumpsuitRussianColorLightBrown
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorBrown ]
-  id: ESClothingUniformJumpsuitRussianColorBrown
-
-- type: entity
-  parent: [ ESBaseClothingUniformJumpsuitRussian, ClothingUniformJumpsuitColorMaroon ]
-  id: ESClothingUniformJumpsuitRussianColorMaroon
-
-# Janitor
-- type: entity
-  parent: ClothingUniformJumpsuitJanitor
-  id: ESClothingUniformJumpsuitRussianJanitor
-  suffix: ES, Russian
+  name: soviet jumpsuit
+  description: A tasteful grey jumpsuit that reminds you of the good old days.
   components:
   - type: Sprite
-    sprite: _ES/Clothing/Uniforms/Jumpsuit/ru_janitor.rsi
-  - type: Clothing
-    sprite: _ES/Clothing/Uniforms/Jumpsuit/ru_janitor.rsi
-
-# Security
-- type: entity
-  parent: ClothingUniformJumpsuitSec
-  id: ClothingUniformJumpsuitRussianSec
-  suffix: ES, Russian
-  components:
-  - type: Sprite
-    sprite: _ES/Clothing/Uniforms/Jumpsuit/ru_security.rsi
-  - type: Clothing
-    sprite: _ES/Clothing/Uniforms/Jumpsuit/ru_security.rsi
+    layers:
+    - state: icon
+      color: "#b3b3b3"
+    - state: trinkets-icon
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
+        color: "#b3b3b3"
+      - state: trinkets-inhand-left
       right:
       - state: inhand-right
+        color: "#b3b3b3"
+      - state: trinkets-inhand-right
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#b3b3b3"
+      - state: trinkets-equipped-INNERCLOTHING

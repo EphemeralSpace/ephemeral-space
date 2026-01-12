@@ -73,7 +73,7 @@
     - state: icon
 # ES Start
 # Consistency with new nitrile gloves
-      color: "#4da3ff"    
+      color: "#4da3ff"
     - state: soles-icon
   - type: Item
     inhandVisuals:
@@ -85,6 +85,7 @@
       - state: inhand-right
         color: "#4da3ff"
       - state: soles-inhand-right
+  - type: ESChameleonClothingWhitelist
   - type: Clothing
     sprite: Clothing/Shoes/color.rsi
     clothingVisuals:
@@ -105,7 +106,7 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#723A02"    
+      color: "#723A02"
     - state: soles-icon
   - type: Item
     inhandVisuals:
@@ -136,7 +137,7 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#5ABF2F"    
+      color: "#5ABF2F"
     - state: soles-icon
   - type: Item
     inhandVisuals:
@@ -155,6 +156,9 @@
       - state: equipped-FEET
         color: "#5ABF2F"
       - state: soles-equipped-FEET
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Orange Shoes
 - type: entity
@@ -167,7 +171,7 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#EF8100"    
+      color: "#EF8100"
     - state: soles-icon
   - type: Item
     inhandVisuals:
@@ -198,7 +202,7 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#940000"    
+      color: "#940000"
     - state: soles-icon
   - type: Item
     inhandVisuals:
@@ -217,6 +221,9 @@
       - state: equipped-FEET
         color: "#940000"
       - state: soles-equipped-FEET
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Yellow Shoes
 - type: entity
@@ -229,7 +236,7 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#EBE216"    
+      color: "#EBE216"
     - state: soles-icon
   - type: Item
     inhandVisuals:
@@ -248,6 +255,9 @@
       - state: equipped-FEET
         color: "#EBE216"
       - state: soles-equipped-FEET
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Purple Shoes
 - type: entity
@@ -260,7 +270,7 @@
     sprite: Clothing/Shoes/color.rsi
     layers:
     - state: icon
-      color: "#9C0DE1"    
+      color: "#9C0DE1"
     - state: soles-icon
   - type: Item
     inhandVisuals:
@@ -279,3 +289,6 @@
       - state: equipped-FEET
         color: "#9C0DE1"
       - state: soles-equipped-FEET
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END

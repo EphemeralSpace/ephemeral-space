@@ -216,6 +216,26 @@ SpawnPointDetective: ESSpawnPointDetective
 # 2025-12-29
 Autolathe: ESAutolathe
 
+# 2026-11-1
+# Removing old soviet jumpsuits from station v station days
+ESClothingUniformJumpsuitRussianColorWhite: null
+ESClothingUniformJumpsuitRussianColorBlack: null
+ESClothingUniformJumpsuitRussianColorBlue: null
+ESClothingUniformJumpsuitRussianColorDarkBlue: null
+ESClothingUniformJumpsuitRussianColorTeal: null
+ESClothingUniformJumpsuitRussianColorGreen: null
+ESClothingUniformJumpsuitRussianColorDarkGreen: null
+ESClothingUniformJumpsuitRussianColorOrange: null
+ESClothingUniformJumpsuitRussianColorPink: null
+ESClothingUniformJumpsuitRussianColorRed: null
+ESClothingUniformJumpsuitRussianColorYellow: null
+ESClothingUniformJumpsuitRussianColorPurple: null
+ESClothingUniformJumpsuitRussianColorLightBrown: null
+ESClothingUniformJumpsuitRussianColorBrown: null
+ESClothingUniformJumpsuitRussianColorMaroon: null
+ESClothingUniformJumpsuitRussianJanitor: null
+ClothingUniformJumpsuitRussianSec: null
+
 # ES END
 
 # 2023-07-03
