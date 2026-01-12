@@ -44,7 +44,7 @@
   id: ESTraitorCacheInfiltrator
   table:
     all:
-    - id: ClothingBackpackChameleonFill
+    - id: ESClothingBackpackChameleonFill
     - id: ESEmag
     - id: C4
       amount: 2

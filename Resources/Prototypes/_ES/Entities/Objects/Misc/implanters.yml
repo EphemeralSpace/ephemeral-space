@@ -8,3 +8,13 @@
   - type: Implanter
     implant: ESMicroBombImplant
     deleteImplanterOnImplant: true
+
+- type: entity
+  parent: BaseImplantOnlyImplanterSyndi
+  id: ESChameleonControllerImplanter
+  name: chameleon controller implanter
+  description: This implanter disintegrates on use.
+  components:
+  - type: Implanter
+    implant: ChameleonControllerImplant
+    deleteImplanterOnImplant: true
