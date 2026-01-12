@@ -71,7 +71,7 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
                 msg = Loc.GetString("es-stagehand-notification-kill-player",
                     ("entity", ev.Entity),
                     ("username", actor.PlayerSession.Name),
-                    ("playerEnt", attackerEnt),
+                    ("attacker", attackerEnt),
                     ("attackerUsername", attackerSession.Name));
             }
         }
