@@ -92,7 +92,6 @@ public abstract class ESSharedTelesciSystem : EntitySystem
         var stage = ent.Comp.Stages[stageIdx - 1];
 
         SpawnEvents((ent, ent.Comp), stage);
-        SpawnRewards((ent, ent.Comp), stage);
         SendAnnouncement(ent, stage);
 
         // TODO: replace with real screen shake once we have it
@@ -111,11 +110,6 @@ public abstract class ESSharedTelesciSystem : EntitySystem
     }
 
     protected virtual void SpawnEvents(Entity<ESTelesciStationComponent> ent, ESTelesciStage stage)
-    {
-
-    }
-
-    protected virtual void SpawnRewards(Entity<ESTelesciStationComponent> ent, ESTelesciStage stage)
     {
 
     }

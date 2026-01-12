@@ -1,46 +1,8 @@
 - type: entity
-  parent: BaseMachinePowered
-  id: ESMachineScienceTelepad
-  name: telepad
-  description: Beam me up, Scotty!
-  suffix: ES
-  components:
-  - type: Sprite
-    sprite: _ES/Structures/Machines/Telesci/telepad.rsi
-    drawdepth: HighFloorObjects
-    noRot: true
-    layers:
-    - state: base
-      map: [ "base" ]
-  - type: Appearance
-  - type: ESTelesciRewardPad
-  - type: Transform
-    anchored: true
-    noRot: true
-  - type: Physics
-    canCollide: false
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.00"
-        density: 190
-        mask:
-        - MachineMask
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Anchorable
-    flags:
-    - Anchorable
-  - type: AnimationPlayer
-
-- type: entity
   parent: BaseMachine
   id: ESMachineSciencePortalGenerator
   name: portal generator
-  description: Beam me up, Scotty!
+  description: Through a wrinkle in time, vast and distant dimensions can be brought close together simultaneously, allowing for the instant transfer of materia.
   suffix: ES
   components:
   - type: Sprite

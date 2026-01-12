@@ -29,8 +29,6 @@
         path: /Audio/_ES/Announcements/attention_high.ogg
         params:
           volume: -4
-      rewards:
-        tableId: ESTelesciRewards
       events:
         id: ESPortalEventAnomalies
         amount: 3
@@ -39,8 +37,6 @@
         path: /Audio/_ES/Announcements/attention_high.ogg
         params:
           volume: -4
-      rewards:
-        tableId: ESTelesciRewards
       events:
         id: ESPortalEventAnomalies
         amount: 5
@@ -49,8 +45,6 @@
         path: /Audio/_ES/Announcements/attention_high.ogg
         params:
           volume: -4
-      rewards:
-        tableId: ESTelesciRewards
       events:
         id: ESPortalEventAnomalies
         amount: 7

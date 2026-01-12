@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
@@ -8,10 +7,7 @@ using Content.Server.RoundEnd;
 using Content.Shared._ES.Telesci;
 using Content.Shared._ES.Telesci.Components;
 using Content.Shared.Administration;
-using Robust.Server.Audio;
 using Robust.Shared.Audio;
-using Robust.Shared.Collections;
-using Robust.Shared.Random;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Utility;
 
@@ -19,8 +15,6 @@ namespace Content.Server._ES.Telesci;
 
 public sealed class ESTelesciSystem : ESSharedTelesciSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly NavMapSystem _nav = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
@@ -92,42 +86,6 @@ public sealed class ESTelesciSystem : ESSharedTelesciSystem
                 Loc.GetString("es-telesci-announcement-sender"),
                 announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_low.ogg"),
                 colorOverride: Color.Magenta);
-        }
-    }
-
-    protected override void SpawnRewards(Entity<ESTelesciStationComponent> ent, ESTelesciStage stage)
-    {
-        base.SpawnRewards(ent, stage);
-
-        var rewards = EntityTable.GetSpawns(stage.Rewards).ToList();
-
-        var pads = new ValueList<Entity<ESTelesciRewardPadComponent>>();
-
-        var query = EntityQueryEnumerator<ESTelesciRewardPadComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var comp, out var xform))
-        {
-            if (!xform.Anchored)
-                continue;
-
-            if (comp.Enabled)
-                pads.Add((uid, comp));
-        }
-
-        var rewardCount = rewards.Count / ent.Comp.RewardPads;
-        if (rewardCount <= 0)
-            return;
-
-        foreach (var pad in pads)
-        {
-            for (var i = 0; i < rewardCount; i++)
-            {
-                if (rewards.Count <= 0)
-                    break;
-                var item = _random.PickAndTake(rewards);
-                SpawnNextToOrDrop(item, pad);
-            }
-            _audio.PlayPvs(pad.Comp.TeleportSound, pad);
-            RaiseNetworkEvent(new ESAnimateTelesciRewardPadMessage(GetNetEntity(pad)));
         }
     }
 
