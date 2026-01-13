@@ -2,6 +2,7 @@
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: ESMagazine9mmEmpty
+  name: 9mm magazine (empty)
   result: ESMagazine9mmEmpty
   icon: # Manually specifies an icon because it needs to show as empty
     sprite: _ES/Objects/Weapons/Guns/Ammunition/9mm_mag.rsi
@@ -12,6 +13,7 @@
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: ESSpeedLoader357Empty
+  name: .357 speed loader (empty)
   result: ESSpeedLoader357Empty
   icon: # Manually specifies an icon because it needs to show as empty
     sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
@@ -24,14 +26,14 @@
   id: ESRound9mm
   result: ESRound9mm
   materials:
-    Steel: 50
+    Steel: 200
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: ESRound357
   result: ESRound357
   materials:
-    Steel: 50
+    Steel: 200
 
 # Shotgun
 
