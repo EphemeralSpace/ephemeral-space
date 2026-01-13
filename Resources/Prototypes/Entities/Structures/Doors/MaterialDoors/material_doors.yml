@@ -5,10 +5,13 @@
   name: door
   description: A door, where will it lead?
   components:
-  - type: Anchorable
-    flags:
-    - Anchorable
-  - type: Rotatable
+# ES START
+#  - type: Anchorable
+#    flags:
+#    - Anchorable
+#  - type: Rotatable
+  - type: ESDestroyOnUnanchor
+# ES END
   - type: InteractionOutline
   - type: Sprite
     sprite: Structures/Doors/MineralDoors/metal_door.rsi

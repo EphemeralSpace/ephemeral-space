@@ -1,8 +1,8 @@
 - type: entity
+  parent: SeatBase
+  id: ESChairTheater
   name: theater chair
   description: You're always allowed to just sit and watch the play from afar.
-  id: ESChairTheater
-  parent: ChairWood
-  # Currently no behavior. Re-add once we have protagonism
-  #components:
-  # todo custom sprites
+  components:
+  - type: Sprite
+    state: wooden # todo custom sprites

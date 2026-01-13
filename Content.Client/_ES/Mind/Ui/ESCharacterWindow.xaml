@@ -3,14 +3,21 @@
     xmlns:controls="clr-namespace:Content.Client._ES.Mind.Ui"
     xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
     Title="{Loc 'character-info-title'}"
-    MinSize="675 425"
-    SetWidth="650">
+    MinSize="725 425"
+    SetWidth="725"
+    SetHeight="575">
     <BoxContainer Orientation="Horizontal" Margin="10 5 10 10">
         <BoxContainer Orientation="Vertical" Margin="5" VerticalAlignment="Center" SetWidth="250">
             <BoxContainer Orientation="Vertical" HorizontalAlignment="Center">
-                <RichTextLabel Name="MaskLabel" Margin="20 0" HorizontalAlignment="Center"/>
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
+                    <RichTextLabel Name="MaskLabel" VerticalAlignment="Center"/>
+                    <TextureButton Name="MaskHelpButton" StyleClasses="windowHelpButton" VerticalAlignment="Center" Disabled="True" Visible="False" />
+                </BoxContainer>
                 <customControls:HSeparator StyleClasses="HighDivider"/>
-                <RichTextLabel Name="TroupeLabel" HorizontalAlignment="Center"/>
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
+                    <RichTextLabel Name="TroupeLabel" VerticalAlignment="Center"/>
+                    <TextureButton Name="TroupeHelpButton" StyleClasses="windowHelpButton" VerticalAlignment="Center" Disabled="True" Visible="False" />
+                </BoxContainer>
             </BoxContainer>
             <SpriteView Name="SelfView" OverrideDirection="South" Scale="4 4" HorizontalAlignment="Center" Margin="5 5 5 15"/>
             <RichTextLabel Name="NameLabel" HorizontalAlignment="Center" Margin="10 0"/>

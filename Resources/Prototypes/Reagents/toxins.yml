@@ -68,10 +68,12 @@
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
+# ES Start
       - !type:ModifyStatusEffect
-        effectProto: StatusEffectDrowsiness
-        time: 4
-        type: Update
+        effectProto: StatusEffectForcedSleeping
+        time: 15
+        delay: 15
+# ES End
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition

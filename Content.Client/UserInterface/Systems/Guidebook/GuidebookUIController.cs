@@ -26,7 +26,9 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
     [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
 
-    private const int PlaytimeOpenGuidebook = 60;
+    // ES START
+    private const int PlaytimeOpenGuidebook = 120;
+    // ES END
 
     private GuidebookWindow? _guideWindow;
     private MenuButton? GuidebookButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.GuidebookButton;

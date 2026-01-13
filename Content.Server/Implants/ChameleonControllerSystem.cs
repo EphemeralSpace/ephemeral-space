@@ -48,6 +48,10 @@ public sealed class ChameleonControllerSystem : SharedChameleonControllerSystem
     private void ChangeChameleonClothingToOutfit(EntityUid user, ProtoId<ChameleonOutfitPrototype> outfit)
     {
         var outfitPrototype = _proto.Index(outfit);
+// ES START
+        if (outfitPrototype.Hidden)
+            return;
+// ES END
 
         _proto.Resolve(outfitPrototype.Job, out var jobPrototype);
         _proto.Resolve(outfitPrototype.StartingGear, out var startingGearPrototype);

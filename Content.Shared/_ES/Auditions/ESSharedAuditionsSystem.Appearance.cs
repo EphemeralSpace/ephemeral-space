@@ -8,8 +8,8 @@ using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mind;
 using Content.Shared.Preferences;
-using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
+using JetBrains.Annotations;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -21,61 +21,6 @@ namespace Content.Shared._ES.Auditions;
 /// </summary>
 public abstract partial class ESSharedAuditionsSystem
 {
-    // TODO: re-examine when we get species.
-    /// <remarks>
-    /// I stole this list of hair colors off a wiki for some random MMO.
-    /// </remarks>
-    public static readonly IReadOnlyList<Color> RealisticHairColors = new List<Color>
-    {
-        Color.FromHex("#1c1f21"),
-        Color.FromHex("#272a2c"),
-        Color.FromHex("#312e2c"),
-        Color.FromHex("#35261c"),
-        Color.FromHex("#4b321f"),
-        Color.FromHex("#5c3b24"),
-        Color.FromHex("#6d4c35"),
-        Color.FromHex("#6b503b"),
-        Color.FromHex("#765c45"),
-        Color.FromHex("#7f684e"),
-        Color.FromHex("#99815d"),
-        Color.FromHex("#a79369"),
-        Color.FromHex("#af9c70"),
-        Color.FromHex("#bba063"),
-        Color.FromHex("#d6b97b"),
-        Color.FromHex("#dac38e"),
-        Color.FromHex("#9f7f59"),
-        Color.FromHex("#845039"),
-        Color.FromHex("#682b1f"),
-        Color.FromHex("#7c140f"),
-        Color.FromHex("#b64b28"),
-        Color.FromHex("#a2502f"),
-        Color.FromHex("#aa4e2b"),
-        Color.FromHex("#1f1814"),
-        Color.FromHex("#291f19"),
-        Color.FromHex("#2e221b"),
-        Color.FromHex("#37291e"),
-        Color.FromHex("#2e2218"),
-        Color.FromHex("#231b15"),
-        Color.FromHex("#020202"),
-        Color.FromHex("#9d7a50"),
-    };
-
-    public static readonly IReadOnlyList<Color> RealisticAgedHairColors = new List<Color>
-    {
-        Color.FromHex("#626262"),
-        Color.FromHex("#808080"),
-        Color.FromHex("#aaaaaa"),
-        Color.FromHex("#c5c5c5"),
-        Color.FromHex("#706c66"),
-        Color.FromHex("#1c1f21"),
-        Color.FromHex("#272a2c"),
-        Color.FromHex("#312e2c"),
-        Color.FromHex("#1f1814"),
-        Color.FromHex("#291f19"),
-        Color.FromHex("#231b15"),
-        Color.FromHex("#020202"),
-    };
-
     /// <summary>
     /// Eye colors, selected for variance and contrast with human skin tones
     /// </summary>
@@ -84,15 +29,13 @@ public abstract partial class ESSharedAuditionsSystem
         Color.Black,
         Color.Gray,
         Color.MediumPurple,
-        Color.Violet,
-        Color.Azure,
+        Color.FromHex("#f29bdf"), // Light Pink
+        Color.White,
         Color.ForestGreen,
         Color.LimeGreen,
         Color.DarkOrange,
         Color.IndianRed,
         Color.DarkKhaki,
-        Color.FromHex("#3b1d0d"),
-        Color.FromHex("#2a1100"),
     ];
 
     public const float CrazyHairChance = 0.10f;
@@ -109,12 +52,13 @@ public abstract partial class ESSharedAuditionsSystem
     /// <summary>
     /// Generates a character with randomized name, age, gender and appearance.
     /// </summary>
-    public Entity<MindComponent, ESCharacterComponent> GenerateCharacter(Entity<ESProducerComponent> producer, [ForbidLiteral] string randomPrototype = "DefaultBackground")
+    [PublicAPI]
+    public Entity<MindComponent, ESCharacterComponent> GenerateCharacter(Entity<ESProducerComponent> producer)
     {
         var profile = RandomProfile(_random);
         var species = _prototypeManager.Index(profile.Species);
 
-        GenerateName(profile, species);
+        GenerateName(profile, species, out var baseName);
 
         var (ent, mind) = _mind.CreateMind(null, profile.Name);
         var character = EnsureComp<ESCharacterComponent>(ent);
@@ -123,8 +67,9 @@ public abstract partial class ESSharedAuditionsSystem
         var month = _random.Next(1, 12);
         var day = _random.Next(1, DateTime.DaysInMonth(year, month));
         character.DateOfBirth = new DateTime(year, month, day);
-        character.Background = _prototypeManager.Index<WeightedRandomPrototype>(randomPrototype).Pick(_random);
         character.Profile = profile;
+
+        character.BaseName = baseName;
 
         character.PersonalityTraits.Add(_random.Pick(_prototypeManager.Index(TendencyDataset)));
         character.PersonalityTraits.Add(_random.Pick(_prototypeManager.Index(TemperamentDataset)));
@@ -159,7 +104,7 @@ public abstract partial class ESSharedAuditionsSystem
         profile.Appearance.SkinColor = strategy.InputType switch
         {
             SkinColorationStrategyInput.Unary => strategy.FromUnary(random.NextFloat(0f, 100f)),
-            _ => strategy.ClosestSkinColor(_random.NextColor()),
+            _ => strategy.ClosestSkinColor(random.NextColor()),
         };
 
         profile.Age = random.Pick(new Dictionary<int, float>
@@ -169,15 +114,7 @@ public abstract partial class ESSharedAuditionsSystem
             { random.Next(species.OldAge, species.MaxAge), OldAgeWeight }, // Old age
         });
 
-        IReadOnlyList<Color> hairColors;
-        if (profile.Age >= species.OldAge)
-            hairColors = RealisticAgedHairColors;
-        else if (profile.Age <= species.YoungAge)
-            hairColors = RealisticHairColors;
-        else
-            hairColors = RealisticHairColors.Union(RealisticAgedHairColors).ToList();
-
-        var hairColor = random.Prob(CrazyHairChance) ? random.NextColor() : random.Pick(hairColors);
+        var hairColor = GenerateHairColor(profile, random);
         profile.Appearance.HairColor = hairColor;
         profile.Appearance.FacialHairColor = hairColor;
 
@@ -207,6 +144,28 @@ public abstract partial class ESSharedAuditionsSystem
         return profile;
     }
 
+    public Color GenerateHairColor(HumanoidCharacterProfile profile, IRobustRandom random)
+    {
+        if (random.Prob(CrazyHairChance))
+            return random.NextColor();
+
+        var colors = new Dictionary<ESHairColorPrototype, float>();
+        foreach (var colorProto in _prototypeManager.EnumeratePrototypes<ESHairColorPrototype>())
+        {
+            if (colorProto.Abstract)
+                continue;
+
+            if (profile.Age < colorProto.MinAge || profile.Age > colorProto.MaxAge)
+                continue;
+
+            colors.Add(colorProto, colorProto.Weight);
+        }
+
+        var colorType = random.Pick(colors);
+        var color = random.Pick(colorType.Colors);
+        return color;
+    }
+
     private const float GenderlessFirstNameChance = 0.5f; // the future is woke
     private const float DoubleFirstNameChance = 0.015f;
     private const float HyphenatedFirstMiddleNameChance = 0.015f;
@@ -231,7 +190,9 @@ public abstract partial class ESSharedAuditionsSystem
     private static readonly ProtoId<LocalizedDatasetPrototype> PrefixFemaleDataset = "ESNamePrefixFemale";
     private static readonly ProtoId<LocalizedDatasetPrototype> PrefixNonbinaryDataset = "ESNamePrefixNonbinary";
 
-    public void GenerateName(HumanoidCharacterProfile profile, SpeciesPrototype species)
+    public void GenerateName(HumanoidCharacterProfile profile, SpeciesPrototype species) => GenerateName(profile, species, out _);
+
+    public void GenerateName(HumanoidCharacterProfile profile, SpeciesPrototype species, out string baseName)
     {
         var firstNameDataSet = _prototypeManager.Index(profile.Gender switch
         {
@@ -272,6 +233,7 @@ public abstract partial class ESSharedAuditionsSystem
 
         // double-spaces can occur when firstname/lastname are removed and a prefix/suffix exists
         profile.Name = $"{prefix} {firstName} {lastName} {suffix}".Trim().Replace("  ", " ");
+        baseName = $"{firstName} {lastName}".Replace("  ", " ");
     }
 
     private string Prefix(Gender gender)

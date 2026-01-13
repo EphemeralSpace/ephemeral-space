@@ -100,7 +100,7 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         ent.Comp.Progress = newProgress;
 
         var afterEv = new ESObjectiveProgressChangedEvent((ent, ent.Comp), oldProgress, newProgress);
-        RaiseLocalEvent(ent, ref afterEv);
+        RaiseLocalEvent(ent, ref afterEv, true);
 
         Dirty(ent);
     }
@@ -357,6 +357,34 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         RegenerateObjectiveList(ent);
         Del(objective);
         return true;
+    }
+
+    /// <summary>
+    ///     Tries to find an <see cref="ESObjectiveHolderComponent"/>
+    ///     This is kind of inefficient, so you should avoid doing this when possible (and try to just pass around the holder separately, if you already know it)
+    /// </summary>
+    public bool TryFindObjectiveHolder(Entity<ESObjectiveComponent?> objective, [NotNullWhen(true)] out Entity<ESObjectiveHolderComponent>? holder)
+    {
+        if (!Resolve(objective.Owner, ref objective.Comp))
+        {
+            holder = null;
+            return false;
+        }
+
+        Entity<ESObjectiveHolderComponent>? foundHolder = null;
+        var query = EntityQueryEnumerator<ESObjectiveHolderComponent>();
+        while (query.MoveNext(out var uid, out var potentialHolder))
+        {
+            if (!potentialHolder.OwnedObjectives.Contains(objective.Owner))
+                continue;
+
+            // this assumes only one holder can own an objective, which I think is true right now, and the purpose of owned objectives anyway?
+            foundHolder = (uid, potentialHolder);
+            break;
+        }
+
+        holder = foundHolder;
+        return holder != null;
     }
 
     public string GetObjectiveString(Entity<ESObjectiveComponent?> ent)

@@ -8,10 +8,13 @@
     snap:
     - Window
   components:
-  - type: Anchorable
-    flags:
-    - Anchorable
-  - type: Rotatable
+# ES START
+#  - type: Anchorable
+#    flags:
+#    - Anchorable
+#  - type: Rotatable
+  - type: ESDestroyOnUnanchor
+# ES END
   - type: MeleeSound
     soundGroups:
       Brute:

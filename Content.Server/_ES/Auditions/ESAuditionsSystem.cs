@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using System.Linq;
 using Content.Server._ES.Auditions.Components;
 using Content.Server.Administration;
 using Content.Server.Mind;
@@ -7,10 +6,7 @@ using Content.Shared._ES.Auditions;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
-using Content.Shared.Localizations;
 using Content.Shared.Preferences;
-using Content.Shared.Random.Helpers;
-using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Toolshed;
@@ -46,27 +42,16 @@ public sealed class ESAuditionsSystem : ESSharedAuditionsSystem
         if (!Resolve(station, ref station.Comp, false))
             return _mind.CreateMind(null);
 
-        var cast = EnsureComp<ESStationCastComponent>(station);
-
         if (station.Comp.UnusedCharacterPool.Count < station.Comp.PoolRefreshSize)
         {
             Log.Debug($"Pool depleted below refresh size ({station.Comp.PoolRefreshSize}). Replenishing pool.");
             GenerateCast((station, station.Comp), station.Comp.PoolSize - station.Comp.UnusedCharacterPool.Count);
         }
 
-        var weightedMembers = new Dictionary<EntityUid, float>();
-        foreach (var castMember in station.Comp.UnusedCharacterPool)
-        {
-            if (!TryComp<ESCharacterComponent>(castMember, out var characterComponent))
-                continue;
+        if (station.Comp.UnusedCharacterPool.Count == 0)
+            throw new Exception("Failed to replenish character pool!");
 
-            // arbitrary formula but good enough
-            weightedMembers.Add(castMember, 4 * MathF.Pow(4, characterComponent.Relationships.Keys.Count(k => cast.Crew.Contains(k))));
-        }
-
-        var ent = _random.Pick(weightedMembers);
-        station.Comp.UnusedCharacterPool.Remove(ent);
-        return ent;
+        return _random.PickAndTake(station.Comp.UnusedCharacterPool);
     }
 
     /// <summary>
@@ -74,42 +59,10 @@ public sealed class ESAuditionsSystem : ESSharedAuditionsSystem
     /// </summary>
     public void GenerateCast(Entity<ESProducerComponent> producer, int count)
     {
-        var preEvt = new ESPreCastGenerateEvent(producer);
-        RaiseLocalEvent(ref preEvt);
-
-        var newCharacters = new List<EntityUid>();
-
         for (var i = 0; i < count; i++)
         {
-            var newCrew = GenerateCharacter(producer: producer);
-            newCharacters.Add(newCrew);
+            GenerateCharacter(producer: producer);
         }
-
-        var psgEvt = new ESPostShipGenerateEvent(producer);
-        RaiseLocalEvent(ref psgEvt);
-
-        foreach (var group in producer.Comp.SocialGroups)
-        {
-            var comp = EnsureComp<ESSocialGroupComponent>(group);
-            if (comp.Integrated)
-                continue;
-
-            var ent = (group, comp);
-
-            var pre = new ESSocialGroupPreIntegrationEvent(ent);
-            RaiseLocalEvent(ref pre);
-
-            IntegrateRelationshipGroup(comp.RelativeContext, comp.Members);
-            comp.Integrated = true;
-
-            var post = new ESSocialGroupPostIntegrationEvent(ent);
-            RaiseLocalEvent(ref post);
-        }
-
-        IntegrateRelationshipGroup(producer.Comp.IntercrewContext, newCharacters);
-
-        var postEvt = new ESPostCastGenerateEvent(producer);
-        RaiseLocalEvent(ref postEvt);
     }
 }
 
@@ -119,6 +72,7 @@ public sealed class CastCommand : ToolshedCommand
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     private ESAuditionsSystem? _auditions;
+    private ESCluesSystem? _clues;
 
     [CommandImplementation("generate")]
     public IEnumerable<string> Generate([PipedArgument] EntityUid station, int crewSize = 10)
@@ -140,28 +94,20 @@ public sealed class CastCommand : ToolshedCommand
     public IEnumerable<string> View([PipedArgument] EntityUid castMember)
     {
         _auditions ??= GetSys<ESAuditionsSystem>();
+        _clues ??= GetSys<ESCluesSystem>();
         if (!EntityManager.TryGetComponent<ESCharacterComponent>(castMember, out var character))
         {
-            yield return "Invalid cast member object (did not have CharacterComponent)!";
+            throw new Exception($"Entity {castMember} did not have character component!");
         }
-        else
-        {
-            var gender = Loc.GetString($"humanoid-profile-editor-pronouns-{character.Profile.Gender.ToString().ToLower()}-text");
-            yield return $"{character.Name} ({gender}), {character.Profile.Age} years old ({character.DateOfBirth.ToShortDateString()})\nBackground: {character.Background}\nPersonality: {ContentLocalizationManager.FormatList(character.PersonalityTraits.Select(p => Loc.GetString(p)).ToList())}\nRelationships";
-            Dictionary<string, List<EntityUid>> relationships = new();
-            foreach (var relationship in character.Relationships)
-            {
-                if (relationships.ContainsKey(relationship.Value))
-                    relationships[relationship.Value].Add(relationship.Key);
-                else
-                    relationships[relationship.Value] = [relationship.Key];
-            }
 
-            foreach (var relationship in relationships)
-            {
-                yield return $"{relationship.Key} ({relationship.Value.Count}): {string.Join(", ", relationship.Value.ToArray())}";
-            }
-        }
+        var gender = Loc.GetString($"humanoid-profile-editor-pronouns-{character.Profile.Gender.ToString().ToLower()}-text");
+        yield return
+            $"{character.Name} ({gender}), {character.Profile.Age} years old ({character.DateOfBirth.ToShortDateString()})\n" +
+            $"\t{_clues.GetSignificantInitialClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.Initial)})\n" +
+            $"\t{_clues.GetSexClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.Sex)})\n" +
+            $"\t{_clues.GetAgeClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.Age)})\n" +
+            $"\t{_clues.GetEyeColorClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.EyeColor)})\n" +
+            $"\t{_clues.GetHairColorClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.HairColor)})";
     }
 
     [CommandImplementation("viewAll")]
@@ -172,6 +118,24 @@ public sealed class CastCommand : ToolshedCommand
 
         _auditions ??= GetSys<ESAuditionsSystem>();
         foreach (var character in producer.Characters)
+        {
+            foreach (var line in View(character))
+            {
+                yield return line;
+            }
+
+            yield return string.Empty;
+        }
+    }
+
+    [CommandImplementation("viewPresent")]
+    public IEnumerable<string> ViewPresent([PipedArgument] EntityUid station)
+    {
+        if (!TryComp<ESProducerComponent>(station, out var producer))
+            yield break;
+
+        _auditions ??= GetSys<ESAuditionsSystem>();
+        foreach (var character in producer.UsedCharacters)
         {
             foreach (var line in View(character))
             {
@@ -197,33 +161,3 @@ public sealed class CastCommand : ToolshedCommand
         }
     }
 }
-
-/// <summary>
-/// Fires prior to this social group's relationships being integrated.
-/// </summary>
-[ByRefEvent, PublicAPI]
-public readonly record struct ESSocialGroupPreIntegrationEvent(Entity<ESSocialGroupComponent> Group);
-
-/// <summary>
-/// Fires after this social group's relationships have been integrated.
-/// </summary>
-[ByRefEvent, PublicAPI]
-public readonly record struct ESSocialGroupPostIntegrationEvent(Entity<ESSocialGroupComponent> Group);
-
-/// <summary>
-/// Fires prior to any generation events (captain group, crew groups, etc).
-/// </summary>
-[ByRefEvent, PublicAPI]
-public readonly record struct ESPreCastGenerateEvent(ESProducerComponent Producer);
-
-/// <summary>
-/// Fires after the primary generation events (captain group, crew group, etc) but before integration of relationships.
-/// </summary>
-[ByRefEvent, PublicAPI]
-public readonly record struct ESPostShipGenerateEvent(ESProducerComponent Producer);
-
-/// <summary>
-/// Fires after all relationships have been integrated.
-/// </summary>
-[ByRefEvent, PublicAPI]
-public readonly record struct ESPostCastGenerateEvent(ESProducerComponent Producer);

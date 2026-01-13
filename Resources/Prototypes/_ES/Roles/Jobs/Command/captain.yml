@@ -34,3 +34,8 @@
     back:
     - ESBoxSurvival
     - Flash
+
+- type: chameleonOutfit
+  id: ESCaptain
+  job: ESCaptain
+  hidden: false

@@ -5,10 +5,13 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: Anchorable
-    flags:
-    - Anchorable
-  - type: Rotatable
+# ES START
+#  - type: Anchorable
+#    flags:
+#    - Anchorable
+#  - type: Rotatable
+  - type: ESDestroyOnUnanchor
+# ES END
   - type: Sprite
     sprite: Structures/plastic_flaps.rsi
     state: plasticflaps

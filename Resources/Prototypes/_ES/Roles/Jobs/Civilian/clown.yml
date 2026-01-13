@@ -43,3 +43,8 @@
     - ESBoxHug
     - RubberStampClown
     - CrayonRainbow
+
+- type: chameleonOutfit
+  id: ESClown
+  job: ESClown
+  hidden: false

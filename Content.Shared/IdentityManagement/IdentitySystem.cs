@@ -240,6 +240,15 @@ public sealed class IdentitySystem : EntitySystem
     }
 
     #endregion
+// ES START
+    public bool HasIdentityBlockerCoverage(EntityUid target, IdentityBlockerCoverage coverage)
+    {
+        var ev = new SeeIdentityAttemptEvent();
+        RaiseLocalEvent(target, ev);
+
+        return ev.TotalCoverage.HasFlag(coverage);
+    }
+// ES END
 }
 
 /// <summary>

@@ -178,7 +178,6 @@ namespace Content.Client.GameTicking.Managers
             _stateManager.RequestStateChange<LobbyState>();
             // ES START
             _startOpenAnimationTime = _timing.RealTime + TimeSpan.FromSeconds(0.5);
-            _userInterfaceManager.GetUIController<GuidebookUIController>().ToggleGuidebook();
             // ES END
         }
 

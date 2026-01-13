@@ -280,6 +280,7 @@
       shader: unshaded
       visible: false
       map: [ "light" ]
+  - type: ESChameleonClothingWhitelist
 # ES End
   - type: Clothing
     sprite: Clothing/Head/Helmets/firehelmet.rsi
