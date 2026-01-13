@@ -8,6 +8,8 @@ namespace Content.Shared._ES.Objectives.Target;
 public abstract class ESBaseTargetObjectiveSystem<TComponent> : ESBaseObjectiveSystem<TComponent>
     where TComponent : Component
 {
+    [Dependency] protected readonly ESTargetObjectiveSystem TargetObjective = default!;
+
     /// <summary>
     /// A list of all relays present on the target that this objective relies on existing
     /// </summary>
@@ -44,5 +46,24 @@ public abstract class ESBaseTargetObjectiveSystem<TComponent> : ESBaseObjectiveS
                     AddComp(newTarget, Factory.GetComponent(relayType));
             }
         }
+    }
+
+    /// <summary>
+    /// Calls <see cref="ESSharedObjectiveSystem.RefreshObjectiveProgress"/> on all objectives of type {TComponent} targeting the given entity.
+    /// </summary>
+    protected void RefreshTargetingObjectives(EntityUid target)
+    {
+        foreach (var objective in GetTargetingObjectives(target))
+        {
+            ObjectivesSys.RefreshObjectiveProgress(objective.Owner);
+        }
+    }
+
+    /// <summary>
+    /// Helper version of <see cref="ESTargetObjectiveSystem.GetTargetingObjectives{TComponent}"/>
+    /// </summary>
+    protected IEnumerable<Entity<TComponent>> GetTargetingObjectives(EntityUid target)
+    {
+        return TargetObjective.GetTargetingObjectives<TComponent>(target);
     }
 }
