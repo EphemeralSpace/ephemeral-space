@@ -208,6 +208,8 @@
   troupe: ESCrew
   description: es-mask-avenger-desc
   color: peachpuff
+  objectives:
+    id: ESObjectiveAvengerProtectRandom
 
 # Traitor Masks
 - type: esMask

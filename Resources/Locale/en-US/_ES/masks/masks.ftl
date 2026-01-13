@@ -79,7 +79,7 @@ es-mask-demolitionist-desc = As a Demolitionist, you have been trained by the Sy
 es-objective-issuer-mask = Mask
 
 es-objective-condition-crewmember-kill-title = Kill {$targetName}, {CAPITALIZE($job)}
-es-objective-condition-crewmember-alive-title = Ensure {$targetName}, {CAPITALIZE($job)} stays alive
+es-objective-condition-protect-title = Protect {$targetName}, {CAPITALIZE($job)}
 
 es-mask-gear-cache-messsage = Your gear can be found in {$cacheLocation}.
 
