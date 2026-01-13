@@ -2,7 +2,7 @@
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: ESMagazine9mmEmpty
-  name: 9mm magazine (empty)
+  name: lathe-recipe-magazine-9mm-empty-name
   result: ESMagazine9mmEmpty
   icon: # Manually specifies an icon because it needs to show as empty
     sprite: _ES/Objects/Weapons/Guns/Ammunition/9mm_mag.rsi
@@ -13,7 +13,7 @@
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: ESSpeedLoader357Empty
-  name: .357 speed loader (empty)
+  name: lathe-recipe-speedloader-357-empty-name
   result: ESSpeedLoader357Empty
   icon: # Manually specifies an icon because it needs to show as empty
     sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
