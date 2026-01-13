@@ -51,6 +51,9 @@ es-mask-martyr-killer-quickdialog-msg = You killed a lovely martyr, and you will
 es-mask-insider-name = Insider
 es-mask-insider-desc = As an insider, investigate the people on station and try to find out their alleigances using your special dossier.
 
+es-mask-avenger-name = Avenger
+es-mask-avenger-desc = As an avenger, protect your target from being killed at all costs. If that fails, kill their murderer.
+
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete your group objectives.
 

@@ -202,6 +202,13 @@
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheCrewInsider
 
+- type: esMask
+  id: ESAvenger
+  name: es-mask-avenger-name
+  troupe: ESCrew
+  description: es-mask-avenger-desc
+  color: peachpuff
+
 # Traitor Masks
 - type: esMask
   id: ESBaseTraitor
