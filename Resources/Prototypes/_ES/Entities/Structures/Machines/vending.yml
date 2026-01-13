@@ -342,7 +342,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/chemvend.rsi
   - type: VendingMachine
-    pack: ChemVendInventory
+    pack: ESChemVendInventory
     ejectDelay: 2
   - type: AccessReader
     access: [["Chemistry"]]
