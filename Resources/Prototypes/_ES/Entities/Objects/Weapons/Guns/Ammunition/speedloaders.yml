@@ -46,3 +46,11 @@
       right:
       - state: inhand-right-mag
       - state: inhand-right-ammo
+
+- type: entity
+  parent: ESSpeedLoader357
+  id: ESSpeedLoader357Empty
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null

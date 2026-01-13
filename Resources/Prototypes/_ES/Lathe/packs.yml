@@ -125,8 +125,10 @@
 - type: latheRecipePack
   id: ESAmmunition
   recipes:
-  - ESMagazine9mm
-  - ESSpeedLoader357
+  - ESMagazine9mmEmpty
+  - ESRound9mm
+  - ESSpeedLoader357Empty
+  - ESRound357
   - ESShellShotgunBeanbag
   - ESShellShotgunBuckshot
   - ESShellShotgunSlug

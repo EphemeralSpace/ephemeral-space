@@ -44,3 +44,11 @@
   components:
   - type: BallisticAmmoProvider
     proto: ESRound9mm
+
+- type: entity
+  parent: ESMagazine9mm
+  id: ESMagazine9mmEmpty
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
