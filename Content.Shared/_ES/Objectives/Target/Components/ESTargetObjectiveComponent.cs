@@ -38,3 +38,11 @@ public record struct ESValidateObjectiveTargetCandidates(Entity<ESObjectiveHolde
         Valid = false;
     }
 }
+
+/// <summary>
+/// Event raised on an <see cref="ESTargetObjectiveComponent"/> when its target changes.
+/// </summary>
+/// <param name="OldTarget">Previous target</param>
+/// <param name="NewTarget">Current target</param>
+[ByRefEvent]
+public readonly record struct ESObjectiveTargetChangedEvent(EntityUid? OldTarget, EntityUid? NewTarget);
