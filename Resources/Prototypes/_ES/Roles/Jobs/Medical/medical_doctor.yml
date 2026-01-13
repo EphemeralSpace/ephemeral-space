@@ -27,3 +27,8 @@
   storage:
     back:
     - ESBoxSurvivalMedical
+
+- type: chameleonOutfit
+  id: ESMedicalDoctor
+  job: ESMedicalDoctor
+  hidden: false

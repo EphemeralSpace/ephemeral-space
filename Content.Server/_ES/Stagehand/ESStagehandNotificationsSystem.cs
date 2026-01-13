@@ -1,5 +1,6 @@
 using Content.Server.Chat.Managers;
 using Content.Server.KillTracking;
+using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Stagehand.Components;
@@ -105,7 +106,11 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
         if (!_objectives.TryFindObjectiveHolder((ev.Objective.Owner, ev.Objective.Comp), out var holder))
             return;
 
-        var resolvedMessage = Loc.GetString(msgId, ("entity", holder.Value), ("objective", ev.Objective.Owner));
+        var entityName = Name(holder.Value);
+        if (TryComp<ESCharacterComponent>(holder.Value, out var comp))
+            entityName = comp.Name;
+
+        var resolvedMessage = Loc.GetString(msgId, ("entity", entityName), ("objective", ev.Objective.Owner));
         SendStagehandNotification(resolvedMessage);
     }
 

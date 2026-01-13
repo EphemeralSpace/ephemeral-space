@@ -85,6 +85,9 @@
             True: { visible: True }
             False: { visible: False }
     - type: AnimationPlayer
+# ES START
+    - type: ESDestroyOnUnanchor
+# ES END
 
 - type: entity
   id: ClockworkGrille

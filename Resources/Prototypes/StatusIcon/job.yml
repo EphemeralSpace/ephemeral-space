@@ -357,8 +357,10 @@
   parent: JobIcon
   id: JobIconPassenger
   icon:
-    sprite: *icon-rsi
-    state: Passenger
+# ES START
+    sprite: /Textures/_ES/Interface/Misc/ES_job_icons.rsi
+    state: assistant
+# ES END
   jobName: job-name-passenger
 
 - type: jobIcon

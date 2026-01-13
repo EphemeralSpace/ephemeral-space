@@ -4,7 +4,7 @@
 desc             = "Engage in treachery and social deduction on stage in the Ephemeral Space theater!"
 soft_max_players = 35
 lobbyenabled     = true
-lobbyduration    = 180 # 3 minutes lobby timer
+lobbyduration    = 450 # 7.5 minute lobby timer
 
 [infolinks]
 bug_report = "https://github.com/EphemeralSpace/ephemeral-space/issues/new/choose"

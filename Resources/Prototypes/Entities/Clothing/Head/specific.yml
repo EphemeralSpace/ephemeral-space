@@ -14,7 +14,9 @@
       sprite: Clothing/Head/Hats/beret.rsi
     - type: ChameleonClothing
       slot: [HEAD]
-      default: ClothingHeadHatBeret
+# ES START
+      default: ClothingHeadHatHardhatYellow
+# ES END
 
 - type: entity
   parent: ClothingHeadHatFedoraBrown

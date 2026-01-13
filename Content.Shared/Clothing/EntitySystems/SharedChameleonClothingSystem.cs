@@ -14,6 +14,11 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+// ES START
+using Content.Shared._ES.Clothing.Chameleon.Components;
+using Content.Shared.Implants;
+using Content.Shared.Prototypes;
+// ES END
 
 namespace Content.Shared.Clothing.EntitySystems;
 
@@ -174,12 +179,26 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
         if (proto.Abstract || proto.HideSpawnMenu)
             return false;
 
-        // check if it is marked as valid chameleon target
-        if (!proto.TryGetComponent(out TagComponent? tag, Factory) || !_tag.HasTag(tag, WhitelistChameleonTag))
+// ES START
+        var validClothes = _proto.EnumeratePrototypes<ChameleonOutfitPrototype>()
+            .Where(p => p is { Hidden: false, Job: not null })
+            .Select(p => _proto.Index(p.Job!))
+            .Where(j => j.StartingGear != null)
+            .SelectMany(j => _proto.Index(j.StartingGear)!.Equipment.Values)
+            .ToHashSet();
+        if (!validClothes.Contains(proto) && !proto.HasComponent<ESChameleonClothingWhitelistComponent>())
             return false;
 
-        if (requiredTag != null && !_tag.HasTag(tag, requiredTag))
+        if (proto.HasComponent<ESChameleonClothingBlacklistComponent>())
             return false;
+
+        // // check if it is marked as valid chameleon target
+        // if (!proto.TryGetComponent(out TagComponent? tag, Factory) || !_tag.HasTag(tag, WhitelistChameleonTag))
+        //     return false;
+        //
+        // if (requiredTag != null && !_tag.HasTag(tag, requiredTag))
+        //     return false;
+// ES END
 
         // check if it's valid clothing
         if (!proto.TryGetComponent(out ClothingComponent? clothing, Factory))

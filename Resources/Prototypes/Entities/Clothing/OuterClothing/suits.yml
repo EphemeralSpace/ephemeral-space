@@ -76,6 +76,9 @@
   - type: HideLayerClothing
     slots:
     - Tail
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]

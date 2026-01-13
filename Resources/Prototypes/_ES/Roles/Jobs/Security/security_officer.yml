@@ -32,3 +32,8 @@
     back:
     - ESBoxSurvival
     - Flash
+
+- type: chameleonOutfit
+  id: ESSecurityOfficer
+  job: ESSecurityOfficer
+  hidden: false

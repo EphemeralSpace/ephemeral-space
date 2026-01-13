@@ -44,3 +44,8 @@
     back:
     - ESBoxSurvival
     - Flash
+
+- type: chameleonOutfit
+  id: ESHeadOfSecurity
+  job: ESHeadOfSecurity
+  hidden: false

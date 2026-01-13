@@ -23,3 +23,8 @@
   storage:
     back:
     - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESScientist
+  job: ESScientist
+  hidden: false
