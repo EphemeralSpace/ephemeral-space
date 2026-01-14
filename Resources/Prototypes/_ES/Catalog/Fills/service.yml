@@ -8,14 +8,12 @@
     - id: ReagentContainerFlour
     - id: DrinkSoyMilkCarton
     - id: FoodCondimentBottleEnzyme
-    - !type:AllSelector
-      rolls: 2
-      children:
+    - rolls: 2
+      all:
       - id: DrinkMilkCarton
       - id: ReagentContainerFlour
       - id: BoxMousetrap
-    - !type:AllSelector
-      rolls: 3
-      children:
+    - rolls: 3
+      all:
       - id: FoodCondimentPacketSalt
       - id: FoodCondimentPacketPepper

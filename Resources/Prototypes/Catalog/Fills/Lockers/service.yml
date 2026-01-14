@@ -42,7 +42,6 @@
     containers:
       entity_storage: !type:NestedSelector
 # ES START
-        # tableId: FillClosetChef
         tableId: ESFillClosetChef
 # ES END
 
