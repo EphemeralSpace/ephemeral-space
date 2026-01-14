@@ -1,7 +1,7 @@
 - type: entityTable
   id: ESFillClosetChef
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: MonkeyCubeBox
     - id: SprayBottleWater
     - id: ReagentContainerSugar
