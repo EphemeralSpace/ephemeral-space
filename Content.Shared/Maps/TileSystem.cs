@@ -147,14 +147,19 @@ public sealed class TileSystem : EntitySystem
         const float margin = 0.1f;
         var bounds = mapGrid.TileSize - margin * 2;
         var indices = tileRef.GridIndices;
-        var coordinates = _maps.GridTileToLocal(gridUid, mapGrid, indices)
-            .Offset(new Vector2(
-                (_robustRandom.NextFloat() - 0.5f) * bounds,
-                (_robustRandom.NextFloat() - 0.5f) * bounds));
+        // ES START - Removes random pos/rot offset from tile prying
+        // var coordinates = _maps.GridTileToLocal(gridUid, mapGrid, indices)
+        //     .Offset(new Vector2(
+        //         (_robustRandom.NextFloat() - 0.5f) * bounds,
+        //         (_robustRandom.NextFloat() - 0.5f) * bounds));
+        var coordinates = _maps.GridTileToLocal(gridUid, mapGrid, indices);
+        // ES END
 
         //Actually spawn the relevant tile item at the right position and give it some random offset.
         var tileItem = Spawn(tileDef.ItemDropPrototypeName, coordinates);
-        Transform(tileItem).LocalRotation = _robustRandom.NextDouble() * Math.Tau;
+        // ES START - Removes random pos/rot offset from tile prying
+        // Transform(tileItem).LocalRotation = _robustRandom.NextDouble() * Math.Tau;
+        // ES END
 
         // Destroy any decals on the tile
         var decals = _decal.GetDecalsInRange(gridUid, coordinates.SnapToGrid(EntityManager, _mapManager).Position, 0.5f);
