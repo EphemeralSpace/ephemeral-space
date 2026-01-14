@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionMaskAvengerSense
+  name: Sense Distance
+  description: Use this on someone to detect their [bold]aura[/bold] and get a sense of their [bold]motives.[/bold]
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/masks/avenger.rsi
+      state: icon
+    useDelay: 15
+  - type: InstantAction
+    event: !type:ESSenseTargetDistanceActionEvent
+      objectiveWhitelist:
+        components:
+        - ESDirectKillTargetObjective

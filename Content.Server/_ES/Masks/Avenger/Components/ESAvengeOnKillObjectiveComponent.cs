@@ -1,4 +1,5 @@
 using Content.Shared._ES.Objectives.Target.Components;
+using Content.Shared.Actions.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.Masks.Avenger.Components;
@@ -16,4 +17,7 @@ public sealed partial class ESAvengeOnKillObjectiveComponent : Component
 {
     [DataField]
     public EntProtoId<ESTargetObjectiveComponent> AvengeObjective = "ESObjectiveAvengerKill";
+
+    [DataField]
+    public EntProtoId<ActionComponent> ActionPrototype = "ESActionMaskAvengerSense";
 }
