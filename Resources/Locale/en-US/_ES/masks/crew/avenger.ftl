@@ -1,2 +1,3 @@
 es-avenger-die-message = {$name} has perished {$location}!
 es-avenger-die-message-kill = {$name} has perished {$location}! You must avenge them!
+es-avenger-revenge-success = With their death, you feel at peace...

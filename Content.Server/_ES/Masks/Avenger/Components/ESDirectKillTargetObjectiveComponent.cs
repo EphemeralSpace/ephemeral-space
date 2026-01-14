@@ -9,4 +9,11 @@ namespace Content.Server._ES.Masks.Avenger.Components;
 /// </summary>
 [RegisterComponent]
 [Access(typeof(ESDirectKillTargetObjectiveSystem))]
-public sealed partial class ESDirectKillTargetObjectiveComponent : Component;
+public sealed partial class ESDirectKillTargetObjectiveComponent : Component
+{
+    /// <summary>
+    /// Message shown on successful kill
+    /// </summary>
+    [DataField]
+    public LocId SuccessMessage = "es-avenger-revenge-success";
+}
