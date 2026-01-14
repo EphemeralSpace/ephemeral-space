@@ -2,7 +2,7 @@
   parent: BaseMentalAction
   id: ESActionMaskAvengerSense
   name: Sense Distance
-  description: Use this on someone to detect their [bold]aura[/bold] and get a sense of their [bold]motives.[/bold]
+  description: Detect how far you are from your target.
   components:
   - type: Action
     icon:
