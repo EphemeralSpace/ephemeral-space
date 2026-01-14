@@ -1,5 +1,4 @@
 using Content.Server._ES.Masks.Avenger.Components;
-using Content.Server._ES.Masks.Objectives.Relays;
 using Content.Server.Chat.Managers;
 using Content.Server.KillTracking;
 using Content.Server.Pinpointer;

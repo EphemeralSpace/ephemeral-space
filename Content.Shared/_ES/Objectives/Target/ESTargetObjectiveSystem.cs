@@ -95,6 +95,14 @@ public sealed class ESTargetObjectiveSystem : EntitySystem
         return candidate != null;
     }
 
+    public EntityUid? GetTargetOrNull(Entity<ESTargetObjectiveComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return null;
+
+        return ent.Comp.Target;
+    }
+
     /// <summary>
     /// Sets the target for a given <see cref="ESTargetObjectiveComponent"/>
     /// </summary>

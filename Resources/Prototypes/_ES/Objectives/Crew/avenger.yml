@@ -25,4 +25,5 @@
       sprite: Objects/Weapons/Melee/kitchen_knife.rsi
       state: icon
   - type: ESTargetObjective
-  - type: ESKillTargetObjective
+  - type: ESDirectKillTargetObjective
+  - type: ESCounterObjective
