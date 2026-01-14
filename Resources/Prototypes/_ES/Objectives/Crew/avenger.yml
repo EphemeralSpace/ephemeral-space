@@ -12,3 +12,17 @@
     title: es-objective-condition-protect-title
   - type: ESTargetPlayersObjective
   - type: ESProtectTargetObjective
+  - type: ESAvengeOnKillObjective
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveAvengerKill
+  name: Avenge your protectee
+  description: Someone has slain your target. Use your special sense and hunt them down and kill them yourself. You must be the one to get revenge.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Weapons/Melee/kitchen_knife.rsi
+      state: icon
+  - type: ESTargetObjective
+  - type: ESKillTargetObjective
