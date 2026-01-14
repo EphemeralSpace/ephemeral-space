@@ -41,7 +41,10 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillClosetChef
+# ES START
+        # tableId: FillClosetChef
+        tableId: ESFillClosetChef
+# ES END
 
 - type: entityTable
   id: FillClosetChef
