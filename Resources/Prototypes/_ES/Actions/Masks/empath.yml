@@ -46,3 +46,4 @@
   priority: 10 # A murderous oracle is still an oracle.
   maskOverrides:
   - ESEmpath
+  - ESInsider
