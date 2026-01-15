@@ -1,9 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared._Citadel.Utilities;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Humanoid;
-using Robust.Shared.Collections;
 using Robust.Shared.ColorNaming;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -21,21 +19,23 @@ public sealed class ESCluesSystem : EntitySystem
     [Dependency] private readonly ESSharedAuditionsSystem _auditions = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
 
-    public string GetSignificantInitialClue(Entity<ESCharacterComponent?> mind)
+    public IEnumerable<string> GetSignificantInitialClues(Entity<ESCharacterComponent?> mind, int minFreq = 0)
     {
         if (!Resolve(mind, ref mind.Comp))
-            return "?";
+            return [];
 
-        var candidates = new ValueList<char>();
+        var initials = new HashSet<string>();
         foreach (var character in mind.Comp.BaseName.ToCharArray())
         {
-            if (char.IsAsciiLetterUpper(character))
-                candidates.Add(character);
+            if (!char.IsAsciiLetterUpper(character))
+                continue;
+            var clueString = Loc.GetString("es-clue-initial-fmt", ("initial", character));
+            if (minFreq > 0 && GetSignificantInitialFrequency(clueString) < minFreq)
+                continue;
+            initials.Add(clueString);
         }
 
-        var seed = new RngSeed().SeedForStep(mind.Owner.Id);
-        var initial = candidates.Any() ? $"{seed.IntoRandomizer().Pick(candidates)}" : "?";
-        return Loc.GetString("es-clue-initial-fmt", ("initial", initial));
+        return initials;
     }
 
     public string GetEyeColorClue(Entity<ESCharacterComponent?> mind)
@@ -108,7 +108,7 @@ public sealed class ESCluesSystem : EntitySystem
         };
     }
 
-    public IEnumerable<string> GetClues(Entity<ESCharacterComponent?> mind, int count, int minFreq = 2)
+    public IEnumerable<string> GetClues(Entity<ESCharacterComponent?> mind, int count, int minFreq = 3)
     {
         if (!Resolve(mind, ref mind.Comp))
             yield break;
@@ -116,6 +116,15 @@ public sealed class ESCluesSystem : EntitySystem
         var clueOptions = new List<ESClue>();
         foreach (var clue in Enum.GetValues<ESClue>())
         {
+            // For initials, check there is at least one valid option
+            if (clue == ESClue.Initial)
+            {
+                var validInitials = GetSignificantInitialClues(mind, minFreq);
+                if (validInitials.Any())
+                    clueOptions.Add(ESClue.Initial);
+                continue;
+            }
+
             if (GetClueFrequency(mind, clue) < minFreq)
                 continue;
             clueOptions.Add(clue);
@@ -124,7 +133,15 @@ public sealed class ESCluesSystem : EntitySystem
         var clues = _random.GetItems(clueOptions, Math.Min(clueOptions.Count, count), allowDuplicates: false);
         foreach (var clue in clues)
         {
-            yield return GetClue(mind, clue);
+            // Special-case for initials
+            if (clue == ESClue.Initial)
+            {
+                yield return _random.Pick(GetSignificantInitialClues(mind, minFreq).ToList());
+            }
+            else
+            {
+                yield return GetClue(mind, clue);
+            }
         }
     }
 
@@ -132,7 +149,7 @@ public sealed class ESCluesSystem : EntitySystem
     {
         return clue switch
         {
-            ESClue.Initial => GetSignificantInitialClue(mind),
+            ESClue.Initial => _random.Pick(GetSignificantInitialClues(mind).ToList()),
             ESClue.HairColor => GetHairColorClue(mind),
             ESClue.EyeColor => GetEyeColorClue(mind),
             ESClue.Age => GetAgeClue(mind),
@@ -152,6 +169,20 @@ public sealed class ESCluesSystem : EntitySystem
         foreach (var character in _auditions.GetCharacters())
         {
             if (GetClue(character.AsNullable(), clue) == clueValue)
+                frequency++;
+        }
+        return frequency;
+    }
+
+    /// <summary>
+    /// Returns the number of times a given initial occurs among the players in the game.
+    /// </summary>
+    public int GetSignificantInitialFrequency(string initialClue)
+    {
+        var frequency = 0;
+        foreach (var character in _auditions.GetCharacters())
+        {
+            if (GetSignificantInitialClues(character.AsNullable()).Contains(initialClue))
                 frequency++;
         }
         return frequency;

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Linq;
 using Content.Server._ES.Auditions.Components;
 using Content.Server.Administration;
 using Content.Server.Mind;
@@ -103,7 +104,7 @@ public sealed class CastCommand : ToolshedCommand
         var gender = Loc.GetString($"humanoid-profile-editor-pronouns-{character.Profile.Gender.ToString().ToLower()}-text");
         yield return
             $"{character.Name} ({gender}), {character.Profile.Age} years old ({character.DateOfBirth.ToShortDateString()})\n" +
-            $"\t{_clues.GetSignificantInitialClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.Initial)})\n" +
+            $"\t{string.Join(", ", _clues.GetSignificantInitialClues(castMember).Select(c => $"{c} (count: {_clues.GetSignificantInitialFrequency(c)})"))}\n" +
             $"\t{_clues.GetSexClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.Sex)})\n" +
             $"\t{_clues.GetAgeClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.Age)})\n" +
             $"\t{_clues.GetEyeColorClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.EyeColor)})\n" +

@@ -43,5 +43,5 @@ public sealed partial class ESTroupeDossierComponent : Component
     /// Dataset used for the arbitrary codenames
     /// </summary>
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype> CodenameDataset = "Adjectives";
+    public ProtoId<LocalizedDatasetPrototype> CodenameDataset = "ESInsiderCodenames";
 }

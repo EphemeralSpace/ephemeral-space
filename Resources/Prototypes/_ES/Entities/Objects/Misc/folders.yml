@@ -4,3 +4,10 @@
   suffix: ES, Insider
   components:
   - type: ESTroupeDossier
+
+- type: localizedDataset
+  id: ESInsiderCodenames
+  values:
+    prefix: es-dataset-insider-codename-
+    count: 80
+

@@ -42,9 +42,9 @@ public abstract partial class ESSharedAuditionsSystem
 
     public const float ShavenChance = 0.55f;
 
-    public const float YoungWeight = 5;
-    public const float MiddleAgeWeight = 4;
-    public const float OldAgeWeight = 1;
+    public const float YoungWeight = 4.5f;
+    public const float MiddleAgeWeight = 3.5f;
+    public const float OldAgeWeight = 2f;
 
     private static readonly ProtoId<LocalizedDatasetPrototype> TendencyDataset = "ESPersonalityTendency";
     private static readonly ProtoId<LocalizedDatasetPrototype> TemperamentDataset = "ESPersonalityTemperament";
