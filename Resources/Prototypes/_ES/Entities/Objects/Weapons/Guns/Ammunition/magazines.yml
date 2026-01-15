@@ -2,7 +2,7 @@
   parent: [ BaseItem, BaseSecurityContraband ]
   id: ESBaseMagazine9mm
   name: 9mm magazine
-  description:
+  description: This ain't for reading; It's for loading a handgun. Holds 9mm rounds.
   suffix: ES
   abstract: true
   components:
