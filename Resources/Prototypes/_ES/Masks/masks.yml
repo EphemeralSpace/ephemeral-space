@@ -125,6 +125,18 @@
     - id: ESObjectivePhantomAvenge
 
 - type: esMask
+  id: ESPilferer
+  name: es-mask-pilferer-name
+  troupe: ESCrew
+  description: es-mask-pilferer-desc
+  color: white
+  components:
+  - type: ESPickpocketer
+  - type: ActionGrant
+    actions:
+    - ESActionPickpocket
+
+- type: esMask
   id: ESGlutton
   name: es-mask-glutton-name
   troupe: ESCrew

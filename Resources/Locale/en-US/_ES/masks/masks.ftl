@@ -23,6 +23,9 @@ es-mask-mercenary-desc = As a Mercenary, use your dubiously-legally-acquired syn
 es-mask-phantom-name = Phantom
 es-mask-phantom-desc = As a Phantom, reincarnate as a vengeful spirit on death and haunt your murderer until they also die.
 
+es-mask-pilferer-name = Pilferer
+es-mask-pilferer-desc = Placeholder
+
 es-mask-veteran-name = Veteran
 es-mask-veteran-desc = As a Veteran, help the station by using your trusty sidearm to take care of anybody who isn't aligned with the crew.
 

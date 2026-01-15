@@ -1,0 +1,22 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionPickpocket
+  name: Pickpocket
+  description: Use this on someone to [bold]steal[/bold] a random item from their bag.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/masks/pickpocket.rsi
+      state: pickpocket
+    iconOn:
+      sprite: _ES/Actions/masks/pickpocket.rsi
+      state: pickpocket-on
+    useDelay: 1m
+  - type: TargetAction
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - Inventory
+      - MobState
+    event: !type:ESPickpocketActionEvent
