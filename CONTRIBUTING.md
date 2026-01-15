@@ -1,7 +1,7 @@
 # Space Station 14 Contributing Guidelines
 
 Thanks for contributing to Space Station 14.
-When contributing, be sure to follow our [codebase conventions](https://docs.spacestation14.com/en/general-development/codebase-info/codebase-organization.html) and [PR guidelines](https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html).
+When contributing, be sure to follow our [codebase conventions](https://ephemeralspace.github.io/docs/coding/code-conventions.html) on top of upstream SS14's [conventions](https://docs.spacestation14.com/en/general-development/codebase-info/conventions.html) and [PR guidelines](https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html).
 
 Following these guidelines helps us increase review turnaround time, so be sure to review the linked documents in full.
 
