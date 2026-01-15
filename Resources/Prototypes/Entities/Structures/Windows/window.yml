@@ -23,6 +23,9 @@
   # - type: WallMount
   #  arc: 360
   - type: ESInteractionIgnoreAnchoredInTile
+  - type: Clickable
+    bounds:
+      all: -0.5, -0.5, 0.5, 0.5
   # ES END
   - type: Tag
     tags:
@@ -302,3 +305,7 @@
   - type: Construction
     graph: WindowDiagonal
     node: windowDiagonal
+# ES START
+  - type: Clickable
+    bounds: null
+# ES END
