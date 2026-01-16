@@ -55,6 +55,8 @@
         Slash: 0.70
         Piercing: 0.70
         Heat: 0.80
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
   - type: Tag
     tags:
     - SuitEVA
@@ -79,6 +81,8 @@
         Slash: 0.70
         Piercing: 0.70
         Heat: 0.80
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
   - type: Tag
     tags:
     - SuitEVA
