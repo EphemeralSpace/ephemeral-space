@@ -111,37 +111,34 @@ public sealed partial class ESCharacterWindow : FancyWindow
             MaskLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-mask-fmt",
                 ("name", Loc.GetString(mask.Name)),
                 ("color", mask.Color)));
-            MaskLabel.Margin = new Thickness(16, 0, 0, 0);
-            MaskHelpButton.Visible = true;
-            var maskTooltip = new Tooltip() { MaxWidth = 250 };
-            maskTooltip.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString(mask.Description)));
-            MaskHelpButton.TooltipSupplier = _ => maskTooltip;
-            MaskHelpButton.TooltipDelay = 0f;
 
             TroupeLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-troupe-fmt",
                 ("name", Loc.GetString(troupe.Name)),
                 ("color", troupe.Color)));
-            TroupeLabel.Margin = new Thickness(16, 0, 0, 0);
 
-            TroupeHelpButton.Visible = true;
-            var troupeTooltip = new Tooltip() { MaxWidth = 350 };
-            troupeTooltip.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString(troupe.Description)));
-            TroupeHelpButton.TooltipSupplier = _ => troupeTooltip;
-            TroupeHelpButton.TooltipDelay = 0f;
+            MaskHelpButton.Visible = true;
+            var maskTooltip = new Tooltip { MaxWidth = 325 };
+            var msg = new FormattedMessage();
+            msg.AddMarkupOrThrow(Loc.GetString(mask.Description));
+            msg.PushNewline();
+            msg.PushNewline();
+            msg.AddMarkupOrThrow(Loc.GetString(troupe.Description));
+
+            maskTooltip.SetMessage(msg);
+            MaskHelpButton.TooltipSupplier = _ => maskTooltip;
+            MaskHelpButton.TooltipDelay = 0f;
         }
         else
         {
             MaskLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-mask-fmt",
                 ("name", Loc.GetString("generic-unknown-title")),
                 ("color", Color.White)));
-            MaskLabel.Margin = new Thickness(0);
-            MaskHelpButton.Visible = false;
 
             TroupeLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-troupe-fmt",
                 ("name", Loc.GetString("generic-unknown-title")),
                 ("color", Color.Gray)));
-            TroupeLabel.Margin = new Thickness(0);
-            TroupeHelpButton.Visible = false;
+
+            MaskHelpButton.Visible = false;
         }
 
         var info = _mask.GetCharacterInfoBlurb((mind, mindComp));
