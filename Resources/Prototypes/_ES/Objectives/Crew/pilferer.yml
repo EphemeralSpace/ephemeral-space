@@ -1,0 +1,15 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectivePilfererPickpocket
+  name: Pickpocket crewmembers
+  description: Use your sleight of hand to steal from the bags of unsuspecting crew.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Clothing/Back/Backpacks/backpack.rsi
+      state: icon
+  - type: ESPickpocketObjective
+  - type: ESCounterObjective
+    title: es-pilferer-objective-title
+    target: 2 # Placeholder
+    maxTarget: 10

@@ -11,7 +11,7 @@
     iconOn:
       sprite: _ES/Actions/masks/pickpocket.rsi
       state: pickpocket-on
-    useDelay: 1m
+    useDelay: 10 # Placeholder
   - type: TargetAction
   - type: EntityTargetAction
     canTargetSelf: false
@@ -19,4 +19,5 @@
       components:
       - Inventory
       - MobState
+      - MindContainer
     event: !type:ESPickpocketActionEvent
