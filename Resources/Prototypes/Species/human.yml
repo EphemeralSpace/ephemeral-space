@@ -5,7 +5,8 @@
   prototype: MobHuman
   sprites: MobHumanSprites
   markingLimits: MobHumanMarkingLimits
-  dollPrototype: MobHumanDummy
+  dollPrototype: AppearanceHuman
+  skinColoration: HumanToned
   skinColors:
   - Pale
   - Beige
