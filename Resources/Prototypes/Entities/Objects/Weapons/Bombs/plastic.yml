@@ -80,9 +80,9 @@
   - type: Explosive # Powerful explosion in a very small radius. Doesn't break underplating.
     explosionType: DemolitionCharge
     # ES Change - rebalances explosions
-    totalIntensity: 3 # 60 -> 3
-    intensitySlope: 10 # 5 -> 10
-    maxIntensity: 3 # 30 -> 3
+    totalIntensity: 7 # 60 -> 3
+    intensitySlope: 5 # 5 -> 10
+    maxIntensity: 7 # 30 -> 3
     # ES end
     canCreateVacuum: false
   - type: ExplodeOnTrigger
