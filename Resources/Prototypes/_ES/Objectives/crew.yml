@@ -164,6 +164,9 @@
     possibleSources:
     - ESGrille
     - ESAncestor
+    - ES9mmProjectile
+    - ES357Projectile
+    - ESShotgunPellet
   - type: ESCounterObjective
     target: 75
     maxTarget: 150

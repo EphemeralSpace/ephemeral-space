@@ -3,10 +3,16 @@
   id: ESAncestor
 
 - type: Tag
+  id: ES357Projectile
+
+- type: Tag
   id: ES357Round
 
 - type: Tag
   id: ES357SpeedLoader
+
+- type: Tag
+  id: ES9mmProjectile
 
 - type: Tag
   id: ES9mmRound
@@ -39,6 +45,9 @@
 
 - type: Tag
   id: ESHelmetEVASec
+
+- type: Tag
+  id: ESShotgunPellet
 
 - type: Tag
   id: ESSilencer
