@@ -87,6 +87,10 @@
     - type: AnimationPlayer
 # ES START
     - type: ESDestroyOnUnanchor
+    - type: Tag
+      tags:
+      - Structure
+      - ESGrille
 # ES END
 
 - type: entity
@@ -137,7 +141,6 @@
   - type: Tag
     tags:
     - ForceNoFixRotations
-    - ESGrille # ES change - used for daredevil
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: FlimsyMetallic

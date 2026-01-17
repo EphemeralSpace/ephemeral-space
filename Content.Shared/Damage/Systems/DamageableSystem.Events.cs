@@ -261,16 +261,37 @@ public sealed class DamageChangedEvent : EntityEventArgs
     /// </summary>
     public readonly EntityUid? Origin;
 
+// ES START
+    /// <summary>
+    ///     The physical object which caused the change in damage.
+    ///     Unlike <see cref="Origin"/>, this is not a player but something like a bullet or knife
+    /// </summary>
+    public readonly EntityUid? Source;
+
+    /// <summary>
+    ///     An optional additional object that caused <see cref="Source"/> to function by will of <see cref="Origin"/>
+    ///     So if <see cref="Source"/> is a bullet, <see cref="Origin"/> is a player, then this is the gun.
+    /// </summary>
+    public readonly EntityUid? Weapon;
+// ES END
     public DamageChangedEvent(
         DamageableComponent damageable,
         DamageSpecifier? damageDelta,
         bool interruptsDoAfters,
-        EntityUid? origin
+// ES START
+        EntityUid? origin,
+        EntityUid? source,
+        EntityUid? weapon
+// ES END
     )
     {
         Damageable = damageable;
         DamageDelta = damageDelta;
         Origin = origin;
+// ES START
+        Source = source;
+        Weapon = weapon;
+// ES END
 
         if (DamageDelta is null)
             return;

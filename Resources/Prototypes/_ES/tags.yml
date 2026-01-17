@@ -17,16 +17,12 @@
 - type: Tag
   id: ESComputerTabletop
 
-- type: Tag
-  id: ESElectronicsKeypad
-
-# Used for daredevil objectives
-- type: Tag
-  id: ESEmitter
-
 # Items that can be stored in the display case
 - type: Tag
   id: ESDisplayCaseItem
+
+- type: Tag
+  id: ESElectronicsKeypad
 
 # Used for daredevil objectives
 - type: Tag
@@ -58,7 +54,7 @@
 
 - type: Tag
   id: ESSuitEVACaptain
-  
+
 - type: Tag
   id: ESSpawnerCargo
 

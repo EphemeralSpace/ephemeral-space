@@ -141,7 +141,6 @@
     - Heat
     - Shock
     - Cold
-    - Caustic
     - Slash
     - Piercing
     - Poison
@@ -164,7 +163,6 @@
   - type: ESTakeDamageFromSourceObjective
     possibleSources:
     - ESGrille
-    - ESEmitter
     - ESAncestor
   - type: ESCounterObjective
     target: 75
