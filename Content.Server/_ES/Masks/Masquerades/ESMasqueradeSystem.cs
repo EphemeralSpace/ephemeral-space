@@ -5,7 +5,6 @@ using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Rules;
 using Content.Server.MassMedia.Systems;
 using Content.Server.Mind;
-using Content.Server.Station.Systems;
 using Content.Shared._Citadel.Utilities;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Masks;
@@ -241,13 +240,30 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
                     if (component.Deleted)
                         return;
 
+                    if (component.AssignedMasks == null)
+                        return;
+
                     var report = new StringBuilder();
 
-                    foreach (var masks in component.AssignedMasks!.CountBy(x => x))
+                    foreach (var masks in component.AssignedMasks.GroupBy(m => _proto.Index(m).Troupe))
                     {
-                        report.AppendLine(Loc.GetString(masquerade.StartupNewsArticleMaskEntry,
-                            ("count", masks.Value),
-                            ("mask", Loc.GetString(_proto.Index(masks.Key).Name))));
+                        var troupe = _proto.Index(masks.Key);
+
+                        // If we need to obscure the mask name, do it here then don't list individual mask names
+                        if (troupe.DisguisedMaskName is { } disguisedMaskName)
+                        {
+                            report.AppendLine(Loc.GetString(masquerade.StartupNewsArticleMaskEntry,
+                                ("count", masks.Count()),
+                                ("mask", Loc.GetString(disguisedMaskName))));
+                            continue;
+                        }
+
+                        foreach (var (maskId, count) in masks.CountBy(x => x))
+                        {
+                            report.AppendLine(Loc.GetString(masquerade.StartupNewsArticleMaskEntry,
+                                ("count", count),
+                                ("mask", Loc.GetString(_proto.Index(maskId).Name))));
+                        }
                     }
 
                     _news.TryAddNews(ent,

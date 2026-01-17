@@ -11,3 +11,5 @@ es-news-masks-entry = - {$count ->
         [one] {$mask}
         *[other] {$mask} ({$count})
     }
+
+es-news-disguise-traitors = Traitor

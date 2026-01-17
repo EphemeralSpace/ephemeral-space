@@ -8,7 +8,7 @@
   masquerade: !type:MasqueradeRoleSet
     defaultMask: "#AllCrew" # Everyone besides the traitors gets random crew masks.
     roles:
-      1: [] # Greenshift.
+      1: ["#AllTraitors"] # Greenshift.
       4: ["#AllTraitors"]
       6: ["#AllTraitors"]
       13: ["#AllTraitors"]
