@@ -94,6 +94,7 @@
     children:
     - id: ClothingEyesGlassesNoir
     - id: ESWeaponRevolver357 # sure, the other security roles don't get guns, but what is a detective without their revolver?
+    - id: ESSpeedLoader357
     - id: ClothingHeadHatDetGadget
       prob: 0.15
     - id: ClothingNeckTieDet
