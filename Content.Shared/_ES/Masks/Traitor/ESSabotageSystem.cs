@@ -96,9 +96,6 @@ public sealed class ESSabotageSystem : EntitySystem
 
     private void OnExamined(Entity<ESSabotageTargetComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         if (!CanSabotage(args.Examiner, ent))
             return;
 
