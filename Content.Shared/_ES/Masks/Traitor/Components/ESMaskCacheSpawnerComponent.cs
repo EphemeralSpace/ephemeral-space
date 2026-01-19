@@ -1,4 +1,5 @@
 using Content.Shared._ES.SpawnRegion;
+using Content.Shared.EntityTable.EntitySelectors;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -12,10 +13,7 @@ public sealed partial class ESMaskCacheSpawnerComponent : Component
     public ProtoId<ESSpawnRegionPrototype> Region = "ESMaintenance";
 
     [DataField(required: true)]
-    public EntProtoId CacheProto;
-
-    [DataField, AutoNetworkedField]
-    public Vector2i Location = Vector2i.Zero;
+    public EntityTableSelector CacheProto;
 
     [DataField, AutoNetworkedField]
     public string LocationString = string.Empty;

@@ -47,7 +47,8 @@
   weight: 1
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESSpawnerRandomTraitorCache
+    cacheProto:
+      id: ESSpawnerRandomTraitorCache
 
 - type: esMask
   id: ESVeteran
@@ -60,7 +61,8 @@
     id: ESObjectiveKillNonCrew
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheCrewVeteran
+    cacheProto:
+      id: ESCrateCacheCrewVeteran
 
 - type: esMask
   id: ESCrewmember
@@ -145,7 +147,8 @@
   - type: ESMedAlertRadioAnnouncer
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheCrewSurvivalist
+    cacheProto:
+      id: ESCrateCacheCrewSurvivalist
   objectives:
     all:
     - id: ESObjectiveSurvive
@@ -200,7 +203,8 @@
   color: cornflowerblue
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheCrewInsider
+    cacheProto:
+      id: ESCrateCacheCrewInsider
 
 - type: esMask
   id: ESAvenger
@@ -232,7 +236,8 @@
   weight: 1.5
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheTraitorMarauder
+    cacheProto:
+      id: ESCrateCacheTraitorMarauder
 
 - type: esMask
   parent: ESBaseTraitor
@@ -242,7 +247,8 @@
   color: hotpink
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheTraitorAssassin
+    cacheProto:
+      id: ESCrateCacheTraitorAssassin
 
 - type: esMask
   parent: ESBaseTraitor
@@ -252,7 +258,8 @@
   color: yellow
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheTraitorInfiltrator
+    cacheProto:
+      id: ESCrateCacheTraitorInfiltrator
 
 - type: esMask
   parent: ESBaseTraitor
@@ -271,7 +278,8 @@
   weight: 0.5
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheTraitorSubverter
+    cacheProto:
+      id: ESCrateCacheTraitorSubverter
 
 - type: esMask
   parent: ESBaseTraitor
@@ -282,4 +290,5 @@
   weight: 0.3
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheTraitorDemolitionist
+    cacheProto:
+      id: ESCrateCacheTraitorDemolitionist
