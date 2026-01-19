@@ -9,10 +9,13 @@
   weight: 1
   objectives:
     id: ESObjectiveHoldSummonedGuns
-  components:
-  - type: ActionGrant
-    actions:
-    - ESActionMaskSummonGun
+  mindComponents:
+  - type: ESMaskSummoner
+    examineString: es-summonable-examine-arms-dealer
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewArmsDealer
+      amount: 6
 
 - type: esMask
   id: ESVIP
@@ -33,10 +36,13 @@
   weight: 1
   objectives:
     id: ESObjectiveEatSummonedFruit
-  components:
-  - type: ActionGrant
-    actions:
-    - ESActionMaskSpawnFruit
+  mindComponents:
+  - type: ESMaskSummoner
+    examineString: es-summonable-examine-fruit
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewFruitVendor
+      amount: 4
 
 - type: esMask
   id: ESMercenary

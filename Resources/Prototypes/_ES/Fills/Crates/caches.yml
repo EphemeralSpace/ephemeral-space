@@ -178,3 +178,55 @@
   table:
     all:
     - id: ESBoxFolderFilledInsider
+
+# Arms Dealer
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewArmsDealer
+  suffix: ES, Arms Dealer Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        group:
+        - id: ESWeaponPistol9mm
+          weight: 8
+        - id: ESWeaponPistol9mmSilenced
+          weight: 8
+        - id: ESWeaponRevolver357
+          weight: 8
+        - id: ESWeaponDoubleBarrelShotgun
+          weight: 1
+        rolls: 2
+
+# Fruit Vendor
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewFruitVendor
+  suffix: ES, Fruit Vendor Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        group:
+        - id: FoodBanana
+        - id: FoodCarrot
+        - id: FoodCabbage
+        - id: FoodGarlic
+        - id: FoodLemon
+        - id: FoodLime
+        - id: FoodOrange
+        - id: FoodPineapple
+        - id: FoodPotato
+        - id: FoodTomato
+        - id: FoodEggplant
+        - id: FoodApple
+        - id: FoodCorn
+        - id: FoodOnion
+        - id: FoodMushroom
+        - id: FoodChiliPepper
+        - id: FoodWatermelon
+        - id: FoodGrape
+        - id: FoodPumpkin
+        - id: FoodCherry
+        rolls: 4, 5

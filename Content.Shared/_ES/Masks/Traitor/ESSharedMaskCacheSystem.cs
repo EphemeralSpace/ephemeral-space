@@ -111,6 +111,12 @@ public abstract class ESSharedMaskCacheSystem : EntitySystem
         PredictedQueueDel(ent);
         _popup.PopupPredicted(Loc.GetString("es-ceiling-cache-popup"), cache, user);
         _audio.PlayPredicted(ent.Comp.RevealSound, pos, user);
+
+        if (ent.Comp.MindId.HasValue)
+        {
+            var ev = new ESCacheRevealedEvent(cache);
+            RaiseLocalEvent(ent.Comp.MindId.Value, ref ev);
+        }
     }
 }
 
@@ -119,4 +125,7 @@ public sealed partial class ESRevealCacheDoAfterEvent : DoAfterEvent
 {
     public override DoAfterEvent Clone() => this;
 }
+
+[ByRefEvent]
+public readonly record struct ESCacheRevealedEvent(EntityUid Cache);
 
