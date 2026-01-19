@@ -19,6 +19,11 @@ namespace Content.Server.Atmos.EntitySystems
 
         private const int SpaceWindSoundCooldownCycles = 75;
 
+        // ES START
+        private static readonly EntProtoId ESSpaceWindEffect = "ESSpaceWindEffect";
+        private const float ESSpaceWindEffectChance = 0.66f;
+        // ES END
+
         private int _spaceWindSoundCooldown = 0;
 
         [ViewVariables(VVAccess.ReadWrite)]
@@ -112,6 +117,14 @@ namespace Content.Server.Atmos.EntitySystems
                 {
                     var coordinates = _mapSystem.ToCenterCoordinates(tile.GridIndex, tile.GridIndices);
                     _audio.PlayPvs(SpaceWindSound, coordinates, SpaceWindSound.Params.WithVolume(MathHelper.Clamp(tile.PressureDifference / 10, 10, 100)));
+                    // ES START
+                    if (_random.Prob(ESSpaceWindEffectChance))
+                    {
+                        var rotation = tile.PressureDirection.ToAngle() + MathHelper.PiOver2;
+                        var windEffect = Spawn(ESSpaceWindEffect, coordinates);
+                        _transformSystem.SetLocalRotation(windEffect, rotation);
+                    }
+                    // ES END
                 }
             }
 

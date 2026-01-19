@@ -1,0 +1,20 @@
+- type: entity
+  id: ESSpaceWindEffect
+  name: space wind
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Effects/atmospherics.rsi
+    layers:
+    - shader: unshaded
+      state: water_vapor_old
+  - type: Appearance
+  - type: AnimationPlayer
+  - type: ESTimedDespawn
+    lifetime: 1.2
+  - type: ESTimedDespawnSpriteFade
+    fadeTime: 0.9
+  - type: Tag
+    tags:
+    - HideContextMenu
