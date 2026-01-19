@@ -1,7 +1,7 @@
 - type: esMaskSet
   id: CrewGunners # Gunners, minus the ones that rely on other troupes existing.
   masks:
-    ESArmsDealer: 1
+    ESArmsDealer: 0.5
     ESMercenary: 1
 
 - type: esMaskSet
