@@ -349,7 +349,7 @@
     - Lawsets
 
 - type: entity
-  id: BookSpaceLa
+  id: BookSpaceLaw
 # ES START
   parent: BookBase
 # ES END
