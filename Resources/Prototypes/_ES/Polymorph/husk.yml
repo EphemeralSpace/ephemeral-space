@@ -1,0 +1,11 @@
+﻿- type: polymorph
+  id: HuskPolymorph
+  configuration:
+    entity: Husk
+    forced: true
+    transferDamage: true
+    transferName: false
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true

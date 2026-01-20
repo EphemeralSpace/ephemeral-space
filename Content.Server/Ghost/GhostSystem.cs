@@ -5,6 +5,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Server.Roles.Jobs;
+using Content.Shared._ES.Changeling; // ES Change
 using Content.Shared.Actions;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
@@ -535,6 +536,15 @@ namespace Content.Server.Ghost
             // Pass in the whole mind entity
             var handleEv = new GhostAttemptHandleEvent((mindId, mind), canReturnGlobal);
             RaiseLocalEvent(mindId, handleEv);
+
+            if (playerEntity != null)
+            {
+                var entityCancelEv = new ESGhostAttemptEvent(mindId);
+                RaiseLocalEvent(playerEntity.Value, ref entityCancelEv);
+
+                if (entityCancelEv.Cancelled)
+                    return false;
+            }
 // ES END
 
             // Something else has handled the ghost attempt for us! We return its result.

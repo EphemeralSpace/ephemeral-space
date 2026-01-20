@@ -1,0 +1,54 @@
+﻿- type: entity
+  id: Husk
+  parent: [BaseSimpleMob, StripableInventoryBase]
+  name: Husk
+  description: A cold shell of someone, all their biomatter has been sucked dry.
+  components:
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Stripping
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: husk
+      sprite: _ES/Mobs/Effects/husk.rsi
+    - map: [ "jumpsuit" ]
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "ears" ]
+    - map: [ "id" ]
+    - map: [ "outerClothing" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+  - type: Hands
+  - type: ComplexInteraction
+  - type: GenericVisualizer
+    visuals:
+      enum.CreamPiedVisuals.Creamed:
+        clownedon:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Body
+    prototype: Human
+    requiredLegs: 2
+  - type: CreamPied

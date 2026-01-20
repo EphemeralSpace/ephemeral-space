@@ -143,6 +143,14 @@ public sealed class ChangelingDevourSystem : EntitySystem
             return;
         }
 
+        // ES Start - adds option to require a target to be crit or dead before devouring, unsure why you were just able to devour live things anyway
+        if (args.RequireIncapacitated && !_mobState.IsIncapacitated(args.Target))
+        {
+            _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-incapacitated"), ent, ent, PopupType.Medium);
+            return;
+        }
+        // ES end
+
         if (_net.IsServer)
         {
             var pvsSound = _audio.PlayPvs(ent.Comp.DevourWindupNoise, ent);
@@ -259,6 +267,11 @@ public sealed class ChangelingDevourSystem : EntitySystem
                 && TryComp<ButcherableComponent>(item, out var butcherable))
                 RipClothing(target.Value, (item.Value, butcherable));
         }
+
+        // ES Start
+        var ev = new ESEntityDevouredEvent();
+        RaiseLocalEvent((EntityUid)args.Target!, ref ev);
+        // ES End
 
         Dirty(ent);
     }

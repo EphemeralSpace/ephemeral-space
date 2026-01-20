@@ -40,3 +40,24 @@
       amount: 4
     - id: ESObjectiveTraitorHackCryptoNukeConsoles
     - id: ESObjectiveTraitorDetonateNuke
+
+- type: esTroupe
+  id: ESChangeling
+  name: es-troupe-changeling-name
+  description: es-troupe-changeling-description
+  color: maroon
+  metaIcon: ESChangeling
+  gameRule: ESTroupeRuleChangeling
+  prohibitedJobs:
+  # Command
+  - ESCaptain
+  - ESHeadOfPersonnel
+  - ESHeadOfSecurity
+  # Security
+  - ESWarden
+  - ESSecurityOfficer
+  - ESDetective
+  showInNewsReport: false
+  objectives:
+    all:
+    - id: ESObjectiveRadstorm

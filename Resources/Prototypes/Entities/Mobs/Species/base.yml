@@ -211,6 +211,7 @@
     - DoorBumpOpener
     - AnomalyHost
 # ES START
+    - Huskable
   - type: ESBlinker
 # ES END
 

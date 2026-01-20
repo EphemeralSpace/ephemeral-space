@@ -1,0 +1,4 @@
+﻿- type: damageModifierSet
+  id: Changeling
+  coefficients:
+    Heat: 3

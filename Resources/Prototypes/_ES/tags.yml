@@ -46,6 +46,10 @@
 - type: Tag
   id: ESHelmetEVASec
 
+# Used for husking
+- type: Tag
+  id: Huskable
+
 - type: Tag
   id: ESShotgunPellet
 
@@ -78,4 +82,3 @@
 
 - type: Tag
   id: ESThrusterEngineIon
-

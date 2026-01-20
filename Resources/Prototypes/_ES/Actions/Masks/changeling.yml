@@ -1,0 +1,94 @@
+﻿- type: entity
+  id: ESActionChangelingDevour
+  parent: ActionChangelingDevour
+  name: "[color=red]Devour[/color]"
+  description: Consume the essence of your victims and subsume their identity and mind into your own.
+  components:
+  - type: EntityTargetAction
+    whitelist:
+      tags:
+      - Huskable
+    event: !type:ChangelingDevourActionEvent
+      requireIncapacitated: true
+
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionMaskBaseSting
+  name: Base Sting
+  description: sting sting
+  components:
+  - type: Action
+    useDelay: 180
+    icon: { sprite : Interface/Actions/changeling.rsi, state: "devour" }
+    iconOn: { sprite : Interface/Actions/changeling.rsi, state: "devour_on" }
+    priority: 1
+  - type: SolutionContainerManager
+    solutions:
+      Injector:
+        maxVol: 25
+        reagents:
+        - ReagentId: Spacelube
+          Quantity: 1
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:ESChemicalStingEvent
+
+- type: entity
+  parent: ESActionMaskBaseSting
+  id: ESActionMaskMuteSting
+  name: Mute Sting
+  description: Shut your victims up with this sting
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      Injector:
+        maxVol: 10
+        reagents:
+        - ReagentId: MuteToxin
+          Quantity: 10
+
+- type: entity
+  parent: ESActionMaskBaseSting
+  id: ESActionMaskSleepSting
+  name: Sleep Sting
+  description: Shut your victims up with this sting
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      Injector:
+        maxVol: 10
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 10
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionExitStatis
+  name: Exit Statis
+  description: Exit your regenerative statis
+  components:
+  - type: Action
+    useDelay: 60
+    raiseOnAction: true
+    itemIconStyle: BigAction
+    startDelay: true
+    icon:
+      sprite: _ES/Actions/masks/changeling.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:ESChangelingStatisEvent
+
+- type: entity
+  parent: BaseCritAction
+  id: ActionEnterStatis
+  name: Enter Statis
+  description: Enter your regenerative statis.
+  components:
+  - type: Action
+    startDelay: true
+    useDelay: 5
+    icon:
+      sprite: _ES/Actions/masks/changeling.rsi
+      state: statis
+  - type: InstantAction
+    event: !type:ESChangelingStatisEvent # It has diffrent logic I swear dont question it

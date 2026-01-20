@@ -283,3 +283,41 @@
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto: ESCrateCacheTraitorDemolitionist
+
+# Changeling
+- type: esMask
+  id: ESChangeling
+  troupe: ESChangeling
+  name: es-mask-changeling-name
+  description: es-mask-changeling-desc
+  color: maroon
+  weight: 1.5
+  components:
+  - type: ESTroupeFactionIcon
+    icon: ESChangeling
+    troupe: ESChangeling
+    examineString: es-mask-troupe-changeling-examine
+  - type: ChangelingDevour
+    changelingDevourAction: ESActionChangelingDevour
+  - type: ChangelingIdentity
+  - type: ChangelingTransform
+  - type: ActionGrant
+    actions:
+    - ActionRetractableItemArmBlade # just giving all changelings armblade for now
+  - type: ESRadstormImmune
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Changeling
+  - type: ESRandomActionGrant
+    actions:
+      all:
+      - group:
+        - id: ESActionMaskMuteSting
+        - id: ESActionMaskSleepSting
+  - type: ChangelingRole
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionEnterStatis
+      Dead:
+      - ActionExitStatis

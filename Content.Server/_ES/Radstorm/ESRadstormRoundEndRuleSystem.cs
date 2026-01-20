@@ -1,9 +1,11 @@
+using Content.Server._ES.Objectives;
 using Content.Server._ES.Radio;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.RoundEnd;
 using Content.Shared._ES.CCVar;
+using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
@@ -37,28 +39,24 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly ESObjectiveSystem _objective = default!;
 
-    protected override void Started(EntityUid uid,
-        ESRadstormRoundEndRuleComponent component,
-        GameRuleComponent gameRule,
-        GameRuleStartedEvent args)
+
+    public override void Initialize()
     {
-        // don't override if it was set for whatever reason
-        if (component.RadstormStartTime != TimeSpan.Zero)
-            return;
-
-        var randomMins = _random.NextGaussian(component.RadstormStartTimeAvg.TotalMinutes, component.RadstormStartTimeStdDev.TotalMinutes);
-
-        // account for arrivals time
-        if (_cfg.GetCVar(ESCVars.ESArrivalsEnabled))
-            randomMins += (_cfg.GetCVar(ESCVars.ESArrivalsFTLTime) / 60f);
-
-        // round to nearest minute
-        randomMins = Math.Round(randomMins);
-
-        component.RadstormStartTime = _timing.CurTime + TimeSpan.FromMinutes(randomMins);
-        Log.Info($"Picked {randomMins} minutes into the round as the start time for the radstorm.");
+        SubscribeLocalEvent<ESRadstormObjectiveComponent, ESGetObjectiveProgressEvent>(OnGetObjectiveProgress);
     }
+
+    private void OnGetObjectiveProgress(Entity<ESRadstormObjectiveComponent> ent, ref ESGetObjectiveProgressEvent args)
+    {
+        foreach (var comp in EntityQuery<ESRadstormRoundEndRuleComponent>())
+        {
+            // Might be a bit shitty logic but from my testing it works fine I think
+          args.Progress = (float)(_timing.CurTime / comp.RadstormStartTime);
+          return;
+        }
+    }
+
 
     protected override void ActiveTick(EntityUid uid, ESRadstormRoundEndRuleComponent component, GameRuleComponent gameRule, float frameTime)
     {
@@ -87,6 +85,9 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
                 if (state.CurrentState == MobState.Dead)
                     continue;
 
+                if (HasComp<ESRadstormImmuneComponent>(mob))
+                    return;
+
                 // if they're not in space (i.e. not parented to the map)
                 // and we haven't technically started yet, that means we're only space-dangerous, so don't hurt them
                 if (xform.ParentUid != mapUid && _timing.CurTime < component.RadstormStartTime)
@@ -97,6 +98,8 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
                 if (dmg.GetTotal() > FixedPoint2.Zero && state.CurrentState != MobState.Dead)
                     stillAlive += 1;
             }
+
+            _objective.RefreshObjectiveProgress<ESRadstormObjectiveComponent>();
 
             // show is over
             // (make sure we only actually do this if after time and not just deadly space)
@@ -163,6 +166,8 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
 
         if (phase.SpaceDangerous)
             comp.SpaceDangerous = true;
+
+        _objective.RefreshObjectiveProgress<ESRadstormObjectiveComponent>();
 
         phase.Completed = true;
     }

@@ -75,6 +75,12 @@ es-mask-subverter-desc = As a Subverter, you have received two brain-altering ch
 es-mask-demolitionist-name = Demolitionist
 es-mask-demolitionist-desc = As a Demolitionist, you have been trained by the Syndicate for both controlled and uncontrolled "demolitions"--including in the use of explosive implants, should things turn out that way.
 
+# Changeling Masks
+es-mask-troupe-changeling-examine = They're a fellow [bold][color=maroon]Changeling[/color][/bold] and are part of our [bold][color=maroon]Hivemind[/color][/bold]. Work together to sabotage the station.
+
+es-mask-changeling-name = Changeling
+es-mask-changeling-desc = Your a changeling, use your ability to take the form of others and your armblade to decieve and sabotage the crew
+
 # Meta
 es-objective-issuer-mask = Mask
 

@@ -1,0 +1,11 @@
+﻿- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveRadstorm
+  name: Radstorm Objective
+  description: Make sure the radstorm happens at all costs.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Materials/Sheets/other.rsi
+      state: uranium_2
+  - type: ESRadstormObjective

@@ -30,3 +30,14 @@
   - type: ESTraitorRule
   - type: LoadMapRule
     mapPath: /Maps/_ES/syndiebase.yml
+
+- type: entity
+  parent: ESBaseTroupeRule
+  id: ESTroupeRuleChangeling
+  name: The Changelings
+  components:
+  - type: ESTroupeRule
+    troupe: ESChangeling
+    minTargetMembers: 2
+    maxTargetMembers: 3
+    playersPerTargetMember: 8 # 1/8 Players
