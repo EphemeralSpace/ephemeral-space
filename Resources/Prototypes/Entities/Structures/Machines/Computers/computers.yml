@@ -600,6 +600,34 @@
       whitelist:
         components:
         - IdCard
+# ES START
+    accessLevels: # TODO this dupe with the tabletop ID card computer sucks
+    - Armory
+    - Atmospherics
+    - Bar
+    - Brig
+    - Detective
+    - Captain
+    - Cargo
+    - Chemistry
+    - Command
+    - Cryogenics
+    - Engineering
+    - External
+    - GenpopEnter
+    - GenpopLeave
+    - HeadOfPersonnel
+    - HeadOfSecurity
+    - Hydroponics
+    - Janitor
+    - Kitchen
+    - Maintenance
+    - Medical
+    - Research
+    - Security
+    - Service
+    - Theatre
+# ES END
   - type: ActivatableUI
     key: enum.IdCardConsoleUiKey.Key
   - type: UserInterface
