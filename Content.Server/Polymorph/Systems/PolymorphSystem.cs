@@ -2,6 +2,7 @@ using Content.Server.Actions;
 using Content.Server.Humanoid;
 using Content.Server.Inventory;
 using Content.Server.Polymorph.Components;
+using Content.Shared.Body;
 using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Buckle;
 using Content.Shared.Coordinates;
@@ -44,6 +45,7 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
     [Dependency] private SharedMindSystem _mindSystem = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
 
@@ -252,7 +254,7 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         if (configuration.TransferHumanoidAppearance)
         {
-            _humanoid.CloneAppearance(uid, child);
+            _visualBody.CopyAppearanceFrom(uid, child);
         }
 
         _identity.QueueIdentityUpdate(child, doNow: true);

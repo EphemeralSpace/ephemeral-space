@@ -4,6 +4,7 @@ using Content.Server.PDA;
 using Content.Server.Station.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.DetailExaminable;
@@ -38,7 +39,8 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private ActorSystem _actors = default!;
     [Dependency] private IdCardSystem _cardSystem = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
-    [Dependency] private HumanoidAppearanceSystem _humanoidSystem = default!;
+    [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
     [Dependency] private IdentitySystem _identity = default!;
     [Dependency] private MetaDataSystem _metaSystem = default!;
     [Dependency] private PdaSystem _pdaSystem = default!;
@@ -115,7 +117,7 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
         }
         else
         {
-            string speciesId = profile?.Species ?? SharedHumanoidAppearanceSystem.DefaultSpecies;
+            string speciesId = profile?.Species ?? HumanoidCharacterProfile.DefaultSpecies;
 
             if (!_prototypeManager.TryIndex<SpeciesPrototype>(speciesId, out var species))
                 throw new ArgumentException($"Invalid species prototype was used: {speciesId}");
@@ -125,7 +127,8 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
 
         if (profile != null)
         {
-            _humanoidSystem.LoadProfile(entity.Value, profile);
+            _visualBody.ApplyProfileTo(entity.Value, profile);
+            _humanoidProfile.ApplyProfileTo(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
 
             if (!string.IsNullOrWhiteSpace(profile.FlavorText) && _configurationManager.GetCVar(CCVars.FlavorText))
