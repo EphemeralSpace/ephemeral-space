@@ -47,7 +47,9 @@
 # ES END
       - Maintenance
       - Medical
-      - Quartermaster
+# ES START
+#      - Quartermaster
+# ES END
       - Research
 # ES START
 #      - ResearchDirector
