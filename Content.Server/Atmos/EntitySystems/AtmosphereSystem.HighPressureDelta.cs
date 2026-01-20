@@ -17,7 +17,10 @@ namespace Content.Server.Atmos.EntitySystems
     {
         private static readonly ProtoId<SoundCollectionPrototype> DefaultSpaceWindSounds = "SpaceWind";
 
+        // ES START
+        // 75 -> 60
         private const int SpaceWindSoundCooldownCycles = 60;
+        // ES END
 
         // ES START
         private static readonly EntProtoId ESSpaceWindEffect = "ESSpaceWindEffect";
