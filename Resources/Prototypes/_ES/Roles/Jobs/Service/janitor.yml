@@ -23,6 +23,7 @@
     ears: ClothingHeadsetService
     head: ClothingHeadHatPurplesoft
     belt: ClothingBeltJanitorFilled
+    gloves: ClothingHandsGlovesColorOrange
     jumpsuit: ClothingUniformJumpsuitJanitor
     back: ClothingBackpack
   storage:

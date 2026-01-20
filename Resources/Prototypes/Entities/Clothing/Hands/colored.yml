@@ -71,7 +71,7 @@
   parent: ClothingHandsGlovesSyntheticBase
   id: ClothingHandsGlovesColorBlue
 # ES Start
-# Turned in to nitrile gloves
+# Turned in to nitrile glovesrange
   name: nitrile gloves
   description: High-quality nitrile gloves. Expensive medical PPE.
   components:
@@ -262,8 +262,10 @@
 - type: entity
   parent: ClothingHandsGlovesSyntheticBase
   id: ClothingHandsGlovesColorOrange
-  name: orange gloves
-  description: Regular orange gloves that do not keep you from frying.
+# ES Start
+  name: sanitation gloves
+  description: Biohazard-resistant orange gloves. Useful for preventing injuries from chemical spills.
+# ES End
   components:
   - type: Sprite
     sprite: Clothing/Hands/Gloves/Color/color.rsi
