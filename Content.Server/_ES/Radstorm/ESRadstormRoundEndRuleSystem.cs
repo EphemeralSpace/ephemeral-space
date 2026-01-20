@@ -41,6 +41,26 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ESObjectiveSystem _objective = default!;
 
+    protected override void Started(EntityUid uid,
+        ESRadstormRoundEndRuleComponent component,
+        GameRuleComponent gameRule,
+        GameRuleStartedEvent args)
+    {
+        // don't override if it was set for whatever reason
+        if (component.RadstormStartTime != TimeSpan.Zero)
+            return;
+
+        var randomMins = _random.NextGaussian(component.RadstormStartTimeAvg.TotalMinutes,
+            component.RadstormStartTimeStdDev.TotalMinutes);
+
+        // account for arrivals time
+        if (_cfg.GetCVar(ESCVars.ESArrivalsEnabled))
+            randomMins += (_cfg.GetCVar(ESCVars.ESArrivalsFTLTime) / 60f);
+
+        // round to nearest minute
+        randomMins = Math.Round(randomMins);
+    }
+
 
     public override void Initialize()
     {
