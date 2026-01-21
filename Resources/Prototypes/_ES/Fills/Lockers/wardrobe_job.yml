@@ -97,7 +97,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingBackpack
-    - id: ClothingHandsGlovesColorOrange
+    - id: ESClothingHandsGlovesColorOrange
     - id: ClothingHeadHatPurplesoft
     - id: ClothingShoesColorBlack
     - id: ClothingUniformJumpskirtJanitor

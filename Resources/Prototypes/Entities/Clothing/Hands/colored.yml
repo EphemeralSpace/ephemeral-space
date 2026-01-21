@@ -71,7 +71,7 @@
   parent: ClothingHandsGlovesSyntheticBase
   id: ClothingHandsGlovesColorBlue
 # ES Start
-# Turned in to nitrile glovesrange
+# Turned in to nitrile gloves
   name: nitrile gloves
   description: High-quality nitrile gloves. Expensive medical PPE.
   components:

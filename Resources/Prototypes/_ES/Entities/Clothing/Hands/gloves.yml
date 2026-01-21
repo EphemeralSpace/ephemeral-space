@@ -1,0 +1,29 @@
+# Sanitation gloves
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: ESClothingHandsGlovesColorOrange
+  name: sanitation gloves
+  description: Biohazard-resistant orange gloves. Useful for preventing injuries from chemical spills.
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#EF8100"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#EF8100"
+      right:
+      - state: inhand-right
+        color: "#EF8100"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#EF8100"
+  - type: Fiber
+    fiberColor: fibers-orange
+  - type: ESChameleonClothingWhitelist
