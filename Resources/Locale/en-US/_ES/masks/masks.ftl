@@ -79,7 +79,7 @@ es-mask-demolitionist-desc = As a Demolitionist, you have been trained by the Sy
 es-mask-troupe-changeling-examine = They're a fellow [bold][color=maroon]Changeling[/color][/bold] and are part of our [bold][color=maroon]Hivemind[/color][/bold]. Work together to sabotage the station.
 
 es-mask-changeling-name = Changeling
-es-mask-changeling-desc = Your a changeling, use your ability to take the form of others and your armblade to decieve and sabotage the crew
+es-mask-changeling-desc = As a changeling, use your ability to take the form of others and your armblade to decieve and sabotage the crew
 
 # Meta
 es-objective-issuer-mask = Mask
