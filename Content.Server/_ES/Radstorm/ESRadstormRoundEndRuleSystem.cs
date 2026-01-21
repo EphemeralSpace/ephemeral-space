@@ -106,7 +106,7 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
                     continue;
 
                 if (HasComp<ESRadstormImmuneComponent>(mob))
-                    return;
+                    continue;
 
                 // if they're not in space (i.e. not parented to the map)
                 // and we haven't technically started yet, that means we're only space-dangerous, so don't hurt them
