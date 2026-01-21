@@ -71,11 +71,13 @@ public abstract class SharedMorgueSystem : EntitySystem
             if (!hasMob && HasComp<MobStateComponent>(ent))
                 hasMob = true;
 
-            if (HasComp<ActorComponent>(ent))
-            {
-                _appearance.SetData(uid, MorgueVisuals.Contents, MorgueContents.HasSoul, app);
-                return;
-            }
+            // ES Start - that stupid morgue state that I hate
+            //if (HasComp<ActorComponent>(ent))
+            //{
+                //_appearance.SetData(uid, MorgueVisuals.Contents, MorgueContents.HasSoul, app);
+                //return;
+            //}
+            // ES End
         }
 
         _appearance.SetData(uid, MorgueVisuals.Contents, hasMob ? MorgueContents.HasMob : MorgueContents.HasContents, app);
