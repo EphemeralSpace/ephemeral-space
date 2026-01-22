@@ -263,9 +263,11 @@ public sealed class ChangelingDevourSystem : EntitySystem
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player}  successfully devoured {ToPrettyString(args.Target):player}'s identity");
             _changelingIdentitySystem.CloneToPausedMap((ent, identityStorage), target.Value);
 
-            if (_inventorySystem.TryGetSlotEntity(target.Value, "jumpsuit", out var item)
-                && TryComp<ButcherableComponent>(item, out var butcherable))
-                RipClothing(target.Value, (item.Value, butcherable));
+            // ES start - removes rip clothing, due to how job based jumpsuits are distributed this would make it basically impossible to impersonate anyone as their jumpsuits would be irreplacable, maybe some alternatre version of this can be added in the future
+            //if (_inventorySystem.TryGetSlotEntity(target.Value, "jumpsuit", out var item)
+                //&& TryComp<ButcherableComponent>(item, out var butcherable))
+                //RipClothing(target.Value, (item.Value, butcherable));
+            // ES End
         }
 
         // ES Start
