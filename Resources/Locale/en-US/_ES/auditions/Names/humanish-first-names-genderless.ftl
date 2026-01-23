@@ -339,3 +339,14 @@ es-names-first-dataset-genderless-326 = Magical
 es-names-first-dataset-genderless-327 = Jubilent
 es-names-first-dataset-genderless-328 = Juno
 es-names-first-dataset-genderless-329 = Lost
+# 2026-01-23
+Toa
+Agori
+Energized
+Plushie
+Mephedrone
+Botnet
+Hypertext
+Dirty
+Ketchup
+Lunch

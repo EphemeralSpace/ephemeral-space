@@ -812,3 +812,29 @@ es-names-last-dataset-797 = Photoshop
 es-names-last-dataset-798 = Illustrator
 es-names-last-dataset-799 = Bigturky
 es-names-last-dataset-800 = Hurtenball
+# 2026-01-23
+Fishstick
+Bazooka
+Massacre
+War
+Toilet
+Matoran
+Turaga
+Makuta
+Protodermis
+Dogecoin
+Deltarune
+Rosencolumns
+Atreides
+Dotcom
+Vorbis
+Runch
+Dither
+Lambda
+Seagoon
+Mustard
+Danger
+Injection
+Overdose
+Guildensterp
+Frozencrantz
