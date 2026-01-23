@@ -59,6 +59,17 @@ public sealed partial class ESStagehandObserveWindow : FancyWindow
         _objective.OnObjectivesChanged -= OnObjectivesChanged;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (!disposing)
+            return;
+
+        _mask.OnMaskChanged -= OnMaskChanged;
+        _objective.OnObjectivesChanged -= OnObjectivesChanged;
+    }
+
     private void OnMaskChanged(EntityUid mind, ProtoId<ESMaskPrototype>? mask)
     {
         Update();
