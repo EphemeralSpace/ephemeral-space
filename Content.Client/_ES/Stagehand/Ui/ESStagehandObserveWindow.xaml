@@ -24,13 +24,15 @@
                         <Button Name="WarpButton" Text="{Loc 'es-observe-menu-button-warp'}" HorizontalAlignment="Left" VerticalAlignment="Center" SetSize="100 40"/>
                     </BoxContainer>
                     <Control MinHeight="10"/>
-                    <RichTextLabel Text="{Loc 'es-observe-menu-label-objectives'}"/>
-                    <Control MinHeight="5"/>
-                    <PanelContainer StyleClasses="PanelDark" HorizontalExpand="True" VerticalExpand="True">
-                        <ScrollContainer HScrollEnabled="False" VerticalExpand="True" HorizontalExpand="True">
-                            <BoxContainer Name="ObjectiveContainer" Orientation="Vertical" Margin="5 0"/>
-                        </ScrollContainer>
-                    </PanelContainer>
+                    <BoxContainer Name="PanelMetaContainer" Orientation="Vertical" VerticalExpand="True">
+                        <RichTextLabel Text="{Loc 'es-observe-menu-label-objectives'}"/>
+                        <Control MinHeight="5"/>
+                        <PanelContainer StyleClasses="PanelDark" HorizontalExpand="True" VerticalExpand="True">
+                            <ScrollContainer HScrollEnabled="False" VerticalExpand="True" HorizontalExpand="True">
+                                <BoxContainer Name="ObjectiveContainer" Orientation="Vertical" Margin="5 0"/>
+                            </ScrollContainer>
+                        </PanelContainer>
+                    </BoxContainer>
                 </BoxContainer>
             </BoxContainer>
         </BoxContainer>
