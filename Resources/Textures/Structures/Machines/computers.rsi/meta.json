@@ -890,6 +890,17 @@
             ]
         },
         {
+            "name": "power_monitor_warn",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
             "name": "request-syndie",
             "directions": 4,
             "delays": [
