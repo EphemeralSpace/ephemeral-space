@@ -27,7 +27,7 @@ public sealed partial class ESStagehandObserveWindow : FancyWindow
 
     public event Action<EntityUid>? OnWarpButtonPressed;
 
-    public EntityUid? CurrentMind;
+    public EntityUid? CurrentEntity;
 
     public ESStagehandObserveWindow()
     {
@@ -65,7 +65,7 @@ public sealed partial class ESStagehandObserveWindow : FancyWindow
 
     private void OnObjectivesChanged(Entity<ESObjectiveHolderComponent> mind)
     {
-        if (mind == CurrentMind)
+        if (mind == CurrentEntity)
             UpdateInfoPanel();
     }
 
@@ -106,11 +106,11 @@ public sealed partial class ESStagehandObserveWindow : FancyWindow
 
     public void UpdateInfoPanel()
     {
-        if (!_entityManager.TryGetComponent<MindComponent>(CurrentMind, out var mind) ||
-            !_entityManager.TryGetComponent<ESCharacterComponent>(CurrentMind, out var character))
+        if (!_entityManager.TryGetComponent<MindComponent>(CurrentEntity, out var mind) ||
+            !_entityManager.TryGetComponent<ESCharacterComponent>(CurrentEntity, out var character))
             return;
 
-        SetInfoPanel((CurrentMind.Value, mind, character));
+        SetInfoPanel((CurrentEntity.Value, mind, character));
     }
 
     public void SetInfoPanel(Entity<MindComponent, ESCharacterComponent> ent)
@@ -118,7 +118,8 @@ public sealed partial class ESStagehandObserveWindow : FancyWindow
         PlayerInfoContainer.Visible = true;
 
         var (uid, mind, character) = ent;
-        CurrentMind = uid;
+        CurrentEntity = uid;
+        WarpButton.Disabled = !mind.CurrentEntity.HasValue; // See ESStagehandSystem.cs
 
         var mask = _mask.GetMaskOrNull((uid, mind));
         var troupe = _mask.GetTroupeOrNull((uid, mind));
@@ -145,8 +146,8 @@ public sealed partial class ESStagehandObserveWindow : FancyWindow
 
     private void InvokeWarp(BaseButton.ButtonEventArgs obj)
     {
-        if (CurrentMind.HasValue)
-            OnWarpButtonPressed?.Invoke(CurrentMind.Value);
+        if (CurrentEntity.HasValue)
+            OnWarpButtonPressed?.Invoke(CurrentEntity.Value);
     }
 }
 

@@ -18,9 +18,9 @@ public sealed class ESStagehandObserveBui(EntityUid owner, Enum uiKey) : BoundUs
 
         _window.OnWarpButtonPressed += mind =>
         {
-            EntMan.RaisePredictiveEvent(new ESWarpToMindMessage
+            EntMan.RaisePredictiveEvent(new ESStagehandWarpMessage
             {
-                Mind = EntMan.GetNetEntity(mind),
+                Target = EntMan.GetNetEntity(mind),
             });
         };
     }
