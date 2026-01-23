@@ -176,7 +176,7 @@ public abstract partial class ESSharedAuditionsSystem
     private const float AbbreviatedFirstMiddleAltChance = 0.4f;
     private const float ParticleChance = 0.025f;
     private const float SuffixChance = 0.04f;
-    private const float PrefixChance = 0.08f;
+    private const float PrefixChance = 0.09f;
     private const float PrefixGenderlessChance = 0.65f;
     private const float PrefixFirstNameless = 0.7f;
     private const float LastNameless = 0.009f;
