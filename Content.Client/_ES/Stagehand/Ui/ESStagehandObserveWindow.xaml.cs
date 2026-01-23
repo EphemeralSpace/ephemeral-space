@@ -118,7 +118,7 @@ public sealed partial class ESStagehandObserveWindow : FancyWindow
             button.SetPlayer(mind);
             button.OnPressed += _ =>
             {
-                SetInfoPanel(mind.AsNullable());
+                SetInfoPanel(mind);
             };
             MindsContainer.AddChild(button);
         }
@@ -128,14 +128,12 @@ public sealed partial class ESStagehandObserveWindow : FancyWindow
 
         foreach (var warp in orderedWarps)
         {
-            var button = new ESObservablePlayerButton
-            {
-                Group = grp,
-            };
+            var button = new ESObservablePlayerButton();
+            button.ToggleMode = false;
             button.SetEntity(warp);
             button.OnPressed += _ =>
             {
-                SetInfoPanel(warp);
+                OnWarpButtonPressed?.Invoke(warp);
             };
             MindsContainer.AddChild(button);
         }
@@ -150,7 +148,7 @@ public sealed partial class ESStagehandObserveWindow : FancyWindow
         SetInfoPanel((CurrentEntity.Value, mind, character));
     }
 
-    public void SetInfoPanel(Entity<MindComponent?, ESCharacterComponent?> ent)
+    public void SetInfoPanel(Entity<MindComponent, ESCharacterComponent> ent)
     {
         if (_entityManager.Deleted(ent))
             return;
@@ -159,49 +157,36 @@ public sealed partial class ESStagehandObserveWindow : FancyWindow
 
         var (uid, mind, character) = ent;
         CurrentEntity = uid;
-        WarpButton.Disabled = mind != null && mind.CurrentEntity == null; // See ESStagehandSystem.cs
-        PanelMetaContainer.Visible = mind != null;
+        WarpButton.Disabled = mind.CurrentEntity == null; // See ESStagehandSystem.cs
 
-        if (mind != null && character != null)
+        var mask = _mask.GetMaskOrNull((uid, mind));
+        var troupe = _mask.GetTroupeOrNull((uid, mind));
+
+        NameLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-name-big", ("text", character.Name)));
+
+        if (_job.MindTryGetJob(uid, out var job))
+            JobLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-job", ("text", job.LocalizedName)));
+
+        if (_prototype.TryIndex(mask, out var maskPrototype))
         {
-            var mask = _mask.GetMaskOrNull((uid, mind));
-            var troupe = _mask.GetTroupeOrNull((uid, mind));
-
-            NameLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-name-big", ("text", character.Name)));
-
-            if (_job.MindTryGetJob(uid, out var job))
-                JobLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-job", ("text", job.LocalizedName)));
-
-            if (_prototype.TryIndex(mask, out var maskPrototype))
-            {
-                MaskLabel.UnsafeSetMarkup(
-                    Loc.GetString("es-observe-menu-label-name-big", ("text", Loc.GetString(maskPrototype.Name))),
-                    maskPrototype.Color);
-            }
-
-            if (_prototype.TryIndex(troupe, out var troupePrototype))
-            {
-                TroupeLabel.UnsafeSetMarkup(
-                    Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(troupePrototype.Name))),
-                    troupePrototype.Color);
-            }
-
-            ObjectiveContainer.Children.Clear();
-            foreach (var objective in _objective.GetObjectives(uid))
-            {
-                var ctrl = new ESObjectiveControl();
-                ctrl.SetObjective(objective);
-                ObjectiveContainer.AddChild(ctrl);
-            }
+            MaskLabel.UnsafeSetMarkup(
+                Loc.GetString("es-observe-menu-label-name-big", ("text", Loc.GetString(maskPrototype.Name))),
+                maskPrototype.Color);
         }
-        else
-        {
-            var metaData = _entityManager.GetComponent<MetaDataComponent>(uid);
 
-            NameLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-name-big", ("text", metaData.EntityName)));
-            JobLabel.Text = string.Empty;
-            MaskLabel.Text = string.Empty;
-            TroupeLabel.Text = string.Empty;
+        if (_prototype.TryIndex(troupe, out var troupePrototype))
+        {
+            TroupeLabel.UnsafeSetMarkup(
+                Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(troupePrototype.Name))),
+                troupePrototype.Color);
+        }
+
+        ObjectiveContainer.Children.Clear();
+        foreach (var objective in _objective.GetObjectives(uid))
+        {
+            var ctrl = new ESObjectiveControl();
+            ctrl.SetObjective(objective);
+            ObjectiveContainer.AddChild(ctrl);
         }
     }
 
