@@ -13,7 +13,7 @@ public sealed class ESGenericAmbienceVisualizerSystem : VisualizerSystem<ESGener
     {
         if (!TryComp<AmbientSoundComponent>(uid, out var ambientSound))
         {
-            throw new Exception($"Entity {ToPrettyString(uid)} with {nameof(ESGenericAmbienceVisualizerComponent)} does not have {nameof(PointLightComponent)}!");
+            throw new Exception($"Entity {ToPrettyString(uid)} with {nameof(ESGenericAmbienceVisualizerComponent)} does not have {nameof(AmbientSoundComponent)}!");
         }
 
         DebugTools.Assert(!ambientSound.NetSyncEnabled, $"Entity {ToPrettyString(uid)} uses appearance-controlled ambience with a netsync'd AmbientSoundComponent! (Did you forget to set netsync: false?)");
