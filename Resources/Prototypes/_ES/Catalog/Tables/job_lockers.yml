@@ -154,3 +154,15 @@
     - id: ClothingEyesHudMedical
     - id: ClothingHeadHatSurgcapBlue
     - id: ClothingMaskSterile
+
+- type: entityTable
+  id: ESLockerFillCoroner
+  table:
+    all:
+    - id: Scalpel
+    - id: BoxFolderYellow
+    - id: HandLabeler
+    - id: BoxBodyBag
+    - id: ClothingHandsGlovesColorBlue
+    - id: ClothingHeadsetMedical
+    - id: ClothingMaskSterile

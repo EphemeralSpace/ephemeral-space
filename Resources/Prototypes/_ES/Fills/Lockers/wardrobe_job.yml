@@ -1,7 +1,6 @@
 - type: entity
   parent: ESWardrobeBartender
   id: ESWardrobeBartenderFilled
-  name: bartender's wardrobe
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -21,7 +20,6 @@
 - type: entity
   parent: ESWardrobeChef
   id: ESWardrobeChefFilled
-  name: chef's wardrobe
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -40,9 +38,28 @@
     - id: ClothingUniformJumpsuitChef
 
 - type: entity
+  parent: ESWardrobeCoroner
+  id: ESWardrobeCoronerFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESFillWardrobeCoroner
+
+- type: entityTable
+  id: ESFillWardrobeCoroner
+  table:
+    all:
+    - id: ClothingBackpackMedical
+    - id: ClothingShoesColorBlack
+    - id: ESClothingHeadHatCoroner
+    - id: ESClothingOuterCoatDetectiveGrey
+    - id: ESClothingUniformJumpsuitCoroner
+
+- type: entity
   parent: ESWardrobeClown
   id: ESWardrobeClownFilled
-  name: clown's wardrobe
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -63,7 +80,6 @@
 - type: entity
   parent: ESWardrobeDetective
   id: ESWardrobeDetectiveFilled
-  name: detective's wardrobe
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -84,7 +100,6 @@
 - type: entity
   parent: ESWardrobeJanitor
   id: ESWardrobeJanitorFilled
-  name: janitor's wardrobe
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -106,7 +121,6 @@
 - type: entity
   parent: ESWardrobeMime
   id: ESWardrobeMimeFilled
-  name: mime's wardrobe
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -130,7 +144,6 @@
 - type: entity
   parent: ESWardrobeReporter
   id: ESWardrobeReporterFilled
-  name: reporter's wardrobe
   suffix: Filled
   components:
   - type: EntityTableContainerFill
