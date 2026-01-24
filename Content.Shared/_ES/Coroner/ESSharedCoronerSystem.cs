@@ -53,7 +53,7 @@ public abstract class ESSharedCoronerSystem : EntitySystem
         if (!CanUseCoronerTool(tool, user, target, out var reason))
         {
             if (!string.IsNullOrEmpty(reason))
-                _popup.PopupClient(reason, target, user);
+                _popup.PopupClient(reason, target, user, PopupType.SmallCaution);
 
             return false;
         }
@@ -72,14 +72,17 @@ public abstract class ESSharedCoronerSystem : EntitySystem
         if (!Resolve(tool, ref tool.Comp))
             return false;
 
-        if (!HasComp<ESAutopsyUserComponent>(user))
-            return false;
-
         if (!_actionBlocker.CanComplexInteract(user) || !_actionBlocker.CanUseHeldEntity(user, tool))
             return false;
 
         if (!HasComp<HumanoidAppearanceComponent>(target))
             return false;
+
+        if (!HasComp<ESAutopsyUserComponent>(user))
+        {
+            reason = Loc.GetString("es-coroner-autopsy-fail-not-user");
+            return false;
+        }
 
         if (!_mobState.IsDead(target))
         {
