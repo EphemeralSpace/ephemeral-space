@@ -20,6 +20,8 @@ namespace Content.Server.Atmos.EntitySystems
         // ES START
         // 75 -> 60
         private const int SpaceWindSoundCooldownCycles = 60;
+
+        private const int ESSpaceWindPressureDeltaThreshold = 40;
         // ES END
 
         // ES START
@@ -113,7 +115,10 @@ namespace Content.Server.Atmos.EntitySystems
             // TODO ATMOS finish this
 
             // Don't play the space wind sound on tiles that are on fire...
-            if (tile.PressureDifference > 15 && !tile.Hotspot.Valid)
+            // ES START
+            // change required delta
+            if (tile.PressureDifference > ESSpaceWindPressureDeltaThreshold && !tile.Hotspot.Valid)
+            // ES END
             {
                 if (_spaceWindSoundCooldown == 0 && SpaceWindSound != null)
                 {
