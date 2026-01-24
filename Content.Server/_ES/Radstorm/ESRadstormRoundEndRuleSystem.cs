@@ -148,7 +148,7 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
         // if text is null but sound isnt, this phase just wants to play a sound with no announcement
         if (phase.AnnouncementText == null && phase.AnnouncementSound != null)
         {
-            _audio.PlayGlobal(phase.AnnouncementSound, Filter.Broadcast(), true, phase.AnnouncementSound.Params.WithVolume(-4f));
+            _audio.PlayGlobal(phase.AnnouncementSound, Filter.Broadcast(), true, phase.AnnouncementSound.Params.WithVolume(-2f));
         }
 
         var map = _map.GetMap(_ticker.DefaultMap);
