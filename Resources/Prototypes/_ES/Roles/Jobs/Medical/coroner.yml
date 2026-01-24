@@ -26,6 +26,8 @@
   storage:
     back:
     - ESBoxSurvivalMedical
+  inhand:
+  - ESBriefcaseBlackFilled
 
 - type: chameleonOutfit
   id: ESCoroner
