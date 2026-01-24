@@ -54,8 +54,6 @@ public abstract class ESSharedCoronerSystem : EntitySystem
 
         var paper = SpawnNextToOrDrop(ent.Comp.ReportPrototype, target);
         _paper.SetContent(paper, GetReport(target).ToMarkup());
-
-        RemoveBrain(target);
         args.Handled = true;
     }
 
@@ -84,7 +82,7 @@ public abstract class ESSharedCoronerSystem : EntitySystem
         if (!_mobState.IsDead(target) || !HasComp<HumanoidAppearanceComponent>(target))
             return false;
 
-        return HasBrain(target);
+        return true;
     }
 
     public void UseCoronerTool(Entity<ESCoronerToolComponent?> tool, EntityUid user, EntityUid target)
@@ -111,16 +109,5 @@ public abstract class ESSharedCoronerSystem : EntitySystem
     protected virtual FormattedMessage GetReport(EntityUid target)
     {
         return new FormattedMessage();
-    }
-
-    private bool HasBrain(EntityUid target)
-    {
-        // TODO: stub.
-        return true;
-    }
-
-    private void RemoveBrain(EntityUid target)
-    {
-
     }
 }
