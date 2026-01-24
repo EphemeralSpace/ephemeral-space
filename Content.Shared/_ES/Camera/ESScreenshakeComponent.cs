@@ -35,13 +35,29 @@ public sealed partial class ESScreenshakeComponent : Component
 /// <param name="Start">Time this screenshake command was added.</param>
 /// <param name="CalculatedEnd">The end time for this command, calculated from trauma, decay rate, and start time.</param>
 [DataRecord, Serializable, NetSerializable]
-public partial record struct ESScreenshakeCommand(ESScreenshakeParameters? Translational, ESScreenshakeParameters? Rotational, TimeSpan Start, TimeSpan CalculatedEnd);
+public partial record ESScreenshakeCommand(ESScreenshakeParameters? Translational, ESScreenshakeParameters? Rotational, TimeSpan Start, TimeSpan CalculatedEnd);
 
 /// <summary>
 ///     Represents the parameters of a single instance of screenshake, which may apply to translational or rotational shake.
 /// </summary>
-/// <param name="Trauma">Strength of the shake.</param>
-/// <param name="DecayRate">How fast the shake decays.</param>
-/// <param name="Frequency">How frantically the shake oscillates.</param>
-[DataRecord, Serializable, NetSerializable]
-public partial record struct ESScreenshakeParameters(float Trauma, float DecayRate = 1.2f, float Frequency = 0.01f);
+[DataDefinition, Serializable, NetSerializable]
+public partial record ESScreenshakeParameters()
+{
+    /// <summary>
+    ///     Strength of the shake.
+    /// </summary>
+    [DataField(required: true)]
+    public float Trauma = 0f;
+
+    /// <summary>
+    ///     How fast the shake decays.
+    /// </summary>
+    [DataField]
+    public float DecayRate = 1.2f;
+
+    /// <summary>
+    ///     How frantically the shake oscillates.
+    /// </summary>
+    [DataField]
+    public float Frequency = 0.01f;
+};

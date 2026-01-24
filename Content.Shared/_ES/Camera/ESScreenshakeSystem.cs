@@ -73,11 +73,11 @@ public sealed class ESScreenshakeSystem : EntitySystem
                 continue;
 
             var trauma =
-                CalculateTraumaValueForCurrentTime(command.Translational.Value, command.Start);
+                CalculateTraumaValueForCurrentTime(command.Translational, command.Start);
             if (trauma <= 0)
                 continue;
 
-            noise.SetFrequency(command.Translational.Value.Frequency);
+            noise.SetFrequency(command.Translational.Frequency);
 
             var offsetX = (maxOffset.X * trauma) * noise.GetNoise((float) _timing.CurTime.TotalSeconds, 0f);
             noise.SetSeed(++seed);
@@ -108,11 +108,11 @@ public sealed class ESScreenshakeSystem : EntitySystem
                 continue;
 
             var trauma =
-                CalculateTraumaValueForCurrentTime(command.Rotational.Value, command.Start);
+                CalculateTraumaValueForCurrentTime(command.Rotational, command.Start);
             if (trauma <= 0)
                 continue;
 
-            noise.SetFrequency(command.Rotational.Value.Frequency);
+            noise.SetFrequency(command.Rotational.Frequency);
 
             var angle = (maxAngleDegrees * trauma) * noise.GetNoise((float)_timing.CurTime.TotalSeconds, 0f);
             noise.SetSeed(++seed);
@@ -148,8 +148,8 @@ public sealed class ESScreenshakeSystem : EntitySystem
     private TimeSpan CalculateEndTimeForCommand(Entity<ESScreenshakeComponent> ent, ESScreenshakeParameters? translation, ESScreenshakeParameters? rotation, TimeSpan start)
     {
         // https://www.desmos.com/calculator/optip8eucx
-        var secsUntilRotationalEnd = rotation != null ? MathF.Sqrt(rotation.Value.Trauma / rotation.Value.DecayRate) : 0f;
-        var secsUntilTranslationalEnd = translation != null ? MathF.Sqrt(translation.Value.Trauma / translation.Value.DecayRate) : 0f;
+        var secsUntilRotationalEnd = rotation != null ? MathF.Sqrt(rotation.Trauma / rotation.DecayRate) : 0f;
+        var secsUntilTranslationalEnd = translation != null ? MathF.Sqrt(translation.Trauma / translation.DecayRate) : 0f;
         var larger = secsUntilTranslationalEnd >= secsUntilRotationalEnd
             ? secsUntilTranslationalEnd
             : secsUntilRotationalEnd;

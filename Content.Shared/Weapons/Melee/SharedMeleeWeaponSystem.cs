@@ -585,10 +585,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             DoDamageEffect(targets, user, targetXform);
 
             // ES START
-            _shake.Screenshake(user, 0f, 0.4f, 0.002f);
+            //_shake.Screenshake(user, 0f, 0.4f, 0.002f);
             foreach (var shakeTarget in targets)
             {
-                _shake.Screenshake(shakeTarget, 0.2f, 0f);
+              //  _shake.Screenshake(shakeTarget, 0.2f, 0f);
             }
             // ES END
         }
