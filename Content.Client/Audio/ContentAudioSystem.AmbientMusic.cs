@@ -107,6 +107,10 @@ public sealed partial class ContentAudioSystem
         _ambientSounds.Clear();
         foreach (var ambience in _proto.EnumeratePrototypes<AmbientMusicPrototype>())
         {
+            // ES START
+            if (ambience.Disabled)
+                continue;
+            // ES END
             var tracks = _ambientSounds.GetOrNew(ambience.ID);
             RefreshTracks(ambience.Sound, tracks, null);
             _random.Shuffle(tracks);
