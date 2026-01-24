@@ -1,4 +1,5 @@
 using Content.Shared.DoAfter;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -14,6 +15,9 @@ public sealed partial class ESAutopsyToolComponent : Component
 {
     [DataField]
     public TimeSpan AutopsyTime = TimeSpan.FromSeconds(30);
+
+    [DataField]
+    public SoundSpecifier? AutopsySound = new SoundCollectionSpecifier("PaperScribbles");
 
     [DataField]
     public EntProtoId ReportPrototype = "Paper";

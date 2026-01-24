@@ -7,6 +7,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Paper;
 using Content.Shared.Popups;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Coroner;
@@ -14,6 +15,7 @@ namespace Content.Shared._ES.Coroner;
 public abstract class ESSharedCoronerSystem : EntitySystem
 {
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
@@ -43,6 +45,7 @@ public abstract class ESSharedCoronerSystem : EntitySystem
             return;
 
         _popup.PopupClient(Loc.GetString("es-coroner-report-complete-popup"), target, args.User, PopupType.Medium);
+        _audio.PlayPredicted(ent.Comp.AutopsySound, target, args.User);
         var paper = PredictedSpawnNextToOrDrop(ent.Comp.ReportPrototype, target);
         _paper.SetContent(paper, GetReport(target).ToMarkup());
         args.Handled = true;
