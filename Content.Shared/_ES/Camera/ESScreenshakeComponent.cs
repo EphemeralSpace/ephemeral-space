@@ -22,12 +22,6 @@ public sealed partial class ESScreenshakeComponent : Component
     [DataField, AutoNetworkedField]
     public HashSet<ESScreenshakeCommand> Commands = new();
 
-    [DataField, AutoNetworkedField]
-    public float TranslationalDecayRate = 1.2f;
-
-    [DataField, AutoNetworkedField]
-    public float RotationalDecayRate = 1.2f;
-
     public override bool SendOnlyToOwner => true;
 }
 
@@ -36,10 +30,18 @@ public sealed partial class ESScreenshakeComponent : Component
 ///     and the client that controls that entity will use the trauma values in each command, and their start time,
 ///     to calculate multipliers on the current eye offset & rotation modifiers.
 /// </summary>
-/// <param name="TranslationalTrauma">Strength of translational screenshake (offset-based)</param>
-/// <param name="RotationalTrauma">Strength of rotational screenshake (rotation-based)</param>
+/// <param name="Translational">Parameters of translational screenshake (offset-based)</param>
+/// <param name="Rotational">Parameters of rotational screenshake (rotation-based)</param>
 /// <param name="Start">Time this screenshake command was added.</param>
 /// <param name="CalculatedEnd">The end time for this command, calculated from trauma, decay rate, and start time.</param>
-/// <param name="Frequency">Since screenshake is sampled from simplex noise, this controls the frequency passed to the underlying noise.</param>
 [DataRecord, Serializable, NetSerializable]
-public partial record struct ESScreenshakeCommand(float TranslationalTrauma, float RotationalTrauma, TimeSpan Start, TimeSpan CalculatedEnd, float Frequency = 0.01f);
+public partial record struct ESScreenshakeCommand(ESScreenshakeParameters? Translational, ESScreenshakeParameters? Rotational, TimeSpan Start, TimeSpan CalculatedEnd);
+
+/// <summary>
+///     Represents the parameters of a single instance of screenshake, which may apply to translational or rotational shake.
+/// </summary>
+/// <param name="Trauma">Strength of the shake.</param>
+/// <param name="DecayRate">How fast the shake decays.</param>
+/// <param name="Frequency">How frantically the shake oscillates.</param>
+[DataRecord, Serializable, NetSerializable]
+public partial record struct ESScreenshakeParameters(float Trauma, float DecayRate = 1.2f, float Frequency = 0.01f);

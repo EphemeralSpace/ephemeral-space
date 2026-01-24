@@ -69,12 +69,15 @@ public sealed class ESScreenshakeSystem : EntitySystem
         var maxOffset = new Vector2(0.15f, 0.15f);
         foreach (var command in ent.Comp.Commands)
         {
+            if (command.Translational == null)
+                continue;
+
             var trauma =
-                CalculateTraumaValueForCurrentTime(command.TranslationalTrauma, ent.Comp.TranslationalDecayRate, command.Start);
+                CalculateTraumaValueForCurrentTime(command.Translational.Value, command.Start);
             if (trauma <= 0)
                 continue;
 
-            noise.SetFrequency(command.Frequency);
+            noise.SetFrequency(command.Translational.Value.Frequency);
 
             var offsetX = (maxOffset.X * trauma) * noise.GetNoise((float) _timing.CurTime.TotalSeconds, 0f);
             noise.SetSeed(++seed);
@@ -101,12 +104,15 @@ public sealed class ESScreenshakeSystem : EntitySystem
         var maxAngleDegrees = 20f;
         foreach (var command in ent.Comp.Commands)
         {
+            if (command.Rotational == null)
+                continue;
+
             var trauma =
-                CalculateTraumaValueForCurrentTime(command.RotationalTrauma, ent.Comp.RotationalDecayRate, command.Start);
+                CalculateTraumaValueForCurrentTime(command.Rotational.Value, command.Start);
             if (trauma <= 0)
                 continue;
 
-            noise.SetFrequency(command.Frequency);
+            noise.SetFrequency(command.Rotational.Value.Frequency);
 
             var angle = (maxAngleDegrees * trauma) * noise.GetNoise((float)_timing.CurTime.TotalSeconds, 0f);
             noise.SetSeed(++seed);
@@ -139,11 +145,11 @@ public sealed class ESScreenshakeSystem : EntitySystem
     /// <summary>
     ///     Calculates when both traumas will be at least = 0 given the decay rate and start time.
     /// </summary>
-    private TimeSpan CalculateEndTimeForCommand(Entity<ESScreenshakeComponent> ent, float translationalTrauma, float rotationalTrauma, TimeSpan start)
+    private TimeSpan CalculateEndTimeForCommand(Entity<ESScreenshakeComponent> ent, ESScreenshakeParameters? translation, ESScreenshakeParameters? rotation, TimeSpan start)
     {
         // https://www.desmos.com/calculator/optip8eucx
-        var secsUntilRotationalEnd = MathF.Sqrt(rotationalTrauma / ent.Comp.RotationalDecayRate);
-        var secsUntilTranslationalEnd = MathF.Sqrt(translationalTrauma / ent.Comp.TranslationalDecayRate);
+        var secsUntilRotationalEnd = rotation != null ? MathF.Sqrt(rotation.Value.Trauma / rotation.Value.DecayRate) : 0f;
+        var secsUntilTranslationalEnd = translation != null ? MathF.Sqrt(translation.Value.Trauma / translation.Value.DecayRate) : 0f;
         var larger = secsUntilTranslationalEnd >= secsUntilRotationalEnd
             ? secsUntilTranslationalEnd
             : secsUntilRotationalEnd;
@@ -154,7 +160,7 @@ public sealed class ESScreenshakeSystem : EntitySystem
     /// <summary>
     ///     Gets the trauma value for the current time, given the decay rate and start time.
     /// </summary>
-    private float CalculateTraumaValueForCurrentTime(float startTrauma, float decay, TimeSpan start)
+    private float CalculateTraumaValueForCurrentTime(ESScreenshakeParameters parameters, TimeSpan start)
     {
         var timeDiff = _timing.CurTime - start;
 
@@ -165,22 +171,22 @@ public sealed class ESScreenshakeSystem : EntitySystem
         // trauma decays quadratically with seconds passed
         // https://www.desmos.com/calculator/optip8eucx
         var totalSecsSquared = (float) (timeDiff.TotalSeconds * timeDiff.TotalSeconds);
-        return -totalSecsSquared * decay + startTrauma;
+        return -totalSecsSquared * parameters.DecayRate + parameters.Trauma;
     }
 
     #endregion
 
     #region Public API
 
-    public void Screenshake(EntityUid uid, float translationalTrauma, float rotationalTrauma, float frequency = 0.01f)
+    public void Screenshake(EntityUid uid, ESScreenshakeParameters? translation, ESScreenshakeParameters? rotation)
     {
         if (!HasComp<EyeComponent>(uid))
             return;
 
         var comp = EnsureComp<ESScreenshakeComponent>(uid);
         var time = _timing.CurTime;
-        var end = CalculateEndTimeForCommand((uid, comp), translationalTrauma, rotationalTrauma, time);
-        var command = new ESScreenshakeCommand(translationalTrauma, rotationalTrauma, time, end, frequency);
+        var end = CalculateEndTimeForCommand((uid, comp), translation, rotation, time);
+        var command = new ESScreenshakeCommand(translation, rotation, time, end);
 
         comp.Commands.Add(command);
         Dirty(uid, comp);
