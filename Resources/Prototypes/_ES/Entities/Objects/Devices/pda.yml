@@ -1,0 +1,22 @@
+- type: entity
+  parent: BaseMedicalPDA
+  id: ESCoronerPDA
+  name: coroner PDA
+  suffix: ES
+  description: Shiny and sterile.
+  components:
+  - type: Pda
+    id: ESCoronerCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-medical
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#447987"
+  - type: Icon
+    state: pda-medical
+  - type: GuideHelp
+    guides:
+    - MedicalDoctor

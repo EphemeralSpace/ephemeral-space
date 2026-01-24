@@ -31,7 +31,7 @@ public sealed class ESStagehandSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeNetworkEvent<ESJoinStagehandMessage>(OnJoinStagehand);
-        SubscribeNetworkEvent<ESWarpToMindMessage>(OnWarpToMind);
+        SubscribeNetworkEvent<ESStagehandWarpMessage>(OnStagehandWarp);
     }
 
     private void OnJoinStagehand(ESJoinStagehandMessage args, EntitySessionEventArgs msg)
@@ -51,7 +51,7 @@ public sealed class ESStagehandSystem : EntitySystem
         SpawnStagehand(msg.SenderSession);
     }
 
-    private void OnWarpToMind(ESWarpToMindMessage args, EntitySessionEventArgs msg)
+    private void OnStagehandWarp(ESStagehandWarpMessage args, EntitySessionEventArgs msg)
     {
         if (msg.SenderSession.AttachedEntity is not { } entity)
             return;
@@ -59,15 +59,21 @@ public sealed class ESStagehandSystem : EntitySystem
         if (!HasComp<ESStagehandComponent>(entity))
             return;
 
-        if (!TryGetEntity(args.Mind, out var targetMind) ||
-            !TryComp<MindComponent>(targetMind, out var mind))
+        if (!TryGetEntity(args.Target, out var target))
             return;
 
-        if (!TryGetEntity(mind.OriginalOwnedEntity, out var target) ||
-            TerminatingOrDeleted(target))
-            return;
+        // Since the mind is stored in nullspace, we need to find the body and follow it directly.
+        if (TryComp<MindComponent>(target, out var mind))
+        {
+            if (!mind.CurrentEntity.HasValue || TerminatingOrDeleted(mind.CurrentEntity))
+                return;
 
-        _follower.StartFollowingEntity(entity, target.Value);
+            _follower.StartFollowingEntity(entity, mind.CurrentEntity.Value);
+        }
+        else
+        {
+            _follower.StartFollowingEntity(entity, target.Value);
+        }
     }
 
     public void SpawnStagehand(ICommonSession player)

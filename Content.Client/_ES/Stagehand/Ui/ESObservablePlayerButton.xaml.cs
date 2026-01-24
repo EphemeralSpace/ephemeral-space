@@ -32,6 +32,14 @@ public sealed partial class ESObservablePlayerButton : Button
         ToggleMode = true;
     }
 
+    public void SetEntity(EntityUid uid)
+    {
+        var metaData = _entityManager.GetComponent<MetaDataComponent>(uid);
+
+        NameLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-fmt", ("text", metaData.EntityName)));
+        JobIcon.Visible = false;
+    }
+
     public void SetPlayer(Entity<MindComponent, ESCharacterComponent> ent)
     {
         var (uid, mind, character) = ent;

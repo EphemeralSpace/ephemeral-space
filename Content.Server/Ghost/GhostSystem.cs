@@ -608,9 +608,10 @@ namespace Content.Server.Ghost
 
 // ES START
             // Handle sending people back to the theater.
-            if (_player.TryGetSessionById(mind.UserId, out var player) &&
-                _gameTicker.PlayerJoinLobby(player, true))
+            if (_gameTicker.LobbyEnabled)
             {
+                if (_player.TryGetSessionById(mind.UserId, out var player))
+                    _gameTicker.PlayerJoinLobby(player, true);
                 return true;
             }
 // ES END

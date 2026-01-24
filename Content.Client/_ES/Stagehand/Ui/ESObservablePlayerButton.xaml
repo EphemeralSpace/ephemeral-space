@@ -5,8 +5,7 @@
     SetHeight="40"
     StyleClasses="OpenBoth">
     <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-        <TextureRect Name="JobIcon" VerticalAlignment="Center" TextureScale="2 2" MouseFilter="Pass"/>
-        <Control MinWidth="10"/>
+        <TextureRect Name="JobIcon" VerticalAlignment="Center" TextureScale="2 2" MouseFilter="Pass" Margin="0 0 10 0"/>
         <RichTextLabel Name="NameLabel" StyleClasses="LabelKeyText" HorizontalExpand="True" RectClipContent="True"/>
         <RichTextLabel Name="MaskLabel" StyleClasses="LabelKeyText" HorizontalAlignment="Right" Margin="5 0 15 0"/>
         <RichTextLabel Name="TroupeLabel" StyleClasses="LabelKeyText" HorizontalAlignment="Right"/>

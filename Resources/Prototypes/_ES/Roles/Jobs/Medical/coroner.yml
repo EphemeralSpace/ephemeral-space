@@ -1,0 +1,33 @@
+- type: job
+  id: ESCoroner
+  name: ESjob-name-coroner
+  description: ESjob-description-coroner
+  playTimeTracker: ESJobCoroner
+  startingGear: ESCoronerGear
+  icon: "ESJobIconCoroner"
+  supervisors: job-supervisors-hop
+  access:
+  - Medical
+  - Maintenance
+  - Chemistry
+
+- type: startingGear
+  id: ESCoronerGear
+  equipment:
+    shoes: ClothingShoesColorBlack
+    id: ESCoronerPDA
+    gloves: ClothingHandsGlovesColorBlue
+    head: ESClothingHeadHatCoroner
+    ears: ClothingHeadsetMedical
+    mask: ClothingMaskSterile
+    jumpsuit: ESClothingUniformJumpsuitCoroner
+    outerClothing: ESClothingOuterCoatDetectiveGrey
+    back: ClothingBackpackMedical
+  storage:
+    back:
+    - ESBoxSurvivalMedical
+
+- type: chameleonOutfit
+  id: ESCoroner
+  job: ESCoroner
+  hidden: false

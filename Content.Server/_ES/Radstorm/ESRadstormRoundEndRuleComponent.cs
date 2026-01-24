@@ -49,7 +49,7 @@ public sealed partial class ESRadstormRoundEndRuleComponent : Component
 
 // no this cant be a fucking record because apparently you cant have datarecords that also have properties.
 [DataDefinition]
-public partial class ESRadstormPhaseConfig
+public sealed partial class ESRadstormPhaseConfig
 {
     public bool Completed = false;
 

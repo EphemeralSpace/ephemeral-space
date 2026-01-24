@@ -1,0 +1,7 @@
+- type: jobIcon
+  parent: JobIcon
+  id: ESJobIconCoroner
+  icon:
+    sprite: _ES/Interface/Misc/ES_job_icons.rsi
+    state: coroner
+  jobName: ESjob-name-coroner

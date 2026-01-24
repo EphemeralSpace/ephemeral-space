@@ -20,6 +20,9 @@
     blacklist:
       tags:
       - GhostOnlyWarp
+# ES START - necessary for warp stuff rn
+  - type: ESStagehandAware
+# ES END
   - type: Tag
     tags:
     - HighRiskItem

@@ -25,6 +25,9 @@
 
 - type: playTimeTracker
   id: ESJobClown
+  
+- type: playTimeTracker
+  id: ESJobCoroner
 
 - type: playTimeTracker
   id: ESJobDetective
