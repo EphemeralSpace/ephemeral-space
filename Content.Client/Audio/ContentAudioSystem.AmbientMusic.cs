@@ -242,7 +242,10 @@ public sealed partial class ContentAudioSystem
         if (ev.Cancelled)
             return null;
 
-        var ambiences = _proto.EnumeratePrototypes<AmbientMusicPrototype>().ToList();
+        // ES START
+        // dont select disabled fallback
+        var ambiences = _proto.EnumeratePrototypes<AmbientMusicPrototype>().Where(m => !m.Disabled).ToList();
+        // ES END
         ambiences.Sort((x, y) => y.Priority.CompareTo(x.Priority));
 
         foreach (var amb in ambiences)
