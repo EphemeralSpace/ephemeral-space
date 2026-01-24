@@ -45,9 +45,7 @@ public sealed class ESStagehandSystem : EntitySystem
         if (!HasComp<ESTheatergoerMarkerComponent>(entity))
             return;
 
-        // TODO: prevent rejoining multiple times
-
-        _gameTicker.PlayerJoinGame(msg.SenderSession);
+        _gameTicker.PlayerJoinGame(msg.SenderSession, silent: _gameTicker.UserHasJoinedGame(msg.SenderSession));
         SpawnStagehand(msg.SenderSession);
     }
 
