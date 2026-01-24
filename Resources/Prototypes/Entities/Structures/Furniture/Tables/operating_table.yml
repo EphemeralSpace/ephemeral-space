@@ -11,3 +11,8 @@
   - type: Icon
     sprite: Structures/Furniture/Tables/optable.rsi
     state: operating_table
+# ES START
+  - type: ESAutopsyTable
+  - type: Destructible
+    thresholds: [] # Indestructible
+# ES END

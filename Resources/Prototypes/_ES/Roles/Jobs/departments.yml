@@ -60,6 +60,7 @@
   weight: 5
   roles:
   - ESChemist
+  - ESCoroner
   - ESMedicalDoctor
 
 - type: department

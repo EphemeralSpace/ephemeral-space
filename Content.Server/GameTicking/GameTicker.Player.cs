@@ -13,6 +13,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 // ES START
+using Content.Server._ES.Stagehand;
 using Content.Shared.Mobs.Systems;
 // ES END
 
@@ -24,6 +25,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly IPlayerManager _playerManager = default!;
 // ES START
         [Dependency] private readonly MobStateSystem _mobState = default!;
+        [Dependency] private readonly ESStagehandSystem _stagehand = default!;
 // ES END
 
         private void InitializePlayer()
@@ -195,7 +197,14 @@ namespace Content.Server.GameTicking
                     return;
                 }
 
-                PlayerJoinLobby(session, attachCharacter: true);
+                if (LobbyEnabled)
+                {
+                    PlayerJoinLobby(session, attachCharacter: true);
+                }
+                else
+                {
+                    _stagehand.SpawnStagehand(session);
+                }
             }
 // ES END
 

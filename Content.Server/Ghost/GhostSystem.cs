@@ -39,7 +39,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 // ES START
-using Content.Shared.Players;
+using Content.Server._ES.Stagehand;
 // ES END
 
 namespace Content.Server.Ghost
@@ -71,6 +71,9 @@ namespace Content.Server.Ghost
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly NameModifierSystem _nameMod = default!;
+// ES START
+        [Dependency] private readonly ESStagehandSystem _stagehand = default!;
+// ES END
 
         private EntityQuery<GhostComponent> _ghostQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -607,13 +610,21 @@ namespace Content.Server.Ghost
                 _adminLog.Add(LogType.Mind, $"{ToPrettyString(playerEntity.Value):player} ghosted{(!canReturn ? " (non-returnable)" : "")}");
 
 // ES START
-            // Handle sending people back to the theater.
-            if (_gameTicker.LobbyEnabled)
+            mind.TimeOfDeath = _gameTiming.CurTime;
+
+            if (_player.TryGetSessionById(mind.UserId, out var player))
             {
-                if (_player.TryGetSessionById(mind.UserId, out var player))
+                // Handle sending people back to the theater.
+                if (_gameTicker.LobbyEnabled)
+                {
                     _gameTicker.PlayerJoinLobby(player, true);
-                return true;
+                }
+                else
+                {
+                    _stagehand.SpawnStagehand(player);
+                }
             }
+            return true;
 // ES END
 
             var ghost = SpawnGhost((mindId, mind), position, canReturn);

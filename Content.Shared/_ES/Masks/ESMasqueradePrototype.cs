@@ -82,13 +82,13 @@ public sealed partial class ESMasqueradePrototype : IPrototype, ISerializationHo
     ///     The title to use for the roundstart news article.
     /// </summary>
     [DataField]
-    public LocId StartupNewsArticleTitle = "es-news-masks-report-title";
+    public LocId StartupNewsArticleTitle = "es-news-masks-no-info-report-title";
 
     /// <summary>
     ///     The contents to use for the roundstart news article.
     /// </summary>
     [DataField]
-    public LocId StartupNewsArticleContents = "es-news-masks-report-body";
+    public LocId StartupNewsArticleContents = "es-news-masks-no-info-report-body";
 
     /// <summary>
     ///     The mask entry loc string to use for the roundstart news.

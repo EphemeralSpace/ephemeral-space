@@ -1,4 +1,5 @@
 using Content.Server._ES.Radio;
+using Content.Server.Audio;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
@@ -12,8 +13,11 @@ using Content.Shared.Light.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -27,6 +31,7 @@ namespace Content.Server._ES.Radstorm;
 /// </summary>
 public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoundEndRuleComponent>
 {
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
@@ -138,6 +143,12 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
                 Loc.GetString("es-radstorm-announcer"),
                 announcementSound: phase.AnnouncementSound,
                 colorOverride: Color.LightSeaGreen);
+        }
+
+        // if text is null but sound isnt, this phase just wants to play a sound with no announcement
+        if (phase.AnnouncementText == null && phase.AnnouncementSound != null)
+        {
+            _audio.PlayGlobal(phase.AnnouncementSound, Filter.Broadcast(), true, phase.AnnouncementSound.Params.WithVolume(-2f));
         }
 
         var map = _map.GetMap(_ticker.DefaultMap);

@@ -9,6 +9,7 @@
     containers:
       smart_fridge_inventory:
         tableId: ESSmartFridgeMedicalFill
+  - type: ESAmbientMusicMarkerMedical
 
 - type: entityTable
   id: ESSmartFridgeMedicalFill
