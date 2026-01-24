@@ -28,13 +28,13 @@
       "name": "welded"
     },
     {
-      "name": "base"
+      "name": "generic"
     },
     {
-      "name": "door"
+      "name": "generic_door"
     },
     {
-      "name": "open"
+      "name": "generic_open"
     }
   ]
 }
