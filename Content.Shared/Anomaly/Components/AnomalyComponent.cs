@@ -52,7 +52,9 @@ public sealed partial class AnomalyComponent : Component
     /// reaching a supercritical point.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public float Health = 1f;
+    // ES START
+    public float Health = 0.5f;
+    // ES END
 
     /// <summary>
     /// If the <see cref="Stability"/> of the anomaly exceeds this value, it
@@ -95,13 +97,17 @@ public sealed partial class AnomalyComponent : Component
     /// The minimum interval between pulses.
     /// </summary>
     [DataField]
-    public TimeSpan MinPulseLength = TimeSpan.FromMinutes(2);
+    // ES START
+    public TimeSpan MinPulseLength = TimeSpan.FromMinutes(1);
+    // ES END
 
     /// <summary>
     /// The maximum interval between pulses.
     /// </summary>
     [DataField]
-    public TimeSpan MaxPulseLength = TimeSpan.FromMinutes(4);
+    // ES START
+    public TimeSpan MaxPulseLength = TimeSpan.FromMinutes(2.5);
+    // ES END
 
     /// <summary>
     /// A percentage by which the length of a pulse might vary.
@@ -161,7 +167,9 @@ public sealed partial class AnomalyComponent : Component
     /// Between 0 and 0.5, which should be all mild effects
     /// </remarks>
     [DataField]
-    public (float, float) InitialSeverityRange = (0.1f, 0.5f);
+    // ES START
+    public (float, float) InitialSeverityRange = (0.5f, 0.7f);
+    // ES END
 
     /// <summary>
     /// The particle type that increases the severity of the anomaly.

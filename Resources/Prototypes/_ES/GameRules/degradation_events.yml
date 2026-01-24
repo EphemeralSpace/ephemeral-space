@@ -28,6 +28,7 @@
   parent: ESBaseDegradationEvent
   id: ESDegradationEventAirlocks
   name: Airlock Bolt Breakage
+  description: Breaks airlocks, making them get stuck when opened.
   components:
   - type: ESDegradationEvent
     count: 1, 5
@@ -42,6 +43,7 @@
   parent: ESBaseDegradationEvent
   id: ESDegradationEventCommunicationsConsole
   name: Distorted Announcement
+  description: Distorts the next station announcement, sending a warped message.
   components:
   - type: ESDegradationEvent
     component: CommunicationsConsole
@@ -50,6 +52,7 @@
   parent: ESBaseDegradationEvent
   id: ESDegradationEventCriminalRecords
   name: Hacked Criminal Records
+  description: Messes up the criminal records, adding fake crimes for various players.
   components:
   - type: ESDegradationEvent
     component: CriminalRecordsConsole
@@ -58,6 +61,7 @@
   parent: ESBaseDegradationEvent
   id: ESDegradationEventTelecoms
   name: Telecom Ghosts
+  description: Sends random radio messages from the ghosts of past players.
   components:
   - type: ESDegradationEvent
     component: TelecomServer
@@ -69,6 +73,7 @@
   parent: ESBaseDegradationEvent
   id: ESDegradationEventCrewMonitoring
   name: Sensor Manipulation
+  description: Manipulates the crew monitoring server, altering the suit sensors of various crew.
   components:
   - type: ESDegradationEvent
     component: CrewMonitoringServer
@@ -78,6 +83,7 @@
   parent: ESBaseDegradationEvent
   id: ESDegradationEventIDCardComputer
   name: ID Scramble
+  description: Messes up the icons on IDs all over the station.
   components:
   - type: ESDegradationEvent
     component: IdCardConsole

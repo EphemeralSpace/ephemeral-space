@@ -47,7 +47,11 @@ public sealed partial class DamageableSystem : EntitySystem
         Entity<DamageableComponent> ent,
         DamageSpecifier? damageDelta = null,
         bool interruptsDoAfters = true,
-        EntityUid? origin = null
+// ES START
+        EntityUid? origin = null,
+        EntityUid? source = null,
+        EntityUid? weapon = null
+// ES END
     )
     {
         ent.Comp.Damage.GetDamagePerGroup(_prototypeManager, ent.Comp.DamagePerGroup);
@@ -66,7 +70,9 @@ public sealed partial class DamageableSystem : EntitySystem
 
         // TODO DAMAGE
         // byref struct event.
-        RaiseLocalEvent(ent, new DamageChangedEvent(ent.Comp, damageDelta, interruptsDoAfters, origin));
+// ES START
+        RaiseLocalEvent(ent, new DamageChangedEvent(ent.Comp, damageDelta, interruptsDoAfters, origin, source, weapon));
+// ES END
     }
 
     private void DamageableGetState(Entity<DamageableComponent> ent, ref ComponentGetState args)

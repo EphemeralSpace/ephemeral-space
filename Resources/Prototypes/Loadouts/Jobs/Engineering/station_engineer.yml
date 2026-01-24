@@ -115,12 +115,7 @@
   id: EngineeringWinterBoots
   equipment:
     shoes: ClothingShoesBootsWinterEngi
-# ES START
-- type: loadout
-  id: ESEngineerShoes
-  equipment:
-    shoes: ClothingShoesColorOrange
-# ES END
+
 # ID
 - type: loadout
   id: StationEngineerPDA

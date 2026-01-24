@@ -32,6 +32,12 @@
   - type: EventHorizon
     consumerFixtureId: fix1
     consumeTiles: false
+    consumeAliveMobs: false
+    radius: 0.01 # eat continuously...
+  - type: DamageContacts
+    damage:
+      types:
+        Cellular: 5
   - type: Explosive
     explosionType: Default
     totalIntensity: 60
@@ -84,6 +90,7 @@
   - type: Battery
     maxCharge: 5000000
     startingCharge: 0
+    netsync: false
   - type: BatteryDischarger
   - type: PowerNetworkBattery
     maxSupply: 350000

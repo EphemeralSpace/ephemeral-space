@@ -37,6 +37,8 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
 
         SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerDetachedEvent>(OnPlayerDetached);
+
+        SubscribeLocalEvent<ESObjectiveComponent, EntityRenamedEvent>(OnObjectiveRenamed);
     }
 
     private void OnMindGotAdded(Entity<ESObjectiveHolderComponent> ent, ref MindGotAddedEvent args)
@@ -71,6 +73,12 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         }
     }
 
+    private void OnObjectiveRenamed(Entity<ESObjectiveComponent> ent, ref EntityRenamedEvent args)
+    {
+        // We need to dirty when we get renamed so that we can raise events on the client and update UIs.
+        Dirty(ent);
+    }
+
     /// <summary>
     /// Queries an objective to determine what its current progress is.
     /// </summary>
@@ -92,7 +100,7 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         ent.Comp.Progress = newProgress;
 
         var afterEv = new ESObjectiveProgressChangedEvent((ent, ent.Comp), oldProgress, newProgress);
-        RaiseLocalEvent(ent, ref afterEv);
+        RaiseLocalEvent(ent, ref afterEv, true);
 
         Dirty(ent);
     }
@@ -237,6 +245,27 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     }
 
     /// <summary>
+    /// Returns all owned objectives on an entity that have a given component
+    /// </summary>
+    public List<Entity<T>> GetOwnedObjectives<T>(Entity<ESObjectiveHolderComponent?> ent) where T : Component
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return [];
+
+        var objectives = new List<Entity<T>>();
+
+        foreach (var objective in ent.Comp.OwnedObjectives)
+        {
+            if (!TryComp<T>(objective, out var comp))
+                continue;
+
+            objectives.Add((objective, comp));
+        }
+
+        return objectives;
+    }
+
+    /// <summary>
     /// <inheritdoc cref="CanAddObjective(Robust.Shared.GameObjects.Entity{Content.Shared._ES.Objectives.Components.ESObjectiveComponent?},Robust.Shared.GameObjects.Entity{Content.Shared._ES.Objectives.Components.ESObjectiveHolderComponent?})"/>
     /// </summary>
     [PublicAPI]
@@ -317,6 +346,54 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         RegenerateObjectiveList(ent);
         RefreshObjectiveProgress(objective.Value.AsNullable());
         return true;
+    }
+
+    public bool TryRemoveObjective(Entity<ESObjectiveHolderComponent?> ent, Entity<ESObjectiveComponent?> objective)
+    {
+        if (!Resolve(ent, ref ent.Comp) || !Resolve(objective, ref objective.Comp))
+            return false;
+
+        ent.Comp.OwnedObjectives.Remove(objective);
+        RegenerateObjectiveList(ent);
+        Del(objective);
+        return true;
+    }
+
+    /// <summary>
+    ///     Tries to find an <see cref="ESObjectiveHolderComponent"/>
+    ///     This is kind of inefficient, so you should avoid doing this when possible (and try to just pass around the holder separately, if you already know it)
+    /// </summary>
+    public bool TryFindObjectiveHolder(Entity<ESObjectiveComponent?> objective, [NotNullWhen(true)] out Entity<ESObjectiveHolderComponent>? holder)
+    {
+        if (!Resolve(objective.Owner, ref objective.Comp))
+        {
+            holder = null;
+            return false;
+        }
+
+        Entity<ESObjectiveHolderComponent>? foundHolder = null;
+        var query = EntityQueryEnumerator<ESObjectiveHolderComponent>();
+        while (query.MoveNext(out var uid, out var potentialHolder))
+        {
+            if (!potentialHolder.OwnedObjectives.Contains(objective.Owner))
+                continue;
+
+            // this assumes only one holder can own an objective, which I think is true right now, and the purpose of owned objectives anyway?
+            foundHolder = (uid, potentialHolder);
+            break;
+        }
+
+        holder = foundHolder;
+        return holder != null;
+    }
+
+    /// <summary>
+    /// Checks if a given entity has the given objective assigned to them.
+    /// Unlike <see cref="TryFindObjectiveHolder"/>, this works for any type of inherited ownership, not just direct holding.
+    /// </summary>
+    public bool HasObjective<T>(EntityUid potentialHolder, Entity<T> objective) where T : Component
+    {
+        return GetObjectives<T>(potentialHolder).Contains(objective);
     }
 
     public string GetObjectiveString(Entity<ESObjectiveComponent?> ent)

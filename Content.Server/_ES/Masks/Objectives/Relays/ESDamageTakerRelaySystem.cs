@@ -30,7 +30,7 @@ public sealed class ESDamageTakerRelaySystem : ESBaseMindRelay
 
         if (args.DamageDelta != null)
         {
-            var ev = new ESDamageTakenEvent(ent, args.DamageIncreased, args.DamageDelta, args.Origin);
+            var ev = new ESDamageTakenEvent(ent, args.DamageIncreased, args.DamageDelta, args.Origin, args.Source, args.Weapon);
 
             RaiseMindEvent((mindId, mindComp), ref ev);
         }
@@ -45,4 +45,4 @@ public sealed class ESDamageTakerRelaySystem : ESBaseMindRelay
 /// <param name="DamageDone">The amount of damage done</param>
 /// <param name="Origin">The origin of damage</param>
 [ByRefEvent]
-public readonly record struct ESDamageTakenEvent(EntityUid Body, bool DamageIncreased, DamageSpecifier DamageDone, EntityUid? Origin);
+public readonly record struct ESDamageTakenEvent(EntityUid Body, bool DamageIncreased, DamageSpecifier DamageDone, EntityUid? Origin, EntityUid? Source, EntityUid? Weapon);

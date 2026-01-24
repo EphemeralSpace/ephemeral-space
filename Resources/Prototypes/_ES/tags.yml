@@ -3,10 +3,16 @@
   id: ESAncestor
 
 - type: Tag
+  id: ES357Projectile
+
+- type: Tag
   id: ES357Round
 
 - type: Tag
   id: ES357SpeedLoader
+
+- type: Tag
+  id: ES9mmProjectile
 
 - type: Tag
   id: ES9mmRound
@@ -17,16 +23,12 @@
 - type: Tag
   id: ESComputerTabletop
 
-- type: Tag
-  id: ESElectronicsKeypad
-
-# Used for daredevil objectives
-- type: Tag
-  id: ESEmitter
-
 # Items that can be stored in the display case
 - type: Tag
   id: ESDisplayCaseItem
+
+- type: Tag
+  id: ESElectronicsKeypad
 
 # Used for daredevil objectives
 - type: Tag
@@ -45,6 +47,9 @@
   id: ESHelmetEVASec
 
 - type: Tag
+  id: ESShotgunPellet
+
+- type: Tag
   id: ESSilencer
 
 - type: Tag
@@ -60,14 +65,10 @@
   id: ESSuitEVACaptain
 
 - type: Tag
+  id: ESSpawnerCargo
+
+- type: Tag
   id: ESSuitEVAEngi
 
 - type: Tag
   id: ESSuitEVASec
-
-- type: Tag
-  id: ESThrusterEngineGas
-
-- type: Tag
-  id: ESThrusterEngineIon
-

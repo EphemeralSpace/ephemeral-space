@@ -8,6 +8,7 @@
 
 - type: entity
   parent: ESBaseTroupeRule
+  name: The Crew
   id: ESTroupeRuleCrew
   components:
   - type: ESTroupeRule
@@ -19,6 +20,7 @@
 - type: entity
   parent: ESBaseTroupeRule
   id: ESTroupeRuleTraitor
+  name: The Traitors
   components:
   - type: ESTroupeRule
     troupe: ESTraitor

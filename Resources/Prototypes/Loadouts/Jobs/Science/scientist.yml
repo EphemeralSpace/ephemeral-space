@@ -95,9 +95,7 @@
 - type: loadout
   id: RegularLabCoat
   equipment:
-# ES Start
-    outerClothing: ClothingOuterCoatLabOpened
-# ES End
+    outerClothing: ClothingOuterCoatLab
 
 - type: loadout
   id: ScienceLabCoat
@@ -143,13 +141,6 @@
   id: ScienceWinterBoots
   equipment:
     shoes: ClothingShoesBootsWinterSci
-
-# ES Start
-- type: loadout
-  id: ESScienceShoes
-  equipment:
-    shoes: ClothingShoesChef
-# ES End
 
 # ID
 - type: loadout

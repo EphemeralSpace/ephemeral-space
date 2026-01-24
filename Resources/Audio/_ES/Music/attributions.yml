@@ -1,0 +1,29 @@
+﻿- files: ["hello-1997.ogg", "hello-1997_mono.ogg"]
+  license: "Custom"
+  copyright: "Hello 1997 is created by Jeroen Tel, converted to .ogg by mirrorcult and mono by EmoGarbage"
+  source: "https://modarchive.org/index.php?request=view_by_moduleid&query=46490"
+
+- files: ["title2_mono.ogg"]
+  license: "Custom"
+  copyright: "Originally composed by Jonathan Dunn for RoboCop (Game Boy) published by Ocean Software. Remixed by Eric Shumaker for his video Dilbert 3. As of October 9th, 2008 nobody owns the rights to this song and copyright action has never been taken against anyone using this song in their projects. Mixed to mono by EmoGarbage."
+  source: "https://www.youtube.com/watch?v=4o6_8Unj2mQ"
+
+- files: ["athletic-love.ogg", "athletic-love_mono.ogg"]
+  license: "Custom"
+  copyright: "Originally composed by RRThiel, arranged by John 'Joy' Tay, converted to ogg, shortened and mixed mono by mirrorcult"
+  source: "https://www.youtube.com/watch?v=u7HnOyI6GCQ"
+
+- files: ["surfing-on-a-sine-wave.ogg", "surfing-on-a-sine-wave_mono.ogg"]
+  license: "Custom"
+  copyright: "Originally composed by Fearofdark, converted to ogg, shortened and mixed mono by mirrorcult"
+  source: "https://modarchive.org/index.php?request=view_by_moduleid&query=169104"
+
+- files: ["not-another-comic-bakery-remix.ogg", "not-another-comic-bakery-remix_mono.ogg"]
+  license: "Custom"
+  copyright: "Originally composed by Martin Galway, remixed by Stuart Wilson, converted to ogg, shortened and mixed mono by mirrorcult"
+  source: "https://remix64.com/track/stuart-wilson/not-another-comic-bakery-remix/"
+
+- files: ["radstorm-end.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Created by pigeonbeans/GH@Sadie-silly for Ephemeral Space."
+  source: "https://soundcloud.com/pigeonbeans"

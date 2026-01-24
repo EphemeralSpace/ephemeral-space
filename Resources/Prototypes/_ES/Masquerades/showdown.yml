@@ -1,0 +1,30 @@
+- type: esMasquerade
+  id: Showdown
+  name: Showdown
+  description: is a real showdown, with many more guns than usual
+  weight: 1 # Not that common
+  minPlayers: 8
+  gameRules: []
+  masquerade: !type:MasqueradeRoleSet
+    defaultMask: "ESCrewmember"
+    roles:
+      8: ["ESMarauder(2)", "ESVandal", "ESMercenary", "ESVIP/ESFruitVendor", "ESArmsDealer", "ESInsider", "#Softsafes"] # 0 generic crew, 2 traitors
+      9: ["#Gunners"]
+      10: ["ESInfiltrator"] # 0 generic crew, 3 traitors.
+      11: ["ESArmsDealer"] # Guarantee another arms dealer, this is definitely balanced around an armed crew.
+      12: ["ESAvenger"]
+      13: ["ESMartyr"]
+      14: ["ESEmpath"]
+      15: ["#PowerTraitors"] # 0 generic crew, 4 traitors.
+      16: ["#Firmsafes"]
+      17: ["#Traitors"] # 0 generic crew, 5 traitors.
+      18: ["#FalseTraitors"] # 0 generic crew, 5 traitors.
+      20: ["#Traitors"] # 1 generic crew, 6 traitors.
+      21: ["ESInsider"]
+      22: ["#Gunners"] # 1 generic crew, 6 traitors.
+      24: ["#Jesters(2)"]
+      25: ["#PowerTraitors"] # 1 generic crew, 7 traitors.
+      26: ["ESAvenger"]
+      27: ["#Softsafes"]
+      28: ["ESEmpath"]
+      30: ["#Traitors"] # 2 generic crew, 8 traitors.

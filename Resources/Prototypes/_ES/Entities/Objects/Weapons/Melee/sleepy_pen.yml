@@ -1,28 +1,19 @@
 - type: entity
   id: ESSleepyPen
-  parent: Pen # It is just like normal pen, isn't it?
-  name: pen
+  parent: EmergencyMedipen # Looks like a normal medipen.
   suffix: Sleepy Pen
-  description: A dark ink pen.
+  name: knockout medipen
+  description: A single-dose, non-refillable medipen containing a nasty mix of chems that'll knock out even the toughest of captains. After use, it's indistinguishable from a normal emergency medipen.
   components:
   - type: SolutionContainerManager
     solutions:
-      hypospray:
+      pen:
         maxVol: 15
         reagents:
         - ReagentId: ChloralHydrate
           Quantity: 10
         - ReagentId: MuteToxin
           Quantity: 5
-  - type: ExaminableSolution
-    solution: hypospray
-    heldOnly: false # need to do this for now for conveyance reasons - this *should* signal to the player what the item is for pretty effectively without messing with the "stealth" flavor. ideally, we would support mask-specific examine text later.
-    exactVolume: true
-  - type: Hypospray
-    onlyAffectsMobs: true # we don't want people accidentally using their sedating agent on a beaker and then wasting it, or putting it in a syringe gun or something.
-  - type: UseDelay
-    delay: 0.20
-  - type: StaticPrice
-    price: 75
-  - type: EmitSoundOnUse
-    handle: false # don't want the sound to stop the self-inject from triggering
+  - type: ESDisguiseOnSolutionEmpty
+    solution: pen
+    disguise: EmergencyMedipen

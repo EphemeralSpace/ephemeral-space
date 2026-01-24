@@ -1,0 +1,75 @@
+# This is a seperate prototype so that if the pointlight is ever modifed, it will be modified on all machines.
+# All hyperlathes have the funny light, so we can add that to the base prototype, but the same is not true for all lathe-type machines.
+- type: entity
+  id: ESAutolatheLight
+  abstract: true
+  components:
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 2
+    energy: 2
+    falloff: 40
+    curveFactor: 0.75
+    color: "#99ffff"
+
+- type: entity
+  id: ESAutolathe
+  parent: [BaseLatheLube, ESAutolatheLight]
+  name: autolathe
+  description: It produces items using metal and glass. Has the ability to process blueprints to print new recipes.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/autolathe.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+      cycle: true
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      cycle: true
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: AutolatheMachineCircuitboard
+  - type: MaterialStorage
+    whitelist: &StandardMaterialWhitelist
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    unlitIdleState: unlit
+    unlitRunningState: unlit-building
+    staticPacks:
+    - ESToolsStatic
+    - ESPartsStatic
+    - ESPaperworkStatic
+    - ESCargoStatic
+    - MaterialsStatic
+    - ESBasicChemistryStatic
+    - RollerBedsStatic
+    - ESLightsStatic
+    - ESServiceStatic
+    - ESElectronicsStatic
+    - ESAmmunition
+    - ESFluff
+    - ESTopicalsStatic
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - BlueprintAutolathe
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint

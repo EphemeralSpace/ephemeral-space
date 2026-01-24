@@ -452,3 +452,25 @@ es-names-first-dataset-male-441 = Thrash
 # 2025-12-17
 es-names-first-dataset-male-442 = Dewey
 es-names-first-dataset-male-443 = Aggregor
+# 2026-01-07
+es-names-first-dataset-male-444 = Mats
+es-names-first-dataset-male-445 = Fotis
+es-names-first-dataset-male-446 = Xristos
+es-names-first-dataset-male-447 = Spyridon
+es-names-first-dataset-male-448 = Vasilis
+es-names-first-dataset-male-449 = Ioannis
+es-names-first-dataset-male-450 = Apollon
+es-names-first-dataset-male-451 = Mao
+es-names-first-dataset-male-452 = Ziyan
+es-names-first-dataset-male-453 = Qin
+es-names-first-dataset-male-454 = Qing
+# 2026-01-23
+es-names-first-dataset-male-455 = Geeman
+es-names-first-dataset-male-456 = Caine
+es-names-first-dataset-male-457 = Spike
+es-names-first-dataset-male-458 = Giuseppe
+es-names-first-dataset-male-459 = Ploink
+es-names-first-dataset-male-460 = Havoc
+es-names-first-dataset-male-461 = Herschel
+es-names-first-dataset-male-462 = Spaghetti
+es-names-first-dataset-male-463 = Linguini

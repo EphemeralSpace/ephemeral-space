@@ -24,10 +24,10 @@
     all:
     - id: ESWeaponPistol9mmSilenced
     - id: ESMagazine9mm
-      amount: 2
     - id: ESSleepyPen
       amount: 2
-    - id: EmpGrenade
+    - id: SmokeGrenade
+      amount: 2
 
 # Infiltrator
 - type: entity
@@ -44,9 +44,9 @@
   id: ESTraitorCacheInfiltrator
   table:
     all:
-    - id: ClothingBackpackChameleonFill
+    - id: ESClothingBackpackChameleonFill
     - id: ESEmag
-    - id: SmokeGrenade
+    - id: C4
       amount: 2
 
 # Marauder
@@ -66,11 +66,51 @@
     all:
     - id: ESWeaponRevolver357
     - id: ESSpeedLoader357
-      amount: 2
     - id: KitchenKnife
     - id: ClothingOuterArmorBasic
     - id: ExGrenade
       amount: 2
+
+# Subverter
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheTraitorSubverter
+  suffix: ES, Subverter Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId:  ESTraitorCacheTraitorSubverter
+
+- type: entityTable
+  id: ESTraitorCacheTraitorSubverter
+  table:
+    all:
+    - id: ESSubverterChip
+      amount: 2
+    - id: ESWeaponPistol9mm
+    - id: ESMagazine9mm
+
+# Demolitionist
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheTraitorDemolitionist
+  suffix: ES, Demolitionist Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId:  ESTraitorCacheTraitorDemolitionist
+
+- type: entityTable
+  id: ESTraitorCacheTraitorDemolitionist
+  table:
+    all:
+    - id: C4
+      amount: 3
+    - id: ExGrenade
+      amount: 3
+    - id: ESMicroBombImplanter
 
 # Veteran
 - type: entity
@@ -121,3 +161,72 @@
       - id: ToolboxElectricalFilled
     - tableId: ESMaintLootRare
       rolls: 2
+
+# Insider
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewInsider
+  suffix: ES, Insider Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESCrewCacheInsider
+
+- type: entityTable
+  id: ESCrewCacheInsider
+  table:
+    all:
+    - id: ESBoxFolderFilledInsider
+
+# Arms Dealer
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewArmsDealer
+  suffix: ES, Arms Dealer Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        group:
+        - id: ESWeaponPistol9mm
+          weight: 8
+        - id: ESWeaponPistol9mmSilenced
+          weight: 8
+        - id: ESWeaponRevolver357
+          weight: 8
+        - id: ESWeaponDoubleBarrelShotgun
+          weight: 1
+        rolls: 2
+
+# Fruit Vendor
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewFruitVendor
+  suffix: ES, Fruit Vendor Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        group:
+        - id: FoodBanana
+        - id: FoodCarrot
+        - id: FoodCabbage
+        - id: FoodGarlic
+        - id: FoodLemon
+        - id: FoodLime
+        - id: FoodOrange
+        - id: FoodPineapple
+        - id: FoodPotato
+        - id: FoodTomato
+        - id: FoodEggplant
+        - id: FoodApple
+        - id: FoodCorn
+        - id: FoodOnion
+        - id: FoodMushroom
+        - id: FoodChiliPepper
+        - id: FoodWatermelon
+        - id: FoodGrape
+        - id: FoodPumpkin
+        - id: FoodCherry
+        rolls: 4, 5

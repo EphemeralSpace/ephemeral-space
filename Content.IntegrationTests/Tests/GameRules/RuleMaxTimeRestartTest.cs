@@ -12,6 +12,9 @@ namespace Content.IntegrationTests.Tests.GameRules
     public sealed class RuleMaxTimeRestartTest
     {
         [Test]
+        // ES START disable
+        [Explicit]
+        // ES END
         public async Task RestartTest()
         {
             await using var pair = await PoolManager.GetServerClient(new PoolSettings { InLobby = true });

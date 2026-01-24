@@ -18,23 +18,17 @@
 - type: loadout
   id: AtmosphericTechnicianBackpack
   equipment:
-# ES Start
-    back: ClothingBackpackEngineering
-# ES End
+    back: ClothingBackpackAtmospherics
 
 - type: loadout
   id: AtmosphericTechnicianSatchel
   equipment:
-# ES Start
-    back: ClothingBackpackSatchelEngineering
-# ES End
+    back: ClothingBackpackSatchelAtmospherics
 
 - type: loadout
   id: AtmosphericTechnicianDuffel
   equipment:
-# ES Start
-    back: ClothingBackpackDuffelEngineering
-# ES End
+    back: ClothingBackpackDuffelAtmospherics
 
 # OuterClothing
 - type: loadout

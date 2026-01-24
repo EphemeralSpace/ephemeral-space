@@ -1,0 +1,105 @@
+# General Groups
+## Valid for anyone who is not elderly
+- type: esHairColor
+  id: BaseYoungHair
+  abstract: true
+  maxAge: 60
+
+## Valid for anyone who is not young
+- type: esHairColor
+  id: BaseMatureHair
+  abstract: true
+  minAge: 30
+
+# Human Hair
+- type: esHairColor
+  id: HairBlond
+  parent: BaseYoungHair
+  name: es-hair-color-blond
+  colors:
+  - "#a79369"
+  - "#af9c70"
+  - "#d6b97b"
+  - "#dac38e"
+
+- type: esHairColor
+  id: HairDarkBlond
+  parent: BaseYoungHair
+  name: es-hair-color-dark-blond
+  colors:
+  - "#6b503b"
+  - "#765c45"
+  - "#7f684e"
+  - "#99815d"
+  - "#bba063"
+  - "#9f7f59"
+  - "#9d7a50"
+
+- type: esHairColor
+  id: HairAuburn
+  parent: BaseYoungHair
+  name: es-hair-color-auburn
+  colors:
+  - "#845039"
+  - "#682b1f"
+  - "#7c140f"
+
+- type: esHairColor
+  id: HairRed
+  parent: BaseYoungHair
+  name: es-hair-color-red
+  colors:
+  - "#b64b28"
+  - "#a2502f"
+  - "#aa4e2b"
+
+- type: esHairColor
+  id: HairMediumBrown
+  parent: BaseYoungHair
+  name: es-hair-color-medium-brown
+  weight: 2
+  colors:
+  - "#35261c"
+  - "#4b321f"
+  - "#5c3b24"
+  - "#6d4c35"
+
+- type: esHairColor
+  id: HairDarkBrown
+  name: es-hair-color-dark-brown
+  weight: 2
+  colors:
+  - "#1f1814"
+  - "#291f19"
+  - "#231b15"
+  - "#2e221b"
+  - "#37291e"
+  - "#2e2218"
+
+- type: esHairColor
+  id: HairBlack
+  name: es-hair-color-black
+  weight: 2
+  colors:
+  - "#1c1f21"
+  - "#272a2c"
+  - "#020202"
+
+- type: esHairColor
+  id: HairGray
+  parent: BaseMatureHair
+  name: es-hair-color-gray
+  colors:
+  - "#626262"
+  - "#808080"
+  - "#706c66"
+  - "#312e2c"
+
+- type: esHairColor
+  id: HairWhite
+  parent: BaseMatureHair
+  name: es-hair-color-white
+  colors:
+  - "#aaaaaa"
+  - "#c5c5c5"
+  - "#ededed"

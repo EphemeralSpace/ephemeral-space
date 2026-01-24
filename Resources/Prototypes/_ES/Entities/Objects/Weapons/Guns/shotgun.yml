@@ -14,7 +14,7 @@
     storedOffset: -2,0
     size: Huge
     shape:
-    - 0,0,7,1
+    - 0,0,7,1 # only fits in a duffel
     sprite: _ES/Objects/Weapons/Guns/shotgun_inhands_64x.rsi
   - type: Clothing
     sprite: _ES/Objects/Weapons/Guns/shotgun.rsi
@@ -27,7 +27,7 @@
     soundInsert:
       path: /Audio/_ES/Weapons/Guns/MagIn/shotgun_insert.ogg
   - type: Gun
-    fireRate: 2
+    fireRate: 1.5
     soundGunshot:
       path: /Audio/_ES/Weapons/Guns/Gunshots/shotgun_shot.ogg
     soundEmpty:
@@ -35,7 +35,7 @@
     availableModes:
     - SemiAuto
   - type: GunSpreadModifier
-    spread: 0.6
+    spread: 1.5
 
 - type: entity
   parent: [ESWeaponShotgun, BaseSecurityBartenderContraband]
@@ -67,6 +67,8 @@
       path: /Audio/_ES/Weapons/Guns/Gunshots/doublebarrel_shot.ogg
     soundEmpty:
       path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
+  - type: GunSpreadModifier
+    spread: 1
 
 - type: entity
   parent: ESWeaponDoubleBarrelShotgun

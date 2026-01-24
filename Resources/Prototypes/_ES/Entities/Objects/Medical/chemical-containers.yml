@@ -1,0 +1,83 @@
+﻿- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerBicaridine
+  suffix: ES, Bicaridine
+  components:
+  - type: Label
+    currentLabel: reagent-name-bicaridine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Bicaridine
+          Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerDermaline
+  suffix: ES, Dermaline
+  components:
+  - type: Label
+    currentLabel: reagent-name-dermaline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Dermaline
+          Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerInaprovaline
+  suffix: ES, Inaprovaline
+  components:
+  - type: Label
+    currentLabel: reagent-name-inaprovaline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Inaprovaline
+          Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerTricordrazine
+  suffix: ES, Tricordrazine
+  components:
+  - type: Label
+    currentLabel: reagent-name-tricordrazine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Tricordrazine
+          Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerCryoxadone
+  suffix: ES, Cryoxadone
+  components:
+  - type: Label
+    currentLabel: reagent-name-cryoxadone
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Cryoxadone
+          Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerEpinephrine
+  suffix: ES, Epinephrine
+  components:
+  - type: Label
+    currentLabel: reagent-name-epinephrine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 100

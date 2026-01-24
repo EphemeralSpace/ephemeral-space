@@ -1,8 +1,8 @@
-﻿- files: ["pistol_shot_suppressed.ogg", "taser.ogg"]
+﻿- files: ["pistol_shot_suppressed.ogg", "taser.ogg", "laser.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Taken from tgstation"
   source: "https://github.com/tgstation/tgstation/commit/436ba869ebcd0b60b63973fb7562f447ee655205/"
-  
+
 - files: ["pistol_shot.ogg", "revolver_shot.ogg", "shotgun_shot.ogg", "doublebarrel_shot.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Taken from tgstation, modified by pigeonbeans"

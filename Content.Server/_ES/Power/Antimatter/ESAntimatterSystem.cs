@@ -8,7 +8,6 @@ using Content.Server.Spreader;
 using Content.Shared._ES.Power.Antimatter;
 using Content.Shared._ES.Power.Antimatter.Components;
 using Content.Shared.Atmos;
-using Content.Shared.Chemistry.Components;
 using Content.Shared.Item;
 using Content.Shared.Power.Components;
 using Content.Shared.Repairable;
@@ -18,6 +17,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics;
 using Robust.Shared.Random;
 
 namespace Content.Server._ES.Power.Antimatter;
@@ -151,7 +151,7 @@ public sealed class ESAntimatterSystem : ESSharedAntimatterSystem
     private void OnEntityConsumed(Entity<ESAntimatterComponent> ent, ref EntityConsumedByEventHorizonEvent args)
     {
         // Hack because of dumb singularity code.
-        if (HasComp<SolutionComponent>(args.Entity))
+        if (!HasComp<FixturesComponent>(args.Entity))
             return;
 
         var area = _itemQuery.TryComp(args.entity, out var item)
@@ -220,7 +220,8 @@ public sealed class ESAntimatterSystem : ESSharedAntimatterSystem
             {
                 var toRemove = Math.Min(antimatter.Comp.Mass, comp.RemovalAmount);
                 SetMass(antimatter, antimatter.Comp.Mass - toRemove);
-                _battery.SetCharge((uid, battery), battery.CurrentCharge + toRemove * comp.EnergyPerMass);
+                var currentCharge = _battery.GetCharge((uid, battery));
+                _battery.SetCharge((uid, battery), currentCharge + toRemove * comp.EnergyPerMass);
             }
 
             Appearance.SetData(uid, ESAntimatterConverterVisuals.Draining, _antimatterSet.Count != 0);

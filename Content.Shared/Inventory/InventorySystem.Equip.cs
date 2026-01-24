@@ -472,7 +472,12 @@ public abstract partial class InventorySystem
         // TODO: Inventory needs a hot cleanup hoo boy
         // Check if something else (AKA toggleable) dumped it into a container.
         if (!_containerSystem.IsEntityInContainer(removedItem.Value))
+// ES START
+        {
             _transform.DropNextTo(removedItem.Value, target);
+            _transform.SetLocalRotation(removedItem.Value, Angle.Zero); // fix the rotation to 0
+        }
+// ES END
 
         if (!silent && Resolve(removedItem.Value, ref clothing, false) && clothing.UnequipSound != null)
         {

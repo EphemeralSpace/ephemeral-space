@@ -38,9 +38,11 @@ public sealed class ESTakeDamageFromSourceObjectiveSystem : ESBaseObjectiveSyste
         if (!args.DamageIncreased)
             return;
 
-        if (!_tag.HasTag(args.Body, ent.Comp.SelectedSource))
-            return;
-
-        ObjectivesSys.AdjustObjectiveCounter(ent.Owner, args.DamageDone.GetTotal().Float());
+        if (args.Source.HasValue && _tag.HasTag(args.Source.Value, ent.Comp.SelectedSource) ||
+            args.Origin.HasValue && _tag.HasTag(args.Origin.Value, ent.Comp.SelectedSource) ||
+            args.Weapon.HasValue && _tag.HasTag(args.Weapon.Value, ent.Comp.SelectedSource))
+        {
+            ObjectivesSys.AdjustObjectiveCounter(ent.Owner, args.DamageDone.GetTotal().Float());
+        }
     }
 }

@@ -94,7 +94,9 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
             ShowGuide(entry);
 
             var isRulesEntry = entry.RuleEntry;
-            ReturnContainer.Visible = isRulesEntry;
+// ES START
+            ReturnContainer.Visible = false; // fuck having multiple pages of rules
+// ES END
             HomeButton.OnPressed += _ => ShowGuide(entry);
         }
         else

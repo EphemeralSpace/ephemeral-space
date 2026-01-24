@@ -48,6 +48,15 @@
     sprite: _ES/Clothing/OuterClothing/SpaceSuits/sec_space.rsi
   - type: Clothing
     sprite: _ES/Clothing/OuterClothing/SpaceSuits/sec_space.rsi
+  - type: Armor #Based on armor vest
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
   - type: Tag
     tags:
     - SuitEVA
@@ -65,6 +74,15 @@
     sprite: _ES/Clothing/OuterClothing/SpaceSuits/command_space.rsi
   - type: Clothing
     sprite: _ES/Clothing/OuterClothing/SpaceSuits/command_space.rsi
+  - type: Armor #Based on armor vest
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
   - type: Tag
     tags:
     - SuitEVA

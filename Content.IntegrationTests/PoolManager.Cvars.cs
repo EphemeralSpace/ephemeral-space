@@ -13,7 +13,9 @@ public static partial class PoolManager
     {
         // @formatter:off
         // ES START
-        (ESCVars.ESStationEnabled.Name,       "false"),
+        (ESCVars.ESStationEnabled.Name,          "false"),
+        (CCVars.MonstermosDepressurization.Name, "true"),
+        (CCVars.MonstermosEqualization.Name,     "true"),
         // ES END
         (CCVars.DatabaseSynchronous.Name,     "true"),
         (CCVars.DatabaseSqliteDelay.Name,     "0"),

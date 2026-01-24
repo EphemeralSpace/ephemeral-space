@@ -1,5 +1,17 @@
 - type: entity
   parent: ESBaseMaskObjective
+  id: ESObjectiveResearchTelescience
+  name: Research telescience
+  description: Work with the science team to teleport the station out of the way of the coming radiation storm.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: _ES/Structures/Machines/Telesci/portalgen.rsi
+      state: cube
+  - type: ESTelesciObjective
+
+- type: entity
+  parent: ESBaseMaskObjective
   id: ESObjectiveEatSummonedFruit
   description: Use your ability to manifest delicious fruits and feed them to the people on the station.
   components:
@@ -129,7 +141,6 @@
     - Heat
     - Shock
     - Cold
-    - Caustic
     - Slash
     - Piercing
     - Poison
@@ -152,8 +163,10 @@
   - type: ESTakeDamageFromSourceObjective
     possibleSources:
     - ESGrille
-    - ESEmitter
     - ESAncestor
+    - ES9mmProjectile
+    - ES357Projectile
+    - ESShotgunPellet
   - type: ESCounterObjective
     target: 75
     maxTarget: 150

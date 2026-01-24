@@ -12,6 +12,7 @@
   components:
   - type: ESViewconeOccludable
     inverted: true
+    overrideBaseAlpha: true
   - type: Sprite
     sprite: _ES/Effects/viewcone_effects.rsi
     drawdepth: Effects

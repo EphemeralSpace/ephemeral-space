@@ -9,10 +9,13 @@
   weight: 1
   objectives:
     id: ESObjectiveHoldSummonedGuns
-  components:
-  - type: ActionGrant
-    actions:
-    - ESActionMaskSummonGun
+  mindComponents:
+  - type: ESMaskSummoner
+    examineString: es-summonable-examine-arms-dealer
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewArmsDealer
+      amount: 6
 
 - type: esMask
   id: ESVIP
@@ -33,10 +36,13 @@
   weight: 1
   objectives:
     id: ESObjectiveEatSummonedFruit
-  components:
-  - type: ActionGrant
-    actions:
-    - ESActionMaskSpawnFruit
+  mindComponents:
+  - type: ESMaskSummoner
+    examineString: es-summonable-examine-fruit
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewFruitVendor
+      amount: 4
 
 - type: esMask
   id: ESMercenary
@@ -47,7 +53,8 @@
   weight: 1
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESSpawnerRandomTraitorCache
+    cacheProto:
+      id: ESSpawnerRandomTraitorCache
 
 - type: esMask
   id: ESVeteran
@@ -60,7 +67,15 @@
     id: ESObjectiveKillNonCrew
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheCrewVeteran
+    cacheProto:
+      id: ESCrateCacheCrewVeteran
+
+- type: esMask
+  id: ESCrewmember
+  name: es-mask-crewmember-name
+  troupe: ESCrew
+  description: es-mask-crewmember-desc
+  color: white
 
 - type: esMask
   id: ESEmpath
@@ -138,7 +153,8 @@
   - type: ESMedAlertRadioAnnouncer
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheCrewSurvivalist
+    cacheProto:
+      id: ESCrateCacheCrewSurvivalist
   objectives:
     all:
     - id: ESObjectiveSurvive
@@ -160,8 +176,6 @@
   description: es-mask-vandal-desc
   color: tomato
   weight: 0.2
-  mindComponents:
-  - type: ESCanAlwaysSabotage
   objectives:
     all:
     - pick:
@@ -187,6 +201,26 @@
     all:
     - id: ESObjectiveMartyrBeKilled
 
+- type: esMask
+  id: ESInsider
+  name: es-mask-insider-name
+  troupe: ESCrew
+  description: es-mask-insider-desc
+  color: cornflowerblue
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewInsider
+
+- type: esMask
+  id: ESAvenger
+  name: es-mask-avenger-name
+  troupe: ESCrew
+  description: es-mask-avenger-desc
+  color: peachpuff
+  objectives:
+    id: ESObjectiveAvengerProtectRandom
+
 # Traitor Masks
 - type: esMask
   id: ESBaseTraitor
@@ -205,9 +239,11 @@
   name: es-mask-marauder-name
   description: es-mask-marauder-desc
   color: coral
+  weight: 1.5
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheTraitorMarauder
+    cacheProto:
+      id: ESCrateCacheTraitorMarauder
 
 - type: esMask
   parent: ESBaseTraitor
@@ -217,7 +253,8 @@
   color: hotpink
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheTraitorAssassin
+    cacheProto:
+      id: ESCrateCacheTraitorAssassin
 
 - type: esMask
   parent: ESBaseTraitor
@@ -227,4 +264,37 @@
   color: yellow
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheTraitorInfiltrator
+    cacheProto:
+      id: ESCrateCacheTraitorInfiltrator
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: ESRecruit
+  name: es-mask-recruit-name
+  description: es-mask-recruit-desc
+  color: pink
+  weight: 0
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: ESSubverter
+  name: es-mask-subverter-name
+  description: es-mask-subverter-desc
+  color: gray
+  weight: 0.5
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorSubverter
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: ESDemolitionist
+  name: es-mask-demolitionist-name
+  description: es-mask-demolitionist-desc
+  color: orangered
+  weight: 0.3
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorDemolitionist

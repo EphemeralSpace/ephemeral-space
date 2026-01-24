@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Random;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -27,6 +28,12 @@ public sealed partial class ESProducerComponent : Component
     /// </summary>
     [DataField]
     public List<EntityUid> Characters = new();
+
+    /// <summary>
+    /// Characters which have been taken by players
+    /// </summary>
+    [ViewVariables]
+    public List<EntityUid> UsedCharacters => Characters.Except(UnusedCharacterPool).ToList();
 
     /// <summary>
     /// A pool of characters who have not been taken by players.

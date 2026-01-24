@@ -16,7 +16,9 @@
     quickEquip: false
     slots:
     - Back
-    - suitStorage
+# ES START
+    # - suitStorage
+# ES END
   - type: AmmoCounter
   - type: Gun
     fireRate: 0.75

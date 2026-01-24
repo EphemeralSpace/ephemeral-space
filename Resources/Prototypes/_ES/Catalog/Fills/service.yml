@@ -1,0 +1,19 @@
+- type: entityTable
+  id: ESFillClosetChef
+  table:
+    all:
+    - id: MonkeyCubeBox
+    - id: SprayBottleWater
+    - id: ReagentContainerSugar
+    - id: ReagentContainerFlour
+    - id: DrinkSoyMilkCarton
+    - id: FoodCondimentBottleEnzyme
+    - rolls: 2
+      all:
+      - id: DrinkMilkCarton
+      - id: ReagentContainerFlour
+      - id: BoxMousetrap
+    - rolls: 3
+      all:
+      - id: FoodCondimentPacketSalt
+      - id: FoodCondimentPacketPepper

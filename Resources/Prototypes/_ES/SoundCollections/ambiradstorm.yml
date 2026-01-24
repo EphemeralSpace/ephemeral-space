@@ -1,0 +1,6 @@
+- type: soundCollection
+  id: ESAmbienceRadstorm
+  files:
+  - /Audio/_ES/Ambience/ambiradstorm.ogg
+  - /Audio/_ES/Ambience/ambiradstorm2.ogg
+  - /Audio/_ES/Ambience/ambiradstorm3.ogg

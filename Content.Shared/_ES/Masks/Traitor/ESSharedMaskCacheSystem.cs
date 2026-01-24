@@ -36,10 +36,7 @@ public abstract class ESSharedMaskCacheSystem : EntitySystem
 
     private void OnGetCharacterInfoBlurb(Entity<ESMaskCacheSpawnerComponent> ent, ref ESGetCharacterInfoBlurbEvent args)
     {
-        args.Info.Add(FormattedMessage.FromMarkupOrThrow(Loc.GetString("es-ceiling-cache-location-briefing",
-            ("location", ent.Comp.LocationString),
-            ("x", ent.Comp.Location.X),
-            ("y", ent.Comp.Location.Y))));
+        args.Info.Add(FormattedMessage.FromMarkupOrThrow(ent.Comp.LocationString));
     }
 
     private void OnStartCollide(Entity<ESCeilingCacheComponent> ent, ref StartCollideEvent args)
@@ -49,24 +46,32 @@ public abstract class ESSharedMaskCacheSystem : EntitySystem
             return;
         _alerts.ShowAlert(args.OtherEntity, ent.Comp.CacheAlertProto);
         var comp = EnsureComp<ESCeilingCacheContactingComponent>(args.OtherEntity);
-        comp.Cache = ent;
+        comp.Caches.Add(ent);
+        Dirty(args.OtherEntity, comp);
     }
 
     private void OnEndCollide(Entity<ESCeilingCacheComponent> ent, ref EndCollideEvent args)
     {
-        if (!_mind.TryGetMind(args.OtherEntity, out var mindUid, out _) ||
+        if (!TryComp<ESCeilingCacheContactingComponent>(args.OtherEntity, out var cacheComp) ||
+            !_mind.TryGetMind(args.OtherEntity, out var mindUid, out _) ||
             mindUid != ent.Comp.MindId)
             return;
+
+        cacheComp.Caches.Remove(ent);
+        Dirty(args.OtherEntity, cacheComp);
+        if (cacheComp.Caches.Count > 0) // don't remove it if we're touching multiple caches.
+            return;
+
         _alerts.ClearAlert(args.OtherEntity, ent.Comp.CacheAlertProto);
-        RemComp<ESCeilingCacheContactingComponent>(args.OtherEntity);
+        RemComp(args.OtherEntity, cacheComp);
     }
 
     private void OnRevealCacheAlert(Entity<ESCeilingCacheContactingComponent> ent, ref ESRevealCacheAlertEvent args)
     {
-        if (ent.Comp.DoAfterKey is not null)
+        if (ent.Comp.Caches.FirstOrNull() is not { } cache)
             return;
 
-        if (TerminatingOrDeleted(ent.Comp.Cache))
+        if (TerminatingOrDeleted(cache))
         {
             RemCompDeferred(ent, ent.Comp);
             return;
@@ -77,8 +82,8 @@ public abstract class ESSharedMaskCacheSystem : EntitySystem
             ent.Owner,
             TimeSpan.FromSeconds(3),
             ev,
-            ent.Comp.Cache, // TODO: maybe target something else?
-            ent.Comp.Cache,
+            cache,
+            cache,
             ent.Owner
             )
             {
@@ -93,11 +98,25 @@ public abstract class ESSharedMaskCacheSystem : EntitySystem
         if (args.Cancelled)
             return;
 
+        RevealCache(ent.AsNullable(), args.User);
+    }
+
+    public void RevealCache(Entity<ESCeilingCacheComponent?> ent, EntityUid? user)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
         var pos = Transform(ent).Coordinates;
         var cache = PredictedSpawnAtPosition(ent.Comp.CacheLoot, pos);
         PredictedQueueDel(ent);
-        _popup.PopupPredicted(Loc.GetString("es-ceiling-cache-popup"), cache, args.User);
-        _audio.PlayPredicted(ent.Comp.RevealSound, pos, args.User);
+        _popup.PopupPredicted(Loc.GetString("es-ceiling-cache-popup"), cache, user);
+        _audio.PlayPredicted(ent.Comp.RevealSound, pos, user);
+
+        if (ent.Comp.MindId.HasValue)
+        {
+            var ev = new ESCacheRevealedEvent(cache);
+            RaiseLocalEvent(ent.Comp.MindId.Value, ref ev);
+        }
     }
 }
 
@@ -106,4 +125,7 @@ public sealed partial class ESRevealCacheDoAfterEvent : DoAfterEvent
 {
     public override DoAfterEvent Clone() => this;
 }
+
+[ByRefEvent]
+public readonly record struct ESCacheRevealedEvent(EntityUid Cache);
 

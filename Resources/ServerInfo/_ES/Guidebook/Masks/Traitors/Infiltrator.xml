@@ -1,0 +1,13 @@
+<Document>
+    # Infiltrator
+    As an infiltrator, you're a critical member of the team with a kit meant for breaking and entering.
+    Your cache contains an EMAG, C4, and a bag with a full set of chameleon clothes for quick disguise changes.
+
+    <Box>
+        <GuideEntityEmbed Entity="ESEmag"/>
+        <GuideEntityEmbed Entity="C4"/>
+    </Box>
+
+    Your EMAG can be used to open any airlock or locker, damaging them in the process and bolting open airlocks.
+
+</Document>

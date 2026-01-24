@@ -1,0 +1,24 @@
+﻿- type: entity
+  parent: SmartFridge
+  id: ESSmartFridgeMedical
+  suffix: ES, Medical
+  components:
+  - type: SmartFridge
+    flavorText: smart-fridge-request-chemistry
+  - type: EntityTableContainerFill
+    containers:
+      smart_fridge_inventory:
+        tableId: ESSmartFridgeMedicalFill
+
+- type: entityTable
+  id: ESSmartFridgeMedicalFill
+  table:
+    all:
+    - id: ESLargeBeakerBicaridine
+      amount: 2
+    - id: ESLargeBeakerCryoxadone
+      amount: 2
+    - id: ESLargeBeakerDermaline
+    - id: ESLargeBeakerInaprovaline
+    - id: ESLargeBeakerTricordrazine
+    - id: ESLargeBeakerEpinephrine

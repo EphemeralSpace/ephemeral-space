@@ -24,6 +24,9 @@
       jumpsuit:
       - state: equipped-INNERCLOTHING
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Grey Jumpsuit
 - type: entity
@@ -55,6 +58,9 @@
       - state: equipped-INNERCLOTHING
         color: "#b3b3b3"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Black Jumpsuit
 - type: entity
@@ -86,6 +92,9 @@
       - state: equipped-INNERCLOTHING
         color: "#3f3f3f"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Blue Jumpsuit
 - type: entity
@@ -112,6 +121,7 @@
       - state: inhand-right
         color: "#8cc4ff"
       - state: trinkets-inhand-right
+  - type: ESChameleonClothingWhitelist
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/color.rsi
     clothingVisuals:
@@ -151,6 +161,9 @@
       - state: equipped-INNERCLOTHING
         color: "#3285ba"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Teal Jumpsuit
 - type: entity
@@ -182,6 +195,9 @@
       - state: equipped-INNERCLOTHING
         color: "#77f3b7"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Green Jumpsuit
 - type: entity
@@ -213,6 +229,9 @@
       - state: equipped-INNERCLOTHING
         color: "#9ed63a"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
  # Dark Green Jumpsuit
 - type: entity
@@ -244,6 +263,9 @@
       - state: equipped-INNERCLOTHING
         color: "#007923"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Orange Jumpsuit
 - type: entity
@@ -275,6 +297,9 @@
       - state: equipped-INNERCLOTHING
         color: "#ff8c19"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Pink Jumpsuit
 - type: entity
@@ -306,6 +331,9 @@
       - state: equipped-INNERCLOTHING
         color: "#ffa69b"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Red Jumpsuit
 - type: entity
@@ -337,6 +365,9 @@
       - state: equipped-INNERCLOTHING
         color: "#eb0c07"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Yellow Jumpsuit
 - type: entity
@@ -368,6 +399,9 @@
       - state: equipped-INNERCLOTHING
         color: "#ffe14d"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Purple Jumpsuit
 - type: entity
@@ -399,6 +433,9 @@
       - state: equipped-INNERCLOTHING
         color: "#9f70cc"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Light Brown Jumpsuit
 - type: entity
@@ -430,6 +467,9 @@
       - state: equipped-INNERCLOTHING
         color: "#c59431"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Brown Jumpsuit
 - type: entity
@@ -461,6 +501,9 @@
       - state: equipped-INNERCLOTHING
         color: "#a17229"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Maroon Jumpsuit
 - type: entity
@@ -492,6 +535,9 @@
       - state: equipped-INNERCLOTHING
         color: "#cc295f"
       - state: trinkets-equipped-INNERCLOTHING
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 # Rainbow Jumpsuit
 - type: entity
@@ -504,3 +550,6 @@
     sprite: Clothing/Uniforms/Jumpsuit/rainbow.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/rainbow.rsi
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END

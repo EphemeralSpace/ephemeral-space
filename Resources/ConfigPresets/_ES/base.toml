@@ -6,13 +6,14 @@
 [audio]
 attenuation = 4 # inversedistanceclamped 1 << 2, see audioparams.cs
 z_offset = -2
+lobby_music_collection = "ESLobbyMusic"
 
 [ambience]
 range = 10 # APCs
 
 [game]
 map_pool = "ESMapPool"
-defaultpreset = "ESTraitors"
+defaultpreset = "ESMasqueradeManaged"
 fallbackpreset = "ESTraitors,ESExtended"
 role_timers = false
 
@@ -22,6 +23,9 @@ crawling = false
 mob_pushing = true
 penetration_cap = 0.35
 push_mass_cap = 1.2
+
+[looc]
+enabled = false
 
 # LINDAfy
 [atmos]
@@ -35,3 +39,15 @@ maximum_width = 15
 # No gridfill
 [shuttle]
 grid_fill = false
+arrivals_planet = false
+
+[procgen]
+preload = false
+
+# Tips
+[tips]
+dataset = "ESTips"
+login_dataset = "ESTips"
+
+[server]
+default_guide = "ESNewPlayerES"

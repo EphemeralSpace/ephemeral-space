@@ -1,0 +1,17 @@
+- type: esMasquerade
+  id: RandomTraitors
+  name: Random (Traitors)
+  description: is a truly randomized traitorous experience
+  weight: 1
+  minPlayers: 1
+  gameRules: []
+  masquerade: !type:MasqueradeRoleSet
+    defaultMask: "#AllCrew" # Everyone besides the traitors gets random crew masks.
+    roles:
+      1: [] # Greenshift.
+      4: ["#AllTraitors"]
+      6: ["#AllTraitors"]
+      13: ["#AllTraitors"]
+      19: ["#AllTraitors"]
+      25: ["#AllTraitors"]
+      31: ["#AllTraitors"]

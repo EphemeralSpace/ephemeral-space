@@ -48,7 +48,13 @@ public sealed partial class ESVoteComponent : Component
     /// How the result is selected
     /// </summary>
     [DataField, AutoNetworkedField]
-    public ResultStrategy Strategy = ResultStrategy.HighestValue;
+    public ResultStrategy Strategy = ResultStrategy.WeightedPick;
+
+    /// <summary>
+    /// If true, voters can select multiple options.
+    /// </summary>
+    [DataField]
+    public bool MultiVote = true;
 
     /// <summary>
     /// If false, voters will not be able to see how many votes they have.
@@ -76,7 +82,7 @@ public record struct ESGetVoteOptionsEvent()
     /// <summary>
     /// The options for voting.
     /// </summary>
-    public readonly List<ESVoteOption> Options = new();
+    public readonly HashSet<ESVoteOption> Options = new();
 }
 
 /// <summary>

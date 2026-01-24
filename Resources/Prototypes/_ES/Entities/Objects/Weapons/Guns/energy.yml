@@ -26,12 +26,14 @@
   - type: Clothing
     sprite: _ES/Objects/Weapons/Guns/laser_gun.rsi
   - type: Gun
+    soundGunshot:
+      path: /Audio/_ES/Weapons/Guns/Gunshots/laser.ogg
     soundEmpty:
       path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    projectileSpeed: 20
+    projectileSpeed: 22.5
   - type: BatteryAmmoProvider
     proto: ESEnergyBolt
     fireCost: 70
@@ -69,7 +71,7 @@
       path: /Audio/_ES/Weapons/Guns/Gunshots/taser.ogg
     soundEmpty:
       path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
-    projectileSpeed: 20
+    projectileSpeed: 22.5
   - type: BatteryAmmoProvider
     proto: ESTaserBolt
     fireCost: 200
@@ -126,16 +128,17 @@
     selectedMode: Burst
     availableModes:
     - Burst
-    shotsPerBurst: 2
-    projectileSpeed: 20
+    shotsPerBurst: 3
+    projectileSpeed: 22.5
+    fireRate: 3
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
       path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
   - type: BatteryAmmoProvider
     proto: ESEnergyBoltCaptain
-    fireCost: 70
-  - type: PredictedBatterySelfRecharger
+    fireCost: 48
+  - type: BatterySelfRecharger
     autoRechargeRate: 5
   - type: StaticPrice
     price: 420

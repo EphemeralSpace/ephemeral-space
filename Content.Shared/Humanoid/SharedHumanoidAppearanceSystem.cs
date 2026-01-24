@@ -20,6 +20,11 @@ using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
+// ES START
+using Content.Shared._ES.Auditions;
+using Content.Shared.IdentityManagement.Components;
+using Robust.Shared.ColorNaming;
+// ES END
 
 namespace Content.Shared.Humanoid;
 
@@ -41,6 +46,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly GrammarSystem _grammarSystem = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
+// ES START
+    [Dependency] private readonly ESCluesSystem _clues = default!;
+// ES END
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
 
@@ -112,7 +120,53 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var species = GetSpeciesRepresentation(component.Species).ToLower();
         var age = GetAgeRepresentation(component.Species, component.Age);
 
-        args.PushText(Loc.GetString("humanoid-appearance-component-examine", ("user", identity), ("age", age), ("species", species)));
+// ES START
+        using (args.PushGroup(nameof(HumanoidAppearanceComponent)))
+        {
+            args.PushText(Loc.GetString("humanoid-appearance-component-examine",
+                ("user", identity),
+                ("age", age),
+                ("species", species)));
+
+            if (!component.HiddenLayers.ContainsKey(HumanoidVisualLayers.Hair))
+            {
+                if (!component.MarkingSet.TryGetCategory(MarkingCategories.Hair, out var markings) || markings.Count == 0)
+                {
+                    args.PushMarkup(Loc.GetString("es-appearance-examine-hair-bald",
+                        ("user", identity)));
+                }
+                else
+                {
+                    var color = markings.First().MarkingColors.First();
+                    var hairColor = _clues.GetHairColorString(color);
+
+                    args.PushMarkup(Loc.GetString("es-appearance-examine-hair",
+                        ("user", identity),
+                        ("color", color),
+                        ("colorStr", hairColor)));
+                }
+            }
+            else
+            {
+                args.PushMarkup(Loc.GetString("es-appearance-examine-hair-hidden",
+                    ("user", identity)));
+            }
+
+            if (!_identity.HasIdentityBlockerCoverage(uid, IdentityBlockerCoverage.EYES))
+            {
+                var eyeColor = ColorNaming.Describe(component.EyeColor, Loc);
+                args.PushMarkup(Loc.GetString("es-appearance-examine-eyes",
+                    ("user", identity),
+                    ("colorStr", eyeColor),
+                    ("color", component.EyeColor)));
+            }
+            else
+            {
+                args.PushMarkup(Loc.GetString("es-appearance-examine-eyes-hidden",
+                    ("user", identity)));
+            }
+        }
+// ES END
     }
 
     /// <summary>

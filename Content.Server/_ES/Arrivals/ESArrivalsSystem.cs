@@ -52,6 +52,7 @@ public sealed class ESArrivalsSystem : EntitySystem
 
         SubscribeLocalEvent<ESArrivalsShuttleComponent, FTLTagEvent>(OnShuttleTag);
         SubscribeLocalEvent<ESArrivalsShuttleComponent, FTLStartedEvent>(OnFTLStarted);
+        SubscribeLocalEvent<ESArrivalsShuttleComponent, FTLCompletedEvent>(OnFTLCompleted);
 
         SubscribeLocalEvent<PlayerSpawningEvent>(HandlePlayerSpawning, before: [typeof(SpawnPointSystem)]);
 
@@ -148,6 +149,11 @@ public sealed class ESArrivalsSystem : EntitySystem
         passenger.Station = ev.Station.Value;
     }
 
+    private void OnFTLCompleted(Entity<ESArrivalsShuttleComponent> ent, ref FTLCompletedEvent args)
+    {
+        _gameTicker.AnnounceRound();
+    }
+
     private void SetupShuttle(Entity<ESStationArrivalsComponent> ent)
     {
         if (ent.Comp.ShuttleUid is not null)
@@ -179,6 +185,8 @@ public sealed class ESArrivalsSystem : EntitySystem
         EnsureComp<PreventPilotComponent>(shuttle.Value);
 
         FlyToStation((shuttle.Value, arrivalsComp));
+
+        _station.AddGridToStation(ent, shuttle.Value);
 
         _map.DeleteMap(mapId);
     }

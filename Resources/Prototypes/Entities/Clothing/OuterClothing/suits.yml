@@ -76,6 +76,9 @@
   - type: HideLayerClothing
     slots:
     - Tail
+# ES START
+  - type: ESChameleonClothingWhitelist
+# ES END
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -189,6 +192,8 @@
     noPowerPopup: ninja-no-power
   # core ninja suit stuff
   - type: NinjaSuit
+  - type: EmpResistance
+    strengthMultiplier: 0
   - type: UseDelay
     delay: 5 # disable time
   - type: PowerCellSlot

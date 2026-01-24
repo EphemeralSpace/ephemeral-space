@@ -1,0 +1,42 @@
+- type: job
+  id: ESDetective
+  name: ESjob-name-detective
+  description: ESjob-description-detective
+  playTimeTracker: ESJobDetective
+  startingGear: ESDetectiveGear
+  icon: "JobIconDetective"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Detective
+  - Cryogenics
+  - External
+
+- type: startingGear
+  id: ESDetectiveGear
+  equipment:
+    shoes: ClothingShoesColorBrown
+    eyes: ClothingEyesGlassesSecurity
+    id: DetectivePDA
+    gloves: ClothingHandsGlovesForensic
+    ears: ClothingHeadsetSecurity
+    head: ClothingHeadHatFedoraBrown
+    neck: ClothingNeckTieDet
+    belt: ClothingBeltHolster
+    jumpsuit: ClothingUniformJumpsuitDetective
+    outerClothing: ClothingOuterCoatDetectiveLoadout
+    back: ClothingBackpackSecurity
+  storage:
+    back:
+    - ESBoxSurvival
+    - Flash
+    - ForensicPad
+    - ForensicScanner
+
+- type: chameleonOutfit
+  id: ESDetective
+  job: ESDetective
+  hidden: false

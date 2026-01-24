@@ -189,15 +189,18 @@ public sealed class NewsSystem : SharedNewsSystem
         }
     }
 
+    // ES EDITS: Add an option to not enforce body limits, minor cleanup.
     /// <summary>
     /// Set the alert level based on the station's entity ID.
     /// </summary>
-    /// <param name="uid">Entity on the station to which news will be added.</param>
+    /// <param name="uid">Entity on the station, or station, to which news will be added.</param>
     /// <param name="title">Title of the news article.</param>
     /// <param name="content">Content of the news article.</param>
+    /// <param name="article">The resulting article.</param>
     /// <param name="author">Author of the news article.</param>
     /// <param name="actor">Entity which caused the news article to publish. Used for admin logs.</param>
-    public bool TryAddNews(EntityUid uid, string title, string content, [NotNullWhen(true)] out NewsArticle? article, string? author = null, EntityUid? actor = null)
+    /// <param name="enforceLimits">Whether name and content length limits should be enforced by this method.</param>
+    public bool TryAddNews(EntityUid uid, string title, string content, [NotNullWhen(true)] out NewsArticle? article, string? author = null, EntityUid? actor = null, bool enforceLimits = true)
     {
         if (!TryGetArticles(uid, out var articles))
         {
@@ -205,10 +208,16 @@ public sealed class NewsSystem : SharedNewsSystem
             return false;
         }
 
+        if (enforceLimits)
+        {
+            title = title.Length <= MaxTitleLength ? title : $"{title[..MaxTitleLength]}...";
+            content = content.Length <= MaxContentLength ? content : $"{content[..MaxContentLength]}...";
+        }
+
         article = new NewsArticle
         {
-            Title = title.Length <= MaxTitleLength ? title : $"{title[..MaxTitleLength]}...",
-            Content = content.Length <= MaxContentLength ? content : $"{content[..MaxContentLength]}...",
+            Title = title,
+            Content = content,
             Author = author,
             ShareTime = _ticker.RoundDuration()
         };
@@ -245,6 +254,7 @@ public sealed class NewsSystem : SharedNewsSystem
 
         return true;
     }
+    // END ES EDITS
 
     private async void AddNewsSendWebhook(NewsArticle article)
     {

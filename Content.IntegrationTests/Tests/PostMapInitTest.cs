@@ -42,9 +42,9 @@ namespace Content.IntegrationTests.Tests
         {
 // ES START
             "/Maps/_ES/estestship_grid.yml",
+            // "/Maps/centcomm.yml",
+            // AdminTestArenaSystem.ArenaMapPath
 // ES END
-            "/Maps/centcomm.yml",
-            AdminTestArenaSystem.ArenaMapPath
         };
 
         /// <summary>
@@ -169,7 +169,9 @@ namespace Content.IntegrationTests.Tests
             var cfg = server.ResolveDependency<IConfigurationManager>();
             Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
-            var shuttleFolder = new ResPath("/Maps/Shuttles");
+            // ES START
+            var shuttleFolder = new ResPath("/Maps/_ES/Shuttles");
+            // ES END
             var shuttles = resMan
                 .ContentFindFiles(shuttleFolder)
                 .Where(filePath =>
@@ -212,7 +214,9 @@ namespace Content.IntegrationTests.Tests
             var protoManager = server.ResolveDependency<IPrototypeManager>();
             var loader = server.System<MapLoaderSystem>();
 
-            var mapFolder = new ResPath("/Maps");
+            // ES START
+            var mapFolder = new ResPath("/Maps/_ES");
+            // ES END
             var maps = resourceManager
                 .ContentFindFiles(mapFolder)
                 .Where(filePath => filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
@@ -550,7 +554,9 @@ namespace Content.IntegrationTests.Tests
 
             var gameMaps = protoManager.EnumeratePrototypes<GameMapPrototype>().Select(o => o.MapPath).ToHashSet();
 
-            var mapFolder = new ResPath("/Maps");
+            // ES START
+            var mapFolder = new ResPath("/Maps/_ES");
+            // ES END
             var maps = resourceManager
                 .ContentFindFiles(mapFolder)
                 .Where(filePath => filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))

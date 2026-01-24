@@ -1386,6 +1386,10 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsExternal ]
+# ES START
+  - type: ApcPowerReceiver
+    powerLoad: 0 # no power draw so they are always openable and can bolt roundstart
+# ES END
 
 - type: entity
   parent: AirlockGlassShuttle

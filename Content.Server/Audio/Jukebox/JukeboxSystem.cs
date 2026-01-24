@@ -98,6 +98,11 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxSelected(EntityUid uid, JukeboxComponent component, JukeboxSelectedMessage args)
     {
+        // ES START
+        if (_protoManager.TryIndex(args.SongId, out var p) && p.Hidden)
+            return;
+        // ES END
+
         if (!Audio.IsPlaying(component.AudioStream))
         {
             component.SelectedSongId = args.SongId;

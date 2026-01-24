@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "Coroner exported from ingame sprites at commit 65e1f3a7a036b94d9d484fe128537e3136881923",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "coroner"
+        }
+    ]
+}

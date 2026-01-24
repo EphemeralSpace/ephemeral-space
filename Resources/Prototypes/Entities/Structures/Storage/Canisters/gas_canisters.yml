@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: BaseStructureDynamic
+  parent: [ BaseStructureDynamic, BasePaperLabelableVisualized ]
   id: GasCanister
   name: gas canister
   description: A canister that can contain any type of gas. It can be attached to connector ports using a wrench.
@@ -16,6 +16,9 @@
       noRot: true
       layers:
         - state: grey
+        - state: paper
+          visible: false
+          map: [ "enum.PaperLabelVisuals.Layer" ]
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -27,21 +30,38 @@
           tankInserted:
             False: { state: can-open, visible: false }
             True: { state: can-open, visible: true }
-        enum.LockVisuals.Locked:
-          locked:
-            False: { state: unlocked, shader: "unshaded" }
-            True: { state: locked, shader: "unshaded" }
+# ES Start
+#        enum.LockVisuals.Locked:
+#          locked:
+#            False: { state: unlocked, shader: "unshaded" }
+#            True: { state: locked, shader: "unshaded" }
+# ES End
         enum.GasCanisterVisuals.PressureState:
           pressureLight:
             0: { state: can-o0, shader: "unshaded" }
             1: { state: can-o1, shader: "unshaded" }
             2: { state: can-o2, shader: "unshaded" }
             3: { state: can-o3, shader: "unshaded" }
+        enum.PaperLabelVisuals.HasLabel:
+          enum.PaperLabelVisuals.Layer:
+            True: { visible: true }
+            False: { visible: false }
+        enum.StorageVisuals.Open:
+          enum.PaperLabelVisuals.Layer:
+            True: { visible: false }
+        enum.PaperLabelVisuals.LabelType:
+          enum.PaperLabelVisuals.Layer:
+            Paper: { state: paper }
+            Bounty: { state: bounty }
+            CaptainsPaper: { state: captains_paper }
+            Invoice: { state: invoice }
     - type: ActivatableUI
       key: enum.GasCanisterUiKey.Key
-    - type: UIRequiresLock
-      userInterfaceKeys:
-      - enum.GasCanisterUiKey.Key
+# ES Start
+#    - type: UIRequiresLock
+#      userInterfaceKeys:
+#      - enum.GasCanisterUiKey.Key
+# ES End
     - type: UserInterface
       interfaces:
         enum.GasCanisterUiKey.Key:
@@ -91,6 +111,7 @@
     - type: ContainerContainer
       containers:
         tank_slot: !type:ContainerSlot {}
+        paper_label: !type:ContainerSlot
     - type: NodeContainer
       nodes:
         port:
@@ -98,7 +119,6 @@
           nodeGroupID: Pipe
           rotationsEnabled: false
           volume: 1
-    - type: ItemSlots
     - type: GasPortable
     - type: GasCanister
       gasTankSlot:
@@ -109,10 +129,12 @@
             - GasTank
     - type: StaticPrice
       price: 200
-    - type: AccessReader
-      access: [["Atmospherics"], ["Engineering"], ["Research"]]
-    - type: Lock
-      locked: false
+# ES Start
+#    - type: AccessReader
+#      access: [["Atmospherics"], ["Engineering"], ["Research"]]
+#    - type: Lock
+#      locked: false
+# ES End
     - type: GuideHelp
       guides:
       - GasCanisters
@@ -248,8 +270,10 @@
       moles:
         Oxygen: 18710.71051 # oxygen
       temperature: 72
-  - type: AccessReader
-    access: [["Atmospherics"]]
+# ES Start
+#  - type: AccessReader
+#    access: [["Atmospherics"]]
+# ES End
 
 - type: entity
   parent: GasCanister
@@ -399,8 +423,10 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
         - !type:DumpCanisterBehavior
-    - type: Lock
-      locked: true
+# ES Start
+#    - type: Lock
+#      locked: true
+# ES End
 
 - type: entity
   parent: GasCanister
@@ -440,8 +466,10 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
         - !type:DumpCanisterBehavior
-    - type: Lock
-      locked: true
+# ES Start
+#    - type: Lock
+#      locked: true
+# ES End
 
 - type: entity
   parent: GasCanister
@@ -520,8 +548,10 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
         - !type:DumpCanisterBehavior
-    - type: Lock
-      locked: true
+# ES Start
+#    - type: Lock
+#      locked: true
+# ES End
 
 - type: entity
   parent: GasCanister
@@ -561,8 +591,10 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
         - !type:DumpCanisterBehavior
-    - type: Lock
-      locked: true
+# ES Start
+#    - type: Lock
+#      locked: true
+# ES End
 
 - type: entity
   parent: GasCanister
@@ -602,8 +634,10 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
       - !type:DumpCanisterBehavior
-  - type: Lock
-    locked: true
+# ES Start
+#    - type: Lock
+#      locked: true
+# ES End
 
 # Broke Entities
 

@@ -19,6 +19,9 @@
     damage:
       types:
         Piercing: 18
+  - type: Tag
+    tags:
+    - ES9mmProjectile
 
 - type: entity
   parent: ESBaseBullet
@@ -30,6 +33,9 @@
     damage:
       types:
         Piercing: 40
+  - type: Tag
+    tags:
+    - ES357Projectile
 
 # Shotgun bullets
 - type: entity
@@ -45,6 +51,9 @@
     damage:
       types:
         Piercing: 10
+  - type: Tag
+    tags:
+    - ESShotgunPellet
 
 - type: entity
   id: ESPelletShotgunSpread
@@ -55,6 +64,9 @@
     proto: ESPelletShotgun
     count: 6
     spread: 15
+  - type: Tag
+    tags:
+    - ESShotgunPellet
 
 - type: entity
   id: ESPelletShotgunSlug

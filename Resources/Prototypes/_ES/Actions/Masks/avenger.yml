@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionMaskAvengerSense
+  name: Sense Distance
+  description: Detect how far you are from your target.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/masks/avenger.rsi
+      state: icon
+    useDelay: 15
+  - type: InstantAction
+    event: !type:ESSenseTargetDistanceActionEvent
+      objectiveWhitelist:
+        components:
+        - ESDirectKillTargetObjective

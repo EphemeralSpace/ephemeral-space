@@ -152,7 +152,7 @@
 
     - id: DrinkBeerBottleFull
     - id: DrinkHotCoffee
-    - id: StrangePill
+    - id: ESStrangePill
 
     - id: BodyBagFolded
     - id: FireExtinguisher
@@ -299,6 +299,8 @@
     - id: SpectralLocator
     - id: d20Dice
     - id: Wristwatch
+
+    - id: WeaponPistolCHIMP
 
 - type: entityTable
   id: ESMaintLootRare

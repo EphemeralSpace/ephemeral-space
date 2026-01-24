@@ -39,17 +39,3 @@
   name: PigeonBeans - Sunset
   path:
     path: /Audio/Jukebox/sunset.ogg
-
-# ES START
-- type: jukebox
-  id: ESHello1997
-  name: Jeroen Tel - Hello 1997
-  path:
-    path: /Audio/_ES/Jukebox/hello-1997.ogg
-
-- type: jukebox
-  id: ESRobocop
-  name: Chef Boyardee - Robocop
-  path:
-    path: /Audio/_ES/Jukebox/title2.ogg
-# ES END

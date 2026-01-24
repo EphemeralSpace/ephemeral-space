@@ -82,4 +82,13 @@ public sealed partial class EventHorizonComponent : Component
     public TimeSpan NextConsumeWaveTime;
 
     #endregion Update Timing
+
+    //ES Start
+    /// <summary>
+    /// If this event horizon can consume alive mobs.
+    /// </summary>
+    [DataField]
+    public bool consumeAliveMobs = true;
+    //ES End
+
 }

@@ -108,6 +108,14 @@ public sealed partial class ImplanterComponent : Component
     public EntProtoId? DeimplantChosen = null;
 
     public bool UiUpdateNeeded;
+
+    // ES START
+    /// <summary>
+    /// Whether to delete the implanter once an implant is successful.
+    /// </summary>
+    [DataField]
+    public bool DeleteImplanterOnImplant = false;
+    // ES END
 }
 
 [Serializable, NetSerializable]
