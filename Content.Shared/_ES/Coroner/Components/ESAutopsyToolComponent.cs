@@ -13,7 +13,7 @@ namespace Content.Shared._ES.Coroner.Components;
 public sealed partial class ESAutopsyToolComponent : Component
 {
     [DataField]
-    public TimeSpan AutopsyTime = TimeSpan.FromSeconds(5); // TODO: testing value
+    public TimeSpan AutopsyTime = TimeSpan.FromSeconds(30);
 
     [DataField]
     public EntProtoId ReportPrototype = "Paper";
