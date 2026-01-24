@@ -610,6 +610,8 @@ namespace Content.Server.Ghost
                 _adminLog.Add(LogType.Mind, $"{ToPrettyString(playerEntity.Value):player} ghosted{(!canReturn ? " (non-returnable)" : "")}");
 
 // ES START
+            mind.TimeOfDeath = _gameTiming.CurTime;
+
             if (_player.TryGetSessionById(mind.UserId, out var player))
             {
                 // Handle sending people back to the theater.

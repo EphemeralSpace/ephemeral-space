@@ -5,6 +5,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Paper;
+using Content.Shared.Popups;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
 
@@ -17,6 +18,7 @@ public abstract class ESSharedCoronerSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -40,6 +42,8 @@ public abstract class ESSharedCoronerSystem : EntitySystem
 
         if (!CanUseCoronerTool(ent.AsNullable(), args.User, target))
             return;
+
+        _popup.PopupClient(Loc.GetString("es-coroner-report-complete-popup"), target, args.User, PopupType.Medium);
 
         // Bitch out while predicting because we can't really do most of this on the client.
         if (_net.IsClient)
@@ -100,6 +104,7 @@ public abstract class ESSharedCoronerSystem : EntitySystem
             DuplicateCondition = DuplicateConditions.SameEvent,
             BreakOnMove = true,
             BreakOnDamage = true,
+            NeedHand = true,
         });
     }
 
