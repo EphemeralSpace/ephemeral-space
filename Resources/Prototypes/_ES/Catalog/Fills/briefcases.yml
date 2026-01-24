@@ -7,7 +7,7 @@
     containers:
       storagebase:
         all:
-        - id: Scalpel
+        - id: ESScalpelAutopsy
         - id: Pen
         - id: BoxFolderYellowEmpty
         - id: Paper

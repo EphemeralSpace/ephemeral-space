@@ -159,7 +159,7 @@
   id: ESLockerFillCoroner
   table:
     all:
-    - id: Scalpel
+    - id: ESScalpelAutopsy
     - id: BoxFolderYellow
     - id: HandLabeler
     - id: BoxBodyBag
