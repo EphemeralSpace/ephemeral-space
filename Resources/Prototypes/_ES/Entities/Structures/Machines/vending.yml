@@ -136,6 +136,7 @@
     access: [["Engineering"]]
   - type: PointLight
     color: "#b89e2a"
+  - type: ESAmbientMusicMarkerEngineering
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -166,6 +167,7 @@
     pack: YouToolInventory
   - type: PointLight
     color: "#d4ab33"
+  - type: ESAmbientMusicMarkerEngineering
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -332,6 +334,7 @@
   - type: GuideHelp
     guides:
     - MedicalDoctor
+  - type: ESAmbientMusicMarkerMedical
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -350,6 +353,7 @@
     guides:
     - Chemicals
     - Chemist
+  - type: ESAmbientMusicMarkerMedical
 
 - type: entity
   parent: ESBaseVendingMachine

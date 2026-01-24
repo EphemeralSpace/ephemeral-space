@@ -227,6 +227,7 @@
   components:
   - type: ESCargoRequestConsole
     defaultConsoleId: department-Engineering
+  - type: ESAmbientMusicMarkerEngineering
 
 - type: entity
   parent: ESComputerSupplyRequest
@@ -235,6 +236,7 @@
   components:
   - type: ESCargoRequestConsole
     defaultConsoleId: department-Medical
+  - type: ESAmbientMusicMarkerMedical
 
 - type: entity
   parent: ESComputerSupplyRequest
