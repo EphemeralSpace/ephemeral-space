@@ -1,0 +1,18 @@
+- type: entity
+  parent: IDCardStandard
+  id: ESCoronerCard
+  name: coroner ID card
+  suffix: ES
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: stripe_top
+      color: &color-medical-top "#68aed6"
+    - state: stripe_bottom
+      color: &color-medical-bottom "#325f7a"
+    - sprite: &icon-rsi _ES/Interface/Misc/ES_job_icons.rsi
+      offset: &icon-offset -0.09375, 0.0625 #3 pixels left, 2 pixels up
+      state: coroner
+  - type: PresetIdCard
+    job: ESCoroner

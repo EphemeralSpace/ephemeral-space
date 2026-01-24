@@ -219,6 +219,20 @@
       - state: green
       - state: chemist
 
+- type: entity
+  id: ESSpawnPointCoroner
+  parent: SpawnPointJobBase
+  name: coroner
+  suffix: ES
+  components:
+  - type: SpawnPoint
+    job_id: ESCoroner
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _ES/Markers/job.rsi
+        state: coroner
+
 # Science
 
 - type: entity

@@ -96,7 +96,7 @@
       prob: 0.15
     - id: ClothingNeckTieDet
     - id: ClothingOuterVestDetective
-    - id: ClothingOuterCoatDetectiveLoadout
+    - id: ESClothingOuterCoatDetective
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
     - id: ForensicScanner
