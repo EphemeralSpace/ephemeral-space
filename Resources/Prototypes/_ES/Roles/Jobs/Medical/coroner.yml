@@ -15,7 +15,7 @@
   id: ESCoronerGear
   equipment:
     shoes: ClothingShoesColorBlack
-    id: MedicalPDA
+    id: ESCoronerPDA
     gloves: ClothingHandsGlovesColorBlue
     head: ESClothingHeadHatCoroner
     ears: ClothingHeadsetMedical
