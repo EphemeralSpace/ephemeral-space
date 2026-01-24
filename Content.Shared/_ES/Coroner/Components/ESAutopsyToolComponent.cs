@@ -6,21 +6,21 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._ES.Coroner.Components;
 
 /// <summary>
-/// A tool usable by <see cref="ESCoronerUserComponent"/> that gives information about dead bodies.
+/// A tool usable by <see cref="ESAutopsyUserComponent"/> that gives information about dead bodies.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 [Access(typeof(ESSharedCoronerSystem))]
-public sealed partial class ESCoronerToolComponent : Component
+public sealed partial class ESAutopsyToolComponent : Component
 {
     [DataField]
-    public TimeSpan AnalyzeTime = TimeSpan.FromSeconds(5); // TODO: testing value
+    public TimeSpan AutopsyTime = TimeSpan.FromSeconds(5); // TODO: testing value
 
     [DataField]
     public EntProtoId ReportPrototype = "Paper";
 }
 
 [Serializable, NetSerializable]
-public sealed partial class ESCoronerAnalyzeDoAfterEvent : DoAfterEvent
+public sealed partial class ESAutopsyDoAfterEvent : DoAfterEvent
 {
     public override DoAfterEvent Clone()
     {
