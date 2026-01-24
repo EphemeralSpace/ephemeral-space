@@ -14,7 +14,7 @@
   disabled: false
   sound:
     params:
-      volume: -6
+      volume: -8
     collection: AmbienceEngineering
   rules: ESNearEngineering
   priority: 3

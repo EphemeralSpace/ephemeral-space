@@ -1,7 +1,7 @@
 - type: rules
   id: ESNearEngineering
   rules:
-  - !type:NearbyAccessRule
+  - !type:NearbyComponentsRule
     components:
     - type: ESAmbientMusicMarkerEngineering
     count: 3

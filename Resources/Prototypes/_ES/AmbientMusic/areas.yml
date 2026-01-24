@@ -3,7 +3,7 @@
   disabled: false
   sound:
     params:
-      volume: -2
+      volume: -3
     collection: AmbienceSpooky
   rules: NearMorgue
   priority: 4
@@ -13,7 +13,7 @@
   disabled: false
   sound:
     params:
-      volume: -4
+      volume: -6
     collection: AmbienceMaintenance
   rules: NearMaintenance
   priority: 2

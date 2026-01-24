@@ -142,6 +142,7 @@
     color: "#1f8c28"
   - type: Computer
     board: MedicalRecordsComputerCircuitboard
+  - type: ESAmbientMusicMarkerMedical
 
 - type: entity
   parent: ESBaseTabletopComputerAiAccess
@@ -238,6 +239,7 @@
     receiveFrequencyId: CrewMonitor
   - type: WirelessNetworkConnection
     range: 1200
+  - type: ESAmbientMusicMarkerMedical
 
 - type: entity
   parent: ESBaseTabletopComputerAiAccess
@@ -429,6 +431,7 @@
   components:
   - type: ESCargoRequestConsole
     defaultConsoleId: department-Engineering
+  - type: ESAmbientMusicMarkerEngineering
 
 - type: entity
   parent: ESComputerSupplyRequestTabletop
@@ -437,6 +440,7 @@
   components:
   - type: ESCargoRequestConsole
     defaultConsoleId: department-Medical
+  - type: ESAmbientMusicMarkerMedical
 
 - type: entity
   parent: ESComputerSupplyRequestTabletop
