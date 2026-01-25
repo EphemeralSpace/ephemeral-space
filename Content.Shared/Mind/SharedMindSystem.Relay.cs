@@ -15,7 +15,16 @@ public abstract partial class SharedMindSystem : EntitySystem
         SubscribeLocalEvent<MindContainerComponent, RefreshNameModifiersEvent>(RelayRefToMind);
 
 // ES PATCH START
-        SubscribeLocalEvent<MindComponent, MindGotAddedEvent>(RelayToObjectives);
+        SubscribeLocalEvent<MindComponent, MindGotAddedEvent>(ESOnMindGotAdded);
+    }
+
+    private void ESOnMindGotAdded(Entity<MindComponent> ent, ref MindGotAddedEvent args)
+    {
+        RelayToObjectives(ent, ref args);
+        foreach (var role in ent.Comp.MindRoleContainer.ContainedEntities)
+        {
+            RaiseLocalEvent(role, args);
+        }
     }
 
     protected void RelayToObjectives<T>(Entity<MindComponent> ent, ref T args) where T : notnull

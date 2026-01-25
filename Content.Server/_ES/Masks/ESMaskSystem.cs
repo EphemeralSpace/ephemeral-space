@@ -201,6 +201,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         {
             EntityManager.SpawnInBag(_entityTable.GetSpawns(mask.Gear), ownedEntity);
             EntityManager.AddComponents(ownedEntity, mask.Components);
+            EnsureComp<ESBodyLastMaskComponent>(ownedEntity).LastMask = mask;
         }
         EntityManager.AddComponents(mind, mask.MindComponents);
 
