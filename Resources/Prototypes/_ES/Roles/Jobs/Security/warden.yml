@@ -28,7 +28,7 @@
     ears: ClothingHeadsetSecurity
     head: ClothingHeadHatWarden
     jumpsuit: ClothingUniformJumpsuitWarden
-    outerClothing: ClothingOuterCoatWarden
+    outerClothing: ESClothingOuterCoatWarden
     back: ClothingBackpackSecurity
     pocket1: ESWeaponHybridTaser
   storage:

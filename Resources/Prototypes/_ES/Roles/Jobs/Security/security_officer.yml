@@ -25,7 +25,7 @@
     head: ClothingHeadHelmetBasic
     belt: ClothingBeltSecurityFilled
     jumpsuit: ClothingUniformJumpsuitSec
-    outerClothing: ClothingOuterArmorBasic
+    outerClothing: ESClothingOuterArmorSecurity
     back: ClothingBackpackSecurity
     pocket1: ESWeaponHybridTaser
   storage:

@@ -252,6 +252,13 @@ ClothingOuterCoatDetective: ESClothingOuterCoatDetective
 ClothingOuterCoatDetectiveLoadout: ESClothingOuterCoatDetectiveLoadout
 ClothingOuterCoatDetectiveGrey: ESClothingOuterCoatDetectiveGrey
 
+# 2026-1-25
+ClothingOuterArmorBasic: ESClothingOuterArmorSecurity
+ClothingOuterArmorBasicSlim: ESClothingOuterArmorSecurity
+ClothingOuterCoatWarden: ESClothingOuterCoatWarden
+ClothingOuterCoatHoSTrench: ESClothingOuterCoatHoSTrench
+ClothingOuterArmorCaptainCarapace: ESClothingOuterArmorCaptainCarapace
+
 # ES END
 
 # 2023-07-03

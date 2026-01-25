@@ -62,7 +62,7 @@
     capacity: 2
     proto: ESShellShotgunBuckshot
   - type: Gun
-    fireRate: 4
+    fireRate: 1.5
     soundGunshot:
       path: /Audio/_ES/Weapons/Guns/Gunshots/doublebarrel_shot.ogg
     soundEmpty:
