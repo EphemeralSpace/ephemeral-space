@@ -96,6 +96,7 @@
       prob: 0.15
     - id: ClothingNeckTieDet
     - id: ESWeaponHybridTaser
+    - id: ESClothingOuterArmorDetective
     - id: ESClothingOuterCoatDetective
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite

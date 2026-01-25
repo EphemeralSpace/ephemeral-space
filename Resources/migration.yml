@@ -255,9 +255,11 @@ ClothingOuterCoatDetectiveGrey: ESClothingOuterCoatDetectiveGrey
 # 2026-1-25
 ClothingOuterArmorBasic: ESClothingOuterArmorSecurity
 ClothingOuterArmorBasicSlim: ESClothingOuterArmorSecurity
+ClothingOuterVestDetective: ESClothingOuterArmorDetective
 ClothingOuterCoatWarden: ESClothingOuterCoatWarden
 ClothingOuterCoatHoSTrench: ESClothingOuterCoatHoSTrench
 ClothingOuterArmorCaptainCarapace: ESClothingOuterArmorCaptainCarapace
+WardrobeSecurityFilled: ESWardrobeSecurityFilled
 
 # ES END
 

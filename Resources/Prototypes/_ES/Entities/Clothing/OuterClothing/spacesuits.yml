@@ -48,13 +48,13 @@
     sprite: _ES/Clothing/OuterClothing/SpaceSuits/sec_space.rsi
   - type: Clothing
     sprite: _ES/Clothing/OuterClothing/SpaceSuits/sec_space.rsi
-  - type: Armor #Based on armor vest
+  - type: Armor #based on armor vest
     modifiers:
-      coefficients:
-        Blunt: 0.70
-        Slash: 0.70
-        Piercing: 0.70
-        Heat: 0.80
+      flatReductions:
+        Blunt: 5
+        Slash: 5
+        Piercing: 5
+        Heat: 5
   - type: ExplosionResistance
     damageCoefficient: 0.90
   - type: Tag

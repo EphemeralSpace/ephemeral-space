@@ -67,7 +67,7 @@
     - id: ESWeaponRevolver357
     - id: ESSpeedLoader357
     - id: KitchenKnife
-    - id: ClothingOuterArmorBasic
+    - id: ESClothingOuterArmorSecurity
     - id: ExGrenade
       amount: 2
 

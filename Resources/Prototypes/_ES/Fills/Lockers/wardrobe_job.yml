@@ -92,6 +92,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingHeadHatFedoraBrown
+    - id: ESClothingOuterCoatDetective
     - id: ClothingBackpackSecurity
     - id: ClothingShoesColorBrown
     - id: ClothingUniformJumpskirtDetective
@@ -158,3 +159,24 @@
     - id: ClothingBackpack
     - id: ClothingShoesColorBrown
     - id: ClothingUniformJumpsuitReporter
+
+- type: entityTable
+  id: ESFillWardrobeSecurity
+  table: !type:AllSelector
+    children:
+    - id: ClothingUniformJumpsuitSec
+    - id: ClothingBackpackSecurity
+    - id: ClothingShoesBootsJack
+    - id: ClothingEyesGlassesSecurity
+    - id: ClothingHeadHelmetBasic
+    - id: ESClothingOuterArmorSecurity
+
+- type: entity
+  parent: WardrobeSecurity
+  id: ESWardrobeSecurityFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillWardrobeSecurity

@@ -15,7 +15,6 @@
         Slash: 5
         Piercing: 5
         Heat: 5
-        Caustic: 4
   - type: ExplosionResistance
     damageCoefficient: 0.90
 
@@ -31,7 +30,6 @@
         Slash: 6
         Piercing: 6
         Heat: 6
-        Caustic: 4
   - type: ExplosionResistance
     damageCoefficient: 0.80
   - type: GroupExamine
@@ -48,6 +46,18 @@
     sprite: Clothing/OuterClothing/Armor/security.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/security.rsi
+
+- type: entity
+  parent: ESClothingOuterArmorBase
+  id: ESClothingOuterArmorDetective
+  name: detective's vest
+  description: A hard-boiled private investigator's armored vest.
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Vests/detvest.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Vests/detvest.rsi
 
 - type: entity
   parent: ESClothingOuterArmorBase

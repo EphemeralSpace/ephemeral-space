@@ -155,7 +155,7 @@
     containers:
       entity_storage:
         all:
-        - id: ClothingOuterArmorBasic
+        - id: ESClothingOuterArmorBasic
           amount: 2
         - id: ClothingHeadHelmetBasic
           amount: 2
