@@ -78,17 +78,6 @@
   color: white
 
 - type: esMask
-  id: ESEmpath
-  name: es-mask-empath-name
-  troupe: ESCrew
-  description: es-mask-empath-desc
-  color: plum
-  components:
-  - type: ActionGrant
-    actions:
-    - ESActionMaskDetectAura
-
-- type: esMask
   id: ESGuzzler
   name: es-mask-guzzler-name
   troupe: ESCrew

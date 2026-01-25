@@ -14,7 +14,7 @@
       11: ["ESArmsDealer"] # Guarantee another arms dealer, this is definitely balanced around an armed crew.
       12: ["ESAvenger"]
       13: ["ESMartyr"]
-      14: ["ESEmpath"]
+      14: ["#Oracles"]
       15: ["#PowerTraitors"] # 0 generic crew, 4 traitors.
       16: ["#Firmsafes"]
       17: ["#Traitors"] # 0 generic crew, 5 traitors.
@@ -26,5 +26,5 @@
       25: ["#PowerTraitors"] # 1 generic crew, 7 traitors.
       26: ["ESAvenger"]
       27: ["#Softsafes"]
-      28: ["ESEmpath"]
+      28: ["#Oracles"]
       30: ["#Traitors"] # 2 generic crew, 8 traitors.
