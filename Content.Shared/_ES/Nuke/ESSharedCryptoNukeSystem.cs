@@ -9,6 +9,7 @@ using Content.Shared.Examine;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Station;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Nuke;
@@ -16,6 +17,7 @@ namespace Content.Shared._ES.Nuke;
 public abstract class ESSharedCryptoNukeSystem : EntitySystem
 {
     [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ESSharedMaskSystem _mask = default!;
     [Dependency] private readonly ESSharedObjectiveSystem _objective = default!;
     [Dependency] private readonly ESSparksSystem _sparks = default!;
@@ -41,7 +43,7 @@ public abstract class ESSharedCryptoNukeSystem : EntitySystem
 
     private void OnMapInit(Entity<ESCryptoNukeConsoleComponent> ent, ref MapInitEvent args)
     {
-        ent.Comp.NextUpdateTime = Timing.CurTime;
+        ent.Comp.NextUpdateTime = Timing.CurTime + ent.Comp.NextUpdateTime * _random.NextFloat();
     }
 
     private void OnExamined(Entity<ESCryptoNukeConsoleComponent> ent, ref ExaminedEvent args)
