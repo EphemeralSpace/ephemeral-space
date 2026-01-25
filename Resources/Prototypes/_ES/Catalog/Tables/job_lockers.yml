@@ -76,7 +76,7 @@
       prob: 0.8
     - id: ESWeaponHybridTaser
     - id: ClothingHeadHelmetBasic
-    - id: ClothingOuterArmorBasic
+    - id: ESClothingOuterArmorSecurity
     - id: ClothingBeltSecurityFilled
     - id: Flash
       prob: 0.5
