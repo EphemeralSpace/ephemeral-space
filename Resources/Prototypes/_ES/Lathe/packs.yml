@@ -78,7 +78,7 @@
   recipes:
   - BoxFolderClipboardEmpty
   - BoxFolderPlasticClipboardEmpty
- 
+
 # Departmental
 # Cargo
 - type: latheRecipePack
@@ -105,7 +105,7 @@
   - Syringe
   - PillCanister
   - HandLabeler
-  - BaseChemistryEmptyVial
+  - ChemistryEmptyVial
   - Dropper
 
 # Security

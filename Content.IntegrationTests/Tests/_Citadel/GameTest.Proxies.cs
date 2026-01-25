@@ -170,14 +170,14 @@ public abstract partial class GameTest
 
     /// <inheritdoc cref="M:Robust.Shared.GameObjects.EntityManager.EntityQueryEnumerator``1"/>
     public EntityQueryEnumerator<T> SQuery<T>()
-        where T: IComponent
+        where T : IComponent
     {
         return Server.EntMan.EntityQueryEnumerator<T>();
     }
 
     /// <inheritdoc cref="M:Robust.Shared.GameObjects.EntityManager.EntityQueryEnumerator``1"/>
     public EntityQueryEnumerator<T> CQuery<T>()
-        where T: IComponent
+        where T : IComponent
     {
         return Client.EntMan.EntityQueryEnumerator<T>();
     }
@@ -268,7 +268,9 @@ public abstract partial class GameTest
 
         if (query.MoveNext(out var eid, out var comp))
         {
-            Assert.That(query.MoveNext(out var extra, out _), Is.False, $"Expected only one entity with {typeof(T)}, found {SToPrettyString(eid)} and then {SToPrettyString(extra)}");
+            Assert.That(query.MoveNext(out var extra, out _),
+                Is.False,
+                $"Expected only one entity with {typeof(T)}, found {SToPrettyString(eid)} and then {SToPrettyString(extra)}");
             ent = (eid, comp);
             return true;
         }
@@ -287,7 +289,9 @@ public abstract partial class GameTest
 
         if (query.MoveNext(out var eid, out var comp))
         {
-            Assert.That(query.MoveNext(out var extra, out _), Is.False, $"Expected only one entity with {typeof(T)}, found {CToPrettyString(eid)} and then {CToPrettyString(extra)}");
+            Assert.That(query.MoveNext(out var extra, out _),
+                Is.False,
+                $"Expected only one entity with {typeof(T)}, found {CToPrettyString(eid)} and then {CToPrettyString(extra)}");
             ent = (eid, comp);
             return true;
         }
@@ -325,7 +329,7 @@ public abstract partial class GameTest
     ///     Checks whether the given entity has the given component.
     /// </summary>
     public bool SHasComp<T>(EntityUid? ent)
-        where T: IComponent
+        where T : IComponent
     {
         return Server.EntMan.HasComponent<T>(ent);
     }
@@ -334,7 +338,7 @@ public abstract partial class GameTest
     ///     Checks whether the given entity has the given component.
     /// </summary>
     public bool CHasComp<T>(EntityUid? ent)
-        where T: IComponent
+        where T : IComponent
     {
         return Client.EntMan.HasComponent<T>(ent);
     }
@@ -343,7 +347,9 @@ public abstract partial class GameTest
     /// <summary>
     ///     Assigns the player a body in the test map, ensuring they have a mind as well.
     /// </summary>
-    public async Task<EntityUid> AssignPlayerBody(ICommonSession session, string playerPrototype = "InteractionTestMob", bool godMode = true)
+    public async Task<EntityUid> AssignPlayerBody(ICommonSession session,
+        string playerPrototype = "InteractionTestMob",
+        bool godMode = true)
     {
         EntityUid res = default;
 

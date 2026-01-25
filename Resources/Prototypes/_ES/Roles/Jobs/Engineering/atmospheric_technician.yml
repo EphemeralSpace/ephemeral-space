@@ -21,7 +21,7 @@
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
     jumpsuit: ClothingUniformJumpsuitAtmos
-    back: ClothingBackpackEngineering
+    back: ClothingBackpack
   storage:
     back:
     - ESBoxSurvival

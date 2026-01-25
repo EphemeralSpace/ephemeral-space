@@ -100,7 +100,12 @@ public sealed class ESCluesSystem : EntitySystem
         if (!Resolve(mind, ref mind.Comp))
             return string.Empty;
 
-        return mind.Comp.Profile.Sex switch
+        return SexToString(mind.Comp.Profile.Sex);
+    }
+
+    public string SexToString(Sex sex)
+    {
+        return sex switch
         {
             Sex.Male => Loc.GetString("es-clue-sex-male"),
             Sex.Female => Loc.GetString("es-clue-sex-female"),

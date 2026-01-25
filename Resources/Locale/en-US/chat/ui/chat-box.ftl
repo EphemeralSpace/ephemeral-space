@@ -29,7 +29,7 @@ hud-chatbox-channel-Dead = Stagehand
 hud-chatbox-channel-Emotes = Emotes
 hud-chatbox-channel-Local = Local
 hud-chatbox-channel-Whisper = Whisper
-hud-chatbox-channel-LOOC = Help
+hud-chatbox-channel-LOOC = LOOC
 # ES START
 hud-chatbox-channel-OOC = Lobby
 # ES END

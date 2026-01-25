@@ -14,6 +14,11 @@
   name: clown's wardrobe
 
 - type: entity
+  parent: WardrobeBlue
+  id: ESWardrobeCoroner
+  name: coroner's wardrobe
+
+- type: entity
   parent: WardrobeSecurity
   id: ESWardrobeDetective
   name: detective's wardrobe

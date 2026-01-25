@@ -369,3 +369,9 @@ es-names-first-dataset-female-357 = Yili
 es-names-first-dataset-female-358 = Juba
 es-names-first-dataset-female-359 = Ingrid
 es-names-first-dataset-female-360 = Garden
+# 2026-01-23
+es-names-first-dataset-female-361 = Slideah
+es-names-first-dataset-female-362 = Eels
+es-names-first-dataset-female-363 = Rebirth
+es-names-first-dataset-female-364 = Pirl
+es-names-first-dataset-female-365 = Viscera

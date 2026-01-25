@@ -1,0 +1,9 @@
+## Fallback if nothing else found
+- type: ambientMusic
+  id: ESGeneral
+  disabled: false
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceGeneral
+  rules: AlwaysTrue

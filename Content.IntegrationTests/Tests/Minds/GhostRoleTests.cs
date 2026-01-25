@@ -39,6 +39,9 @@ public sealed class GhostRoleTests
     /// </summary>
     [TestCase(true)]
     [TestCase(false)]
+// ES START
+    [Ignore("Differing ghost behavior from upstream")]
+// ES END
     public async Task TakeRoleAndReturn(bool adminGhost)
     {
         var ghostCommand = adminGhost ? "aghost" : "ghost";

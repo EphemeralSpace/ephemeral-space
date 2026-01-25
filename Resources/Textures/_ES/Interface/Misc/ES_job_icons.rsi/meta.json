@@ -11,6 +11,9 @@
             "name": "assistant"
         },
         {
+            "name": "coroner"
+        },
+        {
             "name": "reporter"
         },
         {

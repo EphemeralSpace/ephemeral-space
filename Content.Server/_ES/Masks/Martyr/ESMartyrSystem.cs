@@ -5,10 +5,10 @@ using Content.Server.Administration;
 using Content.Server.Chat;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Masks;
-using Content.Shared.Body.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared._ES.Masks.Martyr;
+using Content.Shared.Gibbing;
 
 namespace Content.Server._ES.Masks.Martyr;
 
@@ -22,7 +22,7 @@ namespace Content.Server._ES.Masks.Martyr;
 public sealed class ESMartyrSystem : EntitySystem
 {
     [Dependency] private readonly SuicideSystem _suicide = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly ESEntityTimerSystem _timer = default!;
     [Dependency] private readonly ESBeKilledObjectiveSystem _beKilled = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
@@ -42,7 +42,7 @@ public sealed class ESMartyrSystem : EntitySystem
         if (!_suicide.Suicide(ent))
         {
             // you're not getting away that easily
-            _body.GibBody(ent.Owner);
+            _gibbing.Gib(ent.Owner);
         }
     }
 

@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Net.Sockets;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -115,7 +114,7 @@ public sealed partial class DamageableSystem
 // ES START
         newDamage = ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, source: source, weapon: weapon);
 // ES END
-        return !damage.Empty;
+        return !newDamage.Empty;
     }
 
     /// <summary>

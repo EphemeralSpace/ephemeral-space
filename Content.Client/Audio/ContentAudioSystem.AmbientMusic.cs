@@ -107,6 +107,10 @@ public sealed partial class ContentAudioSystem
         _ambientSounds.Clear();
         foreach (var ambience in _proto.EnumeratePrototypes<AmbientMusicPrototype>())
         {
+            // ES START
+            if (ambience.Disabled)
+                continue;
+            // ES END
             var tracks = _ambientSounds.GetOrNew(ambience.ID);
             RefreshTracks(ambience.Sound, tracks, null);
             _random.Shuffle(tracks);
@@ -238,7 +242,10 @@ public sealed partial class ContentAudioSystem
         if (ev.Cancelled)
             return null;
 
-        var ambiences = _proto.EnumeratePrototypes<AmbientMusicPrototype>().ToList();
+        // ES START
+        // dont select disabled fallback
+        var ambiences = _proto.EnumeratePrototypes<AmbientMusicPrototype>().Where(m => !m.Disabled).ToList();
+        // ES END
         ambiences.Sort((x, y) => y.Priority.CompareTo(x.Priority));
 
         foreach (var amb in ambiences)

@@ -1,5 +1,4 @@
 using Content.Shared.Alert;
-using Content.Shared.DoAfter;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -28,9 +27,7 @@ public sealed partial class ESCeilingCacheComponent : Component
 public sealed partial class ESCeilingCacheContactingComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public EntityUid Cache;
-
-    public DoAfterId? DoAfterKey;
+    public List<EntityUid> Caches = new();
 }
 
 public sealed partial class ESRevealCacheAlertEvent : BaseAlertEvent;

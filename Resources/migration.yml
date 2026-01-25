@@ -242,6 +242,16 @@ ChemDispenser: ESChemDispenser
 # 2026-1-12
 ESMachineScienceTelepad: null
 
+# 2026-1-20
+ESGasThruster: null
+ESEngineThrusterIon: null
+ESEngineThrusterGas: null
+
+# 2026-1-24
+ClothingOuterCoatDetective: ESClothingOuterCoatDetective
+ClothingOuterCoatDetectiveLoadout: ESClothingOuterCoatDetectiveLoadout
+ClothingOuterCoatDetectiveGrey: ESClothingOuterCoatDetectiveGrey
+
 # ES END
 
 # 2023-07-03
@@ -958,6 +968,9 @@ ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
 # 2025-08-29
 PrefilledSyringe: Syringe
 
+# 2025-09-12
+BaseChemistryEmptyVial: ChemistryEmptyVial
+
 # 2025-10-6
 BibleTanakh: null
 BibleSatanic: null
@@ -995,3 +1008,10 @@ SpawnPointBoxer: null
 FigureSpawner: MechFigurineSpawner50
 ToySpawner: PlushieSpawner50
 SpacemenFigureSpawner: SpacemenFigurineSpawner90
+
+# 2026-01-07
+HandheldHealthAnalyzerUnpowered: HandheldHealthAnalyzer
+HandheldHealthAnalyzerEmpty: HandheldHealthAnalyzer
+
+#2026-01-09
+BorgModuleAdvancedChemical: BorgModuleAdvancedTopical

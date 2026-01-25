@@ -350,7 +350,9 @@
 
 - type: entity
   id: BookSpaceLaw
-  parent: BaseGuidebook
+# ES START
+  parent: BookBase
+# ES END
   name: space law
   description: A set of Nanotrasen guidelines for keeping law and order on their space stations.
   components:
@@ -361,9 +363,11 @@
       color: "#87011c"
     - state: icon_law
       color: "#f7d61a"
-  - type: GuideHelp
-    guides:
-    - SpaceLaw
+# ES START
+#  - type: GuideHelp
+#    guides:
+#    - SpaceLaw
+# ES END
 
 - type: entity
   parent: BookBase

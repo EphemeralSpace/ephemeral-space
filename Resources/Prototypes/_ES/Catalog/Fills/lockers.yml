@@ -1,0 +1,9 @@
+- type: entity
+  parent: ESLockerCoroner
+  id: ESLockerCoronerFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESLockerFillCoroner

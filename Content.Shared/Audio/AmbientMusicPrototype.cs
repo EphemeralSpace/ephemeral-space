@@ -37,4 +37,10 @@ public sealed partial class AmbientMusicPrototype : IPrototype
 
     [ViewVariables(VVAccess.ReadWrite), DataField("rules", required: true, customTypeSerializer:typeof(PrototypeIdSerializer<RulesPrototype>))]
     public string Rules = string.Empty;
+
+    // ES START
+    // Disable all upstream ambient music by default
+    [DataField]
+    public bool Disabled = true;
+    // ES END
 }
