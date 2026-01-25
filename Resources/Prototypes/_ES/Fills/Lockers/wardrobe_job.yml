@@ -162,8 +162,8 @@
 
 - type: entityTable
   id: ESFillWardrobeSecurity
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitSec
     - id: ClothingBackpackSecurity
     - id: ClothingShoesBootsJack
@@ -174,9 +174,9 @@
 - type: entity
   parent: WardrobeSecurity
   id: ESWardrobeSecurityFilled
-  suffix: Filled
+  suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillWardrobeSecurity
