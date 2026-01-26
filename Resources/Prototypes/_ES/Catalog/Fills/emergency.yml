@@ -1,5 +1,5 @@
 - type: entity
-  parent: BoxCardboard
+  parent: BoxCardboardSmall
   id: ESBoxSurvival
   name: survival box
   description: It's a box with basic internals inside.
@@ -16,9 +16,9 @@
     layers:
     - state: internals
     - state: emergencytank
-  
-- type: entity 
-  parent: BoxCardboard
+
+- type: entity
+  parent: BoxCardboardSmall
   id: ESBoxSurvivalMedical
   name: survival box
   description: It's a box with basic internals inside.
@@ -35,9 +35,9 @@
     layers:
     - state: internals
     - state: emergencytank
-    
+
 - type: entity
-  parent: BoxCardboard
+  parent: BoxCardboardSmall
   id: ESBoxHug
   name: box of hugs
   description: A special box for sensitive people.
