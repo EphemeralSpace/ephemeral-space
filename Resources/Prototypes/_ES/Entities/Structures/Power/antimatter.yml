@@ -155,13 +155,13 @@
     anchored: false
     noRot: true
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralInorganic
     damageModifierSet: StrongMetallic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 60
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
