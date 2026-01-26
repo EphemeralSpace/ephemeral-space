@@ -13,9 +13,11 @@
   - type: Item
     size: Normal
     sprite: Clothing/Head/Helmets/scrap_helmet.rsi
-  #ES START- type: Construction
+  # ES START
+  # - type: Construction
   #  graph: scraphelmet
-  #ES END  node: wiredbucket
+  #  node: wiredbucket
+  # ES END
 
 - type: entity
   name: sliced bucket
@@ -29,9 +31,11 @@
   - type: Item
     size: Normal
     sprite: Clothing/Head/Helmets/scrap_helmet.rsi
-  #ES START- type: Construction
+  # ES START
+  #- type: Construction
   #  graph: scraphelmet
-  #ES END  node: slicedbucket
+  #  node: slicedbucket
+  # ES END
 
 - type: entity
   name: steel bucket
@@ -45,9 +49,11 @@
   - type: Item
     size: Normal
     sprite: Clothing/Head/Helmets/scrap_helmet.rsi
-  #ES START - type: Construction
+  # ES START
+  #- type: Construction
   #  graph: scraphelmet
-  #ES END  node: steelbucket
+  #  node: steelbucket
+  # ES END
 
 # The helmet itself
 - type: entity
@@ -80,6 +86,8 @@
     - Snout
     - HeadTop
     - HeadSide
-  #ES START - type: Construction
+  # ES START
+  #- type: Construction
   #  graph: scraphelmet
-  #ES END  node: scraphelmet
+  #  node: scraphelmet
+  # ES END

@@ -1,4 +1,5 @@
-#ES START - type: constructionGraph
+# ES START
+# - type: constructionGraph
 #  id: scraphelmet
 #  start: start
 #  graph:
@@ -43,4 +44,5 @@
 #          doAfter: 5
 #
 #    - node: scraphelmet
-#ES END      entity: ClothingHeadHelmetScrap
+#      entity: ClothingHeadHelmetScrap
+# ES END

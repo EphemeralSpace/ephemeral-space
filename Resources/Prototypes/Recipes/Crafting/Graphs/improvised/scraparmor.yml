@@ -1,4 +1,5 @@
-#ES START - type: constructionGraph
+# ES START
+# - type: constructionGraph
 #  id: scraparmor
 #  start: start
 #  graph:
@@ -47,4 +48,5 @@
 #          doAfter: 15
 #
 #    - node: scraparmorfinished
-#ES END      entity: ClothingOuterArmorScrap
+#      entity: ClothingOuterArmorScrap
+# ES END

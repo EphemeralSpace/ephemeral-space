@@ -166,7 +166,8 @@
   category: construction-category-clothing
   objectType: Item
 
-#ES START- type: construction
+#ES START
+# - type: construction
 #  id: scraparmor
 #  graph: scraparmor
 #  startNode: start
@@ -180,7 +181,8 @@
 #  startNode: start
 #  targetNode: scraphelmet
 #  category: construction-category-clothing
-#ES END  objectType: Item
+#  objectType: Item
+#ES END
 
 - type: construction
   id: ClothingBagPet

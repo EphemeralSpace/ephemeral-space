@@ -13,9 +13,11 @@
   - type: Item
     size: Ginormous
     sprite: Clothing/OuterClothing/Armor/scrap_armor.rsi
- #ES START - type: Construction
+ # ES START
+ # - type: Construction
  #   graph: scraparmor
- #ES END   node: wiredapron
+ #   node: wiredapron
+ # ES END
 
 - type: entity
   name: steel-covered apron
@@ -29,9 +31,11 @@
   - type: Item
     size: Ginormous
     sprite: Clothing/OuterClothing/Armor/scrap_armor.rsi
-  #ES START - type: Construction
+  # ES START
+  # - type: Construction
   #  graph: scraparmor
-  #ES END  node: steelapron
+  # node: steelapron
+  # ES END
 
 - type: entity
   name: welded steel apron
@@ -45,9 +49,11 @@
   - type: Item
     size: Ginormous
     sprite: Clothing/OuterClothing/Armor/scrap_armor.rsi
-  #ES START- type: Construction
+  # ES START
+  #- type: Construction
   #  graph: scraparmor
-  #ES END  node: weldedsteelapron
+  #  node: weldedsteelapron
+  # ES END
 
 # The armor itself
 - type: entity
@@ -80,6 +86,8 @@
     walkModifier: 0.6
     sprintModifier: 0.6
   - type: GroupExamine
-  #ES START - type: Construction
+  # ES START
+  # - type: Construction
   #  graph: scraparmor
-  #ES END  node: scraparmorfinished
+  # node: scraparmorfinished
+  # ES END
