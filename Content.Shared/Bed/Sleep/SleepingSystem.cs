@@ -74,6 +74,9 @@ public sealed partial class SleepingSystem : EntitySystem
         SubscribeLocalEvent<SleepingComponent, StandUpAttemptEvent>(OnStandUpAttempt);
 
         SubscribeLocalEvent<ForcedSleepingStatusEffectComponent, StatusEffectAppliedEvent>(OnStatusEffectApplied);
+// ES START
+        SubscribeLocalEvent<ForcedSleepingStatusEffectComponent, StatusEffectEndTimeUpdatedEvent>(OnForcedSleepingEndTimeUpdated);
+// ES END
         SubscribeLocalEvent<SleepingComponent, UnbuckleAttemptEvent>(OnUnbuckleAttempt);
         SubscribeLocalEvent<SleepingComponent, EmoteAttemptEvent>(OnEmoteAttempt);
 
@@ -286,7 +289,30 @@ public sealed partial class SleepingSystem : EntitySystem
         // entity reset due to the status effect getting inserted
         if (!_gameTiming.ApplyingState)
             TrySleeping(args.Target);
+// ES START
+        // Add a cooldown to the wakeup action
+        if (_statusEffect.TryGetEffectsEndTimeWithComp<ForcedSleepingStatusEffectComponent>(args.Target, out var endTime) &&
+            endTime.HasValue &&
+            TryComp<SleepingComponent>(args.Target, out var sleeping))
+        {
+            var cooldown = endTime.Value - _gameTiming.CurTime;
+            _actionsSystem.SetCooldown(sleeping.WakeAction, cooldown);
+        }
+// ES END
     }
+
+// ES START
+    private void OnForcedSleepingEndTimeUpdated(Entity<ForcedSleepingStatusEffectComponent> ent, ref StatusEffectEndTimeUpdatedEvent args)
+    {
+        if (_statusEffect.TryGetEffectsEndTimeWithComp<ForcedSleepingStatusEffectComponent>(args.Target, out var endTime) &&
+            endTime.HasValue &&
+            TryComp<SleepingComponent>(args.Target, out var sleeping))
+        {
+            var cooldown = endTime.Value - _gameTiming.CurTime;
+            _actionsSystem.SetCooldown(sleeping.WakeAction, cooldown);
+        }
+    }
+// ES END
 
     /// <summary>
     /// Try sleeping. Only mobs can sleep.

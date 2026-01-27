@@ -66,6 +66,9 @@ public sealed partial class HungerComponent : Component
     /// </summary>
     [DataField("thresholds", customTypeSerializer: typeof(DictionarySerializer<HungerThreshold, float>))]
     [AutoNetworkedField]
+// ES START
+    [Access(Other = AccessPermissions.ReadExecute)]
+// ES END
     public Dictionary<HungerThreshold, float> Thresholds = new()
     {
         { HungerThreshold.Overfed, 200.0f },
