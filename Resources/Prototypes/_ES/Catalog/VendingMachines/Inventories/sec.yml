@@ -1,0 +1,20 @@
+- type: vendingMachineInventory
+  id: ESSecTechInventory
+  startingInventory:
+    SecurityWhistle: 5
+    Handcuffs: 8
+    GrenadeFlashBang: 4
+    TearGasGrenade: 4
+    Flash: 5
+    FlashlightSeclite: 5
+    ClothingEyesGlassesSunglasses: 2
+    ClothingEyesGlassesSecurity: 4
+    KitchenKnife: 3
+    RiotShield: 2
+    RadioHandheldSecurity: 5
+  # security officers need to follow a diet regimen!
+  contrabandInventory:
+    WeaponMeleeNeedle: 2
+    FoodDonutHomer: 12
+    FoodBoxDonut: 2
+    #box evidence

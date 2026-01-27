@@ -131,7 +131,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/engivend.rsi
   - type: VendingMachine
-    pack: EngiVendInventory
+    pack: ESEngiVendInventory
   - type: AccessReader
     access: [["Engineering"]]
   - type: PointLight
@@ -164,7 +164,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/youtool.rsi
   - type: VendingMachine
-    pack: YouToolInventory
+    pack: ESYouToolInventory
   - type: PointLight
     color: "#d4ab33"
   - type: ESAmbientMusicMarkerEngineering
@@ -286,7 +286,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/dinnerware.rsi
   - type: VendingMachine
-    pack: DinnerwareInventory
+    pack: ESDinnerwareInventory
   - type: DatasetVocalizer
     dataset: DinnerwareAds
   - type: SpeakOnUIClosed
@@ -305,7 +305,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/games.rsi
   - type: VendingMachine
-    pack: GoodCleanFunInventory
+    pack: ESGoodCleanFunInventory
     ejectDelay: 1.8
   - type: DatasetVocalizer
     dataset: GoodCleanFunAds
@@ -323,7 +323,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/medical.rsi
   - type: VendingMachine
-    pack: NanoMedPlusInventory
+    pack: ESNanoMedPlusInventory
     ejectDelay: 0.6
   - type: DatasetVocalizer
     dataset: NanoMedAds
@@ -364,7 +364,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/sec.rsi
   - type: VendingMachine
-    pack: SecTechInventory
+    pack: ESSecTechInventory
   - type: DatasetVocalizer
     dataset: SecTechAds
   - type: SpeakOnUIClosed
@@ -440,7 +440,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/robotics.rsi
   - type: VendingMachine
-    pack: RoboticsInventory
+    pack: ESRoboticsInventory
   - type: DatasetVocalizer
     dataset: VendomatAds
   - type: SpeakOnUIClosed
