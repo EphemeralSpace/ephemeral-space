@@ -30,12 +30,14 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server._ES.Arrivals;
 
 public sealed class ESArrivalsSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
@@ -54,6 +56,7 @@ public sealed class ESArrivalsSystem : EntitySystem
 
     private static readonly ProtoId<TagPrototype> DockTagProto = "DockArrivals";
     private static readonly EntProtoId SleepStatusEffect = "StatusEffectForcedSleeping";
+    private static readonly EntProtoId CryoSicknessEffect = "ESStatusEffectCryoSickness";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -174,6 +177,12 @@ public sealed class ESArrivalsSystem : EntitySystem
 
         _statusEffects.TryAddStatusEffectDuration(ev.SpawnResult.Value, SleepStatusEffect, TimeSpan.FromSeconds(_random.Next(10, 30)));
 
+        if (_timing.CurTime < arrivals.ArrivalTime)
+        {
+            var sicknessTime = TimeSpan.FromSeconds(Math.Max((arrivals.ArrivalTime - _timing.CurTime).TotalSeconds + _random.Next(0, 10), _random.Next(10, 15)));
+            _statusEffects.TryAddStatusEffectDuration(ev.SpawnResult.Value, CryoSicknessEffect, sicknessTime);
+        }
+
         // TODO MIRROR one-way arrivals, use these for a turnstile check or something + remove on exiting arrivals
         // EnsureComp<AutoOrientComponent>(ev.SpawnResult.Value);
         var passenger = EnsureComp<ESArrivalsPassengerComponent>(ev.SpawnResult.Value);
@@ -209,6 +218,7 @@ public sealed class ESArrivalsSystem : EntitySystem
         _shuttle.TryFTLProximity(shuttle.Value, ftlMap);
 
         ent.Comp.ShuttleUid = shuttle.Value;
+        ent.Comp.ArrivalTime = _timing.CurTime + TimeSpan.FromSeconds(_flightTime);
 
         var arrivalsComp = EnsureComp<ESArrivalsShuttleComponent>(shuttle.Value);
         arrivalsComp.Station = ent;
