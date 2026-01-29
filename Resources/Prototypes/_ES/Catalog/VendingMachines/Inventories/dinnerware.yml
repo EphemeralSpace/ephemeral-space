@@ -2,7 +2,7 @@
   id: ESDinnerwareInventory
   startingInventory:
     ButchCleaver: 1
-    KitchenKnife: 5
+    ESWeaponKnife: 5
     RollingPin: 4
     Spoon: 4
     Fork: 4

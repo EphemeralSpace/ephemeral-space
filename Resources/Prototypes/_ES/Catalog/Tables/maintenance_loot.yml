@@ -306,7 +306,7 @@
   id: ESMaintLootRare
   table:
     group:
-    - id: KitchenKnife
+    - id: ESWeaponKnife
     - id: Handcuffs
     - id: MakeshiftShield
     - id: WelderIndustrialAdvanced
