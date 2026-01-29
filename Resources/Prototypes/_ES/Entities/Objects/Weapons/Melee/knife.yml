@@ -1,0 +1,20 @@
+- type: entity
+  parent: BaseKnife
+  id: ESWeaponKnife
+  name: knife
+  description: A mass-produced knife, used for a variety of injury-prone tasks.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Melee/knife.rsi
+    state: icon
+  - type: Item
+    sprite: _ES/Objects/Weapons/Melee/knife.rsi
+    storedSprite:
+      sprite: _ES/Objects/Weapons/Melee/knife.rsi
+      state: storage
+  - type: MeleeWeapon
+    wideAnimationRotation: 135
+  - type: Tag
+    tags:
+    - Knife
+    - KitchenKnife
