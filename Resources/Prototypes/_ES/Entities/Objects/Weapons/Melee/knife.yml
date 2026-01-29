@@ -13,6 +13,7 @@
       sprite: _ES/Objects/Weapons/Melee/knife.rsi
       state: storage
   - type: MeleeWeapon
+    attackRate: 1.5 # 15 slash dps
     wideAnimationRotation: 135
   - type: Tag
     tags:
