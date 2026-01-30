@@ -89,8 +89,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             {
 // ES START
                 SuitSensorMode.SensorBinary,
-                SuitSensorMode.SensorCords,
-                SuitSensorMode.SensorCords,
+                SuitSensorMode.SensorBinary,
                 SuitSensorMode.SensorCords,
 // ES END
             };
