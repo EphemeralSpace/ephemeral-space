@@ -1,11 +1,14 @@
+using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Masks.Traitor.Components;
 using Content.Shared.Alert;
 using Content.Shared.DoAfter;
 using Content.Shared.Mind;
+using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
@@ -13,9 +16,11 @@ namespace Content.Shared._ES.Masks.Traitor;
 
 public abstract class ESSharedMaskCacheSystem : EntitySystem
 {
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
@@ -26,10 +31,12 @@ public abstract class ESSharedMaskCacheSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<ESMaskCacheSpawnerComponent, ESGetCharacterInfoBlurbEvent>(OnGetCharacterInfoBlurb);
+        SubscribeLocalEvent<ESMaskCacheSpawnerComponent, MindRelayedEvent<MobStateChangedEvent>>(OnMobStateChanged);
 
         SubscribeLocalEvent<ESCeilingCacheComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<ESCeilingCacheComponent, EndCollideEvent>(OnEndCollide);
         SubscribeLocalEvent<ESCeilingCacheComponent, ESRevealCacheDoAfterEvent>(OnRevealCacheDoAfter);
+        SubscribeLocalEvent<ESCeilingCacheComponent, ESRevealCacheTimerEvent>(OnRevealCacheTimer);
 
         SubscribeLocalEvent<ESCeilingCacheContactingComponent, ESRevealCacheAlertEvent>(OnRevealCacheAlert);
     }
@@ -37,6 +44,22 @@ public abstract class ESSharedMaskCacheSystem : EntitySystem
     private void OnGetCharacterInfoBlurb(Entity<ESMaskCacheSpawnerComponent> ent, ref ESGetCharacterInfoBlurbEvent args)
     {
         args.Info.Add(FormattedMessage.FromMarkupOrThrow(ent.Comp.LocationString));
+    }
+
+    private void OnMobStateChanged(Entity<ESMaskCacheSpawnerComponent> ent, ref MindRelayedEvent<MobStateChangedEvent> args)
+    {
+        if (args.Args.NewMobState != MobState.Dead)
+            return;
+
+        var query = EntityQueryEnumerator<ESCeilingCacheComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.MindId != ent)
+                continue;
+
+            var revealDelay = _random.Next(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(15));
+            _entityTimer.SpawnTimer(uid, revealDelay, new ESRevealCacheTimerEvent());
+        }
     }
 
     private void OnStartCollide(Entity<ESCeilingCacheComponent> ent, ref StartCollideEvent args)
@@ -99,6 +122,11 @@ public abstract class ESSharedMaskCacheSystem : EntitySystem
             return;
 
         RevealCache(ent.AsNullable(), args.User);
+    }
+
+    private void OnRevealCacheTimer(Entity<ESCeilingCacheComponent> ent, ref ESRevealCacheTimerEvent args)
+    {
+        RevealCache(ent.AsNullable(), null);
     }
 
     public void RevealCache(Entity<ESCeilingCacheComponent?> ent, EntityUid? user)

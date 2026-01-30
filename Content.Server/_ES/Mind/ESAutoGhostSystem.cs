@@ -62,6 +62,6 @@ public sealed class ESAutoGhostSystem : EntitySystem
         if (!_mind.TryGetMind(uid, out _, out _))
             return;
 
-        _ = _entityTimer.SpawnTimer(uid, AutoGhostDelay, new ESAutoGhostEvent());
+        _entityTimer.SpawnTimer(uid, AutoGhostDelay, new ESAutoGhostEvent());
     }
 }

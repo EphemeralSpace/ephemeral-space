@@ -52,7 +52,6 @@ public sealed class ESEntityTimerSystem : EntitySystem
     /// <param name="logFailure">Whether to log if SpawnTimer fails to spawn the timer.</param>
     /// <returns>The timer that was created</returns>
     [PublicAPI]
-    [MustUseReturnValue]
     public Entity<ESEntityTimerComponent>? SpawnTimer(EntityUid target, TimeSpan duration, ESEntityTimerEvent endEvent, bool logFailure = true)
     {
         if (!TimerTargetIsValid(target))
@@ -85,7 +84,6 @@ public sealed class ESEntityTimerSystem : EntitySystem
     /// <param name="logFailure">Whether to log if SpawnMethodTimer fails to spawn the timer.</param>
     /// <returns>The timer that was created</returns>
     [PublicAPI]
-    [MustUseReturnValue]
     public Entity<ESEntityTimerComponent>? SpawnMethodTimer(TimeSpan duration, Action method, bool logFailure = true)
     {
         return SpawnTimer(duration, new MethodTimerEvent(method), logFailure);
