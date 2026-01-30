@@ -1,0 +1,31 @@
+using Content.Shared._ES.Objectives.Target.Components;
+using Content.Shared.Mind;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+
+namespace Content.Shared._ES.Objectives.Target;
+
+public sealed class ESTargetCodenameSystem : EntitySystem
+{
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+
+    /// <inheritdoc/>
+    public override void Initialize()
+    {
+        SubscribeLocalEvent<ESTargetCodenameComponent, ESObjectiveTargetChangedEvent>(GetCodename);
+    }
+
+    private void GetCodename(Entity<ESTargetCodenameComponent> ent, ref ESObjectiveTargetChangedEvent args)
+    {
+        var codenames = new List<string>(_prototype.Index(ent.Comp.CodenameDataset).Values);
+
+        ent.Comp.Codename = _random.PickAndTake(codenames);
+        if (ent.Comp.Title is not null)
+        {
+            var title = Loc.GetString(ent.Comp.Title, ("codename", Loc.GetString(ent.Comp.Codename)));
+            _metaData.SetEntityName(ent, title);
+        }
+    }
+}

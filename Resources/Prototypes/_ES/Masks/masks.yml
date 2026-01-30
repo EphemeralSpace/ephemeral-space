@@ -210,6 +210,23 @@
   objectives:
     id: ESObjectiveAvengerProtectRandom
 
+- type: esMask
+  id: ESHitman
+  name: es-mask-hitman-name
+  troupe: ESCrew
+  description: es-mask-hitman-desc
+  color: crimson
+  mindComponents:
+  - type: ESSpawnTargetDossier
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewHitman
+  objectives:
+    all:
+    - id: ESObjectiveHitmanKillTarget
+    - id: ESObjectiveHitmanKillTarget
+      prob: 0.5
+
 # Traitor Masks
 - type: esMask
   id: ESBaseTraitor
