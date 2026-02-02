@@ -40,7 +40,7 @@
       suit_slot:
         id: ESClothingOuterSpaceSuitEVAEngineering
       helmet_slot:
-        id: ESClothingHeadHelmetSpaceEngineering
+        id: ESClothingHeadHelmetSpace
       tank_slot:
         id: OxygenTankFilled
       mask_slot:
