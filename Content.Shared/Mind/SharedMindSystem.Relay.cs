@@ -1,6 +1,8 @@
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Mind.Components;
+// ES START
 using Content.Shared.Mobs;
+// ES END
 
 namespace Content.Shared.Mind;
 
