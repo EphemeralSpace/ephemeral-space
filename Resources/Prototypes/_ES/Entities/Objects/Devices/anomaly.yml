@@ -1,0 +1,25 @@
+- type: entity
+  parent: BaseItem
+  id: ESAnomalyResonator
+  name: anomaly resonator
+  description: Test.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/stunbaton.rsi
+    layers:
+    - state: stunbaton_off
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: ItemToggle
+    verbToggleOn: es-anomaly-probe-toggle-verb
+    verbToggleOff: es-anomaly-probe-toggle-verb
+  - type: ESAnomalyProbe
+  - type: UseDelay
+  - type: Item
+    size: Normal
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: {state: stunbaton_on}
+          False: {state: stunbaton_off}
