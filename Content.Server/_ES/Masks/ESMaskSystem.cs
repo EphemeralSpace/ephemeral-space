@@ -239,6 +239,15 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
         Objective.RegenerateObjectiveList(mind.Owner);
     }
+
+    public override void ChangeMask(Entity<MindComponent> mind,
+        ProtoId<ESMaskPrototype> maskId,
+        Entity<ESTroupeRuleComponent>? troupe = null)
+    {
+        RemoveMask(mind);
+        ApplyMask(mind, maskId, troupe);
+    }
+
 }
 
 /// <summary>
