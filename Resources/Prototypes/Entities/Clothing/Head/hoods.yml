@@ -159,15 +159,22 @@
   description: A hood of the hazmat suit, designed for protection from high radioactivity.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hoods/rad.rsi
+# ES START
+    sprite: _ES/Clothing/Head/Hoods/rad.rsi
+# ES END
   - type: Clothing
-    sprite: Clothing/Head/Hoods/rad.rsi
+# ES START
+    sprite: _ES/Clothing/Head/Hoods/rad.rsi
+# ES END
   - type: Armor
     modifiers:
       coefficients:
         Heat: 0.95
         Radiation: 0.65
-  - type: IdentityBlocker
+# ES START
+# New sprite doesn't cover the face at all
+#  - type: IdentityBlocker
+# ES END
   - type: BreathMask
   - type: HideLayerClothing
     slots:

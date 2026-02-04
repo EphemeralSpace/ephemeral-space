@@ -126,14 +126,18 @@
   description: "A suit that protects against radiation. The label reads, 'Made with lead. Please do not consume insulation.'"
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Suits/rad.rsi
+# ES START
+    sprite: _ES/Clothing/OuterClothing/Suits/rad.rsi
+# ES END
   - type: Armor
     modifiers:
       coefficients:
         Heat: 0.90
         Radiation: 0.01
   - type: Clothing
-    sprite: Clothing/OuterClothing/Suits/rad.rsi
+# ES START
+    sprite: _ES/Clothing/OuterClothing/Suits/rad.rsi
+# ES END
   - type: GroupExamine
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodRad
