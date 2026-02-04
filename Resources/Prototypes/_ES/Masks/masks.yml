@@ -187,7 +187,7 @@
   color: gold
   weight: 0.5
   mindComponents:
-  - type: ESParasite
+  - type: ESMartyr
   objectives:
     all:
     - id: ESObjectiveMartyrBeKilled
@@ -210,6 +210,19 @@
   color: peachpuff
   objectives:
     id: ESObjectiveAvengerProtectRandom
+
+- type: esMask
+  id: ESParasite
+  name: es-mask-parasite-name
+  troupe: ESCrew
+  description: es-mask-parasite-desc
+  color: cerulean
+  weight: 0.5
+  mindComponents:
+  - type: ESParasite
+  objectives:
+    all:
+    - id: ESObjectiveParasiteBeKilled
 
 # Traitor Masks
 - type: esMask
