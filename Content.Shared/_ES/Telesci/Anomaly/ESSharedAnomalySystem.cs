@@ -7,6 +7,7 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
 using Content.Shared.Timing;
+using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 
@@ -28,6 +29,7 @@ public sealed class ESSharedAnomalySystem : EntitySystem
         SubscribeLocalEvent<ESPortalAnomalyComponent, ComponentShutdown>(OnShutdown);
 
         SubscribeLocalEvent<ESAnomalyProbeComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<ESAnomalyProbeComponent, GetVerbsEvent<Verb>>(OnGetVerb);
         SubscribeLocalEvent<ESAnomalyProbeComponent, AfterInteractEvent>(OnProbeAfterInteract);
         SubscribeLocalEvent<ESAnomalyProbeComponent, ESProbeAnomalyDoAfterEvent>(OnProbeAnomalyDoAfter);
         SubscribeLocalEvent<ESAnomalyProbeComponent, ItemToggleActivateAttemptEvent>(OnToggleActivateAttempt);
@@ -36,7 +38,42 @@ public sealed class ESSharedAnomalySystem : EntitySystem
 
     private void OnExamined(Entity<ESAnomalyProbeComponent> ent, ref ExaminedEvent args)
     {
-        args.PushMarkup(Loc.GetString("es-anomaly-probe-mode-examine", ("mode", IsProbeMode(ent.AsNullable()))));
+        using (args.PushGroup(nameof(ESAnomalyProbeComponent)))
+        {
+            args.PushMarkup(Loc.GetString("es-anomaly-probe-mode-examine", ("mode", IsProbeMode(ent.AsNullable()))));
+
+            if (IsResonateMode(ent.AsNullable()))
+                args.PushMarkup(Loc.GetString("es-anomaly-probe-mode-examine-signal", ("freq", GetSignalString(ent.Comp.CurrentSignal))));
+        }
+    }
+
+    private void OnGetVerb(Entity<ESAnomalyProbeComponent> ent, ref GetVerbsEvent<Verb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract || args.Hands == null)
+            return;
+
+        if (!IsResonateMode(ent.AsNullable()))
+            return;
+
+        var user = args.User;
+
+        foreach (var signal in Enum.GetValues<ESAnomalySignal>())
+        {
+            var v = new Verb
+            {
+                Priority = 1,
+                Category = VerbCategory.SelectType,
+                Text = Loc.GetString("es-anomaly-probe-verb-fmt", ("freq", GetSignalString(signal))),
+                Disabled = signal == ent.Comp.CurrentSignal,
+                DoContactInteraction = true,
+                Act = () =>
+                {
+                    SetProbeSignal(ent, signal);
+                    _popup.PopupPredicted(Loc.GetString("es-anomaly-probe-popup-freq-set", ("type", GetSignalString(signal))), ent, user);
+                },
+            };
+            args.Verbs.Add(v);
+        }
     }
 
     private void OnMapInit(Entity<ESPortalAnomalyComponent> ent, ref MapInitEvent args)
@@ -136,5 +173,16 @@ public sealed class ESSharedAnomalySystem : EntitySystem
     public bool IsProbeMode(Entity<ESAnomalyProbeComponent?> ent)
     {
         return _itemToggle.IsActivated(ent.Owner);
+    }
+
+    public void SetProbeSignal(Entity<ESAnomalyProbeComponent> ent, ESAnomalySignal signal)
+    {
+        ent.Comp.CurrentSignal = signal;
+        Dirty(ent);
+    }
+
+    public string GetSignalString(ESAnomalySignal signal)
+    {
+        return Loc.GetString($"es-anomaly-signal-{signal}");
     }
 }
