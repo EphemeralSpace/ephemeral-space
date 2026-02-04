@@ -28,7 +28,7 @@ public sealed class ESParasiteSystem : EntitySystem
 
     private void OnKillReported(Entity<ESParasiteComponent> ent, ref ESKillReportedEvent args)
     {
-        if (!_beKilled.IsValidKill(args, null, out Entity<MindComponent>? killerMind))
+        if (!_beKilled.IsValidKill(args, null, out var killerMind))
             return;
 
         ent.Comp.KillerMind = killerMind;
