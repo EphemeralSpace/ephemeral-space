@@ -51,11 +51,11 @@ public sealed class ESParasiteSystem : EntitySystem
         if (!_mask.TryGetMask(killerBody, out var killermask))
             return;
 
-        if (!_mask.TryGetMask((EntityUid)ownedEntity, out var victimMask))
+        if (!_mask.TryGetMask(ownedEntity, out var victimMask))
             return;
 
         _mind.TransferTo(args.Mind, killerBody);
-        _mind.TransferTo((EntityUid)killerMind, ownedEntity);
+        _mind.TransferTo(killerMind, ownedEntity);
 
         _mask.ChangeMask((killerMind.Value.Owner, killerMind.Value.Comp), (ProtoId<ESMaskPrototype>)victimMask);
         _mask.ChangeMask((args.Mind.Owner, args.Mind.Comp), (ProtoId<ESMaskPrototype>)killermask);
