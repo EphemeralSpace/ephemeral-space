@@ -1,0 +1,24 @@
+
+- type: entity
+  id: ESLockerAtmosphericsFilled
+  suffix: Filled
+  parent: LockerAtmospherics
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillLockerAtmospherics
+
+- type: entityTable
+  id: ESFillLockerAtmospherics
+  table: !type:AllSelector
+    children:
+    - id: ClothingHeadHelmetFire
+    - id: ClothingOuterSuitFire
+    - id: ClothingMaskGasAtmos
+    - id: GasAnalyzer
+    - id: MedkitOxygenFilled
+    - id: HolofanProjector
+    - id: RCD
+    - id: RCDAmmo
+    - id: AirGrenade
