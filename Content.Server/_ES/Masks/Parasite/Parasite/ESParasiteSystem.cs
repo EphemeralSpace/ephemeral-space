@@ -43,12 +43,8 @@ public sealed class ESParasiteSystem : EntitySystem
         if (!TryComp<MindComponent>(ent, out var mindComp))
             return;
 
-        if (mindComp.OwnedEntity == null || ent.Comp.KillerMind == null)
+        if (mindComp.OwnedEntity is not { } ownedEntity || ent.Comp.KillerMind is not { } killerMind)
             return;
-
-        var ownedEntity = mindComp.OwnedEntity;
-
-        var killerMind = ent.Comp.KillerMind;
 
         if (killerMind.Value.Comp.OwnedEntity is not { } killerBody)
             return;
