@@ -14,7 +14,6 @@
     children:
     - id: ClothingBackpack
     - id: ClothingShoesColorBlack
-    - id: ClothingUniformJumpskirtBartender
     - id: ClothingUniformJumpsuitBartender
 
 - type: entity
@@ -34,7 +33,6 @@
     - id: ClothingBackpack
     - id: ClothingOuterApronChef
     - id: ClothingShoesChef
-    - id: ClothingUniformJumpskirtChef
     - id: ClothingUniformJumpsuitChef
 
 - type: entity
@@ -74,7 +72,6 @@
     - id: ClothingBackpackClown
     - id: ClothingMaskClown
     - id: ClothingShoesClown
-    - id: ClothingUniformJumpskirtClown
     - id: ClothingUniformJumpsuitClown
 
 - type: entity
@@ -95,7 +92,6 @@
     - id: ESClothingOuterCoatDetective
     - id: ClothingBackpackSecurity
     - id: ClothingShoesColorBrown
-    - id: ClothingUniformJumpskirtDetective
     - id: ClothingUniformJumpsuitDetective
 
 - type: entity
@@ -116,7 +112,6 @@
     - id: ESClothingHandsGlovesColorOrange
     - id: ClothingHeadHatPurplesoft
     - id: ClothingShoesColorBlack
-    - id: ClothingUniformJumpskirtJanitor
     - id: ClothingUniformJumpsuitJanitor
 
 - type: entity
@@ -139,7 +134,6 @@
     - id: ClothingHeadHatBeretFrench
     - id: ClothingMaskMime
     - id: ClothingShoesColorWhite
-    - id: ClothingUniformJumpskirtMime
     - id: ClothingUniformJumpsuitMime
 
 - type: entity
@@ -180,3 +174,189 @@
     containers:
       entity_storage:
         tableId: ESFillWardrobeSecurity
+
+- type: entity
+  id: ESWardrobeScienceFilled
+  suffix: Filled
+  parent: ESWardrobeScience
+  description: "You've read a couple pop science articles, now it's time for the real deal."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillWardrobeScience
+
+- type: entityTable
+  id: ESFillWardrobeScience
+  table: !type:AllSelector
+    children:
+    - id: ClothingUniformJumpsuitScientist
+    - id: ClothingBackpackScience
+    - id: ClothingShoesChef
+    - id: ClothingOuterCoatLabOpened
+    - id: ClothingEyesGlasses
+      prob: 0.5
+    - id: CrowbarRed #The jojoke - hit video game Half-Life
+      prob: 0.1
+
+- type: entity
+  id: ESWardrobeBotanistFilled
+  suffix: Filled
+  parent: ESWardrobeBotanist
+  description: "Plant yourself among the plant men with these 100% natural plant-derived clothes."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillWardrobeBotanist
+
+- type: entityTable
+  id: ESFillWardrobeBotanist
+  table: !type:AllSelector
+    children:
+    - id: ClothingUniformJumpsuitHydroponics
+    - id: ClothingBackpackHydroponics
+    - id: ClothingShoesColorBrown
+    - id: ClothingOuterApronBotanist
+    - id: ClothingUniformOveralls
+    - id: ClothingHeadHatTrucker #the hat itself is a subtle joke
+      prob: 0.15
+    - id: ClothingHandsGlovesLeather
+      prob: 0.5
+
+- type: entity
+  id: ESWardrobeMedicalDoctorFilled
+  suffix: Filled
+  parent: ESWardrobeMedicalDoctor
+  description: "We've all played doctor before, now practice medicine."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillWardrobeMedicalDoctor
+
+- type: entityTable
+  id: ESFillWardrobeMedicalDoctor
+  table: !type:AllSelector
+    children:
+    - id: ClothingUniformJumpsuitMedicalDoctor
+    - id: ClothingBackpackMedical
+    - id: ClothingShoesColorWhite
+    - id: ClothingOuterCoatLab
+    - id: ClothingHandsGlovesLatex
+      prob: 0.4
+    - id: ClothingEyesGlasses
+      prob: 0.3
+
+- type: entity
+  id: ESWardrobeEngineeringFilled
+  suffix: Filled
+  parent: ESWardrobeEngineering
+  description: "This locker contains a uniform for engineering or social engineering."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillWardrobeEngineering
+
+- type: entityTable
+  id: ESFillWardrobeEngineering
+  table: !type:AllSelector
+    children:
+    - id: ClothingHeadHatHardhatYellow
+    - id: ClothingUniformJumpsuitEngineering
+    - id: ClothingBackpackEngineering
+    - id: ClothingShoesColorOrange
+    - id: ClothingOuterVestHazard
+
+- type: entity
+  id: ESWardrobeCargoFilled
+  suffix: Filled
+  parent: ESWardrobeCargo
+  description: "This locker? Maybe 500 spesos. Brotherhood? Priceless."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillWardrobeCargo
+
+- type: entityTable
+  id: ESFillWardrobeCargo
+  table: !type:AllSelector
+    children:
+    - id: ClothingHeadHatCargosoft
+    - id: ClothingUniformJumpsuitCargo
+    - id: ClothingBackpack
+    - id: ClothingShoesColorBlack
+    - id: ClothingHandsGlovesFingerless
+    - id: AppraisalTool
+
+- type: entity
+  id: ESWardrobePrisonFilled
+  suffix: Filled
+  parent: ESWardrobePrison
+  description: "Contains a selection of nice orange clothes for people enjoying their stay in the brig."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ESFillWardrobePrison
+
+- type: entityTable
+  id: ESFillWardrobePrison
+  table: !type:AllSelector
+    children:
+    - !type:AllSelector
+      rolls: 2
+      children:
+      - id: ClothingUniformJumpsuitPrisoner
+      - id: ClothingShoesColorBlack
+    - id: ClothingMaskMuzzle
+    - !type:GroupSelector
+      prob: 0.15
+      rolls: 2
+      children:
+      - id: FoodSnackBoritos
+      - id: FoodSnackCheesie
+      - id: FoodSnackChips
+      - id: FoodSnackRaisins
+      - id: FoodSnackMREBrownie
+      - id: FoodSnackChocolate
+      - id: FoodSnackChowMein
+    - !type:GroupSelector
+      prob: 0.25
+      children:
+      - id: BookRandomStory
+      - id: BookRandom
+    - !type:GroupSelector
+      prob: 0.15
+      children:
+      - id: Flare
+      - id: BarberScissors
+      - id: FlippoLighter
+      - id: trayScanner
+      - id: Wristwatch
+      - id: ClothingNeckBling
+      - id: ClothingMultipleHeadphones
+      - id: DiceBag
+      - id: PersonalAI
+      - id: CrayonBox
+      - id: HarmonicaInstrument
+      - id: ToyAmongPequeno
+      - id: WhoopieCushion
+      - id: Brutepack
+      - id: StrangePill
+      - id: Shiv
+    - !type:GroupSelector
+      prob: 0.1
+      children:
+      - id: CigPackBlack
+      - id: Joint
+      - id: Blunt
+      - id: PackPaperRolling
+      - id: Cigarette
+        amount: !type:RangeNumberSelector
+          range: 1, 4
+      - id: GroundCannabis
+        amount: !type:RangeNumberSelector
+          range: 1, 6

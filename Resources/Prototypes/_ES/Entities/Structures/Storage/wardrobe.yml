@@ -42,3 +42,33 @@
   parent: WardrobeMixed
   id: ESWardrobeTheatre
   name: theatre wardrobe
+
+- type: entity
+  id: ESWardrobeScience
+  parent: WardrobeWhite
+  name: science wardrobe
+
+- type: entity
+  id: ESWardrobeBotanist
+  parent: WardrobeGreen
+  name: botanist wardrobe
+
+- type: entity
+  id: ESWardrobeMedicalDoctor
+  parent: WardrobeWhite
+  name: medical doctor's wardrobe
+
+- type: entity
+  id: ESWardrobeEngineering
+  parent: WardrobeYellow
+  name: engineering wardrobe
+
+- type: entity
+  id: ESWardrobeCargo
+  parent: WardrobePrison
+  name: cargo wardrobe
+
+- type: entity
+  id: ESWardrobePrison
+  parent: WardrobePrison
+  name: prison wardrobe
