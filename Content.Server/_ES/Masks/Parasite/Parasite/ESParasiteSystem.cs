@@ -57,8 +57,8 @@ public sealed class ESParasiteSystem : EntitySystem
         _mind.TransferTo(args.Mind, killerBody);
         _mind.TransferTo(killerMind, ownedEntity);
 
-        _mask.ChangeMask((killerMind.Value.Owner, killerMind.Value.Comp), (ProtoId<ESMaskPrototype>)victimMask);
-        _mask.ChangeMask((args.Mind.Owner, args.Mind.Comp), (ProtoId<ESMaskPrototype>)killermask);
+        _mask.ChangeMask(killerMind.AsNullable(), victimMask.Value);
+        _mask.ChangeMask(args.Mind.AsNullable(), killermask.Value);
 
         args.Handled = true;
         args.Result = true;
