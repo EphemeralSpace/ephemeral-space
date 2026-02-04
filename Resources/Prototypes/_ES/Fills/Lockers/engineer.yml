@@ -1,4 +1,3 @@
-
 - type: entity
   id: ESLockerAtmosphericsFilled
   suffix: Filled
@@ -6,13 +5,13 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillLockerAtmospherics
 
 - type: entityTable
   id: ESFillLockerAtmospherics
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingHeadHelmetFire
     - id: ClothingOuterSuitFire
     - id: ClothingMaskGasAtmos
