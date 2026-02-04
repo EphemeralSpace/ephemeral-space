@@ -45,7 +45,10 @@ public sealed class ESParasiteSystem : EntitySystem
         if (mindComp.OwnedEntity is not { } ownedEntity || ent.Comp.KillerMind is not { } killerMind)
             return;
 
-        if (killerMind.Value.Comp.OwnedEntity is not { } killerBody)
+        if (!TryComp<MindComponent>(killerMind, out var killerMindComp))
+            return;
+
+        if (killerMindComp.OwnedEntity is not { } killerBody)
             return;
 
         if (!_mask.TryGetMask(killerBody, out var killermask))
@@ -57,8 +60,8 @@ public sealed class ESParasiteSystem : EntitySystem
         _mind.TransferTo(args.Mind, killerBody);
         _mind.TransferTo(killerMind, ownedEntity);
 
-        _mask.ChangeMask(killerMind.AsNullable(), victimMask.Value);
-        _mask.ChangeMask(args.Mind.AsNullable(), killermask.Value);
+        _mask.ChangeMask(killerMind!, victimMask.Value);
+        _mask.ChangeMask(args.Mind, killermask.Value);
 
         args.Handled = true;
         args.Result = true;
