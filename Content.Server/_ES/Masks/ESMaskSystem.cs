@@ -247,7 +247,6 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         RemoveMask(mind);
         ApplyMask(mind, maskId, troupe);
     }
-
 }
 
 /// <summary>
