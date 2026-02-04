@@ -5,5 +5,6 @@ namespace Content.Server._ES.Masks.Parasite;
 [RegisterComponent]
 public sealed partial class ESParasiteComponent : Component
 {
-    public Entity<MindComponent>? KillerMind;
+    [DataField]
+    public EntityUid? KillerMind;
 }
