@@ -10,6 +10,9 @@ namespace Content.Shared._ES.Telesci.Anomaly.Components;
 public sealed partial class ESAnomalyProbeComponent : Component
 {
     [DataField, AutoNetworkedField]
+    public ESAnomalySignal CurrentSignal = ESAnomalySignal.Zeta;
+
+    [DataField, AutoNetworkedField]
     public bool InUse;
 
     [DataField]

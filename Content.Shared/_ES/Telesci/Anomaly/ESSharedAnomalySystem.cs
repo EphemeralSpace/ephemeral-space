@@ -6,6 +6,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
+using Content.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 
@@ -18,6 +19,7 @@ public sealed class ESSharedAnomalySystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly UseDelaySystem _useDelay = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -62,25 +64,34 @@ public sealed class ESSharedAnomalySystem : EntitySystem
             !HasComp<ESPortalAnomalyComponent>(target))
             return;
 
-        if (!IsProbeMode(ent.AsNullable()))
+        if (_useDelay.IsDelayed(ent.Owner))
             return;
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager,
-            args.User,
-            ent.Comp.ProbeTime,
-            new ESProbeAnomalyDoAfterEvent(),
-            ent,
-            target,
-            ent)
+        if (IsResonateMode(ent.AsNullable()))
         {
-            DuplicateCondition = DuplicateConditions.None,
-            BreakOnMove = false,
-            NeedHand = true,
-        });
+
+            _useDelay.TryResetDelay(ent.Owner);
+        }
+        else if (IsProbeMode(ent.AsNullable()))
+        {
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager,
+                args.User,
+                ent.Comp.ProbeTime,
+                new ESProbeAnomalyDoAfterEvent(),
+                ent,
+                target,
+                ent)
+            {
+                DuplicateCondition = DuplicateConditions.None,
+                BreakOnMove = false,
+                NeedHand = true,
+            });
+
+            ent.Comp.InUse = true;
+            Dirty(ent);
+        }
 
         args.Handled = true;
-        ent.Comp.InUse = true;
-        Dirty(ent);
     }
 
     private void OnProbeAnomalyDoAfter(Entity<ESAnomalyProbeComponent> ent, ref ESProbeAnomalyDoAfterEvent args)
