@@ -18,7 +18,6 @@ public sealed class ESParasiteSystem : EntitySystem
     [Dependency] private readonly ESSharedMaskSystem _mask = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 
-
     public override void Initialize()
     {
         base.Initialize();
