@@ -58,7 +58,7 @@ public sealed class ESMartyrSystem : EntitySystem
             return;
 
         EnsureComp<ESMartyrKillerMarkerComponent>(killerBody);
-        _ = _timer.SpawnTimer(killerBody, ent.Comp.TimeBeforeKillerDeath, new ESMartyrKillerTimeToDieEvent());
+        _timer.SpawnTimer(killerBody, ent.Comp.TimeBeforeKillerDeath, new ESMartyrKillerTimeToDieEvent());
 
         if (!TryComp<ActorComponent>(killerBody, out var actor))
             return;
