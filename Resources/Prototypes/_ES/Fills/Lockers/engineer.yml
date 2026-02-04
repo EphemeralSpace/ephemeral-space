@@ -1,6 +1,6 @@
 - type: entity
   id: ESLockerAtmosphericsFilled
-  suffix: ESFilled
+  suffix: ES, Filled
   parent: LockerAtmospherics
   components:
   - type: EntityTableContainerFill
