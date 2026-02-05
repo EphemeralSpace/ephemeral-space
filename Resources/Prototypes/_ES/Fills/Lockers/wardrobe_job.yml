@@ -1,17 +1,17 @@
 - type: entity
   parent: ESWardrobeBartender
   id: ESWardrobeBartenderFilled
-  suffix: Filled
+  suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillWardrobeBartender
 
 - type: entityTable
   id: ESFillWardrobeBartender
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingBackpack
     - id: ClothingShoesColorBlack
     - id: ClothingUniformJumpsuitBartender
@@ -19,17 +19,17 @@
 - type: entity
   parent: ESWardrobeChef
   id: ESWardrobeChefFilled
-  suffix: Filled
+  suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillWardrobeChef
 
 - type: entityTable
   id: ESFillWardrobeChef
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingBackpack
     - id: ClothingOuterApronChef
     - id: ClothingShoesChef
@@ -58,17 +58,17 @@
 - type: entity
   parent: ESWardrobeClown
   id: ESWardrobeClownFilled
-  suffix: Filled
+  suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillWardrobeClown
 
 - type: entityTable
   id: ESFillWardrobeClown
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingBackpackClown
     - id: ClothingMaskClown
     - id: ClothingShoesClown
@@ -77,17 +77,17 @@
 - type: entity
   parent: ESWardrobeDetective
   id: ESWardrobeDetectiveFilled
-  suffix: Filled
+  suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillWardrobeDetective
 
 - type: entityTable
   id: ESFillWardrobeDetective
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingHeadHatFedoraBrown
     - id: ESClothingOuterCoatDetective
     - id: ClothingBackpackSecurity
@@ -97,17 +97,17 @@
 - type: entity
   parent: ESWardrobeJanitor
   id: ESWardrobeJanitorFilled
-  suffix: Filled
+  suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillWardrobeJanitor
 
 - type: entityTable
   id: ESFillWardrobeJanitor
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingBackpack
     - id: ESClothingHandsGlovesColorOrange
     - id: ClothingHeadHatPurplesoft
@@ -117,7 +117,7 @@
 - type: entity
   parent: ESWardrobeMime
   id: ESWardrobeMimeFilled
-  suffix: Filled
+  suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
     containers:
@@ -139,17 +139,17 @@
 - type: entity
   parent: ESWardrobeReporter
   id: ESWardrobeReporterFilled
-  suffix: Filled
+  suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillWardrobeReporter
 
 - type: entityTable
   id: ESFillWardrobeReporter
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingBackpack
     - id: ClothingShoesColorBrown
     - id: ClothingUniformJumpsuitReporter
@@ -177,19 +177,19 @@
 
 - type: entity
   id: ESWardrobeScienceFilled
-  suffix: Filled
+  suffix: ES, Filled
   parent: ESWardrobeScience
   description: "You've read a couple pop science articles, now it's time for the real deal."
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillWardrobeScience
 
 - type: entityTable
   id: ESFillWardrobeScience
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitScientist
     - id: ClothingBackpackScience
     - id: ClothingShoesChef
@@ -201,19 +201,19 @@
 
 - type: entity
   id: ESWardrobeBotanistFilled
-  suffix: Filled
+  suffix: ES, Filled
   parent: ESWardrobeBotanist
   description: "Plant yourself among the plant men with these 100% natural plant-derived clothes."
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillWardrobeBotanist
 
 - type: entityTable
   id: ESFillWardrobeBotanist
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitHydroponics
     - id: ClothingBackpackHydroponics
     - id: ClothingShoesColorBrown
@@ -226,19 +226,19 @@
 
 - type: entity
   id: ESWardrobeMedicalDoctorFilled
-  suffix: Filled
+  suffix: ES, Filled
   parent: ESWardrobeMedicalDoctor
   description: "We've all played doctor before, now practice medicine."
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillWardrobeMedicalDoctor
 
 - type: entityTable
   id: ESFillWardrobeMedicalDoctor
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitMedicalDoctor
     - id: ClothingBackpackMedical
     - id: ClothingShoesColorWhite
@@ -250,19 +250,19 @@
 
 - type: entity
   id: ESWardrobeEngineeringFilled
-  suffix: Filled
+  suffix: ES, Filled
   parent: ESWardrobeEngineering
   description: "This locker contains a uniform for engineering or social engineering."
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillWardrobeEngineering
 
 - type: entityTable
   id: ESFillWardrobeEngineering
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingHeadHatHardhatYellow
     - id: ClothingUniformJumpsuitEngineering
     - id: ClothingBackpackEngineering
@@ -271,19 +271,19 @@
 
 - type: entity
   id: ESWardrobeCargoFilled
-  suffix: Filled
+  suffix: ES, Filled
   parent: ESWardrobeCargo
   description: "This locker? Maybe 500 spesos. Brotherhood? Priceless."
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillWardrobeCargo
 
 - type: entityTable
   id: ESFillWardrobeCargo
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingHeadHatCargosoft
     - id: ClothingUniformJumpsuitCargo
     - id: ClothingBackpack
@@ -293,70 +293,19 @@
 
 - type: entity
   id: ESWardrobePrisonFilled
-  suffix: Filled
+  suffix: ES, Filled
   parent: ESWardrobePrison
   description: "Contains a selection of nice orange clothes for people enjoying their stay in the brig."
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillWardrobePrison
 
 - type: entityTable
   id: ESFillWardrobePrison
-  table: !type:AllSelector
-    children:
-    - !type:AllSelector
-      rolls: 2
-      children:
+  table:
+    all:
       - id: ClothingUniformJumpsuitPrisoner
       - id: ClothingShoesColorBlack
-    - id: ClothingMaskMuzzle
-    - !type:GroupSelector
-      prob: 0.15
-      rolls: 2
-      children:
-      - id: FoodSnackBoritos
-      - id: FoodSnackCheesie
-      - id: FoodSnackChips
-      - id: FoodSnackRaisins
-      - id: FoodSnackMREBrownie
-      - id: FoodSnackChocolate
-      - id: FoodSnackChowMein
-    - !type:GroupSelector
-      prob: 0.25
-      children:
-      - id: BookRandomStory
-      - id: BookRandom
-    - !type:GroupSelector
-      prob: 0.15
-      children:
-      - id: Flare
-      - id: BarberScissors
-      - id: FlippoLighter
-      - id: trayScanner
-      - id: Wristwatch
-      - id: ClothingNeckBling
-      - id: ClothingMultipleHeadphones
-      - id: DiceBag
-      - id: PersonalAI
-      - id: CrayonBox
-      - id: HarmonicaInstrument
-      - id: ToyAmongPequeno
-      - id: WhoopieCushion
-      - id: Brutepack
-      - id: StrangePill
-      - id: Shiv
-    - !type:GroupSelector
-      prob: 0.1
-      children:
-      - id: CigPackBlack
-      - id: Joint
-      - id: Blunt
-      - id: PackPaperRolling
-      - id: Cigarette
-        amount: !type:RangeNumberSelector
-          range: 1, 4
-      - id: GroundCannabis
-        amount: !type:RangeNumberSelector
-          range: 1, 6
+      - id: ClothingMaskMuzzle

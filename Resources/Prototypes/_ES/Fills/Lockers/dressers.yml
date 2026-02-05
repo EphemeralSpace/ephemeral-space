@@ -5,8 +5,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: ClothingHeadHatCaptain
         - id: ClothingHandsGlovesCaptain
         - id: ClothingUniformJumpsuitCaptain
@@ -19,8 +19,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: ClothingHeadHatHopcap
         - id: ClothingEyesHudSecurity
         - id: ClothingUniformJumpsuitHoP
@@ -33,8 +33,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: ClothingHeadHatBeretHoS
         - id: ClothingHeadHatHoshat
         - id: ClothingEyesHudSecurity
