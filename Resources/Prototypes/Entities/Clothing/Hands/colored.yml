@@ -262,6 +262,9 @@
 - type: entity
   parent: ClothingHandsGlovesSyntheticBase
   id: ClothingHandsGlovesColorOrange
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: orange gloves
   description: Regular orange gloves that do not keep you from frying.
   components:

@@ -62,7 +62,7 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ESClothingHeadHatHoodBiological
+  id: ESClothingHeadHatHoodBio
   name: bio hood
   suffix: ES
   description: A piece of protective gear that protects the head and face from biological contaminants.

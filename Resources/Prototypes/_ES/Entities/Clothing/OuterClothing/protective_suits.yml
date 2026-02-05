@@ -61,7 +61,9 @@
     - Tail
   - type: ESChameleonClothingWhitelist
 
-  id: ClothingOuterBioGeneral
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ESClothingOuterSuitBio
   name: bio suit
   suffix: ES
   description: A suit that helps protect against dangerous biohazards.
