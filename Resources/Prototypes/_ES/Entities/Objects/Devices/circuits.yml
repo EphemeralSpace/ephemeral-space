@@ -46,10 +46,8 @@
     state: mainboard
   - type: ComputerBoard
     prototype: ESComputerSupplyRequest
-# ES START
     alternatePrototype:
       ESComputerTabletop: ESComputerSupplyRequestTabletop
-# ES END
 
 - type: entity
   parent: BaseComputerCircuitboard

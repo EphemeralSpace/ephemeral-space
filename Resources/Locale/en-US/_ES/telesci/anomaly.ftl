@@ -8,6 +8,13 @@ es-anomaly-probe-mode-examine-signal = The current resonant frequency is [bold][
 es-anomaly-probe-verb-fmt = {CAPITALIZE($freq)}
 es-anomaly-probe-popup-freq-set = Frequency set to: {CAPITALIZE($type)}
 
+es-anomaly-console-ui-title = Probomaly Buster 30k
+es-anomaly-console-signal-name = [font="Monospace"]# {CAPITALIZE($name)}[/font]
+es-anomaly-console-signal-header = [font="Monospace"]Signal collapse sequence:[/font]
+es-anomaly-console-signal-fmt = [font="Monospace"] - {CAPITALIZE($freq)}[/font]
+es-anomaly-console-signal-current-fmt = [color=magenta][font="Monospace"]{"  >"} {CAPITALIZE($freq)}[/font][/color]
+es-anomaly-console-signal-locked = [color=gray][font="Monospace"] ? Unknown[/font][/color]
+
 es-anomaly-signal-Alpha = alpha
 es-anomaly-signal-Beta = beta
 es-anomaly-signal-Gamma = gamma

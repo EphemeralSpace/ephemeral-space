@@ -8,6 +8,7 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
 using Content.Shared.Timing;
+using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
@@ -37,6 +38,8 @@ public abstract class ESSharedAnomalySystem : EntitySystem
         SubscribeLocalEvent<ESAnomalyProbeComponent, ESProbeAnomalyDoAfterEvent>(OnProbeAnomalyDoAfter);
         SubscribeLocalEvent<ESAnomalyProbeComponent, ItemToggleActivateAttemptEvent>(OnToggleActivateAttempt);
         SubscribeLocalEvent<ESAnomalyProbeComponent, ItemToggleDeactivateAttemptEvent>(OnToggleDeactivateAttempt);
+
+        SubscribeLocalEvent<ESAnomalyConsoleComponent, BeforeActivatableUIOpenEvent>(OnBeforeOpen);
     }
 
     private void OnExamined(Entity<ESAnomalyProbeComponent> ent, ref ExaminedEvent args)
@@ -46,7 +49,7 @@ public abstract class ESSharedAnomalySystem : EntitySystem
             args.PushMarkup(Loc.GetString("es-anomaly-probe-mode-examine", ("mode", IsProbeMode(ent.AsNullable()))));
 
             if (IsResonateMode(ent.AsNullable()))
-                args.PushMarkup(Loc.GetString("es-anomaly-probe-mode-examine-signal", ("freq", GetSignalString(ent.Comp.CurrentSignal))));
+                args.PushMarkup(Loc.GetString("es-anomaly-probe-mode-examine-signal", ("freq", GetSignalString(Loc, ent.Comp.CurrentSignal))));
         }
     }
 
@@ -66,14 +69,14 @@ public abstract class ESSharedAnomalySystem : EntitySystem
             {
                 Priority = 1,
                 Category = VerbCategory.SelectType,
-                Text = Loc.GetString("es-anomaly-probe-verb-fmt", ("freq", GetSignalString(signal))),
+                Text = Loc.GetString("es-anomaly-probe-verb-fmt", ("freq", GetSignalString(Loc, signal))),
                 Disabled = signal == ent.Comp.CurrentSignal,
                 DoContactInteraction = true,
                 Act = () =>
                 {
                     SetProbeSignal(ent, signal);
                     _sparks.DoSparks(ent.Owner, 1, user: user);
-                    _popup.PopupPredicted(Loc.GetString("es-anomaly-probe-popup-freq-set", ("type", GetSignalString(signal))), ent, user);
+                    _popup.PopupPredicted(Loc.GetString("es-anomaly-probe-popup-freq-set", ("type", GetSignalString(Loc, signal))), ent, user);
                 },
             };
             args.Verbs.Add(v);
@@ -97,6 +100,7 @@ public abstract class ESSharedAnomalySystem : EntitySystem
         {
             comp.Anomalies.Remove(ent);
         }
+        UpdateConsolesUi();
     }
 
     private void OnProbeAfterInteract(Entity<ESAnomalyProbeComponent> ent, ref AfterInteractEvent args)
@@ -110,8 +114,8 @@ public abstract class ESSharedAnomalySystem : EntitySystem
 
         if (IsResonateMode(ent.AsNullable()))
         {
-            TryUseSignal(ent, (target, anom), args.User);
-            _useDelay.TryResetDelay(ent.Owner);
+            if (TryUseSignal(ent, (target, anom), args.User))
+                _useDelay.TryResetDelay(ent.Owner);
         }
         else if (IsProbeMode(ent.AsNullable()))
         {
@@ -154,6 +158,7 @@ public abstract class ESSharedAnomalySystem : EntitySystem
         {
             comp.Anomalies.Add(target);
         }
+        UpdateConsolesUi();
 
         args.Handled = true;
     }
@@ -168,6 +173,11 @@ public abstract class ESSharedAnomalySystem : EntitySystem
     {
         if (!args.Cancelled)
             args.Cancelled = ent.Comp.InUse;
+    }
+
+    private void OnBeforeOpen(Entity<ESAnomalyConsoleComponent> ent, ref BeforeActivatableUIOpenEvent args)
+    {
+        UpdateUi((ent, ent));
     }
 
     public bool IsResonateMode(Entity<ESAnomalyProbeComponent?> ent)
@@ -187,9 +197,9 @@ public abstract class ESSharedAnomalySystem : EntitySystem
         Dirty(ent);
     }
 
-    public string GetSignalString(ESAnomalySignal signal)
+    public static string GetSignalString(ILocalizationManager loc, ESAnomalySignal signal)
     {
-        return Loc.GetString($"es-anomaly-signal-{signal}");
+        return loc.GetString($"es-anomaly-signal-{signal}");
     }
 
     public bool TryUseSignal(Entity<ESAnomalyProbeComponent> probe, Entity<ESPortalAnomalyComponent> anom, EntityUid? user)
@@ -214,6 +224,7 @@ public abstract class ESSharedAnomalySystem : EntitySystem
     {
         ent.Comp.CodeIndex++;
         Dirty(ent);
+        UpdateConsolesUi();
 
         if (ent.Comp.CodeIndex >= ent.Comp.CodeLength)
         {
@@ -239,5 +250,19 @@ public abstract class ESSharedAnomalySystem : EntitySystem
     {
         _audio.PlayPredicted(ent.Comp.RadPulseSound, ent, user);
         PredictedSpawnAttachedTo(ent.Comp.RadiationEntity, Transform(ent).Coordinates);
+    }
+
+    public void UpdateConsolesUi()
+    {
+        var query = EntityQueryEnumerator<ESAnomalyConsoleComponent, UserInterfaceComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var ui))
+        {
+            UpdateUi((uid, comp, ui));
+        }
+    }
+
+    public virtual void UpdateUi(Entity<ESAnomalyConsoleComponent?, UserInterfaceComponent?> ent)
+    {
+
     }
 }
