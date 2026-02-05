@@ -216,7 +216,7 @@
   name: es-mask-parasite-name
   troupe: ESCrew
   description: es-mask-parasite-desc
-  color: blue
+  color: sandybrown
   weight: 0.5
   mindComponents:
   - type: ESParasite

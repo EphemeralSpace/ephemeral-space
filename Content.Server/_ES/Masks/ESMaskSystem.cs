@@ -219,7 +219,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
         var mask = PrototypeManager.Index(maskId);
 
-        Role.MindRemoveRole(mind!, new EntProtoId<MindRoleComponent>(MindRole));
+        Role.MindRemoveRole(mind.AsNullable(), new EntProtoId<MindRoleComponent>(MindRole));
 
         if (mind.Comp.OwnedEntity is { } ownedEntity)
         {

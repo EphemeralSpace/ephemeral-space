@@ -1,8 +1,8 @@
 - type: entity
   parent: ESBaseMaskObjective
   id: ESObjectiveParasiteBeKilled
-  name: Be killed by another person
-  description: Get yourself killed by another person
+  name: Get killed by another person
+  description: Get another person to end your life.
   components:
   - type: ESObjective
     icon:
