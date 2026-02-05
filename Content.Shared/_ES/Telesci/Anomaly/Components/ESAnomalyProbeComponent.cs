@@ -30,3 +30,9 @@ public sealed partial class ESProbeAnomalyDoAfterEvent : DoAfterEvent
 {
     public override DoAfterEvent Clone() => this;
 }
+
+[Serializable, NetSerializable]
+public enum ESAnomalyProbeVisuals : byte
+{
+    Mode,
+}

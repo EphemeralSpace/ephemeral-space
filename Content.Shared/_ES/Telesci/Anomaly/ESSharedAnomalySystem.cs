@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._ES.Sparks;
 using Content.Shared._ES.Telesci.Anomaly.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
@@ -16,10 +17,12 @@ namespace Content.Shared._ES.Telesci.Anomaly;
 public abstract class ESSharedAnomalySystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly ESSparksSystem _sparks = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
 
     /// <inheritdoc/>
@@ -69,6 +72,7 @@ public abstract class ESSharedAnomalySystem : EntitySystem
                 Act = () =>
                 {
                     SetProbeSignal(ent, signal);
+                    _sparks.DoSparks(ent.Owner, 1, user: user);
                     _popup.PopupPredicted(Loc.GetString("es-anomaly-probe-popup-freq-set", ("type", GetSignalString(signal))), ent, user);
                 },
             };
@@ -142,6 +146,7 @@ public abstract class ESSharedAnomalySystem : EntitySystem
             !HasComp<ESPortalAnomalyComponent>(target))
             return;
 
+        _sparks.DoSparks(ent, user: args.User);
         _audio.PlayPredicted(ent.Comp.CompleteSound, ent, args.User);
         _popup.PopupPredicted(Loc.GetString("es-anomaly-probe-completed-probe"), target, args.User, PopupType.Medium);
         var query = EntityQueryEnumerator<ESAnomalyConsoleComponent>();
@@ -178,6 +183,7 @@ public abstract class ESSharedAnomalySystem : EntitySystem
     public void SetProbeSignal(Entity<ESAnomalyProbeComponent> ent, ESAnomalySignal signal)
     {
         ent.Comp.CurrentSignal = signal;
+        _appearance.SetData(ent, ESAnomalyProbeVisuals.Mode, signal);
         Dirty(ent);
     }
 
