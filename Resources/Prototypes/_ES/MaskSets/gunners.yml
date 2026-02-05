@@ -3,6 +3,7 @@
   masks:
     ESArmsDealer: 0.5
     ESMercenary: 1
+    ESHitman: 1
 
 - type: esMaskSet
   parent: [CrewGunners]
