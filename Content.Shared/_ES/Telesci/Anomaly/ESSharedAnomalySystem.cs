@@ -109,13 +109,13 @@ public abstract class ESSharedAnomalySystem : EntitySystem
             !TryComp<ESPortalAnomalyComponent>(target, out var anom))
             return;
 
-        if (_useDelay.IsDelayed(ent.Owner))
+        if (_useDelay.IsDelayed(target))
             return;
 
         if (IsResonateMode(ent.AsNullable()))
         {
             if (TryUseSignal(ent, (target, anom), args.User))
-                _useDelay.TryResetDelay(ent.Owner);
+                _useDelay.TryResetDelay(target);
         }
         else if (IsProbeMode(ent.AsNullable()))
         {

@@ -136,8 +136,7 @@
     - id: ClothingHeadsetScience
     - id: ClothingNeckTieSci
     - id: ClothingOuterCoatLabOpened
-    - id: AnomalyScanner
-    - id: NodeScanner
+    - id: ESAnomalyResonator
     - id: Multitool
       prob: 0.5
 
