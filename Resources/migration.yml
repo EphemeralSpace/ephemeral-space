@@ -264,6 +264,18 @@ WardrobeSecurityFilled: ESWardrobeSecurityFilled
 # 2026-2-3
 LockerAtmosphericsFilled: ESLockerAtmosphericsFilled
 
+# 2026-2-4
+WardrobeBotanistFilled: ESWardrobeBotanistFilled
+WardrobeMedicalDoctorFilled: ESWardrobeMedicalDoctorFilled
+WardrobeScienceFilled: ESWardrobeScienceFilled
+DresserHeadOfPersonnelFilled: ESDresserHeadOfPersonnelFilled
+DresserHeadOfSecurityFilled: ESDresserHeadOfSecurityFilled
+DresserCaptainFilled: ESDresserCaptainFilled
+WardrobePrisonFilled: ESWardrobePrisonFilled
+WardrobeCargoFilled: ESWardrobeCargoFilled
+WardrobeEngineeringFilled: ESWardrobeEngineeringFilled
+WardrobeTheaterFilled: ESWardrobeTheatreFilled
+
 # 2026-2-5
 ClothingHandsGlovesColorOrange: ESClothingHandsGlovesColorOrange
 ClothingHeadHelmetFire: ESClothingHeadHelmetFire
@@ -288,7 +300,6 @@ ClosetL3VirologyFilled: ClosetL3Filled
 ClosetL3SecurityFilled: ClosetL3Filled
 ClosetL3JanitorFilled: ClosetL3Filled
 ClosetL3ScienceFilled: ClosetL3Filled
-
 # ES END
 
 # 2023-07-03

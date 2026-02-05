@@ -54,6 +54,9 @@ es-mask-insider-desc = As an insider, investigate the people on station and try 
 es-mask-avenger-name = Avenger
 es-mask-avenger-desc = As an avenger, protect your target from being killed at all costs. If that fails, kill their murderer.
 
+es-mask-parasite-name = Parasite
+es-mask-parasite-desc = As a parasite, you are a devilish worm. Get killed by someone else in order to take control of their bodies and steal their mask.
+
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete your group objectives.
 
