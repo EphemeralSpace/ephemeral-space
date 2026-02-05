@@ -288,9 +288,6 @@
         color: "#EF8100"
   - type: Fiber
     fiberColor: fibers-orange
-# ES START
-  - type: ESChameleonClothingWhitelist
-# ES END
 
 # White Gloves
 - type: entity

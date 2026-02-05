@@ -4,6 +4,7 @@
   id: ESClothingHandsGlovesColorOrange
   name: sanitation gloves
   description: Biohazard-resistant orange gloves. Useful for preventing injuries from chemical spills.
+  suffix: ES
   components:
   - type: Sprite
     sprite: Clothing/Hands/Gloves/Color/color.rsi
