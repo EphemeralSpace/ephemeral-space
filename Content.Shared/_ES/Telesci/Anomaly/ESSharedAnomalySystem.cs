@@ -13,7 +13,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._ES.Telesci.Anomaly;
 
-public sealed class ESSharedAnomalySystem : EntitySystem
+public abstract class ESSharedAnomalySystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -98,7 +98,7 @@ public sealed class ESSharedAnomalySystem : EntitySystem
     private void OnProbeAfterInteract(Entity<ESAnomalyProbeComponent> ent, ref AfterInteractEvent args)
     {
         if (args.Target is not { } target ||
-            !HasComp<ESPortalAnomalyComponent>(target))
+            !TryComp<ESPortalAnomalyComponent>(target, out var anom))
             return;
 
         if (_useDelay.IsDelayed(ent.Owner))
@@ -106,7 +106,7 @@ public sealed class ESSharedAnomalySystem : EntitySystem
 
         if (IsResonateMode(ent.AsNullable()))
         {
-
+            TryUseSignal(ent, (target, anom), args.User);
             _useDelay.TryResetDelay(ent.Owner);
         }
         else if (IsProbeMode(ent.AsNullable()))
@@ -184,5 +184,54 @@ public sealed class ESSharedAnomalySystem : EntitySystem
     public string GetSignalString(ESAnomalySignal signal)
     {
         return Loc.GetString($"es-anomaly-signal-{signal}");
+    }
+
+    public bool TryUseSignal(Entity<ESAnomalyProbeComponent> probe, Entity<ESPortalAnomalyComponent> anom, EntityUid? user)
+    {
+        if (anom.Comp.CodeIndex == anom.Comp.CodeLength)
+            return false;
+
+        var targetSignal = anom.Comp.SignalCode[anom.Comp.CodeIndex];
+
+        if (probe.Comp.CurrentSignal != targetSignal)
+        {
+            PulseAnomalyRadiation(anom, user);
+            return false;
+        }
+
+        _audio.PlayPredicted(anom.Comp.SignalSound, anom, user);
+        IncrementAnomalyCode(anom);
+        return true;
+    }
+
+    public void IncrementAnomalyCode(Entity<ESPortalAnomalyComponent> ent)
+    {
+        ent.Comp.CodeIndex++;
+        Dirty(ent);
+
+        if (ent.Comp.CodeIndex >= ent.Comp.CodeLength)
+        {
+            CollapseAnomaly(ent);
+        }
+        else
+        {
+            PlayAnomalyAnimation(ent);
+        }
+    }
+
+    public void CollapseAnomaly(Entity<ESPortalAnomalyComponent> ent)
+    {
+        PredictedQueueDel(ent);
+    }
+
+    public void PlayAnomalyAnimation(Entity<ESPortalAnomalyComponent> ent)
+    {
+
+    }
+
+    public void PulseAnomalyRadiation(Entity<ESPortalAnomalyComponent> ent, EntityUid? user)
+    {
+        _audio.PlayPredicted(ent.Comp.RadPulseSound, ent, user);
+        PredictedSpawnAttachedTo(ent.Comp.RadiationEntity, Transform(ent).Coordinates);
     }
 }
