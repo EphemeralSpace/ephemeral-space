@@ -1,13 +1,9 @@
 # Base Prototypes
 - type: entity
+  id: ESBaseOuterArmor
+  suffix: ES
   abstract: true
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
-  id: ESClothingOuterArmorBase
   components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Armor/security.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Armor/security.rsi
   - type: Armor
     modifiers:
       flatReductions:
@@ -17,11 +13,12 @@
         Heat: 5
   - type: ExplosionResistance
     damageCoefficient: 0.90
+  - type: GroupExamine
 
 - type: entity
+  parent: ESBaseOuterArmor
+  id: ESBaseOuterArmorImproved
   abstract: true
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
-  id: ESClothingOuterArmorBaseImproved
   components:
   - type: Armor
     modifiers:
@@ -32,15 +29,13 @@
         Heat: 6
   - type: ExplosionResistance
     damageCoefficient: 0.80
-  - type: GroupExamine
 
 # Armor
 - type: entity
-  parent: ESClothingOuterArmorBase
+  parent: [ ESBaseOuterArmor, ClothingOuterBaseMedium, AllowSuitStorageClothing ]
   id: ESClothingOuterArmorSecurity
   name: armor vest
   description: A standard Type I armored vest that provides decent protection against most types of damage.
-  suffix: ES
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Armor/security.rsi
@@ -48,7 +43,7 @@
     sprite: Clothing/OuterClothing/Armor/security.rsi
 
 - type: entity
-  parent: ESClothingOuterArmorBase
+  parent: [ ESBaseOuterArmor, ClothingOuterBaseMedium, AllowSuitStorageClothing ]
   id: ESClothingOuterArmorDetective
   name: detective's vest
   description: A hard-boiled private investigator's armored vest.
@@ -60,11 +55,10 @@
     sprite: Clothing/OuterClothing/Vests/detvest.rsi
 
 - type: entity
-  parent: ESClothingOuterArmorBase
+  parent: [ ESBaseOuterArmor, ClothingOuterBaseMedium, AllowSuitStorageClothing ]
   id: ESClothingOuterCoatWarden
   name: warden's armored jacket
   description: A sturdy, utilitarian jacket designed to protect a warden from any brig-bound threats.
-  suffix: ES
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/warden.rsi
@@ -72,11 +66,10 @@
     sprite: Clothing/OuterClothing/Coats/warden.rsi
 
 - type: entity
-  parent: ESClothingOuterArmorBaseImproved
+  parent: [ ESBaseOuterArmorImproved, ClothingOuterBaseMedium, AllowSuitStorageClothing ]
   id: ESClothingOuterArmorCaptainCarapace
   name: captain's carapace
   description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
-  suffix: ES
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
@@ -84,11 +77,10 @@
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
 
 - type: entity
-  parent: ESClothingOuterArmorBaseImproved
+  parent: [ ESBaseOuterArmorImproved, ClothingOuterBaseMedium, AllowSuitStorageClothing ]
   id: ESClothingOuterCoatHoSTrench
   name: head of security's armored trenchcoat
   description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence.
-  suffix: ES
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/hos_trenchcoat.rsi

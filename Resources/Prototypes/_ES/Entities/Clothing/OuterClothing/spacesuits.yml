@@ -38,25 +38,23 @@
     - MonkeyWearable
     - WhitelistChameleon
 
+# ============================== DESIGN NOTE ====================================
+# Spacesuits for sec/command intentionally do not have any form of armor on them.
+# This is to make spaced areas a generally disadvantageous position for all players
+# sec/command already retain the upper hand in terms of access, armor, supplies, etc.
+# in most situations, so stripping armor when in space levels the playing field for
+# players trying to take them down.
+# ===============================================================================
 - type: entity
   parent: ESBaseClothingOuterSpaceSuit
   id: ESClothingOuterSpaceSuitEVASecurity
   name: security EVA suit
-  description: A lightly armored suit that provides protection from the vacuum of space.
+  description: An impressive-looking suit that provides protection from the vacuum of space. Doesn't help with much else, though.
   components:
   - type: Sprite
     sprite: _ES/Clothing/OuterClothing/SpaceSuits/sec_space.rsi
   - type: Clothing
     sprite: _ES/Clothing/OuterClothing/SpaceSuits/sec_space.rsi
-  - type: Armor #based on armor vest
-    modifiers:
-      flatReductions:
-        Blunt: 5
-        Slash: 5
-        Piercing: 5
-        Heat: 5
-  - type: ExplosionResistance
-    damageCoefficient: 0.90
   - type: Tag
     tags:
     - SuitEVA
@@ -68,21 +66,12 @@
   parent: ESBaseClothingOuterSpaceSuit
   id: ESClothingOuterSpaceSuitEVACaptain
   name: captain's EVA suit
-  description: A dignified space suit that protects the captain from space. It is slightly armored, despite its appearance.
+  description: A dignified space suit that protects the captain from space. Or at least you hope it's the captain.
   components:
   - type: Sprite
     sprite: _ES/Clothing/OuterClothing/SpaceSuits/command_space.rsi
   - type: Clothing
     sprite: _ES/Clothing/OuterClothing/SpaceSuits/command_space.rsi
-  - type: Armor #Based on armor vest
-    modifiers:
-      coefficients:
-        Blunt: 0.70
-        Slash: 0.70
-        Piercing: 0.70
-        Heat: 0.80
-  - type: ExplosionResistance
-    damageCoefficient: 0.90
   - type: Tag
     tags:
     - SuitEVA

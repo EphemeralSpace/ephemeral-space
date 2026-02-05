@@ -1,44 +1,89 @@
 - type: entity
   parent: WardrobeBlack
   id: ESWardrobeBartender
+  suffix: ES
   name: bartender's wardrobe
 
 - type: entity
   parent: WardrobeWhite
   id: ESWardrobeChef
+  suffix: ES
   name: chef's wardrobe
 
 - type: entity
   parent: WardrobePink
   id: ESWardrobeClown
+  suffix: ES
   name: clown's wardrobe
 
 - type: entity
   parent: WardrobeBlue
   id: ESWardrobeCoroner
+  suffix: ES
   name: coroner's wardrobe
 
 - type: entity
   parent: WardrobeSecurity
   id: ESWardrobeDetective
+  suffix: ES
   name: detective's wardrobe
 
 - type: entity
   parent: WardrobeMixed
   id: ESWardrobeJanitor
+  suffix: ES
   name: janitor's wardrobe
 
 - type: entity
   parent: WardrobeWhite
   id: ESWardrobeMime
+  suffix: ES
   name: mime's wardrobe
 
 - type: entity
   parent: WardrobeBlack
   id: ESWardrobeReporter
+  suffix: ES
   name: reporter's wardrobe
 
 - type: entity
   parent: WardrobeMixed
   id: ESWardrobeTheatre
+  suffix: ES
   name: theatre wardrobe
+
+- type: entity
+  id: ESWardrobeScience
+  parent: WardrobeWhite
+  suffix: ES
+  name: science wardrobe
+
+- type: entity
+  id: ESWardrobeBotanist
+  parent: WardrobeGreen
+  suffix: ES
+  name: botanist wardrobe
+
+- type: entity
+  id: ESWardrobeMedicalDoctor
+  parent: WardrobeWhite
+  suffix: ES
+  name: medical doctor's wardrobe
+
+- type: entity
+  id: ESWardrobeEngineering
+  parent: WardrobeYellow
+  suffix: ES
+  name: engineering wardrobe
+
+- type: entity
+  id: ESWardrobeCargo
+  parent: WardrobePrison
+  suffix: ES
+  name: cargo wardrobe
+
+- type: entity
+  id: ESWardrobePrison
+  parent: WardrobePrison
+  suffix: ES
+  name: prison wardrobe

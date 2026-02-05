@@ -26,7 +26,10 @@ public partial class SharedStaminaSystem
     private void OnRefreshCritThreshold(Entity<StaminaModifierStatusEffectComponent> ent, ref StatusEffectRelayedEvent<RefreshStaminaCritThresholdEvent> args)
     {
         var evArgs = args.Args;
-        evArgs.Modifier = Math.Max(ent.Comp.Modifier, evArgs.Modifier); // We only pick the highest value, to avoid stacking different status effects.
+// ES START
+        var oldMod = evArgs.Modifier ?? -1;
+        evArgs.Modifier = Math.Max(ent.Comp.Modifier, oldMod);
+// ES END
         args.Args = evArgs;
     }
 
@@ -38,6 +41,9 @@ public partial class SharedStaminaSystem
         var ev = new RefreshStaminaCritThresholdEvent(entity.Comp.BaseCritThreshold);
         RaiseLocalEvent(entity, ref ev);
 
-        entity.Comp.CritThreshold = ev.ThresholdValue * ev.Modifier;
+// ES START
+        entity.Comp.CritThreshold = ev.ThresholdValue * ev.Modifier ?? 1;
+        Dirty(entity);
+// ES END
     }
 }

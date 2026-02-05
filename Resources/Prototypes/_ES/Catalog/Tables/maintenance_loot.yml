@@ -306,11 +306,11 @@
   id: ESMaintLootRare
   table:
     group:
-    - id: KitchenKnife
+    - id: ESWeaponKnife
+      weight: 2
     - id: Handcuffs
     - id: MakeshiftShield
     - id: WelderIndustrialAdvanced
-    - id: CombatKnife
     - id: BaseBallBat
     - id: Binoculars
 

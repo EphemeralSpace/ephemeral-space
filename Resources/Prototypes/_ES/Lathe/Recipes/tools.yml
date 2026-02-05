@@ -1,0 +1,6 @@
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: ESWeaponKnife
+  result: ESWeaponKnife
+  materials:
+    Steel: 500

@@ -86,7 +86,7 @@
   recipes:
   - AppraisalTool
   - Pickaxe
-  - UtilityKnife
+  - ESWeaponKnife
   - ESVendingMachineRestockGlobal
 
 # Medical

@@ -211,6 +211,18 @@
     id: ESObjectiveAvengerProtectRandom
 
 - type: esMask
+  id: ESParasite
+  name: es-mask-parasite-name
+  troupe: ESCrew
+  description: es-mask-parasite-desc
+  color: sandybrown
+  weight: 0.5
+  mindComponents:
+  - type: ESParasite
+  objectives:
+    id: ESObjectiveParasiteBeKilled
+
+- type: esMask
   id: ESHitman
   name: es-mask-hitman-name
   troupe: ESCrew

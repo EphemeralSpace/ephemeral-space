@@ -261,6 +261,20 @@ ClothingOuterCoatHoSTrench: ESClothingOuterCoatHoSTrench
 ClothingOuterArmorCaptainCarapace: ESClothingOuterArmorCaptainCarapace
 WardrobeSecurityFilled: ESWardrobeSecurityFilled
 
+# 2026-2-3
+LockerAtmosphericsFilled: ESLockerAtmosphericsFilled
+
+# 2026-2-4
+WardrobeBotanistFilled: ESWardrobeBotanistFilled
+WardrobeMedicalDoctorFilled: ESWardrobeMedicalDoctorFilled
+WardrobeScienceFilled: ESWardrobeScienceFilled
+DresserHeadOfPersonnelFilled: ESDresserHeadOfPersonnelFilled
+DresserHeadOfSecurityFilled: ESDresserHeadOfSecurityFilled
+DresserCaptainFilled: ESDresserCaptainFilled
+WardrobePrisonFilled: ESWardrobePrisonFilled
+WardrobeCargoFilled: ESWardrobeCargoFilled
+WardrobeEngineeringFilled: ESWardrobeEngineeringFilled
+WardrobeTheaterFilled: ESWardrobeTheatreFilled
 # ES END
 
 # 2023-07-03
