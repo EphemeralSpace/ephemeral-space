@@ -9,7 +9,6 @@ using Content.Shared.Mind;
 using Content.Shared.Paper;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
-using System.Diagnostics;
 
 namespace Content.Server._ES.Masks.Hitman;
 
@@ -31,12 +30,21 @@ public sealed class ESSpawnTargetDossierSystem : EntitySystem
     private void OnCacheRevealed(Entity<ESSpawnTargetDossierComponent> ent, ref ESCacheRevealedEvent args)
     {
         var objectives = _objective.GetObjectives<ESTargetCodenameComponent>(ent.Owner);
-        var container = _container.GetContainer(args.Cache, "entity_storage");
+        var container = _container.GetContainer(args.Cache, ent.Comp.ContainerId);
         foreach (var obj in objectives)
         {
-            if (!TryComp<ESTargetObjectiveComponent>(obj, out var targetComp)) continue;
-            if (!_target.TryGetTarget((obj, targetComp), out var target)) continue;
-            if (!_mind.TryGetMind((EntityUid)target, out var targetMindId, out _)) continue;
+            if (obj.Comp.Codename is null)
+                continue;
+
+            if (!TryComp<ESTargetObjectiveComponent>(obj, out var targetComp))
+                continue;
+
+            if (!_target.TryGetTarget((obj, targetComp), out var target))
+                continue;
+
+            if (!_mind.TryGetMind(target.Value, out var targetMindId, out _))
+                continue;
+
             var paper = SpawnClueFile(ent, targetMindId, obj.Comp.Codename);
             _container.Insert(paper, container);
         }
@@ -63,7 +71,6 @@ public sealed class ESSpawnTargetDossierSystem : EntitySystem
 
         foreach (var clue in _clues.GetClues(mind, ent.Comp.ClueCount))
         {
-            Debug.Write("Clue given for " + Loc.GetString(codeName));
             msg.AddMarkupOrThrow(Loc.GetString("es-troupe-dossier-clue-fmt", ("clue", clue)));
             msg.PushNewline();
         }

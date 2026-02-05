@@ -272,7 +272,7 @@
   parent: ESBaseMaskObjective
   id: ESObjectiveHitmanKillTarget
   name: Kill your target
-  description: Identify, hunt down and assassinate your target to get your paycheck.
+  description: Use the clues in your dossier to identify and take out your target. Make sure you kill them yourself.
   components:
   - type: ESObjective
     icon:

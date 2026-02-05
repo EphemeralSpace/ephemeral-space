@@ -7,6 +7,9 @@ namespace Content.Server._ES.Masks.Hitman.Components;
 [Access(typeof(ESSpawnTargetDossierSystem))]
 public sealed partial class ESSpawnTargetDossierComponent : Component
 {
+    [DataField]
+    public string ContainerId = "entity_storage";
+
     /// <summary>
     /// Prototype for the thing that will have the clues written on it.
     /// </summary>

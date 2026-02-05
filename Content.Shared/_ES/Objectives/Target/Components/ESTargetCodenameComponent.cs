@@ -16,11 +16,15 @@ public sealed partial class ESTargetCodenameComponent : Component
     [DataField]
     public ProtoId<LocalizedDatasetPrototype> CodenameDataset = "ESInsiderCodenames";
 
+    /// <summary>
+    /// Locale string for the objective title. Passes in <see cref="Codename"/> as "codename"
+    /// </summary>
     [DataField]
-    public LocId? Title = null;
+    public LocId? Title;
 
     /// <summary>
     /// The target's codename.
     /// </summary>
-    public string Codename;
+    [DataField]
+    public LocId? Codename;
 }
