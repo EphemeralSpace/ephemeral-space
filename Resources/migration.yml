@@ -263,6 +263,19 @@ WardrobeSecurityFilled: ESWardrobeSecurityFilled
 
 # 2026-2-3
 LockerAtmosphericsFilled: ESLockerAtmosphericsFilled
+
+# 2026-2-5
+# NOTE: There are too many biosuits for me to want to bother reasonably changing, especially considering they will almost always spawn from a locker anyways.
+ClothingHandsGlovesColorOrange: ESClothingHandsGlovesColorOrange
+ClothingHeadHelmetFire: ESClothingHeadHelmetFire
+ClothingHeadHelmetAtmosFire: ESClothingHeadHelmetFire
+ClothingOuterSuitFire: ESClothingOuterSuitFire
+ClothingOuterSuitAtmosFire: ESClothingOuterSuitFire
+ClothingHeadHatHoodRad: ESClothingHeadHatHoodRadiation
+ClothingOuterSuitRad: ESClothingOuterSuitRadiation
+ClothingHeadHatHoodBioGeneral: ESClothingHeadHatHoodBio
+ClothingOuterBioGeneral: ESClothingOuterSuitBio
+
 # ES END
 
 # 2023-07-03
