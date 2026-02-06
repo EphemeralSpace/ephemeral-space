@@ -299,9 +299,11 @@
   parent: DoorElectronics
   id: DoorElectronicsExternal
   suffix: External, Locked
-  components:
-  - type: AccessReader
-    access: [["External"]]
+  #ES START
+  #components:
+  #- type: AccessReader
+    #access: [["External"]]
+    #ES END
 
 - type: entity
   parent: DoorElectronics
