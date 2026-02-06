@@ -49,10 +49,6 @@
         state: fill-helmet-sec
         whitelist:
           tags: [ ESHelmetEVASec ]
-      - containerId: helmet_slot
-        state: fill-helmet-eng
-        whitelist:
-          tags: [ ESHelmetEVAEngi ]
       - containerId: helmet_slot # no whitelist for base fill state
         state: fill-helmet-base
       tank:

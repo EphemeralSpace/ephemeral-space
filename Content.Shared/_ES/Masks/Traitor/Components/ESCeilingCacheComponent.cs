@@ -1,7 +1,9 @@
+using Content.Shared._ES.Core.Timer.Components;
 using Content.Shared.Alert;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Masks.Traitor.Components;
 
@@ -31,3 +33,6 @@ public sealed partial class ESCeilingCacheContactingComponent : Component
 }
 
 public sealed partial class ESRevealCacheAlertEvent : BaseAlertEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class ESRevealCacheTimerEvent : ESEntityTimerEvent;

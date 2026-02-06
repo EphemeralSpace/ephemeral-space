@@ -87,10 +87,11 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             //make the sensor mode favor higher levels, except coords.
             var modesDist = new[]
             {
-                SuitSensorMode.SensorOff,
-                SuitSensorMode.SensorBinary, SuitSensorMode.SensorBinary,
-                SuitSensorMode.SensorVitals, SuitSensorMode.SensorVitals, SuitSensorMode.SensorVitals,
-                SuitSensorMode.SensorCords, SuitSensorMode.SensorCords
+// ES START
+                SuitSensorMode.SensorBinary,
+                SuitSensorMode.SensorBinary,
+                SuitSensorMode.SensorCords,
+// ES END
             };
             ent.Comp.Mode = _random.Pick(modesDist);
         }
@@ -201,9 +202,13 @@ public abstract class SharedSuitSensorSystem : EntitySystem
 
         args.Verbs.UnionWith(new[]
         {
-            CreateVerb(ent, args.User, SuitSensorMode.SensorOff),
+// ES START
+            //CreateVerb(ent, args.User, SuitSensorMode.SensorOff),
+// ES END
             CreateVerb(ent, args.User, SuitSensorMode.SensorBinary),
-            CreateVerb(ent, args.User, SuitSensorMode.SensorVitals),
+// ES START
+            //CreateVerb(ent, args.User, SuitSensorMode.SensorVitals),
+// ES END
             CreateVerb(ent, args.User, SuitSensorMode.SensorCords)
         });
     }

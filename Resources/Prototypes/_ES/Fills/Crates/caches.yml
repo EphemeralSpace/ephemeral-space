@@ -230,3 +230,21 @@
         - id: FoodPumpkin
         - id: FoodCherry
         rolls: 4, 5
+
+# Hitman
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewHitman
+  suffix: ES, Hitman Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESCrewCacheHitman
+
+- type: entityTable
+  id: ESCrewCacheHitman # the component on the hitman's mind adds their dossier(s).
+  table:
+    all:
+    - id: ESWeaponPistol9mmSilenced
+    - id: ESMagazine9mm

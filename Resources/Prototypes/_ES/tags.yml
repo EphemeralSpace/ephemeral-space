@@ -41,9 +41,6 @@
   id: ESHelmetEVACaptain
 
 - type: Tag
-  id: ESHelmetEVAEngi
-
-- type: Tag
   id: ESHelmetEVASec
 
 - type: Tag

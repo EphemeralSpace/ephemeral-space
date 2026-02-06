@@ -1,6 +1,9 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatHoodBioGeneral
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: bio hood
   suffix: Generic
   description: A hood that protects the head and face from biological contaminants.
@@ -25,13 +28,13 @@
       Snout: HEAD
       HeadTop: HEAD
       HeadSide: HEAD
-# ES START
-  - type: ESVoiceObfuscator
-# ES END
 
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
   id: ClothingHeadHatHoodBioCmo
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: bio hood
   suffix: CMO
   description: An advanced hood for chief medical officers that protects the head and face from biological contaminants.
@@ -47,6 +50,9 @@
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
   id: ClothingHeadHatHoodBioJanitor
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: bio hood
   suffix: Janitor
   description: A hood that protects the head and face from biological contaminants.
@@ -60,6 +66,9 @@
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
   id: ClothingHeadHatHoodBioScientist
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: bio hood
   suffix: Science
   description: A hood that protects the head and face from biological contaminants.
@@ -73,6 +82,9 @@
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
   id: ClothingHeadHatHoodBioSecurity
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: bio hood
   suffix: Security
   description: A hood that protects the head and face from biological contaminants.
@@ -86,6 +98,9 @@
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
   id: ClothingHeadHatHoodBioVirology
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: bio hood
   suffix: Virology
   description: A hood that strongly protects the head and face from biological contaminants.
@@ -155,6 +170,9 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatHoodRad
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: radiation hood
   description: A hood of the hazmat suit, designed for protection from high radioactivity.
   components:

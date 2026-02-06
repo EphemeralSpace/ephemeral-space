@@ -1,0 +1,13 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveParasiteBeKilled
+  name: Get killed by another person
+  description: Get another person to end your life.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
+  - type: ESBeKilledObjective
+  - type: ESCounterObjective
+    target: 1

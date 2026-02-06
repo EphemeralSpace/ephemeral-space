@@ -299,6 +299,13 @@ public abstract class ESSharedMaskSystem : EntitySystem
         // No Op
     }
 
+    public virtual void ChangeMask(Entity<MindComponent> mind,
+        ProtoId<ESMaskPrototype> maskId,
+        Entity<ESTroupeRuleComponent>? troupe = null)
+    {
+
+    }
+
     public virtual void RemoveMask(Entity<MindComponent> mind)
     {
 

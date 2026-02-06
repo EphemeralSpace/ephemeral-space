@@ -17,6 +17,7 @@
   parent: [BaseLatheLube, ESAutolatheLight]
   name: autolathe
   description: It produces items using metal and glass. Has the ability to process blueprints to print new recipes.
+  suffix: ES
   components:
   - type: Sprite
     sprite: Structures/Machines/autolathe.rsi

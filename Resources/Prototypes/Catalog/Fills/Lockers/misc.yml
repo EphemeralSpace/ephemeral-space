@@ -138,7 +138,9 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillLockerFireStandard
+# ES Start
+        tableId: ESFillLockerFireStandard
+# ES End
 
 - type: entity
   id: ClosetWallFireFilledRandom

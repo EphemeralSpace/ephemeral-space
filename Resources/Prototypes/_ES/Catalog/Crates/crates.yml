@@ -357,11 +357,11 @@
           amount: 2
         - id: FireExtinguisher
           amount: 2
-        - id: ClothingHeadHelmetFire
+        - id: ESClothingHeadHelmetFire
           amount: 2
         - id: ClothingMaskGas
           amount: 2
-        - id: ClothingOuterSuitFire
+        - id: ESClothingOuterSuitFire
           amount: 2
         - id: OxygenTankFilled
           amount: 2
