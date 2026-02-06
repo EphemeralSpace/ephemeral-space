@@ -188,8 +188,8 @@
     interfaces:
       enum.ESAnomalyConsoleUiKey.Key:
         type: ESAnomalyConsoleBui
-  #- type: Computer TODO: computer board
-  #  board: ESComputerSupplyRequestCircuitBoard
+  - type: Computer
+    board: ESComputerAnomalyCircuitBoard
   - type: PointLight
     color: "#b53ca1"
 
