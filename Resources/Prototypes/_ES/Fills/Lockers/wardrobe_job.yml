@@ -242,9 +242,8 @@
     - id: ClothingUniformJumpsuitMedicalDoctor
     - id: ClothingBackpackMedical
     - id: ClothingShoesColorWhite
-    - id: ClothingOuterCoatLab
-    - id: ClothingHandsGlovesLatex
-      prob: 0.4
+    - id: ClothingOuterCoatLabOpened
+    - id: ClothingHandsGlovesColorBlue
     - id: ClothingEyesGlasses
       prob: 0.3
 
