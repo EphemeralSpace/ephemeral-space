@@ -10,6 +10,7 @@
   - Service
   - Janitor
   - Maintenance
+  - External
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: GarbageDay
