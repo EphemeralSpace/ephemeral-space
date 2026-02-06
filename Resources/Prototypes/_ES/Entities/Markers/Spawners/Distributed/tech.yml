@@ -12,33 +12,33 @@
     - state: c100
   - type: ESDistributedSpawner
     id: ESSpawnerTechStorage
-    tables: # TODO: currently copied from upstream totes with minor pruning. eventually needs a full pass
+    tables:
     # Cargo
-    - id: CargoBountyComputerCircuitboard
-    - id: CargoRequestComputerCircuitboard
-    - id: CargoSaleComputerCircuitboard
-    - id: CargoShuttleConsoleCircuitboard
-    - id: SalvageMagnetMachineCircuitboard
-    - id: SalvageJobBoardComputerCircuitboard
-    - id: MailTeleporterMachineCircuitboard
+    - id: ESComputerSupplyRequestCircuitBoard
+    - id: ESComputerSupplyRequestMasterCircuitBoard
+    - id: ESComputerWarehouseManifestCircuitBoard
     # Engi
     - id: AlertsComputerCircuitboard
     - id: AtmosMonitoringComputerCircuitboard
     - id: PowerComputerCircuitboard
-    - id: SolarControlComputerCircuitboard
+    - id: SMESMachineCircuitboard
+    - id: CellRechargerCircuitboard
+    - id: WeaponCapacitorRechargerCircuitboard
+    - id: SubstationMachineCircuitboard
+    - id: PortableGeneratorJrPacmanMachineCircuitboard
+    - id: APCElectronics
     # Command
     - id: StationRecordsComputerCircuitboard
     # Med
-    - id: MedicalTechFabCircuitboard
+    - id: CrewMonitoringComputerCircuitboard
+    # - id: MedicalRecordsComputerCircuitboard # Uncomment when it gets functionality
     # Sci
-    - id: CircuitImprinterMachineCircuitboard
-    - id: ProtolatheMachineCircuitboard
-    - id: ResearchComputerCircuitboard
-    - id: AnalysisComputerCircuitboard
-    - id: ArtifactAnalyzerMachineCircuitboard
     # Sec
     - id: CriminalRecordsComputerCircuitboard
     - id: SurveillanceCameraMonitorCircuitboard
+    # Service
+    - id: MicrowaveMachineCircuitboard
+    - id: JukeboxCircuitBoard
 
 - type: entity
   id: ESSpawnerMarkerDistributedTechStorage
@@ -53,6 +53,42 @@
     - state: es
   - type: ESDistributedSpawnerMarker
     id: ESSpawnerTechStorage
+
+- type: entity
+  id: ESSpawnerRandomDistributedTechStorageMats
+  parent: ESMarkerBase
+  name: Tech Storage Mats Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: id
+    - state: rand-dist
+    - state: tech
+    - state: es
+    - state: c100
+  - type: ESDistributedSpawner
+    id: ESSpawnerTechStorageMats
+    tables:
+    - id: MicroManipulatorStockPart
+      amount: 5
+    - id: CableApcStack30
+    - id: SheetSteel30
+    - id: SheetGlass30
+    - id: PowerCellMedium
+
+- type: entity
+  id: ESSpawnerMarkerDistributedTechStorageMats
+  parent: ESMarkerBase
+  name: Tech Storage Mats Marker
+  components:
+  - type: Sprite
+    layers:
+    - state: id
+    - state: marker
+    - state: vault
+    - state: es
+  - type: ESDistributedSpawnerMarker
+    id: ESSpawnerTechStorageMats
 
 - type: entity
   id: ESSpawnerRandomDistributedTechStorageSecure
@@ -71,7 +107,6 @@
     tables:
     - id: IDComputerCircuitboard
     - id: CommsComputerCircuitboard
-    - id: CrewMonitoringComputerCircuitboard
 
 - type: entity
   id: ESSpawnerMarkerDistributedTechStorageSecure
