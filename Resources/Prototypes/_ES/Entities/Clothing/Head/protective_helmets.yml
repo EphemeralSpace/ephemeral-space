@@ -41,16 +41,15 @@
   description: A piece of protective gear that helps protect against low levels of radiation. It would be pretty stupid to wear this without a radiation suit.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hoods/rad.rsi
+    sprite: _ES/Clothing/Head/Hoods/rad.rsi
   - type: Clothing
-    sprite: Clothing/Head/Hoods/rad.rsi
+    sprite: _ES/Clothing/Head/Hoods/rad.rsi
   - type: BreathMask
   - type: IngestionBlocker
   - type: Armor
     modifiers:
       flatReductions:
         Radiation: 1 #4DT total with the full set, split between helmet and suit until we get locational damage
-  - type: IdentityBlocker
   - type: HideLayerClothing
     slots:
     - Hair
