@@ -12,9 +12,9 @@
   id: ESFillLockerAtmospherics
   table:
     all:
-    - id: ClothingHeadHelmetFire
-    - id: ClothingOuterSuitFire
-    - id: ClothingMaskGasAtmos
+    - id: ESClothingHeadHelmetFire
+    - id: ESClothingOuterSuitFire
+    - id: ClothingMaskGas
     - id: GasAnalyzer
     - id: MedkitOxygenFilled
     - id: HolofanProjector
