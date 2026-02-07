@@ -75,7 +75,7 @@
     containers:
       entity_storage: !type:NestedSelector
 # ES Start
-        tableId: ESLockerFillMedicalDoctor
+        tableId: ESLockerFillPhysician
 # ES End
 
 - type: entity
@@ -88,7 +88,7 @@
     containers:
       entity_storage: !type:NestedSelector
 # ES Start
-        tableId: ESLockerFillMedicalDoctor
+        tableId: ESLockerFillPhysician
 # ES End
 
 - type: entityTable
