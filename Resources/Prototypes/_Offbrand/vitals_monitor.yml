@@ -4,8 +4,6 @@
   name: vitals monitor
   description: Keeps an eye on your patients' vitals. Drag and drop onto a patient to monitor them.
   components:
-  - type: Physics
-    bodyType: Dynamic
   - type: VitalsMonitor
     brainActivityThresholds:
       1.0: Okay
