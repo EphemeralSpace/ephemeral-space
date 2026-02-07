@@ -162,7 +162,7 @@
     - id: ClothingBackpackSecurity
     - id: ClothingShoesBootsJack
     - id: ClothingEyesGlassesSecurity
-    - id: ClothingHeadHelmetBasic
+    - id: ClothingHeadHelmetSecurity
     - id: ESClothingOuterArmorSecurity
 
 - type: entity
