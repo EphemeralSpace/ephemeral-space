@@ -77,22 +77,6 @@ public sealed partial class SpeciesPrototype : IPrototype
     [DataField(required: true)]
     public EntProtoId DollPrototype { get; private set; } = default!;
 
-    // Begin Offbrand
-
-    /// <summary>
-    /// Prototype used by the species for OFMBody
-    /// </summary>
-    [DataField("ofmPrototype")]
-    public EntProtoId OFMPrototype = default!;
-
-    /// <summary>
-    /// Organs in this species
-    /// </summary>
-    [DataField("ofmOrgans")]
-    public List<EntProtoId> OFMOrgans = default!;
-
-    // End Offbrand
-
     /// <summary>
     /// Method of skin coloration used by the species.
     /// </summary>

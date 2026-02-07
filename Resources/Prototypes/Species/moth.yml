@@ -11,30 +11,6 @@
   maleFirstNames: NamesMothFirstMale
   femaleFirstNames: NamesMothFirstFemale
   lastNames: NamesMothLast
-# Offbrand start
-  ofmPrototype: OFMNuristEmpty
-  ofmOrgans:
-  - OFMOrganMothTorso
-  - OFMOrganMothHead
-  - OFMOrganMothArmLeft
-  - OFMOrganMothArmRight
-  - OFMOrganMothHandLeft
-  - OFMOrganMothHandRight
-  - OFMOrganMothLegLeft
-  - OFMOrganMothLegRight
-  - OFMOrganMothFootLeft
-  - OFMOrganMothFootRight
-  - OFMOrganMothBrain
-  - OFMOrganMothEyes
-  - OFMOrganMothTongue
-  - OFMOrganMothAppendix
-  - OFMOrganMothEars
-  - OFMOrganMothLungs
-  - OFMOrganMothHeart
-  - OFMOrganMothStomach
-  - OFMOrganMothLiver
-  - OFMOrganMothKidneys
-# Offbrand end
 
 - type: speciesBaseSprites
   id: MobMothSprites

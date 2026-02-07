@@ -7,17 +7,17 @@
   - type: OFMBody
 
 - type: entity
-  id: OFMOrganBase
+  id: OFMOrgan
   name: organ
   suffix: OFM
   abstract: true
-  parent: BaseItem
   components:
   - type: OFMOrgan
   - type: Sprite
     sprite: _Offbrand/iv_bag.rsi
     layers:
     - state: base
+  - type: Item
 
 - type: entity
   abstract: true
@@ -250,226 +250,204 @@
   - BaseMobLungDamage # Offbrand
 
   - ESBaseMob # Ephemeral Space
-  id: OFMNuristEmpty
+  id: OFMNurist
+  components:
+  - type: OFMVisualBody
+  - type: EntityTableContainerFill
+    containers:
+      body_organs: !type:AllSelector
+        children:
+        - id: OFMOrganTorso
+        - id: OFMOrganHead
+        - id: OFMOrganArmLeft
+        - id: OFMOrganArmRight
+        - id: OFMOrganHandLeft
+        - id: OFMOrganHandRight
+        - id: OFMOrganLegLeft
+        - id: OFMOrganLegRight
+        - id: OFMOrganFootLeft
+        - id: OFMOrganFootRight
+        - id: OFMOrganBrain
+        - id: OFMOrganEyes
+        - id: OFMOrganTongue
+        - id: OFMOrganAppendix
+        - id: OFMOrganEars
+        - id: OFMOrganLungs
+        - id: OFMOrganHeart
+        - id: OFMOrganStomach
+        - id: OFMOrganLiver
+        - id: OFMOrganKidneys
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseTorso
+  parent: OFMOrgan
+  id: OFMOrganTorso
   name: torso
-  abstract: true
   components:
   - type: OFMVisualOrgan
     layer: enum.HumanoidVisualLayers.Chest
     data:
+      sprite: Mobs/Species/Human/parts.rsi
       state: torso_m
-  - type: OFMVisualOrganMarkings
-    layers:
-    - enum.HumanoidVisualLayers.Tail
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseHead
+  parent: OFMOrgan
+  id: OFMOrganHead
   name: head
-  abstract: true
   components:
   - type: OFMVisualOrgan
     layer: enum.HumanoidVisualLayers.Head
     data:
+      sprite: Mobs/Species/Human/parts.rsi
       state: head_m
-  - type: OFMVisualOrganMarkings
-    layers:
-    - enum.HumanoidVisualLayers.Head
-    - enum.HumanoidVisualLayers.Hair
-    - enum.HumanoidVisualLayers.FacialHair
-    - enum.HumanoidVisualLayers.Snout
-    - enum.HumanoidVisualLayers.SnoutCover
-    - enum.HumanoidVisualLayers.HeadSide
-    - enum.HumanoidVisualLayers.HeadTop
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseArmLeft
+  parent: OFMOrgan
+  id: OFMOrganArmLeft
   name: left arm
-  abstract: true
   components:
   - type: OFMVisualOrgan
     layer: enum.HumanoidVisualLayers.LArm
     data:
+      sprite: Mobs/Species/Human/parts.rsi
       state: l_arm
-  - type: OFMVisualOrganMarkings
-    layers:
-    - enum.HumanoidVisualLayers.LArm
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseArmRight
+  parent: OFMOrgan
+  id: OFMOrganArmRight
   name: right arm
-  abstract: true
   components:
   - type: OFMVisualOrgan
     layer: enum.HumanoidVisualLayers.RArm
     data:
+      sprite: Mobs/Species/Human/parts.rsi
       state: r_arm
-  - type: OFMVisualOrganMarkings
-    layers:
-    - enum.HumanoidVisualLayers.RArm
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseHandLeft
+  parent: OFMOrgan
+  id: OFMOrganHandLeft
   name: left hand
-  abstract: true
   components:
   - type: OFMVisualOrgan
     layer: enum.HumanoidVisualLayers.LHand
     data:
+      sprite: Mobs/Species/Human/parts.rsi
       state: l_hand
   - type: OFMHandOrgan
     handID: left
     data:
       location: Left
-  - type: OFMVisualOrganMarkings
-    layers:
-    - enum.HumanoidVisualLayers.LHand
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseHandRight
+  parent: OFMOrgan
+  id: OFMOrganHandRight
   name: right hand
-  abstract: true
   components:
   - type: OFMVisualOrgan
     layer: enum.HumanoidVisualLayers.RHand
     data:
+      sprite: Mobs/Species/Human/parts.rsi
       state: r_hand
   - type: OFMHandOrgan
     handID: right
     data:
       location: Right
-  - type: OFMVisualOrganMarkings
-    layers:
-    - enum.HumanoidVisualLayers.RHand
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseLegLeft
+  parent: OFMOrgan
+  id: OFMOrganLegLeft
   name: left leg
-  abstract: true
   components:
   - type: OFMVisualOrgan
     layer: enum.HumanoidVisualLayers.LLeg
     data:
+      sprite: Mobs/Species/Human/parts.rsi
       state: l_leg
-  - type: OFMVisualOrganMarkings
-    layers:
-    - enum.HumanoidVisualLayers.LLeg
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseLegRight
+  parent: OFMOrgan
+  id: OFMOrganLegRight
   name: right leg
-  abstract: true
   components:
   - type: OFMVisualOrgan
     layer: enum.HumanoidVisualLayers.RLeg
     data:
+      sprite: Mobs/Species/Human/parts.rsi
       state: r_leg
-  - type: OFMVisualOrganMarkings
-    layers:
-    - enum.HumanoidVisualLayers.RLeg
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseFootLeft
+  parent: OFMOrgan
+  id: OFMOrganFootLeft
   name: left foot
-  abstract: true
   components:
   - type: OFMVisualOrgan
     layer: enum.HumanoidVisualLayers.LFoot
     data:
+      sprite: Mobs/Species/Human/parts.rsi
       state: l_foot
-  - type: OFMVisualOrganMarkings
-    layers:
-    - enum.HumanoidVisualLayers.LFoot
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseFootRight
+  parent: OFMOrgan
+  id: OFMOrganFootRight
   name: right foot
   components:
   - type: OFMVisualOrgan
     layer: enum.HumanoidVisualLayers.RFoot
     data:
+      sprite: Mobs/Species/Human/parts.rsi
       state: r_foot
-  - type: OFMVisualOrganMarkings
-    layers:
-    - enum.HumanoidVisualLayers.RFoot
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseBrain
+  parent: OFMOrgan
+  id: OFMOrganBrain
   name: brain
-  abstract: true
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseEyes
+  parent: OFMOrgan
+  id: OFMOrganEyes
   name: eyes
-  abstract: true
   components:
   - type: OFMVisualOrgan
     layer: enum.HumanoidVisualLayers.Eyes
     data:
       sprite: Mobs/Customization/eyes.rsi
       state: eyes
-  - type: OFMVisualOrganMarkings
-    layers:
-    - enum.HumanoidVisualLayers.Eyes
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseTongue
+  parent: OFMOrgan
+  id: OFMOrganTongue
   name: tongue
-  abstract: true
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseAppendix
+  parent: OFMOrgan
+  id: OFMOrganAppendix
   name: appendix
-  abstract: true
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseEars
+  parent: OFMOrgan
+  id: OFMOrganEars
   name: ears
-  abstract: true
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseLungs
+  parent: OFMOrgan
+  id: OFMOrganLungs
   name: lungs
-  abstract: true
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseHeart
+  parent: OFMOrgan
+  id: OFMOrganHeart
   name: heart
-  abstract: true
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseStomach
+  parent: OFMOrgan
+  id: OFMOrganStomach
   name: stomach
-  abstract: true
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseLiver
+  parent: OFMOrgan
+  id: OFMOrganLiver
   name: liver
-  abstract: true
 
 - type: entity
-  parent: OFMOrganBase
-  id: OFMOrganBaseKidneys
+  parent: OFMOrgan
+  id: OFMOrganKidneys
   name: kidneys
-  abstract: true
