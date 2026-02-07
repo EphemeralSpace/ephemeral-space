@@ -99,8 +99,10 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/command.rsi
-  - type: WiresPanelSecurity
-    securityLevel: medSecurity
+# ES START
+  #- type: WiresPanelSecurity
+  #  securityLevel: medSecurity
+# ES END
   - type: Wires
     layoutId: AirlockCommand
 
@@ -291,8 +293,10 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/command.rsi
-  - type: WiresPanelSecurity
-    securityLevel: medSecurity
+# ES START
+  #- type: WiresPanelSecurity
+  #  securityLevel: medSecurity
+# ES END
   - type: Wires
     layoutId: AirlockCommand
 

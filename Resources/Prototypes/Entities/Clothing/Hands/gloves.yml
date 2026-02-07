@@ -391,6 +391,9 @@
   description:  A cursed pair of cluwne hands.
   components:
   - type: Unremoveable
+# ES START
+  - type: ESChameleonClothingBlacklist
+# ES END
 
 - type: entity
   parent: [ClothingHandsButcherable, BaseSyndicateContraband]

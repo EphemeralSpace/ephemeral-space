@@ -327,3 +327,26 @@ es-names-first-dataset-genderless-315 = Captcha
 es-names-first-dataset-genderless-316 = Lockheed
 es-names-first-dataset-genderless-317 = Varius
 es-names-first-dataset-genderless-318 = Noon
+# 2026-01-07
+es-names-first-dataset-genderless-319 = Wob
+es-names-first-dataset-genderless-320 = Sasha
+es-names-first-dataset-genderless-321 = Li
+es-names-first-dataset-genderless-322 = Lu
+es-names-first-dataset-genderless-323 = Yao
+es-names-first-dataset-genderless-324 = Meowdy
+es-names-first-dataset-genderless-325 = Classic
+es-names-first-dataset-genderless-326 = Magical
+es-names-first-dataset-genderless-327 = Jubilent
+es-names-first-dataset-genderless-328 = Juno
+es-names-first-dataset-genderless-329 = Lost
+# 2026-01-23
+es-names-first-dataset-genderless-330 = Toa
+es-names-first-dataset-genderless-331 = Agori
+es-names-first-dataset-genderless-332 = Energized
+es-names-first-dataset-genderless-333 = Plushie
+es-names-first-dataset-genderless-334 = Mephedrone
+es-names-first-dataset-genderless-335 = Botnet
+es-names-first-dataset-genderless-336 = Hypertext
+es-names-first-dataset-genderless-337 = Dirty
+es-names-first-dataset-genderless-338 = Ketchup
+es-names-first-dataset-genderless-339 = Lunch

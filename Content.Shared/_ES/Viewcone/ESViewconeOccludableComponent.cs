@@ -22,6 +22,13 @@ public sealed partial class ESViewconeOccludableComponent : Component, IComponen
     public bool Inverted = false;
 
     /// <summary>
+    ///     If true, viewcone alpha handling will always override the base alpha of this entity when setting transparency.
+    ///     Useful for viewcone effects.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool OverrideBaseAlpha = false;
+
+    /// <summary>
     ///     If this is a temporary entity (like an effect), then this is the originating player (or other source)
     ///     of this occludable.
     /// </summary>

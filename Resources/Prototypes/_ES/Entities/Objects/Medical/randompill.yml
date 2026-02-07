@@ -1,0 +1,70 @@
+﻿- type: weightedRandomFillSolution
+  id: ESRandomFillStrangePill
+  fills:
+  # 4 groups for a total weight of 100
+  # Good - weight: 35
+  - quantity: 20
+    weight: 35
+    reagents:
+    - Desoxyephedrine
+    - Ephedrine
+    - Omnizine
+    - Tricordrazine
+    - Vitamin
+    - PolypyryliumOligomers
+    - Charcoal
+  # Neutral - weight: 30
+  - quantity: 20
+    weight: 25
+    reagents:
+    - Ipecac
+    - SodiumPolyacrylate
+    - SpaceDrugs
+    - SpaceGlue
+    - Lipozine
+    - Carpetium
+    - Bananadine
+    - THC
+    - MindbreakerToxin
+    - Mustard
+    - HorseradishSauce
+  - quantity: 5
+    weight: 5
+    reagents:
+    - Honk
+  # Bad - weight: 25
+  - quantity: 20
+    weight: 10
+    reagents:
+    - MuteToxin
+    - Pax
+    - Fresium
+    - Cryptobiolin
+  - quantity: 10
+    weight: 10
+    reagents:
+    - Uranium
+    - Potassium
+    - Phlogiston
+  - quantity: 5
+    weight: 5
+    reagents:
+    - Toxin
+  # Very Bad - weight: 10
+  - quantity: 10
+    weight: 10
+    reagents:
+    - Bleach
+    - CarpoToxin
+    - Amatoxin
+
+- type: entity
+  parent: Pill
+  id: ESStrangePill
+  name: strange pill
+  suffix: ES
+  description: This unusual pill bears no markings. There's no telling what it contains.
+  components:
+  - type: RandomFillSolution
+    solution: food
+    weightedRandomId: ESRandomFillStrangePill

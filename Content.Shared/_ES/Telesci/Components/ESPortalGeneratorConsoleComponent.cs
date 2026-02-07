@@ -34,6 +34,7 @@ public sealed class ESPortalGeneratorConsoleBuiState : BoundUserInterfaceState
     public bool Charging;
     public int CurrentResearchStage;
     public int MaxResearchStage;
+    public int ThreatsLeft;
 }
 
 [Serializable, NetSerializable]

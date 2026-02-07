@@ -40,7 +40,9 @@ public sealed partial class ChameleonControllerMenu : FancyWindow
         _sprite = _entityManager.System<SpriteSystem>();
         _job = _entityManager.System<JobSystem>();
 
-        _outfits = _prototypeManager.EnumeratePrototypes<ChameleonOutfitPrototype>();
+// ES START
+        _outfits = _prototypeManager.EnumeratePrototypes<ChameleonOutfitPrototype>().Where(p => !p.Hidden);
+// ES END
 
         UpdateGrid();
     }
@@ -57,7 +59,9 @@ public sealed partial class ChameleonControllerMenu : FancyWindow
         // Department name -> UI element holding that department.
         var departments = new Dictionary<string, BoxContainer>();
 
-        departments.Add(UnknownDepartment, CreateDepartment(UnknownDepartment));
+// ES START
+        //departments.Add(UnknownDepartment, CreateDepartment(UnknownDepartment));
+// ES END
 
         // Go through every outfit and add them to the correct department.
         foreach (var outfit in _outfits)
@@ -80,6 +84,10 @@ public sealed partial class ChameleonControllerMenu : FancyWindow
             }
             else
             {
+// ES START
+                if (!departments.ContainsKey(UnknownDepartment))
+                    departments.Add(UnknownDepartment, CreateDepartment(UnknownDepartment));
+// ES END
                 departments[UnknownDepartment].AddChild(outfitButton);
             }
         }

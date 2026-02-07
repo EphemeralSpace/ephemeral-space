@@ -1,0 +1,14 @@
+- type: entity
+  parent: ESBriefcaseBlack
+  id: ESBriefcaseBlackFilled
+  suffix: ES, Filled, Coroner
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: ESScalpelAutopsy
+        - id: Pen
+        - id: BoxFolderYellowEmpty
+        - id: Paper
+          amount: 1, 3

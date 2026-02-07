@@ -1,0 +1,48 @@
+- type: jukebox
+  id: ESFlipFlap
+  name: X-CEED - Flip Flap
+  hidden: false
+  path:
+    path: /Audio/Jukebox/flip-flap.ogg
+
+- type: jukebox
+  id: ESTintin
+  name: Jeroen Tel - Tintin on the Moon
+  hidden: false
+  path:
+    path: /Audio/Jukebox/title3.ogg
+
+- type: jukebox
+  id: ESHello1997
+  name: Jeroen Tel - Hello 1997
+  hidden: false
+  path:
+    path: /Audio/_ES/Music/hello-1997_mono.ogg
+
+- type: jukebox
+  id: ESAthleticLove
+  name: RRThiel arranged by John 'Joy' Tay - Athletic Love
+  hidden: false
+  path:
+    path: /Audio/_ES/Music/athletic-love_mono.ogg
+
+- type: jukebox
+  id: ESSurfingOnASineWave
+  name: Fearofdark - Surfing On A Sine Wave
+  hidden: false
+  path:
+    path: /Audio/_ES/Music/surfing-on-a-sine-wave_mono.ogg
+
+- type: jukebox
+  id: ESRobocop
+  name: cboyardee - Robocop
+  hidden: false
+  path:
+    path: /Audio/_ES/Music/title2_mono.ogg
+
+- type: jukebox
+  id: ESComicBakery
+  name: Stuart Wilson - Not Another Comic Bakery Remix
+  hidden: false
+  path:
+    path: /Audio/_ES/Music/not-another-comic-bakery-remix_mono.ogg

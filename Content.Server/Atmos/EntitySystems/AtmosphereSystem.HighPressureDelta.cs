@@ -17,7 +17,16 @@ namespace Content.Server.Atmos.EntitySystems
     {
         private static readonly ProtoId<SoundCollectionPrototype> DefaultSpaceWindSounds = "SpaceWind";
 
-        private const int SpaceWindSoundCooldownCycles = 75;
+        // ES START
+        // 75 -> 60
+        private const int SpaceWindSoundCooldownCycles = 60;
+
+        private const int ESSpaceWindPressureDeltaThreshold = 40;
+        // ES END
+
+        // ES START
+        private static readonly EntProtoId ESSpaceWindEffect = "ESSpaceWindEffect";
+        // ES END
 
         private int _spaceWindSoundCooldown = 0;
 
@@ -106,12 +115,20 @@ namespace Content.Server.Atmos.EntitySystems
             // TODO ATMOS finish this
 
             // Don't play the space wind sound on tiles that are on fire...
-            if (tile.PressureDifference > 15 && !tile.Hotspot.Valid)
+            // ES START
+            // change required delta
+            if (tile.PressureDifference > ESSpaceWindPressureDeltaThreshold && !tile.Hotspot.Valid)
+            // ES END
             {
                 if (_spaceWindSoundCooldown == 0 && SpaceWindSound != null)
                 {
                     var coordinates = _mapSystem.ToCenterCoordinates(tile.GridIndex, tile.GridIndices);
                     _audio.PlayPvs(SpaceWindSound, coordinates, SpaceWindSound.Params.WithVolume(MathHelper.Clamp(tile.PressureDifference / 10, 10, 100)));
+                    // ES START
+                    var rotation = tile.PressureDirection.ToAngle() + MathHelper.PiOver2;
+                    var windEffect = Spawn(ESSpaceWindEffect, coordinates);
+                    _transformSystem.SetLocalRotation(windEffect, rotation);
+                    // ES END
                 }
             }
 

@@ -21,4 +21,12 @@
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
     jumpsuit: ClothingUniformJumpsuitAtmos
-    back: ClothingBackpackEngineering
+    back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESAtmosphericTechnician
+  job: ESAtmosphericTechnician
+  hidden: false

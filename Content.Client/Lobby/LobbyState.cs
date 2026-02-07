@@ -25,6 +25,7 @@ using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.Viewport;
+using Content.Shared.Chat;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 
@@ -84,6 +85,9 @@ namespace Content.Client.Lobby
             _contentAudioSystem.LobbySoundtrackChanged += UpdateLobbySoundtrackInfo;
 
             chatController.SetMainChat(true);
+            // ES START
+            Lobby.Chat.SafelySelectChannel(ChatSelectChannel.OOC);
+            // ES END
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
 
             var lobbyNameCvar = _cfg.GetCVar(CCVars.ServerLobbyName);

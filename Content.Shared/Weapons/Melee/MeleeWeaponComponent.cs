@@ -100,7 +100,7 @@ public sealed partial class MeleeWeaponComponent : Component
     public Angle Angle = Angle.FromDegrees(60);
 
     [DataField, AutoNetworkedField]
-    public EntProtoId Animation = "WeaponArcPunch";
+    public EntProtoId Animation = "WeaponArcThrust";
 
     [DataField, AutoNetworkedField]
     public EntProtoId WideAnimation = "WeaponArcSlash";
@@ -112,15 +112,26 @@ public sealed partial class MeleeWeaponComponent : Component
     [DataField, AutoNetworkedField]
     public Angle WideAnimationRotation = Angle.Zero;
 
+    /// <summary>
+    /// Attack animation direction.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public bool SwingLeft;
 
-    // ES START
-    // inverted every swing so that the next
-    // slash goes the other way (instead of from the same dir every time)
-    // clientside
-    public bool SwapNextSwing = false;
-    // ES END
+    /// <summary>
+    /// Change <see cref="SwingLeft"/> after every attack. Allows each attack to take turns being either left or right.
+    /// Thats looks cool visually
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool SwingBeverage = true;
+
+    /// <summary>
+    /// How far away from the player the animation should be played.
+    /// We don't connect it with attack range, because different weapons have different sprites,
+    /// and this value should be adjusted manually for every weapon ideally
+    /// </summary>
+    [DataField]
+    public float AnimationOffset = 1f;
 
     // Sounds
 

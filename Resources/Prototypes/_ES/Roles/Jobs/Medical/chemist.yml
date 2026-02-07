@@ -16,11 +16,18 @@
   equipment:
     shoes: ClothingShoesColorWhite
     eyes: ClothingEyesGlassesChemical
-    gloves: ClothingHandsGlovesColorBlue
     id: ChemistryPDA
+    gloves: ClothingHandsGlovesColorBlue
     ears: ClothingHeadsetMedical
     belt: ChemBag
     jumpsuit: ClothingUniformJumpsuitChemistry
     outerClothing: ClothingOuterCoatLabChemOpened
     back: ClothingBackpackChemistry
-    pocket1: HandLabeler
+  storage:
+    back:
+    - ESBoxSurvivalMedical
+
+- type: chameleonOutfit
+  id: ESChemist
+  job: ESChemist
+  hidden: false

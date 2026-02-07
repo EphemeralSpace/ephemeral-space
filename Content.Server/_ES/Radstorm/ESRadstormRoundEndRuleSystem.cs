@@ -1,16 +1,23 @@
 using Content.Server._ES.Radio;
+using Content.Server.Audio;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
+using Content.Server.RoundEnd;
 using Content.Shared._ES.CCVar;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Light.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -24,11 +31,13 @@ namespace Content.Server._ES.Radstorm;
 /// </summary>
 public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoundEndRuleComponent>
 {
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly ESRadioSystem _radio = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private readonly PointLightSystem _pointlight = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -98,7 +107,7 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
             // (make sure we only actually do this if after time and not just deadly space)
             // (i kind of implemented that in a weird way huh)
             if (stillAlive == 0 && _timing.CurTime >= component.RadstormStartTime)
-                _ticker.EndRound();
+                _roundEnd.EndRound();
 
             return;
         }
@@ -136,11 +145,31 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
                 colorOverride: Color.LightSeaGreen);
         }
 
+        // if text is null but sound isnt, this phase just wants to play a sound with no announcement
+        if (phase.AnnouncementText == null && phase.AnnouncementSound != null)
+        {
+            _audio.PlayGlobal(phase.AnnouncementSound, Filter.Broadcast(), true, phase.AnnouncementSound.Params.WithVolume(-2f));
+        }
+
         var map = _map.GetMap(_ticker.DefaultMap);
         if (phase.MapLight != null && TryComp<MapLightComponent>(map, out var mapLight))
         {
             mapLight.AmbientLightColor = phase.MapLight.Value;
             Dirty(map, mapLight);
+        }
+
+        // todo this is silly jank do it better like with postprocess etc
+        // but i just want some minor juice for now
+        if (phase.ForceStationLightColor != null)
+        {
+            var query = EntityQueryEnumerator<PoweredLightComponent, TransformComponent>();
+            while (query.MoveNext(out var uid, out _, out var xform))
+            {
+                if (xform.MapID != _ticker.DefaultMap)
+                    continue;
+
+                _pointlight.SetColor(uid, phase.ForceStationLightColor.Value);
+            }
         }
 
         if (phase.SpaceDangerous)

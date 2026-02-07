@@ -7,6 +7,7 @@ ESjob-description-cargotech = Deal with requisitions and deliveries, pilot the c
 ESjob-description-chef = Keep the station fed with a variety of food items, butcher dead animals to ensure ammonia doesn't leak, and help keep the bar lively.
 ESjob-description-chemist = Produce medicinal drugs for the doctors to use, research ethically dubious rare chemicals, and produce weapons of war when enemies of the station arrive.
 ESjob-description-clown = Entertain the crew through elaborate slapstick routines or terrible jokes.
+ESjob-description-coroner = Perform autopsies to find information about dead bodies. Help manage bodies for the medical doctors.
 ESjob-description-detective = Investigate crime scenes using forensic tools, ensure that the guilty party is found, and have a couple smokes.
 ESjob-description-doctor = Diagnose and heal crewmembers through medicinal chemicals, advanced medicine, and defibrillators. Make sure the dead don't rot, and that cadavers are in the morgue.
 ESjob-description-engineer = Keep the station's main engine & solars active, optimize the power network, and make emergency repairs using your hardsuit in spaced areas.

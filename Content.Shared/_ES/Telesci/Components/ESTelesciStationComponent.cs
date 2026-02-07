@@ -30,12 +30,6 @@ public sealed partial class ESTelesciStationComponent : Component
     public List<ESTelesciStage> Stages = [];
 
     /// <summary>
-    /// Target number of pads, used for removing rewards when pads are broken
-    /// </summary>
-    [DataField]
-    public int RewardPads = 4;
-
-    /// <summary>
     /// Time it takes to evac after the last stage is complete
     /// </summary>
     [DataField]
@@ -59,12 +53,6 @@ public partial struct ESTelesciStage
     /// </summary>
     [DataField]
     public SoundSpecifier? AnnouncementSound;
-
-    /// <summary>
-    /// Rewards to spawn
-    /// </summary>
-    [DataField]
-    public EntityTableSelector Rewards = new NoneSelector();
 
     /// <summary>
     /// Events to run

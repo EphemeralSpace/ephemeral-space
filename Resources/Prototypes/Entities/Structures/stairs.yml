@@ -1,22 +1,32 @@
 - type: entity
-  id: Stairs
-  name: stairs
-  suffix: Steel
-  description: The greatest invention since rocket-propelled grenades.
+  abstract: true
+  id: BaseFloorDecoration
   placement:
     mode: SnapgridCenter
   components:
-  - type: Anchorable
-    flags:
-    - Anchorable
-  - type: Rotatable
+  - type: Transform
+    anchored: true
   - type: Clickable
+  - type: Sprite
+    drawdepth: FloorTiles
+
+- type: entity
+  id: Stairs
+  parent: BaseFloorDecoration
+  name: stairs
+  suffix: Steel
+  description: The greatest invention since rocket-propelled grenades.
+  components:
+# ES START
+#  - type: Anchorable
+#    flags:
+#    - Anchorable
+#  - type: Rotatable
+  - type: ESDestroyOnUnanchor
+# ES END
   - type: Sprite
     sprite: Structures/stairs.rsi
     state: stairs_steel
-    drawdepth: FloorTiles
-  - type: Transform
-    anchored: true
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic

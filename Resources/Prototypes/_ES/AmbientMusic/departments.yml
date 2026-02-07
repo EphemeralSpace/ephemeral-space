@@ -1,0 +1,20 @@
+# Departments
+- type: ambientMusic
+  id: ESMedical
+  disabled: false
+  sound:
+    params:
+      volume: -6
+    collection: AmbienceMedical
+  rules: ESNearMedical
+  priority: 3
+
+- type: ambientMusic
+  id: ESEngineering
+  disabled: false
+  sound:
+    params:
+      volume: -8
+    collection: AmbienceEngineering
+  rules: ESNearEngineering
+  priority: 3

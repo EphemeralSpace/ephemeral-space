@@ -1,5 +1,5 @@
 using Content.Client._ES.Auditions;
-using Content.Client.GameTicking.Managers;
+using Content.Client._ES.Core;
 using Content.Client.Humanoid;
 using Content.Shared._Citadel.Utilities;
 using Content.Shared.Clothing;
@@ -25,7 +25,6 @@ public sealed partial class ESJobDisplay : BoxContainer
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private readonly ESAuditionsSystem _auditions;
-    private readonly ClientGameTicker _gameTicker;
     private readonly HumanoidAppearanceSystem _humanoid;
     private readonly SharedStationSpawningSystem _stationSpawning;
 
@@ -38,7 +37,6 @@ public sealed partial class ESJobDisplay : BoxContainer
         IoCManager.InjectDependencies(this);
 
         _auditions = _entityManager.System<ESAuditionsSystem>();
-        _gameTicker = _entityManager.System<ClientGameTicker>();
         _humanoid = _entityManager.System<HumanoidAppearanceSystem>();
         _stationSpawning = _entityManager.System<SharedStationSpawningSystem>();
 
@@ -52,9 +50,9 @@ public sealed partial class ESJobDisplay : BoxContainer
         var jobProto = _prototypeManager.Index(job);
 
         NameLabel.Text = Loc.GetString(jobProto.Name);
-        DescriptionLabel.Text = jobProto.Description == null
+        DescriptionLabel.UnsafeSetMarkup(jobProto.Description == null
             ? string.Empty
-            : Loc.GetString(jobProto.Description);
+            : Loc.GetString(jobProto.Description));
 
         _entityManager.DeleteEntity(_doll);
         _doll = _entityManager.Spawn(_prototypeManager.Index(SharedHumanoidAppearanceSystem.DefaultSpecies).DollPrototype);

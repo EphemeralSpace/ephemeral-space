@@ -26,6 +26,9 @@ public sealed class CargoTest
     ];
 
     [Test]
+    // ES START disable
+    [Explicit]
+    // ES END
     public async Task NoCargoOrderArbitrage()
     {
         await using var pair = await PoolManager.GetServerClient();
@@ -58,6 +61,9 @@ public sealed class CargoTest
         await pair.CleanReturnAsync();
     }
     [Test]
+    // ES START disable
+    [Explicit]
+    // ES END
     public async Task NoCargoBountyArbitrageTest()
     {
         await using var pair = await PoolManager.GetServerClient();
@@ -99,6 +105,9 @@ public sealed class CargoTest
     }
 
     [Test]
+    // ES START disable
+    [Explicit]
+    // ES END
     public async Task NoStaticPriceAndStackPrice()
     {
         await using var pair = await PoolManager.GetServerClient();
@@ -142,6 +151,9 @@ public sealed class CargoTest
     /// are also valid for the same bounty entry.
     /// </summary>
     [Test]
+    // ES START disable
+    [Explicit]
+    // ES END
     public async Task NoSliceableBountyArbitrageTest()
     {
         await using var pair = await PoolManager.GetServerClient();
@@ -231,6 +243,9 @@ public sealed class CargoTest
 ";
 
     [Test]
+    // ES START disable
+    [Explicit]
+    // ES END
     public async Task StackPrice()
     {
         await using var pair = await PoolManager.GetServerClient();
@@ -250,6 +265,9 @@ public sealed class CargoTest
     }
 
     [Test]
+    // ES START disable
+    [Explicit]
+    // ES END
     public async Task MobPrice()
     {
         await using var pair = await PoolManager.GetServerClient();

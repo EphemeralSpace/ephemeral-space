@@ -1,5 +1,8 @@
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Mind.Components;
+// ES START
+using Content.Shared.Mobs;
+// ES END
 
 namespace Content.Shared.Mind;
 
@@ -15,7 +18,18 @@ public abstract partial class SharedMindSystem : EntitySystem
         SubscribeLocalEvent<MindContainerComponent, RefreshNameModifiersEvent>(RelayRefToMind);
 
 // ES PATCH START
-        SubscribeLocalEvent<MindComponent, MindGotAddedEvent>(RelayToObjectives);
+        SubscribeLocalEvent<MindContainerComponent, MobStateChangedEvent>(RelayToMind);
+
+        SubscribeLocalEvent<MindComponent, MindGotAddedEvent>(ESOnMindGotAdded);
+    }
+
+    private void ESOnMindGotAdded(Entity<MindComponent> ent, ref MindGotAddedEvent args)
+    {
+        RelayToObjectives(ent, ref args);
+        foreach (var role in ent.Comp.MindRoleContainer.ContainedEntities)
+        {
+            RaiseLocalEvent(role, args);
+        }
     }
 
     protected void RelayToObjectives<T>(Entity<MindComponent> ent, ref T args) where T : notnull
@@ -25,9 +39,9 @@ public abstract partial class SharedMindSystem : EntitySystem
             RaiseLocalEvent(objective, args);
         }
     }
-// ES PATCH END
 
-    protected void RelayToMind<T>(EntityUid uid, MindContainerComponent component, T args) where T : class
+    protected void RelayToMind<T>(EntityUid uid, MindContainerComponent component, T args) where T : notnull
+// ES PATCH END
     {
         var ev = new MindRelayedEvent<T>(args);
 

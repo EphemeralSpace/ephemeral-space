@@ -115,6 +115,7 @@ VendingMachineMedicalBase: ESVendingMachineMedical
 VendingMachineChefvend: ESVendingMachineChefvend
 VendingMachineDinnerware: ESVendingMachineDinnerware
 VendingMachineSeedsUnlocked: ESVendingMachineSeedsUnlocked
+VendingMachineSeeds: ESVendingMachineSeedsUnlocked
 VendingMachineNutri: ESVendingMachineNutri
 VendingMachineCart: ESVendingMachineCart
 VendingMachineRobotics: ESVendingMachineRobotics
@@ -211,6 +212,100 @@ SpawnPointScientist: ESSpawnPointScientist
 SpawnPointWarden: ESSpawnPointWarden
 SpawnPointSecurityOfficer: ESSpawnPointSecurityOfficer
 SpawnPointDetective: ESSpawnPointDetective
+
+# 2025-12-29
+Autolathe: ESAutolathe
+
+# 2026-1-11
+# Removing old soviet jumpsuits from station v station days
+ESClothingUniformJumpsuitRussianColorWhite: null
+ESClothingUniformJumpsuitRussianColorBlack: null
+ESClothingUniformJumpsuitRussianColorBlue: null
+ESClothingUniformJumpsuitRussianColorDarkBlue: null
+ESClothingUniformJumpsuitRussianColorTeal: null
+ESClothingUniformJumpsuitRussianColorGreen: null
+ESClothingUniformJumpsuitRussianColorDarkGreen: null
+ESClothingUniformJumpsuitRussianColorOrange: null
+ESClothingUniformJumpsuitRussianColorPink: null
+ESClothingUniformJumpsuitRussianColorRed: null
+ESClothingUniformJumpsuitRussianColorYellow: null
+ESClothingUniformJumpsuitRussianColorPurple: null
+ESClothingUniformJumpsuitRussianColorLightBrown: null
+ESClothingUniformJumpsuitRussianColorBrown: null
+ESClothingUniformJumpsuitRussianColorMaroon: null
+ESClothingUniformJumpsuitRussianJanitor: null
+ClothingUniformJumpsuitRussianSec: null
+
+# 2026-1-12
+ChemDispenser: ESChemDispenser
+
+# 2026-1-12
+ESMachineScienceTelepad: null
+
+# 2026-1-20
+ESGasThruster: null
+ESEngineThrusterIon: null
+ESEngineThrusterGas: null
+
+# 2026-1-24
+ClothingOuterCoatDetective: ESClothingOuterCoatDetective
+ClothingOuterCoatDetectiveLoadout: ESClothingOuterCoatDetectiveLoadout
+ClothingOuterCoatDetectiveGrey: ESClothingOuterCoatDetectiveGrey
+
+# 2026-1-25
+ClothingOuterArmorBasic: ESClothingOuterArmorSecurity
+ClothingOuterArmorBasicSlim: ESClothingOuterArmorSecurity
+ClothingOuterVestDetective: ESClothingOuterArmorDetective
+ClothingOuterCoatWarden: ESClothingOuterCoatWarden
+ClothingOuterCoatHoSTrench: ESClothingOuterCoatHoSTrench
+ClothingOuterArmorCaptainCarapace: ESClothingOuterArmorCaptainCarapace
+WardrobeSecurityFilled: ESWardrobeSecurityFilled
+
+# 2026-2-02
+ESClothingHeadHelmetSpaceEngineering: ESClothingHeadHelmetSpace
+
+# 2026-2-03
+LockerAtmosphericsFilled: ESLockerAtmosphericsFilled
+
+# 2026-2-4
+WardrobeBotanistFilled: ESWardrobeBotanistFilled
+WardrobeMedicalDoctorFilled: ESWardrobeMedicalDoctorFilled
+WardrobeScienceFilled: ESWardrobeScienceFilled
+DresserHeadOfPersonnelFilled: ESDresserHeadOfPersonnelFilled
+DresserHeadOfSecurityFilled: ESDresserHeadOfSecurityFilled
+DresserCaptainFilled: ESDresserCaptainFilled
+WardrobePrisonFilled: ESWardrobePrisonFilled
+WardrobeCargoFilled: ESWardrobeCargoFilled
+WardrobeEngineeringFilled: ESWardrobeEngineeringFilled
+WardrobeTheaterFilled: ESWardrobeTheatreFilled
+
+# 2026-2-5
+ClothingHandsGlovesColorOrange: ESClothingHandsGlovesColorOrange
+ClothingHeadHelmetFire: ESClothingHeadHelmetFire
+ClothingHeadHelmetAtmosFire: ESClothingHeadHelmetFire
+ClothingOuterSuitFire: ESClothingOuterSuitFire
+ClothingOuterSuitAtmosFire: ESClothingOuterSuitFire
+ClothingOuterSuitRad: ESClothingOuterSuitRadiation
+ClothingHeadHatHoodBioGeneral: ESClothingHeadHatHoodBio
+ClothingOuterBioGeneral: ESClothingOuterSuitBio
+# There are so many fucking biosuits
+ClothingHeadHatHoodBioCmo: ESClothingHeadHatHoodBio
+ClothingOuterBioCmo: ESClothingOuterSuitBio
+ClothingHeadHatHoodBioJanitor: ESClothingHeadHatHoodBio
+ClothingOuterBioJanitor: ESClothingOuterSuitBio
+ClothingHeadHatHoodBioScientist: ESClothingHeadHatHoodBio
+ClothingOuterBioScientist: ESClothingOuterSuitBio
+ClothingHeadHatHoodBioSecurity: ESClothingHeadHatHoodBio
+ClothingOuterBioSecurity: ESClothingOuterSuitBio
+ClothingHeadHatHoodBioVirology: ESClothingHeadHatHoodBio
+ClothingOuterBioVirology: ESClothingOuterSuitBio
+ClosetL3VirologyFilled: ClosetL3Filled
+ClosetL3SecurityFilled: ClosetL3Filled
+ClosetL3JanitorFilled: ClosetL3Filled
+ClosetL3ScienceFilled: ClosetL3Filled
+
+# 2026-2-6 Offbrand
+Tourniquet: TourniquetOffbrand
 
 # ES END
 
@@ -928,6 +1023,9 @@ ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
 # 2025-08-29
 PrefilledSyringe: Syringe
 
+# 2025-09-12
+BaseChemistryEmptyVial: ChemistryEmptyVial
+
 # 2025-10-6
 BibleTanakh: null
 BibleSatanic: null
@@ -966,5 +1064,9 @@ FigureSpawner: MechFigurineSpawner50
 ToySpawner: PlushieSpawner50
 SpacemenFigureSpawner: SpacemenFigurineSpawner90
 
-# Offbrand
-Tourniquet: TourniquetOffbrand
+# 2026-01-07
+HandheldHealthAnalyzerUnpowered: HandheldHealthAnalyzer
+HandheldHealthAnalyzerEmpty: HandheldHealthAnalyzer
+
+#2026-01-09
+BorgModuleAdvancedChemical: BorgModuleAdvancedTopical

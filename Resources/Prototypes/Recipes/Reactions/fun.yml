@@ -8,21 +8,23 @@
   products:
     Carpetium: 3
 
-- type: reaction
-  id: BuzzochloricBees
-  reactants:
-    Saxoite: # do you like jazz (not sorry)
-      amount: 1
-    Fiber: # bees are fuzzy
-      amount: 1
-    GroundBee: # you need bee for the bees
-      amount: 1
-    Chlorine: # the chloric part of buzzochloric
-      amount: 1
-    UnstableMutagen: # to bring the buzz to life
-      amount: 1
-  products:
-    BuzzochloricBees: 3
+# ES START
+#- type: reaction
+#  id: BuzzochloricBees
+#  reactants:
+#    Saxoite: # do you like jazz (not sorry)
+#      amount: 1
+#    Fiber: # bees are fuzzy
+#      amount: 1
+#    GroundBee: # you need bee for the bees
+#      amount: 1
+#    Chlorine: # the chloric part of buzzochloric
+#      amount: 1
+#    UnstableMutagen: # to bring the buzz to life
+#      amount: 1
+#  products:
+#    BuzzochloricBees: 3
+# ES END
 
 - type: reaction
   id: Meatification
@@ -218,17 +220,19 @@
     maxTotalIntensity: 250
     tileBreakScale: 0.00001
 
-- type: reaction
-  id: CorgiJuice
-  reactants:
-    UncookedAnimalProteins:
-      amount: 1
-    JuiceThatMakesYouWeh:
-      amount: 1
-    Happiness:
-      amount: 1
-  products:
-    CorgiJuice: 2
+# ES START
+#- type: reaction
+#  id: CorgiJuice
+#  reactants:
+#    UncookedAnimalProteins:
+#      amount: 1
+#   JuiceThatMakesYouWeh:
+#     amount: 1
+#   Happiness:
+#      amount: 1
+#  products:
+#    CorgiJuice: 2
+# ES END
 
 - type: reaction
   id: Felinase

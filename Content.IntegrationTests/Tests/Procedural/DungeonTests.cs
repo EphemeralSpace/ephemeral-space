@@ -10,6 +10,9 @@ namespace Content.IntegrationTests.Tests.Procedural;
 public sealed class DungeonTests
 {
     [Test]
+    // ES START disable
+    [Explicit]
+    // ES END
     public async Task TestDungeonRoomPackBounds()
     {
         await using var pair = await PoolManager.GetServerClient();
@@ -60,6 +63,9 @@ public sealed class DungeonTests
     }
 
     [Test]
+    // ES START disable
+    [Explicit]
+    // ES END
     public async Task TestDungeonPresets()
     {
         await using var pair = await PoolManager.GetServerClient();

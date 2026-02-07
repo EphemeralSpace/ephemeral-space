@@ -349,3 +349,29 @@ es-names-first-dataset-female-339 = Ornania
 es-names-first-dataset-female-340 = Oriana
 # 2025-12-17
 es-names-first-dataset-female-341 = Gherkin
+# 2026-01-07
+es-names-first-dataset-female-342 = Meixue
+es-names-first-dataset-female-343 = Areti
+es-names-first-dataset-female-344 = Despina
+es-names-first-dataset-female-345 = Sappho
+es-names-first-dataset-female-346 = Kiyomi
+es-names-first-dataset-female-347 = Fotini
+es-names-first-dataset-female-348 = Roze
+es-names-first-dataset-female-349 = Ulla
+es-names-first-dataset-female-350 = Ulrika
+es-names-first-dataset-female-351 = Maja
+es-names-first-dataset-female-352 = Xiao
+es-names-first-dataset-female-353 = Hui
+es-names-first-dataset-female-354 = Bao
+es-names-first-dataset-female-355 = Mei
+es-names-first-dataset-female-356 = Ling
+es-names-first-dataset-female-357 = Yili
+es-names-first-dataset-female-358 = Juba
+es-names-first-dataset-female-359 = Ingrid
+es-names-first-dataset-female-360 = Garden
+# 2026-01-23
+es-names-first-dataset-female-361 = Slideah
+es-names-first-dataset-female-362 = Eels
+es-names-first-dataset-female-363 = Rebirth
+es-names-first-dataset-female-364 = Pirl
+es-names-first-dataset-female-365 = Viscera

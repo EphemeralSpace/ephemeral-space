@@ -15,6 +15,10 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+//ES START
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Mobs.Components;
+//ES END
 
 namespace Content.Server.Singularity.EntitySystems;
 
@@ -34,6 +38,9 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    // ES START
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    // ES END
     #endregion Dependencies
 
     private static readonly ProtoId<TagPrototype> HighRiskItemTag = "HighRiskItem";
@@ -55,6 +62,9 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
         SubscribeLocalEvent<EventHorizonComponent, EventHorizonAttemptConsumeEntityEvent>(OnAnotherEventHorizonAttemptConsumeThisEventHorizon);
         SubscribeLocalEvent<EventHorizonComponent, EventHorizonConsumedEntityEvent>(OnAnotherEventHorizonConsumedThisEventHorizon);
         SubscribeLocalEvent<ContainerManagerComponent, EventHorizonConsumedEntityEvent>(OnContainerConsumed);
+        //ES Start
+        SubscribeLocalEvent<MobStateComponent, EventHorizonAttemptConsumeEntityEvent>(PreventConsumeAlive);
+        //ES End
 
         var vvHandle = Vvm.GetTypeHandler<EventHorizonComponent>();
         vvHandle.AddPath(nameof(EventHorizonComponent.TargetConsumePeriod), (_, comp) => comp.TargetConsumePeriod, SetConsumePeriod);
@@ -180,7 +190,9 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
                 continue;
 
             // See TODO above
-            if (_physicsQuery.TryComp(entity, out var otherBody) && !_physics.IsHardCollidable((uid, null, body), (entity, null, otherBody)))
+// ES START
+            if (_physicsQuery.TryComp(entity, out var otherBody) && !_physics.IsHardCollidable((uid, null, body), (entity, null, otherBody)) && !HasComp<MobStateComponent>(entity))
+// ES END
                 continue;
 
             AttemptConsumeEntity(uid, entity, eventHorizon);
@@ -401,6 +413,17 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
         if (!args.EventHorizon.CanBreachContainment)
             PreventConsume(uid, comp, ref args);
     }
+
+    // ES START
+    public void PreventConsumeAlive(Entity<MobStateComponent> ent, ref EventHorizonAttemptConsumeEntityEvent args)
+    {
+        if (args.Cancelled || args.EventHorizon.consumeAliveMobs)
+            return;
+        if (_mobState.IsDead(ent.Owner, ent.Comp))
+            return;
+        PreventConsume(ent.Owner, ent.Comp, ref args);
+    }
+    // ES END
 
     /// <summary>
     /// Handles event horizons consuming any entities they bump into.

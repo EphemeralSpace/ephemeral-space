@@ -82,7 +82,7 @@ public record struct ESGetVoteOptionsEvent()
     /// <summary>
     /// The options for voting.
     /// </summary>
-    public readonly List<ESVoteOption> Options = new();
+    public readonly HashSet<ESVoteOption> Options = new();
 }
 
 /// <summary>

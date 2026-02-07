@@ -1,0 +1,78 @@
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ESClothingOuterSuitFire
+  name: fire suit
+  suffix: ES
+  description: A suit that helps protect against hazardous temperatures.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Suits/fire.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Suits/fire.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.04
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.05
+  - type: FireProtection
+    reduction: 0.65
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Slash: 1
+        Heat: 4
+        Cold: 4
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+  - type: GroupExamine
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: HideLayerClothing
+    slots:
+    - Tail
+  - type: ESChameleonClothingWhitelist
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]
+  id: ESClothingOuterSuitRadiation
+  name: radiation suit
+  suffix: ES
+  description: A suit that helps protect against low levels of radiation.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Suits/rad.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Suits/rad.rsi
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Heat: 1
+        Radiation: 3 #4DT total with the full set, split between helmet and suit until we get locational damage
+  - type: ClothingSpeedModifier
+    walkModifier: 0.90
+    sprintModifier: 0.90
+  - type: GroupExamine
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: HideLayerClothing
+    slots:
+    - Tail
+  - type: ESChameleonClothingWhitelist
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ESClothingOuterSuitBio
+  name: bio suit
+  suffix: ES
+  description: A suit that helps protect against dangerous biohazards.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Bio/general.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Bio/general.rsi
+  - type: HideLayerClothing
+    slots:
+    - Tail
+  - type: GroupExamine

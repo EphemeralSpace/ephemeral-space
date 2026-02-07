@@ -25,3 +25,11 @@
     outerClothing: ClothingOuterJacketChef
     belt: ClothingBeltChefFilled
     back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESChef
+  job: ESChef
+  hidden: false

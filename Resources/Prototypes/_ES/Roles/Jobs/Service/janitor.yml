@@ -23,5 +23,14 @@
     ears: ClothingHeadsetService
     head: ClothingHeadHatPurplesoft
     belt: ClothingBeltJanitorFilled
+    gloves: ESClothingHandsGlovesColorOrange
     jumpsuit: ClothingUniformJumpsuitJanitor
     back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESJanitor
+  job: ESJanitor
+  hidden: false

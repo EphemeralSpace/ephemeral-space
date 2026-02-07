@@ -61,4 +61,8 @@ public sealed partial class ChameleonOutfitPrototype : IPrototype
     /// </summary>
     [DataField]
     public Dictionary<string, EntProtoId> Equipment { get; set; } = new();
+// ES START
+    [DataField]
+    public bool Hidden = true;
+// ES END
 }

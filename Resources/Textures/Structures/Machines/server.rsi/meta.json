@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from https://github.com/discordia-space/CEV-Eris/blob/master/icons/obj/machines/excelsior/autolathe.dmi at 40b254106b46981b8ad95ccd5589deb8fa56e765. Variant-research made for Space Station 14 by Nairod(github)",
+    "copyright": "Sprites made by Flareguy for Ephemeral Space, based on telecomms sprites taken from tgstation at commit https://github.com/tgstation/tgstation/commit/f959e719255fcfaacb64807d9de8ba325a044d7",
     "states": [
         {
             "name": "server"

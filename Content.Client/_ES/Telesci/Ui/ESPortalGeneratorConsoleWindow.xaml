@@ -10,9 +10,10 @@
                 <BoxContainer Orientation="Vertical" VerticalAlignment="Center" VerticalExpand="True">
                     <RichTextLabel Text="{Loc 'es-ui-portalgen-console-label-current-status'}" HorizontalAlignment="Center"/>
                     <RichTextLabel Name="StatusLabel" HorizontalAlignment="Center"/>
+                    <RichTextLabel Name="ThreatsLeftLabel" HorizontalAlignment="Center"/>
                 </BoxContainer>
                 <BoxContainer Orientation="Vertical" VerticalAlignment="Center" VerticalExpand="True">
-                    <Button Name="ActivateButton" Text="Activate" SetSize="200 70" StyleClasses="negative"/>
+                    <Button Name="ActivateButton" Text="Activate" ToolTip="{Loc 'es-ui-portalgen-console-activate-tooltip'}" SetSize="200 70" StyleClasses="negative"/>
                 </BoxContainer>
             </BoxContainer>
             <PanelContainer StyleClasses="LowDivider" Margin="0 15"/>

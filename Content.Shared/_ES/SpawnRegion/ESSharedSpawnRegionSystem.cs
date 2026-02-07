@@ -226,7 +226,7 @@ public abstract class ESSharedSpawnRegionSystem : EntitySystem
         {
             var (grid, tiles) = _random.Pick(dict);
             var tile = _random.Pick(tiles);
-            var coords = _map.ToCoordinates(tile, grid);
+            var coords = _map.ToCoordinates(tile, grid).Offset(grid.Comp.TileSizeHalfVector);
 
             if (!IsCoordinateValid(coords,
                     gridSet,

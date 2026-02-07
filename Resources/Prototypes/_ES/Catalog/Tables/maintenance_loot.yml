@@ -152,7 +152,7 @@
 
     - id: DrinkBeerBottleFull
     - id: DrinkHotCoffee
-    - id: StrangePill
+    - id: ESStrangePill
 
     - id: BodyBagFolded
     - id: FireExtinguisher
@@ -300,15 +300,17 @@
     - id: d20Dice
     - id: Wristwatch
 
+    - id: WeaponPistolCHIMP
+
 - type: entityTable
   id: ESMaintLootRare
   table:
     group:
-    - id: KitchenKnife
+    - id: ESWeaponKnife
+      weight: 2
     - id: Handcuffs
     - id: MakeshiftShield
     - id: WelderIndustrialAdvanced
-    - id: CombatKnife
     - id: BaseBallBat
     - id: Binoculars
 

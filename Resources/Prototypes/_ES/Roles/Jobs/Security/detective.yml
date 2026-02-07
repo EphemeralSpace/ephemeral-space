@@ -14,9 +14,6 @@
   - Detective
   - Cryogenics
   - External
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: ESDetectiveGear
@@ -24,15 +21,22 @@
     shoes: ClothingShoesColorBrown
     eyes: ClothingEyesGlassesSecurity
     id: DetectivePDA
+    gloves: ClothingHandsGlovesForensic
     ears: ClothingHeadsetSecurity
     head: ClothingHeadHatFedoraBrown
     neck: ClothingNeckTieDet
-    belt: ClothingBeltHolsterFilled
+    belt: ClothingBeltHolster
     jumpsuit: ClothingUniformJumpsuitDetective
-    outerClothing: ClothingOuterCoatDetectiveLoadout
+    outerClothing: ESClothingOuterCoatDetectiveLoadout
     back: ClothingBackpackSecurity
   storage:
     back:
+    - ESBoxSurvival
     - Flash
     - ForensicPad
     - ForensicScanner
+
+- type: chameleonOutfit
+  id: ESDetective
+  job: ESDetective
+  hidden: false

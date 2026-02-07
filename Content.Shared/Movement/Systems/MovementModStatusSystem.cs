@@ -30,12 +30,22 @@ public sealed class MovementModStatusSystem : EntitySystem
 
     public override void Initialize()
     {
+// ES START
+        SubscribeLocalEvent<MovementModStatusEffectComponent, StatusEffectAppliedEvent>(OnMovementModApplied);
+// ES END
         SubscribeLocalEvent<MovementModStatusEffectComponent, StatusEffectRemovedEvent>(OnMovementModRemoved);
         SubscribeLocalEvent<MovementModStatusEffectComponent, StatusEffectRelayedEvent<RefreshMovementSpeedModifiersEvent>>(OnRefreshRelay);
         SubscribeLocalEvent<FrictionStatusEffectComponent, StatusEffectRemovedEvent>(OnFrictionStatusEffectRemoved);
         SubscribeLocalEvent<FrictionStatusEffectComponent, StatusEffectRelayedEvent<RefreshFrictionModifiersEvent>>(OnRefreshFrictionStatus);
         SubscribeLocalEvent<FrictionStatusEffectComponent, StatusEffectRelayedEvent<TileFrictionEvent>>(OnRefreshTileFrictionStatus);
     }
+
+// ES START
+    private void OnMovementModApplied(Entity<MovementModStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
+    {
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(args.Target);
+    }
+// ES END
 
     private void OnMovementModRemoved(Entity<MovementModStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
     {

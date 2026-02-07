@@ -381,7 +381,9 @@ public sealed partial class IngestionSystem : EntitySystem
 
         if (!afterEv.Destroy)
         {
-            args.Repeat = afterEv.Repeat;
+            // ES EDIT: We shall not try eating again. We're done. stop repeating the poor doafter.
+            args.Repeat = false;
+            // END ES EDIT
             return;
         }
 

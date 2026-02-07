@@ -74,9 +74,13 @@
 
 - type: reagent
   id: Diphenhydramine
-  name: reagent-name-diphenhydramine
+# ES START
+  name: es-reagent-name-benadryl
+# ES END
   group: Medicine
-  desc: reagent-desc-diphenhydramine
+# ES START
+  desc: es-reagent-desc-benadryl
+# ES END
   physicalDesc: reagent-physical-desc-chalky
   flavor: medicine
   color: "#64ffe6"
@@ -810,6 +814,9 @@
   physicalDesc: reagent-physical-desc-starry
   flavor: medicine
   color: "#2b2f77"
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: -5
   metabolisms:
     Medicine:
       effects:

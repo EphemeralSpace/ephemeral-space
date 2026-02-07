@@ -15,7 +15,7 @@
     - id: ESWeaponPistol9mm
       amount: 3
     - id: ESWeaponShotgun
-      amount: 3
+      amount: 2
     - id: ESWeaponEnergyRifle
       amount: 3
     - id: ESMagazine9mm
@@ -26,9 +26,9 @@
         - id: ESShotgunShellsBoxSlug
         - id: ESShotgunShellsBoxBeanbag
     - all:
-      - id: ClothingOuterArmorRiot
+      - id: ESClothingOuterArmorSecurity
         amount: 2
-      - id: ClothingHeadHelmetRiot
+      - id: ClothingHeadHelmetBasic
         amount: 2
 
 - type: entity

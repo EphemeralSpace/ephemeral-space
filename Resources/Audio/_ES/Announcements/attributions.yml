@@ -3,7 +3,7 @@
   copyright: "Taken from tgstation, modified by pigeonbeans"
   source: "https://github.com/tgstation/tgstation/blob/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a/sound/ai/default/shuttlerecalled.ogg"
 
-- files: ["attention_low.ogg", "attention_medium.ogg", "attention_high.ogg", "breaker_flip.ogg", "electrical_fire.ogg", "gas_leak.ogg", "greytide.ogg", "meteors.ogg", "power_off.ogg", "power_on.ogg", "solar_flare.ogg", "space_dust.ogg", "vent_foam.ogg", "radstorm_5mins.ogg", "radstorm_15mins.ogg", "radstorm_30mins.ogg"]
+- files: ["attention_low.ogg", "attention_medium.ogg", "attention_high.ogg", "breaker_flip.ogg", "electrical_fire.ogg", "gas_leak.ogg", "greytide.ogg", "meteors.ogg", "power_off.ogg", "power_on.ogg", "solar_flare.ogg", "space_dust.ogg", "vent_foam.ogg", "radstorm_start.ogg", "radstorm_5mins.ogg", "radstorm_15mins.ogg", "radstorm_30mins.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made by pigeonbeans using sounds from tgstation"
   source: "https://github.com/tgstation/tgstation/tree/master/sound/announcer/vox_fem"

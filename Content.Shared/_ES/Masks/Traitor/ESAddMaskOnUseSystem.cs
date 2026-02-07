@@ -34,14 +34,17 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         if (args.Target == null)
             return;
 
-        if (ent.Comp.MindshieldPrevent && HasComp<MindShieldComponent>(args.Target))
-            return;
-
         if (!_mind.TryGetMind((EntityUid)args.Target!, out var mind, out var mindComponent)) // No SSD people
             return;
 
         if (_mask.GetTroupeOrNull((mind, mindComponent)) == _proto.Index(ent.Comp.MaskToAdd).Troupe)
             return;
+
+        if (ent.Comp.MindshieldPrevent && HasComp<MindShieldComponent>(args.Target))
+        {
+            _popup.PopupClient(Loc.GetString(ent.Comp.MindshieldedMessage), args.User, args.User);
+            return;
+        }
 
         if (ent.Comp.RequireCrit && !_mobState.IsCritical((EntityUid)args.Target))
         {
@@ -85,14 +88,11 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
 
         var toAddTroupe = _proto.Index(ent.Comp.MaskToAdd).Troupe;
 
-        if (!_mask.TryGetTroupeEntity(toAddTroupe, out var troupe))
-            return;
-
         if (_mask.GetTroupeOrNull((mind, mindComponent)) == toAddTroupe)
             return;
 
         _mask.RemoveMask((mind, mindComponent));
-        _mask.ApplyMask((mind, mindComponent), ent.Comp.MaskToAdd, troupe.Value);
+        _mask.ApplyMask((mind, mindComponent), ent.Comp.MaskToAdd);
 
         ent.Comp.Used = true;
         Dirty(ent);

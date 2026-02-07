@@ -1,0 +1,62 @@
+- type: entity
+  parent: BoxCardboard
+  id: ESBoxSurvival
+  name: survival box
+  description: It's a box with basic internals inside.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: emergencytank
+  
+- type: entity 
+  parent: BoxCardboard
+  id: ESBoxSurvivalMedical
+  name: survival box
+  description: It's a box with basic internals inside.
+  suffix: ES, Medical
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: ClothingMaskBreathMedical
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: emergencytank
+    
+- type: entity
+  parent: BoxCardboard
+  id: ESBoxHug
+  name: box of hugs
+  description: A special box for sensitive people.
+  suffix: ES
+  components:
+  - type: Sprite
+    layers:
+    - state: box_hug
+    - state: heart
+  - type: Item
+    heldPrefix: hug
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: ClothingMaskBreath
+        - id: EmergencyFunnyOxygenTankFilled
+        - id: EmergencyMedipen
+  - type: Tag
+    tags:
+    - BoxCardboard
+    - BoxHug

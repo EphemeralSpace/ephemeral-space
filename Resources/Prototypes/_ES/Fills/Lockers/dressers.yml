@@ -1,0 +1,41 @@
+- type: entity
+  id: ESDresserCaptainFilled
+  parent: Dresser
+  suffix: Filled, Captain
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: ClothingHeadHatCaptain
+        - id: ClothingHandsGlovesCaptain
+        - id: ClothingUniformJumpsuitCaptain
+        - id: ClothingShoesColorBrown
+
+- type: entity
+  id: ESDresserHeadOfPersonnelFilled
+  parent: Dresser
+  suffix: Filled, Head Of Personnel
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: ClothingHeadHatHopcap
+        - id: ClothingEyesHudSecurity
+        - id: ClothingUniformJumpsuitHoP
+        - id: ClothingShoesColorBrown
+
+- type: entity
+  id: ESDresserHeadOfSecurityFilled
+  parent: Dresser
+  suffix: Filled, Head Of Security
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: ClothingHeadHatBeretHoS
+        - id: ClothingHeadHatHoshat
+        - id: ClothingEyesHudSecurity
+        - id: ClothingUniformJumpsuitHoS

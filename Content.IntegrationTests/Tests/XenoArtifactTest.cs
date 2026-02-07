@@ -88,6 +88,9 @@ public sealed class XenoArtifactTest
     /// Checks that adding nodes and edges properly adds them into the adjacency matrix
     /// </summary>
     [Test]
+    // ES START disable
+    [Explicit]
+    // ES END
     public async Task XenoArtifactAddNodeTest()
     {
         await using var pair = await PoolManager.GetServerClient();

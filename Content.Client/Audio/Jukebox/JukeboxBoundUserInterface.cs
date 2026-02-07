@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Audio.Jukebox;
 using Robust.Client.Audio;
 using Robust.Client.UserInterface;
@@ -71,7 +72,10 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
 
     public void PopulateMusic()
     {
-        _menu?.Populate(_protoManager.EnumeratePrototypes<JukeboxPrototype>());
+        // ES START
+        // filter by hidden
+        _menu?.Populate(_protoManager.EnumeratePrototypes<JukeboxPrototype>().Where(p => !p.Hidden));
+        // ES END
     }
 
     public void SelectSong(ProtoId<JukeboxPrototype> songid)

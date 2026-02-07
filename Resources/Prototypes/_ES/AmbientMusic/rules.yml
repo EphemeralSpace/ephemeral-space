@@ -1,0 +1,17 @@
+- type: rules
+  id: ESNearEngineering
+  rules:
+  - !type:NearbyComponentsRule
+    components:
+    - type: ESAmbientMusicMarkerEngineering
+    count: 3
+    range: 5
+
+- type: rules
+  id: ESNearMedical
+  rules:
+  - !type:NearbyComponentsRule
+    components:
+    - type: ESAmbientMusicMarkerMedical
+    count: 3
+    range: 5

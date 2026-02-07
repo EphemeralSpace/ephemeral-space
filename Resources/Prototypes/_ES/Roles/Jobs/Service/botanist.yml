@@ -24,3 +24,11 @@
     jumpsuit: ClothingUniformJumpsuitHydroponics
     outerClothing: ClothingOuterApronBotanist
     back: ClothingBackpackHydroponics
+  storage:
+    back:
+    - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESBotanist
+  job: ESBotanist
+  hidden: false

@@ -80,6 +80,9 @@ public sealed partial class MindTests
     }
 
     [Test]
+    // ES START
+    [Ignore("Differing ghost behavior from upstream")]
+    // ES END
     public async Task TestReplaceMind()
     {
         await using var pair = await PoolManager.GetServerClient();

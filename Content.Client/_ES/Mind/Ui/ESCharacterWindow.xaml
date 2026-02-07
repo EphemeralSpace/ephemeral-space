@@ -1,27 +1,32 @@
 <controls:ESCharacterWindow
     xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client._ES.Mind.Ui"
-    xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
     Title="{Loc 'character-info-title'}"
-    MinSize="675 425"
-    SetWidth="650">
+    MinSize="725 425"
+    SetWidth="725"
+    SetHeight="575">
     <BoxContainer Orientation="Horizontal" Margin="10 5 10 10">
         <BoxContainer Orientation="Vertical" Margin="5" VerticalAlignment="Center" SetWidth="250">
+            <TextureButton Name="MaskHelpButton" StyleClasses="windowHelpButton" VerticalAlignment="Center" HorizontalAlignment="Right" Disabled="True" Visible="False" />
             <BoxContainer Orientation="Vertical" HorizontalAlignment="Center">
                 <RichTextLabel Name="MaskLabel" Margin="20 0" HorizontalAlignment="Center"/>
-                <customControls:HSeparator StyleClasses="HighDivider"/>
+                <PanelContainer StyleClasses="LowDivider"/>
                 <RichTextLabel Name="TroupeLabel" HorizontalAlignment="Center"/>
             </BoxContainer>
             <SpriteView Name="SelfView" OverrideDirection="South" Scale="4 4" HorizontalAlignment="Center" Margin="5 5 5 15"/>
             <RichTextLabel Name="NameLabel" HorizontalAlignment="Center" Margin="10 0"/>
-            <RichTextLabel Name="JobLabel" HorizontalAlignment="Center"/>
+            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextureRect Name="JobIconTexture" TextureScale="2 2" VerticalAlignment="Center"/>
+                <Control MinWidth="5"/>
+                <RichTextLabel Name="JobLabel" VerticalAlignment="Center"/>
+            </BoxContainer>
         </BoxContainer>
-        <customControls:VSeparator Margin="5"/>
+        <PanelContainer StyleClasses="LowDivider" />
         <BoxContainer HorizontalExpand="True" Orientation="Vertical" Margin="5">
             <BoxContainer>
                 <RichTextLabel Name="InfoBlurbText" HorizontalExpand="False"/>
             </BoxContainer>
-            <RichTextLabel Text="{Loc 'es-character-window-objective-title'}" Margin="0 0 0 5"/>
+            <RichTextLabel Name="ObjectiveHeaderLabel" Text="{Loc 'es-character-window-objective-title'}" Margin="0 0 0 5"/>
             <PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="PanelDark">
                 <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
                     <GridContainer Name="ObjectivesContainer" Columns="1" RectClipContent="True" Margin="10 10"/>

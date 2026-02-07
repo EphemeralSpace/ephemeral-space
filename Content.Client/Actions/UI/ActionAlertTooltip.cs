@@ -49,7 +49,9 @@ namespace Content.Client.Actions.UI
                     MaxWidth = TooltipTextMaxWidth,
                     StyleClasses = { StyleClass.TooltipDesc }
                 };
-                description.SetMessage(desc);
+// ES START
+                description.SetMessage(desc, tagsAllowed: null);
+// ES END
                 vbox.AddChild(description);
             }
 
