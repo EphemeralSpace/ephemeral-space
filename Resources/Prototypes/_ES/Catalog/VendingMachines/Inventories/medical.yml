@@ -7,9 +7,14 @@
     Brutepack: 5
     Ointment: 5
     Bloodpack: 5
-    Tourniquet: 2
+    ChemistryBottleParacetamol: 3
+    ChemistryBottleInaprovaline: 3 # Offbrand
+    ChemistryBottleBicaridine: 3
+    ChemistryBottleDylovene: 3 # Offbrand
+    ChemistryBottleDexalin: 3 # Offbrand
+    TourniquetOffbrand: 2 # Offbrand
+    Splints: 2 # Offbrand
     ChemistryBottleEpinephrine: 3
-    ChemistryBottleBicaridine: 1
     Syringe: 5
     BoxBottle: 3
     PillCanisterTricordrazine: 3
