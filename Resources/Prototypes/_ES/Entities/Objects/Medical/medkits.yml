@@ -27,3 +27,77 @@
         - id: Gauze
         - id: Ointment
 
+- type: entity
+  id: ESMedkitFilled
+  parent: Medkit
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyPouchBrute
+        - id: EmergencyPouchBurn
+        - id: EmergencyPouchToxin
+        - id: EmergencyPouchOxygenDeprivation
+
+- type: entity
+  id: ESMedkitBurnFilled
+  parent: MedkitBurn
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyPouchBurn
+          amount: 4
+
+- type: entity
+  id: ESMedkitToxinFilled
+  parent: MedkitToxin
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyPouchToxin
+          amount: 4
+
+- type: entity
+  id: ESMedkitO2Filled
+  parent: MedkitO2
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyPouchOxygenDeprivation
+          amount: 4
+
+- type: entity
+  id: ESMedkitBruteFilled
+  parent: MedkitBrute
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyPouchBrute
+          amount: 4
+
+- type: entity
+  id: ESMedkitRadiationFilled
+  parent: MedkitRadiation
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyPouchRadiation
+          amount: 4
+

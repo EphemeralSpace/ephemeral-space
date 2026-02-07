@@ -213,6 +213,10 @@
   - type: BrainHealingStatusEffect
 
 - type: entity
+  parent: StatusEffectBrainHealingMannitol
+  id: StatusEffectBrainHealingInaprovaline
+
+- type: entity
   parent: MobStatusEffectBase
   id: StatusEffectMinorOxygenationDexalin
   name: 50% artificial respiration
@@ -231,10 +235,10 @@
 - type: entity
   parent: MobStatusEffectBase
   id: StatusEffectMajorOxygenationDexalinPlus
-  name: 80% artificial respiration
+  name: 90% artificial respiration
   components:
   - type: LungFunctionModifierStatusEffect
-    function: 0.8
+    function: 0.9
 
 - type: entity
   parent: StatusEffectMajorOxygenationDexalinPlus
@@ -408,7 +412,7 @@
   name: ongoing CPR
   components:
   - type: CardiacOutputModifierStatusEffect
-    output: 0.8
+    output: 0.9
 
 - type: entity
   abstract: true
