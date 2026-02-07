@@ -15,7 +15,6 @@
     tables:
     # Cargo
     - id: ESComputerSupplyRequestCircuitBoard
-    - id: ESComputerSupplyRequestMasterCircuitBoard
     - id: ESComputerWarehouseManifestCircuitBoard
     # Engi
     - id: AlertsComputerCircuitboard

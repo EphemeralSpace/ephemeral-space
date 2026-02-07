@@ -54,6 +54,9 @@
 
 - type: Tag
   id: ESSpawnerSecureTechStorage
+  
+- type: Tag
+  id: ESSpawnerTechStorageMats
 
 - type: Tag
   id: ESSpawnerTechStorage
