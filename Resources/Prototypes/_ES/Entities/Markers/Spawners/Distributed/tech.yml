@@ -32,6 +32,7 @@
     - id: CrewMonitoringComputerCircuitboard
     # - id: MedicalRecordsComputerCircuitboard
     # Sci
+    - id: ESComputerAnomalyCircuitBoard
     # Sec
     - id: CriminalRecordsComputerCircuitboard
     - id: SurveillanceCameraMonitorCircuitboard
