@@ -103,11 +103,13 @@
   - type: Item
     sprite: Objects/Specific/Janitorial/wet_floor_sign.rsi
     size: Normal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.95
-        Slash: 0.95
+  #ES START
+  #- type: Armor
+  #  modifiers:
+  #    coefficients:
+  #      Blunt: 0.95
+  #      Slash: 0.95
+  #ES END
   - type: PhysicalComposition
     materialComposition:
       Plastic: 50
