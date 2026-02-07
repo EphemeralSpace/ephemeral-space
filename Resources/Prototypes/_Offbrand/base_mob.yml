@@ -188,7 +188,7 @@
     maxStrain: 4
   - type: SolutionContainerManager
   - type: InjectableSolution
-    solution: chemicals
+    solution: bloodstream
   - type: Bloodstream
     bleedReductionAmount: 0
     damageBleedModifiers: null
