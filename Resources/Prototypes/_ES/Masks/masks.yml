@@ -229,6 +229,13 @@
     - id: ESObjectiveHitmanKillTarget
       prob: 0.5
 
+- type: esMask
+  id: ESSecretary
+  name: es-mask-secretary-name
+  troupe: ESCrew
+  description: es-mask-secretary-desc
+  color: honeydew # i fucking LOVE honeydew
+
 # Traitor Masks
 - type: esMask
   id: ESBaseTraitor
