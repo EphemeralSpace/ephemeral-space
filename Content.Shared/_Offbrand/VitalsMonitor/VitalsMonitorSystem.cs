@@ -225,7 +225,7 @@ public sealed class VitalsMonitorSystem : EntitySystem
         if (audio is not { } incomingSound)
             return;
 
-        ent.Comp.LoopingAudio = _audio.PlayPvs(audio, ent, AudioParams.Default.WithLoop(true))?.Entity;
+        ent.Comp.LoopingAudio = _audio.PlayPvs(audio, ent, audio.Params.WithLoop(true))?.Entity;
         Dirty(ent);
     }
 }
