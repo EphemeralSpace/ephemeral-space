@@ -27,6 +27,8 @@ public sealed class ESAutoGhostSystem : EntitySystem
     {
         SubscribeLocalEvent<GhostOnMoveComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<GhostOnMoveComponent, MobStateChangedEvent>(OnMobStateChanged, after: [typeof(KillTrackingSystem)]);
+
+        SubscribeLocalEvent<MindContainerComponent, ESAutoGhostEvent>(OnAutoGhost);
     }
 
     private void OnStartup(Entity<GhostOnMoveComponent> ent, ref ComponentStartup args)
@@ -34,7 +36,7 @@ public sealed class ESAutoGhostSystem : EntitySystem
         if (ent.Comp.MustBeDead && !_mobState.IsDead(ent))
             return;
 
-        Ghost(ent);
+        AutoGhost(ent);
     }
 
     private void OnMobStateChanged(Entity<GhostOnMoveComponent> ent, ref MobStateChangedEvent args)
@@ -43,14 +45,23 @@ public sealed class ESAutoGhostSystem : EntitySystem
         if (args.NewMobState != MobState.Dead)
             return;
 
-        Ghost(ent);
+        AutoGhost(ent);
     }
 
-    private void Ghost(EntityUid ent)
+    private void OnAutoGhost(Entity<MindContainerComponent> ent, ref ESAutoGhostEvent args)
     {
-        if (!_mind.TryGetMind(ent, out var mindId, out var mindComp))
+        if (!_mind.TryGetMind(ent, out var mindId, out var mindComp, ent))
             return;
 
         _ghost.OnGhostAttempt(mindId, canReturnGlobal: false, forced: true, mind: mindComp);
+    }
+
+    private void AutoGhost(EntityUid uid)
+    {
+        // Don't ghost the brainless.
+        if (!_mind.TryGetMind(uid, out _, out _))
+            return;
+
+        _entityTimer.SpawnTimer(uid, AutoGhostDelay, new ESAutoGhostEvent());
     }
 }
