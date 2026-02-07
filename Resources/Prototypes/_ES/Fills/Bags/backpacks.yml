@@ -1,0 +1,17 @@
+- type: entity
+  parent: ClothingBackpackChameleon
+  id: ESClothingBackpackChameleonFill
+  suffix: ES, Fill, Chameleon
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: ChameleonPDA
+        - id: ClothingUniformJumpsuitChameleon
+        - id: ClothingOuterChameleon
+        - id: ClothingHeadHatChameleon
+        - id: ClothingHandsChameleon
+        - id: ClothingHeadsetChameleon
+        - id: ClothingShoesChameleon
+        - id: ESChameleonControllerImplanter

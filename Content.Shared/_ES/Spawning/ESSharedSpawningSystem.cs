@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.CCVar;
+using Content.Shared._ES.Core.Timer.Components;
 using Content.Shared._ES.Spawning.Components;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Ghost;
@@ -29,7 +30,7 @@ public abstract class ESSharedSpawningSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] protected readonly ISharedPlayerManager Player = default!;
     [Dependency] private readonly SharedPvsOverrideSystem _pvsOverride = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
 
@@ -51,7 +52,7 @@ public abstract class ESSharedSpawningSystem : EntitySystem
         if (ev.NewMobState != MobState.Dead)
             return;
 
-        if (!_player.TryGetSessionByEntity(ev.Target, out var session))
+        if (!Player.TryGetSessionByEntity(ev.Target, out var session))
             return;
 
         ResetRespawnTimer(session);
@@ -59,7 +60,7 @@ public abstract class ESSharedSpawningSystem : EntitySystem
 
     private void OnMindRemoved(MindRemovedMessage ev)
     {
-        if (!_player.TryGetSessionById(ev.Mind.Comp.UserId, out var session))
+        if (!Player.TryGetSessionById(ev.Mind.Comp.UserId, out var session))
             return;
 
         if (TryComp<MobStateComponent>(ev.Container, out var mobState) && _mobState.IsDead(ev.Container, mobState))
@@ -125,4 +126,19 @@ public sealed class ESSpawnPlayerEvent(List<NetEntity> stations, ProtoId<JobProt
 {
     public List<NetEntity> Stations = stations;
     public ProtoId<JobPrototype> JobId = jobId;
+}
+
+[Serializable, NetSerializable]
+public sealed partial class ESSpawnPlayerAfterCurtainsEvent : ESEntityTimerEvent
+{
+    public NetUserId? UserId;
+    public ProtoId<JobPrototype> JobId;
+    public List<NetEntity> Stations = [];
+
+    public ESSpawnPlayerAfterCurtainsEvent(ESSpawnPlayerEvent msg, EntitySessionEventArgs args)
+    {
+        UserId = args.SenderSession.UserId;
+        JobId = msg.JobId;
+        Stations = msg.Stations;
+    }
 }

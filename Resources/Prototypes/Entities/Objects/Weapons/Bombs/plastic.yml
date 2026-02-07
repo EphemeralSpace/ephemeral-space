@@ -54,8 +54,10 @@
     quickEquip: false
     equipDelay: 3
     unequipDelay: 6
-  - type: TriggerOnActivate
-  - type: TriggerOnSignal
+  # ES CHange - only activated by stuck
+  #- type: TriggerOnActivate
+  #- type: TriggerOnSignal
+  # ES End
   - type: TriggerOnStuck
     keyOut: stuck
   - type: ToggleTriggerCondition # for toggling the start on stuck ability
@@ -77,9 +79,11 @@
     - Trigger
   - type: Explosive # Powerful explosion in a very small radius. Doesn't break underplating.
     explosionType: DemolitionCharge
-    totalIntensity: 60
-    intensitySlope: 5
-    maxIntensity: 30
+    # ES Change - rebalances explosions
+    totalIntensity: 7 # 60 -> 3
+    intensitySlope: 5 # 5 -> 10
+    maxIntensity: 7 # 30 -> 3
+    # ES end
     canCreateVacuum: false
   - type: ExplodeOnTrigger
     keysIn:

@@ -1,0 +1,35 @@
+- type: entity
+  id: ESStatueBeautiful
+  parent: BaseStructure
+  name: beautiful statue
+  description: A marble statue. It's beautiful.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _ES/Structures/Decoration/statues.rsi
+    state: vaporwave
+    drawdepth: Mobs
+    
+- type: entity
+  id: ESStatueKarlMarx
+  parent: BaseStructure
+  name: karl marx statue
+  description: A bronze statue depicting Karl Marx. "From each according to his ability, to each according to his needs."
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _ES/Structures/Decoration/statues.rsi
+    state: karlmarx
+    drawdepth: Mobs
+
+- type: entity
+  id: ESStatueFungus
+  parent: BaseStructure
+  name: dancing fungus statue
+  description: A painstakingly chiseled statue commemorating the best dance ever performed in all of existence.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _ES/Structures/Decoration/statues.rsi
+    state: fungus
+    drawdepth: Mobs

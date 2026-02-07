@@ -1,0 +1,20 @@
+﻿- type: entity
+  id: ESMicroBombImplanter
+  name: micro-bomb implanter
+  description: This implanter disintegrates on use.
+  suffix: ES
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: ESMicroBombImplant
+    deleteImplanterOnImplant: true
+
+- type: entity
+  parent: BaseImplantOnlyImplanterSyndi
+  id: ESChameleonControllerImplanter
+  name: chameleon controller implanter
+  description: This implanter disintegrates on use.
+  components:
+  - type: Implanter
+    implant: ChameleonControllerImplant
+    deleteImplanterOnImplant: true

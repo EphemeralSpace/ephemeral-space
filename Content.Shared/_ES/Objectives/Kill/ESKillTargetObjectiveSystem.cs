@@ -1,41 +1,31 @@
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Objectives.Kill.Components;
 using Content.Shared._ES.Objectives.Target;
-using Content.Shared._ES.Objectives.Target.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 
 namespace Content.Shared._ES.Objectives.Kill;
 
-public sealed class ESKillTargetObjectiveSystem : ESBaseObjectiveSystem<ESKillTargetObjectiveComponent>
+public sealed class ESKillTargetObjectiveSystem : ESBaseTargetObjectiveSystem<ESKillTargetObjectiveComponent>
 {
-    [Dependency] private readonly ESTargetObjectiveSystem _targetObjective = default!;
+    public override Type[] TargetRelayComponents { get; } = [typeof(ESKillTargetObjectiveMarkerComponent)];
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<ESKillTargetObjectiveMarkerComponent, MobStateChangedEvent>(OnMobStateChanged);
     }
 
-    // TODO: this is like plainly lazy and unperformant but I need this code done.
-    private void OnMobStateChanged(MobStateChangedEvent ev)
+    private void OnMobStateChanged(Entity<ESKillTargetObjectiveMarkerComponent> ent, ref MobStateChangedEvent args)
     {
-        var query = EntityQueryEnumerator<ESKillTargetObjectiveComponent, ESTargetObjectiveComponent, ESObjectiveComponent>();
-        while (query.MoveNext(out var uid, out _, out var target, out var comp))
-        {
-            if (!_targetObjective.TryGetTarget((uid, target), out var objTarget) ||
-                objTarget != ev.Target)
-                continue;
-
-            ObjectivesSys.RefreshObjectiveProgress((uid, comp));
-        }
+        RefreshTargetingObjectives(ent);
     }
 
     protected override void GetObjectiveProgress(Entity<ESKillTargetObjectiveComponent> ent, ref ESGetObjectiveProgressEvent args)
     {
-        if (!_targetObjective.TryGetTarget(ent.Owner, out var target))
+        if (!TargetObjective.TryGetTarget(ent.Owner, out var target))
         {
             args.Progress = ent.Comp.DefaultProgress;
             return;

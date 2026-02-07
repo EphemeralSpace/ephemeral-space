@@ -219,11 +219,27 @@ public record struct BeforeDamageChangedEvent(DamageSpecifier Damage, EntityUid?
 public sealed class DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null)
     : EntityEventArgs, IInventoryRelayEvent
 {
-    // Whenever locational damage is a thing, this should just check only that bit of armour.
+    /// <inheritdoc/>
+    /// <remarks>
+    ///     Whenever locational damage is a thing, this should just check only that bit of armor.
+    /// </remarks>
     public SlotFlags TargetSlots => ~SlotFlags.POCKET;
 
+    /// <summary>
+    ///     Contains the original damage, prior to any modifers.
+    /// </summary>
     public readonly DamageSpecifier OriginalDamage = damage;
+
+    /// <summary>
+    ///     Contains the damage after modifiers have been applied.
+    ///     This is the damage that will be inflicted.
+    /// </summary>
     public DamageSpecifier Damage = damage;
+
+    /// <summary>
+    ///     Contains the entity which caused the damage, if any was responsible.
+    /// </summary>
+    public readonly EntityUid? Origin = origin;
 }
 
 public sealed class DamageChangedEvent : EntityEventArgs
@@ -266,18 +282,38 @@ public sealed class DamageChangedEvent : EntityEventArgs
     /// </summary>
     public readonly bool ForcedRefresh;
 
+// ES START
+    /// <summary>
+    ///     The physical object which caused the change in damage.
+    ///     Unlike <see cref="Origin"/>, this is not a player but something like a bullet or knife
+    /// </summary>
+    public readonly EntityUid? Source;
+
+    /// <summary>
+    ///     An optional additional object that caused <see cref="Source"/> to function by will of <see cref="Origin"/>
+    ///     So if <see cref="Source"/> is a bullet, <see cref="Origin"/> is a player, then this is the gun.
+    /// </summary>
+    public readonly EntityUid? Weapon;
+// ES END
+
     public DamageChangedEvent(
         DamageableComponent damageable,
         DamageSpecifier? damageDelta,
         bool interruptsDoAfters,
         EntityUid? origin,
-        bool forcedRefresh // Offbrand
+        bool forcedRefresh,
+        EntityUid? source,
+        EntityUid? weapon
     )
     {
         Damageable = damageable;
         DamageDelta = damageDelta;
         Origin = origin;
         ForcedRefresh = forcedRefresh; // Offbrand
+// ES START
+        Source = source;
+        Weapon = weapon;
+// ES END
 
         if (DamageDelta is null)
             return;

@@ -2,11 +2,13 @@ using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Character;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
+using Content.Shared._ES.CCVar;
 using Content.Shared.Input;
 using JetBrains.Annotations;
 using Robust.Client.Player;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
 
 namespace Content.Client._ES.Mind.Ui;
@@ -15,6 +17,7 @@ namespace Content.Client._ES.Mind.Ui;
 public sealed class ESCharacterUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private ESCharacterWindow? _window;
 
@@ -34,6 +37,9 @@ public sealed class ESCharacterUIController : UIController, IOnStateEntered<Game
             .Bind(ContentKeyFunctions.OpenCharacterMenu,
                 InputCmdHandler.FromDelegate(_ => ToggleWindow()))
             .Register<CharacterUIController>();
+
+        if (_cfg.GetCVar(ESCVars.ESOpenCharacterMenuOnSpawn) && !_window.IsOpen)
+            _window?.OpenCenteredLeft();
     }
 
     public void OnStateExited(GameplayState state)

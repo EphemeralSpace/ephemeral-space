@@ -18,11 +18,8 @@ namespace Content.Server.Destructible.Thresholds.Behaviors
             // no gib behavior on damage
             return;
             // ES END
-            
-            if (system.EntityManager.TryGetComponent(owner, out BodyComponent? body))
-            {
-                system.BodySystem.GibBody(owner, _recursive, body);
-            }
+
+            system.Gibbing.Gib(owner, _recursive);
         }
     }
 }

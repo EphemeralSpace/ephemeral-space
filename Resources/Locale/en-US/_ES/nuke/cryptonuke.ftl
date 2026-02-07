@@ -30,6 +30,8 @@ es-cryptonuke-ui-label-flavor = [color=red][font="Monospace"]VERIFYING TRACKING 
     {""}01010011   01000101   01000101
     {""}[/font][/color]
 es-cryptonuke-ui-button-hack = Hack
+es-cryptonuke-ui-button-go-tooltip = Hack terminal!
 es-cryptonuke-ui-button-hack-tooltip = The syndicate's tasks aren't finished! Unable to hack.
+es-cryptonuke-ui-button-already-hacked-tooltip = Terminal is already hacked!
 
 es-cryptonuke-examine-compromised = This terminal has been [color=red][bold]hacked[/color][/bold]!

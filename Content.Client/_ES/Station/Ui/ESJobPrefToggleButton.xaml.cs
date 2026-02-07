@@ -1,4 +1,4 @@
-using Content.Client._ES.Station;
+using Content.Client._ES.Core;
 using Content.Client.Lobby;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Shared.Preferences;
@@ -42,12 +42,7 @@ public sealed partial class ESJobPrefToggleButton : Control
             _preferences.UpdateCharacter(profile.WithJobPriority(JobId, ToggleButton.Pressed ? JobPriority.Medium : JobPriority.Never), 0);
         };
 
-        _station.OnReadiedJobCountsChanged += () =>
-        {
-            ReadyCountLabel.Text = Loc.GetString("es-job-prefs-slot-available-count",
-                ("queued", _station.ReadiedJobCounts.GetValueOrDefault(JobId, 0)),
-                ("slots", _station.AvailableRoundstartJobs.GetValueOrDefault(JobId) ?? 0));
-        };
+        _station.OnReadiedJobCountsChanged += UpdateReadyCount;
     }
 
     public void SetJob(ProtoId<JobPrototype> jobId)
@@ -61,9 +56,7 @@ public sealed partial class ESJobPrefToggleButton : Control
         JobIcon.Texture = _sprite.Frame0(_prototypeManager.Index(job.Icon).Icon);
         JobNameLabel.Text = job.LocalizedName;
 
-        ReadyCountLabel.Text = Loc.GetString("es-job-prefs-slot-available-count",
-            ("queued", _station.ReadiedJobCounts.GetValueOrDefault(JobId, 0)),
-            ("slots", _station.AvailableRoundstartJobs.GetValueOrDefault(JobId) ?? 0));
+        UpdateReadyCount();
 
         if (!_jobRequirements.IsAllowed(job, (HumanoidCharacterProfile?)_preferences.Preferences?.SelectedCharacter, out var reason))
         {
@@ -73,6 +66,13 @@ public sealed partial class ESJobPrefToggleButton : Control
                 ToggleButton.ToolTip = reason.ToMarkup();
             LockedPanel.Visible = true; // TODO: does this actually look good? This might look like ass...
         }
+    }
+
+    private void UpdateReadyCount()
+    {
+        ReadyCountLabel.UnsafeSetMarkup(Loc.GetString("es-job-prefs-slot-available-count",
+            ("queued", _station.ReadiedJobCounts.GetValueOrDefault(JobId, 0)),
+            ("slots", _station.AvailableRoundstartJobs.GetValueOrDefault(JobId) ?? 0)));
     }
 }
 

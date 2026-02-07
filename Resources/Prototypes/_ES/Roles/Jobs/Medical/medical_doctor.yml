@@ -9,7 +9,6 @@
   access:
   - Medical
   - Maintenance
-  extendedAccess:
   - Chemistry
 
 - type: startingGear
@@ -19,9 +18,16 @@
     id: MedicalPDA
     gloves: ClothingHandsGlovesColorBlue
     head: ClothingHeadHatSurgcapBlue
-    mask: ClothingMaskSterile
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
     jumpsuit: ClothingUniformJumpsuitMedicalDoctor
     outerClothing: ClothingOuterCoatLabOpened
     back: ClothingBackpackMedical
+  storage:
+    back:
+    - ESBoxSurvivalMedical
+
+- type: chameleonOutfit
+  id: ESMedicalDoctor
+  job: ESMedicalDoctor
+  hidden: false

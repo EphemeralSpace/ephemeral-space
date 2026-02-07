@@ -148,6 +148,14 @@ public abstract class SharedImplanterSystem : EntitySystem
         var ev = new TransferDnaEvent { Donor = target, Recipient = implanter };
         RaiseLocalEvent(target, ref ev);
 
+        // ES START
+        if (component.DeleteImplanterOnImplant)
+        {
+            PredictedQueueDel(implanter);
+            return;
+        }
+        // ES END
+
         Dirty(implanter, component);
     }
 

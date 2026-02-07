@@ -33,3 +33,8 @@
       machine_board: !type:Container
       machine_parts: !type:Container
   # End Offbrand
+# ES START
+  - type: ESAutopsyTable
+  - type: Destructible
+    thresholds: [] # Indestructible
+# ES END

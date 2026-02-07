@@ -9,7 +9,9 @@ namespace Content.Shared.Damage.Events;
 public record struct RefreshStaminaCritThresholdEvent
 {
     public float ThresholdValue = 100f;
-    public float Modifier = 1f;
+// ES START
+    public float? Modifier;
+// ES END
 
     public RefreshStaminaCritThresholdEvent(float thresholdValue)
     {

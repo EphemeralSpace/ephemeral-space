@@ -58,6 +58,10 @@ public sealed class ESAutoGhostSystem : EntitySystem
 
     private void AutoGhost(EntityUid uid)
     {
+        // Don't ghost the brainless.
+        if (!_mind.TryGetMind(uid, out _, out _))
+            return;
+
         _entityTimer.SpawnTimer(uid, AutoGhostDelay, new ESAutoGhostEvent());
     }
 }

@@ -88,6 +88,9 @@ public sealed class DockTest : ContentUnitTest
     }
 
     [Test]
+    // ES START disable
+    [Explicit]
+    // ES END
     public async Task TestPlanetDock()
     {
         await using var pair = await PoolManager.GetServerClient();

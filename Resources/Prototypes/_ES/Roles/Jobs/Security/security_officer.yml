@@ -13,9 +13,6 @@
   - Maintenance
   - External
   - Cryogenics
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: ESSecurityOfficerGear
@@ -23,13 +20,20 @@
     shoes: ClothingShoesBootsJack
     eyes: ClothingEyesGlassesSecurity
     id: SecurityPDA
+    gloves: ClothingHandsGlovesColorBlack
     ears: ClothingHeadsetSecurity
     head: ClothingHeadHelmetBasic
     belt: ClothingBeltSecurityFilled
     jumpsuit: ClothingUniformJumpsuitSec
-    outerClothing: ClothingOuterArmorBasic
+    outerClothing: ESClothingOuterArmorSecurity
     back: ClothingBackpackSecurity
     pocket1: ESWeaponHybridTaser
   storage:
     back:
+    - ESBoxSurvival
     - Flash
+
+- type: chameleonOutfit
+  id: ESSecurityOfficer
+  job: ESSecurityOfficer
+  hidden: false

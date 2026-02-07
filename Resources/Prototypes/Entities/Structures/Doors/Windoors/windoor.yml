@@ -274,8 +274,10 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsCentralCommand ]
-  - type: WiresPanelSecurity
-    securityLevel: medSecurity
+# ES START
+  #- type: WiresPanelSecurity
+  #  securityLevel: medSecurity
+# ES END
   - type: Wires
     layoutId: AirlockCommand
 
@@ -287,8 +289,10 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsCommand ]
-  - type: WiresPanelSecurity
-    securityLevel: medSecurity
+# ES START
+  #- type: WiresPanelSecurity
+  #  securityLevel: medSecurity
+# ES END
   - type: Wires
     layoutId: AirlockCommand
 
@@ -300,8 +304,10 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsCommand ]
-  - type: WiresPanelSecurity
-    securityLevel: medSecurity
+# ES START
+  #- type: WiresPanelSecurity
+  #  securityLevel: medSecurity
+# ES END
   - type: Wires
     layoutId: AirlockCommand
 

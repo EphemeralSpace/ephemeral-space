@@ -20,7 +20,7 @@ public sealed partial class ESAddMaskOnUseComponent : Component
     /// Whether having a mindshield will prevent conversion
     /// </summary>
     [DataField]
-    public bool MindshieldPrevent;
+    public bool MindshieldPrevent = true;
 
     /// <summary>
     /// If this has been used.
@@ -54,4 +54,7 @@ public sealed partial class ESAddMaskOnUseComponent : Component
 
     [DataField]
     public LocId NotCritMessage = "es-subverter-chip-not-crit";
+
+    [DataField]
+    public LocId MindshieldedMessage = "es-subverter-chip-mindshielded";
 }

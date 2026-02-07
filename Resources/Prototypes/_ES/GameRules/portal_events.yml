@@ -29,6 +29,5 @@
         - id: AnomalyRockBananium
       - id: AnomalyLiquid
       - id: AnomalyFlora
-      - id: AnomalyShadow
   - type: ESTimedDespawn
     lifetime: 1.0

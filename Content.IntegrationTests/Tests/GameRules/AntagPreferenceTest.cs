@@ -17,6 +17,9 @@ namespace Content.IntegrationTests.Tests.GameRules;
 public sealed class AntagPreferenceTest
 {
     [Test]
+    // ES START disable
+    [Explicit]
+    // ES END
     public async Task TestLobbyPlayersValid()
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings

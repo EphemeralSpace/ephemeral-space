@@ -61,9 +61,11 @@ public sealed class HungerThirstTest : InteractionTest
         // To see a change in hunger, we need to wait at least 30 seconds
         await RunSeconds(30);
 
+        // ES EDIT: We don't delete it, because no autoeat.
         // We ensure the food is fully eaten
-        var foodEaten = HandSys.GetActiveItem((SPlayer, Hands));
-        Assert.That(foodEaten, Is.Null, "Food item did not disappear after eating it");
+        //var foodEaten = HandSys.GetActiveItem((SPlayer, Hands));
+        //Assert.That(foodEaten, Is.Null, "Food item did not disappear after eating it");
+        // END ES EDIT
 
         // Ensure that the hunger value has increased (The Urist is less hungry)
         Assert.That(hungerSystem.GetHunger(hungerComponent), Is.GreaterThan(previousHungerValue), "Hunger value did not increase after eating food");

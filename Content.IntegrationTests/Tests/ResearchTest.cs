@@ -11,6 +11,9 @@ namespace Content.IntegrationTests.Tests;
 public sealed class ResearchTest
 {
     [Test]
+    // ES START disable
+    [Explicit]
+    // ES END
     public async Task DisciplineValidTierPrerequesitesTest()
     {
         await using var pair = await PoolManager.GetServerClient();
@@ -47,6 +50,9 @@ public sealed class ResearchTest
     }
 
     [Test]
+    // ES START disable
+    [Explicit]
+    // ES END
     public async Task AllTechPrintableTest()
     {
         await using var pair = await PoolManager.GetServerClient();

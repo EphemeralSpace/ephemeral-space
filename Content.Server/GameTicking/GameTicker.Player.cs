@@ -1,5 +1,6 @@
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
+using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.GameWindow;
 using Content.Shared.Players;
@@ -11,6 +12,10 @@ using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+// ES START
+using Content.Server._ES.Stagehand;
+using Content.Shared.Mobs.Systems;
+// ES END
 
 namespace Content.Server.GameTicking
 {
@@ -18,6 +23,10 @@ namespace Content.Server.GameTicking
     public sealed partial class GameTicker
     {
         [Dependency] private readonly IPlayerManager _playerManager = default!;
+// ES START
+        [Dependency] private readonly MobStateSystem _mobState = default!;
+        [Dependency] private readonly ESStagehandSystem _stagehand = default!;
+// ES END
 
         private void InitializePlayer()
         {
@@ -93,17 +102,17 @@ namespace Content.Server.GameTicking
                         else
                             SpawnWaitDb();
 
+                        _adminLogger.Add(LogType.Connection, LogImpact.Low, $"User {args.Session:Player} attached to {(args.Session.AttachedEntity != null ? ToPrettyString(args.Session.AttachedEntity) : "nothing"):entity} connected to the game.");
                         break;
                     }
 
-                    if (mind.CurrentEntity == null || Deleted(mind.CurrentEntity))
+// ES START
+                    if (mind.CurrentEntity == null || Deleted(mind.CurrentEntity) || _mobState.IsDead(mind.CurrentEntity.Value))
                     {
-                        DebugTools.Assert(mind.CurrentEntity == null, "a mind's current entity was deleted without updating the mind");
-
-                        // This player is joining the game with an existing mind, but the mind has no entity.
-                        // Their entity was probably deleted sometime while they were disconnected, or they were an observer.
-                        // Instead of allowing them to spawn in, we will dump and their existing mind in an observer ghost.
-                        SpawnObserverWaitDb();
+                        // We silence the assert here because we might have a valid entity that is dead.
+                        //DebugTools.Assert(mind.CurrentEntity == null, "a mind's current entity was deleted without updating the mind");
+                        SpawnInLobbyWaitDb();
+// ES END
                     }
                     else
                     {
@@ -115,9 +124,13 @@ namespace Content.Server.GameTicking
                         {
                             Log.Error(
                                 $"Failed to attach player {session} with mind {ToPrettyString(mindId)} to its current entity {ToPrettyString(mind.CurrentEntity)}");
-                            SpawnObserverWaitDb();
+// ES START
+                            SpawnInLobbyWaitDb();
+// ES END
                         }
                     }
+
+                    _adminLogger.Add(LogType.Connection, LogImpact.Low, $"User {args.Session:Player} attached to {(args.Session.AttachedEntity != null ? ToPrettyString(args.Session.AttachedEntity) : "nothing"):entity} connected to the game.");
 
                     break;
                 }
@@ -131,6 +144,8 @@ namespace Content.Server.GameTicking
                     }
 
                     _userDb.ClientDisconnected(session);
+
+                    _adminLogger.Add(LogType.Connection, LogImpact.Low, $"User {args.Session:Player} attached to {(args.Session.AttachedEntity != null ? ToPrettyString(args.Session.AttachedEntity) : "nothing"):entity} disconnected from the game.");
                     break;
                 }
             }
@@ -168,6 +183,30 @@ namespace Content.Server.GameTicking
 
                 JoinAsObserver(session);
             }
+// ES START
+            async void SpawnInLobbyWaitDb()
+            {
+                try
+                {
+                    await _userDb.WaitLoadComplete(session);
+                }
+                catch (OperationCanceledException)
+                {
+                    // Bail, user must've disconnected or something.
+                    Log.Debug($"Database load cancelled while waiting to spawn {session}");
+                    return;
+                }
+
+                if (LobbyEnabled)
+                {
+                    PlayerJoinLobby(session, attachCharacter: true);
+                }
+                else
+                {
+                    _stagehand.SpawnStagehand(session);
+                }
+            }
+// ES END
 
             async void AddPlayerToDb(Guid id)
             {

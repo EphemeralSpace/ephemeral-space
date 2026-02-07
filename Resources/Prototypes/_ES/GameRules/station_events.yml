@@ -45,7 +45,6 @@
     - id: ESStationEventSolarFlare
     - id: ESStationEventVentClog
     - id: ESStationEventMeteorSwarm
-    - id: ESStationEventSpaceDust
     - id: ESStationEventElectricalFire
 
 # Event Prototypes
@@ -219,45 +218,33 @@
 - type: entity
   parent: ESBaseStationEventDelayed
   id: ESStationEventMeteorSwarm
-  name: Meteor Swarm
+  name: Meteors
   description: Launch deadly meteors at the exterior of the station that smash through walls.
   components:
   - type: StationEvent
-    startAudio: null
     earliestStart: 30
-  - type: MeteorSwarm
-    announcementSound:
+    duration: null
+    startAudio:
       path: /Audio/_ES/Announcements/meteors.ogg
       params:
         volume: -4
-    meteors:
-      ESMeteor: 1
+    startAnnouncement: station-event-meteor-swarm-start-announcement
+  - type: ESMeteorsRule
+    meteorTable:
+      id: ESMeteor
+      amount: 4, 7
+  - type: ESSynchronizedVoteManager
+    votes:
+    - ESVoteMeteorDirection
 
-## Space Dust
 - type: entity
-  parent: ESBaseStationEventDelayed
-  id: ESStationEventSpaceDust
-  name: Space Dust
-  description: Send waves of space dust that batter the station from all sides.
+  id: ESVoteMeteorDirection
+  name: Which direction should the meteors come from?
   components:
-  - type: StationEvent
-    startAudio: null
-    earliestStart: 30
-  - type: MeteorSwarm
-    announcement: station-event-space-dust-start-announcement
-    announcementSound:
-      path: /Audio/_ES/Announcements/space_dust.ogg
-      params:
-        volume: -4
-    nonDirectional: true
-    meteors:
-      MeteorSpaceDust: 1
-    waves:
-      min: 2
-      max: 3
-    meteorsPerWave:
-      min: 8
-      max: 12
+  - type: ESVote
+    queryString: es-voter-query-string-meteors-direction
+    duration: 30
+  - type: ESAngleVote
 
 ## Electrical Fire
 - type: entity

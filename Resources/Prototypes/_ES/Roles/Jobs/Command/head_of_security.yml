@@ -3,7 +3,6 @@
   name: ESjob-name-hos
   description: ESjob-description-hos
   playTimeTracker: ESJobHeadOfSecurity
-  weight: 10
   startingGear: ESHoSGear
   icon: "JobIconHeadOfSecurity"
   supervisors: job-supervisors-captain
@@ -33,14 +32,20 @@
     shoes: ClothingShoesBootsJack
     eyes: ClothingEyesGlassesSecurity
     id: HoSPDA
-    gloves: ClothingHandsGlovesCombat
+    gloves: ClothingHandsGlovesColorBlack
     ears: ClothingHeadsetAltSecurity
     head: ClothingHeadHatHoshat
     belt: ClothingBeltSecurityFilled
     jumpsuit: ClothingUniformJumpsuitHoS
-    outerClothing: ClothingOuterCoatHoSTrench
+    outerClothing: ESClothingOuterCoatHoSTrench
     back: ClothingBackpackSecurity
     pocket1: ESWeaponHybridTaser
   storage:
     back:
+    - ESBoxSurvival
     - Flash
+
+- type: chameleonOutfit
+  id: ESHeadOfSecurity
+  job: ESHeadOfSecurity
+  hidden: false

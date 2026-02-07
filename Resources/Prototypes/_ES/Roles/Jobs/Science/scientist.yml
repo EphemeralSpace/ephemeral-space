@@ -20,3 +20,11 @@
     jumpsuit: ClothingUniformJumpsuitScientist
     outerClothing: ClothingOuterCoatLabOpened
     back: ClothingBackpackScience
+  storage:
+    back:
+    - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESScientist
+  job: ESScientist
+  hidden: false

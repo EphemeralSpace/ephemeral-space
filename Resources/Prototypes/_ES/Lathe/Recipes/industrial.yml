@@ -1,0 +1,41 @@
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: ESFireExtinguisherMini
+  result: FireExtinguisherMini
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: ESOxygenTank
+  result: OxygenTank
+  completetime: 4
+  materials:
+    Steel: 400
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: ESEmergencyOxygenTank
+  result: EmergencyOxygenTank
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  parent: BasePartRecipe
+  id: ESVoiceTrigger
+  result: VoiceTrigger
+  completetime: 2
+  materials:
+    Steel: 100
+    Glass: 50
+
+- type: latheRecipe
+  parent: BasePartRecipe
+  id: ESProximitySensor
+  result: ProximitySensor
+  completetime: 2
+  materials:
+    Steel: 100
+    Glass: 50

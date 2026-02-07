@@ -1,6 +1,9 @@
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothingGasTanks]
   id: ClothingOuterBioGeneral
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: bio suit
   suffix: Generic
   description: A suit that protects against biological contamination.
@@ -26,6 +29,9 @@
 - type: entity
   parent: ClothingOuterBioGeneral
   id: ClothingOuterBioCmo
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: bio suit
   suffix: CMO
   description: An advanced suit that protects against biological contamination, in CMO colors.
@@ -38,6 +44,9 @@
 - type: entity
   parent: ClothingOuterBioGeneral
   id: ClothingOuterBioJanitor
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: bio suit
   suffix: Janitor
   description: A suit that protects against biological contamination and caustic spills.
@@ -54,6 +63,9 @@
 - type: entity
   parent: ClothingOuterBioGeneral
   id: ClothingOuterBioScientist
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: bio suit
   suffix: Science
   description: A suit that protects against biological contamination, in Scientist colors.
@@ -66,6 +78,9 @@
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterBioSecurity
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: bio suit
   suffix: Security
   description: A suit that protects against biological contamination, kitted out with additional armor.
@@ -90,6 +105,9 @@
 - type: entity
   parent: ClothingOuterBioGeneral
   id: ClothingOuterBioVirology
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: bio suit
   suffix: Virology
   description: A suit that strongly protects against biological contamination.

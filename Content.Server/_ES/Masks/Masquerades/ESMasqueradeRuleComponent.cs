@@ -24,4 +24,10 @@ public sealed partial class ESMasqueradeRuleComponent : Component
     ///     The randomizer created from the initial seed and used for all role selection and latejoins.
     /// </summary>
     public SmallRandom Rng = default!;
+
+    /// <summary>
+    ///     The masks assigned in this masquerade, if any.
+    ///     This may also be influenced by the impersonated masquerade, for the masks actually in-game, query it.
+    /// </summary>
+    public List<ProtoId<ESMaskPrototype>>? AssignedMasks = null;
 }

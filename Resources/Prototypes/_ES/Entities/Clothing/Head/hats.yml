@@ -32,6 +32,21 @@
     - ClothMade
     - Recyclable
 
+- type: entity
+  parent: ClothingHeadBase
+  id: ESClothingHeadHatCoroner
+  name: coroner's hat
+  description: A tall, blue-brimmed hat. Smells kinda funny.
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Head/Hats/coroner.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Head/Hats/coroner.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+
 # Ushanka
 
 - type: entity

@@ -13,7 +13,7 @@
 - type: entity
   parent: ESBaseTraitorObjectiveMinor
   id: ESObjectiveTraitorKillRandom
-  name: Kill...
+  name: Kill a specific member of the crew
   description: The syndicate needs to make sure they don't interfere with our plans.
   components:
   - type: ESObjective
@@ -60,9 +60,9 @@
   abstract: true
   components:
   - type: ESObjective
-    icon: # TODO: proper icon once it's resprited
-      sprite: Objects/Tools/wrench.rsi
-      state: icon
+    icon:
+      sprite: Structures/Machines/server.rsi
+      state: server
   - type: ESCounterObjective
   - type: ESSabotageCondition
     whitelist:

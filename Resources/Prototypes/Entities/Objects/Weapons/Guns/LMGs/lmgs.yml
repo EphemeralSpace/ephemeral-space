@@ -15,7 +15,9 @@
     quickEquip: false
     slots:
     - Back
-    - suitStorage
+# ES START
+    # - suitStorage
+# ES END
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus

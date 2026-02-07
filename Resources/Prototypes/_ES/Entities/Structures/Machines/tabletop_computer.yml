@@ -142,6 +142,7 @@
     color: "#1f8c28"
   - type: Computer
     board: MedicalRecordsComputerCircuitboard
+  - type: ESAmbientMusicMarkerMedical
 
 - type: entity
   parent: ESBaseTabletopComputerAiAccess
@@ -238,6 +239,7 @@
     receiveFrequencyId: CrewMonitor
   - type: WirelessNetworkConnection
     range: 1200
+  - type: ESAmbientMusicMarkerMedical
 
 - type: entity
   parent: ESBaseTabletopComputerAiAccess
@@ -264,6 +266,32 @@
       whitelist:
         components:
         - IdCard
+    accessLevels: # TODO: this dupe with the normal id card computer sucks ass
+    - Armory
+    - Atmospherics
+    - Bar
+    - Brig
+    - Detective
+    - Captain
+    - Cargo
+    - Chemistry
+    - Command
+    - Cryogenics
+    - Engineering
+    - External
+    - GenpopEnter
+    - GenpopLeave
+    - HeadOfPersonnel
+    - HeadOfSecurity
+    - Hydroponics
+    - Janitor
+    - Kitchen
+    - Maintenance
+    - Medical
+    - Research
+    - Security
+    - Service
+    - Theatre
   - type: ActivatableUI
     key: enum.IdCardConsoleUiKey.Key
   - type: UserInterface
@@ -403,6 +431,7 @@
   components:
   - type: ESCargoRequestConsole
     defaultConsoleId: department-Engineering
+  - type: ESAmbientMusicMarkerEngineering
 
 - type: entity
   parent: ESComputerSupplyRequestTabletop
@@ -411,6 +440,7 @@
   components:
   - type: ESCargoRequestConsole
     defaultConsoleId: department-Medical
+  - type: ESAmbientMusicMarkerMedical
 
 - type: entity
   parent: ESComputerSupplyRequestTabletop

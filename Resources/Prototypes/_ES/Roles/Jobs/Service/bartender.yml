@@ -24,3 +24,11 @@
     jumpsuit: ClothingUniformJumpsuitBartender
     outerClothing: ClothingOuterVest
     back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESBartender
+  job: ESBartender
+  hidden: false

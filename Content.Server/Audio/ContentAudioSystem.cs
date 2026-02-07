@@ -21,6 +21,10 @@ public sealed class ContentAudioSystem : SharedContentAudioSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
+    // ES START
+    private static readonly ProtoId<SoundCollectionPrototype> RoundEndMusicCollection = "ESRoundEndMusic";
+    // ES END
+
     private SoundCollectionPrototype? _lobbyMusicCollection = default!;
     private string[]? _lobbyPlaylist;
 
@@ -91,6 +95,14 @@ public sealed class ContentAudioSystem : SharedContentAudioSystem
         // at the end of a round, and this needs to be set before RestartRound
         // in order for the lobby song status display to be accurate.
         _lobbyPlaylist = ShuffleLobbyPlaylist();
+        // ES START
+        // prepend a random roundend track to the lobby playlist, so that plays for roundend, and then other stuff plays
+        var roundEndList = _prototypeManager.Index(RoundEndMusicCollection)
+            .PickFiles.Select(x => x.ToString())
+            .ToArray();
+        var random = _robustRandom.Pick(roundEndList);
+        _lobbyPlaylist = _lobbyPlaylist.Prepend(random).ToArray();
+        // ES END
         RaiseNetworkEvent(new LobbyPlaylistChangedEvent(_lobbyPlaylist));
     }
 

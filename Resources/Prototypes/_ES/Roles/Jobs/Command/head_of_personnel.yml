@@ -3,7 +3,6 @@
   name: ESjob-name-hop
   description: ESjob-description-hop
   playTimeTracker: ESJobHeadOfPersonnel
-  weight: 20
   startingGear: ESHoPGear
   icon: "JobIconHeadOfPersonnel"
   supervisors: job-supervisors-captain
@@ -55,4 +54,10 @@
     back: ClothingBackpack
   storage:
     back:
+    - ESBoxSurvival
     - Flash
+
+- type: chameleonOutfit
+  id: ESHeadOfPersonnel
+  job: ESHeadOfPersonnel
+  hidden: false

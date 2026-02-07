@@ -8,7 +8,6 @@ namespace Content.Shared._ES.Core.Timer.Components;
 /// Component that holds data regarding a generic timer.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
-[Access(typeof(ESEntityTimerSystem), Other = AccessPermissions.None)]
 public sealed partial class ESEntityTimerComponent : Component
 {
     /// <summary>

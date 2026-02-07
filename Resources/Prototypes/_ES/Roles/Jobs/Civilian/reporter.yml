@@ -19,3 +19,11 @@
     head: ClothingHeadHatFedoraGrey
     jumpsuit: ClothingUniformJumpsuitReporter
     back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESReporter
+  job: ESReporter
+  hidden: false

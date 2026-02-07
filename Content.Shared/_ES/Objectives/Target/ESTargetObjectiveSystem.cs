@@ -5,6 +5,7 @@ using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Objectives.Target.Components;
 using Content.Shared.Mind;
 using Content.Shared.Roles.Jobs;
+using JetBrains.Annotations;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -22,7 +23,7 @@ public sealed class ESTargetObjectiveSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<ESTargetObjectiveComponent, ESInitializeObjectiveEvent>(OnInitializeObjective);
-        SubscribeLocalEvent<ESObjectiveTargetComponent, ComponentShutdown>(OnTargetShutdown);
+        SubscribeLocalEvent<ESTargetObjectiveMarkerComponent, ComponentShutdown>(OnTargetShutdown);
     }
 
     private void OnInitializeObjective(Entity<ESTargetObjectiveComponent> ent, ref ESInitializeObjectiveEvent args)
@@ -33,7 +34,7 @@ public sealed class ESTargetObjectiveSystem : EntitySystem
         SetTarget(ent.AsNullable(), candidate);
     }
 
-    private void OnTargetShutdown(Entity<ESObjectiveTargetComponent> ent, ref ComponentShutdown args)
+    private void OnTargetShutdown(Entity<ESTargetObjectiveMarkerComponent> ent, ref ComponentShutdown args)
     {
         foreach (var objective in ent.Comp.Objectives)
         {
@@ -94,6 +95,14 @@ public sealed class ESTargetObjectiveSystem : EntitySystem
         return candidate != null;
     }
 
+    public EntityUid? GetTargetOrNull(Entity<ESTargetObjectiveComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return null;
+
+        return ent.Comp.Target;
+    }
+
     /// <summary>
     /// Sets the target for a given <see cref="ESTargetObjectiveComponent"/>
     /// </summary>
@@ -101,6 +110,8 @@ public sealed class ESTargetObjectiveSystem : EntitySystem
     {
         if (!Resolve(ent, ref ent.Comp))
             return;
+
+        var oldTarget = ent.Comp.Target;
 
         // TODO: if we already have a target, remove the linked stuff
         // We assert for now so that people fix it later.
@@ -125,12 +136,38 @@ public sealed class ESTargetObjectiveSystem : EntitySystem
                 _metaData.SetEntityName(ent, title);
             }
 
-            var comp = EnsureComp<ESObjectiveTargetComponent>(ent.Comp.Target.Value);
+            var comp = EnsureComp<ESTargetObjectiveMarkerComponent>(ent.Comp.Target.Value);
             comp.Objectives.Add(ent);
-
-            // TODO: raise event on target selected. for additional setup
         }
 
+        var ev = new ESObjectiveTargetChangedEvent(oldTarget, target);
+        RaiseLocalEvent(ent, ref ev);
+
         _objective.RefreshObjectiveProgress(ent.Owner);
+    }
+
+    /// <summary>
+    /// Returns the objectives that are targeting a given entity.
+    /// </summary>
+    [PublicAPI]
+    public IEnumerable<EntityUid> GetTargetingObjectives(Entity<ESTargetObjectiveMarkerComponent?> ent)
+    {
+        return GetTargetingObjectives<ESObjectiveComponent>(ent).Select(e => e.Owner);
+    }
+
+    /// <summary>
+    /// Returns the objectives that are targeting a given entity, filtered by a particular component
+    /// </summary>
+    public IEnumerable<Entity<TComponent>> GetTargetingObjectives<TComponent>(Entity<ESTargetObjectiveMarkerComponent?> ent)
+        where TComponent : Component
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            yield break;
+
+        foreach (var objective in ent.Comp.Objectives)
+        {
+            if (TryComp<TComponent>(objective, out var comp))
+                yield return (objective, comp);
+        }
     }
 }

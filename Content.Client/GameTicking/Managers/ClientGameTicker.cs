@@ -3,6 +3,7 @@ using Content.Client.Administration.Managers;
 using Content.Client.Gameplay;
 using Content.Client.Lobby;
 using Content.Client.RoundEnd;
+using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Prototypes;
@@ -99,6 +100,7 @@ namespace Content.Client.GameTicking.Managers
 
             // lobby->game closing
             if (ReadyStatus is (PlayerGameStatus.Observing or PlayerGameStatus.ReadyToPlay)
+                && !Paused
                 && StartTime > curTime
                 && _lobbyCurtains.CurtainState == LobbyCurtainState.Open
                 && StartTime - curTime <= TimeSpan.FromSeconds(3))

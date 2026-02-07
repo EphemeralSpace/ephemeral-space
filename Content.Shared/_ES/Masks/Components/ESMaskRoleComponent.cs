@@ -7,7 +7,7 @@ namespace Content.Shared._ES.Masks.Components;
 /// Component used to identify a mind as having a specific mask.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState]
+[AutoGenerateComponentState(true)]
 [Access(typeof(ESSharedMaskSystem))]
 public sealed partial class ESMaskRoleComponent : Component
 {

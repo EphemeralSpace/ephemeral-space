@@ -36,6 +36,8 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(GetVerbs);
 
+        SubscribeLocalEvent<ESMaskRoleComponent, MindGotAddedEvent>(OnMaskRoleGotAdded);
+
         SubscribeLocalEvent<ESTroupeRuleComponent, ESObjectivesChangedEvent>(OnObjectivesChanged);
 
         SubscribeLocalEvent<ESTroupeFactionIconComponent, ComponentGetStateAttemptEvent>(OnComponentGetStateAttempt);
@@ -73,32 +75,32 @@ public abstract class ESSharedMaskSystem : EntitySystem
         {
             if (mask.Abstract)
                 continue;
-
-            TryGetTroupeEntity(mask.Troupe, out var troupe);
-
             var verb = new Verb
             {
                 Category = ESMask,
                 Text = Loc.GetString("es-verb-apply-mask-name",
                     ("name", Loc.GetString(mask.Name)),
                     ("troupe", Loc.GetString(PrototypeManager.Index(mask.Troupe).Name))),
-                Message = troupe.HasValue
-                    ? Loc.GetString("es-verb-apply-mask-desc", ("mask", Loc.GetString(mask.Name)))
-                    : Loc.GetString("es-verb-tooltip-no-troupe", ("troupe", Loc.GetString(PrototypeManager.Index(mask.Troupe).Name))),
+                Message = Loc.GetString("es-verb-apply-mask-desc", ("mask", Loc.GetString(mask.Name))),
                 Priority = idx++,
                 ConfirmationPopup = true,
-                Disabled = !troupe.HasValue,
                 Act = () =>
                 {
-                    if (troupe is null)
+                    if (!Mind.TryGetMind(actorComp.PlayerSession.UserId, out var mind))
                         return;
-                    if (!Mind.TryGetMind(actorComp.PlayerSession, out var mind, out var mindComp))
-                        return;
-                    ApplyMask((mind, mindComp), mask, troupe.Value);
+                    RemoveMask(mind.Value);
+                    ApplyMask(mind.Value, mask);
                 },
             };
             args.Verbs.Add(verb);
         }
+    }
+
+    private void OnMaskRoleGotAdded(Entity<ESMaskRoleComponent> ent, ref MindGotAddedEvent args)
+    {
+        if (!ent.Comp.Mask.HasValue)
+            return;
+        EnsureComp<ESBodyLastMaskComponent>(args.Container).LastMask = ent.Comp.Mask.Value;
     }
 
     private void OnObjectivesChanged(Entity<ESTroupeRuleComponent> ent, ref ESObjectivesChangedEvent args)
@@ -181,6 +183,20 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
         mask = role.Value.Comp2.Mask;
         return mask != null;
+    }
+
+    public ProtoId<ESMaskPrototype>? GetMaskOrNull(EntityUid uid)
+    {
+        if (!Mind.TryGetMind(uid, out var mindUid, out var mindComp))
+            return null;
+
+        return GetMaskOrNull((mindUid, mindComp));
+    }
+
+    public ProtoId<ESMaskPrototype>? GetMaskOrNull(Entity<MindComponent?> mind)
+    {
+        TryGetMask(mind, out var mask);
+        return mask;
     }
 
     /// <summary>
@@ -278,14 +294,53 @@ public abstract class ESSharedMaskSystem : EntitySystem
     /// </remarks>
     public virtual void ApplyMask(Entity<MindComponent> mind,
         ProtoId<ESMaskPrototype> maskId,
-        Entity<ESTroupeRuleComponent>? troupe)
+        Entity<ESTroupeRuleComponent>? troupe = null)
     {
         // No Op
+    }
+
+    public virtual void ChangeMask(Entity<MindComponent> mind,
+        ProtoId<ESMaskPrototype> maskId,
+        Entity<ESTroupeRuleComponent>? troupe = null)
+    {
+
     }
 
     public virtual void RemoveMask(Entity<MindComponent> mind)
     {
 
+    }
+
+    /// <summary>
+    /// Returns all minds who are members of a given troupe.
+    /// </summary>
+    public IEnumerable<EntityUid> GetTroupeMembers(ProtoId<ESTroupePrototype> troupe)
+    {
+        if (!TryGetTroupeEntity(troupe, out var troupeEnt))
+            yield break;
+
+        foreach (var mind in troupeEnt.Value.Comp.TroupeMemberMinds)
+        {
+            yield return mind;
+        }
+    }
+
+    /// <summary>
+    /// Returns all minds who are members of a troupe that is NOT the specified troupe.
+    /// Set difference between all player minds and <see cref="GetTroupeMembers"/>
+    /// </summary>
+    public IEnumerable<EntityUid> GetNotTroupeMembers(ProtoId<ESTroupePrototype> troupe)
+    {
+        foreach (var troupeEnt in GetOrderedTroupes())
+        {
+            if (troupeEnt.Comp.Troupe == troupe)
+                continue;
+
+            foreach (var mind in troupeEnt.Comp.TroupeMemberMinds)
+            {
+                yield return mind;
+            }
+        }
     }
 
     public List<FormattedMessage> GetCharacterInfoBlurb(Entity<MindComponent> mind)

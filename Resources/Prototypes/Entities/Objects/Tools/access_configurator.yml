@@ -26,10 +26,14 @@
       - Detective
       - Captain
       - Cargo
-      - Chapel
+# ES START
+#      - Chapel
+# ES END
       - Chemistry
-      - ChiefEngineer
-      - ChiefMedicalOfficer
+# ES START
+#      - ChiefEngineer
+#      - ChiefMedicalOfficer
+# ES END
       - Command
       - Engineering
       - External
@@ -38,13 +42,19 @@
       - Hydroponics
       - Janitor
       - Kitchen
-      - Lawyer
+# ES START
+#      - Lawyer
+# ES END
       - Maintenance
       - Medical
-      - Quartermaster
+# ES START
+#      - Quartermaster
+# ES END
       - Research
-      - ResearchDirector
-      - Salvage
+# ES START
+#      - ResearchDirector
+#      - Salvage
+# ES END
       - Security
       - Service
       - Theatre

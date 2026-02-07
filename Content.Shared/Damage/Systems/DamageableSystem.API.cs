@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Net.Sockets;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -72,12 +71,18 @@ public sealed partial class DamageableSystem
         bool interruptsDoAfters = true,
         EntityUid? origin = null,
         bool ignoreGlobalModifiers = false,
-        bool forceRefresh = false // Offbrand
+        bool forceRefresh = false, // Offbrand
+// ES START
+        EntityUid? source = null,
+        EntityUid? weapon = null
+// ES END
     )
     {
         //! Empty just checks if the DamageSpecifier is _literally_ empty, as in, is internal dictionary of damage types is empty.
         // If you deal 0.0 of some damage type, Empty will be false!
-        return TryChangeDamage(ent, damage, out _, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, forceRefresh);
+// ES START
+        return TryChangeDamage(ent, damage, out _, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, forceRefresh, source: source, weapon: weapon);
+// ES END
     }
 
     /// <summary>
@@ -99,13 +104,19 @@ public sealed partial class DamageableSystem
         bool interruptsDoAfters = true,
         EntityUid? origin = null,
         bool ignoreGlobalModifiers = false,
-        bool forceRefresh = false // Offbrand
+        bool forceRefresh = false, // Offbrand
+// ES START
+        EntityUid? source = null,
+        EntityUid? weapon = null
+// ES END
     )
     {
         //! Empty just checks if the DamageSpecifier is _literally_ empty, as in, is internal dictionary of damage types is empty.
         // If you deal 0.0 of some damage type, Empty will be false!
-        newDamage = ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, forceRefresh); // Offbrand
-        return !damage.Empty;
+// ES START
+        newDamage = ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, forceRefresh, source: source, weapon: weapon);
+// ES END
+        return !newDamage.Empty;
     }
 
     /// <summary>
@@ -126,7 +137,11 @@ public sealed partial class DamageableSystem
         bool interruptsDoAfters = true,
         EntityUid? origin = null,
         bool ignoreGlobalModifiers = false,
-        bool forceRefresh = false // Offbrand
+        bool forceRefresh = false, // Offbrand
+// ES START
+        EntityUid? source = null,
+        EntityUid? weapon = null
+// ES END
     )
     {
         var damageDone = new DamageSpecifier();
@@ -188,8 +203,10 @@ public sealed partial class DamageableSystem
             damageDone.DamageDict[type] = newValue - oldValue;
         }
 
+// ES START
         if (!damageDone.Empty)
-            OnEntityDamageChanged((ent, ent.Comp), damageDone, interruptsDoAfters, origin, forceRefresh); // Offbrand
+            OnEntityDamageChanged((ent, ent.Comp), damageDone, interruptsDoAfters, origin, forceRefresh, source: source, weapon: weapon);
+// ES END
 
         return damageDone;
     }

@@ -96,9 +96,11 @@
   name: emergency shuttle console
   description: Handles authorization to early launch the shuttle.
   components:
-  - type: AccessReader
-    access:
-    - [ Command ]
+# ES Start
+#  - type: AccessReader
+#    access:
+#    - [ Command ]
+# ES End
   - type: EmergencyShuttleConsole
   - type: ActivatableUI
     key: enum.EmergencyConsoleUiKey.Key
@@ -397,8 +399,10 @@
     color: "#1f8c28"
   - type: Computer
     board: CriminalRecordsComputerCircuitboard
-  - type: AccessReader
-    access: [["Security"]]
+# ES Start
+#  - type: AccessReader
+#    access: [["Security"]]
+# ES End
   - type: GuideHelp
     guides:
     - CriminalRecords
@@ -596,6 +600,34 @@
       whitelist:
         components:
         - IdCard
+# ES START
+    accessLevels: # TODO this dupe with the tabletop ID card computer sucks
+    - Armory
+    - Atmospherics
+    - Bar
+    - Brig
+    - Detective
+    - Captain
+    - Cargo
+    - Chemistry
+    - Command
+    - Cryogenics
+    - Engineering
+    - External
+    - GenpopEnter
+    - GenpopLeave
+    - HeadOfPersonnel
+    - HeadOfSecurity
+    - Hydroponics
+    - Janitor
+    - Kitchen
+    - Maintenance
+    - Medical
+    - Research
+    - Security
+    - Service
+    - Theatre
+# ES END
   - type: ActivatableUI
     key: enum.IdCardConsoleUiKey.Key
   - type: UserInterface
@@ -670,8 +702,10 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: AccessReader
-    access: [[ "Command" ]]
+# ES Start
+#  - type: AccessReader
+#    access: [[ "Command" ]]
+# ES End
   - type: CommunicationsConsole
     title: comms-console-announcement-title-station
   - type: DeviceNetwork
@@ -1467,8 +1501,10 @@
     board: ComputerMassMediaCircuitboard
   - type: DeviceNetworkRequiresPower
   - type: NewsWriter
-  - type: AccessReader
-    access: [[ "Service" ]]
+# ES Start
+#  - type: AccessReader
+#    access: [[ "Service" ]]
+# ES End
   - type: ActivatableUI
     key: enum.NewsWriterUiKey.Key
   - type: ActivatableUIRequiresVision
@@ -1752,3 +1788,41 @@
         type: StationAiFixerConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerNukieDelivery
+  name: syndicate delivery computer
+  description: "A computer that can bluespace in certain equipment for Nuclear Operations. \nThe circuitboard is integrated into the frame and can't be recovered if deconstructed."
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-syndie
+    - map: ["computerLayerKeys"]
+      state: syndie_generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  # - type: Computer
+  #   board: SyndicateCommsComputerCircuitboard
+  - type: Anchorable
+    flags:
+    - Anchorable # No taking the console along!
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#f71713"
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    name: store-preset-name-nukie-delivery
+    categories:
+    - NukieDelivery

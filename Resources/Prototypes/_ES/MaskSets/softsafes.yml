@@ -3,3 +3,6 @@
   parent: [Firmsafes, Freaks]
   masks:
     ESSurvivalist: 1
+    ESAvenger: 1
+    ESArmsDealer: 0.5
+    ESFruitVendor: 0.1

@@ -32,6 +32,12 @@
   - type: EventHorizon
     consumerFixtureId: fix1
     consumeTiles: false
+    consumeAliveMobs: false
+    radius: 0.01 # eat continuously...
+  - type: DamageContacts
+    damage:
+      types:
+        Cellular: 5
   - type: Explosive
     explosionType: Default
     totalIntensity: 60
@@ -130,6 +136,7 @@
           collection: MetalBreak
       - !type:DoActsBehavior
         acts: ["Breakage"]
+  - type: ESAmbientMusicMarkerEngineering
 
 - type: entity
   parent: BaseStructure
@@ -148,7 +155,7 @@
     anchored: false
     noRot: true
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralInorganic
     damageModifierSet: StrongMetallic
   - type: Destructible
     thresholds:
@@ -191,3 +198,4 @@
         - MachineLayer
   - type: StaticPrice
     price: 7500
+  - type: ESAmbientMusicMarkerEngineering

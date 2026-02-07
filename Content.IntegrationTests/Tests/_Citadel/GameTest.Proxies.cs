@@ -1,7 +1,11 @@
 #nullable enable
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Content.Server.Mind;
+using Content.Shared.Mind;
+using Content.Shared.Players;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
@@ -91,7 +95,7 @@ public abstract partial class GameTest
     ///     Spawns an entity on the server.
     /// </summary>
     /// <remarks>This tracks the entity for post-test cleanup.</remarks>
-    public EntityUid SSpawn(string id)
+    public EntityUid SSpawn(string? id)
     {
         var res = SEntMan.Spawn(id);
         _serverEntitiesToClean.Add(res);
@@ -102,7 +106,7 @@ public abstract partial class GameTest
     ///     Spawns an entity on the client.
     /// </summary>
     /// <remarks>This tracks the entity for post-test cleanup.</remarks>
-    public EntityUid CSpawn(string id)
+    public EntityUid CSpawn(string? id)
     {
         var res = CEntMan.Spawn(id);
         _clientEntitiesToClean.Add(res);
@@ -166,14 +170,14 @@ public abstract partial class GameTest
 
     /// <inheritdoc cref="M:Robust.Shared.GameObjects.EntityManager.EntityQueryEnumerator``1"/>
     public EntityQueryEnumerator<T> SQuery<T>()
-        where T: IComponent
+        where T : IComponent
     {
         return Server.EntMan.EntityQueryEnumerator<T>();
     }
 
     /// <inheritdoc cref="M:Robust.Shared.GameObjects.EntityManager.EntityQueryEnumerator``1"/>
     public EntityQueryEnumerator<T> CQuery<T>()
-        where T: IComponent
+        where T : IComponent
     {
         return Client.EntMan.EntityQueryEnumerator<T>();
     }
@@ -264,7 +268,9 @@ public abstract partial class GameTest
 
         if (query.MoveNext(out var eid, out var comp))
         {
-            Assert.That(query.MoveNext(out var extra, out _), Is.False, $"Expected only one entity with {typeof(T)}, found {SToPrettyString(eid)} and then {SToPrettyString(extra)}");
+            Assert.That(query.MoveNext(out var extra, out _),
+                Is.False,
+                $"Expected only one entity with {typeof(T)}, found {SToPrettyString(eid)} and then {SToPrettyString(extra)}");
             ent = (eid, comp);
             return true;
         }
@@ -283,7 +289,9 @@ public abstract partial class GameTest
 
         if (query.MoveNext(out var eid, out var comp))
         {
-            Assert.That(query.MoveNext(out var extra, out _), Is.False, $"Expected only one entity with {typeof(T)}, found {CToPrettyString(eid)} and then {CToPrettyString(extra)}");
+            Assert.That(query.MoveNext(out var extra, out _),
+                Is.False,
+                $"Expected only one entity with {typeof(T)}, found {CToPrettyString(eid)} and then {CToPrettyString(extra)}");
             ent = (eid, comp);
             return true;
         }
@@ -297,6 +305,72 @@ public abstract partial class GameTest
         var res = await Server.AddDummySessions(count);
 
         await Pair.ReallyBeIdle(); // That takes a while.
+
+        return res;
+    }
+
+    /// <summary>
+    ///     Checks whether the given entity has been deleted on the server.
+    /// </summary>
+    public bool SDeleted(EntityUid? ent)
+    {
+        return Server.EntMan.Deleted(ent);
+    }
+
+    /// <summary>
+    ///     Checks whether the given entity has been deleted on the client.
+    /// </summary>
+    public bool CDeleted(EntityUid? ent)
+    {
+        return Client.EntMan.Deleted(ent);
+    }
+
+    /// <summary>
+    ///     Checks whether the given entity has the given component.
+    /// </summary>
+    public bool SHasComp<T>(EntityUid? ent)
+        where T : IComponent
+    {
+        return Server.EntMan.HasComponent<T>(ent);
+    }
+
+    /// <summary>
+    ///     Checks whether the given entity has the given component.
+    /// </summary>
+    public bool CHasComp<T>(EntityUid? ent)
+        where T : IComponent
+    {
+        return Client.EntMan.HasComponent<T>(ent);
+    }
+
+
+    /// <summary>
+    ///     Assigns the player a body in the test map, ensuring they have a mind as well.
+    /// </summary>
+    public async Task<EntityUid> AssignPlayerBody(ICommonSession session,
+        string playerPrototype = "InteractionTestMob",
+        bool godMode = true)
+    {
+        EntityUid res = default;
+
+        var mindSys = SEntMan.System<MindSystem>();
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(TestMap,
+                Is.Not.Null,
+                $"{nameof(AssignPlayerBody)} doesn't work without a {nameof(TestMap)}.");
+
+            // InteractionTest cargo cult.
+            mindSys.WipeMind(session.ContentData()?.Mind);
+
+            res = SEntMan.SpawnAtPosition(playerPrototype, TestMap.GridCoords);
+
+            mindSys.ControlMob(session.UserId, res);
+        });
+
+        // Sync them back up.
+        await Pair.RunTicksSync(5);
 
         return res;
     }

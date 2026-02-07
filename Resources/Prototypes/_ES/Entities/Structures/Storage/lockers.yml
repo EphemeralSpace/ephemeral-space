@@ -1,0 +1,14 @@
+# Coroner
+- type: entity
+  parent: LockerBaseSecure
+  id: ESLockerCoroner
+  name: coroner's locker
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/coroner.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: generic
+    stateDoorOpen: generic_open
+    stateDoorClosed: generic_door
+  - type: AccessReader
+    access: [ [ "Medical" ] ]

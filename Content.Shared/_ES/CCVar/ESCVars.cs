@@ -22,6 +22,9 @@ public sealed partial class ESCVars : CVars
     public static readonly CVarDef<bool> ESRandomCharacters =
         CVarDef.Create("es_ic.random_characters", true, CVar.SERVER | CVar.REPLICATED);
 
+    public static readonly CVarDef<bool> ESOpenCharacterMenuOnSpawn =
+        CVarDef.Create("es_ic.open_character_menu_on_spawn", true, CVar.SERVER | CVar.REPLICATED);
+
     // EVAC
 
     public static readonly CVarDef<float> ESEvacVotePercentage =

@@ -1,14 +1,16 @@
 ### UI
 
 chat-manager-max-message-length = Your message exceeds {$maxMessageLength} character limit
-chat-manager-ooc-chat-enabled-message = OOC chat has been enabled.
-chat-manager-ooc-chat-disabled-message = OOC chat has been disabled.
-chat-manager-looc-chat-enabled-message = Help chat has been enabled.
-chat-manager-looc-chat-disabled-message = Help chat has been disabled.
-chat-manager-dead-looc-chat-enabled-message = Dead players can now use Help.
-chat-manager-dead-looc-chat-disabled-message = Dead players can no longer use Help.
-chat-manager-crit-looc-chat-enabled-message = Crit players can now use Help.
-chat-manager-crit-looc-chat-disabled-message = Crit players can no longer use Help.
+# ES START
+chat-manager-ooc-chat-enabled-message = Lobby chat has been enabled.
+chat-manager-ooc-chat-disabled-message = Lobby chat has been disabled.
+# ES END
+chat-manager-looc-chat-enabled-message = LOOC chat has been enabled.
+chat-manager-looc-chat-disabled-message = LOOC chat has been disabled.
+chat-manager-dead-looc-chat-enabled-message = Dead players can now use LOOC.
+chat-manager-dead-looc-chat-disabled-message = Dead players can no longer use LOOC.
+chat-manager-crit-looc-chat-enabled-message = Crit players can now use LOOC.
+chat-manager-crit-looc-chat-disabled-message = Crit players can no longer use LOOC.
 chat-manager-admin-ooc-chat-enabled-message = Admin OOC chat has been enabled.
 chat-manager-admin-ooc-chat-disabled-message = Admin OOC chat has been disabled.
 
@@ -34,11 +36,12 @@ chat-manager-entity-me-wrap-message = [italic]{ PROPER($entity) ->
      [true] {CAPITALIZE($entityName)} {$message}[/italic]
     }
 
-chat-manager-entity-looc-wrap-message = Help: [bold]{$entityName}:[/bold] {$message}
+chat-manager-entity-looc-wrap-message = LOOC: [bold]{$entityName}:[/bold] {$message}
 # ES START
 # need to add bubble tags (??? i did not know these existed)
-chat-manager-send-ooc-wrap-message = OOC: [BubbleHeader][bold]{$playerName}[/BubbleHeader]:[/bold] [BubbleContent]{$message}[/BubbleContent]
-chat-manager-send-ooc-patron-wrap-message = OOC: [BubbleHeader][bold][color={$patronColor}]{$playerName}[/color][/BubbleHeader]:[/bold] [BubbleContent]{$message}[/BubbleContent]
+# also rename to lobbychat
+chat-manager-send-ooc-wrap-message = Lobby: [BubbleHeader][bold]{$playerName}[/BubbleHeader]:[/bold] [BubbleContent]{$message}[/BubbleContent]
+chat-manager-send-ooc-patron-wrap-message = Lobby: [BubbleHeader][bold][color={$patronColor}]{$playerName}[/color][/BubbleHeader]:[/bold] [BubbleContent]{$message}[/BubbleContent]
 # ES END
 
 chat-manager-send-dead-chat-wrap-message = {$deadChannelName}: [bold][BubbleHeader]{$playerName}[/BubbleHeader]:[/bold] [BubbleContent]{$message}[/BubbleContent]
@@ -49,7 +52,9 @@ chat-manager-send-admin-announcement-wrap-message = [bold]{$adminChannelName}: {
 chat-manager-send-hook-ooc-wrap-message = OOC: [bold](D){$senderName}:[/bold] {$message}
 chat-manager-send-hook-admin-wrap-message = ADMIN: [bold](D){$senderName}:[/bold] {$message}
 
-chat-manager-dead-channel-name = DEAD
+# ES START
+chat-manager-dead-channel-name = STAGEHAND
+# ES END
 chat-manager-admin-channel-name = ADMIN
 
 chat-manager-rate-limited = You are sending messages too quickly!

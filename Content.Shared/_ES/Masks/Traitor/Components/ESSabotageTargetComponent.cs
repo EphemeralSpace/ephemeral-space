@@ -1,5 +1,4 @@
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Masks.Traitor.Components;
 
@@ -15,10 +14,4 @@ public sealed partial class ESSabotageTargetComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan SabotageTime = TimeSpan.FromSeconds(10);
-
-    /// <summary>
-    /// Troupe that is able to sabotage this object
-    /// </summary>
-    [DataField]
-    public ProtoId<ESTroupePrototype> SabotageTroupe = "ESTraitor";
 }

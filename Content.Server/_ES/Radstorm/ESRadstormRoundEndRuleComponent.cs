@@ -16,13 +16,13 @@ public sealed partial class ESRadstormRoundEndRuleComponent : Component
     ///     Average time that the radstorm can start at. Used when randomly picking <see cref="RadstormStartTime"/>.
     /// </summary>
     [DataField]
-    public TimeSpan RadstormStartTimeAvg = TimeSpan.FromMinutes(75f);
+    public TimeSpan RadstormStartTimeAvg = TimeSpan.FromMinutes(60f);
 
     /// <summary>
     ///     Standard deviation for time that the radstorm can start at. Used when randomly picking <see cref="RadstormStartTime"/>.
     /// </summary>
     [DataField]
-    public TimeSpan RadstormStartTimeStdDev = TimeSpan.FromMinutes(3f);
+    public TimeSpan RadstormStartTimeStdDev = TimeSpan.FromMinutes(2f);
 
     /// <summary>
     ///     Picked randomly when the rule is added. Time into the round that the radstorm should start (i.e. when people should start dying),
@@ -49,7 +49,7 @@ public sealed partial class ESRadstormRoundEndRuleComponent : Component
 
 // no this cant be a fucking record because apparently you cant have datarecords that also have properties.
 [DataDefinition]
-public partial class ESRadstormPhaseConfig
+public sealed partial class ESRadstormPhaseConfig
 {
     public bool Completed = false;
 
@@ -73,6 +73,9 @@ public partial class ESRadstormPhaseConfig
 
     [DataField]
     public Color? MapLight;
+
+    [DataField]
+    public Color? ForceStationLightColor;
 
     [DataField]
     public bool SpaceDangerous;
