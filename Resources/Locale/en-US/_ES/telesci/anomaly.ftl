@@ -14,6 +14,7 @@ es-anomaly-console-signal-header = [font="Monospace"]Signal collapse sequence:[/
 es-anomaly-console-signal-fmt = [font="Monospace"] - {CAPITALIZE($freq)}[/font]
 es-anomaly-console-signal-current-fmt = [color=magenta][font="Monospace"]{"  >"} {CAPITALIZE($freq)}[/font][/color]
 es-anomaly-console-signal-locked = [color=gray][font="Monospace"] ? Unknown[/font][/color]
+es-anomaly-console-signal-none = [font="Monospace"]Use the sidebar to view an anomaly[/font]
 
 es-anomaly-signal-Alpha = alpha
 es-anomaly-signal-Beta = beta

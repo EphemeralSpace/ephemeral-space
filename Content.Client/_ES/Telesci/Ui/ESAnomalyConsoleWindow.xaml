@@ -15,7 +15,7 @@
                     <graphics:StyleBoxFlat BackgroundColor="#000000" />
                 </PanelContainer.PanelOverride>
                 <BoxContainer Orientation="Vertical" Margin="5">
-                    <RichTextLabel Name="NameLabel"/>
+                    <RichTextLabel Name="NameLabel" Text="{Loc 'es-anomaly-console-signal-none'}"/>
                     <Control MinHeight="10"/>
                     <RichTextLabel Name="SequenceLabel"/>
                 </BoxContainer>
