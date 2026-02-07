@@ -61,8 +61,7 @@ public sealed class ESParasiteSystem : EntitySystem
 
         // ????
         _rejuv.PerformRejuvenate(ownedEntity);
-        _mind.TransferTo(args.Mind, killerBody);
-        _mind.TransferTo(killerMind, ownedEntity);
+        _mind.SwapMinds(killerMind, killerBody, ent.Owner, ownedEntity);
 
         _mask.ChangeMask((killerMind, killerMindComp), victimMask.Value);
         _mask.ChangeMask(args.Mind, killerMask.Value);

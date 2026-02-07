@@ -3,4 +3,4 @@
   masks:
     ESPhantom: 1
     ESMartyr: 1
-    # ESParasite: 0.5 # temp disabled because does not function correctly
+    ESParasite: 0.5
