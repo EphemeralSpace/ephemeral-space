@@ -75,7 +75,7 @@
     - id: FlashlightSeclite
       prob: 0.8
     - id: ESWeaponHybridTaser
-    - id: ClothingHeadHelmetBasic
+    - id: ClothingHeadHelmetSecurity
     - id: ESClothingOuterArmorSecurity
     - id: ClothingBeltSecurityFilled
     - id: Flash
