@@ -12,8 +12,8 @@
   id: ESFillLockerAtmospherics
   table:
     all:
-    - id: ClothingHeadHelmetFire
-    - id: ClothingOuterSuitFire
+    - id: ESClothingHeadHelmetFire
+    - id: ESClothingOuterSuitFire
     - id: ClothingMaskGas
     - id: GasAnalyzer
     - id: MedkitOxygenFilled

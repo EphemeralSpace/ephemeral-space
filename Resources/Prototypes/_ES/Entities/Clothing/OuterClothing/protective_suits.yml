@@ -42,9 +42,9 @@
   description: A suit that helps protect against low levels of radiation.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Suits/rad.rsi
+    sprite: _ES/Clothing/OuterClothing/Suits/rad.rsi
   - type: Clothing
-    sprite: Clothing/OuterClothing/Suits/rad.rsi
+    sprite: _ES/Clothing/OuterClothing/Suits/rad.rsi
   - type: Armor
     modifiers:
       flatReductions:
