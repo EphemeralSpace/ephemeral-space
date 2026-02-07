@@ -245,6 +245,14 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     }
 
     /// <summary>
+    /// Returns all owned objectives on an entity
+    /// </summary>
+    public List<Entity<ESObjectiveComponent>> GetOwnedObjectives(Entity<ESObjectiveHolderComponent?> ent)
+    {
+        return GetOwnedObjectives<ESObjectiveComponent>(ent);
+    }
+
+    /// <summary>
     /// Returns all owned objectives on an entity that have a given component
     /// </summary>
     public List<Entity<T>> GetOwnedObjectives<T>(Entity<ESObjectiveHolderComponent?> ent) where T : Component

@@ -1,3 +1,4 @@
+using Content.Shared._ES.Objectives.Components;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Mind.Components;
 // ES START
@@ -21,6 +22,7 @@ public abstract partial class SharedMindSystem : EntitySystem
         SubscribeLocalEvent<MindContainerComponent, MobStateChangedEvent>(RelayToMind);
 
         SubscribeLocalEvent<MindComponent, MindGotAddedEvent>(ESOnMindGotAdded);
+        SubscribeLocalEvent<MindComponent, ESObjectivesChangedEvent>(ESOnObjectivesChanged);
     }
 
     private void ESOnMindGotAdded(Entity<MindComponent> ent, ref MindGotAddedEvent args)
@@ -30,6 +32,12 @@ public abstract partial class SharedMindSystem : EntitySystem
         {
             RaiseLocalEvent(role, args);
         }
+    }
+
+    private void ESOnObjectivesChanged(Entity<MindComponent> ent, ref ESObjectivesChangedEvent args)
+    {
+        if (ent.Comp.OwnedEntity is { } owned)
+            RaiseLocalEvent(owned, ref args);
     }
 
     protected void RelayToObjectives<T>(Entity<MindComponent> ent, ref T args) where T : notnull

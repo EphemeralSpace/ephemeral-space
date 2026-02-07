@@ -234,7 +234,10 @@
   name: es-mask-secretary-name
   troupe: ESCrew
   description: es-mask-secretary-desc
-  color: honeydew # i fucking LOVE honeydew
+  color: palegreen
+  objectives:
+    all:
+    - id: ESObjectiveSecretaryAssist
 
 # Traitor Masks
 - type: esMask
