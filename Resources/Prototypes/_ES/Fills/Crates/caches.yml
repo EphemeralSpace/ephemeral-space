@@ -69,7 +69,6 @@
     - id: ESWeaponKnife
     - id: ESClothingOuterArmorSecurity
     - id: ExGrenade
-      amount: 2
 
 # Subverter
 - type: entity
@@ -109,7 +108,7 @@
     - id: C4
       amount: 3
     - id: ExGrenade
-      amount: 3
+      amount: 1
     - id: ESMicroBombImplanter
 
 # Veteran
