@@ -1,5 +1,6 @@
 ﻿using Content.Shared._ES.Masks.Traitor.Components;
 using Content.Shared._ES.Masks.Traitor.Events;
+using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
@@ -21,6 +22,7 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly WoundableSystem _wound = default!;
 
     public override void Initialize()
     {
@@ -80,6 +82,8 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
 
         if (_mobState.IsCritical(target) && ent.Comp.RequireCrit)
         {
+            // TODO ES with offmed this should really be doing something more interesting honestly
+            _wound.TryClearAllWounds(target);
             _damageableSystem.SetAllDamage(target, 0);
         }
 
