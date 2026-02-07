@@ -22,4 +22,10 @@ public sealed partial class ESTargetCompleteOwnedObjectiveComponent : Component
 
     [DataField]
     public float DefaultProgress;
+
+    /// <summary>
+    /// If true, will invert the progress. So completing objectives will make it go down, rather than up.
+    /// </summary>
+    [DataField]
+    public bool Invert;
 }

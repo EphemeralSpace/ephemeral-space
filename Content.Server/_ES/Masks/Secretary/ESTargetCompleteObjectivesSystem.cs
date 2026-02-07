@@ -3,6 +3,7 @@ using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Objectives.Target;
 using Content.Shared._ES.Objectives.Target.Components;
 using Content.Shared.Whitelist;
+using NetCord.Gateway;
 
 namespace Content.Server._ES.Masks.Secretary;
 
@@ -93,5 +94,8 @@ public sealed class ESTargetCompleteObjectivesSystem : ESBaseTargetObjectiveSyst
         }
 
         args.Progress = progressSum / objectiveSum;
+
+        if (ent.Comp.Invert)
+            args.Progress = 1 - args.Progress;
     }
 }

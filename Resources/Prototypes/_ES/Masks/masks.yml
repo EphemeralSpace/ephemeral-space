@@ -239,6 +239,16 @@
     all:
     - id: ESObjectiveSecretaryAssist
 
+- type: esMask
+  id: ESHater
+  name: es-mask-hater-name
+  troupe: ESCrew
+  description: es-mask-hater-desc
+  color: lightseagreen
+  objectives:
+    all:
+    - id: ESObjectiveHaterHate
+
 # Traitor Masks
 - type: esMask
   id: ESBaseTraitor
