@@ -9,7 +9,6 @@
   supervisors: job-supervisors-everyone
   access:
   - Maintenance
-  - External
 
 - type: startingGear
   id: ESAssistantGear

@@ -10,7 +10,6 @@
   - Medical
   - Maintenance
   - Chemistry
-  - External
   special:
   - !type:AddComponentSpecial
     components:

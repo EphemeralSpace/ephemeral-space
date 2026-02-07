@@ -9,7 +9,6 @@
   access:
   - Service
   - Maintenance
-  - External
 
 - type: startingGear
   id: ESReporterGear
