@@ -7,7 +7,7 @@
       flatReductions:
         Blunt: 1
         Slash: 1
-        Pierce: 1
+        Piercing: 1
         Heat: 1
 
 - type: entity
