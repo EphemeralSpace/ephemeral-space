@@ -200,7 +200,7 @@
     - id: ClothingMaskMuzzle
     - id: ClothingBeltMedical
     - id: ClothingBeltUtility
-    - id: ClothingHeadHelmetSecurity
+    - id: ESClothingHeadHelmetSecurity
 
     - id: DefaultStationBeaconUnanchored
     - id: Soap # TODO: soap pool?
