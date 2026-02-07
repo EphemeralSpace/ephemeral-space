@@ -19,6 +19,9 @@ public sealed class ExaminableStatusEffectSystem : EntitySystem
         if (Comp<StatusEffectComponent>(ent).AppliedTo is not { } target)
             return;
 
-        args.Args.PushMarkup(Loc.GetString(ent.Comp.Message, ("target", Identity.Entity(target, EntityManager))));
+        // ES START
+        // pass in priority
+        args.Args.PushMarkup(Loc.GetString(ent.Comp.Message, ("target", Identity.Entity(target, EntityManager))), priority: ent.Comp.Priority);
+        // ES END
     }
 }

@@ -9,4 +9,12 @@ public sealed partial class ExaminableStatusEffectComponent : Component
     /// </summary>
     [DataField(required: true)]
     public LocId Message;
+
+    // ES START
+    /// <summary>
+    ///     Priority for the examine message.
+    /// </summary>
+    [DataField]
+    public int Priority = 0;
+    // ES END
 }

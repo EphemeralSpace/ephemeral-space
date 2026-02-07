@@ -431,6 +431,7 @@
   components:
   - type: ExaminableStatusEffect
     message: tourniquet-applied-examine
+    priority: -5
   - type: RemovableStatusEffect
     verb: verb-remove-tourniquet
     spawnOnRemove: TourniquetOffbrand
@@ -448,6 +449,7 @@
   components:
   - type: ExaminableStatusEffect
     message: splints-applied-examine
+    priority: -5
   - type: RemovableStatusEffect
     verb: verb-remove-splints
     spawnOnRemove: Splints

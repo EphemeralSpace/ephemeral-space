@@ -100,6 +100,6 @@ public sealed class CprSystem : EntitySystem
         if (_mobState.IsDead(ent))
             return;
 
-        args.PushMarkup(Loc.GetString("cpr-target-needs-cpr", ("target", Identity.Entity(ent, EntityManager))));
+        args.PushMarkup(Loc.GetString("cpr-target-needs-cpr", ("target", Identity.Entity(ent, EntityManager))), priority: -5);
     }
 }

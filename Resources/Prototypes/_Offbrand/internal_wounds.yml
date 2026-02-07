@@ -29,6 +29,7 @@
     visualType: MediumCaution
   - type: ExaminableStatusEffect
     message: fracture-examine
+    priority: -9
 
 - type: entity
   parent: WoundInternalBase
@@ -55,6 +56,7 @@
     visualType: MediumCaution
   - type: ExaminableStatusEffect
     message: arterial-bleeding-examine
+    priority: -8
 
 - type: entity
   parent: WoundInternalBase
@@ -136,3 +138,4 @@
   - type: MovementModStatusEffect
   - type: ExaminableStatusEffect
     message: bone-death-examine
+    priority: -7
