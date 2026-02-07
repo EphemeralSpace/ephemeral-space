@@ -32,6 +32,6 @@ public sealed class ESMedAlertRadioAnnouncerSystem : EntitySystem
 
         var location = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(ent.Owner));
         var msg = Loc.GetString(locId, ("location", location), ("name", Name(ent.Owner)));
-        _radio.SendRadioMessage(ent.Owner, msg, ent.Comp.Channel, ent.Owner);
+        _radio.SendRadioMessage(ent.Owner, msg, ent.Comp.Channel, ent.Owner, force: true);
     }
 }
