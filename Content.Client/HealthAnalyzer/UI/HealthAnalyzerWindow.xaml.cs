@@ -74,7 +74,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
         public void Populate(HealthAnalyzerScannedUserMessage msg)
         {
-            var target = _entityManager.GetEntity(msg.TargetEntity);
+            var target = _entityManager.GetEntity(msg.State.TargetEntity);
 
             if (target == null
                 || !_entityManager.TryGetComponent<DamageableComponent>(target, out var damageable))
@@ -97,18 +97,18 @@ namespace Content.Client.HealthAnalyzer.UI
 
             // Scan Mode
 
-            ScanModeLabel.Text = msg.ScanMode.HasValue
-                ? msg.ScanMode.Value
+            ScanModeLabel.Text = msg.State.ScanMode.HasValue
+                ? msg.State.ScanMode.Value
                     ? Loc.GetString("health-analyzer-window-scan-mode-active")
                     : Loc.GetString("health-analyzer-window-scan-mode-inactive")
                 : Loc.GetString("health-analyzer-window-entity-unknown-text");
 
-            ScanModeLabel.FontColorOverride = msg.ScanMode.HasValue && msg.ScanMode.Value ? Color.Green : Color.Red;
+            ScanModeLabel.FontColorOverride = msg.State.ScanMode.HasValue && msg.State.ScanMode.Value ? Color.Green : Color.Red;
 
             // Patient Information
 
             SpriteView.SetEntity(target.Value);
-            SpriteView.Visible = msg.ScanMode.HasValue && msg.ScanMode.Value;
+            SpriteView.Visible = msg.State.ScanMode.HasValue && msg.State.ScanMode.Value;
             NoDataTex.Visible = !SpriteView.Visible;
 
             var name = new FormattedMessage();
@@ -126,12 +126,12 @@ namespace Content.Client.HealthAnalyzer.UI
 
             // Basic Diagnostic
 
-            TemperatureLabel.Text = !float.IsNaN(msg.Temperature)
-                ? $"{msg.Temperature - Atmospherics.T0C:F1} °C ({msg.Temperature:F1} K)"
+            TemperatureLabel.Text = !float.IsNaN(msg.State.Temperature)
+                ? $"{msg.State.Temperature - Atmospherics.T0C:F1} °C ({msg.State.Temperature:F1} K)"
                 : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
 
-            BloodLabel.Text = !float.IsNaN(msg.BloodLevel)
-                ? $"{msg.BloodLevel * 100:F1} %"
+            BloodLabel.Text = !float.IsNaN(msg.State.BloodLevel)
+                ? $"{msg.State.BloodLevel * 100:F1} %"
                 : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
 
             StatusLabel.Text =
@@ -145,7 +145,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
             // Alerts
 
-            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || msg.WoundableData?.NonMedicalReagents == true || msg.WoundableData?.Wounds != null; // Offbrand
+            var showAlerts = msg.State.Unrevivable == true || msg.State.Bleeding == true || msg.State.WoundableData?.NonMedicalReagents == true || msg.State.WoundableData?.Wounds != null; // Offbrand
 
             AlertsDivider.Visible = showAlerts;
             AlertsContainer.Visible = showAlerts;
@@ -153,7 +153,7 @@ namespace Content.Client.HealthAnalyzer.UI
             if (showAlerts)
                 AlertsContainer.RemoveAllChildren();
 
-            if (msg.Unrevivable == true)
+            if (msg.State.Unrevivable == true)
                 AlertsContainer.AddChild(new RichTextLabel
                 {
                     Text = Loc.GetString("health-analyzer-window-entity-unrevivable-text"),
@@ -161,7 +161,7 @@ namespace Content.Client.HealthAnalyzer.UI
                     MaxWidth = 300
                 });
 
-            if (msg.Bleeding == true)
+            if (msg.State.Bleeding == true)
                 AlertsContainer.AddChild(new RichTextLabel
                 {
                     Text = Loc.GetString("health-analyzer-window-entity-bleeding-text"),
@@ -170,11 +170,11 @@ namespace Content.Client.HealthAnalyzer.UI
                 });
 
             // Begin Offbrand
-            var showReagents = msg.WoundableData?.Reagents?.Count is { } count && count > 0;
+            var showReagents = msg.State.WoundableData?.Reagents?.Count is { } count && count > 0;
             ReagentsDivider.Visible = showReagents;
             ReagentsContainer.Visible = showReagents;
 
-            if (msg.WoundableData is { } woundable)
+            if (msg.State.WoundableData is { } woundable)
             {
                 if (woundable.Wounds is not null)
                 {

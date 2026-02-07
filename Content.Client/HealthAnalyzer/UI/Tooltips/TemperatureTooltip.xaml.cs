@@ -24,7 +24,7 @@ public sealed partial class TemperatureTooltip : PanelContainer
         }
         else
         {
-            var factor = Math.Max(ent.Comp.TemperatureCoefficient * msg.Temperature + ent.Comp.TemperatureConstant, 1);
+            var factor = Math.Max(ent.Comp.TemperatureCoefficient * msg.State.Temperature + ent.Comp.TemperatureConstant, 1);
             Label.Text = Loc.GetString("health-analyzer-cryostasis-temperature-tooltip", ("factor", $"{factor * 100:F1}"));
         }
     }

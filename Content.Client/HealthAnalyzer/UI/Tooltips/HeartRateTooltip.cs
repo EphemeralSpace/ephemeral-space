@@ -6,7 +6,7 @@ public sealed partial class HeartRateTooltip : UpdatableTooltip
 {
     public override void Update(HealthAnalyzerScannedUserMessage msg)
     {
-        if (msg.WoundableData is not { } woundable)
+        if (msg.State.WoundableData is not { } woundable)
             return;
 
         Label.Text = Loc.GetString("health-analyzer-heart-rate-tooltip", ("spo2", woundable.Spo2Name));
