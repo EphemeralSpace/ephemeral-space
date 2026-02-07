@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Sparks;
 using Content.Shared._ES.Telesci.Anomaly.Components;
 using Content.Shared.DoAfter;
@@ -24,6 +25,7 @@ public abstract class ESSharedAnomalySystem : EntitySystem
     [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ESSparksSystem _sparks = default!;
+    [Dependency] private readonly ESTimedDespawnSystem _timedDespawn = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
 
     /// <inheritdoc/>
@@ -238,18 +240,29 @@ public abstract class ESSharedAnomalySystem : EntitySystem
 
     public void CollapseAnomaly(Entity<ESPortalAnomalyComponent> ent)
     {
-        PredictedQueueDel(ent);
+        RaiseNetworkEvent(new ESAnomalyCollapseAnimationEvent
+        {
+            Anomaly = GetNetEntity(ent),
+        });
+        _timedDespawn.SetLifetime(ent.Owner, TimeSpan.FromSeconds(5));
     }
 
     public void PlayAnomalyAnimation(Entity<ESPortalAnomalyComponent> ent)
     {
-
+        RaiseNetworkEvent(new ESAnomalyShrinkAnimationEvent
+        {
+            Anomaly = GetNetEntity(ent),
+        });
     }
 
     public void PulseAnomalyRadiation(Entity<ESPortalAnomalyComponent> ent, EntityUid? user)
     {
         _audio.PlayPredicted(ent.Comp.RadPulseSound, ent, user);
         PredictedSpawnAttachedTo(ent.Comp.RadiationEntity, Transform(ent).Coordinates);
+        RaiseNetworkEvent(new ESAnomalyRadiationAnimationEvent
+        {
+            Anomaly = GetNetEntity(ent),
+        });
     }
 
     public void UpdateConsolesUi()

@@ -29,6 +29,24 @@ public sealed partial class ESPortalAnomalyComponent : Component
 }
 
 [Serializable, NetSerializable]
+public sealed class ESAnomalyCollapseAnimationEvent : EntityEventArgs
+{
+    public NetEntity Anomaly;
+}
+
+[Serializable, NetSerializable]
+public sealed class ESAnomalyShrinkAnimationEvent : EntityEventArgs
+{
+    public NetEntity Anomaly;
+}
+
+[Serializable, NetSerializable]
+public sealed class ESAnomalyRadiationAnimationEvent : EntityEventArgs
+{
+    public NetEntity Anomaly;
+}
+
+[Serializable, NetSerializable]
 public enum ESAnomalySignal : byte
 {
     Alpha,
