@@ -5,12 +5,11 @@
   text: "/ServerInfo/_ES/Guidebook/Chemicals.xml"
   children:
   - ESElements
-  - OffbrandMedication
+  - OffbrandMedicineList
   - ESNarcotics
   - ESPyrotechnic
   - ESToxins
   - ESFoods
-  - OffbrandChemistBotany
   - ESBiological
   - ESSpecial
   - ESOthers
