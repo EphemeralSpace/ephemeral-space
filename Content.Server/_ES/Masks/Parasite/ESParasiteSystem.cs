@@ -3,6 +3,8 @@ using Content.Server._ES.Masks.Objectives.Relays;
 using Content.Server._ES.Masks.Parasite.Components;
 using Content.Server.Ghost;
 using Content.Shared._ES.Masks;
+using Content.Shared._Offbrand.Wounds;
+using Content.Shared.Administration.Systems;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
@@ -14,9 +16,8 @@ public sealed class ESParasiteSystem : EntitySystem
 {
     [Dependency] private readonly ESBeKilledObjectiveSystem _beKilledObjective = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly ESSharedMaskSystem _mask = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly RejuvenateSystem _rejuv = default!;
 
     public override void Initialize()
     {
@@ -33,8 +34,8 @@ public sealed class ESParasiteSystem : EntitySystem
 
         ent.Comp.KillerMind = killerMind;
 
-        _damageable.ClearAllDamage(args.Entity);
-        _mobState.ChangeMobState(args.Entity, MobState.Alive);
+        // TODO ES with offmed this should really be doing something more interesting honestly
+        _rejuv.PerformRejuvenate(args.Entity);
     }
 
     private void OnGhostAttempt(Entity<ESParasiteComponent> ent, ref GhostAttemptHandleEvent args)
@@ -58,6 +59,8 @@ public sealed class ESParasiteSystem : EntitySystem
         if (!_mask.TryGetMask(ownedEntity, out var victimMask))
             return;
 
+        // ????
+        _rejuv.PerformRejuvenate(ownedEntity);
         _mind.TransferTo(args.Mind, killerBody);
         _mind.TransferTo(killerMind, ownedEntity);
 
