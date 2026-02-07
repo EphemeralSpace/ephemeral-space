@@ -28,7 +28,7 @@
     - all:
       - id: ESClothingOuterArmorSecurity
         amount: 2
-      - id: ClothingHeadHelmetBasic
+      - id: ESClothingHeadHelmetSecurity
         amount: 2
 
 - type: entity
