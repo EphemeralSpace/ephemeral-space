@@ -22,7 +22,7 @@
     id: SecurityPDA
     gloves: ClothingHandsGlovesColorBlack
     ears: ClothingHeadsetSecurity
-    head: ClothingHeadHelmetBasic
+    head: ESClothingHeadHelmetSecurity
     belt: ClothingBeltSecurityFilled
     jumpsuit: ClothingUniformJumpsuitSec
     outerClothing: ESClothingOuterArmorSecurity

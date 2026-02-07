@@ -14,7 +14,7 @@
     all:
     - id: ClothingHeadHelmetFire
     - id: ClothingOuterSuitFire
-    - id: ClothingMaskGasAtmos
+    - id: ClothingMaskGas
     - id: GasAnalyzer
     - id: MedkitOxygenFilled
     - id: HolofanProjector
