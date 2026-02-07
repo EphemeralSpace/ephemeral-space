@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/07/2026 14:07:02
-  entityCount: 14542
+  time: 01/24/2026 20:33:02
+  entityCount: 14537
 maps:
 - 3
 grids:
@@ -30633,6 +30633,8 @@ entities:
     - type: Transform
       pos: -3.5,17.5
       parent: 2
+- proto: ClosetL3JanitorFilled
+  entities:
   - uid: 14218
     components:
     - type: Transform
@@ -36055,6 +36057,13 @@ entities:
     - type: Transform
       pos: -35.5,24.5
       parent: 2
+- proto: DresserCaptainFilled
+  entities:
+  - uid: 2428
+    components:
+    - type: Transform
+      pos: 30.5,-16.5
+      parent: 2
 - proto: DrinkFlask
   entities:
   - uid: 2440
@@ -37220,31 +37229,12 @@ entities:
     - type: Transform
       pos: 32.5,-16.5
       parent: 2
-- proto: ESDresserCaptainFilled
-  entities:
-  - uid: 2428
-    components:
-    - type: Transform
-      pos: 30.5,-16.5
-      parent: 2
 - proto: ESGunAttachmentSilencer
   entities:
   - uid: 8368
     components:
     - type: Transform
       pos: -62.5,13.5
-      parent: 2
-- proto: ESLockerAtmosphericsFilled
-  entities:
-  - uid: 2886
-    components:
-    - type: Transform
-      pos: -35.5,-12.5
-      parent: 2
-  - uid: 3797
-    components:
-    - type: Transform
-      pos: -37.5,-12.5
       parent: 2
 - proto: ESLockerCoronerFilled
   entities:
@@ -39730,6 +39720,11 @@ entities:
     - type: Transform
       pos: -19.5,-37.5
       parent: 2
+  - uid: 6606
+    components:
+    - type: Transform
+      pos: -17.5,-39.5
+      parent: 2
   - uid: 6620
     components:
     - type: Transform
@@ -39739,23 +39734,6 @@ entities:
     components:
     - type: Transform
       pos: -17.5,-38.5
-      parent: 2
-- proto: ESSpawnerMarkerDistributedTechStorageMats
-  entities:
-  - uid: 6606
-    components:
-    - type: Transform
-      pos: -17.5,-39.5
-      parent: 2
-  - uid: 11522
-    components:
-    - type: Transform
-      pos: -20.5,-39.5
-      parent: 2
-  - uid: 11523
-    components:
-    - type: Transform
-      pos: -19.5,-39.5
       parent: 2
 - proto: ESSpawnerMarkerDistributedTechStorageSecure
   entities:
@@ -39797,13 +39775,6 @@ entities:
     components:
     - type: Transform
       pos: -19.5,-38.5
-      parent: 2
-- proto: ESSpawnerRandomDistributedTechStorageMats
-  entities:
-  - uid: 11521
-    components:
-    - type: Transform
-      pos: -20.5,-38.5
       parent: 2
 - proto: ESSpawnerRandomDistributedTechStorageSecure
   entities:
@@ -44022,25 +43993,6 @@ entities:
     - type: Transform
       pos: -44.5,-20.5
       parent: 2
-- proto: ESWardrobeBotanistFilled
-  entities:
-  - uid: 3680
-    components:
-    - type: Transform
-      pos: -3.5,-24.5
-      parent: 2
-- proto: ESWardrobeCargoFilled
-  entities:
-  - uid: 5320
-    components:
-    - type: Transform
-      pos: -4.5,-46.5
-      parent: 2
-  - uid: 6842
-    components:
-    - type: Transform
-      pos: -4.5,-45.5
-      parent: 2
 - proto: ESWardrobeChefFilled
   entities:
   - uid: 7348
@@ -44069,13 +44021,6 @@ entities:
     - type: Transform
       pos: -26.5,-35.5
       parent: 2
-- proto: ESWardrobeEngineeringFilled
-  entities:
-  - uid: 393
-    components:
-    - type: Transform
-      pos: -44.5,-10.5
-      parent: 2
 - proto: ESWardrobeJanitorFilled
   entities:
   - uid: 7280
@@ -44083,55 +44028,12 @@ entities:
     - type: Transform
       pos: -11.5,-33.5
       parent: 2
-- proto: ESWardrobeMedicalDoctorFilled
-  entities:
-  - uid: 8661
-    components:
-    - type: Transform
-      pos: 20.5,-3.5
-      parent: 2
-  - uid: 8662
-    components:
-    - type: Transform
-      pos: 20.5,-4.5
-      parent: 2
-- proto: ESWardrobePrisonFilled
-  entities:
-  - uid: 3177
-    components:
-    - type: Transform
-      pos: -29.5,-11.5
-      parent: 2
-  - uid: 6711
-    components:
-    - type: Transform
-      pos: -40.5,-37.5
-      parent: 2
 - proto: ESWardrobeReporterFilled
   entities:
   - uid: 5043
     components:
     - type: Transform
       pos: -7.5,2.5
-      parent: 2
-- proto: ESWardrobeScienceFilled
-  entities:
-  - uid: 11151
-    components:
-    - type: Transform
-      pos: 9.5,-19.5
-      parent: 2
-- proto: ESWardrobeSecurityFilled
-  entities:
-  - uid: 1599
-    components:
-    - type: Transform
-      pos: -23.5,-27.5
-      parent: 2
-  - uid: 3170
-    components:
-    - type: Transform
-      pos: -22.5,-27.5
       parent: 2
 - proto: ESWardrobeTheatreFilled
   entities:
@@ -63801,6 +63703,18 @@ entities:
     - type: Transform
       pos: -64.01732,7.4866257
       parent: 2
+- proto: LockerAtmosphericsFilled
+  entities:
+  - uid: 2886
+    components:
+    - type: Transform
+      pos: -35.5,-12.5
+      parent: 2
+  - uid: 3797
+    components:
+    - type: Transform
+      pos: -37.5,-12.5
+      parent: 2
 - proto: LockerBooze
   entities:
   - uid: 7584
@@ -66925,11 +66839,6 @@ entities:
     - type: Transform
       pos: -11.5,-36.5
       parent: 2
-  - uid: 6823
-    components:
-    - type: Transform
-      pos: -20.5,-39.5
-      parent: 2
   - uid: 6976
     components:
     - type: Transform
@@ -67046,11 +66955,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -52.5,1.5
-      parent: 2
-  - uid: 9293
-    components:
-    - type: Transform
-      pos: -19.5,-39.5
       parent: 2
   - uid: 9403
     components:
@@ -87036,12 +86940,81 @@ entities:
     - type: Transform
       pos: -54.5,-13.5
       parent: 2
+- proto: WardrobeBotanistFilled
+  entities:
+  - uid: 3680
+    components:
+    - type: Transform
+      pos: -3.5,-24.5
+      parent: 2
+- proto: WardrobeCargoFilled
+  entities:
+  - uid: 5320
+    components:
+    - type: Transform
+      pos: -4.5,-46.5
+      parent: 2
+  - uid: 6842
+    components:
+    - type: Transform
+      pos: -4.5,-45.5
+      parent: 2
+- proto: WardrobeEngineeringFilled
+  entities:
+  - uid: 393
+    components:
+    - type: Transform
+      pos: -44.5,-10.5
+      parent: 2
+- proto: WardrobeMedicalDoctorFilled
+  entities:
+  - uid: 8661
+    components:
+    - type: Transform
+      pos: 20.5,-3.5
+      parent: 2
+  - uid: 8662
+    components:
+    - type: Transform
+      pos: 20.5,-4.5
+      parent: 2
 - proto: WardrobeMixedFilled
   entities:
   - uid: 7402
     components:
     - type: Transform
       pos: -52.5,12.5
+      parent: 2
+- proto: WardrobePrisonFilled
+  entities:
+  - uid: 3177
+    components:
+    - type: Transform
+      pos: -29.5,-11.5
+      parent: 2
+  - uid: 6711
+    components:
+    - type: Transform
+      pos: -40.5,-37.5
+      parent: 2
+- proto: WardrobeScienceFilled
+  entities:
+  - uid: 11151
+    components:
+    - type: Transform
+      pos: 9.5,-19.5
+      parent: 2
+- proto: WardrobeSecurityFilled
+  entities:
+  - uid: 1599
+    components:
+    - type: Transform
+      pos: -23.5,-27.5
+      parent: 2
+  - uid: 3170
+    components:
+    - type: Transform
+      pos: -22.5,-27.5
       parent: 2
 - proto: WarningAir
   entities:
