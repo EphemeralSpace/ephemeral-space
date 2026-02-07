@@ -7,30 +7,6 @@
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobHumanDummy
   skinColoration: HumanToned
-# Offbrand start
-  ofmPrototype: OFMNuristEmpty
-  ofmOrgans:
-  - OFMOrganHumanTorso
-  - OFMOrganHumanHead
-  - OFMOrganHumanArmLeft
-  - OFMOrganHumanArmRight
-  - OFMOrganHumanHandLeft
-  - OFMOrganHumanHandRight
-  - OFMOrganHumanLegLeft
-  - OFMOrganHumanLegRight
-  - OFMOrganHumanFootLeft
-  - OFMOrganHumanFootRight
-  - OFMOrganHumanBrain
-  - OFMOrganHumanEyes
-  - OFMOrganHumanTongue
-  - OFMOrganHumanAppendix
-  - OFMOrganHumanEars
-  - OFMOrganHumanLungs
-  - OFMOrganHumanHeart
-  - OFMOrganHumanStomach
-  - OFMOrganHumanLiver
-  - OFMOrganHumanKidneys
-# Offbrand end
 # ES START
   maleHair:
   - HumanHairBalding
