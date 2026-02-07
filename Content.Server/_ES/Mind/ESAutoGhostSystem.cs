@@ -20,7 +20,7 @@ public sealed class ESAutoGhostSystem : EntitySystem
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
 
-    private static readonly TimeSpan AutoGhostDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan AutoGhostDelay = TimeSpan.FromSeconds(0.5);
 
     /// <inheritdoc/>
     public override void Initialize()
