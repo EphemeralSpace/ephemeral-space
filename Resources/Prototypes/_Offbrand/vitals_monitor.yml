@@ -2,7 +2,7 @@
   id: VitalsMonitor
   parent: [BaseMachinePowered, SmallConstructibleMachine, StructureWheeled]
   name: vitals monitor
-  description: Keeps an eye on your patients' vitals.
+  description: Keeps an eye on your patients' vitals. Drag and drop onto a patient to monitor them.
   components:
   - type: Physics
     bodyType: Dynamic
@@ -27,10 +27,16 @@
     pulseAudioThresholds:
       0:
         collection: VitalsPulseNormal
+        params:
+          volume: -4
       0.4:
         collection: VitalsPulseDouble
+        params:
+          volume: -4
     asystoleAudio:
       collection: VitalsAsystole
+      params:
+        volume: -4
   - type: Fixtures
     fixtures:
       fix1:
