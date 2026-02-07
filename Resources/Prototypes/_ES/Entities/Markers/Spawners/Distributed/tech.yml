@@ -31,7 +31,7 @@
     - id: StationRecordsComputerCircuitboard
     # Med
     - id: CrewMonitoringComputerCircuitboard
-    # - id: MedicalRecordsComputerCircuitboard # Uncomment when it gets functionality
+    # - id: MedicalRecordsComputerCircuitboard
     # Sci
     # Sec
     - id: CriminalRecordsComputerCircuitboard
@@ -61,7 +61,7 @@
   components:
   - type: Sprite
     layers:
-    - state: id
+    - state: cables
     - state: rand-dist
     - state: tech
     - state: es
@@ -71,9 +71,9 @@
     tables:
     - id: MicroManipulatorStockPart
       amount: 5
-    - id: CableApcStack30
-    - id: SheetSteel30
-    - id: SheetGlass30
+    - id: CableApcStack
+    - id: SheetSteel
+    - id: SheetGlass
     - id: PowerCellMedium
 
 - type: entity
@@ -83,9 +83,9 @@
   components:
   - type: Sprite
     layers:
-    - state: id
+    - state: cables
     - state: marker
-    - state: vault
+    - state: tech
     - state: es
   - type: ESDistributedSpawnerMarker
     id: ESSpawnerTechStorageMats
