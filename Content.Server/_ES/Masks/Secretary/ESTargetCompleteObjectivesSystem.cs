@@ -2,8 +2,8 @@ using Content.Server._ES.Masks.Secretary.Components;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Objectives.Target;
 using Content.Shared._ES.Objectives.Target.Components;
+using Content.Shared.Mind.Components;
 using Content.Shared.Whitelist;
-using NetCord.Gateway;
 
 namespace Content.Server._ES.Masks.Secretary;
 
@@ -22,6 +22,8 @@ public sealed class ESTargetCompleteObjectivesSystem : ESBaseTargetObjectiveSyst
         base.Initialize();
 
         SubscribeLocalEvent<ESObjectiveProgressChangedEvent>(OnObjectiveProgressChanged);
+        SubscribeLocalEvent<ESTargetCompleteOwnedObjectiveMarkerComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<ESTargetCompleteOwnedObjectiveMarkerComponent, MindAddedMessage>(OnTargetMindGotAdded);
         SubscribeLocalEvent<ESTargetCompleteOwnedObjectiveMarkerComponent, ESObjectivesChangedEvent>(OnObjectivesChanged);
 
         SubscribeLocalEvent<ESTargetCompleteOwnedObjectiveComponent, ESValidateObjectiveTargetCandidates>(OnValidateCandidates);
@@ -40,6 +42,25 @@ public sealed class ESTargetCompleteObjectivesSystem : ESBaseTargetObjectiveSyst
         // I would prefer to not have a global sub here but it's pretty much impossible to do otherwise
         ObjectivesSys.RefreshObjectiveProgress<ESTargetCompleteOwnedObjectiveComponent>();
         _loop = false;
+    }
+
+    private void OnMapInit(Entity<ESTargetCompleteOwnedObjectiveMarkerComponent> ent, ref MapInitEvent args)
+    {
+        if (!MindSys.TryGetMind(ent, out var mind, out _))
+            return;
+
+        foreach (var objective in GetTargetingObjectives(ent))
+        {
+            objective.Comp.TargetMind = mind;
+        }
+    }
+
+    private void OnTargetMindGotAdded(Entity<ESTargetCompleteOwnedObjectiveMarkerComponent> ent, ref MindAddedMessage args)
+    {
+        foreach (var objective in GetTargetingObjectives(ent))
+        {
+            objective.Comp.TargetMind = args.Mind;
+        }
     }
 
     private void OnObjectivesChanged(Entity<ESTargetCompleteOwnedObjectiveMarkerComponent> ent, ref ESObjectivesChangedEvent args)
@@ -67,8 +88,7 @@ public sealed class ESTargetCompleteObjectivesSystem : ESBaseTargetObjectiveSyst
 
     protected override void GetObjectiveProgress(Entity<ESTargetCompleteOwnedObjectiveComponent> ent, ref ESGetObjectiveProgressEvent args)
     {
-        if (!TargetObjective.TryGetTarget(ent.Owner, out var target) ||
-            !MindSys.TryGetMind(target.Value, out var mind, out _))
+        if (ent.Comp.TargetMind is not { } mind)
         {
             args.Progress = ent.Comp.DefaultProgress;
             return;

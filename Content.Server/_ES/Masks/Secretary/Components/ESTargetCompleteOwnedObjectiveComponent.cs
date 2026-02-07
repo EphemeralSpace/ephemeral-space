@@ -1,3 +1,4 @@
+using Content.Shared._ES.Objectives.Target.Components;
 using Content.Shared.Whitelist;
 
 namespace Content.Server._ES.Masks.Secretary.Components;
@@ -13,6 +14,15 @@ namespace Content.Server._ES.Masks.Secretary.Components;
 [Access(typeof(ESTargetCompleteObjectivesSystem))]
 public sealed partial class ESTargetCompleteOwnedObjectiveComponent : Component
 {
+    /// <summary>
+    /// The mind of our <see cref="ESTargetObjectiveComponent"/> target.
+    /// We store this because we want to be able to keep tracking objectives if our target dies.
+    /// The objective itself can't target the mind because if our guy mind swaps, we want to be able to
+    /// update to the new target's objectives, for what i'll broadly call "humor" reasons.
+    /// </summary>
+    [DataField]
+    public EntityUid? TargetMind;
+
     /// <summary>
     /// Objectives that will be blacklisted and ignored for the purposes of this objective.
     /// Useful to prevent horrific infinity loops like a secretary targeting another secretary.

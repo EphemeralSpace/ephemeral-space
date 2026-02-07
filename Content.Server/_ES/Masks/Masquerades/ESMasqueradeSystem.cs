@@ -99,7 +99,8 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         var players = ev.Players;
 
         var masksEnum = masks
-            .OrderByDescending(MaskOrder);
+            .OrderBy(m => _proto.Index(m).AssignmentOrder)
+            .ThenByDescending(MaskOrder);
 
         foreach (var mask in masksEnum)
         {
@@ -153,11 +154,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         var mask = _proto.Index(maskId);
         var troupe = _proto.Index(mask.Troupe);
 
-        // Second-degree ordering rule, so we use a bignumber
-        // to decrease its impact compared to prohibited job size.
-        var maskOrdering = mask.AssignmentOrder * 100;
-
-        return maskOrdering + troupe.ProhibitedJobs.Count; // The tighter the prohibition list, the more careful we are.
+        return troupe.ProhibitedJobs.Count; // The tighter the prohibition list, the more careful we are.
     }
 
     private void OnAssignLatejoiner(ref AssignLatejoinerToTroupeEvent ev)
