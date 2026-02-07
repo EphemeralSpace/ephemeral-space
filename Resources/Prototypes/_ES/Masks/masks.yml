@@ -149,16 +149,6 @@
     - id: ESObjectiveSurvive
 
 - type: esMask
-  id: ESSacrifice
-  name: es-mask-sacrifice-name
-  troupe: ESCrew
-  description: es-mask-sacrifice-desc
-  color: lightgoldenrodyellow
-  objectives:
-    all:
-    - id: ESObjectiveSacrificeHeal
-
-- type: esMask
   id: ESVandal
   name: es-mask-vandal-name
   troupe: ESCrew

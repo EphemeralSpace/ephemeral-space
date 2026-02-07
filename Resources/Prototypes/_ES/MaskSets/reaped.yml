@@ -1,7 +1,6 @@
 - type: esMaskSet
   id: Reaped # Masks who have noteworthy death interactions.
   masks:
-    ESSurvivalist: 1
-    ESSacrifice: 1
+    ESSurvivalist: 1.5
     ESPhantom: 1
     ESMartyr: 1

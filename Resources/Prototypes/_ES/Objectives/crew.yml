@@ -249,27 +249,6 @@
 
 - type: entity
   parent: ESBaseMaskObjective
-  id: ESObjectiveSacrificeHeal
-  name: Sacrifice yourself
-  description: Heal others by dying near them.
-  components:
-  - type: ESObjective
-    icon:
-      sprite: Interface/Alerts/human_dead.rsi
-      state: dead
-  - type: ESSacrificeHealObjective
-    sacrificeSolution:
-      maxVol: 40
-      reagents:
-      - ReagentId: Omnizine
-        Quantity: 40
-  - type: ESCounterObjective
-    title: es-sacrifice-objective-title
-    target: 2
-    maxTarget: 4
-
-- type: entity
-  parent: ESBaseMaskObjective
   id: ESObjectiveHitmanKillTarget
   name: Kill your target
   description: Use the clues in your dossier to identify and take out your target. Make sure you kill them yourself.
