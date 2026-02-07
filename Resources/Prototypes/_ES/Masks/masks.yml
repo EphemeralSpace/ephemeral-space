@@ -235,6 +235,7 @@
   troupe: ESCrew
   description: es-mask-secretary-desc
   color: palegreen
+  assignmentOrder: 11 # Needs to be assigned after other masks
   objectives:
     all:
     - id: ESObjectiveSecretaryAssist
@@ -245,6 +246,7 @@
   troupe: ESCrew
   description: es-mask-hater-desc
   color: lightseagreen
+  assignmentOrder: 11 # Needs to be assigned after other masks
   objectives:
     all:
     - id: ESObjectiveHaterHate
