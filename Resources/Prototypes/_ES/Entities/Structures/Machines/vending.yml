@@ -352,7 +352,7 @@
   - type: GuideHelp
     guides:
     - Chemicals
-    - Chemist
+    - OffbrandChemist
   - type: ESAmbientMusicMarkerMedical
 
 - type: entity

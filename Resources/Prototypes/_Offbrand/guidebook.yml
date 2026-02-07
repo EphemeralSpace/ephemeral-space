@@ -24,7 +24,7 @@
   id: OffbrandChemist
   name: guide-entry-chemist
   text: "/ServerInfo/_Offbrand/Chemist.xml"
-  hiddne: false
+  hidden: false
   children:
   - OffbrandChemistMedical
   - OffbrandChemistBotany
