@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/07/2026 06:56:04
-  entityCount: 14543
+  time: 02/07/2026 08:17:45
+  entityCount: 14542
 maps:
 - 3
 grids:
@@ -38607,6 +38607,28 @@ entities:
     - type: Transform
       pos: 15.5,-39.5
       parent: 2
+- proto: ESMedkitStabilizationFilled
+  entities:
+  - uid: 1308
+    components:
+    - type: Transform
+      pos: -23.597158,-23.574533
+      parent: 2
+  - uid: 6861
+    components:
+    - type: Transform
+      pos: 20.6763,8.622313
+      parent: 2
+  - uid: 11522
+    components:
+    - type: Transform
+      pos: 20.412994,8.403624
+      parent: 2
+  - uid: 11523
+    components:
+    - type: Transform
+      pos: -5.4899716,17.443863
+      parent: 2
 - proto: ESNegentropyAccumulator
   entities:
   - uid: 5096
@@ -64324,7 +64346,7 @@ entities:
   - uid: 6926
     components:
     - type: Transform
-      pos: -23.5,-23.5
+      pos: -23.393057,-23.293955
       parent: 2
   - uid: 9318
     components:
@@ -72149,13 +72171,6 @@ entities:
     - type: Transform
       pos: -27.5,-26.5
       parent: 2
-- proto: Splints
-  entities:
-  - uid: 1308
-    components:
-    - type: Transform
-      pos: 20.286497,8.855404
-      parent: 2
 - proto: Spoon
   entities:
   - uid: 12515
@@ -72391,13 +72406,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -9.5,6.5
-      parent: 2
-- proto: Stunbaton
-  entities:
-  - uid: 6861
-    components:
-    - type: Transform
-      pos: -23.5,-23.5
       parent: 2
 - proto: SubstationBasic
   entities:
@@ -72988,13 +72996,6 @@ entities:
       - SurveillanceCameraEntertainment
       nameSet: True
       id: Channel 13
-- proto: Suture
-  entities:
-  - uid: 11522
-    components:
-    - type: Transform
-      pos: 20.644651,8.787533
-      parent: 2
 - proto: Table
   entities:
   - uid: 5
@@ -75141,18 +75142,6 @@ entities:
     components:
     - type: Transform
       pos: -29.5,-41.5
-      parent: 2
-- proto: TourniquetOffbrand
-  entities:
-  - uid: 11523
-    components:
-    - type: Transform
-      pos: 20.312498,8.372128
-      parent: 2
-  - uid: 11524
-    components:
-    - type: Transform
-      pos: 20.709532,8.386715
       parent: 2
 - proto: TowelColorNT
   entities:

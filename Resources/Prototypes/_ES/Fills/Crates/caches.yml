@@ -150,11 +150,9 @@
   table:
     all:
     - group:
-      - id: MedkitFilled
-      - id: MedkitOxygenFilled
+      - id: MedkitAdvancedFilled
       - id: MedkitBurnFilled
       - id: MedkitBruteFilled
-      - id: MedkitToxinFilled
     - group:
       - id: ToolboxEmergencyFilled
       - id: ToolboxMechanicalFilled

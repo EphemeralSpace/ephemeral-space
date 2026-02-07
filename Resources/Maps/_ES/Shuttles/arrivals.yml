@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 268.1.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 12/21/2025 23:17:24
-  entityCount: 725
+  time: 02/07/2026 08:20:41
+  entityCount: 727
 maps: []
 grids:
 - 1
@@ -2064,6 +2064,18 @@ entities:
     - type: Transform
       pos: 9.5,-1.5
       parent: 1
+- proto: ESMedkitStabilizationFilled
+  entities:
+  - uid: 613
+    components:
+    - type: Transform
+      pos: 33.616768,-2.346397
+      parent: 1
+  - uid: 695
+    components:
+    - type: Transform
+      pos: 7.694021,-8.418694
+      parent: 1
 - proto: ESPoweredLightNightshift
   entities:
   - uid: 356
@@ -3849,12 +3861,12 @@ entities:
   - uid: 416
     components:
     - type: Transform
-      pos: 33.48062,-2.357912
+      pos: 33.277412,-2.518394
       parent: 1
   - uid: 483
     components:
     - type: Transform
-      pos: 7.515414,-8.44557
+      pos: 7.352314,-8.60833
       parent: 1
 - proto: Mirror
   entities:
