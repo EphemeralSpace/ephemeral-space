@@ -65,10 +65,10 @@
   name: botanist wardrobe
 
 - type: entity
-  id: ESWardrobeMedicalDoctor
+  id: ESWardrobePhysician
   parent: WardrobeWhite
   suffix: ES
-  name: medical doctor's wardrobe
+  name: physician's wardrobe
 
 - type: entity
   id: ESWardrobeEngineering

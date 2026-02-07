@@ -269,7 +269,7 @@ LockerAtmosphericsFilled: ESLockerAtmosphericsFilled
 
 # 2026-2-4
 WardrobeBotanistFilled: ESWardrobeBotanistFilled
-WardrobeMedicalDoctorFilled: ESWardrobeMedicalDoctorFilled
+WardrobeMedicalDoctorFilled: ESWardrobePhysicianFilled
 WardrobeScienceFilled: ESWardrobeScienceFilled
 DresserHeadOfPersonnelFilled: ESDresserHeadOfPersonnelFilled
 DresserHeadOfSecurityFilled: ESDresserHeadOfSecurityFilled
@@ -304,8 +304,10 @@ ClosetL3SecurityFilled: ClosetL3Filled
 ClosetL3JanitorFilled: ClosetL3Filled
 ClosetL3ScienceFilled: ClosetL3Filled
 
-# 2026-2-6 Offbrand
+# 2026-2-6 Offbrand/ES
 Tourniquet: TourniquetOffbrand
+ESWardrobeMedicalDoctorFilled: ESWardrobePhysicianFilled
+ESWardrobeMedicalDoctor: ESWardrobePhysician
 
 # ES END
 

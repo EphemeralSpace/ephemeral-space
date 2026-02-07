@@ -61,7 +61,7 @@
   roles:
   - ESChemist
   - ESCoroner
-  - ESMedicalDoctor
+  - ESPhysician
 
 - type: department
   id: ESSecurity
