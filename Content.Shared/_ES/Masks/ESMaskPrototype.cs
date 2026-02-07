@@ -26,7 +26,7 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     /// Arbitray number used to order which masks are assigned before other ones
     /// </summary>
     [DataField]
-    public int AssignmentOrder = 10;
+    public int AssignmentOrder = 1;
 
     /// <summary>
     /// Selection weight
