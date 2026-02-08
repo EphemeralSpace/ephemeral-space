@@ -43,9 +43,8 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
 
     /// <summary>
     /// UI Color
-    /// TODO: consider standardizing this per archetype?
     /// </summary>
-    [DataField]
+    [DataField(required: true)]
     public Color Color = Color.White;
 
     [DataField]
