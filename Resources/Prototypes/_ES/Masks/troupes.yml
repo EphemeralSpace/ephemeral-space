@@ -16,15 +16,6 @@
   color: red
   metaIcon: ESTraitor
   gameRule: ESTroupeRuleTraitor
-  prohibitedJobs:
-  # Command
-  - ESCaptain
-  - ESHeadOfPersonnel
-  - ESHeadOfSecurity
-  # Security
-  - ESWarden
-  - ESSecurityOfficer
-  - ESDetective
   disguisedMaskName: es-news-disguise-traitors
   objectives:
     all:

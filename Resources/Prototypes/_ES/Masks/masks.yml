@@ -253,17 +253,6 @@
 
 # Traitor Masks
 - type: esMask
-  id: ESBaseTraitor
-  troupe: ESTraitor
-  weight: 1
-  abstract: true
-  components:
-  - type: ESTroupeFactionIcon
-    icon: ESTraitor
-    troupe: ESTraitor
-    examineString: es-mask-troupe-traitor-examine
-
-- type: esMask
   parent: ESBaseTraitor
   id: ESMarauder
   name: es-mask-marauder-name
@@ -331,9 +320,11 @@
 
 # Neutral/oddball masks
 - type: esMask
+  parent: ESBaseCommandSecRestricted # same restriction as traitors
   id: ESSyndieSuperfan
   name: es-mask-syndie-superfan-name
   troupe: ESCrew
   description: es-mask-syndie-superfan-desc
+  color: lightpink
   mindComponents:
   - type: ESSuperfan
