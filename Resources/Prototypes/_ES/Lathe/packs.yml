@@ -27,6 +27,7 @@
   - RCDAmmo
   - ESOxygenTank
   - ESEmergencyOxygenTank
+  - ESAnomalyResonator
 
 - type: latheRecipePack
   id: ESPartsStatic
@@ -86,7 +87,7 @@
   recipes:
   - AppraisalTool
   - Pickaxe
-  - UtilityKnife
+  - ESWeaponKnife
   - ESVendingMachineRestockGlobal
 
 # Medical

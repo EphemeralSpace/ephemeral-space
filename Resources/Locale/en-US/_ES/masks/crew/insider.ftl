@@ -1,8 +1,20 @@
 es-troupe-dossier-name = {CAPITALIZE($name)}'s record
 es-troupe-dossier-header = [head=2]Info about "{CAPITALIZE($name)}"[/head]
 es-troupe-dossier-clue-fmt = - {CAPITALIZE($clue)}
-es-troupe-dossier-footer-crew = - Crew
-es-troupe-dossier-footer-not-crew = - Not crew
+es-troupe-dossier-briefing-name = dossier briefing
+es-troupe-dossier-briefing-text = [head=2]NSPT Insider Report[/head]
+
+    The following is known about the {$sum} targets enclosed:
+    {""}- {$crew} of the targets {$crew ->
+    [1] is a member
+    *[Other] are members
+} of the crew
+    {""}- {$noncrew} of the targets {$noncrew ->
+    [1] is not a member
+    *[Other] are not members
+} of the crew
+
+    Use this information to the best of your ability
 
 es-dataset-insider-codename-1 = Amsterdam
 es-dataset-insider-codename-2 = Ankara

@@ -1,10 +1,10 @@
 using System.Linq;
-using Content.Server._ES.Masks.Masquerades;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Shared._ES.Auditions;
 using Content.Shared._ES.Coroner;
 using Content.Shared._ES.Masks;
+using Content.Shared._ES.Masks.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Robust.Shared.ColorNaming;
@@ -22,7 +22,6 @@ public sealed class ESCoronerSystem : ESSharedCoronerSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ESCluesSystem _clues = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly ESSharedMaskSystem _mask = default!;
     [Dependency] private readonly MindSystem _mind = default!;
 
     protected override FormattedMessage GetReport(EntityUid target)
@@ -44,26 +43,9 @@ public sealed class ESCoronerSystem : ESSharedCoronerSystem
             timeOfDeath = mind.TimeOfDeath.Value;
         var time = (timeOfDeath - _gameTicker.RoundStartTimeSpan).ToString("hh\\:mm\\:ss");
 
-        var allMasks = _prototype.EnumeratePrototypes<ESMaskPrototype>()
-            .Where(p => !p.Abstract)
-            .ToList();
-
-        // The mask of our player, or just a random mask
-        var realMask = _mask.GetMaskOrNull(target) ?? _random.Pick(allMasks);
-
-        var validMasks = EntityQuery<ESMasqueradeRuleComponent>().SingleOrDefault()?.AssignedMasks
-                    ?? allMasks.Select(p => new ProtoId<ESMaskPrototype>(p.ID)).ToList();
-
-        var fakeMask = _random.Pick(validMasks.Where(m => m != realMask).ToList());
-
-        // Which one is real? which one is fake? who will ever know...
-        if (_random.Prob(0.5f))
-        {
-            (realMask, fakeMask) = (fakeMask, realMask);
-        }
-
-        var mask1 = Loc.GetString(_prototype.Index(realMask).Name);
-        var mask2 = Loc.GetString(_prototype.Index(fakeMask).Name);
+        var mask = TryComp<ESBodyLastMaskComponent>(target, out var bodyLastMask)
+            ? _prototype.Index(bodyLastMask.LastMask)
+            : _random.Pick(_prototype.EnumeratePrototypes<ESMaskPrototype>().Where(p => !p.Abstract).ToList());
 
         msg.AddMarkupPermissive(Loc.GetString("es-coroner-report-paper",
             ("name", name),
@@ -72,8 +54,7 @@ public sealed class ESCoronerSystem : ESSharedCoronerSystem
             ("eye", eye),
             ("hair", hair),
             ("time", time),
-            ("mask1", mask1),
-            ("mask2", mask2)));
+            ("mask1", Loc.GetString(mask.Name))));
         return msg;
     }
 }

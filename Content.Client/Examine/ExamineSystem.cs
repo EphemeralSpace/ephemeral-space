@@ -284,7 +284,9 @@ namespace Content.Client.Examine
                     continue;
 
                 var richLabel = new RichTextLabel() { Margin = new Thickness(4, 4, 0, 4)};
-                richLabel.SetMessage(message);
+// ES START
+                richLabel.SetMessage(message, tagsAllowed: null);
+// ES END
                 vBox.AddChild(richLabel);
                 break;
             }

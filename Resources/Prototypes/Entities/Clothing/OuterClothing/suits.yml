@@ -46,6 +46,9 @@
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
   id: ClothingOuterSuitFire
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: fire suit
   description: A suit that helps protect against hazardous temperatures.
   components:
@@ -76,13 +79,13 @@
   - type: HideLayerClothing
     slots:
     - Tail
-# ES START
-  - type: ESChameleonClothingWhitelist
-# ES END
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
   id: ClothingOuterSuitAtmosFire
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: atmos fire suit
   description: An expensive firesuit that protects against even the most deadly of station fires. Designed to protect even if the wearer is set aflame.
   components:
@@ -122,6 +125,9 @@
 - type: entity
   parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]
   id: ClothingOuterSuitRad
+  # ES Start
+  categories: [ HideSpawnMenu ]
+  # ES End
   name: radiation suit
   description: "A suit that protects against radiation. The label reads, 'Made with lead. Please do not consume insulation.'"
   components:

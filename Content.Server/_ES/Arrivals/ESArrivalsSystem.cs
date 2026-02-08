@@ -1,4 +1,4 @@
-using System.Numerics;
+using System.Linq;
 using Content.Server._ES.Arrivals.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
@@ -15,35 +15,48 @@ using Content.Shared.Bed.Cryostorage;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Gravity;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
+using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+using Robust.Shared.Containers;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server._ES.Arrivals;
 
 public sealed class ESArrivalsSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly HungerSystem _hunger = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly ThirstSystem _thirst = default!;
 
     private bool _arrivalsEnabled = true;
     private float _flightTime;
 
     private static readonly ProtoId<TagPrototype> DockTagProto = "DockArrivals";
+    private static readonly EntProtoId SleepStatusEffect = "StatusEffectForcedSleeping";
+    private static readonly EntProtoId CryoSicknessEffect = "ESStatusEffectCryoSickness";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -125,23 +138,50 @@ public sealed class ESArrivalsSystem : EntitySystem
         if (!TryComp<ESStationArrivalsComponent>(ev.Station, out var arrivals) || arrivals.ShuttleUid is not { } grid)
             return;
 
-        // TODO mirror actually place them into the cryostorage
         var points = EntityQueryEnumerator<CryostorageComponent, TransformComponent>();
-        var possiblePositions = new List<EntityCoordinates>();
-        while (points.MoveNext(out _, out _, out var xform))
+        var possiblePositions = new List<(EntityUid, BaseContainer)>();
+        while (points.MoveNext(out var uid, out var cryo, out var xform))
         {
             if (xform.GridUid != grid)
                 continue;
 
-            possiblePositions.Add(xform.Coordinates);
+            if (!_container.TryGetContainer(uid, cryo.ContainerId, out var container) || container.ContainedEntities.Any())
+                continue;
+
+            possiblePositions.Add((uid, container));
         }
 
-        var spawnLoc = possiblePositions.Count > 0 ? _random.Pick(possiblePositions) : new EntityCoordinates(grid, Vector2.Zero);
+        var (cryostorage, cryoContainer) = possiblePositions.Count > 0 ? _random.Pick(possiblePositions) : (EntityUid.Invalid, default);
+        var spawnLoc = cryostorage.Valid ? Transform(cryostorage).Coordinates : new EntityCoordinates(grid, 0, 0);
+
         ev.SpawnResult = _stationSpawning.SpawnPlayerMob(
             spawnLoc,
             ev.Job,
             ev.HumanoidCharacterProfile,
             ev.Station);
+
+        if (cryostorage.Valid)
+            _container.Insert(ev.SpawnResult.Value, cryoContainer!);
+
+        if (TryComp<HungerComponent>(ev.SpawnResult, out var hunger) &&
+            hunger.Thresholds.TryGetValue(HungerThreshold.Starving, out var starving))
+        {
+            _hunger.SetHunger(ev.SpawnResult.Value, starving + _random.NextFloat(-20, 0), hunger);
+        }
+
+        if (TryComp<ThirstComponent>(ev.SpawnResult, out var thirst) &&
+            thirst.ThirstThresholds.TryGetValue(ThirstThreshold.Parched, out var lowerThirst))
+        {
+            _thirst.SetThirst(ev.SpawnResult.Value, thirst, lowerThirst + _random.NextFloat(-50, 0));
+        }
+
+        _statusEffects.TryAddStatusEffectDuration(ev.SpawnResult.Value, SleepStatusEffect, TimeSpan.FromSeconds(_random.Next(10, 30)));
+
+        if (_timing.CurTime < arrivals.ArrivalTime)
+        {
+            var sicknessTime = TimeSpan.FromSeconds(Math.Max((arrivals.ArrivalTime - _timing.CurTime).TotalSeconds + _random.Next(0, 10), _random.Next(10, 15)));
+            _statusEffects.TryAddStatusEffectDuration(ev.SpawnResult.Value, CryoSicknessEffect, sicknessTime);
+        }
 
         // TODO MIRROR one-way arrivals, use these for a turnstile check or something + remove on exiting arrivals
         // EnsureComp<AutoOrientComponent>(ev.SpawnResult.Value);
@@ -178,6 +218,7 @@ public sealed class ESArrivalsSystem : EntitySystem
         _shuttle.TryFTLProximity(shuttle.Value, ftlMap);
 
         ent.Comp.ShuttleUid = shuttle.Value;
+        ent.Comp.ArrivalTime = _timing.CurTime + TimeSpan.FromSeconds(_flightTime);
 
         var arrivalsComp = EnsureComp<ESArrivalsShuttleComponent>(shuttle.Value);
         arrivalsComp.Station = ent;
@@ -199,6 +240,3 @@ public sealed class ESArrivalsSystem : EntitySystem
         _shuttle.FTLToDock(ent, Comp<ShuttleComponent>(ent), grid, startupTime: 0f, hyperspaceTime: _flightTime);
     }
 }
-
-[ByRefEvent]
-public readonly record struct ESPlayersArrivedEvent(List<EntityUid> Players);

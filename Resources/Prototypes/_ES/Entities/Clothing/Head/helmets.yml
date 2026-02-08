@@ -1,0 +1,28 @@
+- type: entity
+  id: ESBaseHeadArmor
+  abstract: true
+  components:
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Blunt: 1
+        Slash: 1
+        Piercing: 1
+
+- type: entity
+  parent: [ESBaseHeadArmor, ClothingHeadBase]
+  id: ESClothingHeadHelmetSecurity
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/security.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/security.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - SecurityHelmet
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD

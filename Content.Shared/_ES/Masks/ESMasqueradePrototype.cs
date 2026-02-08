@@ -1,7 +1,5 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.Masks.Masquerades;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Masks;
@@ -53,7 +51,7 @@ public sealed partial class ESMasqueradePrototype : IPrototype, ISerializationHo
     /// <summary>
     ///     Setter for serialization because we're manually inlining some fields from MasqueradeKind.
     /// </summary>
-    /// <seealso cref="MasqueradeKind.MinPlayers"/>
+    /// <seealso cref="MasqueradeRoleSet.MinPlayers"/>
     [DataField(priority: 0, required: true, readOnly: true)]
     private int MinPlayers
     {
@@ -64,7 +62,7 @@ public sealed partial class ESMasqueradePrototype : IPrototype, ISerializationHo
     /// <summary>
     ///     Setter for serialization because we're manually inlining some fields from MasqueradeKind.
     /// </summary>
-    /// <seealso cref="MasqueradeKind.MaxPlayers"/>
+    /// <seealso cref="MasqueradeRoleSet.MaxPlayers"/>
     [DataField(priority: 0, readOnly: true)]
     private int? MaxPlayers
     {
@@ -115,37 +113,10 @@ public sealed partial class ESMasqueradePrototype : IPrototype, ISerializationHo
     public IReadOnlyList<EntProtoId> GameRules { get; private set; } = [];
 
     [DataField(required: true, priority: 1)]
-    public MasqueradeKind Masquerade { get; private set; } = default!;
+    public MasqueradeRoleSet Masquerade { get; private set; } = default!;
 
     void ISerializationHooks.AfterDeserialization()
     {
         Masquerade.Init();
     }
 }
-
-/// <summary>
-///     Base class for any masquerades. To introduce new ones, make sure you update the custom serializer too.
-/// </summary>
-[DataDefinition]
-public abstract partial class MasqueradeKind
-{
-    public virtual int MinPlayers { get; set; }
-
-    public virtual int? MaxPlayers { get; set; }
-
-    /// <summary>
-    ///     The default mask used for post-start latejoiners.
-    /// </summary>
-    [DataField(readOnly: true, required: true)]
-    public MasqueradeEntry DefaultMask { get; set; } = default!;
-
-    internal virtual void Init() {}
-
-    /// <summary>
-    ///     Attempts to get a mask list for the current player count.
-    /// </summary>
-    /// <remarks>
-    ///     While the masks are random, the order in the output list is not.
-    /// </remarks>
-    public abstract bool TryGetMasks(int playerCount, IRobustRandom rng, IPrototypeManager proto, [NotNullWhen(true)] out List<ProtoId<ESMaskPrototype>>? masks);
-};

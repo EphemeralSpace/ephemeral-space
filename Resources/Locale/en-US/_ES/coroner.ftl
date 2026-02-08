@@ -7,7 +7,7 @@ es-coroner-report-paper = [head=2]Autopsy Report[/head]
     {""}[bold]Hair:[/bold] {CAPITALIZE($hair)}
 
     {""}[bold]Time of Death:[/bold] {$time}
-    {""}[bold]Mask:[/bold] {$mask1} or {$mask2}
+    {""}[bold]Mask:[/bold] {$mask1}
 
 es-coroner-autopsy-fail-not-user = Don't know how!
 es-coroner-autopsy-fail-alive = Not dead!

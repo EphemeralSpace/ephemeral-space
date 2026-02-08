@@ -60,7 +60,9 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         SubscribeLocalEvent<EntityStorageComponent, FoldAttemptEvent>(OnFoldAttempt);
 
         SubscribeLocalEvent<EntityStorageComponent, WeldableAttemptEvent>(OnWeldableAttempt);
-        SubscribeLocalEvent<EntityStorageComponent, BeforeExplodeEvent>(OnExploded);
+// ES START
+        //SubscribeLocalEvent<EntityStorageComponent, BeforeExplodeEvent>(OnExploded);
+// ES END
 
         SubscribeLocalEvent<InsideEntityStorageComponent, EntGotRemovedFromContainerMessage>(OnRemoved);
     }

@@ -22,7 +22,7 @@ public sealed partial class ESCryptoNukeConsoleComponent : Component
     /// Delay between sending UI state updates
     /// </summary>
     [DataField]
-    public TimeSpan UpdateRate = TimeSpan.FromSeconds(2.5f);
+    public TimeSpan UpdateRate = TimeSpan.FromSeconds(0.25f);
 
     /// <summary>
     /// Whether this console has been hacked and compromised.

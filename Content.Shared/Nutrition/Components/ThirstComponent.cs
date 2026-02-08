@@ -48,6 +48,9 @@ public sealed partial class ThirstComponent : Component
 
     [DataField("thresholds")]
     [AutoNetworkedField]
+// ES START
+    [Access(Other = AccessPermissions.ReadExecute)]
+// ES END
     public Dictionary<ThirstThreshold, float> ThirstThresholds = new()
     {
         {ThirstThreshold.OverHydrated, 600.0f},

@@ -11,8 +11,21 @@ namespace Content.Shared._ES.Masks.Masquerades;
 ///     A full set of roles for a masquerade, at different player counts.
 /// </summary>
 [DataDefinition]
-public sealed partial class MasqueradeRoleSet : MasqueradeKind
+public sealed partial class MasqueradeRoleSet
 {
+    public int MinPlayers { get; set; }
+
+    public int? MaxPlayers { get; set; }
+
+    /// <summary>
+    ///     The default mask used for post-start latejoiners.
+    /// </summary>
+    [DataField(readOnly: true, required: true)]
+    public MasqueradeEntry DefaultMask { get; set; } = default!;
+
+    [DataField(readOnly: true)]
+    public MasqueradeEntry? SuperfanTarget { get; set; } = default!;
+
     /// <summary>
     ///     All the roles in this masquerade at given population levels, baked into something easy to use by the game.
     /// </summary>
@@ -27,7 +40,7 @@ public sealed partial class MasqueradeRoleSet : MasqueradeKind
     /// <remarks>
     ///     While the masks are random, the order in the output list is not.
     /// </remarks>
-    public override bool TryGetMasks(int playerCount, IRobustRandom rng, IPrototypeManager proto, [NotNullWhen(true)] out List<ProtoId<ESMaskPrototype>>? masks)
+    public bool TryGetMasks(int playerCount, IRobustRandom rng, IPrototypeManager proto, [NotNullWhen(true)] out List<ProtoId<ESMaskPrototype>>? masks)
     {
         if (!TryGetEntriesForPop(playerCount, out var entries))
         {
@@ -145,7 +158,7 @@ public sealed partial class MasqueradeRoleSet : MasqueradeKind
         public ProtoId<ESMaskSetPrototype> MaskSet { get; } = maskSet;
     }
 
-    internal override void Init()
+    internal void Init()
     {
         // Validation wise, this would have better UX if all this happened at parse time so ValidationNodes could be made.
         // But doing all of this at parse time would have Consequences I don't want to deal with and would significantly
@@ -157,6 +170,10 @@ public sealed partial class MasqueradeRoleSet : MasqueradeKind
 
         DebugTools.Assert(minPlayers > 0, "You can't have any roles without players, minPlayers must be at least 1.");
         DebugTools.Assert(minPlayers == MinPlayers, $"Minimum players should match the first specified set of entries (expected {MinPlayers}, found {minPlayers})");
+
+        DebugTools.AssertEqual(DefaultMask.Count, 1);
+        if (SuperfanTarget is not null)
+            DebugTools.AssertEqual(SuperfanTarget.Count, 1);
 
         var lastAt = minPlayers;
 

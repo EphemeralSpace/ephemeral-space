@@ -1,0 +1,29 @@
+- type: entity
+  id: ESMedkitStabilization
+  parent: Medkit
+  name: stabilization first aid kit
+  description: "An emergency kit containing the necessities for stabilizing somebody in critical condition."
+  suffix: ES
+  components:
+  - type: Sprite
+    state: blackkit
+  - type: Item
+    heldPrefix: blackkit
+    size: Normal
+
+- type: entity
+  id: ESMedkitStabilizationFilled
+  parent: ESMedkitStabilization
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyringeInaprovaline
+        - id: SyringeParacetamol
+        - id: SyringeTramadol
+        - id: EmergencyMedipen
+        - id: Gauze
+        - id: Ointment
+

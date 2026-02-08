@@ -1,0 +1,91 @@
+- type: guideEntry
+  id: OffbrandMedical
+  name: guide-entry-medical
+  text: "/ServerInfo/_Offbrand/Medical.xml"
+  hidden: false
+  children:
+  - OffbrandPhysician
+  - OffbrandChemist
+  - OffbrandParamedic
+  - OffbrandBody
+  - OffbrandMedication
+  - OffbrandSurgery
+  - OffbrandCryostasis
+  - OffbrandTopicals
+  - Cloning
+
+- type: guideEntry
+  id: OffbrandPhysician
+  name: guide-entry-physician
+  hidden: false
+  text: "/ServerInfo/_Offbrand/Physician.xml"
+
+- type: guideEntry
+  id: OffbrandChemist
+  name: guide-entry-chemist
+  text: "/ServerInfo/_Offbrand/Chemist.xml"
+  hidden: false
+  children:
+  - OffbrandChemistMedical
+  - OffbrandChemistBotany
+  - OffbrandChemistAdvancedTopicals
+
+- type: guideEntry
+  id: OffbrandParamedic
+  name: guide-entry-paramedic
+  hidden: false
+  text: "/ServerInfo/_Offbrand/Paramedic.xml"
+
+- type: guideEntry
+  id: OffbrandTopicals
+  name: guide-entry-topicals
+  hidden: false
+  text: "/ServerInfo/_Offbrand/Topicals.xml"
+
+- type: guideEntry
+  id: OffbrandChemistAdvancedTopicals
+  name: guide-entry-chemist-advanced-topicals
+  hidden: false
+  text: "/ServerInfo/_Offbrand/ChemistAdvancedTopicals.xml"
+
+- type: guideEntry
+  id: OffbrandChemistMedical
+  name: guide-entry-chemist-medical
+  hidden: false
+  text: "/ServerInfo/_Offbrand/ChemistMedical.xml"
+
+- type: guideEntry
+  id: OffbrandChemistBotany
+  name: guide-entry-chemist-botany
+  hidden: false
+  text: "/ServerInfo/_Offbrand/ChemistBotany.xml"
+
+- type: guideEntry
+  id: OffbrandBody
+  name: guide-entry-body
+  hidden: false
+  text: "/ServerInfo/_Offbrand/Body.xml"
+
+- type: guideEntry
+  id: OffbrandMedication
+  name: guide-entry-medication
+  hidden: false
+  text: "/ServerInfo/_Offbrand/Medication.xml"
+
+- type: guideEntry
+  id: OffbrandSurgery
+  name: guide-entry-surgery
+  hidden: false
+  text: "/ServerInfo/_Offbrand/Surgery.xml"
+
+- type: guideEntry
+  id: OffbrandCryostasis
+  name: guide-entry-cryostasis
+  hidden: false
+  text: "/ServerInfo/_Offbrand/Cryostasis.xml"
+
+- type: guideEntry
+  id: OffbrandMedicineList
+  name: guide-entry-medicine-list
+  hidden: false
+  text: "/ServerInfo/_Offbrand/MedicineList.xml"

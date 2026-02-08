@@ -54,7 +54,7 @@
     layers:
       - state: green
       - state: clown
-      
+
 - type: entity
   id: ESSpawnPointReporter
   parent: SpawnPointJobBase
@@ -149,7 +149,7 @@
     layers:
       - state: green
       - state: hop
-      
+
 - type: entity
   id: ESSpawnPointHeadOfSecurity
   parent: SpawnPointJobBase
@@ -196,11 +196,11 @@
 - type: entity
   id: ESSpawnPointMedicalDoctor
   parent: SpawnPointJobBase
-  name: medicaldoctor
+  name: physician
   suffix: ES
   components:
   - type: SpawnPoint
-    job_id: ESMedicalDoctor
+    job_id: ESPhysician
   - type: Sprite
     layers:
       - state: green

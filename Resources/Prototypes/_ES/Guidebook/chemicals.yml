@@ -5,12 +5,11 @@
   text: "/ServerInfo/_ES/Guidebook/Chemicals.xml"
   children:
   - ESElements
-  - ESMedicine
+  - OffbrandMedicineList
   - ESNarcotics
   - ESPyrotechnic
   - ESToxins
   - ESFoods
-  - ESBotanical
   - ESBiological
   - ESSpecial
   - ESOthers
@@ -49,13 +48,6 @@
   hidden: false
   name: guide-entry-foods
   text: "/ServerInfo/_ES/Guidebook/ChemicalTabs/Foods.xml"
-  filterEnabled: True
-
-- type: guideEntry
-  id: ESBotanical
-  hidden: false
-  name: guide-entry-botanical
-  text: "/ServerInfo/_ES/Guidebook/Medical/Botanicals.xml"
   filterEnabled: True
 
 - type: guideEntry

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Client.Gameplay;
 using Content.Client.Hands.Systems;
@@ -9,10 +10,12 @@ using Content.Shared.Input;
 using Content.Shared.Light.Components;
 using Content.Shared.Popups;
 using JetBrains.Annotations;
+using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Input.Binding;
+using Robust.Shared.Utility;
 
 namespace Content.Client._ES.Lighting.Ui;
 
@@ -55,8 +58,25 @@ public sealed class ESFlashlightUIController : UIController, IOnStateChanged<Gam
         if (_player.LocalEntity is not { } player)
             return false;
 
-        // Find candidate tanks
-        var lights = new HashSet<(EntityUid Uid, string?)>();
+        if (TryGetFlashlight(out var light))
+        {
+            SendToggleMessage(light.Value);
+        }
+        else
+        {
+            _popup.PopupPredictedCursor(Loc.GetString("es-flashlight-popup-no-flashlight"), player, PopupType.Medium);
+        }
+        return true;
+    }
+
+    public bool TryGetFlashlight([NotNullWhen(true)] out EntityUid? outLight)
+    {
+        outLight = null;
+        if (_player.LocalEntity is not { } player)
+            return false;
+
+        // Find candidate lights
+        var lights = new HashSet<(EntityUid Uid, bool On)>();
         var slotEnumerator = _inventory.GetSlotEnumerator(player);
         while (slotEnumerator.MoveNext(out var inventorySlot))
         {
@@ -64,68 +84,54 @@ public sealed class ESFlashlightUIController : UIController, IOnStateChanged<Gam
                 continue;
 
             // CHECK BOTH FLASHLIGHTS, FOR SOME REASON
-            if (!EntityManager.HasComponent<HandheldLightComponent>(entity) &&
-                !EntityManager.HasComponent<UnpoweredFlashlightComponent>(entity))
-                continue;
-
-            _inventory.TryGetSlot(player, inventorySlot.ID, out var def);
-            var identifier = def?.DisplayName.ToLowerInvariant() ?? string.Empty;
-            lights.Add((entity, identifier));
+            if (EntityManager.TryGetComponent<HandheldLightComponent>(entity, out var handheld))
+            {
+                lights.Add((entity, handheld.Activated));
+            }
+            else if (EntityManager.TryGetComponent<UnpoweredFlashlightComponent>(entity, out var flashlight))
+            {
+                lights.Add((entity, flashlight.LightOn));
+            }
         }
 
         foreach (var handId in _hands.EnumerateHands(player))
         {
-            if (!_hands.TryGetHeldItem(player, handId, out var held) ||
-                !_hands.TryGetHand(player, handId, out var hand))
+            if (!_hands.TryGetHeldItem(player, handId, out var held))
                 continue;
 
             // CHECK BOTH FLASHLIGHTS, FOR SOME REASON
-            if (!EntityManager.HasComponent<HandheldLightComponent>(held) &&
-                !EntityManager.HasComponent<UnpoweredFlashlightComponent>(held))
-                continue;
-
-            // See comment in ESInternalsUIController
-            var slotName = Loc.GetString("es-internals-ui-hand-fmt", ("location", hand.Value.Location.ToString().ToLowerInvariant()));
-            lights.Add((held.Value, slotName));
-        }
-
-        if (EntityManager.HasComponent<HandheldLightComponent>(player) ||
-            EntityManager.HasComponent<UnpoweredFlashlightComponent>(player))
-        {
-            lights.Add((player, null));
-        }
-
-        switch (lights.Count)
-        {
-            case 0:
-                _popup.PopupPredictedCursor(Loc.GetString("es-flashlight-popup-no-flashlight"), player, PopupType.Medium);
-                break;
-            case 1:
-                SendToggleMessage(lights.First().Uid);
-                break;
-            case > 1:
-                _menu?.OpenOverMouseScreenPosition();
-                _menu?.SetButtons(GetButtons(lights));
-                break;
-        }
-        return true;
-    }
-
-    private IEnumerable<RadialMenuOptionBase> GetButtons(HashSet<(EntityUid, string?)> set)
-    {
-        foreach (var (uid, slot) in set)
-        {
-            var metaData = EntityManager.GetComponent<MetaDataComponent>(uid);
-            var tooltip = slot != null
-                ? Loc.GetString("es-internals-ui-name-fmt", ("name", metaData.EntityName), ("slot", slot))
-                : metaData.EntityName;
-            var option = new RadialMenuActionOption<EntityUid>(SendToggleMessage, uid)
+            if (EntityManager.TryGetComponent<HandheldLightComponent>(held, out var handheld))
             {
-                IconSpecifier = RadialMenuIconSpecifier.With(uid),
-                ToolTip = tooltip,
-            };
-            yield return option;
+                lights.Add((held.Value, handheld.Activated));
+            }
+            else if (EntityManager.TryGetComponent<UnpoweredFlashlightComponent>(held, out var flashlight))
+            {
+                lights.Add((held.Value, flashlight.LightOn));
+            }
         }
+
+        {
+            if (EntityManager.TryGetComponent<HandheldLightComponent>(player, out var handheld))
+            {
+                lights.Add((player, handheld.Activated));
+            }
+            else if (EntityManager.TryGetComponent<UnpoweredFlashlightComponent>(player, out var flashlight))
+            {
+                lights.Add((player, flashlight.LightOn));
+            }
+        }
+
+        if (lights.Count == 0)
+            return false;
+
+        if (lights.FirstOrNull(pair => pair.On) is { } light)
+        {
+            outLight = light.Uid;
+            return true;
+        }
+
+        outLight = lights.MaxBy(pair => EntityManager.GetComponentOrNull<PointLightComponent>(pair.Uid)?.Radius ?? 0).Uid;
+        return true;
     }
 
     private void SendToggleMessage(EntityUid uid)

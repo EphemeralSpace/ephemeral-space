@@ -93,6 +93,7 @@
     - id: Wirecutter
     - id: Wrench
     - id: SprayPainter
+    - id: ESAnomalyResonator
 
     - tableId: ESMixedBasicGloves
     - id: ClothingEyesGlassesMeson
@@ -200,7 +201,7 @@
     - id: ClothingMaskMuzzle
     - id: ClothingBeltMedical
     - id: ClothingBeltUtility
-    - id: ClothingHeadHelmetBasic
+    - id: ESClothingHeadHelmetSecurity
 
     - id: DefaultStationBeaconUnanchored
     - id: Soap # TODO: soap pool?
@@ -306,11 +307,11 @@
   id: ESMaintLootRare
   table:
     group:
-    - id: KitchenKnife
+    - id: ESWeaponKnife
+      weight: 2
     - id: Handcuffs
     - id: MakeshiftShield
     - id: WelderIndustrialAdvanced
-    - id: CombatKnife
     - id: BaseBallBat
     - id: Binoculars
 
@@ -320,7 +321,6 @@
     - id: ClothingHandsGlovesCombat
     - id: ClothingBeltSecurity
     - id: ClothingShoesBootsJack
-    - id: ClothingHeadHelmetJustice
 
     - all: # Russian Outfit
       - id: ESClothingHeadUshanka

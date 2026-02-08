@@ -27,7 +27,7 @@
     neck: ClothingNeckTieDet
     belt: ClothingBeltHolster
     jumpsuit: ClothingUniformJumpsuitDetective
-    outerClothing: ClothingOuterCoatDetectiveLoadout
+    outerClothing: ESClothingOuterCoatDetectiveLoadout
     back: ClothingBackpackSecurity
   storage:
     back:

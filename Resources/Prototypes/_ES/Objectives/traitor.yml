@@ -13,7 +13,7 @@
 - type: entity
   parent: ESBaseTraitorObjectiveMinor
   id: ESObjectiveTraitorKillRandom
-  name: Kill a specific member of the crew.
+  name: Kill a specific member of the crew
   description: The syndicate needs to make sure they don't interfere with our plans.
   components:
   - type: ESObjective
@@ -26,6 +26,9 @@
   - type: ESTargetTroupeObjective
     troupe: ESTraitor
     invert: true
+  - type: ESTargetMaskBlacklist
+    maskBlacklist:
+    - ESSyndieSuperfan
   - type: ESKillTargetObjective
 
 ### Sabotage objectives

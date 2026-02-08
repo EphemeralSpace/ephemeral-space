@@ -173,6 +173,43 @@
     energy: 1.6
     color: "#b89f25"
 
+# Anomaly Console
+- type: entity
+  id: ESBaseComputerAnomaly
+  name: anomaly probe console
+  description: A console that synchronizes with the science team's resonators to provide data on portal anomalies across the station.
+  abstract: true
+  suffix: ES
+  components:
+  - type: ESAnomalyConsole
+  - type: ActivatableUI
+    key: enum.ESAnomalyConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ESAnomalyConsoleUiKey.Key:
+        type: ESAnomalyConsoleBui
+  - type: Computer
+    board: ESComputerAnomalyCircuitBoard
+  - type: PointLight
+    color: "#b53ca1"
+
+- type: entity
+  parent: [ ESBaseComputerAnomaly, BaseComputer ]
+  id: ESComputerAnomaly
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: tech_key_off
+    - map: ["computerLayerScreen"]
+      state: artifact
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+
 - type: entity
   id: ESBaseComputerSupplyRequest
   name: supply request console

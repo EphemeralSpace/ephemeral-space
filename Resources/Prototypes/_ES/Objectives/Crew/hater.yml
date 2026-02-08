@@ -1,0 +1,18 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveHaterHate
+  name: Hate on your target
+  description: Make sure your target fails all of their objectives.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Clothing/Mask/clown.rsi
+      state: icon
+  - type: ESTargetObjective
+    title: es-hater-fail-objective-title
+  - type: ESTargetPlayersObjective
+  - type: ESTargetCompleteOwnedObjective
+    invert: true
+    objectiveBlacklist:
+      components: # this will probably infinitely loop if it targets itself?
+      - ESTargetCompleteOwnedObjective

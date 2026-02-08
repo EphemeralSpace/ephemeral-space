@@ -25,7 +25,7 @@
 
 - type: playTimeTracker
   id: ESJobClown
-  
+
 - type: playTimeTracker
   id: ESJobCoroner
 
@@ -42,7 +42,7 @@
   id: ESJobJanitor
 
 - type: playTimeTracker
-  id: ESJobMedicalDoctor
+  id: ESJobPhysician
 
 - type: playTimeTracker
   id: ESJobReporter

@@ -1,0 +1,41 @@
+- type: entity
+  parent: BaseItem
+  id: ESAnomalyResonator
+  name: anomaly resonator
+  description: A high-tech broadcast device capable of emitting and broadcasting unique anomalous signals.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Devices/resonator.rsi
+    layers:
+    - state: resonate
+      map: [ "base" ]
+    - state: zeta
+      map: [ "mode" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        base:
+          True: { state: probe }
+          False: { state: resonate }
+        mode:
+          True: { visible: false }
+          False: { visible: true }
+      enum.ESAnomalyProbeVisuals.Mode:
+        mode:
+          Alpha: { state: alpha }
+          Beta: { state: beta }
+          Gamma: { state: gamma }
+          Delta: { state: delta }
+          Epsilon: { state: epsilon }
+          Zeta: { state: zeta }
+  - type: ItemToggle
+    verbToggleOn: es-anomaly-probe-toggle-verb
+    verbToggleOff: es-anomaly-probe-toggle-verb
+    soundActivate: /Audio/Weapons/click.ogg
+    soundDeactivate: /Audio/Weapons/click.ogg
+  - type: ESAnomalyProbe
+  - type: UseDelay
+    delay: 2.5
+  - type: Item
+    size: Normal

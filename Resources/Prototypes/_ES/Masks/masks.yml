@@ -78,17 +78,6 @@
   color: white
 
 - type: esMask
-  id: ESEmpath
-  name: es-mask-empath-name
-  troupe: ESCrew
-  description: es-mask-empath-desc
-  color: plum
-  components:
-  - type: ActionGrant
-    actions:
-    - ESActionMaskDetectAura
-
-- type: esMask
   id: ESGuzzler
   name: es-mask-guzzler-name
   troupe: ESCrew
@@ -160,16 +149,6 @@
     - id: ESObjectiveSurvive
 
 - type: esMask
-  id: ESSacrifice
-  name: es-mask-sacrifice-name
-  troupe: ESCrew
-  description: es-mask-sacrifice-desc
-  color: lightgoldenrodyellow
-  objectives:
-    all:
-    - id: ESObjectiveSacrificeHeal
-
-- type: esMask
   id: ESVandal
   name: es-mask-vandal-name
   troupe: ESCrew
@@ -220,6 +199,57 @@
   color: peachpuff
   objectives:
     id: ESObjectiveAvengerProtectRandom
+
+- type: esMask
+  id: ESParasite
+  name: es-mask-parasite-name
+  troupe: ESCrew
+  description: es-mask-parasite-desc
+  color: sandybrown
+  weight: 0.5
+  mindComponents:
+  - type: ESParasite
+  objectives:
+    id: ESObjectiveParasiteBeKilled
+
+- type: esMask
+  id: ESHitman
+  name: es-mask-hitman-name
+  troupe: ESCrew
+  description: es-mask-hitman-desc
+  color: crimson
+  mindComponents:
+  - type: ESSpawnTargetDossier
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewHitman
+  objectives:
+    all:
+    - id: ESObjectiveHitmanKillTarget
+    - id: ESObjectiveHitmanKillTarget
+      prob: 0.5
+
+- type: esMask
+  id: ESSecretary
+  name: es-mask-secretary-name
+  troupe: ESCrew
+  description: es-mask-secretary-desc
+  color: palegreen
+  assignmentOrder: 11 # Needs to be assigned after other masks
+  objectives:
+    all:
+    - id: ESObjectiveSecretaryAssist
+
+- type: esMask
+  id: ESHater
+  name: es-mask-hater-name
+  troupe: ESCrew
+  description: es-mask-hater-desc
+  color: lightseagreen
+  assignmentOrder: 11 # Needs to be assigned after other masks
+  objectives:
+    all:
+    - id: ESObjectiveHaterHate
 
 # Traitor Masks
 - type: esMask
@@ -296,7 +326,6 @@
   weight: 0.3
   mindComponents:
   - type: ESMaskCacheSpawner
-    cacheProto: ESCrateCacheTraitorDemolitionist
 
 # Changeling
 - type: esMask
@@ -335,3 +364,12 @@
       - ActionEnterStatis
       Dead:
       - ActionExitStatis
+
+# Neutral/oddball masks
+- type: esMask
+  id: ESSyndieSuperfan
+  name: es-mask-syndie-superfan-name
+  troupe: ESCrew
+  description: es-mask-syndie-superfan-desc
+  mindComponents:
+  - type: ESSuperfan

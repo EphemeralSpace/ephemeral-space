@@ -65,6 +65,9 @@ public sealed class ESCryptoNukeSystem : ESSharedCryptoNukeSystem
                 continue;
             tracker.NextUpdateTime += tracker.UpdateRate;
 
+            if (!UserInterface.IsUiOpen((uid, ui), ESCryptoNukeConsoleUiKey.Key))
+                continue;
+
             UpdateUiState((uid, tracker, ui));
         }
     }

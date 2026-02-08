@@ -26,7 +26,7 @@
           ESAtmosphericTechnician: [ 2, 2 ]
           ESStationEngineer: [ 2, 2 ]
           #medical (4)
-          ESMedicalDoctor: [ 2, 2 ]
+          ESPhysician: [ 2, 2 ]
           ESChemist: [ 1, 1 ]
           ESCoroner: [ 1, 1 ]
           #science (3)

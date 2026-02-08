@@ -2,6 +2,7 @@ using Content.Shared._ES.Coroner.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Buckle.Components;
 using Content.Shared.DoAfter;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Systems;
@@ -17,6 +18,7 @@ public abstract class ESSharedCoronerSystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -48,6 +50,7 @@ public abstract class ESSharedCoronerSystem : EntitySystem
         _audio.PlayPredicted(ent.Comp.AutopsySound, target, args.User);
         var paper = PredictedSpawnNextToOrDrop(ent.Comp.ReportPrototype, target);
         _paper.SetContent(paper, GetReport(target).ToMarkup());
+        _hands.TryPickupAnyHand(args.User, paper, animateUser: true);
         args.Handled = true;
     }
 

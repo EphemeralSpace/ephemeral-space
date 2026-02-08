@@ -337,6 +337,10 @@ public abstract partial class SharedMindSystem : EntitySystem
 
     public virtual void ControlMob(NetUserId user, EntityUid target) {}
 
+    // ES START
+    public virtual void SwapMinds(EntityUid mindOne, EntityUid bodyOne, EntityUid mindTwo, EntityUid bodyTwo) {}
+    // ES END
+
     /// <summary>
     /// Tries to create and add an objective from its prototype id.
     /// </summary>
