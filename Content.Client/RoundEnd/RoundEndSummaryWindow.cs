@@ -6,6 +6,9 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
+// ES START
+using Content.Client._ES.Core;
+// ES END
 
 namespace Content.Client.RoundEnd
 {
@@ -82,7 +85,9 @@ namespace Content.Client.RoundEnd
             if (!string.IsNullOrEmpty(roundEnd))
             {
                 var roundEndLabel = new RichTextLabel();
-                roundEndLabel.SetMarkup(roundEnd);
+// ES START
+                roundEndLabel.UnsafeSetMarkup(roundEnd);
+// ES END
                 roundEndSummaryContainer.AddChild(roundEndLabel);
             }
 
