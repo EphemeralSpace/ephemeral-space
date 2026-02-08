@@ -42,7 +42,8 @@ public partial class SharedStaminaSystem
         RaiseLocalEvent(entity, ref ev);
 
 // ES START
-        entity.Comp.CritThreshold = ev.ThresholdValue * ev.Modifier ?? 1;
+        ev.Modifier ??= 1; // default to 1 if there's no modified.
+        entity.Comp.CritThreshold = ev.ThresholdValue * ev.Modifier.Value;
         Dirty(entity);
 // ES END
     }
