@@ -1,0 +1,48 @@
+- type: entity
+  parent: BaseStructure
+  id: ESHypersleepPod
+  name: hypersleep pod
+  description: A long-term storage container used for transporting unsuspecting crew to their doom.
+  suffix: ES
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/cryostorage.rsi
+    layers:
+    - state: sleeper_0
+      map: ["base"]
+  - type: Appearance
+  - type: ESItemMapper
+    mappings:
+      base:
+      - containerId: storage
+        state: sleeper_1
+      - containerId: storage #base empty state
+        state: sleeper_0
+        range:
+          min: 0
+          max: 0
+  - type: ContainerSpawnPoint
+    containerId: storage
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.05"
+        density: 190
+        mask:
+        - TableMask
+  - type: DragInsertContainer
+    containerId: storage
+    entryDelay: 2
+  - type: ExitContainerOnMove
+    containerId: storage
+  - type: PointLight
+    color: Lime
+    radius: 1.5
+    energy: 0.5
+    castShadows: false
+  - type: ContainerContainer
+    containers:
+      storage: !type:ContainerSlot

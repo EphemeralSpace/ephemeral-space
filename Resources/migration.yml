@@ -309,6 +309,10 @@ Tourniquet: TourniquetOffbrand
 ESWardrobeMedicalDoctorFilled: ESWardrobePhysicianFilled
 ESWardrobeMedicalDoctor: ESWardrobePhysician
 
+# 2026-2-8
+CryogenicSleepUnitSpawner: ESHypersleepPod # this one is used for arrivals
+CryogenicSleepUnit: null
+CryogenicSleepUnitSpawnerLateJoin: null
 # ES END
 
 # 2023-07-03

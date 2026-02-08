@@ -6,12 +6,12 @@ using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
+using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.CCVar;
 using Content.Shared._ES.Light.Components;
-using Content.Shared.Bed.Cryostorage;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Gravity;
@@ -138,14 +138,14 @@ public sealed class ESArrivalsSystem : EntitySystem
         if (!TryComp<ESStationArrivalsComponent>(ev.Station, out var arrivals) || arrivals.ShuttleUid is not { } grid)
             return;
 
-        var points = EntityQueryEnumerator<CryostorageComponent, TransformComponent>();
+        var points = EntityQueryEnumerator<ContainerSpawnPointComponent, TransformComponent>();
         var possiblePositions = new List<(EntityUid, BaseContainer)>();
-        while (points.MoveNext(out var uid, out var cryo, out var xform))
+        while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
         {
             if (xform.GridUid != grid)
                 continue;
 
-            if (!_container.TryGetContainer(uid, cryo.ContainerId, out var container) || container.ContainedEntities.Any())
+            if (!_container.TryGetContainer(uid, spawnPoint.ContainerId, out var container) || container.ContainedEntities.Any())
                 continue;
 
             possiblePositions.Add((uid, container));
