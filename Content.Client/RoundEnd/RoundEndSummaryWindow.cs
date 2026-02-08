@@ -51,7 +51,10 @@ namespace Content.Client.RoundEnd
             var roundEndSummaryContainerScrollbox = new ScrollContainer
             {
                 VerticalExpand = true,
-                Margin = new Thickness(10)
+// ES START
+                Margin = new Thickness(10),
+                HScrollEnabled = false, // did you know that if this isn't set, richtext will never wrap?
+// ES END
             };
             var roundEndSummaryContainer = new BoxContainer
             {

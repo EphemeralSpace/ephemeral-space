@@ -15,6 +15,7 @@ using Content.Shared.Roles.Components;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks;
 
@@ -78,13 +79,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
                     ? _player.GetPlayerData(mindComp.OriginalOwnerUserId.Value).UserName
                     : Loc.GetString("generic-unknown-title");
 
-                var maskName = TryGetMask((mind, mindComp), out var mask)
-                    ? Loc.GetString(PrototypeManager.Index(mask.Value).Name)
-                    : Loc.GetString("generic-unknown-title");
-
-                var maskColor = mask == null
-                    ? Color.White
-                    : PrototypeManager.Index(mask).Color;
+                var maskName = GetMaskMemoryString(mind);
 
                 // get mask-specific objectives
                 var objectives = Objective.GetObjectives(mind)
@@ -94,7 +89,6 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
                 ev.AddLine(Loc.GetString("es-roundend-mask-player-summary",
                     ("name", character.Name),
                     ("username", username),
-                    ("maskColor", maskColor),
                     ("maskName", maskName),
                     ("objCount", objectives.Count)));
 
@@ -106,6 +100,39 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
             }
             ev.AddLine(string.Empty);
         }
+    }
+
+    /// <summary>
+    /// Formats all masks a mind has owned in the form {mask1}-turned-{mask2}-turned-{mask3} and so on.
+    /// </summary>
+    public string GetMaskMemoryString(Entity<ESMaskMemoryComponent?> mind)
+    {
+        if (!Resolve(mind, ref mind.Comp, false))
+            return Loc.GetString("generic-unknown-title");
+
+        // You should always have SOME mask
+        DebugTools.Assert(mind.Comp.Masks.Count != 0);
+
+        var firstMask = PrototypeManager.Index(mind.Comp.Masks.First());
+
+        var outString = Loc.GetString("es-roundend-mask-fmt",
+            ("name", Loc.GetString(firstMask.Name)),
+            ("color", firstMask.Color));
+
+        for (var i = 1; i < mind.Comp.Masks.Count; ++i)
+        {
+            var mask = PrototypeManager.Index(mind.Comp.Masks[i]);
+            var maskString = Loc.GetString("es-roundend-mask-fmt",
+                ("name", Loc.GetString(mask.Name)),
+                ("color", mask.Color));
+
+            // Chain all the masks together.
+            outString = Loc.GetString("es-roundend-mask-link-fmt",
+                ("mask1", outString),
+                ("mask2", maskString));
+        }
+
+        return outString;
     }
 
     private void OnGameRuleStarted(Entity<ESTroupeRuleComponent> ent, ref GameRuleStartedEvent args)
@@ -204,6 +231,9 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
             EnsureComp<ESBodyLastMaskComponent>(ownedEntity).LastMask = mask;
         }
         EntityManager.AddComponents(mind, mask.MindComponents);
+
+        var memoryComponent = EnsureComp<ESMaskMemoryComponent>(mind);
+        memoryComponent.Masks.Add(mask);
 
         troupe.Value.Comp.TroupeMemberMinds.Add(mind);
         Objective.RegenerateObjectiveList(mind.Owner);
