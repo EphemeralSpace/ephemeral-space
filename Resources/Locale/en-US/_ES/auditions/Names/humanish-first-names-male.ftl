@@ -464,3 +464,13 @@ es-names-first-dataset-male-451 = Mao
 es-names-first-dataset-male-452 = Ziyan
 es-names-first-dataset-male-453 = Qin
 es-names-first-dataset-male-454 = Qing
+# 2026-01-23
+es-names-first-dataset-male-455 = Geeman
+es-names-first-dataset-male-456 = Caine
+es-names-first-dataset-male-457 = Spike
+es-names-first-dataset-male-458 = Giuseppe
+es-names-first-dataset-male-459 = Ploink
+es-names-first-dataset-male-460 = Havoc
+es-names-first-dataset-male-461 = Herschel
+es-names-first-dataset-male-462 = Spaghetti
+es-names-first-dataset-male-463 = Linguini

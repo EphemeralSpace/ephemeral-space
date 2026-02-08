@@ -13,7 +13,7 @@ public enum ESStagehandUiKey : byte
 }
 
 [Serializable, NetSerializable]
-public sealed class ESWarpToMindMessage : BoundUserInterfaceMessage
+public sealed class ESStagehandWarpMessage : BoundUserInterfaceMessage
 {
-    public NetEntity Mind;
+    public NetEntity Target;
 }

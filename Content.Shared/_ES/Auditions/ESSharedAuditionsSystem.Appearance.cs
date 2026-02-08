@@ -167,18 +167,18 @@ public abstract partial class ESSharedAuditionsSystem
     }
 
     private const float GenderlessFirstNameChance = 0.5f; // the future is woke
-    private const float DoubleFirstNameChance = 0.015f;
-    private const float HyphenatedFirstMiddleNameChance = 0.015f;
-    private const float QuotedMiddleNameChance = 0.03f;
-    private const float HyphenatedLastNameChance = 0.05f;
+    private const float DoubleFirstNameChance = 0.01f;
+    private const float HyphenatedFirstMiddleNameChance = 0.01f;
+    private const float QuotedMiddleNameChance = 0.01f;
+    private const float HyphenatedLastNameChance = 0.03f;
     private const float AbbreviatedMiddleChance = 0.07f;
-    private const float AbbreviatedFirstMiddleChance = 0.07f;
+    private const float AbbreviatedFirstMiddleChance = 0.085f;
     private const float AbbreviatedFirstMiddleAltChance = 0.4f;
     private const float ParticleChance = 0.025f;
-    private const float SuffixChance = 0.05f;
-    private const float PrefixChance = 0.07f;
-    private const float PrefixGenderlessChance = 0.6f;
-    private const float PrefixFirstNameless = 0.5f;
+    private const float SuffixChance = 0.04f;
+    private const float PrefixChance = 0.09f;
+    private const float PrefixGenderlessChance = 0.65f;
+    private const float PrefixFirstNameless = 0.7f;
     private const float LastNameless = 0.009f;
     private const float FirstNameless = 0.006f;
     private const int AlliterationTotalChances = 6;

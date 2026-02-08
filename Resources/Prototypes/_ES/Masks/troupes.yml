@@ -25,6 +25,7 @@
   - ESWarden
   - ESSecurityOfficer
   - ESDetective
+  disguisedMaskName: es-news-disguise-traitors
   objectives:
     all:
     - pick:

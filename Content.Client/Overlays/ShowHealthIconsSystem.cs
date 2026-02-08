@@ -5,8 +5,9 @@ using Content.Shared.Overlays;
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
-using System.Linq;
 using Content.Shared.Damage.Components;
+using Content.Shared._Offbrand.Wounds; // Offbrand
+using Content.Shared.Mobs; // Offbrand
 
 namespace Content.Client.Overlays;
 
@@ -32,9 +33,13 @@ public sealed class ShowHealthIconsSystem : EquipmentHudSystem<ShowHealthIconsCo
     {
         base.UpdateInternal(component);
 
-        foreach (var damageContainerId in component.Components.SelectMany(x => x.DamageContainers))
+        DamageContainers.Clear();
+        foreach (var comp in component.Components)
         {
-            DamageContainers.Add(damageContainerId);
+            foreach (var damageContainerId in comp.DamageContainers)
+            {
+                DamageContainers.Add(damageContainerId);
+            }
         }
     }
 
@@ -60,8 +65,40 @@ public sealed class ShowHealthIconsSystem : EquipmentHudSystem<ShowHealthIconsCo
         args.StatusIcons.AddRange(healthIcons);
     }
 
+    // Begin Offbrand
+    private List<HealthIconPrototype> DecideBrainHealthIcons(Entity<BrainDamageComponent, BrainDamageThresholdsComponent> ent)
+    {
+        if (ent.Comp2.CurrentState == MobState.Dead)
+        {
+            return new() { _prototypeMan.Index(ent.Comp2.DeadIcon) };
+        }
+
+        var current = ent.Comp1.Damage;
+        var max = ent.Comp1.MaxDamage;
+
+        if (ent.Comp2.CurrentState == MobState.Critical || ent.Comp1.Oxygen == 0)
+        {
+            var amount = ent.Comp2.CriticalDamageIcons.Count;
+            var idx = Math.Clamp((int)Math.Floor(amount - (amount / max.Double()) * current.Double()), 0, amount-1);
+            return new() { _prototypeMan.Index(ent.Comp2.CriticalDamageIcons[idx]) };
+        }
+        else
+        {
+            var amount = ent.Comp2.AliveDamageIcons.Count;
+            var idx = Math.Clamp((int)Math.Floor(amount - (amount / max.Double()) * current.Double()), 0, amount-1);
+            return new() { _prototypeMan.Index(ent.Comp2.AliveDamageIcons[idx]) };
+        }
+    }
+    // End Offbrand
+
     private IReadOnlyList<HealthIconPrototype> DecideHealthIcons(Entity<DamageableComponent> entity)
     {
+        if (TryComp<BrainDamageComponent>(entity, out var brain) &&
+            TryComp<BrainDamageThresholdsComponent>(entity, out var thresholds))
+        {
+            return DecideBrainHealthIcons((entity.Owner, brain, thresholds));
+        }
+
         var damageableComponent = entity.Comp;
 
         if (damageableComponent.DamageContainerID == null ||

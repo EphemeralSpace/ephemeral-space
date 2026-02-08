@@ -13,19 +13,34 @@
     - timeBeforeEnd: 30m
       announcementText: es-radstorm-30min-announcement
       announcementSound: /Audio/_ES/Announcements/radstorm_30mins.ogg
+    - timeBeforeEnd: 22m
+      announcementSound:
+        collection: ESAmbienceRadstorm
     - timeBeforeEnd: 15m
       announcementText: es-radstorm-15min-announcement
       announcementDistortion: 0.1
       announcementSound: /Audio/_ES/Announcements/radstorm_15mins.ogg
       mapLight: "#003805ff"
+    - timeBeforeEnd: 12m
+      announcementSound:
+        collection: ESAmbienceRadstorm
+    - timeBeforeEnd: 8m
+      announcementSound:
+        collection: ESAmbienceRadstorm
     - timeBeforeEnd: 5m
       announcementText: es-radstorm-5min-announcement
       announcementDistortion: 0.4
       announcementSound: /Audio/_ES/Announcements/radstorm_5mins.ogg
-      mapLight: "#00a80eff"
+      mapLight: "#689a64ff"
+      spaceDangerous: true
+    - timeBeforeEnd: 4m
+      announcementSound:
+        collection: ESAmbienceRadstorm
+    - timeBeforeEnd: 110s
+      announcementSound: /Audio/_ES/Music/radstorm-end.ogg
     - timeBeforeEnd: 1s
       announcementText: es-radstorm-starting-announcement
       announcementSound: /Audio/_ES/Announcements/radstorm_start.ogg
       announcementDistortion: 0.8
-      forceStationLightColor: "#3c923aff"
-      mapLight: "#00ff15ff"
+      forceStationLightColor: "#436d41ff"
+      mapLight: "#3da63aff"

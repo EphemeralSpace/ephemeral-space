@@ -219,11 +219,27 @@ public record struct BeforeDamageChangedEvent(DamageSpecifier Damage, EntityUid?
 public sealed class DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null)
     : EntityEventArgs, IInventoryRelayEvent
 {
-    // Whenever locational damage is a thing, this should just check only that bit of armour.
+    /// <inheritdoc/>
+    /// <remarks>
+    ///     Whenever locational damage is a thing, this should just check only that bit of armor.
+    /// </remarks>
     public SlotFlags TargetSlots => ~SlotFlags.POCKET;
 
+    /// <summary>
+    ///     Contains the original damage, prior to any modifers.
+    /// </summary>
     public readonly DamageSpecifier OriginalDamage = damage;
+
+    /// <summary>
+    ///     Contains the damage after modifiers have been applied.
+    ///     This is the damage that will be inflicted.
+    /// </summary>
     public DamageSpecifier Damage = damage;
+
+    /// <summary>
+    ///     Contains the entity which caused the damage, if any was responsible.
+    /// </summary>
+    public readonly EntityUid? Origin = origin;
 }
 
 public sealed class DamageChangedEvent : EntityEventArgs
@@ -261,6 +277,11 @@ public sealed class DamageChangedEvent : EntityEventArgs
     /// </summary>
     public readonly EntityUid? Origin;
 
+    /// <summary>
+    ///     Offbrand - If this damage changed happened as part of a forced refresh
+    /// </summary>
+    public readonly bool ForcedRefresh;
+
 // ES START
     /// <summary>
     ///     The physical object which caused the change in damage.
@@ -274,20 +295,21 @@ public sealed class DamageChangedEvent : EntityEventArgs
     /// </summary>
     public readonly EntityUid? Weapon;
 // ES END
+
     public DamageChangedEvent(
         DamageableComponent damageable,
         DamageSpecifier? damageDelta,
         bool interruptsDoAfters,
-// ES START
         EntityUid? origin,
+        bool forcedRefresh,
         EntityUid? source,
         EntityUid? weapon
-// ES END
     )
     {
         Damageable = damageable;
         DamageDelta = damageDelta;
         Origin = origin;
+        ForcedRefresh = forcedRefresh; // Offbrand
 // ES START
         Source = source;
         Weapon = weapon;

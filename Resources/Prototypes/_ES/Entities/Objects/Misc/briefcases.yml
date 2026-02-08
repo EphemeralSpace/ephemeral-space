@@ -1,0 +1,10 @@
+- type: entity
+  parent: BriefcaseBrown
+  id: ESBriefcaseBlack
+  name: black briefcase
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Storage/Briefcases/briefcase_black.rsi
+  - type: Item
+    sprite: _ES/Objects/Storage/Briefcases/briefcase_black.rsi

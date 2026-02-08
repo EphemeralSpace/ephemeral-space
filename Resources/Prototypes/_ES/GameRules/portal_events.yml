@@ -14,7 +14,6 @@
     table:
       group:
       - id: AnomalyPyroclastic
-      - id: AnomalyGravity
       - id: AnomalyElectricity
       - id: AnomalyFlesh
       - id: AnomalyBluespace
@@ -27,7 +26,6 @@
         - id: AnomalyRockQuartz
         - id: AnomalyRockUranium
         - id: AnomalyRockBananium
-      - id: AnomalyLiquid
       - id: AnomalyFlora
   - type: ESTimedDespawn
     lifetime: 1.0

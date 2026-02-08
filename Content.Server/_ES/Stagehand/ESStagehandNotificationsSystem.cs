@@ -91,8 +91,8 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
             case { NewProgress: >= 1f, OldProgress: < 1f }:
                 msgId = "es-stagehand-notification-objective-completed";
                 break;
-            // failed (1 -> <1, technically reversible so multiple msgs could spawn but cant think of any situations where that would actually occur?)
-            case { NewProgress: < 1f, OldProgress: >= 1f }:
+            // failed
+            case { NewProgress: <= 0f, OldProgress: > 0f }:
                 msgId = "es-stagehand-notification-objective-failed";
                 break;
             default:

@@ -201,6 +201,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         {
             EntityManager.SpawnInBag(_entityTable.GetSpawns(mask.Gear), ownedEntity);
             EntityManager.AddComponents(ownedEntity, mask.Components);
+            EnsureComp<ESBodyLastMaskComponent>(ownedEntity).LastMask = mask;
         }
         EntityManager.AddComponents(mind, mask.MindComponents);
 
@@ -219,7 +220,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
         var mask = PrototypeManager.Index(maskId);
 
-        Role.MindRemoveRole(mind!, new EntProtoId<MindRoleComponent>(MindRole));
+        Role.MindRemoveRole(mind.AsNullable(), new EntProtoId<MindRoleComponent>(MindRole));
 
         if (mind.Comp.OwnedEntity is { } ownedEntity)
         {
@@ -238,6 +239,14 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         }
 
         Objective.RegenerateObjectiveList(mind.Owner);
+    }
+
+    public override void ChangeMask(Entity<MindComponent> mind,
+        ProtoId<ESMaskPrototype> maskId,
+        Entity<ESTroupeRuleComponent>? troupe = null)
+    {
+        RemoveMask(mind);
+        ApplyMask(mind, maskId, troupe);
     }
 }
 

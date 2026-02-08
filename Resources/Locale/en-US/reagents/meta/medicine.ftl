@@ -111,7 +111,7 @@ reagent-name-saline = saline
 reagent-desc-saline = A mixture of salt and water. Commonly used to treat dehydration or low fluid presence in blood.
 
 reagent-name-lacerinol = lacerinol
-reagent-desc-lacerinol = A fairly unreactive chemical that boosts collagen sythesis to incredible levels, healing slash trauma.
+reagent-desc-lacerinol = A fairly unreactive chemical that boosts collagen synthesis to incredible levels, healing slash trauma.
 
 reagent-name-puncturase = puncturase
 reagent-name-puncturase-tranexamic = puncturase & tranexamic
@@ -131,19 +131,22 @@ reagent-name-insuzine = insuzine
 reagent-desc-insuzine = Rapidly repairs dead tissue caused by electrocution, but cools you slightly. Completely freezes the patient when overdosed.
 
 reagent-name-opporozidone = opporozidone
-reagent-desc-opporozidone= A difficult to synthesize cryogenic drug used to regenerate rotting tissue and brain matter.
+# Offbrand edit
+reagent-desc-opporozidone= A difficult to synthesize cryogenic drug used to efficiently regenerate brain matter.
 
 reagent-name-arcryox = arcryox
 reagent-desc-arcryox = A sickeningly blue cryogenics chemical that is able to heal extreme wounds even on the dead. It has trouble stabilizing patients however.
 
 reagent-name-necrosol = necrosol
-reagent-desc-necrosol = A necrotic substance that seems to be able to heal frozen corpses. It can treat and rejuvenate plants when applied in small doses.
+# Offbrand edit
+reagent-desc-necrosol = A necrotic substance that seems to be able to heal frozen corpses and regenerate rotting flesh. It can treat and rejuvenate plants when applied in small doses.
 
 reagent-name-aloxadone = aloxadone
 reagent-desc-aloxadone = A cryogenics chemical. Used to treat severe burns and frostbite via regeneration of the affected tissue. Works regardless of the patient being alive or dead.
 
 reagent-name-mannitol = mannitol
-reagent-desc-mannitol = Efficiently restores brain damage.
+# Offbrand edit
+reagent-desc-mannitol = Aids the body in regenerating brain tissue, but causes nausea.
 
 reagent-name-psicodine = psicodine
 reagent-desc-psicodine = Suppresses anxiety and other various forms of mental distress. Overdose causes hallucinations and minor toxin damage.

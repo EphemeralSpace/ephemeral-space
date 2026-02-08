@@ -109,9 +109,12 @@ public sealed class RadioSystem : EntitySystem
     /// <summary>
     /// Send radio message to all active radio listeners
     /// </summary>
-    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, bool escapeMarkup = true)
+    // ES START
+    // force message
+    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, bool escapeMarkup = true, bool force = false)
     {
-        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup);
+        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, force: force);
+    // ES END
     }
 
     /// <summary>
@@ -119,7 +122,10 @@ public sealed class RadioSystem : EntitySystem
     /// </summary>
     /// <param name="messageSource">Entity that spoke the message</param>
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
-    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, bool escapeMarkup = true)
+    // ES START
+    // force message
+    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, bool escapeMarkup = true, bool force = false)
+    // ES END
     {
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
@@ -163,7 +169,10 @@ public sealed class RadioSystem : EntitySystem
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
         RaiseLocalEvent(ref sendAttemptEv);
         RaiseLocalEvent(radioSource, ref sendAttemptEv);
-        var canSend = !sendAttemptEv.Cancelled;
+        // ES START
+        // forcing
+        var canSend = !sendAttemptEv.Cancelled || force;
+        // ES END
 
         var sourceMapId = Transform(radioSource).MapID;
         var hasActiveServer = HasActiveServer(sourceMapId, channel.ID);

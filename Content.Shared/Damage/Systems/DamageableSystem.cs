@@ -47,8 +47,9 @@ public sealed partial class DamageableSystem : EntitySystem
         Entity<DamageableComponent> ent,
         DamageSpecifier? damageDelta = null,
         bool interruptsDoAfters = true,
-// ES START
         EntityUid? origin = null,
+        bool forceRefresh = false, // Offbrand
+// ES START
         EntityUid? source = null,
         EntityUid? weapon = null
 // ES END
@@ -71,7 +72,7 @@ public sealed partial class DamageableSystem : EntitySystem
         // TODO DAMAGE
         // byref struct event.
 // ES START
-        RaiseLocalEvent(ent, new DamageChangedEvent(ent.Comp, damageDelta, interruptsDoAfters, origin, source, weapon));
+        RaiseLocalEvent(ent, new DamageChangedEvent(ent.Comp, damageDelta, interruptsDoAfters, origin, forceRefresh, source, weapon));
 // ES END
     }
 

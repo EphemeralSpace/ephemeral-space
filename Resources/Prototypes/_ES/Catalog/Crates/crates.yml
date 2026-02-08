@@ -16,7 +16,7 @@
           amount: 2
         - id: CableApcStack
           amount: 2
-          
+
 - type: entity
   parent: CrateGenericSteel
   id: ESCrateMaterialGlass
@@ -29,7 +29,7 @@
       entity_storage:
         id: SheetGlass
         amount: 3
-        
+
 - type: entity
   parent: CrateGenericSteel
   id: ESCrateMaterialSteel
@@ -42,7 +42,7 @@
       entity_storage:
         id: SheetSteel
         amount: 3
-        
+
 - type: entity
   parent: CrateGenericSteel
   id: ESCrateMaterialPlastic
@@ -55,7 +55,7 @@
       entity_storage:
         id: SheetPlastic
         amount: 3
-        
+
 - type: entity
   parent: CrateGenericSteel
   id: ESCrateMaterialPlasteel
@@ -97,6 +97,7 @@
         all:
         - id: MedkitFilled
           amount: 2
+        - id: ESMedkitStabilizationFilled
         - id: Gauze
           amount: 2
         - id: Bloodpack
@@ -155,9 +156,9 @@
     containers:
       entity_storage:
         all:
-        - id: ClothingOuterArmorBasic
+        - id: ESClothingOuterArmorSecurity
           amount: 2
-        - id: ClothingHeadHelmetBasic
+        - id: ESClothingHeadHelmetSecurity
           amount: 2
 
 - type: entity
@@ -221,7 +222,7 @@
         all:
         - id: ESShotgunShellsBoxBuckshot
         - id: ESWeaponShotgun
-        
+
 - type: entity
   parent: CrateSecurityNonlethal
   id: ESCrateSecurityNonlethals
@@ -319,7 +320,7 @@
         - id: BoxLightbulb
 
 #General
-  
+
 - type: entity
   parent: CrateGenericSteel
   id: ESGeneralToolsCrate
@@ -357,15 +358,15 @@
           amount: 2
         - id: FireExtinguisher
           amount: 2
-        - id: ClothingHeadHelmetFire
+        - id: ESClothingHeadHelmetFire
           amount: 2
         - id: ClothingMaskGas
           amount: 2
-        - id: ClothingOuterSuitFire
+        - id: ESClothingOuterSuitFire
           amount: 2
         - id: OxygenTankFilled
           amount: 2
-          
+
 - type: entity
   parent: CrateInternals
   id: ESCrateEmergencyEVA

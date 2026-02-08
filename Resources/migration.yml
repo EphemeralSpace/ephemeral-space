@@ -242,6 +242,73 @@ ChemDispenser: ESChemDispenser
 # 2026-1-12
 ESMachineScienceTelepad: null
 
+# 2026-1-20
+ESGasThruster: null
+ESEngineThrusterIon: null
+ESEngineThrusterGas: null
+
+# 2026-1-24
+ClothingOuterCoatDetective: ESClothingOuterCoatDetective
+ClothingOuterCoatDetectiveLoadout: ESClothingOuterCoatDetectiveLoadout
+ClothingOuterCoatDetectiveGrey: ESClothingOuterCoatDetectiveGrey
+
+# 2026-1-25
+ClothingOuterArmorBasic: ESClothingOuterArmorSecurity
+ClothingOuterArmorBasicSlim: ESClothingOuterArmorSecurity
+ClothingOuterVestDetective: ESClothingOuterArmorDetective
+ClothingOuterCoatWarden: ESClothingOuterCoatWarden
+ClothingOuterCoatHoSTrench: ESClothingOuterCoatHoSTrench
+ClothingOuterArmorCaptainCarapace: ESClothingOuterArmorCaptainCarapace
+WardrobeSecurityFilled: ESWardrobeSecurityFilled
+
+# 2026-2-02
+ESClothingHeadHelmetSpaceEngineering: ESClothingHeadHelmetSpace
+
+# 2026-2-03
+LockerAtmosphericsFilled: ESLockerAtmosphericsFilled
+
+# 2026-2-4
+WardrobeBotanistFilled: ESWardrobeBotanistFilled
+WardrobeMedicalDoctorFilled: ESWardrobePhysicianFilled
+WardrobeScienceFilled: ESWardrobeScienceFilled
+DresserHeadOfPersonnelFilled: ESDresserHeadOfPersonnelFilled
+DresserHeadOfSecurityFilled: ESDresserHeadOfSecurityFilled
+DresserCaptainFilled: ESDresserCaptainFilled
+WardrobePrisonFilled: ESWardrobePrisonFilled
+WardrobeCargoFilled: ESWardrobeCargoFilled
+WardrobeEngineeringFilled: ESWardrobeEngineeringFilled
+WardrobeTheaterFilled: ESWardrobeTheatreFilled
+
+# 2026-2-5
+ClothingHandsGlovesColorOrange: ESClothingHandsGlovesColorOrange
+ClothingHeadHelmetFire: ESClothingHeadHelmetFire
+ClothingHeadHelmetAtmosFire: ESClothingHeadHelmetFire
+ClothingOuterSuitFire: ESClothingOuterSuitFire
+ClothingOuterSuitAtmosFire: ESClothingOuterSuitFire
+ClothingOuterSuitRad: ESClothingOuterSuitRadiation
+ClothingHeadHatHoodBioGeneral: ESClothingHeadHatHoodBio
+ClothingOuterBioGeneral: ESClothingOuterSuitBio
+# There are so many fucking biosuits
+ClothingHeadHatHoodBioCmo: ESClothingHeadHatHoodBio
+ClothingOuterBioCmo: ESClothingOuterSuitBio
+ClothingHeadHatHoodBioJanitor: ESClothingHeadHatHoodBio
+ClothingOuterBioJanitor: ESClothingOuterSuitBio
+ClothingHeadHatHoodBioScientist: ESClothingHeadHatHoodBio
+ClothingOuterBioScientist: ESClothingOuterSuitBio
+ClothingHeadHatHoodBioSecurity: ESClothingHeadHatHoodBio
+ClothingOuterBioSecurity: ESClothingOuterSuitBio
+ClothingHeadHatHoodBioVirology: ESClothingHeadHatHoodBio
+ClothingOuterBioVirology: ESClothingOuterSuitBio
+ClosetL3VirologyFilled: ClosetL3Filled
+ClosetL3SecurityFilled: ClosetL3Filled
+ClosetL3JanitorFilled: ClosetL3Filled
+ClosetL3ScienceFilled: ClosetL3Filled
+
+# 2026-2-6 Offbrand/ES
+Tourniquet: TourniquetOffbrand
+ESWardrobeMedicalDoctorFilled: ESWardrobePhysicianFilled
+ESWardrobeMedicalDoctor: ESWardrobePhysician
+
 # ES END
 
 # 2023-07-03
@@ -958,6 +1025,9 @@ ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
 # 2025-08-29
 PrefilledSyringe: Syringe
 
+# 2025-09-12
+BaseChemistryEmptyVial: ChemistryEmptyVial
+
 # 2025-10-6
 BibleTanakh: null
 BibleSatanic: null
@@ -995,3 +1065,10 @@ SpawnPointBoxer: null
 FigureSpawner: MechFigurineSpawner50
 ToySpawner: PlushieSpawner50
 SpacemenFigureSpawner: SpacemenFigurineSpawner90
+
+# 2026-01-07
+HandheldHealthAnalyzerUnpowered: HandheldHealthAnalyzer
+HandheldHealthAnalyzerEmpty: HandheldHealthAnalyzer
+
+#2026-01-09
+BorgModuleAdvancedChemical: BorgModuleAdvancedTopical

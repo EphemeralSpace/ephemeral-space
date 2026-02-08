@@ -16,6 +16,7 @@ map_pool = "ESMapPool"
 defaultpreset = "ESMasqueradeManaged"
 fallbackpreset = "ESTraitors,ESExtended"
 role_timers = false
+contraband_examine = false
 
 # No mob crawling + mob push tweaks
 [movement]

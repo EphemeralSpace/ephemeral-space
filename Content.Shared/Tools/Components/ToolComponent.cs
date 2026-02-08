@@ -16,7 +16,7 @@ public sealed partial class ToolComponent : Component
     ///     For tool interactions that have a delay before action this will modify the rate, time to wait is divided by this value
     /// </summary>
     [DataField]
-    public float SpeedModifier  = 1;
+    public float SpeedModifier = 1f;
 
     [DataField]
     public SoundSpecifier? UseSound;
@@ -26,10 +26,11 @@ public sealed partial class ToolComponent : Component
 /// Attempt event called *before* any do afters to see if the tool usage should succeed or not.
 /// Raised on both the tool and then target.
 /// </summary>
-public sealed class ToolUseAttemptEvent(EntityUid user, float fuel) : CancellableEntityEventArgs
+public sealed class ToolUseAttemptEvent(EntityUid user, float fuel, EntityUid? target) : CancellableEntityEventArgs // Offbrand
 {
     public EntityUid User { get; } = user;
     public float Fuel = fuel;
+    public EntityUid? Target { get; } = target; // Offbrand
 }
 
 /// <summary>

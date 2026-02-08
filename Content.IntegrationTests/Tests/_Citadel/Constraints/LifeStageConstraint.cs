@@ -1,19 +1,24 @@
+#nullable enable
 using NUnit.Framework.Constraints;
 using Robust.Shared.GameObjects;
 using Robust.UnitTesting;
 
 namespace Content.IntegrationTests.Tests._Citadel.Constraints;
 
-public sealed class LifeStageConstraint(EntityLifeStage stage, IIntegrationInstance instance) : GameConstraint(instance)
+/// <summary>
+///     A constraint for an entity's lifestage.
+/// </summary>
+/// <seealso cref="LifeStageConstraintExtensions"/>
+public sealed class LifeStageConstraint(EntityLifeStage stage, IIntegrationInstance instance) : Constraint
 {
     public override ConstraintResult ApplyTo<TActual>(TActual actual)
     {
-        if (!TryActualAsEnt(actual, out var ent, out var error))
+        if (!ConstraintHelpers.TryActualAsEnt(actual, out var ent, out var error))
         {
             if (error)
             {
                 throw new NotImplementedException(
-                    $"The input type {typeof(TActual)} to {nameof(CompConstraint)} is not a supported entity id.");
+                    $"The input type {typeof(TActual)} to {nameof(CompExistsConstraint)} is not a supported entity id.");
             }
 
             return new ConstraintResult(this, actual, ConstraintStatus.Failure);
@@ -21,7 +26,9 @@ public sealed class LifeStageConstraint(EntityLifeStage stage, IIntegrationInsta
 
         var lifestage = instance.EntMan.GetComponentOrNull<MetaDataComponent>(ent.Value)?.EntityLifeStage;
 
-        return new ConstraintResult(this, lifestage, lifestage == stage || (lifestage is null && stage is EntityLifeStage.Deleted));
+        return new ConstraintResult(this,
+            lifestage,
+            lifestage == stage || (lifestage is null && stage is EntityLifeStage.Deleted));
     }
 
     public override string Description => stage switch
@@ -35,7 +42,6 @@ public sealed class LifeStageConstraint(EntityLifeStage stage, IIntegrationInsta
         _ => throw new ArgumentOutOfRangeException(nameof(stage), stage, null),
     };
 }
-
 
 public static class LifeStageConstraintExtensions
 {

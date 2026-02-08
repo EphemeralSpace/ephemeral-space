@@ -2,7 +2,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Arrivals.Components;
 
-[RegisterComponent, Access(typeof(ESArrivalsSystem))]
+[RegisterComponent, Access(typeof(ESArrivalsSystem)), AutoGenerateComponentPause]
 public sealed partial class ESStationArrivalsComponent : Component
 {
     [DataField]
@@ -10,4 +10,7 @@ public sealed partial class ESStationArrivalsComponent : Component
 
     [DataField]
     public EntityUid? ShuttleUid;
+
+    [DataField, AutoPausedField]
+    public TimeSpan ArrivalTime;
 }

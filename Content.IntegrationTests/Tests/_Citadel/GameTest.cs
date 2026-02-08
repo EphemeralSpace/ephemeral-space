@@ -1,6 +1,7 @@
 #nullable enable
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading;
 using Content.IntegrationTests.Pair;
 using Robust.Shared.Analyzers;
 using Robust.Shared.GameObjects;
@@ -19,6 +20,9 @@ public abstract partial class GameTest
     private readonly List<EntityUid> _serverEntitiesToClean = new();
     private readonly List<EntityUid> _clientEntitiesToClean = new();
 
+    private protected Thread ServerThread = default!;
+    private protected Thread ClientThread = default!;
+
     /// <summary>
     ///     Settings for the client/server pair. By default, this gets you a client and server that have connected together.
     /// </summary>
@@ -28,10 +32,12 @@ public abstract partial class GameTest
     ///     The client and server pair.
     /// </summary>
     public TestPair Pair { get; private set; } = default!; // NULLABILITY: This is always set during test setup.
+
     /// <summary>
     ///     The game server instance.
     /// </summary>
     public RobustIntegrationTest.ServerIntegrationInstance Server => Pair.Server;
+
     /// <summary>
     ///     The game client instance.
     /// </summary>
@@ -46,6 +52,7 @@ public abstract partial class GameTest
     ///     The server-side entity manager.
     /// </summary>
     public IEntityManager SEntMan => Server.EntMan;
+
     /// <summary>
     ///     The client-side entity manager.
     /// </summary>
@@ -57,9 +64,15 @@ public abstract partial class GameTest
         _pairDirty = false;
         Pair = await PoolManager.GetServerClient(PoolSettings);
 
+        Task.WaitAll(
+            Server.WaitPost(() => ServerThread = Thread.CurrentThread),
+            Client.WaitPost(() => ClientThread = Thread.CurrentThread)
+        );
+
+
         foreach (var field in GetType().GetAllFields())
         {
-            if (field.GetCustomAttribute<SystemAttribute>() is {} sysAttrib)
+            if (field.GetCustomAttribute<SystemAttribute>() is { } sysAttrib)
             {
                 // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
                 if (sysAttrib.Side is Side.Server)
@@ -91,7 +104,7 @@ public abstract partial class GameTest
     {
         try
         {
-            // Roll forward a tick to process any queued deletions.
+            // Roll forward til sync for teardown.
             await SyncTicks(1);
 
             await Server.WaitAssertion(() =>
@@ -111,9 +124,8 @@ public abstract partial class GameTest
                         CEntMan.DeleteEntity(junk);
                 }
             });
-
         }
-        catch (Exception e)
+        catch (Exception)
         {
             _pairDirty = true;
             throw;
@@ -126,5 +138,4 @@ public abstract partial class GameTest
                 await Pair.DisposeAsync();
         }
     }
-
 }

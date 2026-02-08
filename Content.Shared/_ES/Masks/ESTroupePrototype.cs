@@ -54,5 +54,11 @@ public sealed partial class ESTroupePrototype : IPrototype, IInheritingPrototype
     public EntityTableSelector Objectives = new NoneSelector();
 
     [DataField(required: true)]
-    public EntProtoId<ESTroupeRuleComponent> GameRule = default!;
+    public EntProtoId<ESTroupeRuleComponent> GameRule;
+
+    /// <summary>
+    /// String used to refer to the masks of this troupe on the news report for the masquerade.
+    /// </summary>
+    [DataField]
+    public LocId? DisguisedMaskName;
 }

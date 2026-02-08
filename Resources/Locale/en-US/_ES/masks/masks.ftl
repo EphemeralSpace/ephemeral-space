@@ -54,6 +54,18 @@ es-mask-insider-desc = As an insider, investigate the people on station and try 
 es-mask-avenger-name = Avenger
 es-mask-avenger-desc = As an avenger, protect your target from being killed at all costs. If that fails, kill their murderer.
 
+es-mask-parasite-name = Parasite
+es-mask-parasite-desc = As a parasite, you are a devilish worm. Get killed by someone else in order to take control of their bodies and steal their mask.
+
+es-mask-hitman-name = Hitman
+es-mask-hitman-desc = As a hitman, use your dossiers in order to identify your targets and take them out.
+
+es-mask-secretary-name = Secretary
+es-mask-secretary-desc = As a secretary, do whatever you can to help your target complete their objectives.
+
+es-mask-hater-name = Hater
+es-mask-hater-desc = As a hater, do everything in your power to make your target fail their objectives.
+
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete your group objectives.
 
@@ -74,6 +86,10 @@ es-mask-subverter-desc = As a Subverter, you have received two brain-altering ch
 
 es-mask-demolitionist-name = Demolitionist
 es-mask-demolitionist-desc = As a Demolitionist, you have been trained by the Syndicate for both controlled and uncontrolled "demolitions"--including in the use of explosive implants, should things turn out that way.
+
+# Oddballs
+es-mask-syndie-superfan-name = Syndie Superfan
+es-mask-syndie-superfan-desc = As the Syndicate's biggest fan, you're a member of crew and win with them, unless the entire traitors team dies, upon which you switch sides and gain a new mask.
 
 # Meta
 es-objective-issuer-mask = Mask

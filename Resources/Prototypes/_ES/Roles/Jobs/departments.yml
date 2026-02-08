@@ -60,7 +60,8 @@
   weight: 5
   roles:
   - ESChemist
-  - ESMedicalDoctor
+  - ESCoroner
+  - ESPhysician
 
 - type: department
   id: ESSecurity

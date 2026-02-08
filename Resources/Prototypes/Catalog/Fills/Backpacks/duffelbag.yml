@@ -14,6 +14,10 @@
         - id: Cautery
         - id: Retractor
         - id: Scalpel
+        - id: BoneGel # Offbrand
+        - id: BoneSetter # Offbrand
+        - id: VascularRecoupler # Offbrand
+        - id: MedicatedSuture # Offbrand
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateMedicalBundle
@@ -33,6 +37,29 @@
         - id: ScalpelAdvanced
         - id: ClothingHandsGlovesNitrile
         - id: EmergencyRollerBedSpawnFolded
+        - id: BoneGel # Offbrand
+        - id: BoneSetter # Offbrand
+        - id: VascularRecoupler # Offbrand
+        - id: MedicatedSuture # Offbrand
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateMedicalBundle
+  id: ClothingBackpackDuffelSyndicateFilledMedicine
+  name: syndicate medicine duffel bag
+  description: A large duffel bag containing essential medicinal reagents.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: JugBicaridine
+        - id: JugPuncturase
+        - id: JugDermaline
+        - id: JugDylovene
+        - id: JugHyronalin
+        - id: JugSaline
+        - id: JugDexalinPlus
+        - id: JugTranexamicAcid
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -350,7 +377,7 @@
         - id: DefibrillatorSyndicate
         - id: MedkitCombatFilled
           amount: 4
-        - id: Tourniquet
+        - id: TourniquetOffbrand # Offbrand
           amount: 4
         - id: CombatMedipen
           amount: 4

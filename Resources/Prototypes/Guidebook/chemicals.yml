@@ -4,7 +4,6 @@
   text: "/ServerInfo/Guidebook/Chemicals.xml"
   children:
   - Elements
-  - Medicine
   - Narcotics
   - Pyrotechnic
   - Toxins

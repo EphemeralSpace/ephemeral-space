@@ -85,14 +85,14 @@ public sealed class ESTargetObjectiveSystem : EntitySystem
         }
     }
 
-    public bool TryGetTarget(Entity<ESTargetObjectiveComponent?> ent, [NotNullWhen(true)] out EntityUid? candidate)
+    public bool TryGetTarget(Entity<ESTargetObjectiveComponent?> ent, [NotNullWhen(true)] out EntityUid? target)
     {
-        candidate = null;
+        target = null;
         if (!Resolve(ent, ref ent.Comp))
             return false;
 
-        candidate = ent.Comp.Target;
-        return candidate != null;
+        target = ent.Comp.Target;
+        return target != null;
     }
 
     public EntityUid? GetTargetOrNull(Entity<ESTargetObjectiveComponent?> ent)

@@ -5,11 +5,11 @@ using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Rules;
 using Content.Server.MassMedia.Systems;
 using Content.Server.Mind;
-using Content.Server.Station.Systems;
 using Content.Shared._Citadel.Utilities;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Masks.Components;
+using Content.Shared._ES.Masks.Masquerades;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Random.Helpers;
@@ -98,7 +98,9 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
 
         var players = ev.Players;
 
-        var masksEnum = masks.OrderByDescending(MaskOrder);
+        var masksEnum = masks
+            .OrderBy(m => _proto.Index(m).AssignmentOrder)
+            .ThenByDescending(MaskOrder);
 
         foreach (var mask in masksEnum)
         {
@@ -147,9 +149,10 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         }
     }
 
-    private int MaskOrder(ProtoId<ESMaskPrototype> mask)
+    private int MaskOrder(ProtoId<ESMaskPrototype> maskId)
     {
-        var troupe = _proto.Index(_proto.Index(mask).Troupe);
+        var mask = _proto.Index(maskId);
+        var troupe = _proto.Index(mask.Troupe);
 
         return troupe.ProhibitedJobs.Count; // The tighter the prohibition list, the more careful we are.
     }
@@ -241,13 +244,30 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
                     if (component.Deleted)
                         return;
 
+                    if (component.AssignedMasks == null)
+                        return;
+
                     var report = new StringBuilder();
 
-                    foreach (var masks in component.AssignedMasks!.CountBy(x => x))
+                    foreach (var masks in component.AssignedMasks.GroupBy(m => _proto.Index(m).Troupe))
                     {
-                        report.AppendLine(Loc.GetString(masquerade.StartupNewsArticleMaskEntry,
-                            ("count", masks.Value),
-                            ("mask", Loc.GetString(_proto.Index(masks.Key).Name))));
+                        var troupe = _proto.Index(masks.Key);
+
+                        // If we need to obscure the mask name, do it here then don't list individual mask names
+                        if (troupe.DisguisedMaskName is { } disguisedMaskName)
+                        {
+                            report.AppendLine(Loc.GetString(masquerade.StartupNewsArticleMaskEntry,
+                                ("count", masks.Count()),
+                                ("mask", Loc.GetString(disguisedMaskName))));
+                            continue;
+                        }
+
+                        foreach (var (maskId, count) in masks.CountBy(x => x))
+                        {
+                            report.AppendLine(Loc.GetString(masquerade.StartupNewsArticleMaskEntry,
+                                ("count", count),
+                                ("mask", Loc.GetString(_proto.Index(maskId).Name))));
+                        }
                     }
 
                     _news.TryAddNews(ent,
@@ -300,5 +320,18 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         }
 
         return troupes;
+    }
+
+    public bool TryGetMasqueradeData([NotNullWhen(true)] out MasqueradeRoleSet? set)
+    {
+        set = null;
+        var rule = EntityQuery<ESMasqueradeRuleComponent>().SingleOrDefault();
+
+        if (rule?.Masquerade is null)
+            return false;
+
+        set = rule.Masquerade.Masquerade;
+
+        return true;
     }
 }

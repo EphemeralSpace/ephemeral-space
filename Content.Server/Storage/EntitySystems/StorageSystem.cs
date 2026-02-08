@@ -15,7 +15,9 @@ public sealed partial class StorageSystem : SharedStorageSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<StorageComponent, BeforeExplodeEvent>(OnExploded);
+// ES START
+        //SubscribeLocalEvent<StorageComponent, BeforeExplodeEvent>(OnExploded);
+// ES END
         SubscribeLocalEvent<StorageFillComponent, MapInitEvent>(OnStorageFillMapInit);
     }
 

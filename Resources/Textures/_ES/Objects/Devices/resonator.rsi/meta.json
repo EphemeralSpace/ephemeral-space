@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "license": "CC0-1.0",
+  "copyright": "Created by EmoGarbage404",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "probe",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "resonate",
+      "delays": [
+        [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ]
+      ]
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "alpha"
+    },
+    {
+      "name": "beta"
+    },
+    {
+      "name": "gamma"
+    },
+    {
+      "name": "delta"
+    },
+    {
+      "name": "epsilon"
+    },
+    {
+      "name": "zeta"
+    }
+  ]
+}

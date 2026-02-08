@@ -14,6 +14,7 @@ namespace Content.Shared.StatusEffectNew;
 /// </summary>
 public sealed partial class StatusEffectsSystem : EntitySystem
 {
+    [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
@@ -21,6 +22,8 @@ public sealed partial class StatusEffectsSystem : EntitySystem
 
     private EntityQuery<StatusEffectContainerComponent> _containerQuery;
     private EntityQuery<StatusEffectComponent> _effectQuery;
+
+    public static HashSet<string> StatusEffectPrototypes = [];
 
     public override void Initialize()
     {
@@ -33,10 +36,14 @@ public sealed partial class StatusEffectsSystem : EntitySystem
         SubscribeLocalEvent<StatusEffectContainerComponent, EntInsertedIntoContainerMessage>(OnEntityInserted);
         SubscribeLocalEvent<StatusEffectContainerComponent, EntRemovedFromContainerMessage>(OnEntityRemoved);
 
-        SubscribeLocalEvent<RejuvenateRemovedStatusEffectComponent, StatusEffectRelayedEvent<RejuvenateEvent>>(OnRejuvenate);
+        SubscribeLocalEvent<StatusEffectContainerComponent, RejuvenateEvent>(OnRejuvenate); // Offbrand
+
+        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
 
         _containerQuery = GetEntityQuery<StatusEffectContainerComponent>();
         _effectQuery = GetEntityQuery<StatusEffectComponent>();
+
+        ReloadStatusEffectsCache();
     }
 
     public override void Update(float frameTime)
@@ -58,6 +65,25 @@ public sealed partial class StatusEffectsSystem : EntitySystem
                 continue;
 
             PredictedQueueDel(ent);
+        }
+    }
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+    {
+        if (!args.WasModified<EntityPrototype>())
+            return;
+
+        ReloadStatusEffectsCache();
+    }
+
+    private void ReloadStatusEffectsCache()
+    {
+        StatusEffectPrototypes.Clear();
+
+        foreach (var ent in _proto.EnumeratePrototypes<EntityPrototype>())
+        {
+            if (ent.TryGetComponent<StatusEffectComponent>(out _, _factory))
+                StatusEffectPrototypes.Add(ent.ID);
         }
     }
 
@@ -114,11 +140,19 @@ public sealed partial class StatusEffectsSystem : EntitySystem
         Dirty(args.Entity, statusComp);
     }
 
-    private void OnRejuvenate(Entity<RejuvenateRemovedStatusEffectComponent> ent,
-        ref StatusEffectRelayedEvent<RejuvenateEvent> args)
+    // Begin Offbrand Changes
+    private void OnRejuvenate(Entity<StatusEffectContainerComponent> ent,
+        ref RejuvenateEvent args)
     {
-        PredictedQueueDel(ent.Owner);
+        if (!TryEffectsWithComp<RejuvenateRemovedStatusEffectComponent>(ent, out var effects))
+            return;
+
+        foreach (var effect in effects)
+        {
+            Del(effect);
+        }
     }
+    // End Offbrand Changes
 
     /// <summary>
     /// Applies the status effect, i.e. starts it after it has been added. Ensures delayed start times trigger when they should.

@@ -38,6 +38,18 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
+  id: ESComputerAnomalyCircuitBoard
+  name: anomaly probe console circuit board
+  description: A computer printed circuit board for a anomaly probe console.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Devices/circuits.rsi
+    state: mainboard
+  - type: ComputerBoard
+    prototype: ESComputerAnomaly
+
+- type: entity
+  parent: BaseComputerCircuitboard
   id: ESComputerSupplyRequestCircuitBoard
   name: supply request console circuit board
   description: A computer printed circuit board for a supply request console.
@@ -46,10 +58,8 @@
     state: mainboard
   - type: ComputerBoard
     prototype: ESComputerSupplyRequest
-# ES START
     alternatePrototype:
       ESComputerTabletop: ESComputerSupplyRequestTabletop
-# ES END
 
 - type: entity
   parent: BaseComputerCircuitboard

@@ -4,6 +4,7 @@ using Content.Shared._ES.Objectives;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
 using Content.Shared.DoAfter;
+using Content.Shared.Examine;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
@@ -28,6 +29,7 @@ public sealed class ESSabotageSystem : EntitySystem
     {
         SubscribeLocalEvent<ESSabotageTargetComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
         SubscribeLocalEvent<ESSabotageTargetComponent, ESSabotageDoAfterEvent>(OnSabotage);
+        SubscribeLocalEvent<ESSabotageTargetComponent, ExaminedEvent>(OnExamined);
     }
 
     /// <summary>
@@ -102,6 +104,14 @@ public sealed class ESSabotageSystem : EntitySystem
         RaiseLocalEvent(ref ev);
 
         args.Handled = true;
+    }
+
+    private void OnExamined(Entity<ESSabotageTargetComponent> ent, ref ExaminedEvent args)
+    {
+        if (!CanSabotage(args.Examiner, ent))
+            return;
+
+        args.PushMarkup(Loc.GetString("es-sabotage-examine-text"));
     }
 }
 

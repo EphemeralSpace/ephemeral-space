@@ -6,10 +6,8 @@ using Content.Shared.Medical.SuitSensor;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
 // ES START
-using System.Linq;
 using Content.Shared._ES.Degradation;
 using Content.Shared.Medical.SuitSensors;
-using Robust.Shared.Random;
 // ES END
 
 namespace Content.Server.Medical.CrewMonitoring;
@@ -21,7 +19,6 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
     [Dependency] private readonly SingletonDeviceNetServerSystem _singletonServerSystem = default!;
 // ES START
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
 // ES END
 
@@ -131,8 +128,6 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
         var sensors = new HashSet<Entity<SuitSensorComponent>>();
         _entityLookup.GetGridEntities(grid, sensors);
 
-        var statuses = Enum.GetValues<SuitSensorMode>().ToList();
-
         foreach (var sensor in sensors)
         {
             // Don't change the sensor of clothing that doesn't support having it changed back
@@ -142,7 +137,7 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
             // Don't enable disabled sensors. First because it'll expose stealthy people and dead bodies, second because it doesnt make sense.
             if (sensor.Comp.Mode == SuitSensorMode.SensorOff)
                 continue;
-            _sensors.SetSensor(sensor.AsNullable(), _random.Pick(statuses));
+            _sensors.SetSensor(sensor.AsNullable(), SuitSensorMode.SensorBinary);
         }
 
         args.Handled = true;

@@ -1,5 +1,0 @@
-- type: esMaskSet
-  id: FalseTraitors # Traitor impersonating crew roles.
-  masks:
-    ESVandal: 1
-    ESMercenary: 0.5

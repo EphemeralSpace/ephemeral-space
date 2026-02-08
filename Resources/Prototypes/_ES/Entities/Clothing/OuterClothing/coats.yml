@@ -2,6 +2,7 @@
   parent: ClothingOuterStorageBase
   id: ESClothingOuterCoatCaptain
   name: captain's coat
+  suffix: ES
   description: A dark coat fit for a captain. Its stripes match the color of Pomelo Interspace Transit.
   components:
   - type: Sprite
@@ -27,3 +28,45 @@
       - state: equipped-OUTERCLOTHING
       - state: equipped-OUTERCLOTHING-color
         color: "#e9744a"
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  id: ESClothingOuterCoatDetective
+  name: detective trenchcoat
+  suffix: ES
+  description: An 18th-century multi-purpose trenchcoat. Someone who wears this means serious business.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Coats/detective.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Coats/detective.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  id: ESClothingOuterCoatDetectiveLoadout
+  name: detective trenchcoat
+  suffix: ES
+  description: An 18th-century multi-purpose trenchcoat. Someone who wears this means serious business.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Coats/detective.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Coats/detective.rsi
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SmokingPipeFilledTobacco
+        - id: FlippoEngravedLighter
+
+- type: entity
+  parent: ESClothingOuterCoatDetective
+  id: ESClothingOuterCoatDetectiveGrey
+  name: noir trenchcoat
+  suffix: ES
+  description: Ah, your trusty coat. There's a few tears here and there, giving it a more timely look. Or at least, that's what you told yourself when you found out gettin' it repaired would set you back 200 spesos.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Coats/detective_grey.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Coats/detective_grey.rsi

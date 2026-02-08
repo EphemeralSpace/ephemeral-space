@@ -49,6 +49,9 @@ public partial class NavMapControl : MapGridControl
     public List<(Vector2, Vector2)> TileRects = new();
     public List<(Vector2[], Color)> TilePolygons = new();
     public List<NavMapRegionOverlay> RegionOverlays = new();
+// ES START
+    public bool Blinks = true;
+// ES END
 
     // Default colors
     public Color WallColor = new(102, 217, 102);
@@ -383,7 +386,9 @@ public partial class NavMapControl : MapGridControl
 
         var curTime = Timing.RealTime;
         var blinkFrequency = 1f / 1f;
-        var lit = curTime.TotalSeconds % blinkFrequency > blinkFrequency / 2f;
+// ES START
+        var lit = !Blinks || curTime.TotalSeconds % blinkFrequency > blinkFrequency / 2f;
+// ES END
 
         // Tracked coordinates (simple dot, legacy)
         foreach (var (coord, value) in TrackedCoordinates)

@@ -1,0 +1,7 @@
+- type: alert
+  id: ESCryosickness
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/cryosickness.rsi
+    state: icon
+  name: es-alert-cryosickness-name
+  description: es-alert-cryosickness-desc

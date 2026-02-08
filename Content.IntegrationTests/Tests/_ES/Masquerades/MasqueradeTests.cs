@@ -69,7 +69,7 @@ public sealed class MasqueradeTests : GameTest
         }
 
         {
-            MasqueradeEntry.TryRead("#Freaks", null, out var entry, out var error);
+            MasqueradeEntry.TryRead("#Traitors", null, out var entry, out var error);
 
             Assert.That(error, Is.Null);
 
@@ -82,7 +82,7 @@ public sealed class MasqueradeTests : GameTest
     public void MasqueradeDeterminism()
     {
 #pragma warning disable RA0033
-        var freakshow = _proto.Index<ESMasqueradePrototype>("Freakshow");
+        var traitors = _proto.Index<ESMasqueradePrototype>("Traitors");
 #pragma warning restore RA0033
 
         for (var i = 0; i < 100; i++)
@@ -91,7 +91,7 @@ public sealed class MasqueradeTests : GameTest
             var rng1 = rngSeed.IntoRandomizer();
             var rng2 = rngSeed.IntoRandomizer();
 
-            var masquerade = (MasqueradeRoleSet)freakshow.Masquerade;
+            var masquerade = (MasqueradeRoleSet)traitors.Masquerade;
 
             Assert.That(masquerade.TryGetMasks(30, rng1, _proto, out var masks1));
             Assert.That(masquerade.TryGetMasks(30, rng2, _proto, out var masks2));
