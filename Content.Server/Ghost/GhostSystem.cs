@@ -608,7 +608,10 @@ namespace Content.Server.Ghost
 
                     DamageSpecifier damage = new(_prototypeManager.Index(AsphyxiationDamageType), dealtDamage);
 
-                    _damageable.ChangeDamage(playerEntity.Value, damage, true);
+// ES START
+                    // Ghosting is something someone does to themselves. I think this makes sense.
+                    _damageable.ChangeDamage(playerEntity.Value, damage, true, origin: playerEntity);
+// ES END
                 }
             }
 
