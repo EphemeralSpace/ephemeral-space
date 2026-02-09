@@ -108,6 +108,7 @@
     - id: C4
       amount: 3
     - id: ExGrenade
+      amount: 2
     - id: ESMicroBombImplanter
 
 # Veteran
