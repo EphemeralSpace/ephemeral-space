@@ -1,8 +1,10 @@
 using System.Linq;
 using Content.Shared._ES.KillTracking.Components;
+using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Rejuvenate;
@@ -12,11 +14,14 @@ namespace Content.Shared._ES.KillTracking;
 
 public sealed class ESKillTrackingSystem : EntitySystem
 {
+    private const int SuicideSelfDamage = 300;
+
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<ESKillTrackerComponent, DamageChangedEvent>(OnDamageChanged, before: [ typeof(MobThresholdSystem) ]);
         SubscribeLocalEvent<ESKillTrackerComponent, RejuvenateEvent>(OnRejuvenate);
+        SubscribeLocalEvent<ESKillTrackerComponent, SuicideEvent>(OnSuicide, before: [ typeof(BrainDamageSystem) ]);
         SubscribeLocalEvent<ESKillTrackerComponent, MobStateChangedEvent>(OnMobStateChanged);
     }
 
@@ -33,6 +38,11 @@ public sealed class ESKillTrackingSystem : EntitySystem
     private void OnRejuvenate(Entity<ESKillTrackerComponent> ent, ref RejuvenateEvent args)
     {
         ent.Comp.Sources.Clear();
+    }
+
+    private void OnSuicide(Entity<ESKillTrackerComponent> ent, ref SuicideEvent args)
+    {
+        AddDamage(ent, ent, SuicideSelfDamage);
     }
 
     private void OnMobStateChanged(Entity<ESKillTrackerComponent> ent, ref MobStateChangedEvent args)
