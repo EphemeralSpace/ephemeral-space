@@ -7,6 +7,7 @@ using Content.Shared.Destructible;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.Collections;
@@ -98,6 +99,13 @@ public sealed class ESKillTrackingSystem : EntitySystem
 
     private void AddDamage(Entity<ESKillTrackerComponent> ent, EntityUid? source, FixedPoint2 damage)
     {
+        if (source.HasValue && !HasComp<MobStateComponent>(source))
+        {
+            // Edge case: sometimes people are gonna pass stupid shit in for the origin
+            // and we don't want inanimate objects counting as kills.
+            return;
+        }
+
         if (ent.Comp.Sources.FirstOrDefault(e => e.Entity == source) is { } elem)
         {
             elem.AccumulatedDamage += damage;
