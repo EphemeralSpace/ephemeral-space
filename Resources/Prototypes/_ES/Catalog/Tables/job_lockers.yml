@@ -137,6 +137,8 @@
     - id: ClothingNeckTieSci
     - id: ClothingOuterCoatLabOpened
     - id: ESAnomalyResonator
+      prob: 0.75
+    - id: ESAnomalyProbe
     - id: Multitool
       prob: 0.5
 
