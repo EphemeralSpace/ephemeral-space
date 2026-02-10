@@ -4,6 +4,7 @@ using Content.Shared.FixedPoint;
 namespace Content.Shared._ES.KillTracking.Components;
 
 [RegisterComponent]
+[Access(typeof(ESKillTrackingSystem))]
 public sealed partial class ESKillTrackerComponent : Component
 {
     [DataField]
@@ -14,16 +15,16 @@ public sealed partial class ESKillTrackerComponent : Component
 public sealed partial class ESDamageSource
 {
     [DataField]
-    public EntityUid? Source;
+    public EntityUid? Entity;
 
     [DataField]
     public FixedPoint2 AccumulatedDamage = FixedPoint2.Zero;
 
-    public bool IsEnvironment => !Source.HasValue;
+    public bool IsEnvironment => !Entity.HasValue;
 
-    public ESDamageSource(EntityUid? source, FixedPoint2 damage)
+    public ESDamageSource(EntityUid? entity, FixedPoint2 damage)
     {
-        Source = source;
+        Entity = entity;
         AccumulatedDamage = damage;
     }
 }
