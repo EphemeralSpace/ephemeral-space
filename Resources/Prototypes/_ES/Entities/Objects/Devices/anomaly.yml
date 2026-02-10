@@ -24,7 +24,7 @@
           Zeta: { state: zeta }
   - type: ESAnomalyResonator
   - type: UseDelay
-    delay: 5
+    delay: 2.5
   - type: Item
     size: Normal
 
@@ -40,6 +40,7 @@
     - state: icon
     - state: screen
       map: ["enum.ToggleableVisuals.Layer"]
+  - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.ToggleableVisuals.Enabled:

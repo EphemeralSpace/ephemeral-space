@@ -186,15 +186,17 @@ public abstract class ESSharedAnomalySystem : EntitySystem
         }
 
         _audio.PlayPredicted(anom.Comp.SignalSound, anom, user);
-        IncrementAnomalyCode(anom);
+        IncrementAnomalyCode(anom, user);
         return true;
     }
 
-    public void IncrementAnomalyCode(Entity<ESPortalAnomalyComponent> ent)
+    public void IncrementAnomalyCode(Entity<ESPortalAnomalyComponent> ent, EntityUid? user)
     {
         ent.Comp.CodeIndex++;
         Dirty(ent);
         UpdateConsolesUi();
+
+        _popup.PopupPredicted(Loc.GetString("anomaly-popup-correct"), ent, user, PopupType.Medium);
 
         if (ent.Comp.CodeIndex >= ent.Comp.CodeLength)
         {
@@ -226,6 +228,7 @@ public abstract class ESSharedAnomalySystem : EntitySystem
     public void PulseAnomalyRadiation(Entity<ESPortalAnomalyComponent> ent, EntityUid? user)
     {
         _audio.PlayPredicted(ent.Comp.RadPulseSound, ent, user);
+        _popup.PopupPredicted(Loc.GetString("anomaly-popup-fail"), ent, user, PopupType.MediumCaution);
         PredictedSpawnAttachedTo(ent.Comp.RadiationEntity, Transform(ent).Coordinates);
         ent.Comp.NextSignalTime = _timing.CurTime + TimeSpan.FromSeconds(3);
         RaiseNetworkEvent(new ESAnomalyRadiationAnimationEvent

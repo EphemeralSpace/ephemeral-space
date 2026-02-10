@@ -16,6 +16,9 @@ es-anomaly-console-signal-current-fmt = [color=magenta][font="Monospace"]{"  >"}
 es-anomaly-console-signal-locked = [color=gray][font="Monospace"] ? Unknown[/font][/color]
 es-anomaly-console-signal-none = [font="Monospace"]Use the sidebar to view an anomaly[/font]
 
+anomaly-popup-correct = It stabilizes and shrinks!
+anomaly-popup-fail = It pulses with deadly radiation!
+
 es-anomaly-signal-Alpha = alpha
 es-anomaly-signal-Beta = beta
 es-anomaly-signal-Gamma = gamma
