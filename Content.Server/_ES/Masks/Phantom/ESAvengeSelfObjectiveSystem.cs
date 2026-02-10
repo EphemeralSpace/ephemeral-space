@@ -1,8 +1,7 @@
-using Content.Server._ES.Masks.Objectives.Relays;
 using Content.Server._ES.Masks.Objectives.Relays.Components;
 using Content.Server._ES.Masks.Phantom.Components;
 using Content.Server.Chat.Managers;
-using Content.Server.KillTracking;
+using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Target;
 using Content.Shared.Chat;
@@ -24,18 +23,17 @@ public sealed class ESAvengeSelfObjectiveSystem : ESBaseObjectiveSystem<ESAvenge
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ESAvengeSelfObjectiveComponent, ESKillReportedEvent>(OnKillReported);
+        SubscribeLocalEvent<ESAvengeSelfObjectiveComponent, ESPlayerKilledEvent>(OnKillReported);
     }
 
-    private void OnKillReported(Entity<ESAvengeSelfObjectiveComponent> ent, ref ESKillReportedEvent args)
+    private void OnKillReported(Entity<ESAvengeSelfObjectiveComponent> ent, ref ESPlayerKilledEvent args)
     {
-        var user = _player.TryGetSessionByEntity(args.Entity, out var session) ? session.Channel : null;
+        var user = _player.TryGetSessionByEntity(args.Killed, out var session) ? session.Channel : null;
         string msg;
 
-        if (args.Suicide ||
-            args.Primary is not KillPlayerSource source ||
-            !MindSys.TryGetMind(source.PlayerId, out var mind) ||
-            mind.Value.Comp.OwnedEntity is not { } body)
+        if (!args.ValidKill ||
+            !MindSys.TryGetMind(args.Killer.Value, out _, out var mindComp) ||
+            mindComp.OwnedEntity is not { } body)
         {
             _metaData.SetEntityName(ent, Loc.GetString(ent.Comp.FailName));
 

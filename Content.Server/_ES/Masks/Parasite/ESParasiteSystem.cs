@@ -1,20 +1,14 @@
-﻿using Content.Server._ES.Masks.Objectives;
-using Content.Server._ES.Masks.Objectives.Relays;
-using Content.Server._ES.Masks.Parasite.Components;
+﻿using Content.Server._ES.Masks.Parasite.Components;
 using Content.Server.Ghost;
+using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Masks;
-using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Administration.Systems;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Mind;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Systems;
 
 namespace Content.Server._ES.Masks.Parasite;
 
 public sealed class ESParasiteSystem : EntitySystem
 {
-    [Dependency] private readonly ESBeKilledObjectiveSystem _beKilledObjective = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly ESSharedMaskSystem _mask = default!;
     [Dependency] private readonly RejuvenateSystem _rejuv = default!;
@@ -23,19 +17,19 @@ public sealed class ESParasiteSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ESParasiteComponent, ESKillReportedEvent>(OnKillReported);
+        SubscribeLocalEvent<ESParasiteComponent, ESPlayerKilledEvent>(OnKillReported);
         SubscribeLocalEvent<ESParasiteComponent, GhostAttemptHandleEvent>(OnGhostAttempt);
     }
 
-    private void OnKillReported(Entity<ESParasiteComponent> ent, ref ESKillReportedEvent args)
+    private void OnKillReported(Entity<ESParasiteComponent> ent, ref ESPlayerKilledEvent args)
     {
-        if (!_beKilledObjective.IsValidKill(args, null, out var killerMind))
+        if (!args.ValidKill || !_mind.TryGetMind(args.Killer.Value, out var killerMind))
             return;
 
         ent.Comp.KillerMind = killerMind;
 
         // TODO ES with offmed this should really be doing something more interesting honestly
-        _rejuv.PerformRejuvenate(args.Entity);
+        _rejuv.PerformRejuvenate(args.Killed);
     }
 
     private void OnGhostAttempt(Entity<ESParasiteComponent> ent, ref GhostAttemptHandleEvent args)

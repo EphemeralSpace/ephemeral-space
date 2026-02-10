@@ -1,6 +1,6 @@
 using Content.Server.Chat.Managers;
-using Content.Server.KillTracking;
 using Content.Shared._ES.Auditions.Components;
+using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Stagehand.Components;
@@ -25,13 +25,13 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<KillReportedEvent>(OnKillReported);
+        SubscribeLocalEvent<ESPlayerKilledEvent>(OnKillReported);
         SubscribeLocalEvent<ESObjectiveProgressChangedEvent>(OnObjectiveProgressChanged);
     }
 
-    private void OnKillReported(ref KillReportedEvent ev)
+    private void OnKillReported(ref ESPlayerKilledEvent ev)
     {
-        if (!TryComp<ActorComponent>(ev.Entity, out var actor))
+        if (!TryComp<ActorComponent>(ev.Killed, out var actor))
             return;
 
         string? msg = null;
@@ -40,39 +40,31 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
         if (ev.Suicide)
         {
             msg = Loc.GetString("es-stagehand-notification-kill-suicide",
-                ("entity", ev.Entity),
+                ("entity", ev.Killed),
                 ("username", actor.PlayerSession.Name));
         }
-        else if (ev.Primary is KillEnvironmentSource)
+        else if (ev.Environment)
         {
             msg = Loc.GetString("es-stagehand-notification-kill-environment",
-                ("entity", ev.Entity),
+                ("entity", ev.Killed),
                 ("username", actor.PlayerSession.Name));
         }
-        else if (ev.Primary is KillNpcSource npc)
-        {
-            msg = Loc.GetString("es-stagehand-notification-kill-npc",
-                ("entity", ev.Entity),
-                ("username", actor.PlayerSession.Name),
-                ("attacker", npc.NpcEnt));
-        }
-        else if (ev.Primary is KillPlayerSource player)
+        else if (ev.Killer is { } killer)
         {
             severity = ESStagehandNotificationSeverity.High;
-            if (!_player.TryGetSessionById(player.PlayerId, out var attackerSession) ||
-                attackerSession.AttachedEntity is not { } attackerEnt)
+            if (!_player.TryGetSessionByEntity(killer, out var session))
             {
                 msg = Loc.GetString("es-stagehand-notification-kill-player-unknown",
-                    ("entity", ev.Entity),
+                    ("entity", ev.Killer),
                     ("username", actor.PlayerSession.Name));
             }
             else
             {
                 msg = Loc.GetString("es-stagehand-notification-kill-player",
-                    ("entity", ev.Entity),
+                    ("entity", ev.Killer),
                     ("username", actor.PlayerSession.Name),
-                    ("attacker", attackerEnt),
-                    ("attackerUsername", attackerSession.Name));
+                    ("attacker", killer),
+                    ("attackerUsername", session.Name));
             }
         }
 

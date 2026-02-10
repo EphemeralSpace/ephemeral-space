@@ -1,9 +1,9 @@
 using Content.Server._ES.Masks.Martyr.Components;
 using Content.Server._ES.Masks.Objectives;
-using Content.Server._ES.Masks.Objectives.Relays;
 using Content.Server.Administration;
 using Content.Server.Chat;
 using Content.Shared._ES.Core.Timer;
+using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Masks;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -24,7 +24,7 @@ public sealed class ESMartyrSystem : EntitySystem
     [Dependency] private readonly SuicideSystem _suicide = default!;
     [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly ESEntityTimerSystem _timer = default!;
-    [Dependency] private readonly ESBeKilledObjectiveSystem _beKilled = default!;
+    [Dependency] private readonly ESMaskSystem _mask = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
 
     private static readonly ProtoId<ESTroupePrototype> KillerMustBeTroupe = "ESCrew";
@@ -33,7 +33,7 @@ public sealed class ESMartyrSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ESMartyrComponent, ESKillReportedEvent>(OnKillReported);
+        SubscribeLocalEvent<ESMartyrComponent, ESPlayerKilledEvent>(OnKillReported);
         SubscribeLocalEvent<ESMartyrKillerMarkerComponent, ESMartyrKillerTimeToDieEvent>(OnTimeToDie);
     }
 
@@ -49,18 +49,15 @@ public sealed class ESMartyrSystem : EntitySystem
     // we dont actually force this to be relayed --
     // instead we just assume that it will be relayed, if we are in the mind, because of our objective to be killed
     // if it isnt, then idk ur doing something wrong
-    private void OnKillReported(Entity<ESMartyrComponent> ent, ref ESKillReportedEvent args)
+    private void OnKillReported(Entity<ESMartyrComponent> ent, ref ESPlayerKilledEvent args)
     {
-        if (!_beKilled.IsValidKill(args, KillerMustBeTroupe, out var killerMind))
+        if (!args.ValidKill || _mask.GetTroupeOrNull(args.Killer.Value) == KillerMustBeTroupe)
             return;
 
-        if (killerMind.Value.Comp.CurrentEntity is not { } killerBody)
-            return;
+        EnsureComp<ESMartyrKillerMarkerComponent>(args.Killer.Value);
+        _timer.SpawnTimer(args.Killer.Value, ent.Comp.TimeBeforeKillerDeath, new ESMartyrKillerTimeToDieEvent());
 
-        EnsureComp<ESMartyrKillerMarkerComponent>(killerBody);
-        _timer.SpawnTimer(killerBody, ent.Comp.TimeBeforeKillerDeath, new ESMartyrKillerTimeToDieEvent());
-
-        if (!TryComp<ActorComponent>(killerBody, out var actor))
+        if (!TryComp<ActorComponent>(args.Killer.Value, out var actor))
             return;
 
         var title = Loc.GetString("es-mask-martyr-killer-quickdialog-title");

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.FixedPoint;
 
 namespace Content.Shared._ES.KillTracking.Components;
@@ -37,9 +38,12 @@ public readonly struct ESPlayerKilledEvent(EntityUid killed, EntityUid? killer)
 
     public readonly EntityUid? Killer = killer;
 
-    public bool IsValidKill => !(IsSuicide || IsEnvironment);
+    [MemberNotNullWhen(true, nameof(Killer))]
+    public bool ValidKill => !(Suicide || Environment);
 
-    public bool IsSuicide => Killed == Killer;
+    [MemberNotNullWhen(true, nameof(Killer))]
+    public bool Suicide => Killed == Killer;
 
-    public bool IsEnvironment => !Killer.HasValue;
+    [MemberNotNullWhen(false, nameof(Killer))]
+    public bool Environment => !Killer.HasValue;
 }

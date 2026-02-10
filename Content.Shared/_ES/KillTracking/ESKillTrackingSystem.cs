@@ -14,7 +14,7 @@ namespace Content.Shared._ES.KillTracking;
 
 public sealed class ESKillTrackingSystem : EntitySystem
 {
-    private const int SuicideSelfDamage = 300;
+    private const int SuicideSelfDamage = 200;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -58,11 +58,8 @@ public sealed class ESKillTrackingSystem : EntitySystem
             _ => null,
         };
 
-        // TODO: Testing logs.
-        Log.Debug($"{ToPrettyString(ent)} was killed by {ToPrettyString(killer)}!");
-
         var ev = new ESPlayerKilledEvent(ent, killer);
-        RaiseLocalEvent(ent, ref ev);
+        RaiseLocalEvent(ent, ref ev, true);
     }
 
     private void AddDamage(Entity<ESKillTrackerComponent> ent, EntityUid? source, FixedPoint2 damage)
