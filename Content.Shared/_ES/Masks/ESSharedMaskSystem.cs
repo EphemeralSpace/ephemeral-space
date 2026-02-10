@@ -254,7 +254,6 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
         return troupes
             .OrderBy(t => t.Comp.Priority)
-            .ThenBy(t => t.Comp.PlayersPerTargetMember)
             .ToList();
     }
 

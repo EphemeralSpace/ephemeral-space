@@ -26,33 +26,8 @@ public sealed partial class ESTroupeRuleComponent : Component
     public ProtoId<ESTroupePrototype> Troupe;
 
     /// <summary>
-    /// Minimum numbers of members present
-    /// </summary>
-    [DataField]
-    public int MinTargetMembers = 1;
-
-    /// <summary>
-    /// Maximum number of members present
-    /// </summary>
-    [DataField]
-    public int MaxTargetMembers = int.MaxValue;
-
-    /// <summary>
-    /// Proportion of players who will be selected for this troupe.
-    /// Use 1 / X to convert to a percentage (i.e. value of "3" means 1/3 of players will be in this troupe)
-    /// </summary>
-    [DataField]
-    public int PlayersPerTargetMember = 5;
-
-    /// <summary>
     /// Minds that are a part of this troupe.
     /// </summary>
     [DataField]
     public List<EntityUid> TroupeMemberMinds = new();
-
-    /// <summary>
-    /// Objective entities this troupe has spawned
-    /// </summary>
-    [DataField]
-    public List<EntityUid> AssociatedObjectives = new();
 }
