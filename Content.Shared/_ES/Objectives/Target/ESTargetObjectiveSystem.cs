@@ -7,7 +7,6 @@ using Content.Shared.Mind;
 using Content.Shared.Roles.Jobs;
 using JetBrains.Annotations;
 using Robust.Shared.Random;
-using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Objectives.Target;
 
@@ -39,7 +38,7 @@ public sealed class ESTargetObjectiveSystem : EntitySystem
         foreach (var objective in ent.Comp.Objectives)
         {
             if (TryComp<ESTargetObjectiveComponent>(objective, out var comp))
-                comp.Target = null;
+                SetTarget((objective, comp), null);
         }
     }
 
@@ -112,20 +111,21 @@ public sealed class ESTargetObjectiveSystem : EntitySystem
             return;
 
         var oldTarget = ent.Comp.Target;
-
-        // TODO: if we already have a target, remove the linked stuff
-        // We assert for now so that people fix it later.
-        DebugTools.Assert(!ent.Comp.Target.HasValue, "Changing targets for Target Objective Component is not supported!");
+        if (oldTarget.HasValue)
+        {
+            if (TryComp<ESTargetObjectiveMarkerComponent>(oldTarget, out var targetComp))
+                targetComp.Objectives.Remove(ent);
+        }
 
         ent.Comp.Target = target;
 
-        if (ent.Comp.Target != null)
+        if (target != null)
         {
             if (ent.Comp.Title != null)
             {
-                var name = Name(ent.Comp.Target.Value);
+                var name = Name(target.Value);
                 var job = string.Empty;
-                if (_mind.TryGetMind(ent.Comp.Target.Value, out var mind, out _))
+                if (_mind.TryGetMind(target.Value, out var mind, out _))
                 {
                     if (TryComp<ESCharacterComponent>(mind, out var characterComponent))
                         name = characterComponent.Name;
@@ -136,7 +136,7 @@ public sealed class ESTargetObjectiveSystem : EntitySystem
                 _metaData.SetEntityName(ent, title);
             }
 
-            var comp = EnsureComp<ESTargetObjectiveMarkerComponent>(ent.Comp.Target.Value);
+            var comp = EnsureComp<ESTargetObjectiveMarkerComponent>(target.Value);
             comp.Objectives.Add(ent);
         }
 
