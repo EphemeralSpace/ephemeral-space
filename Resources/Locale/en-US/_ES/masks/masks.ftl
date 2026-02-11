@@ -11,9 +11,6 @@ es-mask-crewmember-desc = As a Crewmember, use your unclouded judgment to help m
 es-mask-daredevil-name = Daredevil
 es-mask-daredevil-desc = As a Daredevil, constantly seek new and exciting ways to hurt yourself in accordance with your insane lifestyle.
 
-es-mask-empath-name = Empath
-es-mask-empath-desc = As an Empath, use your tuned-in emotional connection to read the auras of others.
-
 es-mask-fruit-vendor-name = Fruit Vendor
 es-mask-fruit-vendor-desc = As a Fruit Vendor, dispense delicious fruits and pass them out among the crewmembers.
 
@@ -40,9 +37,6 @@ es-mask-secretary-desc = As a secretary, do whatever you can to help your target
 
 es-mask-survivalist-name = Survivalist
 es-mask-survivalist-desc = As a Survivalist, survive at all costs. Rely on your MedAlert (TM) to broadcast messages when you enter critical condition, and find your cache of prepper supplies.
-
-es-mask-sacrifice-name = Sacrifice
-es-mask-sacrifice-desc = As a Sacrifice, find an opportunity to heroically sacrifice yourself, and heal others in your presence massively by doing so.
 
 es-mask-vandal-name = Vandal
 es-mask-vandal-desc = As a Vandal, sabotage random machines around the station for a little bit of fun. Try not to get pinned as a Traitor.
