@@ -198,7 +198,6 @@
     - id: ClothingEyesHudDiagnostic
     - id: ClothingEyesHudMedical
     - tableId: FillWelderSupplies # Welding masks
-    - id: ClothingMaskMuzzle
     - id: ClothingBeltMedical
     - id: ClothingBeltUtility
     - id: ESClothingHeadHelmetSecurity
@@ -300,8 +299,6 @@
     - id: SpectralLocator
     - id: d20Dice
     - id: Wristwatch
-
-    - id: WeaponPistolCHIMP
 
 - type: entityTable
   id: ESMaintLootRare
