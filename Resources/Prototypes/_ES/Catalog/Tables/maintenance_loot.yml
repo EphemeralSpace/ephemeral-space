@@ -209,9 +209,10 @@
     - id: ModularReceiver
     - id: RifleStock
 
-    - id: Brutepack1
-    - id: Ointment1
-    - id: Gauze1
+    - group:
+      - id: Brutepack
+      - id: Ointment
+      - id: Gauze
 
     - id: EmergencyMedipen
 
@@ -308,6 +309,7 @@
     - id: WelderIndustrialAdvanced
     - id: BaseBallBat
     - id: Binoculars
+    - id: MedkitFilled
 
     - id: ClothingEyesHudSecurity
     - id: ClothingEyesGlassesSunglasses
@@ -330,12 +332,6 @@
       - id: ClothingOuterCoatPirate
       - id: ClothingHeadHatPirateTricord
       weight: 0.5
-
-    - group:
-      - id: Medkit
-      - id: Brutepack
-      - id: Ointment
-      - id: Gauze
 
     - group: # Goofy items
       - id: NukeDiskFake
