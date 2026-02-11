@@ -1,0 +1,40 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveEatUniqueFoods
+  name: Eat unique foods
+  description: Your stomach yearns for the unknown, seek out all the different tastes of the world!
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Species/Human/organs.rsi
+      state: stomach
+  - type: ESEatUniqueFoodsObjective
+  - type: ESCounterObjective
+    title: es-eat-unique-foods-objective-title
+    target: 16
+    maxTarget: 30
+    targetIncrement: 2
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveEatFood
+  name: Eat a food
+  description: You have a particularly exotic craving. Make sure you satiate it!
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Consumable/Food/plates.rsi
+      state: plate
+  - type: ESEatFoodObjective
+    foods:
+    - FoodMeatCorgi
+    - MaterialSmileExtract
+    - FoodJellyAmanita
+    - FoodBurgerBear
+    - FoodSoupChiliClown
+    - FoodSoupMonkey
+    - FoodMeatAnomaly
+    - FoodBurgerClown
+    - FoodPizzaDank
+  - type: ESCounterObjective
+    target: 1
