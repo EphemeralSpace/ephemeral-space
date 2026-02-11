@@ -68,8 +68,6 @@
     - id: Matchstick
     - id: DrinkGlass
 
-    - id: MicroManipulatorStockPart
-      weight: 0.125
     - group:
       - id: ESRound9mm
       - id: ESRound357
@@ -125,7 +123,6 @@
 
     - id: Igniter
     - id: Mousetrap
-    - id: ProximitySensor
     - id: RemoteSignaller
     - id: TimerTrigger
     - id: ESParcelWrap10
