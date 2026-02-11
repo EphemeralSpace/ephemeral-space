@@ -1,0 +1,38 @@
+- type: esMask
+  id: ESMartyr
+  name: es-mask-martyr-name
+  troupe: ESJester
+  description: es-mask-martyr-desc
+  color: gold
+  weight: 0.5
+  mindComponents:
+  - type: ESMartyr
+  objectives:
+    all:
+    - id: ESObjectiveMartyrBeKilled
+
+- type: esMask
+  id: ESParasite
+  name: es-mask-parasite-name
+  troupe: ESJester
+  description: es-mask-parasite-desc
+  color: sandybrown
+  weight: 0.5
+  mindComponents:
+  - type: ESParasite
+  objectives:
+    id: ESObjectiveParasiteBeKilled
+
+- type: esMask
+  id: ESPhantom
+  name: es-mask-phantom-name
+  troupe: ESJester
+  description: es-mask-phantom-desc
+  color: lavender
+  weight: 0.5
+  mindComponents:
+  - type: ESReincarnateMind
+  objectives:
+    all:
+    - id: ESObjectivePhantomDie
+    - id: ESObjectivePhantomAvenge
