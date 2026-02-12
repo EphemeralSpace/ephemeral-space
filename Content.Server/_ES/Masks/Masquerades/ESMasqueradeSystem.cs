@@ -102,19 +102,19 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
             .OrderBy(m => _proto.Index(m).AssignmentOrder)
             .ThenByDescending(MaskOrder);
 
-        foreach (var mask in masksEnum)
+        foreach (var maskId in masksEnum)
         {
-            var troupe = _proto.Index(_proto.Index(mask).Troupe);
+            var mask = _proto.Index(maskId);
             for (var i = 0; i < players.Count; i++)
             {
                 var player = players[i];
                 if (!TryGetMindOrLog(player, out var mind))
                     continue;
 
-                if (!_mask.IsPlayerValid(troupe, player))
+                if (!_mask.IsPlayerValid(mask, player))
                     continue;
 
-                _mask.ApplyMask(mind.Value, mask);
+                _mask.ApplyMask(mind.Value, maskId);
 
                 players.RemoveAt(i);
                 goto exit; // escape to next mask.
@@ -128,7 +128,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
                 if (!TryGetMindOrLog(player, out var mind))
                     continue;
 
-                _mask.ApplyMask(mind.Value, mask);
+                _mask.ApplyMask(mind.Value, maskId);
 
                 players.RemoveAt(i);
                 goto exit; // escape to next mask.
@@ -136,7 +136,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
 
             // Fuuuck okay fine don't assign.
 
-            Log.Error($"Was unable to assign {mask} to any player.");
+            Log.Error($"Was unable to assign {maskId} to any player.");
 
             exit: ;
         }
@@ -152,9 +152,8 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
     private int MaskOrder(ProtoId<ESMaskPrototype> maskId)
     {
         var mask = _proto.Index(maskId);
-        var troupe = _proto.Index(mask.Troupe);
 
-        return troupe.ProhibitedJobs.Count; // The tighter the prohibition list, the more careful we are.
+        return mask.ProhibitedJobs.Count; // The tighter the prohibition list, the more careful we are.
     }
 
     private void OnAssignLatejoiner(ref AssignLatejoinerToTroupeEvent ev)

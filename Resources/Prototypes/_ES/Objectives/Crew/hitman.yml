@@ -1,0 +1,17 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveHitmanKillTarget
+  name: Kill your target
+  description: Use the clues in your dossier to identify and take out your target. Make sure you kill them yourself.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Weapons/Melee/kitchen_knife.rsi
+      state: icon
+  - type: ESDirectKillTargetObjective
+    successMessage: es-hitman-success
+  - type: ESTargetObjective
+  - type: ESTargetPlayersObjective
+  - type: ESTargetCodename
+    title: es-hitman-target-objective-title
+  - type: ESCounterObjective

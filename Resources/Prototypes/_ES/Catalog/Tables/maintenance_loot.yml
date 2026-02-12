@@ -93,7 +93,7 @@
     - id: Wirecutter
     - id: Wrench
     - id: SprayPainter
-    - id: ESAnomalyResonator
+    - id: ESAnomalyProbe
 
     - tableId: ESMixedBasicGloves
     - id: ClothingEyesGlassesMeson
@@ -299,6 +299,8 @@
     - id: SpectralLocator
     - id: d20Dice
     - id: Wristwatch
+
+    - id: ESAnomalyResonator
 
 - type: entityTable
   id: ESMaintLootRare

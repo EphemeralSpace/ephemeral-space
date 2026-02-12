@@ -5,16 +5,10 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Telesci.Anomaly.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
 [Access(typeof(ESSharedAnomalySystem))]
 public sealed partial class ESAnomalyProbeComponent : Component
 {
-    [DataField, AutoNetworkedField]
-    public ESAnomalySignal CurrentSignal = ESAnomalySignal.Zeta;
-
-    [DataField, AutoNetworkedField]
-    public bool InUse;
-
     [DataField]
     public TimeSpan ProbeTime = TimeSpan.FromSeconds(5);
 
@@ -29,10 +23,4 @@ public sealed partial class ESAnomalyProbeComponent : Component
 public sealed partial class ESProbeAnomalyDoAfterEvent : DoAfterEvent
 {
     public override DoAfterEvent Clone() => this;
-}
-
-[Serializable, NetSerializable]
-public enum ESAnomalyProbeVisuals : byte
-{
-    Mode,
 }

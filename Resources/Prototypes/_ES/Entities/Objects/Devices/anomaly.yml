@@ -2,26 +2,19 @@
   parent: BaseItem
   id: ESAnomalyResonator
   name: anomaly resonator
-  description: A high-tech broadcast device capable of emitting and broadcasting unique anomalous signals.
+  description: A high-tech device capable of broadcasting ultra-high frequencies into anomalies. Makes you feel like the better-half of a scientist.
   components:
   - type: Sprite
     sprite: _ES/Objects/Devices/resonator.rsi
     layers:
-    - state: resonate
+    - state: probe
       map: [ "base" ]
     - state: zeta
       map: [ "mode" ]
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleableVisuals.Enabled:
-        base:
-          True: { state: probe }
-          False: { state: resonate }
-        mode:
-          True: { visible: false }
-          False: { visible: true }
-      enum.ESAnomalyProbeVisuals.Mode:
+      enum.ESAnomalyResonatorVisuals.Mode:
         mode:
           Alpha: { state: alpha }
           Beta: { state: beta }
@@ -29,13 +22,46 @@
           Delta: { state: delta }
           Epsilon: { state: epsilon }
           Zeta: { state: zeta }
-  - type: ItemToggle
-    verbToggleOn: es-anomaly-probe-toggle-verb
-    verbToggleOff: es-anomaly-probe-toggle-verb
-    soundActivate: /Audio/Weapons/click.ogg
-    soundDeactivate: /Audio/Weapons/click.ogg
-  - type: ESAnomalyProbe
+  - type: ESAnomalyResonator
   - type: UseDelay
     delay: 2.5
   - type: Item
     size: Normal
+
+- type: entity
+  parent: BaseItem
+  id: ESAnomalyProbe
+  name: anomaly probe
+  description: A simple assembly that can locate and scan anomalies. Makes you feel like half a scientist.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Devices/probe.rsi
+    layers:
+    - state: icon
+    - state: screen
+      map: ["enum.ToggleableVisuals.Layer"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ESAnomalyProbe
+  - type: ItemToggle
+  - type: ProximityBeeper
+  - type: ProximityDetector
+    range: 20
+    components:
+    - type: ESPortalAnomaly
+  - type: Beeper
+    isMuted: true
+    minBeepInterval: 0.15
+    maxBeepInterval: 1.00
+    beepSound:
+      path: "/Audio/Items/locator_beep.ogg"
+      params:
+        maxDistance: 1
+        volume: -8
+  - type: Item
+    size: Small

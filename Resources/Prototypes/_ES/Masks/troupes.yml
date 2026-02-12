@@ -16,15 +16,6 @@
   color: red
   metaIcon: ESTraitor
   gameRule: ESTroupeRuleTraitor
-  prohibitedJobs:
-  # Command
-  - ESCaptain
-  - ESHeadOfPersonnel
-  - ESHeadOfSecurity
-  # Security
-  - ESWarden
-  - ESSecurityOfficer
-  - ESDetective
   disguisedMaskName: es-news-disguise-traitors
   objectives:
     all:
@@ -40,3 +31,11 @@
       amount: 4
     - id: ESObjectiveTraitorHackCryptoNukeConsoles
     - id: ESObjectiveTraitorDetonateNuke
+
+- type: esTroupe
+  id: ESJester
+  name: es-troupe-jester-name
+  description: es-troupe-jester-description
+  color: pink
+  metaIcon: ESJester
+  gameRule: ESTroupeRuleJester

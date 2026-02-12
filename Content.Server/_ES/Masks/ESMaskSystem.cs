@@ -177,13 +177,12 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         Objective.TryAddObjective(rule.Owner, troupe.Objectives);
     }
 
-    public bool IsPlayerValid(ESTroupePrototype troupe, ICommonSession player)
+    public bool IsPlayerValid(ESMaskPrototype mask, ICommonSession player)
     {
         if (!Mind.TryGetMind(player, out var mind, out _))
             return false;
 
-        // BUG: MindTryGetJobId doesn't have a NotNullWhen attribute on the out param.
-        if (_job.MindTryGetJobId(mind, out var job) && troupe.ProhibitedJobs.Contains(job!.Value))
+        if (_job.MindTryGetJobId(mind, out var job) && mask.ProhibitedJobs.Contains(job.Value))
             return false;
 
         if (player.AttachedEntity is null)

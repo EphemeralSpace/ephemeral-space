@@ -10,7 +10,6 @@
     ClothingEyesGlassesSunglasses: 2
     ClothingEyesGlassesSecurity: 4
     ESWeaponKnife: 3
-    RiotShield: 2
     RadioHandheldSecurity: 5
   # security officers need to follow a diet regimen!
   contrabandInventory:

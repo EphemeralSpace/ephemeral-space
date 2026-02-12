@@ -26,6 +26,7 @@
     gloves: ClothingHandsGlovesColorBlack
     ears: ClothingHeadsetSecurity
     head: ClothingHeadHatWarden
+    belt: ClothingBeltSecurityFilled
     jumpsuit: ClothingUniformJumpsuitWarden
     outerClothing: ESClothingOuterCoatWarden
     back: ClothingBackpackSecurity

@@ -471,6 +471,23 @@ public abstract partial class SharedMindSystem : EntitySystem
         return false;
     }
 
+// ES START
+    public bool TryGetMind(
+        EntityUid uid,
+        [NotNullWhen(true)] out Entity<MindComponent>? mind,
+        MindContainerComponent? container = null)
+    {
+        if (TryGetMind(uid, out var m, out var mcomp, container))
+        {
+            mind = (m, mcomp);
+            return true;
+        }
+
+        mind = null;
+        return false;
+    }
+// ES END
+
     /// <summary>
     /// Gets a mind from uid and/or MindContainerComponent. Used for null checks.
     /// </summary>

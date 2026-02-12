@@ -13,9 +13,7 @@
   components:
   - type: ESTroupeRule
     troupe: ESCrew
-    priority: 10 # Highest priority: serves as fallback troupe.
-    minTargetMembers: 1
-    playersPerTargetMember: 1
+    priority: 10
 
 - type: entity
   parent: ESBaseTroupeRule
@@ -24,9 +22,15 @@
   components:
   - type: ESTroupeRule
     troupe: ESTraitor
-    minTargetMembers: 1
-    maxTargetMembers: 5
-    playersPerTargetMember: 6 # 1/6 Players
   - type: ESTraitorRule
   - type: LoadMapRule
     mapPath: /Maps/_ES/syndiebase.yml
+
+- type: entity
+  parent: ESBaseTroupeRule
+  name: Jesters
+  id: ESTroupeRuleJester
+  components:
+  - type: ESTroupeRule
+    troupe: ESJester
+    priority: 11

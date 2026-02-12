@@ -313,6 +313,9 @@ ESWardrobeMedicalDoctor: ESWardrobePhysician
 CryogenicSleepUnitSpawner: ESHypersleepPod # this one is used for arrivals
 CryogenicSleepUnit: null
 CryogenicSleepUnitSpawnerLateJoin: null
+
+# 2026-2-10
+AnomalyLocator: ESAnomalyProbe
 # ES END
 
 # 2023-07-03

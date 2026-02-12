@@ -55,7 +55,6 @@
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCommunications]
   description: The syndicate is trying to calculate the station trajectory. It can be extracted from the communications computer.
 
-
 # Crew monitoring
 - type: entity
   id: ESBaseObjectiveSabotageCrewMonitoring
@@ -76,7 +75,6 @@
   id: ESObjectiveTraitorSabotageCrewMonitoring
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCrewMonitoring]
   description: The syndicate is trying to acquire sensitive crew medical records. It can be extracted from the crew monitoring server.
-
 
 # ID card computer
 - type: entity
@@ -140,7 +138,6 @@
   id: ESObjectiveTraitorSabotageTelecom
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageTelecom]
   description: The syndicate needs to decode encrypted communication logs from Nanotrasen. They can be found in one of the station telecom servers.
-
 
 ### Main traitor objectives
 - type: entity

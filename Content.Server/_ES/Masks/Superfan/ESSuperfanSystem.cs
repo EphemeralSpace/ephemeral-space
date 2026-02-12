@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server._ES.Masks.Masquerades;
 using Content.Server.KillTracking;
 using Content.Server.Mind;
+using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Masks;
 using Content.Shared.Mind;
 using Robust.Shared.Prototypes;
@@ -24,10 +25,10 @@ public sealed class ESSuperfanSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<KillReportedEvent>(OnKillReported);
+        SubscribeLocalEvent<ESPlayerKilledEvent>(OnKillReported);
     }
 
-    private void OnKillReported(ref KillReportedEvent ev)
+    private void OnKillReported(ref ESPlayerKilledEvent ev)
     {
         // TODO: This feels fishy. I'll leave the kill reporting rewrite nerds to
         //       figure out having a kill report for entire troupes down the line.

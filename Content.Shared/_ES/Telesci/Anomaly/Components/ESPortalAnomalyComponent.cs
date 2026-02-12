@@ -2,10 +2,11 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._ES.Telesci.Anomaly.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 [Access(typeof(ESSharedAnomalySystem))]
 public sealed partial class ESPortalAnomalyComponent : Component
 {
@@ -26,6 +27,9 @@ public sealed partial class ESPortalAnomalyComponent : Component
 
     [DataField]
     public EntProtoId RadiationEntity = "ESAnomalyRadPulse";
+
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan NextSignalTime;
 }
 
 [Serializable, NetSerializable]

@@ -17,8 +17,6 @@
   - type: RadiationSource
     intensity: 1
     slope: 0.25
-  - type: UseDelay
-    delay: 5
   - type: Anomaly
     pulseStabilityVariation: 0, 0
 # ES END

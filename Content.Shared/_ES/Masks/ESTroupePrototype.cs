@@ -1,6 +1,5 @@
 using Content.Shared._ES.Masks.Components;
 using Content.Shared.EntityTable.EntitySelectors;
-using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
@@ -40,12 +39,6 @@ public sealed partial class ESTroupePrototype : IPrototype, IInheritingPrototype
     /// </summary>
     [DataField(required: true)]
     public ProtoId<FactionIconPrototype> MetaIcon;
-
-    /// <summary>
-    /// Players with any of these jobs will be ineligible for being members of this troupe
-    /// </summary>
-    [DataField]
-    public HashSet<ProtoId<JobPrototype>> ProhibitedJobs = new();
 
     /// <summary>
     /// The objectives that this troupe gives to its members

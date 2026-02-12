@@ -20,6 +20,9 @@ public sealed class ESTargetCodenameSystem : EntitySystem
 
     private void GetCodename(Entity<ESTargetCodenameComponent> ent, ref ESObjectiveTargetChangedEvent args)
     {
+        if (args.NewTarget == null)
+            return;
+
         var usedCodenames = _objective.GetObjectives<ESTargetCodenameComponent>()
             .Where(o => o.Comp1.Codename.HasValue)
             .Select(o => (string) o.Comp1.Codename!.Value);

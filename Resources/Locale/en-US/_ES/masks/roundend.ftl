@@ -1,5 +1,5 @@
-es-roundend-mask-count-troupe = [font size=16]The show had the following troupes:[/font]
-es-roundend-mask-troupe-list = [font size=16]The [color={$color}][bold]{$name}[/bold][/color] troupe had the following goals:[/font]
+es-roundend-mask-count-troupe = [font size=14]The show had the following troupes:[/font]
+es-roundend-mask-troupe-list = [font size=16]The [color={$color}][bold]{$name}[/bold][/color] troupe[/font]
 es-roundend-mask-objective-fmt = {"    "}{$text}
 
 es-roundend-mask-player-summary-header = [font size=16]Our actors were playing the following roles:[/font]

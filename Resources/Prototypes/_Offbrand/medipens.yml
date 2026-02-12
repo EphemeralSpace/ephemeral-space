@@ -1,0 +1,63 @@
+- type: entity
+  parent: ChemicalMedipen
+  id: PainkillerAutoInjector
+  name: painkiller auto-injector
+  description: A single-dose, non-refillable medipen containing painkillers and inaprovaline.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#47F5F5"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#47F5F5"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: salpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: salpen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Inaprovaline
+          Quantity: 5
+        - ReagentId: Paracetamol
+          Quantity: 5
+        - ReagentId: Tramadol
+          Quantity: 5
+
+- type: entity
+  parent: ChemicalMedipen
+  id: EpinephrineMedipen
+  name: epinephrine medipen
+  description: A single-dose, non-refillable medipen containing epinephrine, used to temporarily stabilize patients in critical condition and buy time for them to recieve proper medical treatment. Beware of overdose.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: medipen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: medipen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 10
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 5
+        - ReagentId: Inaprovaline
+          Quantity: 5

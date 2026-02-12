@@ -62,6 +62,9 @@
     - ESAmmunition
     - ESFluff
     - ESTopicalsStatic
+    - SurgeryStatic
+    - OffbrandMedicalStatic
+    - OffbrandSurgeryStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
