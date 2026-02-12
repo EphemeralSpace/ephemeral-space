@@ -64336,21 +64336,21 @@ entities:
     - type: Transform
       pos: -11.5,-44.5
       parent: 2
-- proto: MedkitBruteFilled
+- proto: ESMedkitBruteFilled
   entities:
   - uid: 1249
     components:
     - type: Transform
       pos: 7.7204943,9.696751
       parent: 2
-- proto: MedkitBurnFilled
+- proto: ESMedkitBurnFilled
   entities:
   - uid: 1248
     components:
     - type: Transform
       pos: 7.3142443,9.540501
       parent: 2
-- proto: MedkitFilled
+- proto: ESMedkitFilled
   entities:
   - uid: 1245
     components:
@@ -64372,21 +64372,21 @@ entities:
     - type: Transform
       pos: -46.5,-47.5
       parent: 2
-- proto: MedkitOxygenFilled
+- proto: ESMedkitO2Filled
   entities:
   - uid: 1251
     components:
     - type: Transform
       pos: 8.657994,9.743626
       parent: 2
-- proto: MedkitRadiationFilled
+- proto: ESMedkitRadiationFilled
   entities:
   - uid: 1250
     components:
     - type: Transform
       pos: 8.314244,9.571751
       parent: 2
-- proto: MedkitToxinFilled
+- proto: ESMedkitToxinFilled
   entities:
   - uid: 1247
     components:
