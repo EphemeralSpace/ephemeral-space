@@ -309,10 +309,11 @@
     - id: ESWeaponKnife
       weight: 2
     - id: Handcuffs
+    - id: MakeshiftShield
     - id: WelderIndustrialAdvanced
     - id: BaseBallBat
     - id: Binoculars
-    - id: ESMedkitFilled
+    - id: MedkitFilled
 
     - id: ClothingEyesHudSecurity
     - id: ClothingEyesGlassesSunglasses
