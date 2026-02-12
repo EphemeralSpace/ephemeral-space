@@ -187,9 +187,6 @@
           amount: 2
 
 - type: entity
-  # ES START
-  abstract: true
-  # ES END
   id: ClothingBeltMilitaryWebbingMedFilled
   parent: ClothingBeltMilitaryWebbingMed
   suffix: Filled
@@ -203,7 +200,9 @@
         - id: ChemistryBottleEphedrine
           amount: 2
         - id: ChemistryBottleOmnizine
-        - id: MedkitCombatFilled
+        # ES START
+        # - id: MedkitCombatFilled
+        # ES END
 
 - type: entity
   parent: ClothingBeltWand
