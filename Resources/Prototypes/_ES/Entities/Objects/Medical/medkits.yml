@@ -3,7 +3,7 @@
   id: ESMedkit
   components:
   - type: Storage
-    maxItemSize: Small
+    maxItemSize: Normal
 
 - type: entity
   id: ESMedkitStabilization
