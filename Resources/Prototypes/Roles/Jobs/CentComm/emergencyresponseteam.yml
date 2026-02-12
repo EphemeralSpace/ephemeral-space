@@ -513,9 +513,7 @@
     - ChemistryBottleOmnizine
     belt:
     - DefibrillatorCompact
-    # ES BEGIN
-    # - MedkitCombatFilled
-    # ES END
+    - MedkitCombatFilled
     - CrowbarRed
     - WeaponPistolMk58
     - MagazinePistol

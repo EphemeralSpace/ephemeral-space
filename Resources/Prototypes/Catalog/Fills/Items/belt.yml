@@ -200,9 +200,7 @@
         - id: ChemistryBottleEphedrine
           amount: 2
         - id: ChemistryBottleOmnizine
-        # ES START
-        # - id: MedkitCombatFilled
-        # ES END
+        - id: MedkitCombatFilled
 
 - type: entity
   parent: ClothingBeltWand

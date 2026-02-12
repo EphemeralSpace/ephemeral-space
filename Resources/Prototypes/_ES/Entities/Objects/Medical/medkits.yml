@@ -1,6 +1,13 @@
 - type: entity
+  abstract: true
+  id: ESMedkit
+  components:
+  - type: Storage
+    maxItemSize: Small
+
+- type: entity
   id: ESMedkitStabilization
-  parent: Medkit
+  parent: [ESMedkit, Medkit]
   name: stabilization first aid kit
   description: "An emergency kit containing the necessities for stabilizing somebody in critical condition."
   suffix: ES
@@ -13,7 +20,7 @@
 
 - type: entity
   id: ESMedkitStabilizationFilled
-  parent: ESMedkitStabilization
+  parent: [ESMedkit, ESMedkitStabilization]
   suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
@@ -29,7 +36,7 @@
 
 - type: entity
   id: ESMedkitFilled
-  parent: Medkit
+  parent: [ESMedkit, Medkit]
   suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
@@ -43,7 +50,7 @@
 
 - type: entity
   id: ESMedkitBurnFilled
-  parent: MedkitBurn
+  parent: [ESMedkit, MedkitBurn]
   suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
@@ -55,7 +62,7 @@
 
 - type: entity
   id: ESMedkitToxinFilled
-  parent: MedkitToxin
+  parent: [ESMedkit, MedkitToxin]
   suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
@@ -67,7 +74,7 @@
 
 - type: entity
   id: ESMedkitO2Filled
-  parent: MedkitO2
+  parent: [ESMedkit, MedkitO2]
   suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
@@ -79,7 +86,7 @@
 
 - type: entity
   id: ESMedkitBruteFilled
-  parent: MedkitBrute
+  parent: [ESMedkit, MedkitBrute]
   suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
@@ -91,7 +98,7 @@
 
 - type: entity
   id: ESMedkitRadiationFilled
-  parent: MedkitRadiation
+  parent: [ESMedkit, MedkitRadiation]
   suffix: ES, Filled
   components:
   - type: EntityTableContainerFill
