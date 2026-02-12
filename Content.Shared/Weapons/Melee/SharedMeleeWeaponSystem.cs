@@ -603,10 +603,14 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             DoDamageEffect(targets, user, targetXform);
 
             // ES START
-            //_shake.Screenshake(user, 0f, 0.4f, 0.002f);
+            // dog shit copy plaste but thats melee for you
+            var userShakeRotation = new ESScreenshakeParameters()
+                { Trauma = 0.08f, DecayRate = 1.0f, Frequency = 0.009f };
+            var otherShakeTranslation = new ESScreenshakeParameters() { Trauma = 0.45f, DecayRate = 1.1f, Frequency = 0.04f };
+            _shake.Screenshake(user, null, userShakeRotation);
             foreach (var shakeTarget in targets)
             {
-              //  _shake.Screenshake(shakeTarget, 0.2f, 0f);
+                _shake.Screenshake(shakeTarget, otherShakeTranslation, null);
             }
             // ES END
         }
@@ -767,6 +771,18 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             var target = entities.First();
             _meleeSound.PlayHitSound(target, user, GetHighestDamageSound(appliedDamage, _protoManager), hitEvent.HitSoundOverride, component);
         }
+
+        // ES START
+        // dog shit copy plaste but thats melee for you
+        var userShakeRotation = new ESScreenshakeParameters()
+            { Trauma = 0.08f, DecayRate = 1.0f, Frequency = 0.009f };
+        var otherShakeTranslation = new ESScreenshakeParameters() { Trauma = 0.45f, DecayRate = 1.1f, Frequency = 0.04f };
+        _shake.Screenshake(user, null, userShakeRotation);
+        foreach (var shakeTarget in targets)
+        {
+            _shake.Screenshake(shakeTarget, otherShakeTranslation, null);
+        }
+        // ES END
 
         if (appliedDamage.GetTotal() > FixedPoint2.Zero)
         {
