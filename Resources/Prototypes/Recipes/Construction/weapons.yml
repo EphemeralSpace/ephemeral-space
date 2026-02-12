@@ -94,29 +94,31 @@
   category: construction-category-weapons
   objectType: Item
 
-- type: construction
-  id: WoodenBuckler
-  graph: WoodenBuckler
-  startNode: start
-  targetNode: woodenBuckler
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
-  id: CardShield
-  graph: CardShield
-  startNode: start
-  targetNode: cardShield
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
-  id: MakeshiftShield
-  graph: MakeshiftShield
-  startNode: start
-  targetNode: makeshiftShield
-  category: construction-category-weapons
-  objectType: Item
+# ES START
+#- type: construction
+#  id: WoodenBuckler
+#  graph: WoodenBuckler
+#  startNode: start
+#  targetNode: woodenBuckler
+#  category: construction-category-weapons
+#  objectType: Item
+#
+#- type: construction
+#  id: CardShield
+#  graph: CardShield
+#  startNode: start
+#  targetNode: cardShield
+#  category: construction-category-weapons
+#  objectType: Item
+#
+#- type: construction
+#  id: MakeshiftShield
+#  graph: MakeshiftShield
+#  startNode: start
+#  targetNode: makeshiftShield
+#  category: construction-category-weapons
+#  objectType: Item
+#ES END
 
 - type: construction
   id: ImprovisedArrow
