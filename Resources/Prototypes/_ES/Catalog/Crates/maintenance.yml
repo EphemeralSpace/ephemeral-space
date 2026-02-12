@@ -1,0 +1,32 @@
+- type: entityTable
+  id: ESLowValueCrateTable
+  table:
+    group:
+    - tableId: ESCargoEngineeringCratesTable
+      weight: 2
+    - Id: ESGeneralToolsCrate
+    - Id: ESCrateEmergencyFire
+    - Id: ESCrateRestock
+    - Id: ESCrateEmergencyEVA    #These four aren't just ESGeneralCratesTable due to the Water tank and advanced tools
+    - tableId: ESCargoGeneralCratesTable
+    - tableId: ESCargoMedicalCratesTable
+      weight: 0.5
+
+- type: entityTable
+  id: ESMaintsTraitorLoot
+  table:
+    group:
+    - id: ESEmag
+      weight: 0.5
+    - id: ESSleepyPen
+      weight: 0.5
+    - id: C4
+    - id: ESWeaponRevolver357
+    - id: ESWeaponPistol9mm
+    - id: ESWeaponPistol9mmSilenced
+    - id: ESClothingOuterArmorSecurity
+    - id: ExGrenade
+    - id: ESSpeedLoader357
+      amount: 2
+    - id: ESMagazine9mm
+      amount: 2
