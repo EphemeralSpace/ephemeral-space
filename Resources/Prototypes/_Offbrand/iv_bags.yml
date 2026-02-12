@@ -301,13 +301,7 @@
   table: !type:AllSelector
     children:
     - id: IVBag
-    - id: IVBag
-    - id: IVBagAmmoniaBlood
-    - id: IVBagBlood
-    - id: IVBagCopperBlood
-    - id: IVBagInsectBlood
-    - id: IVBagSap
-    - id: IVBagSlime
+      amount: 8
 
 - type: entity
   id: CrateFreezerIVBag

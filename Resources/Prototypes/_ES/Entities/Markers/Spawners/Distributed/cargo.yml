@@ -15,11 +15,11 @@
   table:
     group:
     - id: ESCrateMedicalSupplies
+    - id: CrateFreezerIVBag
+    - id: CrateMedicalSurgery
     - id: ESCrateEmergencySpecializedKits
     - id: ESCrateEmergencyAdvancedKits
       weight: 0.25
-    - id: ESCrateRestock
-      weight: 0.5 # Maybe this should be moved to a seperate roll
 
 - type: entityTable
   id: ESCargoSecurityCratesTable
@@ -36,7 +36,7 @@
       weight: 0.5
     - id: ESCrateSecurityThrowables
       weight: 0.5
-      
+
 - type: entityTable
   id: ESCargoServiceCratesTable
   table:
@@ -46,7 +46,7 @@
     - id: ESCrateServiceReplacementLights
     - id: ESCrateRestock
       weight: 0.25
-      
+
 - type: entityTable
   id: ESCargoGeneralCratesTable
   table:
