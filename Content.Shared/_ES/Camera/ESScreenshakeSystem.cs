@@ -1,12 +1,8 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Camera;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Random.Helpers;
-using Robust.Shared.Console;
-using Robust.Shared.Network;
 using Robust.Shared.Noise;
-using Robust.Shared.Player;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Camera;
@@ -17,6 +13,7 @@ namespace Content.Shared._ES.Camera;
 /// </summary>
 public sealed class ESScreenshakeSystem : EntitySystem
 {
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     #region Internal
@@ -61,7 +58,7 @@ public sealed class ESScreenshakeSystem : EntitySystem
         if (!TryComp<EyeComponent>(ent, out var eye))
             return;
 
-        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
+        var seed = _random.Next();
         var noise = new FastNoiseLite(seed);
         noise.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2);
 
@@ -94,8 +91,7 @@ public sealed class ESScreenshakeSystem : EntitySystem
         if (!TryComp<EyeComponent>(ent, out var eye))
             return;
 
-        // +10 to avoid reusing same values as other shit
-        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id) + 10;
+        var seed = _random.Next();
         var noise = new FastNoiseLite(seed);
         noise.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2);
 
