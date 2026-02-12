@@ -6,7 +6,7 @@ namespace Content.Shared._ES.Telesci.Anomaly.Components;
 public sealed partial class ESAnomalyConsoleComponent : Component
 {
     [DataField]
-    public List<EntityUid> Anomalies = [];
+    public HashSet<EntityUid> Anomalies = [];
 }
 
 [Serializable, NetSerializable]
