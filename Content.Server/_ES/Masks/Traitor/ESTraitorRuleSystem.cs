@@ -44,7 +44,6 @@ public sealed class ESTraitorRuleSystem : EntitySystem
             OnNukeExploded((uid, traitor, troupe, map));
         }
 
-        // TODO: Mark troupe victory
         _roundEnd.EndRound(TimeSpan.FromMinutes(1));
     }
 
@@ -80,8 +79,9 @@ public sealed class ESTraitorRuleSystem : EntitySystem
                 continue;
 
             var point = spawnPoints[spawnPointIndex];
+            SpawnAtPosition(ent.Comp1.TeleportEffect, Transform(ownedEntity).Coordinates); // beginning
+            SpawnAtPosition(ent.Comp1.TeleportEffect, point); // destination
             _transform.SetCoordinates(ownedEntity, point);
-            SpawnAtPosition(ent.Comp1.TeleportEffect, point);
 
             spawnPointIndex = (spawnPointIndex + 1) % spawnPoints.Count;
         }

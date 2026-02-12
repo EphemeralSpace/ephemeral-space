@@ -337,6 +337,10 @@ public abstract partial class SharedMindSystem : EntitySystem
 
     public virtual void ControlMob(NetUserId user, EntityUid target) {}
 
+    // ES START
+    public virtual void SwapMinds(EntityUid mindOne, EntityUid bodyOne, EntityUid mindTwo, EntityUid bodyTwo) {}
+    // ES END
+
     /// <summary>
     /// Tries to create and add an objective from its prototype id.
     /// </summary>
@@ -466,6 +470,23 @@ public abstract partial class SharedMindSystem : EntitySystem
 
         return false;
     }
+
+// ES START
+    public bool TryGetMind(
+        EntityUid uid,
+        [NotNullWhen(true)] out Entity<MindComponent>? mind,
+        MindContainerComponent? container = null)
+    {
+        if (TryGetMind(uid, out var m, out var mcomp, container))
+        {
+            mind = (m, mcomp);
+            return true;
+        }
+
+        mind = null;
+        return false;
+    }
+// ES END
 
     /// <summary>
     /// Gets a mind from uid and/or MindContainerComponent. Used for null checks.

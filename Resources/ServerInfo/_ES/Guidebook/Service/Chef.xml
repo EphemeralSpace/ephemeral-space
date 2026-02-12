@@ -8,7 +8,7 @@ A fella has gotta eat, and it's the chef's job to make sure folks have something
 First and foremost, you'll need to familiarize yourself with the kitchen, and the tools available to you.
 
 <Box>
-<GuideEntityEmbed Entity="KitchenKnife"/>
+<GuideEntityEmbed Entity="ESWeaponKnife"/>
 <GuideEntityEmbed Entity="LargeBeaker"/>
 <GuideEntityEmbed Entity="ReagentContainerFlour"/>
 <GuideEntityEmbed Entity="FoodContainerEgg"/>
@@ -68,7 +68,7 @@ In most cases, you should be able to use a knife directly on a creature that's d
 Monkeys, however, (and other humanoids), need to be dragged onto a meatspike to be butchered.
 <Box>
 <GuideEntityEmbed Entity="KitchenSpike"/>
-<GuideEntityEmbed Entity="KitchenKnife"/>
+<GuideEntityEmbed Entity="ESWeaponKnife"/>
 <GuideEntityEmbed Entity="MobMonkey"/>
 <GuideEntityEmbed Entity="FoodMeat"/>
 </Box>

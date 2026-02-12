@@ -39,7 +39,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 // ES START
-using Content.Shared.Players;
+using Content.Server._ES.Stagehand;
 // ES END
 
 namespace Content.Server.Ghost
@@ -71,6 +71,9 @@ namespace Content.Server.Ghost
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly NameModifierSystem _nameMod = default!;
+// ES START
+        [Dependency] private readonly ESStagehandSystem _stagehand = default!;
+// ES END
 
         private EntityQuery<GhostComponent> _ghostQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -173,6 +176,12 @@ namespace Content.Server.Ghost
 
         private void OnRelayMoveInput(EntityUid uid, GhostOnMoveComponent component, ref MoveInputEvent args)
         {
+            // ES START
+            // STOP
+            // this is mostly  for offbrand bc offbrand lets u ghost on move out of crit and we dont really want that
+            return;
+            // ES END
+
             // If they haven't actually moved then ignore it.
             if ((args.Entity.Comp.HeldMoveButtons &
                  (MoveButtons.Down | MoveButtons.Left | MoveButtons.Up | MoveButtons.Right)) == 0x0)
@@ -187,7 +196,7 @@ namespace Content.Server.Ghost
             if (!_minds.TryGetMind(uid, out var mindId, out var mind) || mind.IsVisitingEntity)
                 return;
 
-            if (component.MustBeDead && (_mobState.IsAlive(uid) || _mobState.IsCritical(uid)))
+            if (component.MustBeDead && _mobState.IsAlive(uid)) // Offbrand - exit on crit
                 return;
 
             OnGhostAttempt(mindId, component.CanReturn, mind: mind);
@@ -599,7 +608,10 @@ namespace Content.Server.Ghost
 
                     DamageSpecifier damage = new(_prototypeManager.Index(AsphyxiationDamageType), dealtDamage);
 
-                    _damageable.ChangeDamage(playerEntity.Value, damage, true);
+// ES START
+                    // Ghosting is something someone does to themselves. I think this makes sense.
+                    _damageable.ChangeDamage(playerEntity.Value, damage, true, origin: playerEntity);
+// ES END
                 }
             }
 
@@ -607,13 +619,21 @@ namespace Content.Server.Ghost
                 _adminLog.Add(LogType.Mind, $"{ToPrettyString(playerEntity.Value):player} ghosted{(!canReturn ? " (non-returnable)" : "")}");
 
 // ES START
-            // Handle sending people back to the theater.
-            if (_gameTicker.LobbyEnabled)
+            mind.TimeOfDeath = _gameTiming.CurTime;
+
+            if (_player.TryGetSessionById(mind.UserId, out var player))
             {
-                if (_player.TryGetSessionById(mind.UserId, out var player))
+                // Handle sending people back to the theater.
+                if (_gameTicker.LobbyEnabled)
+                {
                     _gameTicker.PlayerJoinLobby(player, true);
-                return true;
+                }
+                else
+                {
+                    _stagehand.SpawnStagehand(player);
+                }
             }
+            return true;
 // ES END
 
             var ghost = SpawnGhost((mindId, mind), position, canReturn);

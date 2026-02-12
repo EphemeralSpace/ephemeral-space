@@ -1,0 +1,68 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveGuzzle
+  name: Guzzle
+  description: Consume as much liquid as you can, from anywhere you can get it!
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Tools/bucket.rsi
+      state: icon
+  - type: ESGuzzleObjective
+  - type: ESCounterObjective
+    title: es-guzzle-objective-title
+    target: 500
+    maxTarget: 1200
+    targetIncrement: 50
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveGuzzleSpecialInterest
+  name: Guzzle Special Interest
+  description: Consume as much of your Special Interest as you can!
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Tools/bucket.rsi
+      state: icon
+  - type: ESImbibeReagentObjective
+    canBeFromFood: false # you're GUZZLING not MUNCHING.
+    descriptionLoc: es-imbibe-reagent-guzzler-desc
+    titleLoc: es-guzzle-specific-objective-title
+    possibleConsumeTargets:
+    - Beer
+    - WeldingFuel # Excuse to really annoy engineering, AND medical.
+    - Epinephrine # Excuses to really annoy medical.
+    - DexalinPlus
+    - JuiceBanana
+    - JuiceApple
+    - Milk
+    - Bicaridine
+    - Sugar
+    - Blood
+    - Fiber
+    - Fat
+    - SoapReagent
+    - SpaceCleaner
+    - SpaceLube
+  - type: ESCounterObjective
+    target: 70
+    maxTarget: 150
+    targetIncrement: 10
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveGuzzleUniqueReagents
+  name: Guzzle
+  description: Consume as many unique liquids as you can, from anywhere you can get them!
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Consumable/Drinks/shaker.rsi
+      state: icon
+  - type: ESImbibeUniqueReagentsObjective
+    canBeFromFood: false
+  - type: ESCounterObjective
+    title: es-guzzle-unique-reagents-objective-title
+    target: 15
+    maxTarget: 25

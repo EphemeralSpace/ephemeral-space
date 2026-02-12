@@ -41,6 +41,7 @@
     toggleLightingAction: ESActionStagehandChangeLighting
     toggleFoVAction: ESActionStagehandToggleFOV
     deleteOnDetach: false
+  - type: GhostHearing
   - type: ESStagehand
   - type: ESUsernameEntityName
   - type: ESMindVisuals

@@ -28,7 +28,7 @@
     ears: ClothingHeadsetAltCommand
     head: ClothingHeadHatCaptain
     jumpsuit: ClothingUniformJumpsuitCaptain
-    outerClothing: ClothingOuterArmorCaptainCarapace
+    outerClothing: ESClothingOuterArmorCaptainCarapace
     back: ClothingBackpackCaptain
   storage:
     back:

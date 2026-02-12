@@ -30,6 +30,9 @@ public sealed class DefibrillatorTest : InteractionTest
     /// Kills a target mob, heals them and then revives them with a defibrillator.
     /// </summary>
     [Test]
+    // ES START
+    [Ignore("defibs do different stuff in offmed + we dont have revives anyway")]
+    // ES END
     public async Task KillAndReviveTest()
     {
         var damageableSystem = SEntMan.System<DamageableSystem>();

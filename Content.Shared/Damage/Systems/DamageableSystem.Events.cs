@@ -277,6 +277,11 @@ public sealed class DamageChangedEvent : EntityEventArgs
     /// </summary>
     public readonly EntityUid? Origin;
 
+    /// <summary>
+    ///     Offbrand - If this damage changed happened as part of a forced refresh
+    /// </summary>
+    public readonly bool ForcedRefresh;
+
 // ES START
     /// <summary>
     ///     The physical object which caused the change in damage.
@@ -290,20 +295,21 @@ public sealed class DamageChangedEvent : EntityEventArgs
     /// </summary>
     public readonly EntityUid? Weapon;
 // ES END
+
     public DamageChangedEvent(
         DamageableComponent damageable,
         DamageSpecifier? damageDelta,
         bool interruptsDoAfters,
-// ES START
         EntityUid? origin,
+        bool forcedRefresh,
         EntityUid? source,
         EntityUid? weapon
-// ES END
     )
     {
         Damageable = damageable;
         DamageDelta = damageDelta;
         Origin = origin;
+        ForcedRefresh = forcedRefresh; // Offbrand
 // ES START
         Source = source;
         Weapon = weapon;

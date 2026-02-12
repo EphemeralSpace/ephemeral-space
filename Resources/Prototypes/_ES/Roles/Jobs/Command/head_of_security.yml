@@ -16,7 +16,6 @@
   - Maintenance
   - External
   - Detective
-  - Cryogenics
   - GenpopEnter
   - GenpopLeave
   special:
@@ -37,7 +36,7 @@
     head: ClothingHeadHatHoshat
     belt: ClothingBeltSecurityFilled
     jumpsuit: ClothingUniformJumpsuitHoS
-    outerClothing: ClothingOuterCoatHoSTrench
+    outerClothing: ESClothingOuterCoatHoSTrench
     back: ClothingBackpackSecurity
     pocket1: ESWeaponHybridTaser
   storage:

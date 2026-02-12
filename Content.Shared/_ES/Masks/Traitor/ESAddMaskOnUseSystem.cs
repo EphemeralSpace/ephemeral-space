@@ -1,5 +1,7 @@
 ﻿using Content.Shared._ES.Masks.Traitor.Components;
 using Content.Shared._ES.Masks.Traitor.Events;
+using Content.Shared._Offbrand.Wounds;
+using Content.Shared.Administration.Systems;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
@@ -16,11 +18,11 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
 {
     [Dependency] private readonly ESSharedMaskSystem _mask = default!;
     [Dependency] private readonly SharedDoAfterSystem _doafter = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly RejuvenateSystem _rejuv = default!;
+    [Dependency] private readonly HealthRankingSystem _health = default!;
 
     public override void Initialize()
     {
@@ -46,7 +48,7 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
             return;
         }
 
-        if (ent.Comp.RequireCrit && !_mobState.IsCritical((EntityUid)args.Target))
+        if (ent.Comp.RequireCrit && !_health.IsCritical((EntityUid)args.Target))
         {
             _popup.PopupClient(Loc.GetString(ent.Comp.NotCritMessage), args.User, args.User);
             return;
@@ -78,9 +80,12 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         if (args.Cancelled || args.Handled || args.Target is not { } target)
             return;
 
-        if (_mobState.IsCritical(target) && ent.Comp.RequireCrit)
+        if (_health.IsCritical(target) && ent.Comp.RequireCrit)
         {
-            _damageableSystem.SetAllDamage(target, 0);
+            // TODO ES with offmed this should really be doing something more interesting honestly
+            _rejuv.PerformRejuvenate(target);
+            // i dont know why you need to do it twice either !
+            _rejuv.PerformRejuvenate(target);
         }
 
         if (!_mind.TryGetMind(target, out var mind, out var mindComponent))

@@ -197,6 +197,10 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     {
         if (anomaly.Comp.CurrentBehavior == behaviorProto)
             return;
+// ES START
+        // Disable anomaly behaviors
+        return;
+// ES END
 
         if (anomaly.Comp.CurrentBehavior != null)
             RemoveBehavior(anomaly, anomaly.Comp.CurrentBehavior.Value);

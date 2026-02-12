@@ -41,9 +41,6 @@
   id: ESHelmetEVACaptain
 
 - type: Tag
-  id: ESHelmetEVAEngi
-
-- type: Tag
   id: ESHelmetEVASec
 
 - type: Tag
@@ -57,6 +54,9 @@
 
 - type: Tag
   id: ESSpawnerSecureTechStorage
+  
+- type: Tag
+  id: ESSpawnerTechStorageMats
 
 - type: Tag
   id: ESSpawnerTechStorage

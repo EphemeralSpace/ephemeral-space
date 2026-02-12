@@ -7,7 +7,7 @@
     - id: CigarGoldCase
       prob: 0.25
     - id: ClothingHeadsetAltCommand
-    - id: ClothingOuterArmorCaptainCarapace
+    - id: ESClothingOuterArmorCaptainCarapace
     - id: MedalCase
     - id: NukeDisk
     - id: PinpointerNuclear
@@ -47,7 +47,7 @@
     - id: ClothingBeltSecurityFilled
     - id: ClothingEyesGlassesSecurity
     - id: ClothingHeadsetAltSecurity
-    - id: ClothingOuterCoatHoSTrench
+    - id: ESClothingOuterCoatHoSTrench
     - id: ClothingShoesBootsJack
     - id: FlashlightSeclite
     - id: RubberStampHos
@@ -64,7 +64,7 @@
     - id: ClothingEyesGlassesSecurity
     - id: ClothingHandsGlovesColorBlack
     - id: ClothingShoesBootsJack
-    - id: ClothingOuterCoatWarden
+    - id: ESClothingOuterCoatWarden
     - id: RubberStampWarden
     - id: Binoculars
 
@@ -75,8 +75,8 @@
     - id: FlashlightSeclite
       prob: 0.8
     - id: ESWeaponHybridTaser
-    - id: ClothingHeadHelmetBasic
-    - id: ClothingOuterArmorBasic
+    - id: ESClothingHeadHelmetSecurity
+    - id: ESClothingOuterArmorSecurity
     - id: ClothingBeltSecurityFilled
     - id: Flash
       prob: 0.5
@@ -95,7 +95,8 @@
     - id: ClothingHeadHatDetGadget
       prob: 0.15
     - id: ClothingNeckTieDet
-    - id: ClothingOuterVestDetective
+    - id: ESWeaponHybridTaser
+    - id: ESClothingOuterArmorDetective
     - id: ESClothingOuterCoatDetective
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
@@ -135,14 +136,15 @@
     - id: ClothingHeadsetScience
     - id: ClothingNeckTieSci
     - id: ClothingOuterCoatLabOpened
-    - id: AnomalyScanner
-    - id: NodeScanner
+    - id: ESAnomalyResonator
+      prob: 0.75
+    - id: ESAnomalyProbe
     - id: Multitool
       prob: 0.5
 
 # Medical
 - type: entityTable
-  id: ESLockerFillMedicalDoctor
+  id: ESLockerFillPhysician
   table: !type:AllSelector
     children:
     - id: HandheldHealthAnalyzer
@@ -153,4 +155,16 @@
     - id: ClothingHeadsetMedical
     - id: ClothingEyesHudMedical
     - id: ClothingHeadHatSurgcapBlue
+    - id: ClothingMaskSterile
+
+- type: entityTable
+  id: ESLockerFillCoroner
+  table:
+    all:
+    - id: ESScalpelAutopsy
+    - id: BoxFolderYellow
+    - id: HandLabeler
+    - id: BoxBodyBag
+    - id: ClothingHandsGlovesColorBlue
+    - id: ClothingHeadsetMedical
     - id: ClothingMaskSterile

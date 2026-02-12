@@ -32,7 +32,7 @@
   - type: GuideHelp
     guides:
     - Chemicals
-    - Chemist
+    - OffbrandChemist
   - type: StealTarget
     stealGroup: ChemDispenser
   - type: Fixtures
@@ -70,3 +70,4 @@
         - id: JugSilicon
         - id: JugSodium
         - id: JugSulfur
+  - type: ESAmbientMusicMarkerMedical

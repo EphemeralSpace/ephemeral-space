@@ -5,8 +5,9 @@
   weight: 1
   minPlayers: 1
   gameRules: []
-  masquerade: !type:MasqueradeRoleSet
+  masquerade:
     defaultMask: "#AllCrew" # Everyone besides the traitors gets random crew masks.
+    superfanTarget: "#AllTraitors"
     roles:
       1: [] # Greenshift.
       4: ["#AllTraitors"]

@@ -66,10 +66,9 @@
     all:
     - id: ESWeaponRevolver357
     - id: ESSpeedLoader357
-    - id: KitchenKnife
-    - id: ClothingOuterArmorBasic
+    - id: ESWeaponKnife
+    - id: ESClothingOuterArmorSecurity
     - id: ExGrenade
-      amount: 2
 
 # Subverter
 - type: entity
@@ -109,7 +108,7 @@
     - id: C4
       amount: 3
     - id: ExGrenade
-      amount: 3
+      amount: 2
     - id: ESMicroBombImplanter
 
 # Veteran
@@ -150,11 +149,9 @@
   table:
     all:
     - group:
-      - id: MedkitFilled
-      - id: MedkitOxygenFilled
+      - id: MedkitAdvancedFilled
       - id: MedkitBurnFilled
       - id: MedkitBruteFilled
-      - id: MedkitToxinFilled
     - group:
       - id: ToolboxEmergencyFilled
       - id: ToolboxMechanicalFilled
@@ -230,3 +227,21 @@
         - id: FoodPumpkin
         - id: FoodCherry
         rolls: 4, 5
+
+# Hitman
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewHitman
+  suffix: ES, Hitman Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESCrewCacheHitman
+
+- type: entityTable
+  id: ESCrewCacheHitman # the component on the hitman's mind adds their dossier(s).
+  table:
+    all:
+    - id: ESWeaponPistol9mmSilenced
+    - id: ESMagazine9mm

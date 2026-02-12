@@ -1,0 +1,211 @@
+- type: esMask
+  id: ESArmsDealer
+  name: es-mask-arms-dealer-name
+  troupe: ESCrew
+  description: es-mask-arms-dealer-desc
+  color: lime
+  weight: 1
+  objectives:
+    id: ESObjectiveHoldSummonedGuns
+  mindComponents:
+  - type: ESMaskSummoner
+    examineString: es-summonable-examine-arms-dealer
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewArmsDealer
+      amount: 6
+
+- type: esMask
+  id: ESAvenger
+  name: es-mask-avenger-name
+  troupe: ESCrew
+  description: es-mask-avenger-desc
+  color: peachpuff
+  objectives:
+    id: ESObjectiveAvengerProtectRandom
+
+- type: esMask
+  id: ESCrewmember
+  name: es-mask-crewmember-name
+  troupe: ESCrew
+  description: es-mask-crewmember-desc
+  color: white
+
+- type: esMask
+  id: ESDaredevil
+  name: es-mask-daredevil-name
+  troupe: ESCrew
+  description: es-mask-daredevil-desc
+  color: orangered
+  weight: 1
+  objectives:
+    all:
+    - id: ESObjectiveTakeDamage
+    - id: ESObjectiveTakeDamageFromSource
+    - id: ESObjectiveTakeTotalDamage
+  components:
+  - type: ActionGrant
+    actions:
+    - ESActionMaskAdrenalinePump
+
+- type: esMask
+  id: ESFruitVendor
+  name: es-mask-fruit-vendor-name
+  troupe: ESCrew
+  description: es-mask-fruit-vendor-desc
+  color: magenta
+  weight: 1
+  objectives:
+    id: ESObjectiveEatSummonedFruit
+  mindComponents:
+  - type: ESMaskSummoner
+    examineString: es-summonable-examine-fruit
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewFruitVendor
+      amount: 4
+
+- type: esMask
+  id: ESGlutton
+  name: es-mask-glutton-name
+  troupe: ESCrew
+  description: es-mask-glutton-desc
+  color: yellowgreen
+  objectives:
+    all:
+    - id: ESObjectiveEatUniqueFoods
+    - id: ESObjectiveEatFood
+
+- type: esMask
+  id: ESGuzzler
+  name: es-mask-guzzler-name
+  troupe: ESCrew
+  description: es-mask-guzzler-desc
+  color: cyan
+  weight: 1
+  objectives:
+    all:
+    - id: ESObjectiveGuzzle
+    - id: ESObjectiveGuzzleUniqueReagents
+    - id: ESObjectiveGuzzleSpecialInterest
+
+- type: esMask
+  id: ESHater
+  name: es-mask-hater-name
+  troupe: ESCrew
+  description: es-mask-hater-desc
+  color: lightseagreen
+  assignmentOrder: 11 # Needs to be assigned after other masks
+  objectives:
+    all:
+    - id: ESObjectiveHaterHate
+
+- type: esMask
+  id: ESHitman
+  name: es-mask-hitman-name
+  troupe: ESCrew
+  description: es-mask-hitman-desc
+  color: crimson
+  mindComponents:
+  - type: ESSpawnTargetDossier
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewHitman
+  objectives:
+    all:
+    - id: ESObjectiveHitmanKillTarget
+    - id: ESObjectiveHitmanKillTarget
+      prob: 0.5
+
+- type: esMask
+  id: ESInsider
+  name: es-mask-insider-name
+  troupe: ESCrew
+  description: es-mask-insider-desc
+  color: cornflowerblue
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewInsider
+
+- type: esMask
+  id: ESMercenary
+  name: es-mask-mercenary-name
+  troupe: ESCrew
+  description: es-mask-mercenary-desc
+  color: steelblue
+  weight: 1
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESSpawnerRandomTraitorCache
+
+- type: esMask
+  id: ESSecretary
+  name: es-mask-secretary-name
+  troupe: ESCrew
+  description: es-mask-secretary-desc
+  color: palegreen
+  assignmentOrder: 11 # Needs to be assigned after other masks
+  objectives:
+    all:
+    - id: ESObjectiveSecretaryAssist
+
+- type: esMask
+  id: ESSurvivalist
+  name: es-mask-survivalist-name
+  troupe: ESCrew
+  description: es-mask-survivalist-desc
+  color: forestgreen
+  components:
+  - type: ESMedAlertRadioAnnouncer
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewSurvivalist
+  objectives:
+    all:
+    - id: ESObjectiveSurvive
+
+- type: esMask
+  id: ESVeteran
+  name: es-mask-veteran-name
+  troupe: ESCrew
+  description: es-mask-veteran-desc
+  color: ruber
+  weight: 1
+  objectives:
+    id: ESObjectiveKillNonCrew
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewVeteran
+
+- type: esMask
+  id: ESVandal
+  name: es-mask-vandal-name
+  troupe: ESCrew
+  description: es-mask-vandal-desc
+  color: tomato
+  weight: 0.2
+  objectives:
+    all:
+    - pick:
+        all:
+        - id: ESObjectiveVandalSabotageCommunications
+        - id: ESObjectiveVandalSabotageCrewMonitoring
+        - id: ESObjectiveVandalSabotageIDComputer
+        - id: ESObjectiveVandalSabotageCriminalRecords
+        - id: ESObjectiveVandalSabotageTelecom
+          weight: 2
+      amount: 1, 2
+
+- type: esMask
+  id: ESVIP
+  name: es-mask-vip-name
+  troupe: ESCrew
+  description: es-mask-vip-desc
+  color: gold
+  weight: 0.5
+  gear:
+    id: ESItemCardVIP

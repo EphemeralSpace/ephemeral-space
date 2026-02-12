@@ -1,8 +1,8 @@
 using Content.Server._ES.Masks.Avenger.Components;
 using Content.Server.Actions;
 using Content.Server.Chat.Managers;
-using Content.Server.KillTracking;
 using Content.Server.Pinpointer;
+using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Objectives.Target;
 using Content.Shared.Chat;
 using Content.Shared.Mind;
@@ -25,10 +25,10 @@ public sealed class ESAvengeOnKillObjectiveSystem : ESBaseTargetObjectiveSystem<
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ESAvengeOnKillObjectiveMarkerComponent, KillReportedEvent>(OnKillReported);
+        SubscribeLocalEvent<ESAvengeOnKillObjectiveMarkerComponent, ESPlayerKilledEvent>(OnKillReported);
     }
 
-    private void OnKillReported(Entity<ESAvengeOnKillObjectiveMarkerComponent> ent, ref KillReportedEvent args)
+    private void OnKillReported(Entity<ESAvengeOnKillObjectiveMarkerComponent> ent, ref ESPlayerKilledEvent args)
     {
         foreach (var avenge in GetTargetingObjectives(ent))
         {
@@ -36,25 +36,24 @@ public sealed class ESAvengeOnKillObjectiveSystem : ESBaseTargetObjectiveSystem<
         }
     }
 
-    private void AvengeKill(Entity<ESAvengeOnKillObjectiveComponent> avenge, KillReportedEvent args)
+    private void AvengeKill(Entity<ESAvengeOnKillObjectiveComponent> avenge, ESPlayerKilledEvent args)
     {
         if (!ObjectivesSys.TryFindObjectiveHolder(avenge.Owner, out var holder))
             return;
 
-        // This isn't really great but eh. it'll do.
+        var killedHadObjective = false;
+        if (MindSys.TryGetMind(args.Killed, out var killedMind, out _))
+            killedHadObjective = ObjectivesSys.HasObjective(killedMind, avenge);
+
+        var validKill = !(args.Suicide || killedHadObjective || args.Killer is null);
+
         if (TryComp<MindComponent>(holder, out var mind) &&
             _player.TryGetSessionById(mind.UserId, out var session))
         {
-            var name = Name(args.Entity);
-            var locationString = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(args.Entity));
+            var name = Name(args.Killed);
+            var locationString = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(args.Killed));
 
-            // Literally just fuck this API i do not give the shit
-            var isSuicide = args.Suicide ||
-                         args.Primary is not KillPlayerSource src ||
-                         !MindSys.TryGetMind(src.PlayerId, out var m) ||
-                         !m.Value.Comp.OwnedEntity.HasValue ||
-                         ObjectivesSys.HasObjective(m.Value, avenge);
-            var locale = isSuicide ? "es-avenger-die-message" : "es-avenger-die-message-kill";
+            var locale = validKill ? "es-avenger-die-message-kill" : "es-avenger-die-message";
 
             var msg = Loc.GetString(locale, ("name", name), ("location", locationString));
             var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
@@ -63,20 +62,14 @@ public sealed class ESAvengeOnKillObjectiveSystem : ESBaseTargetObjectiveSystem<
 
         // Check for
         // - if the victim killed themselves
-        // - if the victim wasn't killed by a player
+        // - if the victim died via the environment
         // - if the killer was actually the person who had to protect this person.
-        if (args.Suicide ||
-            args.Primary is not KillPlayerSource source ||
-            !MindSys.TryGetMind(source.PlayerId, out var killerMind) ||
-            killerMind.Value.Comp.OwnedEntity is not { } killerBody ||
-            ObjectivesSys.HasObjective(killerMind.Value, avenge))
-        {
+        if (validKill)
             return;
-        }
 
         if (!ObjectivesSys.TryAddObjective(holder.Value.AsNullable(), avenge.Comp.AvengeObjective, out var objective))
             return;
-        TargetObjective.SetTarget(objective.Value.Owner, killerBody);
+        TargetObjective.SetTarget(objective.Value.Owner, args.Killer!.Value);
 
         if (mind?.OwnedEntity is { } body)
             _actions.AddAction(body, avenge.Comp.ActionPrototype);

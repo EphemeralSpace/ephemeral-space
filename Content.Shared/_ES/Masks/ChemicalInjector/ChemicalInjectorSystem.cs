@@ -1,4 +1,5 @@
-﻿using Content.Shared.Chemistry.EntitySystems;
+﻿using Content.Shared._Offbrand.Wounds;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 
@@ -7,7 +8,7 @@ namespace Content.Shared._ES.Masks.ChemicalInjector;
 public sealed class ChemicalInjectorSystem : EntitySystem
 {
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly HealthRankingSystem _health = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
@@ -22,7 +23,7 @@ public sealed class ChemicalInjectorSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!_mobState.IsCritical(args.Performer) && args.OnlyUsableWhileCrit)
+        if (!_health.IsCritical(args.Performer) && args.OnlyUsableWhileCrit)
         {
             _popupSystem.PopupPredicted(Loc.GetString(args.FailMessage), args.Performer, args.Performer, PopupType.Medium);
             return;

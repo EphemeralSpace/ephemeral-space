@@ -166,7 +166,9 @@ public abstract class SharedJobSystem : EntitySystem
 
     public bool MindTryGetJobId(
         [NotNullWhen(true)] EntityUid? mindId,
-        out ProtoId<JobPrototype>? job)
+// ES START
+        [NotNullWhen(true)] out ProtoId<JobPrototype>? job)
+// ES END
     {
         job = null;
 

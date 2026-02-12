@@ -1,0 +1,14 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveKillNonCrew
+  name: Kill a bad guy
+  description: Use your trusty weapon to kill a non-crew person on the station.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: _ES/Objects/Weapons/Guns/357.rsi
+      state: icon
+  - type: ESKillTroupeObjective
+    troupe: ESCrew
+    invert: true
+  - type: ESCounterObjective

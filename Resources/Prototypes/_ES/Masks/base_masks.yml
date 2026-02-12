@@ -1,0 +1,23 @@
+- type: esMask
+  id: ESBaseCommandSecRestricted
+  abstract: true
+  prohibitedJobs:
+  # Command
+  - ESCaptain
+  - ESHeadOfPersonnel
+  - ESHeadOfSecurity
+  # Security
+  - ESWarden
+  - ESSecurityOfficer
+  - ESDetective
+
+- type: esMask
+  parent: ESBaseCommandSecRestricted
+  id: ESBaseTraitor
+  troupe: ESTraitor
+  abstract: true
+  components:
+  - type: ESTroupeFactionIcon
+    icon: ESTraitor
+    troupe: ESTraitor
+    examineString: es-mask-troupe-traitor-examine

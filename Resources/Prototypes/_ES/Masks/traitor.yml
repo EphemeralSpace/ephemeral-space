@@ -1,0 +1,76 @@
+- type: esMask
+  parent: ESBaseTraitor
+  id: ESAssassin
+  name: es-mask-assassin-name
+  description: es-mask-assassin-desc
+  color: hotpink
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorAssassin
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: ESDemolitionist
+  name: es-mask-demolitionist-name
+  description: es-mask-demolitionist-desc
+  color: orangered
+  weight: 0.3
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorDemolitionist
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: ESInfiltrator
+  name: es-mask-infiltrator-name
+  description: es-mask-infiltrator-desc
+  color: yellow
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorInfiltrator
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: ESMarauder
+  name: es-mask-marauder-name
+  description: es-mask-marauder-desc
+  color: coral
+  weight: 1.5
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorMarauder
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: ESRecruit
+  name: es-mask-recruit-name
+  description: es-mask-recruit-desc
+  color: pink
+  weight: 0
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: ESSubverter
+  name: es-mask-subverter-name
+  description: es-mask-subverter-desc
+  color: gray
+  weight: 0.5
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorSubverter
+
+# Non-traitor masks that are dependent on traitors
+- type: esMask
+  parent: ESBaseCommandSecRestricted # same restriction as traitors
+  id: ESSyndieSuperfan
+  name: es-mask-syndie-superfan-name
+  troupe: ESCrew
+  description: es-mask-syndie-superfan-desc
+  color: lightpink
+  mindComponents:
+  - type: ESSuperfan

@@ -1,0 +1,110 @@
+- type: entity
+  abstract: true
+  id: ESMedkit
+  components:
+  - type: Storage
+    maxItemSize: Normal
+
+- type: entity
+  id: ESMedkitStabilization
+  parent: [ESMedkit, Medkit]
+  name: stabilization first aid kit
+  description: "An emergency kit containing the necessities for stabilizing somebody in critical condition."
+  suffix: ES
+  components:
+  - type: Sprite
+    state: blackkit
+  - type: Item
+    heldPrefix: blackkit
+    size: Normal
+
+- type: entity
+  id: ESMedkitStabilizationFilled
+  parent: [ESMedkit, ESMedkitStabilization]
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SyringeInaprovaline
+        - id: SyringeParacetamol
+        - id: SyringeTramadol
+        - id: EmergencyMedipen
+        - id: Gauze
+        - id: Ointment
+
+- type: entity
+  id: ESMedkitFilled
+  parent: [ESMedkit, Medkit]
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyPouchBrute
+        - id: EmergencyPouchBurn
+        - id: EmergencyPouchToxin
+        - id: EmergencyPouchOxygenDeprivation
+
+- type: entity
+  id: ESMedkitBurnFilled
+  parent: [ESMedkit, MedkitBurn]
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyPouchBurn
+          amount: 4
+
+- type: entity
+  id: ESMedkitToxinFilled
+  parent: [ESMedkit, MedkitToxin]
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyPouchToxin
+          amount: 4
+
+- type: entity
+  id: ESMedkitO2Filled
+  parent: [ESMedkit, MedkitO2]
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyPouchOxygenDeprivation
+          amount: 4
+
+- type: entity
+  id: ESMedkitBruteFilled
+  parent: [ESMedkit, MedkitBrute]
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyPouchBrute
+          amount: 4
+
+- type: entity
+  id: ESMedkitRadiationFilled
+  parent: [ESMedkit, MedkitRadiation]
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyPouchRadiation
+          amount: 4
+

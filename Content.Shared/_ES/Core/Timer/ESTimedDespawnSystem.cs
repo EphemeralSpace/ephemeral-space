@@ -33,8 +33,10 @@ public sealed class ESTimedDespawnSystem : EntitySystem
     [PublicAPI]
     public void SetLifetime(Entity<ESTimedDespawnComponent?> ent, TimeSpan lifetime)
     {
-        if (!Resolve(ent, ref ent.Comp))
-            return;
+        if (!Resolve(ent, ref ent.Comp, false))
+        {
+            ent.Comp = EnsureComp<ESTimedDespawnComponent>(ent.Owner);
+        }
         DebugTools.Assert(lifetime >= TimeSpan.Zero, "Lifetime must be positive");
 
         ent.Comp.Lifetime = lifetime;

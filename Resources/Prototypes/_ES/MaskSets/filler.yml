@@ -1,0 +1,18 @@
+- type: esMaskSet
+  id: Filler # Masks that can safely be injected into a round as Bonuses,
+             # and might have an outsized impact but never be too insane.
+  masks:
+    # Freaks, funny in moderation.
+    ESGlutton: 0.3
+    ESDaredevil: 0.3
+    ESGuzzler: 0.3
+
+    # Influencers (not that kind)
+    ESSurvivalist: 0.5 #TODO: This guy isn't THAT boring, but I want the cool new guys to get chances to show up.
+    ESAvenger: 1
+    ESHater: 1
+    ESSecretary: 1
+    ESHitman: 1 # This man has a gun. But I also want them to get a chance to like, show up, so they get a filler spot.
+
+    # Freaks^2
+    ESFruitVendor: 0.1

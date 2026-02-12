@@ -56,3 +56,4 @@
     base: ame
   - type: ReinforcedWallReplacementMarker
     replace: false
+  - type: ESAmbientMusicMarkerEngineering

@@ -16,10 +16,28 @@ public sealed class HealthExaminableSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<HealthExaminableComponent, GetVerbsEvent<ExamineVerb>>(OnGetExamineVerbs);
+        // ES START
+        SubscribeLocalEvent<HealthExaminableComponent, ExaminedEvent>(ESOnHealthExamined);
     }
+
+    // ES START
+    // replace with regular examine, no more verb sowwy
+    private void ESOnHealthExamined(Entity<HealthExaminableComponent> ent, ref ExaminedEvent args)
+    {
+        if (!TryComp<DamageableComponent>(ent.Owner, out var damage))
+            return;
+
+        var markup = CreateMarkup(ent.Owner, ent.Comp, damage);
+        args.PushMessage(markup, -10);
+    }
+
+    // ES END
 
     private void OnGetExamineVerbs(EntityUid uid, HealthExaminableComponent component, GetVerbsEvent<ExamineVerb> args)
     {
+        // ES START
+        return;
+        // ES END
         if (!TryComp<DamageableComponent>(uid, out var damage))
             return;
 
@@ -88,13 +106,15 @@ public sealed class HealthExaminableSystem : EntitySystem
             msg.AddMarkupOrThrow(chosenLocStr);
         }
 
+        // Offbrand: reordered the empty placeholder to after people have added to health examinable
+
+        // Anything else want to add on to this?
+        RaiseLocalEvent(uid, new HealthBeingExaminedEvent(msg), true);
+
         if (msg.IsEmpty)
         {
             msg.AddMarkupOrThrow(Loc.GetString($"health-examinable-{component.LocPrefix}-none"));
         }
-
-        // Anything else want to add on to this?
-        RaiseLocalEvent(uid, new HealthBeingExaminedEvent(msg), true);
 
         return msg;
     }

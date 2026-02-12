@@ -357,4 +357,49 @@ public sealed class MindSystem : SharedMindSystem
         MakeSentient(target);
         TransferTo(mindId, target, ghostCheckOverride: true, mind: mind);
     }
+
+    // ES START
+    // mindswap method
+    // sometimes things need to be complicated
+    public override void SwapMinds(EntityUid mindEntityOne, EntityUid bodyOne, EntityUid mindEntityTwo, EntityUid bodyTwo)
+    {
+        var mindContainerOne = EnsureComp<MindContainerComponent>(bodyOne);
+        var mindContainerTwo = EnsureComp<MindContainerComponent>(bodyTwo);
+        var mindCompOne = EnsureComp<MindComponent>(mindEntityOne);
+        var mindCompTwo = EnsureComp<MindComponent>(mindEntityTwo);
+
+        mindContainerOne.Mind = null;
+        mindContainerTwo.Mind = null;
+        mindCompOne.OwnedEntity = null;
+        mindCompTwo.OwnedEntity = null;
+        RaiseLocalEvent(bodyOne, new MindRemovedMessage((mindEntityOne, mindCompOne), (bodyOne, mindContainerOne)), true);
+        RaiseLocalEvent(bodyTwo, new MindRemovedMessage((mindEntityTwo, mindCompTwo), (bodyTwo, mindContainerTwo)), true);
+        RaiseLocalEvent(mindEntityOne, new MindGotRemovedEvent((mindEntityOne, mindCompOne), (bodyOne, mindContainerOne)), true);
+        RaiseLocalEvent(mindEntityTwo, new MindGotRemovedEvent((mindEntityTwo, mindCompTwo), (bodyTwo, mindContainerTwo)), true);
+
+        mindContainerOne.Mind = mindEntityTwo;
+        mindContainerTwo.Mind = mindEntityOne;
+        mindCompOne.OwnedEntity = bodyTwo;
+        mindCompTwo.OwnedEntity = bodyOne;
+        RaiseLocalEvent(bodyOne, new MindAddedMessage((mindEntityTwo, mindCompTwo), (bodyOne, mindContainerOne)));
+        RaiseLocalEvent(bodyTwo, new MindAddedMessage((mindEntityOne, mindCompOne), (bodyTwo, mindContainerTwo)));
+        RaiseLocalEvent(mindEntityOne, new MindGotAddedEvent((mindEntityTwo, mindCompTwo), (bodyOne, mindContainerOne)));
+        RaiseLocalEvent(mindEntityTwo, new MindGotAddedEvent((mindEntityOne, mindCompOne), (bodyTwo, mindContainerTwo)));
+
+        if (mindCompOne.UserId != null && _players.TryGetSessionById(mindCompOne.UserId.Value, out var userOneSession))
+        {
+            _players.SetAttachedEntity(userOneSession, bodyTwo, true);
+        }
+
+        if (mindCompTwo.UserId != null && _players.TryGetSessionById(mindCompTwo.UserId.Value, out var userTwoSession))
+        {
+            _players.SetAttachedEntity(userTwoSession, bodyOne, true);
+        }
+
+        Dirty<MindContainerComponent>((bodyOne, mindContainerOne));
+        Dirty<MindContainerComponent>((bodyOne, mindContainerOne));
+        Dirty<MindComponent>((mindEntityOne, mindCompOne));
+        Dirty<MindComponent>((mindEntityTwo, mindCompTwo));
+    }
+    // ES END
 }

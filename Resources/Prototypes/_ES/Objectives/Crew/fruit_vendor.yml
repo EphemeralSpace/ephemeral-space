@@ -1,0 +1,14 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveEatSummonedFruit
+  description: Use your ability to manifest delicious fruits and feed them to the people on the station.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Specific/Hydroponics/apple.rsi
+      state: produce
+  - type: ESEatSummonableObjective
+  - type: ESCounterObjective
+    title: es-fruit-vendor-objective-title
+    target: 10
+    maxTarget: 15

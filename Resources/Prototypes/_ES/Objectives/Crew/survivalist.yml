@@ -1,0 +1,15 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveSurvive
+  name: Survive
+  description: Survive until the end of the shift at all costs.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Interface/Alerts/human_alive.rsi
+      state: health0
+  - type: ESMobStateObjective
+    desiredStates: [Alive, Critical]
+  - type: ESCounterObjective
+    target: 1
+    counter: 1

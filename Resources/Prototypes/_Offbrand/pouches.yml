@@ -1,0 +1,141 @@
+- type: entity
+  abstract: true
+  parent: BaseStorageItem
+  id: BaseEmergencyPouch
+  description: For use in emergency situations
+  components:
+  - type: Sprite
+    sprite: _Offbrand/pouch.rsi
+    layers:
+    - state: closed
+      map: ["item"]
+    - state: cross
+      color: "#ffffff"
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,0,1
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,0
+    whitelist:
+      tags:
+      - PillCanister
+      - Pill
+      components:
+      - Injector
+      - Healing
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: Openable
+    closeable: false
+    openOnActivate: true
+    openableByHand: false
+  - type: StorageOpenable
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        item:
+          True: { state: open }
+          False: { state: closed }
+
+- type: entity
+  parent: BaseEmergencyPouch
+  id: EmergencyPouchBrute
+  name: emergency brute pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: ["item"]
+      color: "#ff7cc5"
+    - state: cross
+      color: "#ffffff"
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: BruteAutoInjector
+        - id: Brutepack
+        - id: PainkillerAutoInjector
+
+- type: entity
+  parent: BaseEmergencyPouch
+  id: EmergencyPouchBurn
+  name: emergency burn pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: ["item"]
+      color: "#e8cb2d"
+    - state: cross
+      color: "#ffffff"
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: BurnAutoInjector
+        - id: Ointment
+        - id: PainkillerAutoInjector
+
+- type: entity
+  parent: BaseEmergencyPouch
+  id: EmergencyPouchToxin
+  name: emergency toxin pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: ["item"]
+      color: "#3dd425"
+    - state: cross
+      color: "#ffffff"
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: AntiPoisonMedipen
+        - id: PillDylovene
+
+- type: entity
+  parent: BaseEmergencyPouch
+  id: EmergencyPouchRadiation
+  name: emergency radiation pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: ["item"]
+      color: "#e93d58"
+    - state: cross
+      color: "#ffffff"
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: RadAutoInjector
+        - id: Brutepack
+
+- type: entity
+  parent: BaseEmergencyPouch
+  id: EmergencyPouchOxygenDeprivation
+  name: emergency oxygen deprivation pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: ["item"]
+      color: "#44f0d3"
+    - state: cross
+      color: "#ffffff"
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: AirlossAutoInjector
+        - id: PillDexalin
+        - id: EpinephrineMedipen

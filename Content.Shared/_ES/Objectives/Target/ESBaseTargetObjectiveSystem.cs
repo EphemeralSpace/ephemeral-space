@@ -29,7 +29,7 @@ public abstract class ESBaseTargetObjectiveSystem<TComponent> : ESBaseObjectiveS
     [MustCallBase]
     protected virtual void OnTargetChanged(Entity<TComponent> ent, ref ESObjectiveTargetChangedEvent args)
     {
-        if (args.OldTarget is { } oldTarget)
+        if (args.OldTarget is { } oldTarget && !TerminatingOrDeleted(oldTarget))
         {
             foreach (var relayType in TargetRelayComponents)
             {

@@ -1,4 +1,5 @@
 using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
@@ -23,6 +24,12 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     public bool Abstract { get; private set; }
 
     /// <summary>
+    /// Arbitray number used to order which masks are assigned before other ones
+    /// </summary>
+    [DataField]
+    public int AssignmentOrder = 1;
+
+    /// <summary>
     /// Selection weight
     /// </summary>
     [DataField]
@@ -36,9 +43,8 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
 
     /// <summary>
     /// UI Color
-    /// TODO: consider standardizing this per archetype?
     /// </summary>
-    [DataField]
+    [DataField(required: true)]
     public Color Color = Color.White;
 
     [DataField]
@@ -67,4 +73,10 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     /// </summary>
     [DataField]
     public EntityTableSelector Objectives = new NoneSelector();
+
+    /// <summary>
+    /// Players with any of these jobs will be ineligible for receiving this mask
+    /// </summary>
+    [DataField]
+    public HashSet<ProtoId<JobPrototype>> ProhibitedJobs = new();
 }

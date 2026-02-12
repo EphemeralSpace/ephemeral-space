@@ -1,0 +1,65 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveTakeDamage
+  name: Take damage
+  description: Take as much of a certain damage type as you can.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Weapons/Melee/baseball_bat.rsi
+      state: icon
+  - type: ESTakeDamageObjective
+    nameLoc: es-daredevil-objective-title
+    descriptionLoc: es-daredevil-desc
+    requiredDamages:
+    - Heat
+    - Shock
+    - Cold
+    - Slash
+    - Piercing
+    - Poison
+    - Blunt
+  - type: ESCounterObjective
+    target: 75
+    maxTarget: 200
+    targetIncrement: 25
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveTakeDamageFromSource
+  name: Take damage from source
+  description: Take as much damage from a certain source as you can.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Specific/Medical/medical.rsi
+      state: bloodpack
+  - type: ESTakeDamageFromSourceObjective
+    possibleSources:
+    - ESGrille
+    - ESAncestor
+    - ES9mmProjectile
+    - ES357Projectile
+    - ESShotgunPellet
+  - type: ESCounterObjective
+    target: 75
+    maxTarget: 150
+    targetIncrement: 25
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveTakeTotalDamage
+  name: Take total damage
+  description: Take a total amount of damage.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Species/Skeleton/parts.rsi
+      state: skull_icon
+  - type: ESTakeTotalDamageObjective
+  - type: ESCounterObjective
+    title: es-daredevil-total-objective-title
+    description: es-daredevil-total-objective-desc
+    target: 300
+    maxTarget: 500
+    targetIncrement: 20

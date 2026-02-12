@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/78b179325231d390adc11a1b0b5106af412239d7/icons/obj/machines/heartmonitor.dmi; modified by Flareguy",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "blank"
+    },
+    {
+      "name": "screen"
+    },
+    {
+      "name": "brain_ok",
+      "delays": [
+        [
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "brain_bad",
+      "delays": [
+        [
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "brain_verybad",
+      "delays": [
+        [
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "brain_warning",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "pulse_thready",
+      "delays": [
+        [
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "pulse_veryfast",
+      "delays": [
+        [
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "pulse_normal",
+      "delays": [
+        [
+          0.5,
+          0.6
+        ]
+      ]
+    },
+    {
+      "name": "pulse_flatline"
+    },
+    {
+      "name": "pulse_warning",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "breathing_normal",
+      "delays": [
+        [
+          0.4,
+          0.1,
+          0.4,
+          0.1,
+          0.4
+        ]
+      ]
+    },
+    {
+      "name": "breathing_shallow",
+      "delays": [
+        [
+          0.4,
+          0.4
+        ]
+      ]
+    },
+    {
+      "name": "breathing_warning",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    }
+  ]
+}

@@ -1,9 +1,9 @@
-using Content.Server.KillTracking;
+using Content.Shared._ES.KillTracking.Components;
 
 namespace Content.Server._ES.Masks.Objectives.Relays.Components;
 
 /// <summary>
-/// Used to relay <see cref="KillReportedEvent"/>
+/// Used to relay <see cref="ESPlayerKilledEvent"/>
 /// </summary>
 [RegisterComponent]
 [Access(typeof(ESKilledRelaySystem))]

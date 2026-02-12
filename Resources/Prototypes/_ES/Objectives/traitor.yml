@@ -13,7 +13,7 @@
 - type: entity
   parent: ESBaseTraitorObjectiveMinor
   id: ESObjectiveTraitorKillRandom
-  name: Kill a specific member of the crew.
+  name: Kill a specific member of the crew
   description: The syndicate needs to make sure they don't interfere with our plans.
   components:
   - type: ESObjective
@@ -26,6 +26,9 @@
   - type: ESTargetTroupeObjective
     troupe: ESTraitor
     invert: true
+  - type: ESTargetMaskBlacklist
+    maskBlacklist:
+    - ESSyndieSuperfan
   - type: ESKillTargetObjective
 
 ### Sabotage objectives
@@ -52,7 +55,6 @@
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCommunications]
   description: The syndicate is trying to calculate the station trajectory. It can be extracted from the communications computer.
 
-
 # Crew monitoring
 - type: entity
   id: ESBaseObjectiveSabotageCrewMonitoring
@@ -60,9 +62,9 @@
   abstract: true
   components:
   - type: ESObjective
-    icon: # TODO: proper icon once it's resprited
-      sprite: Objects/Tools/wrench.rsi
-      state: icon
+    icon:
+      sprite: Structures/Machines/server.rsi
+      state: server
   - type: ESCounterObjective
   - type: ESSabotageCondition
     whitelist:
@@ -73,7 +75,6 @@
   id: ESObjectiveTraitorSabotageCrewMonitoring
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCrewMonitoring]
   description: The syndicate is trying to acquire sensitive crew medical records. It can be extracted from the crew monitoring server.
-
 
 # ID card computer
 - type: entity
@@ -137,7 +138,6 @@
   id: ESObjectiveTraitorSabotageTelecom
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageTelecom]
   description: The syndicate needs to decode encrypted communication logs from Nanotrasen. They can be found in one of the station telecom servers.
-
 
 ### Main traitor objectives
 - type: entity

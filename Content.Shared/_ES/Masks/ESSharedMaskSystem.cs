@@ -36,6 +36,8 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(GetVerbs);
 
+        SubscribeLocalEvent<ESMaskRoleComponent, MindGotAddedEvent>(OnMaskRoleGotAdded);
+
         SubscribeLocalEvent<ESTroupeRuleComponent, ESObjectivesChangedEvent>(OnObjectivesChanged);
 
         SubscribeLocalEvent<ESTroupeFactionIconComponent, ComponentGetStateAttemptEvent>(OnComponentGetStateAttempt);
@@ -92,6 +94,13 @@ public abstract class ESSharedMaskSystem : EntitySystem
             };
             args.Verbs.Add(verb);
         }
+    }
+
+    private void OnMaskRoleGotAdded(Entity<ESMaskRoleComponent> ent, ref MindGotAddedEvent args)
+    {
+        if (!ent.Comp.Mask.HasValue)
+            return;
+        EnsureComp<ESBodyLastMaskComponent>(args.Container).LastMask = ent.Comp.Mask.Value;
     }
 
     private void OnObjectivesChanged(Entity<ESTroupeRuleComponent> ent, ref ESObjectivesChangedEvent args)
@@ -245,7 +254,6 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
         return troupes
             .OrderBy(t => t.Comp.Priority)
-            .ThenBy(t => t.Comp.PlayersPerTargetMember)
             .ToList();
     }
 
@@ -288,6 +296,13 @@ public abstract class ESSharedMaskSystem : EntitySystem
         Entity<ESTroupeRuleComponent>? troupe = null)
     {
         // No Op
+    }
+
+    public virtual void ChangeMask(Entity<MindComponent> mind,
+        ProtoId<ESMaskPrototype> maskId,
+        Entity<ESTroupeRuleComponent>? troupe = null)
+    {
+
     }
 
     public virtual void RemoveMask(Entity<MindComponent> mind)

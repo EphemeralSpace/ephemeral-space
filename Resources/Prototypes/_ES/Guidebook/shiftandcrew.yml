@@ -6,7 +6,7 @@
   children:
   - ESService
   - ESCargo
-  - ESMedical
+  - OffbrandMedical
   - ESScience
   - ESEngineering
   - ESSecurity

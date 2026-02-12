@@ -70,8 +70,9 @@ public sealed partial class DamageableSystem
         bool ignoreResistances = false,
         bool interruptsDoAfters = true,
         EntityUid? origin = null,
-// ES START
         bool ignoreGlobalModifiers = false,
+        bool forceRefresh = false, // Offbrand
+// ES START
         EntityUid? source = null,
         EntityUid? weapon = null
 // ES END
@@ -80,7 +81,7 @@ public sealed partial class DamageableSystem
         //! Empty just checks if the DamageSpecifier is _literally_ empty, as in, is internal dictionary of damage types is empty.
         // If you deal 0.0 of some damage type, Empty will be false!
 // ES START
-        return TryChangeDamage(ent, damage, out _, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, source: source, weapon: weapon);
+        return TryChangeDamage(ent, damage, out _, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, forceRefresh, source: source, weapon: weapon);
 // ES END
     }
 
@@ -102,8 +103,9 @@ public sealed partial class DamageableSystem
         bool ignoreResistances = false,
         bool interruptsDoAfters = true,
         EntityUid? origin = null,
-// ES START
         bool ignoreGlobalModifiers = false,
+        bool forceRefresh = false, // Offbrand
+// ES START
         EntityUid? source = null,
         EntityUid? weapon = null
 // ES END
@@ -112,7 +114,7 @@ public sealed partial class DamageableSystem
         //! Empty just checks if the DamageSpecifier is _literally_ empty, as in, is internal dictionary of damage types is empty.
         // If you deal 0.0 of some damage type, Empty will be false!
 // ES START
-        newDamage = ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, source: source, weapon: weapon);
+        newDamage = ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, forceRefresh, source: source, weapon: weapon);
 // ES END
         return !newDamage.Empty;
     }
@@ -134,8 +136,9 @@ public sealed partial class DamageableSystem
         bool ignoreResistances = false,
         bool interruptsDoAfters = true,
         EntityUid? origin = null,
-// ES START
         bool ignoreGlobalModifiers = false,
+        bool forceRefresh = false, // Offbrand
+// ES START
         EntityUid? source = null,
         EntityUid? weapon = null
 // ES END
@@ -146,7 +149,7 @@ public sealed partial class DamageableSystem
         if (!_damageableQuery.Resolve(ent, ref ent.Comp, false))
             return damageDone;
 
-        if (damage.Empty)
+        if (damage.Empty && !forceRefresh)
             return damageDone;
 
         var before = new BeforeDamageChangedEvent(damage, origin);
@@ -170,13 +173,18 @@ public sealed partial class DamageableSystem
             RaiseLocalEvent(ent, ev);
             damage = ev.Damage;
 
-            if (damage.Empty)
+            if (damage.Empty && !forceRefresh) // Offbrand
                 return damageDone;
         }
 
         if (!ignoreGlobalModifiers)
             damage = ApplyUniversalAllModifiers(damage);
 
+        // Begin Offbrand
+        var beforeCommit = new Content.Shared._Offbrand.Wounds.BeforeDamageCommitEvent(damage, forceRefresh);
+        RaiseLocalEvent(ent.Owner, ref beforeCommit);
+        damage = beforeCommit.Damage;
+        // End Offbrand
 
         damageDone.DamageDict.EnsureCapacity(damage.DamageDict.Count);
 
@@ -197,7 +205,7 @@ public sealed partial class DamageableSystem
 
 // ES START
         if (!damageDone.Empty)
-            OnEntityDamageChanged((ent, ent.Comp), damageDone, interruptsDoAfters, origin, source: source, weapon: weapon);
+            OnEntityDamageChanged((ent, ent.Comp), damageDone, interruptsDoAfters, origin, forceRefresh, source: source, weapon: weapon);
 // ES END
 
         return damageDone;

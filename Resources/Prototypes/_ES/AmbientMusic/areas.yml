@@ -1,0 +1,32 @@
+- type: ambientMusic
+  id: ESMorgue
+  disabled: false
+  sound:
+    params:
+      volume: -3
+    collection: AmbienceSpooky
+  rules: NearMorgue
+  priority: 4
+
+- type: ambientMusic
+  id: ESMaintenance
+  disabled: false
+  sound:
+    params:
+      volume: -6
+    collection: AmbienceMaintenance
+  rules: NearMaintenance
+  priority: 2
+
+- type: ambientMusic
+  id: ESSpace
+  disabled: false
+  sound:
+    params:
+      volume: -4
+    collection: AmbienceSpace
+  fadeIn: true
+  interruptable: true
+  rules: InSpace
+  priority: 1
+

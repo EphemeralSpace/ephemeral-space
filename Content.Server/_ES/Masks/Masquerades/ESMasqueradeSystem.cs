@@ -9,6 +9,7 @@ using Content.Shared._Citadel.Utilities;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Masks.Components;
+using Content.Shared._ES.Masks.Masquerades;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Random.Helpers;
@@ -97,21 +98,23 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
 
         var players = ev.Players;
 
-        var masksEnum = masks.OrderByDescending(MaskOrder);
+        var masksEnum = masks
+            .OrderBy(m => _proto.Index(m).AssignmentOrder)
+            .ThenByDescending(MaskOrder);
 
-        foreach (var mask in masksEnum)
+        foreach (var maskId in masksEnum)
         {
-            var troupe = _proto.Index(_proto.Index(mask).Troupe);
+            var mask = _proto.Index(maskId);
             for (var i = 0; i < players.Count; i++)
             {
                 var player = players[i];
                 if (!TryGetMindOrLog(player, out var mind))
                     continue;
 
-                if (!_mask.IsPlayerValid(troupe, player))
+                if (!_mask.IsPlayerValid(mask, player))
                     continue;
 
-                _mask.ApplyMask(mind.Value, mask);
+                _mask.ApplyMask(mind.Value, maskId);
 
                 players.RemoveAt(i);
                 goto exit; // escape to next mask.
@@ -125,7 +128,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
                 if (!TryGetMindOrLog(player, out var mind))
                     continue;
 
-                _mask.ApplyMask(mind.Value, mask);
+                _mask.ApplyMask(mind.Value, maskId);
 
                 players.RemoveAt(i);
                 goto exit; // escape to next mask.
@@ -133,7 +136,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
 
             // Fuuuck okay fine don't assign.
 
-            Log.Error($"Was unable to assign {mask} to any player.");
+            Log.Error($"Was unable to assign {maskId} to any player.");
 
             exit: ;
         }
@@ -146,11 +149,11 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         }
     }
 
-    private int MaskOrder(ProtoId<ESMaskPrototype> mask)
+    private int MaskOrder(ProtoId<ESMaskPrototype> maskId)
     {
-        var troupe = _proto.Index(_proto.Index(mask).Troupe);
+        var mask = _proto.Index(maskId);
 
-        return troupe.ProhibitedJobs.Count; // The tighter the prohibition list, the more careful we are.
+        return mask.ProhibitedJobs.Count; // The tighter the prohibition list, the more careful we are.
     }
 
     private void OnAssignLatejoiner(ref AssignLatejoinerToTroupeEvent ev)
@@ -316,5 +319,18 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         }
 
         return troupes;
+    }
+
+    public bool TryGetMasqueradeData([NotNullWhen(true)] out MasqueradeRoleSet? set)
+    {
+        set = null;
+        var rule = EntityQuery<ESMasqueradeRuleComponent>().SingleOrDefault();
+
+        if (rule?.Masquerade is null)
+            return false;
+
+        set = rule.Masquerade.Masquerade;
+
+        return true;
     }
 }

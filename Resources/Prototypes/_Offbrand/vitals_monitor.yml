@@ -1,0 +1,104 @@
+- type: entity
+  id: VitalsMonitor
+  parent: [BaseMachinePowered, SmallConstructibleMachine, StructureWheeled]
+  name: vitals monitor
+  description: Keeps an eye on your patients' vitals. Drag and drop onto a patient to monitor them.
+  components:
+  - type: VitalsMonitor
+    brainActivityThresholds:
+      1.0: Okay
+      0.7: Bad
+      0.5: VeryBad
+    brainActivityWarningThresholds:
+      0.3: true
+    breathingThresholds:
+      1.0: Normal
+      0.7: Shallow
+    breathingWarningThresholds:
+      0.55: true
+    pulseThresholds:
+      0: Normal
+      0.4: Fast
+      0.85: VentricularTachycardia
+    pulseWarningThresholds:
+      0.6: true
+    pulseAudioThresholds:
+      0:
+        collection: VitalsPulseNormal
+        params:
+          volume: -7
+      0.4:
+        collection: VitalsPulseDouble
+        params:
+          volume: -7
+    asystoleAudio:
+      collection: VitalsAsystole
+      params:
+        volume: -7
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 250
+        layer:
+        - MobLayer
+        mask:
+        - MobMask
+  - type: Sprite
+    sprite: _Offbrand/vitals_monitor.rsi
+    noRot: true
+    layers:
+    - state: base
+    - state: screen
+    - state: blank
+      map: ["enum.VitalsMonitorVisuals.BrainActivity"]
+    - state: brain_warning
+      map: ["enum.VitalsMonitorVisuals.BrainActivityWarning"]
+      visible: false
+    - state: blank
+      map: ["enum.VitalsMonitorVisuals.Breathing"]
+    - state: breathing_warning
+      map: ["enum.VitalsMonitorVisuals.BreathingWarning"]
+      visible: false
+    - state: blank
+      map: ["enum.VitalsMonitorVisuals.Pulse"]
+    - state: pulse_warning
+      map: ["enum.VitalsMonitorVisuals.PulseWarning"]
+      visible: false
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.VitalsMonitorVisuals.BrainActivity:
+        enum.VitalsMonitorVisuals.BrainActivity:
+          Blank: { state: blank }
+          Okay: { state: brain_ok }
+          Bad: { state: brain_bad }
+          VeryBad: { state: brain_verybad }
+      enum.VitalsMonitorVisuals.BrainActivityWarning:
+        enum.VitalsMonitorVisuals.BrainActivityWarning:
+          True: { visible: true }
+          False: { visible: false }
+      enum.VitalsMonitorVisuals.Breathing:
+        enum.VitalsMonitorVisuals.Breathing:
+          Blank: { state: blank }
+          Normal: { state: breathing_normal }
+          Shallow: { state: breathing_shallow }
+      enum.VitalsMonitorVisuals.BreathingWarning:
+        enum.VitalsMonitorVisuals.BreathingWarning:
+          True: { visible: true }
+          False: { visible: false }
+      enum.VitalsMonitorVisuals.Pulse:
+        enum.VitalsMonitorVisuals.Pulse:
+          Blank: { state: blank }
+          Asystole: { state: pulse_flatline }
+          Normal: { state: pulse_normal }
+          Fast: { state: pulse_veryfast }
+          VentricularTachycardia: { state: pulse_thready }
+      enum.VitalsMonitorVisuals.PulseWarning:
+        enum.VitalsMonitorVisuals.PulseWarning:
+          True: { visible: true }
+          False: { visible: false }

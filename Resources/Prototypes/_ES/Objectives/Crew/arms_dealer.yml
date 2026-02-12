@@ -1,0 +1,14 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveHoldSummonedGuns
+  description: Use your ability to summon firearms and make sure crew members hold onto them until the end of the shift.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: _ES/Objects/Weapons/Guns/shotgun.rsi
+      state: icon
+  - type: ESHoldSummonableObjective
+  - type: ESCounterObjective
+    title: es-arms-dealer-objective-title
+    target: 5
+    maxTarget: 8

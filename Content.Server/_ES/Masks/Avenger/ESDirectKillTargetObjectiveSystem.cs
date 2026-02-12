@@ -1,6 +1,6 @@
 using Content.Server._ES.Masks.Avenger.Components;
 using Content.Server.Chat.Managers;
-using Content.Server.KillTracking;
+using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Objectives.Target;
 using Content.Shared.Chat;
 using Robust.Server.Player;
@@ -19,18 +19,17 @@ public sealed class ESDirectKillTargetObjectiveSystem : ESBaseTargetObjectiveSys
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ESDirectKillTargetObjectiveMarkerComponent, KillReportedEvent>(OnKillReported);
+        SubscribeLocalEvent<ESDirectKillTargetObjectiveMarkerComponent, ESPlayerKilledEvent>(OnKillReported);
     }
 
-    private void OnKillReported(Entity<ESDirectKillTargetObjectiveMarkerComponent> ent, ref KillReportedEvent args)
+    private void OnKillReported(Entity<ESDirectKillTargetObjectiveMarkerComponent> ent, ref ESPlayerKilledEvent args)
     {
-        if (args.Primary is not KillPlayerSource source ||
-            !MindSys.TryGetMind(source.PlayerId, out var mind))
+        if (!args.ValidKill || !MindSys.TryGetMind(args.Killer.Value, out var mind))
             return;
 
         foreach (var objective in ObjectivesSys.GetObjectives<ESDirectKillTargetObjectiveComponent>(mind.Value.Owner))
         {
-            if (TargetObjective.GetTargetOrNull(objective.Owner) != args.Entity)
+            if (TargetObjective.GetTargetOrNull(objective.Owner) != args.Killed)
                 continue;
 
             ObjectivesSys.AdjustObjectiveCounter(objective.Owner);

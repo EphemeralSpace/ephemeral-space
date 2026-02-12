@@ -1,0 +1,9 @@
+- type: entity
+  id: ESAnomalyRadPulse
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadiationSource
+    intensity: 10
+    slope: 0.75
+  - type: ESTimedDespawn
+    lifetime: 3.0

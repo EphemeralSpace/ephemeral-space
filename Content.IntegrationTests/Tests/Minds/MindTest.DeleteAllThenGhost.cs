@@ -9,6 +9,9 @@ namespace Content.IntegrationTests.Tests.Minds;
 public sealed partial class MindTests
 {
     [Test]
+    // ES START
+    [Ignore("Differing ghost behavior from upstream")]
+    // ES END
     public async Task DeleteAllThenGhost()
     {
         var settings = new PoolSettings
@@ -45,6 +48,7 @@ public sealed partial class MindTests
         // Client is not attached to anything
         // ES START
         // Assert.That(pair.Client.AttachedEntity, Is.Null);
+        // ES END
         Assert.That(pair.PlayerData?.Mind, Is.Null);
 
         // Attempt to ghost
