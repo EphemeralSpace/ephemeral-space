@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Shared.Camera;
 using Robust.Shared.Noise;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -58,8 +59,7 @@ public sealed class ESScreenshakeSystem : EntitySystem
         if (!TryComp<EyeComponent>(ent, out var eye))
             return;
 
-        var seed = _random.Next();
-        var noise = new FastNoiseLite(seed);
+        var noise = new FastNoiseLite(67);
         noise.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2);
 
         var accumulatedOffset = Vector2.Zero;
@@ -76,10 +76,12 @@ public sealed class ESScreenshakeSystem : EntitySystem
 
             noise.SetFrequency(command.Translational.Frequency);
 
-            var offsetX = (maxOffset.X * trauma) * noise.GetNoise((float) _timing.CurTime.TotalSeconds, 0f);
-            noise.SetSeed(++seed);
-            var offsetY = (maxOffset.Y * trauma) * noise.GetNoise((float) _timing.CurTime.TotalSeconds, 0f);
-            noise.SetSeed(++seed);
+            // using the starst c ommand for y pos kinda doesnt work in the case where multiple shakes get sent at the same time
+            // and the shakes are identical otherwise. but like dont do that or something idk
+            var offsetX = (maxOffset.X * trauma) * noise.GetNoise((float)_timing.CurTime.TotalMilliseconds, (float)command.Start.TotalMilliseconds);
+            noise.SetSeed(68);
+            var offsetY = (maxOffset.Y * trauma) * noise.GetNoise((float)_timing.CurTime.TotalMilliseconds, (float)command.Start.TotalMilliseconds);
+            noise.SetSeed(67);
             accumulatedOffset += new Vector2(offsetX, offsetY);
         }
 
@@ -91,8 +93,7 @@ public sealed class ESScreenshakeSystem : EntitySystem
         if (!TryComp<EyeComponent>(ent, out var eye))
             return;
 
-        var seed = _random.Next();
-        var noise = new FastNoiseLite(seed);
+        var noise = new FastNoiseLite(67 + 420); // Epic bacon
         noise.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2);
 
         // 20deg max
@@ -110,8 +111,7 @@ public sealed class ESScreenshakeSystem : EntitySystem
 
             noise.SetFrequency(command.Rotational.Frequency);
 
-            var angle = (maxAngleDegrees * trauma) * noise.GetNoise((float)_timing.CurTime.TotalSeconds, 0f);
-            noise.SetSeed(++seed);
+            var angle = (maxAngleDegrees * trauma) * noise.GetNoise((float)_timing.CurTime.TotalMilliseconds, (float)command.Start.TotalMilliseconds);
             accumulatedAngle += Angle.FromDegrees(angle);
         }
 
@@ -186,6 +186,15 @@ public sealed class ESScreenshakeSystem : EntitySystem
 
         comp.Commands.Add(command);
         Dirty(uid, comp);
+    }
+
+    public void Screenshake(Filter filter, ESScreenshakeParameters? translation, ESScreenshakeParameters? rotation)
+    {
+        foreach (var player in filter.Recipients)
+        {
+            if (player.AttachedEntity is {} ent)
+                Screenshake(ent, translation, rotation);
+        }
     }
 
     #endregion
