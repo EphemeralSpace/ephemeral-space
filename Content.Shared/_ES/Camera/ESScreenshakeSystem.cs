@@ -78,9 +78,9 @@ public sealed class ESScreenshakeSystem : EntitySystem
 
             // using the starst c ommand for y pos kinda doesnt work in the case where multiple shakes get sent at the same time
             // and the shakes are identical otherwise. but like dont do that or something idk
-            var offsetX = (maxOffset.X * trauma) * noise.GetNoise((float)_timing.CurTime.TotalMilliseconds, (float)command.Start.TotalMilliseconds);
+            var offsetX = (maxOffset.X * trauma) * noise.GetNoise((float)_timing.RealTime.TotalMilliseconds, (float)command.Start.TotalMilliseconds);
             noise.SetSeed(68);
-            var offsetY = (maxOffset.Y * trauma) * noise.GetNoise((float)_timing.CurTime.TotalMilliseconds, (float)command.Start.TotalMilliseconds);
+            var offsetY = (maxOffset.Y * trauma) * noise.GetNoise((float)_timing.RealTime.TotalMilliseconds, (float)command.Start.TotalMilliseconds);
             noise.SetSeed(67);
             accumulatedOffset += new Vector2(offsetX, offsetY);
         }
@@ -111,7 +111,7 @@ public sealed class ESScreenshakeSystem : EntitySystem
 
             noise.SetFrequency(command.Rotational.Frequency);
 
-            var angle = (maxAngleDegrees * trauma) * noise.GetNoise((float)_timing.CurTime.TotalMilliseconds, (float)command.Start.TotalMilliseconds);
+            var angle = (maxAngleDegrees * trauma) * noise.GetNoise((float)_timing.RealTime.TotalMilliseconds, (float)command.Start.TotalMilliseconds);
             accumulatedAngle += Angle.FromDegrees(angle);
         }
 
