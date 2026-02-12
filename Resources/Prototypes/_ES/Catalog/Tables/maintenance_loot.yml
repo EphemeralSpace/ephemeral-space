@@ -29,6 +29,8 @@
         weight: 0.1
     - tableId: ESMaintLootRare
       weight: 2
+    - tableId: ESMaintsTraitorLoot
+      weight: 0.5
 
 - type: entityTable
   id: ESMaintLootValuable
@@ -302,6 +304,8 @@
   id: ESMaintLootRare
   table:
     group:
+    - tableId: ESMaintsTraitorLoot
+      weight: 2
     - id: ESWeaponKnife
       weight: 2
     - id: Handcuffs
