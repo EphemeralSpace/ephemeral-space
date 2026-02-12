@@ -52,7 +52,7 @@
     sprite: _ES/Structures/Walls/antimatter.rsi
     state: full
   - type: IconSmooth
-    key: walls
+    key: amwalls
     base: ame
   - type: ReinforcedWallReplacementMarker
     replace: false
