@@ -20,8 +20,9 @@
 
 - type: entity
   id: ESShotgunShellsBoxBuckshot
-  suffix: ES, Buckshot
   parent: ESShotgunShellsBox
+  description: An ammunition box containing buckshot shells for a shotgun.
+  suffix: ES, Buckshot
   components:
   - type: StorageFill
     contents:
