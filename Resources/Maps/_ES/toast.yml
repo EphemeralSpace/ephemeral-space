@@ -4,7 +4,7 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/12/2026 22:11:37
+  time: 02/12/2026 22:32:12
   entityCount: 14553
 maps:
 - 3
@@ -31288,16 +31288,6 @@ entities:
       parent: 2
 - proto: computerBodyScanner
   entities:
-  - uid: 570
-    components:
-    - type: Transform
-      pos: 2.5,-15.5
-      parent: 2
-  - uid: 1173
-    components:
-    - type: Transform
-      pos: 18.5,1.5
-      parent: 2
   - uid: 1368
     components:
     - type: Transform
@@ -75683,6 +75673,16 @@ entities:
       parent: 2
 - proto: VitalsMonitor
   entities:
+  - uid: 570
+    components:
+    - type: Transform
+      pos: 18.5,1.5
+      parent: 2
+  - uid: 1173
+    components:
+    - type: Transform
+      pos: 2.5,-15.5
+      parent: 2
   - uid: 6823
     components:
     - type: Transform
