@@ -16,6 +16,8 @@
         weight: 98
       - id: SprayBottleWater #It's just budget cut after budget cut man
         weight: 2
+    - id: EmergencyPouchBurn
+      prob: 0.5
 
 - type: entityTable
   id: ESFillBiohazardSuit
@@ -23,6 +25,8 @@
     children:
     - id: ESClothingHeadHatHoodBio
     - id: ESClothingOuterSuitBio
+    - id: EmergencyPouchToxin
+      prob: 0.75
 
 - type: entityTable
   id: ESFillRadiationSuit
@@ -34,5 +38,5 @@
       amount: 1
     - id: GeigerCounter
       amount: 1
-    - id: PillCanisterPotassiumIodide
+    - id: EmergencyPouchRadiation
       prob: 0.75

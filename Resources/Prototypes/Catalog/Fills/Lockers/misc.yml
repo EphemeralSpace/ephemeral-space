@@ -51,8 +51,10 @@
       - id: OxygenTankFilled
     - id: ToolboxEmergencyFilled
       prob: 0.5
-    - id: MedkitOxygenFilled
-      prob: 0.2
+    - group:
+      - id: EmergencyPouchOxygenDeprivation
+      - id: EmergencyPouchBrute
+      prob: 0.5
 # ES End
 
 - type: entity
