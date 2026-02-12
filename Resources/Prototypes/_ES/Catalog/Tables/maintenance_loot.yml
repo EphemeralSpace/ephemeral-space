@@ -18,7 +18,7 @@
     - tableId: ESMaintLootCommon
       weight: 50
     - tableId: ESMaintLootUncommon
-      weight: 44.5
+      weight: 45
     - weight: 3
       group:
       - id: ToolboxEmergencyFilled
