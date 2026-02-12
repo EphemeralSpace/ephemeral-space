@@ -10,10 +10,10 @@
     state: icon
   - type: ESScreenshakeUserOnTrigger
     # VV to have an effect
-    rotation:
-      trauma: 0.07
-      decayRate: 1
-      frequency: 0.012
+    translation:
+      trauma: 0.4
+      decayRate: 1.6
+      frequency: 0.014
   - type: TriggerOnUse
   - type: Item
     size: Tiny
