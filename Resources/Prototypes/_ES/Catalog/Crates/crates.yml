@@ -393,10 +393,10 @@
     group:
     - tableId: ESCargoEngineeringCratesTable
       weight: 2
-    - Id: ESGeneralToolsCrate
-    - Id: ESCrateEmergencyFire
-    - Id: ESCrateRestock
-    - Id: ESCrateEmergencyEVA    #These four aren't just ESGeneralCratesTable due to the Water tank and advanced tools
+    - id: ESGeneralToolsCrate
+    - id: ESCrateEmergencyFire
+    - id: ESCrateRestock
+    - id: ESCrateEmergencyEVA    #These four aren't just ESGeneralCratesTable due to the Water tank and advanced tools
     - tableId: ESCargoGeneralCratesTable
     - tableId: ESCargoMedicalCratesTable
       weight: 0.5
