@@ -12,8 +12,8 @@
     # VV to have an effect
     translation:
       trauma: 0.5
-    rotation:
-      trauma: 0.5
+      decayRate: 0.08
+      frequency: 0.014
   - type: TriggerOnUse
   - type: Item
     size: Tiny
