@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by Flareguy, based on solid walls from https://github.com/vgstation-coders/vgstation13/raw/99cc2ab62d65a3a7b554dc7b21ff5f57c835f973/icons/turf/walls.dmi",
+    "copyright": "Created by Flareguy, based on AME sprites from vgstation at commit https://github.com/vgstation-coders/vgstation13/commit/b440af09b52ba6bc5248e7934d148e991c928b07",
     "states": [
         {
             "name": "full"

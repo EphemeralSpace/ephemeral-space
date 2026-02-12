@@ -50,7 +50,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10
+        Piercing: 7
   - type: Tag
     tags:
     - ESShotgunPellet

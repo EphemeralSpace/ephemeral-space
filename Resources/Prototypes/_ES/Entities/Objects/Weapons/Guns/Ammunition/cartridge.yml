@@ -86,7 +86,7 @@
 - type: entity
   id: ESShellShotgunBuckshot
   name: shotgun shell
-  description: A 12-gauge buckshot shell.
+  description: A 12-gauge buckshot shell. It's good at dealing with unarmored targets.
   parent: ESBaseShellShotgun
   components:
   - type: CartridgeAmmo
@@ -96,7 +96,7 @@
   id: ESShellShotgunBeanbag
   name: beanbag slug
   parent: [ ESBaseShellShotgun, BaseSecurityBartenderContraband ]
-  description: A 12-gauge beanbag slug.
+  description: A 12-gauge beanbag slug. Useful for subduing unruly bar assiliants.
   components:
   - type: Tag
     tags:
@@ -115,7 +115,7 @@
 - type: entity
   id: ESShellShotgunSlug
   name: shotgun slug
-  description: A 12-gauge lead slug.
+  description: A 12-gauge lead slug. It can cleave through armor more effectively then the typical buckshot ammunition.
   parent: [ ESBaseShellShotgun, BaseSecurityContraband]
   components:
   - type: Sprite

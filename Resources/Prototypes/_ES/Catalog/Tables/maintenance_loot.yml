@@ -29,6 +29,8 @@
         weight: 0.1
     - tableId: ESMaintLootRare
       weight: 2
+    - tableId: ESMaintsTraitorLoot
+      weight: 0.5
 
 - type: entityTable
   id: ESMaintLootValuable
@@ -68,8 +70,6 @@
     - id: Matchstick
     - id: DrinkGlass
 
-    - id: MicroManipulatorStockPart
-      weight: 0.125
     - group:
       - id: ESRound9mm
       - id: ESRound357
@@ -93,7 +93,7 @@
     - id: Wirecutter
     - id: Wrench
     - id: SprayPainter
-    - id: ESAnomalyProbe
+    - id: ESAnomalyResonator
 
     - tableId: ESMixedBasicGloves
     - id: ClothingEyesGlassesMeson
@@ -125,7 +125,6 @@
 
     - id: Igniter
     - id: Mousetrap
-    - id: ProximitySensor
     - id: RemoteSignaller
     - id: TimerTrigger
     - id: ESParcelWrap10
@@ -198,7 +197,6 @@
     - id: ClothingEyesHudDiagnostic
     - id: ClothingEyesHudMedical
     - tableId: FillWelderSupplies # Welding masks
-    - id: ClothingMaskMuzzle
     - id: ClothingBeltMedical
     - id: ClothingBeltUtility
     - id: ESClothingHeadHelmetSecurity
@@ -213,9 +211,10 @@
     - id: ModularReceiver
     - id: RifleStock
 
-    - id: Brutepack1
-    - id: Ointment1
-    - id: Gauze1
+    - group:
+      - id: Brutepack
+      - id: Ointment
+      - id: Gauze
 
     - id: EmergencyMedipen
 
@@ -301,12 +300,12 @@
     - id: d20Dice
     - id: Wristwatch
 
-    - id: ESAnomalyResonator
-
 - type: entityTable
   id: ESMaintLootRare
   table:
     group:
+    - tableId: ESMaintsTraitorLoot
+      weight: 2
     - id: ESWeaponKnife
       weight: 2
     - id: Handcuffs
@@ -314,6 +313,7 @@
     - id: WelderIndustrialAdvanced
     - id: BaseBallBat
     - id: Binoculars
+    - id: MedkitFilled
 
     - id: ClothingEyesHudSecurity
     - id: ClothingEyesGlassesSunglasses
@@ -336,12 +336,6 @@
       - id: ClothingOuterCoatPirate
       - id: ClothingHeadHatPirateTricord
       weight: 0.5
-
-    - group:
-      - id: Medkit
-      - id: Brutepack
-      - id: Ointment
-      - id: Gauze
 
     - group: # Goofy items
       - id: NukeDiskFake
