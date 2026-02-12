@@ -135,6 +135,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
       path: /Audio/_ES/Weapons/Guns/Empty/empty.ogg
+    cameraRecoilScalar: 0.5
   - type: BatteryAmmoProvider
     proto: ESEnergyBoltCaptain
     fireCost: 48
