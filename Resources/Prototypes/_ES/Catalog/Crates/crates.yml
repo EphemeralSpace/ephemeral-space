@@ -386,3 +386,22 @@
           amount: 3
         - id: ESClothingOuterSpaceSuitEVA
           amount: 3
+
+- type: entityTable
+  id: ESMaintsTraitorLoot
+  table:
+    group:
+    - id: ESEmag
+      weight: 0.5
+    - id: ESSleepyPen
+      weight: 0.5
+    - id: C4
+    - id: ESWeaponRevolver357
+    - id: ESWeaponPistol9mm
+    - id: ESWeaponPistol9mmSilenced
+    - id: ESClothingOuterArmorSecurity
+    - id: ExGrenade
+    - id: ESSpeedLoader357
+      amount: 2
+    - id: ESMagazine9mm
+      amount: 2

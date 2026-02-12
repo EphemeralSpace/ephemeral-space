@@ -25,7 +25,7 @@
         weight: 35
       - id: ESCrateMaintenanceFilledRandom
         weight: 35
-      - tableId: LowValueCrateTable
+      - tableId: ESLowValueCrateTable
         weight: 15
       - tableId: ESMaintenanceClosetsTertiary
         weight: 5
@@ -340,7 +340,7 @@
     - group:
       - id: ESCrateMaintenanceFilledRandom
         weight: 70
-      - tableId: LowValueCrateTable
+      - tableId: ESLowValueCrateTable
         weight: 30
 
 # Tertiary or emergency closet spawner
