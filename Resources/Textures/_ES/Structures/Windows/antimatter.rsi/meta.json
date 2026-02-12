@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by Flareguy, based on AME sprites from vgstation at commit https://github.com/vgstation-coders/vgstation13/commit/b440af09b52ba6bc5248e7934d148e991c928b07",
+  "states": [
+    {
+      "name": "full"
+    },
+    {
+      "name": "ame0",
+      "directions": 4
+    },
+    {
+      "name": "ame1",
+      "directions": 4
+    },
+    {
+      "name": "ame2",
+      "directions": 4
+    },
+    {
+      "name": "ame3",
+      "directions": 4
+    },
+    {
+      "name": "ame4",
+      "directions": 4
+    },
+    {
+      "name": "ame5",
+      "directions": 4
+    },
+    {
+      "name": "ame6",
+      "directions": 4
+    },
+    {
+      "name": "ame7",
+      "directions": 4
+    }
+  ]
+}

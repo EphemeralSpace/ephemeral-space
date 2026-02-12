@@ -1,0 +1,16 @@
+# AME containment
+- type: entity
+  parent: ReinforcedWindow
+  id: ESWindowAntimatter
+  name: antimatter containment window
+  description: Lets you stare back at the darkness.
+  components:
+    - type: Sprite
+      sprite: _ES/Structures/Windows/antimatter.rsi
+    - type: Icon
+      sprite: _ES/Structures/Windows/antimatter.rsi
+      state: full
+    - type: IconSmooth
+      key: amwindows
+      base: ame
+    - type: ESAmbientMusicMarkerEngineering
