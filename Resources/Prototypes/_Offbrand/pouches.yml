@@ -4,9 +4,6 @@
   id: BaseEmergencyPouch
   description: For use in emergency situations
   components:
-  - type: Tag
-    tags:
-    - EmergencyPouch
   - type: Sprite
     sprite: _Offbrand/pouch.rsi
     layers:
