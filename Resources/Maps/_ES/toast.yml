@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/12/2026 22:32:12
-  entityCount: 14553
+  time: 02/13/2026 16:07:16
+  entityCount: 14554
 maps:
 - 3
 grids:
@@ -45876,6 +45876,14 @@ entities:
     components:
     - type: Transform
       pos: -13.5,-35.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 11751
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -13.5,-11.5
       parent: 2
     - type: Fixtures
       fixtures: {}
