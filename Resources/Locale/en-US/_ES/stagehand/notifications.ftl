@@ -5,7 +5,7 @@ es-stagehand-notification-wrap-message-high = [font size=14][bold]{$message}[/bo
 es-stagehand-notification-kill-suicide = {$entity} ({$username}) committed suicide!
 es-stagehand-notification-kill-environment = {$entity} ({$username}) was killed by the environment!
 es-stagehand-notification-kill-player = {$entity} ({$username}) was killed by {$attacker} ({$attackerUsername})!
-es-stagehand-notification-kill-player-unknown = {$entity} ({$username}) was killed by an unknown player!
+es-stagehand-notification-kill-player-userless = {$entity} ({$username}) was killed by {$attacker}!
 
 es-stagehand-notification-objective-completed = {$entity} successfully completed their objective "{$objective}!"
 es-stagehand-notification-objective-failed = {$entity} failed their objective "{$objective}!"
