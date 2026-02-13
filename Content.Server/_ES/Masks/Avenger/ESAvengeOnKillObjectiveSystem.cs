@@ -41,11 +41,11 @@ public sealed class ESAvengeOnKillObjectiveSystem : ESBaseTargetObjectiveSystem<
         if (!ObjectivesSys.TryFindObjectiveHolder(avenge.Owner, out var holder))
             return;
 
-        var killedHadObjective = false;
-        if (MindSys.TryGetMind(args.Killed, out var killedMind, out _))
-            killedHadObjective = ObjectivesSys.HasObjective(killedMind, avenge);
+        var killerHasObjective = false;
+        if (args.ValidKill && MindSys.TryGetMind(args.Killer.Value, out var killerMind, out _))
+            killerHasObjective = ObjectivesSys.HasObjective(killerMind, avenge);
 
-        var validKill = !(args.Suicide || killedHadObjective || args.Killer is null);
+        var validKill = args.ValidKill && !killerHasObjective;
 
         if (TryComp<MindComponent>(holder, out var mind) &&
             _player.TryGetSessionById(mind.UserId, out var session))
@@ -64,12 +64,12 @@ public sealed class ESAvengeOnKillObjectiveSystem : ESBaseTargetObjectiveSystem<
         // - if the victim killed themselves
         // - if the victim died via the environment
         // - if the killer was actually the person who had to protect this person.
-        if (validKill)
+        if (!validKill)
             return;
 
         if (!ObjectivesSys.TryAddObjective(holder.Value.AsNullable(), avenge.Comp.AvengeObjective, out var objective))
             return;
-        TargetObjective.SetTarget(objective.Value.Owner, args.Killer!.Value);
+        TargetObjective.SetTarget(objective.Value.Owner, args.Killer);
 
         if (mind?.OwnedEntity is { } body)
             _actions.AddAction(body, avenge.Comp.ActionPrototype);

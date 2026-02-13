@@ -86,6 +86,10 @@ public sealed class ESKillTrackingSystem : EntitySystem
 
     private void RaiseKillEvent(Entity<ESKillTrackerComponent> ent)
     {
+        if (ent.Comp.Killed)
+            return;
+        ent.Comp.Killed = true;
+
         var killer = ent.Comp.Sources.Count switch
         {
             > 1 => ent.Comp.Sources.Where(s => !s.IsEnvironment).MaxBy(s => s.AccumulatedDamage)?.Entity,

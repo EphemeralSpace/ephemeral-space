@@ -9,6 +9,12 @@ public sealed partial class ESKillTrackerComponent : Component
 {
     [DataField]
     public List<ESDamageSource> Sources = new();
+
+    /// <summary>
+    /// Tracks whether the entity has been killed, to make sure events aren't raised multiple times.
+    /// </summary>
+    [DataField]
+    public bool Killed;
 }
 
 [DataDefinition]
