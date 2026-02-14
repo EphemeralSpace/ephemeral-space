@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Camera;
+using Robust.Shared.Map;
 using Robust.Shared.Noise;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -14,6 +15,7 @@ namespace Content.Shared._ES.Camera;
 /// </summary>
 public sealed class ESScreenshakeSystem : EntitySystem
 {
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
@@ -197,5 +199,100 @@ public sealed class ESScreenshakeSystem : EntitySystem
         }
     }
 
+
+    // lerped screenshakes
+    /// <summary>
+    /// Applies a lerped screenshake effect to everything within PVS of the target. The further away you are, the less screenshake you recieve.
+    /// </summary>
+    public void LerpedShake(MapCoordinates pos, float trauma, float decay, float frequency, float maxRange)
+    {
+        var shakeFilter = Filter.Empty().AddPlayersByPvs(pos);
+
+        foreach (var player in shakeFilter.Recipients)
+        {
+            if (player.AttachedEntity == null)
+                continue; // huh???
+            var playerPos = _transform.ToMapCoordinates(Transform(player.AttachedEntity.Value).Coordinates);
+            var distance = (playerPos.Position - pos.Position).LengthSquared() / maxRange;
+            distance = Math.Clamp(distance, 0f, maxRange); // clamp it to prevent nonsense
+
+            var lerpedTrauma = MathHelper.Lerp(trauma, trauma/2f, distance);
+            var lerpedDecay = MathHelper.Lerp(decay, decay*2f, distance);
+            var lerpedFrequency = MathHelper.Lerp(frequency, frequency/2, distance);
+            var shake = new ESScreenshakeParameters() { Trauma = lerpedTrauma, DecayRate = lerpedDecay, Frequency = lerpedFrequency};
+            Screenshake(player.AttachedEntity.Value, shake, null);
+        }
+    }
+
+    /// <summary>
+    /// Applies a lerped screenshake effect to everything within PVS of the target. The further away you are, the less screenshake you recieve.
+    /// </summary>
+    public void LerpedShake(EntityUid ent, float trauma, float decay, float frequency, float maxRange)
+    {
+        var pos = _transform.GetMapCoordinates(ent);
+        var shakeFilter = Filter.Empty().AddPlayersByPvs(pos);
+
+        foreach (var player in shakeFilter.Recipients)
+        {
+            if (player.AttachedEntity == null)
+                continue; // huh???
+            var playerPos = _transform.ToMapCoordinates(Transform(player.AttachedEntity.Value).Coordinates);
+            var distance = (playerPos.Position - pos.Position).LengthSquared() / maxRange;
+            distance = Math.Clamp(distance, 0f, maxRange); // clamp it to prevent nonsense
+
+            var lerpedTrauma = MathHelper.Lerp(trauma, trauma/2f, distance);
+            var lerpedDecay = MathHelper.Lerp(decay, decay*2f, distance);
+            var lerpedFrequency = MathHelper.Lerp(frequency, frequency/2, distance);
+            var shake = new ESScreenshakeParameters() { Trauma = lerpedTrauma, DecayRate = lerpedDecay, Frequency = lerpedFrequency};
+            Screenshake(player.AttachedEntity.Value, shake, null);
+        }
+    }
+
+    /// <summary>
+    /// Applies a lerped screenshake effect to everything within range of the target. The further away you are, the less screenshake you recieve.
+    /// </summary>
+    public void LerpedShake(MapCoordinates pos, int range, float trauma, float decay, float frequency, float maxRange)
+    {
+        var shakeFilter = Filter.Empty().AddInRange(pos, range);
+
+        foreach (var player in shakeFilter.Recipients)
+        {
+            if (player.AttachedEntity == null)
+                continue; // huh???
+            var playerPos = _transform.ToMapCoordinates(Transform(player.AttachedEntity.Value).Coordinates);
+            var distance = (playerPos.Position - pos.Position).LengthSquared() / maxRange;
+            distance = Math.Clamp(distance, 0f, maxRange); // clamp it to prevent nonsense
+
+            var lerpedTrauma = MathHelper.Lerp(trauma, trauma/2f, distance);
+            var lerpedDecay = MathHelper.Lerp(decay, decay*2f, distance);
+            var lerpedFrequency = MathHelper.Lerp(frequency, frequency/2, distance);
+            var shake = new ESScreenshakeParameters() { Trauma = lerpedTrauma, DecayRate = lerpedDecay, Frequency = lerpedFrequency};
+            Screenshake(player.AttachedEntity.Value, shake, null);
+        }
+    }
+
+    /// <summary>
+    /// Applies a lerped screenshake effect to everything within range of the target. The further away you are, the less screenshake you recieve.
+    /// </summary>
+    public void LerpedShake(EntityUid ent, int range, float trauma, float decay, float frequency, float maxRange)
+    {
+        var pos = _transform.GetMapCoordinates(ent);
+        var shakeFilter = Filter.Empty().AddInRange(pos, range);
+
+        foreach (var player in shakeFilter.Recipients)
+        {
+            if (player.AttachedEntity == null)
+                continue; // huh???
+            var playerPos = _transform.ToMapCoordinates(Transform(player.AttachedEntity.Value).Coordinates);
+            var distance = (playerPos.Position - pos.Position).LengthSquared() / maxRange;
+            distance = Math.Clamp(distance, 0f, maxRange); // clamp it to prevent nonsense
+
+            var lerpedTrauma = MathHelper.Lerp(trauma, trauma/2f, distance);
+            var lerpedDecay = MathHelper.Lerp(decay, decay*2f, distance);
+            var lerpedFrequency = MathHelper.Lerp(frequency, frequency/2, distance);
+            var shake = new ESScreenshakeParameters() { Trauma = lerpedTrauma, DecayRate = lerpedDecay, Frequency = lerpedFrequency};
+            Screenshake(player.AttachedEntity.Value, shake, null);
+        }
+    }
     #endregion
 }
