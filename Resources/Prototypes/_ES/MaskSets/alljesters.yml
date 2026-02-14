@@ -1,0 +1,4 @@
+- type: esMaskSet
+  id: AllJesters # Every jester, with their mask's weight.
+  maskProvider: !type:ESTroupeMasksProvider
+    troupe: ESJester
