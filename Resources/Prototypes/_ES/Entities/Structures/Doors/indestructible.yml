@@ -113,9 +113,6 @@
         - FullTileMask
         layer:
         - AirlockLayer
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronics ]
   - type: AccessReader
     containerAccessProvider: board
   - type: Door
@@ -125,9 +122,7 @@
     openSound:
       path: /Audio/Machines/airlock_open.ogg
     closeSound:
-      # ES START
       path: /Audio/_ES/Machines/airlock_close.ogg
-      # ES END
     denySound:
       path: /Audio/Machines/airlock_deny.ogg
   - type: ContainerContainer
@@ -143,8 +138,6 @@
         enum.ElectrifiedLayers.Sparks:
           True: { visible: True }
           False: { visible: False }
-  - type: ApcPowerReceiver
-    powerLoad: 20
   - type: ExtensionCableReceiver
   - type: SoundOnOverload
   - type: SpawnOnOverload
@@ -160,6 +153,13 @@
     key: walls
   - type: StaticPrice
     price: 150
+  - type: PriorityDock
+    tag: DockArrivals
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
+  - type: ApcPowerReceiver
+    powerLoad: 0 # no power draw so they are always openable and can bolt roundstart
   - type: Tag
     tags:
       - Airlock
