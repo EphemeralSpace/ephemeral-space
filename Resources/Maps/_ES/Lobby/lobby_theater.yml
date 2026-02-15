@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/14/2026 22:26:52
-  entityCount: 1624
+  time: 02/15/2026 03:05:40
+  entityCount: 1630
 maps:
 - 1
 grids:
@@ -359,8 +359,12 @@ entities:
   - uid: 46
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,-18.5
+      pos: -1.3969427,-18.484678
+      parent: 2
+  - uid: 1627
+    components:
+    - type: Transform
+      pos: -3.6193256,50.450413
       parent: 2
 - proto: BackgammonBoard
   entities:
@@ -423,17 +427,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-18.5
       parent: 2
-  - uid: 1240
-    components:
-    - type: Transform
-      pos: -26.5,-72.5
-      parent: 2
-  - uid: 1241
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -26.5,-74.5
-      parent: 2
 - proto: ChairWood
   entities:
   - uid: 441
@@ -445,6 +438,23 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-9.5
+      parent: 2
+  - uid: 1231
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,50.5
+      parent: 2
+  - uid: 1234
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -24.5,-74.5
+      parent: 2
+  - uid: 1240
+    components:
+    - type: Transform
+      pos: -24.5,-72.5
       parent: 2
 - proto: CheckerBoard
   entities:
@@ -461,6 +471,18 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -5.5,-15.5
+      parent: 2
+- proto: CigarSpent
+  entities:
+  - uid: 1629
+    components:
+    - type: Transform
+      pos: -3.7287006,50.700413
+      parent: 2
+  - uid: 1630
+    components:
+    - type: Transform
+      pos: -1.6469427,-18.276344
       parent: 2
 - proto: ClothingHeadHatPartyRed
   entities:
@@ -562,6 +584,20 @@ entities:
     components:
     - type: Transform
       pos: -3.5,11.5
+      parent: 2
+- proto: DrinkBeerBottleFull
+  entities:
+  - uid: 1628
+    components:
+    - type: Transform
+      pos: -3.3068256,50.747288
+      parent: 2
+- proto: DrinkBottleBeer
+  entities:
+  - uid: 1626
+    components:
+    - type: Transform
+      pos: -3.4787006,50.966038
       parent: 2
 - proto: ESCarpetTheater
   entities:
@@ -3894,7 +3930,7 @@ entities:
   - uid: 1065
     components:
     - type: Transform
-      pos: -25.5,-76.5
+      pos: -28.5,-72.5
       parent: 2
   - uid: 1066
     components:
@@ -4346,7 +4382,7 @@ entities:
   - uid: 1155
     components:
     - type: Transform
-      pos: -28.5,-72.5
+      pos: -25.5,-75.5
       parent: 2
   - uid: 1156
     components:
@@ -4718,51 +4754,36 @@ entities:
     - type: Transform
       pos: -19.5,-81.5
       parent: 2
-  - uid: 1230
-    components:
-    - type: Transform
-      pos: -24.5,-71.5
-      parent: 2
-  - uid: 1231
-    components:
-    - type: Transform
-      pos: -25.5,-71.5
-      parent: 2
   - uid: 1232
     components:
     - type: Transform
-      pos: -26.5,-71.5
-      parent: 2
-  - uid: 1233
-    components:
-    - type: Transform
-      pos: -25.5,-72.5
-      parent: 2
-  - uid: 1234
-    components:
-    - type: Transform
-      pos: -25.5,-73.5
+      pos: -24.5,-75.5
       parent: 2
   - uid: 1235
     components:
     - type: Transform
-      pos: -25.5,-74.5
+      pos: -26.5,-75.5
       parent: 2
   - uid: 1236
     components:
     - type: Transform
-      pos: -25.5,-75.5
+      pos: -25.5,-71.5
       parent: 2
   - uid: 1237
     components:
     - type: Transform
-      pos: -26.5,-76.5
+      pos: -24.5,-71.5
       parent: 2
   - uid: 1238
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -25.5,-121.5
+      parent: 2
+  - uid: 1241
+    components:
+    - type: Transform
+      pos: -26.5,-71.5
       parent: 2
   - uid: 1242
     components:
@@ -7370,6 +7391,13 @@ entities:
     - type: Transform
       pos: -5.5,-113.5
       parent: 2
+- proto: ESStatueKarlMarx
+  entities:
+  - uid: 1239
+    components:
+    - type: Transform
+      pos: -26.5,-73.5
+      parent: 2
 - proto: FoodSnackPopcorn
   entities:
   - uid: 542
@@ -7475,6 +7503,13 @@ entities:
     - Strippable
 - proto: Paper
   entities:
+  - uid: 1230
+    components:
+    - type: Transform
+      pos: -24.492275,-73.41077
+      parent: 2
+    - type: Paper
+      content: I've been pondering the bronze statue for a while now. It's quite interesting.
   - uid: 1416
     components:
     - type: Transform
@@ -7485,14 +7520,14 @@ entities:
   - uid: 1619
     components:
     - type: Transform
-      pos: -3.8549461,-110.88615
+      pos: -3.8044066,-110.843796
       parent: 2
     - type: Paper
       content: I will always love you, My Fungus...
   - uid: 1623
     components:
     - type: Transform
-      pos: -6.5143557,-110.41621
+      pos: -6.5514936,-110.42192
       parent: 2
     - type: Paper
       content: This page has been left unintentionally blank.
@@ -8113,11 +8148,6 @@ entities:
     - type: Transform
       pos: 2.5,13.5
       parent: 2
-  - uid: 1239
-    components:
-    - type: Transform
-      pos: -26.5,-73.5
-      parent: 2
 - proto: TableWood
   entities:
   - uid: 201
@@ -8219,10 +8249,21 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,-15.5
       parent: 2
+  - uid: 1233
+    components:
+    - type: Transform
+      pos: -24.5,-73.5
+      parent: 2
   - uid: 1622
     components:
     - type: Transform
       pos: -6.5,-110.5
+      parent: 2
+  - uid: 1625
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,50.5
       parent: 2
 - proto: TintedWindow
   entities:
@@ -9159,6 +9200,54 @@ entities:
       rot: 3.141592653589793 rad
       pos: -26.5,-128.5
       parent: 2
+    - type: Destructible
+      thresholds:
+      - behaviors:
+        - !type:DoActsBehavior
+          acts: Destruction
+        - !type:PlaySoundBehavior
+          sound: !type:SoundCollectionSpecifier
+            params:
+              variation: null
+              playOffsetSeconds: 0
+              loop: False
+              referenceDistance: 1
+              rolloffFactor: 1
+              maxDistance: 15
+              pitch: 1
+              volume: 0
+            collection: WindowShatter
+        trigger: !type:DamageTrigger
+          damage: 1
+        triggersOnce: False
+        triggered: False
+      - behaviors:
+        - !type:PlaySoundBehavior
+          sound: !type:SoundCollectionSpecifier
+            params:
+              variation: null
+              playOffsetSeconds: 0
+              loop: False
+              referenceDistance: 1
+              rolloffFactor: 1
+              maxDistance: 15
+              pitch: 1
+              volume: 0
+            collection: WindowShatter
+        - !type:SpawnEntitiesBehavior
+          offset: 0.5
+          spawnInContainer: False
+          transferForensics: False
+          spawn:
+            ShardGlass:
+              max: 1
+              min: 1
+        - !type:DoActsBehavior
+          acts: Destruction
+        trigger: !type:DamageTrigger
+          damage: 25
+        triggersOnce: False
+        triggered: False
 - proto: WoodDoor
   entities:
   - uid: 438
