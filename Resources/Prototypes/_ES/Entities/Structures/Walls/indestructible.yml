@@ -10,7 +10,6 @@
   - type: Icon
     sprite: Structures/Walls/shuttle.rsi
     state: full
-  - type: WallReplacementMarker
   - type: Fixtures
     fixtures:
       fix1:
