@@ -7509,7 +7509,7 @@ entities:
       pos: -24.492275,-73.41077
       parent: 2
     - type: Paper
-      content: I've been pondering the bronze statue for a while now. It's quite interesting.
+      content: I've been pondering the bronze statue for a while now. It's an interesting question.
   - uid: 1416
     components:
     - type: Transform
