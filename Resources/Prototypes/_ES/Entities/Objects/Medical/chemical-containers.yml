@@ -126,14 +126,14 @@
 
 - type: entity
   parent: LargeBeaker
-  id: ESLargeBeakerSalineGlucose
-  suffix: ES, SalineGlucose
+  id: ESLargeBeakerPeridaxon
+  suffix: ES, Peridaxon
   components:
   - type: Label
-    currentLabel: reagent-name-saline-glucose
+    currentLabel: reagent-name-peridaxon
   - type: SolutionContainerManager
     solutions:
       beaker:
         reagents:
-        - ReagentId: SalineGlucose
+        - ReagentId: Peridaxon
           Quantity: 100
