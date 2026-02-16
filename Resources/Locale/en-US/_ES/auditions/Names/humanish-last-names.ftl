@@ -838,3 +838,28 @@ es-names-last-dataset-822 = Injection
 es-names-last-dataset-823 = Overdose
 es-names-last-dataset-824 = Guildensterp
 es-names-last-dataset-825 = Frozencrantz
+Singulowski
+Coifman
+Hamrick
+Funch
+Bortwhistle
+Wackernagel
+Omelette
+Cabinet
+Butterfingers
+Goonhouse
+Wannabe
+Schnogadahl
+Playtime
+Insanity
+Confusion
+Spookyhouse
+Heartbreaker
+Solorage
+Sicko
+Orb
+Dinnermeal
+Dinners
+Megabyte
+Gigabyte
+Ironside

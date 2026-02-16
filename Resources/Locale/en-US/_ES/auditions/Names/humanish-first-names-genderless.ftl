@@ -350,3 +350,8 @@ es-names-first-dataset-genderless-336 = Hypertext
 es-names-first-dataset-genderless-337 = Dirty
 es-names-first-dataset-genderless-338 = Ketchup
 es-names-first-dataset-genderless-339 = Lunch
+Orphie
+Snerd
+Delicios
+Quoris
+Kilo

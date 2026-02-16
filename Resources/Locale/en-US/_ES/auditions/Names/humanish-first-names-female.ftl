@@ -375,3 +375,8 @@ es-names-first-dataset-female-362 = Eels
 es-names-first-dataset-female-363 = Rebirth
 es-names-first-dataset-female-364 = Pirl
 es-names-first-dataset-female-365 = Viscera
+Chelc
+Rocksand
+Juniper
+Chlowey
+Erzsebet
