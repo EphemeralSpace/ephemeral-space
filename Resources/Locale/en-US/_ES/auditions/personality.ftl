@@ -236,6 +236,7 @@ es-character-focus-84 = finds breath masks uncomfortable
 es-character-focus-85 = dyes my hair
 es-character-focus-86 = wears color contacts
 es-character-focus-87 = hates the smell of stations
+es-character-focus-88 = always says thank you
 es-character-focus-89 = misses wearing things other than jumpsuits
 es-character-focus-90 = would rather be wearing a skirt
 es-character-focus-91 = had a bad hair day. several days in a row
