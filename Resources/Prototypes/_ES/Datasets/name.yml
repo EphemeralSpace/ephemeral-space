@@ -26,8 +26,8 @@
 - type: localizedDataset
   id: ESNamesAdjectives
   values:
-    prefix: es-names-adjectives-dataset-
-    count: 35
+    prefix: es-names-adjective-dataset-
+    count: 34
 
 # Ancillary stuff
 
