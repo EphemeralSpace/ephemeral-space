@@ -533,7 +533,7 @@ es-names-last-dataset-527 = Macbeth
 es-names-last-dataset-528 = Corleone
 es-names-last-dataset-529 = Wonka
 es-names-last-dataset-530 = Jekyll
- # spacey names
+# spacey names
 es-names-last-dataset-531 = Tauri
 es-names-last-dataset-532 = Persei
 es-names-last-dataset-533 = Cephei
