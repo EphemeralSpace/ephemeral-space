@@ -1,4 +1,5 @@
-es-character-personality-prompt = [italic]"I am {INDEFINITE($descriptor)} {$descriptor} {$job} who {$focus}."[/italic]
+es-character-info-blurb = {CAPITALIZE($gender)} • {$age} • Born {$month} {$day}
+es-character-personality-prompt = [italic]I am {INDEFINITE($descriptor)} {$descriptor} {$job} who {$focus}.[/italic]
 
 es-character-descriptor-1 = ambitious
 es-character-descriptor-2 = cheerful

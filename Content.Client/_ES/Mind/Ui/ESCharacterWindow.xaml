@@ -6,7 +6,7 @@
     SetWidth="725"
     SetHeight="575">
     <BoxContainer Orientation="Horizontal" Margin="10 5 10 10">
-        <BoxContainer Orientation="Vertical" Margin="5" VerticalAlignment="Center" SetWidth="250">
+        <BoxContainer Orientation="Vertical" Margin="5" VerticalAlignment="Center" SetWidth="270">
             <TextureButton Name="MaskHelpButton" StyleClasses="windowHelpButton" VerticalAlignment="Center" HorizontalAlignment="Right" Disabled="True" Visible="False" />
             <BoxContainer Orientation="Vertical" HorizontalAlignment="Center">
                 <RichTextLabel Name="MaskLabel" Margin="20 0" HorizontalAlignment="Center"/>
@@ -20,7 +20,8 @@
                 <Control MinWidth="5"/>
                 <RichTextLabel Name="JobLabel" VerticalAlignment="Center"/>
             </BoxContainer>
-            <RichTextLabel Name="PromptLabel" Margin="10 25"/>
+            <RichTextLabel Name="CharacterInfoLabel" Margin="0 20" HorizontalAlignment="Center"/>
+            <RichTextLabel Name="PromptLabel" Margin="10 0" HorizontalAlignment="Center"/>
         </BoxContainer>
         <PanelContainer StyleClasses="LowDivider" />
         <BoxContainer HorizontalExpand="True" Orientation="Vertical" Margin="5">

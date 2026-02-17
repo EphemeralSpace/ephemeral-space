@@ -6,6 +6,7 @@ using Content.Client._ES.Objectives.Ui;
 using Content.Client.Mind;
 using Content.Client.Roles;
 using Content.Client.UserInterface.Controls;
+using Content.Shared._ES.Auditions;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Objectives.Components;
@@ -26,6 +27,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     private readonly ESAuditionsSystem _auditions;
+    private readonly ESCluesSystem _clues;
     private readonly JobSystem _job;
     private readonly ESMaskSystem _mask;
     private readonly MindSystem _mind;
@@ -38,6 +40,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
         IoCManager.InjectDependencies(this);
 
         _auditions = _ent.System<ESAuditionsSystem>();
+        _clues = _ent.System<ESCluesSystem>();
         _job = _ent.System<JobSystem>();
         _mask = _ent.System<ESMaskSystem>();
         _mind = _ent.System<MindSystem>();
@@ -101,6 +104,11 @@ public sealed partial class ESCharacterWindow : FancyWindow
         {
             NameLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-name-fmt", ("name", character.Name)));
             PromptLabel.UnsafeSetMarkup(_auditions.GetCharacterPrompt((mind, character)));
+            CharacterInfoLabel.UnsafeSetMarkup(Loc.GetString("es-character-info-blurb",
+                ("gender", _clues.SexToString(character.Profile.Sex)),
+                ("age", character.Profile.Age),
+                ("day", character.DateOfBirth.Day),
+                ("month", Loc.GetString($"month-{character.DateOfBirth.Month}"))));
         }
 
         if (_job.MindTryGetJob(mind, out var job))
