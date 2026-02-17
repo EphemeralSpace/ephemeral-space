@@ -23,6 +23,12 @@
     prefix: es-names-last-dataset-
     count: 799
 
+- type: localizedDataset
+  id: ESNamesAdjectives
+  values:
+    prefix: es-names-adjectives-dataset-
+    count: 35
+
 # Ancillary stuff
 
 - type: localizedDataset
