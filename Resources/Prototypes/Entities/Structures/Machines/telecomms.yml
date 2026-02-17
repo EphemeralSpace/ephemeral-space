@@ -113,14 +113,6 @@
       key_slots: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
-# ES START
-  - type: ESSabotageTarget
-  - type: ParrotListener
-  - type: ParrotMemory
-    learnChance: 1.0
-    learnCooldown: 1m
-  - type: ActiveRadio
-# ES END
 
 - type: entity
   parent: TelecomServer
