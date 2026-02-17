@@ -14,6 +14,7 @@ namespace Content.IntegrationTests.Tests.Atmos;
 /// across client and server.
 /// </summary>
 [TestOf(nameof(SharedAtmosphereSystem))]
+[FixtureLifeCycle(LifeCycle.InstancePerTestCase)] // ES EDIT: Fix explosion.
 public sealed class SharedGasSpecificHeatsTest
 {
     private IConfigurationManager _sConfig;
@@ -44,6 +45,12 @@ public sealed class SharedGasSpecificHeatsTest
 
         _sAtmos = _sEntMan.System<Content.Server.Atmos.EntitySystems.AtmosphereSystem>();
         _cAtmos = _cEntMan.System<AtmosphereSystem>();
+    }
+
+    [TearDown]
+    public async Task TearDown()
+    {
+        await _pair.CleanReturnAsync();
     }
 
     /// <summary>

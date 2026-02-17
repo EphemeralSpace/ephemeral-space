@@ -181,7 +181,9 @@ public abstract partial class ESSharedAuditionsSystem
     private const float PrefixFirstNameless = 0.7f;
     private const float LastNameless = 0.009f;
     private const float FirstNameless = 0.006f;
+    private const float AdjectiveFirstName = 0.02f;
     private const int AlliterationTotalChances = 6;
+    private const int AdjectiveAlliterationTotalChances = 3;
 
     private static readonly ProtoId<LocalizedDatasetPrototype> ParticleDataset = "ESNameParticle";
     private static readonly ProtoId<LocalizedDatasetPrototype> SuffixDataset = "ESNameSuffix";
@@ -189,6 +191,7 @@ public abstract partial class ESSharedAuditionsSystem
     private static readonly ProtoId<LocalizedDatasetPrototype> PrefixMaleDataset = "ESNamePrefixMale";
     private static readonly ProtoId<LocalizedDatasetPrototype> PrefixFemaleDataset = "ESNamePrefixFemale";
     private static readonly ProtoId<LocalizedDatasetPrototype> PrefixNonbinaryDataset = "ESNamePrefixNonbinary";
+    private static readonly ProtoId<LocalizedDatasetPrototype> NameAdjectiveDataset = "ESNameAdjectives";
 
     public void GenerateName(HumanoidCharacterProfile profile, SpeciesPrototype species) => GenerateName(profile, species, out _);
 
@@ -230,6 +233,20 @@ public abstract partial class ESSharedAuditionsSystem
             lastName = string.Empty;
         else if (_random.Prob(FirstNameless))
             firstName = string.Empty;
+
+        if (firstName != string.Empty && _random.Prob(AdjectiveFirstName))
+        {
+            lastName = string.Empty;
+            suffix = string.Empty;
+            var adjectiveDataset = _prototypeManager.Index(NameAdjectiveDataset);
+
+            for (var i = 0; i < AdjectiveAlliterationTotalChances; i++)
+            {
+                prefix = _random.Pick(adjectiveDataset);
+                if (prefix.First() == firstName.First())
+                    break;
+            }
+        }
 
         // double-spaces can occur when firstname/lastname are removed and a prefix/suffix exists
         profile.Name = $"{prefix} {firstName} {lastName} {suffix}".Trim().Replace("  ", " ");

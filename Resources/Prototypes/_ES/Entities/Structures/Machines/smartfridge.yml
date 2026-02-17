@@ -20,6 +20,11 @@
     - id: ESLargeBeakerCryoxadone
       amount: 2
     - id: ESLargeBeakerDermaline
+      amount: 2
     - id: ESLargeBeakerInaprovaline
     - id: ESLargeBeakerTricordrazine
     - id: ESLargeBeakerEpinephrine
+    - id: ESLargeBeakerDexalin
+    - id: ESLargeBeakerTramadol
+    - id: ESLargeBeakerMannitol
+    - id: ESLargeBeakerPeridaxon

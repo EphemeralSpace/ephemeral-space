@@ -474,3 +474,7 @@ es-names-first-dataset-male-460 = Havoc
 es-names-first-dataset-male-461 = Herschel
 es-names-first-dataset-male-462 = Spaghetti
 es-names-first-dataset-male-463 = Linguini
+es-names-first-dataset-male-464 = Tobiart
+es-names-first-dataset-male-465 = Slade
+es-names-first-dataset-male-466 = Flemming
+es-names-first-dataset-male-467 = Buffalo

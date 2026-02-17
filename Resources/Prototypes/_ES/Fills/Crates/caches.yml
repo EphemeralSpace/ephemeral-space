@@ -207,25 +207,17 @@
       entity_storage:
         group:
         - id: FoodBanana
-        - id: FoodCarrot
-        - id: FoodCabbage
-        - id: FoodGarlic
         - id: FoodLemon
         - id: FoodLime
         - id: FoodOrange
         - id: FoodPineapple
-        - id: FoodPotato
         - id: FoodTomato
-        - id: FoodEggplant
         - id: FoodApple
-        - id: FoodCorn
-        - id: FoodOnion
-        - id: FoodMushroom
-        - id: FoodChiliPepper
         - id: FoodWatermelon
         - id: FoodGrape
         - id: FoodPumpkin
         - id: FoodCherry
+        - id: FoodBerries
         rolls: 4, 5
 
 # Hitman
