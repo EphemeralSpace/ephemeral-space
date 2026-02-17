@@ -234,7 +234,7 @@ public abstract partial class ESSharedAuditionsSystem
         else if (_random.Prob(FirstNameless))
             firstName = string.Empty;
 
-        if (_random.Prob(AdjectiveFirstName))
+        if (firstName != string.Empty && _random.Prob(AdjectiveFirstName))
         {
             lastName = string.Empty;
             suffix = string.Empty;
