@@ -1,0 +1,52 @@
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ESTelecomProcessor
+  name: telecommunication processor
+  description: A middleman on the radio network, capable of scrambling signals when tampered with.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Machines/telecomms_processor.rsi
+    noRot: true
+    layers:
+    - state: processor_off
+    - state: processor
+      shader: unshaded
+      visible: false
+      map: ["telecom-on"]
+    - state: processor_panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        telecom-on:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ESSabotageTarget
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 1.5
+    energy: 3.0
+    color: "#39b8ee"
+  - type: LitOnPowered
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: ExtensionCableReceiver
+  - type: ESSparkOnHit
+    prob: 0.25
+    tileFireChance: 0.2
+    count: 2
+  - type: WiresPanel
+  - type: WiresVisuals

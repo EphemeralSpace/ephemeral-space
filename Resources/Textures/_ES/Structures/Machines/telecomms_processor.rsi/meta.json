@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/757370bb0bcd7d451ba0623d98bca17641578519/icons/obj/machines/telecomms.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "processor",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "processor_off"
+    },
+    {
+      "name": "processor_panel"
+    }
+  ]
+}
