@@ -37,12 +37,11 @@ public sealed partial class TestPair : RobustIntegrationTest.TestPair
                 map.Log.Level = LogLevel.Warning;
         };
 
-        var settings = (PoolSettings)Settings;
-        if (!settings.DummyTicker)
-        {
-            var gameTicker = Server.System<GameTicker>();
-            await Server.WaitPost(() => gameTicker.RestartRound());
-        }
+        // ES EDIT: Always reset the sim world during tests. This makes them slightly slower but prevents flapping tests
+        //          from blowing shit up for every test downstream of them too easily.
+        var gameTicker = Server.System<GameTicker>();
+        await Server.WaitPost(() => gameTicker.RestartRound());
+        // END ES EDIT
     }
 
     public override async Task RevertModifiedCvars()
@@ -79,6 +78,12 @@ public sealed partial class TestPair : RobustIntegrationTest.TestPair
             if (cfg.IsCVarRegistered(CCVars.AdminLogsEnabled.Name))
                 cfg.SetCVar(CCVars.AdminLogsEnabled, next.AdminLogsEnabled);
         });
+
+        // ES EDIT: Always reset the sim world during tests. This makes them slightly slower but prevents flapping tests
+        //          from blowing shit up for every test downstream of them too easily.
+        var gameTicker = Server.System<GameTicker>();
+        await Server.WaitPost(() => gameTicker.RestartRound());
+        // END ES EDIT
     }
 
     protected override RobustIntegrationTest.ClientIntegrationOptions ClientOptions()
@@ -99,6 +104,9 @@ public sealed partial class TestPair : RobustIntegrationTest.TestPair
                 {
                     ClientBeforeIoC = () => IoCManager.Register<IParallaxManager, DummyParallaxManager>(true)
                 });
+            // ES EDIT: Attempt to resolve spam from excessive localization logs.
+            IoCManager.Resolve<ILogManager>().GetSawmill("loc").Level = LogLevel.Error;
+            // END ES EDIT
         };
         return opts;
     }
@@ -121,6 +129,9 @@ public sealed partial class TestPair : RobustIntegrationTest.TestPair
             var entSysMan = IoCManager.Resolve<IEntitySystemManager>();
             entSysMan.LoadExtraSystemType<DeviceNetworkTestSystem>();
             entSysMan.LoadExtraSystemType<TestDestructibleListenerSystem>();
+            // ES EDIT: Attempt to resolve spam from excessive localization logs.
+            IoCManager.Resolve<ILogManager>().GetSawmill("loc").Level = LogLevel.Error;
+            // END ES EDIT
         };
         return opts;
     }

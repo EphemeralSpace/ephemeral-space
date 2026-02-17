@@ -81,3 +81,59 @@
         reagents:
         - ReagentId: Epinephrine
           Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerDexalin
+  suffix: ES, Dexalin
+  components:
+  - type: Label
+    currentLabel: reagent-name-dexalin
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Dexalin
+          Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerTramadol
+  suffix: ES, Tramadol
+  components:
+  - type: Label
+    currentLabel: reagent-name-tramadol
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Tramadol
+          Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerMannitol
+  suffix: ES, Mannitol
+  components:
+  - type: Label
+    currentLabel: reagent-name-mannitol
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Mannitol
+          Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerPeridaxon
+  suffix: ES, Peridaxon
+  components:
+  - type: Label
+    currentLabel: reagent-name-peridaxon
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Peridaxon
+          Quantity: 100

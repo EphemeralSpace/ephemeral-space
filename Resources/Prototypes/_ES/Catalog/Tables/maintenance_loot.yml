@@ -29,8 +29,6 @@
         weight: 0.1
     - tableId: ESMaintLootRare
       weight: 2
-    - tableId: ESMaintsTraitorLoot
-      weight: 0.5
 
 - type: entityTable
   id: ESMaintLootValuable
@@ -126,7 +124,6 @@
     - id: Igniter
     - id: Mousetrap
     - id: RemoteSignaller
-    - id: TimerTrigger
     - id: ESParcelWrap10
 
     - id: DoorElectronics
@@ -190,14 +187,13 @@
     - id: Bola
     - id: EmergencyRollerBedSpawnFolded
     - id: Spear
+    - id: BaseBallBat
     - id: WelderIndustrial
     - id: Plunger
     - id: Shovel
 
-    - id: ClothingEyesHudDiagnostic
     - id: ClothingEyesHudMedical
     - tableId: FillWelderSupplies # Welding masks
-    - id: ClothingBeltMedical
     - id: ClothingBeltUtility
     - id: ESClothingHeadHelmetSecurity
 
@@ -208,8 +204,6 @@
     - id: PowerCellHigh
       weight: 0.5
     - id: BoxHug
-    - id: ModularReceiver
-    - id: RifleStock
 
     - group:
       - id: Brutepack
@@ -222,7 +216,6 @@
     - id: DrinkFourteenLokoCan
     - id: DrinkSpaceGlue
     - id: DrinkSpaceLube
-    - id: DrinkMopwataBottleRandom
 
     - id: SprayBottle
     - id: SprayBottleSpaceCleaner
@@ -293,8 +286,10 @@
       - id: ClothingOuterCoatJensen
       - id: ClothingEyesGlassesJensen
       weight: 0.5
-    - id: ClothingShoesBootsLaceup
-    - id: ClothingShoesLeather
+    - group:
+      - id: ClothingShoesBootsLaceup
+      - id: ClothingShoesLeather
+      weight: 0.5
 
     - id: SpectralLocator
     - id: d20Dice
@@ -309,17 +304,14 @@
     - id: ESWeaponKnife
       weight: 2
     - id: Handcuffs
-    - id: MakeshiftShield
     - id: WelderIndustrialAdvanced
-    - id: BaseBallBat
     - id: Binoculars
-    - id: MedkitFilled
+    - id: ESMedkitFilled
 
     - id: ClothingEyesHudSecurity
     - id: ClothingEyesGlassesSunglasses
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingHandsGlovesCombat
-    - id: ClothingBeltSecurity
     - id: ClothingShoesBootsJack
 
     - all: # Russian Outfit
@@ -345,5 +337,4 @@
       - id: CigarGold
       - id: WristwatchGold
       - id: RubberStampGreytide
-      - id: GoldenPersonalAI
       - id: ClothingNeckBling

@@ -1,4 +1,5 @@
 using Content.Server.Chat.Managers;
+using Content.Server.Mind;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Objectives;
@@ -20,6 +21,7 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
     [Dependency] private readonly ESSharedObjectiveSystem _objectives = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
 
     public override void Initialize()
     {
@@ -31,8 +33,12 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
 
     private void OnKillReported(ref ESPlayerKilledEvent ev)
     {
-        if (!TryComp<ActorComponent>(ev.Killed, out var actor))
+        if (!_mind.TryGetMind(ev.Killed, out var killedMind) ||
+            !killedMind.Value.Comp.OriginalOwnerUserId.HasValue ||
+            !_player.TryGetPlayerData(killedMind.Value.Comp.OriginalOwnerUserId.Value, out var data))
             return;
+
+        var killedUserName = data.UserName;
 
         string? msg = null;
         var severity = ESStagehandNotificationSeverity.Medium;
@@ -41,30 +47,34 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
         {
             msg = Loc.GetString("es-stagehand-notification-kill-suicide",
                 ("entity", ev.Killed),
-                ("username", actor.PlayerSession.Name));
+                ("username", killedUserName));
         }
         else if (ev.Environment)
         {
             msg = Loc.GetString("es-stagehand-notification-kill-environment",
                 ("entity", ev.Killed),
-                ("username", actor.PlayerSession.Name));
+                ("username", killedUserName));
         }
         else if (ev.Killer is { } killer)
         {
             severity = ESStagehandNotificationSeverity.High;
-            if (!_player.TryGetSessionByEntity(killer, out var session))
+
+            if (_mind.TryGetMind(killer, out var mind ) &&
+                mind.Value.Comp.OriginalOwnerUserId is { } userId &&
+                _player.TryGetPlayerData(userId, out var killerData))
             {
-                msg = Loc.GetString("es-stagehand-notification-kill-player-unknown",
-                    ("entity", ev.Killer),
-                    ("username", actor.PlayerSession.Name));
+                msg = Loc.GetString("es-stagehand-notification-kill-player",
+                    ("entity", ev.Killed),
+                    ("username", killedUserName),
+                    ("attacker", killer),
+                    ("attackerUsername", killerData.UserName));
             }
             else
             {
-                msg = Loc.GetString("es-stagehand-notification-kill-player",
-                    ("entity", ev.Killer),
-                    ("username", actor.PlayerSession.Name),
-                    ("attacker", killer),
-                    ("attackerUsername", session.Name));
+                msg = Loc.GetString("es-stagehand-notification-kill-player-userless",
+                    ("entity", ev.Killed),
+                    ("username", killedUserName),
+                    ("attacker", killer));
             }
         }
 

@@ -11,8 +11,8 @@
     roles:
       1: [] # Greenshift.
       4: ["#AllTraitors"]
-      6: ["#AllTraitors"]
+      6: ["#AllTraitors", "#AllJesters"]
       13: ["#AllTraitors"]
-      19: ["#AllTraitors"]
-      25: ["#AllTraitors"]
+      19: ["#AllTraitors", "#AllJesters"]
+      25: ["#AllTraitors", "#AllJesters"]
       31: ["#AllTraitors"]

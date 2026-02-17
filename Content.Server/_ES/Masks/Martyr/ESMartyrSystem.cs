@@ -27,7 +27,7 @@ public sealed class ESMartyrSystem : EntitySystem
     [Dependency] private readonly ESMaskSystem _mask = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
 
-    private static readonly ProtoId<ESTroupePrototype> KillerMustBeTroupe = "ESCrew";
+    private static readonly List<ProtoId<ESTroupePrototype>?> KillerMustBeTroupe = ["ESCrew", "ESJester"];
 
     public override void Initialize()
     {
@@ -51,7 +51,7 @@ public sealed class ESMartyrSystem : EntitySystem
     // if it isnt, then idk ur doing something wrong
     private void OnKillReported(Entity<ESMartyrComponent> ent, ref ESPlayerKilledEvent args)
     {
-        if (!args.ValidKill || _mask.GetTroupeOrNull(args.Killer.Value) == KillerMustBeTroupe)
+        if (!args.ValidKill || !KillerMustBeTroupe.Contains(_mask.GetTroupeOrNull(args.Killer.Value)))
             return;
 
         EnsureComp<ESMartyrKillerMarkerComponent>(args.Killer.Value);
