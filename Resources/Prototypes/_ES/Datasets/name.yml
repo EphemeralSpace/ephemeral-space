@@ -24,7 +24,7 @@
     count: 799
 
 - type: localizedDataset
-  id: ESNamesAdjectives
+  id: ESNameAdjectives
   values:
     prefix: es-names-adjective-dataset-
     count: 34
