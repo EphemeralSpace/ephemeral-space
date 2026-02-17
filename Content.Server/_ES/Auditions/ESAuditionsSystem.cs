@@ -7,6 +7,7 @@ using Content.Shared._ES.Auditions;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
+using Content.Shared.Localizations;
 using Content.Shared.Preferences;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -105,6 +106,8 @@ public sealed class CastCommand : ToolshedCommand
         yield return
             $"{character.Name} ({gender}), {character.Profile.Age} years old ({character.DateOfBirth.ToShortDateString()})\n" +
             $"\t{_auditions.GetCharacterPrompt((castMember, character))}\n" +
+            $"\tLikes: {ContentLocalizationManager.FormatList(character.Likes.Select(e => Loc.GetString(e)).ToList())}\n" +
+            $"\tDislikes: {ContentLocalizationManager.FormatList(character.Dislikes.Select(e => Loc.GetString(e)).ToList())}\n" +
             $"\t{string.Join(", ", _clues.GetSignificantInitialClues(castMember).Select(c => $"{c} ({_clues.GetSignificantInitialFrequency(c)})"))}\n" +
             $"\t{_clues.GetSexClue(castMember)} ({_clues.GetClueFrequency(castMember, ESClue.Sex)})\n" +
             $"\t{_clues.GetAgeClue(castMember)} ({_clues.GetClueFrequency(castMember, ESClue.Age)})\n" +

@@ -32,4 +32,10 @@ public sealed partial class ESCharacterComponent : Component
 
     [DataField, AutoNetworkedField]
     public string Focus;
+
+    [DataField, AutoNetworkedField]
+    public List<LocId> Likes = [];
+
+    [DataField, AutoNetworkedField]
+    public List<LocId> Dislikes = [];
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.CCVar;
 using Content.Shared.GameTicking;
@@ -27,6 +28,14 @@ public abstract partial class ESSharedAuditionsSystem : EntitySystem
         base.Initialize();
 
         Subs.CVar(_config, ESCVars.ESRandomCharacters, val => RandomCharactersEnabled = val, true);
+
+        SubscribeLocalEvent<ESProducerComponent, MapInitEvent>(OnMapInit);
+    }
+
+    private void OnMapInit(Entity<ESProducerComponent> ent, ref MapInitEvent args)
+    {
+        var dataset = new List<LocId>(_prototypeManager.Index(ent.Comp.OpinionDataset).Values.Select(n => (LocId) n));
+        ent.Comp.OpinionConcepts.AddRange(_random.GetItems(dataset, ent.Comp.OpinionConceptCount, allowDuplicates: false));
     }
 
     /// <summary>

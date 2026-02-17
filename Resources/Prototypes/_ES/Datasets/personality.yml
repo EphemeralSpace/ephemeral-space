@@ -11,6 +11,12 @@
     count: 110
 
 - type: localizedDataset
+  id: ESCharacterOpinionConcepts
+  values:
+    prefix: es-character-opinion-
+    count: 72
+
+- type: localizedDataset
   id: ESPersonalityTemperament
   values:
     prefix: es-character-temperament-
