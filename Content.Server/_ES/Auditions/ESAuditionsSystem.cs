@@ -104,11 +104,12 @@ public sealed class CastCommand : ToolshedCommand
         var gender = Loc.GetString($"humanoid-profile-editor-pronouns-{character.Profile.Gender.ToString().ToLower()}-text");
         yield return
             $"{character.Name} ({gender}), {character.Profile.Age} years old ({character.DateOfBirth.ToShortDateString()})\n" +
-            $"\t{string.Join(", ", _clues.GetSignificantInitialClues(castMember).Select(c => $"{c} (count: {_clues.GetSignificantInitialFrequency(c)})"))}\n" +
-            $"\t{_clues.GetSexClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.Sex)})\n" +
-            $"\t{_clues.GetAgeClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.Age)})\n" +
-            $"\t{_clues.GetEyeColorClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.EyeColor)})\n" +
-            $"\t{_clues.GetHairColorClue(castMember)} (count: {_clues.GetClueFrequency(castMember, ESClue.HairColor)})";
+            $"\t{_auditions.GetCharacterPrompt((castMember, character))}\n" +
+            $"\t{string.Join(", ", _clues.GetSignificantInitialClues(castMember).Select(c => $"{c} ({_clues.GetSignificantInitialFrequency(c)})"))}\n" +
+            $"\t{_clues.GetSexClue(castMember)} ({_clues.GetClueFrequency(castMember, ESClue.Sex)})\n" +
+            $"\t{_clues.GetAgeClue(castMember)} ({_clues.GetClueFrequency(castMember, ESClue.Age)})\n" +
+            $"\t{_clues.GetEyeColorClue(castMember)} ({_clues.GetClueFrequency(castMember, ESClue.EyeColor)})\n" +
+            $"\t{_clues.GetHairColorClue(castMember)} ({_clues.GetClueFrequency(castMember, ESClue.HairColor)})";
     }
 
     [CommandImplementation("viewAll")]

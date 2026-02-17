@@ -20,6 +20,7 @@
                 <Control MinWidth="5"/>
                 <RichTextLabel Name="JobLabel" VerticalAlignment="Center"/>
             </BoxContainer>
+            <RichTextLabel Name="PromptLabel" Margin="10 25"/>
         </BoxContainer>
         <PanelContainer StyleClasses="LowDivider" />
         <BoxContainer HorizontalExpand="True" Orientation="Vertical" Margin="5">

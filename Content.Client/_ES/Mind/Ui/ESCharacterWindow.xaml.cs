@@ -1,3 +1,4 @@
+using Content.Client._ES.Auditions;
 using Content.Client._ES.Core;
 using Content.Client._ES.Masks;
 using Content.Client._ES.Objectives;
@@ -24,6 +25,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
     [Dependency] private readonly IEntityManager _ent = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    private readonly ESAuditionsSystem _auditions;
     private readonly JobSystem _job;
     private readonly ESMaskSystem _mask;
     private readonly MindSystem _mind;
@@ -35,6 +37,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
+        _auditions = _ent.System<ESAuditionsSystem>();
         _job = _ent.System<JobSystem>();
         _mask = _ent.System<ESMaskSystem>();
         _mind = _ent.System<MindSystem>();
@@ -95,7 +98,10 @@ public sealed partial class ESCharacterWindow : FancyWindow
             return;
 
         if (_ent.TryGetComponent<ESCharacterComponent>(mind, out var character))
+        {
             NameLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-name-fmt", ("name", character.Name)));
+            PromptLabel.UnsafeSetMarkup(_auditions.GetCharacterPrompt((mind, character)));
+        }
 
         if (_job.MindTryGetJob(mind, out var job))
         {

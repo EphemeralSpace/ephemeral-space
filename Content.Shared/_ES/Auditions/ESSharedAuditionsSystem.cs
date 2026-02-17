@@ -1,6 +1,8 @@
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.CCVar;
+using Content.Shared.GameTicking;
 using Content.Shared.Mind;
+using Content.Shared.Roles.Jobs;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -14,6 +16,7 @@ public abstract partial class ESSharedAuditionsSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedJobSystem _job = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
@@ -54,5 +57,17 @@ public abstract partial class ESSharedAuditionsSystem : EntitySystem
                     yield return (character, c);
             }
         }
+    }
+
+    public string GetCharacterPrompt(Entity<ESCharacterComponent> ent)
+    {
+        if (!_job.MindTryGetJobId(ent, out var jobId))
+            jobId = SharedGameTicker.FallbackOverflowJob;
+
+        var job = _prototypeManager.Index(jobId);
+        return Loc.GetString("es-character-personality-prompt",
+            ("descriptor", ent.Comp.Descriptor),
+            ("job", job.LocalizedName.ToLowerInvariant()),
+            ("focus", ent.Comp.Focus));
     }
 }

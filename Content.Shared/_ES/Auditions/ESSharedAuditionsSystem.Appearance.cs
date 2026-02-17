@@ -46,8 +46,8 @@ public abstract partial class ESSharedAuditionsSystem
     public const float MiddleAgeWeight = 3.5f;
     public const float OldAgeWeight = 2f;
 
-    private static readonly ProtoId<LocalizedDatasetPrototype> TendencyDataset = "ESPersonalityTendency";
-    private static readonly ProtoId<LocalizedDatasetPrototype> TemperamentDataset = "ESPersonalityTemperament";
+    private static readonly ProtoId<LocalizedDatasetPrototype> DescriptorDataset = "ESCharacterDescriptor";
+    private static readonly ProtoId<LocalizedDatasetPrototype> FocusDataset = "ESCharacterFocus";
 
     /// <summary>
     /// Generates a character with randomized name, age, gender and appearance.
@@ -71,8 +71,8 @@ public abstract partial class ESSharedAuditionsSystem
 
         character.BaseName = baseName;
 
-        character.PersonalityTraits.Add(_random.Pick(_prototypeManager.Index(TendencyDataset)));
-        character.PersonalityTraits.Add(_random.Pick(_prototypeManager.Index(TemperamentDataset)));
+        character.Descriptor = Loc.GetString(_random.Pick(_prototypeManager.Index(DescriptorDataset)));
+        character.Focus = Loc.GetString(_random.Pick(_prototypeManager.Index(FocusDataset)));
 
         character.Station = producer;
 
