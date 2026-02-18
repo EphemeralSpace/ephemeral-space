@@ -593,6 +593,9 @@
   components:
   - type: Sprite
     sprite: Structures/Walls/solid.rsi
+    # ES START
+    state: rgeneric
+    # ES END
   - type: Icon
     sprite: Structures/Walls/solid.rsi
     state: rgeneric
@@ -624,9 +627,11 @@
         node: girder
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    base: reinf_over
+  # ES START
+  #- type: IconSmooth
+  #  key: walls
+  #  base: reinf_over
+  # ES END
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -663,15 +668,20 @@
   components:
   - type: Sprite
     sprite: Structures/Walls/solid_rust.rsi
+    # ES START
+    state: rgeneric
+    # ES END
   - type: Icon
     sprite: Structures/Walls/solid_rust.rsi
     state: rgeneric
   - type: Construction
     graph: Girder
     node: reinforcedWallRust
-  - type: IconSmooth
-    key: walls
-    base: reinf_over
+  # ES START
+  #- type: IconSmooth
+  #  key: walls
+  #  base: reinf_over
+  # ES END
   - type: Destructible
     thresholds:
     - trigger:

@@ -48,6 +48,7 @@
   components:
   - type: Sprite
     sprite: _ES/Structures/Walls/antimatter.rsi
+    state: null
   - type: Icon
     sprite: _ES/Structures/Walls/antimatter.rsi
     state: full
