@@ -1,0 +1,41 @@
+### ES-specific
+
+###
+### Upstream-inherited
+###
+
+- type: construction
+  id: ESTileSteel
+  hide: false
+  graph: TileSteel
+  startNode: start
+  targetNode: steeltile
+  category: construction-category-tiles
+  objectType: Item
+
+- type: construction
+  id: ESTileWood
+  hide: false
+  graph: TileWood
+  startNode: start
+  targetNode: woodtile
+  category: construction-category-tiles
+  objectType: Item
+
+- type: construction
+  id: ESTileWhite
+  hide: false
+  graph: TileWhite
+  startNode: start
+  targetNode: whitetile
+  category: construction-category-tiles
+  objectType: Item
+
+- type: construction
+  id: ESTileDark
+  hide: false
+  graph: TileDark
+  startNode: start
+  targetNode: darktile
+  category: construction-category-tiles
+  objectType: Item

@@ -1,3 +1,4 @@
+### ES-specific
 - type: construction
   id: ESCrateTrashBin
   hide: false
@@ -15,3 +16,7 @@
   targetNode: trashbinsecure
   category: construction-category-storage
   objectType: Structure
+
+###
+### Upstream-inherited
+###

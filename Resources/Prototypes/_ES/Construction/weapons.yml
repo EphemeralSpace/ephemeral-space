@@ -75,3 +75,75 @@
   targetNode: ImprovisedBow
   category: construction-category-weapons
   objectType: Item
+
+- type: construction
+  id: ESBat
+  hide: false
+  graph: WoodenBat
+  startNode: start
+  targetNode: bat
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: ESMakeshiftHandcuffs
+  hide: false
+  graph: makeshifthandcuffs
+  startNode: start
+  targetNode: cuffscable
+  category: construction-category-tools
+  objectType: Item
+
+- type: construction
+  id: ESMakeshiftStunprod
+  hide: false
+  graph: makeshiftstunprod
+  startNode: start
+  targetNode: msstunprod
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: ESMuzzle
+  hide: false
+  graph: Muzzle
+  startNode: start
+  targetNode: muzzle
+  category: construction-category-tools
+  objectType: Item
+
+- type: construction
+  id: ESGauze
+  hide: false
+  graph: Gauze
+  startNode: start
+  targetNode: gauze
+  category: construction-category-tools
+  objectType: Item
+
+- type: construction
+  id: ESBlindfold
+  hide: false
+  graph: Blindfold
+  startNode: start
+  targetNode: blindfold
+  category: construction-category-tools
+  objectType: Item
+
+- type: construction
+  id: ESFirebomb
+  hide: false
+  graph: FireBomb
+  startNode: start
+  targetNode: firebomb
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: ESPipebomb
+  hide: false
+  graph: PipeBomb
+  startNode: start
+  targetNode: pipebomb
+  category: construction-category-weapons
+  objectType: Item

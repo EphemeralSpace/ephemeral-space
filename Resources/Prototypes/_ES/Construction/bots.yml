@@ -1,0 +1,32 @@
+### ES-specific
+
+###
+### Upstream-inherited
+###
+
+- type: construction
+  id: EScleanbot
+  hide: false
+  graph: CleanBot
+  startNode: start
+  targetNode: bot
+  category: construction-category-utilities
+  objectType: Item
+
+- type: construction
+  id: ESfirebot
+  hide: false
+  graph: FireBot
+  startNode: start
+  targetNode: bot
+  category: construction-category-utilities
+  objectType: Item
+
+- type: construction
+  id: ESmedibot
+  hide: false
+  graph: MediBot
+  startNode: start
+  targetNode: bot
+  category: construction-category-utilities
+  objectType: Item
