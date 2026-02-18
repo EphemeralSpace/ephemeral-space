@@ -175,20 +175,6 @@
   conditions:
     - !type:TileNotBlocked
 
-- type: construction
-  id: ESTableFancyBlack
-  hide: false
-  name: construction-recipe-table-fancy-black
-  graph: Table
-  startNode: start
-  targetNode: TableFancyBlack
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
 #bathroom
 - type: construction
   id: ESToiletEmpty
