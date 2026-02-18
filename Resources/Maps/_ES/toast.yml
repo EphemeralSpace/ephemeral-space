@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/14/2026 21:04:03
-  entityCount: 14555
+  time: 02/18/2026 22:25:45
+  entityCount: 14556
 maps:
 - 3
 grids:
@@ -4210,6 +4210,11 @@ entities:
       parent: 2
 - proto: AirlockHatchMaintenanceLocked
   entities:
+  - uid: 60
+    components:
+    - type: Transform
+      pos: -49.5,-45.5
+      parent: 2
   - uid: 326
     components:
     - type: Transform
@@ -4419,11 +4424,6 @@ entities:
     components:
     - type: Transform
       pos: -20.5,8.5
-      parent: 2
-  - uid: 7899
-    components:
-    - type: Transform
-      pos: -49.5,-45.5
       parent: 2
 - proto: AirlockMaintDetectiveLocked
   entities:
@@ -38209,11 +38209,6 @@ entities:
     - type: Transform
       pos: -23.5,-45.5
       parent: 2
-  - uid: 11714
-    components:
-    - type: Transform
-      pos: -23.5,-36.5
-      parent: 2
   - uid: 11721
     components:
     - type: Transform
@@ -38288,6 +38283,11 @@ entities:
     components:
     - type: Transform
       pos: -59.5,-32.5
+      parent: 2
+  - uid: 11755
+    components:
+    - type: Transform
+      pos: -23.5,-36.5
       parent: 2
   - uid: 11762
     components:
@@ -44293,6 +44293,26 @@ entities:
     components:
     - type: Transform
       pos: -45.5,-17.5
+      parent: 2
+  - uid: 2989
+    components:
+    - type: Transform
+      pos: -53.5,-22.5
+      parent: 2
+  - uid: 2991
+    components:
+    - type: Transform
+      pos: -53.5,-21.5
+      parent: 2
+  - uid: 7899
+    components:
+    - type: Transform
+      pos: -53.5,-15.5
+      parent: 2
+  - uid: 11714
+    components:
+    - type: Transform
+      pos: -53.5,-14.5
       parent: 2
 - proto: ExosuitFabricator
   entities:
@@ -64288,14 +64308,6 @@ entities:
     - type: Transform
       pos: -9.5,-56.5
       parent: 2
-- proto: MachineAPE
-  entities:
-  - uid: 14599
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -56.5,9.5
-      parent: 2
 - proto: MachineCentrifuge
   entities:
   - uid: 1020
@@ -65107,6 +65119,11 @@ entities:
       parent: 2
 - proto: PortableGeneratorJrPacman
   entities:
+  - uid: 93
+    components:
+    - type: Transform
+      pos: 22.5,-24.5
+      parent: 2
   - uid: 991
     components:
     - type: Transform
@@ -65141,6 +65158,11 @@ entities:
     components:
     - type: Transform
       pos: -55.5,9.5
+      parent: 2
+  - uid: 11754
+    components:
+    - type: Transform
+      pos: 12.5,-37.5
       parent: 2
   - uid: 13254
     components:
@@ -67522,16 +67544,6 @@ entities:
       parent: 2
 - proto: ReinforcedWindow
   entities:
-  - uid: 60
-    components:
-    - type: Transform
-      pos: -53.5,-14.5
-      parent: 2
-  - uid: 93
-    components:
-    - type: Transform
-      pos: -53.5,-15.5
-      parent: 2
   - uid: 239
     components:
     - type: Transform
@@ -67997,16 +68009,6 @@ entities:
     components:
     - type: Transform
       pos: -27.5,-4.5
-      parent: 2
-  - uid: 2989
-    components:
-    - type: Transform
-      pos: -53.5,-21.5
-      parent: 2
-  - uid: 2991
-    components:
-    - type: Transform
-      pos: -53.5,-22.5
       parent: 2
   - uid: 3015
     components:
