@@ -4,7 +4,8 @@
 ### Upstream-inherited
 ###
 - type: construction
-  id: MetalRod
+  id: ESMetalRod
+  hide: false
   graph: MetalRod
   startNode: start
   targetNode: MetalRod
@@ -12,7 +13,8 @@
   objectType: Item
 
 - type: construction
-  id: SheetRGlass
+  id: ESSheetRGlass
+  hide: false
   graph: Glass
   startNode: start
   targetNode: SheetRGlass
@@ -20,7 +22,8 @@
   objectType: Item
 
 - type: construction
-  id: SheetPGlass
+  id: ESSheetPGlass
+  hide: false
   graph: Glass
   startNode: start
   targetNode: SheetPGlass
@@ -28,7 +31,8 @@
   objectType: Item
 
 - type: construction
-  id: SheetRPGlass
+  id: ESSheetRPGlass
+  hide: false
   graph: Glass
   startNode: start
   targetNode: SheetRPGlass
@@ -36,7 +40,8 @@
   objectType: Item
 
 - type: construction
-  id: SheetRPGlass0
+  id: ESSheetRPGlass0
+  hide: false
   graph: Glass
   startNode: start
   targetNode: SheetRPGlass0
@@ -44,7 +49,8 @@
   objectType: Item
 
 - type: construction
-  id: SheetRPGlass1
+  id: ESSheetRPGlass1
+  hide: false
   graph: Glass
   startNode: start
   targetNode: SheetRPGlass1

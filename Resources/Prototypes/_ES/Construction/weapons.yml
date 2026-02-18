@@ -5,7 +5,8 @@
 ###
 
 - type: construction
-  id: Spear
+  id: ESSpear
+  hide: false
   graph: Spear
   startNode: start
   targetNode: spear
@@ -13,7 +14,8 @@
   objectType: Item
 
 - type: construction
-  id: SpearReinforced
+  id: ESSpearReinforced
+  hide: false
   graph: SpearReinforced
   startNode: start
   targetNode: spear
@@ -21,7 +23,8 @@
   objectType: Item
 
 - type: construction
-  id: SpearPlasma
+  id: ESSpearPlasma
+  hide: false
   graph: SpearPlasma
   startNode: start
   targetNode: spear
@@ -29,7 +32,8 @@
   objectType: Item
 
 - type: construction
-  id: Bola
+  id: ESBola
+  hide: false
   graph: Bola
   startNode: start
   targetNode: bola
@@ -37,7 +41,8 @@
   objectType: Item
 
 - type: construction
-  id: WoodenBuckler
+  id: ESWoodenBuckler
+  hide: false
   graph: WoodenBuckler
   startNode: start
   targetNode: woodenBuckler
@@ -45,7 +50,8 @@
   objectType: Item
 
 - type: construction
-  id: ImprovisedArrow
+  id: ESImprovisedArrow
+  hide: false
   graph: ImprovisedArrow
   startNode: start
   targetNode: ImprovisedArrow
@@ -53,7 +59,8 @@
   objectType: Item
 
 - type: construction
-  id: ImprovisedArrowPlasma
+  id: ESImprovisedArrowPlasma
+  hide: false
   graph: ImprovisedArrowPlasma
   startNode: start
   targetNode: ImprovisedArrowPlasma
@@ -61,7 +68,8 @@
   objectType: Item
 
 - type: construction
-  id: ImprovisedBow
+  id: ESImprovisedBow
+  hide: false
   graph: ImprovisedBow
   startNode: start
   targetNode: ImprovisedBow

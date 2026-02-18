@@ -6,7 +6,8 @@
 
 #chairs
 - type: construction
-  id: Chair
+  id: ESChair
+  hide: false
   graph: Seat
   startNode: start
   targetNode: chair
@@ -18,7 +19,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: Stool
+  id: ESStool
+  hide: false
   graph: Seat
   startNode: start
   targetNode: stool
@@ -30,7 +32,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: StoolBar
+  id: ESStoolBar
+  hide: false
   graph: Seat
   startNode: start
   targetNode: stoolBar
@@ -42,7 +45,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ChairOfficeLight
+  id: ESChairOfficeLight
+  hide: false
   graph: Seat
   startNode: start
   targetNode: chairOffice
@@ -54,7 +58,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ChairOfficeDark
+  id: ESChairOfficeDark
+  hide: false
   graph: Seat
   startNode: start
   targetNode: chairOfficeDark
@@ -66,7 +71,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ChairComfy
+  id: ESChairComfy
+  hide: false
   graph: Seat
   startNode: start
   targetNode: chairComfy
@@ -78,7 +84,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ChairWood
+  id: ESChairWood
+  hide: false
   graph: Seat
   startNode: start
   targetNode: chairWood
@@ -91,7 +98,8 @@
 
 #tables
 - type: construction
-  id: Table
+  id: ESTable
+  hide: false
   graph: Table
   startNode: start
   targetNode: Table
@@ -103,7 +111,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: TableReinforced
+  id: ESTableReinforced
+  hide: false
   graph: Table
   startNode: start
   targetNode: TableReinforced
@@ -115,7 +124,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: TableGlass
+  id: ESTableGlass
+  hide: false
   graph: Table
   startNode: start
   targetNode: TableGlass
@@ -127,7 +137,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: TableReinforcedGlass
+  id: ESTableReinforcedGlass
+  hide: false
   graph: Table
   startNode: start
   targetNode: TableReinforcedGlass
@@ -139,7 +150,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: TablePlasmaGlass
+  id: ESTablePlasmaGlass
+  hide: false
   graph: Table
   startNode: start
   targetNode: TablePlasmaGlass
@@ -151,7 +163,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: TableWood
+  id: ESTableWood
+  hide: false
   graph: Table
   startNode: start
   targetNode: TableWood
@@ -163,7 +176,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: TableFancyBlack
+  id: ESTableFancyBlack
+  hide: false
   name: construction-recipe-table-fancy-black
   graph: Table
   startNode: start
@@ -177,7 +191,8 @@
 
 #bathroom
 - type: construction
-  id: ToiletEmpty
+  id: ESToiletEmpty
+  hide: false
   graph: Toilet
   startNode: start
   targetNode: toilet
@@ -190,7 +205,8 @@
 
 #bedroom
 - type: construction
-  id: Bed
+  id: ESBed
+  hide: false
   graph: bed
   startNode: start
   targetNode: bed
@@ -202,7 +218,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: Dresser
+  id: ESDresser
+  hide: false
   graph: Dresser
   startNode: start
   targetNode: dresser
@@ -215,7 +232,8 @@
 
 #racks
 - type: construction
-  id: Rack
+  id: ESRack
+  hide: false
   graph: Rack
   startNode: start
   targetNode: Rack
@@ -228,7 +246,8 @@
 
 #misc
 - type: construction
-  id: MeatSpike
+  id: ESMeatSpike
+  hide: false
   graph: MeatSpike
   startNode: start
   targetNode: MeatSpike
@@ -240,7 +259,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: Curtains
+  id: ESCurtains
+  hide: false
   name: construction-recipe-curtains-cloth
   graph: Curtains
   startNode: start
@@ -251,7 +271,8 @@
   canBuildInImpassable: true
 
 - type: construction
-  id: Bookshelf
+  id: ESBookshelf
+  hide: false
   graph: Bookshelf
   startNode: start
   targetNode: bookshelf
@@ -263,7 +284,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: Mannequin
+  id: ESMannequin
+  hide: false
   graph: Mannequin
   startNode: start
   targetNode: mannequin

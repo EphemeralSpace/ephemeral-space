@@ -15,6 +15,7 @@
 
 - type: construction
   id: ESWallDiagonalTube
+  hide: false
   name: es-construction-recipe-diagonal-tube-wall
   graph: Girder
   startNode: start
@@ -45,7 +46,8 @@
 ### Upstream inherited
 ###
 - type: construction
-  id: Girder
+  id: ESGirder
+  hide: false
   graph: Girder
   startNode: start
   targetNode: girder
@@ -58,7 +60,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: ReinforcedGirder
+  id: ESReinforcedGirder
+  hide: false
   graph: Girder
   startNode: start
   targetNode: reinforcedGirder
@@ -71,7 +74,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: ClockworkGirder
+  id: ESClockworkGirder
+  hide: false
   graph: ClockworkGirder
   startNode: start
   targetNode: clockGirder
@@ -84,7 +88,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: Wall
+  id: ESWall
+  hide: false
   graph: Girder
   startNode: start
   targetNode: wall
@@ -97,7 +102,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: ReinforcedWall
+  id: ESReinforcedWall
+  hide: false
   graph: Girder
   startNode: start
   targetNode: reinforcedWall
@@ -110,7 +116,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: WallClock
+  id: ESWallClock
+  hide: false
   graph: ClockworkGirder
   startNode: start
   targetNode: clockworkWall
@@ -123,7 +130,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: WoodWall
+  id: ESWoodWall
+  hide: false
   graph: Barricade
   startNode: start
   targetNode: woodWall
@@ -136,7 +144,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: UraniumWall
+  id: ESUraniumWall
+  hide: false
   graph: Girder
   startNode: start
   targetNode: uraniumWall
@@ -149,7 +158,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: SilverWall
+  id: ESSilverWall
+  hide: false
   graph: Girder
   startNode: start
   targetNode: silverWall
@@ -162,7 +172,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: PlasticWall
+  id: ESPlasticWall
+  hide: false
   graph: Girder
   startNode: start
   targetNode: plasticWall
@@ -175,7 +186,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: PlasmaWall
+  id: ESPlasmaWall
+  hide: false
   graph: Girder
   startNode: start
   targetNode: plasmaWall
@@ -188,7 +200,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: GoldWall
+  id: ESGoldWall
+  hide: false
   graph: Girder
   startNode: start
   targetNode: goldWall
@@ -201,7 +214,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: ShuttleWall
+  id: ESShuttleWall
+  hide: false
   graph: Girder
   startNode: start
   targetNode: shuttleWall
@@ -214,7 +228,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: DiagonalShuttleWall
+  id: ESDiagonalShuttleWall
+  hide: false
   name: construction-recipe-diagonal-shuttle-wall
   graph: Girder
   startNode: start
@@ -228,7 +243,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: ClownWall
+  id: ESClownWall
+  hide: false
   graph: Girder
   startNode: start
   targetNode: bananiumWall
@@ -241,7 +257,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: MeatWall
+  id: ESMeatWall
+  hide: false
   graph: Girder
   startNode: start
   targetNode: meatWall
@@ -254,7 +271,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: Cardwall
+  id: ESCardwall
+  hide: false
   graph: Cardwall
   startNode: start
   targetNode: cardwall
@@ -267,7 +285,8 @@
   canRotate: false
 
 - type: construction
-  id: Grille
+  id: ESGrille
+  hide: false
   graph: Grille
   startNode: start
   targetNode: grille
@@ -280,7 +299,8 @@
   canRotate: false
 
 - type: construction
-  id: ClockGrille
+  id: ESClockGrille
+  hide: false
   graph: ClockGrille
   startNode: start
   targetNode: clockGrille
@@ -293,7 +313,8 @@
   canRotate: false
 
 - type: construction
-  id: GrilleDiagonal
+  id: ESGrilleDiagonal
+  hide: false
   graph: GrilleDiagonal
   startNode: start
   targetNode: grilleDiagonal
@@ -305,7 +326,8 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: ClockworkGrilleDiagonal
+  id: ESClockworkGrilleDiagonal
+  hide: false
   graph: GrilleDiagonal
   startNode: start
   targetNode: clockworkGrilleDiagonal
@@ -317,7 +339,8 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: Window
+  id: ESWindow
+  hide: false
   graph: Window
   startNode: start
   targetNode: window
@@ -331,7 +354,8 @@
   canRotate: false
 
 - type: construction
-  id: WindowDiagonal
+  id: ESWindowDiagonal
+  hide: false
   name: construction-window-diagonal
   graph: WindowDiagonal
   startNode: start
@@ -345,7 +369,8 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: ReinforcedWindow
+  id: ESReinforcedWindow
+  hide: false
   graph: Window
   startNode: start
   targetNode: reinforcedWindow
@@ -359,7 +384,8 @@
   canRotate: false
 
 - type: construction
-  id: ReinforcedWindowDiagonal
+  id: ESReinforcedWindowDiagonal
+  hide: false
   name: construction-recipe-reinforced-window-diagonal
   graph: WindowDiagonal
   startNode: start
@@ -373,7 +399,8 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: TintedWindow
+  id: ESTintedWindow
+  hide: false
   graph: Window
   startNode: start
   targetNode: tintedWindow
@@ -387,7 +414,8 @@
   canRotate: false
 
 - type: construction
-  id: ClockworkWindow
+  id: ESClockworkWindow
+  hide: false
   graph: Window
   startNode: start
   targetNode: clockworkWindow
@@ -401,7 +429,8 @@
   canRotate: false
 
 - type: construction
-  id: ClockworkWindowDiagonal
+  id: ESClockworkWindowDiagonal
+  hide: false
   name: construction-recipe-clockwork-window-diagonal
   graph: WindowDiagonal
   startNode: start
@@ -415,7 +444,8 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: PlasmaWindow
+  id: ESPlasmaWindow
+  hide: false
   graph: Window
   startNode: start
   targetNode: plasmaWindow
@@ -429,7 +459,8 @@
   canRotate: false
 
 - type: construction
-  id: ReinforcedPlasmaWindow
+  id: ESReinforcedPlasmaWindow
+  hide: false
   graph: Window
   startNode: start
   targetNode: reinforcedPlasmaWindow
@@ -443,7 +474,8 @@
   canRotate: false
 
 - type: construction
-  id: ShuttleWindow
+  id: ESShuttleWindow
+  hide: false
   graph: Window
   startNode: start
   targetNode: shuttleWindow
@@ -457,7 +489,8 @@
   canRotate: false
 
 - type: construction
-  id: PlasmaWindowDiagonal
+  id: ESPlasmaWindowDiagonal
+  hide: false
   name: construction-recipe-plasma-window-diagonal
   graph: WindowDiagonal
   startNode: start
@@ -471,7 +504,8 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: ReinforcedPlasmaWindowDiagonal
+  id: ESReinforcedPlasmaWindowDiagonal
+  hide: false
   name: construction-recipe-reinforced-plasma-window-diagonal
   graph: WindowDiagonal
   startNode: start
@@ -485,7 +519,8 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: WindowDirectional
+  id: ESWindowDirectional
+  hide: false
   graph: WindowDirectional
   startNode: start
   targetNode: windowDirectional
@@ -498,7 +533,8 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: WindowReinforcedDirectional
+  id: ESWindowReinforcedDirectional
+  hide: false
   graph: WindowDirectional
   startNode: start
   targetNode: windowReinforcedDirectional
@@ -511,7 +547,8 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: WindowClockworkDirectional
+  id: ESWindowClockworkDirectional
+  hide: false
   graph: WindowDirectional
   startNode: start
   targetNode: windowClockworkDirectional
@@ -524,7 +561,8 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: PlasmaWindowDirectional
+  id: ESPlasmaWindowDirectional
+  hide: false
   graph: WindowDirectional
   startNode: start
   targetNode: plasmaWindowDirectional
@@ -537,7 +575,8 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: PlasmaReinforcedWindowDirectional
+  id: ESPlasmaReinforcedWindowDirectional
+  hide: false
   graph: WindowDirectional
   startNode: start
   targetNode: plasmaReinforcedWindowDirectional
@@ -550,7 +589,8 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: Firelock
+  id: ESFirelock
+  hide: false
   graph: Firelock
   startNode: start
   targetNode: Firelock
@@ -563,7 +603,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FirelockGlass
+  id: ESFirelockGlass
+  hide: false
   graph: Firelock
   startNode: start
   targetNode: FirelockGlass
@@ -576,7 +617,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FirelockEdge
+  id: ESFirelockEdge
+  hide: false
   name: construction-recipe-firelock-edge
   graph: Firelock
   startNode: start
@@ -589,7 +631,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: Turnstile
+  id: ESTurnstile
+  hide: false
   graph: Turnstile
   startNode: start
   targetNode: turnstile
@@ -601,7 +644,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: Shutters
+  id: ESShutters
+  hide: false
   graph: Shutters
   startNode: start
   targetNode: Shutters
@@ -611,7 +655,8 @@
   canBuildInImpassable: true
 
 - type: construction
-  id: ShuttersWindow
+  id: ESShuttersWindow
+  hide: false
   graph: Shutters
   startNode: start
   targetNode: ShuttersWindow
@@ -621,7 +666,8 @@
   canBuildInImpassable: true
 
 - type: construction
-  id: ShuttersRadiation
+  id: ESShuttersRadiation
+  hide: false
   graph: Shutters
   startNode: start
   targetNode: ShuttersRadiation
@@ -631,7 +677,8 @@
   canBuildInImpassable: true
 
 - type: construction
-  id: BlastDoor
+  id: ESBlastDoor
+  hide: false
   graph: BlastDoor
   startNode: start
   targetNode: blastdoor
@@ -641,7 +688,8 @@
   canBuildInImpassable: true
 
 - type: construction
-  id: Catwalk
+  id: ESCatwalk
+  hide: false
   graph: Catwalk
   startNode: start
   targetNode: Catwalk
@@ -658,7 +706,8 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: FloorBananium
+  id: ESFloorBananium
+  hide: false
   graph: FloorBananium
   startNode: start
   targetNode: BananiumFloor
@@ -674,7 +723,8 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: Barricade
+  id: ESBarricade
+  hide: false
   graph: Barricade
   startNode: start
   targetNode: barricadefull
@@ -686,7 +736,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: BarricadeDirectional
+  id: ESBarricadeDirectional
+  hide: false
   name: construction-recipe-barricade-directional
   graph: BarricadeDirectional
   startNode: start
@@ -699,7 +750,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: Railing
+  id: ESRailing
+  hide: false
   graph: Railing
   startNode: start
   targetNode: railing
@@ -711,7 +763,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: RailingCorner
+  id: ESRailingCorner
+  hide: false
   name: construction-recipe-railing-corner
   graph: Railing
   startNode: start
@@ -724,7 +777,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: RailingCornerSmall
+  id: ESRailingCornerSmall
+  hide: false
   name: construction-recipe-railing-corner-small
   graph: Railing
   startNode: start
@@ -737,7 +791,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: RailingRound
+  id: ESRailingRound
+  hide: false
   name: construction-recipe-railing-round
   graph: Railing
   startNode: start
@@ -751,7 +806,8 @@
 
   # Chain link fencing
 - type: construction
-  id: FenceMetal
+  id: ESFenceMetal
+  hide: false
   graph: FenceMetal
   startNode: start
   targetNode: straight
@@ -763,7 +819,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FenceMetalCorner
+  id: ESFenceMetalCorner
+  hide: false
   name: construction-recipe-fence-metal-corner
   graph: FenceMetal
   startNode: start
@@ -776,7 +833,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FenceMetalEnd
+  id: ESFenceMetalEnd
+  hide: false
   name: construction-recipe-fence-metal-end
   graph: FenceMetal
   startNode: start
@@ -789,7 +847,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FenceMetalGate
+  id: ESFenceMetalGate
+  hide: false
   graph: FenceMetal
   startNode: start
   targetNode: gate
@@ -802,7 +861,8 @@
 
   #Wooden fence high
 - type: construction
-  id: FenceWood
+  id: ESFenceWood
+  hide: false
   graph: FenceWood
   startNode: start
   targetNode: straight
@@ -814,7 +874,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FenceWoodEnd
+  id: ESFenceWoodEnd
+  hide: false
   name: construction-recipe-fence-wood-end
   graph: FenceWood
   startNode: start
@@ -827,7 +888,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FenceWoodCorner
+  id: ESFenceWoodCorner
+  hide: false
   name: construction-recipe-fence-wood-corner
   graph: FenceWood
   startNode: start
@@ -840,7 +902,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FenceWoodTJunction
+  id: ESFenceWoodTJunction
+  hide: false
   name: construction-recipe-fence-wood-t-junction
   graph: FenceWood
   startNode: start
@@ -853,7 +916,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FenceWoodGate
+  id: ESFenceWoodGate
+  hide: false
   graph: FenceWood
   startNode: start
   targetNode: gate
@@ -866,7 +930,8 @@
 
   #Wooden fence small
 - type: construction
-  id: FenceWoodSmall
+  id: ESFenceWoodSmall
+  hide: false
   graph: FenceWood
   startNode: start
   targetNode: straight_small
@@ -878,7 +943,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FenceWoodEndSmall
+  id: ESFenceWoodEndSmall
+  hide: false
   name: construction-recipe-fence-wood-end-small
   graph: FenceWood
   startNode: start
@@ -891,7 +957,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FenceWoodCornerSmall
+  id: ESFenceWoodCornerSmall
+  hide: false
   name: construction-recipe-fence-wood-corner-small
   graph: FenceWood
   startNode: start
@@ -904,7 +971,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FenceWoodTJunctionSmall
+  id: ESFenceWoodTJunctionSmall
+  hide: false
   name: construction-recipe-fence-wood-t-junction-small
   graph: FenceWood
   startNode: start
@@ -917,7 +985,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FenceWoodGateSmall
+  id: ESFenceWoodGateSmall
+  hide: false
   name: construction-recipe-fence-wood-gate-small
   graph: FenceWood
   startNode: start
@@ -931,7 +1000,8 @@
 
   #Airlocks
 - type: construction
-  id: Airlock
+  id: ESAirlock
+  hide: false
   graph: Airlock
   startNode: start
   targetNode: airlock
@@ -943,7 +1013,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: AirlockGlass
+  id: ESAirlockGlass
+  hide: false
   graph: Airlock
   startNode: start
   targetNode: glassAirlock
@@ -955,7 +1026,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: PinionAirlock
+  id: ESPinionAirlock
+  hide: false
   name: construction-recipe-pinion-airlock
   graph: PinionAirlock
   startNode: start
@@ -968,7 +1040,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: PinionAirlockGlass
+  id: ESPinionAirlockGlass
+  hide: false
   name: construction-recipe-pinion-airlock-glass
   graph: PinionAirlock
   startNode: start
@@ -981,7 +1054,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: AirlockShuttle
+  id: ESAirlockShuttle
+  hide: false
   graph: AirlockShuttle
   startNode: start
   targetNode: airlock
@@ -994,7 +1068,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: AirlockGlassShuttle
+  id: ESAirlockGlassShuttle
+  hide: false
   name: construction-recipe-airlock-glass-shuttle
   graph: AirlockShuttle
   startNode: start
@@ -1008,7 +1083,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: Windoor
+  id: ESWindoor
+  hide: false
   graph: Windoor
   startNode: start
   targetNode: windoor
@@ -1020,7 +1096,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: SecureWindoor
+  id: ESSecureWindoor
+  hide: false
   graph: Windoor
   startNode: start
   targetNode: windoorSecure
@@ -1032,7 +1109,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: ClockworkWindoor
+  id: ESClockworkWindoor
+  hide: false
   graph: Windoor
   startNode: start
   targetNode: windoorClockwork
@@ -1045,7 +1123,8 @@
 
   #lighting
 - type: construction
-  id: LightTubeFixture
+  id: ESLightTubeFixture
+  hide: false
   graph: LightFixture
   startNode: start
   targetNode: tubeLight
@@ -1060,7 +1139,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: LightSmallFixture
+  id: ESLightSmallFixture
+  hide: false
   graph: LightFixture
   startNode: start
   targetNode: bulbLight
@@ -1074,7 +1154,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: EmergencyLightFixture
+  id: ESEmergencyLightFixture
+  hide: false
   graph: LightFixture
   startNode: start
   targetNode: emergencyLight
@@ -1087,7 +1168,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: LightGroundFixture
+  id: ESLightGroundFixture
+  hide: false
   graph: LightFixture
   startNode: start
   targetNode: groundLight
@@ -1100,7 +1182,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: LightStrobeFixture
+  id: ESLightStrobeFixture
+  hide: false
   graph: LightFixture
   startNode: start
   targetNode: strobeLight
@@ -1114,7 +1197,8 @@
 
   #conveyor
 - type: construction
-  id: ConveyorBelt
+  id: ESConveyorBelt
+  hide: false
   graph: ConveyorGraph
   startNode: start
   targetNode: entity
@@ -1126,7 +1210,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: MetalDoor
+  id: ESMetalDoor
+  hide: false
   graph: DoorGraph
   startNode: start
   targetNode: metalDoor
@@ -1138,7 +1223,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: WoodDoor
+  id: ESWoodDoor
+  hide: false
   graph: DoorGraph
   startNode: start
   targetNode: woodDoor
@@ -1150,7 +1236,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: PlasmaDoor
+  id: ESPlasmaDoor
+  hide: false
   graph: DoorGraph
   startNode: start
   targetNode: plasmaDoor
@@ -1162,7 +1249,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: GoldDoor
+  id: ESGoldDoor
+  hide: false
   graph: DoorGraph
   startNode: start
   targetNode: goldDoor
@@ -1174,7 +1262,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: SilverDoor
+  id: ESSilverDoor
+  hide: false
   graph: DoorGraph
   startNode: start
   targetNode: silverDoor
@@ -1186,7 +1275,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: PaperDoor
+  id: ESPaperDoor
+  hide: false
   graph: DoorGraph
   startNode: start
   targetNode: paperDoor
@@ -1196,7 +1286,8 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: CardDoor
+  id: ESCardDoor
+  hide: false
   graph: DoorGraph
   startNode: start
   targetNode: cardDoor
@@ -1206,7 +1297,8 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: PlasticFlapsClear
+  id: ESPlasticFlapsClear
+  hide: false
   name: construction-recipe-plastic-flaps-clear
   graph: PlasticFlapsGraph
   startNode: start
@@ -1219,7 +1311,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: PlasticFlapsOpaque
+  id: ESPlasticFlapsOpaque
+  hide: false
   name: construction-recipe-plastic-flaps-opaque
   graph: PlasticFlapsGraph
   startNode: start
@@ -1232,7 +1325,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: CarpStatue
+  id: ESCarpStatue
+  hide: false
   graph: CarpStatue
   startNode: start
   targetNode: statue
@@ -1244,7 +1338,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: BananiumClownStatue
+  id: ESBananiumClownStatue
+  hide: false
   graph: BananiumStatueClown
   startNode: start
   targetNode: bananiumStatue
@@ -1256,7 +1351,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: BananiumDoor
+  id: ESBananiumDoor
+  hide: false
   graph: DoorGraph
   startNode: start
   targetNode: bananiumDoor
@@ -1268,7 +1364,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: BananiumAltar
+  id: ESBananiumAltar
+  hide: false
   graph: BananiumAltarGraph
   startNode: start
   targetNode: bananiumAltar
@@ -1281,7 +1378,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: SolidSecretDoor
+  id: ESSolidSecretDoor
+  hide: false
   name: recipes-secret-door-name
   description: recipes-secret-door-desc
   graph: SecretDoor
@@ -1295,7 +1393,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: FungalSoil
+  id: ESFungalSoil
+  hide: false
   graph: Soil
   startNode: start
   targetNode: fungalSoil
@@ -1307,7 +1406,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: StationAiCore
+  id: ESStationAiCore
+  hide: false
   graph: StationAiCore
   startNode: start
   targetNode: stationAiCore
@@ -1320,7 +1420,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: Bonfire
+  id: ESBonfire
+  hide: false
   graph: Bonfire
   startNode: start
   targetNode: bonfire
@@ -1333,7 +1434,8 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: BonfireStake
+  id: ESBonfireStake
+  hide: false
   graph: Bonfire
   startNode: start
   targetNode: bonfireStake

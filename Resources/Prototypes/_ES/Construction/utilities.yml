@@ -6,7 +6,8 @@
 
 # SURVEILLANCE
 - type: construction
-  id: camera
+  id: EScamera
+  hide: false
   graph: SurveillanceCamera
   startNode: start
   targetNode: camera
@@ -16,7 +17,8 @@
 
 # POWER
 - type: construction
-  id: APC
+  id: ESAPC
+  hide: false
   graph: APC
   startNode: start
   targetNode: apc
@@ -26,7 +28,8 @@
   canBuildInImpassable: true
 
 - type: construction
-  id: CableTerminal
+  id: ESCableTerminal
+  hide: false
   graph: CableTerminal
   startNode: start
   targetNode: cable_terminal
@@ -37,7 +40,8 @@
 
 # DISPOSALS
 - type: construction
-  id: DisposalUnit
+  id: ESDisposalUnit
+  hide: false
   graph: DisposalMachine
   startNode: start
   targetNode: disposal_unit
@@ -46,7 +50,8 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: DisposalPipe
+  id: ESDisposalPipe
+  hide: false
   graph: DisposalPipe
   startNode: start
   targetNode: pipe
@@ -55,7 +60,8 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: DisposalTagger
+  id: ESDisposalTagger
+  hide: false
   graph: DisposalPipe
   startNode: start
   targetNode: tagger
@@ -64,7 +70,8 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: DisposalSignaller
+  id: ESDisposalSignaller
+  hide: false
   graph: DisposalPipe
   startNode: start
   targetNode: signaller
@@ -73,7 +80,8 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: DisposalTrunk
+  id: ESDisposalTrunk
+  hide: false
   graph: DisposalPipe
   startNode: start
   targetNode: trunk
@@ -82,70 +90,74 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: DisposalRouter
+  id: ESDisposalRouter
+  hide: false
   graph: DisposalPipe
   startNode: start
   targetNode: router
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  mirror: DisposalRouterFlipped
+  mirror: ESDisposalRouterFlipped
 
 - type: construction
   hide: true
-  id: DisposalRouterFlipped
+  id: ESDisposalRouterFlipped
   graph: DisposalPipe
   startNode: start
   targetNode: routerflipped
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  mirror: DisposalRouter
+  mirror: ESDisposalRouter
 
 - type: construction
-  id: DisposalSignalRouter
+  id: ESDisposalSignalRouter
+  hide: false
   graph: DisposalPipe
   startNode: start
   targetNode: signal_router
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  mirror: DisposalSignalRouterFlipped
+  mirror: ESDisposalSignalRouterFlipped
 
 - type: construction
   hide: true
-  id: DisposalSignalRouterFlipped
+  id: ESDisposalSignalRouterFlipped
   graph: DisposalPipe
   startNode: start
   targetNode: signal_router_flipped
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  mirror: DisposalSignalRouter
+  mirror: ESDisposalSignalRouter
 
 - type: construction
-  id: DisposalJunction
+  id: ESDisposalJunction
+  hide: false
   graph: DisposalPipe
   startNode: start
   targetNode: junction
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  mirror: DisposalJunctionFlipped
+  mirror: ESDisposalJunctionFlipped
 
 - type: construction
   hide: true
-  id: DisposalJunctionFlipped
+  id: ESDisposalJunctionFlipped
   graph: DisposalPipe
   startNode: start
   targetNode: junctionflipped
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  mirror: DisposalJunction
+  mirror: ESDisposalJunction
 
 - type: construction
-  id: DisposalYJunction
+  id: ESDisposalYJunction
+  hide: false
   graph: DisposalPipe
   startNode: start
   targetNode: yJunction
@@ -154,7 +166,8 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: DisposalXJunction
+  id: ESDisposalXJunction
+  hide: false
   graph: DisposalPipe
   startNode: start
   targetNode: xJunction
@@ -163,7 +176,8 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: DisposalBend
+  id: ESDisposalBend
+  hide: false
   graph: DisposalPipe
   startNode: start
   targetNode: bend
@@ -173,7 +187,8 @@
 
 # ATMOS
 - type: construction
-  id: AirAlarmFixture
+  id: ESAirAlarmFixture
+  hide: false
   graph: AirAlarm
   startNode: start
   targetNode: air_alarm
@@ -186,7 +201,8 @@
   - !type:WallmountCondition {}
 
 - type: construction
-  id: FireAlarm
+  id: ESFireAlarm
+  hide: false
   graph: FireAlarm
   startNode: start
   targetNode: fire_alarm
@@ -199,7 +215,8 @@
   - !type:WallmountCondition {}
 
 - type: construction
-  id: AirSensor
+  id: ESAirSensor
+  hide: false
   graph: AirSensor
   startNode: start
   targetNode: sensor
@@ -209,7 +226,8 @@
   canRotate: true
 
 - type: construction
-  id: GasPipeSensor
+  id: ESGasPipeSensor
+  hide: false
   graph: GasPipeSensor
   startNode: start
   targetNode: sensor
@@ -218,12 +236,12 @@
   objectType: Structure
   canRotate: true
   alternativePrototypes:
-  - GasPipeSensor
-  - GasPipeSensorAlt1
-  - GasPipeSensorAlt2
+  - ESGasPipeSensor
+  - ESGasPipeSensorAlt1
+  - ESGasPipeSensorAlt2
 
 - type: construction
-  id: GasPipeSensorAlt1
+  id: ESGasPipeSensorAlt1
   hide: true
   graph: GasPipeSensor
   startNode: start
@@ -233,12 +251,12 @@
   objectType: Structure
   canRotate: true
   alternativePrototypes:
-  - GasPipeSensor
-  - GasPipeSensorAlt1
-  - GasPipeSensorAlt2
+  - ESGasPipeSensor
+  - ESGasPipeSensorAlt1
+  - ESGasPipeSensorAlt2
 
 - type: construction
-  id: GasPipeSensorAlt2
+  id: ESGasPipeSensorAlt2
   hide: true
   graph: GasPipeSensor
   startNode: start
@@ -248,13 +266,14 @@
   objectType: Structure
   canRotate: true
   alternativePrototypes:
-  - GasPipeSensor
-  - GasPipeSensorAlt1
-  - GasPipeSensorAlt2
+  - ESGasPipeSensor
+  - ESGasPipeSensorAlt1
+  - ESGasPipeSensorAlt2
 
 # ATMOS PIPES
 - type: construction
-  id: GasPipeHalf
+  id: ESGasPipeHalf
+  hide: false
   name: construction-recipe-gas-pipe-half
   graph: GasPipe
   startNode: start
@@ -263,12 +282,12 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeHalf
-  - GasPipeHalfAlt1
-  - GasPipeHalfAlt2
+  - ESGasPipeHalf
+  - ESGasPipeHalfAlt1
+  - ESGasPipeHalfAlt2
 
 - type: construction
-  id: GasPipeHalfAlt1
+  id: ESGasPipeHalfAlt1
   hide: true
   graph: GasPipe
   startNode: start
@@ -277,12 +296,12 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeHalf
-  - GasPipeHalfAlt1
-  - GasPipeHalfAlt2
+  - ESGasPipeHalf
+  - ESGasPipeHalfAlt1
+  - ESGasPipeHalfAlt2
 
 - type: construction
-  id: GasPipeHalfAlt2
+  id: ESGasPipeHalfAlt2
   hide: true
   graph: GasPipe
   startNode: start
@@ -291,12 +310,13 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeHalf
-  - GasPipeHalfAlt1
-  - GasPipeHalfAlt2
+  - ESGasPipeHalf
+  - ESGasPipeHalfAlt1
+  - ESGasPipeHalfAlt2
 
 - type: construction
-  id: GasPipeStraight
+  id: ESGasPipeStraight
+  hide: false
   graph: GasPipe
   startNode: start
   targetNode: straight
@@ -304,12 +324,12 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeStraight
-  - GasPipeStraightAlt1
-  - GasPipeStraightAlt2
+  - ESGasPipeStraight
+  - ESGasPipeStraightAlt1
+  - ESGasPipeStraightAlt2
 
 - type: construction
-  id: GasPipeStraightAlt1
+  id: ESGasPipeStraightAlt1
   hide: true
   graph: GasPipe
   startNode: start
@@ -318,12 +338,12 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeStraight
-  - GasPipeStraightAlt1
-  - GasPipeStraightAlt2
+  - ESGasPipeStraight
+  - ESGasPipeStraightAlt1
+  - ESGasPipeStraightAlt2
 
 - type: construction
-  id: GasPipeStraightAlt2
+  id: ESGasPipeStraightAlt2
   hide: true
   graph: GasPipe
   startNode: start
@@ -332,12 +352,13 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeStraight
-  - GasPipeStraightAlt1
-  - GasPipeStraightAlt2
+  - ESGasPipeStraight
+  - ESGasPipeStraightAlt1
+  - ESGasPipeStraightAlt2
 
 - type: construction
-  id: GasPipeBend
+  id: ESGasPipeBend
+  hide: false
   name: construction-recipe-gas-pipe-bend
   graph: GasPipe
   startNode: start
@@ -346,12 +367,12 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeBend
-  - GasPipeBendAlt1
-  - GasPipeBendAlt2
+  - ESGasPipeBend
+  - ESGasPipeBendAlt1
+  - ESGasPipeBendAlt2
 
 - type: construction
-  id: GasPipeBendAlt1
+  id: ESGasPipeBendAlt1
   hide: true
   graph: GasPipe
   startNode: start
@@ -360,12 +381,12 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeBend
-  - GasPipeBendAlt1
-  - GasPipeBendAlt2
+  - ESGasPipeBend
+  - ESGasPipeBendAlt1
+  - ESGasPipeBendAlt2
 
 - type: construction
-  id: GasPipeBendAlt2
+  id: ESGasPipeBendAlt2
   hide: true
   graph: GasPipe
   startNode: start
@@ -374,12 +395,13 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeBend
-  - GasPipeBendAlt1
-  - GasPipeBendAlt2
+  - ESGasPipeBend
+  - ESGasPipeBendAlt1
+  - ESGasPipeBendAlt2
 
 - type: construction
-  id: GasPipeTJunction
+  id: ESGasPipeTJunction
+  hide: false
   name: construction-recipe-gas-pipe-t-junction
   graph: GasPipe
   startNode: start
@@ -388,12 +410,12 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeTJunction
-  - GasPipeTJunctionAlt1
-  - GasPipeTJunctionAlt2
+  - ESGasPipeTJunction
+  - ESGasPipeTJunctionAlt1
+  - ESGasPipeTJunctionAlt2
 
 - type: construction
-  id: GasPipeTJunctionAlt1
+  id: ESGasPipeTJunctionAlt1
   hide: true
   graph: GasPipe
   startNode: start
@@ -402,12 +424,12 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeTJunction
-  - GasPipeTJunctionAlt1
-  - GasPipeTJunctionAlt2
+  - ESGasPipeTJunction
+  - ESGasPipeTJunctionAlt1
+  - ESGasPipeTJunctionAlt2
 
 - type: construction
-  id: GasPipeTJunctionAlt2
+  id: ESGasPipeTJunctionAlt2
   hide: true
   graph: GasPipe
   startNode: start
@@ -416,12 +438,13 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeTJunction
-  - GasPipeTJunctionAlt1
-  - GasPipeTJunctionAlt2
+  - ESGasPipeTJunction
+  - ESGasPipeTJunctionAlt1
+  - ESGasPipeTJunctionAlt2
 
 - type: construction
-  id: GasPipeFourway
+  id: ESGasPipeFourway
+  hide: false
   name: construction-recipe-gas-pipe-fourway
   graph: GasPipe
   startNode: start
@@ -430,12 +453,12 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeFourway
-  - GasPipeFourwayAlt1
-  - GasPipeFourwayAlt2
+  - ESGasPipeFourway
+  - ESGasPipeFourwayAlt1
+  - ESGasPipeFourwayAlt2
 
 - type: construction
-  id: GasPipeFourwayAlt1
+  id: ESGasPipeFourwayAlt1
   hide: true
   graph: GasPipe
   startNode: start
@@ -444,12 +467,12 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeFourway
-  - GasPipeFourwayAlt1
-  - GasPipeFourwayAlt2
+  - ESGasPipeFourway
+  - ESGasPipeFourwayAlt1
+  - ESGasPipeFourwayAlt2
 
 - type: construction
-  id: GasPipeFourwayAlt2
+  id: ESGasPipeFourwayAlt2
   hide: true
   graph: GasPipe
   startNode: start
@@ -458,12 +481,13 @@
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: true
   alternativePrototypes:
-  - GasPipeFourway
-  - GasPipeFourwayAlt1
-  - GasPipeFourwayAlt2
+  - ESGasPipeFourway
+  - ESGasPipeFourwayAlt1
+  - ESGasPipeFourwayAlt2
 
 - type: construction
-  id: GasPipeManifold
+  id: ESGasPipeManifold
+  hide: false
   graph: GasPipe
   startNode: start
   targetNode: manifold
@@ -473,7 +497,8 @@
 
 # ATMOS UNARY
 - type: construction
-  id: GasVentPump
+  id: ESGasVentPump
+  hide: false
   graph: GasUnary
   startNode: start
   targetNode: ventpump
@@ -484,7 +509,8 @@
   - !type:NoUnstackableInTile
 
 - type: construction
-  id: GasPassiveVent
+  id: ESGasPassiveVent
+  hide: false
   graph: GasUnary
   startNode: start
   targetNode: passivevent
@@ -495,7 +521,8 @@
   - !type:NoUnstackableInTile
 
 - type: construction
-  id: GasVentScrubber
+  id: ESGasVentScrubber
+  hide: false
   graph: GasUnary
   startNode: start
   targetNode: ventscrubber
@@ -506,7 +533,8 @@
   - !type:NoUnstackableInTile
 
 - type: construction
-  id: GasOutletInjector
+  id: ESGasOutletInjector
+  hide: false
   graph: GasUnary
   startNode: start
   targetNode: outletinjector
@@ -518,7 +546,8 @@
 
 # ATMOS BINARY
 - type: construction
-  id: GasPressurePump
+  id: ESGasPressurePump
+  hide: false
   graph: GasBinary
   startNode: start
   targetNode: pressurepump
@@ -528,12 +557,12 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasPressurePump
-  - GasPressurePumpAlt1
-  - GasPressurePumpAlt2
+  - ESGasPressurePump
+  - ESGasPressurePumpAlt1
+  - ESGasPressurePumpAlt2
 
 - type: construction
-  id: GasPressurePumpAlt1
+  id: ESGasPressurePumpAlt1
   hide: true
   graph: GasBinary
   startNode: start
@@ -544,12 +573,12 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasPressurePump
-  - GasPressurePumpAlt1
-  - GasPressurePumpAlt2
+  - ESGasPressurePump
+  - ESGasPressurePumpAlt1
+  - ESGasPressurePumpAlt2
 
 - type: construction
-  id: GasPressurePumpAlt2
+  id: ESGasPressurePumpAlt2
   hide: true
   graph: GasBinary
   startNode: start
@@ -560,12 +589,13 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasPressurePump
-  - GasPressurePumpAlt1
-  - GasPressurePumpAlt2
+  - ESGasPressurePump
+  - ESGasPressurePumpAlt1
+  - ESGasPressurePumpAlt2
 
 - type: construction
-  id: GasVolumePump
+  id: ESGasVolumePump
+  hide: false
   graph: GasBinary
   startNode: start
   targetNode: volumepump
@@ -575,12 +605,12 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasVolumePump
-  - GasVolumePumpAlt1
-  - GasVolumePumpAlt2
+  - ESGasVolumePump
+  - ESGasVolumePumpAlt1
+  - ESGasVolumePumpAlt2
 
 - type: construction
-  id: GasVolumePumpAlt1
+  id: ESGasVolumePumpAlt1
   hide: true
   graph: GasBinary
   startNode: start
@@ -591,12 +621,12 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasVolumePump
-  - GasVolumePumpAlt1
-  - GasVolumePumpAlt2
+  - ESGasVolumePump
+  - ESGasVolumePumpAlt1
+  - ESGasVolumePumpAlt2
 
 - type: construction
-  id: GasVolumePumpAlt2
+  id: ESGasVolumePumpAlt2
   hide: true
   graph: GasBinary
   startNode: start
@@ -607,12 +637,13 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasVolumePump
-  - GasVolumePumpAlt1
-  - GasVolumePumpAlt2
+  - ESGasVolumePump
+  - ESGasVolumePumpAlt1
+  - ESGasVolumePumpAlt2
 
 - type: construction
-  id: GasPassiveGate
+  id: ESGasPassiveGate
+  hide: false
   graph: GasBinary
   startNode: start
   targetNode: passivegate
@@ -622,12 +653,12 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasPassiveGate
-  - GasPassiveGateAlt1
-  - GasPassiveGateAlt2
+  - ESGasPassiveGate
+  - ESGasPassiveGateAlt1
+  - ESGasPassiveGateAlt2
 
 - type: construction
-  id: GasPassiveGateAlt1
+  id: ESGasPassiveGateAlt1
   hide: true
   graph: GasBinary
   startNode: start
@@ -638,12 +669,12 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasPassiveGate
-  - GasPassiveGateAlt1
-  - GasPassiveGateAlt2
+  - ESGasPassiveGate
+  - ESGasPassiveGateAlt1
+  - ESGasPassiveGateAlt2
 
 - type: construction
-  id: GasPassiveGateAlt2
+  id: ESGasPassiveGateAlt2
   hide: true
   graph: GasBinary
   startNode: start
@@ -654,12 +685,13 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasPassiveGate
-  - GasPassiveGateAlt1
-  - GasPassiveGateAlt2
+  - ESGasPassiveGate
+  - ESGasPassiveGateAlt1
+  - ESGasPassiveGateAlt2
 
 - type: construction
-  id: GasPressureRegulator
+  id: ESGasPressureRegulator
+  hide: false
   graph: GasBinary
   startNode: start
   targetNode: pressureregulator
@@ -669,12 +701,12 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasPressureRegulator
-  - GasPressureRegulatorAlt1
-  - GasPressureRegulatorAlt2
+  - ESGasPressureRegulator
+  - ESGasPressureRegulatorAlt1
+  - ESGasPressureRegulatorAlt2
 
 - type: construction
-  id: GasPressureRegulatorAlt1
+  id: ESGasPressureRegulatorAlt1
   hide: true
   graph: GasBinary
   startNode: start
@@ -685,12 +717,12 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasPressureRegulator
-  - GasPressureRegulatorAlt1
-  - GasPressureRegulatorAlt2
+  - ESGasPressureRegulator
+  - ESGasPressureRegulatorAlt1
+  - ESGasPressureRegulatorAlt2
 
 - type: construction
-  id: GasPressureRegulatorAlt2
+  id: ESGasPressureRegulatorAlt2
   hide: true
   graph: GasBinary
   startNode: start
@@ -701,12 +733,13 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasPressureRegulator
-  - GasPressureRegulatorAlt1
-  - GasPressureRegulatorAlt2
+  - ESGasPressureRegulator
+  - ESGasPressureRegulatorAlt1
+  - ESGasPressureRegulatorAlt2
 
 - type: construction
-  id: GasValve
+  id: ESGasValve
+  hide: false
   graph: GasBinary
   startNode: start
   targetNode: valve
@@ -716,12 +749,12 @@
   conditions:
     - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasValve
-  - GasValveAlt1
-  - GasValveAlt2
+  - ESGasValve
+  - ESGasValveAlt1
+  - ESGasValveAlt2
 
 - type: construction
-  id: GasValveAlt1
+  id: ESGasValveAlt1
   hide: true
   graph: GasBinary
   startNode: start
@@ -732,12 +765,12 @@
   conditions:
     - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasValve
-  - GasValveAlt1
-  - GasValveAlt2
+  - ESGasValve
+  - ESGasValveAlt1
+  - ESGasValveAlt2
 
 - type: construction
-  id: GasValveAlt2
+  id: ESGasValveAlt2
   hide: true
   graph: GasBinary
   startNode: start
@@ -748,12 +781,13 @@
   conditions:
     - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasValve
-  - GasValveAlt1
-  - GasValveAlt2
+  - ESGasValve
+  - ESGasValveAlt1
+  - ESGasValveAlt2
 
 - type: construction
-  id: SignalControlledValve
+  id: ESSignalControlledValve
+  hide: false
   graph: GasBinary
   startNode: start
   targetNode: signalvalve
@@ -763,12 +797,13 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - SignalControlledValve
-  - SignalControlledValveAlt1
-  - SignalControlledValveAlt2
+  - ESSignalControlledValve
+  - ESSignalControlledValveAlt1
+  - ESSignalControlledValveAlt2
 
 - type: construction
-  id: SignalControlledValveAlt1
+  id: ESSignalControlledValveAlt1
+  hide: false
   graph: GasBinary
   startNode: start
   targetNode: signalvalveAlt1
@@ -778,12 +813,13 @@
   conditions:
     - !type:NoUnstackableInTile
   alternativePrototypes:
-  - SignalControlledValve
-  - SignalControlledValveAlt1
-  - SignalControlledValveAlt2
+  - ESSignalControlledValve
+  - ESSignalControlledValveAlt1
+  - ESSignalControlledValveAlt2
 
 - type: construction
-  id: SignalControlledValveAlt2
+  id: ESSignalControlledValveAlt2
+  hide: false
   graph: GasBinary
   startNode: start
   targetNode: signalvalveAlt2
@@ -793,12 +829,13 @@
   conditions:
     - !type:NoUnstackableInTile
   alternativePrototypes:
-  - SignalControlledValve
-  - SignalControlledValveAlt1
-  - SignalControlledValveAlt2
+  - ESSignalControlledValve
+  - ESSignalControlledValveAlt1
+  - ESSignalControlledValveAlt2
 
 - type: construction
-  id: GasPort
+  id: ESGasPort
+  hide: false
   graph: GasBinary
   startNode: start
   targetNode: port
@@ -809,7 +846,8 @@
     - !type:NoUnstackableInTile
 
 - type: construction
-  id: GasDualPortVentPump
+  id: ESGasDualPortVentPump
+  hide: false
   graph: GasBinary
   startNode: start
   targetNode: dualportventpump
@@ -818,7 +856,8 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: HeatExchanger
+  id: ESHeatExchanger
+  hide: false
   graph: GasBinary
   startNode: start
   targetNode: radiator
@@ -827,7 +866,8 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: HeatExchangerBend
+  id: ESHeatExchangerBend
+  hide: false
   name: construction-recipe-heat-exchanger-bend
   graph: GasBinary
   startNode: start
@@ -838,19 +878,20 @@
 
 # ATMOS TRINARY
 - type: construction
-  id: GasFilter
+  id: ESGasFilter
+  hide: false
   graph: GasTrinary
   startNode: start
   targetNode: filter
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  mirror: GasFilterFlipped
+  mirror: ESGasFilterFlipped
   conditions:
     - !type:NoUnstackableInTile
 
 - type: construction
-  id: GasFilterFlipped
+  id: ESGasFilterFlipped
   hide: true
   graph: GasTrinary
   startNode: start
@@ -858,24 +899,25 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  mirror: GasFilter
+  mirror: ESGasFilter
   conditions:
     - !type:NoUnstackableInTile
 
 - type: construction
-  id: GasMixer
+  id: ESGasMixer
+  hide: false
   graph: GasTrinary
   startNode: start
   targetNode: mixer
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  mirror: GasMixerFlipped
+  mirror: ESGasMixerFlipped
   conditions:
     - !type:NoUnstackableInTile
 
 - type: construction
-  id: GasMixerFlipped
+  id: ESGasMixerFlipped
   hide: true
   graph: GasTrinary
   startNode: start
@@ -883,12 +925,13 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  mirror: GasMixer
+  mirror: ESGasMixer
   conditions:
     - !type:NoUnstackableInTile
 
 - type: construction
-  id: PressureControlledValve
+  id: ESPressureControlledValve
+  hide: false
   graph: GasTrinary
   startNode: start
   targetNode: pneumaticvalve
