@@ -1,5 +1,6 @@
 - type: construction
   id: ESCrateTrashBin
+  hide: false
   graph: ESTrashBin
   startNode: start
   targetNode: trashbin
@@ -8,6 +9,7 @@
 
 - type: construction
   id: ESCrateTrashBinSecure
+  hide: false
   graph: ESTrashBinSecure
   startNode: start
   targetNode: trashbinsecure

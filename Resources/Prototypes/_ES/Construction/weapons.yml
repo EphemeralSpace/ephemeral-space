@@ -1,0 +1,69 @@
+### ES-specific
+
+###
+### Upstream-inherited
+###
+
+- type: construction
+  id: Spear
+  graph: Spear
+  startNode: start
+  targetNode: spear
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: SpearReinforced
+  graph: SpearReinforced
+  startNode: start
+  targetNode: spear
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: SpearPlasma
+  graph: SpearPlasma
+  startNode: start
+  targetNode: spear
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: Bola
+  graph: Bola
+  startNode: start
+  targetNode: bola
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: WoodenBuckler
+  graph: WoodenBuckler
+  startNode: start
+  targetNode: woodenBuckler
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: ImprovisedArrow
+  graph: ImprovisedArrow
+  startNode: start
+  targetNode: ImprovisedArrow
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: ImprovisedArrowPlasma
+  graph: ImprovisedArrowPlasma
+  startNode: start
+  targetNode: ImprovisedArrowPlasma
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: ImprovisedBow
+  graph: ImprovisedBow
+  startNode: start
+  targetNode: ImprovisedBow
+  category: construction-category-weapons
+  objectType: Item
