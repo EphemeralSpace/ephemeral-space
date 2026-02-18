@@ -22,6 +22,7 @@
         telecom-on:
           True: { visible: true }
           False: { visible: false }
+  - type: ESRadioScrambler
   - type: ESSabotageTarget
   - type: PointLight
     enabled: false

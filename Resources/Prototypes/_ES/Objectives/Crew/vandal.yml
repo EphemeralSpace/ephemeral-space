@@ -21,4 +21,4 @@
 - type: entity
   id: ESObjectiveVandalSabotageTelecom
   parent: [ESBaseMaskObjective, ESBaseObjectiveSabotageTelecom]
-  description: Those telecom servers have a whole heap of mandatory "diagnostic logging" built in. Why not let everyone know by hacking one?
+  description: Those telecom processors have a whole heap of mandatory "diagnostic logging" built in. Why not let everyone know by hacking one?

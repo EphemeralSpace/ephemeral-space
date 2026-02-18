@@ -121,23 +121,23 @@
 # Telecomms servers
 - type: entity
   id: ESBaseObjectiveSabotageTelecom
-  name: Sabotage the telecom server
+  name: Sabotage the telecom processor
   abstract: true
   components:
   - type: ESObjective
     icon:
-      sprite: _ES/Structures/Machines/telecomms.rsi
+      sprite: _ES/Structures/Machines/telecomms_processor.rsi
       state: icon
   - type: ESCounterObjective
   - type: ESSabotageCondition
     whitelist:
       components:
-      - TelecomServer
+      - ESRadioScrambler
 
 - type: entity
   id: ESObjectiveTraitorSabotageTelecom
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageTelecom]
-  description: The syndicate needs to decode encrypted communication logs from Nanotrasen. They can be found in one of the station telecom servers.
+  description: The syndicate needs to decode encrypted communication logs from Nanotrasen. They can be found in the station telecom processor.
 
 ### Main traitor objectives
 - type: entity

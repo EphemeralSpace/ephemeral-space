@@ -1,6 +1,7 @@
 using System.Text;
 using Content.Server._ES.Radio.Components;
 using Content.Server.Radio;
+using Content.Shared._ES.Radio.Components;
 using Content.Shared.Dataset;
 using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
@@ -47,6 +48,11 @@ public sealed class ESRadioSystem : EntitySystem
     {
         var msg = message;
 
+        if (IsGlobalDistortActive())
+        {
+            return DistortRadioMessage(msg, 0.6f, _prototypeManager, _random, Loc);
+        }
+
         if (!Resolve(receiver, ref receiver.Comp, false))
             return msg;
 
@@ -61,6 +67,18 @@ public sealed class ESRadioSystem : EntitySystem
             return msg;
 
         return DistortRadioMessage(msg, distortion, _prototypeManager, _random, Loc);
+    }
+
+    public bool IsGlobalDistortActive()
+    {
+        var query = EntityQueryEnumerator<ESRadioScramblerComponent>();
+        while (query.MoveNext(out var comp))
+        {
+            if (comp.Hacked)
+                return true;
+        }
+
+        return false;
     }
 
     private static readonly ProtoId<LocalizedDatasetPrototype> FalloffInterjectionDataset = "ESRadioFalloffInterjections";

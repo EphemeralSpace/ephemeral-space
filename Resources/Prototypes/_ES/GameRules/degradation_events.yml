@@ -60,11 +60,11 @@
 - type: entity
   parent: ESBaseDegradationEvent
   id: ESDegradationEventTelecoms
-  name: Telecom Ghosts
-  description: Sends random radio messages from the ghosts of past players.
+  name: Telecom Malfunction
+  description: Causes the radio system to malfunction, distorting all messages sent.
   components:
   - type: ESDegradationEvent
-    component: TelecomServer
+    component: ESRadioScrambler
     degradeImmediately: true # Doesn't react to anything
   - type: StationEvent
     weight: 20
