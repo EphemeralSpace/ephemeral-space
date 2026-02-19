@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  parent: BaseStructure
   id: ESTelecomProcessor
   name: telecommunication processor
   description: A middleman on the radio network, capable of scrambling signals when tampered with.
@@ -42,6 +42,7 @@
         - MachineMask
         layer:
         - MachineLayer
+  - type: InteractionOutline
   - type: ApcPowerReceiver
     powerLoad: 100
   - type: ExtensionCableReceiver
