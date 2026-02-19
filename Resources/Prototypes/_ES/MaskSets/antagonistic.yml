@@ -3,5 +3,5 @@
   masks:
     ESVandal: 0.3    # While harmless, they're not that interesting to have tons of. Let the others shine.
     ESMercenary: 0.5
-    ESHitman: 1
     ESAvenger: 1
+    ESHater: 0.5
