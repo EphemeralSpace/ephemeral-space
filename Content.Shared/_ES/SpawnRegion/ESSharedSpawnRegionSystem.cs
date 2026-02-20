@@ -211,6 +211,9 @@ public abstract class ESSharedSpawnRegionSystem : EntitySystem
         var dict = new Dictionary<(Entity<MapGridComponent> grid, List<TileRef> refs), float>();
         foreach (var grid in gridSet)
         {
+            if (HasComp<ESInvalidSpawnGridComponent>(grid))
+                continue;
+
             var comp = _gridQuery.Comp(grid);
             var tiles = _map.GetAllTiles(grid, comp).ToList();
             dict.Add(((grid, comp), tiles), tiles.Count);
