@@ -30,7 +30,7 @@ public sealed partial class ESPortalGeneratorComponent : Component
     /// How long <see cref="AccumulatedChargeTime"/> must be for <see cref="Charged"/> to be true
     /// </summary>
     [DataField]
-    public TimeSpan ChargeDuration = TimeSpan.FromMinutes(6f);
+    public TimeSpan ChargeDuration = TimeSpan.FromMinutes(9f);
 
     /// <summary>
     /// Whether the generator is charged
