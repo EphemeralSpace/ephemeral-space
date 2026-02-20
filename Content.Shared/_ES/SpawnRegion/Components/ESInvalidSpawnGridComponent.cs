@@ -10,4 +10,4 @@ namespace Content.Shared._ES.SpawnRegion.Components;
 ///     Used for shuttles and whatnot.
 /// </remarks>
 [RegisterComponent, NetworkedComponent]
-public sealed class ESInvalidSpawnGridComponent : Component;
+public sealed partial class ESInvalidSpawnGridComponent : Component;
