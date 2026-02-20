@@ -8,8 +8,6 @@
       all:
       - id: ESBasicPoweredLightVariationPass
       - id: ESFoodTrashVariationPass
-      - id: ESSolidWallRustingVariationPass
-      - id: ESReinforcedWallRustingVariationPass
       - group:
         - id: ESBasicPuddleMessVariationPass
           weight: 99
