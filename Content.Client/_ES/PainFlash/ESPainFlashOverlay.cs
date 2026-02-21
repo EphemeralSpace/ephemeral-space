@@ -41,8 +41,7 @@ public sealed class ESPainFlashOverlay : Overlay
 
         var handle = args.WorldHandle;
 
-        var blend = Math.Clamp(_painAccumulator / MaxPain, 0, 1);
-        var alpha = MathHelper.Lerp(0f, 0.9f, blend);
+        var alpha = Math.Clamp(_painAccumulator / MaxPain, 0, 1);
         var color = Color.Red.WithAlpha(alpha);
 
         handle.DrawRect(args.WorldBounds, color);
