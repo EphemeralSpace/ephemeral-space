@@ -32,6 +32,11 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
         tempSolution.MaxVolume = entity.Comp.BleedPuddleThreshold * 4; // give some leeway, for chemstream as well
         entity.Comp.BloodReferenceSolution.SetReagentData(GetEntityBloodData((entity, entity.Comp)));
 
+        // ES START
+        bloodSolution.CanReact = false;
+        tempSolution.CanReact = false;
+        // ES END
+
         // Fill blood solution with BLOOD
         // The DNA string might not be initialized yet, but the reagent data gets updated in the GenerateDnaEvent subscription
         var solution = entity.Comp.BloodReferenceSolution.Clone();
