@@ -71,6 +71,5 @@ public sealed class ESPainFlashOverlaySystem : EntitySystem
 
         var delta = DamageSpecifier.GetPositive(args.DamageDelta).GetTotal();
         _overlay.SetPainAccumulator(delta);
-
     }
 }
