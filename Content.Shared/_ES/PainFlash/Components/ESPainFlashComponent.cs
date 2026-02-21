@@ -1,6 +1,7 @@
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.PainFlash.Components;
 
@@ -8,7 +9,8 @@ namespace Content.Shared._ES.PainFlash.Components;
 public sealed partial class ESPainFlashComponent : Component;
 
 [Serializable, NetSerializable]
-public sealed class ESPainFlashMessage(FixedPoint2 damage) : EntityEventArgs
+public sealed class ESPainFlashMessage(FixedPoint2 damage, GameTick tick) : EntityEventArgs
 {
     public FixedPoint2 Damage = damage;
+    public GameTick Tick = tick;
 }

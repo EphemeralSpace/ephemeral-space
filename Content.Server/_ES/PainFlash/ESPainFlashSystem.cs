@@ -12,7 +12,7 @@ public sealed class ESPainFlashSystem : ESSharedPainFlashSystem
         if (!IsPainFlashTrigger(args, out var damage))
             return;
 
-        var ev = new ESPainFlashMessage(damage);
+        var ev = new ESPainFlashMessage(damage, Timing.CurTick);
         RaiseNetworkEvent(ev, ent);
     }
 }

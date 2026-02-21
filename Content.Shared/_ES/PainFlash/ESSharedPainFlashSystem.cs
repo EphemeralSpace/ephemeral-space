@@ -2,11 +2,14 @@ using Content.Shared._ES.PainFlash.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.PainFlash;
 
 public abstract class ESSharedPainFlashSystem : EntitySystem
 {
+    [Dependency] protected readonly IGameTiming Timing = default!;
+
     /// <inheritdoc/>
     public override void Initialize()
     {
