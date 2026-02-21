@@ -9,14 +9,14 @@
     defaultMask: "ESCrewmember/ESVIP"
     superfanTarget: "ESSubverter"
     roles:
-      6: ["ESMarauder", "ESInfiltrator", "ESInsider", "ESVIP", "ESVandal", "ESMercenary"] # 0 generic crew, 2 traitors
+      6: ["ESMarauder", "ESInfiltrator", "#Filler", "ESVIP", "ESVandal", "ESMercenary"] # 0 generic crew, 2 traitors
       7: ["ESMartyr"]
       8: ["ESVIP"]
       9: ["ESVeteran"]
       10: ["ESSyndieSuperfan"]
       11: ["ESVIP"]
       13: ["ESAssassin"]  # 0 generic crew, 3 traitors.
-      14: ["ESInsider"]
+      14: ["#Jesters"]
       16: ["ESAvenger"] # 1 generic crew, 3 traitors.
       17: ["#Filler"]
       18: ["ESArmsDealer"]
@@ -26,8 +26,8 @@
       22: ["ESVIP"]
       24: ["#Gunners"] # 2 generic crew, 4 traitors.
       25: ["ESMarauder"] # 2 generic crew, 5 traitors.
-      26: ["ESInsider"]
+      26: ["#Filler"]
       28: ["#Gunners"] # 3 generic crew, 5 traitors.
       29: ["ESVIP"]
       30: ["#Jesters"]
-      31: ["#Traitors", "ESInsider"] # 3 generic crew, 6 traitors.
+      31: ["#Traitors", "#Filler"] # 3 generic crew, 6 traitors.

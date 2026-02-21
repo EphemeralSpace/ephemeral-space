@@ -5,6 +5,7 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.RoundEnd;
 using Content.Shared._ES.CCVar;
+using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
@@ -32,6 +33,7 @@ namespace Content.Server._ES.Radstorm;
 public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoundEndRuleComponent>
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly BrainDamageSystem _brainDamage = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
@@ -96,6 +98,9 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
                 // and we haven't technically started yet, that means we're only space-dangerous, so don't hurt them
                 if (xform.ParentUid != mapUid && _timing.CurTime < component.RadstormStartTime)
                     continue;
+
+                if (TryComp<BrainDamageComponent>(mob, out var brainDamage))
+                    _brainDamage.TryChangeBrainDamage((mob, brainDamage), brainDamage.MaxDamage / 20);
 
                 // only count mobs which actually end up taking damage from this
                 var dmg = _damage.ChangeDamage((mob, damageable), component.RadstormDamagePerSecond, true, false);

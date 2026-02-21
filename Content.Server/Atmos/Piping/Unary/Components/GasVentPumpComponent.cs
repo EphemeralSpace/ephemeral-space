@@ -41,7 +41,10 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         /// </summary>
         [DataField]
         [GuidebookData]
-        public float UnderPressureLockoutThreshold = 80; // this must be tuned in conjunction with atmos.mmos_spacing_speed
+        // ES START
+        // effectively disable uplo
+        public float UnderPressureLockoutThreshold = 0; // this must be tuned in conjunction with atmos.mmos_spacing_speed
+        // ES END
 
         /// <summary>
         ///     Pressure locked vents still leak a little (leading to eventual pressurization of sealed sections)

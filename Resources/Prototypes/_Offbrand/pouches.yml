@@ -33,6 +33,7 @@
     closeable: false
     openOnActivate: true
     openableByHand: false
+    sound: null
   - type: StorageOpenable
   - type: Appearance
   - type: GenericVisualizer

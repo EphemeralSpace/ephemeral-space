@@ -592,10 +592,14 @@
   name: reinforced wall
   components:
   - type: Sprite
-    sprite: Structures/Walls/solid.rsi
+    # ES START
+    sprite: _ES/Structures/Walls/reinforced.rsi
+    # ES END
   - type: Icon
-    sprite: Structures/Walls/solid.rsi
-    state: rgeneric
+    # ES START
+    sprite: _ES/Structures/Walls/reinforced.rsi
+    state: full
+    # ES END
   - type: Construction
     graph: Girder
     node: reinforcedWall
@@ -626,7 +630,9 @@
         acts: ["Destruction"]
   - type: IconSmooth
     key: walls
-    base: reinf_over
+    # ES START
+    base: reinf
+    # ES END
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -984,13 +990,17 @@
   name: solid wall
   components:
   - type: Sprite
-    sprite: Structures/Walls/solid.rsi
+    # ES START
+    sprite: _ES/Structures/Walls/solid.rsi
+    # ES END
   - type: WallReplacementMarker
   - type: Construction
     graph: Girder
     node: wall
   - type: Icon
-    sprite: Structures/Walls/solid.rsi
+    # ES START
+    sprite: _ES/Structures/Walls/solid.rsi
+    # ES END
   - type: RCDDeconstructable
     cost: 6
     delay: 8

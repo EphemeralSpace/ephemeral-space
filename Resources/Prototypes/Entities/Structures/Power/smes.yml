@@ -8,6 +8,11 @@
   placement:
     mode: SnapgridCenter
   components:
+    # ES START
+    # only re-anchorable, not un-anchorable
+    - type: Anchorable
+      flags: Anchorable
+    # ES END
     - type: AmbientSound
       volume: -7
       range: 3

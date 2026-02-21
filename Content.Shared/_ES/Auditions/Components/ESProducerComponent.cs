@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Dataset;
 using Content.Shared.Random;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -40,6 +41,19 @@ public sealed partial class ESProducerComponent : Component
     /// </summary>
     [DataField]
     public List<EntityUid> UnusedCharacterPool = new();
+
+    [DataField]
+    public ProtoId<LocalizedDatasetPrototype> OpinionDataset = "ESCharacterOpinionConcepts";
+
+    [DataField]
+    public int OpinionConceptCount = 20;
+
+    /// <summary>
+    /// A random pool of concepts that generated characters can have opinions on.
+    /// This is a pool so that players will often have opinions on similar things.
+    /// </summary>
+    [DataField]
+    public List<LocId> OpinionConcepts = new();
 
     /// <summary>
     /// List of all active social groups.

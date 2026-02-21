@@ -1,4 +1,22 @@
 - type: localizedDataset
+  id: ESCharacterDescriptor
+  values:
+    prefix: es-character-descriptor-
+    count: 145
+
+- type: localizedDataset
+  id: ESCharacterFocus
+  values:
+    prefix: es-character-focus-
+    count: 190
+
+- type: localizedDataset
+  id: ESCharacterOpinionConcepts
+  values:
+    prefix: es-character-opinion-
+    count: 90
+
+- type: localizedDataset
   id: ESPersonalityTemperament
   values:
     prefix: es-character-temperament-

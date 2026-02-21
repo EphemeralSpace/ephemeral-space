@@ -79,6 +79,11 @@
   placement:
     mode: SnapgridCenter
   components:
+  # ES START
+  # only re-anchorable, not un-anchorable
+  - type: Anchorable
+    flags: Anchorable
+  # ES END
   - type: Sprite # TODO: add sprite for maintenance panel open
 # ES START
     sprite: _ES/Structures/Power/substation.rsi

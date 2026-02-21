@@ -1,5 +1,7 @@
+### ES-specific
 - type: construction
   id: ESCrateTrashBin
+  hide: false
   graph: ESTrashBin
   startNode: start
   targetNode: trashbin
@@ -8,8 +10,13 @@
 
 - type: construction
   id: ESCrateTrashBinSecure
+  hide: false
   graph: ESTrashBinSecure
   startNode: start
   targetNode: trashbinsecure
   category: construction-category-storage
   objectType: Structure
+
+###
+### Upstream-inherited
+###

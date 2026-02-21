@@ -1,0 +1,495 @@
+### ES-specific
+- type: construction
+  id: ESWallTube
+  hide: false
+  graph: Girder
+  startNode: start
+  targetNode: ESWallTube
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESWallDiagonalTube
+  hide: false
+  name: es-construction-recipe-diagonal-tube-wall
+  graph: Girder
+  startNode: start
+  targetNode: ESWallDiagonalTube
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESKeypadFrame
+  hide: false
+  graph: ESKeypad
+  startNode: start
+  targetNode: keypad
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition
+
+###
+### Upstream inherited
+###
+- type: construction
+  id: ESGirder
+  hide: false
+  graph: Girder
+  startNode: start
+  targetNode: girder
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESReinforcedGirder
+  hide: false
+  graph: Girder
+  startNode: start
+  targetNode: reinforcedGirder
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESWall
+  hide: false
+  graph: Girder
+  startNode: start
+  targetNode: wall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESReinforcedWall
+  hide: false
+  graph: Girder
+  startNode: start
+  targetNode: reinforcedWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESWoodWall
+  hide: false
+  graph: Barricade
+  startNode: start
+  targetNode: woodWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESGrille
+  hide: false
+  graph: Grille
+  startNode: start
+  targetNode: grille
+  category: construction-category-structures
+  conditions:
+  - !type:TileNotBlocked
+    failIfSpace: false
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  id: ESWindow
+  hide: false
+  graph: Window
+  startNode: start
+  targetNode: window
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+  - !type:EmptyOrWindowValidInTile
+  - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  id: ESReinforcedWindow
+  hide: false
+  graph: Window
+  startNode: start
+  targetNode: reinforcedWindow
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+  - !type:EmptyOrWindowValidInTile
+  - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  id: ESReinforcedWindowDiagonal
+  hide: false
+  name: construction-recipe-reinforced-window-diagonal
+  graph: WindowDiagonal
+  startNode: start
+  targetNode: reinforcedWindowDiagonal
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+  - !type:EmptyOrWindowValidInTile
+  - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: ESPlasmaWindow
+  hide: false
+  graph: Window
+  startNode: start
+  targetNode: plasmaWindow
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+  - !type:EmptyOrWindowValidInTile
+  - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  id: ESReinforcedPlasmaWindow
+  hide: false
+  graph: Window
+  startNode: start
+  targetNode: reinforcedPlasmaWindow
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+  - !type:EmptyOrWindowValidInTile
+  - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  id: ESWindowDirectional
+  hide: false
+  graph: WindowDirectional
+  startNode: start
+  targetNode: windowDirectional
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+  - !type:EmptyOrWindowValidInTile
+  - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: ESWindowReinforcedDirectional
+  hide: false
+  graph: WindowDirectional
+  startNode: start
+  targetNode: windowReinforcedDirectional
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+  - !type:EmptyOrWindowValidInTile
+  - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: ESPlasmaWindowDirectional
+  hide: false
+  graph: WindowDirectional
+  startNode: start
+  targetNode: plasmaWindowDirectional
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+  - !type:EmptyOrWindowValidInTile
+  - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: ESPlasmaReinforcedWindowDirectional
+  hide: false
+  graph: WindowDirectional
+  startNode: start
+  targetNode: plasmaReinforcedWindowDirectional
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+  - !type:EmptyOrWindowValidInTile
+  - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: ESFirelock
+  hide: false
+  graph: Firelock
+  startNode: start
+  targetNode: Firelock
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESFirelockGlass
+  hide: false
+  graph: Firelock
+  startNode: start
+  targetNode: FirelockGlass
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESShutters
+  hide: false
+  graph: Shutters
+  startNode: start
+  targetNode: Shutters
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: ESShuttersWindow
+  hide: false
+  graph: Shutters
+  startNode: start
+  targetNode: ShuttersWindow
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: ESBlastDoor
+  hide: false
+  graph: BlastDoor
+  startNode: start
+  targetNode: blastdoor
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: ESCatwalk
+  hide: false
+  graph: Catwalk
+  startNode: start
+  targetNode: Catwalk
+  category: construction-category-structures
+  conditions:
+  - !type:TileNotBlocked
+    failIfSpace: false
+  - !type:TileType
+    targets:
+    - Lattice
+    - Plating
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: ESBarricade
+  hide: false
+  graph: Barricade
+  startNode: start
+  targetNode: barricadefull
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESBarricadeDirectional
+  hide: false
+  name: construction-recipe-barricade-directional
+  graph: BarricadeDirectional
+  startNode: start
+  targetNode: barricadefull
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+  #Airlocks
+- type: construction
+  id: ESAirlock
+  hide: false
+  graph: Airlock
+  startNode: start
+  targetNode: airlock
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESAirlockGlass
+  hide: false
+  graph: Airlock
+  startNode: start
+  targetNode: glassAirlock
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESWindoor
+  hide: false
+  graph: Windoor
+  startNode: start
+  targetNode: windoor
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESSecureWindoor
+  hide: false
+  graph: Windoor
+  startNode: start
+  targetNode: windoorSecure
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+  #lighting
+- type: construction
+  id: ESLightTubeFixture
+  hide: false
+  graph: LightFixture
+  startNode: start
+  targetNode: tubeLight
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+  # Need an *additional* condition here that forces there to be a wall in the opposite direction to the one used for placement.
+  # Also see below. Didn't add it b/c construction ECS work going on. Cheers, - 20kdc
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESLightSmallFixture
+  hide: false
+  graph: LightFixture
+  startNode: start
+  targetNode: bulbLight
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+  # Same here. - 20kdc
+  - !type:TileNotBlocked
+
+  #conveyor
+- type: construction
+  id: ESConveyorBelt
+  hide: false
+  graph: ConveyorGraph
+  startNode: start
+  targetNode: entity
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESSolidSecretDoor
+  hide: false
+  name: recipes-secret-door-name
+  description: recipes-secret-door-desc
+  graph: SecretDoor
+  startNode: start
+  targetNode: solidSecretDoor
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ESBonfire
+  hide: false
+  graph: Bonfire
+  startNode: start
+  targetNode: bonfire
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

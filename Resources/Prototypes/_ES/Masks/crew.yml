@@ -32,23 +32,6 @@
   color: white
 
 - type: esMask
-  id: ESDaredevil
-  name: es-mask-daredevil-name
-  troupe: ESCrew
-  description: es-mask-daredevil-desc
-  color: orangered
-  weight: 1
-  objectives:
-    all:
-    - id: ESObjectiveTakeDamage
-    - id: ESObjectiveTakeDamageFromSource
-    - id: ESObjectiveTakeTotalDamage
-  components:
-  - type: ActionGrant
-    actions:
-    - ESActionMaskAdrenalinePump
-
-- type: esMask
   id: ESFruitVendor
   name: es-mask-fruit-vendor-name
   troupe: ESCrew
@@ -99,34 +82,6 @@
   objectives:
     all:
     - id: ESObjectiveHaterHate
-
-- type: esMask
-  id: ESHitman
-  name: es-mask-hitman-name
-  troupe: ESCrew
-  description: es-mask-hitman-desc
-  color: crimson
-  mindComponents:
-  - type: ESSpawnTargetDossier
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheCrewHitman
-  objectives:
-    all:
-    - id: ESObjectiveHitmanKillTarget
-    - id: ESObjectiveHitmanKillTarget
-      prob: 0.5
-
-- type: esMask
-  id: ESInsider
-  name: es-mask-insider-name
-  troupe: ESCrew
-  description: es-mask-insider-desc
-  color: cornflowerblue
-  mindComponents:
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheCrewInsider
 
 - type: esMask
   id: ESMercenary

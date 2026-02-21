@@ -4,6 +4,7 @@ using Content.Shared._ES.Objectives.Target;
 using Content.Shared._ES.Objectives.Target.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Whitelist;
+using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks.Secretary;
 
@@ -33,10 +34,16 @@ public sealed class ESTargetCompleteObjectivesSystem : ESBaseTargetObjectiveSyst
 
     private void OnObjectiveProgressChanged(ref ESObjectiveProgressChangedEvent ev)
     {
+        if (HasComp<ESTargetCompleteOwnedObjectiveComponent>(ev.Objective))
+            return;
+
         // This really shouldn't be necessary but I don't want
         // to accidentally create an infinite loop here if something's messed up.
         if (_loop)
+        {
+            DebugTools.Assert($"Infinite loop detected in {nameof(ESTargetCompleteObjectivesSystem)}!");
             return;
+        }
 
         _loop = true;
         // I would prefer to not have a global sub here but it's pretty much impossible to do otherwise
@@ -94,28 +101,17 @@ public sealed class ESTargetCompleteObjectivesSystem : ESBaseTargetObjectiveSyst
             return;
         }
 
-        var objectiveSum = 0f;
-        var progressSum = 0f;
-
+        var incomplete = false;
         foreach (var objective in ObjectivesSys.GetOwnedObjectives(mind))
         {
             if (_entityWhitelist.IsWhitelistPass(ent.Comp.ObjectiveBlacklist, objective))
                 continue;
 
-            objectiveSum += 1;
-            progressSum += ObjectivesSys.GetProgress(objective.AsNullable());
+            incomplete |= !ObjectivesSys.IsCompleted(objective.AsNullable());
         }
 
-        if (objectiveSum == 0)
-        {
-            // you win? ig.
-            args.Progress = 1f;
-            return;
-        }
-
-        args.Progress = progressSum / objectiveSum;
-
-        if (ent.Comp.Invert)
-            args.Progress = 1 - args.Progress;
+        args.Progress = !incomplete ^ ent.Comp.Invert
+            ? 1
+            : 0;
     }
 }

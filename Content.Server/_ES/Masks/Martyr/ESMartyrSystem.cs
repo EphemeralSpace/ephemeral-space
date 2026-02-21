@@ -1,5 +1,6 @@
 using Content.Server._ES.Masks.Martyr.Components;
 using Content.Server._ES.Masks.Objectives;
+using Content.Server._ES.Stagehand;
 using Content.Server.Administration;
 using Content.Server.Chat;
 using Content.Shared._ES.Core.Timer;
@@ -25,6 +26,7 @@ public sealed class ESMartyrSystem : EntitySystem
     [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly ESEntityTimerSystem _timer = default!;
     [Dependency] private readonly ESMaskSystem _mask = default!;
+    [Dependency] private readonly ESStagehandNotificationsSystem _notif = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
 
     private static readonly List<ProtoId<ESTroupePrototype>?> KillerMustBeTroupe = ["ESCrew", "ESJester"];
@@ -39,6 +41,10 @@ public sealed class ESMartyrSystem : EntitySystem
 
     private void OnTimeToDie(Entity<ESMartyrKillerMarkerComponent> ent, ref ESMartyrKillerTimeToDieEvent args)
     {
+        var msg = Loc.GetString("es-stagehand-notifications-martyr-killed-target",
+            ("player", _notif.WrapEntityNameWithUsername(ent.Owner)));
+        _notif.SendStagehandNotification(msg);
+
         if (!_suicide.Suicide(ent))
         {
             // you're not getting away that easily
@@ -66,5 +72,11 @@ public sealed class ESMartyrSystem : EntitySystem
         // we are kind of misusing quickdialogs by just using them as a persistent UI popup rather than
         // entering any data, so we just ignore it with an empty action
         _quickDialog.OpenDialog<string>(actor.PlayerSession, title, msg, _ => {});
+
+        var notifMsg = Loc.GetString("es-stagehand-notifications-martyr-got-martyred",
+            ("player", _notif.WrapEntityNameWithUsername(args.Killed)),
+            ("attacker", _notif.WrapEntityNameWithUsername(args.Killer.Value)));
+
+        _notif.SendStagehandNotification(notifMsg, ESStagehandNotificationSeverity.High);
     }
 }

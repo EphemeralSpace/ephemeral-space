@@ -1,7 +1,6 @@
 - type: esMaskSet
   id: Gunners
   masks:
-    ESArmsDealer: 0.5
+    ESArmsDealer: 0.3
     ESMercenary: 1
-    ESHitman: 1
     ESVeteran: 1

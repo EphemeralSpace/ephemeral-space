@@ -12,6 +12,7 @@ using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.CCVar;
 using Content.Shared._ES.Light.Components;
+using Content.Shared._ES.SpawnRegion.Components;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Gravity;
@@ -205,6 +206,7 @@ public sealed class ESArrivalsSystem : EntitySystem
             return;
 
         // Set up arrivals grid
+        EnsureComp<ESInvalidSpawnGridComponent>(shuttle.Value.Owner);
         EnsureComp<ESTileBasedRoofComponent>(shuttle.Value.Owner);
         var grav = EnsureComp<GravityComponent>(shuttle.Value.Owner);
         grav.Enabled = true;

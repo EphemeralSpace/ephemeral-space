@@ -1,0 +1,105 @@
+﻿### ES-specific
+- type: construction
+  id: ESTabletopComputer
+  hide: false
+  graph: ESTabletopComputer
+  startNode: start
+  targetNode: computer
+  category: construction-category-machines
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+###
+### Upstream inherited
+###
+
+- type: construction
+  id: ESComputer
+  hide: false
+  graph: Computer
+  startNode: start
+  targetNode: computer
+  category: construction-category-machines
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: ESMachineFrame
+  hide: false
+  graph: Machine
+  startNode: start
+  targetNode: machine
+  category: construction-category-machines
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+# Switching
+- type: construction
+  id: ESTwoWayLeverRecipe
+  hide: false
+  graph: LeverGraph
+  startNode: start
+  targetNode: LeverNode
+  category: construction-category-machines
+  objectType: Structure
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESSignalSwitchRecipe
+  hide: false
+  graph: SignalSwitchGraph
+  startNode: start
+  targetNode: SignalSwitchNode
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+
+- type: construction
+  id: ESSignalButtonRecipe
+  hide: false
+  graph: SignalButtonGraph
+  startNode: start
+  targetNode: SignalButtonNode
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+
+- type: construction
+  id: ESSignalSwitchDirectionalRecipe
+  hide: false
+  name: construction-recipe-signal-switch-directional
+  graph: SignalSwitchDirectionalGraph
+  startNode: start
+  targetNode: SignalSwitchDirectionalNode
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+
+- type: construction
+  id: ESSignalButtonDirectionalRecipe
+  hide: false
+  name: construction-recipe-signal-button-directional
+  graph: SignalButtonDirectionalGraph
+  startNode: start
+  targetNode: SignalButtonDirectionalNode
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition

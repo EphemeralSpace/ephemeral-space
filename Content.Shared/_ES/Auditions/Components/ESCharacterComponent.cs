@@ -22,11 +22,20 @@ public sealed partial class ESCharacterComponent : Component
     public DateTime DateOfBirth;
 
     [DataField, AutoNetworkedField]
-    public List<LocId> PersonalityTraits = new();
-
-    [DataField, AutoNetworkedField]
     public HumanoidCharacterProfile Profile;
 
     [DataField, AutoNetworkedField]
     public EntityUid Station;
+
+    [DataField, AutoNetworkedField]
+    public string Descriptor;
+
+    [DataField, AutoNetworkedField]
+    public string Focus;
+
+    [DataField, AutoNetworkedField]
+    public List<LocId> Likes = [];
+
+    [DataField, AutoNetworkedField]
+    public List<LocId> Dislikes = [];
 }

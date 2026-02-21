@@ -1,0 +1,284 @@
+### ES-specific
+
+###
+### Upstream-inherited
+###
+
+#chairs
+- type: construction
+  id: ESChair
+  hide: false
+  graph: Seat
+  startNode: start
+  targetNode: chair
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESStool
+  hide: false
+  graph: Seat
+  startNode: start
+  targetNode: stool
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESStoolBar
+  hide: false
+  graph: Seat
+  startNode: start
+  targetNode: stoolBar
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESChairOfficeLight
+  hide: false
+  graph: Seat
+  startNode: start
+  targetNode: chairOffice
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESChairOfficeDark
+  hide: false
+  graph: Seat
+  startNode: start
+  targetNode: chairOfficeDark
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESChairComfy
+  hide: false
+  graph: Seat
+  startNode: start
+  targetNode: chairComfy
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESChairWood
+  hide: false
+  graph: Seat
+  startNode: start
+  targetNode: chairWood
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#tables
+- type: construction
+  id: ESTable
+  hide: false
+  graph: Table
+  startNode: start
+  targetNode: Table
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESTableReinforced
+  hide: false
+  graph: Table
+  startNode: start
+  targetNode: TableReinforced
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESTableGlass
+  hide: false
+  graph: Table
+  startNode: start
+  targetNode: TableGlass
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESTableReinforcedGlass
+  hide: false
+  graph: Table
+  startNode: start
+  targetNode: TableReinforcedGlass
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESTablePlasmaGlass
+  hide: false
+  graph: Table
+  startNode: start
+  targetNode: TablePlasmaGlass
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESTableWood
+  hide: false
+  graph: Table
+  startNode: start
+  targetNode: TableWood
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#bathroom
+- type: construction
+  id: ESToiletEmpty
+  hide: false
+  graph: Toilet
+  startNode: start
+  targetNode: toilet
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#bedroom
+- type: construction
+  id: ESBed
+  hide: false
+  graph: bed
+  startNode: start
+  targetNode: bed
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESDresser
+  hide: false
+  graph: Dresser
+  startNode: start
+  targetNode: dresser
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#racks
+- type: construction
+  id: ESRack
+  hide: false
+  graph: Rack
+  startNode: start
+  targetNode: Rack
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#misc
+- type: construction
+  id: ESMeatSpike
+  hide: false
+  graph: MeatSpike
+  startNode: start
+  targetNode: MeatSpike
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESCurtains
+  hide: false
+  name: construction-recipe-curtains-cloth
+  graph: Curtains
+  startNode: start
+  targetNode: Curtains
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: ESBookshelf
+  hide: false
+  graph: Bookshelf
+  startNode: start
+  targetNode: bookshelf
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ESMannequin
+  hide: false
+  graph: Mannequin
+  startNode: start
+  targetNode: mannequin
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

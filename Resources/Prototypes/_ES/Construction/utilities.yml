@@ -1,0 +1,942 @@
+### ES-specific
+
+###
+### Upstream-inherited
+###
+
+# SURVEILLANCE
+- type: construction
+  id: EScamera
+  hide: false
+  graph: SurveillanceCamera
+  startNode: start
+  targetNode: camera
+  category: construction-category-utilities
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+# POWER
+- type: construction
+  id: ESAPC
+  hide: false
+  graph: APC
+  startNode: start
+  targetNode: apc
+  category: construction-category-utilities
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: ESCableTerminal
+  hide: false
+  graph: CableTerminal
+  startNode: start
+  targetNode: cable_terminal
+  category: construction-category-utilities
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+# DISPOSALS
+- type: construction
+  id: ESDisposalUnit
+  hide: false
+  graph: DisposalMachine
+  startNode: start
+  targetNode: disposal_unit
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: ESDisposalPipe
+  hide: false
+  graph: DisposalPipe
+  startNode: start
+  targetNode: pipe
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: ESDisposalTagger
+  hide: false
+  graph: DisposalPipe
+  startNode: start
+  targetNode: tagger
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: ESDisposalSignaller
+  hide: false
+  graph: DisposalPipe
+  startNode: start
+  targetNode: signaller
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: ESDisposalTrunk
+  hide: false
+  graph: DisposalPipe
+  startNode: start
+  targetNode: trunk
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: ESDisposalRouter
+  hide: false
+  graph: DisposalPipe
+  startNode: start
+  targetNode: router
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  mirror: ESDisposalRouterFlipped
+
+- type: construction
+  hide: true
+  id: ESDisposalRouterFlipped
+  graph: DisposalPipe
+  startNode: start
+  targetNode: routerflipped
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  mirror: ESDisposalRouter
+
+- type: construction
+  id: ESDisposalSignalRouter
+  hide: false
+  graph: DisposalPipe
+  startNode: start
+  targetNode: signal_router
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  mirror: ESDisposalSignalRouterFlipped
+
+- type: construction
+  hide: true
+  id: ESDisposalSignalRouterFlipped
+  graph: DisposalPipe
+  startNode: start
+  targetNode: signal_router_flipped
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  mirror: ESDisposalSignalRouter
+
+- type: construction
+  id: ESDisposalJunction
+  hide: false
+  graph: DisposalPipe
+  startNode: start
+  targetNode: junction
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  mirror: ESDisposalJunctionFlipped
+
+- type: construction
+  hide: true
+  id: ESDisposalJunctionFlipped
+  graph: DisposalPipe
+  startNode: start
+  targetNode: junctionflipped
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  mirror: ESDisposalJunction
+
+- type: construction
+  id: ESDisposalYJunction
+  hide: false
+  graph: DisposalPipe
+  startNode: start
+  targetNode: yJunction
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: ESDisposalXJunction
+  hide: false
+  graph: DisposalPipe
+  startNode: start
+  targetNode: xJunction
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: ESDisposalBend
+  hide: false
+  graph: DisposalPipe
+  startNode: start
+  targetNode: bend
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+# ATMOS
+- type: construction
+  id: ESAirAlarmFixture
+  hide: false
+  graph: AirAlarm
+  startNode: start
+  targetNode: air_alarm
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
+
+- type: construction
+  id: ESFireAlarm
+  hide: false
+  graph: FireAlarm
+  startNode: start
+  targetNode: fire_alarm
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
+
+- type: construction
+  id: ESAirSensor
+  hide: false
+  graph: AirSensor
+  startNode: start
+  targetNode: sensor
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+
+- type: construction
+  id: ESGasPipeSensor
+  hide: false
+  graph: GasPipeSensor
+  startNode: start
+  targetNode: sensor
+  category: construction-category-structures
+  placementMode: AlignAtmosPipeLayers
+  objectType: Structure
+  canRotate: true
+  alternativePrototypes:
+  - ESGasPipeSensor
+  - ESGasPipeSensorAlt1
+  - ESGasPipeSensorAlt2
+
+- type: construction
+  id: ESGasPipeSensorAlt1
+  hide: true
+  graph: GasPipeSensor
+  startNode: start
+  targetNode: sensorAlt1
+  category: construction-category-structures
+  placementMode: AlignAtmosPipeLayers
+  objectType: Structure
+  canRotate: true
+  alternativePrototypes:
+  - ESGasPipeSensor
+  - ESGasPipeSensorAlt1
+  - ESGasPipeSensorAlt2
+
+- type: construction
+  id: ESGasPipeSensorAlt2
+  hide: true
+  graph: GasPipeSensor
+  startNode: start
+  targetNode: sensorAlt2
+  category: construction-category-structures
+  placementMode: AlignAtmosPipeLayers
+  objectType: Structure
+  canRotate: true
+  alternativePrototypes:
+  - ESGasPipeSensor
+  - ESGasPipeSensorAlt1
+  - ESGasPipeSensorAlt2
+
+# ATMOS PIPES
+- type: construction
+  id: ESGasPipeHalf
+  hide: false
+  name: construction-recipe-gas-pipe-half
+  graph: GasPipe
+  startNode: start
+  targetNode: half
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeHalf
+  - ESGasPipeHalfAlt1
+  - ESGasPipeHalfAlt2
+
+- type: construction
+  id: ESGasPipeHalfAlt1
+  hide: true
+  graph: GasPipe
+  startNode: start
+  targetNode: halfAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeHalf
+  - ESGasPipeHalfAlt1
+  - ESGasPipeHalfAlt2
+
+- type: construction
+  id: ESGasPipeHalfAlt2
+  hide: true
+  graph: GasPipe
+  startNode: start
+  targetNode: halfAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeHalf
+  - ESGasPipeHalfAlt1
+  - ESGasPipeHalfAlt2
+
+- type: construction
+  id: ESGasPipeStraight
+  hide: false
+  graph: GasPipe
+  startNode: start
+  targetNode: straight
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeStraight
+  - ESGasPipeStraightAlt1
+  - ESGasPipeStraightAlt2
+
+- type: construction
+  id: ESGasPipeStraightAlt1
+  hide: true
+  graph: GasPipe
+  startNode: start
+  targetNode: straightAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeStraight
+  - ESGasPipeStraightAlt1
+  - ESGasPipeStraightAlt2
+
+- type: construction
+  id: ESGasPipeStraightAlt2
+  hide: true
+  graph: GasPipe
+  startNode: start
+  targetNode: straightAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeStraight
+  - ESGasPipeStraightAlt1
+  - ESGasPipeStraightAlt2
+
+- type: construction
+  id: ESGasPipeBend
+  hide: false
+  name: construction-recipe-gas-pipe-bend
+  graph: GasPipe
+  startNode: start
+  targetNode: bend
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeBend
+  - ESGasPipeBendAlt1
+  - ESGasPipeBendAlt2
+
+- type: construction
+  id: ESGasPipeBendAlt1
+  hide: true
+  graph: GasPipe
+  startNode: start
+  targetNode: bendAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeBend
+  - ESGasPipeBendAlt1
+  - ESGasPipeBendAlt2
+
+- type: construction
+  id: ESGasPipeBendAlt2
+  hide: true
+  graph: GasPipe
+  startNode: start
+  targetNode: bendAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeBend
+  - ESGasPipeBendAlt1
+  - ESGasPipeBendAlt2
+
+- type: construction
+  id: ESGasPipeTJunction
+  hide: false
+  name: construction-recipe-gas-pipe-t-junction
+  graph: GasPipe
+  startNode: start
+  targetNode: tjunction
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeTJunction
+  - ESGasPipeTJunctionAlt1
+  - ESGasPipeTJunctionAlt2
+
+- type: construction
+  id: ESGasPipeTJunctionAlt1
+  hide: true
+  graph: GasPipe
+  startNode: start
+  targetNode: tjunctionAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeTJunction
+  - ESGasPipeTJunctionAlt1
+  - ESGasPipeTJunctionAlt2
+
+- type: construction
+  id: ESGasPipeTJunctionAlt2
+  hide: true
+  graph: GasPipe
+  startNode: start
+  targetNode: tjunctionAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeTJunction
+  - ESGasPipeTJunctionAlt1
+  - ESGasPipeTJunctionAlt2
+
+- type: construction
+  id: ESGasPipeFourway
+  hide: false
+  name: construction-recipe-gas-pipe-fourway
+  graph: GasPipe
+  startNode: start
+  targetNode: fourway
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeFourway
+  - ESGasPipeFourwayAlt1
+  - ESGasPipeFourwayAlt2
+
+- type: construction
+  id: ESGasPipeFourwayAlt1
+  hide: true
+  graph: GasPipe
+  startNode: start
+  targetNode: fourwayAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeFourway
+  - ESGasPipeFourwayAlt1
+  - ESGasPipeFourwayAlt2
+
+- type: construction
+  id: ESGasPipeFourwayAlt2
+  hide: true
+  graph: GasPipe
+  startNode: start
+  targetNode: fourwayAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: true
+  alternativePrototypes:
+  - ESGasPipeFourway
+  - ESGasPipeFourwayAlt1
+  - ESGasPipeFourwayAlt2
+
+- type: construction
+  id: ESGasPipeManifold
+  hide: false
+  graph: GasPipe
+  startNode: start
+  targetNode: manifold
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+# ATMOS UNARY
+- type: construction
+  id: ESGasVentPump
+  hide: false
+  graph: GasUnary
+  startNode: start
+  targetNode: ventpump
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+
+- type: construction
+  id: ESGasPassiveVent
+  hide: false
+  graph: GasUnary
+  startNode: start
+  targetNode: passivevent
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+
+- type: construction
+  id: ESGasVentScrubber
+  hide: false
+  graph: GasUnary
+  startNode: start
+  targetNode: ventscrubber
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+
+- type: construction
+  id: ESGasOutletInjector
+  hide: false
+  graph: GasUnary
+  startNode: start
+  targetNode: outletinjector
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+
+# ATMOS BINARY
+- type: construction
+  id: ESGasPressurePump
+  hide: false
+  graph: GasBinary
+  startNode: start
+  targetNode: pressurepump
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasPressurePump
+  - ESGasPressurePumpAlt1
+  - ESGasPressurePumpAlt2
+
+- type: construction
+  id: ESGasPressurePumpAlt1
+  hide: true
+  graph: GasBinary
+  startNode: start
+  targetNode: pressurepumpAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasPressurePump
+  - ESGasPressurePumpAlt1
+  - ESGasPressurePumpAlt2
+
+- type: construction
+  id: ESGasPressurePumpAlt2
+  hide: true
+  graph: GasBinary
+  startNode: start
+  targetNode: pressurepumpAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasPressurePump
+  - ESGasPressurePumpAlt1
+  - ESGasPressurePumpAlt2
+
+- type: construction
+  id: ESGasVolumePump
+  hide: false
+  graph: GasBinary
+  startNode: start
+  targetNode: volumepump
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasVolumePump
+  - ESGasVolumePumpAlt1
+  - ESGasVolumePumpAlt2
+
+- type: construction
+  id: ESGasVolumePumpAlt1
+  hide: true
+  graph: GasBinary
+  startNode: start
+  targetNode: volumepumpAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasVolumePump
+  - ESGasVolumePumpAlt1
+  - ESGasVolumePumpAlt2
+
+- type: construction
+  id: ESGasVolumePumpAlt2
+  hide: true
+  graph: GasBinary
+  startNode: start
+  targetNode: volumepumpAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasVolumePump
+  - ESGasVolumePumpAlt1
+  - ESGasVolumePumpAlt2
+
+- type: construction
+  id: ESGasPassiveGate
+  hide: false
+  graph: GasBinary
+  startNode: start
+  targetNode: passivegate
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasPassiveGate
+  - ESGasPassiveGateAlt1
+  - ESGasPassiveGateAlt2
+
+- type: construction
+  id: ESGasPassiveGateAlt1
+  hide: true
+  graph: GasBinary
+  startNode: start
+  targetNode: passivegateAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasPassiveGate
+  - ESGasPassiveGateAlt1
+  - ESGasPassiveGateAlt2
+
+- type: construction
+  id: ESGasPassiveGateAlt2
+  hide: true
+  graph: GasBinary
+  startNode: start
+  targetNode: passivegateAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasPassiveGate
+  - ESGasPassiveGateAlt1
+  - ESGasPassiveGateAlt2
+
+- type: construction
+  id: ESGasPressureRegulator
+  hide: false
+  graph: GasBinary
+  startNode: start
+  targetNode: pressureregulator
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasPressureRegulator
+  - ESGasPressureRegulatorAlt1
+  - ESGasPressureRegulatorAlt2
+
+- type: construction
+  id: ESGasPressureRegulatorAlt1
+  hide: true
+  graph: GasBinary
+  startNode: start
+  targetNode: pressureregulatorAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasPressureRegulator
+  - ESGasPressureRegulatorAlt1
+  - ESGasPressureRegulatorAlt2
+
+- type: construction
+  id: ESGasPressureRegulatorAlt2
+  hide: true
+  graph: GasBinary
+  startNode: start
+  targetNode: pressureregulatorAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasPressureRegulator
+  - ESGasPressureRegulatorAlt1
+  - ESGasPressureRegulatorAlt2
+
+- type: construction
+  id: ESGasValve
+  hide: false
+  graph: GasBinary
+  startNode: start
+  targetNode: valve
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasValve
+  - ESGasValveAlt1
+  - ESGasValveAlt2
+
+- type: construction
+  id: ESGasValveAlt1
+  hide: true
+  graph: GasBinary
+  startNode: start
+  targetNode: valveAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasValve
+  - ESGasValveAlt1
+  - ESGasValveAlt2
+
+- type: construction
+  id: ESGasValveAlt2
+  hide: true
+  graph: GasBinary
+  startNode: start
+  targetNode: valveAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESGasValve
+  - ESGasValveAlt1
+  - ESGasValveAlt2
+
+- type: construction
+  id: ESSignalControlledValve
+  hide: false
+  graph: GasBinary
+  startNode: start
+  targetNode: signalvalve
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESSignalControlledValve
+  - ESSignalControlledValveAlt1
+  - ESSignalControlledValveAlt2
+
+- type: construction
+  id: ESSignalControlledValveAlt1
+  hide: false
+  graph: GasBinary
+  startNode: start
+  targetNode: signalvalveAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESSignalControlledValve
+  - ESSignalControlledValveAlt1
+  - ESSignalControlledValveAlt2
+
+- type: construction
+  id: ESSignalControlledValveAlt2
+  hide: false
+  graph: GasBinary
+  startNode: start
+  targetNode: signalvalveAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - ESSignalControlledValve
+  - ESSignalControlledValveAlt1
+  - ESSignalControlledValveAlt2
+
+- type: construction
+  id: ESGasPort
+  hide: false
+  graph: GasBinary
+  startNode: start
+  targetNode: port
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+
+- type: construction
+  id: ESGasDualPortVentPump
+  hide: false
+  graph: GasBinary
+  startNode: start
+  targetNode: dualportventpump
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: ESHeatExchanger
+  hide: false
+  graph: GasBinary
+  startNode: start
+  targetNode: radiator
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: ESHeatExchangerBend
+  hide: false
+  name: construction-recipe-heat-exchanger-bend
+  graph: GasBinary
+  startNode: start
+  targetNode: bendradiator
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+# ATMOS TRINARY
+- type: construction
+  id: ESGasFilter
+  hide: false
+  graph: GasTrinary
+  startNode: start
+  targetNode: filter
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  mirror: ESGasFilterFlipped
+  conditions:
+    - !type:NoUnstackableInTile
+
+- type: construction
+  id: ESGasFilterFlipped
+  hide: true
+  graph: GasTrinary
+  startNode: start
+  targetNode: filterflipped
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  mirror: ESGasFilter
+  conditions:
+    - !type:NoUnstackableInTile
+
+- type: construction
+  id: ESGasMixer
+  hide: false
+  graph: GasTrinary
+  startNode: start
+  targetNode: mixer
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  mirror: ESGasMixerFlipped
+  conditions:
+    - !type:NoUnstackableInTile
+
+- type: construction
+  id: ESGasMixerFlipped
+  hide: true
+  graph: GasTrinary
+  startNode: start
+  targetNode: mixerflipped
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  mirror: ESGasMixer
+  conditions:
+    - !type:NoUnstackableInTile
+
+- type: construction
+  id: ESPressureControlledValve
+  hide: false
+  graph: GasTrinary
+  startNode: start
+  targetNode: pneumaticvalve
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
