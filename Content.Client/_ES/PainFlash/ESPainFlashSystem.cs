@@ -1,4 +1,5 @@
-using Content.Client._ES.PainFlash.Components;
+using Content.Shared._ES.PainFlash;
+using Content.Shared._ES.PainFlash.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Robust.Client.Graphics;
@@ -8,7 +9,8 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._ES.PainFlash;
 
-public sealed class ESPainFlashOverlaySystem : EntitySystem
+/// <inheritdoc/>
+public sealed class ESPainFlashSystem : ESSharedPainFlashSystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
@@ -19,6 +21,8 @@ public sealed class ESPainFlashOverlaySystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
+        base.Initialize();
+
         SubscribeLocalEvent<ESPainFlashComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<ESPainFlashComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<ESPainFlashComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
