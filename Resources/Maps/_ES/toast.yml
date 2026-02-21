@@ -32452,7 +32452,7 @@ entities:
       parent: 2
 - proto: DefaultStationBeaconTelecoms
   entities:
-  - uid: 11754
+  - uid: 11756
     components:
     - type: Transform
       pos: -38.5,-5.5
