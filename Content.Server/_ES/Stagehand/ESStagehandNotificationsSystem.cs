@@ -6,6 +6,7 @@ using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.Chat;
+using Content.Shared.Mind.Components;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Network;
@@ -33,49 +34,27 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
 
     private void OnKillReported(ref ESPlayerKilledEvent ev)
     {
-        if (!_mind.TryGetMind(ev.Killed, out var killedMind) ||
-            !killedMind.Value.Comp.OriginalOwnerUserId.HasValue ||
-            !_player.TryGetPlayerData(killedMind.Value.Comp.OriginalOwnerUserId.Value, out var data))
+        if (!_mind.TryGetMind(ev.Killed, out _))
             return;
-
-        var killedUserName = data.UserName;
 
         string? msg = null;
         var severity = ESStagehandNotificationSeverity.Medium;
+        var wrappedPlayerName = WrapEntityNameWithUsername(ev.Killed);
 
         if (ev.Suicide)
         {
-            msg = Loc.GetString("es-stagehand-notification-kill-suicide",
-                ("entity", ev.Killed),
-                ("username", killedUserName));
+            msg = Loc.GetString("es-stagehand-notification-kill-suicide", ("player", wrappedPlayerName));
         }
         else if (ev.Environment)
         {
-            msg = Loc.GetString("es-stagehand-notification-kill-environment",
-                ("entity", ev.Killed),
-                ("username", killedUserName));
+            msg = Loc.GetString("es-stagehand-notification-kill-environment", ("player", wrappedPlayerName));
         }
         else if (ev.Killer is { } killer)
         {
             severity = ESStagehandNotificationSeverity.High;
-
-            if (_mind.TryGetMind(killer, out var mind ) &&
-                mind.Value.Comp.OriginalOwnerUserId is { } userId &&
-                _player.TryGetPlayerData(userId, out var killerData))
-            {
-                msg = Loc.GetString("es-stagehand-notification-kill-player",
-                    ("entity", ev.Killed),
-                    ("username", killedUserName),
-                    ("attacker", killer),
-                    ("attackerUsername", killerData.UserName));
-            }
-            else
-            {
-                msg = Loc.GetString("es-stagehand-notification-kill-player-userless",
-                    ("entity", ev.Killed),
-                    ("username", killedUserName),
-                    ("attacker", killer));
-            }
+            msg = Loc.GetString("es-stagehand-notification-kill-player",
+                ("player", wrappedPlayerName),
+                ("attacker", WrapEntityNameWithUsername(killer)));
         }
 
         if (msg != null)
@@ -114,6 +93,37 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
 
         var resolvedMessage = Loc.GetString(msgId, ("entity", entityName), ("objective", ev.Objective.Owner));
         SendStagehandNotification(resolvedMessage);
+    }
+
+    /// <summary>
+    ///     Returns a string formatted like "entity name (players username)", for use in passing to <see cref="SendStagehandNotification"/>.
+    /// </summary>
+    /// <remarks>
+    ///     You should **not** use this for all instances where an entity is mentioned.
+    ///     Only reveal player usernames when they are dead, or about to die.
+    /// </remarks>
+    public string WrapEntityNameWithUsername(Entity<ActorComponent?> entity)
+    {
+        string? username = null;
+        if (Resolve(entity, ref entity.Comp, false))
+        {
+            username = entity.Comp.PlayerSession.Name;
+        }
+        // try to get session from their mind
+        else if (_mind.TryGetMind(entity, out var mind)
+            && mind.Value.Comp.UserId is { } id
+            && _player.TryGetPlayerData(id, out var sess))
+        {
+            username = sess.UserName;
+        }
+        else
+        {
+            return Name(entity);
+        }
+
+        return Loc.GetString("es-stagehand-notification-wrap-entity-username",
+            ("entity", entity.Owner),
+            ("username", username));
     }
 
     /// <summary>
