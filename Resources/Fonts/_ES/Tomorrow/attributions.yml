@@ -1,4 +1,4 @@
 - files: ["Tomorrow-Bold.ttf", "Tomorrow-BoldItalic.ttf", "Tomorrow-Regular.ttf", "Tomorrow-Italic.ttf",]
-  license: "OFL"
-  copyright: "Designed by Tony de Marco, Monica Rizzolli, Tomorrow-Bold variants swapped in with semibold by mirrorcult"
+  license: "Custom"
+  copyright: "Licensed under the SIL Open Font License 1.1. Designed by Tony de Marco, Monica Rizzolli, Tomorrow-Bold variants swapped in with semibold by mirrorcult"
   source: "https://fonts.google.com/specimen/Tomorrow"
