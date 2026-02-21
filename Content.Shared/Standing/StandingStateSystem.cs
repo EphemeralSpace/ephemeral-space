@@ -1,4 +1,5 @@
 using Content.Shared.Climbing.Events;
+using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Events;
@@ -8,11 +9,16 @@ using Content.Shared.Rotation;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Standing;
 
 public sealed class StandingStateSystem : EntitySystem
 {
+    // ES START
+    [Dependency] private readonly SharedGameTicker _ticker = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    // ES END
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
@@ -127,6 +133,14 @@ public sealed class StandingStateSystem : EntitySystem
 
         if (playSound)
         {
+            // ES START
+            // yeah sorry. i dont really think theres any better way to do this without kind of making the flow of events unparsable
+            // and opening us up to weird ordering issues eventually
+            // at least this is easy to understand (this is to make it not THUD after sleeping everyone roundstart)
+            if (_timing.CurTime < (_ticker.RoundStartTimeSpan + TimeSpan.FromSeconds(5)))
+                return true;
+            // ES END
+
             _audio.PlayPredicted(standingState.DownSound, uid, uid);
         }
 
