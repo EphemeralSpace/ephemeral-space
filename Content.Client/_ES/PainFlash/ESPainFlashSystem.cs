@@ -1,6 +1,5 @@
 using Content.Shared._ES.PainFlash;
 using Content.Shared._ES.PainFlash.Components;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -28,7 +27,7 @@ public sealed class ESPainFlashSystem : ESSharedPainFlashSystem
         SubscribeLocalEvent<ESPainFlashComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<ESPainFlashComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
 
-        SubscribeLocalEvent<ESPainFlashComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeNetworkEvent<ESPainFlashMessage>(OnPainFlashMessage);
 
         _overlay = new();
     }
@@ -61,19 +60,22 @@ public sealed class ESPainFlashSystem : ESSharedPainFlashSystem
         _overlay.ResetPainAccumulator();
     }
 
-    private void OnDamageChanged(Entity<ESPainFlashComponent> ent, ref DamageChangedEvent args)
+    private void OnPainFlashMessage(ESPainFlashMessage ev)
+    {
+        _overlay.AddPain(ev.Damage);
+    }
+
+    protected override void OnDamageChanged(Entity<ESPainFlashComponent> ent, ref DamageChangedEvent args)
     {
         if (_player.LocalEntity != ent)
             return;
 
-        // TODO: predicted painflashes cause doubling.
-        if (!_timing.ApplyingState)
+        if (_timing.ApplyingState || !_timing.IsFirstTimePredicted)
             return;
 
-        if (!args.InterruptsDoAfters || args.DamageDelta is null)
+        if (!IsPainFlashTrigger(args, out var damage))
             return;
 
-        var delta = DamageSpecifier.GetPositive(args.DamageDelta).GetTotal();
-        _overlay.SetPainAccumulator(delta);
+        _overlay.AddPain(damage);
     }
 }

@@ -10,7 +10,7 @@ public sealed class ESPainFlashOverlay : Overlay
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
     public override bool RequestScreenTexture => false;
 
-    private const float MaxPain = 80;
+    private const float MaxPain = 100;
 
     private float _painAccumulator;
 
@@ -19,7 +19,7 @@ public sealed class ESPainFlashOverlay : Overlay
         _painAccumulator = 0;
     }
 
-    public void SetPainAccumulator(FixedPoint2 inPain)
+    public void AddPain(FixedPoint2 inPain)
     {
         _painAccumulator = Math.Clamp(_painAccumulator + inPain.Float(), 5f, 200); // arbitrary number
     }
