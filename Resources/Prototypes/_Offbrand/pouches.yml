@@ -33,8 +33,7 @@
     closeable: false
     openOnActivate: true
     openableByHand: false
-    sound:
-      collection: storageRustle
+    sound: null
   - type: StorageOpenable
   - type: Appearance
   - type: GenericVisualizer
