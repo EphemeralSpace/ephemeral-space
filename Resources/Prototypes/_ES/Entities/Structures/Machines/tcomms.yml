@@ -22,6 +22,10 @@
         telecom-on:
           True: { visible: true }
           False: { visible: false }
+      enum.ESRadioScramblerVisuals.Hacked:
+        telecom-on:
+          True: { state: hacked }
+          False: { state: processor }
   - type: ESRadioScrambler
   - type: ESSabotageTarget
   - type: PointLight
