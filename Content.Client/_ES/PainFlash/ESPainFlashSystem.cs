@@ -1,9 +1,11 @@
 using Content.Shared._ES.PainFlash;
 using Content.Shared._ES.PainFlash.Components;
+using Content.Shared.CCVar;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
@@ -12,10 +14,13 @@ namespace Content.Client._ES.PainFlash;
 /// <inheritdoc/>
 public sealed class ESPainFlashSystem : ESSharedPainFlashSystem
 {
+    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IOverlayManager _overlayManager = default!;
 
     private ESPainFlashOverlay _overlay = default!;
+
+    private bool _reducedMotion;
 
     private readonly List<ESPainFlashInstance> _painInstances = new();
 
@@ -30,6 +35,8 @@ public sealed class ESPainFlashSystem : ESSharedPainFlashSystem
         SubscribeLocalEvent<ESPainFlashComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
 
         SubscribeNetworkEvent<ESPainFlashMessage>(OnPainFlashMessage);
+
+        _config.OnValueChanged(CCVars.ReducedMotion, b => { _reducedMotion = b; }, invokeImmediately: true);
 
         _overlay = new();
     }
@@ -64,6 +71,9 @@ public sealed class ESPainFlashSystem : ESSharedPainFlashSystem
 
     private void OnPainFlashMessage(ESPainFlashMessage ev)
     {
+        if (_reducedMotion)
+            return;
+
         // Track if we've already had a matching pain flash play on the client.
         // Note that this only works because the number of pain flashes from the server
         // is always greater than or equal to the number of pain flashes on the client.
@@ -75,6 +85,9 @@ public sealed class ESPainFlashSystem : ESSharedPainFlashSystem
 
     protected override void OnDamageChanged(Entity<ESPainFlashComponent> ent, ref DamageChangedEvent args)
     {
+        if (_reducedMotion)
+            return;
+
         if (_player.LocalEntity != ent)
             return;
 
