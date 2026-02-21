@@ -8,3 +8,4 @@
   - type: ESViewconeOccludable
   - type: ESHoldToFace
   - type: ESKillTracker
+  - type: ESPainFlash
