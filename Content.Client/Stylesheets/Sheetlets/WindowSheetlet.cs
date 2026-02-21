@@ -104,7 +104,9 @@ public sealed class WindowSheetlet<T> : Sheetlet<T>
             // Title
             E<Label>()
                 .Class("FancyWindowTitle") // TODO: hardcoding class name
-                .Font(ResCache.GetFont("/Fonts/Boxfont-round/Boxfont Round.ttf", 13)) // TODO: hardcoding font
+                // ES START
+                .Font(ResCache.GetFont("/Fonts/_ES/Geo/Geo-Regular.ttf", 18)) // TODO: hardcoding font
+                // ES END
                 .FontColor(sheet.HighlightPalette.Text),
 
             // Help Button

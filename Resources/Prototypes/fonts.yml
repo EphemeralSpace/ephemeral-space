@@ -1,18 +1,26 @@
 - type: font
   id: Default
-  path: /Fonts/NotoSans/NotoSans-Regular.ttf
+  # ES START
+  path: /Fonts/_ES/Tomorrow/Tomorrow-Regular.ttf
+  # ES END
 
 - type: font
   id: DefaultItalic
-  path: /Fonts/NotoSans/NotoSans-Italic.ttf
+  # ES START
+  path: /Fonts/_ES/Tomorrow/Tomorrow-Italic.ttf
+  # ES END
 
 - type: font
   id: DefaultBold
-  path: /Fonts/NotoSans/NotoSans-Bold.ttf
+  # ES START
+  path: /Fonts/_ES/Tomorrow/Tomorrow-Bold.ttf
+  # ES END
 
 - type: font
   id: DefaultBoldItalic
-  path: /Fonts/NotoSans/NotoSans-BoldItalic.ttf
+  # ES START
+  path: /Fonts/_ES/Tomorrow/Tomorrow-BoldItalic.ttf
+  # ES END
 
 - type: font
   id: NotoSansDisplay
