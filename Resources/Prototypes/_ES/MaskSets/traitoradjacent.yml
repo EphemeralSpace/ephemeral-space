@@ -1,0 +1,6 @@
+- type: esMaskSet
+  id: TraitorAdjacent # roles which are not traitors but are adjacent to them in the game.
+  masks:
+    ESSleeperAgent: 0.7
+    ESVandal: 0.1
+    ESMercenary: 0.2
