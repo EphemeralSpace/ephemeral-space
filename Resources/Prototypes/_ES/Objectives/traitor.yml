@@ -28,7 +28,7 @@
     invert: true
   - type: ESTargetMaskBlacklist
     maskBlacklist:
-    - ESSyndieSuperfan
+    - ESSleeperAgent
   - type: ESKillTargetObjective
 
 ### Sabotage objectives

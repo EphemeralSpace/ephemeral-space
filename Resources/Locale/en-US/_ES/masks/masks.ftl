@@ -79,8 +79,8 @@ es-mask-demolitionist-name = Demolitionist
 es-mask-demolitionist-desc = As a Demolitionist, you have been trained by the Syndicate for both controlled and uncontrolled "demolitions"--including in the use of explosive implants, should things turn out that way.
 
 # Oddballs
-es-mask-syndie-superfan-name = Syndie Superfan
-es-mask-syndie-superfan-desc = As the Syndicate's biggest fan, you're a member of crew and win with them, unless the entire traitors team dies, upon which you switch sides and gain a new mask.
+es-mask-sleeper-agent-name = Sleeper Agent
+es-mask-sleeper-agent-desc = As a covert operative, you're a member of crew and win with them, unless the entire traitors team dies, upon which you switch sides and gain a new mask.
 
 # Meta
 es-objective-issuer-mask = Mask

@@ -67,10 +67,10 @@
 # Non-traitor masks that are dependent on traitors
 - type: esMask
   parent: ESBaseCommandSecRestricted # same restriction as traitors
-  id: ESSyndieSuperfan
-  name: es-mask-syndie-superfan-name
+  id: ESSleeperAgent
+  name: es-mask-sleeper-agent-name
   troupe: ESCrew
-  description: es-mask-syndie-superfan-desc
-  color: lightpink
+  description: es-mask-sleeper-agent-desc
+  color: darkturquoise
   mindComponents:
   - type: ESSuperfan
