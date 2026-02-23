@@ -1,0 +1,10 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveTheFoolMisery
+  name: Wallow in misery
+  description: Revel in your failure after violating the comedic sanctity of the jester troupe. Pray for forgiveness you'll never receive.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Clothing/Mask/clown.rsi
+      state: icon

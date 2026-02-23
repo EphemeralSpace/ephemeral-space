@@ -1,4 +1,15 @@
 - type: esMask
+  id: ESTheFool
+  name: es-mask-the-fool-name
+  troupe: ESJester
+  description: es-mask-the-fool-desc
+  color: olive
+  weight: 0
+  objectives:
+    all:
+    - id: ESObjectiveTheFoolMisery
+
+- type: esMask
   id: ESMartyr
   name: es-mask-martyr-name
   troupe: ESJester

@@ -48,6 +48,9 @@ es-mask-vip-name = VIP
 es-mask-vip-desc = As a VIP, use your fancy VIP card to help confirm your innocence in times of peril.
 
 # Jester masks
+es-mask-the-fool-name = The Fool
+es-mask-the-fool-desc = As the fool, wallow in pity at the failure of your purpose and curse your existence to the very end.
+
 es-mask-martyr-name = Martyr
 es-mask-martyr-desc = As a Martyr, you are a beautiful soul. Be killed by another crewmember in order to ascend to heaven and drag them to hell.
 
