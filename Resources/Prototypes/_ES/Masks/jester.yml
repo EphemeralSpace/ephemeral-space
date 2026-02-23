@@ -21,6 +21,7 @@
   objectives:
     all:
     - id: ESObjectiveMartyrBeKilled
+    - id: ESObjectiveJesterDoNoHarm
 
 - type: esMask
   id: ESParasite
@@ -32,7 +33,9 @@
   mindComponents:
   - type: ESParasite
   objectives:
-    id: ESObjectiveParasiteBeKilled
+    all:
+    - id: ESObjectiveParasiteBeKilled
+    - id: ESObjectiveJesterDoNoHarm
 
 - type: esMask
   id: ESPhantom
@@ -47,3 +50,4 @@
     all:
     - id: ESObjectivePhantomDie
     - id: ESObjectivePhantomAvenge
+    - id: ESObjectiveJesterDoNoHarm

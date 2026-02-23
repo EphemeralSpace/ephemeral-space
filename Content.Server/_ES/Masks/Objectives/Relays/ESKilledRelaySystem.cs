@@ -1,5 +1,4 @@
 using Content.Server._ES.Masks.Objectives.Relays.Components;
-using Content.Server.KillTracking;
 using Content.Server.Mind;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Mind;
@@ -14,6 +13,7 @@ public sealed class ESKilledRelaySystem : ESBaseMindRelay
     public override void Initialize()
     {
         SubscribeLocalEvent<ESKilledRelayComponent, ESPlayerKilledEvent>(OnKillReported);
+        SubscribeLocalEvent<ESKilledRelayComponent, ESKilledPlayerEvent>(OnKilledPlayerReported);
     }
 
     private void OnKillReported(Entity<ESKilledRelayComponent> ent, ref ESPlayerKilledEvent args)
@@ -22,5 +22,13 @@ public sealed class ESKilledRelaySystem : ESBaseMindRelay
             return;
 
         RaiseMindEvent((mindId, mindComp), ref args);
+    }
+
+    private void OnKilledPlayerReported(Entity<ESKilledRelayComponent> ent, ref ESKilledPlayerEvent args)
+    {
+        if (!TryGetMind(ent, out var mind))
+            return;
+
+        RaiseMindEvent(mind.Value, ref args);
     }
 }
