@@ -54,3 +54,18 @@ public readonly struct ESPlayerKilledEvent(EntityUid killed, EntityUid? killer)
     [MemberNotNullWhen(false, nameof(Killer))]
     public bool Environment => !Killer.HasValue;
 }
+
+/// <summary>
+/// Event raised on an entity when they kill and entity with <see cref="ESKillTrackerComponent"/>.
+/// </summary>
+[ByRefEvent]
+public readonly struct ESKilledPlayerEvent(EntityUid killed, EntityUid killer)
+{
+    public readonly EntityUid Killed = killed;
+
+    public readonly EntityUid Killer = killer;
+
+    public bool ValidKill => !Suicide;
+
+    public bool Suicide => Killed == Killer;
+}

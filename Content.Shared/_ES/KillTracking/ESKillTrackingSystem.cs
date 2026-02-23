@@ -90,15 +90,16 @@ public sealed class ESKillTrackingSystem : EntitySystem
             return;
         ent.Comp.Killed = true;
 
-        var killer = ent.Comp.Sources.Count switch
-        {
-            > 1 => ent.Comp.Sources.Where(s => !s.IsEnvironment).MaxBy(s => s.AccumulatedDamage)?.Entity,
-            1 => ent.Comp.Sources.First().Entity,
-            _ => null,
-        };
+        var killer = GetKiller(ent.AsNullable());
 
         var ev = new ESPlayerKilledEvent(ent, killer);
         RaiseLocalEvent(ent, ref ev, true);
+
+        if (killer.HasValue)
+        {
+            var killerEv = new ESKilledPlayerEvent(ent, killer.Value);
+            RaiseLocalEvent(killer.Value, ref killerEv);
+        }
     }
 
     private void AddDamage(Entity<ESKillTrackerComponent> ent, EntityUid? source, FixedPoint2 damage)
@@ -140,5 +141,35 @@ public sealed class ESKillTrackingSystem : EntitySystem
         {
             ent.Comp.Sources.Remove(source);
         }
+    }
+
+    /// <summary>
+    /// Gets the "killer" of an entity, that being the entity that has
+    /// the most damage sources on a given entity.
+    /// </summary>
+    public EntityUid? GetKiller(Entity<ESKillTrackerComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return null;
+
+        var orderedSources = GetOrderedSources(ent);
+        return orderedSources.FirstOrDefault()?.Entity;
+    }
+
+    /// <summary>
+    /// Returns the damage sources in a sorted order, first by non-environmental, then by damage.
+    /// </summary>
+    public List<ESDamageSource> GetOrderedSources(Entity<ESKillTrackerComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return [];
+
+        if (ent.Comp.Sources.Count == 0)
+            return [];
+
+        return ent.Comp.Sources
+            .OrderBy(s => s.IsEnvironment) // Has non-environment first, then environment.
+            .ThenByDescending(s => s.AccumulatedDamage) // Within those groups, go from most damage to least damage.
+            .ToList();
     }
 }
