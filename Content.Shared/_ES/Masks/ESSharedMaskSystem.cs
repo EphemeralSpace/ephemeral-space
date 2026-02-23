@@ -88,8 +88,7 @@ public abstract class ESSharedMaskSystem : EntitySystem
                 {
                     if (!Mind.TryGetMind(actorComp.PlayerSession.UserId, out var mind))
                         return;
-                    RemoveMask(mind.Value);
-                    ApplyMask(mind.Value, mask);
+                    ChangeMask(mind.Value, mask, eraseHistory: true);
                 },
             };
             args.Verbs.Add(verb);
@@ -300,7 +299,8 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
     public virtual void ChangeMask(Entity<MindComponent> mind,
         ProtoId<ESMaskPrototype> maskId,
-        Entity<ESTroupeRuleComponent>? troupe = null)
+        Entity<ESTroupeRuleComponent>? troupe = null,
+        bool eraseHistory = false)
     {
 
     }

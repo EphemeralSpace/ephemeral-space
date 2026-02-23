@@ -272,9 +272,16 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
     public override void ChangeMask(Entity<MindComponent> mind,
         ProtoId<ESMaskPrototype> maskId,
-        Entity<ESTroupeRuleComponent>? troupe = null)
+        Entity<ESTroupeRuleComponent>? troupe = null,
+        bool eraseHistory = false)
     {
         RemoveMask(mind);
+        if (eraseHistory)
+        {
+            var comp = EnsureComp<ESMaskMemoryComponent>(mind);
+            if (comp.Masks.Count != 0)
+                comp.Masks.RemoveAt(comp.Masks.Count - 1);
+        }
         ApplyMask(mind, maskId, troupe);
     }
 }
