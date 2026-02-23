@@ -137,6 +137,7 @@
       id: ESCrateCacheCrewVeteran
 
 - type: esMask
+  parent: ESBaseCommandRestricted # command
   id: ESVandal
   name: es-mask-vandal-name
   troupe: ESCrew

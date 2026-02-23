@@ -1,4 +1,12 @@
 - type: esMask
+  id: ESBaseCommandRestricted
+  abstract: true
+  prohibitedJobs:
+  - ESCaptain
+  - ESHeadOfPersonnel
+  - ESHeadOfSecurity
+
+- type: esMask
   id: ESBaseCommandSecRestricted
   abstract: true
   prohibitedJobs:
