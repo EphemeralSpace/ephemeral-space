@@ -10,6 +10,9 @@ namespace Content.Server._ES.Masks.Jester.Components;
 public sealed partial class ESChangeMaskOnKillObjectiveComponent : Component
 {
     [DataField]
+    public LocId Message = "es-fool-conversion-notification";
+
+    [DataField]
     public ProtoId<ESMaskPrototype> Mask;
 
     [DataField]

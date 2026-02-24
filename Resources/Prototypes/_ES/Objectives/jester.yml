@@ -9,4 +9,4 @@
       sprite: Clothing/Mask/clown.rsi
       state: icon
   - type: ESChangeMaskOnKillObjective
-    mask: ESTheFool
+    mask: ESFool
