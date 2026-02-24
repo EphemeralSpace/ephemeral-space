@@ -234,7 +234,7 @@
     containers:
       entity_storage:
         all:
-        - id: ESWeaponHybridTaser
+        - id: SmokeGrenade
           amount: 2
         - id: Flash
           amount: 3

@@ -38,7 +38,6 @@
     jumpsuit: ClothingUniformJumpsuitHoS
     outerClothing: ESClothingOuterCoatHoSTrench
     back: ClothingBackpackSecurity
-    pocket1: ESWeaponHybridTaser
   storage:
     back:
     - ESBoxSurvival

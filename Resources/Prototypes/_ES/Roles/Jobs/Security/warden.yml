@@ -30,7 +30,6 @@
     jumpsuit: ClothingUniformJumpsuitWarden
     outerClothing: ESClothingOuterCoatWarden
     back: ClothingBackpackSecurity
-    pocket1: ESWeaponHybridTaser
   storage:
     back:
     - ESBoxSurvival
