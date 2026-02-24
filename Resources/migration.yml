@@ -316,6 +316,10 @@ CryogenicSleepUnitSpawnerLateJoin: null
 
 # 2026-2-10
 AnomalyLocator: ESAnomalyProbe
+
+# 2026-2-23
+ESVendingMachineRestockGlobal: null
+ESCrateRestock: null
 # ES END
 
 # 2023-07-03

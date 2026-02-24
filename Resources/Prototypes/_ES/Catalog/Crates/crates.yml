@@ -132,18 +132,6 @@
           id: MedkitAdvancedFilled
           amount: 2
 
-- type: entity
-  parent: CrateGenericSteel
-  id: ESCrateRestock
-  name: vending machine restock crate
-  description: Contains a box used for restocking vending machines.
-  suffix: ES
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        id: ESVendingMachineRestockGlobal
-
 #Security
 - type: entity
   parent: CrateSecgear
@@ -395,7 +383,6 @@
       weight: 2
     - id: ESGeneralToolsCrate
     - id: ESCrateEmergencyFire
-    - id: ESCrateRestock
     - id: ESCrateEmergencyEVA    #These four aren't just ESGeneralCratesTable due to the Water tank and advanced tools
     - tableId: ESCargoGeneralCratesTable
     - tableId: ESCargoMedicalCratesTable

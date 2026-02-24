@@ -44,8 +44,6 @@
     - id: ESCrateFoodCooking
     - id: ESCrateServiceJanitorialSupplies
     - id: ESCrateServiceReplacementLights
-    - id: ESCrateRestock
-      weight: 0.25
 
 - type: entityTable
   id: ESCargoGeneralCratesTable
@@ -56,8 +54,6 @@
     - id: WaterTankHighCapacity
     - id: ESCrateEmergencyEVA
     - id: ESAdvancedToolsCrate
-    - id: ESCrateRestock
-      weight: 0.25
 
 - type: entity
   id: ESSpawnerRandomDistributedCargo

@@ -86,10 +86,8 @@
 - type: latheRecipePack
   id: ESCargoStatic
   recipes:
-  - AppraisalTool
   - Pickaxe
   - ESWeaponKnife
-  - ESVendingMachineRestockGlobal
 
 # Medical
 - type: latheRecipePack
