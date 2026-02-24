@@ -12,7 +12,7 @@ namespace Content.IntegrationTests.Tests.Nutrition;
 /// </summary>
 public sealed class HungerThirstTest : InteractionTest
 {
-    private readonly EntProtoId _drink = "DrinkLemonadeGlass";
+    private readonly EntProtoId _drink = "DrinkCoconutWaterGlass"; // ES EDIT - Fuck you!
     private readonly EntProtoId _food = "FoodCakeVanillaSlice";
     protected override string PlayerPrototype => "MobHuman";
 
