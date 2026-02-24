@@ -25,11 +25,16 @@
     - Ointment
   - type: Sprite
     state: ointment
+# ES Start
+    sprite: _ES/Objects/Specific/Medical/ointment.rsi
+# ES End
   - type: Item
     heldPrefix: ointment
     storedSprite:
       state: ointment-storage
-      sprite: Objects/Specific/Medical/medical.rsi
+# ES Start
+      sprite: _ES/Objects/Specific/Medical/ointment.rsi
+# ES End
   - type: Healing
     damageContainers:
       - Biological
