@@ -11,5 +11,7 @@ es-stagehand-notification-kill-player = {$player} was killed by {$attacker}!
 es-stagehand-notification-objective-completed = {$entity} successfully completed their objective "{$objective}!"
 es-stagehand-notification-objective-failed = {$entity} failed their objective "{$objective}!"
 
+es-stagehand-notification-mask-change = {$player} donned a new mask, becoming {INDEFINITE($mask)} [bold]{$mask}![/bold]
+
 es-stagehand-notifications-martyr-got-martyred = {$player} has been marked for death after killing {$attacker}, a martyr!
 es-stagehand-notifications-martyr-killed-target = {$player} has met their fated, bloody end after killing a martyr.

@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._ES.Stagehand;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Roles.Jobs;
@@ -26,6 +27,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly JobSystem _job = default!;
+    [Dependency] private readonly ESStagehandNotificationsSystem _stagehandNotifications = default!;
 
     private static readonly EntProtoId<ESMaskRoleComponent> MindRole = "ESMindRoleMask";
 
@@ -283,6 +285,14 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
                 comp.Masks.RemoveAt(comp.Masks.Count - 1);
         }
         ApplyMask(mind, maskId, troupe);
+
+        if (mind.Comp.OwnedEntity is { } owned)
+        {
+            var name = _stagehandNotifications.WrapEntityNameWithUsername(owned);
+            var mask = Loc.GetString(PrototypeManager.Index(maskId).Name);
+            var msg = Loc.GetString("es-stagehand-notification-mask-change", ("player", name), ("mask", mask));
+            _stagehandNotifications.SendStagehandNotification(msg);
+        }
     }
 }
 
