@@ -212,24 +212,25 @@
     - Snout
 
 - type: entity
-  parent: [ClothingMaskClownBase, BaseFoldable]
+# ES START
+  parent: ClothingMaskClownBase
   id: ClothingMaskClown
-  description: A clown mask featuring a foldable wig; a true prankster's attire.
   components:
-  - type: Appearance
-  - type: Foldable
-    canFoldInsideContainer: true
-  - type: FoldableClothing
-    foldedEquippedPrefix: opened
-    foldedHeldPrefix: opened
-  - type: Sprite
-    sprite: Clothing/Mask/clown.rsi
-    layers:
-    - state: icon
-      map: [ "unfoldedLayer" ]
-    - state: icon-opened
-      map: [ "foldedLayer" ]
-      visible: false
+#  - type: Appearance
+#  - type: Foldable
+#    canFoldInsideContainer: true
+#  - type: FoldableClothing
+#    foldedEquippedPrefix: opened
+#    foldedHeldPrefix: opened
+#  - type: Sprite
+#    sprite: Clothing/Mask/clown.rsi
+#    layers:
+#    - state: icon
+#      map: [ "unfoldedLayer" ]
+#    - state: icon-opened
+#      map: [ "foldedLayer" ]
+#      visible: false
+# ES END
   - type: Tag
     tags:
     - ClownMask
