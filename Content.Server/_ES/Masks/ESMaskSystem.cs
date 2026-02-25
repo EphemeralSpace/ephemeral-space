@@ -291,7 +291,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
             var name = _stagehandNotifications.WrapEntityNameWithUsername(owned);
             var mask = Loc.GetString(PrototypeManager.Index(maskId).Name);
             var msg = Loc.GetString("es-stagehand-notification-mask-change", ("player", name), ("mask", mask));
-            _stagehandNotifications.SendStagehandNotification(msg);
+            _stagehandNotifications.SendStagehandNotification(msg, ESStagehandNotificationSeverity.High);
         }
     }
 }
