@@ -12,7 +12,7 @@ public sealed partial class ESChangeMaskOnKillObjectiveComponent : Component
     [DataField]
     public LocId Message = "es-fool-conversion-notification";
 
-    [DataField]
+    [DataField(required: true)]
     public ProtoId<ESMaskPrototype> Mask;
 
     [DataField]
