@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client.Graphics;
 using Content.Client.Light;
 using Content.Shared._ES.Power.Antimatter.Components;
 using Content.Shared.CCVar;
@@ -24,8 +25,7 @@ public sealed class ESAntimatterOverlay : Overlay
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
-    private IRenderTexture? _renderTarget;
-    private IRenderTexture? _blurBuffer;
+    private readonly OverlayResourceCache<CachedResources> _resources = new();
 
     public ESAntimatterOverlay()
     {
@@ -47,24 +47,26 @@ public sealed class ESAntimatterOverlay : Overlay
 
         var reducedMotion = _cfgManager.GetCVar(CCVars.ReducedMotion);
 
-        if (_renderTarget?.Texture.Size != target.Size)
+        var res = _resources.GetForViewport(viewport, static _ => new CachedResources());
+
+        if (res.RenderTarget?.Texture.Size != target.Size)
         {
-            _renderTarget?.Dispose();
-            _renderTarget = _clyde.CreateRenderTarget(target.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "ambient-occlusion-target");
+            res.RenderTarget?.Dispose();
+            res.RenderTarget = _clyde.CreateRenderTarget(target.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "ambient-occlusion-target");
         }
 
-        if (_blurBuffer?.Texture.Size != target.Size)
+        if (res.BlurBuffer?.Texture.Size != target.Size)
         {
-            _blurBuffer?.Dispose();
-            _blurBuffer = _clyde.CreateRenderTarget(target.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "ambient-occlusion-blur-target");
+            res.BlurBuffer?.Dispose();
+            res.BlurBuffer = _clyde.CreateRenderTarget(target.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "ambient-occlusion-blur-target");
         }
 
         // Draw the texture data to the texture.
-        args.WorldHandle.RenderInRenderTarget(_renderTarget,
+        args.WorldHandle.RenderInRenderTarget(res.RenderTarget,
             () =>
             {
                 worldHandle.UseShader(_proto.Index(UnshadedShader).Instance());
-                var invMatrix = _renderTarget.GetWorldToLocalMatrix(viewport.Eye!, scale);
+                var invMatrix = res.RenderTarget.GetWorldToLocalMatrix(viewport.Eye!, scale);
 
                 _antimatterSet.Clear();
                 lookups.GetEntitiesIntersecting(mapId, worldBounds.Enlarged(2), _antimatterSet);
@@ -93,11 +95,23 @@ public sealed class ESAntimatterOverlay : Overlay
         var offset = !reducedMotion
             ? _random.NextFloat(-2, 2)
             : 0;
-        _clyde.BlurRenderTarget(viewport, _renderTarget, _blurBuffer, viewport.Eye!, 14f * 2 + offset);
+        _clyde.BlurRenderTarget(viewport, res.RenderTarget, res.BlurBuffer, viewport.Eye!, 14f * 2 + offset);
 
-        worldHandle.DrawTextureRect(_renderTarget!.Texture, worldBounds, Color.Black);
+        worldHandle.DrawTextureRect(res.RenderTarget!.Texture, worldBounds, Color.Black);
 
         args.WorldHandle.SetTransform(Matrix3x2.Identity);
         args.WorldHandle.UseShader(null);
+    }
+
+    private sealed class CachedResources : IDisposable
+    {
+        public IRenderTexture? RenderTarget = null;
+        public IRenderTexture? BlurBuffer = null;
+
+        public void Dispose()
+        {
+            RenderTarget?.Dispose();
+            BlurBuffer?.Dispose();
+        }
     }
 }
