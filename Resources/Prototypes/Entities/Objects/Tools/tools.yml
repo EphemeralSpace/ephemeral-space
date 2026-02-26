@@ -135,7 +135,7 @@
   parent: BaseItem
   id: Multitool
   # ES START
-  description: An advanced tool to analyze power and send electrical pulses through wires.
+  description: An advanced tool used to analyze power and send electrical pulses through wires.
   # ES END
   components:
   - type: EmitSoundOnLand
