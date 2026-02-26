@@ -33,7 +33,7 @@
   The amount of gas they leak out is relative to the current pressure of the pipenet they're connected to.
 
   ## Configuration Options
-  When [textlink="linked" link="ESNetworking"] to an [textlink="air alarm" link="ESAirAlarms"], air vents gain more functionality.
+  When linked to an [textlink="air alarm" link="ESAirAlarms"], air vents gain more functionality.
 
   Air vents have two "vent direction" options: Releasing and Siphoning.
   - Releasing simply releases gasses into the atmosphere from the connected pipenet.

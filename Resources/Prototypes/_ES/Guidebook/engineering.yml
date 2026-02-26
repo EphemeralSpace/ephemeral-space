@@ -134,7 +134,6 @@
   text: "/ServerInfo/_ES/Guidebook/Engineering/Valves.xml"
   children:
   - ESManualValve
-  - ESSignalValve
   - ESPneumaticValve
   - ESPassiveGate
   - ESPressureRegulator
@@ -144,12 +143,6 @@
   hidden: false
   name: guide-entry-manualvalve
   text: "/ServerInfo/_ES/Guidebook/Engineering/ManualValve.xml"
-
-- type: guideEntry
-  id: ESSignalValve
-  hidden: false
-  name: guide-entry-signalvalve
-  text: "/ServerInfo/_ES/Guidebook/Engineering/SignalValve.xml"
 
 - type: guideEntry
   id: ESPneumaticValve

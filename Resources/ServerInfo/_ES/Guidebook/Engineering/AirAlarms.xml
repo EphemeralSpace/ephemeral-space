@@ -10,8 +10,6 @@
 
   A room will often have an Air Alarm mounted on the wall, for quick control over multiple devices in that room.
 
-  You can see how to link devices in the [textlink="Link" link="ESNetworking"] guide.
-
   ## User Interface
   Interacting with an Air Alarm will bring up a menu with 3 sections:
   - Top: The current status of the air alarm. This includes the current pressure and temperature of the area the air alarm is monitoring.
@@ -27,8 +25,6 @@
   Air alarms will automatically drop (close) linked [textlink="firelocks" link="ESFireAndGasControl"] when the [color=Red]Danger[/color] status is reached.
   These [textlink="firelocks" link="ESFireAndGasControl"] will automatically raise (open) when the status returns to [color=green]Normal[/color].
 
-  Air alarms have [textlink="signal" link="ESNetworking"] outputs for each of the three statuses, which can be used to trigger other [textlink="signal" link="ESNetworking"] devices when the status changes.
-
   ## Sensors
   All [textlink="Air Vents" link="ESAirVent"] and [textlink="Air Scrubbers" link="ESAirScrubber"] have a built-in sensor, which reports back to the air alarm.
   These sensors can be adjusted in the [bold]Sensors[/bold] tab of the air alarm menu.
@@ -38,8 +34,6 @@
 
   These thresholds can be adjusted and disabled as needed.
   For example, if you are monitoring a room that naturally has a low temperature (such as a freezer) or a high temperature (such as a burn chamber), you can adjust the temperature thresholds to match the expected values.
-
-  An air sensor can also be constructed and [textlink="linked" link="ESNetworking"] to an air alarm.
 
   <Box>
     <GuideEntityEmbed Entity="AirSensor"/>

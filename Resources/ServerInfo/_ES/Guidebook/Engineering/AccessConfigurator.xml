@@ -7,7 +7,7 @@
   </Box>
 
   Configurable devices can include airlocks, secure crates and lockers, as well as access restricted machines.
-  Note: Airlocks can have their accesses configured by the [color=#a4885c]Network Configurator[/color] (or multitool), for convenience.
+  Note: Airlocks can have their accesses configured by the multitool, for convenience.
 
   ## Where to find Access Configurators
   Each station is equipped with up to two access configurators. The first is in the possession of the Chief Engineer, while the second can be found with the Head of Personnel.

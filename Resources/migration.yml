@@ -320,6 +320,9 @@ AnomalyLocator: ESAnomalyProbe
 # 2026-2-23
 ESVendingMachineRestockGlobal: null
 ESCrateRestock: null
+
+# 2026-2-25
+NetworkConfigurator: Multitool
 # ES END
 
 # 2023-07-03

@@ -56,10 +56,6 @@
 
   They can open, close, bolt, and set to emergency access using these remotes.
 
-  ## Linking
-  Airlocks can be linked using the [textlink="Link" link="ESNetworking"] system to other devices.
-  This allows for proper station airlocks to space, or to link multiple airlocks together.
-
   ## Styling
   Airlocks can come in different styles to match station departments. The department style commonly reflects the required access level.
 

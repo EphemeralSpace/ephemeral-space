@@ -134,7 +134,9 @@
   name: multitool
   parent: BaseItem
   id: Multitool
-  description: An advanced tool to copy, store, and send electrical pulses and signals through wires and machines.
+  # ES START
+  description: An advanced tool to analyze power and send electrical pulses through wires.
+  # ES END
   components:
   - type: EmitSoundOnLand
     sound:
@@ -155,18 +157,19 @@
   - type: Tool
     qualities:
       - Pulsing
-  - type: NetworkConfigurator
-  - type: ActivatableUI
-    key: enum.NetworkConfiguratorUiKey.List
-    inHandsOnly: true
-  - type: UserInterface
-    interfaces:
-      enum.NetworkConfiguratorUiKey.List:
-        type: NetworkConfiguratorBoundUserInterface
-      enum.NetworkConfiguratorUiKey.Configure:
-        type: NetworkConfiguratorBoundUserInterface
-      enum.NetworkConfiguratorUiKey.Link:
-        type: NetworkConfiguratorBoundUserInterface
+  # ES START
+  #- type: NetworkConfigurator
+  #- type: ActivatableUI
+  #  key: enum.NetworkConfiguratorUiKey.List
+  #  inHandsOnly: true
+  #- type: UserInterface
+  #  interfaces:
+  #    enum.NetworkConfiguratorUiKey.List:
+  #      type: NetworkConfiguratorBoundUserInterface
+  #    enum.NetworkConfiguratorUiKey.Configure:
+  #      type: NetworkConfiguratorBoundUserInterface
+  #    enum.NetworkConfiguratorUiKey.Link:
+  #      type: NetworkConfiguratorBoundUserInterface
   - type: Tag
     tags:
       - Multitool
@@ -179,7 +182,9 @@
     price: 56
   - type: GuideHelp
     guides:
-    - Networking
+    # ES START
+    #- Networking
+    # ES END
     - WirePanels
     - Airlocks
     - InspectingPower

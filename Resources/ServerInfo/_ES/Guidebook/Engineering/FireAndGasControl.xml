@@ -35,13 +35,10 @@
   A common example of this is a firelock that has released due to both sides being exposed to space.
 
   ## Connecting to Air and Fire Alarms
-  Firelocks can be connected to [textlink="air alarms" link="ESAirAlarms"] and fire alarms to receive instructions on when to drop.
-  Firelocks use the [textlink="List system" link="ESNetworking"], and you can connect these devices using a multitool or network configurator.
+  Firelocks may be connected to [textlink="air alarms" link="ESAirAlarms"] and fire alarms to receive instructions on when to drop.
 
   <Box>
     <GuideEntityEmbed Entity="Firelock" Caption=""/>
-    <GuideEntityEmbed Entity="Multitool" Caption=""/>
-    <GuideEntityEmbed Entity="NetworkConfigurator" Caption=""/>
     <GuideEntityEmbed Entity="FireAlarm" Caption=""/>
     <GuideEntityEmbed Entity="AirAlarm" Caption=""/>
   </Box>
@@ -65,7 +62,7 @@
     <GuideEntityEmbed Entity="FireAlarm"/>
   </Box>
 
-  Devices with sensors can be [textlink="linked" link="ESNetworking"] to fire alarms, which will trigger the fire alarm if the sensor enters the [color=red]Danger[/color] temperature threshold as defined by its sensors.
+  Devices with sensors may be linked to fire alarms, which will trigger the fire alarm if the sensor enters the [color=red]Danger[/color] temperature threshold as defined by its sensors.
 
   When the fire alarm is triggered, all connected firelocks will be overridden with a [color=red]Danger[/color] alert state and will drop.
 
