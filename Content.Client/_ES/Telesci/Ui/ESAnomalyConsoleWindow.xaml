@@ -4,22 +4,22 @@
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     Title="{Loc 'es-anomaly-console-ui-title'}"
     MinSize="600 350">
-    <BoxContainer Orientation="Horizontal" Margin="15 10 15 15">
-        <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+    <HStack Margin="15 10 15 15">
+        <VFillStack>
             <ItemList Name="AnomalyList" SelectMode="Single" VerticalExpand="True"  HorizontalExpand="True"/>
-        </BoxContainer>
-        <PanelContainer StyleClasses="LowDivider" Margin="10 0"/>
-        <BoxContainer Orientation="Vertical" HorizontalExpand="True" SizeFlagsStretchRatio="2">
-            <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+        </VFillStack>
+        <LowDivider Margin="10 0"/>
+        <VFillStack SizeFlagsStretchRatio="2">
+            <FillPanel>
                 <PanelContainer.PanelOverride>
                     <graphics:StyleBoxFlat BackgroundColor="#000000" />
                 </PanelContainer.PanelOverride>
-                <BoxContainer Orientation="Vertical" Margin="5">
+                <VStack Margin="5">
                     <RichTextLabel Name="NameLabel" Text="{Loc 'es-anomaly-console-signal-none'}"/>
-                    <Control MinHeight="10"/>
+                    <Spacer VSpace="10"/>
                     <RichTextLabel Name="SequenceLabel"/>
-                </BoxContainer>
-            </PanelContainer>
-        </BoxContainer>
-    </BoxContainer>
+                </VStack>
+            </FillPanel>
+        </VFillStack>
+    </HStack>
 </controls:ESAnomalyConsoleWindow>

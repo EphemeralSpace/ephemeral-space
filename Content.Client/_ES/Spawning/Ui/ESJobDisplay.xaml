@@ -3,14 +3,14 @@
     xmlns:controls="clr-namespace:Content.Client._ES.Spawning.Ui"
     Orientation="Vertical"
     HorizontalExpand="True">
-    <BoxContainer Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalExpand="True" VerticalExpand="False">
+    <VFillStack VerticalAlignment="Center" HorizontalAlignment="Center">
         <Control>
             <SpriteView Name="JobView" Scale="3 3"/>
         </Control>
-        <Control MinHeight="5"/>
+        <Spacer VSpace="5"/>
         <Label Name="NameLabel" HorizontalAlignment="Center" StyleClasses="LabelKeyText"/>
-        <Control MinHeight="5"/>
-    </BoxContainer>
+        <Spacer VSpace="5"/>
+    </VFillStack>
     <RichTextLabel Name="DescriptionLabel" HorizontalAlignment="Center" VerticalAlignment="Top" StyleClasses="LabelSubText"/>
-    <Control VerticalExpand="True"/>
+    <Spacer VerticalExpand="True"/>
 </controls:ESJobDisplay>

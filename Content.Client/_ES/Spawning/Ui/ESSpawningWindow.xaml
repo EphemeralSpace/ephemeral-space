@@ -4,24 +4,24 @@
     xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
     Title="{Loc 'es-spawn-menu-title'}"
     MinSize="950 530">
-    <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="10">
-        <ScrollContainer VScrollEnabled="False" HorizontalExpand="True" MinHeight="30" ReserveScrollbarSpace="True">
+    <VFillStack Margin="10">
+        <HScroll MinHeight="30" ReserveScrollbarSpace="True">
             <BoxContainer Name="StationCheckboxContainer" Orientation="Horizontal" SeparationOverride="20"/>
-        </ScrollContainer>
-        <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
-            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
-                <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
-                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalExpand="True" HorizontalExpand="True">
-                        <BoxContainer Name="JobContainer" Margin="5" Orientation="Vertical" HorizontalExpand="True" SeparationOverride="10"/>
-                        <Control MinWidth="10"/>
-                        <BoxContainer Name="JobContainer2" Margin="5" Orientation="Vertical" HorizontalExpand="True" SeparationOverride="10"/>
-                    </BoxContainer>
-                </ScrollContainer>
-            </BoxContainer>
+        </HScroll>
+        <HFillStack HorizontalExpand="True">
+            <VFillStack>
+                <FillScroll HScrollEnabled="False">
+                    <HFillStack HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalExpand="True">
+                        <VFillStack Name="JobContainer" Margin="5" SeparationOverride="10"/>
+                        <Spacer HSpace="10"/>
+                        <VFillStack Name="JobContainer2" Margin="5" SeparationOverride="10"/>
+                    </HFillStack>
+                </FillScroll>
+            </VFillStack>
             <customControls:VSeparator Margin="10 0 10 30"/>
-            <BoxContainer Orientation="Vertical">
+            <VStack>
                 <controls:ESJobDisplay Name="JobDisplay" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalExpand="True" SetWidth="200" Margin="10"/>
-            </BoxContainer>
-        </BoxContainer>
-    </BoxContainer>
+            </VStack>
+        </HFillStack>
+    </VFillStack>
 </controls:ESSpawningWindow>

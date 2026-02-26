@@ -7,12 +7,12 @@
     <PanelContainer.PanelOverride>
         <graphics:StyleBoxFlat BackgroundColor="{xNamespace:Static style:StyleNano.ButtonColorDisabled}" />
     </PanelContainer.PanelOverride>
-    <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="10 5 10 10">
-        <BoxContainer Orientation="Horizontal">
+    <VStack VerticalExpand="True" Margin="10 5 10 10">
+        <HStack>
             <RichTextLabel Name="VoteNameLabel" HorizontalExpand="True" RectClipContent="True"/>
             <RichTextLabel Name="TimeLabel" HorizontalAlignment="Right"/>
-        </BoxContainer>
+        </HStack>
         <ProgressBar Name="Progress" Value="0.5" MinValue="0" MaxValue="1" ModulateSelfOverride="#00ff00" HorizontalExpand="True" SetHeight="5" Margin="0 2 0 5"/>
         <GridContainer Name="OptionsContainer" Columns="2"/>
-    </BoxContainer>
+    </VStack>
 </controls:ESVoteControl>

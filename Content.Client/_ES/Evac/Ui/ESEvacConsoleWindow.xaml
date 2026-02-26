@@ -4,25 +4,25 @@
     MinSize="400 300"
     SetSize="480 330"
     Title="{Loc 'es-evac-computer-ui-title'}">
-    <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
-        <BoxContainer Orientation="Vertical" Margin="10">
-            <PanelContainer VerticalAlignment="Top" StyleClasses="PanelBackgroundBaseDark">
-                <BoxContainer Orientation="Horizontal" Margin="10">
-                    <BoxContainer Name="StationStatusNameContainer" Orientation="Vertical" VerticalExpand="True" SeparationOverride="5"/>
-                    <Control HorizontalExpand="True"/>
-                    <BoxContainer Name="StationStatusStateContainer" Orientation="Vertical" VerticalExpand="True" SeparationOverride="5"/>
-                </BoxContainer>
-            </PanelContainer>
+    <VScroll HorizontalExpand="True">
+        <VStack Margin="10">
+            <Panel VerticalAlignment="Top" StyleClasses="PanelBackgroundBaseDark">
+                <HStack Margin="10">
+                    <VStack Name="StationStatusNameContainer" VerticalExpand="True" SeparationOverride="5"/>
+                    <Spacer HorizontalExpand="True"/>
+                    <VStack Name="StationStatusStateContainer" VerticalExpand="True" SeparationOverride="5"/>
+                </HStack>
+            </Panel>
             <RichTextLabel Name="VoteStatusLabel" Margin="10 5" HorizontalAlignment="Left" StyleClasses="LabelSubText"/>
-            <Control MinHeight="10" VerticalExpand="True"/>
-            <BoxContainer Orientation="Vertical" VerticalAlignment="Bottom">
+            <Spacer VSpace="10" VerticalExpand="True"/>
+            <VStack Orientation="Vertical" VerticalAlignment="Bottom">
                 <RichTextLabel Name="InfoLabel" HorizontalAlignment="Center" VerticalAlignment="Bottom" ReservesSpace="True"/>
-                <PanelContainer StyleClasses="PanelBackgroundBaseDark" SetSize="300 120" HorizontalAlignment="Center" VerticalExpand="True" Margin="0 5">
-                    <BoxContainer VerticalExpand="False" HorizontalExpand="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Panel StyleClasses="PanelBackgroundBaseDark" SetSize="300 120" HorizontalAlignment="Center" VerticalExpand="True" Margin="0 5">
+                    <HStack HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button Name="ToggleButton" Text='{Loc "es-evac-computer-ui-button-enable-signal"}' MinSize="250 60"/>
-                    </BoxContainer>
-                </PanelContainer>
-            </BoxContainer>
-        </BoxContainer>
-    </ScrollContainer>
+                    </HStack>
+                </Panel>
+            </VStack>
+        </VStack>
+    </VScroll>
 </controls:ESEvacConsoleWindow>

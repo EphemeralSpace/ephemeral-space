@@ -4,17 +4,17 @@
     xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
     HorizontalExpand="True">
-    <PanelContainer HorizontalExpand="True" StyleClasses="BackgroundPanel" Margin="0 5">
-        <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="0 5">
-            <BoxContainer Orientation="Horizontal">
+    <Panel HorizontalExpand="True" StyleClasses="BackgroundPanel" Margin="0 5">
+        <VFillStack Margin="0 5">
+            <HStack>
                 <controls1:ProgressTextureRect Name="Icon" Margin="0 0 5 0" VerticalAlignment="Center"/>
                 <RichTextLabel Name="TitleLabel" HorizontalExpand="True" VerticalAlignment="Center"/>
-            </BoxContainer>
+            </HStack>
             <customControls:HSeparator/>
-            <BoxContainer Margin="0 0 0 0" HorizontalExpand="True">
+            <HStack Margin="0 0 0 0" HorizontalExpand="True">
                 <RichTextLabel Name="DescriptionLabel" HorizontalExpand="True"/>
-            </BoxContainer>
-            <Control MinHeight="5"/>
-        </BoxContainer>
-    </PanelContainer>
+            </HStack>
+            <Spacer VSpace="5"/>
+        </VFillStack>
+    </Panel>
 </controls:ESObjectiveControl>

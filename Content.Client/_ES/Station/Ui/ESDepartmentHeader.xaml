@@ -3,9 +3,9 @@
     xmlns:controls="clr-namespace:Content.Client._ES.Station.Ui"
     Orientation="Vertical"
     HorizontalExpand="True">
-    <PanelContainer Name="BackgroundPanel" MinHeight="30" HorizontalExpand="True">
-        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+    <Panel Name="BackgroundPanel" MinHeight="30" HorizontalExpand="True">
+        <HStack HorizontalExpand="True">
             <RichTextLabel Name="DepartmentNameLabel" VerticalAlignment="Center" HorizontalExpand="True" Margin="5 0"/>
-        </BoxContainer>
-    </PanelContainer>
+        </HStack>
+    </Panel>
 </controls:ESDepartmentHeader>

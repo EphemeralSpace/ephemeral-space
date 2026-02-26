@@ -3,22 +3,22 @@
     xmlns:controls="clr-namespace:Content.Client._ES.Keypad.Ui"
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     Orientation="Vertical">
-    <BoxContainer Orientation="Horizontal">
-        <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+    <HStack>
+        <FillPanel>
             <PanelContainer.PanelOverride>
                 <graphics:StyleBoxFlat BackgroundColor="#000000"/>
             </PanelContainer.PanelOverride>
-            <BoxContainer Margin="5">
+            <HStack Margin="5">
                 <RichTextLabel Name="InputLabel" HorizontalExpand="True" HorizontalAlignment="Center"/>
-            </BoxContainer>
-        </PanelContainer>
+            </HStack>
+        </FillPanel>
         <TextureRect Name="LockedIndicator"
                      Stretch="KeepAspectCentered"
                      TexturePath="/Textures/Interface/NavMap/beveled_circle.png"
                      SetSize="16 16"
                      Margin="10 0 0 0"/>
-    </BoxContainer>
-    <Control MinHeight="5"/>
+    </HStack>
+    <Spacer VSpace="5"/>
     <GridContainer Columns="3">
         <Button Name="Button1" Text="{Loc 'es-keypad-ui-button-1'}" StyleClasses="OpenBoth" MinWidth="40"/>
         <Button Name="Button2" Text="{Loc 'es-keypad-ui-button-2'}" StyleClasses="OpenBoth" MinWidth="40"/>

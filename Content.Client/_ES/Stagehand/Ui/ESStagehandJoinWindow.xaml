@@ -4,12 +4,12 @@
     Resizable="False"
     SetWidth="550"
     Title="{Loc 'es-stagehand-ui-title'}">
-    <BoxContainer Orientation="Vertical" Margin="10 5 10 10">
+    <VStack Margin="10 5 10 10">
         <RichTextLabel Text="{Loc 'es-stagehand-ui-label-explanation'}" HorizontalAlignment="Center" Margin="0 10"/>
-        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
+        <HStack HorizontalAlignment="Center">
             <Button Name="AcceptButton" Text="{Loc 'es-stagehand-ui-button-text-accept'}" StyleClasses="negative"/>
             <Control MinWidth="20"/>
             <Button Name="DenyButton" Text="{Loc 'es-stagehand-ui-button-text-deny'}"/>
-        </BoxContainer>
-    </BoxContainer>
+        </HStack>
+    </VStack>
 </controls:ESStagehandJoinWindow>

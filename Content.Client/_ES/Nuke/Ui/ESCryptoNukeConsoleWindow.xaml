@@ -5,26 +5,26 @@
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     Title="{Loc 'es-cryptonuke-ui-window-title'}"
     Resizable="False">
-    <BoxContainer Orientation="Horizontal" Margin="15" HorizontalExpand="True">
-        <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+    <HStack Margin="15" HorizontalExpand="True">
+        <FillPanel>
             <PanelContainer.PanelOverride>
                 <graphics:StyleBoxFlat BackgroundColor="#000000"/>
             </PanelContainer.PanelOverride>
-            <BoxContainer Orientation="Horizontal">
+            <HStack>
                 <ui:NavMapControl Name="NavMap" VerticalExpand="True" HorizontalExpand="True" HorizontalAlignment="Left"/>
-                <BoxContainer Orientation="Vertical" Margin="10" VerticalExpand="True" HorizontalAlignment="Left">
+                <VStack Margin="10" VerticalExpand="True" HorizontalAlignment="Left">
                     <RichTextLabel Name="CompromisedLabel"/>
                     <RichTextLabel Name="CodesLabel"/>
-                    <Control MinHeight="15"/>
+                    <Spacer VSpace="15"/>
                     <RichTextLabel Name="HeaderLabel" Text="{Loc 'es-cryptonuke-ui-label-disk-header'}"/>
                     <RichTextLabel Name="LocationsLabel"/>
-                    <Control MinHeight="15"/>
+                    <Spacer VSpace="15"/>
                     <RichTextLabel Name="FlavorLabel" Text="{Loc 'es-cryptonuke-ui-label-flavor'}"/>
                     <Control VerticalExpand="True"/>
                     <Button Visible="False" Name="HackButton" Text="{Loc 'es-cryptonuke-ui-button-hack'}" VerticalAlignment="Bottom" StyleClasses="negative"/>
-                </BoxContainer>
-                <Control HorizontalExpand="True"/>
-            </BoxContainer>
-        </PanelContainer>
-    </BoxContainer>
+                </VStack>
+                <Spacer HorizontalExpand="True"/>
+            </HStack>
+        </FillPanel>
+    </HStack>
 </controls:ESCryptoNukeConsoleWindow>

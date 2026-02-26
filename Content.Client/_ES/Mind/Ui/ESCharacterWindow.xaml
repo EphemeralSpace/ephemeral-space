@@ -5,43 +5,43 @@
     MinSize="725 425"
     SetWidth="725"
     SetHeight="575">
-    <BoxContainer Orientation="Horizontal" Margin="10 5 10 10">
-        <BoxContainer Orientation="Vertical" SetWidth="270">
-            <BoxContainer Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Bottom" SizeFlagsStretchRatio="3">
+    <HStack Margin="10 5 10 10">
+        <VStack SetWidth="270">
+            <VStack VerticalExpand="True" VerticalAlignment="Bottom" SizeFlagsStretchRatio="3">
                 <TextureButton Name="MaskHelpButton" StyleClasses="windowHelpButton" VerticalAlignment="Center" HorizontalAlignment="Right" Disabled="True" Visible="False" />
-                <BoxContainer Orientation="Vertical" HorizontalAlignment="Center">
+                <VStack HorizontalAlignment="Center">
                     <RichTextLabel Name="MaskLabel" Margin="20 0" HorizontalAlignment="Center"/>
-                    <PanelContainer StyleClasses="LowDivider"/>
+                    <LowDivider/>
                     <RichTextLabel Name="TroupeLabel" HorizontalAlignment="Center"/>
-                </BoxContainer>
+                </VStack>
                 <SpriteView Name="SelfView" OverrideDirection="South" Scale="4 4" HorizontalAlignment="Center" Margin="5 5 5 15"/>
                 <RichTextLabel Name="NameLabel" HorizontalAlignment="Center" Margin="10 0"/>
-                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
+                <HStack HorizontalAlignment="Center">
                     <TextureRect Name="JobIconTexture" TextureScale="2 2" VerticalAlignment="Center"/>
-                    <Control MinWidth="5"/>
+                    <Spacer HSpace="5"/>
                     <RichTextLabel Name="JobLabel" VerticalAlignment="Center"/>
-                </BoxContainer>
-            </BoxContainer>
-            <BoxContainer Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalExpand="True" SizeFlagsStretchRatio="2">
+                </HStack>
+            </VStack>
+            <VStack HorizontalAlignment="Center" VerticalAlignment="Center" VerticalExpand="True" SizeFlagsStretchRatio="2">
                 <RichTextLabel Name="CharacterInfoLabel" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Control MinHeight="10"/>
+                <Spacer VSpace="10"/>
                 <RichTextLabel Name="PromptLabel" HorizontalAlignment="Center" Margin="10 0"/>
-                <Control MinHeight="10"/>
+                <Spacer VSpace="10"/>
                 <RichTextLabel Name="LikesLabel" HorizontalAlignment="Center"/>
                 <RichTextLabel Name="DislikesLabel" HorizontalAlignment="Center"/>
-            </BoxContainer>
-        </BoxContainer>
-        <PanelContainer StyleClasses="LowDivider" Margin="10 0"/>
-        <BoxContainer HorizontalExpand="True" Orientation="Vertical">
-            <BoxContainer>
+            </VStack>
+        </VStack>
+        <LowDivider Margin="10 0"/>
+        <VFillStack>
+            <HStack>
                 <RichTextLabel Name="InfoBlurbText" HorizontalExpand="False"/>
-            </BoxContainer>
+            </HStack>
             <RichTextLabel Name="ObjectiveHeaderLabel" Text="{Loc 'es-character-window-objective-title'}" Margin="0 0 0 5"/>
-            <PanelContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="PanelDark">
-                <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
+            <FillPanel StyleClasses="PanelDark">
+                <VScroll HorizontalExpand="True" VerticalExpand="True">
                     <GridContainer Name="ObjectivesContainer" Columns="1" RectClipContent="True" Margin="10 10"/>
-                </ScrollContainer>
-            </PanelContainer>
-        </BoxContainer>
-    </BoxContainer>
+                </VScroll>
+            </FillPanel>
+        </VFillStack>
+    </HStack>
 </controls:ESCharacterWindow>
