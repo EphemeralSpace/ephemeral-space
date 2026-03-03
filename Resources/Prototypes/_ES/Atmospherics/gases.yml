@@ -9,5 +9,5 @@
   color: 2e2e2e
   reagent: Smoke
   pricePerMole: 1
-  gasMolesVisible: 0.15
-  gasMolesVisibleMax: 8
+  gasMolesVisible: 0.25
+  gasMolesVisibleMax: 3

@@ -130,8 +130,9 @@ namespace Content.Shared.Atmos.Components
         /// <summary>
         ///     Max tile temperature at which this fire will stop releasing new energy into the atmosphere.
         /// </summary>
+        // this is like stupidly low for a fire obviously. but i dont really want it to have much pronounced gameplay effect
         [DataField]
-        public float MaxFireTemperature = Atmospherics.T0C + 100f;
+        public float MaxFireTemperature = Atmospherics.T0C + 50f;
         // ES END
     }
 }
