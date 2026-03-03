@@ -114,5 +114,12 @@ namespace Content.Shared.Atmos.Components
         /// </summary>
         [DataField]
         public float BasicFireSpreadStackPercentage = 0.1f;
+
+        /// <summary>
+        ///     How much smoke will be created through this entity burning.
+        /// </summary>
+        [DataField]
+        public float SmokeMolsReleasedPerStack = 0.01f;
+        // ES END
     }
 }
