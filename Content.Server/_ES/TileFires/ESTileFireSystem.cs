@@ -49,8 +49,9 @@ public sealed class ESTileFireSystem : ESSharedTileFireSystem
             if (_timing.CurTime < tilefire.SmolderTime)
                 continue;
 
-            // lower it to a first stage fire and disable growing in strength
-            _flammable.SetFireStacks(uid, flammable.FireStacks / 5, flammable);
+            // lower it to a random lower stage fire and disable growing in strength
+            var randomDivisor = _random.Next(2, 5);
+            _flammable.SetFireStacks(uid, flammable.FireStacks / randomDivisor, flammable);
             flammable.FirestackFade = 0f;
             Dirty(uid, flammable);
 

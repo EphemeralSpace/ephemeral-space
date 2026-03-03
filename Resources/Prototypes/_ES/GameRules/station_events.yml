@@ -94,7 +94,7 @@
     gases:
     - Ammonia
     - Plasma
-    - Tritium
+    - Smoke
     - Frezon
     - WaterVapor # The Fog...
     count: 2
