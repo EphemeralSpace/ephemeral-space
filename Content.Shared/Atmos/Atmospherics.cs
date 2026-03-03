@@ -104,7 +104,9 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Visible moles multiplied by this factor to get moles at which gas is at max visibility.
         /// </summary>
-        public const float FactorGasVisibleMax = 20f;
+        // ES START
+        public const float FactorGasVisibleMax = 10f;
+        // ES END
 
         /// <summary>
         ///     Minimum number of moles a gas can have.
