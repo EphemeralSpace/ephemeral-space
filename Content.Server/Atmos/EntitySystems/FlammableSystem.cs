@@ -499,7 +499,8 @@ namespace Content.Server.Atmos.EntitySystems
                     // atmos temp will modify temp after that
                     //if (TryComp(uid, out TemperatureComponent? temp))
                     //    _temperatureSystem.ChangeHeat(uid, 12500 * flammable.FireStacks, false, temp);
-                    _atmosphereSystem.AddHeat(air, 20 * flammable.FireStacks);
+                    if (air.Temperature < flammable.MaxFireTemperature)
+                        _atmosphereSystem.AddHeat(air, flammable.FireEnergyMultiplier * flammable.FireStacks);
                     // ES END
 
                     var ev = new GetFireProtectionEvent();

@@ -120,6 +120,18 @@ namespace Content.Shared.Atmos.Components
         /// </summary>
         [DataField]
         public float SmokeMolsReleasedPerStack = 0.01f;
+
+        /// <summary>
+        ///     Multiplier on fire energy released into the atmosphere.
+        /// </summary>
+        [DataField]
+        public float FireEnergyMultiplier = 20f;
+
+        /// <summary>
+        ///     Max tile temperature at which this fire will stop releasing new energy into the atmosphere.
+        /// </summary>
+        [DataField]
+        public float MaxFireTemperature = Atmospherics.T0C + 100f;
         // ES END
     }
 }
