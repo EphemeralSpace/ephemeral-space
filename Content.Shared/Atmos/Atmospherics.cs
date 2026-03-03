@@ -206,7 +206,9 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 9;
+        // ES START
+        public const int TotalNumberOfGases = 10;
+        // ES END
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -362,6 +364,9 @@ namespace Content.Shared.Atmos
     [Serializable, NetSerializable]
     public enum Gas : sbyte
     {
+        // ES START
+        Smoke = 9,
+        // ES END
         Oxygen = 0,
         Nitrogen = 1,
         CarbonDioxide = 2,

@@ -1,0 +1,28 @@
+- type: reagent
+  id: Smoke
+  name: reagent-name-carbon-dioxide
+  desc: reagent-desc-carbon-dioxide
+  physicalDesc: es-reagent-physical-desc-smoky
+  flavor: smoky
+  color: "#66ff33"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        ignoreResistances: true
+        damage:
+          types:
+            Poison:
+              0.4
+    Gas:
+      effects:
+      - !type:HealthChange
+        minScale: 0.5
+        ignoreResistances: true
+        damage:
+          types:
+            Poison:
+              0.2 # Offbrand
+      # We need a metabolism effect on reagent removal
+      #- !type:AdjustAlert
+      #  alertType: CarbonDioxide
