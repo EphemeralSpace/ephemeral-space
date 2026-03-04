@@ -113,8 +113,8 @@
     - Radiation
   - type: Pain
     painMultiplier: 1.25
-    maxShockIncreasePerSecond: 36
-    maxShockDecreasePerSecond: 12
+    maxShockIncreasePerSecond: 54
+    maxShockDecreasePerSecond: 18
     doubleShockRecoveryThreshold: 0.5
   - type: IntrinsicPain
     painCoefficients:

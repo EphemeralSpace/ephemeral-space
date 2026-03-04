@@ -283,7 +283,9 @@
         conditions:
         - !type:ReagentCondition
           reagent: Dermaline
-          min: 10
+          # ES START
+          min: 15
+          # ES END
         damage:
           types:
             Asphyxiation: 1
@@ -1531,7 +1533,9 @@
         conditions:
         - !type:ReagentCondition
           reagent: Mannitol
-          min: 10.5
+          # ES START
+          min: 15.5
+          # ES END
         damage:
           types:
             Poison: 1

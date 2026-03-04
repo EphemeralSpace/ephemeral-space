@@ -22,13 +22,17 @@
         conditions:
         - !type:ReagentCondition
           reagent: Paracetamol
-          min: 10
+          # ES START
+          min: 15
+          # ES END
       effects:
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
           reagent: Paracetamol
-          min: 10
+          # ES START
+          min: 15
+          # ES END
         damage:
           types:
             Poison: 0.05
@@ -100,7 +104,9 @@
         conditions:
         - !type:ReagentCondition
           reagent: Oxycodone
-          min: 10
+          # ES START
+          min: 15
+          # ES END
       - statusEffect: StatusEffectHeartStrainOxycodoneAlcohol
         conditions:
         - !type:ReagentCondition
