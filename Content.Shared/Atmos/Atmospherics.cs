@@ -170,6 +170,10 @@ namespace Content.Shared.Atmos
         /// </summary>
         public static Dictionary<Gas, string> GasAbbreviations = new Dictionary<Gas, string>()
         {
+            // ES START
+            // todo why the fuck does it work like this and why is it not just on the prototype dude
+            [Gas.Smoke] = Loc.GetString("gas-smoke-abbreviation"),
+            // ES END
             [Gas.Ammonia] = Loc.GetString("gas-ammonia-abbreviation"),
             [Gas.CarbonDioxide] = Loc.GetString("gas-carbon-dioxide-abbreviation"),
             [Gas.Frezon] = Loc.GetString("gas-frezon-abbreviation"),
