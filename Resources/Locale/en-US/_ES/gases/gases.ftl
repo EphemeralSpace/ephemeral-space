@@ -1,1 +1,1 @@
-gases-smoke = smoke
+gases-smoke = Smoke
