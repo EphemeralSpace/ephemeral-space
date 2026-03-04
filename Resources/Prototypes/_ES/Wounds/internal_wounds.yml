@@ -1,0 +1,19 @@
+- type: entity
+  parent: WoundInternalBase
+  id: ESWoundSmokeInhalation
+  name: smoke inhalation
+  components:
+  - type: Wound
+    damage:
+      damageDict:
+        Airloss: 20
+    maximumDamage: 5
+  - type: AnalyzableWound
+    descriptions:
+      0: es-wound-smoke-inhalation
+  - type: PopupOnAppliedStatusEffect
+    message: es-smoke-inhalation-applied
+    visualType: MediumCaution
+  - type: ExaminableStatusEffect
+    message: es-smoke-inhalation-examine
+    priority: -8
