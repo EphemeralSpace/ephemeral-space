@@ -15,21 +15,6 @@
     damageCoefficient: 0.90
   - type: GroupExamine
 
-- type: entity
-  parent: ESBaseOuterArmor
-  id: ESBaseOuterArmorImproved
-  abstract: true
-  components:
-  - type: Armor
-    modifiers:
-      flatReductions:
-        Blunt: 5
-        Slash: 5
-        Piercing: 5
-        Heat: 6
-  - type: ExplosionResistance
-    damageCoefficient: 0.80
-
 # Armor
 - type: entity
   parent: [ ESBaseOuterArmor, ClothingOuterBaseMedium, AllowSuitStorageClothing ]
@@ -66,7 +51,7 @@
     sprite: Clothing/OuterClothing/Coats/warden.rsi
 
 - type: entity
-  parent: [ ESBaseOuterArmorImproved, ClothingOuterBaseMedium, AllowSuitStorageClothing ]
+  parent: [ ESBaseOuterArmor, ClothingOuterBaseMedium, AllowSuitStorageClothing ]
   id: ESClothingOuterArmorCaptainCarapace
   name: captain's carapace
   description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
@@ -77,7 +62,7 @@
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
 
 - type: entity
-  parent: [ ESBaseOuterArmorImproved, ClothingOuterBaseMedium, AllowSuitStorageClothing ]
+  parent: [ ESBaseOuterArmor, ClothingOuterBaseMedium, AllowSuitStorageClothing ]
   id: ESClothingOuterCoatHoSTrench
   name: head of security's armored trenchcoat
   description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence.
