@@ -38,7 +38,7 @@ public sealed partial class ESTileFireComponent : Component
     ///     Maximum time after the fire spawns at which it will smolder, see <see cref="MinSmolderTime"/>
     /// </summary>
     [DataField]
-    public TimeSpan MaxSmolderTime = TimeSpan.FromMinutes(20);
+    public TimeSpan MaxSmolderTime = TimeSpan.FromMinutes(17);
 
     /// <summary>
     ///     Time chosen for this fire to smolder, using <see cref="MinSmolderTime"/> and <see cref="MaxSmolderTime"/>.
