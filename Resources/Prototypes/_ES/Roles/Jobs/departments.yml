@@ -38,7 +38,6 @@
   roles:
   - ESCaptain
   - ESHeadOfPersonnel
-  - ESHeadOfSecurity
   primary: false
   weight: 100
 
@@ -70,10 +69,8 @@
   color: "#DE3A3A"
   weight: 20
   roles:
-  - ESHeadOfSecurity
   - ESSecurityOfficer
   - ESDetective
-  - ESWarden
 
 - type: department
   id: ESScience
