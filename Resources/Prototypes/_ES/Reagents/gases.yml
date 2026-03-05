@@ -1,7 +1,7 @@
 - type: reagent
   id: Smoke
-  name: reagent-name-carbon-dioxide
-  desc: reagent-desc-carbon-dioxide
+  name: es-reagent-name-smoke
+  desc: es-reagent-desc-smoke
   physicalDesc: es-reagent-physical-desc-smoky
   flavor: smoky
   color: "#66ff33"
@@ -12,17 +12,18 @@
         ignoreResistances: true
         damage:
           types:
-            Poison:
-              0.4
+            Asphyxiation:
+              1
     Gas:
       effects:
       - !type:HealthChange
-        minScale: 0.5
+        minScale: 0.25
         ignoreResistances: true
         damage:
           types:
-            Poison:
-              0.2 # Offbrand
-      # We need a metabolism effect on reagent removal
-      #- !type:AdjustAlert
-      #  alertType: CarbonDioxide
+            Asphyxiation:
+              2
+      - !type:ESAddWound
+        minScale: 0.75
+        wound: ESWoundSmokeInhalation
+        probability: 0.25

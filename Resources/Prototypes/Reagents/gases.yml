@@ -44,6 +44,14 @@
         time: 5
     Gas:
       effects:
+      # ES START
+      # smoke inhalation healing
+      #- !type:ESTryHealWound
+      #  wound: ESWoundSmokeInhalation
+      #  damage:
+      #    types:
+      #      Asphyxiation:
+      #        -0.1
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
