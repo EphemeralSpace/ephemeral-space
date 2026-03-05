@@ -16,6 +16,7 @@ public static partial class PoolManager
         (ESCVars.ESStationEnabled.Name,          "false"),
         (CCVars.MonstermosDepressurization.Name, "true"),
         (CCVars.MonstermosEqualization.Name,     "true"),
+        (CCVars.ExcitedGroups.Name,     "true"),
         // ES END
         (CCVars.DatabaseSynchronous.Name,     "true"),
         (CCVars.DatabaseSqliteDelay.Name,     "0"),
