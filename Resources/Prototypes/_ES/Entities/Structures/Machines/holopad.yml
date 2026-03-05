@@ -1,0 +1,7 @@
+- type: entity
+  parent: Holopad
+  id: ESHolopadSecurityOffice
+  suffix: Security Office, ES
+  components:
+  - type: Label
+    currentLabel: holopad-security-security-office
