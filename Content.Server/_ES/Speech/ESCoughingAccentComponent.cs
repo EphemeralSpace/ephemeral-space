@@ -13,10 +13,10 @@ public sealed partial class ESCoughingAccentComponent : Component
     ///     Chance, per interjection that rolls, that the message will be cut off, ending there.
     /// </summary>
     [DataField]
-    public float CutOffMessageChancePerInterjection = 1f / 3f;
+    public float CutOffMessageChancePerInterjection = 1f / 4f;
 
     [DataField]
-    public float InterjectionChancePerCharacter = 0.08f;
+    public float InterjectionChancePerCharacter = 0.07f;
 
     [DataField]
     public float MinMessageLength = 4;
