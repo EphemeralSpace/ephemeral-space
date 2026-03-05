@@ -19,10 +19,10 @@
     priority: -12
   - type: DrunkStatusEffect # dizzy dizzy
   - type: CauseStatusEffectRandomlyStatusEffect
-    probability: 0.25
+    probability: 0.33
     updateInterval: 10
     effects:
-    - [ESStatusEffectCoughOnApplied, 1]
-    - [ESStatusEffectCoughingAccent, 5]
+    - [ESStatusEffectCoughOnApplied, 10]
+    - [ESStatusEffectCoughingAccent, 10]
   - type: StatusEffectAlert
     alert: ESSmokeInhalation

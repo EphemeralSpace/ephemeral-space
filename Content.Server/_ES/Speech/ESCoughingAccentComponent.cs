@@ -16,7 +16,7 @@ public sealed partial class ESCoughingAccentComponent : Component
     public float CutOffMessageChancePerInterjection = 1f / 5f;
 
     [DataField]
-    public float InterjectionChancePerCharacter = 0.09f;
+    public float InterjectionChancePerCharacter = 0.12f;
 
     [DataField]
     public float MinMessageLength = 4;

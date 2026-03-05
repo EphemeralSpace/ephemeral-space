@@ -46,12 +46,18 @@
       effects:
       # ES START
       # smoke inhalation healing
-      #- !type:ESTryHealWound
-      #  wound: ESWoundSmokeInhalation
-      #  damage:
-      #    types:
-      #      Asphyxiation:
-      #        -0.1
+      - !type:ESTryHealWound
+        conditions:
+        # you gotta at least get out of the smoke first
+        - !type:ReagentCondition
+          reagent: Smoke
+          max: 0.5
+        wound: ESWoundSmokeInhalation
+        damage:
+          types:
+            Asphyxiation:
+              -0.07
+      # ES END
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
