@@ -22,8 +22,8 @@
         damage:
           types:
             Asphyxiation:
-              1
+              1.25
       - !type:ESAddWound
-        minScale: 1.2
+        minScale: 0.5
         wound: ESWoundSmokeInhalation
         probability: 0.33
