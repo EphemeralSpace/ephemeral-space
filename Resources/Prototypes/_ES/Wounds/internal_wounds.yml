@@ -6,8 +6,8 @@
   - type: Wound
     damage:
       damageDict:
-        Airloss: 20
-    maximumDamage: 5
+        Asphyxiation: 15
+    maximumDamage: 40
   - type: AnalyzableWound
     descriptions:
       0: es-wound-smoke-inhalation
@@ -16,4 +16,13 @@
     visualType: MediumCaution
   - type: ExaminableStatusEffect
     message: es-smoke-inhalation-examine
-    priority: -8
+    priority: -12
+  - type: DrunkStatusEffect # dizzy dizzy
+  - type: CauseStatusEffectRandomlyStatusEffect
+    probability: 0.25
+    updateInterval: 10
+    effects:
+    - [ESStatusEffectCoughOnApplied, 1]
+    - [ESStatusEffectCoughingAccent, 5]
+  - type: StatusEffectAlert
+    alert: ESSmokeInhalation
