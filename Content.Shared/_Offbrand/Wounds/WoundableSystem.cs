@@ -127,7 +127,6 @@ public sealed class WoundableSystem : EntitySystem
 
     private void ValidateWounds(EntityUid ent, DamageSpecifier? incoming)
     {
-        return;
 #if DEBUG
         var damageable = Comp<DamageableComponent>(ent);
 
@@ -462,8 +461,8 @@ public sealed class WoundableSystem : EntitySystem
             if (changeBy.AnyNegative())
             {
                 var actualDelta = _damageable.ChangeDamage(woundable.Owner, changeBy, true, false, null, forceRefresh: true);
-                //DebugTools.Assert(!actualDelta.Empty);
-                //DebugTools.Assert(changeBy.Equals(actualDelta!), $"{changeBy} == {actualDelta!}");
+                DebugTools.Assert(!actualDelta.Empty);
+                DebugTools.Assert(changeBy.Equals(actualDelta!), $"{changeBy} == {actualDelta!}");
             }
 
             ValidateWounds(woundable, null);
