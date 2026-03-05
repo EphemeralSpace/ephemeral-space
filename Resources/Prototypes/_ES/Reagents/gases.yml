@@ -4,7 +4,7 @@
   desc: es-reagent-desc-smoke
   physicalDesc: es-reagent-physical-desc-smoky
   flavor: smokey
-  color: "#66ff33"
+  color: "#2e2e2e"
   metabolisms:
     Poison:
       effects:
