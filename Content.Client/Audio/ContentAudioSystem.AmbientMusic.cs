@@ -149,7 +149,10 @@ public sealed partial class ContentAudioSystem
         }
     }
 
-    private void UpdateAmbientMusic()
+    // ES START
+    // public for manual rechecking
+    public void UpdateAmbientMusic()
+    // ES END
     {
         // Update still runs in lobby so just ignore it.
         if (_state.CurrentState is not GameplayState)
@@ -170,7 +173,10 @@ public sealed partial class ContentAudioSystem
         {
             var player = _player.LocalSession?.AttachedEntity;
 
-            if (player == null || _musicProto == null || !_rules.IsTrue(player.Value, _proto.Index<RulesPrototype>(_musicProto.Rules)))
+            if (player == null || _musicProto == null || !_rules.IsTrue(player.Value, _proto.Index<RulesPrototype>(_musicProto.Rules))
+                // ES START
+                || !CanPlayAmbience())
+                // ES END
             {
                 FadeOut(_ambientMusicStream, duration: AmbientMusicFadeTime);
                 _musicProto = null;
@@ -229,20 +235,29 @@ public sealed partial class ContentAudioSystem
         }
     }
 
-    private AmbientMusicPrototype? GetAmbience()
+    // ES START
+    private bool CanPlayAmbience()
     {
-        var player = _player.LocalEntity;
-
-        if (player == null)
-            return null;
-
         var ev = new PlayAmbientMusicEvent();
         RaiseLocalEvent(ref ev);
 
         if (ev.Cancelled)
+            return false;
+
+        return true;
+    }
+    // ES END
+
+    private AmbientMusicPrototype? GetAmbience()
+    {
+        // ES START
+        var player = _player.LocalEntity;
+        if (player == null)
             return null;
 
-        // ES START
+        if (!CanPlayAmbience())
+            return null;
+
         // dont select disabled fallback
         var ambiences = _proto.EnumeratePrototypes<AmbientMusicPrototype>().Where(m => !m.Disabled).ToList();
         // ES END
