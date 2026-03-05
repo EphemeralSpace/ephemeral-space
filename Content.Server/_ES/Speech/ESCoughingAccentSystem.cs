@@ -33,17 +33,18 @@ public sealed class ESCoughingAccentSystem : EntitySystem
         var cutOff = false;
         for(var i = 0; i < len; i++)
         {
+            // todo this should probably support unicode properly at some point but its not a big deal for us atm
             var c = message[i];
 
             // if last was an interjection and this is a space, dont append it at all
             // e.g. "test-HRNGH- string" -> "test-HRNGH-string"
-            if (c == ' ' && (i - 1) == lastInterjectionIndex)
+            if (char.IsWhiteSpace(c) && (i - 1) == lastInterjectionIndex)
                 continue;
 
             sb.Append(c);
 
             // skip interjecting on spaces, skip if last char was interjected (also skips first char always)
-            if (c == ' ' || (i - 1) == lastInterjectionIndex || !_random.Prob(accent.InterjectionChancePerCharacter))
+            if (char.IsWhiteSpace(c) || (i - 1) == lastInterjectionIndex || !_random.Prob(accent.InterjectionChancePerCharacter))
             {
                 continue;
             }

@@ -70,7 +70,7 @@ public sealed class ESTileFireSystem : ESSharedTileFireSystem
         var tile = MapSys.GetTileRef((grid, mapGrid), xform.Coordinates);
         _atmos.TryAddBurntDecalsToTile(grid, tile.GridIndices, _random.Next(1, 3));
 
-        ent.Comp.SmolderTime = _random.Next(ent.Comp.MinSmolderTime, ent.Comp.MaxSmolderTime);
+        ent.Comp.SmolderTime = _timing.CurTime + _random.Next(ent.Comp.MinSmolderTime, ent.Comp.MaxSmolderTime);
     }
 
     private void OnSpreadNeighbors(Entity<ESTileFireComponent> ent, ref SpreadNeighborsEvent args)
