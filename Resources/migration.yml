@@ -203,13 +203,13 @@ SpawnPointBotanist: ESSpawnPointBotanist
 SpawnPointJanitor: ESSpawnPointJanitor
 SpawnPointCaptain: ESSpawnPointCaptain
 SpawnPointHeadOfPersonnel: ESSpawnPointHeadOfPersonnel
-SpawnPointHeadOfSecurity: ESSpawnPointHeadOfSecurity
+SpawnPointHeadOfSecurity: ESSpawnPointSecurityOfficer
 SpawnPointStationEngineer: ESSpawnPointStationEngineer
 SpawnPointAtmos: ESSpawnPointAtmos
 SpawnPointMedicalDoctor: ESSpawnPointMedicalDoctor
 SpawnPointChemist: ESSpawnPointChemist
 SpawnPointScientist: ESSpawnPointScientist
-SpawnPointWarden: ESSpawnPointWarden
+SpawnPointWarden: ESSpawnPointSecurityOfficer
 SpawnPointSecurityOfficer: ESSpawnPointSecurityOfficer
 SpawnPointDetective: ESSpawnPointDetective
 

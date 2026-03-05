@@ -4,20 +4,13 @@
   prohibitedJobs:
   - ESCaptain
   - ESHeadOfPersonnel
-  - ESHeadOfSecurity
 
 - type: esMask
   id: ESBaseCommandSecRestricted
   abstract: true
   prohibitedJobs:
-  # Command
   - ESCaptain
   - ESHeadOfPersonnel
-  - ESHeadOfSecurity
-  # Security
-  - ESWarden
-  - ESSecurityOfficer
-  - ESDetective
 
 - type: esMask
   parent: ESBaseCommandSecRestricted

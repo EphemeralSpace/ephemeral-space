@@ -36,9 +36,6 @@
   id: ESJobHeadOfPersonnel
 
 - type: playTimeTracker
-  id: ESJobHeadOfSecurity
-
-- type: playTimeTracker
   id: ESJobJanitor
 
 - type: playTimeTracker
@@ -55,6 +52,3 @@
 
 - type: playTimeTracker
   id: ESJobStationEngineer
-
-- type: playTimeTracker
-  id: ESJobWarden

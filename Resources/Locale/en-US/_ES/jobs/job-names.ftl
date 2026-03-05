@@ -11,13 +11,11 @@ ESjob-name-coroner = Coroner
 ESjob-name-detective = Detective
 ESjob-name-janitor = Janitor
 ESjob-name-hop = Head of Personnel
-ESjob-name-hos = Head of Security
 ESjob-name-physician = Physician
 ESjob-name-reporter = Reporter
 ESjob-name-scientist = Scientist
 ESjob-name-security = Security Officer
 ESjob-name-engineer = Station Engineer
-ESjob-name-warden = Warden
 
 # Role timers - Make these alphabetical or I cut you
 ESJobAssistant = Assistant
@@ -33,10 +31,8 @@ ESJobCoroner = Coroner
 ESJobDetective = Detective
 ESJobJanitor = Janitor
 ESJobHeadOfPersonnel = Head of Personnel
-ESJobHeadOfSecurity = Head of Security
 ESJobPhysician = Physician
 ESJobReporter = Reporter
 ESJobScientist = Scientist
 ESJobSecurityOfficer = Security Officer
 ESJobStationEngineer = Station Engineer
-ESJobWarden = Warden
