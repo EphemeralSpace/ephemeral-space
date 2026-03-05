@@ -203,13 +203,13 @@ SpawnPointBotanist: ESSpawnPointBotanist
 SpawnPointJanitor: ESSpawnPointJanitor
 SpawnPointCaptain: ESSpawnPointCaptain
 SpawnPointHeadOfPersonnel: ESSpawnPointHeadOfPersonnel
-SpawnPointHeadOfSecurity: ESSpawnPointHeadOfSecurity
+SpawnPointHeadOfSecurity: ESSpawnPointSecurityOfficer
 SpawnPointStationEngineer: ESSpawnPointStationEngineer
 SpawnPointAtmos: ESSpawnPointAtmos
 SpawnPointMedicalDoctor: ESSpawnPointMedicalDoctor
 SpawnPointChemist: ESSpawnPointChemist
 SpawnPointScientist: ESSpawnPointScientist
-SpawnPointWarden: ESSpawnPointWarden
+SpawnPointWarden: ESSpawnPointSecurityOfficer
 SpawnPointSecurityOfficer: ESSpawnPointSecurityOfficer
 SpawnPointDetective: ESSpawnPointDetective
 
@@ -323,6 +323,11 @@ ESCrateRestock: null
 
 # 2026-2-25
 NetworkConfigurator: Multitool
+
+# 2026-3-05
+ESSpawnPointHeadOfSecurity: ESSpawnPointSecurityOfficer
+ESSpawnPointWarden: ESSpawnPointSecurityOfficer
+
 # ES END
 
 # 2023-07-03

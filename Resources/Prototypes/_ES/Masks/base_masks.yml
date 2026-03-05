@@ -4,7 +4,6 @@
   prohibitedJobs:
   - ESCaptain
   - ESHeadOfPersonnel
-  - ESHeadOfSecurity
 
 - type: esMask
   id: ESBaseCommandSecRestricted
@@ -13,14 +12,12 @@
   # Command
   - ESCaptain
   - ESHeadOfPersonnel
-  - ESHeadOfSecurity
   # Security
-  - ESWarden
   - ESSecurityOfficer
   - ESDetective
 
 - type: esMask
-  parent: ESBaseCommandSecRestricted
+  parent: ESBaseCommandRestricted
   id: ESBaseTraitor
   troupe: ESTraitor
   abstract: true

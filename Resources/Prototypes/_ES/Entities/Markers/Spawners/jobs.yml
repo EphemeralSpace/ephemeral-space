@@ -150,19 +150,6 @@
       - state: green
       - state: hop
 
-- type: entity
-  id: ESSpawnPointHeadOfSecurity
-  parent: SpawnPointJobBase
-  name: headofsecurity
-  suffix: ES
-  components:
-  - type: SpawnPoint
-    job_id: ESHeadOfSecurity
-  - type: Sprite
-    layers:
-      - state: green
-      - state: hos
-
 # Engineering
 
 - type: entity
@@ -249,19 +236,6 @@
       - state: scientist
 
 # Security
-
-- type: entity
-  id: ESSpawnPointWarden
-  parent: SpawnPointJobBase
-  name: warden
-  suffix: ES
-  components:
-  - type: SpawnPoint
-    job_id: ESWarden
-  - type: Sprite
-    layers:
-      - state: green
-      - state: warden
 
 - type: entity
   id: ESSpawnPointSecurityOfficer
