@@ -3,7 +3,7 @@
   name: es-reagent-name-smoke
   desc: es-reagent-desc-smoke
   physicalDesc: es-reagent-physical-desc-smoky
-  flavor: smoky
+  flavor: smokey
   color: "#66ff33"
   metabolisms:
     Poison:
