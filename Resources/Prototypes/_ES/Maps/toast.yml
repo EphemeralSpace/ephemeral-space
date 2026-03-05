@@ -13,11 +13,10 @@
         nameGenerator:
           !type:ESSimpleNameGenerator
       - type: StationJobs
-        availableJobs: # 32 jobs total
-          #command (3)
+        availableJobs: # 31 jobs total
+          #command (2)
           ESCaptain: [ 1, 1 ]
           ESHeadOfPersonnel: [ 1, 1 ]
-          ESHeadOfSecurity: [ 1, 1 ]
           #service (4)
           ESBartender: [ 1, 1 ]
           ESBotanist: [ 2, 2 ]
@@ -32,8 +31,7 @@
           #science (3)
           ESScientist: [ 3, 3 ]
           #security (5)
-          ESWarden: [ 1, 1 ]
-          ESSecurityOfficer: [ 3, 3 ]
+          ESSecurityOfficer: [ 4, 4 ]
           ESDetective: [ 1, 1 ]
           #cargo (4)
           ESCargoTechnician: [ 2, 2 ]
