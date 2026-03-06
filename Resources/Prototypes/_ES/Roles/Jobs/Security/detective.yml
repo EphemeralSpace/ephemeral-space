@@ -24,7 +24,6 @@
     ears: ClothingHeadsetSecurity
     head: ClothingHeadHatFedoraBrown
     neck: ClothingNeckTieDet
-    belt: ClothingBeltHolster
     jumpsuit: ClothingUniformJumpsuitDetective
     outerClothing: ESClothingOuterCoatDetectiveLoadout
     back: ClothingBackpackSecurity

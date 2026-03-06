@@ -19,7 +19,6 @@
     gloves: ClothingHandsGlovesColorBlue
     head: ClothingHeadHatSurgcapBlue
     ears: ClothingHeadsetMedical
-    belt: ClothingBeltMedicalFilled
     jumpsuit: ClothingUniformJumpsuitMedicalDoctor
     outerClothing: ClothingOuterCoatLabOpened
     back: ClothingBackpackMedical
