@@ -15,6 +15,7 @@
     all:
     - id: ESClothingHeadHelmetFire
     - id: ESClothingOuterSuitFire
+    - id: ClothingEyesGlassesMeson
     - id: ClothingMaskGas
     - id: GasAnalyzer
     - id: MedkitOxygenFilled
@@ -40,6 +41,7 @@
     children:
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingMaskGas
+    - id: ClothingEyesGlassesMeson
     - id: trayScanner
     - id: ClothingBeltUtilityEngineering
     - id: RCD

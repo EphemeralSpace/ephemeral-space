@@ -18,7 +18,6 @@
   id: ESDetectiveGear
   equipment:
     shoes: ClothingShoesColorBrown
-    eyes: ClothingEyesGlassesSecurity
     id: DetectivePDA
     gloves: ClothingHandsGlovesForensic
     ears: ClothingHeadsetSecurity

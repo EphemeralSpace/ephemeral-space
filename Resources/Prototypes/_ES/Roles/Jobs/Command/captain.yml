@@ -22,7 +22,6 @@
   id: ESCaptainGear
   equipment:
     shoes: ClothingShoesColorBrown
-    eyes: ClothingEyesGlassesSecurity
     id: CaptainPDA
     gloves: ClothingHandsGlovesCaptain
     ears: ClothingHeadsetAltCommand

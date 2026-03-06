@@ -17,7 +17,6 @@
   id: ESSecurityOfficerGear
   equipment:
     shoes: ClothingShoesBootsJack
-    eyes: ClothingEyesGlassesSecurity
     id: SecurityPDA
     gloves: ClothingHandsGlovesColorBlack
     ears: ClothingHeadsetSecurity
