@@ -5,7 +5,7 @@
   playTimeTracker: ESJobDetective
   startingGear: ESDetectiveGear
   icon: "JobIconDetective"
-  supervisors: job-supervisors-hos
+  supervisors: job-supervisors-hop
   canBeAntag: false
   access:
   - Security

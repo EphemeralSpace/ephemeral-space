@@ -30,7 +30,7 @@ public sealed partial class Extinguish : EntityEffectBase<Extinguish>
     /// </summary>
     [DataField]
     // ES START
-    public float FireStacksAdjustment = -0.4f;
+    public float FireStacksAdjustment = -0.66f;
     // ES END
 
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>

@@ -29,7 +29,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     public const float AmbientMusicMultiplier = 3f;
     public const float LobbyMultiplier = 3f;
     public const float InterfaceMultiplier = 2f;
-    
+
     public override void Initialize()
     {
         base.Initialize();
@@ -96,6 +96,10 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         // Just in case
         // TODO: Maybe handle the removals by making it seamless?
         _fadingIn.Remove(stream.Value);
+        // ES START
+        if (_fadingOut.ContainsKey(stream.Value))
+            return;
+        // ES END
         var diff = component.Volume - MinVolume;
         _fadingOut.Add(stream.Value, diff / duration);
     }
@@ -106,6 +110,10 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
             return;
 
         _fadingOut.Remove(stream.Value);
+        // ES START
+        if (_fadingIn.ContainsKey(stream.Value))
+            return;
+        // ES END
         var curVolume = component.Volume;
         var change = (MinVolume - curVolume) / duration;
         _fadingIn.Add(stream.Value, (change, component.Volume));

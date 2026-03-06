@@ -442,11 +442,23 @@ public sealed class WoundableSystem : EntitySystem
         Dirty(ent);
     }
 
-    public void TendWound(Entity<WoundableComponent?> woundable, Entity<TendableWoundComponent> ent, DamageSpecifier? specifier)
+    public void TendWound(Entity<WoundableComponent?> woundable,
+        Entity<TendableWoundComponent> ent,
+        DamageSpecifier? specifier)
     {
+        // ES START
+        // pulls this out into its own method for generic healing
         var wound = Comp<WoundComponent>(ent);
-
         ent.Comp.Tended = true;
+        TryHealDamageOnWound(woundable, (ent, wound), specifier);
+    }
+
+    public void TryHealDamageOnWound(Entity<WoundableComponent?> woundable,
+        Entity<WoundComponent> ent,
+        DamageSpecifier? specifier)
+    {
+        var wound = ent.Comp;
+
         if (specifier is { } damage)
         {
             var remainder = wound.Damage.Heal(damage);
@@ -469,6 +481,7 @@ public sealed class WoundableSystem : EntitySystem
         }
         Dirty(ent);
     }
+    // ES END
 
     private static readonly EntProtoId WoundCutMassive = "WoundCutMassive";
     private static readonly EntProtoId WoundCutSevere = "WoundCutSevere";

@@ -32,6 +32,7 @@ enabled = false
 [atmos]
 monstermos_depressurization = false
 monstermos_equalization = false
+excited_groups = false
 
 # Square viewport
 [viewport]

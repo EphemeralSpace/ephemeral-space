@@ -1,0 +1,39 @@
+- type: entity
+  parent: DefaultStationBeacon
+  id: ESDefaultStationBeaconStationOffice
+  suffix: Security Office, ES
+  components:
+  - type: NavMapBeacon
+    defaultText: es-station-beacon-security-office
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: ESDefaultStationBeaconCargoBreakroom
+  suffix: Cargo Breakroom, ES
+  components:
+  - type: NavMapBeacon
+    defaultText: es-station-beacon-cargo-breakroom
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: ESDefaultStationBeaconSecurityEVAStorage
+  suffix: Security EVA, ES
+  components:
+  - type: NavMapBeacon
+    defaultText: es-station-beacon-security-eva-storage
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: ESDefaultStationBeaconHeadOfPersonellSecureRoom
+  suffix: HoP Secure Room, ES
+  components:
+  - type: NavMapBeacon
+    defaultText: es-station-beacon-hop-secure-room
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: ESDefaultStationBeaconArmoryAccess
+  suffix: Armory Access, ES
+  components:
+  - type: NavMapBeacon
+    defaultText: es-station-beacon-armory-access

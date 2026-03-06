@@ -11,5 +11,9 @@ public class Panel : PanelContainer
 [Virtual]
 public class FillPanel : PanelContainer
 {
-
+    public FillPanel()
+    {
+        HorizontalExpand = true;
+        VerticalExpand = true;
+    }
 }
