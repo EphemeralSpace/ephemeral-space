@@ -10,7 +10,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Stellar.Client.Interaction;
+namespace Content.Client._ST.Interaction;
 
 public sealed class StellarInteractionParticleSystem : EntitySystem
 {
