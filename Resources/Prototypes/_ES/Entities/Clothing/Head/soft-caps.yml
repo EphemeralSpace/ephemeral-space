@@ -1,0 +1,17 @@
+- type: entity
+  parent: ClothingHeadHeadHatBaseFlippable
+  id: ESClothingHeadHatParamedicsoft
+  name: paramedic's cap
+  description: A fancy hat for the paramedic. When it flies off, they'll know what happened to you.
+  suffix: ES
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Head/Softcaps/paramedic.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Head/Softcaps/paramedic.rsi
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatParamedicsoft]
+  id: ESClothingHeadHatParamedicsoftFlipped
+  name: paramedic's cap
+  suffix: ES
