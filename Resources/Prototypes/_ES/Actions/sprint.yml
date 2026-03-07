@@ -1,0 +1,18 @@
+- type: entity
+  parent: BaseAction
+  id: ESActionSprint
+  name: Sprint
+  description: Break out into an adrenaline-fueled sprint, increasing your movement speed for five seconds while reducing your attack speed, accuracy, and making you unable to use headsets.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/sprint.rsi
+      state: retronium
+    useDelay: 900
+    checkCanInteract: false
+    sound:
+      path: /Audio/Effects/thudswoosh.ogg
+  - type: InstantAction
+    event: !type:ESAddStatusEffectActionEvent
+      effect: ESStatusEffectSprinting
+      duration: 5s

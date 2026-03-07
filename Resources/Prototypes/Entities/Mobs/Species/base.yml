@@ -2,7 +2,10 @@
   save: false
   parent:
   - BaseMob
-  - ESBaseMob # ES START
+  # ES START
+  - ESBaseMob
+  - ESBaseMobActions
+  # ES END
   # - MobDamageable # Offbrand - we don't want thresholds
   - MobPolymorphable
   - MobCombat

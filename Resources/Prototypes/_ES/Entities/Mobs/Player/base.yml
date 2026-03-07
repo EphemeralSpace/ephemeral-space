@@ -9,3 +9,11 @@
   - type: ESHoldToFace
   - type: ESKillTracker
   - type: ESPainFlash
+
+- type: entity
+  id: ESBaseMobActions
+  abstract: true
+  components:
+  - type: ActionGrant
+    actions:
+    - ESActionSprint
