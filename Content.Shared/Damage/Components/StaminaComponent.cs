@@ -94,7 +94,9 @@ public sealed partial class StaminaComponent : Component
     /// Thresholds that determine an entity's slowdown as a function of stamina damage, in percentages.
     /// </summary>
     [DataField]
-    public Dictionary<FixedPoint2, float> StunModifierThresholds = new() { {0, 1f }, { 0.6, 0.7f }, { 0.8, 0.5f } };
+// ES START
+    public Dictionary<FixedPoint2, float> StunModifierThresholds = new() { {0, 1f } };
+// ES END
 
     #region Animation Data
 
