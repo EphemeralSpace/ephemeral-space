@@ -249,10 +249,27 @@
       prob: 0.3
 
 - type: entity
+  id: ESWardrobeParamedicFilled
+  suffix: ES, Filled
+  parent: ESWardrobeParamedic
+  description: "Bagel"
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESFillWardrobeParamedic
+
+- type: entityTable
+  id: ESFillWardrobeParamedic
+  table:
+    all:
+    - id: FoodBagel
+
+- type: entity
   id: ESWardrobeEngineeringFilled
   suffix: ES, Filled
   parent: ESWardrobeEngineering
-  description: "This locker contains a uniform for engineering or social engineering."
+  description: "This locker contains a uniform for engineering; or social engineering."
   components:
   - type: EntityTableContainerFill
     containers:
