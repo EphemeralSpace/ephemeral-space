@@ -7,7 +7,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
-    lifetime: 2.0
+    # ES START
+    lifetime: 1.1
+    # ES END
   - type: Sprite
     sprite: _ST/Effects/interaction.rsi
     state: hand
@@ -16,3 +18,6 @@
   - type: Tag
     tags:
     - HideContextMenu
+  # ES START
+  - type: ESViewconeOccludable
+  # ES END

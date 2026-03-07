@@ -52,6 +52,9 @@ public sealed class StellarInteractionParticleSystem : EntitySystem
         if (used is { } usedEntity && Exists(usedEntity) && TryComp<SpriteComponent>(usedEntity, out var usedSprite))
         {
             _sprite.CopySprite((usedEntity, usedSprite), particle);
+            // ES START
+            _sprite.SetDrawDepth(particle, (int) Shared.DrawDepth.DrawDepth.Effects);
+            // ES END
         }
 
         var spriteColor = Comp<SpriteComponent>(particle).Color;

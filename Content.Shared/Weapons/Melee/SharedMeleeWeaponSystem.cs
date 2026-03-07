@@ -563,7 +563,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         // If the user is using a long-range weapon, this probably shouldn't be happening? But I'll interpret melee as a
         // somewhat messy scuffle. See also, heavy attacks.
-        Interaction.DoContactInteraction(user, target, weapon, true); // Stellar - Interaction particles
+        Interaction.DoContactInteraction(user, target, weapon, true, interactionParticles: false); // Stellar/ES - Interaction particles
 
         // For stuff that cares about it being attacked.
         var attackedEvent = new AttackedEvent(meleeUid, user, targetXform.Coordinates);
@@ -717,7 +717,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
             // If the user is using a long-range weapon, this probably shouldn't be happening? But I'll interpret melee as a
             // somewhat messy scuffle. See also, light attacks.
-            Interaction.DoContactInteraction(user, target, weapon, true); // Stellar - Interaction particles
+            Interaction.DoContactInteraction(user, target, weapon, true, interactionParticles: false); // Stellar/ES - Interaction particles
         }
 
         var appliedDamage = new DamageSpecifier();
