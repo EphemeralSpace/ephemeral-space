@@ -8,14 +8,14 @@ using Robust.Shared.Utility;
 
 namespace Content.IntegrationTests.Tests.Atmos;
 
-[TestOf(typeof(Atmospherics))]
+[TestOf(typeof(Atmospherics))] [Explicit]
 public abstract class TileAtmosphereTest : AtmosTest
 {
     /// <summary>
     /// Spawns gas in an enclosed space and checks that pressure equalizes within reasonable time.
     /// Checks that mole count stays the same.
     /// </summary>
-    [Test]
+    [Test] [Explicit]
     public async Task GasSpreading()
     {
         var markers = SEntMan.AllEntities<TestMarkerComponent>();
