@@ -220,6 +220,20 @@
       - sprite: _ES/Markers/job.rsi
         state: coroner
 
+- type: entity
+  id: ESSpawnPointParamedic
+  parent: SpawnPointJobBase
+  name: paramedic
+  suffix: ES
+  components:
+  - type: SpawnPoint
+    job_id: ESParamedic
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _ES/Markers/job.rsi
+        state: paramedic
+
 # Science
 
 - type: entity

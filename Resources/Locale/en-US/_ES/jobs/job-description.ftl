@@ -12,6 +12,7 @@ ESjob-description-detective = Investigate crime scenes using forensic tools, ens
 ESjob-description-engineer = Keep the station's main engine & solars active, optimize the power network, and make emergency repairs using your hardsuit in spaced areas.
 ESjob-description-hop = Handle access reassignment fairly using your ID console, manage the Service department, and keep Ian safe.
 ESjob-description-janitor = Keep the station clean of any trash or slipping hazards, and help deal with rat infestations.
+ESjob-description-paramedic = Save patients in critical condition & bring them back to medical for treatment.
 ESjob-description-physician = Diagnose and heal crewmembers through medicinal chemicals, advanced medicine, and defibrillators.
 ESjob-description-reporter = Entertain & inform the crew with your vibrant journalism through wireless cameras, the radio and the news.
 ESjob-description-scientist = Research alien artifacts, unlock new technologies, build newer and better machines around the station, and make everything run more efficiently.

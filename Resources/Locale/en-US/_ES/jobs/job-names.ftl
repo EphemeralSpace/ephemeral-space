@@ -11,6 +11,7 @@ ESjob-name-coroner = Coroner
 ESjob-name-detective = Detective
 ESjob-name-janitor = Janitor
 ESjob-name-hop = Head of Personnel
+ESjob-name-paramedic = Paramedic
 ESjob-name-physician = Physician
 ESjob-name-reporter = Reporter
 ESjob-name-scientist = Scientist

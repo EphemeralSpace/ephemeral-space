@@ -169,7 +169,7 @@
   parent: CrateSecNonlethalThrowables
   id: ESCrateSecurityThrowables
   name: security throwables crate
-  description: Contains four flashbangs, teargas, and bolas. Requires Security access to open.
+  description: Contains four flashbangs, smoke grenades, and bolas. Requires Security access to open.
   suffix: ES
   components:
   - type: EntityTableContainerFill
@@ -177,7 +177,8 @@
       entity_storage:
         all:
         - id: BoxFlashbang
-        - id: BoxTearGas
+        - id: SmokeGrenade
+          amount: 4
         - id: Bola
           amount: 4
 

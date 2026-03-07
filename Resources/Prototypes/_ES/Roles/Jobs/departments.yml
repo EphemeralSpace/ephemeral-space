@@ -60,6 +60,7 @@
   roles:
   - ESChemist
   - ESCoroner
+  - ESParamedic
   - ESPhysician
 
 - type: department

@@ -41,6 +41,18 @@
     sprite: _ES/Clothing/Uniforms/Jumpsuit/coroner.rsi
 
 - type: entity
+  parent: ClothingUniformBase
+  id: ESClothingUniformJumpsuitParamedic
+  name: paramedic jumpsuit
+  suffix: ES
+  description: A navy blue jumpsuit with grey pants and medical markings. The color of the pants make stains blatantly obvious from a distance, making you wish they were stain-proof even more then you would otherwise.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/paramedic.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/paramedic.rsi
+
+- type: entity
   parent: UnsensoredClothingUniformBase
   id: ESUnsensoredClothingUniformJumpsuitCaptain
   name: captain's uniform

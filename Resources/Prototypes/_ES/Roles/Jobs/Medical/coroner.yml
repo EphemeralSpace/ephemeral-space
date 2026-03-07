@@ -10,10 +10,6 @@
   - Medical
   - Maintenance
   - Chemistry
-  special:
-  - !type:AddComponentSpecial
-    components:
-    - type: ESAutopsyUser
 
 - type: startingGear
   id: ESCoronerGear
@@ -30,8 +26,6 @@
   storage:
     back:
     - ESBoxSurvivalMedical
-  inhand:
-  - ESBriefcaseBlackFilled
 
 - type: chameleonOutfit
   id: ESCoroner

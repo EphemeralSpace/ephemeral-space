@@ -1,0 +1,31 @@
+- type: job
+  id: ESParamedic
+  name: ESjob-name-paramedic
+  description: ESjob-description-paramedic
+  playTimeTracker: ESJobParamedic
+  startingGear: ESParamedicGear
+  icon: "JobIconParamedic"
+  supervisors: job-supervisors-hop
+  access:
+  - Medical
+  - Maintenance
+  - Chemistry
+
+- type: startingGear
+  id: ESParamedicGear
+  equipment:
+    shoes: ClothingShoesColorBlue
+    id: ParamedicPDA
+    gloves: ClothingHandsGlovesColorBlue
+    head: ESClothingHeadHatParamedicsoft
+    ears: ClothingHeadsetMedical
+    jumpsuit: ESClothingUniformJumpsuitParamedic
+    back: ClothingBackpackMedical
+  storage:
+    back:
+    - ESBoxSurvivalMedical
+
+- type: chameleonOutfit
+  id: ESParamedic
+  job: ESParamedic
+  hidden: false

@@ -4,16 +4,15 @@
     SecurityWhistle: 5
     Handcuffs: 8
     GrenadeFlashBang: 4
-    TearGasGrenade: 4
+    SmokeGrenade: 4
     Flash: 5
     FlashlightSeclite: 5
     ClothingEyesGlassesSunglasses: 2
     ClothingEyesGlassesSecurity: 4
-    ESWeaponKnife: 3
     RadioHandheldSecurity: 5
   # security officers need to follow a diet regimen!
   contrabandInventory:
-    WeaponMeleeNeedle: 2
+    WeaponMeleeNeedle: 1
     FoodDonutHomer: 12
     FoodBoxDonut: 2
     #box evidence
