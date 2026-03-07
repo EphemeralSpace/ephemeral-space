@@ -25,8 +25,10 @@ namespace Content.Shared.Movement.Components
         public const float DefaultMinimumFrictionSpeed = 0.005f;
 
         // movement
-        public const float DefaultBaseWalkSpeed = 2.5f;
-        public const float DefaultBaseSprintSpeed = 4.5f;
+        // ES START
+        public const float DefaultBaseWalkSpeed = 2.25f;
+        public const float DefaultBaseSprintSpeed = 4.05f;
+        // ES END
 
         // ES START
         public static Angle ESDefaultBackwardsAngle = Angle.FromDegrees(140);
