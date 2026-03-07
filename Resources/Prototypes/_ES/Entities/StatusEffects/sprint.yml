@@ -6,8 +6,8 @@
   - type: PopupOnAppliedStatusEffect
     message: es-sprint-started-user
   - type: MovementModStatusEffect
-    sprintSpeedModifier: 1.3
-    walkSpeedModifier: 1.3
+    sprintSpeedModifier: 1.35
+    walkSpeedModifier: 1.35
   - type: MeleeModifiersStatusEffect
     attackRateMultiplier: 0.7
   - type: GunAccuracyStatusEffect
