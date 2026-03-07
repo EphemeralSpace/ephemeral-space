@@ -1,0 +1,49 @@
+- type: entity
+  id: ESLockerAtmosphericsFilled
+  suffix: ES, Filled
+  parent: LockerAtmospherics
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESFillLockerAtmospherics
+
+# TODO remove rcd once they have the firefighting backpack
+- type: entityTable
+  id: ESFillLockerAtmospherics
+  table:
+    all:
+    - id: ESClothingHeadHelmetFire
+    - id: ESClothingOuterSuitFire
+    - id: ClothingEyesGlassesMeson
+    - id: ClothingMaskGas
+    - id: GasAnalyzer
+    - id: MedkitOxygenFilled
+    - id: FireExtinguisherMini
+    - id: ClothingBeltUtilityEngineering
+    - id: RCD
+    - id: RCDAmmo
+    - id: AirGrenade
+
+- type: entity
+  id: ESLockerEngineerFilled
+  suffix: ES, Filled
+  parent: LockerEngineer
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESFillLockerEngineer
+
+- type: entityTable
+  id: ESFillLockerEngineer
+  table: !type:AllSelector
+    children:
+    - id: ClothingHandsGlovesColorYellow
+    - id: ClothingMaskGas
+    - id: ClothingEyesGlassesMeson
+    - id: trayScanner
+    - id: ClothingBeltUtilityEngineering
+    - id: RCD
+    - id: RCDAmmo
+    - id: MetalFoamGrenade

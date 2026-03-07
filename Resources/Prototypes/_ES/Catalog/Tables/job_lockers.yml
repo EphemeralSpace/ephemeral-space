@@ -79,8 +79,6 @@
       prob: 0.5
     - id: ClothingEyesGlassesSecurity
     - id: ClothingHeadsetSecurity
-    - id: ClothingHandsGlovesColorBlack
-    - id: ClothingShoesBootsJack
 
 - type: entityTable
   id: ESFillLockerDetective
@@ -89,18 +87,16 @@
     - id: ClothingEyesGlassesNoir
     - id: ESWeaponRevolver357 # sure, the other security roles don't get guns, but what is a detective without their revolver?
     - id: ESSpeedLoader357
+    - id: ClothingBeltHolster # realistically this should just contain the gun, but, i dont want to make a new filled prototype right now. sorry.
     - id: ClothingHeadHatDetGadget
       prob: 0.15
-    - id: ClothingNeckTieDet
     - id: Stunbaton
     - id: ESClothingOuterArmorDetective
-    - id: ESClothingOuterCoatDetective
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
     - id: ForensicScanner
     - id: BoxForensicPad
     - id: DrinkDetFlask
-    - id: ClothingHandsGlovesForensic
     - id: RubberStampDetective
     - id: BoxEvidenceMarkers
     - id: HandLabeler
@@ -153,6 +149,7 @@
     - id: ClothingEyesHudMedical
     - id: ClothingHeadHatSurgcapBlue
     - id: ClothingMaskSterile
+    - id: ClothingBeltMedicalFilled
 
 - type: entityTable
   id: ESLockerFillCoroner

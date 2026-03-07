@@ -18,13 +18,11 @@
   id: ESDetectiveGear
   equipment:
     shoes: ClothingShoesColorBrown
-    eyes: ClothingEyesGlassesSecurity
     id: DetectivePDA
     gloves: ClothingHandsGlovesForensic
     ears: ClothingHeadsetSecurity
     head: ClothingHeadHatFedoraBrown
     neck: ClothingNeckTieDet
-    belt: ClothingBeltHolster
     jumpsuit: ClothingUniformJumpsuitDetective
     outerClothing: ESClothingOuterCoatDetectiveLoadout
     back: ClothingBackpackSecurity

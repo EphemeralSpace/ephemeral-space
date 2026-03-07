@@ -1,3 +1,5 @@
+# Eyewear, headsets, and armor go in the job locker instead of the wardrobe.
+
 - type: entity
   parent: ESWardrobeBartender
   id: ESWardrobeBartenderFilled
@@ -93,6 +95,8 @@
     - id: ClothingBackpackSecurity
     - id: ClothingShoesColorBrown
     - id: ClothingUniformJumpsuitDetective
+    - id: ClothingNeckTieDet
+    - id: ClothingHandsGlovesForensic
 
 - type: entity
   parent: ESWardrobeJanitor
@@ -161,9 +165,6 @@
     - id: ClothingUniformJumpsuitSec
     - id: ClothingBackpackSecurity
     - id: ClothingShoesBootsJack
-    - id: ClothingEyesGlassesSecurity
-    - id: ESClothingHeadHelmetSecurity
-    - id: ESClothingOuterArmorSecurity
 
 - type: entity
   parent: WardrobeSecurity

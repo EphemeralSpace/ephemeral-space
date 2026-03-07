@@ -327,6 +327,7 @@ NetworkConfigurator: Multitool
 # 2026-3-05
 ESSpawnPointHeadOfSecurity: ESSpawnPointSecurityOfficer
 ESSpawnPointWarden: ESSpawnPointSecurityOfficer
+LockerEngineerFilled: ESLockerEngineerFilled
 
 # ES END
 
