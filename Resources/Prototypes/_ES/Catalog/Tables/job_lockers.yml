@@ -152,6 +152,19 @@
     - id: ClothingBeltMedicalFilled
 
 - type: entityTable
+  id: ESLockerFillParamedic
+  table:
+    all:
+    - id: HandheldHealthAnalyzer
+      prob: 0.6
+    - id: JawsOfLife
+    - id: ClothingEyesHudMedical
+    - id: ClothingBeltMedicalFilled
+    - id: ClothingHandsGlovesColorBlue
+    - id: ClothingHeadsetMedical
+    - id: ESMedkitStabilization
+
+- type: entityTable
   id: ESLockerFillCoroner
   table:
     all:

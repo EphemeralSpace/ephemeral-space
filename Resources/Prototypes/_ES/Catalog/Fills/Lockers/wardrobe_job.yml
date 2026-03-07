@@ -263,7 +263,10 @@
   id: ESFillWardrobeParamedic
   table:
     all:
-    - id: FoodBagel
+    - id: ClothingShoesColorBlue
+    - id: ESClothingHeadHatParamedicsoft
+    - id: ESClothingUniformJumpsuitParamedic
+    - id: ClothingBackpackMedical
 
 - type: entity
   id: ESWardrobeEngineeringFilled

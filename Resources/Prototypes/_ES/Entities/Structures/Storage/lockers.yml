@@ -20,7 +20,7 @@
   name: paramedic's locker
   components:
   - type: Sprite
-    sprite: _ES/Structures/Storage/Closets/paramedic.rsi
+    sprite: _ES/Structures/Storage/Closets/paramed.rsi
   - type: EntityStorageVisuals
     stateBaseClosed: generic
     stateDoorOpen: generic_open
