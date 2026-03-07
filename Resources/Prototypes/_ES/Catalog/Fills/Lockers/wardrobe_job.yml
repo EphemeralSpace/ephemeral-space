@@ -252,7 +252,7 @@
   id: ESWardrobeParamedicFilled
   suffix: ES, Filled
   parent: ESWardrobeParamedic
-  description: "Bagel"
+  description: A wardrobe containing the finest attire for the local master of B&E.
   components:
   - type: EntityTableContainerFill
     containers:
