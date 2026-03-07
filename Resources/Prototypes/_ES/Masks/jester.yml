@@ -1,7 +1,7 @@
 - type: esMask
+  parent: ESBaseJester
   id: ESFool
   name: es-mask-the-fool-name
-  troupe: ESJester
   description: es-mask-the-fool-desc
   color: olive
   weight: 0
@@ -10,9 +10,9 @@
     - id: ESObjectiveTheFoolMisery
 
 - type: esMask
+  parent: ESBaseJester
   id: ESMartyr
   name: es-mask-martyr-name
-  troupe: ESJester
   description: es-mask-martyr-desc
   color: gold
   weight: 0.5
@@ -24,9 +24,9 @@
     - id: ESObjectiveJesterDoNoHarm
 
 - type: esMask
+  parent: ESBaseJester
   id: ESParasite
   name: es-mask-parasite-name
-  troupe: ESJester
   description: es-mask-parasite-desc
   color: sandybrown
   weight: 0.5
@@ -38,9 +38,9 @@
     - id: ESObjectiveJesterDoNoHarm
 
 - type: esMask
+  parent: ESBaseJester
   id: ESPhantom
   name: es-mask-phantom-name
-  troupe: ESJester
   description: es-mask-phantom-desc
   color: lavender
   weight: 0.5
