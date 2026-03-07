@@ -23,6 +23,9 @@ namespace Content.Server.Atmos.Portable
         [DataField("filterGases")]
         public HashSet<Gas> FilterGases = new()
         {
+// ES START
+            Gas.Smoke,
+// ES END
             Gas.CarbonDioxide,
             Gas.Plasma,
             Gas.Tritium,
