@@ -61,7 +61,7 @@
   - ESChemist
   - ESCoroner
   - ESParamedic
-  - ESPhysician
+  - ESDoctor
 
 - type: department
   id: ESSecurity

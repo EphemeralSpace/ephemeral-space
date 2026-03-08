@@ -269,7 +269,7 @@ LockerAtmosphericsFilled: ESLockerAtmosphericsFilled
 
 # 2026-2-4
 WardrobeBotanistFilled: ESWardrobeBotanistFilled
-WardrobeMedicalDoctorFilled: ESWardrobePhysicianFilled
+WardrobeMedicalDoctorFilled: ESWardrobeDoctorFilled
 WardrobeScienceFilled: ESWardrobeScienceFilled
 DresserHeadOfPersonnelFilled: ESDresserHeadOfPersonnelFilled
 DresserHeadOfSecurityFilled: ESDresserHeadOfSecurityFilled
@@ -306,8 +306,8 @@ ClosetL3ScienceFilled: ClosetL3Filled
 
 # 2026-2-6 Offbrand/ES
 Tourniquet: TourniquetOffbrand
-ESWardrobeMedicalDoctorFilled: ESWardrobePhysicianFilled
-ESWardrobeMedicalDoctor: ESWardrobePhysician
+ESWardrobeMedicalDoctorFilled: ESWardrobeDoctorFilled
+ESWardrobeMedicalDoctor: ESWardrobeDoctor
 
 # 2026-2-8
 CryogenicSleepUnitSpawner: ESHypersleepPod # this one is used for arrivals

@@ -4,7 +4,7 @@
   text: "/ServerInfo/_Offbrand/Medical.xml"
   hidden: false
   children:
-  - OffbrandPhysician
+  - OffbrandDoctor
   - OffbrandChemist
   - OffbrandParamedic
   - OffbrandBody
@@ -15,10 +15,10 @@
   - Cloning
 
 - type: guideEntry
-  id: OffbrandPhysician
-  name: guide-entry-physician
+  id: OffbrandDoctor
+  name: guide-entry-doctor
   hidden: false
-  text: "/ServerInfo/_Offbrand/Physician.xml"
+  text: "/ServerInfo/_Offbrand/Doctor.xml"
 
 - type: guideEntry
   id: OffbrandChemist

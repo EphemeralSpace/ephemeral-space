@@ -43678,7 +43678,7 @@ entities:
     - type: Transform
       pos: 20.5,-5.5
       parent: 2
-- proto: ESWardrobePhysicianFilled
+- proto: ESWardrobeDoctorFilled
   entities:
   - uid: 1255
     components:

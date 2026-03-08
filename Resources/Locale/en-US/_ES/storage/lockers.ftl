@@ -1,1 +1,1 @@
-ent-LockerMedical = physician's locker
+ent-LockerMedical = doctor's locker

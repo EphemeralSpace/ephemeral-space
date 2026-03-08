@@ -1,6 +1,6 @@
 - type: job
   id: MedicalDoctor
-  name: job-name-doctor
+  name: ESjob-name-doctor # ES change
   description: job-description-doctor
   playTimeTracker: JobMedicalDoctor
   requirements:

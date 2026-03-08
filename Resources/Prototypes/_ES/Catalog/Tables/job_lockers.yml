@@ -137,7 +137,7 @@
 
 # Medical
 - type: entityTable
-  id: ESLockerFillPhysician
+  id: ESLockerFillDoctor
   table: !type:AllSelector
     children:
     - id: HandheldHealthAnalyzer

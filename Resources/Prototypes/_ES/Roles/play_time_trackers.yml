@@ -42,7 +42,7 @@
   id: ESJobParamedic
 
 - type: playTimeTracker
-  id: ESJobPhysician
+  id: ESJobDoctor
 
 - type: playTimeTracker
   id: ESJobReporter

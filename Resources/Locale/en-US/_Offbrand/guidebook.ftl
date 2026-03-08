@@ -1,4 +1,4 @@
-guide-entry-physician = Physician
+guide-entry-doctor = Doctor
 guide-entry-surgery = Surgery
 guide-entry-cryostasis = Cryostasis
 guide-entry-medicine-list = Medicine List

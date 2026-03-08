@@ -1,2 +1,2 @@
-ent-ToyFigurineMedicalDoctor = physician figure
-    .desc = A figurine depicting a Physician, donning a labcoat & syringe.
+ent-ToyFigurineMedicalDoctor = doctor figure
+    .desc = A figurine depicting a Doctor, donning a labcoat & syringe.
