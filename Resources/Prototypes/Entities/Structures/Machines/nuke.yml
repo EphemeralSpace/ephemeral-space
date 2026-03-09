@@ -78,7 +78,7 @@
 # ES START
     timer: 60
     minimumTime: 60
-    disarmDoafterLength: 5
+    disarmDoafterLength: 15
 # ES END
     explosionType: Default
     maxIntensity: 100
