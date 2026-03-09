@@ -1,0 +1,6 @@
+- type: guideEntry
+  id: ESDrinks
+  hidden: false
+  name: guide-entry-drinks
+  text: "/ServerInfo/_ES/Guidebook/ReferenceTables/Drinks.xml"
+  filterEnabled: True

@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESBotany
+  hidden: false
+  name: guide-entry-botany
+  text: "/ServerInfo/_ES/Guidebook/Service/Botany.xml"

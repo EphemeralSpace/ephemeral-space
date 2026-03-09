@@ -1,0 +1,35 @@
+- type: guideEntry
+  id: ESConstruction
+  hidden: false
+  name: guide-entry-construction
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Construction.xml"
+  children:
+  - ESAirlocks
+  - ESExpandingRepairingStation
+  - ESWirePanels
+
+- type: guideEntry
+  id: ESExpandingRepairingStation
+  hidden: false
+  name: guide-entry-expandingrepairingstation
+  text: "/ServerInfo/_ES/Guidebook/Engineering/ExpandingRepairingStation.xml"
+
+- type: guideEntry
+  id: ESAirlocks
+  hidden: false
+  name: guide-entry-airlocks
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Airlocks.xml"
+  children:
+  - ESAirlockSecurity
+
+- type: guideEntry
+  id: ESWirePanels
+  hidden: false
+  name: guide-entry-wirepanels
+  text: "/ServerInfo/_ES/Guidebook/Engineering/WirePanels.xml"
+
+- type: guideEntry
+  id: ESAirlockSecurity
+  hidden: false
+  name: guide-entry-airlock-security
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AirlockSecurity.xml"

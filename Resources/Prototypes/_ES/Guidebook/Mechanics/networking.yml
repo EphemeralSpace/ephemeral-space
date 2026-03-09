@@ -1,0 +1,13 @@
+- type: guideEntry
+  id: ESNetworking
+  hidden: false
+  name: guide-entry-networking
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Networking.xml"
+  children:
+  - ESAccessConfigurator
+
+- type: guideEntry
+  id: ESAccessConfigurator
+  hidden: false
+  name: guide-entry-access-configurator
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AccessConfigurator.xml"

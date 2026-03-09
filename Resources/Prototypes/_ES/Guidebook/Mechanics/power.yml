@@ -1,0 +1,63 @@
+- type: guideEntry
+  id: ESPower
+  hidden: false
+  name: guide-entry-power
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Power.xml"
+  children:
+  - ESGenerators
+  - ESInspectingPower
+  - ESPowerStorage
+  - ESRamping
+  - ESVoltageNetworks
+
+- type: guideEntry
+  id: ESInspectingPower
+  hidden: false
+  name: guide-entry-inspectingpower
+  text: "/ServerInfo/_ES/Guidebook/Engineering/InspectingPower.xml"
+
+- type: guideEntry
+  id: ESPowerStorage
+  hidden: false
+  name: guide-entry-powerstorage
+  text: "/ServerInfo/_ES/Guidebook/Engineering/PowerStorage.xml"
+
+- type: guideEntry
+  id: ESRamping
+  hidden: false
+  name: guide-entry-ramping
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Ramping.xml"
+
+- type: guideEntry
+  id: ESVoltageNetworks
+  hidden: false
+  name: guide-entry-voltagenetworks
+  text: "/ServerInfo/_ES/Guidebook/Engineering/VoltageNetworks.xml"
+
+- type: guideEntry
+  id: ESGenerators
+  hidden: false
+  name: guide-entry-generators
+  text: "/ServerInfo/_ES/Guidebook/Engineering/Generators.xml"
+  children:
+  - ESAME
+  - ESPortableGenerator
+  - ESSolarPanels
+
+- type: guideEntry
+  id: ESAME
+  hidden: false
+  name: guide-entry-ame
+  text: "/ServerInfo/_ES/Guidebook/Engineering/AME.xml"
+
+- type: guideEntry
+  id: ESPortableGenerator
+  hidden: false
+  name: guide-entry-portable-generator
+  text: "/ServerInfo/_ES/Guidebook/Engineering/PortableGenerator.xml"
+
+- type: guideEntry
+  id: ESSolarPanels
+  hidden: false
+  name: guide-entry-solarpanels
+  text: "/ServerInfo/_ES/Guidebook/Engineering/SolarPanels.xml"

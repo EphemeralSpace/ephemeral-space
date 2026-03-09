@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESJanitorial
+  hidden: false
+  name: guide-entry-janitorial
+  text: "/ServerInfo/_ES/Guidebook/Service/Janitorial.xml"
