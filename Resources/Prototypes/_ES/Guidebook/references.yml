@@ -5,8 +5,9 @@
   priority: 30
   text: "/ServerInfo/_ES/Guidebook/References.xml"
   children:
+  - ESRules
   - ESChemicals
   - ESDrinks
-  - ESFoodRecipes
+  - ESFood
   - ESWriting
   - ESGlossary
