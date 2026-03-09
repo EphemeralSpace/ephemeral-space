@@ -10,4 +10,3 @@ es-avenger-sense-adjacent = The killer is right next to you!
 
 es-avenger-direction = to the {$dir}
 es-avenger-direction-unknown = in an unknown direction
-e
