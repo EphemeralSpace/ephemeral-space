@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESPumps
+  hidden: false
+  name: Pumps
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/PipeNetworks/Pumps.xml"

@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESPassiveVent
+  hidden: false
+  name: Passive Vent
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/PipeNetworks/PassiveVent.xml"
