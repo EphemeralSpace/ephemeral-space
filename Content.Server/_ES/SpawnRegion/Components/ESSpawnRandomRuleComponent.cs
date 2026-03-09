@@ -35,5 +35,5 @@ public sealed partial class ESSpawnRandomRuleComponent : Component
     /// </summary>
     /// <returns></returns>
     [DataField]
-    public float MinPlayerDistance = 2f;
+    public float MinPlayerDistance = 2.5f;
 }
