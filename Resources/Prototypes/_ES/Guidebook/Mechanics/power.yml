@@ -2,7 +2,7 @@
   id: ESPower
   hidden: false
   name: Power
-  text: "/ServerInfo/_ES/Guidebook/Power.xml"
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Power.xml"
   children:
   - ESAME
   - ESInspectingPower
