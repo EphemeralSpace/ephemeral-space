@@ -5,10 +5,10 @@
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/AtmosDevices.xml"
   children:
   - ESAirAlarms
-  - ESAirScrubbers
+  - ESAirScrubber
   - ESAirVent
   - ESAtmosphericAlertsComputer
-  - ESAtmosphericNetworkComputer
+  - ESAtmosphericNetworkMonitor
   - ESGasCanisters
   - ESGasCondensing
   - ESGasMiningAndStorage

@@ -4,3 +4,11 @@
   name: Mechanics
   priority: 3
   text: "/ServerInfo/_ES/Guidebook/Mechanics.xml"
+  children:
+  - ESPower
+  - ESAtmospherics
+  - ESConstruction
+  - ESFires
+  - ESForensics
+  - ESWires
+  - ESAirlocks
