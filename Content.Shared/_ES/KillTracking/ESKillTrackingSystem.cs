@@ -57,12 +57,14 @@ public sealed class ESKillTrackingSystem : EntitySystem
     private void OnDamageChanged(Entity<ESKillTrackerComponent> ent, ref DamageChangedEvent args)
     {
         // I'm not really sure how we send a null delta.
-        if (args.DamageDelta is not { } delta)
+        if (args.DamageDelta is not { } delta || delta.Empty)
             return;
 
         // Cuffing -- if someone is cuffed and takes environmental damage (origin-less)
         // treat the damage they take as being caused by the person that cuffed them
-        var origin = args.Origin ?? _cuffs.GetLastCuffingEntity((ent.Owner));
+        var origin = args.Origin;
+        if (origin == null)
+            origin = _cuffs.GetLastCuffingEntity(ent.Owner);
 
         ReduceDamage(ent, DamageSpecifier.GetNegative(delta).GetTotal());
         AddDamage(ent, origin, DamageSpecifier.GetPositive(delta).GetTotal());
