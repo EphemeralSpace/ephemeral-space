@@ -36,7 +36,7 @@ public sealed class ESDirectKillTargetObjectiveSystem : ESBaseTargetObjectiveSys
 
             if (_player.TryGetSessionById(mind.Value.Comp.UserId, out var session))
             {
-                var msg = Loc.GetString(objective.Comp.SuccessMessage);
+                var msg = Loc.GetString(objective.Comp.SuccessMessage, ("name", Name(args.Killed)));
                 var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
                 _chatManager.ChatMessageToOne(ChatChannel.Server, msg, wrappedMsg, default, false, session.Channel, Color.Pink);
             }
