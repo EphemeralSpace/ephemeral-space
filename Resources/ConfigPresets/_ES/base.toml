@@ -52,4 +52,4 @@ dataset = "ESTips"
 login_dataset = "ESTips"
 
 [server]
-default_guide = "ESNewPlayerES"
+default_guide = "ESNewPlayer"
