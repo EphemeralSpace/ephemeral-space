@@ -2,8 +2,8 @@
   id: ESTroupesAndMasks
   hidden: false
   priority: 2
-  name: troupes-and-masks
-  text: "/ServerInfo/_ES/Guidebook/Masks/TroupesAndMasks.xml"
+  name: Troupes & Masks
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks.xml"
   children:
   - ESCrew
   - ESTraitors

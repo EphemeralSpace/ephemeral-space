@@ -1,7 +1,7 @@
 - type: guideEntry
   id: ESReferences
   hidden: false
-  name: guide-entry-references
+  name: References
   priority: 30
   text: "/ServerInfo/_ES/Guidebook/References.xml"
   children:
@@ -10,15 +10,3 @@
   - ESFoodRecipes
   - ESWriting
   - ESGlossary
-
-- type: guideEntry
-  id: ESWriting
-  hidden: false
-  name: guide-entry-writing
-  text: "/ServerInfo/_ES/Guidebook/References/Writing.xml"
-
-- type: guideEntry
-  id: ESGlossary
-  hidden: false
-  name: guide-entry-glossary
-  text: "/ServerInfo/_ES/Guidebook/References/Glossary.xml"

@@ -1,7 +1,7 @@
 - type: guideEntry
   id: ESNewPlayer
   hidden: false
-  name: newplayer
+  name: New Player Guide
   priority: 0
   text: "/ServerInfo/_ES/Guidebook/NewPlayer.xml"
   children:

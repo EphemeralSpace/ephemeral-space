@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESGlossary
+  hidden: false
+  name: Glossary
+  text: "/ServerInfo/_ES/Guidebook/References/Glossary.xml"
