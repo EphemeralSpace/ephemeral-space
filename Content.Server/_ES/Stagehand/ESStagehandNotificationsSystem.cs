@@ -54,7 +54,7 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
             severity = ESStagehandNotificationSeverity.High;
             msg = Loc.GetString("es-stagehand-notification-kill-player",
                 ("player", wrappedPlayerName),
-                ("attacker", WrapEntityNameWithUsername(killer)));
+                ("attacker", killer));
         }
 
         if (msg != null)
