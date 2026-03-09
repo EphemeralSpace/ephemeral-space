@@ -3,3 +3,14 @@
   hidden: false
   name: Pipe Networks
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/PipeNetworks.xml"
+  children:
+  - ESAirInjector
+  - ESManualValve
+  - ESMixingAndFiltering
+  - ESPassiveGate
+  - ESPassiveVent
+  - ESPneumaticValve
+  - ESPressureRegulator
+  - ESPumps
+  - ESRadiators
+  - ESValves

@@ -3,3 +3,15 @@
   hidden: false
   name: Atmos Devices
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/AtmosDevices.xml"
+  children:
+  - ESAirAlarms
+  - ESAirScrubbers
+  - ESAirVent
+  - ESAtmosphericAlertsComputer
+  - ESAtmosphericNetworkComputer
+  - ESGasCanisters
+  - ESGasCondensing
+  - ESGasMiningAndStorage
+  - ESGasRecycling
+  - ESPortableScrubber
+  - ESThermomachines
