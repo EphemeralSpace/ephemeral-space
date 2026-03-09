@@ -1,8 +1,8 @@
 - type: guideEntry
   id: ESAtmospherics
   hidden: false
-  name: guide-entry-atmospherics
-  text: "/ServerInfo/_ES/Guidebook/Engineering/Atmospherics.xml"
+  name: Atmospherics
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics.xml"
   children:
   - ESAtmosDevices
   - ESPipeNetworks
