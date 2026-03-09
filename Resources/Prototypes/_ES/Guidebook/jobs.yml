@@ -2,7 +2,7 @@
   id: ESJobs
   hidden: false
   name: Jobs
-  priority: 1
+  priority: 3
   text: "/ServerInfo/_ES/Guidebook/Jobs.xml"
   children:
   - ESAssistant
