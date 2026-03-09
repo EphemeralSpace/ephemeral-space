@@ -1,8 +1,9 @@
 - type: guideEntry
   id: ESNewPlayer
   hidden: false
-  name: es-guide-entry-newplayer
+  name: newplayer
   priority: 0
   text: "/ServerInfo/_ES/Guidebook/NewPlayer.xml"
   children:
   - ESControls
+  - ESBasicSurvival

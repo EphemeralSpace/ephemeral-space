@@ -1,16 +1,6 @@
 - type: guideEntry
   id: ESMechanics
   hidden: false
-  name: es-guide-entry-mechanics
+  name: Mechanics
   priority: 3
   text: "/ServerInfo/_ES/Guidebook/SpaceStation14.xml"
-  children:
-  - ESJobs
-  - ESSurvival
-  - ESGlossary
-
-- type: guideEntry
-  id: ESSurvival
-  hidden: false
-  name: guide-entry-survival
-  text: "/ServerInfo/_ES/Guidebook/Survival.xml"

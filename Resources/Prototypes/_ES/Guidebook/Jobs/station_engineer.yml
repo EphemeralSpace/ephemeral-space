@@ -1,5 +1,5 @@
 - type: guideEntry
   id: ESStationEngineer
   hidden: false
-  name: es-guide-entry-station-engineer
+  name: Station Engineer
   text: "/ServerInfo/_ES/Guidebook/Jobs/StationEngineer.xml"

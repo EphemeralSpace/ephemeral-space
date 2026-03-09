@@ -1,5 +1,5 @@
 - type: guideEntry
   id: ESCoroner
   hidden: false
-  name: es-guide-entry-coroner
+  name: Coroner
   text: "/ServerInfo/_ES/Guidebook/Jobs/Coroner.xml"

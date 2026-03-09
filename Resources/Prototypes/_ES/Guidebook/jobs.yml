@@ -1,7 +1,7 @@
 - type: guideEntry
   id: ESJobs
   hidden: false
-  name: es-guide-entry-jobs
+  name: Jobs
   priority: 1
   text: "/ServerInfo/_ES/Guidebook/Jobs.xml"
   children:

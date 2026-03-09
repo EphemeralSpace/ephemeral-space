@@ -1,6 +1,6 @@
 - type: guideEntry
   id: ESBartender
   hidden: false
-  name: es-guide-entry-bartender
+  name: Bartender
   text: "/ServerInfo/_ES/Guidebook/Jobs/Bartender.xml"
   filterEnabled: True

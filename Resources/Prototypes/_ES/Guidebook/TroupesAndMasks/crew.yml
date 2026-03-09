@@ -1,5 +1,5 @@
 - type: guideEntry
   id: ESCrew
   hidden: false
-  name: es-guide-entry-crew
+  name: crew
   text: "/ServerInfo/_ES/Guidebook/Masks/Crew.xml"
