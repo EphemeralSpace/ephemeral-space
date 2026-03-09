@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESDeltaPressure
+  hidden: false
+  name: Delta Pressure
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/DeltaPressure.xml"

@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESAtmosDevices
+  hidden: false
+  name: Atmos Devices
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/AtmosDevices.xml"
