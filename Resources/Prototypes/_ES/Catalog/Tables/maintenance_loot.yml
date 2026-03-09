@@ -198,7 +198,7 @@
     - id: ESClothingHeadHelmetSecurity
 
     - id: DefaultStationBeaconUnanchored
-    - id: Soap # TODO: soap pool?
+    - tableId: ESSoap
     - id: MaterialWoodPlank
     - id: PowerCellMedium
     - id: PowerCellHigh
@@ -306,12 +306,16 @@
     - id: Handcuffs
     - id: WelderIndustrialAdvanced
     - id: Binoculars
+    - id: PinpointerUniversal
+    - id: PinpointerNuclear
+    - id: CameraBug
+    - id: ChameleonProjector
+    - id: ClothingBackpackSatchelSmugglerUnanchored
     - id: ESMedkitFilled
 
     - id: ClothingEyesHudSecurity
     - id: ClothingEyesGlassesSunglasses
     - id: ClothingHandsGlovesColorYellow
-    - id: ClothingHandsGlovesCombat
     - id: ClothingShoesBootsJack
 
     - all: # Russian Outfit
