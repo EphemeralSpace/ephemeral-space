@@ -405,7 +405,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/chefvend.rsi
   - type: VendingMachine
-    pack: ChefvendInventory
+    pack: ESChefvendInventory
   - type: DatasetVocalizer
     dataset: ChefvendAds
   - type: SpeakOnUIClosed
