@@ -5,7 +5,7 @@
   text: "/ServerInfo/_ES/Guidebook/Engineering/Atmospherics.xml"
   children:
   - ESAtmosDevices
-  - ESPiping
+  - ESPipeNetworks
   - ESDeltaPressure
   - ESGasses
   - ESSpacing
