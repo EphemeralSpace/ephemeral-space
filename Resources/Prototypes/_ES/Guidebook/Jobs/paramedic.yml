@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESParamedic
+  hidden: false
+  name: es-guide-entry-paramedic
+  text: "/ServerInfo/_ES/Guidebook/Jobs/Paramedic.xml"

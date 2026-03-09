@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESAtmosphericTechnician
+  hidden: false
+  name: es-guide-entry-atmospheric-technician
+  text: "/ServerInfo/_ES/Guidebook/Jobs/AtmosphericTechnician.xml"

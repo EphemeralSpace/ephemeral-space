@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESDoctor
+  hidden: false
+  name: es-guide-entry-doctor
+  text: "/ServerInfo/_ES/Guidebook/Jobs/Doctor.xml"

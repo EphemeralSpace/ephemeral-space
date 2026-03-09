@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESSecurityOfficer
+  hidden: false
+  name: es-guide-entry-security-officer
+  text: "/ServerInfo/_ES/Guidebook/Jobs/SecurityOfficer.xml"

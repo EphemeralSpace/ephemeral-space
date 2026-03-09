@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESClown
+  hidden: false
+  name: es-guide-entry-clown
+  text: "/ServerInfo/_ES/Guidebook/Jobs/Clown.xml"

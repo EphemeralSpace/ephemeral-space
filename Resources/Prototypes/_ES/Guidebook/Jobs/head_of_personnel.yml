@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESHeadOfPersonnel
+  hidden: false
+  name: es-guide-entry-head-of-personnel
+  text: "/ServerInfo/_ES/Guidebook/Jobs/HeadOfPersonnel.xml"

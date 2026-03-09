@@ -1,6 +1,6 @@
 - type: guideEntry
-  id: ESNewPlayerES
+  id: ESNewPlayer
   hidden: false
-  name: es-guide-entry-newplayer-es
+  name: es-guide-entry-newplayer
   priority: 0
   text: "/ServerInfo/_ES/Guidebook/NewPlayer/NewPlayerES.xml"
