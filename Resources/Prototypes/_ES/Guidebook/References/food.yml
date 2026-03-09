@@ -1,8 +1,8 @@
 - type: guideEntry
-  id: ESFoodRecipes
+  id: ESFood
   hidden: false
-  name: guide-entry-foodrecipes
-  text: "/ServerInfo/_ES/Guidebook/Service/FoodRecipes.xml"
+  name: Food
+  text: "/ServerInfo/_ES/Guidebook/References/Food.xml"
   filterEnabled: True
   children:
   - ESPizzaRecipes
@@ -23,97 +23,97 @@
 - type: guideEntry
   id: ESPizzaRecipes
   hidden: false
-  name: guide-entry-pizza-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/PizzaRecipes.xml"
+  name: Pizza
+  text: "/ServerInfo/_ES/Guidebook/References/Food/PizzaRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESSavoryRecipes
   hidden: false
-  name: guide-entry-savory-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/SavoryRecipes.xml"
+  name: Savory
+  text: "/ServerInfo/_ES/Guidebook/References/Food/SavoryRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESBreadRecipes
   hidden: false
-  name: guide-entry-bread-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/BreadRecipes.xml"
+  name: Bread
+  text: "/ServerInfo/_ES/Guidebook/References/Food/BreadRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESBreakfastRecipes
   hidden: false
-  name: guide-entry-breakfast-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/BreakfastRecipes.xml"
+  name: Breakfast
+  text: "/ServerInfo/_ES/Guidebook/References/Food/BreakfastRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESPastaRecipes
   hidden: false
-  name: guide-entry-pasta-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/PastaRecipes.xml"
+  name: Pasta
+  text: "/ServerInfo/_ES/Guidebook/References/Food/PastaRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESDessertRecipes
   hidden: false
-  name: guide-entry-dessert-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/DessertRecipes.xml"
+  name: Dessert
+  text: "/ServerInfo/_ES/Guidebook/References/Food/DessertRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESSoupRecipes
   hidden: false
-  name: guide-entry-soup-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/SoupRecipes.xml"
+  name: Soup
+  text: "/ServerInfo/_ES/Guidebook/References/Food/SoupRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESPieRecipes
   hidden: false
-  name: guide-entry-pie-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/PieRecipes.xml"
+  name: Pie
+  text: "/ServerInfo/_ES/Guidebook/References/Food/PieRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESBarsAndCookiesRecipes
   hidden: false
-  name: guide-entry-barsandcookies-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/BarsAndCookiesRecipes.xml"
+  name: Bars and Cookies
+  text: "/ServerInfo/_ES/Guidebook/References/Food/BarsAndCookiesRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESCakeRecipes
   hidden: false
-  name: guide-entry-cake-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/CakeRecipes.xml"
+  name: Cake
+  text: "/ServerInfo/_ES/Guidebook/References/Food/CakeRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESSaladRecipes
   hidden: false
-  name: guide-entry-salad-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/SaladRecipes.xml"
+  name: Salad
+  text: "/ServerInfo/_ES/Guidebook/References/Food/SaladRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESOtherRecipes
   hidden: false
-  name: guide-entry-other-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/OtherRecipes.xml"
+  name: Other
+  text: "/ServerInfo/_ES/Guidebook/References/Food/OtherRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESMedicinalRecipes
   hidden: false
-  name: guide-entry-medicinal-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/MedicinalRecipes.xml"
+  name: Medicinal
+  text: "/ServerInfo/_ES/Guidebook/References/Food/MedicinalRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESSecretRecipes
   hidden: false
-  name: guide-entry-secret-recipes
-  text: "/ServerInfo/_ES/Guidebook/Service/SecretRecipes.xml"
+  name: Secret
+  text: "/ServerInfo/_ES/Guidebook/References/Food/SecretRecipes.xml"
   filterEnabled: True

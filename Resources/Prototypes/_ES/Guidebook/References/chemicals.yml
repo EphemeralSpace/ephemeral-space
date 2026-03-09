@@ -1,8 +1,8 @@
 - type: guideEntry
   id: ESChemicals
   hidden: false
-  name: guide-entry-chemicals
-  text: "/ServerInfo/_ES/Guidebook/Chemicals.xml"
+  name: Chemicals
+  text: "/ServerInfo/_ES/Guidebook/References/Chemicals.xml"
   children:
   - ESElements
   - OffbrandMedicineList
@@ -18,55 +18,55 @@
 - type: guideEntry
   id: ESElements
   hidden: false
-  name: guide-entry-elements
-  text: "/ServerInfo/_ES/Guidebook/ChemicalTabs/Elements.xml"
+  name: Elements
+  text: "/ServerInfo/_ES/Guidebook/References/ChemicalTabs/Elements.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESNarcotics
   hidden: false
-  name: guide-entry-narcotics
-  text: "/ServerInfo/_ES/Guidebook/ChemicalTabs/Narcotics.xml"
+  name: Narcotics
+  text: "/ServerInfo/_ES/Guidebook/References/ChemicalTabs/Narcotics.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESPyrotechnic
   hidden: false
-  name: guide-entry-pyrotechnics
-  text: "/ServerInfo/_ES/Guidebook/ChemicalTabs/Pyrotechnic.xml"
+  name: Pyrotechnics
+  text: "/ServerInfo/_ES/Guidebook/References/ChemicalTabs/Pyrotechnic.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESToxins
   hidden: false
-  name: guide-entry-toxins
-  text: "/ServerInfo/_ES/Guidebook/ChemicalTabs/Toxins.xml"
+  name: Toxins
+  text: "/ServerInfo/_ES/Guidebook/References/ChemicalTabs/Toxins.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESFoods
   hidden: false
-  name: guide-entry-foods
-  text: "/ServerInfo/_ES/Guidebook/ChemicalTabs/Foods.xml"
+  name: Foods
+  text: "/ServerInfo/_ES/Guidebook/References/ChemicalTabs/Foods.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESBiological
   hidden: false
-  name: guide-entry-biological
-  text: "/ServerInfo/_ES/Guidebook/ChemicalTabs/Biological.xml"
+  name: Biological
+  text: "/ServerInfo/_ES/Guidebook/References/ChemicalTabs/Biological.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESSpecial
   hidden: false
-  name: guide-entry-special
-  text: "/ServerInfo/_ES/Guidebook/ChemicalTabs/Special.xml"
+  name: Special
+  text: "/ServerInfo/_ES/Guidebook/References/ChemicalTabs/Special.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: ESOthers
   hidden: false
-  name: guide-entry-others
-  text: "/ServerInfo/_ES/Guidebook/ChemicalTabs/Other.xml"
+  name: Others
+  text: "/ServerInfo/_ES/Guidebook/References/ChemicalTabs/Other.xml"
   filterEnabled: True

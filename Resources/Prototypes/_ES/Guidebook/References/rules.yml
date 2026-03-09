@@ -1,7 +1,7 @@
 - type: guideEntry
   id: ESRules
   hidden: false
-  name: guide-entry-rules
+  name: Da Rules
   ruleEntry: true
   priority: 10
-  text: "/ServerInfo/_ES/Guidebook/Rules.xml"
+  text: "/ServerInfo/_ES/Guidebook/References/Rules.xml"

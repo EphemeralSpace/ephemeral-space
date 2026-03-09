@@ -1,6 +1,6 @@
 - type: guideEntry
   id: ESDrinks
   hidden: false
-  name: guide-entry-drinks
-  text: "/ServerInfo/_ES/Guidebook/ReferenceTables/Drinks.xml"
+  name: Drinks
+  text: "/ServerInfo/_ES/Guidebook/References/Drinks.xml"
   filterEnabled: True
