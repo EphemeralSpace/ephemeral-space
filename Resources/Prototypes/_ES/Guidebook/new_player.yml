@@ -3,4 +3,6 @@
   hidden: false
   name: es-guide-entry-newplayer
   priority: 0
-  text: "/ServerInfo/_ES/Guidebook/NewPlayer/NewPlayerES.xml"
+  text: "/ServerInfo/_ES/Guidebook/NewPlayer.xml"
+  children:
+  - ESControls

@@ -1,0 +1,13 @@
+- type: guideEntry
+  id: ESTraitors
+  hidden: false
+  name: guide-entry-traitors
+  children:
+  - ESInfiltrator
+  text: "/ServerInfo/_ES/Guidebook/Masks/Traitors.xml"
+
+- type: guideEntry
+  id: ESInfiltrator
+  hidden: false
+  name: Infiltrator
+  text: "/ServerInfo/_ES/Guidebook/Masks/Traitors/Infiltrator.xml"
