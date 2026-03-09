@@ -5,6 +5,7 @@
   priority: 3
   text: "/ServerInfo/_ES/Guidebook/Mechanics.xml"
   children:
+  - OffbrandMedical
   - ESPower
   - ESAtmospherics
   - ESConstruction
