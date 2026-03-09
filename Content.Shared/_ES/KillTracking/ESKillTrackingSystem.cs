@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._Offbrand.Wounds;
+using Content.Shared.Cuffs;
+using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
@@ -16,6 +18,8 @@ namespace Content.Shared._ES.KillTracking;
 
 public sealed class ESKillTrackingSystem : EntitySystem
 {
+    [Dependency] private readonly SharedCuffableSystem _cuffs = default!;
+
     private const int SuicideSelfDamage = 200;
 
     /// <inheritdoc/>
@@ -56,8 +60,12 @@ public sealed class ESKillTrackingSystem : EntitySystem
         if (args.DamageDelta is not { } delta)
             return;
 
+        // Cuffing -- if someone is cuffed and takes environmental damage (origin-less)
+        // treat the damage they take as being caused by the person that cuffed them
+        var origin = args.Origin ?? _cuffs.GetLastCuffingEntity((ent.Owner));
+
         ReduceDamage(ent, DamageSpecifier.GetNegative(delta).GetTotal());
-        AddDamage(ent, args.Origin, DamageSpecifier.GetPositive(delta).GetTotal());
+        AddDamage(ent, origin, DamageSpecifier.GetPositive(delta).GetTotal());
     }
 
     private void OnRejuvenate(Entity<ESKillTrackerComponent> ent, ref RejuvenateEvent args)

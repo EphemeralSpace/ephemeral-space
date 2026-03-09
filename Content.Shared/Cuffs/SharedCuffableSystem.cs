@@ -488,6 +488,10 @@ namespace Content.Shared.Cuffs
 
             _container.Insert(handcuff, component.Container);
 
+            // ES START
+            cuff.CuffedBy = user;
+            // ES END
+
             var ev = new TargetHandcuffedEvent();
             RaiseLocalEvent(target, ref ev);
 
@@ -705,6 +709,9 @@ namespace Content.Shared.Cuffs
 
             cuff.Removing = true;
             cuff.Used = false;
+            // ES START
+            cuff.CuffedBy = null;
+            // ES END
             _audio.PlayPredicted(cuff.EndUncuffSound, target, user);
 
             _container.Remove(cuffsToRemove, cuffable.Container);
@@ -854,11 +861,27 @@ namespace Content.Shared.Cuffs
         /// <returns>The most recently added cuff or null if none exists.</returns>
         public EntityUid? GetLastCuffOrNull(Entity<CuffableComponent?> entity)
         {
-            if (!Resolve(entity, ref entity.Comp))
+            // ES START dont log missing
+            if (!Resolve(entity, ref entity.Comp, false))
+            // ES END
                 return null;
 
             return entity.Comp.Container.ContainedEntities.Count == 0 ? null : entity.Comp.Container.ContainedEntities.Last();
         }
+
+        // ES START
+        /// <summary>
+        ///     Tries to return the last entity which successfully cuffed this entity (assuming they are still cuffed)
+        /// </summary>
+        public EntityUid? GetLastCuffingEntity(Entity<CuffableComponent?> entity)
+        {
+            var cuffs = GetLastCuffOrNull(entity);
+            if (cuffs == null || !TryComp<HandcuffComponent>(cuffs, out var cuffsComponent))
+                return null;
+
+            return cuffsComponent.CuffedBy;
+        }
+        // ES END
     }
 
     [Serializable, NetSerializable]
