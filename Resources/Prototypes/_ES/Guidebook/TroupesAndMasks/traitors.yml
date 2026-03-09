@@ -4,10 +4,10 @@
   name: Traitors
   children:
   - ESInfiltrator
-  text: "/ServerInfo/_ES/Guidebook/Masks/Traitors.xml"
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Traitors.xml"
 
 - type: guideEntry
   id: ESInfiltrator
   hidden: false
   name: Infiltrator
-  text: "/ServerInfo/_ES/Guidebook/Masks/Traitors/Infiltrator.xml"
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Traitors/Infiltrator.xml"

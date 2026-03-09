@@ -1,5 +1,5 @@
 - type: guideEntry
   id: ESCrew
   hidden: false
-  name: crew
-  text: "/ServerInfo/_ES/Guidebook/Masks/Crew.xml"
+  name: Crew
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew.xml"
