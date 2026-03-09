@@ -2,7 +2,7 @@
   id: ESMechanics
   hidden: false
   name: es-guide-entry-mechanics
-  priority: 2
+  priority: 3
   text: "/ServerInfo/_ES/Guidebook/SpaceStation14.xml"
   children:
   - ESJobs
