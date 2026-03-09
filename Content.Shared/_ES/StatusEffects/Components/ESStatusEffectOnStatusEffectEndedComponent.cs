@@ -16,9 +16,16 @@ public sealed partial class ESStatusEffectOnStatusEffectEndedComponent : Compone
     [DataField(required: true)]
     public EntProtoId<StatusEffectComponent> StatusEffect = default!;
 
+    /// <summary>
+    ///     Time that the status effect should last
+    /// </summary>
     [DataField(required: true)]
     public TimeSpan Duration;
 
+    /// <summary>
+    ///     Time to delay the status effect being applied (after the triggering effect ends).
+    ///     Null means no delay (added right after this one ends)
+    /// </summary>
     [DataField]
     public TimeSpan? Delay;
 }
