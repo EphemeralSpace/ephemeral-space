@@ -1,0 +1,28 @@
+<Document>
+  # Cargo
+
+  The Supply department, also known as [color=cyan]Cargo[/color], supplies the station with necessary resources, such as fuel and raw materials, and comfort resources, such as lottery tickets and plushies.
+
+  ## Personnel
+
+  Cargo is made up of [color=cyan]Cargo Technicians[/color].
+
+  <Box>
+    <GuideEntityEmbed Entity="ToyFigurineCargoTech" Caption="Cargo Tech"/>
+  </Box>
+
+  ## Ordering
+
+  <Box>
+    <GuideEntityEmbed Entity="ComputerCargoOrders"/>
+  </Box>
+
+  Every order begins at a [color=cyan]Cargo Request Computer[/color]. First and foremost, making an order requires that Cargo has enough spesos. If Cargo doesn't have the money, get some.
+
+  It is also the sole discretion of Cargo to fulfill any given request. If Cargo is tight on spesos, they are free to deny requests that are not immediately necessary.
+
+  To make an order, click the name of whatever is requested, provide the recipient, type an appropriate reason for why they need it, and then press "Approve" on the order.
+
+  Sometimes a public Cargo Request Computer exists, in which case all you need to do is approve orders that people make themselves.
+
+</Document>
