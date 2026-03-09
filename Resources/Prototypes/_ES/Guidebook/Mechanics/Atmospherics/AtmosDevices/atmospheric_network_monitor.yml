@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESAtmosphericNetworkMonitor
+  hidden: false
+  name: Atmospheric Network Monitor
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/AtmosDevices/AtmosphericNetworkMonitor.xml"
