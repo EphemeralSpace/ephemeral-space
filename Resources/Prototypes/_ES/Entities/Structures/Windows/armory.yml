@@ -9,6 +9,7 @@
     thresholds: []
   - type: DamageVisuals
     thresholds: [0]
+    disabled: true
   - type: Sprite
     sprite: _ES/Structures/Windows/antimatter.rsi
   - type: Icon
