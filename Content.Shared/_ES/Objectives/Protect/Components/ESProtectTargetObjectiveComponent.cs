@@ -10,5 +10,5 @@ public sealed partial class ESProtectTargetObjectiveComponent : Component
     /// Progress shown if the target is null
     /// </summary>
     [DataField]
-    public float DefaultProgress = 1f;
+    public float DefaultProgress = 0f;
 }
