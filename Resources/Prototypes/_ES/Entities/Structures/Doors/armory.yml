@@ -1,0 +1,63 @@
+# Armory control room door
+- type: entity
+  id: ESAirlockCommandArmoryControlRoom
+  parent: AirlockCommandGlassLocked
+  name: armory control room door
+  description: Your gateway to Heaven--if only you had two friends.
+  suffix: ES, Armory Control Room
+  components:
+  - type: ESArmoryControlRoomDoor
+
+# Armory blast doors
+- type: entity
+  id: ESArmoryBlastDoors
+  parent: BaseStructure
+  name: armory blast doors
+  description: These ones don't say "BLAST DONGER". They're more serious than that. Is this a joke to you?
+  suffix: ES, Indestructible
+  components:
+  - type: ESArmoryDoor
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Doors/Shutters/blastdoor.rsi
+    drawdepth: BlastDoors
+    layers:
+    - state: closed
+      map: [ "enum.DoorVisualLayers.Base" ]
+    - state: welded
+      map: [ "enum.WeldableLayers.BaseWelded" ]
+  - type: AnimationPlayer
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49" # don't want this colliding with walls or they won't close
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - AirlockLayer
+  - type: NavMapDoor
+  - type: Door
+    openDrawDepth: BlastDoors
+    closedDrawDepth: BlastDoors
+    closeTimeOne: 0.4
+    closeTimeTwo: 0.4
+    openTimeOne: 0.4
+    openTimeTwo: 0.4
+    openingAnimationTime: 1.0
+    closingAnimationTime: 1.0
+    canPry: false
+    crushDamage:
+      types:
+        Blunt: 25 # yowch
+    openSound:
+      path: /Audio/Machines/blastdoor.ogg
+    closeSound:
+      path: /Audio/Machines/blastdoor.ogg
+  - type: Occluder
+  - type: Appearance
+  - type: RadiationBlocker
+    resistance: 8
