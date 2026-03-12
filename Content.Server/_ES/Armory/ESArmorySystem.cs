@@ -1,3 +1,4 @@
+using System.Collections;
 using Content.Server._ES.Armory.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Doors.Systems;
@@ -159,7 +160,8 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
         var query = EntityQueryEnumerator<ESArmoryDoorComponent, DoorComponent, DoorBoltComponent>();
         while (query.MoveNext(out var uid, out _, out var door, out _))
         {
-            _door.TryOpenAndBolt(uid, door);
+            // todo temp lol
+            QueueDel(uid);
         }
 
         // Announcement
