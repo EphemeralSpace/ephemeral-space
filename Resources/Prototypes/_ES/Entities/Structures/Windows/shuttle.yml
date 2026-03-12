@@ -29,6 +29,7 @@
     thresholds: []
   - type: DamageVisuals
     thresholds: [0]
+    disabled: true
   - type: Sprite
     sprite: Structures/Windows/directional.rsi
     state: reinforced_window
