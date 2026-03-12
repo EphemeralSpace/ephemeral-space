@@ -22,7 +22,7 @@
         - WallLayer
         density: 2000
   - type: IconSmooth
-    key: walls
+    key: armorywalls
     base: state
   - type: RadiationBlocker
     resistance: 1000
