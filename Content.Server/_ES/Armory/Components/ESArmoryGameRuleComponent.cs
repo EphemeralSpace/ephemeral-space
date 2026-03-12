@@ -1,3 +1,5 @@
+using Robust.Shared.Audio;
+
 namespace Content.Server._ES.Armory.Components;
 
 /// <summary>
@@ -26,7 +28,7 @@ public sealed partial class ESArmoryGameRuleComponent : Component
     ///     This only matters whenever the first button is pressed (i.e. you cant get more leeway by pressing a second button)
     /// </summary>
     [DataField]
-    public TimeSpan ButtonPressAllTimeframe = TimeSpan.FromSeconds(1.5);
+    public TimeSpan ButtonPressAllTimeframe = TimeSpan.FromSeconds(2.5);
 
     /// <summary>
     ///     Delay before the armory doors actually open
@@ -48,4 +50,16 @@ public sealed partial class ESArmoryGameRuleComponent : Component
     // Who up failwrithing
     [DataField, AutoNetworkedField]
     public TimeSpan FailWritheDuration = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public SoundSpecifier ArmoryOpeningAnnouncementSound =
+        new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg");
+
+    [DataField]
+    public SoundSpecifier ArmoryOpenedAnnouncementSound =
+        new SoundPathSpecifier("/Audio/_ES/Announcements/attention_medium.ogg");
+
+    [DataField]
+    public SoundSpecifier ArmoryFailedAnnouncementSound =
+        new SoundPathSpecifier("/Audio/_ES/Announcements/attention_medium.ogg");
 }

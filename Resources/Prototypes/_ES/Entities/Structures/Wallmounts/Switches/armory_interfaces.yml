@@ -2,10 +2,13 @@
 - type: entity
   id: ESBaseArmoryInterface
   parent: BaseStructure
+  abstract: true
   components:
   - type: Sprite
     sprite: _ES/Structures/Machines/armory_interfaces.rsi
     noRot: true
+  - type: Clickable
+  - type: InteractionOutline
   - type: ESArmoryGovernanceInterface
 
 - type: entity
@@ -22,6 +25,7 @@
 
 - type: entity
   id: ESArmoryInterfaceMelchior
+  parent: ESBaseArmoryInterface
   name: armory governance interface "Melchior"
   description: Gifts of gunpowder perfume.
   components:
@@ -33,6 +37,7 @@
 
 - type: entity
   id: ESArmoryInterfaceYalthasar
+  parent: ESBaseArmoryInterface
   name: armory governance interface "Yalthasar"
   description: Gifts of myrrhder.
   components:

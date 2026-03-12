@@ -3,11 +3,14 @@ using Content.Server.Chat.Systems;
 using Content.Server.Doors.Systems;
 using Content.Server.Electrocution;
 using Content.Server.GameTicking.Rules;
+using Content.Server.Popups;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared.Doors.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Popups;
+using Robust.Server.Audio;
 using Robust.Shared.Timing;
 
 namespace Content.Server._ES.Armory;
@@ -24,6 +27,8 @@ namespace Content.Server._ES.Armory;
 public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly DoorSystem _door = default!;
     [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -56,8 +61,11 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
         var query = EntityQueryEnumerator<ESArmoryGovernanceInterfaceComponent>();
         var failed = false;
         var anyNotPressed = false;
+        var buttonCount = 0;
         while (query.MoveNext(out _, out var button))
         {
+            buttonCount++;
+
             if (button.ButtonPressedAt is null)
             {
                 anyNotPressed = true;
@@ -69,6 +77,10 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
                 break;
             }
         }
+
+        // erm
+        if (buttonCount <= 0)
+            return;
 
         // fail if past time, succeed if not past time & all are pressed
         if (failed)
@@ -98,9 +110,15 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
         if (!GameTicker.IsGameRuleActive<ESArmoryGameRuleComponent>() || GetArmorySingleton() is not { } armory)
             return;
 
-        // no need to check cooldown time since the update loop will handle that stuff, just check if theres any cooldown
-        if (armory.Opened || armory.ArmoryCooldownLiftsAt is not null)
+        if (armory.Opened)
             return;
+
+        // no need to check cooldown time since the update loop will handle that stuff, just check if theres any cooldown
+        if (armory.ArmoryCooldownLiftsAt is not null)
+        {
+            _popup.PopupEntity(Loc.GetString("es-armory-on-cooldown"), ent, args.User, PopupType.SmallCaution);
+            return;
+        }
 
         if (ent.Comp.ButtonPressedAt is not null)
             return;
@@ -108,7 +126,11 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
         EnsureComp<ESArmoryPressedButtonAlreadyComponent>(args.User);
         ent.Comp.ButtonPressedAt = _timing.CurTime;
 
+        _popup.PopupEntity(Loc.GetString("es-armory-popup-button-pressed"), ent, args.User, PopupType.SmallCaution);
+        _audio.PlayEntity(ent.Comp.ButtonPressSound, args.User, ent, ent.Comp.ButtonPressSound.Params);
+
         TrySetArmoryControlRoomDoorBolt(true);
+        args.Handled = true;
     }
 
     #region Armory control
@@ -124,18 +146,18 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
         _chat.DispatchGlobalAnnouncement(
             Loc.GetString("es-armory-opening-announcement"),
             Loc.GetString("es-armory-announcer"),
-            false,
-            null,
+            true,
+            component.ArmoryOpeningAnnouncementSound,
             Color.Coral);
 
         // start open timer
-        _ = _timer.SpawnMethodTimer(component.ArmoryOpenDelay, OpenArmory);
+        _ = _timer.SpawnMethodTimer(component.ArmoryOpenDelay, () => OpenArmory(component));
     }
 
-    private void OpenArmory()
+    private void OpenArmory(ESArmoryGameRuleComponent component)
     {
         var query = EntityQueryEnumerator<ESArmoryDoorComponent, DoorComponent, DoorBoltComponent>();
-        while (query.MoveNext(out var uid, out var armory, out var door, out var bolt))
+        while (query.MoveNext(out var uid, out _, out var door, out _))
         {
             _door.TryOpenAndBolt(uid, door);
         }
@@ -144,8 +166,8 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
         _chat.DispatchGlobalAnnouncement(
             Loc.GetString("es-armory-opened-announcement"),
             Loc.GetString("es-armory-announcer"),
-            false,
-            null,
+            true,
+            component.ArmoryOpenedAnnouncementSound,
             Color.Coral);
     }
 
@@ -158,10 +180,12 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
         TrySetArmoryControlRoomDoorBolt(false);
 
         // Stun everyone in radius of any button
+        // also reset their pressed state
         HashSet<Entity<MobStateComponent>> targets = new();
         var query = EntityQueryEnumerator<ESArmoryGovernanceInterfaceComponent, TransformComponent>();
-        while (query.MoveNext(out _, out _, out var xform))
+        while (query.MoveNext(out _, out var button, out var xform))
         {
+            button.ButtonPressedAt = null;
             // todo this should be scoping off of a better component than this but whatever.
             var ents = _lookup.GetEntitiesInRange<MobStateComponent>(xform.Coordinates, 3f);
             targets.UnionWith(ents);
@@ -176,8 +200,8 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
         _chat.DispatchGlobalAnnouncement(
             Loc.GetString("es-armory-failed-to-open-announcement"),
             Loc.GetString("es-armory-announcer"),
-            false,
-            null,
+            true,
+            component.ArmoryFailedAnnouncementSound,
             Color.Coral);
     }
 
@@ -198,7 +222,9 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
             if (_door.IsBolted(uid, doorBolt) == toBolt)
                 continue;
 
-            _door.TryClose(uid, door);
+            // force set state to avoid closing/opening shit
+            if (toBolt && door.State != DoorState.Closed)
+                _door.SetState(uid, DoorState.Closed, door);
             _door.TrySetBoltDown((uid, doorBolt), toBolt);
         }
     }

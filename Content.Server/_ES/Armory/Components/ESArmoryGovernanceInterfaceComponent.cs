@@ -1,3 +1,5 @@
+using Robust.Shared.Audio;
+
 namespace Content.Server._ES.Armory.Components;
 
 /// <summary>
@@ -13,5 +15,11 @@ public sealed partial class ESArmoryGovernanceInterfaceComponent : Component
     ///     Otherwise, the time this button was pressed at
     /// </summary>
     [DataField, AutoPausedField]
-    public TimeSpan? ButtonPressedAt = TimeSpan.Zero;
+    public TimeSpan? ButtonPressedAt = null;
+
+    /// <summary>
+    ///     Sound to play to only the client who pressed the button.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier ButtonPressSound = new SoundPathSpecifier("/Audio/Machines/ding.ogg");
 }

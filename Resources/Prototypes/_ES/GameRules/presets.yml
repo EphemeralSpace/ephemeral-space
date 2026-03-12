@@ -10,6 +10,7 @@
   - ESSchedulerRuleDegradationEventVote
   - ESBasicRoundstartVariation
   - ESRoundEndRuleRadstorm
+  - ESArmoryRule
 
 - type: gamePreset
   id: ESExtended
@@ -21,6 +22,7 @@
   - ESSchedulerRuleDegradationEventVote
   - ESBasicRoundstartVariation
   - ESRoundEndRuleRadstorm
+  - ESArmoryRule
 
 - type: gamePreset
   id: ESTraitors
@@ -34,6 +36,7 @@
   - ESSchedulerRuleDegradationEventVote
   - ESBasicRoundstartVariation
   - ESRoundEndRuleRadstorm
+  - ESArmoryRule
 
 # Nonstandard modes
 
@@ -46,3 +49,4 @@
   rules:
   - Sandbox
   - ESBasicRoundstartVariation # included since it determines important features
+  - ESArmoryRule # this is stupid todo singleton stuff properly
