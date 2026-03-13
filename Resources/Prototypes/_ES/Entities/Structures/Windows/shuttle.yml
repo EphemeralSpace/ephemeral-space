@@ -9,6 +9,7 @@
     thresholds: []
   - type: DamageVisuals
     thresholds: [0]
+    disabled: true
   - type: Sprite
     sprite: Structures/Windows/shuttle_window.rsi
   - type: Icon
