@@ -49,5 +49,4 @@
   objectives:
     all:
     - id: ESObjectivePhantomDie
-    - id: ESObjectivePhantomAvenge
     - id: ESObjectiveJesterDoNoHarm
