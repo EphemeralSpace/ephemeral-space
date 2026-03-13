@@ -65,7 +65,7 @@ public sealed class ESMartyrSystem : EntitySystem
 
         var notifMsg = Loc.GetString("es-stagehand-notifications-martyr-got-martyred",
             ("player", _notif.WrapEntityNameWithUsername(args.Killed)),
-            ("attacker", args.Killer.Value));
+            ("attacker", _notif.WrapEntityName(args.Killer.Value)));
 
         _notif.SendStagehandNotification(notifMsg, ESStagehandNotificationSeverity.High);
 
