@@ -5,7 +5,6 @@ ESjob-name-botanist = Botanist
 ESjob-name-captain = Captain
 ESjob-name-cargotech = Cargo Technician
 ESjob-name-chef = Chef
-ESjob-name-chemist = Chemist
 ESjob-name-clown = Clown
 ESjob-name-coroner = Coroner
 ESjob-name-detective = Detective

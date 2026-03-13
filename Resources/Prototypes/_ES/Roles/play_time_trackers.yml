@@ -21,9 +21,6 @@
   id: ESJobChef
 
 - type: playTimeTracker
-  id: ESJobChemist
-
-- type: playTimeTracker
   id: ESJobClown
 
 - type: playTimeTracker
