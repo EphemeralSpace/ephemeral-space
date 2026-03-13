@@ -4,6 +4,7 @@
   id: ESMasqueradeManaged
   name: es-preset-masquerade-title
   description: es-preset-masquerade-desc
+  showInVote: true
   rules:
   - ESMasqueradeGameRule
   - ESSchedulerRuleStationEventVote
@@ -18,20 +19,6 @@
   description: es-preset-extended-desc
   rules:
   - ESTroupeRuleCrew
-  - ESSchedulerRuleStationEventVote
-  - ESSchedulerRuleDegradationEventVote
-  - ESBasicRoundstartVariation
-  - ESRoundEndRuleRadstorm
-  - ESArmoryRule
-
-- type: gamePreset
-  id: ESTraitors
-  name: es-preset-traitor-title
-  description: es-preset-traitor-desc
-  showInVote: true # votable until a second antagonist is implemented
-  rules:
-  - ESTroupeRuleCrew
-  - ESTroupeRuleTraitor
   - ESSchedulerRuleStationEventVote
   - ESSchedulerRuleDegradationEventVote
   - ESBasicRoundstartVariation

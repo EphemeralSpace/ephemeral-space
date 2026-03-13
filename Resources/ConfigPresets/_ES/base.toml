@@ -14,7 +14,7 @@ range = 10 # APCs
 [game]
 map_pool = "ESMapPool"
 defaultpreset = "ESMasqueradeManaged"
-fallbackpreset = "ESTraitors,ESExtended"
+fallbackpreset = "ESMasqueradeManaged,ESExtended"
 role_timers = false
 contraband_examine = false
 
