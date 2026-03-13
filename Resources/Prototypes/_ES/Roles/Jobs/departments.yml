@@ -26,7 +26,6 @@
   weight: -10
   roles:
   - ESClown
-  - ESHeadOfPersonnel
   - ESAssistant
   - ESReporter
 
