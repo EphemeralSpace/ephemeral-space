@@ -286,9 +286,9 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         }
         ApplyMask(mind, maskId, troupe);
 
-        if (mind.Comp.OwnedEntity is { } owned)
+        if (mind.Comp.OwnedEntity is not null)
         {
-            var name = _stagehandNotifications.WrapEntityNameWithUsername(owned);
+            var name = mind.Comp.CharacterName ?? string.Empty;
             var mask = Loc.GetString(PrototypeManager.Index(maskId).Name);
             var msg = Loc.GetString("es-stagehand-notification-mask-change", ("player", name), ("mask", mask));
             _stagehandNotifications.SendStagehandNotification(msg, ESStagehandNotificationSeverity.High);
