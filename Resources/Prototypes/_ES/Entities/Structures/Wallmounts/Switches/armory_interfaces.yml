@@ -20,8 +20,7 @@
   - type: Sprite
     layers:
     - state: terminal
-    - state: screen
-      color: "#00FFFF"
+    - state: casper
 
 - type: entity
   id: ESArmoryInterfaceMelchior
@@ -32,8 +31,7 @@
   - type: Sprite
     layers:
     - state: terminal
-    - state: screen
-      color: "#FF00FF"
+    - state: melchior
 
 - type: entity
   id: ESArmoryInterfaceYalthasar
@@ -44,5 +42,4 @@
   - type: Sprite
     layers:
     - state: terminal
-    - state: screen
-      color: "#FFFF00"
+    - state: yalthasar
