@@ -6,8 +6,8 @@
   components:
   - type: ESObjective
     icon:
-      sprite: Objects/Specific/Security/target.rsi
-      state: target_h
+      sprite: Objects/Misc/skub.rsi
+      state: icon
   - type: ESTargetObjective
     title: es-hater-fail-objective-title
   - type: ESTargetPlayersObjective
