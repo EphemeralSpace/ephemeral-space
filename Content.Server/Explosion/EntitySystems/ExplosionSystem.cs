@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server._ES.TileFires;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -37,6 +38,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 {
     // ES START
     [Dependency] private readonly ESScreenshakeSystem _shake = default!;
+    [Dependency] private readonly ESTileFireSystem _tileFire = default!;
     // ES END
 
     [Dependency] private readonly IMapManager _mapManager = default!;
