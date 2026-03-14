@@ -93,6 +93,10 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         var oldProgress = ent.Comp.Progress;
         var newProgress = Math.Clamp(ev.Progress, 0, 1);
 
+        // "inverted" progress means that a win is a fail, and vice versa.
+        if (ent.Comp.InvertProgress)
+            newProgress = 1 - newProgress;
+
         // If they are unchanged, then don't update anything.
         if (MathHelper.CloseTo(oldProgress, newProgress))
             return;

@@ -15,5 +15,5 @@ public sealed partial class ESDirectKillTargetObjectiveComponent : Component
     /// Message shown on successful kill
     /// </summary>
     [DataField]
-    public LocId SuccessMessage = "es-avenger-revenge-success";
+    public LocId? SuccessMessage = "es-avenger-revenge-success";
 }

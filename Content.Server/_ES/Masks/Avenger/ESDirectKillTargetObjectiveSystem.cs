@@ -27,14 +27,11 @@ public sealed class ESDirectKillTargetObjectiveSystem : ESBaseTargetObjectiveSys
         if (!args.ValidKill || !MindSys.TryGetMind(args.Killer.Value, out var mind))
             return;
 
-        foreach (var objective in ObjectivesSys.GetObjectives<ESDirectKillTargetObjectiveComponent>(mind.Value.Owner))
+        foreach (var objective in GetTargetingObjectives(ent))
         {
-            if (TargetObjective.GetTargetOrNull(objective.Owner) != args.Killed)
-                continue;
-
             ObjectivesSys.AdjustObjectiveCounter(objective.Owner);
 
-            if (_player.TryGetSessionById(mind.Value.Comp.UserId, out var session))
+            if (objective.Comp.SuccessMessage.HasValue && _player.TryGetSessionById(mind.Value.Comp.UserId, out var session))
             {
                 var msg = Loc.GetString(objective.Comp.SuccessMessage, ("name", Name(args.Killed)));
                 var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
