@@ -25,13 +25,18 @@
 - type: htnCompound
   id: MouseCompound
   branches:
+# ES START
+    - tasks:
+        - !type:HTNCompoundTask
+          task: ESCutCablesCompound
+# ES END
     - tasks:
         - !type:HTNCompoundTask
           task: FoodCompound
     - tasks:
         - !type:HTNCompoundTask
           task: IdleCompound
-          
+
 - type: htnCompound
   id: MoproachCompound
   branches:

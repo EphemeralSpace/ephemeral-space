@@ -1,0 +1,32 @@
+- type: htnCompound
+  id: ESCutCablesCompound
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: ESOverCable
+
+    - !type:HTNPrimitiveTask
+      preconditions:
+      - !type:TargetInLOSPrecondition
+        targetKey: Target
+        rangeKey: InteractRange
+      operator: !type:ESSnipCableOperator
+        targetKey: Target
+
+- type: utilityQuery
+  id: ESOverCable
+  query:
+  - !type:ComponentQuery
+    components:
+    - type: Cable
+  considerations:
+  - !type:ESTargetBesideCon
+    curve: !type:PresetCurve
+      preset: TargetDistance
+  - !type:ESCanInteractCon
+    curve: !type:BoolCurve
+  - !type:TargetAccessibleCon
+    curve: !type:BoolCurve
+  - !type:TargetInLOSOrCurrentCon
+    curve: !type:BoolCurve
