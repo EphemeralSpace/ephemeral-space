@@ -24,14 +24,26 @@ public sealed class ESDirectKillTargetObjectiveSystem : ESBaseTargetObjectiveSys
 
     private void OnKillReported(Entity<ESDirectKillTargetObjectiveMarkerComponent> ent, ref ESPlayerKilledEvent args)
     {
-        if (!args.ValidKill || !MindSys.TryGetMind(args.Killer.Value, out var mind))
+        // we only care about kills with an actual associated killer
+        if (!args.ValidKill)
+            return;
+
+        // We need the killer's mind since we need to ensure that the targeting objective
+        // that we increment is the one that belongs to the killer.
+        if (!MindSys.TryGetMind(args.Killer.Value, out var killerMind))
             return;
 
         foreach (var objective in GetTargetingObjectives(ent))
         {
+            // If the objective doesn't belong to the person who got the kill
+            // then we want to ignore it and not increment the counter.
+            if (!ObjectivesSys.HasObjective(killerMind.Value, objective))
+                continue;
+
+            // Increment and count the kill
             ObjectivesSys.AdjustObjectiveCounter(objective.Owner);
 
-            if (objective.Comp.SuccessMessage.HasValue && _player.TryGetSessionById(mind.Value.Comp.UserId, out var session))
+            if (objective.Comp.SuccessMessage.HasValue && _player.TryGetSessionById(killerMind.Value.Comp.UserId, out var session))
             {
                 var msg = Loc.GetString(objective.Comp.SuccessMessage, ("name", Name(args.Killed)));
                 var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
