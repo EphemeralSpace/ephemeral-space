@@ -1,3 +1,4 @@
+using Content.Shared._ES.Sparks;
 using Content.Shared.Audio;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -39,6 +40,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
     [Dependency] private readonly SharedDeviceLinkSystem _deviceLink = default!;
 // ES START
     [Dependency] private readonly SharedGameTicker _gameTicker = default!;
+    [Dependency] private readonly ESSparksSystem _sparks = default!;
 // ES END
 
     private static readonly TimeSpan ThunkDelay = TimeSpan.FromSeconds(2);
@@ -249,6 +251,9 @@ public abstract class SharedPoweredLightSystem : EntitySystem
             return false;
 
         // break it
+// ES START
+        _sparks.DoSparks(uid, user: user, tileFireChance: 0.05f);
+// ES END
         _bulbSystem.SetState(bulbUid.Value, LightBulbState.Broken, lightBulb);
         _bulbSystem.PlayBreakSound(bulbUid.Value, lightBulb, user);
         UpdateLight(uid, light);
