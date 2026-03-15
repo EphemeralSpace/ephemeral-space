@@ -15,6 +15,7 @@
   table:
     all:
     - id: ESDegradationEventAirlocks
+    - id: ESDegradationEventMouse
     - id: ESDegradationEventCommunicationsConsole
     - id: ESDegradationEventCriminalRecords
     - id: ESDegradationEventTelecoms
@@ -32,6 +33,25 @@
   - type: ESAirlockFailureEvent
   - type: StationEvent
     weight: 50
+
+- type: entity
+  parent: ESBaseDegradationEvent
+  id: ESDegradationEventMouse
+  name: Mouse Swarm
+  description: Sends mice into maintenance to nibble wires.
+  components:
+  - type: ESSpawnRandomRule
+    spawnRegion: ESMaintenance
+    table:
+      group:
+      - id: MobMouse
+      - id: MobMouse1
+      - id: MobMouse2
+      rolls: 5, 8
+  - type: ESTimedDespawn
+    lifetime: 1.0
+  - type: StationEvent
+    weight: 40
 
 - type: entity
   parent: ESBaseDegradationEvent
