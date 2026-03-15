@@ -46,6 +46,7 @@
     - id: ESStationEventVentClog
     - id: ESStationEventMeteorSwarm
     - id: ESStationEventElectricalFire
+    - id: ESStationEventVentSwarm
 
 # Event Prototypes
 
@@ -213,6 +214,39 @@
         volume: -4
     startAnnouncement: station-event-vent-clog-start-announcement
   - type: VentClogRule
+
+## Vent Swarm
+- type: entity
+  parent: ESBaseStationEvent
+  id: ESStationEventVentSwarm
+  name: Critter Swarm
+  description: Causes a swarm of critters to enter through a vent
+  components:
+  - type: StationEvent
+    startAudio:
+      path: /Audio/_ES/Announcements/critterswarm.ogg
+      params:
+        volume: -4
+    duration: 120
+  - type: ESVentSwarmRule
+    spawnTable:
+      group:
+      - id: MobMouse
+      - id: MobMouse1
+      - id: MobMouse2
+  - type: ESSynchronizedVoteManager
+    votes:
+    - ESVoteVentSwarmLocation
+
+- type: entity
+  id: ESVoteVentSwarmLocation
+  name: Where should the swarm enter?
+  components:
+  - type: ESVote
+    queryString: es-voter-query-string-vent-swarm-location
+    duration: 30
+  - type: ESGasVentVote
+    count: 4
 
 ## Meteor Swarm
 - type: entity
