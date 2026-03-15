@@ -5,5 +5,8 @@ namespace Content.Server._ES.StationEvents.LightOverload.Components;
 public sealed partial class ESLightOverloadRuleComponent : Component
 {
     [DataField]
-    public List<EntityUid> Apcs;
+    public List<EntityUid> Apcs = [];
+
+    [DataField]
+    public float Radius = 8f;
 }

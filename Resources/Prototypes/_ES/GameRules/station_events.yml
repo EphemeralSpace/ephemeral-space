@@ -44,6 +44,7 @@
     - id: ESStationEventPowerGridCheck
     - id: ESStationEventSolarFlare
     - id: ESStationEventVentClog
+    - id: ESStationEventLightOverload
     - id: ESStationEventMeteorSwarm
     - id: ESStationEventElectricalFire
 
@@ -273,3 +274,30 @@
   - type: ESRandomLocationVote
     count: 6
     checkLOS: false
+
+## Light Overload
+- type: entity
+  parent: ESBaseStationEvent
+  id: ESStationEventLightOverload
+  name: Light Overload
+  description: Overload several APCs across the station, breaking all lights attached to them.
+  components:
+  - type: StationEvent
+    startAudio:
+      path: /Audio/_ES/Announcements/attention_medium.ogg
+      params:
+        volume: -4
+    startAnnouncement: es-station-event-light-overload-start-announcement
+  - type: ESLightOverloadRule
+  - type: ESSynchronizedVoteManager
+    votes:
+    - ESVoteLightOverloadAPC
+
+- type: entity
+  id: ESVoteLightOverloadAPC
+  name: Which APC should be overloaded?
+  components:
+  - type: ESVote
+    queryString: es-voter-query-string-light-overload-location
+    duration: 30
+  - type: ESApcVote

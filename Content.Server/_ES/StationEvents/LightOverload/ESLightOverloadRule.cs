@@ -5,12 +5,14 @@ using Content.Server.StationEvents.Events;
 using Content.Shared._ES.Voting.Components;
 using Content.Shared._ES.Voting.Results;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Light.Components;
 using Robust.Shared.Random;
 
 namespace Content.Server._ES.StationEvents.LightOverload;
 
 public sealed class ESLightOverloadRule : StationEventSystem<ESLightOverloadRuleComponent>
 {
+    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly PoweredLightSystem _poweredLight = default!;
 
     /// <inheritdoc/>
@@ -65,13 +67,11 @@ public sealed class ESLightOverloadRule : StationEventSystem<ESLightOverloadRule
             if (TerminatingOrDeleted(apc))
                 return;
 
-            if (!TryComp<ApcPowerProviderComponent>(apc, out var apcPowerComponent))
-                return;
 
-            foreach (var receiverComp in apcPowerComponent.LinkedReceivers)
+            var coords = Transform(apc).Coordinates;
+            foreach (var light in _entityLookup.GetEntitiesInRange<PoweredLightComponent>(coords, component.Radius))
             {
-                var receiver = receiverComp.Owner;
-                _poweredLight.TryDestroyBulb(receiver);
+                _poweredLight.TryDestroyBulb(light);
             }
         }
     }
