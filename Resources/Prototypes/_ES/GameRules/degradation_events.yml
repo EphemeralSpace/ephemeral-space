@@ -4,7 +4,6 @@
   name: Unnamed Degradation Event
   abstract: true
   components:
-  - type: ESDegradationEvent
   - type: StationEvent
     earliestStart: 0
     reoccurrenceDelay: 0
@@ -30,12 +29,7 @@
   name: Airlock Bolt Breakage
   description: Breaks airlocks, making them get stuck when opened.
   components:
-  - type: ESDegradationEvent
-    count: 1, 5
-    component: Airlock
-    blacklist:
-      components:
-      - Docking
+  - type: ESAirlockFailureEvent
   - type: StationEvent
     weight: 50
 

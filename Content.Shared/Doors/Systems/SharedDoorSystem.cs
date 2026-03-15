@@ -32,6 +32,10 @@ namespace Content.Shared.Doors.Systems;
 
 public abstract partial class SharedDoorSystem : EntitySystem
 {
+// ES START
+    [Dependency] private readonly ESDegradationSystem _degradation = default!;
+    [Dependency] private readonly ESAirlockFailureSystem _airlockFailure = default!;
+// ES END
     [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
     [Dependency] protected readonly IGameTiming GameTiming = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -392,6 +396,13 @@ public abstract partial class SharedDoorSystem : EntitySystem
             Audio.PlayPredicted(door.OpenSound, uid, user, AudioParams.Default.WithVolume(-5));
         else if (_net.IsServer)
             Audio.PlayPvs(door.OpenSound, uid, AudioParams.Default.WithVolume(-5));
+
+// ES START
+        if (user.HasValue && _airlockFailure.TryUseFailureCharge(user.Value))
+        {
+            _degradation.Degrade(uid, user);
+        }
+// ES END
 
         if (lastState == DoorState.Emagging && TryComp<DoorBoltComponent>(uid, out var doorBoltComponent))
             SetBoltsDown((uid, doorBoltComponent), true, user, true);
