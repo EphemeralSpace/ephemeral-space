@@ -27,13 +27,14 @@ public sealed class ESVentSwarmRule : StationEventSystem<ESVentSwarmRuleComponen
 
     private void OnVotesCompleted(Entity<ESVentSwarmRuleComponent> ent, ref ESSynchronizedVotesCompletedEvent args)
     {
-        if (!args.TryGetResult<ESEntityVoteOption>(0, out var ventOption))
+        if (!args.TryGetResult<ESEntityVoteOption>(0, out var ventOption) ||
+            !TryGetEntity(ventOption.Entity, out var vent))
         {
             ForceEndSelf(ent);
             return;
         }
 
-        ent.Comp.Vent = GetEntity(ventOption.Entity);
+        ent.Comp.Vent = vent.Value;
 
         if (TryComp<StationEventComponent>(ent, out var station))
         {
