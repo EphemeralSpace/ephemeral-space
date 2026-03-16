@@ -44,6 +44,9 @@ es-mask-vandal-desc = As a Vandal, sabotage random machines around the station f
 es-mask-veteran-name = Veteran
 es-mask-veteran-desc = As a Veteran, help the station by using your trusty sidearm to take care of anybody who isn't aligned with the crew.
 
+es-mask-vigilante-name = Vigilante
+es-mask-vigilante-desc = As a Vigilante, seek out those who have killed others and bring them to justice by killing them yourself.
+
 es-mask-vip-name = VIP
 es-mask-vip-desc = As a VIP, use your fancy VIP card to help confirm your innocence in times of peril.
 

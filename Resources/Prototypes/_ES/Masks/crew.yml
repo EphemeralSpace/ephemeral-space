@@ -158,6 +158,20 @@
       id: ESCrateCacheCrewVeteran
 
 - type: esMask
+  id: ESVigilante
+  name: es-mask-vigilante-name
+  troupe: ESCrew
+  description: es-mask-vigilante-desc
+  color: orchid
+  weight: 1
+  objectives:
+    id: ESObjectiveKillNonCrew
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewVeteran
+
+- type: esMask
   id: ESVIP
   name: es-mask-vip-name
   troupe: ESCrew
