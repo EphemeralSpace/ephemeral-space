@@ -33,6 +33,7 @@ using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableCom
 using PullerComponent = Content.Shared.Movement.Pulling.Components.PullerComponent;
 // ES START
 using Content.Shared._ES.Sparks;
+using Content.Shared.Interaction.Events;
 // ES END
 
 namespace Content.Server.Electrocution;
@@ -83,8 +84,9 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
 
         SubscribeLocalEvent<ElectrifiedComponent, StartCollideEvent>(OnElectrifiedStartCollide);
         SubscribeLocalEvent<ElectrifiedComponent, AttackedEvent>(OnElectrifiedAttacked);
-        SubscribeLocalEvent<ElectrifiedComponent, InteractHandEvent>(OnElectrifiedHandInteract);
-        SubscribeLocalEvent<ElectrifiedComponent, InteractUsingEvent>(OnElectrifiedInteractUsing);
+// ES START
+        SubscribeLocalEvent<ElectrifiedComponent, ContactInteractionEvent>(OnContactInteraction);
+// ES END
         SubscribeLocalEvent<RandomInsulationComponent, MapInitEvent>(OnRandomInsulationMapInit);
         SubscribeLocalEvent<PoweredLightComponent, AttackedEvent>(OnLightAttacked);
 
@@ -175,12 +177,6 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         TryDoElectrifiedAct(uid, args.User, 1, electrified);
     }
 
-    private void OnElectrifiedHandInteract(EntityUid uid, ElectrifiedComponent electrified, InteractHandEvent args)
-    {
-        if (electrified.OnHandInteract)
-            TryDoElectrifiedAct(uid, args.User, 1, electrified);
-    }
-
     private void OnLightAttacked(EntityUid uid, PoweredLightComponent component, AttackedEvent args)
     {
         if (!component.CurrentLit || args.Used != args.User)
@@ -192,17 +188,15 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         TryDoElectrocution(args.User, uid, component.UnarmedHitShock, component.UnarmedHitStun, false);
     }
 
-    private void OnElectrifiedInteractUsing(EntityUid uid, ElectrifiedComponent electrified, InteractUsingEvent args)
+// ES START
+    private void OnContactInteraction(Entity<ElectrifiedComponent> ent, ref ContactInteractionEvent args)
     {
-        if (!electrified.OnInteractUsing)
+        if (!ent.Comp.OnInteractUsing)
             return;
 
-        var siemens = TryComp<InsulatedComponent>(args.Used, out var insulation)
-            ? insulation.Coefficient
-            : 1;
-
-        TryDoElectrifiedAct(uid, args.User, siemens, electrified);
+        args.Handled = TryDoElectrifiedAct(ent, args.Other, 1f, ent.Comp);
     }
+// ES END
 
     public bool TryDoElectrifiedAct(EntityUid uid, EntityUid targetUid,
         float siemens = 1,
