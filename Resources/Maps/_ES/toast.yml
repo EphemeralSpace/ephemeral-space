@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 03/12/2026 21:17:48
-  entityCount: 14580
+  time: 03/16/2026 04:35:03
+  entityCount: 14581
 maps:
 - 3
 grids:
@@ -59143,6 +59143,14 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -59.5,-17.5
       parent: 2
+  - uid: 10271
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -59.5,-9.5
+      parent: 2
+    - type: GasPressurePump
+      targetPressure: 4500
 - proto: GasThermoMachineFreezer
   entities:
   - uid: 1266
