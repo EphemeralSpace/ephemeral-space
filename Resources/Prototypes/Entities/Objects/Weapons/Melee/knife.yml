@@ -7,8 +7,10 @@
     tags:
     - Knife
   - type: Sharp
-  - type: Execution
-    doAfterDuration: 4.0
+# ES START
+#  - type: Execution
+#    doAfterDuration: 4.0
+# ES END
   - type: Utensil
     types:
       - Knife
@@ -388,8 +390,10 @@
   - type: Appearance
   - type: ComponentToggler
     components:
-    - type: Execution
-      doAfterDuration: 4.0
+# ES START
+#    - type: Execution
+#      doAfterDuration: 4.0
+# ES END
     - type: Sharp
     - type: Utensil
       types:
