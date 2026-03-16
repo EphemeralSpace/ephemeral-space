@@ -2,6 +2,7 @@ using Content.Server._ES.Masks.Avenger.Components;
 using Content.Server.Actions;
 using Content.Server.Chat.Managers;
 using Content.Server.Pinpointer;
+using Content.Server.Roles.Jobs;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Objectives.Target;
 using Content.Shared.Chat;
@@ -16,6 +17,8 @@ public sealed class ESAvengeOnKillObjectiveSystem : ESBaseTargetObjectiveSystem<
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly JobSystem _job = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
 
     public override Type[] TargetRelayComponents { get; } = [typeof(ESAvengeOnKillObjectiveMarkerComponent)];
@@ -70,8 +73,15 @@ public sealed class ESAvengeOnKillObjectiveSystem : ESBaseTargetObjectiveSystem<
         if (!ObjectivesSys.TryAddObjective(holder.Value.AsNullable(), avenge.Comp.AvengeObjective, out var objective))
             return;
         TargetObjective.SetTarget(objective.Value.Owner, args.Killer);
+        _metaData.SetEntityName(objective.Value,
+            Loc.GetString(avenge.Comp.AvengeTitle,
+            ("targetName", Name(args.Killed)),
+            ("job", _job.GetJobName(args.Killed))));
 
         if (mind?.OwnedEntity is { } body)
             _actions.AddAction(body, avenge.Comp.ActionPrototype);
+
+        // Remove the protect objective
+        ObjectivesSys.TryRemoveObjective(avenge.Owner);
     }
 }

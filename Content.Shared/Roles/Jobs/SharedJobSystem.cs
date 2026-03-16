@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.Mind;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles.Components;
@@ -14,6 +15,9 @@ namespace Content.Shared.Roles.Jobs;
 /// </summary>
 public abstract class SharedJobSystem : EntitySystem
 {
+// ES START
+    [Dependency] private readonly SharedMindSystem _mind = default!;
+// ES END
     [Dependency] private readonly SharedPlayerSystem _playerSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
@@ -206,6 +210,18 @@ public abstract class SharedJobSystem : EntitySystem
         MindTryGetJobName(mindId, out var name);
         return name;
     }
+// ES START
+    public string GetJobName(EntityUid uid)
+    {
+        if (_mind.TryGetMind(uid, out var mindId) &&
+            MindTryGetJobName(mindId, out var jobName))
+        {
+            return jobName;
+        }
+
+        return Loc.GetString("generic-unknown-title");
+    }
+// ES END
 
     public bool CanBeAntag(ICommonSession player)
     {

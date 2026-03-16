@@ -89,7 +89,6 @@ es-mask-sleeper-agent-desc = As a covert operative, you're a member of crew and 
 es-objective-issuer-mask = Mask
 
 es-objective-condition-crewmember-kill-title = Kill {$targetName}, {CAPITALIZE($job)}
-es-objective-condition-protect-title = Protect {$targetName}, {CAPITALIZE($job)}
 
 es-mask-gear-cache-messsage = Your gear can be found in {$cacheLocation}.
 

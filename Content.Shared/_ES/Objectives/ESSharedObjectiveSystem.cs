@@ -360,12 +360,21 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         return true;
     }
 
+    public bool TryRemoveObjective(Entity<ESObjectiveComponent?> objective)
+    {
+        if (!TryFindObjectiveHolder(objective, out var holder))
+            return false;
+
+        return TryRemoveObjective(holder.Value.AsNullable(), objective);
+    }
+
     public bool TryRemoveObjective(Entity<ESObjectiveHolderComponent?> ent, Entity<ESObjectiveComponent?> objective)
     {
         if (!Resolve(ent, ref ent.Comp) || !Resolve(objective, ref objective.Comp))
             return false;
 
-        ent.Comp.OwnedObjectives.Remove(objective);
+        if (!ent.Comp.OwnedObjectives.Remove(objective))
+            return false;
         RegenerateObjectiveList(ent);
         Del(objective);
         return true;
