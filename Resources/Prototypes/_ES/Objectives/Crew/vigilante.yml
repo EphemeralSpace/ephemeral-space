@@ -8,4 +8,5 @@
     icon:
       sprite: _ES/Objects/Weapons/Guns/357.rsi
       state: icon
+  - type: ESKillKillerObjective
   - type: ESCounterObjective

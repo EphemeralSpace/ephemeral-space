@@ -56,7 +56,7 @@ public readonly struct ESPlayerKilledEvent(EntityUid killed, EntityUid? killer)
 }
 
 /// <summary>
-/// Event raised on an entity when they kill and entity with <see cref="ESKillTrackerComponent"/>.
+/// Event raised on an entity when they kill an entity with <see cref="ESKillTrackerComponent"/>.
 /// </summary>
 [ByRefEvent]
 public readonly struct ESKilledPlayerEvent(EntityUid killed, EntityUid killer)
