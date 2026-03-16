@@ -169,7 +169,7 @@
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto:
-      id: ESCrateCacheCrewVeteran
+      id: ESCrateCacheCrewVigilante
 
 - type: esMask
   id: ESVIP

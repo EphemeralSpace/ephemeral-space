@@ -133,6 +133,28 @@
         weight: 2
       - id: ESWeaponPistol9mmSilenced
 
+# Vigilante
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewVigilante
+  suffix: ES, Vigilante Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESCrewCacheVigilante
+
+- type: entityTable
+  id: ESCrewCacheVigilante
+  table:
+    group:
+    - all:
+      - id: ESWeaponRevolver357
+    - group:
+      - id: ESWeaponPistol9mm
+        weight: 2
+      - id: ESWeaponPistol9mmSilenced
+
 # Survivalist
 - type: entity
   parent: ESCrateCache
