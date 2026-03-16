@@ -165,7 +165,7 @@
   color: orchid
   weight: 1
   objectives:
-    id: ESObjectiveKillNonCrew
+    id: ESObjectiveVigilanteKillKiller
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto:
