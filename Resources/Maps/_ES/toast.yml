@@ -4,7 +4,7 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 03/16/2026 04:35:03
+  time: 03/16/2026 04:56:44
   entityCount: 14581
 maps:
 - 3
@@ -31507,11 +31507,6 @@ entities:
     - type: Transform
       pos: -25.5,-11.5
       parent: 2
-  - uid: 4931
-    components:
-    - type: Transform
-      pos: -47.5,-1.5
-      parent: 2
   - uid: 4932
     components:
     - type: Transform
@@ -45419,6 +45414,13 @@ entities:
     components:
     - type: Transform
       pos: 27.5,-28.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 4931
+    components:
+    - type: Transform
+      pos: -47.5,-0.5
       parent: 2
     - type: Fixtures
       fixtures: {}
