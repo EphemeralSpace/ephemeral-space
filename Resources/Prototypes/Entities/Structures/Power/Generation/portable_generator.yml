@@ -37,9 +37,10 @@
     # Visuals
     - type: Appearance
     - type: Sprite
-      sprite: Structures/Power/Generation/portable_generator.rsi
+# ES Start
+      sprite: _ES/Structures/Power/portable_generator.rsi
+# ES End
       noRot: true
-
     # Construction, interaction
     - type: WiresPanel
     - type: UserInterface
@@ -182,8 +183,10 @@
       loadNodes:
         - output_hv
         - output_mv
-      sprite: Structures/Power/Generation/portable_generator.rsi
+# ES Start
+      sprite: _ES/Structures/Power/portable_generator.rsi
       state: portgen0
+# ES End
     - type: PowerSupplier
       supplyRampRate: 5000
       supplyRampTolerance: 1500
@@ -321,7 +324,9 @@
     - type: PowerMonitoringDevice
       group: Generator
       loadNode: output
-      sprite: Structures/Power/Generation/portable_generator.rsi
+# ES Start
+      sprite: _ES/Structures/Power/portable_generator.rsi
+# ES End
       state: portgen3
     - type: PowerSupplier
       # No ramping needed on this bugger.
