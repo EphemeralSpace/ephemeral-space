@@ -6,7 +6,10 @@
 - type: entity
   abstract: true
   id: PortableGeneratorBase
-  parent: [ BaseMachine, SmallConstructibleMachine, StructureWheeled]
+# ES Start
+# Take StructureWheeled and move it to the small gen only
+  parent: [ BaseMachine, SmallConstructibleMachine]
+# ES End
   components:
     # Basic properties
     - type: Transform
@@ -199,6 +202,10 @@
   parent: PortableGeneratorSwitchableBase
   id: PortableGeneratorSuperPacman
   suffix: Uranium, 50 kW
+# ES Start
+# Hardfork coin: remove this prototype later
+  tags: [ HideSpawnMenu ]
+# ES End
   components:
     - type: Sprite
       layers:
@@ -253,7 +260,9 @@
     A small generator capable of powering individual rooms, in case of emergencies.
     Runs off welding fuel and is rated for up to 8 kW.
     Rated ages 3 and up.
-  parent: PortableGeneratorBase
+# ES Start
+  parent: [PortableGeneratorBase, StructureWheeled]
+# ES End
   id: PortableGeneratorJrPacman
   suffix: Welding Fuel, 8 kW
   components:
