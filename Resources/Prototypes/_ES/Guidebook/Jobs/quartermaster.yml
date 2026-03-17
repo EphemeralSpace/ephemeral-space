@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESQuartermaster
+  hidden: false
+  name: Quartermaster
+  text: "/ServerInfo/_ES/Guidebook/Jobs/Quartermaster.xml"

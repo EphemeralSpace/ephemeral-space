@@ -22,8 +22,15 @@
         damage:
           types:
             Asphyxiation:
-              1.25
+              2
       - !type:ESAddWound
         minScale: 0.5
         wound: ESWoundSmokeInhalation
         probability: 0.33
+      - !type:Emote
+        conditions:
+        - !type:ReagentCondition
+          reagent: Smoke
+          min: 0.1
+        emote: Cough
+        probability: 0.05

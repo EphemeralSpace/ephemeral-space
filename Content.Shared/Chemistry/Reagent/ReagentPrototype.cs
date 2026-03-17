@@ -289,7 +289,14 @@ namespace Content.Shared.Chemistry.Reagent
 
         public ReagentEffectsGuideEntry MakeGuideEntry(IPrototypeManager prototype, IEntitySystemManager entSys, ReagentPrototype proto)
         {
-            return new ReagentEffectsGuideEntry(MetabolismRate, proto.GuidebookReagentEffectsDescription(prototype, entSys, Effects, MetabolismRate).ToArray());
+            // Begin Offbrand - Status Effects
+            return new ReagentEffectsGuideEntry(MetabolismRate,
+                proto.GuidebookReagentEffectsDescription(prototype, entSys, Effects, MetabolismRate)
+                    .Concat(StatusEffects.Select(effect => effect.Describe(prototype, entSys))
+                        .Where(effect => effect is not null)
+                        .Select(x => x!))
+                    .ToArray());
+            // End Offbrand - Status Effects
         }
     }
 

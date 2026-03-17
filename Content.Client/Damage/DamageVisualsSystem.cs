@@ -138,6 +138,12 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
             || !HasComp<AppearanceComponent>(entity))
             return;
 
+        // ES START
+        // LET ME FUCKING DISABLE YOU
+        if (damageVisComp.Disabled)
+            return;
+        // ES END
+
         damageVisComp.Thresholds.Add(FixedPoint2.Zero);
         damageVisComp.Thresholds.Sort();
 

@@ -1,0 +1,11 @@
+- type: guideEntry
+  id: ESAtmospherics
+  hidden: false
+  name: Atmospherics
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics.xml"
+  children:
+  - ESAtmosDevices
+  - ESPipeNetworks
+  - ESDeltaPressure
+  - ESGasses
+  - ESSpacing

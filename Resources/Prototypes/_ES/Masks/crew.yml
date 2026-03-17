@@ -82,6 +82,7 @@
   objectives:
     all:
     - id: ESObjectiveHaterHate
+    - id: ESObjectiveHaterDontKill
 
 - type: esMask
   id: ESMercenary

@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.IntegrationTests.Tests._Citadel.Attributes;
 using Content.IntegrationTests.Tests._Citadel.Constraints;
 using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;

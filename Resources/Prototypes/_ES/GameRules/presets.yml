@@ -4,12 +4,14 @@
   id: ESMasqueradeManaged
   name: es-preset-masquerade-title
   description: es-preset-masquerade-desc
+  showInVote: true
   rules:
   - ESMasqueradeGameRule
   - ESSchedulerRuleStationEventVote
   - ESSchedulerRuleDegradationEventVote
   - ESBasicRoundstartVariation
   - ESRoundEndRuleRadstorm
+  - ESArmoryRule
 
 - type: gamePreset
   id: ESExtended
@@ -21,19 +23,7 @@
   - ESSchedulerRuleDegradationEventVote
   - ESBasicRoundstartVariation
   - ESRoundEndRuleRadstorm
-
-- type: gamePreset
-  id: ESTraitors
-  name: es-preset-traitor-title
-  description: es-preset-traitor-desc
-  showInVote: true # votable until a second antagonist is implemented
-  rules:
-  - ESTroupeRuleCrew
-  - ESTroupeRuleTraitor
-  - ESSchedulerRuleStationEventVote
-  - ESSchedulerRuleDegradationEventVote
-  - ESBasicRoundstartVariation
-  - ESRoundEndRuleRadstorm
+  - ESArmoryRule
 
 # Nonstandard modes
 
@@ -46,3 +36,4 @@
   rules:
   - Sandbox
   - ESBasicRoundstartVariation # included since it determines important features
+  - ESArmoryRule # this is stupid todo singleton stuff properly

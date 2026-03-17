@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client._ES.UI.Controls.Layout;
@@ -14,7 +16,35 @@ namespace Content.Client._ES.UI.Controls.Layout;
 public class Stack : BoxContainer
 {
 
+    [UsedImplicitly] // XAMLIL
+    public static ExpansionAxis GetExpandAxis(Control c)
+    {
+        var horizontal = c.HorizontalExpand ? ExpansionAxis.Horizontal : ExpansionAxis.None;
+        var vertical = c.VerticalExpand ? ExpansionAxis.Vertical : ExpansionAxis.None;
+
+        if (c is IImplicitExpansionControl i)
+            throw new Exception($"Cannot use the Expansion property on controls that imply their own expansion. Was using {i.GetType()}, you probably want {i.PreferredType}");
+
+        return horizontal | vertical;
+    }
+
+    [UsedImplicitly] // XAMLIL
+    public static void SetExpandAxis(Control c, ExpansionAxis axis)
+    {
+        c.HorizontalExpand = (axis & ExpansionAxis.Horizontal) != 0;
+        c.VerticalExpand = (axis & ExpansionAxis.Vertical) != 0;
+    }
 }
+
+[Flags]
+public enum ExpansionAxis
+{
+    None = 0,
+    Horizontal = 1,
+    Vertical = 2,
+    Both = Horizontal | Vertical,
+}
+
 
 /// <summary>
 ///     A vertically oriented container for a "stack" of controls.
@@ -36,8 +66,10 @@ public class VStack : Stack
 /// </summary>
 /// <seealso cref="Stack"/>
 [Virtual]
-public class VFillStack : VStack
+public class VFillStack : VStack, IImplicitExpansionControl
 {
+    public Type PreferredType => typeof(VStack);
+
     public VFillStack()
     {
         HorizontalExpand = true;
@@ -64,8 +96,10 @@ public class HStack : Stack
 /// </summary>
 /// <seealso cref="Stack"/>
 [Virtual]
-public class HFillStack : HStack
+public class HFillStack : HStack, IImplicitExpansionControl
 {
+    public Type PreferredType => typeof(HStack);
+
     public HFillStack()
     {
         VerticalExpand = true;

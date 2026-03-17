@@ -19,6 +19,17 @@ public sealed partial class ESObjectiveComponent : Component
     public float Progress;
 
     /// <summary>
+    /// If true, <see cref="Progress"/> will be inverted from the actual calculated progress.
+    /// </summary>
+    /// <example>
+    /// 1.0 -> 0.0
+    /// 0.5 -> 0.5
+    /// 0.0 -> 1.0
+    /// </example>
+    [DataField]
+    public bool InvertProgress;
+
+    /// <summary>
     /// Icon displayed for this objective in the UI.
     /// </summary>
     [DataField]

@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESEphemeralSpace
+  hidden: false
+  name: Ephemeral Space
+  text: "/ServerInfo/_ES/Guidebook/NewPlayer/EphemeralSpace.xml"

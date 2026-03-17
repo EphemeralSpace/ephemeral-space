@@ -108,7 +108,7 @@ public sealed partial class TestPlayer : IResolvesToEntity
             player.NetEntity = player._server.EntMan.GetNetEntity(sEntity);
         });
 
-        await test.RunTicksSync(5);
+        await test.RunUntilSynced();
 
         await player._client.WaitPost(() =>
         {
@@ -132,7 +132,7 @@ public sealed partial class TestPlayer : IResolvesToEntity
             _test.SDeleteNow(SEntity);
         });
 
-        await _test.RunTicksSync(5);
+        await _test.RunUntilSynced();
     }
 
     private void MutualThreadSanity([CallerMemberName] string caller = "<unknown>")

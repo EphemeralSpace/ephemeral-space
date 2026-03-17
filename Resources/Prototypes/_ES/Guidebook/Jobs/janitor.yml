@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESJanitor
+  hidden: false
+  name: Janitor
+  text: "/ServerInfo/_ES/Guidebook/Jobs/Janitor.xml"

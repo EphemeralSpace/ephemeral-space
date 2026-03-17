@@ -179,7 +179,7 @@
         - !type:ReagentCondition
           reagent: Bicaridine
           min: 15
-      - !type:Drunk
+      # - !type:Drunk - Offbrand - NO
 
 - type: reagent
   id: Cryoxadone

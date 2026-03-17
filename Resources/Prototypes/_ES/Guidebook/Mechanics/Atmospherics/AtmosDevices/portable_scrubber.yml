@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESPortableScrubber
+  hidden: false
+  name: Portable Scrubber
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/AtmosDevices/PortableScrubber.xml"

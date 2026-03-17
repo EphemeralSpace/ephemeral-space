@@ -1,5 +1,6 @@
 #nullable enable
 using Content.Client.Weapons.Melee;
+using Content.IntegrationTests.Tests._Citadel.Attributes;
 using Content.Server.CombatMode;
 using Content.Shared.CombatMode;
 using Content.Shared.Weapons.Melee;

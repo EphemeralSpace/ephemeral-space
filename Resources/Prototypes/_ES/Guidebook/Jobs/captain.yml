@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESCaptain
+  hidden: false
+  name: Captain
+  text: "/ServerInfo/_ES/Guidebook/Jobs/Captain.xml"

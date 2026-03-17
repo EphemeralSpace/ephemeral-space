@@ -63,6 +63,12 @@ public sealed class ESMartyrSystem : EntitySystem
         EnsureComp<ESMartyrKillerMarkerComponent>(args.Killer.Value);
         _timer.SpawnTimer(args.Killer.Value, ent.Comp.TimeBeforeKillerDeath, new ESMartyrKillerTimeToDieEvent());
 
+        var notifMsg = Loc.GetString("es-stagehand-notifications-martyr-got-martyred",
+            ("player", _notif.WrapEntityNameWithUsername(args.Killed)),
+            ("attacker", _notif.WrapEntityName(args.Killer.Value)));
+
+        _notif.SendStagehandNotification(notifMsg, ESStagehandNotificationSeverity.High);
+
         if (!TryComp<ActorComponent>(args.Killer.Value, out var actor))
             return;
 
@@ -72,11 +78,5 @@ public sealed class ESMartyrSystem : EntitySystem
         // we are kind of misusing quickdialogs by just using them as a persistent UI popup rather than
         // entering any data, so we just ignore it with an empty action
         _quickDialog.OpenDialog<string>(actor.PlayerSession, title, msg, _ => {});
-
-        var notifMsg = Loc.GetString("es-stagehand-notifications-martyr-got-martyred",
-            ("player", _notif.WrapEntityNameWithUsername(args.Killed)),
-            ("attacker", _notif.WrapEntityNameWithUsername(args.Killer.Value)));
-
-        _notif.SendStagehandNotification(notifMsg, ESStagehandNotificationSeverity.High);
     }
 }

@@ -1,0 +1,28 @@
+- type: entity
+  parent: BaseWall
+  id: ESWallArmory
+  name: hardened reinforced wall
+  description: Effectively impervious to conventional means of destruction. Looks kind of bouncy.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Walls/tube.rsi
+    state: full
+  - type: Icon
+    sprite: _ES/Structures/Walls/tube.rsi
+    state: full
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 2000
+  - type: IconSmooth
+    key: armorywalls
+    base: state
+  - type: RadiationBlocker
+    resistance: 1000

@@ -28,6 +28,12 @@ public sealed class ESAvengeSelfObjectiveSystem : ESBaseObjectiveSystem<ESAvenge
 
     private void OnKillReported(Entity<ESAvengeSelfObjectiveComponent> ent, ref ESPlayerKilledEvent args)
     {
+        if (!ObjectivesSys.TryFindObjectiveHolder(ent.Owner, out var holder))
+            return;
+
+        if (!ObjectivesSys.TryAddObjective(holder.Value.AsNullable(), ent.Comp.AvengeObjective, out var objective))
+            return;
+
         var user = _player.TryGetSessionByEntity(args.Killed, out var session) ? session.Channel : null;
         string msg;
 
@@ -35,13 +41,13 @@ public sealed class ESAvengeSelfObjectiveSystem : ESBaseObjectiveSystem<ESAvenge
             !MindSys.TryGetMind(args.Killer.Value, out _, out var mindComp) ||
             mindComp.OwnedEntity is not { } body)
         {
-            _metaData.SetEntityName(ent, Loc.GetString(ent.Comp.FailName));
+            _metaData.SetEntityName(objective.Value, Loc.GetString(ent.Comp.FailName));
 
             msg = Loc.GetString(ent.Comp.FailMessage);
         }
         else
         {
-            _targetObjective.SetTarget(ent.Owner, body);
+            _targetObjective.SetTarget(objective.Value.Owner, body);
 
             msg = Loc.GetString(ent.Comp.SuccessMessage);
         }

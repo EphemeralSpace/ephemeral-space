@@ -1,34 +1,5 @@
 ### ES-specific
 - type: construction
-  id: ESWallTube
-  hide: false
-  graph: Girder
-  startNode: start
-  targetNode: ESWallTube
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
-  id: ESWallDiagonalTube
-  hide: false
-  name: es-construction-recipe-diagonal-tube-wall
-  graph: Girder
-  startNode: start
-  targetNode: ESWallDiagonalTube
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: true
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
   id: ESKeypadFrame
   hide: false
   graph: ESKeypad

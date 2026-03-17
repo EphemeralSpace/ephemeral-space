@@ -16,4 +16,4 @@
   components:
   - type: ActionGrant
     actions:
-    - ESActionSprint
+    - ESActionAdrenalineRush

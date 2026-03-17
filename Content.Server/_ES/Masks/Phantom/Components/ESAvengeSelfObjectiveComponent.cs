@@ -1,3 +1,6 @@
+using Content.Shared._ES.Objectives.Target.Components;
+using Robust.Shared.Prototypes;
+
 namespace Content.Server._ES.Masks.Phantom.Components;
 
 /// <summary>
@@ -7,6 +10,12 @@ namespace Content.Server._ES.Masks.Phantom.Components;
 [Access(typeof(ESAvengeSelfObjectiveSystem))]
 public sealed partial class ESAvengeSelfObjectiveComponent : Component
 {
+    /// <summary>
+    /// Objective added when killed.
+    /// </summary>
+    [DataField]
+    public EntProtoId<ESTargetObjectiveComponent> AvengeObjective = "ESObjectivePhantomAvenge";
+
     /// <summary>
     /// Objective name used when the player fails to be killed by someone.
     /// </summary>

@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESAssistant
+  hidden: false
+  name: Assistant
+  text: "/ServerInfo/_ES/Guidebook/Jobs/Assistant.xml"

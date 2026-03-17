@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by Spessmann: https://github.com/Spessmann",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "ame"
+        },
+        {
+            "name": "armory"
+        },
+        {
+            "name": "control"
+        },
+        {
+            "name": "portal"
+        },
+        {
+            "name": "tech"
+        }
+    ]
+}

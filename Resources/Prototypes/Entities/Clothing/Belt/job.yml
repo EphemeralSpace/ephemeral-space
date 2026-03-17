@@ -30,6 +30,9 @@
       - WeldingMask
       - RemoteSignaller
       - UtilityKnife
+# ES Start
+      - FireExtinguisher # lets mini extinguisher go on there. normal extinguishers are still too big
+# ES End
       components:
       - StationMap
       - SprayPainter

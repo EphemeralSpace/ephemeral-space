@@ -17,7 +17,6 @@
   equipment:
     shoes: ClothingShoesColorWhite
     id: AtmosPDA
-    belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
     jumpsuit: ClothingUniformJumpsuitAtmos
     back: ClothingBackpack

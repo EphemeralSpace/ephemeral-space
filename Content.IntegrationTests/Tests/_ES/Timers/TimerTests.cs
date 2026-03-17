@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Content.IntegrationTests.Tests._Citadel;
+using Content.IntegrationTests.Tests._Citadel.Attributes;
 using Content.IntegrationTests.Tests._Citadel.Constraints;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Core.Timer.Components;
@@ -42,7 +43,7 @@ public sealed class TimerTests : GameTest
                     case Side.Server:
                         Assert.That(type, Has.No.Attribute<NetSerializableAttribute>());
                         break;
-                    case Side.Neither: // Shared
+                    case Side.Both: // Shared
                         Assert.That(type, Has.Attribute<NetSerializableAttribute>().Or.Attribute<NonNetworkedTimerEventAttribute>());
                         break;
                     default:
@@ -157,12 +158,12 @@ public sealed class TimerTests : GameTest
             }
             else
             {
-                _assembliesToSide.Add(a, Side.Neither);
-                return Side.Neither;
+                _assembliesToSide.Add(a, Side.Both);
+                return Side.Both;
             }
         }
 
-        _assembliesToSide.Add(a, Side.Neither);
-        return Side.Neither;
+        _assembliesToSide.Add(a, Side.Both);
+        return Side.Both;
     }
 }

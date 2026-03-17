@@ -1,4 +1,5 @@
 #nullable enable
+using Content.IntegrationTests.Tests._Citadel.Attributes;
 using Content.IntegrationTests.Tests._Citadel.Constraints;
 using Content.IntegrationTests.Tests._Citadel.Operators;
 using Robust.Shared.GameObjects;

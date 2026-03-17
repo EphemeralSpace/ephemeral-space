@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESGasses
+  hidden: false
+  name: Gasses
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/Gasses.xml"

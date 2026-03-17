@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESAirAlarms
+  hidden: false
+  name: Air Alarms
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/AtmosDevices/AirAlarms.xml"

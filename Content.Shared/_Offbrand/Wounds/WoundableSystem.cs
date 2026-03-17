@@ -161,7 +161,7 @@ public sealed class WoundableSystem : EntitySystem
         var damageable = Comp<DamageableComponent>(ent);
 
         if (args.Damage.AnyNegative() && !args.ForceRefresh)
-            OnHealed(ent, DamageSpecifier.GetNegative(args.Damage));
+            HealWounds(ent, DamageSpecifier.GetNegative(args.Damage), false, false);
 
         var evt = new WoundGetDamageEvent(new());
         RaiseLocalEvent(ent, ref evt);
@@ -271,10 +271,15 @@ public sealed class WoundableSystem : EntitySystem
         return true;
     }
 
-    private void OnHealed(Entity<WoundableComponent> ent, DamageSpecifier incoming)
+    public void HealWounds(Entity<WoundableComponent> ent, DamageSpecifier incoming, bool passive, bool refreshDamage)
     {
-        var evt = new HealWoundsEvent(incoming);
+        var evt = new HealWoundsEvent(incoming, passive);
         RaiseLocalEvent(ent, ref evt);
+
+        var actual = incoming - evt.Damage;
+
+        if (refreshDamage)
+            _damageable.TryChangeDamage(ent.Owner, actual, true, false, null, forceRefresh: true);
     }
 
     private void OnDamageChanged(Entity<WoundableComponent> ent, ref DamageChangedEvent args)
@@ -297,6 +302,16 @@ public sealed class WoundableSystem : EntitySystem
             return;
 
         var comp = Comp<WoundComponent>(ent);
+
+
+        if (args.Args.Passive)
+        {
+            if (comp.Damage.GetTotal() >= ent.Comp.RequiresTendingAbove &&
+                !(TryComp<TendableWoundComponent>(ent, out var tendable) && tendable.Tended))
+            {
+                return;
+            }
+        }
 
         args.Args = args.Args with { Damage = comp.Damage.Heal(args.Args.Damage).ToSpecifier() };
 

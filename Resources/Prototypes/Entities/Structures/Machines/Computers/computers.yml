@@ -365,7 +365,9 @@
     board: MedicalRecordsComputerCircuitboard
 
 - type: entity
-  parent: BaseComputerAiAccess
+  # ES START
+  parent: ESBaseComputerTerminal
+  # ES END
   id: ComputerCriminalRecords
   name: criminal records computer
   description: This can be used to check criminal records. Only security can modify them.
@@ -381,8 +383,11 @@
     key: enum.CriminalRecordsConsoleKey.Key
   - type: Sprite
     layers:
-    - map: ["computerLayerBody"]
-      state: computer
+    # ES START
+    - map: [ "computerLayerBody" ]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
+    # ES END
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
 # ES Start
@@ -576,7 +581,9 @@
     - AnalysisConsole
 
 - type: entity
-  parent: BaseComputerAiAccess
+  # ES START
+  parent: ESBaseComputerTerminal
+  # ES END
   id: ComputerId
   name: ID card computer
   description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
@@ -642,8 +649,11 @@
     speechSounds: Pai
   - type: Sprite
     layers:
+    # ES START
     - map: ["computerLayerBody"]
-      state: computer
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
+    # ES END
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
@@ -684,15 +694,20 @@
     color: "#1f8c28"
 
 - type: entity
-  parent: BaseComputerAiAccess
+  # ES START
+  parent: ESBaseComputerTerminal
+  # ES END
   id: ComputerComms
   name: communications computer
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
   - type: Sprite
     layers:
-    - map: ["computerLayerBody"]
-      state: computer
+    # ES START
+    - map: [ "computerLayerBody" ]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
+    # ES END
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]

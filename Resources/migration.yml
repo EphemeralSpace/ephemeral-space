@@ -329,6 +329,9 @@ ESSpawnPointHeadOfSecurity: ESSpawnPointSecurityOfficer
 ESSpawnPointWarden: ESSpawnPointSecurityOfficer
 LockerEngineerFilled: ESLockerEngineerFilled
 
+# 2026-3-13
+ESSpawnPointChemist: null
+
 # ES END
 
 # 2023-07-03

@@ -288,9 +288,9 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
         if (mind.Comp.OwnedEntity is { } owned)
         {
-            var name = _stagehandNotifications.WrapEntityNameWithUsername(owned);
-            var mask = Loc.GetString(PrototypeManager.Index(maskId).Name);
-            var msg = Loc.GetString("es-stagehand-notification-mask-change", ("player", name), ("mask", mask));
+            var msg = Loc.GetString("es-stagehand-notification-mask-change",
+                ("player", _stagehandNotifications.WrapEntityName(owned)),
+                ("mask", Loc.GetString(PrototypeManager.Index(maskId).Name)));
             _stagehandNotifications.SendStagehandNotification(msg, ESStagehandNotificationSeverity.High);
         }
     }

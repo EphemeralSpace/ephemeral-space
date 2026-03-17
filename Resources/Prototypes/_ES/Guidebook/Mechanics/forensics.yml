@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESForensics
+  hidden: false
+  name: Forensics
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Forensics.xml"

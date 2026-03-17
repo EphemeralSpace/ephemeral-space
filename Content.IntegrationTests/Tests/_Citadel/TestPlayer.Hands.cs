@@ -1,3 +1,4 @@
+using Content.IntegrationTests.Tests._Citadel.Attributes;
 using Content.Server.Hands.Systems;
 using Content.Shared.Hands.Components;
 using Robust.Shared.GameObjects;

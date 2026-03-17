@@ -6,7 +6,7 @@
   components:
   - type: ESObjective
     icon:
-      sprite: Clothing/Mask/clown.rsi
+      sprite: Objects/Misc/skub.rsi
       state: icon
   - type: ESTargetObjective
     title: es-hater-fail-objective-title
@@ -16,3 +16,24 @@
     objectiveBlacklist:
       components: # this will probably infinitely loop if it targets itself?
       - ESTargetCompleteOwnedObjective
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveHaterDontKill
+  name: Don't kill your target
+  description: You hate 'em, but you wouldn't want them dead. At least, not by your hands.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: /Textures/Objects/Specific/Medical/medical.rsi
+      state: gauze
+    invertProgress: true
+  - type: ESTargetObjective
+    title: es-hater-objective-dont-kill-title
+  - type: ESShareTargetObjective
+    objectiveWhitelist:
+      components:
+      - ESTargetCompleteOwnedObjective
+  - type: ESDirectKillTargetObjective
+    successMessage: null
+  - type: ESCounterObjective

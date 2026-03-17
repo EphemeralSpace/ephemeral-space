@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESSpacing
+  hidden: false
+  name: Spacing
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/Spacing.xml"

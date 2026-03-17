@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESBasicSurvival
+  hidden: false
+  name: Basic Survival
+  text: "/ServerInfo/_ES/Guidebook/NewPlayer/BasicSurvival.xml"
