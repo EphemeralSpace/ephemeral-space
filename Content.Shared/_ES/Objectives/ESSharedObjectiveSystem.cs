@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._ES.Masks;
 using Content.Shared._ES.Mind;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.EntityTable;
@@ -38,6 +39,8 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerDetachedEvent>(OnPlayerDetached);
 
+        SubscribeLocalEvent<ESObjectiveHolderComponent, ESGetCharacterInfoBlurbEvent>(OnGetCharacterInfoBlurb);
+
         SubscribeLocalEvent<ESObjectiveComponent, EntityRenamedEvent>(OnObjectiveRenamed);
     }
 
@@ -70,6 +73,14 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         foreach (var objective in GetObjectives(ent.AsNullable()))
         {
             _pvsOverride.RemoveSessionOverride(objective, args.Player);
+        }
+    }
+
+    private void OnGetCharacterInfoBlurb(Entity<ESObjectiveHolderComponent> ent, ref ESGetCharacterInfoBlurbEvent args)
+    {
+        foreach (var objective in GetObjectives(ent.AsNullable()))
+        {
+            RaiseLocalEvent(objective, ref args);
         }
     }
 

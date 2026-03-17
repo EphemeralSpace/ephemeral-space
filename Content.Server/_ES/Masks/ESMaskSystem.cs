@@ -242,6 +242,8 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         // Our rule was only added in the beginning, now we should start it properly.
         if (!ruleExists)
             _gameTicker.StartGameRule(troupe.Value);
+
+        RefreshCharacterInfoBlurb(mind.AsNullable());
     }
 
     public override void RemoveMask(Entity<MindComponent> mind)
@@ -270,6 +272,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         }
 
         Objective.RegenerateObjectiveList(mind.Owner);
+        RefreshCharacterInfoBlurb(mind.AsNullable());
     }
 
     public override void ChangeMask(Entity<MindComponent> mind,

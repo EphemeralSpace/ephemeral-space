@@ -342,8 +342,11 @@ public abstract class ESSharedMaskSystem : EntitySystem
         }
     }
 
-    public List<FormattedMessage> GetCharacterInfoBlurb(Entity<MindComponent> mind)
+    public void RefreshCharacterInfoBlurb(Entity<MindComponent?> mind)
     {
+        if (!Resolve(mind, ref mind.Comp))
+            return;
+
         var ev = new ESGetCharacterInfoBlurbEvent();
         RaiseLocalEvent(mind, ref ev);
 
@@ -352,7 +355,17 @@ public abstract class ESSharedMaskSystem : EntitySystem
             RaiseLocalEvent(role, ref ev);
         }
 
-        return ev.Info;
+        var comp = EnsureComp<ESCharacterBlurbComponent>(mind);
+        comp.Info = new(ev.Info);
+        Dirty(mind, comp);
+    }
+
+    public List<FormattedMessage> GetCharacterInfoBlurb(Entity<ESCharacterBlurbComponent?> mind)
+    {
+        if (!Resolve(mind, ref mind.Comp, false))
+            return [];
+
+        return mind.Comp.Info;
     }
 }
 
