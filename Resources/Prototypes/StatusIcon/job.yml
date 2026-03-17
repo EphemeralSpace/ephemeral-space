@@ -131,7 +131,7 @@
   icon:
     sprite: *icon-rsi
     state: MedicalDoctor
-  jobName: ESjob-name-doctor # ES change
+  jobName: job-name-doctor
 
 - type: jobIcon
   parent: JobIcon
