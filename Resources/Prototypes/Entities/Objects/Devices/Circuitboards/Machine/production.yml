@@ -856,26 +856,8 @@
       Manipulator: 3
       Glass: 2
 
-- type: entity
-  id: PortableGeneratorSuperPacmanMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator machine board
-  components:
-    - type: Sprite
-      state: engineering
-    - type: MachineBoard
-      prototype: PortableGeneratorSuperPacman
-      stackRequirements:
-        Manipulator: 2
-        CableHV: 10
-    - type: PhysicalComposition
-      materialComposition:
-        Glass: 200
-      chemicalComposition:
-        Silicon: 20
-    - type: StaticPrice
-      price: 40
-
+# ES Start: Nuke S.U.P.E.R.P.A.C.M.A.N.
+# ES End
 - type: entity
   id: PortableGeneratorJrPacmanMachineCircuitboard
   parent: BaseMachineCircuitboard
