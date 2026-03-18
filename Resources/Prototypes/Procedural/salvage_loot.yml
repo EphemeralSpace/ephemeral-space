@@ -49,8 +49,8 @@
           prob: 0.5
         - proto: PortableGeneratorPacman
           cost: 2
-# ES Start: remove SUPERPACMAN. this is unused anyways
-# ES End
+        - proto: PortableGeneratorSuperPacman
+          cost: 3
         - proto: PowerCellAntiqueProto
           cost: 5
           prob: 0.5
