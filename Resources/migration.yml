@@ -332,6 +332,9 @@ LockerEngineerFilled: ESLockerEngineerFilled
 # 2026-3-13
 ESSpawnPointChemist: null
 
+# 2026-3-17
+PortableGeneratorSuperPacman: PortableGeneratorPacman
+
 # ES END
 
 # 2023-07-03
