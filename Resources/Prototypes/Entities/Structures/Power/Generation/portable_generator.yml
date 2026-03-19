@@ -209,7 +209,7 @@
   components:
     - type: Sprite
       layers:
-        - state: portgen1
+        - state: portgen0
           map: [ "enum.GeneratorVisualLayers.Body" ]
         - state: portgen_on_unlit
           map: [ "enum.GeneratorVisualLayers.Unlit" ]
@@ -219,8 +219,8 @@
       visuals:
         enum.GeneratorVisuals.Running:
           enum.GeneratorVisualLayers.Body:
-            True: { state: portgen1on }
-            False: { state: portgen1 }
+            True: { state: portgen0on }
+            False: { state: portgen0 }
           enum.GeneratorVisualLayers.Unlit:
             True: { visible: true }
             False: { visible: false }
