@@ -11,6 +11,7 @@
   - type: ESTargetObjective
     title: es-hater-fail-objective-title
   - type: ESTargetPlayersObjective
+  - type: ESTargetCharacterBlurb
   - type: ESTargetCompleteOwnedObjective
     invert: true
     objectiveBlacklist:

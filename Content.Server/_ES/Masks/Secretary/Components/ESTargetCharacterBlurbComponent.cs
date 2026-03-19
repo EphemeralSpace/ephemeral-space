@@ -10,11 +10,11 @@ namespace Content.Server._ES.Masks.Secretary.Components;
 public sealed partial class ESTargetCharacterBlurbComponent : Component
 {
     [DataField]
-    public string Blurb;
+    public string Blurb = string.Empty;
 
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype> TargetFormatDataset = "";
+    public ProtoId<LocalizedDatasetPrototype> TargetFormatDataset = "ESHaterTargetDataset";
 
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype> ContextDataset = "";
+    public ProtoId<LocalizedDatasetPrototype> ContextDataset = "ESHaterContextDataset";
 }

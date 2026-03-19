@@ -1,8 +1,9 @@
 using Content.Server._ES.Masks.Secretary.Components;
+using Content.Shared._ES.Masks;
 using Content.Shared._ES.Objectives.Target.Components;
-using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks.Secretary;
 
@@ -15,6 +16,7 @@ public sealed class ESTargetCharacterBlurbSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<ESTargetCharacterBlurbComponent, ESObjectiveTargetChangedEvent>(OnTargetChanged);
+        SubscribeLocalEvent<ESTargetCharacterBlurbComponent, ESGetCharacterInfoBlurbEvent>(OnGetCharacterInfoBlurb);
     }
 
     private void OnTargetChanged(Entity<ESTargetCharacterBlurbComponent> ent, ref ESObjectiveTargetChangedEvent args)
@@ -27,9 +29,16 @@ public sealed class ESTargetCharacterBlurbSystem : EntitySystem
         var contextDataset = _prototype.Index(ent.Comp.ContextDataset);
 
         var name = Name(args.NewTarget.Value);
-        var format = _random.Pick(formatDataset);
-        var context = _random.Pick(contextDataset);
+        var format = _random.Pick(formatDataset.Values);
+        var context = _random.Pick(contextDataset.Values);
 
-        ent.Comp.Blurb = Loc.GetString(context, ("target", Loc.GetString(format, ("target", name))));
+        var target = Loc.GetString(format, ("target", name));
+        ent.Comp.Blurb = Loc.GetString(context, ("target", target));
+        Logger.Debug($"{name}, {target}. {ent.Comp.Blurb}");
+    }
+
+    private void OnGetCharacterInfoBlurb(Entity<ESTargetCharacterBlurbComponent> ent, ref ESGetCharacterInfoBlurbEvent args)
+    {
+        args.Info.Add(FormattedMessage.FromMarkupPermissive(ent.Comp.Blurb));
     }
 }
