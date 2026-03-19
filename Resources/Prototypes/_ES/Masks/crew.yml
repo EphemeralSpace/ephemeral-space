@@ -97,6 +97,17 @@
       id: ESSpawnerRandomTraitorCache
 
 - type: esMask
+  id: ESNobleman
+  name: es-mask-nobleman-name
+  troupe: ESCrew
+  description: es-mask-nobleman-desc
+  color: gold
+  weight: 1
+  objectives:
+    all:
+    - id: ESObjectiveNoblemanDontKill
+
+- type: esMask
   id: ESSecretary
   name: es-mask-secretary-name
   troupe: ESCrew

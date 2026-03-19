@@ -32,6 +32,9 @@ es-mask-insider-desc = As an insider, investigate the people on station and try 
 es-mask-mercenary-name = Mercenary
 es-mask-mercenary-desc = As a Mercenary, use your dubiously-legally-acquired syndicate gear to further your goals.
 
+es-mask-nobleman-name = Nobleman
+es-mask-nobleman-desc = As a Nobleman, prevent the corruption of your pure blood by not killing anyone.
+
 es-mask-secretary-name = Secretary
 es-mask-secretary-desc = As a secretary, do whatever you can to help your target complete their objectives.
 
