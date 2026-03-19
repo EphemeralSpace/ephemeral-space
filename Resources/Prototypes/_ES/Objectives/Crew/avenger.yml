@@ -18,7 +18,7 @@
   parent: ESBaseMaskObjective
   id: ESObjectiveAvengerKill
   name: Avenge your protectee
-  description: Someone has slain your target. Use your special sense and hunt them down and kill them yourself. You must be the one to get revenge.
+  description: Someone has slain your protectee. Use your special sense and hunt them down and kill them yourself. You must be the one to get revenge.
   components:
   - type: ESObjective
     icon:

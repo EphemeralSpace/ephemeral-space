@@ -28,9 +28,12 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Atmos.Components;
 using System.Linq;
+using Content.Server._ES.NPCs.Queries.Considerations;
 using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
-using Content.Shared._Offbrand.Wounds; // Offbrand
+using Content.Shared._Offbrand.Wounds;
+using Content.Shared.ActionBlocker;
+using Content.Shared.Interaction; // Offbrand
 
 namespace Content.Server.NPC.Systems;
 
@@ -39,6 +42,9 @@ namespace Content.Server.NPC.Systems;
 /// </summary>
 public sealed class NPCUtilitySystem : EntitySystem
 {
+// ES START
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+// ES END
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -170,6 +176,27 @@ public sealed class NPCUtilitySystem : EntitySystem
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
         switch (consideration)
         {
+// ES START
+            case ESTargetBesideCon:
+            {
+                if (!TryComp(targetUid, out TransformComponent? targetXform) ||
+                    !TryComp(owner, out TransformComponent? xform))
+                {
+                    return 0f;
+                }
+
+                if (!targetXform.Coordinates.TryDistance(EntityManager, _transform, xform.Coordinates, out var distance))
+                {
+                    return 0f;
+                }
+
+                return Math.Clamp(distance / 0.5f, 0f, 1f);
+            }
+            case ESCanInteractCon:
+            {
+                return _actionBlocker.CanInteract(owner, targetUid) ? 1 : 0;
+            }
+// ES END
             case FoodValueCon:
             {
                 // do we have a mouth available? Is the food item opened?

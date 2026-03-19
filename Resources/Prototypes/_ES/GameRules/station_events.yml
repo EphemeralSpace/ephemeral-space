@@ -44,8 +44,10 @@
     - id: ESStationEventPowerGridCheck
     - id: ESStationEventSolarFlare
     - id: ESStationEventVentClog
+    - id: ESStationEventLightOverload
     - id: ESStationEventMeteorSwarm
     - id: ESStationEventElectricalFire
+    - id: ESStationEventVentSwarm
 
 # Event Prototypes
 
@@ -214,6 +216,39 @@
     startAnnouncement: station-event-vent-clog-start-announcement
   - type: VentClogRule
 
+## Vent Swarm
+- type: entity
+  parent: ESBaseStationEvent
+  id: ESStationEventVentSwarm
+  name: Critter Swarm
+  description: Causes a swarm of critters to enter through a vent
+  components:
+  - type: StationEvent
+    startAudio:
+      path: /Audio/_ES/Announcements/critterswarm.ogg
+      params:
+        volume: -4
+    duration: 120
+  - type: ESVentSwarmRule
+    spawnTable:
+      group:
+      - id: MobMouse
+      - id: MobMouse1
+      - id: MobMouse2
+  - type: ESSynchronizedVoteManager
+    votes:
+    - ESVoteVentSwarmLocation
+
+- type: entity
+  id: ESVoteVentSwarmLocation
+  name: Where should the swarm enter?
+  components:
+  - type: ESVote
+    queryString: es-voter-query-string-vent-swarm-location
+    duration: 30
+  - type: ESGasVentVote
+    count: 4
+
 ## Meteor Swarm
 - type: entity
   parent: ESBaseStationEventDelayed
@@ -273,3 +308,30 @@
   - type: ESRandomLocationVote
     count: 6
     checkLOS: false
+
+## Light Overload
+- type: entity
+  parent: ESBaseStationEvent
+  id: ESStationEventLightOverload
+  name: Light Overload
+  description: Overload several APCs across the station, breaking all lights attached to them.
+  components:
+  - type: StationEvent
+    startAudio:
+      path: /Audio/_ES/Announcements/attention_medium.ogg
+      params:
+        volume: -4
+    startAnnouncement: es-station-event-light-overload-start-announcement
+  - type: ESLightOverloadRule
+  - type: ESSynchronizedVoteManager
+    votes:
+    - ESVoteLightOverloadAPC
+
+- type: entity
+  id: ESVoteLightOverloadAPC
+  name: Which APC should be overloaded?
+  components:
+  - type: ESVote
+    queryString: es-voter-query-string-light-overload-location
+    duration: 30
+  - type: ESApcVote

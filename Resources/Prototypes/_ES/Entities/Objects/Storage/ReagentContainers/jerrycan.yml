@@ -1,0 +1,25 @@
+- type: entity
+  parent: [DrinkBase, DrinkVisualsOpenable, DrinkBaseOpenable, DrinkBaseMaterialStrongMetal]
+  id: ESJerrycan
+  name: jerrycan
+  description: A metallic container designed for holding fuel. A favorite of suspicious arsonists.
+  components:
+  - type: Openable
+    sound:
+      collection: bottleOpenSounds
+    closeable: true
+    closeSound:
+      collection: bottleCloseSounds
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 250
+  - type: Sprite
+    sprite: _ES/Objects/Storage/ReagentContainers/jerrycan.rsi
+  - type: Item
+    sprite: _ES/Objects/Storage/ReagentContainers/jerrycan.rsi
+  - type: Icon
+    sprite: _ES/Objects/Storage/ReagentContainers/jerrycan.rsi
+    state: icon_empty

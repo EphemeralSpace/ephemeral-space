@@ -19,5 +19,8 @@ public sealed partial class ESAvengeOnKillObjectiveComponent : Component
     public EntProtoId<ESTargetObjectiveComponent> AvengeObjective = "ESObjectiveAvengerKill";
 
     [DataField]
+    public LocId AvengeTitle = "es-objective-condition-avenge-title";
+
+    [DataField]
     public EntProtoId<ActionComponent> ActionPrototype = "ESActionMaskAvengerSense";
 }

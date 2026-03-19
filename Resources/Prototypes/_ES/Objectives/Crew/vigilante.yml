@@ -1,0 +1,12 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveVigilanteKillKiller
+  name: Kill a killer
+  description: Find someone who has taken the life of another and exact justice.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: _ES/Objects/Weapons/Guns/357.rsi
+      state: icon
+  - type: ESKillKillerObjective
+  - type: ESCounterObjective
