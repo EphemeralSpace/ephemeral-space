@@ -861,7 +861,7 @@
   parent: BaseMachineCircuitboard
   name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator machine board
 # Hardfork coin: remove this prototype later
-  tags: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
 # ES End
   components:
     - type: Sprite

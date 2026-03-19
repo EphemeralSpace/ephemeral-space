@@ -204,7 +204,7 @@
   suffix: Uranium, 50 kW
 # ES Start
 # Hardfork coin: remove this prototype later
-  tags: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
 # ES End
   components:
     - type: Sprite
