@@ -248,8 +248,10 @@
       loadNodes:
         - output_hv
         - output_mv
-      sprite: Structures/Power/Generation/portable_generator.rsi
-      state: portgen1
+# ES Start
+      sprite: _ES/Structures/Power/portable_generator.rsi
+      state: portgen0
+# ES End
     - type: PowerSupplier
       supplyRampRate: 7500
       supplyRampTolerance: 2500
