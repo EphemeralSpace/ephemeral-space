@@ -12,7 +12,7 @@ public sealed partial class ESTimedDemiseOnKillObjectiveComponent : Component
     ///     time before the FILITHY elite die for their sins
     /// </summary>
     [DataField]
-    public TimeSpan TimeBeforeNoblemanDeath = TimeSpan.FromMinutes(1);
+    public TimeSpan TimeBeforeNoblemanDeath = TimeSpan.FromMinutes(5);
 
     [DataField]
     public bool KilledAnyone = false;
