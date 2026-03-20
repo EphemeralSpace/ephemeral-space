@@ -9,6 +9,5 @@
       sprite: Clothing/Head/Misc/fancycrown.rsi
       state: icon
   - type: ESTimedDemiseOnKillObjective
-    troupeRequired: ESCrew
   - type: ESCounterObjective
     target: 1
