@@ -54,7 +54,7 @@ public sealed class ESSenseTargetDistanceSystem : EntitySystem
             var delta = otherMapCoordinates.Position - mapCoordinates.Position;
             var distance = delta.Length();
             var dir = delta.ToWorldAngle();
-            var dirString = ContentLocalizationManager.FormatDirection((dir - gridRotation).GetDir()).ToLowerInvariant();
+            var dirString = ContentLocalizationManager.FormatDirection((dir - gridRotation).GetCardinalDir()).ToLowerInvariant();
             direction = Loc.GetString("es-avenger-direction", ("dir", dirString));
 
             (popup, popupType) = distance switch
