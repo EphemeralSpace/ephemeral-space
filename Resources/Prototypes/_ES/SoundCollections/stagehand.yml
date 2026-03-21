@@ -1,0 +1,18 @@
+- type: soundCollection
+  id: ESStagehandCheer
+  files:
+  - /Audio/_ES/Effects/Stagehand/cheer1.ogg
+  - /Audio/_ES/Effects/Stagehand/cheer2.ogg
+  - /Audio/_ES/Effects/Stagehand/cheer3.ogg
+  - /Audio/_ES/Effects/Stagehand/cheer4.ogg
+  - /Audio/_ES/Effects/Stagehand/cheer5.ogg
+  - /Audio/_ES/Effects/Stagehand/cheer6.ogg
+
+- type: soundCollection
+  id: ESStagehandBoo
+  files:
+  - /Audio/_ES/Effects/Stagehand/boo1.ogg
+  - /Audio/_ES/Effects/Stagehand/boo2.ogg
+  - /Audio/_ES/Effects/Stagehand/boo3.ogg
+  - /Audio/_ES/Effects/Stagehand/boo4.ogg
+  - /Audio/_ES/Effects/Stagehand/boo5.ogg

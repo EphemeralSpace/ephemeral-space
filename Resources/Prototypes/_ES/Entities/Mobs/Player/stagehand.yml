@@ -57,6 +57,11 @@
     toggleLightingAction: ESActionStagehandChangeLighting
     toggleFoVAction: ESActionStagehandToggleFOV
     deleteOnDetach: false
+  - type: ESStagehandWorldEmote
+  - type: ActionGrant # todo theres like three methods of giving them actions here. ghost stuff should just use this first of all
+    actions:
+    - ESActionStagehandCheer
+    - ESActionStagehandBoo
   - type: GhostHearing
   - type: ESStagehand
   - type: ESUsernameEntityName
@@ -150,3 +155,37 @@
     clientExclusive: true
   - type: InstantAction
     event: !type:ToggleFoVActionEvent
+
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionStagehandCheer
+  name: Cheer
+  description: Show your love for a jolly good show. Has a chance to be heard by those on stage.
+  components:
+  - type: Action
+    useDelay: 120
+    icon:
+      sprite: _ES/Actions/stagehands.rsi
+      state: cheer
+  - type: InstantAction
+    event: !type:ESStagehandWorldEmoteEvent
+      message: es-stagehand-emote-cheer
+      sound:
+        collection: ESStagehandCheer
+
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionStagehandBoo
+  name: Boo
+  description: Show your hatred for a bloody awful show. Has a chance to be heard by those on stage.
+  components:
+  - type: Action
+    useDelay: 300
+    icon:
+      sprite: _ES/Actions/stagehands.rsi
+      state: boo
+  - type: InstantAction
+    event: !type:ESStagehandWorldEmoteEvent
+      message: es-stagehand-emote-boo
+      sound:
+        collection: ESStagehandBoo
