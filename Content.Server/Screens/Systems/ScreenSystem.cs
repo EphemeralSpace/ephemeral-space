@@ -60,6 +60,13 @@ public sealed class ScreenSystem : EntitySystem
             _appearanceSystem.SetData(uid, TextScreenVisuals.DefaultText, text);
             _appearanceSystem.SetData(uid, TextScreenVisuals.ScreenText, text);
         }
+
+        // ES START
+        // why does it not just support this already
+        if (args.Data.TryGetValue(ScreenMasks.Timer, out TimeSpan timer))
+        {
+            _appearanceSystem.SetData(uid, TextScreenVisuals.TargetTime, _gameTiming.CurTime + timer);
+        }
     }
 
     /// <summary>

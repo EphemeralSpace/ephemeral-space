@@ -22,3 +22,14 @@
     receiveFrequencyId: ArrivalsShuttleTimer
   - type: WallMount
     arc: 360
+
+# armory
+- type: entity
+  id: ESArmoryTimer
+  parent: Screen
+  name: armory screen
+  description: Displays the armory's opening cooldown timer.
+  components:
+  - type: DeviceNetwork
+    deviceNetId: Private
+    receiveFrequencyId: ESArmoryTimer

@@ -21,7 +21,7 @@ public sealed partial class ESArmoryGameRuleComponent : Component
     ///     Amount of time after a failed armory open before the button will be pressable again
     /// </summary>
     [DataField]
-    public TimeSpan ArmoryCooldownTime = TimeSpan.FromMinutes(5);
+    public TimeSpan ArmoryCooldownTime = TimeSpan.FromMinutes(2);
 
     /// <summary>
     ///     Time after a button was pressed in which the other buttons are valid presses for continuing the opening sequence

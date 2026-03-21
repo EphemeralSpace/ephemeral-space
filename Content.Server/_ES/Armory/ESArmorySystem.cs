@@ -1,11 +1,15 @@
 using System.Collections;
 using Content.Server._ES.Armory.Components;
 using Content.Server.Chat.Systems;
+using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Doors.Systems;
 using Content.Server.Electrocution;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Popups;
+using Content.Server.Screens.Components;
 using Content.Shared._ES.Core.Timer;
+using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Doors.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Interaction;
@@ -30,6 +34,7 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly DeviceNetworkSystem _devicenet = default!;
     [Dependency] private readonly DoorSystem _door = default!;
     [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -85,7 +90,7 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
 
         // fail if past time, succeed if not past time & all are pressed
         if (failed)
-            FailArmory(component);
+            FailArmory((uid, component));
         else if (!anyNotPressed)
             StartArmoryOpenTimer(component);
     }
@@ -174,9 +179,10 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
     }
 
     // Fail army #FailArmyNation
-    public void FailArmory(ESArmoryGameRuleComponent component)
+    public void FailArmory(Entity<ESArmoryGameRuleComponent> rule)
     {
         // bookkeeping
+        var (ruleEnt, component) = rule;
         component.ArmoryCooldownLiftsAt = _timing.CurTime + component.ArmoryCooldownTime;
         ResetArmoryButtonUsers();
         TrySetArmoryControlRoomDoorBolt(false);
@@ -205,6 +211,17 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
             true,
             component.ArmoryFailedAnnouncementSound,
             Color.Coral);
+
+        // Show cooldown on screen
+        if (!TryComp<DeviceNetworkComponent>(ruleEnt, out var netComp))
+            return;
+
+        var payload = new NetworkPayload
+        {
+            [ScreenMasks.Timer] = component.ArmoryCooldownTime,
+        };
+
+        _devicenet.QueuePacket(ruleEnt, null, payload, netComp.TransmitFrequency);
     }
 
     private void ResetArmoryButtonUsers()
