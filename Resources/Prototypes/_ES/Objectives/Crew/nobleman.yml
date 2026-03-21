@@ -1,8 +1,8 @@
 ﻿- type: entity
   parent: ESBaseMaskObjective
   id: ESObjectiveNoblemanDontKill
-  name: Dont kill anyone.
-  description: Make sure not to kill anyone.
+  name: Dont kill anyone
+  description: Someone as noble as yourself would never stoop to the level of murder. If you did... well you wouldn't be able to live with yourself.
   components:
   - type: ESObjective
     icon:

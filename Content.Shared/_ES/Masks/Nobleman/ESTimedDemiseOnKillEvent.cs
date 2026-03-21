@@ -4,7 +4,4 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._ES.Masks.Nobleman;
 
 [Serializable, NetSerializable]
-public sealed partial class ESTimedDemiseOnKillEvent : ESEntityTimerEvent
-{
-
-}
+public sealed partial class ESTimedDemiseOnKillEvent : ESEntityTimerEvent;
