@@ -282,17 +282,6 @@
   canBuildInImpassable: true
 
 - type: construction
-  id: ESBlastDoor
-  hide: false
-  graph: BlastDoor
-  startNode: start
-  targetNode: blastdoor
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: true
-
-- type: construction
   id: ESCatwalk
   hide: false
   graph: Catwalk
