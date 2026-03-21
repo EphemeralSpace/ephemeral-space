@@ -37,7 +37,7 @@
   - type: DamageContacts
     damage:
       types:
-        Cellular: 5
+        Cellular: 15
   - type: Explosive
     explosionType: Default
     totalIntensity: 60
