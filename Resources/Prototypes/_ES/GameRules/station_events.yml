@@ -318,7 +318,7 @@
   components:
   - type: StationEvent
     startAudio:
-      path: /Audio/_ES/Announcements/attention_medium.ogg
+      path: /Audio/_ES/Announcements/light_break.ogg
       params:
         volume: -4
     startAnnouncement: es-station-event-light-overload-start-announcement
