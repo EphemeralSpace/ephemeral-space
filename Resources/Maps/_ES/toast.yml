@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 03/16/2026 04:56:44
-  entityCount: 14581
+  time: 03/21/2026 21:35:44
+  entityCount: 14582
 maps:
 - 3
 grids:
@@ -35816,6 +35816,15 @@ entities:
     - type: Transform
       pos: -19.5,4.5
       parent: 2
+- proto: ESArmoryTimer
+  entities:
+  - uid: 10276
+    components:
+    - type: Transform
+      pos: -20.5,5.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: ESAutolathe
   entities:
   - uid: 1512
@@ -65813,8 +65822,6 @@ entities:
     - type: Transform
       pos: -49.5,-6.5
       parent: 2
-- proto: PortableGeneratorSuperPacman
-  entities:
   - uid: 4191
     components:
     - type: Transform
