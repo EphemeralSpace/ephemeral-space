@@ -13,6 +13,13 @@
     state: Syndicate
 
 - type: factionIcon
+  id: ESParasite
+  locationPreference: Right
+  icon:
+    sprite: /Textures/_ES/Interface/Misc/troupe_icons.rsi
+    state: parasite
+
+- type: factionIcon
   id: ESJester
   locationPreference: Right
   icon:

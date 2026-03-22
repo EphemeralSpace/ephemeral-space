@@ -28,6 +28,15 @@
 
 - type: entity
   parent: ESBaseTroupeRule
+  name: The Parasites
+  id: ESTroupeRuleParasite
+  components:
+  - type: ESTroupeRule
+    troupe: ESParasite
+    priority: 11
+
+- type: entity
+  parent: ESBaseTroupeRule
   name: Jesters
   id: ESTroupeRuleJester
   components:
