@@ -39,6 +39,9 @@
   color: tan
   metaIcon: ESParasite
   gameRule: ESTroupeRuleParasite
+  objectives:
+    all:
+    - id: ESObjectiveParasiteInfect
 
 - type: esTroupe
   id: ESJester

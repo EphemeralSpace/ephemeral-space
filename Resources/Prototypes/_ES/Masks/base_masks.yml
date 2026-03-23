@@ -29,6 +29,7 @@
   abstract: true
   objectives:
     all:
+    - id: ESObjectiveParasiteDie
     - id: ESObjectiveParasiteDoNotKill
 
 - type: esMask
