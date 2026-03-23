@@ -335,6 +335,9 @@ ESSpawnPointChemist: null
 # 2026-3-17
 PortableGeneratorSuperPacman: PortableGeneratorPacman
 
+# 2026-3-23
+FireAxeCabinetFilled: ESFireAxeCabinetFilled
+
 # ES END
 
 # 2023-07-03

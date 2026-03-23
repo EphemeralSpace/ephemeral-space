@@ -160,7 +160,7 @@
     - id: ClothingBeltMedicalFilled
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical
-    - id: ESMedkitStabilization
+    - id: ESMedkitStabilizationFilled
 
 - type: entityTable
   id: ESLockerFillCoroner

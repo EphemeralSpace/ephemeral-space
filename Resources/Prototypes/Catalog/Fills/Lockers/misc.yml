@@ -54,7 +54,7 @@
     - group:
       - id: EmergencyPouchOxygenDeprivation
       - id: EmergencyPouchBrute
-      prob: 0.5
+      prob: 0.25
 # ES End
 
 - type: entity

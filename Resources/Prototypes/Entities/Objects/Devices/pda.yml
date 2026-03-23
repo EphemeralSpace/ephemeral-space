@@ -171,7 +171,9 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
-      - MedTekCartridge
+      # ES START
+     # - MedTekCartridge
+      # ES END
 
 - type: entity
   parent: BasePDA
