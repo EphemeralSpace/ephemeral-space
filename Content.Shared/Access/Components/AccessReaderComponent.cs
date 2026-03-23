@@ -49,6 +49,11 @@ public sealed partial class AccessReaderComponent : Component
     [DataField]
     public HashSet<StationRecordKey> AccessKeys = new();
 
+// ES START
+    [DataField]
+    public bool RequireKey;
+// ES END
+
     /// <summary>
     /// If specified, then this access reader will instead pull access requirements from entities contained in the
     /// given container.

@@ -288,9 +288,18 @@ public sealed class AccessReaderSystem : EntitySystem
 
     private bool IsAllowedInternal(ICollection<ProtoId<AccessLevelPrototype>> access, ICollection<StationRecordKey> stationKeys, AccessReaderComponent reader)
     {
-        return !reader.Enabled
-               || AreAccessTagsAllowed(access, reader)
-               || AreStationRecordKeysAllowed(stationKeys, reader);
+// ES START
+        if (!reader.Enabled)
+            return true;
+
+        if ((reader.RequireKey || reader.AccessKeys.Any()) && !AreStationRecordKeysAllowed(stationKeys, reader))
+            return false;
+
+        if (!AreAccessTagsAllowed(access, reader))
+            return false;
+
+        return true;
+// ES END
     }
 
     /// <summary>
