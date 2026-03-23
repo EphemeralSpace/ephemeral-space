@@ -33,7 +33,7 @@
   components:
   - type: ESTroupeRule
     troupe: ESParasite
-    priority: 11
+    priority: 10
 
 - type: entity
   parent: ESBaseTroupeRule

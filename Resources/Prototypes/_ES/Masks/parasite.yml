@@ -1,0 +1,6 @@
+- type: esMask
+  parent: ESBaseParasite
+  id: ESPsychid
+  name: es-mask-psychid-name
+  description: es-mask-psychid-desc
+  color: lightsteelblue

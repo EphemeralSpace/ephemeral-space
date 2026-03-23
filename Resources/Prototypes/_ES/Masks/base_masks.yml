@@ -24,6 +24,12 @@
 
 - type: esMask
   parent: ESBaseCommandRestricted
+  id: ESBaseParasite
+  troupe: ESParasite
+  abstract: true
+
+- type: esMask
+  parent: ESBaseCommandRestricted
   id: ESBaseTraitor
   troupe: ESTraitor
   abstract: true
