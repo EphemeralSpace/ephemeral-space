@@ -152,12 +152,6 @@ public sealed partial class DamageableSystem
         if (damage.Empty && !forceRefresh)
             return damageDone;
 
-        var before = new BeforeDamageChangedEvent(damage, origin);
-        RaiseLocalEvent(ent, ref before);
-
-        if (before.Cancelled)
-            return damageDone;
-
         // Apply resistances
         if (!ignoreResistances)
         {
@@ -176,6 +170,13 @@ public sealed partial class DamageableSystem
             if (damage.Empty && !forceRefresh) // Offbrand
                 return damageDone;
         }
+// ES START
+        var before = new BeforeDamageChangedEvent(damage, origin);
+        RaiseLocalEvent(ent, ref before);
+
+        if (before.Cancelled)
+            return damageDone;
+// ES END
 
         if (!ignoreGlobalModifiers)
             damage = ApplyUniversalAllModifiers(damage);
