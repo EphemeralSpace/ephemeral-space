@@ -27,6 +27,9 @@
   id: ESBaseParasite
   troupe: ESParasite
   abstract: true
+  objectives:
+    all:
+    - id: ESObjectiveParasiteDoNotKill
 
 - type: esMask
   parent: ESBaseCommandRestricted
