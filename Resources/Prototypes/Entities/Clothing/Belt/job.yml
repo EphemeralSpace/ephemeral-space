@@ -187,6 +187,10 @@
       - DiscreteHealthAnalyzer
       - SurgeryTool
       - Dropper
+      # ES START
+      - ESTourniquetOffbrand
+      - ESSplints
+      # ES END
       components:
       - Injector
       - Pill

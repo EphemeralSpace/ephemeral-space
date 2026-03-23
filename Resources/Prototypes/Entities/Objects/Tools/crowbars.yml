@@ -39,7 +39,9 @@
     - Belt
   - type: Item
     sprite: Objects/Tools/crowbar.rsi
-    size: Normal
+    # ES START
+    size: Small
+    # ES END
     shape:
     - 0,0,0,1
 
