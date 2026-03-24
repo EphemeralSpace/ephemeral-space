@@ -1258,11 +1258,6 @@
   id: AirlockExternalGlassShuttleEscape
   suffix: External, Escape 3x4, Glass, Docking
   components:
-  - type: GridFill
-    addComponents:
-    - type: IFF
-      flags:
-      - HideLabel
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsExternal ]
