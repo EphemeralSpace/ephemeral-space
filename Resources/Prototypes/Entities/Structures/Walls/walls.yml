@@ -37,7 +37,7 @@
     key: walls
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
+    damageModifierSet: ESWall
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -58,6 +58,8 @@
     resistance: 2
   - type: BlockWeather
   - type: SunShadowCast
+  - type: ESDamageDeflection
+    threshold: 45
 
 - type: entity
   abstract: true
@@ -605,7 +607,7 @@
     node: reinforcedWall
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
+    damageModifierSet: ESWall
   - type: Destructible
     thresholds:
     - trigger:

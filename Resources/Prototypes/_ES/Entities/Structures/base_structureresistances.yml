@@ -1,0 +1,16 @@
+# this is for damage deflection thresholds that get reused multiple times across stuff that's not inherited (i.e walls don't count.)
+# you need to add these as the first inherited prototype to ensure they do not get overriden.
+
+- type: entity
+  id: DeflectionSturdyStructure # for airlocks and airlock-adjacent things like shutters
+  abstract: true
+  components:
+  - type: ESDamageDeflection
+    threshold: 18
+
+- type: entity
+  id: DeflectionVerySturdyStructure # for very strong structures that are meant to keep people out, like secure containers
+  abstract: true
+  components:
+  - type: ESDamageDeflection
+    threshold: 24

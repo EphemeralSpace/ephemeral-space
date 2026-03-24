@@ -24,7 +24,7 @@
         - MachineLayer
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
+    damageModifierSet: ESMachine
   - type: Destructible
     thresholds:
     - trigger:

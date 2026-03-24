@@ -13,7 +13,9 @@
     doAfterDelay: 2
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: RGlass
+# ES Start
+    damageModifierSet: ESReinforcedWindow
+# ES End
   - type: RCDDeconstructable
     cost: 6
     delay: 6
@@ -22,7 +24,9 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+# ES Start
+        damage: 250 #excess damage (nuke?). avoid computational cost of spawning entities.
+# ES End
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -31,7 +35,9 @@
           collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-        damage: 75
+# ES Start
+        damage: 200
+# ES End
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -51,7 +57,7 @@
   - type: Appearance
   - type: DamageVisuals
     thresholds: [5, 10, 20]
-    damageDivisor: 3
+    damageDivisor: 8
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
@@ -78,12 +84,12 @@
   - type: Appearance
   - type: DamageVisuals
     thresholds: [5, 10, 20]
-    damageDivisor: 1.5
+    damageDivisor: 4
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks_directional.rsi
   - type: Damageable
-    damageModifierSet: RGlass
+    damageModifierSet: ESReinforcedWindow
   - type: RCDDeconstructable
     cost: 4
     delay: 4
@@ -92,7 +98,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 150
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -101,7 +107,7 @@
           collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-        damage: 37
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
