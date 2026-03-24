@@ -25,9 +25,6 @@
     noRot: false
   - type: Pullable
   - type: Clickable
-  - type: GuideHelp
-    guides:
-    - SingularityTeslaEngine
   - type: Appearance
 
 - type: entity

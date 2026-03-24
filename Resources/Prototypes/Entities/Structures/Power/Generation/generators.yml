@@ -80,9 +80,6 @@
     onBump: false
     requirePower: true
     highVoltageNode: output
-  - type: GuideHelp
-    guides:
-    - ShuttleCraft
 
 # Base Wallmount Generator
 
@@ -127,9 +124,7 @@
     supplyRate: 3000
     supplyRampRate: 500
     supplyRampTolerance: 500
-  - type: GuideHelp
-    guides:
-    - ShuttleCraft
+
 
 # Construction Frames
 
@@ -211,9 +206,7 @@
   - type: ContainerContainer
     containers:
       board: !type:Container
-  - type: GuideHelp
-    guides:
-    - ShuttleCraft
+
 # ES START
   - type: NodeContainer
     examinable: true
@@ -265,10 +258,6 @@
     range: 5
     sound:
       path: /Audio/Ambience/Objects/buzzing.ogg
-  - type: GuideHelp
-    guides:
-    - RTG
-    - Power
   - type: Destructible
     thresholds:
       - trigger:

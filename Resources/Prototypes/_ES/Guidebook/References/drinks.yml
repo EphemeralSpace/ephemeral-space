@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESDrinks
+  id: Drinks
   hidden: false
   name: Drinks
   text: "/ServerInfo/_ES/Guidebook/References/Drinks.xml"

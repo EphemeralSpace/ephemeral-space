@@ -972,15 +972,6 @@
   id: MopBasic # ItemMapper: JanitorialTrolley. ConstructionGraph: MoproachShoes
 
 - type: Tag
-  id: MothershipCoreGhostrole # spawn whitelist : SpawnPointGhostRoleMothershipCore
-
-- type: Tag
-  id: MothershipModule # Cyborg module category for evil xenoborg core
-
-- type: Tag
-  id: MothershipPinpointerPiece # ConstructionGraph: RepairMothershipPinpointer
-
-- type: Tag
   id: Mouse # CargoBounty: BountyMouse
 
 - type: Tag
@@ -990,9 +981,6 @@
   id: Mushroom  # ConstructionGraph: Soil
 
 ## N ##
-- type: Tag
-  id: NinjaBombingTargetBlocker # Ninjas will not target this warp point
-
 - type: Tag
   id: NoConsoleSound # Blacklist on BaseComputer, StationMap. Tagged entity will not make sound when opening the UI.
 
@@ -1004,9 +992,6 @@
 
 - type: Tag
   id: Nugget # ItemCounter: FoodBoxNugget
-
-- type: Tag
-  id: NukeOpsUplink # Used by NukeopsRuleSystem to find nukie uplinks during warops. Whitelisting for ListingPrototypes.
 
 ## O ##
 
@@ -1540,10 +1525,6 @@
   id: Wirecutter # Storage whitelist: BaseClothingBeltEngineering. ItemMapper: BaseClothingBeltEngineering
 
 - type: Tag
-  id: WizardWand # that evil vvizard vvand
-                 # .cs: ChargeSpellEvent. Storage whitelist: ClothingBeltWand
-
-- type: Tag
   id: Wooden # just like our atmos
              # MaterialStorage whitelist: Sheetifier
 
@@ -1562,25 +1543,6 @@
   id: WriteIgnoreStamps # Used by PaperSystem to allow tagged entity to bypass stamps.
 
 ## X ##
-
-- type: Tag
-  id: XenoborgGhostrole # spawn whitelist : SpawnPointGhostRoleXenoborg
-
-- type: Tag
-  id: XenoborgModuleEngi # Cyborg module category for evil engineer xenoborg
-
-- type: Tag
-  id: XenoborgModuleGeneric # Cyborg module category for evil xenoborg
-
-- type: Tag
-  id: XenoborgModuleHeavy # Cyborg module category for evil heavy xenoborg
-
-- type: Tag
-  id: XenoborgModuleScout # Cyborg module category for evil scout xenoborg
-
-- type: Tag
-  id: XenoborgModuleStealth # Cyborg module category for evil stealth xenoborg
-
 ## Y ##
 ## Z ##
 # ALPHABETICAL

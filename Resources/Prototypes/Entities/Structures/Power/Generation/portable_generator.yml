@@ -80,7 +80,7 @@
               acts: ["Destruction"]
     - type: GuideHelp
       guides:
-      - PortableGenerator
+      - PortableGenerators
       - Power
 
     # Core functionality

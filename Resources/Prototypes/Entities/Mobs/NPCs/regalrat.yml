@@ -87,16 +87,6 @@
         Base: critical
       Dead:
         Base: dead
-  - type: GhostRole
-    makeSentient: true
-    name: ghost-role-information-rat-king-name
-    description: ghost-role-information-rat-king-description
-    rules: ghost-role-information-antagonist-rules
-    mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
   - type: Tag
     tags:
       - CannotSuicide
@@ -120,9 +110,6 @@
     - NamesRegalratKingdom
     - NamesRegalratTitle
     nameFormat: name-format-regal-rat
-  - type: GuideHelp
-    guides:
-    - MinorAntagonists
   - type: Grammar
     attributes:
       gender: male
@@ -161,9 +148,6 @@
     speedModifierThresholds:
       200: 0.7
       250: 0.5
-  - type: GuideHelp
-    guides:
-    - MinorAntagonists
 
 - type: entity
   name: rat servant
@@ -300,9 +284,6 @@
     isBoss: false
   - type: Speech
     speechVerb: SmallMob
-  - type: GuideHelp
-    guides:
-    - MinorAntagonists
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning

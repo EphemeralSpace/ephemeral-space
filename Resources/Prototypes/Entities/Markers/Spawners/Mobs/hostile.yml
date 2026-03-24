@@ -28,23 +28,6 @@
 
 - type: entity
   parent: MarkerBase
-  id: SpawnMobBehonker
-  name: behonker Spawner
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: base
-      sprite: Objects/Weapons/Guns/Battery/behonker_eye.rsi
-  - type: ConditionalSpawner
-    prototypes:
-    - MobBehonkerIce
-    - MobBehonkerPyro
-    - MobBehonkerElectrical
-    - MobBehonkerGrav
-
-- type: entity
-  parent: MarkerBase
   id: SpawnMobBoxingKangaroo
   name: Boxing Kangaroo Spawner
   suffix: Hostile

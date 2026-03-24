@@ -48,8 +48,6 @@
     tags:
     - CannotSuicide
     - VimPilot
-  - type: StealTarget
-    stealGroup: AnimalIan
 
 - type: entity
   name: Old Ian
@@ -151,8 +149,6 @@
     - id: FoodMeatCorgi
       amount: 2
     - id: MaterialHideCorgi
-  - type: StealTarget
-    stealGroup: AnimalIan
 
 - type: entity
   name: Runtime
@@ -174,8 +170,6 @@
     tags:
     - CannotSuicide
     - VimPilot
-  - type: StealTarget
-    stealGroup: AnimalNamedCat
 
 - type: entity
   name: Exception
@@ -194,8 +188,6 @@
     tags:
     - CannotSuicide
     - VimPilot
-  - type: StealTarget
-    stealGroup: AnimalNamedCat
 
 - type: entity
   name: Floppa
@@ -221,8 +213,6 @@
     tags:
     - CannotSuicide
     - VimPilot
-  - type: StealTarget
-    stealGroup: AnimalNamedCat
 
 - type: entity
   name: Bandito
@@ -293,8 +283,6 @@
     tags:
     - CannotSuicide
     - VimPilot
-  - type: StealTarget
-    stealGroup: AnimalNamedCat
 
 - type: entity
   name: McGriff
@@ -368,8 +356,6 @@
     tags:
     - CannotSuicide
     - VimPilot
-  - type: StealTarget
-    stealGroup: AnimalMcGriff
   - type: MessyDrinker
 
 - type: entity
@@ -462,8 +448,6 @@
     tags:
     - CannotSuicide
     - VimPilot
-  - type: StealTarget
-    stealGroup: AnimalWalter
   - type: Speech
     speechVerb: Canine
     speechSounds: Dog
@@ -490,8 +474,6 @@
     tags:
     - CannotSuicide
     - VimPilot
-  - type: StealTarget
-    stealGroup: AnimalMorty
 
 - type: entity
   name: Morty
@@ -596,8 +578,6 @@
     spawned:
     - id: FoodMeat
       amount: 3
-    - id: Telecrystal5
-      amount: 1
   - type: Grammar
     attributes:
       proper: true
@@ -606,8 +586,6 @@
     tags:
     - CannotSuicide
     - VimPilot
-  - type: StealTarget
-    stealGroup: AnimalRenault
 
 - type: entity
   name: Hamlet
@@ -742,8 +720,6 @@
     - VimPilot
     - DoorBumpOpener
     - FootstepSound
-  - type: StealTarget
-    stealGroup: AnimalShiva
 
 - type: entity
   name: Willow
@@ -915,9 +891,6 @@
     attributes:
       proper: true
       gender: male
-#  - type: AlwaysRevolutionaryConvertible
-  - type: StealTarget
-    stealGroup: AnimalTropico
 
 - type: entity
   name: Polly the parrot

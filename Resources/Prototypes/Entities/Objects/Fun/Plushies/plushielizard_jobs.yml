@@ -294,15 +294,6 @@
 
 - type: entity
   parent: BasePlushieLizardJob
-  id: PlushieLizardJobSalvagespecialist
-  name: salvage specialist lizard plushie
-  description: An adorable stuffed toy that resembles a lizardperson as a salvage specialist. Seems like it's seen the coldness of space for a while.
-  components:
-  - type: Sprite
-    state: salvager
-
-- type: entity
-  parent: BasePlushieLizardJob
   id: PlushieLizardJobScientist
   name: scientist lizard plushie
   description: An adorable stuffed toy that resembles a lizardperson as a scientist. There's a few bite marks on the plushie, probably from a curious monkey.

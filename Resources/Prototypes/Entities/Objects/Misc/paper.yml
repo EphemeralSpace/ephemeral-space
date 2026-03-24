@@ -278,10 +278,6 @@
   - type: CargoBountyLabel
   - type: StaticPrice
     price: 0
-  - type: GuideHelp
-    guides:
-    - CargoBounties
-    - Cargo
 
 - type: entity
   id: PaperSalvageJobLabel
@@ -314,7 +310,6 @@
     contentImageModulate: "#f7e574"
     backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
     contentMargin: 16.0, 16.0, 16.0, 16.0
-  - type: JobBoardLabel
   - type: StaticPrice #infinitely printable
     price: 0
 
@@ -356,41 +351,6 @@
     # Changing it here is fine - if the PaperStatus key is actually added,
     #  something happened, so that ought to override this either way.
     - state: paper_words
-
-- type: entity
-  parent: Paper
-  id: NukeCodePaper
-  name: nuclear authentication codes
-  components:
-  - type: NukeCodePaper
-    allNukesAvailable: true
-
-- type: entity
-  parent: NukeCodePaper
-  id: NukeCodePaperStation
-  suffix: Station Only
-  components:
-  - type: NukeCodePaper
-
-- type: entity
-  parent: [Paper, BaseSyndicateContraband] # eat or burn your damn piece of paper damn thieves
-  id: TraitorCodePaper
-  name: syndicate codeword
-  description: A leaked codeword to possibly get in touch with the Syndicate.
-  categories: [ DoNotMap ]
-  components:
-  - type: TraitorCodePaper
-
-- type: entity
-  parent: [Paper, BaseSyndicateContraband]
-  id: AllTraitorCodesPaper
-  name: syndicate codewords registry
-  description: A registry of all active Syndicate codewords.
-  suffix: Admeme
-  components:
-  - type: TraitorCodePaper
-    fakeCodewords: false
-    codewordShowAll: true
 
 - type: entity
   name: envelope

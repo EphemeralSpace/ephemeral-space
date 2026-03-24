@@ -44,7 +44,7 @@ public sealed class StationJobsTest
   stations:
     Station:
       mapNameTemplate: {StationMapId}
-      stationProto: StandardNanotrasenStation
+      stationProto: ESBaseStationNeutral
       components:
         - type: StationJobs
           availableJobs:

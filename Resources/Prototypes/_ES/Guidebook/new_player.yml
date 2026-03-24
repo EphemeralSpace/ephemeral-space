@@ -1,10 +1,10 @@
 - type: guideEntry
-  id: ESNewPlayer
+  id: NewPlayer
   hidden: false
   name: New Player Guide
   priority: 0
   text: "/ServerInfo/_ES/Guidebook/NewPlayer.xml"
   children:
-  - ESEphemeralSpace
-  - ESControls
-  - ESBasicSurvival
+  - EphemeralSpace
+  - Controls
+  - BasicSurvival

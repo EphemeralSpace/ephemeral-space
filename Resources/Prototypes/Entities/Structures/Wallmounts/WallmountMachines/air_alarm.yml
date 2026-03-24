@@ -108,7 +108,6 @@
   - type: GuideHelp
     guides:
     - AirAlarms
-    - DeviceMonitoringAndControl
 
 - type: entity
   parent: BaseWallmountMetallic

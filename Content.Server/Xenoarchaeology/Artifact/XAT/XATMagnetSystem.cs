@@ -1,4 +1,3 @@
-using Content.Server.Salvage;
 using Content.Server.Xenoarchaeology.Artifact.XAT.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Item.ItemToggle.Components;
@@ -23,8 +22,6 @@ public sealed class XATMagnetSystem : BaseQueryUpdateXATSystem<XATMagnetComponen
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<SalvageMagnetActivatedEvent>(OnMagnetActivated);
     }
 
     /// <inheritdoc />
@@ -41,27 +38,6 @@ public sealed class XATMagnetSystem : BaseQueryUpdateXATSystem<XATMagnetComponen
 
             Trigger(artifact, node);
             break;
-        }
-    }
-
-    private void OnMagnetActivated(ref SalvageMagnetActivatedEvent args)
-    {
-        var magnetCoordinates = Transform(args.Magnet).Coordinates;
-
-        var query = EntityQueryEnumerator<XATMagnetComponent, XenoArtifactNodeComponent>();
-        while (query.MoveNext(out var uid, out var comp, out var node))
-        {
-            if (node.Attached == null)
-                continue;
-
-            var artifact = _xenoArtifactQuery.Get(node.Attached.Value);
-
-            if (!CanTrigger(artifact, (uid, node)))
-                continue;
-
-            var artifactCoordinates = Transform(artifact).Coordinates;
-            if (_transform.InRange(magnetCoordinates, artifactCoordinates, comp.MagnetRange))
-                Trigger(artifact, (uid, comp, node));
         }
     }
 }

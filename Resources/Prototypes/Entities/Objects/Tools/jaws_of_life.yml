@@ -40,7 +40,9 @@
         sprite:
           sprite: Objects/Tools/jaws_of_life.rsi
           state: jaws_cutter
-        useSound: /Audio/Items/jaws_cut.ogg
+        # ES START
+        useSound: /Audio/Items/wirecutter.ogg
+        # ES END
         changeSound: /Audio/Items/change_jaws.ogg
   - type: MeleeWeapon
     wideAnimationRotation: 90
@@ -81,7 +83,9 @@
         sprite:
           sprite: Objects/Tools/jaws_of_life.rsi
           state: syn_jaws_cutter
-        useSound: /Audio/Items/jaws_cut.ogg
+          # ES START
+          useSound: /Audio/Items/wirecutter.ogg
+          # ES END
         changeSound: /Audio/Items/change_jaws.ogg
   - type: MeleeWeapon
     damage:

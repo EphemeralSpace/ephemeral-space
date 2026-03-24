@@ -191,15 +191,6 @@
 
 - type: entity
   parent: ClothingBackpack
-  id: ClothingBackpackSalvage
-  name: salvage bag
-  description: A robust backpack for stashing your loot.
-  components:
-    - type: Sprite
-      sprite: Clothing/Back/Backpacks/salvage.rsi
-
-- type: entity
-  parent: ClothingBackpack
   id: ClothingBackpackMerc
   name: mercenary bag
   description: A backpack that has been in many dangerous places, a reliable combat backpack.

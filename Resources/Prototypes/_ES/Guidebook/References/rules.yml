@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESRules
+  id: Rules
   hidden: false
   name: Da Rules
   ruleEntry: true

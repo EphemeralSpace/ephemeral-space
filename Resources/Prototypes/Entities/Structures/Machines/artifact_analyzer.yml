@@ -67,9 +67,6 @@
     radius: 1.5
     energy: 3.0
     color: "#b53ca1"
-  - type: GuideHelp
-    guides:
-    - Xenoarchaeology
   - type: LitOnPowered
   - type: Appearance
   - type: GenericVisualizer
@@ -156,13 +153,3 @@
       machine_parts: !type:Container
       entity_storage: !type:Container
       output_container: !type:Container
-
-# just a resprite
-- type: entity
-  parent: MachineArtifactCrusher
-  id: MachineArtifactCrusherXenoborg
-  name: body crusher
-  description: Best not to let your head get stuck...
-  components:
-  - type: Sprite
-    sprite: Structures/Machines/body_crusher.rsi

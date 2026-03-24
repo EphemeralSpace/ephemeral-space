@@ -112,7 +112,6 @@
       state: storageHalf
   - type: GuideHelp
     guides:
-    - Pipes
     - PipeNetworks
 
 - type: entity
@@ -155,7 +154,6 @@
       collection: MetalThud # this NEEDS to changed to the metal pipe falling sound effect on april first every year
   - type: GuideHelp
     guides:
-    - Pipes
     - PipeNetworks
 
 - type: entity
@@ -205,7 +203,6 @@
         Blunt: 8 # Woe, pipe be upon ye!
   - type: GuideHelp
     guides:
-    - Pipes
     - PipeNetworks
 
 - type: entity
@@ -248,7 +245,6 @@
       collection: MetalThud
   - type: GuideHelp
     guides:
-    - Pipes
     - PipeNetworks
 
 - type: entity
@@ -293,7 +289,6 @@
       collection: MetalThud
   - type: GuideHelp
     guides:
-    - Pipes
     - PipeNetworks
 
 - type: entity
@@ -326,7 +321,6 @@
         acts: ["Destruction"]
   - type: GuideHelp
     guides:
-    - Pipes
     - PipeNetworks
 
 - type: entity

@@ -321,16 +321,6 @@
   - type: StaticPrice
     price: 5000
 
-# The job-ready version of an AI spawn.
-- type: entity
-  id: PlayerStationAi
-  parent: PlayerStationAiEmpty
-  suffix: Job spawn
-  components:
-  - type: ContainerSpawnPoint
-    containerId: station_ai_mind_slot
-    job: StationAi
-
 # The station AI core assembly
 - type: entity
   parent: BaseStructure
@@ -444,9 +434,6 @@
     - HideContextMenu
     - StationAi
     - NoConsoleSound
-  - type: StartingMindRole
-    mindRole: "MindRoleSiliconBrain"
-    silent: true
   - type: StationAiCustomization
     protoIds:
       StationAiCoreIconography: StationAiIconAi
@@ -457,13 +444,6 @@
       state: ai_female
   - type: NameIdentifier
     group: StationAi
-  - type: ToggleableGhostRole
-    roleName: station-ai-ghost-role-name
-    roleDescription: station-ai-ghost-role-description
-    roleRules: ghost-role-information-silicon-rules
-    mindRoles:
-    - MindRoleGhostRoleSilicon
-    job: StationAi
 
 # Hologram projection that the AI's eye tracks.
 - type: entity
@@ -537,94 +517,6 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMedium
-  - type: StartingMindRole
-    mindRole: "MindRoleSiliconBrain"
-    silent: true
-
-- type: entity
-  id: PlayerBorgSyndicateAssaultBattery
-  parent: BorgChassisSyndicateAssault
-  suffix: Battery, Module, Operative
-  components:
-  - type: NukeOperative
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-      borg_module:
-        - BorgModuleOperative
-        - BorgModuleL6C
-        - BorgModuleDoubleEsword
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
-
-- type: entity
-  id: PlayerBorgSyndicateAssaultGhostRole
-  parent: PlayerBorgSyndicateAssaultBattery
-  suffix: Ghost role
-  components:
-    - type: GhostRole
-      name: ghost-role-information-syndicate-cyborg-assault-name
-      description: ghost-role-information-syndicate-cyborg-description
-      rules: ghost-role-information-silicon-rules
-      raffle:
-        settings: default
-      job: Borg
-    - type: GhostTakeoverAvailable
-
-- type: entity
-  id: PlayerBorgSyndicateSaboteurBattery
-  parent: BorgChassisSyndicateSaboteur
-  suffix: Battery, Module, Operative
-  components:
-  - type: NukeOperative
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-      borg_module:
-        - BorgModuleTool
-        - BorgModuleOperative
-        - BorgModuleSyndicateWeapon
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
-
-- type: entity
-  id: PlayerBorgSyndicateSaboteurGhostRole
-  parent: PlayerBorgSyndicateSaboteurBattery
-  suffix: Ghost role
-  components:
-    - type: GhostRole
-      name: ghost-role-information-syndicate-cyborg-saboteur-name
-      description: ghost-role-information-syndicate-cyborg-description
-      rules: ghost-role-information-silicon-rules
-      raffle:
-        settings: default
-      job: Borg
-    - type: GhostTakeoverAvailable
-
-- type: entity
-  parent: MarkerBase
-  id: PlayerBorgSyndicateInvasionGhostRoleSpawner
-  name: syndicate invasion borg spawner
-  components:
-  - type: Sprite
-    layers:
-      - state: red
-      - sprite: Structures/Decoration/banner.rsi
-        state: banner_syndicate
-  - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
-      - id: PlayerBorgSyndicateAssaultGhostRole
-      - id: PlayerBorgSyndicateSaboteurGhostRole
-        weight: 0.5 # Saboteurs are kinda like cyborg medics, we want less.
 
 - type: entity
   parent: EngineeringBorgChassisDerelict
@@ -661,7 +553,6 @@
     raffle:
       settings: default
     reregister: false
-    job: Borg
   - type: GhostTakeoverAvailable
 
 - type: entity
@@ -696,7 +587,6 @@
       raffle:
         settings: default
       reregister: false
-      job: Borg
     - type: GhostTakeoverAvailable
 
 - type: entity
@@ -733,7 +623,6 @@
     raffle:
       settings: default
     reregister: false
-    job: Borg
   - type: GhostTakeoverAvailable
 
 - type: entity
@@ -771,7 +660,6 @@
     raffle:
       settings: default
     reregister: false
-    job: Borg
   - type: GhostTakeoverAvailable
 
 - type: entity
@@ -808,41 +696,4 @@
     raffle:
       settings: default
     reregister: false
-    job: Borg
-  - type: GhostTakeoverAvailable
-
-- type: entity
-  parent: SyndicateAssaultBorgChassisDerelict
-  id: PlayerSyndicateAssaultBorgDerelict
-  suffix: Battery, Module
-  components:
-  - type: ContainerFill
-    containers:
-      borg_brain:
-      - PositronicBrain
-      borg_module:
-      - BorgModuleOperative
-      - BorgModuleC20r
-      - BorgModuleEsword
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
-  - type: RandomMetadata
-    nameSegments: [NamesDeathCommando]
-
-- type: entity
-  parent: PlayerSyndicateAssaultBorgDerelict
-  id: PlayerBorgSyndicateDerelictGhostRole
-  suffix: Ghost role
-  components:
-  - type: GhostRole
-    name: ghost-role-information-derelict-syndicate-assault-cyborg-name
-    description: ghost-role-information-derelict-syndicate-assault-cyborg-description
-    rules: ghost-role-information-silicon-rules
-    raffle:
-      settings: default
-    reregister: false
-    job: Borg
   - type: GhostTakeoverAvailable

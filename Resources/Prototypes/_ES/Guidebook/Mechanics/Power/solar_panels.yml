@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESSolarPanels
+  id: SolarPanels
   hidden: false
   name: Solar Panels
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Power/SolarPanels.xml"

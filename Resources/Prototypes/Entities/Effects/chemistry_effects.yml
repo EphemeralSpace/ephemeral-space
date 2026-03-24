@@ -71,15 +71,6 @@
     state: chemsmoke_white
 
 - type: entity
-  parent: Smoke
-  id: WizardSmoke
-  name: smoke
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Smoke
-    spreadAmount: 5
-
-- type: entity
   parent: BaseFoam
   id: Foam
   name: foam

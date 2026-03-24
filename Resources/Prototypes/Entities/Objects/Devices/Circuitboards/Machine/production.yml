@@ -123,8 +123,6 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
-    - type: StealTarget
-      stealGroup: MedicalTechFabCircuitboard
 
 - type: entity
   id: CircuitImprinterMachineCircuitboard
@@ -174,9 +172,6 @@
     stackRequirements:
       Manipulator: 4
       Glass: 5
-  - type: GuideHelp
-    guides:
-    - Robotics
 
 # yes i know this prototype name is long i'm just following conventions
 - type: entity
@@ -1135,20 +1130,6 @@
       Glass: 1
 
 - type: entity
-  parent: BaseMachineCircuitboard
-  id: SurveillanceCameraWirelessRouterXenoborgCircuitboard
-  name: xenoborg camera wireless router
-  description: A machine printed circuit board for a xenoborg camera wireless router.
-  components:
-  - type: Sprite
-    state: generic
-  - type: MachineBoard
-    prototype: SurveillanceCameraWirelessRouterXenoborg
-    stackRequirements:
-      Cable: 2
-      Glass: 1
-
-- type: entity
   id: SurveillanceWirelessCameraMovableCircuitboard
   parent: BaseMachineCircuitboard
   name: movable wireless camera board
@@ -1265,22 +1246,6 @@
     prototype: TelecomServer
     stackRequirements:
       Steel: 1
-      Cable: 2
-
-- type: entity
-  parent: BaseMachineCircuitboard
-  id: SalvageMagnetMachineCircuitboard
-  name: salvage magnet machine board
-  description: A machine printed circuit board for a salvage magnet.
-  components:
-  - type: Sprite
-    state: supply
-  - type: MachineBoard
-    prototype: SalvageMagnet
-    stackRequirements:
-      Manipulator: 4
-      Steel: 5
-      CableHV: 5
       Cable: 2
 
 - type: entity

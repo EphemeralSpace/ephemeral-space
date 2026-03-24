@@ -151,8 +151,6 @@
       weight: 0.03
     - id: ClothingUnderSocksCoder
       weight: 0.03
-    - id: ClothingShoesWizard
-      weight: 0.03
     - id: ClothingShoesBootsWork
       weight: 0.03
     - id: ClothingHandsGlovesLatex

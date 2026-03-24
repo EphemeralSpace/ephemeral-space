@@ -879,49 +879,6 @@
         amount: 3
 
 - type: entity
-  name: romerol pill
-  parent: Pill
-  id: PillRomerol
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Romerol
-          Quantity: 10
-
-- type: entity
-  name: ambuzol pill
-  parent: Pill
-  id: PillAmbuzol
-  components:
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: Ambuzol
-              Quantity: 10
-
-- type: entity
-  name: ambuzol plus pill
-  parent: Pill
-  id: PillAmbuzolPlus
-  components:
-    - type: Pill
-      pillType: 2
-    - type: Sprite
-      state: pill3
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: AmbuzolPlus
-              Quantity: 5
-
-- type: entity
   parent: PillCanister
   id: PillCanisterRandom
   suffix: Random
@@ -952,12 +909,6 @@
         - id: PillBicaridine
           amount: *Range1to6
         - id: PillCharcoal
-          amount: *Range1to6
-        - id: PillAmbuzol
-          weight: 0.75
-          amount: *Range1to6
-        - id: PillAmbuzolPlus
-          weight: 0.75
           amount: *Range1to6
         - id: PillSpaceDrugs
           weight: 0.75
@@ -1073,21 +1024,6 @@
           Quantity: 15
 
 - type: entity
-  suffix: ambuzol
-  parent: PrefilledSyringe
-  id: SyringeAmbuzol
-  components:
-  - type: Label
-    currentLabel: reagent-name-ambuzol
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-        reagents:
-          - ReagentId: Ambuzol
-            Quantity: 15
-
-- type: entity
   suffix: sigynate
   parent: PrefilledSyringe
   id: SyringeSigynate
@@ -1148,21 +1084,6 @@
             Quantity: 15
 
 #this is where all the syringes are so i didn't know where to put it
-- type: entity
-  suffix: romerol
-  parent: PrefilledSyringe
-  id: SyringeRomerol
-  components:
-  - type: Label
-    currentLabel: reagent-name-romerol
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-        reagents:
-        - ReagentId: Romerol
-          Quantity: 15
-
 - type: entity
   suffix: hyperzine
   parent: PrefilledSyringe

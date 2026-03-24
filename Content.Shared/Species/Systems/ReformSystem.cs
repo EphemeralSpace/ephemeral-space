@@ -4,7 +4,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
 using Content.Shared.Mind;
-using Content.Shared.Zombies;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -32,8 +31,6 @@ public sealed partial class ReformSystem : EntitySystem
 
         SubscribeLocalEvent<ReformComponent, ReformEvent>(OnReform);
         SubscribeLocalEvent<ReformComponent, ReformDoAfterEvent>(OnDoAfter);
-
-        SubscribeLocalEvent<ReformComponent, EntityZombifiedEvent>(OnZombified);
     }
 
     private void OnMapInit(EntityUid uid, ReformComponent comp, MapInitEvent args)
@@ -98,11 +95,6 @@ public sealed partial class ReformSystem : EntitySystem
 
         // Delete the old entity
         QueueDel(uid);
-    }
-
-    private void OnZombified(EntityUid uid, ReformComponent comp, ref EntityZombifiedEvent args)
-    {
-        _actionsSystem.RemoveAction(uid, comp.ActionEntity); // Zombies can't reform
     }
 
     public sealed partial class ReformEvent : InstantActionEvent { }

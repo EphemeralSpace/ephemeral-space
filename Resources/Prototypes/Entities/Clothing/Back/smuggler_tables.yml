@@ -448,9 +448,6 @@
     children:
     - id: SpaceCash100
       weight: 50
-    - id: Telecrystal1
-      amount: !type:RangeNumberSelector
-        range: 1, 3
     - id: GatfruitSeeds
     - id: ToySword
     - id: NukeDiskFake
@@ -522,7 +519,6 @@
     children:
     - id: SpaceCash100
       weight: 10
-    - id: SyringeAmbuzol
     - id: SyringeHyronalin
     - id: SyringeDermaline
     - id: SyringeBicaridine

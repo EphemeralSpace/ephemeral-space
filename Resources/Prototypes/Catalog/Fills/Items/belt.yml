@@ -203,20 +203,6 @@
         - id: MedkitCombatFilled
 
 - type: entity
-  parent: ClothingBeltWand
-  id: ClothingBeltWandFilled
-  suffix: Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: WeaponWandPolymorphCarp
-        - id: WeaponWandFireball
-        - id: WeaponWandDeath
-        - id: WeaponWandPolymorphDoor
-
-- type: entity
   id: ClothingBeltHolsterFilled
   parent: ClothingBeltHolster
   suffix: Filled

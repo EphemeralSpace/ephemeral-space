@@ -17,18 +17,6 @@ public sealed partial class ESAvengeSelfObjectiveComponent : Component
     public EntProtoId<ESTargetObjectiveComponent> AvengeObjective = "ESObjectivePhantomAvenge";
 
     /// <summary>
-    /// Objective name used when the player fails to be killed by someone.
-    /// </summary>
-    [DataField]
-    public LocId FailName = "es-phantom-avenge-objective-fail";
-
-    /// <summary>
-    /// Message shown to player when they fail to be killed by someone.
-    /// </summary>
-    [DataField]
-    public LocId FailMessage = "es-phantom-avenge-prompt-fail";
-
-    /// <summary>
     /// Message shown to player when they are successfully killed by someone.
     /// </summary>
     [DataField]

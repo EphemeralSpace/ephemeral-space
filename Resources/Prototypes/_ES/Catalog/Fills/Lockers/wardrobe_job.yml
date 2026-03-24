@@ -154,6 +154,7 @@
   id: ESFillWardrobeReporter
   table:
     all:
+    - id: ClothingHeadHatFedoraGrey
     - id: ClothingBackpack
     - id: ClothingShoesColorBrown
     - id: ClothingUniformJumpsuitReporter

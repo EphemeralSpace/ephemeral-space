@@ -45,8 +45,6 @@
       weight: 8.0
     - id: XenoArtifactChargeBattery
       weight: 10.0
-    - id: XenoArtifactKnock
-      weight: 4.0
     - id: XenoArtifactMagnet
       weight: 2.0
     - id: XenoArtifactMagnetNegative
@@ -353,21 +351,6 @@
   id: XenoArtifactGhost
   parent: BaseOneTimeXenoArtifactEffect
   description: Becomes sentient
-  components:
-  - type: XAEApplyComponents
-    components:
-    - type: GhostRole
-      allowMovement: true
-      allowSpeech: true
-      makeSentient: true
-      name: ghost-role-information-artifact-name
-      description: ghost-role-information-artifact-description
-      rules: ghost-role-information-freeagent-rules
-      raffle:
-        settings: default
-      mindRoles:
-      - MindRoleGhostRoleFreeAgent
-    - type: GhostTakeoverAvailable
 
 - type: entity
   id: XenoArtifactOmnitool
@@ -692,14 +675,6 @@
     - charge-artifact-popup
 
 - type: entity
-  id: XenoArtifactKnock
-  parent: BaseXenoArtifactEffect
-  description: Mild electromagnetic interference
-  components:
-  - type: XAEKnock
-  - type: XAELightFlicker
-
-- type: entity
   id: XenoArtifactMagnet
   parent: BaseOneTimeXenoArtifactEffect
   description: Create small gravity well
@@ -929,8 +904,6 @@
         - id: MobGoat
           amount: !type:RangeNumberSelector
             range: 1, 3
-        - id: MobMonkeySyndicateAgent #so lucky
-          prob: 0.03
 
 - type: entity
   id: XenoArtifactHostileFaunaSpawn

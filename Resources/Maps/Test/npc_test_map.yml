@@ -4846,7 +4846,7 @@ entities:
     - type: Transform
       pos: 16.5,-0.5
       parent: 10
-- proto: DebugAPC
+- proto: BaseAPC
   entities:
   - uid: 1258
     components:

@@ -1296,7 +1296,7 @@ entities:
       - 29
     - type: AtmosDevice
       joinedGrid: 2
-- proto: DebugAPC
+- proto: BaseAPC
   entities:
   - uid: 38
     components:
@@ -1839,13 +1839,6 @@ entities:
     components:
     - type: Transform
       pos: 8.5,7.5
-      parent: 2
-- proto: LockerChiefEngineerFilledHardsuit
-  entities:
-  - uid: 396
-    components:
-    - type: Transform
-      pos: -4.5,8.5
       parent: 2
 - proto: LockerElectricalSuppliesFilled
   entities:

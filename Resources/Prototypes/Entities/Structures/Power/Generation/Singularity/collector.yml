@@ -69,7 +69,6 @@
   - type: Pullable
   - type: GuideHelp
     guides:
-    - SingularityEngine
     - Power
   - type: ContainerContainer
     containers:

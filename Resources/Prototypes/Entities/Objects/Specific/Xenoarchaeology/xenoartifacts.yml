@@ -19,9 +19,6 @@
         type: InstrumentBoundUserInterface
       enum.IntercomUiKey.Key:
         type: IntercomBoundUserInterface
-  - type: GuideHelp
-    guides:
-    - Xenoarchaeology
   # gameplay interactions
   - type: XenoArtifact
     effectsTable: !type:NestedSelector
@@ -34,8 +31,6 @@
     baseWalkSpeed: 0.25
     baseSprintSpeed: 0.5
   - type: UseDelay
-  - type: StealTarget
-    stealGroup: XenoArtifact
   - type: ContainerContainer
     containers:
       node-container: !type:Container

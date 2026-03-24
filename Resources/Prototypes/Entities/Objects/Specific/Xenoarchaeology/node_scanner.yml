@@ -12,9 +12,6 @@
     - type: NodeScanner
     - type: UseDelay
       delay: 1
-    - type: GuideHelp
-      guides:
-      - Xenoarchaeology
     - type: ActivatableUI
       key: enum.NodeScannerUiKey.Key
       singleUser: true

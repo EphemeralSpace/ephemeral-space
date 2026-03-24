@@ -51,7 +51,6 @@
   - type: GuideHelp
     guides:
     - AtmosphericAlertsComputer
-    - DeviceMonitoringAndControl
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -88,7 +87,6 @@
   - type: GuideHelp
     guides:
     - AtmosphericNetworkMonitor
-    - DeviceMonitoringAndControl
 
 - type: entity
   parent: BaseComputer
@@ -132,8 +130,6 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: RadarConsole
-  - type: WorldLoader
-    radius: 256
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -154,9 +150,6 @@
       board: !type:Container
         ents: []
       disk_slot: !type:ContainerSlot {}
-  - type: GuideHelp
-    guides:
-    - ShuttleCraft
 
 - type: entity
   parent: BaseComputerShuttle
@@ -202,8 +195,6 @@
       - Syndicate
   - type: RadarConsole
     maxRange: 384
-  - type: WorldLoader
-    radius: 1536
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -240,8 +231,6 @@
     color: "#43ccb5"
   - type: Computer
     board: CargoShuttleConsoleCircuitboard
-  - type: StealTarget
-    stealGroup: CargoShuttleConsoleCircuitboard
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -408,9 +397,6 @@
 #  - type: AccessReader
 #    access: [["Security"]]
 # ES End
-  - type: GuideHelp
-    guides:
-    - CriminalRecords
 # ES START
   - type: ESSabotageTarget
 # ES END
@@ -525,9 +511,6 @@
     radius: 1.5
     energy: 4.0
     color: "#b53ca1"
-  - type: GuideHelp
-    guides:
-    - Science
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -576,9 +559,6 @@
     radius: 1.5
     energy: 4.0
     color: "#b53ca1"
-  - type: GuideHelp
-    guides:
-    - AnalysisConsole
 
 - type: entity
   # ES START
@@ -749,74 +729,6 @@
 
 - type: entity
   parent: ComputerComms
-  id: SyndicateComputerComms
-  name: syndicate communications computer
-  description: A computer capable of remotely hacking into the station's communications systems. Using this to make an announcement will alert the station to your presence.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: comm_syndie
-    - map: ["computerLayerKeys"]
-      state: syndie_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: AccessReader
-    access: [[ "NuclearOperative" ]]
-  - type: CommunicationsConsole
-    title: comms-console-announcement-title-nukie
-    color: "#ff0000"
-    canShuttle: false
-    global: true #announce to everyone they're about to fuck shit up
-    announceSentBy: false # The title already says who they are.
-    sound: /Audio/Announcements/war.ogg
-  - type: Computer
-    board: SyndicateCommsComputerCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#f71713"
-
-- type: entity
-  parent: ComputerComms
-  id: WizardComputerComms
-  name: wizard communications computer
-  description: A computer capable of magically projecting your speech to the station. Using this to make an announcement will alert the station to your presence.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: comm_wizard
-    - map: ["computerLayerKeys"]
-      state: wizard_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: AccessReader
-    access: [[ "Wizard" ]]
-  - type: CommunicationsConsole
-    title: comms-console-announcement-title-wizard
-    color: "#ff00ff"
-    canShuttle: false
-    global: true #announce to everyone they're about to fuck shit up
-    announceSentBy: false
-    sound: /Audio/Announcements/war.ogg
-  - type: Computer
-    board: WizardCommsComputerCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#F317F3"
-
-- type: entity
-  parent: ComputerComms
   id: CentcommComputerComms
   name: central command communications computer
   description: A computer used to make world wide announcements via keyboard. The superior cousin of the regular communications computer.
@@ -967,9 +879,6 @@
     range: 200
     ports:
       - OrderSender
-  - type: GuideHelp
-    guides:
-    - Cargo
 
 # Request console variants.
 - type: entity
@@ -1172,10 +1081,6 @@
     color: "#b89f25"
   - type: AccessReader
     access: [["Quartermaster"]]
-  - type: GuideHelp
-    guides:
-    - CargoBounties
-    - Cargo
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -1263,98 +1168,6 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
-  - type: GuideHelp
-    guides:
-    - Cloning
-
-- type: entity
-  parent: BaseComputerAiAccess
-  id: ComputerSalvageJobBoard
-  name: salvage job board
-  description: Console for accessing salvage jobs, if you're tough enough.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: salvjob # givin em a salvjob like hawk tuah
-    - map: ["computerLayerKeys"]
-      state: generic_keys
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: SalvageJobBoardConsole
-  - type: ActivatableUI
-    key: enum.SalvageJobBoardUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.SalvageJobBoardUiKey.Key:
-        type: SalvageJobBoardBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: ActiveRadio
-    channels: [ Supply ]
-  - type: Computer
-    board: SalvageJobBoardComputerCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#b89f25"
-
-- type: entity
-  id: ComputerSalvageExpedition
-  parent: BaseComputerAiAccess
-  name: salvage expeditions computer
-  description: Used to accept salvage missions, if you're tough enough.
-  components:
-    - type: Sprite
-      layers:
-        - map: ["computerLayerBody"]
-          state: computer
-        - map: ["computerLayerKeyboard"]
-          state: generic_keyboard
-        - map: [ "computerLayerScreen" ]
-          state: mining
-        - map: ["computerLayerKeys"]
-          state: tech_key
-        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-          state: generic_panel_open
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.ComputerVisuals.Powered:
-          computerLayerScreen:
-            True: { visible: true, shader: unshaded }
-            False: { visible: false }
-          computerLayerKeys:
-            True: { visible: true, shader: unshaded }
-            False: { visible: true }
-        enum.WiresVisuals.MaintenancePanelState:
-          enum.WiresVisualLayers.MaintenancePanel:
-            True: { visible: false }
-            False: { visible: true }
-    - type: SalvageExpeditionConsole
-    - type: ActivatableUI
-      key: enum.SalvageConsoleUiKey.Expedition
-    - type: ActivatableUIRequiresPower
-    - type: UserInterface
-      interfaces:
-        enum.SalvageConsoleUiKey.Expedition:
-          type: SalvageExpeditionConsoleBoundUserInterface
-        enum.WiresUiKey.Key:
-          type: WiresBoundUserInterface
-    - type: Computer
-      board: SalvageExpeditionsComputerCircuitboard
-    - type: PointLight
-      radius: 1.5
-      energy: 4.0
-      color: "#b89f25"
-    - type: AccessReader
-      access: [["Salvage"]]
-    - type: StealTarget
-      stealGroup: SalvageExpeditionsComputerCircuitboard
 
 - type: entity
   parent: BaseComputer
@@ -1437,21 +1250,6 @@
           type: WiresBoundUserInterface
 
 - type: entity
-  parent: ComputerSurveillanceWirelessCameraMonitor
-  id: ComputerSurveillanceWirelessXenoborgCameraMonitor
-  name: xenoborg camera monitor
-  description: A wireless xenoborg camera monitor. You're watching them. Maybe.
-  components:
-  - type: Computer
-    board: XenoborgCameraMonitorCircuitboard
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: Mothership
-    transmitFrequencyId: Mothership
-  - type: WirelessNetworkConnection
-    range: 2000
-
-- type: entity
   id: ComputerPalletConsole
   parent: BaseComputerAiAccess
   name: cargo sale computer
@@ -1487,9 +1285,6 @@
     radius: 1.5
     energy: 4.0
     color: "#b89f25"
-  - type: GuideHelp
-    guides:
-    - Cargo
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -1624,47 +1419,6 @@
     access: [["ResearchDirector"]]
   - type: Lock
     unlockOnClick: false
-
-- type: entity
-  parent: BaseComputer
-  id: ComputerXenoborgsControl
-  name: xenoborgs control console
-  description: Used to remotely monitor all xenoborgs.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: xenorobot
-    - map: ["computerLayerKeys"]
-      state: rd_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: ActivatableUI
-    key: enum.RoboticsConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.RoboticsConsoleUiKey.Key:
-        type: RoboticsConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: RoboticsConsole
-    allowBorgControl: false
-    radioChannel: Xenoborg
-  - type: ActiveRadio
-    channels:
-    - Xenoborg
-  - type: ApcPowerReceiver
-    powerLoad: 1000
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: Mothership
-    transmitFrequencyId: Xenoborg
-  - type: Computer
-    board: ComputerXenoborgsControlCircuitboard
 
 - type: entity
   id: StationAiUploadComputer
@@ -1802,41 +1556,3 @@
         type: StationAiFixerConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-
-- type: entity
-  parent: BaseComputer
-  id: ComputerNukieDelivery
-  name: syndicate delivery computer
-  description: "A computer that can bluespace in certain equipment for Nuclear Operations. \nThe circuitboard is integrated into the frame and can't be recovered if deconstructed."
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: request-syndie
-    - map: ["computerLayerKeys"]
-      state: syndie_generic_keys
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  # - type: Computer
-  #   board: SyndicateCommsComputerCircuitboard
-  - type: Anchorable
-    flags:
-    - Anchorable # No taking the console along!
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#f71713"
-  - type: UserInterface
-    interfaces:
-      enum.StoreUiKey.Key:
-        type: StoreBoundUserInterface
-  - type: ActivatableUI
-    key: enum.StoreUiKey.Key
-  - type: Store
-    name: store-preset-name-nukie-delivery
-    categories:
-    - NukieDelivery

@@ -719,22 +719,6 @@
     replacement: italian
 
 - type: entity
-  parent: ClothingMaskBase
-  id: ClothingMaskNinja
-  name: ninja mask
-  description: A close-fitting nano-enhanced mask that acts both as an air filter and a post-modern fashion statement.
-  components:
-  - type: Sprite
-    sprite: Clothing/Mask/ninja.rsi
-  - type: Clothing
-    sprite: Clothing/Mask/ninja.rsi
-  - type: Item
-    storedRotation: -90
-  - type: EyeProtection
-  - type: BreathMask
-  - type: IdentityBlocker
-
-- type: entity
   parent: ClothingMaskGas
   id: ClothingMaskWeldingGas
   name: welding gas mask

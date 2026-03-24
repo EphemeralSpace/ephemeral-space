@@ -78,42 +78,6 @@ public sealed partial class ShuttleSystem
         _mapSystem.DeleteMap(mapId);
     }
 
-    private bool TryDungeonSpawn(Entity<MapGridComponent?> targetGrid, DungeonSpawnGroup group, out EntityUid spawned)
-    {
-        spawned = EntityUid.Invalid;
-
-        if (!_gridQuery.Resolve(targetGrid.Owner, ref targetGrid.Comp))
-        {
-            return false;
-        }
-
-        var dungeonProtoId = _random.Pick(group.Protos);
-
-        if (!_protoManager.Resolve(dungeonProtoId, out var dungeonProto))
-        {
-            return false;
-        }
-
-        var targetPhysics = _physicsQuery.Comp(targetGrid);
-        var spawnCoords = new EntityCoordinates(targetGrid, targetPhysics.LocalCenter);
-
-        if (group.MinimumDistance > 0f)
-        {
-            var distancePadding = MathF.Max(targetGrid.Comp.LocalAABB.Width, targetGrid.Comp.LocalAABB.Height);
-            spawnCoords = spawnCoords.Offset(_random.NextVector2(distancePadding + group.MinimumDistance, distancePadding + group.MaximumDistance));
-        }
-
-        _mapSystem.CreateMap(out var mapId);
-
-        var spawnedGrid = _mapManager.CreateGridEntity(mapId);
-
-        _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
-        _dungeon.GenerateDungeon(dungeonProto, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords);
-
-        spawned = spawnedGrid.Owner;
-        return true;
-    }
-
     private bool TryGridSpawn(EntityUid targetGrid, EntityUid stationUid, MapId mapId, GridSpawnGroup group, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;
@@ -178,11 +142,6 @@ public sealed partial class ShuttleSystem
 
                 switch (group)
                 {
-                    case DungeonSpawnGroup dungeon:
-                        if (!TryDungeonSpawn(targetGrid.Value, dungeon, out spawned))
-                            continue;
-
-                        break;
                     case GridSpawnGroup grid:
                         if (!TryGridSpawn(targetGrid.Value, uid, mapId, grid, out spawned))
                             continue;
@@ -190,11 +149,6 @@ public sealed partial class ShuttleSystem
                         break;
                     default:
                         throw new NotImplementedException();
-                }
-
-                if (_protoManager.Resolve(group.NameDataset, out var dataset))
-                {
-                    _metadata.SetEntityName(spawned, _salvage.GetFTLName(dataset, _random.Next()));
                 }
 
                 if (group.Hide)

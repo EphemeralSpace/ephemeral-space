@@ -21,9 +21,9 @@ namespace Content.IntegrationTests.Tests.Round;
 [TestFixture]
 public sealed class JobTest
 {
-    private static readonly ProtoId<JobPrototype> Passenger = "Passenger";
-    private static readonly ProtoId<JobPrototype> Engineer = "StationEngineer";
-    private static readonly ProtoId<JobPrototype> Captain = "Captain";
+    private static readonly ProtoId<JobPrototype> Passenger = "ESBartender";
+    private static readonly ProtoId<JobPrototype> Engineer = "ESStationEngineer";
+    private static readonly ProtoId<JobPrototype> Captain = "ESCaptain";
 
     private static string _map = "JobTestMap";
 
@@ -36,7 +36,7 @@ public sealed class JobTest
   minPlayers: 0
   stations:
     Empty:
-      stationProto: StandardNanotrasenStation
+      stationProto: ESBaseStationNeutral
       components:
         - type: StationNameSetup
           mapNameTemplate: ""Empty""

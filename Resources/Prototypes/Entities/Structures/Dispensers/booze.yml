@@ -26,8 +26,6 @@
     guides:
     - Bartender
     - Drinks
-  - type: StealTarget
-    stealGroup: BoozeDispenser
 
 - type: entity
   id: BoozeDispenser

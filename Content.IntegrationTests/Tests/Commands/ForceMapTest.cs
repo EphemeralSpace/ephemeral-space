@@ -23,7 +23,7 @@ public sealed class ForceMapTest
   maxPlayers: 80
   stations:
     Empty:
-      stationProto: StandardNanotrasenStation
+      stationProto: ESBaseStationNeutral
       components:
         - type: StationNameSetup
           mapNameTemplate: ""Empty""
@@ -35,7 +35,7 @@ public sealed class ForceMapTest
   minPlayers: 0
   stations:
     Empty:
-      stationProto: StandardNanotrasenStation
+      stationProto: ESBaseStationNeutral
       components:
         - type: StationNameSetup
           mapNameTemplate: ""Empty""

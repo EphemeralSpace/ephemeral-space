@@ -349,8 +349,6 @@
     sprite: Structures/Storage/Crates/syndicate_secure.rsi
   - type: Sprite
     sprite: Structures/Storage/Crates/syndicate_secure.rsi
-  - type: AccessReader
-    access: [["SyndicateAgent", "NuclearOperative"]]
 
 - type: entity
   parent: CrateGeneric

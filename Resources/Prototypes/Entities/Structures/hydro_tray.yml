@@ -98,7 +98,7 @@
       path: /Audio/Ambience/Objects/flowing_water_open.ogg
   - type: GuideHelp
     guides:
-    - Botany
+    - Botanist
     - Chemicals
 
 - type: entity

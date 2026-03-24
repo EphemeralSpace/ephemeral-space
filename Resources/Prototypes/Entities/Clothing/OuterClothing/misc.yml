@@ -183,59 +183,6 @@
     sprite: Clothing/OuterClothing/Misc/santa.rsi
 
 - type: entity
-  abstract: true
-  parent: [ ClothingOuterBase, AllowSuitStorageClothingGasTanks, BaseMagicalContraband ]
-  id: ClothingOuterWizardBase
-  components:
-  - type: WizardClothes
-
-# Is this wizard wearing a fanny pack???
-- type: entity
-  parent: ClothingOuterWizardBase
-  id: ClothingOuterWizardViolet
-  name: violet wizard robes
-  description: A bizarre gem-encrusted violet robe that radiates magical energies.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Misc/violetwizard.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Misc/violetwizard.rsi
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
-
-- type: entity
-  parent: ClothingOuterWizardBase
-  id: ClothingOuterWizard
-  name: wizard robes
-  description: A bizarre gem-encrusted blue robe that radiates magical energies.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Misc/wizard.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Misc/wizard.rsi
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
-
-- type: entity
-  parent: ClothingOuterWizardBase
-  id: ClothingOuterWizardRed
-  name: red wizard robes
-  description: Strange-looking, red, hat-wear that most certainly belongs to a real magic user.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Misc/redwizard.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Misc/redwizard.rsi
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
-
-- type: entity
   parent: ClothingOuterBase
   id: ClothingOuterSkub
   name: skub suit
