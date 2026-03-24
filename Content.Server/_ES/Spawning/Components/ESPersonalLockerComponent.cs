@@ -10,6 +10,9 @@ public sealed partial class ESPersonalLockerComponent : Component
     [DataField]
     public bool Assigned;
 
+    [DataField]
+    public string Name = "unassigned";
+
     [DataField(required: true)]
     public ProtoId<JobPrototype> Job;
 }

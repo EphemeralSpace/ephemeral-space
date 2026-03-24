@@ -3,7 +3,7 @@ using Content.Server._ES.Spawning.Components;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.Labels.EntitySystems;
+using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Prototypes;
@@ -12,7 +12,7 @@ namespace Content.Server._ES.Spawning;
 
 public sealed class ESPersonalLockerSystem : EntitySystem
 {
-    [Dependency] private readonly LabelSystem _label = default!;
+    [Dependency] private readonly NameModifierSystem _nameModifier = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
 
     public override void Initialize()
@@ -20,6 +20,8 @@ public sealed class ESPersonalLockerSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<AfterGeneralRecordCreatedEvent>(OnGeneralRecordCreated);
+        SubscribeLocalEvent<ESPersonalLockerComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
+        SubscribeLocalEvent<ESPersonalLockerComponent, MapInitEvent>(OnMapInit);
     }
 
     private void OnGeneralRecordCreated(AfterGeneralRecordCreatedEvent args)
@@ -27,19 +29,29 @@ public sealed class ESPersonalLockerSystem : EntitySystem
         AssignPersonalLocker(args.Key, args.Record.Name, args.Record.JobPrototype);
     }
 
-    public bool AssignPersonalLocker(StationRecordKey key, string? name, ProtoId<JobPrototype> job)
+    private void OnMapInit(Entity<ESPersonalLockerComponent> ent, ref MapInitEvent args)
+    {
+        _nameModifier.RefreshNameModifiers(ent.Owner);
+    }
+
+    private void OnRefreshNameModifiers(Entity<ESPersonalLockerComponent> ent, ref RefreshNameModifiersEvent args)
+    {
+        args.AddModifier("comp-label-format", extraArgs: ("label", ent.Comp.Name));
+    }
+
+    public bool AssignPersonalLocker(StationRecordKey key, string name, ProtoId<JobPrototype> job)
     {
         if (!TryGetUnoccupiedPersonalLocker(job, out var locker))
             return false;
-
-        _label.Label(locker.Value, name);
 
         if (TryComp<AccessReaderComponent>(locker, out var accessReader))
         {
             _accessReader.AddAccessKey((locker.Value, accessReader), key);
         }
 
+        locker.Value.Comp.Name = name;
         locker.Value.Comp.Assigned = true;
+        _nameModifier.RefreshNameModifiers(locker.Value.Owner);
         return true;
     }
 
