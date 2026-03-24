@@ -1559,30 +1559,6 @@
         type: ChameleonBoundUserInterface
 
 - type: entity
-  parent: BaseWidePDA
-  id: WizardPDA
-  name: wizard PDA
-  description: You hear faint whispers coming from it.
-  components:
-  - type: Pda
-    id: WizardIDCard
-    penSlot:
-      startingItem: PenWiz
-      priority: -1
-      whitelist:
-        tags:
-        - Write
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-wizard
-  - type: PdaBorderColor
-    borderColor: "#7F3300"
-  - type: Icon
-    state: pda-wizard
-
-- type: entity
   parent: ClearPDA
   id: ScurretPDA
   description: A temporary PDA granted to scurret temps. Doesn't do much. Wawa!

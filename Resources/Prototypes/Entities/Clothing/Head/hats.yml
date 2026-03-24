@@ -796,32 +796,6 @@
       HeadSide : HEAD
 
 - type: entity
-  abstract: true
-  parent: [ ClothingHeadBase, BaseMagicalContraband ]
-  id: ClothingHeadHatWizardBase
-  components:
-  - type: WizardClothes
-
-- type: entity
-  parent: ClothingHeadHatWizardBase
-  id: ClothingHeadHatWizard
-  name: wizard hat
-  description: A strange-looking blue hat that most certainly belongs to a powerful magic-user.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hats/wizardhat.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/wizardhat.rsi
-  - type: Tag
-    tags:
-    - PetWearable
-    - CorgiWearable
-    - ClothMade
-    - Recyclable
-    - HamsterWearable
-    - WhitelistChameleon
-
-- type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatXmasCrown
   name: xmas crown

@@ -226,23 +226,6 @@
     layers:
       Hair: HEAD
 
-#Wizard Helmet
-- type: entity
-  parent: ClothingHeadHelmetBase
-  id: ClothingHeadHelmetWizardHelm
-  name: wizard helm
-  description: Strange-looking helmet that most certainly belongs to a real magic user.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Helmets/wizardhelm.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Helmets/wizardhelm.rsi
-  - type: IngestionBlocker
-  - type: IdentityBlocker
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
-
 #Fire Helmet
 - type: entity
   parent: ClothingHeadLightBase

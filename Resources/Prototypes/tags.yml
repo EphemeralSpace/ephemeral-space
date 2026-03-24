@@ -1525,10 +1525,6 @@
   id: Wirecutter # Storage whitelist: BaseClothingBeltEngineering. ItemMapper: BaseClothingBeltEngineering
 
 - type: Tag
-  id: WizardWand # that evil vvizard vvand
-                 # .cs: ChargeSpellEvent. Storage whitelist: ClothingBeltWand
-
-- type: Tag
   id: Wooden # just like our atmos
              # MaterialStorage whitelist: Sheetifier
 
