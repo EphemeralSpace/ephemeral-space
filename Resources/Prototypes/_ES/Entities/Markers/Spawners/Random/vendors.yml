@@ -86,9 +86,9 @@
   - type: EntityTableSpawner
     table:
       group:
-      - tableId: ESSpawnerRandomVendorDrink
+      - tableId: ESColaVendors
         weight: 2
-      - tableId: ESSpawnerRandomVendorSnack
+      - tableId: ESSnackVendors
         weight: 2
       - tableId: ESSpecialVendors
         weight: 2
