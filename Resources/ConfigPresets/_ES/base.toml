@@ -43,9 +43,6 @@ maximum_width = 15
 grid_fill = false
 arrivals_planet = false
 
-[procgen]
-preload = false
-
 # Tips
 [tips]
 dataset = "ESTips"

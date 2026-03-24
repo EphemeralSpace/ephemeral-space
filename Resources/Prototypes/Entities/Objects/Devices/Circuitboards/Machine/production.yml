@@ -1250,22 +1250,6 @@
 
 - type: entity
   parent: BaseMachineCircuitboard
-  id: SalvageMagnetMachineCircuitboard
-  name: salvage magnet machine board
-  description: A machine printed circuit board for a salvage magnet.
-  components:
-  - type: Sprite
-    state: supply
-  - type: MachineBoard
-    prototype: SalvageMagnet
-    stackRequirements:
-      Manipulator: 4
-      Steel: 5
-      CableHV: 5
-      Cable: 2
-
-- type: entity
-  parent: BaseMachineCircuitboard
   id: MiniGravityGeneratorCircuitboard
   name: mini gravity generator machine board
   description: A machine printed circuit board for a mini gravity generator.

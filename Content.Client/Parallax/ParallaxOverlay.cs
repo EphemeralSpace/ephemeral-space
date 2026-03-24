@@ -1,7 +1,6 @@
 using System.Numerics;
 using Content.Client.Parallax.Managers;
 using Content.Shared.CCVar;
-using Content.Shared.Parallax.Biomes;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
@@ -34,7 +33,7 @@ public sealed class ParallaxOverlay : Overlay
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        if (args.MapId == MapId.Nullspace || _entManager.HasComponent<BiomeComponent>(_mapSystem.GetMapOrInvalid(args.MapId)))
+        if (args.MapId == MapId.Nullspace)
             return false;
 
         return true;

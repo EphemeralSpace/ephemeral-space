@@ -38,19 +38,6 @@
       - MobRandomEngineerCorpse
 
 - type: entity
-  name: Random Cargo Corpse Spawner
-  id: RandomCargoCorpseSpawner
-  parent: SalvageHumanCorpseSpawner
-  components:
-  - type: Sprite
-    layers:
-      - state: cargo_tech
-      - state: green
-  - type: ConditionalSpawner
-    prototypes:
-      - MobRandomCargoCorpse
-
-- type: entity
   name: Random Medic Corpse Spawner
   id: RandomMedicCorpseSpawner
   parent: SalvageHumanCorpseSpawner

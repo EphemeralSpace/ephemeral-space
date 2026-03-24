@@ -149,17 +149,6 @@
     layers: [ 0 ]
 
 - type: entity
-  id: MobCarpSalvage
-  parent: MobCarp
-  suffix: "Salvage Ruleset"
-  components:
-    - type: SalvageMobRestrictions
-    - type: MobThresholds
-      thresholds:
-        0: Alive
-        30: Dead
-
-- type: entity
   name: sharkminnow
   parent: BaseMobCarp
   id: MobShark
@@ -212,10 +201,3 @@
         types:
           Slash: 10
           Bloodloss: 5
-
-- type: entity
-  id: MobSharkSalvage
-  parent: MobShark
-  suffix: "Salvage Ruleset"
-  components:
-    - type: SalvageMobRestrictions

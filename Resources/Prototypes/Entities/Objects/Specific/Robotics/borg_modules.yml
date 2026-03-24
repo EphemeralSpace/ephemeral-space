@@ -395,10 +395,7 @@
     - state: icon-mining
   - type: ItemBorgModule
     hands:
-    - item: MiningDrill
     - item: Shovel
-    - item: MineralScannerUnpowered
-    - item: BorgOreBag
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: mining-module }
 
@@ -414,10 +411,7 @@
     - state: icon-mining-adv
   - type: ItemBorgModule
     hands:
-    - item: MiningDrillDiamond
     - item: Shovel
-    - item: AdvancedMineralScannerUnpowered
-    - item: OreBagOfHolding
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-mining-module }
 

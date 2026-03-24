@@ -379,22 +379,6 @@
 
 - type: entity
   parent: ESBaseVendingMachine
-  id: ESVendingMachineSalvage
-  name: Salvage Vendor
-  description: A dwarf's best friend!
-  components:
-  - type: Sprite
-    sprite: _ES/Structures/Vendors/mining.rsi
-  - type: VendingMachine
-    pack: SalvageEquipmentInventory
-  - type: PointLight
-    color: "#b89f25"
-  - type: AccessReader
-    access: [["Salvage"]]
-
-
-- type: entity
-  parent: ESBaseVendingMachine
   id: ESVendingMachineChefvend
   name: ChefVend
   description: An ingredient vendor for all your cheffin needs.

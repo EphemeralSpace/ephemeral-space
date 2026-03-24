@@ -76,15 +76,6 @@
     sprite: Clothing/Uniforms/Jumpsuit/cargotech.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
-  id: ClothingUniformJumpsuitSalvageSpecialist
-  name: salvage specialist's jumpsuit
-  description: It's a snappy jumpsuit with a sturdy set of overalls. It's very dirty.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
-
-- type: entity
   parent: [ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase]
   id: ClothingUniformJumpsuitChiefEngineer
   name: chief engineer's jumpsuit

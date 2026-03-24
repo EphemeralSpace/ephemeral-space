@@ -1296,7 +1296,7 @@ entities:
       - 29
     - type: AtmosDevice
       joinedGrid: 2
-- proto: DebugAPC
+- proto: BaseAPC
   entities:
   - uid: 38
     components:

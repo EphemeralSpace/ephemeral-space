@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Client.Graphics;
 using Content.Client.Parallax;
 using Content.Client.Weather;
-using Content.Shared.Salvage;
 using Content.Shared.Weather;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -74,11 +73,6 @@ public sealed partial class StencilOverlay : Overlay
                 var alpha = _weather.GetPercent(weather, mapUid);
                 DrawWeather(args, res, weatherProto, alpha, invMatrix);
             }
-        }
-
-        if (_entManager.TryGetComponent<RestrictedRangeComponent>(mapUid, out var restrictedRangeComponent))
-        {
-            DrawRestrictedRange(args, res, restrictedRangeComponent, invMatrix);
         }
 
         args.WorldHandle.UseShader(null);

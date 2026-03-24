@@ -91,11 +91,3 @@
     accent: genericAggressive
   - type: Speech
     speechVerb: SmallMob
-
-- type: entity
-  id: MobTickSalvage
-  parent: MobTick
-  suffix: "Salvage Ruleset"
-  components:
-  - type: SalvageMobRestrictions
-

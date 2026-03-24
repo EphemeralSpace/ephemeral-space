@@ -352,8 +352,6 @@
         orGroup: GiftPool
       - id: Coal1
         orGroup: GiftPool
-      - id: MiningDrill
-        orGroup: GiftPool
       - id: CowToolboxFilled
         orGroup: GiftPool
       - id: ClothingUniformJumpsuitEngineeringHazard

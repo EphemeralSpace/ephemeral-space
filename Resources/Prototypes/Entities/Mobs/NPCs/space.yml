@@ -111,13 +111,6 @@
 # ES End
 
 - type: entity
-  id: MobBearSpaceSalvage
-  parent: MobBearSpace
-  suffix: "Salvage Ruleset"
-  components:
-  - type: SalvageMobRestrictions
-
-- type: entity
   name: space kangaroo
   id: MobKangarooSpace
   parent: [MobSpaceBasic, StripableInventoryBase]
@@ -171,13 +164,6 @@
     thresholds:
       0: Alive
       60: Dead
-
-- type: entity
-  id: MobKangarooSpaceSalvage
-  parent: MobKangarooSpace
-  suffix: "Salvage Ruleset"
-  components:
-  - type: SalvageMobRestrictions
 
 - type: entity
   name: space spider
@@ -273,13 +259,6 @@
     proto: spider
 
 - type: entity
-  id: MobSpiderSpaceSalvage
-  parent: MobSpiderSpace
-  suffix: "Salvage Ruleset"
-  components:
-  - type: SalvageMobRestrictions
-
-- type: entity
   name: space cobra
   id: MobCobraSpace
   parent: MobSpaceBasic
@@ -370,13 +349,6 @@
     - type: StealthOnMove
       passiveVisibilityRate: -0.25
       movementVisibilityRate: 0.25
-
-- type: entity
-  id: MobCobraSpaceSalvage
-  parent: MobCobraSpace
-  suffix: "Salvage Ruleset"
-  components:
-    - type: SalvageMobRestrictions
 
 - type: entity
   parent: SimpleSpaceMobBase

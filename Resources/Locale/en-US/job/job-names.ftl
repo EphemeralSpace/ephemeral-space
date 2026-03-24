@@ -104,7 +104,6 @@ JobQuartermaster = Quartermaster
 JobReporter = Reporter
 JobResearchAssistant = Research Assistant
 JobResearchDirector = Research Director
-JobSalvageSpecialist = Salvage Specialist
 JobScientist = Scientist
 JobSecurityCadet = Security Cadet
 JobSecurityOfficer = Security Officer

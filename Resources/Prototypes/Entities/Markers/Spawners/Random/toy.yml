@@ -121,7 +121,6 @@
       - id: PlushieLizardJobReporter
       - id: PlushieLizardJobResearchassistant
       - id: PlushieLizardJobResearchdirector
-      - id: PlushieLizardJobSalvagespecialist
       - id: PlushieLizardJobScientist
       - id: PlushieLizardJobSecuritycadet
       - id: PlushieLizardJobSecurityofficer

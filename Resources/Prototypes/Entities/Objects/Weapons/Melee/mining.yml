@@ -41,56 +41,6 @@
       Wood: 100
 
 - type: entity
-  name: mining drill
-  parent: BaseItem
-  id: MiningDrill
-  description: Powerful tool used to quickly drill through rocks.
-  components:
-  - type: Item
-    storedRotation: -90
-  - type: Tag
-    tags:
-    - Pickaxe
-  - type: Sprite
-    sprite: Objects/Tools/handdrill.rsi
-    state: handdrill
-  - type: MeleeWeapon
-    autoAttack: true
-    angle: 0
-    wideAnimationRotation: -90
-    soundHit:
-      path: "/Audio/Items/drill_hit.ogg"
-    attackRate: 4
-    damage:
-      groups:
-        Brute: 3
-      types:
-        Structural: 15
-
-- type: entity
-  name: diamond tipped mining drill
-  parent: MiningDrill
-  id: MiningDrillDiamond
-  description: A significantly more efficient mining drill tipped with diamond.
-  components:
-  - type: Sprite
-    sprite: Objects/Tools/handdrilldiamond.rsi
-    state: handdrill
-  - type: MeleeWeapon
-    autoAttack: true
-    angle: 0
-    wideAnimationRotation: -90
-    soundHit:
-      path: "/Audio/Items/drill_hit.ogg"
-    attackRate: 4
-    damage:
-      groups:
-        Brute: 6
-      types:
-        Structural: 30
-
-
-- type: entity
   abstract: true
   parent: BaseItem
   id: BaseWeaponCrusher # Crusher? But I...

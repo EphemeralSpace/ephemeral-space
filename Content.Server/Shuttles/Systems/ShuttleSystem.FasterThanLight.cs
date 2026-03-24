@@ -985,7 +985,6 @@ public sealed partial class ShuttleSystem
 
             // Handle clearing biome stuff as relevant.
             tileSet.Clear();
-            _biomes.ReserveTiles(xform.MapUid.Value, aabb, tileSet);
             _lookupEnts.Clear();
             _immuneEnts.Clear();
             // TODO: Ideally we'd query first BEFORE moving grid but needs adjustments above.

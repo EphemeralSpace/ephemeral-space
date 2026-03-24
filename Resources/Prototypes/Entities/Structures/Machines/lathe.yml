@@ -224,7 +224,6 @@
     - ScienceClothing
     - PowerCells
     - ScienceWeapons
-    - Mining
     - AtmosTools
     - EngineeringWeapons
     - Chemistry
@@ -282,7 +281,6 @@
     staticPacks:
     - ScienceBoardsStatic
     - ServiceBoardsStatic
-    - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
     - OffbrandCircuitboardsStatic # Offbrand

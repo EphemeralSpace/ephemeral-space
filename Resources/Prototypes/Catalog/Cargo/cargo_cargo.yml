@@ -29,16 +29,6 @@
   group: market
 
 - type: cargoProduct
-  id: CargoCrusherDagger
-  icon:
-    sprite: Objects/Weapons/Melee/crusher_dagger.rsi
-    state: icon
-  product: CrateCrusherDagger
-  cost: 2500
-  category: cargoproduct-category-name-cargo
-  group: market
-
-- type: cargoProduct
   id: CargoMailCart
   icon:
       sprite: Objects/Specific/Cargo/mailcart.rsi

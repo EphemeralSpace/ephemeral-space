@@ -210,15 +210,6 @@
       board: [ DoorElectronicsCargo ]
 
 - type: entity
-  parent: AirlockSalvage
-  id: AirlockSalvageLocked
-  suffix: Salvage, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSalvage ]
-
-- type: entity
   parent: AirlockMining
   id: AirlockMiningLocked
   suffix: Mining(Salvage), Locked
@@ -602,15 +593,6 @@
       board: [ DoorElectronicsCargo ]
 
 - type: entity
-  parent: AirlockSalvageGlass
-  id: AirlockSalvageGlassLocked
-  suffix: Salvage, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSalvage ]
-
-- type: entity
   parent: AirlockMiningGlass
   id: AirlockMiningGlassLocked
   suffix: Mining(Salvage), Locked
@@ -835,18 +817,6 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsMaintenance ]
-
-- type: entity
-  parent: AirlockSalvageLocked
-  id: AirlockMaintSalvageLocked
-# ES START - hatch dept. maint airlocks
-  name: maintenance hatch
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
-  - type: Paintable
-    group: ESAirlockHatch
-# ES END
 
 - type: entity
   parent: AirlockCargoLocked

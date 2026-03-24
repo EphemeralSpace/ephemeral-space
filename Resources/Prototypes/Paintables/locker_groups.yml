@@ -20,7 +20,6 @@
     medicine: LockerMedicine
     quartermaster: LockerQuarterMaster
     rd: LockerResearchDirector
-    salvage: LockerSalvageSpecialist
     scientist: LockerScientist
     security: LockerSecurity
     welding: LockerWeldingSupplies

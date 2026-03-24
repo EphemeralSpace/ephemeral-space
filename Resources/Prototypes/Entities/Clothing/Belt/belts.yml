@@ -146,17 +146,6 @@
     sprite: Clothing/Belt/mercwebbing.rsi
 
 - type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltSalvageWebbing
-  name: salvage rig
-  description: Universal unloading system for work in space.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/salvagewebbing.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/salvagewebbing.rsi
-
-- type: entity
   parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseSyndicateContraband]
   id: ClothingBeltMilitaryWebbing
   name: chest rig
