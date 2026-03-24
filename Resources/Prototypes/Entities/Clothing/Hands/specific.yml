@@ -19,12 +19,3 @@
     - type: Fiber
       fiberMaterial: fibers-chameleon
     - type: FingerprintMask
-
-- type: entity
-  parent: ClothingHandsChameleon
-  id: ClothingHandsChameleonThief
-  suffix: Chameleon, Thieving
-  components:
-  - type: Thieving
-    stripTimeReduction: 2
-    stealthy: true

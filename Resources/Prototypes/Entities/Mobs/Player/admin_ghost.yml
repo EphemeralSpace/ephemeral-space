@@ -95,9 +95,6 @@
   - type: WirelessNetworkConnection
     range: 500
   - type: StationLimitedNetwork
-  - type: Thieving
-    stripTimeReduction: 9999
-    stealthy: true
   - type: Stripping
   - type: SolutionScanner
   - type: IgnoreUIRange
