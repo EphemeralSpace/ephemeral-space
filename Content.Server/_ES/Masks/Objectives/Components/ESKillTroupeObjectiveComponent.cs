@@ -1,4 +1,3 @@
-using Content.Server.Objectives.Components;
 using Content.Shared._ES.Masks;
 using Robust.Shared.Prototypes;
 

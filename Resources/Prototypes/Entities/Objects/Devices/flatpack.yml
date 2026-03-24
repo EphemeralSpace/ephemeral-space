@@ -67,8 +67,6 @@
     guides:
     - AME
     - Power
-  - type: StealTarget
-    stealGroup: AmePartFlatpack
 
 - type: entity
   parent: BaseFlatpack

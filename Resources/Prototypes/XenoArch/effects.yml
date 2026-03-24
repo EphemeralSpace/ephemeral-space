@@ -45,8 +45,6 @@
       weight: 8.0
     - id: XenoArtifactChargeBattery
       weight: 10.0
-    - id: XenoArtifactKnock
-      weight: 4.0
     - id: XenoArtifactMagnet
       weight: 2.0
     - id: XenoArtifactMagnetNegative
@@ -690,14 +688,6 @@
   - type: XAETelepathic
     messages:
     - charge-artifact-popup
-
-- type: entity
-  id: XenoArtifactKnock
-  parent: BaseXenoArtifactEffect
-  description: Mild electromagnetic interference
-  components:
-  - type: XAEKnock
-  - type: XAELightFlicker
 
 - type: entity
   id: XenoArtifactMagnet

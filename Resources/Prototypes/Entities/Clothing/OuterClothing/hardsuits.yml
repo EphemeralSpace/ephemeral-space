@@ -412,8 +412,6 @@
     modifiers:
       coefficients:
         Caustic: 0.1
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
@@ -469,8 +467,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitRd
   - type: StaticPrice
     price: 750
-  - type: StealTarget
-    stealGroup: ClothingOuterHardsuitRd
 
 #Head of Security's Hardsuit
 - type: entity
@@ -955,8 +951,6 @@
         Shock: 0.1
         Radiation: 0.1
         Caustic: 0.1
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.25
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0

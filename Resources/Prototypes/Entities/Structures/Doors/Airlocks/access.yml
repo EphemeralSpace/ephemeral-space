@@ -1325,15 +1325,6 @@
 #Airtight hatch
 
 - type: entity
-  parent: AirlockHatchSyndicate
-  id: AirlockHatchSyndicateLocked
-  suffix: Syndicate, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSyndicateAgent ]
-
-- type: entity
   parent: AirlockHatchMaintenance
   id: AirlockHatchMaintenanceLocked
   suffix: Locked

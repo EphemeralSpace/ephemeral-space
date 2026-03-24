@@ -38,9 +38,6 @@ public abstract partial class SharedBorgSystem
         if (_mind.TryGetMind(brain, out var mindId, out var mindComp))
         {
             _mind.TransferTo(mindId, ent.Owner, true, mind: mindComp);
-
-            if (!_roles.MindHasRole<SiliconBrainRoleComponent>(mindId))
-                _roles.MindAddRole(mindId, SiliconBrainRole, silent: true);
         }
 
         _appearance.SetData(ent.Owner, MMIVisuals.BrainPresent, true);
@@ -67,9 +64,6 @@ public abstract partial class SharedBorgSystem
         if (_mind.TryGetMind(ent, out var mindId, out var mindComp))
         {
             _mind.TransferTo(mindId, args.Entity, true, mind: mindComp);
-
-            if (_roles.MindHasRole<SiliconBrainRoleComponent>(mindId))
-                _roles.MindRemoveRole<SiliconBrainRoleComponent>(mindId);
         }
 
         _appearance.SetData(ent, MMIVisuals.BrainPresent, false);

@@ -478,5 +478,3 @@
     tags:
     - Folder
     - HighRiskItem
-  - type: StealTarget
-    stealGroup: BoxFolderQmClipboard

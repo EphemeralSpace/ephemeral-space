@@ -1,10 +1,10 @@
-using Content.Shared.Objectives.Components;
+using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Whitelist;
 
 namespace Content.Shared._ES.Masks.Traitor.Components;
 
 /// <summary>
-/// A <see cref="ObjectiveComponent"/> condition for sabotaging a particular object with <see cref="ESSabotageTargetComponent"/>.
+/// A <see cref="ESObjectiveComponent"/> condition for sabotaging a particular object with <see cref="ESSabotageTargetComponent"/>.
 /// </summary>
 [RegisterComponent]
 [Access(typeof(ESSabotageConditionSystem))]

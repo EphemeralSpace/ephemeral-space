@@ -111,8 +111,6 @@
   - type: Storage
     grid:
     - 0,0,9,1
-  - type: StealTarget
-    stealGroup: ChiefEngineerToolBelt
 
 - type: entity
   parent: ClothingBeltStorageBase

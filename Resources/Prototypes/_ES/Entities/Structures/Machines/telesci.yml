@@ -6,7 +6,6 @@
   suffix: ES
   components:
 # to be indestructible, we need to re-construct basemachine without the damageable part
-  - type: Animateable
   - type: InteractionOutline
   - type: Physics
     bodyType: Static

@@ -12,9 +12,6 @@
   - type: Input
     context: "ghost"
   - type: InputMover
-  - type: MovementSpeedModifier
-    baseSprintSpeed: 12
-    baseWalkSpeed: 8
   - type: Visibility
     layer: 2
   - type: Spectral

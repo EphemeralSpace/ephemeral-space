@@ -356,8 +356,6 @@
           Quantity: 20
   - type: StaticPrice
     price: 750
-  - type: StealTarget
-    stealGroup: FoodMeatCorgi
   - type: Item
     inhandVisuals:
       left:

@@ -67,8 +67,6 @@
   - type: Appearance
   - type: StaticPrice
     price: 40
-  - type: StealTarget
-    stealGroup: LAMP
   - type: Clothing
     sprite: Objects/Tools/flashlight.rsi
     quickEquip: false

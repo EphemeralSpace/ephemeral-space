@@ -519,23 +519,6 @@
       HeadSide : HEAD
 
 - type: entity
-  parent: ClothingHeadHatWizardBase
-  id: ClothingHeadHatRedwizard
-  name: red wizard hat
-  description: A strange-looking red hat that most certainly belongs to a powerful magic-user.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hats/redwizard.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/redwizard.rsi
-  - type: Tag
-    tags:
-    - PetWearable
-    - CorgiWearable
-    - ClothMade
-    - WhitelistChameleon
-
-- type: entity
   parent: [ClothingHeadBase, BaseFoldable]
   id: ClothingHeadHatSantahat
   name: santa hat
@@ -724,23 +707,6 @@
         color: "#a60b0b"
 
 - type: entity
-  parent: ClothingHeadHatWizardBase
-  id: ClothingHeadHatVioletwizard
-  name: violet wizard hat
-  description: A strange-looking violet hat that most certainly belongs to a powerful magic-user.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hats/violetwizard.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/violetwizard.rsi
-  - type: Tag
-    tags:
-    - PetWearable
-    - CorgiWearable
-    - ClothMade
-    - WhitelistChameleon
-
-- type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatWarden
   name: warden's cap
@@ -750,8 +716,6 @@
     sprite: Clothing/Head/Hats/warden.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/warden.rsi
-  - type: StealTarget
-    stealGroup: ClothingHeadHatWarden
   - type: Tag
     tags:
     - PetWearable
