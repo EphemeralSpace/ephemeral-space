@@ -593,44 +593,6 @@
 ## Syndicate
 
 - type: entity
-  id: RandomHumanoidSpawnerSyndicateAgent
-  name: syndicate agent
-  components:
-    - type: Sprite
-      sprite: Mobs/Species/Human/parts.rsi
-      state: full
-    - type: RandomMetadata
-      nameSegments: [ NamesDeathCommando ]
-    - type: RandomHumanoidSpawner
-      settings: SyndicateAgent
-
-- type: randomHumanoidSettings
-  id: SyndicateAgent
-  components:
-    - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: Loadout
-      prototypes: [SyndicateOperativeGearExtremelyBasic]
-      roleLoadout: [ RoleSurvivalSyndicate ]
-
-- type: entity
-  id: RandomHumanoidSpawnerNukeOp
-  name: Nuclear Operative
-  components:
-    - type: Sprite
-      sprite: Mobs/Species/Human/parts.rsi
-      state: full
-    - type: RandomHumanoidSpawner
-      settings: NukeOp
-
-- type: randomHumanoidSettings
-  id: NukeOp
-  components:
-    - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: NukeOperative
-
-- type: entity
   id: RandomHumanoidSpawnerCluwne
   name: Cluwne
   suffix: spawns a cluwne

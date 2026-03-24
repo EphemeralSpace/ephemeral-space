@@ -156,28 +156,6 @@
     layoutId: AirlockEngineering
 
 - type: entity
-  parent: AirlockExternal
-  id: AirlockExternalSyndicateLocked
-  suffix: External, Syndicate, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSyndicateAgent ]
-  - type: Wires
-    layoutId: AirlockSecurity
-
-- type: entity
-  parent: AirlockExternal
-  id: AirlockExternalNukeopLocked
-  suffix: External, Nukeop, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsNukeop ]
-  - type: Wires
-    layoutId: AirlockSecurity
-
-- type: entity
   parent: AirlockFreezer
   id: AirlockFreezerLocked
   suffix: Kitchen, Locked
@@ -526,28 +504,6 @@
       board: [ DoorElectronicsCargo ]
   - type: Wires
     layoutId: AirlockCargo
-
-- type: entity
-  parent: AirlockExternalGlass
-  id: AirlockExternalGlassSyndicateLocked
-  suffix: External, Glass, Syndicate, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSyndicateAgent ]
-  - type: Wires
-    layoutId: AirlockSecurity
-
-- type: entity
-  parent: AirlockExternalGlass
-  id: AirlockExternalGlassNukeopLocked
-  suffix: External, Glass, Nukeop, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsNukeop ]
-  - type: Wires
-    layoutId: AirlockSecurity
 
 - type: entity
   parent: AirlockExternalGlass
@@ -1310,35 +1266,6 @@
       board: [ DoorElectronicsExternal ]
 
 - type: entity
-  parent: AirlockShuttleSyndicate
-  id: AirlockExternalShuttleSyndicateLocked
-  suffix: External, Docking, Syndicate, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSyndicateAgent ]
-
-- type: entity
-  parent: AirlockShuttleSyndicate
-  id: AirlockExternalShuttleNukeopLocked
-  suffix: External, Docking, Nukeop, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsNukeop ]
-
-- type: entity
-  parent: AirlockShuttleXenoborg
-  id: AirlockGlassShuttleXenoborgLocked
-  suffix: External, Docking, Xenoborg, Locked
-  components:
-  - type: StationAiWhitelist
-    enabled: false
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsXenoborg ]
-
-- type: entity
   parent: AirlockGlassShuttle
   id: AirlockExternalGlassShuttleLocked
   suffix: External, Glass, Docking, Locked
@@ -1346,24 +1273,6 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsExternal ]
-
-- type: entity
-  parent: AirlockGlassShuttleSyndicate
-  id: AirlockExternalGlassShuttleSyndicateLocked
-  suffix: Syndicate, Locked, Glass
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSyndicateAgent ]
-
-- type: entity
-  parent: AirlockGlassShuttleSyndicate
-  id: AirlockExternalGlassShuttleNukeopLocked
-  suffix: Nukeop, Locked, Glass
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsNukeop ]
 
 - type: entity
   parent: AirlockGlassShuttle

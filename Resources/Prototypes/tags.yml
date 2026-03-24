@@ -1002,9 +1002,6 @@
 - type: Tag
   id: Nugget # ItemCounter: FoodBoxNugget
 
-- type: Tag
-  id: NukeOpsUplink # Used by NukeopsRuleSystem to find nukie uplinks during warops. Whitelisting for ListingPrototypes.
-
 ## O ##
 
 - type: Tag

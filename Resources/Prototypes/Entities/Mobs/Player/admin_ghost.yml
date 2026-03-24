@@ -43,8 +43,6 @@
     - AllAccess
     - Silicon
     tags:
-    - NuclearOperative
-    - SyndicateAgent
     - CentralCommand
   - type: UserInterface
     interfaces:
