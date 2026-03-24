@@ -102,7 +102,6 @@
     - Binary
     - Common
     - Science
-  - type: ZombieImmune
   - type: Repairable
     damageValue: -10 # 10 seconds to repair from crit
     doAfterDelay: 1

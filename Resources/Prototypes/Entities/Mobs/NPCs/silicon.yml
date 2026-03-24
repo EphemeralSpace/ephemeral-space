@@ -46,7 +46,6 @@
     sounds:
       Unsexed: UnisexSilicon
   - type: Emoting
-  - type: ZombieImmune
   - type: ProtectedFromStepTriggers
   - type: NoSlip
   - type: Insulated

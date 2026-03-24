@@ -720,53 +720,6 @@
         amount: -0.25
 
 - type: reagent
-  id: Ambuzol
-  name: reagent-name-ambuzol
-  group: Medicine
-  desc: reagent-desc-ambuzol
-  physicalDesc: reagent-physical-desc-crisp
-  flavor: medicine
-  color: "#86caf7"
-  metabolisms:
-    Medicine:
-      effects:
-      # Begin Offbrand Additions
-      - !type:AdjustReagent
-        reagent: Romerol
-        amount: -0.5
-      # End Offbrand Additions
-        # Begin Offbrand Removals
-        # - !type:CureZombieInfection
-        #   conditions:
-        #     - !type:ReagentCondition
-        #       reagent: Ambuzol
-        #       min: 10
-        # End Offbrand Removals
-
-- type: reagent
-  id: AmbuzolPlus
-  name: reagent-name-ambuzol-plus
-  group: Medicine
-  desc: reagent-desc-ambuzol-plus
-  physicalDesc: reagent-physical-desc-crisp
-  flavor: medicine
-  color: "#1274b5"
-  metabolisms:
-    Medicine:
-      effects:
-        - !type:CureZombieInfection
-          innoculate: true
-          conditions:
-            - !type:ReagentCondition
-              reagent: AmbuzolPlus
-              min: 5
-          # Begin Offbrand Additions
-        - !type:AdjustReagent
-          reagent: Romerol
-          amount: -5
-          # End Offbrand Additions
-
-- type: reagent
   id: PulpedBananaPeel
   name: reagent-name-pulped-banana-peel
   group: Medicine

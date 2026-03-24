@@ -157,7 +157,6 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
-  - type: ZombieImmune
   - type: Destructible
     thresholds:
     - trigger:
@@ -196,8 +195,6 @@
       reagents:
       - ReagentId: Blood
         Quantity: 0.1
-  - type: ZombieImmune
-
 
 - type: entity
   name: chicken
@@ -440,7 +437,6 @@
       behaviors:
       - !type:GibBehavior
         recursive: false
-  - type: NonSpreaderZombie
   - type: StepTrigger
     requiredTriggeredSpeed: 1
   - type: TriggerOnStepTrigger
@@ -587,8 +583,6 @@
     grindableSolutionName: food
   - type: ReplacementAccent
     accent: mothroach
-  - type: ZombieAccentOverride
-    accent: zombieMoth
   - type: Vocal
     sounds:
       Male: UnisexMoth
@@ -868,7 +862,6 @@
       behaviors:
       - !type:GibBehavior
         recursive: false
-  - type: ZombieImmune
 
 - type: entity
   name: cow
@@ -1907,7 +1900,6 @@
   - type: MobPrice
     price: 50
   - type: BadFood
-  - type: NonSpreaderZombie
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
@@ -2059,7 +2051,6 @@
       amount: 1
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Zombie
 
 - type: entity
   name: lizard #Weh
@@ -3594,7 +3585,6 @@
     baseResistTime: 3
   - type: MobPrice
     price: 60
-  - type: NonSpreaderZombie
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning

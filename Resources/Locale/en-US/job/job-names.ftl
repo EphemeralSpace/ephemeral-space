@@ -61,16 +61,6 @@ job-name-unknown = Unknown
 job-name-virologist = Virologist
 job-name-zookeeper = Zookeeper
 
-# antagonist jobs
-job-name-ninja = Ninja
-job-name-syndicate = Syndicate
-job-name-syndicate-commander = Syndicate Commander
-job-name-syndicate-corpsman = Syndicate Corpsman
-job-name-syndicate-operative = Syndicate Operative
-job-name-pirate = Pirate
-job-name-wizard = Wizard
-job-name-zombie = Zombie
-
 # Job titles
 job-title-cluwne = Cluwne
 job-title-universal = Universal

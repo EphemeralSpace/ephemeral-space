@@ -138,29 +138,6 @@
   physicalDesc: reagent-physical-desc-pungent
 
 - type: reagent
-  id: ZombieBlood
-  name: reagent-name-zombie-blood
-  group: Biological
-  desc: reagent-desc-zombie-blood
-  physicalDesc: reagent-physical-desc-necrotic
-  flavor: bitter
-  color: "#2b0700"
-  metabolisms:
-    Drink:
-      # Disgusting!
-      effects:
-      - !type:SatiateThirst
-        factor: -0.5
-    Poison:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Poison: 4
-      - !type:Vomit
-        probability: 0.25
-
-- type: reagent
   id: Ichor
   name: reagent-name-ichor
   group: Biological

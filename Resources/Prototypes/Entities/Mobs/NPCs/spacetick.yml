@@ -91,7 +91,6 @@
     accent: genericAggressive
   - type: Speech
     speechVerb: SmallMob
-  - type: NonSpreaderZombie
 
 - type: entity
   id: MobTickSalvage

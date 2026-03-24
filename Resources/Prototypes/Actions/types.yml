@@ -65,17 +65,6 @@
     event: !type:ScreamActionEvent
 
 - type: entity
-  parent: BaseMentalAction
-  id: ActionTurnUndead
-  name: Turn Undead
-  description: Succumb to your infection and become a zombie.
-  components:
-  - type: Action
-    icon: Interface/Actions/zombie-turn.png
-  - type: InstantAction
-    event: !type:ZombifySelfActionEvent
-
-- type: entity
   parent: BaseToggleAction
   id: ActionToggleLight
   name: Toggle Light

@@ -210,30 +210,6 @@
   products:
     Phalanximine: 3
 
-# ES START
-#- type: reaction
-#  id: Ambuzol
-#  reactants:
-#    Dylovene:
-#      amount: 1
-#    Ammonia:
-#      amount: 1
-#    ZombieBlood:
-#      amount: 2
-#  products:
-#    Ambuzol: 4
-#
-#- type: reaction
-#  id: AmbuzolPlus
-#  reactants:
-#    Ambuzol:
-#      amount: 5
-#    Omnizine:
-#      amount: 5
-#  products:
-#    AmbuzolPlus: 10
-# ES END
-
 - type: reaction
   id: Synaptizine
   reactants:

@@ -1539,10 +1539,8 @@
       amount: 2
     Grenadine:
       amount: 1
-    ZombieBlood:
-      amount: 1
   products:
-    ZombieCocktail: 4
+    ZombieCocktail: 3
 
 - type: reaction
   id: BacchusBlessing

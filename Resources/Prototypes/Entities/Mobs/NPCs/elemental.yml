@@ -37,7 +37,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: ZombieImmune
   - type: ProtectedFromStepTriggers
   - type: StunVisuals
 
@@ -379,7 +378,6 @@
       - DoorBumpOpener
       - StunImmune
   - type: NoSlip
-  - type: ZombieImmune
   - type: ExaminableSolution
     solution: bloodstream
   - type: InjectableSolution

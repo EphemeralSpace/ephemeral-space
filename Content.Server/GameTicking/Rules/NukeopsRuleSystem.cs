@@ -20,7 +20,6 @@ using Content.Shared.NukeOps;
 using Content.Shared.Roles.Components;
 using Content.Shared.Store;
 using Content.Shared.Tag;
-using Content.Shared.Zombies;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
