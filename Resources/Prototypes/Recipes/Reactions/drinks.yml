@@ -1533,16 +1533,6 @@
     WhiskeySour: 6
 
 - type: reaction
-  id: ZombieCocktail
-  reactants:
-    Rum:
-      amount: 2
-    Grenadine:
-      amount: 1
-  products:
-    ZombieCocktail: 3
-
-- type: reaction
   id: BacchusBlessing
   reactants:
     Hooch:
