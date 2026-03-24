@@ -84,10 +84,11 @@
     - state: es
     - state: c100
   - type: EntityTableSpawner
-    group:
-    - tableId: ESSpawnerRandomVendorDrink
-      weight: 2
-    - tableId: ESSpawnerRandomVendorSnack
-      weight: 2
-    - tableId: ESSpecialVendors
-      weight: 2
+    table:
+      group:
+      - tableId: ESSpawnerRandomVendorDrink
+        weight: 2
+      - tableId: ESSpawnerRandomVendorSnack
+        weight: 2
+      - tableId: ESSpecialVendors
+        weight: 2
