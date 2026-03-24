@@ -59,10 +59,7 @@
 - type: cloningSettings
   id: Special
   components:
-  - BibleUser
-  - CommandStaff
   - MindShield
-  - MimePowers
 
 # a full clone with all traits and items, but no antag roles
 - type: cloningSettings
