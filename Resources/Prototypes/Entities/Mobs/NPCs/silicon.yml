@@ -347,7 +347,6 @@
   - type: Sprite
     sprite: Mobs/Silicon/Bots/mimebot.rsi
     state: mimebot
-  - type: MimePowers
   - type: Construction
     graph: MimeBot
     node: bot

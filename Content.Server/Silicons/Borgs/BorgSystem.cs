@@ -32,8 +32,6 @@ public sealed partial class BorgSystem : SharedBorgSystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
 
-    public static readonly ProtoId<JobPrototype> BorgJobId = "Borg";
-
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -44,9 +42,6 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
     public override bool CanPlayerBeBorged(ICommonSession session)
     {
-        if (_banManager.GetJobBans(session.UserId)?.Contains(BorgJobId) == true)
-            return false;
-
         return true;
     }
 

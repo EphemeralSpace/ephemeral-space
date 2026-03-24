@@ -321,16 +321,6 @@
   - type: StaticPrice
     price: 5000
 
-# The job-ready version of an AI spawn.
-- type: entity
-  id: PlayerStationAi
-  parent: PlayerStationAiEmpty
-  suffix: Job spawn
-  components:
-  - type: ContainerSpawnPoint
-    containerId: station_ai_mind_slot
-    job: StationAi
-
 # The station AI core assembly
 - type: entity
   parent: BaseStructure
@@ -598,7 +588,6 @@
       raffle:
         settings: default
       reregister: false
-      job: Borg
     - type: GhostTakeoverAvailable
 
 - type: entity
@@ -635,7 +624,6 @@
     raffle:
       settings: default
     reregister: false
-    job: Borg
   - type: GhostTakeoverAvailable
 
 - type: entity
@@ -673,7 +661,6 @@
     raffle:
       settings: default
     reregister: false
-    job: Borg
   - type: GhostTakeoverAvailable
 
 - type: entity
@@ -710,5 +697,4 @@
     raffle:
       settings: default
     reregister: false
-    job: Borg
   - type: GhostTakeoverAvailable

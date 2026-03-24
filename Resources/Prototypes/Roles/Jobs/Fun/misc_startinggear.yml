@@ -17,17 +17,6 @@
     back:
     - BoxSurvival
 
-# Syndicate Operative Outfit - Civilian
-- type: startingGear
-  id: SyndicateOperativeGearCivilian
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitSyndieFormal
-    back: ClothingBackpackDuffelSyndicate
-    shoes: ClothingShoesBootsCombat
-    gloves: ClothingHandsGlovesColorBlack
-    id: SyndiPDA
-    ears: ClothingHeadsetAltSyndicate
-
 # Syndicate Footsoldier Gear - No Headset
 - type: startingGear
   id: SyndicateFootsoldierGearRuin
@@ -43,32 +32,6 @@
   storage:
     back:
     - BoxSurvival
-
-# Syndicate Footsoldier Gear
-- type: startingGear
-  id: SyndicateFootsoldierGear
-  parent: SyndicateOperativeGearCivilian
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitOperative
-    head: ClothingHeadHelmetSwatSyndicate
-    eyes: ClothingEyesHudSyndicate
-    outerClothing: ClothingOuterArmorBasic
-    gloves: ClothingHandsGlovesCombat
-    back: ClothingBackpack
-    shoes: ClothingShoesBootsCombatFilled
-  storage:
-    back:
-    - BoxSurvivalSyndicate
-
-- type: startingGear
-  id: SyndicateFootsoldierTeamLeaderGear
-  parent: SyndicateFootsoldierGear
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitSyndieFormal
-    head: ClothingHeadHatOutlawHat
-    outerClothing: ClothingOuterArmorBasicSlim
-    back: ClothingBackpackSatchel
-    pocket2: EnergySword
 
 # Nanotrasen Paramilitary Unit Gear
 - type: startingGear
@@ -106,13 +69,6 @@
   id: MobPollyGear
   equipment:
     ears: ClothingHeadsetEngineering
-
-# Emotional Support Scurret
-
-- type: startingGear
-  id: EmotionalSupportScurretGear
-  equipment:
-    id: ScurretPDA
 
 # DeathMatch Gear
 
