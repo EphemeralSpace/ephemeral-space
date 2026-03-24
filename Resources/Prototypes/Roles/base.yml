@@ -1,0 +1,5 @@
+# The Job MindRole holds the mob's Job prototype
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleJob
+  name: Job Role

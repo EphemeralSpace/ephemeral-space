@@ -34,6 +34,5 @@
   showInVote: false
   maxPlayers: 5
   rules:
-  - Sandbox
   - ESBasicRoundstartVariation # included since it determines important features
   - ESArmoryRule # this is stupid todo singleton stuff properly

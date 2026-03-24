@@ -727,7 +727,6 @@
   name: witch hat
   description: A witch hat.
   components:
-  - type: WizardClothes #Yes this will count
   - type: Sprite
     sprite: Clothing/Head/Hats/witch.rsi
   - type: Clothing
