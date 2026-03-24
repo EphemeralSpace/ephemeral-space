@@ -1,3 +1,4 @@
+# Snack Vends
 - type: entity
   parent: ESSpawnerBase
   id: ESSpawnerRandomVendorSnack
@@ -11,13 +12,18 @@
     - state: c100
   - type: EntityTableSpawner
     table:
-      group:
-      - id: ESVendingMachineSnack
-      - id: ESVendingMachineSnackBlue
-      - id: ESVendingMachineSnackOrange
-      - id: ESVendingMachineSnackGreen
-      - id: ESVendingMachineSnackTeal
+      tableId: ESSnackVendors
 
+- type: entityTable
+  id: ESSnackVendors
+  table:
+    group:
+    - id: ESVendingMachineSnack
+    - id: ESVendingMachineSnackBlue
+    - id: ESVendingMachineSnackOrange
+    - id: ESVendingMachineSnackGreen
+    - id: ESVendingMachineSnackTeal
+   
 - type: entity
   parent: ESSpawnerBase
   id: ESSpawnerRandomVendorDrink
@@ -31,7 +37,57 @@
     - state: c100
   - type: EntityTableSpawner
     table:
-      group:
-      - id: ESVendingMachineCola
-      - id: ESVendingMachineColaBlack
-      - id: ESVendingMachineColaRed
+      tableId: ESColaVendors
+
+- type: entityTable
+  id: ESColaVendors
+  table:
+    group:
+    - id: ESVendingMachineCola
+    - id: ESVendingMachineColaBlack
+    - id: ESVendingMachineColaRed
+
+# Special Vendors
+- type: entity
+  id: ESSpawnerRandomVendorSpecial
+  parent: ESSpawnerBase
+  name: Random Special Vendor
+  components:
+  - type: Sprite
+    layers:
+    - state: vendor-suswater
+    - state: random
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    group:
+    - tableId: ESSpecialVendors
+
+- type: entityTable
+  id: ESSpecialVendors
+  table:
+    group:
+    - id: ESVendingMachineGenderVendor
+    - id: ESVendingMachineGenderVendor
+    - id: ESVendingMachineSuspiciousWater
+
+- type: entity
+  id: ESSpawnerDormsVendor
+  parent: ESSpawnerBase
+  name: Dorms Vendor Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: vendor-suswater
+    - state: dorms
+    - state: random
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    group:
+    - tableId: ESSpawnerRandomVendorDrink
+      weight: 2
+    - tableId: ESSpawnerRandomVendorSnack
+      weight: 2
+    - tableId: ESSpecialVendors
+      weight: 2

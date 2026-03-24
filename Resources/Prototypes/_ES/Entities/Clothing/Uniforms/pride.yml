@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingUniformBase
-  id: ESClothingUniformJumpsuitAromantic
+  id: ClothingUniformJumpsuitAromantic
   name: aromantic jumpsuit
   description: A swanky jumpsuit, endowed in the colors of the aromantic pride flag.
   components:
@@ -11,7 +11,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ESClothingUniformJumpsuitAsexual
+  id: ClothingUniformJumpsuitAsexual
   name: asexual jumpsuit
   description: A swanky jumpsuit, endowed in the colors of the asexual pride flag.
   components:
@@ -22,7 +22,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ESClothingUniformJumpsuitBisexual
+  id: ClothingUniformJumpsuitBisexual
   name: bisexual jumpsuit
   description: A swanky jumpsuit, endowed in the colors of the bisexual pride flag.
   components:
@@ -33,7 +33,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ESClothingUniformJumpsuitGay
+  id: ClothingUniformJumpsuitGay
   name: gay jumpsuit
   description: A swanky jumpsuit, endowed in the colors of the gay pride flag.
   components:
@@ -44,7 +44,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ESClothingUniformJumpsuitGenderfluid
+  id: ClothingUniformJumpsuitGenderfluid
   name: genderfluid jumpsuit
   description: A swanky jumpsuit, endowed in the colors of the genderfluid pride flag.
   components:
@@ -55,7 +55,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ESClothingUniformJumpsuitGenderqueer
+  id: ClothingUniformJumpsuitGenderqueer
   name: genderqueer jumpsuit
   description: A swanky jumpsuit, endowed in the colors of the genderqueer pride flag.
   components:
@@ -66,7 +66,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ESClothingUniformJumpsuitIntersex
+  id: ClothingUniformJumpsuitIntersex
   name: intersex jumpsuit
   description: A swanky jumpsuit, endowed in the colors of the intersex pride flag.
   components:
@@ -77,7 +77,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ESClothingUniformJumpsuitLesbian
+  id: ClothingUniformJumpsuitLesbian
   name: lesbian jumpsuit
   description: A swanky jumpsuit, endowed in the colors of the lesbian pride flag.
   components:
@@ -88,7 +88,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ESClothingUniformJumpsuitNonbinary
+  id: ClothingUniformJumpsuitNonbinary
   name: nonbinary jumpsuit
   description: A swanky jumpsuit, endowed in the colors of the nonbinary pride flag.
   components:
@@ -99,18 +99,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ESClothingUniformJumpsuitOmnisexual
-  name: omnisexual jumpsuit
-  description: A swanky jumpsuit, endowed in the colors of the omnisexual pride flag.
-  components:
-  - type: Sprite
-    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/omnisexual.rsi
-  - type: Clothing
-    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/omnisexual.rsi
-
-- type: entity
-  parent: ClothingUniformBase
-  id: ESClothingUniformJumpsuitPansexual
+  id: ClothingUniformJumpsuitPansexual
   name: pansexual jumpsuit
   description: A swanky jumpsuit, endowed in the colors of the pansexual pride flag.
   components:
@@ -121,7 +110,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ESClothingUniformJumpsuitTransgender
+  id: ClothingUniformJumpsuitTransgender
   name: transgender jumpsuit
   description: A swanky jumpsuit, endowed in the colors of the transgender pride flag.
   components:

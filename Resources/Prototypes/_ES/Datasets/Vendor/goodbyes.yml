@@ -1,0 +1,17 @@
+- type: localizedDataset
+  id: GenderVendorGoodbyes
+  values:
+    prefix: thankyou-gender-
+    count: 3
+
+- type: localizedDataset
+  id: WoodgrainGoodbyes
+  values:
+    prefix: thankyou-woodgrain-
+    count: 3
+
+- type: localizedDataset
+  id: SusWaterGoodbyes
+  values:
+    prefix: thankyou-water-
+    count: 3
