@@ -1484,7 +1484,6 @@
   - type: MonkeyAccent
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-primate
-  - type: AlwaysRevolutionaryConvertible
   - type: GhostRole
     prob: 0.05
     makeSentient: true
@@ -1614,7 +1613,6 @@
     spawned:
     - id: FoodMeat
       amount: 2
-  - type: AlwaysRevolutionaryConvertible
   - type: GhostTakeoverAvailable
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-kobold

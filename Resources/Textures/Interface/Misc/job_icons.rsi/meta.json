@@ -92,9 +92,6 @@
             "name": "HeadOfSecurity"
         },
         {
-            "name": "HeadRevolutionary"
-        },
-        {
             "name": "InitialInfected"
         },
         {
@@ -162,9 +159,6 @@
         },
         {
             "name": "ResearchDirector"
-        },
-        {
-            "name": "Revolutionary"
         },
         {
             "name": "Roboticist"
