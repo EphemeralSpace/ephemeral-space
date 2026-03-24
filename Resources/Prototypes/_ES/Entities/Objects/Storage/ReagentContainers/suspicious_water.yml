@@ -91,7 +91,7 @@
     solutions:
       drink:
         reagents:
-        - ReagentId: Benadryl
+        - ReagentId: Diphenhydramine
           Quantity: 30
 
 - type: entity

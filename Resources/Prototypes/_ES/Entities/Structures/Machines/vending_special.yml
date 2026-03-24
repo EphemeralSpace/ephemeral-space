@@ -16,7 +16,7 @@
   - type: ESEntityTableVendorFill
     inventory:
       all:
-      - id: ClothingUniformJumpsuitColorRainbow # the description and sprite of this item should probably be updated later to be a little more fitting in this set
+      - id: ClothingUniformColorRainbow # the description and sprite of this item should probably be updated later to be a little more fitting in this set. but still generic enough to not nessecarily be a pride item
         amount: 2
       - id: ClothingUniformJumpsuitAromantic
         amount: 2
@@ -97,6 +97,5 @@
         prob: 0.5
         rolls: 5
       - tableId: SuspiciousWaterTable
-        amount: 2
         prob: 0.5
         rolls: 5
