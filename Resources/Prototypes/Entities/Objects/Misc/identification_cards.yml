@@ -38,7 +38,7 @@
       offset: &icon-offset -0.09375, 0.0625 #3 pixels left, 2 pixels up
       state: Passenger
   - type: PresetIdCard
-    job: ESPassenger
+    job: ESAssistant
 
 #Command
 
@@ -144,7 +144,7 @@
       offset: *icon-offset
       state: MedicalDoctor
   - type: PresetIdCard
-    job: ESMedicalDoctor
+    job: ESPhysician
 
 - type: entity
   parent: IDCardStandard

@@ -11,7 +11,7 @@
           mapNameTemplate: "Empty"
         - type: StationJobs
           availableJobs:
-            Passenger: [ -1, -1 ]
+            ESAssistant: [ -1, -1 ]
 
 - type: gameMap
   id: TestTeg
@@ -26,4 +26,4 @@
           mapNameTemplate: "TEG"
         - type: StationJobs
           availableJobs:
-            ChiefEngineer: [ -1, -1 ]
+            ESStationEngineer: [ -1, -1 ]
