@@ -87,7 +87,7 @@
       DoorStatus: false
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Glass
+    damageModifierSet: ESWindow
   - type: ExaminableDamage
     messages: WindowMessages
   - type: RCDDeconstructable
@@ -225,7 +225,7 @@
       shader: unshaded
       visible: false
   - type: Damageable
-    damageModifierSet: RGlass
+    damageModifierSet: ESReinforcedWindow
   - type: Destructible
     thresholds:
     - trigger:
