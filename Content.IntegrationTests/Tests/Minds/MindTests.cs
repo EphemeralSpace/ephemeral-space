@@ -286,17 +286,6 @@ public sealed partial class MindTests
 
             Assert.Multiple(() =>
             {
-                Assert.That(roleSystem.MindHasRole<TraitorRoleComponent>(mindId), Is.False);
-                Assert.That(roleSystem.MindHasRole<JobRoleComponent>(mindId), Is.False);
-            });
-
-            var traitorRole = "MindRoleTraitor";
-
-            roleSystem.MindAddRole(mindId, traitorRole);
-
-            Assert.Multiple(() =>
-            {
-                Assert.That(roleSystem.MindHasRole<TraitorRoleComponent>(mindId));
                 Assert.That(roleSystem.MindHasRole<JobRoleComponent>(mindId), Is.False);
             });
 
@@ -306,15 +295,6 @@ public sealed partial class MindTests
 
             Assert.Multiple(() =>
             {
-                Assert.That(roleSystem.MindHasRole<TraitorRoleComponent>(mindId));
-                Assert.That(roleSystem.MindHasRole<JobRoleComponent>(mindId));
-            });
-
-            roleSystem.MindRemoveRole<TraitorRoleComponent>(mindId);
-
-            Assert.Multiple(() =>
-            {
-                Assert.That(roleSystem.MindHasRole<TraitorRoleComponent>(mindId), Is.False);
                 Assert.That(roleSystem.MindHasRole<JobRoleComponent>(mindId));
             });
 
@@ -322,7 +302,6 @@ public sealed partial class MindTests
 
             Assert.Multiple(() =>
             {
-                Assert.That(roleSystem.MindHasRole<TraitorRoleComponent>(mindId), Is.False);
                 Assert.That(roleSystem.MindHasRole<JobRoleComponent>(mindId), Is.False);
             });
         });

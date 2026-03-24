@@ -1511,56 +1511,6 @@
     voice: es-voice-obfuscator-name-replace-monkey
 # ES END
 
-
-- type: entity
-  name: monkey
-  id: MobBaseSyndicateMonkey
-  parent: MobBaseAncestor
-  description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
-  suffix: syndicate base
-  components:
-  - type: NameIdentifier
-    group: Monkey
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-primate
-  - type: Speech
-    speechSounds: Monkey
-    speechVerb: Monkey
-  - type: MonkeyAccent
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: GhostRole
-    prob: 0.05
-    makeSentient: true
-    name: ghost-role-information-monkey-name
-    description: ghost-role-information-monkey-description
-    rules: ghost-role-information-syndicate-reinforcement-rules
-    mindRoles:
-    # This is for syndicate monkeys that randomly gain sentience, thus have no summoner to team with
-    - MindRoleGhostRoleSoloAntagonist
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
-  - type: Loadout
-    prototypes: [SyndicateOperativeGearMonkey]
-
-- type: entity
-  id: MobMonkeySyndicateAgent
-  parent: MobBaseSyndicateMonkey
-  suffix: syndicate agent
-  components:
-    # make the player a traitor once its taken
-  - type: AutoTraitor
-    profile: TraitorReinforcement
-
-- type: entity
-  id: MobMonkeySyndicateAgentNukeops # Reinforcement exclusive to nukeops uplink
-  parent: MobBaseSyndicateMonkey
-  suffix: NukeOps
-  components:
-  - type: NukeOperative
-
 - type: entity
   name: kobold
   id: MobBaseKobold
@@ -1692,38 +1642,6 @@
         Blunt: 1
     clumsySound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-
-- type: entity
-  id: MobBaseSyndicateKobold
-  parent: MobBaseKobold
-  suffix: syndicate base
-  components:
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      100: Critical
-      200: Dead
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: Loadout
-    prototypes: [SyndicateOperativeGearMonkey]
-
-- type: entity
-  id: MobKoboldSyndicateAgent
-  parent: MobBaseSyndicateKobold
-  suffix: syndicate agent
-  components:
-    # make the player a traitor once its taken
-  - type: AutoTraitor
-    profile: TraitorReinforcement
-
-- type: entity
-  id: MobKoboldSyndicateAgentNukeops # Reinforcement exclusive to nukeops uplink
-  parent: MobBaseSyndicateKobold
-  suffix: NukeOps
-  components:
-  - type: NukeOperative
 
 - type: entity
   name: guidebook monkey
@@ -2397,9 +2315,6 @@
   - type: HTN
     rootTask:
       task: GrenadePenguinCompound
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -3187,59 +3102,6 @@
         Base: cat2_dead
       Dead:
         Base: cat2_dead
-
-- type: entity
-  name: syndicat
-  id: MobCatSyndy
-  parent: MobCatSpace
-  description: Explosive kitten.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: syndicat
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: syndicat
-      Critical:
-        Base: syndicat_dead
-      Dead:
-        Base: syndicat_dead
-  - type: GhostRole
-    prob: 1
-    name: ghost-role-information-SyndiCat-name
-    allowMovement: true
-    description: ghost-role-information-SyndiCat-description
-    rules: ghost-role-information-SyndiCat-rules
-    mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
-  - type: AutoImplant
-    implants:
-    - MicroBombImplant
-  - type: ExplosionResistance
-    damageCoefficient: 0.2
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: Access
-    tags:
-    - NuclearOperative
-    - SyndicateAgent
-  - type: MeleeWeapon
-    altDisarm: false
-    angle: 0
-    animation: WeaponArcBite
-    soundHit:
-      path: /Audio/Effects/bite.ogg
-    damage:
-      types:
-        Slash: 6
-        Piercing: 6
-        Structural: 15
 
 - type: entity
   name: space cat
