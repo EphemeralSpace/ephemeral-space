@@ -151,7 +151,6 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SecurityAmmoStatic
-    - SyndicateAmmoStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -350,9 +349,7 @@
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
-  - type: GuideHelp
-    guides:
-    - Robotics
+
 
 - type: entity
   id: Biofabricator
@@ -430,9 +427,6 @@
     - SecurityAmmo
     - SecurityWeapons
     - SecurityDisablers
-  - type: EmagLatheRecipes
-    emagStaticPacks:
-    - SyndicateAmmoStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -465,9 +459,6 @@
       runningState: icon
       staticPacks:
       - SecurityAmmoStatic
-    - type: EmagLatheRecipes
-      emagStaticPacks:
-      - SyndicateAmmoStatic
     - type: MaterialStorage
       whitelist: *StandardMaterialWhitelist
     - type: OreSiloClient

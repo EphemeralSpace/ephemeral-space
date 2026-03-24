@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESScientist
+  id: Scientist
   hidden: false
   name: Scientist
   text: "/ServerInfo/_ES/Guidebook/Jobs/Scientist.xml"

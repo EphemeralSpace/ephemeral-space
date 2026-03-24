@@ -72,9 +72,7 @@
     enabled: false
     sound:
       path: /Audio/Ambience/Objects/server_fans.ogg
-  - type: GuideHelp
-    guides:
-    - Science
+
 
 - type: entity
   id: BaseResearchAndDevelopmentPointSource
@@ -133,6 +131,4 @@
           SheetSteel1:
             min: 1
             max: 1
-  - type: GuideHelp
-    guides:
-    - Science
+

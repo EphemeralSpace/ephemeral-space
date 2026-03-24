@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESPassiveGate
+  id: PassiveGate
   hidden: false
   name: Passive Gate
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/PipeNetworks/PassiveGate.xml"

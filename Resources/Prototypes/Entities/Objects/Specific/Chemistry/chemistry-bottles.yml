@@ -170,36 +170,6 @@
           Quantity: 30
 
 - type: entity
-  id: ChemistryBottleAmbuzol
-  suffix: ambuzol
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-ambuzol
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Ambuzol
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleAmbuzolPlus
-  suffix: ambuzol+
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-ambuzol-plus
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: AmbuzolPlus
-          Quantity: 30
-
-- type: entity
   id: ChemistryBottleArithrazine
   suffix: arithrazine
   parent: BaseChemistryBottleFilled
@@ -1417,8 +1387,6 @@
   table: !type:GroupSelector
     children:
     - id: ChemistryBottleAloxadone
-    - id: ChemistryBottleAmbuzol
-    - id: ChemistryBottleAmbuzolPlus
     - id: ChemistryBottleArithrazine
     - id: ChemistryBottleBarozine
     - id: ChemistryBottleBicaridine

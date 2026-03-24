@@ -78,7 +78,6 @@
     - type: GuideHelp
       guides:
       - AirVent
-      - DeviceMonitoringAndControl
 
 - type: entity
   parent: GasUnaryBase
@@ -170,7 +169,6 @@
     - type: GuideHelp
       guides:
       - AirScrubber
-      - DeviceMonitoringAndControl
 
 - type: entity
   parent: GasUnaryBase
@@ -479,7 +477,4 @@
   - type: PowerSwitch
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: Thermoregulator
-  - type: GuideHelp
-    guides:
-    - GasCondensing
 

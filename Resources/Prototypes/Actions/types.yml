@@ -134,21 +134,6 @@
       state: freedom
 
 - type: entity
-  parent: BaseAction
-  id: ActionOpenUplinkImplant
-  name: Open Uplink
-  description: Opens the syndicate uplink embedded under your skin
-  components:
-  - type: Action
-    itemIconStyle: BigAction
-    priority: -20
-    icon:
-      sprite: Objects/Devices/communication.rsi
-      state: old-radio
-  - type: InstantAction
-    event: !type:OpenUplinkImplantEvent
-
-- type: entity
   parent: BaseImplantAction
   id: ActionActivateEmpImplant
   name: Activate EMP

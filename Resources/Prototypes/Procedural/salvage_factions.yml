@@ -27,7 +27,6 @@
   id: Carps
   desc: salvage-faction-carps
   entries:
-    - proto: MobCarpDungeon
     # These do too much damage for salvage, need nerfs
     #- proto: MobCarpHolo
     #  cost: 5

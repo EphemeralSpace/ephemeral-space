@@ -499,8 +499,6 @@
     stateBaseClosed: syndicate
     stateDoorOpen: syndicate_open
     stateDoorClosed: syndicate_door
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
 
 # Bluespace
 - type: entity

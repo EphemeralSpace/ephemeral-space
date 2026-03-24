@@ -380,17 +380,6 @@
       prototype: ComputerComms
 
 - type: entity
-  parent: [ BaseComputerCircuitboard, BaseSyndicateContraband ]
-  id: SyndicateCommsComputerCircuitboard
-  name: syndicate communications computer board
-  description: A computer printed circuit board for a syndicate communications console.
-  components:
-  - type: Sprite
-    state: cpu_syndicate
-  - type: ComputerBoard
-    prototype: SyndicateComputerComms
-
-- type: entity
   parent: [ BaseComputerCircuitboard, BaseCentcommContraband ]
   id: CentcommCommsComputerCircuitboard
   name: central command communications computer board

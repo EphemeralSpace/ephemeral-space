@@ -67,7 +67,6 @@
   - type: Lock
     breakOnAccessBreaker: false
   - type: AccessReader
-    access: [["Wizard"]]
     breakOnAccessBreaker: false
   - type: Projectile
     deleteOnCollide: false

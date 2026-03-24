@@ -10,8 +10,8 @@ namespace Content.Server.Shuttles.Components;
 [RegisterComponent, Access(typeof(ShuttleSystem))]
 public sealed partial class GridFillComponent : Component
 {
-    [DataField]
-    public ResPath Path = new("/Maps/Shuttles/escape_pod_small.yml");
+    [DataField(required: true)]
+    public ResPath Path = new("/Maps/_ES/Shuttles/arrivals.yml");
 
     /// <summary>
     /// Components to be added to any spawned grids.

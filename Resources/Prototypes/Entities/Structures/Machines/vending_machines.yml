@@ -103,9 +103,6 @@
     powerLoad: 100
     # ES END
   - type: Actions
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-mechanical
-    weight: 0.025 # fuck you in particular (it now needs 40 vending machines to be as likely as 1 interesting animal)
   - type: StaticPrice
     price: 100
   - type: Appearance
@@ -299,8 +296,6 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
   - type: GuideHelp
     guides:
     - Bartender
@@ -824,36 +819,6 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineMagivend
-  name: MagiVend
-  description: A magic vending machine.
-  components:
-  - type: VendingMachine
-    pack: MagiVendInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-  - type: DatasetVocalizer
-    dataset: MagiVendAds
-  - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/magivend.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#9a18d6"
-
-- type: entity
-  parent: VendingMachine
   id: VendingMachineDiscount
   name: Discount Dan's
   description: A vending machine containing discount snacks from the infamous 'Discount Dan' franchise.
@@ -1038,10 +1003,7 @@
     radius: 1
     energy: 2.0
     color: "#78645c"
-  - type: GuideHelp
-    guides:
-    - Security
-    - Antagonists
+
 
 - type: entity
   parent: VendingMachine
@@ -1367,9 +1329,7 @@
     radius: 1.5
     energy: 3.0
     color: "#B0ADA9"
-  - type: GuideHelp
-    guides:
-    - Robotics
+
 
 - type: entity
   parent: VendingMachine
@@ -1492,9 +1452,7 @@
     color: "#b89f25"
   - type: AccessReader
     access: [["Salvage"]]
-  - type: GuideHelp
-    guides:
-    - Salvage
+
 
 - type: entity
   parent: VendingMachine
@@ -2229,8 +2187,6 @@
     normalState: normal
     denyState: deny
     ejectDelay: 2
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
 
 # wallmount
 - type: entity

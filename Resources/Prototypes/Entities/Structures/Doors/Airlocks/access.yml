@@ -808,24 +808,6 @@
     containers:
       board: [ DoorElectronicsExternal ]
 
-- type: entity
-  parent: AirlockSyndicateGlass
-  id: AirlockSyndicateGlassLocked
-  suffix: Syndicate, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSyndicateAgent ]
-
-- type: entity
-  parent: AirlockSyndicateGlass
-  id: AirlockSyndicateNukeopGlassLocked
-  suffix: Nukeop, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsNukeop ]
-
 # Maintenance Hatches
 - type: entity
   parent: AirlockMaint

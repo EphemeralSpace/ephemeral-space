@@ -237,10 +237,6 @@
     - SiliconEmotes
     - Unimplantable
   - type: Emoting
-  - type: GuideHelp
-    guides:
-    - Cyborgs
-    - Robotics
   - type: ProtectedFromStepTriggers
   - type: DamageOnInteractProtection
     damageProtection:

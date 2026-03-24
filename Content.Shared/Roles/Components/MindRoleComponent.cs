@@ -8,7 +8,7 @@ namespace Content.Shared.Roles.Components;
 /// This holds data for, and indicates, a Mind Role entity
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-// ES START - networking
+// ES START- networking
 [AutoGenerateComponentState]
 // ES END
 public sealed partial class MindRoleComponent : BaseMindRoleComponent

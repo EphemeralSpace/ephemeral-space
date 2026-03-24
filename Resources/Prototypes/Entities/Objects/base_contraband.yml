@@ -64,7 +64,7 @@
   abstract: true
   components:
   - type: Contraband
-    allowedDepartments: [ CentralCommand ]
+    allowedDepartments: [ ]
 
 - type: entity
   id: BaseCommandContraband
@@ -129,7 +129,7 @@
   abstract: true
   components:
   - type: Contraband
-    allowedDepartments: [ CentralCommand, Command ]
+    allowedDepartments: [ Command ]
 
 - type: entity
   id: BaseSecurityCommandContraband

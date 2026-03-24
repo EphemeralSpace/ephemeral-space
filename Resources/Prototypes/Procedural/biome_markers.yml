@@ -59,7 +59,7 @@
 
 - type: biomeMarkerLayer
   id: Carps
-  prototype: MobCarpDungeon
+  prototype: MobXeno
 
 
 #- type: biomeMarkerLayer

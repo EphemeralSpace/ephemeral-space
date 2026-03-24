@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESAirScrubber
+  id: AirScrubber
   hidden: false
   name: Air Scrubber
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/AtmosDevices/AirScrubber.xml"

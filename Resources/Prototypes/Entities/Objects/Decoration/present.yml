@@ -374,8 +374,6 @@
         orGroup: GiftPool
       - id: BalloonSyn
         orGroup: GiftPool
-      - id: RGBStaff
-        orGroup: GiftPool
     sound:
       path: /Audio/Effects/unwrap.ogg
 

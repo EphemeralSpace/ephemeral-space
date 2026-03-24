@@ -389,6 +389,14 @@
     state: StationAi
   jobName: job-name-station-ai
 
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconPrisoner
+  icon:
+    sprite: *icon-rsi
+    state: Prisoner
+  jobName: job-name-prisoner
+
 # Admin
 
 - type: jobIcon

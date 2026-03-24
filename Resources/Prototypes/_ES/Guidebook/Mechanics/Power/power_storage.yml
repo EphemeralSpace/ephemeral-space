@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESPowerStorage
+  id: PowerStorage
   hidden: false
   name: Power Storage
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Power/PowerStorage.xml"

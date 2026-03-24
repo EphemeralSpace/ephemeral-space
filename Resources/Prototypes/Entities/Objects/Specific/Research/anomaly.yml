@@ -63,9 +63,6 @@
           False: { visible: false }
   - type: AnomalyScanner
   - type: AnomalyScannerScreen
-  - type: GuideHelp
-    guides:
-    - ScannersAndVessels
   - type: Item
     storedRotation: -90
 

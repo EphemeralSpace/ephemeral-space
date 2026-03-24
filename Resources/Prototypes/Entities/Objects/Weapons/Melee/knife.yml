@@ -50,7 +50,7 @@
   - type: GuideHelp
     guides:
     - Chef
-    - FoodRecipes
+    - Food
   - type: Fixtures
     fixtures:
       fix1:
@@ -91,7 +91,7 @@
   - type: GuideHelp
     guides:
     - Chef
-    - FoodRecipes
+    - Food
   - type: Fixtures
     fixtures:
       fix1:

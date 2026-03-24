@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESConstruction
+  id: Construction
   hidden: false
   name: Construction
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Construction.xml"

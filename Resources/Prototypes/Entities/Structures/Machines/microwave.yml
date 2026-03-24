@@ -114,7 +114,7 @@
   - type: GuideHelp
     guides:
     - Chef
-    - FoodRecipes
+    - Food
   - type: Item
     sprite: Structures/Machines/microwave.rsi
     size: Ginormous

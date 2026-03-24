@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESReporter
+  id: Reporter
   hidden: false
   name: Reporter
   text: "/ServerInfo/_ES/Guidebook/Jobs/Reporter.xml"

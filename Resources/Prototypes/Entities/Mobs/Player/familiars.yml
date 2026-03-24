@@ -4,16 +4,6 @@
   id: MobBatRemilia
   description: The chaplain's familiar. Likes fruit.
   components:
-  - type: GhostRole
-    makeSentient: true
-    allowMovement: true
-    allowSpeech: true
-    name: ghost-role-information-remilia-name
-    description: ghost-role-information-remilia-description
-    rules: ghost-role-information-familiar-rules
-    mindRoles:
-    - MindRoleGhostRoleFamiliar
-  - type: GhostTakeoverAvailable
   - type: Grammar
     attributes:
       gender: female
@@ -39,18 +29,6 @@
   id: MobCorgiCerberus
   description: This pupper is not wholesome.
   components:
-  - type: GhostRole
-    makeSentient: true
-    allowMovement: true
-    allowSpeech: true
-    name: ghost-role-information-cerberus-name
-    description: ghost-role-information-cerberus-description
-    rules: ghost-role-information-familiar-rules
-    mindRoles:
-    - MindRoleGhostRoleFamiliar
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
   - type: MeleeWeapon
     altDisarm: false
     animation: WeaponArcBite

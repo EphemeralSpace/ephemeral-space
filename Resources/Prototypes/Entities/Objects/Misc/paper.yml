@@ -278,10 +278,6 @@
   - type: CargoBountyLabel
   - type: StaticPrice
     price: 0
-  - type: GuideHelp
-    guides:
-    - CargoBounties
-    - Cargo
 
 - type: entity
   id: PaperSalvageJobLabel

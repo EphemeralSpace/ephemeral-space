@@ -51,7 +51,6 @@
   - type: GuideHelp
     guides:
     - AtmosphericAlertsComputer
-    - DeviceMonitoringAndControl
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -88,7 +87,6 @@
   - type: GuideHelp
     guides:
     - AtmosphericNetworkMonitor
-    - DeviceMonitoringAndControl
 
 - type: entity
   parent: BaseComputer
@@ -154,9 +152,6 @@
       board: !type:Container
         ents: []
       disk_slot: !type:ContainerSlot {}
-  - type: GuideHelp
-    guides:
-    - ShuttleCraft
 
 - type: entity
   parent: BaseComputerShuttle
@@ -406,9 +401,6 @@
 #  - type: AccessReader
 #    access: [["Security"]]
 # ES End
-  - type: GuideHelp
-    guides:
-    - CriminalRecords
 # ES START
   - type: ESSabotageTarget
 # ES END
@@ -523,9 +515,6 @@
     radius: 1.5
     energy: 4.0
     color: "#b53ca1"
-  - type: GuideHelp
-    guides:
-    - Science
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -574,9 +563,6 @@
     radius: 1.5
     energy: 4.0
     color: "#b53ca1"
-  - type: GuideHelp
-    guides:
-    - AnalysisConsole
 
 - type: entity
   # ES START
@@ -897,9 +883,6 @@
     range: 200
     ports:
       - OrderSender
-  - type: GuideHelp
-    guides:
-    - Cargo
 
 # Request console variants.
 - type: entity
@@ -1102,10 +1085,6 @@
     color: "#b89f25"
   - type: AccessReader
     access: [["Quartermaster"]]
-  - type: GuideHelp
-    guides:
-    - CargoBounties
-    - Cargo
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -1193,9 +1172,6 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
-  - type: GuideHelp
-    guides:
-    - Cloning
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -1400,9 +1376,6 @@
     radius: 1.5
     energy: 4.0
     color: "#b89f25"
-  - type: GuideHelp
-    guides:
-    - Cargo
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -1674,41 +1647,3 @@
         type: StationAiFixerConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-
-- type: entity
-  parent: BaseComputer
-  id: ComputerNukieDelivery
-  name: syndicate delivery computer
-  description: "A computer that can bluespace in certain equipment for Nuclear Operations. \nThe circuitboard is integrated into the frame and can't be recovered if deconstructed."
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: request-syndie
-    - map: ["computerLayerKeys"]
-      state: syndie_generic_keys
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  # - type: Computer
-  #   board: SyndicateCommsComputerCircuitboard
-  - type: Anchorable
-    flags:
-    - Anchorable # No taking the console along!
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#f71713"
-  - type: UserInterface
-    interfaces:
-      enum.StoreUiKey.Key:
-        type: StoreBoundUserInterface
-  - type: ActivatableUI
-    key: enum.StoreUiKey.Key
-  - type: Store
-    name: store-preset-name-nukie-delivery
-    categories:
-    - NukieDelivery

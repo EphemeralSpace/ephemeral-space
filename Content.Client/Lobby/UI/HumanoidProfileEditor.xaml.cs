@@ -103,7 +103,7 @@ namespace Content.Client.Lobby.UI
 
         private bool _isDirty;
 
-        private static readonly ProtoId<GuideEntryPrototype> DefaultSpeciesGuidebook = "Species";
+        private static readonly ProtoId<GuideEntryPrototype> DefaultSpeciesGuidebook = "Rules";
 
         public event Action<List<ProtoId<GuideEntryPrototype>>>? OnOpenGuidebook;
 

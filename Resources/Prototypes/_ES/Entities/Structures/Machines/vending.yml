@@ -375,7 +375,7 @@
     color: "#78645c"
   - type: GuideHelp
     guides:
-    - Security
+    - SecurityOfficer
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -391,9 +391,7 @@
     color: "#b89f25"
   - type: AccessReader
     access: [["Salvage"]]
-  - type: GuideHelp
-    guides:
-    - Salvage
+
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -448,6 +446,4 @@
     color: "#B0ADA9"
   - type: AccessReader
     access: [["Research"]]
-  - type: GuideHelp
-    guides:
-    - Robotics
+

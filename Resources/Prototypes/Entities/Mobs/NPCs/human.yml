@@ -38,9 +38,6 @@
   - type: NpcFactionMember
     factions:
       - Syndicate
-  - type: Loadout
-    prototypes:
-      - PirateGear
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -103,6 +100,5 @@
   name: person
   description: A polymorphed unfortunate.
   components:
-  - type: Cluwne
   - type: Speech
     speechVerb: Cluwne

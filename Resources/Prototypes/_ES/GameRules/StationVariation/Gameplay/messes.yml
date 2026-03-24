@@ -56,6 +56,14 @@
     - Silver
     - Sodium
 
+- type: weightedRandomFillSolution
+  id: ESRandomFillTrashPuddleBloodbath
+  fills:
+  - quantity: 100
+    weight: 5
+    reagents:
+    - Blood
+
 - type: entity
   id: ESBasicPuddleMessVariationPass
   parent: BaseVariationPass
@@ -70,4 +78,4 @@
   - type: PuddleMessVariationPass
     tilesPerSpillAverage: 40
     tilesPerSpillStdDev: 10
-    randomPuddleSolutionFill: RandomFillTrashPuddleBloodbath # upstream
+    randomPuddleSolutionFill: ESRandomFillTrashPuddleBloodbath

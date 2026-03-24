@@ -29,11 +29,6 @@
   - type: Appearance
   - type: Item
     size: Normal
-  - type: RandomMetadata # No metagaming these, jimbo.
-    nameSegments:
-    - NamesSyndicatePrefix
-    - NamesSyndicateNormal
-    nameFormat: name-format-nukie-generic
   - type: Damageable
     damageContainer: Inorganic
   - type: ToggleableVisuals

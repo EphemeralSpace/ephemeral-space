@@ -117,9 +117,6 @@
     - WhitelistChameleonPDA
   - type: Input
     context: "human"
-  - type: SentienceTarget # sentient PDA = pAI lite
-    flavorKind: station-event-random-sentience-flavor-mechanical
-    weight: 0.001 # 1,000 PDAs = as likely to be picked as 1 regular animal
   - type: BlockMovement
     blockInteraction: false # lets the PDA toggle its own flashlight
   - type: TypingIndicator
@@ -930,7 +927,6 @@
   description: Light green sign of walking bureaucracy.
   components:
   - type: Pda
-    id: CentcomIDCard
     penSlot:
       startingItem: PenCentcom
       priority: -1
@@ -993,7 +989,6 @@
   suffix: Death Squad
   components:
   - type: Pda
-    id: CentcomIDCardDeathsquad
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1086,7 +1081,7 @@
   description: Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people!
   components:
   - type: Pda
-    id: SyndicateIDCard
+    id: null
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -1101,155 +1096,6 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
-
-- type: entity
-  parent: [ SyndiPDA, BaseSyndicateContraband ]
-  id: SyndiOperativePDA
-  name: syndicate operative PDA
-  description: Death to NT!
-  components:
-  - type: Pda
-    id: SyndiOperativeIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-syndi-operative
-  - type: Icon
-    state: pda-syndi-operative
-
-- type: entity
-  parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
-  id: SyndiCorpsmanPDA
-  name: syndicate corpsman PDA
-  description: Commander... I need to cook!
-  components:
-  - type: Pda
-    id: SyndiCorpsmanIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-syndi-corpsman
-  - type: Icon
-    state: pda-syndi-corpsman
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - NotekeeperCartridge
-      - NanoTaskCartridge
-      - MedTekCartridge
-
-- type: entity
-  parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
-  id: SyndiCommanderPDA
-  name: syndicate commander PDA
-  description: So what are we, some kind of Nukie squad?
-  components:
-  - type: Pda
-    id: SyndiCommanderIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-syndi-commander
-  - type: Icon
-    state: pda-syndi-commander
-
-- type: entity
-  parent: BaseSecurityPDA
-  id: ERTLeaderPDA
-  name: ERT Leader PDA
-  suffix: Leader
-  description: Red for firepower.
-  components:
-  - type: Pda
-    id: ERTLeaderIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-ert
-  - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#447987"
-    accentVColor: "#447987"
-  - type: Icon
-    state: pda-ert
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - CrewManifestCartridge
-      - NotekeeperCartridge
-      - NanoTaskCartridge
-      - NewsReaderCartridge
-      - MedTekCartridge
-      - WantedListCartridge
-      - LogProbeCartridge
-      - AstroNavCartridge
-
-- type: entity
-  parent: ERTLeaderPDA
-  id: ERTChaplainPDA
-  name: ERT Chaplain PDA
-  suffix: Chaplain
-  description: Red for firepower, it's blessed.
-  components:
-  - type: Pda
-    id: ERTChaplainIDCard
-
-- type: entity
-  parent: ERTLeaderPDA
-  id: ERTEngineerPDA
-  name: ERT Engineer PDA
-  suffix: Engineer
-  description: Red for firepower, it's well-worn.
-  components:
-  - type: Pda
-    id: ERTEngineerIDCard
-
-- type: entity
-  parent: ERTLeaderPDA
-  id: ERTJanitorPDA
-  name: ERT Janitor PDA
-  suffix: Janitor
-  description: Red for firepower, it's squeaky clean.
-  components:
-  - type: Pda
-    id: ERTJanitorIDCard
-
-- type: entity
-  parent: ERTLeaderPDA
-  id: ERTMedicPDA
-  name: ERT Medic PDA
-  suffix: Medic
-  description: Red for firepower, it's shiny and sterile.
-  components:
-  - type: Pda
-    id: ERTMedicIDCard
-
-- type: entity
-  parent: ERTLeaderPDA
-  id: ERTSecurityPDA
-  name: ERT Security PDA
-  suffix: Security
-  description: Red for firepower, it has tally marks etched on the side.
-  components:
-  - type: Pda
-    id: ERTSecurityIDCard
-
-- type: entity
-  parent: ERTLeaderPDA
-  id: CBURNPDA
-  name: CBURN PDA
-  description: Smells like rotten flesh.
-  components:
-  - type: Pda
-    id: CBURNIDcard
-  - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#447987"
-    accentVColor: "#447987"
 
 - type: entity
   parent: BasePDA
@@ -1393,7 +1239,6 @@
   description: Cursed cluwne PDA.
   components:
   - type: Pda
-    id: CluwneIDCard
     penSlot:
       startingItem: CrayonGreen
       ejectSound: /Audio/Items/bikehorn.ogg
@@ -1516,7 +1361,6 @@
   description: Yargh!
   components:
   - type: Pda
-    id: PirateIDCard
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:

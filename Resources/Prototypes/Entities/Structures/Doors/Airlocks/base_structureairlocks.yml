@@ -187,9 +187,7 @@
   - type: BlockWeather
   - type: GuideHelp
     guides:
-    - Airlocks
-    - WirePanels
-    - Networking
+    - Wires
 # ES START
   - type: ESGreyTideVirusTarget
   - type: ESSparkOnHit

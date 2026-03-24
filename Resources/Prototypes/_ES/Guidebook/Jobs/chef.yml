@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESChef
+  id: Chef
   hidden: false
   name: Chef
   text: "/ServerInfo/_ES/Guidebook/Jobs/Chef.xml"

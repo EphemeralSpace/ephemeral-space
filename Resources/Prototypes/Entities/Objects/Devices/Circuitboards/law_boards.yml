@@ -9,9 +9,6 @@
     state: std_mod
   - type: SiliconLawProvider
     laws: NTDefault
-  - type: GuideHelp
-    guides:
-    - Lawsets
 
 - type: entity
   id: NTDefaultCircuitBoard
@@ -120,7 +117,7 @@
   components:
   - type: SiliconLawProvider
     laws: AntimovLawset
-    lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg
+    lawUploadSound: null
   - type: StaticPrice
     price: 10000
 
