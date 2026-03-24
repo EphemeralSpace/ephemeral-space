@@ -3335,13 +3335,6 @@ entities:
     - type: Transform
       pos: 6.5,-5.5
       parent: 1
-- proto: LockerChiefMedicalOfficerFilled
-  entities:
-  - uid: 364
-    components:
-    - type: Transform
-      pos: 4.5,-10.5
-      parent: 1
 - proto: LockerMedicineFilled
   entities:
   - uid: 366

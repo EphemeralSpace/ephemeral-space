@@ -1840,13 +1840,6 @@ entities:
     - type: Transform
       pos: 8.5,7.5
       parent: 2
-- proto: LockerChiefEngineerFilledHardsuit
-  entities:
-  - uid: 396
-    components:
-    - type: Transform
-      pos: -4.5,8.5
-      parent: 2
 - proto: LockerElectricalSuppliesFilled
   entities:
   - uid: 397

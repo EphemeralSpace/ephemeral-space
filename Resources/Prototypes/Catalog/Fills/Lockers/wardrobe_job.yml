@@ -2,7 +2,6 @@
   id: WardrobePrisonFilled
   suffix: Filled
   parent: WardrobePrison
-  description: "Contains a selection of nice orange clothes for people enjoying their stay in the brig."
   components:
   - type: EntityTableContainerFill
     containers:
@@ -79,99 +78,6 @@
         amount: !type:RangeNumberSelector
           range: 1, 6
 
-#- type: entity
-#  id: WardrobePajamaFilled
-#  suffix: Filled
-#  parent: WardrobeWhite
-#  name: pajama wardrobe
-
-- type: entity
-  id: WardrobeRoboticsFilled
-  suffix: Filled
-  parent: WardrobeRobotics
-  description: "You can build a robot out of this locker."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeRobotics
-
-- type: entityTable
-  id: FillWardrobeRobotics
-  table: !type:AllSelector
-    children:
-    - id: ClothingUniformJumpsuitRoboticist
-    - id: ClothingUniformJumpskirtRoboticist
-    - !type:AllSelector
-      rolls: 2
-      children:
-      - id: ClothingOuterCoatRobo
-      - id: ClothingShoesColorBlack
-      - id: ClothingHandsGlovesFingerless
-
-- type: entity
-  id: WardrobeChemistryFilled
-  suffix: Filled
-  parent: WardrobeChemistry
-  description: "The sleek orange threads contained within make you much less likely to be thrown out of the chemistry lab."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeChemistry
-
-- type: entityTable
-  id: FillWardrobeChemistry
-  table: !type:AllSelector
-    children:
-    - id: ClothingUniformJumpsuitChemistry
-    - id: ClothingBackpackChemistry
-    - id: ClothingShoesColorWhite
-    - id: ClothingOuterCoatLabChem
-    - id: ClothingUniformJumpskirtChemistry
-
-- type: entity
-  id: WardrobeGeneticsFilled
-  suffix: Filled
-  parent: WardrobeGenetics
-  description: "The sleek blue threads contained within make you much less likely to be thrown out of the genetics lab."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeGenetics
-
-- type: entityTable
-  id: FillWardrobeGenetics
-  table: !type:AllSelector
-    children:
-    - id: ClothingUniformJumpsuitGenetics
-    - id: ClothingBackpackGenetics
-    - id: ClothingShoesColorWhite
-    - id: ClothingOuterCoatLabGene
-    - id: ClothingUniformJumpskirtGenetics
-
-- type: entity
-  id: WardrobeVirologyFilled
-  suffix: Filled
-  parent: WardrobeVirology
-  description: "The sleek green threads contained within make you much less likely to be thrown out of the virology lab."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeVirology
-
-- type: entityTable
-  id: FillWardrobeVirology
-  table: !type:AllSelector
-    children:
-    - id: ClothingUniformJumpsuitVirology
-    - id: ClothingBackpackVirology
-    - id: ClothingShoesColorWhite
-    - id: ClothingOuterCoatLabViro
-    - id: ClothingUniformJumpskirtVirology
-
 - type: entity
   id: WardrobeScienceFilled
   suffix: Filled
@@ -189,10 +95,8 @@
     children:
     - id: ClothingUniformJumpsuitScientist
     - id: ClothingBackpackScience
-# ES Start
     - id: ClothingShoesChef
     - id: ClothingOuterCoatLabOpened
-# ES End
     - id: ClothingUniformJumpskirtScientist
     - id: ClothingEyesGlasses
       prob: 0.5
@@ -249,26 +153,6 @@
       prob: 0.4
     - id: ClothingEyesGlasses
       prob: 0.3
-
-- type: entity
-  id: WardrobeChapelFilled
-  suffix: Filled
-  parent: WardrobeChapel
-  description: "You have to look presentable for your flock."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeChapel
-
-- type: entityTable
-  id: FillWardrobeChapel
-  table: !type:AllSelector
-    children:
-    # todo chaplain backpack
-    - id: ClothingUniformJumpsuitChaplain
-    - id: ClothingShoesColorBlack
-    - id: ClothingUniformJumpskirtChaplain
 
 - type: entity
   id: WardrobeSecurityFilled
@@ -365,8 +249,6 @@
     - id: ClothingHeadHatHardhatYellow
     - id: ClothingUniformJumpsuitEngineering
     - id: ClothingBackpackEngineering
-# ES START
     - id: ClothingShoesColorOrange
-# ES END
     - id: ClothingOuterVestHazard
     - id: ClothingUniformJumpskirtEngineering

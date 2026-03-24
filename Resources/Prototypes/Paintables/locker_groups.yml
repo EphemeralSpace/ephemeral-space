@@ -9,17 +9,14 @@
     basic: ClosetSteelBase
     botanist: LockerBotanist
     captain: LockerCaptain
-    ce: LockerChiefEngineer
     chemical: LockerChemistry
-    cmo: LockerChiefMedicalOfficer
     doctor: LockerMedical
+    coroner: ESLockerCoroner
+    paramedic: ESLockerParamedic
     electrical: LockerElectricalSupplies
     engineer: LockerEngineer
     hop: LockerHeadOfPersonnel
-    hos: LockerHeadOfSecurity
     medicine: LockerMedicine
-    quartermaster: LockerQuarterMaster
-    rd: LockerResearchDirector
     scientist: LockerScientist
     security: LockerSecurity
     welding: LockerWeldingSupplies

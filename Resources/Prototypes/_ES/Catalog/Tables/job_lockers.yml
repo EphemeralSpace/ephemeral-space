@@ -37,36 +37,6 @@
 
 # Security
 - type: entityTable
-  id: ESLockerFillHeadOfSecurity
-  table: !type:AllSelector
-    children:
-    - id: BoxEncryptionKeySecurity
-    - id: CigarGoldCase
-      prob: 0.50
-    - id: ClothingBeltSecurityFilled
-    - id: ClothingEyesGlassesSecurity
-    - id: ClothingHeadsetAltSecurity
-    - id: ESClothingOuterCoatHoSTrench
-    - id: ClothingShoesBootsJack
-    - id: FlashlightSeclite
-    - id: RubberStampHos
-    - id: DrinkHosFlask
-
-- type: entityTable
-  id: ESFillLockerWarden
-  table: !type:AllSelector
-    children:
-    - id: FlashlightSeclite
-    - id: ClothingBeltSecurityFilled
-    - id: Flash
-    - id: ClothingEyesGlassesSecurity
-    - id: ClothingHandsGlovesColorBlack
-    - id: ClothingShoesBootsJack
-    - id: ESClothingOuterCoatWarden
-    - id: RubberStampWarden
-    - id: Binoculars
-
-- type: entityTable
   id: ESFillLockerSecurity
   table: !type:AllSelector
     children:
