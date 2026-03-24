@@ -64776,7 +64776,7 @@ entities:
     - type: Transform
       pos: -64.01732,7.4866257
       parent: 2
-- proto: LockerBooze
+- proto: LockerCabinet
   entities:
   - uid: 7584
     components:

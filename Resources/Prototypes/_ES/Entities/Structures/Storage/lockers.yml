@@ -11,7 +11,9 @@
     stateDoorOpen: generic_open
     stateDoorClosed: generic_door
   - type: AccessReader
-    access: [ [ "Medical" ] ]
+    requireKey: true
+  - type: ESPersonalLocker
+    job: ESCoroner
 
 # Paramed
 - type: entity
@@ -26,4 +28,6 @@
     stateDoorOpen: generic_open
     stateDoorClosed: generic_door
   - type: AccessReader
-    access: [ [ "Medical" ] ]
+    requireKey: true
+  - type: ESPersonalLocker
+    job: ESParamedic

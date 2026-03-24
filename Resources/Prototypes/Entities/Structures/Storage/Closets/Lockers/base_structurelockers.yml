@@ -95,3 +95,22 @@
           SheetSteel1:
             min: 1
             max: 2
+
+- type: entity
+  parent: LockerBase
+  id: LockerBaseCabinet
+  name: cabinet
+  description: Looks like the correct perspective.
+  abstract: true
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: cabinet
+    stateDoorOpen: cabinet_open
+    stateDoorClosed: cabinet_door
+  - type: EntityStorage
+    closeSound:
+      path: /Audio/Effects/woodenclosetclose.ogg
+    openSound:
+      path: /Audio/Effects/woodenclosetopen.ogg
+  - type: Paintable
+    group: null # not shaped like other lockers
