@@ -520,22 +520,6 @@
 
 - type: entity
   parent: MobSnail
-  id: MobSnailInstantDeath
-  suffix: Smite
-  components:
-  - type: MobStateActions
-    actions:
-      Alive:
-      - ActionSmiteNoReq
-      Critical:
-      - ActionCritSuccumb
-      - ActionCritFakeDeath
-      - ActionCritLastWords
-  - type: Godmode
-  - type: MovementAlwaysTouching
-
-- type: entity
-  parent: MobSnail
   id: MobSnailSpeed
   suffix: Speed
   components:
