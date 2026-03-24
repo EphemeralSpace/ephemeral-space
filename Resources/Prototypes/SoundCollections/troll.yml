@@ -23,7 +23,6 @@
   - /Audio/Animals/sloth_squeak.ogg
   - /Audio/Animals/small_dog_bark_happy.ogg
   - /Audio/Animals/snake_hiss.ogg
-  - /Audio/Animals/space_dragon_roar.ogg
 
 - type: soundCollection
   id: TrollBeeping

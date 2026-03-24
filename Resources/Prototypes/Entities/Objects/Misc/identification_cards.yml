@@ -1037,31 +1037,6 @@
     jobIcon: JobIconSyndicateCommander
 
 - type: entity
-  parent: [ IDCardStandard, BaseHighlyIllegalContraband ]
-  id: NinjaIDCard
-  name: ninja ID card
-  suffix: Ninja
-  components:
-  - type: Sprite
-    layers:
-    - state: ninja
-    - state: stripe_top
-      color: "#38D848"
-    - state: stripe_bottom
-      color: "#309000"
-    - sprite: *icon-rsi
-      offset: *icon-offset
-      state: Ninja
-  - type: Item
-    heldPrefix: green
-  - type: AgentIDCard
-  - type: IdCard
-    jobIcon: JobIconNinja
-  - type: Access
-    tags:
-    - Maintenance
-
-- type: entity
   parent: [ IDCardStandard, BaseMajorContraband ]
   id: PirateIDCard
   name: pirate ID card

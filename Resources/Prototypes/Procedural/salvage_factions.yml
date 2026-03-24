@@ -38,9 +38,9 @@
     - proto: MobCarpRainbow # carp version of rouny...
       cost: 3
       prob: 0.05
-    - proto: MobDragonDungeon
+    - proto: CarpStatue
       cost: 10
       prob: 0.02
   configs:
     DefenseStructure: CarpStatue
-    Megafauna: MobDragonDungeon
+    Megafauna: CarpStatue

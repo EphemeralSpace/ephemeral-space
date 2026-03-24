@@ -422,47 +422,6 @@
       - state: plain-inhand-right
 
 - type: entity
-  parent: FoodMeatBase
-  id: FoodMeatDragon
-  name: dragon flesh
-  description: The dense meat of the space-era apex predator is oozing with its mythical ichor. Ironically, best eaten raw.
-  components:
-  - type: Tag
-    tags:
-    - Raw
-    - Meat
-  - type: Sprite
-    layers:
-    - state: dragon
-    - state: dragon_veins
-      shader: unshaded
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Ichor
-          Quantity: 10
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Ichor
-        Quantity: 10
-  - type: SliceableFood
-    count: 3
-    slice: FoodMeatDragonCutlet
-  - type: Construction
-    graph: DragonSteak
-    node: start
-    defaultTarget: dragon steak
-  - type: Item
-    storedOffset: -2,1
-    inhandVisuals:
-      left:
-      - state: dragon-inhand-left
-      right:
-      - state: dragon-inhand-right
-
-- type: entity
   parent: FoodMeatRawBase
   id: FoodMeatRat
   name: raw rat meat

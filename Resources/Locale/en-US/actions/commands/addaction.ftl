@@ -1,5 +1,5 @@
 # addaction
-cmd-addaction-desc = Adds an action to the target entity. The action will not work if the target requires an additional component on their entity (such as Dragon's Devour).
+cmd-addaction-desc = Adds an action to the target entity. The action will not work if the target requires an additional component on their entity.
 cmd-addaction-help = addaction <EntityUid> <ActionPrototype>
 
 cmd-addaction-invalid-args = Expected exactly 2 arguments.
