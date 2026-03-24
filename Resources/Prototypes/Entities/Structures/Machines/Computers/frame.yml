@@ -53,8 +53,6 @@
     sprite: Structures/Machines/parts.rsi
 # ES START
     noRot: true
-  - type: Damageable
-    damageModifierSet: ESComputer
 # ES END
     layers:
     - state: 0
