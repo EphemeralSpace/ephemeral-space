@@ -194,19 +194,6 @@
       - state: doctor
 
 - type: entity
-  id: ESSpawnPointChemist
-  parent: SpawnPointJobBase
-  name: chemist
-  suffix: ES
-  components:
-  - type: SpawnPoint
-    job_id: ESChemist
-  - type: Sprite
-    layers:
-      - state: green
-      - state: chemist
-
-- type: entity
   id: ESSpawnPointCoroner
   parent: SpawnPointJobBase
   name: coroner
@@ -219,6 +206,20 @@
       - state: green
       - sprite: _ES/Markers/job.rsi
         state: coroner
+
+- type: entity
+  id: ESSpawnPointParamedic
+  parent: SpawnPointJobBase
+  name: paramedic
+  suffix: ES
+  components:
+  - type: SpawnPoint
+    job_id: ESParamedic
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _ES/Markers/job.rsi
+        state: paramedic
 
 # Science
 

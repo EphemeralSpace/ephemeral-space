@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._ES.Masks;
 using Content.Shared._ES.Mind;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.EntityTable;
@@ -38,6 +39,8 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerDetachedEvent>(OnPlayerDetached);
 
+        SubscribeLocalEvent<ESObjectiveHolderComponent, ESGetCharacterInfoBlurbEvent>(OnGetCharacterInfoBlurb);
+
         SubscribeLocalEvent<ESObjectiveComponent, EntityRenamedEvent>(OnObjectiveRenamed);
     }
 
@@ -73,6 +76,14 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         }
     }
 
+    private void OnGetCharacterInfoBlurb(Entity<ESObjectiveHolderComponent> ent, ref ESGetCharacterInfoBlurbEvent args)
+    {
+        foreach (var objective in GetObjectives(ent.AsNullable()))
+        {
+            RaiseLocalEvent(objective, ref args);
+        }
+    }
+
     private void OnObjectiveRenamed(Entity<ESObjectiveComponent> ent, ref EntityRenamedEvent args)
     {
         // We need to dirty when we get renamed so that we can raise events on the client and update UIs.
@@ -92,6 +103,10 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
 
         var oldProgress = ent.Comp.Progress;
         var newProgress = Math.Clamp(ev.Progress, 0, 1);
+
+        // "inverted" progress means that a win is a fail, and vice versa.
+        if (ent.Comp.InvertProgress)
+            newProgress = 1 - newProgress;
 
         // If they are unchanged, then don't update anything.
         if (MathHelper.CloseTo(oldProgress, newProgress))
@@ -356,12 +371,21 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         return true;
     }
 
+    public bool TryRemoveObjective(Entity<ESObjectiveComponent?> objective)
+    {
+        if (!TryFindObjectiveHolder(objective, out var holder))
+            return false;
+
+        return TryRemoveObjective(holder.Value.AsNullable(), objective);
+    }
+
     public bool TryRemoveObjective(Entity<ESObjectiveHolderComponent?> ent, Entity<ESObjectiveComponent?> objective)
     {
         if (!Resolve(ent, ref ent.Comp) || !Resolve(objective, ref objective.Comp))
             return false;
 
-        ent.Comp.OwnedObjectives.Remove(objective);
+        if (!ent.Comp.OwnedObjectives.Remove(objective))
+            return false;
         RegenerateObjectiveList(ent);
         Del(objective);
         return true;

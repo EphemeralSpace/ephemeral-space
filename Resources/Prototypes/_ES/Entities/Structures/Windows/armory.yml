@@ -1,0 +1,20 @@
+# AME containment
+- type: entity
+  parent: ReinforcedWindow
+  id: ESWindowArmory
+  name: armory window
+  description: Lets you stare at the hooligans raiding the big guns. ..You aren't one of the hooligans, are you?
+  components:
+  - type: Destructible
+    thresholds: []
+  - type: DamageVisuals
+    thresholds: [0]
+    disabled: true
+  - type: Sprite
+    sprite: _ES/Structures/Windows/antimatter.rsi
+  - type: Icon
+    sprite: _ES/Structures/Windows/antimatter.rsi
+    state: full
+  - type: IconSmooth
+    key: amwindows
+    base: ame

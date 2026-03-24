@@ -11,6 +11,7 @@
   - type: ESTargetObjective
   - type: ESTargetSelfObjective
   - type: ESKillTargetObjective
+  - type: ESAvengeSelfObjective
 
 - type: entity
   parent: ESBaseMaskObjective
@@ -24,6 +25,4 @@
       state: icon
   - type: ESTargetObjective
     title: es-phantom-avenge-objective-title
-  - type: ESAvengeSelfObjective
   - type: ESKillTargetObjective
-    defaultProgress: 0 # if no one kills you, then you LOSE

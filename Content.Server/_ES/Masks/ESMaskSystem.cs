@@ -242,6 +242,8 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         // Our rule was only added in the beginning, now we should start it properly.
         if (!ruleExists)
             _gameTicker.StartGameRule(troupe.Value);
+
+        RefreshCharacterInfoBlurb(mind.AsNullable());
     }
 
     public override void RemoveMask(Entity<MindComponent> mind)
@@ -270,6 +272,7 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         }
 
         Objective.RegenerateObjectiveList(mind.Owner);
+        RefreshCharacterInfoBlurb(mind.AsNullable());
     }
 
     public override void ChangeMask(Entity<MindComponent> mind,
@@ -288,9 +291,9 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
         if (mind.Comp.OwnedEntity is { } owned)
         {
-            var name = _stagehandNotifications.WrapEntityNameWithUsername(owned);
-            var mask = Loc.GetString(PrototypeManager.Index(maskId).Name);
-            var msg = Loc.GetString("es-stagehand-notification-mask-change", ("player", name), ("mask", mask));
+            var msg = Loc.GetString("es-stagehand-notification-mask-change",
+                ("player", _stagehandNotifications.WrapEntityName(owned)),
+                ("mask", Loc.GetString(PrototypeManager.Index(maskId).Name)));
             _stagehandNotifications.SendStagehandNotification(msg, ESStagehandNotificationSeverity.High);
         }
     }

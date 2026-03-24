@@ -32,6 +32,9 @@ es-mask-insider-desc = As an insider, investigate the people on station and try 
 es-mask-mercenary-name = Mercenary
 es-mask-mercenary-desc = As a Mercenary, use your dubiously-legally-acquired syndicate gear to further your goals.
 
+es-mask-nobleman-name = Nobleman
+es-mask-nobleman-desc = As a Nobleman, prevent the corruption of your pure blood by not killing anyone.
+
 es-mask-secretary-name = Secretary
 es-mask-secretary-desc = As a secretary, do whatever you can to help your target complete their objectives.
 
@@ -43,6 +46,9 @@ es-mask-vandal-desc = As a Vandal, sabotage random machines around the station f
 
 es-mask-veteran-name = Veteran
 es-mask-veteran-desc = As a Veteran, help the station by using your trusty sidearm to take care of anybody who isn't aligned with the crew.
+
+es-mask-vigilante-name = Vigilante
+es-mask-vigilante-desc = As a Vigilante, seek out those who have killed others and bring them to justice by killing them yourself.
 
 es-mask-vip-name = VIP
 es-mask-vip-desc = As a VIP, use your fancy VIP card to help confirm your innocence in times of peril.
@@ -89,7 +95,6 @@ es-mask-sleeper-agent-desc = As a covert operative, you're a member of crew and 
 es-objective-issuer-mask = Mask
 
 es-objective-condition-crewmember-kill-title = Kill {$targetName}, {CAPITALIZE($job)}
-es-objective-condition-protect-title = Protect {$targetName}, {CAPITALIZE($job)}
 
 es-mask-gear-cache-messsage = Your gear can be found in {$cacheLocation}.
 

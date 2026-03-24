@@ -12,3 +12,18 @@
     stateDoorClosed: generic_door
   - type: AccessReader
     access: [ [ "Medical" ] ]
+
+# Paramed
+- type: entity
+  parent: LockerBaseSecure
+  id: ESLockerParamedic
+  name: paramedic's locker
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/paramed.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: generic
+    stateDoorOpen: generic_open
+    stateDoorClosed: generic_door
+  - type: AccessReader
+    access: [ [ "Medical" ] ]

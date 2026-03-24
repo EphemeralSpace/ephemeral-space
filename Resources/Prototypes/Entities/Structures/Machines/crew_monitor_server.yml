@@ -15,12 +15,17 @@
         - state: variant-crew
         - state: server_o
           map: ["enum.WiresVisualLayers.MaintenancePanel"]
-    - type: Construction
-      graph: Machine
-      node: machine
-      containers:
-        - machine_board
-        - machine_parts
+    # ES START
+#    - type: Construction
+#      graph: Machine
+#      node: machine
+#      containers:
+#        - machine_board
+#        - machine_parts
+    - type: Anchorable
+      flags:
+      - Anchorable
+    # ES END
     - type: Machine
       board: CrewMonitoringServerMachineCircuitboard
     - type: ContainerContainer
@@ -42,28 +47,30 @@
     - type: ExtensionCableReceiver
     - type: WiresPanel
     - type: WiresVisuals
+    # ES START
     - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 600
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-        - trigger:
-            !type:DamageTrigger
-            damage: 300
-          behaviors:
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
-            - !type:PlaySoundBehavior
-              sound:
-                collection: MetalGlassBreak
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                SheetSteel1:
-                  min: 1
-                  max: 2
+      thresholds: []
+#        - trigger:
+#            !type:DamageTrigger
+#            damage: 600
+#          behaviors:
+#            - !type:DoActsBehavior
+#              acts: [ "Destruction" ]
+#        - trigger:
+#            !type:DamageTrigger
+#            damage: 300
+#          behaviors:
+#            - !type:DoActsBehavior
+#              acts: ["Destruction"]
+#            - !type:PlaySoundBehavior
+#              sound:
+#                collection: MetalGlassBreak
+#            - !type:SpawnEntitiesBehavior
+#              spawn:
+#                SheetSteel1:
+#                  min: 1
+#                  max: 2
+    # ES END
     - type: Appearance
     - type: GenericVisualizer
       visuals:

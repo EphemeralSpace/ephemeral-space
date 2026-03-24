@@ -26,7 +26,6 @@
   weight: -10
   roles:
   - ESClown
-  - ESHeadOfPersonnel
   - ESAssistant
   - ESReporter
 
@@ -58,8 +57,8 @@
   color: "#57b8f0"
   weight: 5
   roles:
-  - ESChemist
   - ESCoroner
+  - ESParamedic
   - ESPhysician
 
 - type: department

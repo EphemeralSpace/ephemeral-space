@@ -79,8 +79,6 @@
       prob: 0.5
     - id: ClothingEyesGlassesSecurity
     - id: ClothingHeadsetSecurity
-    - id: ClothingHandsGlovesColorBlack
-    - id: ClothingShoesBootsJack
 
 - type: entityTable
   id: ESFillLockerDetective
@@ -88,19 +86,15 @@
     children:
     - id: ClothingEyesGlassesNoir
     - id: ESWeaponRevolver357 # sure, the other security roles don't get guns, but what is a detective without their revolver?
-    - id: ESSpeedLoader357
     - id: ClothingHeadHatDetGadget
       prob: 0.15
-    - id: ClothingNeckTieDet
     - id: Stunbaton
     - id: ESClothingOuterArmorDetective
-    - id: ESClothingOuterCoatDetective
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
     - id: ForensicScanner
     - id: BoxForensicPad
     - id: DrinkDetFlask
-    - id: ClothingHandsGlovesForensic
     - id: RubberStampDetective
     - id: BoxEvidenceMarkers
     - id: HandLabeler
@@ -153,6 +147,20 @@
     - id: ClothingEyesHudMedical
     - id: ClothingHeadHatSurgcapBlue
     - id: ClothingMaskSterile
+    - id: ClothingBeltMedicalFilled
+
+- type: entityTable
+  id: ESLockerFillParamedic
+  table:
+    all:
+    - id: HandheldHealthAnalyzer
+      prob: 0.6
+    - id: JawsOfLife
+    - id: ClothingEyesHudMedical
+    - id: ClothingBeltMedicalFilled
+    - id: ClothingHandsGlovesColorBlue
+    - id: ClothingHeadsetMedical
+    - id: ESMedkitStabilization
 
 - type: entityTable
   id: ESLockerFillCoroner

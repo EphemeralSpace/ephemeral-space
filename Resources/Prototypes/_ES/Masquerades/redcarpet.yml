@@ -10,9 +10,9 @@
     superfanTarget: "#Traitors"
     roles:
       6: ["ESMarauder", "ESInfiltrator", "#Filler", "ESVIP", "ESVandal", "ESMercenary"] # 0 generic crew, 2 traitors
-      7: ["ESMartyr"]
+      7: ["#Jesters"]
       8: ["ESVIP"]
-      9: ["ESVeteran"]
+      9: ["ESVigilante"]
       10: ["#TraitorAdjacent"]
       11: ["ESVIP"]
       13: ["ESAssassin"]  # 0 generic crew, 3 traitors.

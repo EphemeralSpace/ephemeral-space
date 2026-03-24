@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Emp;
@@ -78,6 +79,10 @@ public sealed class ChameleonClothingSystem : SharedChameleonClothingSystem
 
             if (Timing.CurTime < chameleon.NextEmpChange)
                 continue;
+// ES START
+            if (!GetValidTargets(chameleon.Slot, chameleon.RequireTag).Any())
+                continue;
+// ES END
 
             // randomly pick cloth element from available and apply it
             var pick = GetRandomValidPrototype(chameleon.Slot, chameleon.RequireTag);

@@ -1,0 +1,9 @@
+- type: guideEntry
+  id: ESTroupesAndMasks
+  hidden: false
+  priority: 2
+  name: Troupes & Masks
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks.xml"
+  children:
+  - ESCrew
+  - ESTraitors

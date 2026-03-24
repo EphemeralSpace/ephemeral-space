@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESFires
+  hidden: false
+  name: Fires
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Fires.xml"

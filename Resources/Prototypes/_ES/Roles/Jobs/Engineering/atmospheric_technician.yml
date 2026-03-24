@@ -16,9 +16,7 @@
   id: ESAtmosphericTechnicianGear
   equipment:
     shoes: ClothingShoesColorWhite
-    eyes: ClothingEyesGlassesMeson
     id: AtmosPDA
-    belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
     jumpsuit: ClothingUniformJumpsuitAtmos
     back: ClothingBackpack

@@ -4,7 +4,6 @@
   name: Unnamed Degradation Event
   abstract: true
   components:
-  - type: ESDegradationEvent
   - type: StationEvent
     earliestStart: 0
     reoccurrenceDelay: 0
@@ -16,6 +15,7 @@
   table:
     all:
     - id: ESDegradationEventAirlocks
+    - id: ESDegradationEventMouse
     - id: ESDegradationEventCommunicationsConsole
     - id: ESDegradationEventCriminalRecords
     - id: ESDegradationEventTelecoms
@@ -30,14 +30,28 @@
   name: Airlock Bolt Breakage
   description: Breaks airlocks, making them get stuck when opened.
   components:
-  - type: ESDegradationEvent
-    count: 1, 5
-    component: Airlock
-    blacklist:
-      components:
-      - Docking
+  - type: ESAirlockFailureEvent
   - type: StationEvent
     weight: 50
+
+- type: entity
+  parent: ESBaseDegradationEvent
+  id: ESDegradationEventMouse
+  name: Mouse Swarm
+  description: Sends mice into maintenance to nibble wires.
+  components:
+  - type: ESSpawnRandomRule
+    spawnRegion: ESMaintenance
+    table:
+      group:
+      - id: MobMouse
+      - id: MobMouse1
+      - id: MobMouse2
+      rolls: 5, 8
+  - type: ESTimedDespawn
+    lifetime: 1.0
+  - type: StationEvent
+    weight: 40
 
 - type: entity
   parent: ESBaseDegradationEvent

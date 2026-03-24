@@ -4,8 +4,10 @@
   name: blast door
   description: This one says 'BLAST DONGER'.
   components:
-  - type: AccessReader
-    containerAccessProvider: board
+# ES START
+#  - type: AccessReader
+#    containerAccessProvider: board
+# ES END
   - type: Sprite
     sprite: Structures/Doors/Shutters/blastdoor.rsi
     layers:
@@ -35,14 +37,16 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StrongMetallic
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronics ]
-  - type: Construction
-    graph: BlastDoor
-    node: blastdoor
-    containers:
-    - board
+# ES START
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronics ]
+#  - type: Construction
+#    graph: BlastDoor
+#    node: blastdoor
+#    containers:
+#    - board
+# ES END
   - type: StaticPrice
     price: 500
   - type: InteractionPopup

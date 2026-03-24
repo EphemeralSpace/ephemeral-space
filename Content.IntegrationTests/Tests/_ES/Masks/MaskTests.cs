@@ -1,4 +1,5 @@
 using Content.IntegrationTests.Tests._Citadel;
+using Content.IntegrationTests.Tests._Citadel.Attributes;
 using Content.Server._ES.Masks;
 using Content.Server.Chat;
 using Content.Server.Mind;
@@ -10,6 +11,7 @@ using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests._ES.Masks;
 
 [TestFixture]
+[TestMap(TestMapMode.Arena)]
 public sealed class MaskTests : GameTest
 {
     [System(Side.Server)] private readonly SuicideSystem _suicideSystem = default!;
@@ -25,7 +27,6 @@ public sealed class MaskTests : GameTest
     [Test]
     [TestCaseSource(nameof(Masks))]
     [Description("Assigns each mask alone with no other players.")]
-    [TestMap(TestMapMode.Arena)]
     public async Task AssignMaskAlone(string maskProto)
     {
         var player = await TestPlayer.CreatePlayer(this);
@@ -52,7 +53,6 @@ public sealed class MaskTests : GameTest
     [Test]
     [TestCaseSource(nameof(Masks))]
     [Description("Has the given mask beat up a crew member, asserting it doesn't fail.")]
-    [TestMap(TestMapMode.Arena)]
     public async Task BeatUpCrewmember(string maskProto)
     {
         var deviant = await TestPlayer.CreatePlayer(this);
@@ -84,7 +84,6 @@ public sealed class MaskTests : GameTest
     [Test]
     [TestCaseSource(nameof(Masks))]
     [Description("Has the a crew member beat up the given mask, asserting it doesn't fail.")]
-    [TestMap(TestMapMode.Arena)]
     public async Task GetBeatenUp(string maskProto)
     {
         var deviant = await TestPlayer.CreatePlayer(this);

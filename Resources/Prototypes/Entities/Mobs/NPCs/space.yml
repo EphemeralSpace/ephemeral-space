@@ -411,7 +411,9 @@
   - type: HTN
     constantlyReplan: false
     rootTask:
-      task: MouseCompound
+# ES START
+      task: RuminantCompound
+# ES END
   - type: Physics
   - type: Fixtures
     fixtures:

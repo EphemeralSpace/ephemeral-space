@@ -1,0 +1,32 @@
+- type: entity
+  parent: MobStatusEffectBase
+  id: ESStatusEffectAdrenalineRush
+  name: adrenaline rush
+  components:
+  - type: PopupOnAppliedStatusEffect
+    message: es-adrenaline-rush-started-user
+  - type: MovementModStatusEffect
+    sprintSpeedModifier: 1.3
+    walkSpeedModifier: 1.3
+  - type: MeleeModifiersStatusEffect
+    attackRateMultiplier: 0.7
+  - type: GunAccuracyStatusEffect
+    angleRangeModifier: 2.5
+  - type: CannotUseHeadsetStatusEffect
+  - type: MetabolicRateModifierStatusEffect
+    delta: 0.1 # this should maybe just literally add some epi into the bloodstream but that feels a little stupid also has maybe bad implications. this is for flavor mostly
+  - type: ESStatusEffectOnStatusEffectEnded
+    statusEffect: ESStatusEffectAdrenalineComedown
+    duration: 30s
+    delay: 5s
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: ESStatusEffectAdrenalineComedown
+  name: adrenaline comedown
+  components:
+  - type: PopupOnAppliedStatusEffect
+    message: es-adrenaline-rush-ended-user
+  - type: MovementModStatusEffect
+    sprintSpeedModifier: 0.8
+    walkSpeedModifier: 0.8

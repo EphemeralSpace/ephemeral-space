@@ -1,17 +1,23 @@
 #nullable enable
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Content.IntegrationTests.Tests._Citadel.Attributes;
 using Content.Server.Mind;
 using Content.Shared.Players;
+using Robust.Client.Timing;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.IntegrationTests.Tests._Citadel;
 
 public abstract partial class GameTest
 {
+    [SidedDependency(Side.Server)] private readonly IGameTiming _sGameTiming = default!;
+    [SidedDependency(Side.Client)] private readonly IClientGameTiming _cGameTiming = default!;
+
     /// <summary>
     ///     Marks the test pair as dirty, ensuring it is returned as such.
     /// </summary>
@@ -218,17 +224,25 @@ public abstract partial class GameTest
     ///     handled automatically as well.
     /// </remarks>
     [MemberNotNull(nameof(TestMap))]
-    public Task<TestMapData> LoadTestMap(ResPath mapPath, bool initialized = true)
+    public async Task<TestMapData> LoadTestMap(ResPath mapPath, bool initialized = true)
     {
         // C# is smart, but not that smart, we need to make a promise here.
+
+        await Pair.LoadTestMap(mapPath, initialized);
+        await RunUntilSynced();
+
 #pragma warning disable CS8774
-        return Pair.LoadTestMap(mapPath, initialized);
+        return TestMap!;
 #pragma warning restore
+
     }
 
     [MemberNotNull(nameof(TestMap))]
-    public async Task CreateTestMap(TestMapMode kind = TestMapMode.Basic, bool initialized = true)
+    public async Task CreateTestMap(TestMapMode kind, bool initialized = true)
     {
+        if (TestMap is not null)
+            throw new NotSupportedException("Dismantle your existing TestMap before creating a new one.");
+
         switch (kind)
         {
             case TestMapMode.None:
@@ -248,31 +262,32 @@ public abstract partial class GameTest
 
         // C# is smart, but not that smart, we need to make a promise here.
 #pragma warning disable CS8774
+        // ReSharper disable once RedundantJumpStatement
         return;
 #pragma warning restore
     }
 
-    /// <inheritdoc cref="M:Robust.UnitTesting.Pool.TestPair`2.SyncTicks(System.Int32)"/>
-    public Task SyncTicks(int targetDelta = 1)
-    {
-        return Pair.SyncTicks(targetDelta);
-    }
 
-    /// <inheritdoc cref="M:Robust.UnitTesting.Pool.TestPair`2.RunTicksSync(System.Int32)"/>
+    /// <summary>
+    ///     Runs the client and server for the given number of ticks, in lockstep.
+    /// </summary>
+    /// <remarks>Do not use this as a barrier for client-server synchronization, use <see cref="RunUntilSynced"/>.</remarks>
     public Task RunTicksSync(int ticks)
     {
         return Pair.RunTicksSync(ticks);
     }
 
     /// <summary>
-    ///     Runs the pairs just long enough for PVS to send entities.
+    ///     Runs the pairs just long enough for PVS to send entities, ensuring the client's current tick is what the server's was at call time.
     /// </summary>
-    /// <remarks>
-    ///     ..if the entity count is reasonable (&lt; 10000)
-    /// </remarks>
-    public Task RunUntilSynced()
+    public async Task RunUntilSynced()
     {
-        return Pair.RunTicksSync(4);
+        var startTime = _sGameTiming.CurTick;
+
+        while (_cGameTiming.LastRealTick < startTime)
+        {
+            await RunTicksSync(1);
+        }
     }
 
     /// <summary>
@@ -283,6 +298,13 @@ public abstract partial class GameTest
         return (int) Math.Ceiling(seconds / Server.Timing.TickPeriod.TotalSeconds);
     }
 
+    /// <summary>
+    ///     Runs the test pair for a number of (simulated) seconds.
+    /// </summary>
+    /// <remarks>
+    ///     Does not actually take N seconds to evaluate, the game ticks as fast as possible.
+    ///     Do not use this as a barrier for client-server synchronization, use <see cref="RunUntilSynced"/>.
+    /// </remarks>
     public Task RunSeconds(float seconds)
     {
         return RunTicksSync(SecondsToTicks(seconds));

@@ -6,7 +6,10 @@
 - type: entity
   abstract: true
   id: PortableGeneratorBase
-  parent: [ BaseMachine, SmallConstructibleMachine, StructureWheeled]
+# ES Start
+# Take StructureWheeled and move it to the small gen only
+  parent: [ BaseMachine, SmallConstructibleMachine]
+# ES End
   components:
     # Basic properties
     - type: Transform
@@ -37,9 +40,10 @@
     # Visuals
     - type: Appearance
     - type: Sprite
-      sprite: Structures/Power/Generation/portable_generator.rsi
+# ES Start
+      sprite: _ES/Structures/Power/portable_generator.rsi
+# ES End
       noRot: true
-
     # Construction, interaction
     - type: WiresPanel
     - type: UserInterface
@@ -182,8 +186,10 @@
       loadNodes:
         - output_hv
         - output_mv
-      sprite: Structures/Power/Generation/portable_generator.rsi
+# ES Start
+      sprite: _ES/Structures/Power/portable_generator.rsi
       state: portgen0
+# ES End
     - type: PowerSupplier
       supplyRampRate: 5000
       supplyRampTolerance: 1500
@@ -196,10 +202,14 @@
   parent: PortableGeneratorSwitchableBase
   id: PortableGeneratorSuperPacman
   suffix: Uranium, 50 kW
+# ES Start
+# Hardfork coin: remove this prototype later
+  categories: [ HideSpawnMenu ]
+# ES End
   components:
     - type: Sprite
       layers:
-        - state: portgen1
+        - state: portgen0
           map: [ "enum.GeneratorVisualLayers.Body" ]
         - state: portgen_on_unlit
           map: [ "enum.GeneratorVisualLayers.Unlit" ]
@@ -209,8 +219,8 @@
       visuals:
         enum.GeneratorVisuals.Running:
           enum.GeneratorVisualLayers.Body:
-            True: { state: portgen1on }
-            False: { state: portgen1 }
+            True: { state: portgen0on }
+            False: { state: portgen0 }
           enum.GeneratorVisualLayers.Unlit:
             True: { visible: true }
             False: { visible: false }
@@ -238,8 +248,10 @@
       loadNodes:
         - output_hv
         - output_mv
-      sprite: Structures/Power/Generation/portable_generator.rsi
-      state: portgen1
+# ES Start
+      sprite: _ES/Structures/Power/portable_generator.rsi
+      state: portgen0
+# ES End
     - type: PowerSupplier
       supplyRampRate: 7500
       supplyRampTolerance: 2500
@@ -250,7 +262,9 @@
     A small generator capable of powering individual rooms, in case of emergencies.
     Runs off welding fuel and is rated for up to 8 kW.
     Rated ages 3 and up.
-  parent: PortableGeneratorBase
+# ES Start
+  parent: [PortableGeneratorBase, StructureWheeled]
+# ES End
   id: PortableGeneratorJrPacman
   suffix: Welding Fuel, 8 kW
   components:
@@ -321,7 +335,9 @@
     - type: PowerMonitoringDevice
       group: Generator
       loadNode: output
-      sprite: Structures/Power/Generation/portable_generator.rsi
+# ES Start
+      sprite: _ES/Structures/Power/portable_generator.rsi
+# ES End
       state: portgen3
     - type: PowerSupplier
       # No ramping needed on this bugger.

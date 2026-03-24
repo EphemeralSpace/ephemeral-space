@@ -28,9 +28,9 @@ public sealed partial class PullerComponent : Component
     // slight base slowdown since we dont really have mass-slowdown anymore
     // and this balances it so you dont run the same speed as people not pulling things
     // Before changing how this is updated, please see SharedPullerSystem.RefreshMovementSpeed
-    public float WalkSpeedModifier => Pulling == null ? 1f : 0.85f;
+    public float WalkSpeedModifier => Pulling == null ? 1f : 0.7f;
 
-    public float SprintSpeedModifier => Pulling == null ? 1f : 0.85f;
+    public float SprintSpeedModifier => Pulling == null ? 1f : 0.7f;
     // ES END
 
     /// <summary>

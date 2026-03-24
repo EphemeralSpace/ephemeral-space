@@ -16,9 +16,7 @@
   id: ESStationEngineerGear
   equipment:
     shoes: ClothingShoesColorOrange
-    eyes: ClothingEyesGlassesMeson
     id: EngineerPDA
-    belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
     head: ClothingHeadHatHardhatYellow
     back: ClothingBackpack

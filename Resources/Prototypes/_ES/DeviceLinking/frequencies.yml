@@ -1,0 +1,4 @@
+- type: deviceFrequency
+  id: ESArmoryTimer
+  name: es-device-frequency-prototype-name-armory-timer
+  frequency: 2777

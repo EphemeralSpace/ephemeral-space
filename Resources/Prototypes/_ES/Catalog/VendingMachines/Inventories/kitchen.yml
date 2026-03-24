@@ -1,0 +1,52 @@
+- type: vendingMachineInventory
+  id: ESDinnerwareInventory
+  startingInventory:
+    ButchCleaver: 1
+    ESWeaponKnife: 5
+    RollingPin: 4
+    Spoon: 4
+    Fork: 4
+    PairedChopsticks: 4
+    FoodBowlBig: 10
+    FoodPlate: 10
+    FoodPlateSmall: 10
+    FoodPlateTin: 5
+    FoodPlateMuffinTin: 5
+    FoodKebabSkewer: 5
+    DrinkGlass: 5
+    Beaker: 5
+    LargeBeaker: 5
+    Pitcher: 2
+    DrinkMug: 5
+  contrabandInventory:
+    CandyBowl: 1
+    BarSpoon: 2
+    DrinkShaker: 2
+
+- type: vendingMachineInventory
+  id: ESChefvendInventory
+  startingInventory:
+    ReagentContainerFlour: 2
+    ReagentContainerCornmeal: 2
+    ReagentContainerSugar: 2
+    ReagentContainerRice: 2
+    FoodCondimentPacketSalt: 4
+    FoodCondimentBottleEnzyme: 2
+    FoodCondimentBottleHotsauce: 1
+    FoodCondimentBottleKetchup: 1
+    FoodCondimentBottleBBQ: 1
+    FoodCondimentBottleVinegar: 2
+    ReagentContainerOliveoil: 2
+    ReagentContainerMayo: 1
+    MonkeyCubeBox: 1
+    FoodContainerEgg: 1
+    DrinkMilkCarton: 2
+    DrinkSoyMilkCarton: 1
+    FoodButter: 3
+    FoodCheese: 1
+    FoodMeat: 6
+  contrabandInventory:
+    EggBoxBroken: 1
+    FoodBoxDonkpocket: 1
+    FoodFrozenSandwich: 2
+    FoodFrozenSandwichStrawberry: 2

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Content.IntegrationTests.Tests._Citadel;
+using Content.IntegrationTests.Tests._Citadel.Attributes;
 using Content.Server._ES.Masks.Masquerades;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
@@ -151,7 +152,7 @@ public sealed class MasqueradeRunTests : GameTest
             _sGameticker.StartRound();
         });
 
-        await SyncTicks(10);
+        await RunUntilSynced();
 
         // Game should have started
         Assert.That(_sGameticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
@@ -171,7 +172,6 @@ public sealed class MasqueradeRunTests : GameTest
                 Is.EqualTo(userCount),
                 "Expected in-game players with everyone assigned masks.");
 
-            // TODO: This should be applicable to random masquerade too instead of being special cased.
             if (rule.Value.Comp.Masquerade!.Masquerade is { } set)
             {
                 var roles =

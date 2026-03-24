@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESControls
+  hidden: false
+  name: Controls
+  text: "/ServerInfo/_ES/Guidebook/NewPlayer/Controls.xml"

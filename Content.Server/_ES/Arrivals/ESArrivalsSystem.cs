@@ -164,22 +164,22 @@ public sealed class ESArrivalsSystem : EntitySystem
         if (cryostorage.Valid)
             _container.Insert(ev.SpawnResult.Value, cryoContainer!);
 
-        if (TryComp<HungerComponent>(ev.SpawnResult, out var hunger) &&
-            hunger.Thresholds.TryGetValue(HungerThreshold.Starving, out var starving))
-        {
-            _hunger.SetHunger(ev.SpawnResult.Value, starving + _random.NextFloat(-20, 0), hunger);
-        }
-
-        if (TryComp<ThirstComponent>(ev.SpawnResult, out var thirst) &&
-            thirst.ThirstThresholds.TryGetValue(ThirstThreshold.Parched, out var lowerThirst))
-        {
-            _thirst.SetThirst(ev.SpawnResult.Value, thirst, lowerThirst + _random.NextFloat(-50, 0));
-        }
-
         _statusEffects.TryAddStatusEffectDuration(ev.SpawnResult.Value, SleepStatusEffect, TimeSpan.FromSeconds(_random.Next(10, 30)));
 
-        if (_timing.CurTime < arrivals.ArrivalTime)
+        if (!HasShuttleDocked(ev.Station.Value))
         {
+            if (TryComp<HungerComponent>(ev.SpawnResult, out var hunger) &&
+                hunger.Thresholds.TryGetValue(HungerThreshold.Starving, out var starving))
+            {
+                _hunger.SetHunger(ev.SpawnResult.Value, starving + _random.NextFloat(-20, 0), hunger);
+            }
+
+            if (TryComp<ThirstComponent>(ev.SpawnResult, out var thirst) &&
+                thirst.ThirstThresholds.TryGetValue(ThirstThreshold.Parched, out var lowerThirst))
+            {
+                _thirst.SetThirst(ev.SpawnResult.Value, thirst, lowerThirst + _random.NextFloat(-50, 0));
+            }
+
             var sicknessTime = TimeSpan.FromSeconds(Math.Max((arrivals.ArrivalTime - _timing.CurTime).TotalSeconds + _random.Next(0, 10), _random.Next(10, 15)));
             _statusEffects.TryAddStatusEffectDuration(ev.SpawnResult.Value, CryoSicknessEffect, sicknessTime);
         }
@@ -240,5 +240,13 @@ public sealed class ESArrivalsSystem : EntitySystem
             return;
 
         _shuttle.FTLToDock(ent, Comp<ShuttleComponent>(ent), grid, startupTime: 0f, hyperspaceTime: _flightTime);
+    }
+
+    public bool HasShuttleDocked(Entity<ESStationArrivalsComponent?> station)
+    {
+        if (!Resolve(station, ref station.Comp, false))
+            return false;
+
+        return station.Comp.ArrivalTime <= _timing.CurTime;
     }
 }

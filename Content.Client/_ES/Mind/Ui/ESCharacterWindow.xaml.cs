@@ -161,7 +161,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
             MaskHelpButton.Visible = false;
         }
 
-        var info = _mask.GetCharacterInfoBlurb((mind, mindComp));
+        var info = _mask.GetCharacterInfoBlurb(mind);
         var formattedMsg = new FormattedMessage();
         foreach (var msg in info)
         {

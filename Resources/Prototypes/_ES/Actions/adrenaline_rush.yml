@@ -1,0 +1,18 @@
+- type: entity
+  parent: BaseAction
+  id: ESActionAdrenalineRush
+  name: Adrenaline Rush
+  description: Break out into an adrenaline-fueled sprint, increasing your movement speed for ten seconds while reducing your attack speed, accuracy, and making you unable to use headsets. Has a long cooldown, and you'll be tired after.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/adrenaline_rush.rsi
+      state: retronium
+    useDelay: 720
+    checkCanInteract: false
+    sound:
+      path: /Audio/Effects/thudswoosh.ogg
+  - type: InstantAction
+    event: !type:ESAddStatusEffectActionEvent
+      effect: ESStatusEffectAdrenalineRush
+      duration: 10s

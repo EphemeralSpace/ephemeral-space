@@ -2,5 +2,5 @@
   id: Jesters
   masks:
     ESPhantom: 1
-    ESMartyr: 1
-    ESParasite: 0.5
+    ESMartyr: 0.5
+    ESParasite: 1

@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESBotanist
+  hidden: false
+  name: Botanist
+  text: "/ServerInfo/_ES/Guidebook/Jobs/Botanist.xml"

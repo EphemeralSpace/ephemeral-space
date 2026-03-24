@@ -21,9 +21,6 @@
   id: ESJobChef
 
 - type: playTimeTracker
-  id: ESJobChemist
-
-- type: playTimeTracker
   id: ESJobClown
 
 - type: playTimeTracker
@@ -37,6 +34,9 @@
 
 - type: playTimeTracker
   id: ESJobJanitor
+
+- type: playTimeTracker
+  id: ESJobParamedic
 
 - type: playTimeTracker
   id: ESJobPhysician

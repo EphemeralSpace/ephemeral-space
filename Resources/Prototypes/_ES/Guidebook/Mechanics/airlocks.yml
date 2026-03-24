@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESAirlocks
+  hidden: false
+  name: Airlocks
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Airlocks.xml"

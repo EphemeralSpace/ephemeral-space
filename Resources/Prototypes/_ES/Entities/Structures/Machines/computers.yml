@@ -194,13 +194,14 @@
     color: "#b53ca1"
 
 - type: entity
-  parent: [ ESBaseComputerAnomaly, BaseComputer ]
+  parent: [ ESBaseComputerAnomaly, ESBaseComputerTerminal ]
   id: ESComputerAnomaly
   components:
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
-      state: computer
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
     - map: ["computerLayerKeyboard"]
       state: tech_key_off
     - map: ["computerLayerScreen"]

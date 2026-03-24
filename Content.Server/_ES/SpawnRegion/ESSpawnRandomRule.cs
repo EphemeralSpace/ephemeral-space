@@ -2,6 +2,7 @@ using Content.Server._ES.SpawnRegion.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking.Components;
+using Robust.Shared.Map;
 
 namespace Content.Server._ES.SpawnRegion;
 
@@ -22,7 +23,18 @@ public sealed class ESSpawnRandomRule : GameRuleSystem<ESSpawnRandomRuleComponen
 
         foreach (var spawn in _entityTable.GetSpawns(component.Table))
         {
-            if (!_spawnRegion.TryGetRandomCoords(station.Value, out var coords, checkPlayerLOS: false, minPlayerDistance: 5f))
+            _ = component.SpawnRegion != null
+                ? _spawnRegion.TryGetRandomCoordsInRegion(component.SpawnRegion.Value,
+                    station.Value,
+                    out var coords,
+                    checkPlayerLOS: component.CheckPlayerLOS,
+                    minPlayerDistance: component.MinPlayerDistance)
+                : _spawnRegion.TryGetRandomCoords(station.Value,
+                    out coords,
+                    checkPlayerLOS: component.CheckPlayerLOS,
+                    minPlayerDistance: component.MinPlayerDistance);
+
+            if (coords == null)
                 continue;
 
             SpawnAtPosition(spawn, coords.Value);

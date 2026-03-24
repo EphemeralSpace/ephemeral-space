@@ -304,7 +304,6 @@ public sealed class RespiratorSystem : EntitySystem
     public void RemoveGasFromBody(Entity<BodyComponent> ent, GasMixture gas)
     {
         var outGas = new GasMixture(gas.Volume);
-        var respirator = Comp<RespiratorComponent>(ent); // Offbrand
 
         var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((ent, ent.Comp));
         if (organs.Count == 0)
@@ -312,7 +311,8 @@ public sealed class RespiratorSystem : EntitySystem
 
         foreach (var (organUid, lung, _) in organs)
         {
-            _atmosSys.Merge(outGas, lung.Air.RemoveRatio(respirator.ExhaleEfficacyModifier * 1.1f)); // Offbrand - efficacy, 1.1 magic constant is to unstuck 0.01u of exhalants if the body is imperfect
+            _atmosSys.Merge(outGas, lung.Air);
+            lung.Air.Clear();
 
             if (_solutionContainerSystem.ResolveSolution(organUid, lung.SolutionName, ref lung.Solution))
                 _solutionContainerSystem.RemoveAllSolution(lung.Solution.Value);
@@ -443,7 +443,6 @@ public sealed class RespiratorSystem : EntitySystem
     private void OnApplyRespiratoryRateModifiers(Entity<RespiratorComponent> ent, ref ApplyRespiratoryRateModifiersEvent args)
     {
         ent.Comp.BreathRateMultiplier = args.BreathRate;
-        ent.Comp.ExhaleEfficacyModifier = args.PurgeRate;
     }
     // End Offbrand
 

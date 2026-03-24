@@ -327,6 +327,13 @@ NetworkConfigurator: Multitool
 # 2026-3-05
 ESSpawnPointHeadOfSecurity: ESSpawnPointSecurityOfficer
 ESSpawnPointWarden: ESSpawnPointSecurityOfficer
+LockerEngineerFilled: ESLockerEngineerFilled
+
+# 2026-3-13
+ESSpawnPointChemist: null
+
+# 2026-3-17
+PortableGeneratorSuperPacman: PortableGeneratorPacman
 
 # ES END
 

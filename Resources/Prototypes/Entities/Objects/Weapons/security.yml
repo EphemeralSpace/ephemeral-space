@@ -65,8 +65,10 @@
     quickEquip: false
     slots:
     - Belt
-  - type: DisarmMalus
-    malus: 0.225
+  # ES Start
+  #- type: DisarmMalus
+  #  malus: 0.225
+  # ES End
   - type: Appearance
   - type: GenericVisualizer
     visuals:

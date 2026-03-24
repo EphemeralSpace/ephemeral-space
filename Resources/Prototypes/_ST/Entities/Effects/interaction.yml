@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2026 Janet Blackquill <uhhadd@gmail.com>
+#
+# SPDX-License-Identifier: LicenseRef-Wallening
+
+- type: entity
+  id: StellarInteractionParticle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    # ES START
+    lifetime: 1.1
+    # ES END
+  - type: Sprite
+    sprite: _ST/Effects/interaction.rsi
+    state: hand
+    drawdepth: Effects
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu
+  # ES START
+  - type: ESViewconeOccludable
+  # ES END

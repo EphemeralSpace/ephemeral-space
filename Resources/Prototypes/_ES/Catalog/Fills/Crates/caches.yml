@@ -1,0 +1,261 @@
+# Base prototype
+- type: entity
+  parent: CrateGenericSteel
+  id: ESCrateCache
+  # name: equipment cache
+  # description: A secret cache hidden in the ceiling. Good thing nobody looks up there.
+  suffix: ES
+  abstract: true
+
+# Assassin
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheTraitorAssassin
+  suffix: ES, Assassin Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESTraitorCacheAssassin
+
+- type: entityTable
+  id: ESTraitorCacheAssassin
+  table:
+    all:
+    - id: ESWeaponPistol9mmSilenced
+    - id: ESMagazine9mm
+    - id: ESSleepyPen
+      amount: 2
+    - id: SmokeGrenade
+      amount: 2
+
+# Infiltrator
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheTraitorInfiltrator
+  suffix: ES, Infiltrator Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESTraitorCacheInfiltrator
+
+- type: entityTable
+  id: ESTraitorCacheInfiltrator
+  table:
+    all:
+    - id: ESClothingBackpackChameleonFill
+    - id: ESEmag
+    - id: C4
+      amount: 2
+
+# Marauder
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheTraitorMarauder
+  suffix: ES, Marauder Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESTraitorCacheMarauder
+
+- type: entityTable
+  id: ESTraitorCacheMarauder
+  table:
+    all:
+    - id: ESWeaponRevolver357
+    - id: ESSpeedLoader357
+    - id: ESWeaponKnife
+    - id: ESClothingOuterArmorSecurity
+    - id: ExGrenade
+
+# Subverter
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheTraitorSubverter
+  suffix: ES, Subverter Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId:  ESTraitorCacheTraitorSubverter
+
+- type: entityTable
+  id: ESTraitorCacheTraitorSubverter
+  table:
+    all:
+    - id: ESSubverterChip
+      amount: 2
+    - id: ESWeaponPistol9mm
+    - id: ESMagazine9mm
+
+# Demolitionist
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheTraitorDemolitionist
+  suffix: ES, Demolitionist Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId:  ESTraitorCacheTraitorDemolitionist
+
+- type: entityTable
+  id: ESTraitorCacheTraitorDemolitionist
+  table:
+    all:
+    - id: C4
+      amount: 3
+    - id: ExGrenade
+      amount: 2
+    - id: ESMicroBombImplanter
+
+# Veteran
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewVeteran
+  suffix: ES, Veteran Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESCrewCacheVeteran
+
+- type: entityTable
+  id: ESCrewCacheVeteran
+  table:
+    group:
+    - all:
+      - id: ESWeaponRevolver357
+    - group:
+      - id: ESWeaponPistol9mm
+        weight: 2
+      - id: ESWeaponPistol9mmSilenced
+
+# Vigilante
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewVigilante
+  suffix: ES, Vigilante Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESCrewCacheVigilante
+
+- type: entityTable
+  id: ESCrewCacheVigilante
+  table:
+    group:
+    - all:
+      - id: ESWeaponRevolver357
+    - group:
+      - id: ESWeaponPistol9mm
+        weight: 2
+      - id: ESWeaponPistol9mmSilenced
+
+# Survivalist
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewSurvivalist
+  suffix: ES, Survivalist Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESCrewCacheSurvivalist
+
+- type: entityTable
+  id: ESCrewCacheSurvivalist
+  table:
+    all:
+    - group:
+      - id: MedkitAdvancedFilled
+      - id: MedkitBurnFilled
+      - id: MedkitBruteFilled
+    - group:
+      - id: ToolboxEmergencyFilled
+      - id: ToolboxMechanicalFilled
+      - id: ToolboxElectricalFilled
+    - tableId: ESMaintLootRare
+      rolls: 2
+
+# Insider
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewInsider
+  suffix: ES, Insider Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESCrewCacheInsider
+
+- type: entityTable
+  id: ESCrewCacheInsider
+  table:
+    all:
+    - id: ESBoxFolderFilledInsider
+
+# Arms Dealer
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewArmsDealer
+  suffix: ES, Arms Dealer Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        group:
+        - id: ESWeaponPistol9mm
+          weight: 8
+        - id: ESWeaponPistol9mmSilenced
+          weight: 8
+        - id: ESWeaponRevolver357
+          weight: 8
+        - id: ESWeaponDoubleBarrelShotgun
+          weight: 1
+        rolls: 2
+
+# Fruit Vendor
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewFruitVendor
+  suffix: ES, Fruit Vendor Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        group:
+        - id: FoodBanana
+        - id: FoodLemon
+        - id: FoodLime
+        - id: FoodOrange
+        - id: FoodPineapple
+        - id: FoodTomato
+        - id: FoodApple
+        - id: FoodWatermelon
+        - id: FoodGrape
+        - id: FoodPumpkin
+        - id: FoodCherry
+        - id: FoodBerries
+        rolls: 4, 5
+
+# Hitman
+- type: entity
+  parent: ESCrateCache
+  id: ESCrateCacheCrewHitman
+  suffix: ES, Hitman Cache
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESCrewCacheHitman
+
+- type: entityTable
+  id: ESCrewCacheHitman # the component on the hitman's mind adds their dossier(s).
+  table:
+    all:
+    - id: ESWeaponPistol9mmSilenced
+    - id: ESMagazine9mm

@@ -1,0 +1,51 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "portgen0 states taken from tgstation at commit https://github.com/tgstation/tgstation/commit/6f959e719255fcfaacb64807d9de8ba325a044d7 and modified for Ephemeral Space by Flareguy. portgen3 made by Flareguy for Ephemeral Space",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "portgen0"
+        },
+        {
+            "name": "portgen0on",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "portgen3"
+        },
+        {
+            "name": "portgen3on",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "portgen3on_unlit",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "portgen_on_unlit"
+        }
+    ]
+}

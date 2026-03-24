@@ -160,8 +160,13 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
 
         if (_net.IsServer) // needs RandomPredicted
         {
-            var pick = GetRandomValidPrototype(component.Slot, component.RequireTag);
-            SetSelectedPrototype(uid, pick, component: component);
+// ES START
+            if (GetValidTargets(component.Slot, component.RequireTag).Any())
+            {
+                var pick = GetRandomValidPrototype(component.Slot, component.RequireTag);
+                SetSelectedPrototype(uid, pick, component: component);
+            }
+// ES END
         }
 
         args.Affected = true;
@@ -225,7 +230,9 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
         }
         else
         {
-            validTargets = _data[slot];
+// ES START
+            validTargets = _data.GetValueOrDefault(slot) ?? [];
+// ES END
         }
 
         return validTargets;

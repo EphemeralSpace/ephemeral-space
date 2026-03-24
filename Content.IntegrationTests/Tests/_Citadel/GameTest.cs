@@ -1,9 +1,12 @@
 #nullable enable
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using Content.IntegrationTests.Pair;
+using Content.IntegrationTests.Tests._Citadel.Attributes;
 using Content.IntegrationTests.Tests._Citadel.Constraints;
+using NUnit.Framework.Internal;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
@@ -34,6 +37,11 @@ public abstract partial class GameTest
 
     private readonly List<EntityUid> _serverEntitiesToClean = new();
     private readonly List<EntityUid> _clientEntitiesToClean = new();
+
+    /// <summary>
+    ///     Tests-testing-tests assistant to run right before the pair is returned.
+    /// </summary>
+    public event Action? PreFinalizeHook;
 
     public Thread ServerThread { get; private set; } = default!;
     public Thread ClientThread { get; private set; } = default!;
@@ -93,6 +101,18 @@ public abstract partial class GameTest
         );
 
         InjectDependencies(this);
+
+        var test = TestContext.CurrentContext.Test;
+
+        var attribs = test.Method!.GetCustomAttributes<IGameTestModifier>(false);
+        var suiteAttribs = test.Method!.TypeInfo.GetCustomAttributes<IGameTestModifier>(true);
+
+        foreach (var attribute in attribs.Concat(suiteAttribs))
+        {
+            await attribute.ApplyToTest(this);
+        }
+
+        await DoPreTestOverrides();
     }
 
     public void InjectDependencies(object target)
@@ -132,7 +152,9 @@ public abstract partial class GameTest
         try
         {
             // Roll forward til sync for teardown.
-            await SyncTicks(1);
+            await RunUntilSynced();
+
+            RestoreCVars();
 
             await Server.WaitAssertion(() =>
             {
@@ -159,6 +181,8 @@ public abstract partial class GameTest
         }
         finally
         {
+            PreFinalizeHook?.Invoke();
+
             if (!_pairDirty)
                 await Pair.CleanReturnAsync();
             else

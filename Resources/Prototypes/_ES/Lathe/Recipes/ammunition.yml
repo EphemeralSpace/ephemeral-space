@@ -59,12 +59,3 @@
   materials:
     Steel: 190
     Plastic: 100
-
-# Misc.
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: ESMiniSyringe
-  result: MiniSyringe
-  materials:
-    Steel: 200

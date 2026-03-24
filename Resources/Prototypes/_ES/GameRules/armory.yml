@@ -1,0 +1,8 @@
+- type: entity
+  id: ESArmoryRule
+  parent: BaseGameRule
+  components:
+  - type: ESArmoryGameRule
+  - type: DeviceNetwork
+    deviceNetId: Private
+    transmitFrequencyId: ESArmoryTimer

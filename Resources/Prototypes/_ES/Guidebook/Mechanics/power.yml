@@ -1,0 +1,14 @@
+- type: guideEntry
+  id: ESPower
+  hidden: false
+  name: Power
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Power.xml"
+  children:
+  - ESAME
+  - ESInspectingPower
+  - ESPortableGenerators
+  - ESPowerStorage
+  - ESRamping
+  - ESSolarPanels
+  - ESVoltageNetworks
+

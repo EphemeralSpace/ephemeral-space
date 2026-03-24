@@ -1,0 +1,15 @@
+- type: guideEntry
+  id: ESMechanics
+  hidden: false
+  name: Mechanics
+  priority: 1
+  text: "/ServerInfo/_ES/Guidebook/Mechanics.xml"
+  children:
+  - OffbrandMedical
+  - ESPower
+  - ESAtmospherics
+  - ESConstruction
+  - ESFires
+  - ESForensics
+  - ESWires
+  - ESAirlocks

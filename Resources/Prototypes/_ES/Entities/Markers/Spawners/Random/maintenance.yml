@@ -183,7 +183,6 @@
     - group:
       - id: CarbonDioxideCanister
       - id: WaterVaporCanister
-      - id: NitrousOxideCanister
       - id: PlasmaCanister
         weight: 0.25
       weight: 10

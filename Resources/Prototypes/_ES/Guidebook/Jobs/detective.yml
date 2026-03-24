@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESDetective
+  hidden: false
+  name: Detective
+  text: "/ServerInfo/_ES/Guidebook/Jobs/Detective.xml"

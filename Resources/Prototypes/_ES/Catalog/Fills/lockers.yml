@@ -7,3 +7,13 @@
     containers:
       entity_storage:
         tableId: ESLockerFillCoroner
+
+- type: entity
+  parent: ESLockerParamedic
+  id: ESLockerParamedicFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESLockerFillParamedic

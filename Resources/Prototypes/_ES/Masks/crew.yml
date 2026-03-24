@@ -82,6 +82,7 @@
   objectives:
     all:
     - id: ESObjectiveHaterHate
+    - id: ESObjectiveHaterDontKill
 
 - type: esMask
   id: ESMercenary
@@ -94,6 +95,17 @@
   - type: ESMaskCacheSpawner
     cacheProto:
       id: ESSpawnerRandomTraitorCache
+
+- type: esMask
+  id: ESNobleman
+  name: es-mask-nobleman-name
+  troupe: ESCrew
+  description: es-mask-nobleman-desc
+  color: gold
+  weight: 1
+  objectives:
+    all:
+    - id: ESObjectiveNoblemanDontKill
 
 - type: esMask
   id: ESSecretary
@@ -123,20 +135,6 @@
     - id: ESObjectiveSurvive
 
 - type: esMask
-  id: ESVeteran
-  name: es-mask-veteran-name
-  troupe: ESCrew
-  description: es-mask-veteran-desc
-  color: ruber
-  weight: 1
-  objectives:
-    id: ESObjectiveKillNonCrew
-  mindComponents:
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheCrewVeteran
-
-- type: esMask
   parent: ESBaseCommandRestricted
   id: ESVandal
   name: es-mask-vandal-name
@@ -155,6 +153,34 @@
         - id: ESObjectiveVandalSabotageTelecom
           weight: 2
       amount: 1, 2
+
+- type: esMask
+  id: ESVeteran
+  name: es-mask-veteran-name
+  troupe: ESCrew
+  description: es-mask-veteran-desc
+  color: ruber
+  weight: 1
+  objectives:
+    id: ESObjectiveKillNonCrew
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewVeteran
+
+- type: esMask
+  id: ESVigilante
+  name: es-mask-vigilante-name
+  troupe: ESCrew
+  description: es-mask-vigilante-desc
+  color: orchid
+  weight: 1
+  objectives:
+    id: ESObjectiveVigilanteKillKiller
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewVigilante
 
 - type: esMask
   id: ESVIP

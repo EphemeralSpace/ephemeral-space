@@ -70,6 +70,10 @@ public sealed class EyeLerpingSystem : EntitySystem
         if (component.Eye != null)
         {
             _eye.SetRotation(uid, lerpInfo.TargetRotation, component);
+            // ES START
+            if (TryComp<ContentEyeComponent>(uid, out var contentEye))
+                contentEye.BaseRotation = lerpInfo.TargetRotation;
+            // ES END
             _eye.SetZoom(uid, lerpInfo.TargetZoom, component);
         }
     }

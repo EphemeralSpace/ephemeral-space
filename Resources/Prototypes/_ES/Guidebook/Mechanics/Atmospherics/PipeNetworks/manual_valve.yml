@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESManualValve
+  hidden: false
+  name: Manual Valve
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/PipeNetworks/ManualValve.xml"

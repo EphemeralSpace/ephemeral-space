@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESWires
+  hidden: false
+  name: Wires
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Wires.xml"

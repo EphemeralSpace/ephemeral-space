@@ -8,7 +8,7 @@
     icon:
       sprite: _ES/Actions/masks/avenger.rsi
       state: icon
-    useDelay: 15
+    useDelay: 45
   - type: InstantAction
     event: !type:ESSenseTargetDistanceActionEvent
       objectiveWhitelist:

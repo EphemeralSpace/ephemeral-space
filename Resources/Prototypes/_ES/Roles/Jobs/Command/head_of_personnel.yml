@@ -44,7 +44,6 @@
   id: ESHoPGear
   equipment:
     shoes: ClothingShoesColorBrown
-    eyes: ClothingEyesHudSecurity
     id: HoPPDA
     ears: ClothingHeadsetAltCommand
     head: ClothingHeadHatHopcap

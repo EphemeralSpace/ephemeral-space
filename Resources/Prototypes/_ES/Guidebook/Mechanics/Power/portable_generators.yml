@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: ESPortableGenerators
+  hidden: false
+  name: Portable Generators
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Power/PortableGenerators.xml"

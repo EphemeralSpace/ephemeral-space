@@ -26,3 +26,18 @@
       shader: unshaded
   - type: ESSpawnRegionMarker
     area: ESMaintenance
+
+- type: entity
+  parent: ESBaseMarkerSpawnRegion
+  id: ESMarkerSpawnRegionAnomaly
+  name: Anomaly Spawn Region
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#ed7bff"
+      shader: unshaded
+    - state: anom
+      shader: unshaded
+  - type: ESSpawnRegionMarker
+    area: ESAnomaly

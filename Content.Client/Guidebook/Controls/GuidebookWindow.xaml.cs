@@ -197,7 +197,11 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         return rootEntries
             .Select(rootEntryId => _entries[rootEntryId])
             .OrderBy(rootEntry => rootEntry.Priority)
-            .ThenBy(rootEntry => Loc.GetString(rootEntry.Name));
+            // ES START
+            // stop localizing it
+            // guidebook already requires entirely new prototypes to localize properly so i dont think this is worth it at all
+            .ThenBy(rootEntry => rootEntry.Name);
+            // ES END
     }
 
     private void RepopulateTree(List<ProtoId<GuideEntryPrototype>>? roots = null,
@@ -241,7 +245,11 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
 
         var item = Tree.AddItem(parent);
         item.Metadata = entry;
-        var name = Loc.GetString(entry.Name);
+        // ES START
+        // stop localizing it
+        // guidebook already requires entirely new prototypes to localize properly so i dont think this is worth it at all
+        var name = entry.Name;
+        // ES END
         item.Label.Text = name;
 
         foreach (var child in entry.Children)
