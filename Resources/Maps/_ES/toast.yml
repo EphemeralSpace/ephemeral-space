@@ -72655,18 +72655,6 @@ entities:
     - type: Transform
       pos: -0.5,-0.5
       parent: 2
-- proto: SpawnPointSecurityCadet
-  entities:
-  - uid: 6921
-    components:
-    - type: Transform
-      pos: -27.5,-24.5
-      parent: 2
-  - uid: 6922
-    components:
-    - type: Transform
-      pos: -27.5,-26.5
-      parent: 2
 - proto: Spoon
   entities:
   - uid: 12515
