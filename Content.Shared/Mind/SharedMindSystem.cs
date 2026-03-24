@@ -12,7 +12,6 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mind.Filters;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Objectives.Systems;
 using Content.Shared.Players;
 using Content.Shared.Speech;
 using Content.Shared.Whitelist;
@@ -31,7 +30,6 @@ public abstract partial class SharedMindSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
     [Dependency] private readonly SharedPlayerSystem _player = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
@@ -340,136 +338,6 @@ public abstract partial class SharedMindSystem : EntitySystem
     // ES START
     public virtual void SwapMinds(EntityUid mindOne, EntityUid bodyOne, EntityUid mindTwo, EntityUid bodyTwo) {}
     // ES END
-
-    /// <summary>
-    /// Tries to create and add an objective from its prototype id.
-    /// </summary>
-    /// <returns>Returns true if adding the objective succeeded.</returns>
-    public bool TryAddObjective(EntityUid mindId, MindComponent mind, string proto)
-    {
-        var objective = _objectives.TryCreateObjective(mindId, mind, proto);
-        if (objective == null)
-            return false;
-
-        AddObjective(mindId, mind, objective.Value);
-        return true;
-    }
-
-    /// <summary>
-    /// Adds an objective that already exists, and is assumed to have had its requirements checked.
-    /// </summary>
-    public void AddObjective(EntityUid mindId, MindComponent mind, EntityUid objective)
-    {
-        var title = Name(objective);
-        _adminLogger.Add(LogType.Mind, LogImpact.Low, $"Objective {objective} ({title}) added to mind of {MindOwnerLoggingString(mind)}");
-        mind.Objectives.Add(objective);
-    }
-
-    /// <summary>
-    /// Removes an objective from this mind.
-    /// </summary>
-    /// <returns>Returns true if the removal succeeded.</returns>
-    public bool TryRemoveObjective(EntityUid mindId, MindComponent mind, int index)
-    {
-        if (index < 0 || index >= mind.Objectives.Count)
-            return false;
-
-        var objective = mind.Objectives[index];
-
-        var title = Name(objective);
-        _adminLogger.Add(LogType.Mind, LogImpact.Low, $"Objective {objective} ({title}) removed from the mind of {MindOwnerLoggingString(mind)}");
-        mind.Objectives.Remove(objective);
-
-        // garbage collection - only delete the objective entity if no mind uses it anymore
-        // This comes up for stuff like paradox clones where the objectives share the same entity
-        var mindQuery = AllEntityQuery<MindComponent>();
-        while (mindQuery.MoveNext(out _, out var queryComp))
-        {
-            if (queryComp.Objectives.Contains(objective))
-                return true;
-        }
-
-        Del(objective);
-        return true;
-    }
-
-    public bool TryGetObjectiveComp<T>(EntityUid uid, [NotNullWhen(true)] out T? objective) where T : IComponent
-    {
-        if (TryGetMind(uid, out var mindId, out var mind) && TryGetObjectiveComp(mindId, out objective, mind))
-        {
-            return true;
-        }
-        objective = default;
-        return false;
-    }
-
-    public bool TryGetObjectiveComp<T>(EntityUid mindId, [NotNullWhen(true)] out T? objective, MindComponent? mind = null) where T : IComponent
-    {
-        if (Resolve(mindId, ref mind))
-        {
-            var query = GetEntityQuery<T>();
-            foreach (var uid in mind.Objectives)
-            {
-                if (query.TryGetComponent(uid, out objective))
-                {
-                    return true;
-                }
-            }
-        }
-        objective = default;
-        return false;
-    }
-
-    /// <summary>
-    /// Copies objectives from one mind to another, so that they are shared between two players.
-    /// </summary>
-    /// <remarks>
-    /// Only copies the reference to the objective entity, not the entity itself.
-    /// This relies on the fact that objectives are never changed after spawning them.
-    /// If someone ever changes that, they will have to address this.
-    /// </remarks>
-    /// <param name="source"> mind entity of the player to copy from </param>
-    /// <param name="target"> mind entity of the player to copy to </param>
-    /// <param name="except"> whitelist for objectives that should be copied </param>
-    /// <param name="except"> blacklist for objectives that should not be copied </param>
-    public void CopyObjectives(Entity<MindComponent?> source, Entity<MindComponent?> target, EntityWhitelist? whitelist = null, EntityWhitelist? blacklist = null)
-    {
-        if (!Resolve(source, ref source.Comp) || !Resolve(target, ref target.Comp))
-            return;
-
-        foreach (var objective in source.Comp.Objectives)
-        {
-            if (target.Comp.Objectives.Contains(objective))
-                continue; // target already has this objective
-
-            if (_whitelist.CheckBoth(objective, blacklist, whitelist))
-                AddObjective(target, target.Comp, objective);
-        }
-    }
-
-    /// <summary>
-    /// Tries to find an objective that has the same prototype as the argument.
-    /// </summary>
-    /// <remarks>
-    /// Will not work for objectives that have no prototype, or duplicate objectives with the same prototype.
-    /// <//remarks>
-    public bool TryFindObjective(Entity<MindComponent?> mind, string prototype, [NotNullWhen(true)] out EntityUid? objective)
-    {
-        objective = null;
-        if (!Resolve(mind, ref mind.Comp))
-            return false;
-
-        foreach (var uid in mind.Comp.Objectives)
-        {
-            if (MetaData(uid).EntityPrototype?.ID == prototype)
-            {
-                objective = uid;
-                return true;
-            }
-        }
-
-        return false;
-    }
 
 // ES START
     public bool TryGetMind(
