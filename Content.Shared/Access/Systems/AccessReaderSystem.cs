@@ -41,10 +41,10 @@ public sealed class AccessReaderSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<AccessReaderComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<AccessReaderComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<AccessReaderComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<AccessReaderComponent, LinkAttemptEvent>(OnLinkAttempt);
-        SubscribeLocalEvent<AccessReaderComponent, AccessReaderConfigurationAttemptEvent>(OnConfigurationAttempt);
         SubscribeLocalEvent<AccessReaderComponent, FindAvailableLocksEvent>(OnFindAvailableLocks);
         SubscribeLocalEvent<AccessReaderComponent, CheckUserHasLockAccessEvent>(OnCheckLockAccess);
 
@@ -52,12 +52,19 @@ public sealed class AccessReaderSystem : EntitySystem
         SubscribeLocalEvent<AccessReaderComponent, ComponentHandleState>(OnHandleState);
     }
 
+    private void OnMapInit(Entity<AccessReaderComponent> ent, ref MapInitEvent args)
+    {
+        ent.Comp.AccessListsOriginal = new(ent.Comp.AccessLists);
+        Dirty(ent);
+    }
+
     private void OnExamined(Entity<AccessReaderComponent> ent, ref ExaminedEvent args)
     {
         if (!GetMainAccessReader(ent, out var mainAccessReader))
             return;
 
-        mainAccessReader.Value.Comp.AccessListsOriginal ??= new(mainAccessReader.Value.Comp.AccessLists);
+        if (mainAccessReader.Value.Comp.AccessListsOriginal == null)
+            return;
 
         var accessHasBeenModified = mainAccessReader.Value.Comp.AccessLists.Count != mainAccessReader.Value.Comp.AccessListsOriginal.Count;
 
@@ -163,13 +170,6 @@ public sealed class AccessReaderSystem : EntitySystem
         accessReader.Value.Comp.AccessLists.Clear();
         accessReader.Value.Comp.AccessLog.Clear();
         Dirty(uid, reader);
-    }
-
-    private void OnConfigurationAttempt(Entity<AccessReaderComponent> ent, ref AccessReaderConfigurationAttemptEvent args)
-    {
-        // The first time that the access list of the reader is modified,
-        // make a copy of the original settings
-        ent.Comp.AccessListsOriginal ??= new(ent.Comp.AccessLists);
     }
 
     private void OnFindAvailableLocks(Entity<AccessReaderComponent> ent, ref FindAvailableLocksEvent args)
