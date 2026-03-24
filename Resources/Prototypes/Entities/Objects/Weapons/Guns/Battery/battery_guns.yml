@@ -979,24 +979,3 @@
     startingCharge: 1000
   - type: StaticPrice
     price: 100
-
-- type: entity
-  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
-  id: WeaponLaserGunXenoborg
-  name: xenoborg laser gun
-
-- type: entity
-  parent: [WeaponLaserCannon, BaseXenoborgContraband]
-  id: WeaponLaserCannonXenoborg
-  name: xenoborg laser cannon
-  components:
-  - type: BatterySelfRecharger
-    autoRechargeRate: 30
-  # "remove" wield bonus and penalty so borgs can use it
-  - type: GunWieldBonus
-    minAngle: 0
-    maxAngle: 0
-  - type: Gun
-    fireRate: 2
-    minAngle: 1
-    maxAngle: 2

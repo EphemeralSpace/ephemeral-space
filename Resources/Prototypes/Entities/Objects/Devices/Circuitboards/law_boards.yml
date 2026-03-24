@@ -132,23 +132,3 @@
   components:
   - type: SiliconLawProvider
     laws: NutimovLawset
-
-- type: entity
-  id: XenoborgCircuitBoard
-  parent: BaseSiliconLawboard
-  name: law board (Xenoborg)
-  suffix: Admeme
-  description: An electronics board containing the Xenoborg lawset.
-  components:
-  - type: SiliconLawProvider
-    laws: XenoborgLawset
-
-- type: entity
-  id: MothershipCircuitBoard
-  parent: BaseSiliconLawboard
-  name: law board (Mothership Core)
-  suffix: Admeme
-  description: An electronics board containing the Mothership Core lawset.
-  components:
-  - type: SiliconLawProvider
-    laws: MothershipCoreLawset

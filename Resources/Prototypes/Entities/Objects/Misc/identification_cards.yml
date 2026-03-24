@@ -948,55 +948,6 @@
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
 
-- type: entity
-  parent: [ IDCardStandard, BaseMajorContraband ]
-  id: PirateIDCard
-  name: pirate ID card
-  components:
-  - type: Sprite
-    layers:
-    - state: pirate
-    - sprite: *icon-rsi
-      offset: *icon-offset
-      state: Pirate
-  - type: Item
-    heldPrefix: orange #this is close enough to the weird puce color pirate IDs have going on
-  - type: IdCard
-    jobIcon: JobIconPirate
-
-- type: entity
-  parent: IDCardStandard
-  id: XenoborgIDCard
-  name: xenoborg ID card
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-  - type: Access
-    tags:
-    - Xenoborg
-
-- type: entity
-  parent: [ IDCardStandard, BaseMagicalContraband ]
-  id: WizardIDCard
-  name: wizard ID card
-  components:
-  - type: Sprite
-    layers:
-    - state: wizard
-    - sprite: *icon-rsi
-      offset: *icon-offset
-      state: Wizard
-  - type: Item
-    heldPrefix: green
-  - type: Access
-    tags:
-    - Wizard
-    - External
-    - Maintenance
-  - type: IdCard
-    jobIcon: JobIconWizard
-
 #ERT/Centcomm
 
 - type: entity
@@ -1205,8 +1156,6 @@
     - Silicon
     tags:
     - CentralCommand
-    - Wizard
-    - Xenoborg
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
