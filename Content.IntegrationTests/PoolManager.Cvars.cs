@@ -31,8 +31,6 @@ public static partial class PoolManager
         (CCVars.PreloadGrids.Name,            "false"),
         (CCVars.ArrivalsShuttles.Name,        "false"),
         (CCVars.EmergencyShuttleEnabled.Name, "false"),
-        (CCVars.ProcgenPreload.Name,          "false"),
-        (CCVars.WorldgenEnabled.Name,         "false"),
         (CCVars.GatewayGeneratorEnabled.Name, "false"),
         (CCVars.GameDummyTicker.Name, "true"),
         (CCVars.GameLobbyEnabled.Name, "false"),

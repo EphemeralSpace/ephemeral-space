@@ -35,6 +35,9 @@
   - type: Tag
     tags:
     - SecBeltEquip
+    # ES START
+    - ESTourniquetOffbrand
+    # ES END
   - type: Sprite
     sprite: Objects/Specific/Medical/medical.rsi
     state: tourniquet
@@ -54,6 +57,11 @@
   name: splints
   description: Splints capable of supporting and immobilizing bones.
   components:
+  # ES START
+  - type: Tag
+    tags:
+    - ESSplints
+  # ES END
   - type: Sprite
     sprite: _Offbrand/splints.rsi
     state: splint

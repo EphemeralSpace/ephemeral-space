@@ -47,8 +47,6 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/fox_squeak.ogg
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-organic
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -157,7 +155,6 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
-  - type: ZombieImmune
   - type: Destructible
     thresholds:
     - trigger:
@@ -196,8 +193,6 @@
       reagents:
       - ReagentId: Blood
         Quantity: 0.1
-  - type: ZombieImmune
-
 
 - type: entity
   name: chicken
@@ -279,8 +274,6 @@
   - type: ExaminableHunger
   - type: ReplacementAccent
     accent: chicken
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
     factions:
     - Passive
@@ -440,7 +433,6 @@
       behaviors:
       - !type:GibBehavior
         recursive: false
-  - type: NonSpreaderZombie
   - type: StepTrigger
     requiredTriggeredSpeed: 1
   - type: TriggerOnStepTrigger
@@ -495,15 +487,6 @@
   id: MobMothroach
   description: This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches.
   components:
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-mothroach-name
-    description: ghost-role-information-mothroach-description
-    rules: ghost-role-information-freeagent-rules
-    mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
   - type: Fixtures
     fixtures:
       fix1:
@@ -515,7 +498,6 @@
         - SmallMobMask
         layer:
         - SmallMobLayer
-  - type: GhostTakeoverAvailable
   - type: Speech
     speechVerb: Moth
     speechSounds: Squeak
@@ -587,8 +569,6 @@
     grindableSolutionName: food
   - type: ReplacementAccent
     accent: mothroach
-  - type: ZombieAccentOverride
-    accent: zombieMoth
   - type: Vocal
     sounds:
       Male: UnisexMoth
@@ -732,8 +712,6 @@
   - type: ExaminableHunger
   - type: ReplacementAccent
     accent: duck
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
     factions:
     - Passive
@@ -868,7 +846,6 @@
       behaviors:
       - !type:GibBehavior
         recursive: false
-  - type: ZombieImmune
 
 - type: entity
   name: cow
@@ -950,10 +927,6 @@
   - type: HTN
     rootTask:
       task: RuminantCompound
-  - type: GuideHelp
-    guides:
-    - Chef
-    - FoodRecipes
 
 - type: entity
   name: crab
@@ -1489,9 +1462,6 @@
     speechSounds: Monkey
     speechVerb: Monkey
   - type: MonkeyAccent
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-primate
-  - type: AlwaysRevolutionaryConvertible
   - type: GhostRole
     prob: 0.05
     makeSentient: true
@@ -1517,56 +1487,6 @@
   - type: ESGenericVoice
     voice: es-voice-obfuscator-name-replace-monkey
 # ES END
-
-
-- type: entity
-  name: monkey
-  id: MobBaseSyndicateMonkey
-  parent: MobBaseAncestor
-  description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
-  suffix: syndicate base
-  components:
-  - type: NameIdentifier
-    group: Monkey
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-primate
-  - type: Speech
-    speechSounds: Monkey
-    speechVerb: Monkey
-  - type: MonkeyAccent
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: GhostRole
-    prob: 0.05
-    makeSentient: true
-    name: ghost-role-information-monkey-name
-    description: ghost-role-information-monkey-description
-    rules: ghost-role-information-syndicate-reinforcement-rules
-    mindRoles:
-    # This is for syndicate monkeys that randomly gain sentience, thus have no summoner to team with
-    - MindRoleGhostRoleSoloAntagonist
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
-  - type: Loadout
-    prototypes: [SyndicateOperativeGearMonkey]
-
-- type: entity
-  id: MobMonkeySyndicateAgent
-  parent: MobBaseSyndicateMonkey
-  suffix: syndicate agent
-  components:
-    # make the player a traitor once its taken
-  - type: AutoTraitor
-    profile: TraitorReinforcement
-
-- type: entity
-  id: MobMonkeySyndicateAgentNukeops # Reinforcement exclusive to nukeops uplink
-  parent: MobBaseSyndicateMonkey
-  suffix: NukeOps
-  components:
-  - type: NukeOperative
 
 - type: entity
   name: kobold
@@ -1671,10 +1591,7 @@
     spawned:
     - id: FoodMeat
       amount: 2
-  - type: AlwaysRevolutionaryConvertible
   - type: GhostTakeoverAvailable
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-kobold
   - type: GhostRole
     prob: 0.05
     makeSentient: true
@@ -1701,38 +1618,6 @@
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
 
 - type: entity
-  id: MobBaseSyndicateKobold
-  parent: MobBaseKobold
-  suffix: syndicate base
-  components:
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      100: Critical
-      200: Dead
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: Loadout
-    prototypes: [SyndicateOperativeGearMonkey]
-
-- type: entity
-  id: MobKoboldSyndicateAgent
-  parent: MobBaseSyndicateKobold
-  suffix: syndicate agent
-  components:
-    # make the player a traitor once its taken
-  - type: AutoTraitor
-    profile: TraitorReinforcement
-
-- type: entity
-  id: MobKoboldSyndicateAgentNukeops # Reinforcement exclusive to nukeops uplink
-  parent: MobBaseSyndicateKobold
-  suffix: NukeOps
-  components:
-  - type: NukeOperative
-
-- type: entity
   name: guidebook monkey
   parent: MobMonkey
   categories: [ HideSpawnMenu ]
@@ -1749,16 +1634,6 @@
   components:
   - type: Body
     prototype: Mouse
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-mouse-name
-    description: ghost-role-information-mouse-description
-    rules: ghost-role-information-freeagent-rules
-    mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
-  - type: GhostTakeoverAvailable
   - type: Speech
     speechSounds: Squeak
     speechVerb: SmallMob
@@ -1907,7 +1782,6 @@
   - type: MobPrice
     price: 50
   - type: BadFood
-  - type: NonSpreaderZombie
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
@@ -2022,12 +1896,6 @@
   parent: MobMouse
   id: MobMouseCancer
   components:
-  - type: GhostRole
-    name: ghost-role-information-cancer-mouse-name
-    description: ghost-role-information-cancer-mouse-description
-    rules: ghost-role-information-freeagent-rules
-    mindRoles:
-    - MindRoleGhostRoleFreeAgent
   - type: Sprite
     color: LightGreen
   - type: PointLight
@@ -2059,7 +1927,6 @@
       amount: 1
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Zombie
 
 - type: entity
   name: lizard #Weh
@@ -2406,9 +2273,6 @@
   - type: HTN
     rootTask:
       task: GrenadePenguinCompound
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2625,16 +2489,6 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
-  - type: GhostRole
-    makeSentient: true
-    name: ghost-role-information-giant-spider-name
-    description: ghost-role-information-giant-spider-description
-    rules: ghost-role-information-giant-spider-rules
-    mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable
 
 - type: entity
   name: tarantula
@@ -2728,17 +2582,6 @@
         reagents:
         - ReagentId: Laughter
           Quantity: 150
-- type: entity
-  name: wizard spider
-  parent: MobGiantSpider
-  id: MobGiantSpiderWizard
-  description: This spider looks a little magical
-  suffix: Wizard
-  components:
-  - type: Accentless
-    removes:
-    - type: ReplacementAccent
-      accent: xeno  #let this wizard speak
 
 - type: entity
   name: possum
@@ -3198,59 +3041,6 @@
         Base: cat2_dead
 
 - type: entity
-  name: syndicat
-  id: MobCatSyndy
-  parent: MobCatSpace
-  description: Explosive kitten.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: syndicat
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: syndicat
-      Critical:
-        Base: syndicat_dead
-      Dead:
-        Base: syndicat_dead
-  - type: GhostRole
-    prob: 1
-    name: ghost-role-information-SyndiCat-name
-    allowMovement: true
-    description: ghost-role-information-SyndiCat-description
-    rules: ghost-role-information-SyndiCat-rules
-    mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
-  - type: AutoImplant
-    implants:
-    - MicroBombImplant
-  - type: ExplosionResistance
-    damageCoefficient: 0.2
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: Access
-    tags:
-    - NuclearOperative
-    - SyndicateAgent
-  - type: MeleeWeapon
-    altDisarm: false
-    angle: 0
-    animation: WeaponArcBite
-    soundHit:
-      path: /Audio/Effects/bite.ogg
-    damage:
-      types:
-        Slash: 6
-        Piercing: 6
-        Structural: 15
-
-- type: entity
   name: space cat
   id: MobCatSpace
   parent: MobCat
@@ -3594,7 +3384,6 @@
     baseResistTime: 3
   - type: MobPrice
     price: 60
-  - type: NonSpreaderZombie
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
@@ -3670,8 +3459,6 @@
       path: /Audio/Animals/pig_oink.ogg
   - type: ReplacementAccent
     accent: pig
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
     factions:
     - Passive

@@ -19,8 +19,6 @@
     modifiers:
       coefficients:
         Caustic: 0.75
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.35
   - type: GroupExamine
   - type: ClothingSpeedModifier
     walkModifier: 0.95
@@ -95,13 +93,11 @@
         Caustic: 0.8
         Slash: 0.6
         Piercing: 0.8
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.4
   - type: GroupExamine
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
-    
+
 - type: entity
   parent: ClothingOuterBioGeneral
   id: ClothingOuterBioVirology
@@ -116,5 +112,3 @@
     sprite: Clothing/OuterClothing/Bio/virology.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/virology.rsi
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.25

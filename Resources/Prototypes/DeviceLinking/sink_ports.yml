@@ -79,11 +79,6 @@
   description: signal-port-description-med-scanner-receiver
 
 - type: sinkPort
-  id: ArtifactAnalyzerReceiver
-  name: signal-port-name-artifact-analyzer-receiver
-  description: signal-port-description-artifact-analyzer-receiver
-
-- type: sinkPort
   id: InputA
   name: signal-port-name-logic-input-a
   description: signal-port-description-logic-input-a
@@ -112,7 +107,7 @@
   id: RandomGateInput
   name: signal-port-name-logic-random-input
   description: signal-port-description-logic-random-input
-  
+
 - type: sinkPort
   id: SetParticleDelta
   name: signal-port-name-set-particle-delta

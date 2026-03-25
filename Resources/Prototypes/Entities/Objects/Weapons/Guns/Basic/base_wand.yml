@@ -22,6 +22,3 @@
         effect:
           True: { visible: True }
           False: { visible: False }
-  - type: Tag
-    tags:
-    - WizardWand

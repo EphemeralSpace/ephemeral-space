@@ -74,7 +74,6 @@
   - type: Anchorable
     flags:
     - Anchorable
-  - type: Animateable
   - type: MeleeSound
     soundGroups:
       Brute:

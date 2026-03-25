@@ -188,8 +188,8 @@ public sealed class MindSystem : SharedMindSystem
         {
             component = EnsureComp<MindContainerComponent>(entity.Value);
 
-            if (component.HasMind)
-                _ghosts.OnGhostAttempt(component.Mind.Value, false);
+            if (TryGetMind(entity.Value, out var entityMindId, out _))
+                _ghosts.OnGhostAttempt(entityMindId, false);
 
             if (TryComp<ActorComponent>(entity.Value, out var actor))
             {
@@ -223,14 +223,18 @@ public sealed class MindSystem : SharedMindSystem
         var oldEntity = mind.OwnedEntity;
         if (TryComp(oldEntity, out MindContainerComponent? oldContainer))
         {
-            oldContainer.Mind = null;
-            mind.OwnedEntity = null;
             Entity<MindComponent> mindEnt = (mindId, mind);
             Entity<MindContainerComponent> containerEnt = (oldEntity.Value, oldContainer);
-// ES START
-            RaiseLocalEvent(oldEntity.Value, new MindRemovedMessage(mindEnt, containerEnt), true);
-            RaiseLocalEvent(mindId, new MindGotRemovedEvent(mindEnt, containerEnt), true);
-// ES END
+
+            RaiseLocalEvent(oldEntity.Value, new BeforeMindRemovedMessage(mindEnt, containerEnt, entity));
+            RaiseLocalEvent(mindId, new BeforeMindGotRemovedEvent(mindEnt, containerEnt, entity));
+
+            oldContainer.Mind = null;
+            oldContainer.HasMind = false;
+            mind.OwnedEntity = null;
+
+            RaiseLocalEvent(oldEntity.Value, new MindRemovedMessage(mindEnt, containerEnt, entity), true);
+            RaiseLocalEvent(mindId, new MindGotRemovedEvent(mindEnt, containerEnt, entity), true);
             Dirty(oldEntity.Value, oldContainer);
         }
 
@@ -262,12 +266,13 @@ public sealed class MindSystem : SharedMindSystem
         if (entity != null)
         {
             component!.Mind = mindId;
+            component.HasMind = true;
             mind.OwnedEntity = entity;
             mind.OriginalOwnedEntity ??= GetNetEntity(mind.OwnedEntity);
             Entity<MindComponent> mindEnt = (mindId, mind);
             Entity<MindContainerComponent> containerEnt = (entity.Value, component);
-            RaiseLocalEvent(entity.Value, new MindAddedMessage(mindEnt, containerEnt));
-            RaiseLocalEvent(mindId, new MindGotAddedEvent(mindEnt, containerEnt));
+            RaiseLocalEvent(entity.Value, new MindAddedMessage(mindEnt, containerEnt, oldEntity));
+            RaiseLocalEvent(mindId, new MindGotAddedEvent(mindEnt, containerEnt, oldEntity));
             Dirty(entity.Value, component);
         }
     }
@@ -372,19 +377,19 @@ public sealed class MindSystem : SharedMindSystem
         mindContainerTwo.Mind = null;
         mindCompOne.OwnedEntity = null;
         mindCompTwo.OwnedEntity = null;
-        RaiseLocalEvent(bodyOne, new MindRemovedMessage((mindEntityOne, mindCompOne), (bodyOne, mindContainerOne)), true);
-        RaiseLocalEvent(bodyTwo, new MindRemovedMessage((mindEntityTwo, mindCompTwo), (bodyTwo, mindContainerTwo)), true);
-        RaiseLocalEvent(mindEntityOne, new MindGotRemovedEvent((mindEntityOne, mindCompOne), (bodyOne, mindContainerOne)), true);
-        RaiseLocalEvent(mindEntityTwo, new MindGotRemovedEvent((mindEntityTwo, mindCompTwo), (bodyTwo, mindContainerTwo)), true);
+        RaiseLocalEvent(bodyOne, new MindRemovedMessage((mindEntityOne, mindCompOne), (bodyOne, mindContainerOne), bodyTwo), true);
+        RaiseLocalEvent(bodyTwo, new MindRemovedMessage((mindEntityTwo, mindCompTwo), (bodyTwo, mindContainerTwo), bodyOne), true);
+        RaiseLocalEvent(mindEntityOne, new MindGotRemovedEvent((mindEntityOne, mindCompOne), (bodyOne, mindContainerOne), bodyTwo), true);
+        RaiseLocalEvent(mindEntityTwo, new MindGotRemovedEvent((mindEntityTwo, mindCompTwo), (bodyTwo, mindContainerTwo), bodyOne), true);
 
         mindContainerOne.Mind = mindEntityTwo;
         mindContainerTwo.Mind = mindEntityOne;
         mindCompOne.OwnedEntity = bodyTwo;
         mindCompTwo.OwnedEntity = bodyOne;
-        RaiseLocalEvent(bodyOne, new MindAddedMessage((mindEntityTwo, mindCompTwo), (bodyOne, mindContainerOne)));
-        RaiseLocalEvent(bodyTwo, new MindAddedMessage((mindEntityOne, mindCompOne), (bodyTwo, mindContainerTwo)));
-        RaiseLocalEvent(mindEntityOne, new MindGotAddedEvent((mindEntityTwo, mindCompTwo), (bodyOne, mindContainerOne)));
-        RaiseLocalEvent(mindEntityTwo, new MindGotAddedEvent((mindEntityOne, mindCompOne), (bodyTwo, mindContainerTwo)));
+        RaiseLocalEvent(bodyOne, new MindAddedMessage((mindEntityTwo, mindCompTwo), (bodyOne, mindContainerOne), bodyTwo));
+        RaiseLocalEvent(bodyTwo, new MindAddedMessage((mindEntityOne, mindCompOne), (bodyTwo, mindContainerTwo), bodyOne));
+        RaiseLocalEvent(mindEntityOne, new MindGotAddedEvent((mindEntityTwo, mindCompTwo), (bodyOne, mindContainerOne), bodyTwo));
+        RaiseLocalEvent(mindEntityTwo, new MindGotAddedEvent((mindEntityOne, mindCompOne), (bodyTwo, mindContainerTwo), bodyOne));
 
         if (mindCompOne.UserId != null && _players.TryGetSessionById(mindCompOne.UserId.Value, out var userOneSession))
         {

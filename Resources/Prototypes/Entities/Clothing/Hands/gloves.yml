@@ -215,61 +215,6 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: [ClothingHandsBase, BaseToggleClothing, BaseHighlyIllegalContraband]
-  id: ClothingHandsGlovesSpaceNinja
-  name: space ninja gloves
-  description: These black nano-enhanced gloves insulate from electricity and provide fire resistance.
-  components:
-  - type: Sprite
-    sprite: Clothing/Hands/Gloves/spaceninja.rsi
-    layers:
-    - state: icon
-      map: [ "enum.ToggleableVisuals.Layer" ]
-  - type: Clothing
-    sprite: Clothing/Hands/Gloves/spaceninja.rsi
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
-          True: {state: icon-green}
-          False: {state: icon}
-  - type: Insulated
-  - type: Fiber
-    fiberMaterial: fibers-nanomachines
-  - type: FingerprintMask
-  - type: Thieving
-    stripTimeReduction: 1
-    stealthy: true
-  - type: ToggleClothing
-    action: ActionToggleNinjaGloves
-    disableOnUnequip: true
-  - type: NinjaGloves
-    abilities:
-    - components:
-      - type: BatteryDrainer
-      - type: StunProvider
-        cooldown: 10
-        noPowerPopup: ninja-no-power
-        whitelist:
-          components:
-          - Stamina
-      - type: EmagProvider
-        whitelist:
-          components:
-          - Airlock
-    - objective: StealResearchObjective
-      components:
-      - type: ResearchStealer
-    - objective: TerrorObjective
-      components:
-      - type: CommsHacker
-        threats: NinjaThreats
-    - objective: MassArrestObjective
-      components:
-      - type: CriminalRecordsHacker
-
-- type: entity
   parent: [ ClothingHandsGlovesColorBlack, BaseSecurityEngineeringContraband ]
   id: ClothingHandsGlovesCombat
   name: combat gloves
@@ -369,19 +314,6 @@
     damageProtection:
       flatReductions:
         Heat: 0 # no protection
-
-- type: entity
-  # Intentionally named after regular gloves, they're meant to be sneaky.
-  # This means they can also be butchered if you need to look un-sus before a very thorough search...
-  parent: ClothingHandsGlovesColorBlack
-  id: ThievingGloves
-  suffix: Thieving
-  components:
-  - type: Tag
-    tags: [] # ignore "WhitelistChameleon" tag
-  - type: Thieving
-    stripTimeReduction: 1.5
-    stealthy: true
 
 - type: entity
   parent: ClothingHandsGlovesColorWhite
@@ -539,8 +471,6 @@
     tags:
     - WhitelistChameleon
     - Kangaroo
-  - type: StealTarget
-    stealGroup: ClothingHandsKnuckleDustersQM
 
 - type: entity
   parent: [ClothingHandsBase, BaseSyndicateContraband]
@@ -633,10 +563,6 @@
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
-  - type: GuideHelp
-    guides:
-    - Security
-    - Antagonists
 
 - type: entity #Admeme
   parent: ClothingHandsKnuckleDusters

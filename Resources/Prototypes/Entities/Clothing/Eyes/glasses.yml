@@ -186,10 +186,6 @@
     - HamsterWearable
     - PetWearable
     - WhitelistChameleon
-  - type: GuideHelp
-    guides:
-    - Security
-    - Antagonists
   - type: IdentityBlocker
     coverage: EYES
 
@@ -267,18 +263,6 @@
       tags:
       - PetWearable
       - WhitelistChameleon
-
-- type: entity
-  parent: [ClothingEyesBase, BaseHighlyIllegalContraband]
-  id: ClothingEyesVisorNinja
-  name: ninja visor
-  description: An advanced visor protecting a ninja's eyes from flashing lights.
-  components:
-  - type: Sprite
-    sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
-  - type: Clothing
-    sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
-  - type: FlashImmunity
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]

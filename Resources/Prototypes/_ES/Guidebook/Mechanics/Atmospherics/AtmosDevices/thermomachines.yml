@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESThermomachines
+  id: Thermomachines
   hidden: false
   name: Thermomachines
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/AtmosDevices/Thermomachines.xml"

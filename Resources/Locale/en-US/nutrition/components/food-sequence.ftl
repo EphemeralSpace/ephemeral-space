@@ -5,7 +5,6 @@ food-sequence-no-space = You can't put any more!
 food-sequence-content-chicken = chicken
 food-sequence-content-duck = duck
 food-sequence-content-crab = crab
-food-sequence-content-dragon = dragon
 food-sequence-content-snake = snake
 food-sequence-content-xeno = xeno
 food-sequence-content-rouny = rouny

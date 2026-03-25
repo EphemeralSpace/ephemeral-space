@@ -127,9 +127,6 @@
   id: LowValueScienceCrateTable
   table: !type:GroupSelector
     children:
-    - id: CrateArtifactContainer
-    - id: HandheldArtifactContainer
-      weight: 0.2
     - id: CrateMaterialPlasma
 
 - type: entityTable

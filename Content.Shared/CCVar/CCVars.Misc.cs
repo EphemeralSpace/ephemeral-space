@@ -9,12 +9,6 @@ public sealed partial class CCVars
     public static readonly CVarDef<int> EntityMenuGroupingType = CVarDef.Create("entity_menu", 0, CVar.CLIENTONLY);
 
     /// <summary>
-    ///     Should we pre-load all of the procgen atlasses.
-    /// </summary>
-    public static readonly CVarDef<bool> ProcgenPreload =
-        CVarDef.Create("procgen.preload", true, CVar.SERVERONLY);
-
-    /// <summary>
     ///     Enabled: Cloning has 70% cost and reclaimer will refuse to reclaim corpses with souls. (For LRP).
     ///     Disabled: Cloning has full biomass cost and reclaimer can reclaim corpses with souls. (Playtested and balanced for MRP+).
     /// </summary>

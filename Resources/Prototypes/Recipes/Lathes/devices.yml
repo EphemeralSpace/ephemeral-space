@@ -152,11 +152,6 @@
   result: ClothingBackpackDuffelHolding
 
 - type: latheRecipe
-  parent: ClothingBackpackHolding
-  id: OreBagOfHolding
-  result: OreBagOfHolding
-
-- type: latheRecipe
   id: ClothingMaskWeldingGas
   result: ClothingMaskWeldingGas
   completetime: 3

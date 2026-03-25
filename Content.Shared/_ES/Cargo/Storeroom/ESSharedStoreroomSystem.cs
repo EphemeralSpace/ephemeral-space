@@ -12,7 +12,6 @@ namespace Content.Shared._ES.Cargo.Storeroom;
 
 public abstract class ESSharedStoreroomSystem : EntitySystem
 {
-    [Dependency] private readonly SharedEntityStorageSystem _entityStorage = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private readonly SharedStackSystem _stack = default!;

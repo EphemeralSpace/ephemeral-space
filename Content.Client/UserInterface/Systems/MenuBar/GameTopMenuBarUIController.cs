@@ -1,7 +1,6 @@
 using Content.Client.UserInterface.Systems.Actions;
 using Content.Client.UserInterface.Systems.Admin;
 using Content.Client.UserInterface.Systems.Bwoink;
-using Content.Client.UserInterface.Systems.Character;
 using Content.Client.UserInterface.Systems.Crafting;
 using Content.Client.UserInterface.Systems.Emotes;
 using Content.Client.UserInterface.Systems.EscapeMenu;
@@ -20,7 +19,6 @@ public sealed class GameTopMenuBarUIController : UIController
 {
     [Dependency] private readonly EscapeUIController _escape = default!;
     [Dependency] private readonly AdminUIController _admin = default!;
-    [Dependency] private readonly CharacterUIController _character = default!;
     [Dependency] private readonly CraftingUIController _crafting = default!;
     [Dependency] private readonly AHelpUIController _ahelp = default!;
     [Dependency] private readonly ActionUIController _action = default!;
@@ -47,7 +45,6 @@ public sealed class GameTopMenuBarUIController : UIController
         _escape.UnloadButton();
         _guidebook.UnloadButton();
         _admin.UnloadButton();
-        _character.UnloadButton();
         _crafting.UnloadButton();
         _ahelp.UnloadButton();
         _action.UnloadButton();
@@ -63,7 +60,6 @@ public sealed class GameTopMenuBarUIController : UIController
         _escape.LoadButton();
         _guidebook.LoadButton();
         _admin.LoadButton();
-        _character.LoadButton();
         _crafting.LoadButton();
         _ahelp.LoadButton();
         _action.LoadButton();

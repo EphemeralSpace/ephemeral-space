@@ -211,8 +211,6 @@
   id: ToiletGoldenDirtyWater
   suffix: Dirty Water, StealTarget
   components:
-  - type: StealTarget
-    stealGroup: ToiletGoldenDirtyWater
   - type: SolutionContainerManager
     solutions:
       drainBuffer:

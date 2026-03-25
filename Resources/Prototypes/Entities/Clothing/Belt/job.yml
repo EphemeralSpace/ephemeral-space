@@ -111,8 +111,6 @@
   - type: Storage
     grid:
     - 0,0,9,1
-  - type: StealTarget
-    stealGroup: ChiefEngineerToolBelt
 
 - type: entity
   parent: ClothingBeltStorageBase
@@ -187,6 +185,10 @@
       - DiscreteHealthAnalyzer
       - SurgeryTool
       - Dropper
+      # ES START
+      - ESTourniquetOffbrand
+      - ESSplints
+      # ES END
       components:
       - Injector
       - Pill

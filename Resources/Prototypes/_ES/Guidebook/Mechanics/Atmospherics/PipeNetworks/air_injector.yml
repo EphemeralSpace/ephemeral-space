@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESAirInjector
+  id: AirInjector
   hidden: false
   name: Air Injector
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/PipeNetworks/AirInjector.xml"

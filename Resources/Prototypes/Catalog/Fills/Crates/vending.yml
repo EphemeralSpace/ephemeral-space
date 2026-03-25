@@ -155,17 +155,6 @@
         amount: 2
 
 - type: entity
-  parent: CrateGenericSteel
-  id: CrateVendingMachineRestockSalvageEquipmentFilled
-  name: Salvage restock crate
-  description: Contains a restock box for the salvage vendor.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        id: VendingMachineRestockSalvageEquipment
-
-- type: entity
   parent: CrateSecgear
   id: CrateVendingMachineRestockSecTechFilled
   name: SecTech restock crate

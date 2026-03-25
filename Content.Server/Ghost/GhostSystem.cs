@@ -181,25 +181,6 @@ namespace Content.Server.Ghost
             // this is mostly  for offbrand bc offbrand lets u ghost on move out of crit and we dont really want that
             return;
             // ES END
-
-            // If they haven't actually moved then ignore it.
-            if ((args.Entity.Comp.HeldMoveButtons &
-                 (MoveButtons.Down | MoveButtons.Left | MoveButtons.Up | MoveButtons.Right)) == 0x0)
-            {
-                return;
-            }
-
-            // Let's not ghost if our mind is visiting...
-            if (HasComp<VisitingMindComponent>(uid))
-                return;
-
-            if (!_minds.TryGetMind(uid, out var mindId, out var mind) || mind.IsVisitingEntity)
-                return;
-
-            if (component.MustBeDead && _mobState.IsAlive(uid)) // Offbrand - exit on crit
-                return;
-
-            OnGhostAttempt(mindId, component.CanReturn, mind: mind);
         }
 
         private void OnGhostStartup(EntityUid uid, GhostComponent component, ComponentStartup args)
@@ -635,13 +616,6 @@ namespace Content.Server.Ghost
             }
             return true;
 // ES END
-
-            var ghost = SpawnGhost((mindId, mind), position, canReturn);
-
-            if (ghost == null)
-                return false;
-
-            return true;
         }
     }
 

@@ -10,10 +10,6 @@
   name: metabolizer-type-bloodsucker
 
 - type: metabolizerType
-  id: Dragon
-  name: metabolizer-type-dragon
-
-- type: metabolizerType
   id: Human
   name: metabolizer-type-human
 

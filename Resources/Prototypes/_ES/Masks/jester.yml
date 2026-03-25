@@ -36,17 +36,3 @@
     all:
     - id: ESObjectiveParasiteBeKilled
     - id: ESObjectiveJesterDoNoHarm
-
-- type: esMask
-  parent: ESBaseJester
-  id: ESPhantom
-  name: es-mask-phantom-name
-  description: es-mask-phantom-desc
-  color: lavender
-  weight: 0.5
-  mindComponents:
-  - type: ESReincarnateMind
-  objectives:
-    all:
-    - id: ESObjectivePhantomDie
-    - id: ESObjectiveJesterDoNoHarm

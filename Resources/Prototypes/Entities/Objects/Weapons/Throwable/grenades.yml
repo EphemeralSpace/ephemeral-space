@@ -51,10 +51,6 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/countdown.ogg
-  - type: GuideHelp
-    guides:
-    - Security
-    - Antagonists
   - type: Tag
     tags:
     - HandGrenade

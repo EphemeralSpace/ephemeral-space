@@ -191,8 +191,6 @@
   parent: MobBaseScurret
   abstract: true
   components:
-    - type: Loadout
-      prototypes: [ EmotionalSupportScurretGear ]
     - type: NpcFactionMember
       factions:
       - Passive

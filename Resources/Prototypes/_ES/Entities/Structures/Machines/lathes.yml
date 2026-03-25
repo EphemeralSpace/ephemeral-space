@@ -65,10 +65,6 @@
     - SurgeryStatic
     - OffbrandMedicalStatic
     - OffbrandSurgeryStatic
-  - type: BlueprintReceiver
-    whitelist:
-      tags:
-      - BlueprintAutolathe
   - type: ContainerContainer
     containers:
       machine_board: !type:Container

@@ -122,24 +122,3 @@
   - type: Construction
     graph: AirlockShuttle
     node: assembly
-
-- type: entity
-  id: AirlockGlassShuttleSyndicate
-  parent: AirlockGlassShuttle
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Glass/shuttle_syndicate.rsi
-
-- type: entity
-  parent: AirlockShuttle
-  id: AirlockShuttleSyndicate
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/shuttle_syndicate.rsi
-
-- type: entity
-  parent: AirlockShuttle
-  id: AirlockShuttleXenoborg
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/shuttle_xenoborg.rsi

@@ -213,30 +213,6 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
-  id: SalvageJobBoardComputerCircuitboard
-  name: salvage job board computer board
-  description: A computer printed circuit board for a salvage job board computer.
-  components:
-  - type: Sprite
-    state: cpu_supply
-  - type: ComputerBoard
-    prototype: ComputerSalvageJobBoard
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: SalvageExpeditionsComputerCircuitboard
-  name: salvage expeditions computer board
-  description: A computer printed circuit board for a salvage expeditions computer.
-  components:
-    - type: Sprite
-      state: cpu_supply
-    - type: ComputerBoard
-      prototype: ComputerSalvageExpedition
-    - type: StealTarget
-      stealGroup: SalvageExpeditionsComputerCircuitboard
-
-- type: entity
-  parent: BaseComputerCircuitboard
   id: CargoShuttleConsoleCircuitboard
   name: cargo shuttle console board
   description: A computer printed circuit board for a cargo shuttle console.
@@ -245,8 +221,6 @@
     state: cpu_supply
   - type: ComputerBoard
     prototype: ComputerShuttleCargo
-  - type: StealTarget
-    stealGroup: CargoShuttleConsoleCircuitboard
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -283,17 +257,6 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
-  id: XenoborgCameraMonitorCircuitboard
-  name: xenoborg camera monitor board
-  description: A computer printed circuit board for a xenoborg camera monitor.
-  components:
-  - type: Sprite
-    state: cpu_science
-  - type: ComputerBoard
-    prototype: ComputerSurveillanceWirelessXenoborgCameraMonitor
-
-- type: entity
-  parent: BaseComputerCircuitboard
   id: ComputerTelevisionCircuitboard
   name: television board
   description: A computer printed circuit board for a television.
@@ -303,39 +266,6 @@
     - type: Tag
       tags:
         - ComputerTelevisionCircuitboard
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: ResearchComputerCircuitboard
-  name: R&D computer board
-  description: A computer printed circuit board for a R&D console.
-  components:
-    - type: Sprite
-      state: cpu_science
-    - type: ComputerBoard
-      prototype: ComputerResearchAndDevelopment
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: AnalysisComputerCircuitboard
-  name: analysis computer board
-  description: A computer printed circuit board for an analysis console.
-  components:
-    - type: Sprite
-      state: cpu_science
-    - type: ComputerBoard
-      prototype: ComputerAnalysisConsole
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: TechDiskComputerCircuitboard
-  name: tech disk terminal board
-  description: A computer printed circuit board for a technology disk terminal.
-  components:
-  - type: Sprite
-    state: cpu_science
-  - type: ComputerBoard
-    prototype: ComputerTechnologyDiskTerminal
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -393,28 +323,6 @@
       state: cpu_command
     - type: ComputerBoard
       prototype: ComputerComms
-
-- type: entity
-  parent: [ BaseComputerCircuitboard, BaseSyndicateContraband ]
-  id: SyndicateCommsComputerCircuitboard
-  name: syndicate communications computer board
-  description: A computer printed circuit board for a syndicate communications console.
-  components:
-  - type: Sprite
-    state: cpu_syndicate
-  - type: ComputerBoard
-    prototype: SyndicateComputerComms
-
-- type: entity
-  parent: [ BaseComputerCircuitboard, BaseSyndicateContraband ]
-  id: WizardCommsComputerCircuitboard
-  name: wizard communications computer board
-  description: A computer printed circuit board for a wizard communications console.
-  components:
-  - type: Sprite
-    state: cpu_wizard
-  - type: ComputerBoard
-    prototype: WizardComputerComms
 
 - type: entity
   parent: [ BaseComputerCircuitboard, BaseCentcommContraband ]
@@ -566,17 +474,6 @@
       state: cpu_science
     - type: ComputerBoard
       prototype: ComputerRoboticsControl
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: ComputerXenoborgsControlCircuitboard
-  name: xenoborg control console board
-  description: A computer printed circuit board for a xenoborg control console.
-  components:
-    - type: Sprite
-      state: cpu_science
-    - type: ComputerBoard
-      prototype: ComputerXenoborgsControl
 
 - type: entity
   parent: BaseComputerCircuitboard

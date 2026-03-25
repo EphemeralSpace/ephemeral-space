@@ -8,7 +8,7 @@ using Content.Server.Power.Components;
 using Content.Shared.Administration;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Item;
-using Content.Shared.Research.Prototypes;
+using Content.Shared.Lathe.Prototypes;
 using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Wieldable.Components;

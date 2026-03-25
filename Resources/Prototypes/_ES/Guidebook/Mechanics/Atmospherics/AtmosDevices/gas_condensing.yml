@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESGasCondensing
+  id: GasCondensing
   hidden: false
   name: Gas Condensing
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/AtmosDevices/GasCondensing.xml"

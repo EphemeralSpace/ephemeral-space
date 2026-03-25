@@ -64,7 +64,6 @@
   - BaseStationRecords
   - BaseStationAlertLevels
   - BaseStationAllEventsEligible
-  - BaseStationNanotrasen
   - BaseStationDeliveries
   - ESBaseStationArrivals
   - ESBaseStationStoreroom
@@ -73,11 +72,3 @@
   components:
   - type: Transform
   - type: ESProducer
-  - type: GridSpawn
-    groups:
-      trade: !type:GridSpawnGroup
-        addComponents:
-        - type: ProtectedGrid
-        - type: TradeStation
-        paths:
-        - /Maps/Shuttles/trading_outpost.yml

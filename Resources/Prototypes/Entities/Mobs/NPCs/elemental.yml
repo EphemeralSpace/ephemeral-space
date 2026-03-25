@@ -37,7 +37,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: ZombieImmune
   - type: ProtectedFromStepTriggers
   - type: StunVisuals
 
@@ -315,14 +314,6 @@
   parent: [ MobAdultSlimes, MobCombat ]
   description: It consists of a liquid, and it wants to dissolve you in itself.
   components:
-  - type: GhostRole
-    prob: 0
-    description: ghost-role-information-angry-slimes-description
-    rules: ghost-role-information-angry-slimes-rules
-    mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-    raffle:
-      settings: short
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -379,7 +370,6 @@
       - DoorBumpOpener
       - StunImmune
   - type: NoSlip
-  - type: ZombieImmune
   - type: ExaminableSolution
     solution: bloodstream
   - type: InjectableSolution

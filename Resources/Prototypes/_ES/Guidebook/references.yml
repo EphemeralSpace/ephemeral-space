@@ -1,13 +1,13 @@
 - type: guideEntry
-  id: ESReferences
+  id: References
   hidden: false
   name: References
   priority: 30
   text: "/ServerInfo/_ES/Guidebook/References.xml"
   children:
-  - ESRules
-  - ESChemicals
-  - ESDrinks
-  - ESFood
-  - ESWriting
-  - ESGlossary
+  - Rules
+  - Chemicals
+  - Drinks
+  - Food
+  - Writing
+  - Glossary

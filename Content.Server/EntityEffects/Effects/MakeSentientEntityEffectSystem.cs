@@ -37,6 +37,5 @@ public sealed partial class MakeSentientEntityEffectSystem : EntityEffectSystem<
         EnsureComp<GhostTakeoverAvailableComponent>(entity);
 
         ghostRole.RoleName = entity.Comp.EntityName;
-        ghostRole.RoleDescription = Loc.GetString("ghost-role-information-cognizine-description");
     }
 }

@@ -535,7 +535,7 @@ public sealed class NPCUtilitySystem : EntitySystem
     {
         switch (filter)
         {
-            case ComponentFilter compFilter:
+            case Content.Server.NPC.Queries.Queries.ComponentFilter compFilter:
             {
                 _entityList.Clear();
 

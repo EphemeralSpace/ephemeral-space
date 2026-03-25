@@ -80,17 +80,13 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     {
         if (!ent.Comp.Subverted)
             return;
-        EnsureSubvertedSiliconRole(args.Mind);
     }
 
     private void OnLawProviderMindRemoved(Entity<SiliconLawProviderComponent> ent, ref MindRemovedMessage args)
     {
         if (!ent.Comp.Subverted)
             return;
-        RemoveSubvertedSiliconRole(args.Mind);
-
     }
-
 
     private void OnToggleLawsScreen(EntityUid uid, SiliconLawBoundComponent component, ToggleLawsScreenEvent args)
     {
@@ -169,22 +165,6 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             LawString = Loc.GetString("law-emag-secrecy", ("faction", Loc.GetString(component.Lawset.ObeysTo))),
             Order = component.Lawset.Laws.Max(law => law.Order) + 1
         });
-    }
-
-    protected override void EnsureSubvertedSiliconRole(EntityUid mindId)
-    {
-        base.EnsureSubvertedSiliconRole(mindId);
-
-        if (!_roles.MindHasRole<SubvertedSiliconRoleComponent>(mindId))
-            _roles.MindAddRole(mindId, "MindRoleSubvertedSilicon", silent: true);
-    }
-
-    protected override void RemoveSubvertedSiliconRole(EntityUid mindId)
-    {
-        base.RemoveSubvertedSiliconRole(mindId);
-
-        if (_roles.MindHasRole<SubvertedSiliconRoleComponent>(mindId))
-            _roles.MindRemoveRole<SubvertedSiliconRoleComponent>(mindId);
     }
 
     public SiliconLawset GetLaws(EntityUid uid, SiliconLawBoundComponent? component = null)

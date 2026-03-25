@@ -14,7 +14,6 @@ namespace Content.Shared._ES.Camera;
 /// </summary>
 public sealed class ESScreenshakeSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     #region Internal

@@ -43,8 +43,6 @@
     - AllAccess
     - Silicon
     tags:
-    - NuclearOperative
-    - SyndicateAgent
     - CentralCommand
   - type: UserInterface
     interfaces:
@@ -95,13 +93,9 @@
   - type: WirelessNetworkConnection
     range: 500
   - type: StationLimitedNetwork
-  - type: Thieving
-    stripTimeReduction: 9999
-    stealthy: true
   - type: Stripping
   - type: SolutionScanner
   - type: IgnoreUIRange
-  - type: ShowAntagIcons
   - type: ShowContrabandDetails
   - type: Inventory
     templateId: aghost

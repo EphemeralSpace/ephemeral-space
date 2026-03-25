@@ -1,20 +1,12 @@
-using Content.Server.Antag;
-using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Spawners.Components;
-using Content.Shared.Whitelist;
-using Robust.Server.Physics;
 using Robust.Shared.Map;
 
 namespace Content.Server.GameTicking.Rules;
 
 /// <summary>
-/// Handles storing grids from <see cref="RuleLoadedGridsEvent"/> and antags spawning on their spawners.
+/// Handles storing grids from <see cref="RuleLoadedGridsEvent"/>
 /// </summary>
 public sealed class RuleGridsSystem : GameRuleSystem<RuleGridsComponent>
 {
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -22,7 +14,6 @@ public sealed class RuleGridsSystem : GameRuleSystem<RuleGridsComponent>
         SubscribeLocalEvent<GridSplitEvent>(OnGridSplit);
 
         SubscribeLocalEvent<RuleGridsComponent, RuleLoadedGridsEvent>(OnLoadedGrids);
-        SubscribeLocalEvent<RuleGridsComponent, AntagSelectLocationEvent>(OnSelectLocation);
     }
 
     private void OnGridSplit(ref GridSplitEvent args)
@@ -49,30 +40,6 @@ public sealed class RuleGridsSystem : GameRuleSystem<RuleGridsComponent>
 
         comp.Map = args.Map;
         comp.MapGrids.AddRange(args.Grids);
-    }
-
-    private void OnSelectLocation(Entity<RuleGridsComponent> ent, ref AntagSelectLocationEvent args)
-    {
-        var query = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out _, out var xform))
-        {
-            if (xform.MapID != ent.Comp.Map)
-                continue;
-
-            if (xform.GridUid is not {} grid || !ent.Comp.MapGrids.Contains(grid))
-                continue;
-
-            if (_whitelist.IsWhitelistFail(ent.Comp.SpawnerWhitelist, uid))
-                continue;
-
-            if (TryComp<GridSpawnPointWhitelistComponent>(uid, out var gridSpawnPointWhitelistComponent))
-            {
-                if (!_whitelist.CheckBoth(args.Entity, gridSpawnPointWhitelistComponent.Blacklist, gridSpawnPointWhitelistComponent.Whitelist))
-                    continue;
-            }
-
-            args.Coordinates.Add(_transform.GetMapCoordinates(xform));
-        }
     }
 }
 

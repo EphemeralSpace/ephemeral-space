@@ -64,6 +64,7 @@
   id: WardrobePrison
   parent: WardrobeBase
   name: prison wardrobe
+  description: "Contains a selection of nice orange clothes for people enjoying their stay in the brig."
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -166,12 +167,6 @@
   description: It's a storage unit for foodservice garments and mouse traps.
 
 - type: entity
-  id: WardrobeChapel
-  parent: WardrobeBlack
-  name: chaplain's wardrobe
-  description: It's a storage unit for Nanotrasen-approved religious attire.
-
-- type: entity
   id: ClosetLegal
   parent: WardrobeBlue
   name: legal closet
@@ -197,26 +192,6 @@
   id: WardrobeMedicalDoctor
   parent: WardrobeWhite
   name: medical doctor's wardrobe
-
-- type: entity
-  id: WardrobeRobotics
-  parent: WardrobeBlack
-  name: robotics wardrobe
-
-- type: entity
-  id: WardrobeChemistry
-  parent: WardrobeWhite
-  name: chemistry wardrobe
-
-- type: entity
-  id: WardrobeGenetics
-  parent: WardrobeWhite
-  name: genetics wardrobe
-
-- type: entity
-  id: WardrobeVirology
-  parent: WardrobeWhite
-  name: virology wardrobe
 
 - type: entity
   id: WardrobeScience

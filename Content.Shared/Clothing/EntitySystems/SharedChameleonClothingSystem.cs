@@ -30,7 +30,6 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedItemSystem _itemSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] private readonly LockSystem _lock = default!;
     [Dependency] private readonly IRobustRandom _random = default!;

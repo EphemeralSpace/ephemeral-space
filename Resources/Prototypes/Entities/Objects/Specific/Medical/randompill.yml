@@ -10,7 +10,6 @@
     - quantity: 10
       weight: 5
       reagents:
-      - Ichor
       - Necrosol
     - quantity: 5
       weight: 4
@@ -40,7 +39,6 @@
       - SpaceDrugs
       - SpaceGlue
       - Laughter
-      - JuiceThatMakesYouWeh
       - Lipozine
       - Carpetium
       - Bananadine

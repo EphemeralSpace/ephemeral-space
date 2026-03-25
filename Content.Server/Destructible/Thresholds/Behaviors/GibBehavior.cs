@@ -18,8 +18,6 @@ namespace Content.Server.Destructible.Thresholds.Behaviors
             // no gib behavior on damage
             return;
             // ES END
-
-            system.Gibbing.Gib(owner, _recursive);
         }
     }
 }

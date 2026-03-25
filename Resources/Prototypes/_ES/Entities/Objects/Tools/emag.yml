@@ -13,4 +13,4 @@
     storedRotation: -90
   - type: ESEmag
   - type: LimitedCharges
-  - type: AutoRecharge
+    maxCharges: 6

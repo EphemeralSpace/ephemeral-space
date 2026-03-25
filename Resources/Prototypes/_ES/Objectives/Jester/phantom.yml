@@ -1,23 +1,23 @@
 - type: entity
   parent: ESBaseMaskObjective
   id: ESObjectivePhantomDie
-  name: Be killed
-  description: Die, preferably at someone else's hand.
+  name: Get killed
+  description: Meet your end at someone else's hand in order to be born anew.
   components:
   - type: ESObjective
     icon:
       sprite: Mobs/Ghosts/ghost_human.rsi
       state: icon
-  - type: ESTargetObjective
-  - type: ESTargetSelfObjective
-  - type: ESKillTargetObjective
+  - type: ESCounterObjective
+  - type: ESBeKilledObjective
+  - type: ESReincarnateObjective
   - type: ESAvengeSelfObjective
 
 - type: entity
   parent: ESBaseMaskObjective
   id: ESObjectivePhantomAvenge
   name: Avenge yourself
-  description: After death, kill your murderer and find peace.
+  description: They must face retribution for your death. Make sure this station is their grave.
   components:
   - type: ESObjective
     icon:

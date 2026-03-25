@@ -28,9 +28,6 @@
     layers:
     - sprite: Structures/catwalk.rsi
       state: catwalk_preview
-  - type: GuideHelp
-    guides:
-    - Cargo
 
 - type: entity
   id: CargoPallet

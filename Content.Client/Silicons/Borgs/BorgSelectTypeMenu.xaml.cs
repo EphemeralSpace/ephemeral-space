@@ -25,8 +25,6 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
 
     public event Action<ProtoId<BorgTypePrototype>>? ConfirmedBorgType;
 
-    private static readonly List<ProtoId<GuideEntryPrototype>> GuidebookEntries = new() { "Cyborgs", "Robotics" };
-
     public BorgSelectTypeMenu()
     {
         RobustXamlLoader.Load(this);
@@ -49,7 +47,6 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         }
 
         ConfirmTypeButton.OnPressed += ConfirmButtonPressed;
-        HelpGuidebookIds = GuidebookEntries;
     }
 
     private void UpdateInformation(BorgTypePrototype prototype)

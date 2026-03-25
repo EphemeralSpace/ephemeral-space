@@ -11,12 +11,12 @@ public sealed class ESDamageDeflectionSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<ESDamageDeflectionComponent, DamageModifyEvent>(OnDamageModify);
+        SubscribeLocalEvent<ESDamageDeflectionComponent, BeforeDamageChangedEvent>(OnBeforeDamageChanged);
     }
 
-    private void OnDamageModify(Entity<ESDamageDeflectionComponent> ent, ref DamageModifyEvent args)
+    private void OnBeforeDamageChanged(Entity<ESDamageDeflectionComponent> ent, ref BeforeDamageChangedEvent args)
     {
         if (args.Damage.GetTotal() < ent.Comp.Threshold)
-            args.Damage *= 0;
+            args.Cancelled = true;
     }
 }

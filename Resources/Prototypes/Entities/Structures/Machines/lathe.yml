@@ -40,15 +40,11 @@
     interfaces:
       enum.LatheUiKey.Key:
         type: LatheBoundUserInterface
-      enum.ResearchClientUiKey.Key:
-        type: ResearchClientBoundUserInterface
   - type: Transform
     anchored: true
   - type: Pullable
   - type: StaticPrice
     price: 800
-  - type: ResearchClient
-  - type: TechnologyDatabase
 
 # a lathe that can be sped up with space lube / slowed down with glue
 - type: entity
@@ -151,11 +147,6 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SecurityAmmoStatic
-    - SyndicateAmmoStatic
-  - type: BlueprintReceiver
-    whitelist:
-      tags:
-      - BlueprintAutolathe
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
@@ -224,8 +215,6 @@
     - ScienceExplosives
     - ScienceClothing
     - PowerCells
-    - ScienceWeapons
-    - Mining
     - AtmosTools
     - EngineeringWeapons
     - Chemistry
@@ -283,7 +272,6 @@
     staticPacks:
     - ScienceBoardsStatic
     - ServiceBoardsStatic
-    - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
     - OffbrandCircuitboardsStatic # Offbrand
@@ -292,7 +280,6 @@
     - CargoBoards
     - MedicalBoards
     - ServiceBoards
-    - ScienceBoards
     - CameraBoards
     - MechBoards
     - ShuttleBoards
@@ -350,9 +337,7 @@
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
-  - type: GuideHelp
-    guides:
-    - Robotics
+
 
 - type: entity
   id: Biofabricator
@@ -430,9 +415,6 @@
     - SecurityAmmo
     - SecurityWeapons
     - SecurityDisablers
-  - type: EmagLatheRecipes
-    emagStaticPacks:
-    - SyndicateAmmoStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -465,9 +447,6 @@
       runningState: icon
       staticPacks:
       - SecurityAmmoStatic
-    - type: EmagLatheRecipes
-      emagStaticPacks:
-      - SyndicateAmmoStatic
     - type: MaterialStorage
       whitelist: *StandardMaterialWhitelist
     - type: OreSiloClient
@@ -508,8 +487,6 @@
     - Chemistry
   - type: Machine
     board: MedicalTechFabCircuitboard
-  - type: StealTarget
-    stealGroup: MedicalTechFabCircuitboard
   - type: OreSiloClient
   - type: LatheAnnouncing
     channels: [Medical]

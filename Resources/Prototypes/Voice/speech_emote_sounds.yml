@@ -454,28 +454,6 @@
     Ping:
       path: /Audio/Effects/Cargo/ping.ogg
 
-- type: emoteSounds
-  id: UnisexSiliconXenoborg
-  params:
-    variation: 0.05
-  sounds:
-    Scream:
-      collection: XenoborgScream
-    Laugh:
-      collection: XenoborgLaugh
-    Beep:
-      collection: XenoborgBeep
-    Chime:
-      collection: XenoborgChime
-    Buzz:
-      collection: XenoborgBuzz
-    Buzz-Two:
-      collection: XenoborgBuzzTwo
-    Honk:
-      collection: XenoborgBikeHorn
-    Ping:
-      collection: XenoborgPing
-
 # Vulp Sounds
 - type: emoteSounds
   id: MaleVulpkanin
@@ -608,13 +586,6 @@
 #      collection: Salutes
 
 # mobs
-- type: emoteSounds
-  id: Zombie
-  sound:
-    collection: ZombieScreams
-    params:
-      variation: 0.125
-
 - type: emoteSounds
   id: Skeleton
   sound:

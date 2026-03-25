@@ -21,7 +21,6 @@ namespace Content.Server.Light.EntitySystems
     public sealed class HandheldLightSystem : SharedHandheldLightSystem
     {
         [Dependency] private readonly ActionsSystem _actions = default!;
-        [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
         [Dependency] private readonly PowerCellSystem _powerCell = default!;
         [Dependency] private readonly SharedBatterySystem _battery = default!;
@@ -70,7 +69,6 @@ namespace Content.Server.Light.EntitySystems
 // ES START
             return;
 // ES END
-            args.AddAction(ref component.ToggleActionEntity, component.ToggleAction);
         }
 
         private void OnToggleAction(Entity<HandheldLightComponent> ent, ref ToggleActionEvent args)
@@ -96,9 +94,6 @@ namespace Content.Server.Light.EntitySystems
 // ES START
             return;
 // ES END
-            var component = ent.Comp;
-            _actionContainer.EnsureAction(ent, ref component.ToggleActionEntity, component.ToggleAction);
-            _actions.AddAction(ent, ref component.SelfToggleActionEntity, component.ToggleAction);
         }
 
         private void OnShutdown(EntityUid uid, HandheldLightComponent component, ComponentShutdown args)

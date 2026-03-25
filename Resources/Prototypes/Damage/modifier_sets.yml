@@ -215,16 +215,6 @@
   coefficients: # To be decided
     Poison: 1
 
-- type: damageModifierSet
-  id: Zombie #Blunt resistant and immune to biological threats, but can be hacked apart and burned
-  coefficients:
-    Blunt: 0.6
-    Piercing: 0.8
-    Cold: 0.3
-    Heat: 1.25
-    Poison: 0.0
-    Radiation: 0.0
-
 # immune to everything except physical and heat damage; vulnerable to holy damage because they're undead, but not as vulnerable as a ghost or demon would be
 - type: damageModifierSet
   id: Skeleton

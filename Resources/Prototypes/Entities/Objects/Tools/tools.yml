@@ -126,9 +126,6 @@
       Steel: 100
   - type: StaticPrice
     price: 22
-  - type: GuideHelp
-    guides:
-    - Construction
 
 - type: entity
   name: multitool
@@ -182,11 +179,7 @@
     price: 56
   - type: GuideHelp
     guides:
-    # ES START
-    #- Networking
-    # ES END
-    - WirePanels
-    - Airlocks
+    - Wires
     - InspectingPower
 
 - type: entity
@@ -236,9 +229,6 @@
           type: NetworkConfiguratorBoundUserInterface
     - type: StaticPrice
       price: 56
-    - type: GuideHelp
-      guides:
-      - Networking
 
 #Power tools
 #Later on these should switch probably switch damage when changing the tool behavior.

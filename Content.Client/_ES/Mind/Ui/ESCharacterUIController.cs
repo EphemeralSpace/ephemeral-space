@@ -1,6 +1,5 @@
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
-using Content.Client.UserInterface.Systems.Character;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using Content.Shared._ES.CCVar;
 using Content.Shared.Input;
@@ -36,7 +35,7 @@ public sealed class ESCharacterUIController : UIController, IOnStateEntered<Game
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.OpenCharacterMenu,
                 InputCmdHandler.FromDelegate(_ => ToggleWindow()))
-            .Register<CharacterUIController>();
+            .Register<ESCharacterUIController>();
 
         if (_cfg.GetCVar(ESCVars.ESOpenCharacterMenuOnSpawn) && !_window.IsOpen)
             _window?.OpenCenteredLeft();
@@ -52,7 +51,7 @@ public sealed class ESCharacterUIController : UIController, IOnStateEntered<Game
 
         _player.LocalPlayerAttached -= OnLocalPlayerAttached;
 
-        CommandBinds.Unregister<CharacterUIController>();
+        CommandBinds.Unregister<ESCharacterUIController>();
     }
 
     private void DeactivateButton()

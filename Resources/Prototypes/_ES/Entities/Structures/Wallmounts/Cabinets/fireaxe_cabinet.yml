@@ -1,0 +1,69 @@
+- type: entity
+  parent: BaseWallmountCabinetGlass
+  suffix: ES
+  id: ESFireAxeCabinet
+  name: fire axe cabinet
+  description: There is a small label that reads "For Emergency use only" along with details for safe use of the axe. As if.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 200 #20ish crowbar hits
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+  - type: Sprite
+    sprite: Structures/Wallmounts/fireaxe_cabinet.rsi
+    layers:
+    - state: cabinet
+    - state: fireaxe
+      map: ["enum.ItemCabinetVisuals.Layer"]
+      visible: true
+    - state: glass
+      map: ["enum.OpenableVisuals.Layer"]
+  - type: ItemSlots
+    slots:
+      ItemCabinet:
+        ejectOnInteract: true
+        whitelist:
+          tags:
+          - FireAxe
+  - type: Lock
+
+- type: entity
+  parent: ESFireAxeCabinet
+  id: ESFireAxeCabinetOpen
+  suffix: ES, Open
+  components:
+  - type: Openable
+    opened: true
+  - type: Lock
+    locked: false
+
+- type: entity
+  parent: ESFireAxeCabinet
+  id: ESFireAxeCabinetFilled
+  suffix: ES, Filled
+  components:
+  - type: ContainerFill
+    containers:
+      ItemCabinet:
+      - FireAxe
+
+- type: entity
+  parent: [ESFireAxeCabinetFilled, ESFireAxeCabinetOpen]
+  id: ESFireAxeCabinetFilledOpen
+  suffix: ES, Filled, Open

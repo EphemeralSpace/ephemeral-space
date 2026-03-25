@@ -124,25 +124,6 @@
     maxContactWalkSlowdown: 0.7
 
 - type: entity
-  parent: [ClothingShoesBaseButcherable, BaseHighlyIllegalContraband]
-  id: ClothingShoesSpaceNinja
-  name: space ninja shoes
-  description: A pair of nano-enhanced boots with built-in magnetic suction cups.
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Specific/spaceninja.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Specific/spaceninja.rsi
-  - type: NoSlip
-  - type: Magboots # always have gravity because le suction cups
-  - type: ClothingSpeedModifier
-    # ninja are masters of sneaking around relatively quickly, won't break cloak
-    walkModifier: 1.3
-    sprintModifier: 1.3
-  - type: FootstepModifier
-    footstepSoundCollection: null
-
-- type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesSwat
   name: swat shoes
@@ -152,17 +133,6 @@
     sprite: Clothing/Shoes/Specific/swat.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Specific/swat.rsi
-
-- type: entity
-  parent: ClothingShoesBaseButcherable
-  id: ClothingShoesWizard
-  name: wizard shoes
-  description: A pair of magic shoes.
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Specific/wizard.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Specific/wizard.rsi
 
 - type: entity
   parent: [ClothingShoesBase, BaseChameleon]

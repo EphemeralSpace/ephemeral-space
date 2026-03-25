@@ -108,14 +108,6 @@
     Plasma: 200
 
 - type: latheRecipe
-  parent: BaseToolRecipe
-  id: NodeScanner
-  result: NodeScanner
-  materials:
-    Steel: 100
-    Plastic: 50
-
-- type: latheRecipe
   id: AirTank
   result: AirTank
   completetime: 4

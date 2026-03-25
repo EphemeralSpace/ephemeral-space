@@ -27,8 +27,6 @@
         Blunt: 1
   - type: Prayable
     bibleUserOnly: true
-  - type: Summonable
-    specialItem: SpawnPointGhostRemilia
   - type: ReactionMixer
     mixMessage: "bible-mixing-success"
     reactionTypes:
@@ -52,8 +50,6 @@
   - type: Tag
     tags:
     - Book
-  - type: StealTarget
-    stealGroup: Bible
 
 - type: entity
   parent: [Bible, BaseSyndicateContraband]
@@ -75,9 +71,6 @@
     failChance: 0
     locPrefix: "necro"
     healSound: "/Audio/Effects/lightburn.ogg"
-  - type: Summonable
-    specialItem: SpawnPointGhostCerberus
-    respawnTime: 300
   - type: Sprite
     sprite: Objects/Specific/Chapel/necronomicon.rsi
   - type: Item

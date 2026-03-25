@@ -17,7 +17,6 @@
     - IntercomElectronics
     - APCElectronics
     - SignalTimerElectronics
-    - APECircuitboard
     - SMESMachineCircuitboard
     - SubstationMachineCircuitboard
     - TelecomServerCircuitboard
@@ -28,5 +27,4 @@
     - ComputerMassMediaCircuitboard
     - AutolatheMachineCircuitboard
     - ProtolatheMachineCircuitboard
-    - SalvageMagnetMachineCircuitboard
     rareChance: 0.05

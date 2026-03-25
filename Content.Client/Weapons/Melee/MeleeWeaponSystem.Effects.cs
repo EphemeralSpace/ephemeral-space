@@ -48,7 +48,6 @@ public sealed partial class MeleeWeaponSystem
             return;
         }
 
-        var length = 1f;
         var offset = 1f;
 
         var spriteRotation = Angle.Zero;

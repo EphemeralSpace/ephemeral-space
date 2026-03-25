@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESGasMiningAndStorage
+  id: GasMiningAndStorage
   hidden: false
   name: Gas Mining And Storage
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/AtmosDevices/GasMiningAndStorage.xml"

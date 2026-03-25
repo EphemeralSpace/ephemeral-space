@@ -49,6 +49,7 @@ let
     python3
     wayland
     nixfmt
+    fontconfig
   ];
 in
 pkgs.mkShell {

@@ -201,16 +201,6 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         // Disable anomaly behaviors
         return;
 // ES END
-
-        if (anomaly.Comp.CurrentBehavior != null)
-            RemoveBehavior(anomaly, anomaly.Comp.CurrentBehavior.Value);
-
-        anomaly.Comp.CurrentBehavior = behaviorProto;
-        var behavior = _prototype.Index(behaviorProto);
-        EntityManager.AddComponents(anomaly, behavior.Components);
-
-        var ev = new AnomalyBehaviorChangedEvent(anomaly, anomaly.Comp.CurrentBehavior, behaviorProto);
-        RaiseLocalEvent(anomaly, ref ev, true);
     }
 
     private void RemoveBehavior(Entity<AnomalyComponent> anomaly, ProtoId<AnomalyBehaviorPrototype> behaviorProto)

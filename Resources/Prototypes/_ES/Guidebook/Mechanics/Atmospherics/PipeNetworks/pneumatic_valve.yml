@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESPneumaticValve
+  id: PneumaticValve
   hidden: false
   name: Pneumatic Valve
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/PipeNetworks/PneumaticValve.xml"

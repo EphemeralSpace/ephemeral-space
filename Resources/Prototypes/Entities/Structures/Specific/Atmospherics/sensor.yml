@@ -28,10 +28,6 @@
       # ES START
       Smoke: ESStationSmoke
       # ES END
-  - type: GuideHelp
-    guides:
-    - DeviceMonitoringAndControl
-    - AtmosphericsSystems
 
 - type: entity
   id: AirSensor

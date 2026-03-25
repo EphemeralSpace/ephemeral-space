@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration;
-using Content.Server.Antag;
 using Content.Server.Chat.Managers;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
@@ -22,8 +21,6 @@ using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Components;
-using Content.Shared.Parallax.Biomes;
-using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Tiles;
 using Robust.Shared.Collections;
@@ -49,10 +46,8 @@ public sealed class ArrivalsSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ActorSystem _actor = default!;
-    [Dependency] private readonly BiomeSystem _biomes = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
@@ -62,7 +57,6 @@ public sealed class ArrivalsSystem : EntitySystem
     [Dependency] private readonly ShuttleSystem _shuttles = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
 
     private EntityQuery<PendingClockInComponent> _pendingQuery;
     private EntityQuery<ArrivalsBlacklistComponent> _blacklistQuery;
@@ -82,13 +76,6 @@ public sealed class ArrivalsSystem : EntitySystem
     ///     The first arrival is a little early, to save everyone 10s
     /// </summary>
     private const float RoundStartFTLDuration = 10f;
-
-    private readonly List<ProtoId<BiomeTemplatePrototype>> _arrivalsBiomeOptions = new()
-    {
-        "Grasslands",
-        "LowDesert",
-        "Snow",
-    };
 
     public override void Initialize()
     {
@@ -275,9 +262,6 @@ public sealed class ArrivalsSystem : EntitySystem
 
             if (ArrivalsGodmode)
                 RemCompDeferred<GodmodeComponent>(pUid);
-
-            if (_actor.TryGetSession(pUid, out var session) && session is not null)
-                _antag.TryMakeLateJoinAntag(session);
         }
     }
 
@@ -549,18 +533,6 @@ public sealed class ArrivalsSystem : EntitySystem
         EnsureComp<ArrivalsSourceComponent>(grid.Value);
         EnsureComp<ProtectedGridComponent>(grid.Value);
         EnsureComp<PreventPilotComponent>(grid.Value);
-
-        // Setup planet arrivals if relevant
-        if (_cfgManager.GetCVar(CCVars.ArrivalsPlanet))
-        {
-            var template = _random.Pick(_arrivalsBiomeOptions);
-            _biomes.EnsurePlanet(mapUid, _protoManager.Index(template));
-            var restricted = new RestrictedRangeComponent
-            {
-                Range = 32f
-            };
-            AddComp(mapUid, restricted);
-        }
 
         _mapSystem.InitializeMap(mapId);
 

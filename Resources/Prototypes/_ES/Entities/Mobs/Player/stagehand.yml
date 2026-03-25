@@ -68,7 +68,6 @@
   - type: ESMindVisuals
   - type: ESBlockInteraction
   - type: ShowElectrocutionHUD
-  - type: ShowAntagIcons
   - type: UserInterface
     interfaces:
       enum.ESVoterUiKey.Key:

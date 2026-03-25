@@ -94,7 +94,7 @@
       item_slot: !type:ContainerSlot {}
   - type: GuideHelp
     guides:
-    - Janitorial
+    - Janitor
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -373,5 +373,5 @@
         spraybottle_slot:  !type:ContainerSlot {}
     - type: GuideHelp
       guides:
-      - Janitorial
+      - Janitor
     - type: DnaSubstanceTrace

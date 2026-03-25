@@ -39,9 +39,11 @@
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "outerClothing" ]
-    - map: [ "back" ]
+    # ES START
     - map: [ "neck" ]
+    - map: [ "outerClothing" ]
+    # ES END
+    - map: [ "back" ]
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
@@ -246,7 +248,7 @@
     # - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
     #   allowedStates:
     #   - Alive
-    # damageCap: 
+    # damageCap:
     # damage:
     #   types:
     #     Heat: -0.25 # Offbrand - more generous passive healing
