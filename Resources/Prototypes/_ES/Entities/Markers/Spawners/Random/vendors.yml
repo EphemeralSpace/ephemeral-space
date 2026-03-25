@@ -68,7 +68,7 @@
   table:
     group:
     - id: ESVendingMachineGenderVendor
-    - id: ESVendingMachineGenderVendor
+    - id: ESVendingMachineWoodgrainVendor
     - id: ESVendingMachineSuspiciousWater
 
 - type: entity
@@ -78,7 +78,7 @@
   components:
   - type: Sprite
     layers:
-    - state: vendor-suswater
+    - state: vendor-special
     - state: dorms
     - state: random
     - state: es
