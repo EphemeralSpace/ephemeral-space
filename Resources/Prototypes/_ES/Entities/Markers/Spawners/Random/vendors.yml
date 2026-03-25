@@ -55,7 +55,7 @@
   components:
   - type: Sprite
     layers:
-    - state: vendor-suswater
+    - state: vendor-special
     - state: random
     - state: es
     - state: c100
