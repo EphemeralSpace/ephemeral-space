@@ -232,8 +232,6 @@
         orGroup: GiftPool
       - id: WeaponFlareGun
         orGroup: GiftPool
-      - id: ResearchDisk
-        orGroup: GiftPool
       - id: Machete
         orGroup: GiftPool
       - id: BaseBallBat

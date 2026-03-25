@@ -35832,12 +35832,6 @@ entities:
     - type: Transform
       pos: 2.5,-35.5
       parent: 2
-    - type: TechnologyDatabase
-      supportedDisciplines:
-      - Industrial
-      - Arsenal
-      - Experimental
-      - CivilianServices
 - proto: ESBaseComputerTerminalCryptoNuke
   entities:
   - uid: 3834

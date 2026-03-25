@@ -14,7 +14,7 @@ using Content.Shared.Construction.Steps;
 using Content.Shared.FixedPoint;
 using Content.Shared.Lathe;
 using Content.Shared.Materials;
-using Content.Shared.Research.Prototypes;
+using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Stacks;
 using Content.Shared.Tools.Components;
 using Robust.Shared.GameObjects;

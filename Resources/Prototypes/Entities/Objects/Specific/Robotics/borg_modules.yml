@@ -794,34 +794,6 @@
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
 
-# science modules
-# todo: if science ever gets their own custom robot, add more "sci" modules.
-- type: entity
-  id: BorgModuleArtifact
-  parent: [ BaseBorgModuleScience, BaseProviderBorgModule ]
-  name: artifact cyborg module
-  components:
-  - type: Sprite
-    layers:
-    - state: science
-    - state: icon-artifacts
-  - type: ItemBorgModule
-    hands:
-    - item: NodeScanner
-    - item: SprayBottle
-    - item: GasAnalyzer
-    - item: BorgDropper
-    - item: ChemistryEmptyVial
-      hand:
-        emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: ChemistryEmptyVial
-        whitelist:
-          components:
-          - FitsInDispenser
-    - item: GeigerCounter
-  - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: node-scanner-module }
-
 - type: entity
   id: BorgModuleAnomaly
   parent: [ BaseBorgModuleScience, BaseProviderBorgModule ]

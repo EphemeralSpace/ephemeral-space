@@ -173,20 +173,6 @@
       Manipulator: 4
       Glass: 5
 
-# yes i know this prototype name is long i'm just following conventions
-- type: entity
-  id: ResearchAndDevelopmentServerMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: R&D server machine board
-  description: A machine printed circuit board for the R&D server.
-  components:
-  - type: Sprite
-    state: science
-  - type: MachineBoard
-    prototype: ResearchAndDevelopmentServer
-    stackRequirements:
-      Plasma: 5
-
 - type: entity
   id: BiogeneratorMachineCircuitboard
   parent: BaseMachineCircuitboard
@@ -250,96 +236,6 @@
       BotanySwab:
         amount: 1
         defaultPrototype: DiseaseSwab
-
-- type: entity
-  id: ArtifactAnalyzerMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: artifact analyzer machine board
-  description: A machine printed circuit board for an artifact analyzer.
-  components:
-    - type: Sprite
-      state: science
-    - type: MachineBoard
-      prototype: MachineArtifactAnalyzer
-      stackRequirements:
-        Manipulator: 1
-        Glass: 5
-
-- type: entity
-  id: ArtifactCrusherMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: artifact crusher machine board
-  description: A machine printed circuit board for an artifact crusher.
-  components:
-  - type: Sprite
-    state: science
-  - type: MachineBoard
-    prototype: MachineArtifactCrusher
-    stackRequirements:
-      Manipulator: 2
-      Glass: 1
-      Steel: 5
-
-- type: entity
-  parent: BaseMachineCircuitboard
-  id: AnomalyVesselCircuitboard
-  name: anomaly vessel machine board
-  description: A machine printed circuit board for an anomaly vessel.
-  components:
-    - type: Sprite
-      state: science
-    - type: MachineBoard
-      prototype: MachineAnomalyVessel
-      stackRequirements:
-        Manipulator: 3
-        Cable: 1
-        PlasmaGlass: 10
-
-- type: entity
-  parent: BaseMachineCircuitboard
-  id: AnomalyVesselExperimentalCircuitboard
-  name: experimental anomaly vessel machine board
-  description: A machine printed circuit board for an experimental anomaly vessel.
-  components:
-  - type: Sprite
-    state: science
-  - type: MachineBoard
-    prototype: MachineAnomalyVesselExperimental
-    stackRequirements:
-      Manipulator: 3
-      Cable: 5
-      PlasmaGlass: 15
-      MetalRod: 4
-
-- type: entity
-  parent: BaseMachineCircuitboard
-  id: AnomalySynchronizerCircuitboard
-  name: anomaly synchronizer machine board
-  description: A machine printed circuit board for an anomaly synchronizer.
-  components:
-    - type: Sprite
-      state: science
-    - type: MachineBoard
-      prototype: MachineAnomalySynchronizer
-      stackRequirements:
-        Manipulator: 7
-        PlasmaGlass: 5
-        Cable: 5
-
-- type: entity
-  parent: BaseMachineCircuitboard
-  id: APECircuitboard
-  name: A.P.E. machine board
-  description: A machine printed circuit board for an A.P.E.
-  components:
-    - type: Sprite
-      state: science
-    - type: MachineBoard
-      prototype: MachineAPE
-      stackRequirements:
-        Manipulator: 2
-        Cable: 1
-        Glass: 1
 
 - type: entity
   id: ThermomachineFreezerMachineCircuitBoard

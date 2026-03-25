@@ -729,26 +729,3 @@
     - id: Hypopen
     sound:
       path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  parent: ChemicalMedipen
-  id: WehMedipen
-  name: weh auto-injector
-  description: A non-refillable medipen containing multiple doses of weh.
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
-    layers:
-    - state: medipen
-      map: [ "enum.SolutionContainerLayers.Fill" ]
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: medipen_empty
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 60
-        reagents:
-        - ReagentId: JuiceThatMakesYouWeh
-          Quantity: 60

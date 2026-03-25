@@ -441,15 +441,6 @@ entity-effect-guidebook-add-to-solution-reaction =
         *[other] cause
     } {$reagent} to be added to its internal solution container
 
-entity-effect-guidebook-artifact-unlock =
-    { $chance ->
-        [1] Helps
-        *[other] help
-        } unlock an alien artifact.
-
-entity-effect-guidebook-artifact-durability-restore =
-    Restores {$restored} durability in active alien artifact nodes.
-
 entity-effect-guidebook-plant-attribute =
     { $chance ->
         [1] Adjusts

@@ -40,15 +40,11 @@
     interfaces:
       enum.LatheUiKey.Key:
         type: LatheBoundUserInterface
-      enum.ResearchClientUiKey.Key:
-        type: ResearchClientBoundUserInterface
   - type: Transform
     anchored: true
   - type: Pullable
   - type: StaticPrice
     price: 800
-  - type: ResearchClient
-  - type: TechnologyDatabase
 
 # a lathe that can be sped up with space lube / slowed down with glue
 - type: entity
@@ -151,10 +147,6 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SecurityAmmoStatic
-  - type: BlueprintReceiver
-    whitelist:
-      tags:
-      - BlueprintAutolathe
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
@@ -223,7 +215,6 @@
     - ScienceExplosives
     - ScienceClothing
     - PowerCells
-    - ScienceWeapons
     - AtmosTools
     - EngineeringWeapons
     - Chemistry
@@ -289,7 +280,6 @@
     - CargoBoards
     - MedicalBoards
     - ServiceBoards
-    - ScienceBoards
     - CameraBoards
     - MechBoards
     - ShuttleBoards

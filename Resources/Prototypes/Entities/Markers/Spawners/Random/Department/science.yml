@@ -13,8 +13,6 @@
         state: icon
   - type: RandomSpawner
     rarePrototypes:
-    - AnomalyScanner
-    - NodeScanner
     - Multitool
     - Igniter
     rareChance: 0.1
@@ -39,8 +37,6 @@
     - !type:GroupSelector
       weight: 90
       children:
-      - id: AnomalyScanner
-      - id: NodeScanner
       - id: NetworkConfigurator
       - id: Wirecutter
       - id: Screwdriver
@@ -67,8 +63,6 @@
       weight: 10
       children:
       - id: ClothingBeltUtilityFilled
-      - id: ResearchDisk
-      - id: ResearchDisk5000
       - id: RandomInstruments
 
 # Major science loot spawner

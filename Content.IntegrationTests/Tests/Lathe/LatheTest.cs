@@ -4,7 +4,7 @@ using Content.IntegrationTests.Fixtures;
 using Content.Shared.Lathe;
 using Content.Shared.Materials;
 using Content.Shared.Prototypes;
-using Content.Shared.Research.Prototypes;
+using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Whitelist;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;

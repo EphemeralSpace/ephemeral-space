@@ -39,9 +39,6 @@
 - type: Tag
   id: Arrow # Storage whitelist: ClothingBeltQuiver
 
-- type: Tag
-  id: ArtifactFragment # Storage whitelist: OreBag. CargoBounty: BountyArtifactFragment. ConstructionGraph: Artifact
-
 ## B ##
 
 - type: Tag

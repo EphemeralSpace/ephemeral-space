@@ -94,7 +94,6 @@
   id: LetterRareEntityTable # Interesting things that can actually be of use, should never be more expensive than 500 spesos
   table: !type:GroupSelector
     children:
-    - id: ResearchDisk5000
     - id: JointRainbow
     - id: StrangePill
       amount: !type:RangeNumberSelector
@@ -162,4 +161,4 @@
     - !type:NestedSelector
       tableId: SyndieMaintLoot
       weight: 0.5
-      
+

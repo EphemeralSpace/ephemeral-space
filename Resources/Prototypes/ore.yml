@@ -92,12 +92,6 @@
   id: OreUraniumCrab
   oreEntity: MobSpawnCrabUranium
 
-- type: ore
-  id: OreArtifactFragment
-  oreEntity: ArtifactFragment1
-  minOreYield: 1
-  maxOreYield: 3
-
 - type: weightedRandomOre
   id: RandomOreDistributionStandard
   weights:
@@ -109,7 +103,6 @@
     OreSilver: 1
     OreUranium: 1
     OreBananium: 0.5
-    OreArtifactFragment: 0.5
 
 - type: weightedRandomOre
   id: OreCrab

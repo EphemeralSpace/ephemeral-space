@@ -937,7 +937,6 @@
     - Epinephrine
     - Leporazine
     - Tricordrazine
-    - Artifexium
     - Ethylredoxrazine
     funChemicals:
     - Desoxyephedrine
@@ -956,7 +955,6 @@
     - CogChamp
     - Honk
     - Carpetium
-    - JuiceThatMakesYouWeh
   - type: Edible
     edible: Drink
     solution: anomaly

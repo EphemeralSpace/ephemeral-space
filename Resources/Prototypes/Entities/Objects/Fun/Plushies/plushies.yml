@@ -357,19 +357,12 @@
     transferAmount: 10
   - type: MeleeWeapon
     soundHit: *PlushieLizardSound
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: JuiceThatMakesYouWeh
-        Quantity: 30
   - type: SolutionContainerManager
     solutions:
       food:
         maxVol: 20
         reagents:
         - ReagentId: Fiber
-          Quantity: 10
-        - ReagentId: JuiceThatMakesYouWeh
           Quantity: 10
   - type: Clothing
     quickEquip: false
@@ -544,19 +537,12 @@
     useSound: *PlushieLizardInversedSound
   - type: MeleeWeapon
     soundHit: *PlushieLizardInversedSound
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: JuiceThatMakesYouHew
-        Quantity: 30
   - type: SolutionContainerManager
     solutions:
       food:
         maxVol: 20
         reagents:
         - ReagentId: Fiber
-          Quantity: 10
-        - ReagentId: JuiceThatMakesYouHew
           Quantity: 10
   - type: Clothing
     quickEquip: false

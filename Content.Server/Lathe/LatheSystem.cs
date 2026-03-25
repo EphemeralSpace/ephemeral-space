@@ -25,8 +25,7 @@ using Content.Shared.Localizations;
 using Content.Shared.Materials;
 using Content.Shared.Power;
 using Content.Shared.ReagentSpeed;
-using Content.Shared.Research.Components;
-using Content.Shared.Research.Prototypes;
+using Content.Shared.Lathe.Prototypes;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -68,9 +67,6 @@ namespace Content.Server.Lathe
             SubscribeLocalEvent<LatheComponent, GetMaterialWhitelistEvent>(OnGetWhitelist);
             SubscribeLocalEvent<LatheComponent, MapInitEvent>(OnMapInit);
             SubscribeLocalEvent<LatheComponent, PowerChangedEvent>(OnPowerChanged);
-            SubscribeLocalEvent<LatheComponent, TechnologyDatabaseModifiedEvent>(OnDatabaseModified);
-            SubscribeLocalEvent<LatheAnnouncingComponent, TechnologyDatabaseModifiedEvent>(OnTechnologyDatabaseModified);
-            SubscribeLocalEvent<LatheComponent, ResearchRegistrationChangedEvent>(OnResearchRegistrationChanged);
 
             SubscribeLocalEvent<LatheComponent, LatheQueueRecipeMessage>(OnLatheQueueRecipeMessage);
             SubscribeLocalEvent<LatheComponent, LatheSyncRequestMessage>(OnLatheSyncRequestMessage);
@@ -80,7 +76,6 @@ namespace Content.Server.Lathe
 
             SubscribeLocalEvent<LatheComponent, BeforeActivatableUIOpenEvent>((u, c, _) => UpdateUserInterfaceState(u, c));
             SubscribeLocalEvent<LatheComponent, MaterialAmountChangedEvent>(OnMaterialAmountChanged);
-            SubscribeLocalEvent<TechnologyDatabaseComponent, LatheGetRecipesEvent>(OnGetRecipes);
             SubscribeLocalEvent<EmagLatheRecipesComponent, LatheGetRecipesEvent>(GetEmagLatheRecipes);
             SubscribeLocalEvent<LatheHeatProducingComponent, LatheStartPrintingEvent>(OnHeatStartPrinting);
         }
@@ -286,28 +281,6 @@ namespace Content.Server.Lathe
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
         }
 
-        /// <summary>
-        /// Adds every unlocked recipe from each pack to the recipes list.
-        /// </summary>
-        public void AddRecipesFromDynamicPacks(ref LatheGetRecipesEvent args, TechnologyDatabaseComponent database, IEnumerable<ProtoId<LatheRecipePackPrototype>> packs)
-        {
-            foreach (var id in packs)
-            {
-                var pack = _proto.Index(id);
-                foreach (var recipe in pack.Recipes)
-                {
-                    if (args.GetUnavailable || database.UnlockedRecipes.Contains(recipe))
-                        args.Recipes.Add(recipe);
-                }
-            }
-        }
-
-        private void OnGetRecipes(EntityUid uid, TechnologyDatabaseComponent component, LatheGetRecipesEvent args)
-        {
-            if (uid == args.Lathe)
-                AddRecipesFromDynamicPacks(ref args, component, args.Comp.DynamicPacks);
-        }
-
         private void GetEmagLatheRecipes(EntityUid uid, EmagLatheRecipesComponent component, LatheGetRecipesEvent args)
         {
             if (uid != args.Lathe)
@@ -317,9 +290,6 @@ namespace Content.Server.Lathe
                 return;
 
             AddRecipesFromPacks(args.Recipes, component.EmagStaticPacks);
-
-            if (TryComp<TechnologyDatabaseComponent>(uid, out var database))
-                AddRecipesFromDynamicPacks(ref args, database, component.EmagDynamicPacks);
         }
 
         private void OnHeatStartPrinting(EntityUid uid, LatheHeatProducingComponent component, LatheStartPrintingEvent args)
@@ -363,58 +333,6 @@ namespace Content.Server.Lathe
             {
                 TryStartProducing(uid, component);
             }
-        }
-
-        private void OnDatabaseModified(EntityUid uid, LatheComponent component, ref TechnologyDatabaseModifiedEvent args)
-        {
-            UpdateUserInterfaceState(uid, component);
-        }
-
-        private void OnTechnologyDatabaseModified(Entity<LatheAnnouncingComponent> ent, ref TechnologyDatabaseModifiedEvent args)
-        {
-            if (args.NewlyUnlockedRecipes is null)
-                return;
-
-            if (!TryGetAvailableRecipes(ent.Owner, out var potentialRecipes))
-                return;
-
-            var recipeNames = new List<string>();
-            foreach (var recipeId in args.NewlyUnlockedRecipes)
-            {
-                if (!potentialRecipes.Contains(new(recipeId)))
-                    continue;
-
-                if (!_proto.TryIndex(recipeId, out LatheRecipePrototype? recipe))
-                    continue;
-
-                var itemName = GetRecipeName(recipe!);
-                recipeNames.Add(Loc.GetString("lathe-unlock-recipe-radio-broadcast-item", ("item", itemName)));
-            }
-
-            if (recipeNames.Count == 0)
-                return;
-
-            var message =
-                recipeNames.Count > ent.Comp.MaximumItems ?
-                    Loc.GetString(
-                        "lathe-unlock-recipe-radio-broadcast-overflow",
-                        ("items", ContentLocalizationManager.FormatList(recipeNames.GetRange(0, ent.Comp.MaximumItems))),
-                        ("count", recipeNames.Count)
-                    ) :
-                    Loc.GetString(
-                        "lathe-unlock-recipe-radio-broadcast",
-                        ("items", ContentLocalizationManager.FormatList(recipeNames))
-                    );
-
-            foreach (var channel in ent.Comp.Channels)
-            {
-                _radio.SendRadioMessage(ent.Owner, message, channel, ent.Owner, escapeMarkup: false);
-            }
-        }
-
-        private void OnResearchRegistrationChanged(EntityUid uid, LatheComponent component, ref ResearchRegistrationChangedEvent args)
-        {
-            UpdateUserInterfaceState(uid, component);
         }
 
         protected override bool HasRecipe(EntityUid uid, LatheRecipePrototype recipe, LatheComponent component)
