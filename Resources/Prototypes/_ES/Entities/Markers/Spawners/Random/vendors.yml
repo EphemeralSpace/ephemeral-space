@@ -68,7 +68,7 @@
   table:
     group:
     - id: ESVendingMachineGenderVendor
-    - id: ESVendingMachineWoodgrainVendor
+    - id: ESVendingMachineWoodgrain
     - id: ESVendingMachineSuspiciousWater
 
 - type: entity
