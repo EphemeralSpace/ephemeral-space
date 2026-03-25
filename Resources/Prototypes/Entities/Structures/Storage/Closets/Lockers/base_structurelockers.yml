@@ -1,10 +1,7 @@
 - type: entity
   id: LockerBase
-  parent: [ DeflectionVerySturdyStructure, ClosetBase ]
+  parent: ClosetBase
   abstract: true
-# ES Start
-  description: A top-of-the-line Nanotrasen storage unit. It's engineered to be as annoying as possible to break in to.
-# ES End
   components:
   - type: AccessReader
   - type: Lock
@@ -69,11 +66,10 @@
     count: 2
 # ES END
 
-# ES TODO: i have no idea what this prototype is even used for??
-# investigate and remove if it is pointless
 - type: entity
   id: LockerBaseSecure
-  parent: LockerBase
+  parent: [ LockerBase, DeflectionVerySturdyStructure ]
+  description: A top-of-the-line Nanotrasen storage unit. It's engineered to be as annoying as possible to break in to.
   abstract: true
   components:
 # ES Start
