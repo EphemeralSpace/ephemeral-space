@@ -16,9 +16,9 @@
   name: black boots
   components:
   - type: Sprite
-    sprite: Clothing/Shoes/Boots/jackboots.rsi
+    sprite: _ES/Clothing/Shoes/Boots/black_boots.rsi
   - type: Clothing
-    sprite: Clothing/Shoes/Boots/jackboots.rsi
+    sprite: _ES/Clothing/Shoes/Boots/black_boots.rsi
 
 - type: entity
   parent: ClothingShoesBaseButcherable
