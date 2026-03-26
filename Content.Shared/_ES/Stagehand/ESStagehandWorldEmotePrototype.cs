@@ -28,7 +28,6 @@ public sealed partial class ESStagehandWorldEmotePrototype : IPrototype
 /// <summary>
 ///     Action event for playing a world emote.
 /// </summary>
-[Serializable, NetSerializable]
 public sealed partial class ESStagehandWorldEmoteEvent : InstantActionEvent
 {
     [DataField(required: true)]
