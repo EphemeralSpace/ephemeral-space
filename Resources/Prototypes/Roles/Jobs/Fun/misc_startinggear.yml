@@ -10,7 +10,7 @@
     eyes: ClothingEyesGlassesSunglasses
     outerClothing: ClothingOuterCoatGentle
     gloves: ClothingHandsGlovesFingerless
-    shoes: ClothingShoesBootsJack
+    shoes: ClothingShoesBootsCombat
     id: PassengerPDA
     ears: ClothingHeadsetGrey
   storage:
@@ -76,7 +76,7 @@
   id: DeathMatchGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorWhite
-    shoes: ClothingShoesBootsJack
+    shoes: ClothingShoesBootsBlack
     ears: ClothingHeadsetGrey
     gloves: ClothingHandsGlovesFingerless
   inhand:

@@ -16,7 +16,7 @@
 - type: startingGear
   id: ESSecurityOfficerGear
   equipment:
-    shoes: ClothingShoesBootsJack
+    shoes: ClothingShoesBootsBlack
     id: SecurityPDA
     gloves: ClothingHandsGlovesColorBlack
     ears: ClothingHeadsetSecurity

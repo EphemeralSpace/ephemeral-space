@@ -165,7 +165,7 @@
     all:
     - id: ClothingUniformJumpsuitSec
     - id: ClothingBackpackSecurity
-    - id: ClothingShoesBootsJack
+    - id: ClothingShoesBootsBlack
 
 - type: entity
   parent: WardrobeSecurity
