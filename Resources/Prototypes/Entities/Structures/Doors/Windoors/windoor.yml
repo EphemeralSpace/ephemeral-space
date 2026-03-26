@@ -11,12 +11,6 @@
   description: It's a sturdy window and a sliding door. Wow!
 
 - type: entity
-  id: WindoorClockwork
-  parent: BaseClockworkWindoor
-  name: clockwork windoor
-  description: It's a sturdy window and a sliding door. Wow!
-
-- type: entity
   id: WindoorPlasma
   parent: BasePlasmaWindoor
   name: plasma windoor
@@ -27,18 +21,6 @@
   parent: BaseSecurePlasmaWindoor
   name: secure plasma windoor
   description: It's a sturdy purple window *and* a sliding door. Spectacular!
-
-- type: entity
-  id: WindoorUranium
-  parent: BaseUraniumWindoor
-  name: uranium windoor
-  description: It's a window and a sliding door. Huh? Oh, and it's green!
-
-- type: entity
-  id: WindoorSecureUranium
-  parent: BaseSecureUraniumWindoor
-  name: secure uranium windoor
-  description: It's a sturdy window and a sliding door. It's so neon green, it might even taste like limes!
 
 # TODO remove these with parameterized prototypes/whatever we end up doing
 # Windoors (alphabetical)
@@ -267,21 +249,6 @@
       board: [ DoorElectronicsCentralCommand ]
 
 - type: entity
-  parent: WindoorSecureUranium
-  id: UraniumWindoorSecureCentralCommandLocked
-  suffix: Central Command, Locked, Uranium
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsCentralCommand ]
-# ES START
-  #- type: WiresPanelSecurity
-  #  securityLevel: medSecurity
-# ES END
-  - type: Wires
-    layoutId: AirlockCommand
-
-- type: entity
   parent: WindoorSecure
   id: WindoorSecureCommandLocked
   suffix: Command, Locked
@@ -335,17 +302,6 @@
   parent: WindoorSecurePlasma
   id: PlasmaWindoorSecureEngineeringLocked
   suffix: Engineering, Locked, Plasma
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsEngineering ]
-  - type: Wires
-    layoutId: AirlockEngineering
-
-- type: entity
-  parent: WindoorSecureUranium
-  id: UraniumWindoorSecureEngineeringLocked
-  suffix: Engineering, Locked, Uranium
   components:
   - type: ContainerFill
     containers:

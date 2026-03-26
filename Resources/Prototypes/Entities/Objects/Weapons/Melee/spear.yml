@@ -120,27 +120,6 @@
     equippedFillBaseName: -fill-
     equippedMaxFillLevels: 1
 
-
-- type: entity
-  name: reinforced spear
-  parent: Spear
-  id: SpearReinforced
-  description: A spear with a reinforced glass shard as a tip.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Melee/reinforced_spear.rsi
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    damage:
-      types:
-        Piercing: 15
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Piercing: 18
-  - type: Construction
-    graph: SpearReinforced
-
 - type: entity
   name: plasma spear
   parent: Spear
@@ -153,35 +132,13 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Piercing: 18
+        Piercing: 15
   - type: DamageOtherOnHit
     damage:
       types:
-        Piercing: 21
+        Piercing: 18
   - type: Construction
     graph: SpearPlasma
-
-- type: entity
-  name: uranium spear
-  parent: Spear
-  id: SpearUranium
-  description: A spear with a uranium shard as a tip.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Melee/uranium_spear.rsi
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    damage:
-      types:
-        Piercing: 10
-        Radiation: 8
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Piercing: 12
-        Radiation: 9
-  - type: Construction
-    graph: SpearUranium
 
 - type: entity
   name: bone spear

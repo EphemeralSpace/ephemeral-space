@@ -1,15 +1,10 @@
 - type: entity
   id: ESShuttleWindowArrivals
-  parent: ReinforcedWindow
+  parent: BaseWindowFulltile
   name: hyper-reinforced shuttle window
   description: Effectively impervious to conventional means of destruction.
   suffix: ES, Indestructible
   components:
-  - type: Destructible
-    thresholds: []
-  - type: DamageVisuals
-    thresholds: [0]
-    disabled: true
   - type: Sprite
     sprite: Structures/Windows/shuttle_window.rsi
   - type: Icon
@@ -21,16 +16,11 @@
 
 - type: entity
   id: ESShuttleWindowDirectionalArrivals
-  parent: WindowDirectional
+  parent: BaseWindowDirectional
   name: hyper-reinforced directional shuttle window
   description: Effectively impervious to conventional means of destruction.
   suffix: ES, Indestructible
   components:
-  - type: Destructible
-    thresholds: []
-  - type: DamageVisuals
-    thresholds: [0]
-    disabled: true
   - type: Sprite
     sprite: Structures/Windows/directional.rsi
     state: reinforced_window
