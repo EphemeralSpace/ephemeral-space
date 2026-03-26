@@ -267,13 +267,6 @@
   id: FatExtractorMachineCircuitboard
   result: FatExtractorMachineCircuitboard
 
-## Supply
-
-- type: latheRecipe
-  parent: [ BaseGoldCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
-  id: CargoTelepadMachineCircuitboard
-  result: CargoTelepadMachineCircuitboard
-
 # Shuttle
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]

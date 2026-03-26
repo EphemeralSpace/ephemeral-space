@@ -1,7 +1,6 @@
 #nullable enable
 using System.Collections.Generic;
 using Content.IntegrationTests.Fixtures;
-using Content.Server.Cargo.Systems;
 using Content.Server.Construction.Completions;
 using Content.Server.Construction.Components;
 using Content.Server.Destructible;
@@ -46,7 +45,6 @@ public sealed class MaterialArbitrageTest : GameTest
         var entManager = server.ResolveDependency<IEntityManager>();
         var protoManager = server.ResolveDependency<IPrototypeManager>();
 
-        var pricing = entManager.System<PricingSystem>();
         var stackSys = entManager.System<StackSystem>();
         var mapSystem = server.System<SharedMapSystem>();
         var latheSys = server.System<LatheSystem>();
@@ -249,14 +247,6 @@ public sealed class MaterialArbitrageTest : GameTest
                 if (_destructionArbitrageIgnore.Contains(id))
                     continue;
 
-                // Check cargo sell price
-                // several constructible entities have no sell price
-                // also this test only really matters if the entity is also purchaseable.... eh..
-                var spawnedPrice = await GetSpawnedPrice(spawnedEnts);
-                var price = await GetPrice(id);
-                if (spawnedPrice > 0 && price > 0)
-                    Assert.That(spawnedPrice, Is.LessThanOrEqualTo(price), $"{id} increases in price after being destroyed\nEntities spawned on destruction: {string.Join(',', spawnedEnts)}");
-
                 // Check lathe production
                 if (latheRecipes.TryGetValue(id, out var recipes))
                 {
@@ -339,12 +329,6 @@ public sealed class MaterialArbitrageTest : GameTest
         {
             foreach (var (id, deconstructedMats) in deconstructionMaterials)
             {
-                // Check cargo sell price
-                var deconstructedPrice = await GetDeconstructedPrice(deconstructedMats);
-                var price = await GetPrice(id);
-                if (deconstructedPrice > 0 && price > 0)
-                    Assert.That(deconstructedPrice, Is.LessThanOrEqualTo(price), $"{id} increases in price after being deconstructed");
-
                 // Check lathe production
                 if (latheRecipes.TryGetValue(id, out var recipes))
                 {
@@ -400,14 +384,6 @@ public sealed class MaterialArbitrageTest : GameTest
                 if (_compositionArbitrageIgnore.Contains(id))
                     continue;
 
-                // Check cargo sell price
-                var materialPrice = await GetDeconstructedPrice(compositionComponent.MaterialComposition);
-                var chemicalPrice = await GetChemicalCompositionPrice(compositionComponent.ChemicalComposition);
-                var sumPrice = materialPrice + chemicalPrice;
-                var price = await GetPrice(id);
-                if (sumPrice > 0 && price > 0)
-                    Assert.That(sumPrice, Is.LessThanOrEqualTo(price), $"{id} increases in price after decomposed into raw materials");
-
                 // Check lathe production
                 if (latheRecipes.TryGetValue(id, out var recipes))
                 {
@@ -440,58 +416,5 @@ public sealed class MaterialArbitrageTest : GameTest
         });
 
         await server.WaitPost(() => mapSystem.DeleteMap(testMap.MapId));
-
-        async Task<double> GetSpawnedPrice(Dictionary<string, float> ents)
-        {
-            double price = 0;
-            foreach (var (id, num) in ents)
-            {
-                price += num * await GetPrice(id);
-            }
-
-            return price;
-        }
-
-        async Task<double> GetPrice(string id)
-        {
-            if (!priceCache.TryGetValue(id, out var price))
-            {
-                await server.WaitPost(() =>
-                {
-                    var ent = entManager.SpawnEntity(id, testMap.GridCoords);
-                    if (entManager.TryGetComponent<StackComponent>(ent, out var stackComp))
-                        stackSys.SetCount((ent, stackComp), 1);
-                    priceCache[id] = price = pricing.GetPrice(ent, false);
-                    entManager.DeleteEntity(ent);
-                });
-            }
-            return price;
-        }
-
-#pragma warning disable CS1998
-        async Task<double> GetDeconstructedPrice(Dictionary<string, int> mats)
-        {
-            double price = 0;
-            foreach (var (id, num) in mats)
-            {
-                var matProto = protoManager.Index<MaterialPrototype>(id);
-                price += num * matProto.Price;
-            }
-            return price;
-        }
-#pragma warning restore CS1998
-
-#pragma warning disable CS1998
-        async Task<double> GetChemicalCompositionPrice(Dictionary<string, FixedPoint2> mats)
-        {
-            double price = 0;
-            foreach (var (id, num) in mats)
-            {
-                var reagentProto = protoManager.Index<ReagentPrototype>(id);
-                price += num.Double() * reagentProto.PricePerUnit;
-            }
-            return price;
-        }
-#pragma warning restore CS1998
     }
 }

@@ -17,7 +17,6 @@ public sealed partial class ShuttleSystem
     private void InitializeGridFills()
     {
         SubscribeLocalEvent<GridSpawnComponent, StationPostInitEvent>(OnGridSpawnPostInit);
-        SubscribeLocalEvent<StationCargoShuttleComponent, StationPostInitEvent>(OnCargoSpawnPostInit);
 
         SubscribeLocalEvent<GridFillComponent, MapInitEvent>(OnGridFillMapInit);
 
@@ -35,47 +34,12 @@ public sealed partial class ShuttleSystem
             {
                 GridSpawns(uid, comp);
             }
-
-            var cargoQuery = AllEntityQuery<StationCargoShuttleComponent>();
-
-            while (cargoQuery.MoveNext(out var uid, out var comp))
-            {
-                CargoSpawn(uid, comp);
-            }
         }
     }
 
     private void OnGridSpawnPostInit(EntityUid uid, GridSpawnComponent component, ref StationPostInitEvent args)
     {
         GridSpawns(uid, component);
-    }
-
-    private void OnCargoSpawnPostInit(EntityUid uid, StationCargoShuttleComponent component, ref StationPostInitEvent args)
-    {
-        CargoSpawn(uid, component);
-    }
-
-    private void CargoSpawn(EntityUid uid, StationCargoShuttleComponent component)
-    {
-        if (!_cfg.GetCVar(CCVars.GridFill))
-            return;
-
-        var targetGrid = _station.GetLargestGrid(uid);
-
-        if (targetGrid == null)
-            return;
-
-        _mapSystem.CreateMap(out var mapId);
-
-        if (_loader.TryLoadGrid(mapId, component.Path, out var ent))
-        {
-            if (HasComp<ShuttleComponent>(ent))
-                TryFTLProximity(ent.Value, targetGrid.Value);
-
-            _station.AddGridToStation(uid, ent.Value);
-        }
-
-        _mapSystem.DeleteMap(mapId);
     }
 
     private bool TryGridSpawn(EntityUid targetGrid, EntityUid stationUid, MapId mapId, GridSpawnGroup group, out EntityUid spawned)

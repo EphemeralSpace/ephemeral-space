@@ -1,14 +1,12 @@
 using System.Globalization;
 using System.Linq;
 using Content.Server.Administration;
-using Content.Server.Cargo.Systems;
 using Content.Server.EUI;
 using Content.Server.Item;
 using Content.Server.Power.Components;
 using Content.Shared.Administration;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Item;
-using Content.Shared.Lathe.Prototypes;
 using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Wieldable.Components;
@@ -26,7 +24,7 @@ public sealed class StatValuesCommand : IConsoleCommand
 
     public string Command => "showvalues";
     public string Description => Loc.GetString("stat-values-desc");
-    public string Help => $"{Command} <cargosell / lathesell / melee / itemsize>";
+    public string Help => $"{Command} <melee / itemsize / drawrate>";
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         if (shell.Player is not { } pSession)
@@ -45,12 +43,6 @@ public sealed class StatValuesCommand : IConsoleCommand
 
         switch (args[0])
         {
-            case "cargosell":
-                message = GetCargo();
-                break;
-            case "lathesell":
-                message = GetLatheMessage();
-                break;
             case "melee":
                 message = GetMelee();
                 break;
@@ -74,58 +66,10 @@ public sealed class StatValuesCommand : IConsoleCommand
     {
         if (args.Length == 1)
         {
-            return CompletionResult.FromOptions(new[] { "cargosell", "lathesell", "melee", "itemsize", "drawrate" });
+            return CompletionResult.FromOptions(new[] { "melee", "itemsize", "drawrate" });
         }
 
         return CompletionResult.Empty;
-    }
-
-    private StatValuesEuiMessage GetCargo()
-    {
-        // Okay so there's no easy way to do this with how pricing works
-        // So we'll just get the first value for each prototype ID which is probably good enough for the majority.
-
-        var values = new List<string[]>();
-        var priceSystem = _entManager.System<PricingSystem>();
-        var metaQuery = _entManager.GetEntityQuery<MetaDataComponent>();
-        var prices = new HashSet<string>(256);
-        var ents = _entManager.GetEntities().ToArray();
-
-        foreach (var entity in ents)
-        {
-            if (!metaQuery.TryGetComponent(entity, out var meta))
-                continue;
-
-            var id = meta.EntityPrototype?.ID;
-
-            // We'll add it even if we don't have it so we don't have to raise the event again because this is probably faster.
-            if (id == null || !prices.Add(id))
-                continue;
-
-            var price = priceSystem.GetPrice(entity);
-
-            if (price == 0)
-                continue;
-
-            values.Add(new[]
-            {
-                id,
-                $"{price:0}",
-            });
-        }
-
-        var state = new StatValuesEuiMessage()
-        {
-            Title = Loc.GetString("stat-cargo-values"),
-            Headers = new List<string>()
-            {
-                Loc.GetString("stat-cargo-id"),
-                Loc.GetString("stat-cargo-price"),
-            },
-            Values = values,
-        };
-
-        return state;
     }
 
     private StatValuesEuiMessage GetItem()
@@ -230,46 +174,6 @@ public sealed class StatValuesCommand : IConsoleCommand
                 Loc.GetString("stat-melee-dps"),
                 Loc.GetString("stat-melee-structural-damage"),
                 Loc.GetString("stat-melee-structural-wield-damage"),
-            },
-            Values = values,
-        };
-
-        return state;
-    }
-
-    private StatValuesEuiMessage GetLatheMessage()
-    {
-        var values = new List<string[]>();
-        var priceSystem = _entManager.System<PricingSystem>();
-
-        foreach (var proto in _proto.EnumeratePrototypes<LatheRecipePrototype>())
-        {
-            var cost = 0.0;
-
-            foreach (var (material, count) in proto.Materials)
-            {
-                var materialPrice = _proto.Index(material).Price;
-                cost += materialPrice * count;
-            }
-
-            var sell = priceSystem.GetLatheRecipePrice(proto);
-
-            values.Add(new[]
-            {
-                proto.ID,
-                $"{cost:0}",
-                $"{sell:0}",
-            });
-        }
-
-        var state = new StatValuesEuiMessage()
-        {
-            Title = Loc.GetString("stat-lathe-values"),
-            Headers = new List<string>()
-            {
-                Loc.GetString("stat-lathe-id"),
-                Loc.GetString("stat-lathe-cost"),
-                Loc.GetString("stat-lathe-sell"),
             },
             Values = values,
         };

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Content.IntegrationTests.Fixtures;
 using Content.Server.VendingMachines;
 using Content.Server.Wires;
-using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Containers;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -108,86 +107,6 @@ namespace Content.IntegrationTests.Tests
   - type: Sprite
     sprite: error.rsi
 ";
-
-// ES START
-        // This test is dumb and doesn't make sense. Why.
-        //[Test]
-// ES END
-        public async Task TestAllRestocksAreAvailableToBuy()
-        {
-            var pair = Pair;
-            var server = pair.Server;
-            await server.WaitIdleAsync();
-
-            var prototypeManager = server.ResolveDependency<IPrototypeManager>();
-            var compFact = server.ResolveDependency<IComponentFactory>();
-            var entityTable = server.EntMan.System<EntityTableSystem>();
-
-            await server.WaitAssertion(() =>
-            {
-                HashSet<string> restocks = new();
-                Dictionary<string, List<string>> restockStores = new();
-
-                // Collect all the prototypes with restock components.
-                foreach (var proto in prototypeManager.EnumeratePrototypes<EntityPrototype>())
-                {
-                    if (proto.Abstract
-                        || pair.IsTestPrototype(proto)
-                        || !proto.HasComponent<VendingMachineRestockComponent>())
-                    {
-                        continue;
-                    }
-
-                    restocks.Add(proto.ID);
-                }
-
-                // Collect all the prototypes with EntityTableContainerFills referencing those entities.
-                foreach (var proto in prototypeManager.EnumeratePrototypes<EntityPrototype>())
-                {
-                    if (!proto.TryGetComponent<EntityTableContainerFillComponent>(out var storage, compFact))
-                        continue;
-
-                    var containers = storage.Containers;
-
-                    if (!containers.TryGetValue(SharedEntityStorageSystem.ContainerName, out var container)) // We only care about this container type.
-                        continue;
-
-                    List<string> restockStore = new();
-
-                    foreach (var spawnEntry in entityTable.GetSpawns(container))
-                    {
-                        if (restocks.Contains(spawnEntry))
-                            restockStore.Add(spawnEntry);
-                    }
-
-                    if (restockStore.Count > 0)
-                        restockStores.Add(proto.ID, restockStore);
-                }
-
-                // Iterate through every CargoProduct and make sure each
-                // prototype with a restock component is referenced in a
-                // purchaseable entity with an EntityTableContianerFill.
-                foreach (var proto in prototypeManager.EnumeratePrototypes<CargoProductPrototype>())
-                {
-                    if (restockStores.ContainsKey(proto.Product))
-                    {
-                        foreach (var entry in restockStores[proto.Product])
-                            restocks.Remove(entry);
-
-                        restockStores.Remove(proto.Product);
-                    }
-                }
-
-                Assert.Multiple(() =>
-                {
-                    Assert.That(restockStores, Has.Count.EqualTo(0),
-                        $"Some entities containing entities with VendingMachineRestock components are unavailable for purchase: \n - {string.Join("\n - ", restockStores.Keys)}");
-
-                    Assert.That(restocks, Has.Count.EqualTo(0),
-                        $"Some entities with VendingMachineRestock components are unavailable for purchase: \n - {string.Join("\n - ", restocks)}");
-                });
-            });
-        }
 
         [Test]
         public async Task TestCompleteRestockProcess()
