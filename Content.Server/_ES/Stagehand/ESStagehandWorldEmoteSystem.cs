@@ -38,8 +38,8 @@ public sealed class ESStagehandWorldEmoteSystem : EntitySystem
 
         _notif.SendStagehandNotification(Loc.GetString(proto.Message, ("entity", ent.Owner)));
         var coords = _xform.GetMapCoordinates(ent.Owner);
-        var stagehandsInRange = Filter.Empty().AddInRange(coords, 4f).RemoveWhereAttachedEntity(e => !HasComp<ESStagehandComponent>(e));
-        var playersInRange = Filter.Empty().AddInRange(coords, 4f).RemoveWhereAttachedEntity(e => HasComp<ESStagehandComponent>(e));
+        var stagehandsInRange = Filter.Empty().AddInRange(coords, 7f).RemoveWhereAttachedEntity(e => !HasComp<ESStagehandComponent>(e));
+        var playersInRange = Filter.Empty().AddInRange(coords, 7f).RemoveWhereAttachedEntity(e => HasComp<ESStagehandComponent>(e));
 
         var resolved = _audio.ResolveSound(proto.Sound);
         _audio.PlayGlobal(resolved, stagehandsInRange, false);
@@ -47,7 +47,7 @@ public sealed class ESStagehandWorldEmoteSystem : EntitySystem
         if (_random.Prob(PlayForPlayersInRoundChance))
         {
             _popup.PopupEntity(Loc.GetString("es-stagehand-emote-performers-heard"), ent, ent, PopupType.SmallCaution);
-            _audio.PlayGlobal(resolved, playersInRange, false, proto.Sound.Params.WithVolume(-12f));
+            _audio.PlayGlobal(resolved, playersInRange, false, proto.Sound.Params.WithVolume(-7f));
         }
 
         args.Handled = true;
