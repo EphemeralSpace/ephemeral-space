@@ -34,6 +34,7 @@
   - type: ESTroupeRule
     troupe: ESParasite
     priority: 10
+  - type: ESParasiteRule
 
 - type: entity
   parent: ESBaseTroupeRule

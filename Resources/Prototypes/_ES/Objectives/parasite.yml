@@ -11,6 +11,7 @@
   - type: ESTroupeOutnumberObjective
     troupe: ESParasite
 
+# Mask objectives, but used broadly for all parasites
 - type: entity
   parent: ESBaseMaskObjective
   id: ESObjectiveParasiteDie
