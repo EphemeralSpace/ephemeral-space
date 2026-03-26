@@ -17,8 +17,6 @@
       quickInsert: true
       maxItemSize: Huge
       whitelist:
-        components:
-        - Delivery
         tags:
         - Paper
         - Document

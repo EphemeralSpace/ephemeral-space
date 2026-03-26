@@ -373,7 +373,6 @@
     - state: icon-appraisal
   - type: ItemBorgModule
     hands:
-    - item: AppraisalTool
     - item: Pen
     - item: HandLabeler
     - item: RubberStampApproved

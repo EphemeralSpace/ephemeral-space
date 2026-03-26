@@ -31,9 +31,6 @@
   id: AnomalyHost # Targeting whitelist: BaseAnomalyInjector
 
 - type: Tag
-  id: AppraisalTool # Storage whitelist: BaseClothingBeltEngineering
-
-- type: Tag
   id: Apron # ConstructionGraph: scraparmor
 
 - type: Tag
