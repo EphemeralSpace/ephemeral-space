@@ -82,8 +82,6 @@
     containers:
       entity_storage: !type:Container
       paper_label: !type:ContainerSlot
-  - type: StaticPrice
-    price: 50
 
 - type: entity
   id: BodyBagFolded

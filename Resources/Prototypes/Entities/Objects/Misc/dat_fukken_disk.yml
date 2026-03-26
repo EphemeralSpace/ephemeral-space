@@ -10,9 +10,6 @@
   - type: Sprite
     sprite: Objects/Misc/nukedisk.rsi
     state: icon
-  - type: StaticPrice
-    price: 2000
-  - type: CargoSellBlacklist
   - type: ArrivalsBlacklist
   - type: WarpPoint
     follow: true
@@ -38,8 +35,6 @@
   - type: Sprite
     sprite: Objects/Misc/nukedisk.rsi
     state: icon
-  - type: StaticPrice
-    price: 1 # it's worth even less than normal items. Perfection.
   - type: Tag
     tags:
     - FakeNukeDisk

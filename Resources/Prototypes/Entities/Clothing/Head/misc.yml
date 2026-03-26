@@ -185,8 +185,6 @@
   - type: PhysicalComposition #you can't just pass up some free plastic!
     materialComposition:
       Plastic: 100
-  - type: StaticPrice
-    price: 25
 
 - type: entity
   parent: ClothingHeadBase
@@ -200,8 +198,6 @@
     sprite: Clothing/Head/Misc/fancycrown.rsi
   - type: TypingIndicatorClothing
     proto: regal
-  - type: StaticPrice
-    price: 3000
   - type: AddAccentClothing
     accent: MobsterAccent
 
@@ -220,8 +216,6 @@
     sprite: Clothing/Head/Hats/catears.rsi
   - type: AddAccentClothing
     accent: OwOAccent
-  - type: StaticPrice
-    price: 15000
 
 - type: entity
   parent: [ClothingHeadHatCatEars, BaseToggleClothing]
@@ -358,8 +352,6 @@
   - type: Tag
     tags:
       - WhitelistChameleon
-  - type: StaticPrice
-    price: 1
 
 - type: entity
   parent: ClothingHeadBase

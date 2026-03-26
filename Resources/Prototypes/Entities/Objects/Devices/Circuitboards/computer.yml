@@ -10,8 +10,6 @@
       state: cpuboard
     - type: Item
       storedRotation: -90
-    - type: StaticPrice
-      price: 100
     - type: PhysicalComposition
       materialComposition:
         Glass: 230
@@ -171,8 +169,6 @@
       alternatePrototype:
         ESComputerTabletop: ESComputerIdTabletop
 # ES END
-    - type: StaticPrice
-      price: 750
     - type: Tag
       tags:
       - HighRiskItem
@@ -323,8 +319,6 @@
   components:
     - type: Sprite
       state: cpu_service
-    - type: StaticPrice
-      price: 150
     - type: ComputerBoard
       prototype: ComputerMassMedia
 

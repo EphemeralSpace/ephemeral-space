@@ -82,8 +82,6 @@
   - type: Construction
     graph: AirlockShuttle
     node: airlock
-  - type: StaticPrice
-    price: 350
   - type: Paintable
     group: null
 

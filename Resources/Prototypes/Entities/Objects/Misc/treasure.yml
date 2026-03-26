@@ -16,8 +16,6 @@
     energy: 0.5
     castShadows: false
     color: "#0000ff"
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   parent: BaseItem
@@ -38,8 +36,6 @@
         harddisk: ""
         harddisk_mini: ""
         harddisk_micro: ""
-  - type: StaticPrice
-    price: 275
 
 - type: entity
   parent: BaseItem
@@ -53,8 +49,6 @@
     - state: flopdrive
   - type: Item
     storedRotation: -90
-  - type: StaticPrice
-    price: 350
 
 - type: entity
   parent: BaseItem
@@ -68,8 +62,6 @@
     - state: cddrive
   - type: Item
     storedRotation: -90
-  - type: StaticPrice
-    price: 300
 
 - type: entity
   parent: BaseItem
@@ -83,8 +75,6 @@
     - state: cpu_super
   - type: Item
     size: Tiny
-  - type: StaticPrice
-    price: 750
 
 - type: entity
   parent: BaseItem
@@ -106,8 +96,6 @@
         energy: ""
         synchronizer: ""
         stabilizer: ""
-  - type: StaticPrice
-    price: 120
 
 - type: entityTable
   id: TreasureCoinPile
@@ -150,8 +138,6 @@
     state: coin_iron
   - type: Item
     size: Tiny
-  - type: StaticPrice
-    price: 75
 
 - type: entity
   parent: TreasureCoinIron
@@ -159,8 +145,6 @@
   components:
   - type: Sprite
     state: coin_silver
-  - type: StaticPrice
-    price: 125
 
 - type: entity
   parent: TreasureCoinIron
@@ -168,8 +152,6 @@
   components:
   - type: Sprite
     state: coin_gold
-  - type: StaticPrice
-    price: 175
 
 - type: entity
   parent: TreasureCoinIron
@@ -177,8 +159,6 @@
   components:
   - type: Sprite
     state: coin_adamantine
-  - type: StaticPrice
-    price: 250
 
 - type: entity
   parent: TreasureCoinIron
@@ -186,6 +166,4 @@
   components:
   - type: Sprite
     state: coin_diamond
-  - type: StaticPrice
-    price: 500
 

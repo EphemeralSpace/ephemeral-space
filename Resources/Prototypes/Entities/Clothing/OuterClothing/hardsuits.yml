@@ -428,8 +428,6 @@
     - Hardsuit
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRd
-  - type: StaticPrice
-    price: 750
 
 #Head of Security's Hardsuit
 - type: entity
@@ -539,8 +537,6 @@
     - WhitelistChameleon
     - CorgiWearable
     - ScurretWearable
-  - type: StaticPrice
-    price: 5000
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -716,8 +712,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateEVA
-  - type: StaticPrice
-    price: 0
 
 #Pirate Captain Hardsuit
 - type: entity
@@ -751,8 +745,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCap
-  - type: StaticPrice
-    price: 0
 
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit

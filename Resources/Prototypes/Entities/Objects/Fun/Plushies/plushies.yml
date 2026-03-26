@@ -33,8 +33,6 @@
   - type: PhysicalComposition
     materialComposition:
       Cloth: 100
-  - type: StaticPrice
-    price: 5
   - type: Edible
     requiresSpecialDigestion: true
     useSound: *BasePlushieSound

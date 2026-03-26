@@ -108,8 +108,6 @@
     sound:
       path: "/Audio/Machines/door_lock_off.ogg"
     positional: true
-  - type: StaticPrice
-    price: 2500
 
 - type: entity
   parent: [FragileGrenadeBase, ScatteringGrenadeBase, BaseSyndicateContraband]
@@ -164,8 +162,6 @@
     sound:
       path: "/Audio/Effects/flash_bang.ogg"
     positional: true
-  - type: StaticPrice
-    price: 1000
 
 - type: entity
   parent: [FragileGrenadeBase, ScatteringGrenadeBase]

@@ -175,8 +175,6 @@
     node: windoor
     containers:
     - board
-  - type: StaticPrice
-    price: 150
   - type: PryUnpowered
 # ES Start
   - type: ESSparkOnHit
@@ -251,8 +249,6 @@
   - type: Construction
     graph: Windoor
     node: windoorSecure
-  - type: StaticPrice
-    price: 350
   - type: Tag
     tags:
       - SecureWindoor
@@ -324,8 +320,6 @@
   - type: Construction
     graph: Windoor
     node: pwindoor
-  - type: StaticPrice
-    price: 500
   - type: RadiationBlocker
     resistance: 2
 
@@ -394,8 +388,6 @@
   - type: Construction
     graph: Windoor
     node: pwindoorSecure
-  - type: StaticPrice
-    price: 500
   - type: RadiationBlocker
     resistance: 4
   - type: Tag
@@ -469,8 +461,6 @@
   - type: Construction
     graph: Windoor
     node: uwindoor
-  - type: StaticPrice
-    price: 560
   - type: RadiationBlocker
     resistance: 3
 
@@ -539,8 +529,6 @@
   - type: Construction
     graph: Windoor
     node: uwindoorSecure
-  - type: StaticPrice
-    price: 750
   - type: RadiationBlocker
     resistance: 5
   - type: Tag

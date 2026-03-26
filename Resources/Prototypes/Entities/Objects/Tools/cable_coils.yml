@@ -22,10 +22,6 @@
     storedRotation: -90
   - type: CablePlacer
   - type: Clickable
-  - type: StaticPrice
-    price: 0
-  - type: StackPrice
-    price: 2.25
   - type: PhysicalComposition
     materialComposition:
       Steel: 15

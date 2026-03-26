@@ -187,8 +187,6 @@
     materialComposition:
       Steel: 50
       Plastic: 100
-  - type: StaticPrice
-    price: 30 # increases in price after decomposed into raw materials
 
 - type: entity
   parent: ClothingMaskBase
@@ -341,8 +339,6 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 25
-  - type: StaticPrice
-    price: 5
 
 - type: entity
   parent: ClothingMaskBase
@@ -735,8 +731,6 @@
     materialComposition:
       Steel: 200
       Glass: 100
-  - type: StaticPrice
-    price: 100
   - type: Tag
     tags:
     - WhitelistChameleon

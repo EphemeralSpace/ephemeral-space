@@ -59,5 +59,3 @@
         acts: ["Destruction"]
   - type: WiresVisuals
   - type: WiresPanel
-  - type: StaticPrice
-    price: 1500

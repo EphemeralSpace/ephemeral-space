@@ -37,8 +37,6 @@
   - type: BatteryAmmoProvider
     proto: ESEnergyBolt
     fireCost: 70
-  - type: StaticPrice
-    price: 420
 
 # TODO: Try giving this a small pointlight to see if it looks good.
 - type: entity
@@ -141,5 +139,3 @@
     fireCost: 48
   - type: BatterySelfRecharger
     autoRechargeRate: 5
-  - type: StaticPrice
-    price: 420

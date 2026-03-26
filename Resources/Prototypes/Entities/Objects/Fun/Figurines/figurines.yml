@@ -12,8 +12,6 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 100
-  - type: StaticPrice
-    price: 75
   - type: Tag
     tags:
     - Figurine

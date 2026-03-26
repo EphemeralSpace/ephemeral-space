@@ -556,8 +556,6 @@
       materialComposition:
         Steel: 25
         Plastic: 25
-    - type: StaticPrice
-      price: 15
 
 - type: entity
   id: PowerCageRechargerCircuitboard
@@ -578,8 +576,6 @@
       materialComposition:
         Steel: 30
         Plastic: 30
-    - type: StaticPrice
-      price: 30
 
 - type: entity
   id: BorgChargerCircuitboard
@@ -599,8 +595,6 @@
       materialComposition:
         Steel: 25
         Plastic: 25
-    - type: StaticPrice
-      price: 15
 
 - type: entity
   id: WeaponCapacitorRechargerCircuitboard
@@ -620,8 +614,6 @@
       materialComposition:
         Steel: 25
         Plastic: 25
-    - type: StaticPrice
-      price: 15
 
 - type: entity
   id: TurboItemRechargerCircuitboard
@@ -663,8 +655,6 @@
         Glass: 200
       chemicalComposition:
         Silicon: 20
-    - type: StaticPrice
-      price: 58
 
 - type: entity
   parent: BaseMachineCircuitboard
@@ -718,8 +708,6 @@
         Glass: 200
       chemicalComposition:
         Silicon: 20
-    - type: StaticPrice
-      price: 40
 
 - type: entity
   id: ThrusterMachineCircuitboard
@@ -767,8 +755,6 @@
         Glass: 200
       chemicalComposition:
         Silicon: 20
-    - type: StaticPrice
-      price: 40
 
 - type: entity
   id: PortableGeneratorJrPacmanMachineCircuitboard
@@ -787,8 +773,6 @@
         Glass: 200
       chemicalComposition:
         Silicon: 20
-    - type: StaticPrice
-      price: 40
 
 - type: entity
   id: ReagentGrinderMachineCircuitboard

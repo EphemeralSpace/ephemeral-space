@@ -91,5 +91,3 @@
     damage:
       types:
         Blunt: 14
-  - type: StaticPrice
-    price: 1000

@@ -54,8 +54,6 @@
           - !type:PlaySoundBehavior
             sound:
               collection: MetalBreak
-    - type: StaticPrice
-      price: 300
   placement:
     mode: SnapgridCenter
 
@@ -162,8 +160,6 @@
       offset: 0, 2
   - type: Anchorable
     flags: None
-  - type: StaticPrice
-    price: 1500
 
 - type: entity
   id: ThrusterUnanchored
@@ -263,8 +259,6 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Electronic
-  - type: StaticPrice
-    price: 2000
 
 - type: entity
   id: GyroscopeUnanchored

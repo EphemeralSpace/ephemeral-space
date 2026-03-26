@@ -23,8 +23,6 @@
     slotId: charger_slot
     portable: true
   - type: PowerChargerVisuals
-  - type: StaticPrice
-    price: 500
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
   - type: ContainerContainer

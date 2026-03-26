@@ -18,8 +18,6 @@
         type: InstrumentBoundUserInterface
   - type: Item
     size: Normal
-  - type: StaticPrice
-    price: 200
 
 #These are for instruments that are larger, can't be picked up, or have collision
 - type: entity
@@ -68,8 +66,6 @@
         - Opaque
         - MidImpassable
         - BulletImpassable
-  - type: StaticPrice
-    price: 300
   - type: RequireProjectileTarget
 
 - type: entity

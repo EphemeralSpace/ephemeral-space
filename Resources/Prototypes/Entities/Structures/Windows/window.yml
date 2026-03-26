@@ -102,8 +102,6 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
-  - type: StaticPrice
-    price: 100
   - type: BlockWeather
 
 - type: entity
@@ -122,8 +120,6 @@
     graph: Window
     node: tintedWindow
   - type: Occluder
-  - type: StaticPrice
-    price: 70
 
 - type: entity
   id: WindowRCDResistant
@@ -227,8 +223,6 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks_directional.rsi
-  - type: StaticPrice
-    price: 15
 
 - type: entity
   id: WindowDirectionalRCDResistant
@@ -254,8 +248,6 @@
   - type: Icon
     sprite: Structures/Windows/directional.rsi
     state: frosted_window
-  - type: StaticPrice
-    price: 35
 
 - type: entity
   parent: Window

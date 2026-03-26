@@ -672,8 +672,6 @@
     - tooth
     - tooth_2
     - tooth_3
-  - type: StackPrice
-    price: 50
   - type: Tag
     tags:
     - ToothSpaceCarp
@@ -714,8 +712,6 @@
     - tooth
     - tooth_2
     - tooth_3
-  - type: StackPrice
-    price: 150
   - type: Tag
     tags:
     - Knife
@@ -799,10 +795,6 @@
     layers:
     - state: goliath_hide
       map: [ "base" ]
-  - type: StaticPrice
-    price: 0
-  - type: StackPrice
-    price: 1500
   - type: Appearance
   - type: Stack
     stackType: GoliathHide

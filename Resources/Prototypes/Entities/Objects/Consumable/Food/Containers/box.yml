@@ -238,8 +238,6 @@
   - type: EntityStorageVisuals
     stateDoorOpen: box-open
     stateDoorClosed: box
-  - type: StaticPrice
-    price: 0
 
 - type: entity
   parent: FoodBoxPizza

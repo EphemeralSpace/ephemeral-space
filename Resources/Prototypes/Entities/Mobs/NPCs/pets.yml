@@ -821,8 +821,6 @@
   - type: Item
     sprite: Mobs/Pets/Smile/smile.rsi
     size: Huge
-  - type: MobPrice
-    price: 3000 # it is a truly valuable creature
   - type: GhostRole
     name: ghost-role-information-smile-name
     description: ghost-role-information-smile-description

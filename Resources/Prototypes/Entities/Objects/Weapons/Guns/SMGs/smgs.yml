@@ -58,8 +58,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   name: Atreides
@@ -121,8 +119,6 @@
     steps: 6
     zeroVisible: true
   - type: Appearance
-  - type: StaticPrice
-    price: 5000
 
 - type: entity
   name: C-20r ROW #I think ROW stands for Recharging Onboard Weapon so i'm following the L6C's example
@@ -321,5 +317,3 @@
   - type: ChamberMagazineAmmoProvider
     autoEject: false
   - type: Appearance
-  - type: StaticPrice
-    price: 5000

@@ -41,8 +41,6 @@
         maxVol: 30
   - type: SolutionTransfer
     maxTransferAmount: 30
-  - type: StaticPrice
-    price: 100
   - type: Destructible
     thresholds:
     - trigger: &DamageTrigger100
@@ -87,8 +85,6 @@
         maxVol: 10
   - type: SolutionTransfer
     maxTransferAmount: 10
-  - type: StaticPrice
-    price: 50
   - type: PhysicalComposition
     materialComposition:
       Glass: 10

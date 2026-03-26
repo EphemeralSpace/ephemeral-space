@@ -150,15 +150,6 @@
 
 - type: entity
   parent: BaseAGhostAction
-  id: ActionAGhostShowCargo
-  name: Cargo Ordering Interface
-  description: View a Cargo Ordering Interface.
-  components:
-  - type: InstantAction
-    event: !type:ToggleIntrinsicUIEvent { key: enum.CargoConsoleUiKey.Orders }
-
-- type: entity
-  parent: BaseAGhostAction
   id: ActionAGhostShowCrewMonitoring
   name: Crew Monitoring Interface
   description: View a Crew Monitoring Interface.

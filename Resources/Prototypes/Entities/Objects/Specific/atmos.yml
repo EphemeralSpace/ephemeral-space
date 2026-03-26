@@ -26,8 +26,6 @@
           enabled:
             True: { state: working }
             False: { state: icon }
-  - type: StaticPrice
-    price: 80
   - type: PhysicalComposition
     materialComposition:
       Steel: 400

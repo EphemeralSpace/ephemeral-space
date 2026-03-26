@@ -71,8 +71,6 @@
   - type: Transform
     anchored: true
   - type: AntiRottingContainer
-  - type: StaticPrice
-    price: 200
 
 - type: entity
   id: Crematorium

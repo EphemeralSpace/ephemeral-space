@@ -269,6 +269,4 @@
     coolingCoefficient: 0.01
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCarp
-  - type: StaticPrice
-    price: 1500
 

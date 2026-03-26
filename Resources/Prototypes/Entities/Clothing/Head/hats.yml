@@ -445,8 +445,6 @@
     sprite: Clothing/Head/Hats/outlawhat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/outlawhat.rsi
-  - type: StaticPrice
-    price: 500
   - type: Tag
     tags:
     - PetWearable

@@ -151,8 +151,6 @@
     damageModifierSet: StrongMetallic
   - type: PlacementReplacement
     key: walls
-  - type: StaticPrice
-    price: 150
   - type: PriorityDock
     tag: DockArrivals
   - type: ContainerFill
