@@ -1,0 +1,18 @@
+- type: startingGear
+  id: BoxingKangarooGear
+  equipment:
+    gloves: ClothingHandsGlovesBoxingBlue
+
+- type: startingGear
+  id: MobMonkeyGear
+  equipment:
+    head: ClothingHeadHatTophat
+    ears: ClothingHeadsetService
+    jumpsuit: ClothingUniformJumpsuitJacketMonkey
+    id: PunPunIDCard
+
+- type: startingGear
+  id: MobPollyGear
+  equipment:
+    ears: ClothingHeadsetEngineering
+
