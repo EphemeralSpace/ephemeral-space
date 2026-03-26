@@ -333,6 +333,9 @@ PortableGeneratorSuperPacman: PortableGeneratorPacman
 # 2026-3-23
 FireAxeCabinetFilled: ESFireAxeCabinetFilled
 
+# 2026-3-26
+CrateCargoParcelWrap: null
+
 # ES END
 
 # 2026-01-07
