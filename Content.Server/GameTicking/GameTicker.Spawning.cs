@@ -421,15 +421,10 @@ namespace Content.Server.GameTicking
 
         public void Respawn(ICommonSession player)
         {
-// ES START
-            // _mind.WipeMind(player);
-// ES END
             _adminLogger.Add(LogType.Respawn, LogImpact.Medium, $"Player {player} was respawned.");
 
             if (LobbyEnabled)
-// ES START
                 PlayerJoinLobby(player, attachCharacter: true);
-// ES END
             else
                 SpawnPlayer(player, EntityUid.Invalid);
         }
