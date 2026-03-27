@@ -88,6 +88,8 @@ es-mask-demolitionist-name = Demolitionist
 es-mask-demolitionist-desc = As a Demolitionist, you have been trained by the Syndicate for both controlled and uncontrolled "demolitions"--including in the use of explosive implants, should things turn out that way.
 
 # Paraiste masks
+es-mask-troupe-parasite-examine = They're a fellow host of the [bold][color=tan]parasitic infection[/color][/bold]. Collude with them to spread the infection.
+
 es-mask-psychid-name = Psychid
 es-mask-psychid-desc = As a psychid, get someone to kill you so you can steal their body and spread the infection.
 
