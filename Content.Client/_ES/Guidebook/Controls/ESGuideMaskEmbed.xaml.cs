@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Client._ES.UI.Controls.Layout;
 using Content.Client.Guidebook.Controls;
 using Content.Client.Guidebook.Richtext;
 using Content.Shared._ES.Masks;
@@ -14,7 +15,7 @@ using Robust.Shared.Utility;
 namespace Content.Client._ES.Guidebook.Controls;
 
 [GenerateTypedNameReferences]
-public sealed partial class ESGuideMaskEmbed : BoxContainer, IDocumentTag, IPrototypeRepresentationControl
+public sealed partial class ESGuideMaskEmbed : VStack, IDocumentTag, IPrototypeRepresentationControl
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ILogManager _log = default!;
@@ -41,7 +42,7 @@ public sealed partial class ESGuideMaskEmbed : BoxContainer, IDocumentTag, IProt
 
         if (!_proto.TryIndex<ESMaskPrototype>(proto, out var mask))
         {
-            _sawmill.Error($"Mask prototype passed to mask embed task is invalid: {proto}");
+            _sawmill.Error($"Mask prototype passed to mask embed tag is invalid: {proto}");
             control = null;
             return false;
         }
