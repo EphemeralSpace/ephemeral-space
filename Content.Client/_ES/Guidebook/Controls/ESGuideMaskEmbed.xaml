@@ -1,0 +1,15 @@
+<BoxContainer xmlns="https://spacestation14.io"
+              xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+              Orientation="Vertical"
+              Margin="5 5 5 5">
+    <PanelContainer HorizontalExpand="True">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BorderThickness="1" BorderColor="#777777" BackgroundColor="#26262D"/>
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation="Vertical">
+            <RichTextLabel Name="MaskName" HorizontalAlignment="Center" Margin="5 10 5 5"/>
+            <RichTextLabel Name="MaskDescription" Margin="5 5 5 5"/>
+            <RichTextLabel Name="MaskProhibitedJobs" Margin="5 5 5 5"/>
+        </BoxContainer>
+    </PanelContainer>
+</BoxContainer>
