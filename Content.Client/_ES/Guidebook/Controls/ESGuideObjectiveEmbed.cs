@@ -8,10 +8,10 @@ using Robust.Client.UserInterface;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._ES.Guidebook;
+namespace Content.Client._ES.Guidebook.Controls;
 
 [UsedImplicitly]
-public sealed class ESGBObjectiveEmbed : Control, IDocumentTag
+public sealed class ESGuideObjectiveEmbed : Control, IDocumentTag
 {
     [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly IEntitySystemManager _sysMan = default!;
@@ -25,7 +25,7 @@ public sealed class ESGBObjectiveEmbed : Control, IDocumentTag
     private EntProtoId? _objective;
     private EntityUid? _managedEnt;
 
-    public ESGBObjectiveEmbed()
+    public ESGuideObjectiveEmbed()
     {
         IoCManager.InjectDependencies(this);
 
