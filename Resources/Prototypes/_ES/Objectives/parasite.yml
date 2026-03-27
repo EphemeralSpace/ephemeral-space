@@ -2,7 +2,7 @@
   parent: ESBaseMaskObjective
   id: ESObjectiveParasiteInfect
   name: Infect the station
-  description: Spread the parasites across the station. Once you have the numbers, it'll be time to swarm.
+  description: Spread the parasites across the station. Once the infected make up the majority, it'll be time to swarm.
   components:
   - type: ESObjective
     icon:
