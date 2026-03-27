@@ -1,13 +1,42 @@
 - type: entity
+  id: BaseMorgue
+  parent: BaseStructure
+  abstract: true
+  components:
+  - type: ESDestroyOnUnanchor
+  - type: InteractionOutline
+  - type: Appearance
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: EntityStorage
+    isCollidableWhenOpen: true
+    showContents: false
+    capacity: 1
+    enteringOffset: 0, -1
+    closeSound:
+      path: /Audio/Items/deconstruct.ogg
+    openSound:
+      path: /Audio/Items/deconstruct.ogg
+  - type: EntityStorageLayingDownOverride
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+
+- type: entity
   id: Morgue
-  parent: DeflectionSturdyStructure
+  parent: BaseMorgue
   name: morgue
   description: Used to store bodies until someone fetches them. Includes a high-tech alert system for false-positives!
-  placement:
-    mode: SnapgridCenter
   components:
-  - type: Pullable
-  - type: Anchorable
   - type: Sprite
     sprite: Structures/Storage/morgue.rsi
     layers:
@@ -21,36 +50,7 @@
       visible: false
       map: ["enum.MorgueVisualLayers.Light"]
       shader: unshaded
-  - type: Clickable
-  - type: InteractionOutline
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,0.5"
-        density: 1000
-        mask:
-        - MachineMask
-        layer:
-        - HalfWallLayer
-  - type: EntityStorage
-    isCollidableWhenOpen: true
-    showContents: false
-    capacity: 1
-    enteringOffset: 0, -1
-    closeSound:
-      path: /Audio/Items/deconstruct.ogg
-    openSound:
-      path: /Audio/Items/deconstruct.ogg
-  - type: EntityStorageLayingDownOverride
   - type: Morgue
-  - type: ContainerContainer
-    containers:
-      entity_storage: !type:Container
-  - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.StorageVisuals.Open:
@@ -69,17 +69,13 @@
           HasContents: {visible: true, state: morgue_nomob_light}
           HasMob: {visible: true, state: morgue_nosoul_light}
           HasSoul: {visible: true, state: morgue_soul_light}
-  - type: Transform
-    anchored: true
   - type: AntiRottingContainer
 
 - type: entity
   id: Crematorium
-  parent: DeflectionSturdyStructure
+  parent: BaseMorgue
   name: crematorium
   description: A human incinerator. Works well on barbecue nights.
-  placement:
-    mode: SnapgridCenter
   components:
   - type: Sprite
     sprite: Structures/Storage/morgue.rsi
@@ -97,36 +93,7 @@
       visible: false
       map: ["enum.CrematoriumVisualLayers.LightBurning"]
       shader: unshaded
-  - type: Clickable
-  - type: InteractionOutline
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,0.5"
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-  - type: EntityStorage
-    isCollidableWhenOpen: true
-    showContents: false
-    capacity: 1
-    enteringOffset: 0, -1
-    closeSound:
-      path: /Audio/Items/deconstruct.ogg
-    openSound:
-      path: /Audio/Items/deconstruct.ogg
-  - type: EntityStorageLayingDownOverride
   - type: Crematorium
-  - type: ContainerContainer
-    containers:
-      entity_storage: !type:Container
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: crema_closed
     stateBaseOpen: crema_open
@@ -141,5 +108,3 @@
         enum.CrematoriumVisualLayers.LightContent:
           True: { visible: true }
           False: { visible: false }
-  - type: Transform
-    anchored: true
