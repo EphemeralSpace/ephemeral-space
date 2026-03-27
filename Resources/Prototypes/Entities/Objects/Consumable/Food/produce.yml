@@ -457,8 +457,6 @@
     - Trash
     - BananaPeel
     - Ruminant
-
-    - WhitelistChameleon
     - HamsterWearable
   - type: SolutionContainerManager
     solutions:

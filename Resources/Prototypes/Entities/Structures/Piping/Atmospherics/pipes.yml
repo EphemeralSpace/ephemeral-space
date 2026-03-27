@@ -63,8 +63,6 @@
   - type: Physics
     canCollide: false
     bodyType: static
-  - type: StaticPrice
-    price: 30
 
 - type: entity
   abstract: true

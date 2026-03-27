@@ -34,9 +34,6 @@ public sealed partial class CCVars
     public static readonly CVarDef<int>
         FlavorLimit = CVarDef.Create("flavor.limit", 10, CVar.SERVER | CVar.REPLICATED);
 
-    public static readonly CVarDef<string> DestinationFile =
-        CVarDef.Create("autogen.destination_file", "", CVar.SERVER | CVar.SERVERONLY);
-
     /// <summary>
     ///     Whether uploaded files will be stored in the server's database.
     ///     This is useful to keep "logs" on what files admins have uploaded in the past.

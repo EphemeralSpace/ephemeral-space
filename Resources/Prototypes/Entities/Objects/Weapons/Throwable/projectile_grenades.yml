@@ -105,8 +105,6 @@
     sound:
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
     positional: true
-  - type: StaticPrice
-    price: 1500
 
 - type: entity
   parent: [FragileGrenadeBase, ProjectileGrenadeBase, BaseSyndicateContraband]
@@ -137,5 +135,3 @@
     sound:
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
     positional: true
-  - type: StaticPrice
-    price: 1500

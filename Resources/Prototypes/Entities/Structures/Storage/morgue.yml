@@ -1,5 +1,6 @@
 - type: entity
   id: Morgue
+  parent: DeflectionSturdyStructure
   name: morgue
   description: Used to store bodies until someone fetches them. Includes a high-tech alert system for false-positives!
   placement:
@@ -71,11 +72,10 @@
   - type: Transform
     anchored: true
   - type: AntiRottingContainer
-  - type: StaticPrice
-    price: 200
 
 - type: entity
   id: Crematorium
+  parent: DeflectionSturdyStructure
   name: crematorium
   description: A human incinerator. Works well on barbecue nights.
   placement:

@@ -11,7 +11,6 @@
   - type: Tag
     tags:
     - Apron
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -27,7 +26,6 @@
   - type: Tag
     tags:
     - Apron
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -43,7 +41,6 @@
   - type: Tag
     tags:
     - Apron
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -59,7 +56,6 @@
   - type: Tag
     tags:
     - Apron
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -106,9 +102,6 @@
     sprite: Clothing/OuterClothing/Misc/cardborg.rsi
   - type: TypingIndicatorClothing
     proto: robot
-  - type: Tag
-    tags:
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterBaseToggleable
@@ -243,7 +236,6 @@
   - type: Tag # Offbrand
     tags:
     - OperatableClothing
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterBase

@@ -9,7 +9,6 @@
     overrideContainerOcclusion: true # Always show up regardless of where they're contained.
     drawdepth: Ghosts
   - type: FTLSmashImmune
-  - type: CargoSellBlacklist
   - type: MovementSpeedModifier
     baseSprintSpeed: 12
     baseWalkSpeed: 8

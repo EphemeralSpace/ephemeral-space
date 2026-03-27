@@ -32,7 +32,6 @@
     tags:
     - ClothMade
     - Recyclable
-    - WhitelistChameleon
 
 - type: entity
   abstract: true
@@ -44,4 +43,3 @@
     - Scarf
     - ClothMade
     - Recyclable
-    - WhitelistChameleon

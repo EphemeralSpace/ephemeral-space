@@ -79,8 +79,6 @@
     # Gravity generator is a large machine, not casting shadows is fine within the radius set above.
     castShadows: false
     color: "#a8ffd9"
-  - type: StaticPrice
-    price: 5000
 
 - type: entity
   id: GravityGeneratorMini
@@ -139,5 +137,3 @@
   - type: GravityGenerator
     lightRadiusMin: 0.75
     lightRadiusMax: 2.5
-  - type: StaticPrice
-    price: 2000

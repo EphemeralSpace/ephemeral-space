@@ -66,8 +66,6 @@
         Blunt: 0
   - type: TrashOnSolutionEmpty
     solution: drink
-  - type: StaticPrice
-    price: 0
   - type: DamageOnLand
     damage:
       types:

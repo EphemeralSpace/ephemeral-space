@@ -16,8 +16,6 @@
       anchored: False
     - type: Physics
       bodyType: Dynamic
-    - type: StaticPrice
-      price: 500
     - type: AmbientSound
       range: 5
       volume: -5

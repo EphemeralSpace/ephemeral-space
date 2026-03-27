@@ -6,7 +6,7 @@
   suffix: Chameleon
   components:
     - type: Tag
-      tags: # ignore "WhitelistChameleon" tag
+      tags:
       - ClothMade
       - Recyclable
     - type: Sprite

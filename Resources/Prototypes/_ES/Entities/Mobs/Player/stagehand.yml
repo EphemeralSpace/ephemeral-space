@@ -168,9 +168,7 @@
       state: cheer
   - type: InstantAction
     event: !type:ESStagehandWorldEmoteEvent
-      message: es-stagehand-emote-cheer
-      sound:
-        collection: ESStagehandCheer
+      emote: Cheer
 
 - type: entity
   parent: BaseMentalAction
@@ -185,6 +183,4 @@
       state: boo
   - type: InstantAction
     event: !type:ESStagehandWorldEmoteEvent
-      message: es-stagehand-emote-boo
-      sound:
-        collection: ESStagehandBoo
+      emote: Boo

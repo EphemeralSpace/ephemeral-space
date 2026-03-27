@@ -12,7 +12,7 @@ namespace Content.Shared.Armor;
 /// <summary>
 ///     This handles logic relating to <see cref="ArmorComponent" />
 /// </summary>
-public abstract class SharedArmorSystem : EntitySystem
+public sealed class SharedArmorSystem : EntitySystem
 {
     [Dependency] private readonly ExamineSystemShared _examine = default!;
 

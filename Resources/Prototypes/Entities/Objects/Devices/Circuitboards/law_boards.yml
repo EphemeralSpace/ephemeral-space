@@ -118,8 +118,6 @@
   - type: SiliconLawProvider
     laws: AntimovLawset
     lawUploadSound: null
-  - type: StaticPrice
-    price: 10000
 
 - type: entity
   id: NutimovCircuitBoard

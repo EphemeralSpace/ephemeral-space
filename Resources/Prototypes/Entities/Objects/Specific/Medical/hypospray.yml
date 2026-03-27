@@ -41,8 +41,6 @@
     solution: hypospray
   - type: UseDelay
     delay: 0.5
-  - type: StaticPrice
-    price: 750
   - type: Tag
     tags:
     - HighRiskItem
@@ -226,8 +224,6 @@
     materialComposition:
       Plastic: 50
   - type: SpaceGarbage
-  - type: StaticPrice
-    price: 75 # These are limited supply items.
   - type: TrashOnSolutionEmpty
     solution: pen
 
@@ -602,8 +598,6 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: stimpen_empty
-  - type: StaticPrice
-    price: 1500
 
 - type: entity
   parent: [ChemicalMedipen, BaseSyndicateContraband]
@@ -641,8 +635,6 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: microstimpen_empty
-  - type: StaticPrice
-    price: 583 # 3500 for 6 as a freaky fraction
 
 - type: entity
   parent: [ChemicalMedipen, BaseSyndicateContraband]
@@ -680,8 +672,6 @@
           Quantity: 25
         - ReagentId: Coagulant # Offbrand
           Quantity: 5
-  - type: StaticPrice
-    price: 1500
 
 - type: entity
   parent: Pen # It is just like normal pen, isn't it?
@@ -708,8 +698,6 @@
     - HypopenDynamicMode
   - type: UseDelay
     delay: 0.5
-  - type: StaticPrice # A new shitcurity meta
-    price: 75
   - type: EmitSoundOnUse
     handle: false # don't want the sound to stop the self-inject from triggering
 

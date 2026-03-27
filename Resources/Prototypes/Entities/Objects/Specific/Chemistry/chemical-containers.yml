@@ -18,8 +18,6 @@
     inHandsMaxFillLevels: 5
   - type: ExaminableSolution
     exactVolume: true # Chemistry item
-  - type: StaticPrice
-    price: 60
   - type: Tag
     tags:
     - ChemDispensable

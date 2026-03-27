@@ -45,8 +45,6 @@
   - type: Stack
     stackType: Suture
     count: 10
-  - type: StackPrice
-    price: 10
 
 - type: entity
   id: Suture1

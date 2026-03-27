@@ -90,8 +90,6 @@
   - type: Tag
     tags:
       - HolofanProjector
-  - type: StaticPrice
-    price: 50
 
 - type: entity
   parent: HolofanProjector
@@ -132,8 +130,6 @@
     - type: Tag
       tags:
         - HolofanProjector
-    - type: StaticPrice
-      price: 130
 
 - type: entity
   parent: HoloprojectorField
@@ -161,8 +157,6 @@
       tags:
         - HolofanProjector
         - SecBeltEquip
-    - type: StaticPrice
-      price: 50
 
 - type: entity
   parent: HoloprojectorSecurity

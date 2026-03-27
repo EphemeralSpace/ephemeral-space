@@ -50,8 +50,6 @@
       path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   name: Deckard
@@ -78,8 +76,6 @@
     steps: 4
     zeroVisible: true
   - type: Appearance
-  - type: StaticPrice
-    price: 1500
 
 - type: entity
   name: Inspector
@@ -144,8 +140,6 @@
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
       params:
         volume: 2.25
-  - type: StaticPrice
-    price: 1500 # Botany can shit these out like candy, but let's see how it goes
 
 - type: entity
   parent: WeaponRevolverPython

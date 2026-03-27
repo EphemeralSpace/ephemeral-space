@@ -62,5 +62,3 @@
       blacklist:
         tags:
         - GhostOnlyWarp
-    - type: StaticPrice
-      price: 3000

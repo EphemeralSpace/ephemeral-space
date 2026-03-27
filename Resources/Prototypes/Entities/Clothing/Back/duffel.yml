@@ -171,17 +171,11 @@
   parent: [ ClothingBackpackDuffelSyndicate, BaseSyndicateContraband ]
   id: ClothingBackpackDuffelSyndicateBundle
   abstract: true
-  components:
-  - type: Tag
-    tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
   parent: ClothingBackpackDuffel
   id: ClothingBackpackDuffelBundle
   abstract: true
-  components:
-  - type: Tag
-    tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -199,9 +193,6 @@
   parent: ClothingBackpackDuffelSyndicateAmmo
   id: ClothingBackpackDuffelSyndicateAmmoBundle
   abstract: true
-  components:
-    - type: Tag
-      tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -219,9 +210,6 @@
   parent: ClothingBackpackDuffelSyndicateMedical
   id: ClothingBackpackDuffelSyndicateMedicalBundle
   abstract: true
-  components:
-    - type: Tag
-      tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
   parent: ClothingBackpackDuffel

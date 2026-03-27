@@ -17,10 +17,6 @@
     - type: Sharp
     - type: DisarmMalus
       malus: 0.6
-# ES START
-#    - type: Execution
-#      doAfterDuration: 4.0
-# ES END
   - type: ItemToggleHot
   - type: ItemToggleSize
     activatedSize: Huge
@@ -92,8 +88,6 @@
       map: [ "blade" ]
   - type: Item
     sprite: Objects/Weapons/Melee/e_sword-inhands.rsi
-  - type: StaticPrice
-    price: 2500
 
 - type: entity
   name: energy dagger
@@ -131,10 +125,6 @@
     - type: Sharp
     - type: DisarmMalus
       malus: 0.4
-# ES START
-#    - type: Execution
-#      doAfterDuration: 4.0
-# ES END
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_dagger_loud.rsi
     layers:
@@ -197,10 +187,6 @@
     - type: Sharp
     - type: DisarmMalus
       malus: 0.4
-# ES START
-#    - type: Execution
-#      doAfterDuration: 4.0
-# ES END
     - type: Contraband
       severity: Syndicate
   - type: Sprite
@@ -322,10 +308,6 @@
     - type: Sharp
     - type: DisarmMalus
       malus: 0.7
-# ES START
-#    - type: Execution
-#      doAfterDuration: 4.0
-# ES END
   - type: Wieldable
     wieldSound: null # esword light sound instead
   - type: MeleeWeapon

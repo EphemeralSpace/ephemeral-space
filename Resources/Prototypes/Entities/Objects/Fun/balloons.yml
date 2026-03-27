@@ -33,8 +33,6 @@
     state: icon
   - type: Item
     sprite: Objects/Fun/Balloons/syndicate.rsi
-  - type: StaticPrice
-    price: 100 # Entertainment.
 
 - type: entity
   parent: BaseBalloon

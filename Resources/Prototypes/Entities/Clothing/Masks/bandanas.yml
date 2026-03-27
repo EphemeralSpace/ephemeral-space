@@ -71,7 +71,6 @@
     sprite: Clothing/Head/Bandanas/botany.rsi
   - type: Tag
     tags:
-    - WhitelistChameleon
     - ClothMade
     - Recyclable
 

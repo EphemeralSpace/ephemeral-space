@@ -401,34 +401,6 @@
 #     useDelay: 1 # Prevents Emote Spam
 
 - type: entity
-  parent: BaseAction
-  id: ActionGravityJump
-  name: Jump
-  description: Activating the advanced propulsion system, you propel yourself a short distance in the direction of your gaze.
-  components:
-  - type: Action
-    useDelay: 8
-    icon:
-      sprite: Interface/Actions/jump.rsi
-      state: icon
-  - type: InstantAction
-    event: !type:GravityJumpEvent {}
-
-- type: entity
-  parent: BaseAction
-  id: ActionVulpkaninGravityJump
-  name: Leap
-  description: Use your agile legs to leap a short distance. Be careful not to bump into anything!
-  components:
-  - type: Action
-    useDelay: 12
-    icon:
-      sprite: Interface/Actions/jump.rsi
-      state: icon
-  - type: InstantAction
-    event: !type:GravityJumpEvent {}
-
-- type: entity
   parent: BaseToggleAction
   id: ActionToggleRootable
   name: Rootable

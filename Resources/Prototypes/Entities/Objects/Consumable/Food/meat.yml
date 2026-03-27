@@ -354,8 +354,6 @@
         reagents:
         - ReagentId: Bicaridine
           Quantity: 20
-  - type: StaticPrice
-    price: 750
   - type: Item
     inhandVisuals:
       left:
@@ -710,8 +708,6 @@
   - type: SliceableFood
     count: 3
     slice: FoodMeatTomatoCutlet
-  - type: StaticPrice
-    price: 100
   - type: Item
     storedOffset: 0,-2
     inhandVisuals:
@@ -942,8 +938,6 @@
           Quantity: 10
         - ReagentId: Iron
           Quantity: 10
-  - type: StaticPrice
-    price: 3000 #It has so much Omnizin in it
   - type: Tag
     tags:
     - Meat
@@ -1907,8 +1901,6 @@
   - type: Sprite
     state: salami-slice
     color: red
-  - type: StaticPrice
-    price: 30
 
 - type: entity
   parent: FoodMeatBase

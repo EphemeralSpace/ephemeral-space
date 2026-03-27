@@ -1,6 +1,6 @@
 ﻿- type: entity
   id: BlastDoor
-  parent: BaseShutter
+  parent: [ DeflectionVerySturdyStructure, BaseShutter ]
   name: blast door
   description: This one says 'BLAST DONGER'.
   components:
@@ -47,13 +47,12 @@
 #    containers:
 #    - board
 # ES END
-  - type: StaticPrice
-    price: 500
   - type: InteractionPopup
     interactSuccessString: comp-window-knock
     messagePerceivedByOthers: comp-window-knock
     interactSuccessSound:
       path: /Audio/Effects/glass_knock.ogg
+
 
 - type: entity
   id: BlastDoorOpen

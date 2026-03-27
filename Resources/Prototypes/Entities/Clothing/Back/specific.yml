@@ -5,8 +5,6 @@
   description: You wear this on your back and put items into it.
   suffix: Chameleon
   components:
-    - type: Tag
-      tags: [] # ignore "WhitelistChameleon" tag
     - type: Sprite
       sprite: Clothing/Back/Backpacks/backpack.rsi
     - type: ChameleonClothing
@@ -28,7 +26,6 @@
   - type: Tag
     tags:
     - NozzleBackTank
-    - WhitelistChameleon
   - type: Sprite
     sprite: Clothing/Back/Backpacks/waterbackpack.rsi
     state: icon
@@ -93,7 +90,6 @@
     - 6,1,8,3
   - type: Tag
     tags:
-    - WhitelistChameleon
     - CorgiWearable
     - PetOnly
     - ScurretWearable

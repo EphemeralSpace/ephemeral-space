@@ -71,7 +71,6 @@
     - ClothMade
     - Recyclable
     - HamsterWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCargosoft]
@@ -83,7 +82,6 @@
     - ClothMade
     - Recyclable
     - HamsterWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -228,7 +226,6 @@
     - ClothMade
     - Recyclable
     - HamsterWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatPurplesoft]
@@ -240,7 +237,6 @@
     - ClothMade
     - Recyclable
     - HamsterWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -321,7 +317,6 @@
     - ClothMade
     - Recyclable
     - HamsterWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatParamedicsoft]
@@ -333,4 +328,3 @@
     - ClothMade
     - Recyclable
     - HamsterWearable
-    - WhitelistChameleon

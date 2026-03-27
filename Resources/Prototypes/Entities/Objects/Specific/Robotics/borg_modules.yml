@@ -31,8 +31,6 @@
     - borg-type-all
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: no-action }
-  - type: StaticPrice
-    price: 100
   - type: Tag
     tags:
     - BorgModuleGeneric
@@ -375,7 +373,6 @@
     - state: icon-appraisal
   - type: ItemBorgModule
     hands:
-    - item: AppraisalTool
     - item: Pen
     - item: HandLabeler
     - item: RubberStampApproved
@@ -1015,5 +1012,3 @@
         - state: base-part-inhand-right
         - state: base-stripes-inhand-right
           color: "#7B0F12"
-    - type: StaticPrice
-      price: 2000

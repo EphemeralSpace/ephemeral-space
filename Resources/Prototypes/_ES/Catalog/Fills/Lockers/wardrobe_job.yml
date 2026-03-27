@@ -310,7 +310,6 @@
     - id: ClothingBackpack
     - id: ClothingShoesColorBlack
     - id: ClothingHandsGlovesFingerless
-    - id: AppraisalTool
 
 - type: entity
   id: ESWardrobePrisonFilled

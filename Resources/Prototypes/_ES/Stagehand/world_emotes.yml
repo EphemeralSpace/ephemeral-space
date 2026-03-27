@@ -1,0 +1,11 @@
+- type: esStagehandWorldEmote
+  id: Cheer
+  message: es-stagehand-emote-cheer
+  sound:
+    collection: ESStagehandCheer
+
+- type: esStagehandWorldEmote
+  id: Boo
+  message: es-stagehand-emote-boo
+  sound:
+    collection: ESStagehandBoo

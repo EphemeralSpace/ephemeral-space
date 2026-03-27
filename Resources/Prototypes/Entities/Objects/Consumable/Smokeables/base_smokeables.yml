@@ -16,8 +16,6 @@
     tags:
     - Trash
   - type: SpaceGarbage
-  - type: StaticPrice
-    price: 5
   - type: InjectableSolution
     solution: smokable
 

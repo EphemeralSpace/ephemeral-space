@@ -42,8 +42,6 @@
     speedModifierThresholds:
       60: 0.7
       80: 0.5
-  - type: MobPrice
-    price: 1000 # Living critters are valuable in space.
   - type: Perishable
   - type: Reflect
     reflectProb: 0.7

@@ -198,7 +198,6 @@
     - id: ClothingShoesColorBlack
     - id: ClothingUniformJumpskirtCargo
     - id: ClothingHandsGlovesFingerless
-    - id: AppraisalTool
 
 - type: entity
   id: WardrobeAtmosphericsFilled

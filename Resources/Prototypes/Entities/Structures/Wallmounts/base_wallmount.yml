@@ -45,7 +45,7 @@
   components:
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
+    damageModifierSet: ESMachine
 
 - type: entity
   parent: BaseWallmountMetallic

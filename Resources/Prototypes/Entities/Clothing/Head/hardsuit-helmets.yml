@@ -77,7 +77,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Engineering Hardsuit
 - type: entity
@@ -146,7 +145,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Spationaut Hardsuit
 - type: entity
@@ -214,7 +212,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Goliath Hardsuit
 - type: entity
@@ -275,7 +272,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Maxim Hardsuit
 - type: entity
@@ -326,7 +322,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Brigmedic Hardsuit
 - type: entity
@@ -395,7 +390,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Chief Engineer's Hardsuit
 - type: entity
@@ -466,7 +460,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -487,7 +480,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Research Director's Hardsuit
 - type: entity
@@ -508,7 +500,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Head of Security's hardsuit
 - type: entity
@@ -580,7 +571,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Blood-red Medic Hardsuit
 - type: entity
@@ -637,7 +627,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -665,8 +654,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
-
 #Cybersun Juggernaut Hardsuit
 - type: entity
   parent: ClothingHeadHardsuitBase
@@ -691,7 +678,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Wizard Hardsuit
 - type: entity
@@ -719,7 +705,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Organic Space Suit
 - type: entity

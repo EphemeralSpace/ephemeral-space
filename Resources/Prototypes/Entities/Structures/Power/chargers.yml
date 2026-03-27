@@ -35,8 +35,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-  - type: StaticPrice
-    price: 75
 
 - type: entity
   abstract: true
@@ -150,8 +148,6 @@
           - PowerCage
   - type: Machine
     board: PowerCageRechargerCircuitboard
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   parent: BaseItemRecharger

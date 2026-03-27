@@ -318,8 +318,6 @@
     containers:
       board:
       - StationAiCoreElectronics
-  - type: StaticPrice
-    price: 5000
 
 # The station AI core assembly
 - type: entity
@@ -498,7 +496,6 @@
   - type: Actions
   - type: Alerts
   - type: FTLSmashImmune
-  - type: CargoSellBlacklist
   - type: StationAiVision
     range: 20
 

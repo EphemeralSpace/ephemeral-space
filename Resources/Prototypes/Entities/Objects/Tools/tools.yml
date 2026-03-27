@@ -41,8 +41,6 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
-  - type: StaticPrice
-    price: 30
 
 - type: entity
   name: screwdriver
@@ -85,8 +83,6 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
-  - type: StaticPrice
-    price: 30
 
 - type: entity
   name: wrench
@@ -124,8 +120,6 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
-  - type: StaticPrice
-    price: 22
 
 - type: entity
   name: multitool
@@ -175,8 +169,6 @@
     materialComposition:
       Steel: 100
       Plastic: 100
-  - type: StaticPrice
-    price: 56
   - type: GuideHelp
     guides:
     - Wires
@@ -227,8 +219,6 @@
           type: NetworkConfiguratorBoundUserInterface
         enum.NetworkConfiguratorUiKey.Link:
           type: NetworkConfiguratorBoundUserInterface
-    - type: StaticPrice
-      price: 56
 
 #Power tools
 #Later on these should switch probably switch damage when changing the tool behavior.
@@ -275,8 +265,6 @@
     materialComposition:
       Steel: 300
       Plastic: 100
-  - type: StaticPrice
-    price: 100
   - type: MeleeWeapon
     wideAnimationRotation: -90
     attackRate: 1.5
@@ -329,8 +317,6 @@
     materialComposition:
       Steel: 600
       Plastic: 100
-  - type: StaticPrice
-    price: 110
   - type: UserInterface
     interfaces:
       enum.RcdUiKey.Key:
@@ -386,8 +372,6 @@
     materialComposition:
       Steel: 100
       Plastic: 100
-  - type: StaticPrice
-    price: 60
 
 - type: entity
   name: omnitool
@@ -478,8 +462,6 @@
     materialComposition:
       Steel: 100
       Wood: 50
-  - type: StaticPrice
-    price: 25
   - type: Shovel
 
 - type: entity

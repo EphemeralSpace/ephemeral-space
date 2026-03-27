@@ -43,8 +43,6 @@
     speakChance: 0.2
   - type: Anchorable
   - type: Pullable
-  - type: StaticPrice
-    price: 300
   - type: SpamEmitSoundRequirePower
   - type: SpamEmitSound
     minInterval: 30

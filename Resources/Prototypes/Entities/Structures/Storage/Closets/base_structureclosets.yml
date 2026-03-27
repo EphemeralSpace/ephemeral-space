@@ -99,8 +99,6 @@
     stateBaseClosed: generic
     stateDoorOpen: generic_open
     stateDoorClosed: generic_door
-  - type: StaticPrice
-    price: 75
 
 # steel closet base (that can be constructed/deconstructed)
 - type: entity
@@ -125,8 +123,6 @@
   components:
   - type: ResistLocker
   - type: Weldable
-  - type: StaticPrice
-    price: 75
   - type: Sprite
     drawdepth: WallMountedItems
     noRot: false
@@ -225,8 +221,6 @@
   - type: Lock
   - type: Anchorable
     delay: 2
-  - type: StaticPrice
-    price: 80
   - type: ResistLocker
   - type: Transform
     noRot: true

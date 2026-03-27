@@ -46,14 +46,7 @@
   name: counter
   abstract: true
   components:
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 55
-        mask:
-        - TableMask
-        layer:
-        - TableLayer
+# ES Start
+  - type: ESDamageDeflection
+    threshold: 8 # Need a crowbar or better to break any structure. Fists, wrenches, etc. will not work on their own
+# ES End

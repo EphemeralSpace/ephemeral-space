@@ -78,8 +78,6 @@
             False: {visible: false}
           unfoldedLayer:
             True: {visible: false}
-    - type: StaticPrice
-      price: 120
 
 - type: entity
   parent: RollerBed

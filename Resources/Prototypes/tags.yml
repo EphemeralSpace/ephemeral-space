@@ -31,9 +31,6 @@
   id: AnomalyHost # Targeting whitelist: BaseAnomalyInjector
 
 - type: Tag
-  id: AppraisalTool # Storage whitelist: BaseClothingBeltEngineering
-
-- type: Tag
   id: Apron # ConstructionGraph: scraparmor
 
 - type: Tag
@@ -1498,15 +1495,6 @@
 
 - type: Tag
   id: Wheat # SpecialDigestible: OrganAnimalRuminantStomach. ConstructionGraph: StrawHat
-
-- type: Tag
-  id: WhitelistChameleon # Used by SharedChameleonClothingSystem to validate if tagged entity can be a disguise.
-
-- type: Tag
-  id: WhitelistChameleonIdCard # Chameleon key for AgentIDCard
-
-- type: Tag
-  id: WhitelistChameleonPDA # Chameleon key for ChameleonPDA
 
 - type: Tag
   id: Window # Tagged entity is a window. Several systems and several targeting whitelists (XenoArtifactShatterWindows) care about this.

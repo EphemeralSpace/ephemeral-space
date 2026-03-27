@@ -18,8 +18,6 @@
   - type: Stripping # Offbrand
   - type: CombatMode
   - type: NoSlip
-  - type: StaticPrice
-    price: 1250
   - type: Fixtures
     fixtures:
       fix1:

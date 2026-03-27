@@ -48,7 +48,6 @@
   - type: Tag
     tags:
     - ClownShoes
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingShoesClown
@@ -142,7 +141,7 @@
   description: Stylish black shoes.
   components:
     - type: Tag
-      tags: # ignore "WhitelistChameleon" tag
+      tags:
       - ClothMade
       - Recyclable
     - type: Sprite

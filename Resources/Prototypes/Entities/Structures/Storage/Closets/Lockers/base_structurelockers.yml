@@ -29,13 +29,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 350
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 300
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -57,6 +57,9 @@
   - type: Paintable
     group: Locker
 # ES START
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: ESMachine
   - type: ESGreyTideVirusTarget
   - type: ESSparkOnHit
     prob: 0.25
@@ -65,23 +68,26 @@
 
 - type: entity
   id: LockerBaseSecure
-  parent: LockerBase
+  parent: [ LockerBase, DeflectionVerySturdyStructure ]
+  description: A top-of-the-line Nanotrasen storage unit. It's engineered to be as annoying as possible to break in to.
   abstract: true
   components:
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
+# ES Start
+#  - type: Damageable
+#    damageContainer: StructuralInorganic
+#    damageModifierSet: StructuralMetallic
+# ES End
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 350
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 300
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]

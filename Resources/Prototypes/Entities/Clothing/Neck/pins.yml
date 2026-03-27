@@ -29,7 +29,6 @@
   - type: Tag
     tags:
     - ClothMade #idk man its on the parent
-    - WhitelistChameleon
     - GenderPin
 
 - type: entity

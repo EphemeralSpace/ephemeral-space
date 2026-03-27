@@ -336,7 +336,6 @@
     - ClothMade
     - Recyclable
     - PrisonUniform
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseCommandContraband]
@@ -521,8 +520,6 @@
     sprite: Clothing/Uniforms/Jumpskirt/operative_s.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/operative_s.rsi
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -912,4 +909,3 @@
   - type: Tag
     tags:
     - ClownSuit
-    - WhitelistChameleon

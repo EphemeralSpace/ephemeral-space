@@ -7,8 +7,6 @@
   - type: Edible
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
-  - type: StaticPrice
-    price: 50
   - type: SolutionContainerManager
     solutions:
       food:

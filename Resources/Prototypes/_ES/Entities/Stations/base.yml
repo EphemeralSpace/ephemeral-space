@@ -59,12 +59,10 @@
   parent:
   - BaseStation
   - BaseStationNews
-  - BaseStationCargo
   - BaseStationJobsSpawning
   - BaseStationRecords
   - BaseStationAlertLevels
   - BaseStationAllEventsEligible
-  - BaseStationDeliveries
   - ESBaseStationArrivals
   - ESBaseStationStoreroom
   - ESBaseStationTelesci

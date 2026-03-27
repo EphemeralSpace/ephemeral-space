@@ -103,8 +103,6 @@
     powerLoad: 100
     # ES END
   - type: Actions
-  - type: StaticPrice
-    price: 100
   - type: Appearance
   - type: WiresVisuals
 
