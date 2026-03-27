@@ -1,11 +1,12 @@
-using Content.Server._ES.Masks.Parasite.Components;
+using Content.Server._ES.Masks;
+using Content.Server._ES.Troupes.Parasite.Components;
 using Content.Server.Mind;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Mind;
 
-namespace Content.Server._ES.Masks.Parasite;
+namespace Content.Server._ES.Troupes.Parasite;
 
 public sealed class ESTroupeOutnumberObjectiveSystem : ESBaseObjectiveSystem<ESTroupeOutnumberObjectiveComponent>
 {
