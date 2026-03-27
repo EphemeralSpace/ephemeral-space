@@ -10,7 +10,6 @@
   - type: ActionGrant
     actions:
     - ActionVendingThrow
-  - type: StationAiWhitelist
   # ES START
   # - type: AmbientOnPowered
   # - type: AmbientSound
@@ -112,7 +111,6 @@
   name: vending machine
   abstract: true
   components:
-  - type: StationAiWhitelist
   # ES START
   # - type: AmbientOnPowered
   # - type: AmbientSound

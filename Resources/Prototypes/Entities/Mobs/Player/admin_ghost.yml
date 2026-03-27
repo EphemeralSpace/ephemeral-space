@@ -41,7 +41,6 @@
   - type: Access
     groups:
     - AllAccess
-    - Silicon
     tags:
     - CentralCommand
   - type: UserInterface

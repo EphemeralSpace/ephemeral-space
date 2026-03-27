@@ -14,7 +14,6 @@
 #  - type: Rotatable
   - type: ESDestroyOnUnanchor
 # ES END
-  - type: StationAiWhitelist
   - type: Sprite
     noRot: true
     sprite: Structures/Doors/Shutters/shutters.rsi

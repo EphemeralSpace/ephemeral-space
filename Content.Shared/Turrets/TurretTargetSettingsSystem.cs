@@ -14,9 +14,6 @@ public sealed partial class TurretTargetSettingsSystem : EntitySystem
 {
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
 
-    private ProtoId<AccessLevelPrototype> _accessLevelBorg = "Borg";
-    private ProtoId<AccessLevelPrototype> _accessLevelBasicSilicon = "BasicSilicon";
-
     /// <summary>
     /// Adds or removes access levels from a <see cref="TurretTargetSettingsComponent.ExemptAccessLevels"/> list.
     /// </summary>
@@ -120,12 +117,6 @@ public sealed partial class TurretTargetSettingsSystem : EntitySystem
     public bool EntityIsTargetForTurret(Entity<TurretTargetSettingsComponent> ent, EntityUid target)
     {
         var accessLevels = _accessReader.FindAccessTags(target);
-
-        if (accessLevels.Contains(_accessLevelBorg))
-            return !HasAccessLevelExemption(ent, _accessLevelBorg);
-
-        if (accessLevels.Contains(_accessLevelBasicSilicon))
-            return !HasAccessLevelExemption(ent, _accessLevelBasicSilicon);
 
         return !HasAnyAccessLevelExemption(ent, accessLevels);
     }

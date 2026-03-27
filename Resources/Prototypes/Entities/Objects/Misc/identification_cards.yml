@@ -454,7 +454,6 @@
   - type: Access
     groups:
     - AllAccess
-    - Silicon
     tags:
     - CentralCommand
   - type: Tag #  Ignore Chameleon tags

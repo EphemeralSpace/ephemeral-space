@@ -4,7 +4,6 @@
   name: air alarm
   description: An air alarm. Alarms... air?
   components:
-  - type: StationAiWhitelist
   - type: Electrified
     enabled: false
     usesApcPower: true

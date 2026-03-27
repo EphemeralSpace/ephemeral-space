@@ -111,33 +111,6 @@
   id: BorgTorso # Used by PartAssemblyComponent on CyborgEndoskeleton
 
 - type: Tag
-  id: BorgModuleCargo # Cyborg module category for salvage and cargo
-
-- type: Tag
-  id: BorgModuleEngineering # Cyborg module category for engineers and saboteurs
-
-- type: Tag
-  id: BorgModuleGeneric # Cyborg module category for general purpose
-
-- type: Tag
-  id: BorgModuleJanitor # Cyborg module category for janitors
-
-- type: Tag
-  id: BorgModuleMedical # Cyborg module category for doctors
-
-- type: Tag
-  id: BorgModuleScience # Cyborg module category for scientists
-
-- type: Tag
-  id: BorgModuleService # Cyborg module category for bartenders, botanists, and more
-
-- type: Tag
-  id: BorgModuleSyndicate # Cyborg module category for evil red robots
-
-- type: Tag
-  id: BorgModuleSyndicateAssault # Cyborg module category for extra evil red robots (nukies)
-
-- type: Tag
   id: Bot # Targeting whitelist: ChameleonProjector
 
 - type: Tag
@@ -154,9 +127,6 @@
 
 - type: Tag
   id: BoxCardboard # CargoBounty: BountyCardboardBox. Storage whitelist: MailCart
-
-- type: Tag
-  id: BoxHug # ConstructionGraph: HugBot
 
 - type: Tag
   id: Brain # Storage whitelist: MMI. CargoBounty: BountyBrain
@@ -1322,12 +1292,6 @@
 
 - type: Tag
   id: SpreaderIgnore # Used by SpreaderSystem to block spreading in a direction when a tagged airtight entity is on the same tile.
-
-- type: Tag
-  id: StationAi # Storage whitelist: AiHolder
-
-- type: Tag
-  id: StationAiCoreElectronics # ConstructionGraph: StationAiCore
 
 - type: Tag
   id: StationMapElectronics # ConstructionGraph: StationMap

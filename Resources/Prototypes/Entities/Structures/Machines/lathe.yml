@@ -325,11 +325,9 @@
     runningState: fab-active
     staticPacks:
     - RoboticsStatic
-    - BorgModulesStatic
     - BorgLimbsStatic
     dynamicPacks:
     - Robotics
-    - BorgModules
     - MechParts
     - MechEquipment
   - type: MaterialStorage

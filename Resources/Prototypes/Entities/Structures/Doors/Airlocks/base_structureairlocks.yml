@@ -11,7 +11,6 @@
 #  - type: Rotatable
   - type: ESDestroyOnUnanchor
 # ES END
-  - type: StationAiWhitelist
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -138,8 +137,6 @@
   - type: SpawnOnOverload
   - type: UserInterface
     interfaces:
-      enum.AiUi.Key:
-        type: StationAiBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: Airtight

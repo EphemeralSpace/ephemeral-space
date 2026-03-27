@@ -418,8 +418,3 @@
   parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
   id: SurveillanceWirelessCameraMovableCircuitboard
   result: SurveillanceWirelessCameraMovableCircuitboard
-
-- type: latheRecipe
-  parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
-  id: HolopadMachineCircuitboard
-  result: HolopadMachineCircuitboard

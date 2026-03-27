@@ -28,34 +28,6 @@
   ## Bolting and Emergency Access
   Airlocks can be bolted to prevent them from being opened or pried open by hand. When this occurs, the airlock will display red lights on the top of the door.
 
-  Airlocks can also be set to emergency access. In this mode, anyone can open the airlock, regardless of access level. When this occurs, the airlock will display flashing yellow lights on the top of the door.
-
-  ## Remote Control
-  Airlocks can be controlled remotely, either by the station AI or by using a Door Remote.
-  <Box>
-    <GuideEntityEmbed Entity="PlayerStationAiEmpty" Caption=""/>
-  </Box>
-  <Box>
-    [color=#999999][italic]The Station AI, which has remote control over all airlocks[italic][/color]
-  </Box>
-
-  <Box>
-    <GuideEntityEmbed Entity="DoorRemoteEngineering" Caption=""/>
-    <GuideEntityEmbed Entity="DoorRemoteCommand" Caption=""/>
-    <GuideEntityEmbed Entity="DoorRemoteMedical" Caption=""/>
-    <GuideEntityEmbed Entity="DoorRemoteService" Caption=""/>
-    <GuideEntityEmbed Entity="DoorRemoteSecurity" Caption=""/>
-    <GuideEntityEmbed Entity="DoorRemoteResearch" Caption=""/>
-  </Box>
-  <Box>
-    [color=#999999][italic]Precious door remotes. With unlimited power...[italic][/color]
-  </Box>
-
-
-  Department heads usually get door remotes for their respective department.
-
-  They can open, close, bolt, and set to emergency access using these remotes.
-
   ## Styling
   Airlocks can come in different styles to match station departments. The department style commonly reflects the required access level.
 

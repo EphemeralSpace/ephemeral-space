@@ -61,7 +61,6 @@
   name: sturdy external airlock
   description: Effectively impervious to conventional means of destruction.
   components:
-  - type: StationAiWhitelist
   - type: MeleeSound
     soundGroups:
       Brute:

@@ -334,28 +334,6 @@
     lastCharges: -1
 
 - type: entity
-  id: RCDRecharging
-  parent: RCD
-  name: experimental RCD
-  description: Cyborg-mounted Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
-  suffix: AutoRecharge
-  components:
-  - type: LimitedCharges
-    maxCharges: 20
-  - type: AutoRecharge
-    rechargeDuration: 10
-
-- type: entity
-  id: RCDExperimental
-  parent: RCD
-  suffix: Admeme
-  name: experimental RCD
-  description: A bluespace-enhanced rapid construction device that passively generates its own compressed matter.
-  components:
-  - type: AutoRecharge
-    rechargeDuration: 1
-
-- type: entity
   name: compressed matter
   parent: BaseItem
   id: RCDAmmo

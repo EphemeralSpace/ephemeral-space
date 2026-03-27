@@ -7,7 +7,6 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: StationAiWhitelist
   # ES START
   - type: AmbientOnPowered
   - type: AmbientSound

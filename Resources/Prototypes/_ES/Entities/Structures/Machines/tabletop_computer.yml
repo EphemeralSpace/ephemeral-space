@@ -62,7 +62,6 @@
   id: ESBaseTabletopComputerAiAccess
   abstract: true
   components:
-  - type: StationAiWhitelist
   - type: Wires
     boardName: wires-board-name-computer
     layoutId: ComputerAi

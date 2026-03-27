@@ -163,7 +163,6 @@
   - type: ActivatableUI
     key: enum.SpaceVillainArcadeUiKey.Key
   - type: ActivatableUIRequiresPower
-  - type: StationAiWhitelist
   - type: UserInterface
     interfaces:
       enum.SpaceVillainArcadeUiKey.Key:
@@ -210,7 +209,6 @@
   - type: ActivatableUI
     key: enum.BlockGameUiKey.Key
   - type: ActivatableUIRequiresPower
-  - type: StationAiWhitelist
   - type: UserInterface
     interfaces:
       enum.BlockGameUiKey.Key:

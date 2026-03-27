@@ -76,35 +76,6 @@
 
 - type: entity
   parent: BaseHypospray
-  id: BorgHypo
-  name: borghypo
-  description: A sterile injector for rapid administration of drugs to patients. This integrated model is specialized for use by medical borgs.
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Medical/hypospray.rsi
-    layers:
-    - state: borghypo
-      map: [ "enum.SolutionContainerLayers.Base" ]
-    - state: borghypo_fill1
-      map: [ "enum.SolutionContainerLayers.Fill" ]
-      visible: false
-  - type: Item
-    sprite: Objects/Specific/Medical/hypospray.rsi
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 10
-  - type: RefillableSolution
-    solution: hypospray
-  - type: SolutionContainerVisuals
-    maxFillLevels: 2
-    fillBaseName: borghypo_fill
-    solutionName: hypospray
-  - type: UseDelay
-    delay: 0.5
-
-- type: entity
-  parent: BaseHypospray
   id: JetInjector
   name: jet injector
   description: A sterile injector for convenient administration of drugs to patients.

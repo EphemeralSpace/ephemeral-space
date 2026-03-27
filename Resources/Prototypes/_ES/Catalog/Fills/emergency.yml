@@ -17,8 +17,8 @@
     layers:
     - state: internals
     - state: emergencytank
-  
-- type: entity 
+
+- type: entity
   parent: BoxCardboard
   id: ESBoxSurvivalMedical
   name: survival box
@@ -37,7 +37,7 @@
     layers:
     - state: internals
     - state: emergencytank
-    
+
 - type: entity
   parent: BoxCardboard
   id: ESBoxHug
@@ -62,4 +62,3 @@
   - type: Tag
     tags:
     - BoxCardboard
-    - BoxHug

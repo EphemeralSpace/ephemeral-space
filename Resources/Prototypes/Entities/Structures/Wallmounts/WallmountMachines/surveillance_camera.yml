@@ -30,7 +30,6 @@
     radius: 5
   - type: SlimPoweredLight
     enabled: false
-  - type: StationAiVision
   - type: Clickable
   - type: InteractionOutline
   - type: Construction

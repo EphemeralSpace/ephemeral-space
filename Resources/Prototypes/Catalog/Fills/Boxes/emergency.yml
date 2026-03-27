@@ -202,7 +202,6 @@
   - type: Tag
     tags:
     - BoxCardboard
-    - BoxHug
 
 - type: entity
   parent: BoxHug
