@@ -35,5 +35,7 @@
     icon:
       sprite: _ES/Interface/Objectives/parasite.rsi
       state: icon
-  - type: ESCounterObjective
-    counter: 1
+  - type: ESTimedDemiseOnKillObjective
+    killDelay: 1m
+    notificationTitle: es-parasite-killer-quickdialog-title
+    notificationBody: es-parasite-killer-quickdialog-msg

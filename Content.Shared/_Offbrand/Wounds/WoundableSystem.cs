@@ -127,6 +127,7 @@ public sealed class WoundableSystem : EntitySystem
 
     private void ValidateWounds(EntityUid ent, DamageSpecifier? incoming)
     {
+        return;
 #if DEBUG
         var damageable = Comp<DamageableComponent>(ent);
 
