@@ -402,7 +402,7 @@ public sealed class MindSystem : SharedMindSystem
         }
 
         Dirty<MindContainerComponent>((bodyOne, mindContainerOne));
-        Dirty<MindContainerComponent>((bodyOne, mindContainerOne));
+        Dirty<MindContainerComponent>((bodyTwo, mindContainerTwo));
         Dirty<MindComponent>((mindEntityOne, mindCompOne));
         Dirty<MindComponent>((mindEntityTwo, mindCompTwo));
     }
