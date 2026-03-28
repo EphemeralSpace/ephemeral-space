@@ -54,7 +54,7 @@ public sealed class ESParasiteRuleSystem : EntitySystem
             if (!_objective.HasObjective(uid, args.Objective))
                 continue;
 
-            if (_gameTicker.IsGameRuleActive(uid))
+            if (!_gameTicker.IsGameRuleActive(uid))
                 continue;
 
             if (comp.ObjectivesCompleted)
