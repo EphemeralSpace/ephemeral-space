@@ -7,8 +7,8 @@
   - type: Sprite
     drawdepth: FloorTiles
     layers:
-    - sprite: _ES/Structures/Specific/Cargo/pallet.rsi
-      state: icon
+    - sprite: _ES/Structures/Specific/worm.rsi
+      state: worm
   - type: InteractionOutline
   - type: Physics
     canCollide: true
@@ -16,8 +16,8 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeCircle
-          radius: 0.35
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
         density: 15
         hard: false
         mask:

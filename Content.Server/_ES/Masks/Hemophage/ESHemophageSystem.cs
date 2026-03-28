@@ -13,6 +13,7 @@ namespace Content.Server._ES.Masks.Hemophage;
 public sealed class ESHemophageSystem : EntitySystem
 {
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -29,8 +30,8 @@ public sealed class ESHemophageSystem : EntitySystem
         if (!TryComp<DnaComponent>(owned, out var dna) || dna.DNA == null)
             return;
 
-        var query = EntityQueryEnumerator<PuddleComponent, SolutionContainerManagerComponent>();
-        while (query.MoveNext(out var uid, out var puddle, out var solution))
+        var query = EntityQueryEnumerator<PuddleComponent, SolutionContainerManagerComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var puddle, out var solution, out var xform))
         {
             if (!_solutionContainer.TryGetSolution((uid, solution), puddle.SolutionName, out _, out var puddleSolution))
                 continue;
@@ -52,7 +53,9 @@ public sealed class ESHemophageSystem : EntitySystem
             }
 
             if (dnaTotal > ent.Comp.BloodThreshold)
-                SpawnNextToOrDrop(ent.Comp.PuddleSpawn, uid);
+            {
+                SpawnAtPosition(ent.Comp.PuddleSpawn, xform.Coordinates);
+            }
         }
     }
 }
