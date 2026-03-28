@@ -2,5 +2,5 @@
   id: ESParasiteSwarmGear
   equipment:
     head: ESClothingHeadParasiteSeed
-  #inhand:
-  #- FireAxe
+  inhand:
+  - ESWeaponParasiteWorm
