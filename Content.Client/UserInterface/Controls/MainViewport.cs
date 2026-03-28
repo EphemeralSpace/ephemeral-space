@@ -28,7 +28,6 @@ namespace Content.Client.UserInterface.Controls
             {
                 AlwaysRender = true,
                 RenderScaleMode = ScalingViewportRenderScaleMode.CeilInt,
-                ViewportHorizontalAlignment = ScalingViewportHorizontalAlignment.Right, // es change
                 MouseFilter = MouseFilterMode.Stop
             };
 

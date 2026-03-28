@@ -35,7 +35,6 @@ namespace Content.Client.Viewport
         private ScalingViewportStretchMode _stretchMode = ScalingViewportStretchMode.Bilinear;
         private ScalingViewportRenderScaleMode _renderScaleMode = ScalingViewportRenderScaleMode.Fixed;
         private ScalingViewportIgnoreDimension _ignoreDimension = ScalingViewportIgnoreDimension.None;
-        private ScalingViewportHorizontalAlignment _viewportHorizontalAlignment = ScalingViewportHorizontalAlignment.Center;
         private int _fixedRenderScale = 1;
 
         private readonly List<CopyPixelsDelegate<Rgba32>> _queuedScreenshots = new();
@@ -121,20 +120,15 @@ namespace Content.Client.Viewport
             }
         }
 
-        public ScalingViewportHorizontalAlignment ViewportHorizontalAlignment
-        {
-            get => _viewportHorizontalAlignment;
-            set
-            {
-                _viewportHorizontalAlignment = value;
-                InvalidateViewport();
-            }
-        }
-
         public ScalingViewport()
         {
             IoCManager.InjectDependencies(this);
             RectClipContent = true;
+        }
+
+        protected override Vector2 MeasureOverride(Vector2 availableSize)
+        {
+            return _viewport is null ? Vector2.Zero : GetDrawBox().Size;
         }
 
         protected override void KeyBindDown(GUIBoundKeyEventArgs args)
@@ -218,27 +212,12 @@ namespace Content.Client.Viewport
                 }
 
                 var size = vpSize * ratio;
-
-                // Size
-                var pos = _viewportHorizontalAlignment switch
-                {
-                    ScalingViewportHorizontalAlignment.Center => (ourSize - size) / 2,
-                    ScalingViewportHorizontalAlignment.Left   => new Vector2(0, (ourSize.Y - size.Y) / 2),
-                    _  => new Vector2(ourSize.X - size.X, (ourSize.Y - size.Y) / 2),
-                };
-
+                var pos = new Vector2(0, (ourSize.Y - size.Y) / 2);
                 return (UIBox2i) UIBox2.FromDimensions(pos, size);
             }
             else
             {
-                // Center only, no scaling.
-                var pos = _viewportHorizontalAlignment switch
-                {
-                    ScalingViewportHorizontalAlignment.Center => (ourSize - FixedStretchSize.Value) / 2,
-                    ScalingViewportHorizontalAlignment.Left   => new Vector2(0, (ourSize.Y - FixedStretchSize.Value.Y) / 2),
-                    _  => new Vector2(ourSize.X - FixedStretchSize.Value.X, (ourSize.Y - FixedStretchSize.Value.Y) / 2),
-                };
-
+                var pos = new Vector2(0, (ourSize.Y - FixedStretchSize.Value.Y) / 2);
                 return (UIBox2i) UIBox2.FromDimensions(pos, FixedStretchSize.Value);
             }
         }
@@ -278,8 +257,8 @@ namespace Content.Client.Viewport
                 });
 
             _viewport.RenderScale = new Vector2(renderScale, renderScale);
-
             _viewport.Eye = _eye;
+            InvalidateMeasure();
         }
 
         protected override void Resized()
