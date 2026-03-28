@@ -14,5 +14,5 @@ public sealed partial class ESHemophageComponent : Component
     public FixedPoint2 BloodThreshold = 0;
 
     [DataField]
-    public EntProtoId PuddleSpawn = "ESItemBurstwormDead";
+    public EntProtoId PuddleSpawn = "ESHemophagePile";
 }
