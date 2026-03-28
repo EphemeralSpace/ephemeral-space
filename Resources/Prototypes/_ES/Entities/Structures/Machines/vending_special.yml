@@ -60,7 +60,7 @@
     inventory:
       all:
       - tableId: ESMaintLootCommon # always garunteed a few basic items
-        amount: 2
+        rolls: 2
       - tableId: ESMaintLootCommon # chance for more basic items, since there are a lot of useful ones. but we don't want them to be too common since it will clog up the vendor
         amount: 2
         prob: 0.2
