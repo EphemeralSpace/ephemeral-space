@@ -4,6 +4,9 @@ es-troupe-crew-description = As a member of the Crew, try to keep things running
 es-troupe-traitor-name = Traitor
 es-troupe-traitor-description = As a Traitor, seek out your fellow operatives, complete the objectives the Syndicate has assigned to you, and try to detonate the station's nuke.
 
+es-troupe-parasite-name = Parasite
+es-troupe-parasite-description = As a Parasite, spread your parasitic infection across the station by driving others into violence and rage..
+
 es-troupe-jester-name = Jester
 es-troupe-jester-description = As a Jester, drive others to the edge until you can take advantage of their emotions and violence to win.
 

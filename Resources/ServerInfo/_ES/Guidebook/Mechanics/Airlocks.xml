@@ -22,7 +22,7 @@
     <GuideEntityEmbed Entity="DoorElectronics" Caption=""/>
   </Box>
 
-  Airlocks block gas flow, so they can be used to seal off areas in case of a [textlink="hull breach" link="ESSpacing"] or a [textlink="fire." link="ESFires"]
+  Airlocks block gas flow, so they can be used to seal off areas in case of a [textlink="hull breach" link="Spacing"] or a [textlink="fire." link="Fires"]
   They also store gas on their tile, even when closed, so be careful when opening them during or after a gas leak.
 
   ## Bolting and Emergency Access
@@ -96,10 +96,5 @@
   - [color=yellow]Pulse the wire[/color]: Disables the safety system temporarily.
   - [color=red]Cut the wire[/color]: Disables the safety system. The door will close even if there is an obstruction.
   - [color=green]Mend the wire[/color]: Re-enables the safety system.
-
-  [color=#a4885c]AI Access Light (AIA)[/color]
-  - [color=yellow]Pulse the wire[/color]: Does nothing.
-  - [color=red]Cut the wire[/color]: Disables AI access. The AI can no longer control the door.
-  - [color=green]Mend the wire[/color]: Re-enables AI access.
 
 </Document>

@@ -1,0 +1,41 @@
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveParasiteInfect
+  name: Infect the station
+  description: Spread the parasites across the station. Once the infected make up the majority, it'll be time to swarm.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Structures/Wallmounts/signs.rsi
+      state: bio
+  - type: ESTroupeOutnumberObjective
+    troupe: ESParasite
+
+# Mask objectives, but used broadly for all parasites
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveParasiteDie
+  name: Be killed
+  description: Once someone kills you, the parasites in your body will respond to their brain hormones and launch into action.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
+  - type: ESCounterObjective
+  - type: ESBeKilledObjective
+
+- type: entity
+  parent: ESBaseMaskObjective
+  id: ESObjectiveParasiteDoNotKill
+  name: Don't kill anyone
+  description: The parasite in your head is extremely sensitive to hormonal changes caused by taking the life of another. Any influx could send it on a frenzy, eating your brain and killing you.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: _ES/Interface/Objectives/parasite.rsi
+      state: icon
+  - type: ESTimedDemiseOnKillObjective
+    killDelay: 1m
+    notificationTitle: es-parasite-killer-quickdialog-title
+    notificationBody: es-parasite-killer-quickdialog-msg

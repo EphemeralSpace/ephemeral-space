@@ -1,14 +1,8 @@
 <Document>
-  # Quartermaster
+# Quartermaster
 
-  The Supply department, also known as [color=cyan]Cargo[/color], supplies the station with necessary resources, such as fuel and raw materials, and comfort resources, such as lottery tickets and plushies.
+The Quartermaster controls the warehouse inside Cargo, as well as the lathe which can be used to produce ammo and other useful tools.
 
-  ## Personnel
-
-  Cargo is made up of [color=cyan]Cargo Technicians[/color].
-
-  <Box>
-    <GuideEntityEmbed Entity="ToyFigurineCargoTech" Caption="Cargo Tech"/>
-  </Box>
+A good Quartermaster should seek to dole out the extra supplies inside the warehouse to whoever needs them, as well as restrict access to the lathe to those you trust are do-gooders.
 
 </Document>

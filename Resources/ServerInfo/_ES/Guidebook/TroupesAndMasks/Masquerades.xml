@@ -1,0 +1,8 @@
+<Document>
+  # Masquerades
+
+  Masquerades are "gamemodes" that define which masks and troupes will be present in the round at each population level.
+  They can also control which gamerules are active (like event schedulers).
+
+  The sidebar on the left contains a list of every masquerade and their mask sets. (WIP)
+</Document>

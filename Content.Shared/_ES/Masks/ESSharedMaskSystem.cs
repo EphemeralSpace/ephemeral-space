@@ -57,8 +57,7 @@ public abstract class ESSharedMaskSystem : EntitySystem
         if (!AdminManager.HasAdminFlag(player, AdminFlags.Fun))
             return;
 
-        if (!HasComp<MindContainerComponent>(args.Target) ||
-            !TryComp<ActorComponent>(args.Target, out var actorComp))
+        if (!Mind.TryGetMind(args.Target, out var mind))
             return;
 
         if (_netManager.IsClient)
@@ -86,8 +85,6 @@ public abstract class ESSharedMaskSystem : EntitySystem
                 ConfirmationPopup = true,
                 Act = () =>
                 {
-                    if (!Mind.TryGetMind(actorComp.PlayerSession.UserId, out var mind))
-                        return;
                     ChangeMask(mind.Value, mask, eraseHistory: true);
                 },
             };

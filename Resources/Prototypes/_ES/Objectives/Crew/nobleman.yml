@@ -9,5 +9,7 @@
       sprite: Clothing/Head/Misc/fancycrown.rsi
       state: icon
   - type: ESTimedDemiseOnKillObjective
+    notificationTitle: es-mask-nobleman-killer-quickdialog-title
+    notificationBody: es-mask-nobleman-killer-quickdialog-msg
   - type: ESCounterObjective
     target: 1

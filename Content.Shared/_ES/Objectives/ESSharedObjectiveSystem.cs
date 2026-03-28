@@ -153,6 +153,20 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         return GetProgress(ent) >= 1 || MathHelper.CloseTo(GetProgress(ent), 1);
     }
 
+    /// <summary>
+    /// Checks if all owned objectives on a holder are completed
+    /// </summary>
+    public bool AllCompleted(Entity<ESObjectiveHolderComponent?> ent)
+    {
+        foreach (var objective in GetObjectives(ent))
+        {
+            if (!IsCompleted(objective.AsNullable()))
+                return false;
+        }
+
+        return true;
+    }
+
     public SpriteSpecifier GetIcon(Entity<ESObjectiveComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp))

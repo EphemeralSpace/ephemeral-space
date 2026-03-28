@@ -24,6 +24,21 @@
 
 - type: esMask
   parent: ESBaseCommandRestricted
+  id: ESBaseParasite
+  troupe: ESParasite
+  abstract: true
+  components:
+  - type: ESTroupeFactionIcon
+    icon: ESParasite
+    troupe: ESParasite
+    examineString: es-mask-troupe-parasite-examine
+  objectives:
+    all:
+    - id: ESObjectiveParasiteDie
+    - id: ESObjectiveParasiteDoNotKill
+
+- type: esMask
+  parent: ESBaseCommandRestricted
   id: ESBaseTraitor
   troupe: ESTraitor
   abstract: true

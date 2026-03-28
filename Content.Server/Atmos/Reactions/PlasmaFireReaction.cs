@@ -54,10 +54,14 @@ namespace Content.Server.Atmos.Reactions
                     mixture.SetMoles(Gas.Plasma, initialPlasmaMoles - plasmaBurnRate);
                     mixture.SetMoles(Gas.Oxygen, initialOxygenMoles - plasmaBurnRate * oxygenBurnRate);
 
-                    // supersaturation adjusts the ratio of produced tritium to unwanted CO2
-                    mixture.AdjustMoles(Gas.Tritium, plasmaBurnRate * supersaturation);
-                    mixture.AdjustMoles(Gas.CarbonDioxide, plasmaBurnRate * (1.0f - supersaturation));
+                    // ES START
+                    // creates all plasma used into carbon dioxide instead of tritium
+                    mixture.AdjustMoles(Gas.CarbonDioxide, plasmaBurnRate);
 
+                    // supersaturation adjusts the ratio of produced tritium to unwanted CO2
+                    // mixture.AdjustMoles(Gas.Tritium, plasmaBurnRate * supersaturation);
+                    // mixture.AdjustMoles(Gas.CarbonDioxide, plasmaBurnRate * (1.0f - supersaturation));
+                    // ES END
                     energyReleased += Atmospherics.FirePlasmaEnergyReleased * plasmaBurnRate;
                     energyReleased /= heatScale; // adjust energy to make sure speedup doesn't cause mega temperature rise
                     mixture.ReactionResults[(byte)GasReaction.Fire] += plasmaBurnRate * (1 + oxygenBurnRate);
