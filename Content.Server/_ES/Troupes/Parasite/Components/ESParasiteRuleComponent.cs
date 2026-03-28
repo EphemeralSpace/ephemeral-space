@@ -22,8 +22,9 @@ public sealed partial class ESParasiteRuleComponent : Component
     public TimeSpan SwarmDelay = TimeSpan.FromMinutes(1);
 
     [DataField]
-    public TimeSpan WinDelay = TimeSpan.FromMinutes(4);
+    public TimeSpan WinDelay = TimeSpan.FromMinutes(6);
 
+    [DataField]
     public SoundSpecifier BurstSound = new SoundCollectionSpecifier("desecration");
 
     [DataField]

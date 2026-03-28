@@ -8,10 +8,12 @@ using Content.Server.Station.Systems;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Core.Timer.Components;
 using Content.Shared._ES.Objectives.Components;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
+using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.Audio;
 using Robust.Server.Player;
 
@@ -21,9 +23,11 @@ public sealed class ESParasiteRuleSystem : EntitySystem
 {
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private readonly ESMaskSystem _mask = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly ESObjectiveSystem _objective = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RejuvenateSystem _rejuvenate = default!;
@@ -37,6 +41,7 @@ public sealed class ESParasiteRuleSystem : EntitySystem
 
         SubscribeLocalEvent<ESParasiteRuleComponent, ESParasiteSwarmTimerEvent>(OnSwarmTimer);
         SubscribeLocalEvent<ESParasiteRuleComponent, ESParasiteWinCheckTimerEvent>(OnWinCheckTimer);
+        SubscribeLocalEvent<ESParasiteConverterComponent, MeleeHitEvent>(OnHit);
     }
 
     private void OnProgressChanged(ref ESObjectiveProgressChangedEvent args)
@@ -65,6 +70,21 @@ public sealed class ESParasiteRuleSystem : EntitySystem
     private void OnWinCheckTimer(Entity<ESParasiteRuleComponent> ent, ref ESParasiteWinCheckTimerEvent args)
     {
         ent.Comp.WinStarted = true;
+    }
+
+    private void OnHit(Entity<ESParasiteConverterComponent> ent, ref MeleeHitEvent args)
+    {
+        foreach (var hit in args.HitEntities)
+        {
+            if (!_mind.TryGetMind(hit, out var mind))
+                continue;
+
+            if (_actionBlocker.CanMove(hit))
+                continue;
+
+            _mask.ChangeMask(mind.Value, ent.Comp.Mask);
+            _audio.PlayPvs(ent.Comp.Sound, hit);
+        }
     }
 
     private void StartEndPhase(Entity<ESParasiteRuleComponent> ent)
@@ -113,7 +133,7 @@ public sealed class ESParasiteRuleSystem : EntitySystem
                 continue;
 
             if (_objective.AllCompleted(uid))
-                _roundEnd.EndRound();
+                _roundEnd.EndRound(TimeSpan.FromMinutes(1));
         }
     }
 }

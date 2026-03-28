@@ -13,6 +13,6 @@
   name: es-mask-host-name
   description: es-mask-host-desc
   color: palegoldenrod
-  weight: 0
+  weight: 0 # do not assign in masquerades.
   gear: ESParasiteSwarmGear
   objectives: !type:NoneSelector
