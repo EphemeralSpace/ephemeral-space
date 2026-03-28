@@ -10,22 +10,17 @@
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     xmlns:inventory="clr-namespace:Content.Client.UserInterface.Systems.Inventory.Widgets"
+    xmlns:observe="clr-namespace:Content.Client._ES.Stagehand.Ui"
     Name="StagehandHud"
     VerticalExpand="False"
     VerticalAlignment="Bottom"
     HorizontalAlignment="Center">
     <HFillStack Name="FullScreenContainer">
-        <PanelContainer Name="LeftPanel" HorizontalExpand="True">
-            <PanelContainer.PanelOverride>
-                <graphics:StyleBoxFlat BackgroundColor="#2B2C3B" />
-            </PanelContainer.PanelOverride>
-        </PanelContainer>
+        <FillPanel Name="LeftPanel" StyleClasses="PanelDark">
+            <observe:ESStagehandObserveControl Name="ObserveControl"/>
+        </FillPanel>
         <VFillStack HorizontalExpand="True">
-            <PanelContainer VerticalExpand="True">
-                <PanelContainer.PanelOverride>
-                    <graphics:StyleBoxFlat BackgroundColor="#2B2C3B" />
-                </PanelContainer.PanelOverride>
-            </PanelContainer>
+            <FillPanel StyleClasses="PanelDark"/>
             <LayoutContainer Name="ViewportContainer" VerticalExpand="True">
                 <controls:MainViewport Name="MainViewport"/>
                 <widgets:GhostGui Name="Ghost" Access="Protected" />
@@ -37,23 +32,15 @@
                 </BoxContainer>
                 <alerts:AlertsUI Name="Alerts" Access="Protected" />
             </LayoutContainer>
-            <PanelContainer VerticalExpand="True">
-                <PanelContainer.PanelOverride>
-                    <graphics:StyleBoxFlat BackgroundColor="#2B2C3B" />
-                </PanelContainer.PanelOverride>
-            </PanelContainer>
+            <FillPanel StyleClasses="PanelDark"/>
         </VFillStack>
 
-        <PanelContainer Name="SeparatedChatPanel" HorizontalExpand="True">
-            <PanelContainer.PanelOverride>
-                <graphics:StyleBoxFlat BackgroundColor="#2B2C3B" />
-            </PanelContainer.PanelOverride>
-
+        <FillPanel Name="SeparatedChatPanel" StyleClasses="PanelDark">
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="10" Margin="10">
                 <menuBar:GameTopMenuBar Name="TopBar" HorizontalExpand="True" Access="Public" />
                 <chat:ChatBox StyleClasses="ChatOutput" VerticalExpand="True" HorizontalExpand="True" Name="Chat"
                               Access="Protected" MinSize="0 0" />
             </BoxContainer>
-        </PanelContainer>
+        </FillPanel>
     </HFillStack>
 </screens:StagehandGameScreen>

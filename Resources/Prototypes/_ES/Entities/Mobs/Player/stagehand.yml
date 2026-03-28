@@ -72,12 +72,8 @@
     interfaces:
       enum.ESVoterUiKey.Key:
         type: ESVoterBui
-      enum.ESStagehandUiKey.Observe:
-        type: ESStagehandObserveBui
   - type: IntrinsicUI
     uis:
-      enum.ESStagehandUiKey.Observe:
-        toggleAction: ESActionStagehandObserve
       enum.ESVoterUiKey.Key:
         toggleAction: ESActionStagehandVote
   - type: ESVoter
@@ -105,22 +101,6 @@
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent
       key: enum.ESVoterUiKey.Key
-
-- type: entity
-  parent: BaseMentalAction
-  id: ESActionStagehandObserve
-  name: Observe
-  description: Learn the behind-the-scenes about the actors on stage.
-  components:
-  - type: Action
-    icon:
-      sprite: _ES/Actions/stagehands.rsi
-      state: observe
-    checkCanInteract: false
-    checkConsciousness: false
-  - type: InstantAction
-    event: !type:ToggleIntrinsicUIEvent
-      key: enum.ESStagehandUiKey.Observe
 
 - type: entity
   parent: BaseMentalAction
