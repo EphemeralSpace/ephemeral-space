@@ -89,8 +89,8 @@
         Base: dead
   - type: Tag
     tags:
-      - CannotSuicide
       - FootstepSound
+  - type: ESCannotSuicide
   - type: NoSlip
   - type: Rummager
   - type: RatKing
@@ -103,8 +103,6 @@
     spawned:
     - id: ClothingHeadHatFancyCrown #how did that get there?
       amount: 1
-  - type: MobPrice
-    price: 2500 # rat wealth
   - type: RandomMetadata
     nameSegments:
     - NamesRegalratKingdom
@@ -275,11 +273,9 @@
     wilhelmProbability: 0.001
   - type: Tag
     tags:
-      - CannotSuicide
       - FootstepSound
+  - type: ESCannotSuicide
   - type: NoSlip
-  - type: MobPrice
-    price: 500 # rat wealth
   - type: MobsterAccent
     isBoss: false
   - type: Speech

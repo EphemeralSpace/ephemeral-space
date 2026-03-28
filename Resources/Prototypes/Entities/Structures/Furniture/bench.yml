@@ -15,8 +15,6 @@
     - state: bench_solo_cover
   - type: Physics
     bodyType: Static
-  - type: StaticPrice
-    price: 35
 
 - type: entity
   id: BenchColorfulComfy

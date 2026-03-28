@@ -59,8 +59,6 @@
                 SheetGlass:
                   min: 2
                   max: 2
-    - type: StaticPrice
-      price: 100
 
 - type: entity
   name: base repairable shield
@@ -87,8 +85,6 @@
   id: RiotShield
   description: A large tower shield. Good for controlling crowds.
   components:
-    - type: StaticPrice
-      price: 90
     - type: Blocking
       passiveBlockModifier:
         coefficients:
@@ -196,8 +192,6 @@
                 MaterialWoodPlank:
                   min: 5
                   max: 5
-    - type: StaticPrice
-      price: 150
 
 - type: entity
   name: cardboard shield
@@ -248,8 +242,6 @@
             MaterialCardboard:
               min: 2
               max: 4
-    - type: StaticPrice
-      price: 20
 
 - type: entity
   name: makeshift shield
@@ -535,8 +527,6 @@
                 BrokenEnergyShield:
                   min: 1
                   max: 1
-    - type: StaticPrice
-      price: 350
 
 - type: entity
   name: broken energy shield
@@ -619,5 +609,3 @@
                 SheetGlass:
                   min: 2
                   max: 2
-    - type: StaticPrice
-      price: 150

@@ -52,8 +52,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-  - type: StaticPrice
-    price: 30
 
 - type: entity
   id: ReinforcedGirder
@@ -95,8 +93,6 @@
             - !type:PlaySoundBehavior
               sound:
                 collection: MetalBreak
-    - type: StaticPrice
-      price: 130
 
 - type: entity
   id: ClockworkGirder
@@ -110,8 +106,6 @@
     - type: Construction
       graph: ClockworkGirder
       node: clockGirder
-    - type: StaticPrice
-      price: 75
     - type: Destructible
       thresholds:
         - trigger:

@@ -194,8 +194,6 @@
   id: ClothingBackpackDuffelSyndicateCostumeClown
   suffix: syndicate
   components:
-  - type: Tag
-    tags: [] # ignore "WhitelistChameleon" tag
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector

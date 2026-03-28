@@ -71,8 +71,6 @@
     sprite: Objects/Tools/Hydroponics/scythe.rsi
     slots:
     - back
-  - type: StaticPrice
-    price: 40
   - type: PhysicalComposition
     materialComposition:
       Steel: 100

@@ -37,8 +37,6 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   name: Kardashev-Mosin
@@ -88,8 +86,6 @@
   - type: Sharp
     butcherDelayModifier: 2 #It's a bayonet
   - type: GunRequiresWield
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   name: Hristov
@@ -126,8 +122,6 @@
   - type: EyeCursorOffset
     maxOffset: 3
     pvsIncrease: 0.3
-  - type: StaticPrice
-    price: 3500
 
 - type: entity
   name: musket
@@ -196,8 +190,6 @@
         - CartridgeMagnum # changed from Anti-material rifle rounds because it's a flintlock pistol not a Hristov
     capacity: 1
     proto: CartridgeMagnum
-  - type: StaticPrice
-    price: 0
 
 - type: entity
   parent: WeaponPistolFlintlock

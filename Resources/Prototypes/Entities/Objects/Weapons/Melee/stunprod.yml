@@ -63,8 +63,6 @@
         enum.ToggleableVisuals.Layer:
           True: {state: stunprod_on}
           False: {state: stunprod_off}
-  - type: StaticPrice
-    price: 100
   - type: Construction
     graph: makeshiftstunprod
     node: msstunprod

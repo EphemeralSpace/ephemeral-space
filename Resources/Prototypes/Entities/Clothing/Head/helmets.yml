@@ -6,9 +6,6 @@
   id: ClothingHeadHelmetBase
   abstract: true
   components:
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     layers:
       HeadTop : HEAD
@@ -40,7 +37,6 @@
     sprite: Clothing/Head/Helmets/security.rsi
   - type: Tag
     tags:
-    - WhitelistChameleon
     - SecurityHelmet
   - type: HideLayerClothing
     layers:
@@ -261,7 +257,6 @@
     reduction: 0.15 # not fully sealed so less protection
   - type: Tag
     tags:
-    - WhitelistChameleon
     - FireHelmet
   - type: HideLayerClothing
     layers:
@@ -295,7 +290,6 @@
   - type: IdentityBlocker
   - type: Tag
     tags:
-    - WhitelistChameleon
     - FireHelmet
     - CorgiWearable
   - type: HideLayerClothing

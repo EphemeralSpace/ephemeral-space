@@ -36,7 +36,7 @@ public sealed class ChameleonClothingSystem : SharedChameleonClothingSystem
         if (!Resolve(uid, ref component))
             return;
 
-        var state = new ChameleonBoundUserInterfaceState(component.Slot, component.Default, component.RequireTag);
+        var state = new ChameleonBoundUserInterfaceState(component.Slot, component.Default);
         UI.SetUiState(uid, ChameleonUiKey.Key, state);
     }
 
@@ -57,7 +57,7 @@ public sealed class ChameleonClothingSystem : SharedChameleonClothingSystem
         // make sure that it is valid change
         if (string.IsNullOrEmpty(protoId) || !_proto.TryIndex(protoId, out EntityPrototype? proto))
             return;
-        if (!IsValidTarget(proto, component.Slot, component.RequireTag))
+        if (!IsValidTarget(proto, component.Slot))
             return;
         component.Default = protoId;
 
@@ -80,12 +80,12 @@ public sealed class ChameleonClothingSystem : SharedChameleonClothingSystem
             if (Timing.CurTime < chameleon.NextEmpChange)
                 continue;
 // ES START
-            if (!GetValidTargets(chameleon.Slot, chameleon.RequireTag).Any())
+            if (!GetValidTargets(chameleon.Slot).Any())
                 continue;
 // ES END
 
             // randomly pick cloth element from available and apply it
-            var pick = GetRandomValidPrototype(chameleon.Slot, chameleon.RequireTag);
+            var pick = GetRandomValidPrototype(chameleon.Slot);
             SetSelectedPrototype(uid, pick, component: chameleon);
 
             chameleon.NextEmpChange += TimeSpan.FromSeconds(1f / chameleon.EmpChangeIntensity);

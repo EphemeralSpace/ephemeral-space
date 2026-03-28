@@ -1,0 +1,18 @@
+- type: esMask
+  parent: ESBaseParasite
+  id: ESPsychid
+  name: es-mask-psychid-name
+  description: es-mask-psychid-desc
+  color: lightsteelblue
+  mindComponents:
+  - type: ESPsychid
+
+- type: esMask
+  parent: ESBaseParasite
+  id: ESHost
+  name: es-mask-host-name
+  description: es-mask-host-desc
+  color: palegoldenrod
+  weight: 0 # do not assign in masquerades.
+  gear: ESParasiteSwarmGear
+  objectives: !type:NoneSelector

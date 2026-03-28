@@ -14,10 +14,6 @@ namespace Content.Shared.Hands.EntitySystems;
 
 public abstract partial class SharedHandsSystem
 {
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-
-    private static readonly ProtoId<TagPrototype> BypassDropChecksTag = "BypassDropChecks";
-
     private void InitializeDrop()
     {
         SubscribeLocalEvent<HandsComponent, EntRemovedFromContainerMessage>(HandleEntityRemoved);
@@ -52,7 +48,7 @@ public abstract partial class SharedHandsSystem
     private bool ShouldIgnoreRestrictions(EntityUid user)
     {
         //Checks if the Entity is something that shouldn't care about drop distance or walls ie Aghost
-        return !_tagSystem.HasTag(user, BypassDropChecksTag);
+        return !HasComp<ESBypassDropChecksComponent>(user);
     }
 
     /// <summary>

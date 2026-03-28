@@ -82,7 +82,7 @@
         - id: ClothingOuterFlannelBlue
         - id: ClothingOuterFlannelGreen
       - id: ClothingOuterVestHazard
-      - id: ClothingShoesBootsJack
+      - id: ClothingShoesBootsBlack
       - id: ClothingShoesHighheelBoots
       - id: ClothingShoesBootsLaceup
       - id: ClothingShoesLeather
@@ -270,7 +270,6 @@
       - id: GlowstickGreen
       - id: Bucket
       - id: RadioHandheld
-      - id: AppraisalTool
       - id: ModularReceiver
       - id: WeaponFlareGun
       - id: BarberScissors
@@ -289,8 +288,6 @@
       - id: WelderIndustrial
       - id: SheetPlasteel10
       - id: ClothingMaskGasExplorer
-      - id: TechnologyDisk
-      - id: ResearchDisk5000
       - id: PetCarrier
       - id: DrinkMopwataBottleRandom
       - id: SpectralLocator

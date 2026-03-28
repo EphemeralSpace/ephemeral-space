@@ -1,5 +1,4 @@
 using Content.Shared.Lathe;
-using Content.Shared.Research.Components;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
@@ -20,12 +19,6 @@ namespace Content.Client.Lathe.UI
 
             _menu = this.CreateWindowCenteredRight<LatheMenu>();
             _menu.SetEntity(Owner);
-
-            _menu.OnServerListButtonPressed += _ =>
-            {
-                SendMessage(new ConsoleServerSelectionMessage());
-            };
-
             _menu.RecipeQueueAction += (recipe, amount) =>
             {
                 SendMessage(new LatheQueueRecipeMessage(recipe, amount));

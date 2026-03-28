@@ -33,8 +33,6 @@
       cpu_security: "#DE3A3A"
       cpu_science: "#D381C9"
       cpu_supply: "#A46106"
-  - type: StaticPrice
-    price: 250
 
 - type: entity
   parent: BaseFlatpack
@@ -47,8 +45,6 @@
   - type: Sprite
     layers:
     - state: solar-assembly-part
-  - type: StaticPrice
-    price: 75
 
 - type: entity
   parent: BaseFlatpack
@@ -61,8 +57,6 @@
     - state: ame-part
   - type: Flatpack
     entity: AmeShielding
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   parent: BaseFlatpack

@@ -1,4 +1,3 @@
-using Content.Shared.Cargo;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
 using Content.Shared.Power.Components;
@@ -24,7 +23,6 @@ public abstract partial class SharedBatterySystem : EntitySystem
         SubscribeLocalEvent<BatteryComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<BatteryComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BatteryComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<BatteryComponent, PriceCalculationEvent>(CalculateBatteryPrice);
         SubscribeLocalEvent<BatteryComponent, ChangeChargeEvent>(OnChangeCharge);
         SubscribeLocalEvent<BatteryComponent, GetChargeEvent>(OnGetCharge);
         SubscribeLocalEvent<BatterySelfRechargerComponent, RefreshChargeRateEvent>(OnRefreshChargeRate);
@@ -80,14 +78,6 @@ public abstract partial class SharedBatterySystem : EntitySystem
                 ("markupPercentColor", "green")
             )
         );
-    }
-
-    /// <summary>
-    /// Gets the price for the power contained in an entity's battery.
-    /// </summary>
-    private void CalculateBatteryPrice(Entity<BatteryComponent> ent, ref PriceCalculationEvent args)
-    {
-        args.Price += GetCharge(ent.AsNullable()) * ent.Comp.PricePerJoule;
     }
 
     private void OnChangeCharge(Entity<BatteryComponent> ent, ref ChangeChargeEvent args)

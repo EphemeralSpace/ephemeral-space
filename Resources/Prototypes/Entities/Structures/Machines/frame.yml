@@ -38,7 +38,7 @@
         machine_parts: !type:Container
     - type: Damageable
       damageContainer: StructuralInorganic
-      damageModifierSet: Metallic
+      damageModifierSet: ESMachine
     - type: Destructible
       thresholds:
       - trigger: # Excess damage, don't spawn entities
@@ -102,7 +102,9 @@
         - machine_parts
     - type: Damageable
       damageContainer: StructuralInorganic
-      damageModifierSet: Metallic
+# ES Start
+      damageModifierSet: ESMachine
+# ES End
     - type: Destructible
       thresholds:
       - trigger: # Excess damage, don't spawn entities
@@ -161,7 +163,9 @@
       node: destroyedMachineFrame
     - type: Damageable
       damageContainer: StructuralInorganic
-      damageModifierSet: Metallic
+# ES Start
+      damageModifierSet: ESMachine
+# ES End
     - type: Destructible
       thresholds:
       - trigger: # Excess damage, don't spawn entities

@@ -74,7 +74,6 @@ namespace Content.Shared.Interaction
         [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
         [Dependency] private readonly SharedStrippableSystem _strippable = default!;
         [Dependency] private readonly SharedPlayerRateLimitManager _rateLimit = default!;
-        [Dependency] private readonly TagSystem _tagSystem = default!;
         [Dependency] private readonly UseDelaySystem _useDelay = default!;
         [Dependency] private readonly INetManager _net = default!; // Stellar - interaction particles
 
@@ -106,8 +105,6 @@ namespace Content.Shared.Interaction
         // ES START
         public const float ESPullRange = 0.7f;
         // ES END
-
-        private static readonly ProtoId<TagPrototype> BypassInteractionRangeChecksTag = "BypassInteractionRangeChecks";
 
         public delegate bool Ignored(EntityUid entity);
 
@@ -381,7 +378,7 @@ namespace Content.Shared.Interaction
         {
             // This is for Admin/mapping convenience. If ever there are other ghosts that can still interact, this check
             // might need to be more selective.
-            return !_tagSystem.HasTag(user, BypassInteractionRangeChecksTag);
+            return !HasComp<ESBypassInteractionRangeChecksComponent>(user);
         }
 
         /// <summary>

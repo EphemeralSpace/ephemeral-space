@@ -4,7 +4,6 @@ using Content.Shared.Anomaly;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
-using Content.Shared.Research.Components;
 
 namespace Content.Server.Anomaly;
 
@@ -21,7 +20,6 @@ public sealed partial class AnomalySystem
         SubscribeLocalEvent<AnomalyVesselComponent, MapInitEvent>(OnVesselMapInit);
         SubscribeLocalEvent<AnomalyVesselComponent, InteractUsingEvent>(OnVesselInteractUsing);
         SubscribeLocalEvent<AnomalyVesselComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<AnomalyVesselComponent, ResearchServerGetPointsPerSecondEvent>(OnVesselGetPointsPerSecond);
         SubscribeLocalEvent<AnomalyShutdownEvent>(OnVesselAnomalyShutdown);
     }
 
@@ -68,14 +66,6 @@ public sealed partial class AnomalySystem
         _radiation.SetSourceEnabled(uid, true);
         UpdateVesselAppearance(uid,  component);
         Popup.PopupEntity(Loc.GetString("anomaly-vessel-component-anomaly-assigned"), uid);
-    }
-
-    private void OnVesselGetPointsPerSecond(EntityUid uid, AnomalyVesselComponent component, ref ResearchServerGetPointsPerSecondEvent args)
-    {
-        if (!this.IsPowered(uid, EntityManager) || component.Anomaly is not {} anomaly)
-            return;
-
-        args.Points += (int) (GetAnomalyPointValue(anomaly) * component.PointMultiplier);
     }
 
     private void OnVesselAnomalyShutdown(ref AnomalyShutdownEvent args)

@@ -555,10 +555,6 @@
       weight: 15
     - id: EggSpider
       weight: 5
-    - id: ArtifactFragment1
-      amount: !type:RangeNumberSelector
-        range: 1, 2
-      weight: 10
     - id: AnomalyCorePyroclastic
       amount: !type:RangeNumberSelector
         range: 1, 3

@@ -3,19 +3,7 @@
 - type: latheRecipePack
   id: RoboticsStatic
   recipes:
-  - MMI
-  - PositronicBrain
   - SciFlash
-  - CyborgEndoskeleton
-
-- type: latheRecipePack
-  id: BorgModulesStatic
-  recipes:
-  - BorgModuleTool
-  - BorgModuleCable
-  - BorgModuleFireExtinguisher
-  - BorgModuleInflatable
-  - BorgModuleArtistry
 
 - type: latheRecipePack
   id: BorgLimbsStatic
@@ -33,15 +21,6 @@
   id: Robotics
   recipes:
   - ProximitySensor
-
-- type: latheRecipePack
-  id: BorgModules
-  recipes:
-  - BorgModuleAdvancedCleaning
-  - BorgModuleAdvancedTool
-  - BorgModuleAdvancedClowning
-  - BorgModuleAdvancedTopical
-  - BorgModuleAdvancedMining
 
 - type: latheRecipePack
   id: MechParts

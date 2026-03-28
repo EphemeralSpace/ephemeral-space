@@ -77,8 +77,6 @@
     duration: 10
     spreadAmount: 20
     smokePrototype: AluminiumMetalFoam
-  - type: StaticPrice
-    price: 350
 
 - type: entity
   parent: [ BaseEngineeringContraband, VolatileGrenadeBase, GrenadeBase ] # Prevent inheriting DeleteOnTrigger from SmokeGrenade
@@ -107,8 +105,6 @@
         Oxygen: 654.7464 # oxygen
         Nitrogen: 2463.0936 # nitrogen
       temperature: 293.15
-  - type: StaticPrice
-    price: 350
   - type: GenericVisualizer
     visuals:
       enum.ReleaseGasOnTriggerVisuals.Key:

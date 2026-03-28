@@ -71,9 +71,8 @@
       proto: alien
     - type: Tag
       tags:
-        - Carp
         - DoorBumpOpener
-        - CannotSuicide
+    - type: ESCannotSuicide
     - type: ReplacementAccent
       accent: genericAggressive
     - type: Speech

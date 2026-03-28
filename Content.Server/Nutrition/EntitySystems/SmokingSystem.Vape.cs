@@ -6,7 +6,6 @@ using Content.Shared.Body.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
-using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Nutrition;
@@ -21,7 +20,6 @@ namespace Content.Server.Nutrition.EntitySystems
     {
         [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-        [Dependency] private readonly EmagSystem _emag = default!;
         [Dependency] private readonly IngestionSystem _ingestion = default!;
         [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
@@ -30,7 +28,6 @@ namespace Content.Server.Nutrition.EntitySystems
         {
             SubscribeLocalEvent<VapeComponent, AfterInteractEvent>(OnVapeInteraction);
             SubscribeLocalEvent<VapeComponent, VapeDoAfterEvent>(OnVapeDoAfter);
-            SubscribeLocalEvent<VapeComponent, GotEmaggedEvent>(OnEmagged);
         }
 
         private void OnVapeInteraction(Entity<VapeComponent> entity, ref AfterInteractEvent args)
@@ -62,7 +59,7 @@ namespace Content.Server.Nutrition.EntitySystems
                 forced = false;
             }
 
-            if (entity.Comp.ExplodeOnUse || _emag.CheckFlag(entity, EmagType.Interaction))
+            if (entity.Comp.ExplodeOnUse)
             {
                 _explosionSystem.QueueExplosion(entity.Owner, "Default", entity.Comp.ExplosionIntensity, 0.5f, 3, canCreateVacuum: false);
                 Del(entity);
@@ -159,17 +156,6 @@ namespace Content.Server.Nutrition.EntitySystems
                     Loc.GetString("vape-component-vape-success"), args.Args.Target.Value,
                     args.Args.Target.Value);
             }
-        }
-
-        private void OnEmagged(Entity<VapeComponent> entity, ref GotEmaggedEvent args)
-        {
-            if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-                return;
-
-            if (_emag.CheckFlag(entity, EmagType.Interaction))
-                return;
-
-            args.Handled = true;
         }
     }
 }

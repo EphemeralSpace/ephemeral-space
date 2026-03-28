@@ -202,5 +202,4 @@
   description: es-mask-vip-desc
   color: gold
   weight: 0.5
-  gear:
-    id: ESItemCardVIP
+  gear: ESMaskVIPGear

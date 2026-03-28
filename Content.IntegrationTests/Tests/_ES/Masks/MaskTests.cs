@@ -1,5 +1,8 @@
-using Content.IntegrationTests.Tests._Citadel;
-using Content.IntegrationTests.Tests._Citadel.Attributes;
+using System.Collections.Generic;
+using System.Linq;
+using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Fixtures.Attributes;
+using Content.IntegrationTests.Utility;
 using Content.Server._ES.Masks;
 using Content.Server.Chat;
 using Content.Server.Mind;
@@ -14,7 +17,7 @@ namespace Content.IntegrationTests.Tests._ES.Masks;
 [TestMap(TestMapMode.Arena)]
 public sealed class MaskTests : GameTest
 {
-    [System(Side.Server)] private readonly SuicideSystem _suicideSystem = default!;
+    [SidedDependency(Side.Server)] private readonly SuicideSystem _suicideSystem = default!;
 
     public override PoolSettings PoolSettings { get; } = new()
     {
@@ -22,7 +25,7 @@ public sealed class MaskTests : GameTest
         Connected = true, // We need a guy to mask up.
     };
 
-    public static readonly string[] Masks = PrototypeDataScrounger.PrototypesOfKind<ESMaskPrototype>();
+    public static readonly string[] Masks = GameDataScrounger.PrototypesOfKind<ESMaskPrototype>();
 
     [Test]
     [TestCaseSource(nameof(Masks))]
@@ -50,8 +53,18 @@ public sealed class MaskTests : GameTest
     // Very strong, suitable for extreme violence.
     private static readonly EntProtoId Weapon = "MeleeDebug200";
 
+    private static readonly Dictionary<ProtoId<ESMaskPrototype>, string> CannotBeAttackerMasks =
+        new()
+        {
+            {"ESHost", "Has blocked hands and cannot actually pick anything up as result"},
+        };
+
+    private static IEnumerable<TestCaseData> AttackerMasks =>
+        GameDataScrounger.PrototypesOfKind<ESMaskPrototype>()
+        .WithIgnores(CannotBeAttackerMasks);
+
     [Test]
-    [TestCaseSource(nameof(Masks))]
+    [TestCaseSource(nameof(AttackerMasks))]
     [Description("Has the given mask beat up a crew member, asserting it doesn't fail.")]
     public async Task BeatUpCrewmember(string maskProto)
     {

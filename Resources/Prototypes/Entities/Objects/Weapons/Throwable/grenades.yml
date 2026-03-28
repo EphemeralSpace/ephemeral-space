@@ -98,8 +98,6 @@
       path: /Audio/Effects/minibombcountdown.ogg
       params:
         volume: 12
-  - type: StaticPrice
-    price: 2000
 
 - type: entity
   name: self destruct
@@ -197,8 +195,6 @@
       - type: DeleteOnTrigger
         keysIn:
         - stageTwo
-  - type: StaticPrice
-    price: 1000
 
 - type: entity
   name: whitehole grenade
@@ -257,8 +253,6 @@
       - type: DeleteOnTrigger
         keysIn:
         - stageTwo
-  - type: StaticPrice
-    price: 1000
 
 - type: entity
   name: the nuclear option
@@ -338,8 +332,6 @@
         enum.ConstructionVisuals.Layer:
           Primed: { state: primed }
           # Unprimed: <Use state determined by enum.ConstructionVisuals.Layer>
-  - type: StaticPrice
-    price: 75
 
 - type: entity
   name: EMP grenade
@@ -361,8 +353,6 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/countdown.ogg
-  - type: StaticPrice
-    price: 666 # 2000 for 3, I love fractions
 
 - type: entity
   name: holy hand grenade
@@ -390,8 +380,6 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/hallelujah.ogg
-  - type: StaticPrice
-    price: 10000
 
 # Non-explosive "dummy" grenades to use as a distraction.
 
@@ -444,5 +432,3 @@
       path: /Audio/Effects/minibombcountdown.ogg
       params:
         volume: 12
-  - type: StaticPrice
-    price: 50

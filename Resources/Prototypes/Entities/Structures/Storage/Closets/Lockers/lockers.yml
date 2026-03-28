@@ -257,8 +257,6 @@
     node: done
     containers:
     - entity_storage
-  - type: StaticPrice
-    price: 660
 
 - type: entity
   id: GunSafeBaseSecure

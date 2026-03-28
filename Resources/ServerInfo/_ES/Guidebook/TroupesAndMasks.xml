@@ -3,11 +3,17 @@
   Masks are the driving force of every shift.
   They are the catalysts for chaos, conflict and mystery in Ephemeral Space.
 
-  Masks are categorized into Troupes: collections of masks with the same overarching goals.
+  Masks are categorized into [bold]Troupes[/bold]: collections of masks with the same overarching goals.
+  Each troupe has a set of shared objective(s), and a win condition which will end the round with that troupe's victory.
 
-  [color=red]TODO ES write the rest lol[/color]
+  At roundstart, a random [textlink="masquerade" link="Masquerades"] is chosen, which determines which masks will be given out to players at specific population levels.
+  Each masquerade has a collection of troupes which will be in the round, as well as defined mask sets for each additional player at each population level.
+  This allows for more control, and for specific masquerades to be more highly themed and interesting.
+
+  Latejoiners to a round will receive the [textlink="Crewmember" link="Crewmember"] mask, which has no special qualities.
+  It is highly recommended that you play from the beginning of a round to the end if you want to play a round, since latejoining inherently messes with the social narrative of the round.
 
   ## Troupes
-  - [textlink="Crew" link="ESCrew"] who must keep the station running
-  - [textlink="Traitors" link="ESTraitors"] amongst the crew who must assassinate, sabotage, and deceive, ending with an attempt to nuke the station.
+  - [textlink="Crew" link="Crew"] who must keep the station running and escape the radiation storm
+  - [textlink="Traitors" link="Traitors"] amongst the crew who must assassinate, sabotage, and deceive, ending with an attempt to nuke the station.
 </Document>

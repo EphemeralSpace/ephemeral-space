@@ -37,21 +37,6 @@
       path: /Audio/Magic/forcewall.ogg
 
 - type: polymorph
-  id: WizardForcedSkeleton
-  configuration:
-    entity: MobSkeletonPerson
-    forced: true
-    inventory: Drop
-    transferName: true
-    transferDamage: true
-    revertOnCrit: false
-    revertOnDeath: false
-    polymorphSound: !type:SoundPathSpecifier
-      path: /Audio/Magic/forcewall.ogg
-    exitPolymorphSound: !type:SoundPathSpecifier
-      path: /Audio/Magic/forcewall.ogg
-
-- type: polymorph
   id: WizardForcedMonkey
   configuration:
     entity: MobMonkey
@@ -146,53 +131,6 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: false
-
-# this is the monkey polymorph for artifact.
-- type: polymorph
-  id: ArtifactMonkey
-  configuration:
-    entity: MobMonkey
-    forced: true
-    transferName: true
-    allowRepeatedMorphs: true
-    inventory: Transfer
-    revertOnCrit: true
-    revertOnDeath: true
-    duration: 20
-
-- type: polymorph
-  id: ArtifactCluwne
-  configuration:
-    entity: MobCluwne
-    forced: true
-    transferName: true
-    transferHumanoidAppearance: true
-    inventory: None
-    revertOnDeath: true
-    revertOnCrit: true
-    duration: 30
-
-- type: polymorph
-  id: ArtifactLizard
-  configuration:
-    entity: MobLizard
-    forced: true
-    transferName: true
-    inventory: None
-    revertOnDeath: true
-    revertOnCrit: true
-    duration: 20
-
-- type: polymorph
-  id: ArtifactLuminous
-  configuration:
-    entity: MobLuminousPerson
-    forced: true
-    transferName: true
-    inventory: None
-    revertOnDeath: true
-    revertOnCrit: true
-    duration: 20
 
 # Desynchronized / Void Pocket status
 - type: polymorph

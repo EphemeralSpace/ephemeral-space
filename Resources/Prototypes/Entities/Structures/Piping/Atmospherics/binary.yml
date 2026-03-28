@@ -341,7 +341,6 @@
   placement:
     mode: AlignAtmosPipeLayers
   components:
-  - type: StationAiWhitelist
   - type: SubFloorHide
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer

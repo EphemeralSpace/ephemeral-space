@@ -6,18 +6,6 @@
   components:
   - type: UseDelay
     delay: 10.0
-  - type: Bible
-    damage:
-      groups:
-        Brute: -15
-        Burn: -15
-    damageOnFail:
-      groups:
-        Brute: 15
-        Airloss: 15
-    damageOnUntrainedUse: ## What a non-chaplain takes when attempting to heal someone
-      types:
-        Heat: 10
   - type: MeleeWeapon
     soundHit:
       collection: Punch
@@ -26,7 +14,6 @@
         Holy: 25
         Blunt: 1
   - type: Prayable
-    bibleUserOnly: true
   - type: ReactionMixer
     mixMessage: "bible-mixing-success"
     reactionTypes:
@@ -57,36 +44,10 @@
   description: "There's a note: Klatuu, Verata, Nikto -- Don't forget it again!"
   id: BibleNecronomicon
   components:
-  - type: Bible
-    damage:
-      types:
-        Caustic: 20 ## ~15 dps
-    damageOnFail:
-      groups:
-        Brute: 15
-        Airloss: 25
-    damageOnUntrainedUse:
-      types:
-        Caustic: 50
-    failChance: 0
-    locPrefix: "necro"
-    healSound: "/Audio/Effects/lightburn.ogg"
   - type: Sprite
     sprite: Objects/Specific/Chapel/necronomicon.rsi
   - type: Item
     sprite: Objects/Specific/Chapel/necronomicon.rsi
-
-- type: entity
-  parent: BaseAction
-  id: ActionBibleSummon
-  name: Summon familiar
-  description: Summon a familiar that will aid you and gain humanlike intelligence once inhabited by a soul.
-  components:
-  - type: Action
-    icon: { sprite: Clothing/Head/Hats/witch.rsi, state: icon }
-    useDelay: 1
-  - type: InstantAction
-    event: !type:SummonActionEvent
 
 - type: entity
   id: BibleDruid

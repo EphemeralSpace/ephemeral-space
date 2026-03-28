@@ -63,13 +63,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
             Gui.Visible = false;
         return;
 // ES END
-        if (Gui == null)
-        {
-            return;
-        }
-
-        Gui.Visible = _system?.IsGhost ?? false;
-        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody);
     }
 
     private void OnPlayerRemoved(GhostComponent component)

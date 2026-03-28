@@ -165,7 +165,7 @@
     all:
     - id: ClothingUniformJumpsuitSec
     - id: ClothingBackpackSecurity
-    - id: ClothingShoesBootsJack
+    - id: ClothingShoesBootsBlack
 
 - type: entity
   parent: WardrobeSecurity
@@ -310,7 +310,6 @@
     - id: ClothingBackpack
     - id: ClothingShoesColorBlack
     - id: ClothingHandsGlovesFingerless
-    - id: AppraisalTool
 
 - type: entity
   id: ESWardrobePrisonFilled

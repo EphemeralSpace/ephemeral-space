@@ -17,9 +17,6 @@
   - type: GroupExamine
   - type: Armor
     modifiers: { }
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -121,7 +118,6 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -136,9 +132,6 @@
     sprite: Clothing/Head/Hoods/cult.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/cult.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -156,7 +149,6 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -201,9 +193,6 @@
     sprite: Clothing/Head/Hoods/goliathcloak.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/goliathcloak.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -226,7 +215,6 @@
     tags:
     - CorgiWearable
     - ClothMade
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase
@@ -267,9 +255,6 @@
   - type: Clothing
     sprite: Clothing/Head/Hoods/moth.rsi
   - type: IdentityBlocker
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -785,9 +770,6 @@
     sprite: Clothing/Head/Hoods/voidcloak.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/voidcloak.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair

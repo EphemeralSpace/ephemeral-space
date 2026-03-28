@@ -26,7 +26,9 @@
     drawdepth: Objects
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Electronic
+# ES Start
+    damageModifierSet: ESComputer
+# ES End
   - type: Destructible
     thresholds:
     - trigger:
@@ -81,6 +83,8 @@
     state: broken
 # ES START
     noRot: true
+  - type: Damageable
+    damageModifierSet: ESMachine
 # ES END
   - type: Destructible
     thresholds:

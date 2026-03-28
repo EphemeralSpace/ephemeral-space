@@ -96,9 +96,7 @@
       interactSuccessString: petting-success-holo
       interactFailureString: petting-failure-holo
       successChance: 0.7
-    - type: Tag
-      tags:
-        - CannotSuicide
+    - type: ESCannotSuicide
 
 # From the uplink injector
 - type: entity
@@ -214,8 +212,8 @@
       prototype: Primate
     - type: Tag
       tags:
-        - CannotSuicide
         - FootstepSound
+    - type: ESCannotSuicide
     - type: Inventory
       templateId: holoclown
     - type: Hands

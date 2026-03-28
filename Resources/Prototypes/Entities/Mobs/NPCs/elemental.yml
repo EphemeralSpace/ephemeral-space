@@ -366,9 +366,9 @@
   - type: Tag
     tags:
       - FootstepSound
-      - CannotSuicide
       - DoorBumpOpener
       - StunImmune
+  - type: ESCannotSuicide
   - type: NoSlip
   - type: ExaminableSolution
     solution: bloodstream

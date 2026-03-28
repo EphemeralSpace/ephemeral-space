@@ -24,7 +24,6 @@
       - Radio
       - HolofanProjector
       - Multitool
-      - AppraisalTool
       - JawsOfLife
       - GPS
       - WeldingMask
@@ -96,7 +95,6 @@
   - type: Tag
     tags:
     - UtilityBelt
-    - WhitelistChameleon
 
 - type: entity
   parent: BaseClothingBeltEngineering

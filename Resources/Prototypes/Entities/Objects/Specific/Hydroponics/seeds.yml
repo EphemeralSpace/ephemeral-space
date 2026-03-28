@@ -21,8 +21,6 @@
             False: { visible: false }
     - type: Item
       size: Tiny
-    - type: StaticPrice
-      price: 20
     - type: PhysicalComposition
 
 - type: entity

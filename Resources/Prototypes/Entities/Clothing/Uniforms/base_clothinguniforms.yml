@@ -30,7 +30,6 @@
     tags:
     - ClothMade
     - Recyclable
-    - WhitelistChameleon
 
 - type: entity
   abstract: true

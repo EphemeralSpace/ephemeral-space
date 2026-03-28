@@ -127,9 +127,6 @@
   id: LowValueScienceCrateTable
   table: !type:GroupSelector
     children:
-    - id: CrateArtifactContainer
-    - id: HandheldArtifactContainer
-      weight: 0.2
     - id: CrateMaterialPlasma
 
 - type: entityTable
@@ -247,31 +244,4 @@
     - CrateEmergencyExplosive
     - CrateSecurityBiosuit
     chance: 0.9
-    offset: 0.0
-
-- type: entityTable
-  id: LockboxTable
-  table: !type:GroupSelector
-    children:
-    - id: CrateLockBoxEngineering
-    - id: CrateLockBoxMedical
-    - id: CrateLockBoxSecurity
-    - id: CrateLockBoxScience
-    - id: CrateLockBoxService
-
-- type: entity
-  name: random lockbox spawner
-  id: LootSpawnerRandomLockbox
-  parent: MarkerBase
-  suffix: 90%
-  components:
-  - type: Sprite
-    layers:
-    - state: red
-    - sprite: Structures/Storage/Crates/lockbox.rsi
-      state: icon
-  - type: EntityTableSpawner
-    table: !type:NestedSelector
-      tableId: LockboxTable
-      prob: 0.9
     offset: 0.0

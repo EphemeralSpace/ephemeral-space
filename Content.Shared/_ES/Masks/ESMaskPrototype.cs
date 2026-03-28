@@ -56,6 +56,12 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     [DataField]
     public LocId Description;
 
+    /// <summary>
+    /// List of tips that apply to this mask specifically. Should be tips that are also in the main tips dataset, but they don't necessarily need to be.
+    /// </summary>
+    [DataField]
+    public List<LocId> Tips = new();
+
     [DataField]
     public ComponentRegistry Components = new();
 
@@ -63,10 +69,10 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     public ComponentRegistry MindComponents = new();
 
     /// <summary>
-    /// Items spawned in the player's bag when they receive this mask.
+    /// Gear applied to player when they receive this mask.
     /// </summary>
     [DataField]
-    public EntityTableSelector Gear = new NoneSelector();
+    public ProtoId<StartingGearPrototype>? Gear;
 
     /// <summary>
     /// Objectives to assign

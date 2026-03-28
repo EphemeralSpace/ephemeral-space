@@ -9,7 +9,6 @@
   - !type:DoorBoltLightWireAction
   - !type:DoorTimingWireAction
   - !type:DoorSafetyWireAction
-  - !type:AiInteractWireAction
 
 - type: wireLayout
   parent: Airlock
@@ -56,13 +55,11 @@
   - !type:DoorBoltLightWireAction
   - !type:DoorTimingWireAction
   - !type:DoorSafetyWireAction
-  - !type:AiInteractWireAction
   dummyWires: 4
 
 - type: wireLayout
   id: Vending
   wires:
-  - !type:AiInteractWireAction
   - !type:PowerWireAction
   - !type:AccessWireAction
   - !type:LogWireAction
@@ -73,7 +70,6 @@
 - type: wireLayout
   id: AirAlarm
   wires:
-  - !type:AiInteractWireAction
   - !type:PowerWireAction
   - !type:AccessWireAction
   - !type:LogWireAction
@@ -90,7 +86,6 @@
 - type: wireLayout
   id: FireAlarm
   wires:
-  - !type:AiInteractWireAction
   - !type:PowerWireAction
   - !type:AtmosMonitorDeviceNetWire
     alarmOnPulse: true
@@ -103,14 +98,12 @@
   - !type:ArcadeOverflowWireAction
   - !type:ArcadePlayerInvincibleWireAction
   - !type:ArcadeEnemyInvincibleWireAction
-  - !type:AiInteractWireAction
 
 - type: wireLayout
   id: SurveillanceCamera
   dummyWires: 2
   wires:
   - !type:PowerWireAction
-  - !type:AiVisionWireAction
 
 - type: wireLayout
   id: CryoPod
@@ -168,14 +161,12 @@
   dummyWires: 2
   wires:
   - !type:PowerWireAction
-  - !type:AiInteractWireAction
 
 - type: wireLayout
   id: AnomalyGenerator
   dummyWires: 2
   wires:
   - !type:PowerWireAction
-  - !type:AiInteractWireAction
 
 - type: wireLayout
   id: Computer
@@ -188,22 +179,18 @@
   dummyWires: 2
   wires:
   - !type:PowerWireAction
-  - !type:AiInteractWireAction
 
 - type: wireLayout
   id: Holopad
   dummyWires: 2
   wires:
   - !type:PowerWireAction
-  - !type:AiInteractWireAction
-  - !type:AiVisionWireAction
 
 - type: wireLayout
   id: BarSign
   dummyWires: 2
   wires:
   - !type:PowerWireAction
-  - !type:AiInteractWireAction
   - !type:AccessWireAction
 
 - type: wireLayout
@@ -213,7 +200,6 @@
   - !type:PowerWireAction
   - !type:PowerWireAction
     pulseTimeout: 15
-  - !type:AiInteractWireAction
   - !type:AccessWireAction
 
 - type: wireLayout
@@ -223,7 +209,6 @@
   - !type:PowerWireAction
   - !type:PowerWireAction
     pulseTimeout: 15
-  - !type:AiInteractWireAction
   - !type:AccessWireAction
 
 - type: wireLayout
@@ -231,4 +216,3 @@
   dummyWires: 3
   wires:
   - !type:AccessWireAction
-  - !type:AiInteractWireAction

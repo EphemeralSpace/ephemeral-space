@@ -81,7 +81,6 @@
           -1: { state: safe }
           0: { state: stun }
           1: { state: lethal }
-  - type: StationAiWhitelist
   - type: DeployableTurretController
     accessGroups:
     - Cargo
@@ -92,13 +91,10 @@
     - Research
     - Security
     - Service
-    - Silicon
     accessLevels:
     - Armory
     - Atmospherics
     - Bar
-    - BasicSilicon
-    - Borg
     - Brig
     - Detective
     - Captain
@@ -173,7 +169,7 @@
   suffix: AI, Silicon
   components:
   - type: AccessReader
-    access: [["StationAi"], ["ResearchDirector"]]
+    access: [["ResearchDirector"]]
   - type: ContainerFill
     containers:
       board:
@@ -181,16 +177,6 @@
   - type: DeviceNetwork
     receiveFrequencyId: TurretAI
     transmitFrequencyId: TurretControlAI
-  - type: TurretTargetSettings
-    exemptAccessLevels:
-    - BasicSilicon
-    - Borg
-  - type: DeployableTurretController
-    accessGroups:
-    - Silicon
-    accessLevels:
-    - BasicSilicon
-    - Borg
 
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelBase
@@ -198,7 +184,7 @@
   suffix: Security
   components:
   - type: AccessReader
-    access: [["StationAi"], ["Security"]]
+    access: [["Security"]]
   - type: ContainerFill
     containers:
       board:
@@ -206,8 +192,6 @@
   - type: TurretTargetSettings
     exemptAccessLevels:
     - Security
-    - BasicSilicon
-    - Borg
 
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelBase
@@ -215,7 +199,7 @@
   suffix: Command
   components:
   - type: AccessReader
-    access: [["StationAi"], ["Command"]]
+    access: [["Command"]]
   - type: ContainerFill
     containers:
       board:
@@ -223,5 +207,3 @@
   - type: TurretTargetSettings
     exemptAccessLevels:
     - Command
-    - BasicSilicon
-    - Borg

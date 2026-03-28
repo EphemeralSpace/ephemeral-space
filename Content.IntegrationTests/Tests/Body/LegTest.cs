@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Body.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -11,7 +12,7 @@ namespace Content.IntegrationTests.Tests.Body
     [TestFixture]
     [TestOf(typeof(BodyPartComponent))]
     [TestOf(typeof(BodyComponent))]
-    public sealed class LegTest
+    public sealed class LegTest : GameTest
     {
         [TestPrototypes]
         private const string Prototypes = @"
@@ -28,7 +29,7 @@ namespace Content.IntegrationTests.Tests.Body
         [Test]
         public async Task RemoveLegsFallTest()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             EntityUid human = default!;
@@ -73,7 +74,6 @@ namespace Content.IntegrationTests.Tests.Body
                 Assert.That(state, Is.EqualTo(RotationState.Horizontal));
 #pragma warning restore NUnit2045
             });
-            await pair.CleanReturnAsync();
         }
     }
 }

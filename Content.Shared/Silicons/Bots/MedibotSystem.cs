@@ -4,8 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage.Components;
 using Content.Shared.DoAfter;
-using Content.Shared.Emag.Components;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -20,7 +18,6 @@ namespace Content.Shared.Silicons.Bots;
 public sealed class MedibotSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
@@ -30,28 +27,8 @@ public sealed class MedibotSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<EmaggableMedibotComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<MedibotComponent, UserActivateInWorldEvent>(OnInteract);
         SubscribeLocalEvent<MedibotComponent, MedibotInjectDoAfterEvent>(OnInject);
-    }
-
-    private void OnEmagged(EntityUid uid, EmaggableMedibotComponent comp, ref GotEmaggedEvent args)
-    {
-        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-            return;
-
-        if (_emag.CheckFlag(uid, EmagType.Interaction))
-            return;
-
-        if (!TryComp<MedibotComponent>(uid, out var medibot))
-            return;
-
-        foreach (var (state, treatment) in comp.Replacements)
-        {
-            medibot.Treatments[state] = treatment;
-        }
-
-        args.Handled = true;
     }
 
     private void OnInteract(Entity<MedibotComponent> medibot, ref UserActivateInWorldEvent args)
@@ -108,7 +85,7 @@ public sealed class MedibotSystem : EntitySystem
         }
 
         var total = damageable.TotalDamage;
-        if (total == 0 && !HasComp<EmaggedComponent>(medibot))
+        if (total == 0)
         {
             _popup.PopupClient(Loc.GetString("medibot-target-healthy"), medibot, medibot);
             return false;

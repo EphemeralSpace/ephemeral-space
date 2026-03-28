@@ -465,8 +465,6 @@
       - ReagentId: Cryoxadone
         Quantity: 30
   - type: CanEscapeInventory
-  - type: MobPrice
-    price: 50
   - type: BadFood
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi

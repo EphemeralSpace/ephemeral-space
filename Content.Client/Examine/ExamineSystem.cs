@@ -134,18 +134,6 @@ namespace Content.Client.Examine
             // No basic examine verb
             return;
             // ES END
-
-            // Basic examine verb.
-            ExamineVerb verb = new();
-            verb.Category = VerbCategory.Examine;
-            verb.Priority = 10;
-            // Center it on the entity if they use the verb instead.
-            verb.Act = () => DoExamine(args.Target, false);
-            verb.Text = Loc.GetString("examine-verb-name");
-            verb.Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/examine.svg.192dpi.png"));
-            verb.ShowOnExamineTooltip = false;
-            verb.ClientExclusive = true;
-            args.Verbs.Add(verb);
         }
 
         private void OnExamineInfoResponse(ExamineSystemMessages.ExamineInfoResponseMessage ev)

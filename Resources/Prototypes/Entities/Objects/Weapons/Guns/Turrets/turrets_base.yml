@@ -141,5 +141,3 @@
   - type: HTN
     rootTask:
       task: EnergyTurretCompound
-  - type: StaticPrice
-    price: 200

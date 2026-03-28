@@ -8,7 +8,6 @@ using Content.Shared.Disposal.Components;
 using Content.Shared.Disposal.Unit.Events;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
@@ -82,7 +81,6 @@ public abstract class SharedDisposalUnitSystem : EntitySystem
 
         SubscribeLocalEvent<DisposalUnitComponent, DisposalUnitComponent.UiButtonPressedMessage>(OnUiButtonPressed);
 
-        SubscribeLocalEvent<DisposalUnitComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<DisposalUnitComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<DisposalUnitComponent, PowerChangedEvent>(OnPowerChange);
         SubscribeLocalEvent<DisposalUnitComponent, ComponentInit>(OnDisposalInit);
@@ -431,12 +429,6 @@ public abstract class SharedDisposalUnitSystem : EntitySystem
             return;
 
         args.CanDrop = CanInsert(uid, component, args.Dragged);
-        args.Handled = true;
-    }
-
-    protected void OnEmagged(EntityUid uid, DisposalUnitComponent component, ref GotEmaggedEvent args)
-    {
-        component.DisablePressure = true;
         args.Handled = true;
     }
 

@@ -10,8 +10,6 @@
     sprite: Objects/Specific/Medical/medical.rsi
     heldPrefix: ointment
   # Inherited
-  - type: StaticPrice
-    price: 0
 
 - type: entity
   name: ointment
@@ -78,8 +76,6 @@
   - type: Stack
     stackType: Ointment
     count: 10
-  - type: StackPrice
-    price: 5
 
 - type: entity
   id: Ointment1
@@ -147,8 +143,6 @@
   - type: Stack
     stackType: RegenerativeMesh
     count: 10
-  - type: StackPrice
-    price: 20
 
 - type: entity
   id: OintmentAdvanced1
@@ -210,8 +204,6 @@
   - type: Stack
     stackType: Brutepack
     count: 10
-  - type: StackPrice
-    price: 5
 
 - type: entity
   id: Brutepack1
@@ -275,8 +267,6 @@
   - type: Stack
     stackType: MedicatedSuture
     count: 10
-  - type: StackPrice
-    price: 20
 
 - type: entity
   id: BrutepackAdvanced1
@@ -321,8 +311,6 @@
   - type: Stack
     stackType: Bloodpack
     count: 10
-  - type: StackPrice
-    price: 10
 
 - type: entity
   parent: Bloodpack
@@ -426,8 +414,6 @@
   - type: Stack
     stackType: Gauze
     count: 10
-  - type: StackPrice
-    price: 10
 
 - type: entity
   id: Gauze1

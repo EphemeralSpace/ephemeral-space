@@ -60,8 +60,6 @@
         enum.JetpackVisuals.Layer:
           True: {state: icon-on}
           False: {state: icon}
-  - type: StaticPrice
-    price: 100
 
 - type: entity
   parent: BaseAction
@@ -126,8 +124,6 @@
     sprite: Objects/Tanks/Jetpacks/black.rsi
     slots:
       - Back
-  - type: StaticPrice
-    price: 1000
 
 # Filled black
 - type: entity

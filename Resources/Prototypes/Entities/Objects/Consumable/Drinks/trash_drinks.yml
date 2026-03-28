@@ -62,7 +62,6 @@
   components:
   - type: Tag
     tags:
-    - Beer
     - Trash
 
 # Large bottles

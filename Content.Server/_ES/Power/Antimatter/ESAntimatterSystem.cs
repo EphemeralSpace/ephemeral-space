@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Atmos.Piping.Components;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Singularity.Events;
@@ -8,6 +7,7 @@ using Content.Server.Spreader;
 using Content.Shared._ES.Power.Antimatter;
 using Content.Shared._ES.Power.Antimatter.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Item;
 using Content.Shared.Power.Components;
 using Content.Shared.Repairable;

@@ -1,7 +1,10 @@
+using Content.Shared._ES.Stagehand;
 using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.Popups;
 using Robust.Server.Audio;
+using Robust.Shared.Audio;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._ES.Stagehand;
@@ -10,10 +13,13 @@ namespace Content.Server._ES.Stagehand;
 public sealed class ESStagehandWorldEmoteSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly ESStagehandNotificationsSystem _notif = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
 
-    private const float PlayForPlayersInRoundChance = 0.25f;
+    private const float PlayForPlayersInRoundChance = 0.5f;
 
     public override void Initialize()
     {
@@ -27,16 +33,21 @@ public sealed class ESStagehandWorldEmoteSystem : EntitySystem
         if (args.Handled)
             return;
 
-        // todo uhh this should definitely just be sending like a prototype id (maybe emoteprototype) instead of the actual message and sound)
-        _notif.SendStagehandNotification(Loc.GetString(args.Message, ("entity", ent.Owner)));
-        var stagehandsInRange = Filter.Pvs(ent).RemoveWhereAttachedEntity(e => !HasComp<ESStagehandComponent>(e));
-        var playersInRange = Filter.Pvs(ent).RemoveWhereAttachedEntity(e => HasComp<ESStagehandComponent>(e));
+        if (!_proto.TryIndex(args.Emote, out var proto))
+            return;
 
-        _audio.PlayGlobal(args.Sound, stagehandsInRange, false);
+        _notif.SendStagehandNotification(Loc.GetString(proto.Message, ("entity", ent.Owner)));
+        var coords = _xform.GetMapCoordinates(ent.Owner);
+        var stagehandsInRange = Filter.Empty().AddInRange(coords, 7f).RemoveWhereAttachedEntity(e => !HasComp<ESStagehandComponent>(e));
+        var playersInRange = Filter.Empty().AddInRange(coords, 7f).RemoveWhereAttachedEntity(e => HasComp<ESStagehandComponent>(e));
+
+        var resolved = _audio.ResolveSound(proto.Sound);
+        _audio.PlayGlobal(resolved, stagehandsInRange, false);
 
         if (_random.Prob(PlayForPlayersInRoundChance))
         {
-            _audio.PlayGlobal(args.Sound, playersInRange, false, args.Sound.Params.WithVolume(-12f));
+            _popup.PopupEntity(Loc.GetString("es-stagehand-emote-performers-heard"), ent, ent, PopupType.SmallCaution);
+            _audio.PlayGlobal(resolved, playersInRange, false, proto.Sound.Params.WithVolume(-7f));
         }
 
         args.Handled = true;

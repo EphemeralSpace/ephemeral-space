@@ -12,7 +12,6 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
@@ -37,7 +36,6 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] private readonly ClimbSystem _climb = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly ReactiveSystem _reactive = default!;
@@ -67,7 +65,6 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         SubscribeLocalEvent<CryoPodComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<CryoPodComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<CryoPodComponent, GetVerbsEvent<AlternativeVerb>>(AddAlternativeVerbs);
-        SubscribeLocalEvent<CryoPodComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<CryoPodComponent, CryoPodDragFinished>(OnDragFinished);
         SubscribeLocalEvent<CryoPodComponent, CryoPodPryFinished>(OnCryoPodPryFinished);
         SubscribeLocalEvent<CryoPodComponent, DragDropTargetEvent>(HandleDragDropOn);
@@ -452,23 +449,6 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
                 Act = () => TryEjectBody(uid, args.User, cryoPodComponent)
             });
         }
-    }
-
-    protected void OnEmagged(EntityUid uid, CryoPodComponent? cryoPodComponent, ref GotEmaggedEvent args)
-    {
-        if (!Resolve(uid, ref cryoPodComponent))
-            return;
-
-        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-            return;
-
-        if (cryoPodComponent.PermaLocked && cryoPodComponent.Locked)
-            return;
-
-        cryoPodComponent.PermaLocked = true;
-        cryoPodComponent.Locked = true;
-        Dirty(uid, cryoPodComponent);
-        args.Handled = true;
     }
 
     private void OnSimpleUiMessage(Entity<CryoPodComponent> cryoPod, ref CryoPodSimpleUiMessage msg)

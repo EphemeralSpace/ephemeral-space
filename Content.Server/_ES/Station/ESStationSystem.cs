@@ -26,17 +26,11 @@ namespace Content.Server._ES.Station;
 public sealed class ESStationSystem : ESSharedStationSystem
 {
     [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameMapManager _gameMap = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly ShuttleSystem _shuttle = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
 
     private static readonly ProtoId<ESStationConfigPrototype> DefaultConfig = "ESDefault";
 

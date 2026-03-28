@@ -27,6 +27,7 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
         var cache = IoCManager.Resolve<IResourceCache>();
 
         // ES START
+        // TODO: Move fonts to stylesheets, respect user font preferences.
         _smallFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Tomorrow/Tomorrow-Italic.ttf"), 10);
         _mediumFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Tomorrow/Tomorrow-Italic.ttf"), 12);
         _largeFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Tomorrow/Tomorrow-BoldItalic.ttf"), 14);

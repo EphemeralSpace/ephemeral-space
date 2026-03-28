@@ -48,8 +48,6 @@
         Blunt: 3
   - type: Damageable
     damageContainer: Inorganic
-  - type: StaticPrice
-    price: 50
 
 - type: entity
   abstract: true

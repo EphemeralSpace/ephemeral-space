@@ -36,7 +36,6 @@
     sound:
       path: /Audio/Misc/ratvar_reveal.ogg
     color: "#BE8700"
-  - type: CargoSellBlacklist
   - type: ContentEye
     maxZoom: 2.0,2.0
   - type: Fixtures

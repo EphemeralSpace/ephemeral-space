@@ -267,32 +267,6 @@ public sealed class PullingSystem : EntitySystem
         // No pull verbs
         return;
         // ES END
-
-        // Are they trying to pull themselves up by their bootstraps?
-        if (args.User == args.Target)
-            return;
-
-        //TODO VERB ICONS add pulling icon
-        if (component.Puller == args.User)
-        {
-            Verb verb = new()
-            {
-                Text = Loc.GetString("pulling-verb-get-data-text-stop-pulling"),
-                Act = () => TryStopPull(uid, component, user: args.User),
-                DoContactInteraction = false // pulling handle its own contact interaction.
-            };
-            args.Verbs.Add(verb);
-        }
-        else if (CanPull(args.User, args.Target))
-        {
-            Verb verb = new()
-            {
-                Text = Loc.GetString("pulling-verb-get-data-text"),
-                Act = () => TryStartPull(args.User, args.Target),
-                DoContactInteraction = false // pulling handle its own contact interaction.
-            };
-            args.Verbs.Add(verb);
-        }
     }
 
     private void OnRefreshMovespeed(EntityUid uid, PullerComponent component, RefreshMovementSpeedModifiersEvent args)

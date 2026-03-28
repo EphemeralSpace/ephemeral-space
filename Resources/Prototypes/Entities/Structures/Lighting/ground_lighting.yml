@@ -63,8 +63,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
-  - type: StaticPrice
-    price: 75
   - type: RequireProjectileTarget
 
 - type: entity

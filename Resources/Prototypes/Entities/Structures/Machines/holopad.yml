@@ -16,9 +16,6 @@
         - Impassable
   - type: ApcPowerReceiver
     powerLoad: 300
-  - type: StationAiVision
-    range: 1
-    needsAnchoring: true
   - type: Sprite
     sprite: Structures/Machines/holopad.rsi
     drawdepth: HighFloorObjects
@@ -50,9 +47,6 @@
         enum.WiresVisualLayers.MaintenancePanel:
           True: { visible: false }
           False: { visible: true }
-  - type: Machine
-    board: HolopadMachineCircuitboard
-  - type: StationAiWhitelist
   - type: PointLight
     radius: 1.3
     energy: 1.8
@@ -64,8 +58,6 @@
     range: 3
     sound:
       path: /Audio/Ambience/Objects/buzzing.ogg
-  - type: Holopad
-    hologramProtoId: HolopadHologram
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
@@ -77,15 +69,7 @@
   - type: AccessReader
     access: [[ "Command" ]]
     examinationText: access-reader-examination-functionality-restricted
-  - type: ActivatableUI
-    key: enum.HolopadUiKey.InteractionWindow
   - type: ActivatableUIRequiresPower
-  - type: UserInterface
-    interfaces:
-        enum.HolopadUiKey.InteractionWindow:
-          type: HolopadBoundUserInterface
-        enum.WiresUiKey.Key:
-          type: WiresBoundUserInterface
   - type: WiresPanel
   - type: WiresVisuals
   - type: Wires
@@ -145,36 +129,6 @@
     - Grid
     - Map
     - Unlimited
-
-# These are spawned by holopads
-- type: entity
-  id: HolopadHologram
-  name: hologram
-  categories: [ HideSpawnMenu, DoNotMap ]
-  components:
-  - type: Transform
-    anchored: true
-  - type: Sprite # Sprite data is dynamically set in Client.HolopadSystem
-  - type: Appearance
-  - type: TypingIndicator
-    proto: robot
-  - type: Speech
-    speechVerb: Robotic
-    speechSounds: Borg
-    speechBubbleOffset: 0.45
-  - type: HolopadHologram
-    rsiPath: Structures/Machines/holopad.rsi
-    rsiState: icon_in_call
-    shaderName: Hologram
-    color1: "#65b8e2"
-    color2: "#3a6981"
-    alpha: 0.9
-    intensity: 2
-    scrollRate: 0.125
-    offset: -0.02, 0.45
-  - type: Tag
-    tags:
-    - HideContextMenu
 
 ## Mapping prototypes
 # General

@@ -138,15 +138,12 @@
     size: Tiny
   - type: Tag
     tags:
-    - Bee
     - Trash
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
       - ReagentId: InsectBlood
         Quantity: 0.1
-  - type: MobPrice
-    price: 50
   - type: NPCRetaliation
   - type: FactionException
   - type: NpcFactionMember
@@ -333,7 +330,6 @@
   parent: FoodEgg
   suffix: Fertilized, Chicken
   components:
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MobChicken
@@ -575,13 +571,11 @@
       Female: UnisexMoth
       Unsexed: UnisexMoth
     wilhelmProbability: 0.001
-  - type: MobPrice
-    price: 150
   - type: Tag
     tags:
     - Trash
-    - CannotSuicide
     - VimPilot
+  - type: ESCannotSuicide
   - type: CanEscapeInventory
   - type: NpcFactionMember
     factions:
@@ -759,7 +753,6 @@
   parent: FoodEgg
   suffix: Fertilized, Duck
   components:
-    - type: Timer
     - type: TimedSpawner
       prototypes:
       - MobDuckMallard
@@ -835,8 +828,6 @@
       reagents:
       - ReagentId: InsectBlood
         Quantity: 0.1
-  - type: MobPrice
-    price: 50
   - type: Destructible
     thresholds:
     - trigger:
@@ -1779,8 +1770,6 @@
       - ReagentId: Blood
         Quantity: 50
   - type: CanEscapeInventory
-  - type: MobPrice
-    price: 50
   - type: BadFood
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
@@ -2831,8 +2820,6 @@
   - type: Grammar
     attributes:
       gender: epicene
-  - type: MobPrice
-    price: 200
   - type: MessyDrinker
 
 - type: entity
@@ -3012,8 +2999,6 @@
   - type: Grammar
     attributes:
       gender: epicene
-  - type: MobPrice
-    price: 200
   - type: Tag
     tags:
     - VimPilot
@@ -3121,8 +3106,6 @@
     spawned:
     - id: FoodMeat
       amount: 1
-  - type: MobPrice
-    price: 100
   - type: MeleeWeapon
     damage:
       types:
@@ -3382,8 +3365,6 @@
         Quantity: 60
   - type: CanEscapeInventory
     baseResistTime: 3
-  - type: MobPrice
-    price: 60
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning

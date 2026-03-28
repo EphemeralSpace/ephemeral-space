@@ -21,8 +21,6 @@
   - type: Appearance
   - type: Damageable
     damageContainer: Inorganic
-  - type: StaticPrice
-    price: 50
   - type: Destructible
     thresholds:
     - trigger:
@@ -58,8 +56,6 @@
     sprite: Objects/Devices/goldwatch.rsi
   - type: Clothing
     sprite: Objects/Devices/goldwatch.rsi
-  - type: StaticPrice
-    price: 500 #if you ever increase the price of kidneys, increase this too.
   - type: PhysicalComposition
     materialComposition:
       Gold: 500

@@ -93,9 +93,17 @@ public sealed partial class GhostComponent : Component
     /// <remarks>Used to allow admins to change ghost colors. Should be removed if the capability to edit existing sprite colors is ever added back.</remarks>
     [DataField, AutoNetworkedField]
     public Color Color = Color.White;
+
 // ES START
     [DataField]
     public bool DeleteOnDetach = true;
+
+    /// <summary>
+    ///     Marks a given ghost as being made visible to non-ghosts by various events.
+    ///     Currently, this is just round end.
+    /// </summary>
+    [DataField]
+    public bool MadeVisibleByEvents;
 // ES END
 }
 

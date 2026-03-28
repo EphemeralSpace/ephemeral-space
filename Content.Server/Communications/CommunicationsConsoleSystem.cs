@@ -43,7 +43,6 @@ namespace Content.Server.Communications
         [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
         [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
-        [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
@@ -237,28 +236,6 @@ namespace Content.Server.Communications
             // no calling/recalling here
             return false;
             // ES END
-
-            // Defer to what the round end system thinks we should be able to do.
-            if (_emergency.EmergencyShuttleArrived || !_roundEndSystem.CanCallOrRecall())
-                return false;
-
-            // Ensure that we can communicate with the shuttle (either call or recall)
-            if (!comp.CanShuttle)
-                return false;
-
-            // Calling shuttle checks
-            if (_roundEndSystem.ExpectedCountdownEnd is null)
-                return true;
-
-            // Recalling shuttle checks
-            var recallThreshold = _cfg.GetCVar(CCVars.EmergencyRecallTurningPoint);
-
-            // shouldn't really be happening if we got here
-            if (_roundEndSystem.ShuttleTimeLeft is not { } left
-                || _roundEndSystem.ExpectedShuttleLength is not { } expected)
-                return false;
-
-            return !(left.TotalSeconds / expected.TotalSeconds < recallThreshold);
         }
 
         private void OnSelectAlertLevelMessage(EntityUid uid, CommunicationsConsoleComponent comp, CommunicationsConsoleSelectAlertLevelMessage message)

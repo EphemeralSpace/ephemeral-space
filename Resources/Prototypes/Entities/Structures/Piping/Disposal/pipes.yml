@@ -60,8 +60,6 @@
   - type: ContainerContainer
     containers:
       DisposalTube: !type:Container
-  - type: StaticPrice
-    price: 30
 
 - type: entity
   id: DisposalHolder

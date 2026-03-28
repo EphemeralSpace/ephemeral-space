@@ -113,8 +113,6 @@
   - type: Tag
     tags:
     - DoorBumpOpener
-    - WhitelistChameleon
-    - WhitelistChameleonPDA
   - type: Input
     context: "human"
   - type: BlockMovement
@@ -661,12 +659,11 @@
   - type: PdaBorderColor
     borderColor: "#717059"
   - type: Tag
-    tags: # ignore "WhitelistChameleon" tag
+    tags:
     - DoorBumpOpener
   - type: ChameleonClothing
     slot: [idcard]
     default: PassengerPDA
-    requireTag: WhitelistChameleonPDA
   - type: UserInterface
     interfaces:
       enum.PdaUiKey.Key:

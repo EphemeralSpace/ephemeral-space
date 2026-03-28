@@ -78,8 +78,6 @@
           offset: 0
         - !type:DoActsBehavior
           acts: ["Breakage"]
-  - type: StaticPrice
-    price: 25
 
 - type: entity
   parent: DefaultStationBeacon

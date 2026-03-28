@@ -232,8 +232,6 @@
         orGroup: GiftPool
       - id: WeaponFlareGun
         orGroup: GiftPool
-      - id: ResearchDisk
-        orGroup: GiftPool
       - id: Machete
         orGroup: GiftPool
       - id: BaseBallBat
@@ -297,8 +295,6 @@
       - id: ClothingHeadHatXmasCrown
         orGroup: GiftPool
       - id: ClothingHeadHatBunny
-        orGroup: GiftPool
-      - id: ClothingHeadHatFlowerWreath
         orGroup: GiftPool
       - id: FoodPoppy
         orGroup: GiftPool

@@ -89,14 +89,14 @@ public sealed class ComputerConstruction : InteractionTest
 
         // Begin re-constructing with a new circuit board
         await Interact(
-            "CargoRequestComputerCircuitboard",
+            "SolarControlComputerCircuitboard",
             Screw,
             (Cable, 5),
             (Glass, 2),
             Screw);
 
         // Construction finished, target entity was replaced with a new one:
-        AssertPrototype("ComputerCargoOrders");
+        AssertPrototype("ComputerSolarControl");
     }
 }
 

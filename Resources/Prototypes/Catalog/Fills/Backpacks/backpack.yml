@@ -2,9 +2,6 @@
   parent: ClothingBackpackSyndicate
   id: ClothingBackpackSyndicateBundle
   abstract: true
-  components:
-  - type: Tag
-    tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
   parent: ClothingBackpackSyndicateBundle
