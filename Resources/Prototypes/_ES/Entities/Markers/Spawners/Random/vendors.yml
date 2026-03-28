@@ -70,6 +70,7 @@
     - id: ESVendingMachineGenderVendor
     - id: ESVendingMachineWoodgrain
     - id: ESVendingMachineSuspiciousWater
+    - id: ESVendingMachineSalvagedSams
 
 - type: entity
   id: ESSpawnerDormsVendor
