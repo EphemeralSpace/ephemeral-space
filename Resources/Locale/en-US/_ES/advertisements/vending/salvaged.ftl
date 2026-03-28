@@ -1,0 +1,11 @@
+advertisement-salvaged-1 = Corporate vendors hate our variety!
+advertisement-salvaged-2 = Every need for every kind of hard-working person.
+advertisement-salvaged-3 = Get some gloves on and put your craftsman knowledge to use.
+advertisement-salvaged-4 = Tools, fuel, materials, all while supplies last.
+advertisement-salvaged-5 = Stop down at your local Salvaged Sam's outpost for a wider array of goods!
+advertisement-salvaged-6 = The most authentic bulk supplier in the NT sector!
+advertisement-salvaged-7 = Another man's trash is another man's treasure.
+advertisement-salvaged-8 = You'll never have to risk your life in dangerous worn-down maintenance tunnels EVER again!
+thankyou-salvaged-1 = Get out there and get to your workshop!
+thankyou-salvaged-2 = Cut-resistant gloves are reccomended when working with maintenance surplus to avoid injury.
+thankyou-salvaged-3 = Thanks for supporting Salavaged Sam's.

@@ -43,6 +43,59 @@
 
 - type: entity
   parent: ESBaseVendingMachineDispenseOnHit
+  id: ESVendingMachineSalvagedSams
+  name: Salvaged Sam's Maintenance Surplus
+  description: A vendor containing surplus maintenance supplies. Every need for every kind of hard-working person. That's what their tagline is, after all.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Vendors/salvagedsams.rsi
+  - type: VendingMachine
+  - type: DatasetVocalizer
+    dataset: SalvagedAds
+  - type: SpeakOnUIClosed
+    pack: SalvagedGoodbyes
+  - type: PointLight
+    color: "#fe0000"
+  - type: ESEntityTableVendorFill
+    inventory:
+      all:
+      - tableId: ESMaintLootCommon
+        prob: 0.5
+        rolls: 10
+      - tableId: ESMaintLootUncommon
+        prob: 0.5
+        rolls: 5
+      - tableId: ESMaintLootRare
+        prob: 0.2
+
+- type: entity
+  parent: ESBaseVendingMachineDispenseOnHit
+  id: ESVendingMachineSuspiciousWater
+  name: suspicious water vendor
+  description: It looks normal...?
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Vendors/suswater.rsi
+  - type: VendingMachine
+  - type: DatasetVocalizer
+    dataset: SusWaterAds
+  - type: SpeakOnUIClosed
+    pack: SusWaterGoodbyes
+  - type: PointLight
+    color: "#fe0000"
+  - type: ESEntityTableVendorFill
+    inventory:
+      all:
+      - id: DrinkWaterBottleFull
+        amount: 2
+        prob: 0.5
+        rolls: 5
+      - tableId: SuspiciousWaterTable
+        prob: 0.5
+        rolls: 5
+
+- type: entity
+  parent: ESBaseVendingMachineDispenseOnHit
   id: ESVendingMachineWoodgrain
   name: Woodgrain Wonders
   description: A vendor containing various wood-related items, per high-demand at request of space lumberjacks.
@@ -73,29 +126,3 @@
         amount: 3
       - id: Lighter
         amount: 3
-
-- type: entity
-  parent: ESBaseVendingMachineDispenseOnHit
-  id: ESVendingMachineSuspiciousWater
-  name: suspicious water vendor
-  description: It looks normal...?
-  components:
-  - type: Sprite
-    sprite: _ES/Structures/Vendors/suswater.rsi
-  - type: VendingMachine
-  - type: DatasetVocalizer
-    dataset: SusWaterAds
-  - type: SpeakOnUIClosed
-    pack: SusWaterGoodbyes
-  - type: PointLight
-    color: "#fe0000"
-  - type: ESEntityTableVendorFill
-    inventory:
-      all:
-      - id: DrinkWaterBottleFull
-        amount: 2
-        prob: 0.5
-        rolls: 5
-      - tableId: SuspiciousWaterTable
-        prob: 0.5
-        rolls: 5
