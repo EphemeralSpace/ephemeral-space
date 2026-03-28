@@ -52,7 +52,7 @@ namespace Content.Client.UserInterface.Controls
 
         public void UpdateCfg()
         {
-            var stretch = false; //_cfg.GetCVar(CCVars.ViewportStretch);
+            var stretch = _cfg.GetCVar(CCVars.ViewportStretch);
             var renderScaleUp = _cfg.GetCVar(CCVars.ViewportScaleRender);
             var fixedFactor = _cfg.GetCVar(CCVars.ViewportFixedScaleFactor);
             var verticalFit = _cfg.GetCVar(CCVars.ViewportVerticalFit);
@@ -118,8 +118,12 @@ namespace Content.Client.UserInterface.Controls
 
             var cfgVerticalFit = _cfg.GetCVar(CCVars.ViewportVerticalFit);
 
+            // erm
+            if (Root == null)
+                return null;
+
             // Calculate if the viewport, when rendered at an integer scale,
-            // is close enough to the control size to enable "snapping" to NN,
+            // is close enough to the UI root/window size to enable "snapping" to NN,
             // potentially cutting a tiny bit off/leaving a margin.
             //
             // Idea here is that if you maximize the window at 1080p or 1440p
@@ -132,7 +136,7 @@ namespace Content.Client.UserInterface.Controls
                 var toleranceMargin = i * cfgToleranceMargin;
                 var toleranceClip = i * cfgToleranceClip;
                 var scaled = (Vector2) Viewport.ViewportSize * i;
-                var (dx, dy) = PixelSize - scaled;
+                var (dx, dy) = Root.Size - scaled;
 
                 // The rule for which snap fits is that at LEAST one axis needs to be in the tolerance size wise.
                 // One axis MAY be larger but not smaller than tolerance.
