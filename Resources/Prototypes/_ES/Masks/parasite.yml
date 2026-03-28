@@ -13,6 +13,8 @@
   name: es-mask-hemophage-name
   description: es-mask-hemophage-desc
   color: brown
+  mindComponents:
+  - type: ESHemophage
 
 - type: esMask
   parent: ESBaseParasite
