@@ -34,41 +34,12 @@
 
   ## Medium Voltage Network
   The [color=Yellow]Medium Voltage[/color] Network is used for powering APCs and other power-hungry machinery that can only accept [color=Yellow]Medium Voltage[/color] power.
-  The Particle Accelerator is an example, as it operates on [color=Yellow]Medium Voltage[/color] power.
-
-  <Box>
-    <GuideEntityEmbed Entity="ParticleAcceleratorEndCap" Caption="" Margin="0"/>
-  </Box>
-
-  <Box>
-    <GuideEntityEmbed Entity="ParticleAcceleratorControlBox" Caption="" Margin="0"/>
-    <GuideEntityEmbed Entity="ParticleAcceleratorFuelChamber" Caption="" Margin="0"/>
-    <GuideEntityEmbed Entity="CableMV" Caption="" Margin="0"/>
-  </Box>
-
-  <Box>
-    <GuideEntityEmbed Entity="ParticleAcceleratorPowerBox" Caption="" Margin="0"/>
-  </Box>
-
-  <Box>
-    <GuideEntityEmbed Entity="ParticleAcceleratorEmitterStarboard" Caption="" Margin="0"/>
-    <GuideEntityEmbed Entity="ParticleAcceleratorEmitterFore" Caption="" Margin="0"/>
-    <GuideEntityEmbed Entity="ParticleAcceleratorEmitterPort" Caption="" Margin="0"/>
-  </Box>
-
-  <Box>
-    [color=#999999][italic]The Particle Accelerator[italic][/color]
-  </Box>
 
   [color=Yellow]Medium Voltage[/color] power is provided by Substations, which are large machines that convert power from the [color=Orange]High Voltage[/color] Network to [color=Yellow]Medium Voltage[/color].
 
-  There are also wallmount variants of these substations for compact spaces, like shuttles.
   <Box HorizontalAlignment="Stretch">
     <Box>
       <GuideEntityEmbed Entity="SubstationBasic"/>
-    </Box>
-    <Box>
-      <GuideEntityEmbed Entity="SubstationWallBasic"/>
     </Box>
   </Box>
 
@@ -79,16 +50,13 @@
 
   <Box>
     <GuideEntityEmbed Entity="SMESBasic"/>
-    <GuideEntityEmbed Entity="RadiationCollector"/>
-    <GuideEntityEmbed Entity="TeslaCoil"/>
-    <GuideEntityEmbed Entity="SubstationBasic"/>
   </Box>
 
   ## Shock Damage
-  If you are shocked by a cable carrying power, you will take damage. The amount of damage you take is based on the voltage of the cable that shocked you.
+  If you are shocked by a cable carrying power, you will take damage. The amount of damage you take is based on the voltage of the cable that shocked you as well as how much power it is carrying.
 
   [color=green]Low Voltage[/color] cables will deal less damage than [color=Yellow]Medium Voltage[/color] cables, which will deal less damage than [color=Orange]High Voltage[/color] cables.
 
-  Energized [color=Orange]High Voltage[/color] and [color=Yellow]Medium Voltage[/color] cabling hurts, so be sure to wear insulated gloves when working with it.
+  Energized [color=Orange]High Voltage[/color] and [color=Yellow]Medium Voltage[/color] cabling hurts, and while powered [bold]can not be cut, even with insulated gloves on.[/bold]
 
 </Document>

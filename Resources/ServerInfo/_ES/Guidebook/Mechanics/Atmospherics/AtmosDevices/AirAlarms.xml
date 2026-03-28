@@ -13,7 +13,7 @@
   ## User Interface
   Interacting with an Air Alarm will bring up a menu with 3 sections:
   - Top: The current status of the air alarm. This includes the current pressure and temperature of the area the air alarm is monitoring.
-  - Middle: Lists of linked [textlink="Air Vents" link="ESAirVent"] and [textlink="Air Scrubbers" link="ESAirScrubber"], as well as all sensors reporting back to the air alarm.
+  - Middle: Lists of linked [textlink="Air Vents" link="AirVent"] and [textlink="Air Scrubbers" link="AirScrubber"], as well as all sensors reporting back to the air alarm.
   - Bottom: Buttons to control air alarm operating modes, as well as the ability to toggle the automatic changing of modes.
 
   ## Alarm Status
@@ -22,11 +22,11 @@
   - [color=yellow]Warning[/color]: The area is starting to deviate from the desired atmosphere, and is becoming unsafe.
   - [color=red]Danger[/color]: The area is no longer safe, internals and/or hardsuits are required.
 
-  Air alarms will automatically drop (close) linked [textlink="firelocks" link="ESFireAndGasControl"] when the [color=Red]Danger[/color] status is reached.
-  These [textlink="firelocks" link="ESFireAndGasControl"] will automatically raise (open) when the status returns to [color=green]Normal[/color].
+  Air alarms will automatically drop (close) linked [textlink="firelocks" link="FireAndGasControl"] when the [color=Red]Danger[/color] status is reached.
+  These [textlink="firelocks" link="FireAndGasControl"] will automatically raise (open) when the status returns to [color=green]Normal[/color].
 
   ## Sensors
-  All [textlink="Air Vents" link="ESAirVent"] and [textlink="Air Scrubbers" link="ESAirScrubber"] have a built-in sensor, which reports back to the air alarm.
+  All [textlink="Air Vents" link="AirVent"] and [textlink="Air Scrubbers" link="AirScrubber"] have a built-in sensor, which reports back to the air alarm.
   These sensors can be adjusted in the [bold]Sensors[/bold] tab of the air alarm menu.
 
   An air alarm's status is directly determined by the thresholds on each sensor.
@@ -44,10 +44,10 @@
   ## Operating Modes
   To control connected devices quickly, air alarms feature operating modes, which quickly changes the behavior of all linked devices to achieve a desired effect.
   - None: Disables all devices linked to the air alarm.
-  - Filtering: [textlink="Air Vents" link="ESAirVent"] will be enabled with their external bound set to standard atmospheric pressure. [textlink="Air Scrubbers" link="ESAirScrubber"] will be enabled and scrub all waste gasses normally.
-  - Filtering (Wide): Same as Filtering, but all linked [textlink="Air Scrubbers" link="ESAirScrubber"] will enable their WideNet mode.
-  - Fill: [textlink="Air Vents" link="ESAirVent"] will be enabled with their external bound set to max pressure, [color=orange][protodata="GasVentPump" comp="GasVentPump" member="MaxPressure"/] kPa[/color]. [textlink="Air Scrubbers" link="ESAirScrubber"] will be disabled.
-  - Panic: [textlink="Air Vents" link="ESAirVent"] will be disabled, and [textlink="Air Scrubbers" link="ESAirScrubber"] will be set to siphon mode.
+  - Filtering: [textlink="Air Vents" link="AirVent"] will be enabled with their external bound set to standard atmospheric pressure. [textlink="Air Scrubbers" link="AirScrubber"] will be enabled and scrub all waste gasses normally.
+  - Filtering (Wide): Same as Filtering, but all linked [textlink="Air Scrubbers" link="AirScrubber"] will enable their WideNet mode.
+  - Fill: [textlink="Air Vents" link="AirVent"] will be enabled with their external bound set to max pressure, [color=orange][protodata="GasVentPump" comp="GasVentPump" member="MaxPressure"/] kPa[/color]. [textlink="Air Scrubbers" link="AirScrubber"] will be disabled.
+  - Panic: [textlink="Air Vents" link="AirVent"] will be disabled, and [textlink="Air Scrubbers" link="AirScrubber"] will be set to siphon mode.
 
   Air alarms will automatically switch between the Filtering and Filtering (Wide) modes based on the current status of the area they are monitoring.
   - If the area reaches [color=red]Danger[/color] status or above, the air alarm will switch to Filtering (Wide) mode.
@@ -55,5 +55,5 @@
 
   This behavior can be disabled by toggling the "Auto" box in the bottom section of the air alarm menu.
 
-  Relevant tips on how to fix [textlink="spacing" link="ESSpacing"] and [textlink="fires" link="ESFires"] can be found in the relevant guides.
+  Relevant tips on how to fix [textlink="spacing" link="Spacing"] and [textlink="fires" link="Fires"] can be found in the relevant guides.
 </Document>

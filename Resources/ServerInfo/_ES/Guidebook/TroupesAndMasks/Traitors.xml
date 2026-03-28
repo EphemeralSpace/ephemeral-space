@@ -28,7 +28,5 @@
   <ESGBObjectiveEmbed Objective="ESObjectiveTraitorSabotageIDComputer"/>
   <ESGBObjectiveEmbed Objective="ESObjectiveTraitorSabotageCriminalRecords"/>
   <ESGBObjectiveEmbed Objective="ESObjectiveTraitorSabotageTelecom"/>
-  [color=red]TODO ES write the rest lol[/color]
 
-  [color=red]TODO ES write mask entries[/color]
 </Document>
