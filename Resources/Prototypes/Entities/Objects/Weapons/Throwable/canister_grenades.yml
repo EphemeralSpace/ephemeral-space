@@ -75,7 +75,7 @@
     keysIn:
     - timer
     duration: 10
-    spreadAmount: 20
+    spreadAmount: 15
     smokePrototype: AluminiumMetalFoam
 
 - type: entity
