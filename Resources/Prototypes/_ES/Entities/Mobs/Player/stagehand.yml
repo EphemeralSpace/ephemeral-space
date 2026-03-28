@@ -68,14 +68,6 @@
   - type: ESMindVisuals
   - type: ESBlockInteraction
   - type: ShowElectrocutionHUD
-  - type: UserInterface
-    interfaces:
-      enum.ESVoterUiKey.Key:
-        type: ESVoterBui
-  - type: IntrinsicUI
-    uis:
-      enum.ESVoterUiKey.Key:
-        toggleAction: ESActionStagehandVote
   - type: ESVoter
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
@@ -85,22 +77,6 @@
     lightPrototype: ESMobObserverInherentLight
     enabled: false
   - type: ESBypassInteractionRangeChecks
-
-- type: entity
-  parent: BaseMentalAction
-  id: ESActionStagehandVote
-  name: Vote
-  description: Control the flow of the round alongside other stagehands.
-  components:
-  - type: Action
-    icon:
-      sprite: _ES/Actions/stagehands.rsi
-      state: ballot
-    checkCanInteract: false
-    checkConsciousness: false
-  - type: InstantAction
-    event: !type:ToggleIntrinsicUIEvent
-      key: enum.ESVoterUiKey.Key
 
 - type: entity
   parent: BaseMentalAction
