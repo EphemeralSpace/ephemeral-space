@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by Flareguy for Ephemeral Space",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "dead"
+        },
+        {
+            "name": "projectile",
+            "delays": [
+                [
+                    0.03,
+                    0.03,
+                    0.03,
+                    0.03,
+                    0.03,
+                    0.03
+                ]
+            ]
+        }
+    ]
+}
