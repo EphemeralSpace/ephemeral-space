@@ -36,7 +36,7 @@ public sealed class ESPersonalLockerSystem : EntitySystem
 
     private void OnRefreshNameModifiers(Entity<ESPersonalLockerComponent> ent, ref RefreshNameModifiersEvent args)
     {
-        args.AddModifier("comp-label-format", extraArgs: ("label", ent.Comp.Name));
+        args.AddModifier("comp-label-format", extraArgs: ("label", ent.Comp.Name ?? Loc.GetString("es-personal-locker-unassigned")));
     }
 
     public bool AssignPersonalLocker(StationRecordKey key, string name, ProtoId<JobPrototype> job)
