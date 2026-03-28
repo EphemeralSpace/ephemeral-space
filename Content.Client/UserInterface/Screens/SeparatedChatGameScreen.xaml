@@ -15,7 +15,7 @@
     VerticalAlignment="Bottom"
     HorizontalAlignment="Center">
     <HFillStack Name="FullScreenContainer">
-        <PanelContainer Name="LeftPanel" MinWidth="200" HorizontalExpand="True">
+        <PanelContainer Name="LeftPanel" HorizontalExpand="True">
             <PanelContainer.PanelOverride>
                 <graphics:StyleBoxFlat BackgroundColor="#2B2C3B" />
             </PanelContainer.PanelOverride>
@@ -47,7 +47,7 @@
             </PanelContainer>
         </VFillStack>
 
-        <PanelContainer Name="SeparatedChatPanel" MinWidth="300" HorizontalExpand="True">
+        <PanelContainer Name="SeparatedChatPanel" HorizontalExpand="True">
             <PanelContainer.PanelOverride>
                 <graphics:StyleBoxFlat BackgroundColor="#2B2C3B" />
             </PanelContainer.PanelOverride>
