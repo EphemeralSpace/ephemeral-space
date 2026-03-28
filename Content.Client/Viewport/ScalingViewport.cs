@@ -14,6 +14,8 @@ using Robust.Shared.Utility;
 using Robust.Shared.ViewVariables;
 using SixLabors.ImageSharp.PixelFormats;
 
+// ES MODIFIED: support for changing horizontal alignment of the actual rendered viewport, instead of it always being centered
+
 namespace Content.Client.Viewport
 {
     /// <summary>
@@ -124,6 +126,11 @@ namespace Content.Client.Viewport
             RectClipContent = true;
         }
 
+        protected override Vector2 MeasureOverride(Vector2 availableSize)
+        {
+            return _viewport is null ? Vector2.Zero : (GetDrawBox().Size / UIScale);
+        }
+
         protected override void KeyBindDown(GUIBoundKeyEventArgs args)
         {
             base.KeyBindDown(args);
@@ -205,16 +212,13 @@ namespace Content.Client.Viewport
                 }
 
                 var size = vpSize * ratio;
-                // Size
-                var pos = (ourSize - size) / 2;
-
-                return (UIBox2i) UIBox2.FromDimensions(pos, size);
+                //var pos = new Vector2(0, (ourSize.Y - size.Y) / 2);
+                return (UIBox2i) UIBox2.FromDimensions(Vector2.Zero, size);
             }
             else
             {
-                // Center only, no scaling.
-                var pos = (ourSize - FixedStretchSize.Value) / 2;
-                return (UIBox2i) UIBox2.FromDimensions(pos, FixedStretchSize.Value);
+                //var pos = new Vector2(0, (ourSize.Y - FixedStretchSize.Value.Y) / 2);
+                return (UIBox2i) UIBox2.FromDimensions(Vector2.Zero, FixedStretchSize.Value);
             }
         }
 
@@ -253,8 +257,8 @@ namespace Content.Client.Viewport
                 });
 
             _viewport.RenderScale = new Vector2(renderScale, renderScale);
-
             _viewport.Eye = _eye;
+            InvalidateMeasure();
         }
 
         protected override void Resized()
@@ -401,5 +405,23 @@ namespace Content.Client.Viewport
         ///     The viewport will ignore the vertical dimension, and will exclusively consider the horizontal dimension for scaling.
         /// </summary>
         Vertical
+    }
+
+    public enum ScalingViewportHorizontalAlignment
+    {
+        /// <summary>
+        ///     Default. This viewport will render the actual contents centered in the space of this control.
+        /// </summary>
+        Center = 0,
+
+        /// <summary>
+        ///     This viewport will render the actual contents anchored to the left of the space this control takes up.
+        /// </summary>
+        Left,
+
+        /// <summary>
+        ///     This viewport will render the actual contents anchored to the right of the space this control takes up.
+        /// </summary>
+        Right
     }
 }

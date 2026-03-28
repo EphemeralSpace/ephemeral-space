@@ -1,24 +1,13 @@
 - type: entity
   id: LockerBooze
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBaseCabinet ]
   name: booze storage
   description: This is where the bartender keeps the booze.
   components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: cabinet
-    stateDoorOpen: cabinet_open
-    stateDoorClosed: cabinet_door
-
   - type: AccessReader
-    access: [["Bar"]]
-  - type: EntityStorage
-    closeSound:
-      path: /Audio/Effects/woodenclosetclose.ogg
-    openSound:
-      path: /Audio/Effects/woodenclosetopen.ogg
-  - type: Paintable
-    group: null # not shaped like other lockers
+    requireKey: true
+  - type: ESPersonalLocker
+    job: ESBartender
 
 # Basic
 - type: entity
@@ -26,52 +15,41 @@
   parent: LockerBaseSecure
   name: secure closet
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: secure
     stateDoorOpen: secure_open
     stateDoorClosed: secure_door
 
-# Cargo
 - type: entity
-  id: LockerQuarterMaster
-  parent: LockerBaseSecure
-  name: quartermaster's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: qm
-    stateDoorOpen: qm_open
-    stateDoorClosed: qm_door
-  - type: AccessReader
-    access: [["Quartermaster"]]
+  parent: LockerBaseCabinet
+  id: LockerCabinet
+
+# Cargo
 
 # Command
 - type: entity
   id: LockerCaptain
-  parent: LockerBaseSecure
+  parent: [ LockerBaseSecurePersonal, LockerBaseSecure ]
   name: captain's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: cap
     stateDoorOpen: cap_open
     stateDoorClosed: cap_door
-  - type: AccessReader
-    access: [["Captain"]]
+  - type: ESPersonalLocker
+    job: ESCaptain
 
 - type: entity
   id: LockerHeadOfPersonnel
-  parent: LockerBaseSecure
+  parent: [ LockerBaseSecurePersonal, LockerBaseSecure ]
   name: head of personnel's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: hop
     stateDoorOpen: hop_open
     stateDoorClosed: hop_door
-  - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+  - type: ESPersonalLocker
+    job: ESHeadOfPersonnel
 
 # Electrical supplies
 - type: entity
@@ -104,30 +82,28 @@
 # Atmos tech
 - type: entity
   id: LockerAtmospherics
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: atmospheric technician's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: atmos
     stateDoorOpen: atmos_open
     stateDoorClosed: atmos_door
-  - type: AccessReader
-    access: [ [ "Atmospherics" ] ]
+  - type: ESPersonalLocker
+    job: ESAtmosphericTechnician
 
 # Engineer
 - type: entity
   id: LockerEngineer
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: engineer's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: eng_secure
     stateDoorOpen: eng_secure_open
     stateDoorClosed: eng_secure_door
-  - type: AccessReader
-    access: [ [ "Engineering" ] ]
+  - type: ESPersonalLocker
+    job: ESStationEngineer
 
 # Freezer
 - type: entity
@@ -164,16 +140,15 @@
 # Botanist
 - type: entity
   id: LockerBotanist
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: botanist's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: hydro
     stateDoorOpen: hydro_open
     stateDoorClosed: hydro_door
-  - type: AccessReader
-    access: [ [ "Hydroponics" ] ]
+  - type: ESPersonalLocker
+    job: ESBotanist
 
 # Medicine
 - type: entity
@@ -193,16 +168,15 @@
 # Medical doctor
 - type: entity
   id: LockerMedical
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: medical doctor's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: med_secure
     stateDoorOpen: med_secure_open
     stateDoorClosed: med_secure_door
-  - type: AccessReader
-    access: [ [ "Medical" ] ]
+  - type: ESPersonalLocker
+    job: ESPhysician
 
 # Chemical
 - type: entity
@@ -220,44 +194,29 @@
 
 # Science
 - type: entity
-  id: LockerResearchDirector
-  parent: LockerBase
-  name: research director's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: rd
-    stateDoorOpen: rd_open
-    stateDoorClosed: rd_door
-  - type: AccessReader
-    access: [ [ "ResearchDirector" ] ]
-
-- type: entity
   id: LockerScientist
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: scientist's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: science
     stateDoorOpen: science_open
     stateDoorClosed: science_door
-  - type: AccessReader
-    access: [ [ "Research" ] ]
+  - type: ESPersonalLocker
+    job: ESScientist
 
 # Security Officer
 - type: entity
   id: LockerSecurity
-  parent: LockerBaseSecure
+  parent: [ LockerBaseSecurePersonal, LockerBaseSecure ]
   name: security officer's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: sec
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
-  - type: AccessReader
-    access: [["Security"]]
+  - type: ESPersonalLocker
+    job: ESSecurityOfficer
 
 - type: entity
   id: GunSafe
@@ -398,19 +357,23 @@
 # Detective
 - type: entity
   id: LockerDetective
-  parent: LockerBooze
+  parent: [ LockerBaseSecurePersonal, LockerBaseCabinet ]
   name: detective's cabinet
   description: Usually cold and empty... like your heart.
   components:
-  - type: AccessReader
-    access: [["Detective"]]
+  - type: ESPersonalLocker
+    job: ESDetective
 
 - type: entity
   id: LockerEvidence
-  parent: LockerSecurity
+  parent: LockerBaseSecure
   name: evidence locker
   description: To store bags of bullet casings and detainee belongings.
   components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec
+    stateDoorOpen: sec_open
+    stateDoorClosed: sec_door
   - type: AccessReader
     access: [["Security"]]
 

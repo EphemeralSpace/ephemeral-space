@@ -1,18 +1,23 @@
 using System.Numerics;
+using Content.Client._ES.Screens;
 using Content.Client.Changelog;
 using Content.Client.Hands;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.Viewport;
+using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.CCVar;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
+using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
+
+// ES MODIFIED: edited to support switching screens
 
 namespace Content.Client.Gameplay
 {
@@ -22,14 +27,17 @@ namespace Content.Client.Gameplay
         [Dependency] private readonly IEyeManager _eyeManager = default!;
         [Dependency] private readonly IOverlayManager _overlayManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
         [Dependency] private readonly ChangelogManager _changelog = default!;
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+        [Dependency] private readonly IPlayerManager _player = default!;
+        [Dependency] private readonly IEntityManager _ent = default!;
 
         private FpsCounter _fpsCounter = default!;
         private Label _version = default!;
 
-        public MainViewport Viewport => _uiManager.ActiveScreen!.GetWidget<MainViewport>()!;
+        public MainViewport Viewport => UserInterfaceManager.ActiveScreen!.GetWidget<MainViewport>()!;
+
+        private GameplayStateScreenType _screenType = GameplayStateScreenType.Performer;
 
         private readonly GameplayStateLoadController _loadController;
 
@@ -37,12 +45,15 @@ namespace Content.Client.Gameplay
         {
             IoCManager.InjectDependencies(this);
 
-            _loadController = _uiManager.GetUIController<GameplayStateLoadController>();
+            _loadController = UserInterfaceManager.GetUIController<GameplayStateLoadController>();
         }
 
         protected override void Startup()
         {
             base.Startup();
+
+            if (_player.LocalEntity is { } entity && _ent.HasComponent<ESStagehandComponent>(entity))
+                _screenType = GameplayStateScreenType.Stagehand;
 
             LoadMainScreen();
             _configurationManager.OnValueChanged(CCVars.UILayout, ReloadMainScreenValueChange);
@@ -84,7 +95,7 @@ namespace Content.Client.Gameplay
             // Clear viewport to some fallback, whatever.
             _eyeManager.MainViewport = UserInterfaceManager.MainViewport;
             _fpsCounter.Dispose();
-            _uiManager.ClearWindows();
+            UserInterfaceManager.ClearWindows();
             _configurationManager.UnsubValueChanged(CCVars.UILayout, ReloadMainScreenValueChange);
             UnloadMainScreen();
         }
@@ -96,7 +107,7 @@ namespace Content.Client.Gameplay
 
         public void ReloadMainScreen()
         {
-            if (_uiManager.ActiveScreen?.GetWidget<MainViewport>() == null)
+            if (UserInterfaceManager.ActiveScreen?.GetWidget<MainViewport>() == null)
             {
                 return;
             }
@@ -105,34 +116,28 @@ namespace Content.Client.Gameplay
             LoadMainScreen();
         }
 
+        public void SetScreenType(GameplayStateScreenType type)
+        {
+            _screenType = type;
+            ReloadMainScreen();
+        }
+
         private void UnloadMainScreen()
         {
             _loadController.UnloadScreen();
-            _uiManager.UnloadScreen();
+            UserInterfaceManager.UnloadScreen();
         }
 
         private void LoadMainScreen()
         {
-            var screenTypeString = _configurationManager.GetCVar(CCVars.UILayout);
-            if (!Enum.TryParse(screenTypeString, out ScreenType screenType))
+            switch (_screenType)
             {
-                screenType = default;
-            }
-
-            switch (screenType)
-            {
-                // ES START
-                // we force separated game chat in either case
-                // it's better to do it here (rather than changing the cvar or something)
-                // so we don't accidentally save this to clients configs and overwrite their value
-                // on other servers.
-                case ScreenType.Default:
-                    _uiManager.LoadScreen<SeparatedChatGameScreen>();
+                case GameplayStateScreenType.Performer:
+                    UserInterfaceManager.LoadScreen<PerformerGameScreen>();
                     break;
-                case ScreenType.Separated:
-                    _uiManager.LoadScreen<SeparatedChatGameScreen>();
+                case GameplayStateScreenType.Stagehand:
+                    UserInterfaceManager.LoadScreen<StagehandGameScreen>();
                     break;
-                // ES END
             }
 
             _loadController.LoadScreen();
@@ -146,4 +151,20 @@ namespace Content.Client.Gameplay
                 base.OnKeyBindStateChanged(args);
         }
     }
+}
+
+/// <summary>
+///     Defines which screen this state should load
+/// </summary>
+public enum GameplayStateScreenType
+{
+    /// <summary>
+    ///     Screen used for regular players
+    /// </summary>
+    Performer,
+
+    /// <summary>
+    ///     Screen used for stagehands
+    /// </summary>
+    Stagehand
 }

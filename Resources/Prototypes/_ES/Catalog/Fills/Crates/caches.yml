@@ -147,13 +147,17 @@
 - type: entityTable
   id: ESCrewCacheVigilante
   table:
-    group:
-    - all:
-      - id: ESWeaponRevolver357
+    all:
     - group:
-      - id: ESWeaponPistol9mm
-        weight: 2
-      - id: ESWeaponPistol9mmSilenced
+      - all:
+        - id: ESWeaponRevolver357
+      - group:
+        - id: ESWeaponPistol9mm
+          weight: 2
+        - id: ESWeaponPistol9mmSilenced
+    - id: ESWeaponKnife
+    - id: ESClothingOuterArmorSecurity
+    - id: ExGrenade
 
 # Survivalist
 - type: entity

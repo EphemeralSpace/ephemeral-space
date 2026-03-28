@@ -1,0 +1,9 @@
+<controls:ESVotingManagerControl
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._ES.Voting.Ui">
+    <VScroll HorizontalExpand="True" Margin="5" >
+        <FillPanel StyleClasses="PanelDark">
+            <VFillStack Name="VotesContainer" VerticalExpand="True" Margin="10" SeparationOverride="5" Access="Public"/>
+        </FillPanel>
+    </VScroll>
+</controls:ESVotingManagerControl>

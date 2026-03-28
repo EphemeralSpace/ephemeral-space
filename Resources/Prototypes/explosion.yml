@@ -155,7 +155,7 @@
   texturePath: /Textures/Effects/fire.rsi
   fireStates: 3
   temperature: 800
-  fireChance: 0.8
+  fireChance: 0.6
   minFireLevel: 1
   maxFireLevel: 3
 # ES END

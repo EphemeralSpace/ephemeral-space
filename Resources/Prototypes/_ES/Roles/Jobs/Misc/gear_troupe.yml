@@ -1,0 +1,12 @@
+- type: startingGear
+  id: ESMaskVIPGear
+  storage:
+    back:
+    - ESItemCardVIP
+
+- type: startingGear
+  id: ESParasiteSwarmGear
+  equipment:
+    head: ESClothingHeadParasiteSeed
+  inhand:
+  - ESWeaponParasiteWorm

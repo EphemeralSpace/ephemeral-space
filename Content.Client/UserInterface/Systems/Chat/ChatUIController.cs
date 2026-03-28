@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using Content.Client._ES.Screens;
 using Content.Client.Administration.Managers;
 using Content.Client.Chat;
 using Content.Client.Chat.Managers;
@@ -302,7 +303,12 @@ public sealed class ChatUIController : UIController
                 chatSizeRaw = _config.GetCVar(CCVars.DefaultScreenChatSize);
                 SetChatSizing(chatSizeRaw, defaultScreen, setting);
                 break;
-            case SeparatedChatGameScreen separatedScreen:
+            case PerformerGameScreen separatedScreen:
+                chatBox = separatedScreen.ChatBox;
+                chatSizeRaw = _config.GetCVar(CCVars.SeparatedScreenChatSize);
+                SetChatSizing(chatSizeRaw, separatedScreen, setting);
+                break; // todo sto pduouing
+            case StagehandGameScreen separatedScreen:
                 chatBox = separatedScreen.ChatBox;
                 chatSizeRaw = _config.GetCVar(CCVars.SeparatedScreenChatSize);
                 SetChatSizing(chatSizeRaw, separatedScreen, setting);
@@ -358,7 +364,10 @@ public sealed class ChatUIController : UIController
             case DefaultGameScreen _:
                 _config.SetCVar(CCVars.DefaultScreenChatSize, stringSize);
                 break;
-            case SeparatedChatGameScreen _:
+            case PerformerGameScreen _:
+                _config.SetCVar(CCVars.SeparatedScreenChatSize, stringSize);
+                break;
+            case StagehandGameScreen _:
                 _config.SetCVar(CCVars.SeparatedScreenChatSize, stringSize);
                 break;
             default:

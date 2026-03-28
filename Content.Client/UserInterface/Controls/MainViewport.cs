@@ -5,6 +5,8 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 
+// ES MODIFIED : right-aligned main viewport instead of centered
+
 namespace Content.Client.UserInterface.Controls
 {
     /// <summary>
@@ -116,44 +118,31 @@ namespace Content.Client.UserInterface.Controls
 
             var cfgVerticalFit = _cfg.GetCVar(CCVars.ViewportVerticalFit);
 
-            // Calculate if the viewport, when rendered at an integer scale,
-            // is close enough to the control size to enable "snapping" to NN,
-            // potentially cutting a tiny bit off/leaving a margin.
-            //
-            // Idea here is that if you maximize the window at 1080p or 1440p
-            // we are close enough to an integer scale (2x and 3x resp) that we should "snap" to it.
+            // erm
+            if (Root == null)
+                return null;
 
-            // Just do it iteratively.
-            // I'm sure there's a smarter approach that needs one try with math but I'm dumb.
-            for (var i = 1; i <= 10; i++)
+            // Instead of all that, we just snap to the largest integer scale that fits.
+            // If that (pre-clamp) scale is <1, we return null and let the scaling logic handle it.
+            // TODO: This should probably enforce margins around the viewport.
+            var possibleSize = ((Vector2)Root.PixelSize) / ((Vector2)Viewport.ViewportSize);
+
+            var minPossible = Math.Min(possibleSize.X, possibleSize.Y);
+
+            if (minPossible >= 1)
             {
-                var toleranceMargin = i * cfgToleranceMargin;
-                var toleranceClip = i * cfgToleranceClip;
-                var scaled = (Vector2) Viewport.ViewportSize * i;
-                var (dx, dy) = PixelSize - scaled;
-
-                // The rule for which snap fits is that at LEAST one axis needs to be in the tolerance size wise.
-                // One axis MAY be larger but not smaller than tolerance.
-                // Obviously if it's too small it's bad, and if it's too big on both axis we should stretch up.
-                // Additionally, if the viewport's supposed  to be vertically fit, then the horizontal scale should just be ignored where appropriate.
-                if ((Fits(dx) || cfgVerticalFit) && Fits(dy) || !cfgVerticalFit && Fits(dx) && Larger(dy) || Larger(dx) && Fits(dy))
-                {
-                    // Found snap that fits.
-                    return i;
-                }
-
-                bool Larger(float a)
-                {
-                    return a > toleranceMargin;
-                }
-
-                bool Fits(float a)
-                {
-                    return a <= toleranceMargin && a >= -toleranceClip;
-                }
+                return (int)Math.Floor(minPossible);
             }
 
+            // uhhh too tiny try again later
             return null;
+        }
+
+        protected override Vector2 MeasureOverride(Vector2 availableSize)
+        {
+            UpdateCfg();
+
+            return base.MeasureOverride(availableSize);
         }
 
         protected override void Resized()

@@ -1,3 +1,7 @@
+using Content.Shared.Roles;
+using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
+
 namespace Content.Server._ES.Troupes.Parasite.Components;
 
 [RegisterComponent]
@@ -15,5 +19,14 @@ public sealed partial class ESParasiteRuleComponent : Component
     public bool WinStarted;
 
     [DataField]
+    public TimeSpan SwarmDelay = TimeSpan.FromMinutes(1);
+
+    [DataField]
     public TimeSpan WinDelay = TimeSpan.FromMinutes(6);
+
+    [DataField]
+    public SoundSpecifier BurstSound = new SoundCollectionSpecifier("desecration");
+
+    [DataField]
+    public ProtoId<StartingGearPrototype> SwarmGear = "ESParasiteSwarmGear";
 }

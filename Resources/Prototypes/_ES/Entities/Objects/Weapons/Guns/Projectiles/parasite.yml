@@ -1,0 +1,45 @@
+- type: entity
+  parent: ESBaseBullet
+  id: ESProjectileBurstworm
+  name: burstworm
+  description: Who's this little guy?
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Projectiles/worm.rsi
+    rotation: 270
+    layers:
+    - state: projectile
+  - type: ESMaskConversionProjectile
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    damage:
+      types:
+        Piercing: 5
+  - type: EmbeddableProjectile
+    removalTime: null
+    sound:
+      path: /Audio/Effects/bite.ogg
+      params:
+        variation: 0.05
+    embedOnThrow: false
+  - type: ThrowingAngle
+    angle: 0
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
+  parent: BaseItem
+  id: ESItemBurstwormDead
+  name: burstworm
+  description: Gross....
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Projectiles/worm.rsi
+    state: dead
+  - type: Item
+    storedRotation: -90
+  - type: Tag
+    tags:
+    - Trash

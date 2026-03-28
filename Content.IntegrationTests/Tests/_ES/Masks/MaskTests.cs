@@ -1,6 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
-using Content.IntegrationTests.Tests._Citadel;
 using Content.IntegrationTests.Utility;
 using Content.Server._ES.Masks;
 using Content.Server.Chat;
@@ -31,7 +32,7 @@ public sealed class MaskTests : GameTest
     [Description("Assigns each mask alone with no other players.")]
     public async Task AssignMaskAlone(string maskProto)
     {
-        var player = await Fixtures.TestPlayer.CreatePlayer(this);
+        var player = await TestPlayer.CreatePlayer(this);
 
         await Server.WaitAssertion(() =>
         {
@@ -52,12 +53,22 @@ public sealed class MaskTests : GameTest
     // Very strong, suitable for extreme violence.
     private static readonly EntProtoId Weapon = "MeleeDebug200";
 
+    private static readonly Dictionary<ProtoId<ESMaskPrototype>, string> CannotBeAttackerMasks =
+        new()
+        {
+            {"ESHost", "Has blocked hands and cannot actually pick anything up as result"},
+        };
+
+    private static IEnumerable<TestCaseData> AttackerMasks =>
+        GameDataScrounger.PrototypesOfKind<ESMaskPrototype>()
+        .WithIgnores(CannotBeAttackerMasks);
+
     [Test]
-    [TestCaseSource(nameof(Masks))]
+    [TestCaseSource(nameof(AttackerMasks))]
     [Description("Has the given mask beat up a crew member, asserting it doesn't fail.")]
     public async Task BeatUpCrewmember(string maskProto)
     {
-        var deviant = await Fixtures.TestPlayer.CreatePlayer(this);
+        var deviant = await TestPlayer.CreatePlayer(this);
 
         var targetSession = await Server.AddDummySession();
 
@@ -88,7 +99,7 @@ public sealed class MaskTests : GameTest
     [Description("Has the a crew member beat up the given mask, asserting it doesn't fail.")]
     public async Task GetBeatenUp(string maskProto)
     {
-        var deviant = await Fixtures.TestPlayer.CreatePlayer(this);
+        var deviant = await TestPlayer.CreatePlayer(this);
 
         var targetSession = await Server.AddDummySession();
 

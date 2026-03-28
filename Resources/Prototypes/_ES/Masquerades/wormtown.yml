@@ -1,0 +1,32 @@
+﻿- type: esMasquerade
+  id: Wormtown
+  name: Wormtown
+  description: is a parasite festival, with a large supply of targeting masks to ensure a party
+  weight: 1
+  minPlayers: 6
+  gameRules: []
+  masquerade:
+    defaultMask: "ESCrewmember"
+    roles:
+      6: [ "#AllParasites(2)", "#Filler(2)", "#Targeters", "ESMercenary" ] # 0 generic crew, 2 parasites
+      7: [ "#Filler" ]
+      8: [ "#Targeters" ]
+      9: [ "#Filler" ]
+      10: [ "#Gunners" ]
+      11: [ "#Antagonistic" ]
+      13: [ "#AllParasites" ]  # 0 generic crew, 3 parasites.
+      14: [ "#Filler" ]
+      16: [ "#Firmsafes" ] # 1 generic crew, 3 parasites.
+      17: [ "#Targeters" ]
+      18: [ "ESArmsDealer" ]
+      19: [ "#AllParasites" ] # 1 generic crew, 4 parasites.
+      20: [ "#Filler" ]
+      21: [ "#Filler" ] # 1 generic crew, 4 parasites.
+      22: [ "#Targeters" ]
+      24: [ "#Gunners" ] # 2 generic crew, 4 parasites.
+      25: [ "#AllParasites" ] # 2 generic crew, 5 parasites.
+      26: [ "#Filler" ]
+      28: [ "#Gunners" ] # 3 generic crew, 5 parasites.
+      29: [ "#Filler" ]
+      30: [ "#Targeters" ]
+      31: [ "#AllParasites", "#Filler" ] # 3 generic crew, 6 parasites.

@@ -57,5 +57,5 @@ public sealed partial class ESCVars : CVars
     ///     Controls whether chat sanitization is enabled for individual users.
     /// </summary>
     public static readonly CVarDef<bool> UserChatSanitizationEnabled =
-    CVarDef.Create("es_chat.user_chat_sanitization_enabled", true, CVar.CLIENT | CVar.REPLICATED);
+    CVarDef.Create("es_chat.user_chat_sanitization_enabled", true, CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
 }
