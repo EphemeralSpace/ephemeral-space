@@ -9,6 +9,9 @@ namespace Content.Server._ES.Troupes.Parasite.Components;
 public sealed partial class ESParasiteConverterComponent : Component
 {
     [DataField]
+    public ProtoId<ESTroupePrototype> IgnoreTroupe = "ESParasite";
+
+    [DataField]
     public ProtoId<ESMaskPrototype> Mask = "ESHost";
 
     [DataField]

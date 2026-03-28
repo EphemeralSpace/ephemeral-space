@@ -79,6 +79,9 @@ public sealed class ESParasiteRuleSystem : EntitySystem
             if (!_mind.TryGetMind(hit, out var mind))
                 continue;
 
+            if (_mask.GetTroupeOrNull(mind.Value.AsNullable()) == ent.Comp.IgnoreTroupe)
+                continue;
+
             if (_actionBlocker.CanMove(hit))
                 continue;
 
