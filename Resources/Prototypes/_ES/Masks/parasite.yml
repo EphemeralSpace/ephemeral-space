@@ -4,8 +4,8 @@
   name: es-mask-burstworm-name
   description: es-mask-burstworm-desc
   color: yellowgreen
-  #mindComponents:
-  #- type: ESPsychid
+  mindComponents:
+  - type: ESBurstworm
 
 - type: esMask
   parent: ESBaseParasite

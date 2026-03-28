@@ -6,3 +6,4 @@ es-parasite-swarm-notif =  A wormy voice booms through your head...
     We have seized control of the station. It is time for us to make one last push to squash out the resistence left. In about one minute, you will be reborn in beautiful new forms. Attack the crew and claim their bodies. We are one now.
 
 es-parasite-worm-convert = The worm burrows into the base of {POSS-ADJ($ent)} skull!
+es-parasite-burstworm-warning = {CAPITALIZE($name)} starts to writhe!
