@@ -55,7 +55,7 @@
   - type: SpeakOnUIClosed
     pack: SalvagedGoodbyes
   - type: PointLight
-    color: "#fe0000"
+    color: "#8f8200"
   - type: ESEntityTableVendorFill
     inventory:
       all:
@@ -84,7 +84,7 @@
   - type: SpeakOnUIClosed
     pack: SusWaterGoodbyes
   - type: PointLight
-    color: "#fe0000"
+    color: "#78f4ff"
   - type: ESEntityTableVendorFill
     inventory:
       all:
@@ -110,7 +110,7 @@
   - type: SpeakOnUIClosed
     pack: WoodgrainGoodbyes
   - type: PointLight
-    color: "#fe0000"
+    color: "#566291"
   - type: ESEntityTableVendorFill
     inventory:
       all:
