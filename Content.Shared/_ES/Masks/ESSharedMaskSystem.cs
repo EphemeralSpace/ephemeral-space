@@ -307,6 +307,15 @@ public abstract class ESSharedMaskSystem : EntitySystem
 
     }
 
+    /// <inheritdoc cref="GetTroupeMembers(ProtoId{ESTroupePrototype})"/>
+    public IEnumerable<EntityUid> GetTroupeMembers(Entity<ESTroupeRuleComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return [];
+
+        return GetTroupeMembers(ent.Comp.Troupe);
+    }
+
     /// <summary>
     /// Returns all minds who are members of a given troupe.
     /// </summary>

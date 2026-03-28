@@ -1,0 +1,6 @@
+- type: startingGear
+  id: ESParasiteSwarmGear
+  equipment:
+    head: ESClothingHeadParasiteSeed
+  #inhand:
+  #- FireAxe

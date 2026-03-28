@@ -1,3 +1,6 @@
+using Content.Shared.Roles;
+using Robust.Shared.Prototypes;
+
 namespace Content.Server._ES.Troupes.Parasite.Components;
 
 [RegisterComponent]
@@ -15,5 +18,11 @@ public sealed partial class ESParasiteRuleComponent : Component
     public bool WinStarted;
 
     [DataField]
-    public TimeSpan WinDelay = TimeSpan.FromMinutes(6);
+    public TimeSpan SwarmDelay = TimeSpan.FromMinutes(1);
+
+    [DataField]
+    public TimeSpan WinDelay = TimeSpan.FromMinutes(4);
+
+    [DataField]
+    public ProtoId<StartingGearPrototype> SwarmGear = "ESParasiteSwarmGear";
 }

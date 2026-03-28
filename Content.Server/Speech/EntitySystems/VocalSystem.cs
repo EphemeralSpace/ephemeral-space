@@ -9,6 +9,9 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
+// ES CHANGES
+// Make TryPlayScreamSound public w/ proper API
+
 namespace Content.Server.Speech.EntitySystems;
 
 public sealed class VocalSystem : EntitySystem
@@ -113,7 +116,7 @@ public sealed class VocalSystem : EntitySystem
         // snowflake case for wilhelm scream easter egg
         if (args.Emote.ID == component.ScreamId)
         {
-            args.Handled = TryPlayScreamSound(uid, component);
+            args.Handled = TryPlayScreamSound((uid, component));
             return;
         }
 
@@ -133,18 +136,21 @@ public sealed class VocalSystem : EntitySystem
         args.Handled = true;
     }
 
-    private bool TryPlayScreamSound(EntityUid uid, VocalComponent component)
+    public bool TryPlayScreamSound(Entity<VocalComponent?> ent)
     {
-        if (_random.Prob(component.WilhelmProbability))
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        if (_random.Prob(ent.Comp.WilhelmProbability))
         {
-            _audio.PlayPvs(component.Wilhelm, uid, component.Wilhelm.Params);
+            _audio.PlayPvs(ent.Comp.Wilhelm, ent, ent.Comp.Wilhelm.Params);
             return true;
         }
 
-        if (component.EmoteSounds is not { } sounds)
+        if (ent.Comp.EmoteSounds is not { } sounds)
             return false;
 
-        return _chat.TryPlayEmoteSound(uid, _proto.Index(sounds), component.ScreamId);
+        return _chat.TryPlayEmoteSound(ent, _proto.Index(sounds), ent.Comp.ScreamId);
     }
 
     private void LoadSounds(EntityUid uid, VocalComponent component, Sex? sex = null)
