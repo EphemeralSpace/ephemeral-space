@@ -20,6 +20,11 @@ namespace Content.Shared.Atmos
         public const float OneAtmosphere = 101.325f;
 
         /// <summary>
+        /// Global Atmospherics epsilon. Used for all general floating-point comparisons.
+        /// </summary>
+        public const float Epsilon = 0.5f;
+
+        /// <summary>
         ///     Maximum external pressure (in kPA) a gas miner will, by default, output to.
         ///     This is used to initialize roundstart atmos rooms.
         /// </summary>
@@ -161,7 +166,9 @@ namespace Content.Shared.Atmos
         public const float MinimumHeatCapacity = 0.0003f;
 
         /// <summary>
-        ///     For the purposes of making space "colder"
+        /// Allows Atmospherics to cool down rooms during spacing
+        /// by assigning a fake heat capacity to space,
+        /// making space "actually cold" for gameplay reasons.
         /// </summary>
         public const float SpaceHeatCapacity = 7000f;
 
@@ -229,7 +236,9 @@ namespace Content.Shared.Atmos
         public const float FireMinimumTemperatureToExist = T0C + 100f;
         public const float FireMinimumTemperatureToSpread = T0C + 150f;
         public const float FireSpreadRadiosityScale = 0.85f;
-        public const float FirePlasmaEnergyReleased = 160e3f; // methane is 16 kJ/mol, plus plasma's spark of magic
+        // ES START
+        public const float FirePlasmaEnergyReleased = 1e3f; // methane is 16 kJ/mol, plus plasma's spark of magic
+        // ES END
         public const float FireGrowthRate = 40000f;
 
         public const float SuperSaturationThreshold = 96f;
@@ -239,7 +248,9 @@ namespace Content.Shared.Atmos
         public const float PlasmaMinimumBurnTemperature = (100f+T0C);
         public const float PlasmaUpperTemperature = (1370f+T0C);
         public const float PlasmaOxygenFullburn = 10f;
-        public const float PlasmaBurnRateDelta = 9f;
+        // ES START
+        public const float PlasmaBurnRateDelta = 0.5f;
+        // ES END
 
         /// <summary>
         ///     This is calculated to help prevent singlecap bombs (Overpowered tritium/oxygen single tank bombs)

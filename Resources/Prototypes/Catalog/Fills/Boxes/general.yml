@@ -14,9 +14,6 @@
       Cardboard: 100
   - type: Sprite
     state: box
-  - type: Tag
-    tags:
-    - BoxCardboard
 
 - type: entity
   parent: BoxBaseSmall
@@ -34,9 +31,6 @@
       Cardboard: 50
   - type: Sprite
     state: box
-  - type: Tag
-    tags:
-    - BoxCardboard
 
 - type: entity
   name: mousetrap box

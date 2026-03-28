@@ -46,20 +46,6 @@
   - type: AccessReader
     access: [["Quartermaster"]]
 
-- type: entity
-  id: LockerSalvageSpecialist
-  parent: LockerBase
-  name: salvage specialist's equipment
-  description: Nevermind the pickaxe.
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: mining
-    stateDoorOpen: mining_open
-    stateDoorClosed: mining_door
-  - type: AccessReader
-    access: [["Salvage"]]
-
 # Command
 - type: entity
   id: LockerCaptain
@@ -86,20 +72,6 @@
     stateDoorClosed: hop_door
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
-
-# CE
-- type: entity
-  id: LockerChiefEngineer
-  parent: LockerBaseSecure
-  name: chief engineer's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: ce
-    stateDoorOpen: ce_open
-    stateDoorClosed: ce_door
-  - type: AccessReader
-    access: [ [ "ChiefEngineer" ] ]
 
 # Electrical supplies
 - type: entity
@@ -246,20 +218,6 @@
   - type: AccessReader
     access: [ [ "Chemistry" ] ]
 
-# CMO
-- type: entity
-  id: LockerChiefMedicalOfficer
-  parent: LockerBaseSecure
-  name: chief medical officer's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: cmo
-    stateDoorOpen: cmo_open
-    stateDoorClosed: cmo_door
-  - type: AccessReader
-    access: [ [ "ChiefMedicalOfficer" ] ]
-
 # Science
 - type: entity
   id: LockerResearchDirector
@@ -286,34 +244,6 @@
     stateDoorClosed: science_door
   - type: AccessReader
     access: [ [ "Research" ] ]
-
-# HoS
-- type: entity
-  id: LockerHeadOfSecurity
-  parent: LockerBaseSecure
-  name: head of security's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: hos
-    stateDoorOpen: hos_open
-    stateDoorClosed: hos_door
-  - type: AccessReader
-    access: [["HeadOfSecurity"]]
-
-# Warden
-- type: entity
-  id: LockerWarden
-  parent: LockerBaseSecure
-  name: warden's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: warden
-    stateDoorOpen: warden_open
-    stateDoorClosed: warden_door
-  - type: AccessReader
-    access: [["Armory"]]
 
 # Security Officer
 - type: entity
@@ -345,8 +275,6 @@
     node: done
     containers:
     - entity_storage
-  - type: StaticPrice
-    price: 660
 
 - type: entity
   id: GunSafeBaseSecure
@@ -499,8 +427,6 @@
     stateBaseClosed: syndicate
     stateDoorOpen: syndicate_open
     stateDoorClosed: syndicate_door
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
 
 # Bluespace
 - type: entity

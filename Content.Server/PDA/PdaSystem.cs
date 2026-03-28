@@ -6,7 +6,6 @@ using Content.Server.Instruments;
 using Content.Server.PDA.Ringer;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
-using Content.Server.Traitor.Uplink;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Chat;
@@ -31,7 +30,6 @@ namespace Content.Server.PDA
         [Dependency] private readonly InstrumentSystem _instrument = default!;
         [Dependency] private readonly RingerSystem _ringer = default!;
         [Dependency] private readonly StationSystem _station = default!;
-        [Dependency] private readonly StoreSystem _store = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly UserInterfaceSystem _ui = default!;
         [Dependency] private readonly UnpoweredFlashlightSystem _unpoweredFlashlight = default!;
@@ -187,7 +185,6 @@ namespace Content.Server.PDA
 
             var address = GetDeviceNetAddress(uid);
             var hasInstrument = HasComp<InstrumentComponent>(uid);
-            var showUplink = HasComp<UplinkComponent>(uid) && IsUnlocked(uid);
 
             UpdateStationName(uid, pda);
             UpdateAlertLevel(uid, pda);
@@ -215,7 +212,7 @@ namespace Content.Server.PDA
                     StationAlertColor = pda.StationAlertColor
                 },
                 pda.StationName,
-                showUplink,
+                false,
                 hasInstrument,
                 address);
 
@@ -270,10 +267,6 @@ namespace Content.Server.PDA
         {
             if (!PdaUiKey.Key.Equals(msg.UiKey))
                 return;
-
-            // check if its locked again to prevent malicious clients opening locked uplinks
-            if (HasComp<UplinkComponent>(uid) && IsUnlocked(uid))
-                _store.ToggleUi(msg.Actor, uid);
         }
 
         private void OnUiMessage(EntityUid uid, PdaComponent pda, PdaLockUplinkMessage msg)

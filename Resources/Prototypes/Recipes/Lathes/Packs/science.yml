@@ -15,10 +15,6 @@
 - type: latheRecipePack
   id: ScienceEquipment
   recipes:
-  - AnomalyScanner
-  - NodeScanner
-  - AnomalyLocator
-  - AnomalyLocatorWide
   - HoloprojectorField
   - SignallerAdvanced
   - DeviceQuantumSpinInverter
@@ -29,9 +25,6 @@
   id: ScienceClothing
   recipes:
   - ClothingShoesBootsMagSci
-  - ClothingShoesBootsMoon
-  - ClothingShoesBootsSpeed
-  - ClothingShoesBootsJump
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
@@ -43,18 +36,6 @@
   - PowerCellHigh
   - PowerCellHyper
 
-- type: latheRecipePack
-  id: ScienceWeapons
-  recipes:
-  - WeaponPistolCHIMP
-  - WeaponForceGun
-  - WeaponProtoKineticAccelerator
-  - PKAUpgradeDamage
-  - PKAUpgradeRange
-  - PKAUpgradeFireRate
-  - WeaponTetherGun
-  - WeaponGauntletGorilla
-
 # Only contains parts for making basic modular grenades, no actual explosives
 - type: latheRecipePack
   id: ScienceExplosives
@@ -64,25 +45,6 @@
   - TimerTrigger
   - SignalTrigger
   - VoiceTrigger
-
-- type: latheRecipePack
-  id: ScienceBoards
-  recipes:
-  - TurboItemRechargerCircuitboard
-  - AutolatheHyperConvectionMachineCircuitboard
-  - ProtolatheHyperConvectionMachineCircuitboard
-  - CircuitImprinterHyperConvectionMachineCircuitboard
-  - TechDiskComputerCircuitboard
-  - FlatpackerMachineCircuitboard
-  - SheetifierMachineCircuitboard
-  - PowerCageRechargerCircuitboard
-  - AnalysisComputerCircuitboard
-  - AnomalyVesselCircuitboard
-  - AnomalyVesselExperimentalCircuitboard
-  - AnomalySynchronizerCircuitboard
-  - APECircuitboard
-  - ArtifactAnalyzerMachineCircuitboard
-  - ArtifactCrusherMachineCircuitboard
 
 - type: latheRecipePack
   id: CameraBoards

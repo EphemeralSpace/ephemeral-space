@@ -128,24 +128,6 @@ public abstract class SharedAnomalySystem : EntitySystem
 // ES START
         return; // no.
 // ES END
-        // don't restart it if it's already begun
-        if (HasComp<AnomalySupercriticalComponent>(ent))
-            return;
-
-        if(!Resolve(ent, ref ent.Comp))
-            return;
-
-        AdminLog.Add(LogType.Anomaly, LogImpact.High, $"Anomaly {ToPrettyString(ent.Owner)} began to go supercritical.");
-        if (_net.IsServer)
-            Log.Info($"Anomaly is going supercritical. Entity: {ToPrettyString(ent.Owner)}");
-
-        Audio.PlayPvs(ent.Comp.SupercriticalSoundAtAnimationStart, ent);
-
-        var super = AddComp<AnomalySupercriticalComponent>(ent);
-        super.EndTime = Timing.CurTime + ent.Comp.SupercriticalDuration;
-        Appearance.SetData(ent, AnomalyVisuals.Supercritical, true);
-        SetScannerSupercritical((ent, ent.Comp), true);
-        Dirty(ent, super);
     }
 
     /// <summary>

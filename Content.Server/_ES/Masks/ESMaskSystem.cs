@@ -244,6 +244,9 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
             _gameTicker.StartGameRule(troupe.Value);
 
         RefreshCharacterInfoBlurb(mind.AsNullable());
+
+        var ev = new ESMaskChangedEvent(mind, mask);
+        RaiseLocalEvent(troupe.Value, ref ev, true);
     }
 
     public override void RemoveMask(Entity<MindComponent> mind)
@@ -273,6 +276,12 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
         Objective.RegenerateObjectiveList(mind.Owner);
         RefreshCharacterInfoBlurb(mind.AsNullable());
+
+        if (troupeEntity.HasValue)
+        {
+            var ev = new ESMaskChangedEvent(mind, mask);
+            RaiseLocalEvent(troupeEntity.Value, ref ev, true);
+        }
     }
 
     public override void ChangeMask(Entity<MindComponent> mind,
@@ -298,6 +307,12 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         }
     }
 }
+
+/// <summary>
+/// Raised on a troupe entity and broadcast when an entity's mask changes.
+/// </summary>
+[ByRefEvent]
+public record struct ESMaskChangedEvent(Entity<MindComponent> Mind, ESMaskPrototype? Mask);
 
 /// <summary>
 ///     Fired when players are being assigned to a troupe. Old random assignment algorithm kicks in

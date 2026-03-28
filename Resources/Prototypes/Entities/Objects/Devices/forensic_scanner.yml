@@ -27,8 +27,6 @@
   - type: GuideHelp
     guides:
     - Forensics
-  - type: StealTarget
-    stealGroup: ForensicScanner
 
 - type: entity
   name: forensic scanner report

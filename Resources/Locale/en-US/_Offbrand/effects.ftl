@@ -100,18 +100,6 @@ entity-condition-guidebook-metabolite-threshold =
                  }
     }
 
-entity-condition-guidebook-is-zombie-immune =
-    the target { $invert ->
-                    [true] is not immunized against zombie infections
-                   *[false] is immunized against zombie infections
-                }
-
-entity-condition-guidebook-is-zombie =
-    the target { $invert ->
-                    [true] is not a zombie
-                   *[false] is a zombie
-                }
-
 entity-condition-guidebook-this-metabolite = this reagent's
 
 entity-effect-guidebook-adjust-reagent-gaussian =

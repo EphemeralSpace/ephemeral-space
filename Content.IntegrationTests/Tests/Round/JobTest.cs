@@ -1,6 +1,7 @@
 #nullable enable
 using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Pair;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
@@ -19,11 +20,11 @@ using Content.Shared._ES.CCVar;
 namespace Content.IntegrationTests.Tests.Round;
 
 [TestFixture]
-public sealed class JobTest
+public sealed class JobTest : GameTest
 {
-    private static readonly ProtoId<JobPrototype> Passenger = "Passenger";
-    private static readonly ProtoId<JobPrototype> Engineer = "StationEngineer";
-    private static readonly ProtoId<JobPrototype> Captain = "Captain";
+    private static readonly ProtoId<JobPrototype> Passenger = "ESBartender";
+    private static readonly ProtoId<JobPrototype> Engineer = "ESStationEngineer";
+    private static readonly ProtoId<JobPrototype> Captain = "ESCaptain";
 
     private static string _map = "JobTestMap";
 
@@ -36,7 +37,7 @@ public sealed class JobTest
   minPlayers: 0
   stations:
     Empty:
-      stationProto: StandardNanotrasenStation
+      stationProto: ESBaseStationNeutral
       components:
         - type: StationNameSetup
           mapNameTemplate: ""Empty""
@@ -46,6 +47,13 @@ public sealed class JobTest
             {Engineer}: [ -1, -1 ]
             {Captain}: [ 1, 1 ]
 ";
+
+    public override PoolSettings PoolSettings => new()
+    {
+        DummyTicker = false,
+        Connected = true,
+        InLobby = true
+    };
 
     private void AssertJob(TestPair pair, ProtoId<JobPrototype> job, NetUserId? user = null, bool isAntag = false)
     {
@@ -74,12 +82,7 @@ public sealed class JobTest
     [Test]
     public async Task StartRoundTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            DummyTicker = false,
-            Connected = true,
-            InLobby = true
-        });
+        var pair = Pair;
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
         var ticker = pair.Server.System<GameTicker>();
@@ -90,6 +93,8 @@ public sealed class JobTest
         // Assert.That(pair.Client.AttachedEntity, Is.Null);
         Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.NotReadyToPlay));
 
+        await pair.SetJobPriorities((Passenger, JobPriority.Medium), (Engineer, JobPriority.Low));
+
         // Ready up and start the round
         ticker.ToggleReadyAll(true);
         Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.ReadyToPlay));
@@ -99,7 +104,6 @@ public sealed class JobTest
         AssertJob(pair, Passenger);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.CleanReturnAsync();
     }
 
     /// <summary>
@@ -108,12 +112,7 @@ public sealed class JobTest
     [Test]
     public async Task JobPreferenceTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            DummyTicker = false,
-            Connected = true,
-            InLobby = true
-        });
+        var pair = Pair;
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
         var ticker = pair.Server.System<GameTicker>();
@@ -138,7 +137,6 @@ public sealed class JobTest
         AssertJob(pair, Passenger);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.CleanReturnAsync();
     }
 
     /// <summary>
@@ -148,12 +146,7 @@ public sealed class JobTest
     [Test]
     public async Task JobWeightTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            DummyTicker = false,
-            Connected = true,
-            InLobby = true
-        });
+        var pair = Pair;
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
         var ticker = pair.Server.System<GameTicker>();
@@ -175,7 +168,6 @@ public sealed class JobTest
         AssertJob(pair, Captain);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.CleanReturnAsync();
     }
 
     /// <summary>
@@ -184,12 +176,7 @@ public sealed class JobTest
     [Test]
     public async Task JobPriorityTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            DummyTicker = false,
-            Connected = true,
-            InLobby = true
-        });
+        var pair = Pair;
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
         var ticker = pair.Server.System<GameTicker>();
@@ -226,6 +213,5 @@ public sealed class JobTest
         });
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.CleanReturnAsync();
     }
 }

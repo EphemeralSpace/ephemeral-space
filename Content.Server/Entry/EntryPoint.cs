@@ -10,7 +10,6 @@ using Content.Server.Discord.DiscordLink;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
 using Content.Server.GhostKick;
-using Content.Server.GuideGenerator;
 using Content.Server.Info;
 using Content.Server.IoC;
 using Content.Server.Maps;
@@ -108,10 +107,6 @@ namespace Content.Server.Entry
 
             _loc.Initialize();
 
-            var dest = _cfg.GetCVar(CCVars.DestinationFile);
-            if (!string.IsNullOrEmpty(dest))
-                return; //hacky but it keeps load times for the generator down.
-
             _log.GetSawmill("Storage").Level = LogLevel.Info;
             _log.GetSawmill("db.ef").Level = LogLevel.Info;
 
@@ -138,19 +133,6 @@ namespace Content.Server.Entry
 
             _chatSan.Initialize();
             _chat.Initialize();
-            var dest = _cfg.GetCVar(CCVars.DestinationFile);
-            if (!string.IsNullOrEmpty(dest))
-            {
-                var resPath = new ResPath(dest).ToRootedPath();
-                var file = _res.UserData.OpenWriteText(resPath.WithName("chem_" + dest));
-                ChemistryJsonGenerator.PublishJson(file);
-                file.Flush();
-                file = _res.UserData.OpenWriteText(resPath.WithName("react_" + dest));
-                ReactionJsonGenerator.PublishJson(file);
-                file.Flush();
-                Dependencies.Resolve<IBaseServer>().Shutdown("Data generation done");
-                return;
-            }
 
             _recipe.Initialize();
             _admin.Initialize();
@@ -191,17 +173,10 @@ namespace Content.Server.Entry
 
         protected override void Dispose(bool disposing)
         {
-            var dest = _cfg.GetCVar(CCVars.DestinationFile);
-            if (!string.IsNullOrEmpty(dest))
-            {
-                _playTimeTracking.Shutdown();
-                _dbManager.Shutdown();
-            }
-
             _serverApi.Shutdown();
 
-            // TODO Should this be awaited?
-            _discordLink.Shutdown();
+            // We don't care when or how this finishes, just spin the task off into the void.
+            _ = _discordLink.Shutdown();
             _discordChatLink.Shutdown();
         }
 

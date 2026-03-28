@@ -1,25 +1,25 @@
 - type: guideEntry
-  id: ESJobs
+  id: Jobs
   hidden: false
   name: Jobs
   priority: 3
   text: "/ServerInfo/_ES/Guidebook/Jobs.xml"
   children:
-  - ESAssistant
-  - ESAtmosphericTechnician
-  - ESBartender
-  - ESBotanist
-  - ESCaptain
-  - ESChef
-  - ESClown
-  - ESCoroner
-  - ESDetective
+  - Assistant
+  - AtmosphericTechnician
+  - Bartender
+  - Botanist
+  - Captain
+  - Chef
+  - Clown
+  - Coroner
+  - Detective
   - OffbrandPhysician
-  - ESHeadOfPersonnel
-  - ESJanitor
+  - HeadOfPersonnel
+  - Janitor
   - OffbrandParamedic
-  - ESQuartermaster
-  - ESReporter
-  - ESScientist
-  - ESSecurityOfficer
-  - ESStationEngineer
+  - Quartermaster
+  - Reporter
+  - Scientist
+  - SecurityOfficer
+  - StationEngineer

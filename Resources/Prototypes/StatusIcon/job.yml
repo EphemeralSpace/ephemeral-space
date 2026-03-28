@@ -389,32 +389,6 @@
     state: StationAi
   jobName: job-name-station-ai
 
-# Bad guys
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconCluwne # >:o(
-  icon:
-    sprite: *icon-rsi
-    state: Cluwne
-  jobName: job-name-cluwne
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconNinja
-  icon:
-    sprite: *icon-rsi
-    state: Ninja
-  jobName: job-name-ninja
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconPirate
-  icon:
-    sprite: *icon-rsi
-    state: Pirate
-  jobName: job-name-pirate
-
 - type: jobIcon
   parent: JobIcon
   id: JobIconPrisoner
@@ -422,54 +396,6 @@
     sprite: *icon-rsi
     state: Prisoner
   jobName: job-name-prisoner
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconSyndicate # Just in case you want to make it official which side you are on
-  icon:
-    sprite: *icon-rsi
-    state: Syndicate
-  jobName: job-name-syndicate
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconSyndicateCommander
-  icon:
-    sprite: *icon-rsi
-    state: SyndicateCommander
-  jobName: job-name-syndicate-commander
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconSyndicateCorpsman
-  icon:
-    sprite: *icon-rsi
-    state: SyndicateCorpsman
-  jobName: job-name-syndicate-corpsman
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconSyndicateOperative
-  icon:
-    sprite: *icon-rsi
-    state: SyndicateOperative
-  jobName: job-name-syndicate-operative
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconWizard
-  icon:
-    sprite: *icon-rsi
-    state: Wizard
-  jobName: job-name-wizard
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconZombie # This is a perfectly legitimate profession to pursue
-  icon:
-    sprite: *icon-rsi
-    state: Zombie
-  jobName: job-name-zombie
 
 # Admin
 

@@ -40,7 +40,6 @@
     tags:
     - CorgiWearable
     - Hardsuit
-    - WhitelistChameleon
 
 #Engineering Hardsuit
 - type: entity
@@ -77,7 +76,6 @@
     tags:
     - CorgiWearable
     - Hardsuit
-    - WhitelistChameleon
 
 #Spationaut Hardsuit
 - type: entity
@@ -110,46 +108,8 @@
   - type: Tag
     tags:
     - Hardsuit
-    - WhitelistChameleon
     - HardsuitSpatio
     - CorgiWearable
-
-#Salvage Hardsuit
-- type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
-  id: ClothingOuterHardsuitSalvage
-  name: mining hardsuit
-  description: A special suit that protects against hazardous, low pressure environments. Has reinforced plating for wildlife encounters.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/salvage.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/salvage.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.5
-    lowPressureMultiplier: 1000
-  - type: ExplosionResistance
-    damageCoefficient: 0.7
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.7
-        Slash: 0.6
-        Piercing: 0.7
-        Heat: 0.7
-        Radiation: 0.3
-        Caustic: 0.7
-  - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
-  - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSalvage
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - Hardsuit
-    - WhitelistChameleon
 
 #Goliath Hardsuit
 - type: entity
@@ -189,7 +149,6 @@
     tags:
     - CorgiWearable
     - Hardsuit
-    - WhitelistChameleon
 
 #Maxim Hardsuit
 - type: entity
@@ -258,7 +217,6 @@
     tags:
     - CorgiWearable
     - Hardsuit
-    - WhitelistChameleon
 
 #Brigmedic Hardsuit
 - type: entity
@@ -353,7 +311,6 @@
     tags:
     - CorgiWearable
     - Hardsuit
-    - WhitelistChameleon
 
 #Chief Engineer's Hardsuit
 - type: entity
@@ -392,7 +349,6 @@
     tags:
     - CorgiWearable
     - Hardsuit
-    - WhitelistChameleon
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -412,8 +368,6 @@
     modifiers:
       coefficients:
         Caustic: 0.1
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
@@ -424,7 +378,6 @@
     tags:
     - CorgiWearable
     - Hardsuit
-    - WhitelistChameleon
 
 #Research Director's Hardsuit
 - type: entity
@@ -461,16 +414,11 @@
     - 0,0,4,4 #5X5, can fit in a duffel bag but nothing smaller.
   - type: Tag
     tags:
-    - WhitelistChameleon
     - HighRiskItem
     - CorgiWearable
     - Hardsuit
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRd
-  - type: StaticPrice
-    price: 750
-  - type: StealTarget
-    stealGroup: ClothingOuterHardsuitRd
 
 #Head of Security's Hardsuit
 - type: entity
@@ -577,11 +525,8 @@
     tags:
     - MonkeyWearable
     - Hardsuit
-    - WhitelistChameleon
     - CorgiWearable
     - ScurretWearable
-  - type: StaticPrice
-    price: 5000
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -599,7 +544,6 @@
   - type: Tag
     tags:
     - Hardsuit
-    - WhitelistChameleon
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -645,7 +589,6 @@
     tags:
     - CorgiWearable
     - Hardsuit
-    - WhitelistChameleon
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -684,7 +627,6 @@
     tags:
     - CorgiWearable
     - Hardsuit
-    - WhitelistChameleon
 
 
 #Cybersun Juggernaut Hardsuit
@@ -724,74 +666,6 @@
     - MonkeyWearable
     - CorgiWearable
     - Hardsuit
-    - WhitelistChameleon
-
-#Wizard Hardsuit
-- type: entity
-  parent: [ ClothingOuterHardsuitBase, BaseMagicalContraband ]
-  id: ClothingOuterHardsuitWizard
-  name: wizard hardsuit
-  description: A bizarre gem-encrusted suit that radiates magical energies.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/wizard.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/wizard.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.05
-    lowPressureMultiplier: 1000
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.4
-        Heat: 0.25
-        Radiation: 0.25
-        Caustic: 0.75
-  - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
-  - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitWizard
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - Hardsuit
-    - WhitelistChameleon
-
-#Ling Space Suit
-- type: entity
-  parent: ClothingOuterHardsuitBase
-  id: ClothingOuterHardsuitLing
-  name: organic space suit
-  description: A spaceworthy biomass of pressure and temperature resistant tissue.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/lingspacesuit.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/lingspacesuit.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.225
-    lowPressureMultiplier: 1000
-  - type: ExplosionResistance
-    damageCoefficient: 0.2
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 1
-        Heat: 0.5
-  - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
-  - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitLing
 
 #Pirate EVA Suit (Deep Space EVA Suit)
 #Despite visually appearing like a softsuit, it functions exactly like a hardsuit would (parents off of base hardsuit, has resistances and toggleable clothing, etc.) so it goes here.
@@ -824,8 +698,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateEVA
-  - type: StaticPrice
-    price: 0
 
 #Pirate Captain Hardsuit
 - type: entity
@@ -859,8 +731,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCap
-  - type: StaticPrice
-    price: 0
 
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit
@@ -937,7 +807,6 @@
   - type: Tag
     tags:
     - Hardsuit
-    - WhitelistChameleon
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -1022,8 +891,6 @@
         Shock: 0.1
         Radiation: 0.1
         Caustic: 0.1
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.25
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0

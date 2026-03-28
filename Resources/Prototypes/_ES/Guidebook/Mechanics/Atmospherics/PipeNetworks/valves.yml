@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESValves
+  id: Valves
   hidden: false
   name: Valves
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/PipeNetworks/Valves.xml"

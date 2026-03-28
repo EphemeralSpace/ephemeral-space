@@ -2,9 +2,8 @@
   # Crew
 
   As a member of the crew, your objective is simple:
-  <ESGBObjectiveEmbed Objective="ESObjectiveResearchTelescience"/>
+  <ESGuideObjectiveEmbed Objective="ESObjectiveResearchTelescience"/>
 
   [color=red]TODO ES write the rest lol[/color]
 
-  [color=red]TODO ES write mask entries[/color]
 </Document>

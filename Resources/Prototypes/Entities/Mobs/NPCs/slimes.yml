@@ -164,13 +164,6 @@
     - type: NpcFactionMember
       factions:
         - SimpleHostile
-    - type: GhostRole
-      description: ghost-role-information-angry-slimes-description
-      rules: ghost-role-information-angry-slimes-rules
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
-      raffle:
-        settings: short
 
 - type: entity
   name: green slime
@@ -204,13 +197,6 @@
     - type: NpcFactionMember
       factions:
         - SimpleHostile
-    - type: GhostRole
-      description: ghost-role-information-angry-slimes-description
-      rules: ghost-role-information-angry-slimes-rules
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
-      raffle:
-        settings: short
 
 - type: entity
   name: yellow slime
@@ -243,10 +229,3 @@
     - type: NpcFactionMember
       factions:
         - SimpleHostile
-    - type: GhostRole
-      description: ghost-role-information-angry-slimes-description
-      rules: ghost-role-information-angry-slimes-rules
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
-      raffle:
-        settings: short

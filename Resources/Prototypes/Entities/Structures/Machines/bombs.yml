@@ -46,10 +46,6 @@
           layer:
             - MachineLayer
     - type: WiresPanel
-    - type: GuideHelp
-      openOnActivation: true
-      guides:
-      - Defusal
 
 - type: entity
   parent: BaseHardBomb
@@ -128,8 +124,6 @@
       totalIntensity: 4000.0
       intensitySlope: 3
       maxIntensity: 400
-    - type: StaticPrice
-      price: 10000 # Good luck!
 
 - type: entity
   parent: SyndicateBomb

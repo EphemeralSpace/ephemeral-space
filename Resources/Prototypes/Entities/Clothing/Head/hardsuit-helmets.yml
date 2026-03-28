@@ -77,7 +77,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Engineering Hardsuit
 - type: entity
@@ -146,7 +145,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Spationaut Hardsuit
 - type: entity
@@ -214,29 +212,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
-
-#Salvage Hardsuit
-- type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
-  id: ClothingHeadHelmetHardsuitSalvage
-  name: salvage hardsuit helmet
-  description: A special helmet designed for work in a hazardous, low pressure environment. Has reinforced plating for wildlife encounters and dual floodlights.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hardsuits/salvage.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hardsuits/salvage.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.525
-    lowPressureMultiplier: 1000
-  - type: PointLight
-    radius: 7
-    energy: 3
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
 
 #Goliath Hardsuit
 - type: entity
@@ -297,7 +272,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Maxim Hardsuit
 - type: entity
@@ -348,7 +322,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Brigmedic Hardsuit
 - type: entity
@@ -417,7 +390,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Chief Engineer's Hardsuit
 - type: entity
@@ -488,7 +460,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -509,7 +480,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Research Director's Hardsuit
 - type: entity
@@ -530,7 +500,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Head of Security's hardsuit
 - type: entity
@@ -602,7 +571,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Blood-red Medic Hardsuit
 - type: entity
@@ -659,7 +627,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -687,8 +654,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
-
 #Cybersun Juggernaut Hardsuit
 - type: entity
   parent: ClothingHeadHardsuitBase
@@ -713,7 +678,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Wizard Hardsuit
 - type: entity
@@ -741,7 +705,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Organic Space Suit
 - type: entity
@@ -979,8 +942,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.75
 
 #Deathsquad Hardsuit
 - type: entity

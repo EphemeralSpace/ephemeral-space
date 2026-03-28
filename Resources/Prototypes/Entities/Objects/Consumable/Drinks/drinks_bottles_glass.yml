@@ -434,7 +434,6 @@
     examineTextUnsealed: "sealable-component-on-examine-is-unsealed-crown-cap" # tell the player why it can't close
   - type: Tag
     tags:
-    - Beer
     - DrinkBottle
 
 - type: entity
@@ -482,9 +481,6 @@
     closeable: false # can't put the cap back on
   - type: Sealable
     examineTextUnsealed: "sealable-component-on-examine-is-unsealed-crown-cap" # tell the player why it can't close
-  - type: Tag
-    tags:
-    - Beer
 
 - type: entity
   parent: [DrinkVisualsAllFilled, DrinkBottleGlassSmallBaseFull]

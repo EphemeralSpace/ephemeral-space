@@ -73,7 +73,6 @@
           False: { visible: true }
   - type: HTN
     enabled: false
-  - type: StationAiWhitelist
   - type: NpcFactionMember
     factions:
     - AllHostile
@@ -147,12 +146,8 @@
   suffix: AI, Silicon
   components:
   - type: AccessReader
-    access: [["StationAi"], ["ResearchDirector"]]
+    access: [["ResearchDirector"]]
   - type: StationAiTurret
-  - type: TurretTargetSettings
-    exemptAccessLevels:
-    - Borg
-    - BasicSilicon
   - type: Machine
     board: WeaponEnergyTurretAIMachineCircuitboard
   - type: DeviceNetwork
@@ -165,12 +160,10 @@
   suffix: Security
   components:
   - type: AccessReader
-    access: [["StationAi"], ["Security"]]
+    access: [["Security"]]
   - type: TurretTargetSettings
     exemptAccessLevels:
     - Security
-    - Borg
-    - BasicSilicon
   - type: Machine
     board: WeaponEnergyTurretSecurityMachineCircuitboard
   - type: DeviceNetwork
@@ -183,12 +176,10 @@
   suffix: Command
   components:
   - type: AccessReader
-    access: [["StationAi"], ["Command"]]
+    access: [["Command"]]
   - type: TurretTargetSettings
     exemptAccessLevels:
     - Command
-    - Borg
-    - BasicSilicon
   - type: Machine
     board: WeaponEnergyTurretCommandMachineCircuitboard
   - type: DeviceNetwork

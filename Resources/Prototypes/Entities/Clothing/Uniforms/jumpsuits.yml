@@ -76,15 +76,6 @@
     sprite: Clothing/Uniforms/Jumpsuit/cargotech.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
-  id: ClothingUniformJumpsuitSalvageSpecialist
-  name: salvage specialist's jumpsuit
-  description: It's a snappy jumpsuit with a sturdy set of overalls. It's very dirty.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
-
-- type: entity
   parent: [ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase]
   id: ClothingUniformJumpsuitChiefEngineer
   name: chief engineer's jumpsuit
@@ -205,7 +196,6 @@
   - type: Tag
     tags:
     - ClownSuit
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingUniformJumpsuitClown
@@ -506,7 +496,6 @@
     - ClothMade
     - Recyclable
     - PrisonUniform
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingUniformBase, BaseCommandContraband]
@@ -835,8 +824,6 @@
     sprite: Clothing/Uniforms/Jumpsuit/operative.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/operative.rsi
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   parent: ClothingUniformBase
@@ -863,17 +850,6 @@
     sprite: Clothing/Uniforms/Jumpsuit/mercenary.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/mercenary.rsi
-
-- type: entity
-  parent: UnsensoredClothingUniformBase
-  id: ClothingUniformJumpsuitNinja
-  name: ninja jumpsuit
-  description: Comfortable ninja suit, for convenience when relaxing and when you need to practice.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/ninja.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/ninja.rsi
 
 - type: entity
 # ES START - Remove Foldable

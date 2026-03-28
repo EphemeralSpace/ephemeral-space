@@ -17,11 +17,6 @@
   - type: GroupExamine
   - type: Armor
     modifiers: { }
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.9
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -44,8 +39,6 @@
     sprite: Clothing/Head/Hoods/Bio/cmo.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/cmo.rsi
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.8
 
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
@@ -110,8 +103,6 @@
     sprite: Clothing/Head/Hoods/Bio/virology.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/virology.rsi
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.8
 
 - type: entity
   parent: ClothingHeadBase
@@ -127,7 +118,6 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -142,9 +132,6 @@
     sprite: Clothing/Head/Hoods/cult.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/cult.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -162,7 +149,6 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -207,9 +193,6 @@
     sprite: Clothing/Head/Hoods/goliathcloak.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/goliathcloak.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -232,7 +215,6 @@
     tags:
     - CorgiWearable
     - ClothMade
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase
@@ -261,10 +243,6 @@
     heatingCoefficient: 0.2
     coolingCoefficient: 0.2
   - type: BreathMask
-  # this is on the hood so you only fool the fish if you wear the whole set
-  # wear carp suit and security helmet, they'll know you are fake
-  - type: FactionClothing
-    faction: Dragon
 
 - type: entity
   parent: ClothingHeadBase
@@ -277,9 +255,6 @@
   - type: Clothing
     sprite: Clothing/Head/Hoods/moth.rsi
   - type: IdentityBlocker
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -795,9 +770,6 @@
     sprite: Clothing/Head/Hoods/voidcloak.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/voidcloak.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair

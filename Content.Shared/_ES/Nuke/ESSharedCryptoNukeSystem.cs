@@ -6,7 +6,6 @@ using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Sparks;
 using Content.Shared.Examine;
-using Content.Shared.Objectives.Components;
 using Content.Shared.Station;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;

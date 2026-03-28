@@ -23,9 +23,6 @@
     slots:
     - ears
     sprite: Clothing/Ears/Headsets/base.rsi
-  - type: GuideHelp
-    guides:
-    - Radio
 
 - type: entity
   parent: ClothingHeadset
@@ -305,16 +302,3 @@
       sprite: Clothing/Ears/Headsets/wizard.rsi
     - type: Clothing
       sprite: Clothing/Ears/Headsets/wizard.rsi
-
-- type: entity
-  parent: [ClothingHeadset, BaseMajorContraband]
-  id: ClothingHeadsetNinja
-  name: green headset
-  description: Who could refuse to wear this stylish black and green headset?
-  components:
-  - type: Sprite
-    sprite: Clothing/Ears/Headsets/ninja.rsi
-  - type: Clothing
-    sprite: Clothing/Ears/Headsets/ninja.rsi
-  - type: EmpResistance
-    strengthMultiplier: 0

@@ -25,7 +25,5 @@
     node: glassAirlock
     containers:
     - board
-  - type: StaticPrice
-    price: 165
   - type: Paintable
     group: null

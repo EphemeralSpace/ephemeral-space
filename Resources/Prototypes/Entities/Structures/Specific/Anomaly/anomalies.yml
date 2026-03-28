@@ -55,9 +55,7 @@
   - type: Damageable
   - type: Appearance
   - type: AnimationPlayer
-  - type: GuideHelp
-    guides:
-    - AnomalousResearch
+
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/teleport_arrival.ogg
@@ -459,8 +457,6 @@
       spawns:
       - WallSpawnAsteroid
       - WallSpawnAsteroid
-      - WallSpawnAsteroidUranium
-      - WallSpawnAsteroidUraniumCrab
     - settings:
         spawnOnPulse: true
         maxAmount: 3
@@ -478,7 +474,6 @@
       - CrystalGreen
       - WallSpawnAsteroid
       - WallSpawnAsteroid
-      - WallSpawnAsteroidUraniumCrab
     - settings:
         spawnOnSuperCritical: true
         minAmount: 6
@@ -507,8 +502,6 @@
       spawns:
       - WallSpawnAsteroid
       - WallSpawnAsteroid
-      - WallSpawnAsteroidBananium
-      - WallSpawnAsteroidBananiumCrab
     - settings:
         spawnOnPulse: true
         maxAmount: 3
@@ -526,7 +519,6 @@
       - CrystalYellow
       - WallSpawnAsteroid
       - WallSpawnAsteroid
-      - WallSpawnAsteroidBananiumCrab
     - settings:
         spawnOnSuperCritical: true
         minAmount: 3
@@ -555,8 +547,6 @@
       spawns:
       - WallSpawnAsteroid
       - WallSpawnAsteroid
-      - WallSpawnAsteroidQuartz
-      - WallSpawnAsteroidQuartzCrab
     - settings:
         spawnOnPulse: true
         maxAmount: 3
@@ -574,7 +564,6 @@
       - CrystalGrey
       - WallSpawnAsteroid
       - WallSpawnAsteroid
-      - WallSpawnAsteroidQuartzCrab
     - settings:
         spawnOnSuperCritical: true
         minAmount: 6
@@ -602,9 +591,6 @@
         maxRange: 7.5
       spawns:
       - WallSpawnAsteroid
-      - WallSpawnAsteroid
-      - WallSpawnAsteroidSilver
-      - WallSpawnAsteroidSilverCrab
     - settings:
         spawnOnPulse: true
         maxAmount: 3
@@ -622,7 +608,6 @@
       - CrystalCyan
       - WallSpawnAsteroid
       - WallSpawnAsteroid
-      - WallSpawnAsteroidSilverCrab
     - settings:
         spawnOnSuperCritical: true
         minAmount: 6
@@ -651,8 +636,6 @@
       spawns:
       - WallSpawnAsteroid
       - WallSpawnAsteroid
-      - WallSpawnAsteroidGold
-      - WallSpawnAsteroidGoldCrab
     - settings:
         spawnOnPulse: true
         maxAmount: 3
@@ -670,7 +653,6 @@
       - CrystalYellow
       - WallSpawnAsteroid
       - WallSpawnAsteroid
-      - WallSpawnAsteroidGoldCrab
     - settings:
         spawnOnSuperCritical: true
         minAmount: 6
@@ -699,8 +681,6 @@
       spawns:
       - WallSpawnAsteroid
       - WallSpawnAsteroid
-      - WallSpawnAsteroidIron
-      - WallSpawnAsteroidIronCrab
     - settings:
         spawnOnPulse: true
         maxAmount: 3
@@ -718,7 +698,6 @@
       - CrystalOrange
       - WallSpawnAsteroid
       - WallSpawnAsteroid
-      - WallSpawnAsteroidIronCrab
     - settings:
         spawnOnSuperCritical: true
         minAmount: 6
@@ -747,8 +726,6 @@
       spawns:
       - WallSpawnAsteroid
       - WallSpawnAsteroid
-      - WallSpawnAsteroidCoal
-      - WallSpawnAsteroidCoalCrab
     - settings:
         spawnOnPulse: true
         maxAmount: 3
@@ -766,7 +743,6 @@
       - CrystalBlack
       - WallSpawnAsteroid
       - WallSpawnAsteroid
-      - WallSpawnAsteroidCoalCrab
     - settings:
         spawnOnSuperCritical: true
         minAmount: 6
@@ -947,7 +923,6 @@
     - Phlogiston
     - ChlorineTrifluoride
     - FoamingAgent
-    - BuzzochloricBees
     - RobustHarvest
     usefulChemicals:
     - Cryptobiolin
@@ -960,9 +935,7 @@
     - DexalinPlus
     - Epinephrine
     - Leporazine
-    - Ambuzol
     - Tricordrazine
-    - Artifexium
     - Ethylredoxrazine
     funChemicals:
     - Desoxyephedrine
@@ -981,7 +954,6 @@
     - CogChamp
     - Honk
     - Carpetium
-    - JuiceThatMakesYouWeh
   - type: Edible
     edible: Drink
     solution: anomaly

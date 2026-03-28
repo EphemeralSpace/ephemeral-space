@@ -73,7 +73,6 @@
         Heat: -0.2
   - type: NoSlip
   - type: Pullable
-  - type: ZombieImmune
   - type: NameIdentifier
     group: GenericNumber
   - type: GhostTakeoverAvailable

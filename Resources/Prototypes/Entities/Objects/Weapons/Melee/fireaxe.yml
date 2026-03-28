@@ -8,10 +8,6 @@
     tags:
     - FireAxe
   - type: Sharp
-# ES START
-#    - type: Execution
-#      doAfterDuration: 4.0
-# ES END
   - type: Sprite
 # ES Start
     sprite: _ES/Objects/Weapons/Melee/fireaxe.rsi
@@ -51,8 +47,6 @@
   - type: Prying
   - type: UseDelay
     delay: 1
-  - type: StealTarget
-    stealGroup: FireAxe
   - type: IgniteOnMeleeHit
     fireStacks: -4
 

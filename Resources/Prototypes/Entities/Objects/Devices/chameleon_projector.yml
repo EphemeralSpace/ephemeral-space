@@ -32,8 +32,6 @@
       - Wall # Walls make you invisible
       - Window # Windows make you invisible
     disguiseProto: ChameleonDisguise
-  - type: StaticPrice
-    price: 5000
 
 - type: entity
   parent: ChameleonProjectorNoBattery

@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESGasCanisters
+  id: GasCanisters
   hidden: false
   name: Gas Canisters
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/AtmosDevices/GasCanisters.xml"

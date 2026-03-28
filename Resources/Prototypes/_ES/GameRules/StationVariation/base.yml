@@ -1,0 +1,6 @@
+- type: entity
+  id: BaseVariationPass
+  parent: BaseGameRule
+  abstract: true
+  components:
+  - type: StationVariationPassRule

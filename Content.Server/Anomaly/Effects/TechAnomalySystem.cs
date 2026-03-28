@@ -3,7 +3,6 @@ using Content.Server.Beam;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.DeviceLinking;
-using Content.Shared.Emag.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -112,15 +111,6 @@ public sealed class TechAnomalySystem : EntitySystem
 
             var sink = _random.Pick(sinks);
             sinks.Remove(sink);
-
-            if (_random.Prob(tech.Comp.EmagSupercritProbability))
-            {
-                var sourceEv = new GotEmaggedEvent(tech, EmagType.Access | EmagType.Interaction);
-                RaiseLocalEvent(source, ref sourceEv);
-
-                var sinkEv = new GotEmaggedEvent(tech, EmagType.Access | EmagType.Interaction);
-                RaiseLocalEvent(sink, ref sinkEv);
-            }
 
             CreateNewLink(tech, source, sink);
         }

@@ -66,8 +66,6 @@
         Blunt: 0
   - type: TrashOnSolutionEmpty
     solution: drink
-  - type: StaticPrice
-    price: 0
   - type: DamageOnLand
     damage:
       types:
@@ -160,43 +158,13 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-aloxadone
+    currentLabel: reagent-name-aloxadone
   - type: SolutionContainerManager
     solutions:
       drink:
         maxVol: 30
         reagents:
         - ReagentId: Aloxadone
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleAmbuzol
-  suffix: ambuzol
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-ambuzol
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Ambuzol
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleAmbuzolPlus
-  suffix: ambuzol+
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-ambuzol-plus
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: AmbuzolPlus
           Quantity: 30
 
 - type: entity
@@ -220,7 +188,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-barozine
+    currentLabel: reagent-name-barozine
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -250,7 +218,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-bruizine
+    currentLabel: reagent-name-bruizine
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -265,7 +233,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-cognizine
+    currentLabel: reagent-name-cognizine
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -640,7 +608,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-oculine
+    currentLabel: reagent-name-oculine
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -670,7 +638,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-opporozidone
+    currentLabel: reagent-name-opporozidone
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -865,7 +833,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-tranexamic-acid
+    currentLabel: reagent-name-tranexamic-acid
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -1417,8 +1385,6 @@
   table: !type:GroupSelector
     children:
     - id: ChemistryBottleAloxadone
-    - id: ChemistryBottleAmbuzol
-    - id: ChemistryBottleAmbuzolPlus
     - id: ChemistryBottleArithrazine
     - id: ChemistryBottleBarozine
     - id: ChemistryBottleBicaridine

@@ -18,7 +18,6 @@ public sealed class BalloonPopperSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -33,11 +32,11 @@ public sealed class BalloonPopperSystem : EntitySystem
         {
             foreach (var held in _hands.EnumerateHeld(entity))
             {
-                if (_tag.HasTag(held, component.BalloonTag))
+                if (HasComp<ESBalloonComponent>(held))
                     PopBallooon(uid, held, component);
             }
 
-            if (_tag.HasTag(entity, component.BalloonTag))
+            if (HasComp<ESBalloonComponent>(entity))
                 PopBallooon(uid, entity, component);
         }
     }
@@ -46,7 +45,7 @@ public sealed class BalloonPopperSystem : EntitySystem
     {
         foreach (var held in _hands.EnumerateHeld(args.Target))
         {
-            if (_tag.HasTag(held, component.BalloonTag))
+            if (HasComp<ESBalloonComponent>(held))
                 PopBallooon(uid, held, component);
         }
     }

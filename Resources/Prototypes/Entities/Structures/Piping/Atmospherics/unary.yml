@@ -78,7 +78,6 @@
     - type: GuideHelp
       guides:
       - AirVent
-      - DeviceMonitoringAndControl
 
 - type: entity
   parent: GasUnaryBase
@@ -170,7 +169,6 @@
     - type: GuideHelp
       guides:
       - AirScrubber
-      - DeviceMonitoringAndControl
 
 - type: entity
   parent: GasUnaryBase
@@ -279,7 +277,6 @@
   placement:
     mode: SnapgridCenter
   components:
-    - type: StationAiWhitelist
     - type: Sprite
       granularLayersRendering: true
       layers:
@@ -304,8 +301,6 @@
       board: ThermomachineFreezerMachineCircuitBoard
     - type: DeviceNetwork
       prefix: device-address-prefix-freezer
-    - type: StealTarget
-      stealGroup: FreezerHeater
 
 - type: entity
   parent: GasThermoMachineFreezer
@@ -324,7 +319,6 @@
   placement:
     mode: SnapgridCenter
   components:
-    - type: StationAiWhitelist
     - type: Sprite
       granularLayersRendering : true
       layers:
@@ -349,8 +343,6 @@
       board: ThermomachineHeaterMachineCircuitBoard
     - type: DeviceNetwork
       prefix: device-address-prefix-heater
-    - type: StealTarget
-      stealGroup: FreezerHeater
 
 - type: entity
   parent: GasThermoMachineHeater
@@ -483,7 +475,4 @@
   - type: PowerSwitch
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: Thermoregulator
-  - type: GuideHelp
-    guides:
-    - GasCondensing
 

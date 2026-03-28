@@ -9,8 +9,6 @@
   - type: Item
     sprite: Objects/Materials/Sheets/metal.rsi
     size: Normal
-  - type: StaticPrice
-    price: 0
   - type: Tag
     tags:
     - Sheet
@@ -31,9 +29,6 @@
     solutions:
       steel:
         canReact: false
-  - type: GuideHelp
-    guides:
-    - ExpandingRepairingStation
 
 - type: entity
   parent: SheetMetalBase

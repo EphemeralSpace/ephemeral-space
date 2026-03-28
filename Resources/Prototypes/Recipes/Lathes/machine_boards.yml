@@ -212,38 +212,6 @@
 
 ## Science
 
-# Artifact
-- type: latheRecipe
-  parent: [ BaseGoldCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
-  id: ArtifactAnalyzerMachineCircuitboard
-  result: ArtifactAnalyzerMachineCircuitboard
-
-- type: latheRecipe
-  parent: [ BaseGoldCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
-  id: ArtifactCrusherMachineCircuitboard
-  result: ArtifactCrusherMachineCircuitboard
-
-# Anomaly
-- type: latheRecipe
-  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
-  id: AnomalyVesselCircuitboard
-  result: AnomalyVesselCircuitboard
-
-- type: latheRecipe
-  parent: [ BaseGoldCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
-  id: AnomalyVesselExperimentalCircuitboard
-  result: AnomalyVesselExperimentalCircuitboard
-
-- type: latheRecipe
-  parent: [ BaseSilverCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
-  id: AnomalySynchronizerCircuitboard
-  result: AnomalySynchronizerCircuitboard
-
-- type: latheRecipe
-  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
-  id: APECircuitboard
-  result: APECircuitboard
-
 ## Service
 
 - type: latheRecipe
@@ -255,7 +223,7 @@
   parent: [BaseCircuitboardRecipe]
   id: SmartFridgeCircuitboard
   result: SmartFridgeCircuitboard
-  
+
 # Bar
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
@@ -298,18 +266,6 @@
   parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
   id: FatExtractorMachineCircuitboard
   result: FatExtractorMachineCircuitboard
-
-## Supply
-
-- type: latheRecipe
-  parent: [ BaseGoldCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
-  id: CargoTelepadMachineCircuitboard
-  result: CargoTelepadMachineCircuitboard
-
-- type: latheRecipe
-  parent: [ BaseGoldCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
-  id: SalvageMagnetMachineCircuitboard
-  result: SalvageMagnetMachineCircuitboard
 
 # Shuttle
 - type: latheRecipe
@@ -462,8 +418,3 @@
   parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
   id: SurveillanceWirelessCameraMovableCircuitboard
   result: SurveillanceWirelessCameraMovableCircuitboard
-
-- type: latheRecipe
-  parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
-  id: HolopadMachineCircuitboard
-  result: HolopadMachineCircuitboard

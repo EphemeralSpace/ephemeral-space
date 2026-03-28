@@ -50,7 +50,7 @@
         - GlassLayer
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Glass
+    damageModifierSet: ESWindow
   - type: ExaminableDamage
     messages: WindowMessages
   - type: Repairable
@@ -71,7 +71,7 @@
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -98,12 +98,10 @@
   - type: Appearance
   - type: DamageVisuals
     thresholds: [5, 10, 20]
-    damageDivisor: 2
+    damageDivisor: 4
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
-  - type: StaticPrice
-    price: 100
   - type: BlockWeather
 
 - type: entity
@@ -122,8 +120,6 @@
     graph: Window
     node: tintedWindow
   - type: Occluder
-  - type: StaticPrice
-    price: 70
 
 - type: entity
   id: WindowRCDResistant
@@ -182,7 +178,7 @@
   - type: Repairable
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Glass
+    damageModifierSet: ESWindow
   - type: ExaminableDamage
     messages: WindowMessages
   - type: RCDDeconstructable
@@ -193,7 +189,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 50 #excess damage (nuke?). avoid computational cost of spawning entities.
+        damage: 100 #excess damage (nuke?). avoid computational cost of spawning entities.
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -202,7 +198,7 @@
           collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-        damage: 25
+        damage: 50
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -224,11 +220,10 @@
   - type: Appearance
   - type: DamageVisuals
     thresholds: [5, 10, 20]
+    damageDivisor: 2
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks_directional.rsi
-  - type: StaticPrice
-    price: 15
 
 - type: entity
   id: WindowDirectionalRCDResistant
@@ -254,8 +249,6 @@
   - type: Icon
     sprite: Structures/Windows/directional.rsi
     state: frosted_window
-  - type: StaticPrice
-    price: 35
 
 - type: entity
   parent: Window

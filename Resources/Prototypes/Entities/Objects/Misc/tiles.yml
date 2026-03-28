@@ -40,9 +40,6 @@
     damage:
       types:
         Blunt: 5
-  - type: GuideHelp
-    guides:
-    - ExpandingRepairingStation
 
 - type: entity
   name: steel dark checker tile
@@ -1870,20 +1867,6 @@
     - FloorXenoMaint
   - type: Stack
     stackType: FloorTileXenoMaint
-
-- type: entity
-  id: FloorTileItemXenoborg
-  parent: FloorTileItemBase
-  name: xenoborg floor
-  components:
-  - type: Sprite
-    state: xenoborg-floor
-  - type: FloorTile
-    outputs:
-    - Plating
-    - FloorXenoborg
-  - type: Stack
-    stackType: FloorTileXenoborg
 
 - type: entity
   parent: FloorTileItemDark

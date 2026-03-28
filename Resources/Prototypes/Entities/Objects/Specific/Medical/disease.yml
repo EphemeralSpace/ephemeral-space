@@ -14,11 +14,6 @@
     - Recyclable
     - Trash
   - type: BotanySwab
-  - type: GuideHelp
-    guides:
-  # - Virology (when it's back)
-    - Botany
-    - Chemicals
 
 - type: entity
   parent: BaseAmmoProvider # this is for cycling swabs out and not spawning 30 entities, trust
@@ -36,11 +31,6 @@
       - BotanySwab
     proto: DiseaseSwab
     capacity: 30
-  - type: GuideHelp
-    guides:
-  # - Virology (when it's back)
-    - Botany
-    - Chemicals
 
 - type: entity
   parent: BaseItem

@@ -341,7 +341,6 @@
   placement:
     mode: AlignAtmosPipeLayers
   components:
-  - type: StationAiWhitelist
   - type: SubFloorHide
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
@@ -401,9 +400,6 @@
       path: /Audio/Ambience/Objects/gas_hiss.ogg
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasValve
-  - type: GuideHelp
-    guides:
-    - SignalValve
 
 - type: entity
   parent: GasBinaryBase
@@ -586,9 +582,6 @@
     navMapBlip: GasValve
   - type: Transform
     noRot: false
-  - type: GuideHelp
-    guides:
-    - GasRecycling
   - type: TegCirculator
 
 - type: entity
@@ -635,9 +628,6 @@
     node: radiator
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: Thermoregulator
-  - type: GuideHelp
-    guides:
-    - Radiators
 
 - type: entity
   parent: HeatExchanger

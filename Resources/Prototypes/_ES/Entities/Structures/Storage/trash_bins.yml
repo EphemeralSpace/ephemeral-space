@@ -26,8 +26,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-  - type: StaticPrice
-    price: 45
 
 # Trash bin
 - type: entity

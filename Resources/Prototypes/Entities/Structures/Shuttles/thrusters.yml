@@ -54,11 +54,6 @@
           - !type:PlaySoundBehavior
             sound:
               collection: MetalBreak
-    - type: StaticPrice
-      price: 300
-    - type: GuideHelp
-      guides:
-      - ShuttleCraft
   placement:
     mode: SnapgridCenter
 
@@ -104,21 +99,6 @@
       shader: unshaded
       visible: false
       offset: 0, 1
-
-- type: entity
-  parent: Thruster
-  id: ThrusterXenoborg
-  components:
-  # temporary solution until thruster rework
-  - type: Thruster
-    canToggle: false # no turning it off by just clicking it
-  - type: Anchorable
-    flags:
-    - Anchorable # no unwrenching it
-  - type: Rotatable
-    rotateWhileAnchored: false # no rotating it backwards so it doesn't face space
-  - type: Sprite
-    sprite: Structures/Shuttles/xenoborg_thruster.rsi
 
 - type: entity
   id: ThrusterLarge
@@ -180,8 +160,6 @@
       offset: 0, 2
   - type: Anchorable
     flags: None
-  - type: StaticPrice
-    price: 1500
 
 - type: entity
   id: ThrusterUnanchored
@@ -281,8 +259,6 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Electronic
-  - type: StaticPrice
-    price: 2000
 
 - type: entity
   id: GyroscopeUnanchored

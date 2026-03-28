@@ -32,7 +32,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Alternate / slim basic armor vest
 - type: entity
@@ -136,7 +135,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingOuterArmorBaseCarapace, BaseCentcommContraband]
@@ -169,8 +167,6 @@
         Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: StaticPrice
-    price: 1500
 
 #Elite web vest
 - type: entity
@@ -199,8 +195,6 @@
     damageCoefficient: 0.5
   - type: FireProtection
     reduction: 0.85
-  - type: StaticPrice
-    price: 2500
 
 #Mercenary web vest
 - type: entity
@@ -411,34 +405,6 @@
     sprite: Clothing/OuterClothing/Armor/magusred.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/magusred.rsi
-
-- type: entity
-  parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
-  id: ClothingOuterArmorChangeling
-  name: chitinous armor
-  description: Inflates the changeling's body into an all-consuming chitinous mass of armor.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Armor/lingarmor.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Armor/lingarmor.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.9
-        Radiation: 0.8
-  - type: ClothingSpeedModifier
-    walkModifier: 0.65
-    sprintModifier: 0.65
-  - type: HeldSpeedModifier
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: GroupExamine
-  - type: ProtectedFromStepTriggers
-    slots: WITHOUT_POCKET
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]

@@ -20,21 +20,11 @@ public sealed class JobSystem : SharedJobSystem
     {
         base.Initialize();
         SubscribeLocalEvent<RoleAddedEvent>(OnRoleAddedEvent);
-        SubscribeLocalEvent<RoleRemovedEvent>(OnRoleRemovedEvent);
     }
 
     private void OnRoleAddedEvent(RoleAddedEvent args)
     {
         MindOnDoGreeting(args.MindId, args.Mind, args);
-
-        if (args.RoleTypeUpdate)
-            _roles.RoleUpdateMessage(args.Mind);
-    }
-
-    private void OnRoleRemovedEvent(RoleRemovedEvent args)
-    {
-        if (args.RoleTypeUpdate)
-            _roles.RoleUpdateMessage(args.Mind);
     }
 
     private void MindOnDoGreeting(EntityUid mindId, MindComponent component, RoleAddedEvent args)

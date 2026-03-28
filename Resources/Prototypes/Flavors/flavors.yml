@@ -1470,11 +1470,6 @@
   description: flavor-complex-whiskeysour
 
 - type: flavor
-  id: zombiecocktail
-  flavorType: Complex
-  description: flavor-complex-zombiecocktail
-
-- type: flavor
   id: bacchusblessing
   flavorType: Complex
   description: flavor-complex-bacchus-blessing
@@ -1483,11 +1478,6 @@
   id: trashy
   flavorType: Base
   description: flavor-base-trashy
-
-- type: flavor
-  id: artifactglue
-  flavorType: Complex
-  description: flavor-complex-artifact-glue
 
 - type: flavor
   id: alkaline

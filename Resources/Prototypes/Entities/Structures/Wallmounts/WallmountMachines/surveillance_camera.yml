@@ -30,7 +30,6 @@
     radius: 5
   - type: SlimPoweredLight
     enabled: false
-  - type: StationAiVision
   - type: Clickable
   - type: InteractionOutline
   - type: Construction
@@ -77,8 +76,6 @@
         type: SurveillanceCameraSetupBoundUi
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-  - type: StaticPrice
-    price: 200
   - type: Destructible
     thresholds:
       - trigger:

@@ -82,7 +82,7 @@ public sealed partial class HeartrateComponent : Component
 
     #region Heartstop
     [DataField, AutoNetworkedField]
-    public bool Running = true;
+    public new bool Running = true;
 
     /// <summary>
     /// The status effect to apply when the heart is not running

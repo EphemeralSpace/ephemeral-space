@@ -14,7 +14,6 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - WhitelistChameleon
   - type: HideLayerClothing
     layers:
       Snout: Mask
@@ -139,7 +138,6 @@
   - type: Tag
     tags:
     - PetWearable
-    - WhitelistChameleon
   - type: PhysicalComposition
     materialComposition:
       Steel: 50
@@ -182,13 +180,10 @@
   - type: Tag
     tags:
     - PetWearable
-    - WhitelistChameleon
   - type: PhysicalComposition
     materialComposition:
       Steel: 50
       Plastic: 100
-  - type: StaticPrice
-    price: 30 # increases in price after decomposed into raw materials
 
 - type: entity
   parent: ClothingMaskBase
@@ -206,7 +201,6 @@
   - type: Tag
     tags:
     - ClownMask
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Snout
@@ -235,7 +229,6 @@
     tags:
     - ClownMask
     - HamsterWearable
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Snout
@@ -256,7 +249,6 @@
     tags:
     - ClownMask
     - HamsterWearable
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Snout
@@ -282,7 +274,6 @@
     tags:
     - ClownMask
     - HamsterWearable
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Snout
@@ -318,7 +309,6 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Snout
@@ -341,8 +331,6 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 25
-  - type: StaticPrice
-    price: 5
 
 - type: entity
   parent: ClothingMaskBase
@@ -411,9 +399,6 @@
     sprite: Clothing/Mask/swat.rsi
   - type: Clothing
     sprite: Clothing/Mask/swat.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -457,9 +442,6 @@
     sprite: Clothing/Mask/ert.rsi
   - type: Clothing
     sprite: Clothing/Mask/ert.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -512,7 +494,6 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Snout
@@ -626,9 +607,6 @@
     sprite: Clothing/Mask/neckgaiter.rsi
   - type: IdentityBlocker
     coverage: MOUTH
-  - type: Tag
-    tags:
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingMaskNeckGaiter
@@ -719,22 +697,6 @@
     replacement: italian
 
 - type: entity
-  parent: ClothingMaskBase
-  id: ClothingMaskNinja
-  name: ninja mask
-  description: A close-fitting nano-enhanced mask that acts both as an air filter and a post-modern fashion statement.
-  components:
-  - type: Sprite
-    sprite: Clothing/Mask/ninja.rsi
-  - type: Clothing
-    sprite: Clothing/Mask/ninja.rsi
-  - type: Item
-    storedRotation: -90
-  - type: EyeProtection
-  - type: BreathMask
-  - type: IdentityBlocker
-
-- type: entity
   parent: ClothingMaskGas
   id: ClothingMaskWeldingGas
   name: welding gas mask
@@ -751,11 +713,6 @@
     materialComposition:
       Steel: 200
       Glass: 100
-  - type: StaticPrice
-    price: 100
-  - type: Tag
-    tags:
-    - WhitelistChameleon
 
 # Entity tables
 - type: entityTable

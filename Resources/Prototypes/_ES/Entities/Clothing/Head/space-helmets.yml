@@ -13,7 +13,6 @@
   - type: Tag
     tags:
     - HelmetEVA
-    - WhitelistChameleon
     - CorgiWearable
 
 - type: entity
@@ -30,7 +29,6 @@
     tags:
     - HelmetEVA
     - ESHelmetEVASec
-    - WhitelistChameleon
     - CorgiWearable
 
 - type: entity
@@ -47,5 +45,4 @@
     tags:
     - HelmetEVA
     - ESHelmetEVACaptain
-    - WhitelistChameleon
     - CorgiWearable

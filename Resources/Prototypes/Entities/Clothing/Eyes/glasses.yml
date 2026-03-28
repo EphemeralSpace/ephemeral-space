@@ -68,7 +68,6 @@
   - type: Tag
     tags:
     - PetWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingEyesBase
@@ -84,7 +83,6 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingEyesBase
@@ -96,9 +94,6 @@
     sprite: Clothing/Eyes/Glasses/jensen.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/jensen.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingEyesBase
@@ -114,7 +109,6 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingEyesBase
@@ -128,8 +122,6 @@
     sprite: Clothing/Eyes/Glasses/outlawglasses.rsi
   - type: VisionCorrection
   - type: IdentityBlocker
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   parent: ClothingEyesBase
@@ -145,7 +137,6 @@
     tags:
     - HamsterWearable
     - PetWearable
-    - WhitelistChameleon
   - type: IdentityBlocker
     coverage: EYES
 
@@ -163,7 +154,6 @@
     - Sunglasses
     - PetWearable
     - HamsterWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
@@ -185,11 +175,6 @@
     tags:
     - HamsterWearable
     - PetWearable
-    - WhitelistChameleon
-  - type: GuideHelp
-    guides:
-    - Security
-    - Antagonists
   - type: IdentityBlocker
     coverage: EYES
 
@@ -210,7 +195,6 @@
     tags:
     - HamsterWearable
     - PetWearable
-    - WhitelistChameleon
   - type: IdentityBlocker
     coverage: EYES
   - type: ShowJobIcons
@@ -266,19 +250,6 @@
     - type: Tag
       tags:
       - PetWearable
-      - WhitelistChameleon
-
-- type: entity
-  parent: [ClothingEyesBase, BaseHighlyIllegalContraband]
-  id: ClothingEyesVisorNinja
-  name: ninja visor
-  description: An advanced visor protecting a ninja's eyes from flashing lights.
-  components:
-  - type: Sprite
-    sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
-  - type: Clothing
-    sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
-  - type: FlashImmunity
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
@@ -299,4 +270,3 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - WhitelistChameleon

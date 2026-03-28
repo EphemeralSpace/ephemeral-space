@@ -5,7 +5,6 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Doors.Components;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
@@ -41,7 +40,6 @@ public abstract partial class SharedDoorSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] protected readonly SharedPhysicsSystem PhysicsSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] protected readonly TagSystem Tags = default!;
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
@@ -86,7 +84,6 @@ public abstract partial class SharedDoorSystem : EntitySystem
         SubscribeLocalEvent<DoorComponent, WeldableAttemptEvent>(OnWeldAttempt);
         SubscribeLocalEvent<DoorComponent, WeldableChangedEvent>(OnWeldChanged);
         SubscribeLocalEvent<DoorComponent, GetPryTimeModifierEvent>(OnPryTimeModifier);
-        SubscribeLocalEvent<DoorComponent, GotEmaggedEvent>(OnEmagged);
     }
 
 // ES START
@@ -139,27 +136,6 @@ public abstract partial class SharedDoorSystem : EntitySystem
     private void OnRemove(Entity<DoorComponent> door, ref ComponentRemove args)
     {
         _activeDoors.Remove(door);
-    }
-
-    private void OnEmagged(EntityUid uid, DoorComponent door, ref GotEmaggedEvent args)
-    {
-        if (!_emag.CompareFlag(args.Type, EmagType.Access))
-            return;
-
-        if (!TryComp<AirlockComponent>(uid, out var airlock))
-            return;
-
-        if (!airlock.Powered)
-            return;
-
-        if (door.State != DoorState.Closed)
-            return;
-
-        if (!SetState(uid, DoorState.Emagging, door))
-            return;
-
-        args.Repeatable = true;
-        args.Handled = true;
     }
 
     #region StateManagement

@@ -4010,16 +4010,6 @@ entities:
     - type: Transform
       pos: 1.5,-4.5
       parent: 2
-- proto: SyndicateComputerComms
-  entities:
-  - uid: 415
-    components:
-    - type: Transform
-      pos: -16.5,-2.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - NuclearOperative
 - proto: Table
   entities:
   - uid: 426

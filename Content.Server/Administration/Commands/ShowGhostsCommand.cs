@@ -1,5 +1,4 @@
 ﻿using Content.Server.Ghost;
-using Content.Server.Revenant.EntitySystems;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
@@ -29,10 +28,8 @@ namespace Content.Server.Administration.Commands
             }
 
             var ghostSys = _entities.EntitySysManager.GetEntitySystem<GhostSystem>();
-            var revSys = _entities.EntitySysManager.GetEntitySystem<RevenantSystem>();
 
             ghostSys.MakeVisible(visible);
-            revSys.MakeVisible(visible);
         }
     }
 }

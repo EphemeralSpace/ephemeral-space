@@ -1,4 +1,3 @@
-using Content.Server.Objectives.Components;
 using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server._ES.Masks.Objectives.Components;

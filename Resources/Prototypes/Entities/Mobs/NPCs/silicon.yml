@@ -46,7 +46,6 @@
     sounds:
       Unsexed: UnisexSilicon
   - type: Emoting
-  - type: ZombieImmune
   - type: ProtectedFromStepTriggers
   - type: NoSlip
   - type: Insulated
@@ -61,9 +60,6 @@
   - type: NpcFactionMember
     factions:
     - SimpleNeutral
-  - type: Access
-    tags:
-    - BasicSilicon
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
     channels:
@@ -96,9 +92,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: GuideHelp
-    guides:
-    - Robotics
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -204,16 +197,6 @@
   - type: Construction
     graph: HonkBot
     node: bot
-  - type: GhostRole
-    makeSentient: true
-    name: ghost-role-information-honkbot-name
-    description: ghost-role-information-honkbot-description
-    rules: ghost-role-information-freeagent-rules
-    mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
   - type: InteractionPopup
     interactSuccessString: petting-success-honkbot
     interactFailureString: petting-failure-honkbot
@@ -238,15 +221,6 @@
   - type: Construction
     graph: JonkBot
     node: bot
-  - type: GhostRole
-    makeSentient: true
-    name: ghost-role-information-jonkbot-name
-    description: ghost-role-information-jonkbot-description
-    rules: ghost-role-information-freeagent-rules
-    mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
-    raffle:
-      settings: default
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Items/brokenbikehorn.ogg
@@ -370,20 +344,9 @@
   - type: Sprite
     sprite: Mobs/Silicon/Bots/mimebot.rsi
     state: mimebot
-  - type: MimePowers
   - type: Construction
     graph: MimeBot
     node: bot
-  - type: GhostRole
-    makeSentient: true
-    name: ghost-role-information-mimebot-name
-    description: ghost-role-information-mimebot-description
-    rules: ghost-role-information-freeagent-rules
-    mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
   - type: InteractionPopup
     interactSuccessString: petting-success-mimebot
     interactFailureString: petting-failure-mimebot
@@ -460,40 +423,3 @@
     - Supply
   - type: Puller
     needsHands: false
-
-- type: entity
-  parent: [ MobSiliconBase, MobCombat ]
-  id: MobHugBot
-  name: hugbot
-  description: Awww, who needs a hug?
-  components:
-  - type: Sprite
-    sprite: Mobs/Silicon/Bots/hugbot.rsi
-    state: hugbot
-  - type: Construction
-    graph: HugBot
-    node: bot
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 3
-  - type: MeleeWeapon
-    soundHit:
-      path: /Audio/Weapons/boxingpunch1.ogg
-    angle: 30
-    animation: WeaponArcPunch
-    damage:
-      types:
-        Blunt: 2
-  - type: Anchorable
-  - type: Hands # This probably REALLY needs hand whitelisting, but we NEED hands for hugs, so...
-  - type: ComplexInteraction # Hugging is a complex interaction, apparently.
-  - type: HugBot
-  - type: Body
-    prototype: HugBot
-  - type: HTN
-    rootTask:
-      task: HugBotCompound
-  - type: InteractionPopup
-    interactSuccessString: hugging-success-generic
-    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
-    messagePerceivedByOthers: hugging-success-generic-others

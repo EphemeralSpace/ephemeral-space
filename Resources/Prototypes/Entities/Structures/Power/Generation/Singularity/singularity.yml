@@ -61,11 +61,6 @@
     enabled: true
     radius: 10
   - type: Appearance
-  - type: GuideHelp # Always strive to be helpful in trying times.
-    guides:
-    - SingularityEngine
-    - SingularityTeslaEngine
-    - Power
   - type: Tag
     tags:
     - GhostOnlyWarp

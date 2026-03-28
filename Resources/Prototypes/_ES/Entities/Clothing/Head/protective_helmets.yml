@@ -25,7 +25,6 @@
     reduction: 0.15
   - type: Tag
     tags:
-    - WhitelistChameleon
     - FireHelmet
   - type: HideLayerClothing
     layers:
@@ -73,9 +72,6 @@
   - type: BreathMask
   - type: IngestionBlocker
   - type: GroupExamine
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     layers:
       Hair: HEAD

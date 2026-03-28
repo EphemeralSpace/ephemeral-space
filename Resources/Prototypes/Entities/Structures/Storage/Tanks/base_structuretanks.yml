@@ -5,7 +5,6 @@
   description: A liquids storage tank.
   abstract: true
   components:
-  - type: Animateable
   - type: Sprite
     noRot: true
   - type: InteractionOutline

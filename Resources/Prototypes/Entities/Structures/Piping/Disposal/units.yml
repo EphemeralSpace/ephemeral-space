@@ -74,8 +74,6 @@
   - type: ContainerContainer
     containers:
       disposals: !type:Container
-  - type: StaticPrice
-    price: 70
   - type: PowerSwitch
 
 - type: entity

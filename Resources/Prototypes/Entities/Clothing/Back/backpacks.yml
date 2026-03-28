@@ -34,10 +34,7 @@
   #- type: ExplosionResistance
   #  damageCoefficient: 0.9
 # ES END
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-    - Backpack
+
 
 - type: entity
   parent: ClothingBackpack
@@ -191,15 +188,6 @@
 
 - type: entity
   parent: ClothingBackpack
-  id: ClothingBackpackSalvage
-  name: salvage bag
-  description: A robust backpack for stashing your loot.
-  components:
-    - type: Sprite
-      sprite: Clothing/Back/Backpacks/salvage.rsi
-
-- type: entity
-  parent: ClothingBackpack
   id: ClothingBackpackMerc
   name: mercenary bag
   description: A backpack that has been in many dangerous places, a reliable combat backpack.
@@ -301,8 +289,6 @@
     grid:
     - 0,0,7,3
     - 8,1,8,3
-  - type: StaticPrice
-    price: 1000
 
 #Special
 - type: entity

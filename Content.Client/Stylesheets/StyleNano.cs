@@ -4,7 +4,6 @@ using Content.Client.ContextMenu.UI;
 using Content.Client.Examine;
 using Content.Client.PDA;
 using Content.Client.Resources;
-using Content.Client.Silicons.Laws.SiliconLawEditUi;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Controls.FancyTree;
 using Content.Client.Verbs.UI;
@@ -67,7 +66,6 @@ namespace Content.Client.Stylesheets
         public const string StyleClassChatChannelSelectorButton = "chatSelectorOptionButton";
         public const string StyleClassChatFilterOptionButton = "chatFilterOptionButton";
         public const string StyleClassStorageButton = "storageButton";
-        public const string StyleClassInset = "Inset";
 
         public const string StyleClassConsoleHeading = "ConsoleHeading";
         public const string StyleClassConsoleSubHeading = "ConsoleSubHeading";
@@ -530,13 +528,6 @@ namespace Content.Client.Stylesheets
             var sliderFillWhite = new StyleBoxTexture(sliderFillBox) { Modulate = Color.White };
 
             var boxFont13 = resCache.GetFont("/Fonts/Boxfont-round/Boxfont Round.ttf", 13);
-
-            var insetBack = new StyleBoxTexture
-            {
-                Texture = buttonTex,
-                Modulate = Color.FromHex("#202023"),
-            };
-            insetBack.SetPatchMargin(StyleBox.Margin.All, 10);
 
             // Default paper background:
             var paperBackground = new StyleBoxTexture
@@ -1621,14 +1612,6 @@ namespace Content.Client.Stylesheets
                     {
                         BackgroundColor = FancyTreeSelectedRowColor,
                     }),
-
-                // Silicon law edit ui
-                Element<Label>().Class(SiliconLawContainer.StyleClassSiliconLawPositionLabel)
-                    .Prop(Label.StylePropertyFontColor, NanoGold),
-
-                Element<PanelContainer>()
-                    .Class(StyleClassInset)
-                    .Prop(PanelContainer.StylePropertyPanel, insetBack),
             }).ToList());
         }
     }

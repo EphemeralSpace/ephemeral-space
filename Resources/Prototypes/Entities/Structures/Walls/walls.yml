@@ -37,7 +37,7 @@
     key: walls
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
+    damageModifierSet: ESWall
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -52,12 +52,12 @@
         - WallLayer
         density: 1000
   - type: Airtight
-  - type: StaticPrice
-    price: 75
   - type: RadiationBlocker
     resistance: 2
   - type: BlockWeather
   - type: SunShadowCast
+  - type: ESDamageDeflection
+    threshold: 45
 
 - type: entity
   abstract: true
@@ -605,7 +605,7 @@
     node: reinforcedWall
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
+    damageModifierSet: ESWall
   - type: Destructible
     thresholds:
     - trigger:
@@ -646,8 +646,6 @@
           4: { state: reinf_construct-4, visible: true}
           5: { state: reinf_construct-5, visible: true}
   - type: ReinforcedWallReplacementMarker
-  - type: StaticPrice
-    price: 250
   - type: RadiationBlocker
     resistance: 5
   - type: Fixtures
@@ -770,8 +768,6 @@
   - type: IconSmooth
     key: walls
     base: riveted
-  - type: StaticPrice
-    price: 150
 
 - type: entity
   parent: BaseWall
@@ -910,8 +906,6 @@
     node: diagonalshuttleWall
   - type: RadiationBlocker
     resistance: 5
-  - type: StaticPrice
-    price: 200
 
 - type: entity
   parent: BaseWall
@@ -943,8 +937,6 @@
         node: girder
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: StaticPrice
-    price: 250
   - type: RadiationBlocker
     resistance: 5
   - type: Sprite
@@ -1197,8 +1189,6 @@
           3: { state: reinf_construct-3, visible: true}
           4: { state: reinf_construct-4, visible: true}
           5: { state: reinf_construct-5, visible: true}
-  - type: StaticPrice
-    price: 250
   - type: RadiationBlocker
     resistance: 5
   - type: IconSmooth
@@ -1207,33 +1197,6 @@
   - type: Construction
     graph: Girder
     node: reinforcedWallChitin
-
-- type: entity
-  parent: WallPlastitanium
-  id: WallXenoborg
-  name: xenoborg wall
-  components:
-  - type: Sprite
-    sprite: Structures/Walls/xenoborg.rsi
-  - type: Icon
-    sprite: Structures/Walls/xenoborg.rsi
-  - type: IconSmooth
-    key: walls
-    base: xenoborg
-
-- type: entity
-  parent: WallPlastitaniumDiagonal
-  id: WallXenoborgDiagonal
-  name: xenoborg wall
-  suffix: diagonal
-  components:
-  - type: Sprite
-    drawdepth: Walls
-    sprite: Structures/Walls/xenoborg_diagonal.rsi
-    state: state0
-  - type: Icon
-    sprite: Structures/Walls/xenoborg_diagonal.rsi
-    state: state0
 
 - type: entity
   parent: BaseWall

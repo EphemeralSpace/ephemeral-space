@@ -6,7 +6,7 @@
   suffix: Chameleon
   components:
     - type: Tag
-      tags: # ignore "WhitelistChameleon" tag
+      tags:
       - ClothMade
     - type: Sprite
       sprite: Clothing/Head/Hats/beret.rsi
@@ -24,8 +24,6 @@
   name: go go hat
   description: A novel hat with a built in toolkit. Automatically stores and retrieves items at the say of a phrase!
   components:
-  - type: Tag
-    tags: [] # ignore "WhitelistChameleon" tag
   - type: TriggerOnVoice
     defaultKeyPhrase: key-phrase-gadget
     listenRange: 0

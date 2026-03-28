@@ -1,6 +1,6 @@
 ﻿- type: entity
   id: BlastDoor
-  parent: BaseShutter
+  parent: [ DeflectionVerySturdyStructure, BaseShutter ]
   name: blast door
   description: This one says 'BLAST DONGER'.
   components:
@@ -47,13 +47,12 @@
 #    containers:
 #    - board
 # ES END
-  - type: StaticPrice
-    price: 500
   - type: InteractionPopup
     interactSuccessString: comp-window-knock
     messagePerceivedByOthers: comp-window-knock
     interactSuccessSound:
       path: /Audio/Effects/glass_knock.ogg
+
 
 - type: entity
   id: BlastDoorOpen
@@ -198,42 +197,3 @@
     node: frame1
   placement:
     mode: SnapgridCenter
-
-- type: entity
-  parent: BlastDoor
-  id: BlastDoorXenoborg
-  name: xenoborg blast door
-  description: Don't lose a head!
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Shutters/xenoborg_blastdoor.rsi
-    layers:
-    - state: closed
-      map: ["enum.DoorVisualLayers.Base"]
-  - type: Door
-    closeTimeOne: 0.4
-    closeTimeTwo: 0.7
-    openTimeOne: 0.4
-    openTimeTwo: 0.7
-    openingAnimationTime: 1.1
-    closingAnimationTime: 1.0
-    canPry: false
-    crushDamage:
-      types:
-        Blunt: 25 # yowch
-
-- type: entity
-  parent: BlastDoorXenoborg
-  id: BlastDoorXenoborgOpen
-  suffix: Open
-  components:
-  - type: Door
-    state: Open
-  - type: Occluder
-    enabled: false
-  - type: Physics
-    canCollide: false
-  - type: Airtight
-    airBlocked: false
-  - type: RadiationBlocker
-    enabled: false

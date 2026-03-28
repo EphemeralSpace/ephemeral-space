@@ -45,8 +45,6 @@
         enum.ConstructionVisuals.Layer:
           Primed: { state: primed }
           Unprimed: { state: complete }
-  - type: StaticPrice
-    price: 25
 
 - type: entity
   parent: EmptyDetonator

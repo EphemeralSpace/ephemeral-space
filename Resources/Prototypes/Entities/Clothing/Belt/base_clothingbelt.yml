@@ -15,8 +15,6 @@
   - type: PhysicalComposition
     materialComposition:
       Cloth: 50
-  - type: StaticPrice
-    price: 20
 
 - type: entity
   abstract: true

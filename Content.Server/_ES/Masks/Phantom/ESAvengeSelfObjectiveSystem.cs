@@ -14,7 +14,6 @@ public sealed class ESAvengeSelfObjectiveSystem : ESBaseObjectiveSystem<ESAvenge
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly ESTargetObjectiveSystem _targetObjective = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
 
     public override Type[] RelayComponents => [typeof(ESKilledRelayComponent)];
 
@@ -31,31 +30,23 @@ public sealed class ESAvengeSelfObjectiveSystem : ESBaseObjectiveSystem<ESAvenge
         if (!ObjectivesSys.TryFindObjectiveHolder(ent.Owner, out var holder))
             return;
 
-        if (!ObjectivesSys.TryAddObjective(holder.Value.AsNullable(), ent.Comp.AvengeObjective, out var objective))
-            return;
-
-        var user = _player.TryGetSessionByEntity(args.Killed, out var session) ? session.Channel : null;
-        string msg;
-
         if (!args.ValidKill ||
             !MindSys.TryGetMind(args.Killer.Value, out _, out var mindComp) ||
             mindComp.OwnedEntity is not { } body)
         {
-            _metaData.SetEntityName(objective.Value, Loc.GetString(ent.Comp.FailName));
-
-            msg = Loc.GetString(ent.Comp.FailMessage);
-        }
-        else
-        {
-            _targetObjective.SetTarget(objective.Value.Owner, body);
-
-            msg = Loc.GetString(ent.Comp.SuccessMessage);
+            return;
         }
 
-        if (user != null)
+        if (!ObjectivesSys.TryAddObjective(holder.Value.AsNullable(), ent.Comp.AvengeObjective, out var objective))
+            return;
+
+        _targetObjective.SetTarget(objective.Value.Owner, body);
+
+        if (_player.TryGetSessionByEntity(args.Killed, out var session))
         {
+            var msg = Loc.GetString(ent.Comp.SuccessMessage);
             var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
-            _chat.ChatMessageToOne(ChatChannel.Server, msg, wrappedMsg, default, false, user, Color.Red);
+            _chat.ChatMessageToOne(ChatChannel.Server, msg, wrappedMsg, default, false, session.Channel, Color.Red);
         }
     }
 }

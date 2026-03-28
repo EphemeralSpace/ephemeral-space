@@ -1,5 +1,7 @@
+using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Fixtures.Attributes;
 using Content.IntegrationTests.Tests._Citadel;
-using Content.IntegrationTests.Tests._Citadel.Attributes;
+using Content.IntegrationTests.Utility;
 using Content.Server._ES.Masks;
 using Content.Server.Chat;
 using Content.Server.Mind;
@@ -14,7 +16,7 @@ namespace Content.IntegrationTests.Tests._ES.Masks;
 [TestMap(TestMapMode.Arena)]
 public sealed class MaskTests : GameTest
 {
-    [System(Side.Server)] private readonly SuicideSystem _suicideSystem = default!;
+    [SidedDependency(Side.Server)] private readonly SuicideSystem _suicideSystem = default!;
 
     public override PoolSettings PoolSettings { get; } = new()
     {
@@ -22,14 +24,14 @@ public sealed class MaskTests : GameTest
         Connected = true, // We need a guy to mask up.
     };
 
-    public static readonly string[] Masks = PrototypeDataScrounger.PrototypesOfKind<ESMaskPrototype>();
+    public static readonly string[] Masks = GameDataScrounger.PrototypesOfKind<ESMaskPrototype>();
 
     [Test]
     [TestCaseSource(nameof(Masks))]
     [Description("Assigns each mask alone with no other players.")]
     public async Task AssignMaskAlone(string maskProto)
     {
-        var player = await TestPlayer.CreatePlayer(this);
+        var player = await Fixtures.TestPlayer.CreatePlayer(this);
 
         await Server.WaitAssertion(() =>
         {
@@ -55,7 +57,7 @@ public sealed class MaskTests : GameTest
     [Description("Has the given mask beat up a crew member, asserting it doesn't fail.")]
     public async Task BeatUpCrewmember(string maskProto)
     {
-        var deviant = await TestPlayer.CreatePlayer(this);
+        var deviant = await Fixtures.TestPlayer.CreatePlayer(this);
 
         var targetSession = await Server.AddDummySession();
 
@@ -86,7 +88,7 @@ public sealed class MaskTests : GameTest
     [Description("Has the a crew member beat up the given mask, asserting it doesn't fail.")]
     public async Task GetBeatenUp(string maskProto)
     {
-        var deviant = await TestPlayer.CreatePlayer(this);
+        var deviant = await Fixtures.TestPlayer.CreatePlayer(this);
 
         var targetSession = await Server.AddDummySession();
 

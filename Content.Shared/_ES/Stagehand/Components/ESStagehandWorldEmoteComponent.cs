@@ -12,19 +12,3 @@ namespace Content.Shared._ES.Stagehand.Components;
 /// </remarks>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class ESStagehandWorldEmoteComponent : Component;
-
-/// <summary>
-///     Action event for playing a world emote.
-/// </summary>
-public sealed partial class ESStagehandWorldEmoteEvent : InstantActionEvent
-{
-    /// <summary>
-    ///     Message to send to stagehand chat when this emote is played.
-    ///     Passes in the name of the performer as $entity.
-    /// </summary>
-    [DataField(required: true)]
-    public LocId Message;
-
-    [DataField(required: true)]
-    public SoundSpecifier Sound;
-}

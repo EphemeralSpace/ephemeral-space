@@ -2,6 +2,7 @@ using System.Numerics;
 using System.Threading;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Systems;
+using Content.Server.Clothing.Systems;
 using Content.Server.Electrocution;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GhostKick;
@@ -24,7 +25,6 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clumsy;
-using Content.Shared.Cluwne;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
@@ -42,8 +42,6 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
-using Content.Shared.Silicons.Laws;
-using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Slippery;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tabletop.Components;
@@ -67,7 +65,6 @@ public sealed partial class AdminVerbSystem
     private readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
     private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
 
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
@@ -85,7 +82,6 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly RoleSystem _role = default!;
     [Dependency] private readonly TabletopSystem _tabletopSystem = default!;
     [Dependency] private readonly VomitSystem _vomitSystem = default!;
     [Dependency] private readonly WeldableSystem _weldableSystem = default!;
@@ -94,12 +90,7 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly SuperBonkSystem _superBonkSystem = default!;
     [Dependency] private readonly SlipperySystem _slipperySystem = default!;
     [Dependency] private readonly GibbingSystem _gibbing = default!;
-
-    private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
-    private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
-
-    private readonly EntProtoId _siliconMindRole = "MindRoleSiliconBrain";
-    private const string SiliconLawBoundUserInterface = "SiliconLawBoundUserInterface";
+    [Dependency] private readonly OutfitSystem _outfit = default!;
 
     // All smite verbs have names so invokeverb works.
     private void AddSmiteVerbs(GetVerbsEvent<Verb> args)
@@ -601,23 +592,6 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(hiddenKillSign);
 
-            var cluwneName = Loc.GetString("admin-smite-cluwne-name").ToLowerInvariant();
-            Verb cluwne = new()
-            {
-                Text = cluwneName,
-                Category = VerbCategory.Smite,
-
-                Icon = new SpriteSpecifier.Rsi(new("/Textures/Clothing/Mask/cluwne.rsi"), "icon"),
-
-                Act = () =>
-                {
-                    EnsureComp<CluwneComponent>(args.Target);
-                },
-                Impact = LogImpact.Extreme,
-                Message = string.Join(": ", cluwneName, Loc.GetString("admin-smite-cluwne-description"))
-            };
-            args.Verbs.Add(cluwne);
-
             var maidenName = Loc.GetString("admin-smite-maid-name").ToLowerInvariant();
             Verb maiden = new()
             {
@@ -997,37 +971,6 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", crawlerName, Loc.GetString("admin-smite-crawler-description"))
         };
         args.Verbs.Add(crawler);
-
-        var siliconName = Loc.GetString("admin-smite-silicon-laws-bound-name").ToLowerInvariant();
-        Verb silicon = new()
-        {
-            Text = siliconName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("Interface/Actions/actions_borg.rsi"), "state-laws"),
-            Act = () =>
-            {
-                var userInterfaceComp = EnsureComp<UserInterfaceComponent>(args.Target);
-                _uiSystem.SetUi((args.Target, userInterfaceComp), SiliconLawsUiKey.Key, new InterfaceData(SiliconLawBoundUserInterface));
-
-                if (!HasComp<SiliconLawBoundComponent>(args.Target))
-                {
-                    EnsureComp<SiliconLawBoundComponent>(args.Target);
-                    _actions.AddAction(args.Target, _actionViewLawsProtoId);
-                }
-
-                EnsureComp<SiliconLawProviderComponent>(args.Target);
-                _siliconLawSystem.SetLaws(_siliconLawSystem.GetLawset(_crewsimovLawset).Laws, args.Target);
-
-                if (_mindSystem.TryGetMind(args.Target, out var mindId, out _))
-                    _role.MindAddRole(mindId, _siliconMindRole);
-
-                _popupSystem.PopupEntity(Loc.GetString("admin-smite-silicon-laws-bound-self"), args.Target,
-                    args.Target, PopupType.LargeCaution);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", siliconName, Loc.GetString("admin-smite-silicon-laws-bound-description"))
-        };
-        args.Verbs.Add(silicon);
 
         var homingRodName = Loc.GetString("admin-smite-homing-rod-name").ToLowerInvariant();
         Verb homingRod = new()

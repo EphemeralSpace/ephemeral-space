@@ -9,8 +9,6 @@ namespace Content.Shared.HealthExaminable;
 
 public sealed class HealthExaminableSystem : EntitySystem
 {
-    [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -38,26 +36,6 @@ public sealed class HealthExaminableSystem : EntitySystem
         // ES START
         return;
         // ES END
-        if (!TryComp<DamageableComponent>(uid, out var damage))
-            return;
-
-        var detailsRange = _examineSystem.IsInDetailsRange(args.User, uid);
-
-        var verb = new ExamineVerb()
-        {
-            Act = () =>
-            {
-                var markup = CreateMarkup(uid, component, damage);
-                _examineSystem.SendExamineTooltip(args.User, uid, markup, false, false);
-            },
-            Text = Loc.GetString("health-examinable-verb-text"),
-            Category = VerbCategory.Examine,
-            Disabled = !detailsRange,
-            Message = detailsRange ? null : Loc.GetString("health-examinable-verb-disabled"),
-            Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/rejuvenate.svg.192dpi.png"))
-        };
-
-        args.Verbs.Add(verb);
     }
 
     public FormattedMessage CreateMarkup(EntityUid uid, HealthExaminableComponent component, DamageableComponent damage)

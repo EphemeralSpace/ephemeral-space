@@ -27,8 +27,6 @@
       icon: &IconEmergencyAccess
         sprite: /Textures/Interface/Actions/actions_ai.rsi
         state: emergency_on
-  - type: StealTarget
-    stealGroup: DoorRemote
   - type: ActivatableUI
     inHandsOnly: true
     key: enum.DoorRemoteUiKey.Key
@@ -225,23 +223,3 @@
     - AllAccess
     tags:
     - CentralCommand
-    - NuclearOperative
-    - SyndicateAgent
-    - Wizard
-    - Xenoborg
-
-- type: entity
-  parent: [DoorRemoteCanEletrifyDoors, BaseXenoborgContraband]
-  id: DoorRemoteXenoborg
-  name: xenoborg door remote
-  components:
-  - type: Sprite
-    layers:
-    - state: door_remotebase
-    - state: door_remotelightscolour
-      color: "#2eba22"
-    - state: door_remotescreencolour
-      color: "#22871a"
-  - type: Access
-    tags:
-    - Xenoborg

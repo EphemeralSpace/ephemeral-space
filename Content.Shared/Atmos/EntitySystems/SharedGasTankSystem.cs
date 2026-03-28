@@ -71,8 +71,6 @@ public abstract class SharedGasTankSystem : EntitySystem
         // No more internal actions!!!
         return;
 // ES END
-        args.AddAction(ref component.ToggleActionEntity, component.ToggleAction);
-        Dirty(uid, component);
     }
 
     private void OnExamined(EntityUid uid, GasTankComponent component, ExaminedEvent args)

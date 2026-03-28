@@ -1,13 +1,13 @@
 ﻿<Document>
   # Valves
-  Valves are a quick way to halt or permit gas flow through a [textlink="pipenet" link="ESPipeNetworks"].
+  Valves are a quick way to halt or permit gas flow through a [textlink="pipenet" link="PipeNetworks"].
   <Box>
     <GuideEntityEmbed Entity="GasValve"/>
     <GuideEntityEmbed Entity="PressureControlledValve"/>
     <GuideEntityEmbed Entity="GasPassiveGate"/>
     <GuideEntityEmbed Entity="GasPressureRegulator"/>
   </Box>
-  All valves do not require [textlink="power" link="ESPower"] to operate.
+  All valves do not require [textlink="power" link="Power"] to operate.
 
   Valves may look simple, but they can enable a wide variety of complex pipe systems, including:
   - Pneumatic valves controlling variable venting of waste gasses from a burn chamber

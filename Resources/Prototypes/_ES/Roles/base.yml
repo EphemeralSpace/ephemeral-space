@@ -1,0 +1,14 @@
+# The Job MindRole holds the mob's Job prototype
+- type: entity
+  id: MindRoleJob
+  name: Job Role
+  components:
+  - type: MindRole
+
+- type: entity
+  id: MindRoleObserver
+  name: Observer Role
+  components:
+  - type: ObserverRole
+  - type: MindRole
+    sortWeight: -10

@@ -87,20 +87,10 @@
         Base: critical
       Dead:
         Base: dead
-  - type: GhostRole
-    makeSentient: true
-    name: ghost-role-information-rat-king-name
-    description: ghost-role-information-rat-king-description
-    rules: ghost-role-information-antagonist-rules
-    mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
   - type: Tag
     tags:
-      - CannotSuicide
       - FootstepSound
+  - type: ESCannotSuicide
   - type: NoSlip
   - type: Rummager
   - type: RatKing
@@ -113,16 +103,11 @@
     spawned:
     - id: ClothingHeadHatFancyCrown #how did that get there?
       amount: 1
-  - type: MobPrice
-    price: 2500 # rat wealth
   - type: RandomMetadata
     nameSegments:
     - NamesRegalratKingdom
     - NamesRegalratTitle
     nameFormat: name-format-regal-rat
-  - type: GuideHelp
-    guides:
-    - MinorAntagonists
   - type: Grammar
     attributes:
       gender: male
@@ -161,9 +146,6 @@
     speedModifierThresholds:
       200: 0.7
       250: 0.5
-  - type: GuideHelp
-    guides:
-    - MinorAntagonists
 
 - type: entity
   name: rat servant
@@ -291,18 +273,13 @@
     wilhelmProbability: 0.001
   - type: Tag
     tags:
-      - CannotSuicide
       - FootstepSound
+  - type: ESCannotSuicide
   - type: NoSlip
-  - type: MobPrice
-    price: 500 # rat wealth
   - type: MobsterAccent
     isBoss: false
   - type: Speech
     speechVerb: SmallMob
-  - type: GuideHelp
-    guides:
-    - MinorAntagonists
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning

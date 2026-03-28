@@ -68,7 +68,6 @@
   - type: ESMindVisuals
   - type: ESBlockInteraction
   - type: ShowElectrocutionHUD
-  - type: ShowAntagIcons
   - type: UserInterface
     interfaces:
       enum.ESVoterUiKey.Key:
@@ -89,9 +88,7 @@
   - type: ESInherentLight
     lightPrototype: ESMobObserverInherentLight
     enabled: false
-  - type: Tag
-    tags:
-    - BypassInteractionRangeChecks
+  - type: ESBypassInteractionRangeChecks
 
 - type: entity
   parent: BaseMentalAction
@@ -169,9 +166,7 @@
       state: cheer
   - type: InstantAction
     event: !type:ESStagehandWorldEmoteEvent
-      message: es-stagehand-emote-cheer
-      sound:
-        collection: ESStagehandCheer
+      emote: Cheer
 
 - type: entity
   parent: BaseMentalAction
@@ -186,6 +181,4 @@
       state: boo
   - type: InstantAction
     event: !type:ESStagehandWorldEmoteEvent
-      message: es-stagehand-emote-boo
-      sound:
-        collection: ESStagehandBoo
+      emote: Boo

@@ -10,7 +10,6 @@
   - type: ActionGrant
     actions:
     - ActionVendingThrow
-  - type: StationAiWhitelist
   # ES START
   # - type: AmbientOnPowered
   # - type: AmbientSound
@@ -103,11 +102,6 @@
     powerLoad: 100
     # ES END
   - type: Actions
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-mechanical
-    weight: 0.025 # fuck you in particular (it now needs 40 vending machines to be as likely as 1 interesting animal)
-  - type: StaticPrice
-    price: 100
   - type: Appearance
   - type: WiresVisuals
 
@@ -117,7 +111,6 @@
   name: vending machine
   abstract: true
   components:
-  - type: StationAiWhitelist
   # ES START
   # - type: AmbientOnPowered
   # - type: AmbientSound
@@ -299,8 +292,6 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
   - type: GuideHelp
     guides:
     - Bartender
@@ -824,36 +815,6 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineMagivend
-  name: MagiVend
-  description: A magic vending machine.
-  components:
-  - type: VendingMachine
-    pack: MagiVendInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-  - type: DatasetVocalizer
-    dataset: MagiVendAds
-  - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/magivend.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#9a18d6"
-
-- type: entity
-  parent: VendingMachine
   id: VendingMachineDiscount
   name: Discount Dan's
   description: A vending machine containing discount snacks from the infamous 'Discount Dan' franchise.
@@ -1038,10 +999,7 @@
     radius: 1
     energy: 2.0
     color: "#78645c"
-  - type: GuideHelp
-    guides:
-    - Security
-    - Antagonists
+
 
 - type: entity
   parent: VendingMachine
@@ -1367,9 +1325,7 @@
     radius: 1.5
     energy: 3.0
     color: "#B0ADA9"
-  - type: GuideHelp
-    guides:
-    - Robotics
+
 
 - type: entity
   parent: VendingMachine
@@ -1463,38 +1419,6 @@
     radius: 1.5
     energy: 3.0
     color: "#ffe599"
-
-- type: entity
-  parent: VendingMachine
-  id: VendingMachineSalvage
-  name: Salvage Vendor
-  description: A dwarf's best friend!
-  components:
-  - type: VendingMachine
-    pack: SalvageEquipmentInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    denyState: deny-unshaded
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/mining.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#b89f25"
-  - type: AccessReader
-    access: [["Salvage"]]
-  - type: GuideHelp
-    guides:
-    - Salvage
 
 - type: entity
   parent: VendingMachine
@@ -1977,38 +1901,6 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineSyndieDrobe
-  name: SyndieDrobe
-  description: Wardrobe machine encoded by the syndicate, contains elite outfits for various operations.
-  components:
-  - type: VendingMachine
-    pack: SyndieDrobeInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-  - type: DatasetVocalizer
-    dataset: SyndieDrobeAds
-  - type: SpeakOnUIClosed
-    pack: SyndieDrobeGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/syndiedrobe.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#d82929"
-  - type: AccessReader
-    access: [["NuclearOperative"], ["SyndicateAgent"]]
-
-- type: entity
-  parent: VendingMachine
   id: VendingMachineRoboDrobe
   name: RoboDrobe
   description: A vending machine designed to dispense clothing known only to roboticists.
@@ -2261,8 +2153,6 @@
     normalState: normal
     denyState: deny
     ejectDelay: 2
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
 
 # wallmount
 - type: entity

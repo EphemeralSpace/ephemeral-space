@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESInspectingPower
+  id: InspectingPower
   hidden: false
   name: Inspecting Power
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Power/InspectingPower.xml"

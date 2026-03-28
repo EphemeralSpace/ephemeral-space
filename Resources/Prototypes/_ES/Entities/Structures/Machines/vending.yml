@@ -375,25 +375,7 @@
     color: "#78645c"
   - type: GuideHelp
     guides:
-    - Security
-
-- type: entity
-  parent: ESBaseVendingMachine
-  id: ESVendingMachineSalvage
-  name: Salvage Vendor
-  description: A dwarf's best friend!
-  components:
-  - type: Sprite
-    sprite: _ES/Structures/Vendors/mining.rsi
-  - type: VendingMachine
-    pack: SalvageEquipmentInventory
-  - type: PointLight
-    color: "#b89f25"
-  - type: AccessReader
-    access: [["Salvage"]]
-  - type: GuideHelp
-    guides:
-    - Salvage
+    - SecurityOfficer
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -448,6 +430,4 @@
     color: "#B0ADA9"
   - type: AccessReader
     access: [["Research"]]
-  - type: GuideHelp
-    guides:
-    - Robotics
+

@@ -25,7 +25,6 @@
     hydroponics: AirlockHydroponics
     maintenance: AirlockMaint
     medical: AirlockMedical
-    salvage: AirlockSalvage
     science: AirlockScience
     security: AirlockSecurity
     virology: AirlockVirology
@@ -45,7 +44,6 @@
     hydroponics: AirlockHydroponicsGlass
     maintenance: AirlockMaintGlass
     medical: AirlockMedicalGlass
-    salvage: AirlockSalvageGlass
     science: AirlockScienceGlass
     security: AirlockSecurityGlass
     virology: AirlockVirologyGlass

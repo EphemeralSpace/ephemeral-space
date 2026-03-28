@@ -16,8 +16,6 @@
       anchored: False
     - type: Physics
       bodyType: Dynamic
-    - type: StaticPrice
-      price: 500
     - type: AmbientSound
       range: 5
       volume: -5
@@ -80,7 +78,7 @@
               acts: ["Destruction"]
     - type: GuideHelp
       guides:
-      - PortableGenerator
+      - PortableGenerators
       - Power
 
     # Core functionality

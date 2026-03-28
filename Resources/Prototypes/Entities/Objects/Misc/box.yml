@@ -17,8 +17,6 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
-  - type: StaticPrice
-    price: 10
 
 - type: entity
   abstract: true
@@ -32,8 +30,6 @@
   - type: Storage
     grid:
     - 0,0,1,1
-  - type: StaticPrice # Half of the "regular" box
-    price: 5
 
 - type: entity
   parent: BoxBase
@@ -65,5 +61,3 @@
     materialComposition:
       Cardboard: 75
       Cloth: 25
-  - type: StaticPrice
-    price: 15

@@ -5,33 +5,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-# ES Start
+      entity_storage:
         tableId: ESFillLockerBooze
-# ES End
-
-- type: entityTable
-  id: FillLockerBooze
-  table: !type:AllSelector
-    children:
-    - id: ClothingOuterArmorBasicSlim
-    - id: WeaponShotgunDoubleBarreledRubber
-    - id: DrinkShaker
-    - id: ClothingEyesHudBeer
-    - id: HandLabeler
-    - id: DrinkBeerBottleFull
-      amount: !type:BinomialNumberSelector
-        trials: 3
-    - !type:AllSelector
-      rolls: 2
-      children:
-      - id: BoxBeanbag
-      - id: RagItem
-
-#- type: entity
-#  id: LockerFormalFilled
-#  suffix: Filled
-#  parent: LockerFormal
 
 - type: entity
   id: ClosetChefFilled
@@ -40,34 +15,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-# ES START
+      entity_storage:
         tableId: ESFillClosetChef
-# ES END
-
-- type: entityTable
-  id: FillClosetChef
-  table: !type:AllSelector
-    children:
-    - id: VariantCubeBox
-    - id: SprayBottleWater
-    - id: FoodBoxCloth
-    - id: ReagentContainerSugar
-    - id: FoodCondimentBottleEnzyme
-    - id: DrinkSoyMilkCarton
-    - !type:AllSelector
-      rolls: 2
-      children:
-      - id: DrinkMilkCarton
-      # really, milk should go in the fridge. Unfortunately saltern only has freezers.
-      # yes, I'm using this as an excuse to not have to do extra work.
-      - id: ReagentContainerFlour
-      - id: BoxMousetrap
-    - !type:AllSelector
-      rolls: 3
-      children:
-      - id: FoodCondimentPacketSalt
-      - id: FoodCondimentPacketPepper
 
 - type: entity
   id: ClosetJanitorFilled

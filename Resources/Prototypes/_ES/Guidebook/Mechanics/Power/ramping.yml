@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESRamping
+  id: Ramping
   hidden: false
   name: Ramping
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Power/Ramping.xml"

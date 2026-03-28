@@ -54,7 +54,7 @@
 
 - type: Tag
   id: ESSpawnerSecureTechStorage
-  
+
 - type: Tag
   id: ESSpawnerTechStorageMats
 
@@ -72,3 +72,9 @@
 
 - type: Tag
   id: ESSuitEVASec
+
+- type: Tag
+  id: ESTourniquetOffbrand
+
+- type: Tag
+  id: ESSplints

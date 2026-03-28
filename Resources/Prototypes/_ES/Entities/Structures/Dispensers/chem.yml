@@ -32,8 +32,6 @@
   - type: GuideHelp
     guides:
     - Chemicals
-  - type: StealTarget
-    stealGroup: ChemDispenser
   - type: Fixtures
     fixtures:
       fix1:

@@ -31420,14 +31420,6 @@ entities:
     - type: Transform
       pos: 32.5,-30.5
       parent: 2
-- proto: ComputerRoboticsControl
-  entities:
-  - uid: 586
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 7.5,-18.5
-      parent: 2
 - proto: ComputerSolarControl
   entities:
   - uid: 8471
@@ -35832,12 +35824,6 @@ entities:
     - type: Transform
       pos: 2.5,-35.5
       parent: 2
-    - type: TechnologyDatabase
-      supportedDisciplines:
-      - Industrial
-      - Arsenal
-      - Experimental
-      - CivilianServices
 - proto: ESBaseComputerTerminalCryptoNuke
   entities:
   - uid: 3834
@@ -72654,18 +72640,6 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-0.5
-      parent: 2
-- proto: SpawnPointSecurityCadet
-  entities:
-  - uid: 6921
-    components:
-    - type: Transform
-      pos: -27.5,-24.5
-      parent: 2
-  - uid: 6922
-    components:
-    - type: Transform
-      pos: -27.5,-26.5
       parent: 2
 - proto: Spoon
   entities:

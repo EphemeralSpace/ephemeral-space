@@ -3,8 +3,6 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
 using Content.Shared.Body.Components;
 using Content.Shared.Database;
-using Content.Shared.Emag.Components;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Stacks;
@@ -29,7 +27,6 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] protected readonly SharedContainerSystem Container = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
 
     public const string ActiveReclaimerContainerId = "active-material-reclaimer-container";
 
@@ -38,7 +35,6 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     {
         SubscribeLocalEvent<MaterialReclaimerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<MaterialReclaimerComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<MaterialReclaimerComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<MaterialReclaimerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<CollideMaterialReclaimerComponent, StartCollideEvent>(OnCollide);
         SubscribeLocalEvent<ActiveMaterialReclaimerComponent, ComponentStartup>(OnActiveStartup);
@@ -57,17 +53,6 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     private void OnExamined(EntityUid uid, MaterialReclaimerComponent component, ExaminedEvent args)
     {
         args.PushMarkup(Loc.GetString("recycler-count-items", ("items", component.ItemsProcessed)));
-    }
-
-    private void OnEmagged(EntityUid uid, MaterialReclaimerComponent component, ref GotEmaggedEvent args)
-    {
-        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-            return;
-
-        if (_emag.CheckFlag(uid, EmagType.Interaction))
-            return;
-
-        args.Handled = true;
     }
 
     private void OnCollide(EntityUid uid, CollideMaterialReclaimerComponent component, ref StartCollideEvent args)
@@ -210,11 +195,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     /// </summary>
     public bool CanGib(EntityUid uid, EntityUid victim, MaterialReclaimerComponent component)
     {
-        return component.Powered &&
-               component.Enabled &&
-               !component.Broken &&
-               HasComp<BodyComponent>(victim) &&
-               _emag.CheckFlag(uid, EmagType.Interaction);
+        return false;
     }
 
     /// <summary>

@@ -33,8 +33,6 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 5
     fillBaseName: fill-
-  - type: StaticPrice
-    price: 60
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -79,7 +77,6 @@
   name: iv stand
   description: Holds IV bags and allows their contents to be administered intravenously to patients.
   components:
-  - type: Animateable
   - type: Clickable
   - type: InteractionOutline
   - type: Physics

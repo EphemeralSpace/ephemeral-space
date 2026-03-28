@@ -76,8 +76,6 @@
         enum.ToggleableVisuals.Layer:
           True: {state: stunbaton_on}
           False: {state: stunbaton_off}
-  - type: StaticPrice
-    price: 80
   - type: Riggable
   - type: SolutionContainerManager
     solutions:
@@ -95,10 +93,7 @@
     materialComposition:
       Steel: 100
       Plastic: 100
-  - type: GuideHelp
-    guides:
-    - Security
-    - Antagonists
+
 
 - type: entity
   name: truncheon
@@ -130,12 +125,7 @@
   - type: DisarmMalus
     malus: 0.225
   - type: Appearance
-  - type: StaticPrice
-    price: 80
-  - type: GuideHelp
-    guides:
-    - Security
-    - Antagonists
+
 
 - type: entity
   name: flash
@@ -167,8 +157,6 @@
     - type: UseDelay
       delay: 4 # has to be the same as the FlashingTime datafield in FlashComponent
     - type: UseDelayOnMeleeHit
-    - type: StaticPrice
-      price: 40
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -179,10 +167,7 @@
           enum.FlashVisualLayers.LightLayer:
             True: {visible: true}
             False: {visible: false}
-    - type: GuideHelp
-      guides:
-      - Security
-      - Antagonists
+
 
 - type: entity
   name: flash
@@ -235,7 +220,4 @@
       radius: 0
       softness: 0
       enabled: true
-    - type: GuideHelp
-      guides:
-      - Security
-      - Antagonists
+

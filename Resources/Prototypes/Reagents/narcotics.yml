@@ -426,8 +426,6 @@
   group: Narcotics
   desc: reagent-desc-tear-gas
   physicalDesc: reagent-physical-desc-milky
-  allowedDepartments:
-  - Security
   flavor: salty
   color: "#ffffff4d"
   boilingPoint: 255.0

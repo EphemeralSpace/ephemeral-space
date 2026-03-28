@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: ESAME
+  id: AME
   hidden: false
   name: Antimatter Engine
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Power/AME.xml"

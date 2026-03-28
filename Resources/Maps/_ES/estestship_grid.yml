@@ -2088,20 +2088,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,-17.5
       parent: 1
-- proto: ComputerResearchAndDevelopment
-  entities:
-  - uid: 165
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 11.5,-3.5
-      parent: 1
-    - type: TechnologyDatabase
-      supportedDisciplines:
-      - Industrial
-      - Arsenal
-      - Experimental
-      - CivilianServices
 - proto: Crowbar
   entities:
   - uid: 240
@@ -3335,26 +3321,12 @@ entities:
     - type: Transform
       pos: 6.5,-5.5
       parent: 1
-- proto: LockerChiefMedicalOfficerFilled
-  entities:
-  - uid: 364
-    components:
-    - type: Transform
-      pos: 4.5,-10.5
-      parent: 1
 - proto: LockerMedicineFilled
   entities:
   - uid: 366
     components:
     - type: Transform
       pos: 4.5,-9.5
-      parent: 1
-- proto: LockerSalvageSpecialistFilledHardsuit
-  entities:
-  - uid: 97
-    components:
-    - type: Transform
-      pos: 4.5,4.5
       parent: 1
 - proto: MachineMaterialSilo
   entities:
@@ -3831,84 +3803,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -8.5,8.5
       parent: 1
-- proto: ResearchAndDevelopmentServer
-  entities:
-  - uid: 61
-    components:
-    - type: Transform
-      pos: 8.5,-3.5
-      parent: 1
-- proto: ResearchDiskDebug
-  entities:
-  - uid: 84
-    components:
-    - type: Transform
-      pos: 9.5,-3.5
-      parent: 1
-- proto: SalvageSpawnerScrapCommon75
-  entities:
-  - uid: 368
-    components:
-    - type: Transform
-      pos: -6.5,-11.5
-      parent: 1
-  - uid: 369
-    components:
-    - type: Transform
-      pos: -6.5,-10.5
-      parent: 1
-  - uid: 370
-    components:
-    - type: Transform
-      pos: -6.5,-9.5
-      parent: 1
-  - uid: 374
-    components:
-    - type: Transform
-      pos: -6.5,-11.5
-      parent: 1
-  - uid: 375
-    components:
-    - type: Transform
-      pos: -6.5,-10.5
-      parent: 1
-  - uid: 376
-    components:
-    - type: Transform
-      pos: -6.5,-9.5
-      parent: 1
-- proto: SalvageSpawnerScrapValuable75
-  entities:
-  - uid: 371
-    components:
-    - type: Transform
-      pos: -6.5,-11.5
-      parent: 1
-  - uid: 372
-    components:
-    - type: Transform
-      pos: -6.5,-10.5
-      parent: 1
-  - uid: 373
-    components:
-    - type: Transform
-      pos: -6.5,-9.5
-      parent: 1
-  - uid: 377
-    components:
-    - type: Transform
-      pos: -6.5,-11.5
-      parent: 1
-  - uid: 378
-    components:
-    - type: Transform
-      pos: -6.5,-10.5
-      parent: 1
-  - uid: 379
-    components:
-    - type: Transform
-      pos: -6.5,-9.5
-      parent: 1
 - proto: Screwdriver
   entities:
   - uid: 106
@@ -4169,12 +4063,6 @@ entities:
     - type: Transform
       pos: -1.5,-0.5
       parent: 1
-    - type: TechnologyDatabase
-      supportedDisciplines:
-      - Industrial
-      - Arsenal
-      - Experimental
-      - CivilianServices
 - proto: VendingMachineChemicals
   entities:
   - uid: 397

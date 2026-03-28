@@ -111,13 +111,6 @@
 # ES End
 
 - type: entity
-  id: MobBearSpaceSalvage
-  parent: MobBearSpace
-  suffix: "Salvage Ruleset"
-  components:
-  - type: SalvageMobRestrictions
-
-- type: entity
   name: space kangaroo
   id: MobKangarooSpace
   parent: [MobSpaceBasic, StripableInventoryBase]
@@ -171,13 +164,6 @@
     thresholds:
       0: Alive
       60: Dead
-
-- type: entity
-  id: MobKangarooSpaceSalvage
-  parent: MobKangarooSpace
-  suffix: "Salvage Ruleset"
-  components:
-  - type: SalvageMobRestrictions
 
 - type: entity
   name: space spider
@@ -273,13 +259,6 @@
     proto: spider
 
 - type: entity
-  id: MobSpiderSpaceSalvage
-  parent: MobSpiderSpace
-  suffix: "Salvage Ruleset"
-  components:
-  - type: SalvageMobRestrictions
-
-- type: entity
   name: space cobra
   id: MobCobraSpace
   parent: MobSpaceBasic
@@ -372,13 +351,6 @@
       movementVisibilityRate: 0.25
 
 - type: entity
-  id: MobCobraSpaceSalvage
-  parent: MobCobraSpace
-  suffix: "Salvage Ruleset"
-  components:
-    - type: SalvageMobRestrictions
-
-- type: entity
   parent: SimpleSpaceMobBase
   id: MobSnail
   name: snail
@@ -386,16 +358,6 @@
   components:
   - type: Body
     prototype: Mouse
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: false
-    allowMovement: true
-    name: ghost-role-information-snail-name
-    description: ghost-role-information-snail-description
-    rules: ghost-role-information-freeagent-rules
-    mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
-  - type: GhostTakeoverAvailable
   - type: Emoting
   - type: Sprite
     drawdepth: SmallMobs
@@ -503,10 +465,7 @@
       - ReagentId: Cryoxadone
         Quantity: 30
   - type: CanEscapeInventory
-  - type: MobPrice
-    price: 50
   - type: BadFood
-  - type: NonSpreaderZombie
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
@@ -528,25 +487,6 @@
         visualType: Large
         messages: [ "snail-hurt-by-salt-popup" ]
         probability: 0.66
-
-- type: entity
-  parent: MobSnail
-  id: MobSnailInstantDeath
-  suffix: Smite
-  components:
-  - type: GhostRole
-    mindRoles:
-    - MindRoleGhostRoleFreeAgent
-  - type: MobStateActions
-    actions:
-      Alive:
-      - ActionSmiteNoReq
-      Critical:
-      - ActionCritSuccumb
-      - ActionCritFakeDeath
-      - ActionCritLastWords
-  - type: Godmode
-  - type: MovementAlwaysTouching
 
 - type: entity
   parent: MobSnail

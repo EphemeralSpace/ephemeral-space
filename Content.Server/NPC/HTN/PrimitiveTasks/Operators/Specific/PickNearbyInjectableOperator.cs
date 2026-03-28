@@ -7,7 +7,6 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Silicons.Bots;
-using Content.Shared.Emag.Components;
 
 namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Specific;
 
@@ -55,7 +54,6 @@ public sealed partial class PickNearbyInjectableOperator : HTNOperator
         var injectQuery = _entManager.GetEntityQuery<InjectableSolutionComponent>();
         var recentlyInjected = _entManager.GetEntityQuery<NPCRecentlyInjectedComponent>();
         var mobState = _entManager.GetEntityQuery<MobStateComponent>();
-        var emaggedQuery = _entManager.GetEntityQuery<EmaggedComponent>();
 
         foreach (var entity in _lookup.GetEntitiesInRange(owner, range))
         {
@@ -66,12 +64,6 @@ public sealed partial class PickNearbyInjectableOperator : HTNOperator
             {
                 // no treating dead bodies
                 if (!_medibot.TryGetTreatment(medibot, state.CurrentState, out var treatment))
-                    continue;
-
-                // Only go towards a target if the bot can actually help them or if the medibot is emagged
-                // note: this and the actual injecting don't check for specific damage types so for example,
-                // radiation damage will trigger injection but the tricordrazine won't heal it.
-                if (!emaggedQuery.HasComponent(entity) && !treatment.IsValid(damage.TotalDamage))
                     continue;
 
                 //Needed to make sure it doesn't sometimes stop right outside it's interaction range

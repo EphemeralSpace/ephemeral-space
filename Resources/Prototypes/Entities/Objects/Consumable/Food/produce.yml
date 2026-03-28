@@ -364,7 +364,6 @@
   - type: Tag
     tags:
     - Fruit
-    - Banana
   - type: FoodSequenceElement
     entries:
       Burger: Banana
@@ -457,8 +456,6 @@
     - Trash
     - BananaPeel
     - Ruminant
-
-    - WhitelistChameleon
     - HamsterWearable
   - type: SolutionContainerManager
     solutions:
@@ -551,7 +548,6 @@
       - carrot
   - type: Tag
     tags:
-    - Carrot
     - Vegetable
   - type: SolutionContainerManager
     solutions:
@@ -1229,7 +1225,6 @@
           Quantity: 5
   - type: Tag
     tags:
-    - Corn
     - Vegetable
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/corn.rsi
@@ -1709,9 +1704,6 @@
     sprite: Objects/Specific/Hydroponics/ambrosia_vulgaris.rsi
     slots:
     - HEAD
-  - type: Tag
-    tags:
-    - Ambrosia
   - type: FoodSequenceElement
     entries:
       Taco: AmbrosiaVulgaris
@@ -1750,9 +1742,6 @@
     sprite: Objects/Specific/Hydroponics/ambrosia_deus.rsi
     slots:
     - HEAD
-  - type: Tag
-    tags:
-    - Ambrosia
   - type: FoodSequenceElement
     entries:
       Taco: AmbrosiaDeus
@@ -2643,7 +2632,6 @@
   - type: Tag
     tags:
     - ClothMade
-    - CottonBoll
   - type: FoodSequenceElement
     entries:
       CottonBurger: CottonBol
@@ -2677,7 +2665,6 @@
   - type: Tag
     tags:
     - ClothMade
-    - CottonBoll
   - type: Extractable
     grindableSolutionName: food
   - type: FoodSequenceElement
@@ -2784,8 +2771,6 @@
           Quantity: 2
         - ReagentId: Vitamin
           Quantity: 2
-        - ReagentId: Artifexium
-          Quantity: 1
   - type: Tag
     tags:
     - Fruit

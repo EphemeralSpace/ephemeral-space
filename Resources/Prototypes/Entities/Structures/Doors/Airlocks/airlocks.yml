@@ -38,16 +38,6 @@
 
 - type: entity
   parent: Airlock
-  id: AirlockSalvage
-  suffix: Salvage
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/salvage.rsi
-  - type: Wires
-    layoutId: AirlockCargo
-
-- type: entity
-  parent: Airlock
   id: AirlockHydroponics
   suffix: Hydroponics
   components:
@@ -164,16 +154,6 @@
 
 - type: entity
   parent: Airlock
-  id: AirlockXenoborg
-  name: xenoborg airlock
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/xenoborg.rsi
-  - type: Paintable
-    group: null
-
-- type: entity
-  parent: Airlock
   id: AirlockHatchMaintenance
   name: maintenance hatch
   components:
@@ -183,15 +163,6 @@
 # ES START
     group: ESAirlockHatch
 # ES END
-
-- type: entity
-  parent: Airlock
-  id: AirlockHatchSyndicate
-  name: airtight hatch
-  suffix: Syndicate
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/hatch_syndicate.rsi
 
 # Glass
 - type: entity
@@ -227,16 +198,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/cargo.rsi
-  - type: Wires
-    layoutId: AirlockCargo
-
-- type: entity
-  parent: AirlockGlass
-  id: AirlockSalvageGlass
-  suffix: Salvage
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Glass/salvage.rsi
   - type: Wires
     layoutId: AirlockCargo
 

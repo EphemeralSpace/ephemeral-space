@@ -106,8 +106,6 @@
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: StaticPrice
-    price: 22.5
 
 - type: entity
   parent: ClockworkWindow

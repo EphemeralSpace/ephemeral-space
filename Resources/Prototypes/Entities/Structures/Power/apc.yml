@@ -7,7 +7,6 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: StationAiWhitelist
   # ES START
   - type: AmbientOnPowered
   - type: AmbientSound
@@ -158,8 +157,6 @@
     lowVoltageNode: output
   - type: LightningTarget
     priority: 1
-  - type: StaticPrice
-    price: 500
   - type: GuideHelp
     guides:
     - VoltageNetworks
@@ -249,14 +246,3 @@
   - type: Battery
     maxCharge: 200000
     startingCharge: 200000
-
-- type: entity
-  parent: BaseAPC
-  id: APCXenoborg
-  suffix: Basic, 50kJ, Xenoborg
-  components:
-  - type: Battery
-    maxCharge: 50000
-    startingCharge: 50000
-  - type: AccessReader
-    access: [["Xenoborg"]]

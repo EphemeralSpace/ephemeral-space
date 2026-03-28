@@ -2,7 +2,6 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
-using Content.Shared.Cargo;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
@@ -35,7 +34,6 @@ namespace Content.Server.Atmos.EntitySystems
             base.Initialize();
             SubscribeLocalEvent<GasTankComponent, EntParentChangedMessage>(OnParentChange);
             SubscribeLocalEvent<GasTankComponent, GasAnalyzerScanEvent>(OnAnalyzed);
-            SubscribeLocalEvent<GasTankComponent, PriceCalculationEvent>(OnGasTankPrice);
             Subs.CVar(_cfg, CCVars.AtmosTankFragment, UpdateMaxRange, true);
         }
 
@@ -228,11 +226,6 @@ namespace Content.Server.Atmos.EntitySystems
         {
             args.GasMixtures ??= new List<(string, GasMixture?)>();
             args.GasMixtures.Add((Name(uid), component.Air));
-        }
-
-        private void OnGasTankPrice(EntityUid uid, GasTankComponent component, ref PriceCalculationEvent args)
-        {
-            args.Price += _atmosphereSystem.GetPrice(component.Air);
         }
     }
 }

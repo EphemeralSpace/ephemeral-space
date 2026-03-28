@@ -69,7 +69,6 @@ namespace Content.Server.Ghost
         [Dependency] private readonly DamageableSystem _damageable = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly NameModifierSystem _nameMod = default!;
 // ES START
         [Dependency] private readonly ESStagehandSystem _stagehand = default!;
@@ -78,7 +77,6 @@ namespace Content.Server.Ghost
         private EntityQuery<GhostComponent> _ghostQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
 
-        private static readonly ProtoId<TagPrototype> AllowGhostShownByEventTag = "AllowGhostShownByEvent";
         private static readonly ProtoId<DamageTypePrototype> AsphyxiationDamageType = "Asphyxiation";
 
         public override void Initialize()
@@ -181,25 +179,6 @@ namespace Content.Server.Ghost
             // this is mostly  for offbrand bc offbrand lets u ghost on move out of crit and we dont really want that
             return;
             // ES END
-
-            // If they haven't actually moved then ignore it.
-            if ((args.Entity.Comp.HeldMoveButtons &
-                 (MoveButtons.Down | MoveButtons.Left | MoveButtons.Up | MoveButtons.Right)) == 0x0)
-            {
-                return;
-            }
-
-            // Let's not ghost if our mind is visiting...
-            if (HasComp<VisitingMindComponent>(uid))
-                return;
-
-            if (!_minds.TryGetMind(uid, out var mindId, out var mind) || mind.IsVisitingEntity)
-                return;
-
-            if (component.MustBeDead && _mobState.IsAlive(uid)) // Offbrand - exit on crit
-                return;
-
-            OnGhostAttempt(mindId, component.CanReturn, mind: mind);
         }
 
         private void OnGhostStartup(EntityUid uid, GhostComponent component, ComponentStartup args)
@@ -422,9 +401,10 @@ namespace Content.Server.Ghost
         public void MakeVisible(bool visible)
         {
             var entityQuery = EntityQueryEnumerator<GhostComponent, VisibilityComponent>();
-            while (entityQuery.MoveNext(out var uid, out var _, out var vis))
+
+            while (entityQuery.MoveNext(out var uid, out var ghost, out var vis))
             {
-                if (!_tag.HasTag(uid, AllowGhostShownByEventTag))
+                if (!ghost.MadeVisibleByEvents)
                     continue;
 
                 if (visible)
@@ -635,13 +615,6 @@ namespace Content.Server.Ghost
             }
             return true;
 // ES END
-
-            var ghost = SpawnGhost((mindId, mind), position, canReturn);
-
-            if (ghost == null)
-                return false;
-
-            return true;
         }
     }
 

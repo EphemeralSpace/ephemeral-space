@@ -13,8 +13,6 @@
     - Back
   - type: Item
     size: Ginormous
-  - type: StaticPrice
-    price: 500
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -59,8 +57,6 @@
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: GunRequiresWield
-  - type: StaticPrice
-    price: 10000
 
 - type: entity
   parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseMajorContraband ]
@@ -428,23 +424,3 @@
           unshaded:
             True: { visible: true }
             False: { visible: false }
-
-- type: entity
-  name: meteor launcher
-  parent: WeaponLauncherMultipleRocket
-  id: WeaponLauncherAdmemeMeteorLarge
-  suffix: Admeme
-  description: It fires large meteors.
-  components:
-  - type: BallisticAmmoProvider
-    proto: MeteorMedium
-
-- type: entity
-  name: immovable rod launcher
-  parent: WeaponLauncherAdmemeMeteorLarge
-  id: WeaponLauncherAdmemeImmovableRodSlow
-  suffix: Admeme
-  description: It fires slow immovable rods.
-  components:
-  - type: BallisticAmmoProvider
-    proto: ImmovableRodSlow

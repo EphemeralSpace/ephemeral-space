@@ -5,10 +5,6 @@
   description: It's a shard of some unknown material.
   components:
   - type: Sharp
-# ES START
-#  - type: Execution
-#    doAfterDuration: 4.0
-# ES END
   - type: Sprite
     layers:
       - sprite: Objects/Materials/Shards/shard.rsi
@@ -80,8 +76,6 @@
       types:
         Piercing: 5
   - type: DeleteOnTrigger
-  - type: StaticPrice
-    price: 0
 
 - type: entity
   parent: ShardBase
