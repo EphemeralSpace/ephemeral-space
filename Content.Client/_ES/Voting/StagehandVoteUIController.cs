@@ -11,7 +11,7 @@ using Robust.Client.UserInterface.Controllers;
 namespace Content.Client._ES.Voting;
 
 [UsedImplicitly]
-public sealed class StagehandVoteUIController : UIController, IOnStateEntered<GameplayState>
+public sealed class StagehandVoteUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [UISystemDependency] private ESVoteSystem _vote = default!;
@@ -19,6 +19,10 @@ public sealed class StagehandVoteUIController : UIController, IOnStateEntered<Ga
     public void OnStateEntered(GameplayState state)
     {
         FindAndUpdateWidget();
+    }
+
+    public void OnStateExited(GameplayState state)
+    {
     }
 
     private void OnVoteChanged(Entity<ESVoteComponent> entity, ESVoteOption option, bool selected)
