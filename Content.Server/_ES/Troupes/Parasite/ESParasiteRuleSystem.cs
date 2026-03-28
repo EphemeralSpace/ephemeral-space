@@ -2,6 +2,7 @@ using Content.Server._ES.Masks;
 using Content.Server._ES.Objectives;
 using Content.Server._ES.Troupes.Parasite.Components;
 using Content.Server.Chat.Managers;
+using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
@@ -26,6 +27,7 @@ public sealed class ESParasiteRuleSystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly ESEntityTimerSystem _entityTimer = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly ESMaskSystem _mask = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly ESObjectiveSystem _objective = default!;
@@ -50,6 +52,9 @@ public sealed class ESParasiteRuleSystem : EntitySystem
         while (query.MoveNext(out var uid, out var comp))
         {
             if (!_objective.HasObjective(uid, args.Objective))
+                continue;
+
+            if (_gameTicker.IsGameRuleActive(uid))
                 continue;
 
             if (comp.ObjectivesCompleted)
