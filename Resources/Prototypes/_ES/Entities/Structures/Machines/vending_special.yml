@@ -60,16 +60,13 @@
     inventory:
       all:
       - tableId: ESMaintLootCommon # always garunteed a few basic items
-        rolls: 2
       - tableId: ESMaintLootCommon # chance for more basic items, since there are a lot of useful ones. but we don't want them to be too common since it will clog up the vendor
-        amount: 2
         prob: 0.2
         rolls: 6
       - tableId: ESMaintLootUncommon # more interesting so you get these the most plentifully
         prob: 0.5
         rolls: 12
       - tableId: ESMaintLootRare # most interesting, so you're garunteed to get at least one
-        amount: 1
       - tableId: ESMaintLootRare # maybe you will get another rare
         prob: 0.2
 
