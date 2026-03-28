@@ -24,13 +24,13 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [UISystemDependency] private readonly JobSystem _job = default!;
-    [UISystemDependency] private readonly ESMaskSystem _mask = default!;
-    [UISystemDependency] private readonly ESObjectiveSystem _objective = default!;
+    [UISystemDependency] private readonly ESMaskSystem? _mask = default!;
+    [UISystemDependency] private readonly ESObjectiveSystem? _objective = default!;
 
     public void OnStateEntered(GameplayState state)
     {
-        _mask.OnMaskChanged += OnMaskChanged;
-        _objective.OnObjectivesChanged += OnObjectivesChanged;
+        _mask?.OnMaskChanged += OnMaskChanged;
+        _objective?.OnObjectivesChanged += OnObjectivesChanged;
 
         if (UIManager.GetActiveUIWidgetOrNull<ESStagehandObserveControl>() is not { } observe)
             return;
@@ -40,6 +40,8 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
 
     public void OnStateExited(GameplayState state)
     {
+        _mask?.OnMaskChanged += OnMaskChanged;
+        _objective?.OnObjectivesChanged += OnObjectivesChanged;
     }
 
     private void OnMaskChanged(EntityUid mind, ProtoId<ESMaskPrototype>? mask)
@@ -83,7 +85,7 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
         }
 
         var orderedMinds = minds
-            .OrderBy(m => _mask.GetTroupeOrNull((m, m.Comp1)))
+            .OrderBy(m => _mask?.GetTroupeOrNull((m, m.Comp1)))
             .ThenBy(m => m.Comp2.Name);
 
         var grp = new ButtonGroup();
@@ -137,8 +139,8 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
         observe.CurrentEntity = uid;
         observe.WarpButton.Disabled = mind.CurrentEntity == null; // See ESStagehandSystem.cs
 
-        var mask = _mask.GetMaskOrNull((uid, mind));
-        var troupe = _mask.GetTroupeOrNull((uid, mind));
+        var mask = _mask?.GetMaskOrNull((uid, mind));
+        var troupe = _mask?.GetTroupeOrNull((uid, mind));
 
         observe.NameLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-name-big", ("text", character.Name)));
 
@@ -158,6 +160,9 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
                 Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(troupePrototype.Name))),
                 troupePrototype.Color);
         }
+
+        if (_objective == null)
+            return;
 
         observe.ObjectiveContainer.Children.Clear();
         foreach (var objective in _objective.GetObjectives(uid))
