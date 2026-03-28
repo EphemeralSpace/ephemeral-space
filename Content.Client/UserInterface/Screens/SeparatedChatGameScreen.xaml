@@ -17,20 +17,17 @@
     <HFillStack Name="FullScreenContainer">
         <PanelContainer Name="LeftPanel" HorizontalExpand="True">
             <PanelContainer.PanelOverride>
-                <graphics:StyleBoxFlat BackgroundColor="#2B2C3B" />
+                <graphics:StyleBoxFlat BackgroundColor="#000000" />
             </PanelContainer.PanelOverride>
-            <VFillStack SeparationOverride="10" Margin="10">
-                <RichTextLabel Text="hi"/>
-            </VFillStack>
         </PanelContainer>
         <VFillStack HorizontalExpand="True">
             <PanelContainer VerticalExpand="True">
                 <PanelContainer.PanelOverride>
-                    <graphics:StyleBoxFlat BackgroundColor="#2B2C3B" />
+                    <graphics:StyleBoxFlat BackgroundColor="#000000" />
                 </PanelContainer.PanelOverride>
             </PanelContainer>
             <LayoutContainer Name="ViewportContainer" VerticalExpand="True">
-                <controls:MainViewport Name="MainViewport" />
+                <controls:MainViewport Name="MainViewport" Margin="0 0 100 0"/>
                 <widgets:GhostGui Name="Ghost" Access="Protected" />
                 <inventory:InventoryGui Name="Inventory" Access="Protected" />
                 <hotbar:HotbarGui Name="Hotbar" Access="Protected" />
@@ -42,7 +39,7 @@
             </LayoutContainer>
             <PanelContainer VerticalExpand="True">
                 <PanelContainer.PanelOverride>
-                    <graphics:StyleBoxFlat BackgroundColor="#2B2C3B" />
+                    <graphics:StyleBoxFlat BackgroundColor="#000000" />
                 </PanelContainer.PanelOverride>
             </PanelContainer>
         </VFillStack>
