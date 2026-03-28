@@ -1,6 +1,6 @@
 # Coroner
 - type: entity
-  parent: LockerBaseSecure
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   id: ESLockerCoroner
   name: coroner's locker
   components:
@@ -10,14 +10,12 @@
     stateBaseClosed: generic
     stateDoorOpen: generic_open
     stateDoorClosed: generic_door
-  - type: AccessReader
-    requireKey: true
   - type: ESPersonalLocker
     job: ESCoroner
 
 # Paramed
 - type: entity
-  parent: LockerBaseSecure
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   id: ESLockerParamedic
   name: paramedic's locker
   components:
@@ -27,7 +25,5 @@
     stateBaseClosed: generic
     stateDoorOpen: generic_open
     stateDoorClosed: generic_door
-  - type: AccessReader
-    requireKey: true
   - type: ESPersonalLocker
     job: ESParamedic

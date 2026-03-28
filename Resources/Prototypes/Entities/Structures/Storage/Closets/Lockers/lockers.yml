@@ -1,6 +1,6 @@
 - type: entity
   id: LockerBooze
-  parent: LockerBaseCabinet
+  parent: [ LockerBaseSecurePersonal, LockerBaseCabinet ]
   name: booze storage
   description: This is where the bartender keeps the booze.
   components:
@@ -29,30 +29,25 @@
 # Command
 - type: entity
   id: LockerCaptain
-  parent: LockerBaseSecure
+  parent: [ LockerBaseSecurePersonal, LockerBaseSecure ]
   name: captain's locker
   components:
   - type: EntityStorageVisuals
     stateBaseClosed: cap
     stateDoorOpen: cap_open
     stateDoorClosed: cap_door
-  - type: AccessReader
-    requireKey: true
   - type: ESPersonalLocker
     job: ESCaptain
 
 - type: entity
   id: LockerHeadOfPersonnel
-  parent: LockerBaseSecure
+  parent: [ LockerBaseSecurePersonal, LockerBaseSecure ]
   name: head of personnel's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: hop
     stateDoorOpen: hop_open
     stateDoorClosed: hop_door
-  - type: AccessReader
-    requireKey: true
   - type: ESPersonalLocker
     job: ESHeadOfPersonnel
 
@@ -87,32 +82,26 @@
 # Atmos tech
 - type: entity
   id: LockerAtmospherics
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: atmospheric technician's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: atmos
     stateDoorOpen: atmos_open
     stateDoorClosed: atmos_door
-  - type: AccessReader
-    requireKey: true
   - type: ESPersonalLocker
     job: ESAtmosphericTechnician
 
 # Engineer
 - type: entity
   id: LockerEngineer
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: engineer's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: eng_secure
     stateDoorOpen: eng_secure_open
     stateDoorClosed: eng_secure_door
-  - type: AccessReader
-    requireKey: true
   - type: ESPersonalLocker
     job: ESStationEngineer
 
@@ -151,16 +140,13 @@
 # Botanist
 - type: entity
   id: LockerBotanist
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: botanist's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: hydro
     stateDoorOpen: hydro_open
     stateDoorClosed: hydro_door
-  - type: AccessReader
-    requireKey: true
   - type: ESPersonalLocker
     job: ESBotanist
 
@@ -182,16 +168,13 @@
 # Medical doctor
 - type: entity
   id: LockerMedical
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: medical doctor's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: med_secure
     stateDoorOpen: med_secure_open
     stateDoorClosed: med_secure_door
-  - type: AccessReader
-    requireKey: true
   - type: ESPersonalLocker
     job: ESPhysician
 
@@ -212,32 +195,26 @@
 # Science
 - type: entity
   id: LockerScientist
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: scientist's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: science
     stateDoorOpen: science_open
     stateDoorClosed: science_door
-  - type: AccessReader
-    requireKey: true
   - type: ESPersonalLocker
     job: ESScientist
 
 # Security Officer
 - type: entity
   id: LockerSecurity
-  parent: LockerBaseSecure
+  parent: [ LockerBaseSecurePersonal, LockerBaseSecure ]
   name: security officer's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: sec
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
-  - type: AccessReader
-    requireKey: true
   - type: ESPersonalLocker
     job: ESSecurityOfficer
 
@@ -380,12 +357,10 @@
 # Detective
 - type: entity
   id: LockerDetective
-  parent: LockerBaseCabinet
+  parent: [ LockerBaseSecurePersonal, LockerBaseCabinet ]
   name: detective's cabinet
   description: Usually cold and empty... like your heart.
   components:
-  - type: AccessReader
-    requireKey: true
   - type: ESPersonalLocker
     job: ESDetective
 
