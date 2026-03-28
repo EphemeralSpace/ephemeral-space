@@ -12,7 +12,7 @@ public sealed partial class ESMaskConversionProjectileComponent : Component
     public ProtoId<ESTroupePrototype> IgnoreTroupe = "ESParasite";
 
     [DataField]
-    public ProtoId<ESMaskPrototype> Mask = "ESHost";
+    public ProtoId<ESMaskPrototype> Mask = "ESBurstworm";
 
     [DataField]
     public TimeSpan ConvertDelay = TimeSpan.FromSeconds(5);

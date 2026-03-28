@@ -18,6 +18,7 @@
       types:
         Piercing: 5
   - type: EmbeddableProjectile
+    removalTime: null
     sound:
       path: /Audio/Effects/bite.ogg
       params:

@@ -90,11 +90,14 @@ es-mask-demolitionist-desc = As a Demolitionist, you have been trained by the Sy
 # Paraiste masks
 es-mask-troupe-parasite-examine = They're a fellow host of the [bold][color=tan]parasitic infection[/color][/bold]. Conspire with them to spread the infection.
 
-es-mask-psychid-name = Psychid
-es-mask-psychid-desc = As a psychid, be killed in order to swap bodies and create a new psychid, spreading the parasitic infection even more.
+es-mask-burstworm-name = Burstworm
+es-mask-burstworm-desc = As a burstworm, explode in a burst of devilish parasitic worms when you die, infecting anyone they bite.
 
 es-mask-host-name = Host
 es-mask-host-desc = As a host, partake in the festivites and swarm with your fellow parasites!
+
+es-mask-psychid-name = Psychid
+es-mask-psychid-desc = As a psychid, be killed in order to swap bodies and create a new psychid, spreading the parasitic infection even more.
 
 # Oddballs
 es-mask-sleeper-agent-name = Sleeper Agent

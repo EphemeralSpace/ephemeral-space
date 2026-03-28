@@ -1,11 +1,11 @@
 - type: esMask
   parent: ESBaseParasite
-  id: ESPsychid
-  name: es-mask-psychid-name
-  description: es-mask-psychid-desc
-  color: lightsteelblue
-  mindComponents:
-  - type: ESPsychid
+  id: ESBurstworm
+  name: es-mask-burstworm-name
+  description: es-mask-burstworm-desc
+  color: yellowgreen
+  #mindComponents:
+  #- type: ESPsychid
 
 - type: esMask
   parent: ESBaseParasite
@@ -16,3 +16,12 @@
   weight: 0 # do not assign in masquerades.
   gear: ESParasiteSwarmGear
   objectives: !type:NoneSelector
+
+- type: esMask
+  parent: ESBaseParasite
+  id: ESPsychid
+  name: es-mask-psychid-name
+  description: es-mask-psychid-desc
+  color: lightsteelblue
+  mindComponents:
+  - type: ESPsychid
