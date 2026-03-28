@@ -8,7 +8,7 @@
   id: SalvagedGoodbyes
   values:
     prefix: thankyou-salvaged-
-    count: 3
+    count: 4
 
 - type: localizedDataset
   id: SusWaterGoodbyes

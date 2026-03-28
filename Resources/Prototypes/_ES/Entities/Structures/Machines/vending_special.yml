@@ -45,7 +45,7 @@
   parent: ESBaseVendingMachineDispenseOnHit
   id: ESVendingMachineSalvagedSams
   name: Salvaged Sam's Maintenance Surplus
-  description: A vendor containing surplus maintenance supplies. Every need for every kind of hard-working person. That's what their tagline is, after all.
+  description: A vendor containing surplus maintenance supplies. Known to be involved in multiple controversies.
   components:
   - type: Sprite
     sprite: _ES/Structures/Vendors/salvagedsams.rsi
@@ -71,7 +71,7 @@
       - tableId: ESMaintLootRare # most interesting, so you're garunteed to get at least one
         amount: 1
       - tableId: ESMaintLootRare # maybe you will get another rare
-        amount: 0.2
+        prob: 0.2
 
 - type: entity
   parent: ESBaseVendingMachineDispenseOnHit
