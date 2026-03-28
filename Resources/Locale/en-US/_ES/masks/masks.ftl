@@ -93,6 +93,9 @@ es-mask-troupe-parasite-examine = They're a fellow host of the [bold][color=tan]
 es-mask-burstworm-name = Burstworm
 es-mask-burstworm-desc = As a burstworm, explode in a burst of devilish parasitic worms when you die, infecting anyone they bite.
 
+es-mask-hemophage-name = Hemophage
+es-mask-hemophage-desc = As a hemophage, spread your infected blood all across the station. When you are killed, anyone in contact with it will be swarmed with parasites.
+
 es-mask-host-name = Host
 es-mask-host-desc = As a host, partake in the festivites and swarm with your fellow parasites!
 

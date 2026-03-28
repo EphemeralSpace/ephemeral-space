@@ -9,6 +9,13 @@
 
 - type: esMask
   parent: ESBaseParasite
+  id: ESHemophage
+  name: es-mask-hemophage-name
+  description: es-mask-hemophage-desc
+  color: brown
+
+- type: esMask
+  parent: ESBaseParasite
   id: ESHost
   name: es-mask-host-name
   description: es-mask-host-desc
