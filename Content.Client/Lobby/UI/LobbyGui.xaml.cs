@@ -19,7 +19,7 @@ namespace Content.Client.Lobby.UI
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
-            SetAnchorPreset(FullScreenContainer, LayoutPreset.Wide);
+            SetAnchorPreset(ScreenContainer, LayoutPreset.Wide);
             // ES START
             SetAnchorPreset(MainViewport, LayoutPreset.Wide);
             SetAnchorPreset(ViewportContainer, LayoutPreset.Wide);
@@ -57,6 +57,12 @@ namespace Content.Client.Lobby.UI
 
                     break;
             }
+        }
+
+        private void TogglePanel(bool value)
+        {
+            //RightSide.Visible = value;
+            //ExpandPanel.Visible = !value;
         }
 
         public enum LobbyGuiState : byte

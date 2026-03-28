@@ -1,4 +1,3 @@
-using Content.Client._ES.Screens;
 using Content.Client.Lobby.UI;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Gameplay;
@@ -28,7 +27,7 @@ public sealed class VoteUIController : UIController
             case DefaultGameScreen game:
                 _votes.SetPopupContainer(game.VoteMenu);
                 break;
-            case PerformerGameScreen separated:
+            case SeparatedChatGameScreen separated:
                 _votes.SetPopupContainer(separated.VoteMenu);
                 break;
             // ES START

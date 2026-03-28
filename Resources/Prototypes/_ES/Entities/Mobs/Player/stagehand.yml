@@ -68,6 +68,18 @@
   - type: ESMindVisuals
   - type: ESBlockInteraction
   - type: ShowElectrocutionHUD
+  - type: UserInterface
+    interfaces:
+      enum.ESVoterUiKey.Key:
+        type: ESVoterBui
+      enum.ESStagehandUiKey.Observe:
+        type: ESStagehandObserveBui
+  - type: IntrinsicUI
+    uis:
+      enum.ESStagehandUiKey.Observe:
+        toggleAction: ESActionStagehandObserve
+      enum.ESVoterUiKey.Key:
+        toggleAction: ESActionStagehandVote
   - type: ESVoter
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
@@ -77,6 +89,38 @@
     lightPrototype: ESMobObserverInherentLight
     enabled: false
   - type: ESBypassInteractionRangeChecks
+
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionStagehandVote
+  name: Vote
+  description: Control the flow of the round alongside other stagehands.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/stagehands.rsi
+      state: ballot
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent
+      key: enum.ESVoterUiKey.Key
+
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionStagehandObserve
+  name: Observe
+  description: Learn the behind-the-scenes about the actors on stage.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/stagehands.rsi
+      state: observe
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent
+      key: enum.ESStagehandUiKey.Observe
 
 - type: entity
   parent: BaseMentalAction

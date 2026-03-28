@@ -12,6 +12,12 @@ namespace Content.Shared._ES.Voting.Components;
 public sealed partial class ESVoterComponent : Component;
 
 [Serializable, NetSerializable]
+public enum ESVoterUiKey : byte
+{
+    Key,
+}
+
+[Serializable, NetSerializable]
 public sealed class ESSetVoteMessage(NetEntity vote, ESVoteOption option, bool selected) : EntityEventArgs
 {
     public NetEntity Vote = vote;

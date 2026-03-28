@@ -1,0 +1,38 @@
+<controls:ESStagehandObserveWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._ES.Stagehand.Ui"
+    Title="{Loc 'es-observe-menu-title'}"
+    SetSize="850 500"
+    MinSize="650 400">
+    <VStack Margin="15 10 15 15">
+        <HFillStack HorizontalExpand="True">
+            <FillPanel StyleClasses="PanelDark">
+                <VScroll VerticalExpand="True" ReserveScrollbarSpace="True">
+                    <VStack Name="MindsContainer" Margin="5"/>
+                </VScroll>
+            </FillPanel>
+            <HStack Name="PlayerInfoContainer" Visible="False">
+                <Spacer HSpace="15"/>
+                <VStack SetWidth="300">
+                    <RichTextLabel Name="NameLabel"/>
+                    <HStack>
+                        <VFillStack>
+                            <RichTextLabel Name="JobLabel"/>
+                            <RichTextLabel Name="MaskLabel"/>
+                            <RichTextLabel Name="TroupeLabel"/>
+                        </VFillStack>
+                        <Button Name="WarpButton" Text="{Loc 'es-observe-menu-button-warp'}" HorizontalAlignment="Left" VerticalAlignment="Center" SetSize="100 40"/>
+                    </HStack>
+                    <Spacer VSpace="10"/>
+                    <RichTextLabel Text="{Loc 'es-observe-menu-label-objectives'}"/>
+                    <Spacer VSpace="5"/>
+                    <FillPanel StyleClasses="PanelDark">
+                        <VScroll VerticalExpand="True">
+                            <VStack Name="ObjectiveContainer" Margin="5 0"/>
+                        </VScroll>
+                    </FillPanel>
+                </VStack>
+            </HStack>
+        </HFillStack>
+    </VStack>
+</controls:ESStagehandObserveWindow>

@@ -1,7 +1,6 @@
 using Content.Shared._ES.Voting;
 using Content.Shared._ES.Voting.Components;
 using Robust.Client.GameObjects;
-using Robust.Client.UserInterface;
 using Robust.Shared.Timing;
 
 namespace Content.Client._ES.Voting;
@@ -10,7 +9,7 @@ namespace Content.Client._ES.Voting;
 public sealed class ESVoteSystem : ESSharedVoteSystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
+    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -26,12 +25,22 @@ public sealed class ESVoteSystem : ESSharedVoteSystem
         if (!_timing.ApplyingState)
             return;
 
-        _ui.GetUIController<StagehandVoteUIController>().FindAndUpdateWidget();
+        var query = EntityQueryEnumerator<ESVoterComponent, UserInterfaceComponent>();
+        while (query.MoveNext(out var uid, out _, out var ui))
+        {
+            if (_userInterface.TryGetOpenUi((uid, ui), ESVoterUiKey.Key, out var bui))
+                bui.Update();
+        }
     }
 
     private void OnRemove(Entity<ESVoteComponent> ent, ref ComponentRemove args)
     {
-        _ui.GetUIController<StagehandVoteUIController>().FindAndUpdateWidget();
+        var query = EntityQueryEnumerator<ESVoterComponent, UserInterfaceComponent>();
+        while (query.MoveNext(out var uid, out _, out var ui))
+        {
+            if (_userInterface.TryGetOpenUi((uid, ui), ESVoterUiKey.Key, out var bui))
+                bui.Update();
+        }
     }
 
     protected override void OnSetVote(ESSetVoteMessage args, EntitySessionEventArgs ev)
@@ -44,6 +53,7 @@ public sealed class ESVoteSystem : ESSharedVoteSystem
         if (ev.SenderSession.AttachedEntity is not { } attachedEntity)
             return;
 
-        _ui.GetUIController<StagehandVoteUIController>().FindAndUpdateWidget();
+        if (_userInterface.TryGetOpenUi(attachedEntity, ESVoterUiKey.Key, out var bui))
+            bui.Update();
     }
 }

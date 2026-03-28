@@ -7,6 +7,12 @@ namespace Content.Shared._ES.Stagehand.Components;
 public sealed partial class ESStagehandComponent : Component;
 
 [Serializable, NetSerializable]
+public enum ESStagehandUiKey : byte
+{
+    Observe,
+}
+
+[Serializable, NetSerializable]
 public sealed class ESStagehandWarpMessage : BoundUserInterfaceMessage
 {
     public NetEntity Target;
