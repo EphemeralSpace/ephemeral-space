@@ -128,7 +128,7 @@ namespace Content.Client.Viewport
 
         protected override Vector2 MeasureOverride(Vector2 availableSize)
         {
-            return _viewport is null ? Vector2.Zero : GetDrawBox().Size;
+            return _viewport is null ? Vector2.Zero : (GetDrawBox().Size / UIScale);
         }
 
         protected override void KeyBindDown(GUIBoundKeyEventArgs args)
@@ -212,13 +212,13 @@ namespace Content.Client.Viewport
                 }
 
                 var size = vpSize * ratio;
-                var pos = new Vector2(0, (ourSize.Y - size.Y) / 2);
-                return (UIBox2i) UIBox2.FromDimensions(pos, size);
+                //var pos = new Vector2(0, (ourSize.Y - size.Y) / 2);
+                return (UIBox2i) UIBox2.FromDimensions(Vector2.Zero, size);
             }
             else
             {
-                var pos = new Vector2(0, (ourSize.Y - FixedStretchSize.Value.Y) / 2);
-                return (UIBox2i) UIBox2.FromDimensions(pos, FixedStretchSize.Value);
+                //var pos = new Vector2(0, (ourSize.Y - FixedStretchSize.Value.Y) / 2);
+                return (UIBox2i) UIBox2.FromDimensions(Vector2.Zero, FixedStretchSize.Value);
             }
         }
 

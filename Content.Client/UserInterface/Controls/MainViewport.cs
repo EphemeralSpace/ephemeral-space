@@ -52,7 +52,7 @@ namespace Content.Client.UserInterface.Controls
 
         public void UpdateCfg()
         {
-            var stretch = _cfg.GetCVar(CCVars.ViewportStretch);
+            var stretch = false; //_cfg.GetCVar(CCVars.ViewportStretch);
             var renderScaleUp = _cfg.GetCVar(CCVars.ViewportScaleRender);
             var fixedFactor = _cfg.GetCVar(CCVars.ViewportFixedScaleFactor);
             var verticalFit = _cfg.GetCVar(CCVars.ViewportVerticalFit);
