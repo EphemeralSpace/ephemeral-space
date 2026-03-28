@@ -40,8 +40,6 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
 
     public void OnStateExited(GameplayState state)
     {
-        _mask.OnMaskChanged -= OnMaskChanged;
-        _objective.OnObjectivesChanged -= OnObjectivesChanged;
     }
 
     private void OnMaskChanged(EntityUid mind, ProtoId<ESMaskPrototype>? mask)
