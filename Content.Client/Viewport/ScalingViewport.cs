@@ -14,6 +14,8 @@ using Robust.Shared.Utility;
 using Robust.Shared.ViewVariables;
 using SixLabors.ImageSharp.PixelFormats;
 
+// ES MODIFIED: support for changing horizontal alignment of the actual rendered viewport, instead of it always being centered
+
 namespace Content.Client.Viewport
 {
     /// <summary>
@@ -33,6 +35,7 @@ namespace Content.Client.Viewport
         private ScalingViewportStretchMode _stretchMode = ScalingViewportStretchMode.Bilinear;
         private ScalingViewportRenderScaleMode _renderScaleMode = ScalingViewportRenderScaleMode.Fixed;
         private ScalingViewportIgnoreDimension _ignoreDimension = ScalingViewportIgnoreDimension.None;
+        private ScalingViewportHorizontalAlignment _viewportHorizontalAlignment = ScalingViewportHorizontalAlignment.Center;
         private int _fixedRenderScale = 1;
 
         private readonly List<CopyPixelsDelegate<Rgba32>> _queuedScreenshots = new();
@@ -114,6 +117,16 @@ namespace Content.Client.Viewport
             set
             {
                 _ignoreDimension = value;
+                InvalidateViewport();
+            }
+        }
+
+        public ScalingViewportHorizontalAlignment ViewportHorizontalAlignment
+        {
+            get => _viewportHorizontalAlignment;
+            set
+            {
+                _viewportHorizontalAlignment = value;
                 InvalidateViewport();
             }
         }
@@ -205,15 +218,27 @@ namespace Content.Client.Viewport
                 }
 
                 var size = vpSize * ratio;
+
                 // Size
-                var pos = (ourSize - size) / 2;
+                var pos = _viewportHorizontalAlignment switch
+                {
+                    ScalingViewportHorizontalAlignment.Center => (ourSize - size) / 2,
+                    ScalingViewportHorizontalAlignment.Left   => new Vector2(0, (ourSize.Y - size.Y) / 2),
+                    _  => new Vector2(ourSize.X - size.X, (ourSize.Y - size.Y) / 2),
+                };
 
                 return (UIBox2i) UIBox2.FromDimensions(pos, size);
             }
             else
             {
                 // Center only, no scaling.
-                var pos = (ourSize - FixedStretchSize.Value) / 2;
+                var pos = _viewportHorizontalAlignment switch
+                {
+                    ScalingViewportHorizontalAlignment.Center => (ourSize - FixedStretchSize.Value) / 2,
+                    ScalingViewportHorizontalAlignment.Left   => new Vector2(0, (ourSize.Y - FixedStretchSize.Value.Y) / 2),
+                    _  => new Vector2(ourSize.X - FixedStretchSize.Value.X, (ourSize.Y - FixedStretchSize.Value.Y) / 2),
+                };
+
                 return (UIBox2i) UIBox2.FromDimensions(pos, FixedStretchSize.Value);
             }
         }
@@ -401,5 +426,23 @@ namespace Content.Client.Viewport
         ///     The viewport will ignore the vertical dimension, and will exclusively consider the horizontal dimension for scaling.
         /// </summary>
         Vertical
+    }
+
+    public enum ScalingViewportHorizontalAlignment
+    {
+        /// <summary>
+        ///     Default. This viewport will render the actual contents centered in the space of this control.
+        /// </summary>
+        Center = 0,
+
+        /// <summary>
+        ///     This viewport will render the actual contents anchored to the left of the space this control takes up.
+        /// </summary>
+        Left,
+
+        /// <summary>
+        ///     This viewport will render the actual contents anchored to the right of the space this control takes up.
+        /// </summary>
+        Right
     }
 }

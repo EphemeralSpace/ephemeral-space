@@ -5,6 +5,8 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 
+// ES MODIFIED : right-aligned main viewport instead of centered
+
 namespace Content.Client.UserInterface.Controls
 {
     /// <summary>
@@ -26,6 +28,7 @@ namespace Content.Client.UserInterface.Controls
             {
                 AlwaysRender = true,
                 RenderScaleMode = ScalingViewportRenderScaleMode.CeilInt,
+                ViewportHorizontalAlignment = ScalingViewportHorizontalAlignment.Right, // es change
                 MouseFilter = MouseFilterMode.Stop
             };
 
