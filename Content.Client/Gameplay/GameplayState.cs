@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._ES.Screens;
 using Content.Client.Changelog;
 using Content.Client.Hands;
 using Content.Client.UserInterface.Controls;
@@ -22,14 +23,13 @@ namespace Content.Client.Gameplay
         [Dependency] private readonly IEyeManager _eyeManager = default!;
         [Dependency] private readonly IOverlayManager _overlayManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
         [Dependency] private readonly ChangelogManager _changelog = default!;
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
         private FpsCounter _fpsCounter = default!;
         private Label _version = default!;
 
-        public MainViewport Viewport => _uiManager.ActiveScreen!.GetWidget<MainViewport>()!;
+        public MainViewport Viewport => UserInterfaceManager.ActiveScreen!.GetWidget<MainViewport>()!;
 
         private readonly GameplayStateLoadController _loadController;
 
@@ -37,7 +37,7 @@ namespace Content.Client.Gameplay
         {
             IoCManager.InjectDependencies(this);
 
-            _loadController = _uiManager.GetUIController<GameplayStateLoadController>();
+            _loadController = UserInterfaceManager.GetUIController<GameplayStateLoadController>();
         }
 
         protected override void Startup()
@@ -84,7 +84,7 @@ namespace Content.Client.Gameplay
             // Clear viewport to some fallback, whatever.
             _eyeManager.MainViewport = UserInterfaceManager.MainViewport;
             _fpsCounter.Dispose();
-            _uiManager.ClearWindows();
+            UserInterfaceManager.ClearWindows();
             _configurationManager.UnsubValueChanged(CCVars.UILayout, ReloadMainScreenValueChange);
             UnloadMainScreen();
         }
@@ -96,7 +96,7 @@ namespace Content.Client.Gameplay
 
         public void ReloadMainScreen()
         {
-            if (_uiManager.ActiveScreen?.GetWidget<MainViewport>() == null)
+            if (UserInterfaceManager.ActiveScreen?.GetWidget<MainViewport>() == null)
             {
                 return;
             }
@@ -108,33 +108,12 @@ namespace Content.Client.Gameplay
         private void UnloadMainScreen()
         {
             _loadController.UnloadScreen();
-            _uiManager.UnloadScreen();
+            UserInterfaceManager.UnloadScreen();
         }
 
         private void LoadMainScreen()
         {
-            var screenTypeString = _configurationManager.GetCVar(CCVars.UILayout);
-            if (!Enum.TryParse(screenTypeString, out ScreenType screenType))
-            {
-                screenType = default;
-            }
-
-            switch (screenType)
-            {
-                // ES START
-                // we force separated game chat in either case
-                // it's better to do it here (rather than changing the cvar or something)
-                // so we don't accidentally save this to clients configs and overwrite their value
-                // on other servers.
-                case ScreenType.Default:
-                    _uiManager.LoadScreen<SeparatedChatGameScreen>();
-                    break;
-                case ScreenType.Separated:
-                    _uiManager.LoadScreen<SeparatedChatGameScreen>();
-                    break;
-                // ES END
-            }
-
+            UserInterfaceManager.LoadScreen<PerformerGameScreen>();
             _loadController.LoadScreen();
         }
 
@@ -146,4 +125,10 @@ namespace Content.Client.Gameplay
                 base.OnKeyBindStateChanged(args);
         }
     }
+}
+
+public enum GameplayStateScreen
+{
+    PerformerScreen,
+
 }
