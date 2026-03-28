@@ -6,14 +6,18 @@ using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.Viewport;
+using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.CCVar;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
+using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
+
+// ES MODIFIED: edited to support switching screens
 
 namespace Content.Client.Gameplay
 {
@@ -25,11 +29,15 @@ namespace Content.Client.Gameplay
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ChangelogManager _changelog = default!;
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+        [Dependency] private readonly IPlayerManager _player = default!;
+        [Dependency] private readonly IEntityManager _ent = default!;
 
         private FpsCounter _fpsCounter = default!;
         private Label _version = default!;
 
         public MainViewport Viewport => UserInterfaceManager.ActiveScreen!.GetWidget<MainViewport>()!;
+
+        private GameplayStateScreenType _screenType = GameplayStateScreenType.Performer;
 
         private readonly GameplayStateLoadController _loadController;
 
@@ -43,6 +51,9 @@ namespace Content.Client.Gameplay
         protected override void Startup()
         {
             base.Startup();
+
+            if (_player.LocalEntity is { } entity && _ent.HasComponent<ESStagehandComponent>(entity))
+                _screenType = GameplayStateScreenType.Stagehand;
 
             LoadMainScreen();
             _configurationManager.OnValueChanged(CCVars.UILayout, ReloadMainScreenValueChange);
@@ -105,6 +116,12 @@ namespace Content.Client.Gameplay
             LoadMainScreen();
         }
 
+        public void SetScreenType(GameplayStateScreenType type)
+        {
+            _screenType = type;
+            ReloadMainScreen();
+        }
+
         private void UnloadMainScreen()
         {
             _loadController.UnloadScreen();
@@ -113,7 +130,16 @@ namespace Content.Client.Gameplay
 
         private void LoadMainScreen()
         {
-            UserInterfaceManager.LoadScreen<PerformerGameScreen>();
+            switch (_screenType)
+            {
+                case GameplayStateScreenType.Performer:
+                    UserInterfaceManager.LoadScreen<PerformerGameScreen>();
+                    break;
+                case GameplayStateScreenType.Stagehand:
+                    UserInterfaceManager.LoadScreen<StagehandGameScreen>();
+                    break;
+            }
+
             _loadController.LoadScreen();
         }
 
@@ -127,8 +153,18 @@ namespace Content.Client.Gameplay
     }
 }
 
-public enum GameplayStateScreen
+/// <summary>
+///     Defines which screen this state should load
+/// </summary>
+public enum GameplayStateScreenType
 {
-    PerformerScreen,
+    /// <summary>
+    ///     Screen used for regular players
+    /// </summary>
+    Performer,
 
+    /// <summary>
+    ///     Screen used for stagehands
+    /// </summary>
+    Stagehand
 }

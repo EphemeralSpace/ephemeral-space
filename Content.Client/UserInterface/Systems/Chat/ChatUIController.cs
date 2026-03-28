@@ -307,6 +307,11 @@ public sealed class ChatUIController : UIController
                 chatBox = separatedScreen.ChatBox;
                 chatSizeRaw = _config.GetCVar(CCVars.SeparatedScreenChatSize);
                 SetChatSizing(chatSizeRaw, separatedScreen, setting);
+                break; // todo sto pduouing
+            case StagehandGameScreen separatedScreen:
+                chatBox = separatedScreen.ChatBox;
+                chatSizeRaw = _config.GetCVar(CCVars.SeparatedScreenChatSize);
+                SetChatSizing(chatSizeRaw, separatedScreen, setting);
                 break;
             default:
                 // this could be better?
@@ -360,6 +365,9 @@ public sealed class ChatUIController : UIController
                 _config.SetCVar(CCVars.DefaultScreenChatSize, stringSize);
                 break;
             case PerformerGameScreen _:
+                _config.SetCVar(CCVars.SeparatedScreenChatSize, stringSize);
+                break;
+            case StagehandGameScreen _:
                 _config.SetCVar(CCVars.SeparatedScreenChatSize, stringSize);
                 break;
             default:
