@@ -93,6 +93,9 @@ es-mask-troupe-parasite-examine = They're a fellow host of the [bold][color=tan]
 es-mask-psychid-name = Psychid
 es-mask-psychid-desc = As a psychid, be killed in order to swap bodies and create a new psychid, spreading the parasitic infection even more.
 
+es-mask-host-name = Host
+es-mask-host-desc = As a host, partake in the festivites and swarm with your fellow parasites!
+
 # Oddballs
 es-mask-sleeper-agent-name = Sleeper Agent
 es-mask-sleeper-agent-desc = As a covert operative, you're a member of crew and win with them, unless the entire traitors team dies, upon which you switch sides and gain a new mask.

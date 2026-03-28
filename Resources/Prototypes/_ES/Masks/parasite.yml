@@ -6,3 +6,13 @@
   color: lightsteelblue
   mindComponents:
   - type: ESPsychid
+
+- type: esMask
+  parent: ESBaseParasite
+  id: ESHost
+  name: es-mask-host-name
+  description: es-mask-host-desc
+  color: palegoldenrod
+  weight: 0
+  gear: ESParasiteSwarmGear
+  objectives: !type:NoneSelector
