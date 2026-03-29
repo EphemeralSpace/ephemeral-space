@@ -247,8 +247,7 @@ public sealed class ChatUIController : UIController
     {
         SetMainChat(true);
 
-        var viewportContainer = UIManager.ActiveScreen!.FindControl<LayoutContainer>("ViewportContainer");
-        SetSpeechBubbleRoot(viewportContainer);
+        SetSpeechBubbleRoot(UIManager.PopupRoot);
 
         SetChatWindowOpacity(_config.GetCVar(CCVars.ChatWindowOpacity));
     }
