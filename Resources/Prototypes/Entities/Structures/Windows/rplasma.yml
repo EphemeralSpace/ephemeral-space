@@ -51,10 +51,8 @@
   name: directional reinforced plasma window
   components:
   - type: Sprite
-    sprite: Structures/Windows/directional.rsi
     state: plasma_reinforced_window
   - type: Icon
-    sprite: Structures/Windows/directional.rsi
     state: plasma_reinforced_window
   - type: Construction
     graph: WindowDirectional

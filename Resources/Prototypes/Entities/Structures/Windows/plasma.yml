@@ -7,7 +7,7 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/plasma_window.rsi
+    sprite: Structures/Windows/plasma_window.rsi    
   - type: Icon
     sprite: Structures/Windows/plasma_window.rsi
   - type: Damageable

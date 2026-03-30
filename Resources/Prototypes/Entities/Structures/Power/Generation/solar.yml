@@ -98,46 +98,6 @@
     node: solarpanelplasma
 
 - type: entity
-  id: SolarPanelUranium
-  parent: SolarPanelBasePhysSprite
-  name: solar panel uranium
-  description: A few sheets of uranium glass that generate electricity when hit by photons.
-  components:
-  - type: PowerSupplier
-    supplyRampTolerance: 500
-    supplyRampRate: 500
-  - type: SolarPanel
-    maxSupply: 1500
-  - type: Sprite
-    sprite: Structures/Power/Generation/solar_panel.rsi
-    state: solar_panel_uranium
-  - type: Destructible
-    thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:ChangeConstructionNodeBehavior
-        node: solarpaneluranium_broken
-      - !type:DoActsBehavior
-        acts: ["Breakage"]
-  - type: Construction
-    graph: SolarPanel
-    node: solarpaneluranium
-
-- type: entity
   id: SolarPanel
   parent: SolarPanelBasePhysSprite
   name: solar panel
@@ -249,44 +209,6 @@
   - type: Construction
     graph: SolarPanel
     node: solarpanelplasma_broken
-
-- type: entity
-  id: SolarPanelUraniumBroken
-  parent: SolarPanelBasePhysSprite
-  name: uranium solar panel
-  description: A broken uranium solar panel.
-  suffix: Broken
-  components:
-  - type: Sprite
-    state: solar_panel_uranium_broken
-  - type: Destructible
-    thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          ShardGlassUranium:
-            min: 1
-            max: 2
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: Construction
-    graph: SolarPanel
-    node: solarpaneluranium_broken
 
 - type: entity
   id: SolarAssembly

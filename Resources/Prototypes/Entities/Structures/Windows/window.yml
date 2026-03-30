@@ -9,7 +9,6 @@
     sprite: Structures/Windows/window.rsi
   - type: Icon
     sprite: Structures/Windows/window.rsi
-    state: window
   - type: Destructible
     thresholds:
     - trigger:
@@ -46,7 +45,6 @@
   name: tinted window
   components:
   - type: Sprite
-    drawdepth: WallTops
     sprite: Structures/Windows/tinted_window.rsi
   - type: Icon
     sprite: Structures/Windows/tinted_window.rsi
@@ -65,11 +63,8 @@
   name: directional window
   components:
   - type: Sprite
-    drawdepth: Mobs
-    sprite: Structures/Windows/directional.rsi
     state: window
   - type: Icon
-    sprite: Structures/Windows/directional.rsi
     state: window
   - type: Destructible
     thresholds:
@@ -111,10 +106,8 @@
     - Window
   components:
   - type: Sprite
-    sprite: Structures/Windows/directional.rsi
     state: frosted_window
   - type: Icon
-    sprite: Structures/Windows/directional.rsi
     state: frosted_window
 
 # Diagonal
