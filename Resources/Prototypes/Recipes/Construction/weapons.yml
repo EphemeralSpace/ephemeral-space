@@ -111,14 +111,6 @@
   objectType: Item
 
 - type: construction
-  id: ImprovisedArrowUranium
-  graph: ImprovisedArrowUranium
-  startNode: start
-  targetNode: ImprovisedArrowUranium
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
   id: CardArrow
   graph: CardArrow
   startNode: start
