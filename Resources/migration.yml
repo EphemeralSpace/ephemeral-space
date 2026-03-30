@@ -195,7 +195,6 @@ SpawnPointClown: ESSpawnPointClown
 SpawnPointReporter: ESSpawnPointReporter
 SpawnPointBartender: ESSpawnPointBartender
 SpawnPointChef: ESSpawnPointChef
-SpawnPointBotanist: ESSpawnPointBotanist
 SpawnPointJanitor: ESSpawnPointJanitor
 SpawnPointCaptain: ESSpawnPointCaptain
 SpawnPointHeadOfPersonnel: ESSpawnPointHeadOfPersonnel
@@ -335,6 +334,9 @@ FireAxeCabinetFilled: ESFireAxeCabinetFilled
 
 # 2026-3-26
 CrateCargoParcelWrap: null
+
+# 2026-3-30
+ESSpawnPointBotanist:
 
 # ES END
 
