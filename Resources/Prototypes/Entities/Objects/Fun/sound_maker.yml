@@ -107,8 +107,6 @@
     sprite: Objects/Fun/goldbikehorn.rsi
     slots: [Belt]
   - type: Prayable
-  - type: StaticPrice
-    price: 100 # reduced price due to heisentests
   - type: PointLight
     radius: 1.2
     energy: 2.2
@@ -277,8 +275,6 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 25
-  - type: StaticPrice
-    price: 5
 
 - type: entity
   parent: BaseRubberToy

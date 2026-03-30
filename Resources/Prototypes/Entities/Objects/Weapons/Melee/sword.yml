@@ -7,10 +7,6 @@
   abstract: true
   components:
   - type: Sharp
-# ES START
-#  - type: Execution
-#    doAfterDuration: 4.0
-# ES END
   - type: MeleeWeapon
     wideAnimationRotation: -135
   - type: Sprite

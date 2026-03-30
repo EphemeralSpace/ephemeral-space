@@ -116,7 +116,6 @@
   - type: Tag
     tags:
       - WetFloorSign
-      - WhitelistChameleon
 
 
 - type: entity
@@ -176,7 +175,7 @@
   - type: TriggerOnVerb
     text: trigger-on-verb-detonation
   - type: Tag
-    tags: # ignore "WhitelistChameleon" tag
+    tags:
     - WetFloorSign
 
 - type: entity
@@ -188,7 +187,6 @@
   - type: Tag
     tags:
        - Plunger
-       - WhitelistChameleon
   - type: Sprite
     sprite: Objects/Specific/Janitorial/plunger.rsi
     state: plunger
@@ -254,7 +252,6 @@
     tags:
     - GoldenPlunger
     - Plunger
-    - WhitelistChameleon
   - type: Sprite
     sprite: Objects/Specific/Janitorial/golden_plunger.rsi
     state: plunger
@@ -364,8 +361,6 @@
     - Brushing
     useSound:
       path: /Audio/Items/wirebrushing.ogg
-  - type: StaticPrice
-    price: 22
   - type: MeleeWeapon
     wideAnimationRotation: 45
     damage:

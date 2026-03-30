@@ -29,7 +29,6 @@
       visible: false
   - type: Tag
     tags:
-    - Bandana
     - ClothMade
     - Recyclable
   - type: HideLayerClothing
@@ -71,7 +70,6 @@
     sprite: Clothing/Head/Bandanas/botany.rsi
   - type: Tag
     tags:
-    - WhitelistChameleon
     - ClothMade
     - Recyclable
 

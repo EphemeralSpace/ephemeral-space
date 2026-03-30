@@ -1,0 +1,17 @@
+- type: entityTable
+  id: SuspiciousWaterTable
+  table:
+    group:
+    - id: DrinkWaterBottleFullCoconutWater
+    - id: DrinkWaterBottleFullSaline
+    - id: DrinkWaterBottleFullMercury
+    - id: DrinkWaterBottleFullConvermol
+    - id: DrinkWaterBottleFullDesoxyephedrine
+    - id: DrinkWaterBottleFullEphedrine
+    - id: DrinkWaterBottleFullEpinephrine
+    - id: DrinkWaterBottleFullDesoxyephedrine
+    - id: DrinkWaterBottleFullBenadryl
+    - id: DrinkWaterBottleFullTHC
+    - id: DrinkWaterBottleFullLead
+    - id: DrinkWaterBottleFullLeadChloralHydrate
+    - id: DrinkWaterBottleFullRadium

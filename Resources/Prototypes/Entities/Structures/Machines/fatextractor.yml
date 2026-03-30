@@ -106,8 +106,6 @@
   - type: VocalizerRequiresPower
   - type: DatasetVocalizer
     dataset: FatExtractorFacts
-  - type: StaticPrice
-    price: 1000
   - type: ResistLocker
   - type: EntityStorage
     capacity: 1

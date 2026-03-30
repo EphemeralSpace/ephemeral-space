@@ -71,8 +71,6 @@
     name: secret-stash-toilet
   - type: Drain
     autoDrain: false
-  - type: StaticPrice
-    price: 100
   - type: ActivatableUI
     key: enum.DisposalUnitUiKey.Key
     verbOnly: true # Not strictly needed, but we want E to toggle lid
@@ -179,8 +177,6 @@
   components:
   - type: Sprite
     sprite: Structures/Furniture/golden_toilet.rsi
-  - type: StaticPrice
-    price: 1500
   - type: Destructible
     thresholds:
     - trigger:

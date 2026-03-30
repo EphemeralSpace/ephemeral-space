@@ -44,8 +44,6 @@
     node: reinforcedPlasmaWindow
   - type: DamageVisuals
     damageDivisor: 9
-  - type: StaticPrice
-    price: 132
 
 - type: entity
   id: PlasmaReinforcedWindowDirectional
@@ -91,8 +89,6 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: StaticPrice
-    price: 66
 
 - type: entity
   parent: [ BaseWindowDiagonal, ReinforcedPlasmaWindow ]

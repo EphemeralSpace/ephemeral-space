@@ -3389,7 +3389,7 @@ entities:
     - type: Transform
       pos: -13.5,-2.5
       parent: 2
-- proto: LockerBooze
+- proto: LockerCabinet
   entities:
   - uid: 150
     components:

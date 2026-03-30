@@ -1,0 +1,19 @@
+<VStack xmlns="https://spacestation14.io"
+              xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+              Orientation="Vertical"
+              Margin="5 5 5 5">
+    <Panel HorizontalExpand="True">
+        <PanelContainer.PanelOverride>
+            <!-- uhh these colors should not be defined here obviously but there doesnt seem to be an actual commonly used better way to do this atm -->
+            <!-- i think we'll need to go over every use of this anyway to fix them proper for a new stylesheet?? -->
+            <!-- so ill just leave it as is and fix when we decide what to do there -->
+            <!-- todo -->
+            <gfx:StyleBoxFlat BorderThickness="1" BorderColor="#777777" BackgroundColor="#26262D"/>
+        </PanelContainer.PanelOverride>
+        <VStack>
+            <RichTextLabel Name="MaskName" HorizontalAlignment="Center" Margin="5 10 5 5"/>
+            <RichTextLabel Name="MaskDescription" Margin="5 5 5 5"/>
+            <RichTextLabel Name="MaskProhibitedJobs" Margin="5 5 5 5"/>
+        </VStack>
+    </Panel>
+</VStack>

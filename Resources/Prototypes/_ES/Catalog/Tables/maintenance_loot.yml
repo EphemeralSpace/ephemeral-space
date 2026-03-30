@@ -191,7 +191,7 @@
     - id: WelderIndustrial
     - id: Plunger
     - id: Shovel
-    - id: ESJerrycan
+    - id: Jerrycan
 
     - id: ClothingEyesHudMedical
     - tableId: FillWelderSupplies # Welding masks
@@ -317,7 +317,7 @@
     - id: ClothingEyesHudSecurity
     - id: ClothingEyesGlassesSunglasses
     - id: ClothingHandsGlovesColorYellow
-    - id: ClothingShoesBootsJack
+    - id: ClothingShoesBootsBlack
 
     - all: # Russian Outfit
       - id: ESClothingHeadUshanka

@@ -33,6 +33,17 @@
     - id: ESObjectiveTraitorDetonateNuke
 
 - type: esTroupe
+  id: ESParasite
+  name: es-troupe-parasite-name
+  description: es-troupe-parasite-description
+  color: tan
+  metaIcon: ESParasite
+  gameRule: ESTroupeRuleParasite
+  objectives:
+    all:
+    - id: ESObjectiveParasiteInfect
+
+- type: esTroupe
   id: ESJester
   name: es-troupe-jester-name
   description: es-troupe-jester-description

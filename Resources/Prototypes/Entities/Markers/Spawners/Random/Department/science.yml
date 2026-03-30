@@ -82,27 +82,3 @@
     table: !type:NestedSelector
       tableId: ScienceMajorTable
       offset: 0.2
-
-# Borg Module Spawner
-# Use case: One or two in robotics or as valuable loot
-- type: entity
-  name: robotics board spawner
-  id: LootSpawnerRoboticsBorgModule
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-    - state: red
-    - sprite: Objects/Specific/Robotics/borgmodule.rsi
-      state: generic
-  - type: RandomSpawner
-    rarePrototypes:
-    - BorgModuleAdvancedTopical
-    - BorgModuleAdvancedCleaning
-    - BorgModuleAdvancedTool
-
-    rareChance: 0.1
-    prototypes:
-    - BorgModuleFireExtinguisher
-    chance: 0.9
-    offset: 0.2

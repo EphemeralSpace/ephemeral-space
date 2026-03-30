@@ -43,8 +43,6 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   name: Bulldog
@@ -103,8 +101,6 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  - type: StaticPrice
-    price: 5000
 
 - type: entity
   name: double-barreled shotgun
@@ -246,8 +242,6 @@
     graph: ShotgunSawn
     node: shotgunsawn
     deconstructionTarget: null
-  - type: StaticPrice
-    price: 0
 
 - type: entity
   name: blunderbuss
@@ -263,8 +257,6 @@
     fireRate: 2
   - type: BallisticAmmoProvider
     capacity: 1
-  - type: StaticPrice
-    price: 0
 
 - type: entity
   name: improvised shotgun
@@ -287,8 +279,6 @@
   - type: Construction
     graph: ImprovisedShotgunGraph
     node: shotgun
-  - type: StaticPrice
-    price: 20
 
 - type: entity
   name: improvised shotgun

@@ -23,7 +23,6 @@
   - type: Tag
     tags:
     - ClothMade
-    - WhitelistChameleon
 
 - type: entity
   abstract: true
@@ -42,7 +41,6 @@
     tags:
     - ClothMade
     - Recyclable
-    - WhitelistChameleon
 
 - type: entity
   abstract: true
@@ -132,7 +130,6 @@
     unequipDelay: 2
   - type: Tag
     tags:
-    - WhitelistChameleon
     - HelmetEVA
   - type: IdentityBlocker
   - type: HideLayerClothing
@@ -180,9 +177,6 @@
         Radiation: 0.25
   - type: GroupExamine
   - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: IdentityBlocker
   - type: HideLayerClothing
     slots:

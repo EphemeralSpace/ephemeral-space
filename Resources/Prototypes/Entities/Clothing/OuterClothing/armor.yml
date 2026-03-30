@@ -32,7 +32,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 #Alternate / slim basic armor vest
 - type: entity
@@ -136,7 +135,6 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingOuterArmorBaseCarapace, BaseCentcommContraband]
@@ -169,8 +167,6 @@
         Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: StaticPrice
-    price: 1500
 
 #Elite web vest
 - type: entity
@@ -199,8 +195,6 @@
     damageCoefficient: 0.5
   - type: FireProtection
     reduction: 0.85
-  - type: StaticPrice
-    price: 2500
 
 #Mercenary web vest
 - type: entity

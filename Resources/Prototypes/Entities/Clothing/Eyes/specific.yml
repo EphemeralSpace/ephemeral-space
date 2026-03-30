@@ -6,7 +6,7 @@
   suffix: Chameleon
   components:
     - type: Tag
-      tags: # intentionally no WhitelistChameleon tag
+      tags:
       - PetWearable
     - type: Sprite
       sprite: Clothing/Eyes/Glasses/sunglasses.rsi

@@ -10,24 +10,24 @@
     superfanTarget: "#Traitors"
     roles:
       6: ["ESMarauder", "ESInfiltrator", "#Filler(2)", "ESVandal", "ESMercenary"] # 0 generic crew, 2 traitors
-      7: ["#Jesters"]
+      7: ["#Filler"]
       8: ["#Filler"]
       9: ["ESVigilante"]
       10: ["#TraitorAdjacent"]
       11: ["#Antagonistic"]
       13: ["ESAssassin"]  # 0 generic crew, 3 traitors.
-      14: ["#Jesters"]
+      14: ["#Filler"]
       16: ["#Firmsafes"] # 1 generic crew, 3 traitors.
       17: ["#Filler"]
       18: ["ESArmsDealer"]
       19: ["ESMarauder"] # 1 generic crew, 4 traitors.
       20: ["#Filler"]
-      21: ["#Jesters", "-ESMarauder", "#PowerTraitors"] # 1 generic crew, 4 traitors.
+      21: ["#Filler", "-ESMarauder", "#PowerTraitors"] # 1 generic crew, 4 traitors.
       22: ["#Filler"]
-      24: ["#Gunners"] # 2 generic crew, 4 traitors.
+      24: ["#TraitorGunners"] # 2 generic crew, 4 traitors.
       25: ["ESMarauder"] # 2 generic crew, 5 traitors.
       26: ["#Filler"]
-      28: ["#Gunners"] # 3 generic crew, 5 traitors.
+      28: ["#TraitorGunners"] # 3 generic crew, 5 traitors.
       29: ["#Filler"]
-      30: ["#Jesters"]
+      30: ["#Filler"]
       31: ["#Traitors", "#Filler"] # 3 generic crew, 6 traitors.

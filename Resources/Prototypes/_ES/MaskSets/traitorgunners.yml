@@ -1,0 +1,5 @@
+﻿- type: esMaskSet
+  id: TraitorGunners # Gunners, including masks that play best in traitor-centric modes.
+  parent: [Gunners]
+  masks:
+    ESVeteran: 1

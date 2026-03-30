@@ -3,7 +3,6 @@
 - type: latheRecipePack
   id: CargoStatic
   recipes:
-  - AppraisalTool
   - Pickaxe
   - UtilityKnife
 
@@ -11,5 +10,4 @@
   id: CargoBoards
   recipes:
   - OreProcessorIndustrialMachineCircuitboard
-  - CargoTelepadMachineCircuitboard
   - ShuttleGunKineticCircuitboard

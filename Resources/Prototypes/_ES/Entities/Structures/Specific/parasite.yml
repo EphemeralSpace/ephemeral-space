@@ -1,0 +1,36 @@
+- type: entity
+  parent: BaseStructure
+  id: ESHemophagePile
+  name: bloodworm pile
+  description: They're feasting on blood. Now they'll feast on you.
+  components:
+  - type: Sprite
+    drawdepth: FloorTiles
+    layers:
+    - sprite: _ES/Structures/Specific/worm.rsi
+      state: worm
+  - type: InteractionOutline
+  - type: Physics
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 15
+        hard: false
+        mask:
+        - Impassable
+        - HighImpassable
+        - LowImpassable
+        layer:
+        - Impassable
+        - HighImpassable
+        - LowImpassable
+  - type: ESMaskConvertOnCollide
+  - type: ESTimedDespawn
+    lifetime: 1.5
+  - type: EmitSoundOnSpawn
+    sound:
+      collection: desecration

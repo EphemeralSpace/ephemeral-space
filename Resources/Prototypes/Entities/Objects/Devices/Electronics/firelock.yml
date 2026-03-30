@@ -12,8 +12,6 @@
     - type: Tag
       tags:
       - FirelockElectronics
-    - type: StaticPrice
-      price: 14
     - type: PhysicalComposition
       materialComposition:
         Glass: 0

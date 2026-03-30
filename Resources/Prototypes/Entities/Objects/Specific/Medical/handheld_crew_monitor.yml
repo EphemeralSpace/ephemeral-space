@@ -24,8 +24,6 @@
   - type: WirelessNetworkConnection
     range: 500
   - type: StationLimitedNetwork
-  - type: StaticPrice
-    price: 500
   - type: Tag
     tags:
     - HighRiskItem

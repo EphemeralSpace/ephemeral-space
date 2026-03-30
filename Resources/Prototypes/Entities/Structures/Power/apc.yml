@@ -7,7 +7,6 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: StationAiWhitelist
   # ES START
   - type: AmbientOnPowered
   - type: AmbientSound
@@ -158,8 +157,6 @@
     lowVoltageNode: output
   - type: LightningTarget
     priority: 1
-  - type: StaticPrice
-    price: 500
   - type: GuideHelp
     guides:
     - VoltageNetworks

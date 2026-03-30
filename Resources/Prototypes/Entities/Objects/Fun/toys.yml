@@ -82,9 +82,6 @@
         reagents:
         - ReagentId: Nothing
           Quantity: 100
-  - type: Tag
-    tags:
-    - Banana
 
 - type: entity
   parent: DrinkBase

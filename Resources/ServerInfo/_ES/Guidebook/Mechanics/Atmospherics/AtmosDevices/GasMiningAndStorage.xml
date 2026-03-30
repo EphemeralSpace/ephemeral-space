@@ -1,6 +1,6 @@
 ﻿<Document>
   # Gas Mining and Storage
-  Gasses are often permanently used. Whether they are lost to [textlink="space" link="ESSpacing"] or used in a burn chamber, the station needs to be able to produce more gas to replace what is lost.
+  Gasses are often permanently used. Whether they are lost to [textlink="space" link="Spacing"] or used in a burn chamber, the station needs to be able to produce more gas to replace what is lost.
   It also needs to store this gas in a safe and efficient manner.
 
   ## Gas Miners
@@ -61,6 +61,6 @@
   - The recyclernet injects reclaimed gasses into the gas storage tanks for reuse.
   - Setups like the distronet and burn chamber remove gasses from the gas storage tanks.
 
-  Gas storage tanks are designed to be able to be measured using a [textlink="Gas Analyzer" link="ESAtmosTools"].
-  Because the outflow vent is a [textlink="passive vent" link="ESPassiveVent"], you can use a [textlink="gas analyzer" link="ESAtmosTools"] to measure the gas content of the [textlink="pump's" link="ESPumps"] input, which is drawing from the gas storage tank.
+  Gas storage tanks are designed to be able to be measured using a [textlink="Gas Analyzer" link="AtmosTools"].
+  Because the outflow vent is a [textlink="passive vent" link="PassiveVent"], you can use a [textlink="gas analyzer" link="AtmosTools"] to measure the gas content of the [textlink="pump's" link="Pumps"] input, which is drawing from the gas storage tank.
 </Document>

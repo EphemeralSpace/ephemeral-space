@@ -13,7 +13,6 @@
 #  - type: Rotatable
   - type: ESDestroyOnUnanchor
 # ES END
-  - type: StationAiWhitelist
   - type: InteractionOutline
   - type: Sprite
     snapCardinals: true
@@ -114,8 +113,6 @@
     alwaysRandomize: true
   - type: UserInterface
     interfaces:
-      enum.AiUi.Key:
-        type: StationAiBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: Airtight

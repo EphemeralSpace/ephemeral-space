@@ -8,8 +8,6 @@ using Content.Shared.Database;
 using Content.Shared.Labels.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Power;
-using Content.Shared.Silicons.StationAi;
-using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Content.Shared.Telephone;
@@ -423,12 +421,6 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
     {
         string? presumedName = null;
         string? presumedJob = null;
-
-        if (HasComp<StationAiHeldComponent>(uid) || HasComp<BorgChassisComponent>(uid))
-        {
-            presumedName = Name(uid);
-            return (presumedName, presumedJob);
-        }
 
         if (_idCardSystem.TryFindIdCard(uid, out var idCard))
         {

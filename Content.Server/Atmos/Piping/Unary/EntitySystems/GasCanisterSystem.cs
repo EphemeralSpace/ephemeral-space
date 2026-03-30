@@ -5,9 +5,7 @@ using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Binary.Components;
-using Content.Shared.Atmos.Piping.Components;
 using Content.Shared.Atmos.Piping.Unary.Systems;
-using Content.Shared.Cargo;
 using Content.Shared.Database;
 using Content.Shared.NodeContainer;
 using GasCanisterComponent = Content.Shared.Atmos.Piping.Unary.Components.GasCanisterComponent;
@@ -25,7 +23,6 @@ public sealed class GasCanisterSystem : SharedGasCanisterSystem
         base.Initialize();
 
         SubscribeLocalEvent<GasCanisterComponent, AtmosDeviceUpdateEvent>(OnCanisterUpdated);
-        SubscribeLocalEvent<GasCanisterComponent, PriceCalculationEvent>(CalculateCanisterPrice);
         SubscribeLocalEvent<GasCanisterComponent, GasAnalyzerScanEvent>(OnAnalyzed);
     }
 
@@ -143,11 +140,6 @@ public sealed class GasCanisterSystem : SharedGasCanisterSystem
         containerAir.Clear();
         _atmos.Merge(containerAir, buffer);
         containerAir.Multiply(containerAir.Volume / buffer.Volume);
-    }
-
-    private void CalculateCanisterPrice(EntityUid uid, GasCanisterComponent component, ref PriceCalculationEvent args)
-    {
-        args.Price += _atmos.GetPrice(component.Air);
     }
 
     /// <summary>

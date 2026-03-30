@@ -23,7 +23,6 @@
     tags:
     - ClothMade
     - Recyclable
-    - WhitelistChameleon
   - type: ProtectedFromStepTriggers
 
 - type: entity

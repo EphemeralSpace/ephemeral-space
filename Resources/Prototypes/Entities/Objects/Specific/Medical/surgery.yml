@@ -6,8 +6,6 @@
   abstract: true
   components:
   - type: Sprite
-  - type: StaticPrice
-    price: 20
   - type: Tag
     tags:
     - SurgeryTool
@@ -70,8 +68,6 @@
         Piercing: 10
     soundHit:
       path: /Audio/Items/drill_hit.ogg
-  - type: StaticPrice
-    price: 40
   - type: Tool # Offbrand
     qualities:
     - Drilling

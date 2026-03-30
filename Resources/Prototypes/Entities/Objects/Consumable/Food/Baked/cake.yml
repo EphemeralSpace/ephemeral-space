@@ -22,9 +22,6 @@
           Quantity: 10
   - type: Item
     size: Normal
-  - type: Tag
-    tags:
-    - Cake
   - type: SecretStash
     maxItemSize: "Normal"
     secretStashName: secret-stash-cake
@@ -62,7 +59,6 @@
     size: Tiny
   - type: Tag
     tags:
-    - Cake
     - Slice
 
 # Custom Cake Example
@@ -82,7 +78,6 @@
     slice: FoodCakeBlueberrySlice
   - type: Tag
     tags:
-    - Cake
     - Fruit
   - type: Item
     inhandVisuals:
@@ -108,7 +103,6 @@
       color: blue
   - type: Tag
     tags:
-    - Cake
     - Fruit
     - Slice
   - type: Item
@@ -191,7 +185,6 @@
           Quantity: 5
   - type: Tag
     tags:
-    - Cake
     - Vegetable
   - type: Item
     inhandVisuals:
@@ -227,7 +220,6 @@
           Quantity: 1
   - type: Tag
     tags:
-    - Cake
     - Vegetable
     - Slice
   - type: Item
@@ -257,7 +249,6 @@
     slice: FoodCakeBrainSlice
   - type: Tag
     tags:
-    - Cake
     - Meat
   - type: Item
     inhandVisuals:
@@ -282,7 +273,6 @@
     state: brain-slice
   - type: Tag
     tags:
-    - Cake
     - Meat
     - Slice
   - type: Item
@@ -355,7 +345,6 @@
     slice: FoodCakeOrangeSlice
   - type: Tag
     tags:
-    - Cake
     - Fruit
   - type: Item
     inhandVisuals:
@@ -380,7 +369,6 @@
       color: "#ff9900"
   - type: Tag
     tags:
-    - Cake
     - Fruit
     - Slice
   - type: Item
@@ -410,7 +398,6 @@
     slice: FoodCakeLimeSlice
   - type: Tag
     tags:
-    - Cake
     - Fruit
   - type: Item
     inhandVisuals:
@@ -435,7 +422,6 @@
       color: "#00ff00"
   - type: Tag
     tags:
-    - Cake
     - Fruit
     - Slice
   - type: Item
@@ -465,7 +451,6 @@
     slice: FoodCakeLemonSlice
   - type: Tag
     tags:
-    - Cake
     - Fruit
   - type: Item
     inhandVisuals:
@@ -490,7 +475,6 @@
       color: "#ffff00"
   - type: Tag
     tags:
-    - Cake
     - Fruit
     - Slice
   - type: Item
@@ -532,7 +516,6 @@
           Quantity: 10
   - type: Tag
     tags:
-    - Cake
     - Fruit
   - type: Item
     heldPrefix: lemoon
@@ -562,7 +545,6 @@
           Quantity: 2
   - type: Tag
     tags:
-    - Cake
     - Fruit
     - Slice
   - type: Item
@@ -655,7 +637,6 @@
     slice: FoodCakeAppleSlice
   - type: Tag
     tags:
-    - Cake
     - Fruit
   - type: Item
     inhandVisuals:
@@ -681,7 +662,6 @@
       color: "#ff4300"
   - type: Tag
     tags:
-    - Cake
     - Fruit
     - Slice
   - type: Item
@@ -709,7 +689,6 @@
     slice: FoodCakeSlimeSlice
   - type: Tag
     tags:
-    - Cake
     - Meat
   - type: Item
     inhandVisuals:
@@ -734,7 +713,6 @@
     state: slime-slice
   - type: Tag
     tags:
-    - Cake
     - Meat
     - Slice
   - type: Item
@@ -772,7 +750,6 @@
           Quantity: 15
   - type: Tag
     tags:
-    - Cake
     - Fruit
   - type: Item
     inhandVisuals:
@@ -804,7 +781,6 @@
           Quantity: 3
   - type: Tag
     tags:
-    - Cake
     - Fruit
     - Slice
   - type: Item
@@ -831,7 +807,6 @@
     slice: FoodCakeChristmasSlice
   - type: Tag
     tags:
-    - Cake
     - Fruit
   - type: Item
     inhandVisuals:
@@ -851,7 +826,6 @@
     state: christmas-slice
   - type: Tag
     tags:
-    - Cake
     - Fruit
     - Slice
   - type: Item
@@ -1108,7 +1082,6 @@
     tags:
     - VimPilot
     - DoorBumpOpener
-    - Cake
   - type: CanEscapeInventory
     baseResistTime: 2
   - type: Puller
@@ -1202,7 +1175,6 @@
     slice: FoodCakeCottonSlice
   - type: Tag
     tags:
-    - Cake
     - ClothMade
   - type: SolutionContainerManager
     solutions:
@@ -1228,7 +1200,6 @@
     state: cotton-slice
   - type: Tag
     tags:
-    - Cake
     - ClothMade
     - Slice
   - type: SolutionContainerManager
@@ -1275,7 +1246,6 @@
     slice: FoodCakeBerryDelightSlice
   - type: Tag
     tags:
-    - Cake
     - Fruit
   - type: Item
     inhandVisuals:
@@ -1314,7 +1284,6 @@
           Quantity: 2
   - type: Tag
     tags:
-    - Cake
     - Fruit
     - Slice
   - type: Item

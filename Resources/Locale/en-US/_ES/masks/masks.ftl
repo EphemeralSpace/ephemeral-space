@@ -87,6 +87,21 @@ es-mask-subverter-desc = As a Subverter, you have received two brain-altering ch
 es-mask-demolitionist-name = Demolitionist
 es-mask-demolitionist-desc = As a Demolitionist, you have been trained by the Syndicate for both controlled and uncontrolled "demolitions"--including in the use of explosive implants, should things turn out that way.
 
+# Paraiste masks
+es-mask-troupe-parasite-examine = They're a fellow host of the [bold][color=tan]parasitic infection[/color][/bold]. Conspire with them to spread the infection.
+
+es-mask-burstworm-name = Burstworm
+es-mask-burstworm-desc = As a burstworm, explode in a burst of devilish parasitic worms when you die, infecting anyone they bite.
+
+es-mask-hemophage-name = Hemophage
+es-mask-hemophage-desc = As a hemophage, spread your infected blood all across the station. When you are killed, anyone in contact with it will be swarmed with parasites.
+
+es-mask-host-name = Host
+es-mask-host-desc = As a host, partake in the festivites and swarm with your fellow parasites!
+
+es-mask-psychid-name = Psychid
+es-mask-psychid-desc = As a psychid, be killed in order to swap bodies and create a new psychid, spreading the parasitic infection even more.
+
 # Oddballs
 es-mask-sleeper-agent-name = Sleeper Agent
 es-mask-sleeper-agent-desc = As a covert operative, you're a member of crew and win with them, unless the entire traitors team dies, upon which you switch sides and gain a new mask.

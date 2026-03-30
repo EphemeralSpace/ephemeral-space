@@ -1,6 +1,5 @@
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -10,12 +9,9 @@ namespace Content.Shared.Pinpointer;
 public abstract class SharedPinpointerSystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
 
     public override void Initialize()
     {
-        base.Initialize();
-        SubscribeLocalEvent<PinpointerComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<PinpointerComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<PinpointerComponent, ExaminedEvent>(OnExamined);
     }
@@ -137,20 +133,5 @@ public abstract class SharedPinpointerSystem : EntitySystem
         var isActive = !ent.Comp.IsActive;
         SetActive(ent, isActive);
         return isActive;
-    }
-
-    private void OnEmagged(Entity<PinpointerComponent> ent, ref GotEmaggedEvent args)
-    {
-        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-            return;
-
-        if (_emag.CheckFlag(ent, EmagType.Interaction))
-            return;
-
-        if (ent.Comp.CanRetarget)
-            return;
-
-        args.Handled = true;
-        ent.Comp.CanRetarget = true;
     }
 }

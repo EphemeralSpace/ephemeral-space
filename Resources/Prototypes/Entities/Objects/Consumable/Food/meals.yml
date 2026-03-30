@@ -88,9 +88,6 @@
       - salty
   - type: Sprite
     state: fries-carrot
-  - type: Tag
-    tags:
-    - CarrotFries
   - type: SolutionContainerManager
     solutions:
       food:
@@ -283,7 +280,6 @@
           Quantity: 4
   - type: Tag
     tags:
-    - CubanCarp
     - Meat
 # Tastes like fish, batter, hot peppers.
 

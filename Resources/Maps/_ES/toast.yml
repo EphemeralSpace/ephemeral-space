@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 270.1.0
+  engineVersion: 275.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/21/2026 21:35:44
-  entityCount: 14582
+  time: 03/28/2026 21:51:44
+  entityCount: 14577
 maps:
 - 3
 grids:
@@ -2785,9 +2785,6 @@ entities:
       - 4598
       - 14488
       - 14486
-    - type: AccessReader
-      accessListsOriginal:
-      - - Atmospherics
     - type: Fixtures
       fixtures: {}
   - uid: 2649
@@ -2812,9 +2809,6 @@ entities:
       devices:
       - 10638
       - 10669
-    - type: AccessReader
-      accessListsOriginal:
-      - - Atmospherics
     - type: Fixtures
       fixtures: {}
   - uid: 4496
@@ -2845,9 +2839,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -60.5,-14.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Atmospherics
     - type: DeviceList
       devices:
       - 4467
@@ -2880,9 +2871,6 @@ entities:
     - type: Transform
       pos: -12.5,1.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Atmospherics
     - type: DeviceList
       devices:
       - 3198
@@ -2901,9 +2889,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -6.5,9.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Atmospherics
     - type: DeviceList
       devices:
       - 10336
@@ -2969,9 +2954,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -18.5,2.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Atmospherics
     - type: DeviceList
       devices:
       - 5185
@@ -3075,9 +3057,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -44.5,-16.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Atmospherics
     - type: DeviceList
       devices:
       - 10028
@@ -3299,9 +3278,6 @@ entities:
     - type: Transform
       pos: -7.5,-2.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Atmospherics
     - type: DeviceList
       devices:
       - 10507
@@ -3485,9 +3461,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,-40.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Atmospherics
     - type: DeviceList
       devices:
       - 10847
@@ -3761,8 +3734,6 @@ entities:
     - type: Transform
       pos: -36.5,-10.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
 - proto: AirlockBarLocked
   entities:
   - uid: 142
@@ -3819,8 +3790,6 @@ entities:
     - type: Transform
       pos: 0.5,-40.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
 - proto: AirlockCargoLocked
   entities:
   - uid: 85
@@ -3875,8 +3844,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -30.5,-35.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
 - proto: AirlockEngineeringGlassLocked
   entities:
   - uid: 3835
@@ -3907,8 +3874,6 @@ entities:
     - type: Transform
       pos: -66.5,-34.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
   - uid: 898
     components:
     - type: Transform
@@ -4210,8 +4175,6 @@ entities:
     - type: Transform
       pos: 32.5,-19.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
 - proto: AirlockFreezerLocked
   entities:
   - uid: 201
@@ -4284,8 +4247,6 @@ entities:
     - type: Transform
       pos: -33.5,-33.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
   - uid: 5144
     components:
     - type: Transform
@@ -4308,8 +4269,6 @@ entities:
     - type: Transform
       pos: 1.5,-26.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
   - uid: 616
     components:
     - type: Transform
@@ -4469,8 +4428,6 @@ entities:
     - type: Transform
       pos: 3.5,-37.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
   - uid: 190
     components:
     - type: Transform
@@ -4568,15 +4525,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 23.5,8.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
   - uid: 3139
     components:
     - type: Transform
       pos: 1.5,-51.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
   - uid: 3292
     components:
     - type: Transform
@@ -4766,8 +4719,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-52.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
 - proto: AirlockMaintMedLocked
   entities:
   - uid: 1400
@@ -4776,8 +4727,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 21.5,6.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
   - uid: 3074
     components:
     - type: Transform
@@ -4811,8 +4760,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 18.5,-7.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
 - proto: AirlockMaintRnDLocked
   entities:
   - uid: 237
@@ -4825,8 +4772,6 @@ entities:
     - type: Transform
       pos: 3.5,-24.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
   - uid: 614
     components:
     - type: Transform
@@ -4935,8 +4880,6 @@ entities:
     - type: Transform
       pos: 10.5,-18.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
   - uid: 2771
     components:
     - type: Transform
@@ -5060,9 +5003,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -15.5,-22.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 299
@@ -5082,9 +5022,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 8.5,-9.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 658
@@ -5095,9 +5032,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,-24.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 814
@@ -5138,9 +5072,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 18.5,-22.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 1109
@@ -5151,9 +5082,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,6.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 1348
@@ -5164,9 +5092,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 12.5,8.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 1349
@@ -5177,9 +5102,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 21.5,-0.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 1377
@@ -5189,9 +5111,6 @@ entities:
     - type: Transform
       pos: 26.5,9.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 1399
@@ -5202,9 +5121,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 21.5,7.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 1423
@@ -5215,9 +5131,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 19.5,-7.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 1673
@@ -5228,9 +5141,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -49.5,-46.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 1726
@@ -5241,9 +5151,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-38.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 1727
@@ -5253,9 +5160,6 @@ entities:
     - type: Transform
       pos: -2.5,-40.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 1794
@@ -5266,9 +5170,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 8.5,-4.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 2052
@@ -5279,9 +5180,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -7.5,-37.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 2161
@@ -5291,9 +5189,6 @@ entities:
     - type: Transform
       pos: 23.5,-33.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 2162
@@ -5324,9 +5219,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 30.5,-20.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 2452
@@ -5337,9 +5229,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 30.5,-28.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 2637
@@ -5350,9 +5239,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 11.5,-34.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 3144
@@ -5372,9 +5258,6 @@ entities:
     - type: Transform
       pos: 12.5,-18.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 3276
@@ -5404,9 +5287,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -30.5,-23.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 3298
@@ -5417,9 +5297,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -26.5,-11.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 3299
@@ -5430,9 +5307,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -21.5,-8.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 3471
@@ -5443,9 +5317,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 27.5,-1.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 3801
@@ -5455,9 +5326,6 @@ entities:
     - type: Transform
       pos: -24.5,7.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 3858
@@ -5467,9 +5335,6 @@ entities:
     - type: Transform
       pos: -38.5,-22.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 3859
@@ -5490,9 +5355,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -48.5,-8.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 4001
@@ -5513,9 +5375,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -46.5,-16.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 4318
@@ -5546,9 +5405,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -48.5,-3.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 5055
@@ -5559,9 +5415,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -25.5,-35.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 5274
@@ -5572,9 +5425,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -19.5,-40.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 5292
@@ -5585,9 +5435,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -19.5,-36.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 5326
@@ -5598,9 +5445,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -12.5,-37.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 5406
@@ -5610,9 +5454,6 @@ entities:
     - type: Transform
       pos: -28.5,11.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 5407
@@ -5623,9 +5464,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -28.5,-42.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 5645
@@ -5645,9 +5483,6 @@ entities:
     - type: Transform
       pos: -17.5,7.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 6784
@@ -5658,9 +5493,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -35.5,-8.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 6917
@@ -5671,9 +5503,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -8.5,6.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 6992
@@ -5684,9 +5513,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -46.5,2.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 6993
@@ -5697,9 +5523,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -51.5,8.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 6994
@@ -5709,9 +5532,6 @@ entities:
     - type: Transform
       pos: -35.5,-36.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 7066
@@ -5722,9 +5542,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -55.5,-38.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 7516
@@ -5734,9 +5551,6 @@ entities:
     - type: Transform
       pos: -42.5,-41.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 7637
@@ -5746,9 +5560,6 @@ entities:
     - type: Transform
       pos: -48.5,-23.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 8027
@@ -5759,9 +5570,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,-14.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 8044
@@ -5772,9 +5580,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -66.5,7.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 8473
@@ -5785,9 +5590,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 33.5,-12.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 8765
@@ -5798,9 +5600,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,13.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 9314
@@ -5810,9 +5609,6 @@ entities:
     - type: Transform
       pos: -20.5,-20.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 9658
@@ -5823,9 +5619,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -35.5,-21.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 9764
@@ -5834,9 +5627,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-32.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 9829
@@ -5857,9 +5647,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 8.5,-42.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 10841
@@ -5870,9 +5657,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -21.5,-16.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 11249
@@ -5900,9 +5684,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.5,-36.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 12411
@@ -5920,9 +5701,6 @@ entities:
     - type: Transform
       pos: -8.5,-28.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 13406
@@ -5933,9 +5711,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -73.5,-0.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
     - type: Fixtures
       fixtures: {}
 - proto: Ashtray
@@ -6333,9 +6108,7 @@ entities:
       pos: 27.5,-2.5
       parent: 2
     missingComponents:
-    - Bible
     - Prayable
-    - Summonable
 - proto: BikeHorn
   entities:
   - uid: 7421
@@ -6404,8 +6177,6 @@ entities:
     - type: Transform
       pos: -20.5,-13.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
   - uid: 3722
     components:
     - type: Transform
@@ -31233,25 +31004,11 @@ entities:
     - type: Transform
       pos: 31.5,-33.5
       parent: 2
-    - type: AccessReader
-      accessLog: []
-      accessKeys: []
-      accessListsOriginal:
-      - - Command
-      access: []
-      denyTags: []
   - uid: 2443
     components:
     - type: Transform
       pos: 30.5,-22.5
       parent: 2
-    - type: AccessReader
-      accessLog: []
-      accessKeys: []
-      accessListsOriginal:
-      - - Command
-      access: []
-      denyTags: []
 - proto: ComputerCrewMonitoring
   entities:
   - uid: 35
@@ -31271,25 +31028,11 @@ entities:
     - type: Transform
       pos: 0.5,9.5
       parent: 2
-    - type: AccessReader
-      accessLog: []
-      accessKeys: []
-      accessListsOriginal:
-      - - Security
-      access: []
-      denyTags: []
   - uid: 2099
     components:
     - type: Transform
       pos: 25.5,-38.5
       parent: 2
-    - type: AccessReader
-      accessLog: []
-      accessKeys: []
-      accessListsOriginal:
-      - - Security
-      access: []
-      denyTags: []
 - proto: ComputerFrame
   entities:
   - uid: 7576
@@ -31419,14 +31162,6 @@ entities:
     components:
     - type: Transform
       pos: 32.5,-30.5
-      parent: 2
-- proto: ComputerRoboticsControl
-  entities:
-  - uid: 586
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 7.5,-18.5
       parent: 2
 - proto: ComputerSolarControl
   entities:
@@ -31622,13 +31357,6 @@ entities:
     components:
     - type: Transform
       pos: -49.5,-8.5
-      parent: 2
-- proto: CrateCargoParcelWrap
-  entities:
-  - uid: 1537
-    components:
-    - type: Transform
-      pos: -1.5,-39.5
       parent: 2
 - proto: CrateEmergencyRadiation
   entities:
@@ -36466,9 +36194,6 @@ entities:
     - type: Transform
       pos: -37.5,-40.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
 - proto: ESComputerIdTabletop
   entities:
   - uid: 8360
@@ -36713,6 +36438,22 @@ entities:
     - type: Transform
       pos: 30.5,-16.5
       parent: 2
+- proto: ESFireAxeCabinetFilled
+  entities:
+  - uid: 2297
+    components:
+    - type: Transform
+      pos: 27.5,-28.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 4931
+    components:
+    - type: Transform
+      pos: -47.5,-0.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: ESGunAttachmentSilencer
   entities:
   - uid: 8368
@@ -36727,9 +36468,6 @@ entities:
     - type: Transform
       pos: -24.5,-17.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Command
 - proto: ESLockerAtmosphericsFilled
   entities:
   - uid: 2886
@@ -36749,9 +36487,6 @@ entities:
     - type: Transform
       pos: 31.5,8.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Medical
 - proto: ESLockerEngineerFilled
   entities:
   - uid: 3843
@@ -40121,6 +39856,13 @@ entities:
     components:
     - type: Transform
       pos: 12.5,-4.5
+      parent: 2
+- proto: ESSpawnerDormsVendor
+  entities:
+  - uid: 1537
+    components:
+    - type: Transform
+      pos: -50.5,11.5
       parent: 2
 - proto: ESSpawnerMarkerDistributedArmory
   entities:
@@ -45411,22 +45153,6 @@ entities:
       - 2840
     - type: Fixtures
       fixtures: {}
-- proto: FireAxeCabinetFilled
-  entities:
-  - uid: 2297
-    components:
-    - type: Transform
-      pos: 27.5,-28.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
-  - uid: 4931
-    components:
-    - type: Transform
-      pos: -47.5,-0.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
 - proto: Firelock
   entities:
   - uid: 740
@@ -46095,9 +45821,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -16.5,-24.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
   - uid: 6982
     components:
     - type: Transform
@@ -63694,8 +63417,6 @@ entities:
     - type: Transform
       pos: -18.5,-40.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
 - proto: HolopadCargoFront
   entities:
   - uid: 1715
@@ -63850,9 +63571,6 @@ entities:
     - type: Transform
       pos: -22.5,-8.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Command
   - uid: 7311
     components:
     - type: Transform
@@ -64770,7 +64488,7 @@ entities:
     - type: Transform
       pos: -64.01732,7.4866257
       parent: 2
-- proto: LockerBooze
+- proto: LockerCabinet
   entities:
   - uid: 7584
     components:
@@ -64784,9 +64502,6 @@ entities:
     - type: Transform
       pos: -16.5,-6.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Bar
 - proto: LockerBotanistFilled
   entities:
   - uid: 6972
@@ -64854,9 +64569,6 @@ entities:
     - type: Transform
       pos: -38.5,-37.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
 - proto: LockerFreezer
   entities:
   - uid: 210
@@ -64864,9 +64576,6 @@ entities:
     - type: Transform
       pos: -12.5,-13.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Kitchen
 - proto: LockerFreezerBase
   entities:
   - uid: 3916
@@ -64874,8 +64583,6 @@ entities:
     - type: Transform
       pos: 21.5,-28.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
 - proto: LockerHeadOfPersonnelFilled
   entities:
   - uid: 358
@@ -64890,17 +64597,11 @@ entities:
     - type: Transform
       pos: 10.5,9.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Medical
   - uid: 2555
     components:
     - type: Transform
       pos: 9.5,9.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Medical
 - proto: LockerMedicineFilled
   entities:
   - uid: 1270
@@ -64967,9 +64668,6 @@ entities:
     - type: Transform
       pos: 7.5,-6.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Research
 - proto: LockerSecurityFilled
   entities:
   - uid: 1404
@@ -64977,9 +64675,6 @@ entities:
     - type: Transform
       pos: -23.5,-25.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
   - uid: 1545
     components:
     - type: Transform
@@ -64995,9 +64690,6 @@ entities:
     - type: Transform
       pos: -22.5,-25.5
       parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
 - proto: LockerWeldingSuppliesFilled
   entities:
   - uid: 3861
@@ -65120,18 +64812,6 @@ entities:
     components:
     - type: Transform
       pos: -51.5,-34.5
-      parent: 2
-- proto: MaintenanceFluffSpawner
-  entities:
-  - uid: 8672
-    components:
-    - type: Transform
-      pos: -50.5,11.5
-      parent: 2
-  - uid: 9508
-    components:
-    - type: Transform
-      pos: -53.5,9.5
       parent: 2
 - proto: MaterialDiamond1
   entities:
@@ -67503,12 +67183,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -15.5,-11.5
-      parent: 2
-  - uid: 3212
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -50.5,11.5
       parent: 2
   - uid: 3224
     components:
@@ -75508,6 +75182,11 @@ entities:
       parent: 2
 - proto: ToolboxEmergencyFilled
   entities:
+  - uid: 586
+    components:
+    - type: Transform
+      pos: -53.5,9.5
+      parent: 2
   - uid: 5386
     components:
     - type: Transform

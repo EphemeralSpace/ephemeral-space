@@ -1,0 +1,147 @@
+- type: entity
+  parent: DrinkWaterBottleFull
+  id: DrinkWaterBottleFullCoconutWater
+  suffix: Suspicious, Coconut Water
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: CoconutWater
+          Quantity: 30
+
+- type: entity
+  parent: DrinkWaterBottleFull
+  id: DrinkWaterBottleFullSaline
+  suffix: Suspicious, Saline
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Saline
+          Quantity: 30
+
+- type: entity
+  parent: DrinkWaterBottleFull
+  id: DrinkWaterBottleFullMercury
+  suffix: Suspicious, Mercury
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Mercury
+          Quantity: 30
+
+- type: entity
+  parent: DrinkWaterBottleFull
+  id: DrinkWaterBottleFullConvermol
+  suffix: Suspicious, Convermol
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Convermol
+          Quantity: 30
+
+- type: entity
+  parent: DrinkWaterBottleFull
+  id: DrinkWaterBottleFullDesoxyephedrine
+  suffix: Suspicious, Desoxyephedrine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Desoxyephedrine
+          Quantity: 30
+
+- type: entity
+  parent: DrinkWaterBottleFull
+  id: DrinkWaterBottleFullEphedrine
+  suffix: Suspicious, Ephedrine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Ephedrine
+          Quantity: 30
+
+- type: entity
+  parent: DrinkWaterBottleFull
+  id: DrinkWaterBottleFullEpinephrine
+  suffix: Suspicious, Epinephrine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 30
+
+- type: entity
+  parent: DrinkWaterBottleFull
+  id: DrinkWaterBottleFullBenadryl
+  suffix: Suspicious, Benadryl
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Diphenhydramine
+          Quantity: 30
+
+- type: entity
+  parent: DrinkWaterBottleFull
+  id: DrinkWaterBottleFullTHC
+  suffix: Suspicious, THC
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: THC
+          Quantity: 30
+
+- type: entity
+  parent: DrinkWaterBottleFull
+  id: DrinkWaterBottleFullLead
+  suffix: Suspicious, Water / Lead
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Water
+          Quantity: 25
+        - ReagentId: Lead
+          Quantity: 5
+
+- type: entity
+  parent: DrinkWaterBottleFull
+  id: DrinkWaterBottleFullLeadChloralHydrate
+  suffix: Suspicious, Chloral Hydrate
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 30
+
+- type: entity
+  parent: DrinkWaterBottleFull
+  id: DrinkWaterBottleFullRadium
+  suffix: Suspicious, Radium
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Radium
+          Quantity: 15
+        - ReagentId: Water
+          Quantity: 15

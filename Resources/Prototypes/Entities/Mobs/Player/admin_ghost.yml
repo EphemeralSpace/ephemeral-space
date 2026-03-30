@@ -10,13 +10,12 @@
     tags:
     - InstantDoAfters
     - CanPilot
-    - BypassInteractionRangeChecks
-    - BypassDropChecks
     - NoConsoleSound
     - SilentStorageUser
     - PreventAccessLogging
-    - AllowBiomeLoading
     - NotGhostnadoWarpable
+  - type: ESBypassInteractionRangeChecks
+  - type: ESBypassDropChecks
   - type: Input
     context: "aghost"
   - type: Ghost
@@ -41,7 +40,6 @@
   - type: Access
     groups:
     - AllAccess
-    - Silicon
     tags:
     - CentralCommand
   - type: UserInterface
@@ -52,8 +50,6 @@
         type: CommunicationsConsoleBoundUserInterface
       enum.RadarConsoleUiKey.Key:
         type: RadarConsoleBoundUserInterface
-      enum.CargoConsoleUiKey.Orders:
-        type: CargoOrderConsoleBoundUserInterface
       enum.CrewMonitoringUIKey.Key:
         type: CrewMonitoringBoundUserInterface
       enum.GeneralStationRecordConsoleKey.Key:
@@ -67,8 +63,6 @@
         toggleAction: ActionAGhostShowCommunications
       enum.RadarConsoleUiKey.Key:
         toggleAction: ActionAGhostShowRadar
-      enum.CargoConsoleUiKey.Orders:
-        toggleAction: ActionAGhostShowCargo
       enum.CrewMonitoringUIKey.Key:
         toggleAction: ActionAGhostShowCrewMonitoring
       enum.GeneralStationRecordConsoleKey.Key:
@@ -82,7 +76,6 @@
     global: true
   - type: RadarConsole
     followEntity: true
-  - type: CargoOrderConsole
   - type: CrewMonitoringConsole
   - type: GeneralStationRecordConsole
     canDeleteEntries: true
@@ -152,15 +145,6 @@
     priority: -6
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
-
-- type: entity
-  parent: BaseAGhostAction
-  id: ActionAGhostShowCargo
-  name: Cargo Ordering Interface
-  description: View a Cargo Ordering Interface.
-  components:
-  - type: InstantAction
-    event: !type:ToggleIntrinsicUIEvent { key: enum.CargoConsoleUiKey.Orders }
 
 - type: entity
   parent: BaseAGhostAction

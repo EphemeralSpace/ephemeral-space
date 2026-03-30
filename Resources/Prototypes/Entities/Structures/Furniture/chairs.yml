@@ -46,8 +46,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-  - type: StaticPrice
-    price: 50
 
 #Starts unanchored, cannot be rotated while anchored
 - type: entity
@@ -237,8 +235,6 @@
   - type: Tag
     tags:
     - Wooden
-  - type: StaticPrice
-    price: 75
 
 - type: entity
   name: ritual chair
@@ -470,8 +466,6 @@
           MaterialWoodPlank:
             min: 2
             max: 4
-  - type: StaticPrice
-    price: 50
 
 - type: entity
   parent: StoolBase

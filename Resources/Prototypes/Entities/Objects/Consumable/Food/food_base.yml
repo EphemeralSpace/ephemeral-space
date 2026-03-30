@@ -11,8 +11,6 @@
       - food
   - type: Edible
   - type: Sprite
-  - type: StaticPrice
-    price: 0
 
 #
 # Base component for consumable food

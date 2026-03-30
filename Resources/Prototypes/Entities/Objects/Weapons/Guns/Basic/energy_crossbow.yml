@@ -45,5 +45,3 @@
     state: icon
   - type: Item
     sprite: Objects/Weapons/Guns/Basic/energy_crossbow.rsi
-  - type: StaticPrice
-    price: 2500

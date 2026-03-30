@@ -35,7 +35,7 @@
     children:
     - id: CrowbarRed
       prob: 0.6
-    - id: ClothingShoesBootsCombat
+    - id: ClothingShoesBootsBlack
       prob: 0.4
     - id: ClothingUniformJumpsuitOperative
       prob: 0.4
@@ -62,7 +62,7 @@
     - id: ClothingBackpackChameleonFill
     - id: CrowbarRed
       prob: 0.6
-    - id: ClothingShoesBootsCombat
+    - id: ClothingShoesBootsBlack
       prob: 0.4
     - id: ClothingUniformJumpsuitOperative
       prob: 0.4

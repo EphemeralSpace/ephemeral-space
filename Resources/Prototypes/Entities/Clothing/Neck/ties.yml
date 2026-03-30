@@ -15,7 +15,6 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - WhitelistChameleon
     - ClothMade
     - Recyclable
 
@@ -53,4 +52,3 @@
     - ClothMade
     - Recyclable
     - HamsterWearable
-    - WhitelistChameleon

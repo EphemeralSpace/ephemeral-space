@@ -1,12 +1,13 @@
-﻿using Content.Server._ES.Masks.Objectives.Relays.Components;
+﻿using Content.Server._ES.Masks.Nobleman.Components;
+using Content.Server._ES.Masks.Objectives.Relays.Components;
 using Content.Server.Administration;
 using Content.Server.Chat;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.KillTracking.Components;
-using Content.Shared._ES.Masks.Nobleman;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Gibbing;
+using Content.Shared.Mobs.Components;
 using Robust.Shared.Player;
 
 namespace Content.Server._ES.Masks.Nobleman;
@@ -27,10 +28,10 @@ public sealed class ESTimedDemiseOnKillObjectiveSystem : ESBaseObjectiveSystem<E
         base.Initialize();
 
         SubscribeLocalEvent<ESTimedDemiseOnKillObjectiveComponent, ESKilledPlayerEvent>(OnKilledPlayer);
-        SubscribeLocalEvent<ESNoblemanKilledMarkerComponent, ESTimedDemiseOnKillEvent>(OnTimeToDie);
+        SubscribeLocalEvent<MobStateComponent, ESTimedDemiseOnKillEvent>(OnTimeToDie);
     }
 
-    private void OnTimeToDie(Entity<ESNoblemanKilledMarkerComponent> ent, ref ESTimedDemiseOnKillEvent args)
+    private void OnTimeToDie(Entity<MobStateComponent> ent, ref ESTimedDemiseOnKillEvent args)
     {
         if (!_suicide.Suicide(ent))
         {
@@ -47,14 +48,13 @@ public sealed class ESTimedDemiseOnKillObjectiveSystem : ESBaseObjectiveSystem<E
         if (!MindSys.TryGetMind(args.Killed, out _))
             return;
 
-        EnsureComp<ESNoblemanKilledMarkerComponent>(args.Killer);
-        _timer.SpawnTimer(args.Killer, ent.Comp.TimeBeforeNoblemanDeath, new ESTimedDemiseOnKillEvent());
+        _timer.SpawnTimer(args.Killer, ent.Comp.KillDelay, new ESTimedDemiseOnKillEvent());
 
         if (!TryComp<ActorComponent>(args.Killer, out var actor))
             return;
 
-        var title = Loc.GetString("es-mask-nobleman-killer-quickdialog-title");
-        var msg = Loc.GetString("es-mask-nobleman-killer-quickdialog-msg");
+        var title = Loc.GetString(ent.Comp.NotificationTitle);
+        var msg = Loc.GetString(ent.Comp.NotificationBody);
 
         _quickDialog.OpenDialog<string>(actor.PlayerSession, title, msg, _ => {});
         ent.Comp.KilledAnyone = true;

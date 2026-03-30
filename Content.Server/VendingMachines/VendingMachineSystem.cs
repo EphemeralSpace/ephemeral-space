@@ -1,17 +1,12 @@
-using System.Linq;
 using System.Numerics;
-using Content.Server.Cargo.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Vocalization.Systems;
-using Content.Shared.Cargo;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Power;
 using Content.Shared.Throwing;
 using Content.Shared.VendingMachines;
 using Content.Shared.Wall;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.VendingMachines
@@ -19,7 +14,6 @@ namespace Content.Server.VendingMachines
     public sealed class VendingMachineSystem : SharedVendingMachineSystem
     {
         [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly PricingSystem _pricing = default!;
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
 
         private const float WallVendEjectDistanceFromWall = 1f;
@@ -30,30 +24,9 @@ namespace Content.Server.VendingMachines
 
             SubscribeLocalEvent<VendingMachineComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamageChanged);
-            SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             SubscribeLocalEvent<VendingMachineComponent, TryVocalizeEvent>(OnTryVocalize);
 
             SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense);
-
-            SubscribeLocalEvent<VendingMachineRestockComponent, PriceCalculationEvent>(OnPriceCalculation);
-        }
-
-        private void OnVendingPrice(EntityUid uid, VendingMachineComponent component, ref PriceCalculationEvent args)
-        {
-            var price = 0.0;
-
-            foreach (var entry in component.Inventory.Values)
-            {
-                if (!PrototypeManager.TryIndex<EntityPrototype>(entry.ID, out var proto))
-                {
-                    Log.Error($"Unable to find entity prototype {entry.ID} on {ToPrettyString(uid)} vending.");
-                    continue;
-                }
-
-                price += entry.Amount * _pricing.GetEstimatedPrice(proto);
-            }
-
-            args.Price += price;
         }
 
         protected override void OnMapInit(EntityUid uid, VendingMachineComponent component, MapInitEvent args)
@@ -214,30 +187,6 @@ namespace Content.Server.VendingMachines
                     comp.NextEmpEject += (5 * comp.EjectDelay);
                 }
             }
-        }
-
-        private void OnPriceCalculation(EntityUid uid, VendingMachineRestockComponent component, ref PriceCalculationEvent args)
-        {
-            List<double> priceSets = new();
-
-            // Find the most expensive inventory and use that as the highest price.
-            foreach (var vendingInventory in component.CanRestock)
-            {
-                double total = 0;
-
-                if (PrototypeManager.TryIndex(vendingInventory, out VendingMachineInventoryPrototype? inventoryPrototype))
-                {
-                    foreach (var (item, amount) in inventoryPrototype.StartingInventory)
-                    {
-                        if (PrototypeManager.TryIndex(item, out EntityPrototype? entity))
-                            total += _pricing.GetEstimatedPrice(entity) * amount;
-                    }
-                }
-
-                priceSets.Add(total);
-            }
-
-            args.Price += priceSets.Max();
         }
 
         private void OnTryVocalize(Entity<VendingMachineComponent> ent, ref TryVocalizeEvent args)

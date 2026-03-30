@@ -10,13 +10,6 @@ namespace Content.Shared.Prayer;
 public sealed partial class PrayableComponent : Component
 {
     /// <summary>
-    /// If bible users are only allowed to use this prayable entity
-    /// </summary>
-    [DataField("bibleUserOnly")]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public bool BibleUserOnly;
-
-    /// <summary>
     /// Message given to user to notify them a message was sent
     /// </summary>
     [DataField("sentMessage")]

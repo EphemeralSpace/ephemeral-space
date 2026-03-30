@@ -42,8 +42,6 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
-using Content.Shared.Silicons.Laws;
-using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Slippery;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tabletop.Components;
@@ -67,7 +65,6 @@ public sealed partial class AdminVerbSystem
     private readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
     private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
 
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
@@ -94,11 +91,6 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly SlipperySystem _slipperySystem = default!;
     [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly OutfitSystem _outfit = default!;
-
-    private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
-    private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
-
-    private const string SiliconLawBoundUserInterface = "SiliconLawBoundUserInterface";
 
     // All smite verbs have names so invokeverb works.
     private void AddSmiteVerbs(GetVerbsEvent<Verb> args)
@@ -979,34 +971,6 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", crawlerName, Loc.GetString("admin-smite-crawler-description"))
         };
         args.Verbs.Add(crawler);
-
-        var siliconName = Loc.GetString("admin-smite-silicon-laws-bound-name").ToLowerInvariant();
-        Verb silicon = new()
-        {
-            Text = siliconName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("Interface/Actions/actions_borg.rsi"), "state-laws"),
-            Act = () =>
-            {
-                var userInterfaceComp = EnsureComp<UserInterfaceComponent>(args.Target);
-                _uiSystem.SetUi((args.Target, userInterfaceComp), SiliconLawsUiKey.Key, new InterfaceData(SiliconLawBoundUserInterface));
-
-                if (!HasComp<SiliconLawBoundComponent>(args.Target))
-                {
-                    EnsureComp<SiliconLawBoundComponent>(args.Target);
-                    _actions.AddAction(args.Target, _actionViewLawsProtoId);
-                }
-
-                EnsureComp<SiliconLawProviderComponent>(args.Target);
-                _siliconLawSystem.SetLaws(_siliconLawSystem.GetLawset(_crewsimovLawset).Laws, args.Target);
-
-                _popupSystem.PopupEntity(Loc.GetString("admin-smite-silicon-laws-bound-self"), args.Target,
-                    args.Target, PopupType.LargeCaution);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", siliconName, Loc.GetString("admin-smite-silicon-laws-bound-description"))
-        };
-        args.Verbs.Add(silicon);
 
         var homingRodName = Loc.GetString("admin-smite-homing-rod-name").ToLowerInvariant();
         Verb homingRod = new()

@@ -6,7 +6,6 @@
   components:
   - type: WallMount
     arc: 360
-  - type: StationAiWhitelist
   - type: Sprite
     drawdepth: SmallObjects
     sprite: Structures/Wallmounts/switch.rsi
@@ -59,7 +58,6 @@
   components:
   - type: WallMount
     arc: 360
-  - type: StationAiWhitelist
   - type: Sprite
     drawdepth: SmallObjects
     sprite: Structures/Wallmounts/switch.rsi

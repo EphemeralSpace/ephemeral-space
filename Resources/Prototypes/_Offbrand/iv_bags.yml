@@ -33,8 +33,6 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 5
     fillBaseName: fill-
-  - type: StaticPrice
-    price: 60
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible

@@ -126,8 +126,6 @@
         whitelist:
           components:
             - GasTank
-    - type: StaticPrice
-      price: 200
 # ES Start
 #    - type: AccessReader
 #      access: [["Atmospherics"], ["Engineering"], ["Research"]]
@@ -694,8 +692,6 @@
     - type: PhysicalComposition
       materialComposition:
         Steel: 500
-    - type: StaticPrice
-      price: 125
 
 - type: entity
   parent: GasCanisterBrokenBase

@@ -57,10 +57,6 @@
     outputs:
     - Lattice
     - FloorReinforced
-  - type: StaticPrice
-    price: 0
-  - type: StackPrice
-    price: 7.5
   - type: Extractable
     grindableSolutionName: rod
   - type: SolutionContainerManager

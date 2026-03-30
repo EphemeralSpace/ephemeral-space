@@ -7,6 +7,7 @@ using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests.Utility;
 
 [TestOf(typeof(GameDataScrounger))]
+[NonParallelizable]
 public sealed class ScroungerTests
 {
     private TestPair _pair;

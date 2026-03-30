@@ -14,11 +14,8 @@
     materialComposition:
       Steel: 200
       Glass: 100
-  - type: StaticPrice
-    price: 50
   - type: Tag
     tags:
-    - WhitelistChameleon
     - WeldingMask
   - type: HideLayerClothing
     slots:
@@ -37,7 +34,6 @@
   - type: Tag
     tags:
     - HamsterWearable
-    - WhitelistChameleon
     - WeldingMask
 
 - type: entity

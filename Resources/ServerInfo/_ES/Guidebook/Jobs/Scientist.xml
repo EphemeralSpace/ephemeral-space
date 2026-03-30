@@ -1,12 +1,7 @@
 <Document>
 # Scientist
-[color=#c96dbf]Science[/color], often called Research and Development, is a job consisting of stuff
+[color=#c96dbf]Science[/color], often called Research and Development, is a job consisting of stuff. Not much right now.
 
-## Personnel
-[color=#c96dbf]Science[/color]'s staff is made up of Scientists.
-
-  <Box>
-   <GuideEntityEmbed Entity="ToyFigurineScientist" Caption="Scientist"/>
-  </Box>
+(wip) telesci but also move it to mechanics and also wait for uhh when we redo the entire thing. and crew obj
 
 </Document>

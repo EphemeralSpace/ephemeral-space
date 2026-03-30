@@ -65,8 +65,6 @@
     radius: 6
     netsync: false
   - type: Appearance
-  - type: StaticPrice
-    price: 40
   - type: Clothing
     sprite: Objects/Tools/flashlight.rsi
     quickEquip: false

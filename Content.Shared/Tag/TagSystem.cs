@@ -50,6 +50,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if no <see cref="TagPrototype"/> exists with the given id.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool AddTag(EntityUid entityUid, [ForbidLiteral] ProtoId<TagPrototype> tag)
     {
         return AddTag((entityUid, EnsureComp<TagComponent>(entityUid)), tag);
@@ -64,6 +65,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if one of the ids represents an unregistered <see cref="TagPrototype"/>.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool AddTags(EntityUid entityUid, [ForbidLiteral] params ProtoId<TagPrototype>[] tags)
     {
         return AddTags(entityUid, (IEnumerable<ProtoId<TagPrototype>>)tags);
@@ -78,6 +80,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if one of the ids represents an unregistered <see cref="TagPrototype"/>.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool AddTags(EntityUid entityUid, [ForbidLiteral] IEnumerable<ProtoId<TagPrototype>> tags)
     {
         return AddTags((entityUid, EnsureComp<TagComponent>(entityUid)), tags);
@@ -93,6 +96,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if no <see cref="TagPrototype"/> exists with the given id.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool TryAddTag(EntityUid entityUid, [ForbidLiteral] ProtoId<TagPrototype> tag)
     {
         return _tagQuery.TryComp(entityUid, out var component) &&
@@ -109,6 +113,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if one of the ids represents an unregistered <see cref="TagPrototype"/>.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool TryAddTags(EntityUid entityUid, [ForbidLiteral] params ProtoId<TagPrototype>[] tags)
     {
         return TryAddTags(entityUid, (IEnumerable<ProtoId<TagPrototype>>)tags);
@@ -124,6 +129,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if one of the ids represents an unregistered <see cref="TagPrototype"/>.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool TryAddTags(EntityUid entityUid, [ForbidLiteral] IEnumerable<ProtoId<TagPrototype>> tags)
     {
         return _tagQuery.TryComp(entityUid, out var component) &&
@@ -546,6 +552,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if no <see cref="TagPrototype"/> exists with the given id.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool RemoveTag(EntityUid entityUid, [ForbidLiteral] ProtoId<TagPrototype> tag)
     {
         return _tagQuery.TryComp(entityUid, out var component) &&
@@ -561,6 +568,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if one of the ids represents an unregistered <see cref="TagPrototype"/>.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool RemoveTags(EntityUid entityUid, [ForbidLiteral] params ProtoId<TagPrototype>[] tags)
     {
         return RemoveTags(entityUid, (IEnumerable<ProtoId<TagPrototype>>)tags);
@@ -575,6 +583,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if one of the ids represents an unregistered <see cref="TagPrototype"/>.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool RemoveTags(EntityUid entityUid, [ForbidLiteral] IEnumerable<ProtoId<TagPrototype>> tags)
     {
         return _tagQuery.TryComp(entityUid, out var component) &&
@@ -590,6 +599,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if no <see cref="TagPrototype"/> exists with the given id.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool AddTag(Entity<TagComponent> entity, [ForbidLiteral] ProtoId<TagPrototype> tag)
     {
 #if DEBUG
@@ -611,6 +621,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if one of the ids represents an unregistered <see cref="TagPrototype"/>.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool AddTags(Entity<TagComponent> entity, [ForbidLiteral] params ProtoId<TagPrototype>[] tags)
     {
         return AddTags(entity, (IEnumerable<ProtoId<TagPrototype>>)tags);
@@ -625,6 +636,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if one of the ids represents an unregistered <see cref="TagPrototype"/>.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool AddTags(Entity<TagComponent> entity, [ForbidLiteral] IEnumerable<ProtoId<TagPrototype>> tags)
     {
         var update = false;
@@ -653,6 +665,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if no <see cref="TagPrototype"/> exists with the given id.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool RemoveTag(Entity<TagComponent> entity, [ForbidLiteral] ProtoId<TagPrototype> tag)
     {
 #if DEBUG
@@ -675,6 +688,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if one of the ids represents an unregistered <see cref="TagPrototype"/>.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool RemoveTags(Entity<TagComponent> entity, [ForbidLiteral] params ProtoId<TagPrototype>[] tags)
     {
         return RemoveTags(entity, (IEnumerable<ProtoId<TagPrototype>>)tags);
@@ -689,6 +703,7 @@ public sealed class TagSystem : EntitySystem
     /// <exception cref="UnknownPrototypeException">
     /// Thrown if one of the ids represents an unregistered <see cref="TagPrototype"/>.
     /// </exception>
+    [Obsolete("Tags should not be modified at runtime, favor components instead.")]
     public bool RemoveTags(Entity<TagComponent> entity, [ForbidLiteral] IEnumerable<ProtoId<TagPrototype>> tags)
     {
         var update = false;

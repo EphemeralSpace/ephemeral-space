@@ -28,7 +28,6 @@
   - type: Tag
     tags:
     - Kangaroo
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHandsGlovesBoxingRed
@@ -360,12 +359,9 @@
     interfaces:
       enum.MeleeSpeechUiKey.Key:
         type: MeleeSpeechBoundUserInterface
-  - type: StaticPrice
-    price: 2500
   - type: Tag
     tags:
     - Kangaroo
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingHandsBase, BaseSecurityContraband]
@@ -423,7 +419,6 @@
     mustBeEquippedToUse: true
   - type: Tag
     tags:
-    - WhitelistChameleon
     - Kangaroo
 
 - type: entity
@@ -442,7 +437,6 @@
     node: icon
   - type: Tag
     tags:
-    - WhitelistChameleon
     - Kangaroo
 
 - type: entity
@@ -469,7 +463,6 @@
     mustBeEquippedToUse: true
   - type: Tag
     tags:
-    - WhitelistChameleon
     - Kangaroo
 
 - type: entity
@@ -495,10 +488,7 @@
     mustBeEquippedToUse: true
   - type: Tag
     tags:
-    - WhitelistChameleon
     - Kangaroo
-  - type: StaticPrice
-    price: 2000
 
 - type: entity
   name: stun knuckle dusters

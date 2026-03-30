@@ -46,7 +46,6 @@
     tags:
     - HudMedical
     - PetWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
@@ -62,7 +61,6 @@
     tags:
     - HudSecurity
     - PetWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingEyesBase, BaseCommandContraband]
@@ -78,7 +76,6 @@
   - type: Tag
     tags:
     - PetWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingEyesBase
@@ -95,7 +92,6 @@
   - type: Tag
     tags:
     - PetWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingEyesBase
@@ -221,7 +217,6 @@
   - type: Tag
     tags:
     - PetWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSyndicateContraband]
@@ -238,7 +233,6 @@
   - type: Tag
     tags:
     - PetWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingEyesGlassesSunglasses, ShowSecurityIcons]
@@ -258,7 +252,6 @@
   - type: Tag
     tags:
     - PetWearable
-    - WhitelistChameleon
     - HudMedical
 
 - type: entity
@@ -279,7 +272,6 @@
   - type: Tag
     tags:
     - PetWearable
-    - WhitelistChameleon
     - HudSecurity
 
 - type: entity

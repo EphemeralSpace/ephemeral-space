@@ -55,9 +55,9 @@
     offset: 0, -1
     color: green
     netsync: false
+  - type: ESBalloon
   - type: Tag
     tags:
-    - Balloon
     - Flashlight
 
 - type: entity

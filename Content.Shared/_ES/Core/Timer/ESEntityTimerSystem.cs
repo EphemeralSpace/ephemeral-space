@@ -137,8 +137,8 @@ public sealed class ESEntityTimerSystem : EntitySystem
         {
             var target = xform.ParentUid;
 
-            // broadcast
-            if (xform.MapID == MapId.Nullspace)
+            // broadcast if we have no real parent, i.e. we're in nullspace ourselves.
+            if (target == EntityUid.Invalid)
             {
                 RaiseLocalEvent((object) timer.TimerEndEvent);
             }

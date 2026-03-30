@@ -21,9 +21,10 @@ public sealed class ESBeKilledObjectiveSystem : ESBaseObjectiveSystem<ESBeKilled
 
     private void OnKilled(Entity<ESBeKilledObjectiveComponent> ent, ref ESPlayerKilledEvent args)
     {
-        if (!args.ValidKill ||
-            !MindSys.TryGetMind(args.Killer.Value, out var mind) ||
-            MaskSys.GetTroupeOrNull(mind.Value.AsNullable()) != ent.Comp.TroupeRequired)
+        if (!args.ValidKill || !MindSys.TryGetMind(args.Killer.Value, out var mind))
+            return;
+
+        if (ent.Comp.TroupeRequired.HasValue && MaskSys.GetTroupeOrNull(mind.Value.AsNullable()) != ent.Comp.TroupeRequired)
             return;
 
         ObjectivesSys.SetObjectiveCounter(ent.Owner, 1f);

@@ -341,12 +341,10 @@ SpearUranium: Spear
 SpearReinforced: Spear
 UraniumShiv: Shiv
 ReinforcedShiv: Shiv
+CrateCargoParcelWrap: null
 
 # ES END
 
 # 2026-01-07
 HandheldHealthAnalyzerUnpowered: HandheldHealthAnalyzer
 HandheldHealthAnalyzerEmpty: HandheldHealthAnalyzer
-
-#2026-01-09
-BorgModuleAdvancedChemical: BorgModuleAdvancedTopical

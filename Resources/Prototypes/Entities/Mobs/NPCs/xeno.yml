@@ -113,9 +113,9 @@
     coldDamageThreshold: -150
   - type: Tag
     tags:
-      - CannotSuicide
       - DoorBumpOpener
       - FootstepSound
+  - type: ESCannotSuicide
   - type: NoSlip
   - type: Perishable #Ummmm the acid kills a lot of the bacteria or something
     molsPerSecondPerUnitMass: 0.0005
@@ -227,9 +227,7 @@
         - MobMask
         layer:
         - MobLayer
-  - type: Tag
-    tags:
-    - CannotSuicide
+  - type: ESCannotSuicide
 
 - type: entity
   name: ravager
@@ -562,9 +560,7 @@
         - MobMask
         layer:
         - MobLayer
-  - type: Tag
-    tags:
-    - CannotSuicide
+  - type: ESCannotSuicide
   - type: SolutionContainerManager # Being hit speeds you up so you can escape
     solutions:
       bite:

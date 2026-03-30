@@ -86,9 +86,9 @@
     actionId: ActionGoliathTentacle
   - type: Tag
     tags:
-    - CannotSuicide
     - Goliath
     - FootstepSound
+  - type: ESCannotSuicide
   - type: NoSlip
   - type: Butcherable
     spawned:
@@ -329,8 +329,6 @@
   - type: RotInto
     entity: FoodHivelordRemainsInert
     stage: 1
-  - type: StaticPrice
-    price: 5000
   - type: Tag
     tags:
     - HivelordRemains
@@ -350,8 +348,6 @@
   - type: SpaceGarbage
   - type: Item
     size: Normal
-  - type: StaticPrice
-    price: 500
   - type: Tag
     tags:
     - HivelordRemains

@@ -69,7 +69,6 @@ namespace Content.Server.Ghost
         [Dependency] private readonly DamageableSystem _damageable = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly NameModifierSystem _nameMod = default!;
 // ES START
         [Dependency] private readonly ESStagehandSystem _stagehand = default!;
@@ -78,7 +77,6 @@ namespace Content.Server.Ghost
         private EntityQuery<GhostComponent> _ghostQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
 
-        private static readonly ProtoId<TagPrototype> AllowGhostShownByEventTag = "AllowGhostShownByEvent";
         private static readonly ProtoId<DamageTypePrototype> AsphyxiationDamageType = "Asphyxiation";
 
         public override void Initialize()
@@ -403,9 +401,10 @@ namespace Content.Server.Ghost
         public void MakeVisible(bool visible)
         {
             var entityQuery = EntityQueryEnumerator<GhostComponent, VisibilityComponent>();
-            while (entityQuery.MoveNext(out var uid, out var _, out var vis))
+
+            while (entityQuery.MoveNext(out var uid, out var ghost, out var vis))
             {
-                if (!_tag.HasTag(uid, AllowGhostShownByEventTag))
+                if (!ghost.MadeVisibleByEvents)
                     continue;
 
                 if (visible)
