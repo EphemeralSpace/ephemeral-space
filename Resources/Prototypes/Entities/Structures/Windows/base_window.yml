@@ -78,10 +78,8 @@
   - type: Sprite
     drawdepth: Mobs
     sprite: Structures/Windows/directional.rsi
-    state: window
   - type: Icon
     sprite: Structures/Windows/directional.rsi
-    state: window
   - type: Fixtures
     fixtures:
       fix1:
@@ -214,10 +212,10 @@
     delay: 6
     fx: EffectRCDDeconstruct6
 
-# Reinforced Fulltile
+# Reinforced Directional
 - type: entity
   id: BaseWindowReinforcedDirectionalRCDable
-  parent: [ BaseWindowFulltile, BaseWindowReinforcedDamageable ]
+  parent: [ BaseWindowDirectional, BaseWindowReinforcedDamageable ]
   abstract: true
   components:
   - type: RCDDeconstructable

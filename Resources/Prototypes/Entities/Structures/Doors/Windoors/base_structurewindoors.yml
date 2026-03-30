@@ -97,13 +97,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 400
+        damage: 150
       behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 200
+        damage: 100 # hp values are the same as their fulltile counterparts
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -225,13 +225,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 600
+        damage: 250
       behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 400
+        damage: 200
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -253,6 +253,8 @@
 
 
 #Plasma Windoors
+# TODO remove this when default plasmaglass is removed and make secure plasma windoor the only one
+# this only has different values in case it never gets removed by some freak accident
 - type: entity
   id: BasePlasmaWindoor
   parent: [BaseDeltaPressurePlasmaQuarter, BaseWindoor]
@@ -296,13 +298,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 480
+        damage: 300
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 240
+        damage: 250
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -364,13 +366,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 800
+        damage: 350
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 530
+        damage: 300
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:

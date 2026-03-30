@@ -7,7 +7,6 @@
   components:
   - type: Sprite
     sprite: Structures/Windows/window.rsi
-    state: window
   - type: Icon
     sprite: Structures/Windows/window.rsi
     state: window
@@ -65,6 +64,13 @@
   parent: [ BaseDeltaPressureGlassQuarter, BaseWindowDirectionalRCDable ]
   name: directional window
   components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Structures/Windows/directional.rsi
+    state: window
+  - type: Icon
+    sprite: Structures/Windows/directional.rsi
+    state: window
   - type: Destructible
     thresholds:
     - trigger:
