@@ -1,16 +1,16 @@
 meta:
   format: 7
-  category: Map
+  category: Grid
   engineVersion: 275.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/30/2026 03:26:52
-  entityCount: 921
-maps:
-- 2
+  time: 03/30/2026 03:37:30
+  entityCount: 920
+maps: []
 grids:
 - 1
-orphans: []
+orphans:
+- 1
 nullspace: []
 tilemap:
   3: Space
@@ -33,7 +33,7 @@ entities:
       name: test_ship
     - type: Transform
       pos: -5.321541,-10.87529
-      parent: 2
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -477,16 +477,6 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ExplosionAirtightGrid
-  - uid: 2
-    components:
-    - type: MetaData
-      name: Map Entity
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: GridTree
-    - type: Broadphase
-    - type: OccluderTree
 - proto: AirlockEngineering
   entities:
   - uid: 601
@@ -1974,7 +1964,7 @@ entities:
       parent: 1
 - proto: CaptainIDCard
   entities:
-  - uid: 921
+  - uid: 67
     components:
     - type: Transform
       pos: 4.5,-3.5
@@ -2352,7 +2342,7 @@ entities:
       parent: 1
 - proto: ESEmag
   entities:
-  - uid: 67
+  - uid: 2
     components:
     - type: Transform
       pos: 4.668252,-3.3334112
