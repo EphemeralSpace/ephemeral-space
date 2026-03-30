@@ -105,8 +105,6 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks_directional.rsi
-  - type: StaticPrice
-    price: 15
 
 # Diagonal
 - type: entity
