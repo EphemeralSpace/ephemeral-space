@@ -18,6 +18,7 @@ namespace Content.Server.Entry
             "ESTimedDespawnSpriteFade",
             "ESPoster",
             "ESGenericAmbienceVisualizer",
+            "ESLocalPlayerMarker",
             // ES END
             "ConstructionGhost",
             "IconSmooth",
