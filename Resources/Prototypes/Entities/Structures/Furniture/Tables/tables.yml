@@ -200,7 +200,7 @@
 
 - type: entity
   id: TableReinforced
-  parent: [ TableBase, DeflectionSturdyStructure ]
+  parent: [ DeflectionSturdyStructure, TableBase ]
   name: reinforced table
   description: A square piece of metal standing on four metal legs. Extra robust.
   components:
@@ -377,7 +377,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 125
       behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -386,7 +386,7 @@
           collection: GlassBreak
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 75
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -445,7 +445,7 @@
           collection: GlassBreak
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 125 # even harder to break then a normal table
       behaviors:
       - !type:PlaySoundBehavior
         sound:
