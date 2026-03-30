@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
@@ -11,7 +12,7 @@ using Robust.Shared.Utility;
 namespace Content.IntegrationTests.Tests.Atmos;
 
 /// <summary>
-/// Mega-testclass for testing <see cref="AirtightSystem"/> and <see cref="AirtightComponent"/>.
+/// Mega-testclass for testing <see cref="AirtightSystem"/> and <see cref="Shared.Atmos.Components.AirtightComponent"/>.
 /// </summary>
 [TestOf(typeof(AirtightSystem))]
 [TestOf(typeof(AtmosphereSystem))]

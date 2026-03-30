@@ -1,6 +1,6 @@
-using Content.Server.Atmos.Components;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Map.Components;
 
@@ -108,6 +108,7 @@ namespace Content.Server.Atmos.EntitySystems
             UpdatePosition(airtight, xform);
             var airtightEv = new AirtightChanged(airtight, airtight, true, pos);
             RaiseLocalEvent(airtight, ref airtightEv, true);
+            Dirty(airtight);
         }
 
         public void UpdatePosition(Entity<AirtightComponent> ent, TransformComponent? xform = null)
@@ -158,7 +159,7 @@ namespace Content.Server.Atmos.EntitySystems
     /// </summary>
     /// <param name="Entity"></param>
     /// <param name="Airtight"></param>
-    /// <param name="AirBlockedChanged">Whether the <see cref="AirtightComponent.AirBlocked"/> changed</param>
+    /// <param name="AirBlockedChanged">Whether the <see cref="Shared.Atmos.Components.AirtightComponent.AirBlocked"/> changed</param>
     /// <param name="Position"></param>
     [ByRefEvent]
     public readonly record struct AirtightChanged(EntityUid Entity, AirtightComponent Airtight, bool AirBlockedChanged, (EntityUid Grid, Vector2i Tile) Position);
