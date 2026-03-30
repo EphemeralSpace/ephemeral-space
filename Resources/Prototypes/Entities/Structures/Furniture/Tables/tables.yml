@@ -200,7 +200,7 @@
 
 - type: entity
   id: TableReinforced
-  parent: [ TableBase, BaseSturdyStructure ]
+  parent: [ TableBase, DeflectionSturdyStructure ]
   name: reinforced table
   description: A square piece of metal standing on four metal legs. Extra robust.
   components:
