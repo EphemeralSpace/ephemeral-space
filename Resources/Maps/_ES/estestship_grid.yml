@@ -4,8 +4,8 @@ meta:
   engineVersion: 275.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/30/2026 03:16:21
-  entityCount: 920
+  time: 03/30/2026 03:26:52
+  entityCount: 921
 maps:
 - 2
 grids:
@@ -1972,6 +1972,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-16.5
       parent: 1
+- proto: CaptainIDCard
+  entities:
+  - uid: 921
+    components:
+    - type: Transform
+      pos: 4.5,-3.5
+      parent: 1
 - proto: Catwalk
   entities:
   - uid: 352
@@ -2348,7 +2355,7 @@ entities:
   - uid: 67
     components:
     - type: Transform
-      pos: 4.50618,-3.4452314
+      pos: 4.668252,-3.3334112
       parent: 1
 - proto: ESFireAxeCabinetFilled
   entities:
