@@ -313,24 +313,6 @@
 
 - type: entity
   parent: IDCardStandard
-  id: BotanistIDCard
-  name: botanist ID card
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
-    - sprite: *icon-rsi
-      offset: *icon-offset
-      state: Botanist
-  - type: PresetIdCard
-    job: ESBotanist
-
-- type: entity
-  parent: IDCardStandard
   id: ReporterIDCard
   name: reporter ID card
   components:

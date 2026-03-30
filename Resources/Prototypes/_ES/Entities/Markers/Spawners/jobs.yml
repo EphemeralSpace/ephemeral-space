@@ -97,19 +97,6 @@
       - state: chef
 
 - type: entity
-  id: ESSpawnPointBotanist
-  parent: SpawnPointJobBase
-  name: botanist
-  suffix: ES
-  components:
-  - type: SpawnPoint
-    job_id: ESBotanist
-  - type: Sprite
-    layers:
-      - state: green
-      - state: botanist
-
-- type: entity
   id: ESSpawnPointJanitor
   parent: SpawnPointJobBase
   name: janitor
