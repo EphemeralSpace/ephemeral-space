@@ -1,12 +1,5 @@
 # TODO move all of this to tiles once tile smoothing is supported
 
-##########
-# ES TODO START
-#
-# the way these are disabled right now is very confusing and jank.
-# once we inevitably hardfork, we should outright replace the prototypes and migrate them instead of replacing them
-# ES TODO END
-##########
 - type: entity
   id: CarpetBase
   parent: BaseStructure

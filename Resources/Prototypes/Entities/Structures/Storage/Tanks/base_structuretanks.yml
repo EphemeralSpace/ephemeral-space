@@ -23,12 +23,11 @@
         - InteractImpassable
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 150
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -48,7 +47,7 @@
         solution: tank
     - trigger:
         !type:DamageTrigger
-        damage: 10
+        damage: 100
       behaviors:
       - !type:SpillBehavior
         solution: tank
