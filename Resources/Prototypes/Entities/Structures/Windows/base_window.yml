@@ -41,7 +41,6 @@
       - Window
   - type: Sprite
     drawdepth: WallTops
-    state: full
   - type: Icon
     state: full
   - type: Physics

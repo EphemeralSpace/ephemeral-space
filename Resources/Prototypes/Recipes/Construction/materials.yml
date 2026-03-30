@@ -61,35 +61,3 @@
   targetNode: MaterialDurathread
   category: construction-category-materials
   objectType: Item
-
-- type: construction
-  id: SheetUGlass
-  graph: Glass
-  startNode: start
-  targetNode: SheetUGlass
-  category: construction-category-materials
-  objectType: Item
-
-- type: construction
-  id: SheetRUGlass
-  graph: Glass
-  startNode: start
-  targetNode: SheetRUGlass
-  category: construction-category-materials
-  objectType: Item
-
-- type: construction
-  id: SheetRUGlass0
-  graph: Glass
-  startNode: start
-  targetNode: SheetRUGlass0
-  category: construction-category-materials
-  objectType: Item
-
-- type: construction
-  id: SheetRUGlass1
-  graph: Glass
-  startNode: start
-  targetNode: SheetRUGlass1
-  category: construction-category-materials
-  objectType: Item

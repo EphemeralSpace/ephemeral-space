@@ -5,9 +5,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/clockwork_pinion.rsi
-  - type: Construction
-    graph: PinionAirlock
-    node: airlock
     containers:
     - board
   - type: Paintable
@@ -20,9 +17,6 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/clockwork_pinion.rsi
-  - type: Construction
-    graph: PinionAirlock
-    node: glassAirlock
     containers:
     - board
   - type: Paintable

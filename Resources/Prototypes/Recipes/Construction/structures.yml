@@ -868,32 +868,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: PinionAirlock
-  name: construction-recipe-pinion-airlock
-  graph: PinionAirlock
-  startNode: start
-  targetNode: airlock
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: PinionAirlockGlass
-  name: construction-recipe-pinion-airlock-glass
-  graph: PinionAirlock
-  startNode: start
-  targetNode: glassAirlock
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   id: AirlockShuttle
   graph: AirlockShuttle
   startNode: start
