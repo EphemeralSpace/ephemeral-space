@@ -1,10 +1,9 @@
-using Content.Server.Atmos.EntitySystems;
-using Content.Shared.Atmos;
+using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.Atmos.Components
+namespace Content.Shared.Atmos.Components
 {
-    [RegisterComponent, Access(typeof(AirtightSystem))]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
     public sealed partial class AirtightComponent : Component
     {
         public (EntityUid Grid, Vector2i Tile) LastPosition { get; set; }
@@ -20,13 +19,16 @@ namespace Content.Server.Atmos.Components
         /// I.e., this is a variant of <see cref="InitialAirBlockedDirection"/> that takes into account the entity's
         /// current rotation.
         /// </summary>
+        /// <remarks>
+        /// This is not networked.
+        /// </remarks>
         [ViewVariables]
         public int CurrentAirBlockedDirection;
 
         /// <summary>
         /// Whether the airtight entity is currently blocking airflow.
         /// </summary>
-        [DataField]
+        [DataField, AutoNetworkedField]
         public bool AirBlocked { get; set; } = true;
 
         /// <summary>

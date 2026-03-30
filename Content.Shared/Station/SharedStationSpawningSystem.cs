@@ -128,6 +128,8 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                 if (!string.IsNullOrEmpty(equipmentStr))
                 {
                     var equipmentEntity = Spawn(equipmentStr, xform.Coordinates);
+
+                    InventorySystem.TryUnequip(entity, slot.Name, true, true); // ES change - removes the item in the slot before adding the item
                     InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, silent: true, force: true, checkDoafter: false);
                 }
             }

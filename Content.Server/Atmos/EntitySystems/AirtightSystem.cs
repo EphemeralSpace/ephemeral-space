@@ -1,6 +1,6 @@
-using Content.Server.Atmos.Components;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Map.Components;
 
@@ -108,6 +108,7 @@ namespace Content.Server.Atmos.EntitySystems
             UpdatePosition(airtight, xform);
             var airtightEv = new AirtightChanged(airtight, airtight, true, pos);
             RaiseLocalEvent(airtight, ref airtightEv, true);
+            Dirty(airtight);
         }
 
         public void UpdatePosition(Entity<AirtightComponent> ent, TransformComponent? xform = null)
