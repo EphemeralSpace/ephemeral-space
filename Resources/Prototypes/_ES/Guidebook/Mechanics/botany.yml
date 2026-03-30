@@ -1,5 +1,5 @@
 - type: guideEntry
-  id: Botanist
+  id: Botany
   hidden: false
-  name: Botanist
-  text: "/ServerInfo/_ES/Guidebook/Jobs/Botanist.xml"
+  name: Botany
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Botany.xml"
