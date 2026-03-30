@@ -12,7 +12,7 @@ using Robust.Shared.Utility;
 namespace Content.IntegrationTests.Tests.Atmos;
 
 /// <summary>
-/// Mega-testclass for testing <see cref="AirtightSystem"/> and <see cref="Shared.Atmos.Components.AirtightComponent"/>.
+/// Mega-testclass for testing <see cref="AirtightSystem"/> and <see cref="AirtightComponent"/>.
 /// </summary>
 [TestOf(typeof(AirtightSystem))]
 [TestOf(typeof(AtmosphereSystem))]
