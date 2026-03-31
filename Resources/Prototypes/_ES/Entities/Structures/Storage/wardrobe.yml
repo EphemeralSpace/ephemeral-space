@@ -59,12 +59,6 @@
   name: science wardrobe
 
 - type: entity
-  id: ESWardrobeBotanist
-  parent: WardrobeGreen
-  suffix: ES
-  name: botanist wardrobe
-
-- type: entity
   id: ESWardrobeParamedic
   parent: WardrobeBlue
   suffix: ES

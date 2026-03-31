@@ -14,7 +14,6 @@
   weight: -5
   roles:
   - ESBartender
-  - ESBotanist
   - ESChef
   - ESJanitor
 

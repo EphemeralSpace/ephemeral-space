@@ -3953,13 +3953,6 @@ entities:
     - type: Transform
       pos: 5.363963,4.5012426
       parent: 1
-- proto: LockerBotanistFilled
-  entities:
-  - uid: 394
-    components:
-    - type: Transform
-      pos: 6.5,-5.5
-      parent: 1
 - proto: LockerMedicalFilled
   entities:
   - uid: 83

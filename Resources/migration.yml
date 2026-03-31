@@ -131,7 +131,6 @@ VendingMachineClothes: ESSpawnerRandomWardrobe
 VendingMachineSciDrobe: WardrobeScienceFilled
 VendingMachineMediDrobe: WardrobeMedicalDoctorFilled
 VendingMachineJaniDrobe: ESWardrobeJanitorFilled
-VendingMachineHydrobe: WardrobeBotanistFilled
 VendingMachineAutodrobe: ESWardrobeTheatreFilled
 VendingBarDrobe: ESWardrobeBartenderFilled
 VendingMachineChefDrobe: ESWardrobeChefFilled
@@ -195,7 +194,6 @@ SpawnPointClown: ESSpawnPointClown
 SpawnPointReporter: ESSpawnPointReporter
 SpawnPointBartender: ESSpawnPointBartender
 SpawnPointChef: ESSpawnPointChef
-SpawnPointBotanist: ESSpawnPointBotanist
 SpawnPointJanitor: ESSpawnPointJanitor
 SpawnPointCaptain: ESSpawnPointCaptain
 SpawnPointHeadOfPersonnel: ESSpawnPointHeadOfPersonnel
@@ -264,7 +262,6 @@ ESClothingHeadHelmetSpaceEngineering: ESClothingHeadHelmetSpace
 LockerAtmosphericsFilled: ESLockerAtmosphericsFilled
 
 # 2026-2-4
-WardrobeBotanistFilled: ESWardrobeBotanistFilled
 WardrobeMedicalDoctorFilled: ESWardrobePhysicianFilled
 WardrobeScienceFilled: ESWardrobeScienceFilled
 DresserHeadOfPersonnelFilled: ESDresserHeadOfPersonnelFilled
@@ -335,6 +332,9 @@ FireAxeCabinetFilled: ESFireAxeCabinetFilled
 
 # 2026-3-26
 CrateCargoParcelWrap: null
+
+# 2026-3-30
+ESSpawnPointBotanist: null
 
 # 2026-3-31
 

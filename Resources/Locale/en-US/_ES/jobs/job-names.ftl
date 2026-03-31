@@ -1,7 +1,6 @@
 ESjob-name-assistant = Assistant
 ESjob-name-atmostech = Atmospheric Technician
 ESjob-name-bartender = Bartender
-ESjob-name-botanist = Botanist
 ESjob-name-captain = Captain
 ESjob-name-cargotech = Cargo Technician
 ESjob-name-chef = Chef
@@ -21,7 +20,6 @@ ESjob-name-engineer = Station Engineer
 ESJobAssistant = Assistant
 ESJobAtmosphericTechnician = Atmospheric Technician
 ESJobBartender = Bartender
-ESJobBotanist = Botanist
 ESJobCaptain = Captain
 ESJobCargoTechnician = Cargo Technician
 ESJobChef = Chef
