@@ -140,7 +140,7 @@
       offset: *icon-offset
       state: MedicalDoctor
   - type: PresetIdCard
-    job: ESPhysician
+    job: ESDoctor
 
 - type: entity
   parent: IDCardStandard

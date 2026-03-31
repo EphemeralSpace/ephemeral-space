@@ -56,9 +56,9 @@
   color: "#57b8f0"
   weight: 5
   roles:
+  - ESDoctor
   - ESCoroner
   - ESParamedic
-  - ESPhysician
 
 - type: department
   id: ESSecurity

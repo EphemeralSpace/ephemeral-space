@@ -1,7 +1,7 @@
 <Document>
 # Chemist
 
-As the primary source of medication within the [color=#5b97bc]Medical[/color] department, Chemists are primarily responsible for creating medicines for [color=cyan]Physicians[/color] and [color=cyan]Paramedics[/color] to use. They are also responsible for supplying other departments' chemical needs, or filling out prescriptions for the crew.
+As the primary source of medication within the [color=#5b97bc]Medical[/color] department, Chemists are primarily responsible for creating medicines for [color=cyan]Doctors[/color] and [color=cyan]Paramedics[/color] to use. They are also responsible for supplying other departments' chemical needs, or filling out prescriptions for the crew.
 
 [textlink="Read the complete list of chemicals." link="Chemicals"]
 
@@ -94,7 +94,7 @@ However, pills have a delay after being eaten orally.
 
 ## Chemicals To Mix
 
-[color=#5b97bc]Medical[/color] is the main department you will be preparing chemicals for, as the [color=cyan]Physicians[/color] and [color=cyan]Paramedics[/color] rely on your medicines to do their jobs.
+[color=#5b97bc]Medical[/color] is the main department you will be preparing chemicals for, as the [color=cyan]Doctors[/color] and [color=cyan]Paramedics[/color] rely on your medicines to do their jobs.
 
 [textlink="Read what chemists usually make for Medical." link="OffbrandChemistMedical"]
 

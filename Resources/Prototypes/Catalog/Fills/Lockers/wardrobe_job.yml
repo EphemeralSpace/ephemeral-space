@@ -104,31 +104,6 @@
       prob: 0.1
 
 - type: entity
-  id: WardrobeMedicalDoctorFilled
-  suffix: Filled
-  parent: WardrobeMedicalDoctor
-  description: "We've all played doctor before, now practice medicine."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeMedicalDoctor
-
-- type: entityTable
-  id: FillWardrobeMedicalDoctor
-  table: !type:AllSelector
-    children:
-    - id: ClothingUniformJumpsuitMedicalDoctor
-    - id: ClothingBackpackMedical
-    - id: ClothingShoesColorWhite
-    - id: ClothingOuterCoatLab
-    - id: ClothingUniformJumpskirtMedicalDoctor
-    - id: ClothingHandsGlovesLatex
-      prob: 0.4
-    - id: ClothingEyesGlasses
-      prob: 0.3
-
-- type: entity
   id: WardrobeSecurityFilled
   suffix: Filled
   parent: WardrobeSecurity

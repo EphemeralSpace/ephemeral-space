@@ -415,12 +415,10 @@
     sprite: Clothing/Uniforms/Jumpsuit/kimono.rsi
 
 - type: entity
-# ES START - Remove Foldable
   parent: ClothingUniformBase
-# ES End
   id: ClothingUniformJumpsuitMedicalDoctor
-  name: medical doctor jumpsuit
-  description: It's made of a special fiber that provides minor protection against biohazards. It has a cross on the chest denoting that the wearer is trained medical personnel.
+  name: doctor jumpsuit
+  description: It has a cross on the chest denoting that the wearer is trained medical personnel.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/medical.rsi

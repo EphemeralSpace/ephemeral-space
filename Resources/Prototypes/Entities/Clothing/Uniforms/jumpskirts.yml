@@ -257,7 +257,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtMedicalDoctor
-  name: medical doctor jumpskirt
+  name: doctor jumpskirt
   description: It's made of a special fiber that provides minor protection against biohazards. It has a cross on the chest denoting that the wearer is trained medical personnel.
   components:
   - type: Sprite

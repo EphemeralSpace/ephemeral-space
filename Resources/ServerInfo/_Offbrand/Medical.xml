@@ -3,32 +3,31 @@
 If someone finds themselves injured, Medical is tasked with bringing them to health.
 
 ## Personnel
-[color=#5b97bc]Medical[/color] primarily employs [color=cyan]Physicians[/color], [color=cyan]Paramedics[/color], and [color=cyan]Chemists[/color].
-
-[color=#5b97bc]Medical[/color] care is directed by the [color=cyan]Chief Medical Officer.[/color]
+[color=#5b97bc]Medical[/color] primarily employs [color=cyan]Doctors[/color], [color=cyan]Paramedics[/color], and [color=cyan]Coroners[/color].
 
 <Box>
-  <GuideEntityEmbed Entity="ToyFigurineMedicalDoctor" Caption="Physician"/>
+  <GuideEntityEmbed Entity="ToyFigurineMedicalDoctor" Caption="Doctor"/>
   <GuideEntityEmbed Entity="ToyFigurineParamedic" Caption="Paramedic"/>
-  <GuideEntityEmbed Entity="ToyFigurineChemist" Caption="Chemist"/>
-  <GuideEntityEmbed Entity="ToyFigurineChiefMedicalOfficer" Caption="CMO"/>
+  <GuideEntityEmbed Entity="ToyFigurineMedicalDoctor" Caption="Coroner"/>
 </Box>
 
-## Physicians
+## Doctors
 
-[color=cyan]Physicians[/color] serve as the primary practitioners within the [color=#5b97bc]Medical[/color] ward, and are responsible for bringing patients to good health. This is done through performing surgeries and other intensive care as necessary.
+[color=cyan]Doctors[/color] serve as the primary practitioners within the [color=#5b97bc]Medical[/color] ward, and are responsible for bringing patients to good health. This is done through performing surgeries and other intensive care as necessary.
 
-[textlink="Learn more about Physicians." link="OffbrandPhysician"]
+[textlink="Learn more about Doctors." link="OffbrandPhysician"]
 
 ## Paramedics
 
-[color=cyan]Paramedics[/color] serve as the primary medical first responder on stations, and are tasked with retrieving and stabilizing patients to bring them to the [color=#5b97bc]Medical[/color] department for [color=cyan]Physicians[/color] to treat. In states of emergencies, [color=cyan]Paramedics[/color] may also take on additional responsibilities in the [color=#5b97bc]Medical[/color] ward whilst the [color=cyan]Physicians[/color] work through surgeries.
+[color=cyan]Paramedics[/color] serve as the primary medical first responder on stations, and are tasked with retrieving and stabilizing patients to bring them to the [color=#5b97bc]Medical[/color] department for [color=cyan]Doctors[/color] to treat. In states of emergencies, [color=cyan]Paramedics[/color] may also take on additional responsibilities in the [color=#5b97bc]Medical[/color] ward whilst the [color=cyan]Doctors[/color] work through surgeries.
 
-[textlink="Learn more about Physicians." link="OffbrandParamedic"]
+[textlink="Learn more about Paramedics." link="OffbrandParamedic"]
 
 ## Coroner
 
 The [color=cyan]Coroner[/color] is responsible for handling corpses of both man and beast and for performing autopsies.
+
+[textlink="Learn more about Coroners." link="Coroner"]
 
 ## The Body
 

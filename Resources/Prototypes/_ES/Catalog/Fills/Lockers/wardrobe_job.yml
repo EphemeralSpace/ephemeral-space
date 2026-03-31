@@ -202,18 +202,17 @@
       prob: 0.1
 
 - type: entity
-  id: ESWardrobePhysicianFilled
+  id: ESWardrobeDoctorFilled
   suffix: ES, Filled
-  parent: ESWardrobePhysician
-  description: "We've all played doctor before, now practice medicine."
+  parent: ESWardrobeDoctor
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage:
-        tableId: ESFillWardrobePhysician
+        tableId: ESFillWardrobeDoctor
 
 - type: entityTable
-  id: ESFillWardrobePhysician
+  id: ESFillWardrobeDoctor
   table:
     all:
     - id: ClothingUniformJumpsuitMedicalDoctor

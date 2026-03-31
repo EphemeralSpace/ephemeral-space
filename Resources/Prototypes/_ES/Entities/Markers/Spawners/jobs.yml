@@ -170,11 +170,11 @@
 - type: entity
   id: ESSpawnPointMedicalDoctor
   parent: SpawnPointJobBase
-  name: physician
+  name: doctor
   suffix: ES
   components:
   - type: SpawnPoint
-    job_id: ESPhysician
+    job_id: ESDoctor
   - type: Sprite
     layers:
       - state: green

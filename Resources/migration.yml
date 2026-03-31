@@ -336,6 +336,11 @@ CrateCargoParcelWrap: null
 # 2026-3-30
 ESSpawnPointBotanist: null
 
+# 2026-3-31
+WardrobeMedicalDoctor: ESWardrobeDoctor
+ESWardrobePhysician: ESWardrobeDoctor
+ESWardrobePhysicianFilled: ESWardrobeDoctorFilled
+
 # ES END
 
 # 2026-01-07
