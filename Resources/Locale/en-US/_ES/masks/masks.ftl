@@ -29,9 +29,6 @@ es-mask-hitman-desc = As a hitman, use your dossiers in order to identify your t
 es-mask-insider-name = Insider
 es-mask-insider-desc = As an insider, investigate the people on station and try to find out their alleigances using your special dossier.
 
-es-mask-mercenary-name = Mercenary
-es-mask-mercenary-desc = As a Mercenary, use your dubiously-legally-acquired syndicate gear to further your goals.
-
 es-mask-nobleman-name = Nobleman
 es-mask-nobleman-desc = As a Nobleman, prevent the corruption of your pure blood by not killing anyone.
 

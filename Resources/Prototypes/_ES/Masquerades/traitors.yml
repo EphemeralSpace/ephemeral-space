@@ -9,7 +9,7 @@
     defaultMask: "ESCrewmember"
     superfanTarget: "#Traitors"
     roles:
-      6: ["ESMarauder", "ESInfiltrator", "#Filler(2)", "ESVandal", "ESMercenary"] # 0 generic crew, 2 traitors
+      6: ["ESMarauder", "ESInfiltrator", "#Filler(2)", "ESVandal", "#Targeters"] # 0 generic crew, 2 traitors
       7: ["#Filler"]
       8: ["#Filler"]
       9: ["ESVigilante"]

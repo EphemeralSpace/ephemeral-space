@@ -85,18 +85,6 @@
     - id: ESObjectiveHaterDontKill
 
 - type: esMask
-  id: ESMercenary
-  name: es-mask-mercenary-name
-  troupe: ESCrew
-  description: es-mask-mercenary-desc
-  color: steelblue
-  weight: 1
-  mindComponents:
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESSpawnerRandomTraitorCache
-
-- type: esMask
   id: ESNobleman
   name: es-mask-nobleman-name
   troupe: ESCrew

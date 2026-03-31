@@ -8,7 +8,7 @@
   masquerade:
     defaultMask: "ESCrewmember"
     roles:
-      6: [ "#AllParasites(2)", "#Filler(2)", "#Targeters", "ESMercenary" ] # 0 generic crew, 2 parasites
+      6: [ "#AllParasites(2)", "#Filler(2)", "#Targeters", "ESVandal" ] # 0 generic crew, 2 parasites
       7: [ "#Filler" ]
       8: [ "#Targeters" ]
       9: [ "#Filler" ]
