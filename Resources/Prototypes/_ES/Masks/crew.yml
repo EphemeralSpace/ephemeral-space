@@ -32,34 +32,6 @@
   color: white
 
 - type: esMask
-  id: ESFruitVendor
-  name: es-mask-fruit-vendor-name
-  troupe: ESCrew
-  description: es-mask-fruit-vendor-desc
-  color: magenta
-  weight: 1
-  objectives:
-    id: ESObjectiveEatSummonedFruit
-  mindComponents:
-  - type: ESMaskSummoner
-    examineString: es-summonable-examine-fruit
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheCrewFruitVendor
-      amount: 4
-
-- type: esMask
-  id: ESGlutton
-  name: es-mask-glutton-name
-  troupe: ESCrew
-  description: es-mask-glutton-desc
-  color: yellowgreen
-  objectives:
-    all:
-    - id: ESObjectiveEatUniqueFoods
-    - id: ESObjectiveEatFood
-
-- type: esMask
   id: ESGuzzler
   name: es-mask-guzzler-name
   troupe: ESCrew

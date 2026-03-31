@@ -3,7 +3,6 @@
              # and might have an outsized impact but never be too insane.
   masks:
     # Freaks, funny in moderation.
-    ESGlutton: 0.3
     ESGuzzler: 0.3
 
     # Influencers (not that kind)
@@ -12,6 +11,5 @@
     ESSecretary: 1
 
     # Freaks^2
-    ESFruitVendor: 0.1
     ESNobleman: 0.2
     ESPhantom: 0.2

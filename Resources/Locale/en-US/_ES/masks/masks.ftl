@@ -11,12 +11,6 @@ es-mask-crewmember-desc = As a Crewmember, use your unclouded judgment to help m
 es-mask-daredevil-name = Daredevil
 es-mask-daredevil-desc = As a Daredevil, constantly seek new and exciting ways to hurt yourself in accordance with your insane lifestyle.
 
-es-mask-fruit-vendor-name = Fruit Vendor
-es-mask-fruit-vendor-desc = As a Fruit Vendor, dispense delicious fruits and pass them out among the crewmembers.
-
-es-mask-glutton-name = Glutton
-es-mask-glutton-desc = As a Glutton, your stomach is an abyss which begs to be filled. Consume all you can and become the most gluttonous crew member.
-
 es-mask-guzzler-name = Guzzler
 es-mask-guzzler-desc = As a Guzzler, you have nothing but an endless desire to Consume Liquid. Guzzle everything you can get your hands on.
 
