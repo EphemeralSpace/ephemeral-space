@@ -187,9 +187,9 @@ public abstract partial class ESSharedAuditionsSystem
     private const float PrefixChance = 0.09f;
     private const float PrefixGenderlessChance = 0.65f;
     private const float PrefixFirstNameless = 0.7f;
-    private const float LastNamelessChance = 0.022f;
+    private const float LastNamelessChance = 0.018f;
     private const float FirstNamelessChance = 0.009f;
-    private const float AdjectiveFirstNameChance = 0.02f;
+    private const float AdjectiveFirstNameChance = 0.022f;
     private const int AlliterationTotalChances = 6;
     private const int AdjectiveAlliterationTotalChances = 3;
 
