@@ -111,19 +111,19 @@
       amount: 2
     - id: ESMicroBombImplanter
 
-# Veteran
+# Mercenary
 - type: entity
   parent: ESCrateCache
-  id: ESCrateCacheCrewVeteran
-  suffix: ES, Veteran Cache
+  id: ESCrateCacheCrewMercenary
+  suffix: ES, Mercenary Cache
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage:
-        tableId: ESCrewCacheVeteran
+        tableId: ESCrewCacheMercenary
 
 - type: entityTable
-  id: ESCrewCacheVeteran
+  id: ESCrewCacheMercenary
   table:
     group:
     - all:

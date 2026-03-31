@@ -116,10 +116,10 @@
       amount: 1, 2
 
 - type: esMask
-  id: ESVeteran
-  name: es-mask-veteran-name
+  id: ESMercenary
+  name: es-mask-mercenary-name
   troupe: ESCrew
-  description: es-mask-veteran-desc
+  description: es-mask-mercenary-desc
   color: ruber
   weight: 1
   objectives:
@@ -127,7 +127,7 @@
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto:
-      id: ESCrateCacheCrewVeteran
+      id: ESCrateCacheCrewMercenary
 
 - type: esMask
   id: ESVigilante

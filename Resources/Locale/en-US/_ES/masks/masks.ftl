@@ -8,20 +8,17 @@ es-mask-avenger-desc = As an avenger, protect your target from being killed at a
 es-mask-crewmember-name = Crewmember
 es-mask-crewmember-desc = As a Crewmember, use your unclouded judgment to help make sure the crew completes their objective and gets out safely.
 
-es-mask-daredevil-name = Daredevil
-es-mask-daredevil-desc = As a Daredevil, constantly seek new and exciting ways to hurt yourself in accordance with your insane lifestyle.
-
 es-mask-guzzler-name = Guzzler
 es-mask-guzzler-desc = As a Guzzler, you have nothing but an endless desire to Consume Liquid. Guzzle everything you can get your hands on.
 
 es-mask-hater-name = Hater
 es-mask-hater-desc = As a hater, do everything in your power to make your target fail their objectives.
 
-es-mask-hitman-name = Hitman
-es-mask-hitman-desc = As a hitman, use your dossiers in order to identify your targets and take them out.
-
 es-mask-insider-name = Insider
 es-mask-insider-desc = As an insider, investigate the people on station and try to find out their alleigances using your special dossier.
+
+es-mask-mercenary-name = Mercenary
+es-mask-mercenary-desc = As a Mercenary, help the station by using your sidearm to dispatch anybody who isn't aligned with the crew.
 
 es-mask-nobleman-name = Nobleman
 es-mask-nobleman-desc = As a Nobleman, prevent the corruption of your pure blood by not killing anyone.
@@ -31,9 +28,6 @@ es-mask-secretary-desc = As a secretary, do whatever you can to help your target
 
 es-mask-vandal-name = Vandal
 es-mask-vandal-desc = As a Vandal, sabotage random machines around the station for a little bit of fun. Try not to get pinned as a Traitor.
-
-es-mask-veteran-name = Veteran
-es-mask-veteran-desc = As a Veteran, help the station by using your trusty sidearm to take care of anybody who isn't aligned with the crew.
 
 es-mask-vigilante-name = Vigilante
 es-mask-vigilante-desc = As a Vigilante, seek out those who have killed others and bring them to justice by killing them yourself.
