@@ -35,9 +35,6 @@ es-mask-nobleman-desc = As a Nobleman, prevent the corruption of your pure blood
 es-mask-secretary-name = Secretary
 es-mask-secretary-desc = As a secretary, do whatever you can to help your target complete their objectives.
 
-es-mask-survivalist-name = Survivalist
-es-mask-survivalist-desc = As a Survivalist, survive at all costs. Rely on your MedAlert (TM) to broadcast messages when you enter critical condition, and find your cache of prepper supplies.
-
 es-mask-vandal-name = Vandal
 es-mask-vandal-desc = As a Vandal, sabotage random machines around the station for a little bit of fun. Try not to get pinned as a Traitor.
 

@@ -159,32 +159,6 @@
     - id: ESClothingOuterArmorSecurity
     - id: ExGrenade
 
-# Survivalist
-- type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheCrewSurvivalist
-  suffix: ES, Survivalist Cache
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESCrewCacheSurvivalist
-
-- type: entityTable
-  id: ESCrewCacheSurvivalist
-  table:
-    all:
-    - group:
-      - id: MedkitAdvancedFilled
-      - id: MedkitBurnFilled
-      - id: MedkitBruteFilled
-    - group:
-      - id: ToolboxEmergencyFilled
-      - id: ToolboxMechanicalFilled
-      - id: ToolboxElectricalFilled
-    - tableId: ESMaintLootRare
-      rolls: 2
-
 # Insider
 - type: entity
   parent: ESCrateCache

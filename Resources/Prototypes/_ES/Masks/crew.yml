@@ -120,22 +120,6 @@
     - id: ESObjectiveSecretaryAssist
 
 - type: esMask
-  id: ESSurvivalist
-  name: es-mask-survivalist-name
-  troupe: ESCrew
-  description: es-mask-survivalist-desc
-  color: forestgreen
-  components:
-  - type: ESMedAlertRadioAnnouncer
-  mindComponents:
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheCrewSurvivalist
-  objectives:
-    all:
-    - id: ESObjectiveSurvive
-
-- type: esMask
   parent: ESBaseCommandRestricted
   id: ESVandal
   name: es-mask-vandal-name
