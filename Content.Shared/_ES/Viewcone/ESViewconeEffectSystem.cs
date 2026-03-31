@@ -1,3 +1,4 @@
+using Content.Shared._ES.Viewcone.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -30,7 +31,7 @@ public sealed class ESViewconeEffectSystem : EntitySystem
             return;
 
         var ent = SpawnNextToOrDrop(effect, source);
-        var viewconeEffect = EnsureComp<Components.ESViewconeOccludableComponent>(ent);
+        var viewconeEffect = EnsureComp<ESViewconeOccludableComponent>(ent);
         viewconeEffect.Inverted = true;
         viewconeEffect.Source = source;
         Dirty(ent, viewconeEffect);
