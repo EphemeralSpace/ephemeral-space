@@ -107,10 +107,8 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: ClothingOuterSuitRad
-          amount: 2
-        - id: GeigerCounter
-          amount: 2
+        - tableId: ESFillRadiationSuit
+          rolls: 2
         - id: DrinkVodkaBottleFull
         - id: DrinkShotGlass
           amount: 2
