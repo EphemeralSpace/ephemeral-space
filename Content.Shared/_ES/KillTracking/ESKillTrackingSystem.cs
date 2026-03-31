@@ -73,11 +73,17 @@ public sealed class ESKillTrackingSystem : EntitySystem
 
     private void OnMobStateChanged(Entity<ESKillTrackerComponent> ent, ref MobStateChangedEvent args)
     {
-        // Only report on dead.
-        if (args.NewMobState != MobState.Dead)
-            return;
-
-        RaiseKillEvent(ent);
+        switch (args.NewMobState)
+        {
+            case MobState.Alive:
+            case MobState.Critical:
+                // If they come back to life, reset this flag.
+                ent.Comp.Killed = false;
+                break;
+            case MobState.Dead:
+                RaiseKillEvent(ent);
+                break;
+        }
     }
 
     private void OnDestruction(Entity<ESKillTrackerComponent> ent, ref DestructionEventArgs args)
