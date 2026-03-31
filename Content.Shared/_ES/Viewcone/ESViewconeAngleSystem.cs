@@ -18,7 +18,6 @@ public sealed class ESViewconeAngleSystem : EntitySystem
         SubscribeLocalEvent<ESViewconeModifierComponent, StatusEffectRelayedEvent<ESViewconeGetAngleModifierEvent>>(OnAngleStatusEffectModify);
     }
 
-
     private void OnAngleModify(Entity<ESViewconeModifierComponent> ent, ref ESViewconeGetAngleModifierEvent args)
     {
         args.ModifyAngle(ent.Comp.AngleModifier);

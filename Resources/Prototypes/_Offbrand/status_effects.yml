@@ -330,7 +330,7 @@
   - type: BlockMovementWhenPulledStatusEffect
   - type: DisruptOnAttackStatusEffect
   - type: ESViewconeModifier
-    angleModifier: -120
+    angleModifier: -180
 
 - type: entity
   parent: MobStatusEffectBase
