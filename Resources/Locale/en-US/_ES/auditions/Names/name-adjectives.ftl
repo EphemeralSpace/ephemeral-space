@@ -1,12 +1,10 @@
 #es-names-adjective-dataset
 es-names-adjective-dataset-1 = Average
 es-names-adjective-dataset-2 = Bloody
-es-names-adjective-dataset-3 = Clean
 es-names-adjective-dataset-4 = Dark
 es-names-adjective-dataset-5 = Dirty
 es-names-adjective-dataset-6 = Evil
 es-names-adjective-dataset-7 = Fancy
-es-names-adjective-dataset-8 = Hollow
 es-names-adjective-dataset-9 = Unusual
 es-names-adjective-dataset-10 = Magnificent
 es-names-adjective-dataset-11 = Strange
@@ -32,4 +30,25 @@ es-names-adjective-dataset-30 = Lovely
 es-names-adjective-dataset-31 = Silly
 es-names-adjective-dataset-32 = Ancient
 es-names-adjective-dataset-33 = Weak
-es-names-adjective-dataset-34 = Dusty
+# 2026-03-31
+Suspicious
+Hungry
+Wacky
+Wild
+Wise
+Contemptuous
+Spicy
+Sneaky
+Brave
+Honest
+Devious
+Loud
+Big
+Lil'
+Jubilant
+Sloppy
+Shitty
+Discount
+Stone-Cold
+Freaky
+Whimsical
