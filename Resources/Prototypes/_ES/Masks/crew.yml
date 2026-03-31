@@ -81,22 +81,11 @@
     - id: ESObjectivePhantomDie
 
 - type: esMask
-  id: ESSecretary
-  name: es-mask-secretary-name
-  troupe: ESCrew
-  description: es-mask-secretary-desc
-  color: palegreen
-  assignmentOrder: 11 # Needs to be assigned after other masks
-  objectives:
-    all:
-    - id: ESObjectiveSecretaryAssist
-
-- type: esMask
   parent: ESBaseCommandRestricted
-  id: ESVandal
-  name: es-mask-vandal-name
+  id: ESRebel
+  name: es-mask-rebel-name
   troupe: ESCrew
-  description: es-mask-vandal-desc
+  description: es-mask-rebel-desc
   color: tomato
   weight: 0.2
   mindComponents:
@@ -107,13 +96,24 @@
     all:
     - pick:
         all:
-        - id: ESObjectiveVandalSabotageCommunications
-        - id: ESObjectiveVandalSabotageCrewMonitoring
-        - id: ESObjectiveVandalSabotageIDComputer
-        - id: ESObjectiveVandalSabotageCriminalRecords
-        - id: ESObjectiveVandalSabotageTelecom
+        - id: ESObjectiveRebelSabotageCommunications
+        - id: ESObjectiveRebelSabotageCrewMonitoring
+        - id: ESObjectiveRebelSabotageIDComputer
+        - id: ESObjectiveRebelSabotageCriminalRecords
+        - id: ESObjectiveRebelSabotageTelecom
           weight: 2
       amount: 1, 2
+
+- type: esMask
+  id: ESSecretary
+  name: es-mask-secretary-name
+  troupe: ESCrew
+  description: es-mask-secretary-desc
+  color: palegreen
+  assignmentOrder: 11 # Needs to be assigned after other masks
+  objectives:
+    all:
+    - id: ESObjectiveSecretaryAssist
 
 - type: esMask
   id: ESMercenary

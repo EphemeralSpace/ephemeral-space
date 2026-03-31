@@ -32,7 +32,7 @@
   - type: ESKillTargetObjective
 
 ### Sabotage objectives
-# These are split into base so we can have traitor/vandal variants, since vandal wants a separate description, and no nuke prereq
+# These are split into base so we can have traitor/rebel variants, since rebel wants a separate description, and no nuke prereq
 
 # Communications
 - type: entity

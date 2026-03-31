@@ -29,8 +29,8 @@ es-mask-phantom-desc = As a Phantom, reincarnate as a vengeful spirit on death a
 es-mask-secretary-name = Secretary
 es-mask-secretary-desc = As a secretary, do whatever you can to help your target complete their objectives.
 
-es-mask-vandal-name = Vandal
-es-mask-vandal-desc = As a Vandal, sabotage random machines around the station for a little bit of fun. Try not to get pinned as a Traitor.
+es-mask-rebel-name = Rebel
+es-mask-rebel-desc = As a Rebel, sabotage machines around the station in fervent protest. Try not to get pinned as a Traitor.
 
 es-mask-vigilante-name = Vigilante
 es-mask-vigilante-desc = As a Vigilante, seek out those who have killed others and bring them to justice by killing them yourself.
