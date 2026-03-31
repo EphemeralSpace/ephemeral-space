@@ -57,6 +57,20 @@
     - id: ESObjectiveHaterDontKill
 
 - type: esMask
+  id: ESMercenary
+  name: es-mask-mercenary-name
+  troupe: ESCrew
+  description: es-mask-mercenary-desc
+  color: ruber
+  weight: 1
+  objectives:
+    id: ESObjectiveKillNonCrew
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewMercenary
+
+- type: esMask
   id: ESNobleman
   name: es-mask-nobleman-name
   troupe: ESCrew
@@ -114,20 +128,6 @@
   objectives:
     all:
     - id: ESObjectiveSecretaryAssist
-
-- type: esMask
-  id: ESMercenary
-  name: es-mask-mercenary-name
-  troupe: ESCrew
-  description: es-mask-mercenary-desc
-  color: ruber
-  weight: 1
-  objectives:
-    id: ESObjectiveKillNonCrew
-  mindComponents:
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheCrewMercenary
 
 - type: esMask
   id: ESVigilante
