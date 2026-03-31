@@ -131,7 +131,6 @@ VendingMachineClothes: ESSpawnerRandomWardrobe
 VendingMachineSciDrobe: WardrobeScienceFilled
 VendingMachineMediDrobe: WardrobeMedicalDoctorFilled
 VendingMachineJaniDrobe: ESWardrobeJanitorFilled
-VendingMachineHydrobe: WardrobeBotanistFilled
 VendingMachineAutodrobe: ESWardrobeTheatreFilled
 VendingBarDrobe: ESWardrobeBartenderFilled
 VendingMachineChefDrobe: ESWardrobeChefFilled
@@ -263,7 +262,6 @@ ESClothingHeadHelmetSpaceEngineering: ESClothingHeadHelmetSpace
 LockerAtmosphericsFilled: ESLockerAtmosphericsFilled
 
 # 2026-2-4
-WardrobeBotanistFilled: ESWardrobeBotanistFilled
 WardrobeMedicalDoctorFilled: ESWardrobePhysicianFilled
 WardrobeScienceFilled: ESWardrobeScienceFilled
 DresserHeadOfPersonnelFilled: ESDresserHeadOfPersonnelFilled
