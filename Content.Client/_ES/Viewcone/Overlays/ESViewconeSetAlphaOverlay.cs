@@ -1,5 +1,7 @@
 using Content.Client._ES.Viewcone.ComponentTree;
+using Content.Client.Eye;
 using Content.Shared._ES.Viewcone;
+using Content.Shared._ES.Viewcone.Components;
 using Content.Shared.MouseRotator;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -19,6 +21,7 @@ public sealed class ESViewconeSetAlphaOverlay : Overlay
 {
     [Dependency] private readonly IEntityManager _ent = default!;
     private readonly ESViewconeOverlayManagementSystem _cone;
+    private readonly ESViewconeAngleSystem _angle;
     private readonly ESViewconeOccludableTreeSystem _tree;
     private readonly TransformSystem _xform;
     private readonly SpriteSystem _sprite;
@@ -33,6 +36,7 @@ public sealed class ESViewconeSetAlphaOverlay : Overlay
         IoCManager.InjectDependencies(this);
 
         _cone = _ent.EntitySysManager.GetEntitySystem<ESViewconeOverlayManagementSystem>();
+        _angle = _ent.EntitySysManager.GetEntitySystem<ESViewconeAngleSystem>();
         _tree = _ent.EntitySysManager.GetEntitySystem<ESViewconeOccludableTreeSystem>();
         _xform  = _ent.EntitySysManager.GetEntitySystem<TransformSystem>();
         _sprite = _ent.EntitySysManager.GetEntitySystem<SpriteSystem>();
@@ -46,9 +50,9 @@ public sealed class ESViewconeSetAlphaOverlay : Overlay
             return false;
 
         // This is really stupid but there isn't another way to reverse an eye entity from just an IEye afaict
-        // It's not really inefficient though. theres barely any of those fuckin things anyway (? verify that) (maybe this scales with players in view) (shit)
-        var enumerator = _ent.AllEntityQueryEnumerator<EyeComponent, ESViewconeComponent>();
-        while (enumerator.MoveNext(out var uid, out var eye, out var viewcone))
+        // It's not really inefficient though. theres only 1 of these anyway usually with the lerpingeye bound
+        var enumerator = _ent.AllEntityQueryEnumerator<LerpingEyeComponent, EyeComponent, ESViewconeComponent>();
+        while (enumerator.MoveNext(out var uid, out _, out var eye, out var viewcone))
         {
             if (args.Viewport.Eye != eye.Eye)
                 continue;
@@ -74,7 +78,7 @@ public sealed class ESViewconeSetAlphaOverlay : Overlay
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // !! Thank You Bhijn God (TYBG) for 95% of the rest of this methods code !!
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        var radConeAngle = MathHelper.DegreesToRadians(cone.ConeAngle);
+        var radConeAngle = MathHelper.DegreesToRadians(_angle.GetModifiedViewconeAngle((ent, cone)));
         var radConeFeather = MathHelper.DegreesToRadians(cone.ConeFeather);
 
         _cone.CachedBaseAlphas.Clear();

@@ -30,7 +30,7 @@ public sealed class ESViewconeEffectSystem : EntitySystem
             return;
 
         var ent = SpawnNextToOrDrop(effect, source);
-        var viewconeEffect = EnsureComp<ESViewconeOccludableComponent>(ent);
+        var viewconeEffect = EnsureComp<Components.ESViewconeOccludableComponent>(ent);
         viewconeEffect.Inverted = true;
         viewconeEffect.Source = source;
         Dirty(ent, viewconeEffect);

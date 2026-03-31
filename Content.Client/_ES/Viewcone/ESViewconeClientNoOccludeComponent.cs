@@ -1,4 +1,4 @@
-using Content.Shared._ES.Viewcone;
+using Content.Shared._ES.Viewcone.Components;
 
 namespace Content.Client._ES.Viewcone;
 

@@ -1,9 +1,8 @@
-using Content.Shared.Wall;
 using Robust.Shared.ComponentTrees;
 using Robust.Shared.GameStates;
 using Robust.Shared.Physics;
 
-namespace Content.Shared._ES.Viewcone;
+namespace Content.Shared._ES.Viewcone.Components;
 
 /// <summary>
 ///     Marks an entity as one which should fade away clientside if you have a viewcone and it's out of view
