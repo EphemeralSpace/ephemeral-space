@@ -137,19 +137,6 @@
   - type: AccessReader
     access: [ [ "Kitchen" ] ]
 
-# Botanist
-- type: entity
-  id: LockerBotanist
-  parent: [ LockerBaseSecurePersonal, LockerBase ]
-  name: botanist's locker
-  components:
-  - type: EntityStorageVisuals
-    stateBaseClosed: hydro
-    stateDoorOpen: hydro_open
-    stateDoorClosed: hydro_door
-  - type: ESPersonalLocker
-    job: ESBotanist
-
 # Medicine
 - type: entity
   id: LockerMedicine

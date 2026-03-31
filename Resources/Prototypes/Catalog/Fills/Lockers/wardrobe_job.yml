@@ -104,32 +104,6 @@
       prob: 0.1
 
 - type: entity
-  id: WardrobeBotanistFilled
-  suffix: Filled
-  parent: WardrobeBotanist
-  description: "Plant yourself among the plant men with these 100% natural plant-derived clothes."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillWardrobeBotanist
-
-- type: entityTable
-  id: FillWardrobeBotanist
-  table: !type:AllSelector
-    children:
-    - id: ClothingUniformJumpsuitHydroponics
-    - id: ClothingBackpackHydroponics
-    - id: ClothingShoesColorBrown
-    - id: ClothingOuterApronBotanist
-    - id: ClothingUniformJumpskirtHydroponics
-    - id: ClothingUniformOveralls
-    - id: ClothingHeadHatTrucker #the hat itself is a subtle joke
-      prob: 0.15
-    - id: ClothingHandsGlovesLeather
-      prob: 0.5
-
-- type: entity
   id: WardrobeMedicalDoctorFilled
   suffix: Filled
   parent: WardrobeMedicalDoctor
