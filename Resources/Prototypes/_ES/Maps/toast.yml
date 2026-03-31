@@ -13,13 +13,12 @@
         nameGenerator:
           !type:ESSimpleNameGenerator
       - type: StationJobs
-        availableJobs: # 24 jobs total
+        availableJobs: # 23 jobs total
           #command (2)
           ESCaptain: [ 1, 1 ]
           ESHeadOfPersonnel: [ 1, 1 ]
-          #service (3)
+          #service (2)
           ESBartender: [ 1, 1 ]
-          ESBotanist: [ 1, 1 ]
           ESChef: [ 1, 1 ]
           #engineering (4)
           ESAtmosphericTechnician: [ 2, 2 ]
