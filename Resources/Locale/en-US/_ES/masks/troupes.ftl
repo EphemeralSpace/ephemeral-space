@@ -6,7 +6,3 @@ es-troupe-traitor-description = As a Traitor, seek out your fellow operatives, c
 
 es-troupe-parasite-name = Parasite
 es-troupe-parasite-description = As a Parasite, spread your parasitic infection across the station by driving others into violence and rage..
-
-es-troupe-jester-name = Jester
-es-troupe-jester-description = As a Jester, drive others to the edge until you can take advantage of their emotions and violence to win.
-

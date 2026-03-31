@@ -23,6 +23,9 @@ es-mask-mercenary-desc = As a Mercenary, help the station by using your sidearm 
 es-mask-nobleman-name = Nobleman
 es-mask-nobleman-desc = As a Nobleman, prevent the corruption of your pure blood by not killing anyone.
 
+es-mask-phantom-name = Phantom
+es-mask-phantom-desc = As a Phantom, reincarnate as a vengeful spirit on death and haunt your murderer until they also die.
+
 es-mask-secretary-name = Secretary
 es-mask-secretary-desc = As a secretary, do whatever you can to help your target complete their objectives.
 
@@ -34,19 +37,6 @@ es-mask-vigilante-desc = As a Vigilante, seek out those who have killed others a
 
 es-mask-vip-name = VIP
 es-mask-vip-desc = As a VIP, use your fancy VIP card to help confirm your innocence in times of peril.
-
-# Jester masks
-es-mask-the-fool-name = Fool
-es-mask-the-fool-desc = As a Fool, wallow in pity at the failure of your purpose and curse your existence to the very end.
-
-es-mask-martyr-name = Martyr
-es-mask-martyr-desc = As a Martyr, you are a beautiful soul. Be killed by another crewmember in order to ascend to heaven and drag them to hell.
-
-es-mask-parasite-name = Parasite
-es-mask-parasite-desc = As a parasite, you are a devilish worm. Get killed by someone else in order to take control of their bodies and steal their mask.
-
-es-mask-phantom-name = Phantom
-es-mask-phantom-desc = As a Phantom, reincarnate as a vengeful spirit on death and haunt your murderer until they also die.
 
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete your group objectives.

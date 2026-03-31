@@ -18,12 +18,6 @@
 
 - type: esMask
   parent: ESBaseCommandRestricted
-  id: ESBaseJester
-  troupe: ESJester
-  abstract: true
-
-- type: esMask
-  parent: ESBaseCommandRestricted
   id: ESBaseParasite
   troupe: ESParasite
   abstract: true
