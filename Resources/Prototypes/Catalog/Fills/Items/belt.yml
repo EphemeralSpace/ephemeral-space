@@ -87,7 +87,7 @@
       storagebase: !type:AllSelector
         children:
         - !type:NestedSelector
-          tableId: AllSoapsTable
+          tableId: ESSoap
         - id: SprayBottleSpaceCleaner
         - id: CleanerGrenade
           amount: 2
