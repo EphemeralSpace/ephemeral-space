@@ -161,10 +161,10 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
                 troupePrototype.Color);
         }
 
+        observe.ObjectiveContainer.Children.Clear();
         if (_objective == null)
             return;
 
-        observe.ObjectiveContainer.Children.Clear();
         foreach (var objective in _objective.GetObjectives(uid))
         {
             var ctrl = new ESObjectiveControl();
