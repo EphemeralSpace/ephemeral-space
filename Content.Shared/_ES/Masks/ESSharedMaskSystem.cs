@@ -330,9 +330,18 @@ public abstract class ESSharedMaskSystem : EntitySystem
         }
     }
 
+    /// <inheritdoc cref="GetNotTroupeMembers(ProtoId{ESTroupePrototype})"/>
+    public IEnumerable<EntityUid> GetNotTroupeMembers(Entity<ESTroupeRuleComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return [];
+
+        return GetNotTroupeMembers(ent.Comp.Troupe);
+    }
+
     /// <summary>
     /// Returns all minds who are members of a troupe that is NOT the specified troupe.
-    /// Set difference between all player minds and <see cref="GetTroupeMembers"/>
+    /// Set difference between all player minds and <see cref="GetTroupeMembers(ProtoId{ESTroupePrototype})"/>
     /// </summary>
     public IEnumerable<EntityUid> GetNotTroupeMembers(ProtoId<ESTroupePrototype> troupe)
     {

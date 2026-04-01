@@ -11,6 +11,9 @@ public sealed partial class ESParasiteRuleComponent : Component
     [DataField]
     public bool ObjectivesCompleted;
 
+    [DataField]
+    public bool SwarmStarted;
+
     /// <summary>
     /// Whether the "finale" has been triggered via all the objectives being completed and the timer passing.
     /// After this point,
@@ -22,7 +25,7 @@ public sealed partial class ESParasiteRuleComponent : Component
     public TimeSpan SwarmDelay = TimeSpan.FromMinutes(1);
 
     [DataField]
-    public TimeSpan WinDelay = TimeSpan.FromMinutes(6);
+    public TimeSpan WinDelay = TimeSpan.FromMinutes(2.5);
 
     [DataField]
     public SoundSpecifier BurstSound = new SoundCollectionSpecifier("desecration");
