@@ -64,14 +64,14 @@
         maxAmount: 10
         maxRange: 2
       spawns:
-      - ShadowKudzuWeak
+      - FoodNoodlesChowmein # doesnt matter as anoms will be deleted anyways
     - settings:
         spawnOnSuperCritical: true
         minAmount: 15
         maxAmount: 20
         maxRange: 25
       spawns:
-      - ShadowKudzu
+      - FoodNoodlesChowmein
 
 - type: entity
   parent: AnomalyInjectionBase

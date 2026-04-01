@@ -238,7 +238,6 @@
       types:
         Blunt: 3
   - type: Plunger
-    plungerLoot: 
   - type: PhysicalComposition
     materialComposition:
       Wood: 100
