@@ -231,6 +231,7 @@ public sealed class AtmosDebugOverlay : Overlay
     private void DrawTooltip(in OverlayDrawArgs args)
     {
         var handle = args.ScreenHandle;
+        handle.SetTransform(Matrix3x2.Identity);
         var mousePos = _input.MouseScreenPosition;
         if (!mousePos.IsValid)
             return;
