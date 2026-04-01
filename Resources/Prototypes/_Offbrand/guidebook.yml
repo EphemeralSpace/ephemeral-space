@@ -17,7 +17,7 @@
   id: OffbrandPhysician
   name: Doctor
   hidden: false
-  text: "/ServerInfo/_Offbrand/Physician.xml"
+  text: "/ServerInfo/_Offbrand/Doctor.xml"
 
 - type: guideEntry
   id: OffbrandParamedic
