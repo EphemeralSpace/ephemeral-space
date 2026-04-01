@@ -1,4 +1,5 @@
 using Content.Shared._ES.Viewcone.Components;
+using Content.Shared.Examine;
 using Content.Shared.Inventory;
 using Content.Shared.StatusEffectNew;
 
@@ -13,9 +14,20 @@ public sealed class ESViewconeAngleSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<ESViewconeModifierComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<ESViewconeModifierComponent, ESViewconeGetAngleModifierEvent>(OnAngleModify);
         SubscribeLocalEvent<ESViewconeModifierComponent, InventoryRelayedEvent<ESViewconeGetAngleModifierEvent>>(OnAngleInventoryModify);
         SubscribeLocalEvent<ESViewconeModifierComponent, StatusEffectRelayedEvent<ESViewconeGetAngleModifierEvent>>(OnAngleStatusEffectModify);
+    }
+
+    private void OnExamined(Entity<ESViewconeModifierComponent> ent, ref ExaminedEvent args)
+    {
+        var loc = "es-viewcone-modifier-examine-increase";
+        if (ent.Comp.AngleModifier < 0)
+            loc = "es-viewcone-modifier-examine-decrease";
+
+        var degrees = (int) MathF.Abs(ent.Comp.AngleModifier);
+        args.PushMarkup(Loc.GetString(loc, ("degrees", degrees)));
     }
 
     private void OnAngleModify(Entity<ESViewconeModifierComponent> ent, ref ESViewconeGetAngleModifierEvent args)
