@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingHeadEVAHelmetBase # TODO: new base
+  parent: [ClothingHeadEVAHelmetBase, BaseClothingViewconeMedium]  # TODO: new base
   id: ESClothingHeadHelmetSpace
   name: EVA helmet
   description: A classic helmet design with a wide glass dome for optimal viewing angles. Suspicious and rotund.
