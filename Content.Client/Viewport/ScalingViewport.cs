@@ -406,22 +406,4 @@ namespace Content.Client.Viewport
         /// </summary>
         Vertical
     }
-
-    public enum ScalingViewportHorizontalAlignment
-    {
-        /// <summary>
-        ///     Default. This viewport will render the actual contents centered in the space of this control.
-        /// </summary>
-        Center = 0,
-
-        /// <summary>
-        ///     This viewport will render the actual contents anchored to the left of the space this control takes up.
-        /// </summary>
-        Left,
-
-        /// <summary>
-        ///     This viewport will render the actual contents anchored to the right of the space this control takes up.
-        /// </summary>
-        Right
-    }
 }

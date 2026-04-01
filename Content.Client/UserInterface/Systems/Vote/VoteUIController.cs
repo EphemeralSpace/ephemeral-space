@@ -31,6 +31,9 @@ public sealed class VoteUIController : UIController
             case PerformerGameScreen separated:
                 _votes.SetPopupContainer(separated.VoteMenu);
                 break;
+            case StagehandGameScreen stagehand:
+                _votes.SetPopupContainer(stagehand.VoteMenu);
+                break;
             // ES START
             case LobbyGui lobby:
                 _votes.SetPopupContainer(lobby.VoteMenu);

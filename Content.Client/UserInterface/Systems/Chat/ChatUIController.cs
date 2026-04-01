@@ -287,40 +287,19 @@ public sealed class ChatUIController : UIController
 
     public void SetMainChat(bool setting)
     {
-        if (UIManager.ActiveScreen == null)
+        if (UIManager.ActiveScreen is not InGameScreen screen)
         {
             return;
         }
 
-        ChatBox chatBox;
-        string? chatSizeRaw;
-
-        switch (UIManager.ActiveScreen)
+        if (UIManager.GetActiveUIWidgetOrNull<ChatBox>() is not { } chatBox)
         {
-            case DefaultGameScreen defaultScreen:
-                chatBox = defaultScreen.ChatBox;
-                chatSizeRaw = _config.GetCVar(CCVars.DefaultScreenChatSize);
-                SetChatSizing(chatSizeRaw, defaultScreen, setting);
-                break;
-            case PerformerGameScreen separatedScreen:
-                chatBox = separatedScreen.ChatBox;
-                chatSizeRaw = _config.GetCVar(CCVars.SeparatedScreenChatSize);
-                SetChatSizing(chatSizeRaw, separatedScreen, setting);
-                break; // todo sto pduouing
-            case StagehandGameScreen separatedScreen:
-                chatBox = separatedScreen.ChatBox;
-                chatSizeRaw = _config.GetCVar(CCVars.SeparatedScreenChatSize);
-                SetChatSizing(chatSizeRaw, separatedScreen, setting);
-                break;
-            default:
-                // this could be better?
-                var maybeChat = UIManager.ActiveScreen.GetWidget<ChatBox>();
-
-                chatBox = maybeChat ?? throw new Exception("Cannot get chat box in screen!");
-
-                break;
+            Log.Error($"Could not find chatbox in ingame screen {UIManager.ActiveScreen.GetType().Name}!");
+            return;
         }
 
+        var chatSizeRaw = _config.GetCVar(CCVars.SeparatedScreenChatSize);
+        SetChatSizing(chatSizeRaw, screen, setting);
         chatBox.Main = setting;
     }
 
@@ -358,22 +337,8 @@ public sealed class ChatUIController : UIController
 
         var stringSize =
             $"{size.X.ToString(CultureInfo.InvariantCulture)},{size.Y.ToString(CultureInfo.InvariantCulture)}";
-        switch (UIManager.ActiveScreen)
-        {
-            case DefaultGameScreen _:
-                _config.SetCVar(CCVars.DefaultScreenChatSize, stringSize);
-                break;
-            case PerformerGameScreen _:
-                _config.SetCVar(CCVars.SeparatedScreenChatSize, stringSize);
-                break;
-            case StagehandGameScreen _:
-                _config.SetCVar(CCVars.SeparatedScreenChatSize, stringSize);
-                break;
-            default:
-                // do nothing
-                return;
-        }
 
+        _config.SetCVar(CCVars.SeparatedScreenChatSize, stringSize);
         _config.SaveToFile();
     }
 
