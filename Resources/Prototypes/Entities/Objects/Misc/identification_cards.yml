@@ -345,9 +345,9 @@
       color: &color-supply-bottom "#5b4523"
     - sprite: *icon-rsi
       offset: *icon-offset
-      state: CargoTechnician
+      state: CargoTechnician # this is intentional
   - type: PresetIdCard
-    job: ESCargoTechnician
+    job: ESQuartermaster
 
 #Misc.
 

@@ -2,7 +2,6 @@ ESjob-name-assistant = Assistant
 ESjob-name-atmostech = Atmospheric Technician
 ESjob-name-bartender = Bartender
 ESjob-name-captain = Captain
-ESjob-name-cargotech = Cargo Technician
 ESjob-name-chef = Chef
 ESjob-name-clown = Clown
 ESjob-name-coroner = Coroner
@@ -15,13 +14,13 @@ ESjob-name-reporter = Reporter
 ESjob-name-scientist = Scientist
 ESjob-name-security = Security Officer
 ESjob-name-engineer = Station Engineer
+ESjob-name-quartermaster = Quartermaster
 
 # Role timers - Make these alphabetical or I cut you
 ESJobAssistant = Assistant
 ESJobAtmosphericTechnician = Atmospheric Technician
 ESJobBartender = Bartender
 ESJobCaptain = Captain
-ESJobCargoTechnician = Cargo Technician
 ESJobChef = Chef
 ESJobChemist = Chemist
 ESJobClown = Clown
@@ -34,3 +33,5 @@ ESJobReporter = Reporter
 ESJobScientist = Scientist
 ESJobSecurityOfficer = Security Officer
 ESJobStationEngineer = Station Engineer
+ESJobQuartermaster = Quartermaster
+

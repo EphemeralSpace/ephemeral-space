@@ -12,7 +12,7 @@
   id: ESJobCaptain
 
 - type: playTimeTracker
-  id: ESJobCargoTechnician
+  id: ESJobQuartermaster
 
 - type: playTimeTracker
   id: ESJobChef

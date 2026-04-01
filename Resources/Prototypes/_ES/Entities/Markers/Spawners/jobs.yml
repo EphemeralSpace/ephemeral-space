@@ -15,17 +15,17 @@
 # Cargo
 
 - type: entity
-  id: ESSpawnPointCargoTechnician
+  id: ESSpawnPointQuartermaster
   parent: SpawnPointJobBase
-  name: cargotechnician
+  name: quartermaster
   suffix: ES
   components:
   - type: SpawnPoint
-    job_id: ESCargoTechnician
+    job_id: ESQuartermaster
   - type: Sprite
     layers:
       - state: green
-      - state: cargo_tech
+      - state: qm
 
 # Civilian
 

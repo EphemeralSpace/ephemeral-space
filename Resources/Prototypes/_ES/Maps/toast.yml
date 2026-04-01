@@ -33,7 +33,7 @@
           ESSecurityOfficer: [ 3, 3 ]
           ESDetective: [ 1, 1 ]
           #cargo (2)
-          ESCargoTechnician: [ 1, 1 ]
+          ESQuartermaster: [ 1, 1 ]
           ESJanitor: [ 1, 1 ]
           #civilian (2+)
           ESClown: [ 1, 1 ]

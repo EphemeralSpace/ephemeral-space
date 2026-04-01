@@ -3363,7 +3363,7 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 1
-- proto: ESSpawnPointCargoTechnician
+- proto: ESSpawnPointQuartermaster
   entities:
   - uid: 375
     components:

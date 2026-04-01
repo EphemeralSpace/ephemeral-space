@@ -4,7 +4,7 @@
   description: department-Cargo-description
   color: "#A46106"
   roles:
-  - ESCargoTechnician
+  - ESQuartermaster
 
 - type: department
   id: ESService
