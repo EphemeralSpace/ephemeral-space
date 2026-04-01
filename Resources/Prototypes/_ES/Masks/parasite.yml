@@ -1,5 +1,33 @@
 - type: esMask
   parent: ESBaseParasite
+  id: ESBurstworm
+  name: es-mask-burstworm-name
+  description: es-mask-burstworm-desc
+  color: yellowgreen
+  mindComponents:
+  - type: ESBurstworm
+
+- type: esMask
+  parent: ESBaseParasite
+  id: ESHemophage
+  name: es-mask-hemophage-name
+  description: es-mask-hemophage-desc
+  color: brown
+  mindComponents:
+  - type: ESHemophage
+
+- type: esMask
+  parent: ESBaseParasite
+  id: ESHost
+  name: es-mask-host-name
+  description: es-mask-host-desc
+  color: palegoldenrod
+  weight: 0 # do not assign in masquerades.
+  gear: ESParasiteSwarmGear
+  objectives: !type:NoneSelector
+
+- type: esMask
+  parent: ESBaseParasite
   id: ESPsychid
   name: es-mask-psychid-name
   description: es-mask-psychid-desc

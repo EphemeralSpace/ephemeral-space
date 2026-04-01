@@ -318,6 +318,9 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             return;
         }
 
+        if (component.PackPrototypeId == null)
+            return;
+
         if (!PrototypeManager.TryIndex(component.PackPrototypeId, out VendingMachineInventoryPrototype? packPrototype))
             return;
 

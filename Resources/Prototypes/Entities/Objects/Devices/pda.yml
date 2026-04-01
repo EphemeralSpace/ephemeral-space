@@ -200,25 +200,6 @@
 
 - type: entity
   parent: BasePDA
-  id: BotanistPDA
-  name: botanist PDA
-  description: Has an earthy scent.
-  components:
-  - type: Pda
-    id: BotanistIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-hydro
-  - type: PdaBorderColor
-    borderColor: "#44843c"
-    accentVColor: "#00cc35"
-  - type: Icon
-    state: pda-hydro
-
-- type: entity
-  parent: BasePDA
   id: ClownPDA
   name: clown PDA
   description: Looks can be deceiving.

@@ -9,9 +9,6 @@
   id: ESJobBartender
 
 - type: playTimeTracker
-  id: ESJobBotanist
-
-- type: playTimeTracker
   id: ESJobCaptain
 
 - type: playTimeTracker

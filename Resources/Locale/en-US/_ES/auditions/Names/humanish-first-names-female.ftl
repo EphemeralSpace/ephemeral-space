@@ -380,3 +380,9 @@ es-names-first-dataset-female-367 = Rocksand
 es-names-first-dataset-female-368 = Juniper
 es-names-first-dataset-female-369 = Chlowey
 es-names-first-dataset-female-370 = Erzsebet
+# 2026-03-31
+es-names-first-dataset-female-371 = Shurt
+es-names-first-dataset-female-372 = Maize
+es-names-first-dataset-female-373 = Curity
+es-names-first-dataset-female-374 = Yurble
+es-names-first-dataset-female-375 = Yart

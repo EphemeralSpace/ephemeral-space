@@ -355,3 +355,9 @@ es-names-first-dataset-genderless-341 = Snerd
 es-names-first-dataset-genderless-342 = Delicios
 es-names-first-dataset-genderless-343 = Quoris
 es-names-first-dataset-genderless-344 = Kilo
+# 2026-03-31
+es-names-first-dataset-genderless-345 = Seam
+es-names-first-dataset-genderless-346 = Pratice
+es-names-first-dataset-genderless-347 = Clover
+es-names-first-dataset-genderless-348 = Jakulin
+es-names-first-dataset-genderless-349 = January

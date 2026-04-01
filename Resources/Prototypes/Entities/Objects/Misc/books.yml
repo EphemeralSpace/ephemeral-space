@@ -164,7 +164,7 @@
       color: gold
   - type: GuideHelp
     guides:
-    - Botanist
+    - Botany
     - Chemicals
 
 - type: entity

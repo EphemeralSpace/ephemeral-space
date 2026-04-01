@@ -111,19 +111,19 @@
       amount: 2
     - id: ESMicroBombImplanter
 
-# Veteran
+# Mercenary
 - type: entity
   parent: ESCrateCache
-  id: ESCrateCacheCrewVeteran
-  suffix: ES, Veteran Cache
+  id: ESCrateCacheCrewMercenary
+  suffix: ES, Mercenary Cache
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage:
-        tableId: ESCrewCacheVeteran
+        tableId: ESCrewCacheMercenary
 
 - type: entityTable
-  id: ESCrewCacheVeteran
+  id: ESCrewCacheMercenary
   table:
     group:
     - all:
@@ -147,39 +147,17 @@
 - type: entityTable
   id: ESCrewCacheVigilante
   table:
-    group:
-    - all:
-      - id: ESWeaponRevolver357
-    - group:
-      - id: ESWeaponPistol9mm
-        weight: 2
-      - id: ESWeaponPistol9mmSilenced
-
-# Survivalist
-- type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheCrewSurvivalist
-  suffix: ES, Survivalist Cache
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESCrewCacheSurvivalist
-
-- type: entityTable
-  id: ESCrewCacheSurvivalist
-  table:
     all:
     - group:
-      - id: MedkitAdvancedFilled
-      - id: MedkitBurnFilled
-      - id: MedkitBruteFilled
-    - group:
-      - id: ToolboxEmergencyFilled
-      - id: ToolboxMechanicalFilled
-      - id: ToolboxElectricalFilled
-    - tableId: ESMaintLootRare
-      rolls: 2
+      - all:
+        - id: ESWeaponRevolver357
+      - group:
+        - id: ESWeaponPistol9mm
+          weight: 2
+        - id: ESWeaponPistol9mmSilenced
+    - id: ESWeaponKnife
+    - id: ESClothingOuterArmorSecurity
+    - id: ExGrenade
 
 # Insider
 - type: entity

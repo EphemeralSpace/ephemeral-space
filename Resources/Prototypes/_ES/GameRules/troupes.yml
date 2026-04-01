@@ -35,12 +35,3 @@
     troupe: ESParasite
     priority: 10
   - type: ESParasiteRule
-
-- type: entity
-  parent: ESBaseTroupeRule
-  name: Jesters
-  id: ESTroupeRuleJester
-  components:
-  - type: ESTroupeRule
-    troupe: ESJester
-    priority: 11

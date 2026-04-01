@@ -7,7 +7,6 @@
   styles:
     atmospherics: LockerAtmospherics
     basic: ClosetSteelBase
-    botanist: LockerBotanist
     captain: LockerCaptain
     chemical: LockerChemistry
     doctor: LockerMedical

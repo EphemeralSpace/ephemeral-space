@@ -5,6 +5,9 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
+// ES CHANGE
+// Make pack prototypes optional
+
 namespace Content.Shared.VendingMachines
 {
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
@@ -14,11 +17,8 @@ namespace Content.Shared.VendingMachines
         /// PrototypeID for the vending machine's inventory, see <see cref="VendingMachineInventoryPrototype"/>
         /// </summary>
         // Okay so not using ProtoId here is load-bearing because the ProtoId serializer will log errors if the prototype doesn't exist.
-// ES START
-        // mark pack protoId as not required
         [DataField("pack", customTypeSerializer: typeof(PrototypeIdSerializer<VendingMachineInventoryPrototype>), required: false)]
-// ES END
-        public string PackPrototypeId = string.Empty;
+        public string? PackPrototypeId;
 
         /// <summary>
         /// Used by the server to determine how long the vending machine stays in the "Deny" state.

@@ -87,3 +87,5 @@ es-tips-dataset-84 = If you're trapped behind an electrified door, disable the A
 # es-specific tips
 es-tips-dataset-85 = As a stagehand, you can use the Verb Menu to orbit around and follow any entity in game automatically.
 es-tips-dataset-86 = The antimatter engine is a high-priority target and is easily sabotaged. Make sure to set up the Solars so that you don't run out of power if it blows.
+es-tips-dataset-87 = Though using an EMAG is a giveaway if someone sees you do it, the effect of using an EMAG on a door is indistinguishable from natural airlock bolt degradation, and can be passed off as such.
+es-tips-dataset-88 = As an Infiltrator, your cache's C4 is a tool available elsewhere. If you're caught, consider passing it off as stolen from Engineering.

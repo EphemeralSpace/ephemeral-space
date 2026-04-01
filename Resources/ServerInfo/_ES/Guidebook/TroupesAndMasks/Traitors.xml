@@ -22,11 +22,11 @@
   The nuke can be disarmed--but the detonation timer is significantly shorter than normal, at only 60 seconds. If you fail at that point, it's your own fault.
 
   The basic objectives, of which you get three, include:
-  <ESGBObjectiveEmbed Objective="ESObjectiveTraitorKillRandom"/>
-  <ESGBObjectiveEmbed Objective="ESObjectiveTraitorSabotageCommunications"/>
-  <ESGBObjectiveEmbed Objective="ESObjectiveTraitorSabotageCrewMonitoring"/>
-  <ESGBObjectiveEmbed Objective="ESObjectiveTraitorSabotageIDComputer"/>
-  <ESGBObjectiveEmbed Objective="ESObjectiveTraitorSabotageCriminalRecords"/>
-  <ESGBObjectiveEmbed Objective="ESObjectiveTraitorSabotageTelecom"/>
+  <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorKillRandom"/>
+  <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageCommunications"/>
+  <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageCrewMonitoring"/>
+  <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageIDComputer"/>
+  <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageCriminalRecords"/>
+  <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageTelecom"/>
 
 </Document>

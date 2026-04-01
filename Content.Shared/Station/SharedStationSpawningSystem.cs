@@ -128,7 +128,9 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                 if (!string.IsNullOrEmpty(equipmentStr))
                 {
                     var equipmentEntity = Spawn(equipmentStr, xform.Coordinates);
-                    InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, silent: true, force: true);
+
+                    InventorySystem.TryUnequip(entity, slot.Name, true, true); // ES change - removes the item in the slot before adding the item
+                    InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, silent: true, force: true, checkDoafter: false);
                 }
             }
         }
@@ -141,10 +143,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
             {
                 var inhandEntity = Spawn(prototype, coords);
 
-                if (_handsSystem.TryGetEmptyHand((entity, handsComponent), out var emptyHand))
-                {
-                    _handsSystem.TryPickup(entity, inhandEntity, emptyHand, checkActionBlocker: false, handsComp: handsComponent);
-                }
+                _handsSystem.TryForcePickupAnyHand(entity, inhandEntity, checkActionBlocker: false, handsComp: handsComponent);
             }
         }
 

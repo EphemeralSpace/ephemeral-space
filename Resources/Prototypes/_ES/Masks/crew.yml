@@ -32,34 +32,6 @@
   color: white
 
 - type: esMask
-  id: ESFruitVendor
-  name: es-mask-fruit-vendor-name
-  troupe: ESCrew
-  description: es-mask-fruit-vendor-desc
-  color: magenta
-  weight: 1
-  objectives:
-    id: ESObjectiveEatSummonedFruit
-  mindComponents:
-  - type: ESMaskSummoner
-    examineString: es-summonable-examine-fruit
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheCrewFruitVendor
-      amount: 4
-
-- type: esMask
-  id: ESGlutton
-  name: es-mask-glutton-name
-  troupe: ESCrew
-  description: es-mask-glutton-desc
-  color: yellowgreen
-  objectives:
-    all:
-    - id: ESObjectiveEatUniqueFoods
-    - id: ESObjectiveEatFood
-
-- type: esMask
   id: ESGuzzler
   name: es-mask-guzzler-name
   troupe: ESCrew
@@ -89,12 +61,14 @@
   name: es-mask-mercenary-name
   troupe: ESCrew
   description: es-mask-mercenary-desc
-  color: steelblue
+  color: ruber
   weight: 1
+  objectives:
+    id: ESObjectiveKillNonCrew
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto:
-      id: ESSpawnerRandomTraitorCache
+      id: ESCrateCacheCrewMercenary
 
 - type: esMask
   id: ESNobleman
@@ -121,6 +95,30 @@
     - id: ESObjectivePhantomDie
 
 - type: esMask
+  parent: ESBaseCommandRestricted
+  id: ESRebel
+  name: es-mask-rebel-name
+  troupe: ESCrew
+  description: es-mask-rebel-desc
+  color: tomato
+  weight: 0.2
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESSpawnerRandomTraitorCache
+  objectives:
+    all:
+    - pick:
+        all:
+        - id: ESObjectiveRebelSabotageCommunications
+        - id: ESObjectiveRebelSabotageCrewMonitoring
+        - id: ESObjectiveRebelSabotageIDComputer
+        - id: ESObjectiveRebelSabotageCriminalRecords
+        - id: ESObjectiveRebelSabotageTelecom
+          weight: 2
+      amount: 1, 2
+
+- type: esMask
   id: ESSecretary
   name: es-mask-secretary-name
   troupe: ESCrew
@@ -130,56 +128,6 @@
   objectives:
     all:
     - id: ESObjectiveSecretaryAssist
-
-- type: esMask
-  id: ESSurvivalist
-  name: es-mask-survivalist-name
-  troupe: ESCrew
-  description: es-mask-survivalist-desc
-  color: forestgreen
-  components:
-  - type: ESMedAlertRadioAnnouncer
-  mindComponents:
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheCrewSurvivalist
-  objectives:
-    all:
-    - id: ESObjectiveSurvive
-
-- type: esMask
-  parent: ESBaseCommandRestricted
-  id: ESVandal
-  name: es-mask-vandal-name
-  troupe: ESCrew
-  description: es-mask-vandal-desc
-  color: tomato
-  weight: 0.2
-  objectives:
-    all:
-    - pick:
-        all:
-        - id: ESObjectiveVandalSabotageCommunications
-        - id: ESObjectiveVandalSabotageCrewMonitoring
-        - id: ESObjectiveVandalSabotageIDComputer
-        - id: ESObjectiveVandalSabotageCriminalRecords
-        - id: ESObjectiveVandalSabotageTelecom
-          weight: 2
-      amount: 1, 2
-
-- type: esMask
-  id: ESVeteran
-  name: es-mask-veteran-name
-  troupe: ESCrew
-  description: es-mask-veteran-desc
-  color: ruber
-  weight: 1
-  objectives:
-    id: ESObjectiveKillNonCrew
-  mindComponents:
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheCrewVeteran
 
 - type: esMask
   id: ESVigilante
@@ -202,5 +150,4 @@
   description: es-mask-vip-desc
   color: gold
   weight: 0.5
-  gear:
-    id: ESItemCardVIP
+  gear: ESMaskVIPGear

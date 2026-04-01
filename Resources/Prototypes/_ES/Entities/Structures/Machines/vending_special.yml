@@ -1,0 +1,130 @@
+- type: entity
+  parent: ESBaseVendingMachineDispenseOnHit
+  id: ESVendingMachineGenderVendor
+  name: GenderVendor
+  description: A vendor containing various LGBTQ+ items. Provided by GayCorp LLC.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Vendors/gendervendor.rsi
+  - type: VendingMachine
+  - type: DatasetVocalizer
+    dataset: GenderVendorAds
+  - type: SpeakOnUIClosed
+    pack: GenderVendorGoodbyes
+  - type: PointLight
+    color: "#fe0000"
+  - type: ESEntityTableVendorFill
+    inventory:
+      all:
+      - id: ClothingUniformColorRainbow # the description and sprite of this item should probably be updated later to be a little more fitting in this set. but still generic enough to not nessecarily be a pride item
+        amount: 2
+      - id: ClothingUniformJumpsuitAromantic
+        amount: 2
+      - id: ClothingUniformJumpsuitAsexual
+        amount: 2
+      - id: ClothingUniformJumpsuitGay
+        amount: 2
+      - id: ClothingUniformJumpsuitLesbian
+        amount: 2
+      - id: ClothingUniformJumpsuitBisexual
+        amount: 2
+      - id: ClothingUniformJumpsuitPansexual
+        amount: 2
+      - id: ClothingUniformJumpsuitTransgender
+        amount: 2
+      - id: ClothingUniformJumpsuitNonbinary
+        amount: 2
+      - id: ClothingUniformJumpsuitGenderfluid
+        amount: 2
+      - id: ClothingUniformJumpsuitIntersex
+        amount: 2
+      - id: ClothingUniformJumpsuitGenderqueer
+        amount: 2
+
+- type: entity
+  parent: ESBaseVendingMachineDispenseOnHit
+  id: ESVendingMachineSalvagedSams
+  name: Salvaged Sam's Maintenance Surplus
+  description: A vendor containing surplus maintenance supplies. Known to be involved in multiple controversies.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Vendors/salvagedsams.rsi
+  - type: VendingMachine
+  - type: DatasetVocalizer
+    dataset: SalvagedAds
+  - type: SpeakOnUIClosed
+    pack: SalvagedGoodbyes
+  - type: PointLight
+    color: "#8f8200"
+  - type: ESEntityTableVendorFill
+    inventory:
+      all:
+      - tableId: ESMaintLootCommon # always garunteed a few basic items
+      - tableId: ESMaintLootCommon # chance for more basic items, since there are a lot of useful ones. but we don't want them to be too common since it will clog up the vendor
+        prob: 0.2
+        rolls: 6
+      - tableId: ESMaintLootUncommon # more interesting so you get these the most plentifully
+        prob: 0.5
+        rolls: 12
+      - tableId: ESMaintLootRare # most interesting, so you're garunteed to get at least one
+      - tableId: ESMaintLootRare # maybe you will get another rare
+        prob: 0.2
+
+- type: entity
+  parent: ESBaseVendingMachineDispenseOnHit
+  id: ESVendingMachineSuspiciousWater
+  name: suspicious water vendor
+  description: It looks normal...?
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Vendors/suswater.rsi
+  - type: VendingMachine
+  - type: DatasetVocalizer
+    dataset: SusWaterAds
+  - type: SpeakOnUIClosed
+    pack: SusWaterGoodbyes
+  - type: PointLight
+    color: "#78f4ff"
+  - type: ESEntityTableVendorFill
+    inventory:
+      all:
+      - id: DrinkWaterBottleFull
+        amount: 2
+        prob: 0.5
+        rolls: 5
+      - tableId: SuspiciousWaterTable
+        prob: 0.5
+        rolls: 5
+
+- type: entity
+  parent: ESBaseVendingMachineDispenseOnHit
+  id: ESVendingMachineWoodgrain
+  name: Woodgrain Wonders
+  description: A vendor containing various wood-related items, per high-demand at request of space lumberjacks.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Vendors/woodgrain.rsi
+  - type: VendingMachine
+  - type: DatasetVocalizer
+    dataset: WoodgrainAds
+  - type: SpeakOnUIClosed
+    pack: WoodgrainGoodbyes
+  - type: PointLight
+    color: "#566291"
+  - type: ESEntityTableVendorFill
+    inventory:
+      all:
+      - id: FireAxe
+        amount: 1
+        prob: 0.5
+      - id: TowercapSeeds
+        amount: 1
+        prob: 0.5
+      - id: HydroponicsToolHatchet
+        amount: 5
+      - id: MaterialWoodPlank
+        amount: 3
+      - id: Jerrycan
+        amount: 3
+      - id: Lighter
+        amount: 3

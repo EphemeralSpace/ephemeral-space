@@ -1,0 +1,23 @@
+- type: localizedDataset
+  id: GenderVendorAds
+  values:
+    prefix: advertisement-gender-
+    count: 6
+
+- type: localizedDataset
+  id: SalvagedAds
+  values:
+    prefix: advertisement-salvaged-
+    count: 13
+    
+- type: localizedDataset
+  id: SusWaterAds
+  values:
+    prefix: advertisement-water-
+    count: 6
+
+- type: localizedDataset
+  id: WoodgrainAds
+  values:
+    prefix: advertisement-woodgrain-
+    count: 8

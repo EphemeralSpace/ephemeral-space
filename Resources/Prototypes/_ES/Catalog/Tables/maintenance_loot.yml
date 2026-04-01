@@ -191,7 +191,7 @@
     - id: WelderIndustrial
     - id: Plunger
     - id: Shovel
-    - id: ESJerrycan
+    - id: Jerrycan
 
     - id: ClothingEyesHudMedical
     - tableId: FillWelderSupplies # Welding masks

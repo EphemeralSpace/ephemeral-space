@@ -197,8 +197,3 @@
   id: WardrobeScience
   parent: WardrobeWhite
   name: science wardrobe
-
-- type: entity
-  id: WardrobeBotanist
-  parent: WardrobeGreen
-  name: botanist wardrobe

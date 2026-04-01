@@ -8,63 +8,35 @@ es-mask-avenger-desc = As an avenger, protect your target from being killed at a
 es-mask-crewmember-name = Crewmember
 es-mask-crewmember-desc = As a Crewmember, use your unclouded judgment to help make sure the crew completes their objective and gets out safely.
 
-es-mask-daredevil-name = Daredevil
-es-mask-daredevil-desc = As a Daredevil, constantly seek new and exciting ways to hurt yourself in accordance with your insane lifestyle.
-
-es-mask-fruit-vendor-name = Fruit Vendor
-es-mask-fruit-vendor-desc = As a Fruit Vendor, dispense delicious fruits and pass them out among the crewmembers.
-
-es-mask-glutton-name = Glutton
-es-mask-glutton-desc = As a Glutton, your stomach is an abyss which begs to be filled. Consume all you can and become the most gluttonous crew member.
-
 es-mask-guzzler-name = Guzzler
 es-mask-guzzler-desc = As a Guzzler, you have nothing but an endless desire to Consume Liquid. Guzzle everything you can get your hands on.
 
 es-mask-hater-name = Hater
 es-mask-hater-desc = As a hater, do everything in your power to make your target fail their objectives.
 
-es-mask-hitman-name = Hitman
-es-mask-hitman-desc = As a hitman, use your dossiers in order to identify your targets and take them out.
-
 es-mask-insider-name = Insider
 es-mask-insider-desc = As an insider, investigate the people on station and try to find out their alleigances using your special dossier.
 
 es-mask-mercenary-name = Mercenary
-es-mask-mercenary-desc = As a Mercenary, use your dubiously-legally-acquired syndicate gear to further your goals.
+es-mask-mercenary-desc = As a Mercenary, help the station by using your sidearm to dispatch anybody who isn't aligned with the crew.
 
 es-mask-nobleman-name = Nobleman
 es-mask-nobleman-desc = As a Nobleman, prevent the corruption of your pure blood by not killing anyone.
 
+es-mask-phantom-name = Phantom
+es-mask-phantom-desc = As a Phantom, reincarnate as a vengeful spirit on death and haunt your murderer until they also die.
+
 es-mask-secretary-name = Secretary
 es-mask-secretary-desc = As a secretary, do whatever you can to help your target complete their objectives.
 
-es-mask-survivalist-name = Survivalist
-es-mask-survivalist-desc = As a Survivalist, survive at all costs. Rely on your MedAlert (TM) to broadcast messages when you enter critical condition, and find your cache of prepper supplies.
-
-es-mask-vandal-name = Vandal
-es-mask-vandal-desc = As a Vandal, sabotage random machines around the station for a little bit of fun. Try not to get pinned as a Traitor.
-
-es-mask-veteran-name = Veteran
-es-mask-veteran-desc = As a Veteran, help the station by using your trusty sidearm to take care of anybody who isn't aligned with the crew.
+es-mask-rebel-name = Rebel
+es-mask-rebel-desc = As a Rebel, sabotage machines around the station in fervent protest. Try not to get pinned as a Traitor.
 
 es-mask-vigilante-name = Vigilante
 es-mask-vigilante-desc = As a Vigilante, seek out those who have killed others and bring them to justice by killing them yourself.
 
 es-mask-vip-name = VIP
 es-mask-vip-desc = As a VIP, use your fancy VIP card to help confirm your innocence in times of peril.
-
-# Jester masks
-es-mask-the-fool-name = Fool
-es-mask-the-fool-desc = As a Fool, wallow in pity at the failure of your purpose and curse your existence to the very end.
-
-es-mask-martyr-name = Martyr
-es-mask-martyr-desc = As a Martyr, you are a beautiful soul. Be killed by another crewmember in order to ascend to heaven and drag them to hell.
-
-es-mask-parasite-name = Parasite
-es-mask-parasite-desc = As a parasite, you are a devilish worm. Get killed by someone else in order to take control of their bodies and steal their mask.
-
-es-mask-phantom-name = Phantom
-es-mask-phantom-desc = As a Phantom, reincarnate as a vengeful spirit on death and haunt your murderer until they also die.
 
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete your group objectives.
@@ -89,6 +61,15 @@ es-mask-demolitionist-desc = As a Demolitionist, you have been trained by the Sy
 
 # Paraiste masks
 es-mask-troupe-parasite-examine = They're a fellow host of the [bold][color=tan]parasitic infection[/color][/bold]. Conspire with them to spread the infection.
+
+es-mask-burstworm-name = Burstworm
+es-mask-burstworm-desc = As a burstworm, explode in a burst of devilish parasitic worms when you die, infecting anyone they bite.
+
+es-mask-hemophage-name = Hemophage
+es-mask-hemophage-desc = As a hemophage, spread your infected blood all across the station. When you are killed, anyone in contact with it will be swarmed with parasites.
+
+es-mask-host-name = Host
+es-mask-host-desc = As a host, partake in the festivites and swarm with your fellow parasites!
 
 es-mask-psychid-name = Psychid
 es-mask-psychid-desc = As a psychid, be killed in order to swap bodies and create a new psychid, spreading the parasitic infection even more.

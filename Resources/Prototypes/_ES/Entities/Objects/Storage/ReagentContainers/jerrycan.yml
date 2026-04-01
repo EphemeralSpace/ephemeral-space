@@ -1,6 +1,6 @@
 - type: entity
   parent: [DrinkBase, DrinkVisualsOpenable, DrinkBaseOpenable, DrinkBaseMaterialStrongMetal]
-  id: ESJerrycan
+  id: Jerrycan
   name: jerrycan
   description: A metallic container designed for holding fuel. A favorite of suspicious arsonists.
   components:

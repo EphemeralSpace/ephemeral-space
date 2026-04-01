@@ -80,6 +80,9 @@
             "name": "door"
         },
         {
+            "name": "dorms"
+        },
+        {
             "name": "directional",
             "directions": 4
         },
@@ -145,6 +148,9 @@
         },
         {
             "name": "vendor-snack"
+        },
+        {
+            "name": "vendor-special"
         },
         {
             "name": "wardrobe"

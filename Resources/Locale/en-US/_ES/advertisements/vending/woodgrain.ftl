@@ -1,0 +1,11 @@
+advertisement-woodgrain-1 = Get our there and make that beautiful furniture that machine-made patterns wish they could live up to.
+advertisement-woodgrain-2 = Cutting things is in our DNA.
+advertisement-woodgrain-3 = Get those grizzly hands on that axe you're been waiting for.
+advertisement-woodgrain-4 = For over 50 years, our wood has been renowned for being finely cut and without defect.
+advertisement-woodgrain-5 = When you can't put your hands in the soil, why not seek out the next best option?
+advertisement-woodgrain-6 = We sell the highest quality welding fuel, so YOU can bring that homely feel to your station.
+advertisement-woodgrain-7 = When the forest is lightyears away, why not bring the forest to you?
+advertisement-woodgrain-8 = Our wood is NTPA-58 certified and burns for longer then 90% of other brands.
+thankyou-woodgrain-1 = Portable Scrubber not included. Please do not light fires indoors without proper ventilation or contacting an approved atmospherics technician.
+thankyou-woodgrain-2 = Items included for novelty and recreational use only. Do not harm other individuals or station property. We are not liable for any damages caused.
+thankyou-woodgrain-3 = We are not liable for any damages caused.

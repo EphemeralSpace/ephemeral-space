@@ -1,9 +1,8 @@
 ESjob-description-assistant = Enjoy your stay aboard the station with no obligations!
 ESjob-description-atmostech = Optimize the station's atmospherics setup, and synthesize rare gases to use or sell.
 ESjob-description-bartender = Manage the bar and keep it lively, give out drinks, and listen to the crew's stories.
-ESjob-description-botanist = Grow food for the chef, drugs for medbay, and other plants to keep yourself entertained.
 ESjob-description-captain = Keep the station running, delegate work to the other heads of staff, and exert your will.
-ESjob-description-cargotech = Deal with requisitions and deliveries, pilot the cargo shuttle to the trade station and back, and work with others to make ludicrous amounts of cash and then waste it all gambling.
+ESjob-description-cargotech = Handle the Autolathe and give people the crates in your warehouse.
 ESjob-description-chef = Keep the station fed with a variety of food items, butcher dead animals to ensure ammonia doesn't leak, and help keep the bar lively.
 ESjob-description-clown = Entertain the crew through elaborate slapstick routines or terrible jokes.
 ESjob-description-coroner = Perform autopsies to find information about dead bodies. Help manage bodies for the physicians. Make sure the dead don't rot, and that cadavers are in the morgue.
@@ -14,5 +13,5 @@ ESjob-description-janitor = Keep the station clean of any trash or slipping haza
 ESjob-description-paramedic = Save patients in critical condition & bring them back to medical for treatment.
 ESjob-description-physician = Diagnose and heal crewmembers through medicinal chemicals, advanced medicine, and defibrillators.
 ESjob-description-reporter = Entertain & inform the crew with your vibrant journalism through wireless cameras, the radio and the news.
-ESjob-description-scientist = Research alien artifacts, unlock new technologies, build newer and better machines around the station, and make everything run more efficiently.
+ESjob-description-scientist = Do telescience.
 ESjob-description-security = Catch criminals and enemies of the station, enforce the law, and ensure that the station does not fall into disarray.
