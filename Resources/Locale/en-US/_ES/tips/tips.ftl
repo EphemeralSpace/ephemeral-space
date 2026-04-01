@@ -1,4 +1,4 @@
-#es-tips-dataset-
+#es-tips-dataset
 # tips inherited from upstream, pruned for ones that are not relevant
 # all es-specific tips are below these
 es-tips-dataset-1 = If you're on fire, you can click the alert on the right of your screen to stop, drop, and roll.
