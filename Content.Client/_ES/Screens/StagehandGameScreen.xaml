@@ -31,7 +31,7 @@
                     <actions:ActionsBar Name="Actions" Access="Protected" />
                     <BoxContainer Name="VoteMenu" Access="Public" Orientation="Vertical" />
                 </BoxContainer>
-                <alerts:AlertsUI Name="Alerts" Access="Protected" />
+                <alerts:AlertsUI Name="Alerts" Access="Protected" Margin="0 250 0 0" />
             </LayoutContainer>
             <FillPanel StyleClasses="PanelDark"/>
         </VFillStack>
