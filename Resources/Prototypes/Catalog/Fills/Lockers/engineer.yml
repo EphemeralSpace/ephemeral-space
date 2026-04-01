@@ -219,21 +219,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-# ES Start
+      entity_storage:
         tableId: ESFillRadiationSuit
-# ES End
-
-- type: entityTable
-  id: FillRadiationSuit
-  table: !type:AllSelector
-    children:
-    - id: ClothingOuterSuitRad
-      amount: 2
-    - id: GeigerCounter
-      amount: 2
-    - id: PillCanisterPotassiumIodide
-      prob: 0.75
 
 - type: entity
   # ES START

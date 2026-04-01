@@ -32,18 +32,17 @@
         - TableLayer
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 60
+        damage: 150
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 30
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:

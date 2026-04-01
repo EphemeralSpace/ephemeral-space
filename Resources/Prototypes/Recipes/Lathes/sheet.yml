@@ -133,42 +133,6 @@
     RawUranium: 3000
 
 - type: latheRecipe
-  id: SheetUGlass1
-  result: SheetUGlass1
-  completetime: 0
-  materials:
-    RawUranium: 100
-    RawQuartz: 100
-
-- type: latheRecipe
-  id: SheetUGlass30
-  result: SheetUGlass
-  completetime: 2
-  materials:
-    RawUranium: 3000
-    RawQuartz: 3000
-
-- type: latheRecipe
-  id: SheetRUGlass1
-  result: SheetRUGlass1
-  completetime: 0
-  materials:
-    RawUranium: 100
-    RawQuartz: 100
-    RawIron: 50
-    Coal: 15
-
-- type: latheRecipe
-  id: SheetRUGlass30
-  result: SheetRUGlass
-  completetime: 2
-  materials:
-    RawUranium: 3000
-    RawQuartz: 3000
-    RawIron: 1500
-    Coal: 500
-
-- type: latheRecipe
   id: IngotGold30
   result: IngotGold
   completetime: 2

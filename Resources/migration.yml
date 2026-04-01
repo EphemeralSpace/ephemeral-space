@@ -50,7 +50,7 @@ UraniumWindowDirectional: PlasmaWindowDirectional
 ReinforcedUraniumWindow: ReinforcedPlasmaWindow
 UraniumReinforcedWindowDirectional: PlasmaReinforcedWindowDirectional
 ReinforcedUraniumWindowDiagonal: ReinforcedPlasmaWindowDiagonal
-XenoborgWindow: PlastitaniumWindow
+XenoborgWindow: ReinforcedWindow
 XenoResinWindow: ReinforcedWindow
 
 # 2025-9-26
@@ -331,6 +331,13 @@ PortableGeneratorSuperPacman: PortableGeneratorPacman
 FireAxeCabinetFilled: ESFireAxeCabinetFilled
 
 # 2026-3-26
+ShardGlassUranium: ShardGlass
+ShardGlassClockwork: ShardGlass
+ShardGlassReinforced: ShardGlass
+SpearUranium: Spear
+SpearReinforced: Spear
+UraniumShiv: Shiv
+ReinforcedShiv: Shiv
 CrateCargoParcelWrap: null
 
 # 2026-3-30

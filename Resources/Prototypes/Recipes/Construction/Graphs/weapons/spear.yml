@@ -26,33 +26,6 @@
       entity: Spear
 
 - type: constructionGraph
-  id: SpearReinforced
-  start: start
-  graph:
-    - node: start
-      edges:
-        - to: spear
-          completed:
-          - !type:AdminLog # Needs a log for start of attempt in addition to the completion log
-            message: "Construction"
-            impact: High
-          steps:
-            - material: MetalRod
-              amount: 2
-              doAfter: 2
-            - material: Cable
-              amount: 3
-              doAfter: 1
-            - tag: ReinforcedGlassShard
-              name: construction-graph-tag-reinforced-glass-shard
-              icon:
-                sprite: Objects/Materials/Shards/shard.rsi
-                state: shard1
-              doAfter: 1
-    - node: spear
-      entity: SpearReinforced
-
-- type: constructionGraph
   id: SpearPlasma
   start: start
   graph:
@@ -78,33 +51,6 @@
               doAfter: 1
     - node: spear
       entity: SpearPlasma
-
-- type: constructionGraph
-  id: SpearUranium
-  start: start
-  graph:
-    - node: start
-      edges:
-        - to: spear
-          completed:
-          - !type:AdminLog # Needs a log for start of attempt in addition to the completion log
-            message: "Construction"
-            impact: High
-          steps:
-            - material: MetalRod
-              amount: 2
-              doAfter: 2
-            - material: Cable
-              amount: 3
-              doAfter: 1
-            - tag: UraniumGlassShard
-              name: construction-graph-tag-uranium-glass-shard
-              icon:
-                sprite: Objects/Materials/Shards/shard.rsi
-                state: shard1
-              doAfter: 1
-    - node: spear
-      entity: SpearUranium
 
 - type: constructionGraph
   id: SpearBone

@@ -33,10 +33,7 @@
   table: !type:AllSelector
     children:
     - id: ESClothingHeadHatHoodRadiation
-      amount: 1
     - id: ESClothingOuterSuitRadiation
-      amount: 1
     - id: GeigerCounter
-      amount: 1
     - id: EmergencyPouchRadiation
       prob: 0.75

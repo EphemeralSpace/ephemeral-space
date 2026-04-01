@@ -23,24 +23,8 @@
   objectType: Item
 
 - type: construction
-  id: ReinforcedShiv
-  graph: ReinforcedShiv
-  startNode: start
-  targetNode: icon
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
   id: PlasmaShiv
   graph: PlasmaShiv
-  startNode: start
-  targetNode: icon
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
-  id: UraniumShiv
-  graph: UraniumShiv
   startNode: start
   targetNode: icon
   category: construction-category-weapons
@@ -55,24 +39,8 @@
   objectType: Item
 
 - type: construction
-  id: SpearReinforced
-  graph: SpearReinforced
-  startNode: start
-  targetNode: spear
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
   id: SpearPlasma
   graph: SpearPlasma
-  startNode: start
-  targetNode: spear
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
-  id: SpearUranium
-  graph: SpearUranium
   startNode: start
   targetNode: spear
   category: construction-category-weapons
@@ -139,14 +107,6 @@
   graph: ImprovisedArrowPlasma
   startNode: start
   targetNode: ImprovisedArrowPlasma
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
-  id: ImprovisedArrowUranium
-  graph: ImprovisedArrowUranium
-  startNode: start
-  targetNode: ImprovisedArrowUranium
   category: construction-category-weapons
   objectType: Item
 

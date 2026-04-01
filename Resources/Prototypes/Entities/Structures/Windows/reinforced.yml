@@ -1,32 +1,18 @@
+# Fulltile
 - type: entity
   id: ReinforcedWindow
   name: reinforced window
-  parent: [BaseDeltaPressureReinforcedGlass, Window]
+  parent: [ BaseDeltaPressureReinforcedGlass, BaseWindowReinforcedFulltileRCDable ]
   components:
   - type: Sprite
-    drawdepth: WallTops
     sprite: Structures/Windows/reinforced_window.rsi
   - type: Icon
     sprite: Structures/Windows/reinforced_window.rsi
-  - type: Repairable
-    fuelCost: 10
-    doAfterDelay: 2
-  - type: Damageable
-    damageContainer: StructuralInorganic
-# ES Start
-    damageModifierSet: ESReinforcedWindow
-# ES End
-  - type: RCDDeconstructable
-    cost: 6
-    delay: 6
-    fx: EffectRCDDeconstruct6
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-# ES Start
         damage: 250 #excess damage (nuke?). avoid computational cost of spawning entities.
-# ES End
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -35,16 +21,17 @@
           collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-# ES Start
         damage: 200
-# ES End
       behaviors:
       - !type:PlaySoundBehavior
         sound:
           collection: WindowShatter
       - !type:SpawnEntitiesBehavior
         spawn:
-          ShardGlassReinforced:
+          ShardGlass:
+            min: 1
+            max: 2
+          PartRodMetal:
             min: 1
             max: 2
       - !type:DoActsBehavior
@@ -56,44 +43,23 @@
     node: reinforcedWindow
   - type: Appearance
   - type: DamageVisuals
-    thresholds: [5, 10, 20]
     damageDivisor: 8
-    trackAllDamage: true
-    damageOverlay:
-      sprite: Structures/Windows/cracks.rsi
 
+# Directional
 - type: entity
   id: WindowReinforcedDirectional
-  parent: [BaseDeltaPressureReinforcedGlassQuarter, WindowDirectional]
+  parent: [ BaseDeltaPressureReinforcedGlassQuarter, BaseWindowReinforcedDirectionalRCDable ]
   name: directional reinforced window
-  description: Don't smudge up the glass down there.
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Window
   components:
   - type: Sprite
-    sprite: Structures/Windows/directional.rsi
     state: reinforced_window
   - type: Icon
-    sprite: Structures/Windows/directional.rsi
     state: reinforced_window
   - type: Construction
     graph: WindowDirectional
     node: windowReinforcedDirectional
-  - type: Appearance
   - type: DamageVisuals
-    thresholds: [5, 10, 20]
     damageDivisor: 4
-    trackAllDamage: true
-    damageOverlay:
-      sprite: Structures/Windows/cracks_directional.rsi
-  - type: Damageable
-    damageModifierSet: ESReinforcedWindow
-  - type: RCDDeconstructable
-    cost: 4
-    delay: 4
-    fx: EffectRCDDeconstruct4
   - type: Destructible
     thresholds:
     - trigger:
@@ -114,57 +80,24 @@
           collection: WindowShatter
       - !type:SpawnEntitiesBehavior
         spawn:
-          ShardGlassReinforced:
+          ShardGlass:
             min: 1
-            max: 1
+            max: 2
+          PartRodMetal:
+            min: 1
+            max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-
+    
+# Diagonal
 - type: entity
-  parent: ReinforcedWindow
+  parent: [ BaseWindowDiagonal, ReinforcedWindow ]
   id: ReinforcedWindowDiagonal
-  suffix: diagonal
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Window
   components:
   - type: Sprite
-    drawdepth: WallTops
     sprite: Structures/Windows/reinforced_window_diagonal.rsi
-    state: state0
-  - type: Tag
-    tags:
-    - Diagonal
-    - Window
-  - type: IconSmooth
-    mode: Diagonal
-    key: windows
-    base: state
   - type: Icon
     sprite: Structures/Windows/reinforced_window_diagonal.rsi
-    state: state0
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PolygonShape
-            vertices:
-            - "-0.5,-0.5"
-            - "0.5,0.5"
-            - "0.5,-0.5"
-        mask:
-        - FullTileMask
-        layer:
-        - GlassLayer
-  - type: Airtight
-    noAirWhenFullyAirBlocked: false
-    airBlockedDirection:
-    - South
-    - East
-  - type: DamageVisuals
-    damageOverlay:
-      sprite: Structures/Windows/cracks_diagonal.rsi
   - type: Construction
     graph: WindowDiagonal
     node: reinforcedWindowDiagonal

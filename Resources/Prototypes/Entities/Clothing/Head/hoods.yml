@@ -155,36 +155,6 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatHoodRad
-  # ES Start
-  categories: [ HideSpawnMenu ]
-  # ES End
-  name: radiation hood
-  description: A hood of the hazmat suit, designed for protection from high radioactivity.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hoods/rad.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hoods/rad.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Heat: 0.95
-        Radiation: 0.65
-  - type: IdentityBlocker
-  - type: BreathMask
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - Snout
-    - HeadTop
-    - HeadSide
-# ES START
-  - type: ESVoiceObfuscator
-# ES END
-
-- type: entity
-  parent: ClothingHeadBase
   id: ClothingHeadHatHoodGoliathCloak
   name: goliath cloak hood
   description: A hood of a goliath cloak, it is made from the hide of resilient fauna from a distant planet.

@@ -1,63 +1,14 @@
+# Fulltile
+# Normal Window
 - type: entity
   id: Window
-  parent: [BaseDeltaPressureGlass, BaseStructure]
+  parent: [ BaseDeltaPressureGlass, BaseWindowFulltileRCDable ]
   name: window
-  description: Don't smudge up the glass down there.
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Window
   components:
-# ES START
-#  - type: Anchorable
-#    flags:
-#    - Anchorable
-#  - type: Rotatable
-  - type: ESDestroyOnUnanchor
-# ES END
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        collection: GlassSmack
-  # ES START
-  # - type: WallMount
-  #  arc: 360
-  - type: ESInteractionIgnoreAnchoredInTile
-  - type: Clickable
-    bounds:
-      all: -0.5, -0.5, 0.5, 0.5
-  # ES END
-  - type: Tag
-    tags:
-      - ForceFixRotations
-      - Window
   - type: Sprite
-    drawdepth: WallTops
     sprite: Structures/Windows/window.rsi
   - type: Icon
     sprite: Structures/Windows/window.rsi
-    state: full
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb {}
-        mask:
-        - FullTileMask
-        layer:
-        - GlassLayer
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: ESWindow
-  - type: ExaminableDamage
-    messages: WindowMessages
-  - type: Repairable
-  - type: RCDDeconstructable
-    cost: 6
-    delay: 4
-    fx: EffectRCDDeconstruct4
   - type: Destructible
     thresholds:
     - trigger:
@@ -83,34 +34,17 @@
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Airtight
-  - type: IconSmooth
-    key: windows
-    base: window
-  - type: InteractionPopup
-    interactSuccessString: comp-window-knock
-    messagePerceivedByOthers: comp-window-knock
-    interactSuccessSound:
-      path: /Audio/Effects/glass_knock.ogg
   - type: Construction
     graph: Window
     node: window
-  - type: Appearance
-  - type: DamageVisuals
-    thresholds: [5, 10, 20]
-    damageDivisor: 4
-    trackAllDamage: true
-    damageOverlay:
-      sprite: Structures/Windows/cracks.rsi
-  - type: BlockWeather
 
+# Tinted Window
 - type: entity
   parent: Window
   id: TintedWindow
   name: tinted window
   components:
   - type: Sprite
-    drawdepth: WallTops
     sprite: Structures/Windows/tinted_window.rsi
   - type: Icon
     sprite: Structures/Windows/tinted_window.rsi
@@ -121,70 +55,17 @@
     node: tintedWindow
   - type: Occluder
 
-- type: entity
-  id: WindowRCDResistant
-  parent: Window
-  abstract: true
-  components:
-  - type: RCDDeconstructable
-    deconstructable: false
-
+# Directional
+# Normal Window
 - type: entity
   id: WindowDirectional
-  parent: [BaseDeltaPressureGlassQuarter, BaseStructure]
+  parent: [ BaseDeltaPressureGlassQuarter, BaseWindowDirectionalRCDable ]
   name: directional window
-  description: Don't smudge up the glass down there.
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Window
   components:
-  # ES START
-  # - type: WallMount
-  #  arc: 360
-  - type: ESInteractionIgnoreAnchoredInTile
-  # ES END
-  - type: Tag
-    tags:
-      - Window
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        collection: GlassSmack
   - type: Sprite
-    drawdepth: Mobs
-    sprite: Structures/Windows/directional.rsi
     state: window
   - type: Icon
-    sprite: Structures/Windows/directional.rsi
     state: window
-  - type: InteractionPopup
-    interactSuccessString: comp-window-knock
-    messagePerceivedByOthers: comp-window-knock
-    interactSuccessSound:
-      path: /Audio/Effects/glass_knock.ogg
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,-0.28125"
-        density: 1500
-        mask:
-        - FullTileMask
-        layer:
-        - GlassLayer
-  - type: Repairable
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: ESWindow
-  - type: ExaminableDamage
-    messages: WindowMessages
-  - type: RCDDeconstructable
-    cost: 4
-    delay: 2
-    fx: EffectRCDDeconstruct2
   - type: Destructible
     thresholds:
     - trigger:
@@ -210,95 +91,31 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Airtight
-    noAirWhenFullyAirBlocked: false
-    airBlockedDirection:
-    - South
   - type: Construction
     graph: WindowDirectional
     node: windowDirectional
-  - type: Appearance
-  - type: DamageVisuals
-    thresholds: [5, 10, 20]
-    damageDivisor: 2
-    trackAllDamage: true
-    damageOverlay:
-      sprite: Structures/Windows/cracks_directional.rsi
 
-- type: entity
-  id: WindowDirectionalRCDResistant
-  parent: WindowDirectional
-  abstract: true
-  components:
-  - type: RCDDeconstructable
-    deconstructable: false
-
+# Tinted / Frosted Window
 - type: entity
   id: WindowFrostedDirectional
   parent: WindowDirectional
   name: directional frosted window
-  description: Don't smudge up the glass down there.
   placement:
     mode: SnapgridCenter
     snap:
     - Window
   components:
   - type: Sprite
-    sprite: Structures/Windows/directional.rsi
     state: frosted_window
   - type: Icon
-    sprite: Structures/Windows/directional.rsi
     state: frosted_window
 
+# Diagonal
+# Normal Window
 - type: entity
-  parent: Window
+  parent: [ BaseWindowDiagonal, Window ]
   id: WindowDiagonal
-  suffix: diagonal
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Window
   components:
-  - type: Sprite
-    drawdepth: WallTops
-    sprite: Structures/Windows/window_diagonal.rsi
-    state: state0
-  - type: Tag
-    tags:
-    - Diagonal
-    - Window
-  - type: IconSmooth
-    mode: Diagonal
-    key: windows
-    base: state
-  - type: Icon
-    sprite: Structures/Windows/window_diagonal.rsi
-    state: state0
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PolygonShape
-            vertices:
-            - "-0.5,-0.5"
-            - "0.5,0.5"
-            - "0.5,-0.5"
-        mask:
-        - FullTileMask
-        layer:
-        - GlassLayer
-  - type: Airtight
-    noAirWhenFullyAirBlocked: false
-    airBlockedDirection:
-    - South
-    - East
-  - type: DamageVisuals
-    damageOverlay:
-      sprite: Structures/Windows/cracks_diagonal.rsi
   - type: Construction
     graph: WindowDiagonal
     node: windowDiagonal
-# ES START
-  - type: Clickable
-    bounds: null
-# ES END

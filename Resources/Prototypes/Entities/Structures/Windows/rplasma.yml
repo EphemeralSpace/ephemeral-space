@@ -1,16 +1,12 @@
 - type: entity
   id: ReinforcedPlasmaWindow
   name: reinforced plasma window
-  parent: [BaseDeltaPressureReinforcedPlasma, WindowRCDResistant]
+  parent: [ BaseDeltaPressureReinforcedPlasma, BaseWindowReinforcedDamageable, BaseWindowFulltile ]
   components:
   - type: Sprite
-    drawdepth: WallTops
     sprite: Structures/Windows/reinforced_plasma_window.rsi
   - type: Icon
     sprite: Structures/Windows/reinforced_plasma_window.rsi
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: ESReinforcedWindow
   - type: RadiationBlocker
     resistance: 4
   - type: Destructible
@@ -46,42 +42,24 @@
   - type: Construction
     graph: Window
     node: reinforcedPlasmaWindow
-  - type: Appearance
   - type: DamageVisuals
-    thresholds: [5, 10, 20]
     damageDivisor: 9
-    trackAllDamage: true
-    damageOverlay:
-      sprite: Structures/Windows/cracks.rsi
 
 - type: entity
   id: PlasmaReinforcedWindowDirectional
-  parent: [BaseDeltaPressureReinforcedPlasmaQuarter, WindowDirectionalRCDResistant]
+  parent: [ BaseDeltaPressureReinforcedPlasmaQuarter, BaseWindowReinforcedDamageable, BaseWindowReinforcedDirectionalRCDable ]
   name: directional reinforced plasma window
-  description: Don't smudge up the glass down there.
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Window
   components:
   - type: Sprite
-    sprite: Structures/Windows/directional.rsi
     state: plasma_reinforced_window
   - type: Icon
-    sprite: Structures/Windows/directional.rsi
     state: plasma_reinforced_window
   - type: Construction
     graph: WindowDirectional
     node: plasmaReinforcedWindowDirectional
   - type: Appearance
   - type: DamageVisuals
-    thresholds: [5, 10, 20]
     damageDivisor: 4.5
-    trackAllDamage: true
-    damageOverlay:
-      sprite: Structures/Windows/cracks_directional.rsi
-  - type: Damageable
-    damageModifierSet: ESReinforcedWindow
   - type: RadiationBlocker
     resistance: 2
   - type: Destructible
@@ -111,51 +89,13 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: ReinforcedPlasmaWindow
+  parent: [ BaseWindowDiagonal, ReinforcedPlasmaWindow ]
   id: ReinforcedPlasmaWindowDiagonal
-  suffix: diagonal
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Window
   components:
   - type: Sprite
-    drawdepth: WallTops
     sprite: Structures/Windows/reinforced_plasma_diagonal.rsi
-    state: state0
-  - type: Tag
-    tags:
-    - Diagonal
-    - Window
-  - type: IconSmooth
-    mode: Diagonal
-    key: windows
-    base: state
   - type: Icon
     sprite: Structures/Windows/reinforced_plasma_diagonal.rsi
-    state: state0
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PolygonShape
-            vertices:
-            - "-0.5,-0.5"
-            - "0.5,0.5"
-            - "0.5,-0.5"
-        mask:
-        - FullTileMask
-        layer:
-        - GlassLayer
-        density: 2000
-  - type: Airtight
-    noAirWhenFullyAirBlocked: false
-    airBlockedDirection:
-    - South
-    - East
-  - type: DamageVisuals
-    damageOverlay:
-      sprite: Structures/Windows/cracks_diagonal.rsi
   - type: Construction
     graph: WindowDiagonal
     node: reinforcedPlasmaWindowDiagonal

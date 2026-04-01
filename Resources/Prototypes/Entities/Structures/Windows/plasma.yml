@@ -1,11 +1,13 @@
+# ES TODO: the yaml here has not been refactored because i don't want to fix these. nobody has ever cared about non-reinforced plasma windows ever.
+# at the same time, i do not want to remove them right now because it is annoying. so they will just have to remain bastardized for now
 - type: entity
   id: PlasmaWindow
   name: plasma window
-  parent: [BaseDeltaPressurePlasma, WindowRCDResistant]
+  parent: [ BaseDeltaPressurePlasma, Window ]
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/plasma_window.rsi
+    sprite: Structures/Windows/plasma_window.rsi    
   - type: Icon
     sprite: Structures/Windows/plasma_window.rsi
   - type: Damageable
@@ -53,7 +55,7 @@
 
 - type: entity
   id: PlasmaWindowDirectional
-  parent: [BaseDeltaPressurePlasmaQuarter, WindowDirectionalRCDResistant]
+  parent: [ BaseDeltaPressurePlasmaQuarter, WindowDirectional ]
   name: directional plasma window
   description: Don't smudge up the glass down there.
   placement:

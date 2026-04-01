@@ -34,15 +34,6 @@
               doAfter: 0.5
           completed:
             - !type:SnapToGrid
-        - to: solarpaneluranium
-          conditions:
-            - !type:EntityAnchored
-          steps:
-            - material: UraniumGlass
-              amount: 2
-              doAfter: 0.5
-          completed:
-            - !type:SnapToGrid
         - to: solarpanel
           conditions:
             - !type:EntityAnchored
@@ -77,23 +68,6 @@
               southRotation: true
             - !type:SpawnPrototype
               prototype: SheetPGlass1
-              amount: 2
-          conditions:
-            - !type:EntityAnchored
-              anchored: true
-          steps:
-            - tool: Prying
-              doAfter: 0.5
-
-    - node: solarpaneluranium
-      entity: SolarPanelUranium
-      edges:
-        - to: solarassembly
-          completed:
-            - !type:SnapToGrid
-              southRotation: true
-            - !type:SpawnPrototype
-              prototype: SheetUGlass1
               amount: 2
           conditions:
             - !type:EntityAnchored
@@ -145,23 +119,6 @@
           southRotation: true
         - !type:SpawnPrototype
           prototype: ShardGlassPlasma
-          amount: 2
-        conditions:
-        - !type:EntityAnchored
-          anchored: true
-        steps:
-        - tool: Prying
-          doAfter: 0.5
-
-    - node: solarpaneluranium_broken
-      entity: SolarPanelUraniumBroken
-      edges:
-      - to: solarassembly
-        completed:
-        - !type:SnapToGrid
-          southRotation: true
-        - !type:SpawnPrototype
-          prototype: ShardGlassUranium
           amount: 2
         conditions:
         - !type:EntityAnchored

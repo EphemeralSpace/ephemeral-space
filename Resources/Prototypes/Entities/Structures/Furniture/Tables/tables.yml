@@ -31,13 +31,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 25
+        damage: 100
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 5
+        damage: 25
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -80,7 +80,6 @@
         - TableLayer
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Wood
   - type: IconSmooth
     key: state
     base: state_
@@ -88,13 +87,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 150
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 15
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -131,13 +130,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 125
+        damage: 150
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 25
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -172,13 +171,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 125
+        damage: 150
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 25
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -201,7 +200,7 @@
 
 - type: entity
   id: TableReinforced
-  parent: TableBase
+  parent: [ DeflectionSturdyStructure, TableBase ]
   name: reinforced table
   description: A square piece of metal standing on four metal legs. Extra robust.
   components:
@@ -219,7 +218,7 @@
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -252,6 +251,8 @@
   name: glass table
   description: A square piece of glass, standing on four metal legs.
   components:
+  - type: Damageable
+    damageModifierSet: ESWindow
   - type: Sprite
     sprite: Structures/Furniture/Tables/glass.rsi
   - type: Icon
@@ -262,13 +263,13 @@
         Slash: 15
     tableDamage:
       types:
-        Blunt: 25
+        Blunt: 50
     tableMassLimit: 60
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 25
+        damage: 100
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -277,7 +278,7 @@
             collection: GlassBreak
     - trigger:
         !type:DamageTrigger
-        damage: 5
+        damage: 50 # much weaker then normal tables
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -318,9 +319,6 @@
       types:
         Blunt: 15
     tableMassLimit: 40
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Card
   - type: Destructible
     thresholds:
     - trigger:
@@ -361,6 +359,8 @@
   name: reinforced glass table
   description: A square piece of glass, standing on four metal legs. Extra robust.
   components:
+  - type: Damageable
+    damageModifierSet: ESReinforcedWindow
   - type: Sprite
     sprite: Structures/Furniture/Tables/r_glass.rsi
   - type: Icon
@@ -377,7 +377,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 125
       behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -386,7 +386,7 @@
           collection: GlassBreak
     - trigger:
         !type:DamageTrigger
-        damage: 20
+        damage: 75
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -418,6 +418,8 @@
   name: plasma glass table
   description: A square piece of plasma glass, standing on four metal legs. Pretty!
   components:
+  - type: Damageable
+    damageModifierSet: ESReinforcedWindow
   - type: Sprite
     sprite: Structures/Furniture/Tables/plasma.rsi
   - type: Icon
@@ -434,7 +436,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 250
+        damage: 200
       behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -443,7 +445,7 @@
           collection: GlassBreak
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 125 # even harder to break then a normal table
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -522,13 +524,11 @@
     sprite: Structures/Furniture/Tables/wood.rsi
   - type: Icon
     sprite: Structures/Furniture/Tables/wood.rsi
-  - type: Damageable
-    damageModifierSet: Wood
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 150
       behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -537,7 +537,7 @@
           collection: WoodDestroy
     - trigger:
         !type:DamageTrigger
-        damage: 15
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -571,13 +571,11 @@
     sprite: Structures/Furniture/Tables/carpet.rsi
   - type: Icon
     sprite: Structures/Furniture/Tables/carpet.rsi
-  - type: Damageable
-    damageModifierSet: Wood
   - type: Destructible
     thresholds:
     - trigger: # Excess damage, don't spawn entities
         !type:DamageTrigger
-        damage: 100
+        damage: 150
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -586,7 +584,7 @@
         acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
-        damage: 15
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -711,19 +709,17 @@
   name: fancy table
   description: Expensive and rich.
   components:
-  - type: Damageable
-    damageModifierSet: Wood
   - type: Destructible
     thresholds:
     - trigger: # Excess damage, don't spawn entities
         !type:DamageTrigger
-        damage: 100
+        damage: 150
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 25
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -923,7 +919,7 @@
 
 - type: entity
   id: TableCounterWood
-  parent: CounterBase
+  parent: TableBase
   name: wood counter
   description: Do not apply fire to this. Rumour says it burns easily.
   components:
@@ -932,20 +928,17 @@
   - type: Icon
     sprite: Structures/Furniture/Tables/counterwood.rsi
     state: full
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Wood
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 150
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 15
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -969,7 +962,7 @@
 
 - type: entity
   id: TableCounterMetal
-  parent: CounterBase
+  parent: TableBase
   name: metal counter
   description: Looks like a good place to put a drink down.
   components:
@@ -978,20 +971,17 @@
   - type: Icon
     sprite: Structures/Furniture/Tables/countermetal.rsi
     state: full
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 125
+        damage: 150
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 25
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:

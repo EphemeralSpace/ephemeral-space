@@ -1,0 +1,221 @@
+# Essential properties that all windows should have, regardless of shape
+# DO NOT add things to this unless they are properties you want all windows having.
+- type: entity
+  id: BaseWindow
+  parent: BaseStructure 
+  description: Don't smudge up the glass down there.
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmack
+  - type: ESInteractionIgnoreAnchoredInTile
+  - type: Physics
+  - type: Airtight
+  - type: InteractionPopup
+    interactSuccessString: comp-window-knock
+    messagePerceivedByOthers: comp-window-knock
+    interactSuccessSound:
+      path: /Audio/Effects/glass_knock.ogg
+  - type: Appearance
+
+# Proper base prototypes
+
+# Fulltile
+- type: entity
+  id: BaseWindowFulltile
+  parent: BaseWindow
+  abstract: true
+  components:
+  - type: Clickable
+    bounds:
+      all: -0.5, -0.5, 0.5, 0.5
+  - type: Tag
+    tags:
+      - ForceFixRotations
+      - Window
+  - type: Sprite
+    drawdepth: WallTops
+  - type: Icon
+    state: full
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb {}
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: IconSmooth
+    key: windows
+    base: window
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 4
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
+
+# Directional
+- type: entity
+  id: BaseWindowDirectional
+  parent: BaseWindow
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Window
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Structures/Windows/directional.rsi
+  - type: Icon
+    sprite: Structures/Windows/directional.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,-0.28125"
+        density: 1500
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 2
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks_directional.rsi
+
+# Diagonal
+- type: entity
+  id: BaseWindowDiagonal
+  parent: BaseWindow
+  abstract: true
+  suffix: Diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Structures/Windows/window_diagonal.rsi
+    state: state0
+  - type: Tag
+    tags:
+    - Diagonal
+    - Window
+  - type: IconSmooth
+    mode: Diagonal
+    key: windows
+    base: state
+  - type: Icon
+    sprite: Structures/Windows/window_diagonal.rsi
+    state: state0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
+  - type: DamageVisuals
+    damageOverlay:
+      sprite: Structures/Windows/cracks_diagonal.rsi
+  - type: Clickable
+    bounds: null
+
+# Specific window properties and values that get reused
+
+# For windows that should be damageable
+# Normal
+- type: entity
+  id: BaseWindowDamageable
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: ESWindow
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: Repairable
+
+# Reinforced
+- type: entity
+  id: BaseWindowReinforcedDamageable
+  parent: BaseWindowDamageable
+  abstract: true
+  components:
+  - type: Damageable
+    damageModifierSet: ESReinforcedWindow
+  - type: Repairable
+    fuelCost: 10
+    doAfterDelay: 2
+
+# RCDable variants
+# Normal Fulltile
+- type: entity
+  id: BaseWindowFulltileRCDable
+  parent: [ BaseWindowFulltile, BaseWindowDamageable ] # if you want something to be RCDable it should be damageable to begin with, probably?
+  abstract: true
+  components:
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 4
+    fx: EffectRCDDeconstruct4
+
+# Normal Directional
+- type: entity
+  id: BaseWindowDirectionalRCDable
+  parent: [ BaseWindowDirectional, BaseWindowDamageable ]
+  abstract: true
+  components:
+  - type: RCDDeconstructable
+    cost: 4
+    delay: 2
+    fx: EffectRCDDeconstruct2
+
+# Reinforced Fulltile
+- type: entity
+  id: BaseWindowReinforcedFulltileRCDable
+  parent: [ BaseWindowFulltile, BaseWindowReinforcedDamageable ]
+  abstract: true
+  components:
+  - type: RCDDeconstructable
+    delay: 6
+    fx: EffectRCDDeconstruct6
+
+# Reinforced Directional
+- type: entity
+  id: BaseWindowReinforcedDirectionalRCDable
+  parent: [ BaseWindowDirectional, BaseWindowReinforcedDamageable ]
+  abstract: true
+  components:
+  - type: RCDDeconstructable
+    delay: 4
+    fx: EffectRCDDeconstruct4
