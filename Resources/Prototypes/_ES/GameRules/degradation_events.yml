@@ -15,6 +15,7 @@
   table:
     all:
     - id: ESDegradationEventAirlocks
+    - id: ESDegradationEventLights
     - id: ESDegradationEventMouse
     - id: ESDegradationEventCommunicationsConsole
     - id: ESDegradationEventCriminalRecords
@@ -33,6 +34,16 @@
   - type: ESAirlockFailureEvent
   - type: StationEvent
     weight: 50
+
+- type: entity
+  parent: ESBaseDegradationEvent
+  id: ESDegradationEventLights
+  name: Light Failure # just breaking rn but ideally also causes flickering lights and etc. more varied effects
+  description: Breaks a few random lights around the station.
+  components:
+  - type: ESLightFailureEvent
+  - type: StationEvent
+    weight: 40
 
 - type: entity
   parent: ESBaseDegradationEvent
