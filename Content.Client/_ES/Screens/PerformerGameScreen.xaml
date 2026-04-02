@@ -52,7 +52,7 @@
             <VFillStack SeparationOverride="10" Margin="10">
                 <menuBar:GameTopMenuBar Name="TopBar" Access="Public" />
                 <chat:ChatBox StyleClasses="ChatOutput" Stack.ExpandAxis="Vertical" Name="Chat"
-                              Access="Protected" MinSize="0 0" />
+                              Access="Protected" MinWidth="520" />
             </VFillStack>
         </PanelContainer>
     </HFillStack>

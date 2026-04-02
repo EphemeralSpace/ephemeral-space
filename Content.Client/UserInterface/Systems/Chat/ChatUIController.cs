@@ -298,48 +298,7 @@ public sealed class ChatUIController : UIController
             return;
         }
 
-        var chatSizeRaw = _config.GetCVar(CCVars.SeparatedScreenChatSize);
-        SetChatSizing(chatSizeRaw, screen, setting);
         chatBox.Main = setting;
-    }
-
-    private void SetChatSizing(string sizing, InGameScreen screen, bool setting)
-    {
-        if (!setting)
-        {
-            screen.OnChatResized -= StoreChatSize;
-            return;
-        }
-
-        screen.OnChatResized += StoreChatSize;
-
-        if (string.IsNullOrEmpty(sizing))
-        {
-            return;
-        }
-
-        var split = sizing.Split(",");
-
-        var chatSize = new Vector2(
-            float.Parse(split[0], CultureInfo.InvariantCulture),
-            float.Parse(split[1], CultureInfo.InvariantCulture));
-
-
-        screen.SetChatSize(chatSize);
-    }
-
-    private void StoreChatSize(Vector2 size)
-    {
-        if (UIManager.ActiveScreen == null)
-        {
-            throw new Exception("Cannot get active screen!");
-        }
-
-        var stringSize =
-            $"{size.X.ToString(CultureInfo.InvariantCulture)},{size.Y.ToString(CultureInfo.InvariantCulture)}";
-
-        _config.SetCVar(CCVars.SeparatedScreenChatSize, stringSize);
-        _config.SaveToFile();
     }
 
     private void FocusChat()

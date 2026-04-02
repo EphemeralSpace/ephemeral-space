@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Client._ES.Stagehand.Ui;
 using Content.Client._ES.Voting;
 using Content.Client.UserInterface.Screens;
@@ -65,9 +64,4 @@ public sealed partial class StagehandGameScreen : InGameScreen
     }
 
     public override ChatBox ChatBox => GetWidget<ChatBox>()!;
-
-    public override void SetChatSize(Vector2 size)
-    {
-        ChatBox.MinSize = size;
-    }
 }

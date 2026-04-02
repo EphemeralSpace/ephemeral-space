@@ -38,9 +38,4 @@ public sealed partial class PerformerGameScreen : InGameScreen
     }
 
     public override ChatBox ChatBox => GetWidget<ChatBox>()!;
-
-    public override void SetChatSize(Vector2 size)
-    {
-        ChatBox.MinSize = size;
-    }
 }
