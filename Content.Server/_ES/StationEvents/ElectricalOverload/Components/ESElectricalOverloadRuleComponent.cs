@@ -11,7 +11,7 @@ public sealed partial class ESElectricalOverloadRuleComponent : Component
     public List<EntityUid> Apcs = [];
 
     [DataField]
-    public float Radius = 6f;
+    public float Radius = 7f;
 
     /// <summary>
     ///     Radius to create fires in around each APC
@@ -26,5 +26,5 @@ public sealed partial class ESElectricalOverloadRuleComponent : Component
     /// % of fire circle that will spawn flames
     /// </summary>
     [DataField]
-    public float FireChance = 0.75f;
+    public float FireChance = 0.6f;
 }

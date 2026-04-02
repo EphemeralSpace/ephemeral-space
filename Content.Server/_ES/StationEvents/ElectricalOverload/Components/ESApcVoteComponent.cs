@@ -5,5 +5,5 @@ namespace Content.Server._ES.StationEvents.ElectricalOverload.Components;
 public sealed partial class ESApcVoteComponent : Component
 {
     [DataField]
-    public int Count = 4;
+    public int Count = 6;
 }

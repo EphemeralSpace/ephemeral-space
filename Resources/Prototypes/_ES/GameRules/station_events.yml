@@ -282,7 +282,7 @@
 
 ## Electrical Overload
 - type: entity
-  parent: ESBaseStationEvent
+  parent: ESBaseStationEventNoDelay
   id: ESStationEventElectricalOverload
   name: Electrical Overload
   description: Overload several APCs across the station, starting a fire and breaking all lights attached to them.
