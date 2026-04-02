@@ -1,0 +1,10 @@
+- type: entity
+  parent: CrateLivestock
+  id: CrateNPCCow
+  name: cow crate
+  description: A crate containing a single cow.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: MobCow
