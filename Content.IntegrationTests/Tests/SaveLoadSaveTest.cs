@@ -110,7 +110,7 @@ namespace Content.IntegrationTests.Tests
             var cfg = server.ResolveDependency<IConfigurationManager>();
             Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
-            // Load bagel.yml as uninitialized map, and save it to ensure it's up to date.
+            // Load toast.yml as uninitialized map, and save it to ensure it's up to date.
             server.Post(() =>
             {
                 var path = new ResPath(TestMap);

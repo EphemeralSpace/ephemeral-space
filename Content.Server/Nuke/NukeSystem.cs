@@ -523,6 +523,12 @@ ES END */
         }
 
         component.Status = NukeStatus.ARMED;
+
+        RaiseLocalEvent(new NukeArmedEvent()
+        {
+            OwningGrid = nukeXform.GridUid,
+        });
+
         UpdateUserInterface(uid, component);
         UpdateAppearance(uid, component);
     }
@@ -608,7 +614,7 @@ ES END */
 
         RaiseLocalEvent(new NukeExplodedEvent()
         {
-            OwningStation = transform.GridUid,
+            OwningGrid = transform.GridUid,
         });
 
         _sound.StopStationEventMusic(uid, StationEventMusicType.Nuke);
@@ -680,7 +686,12 @@ ES END */
 
 public sealed class NukeExplodedEvent : EntityEventArgs
 {
-    public EntityUid? OwningStation;
+    public EntityUid? OwningGrid;
+}
+
+public sealed class NukeArmedEvent : EntityEventArgs
+{
+    public EntityUid? OwningGrid;
 }
 
 /// <summary>
