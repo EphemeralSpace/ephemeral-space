@@ -11,7 +11,7 @@
         </FillPanel>
         <!-- this syhould probabyl be diff style class-->
         <FillPanel StyleClasses="PanelDark" Margin="5 5 5 5">
-            <VFillStack Name="PlayerInfoContainer" VerticalExpand="True" Visible="False" Access="Public">
+            <VFillStack Name="PlayerInfoContainer" Stack.ExpandAxis="Vertical" Visible="False" Access="Public">
                 <HFillStack SizeFlagsStretchRatio="0.2">
                     <VFillStack>
                         <RichTextLabel Name="NameLabel" Access="Public" />
@@ -23,10 +23,10 @@
                     </VFillStack>
                 </HFillStack>
                 <Button Name="WarpButton" Access="Public" Text="{Loc 'es-observe-menu-button-warp'}"
-                        HorizontalExpand="True" SetHeight="40" />
+                        Stack.ExpandAxis="Horizontal" SetHeight="40" />
                 <RichTextLabel Text="{Loc 'es-observe-menu-label-objectives'}" />
                 <Spacer VSpace="5" />
-                <VScroll VerticalExpand="True">
+                <VScroll Stack.ExpandAxis="Vertical">
                     <VFillStack Name="ObjectiveContainer" Margin="5 0" Access="Public" />
                 </VScroll>
             </VFillStack>
