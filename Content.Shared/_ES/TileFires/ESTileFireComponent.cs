@@ -23,7 +23,7 @@ public sealed partial class ESTileFireComponent : Component
     public float FirestacksRemoveOnSpread = 3;
 
     [DataField]
-    public float BaseSpreadChance = 0.25f;
+    public float BaseSpreadChance = 0.33f;
 
     [DataField]
     public float MinimumOxyMolesToSpread = 8f;
