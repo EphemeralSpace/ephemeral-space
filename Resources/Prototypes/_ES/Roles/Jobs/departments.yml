@@ -4,7 +4,7 @@
   description: department-Cargo-description
   color: "#A46106"
   roles:
-  - ESCargoTechnician
+  - ESQuartermaster
 
 - type: department
   id: ESService
@@ -56,9 +56,9 @@
   color: "#57b8f0"
   weight: 5
   roles:
+  - ESDoctor
   - ESCoroner
   - ESParamedic
-  - ESPhysician
 
 - type: department
   id: ESSecurity

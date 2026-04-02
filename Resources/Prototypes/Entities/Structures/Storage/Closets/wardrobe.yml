@@ -189,11 +189,6 @@
   name: engineering wardrobe
 
 - type: entity
-  id: WardrobeMedicalDoctor
-  parent: WardrobeWhite
-  name: medical doctor's wardrobe
-
-- type: entity
   id: WardrobeScience
   parent: WardrobeWhite
   name: science wardrobe

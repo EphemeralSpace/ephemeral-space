@@ -1,3 +1,4 @@
+using Content.Shared._ES.Viewcone.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;

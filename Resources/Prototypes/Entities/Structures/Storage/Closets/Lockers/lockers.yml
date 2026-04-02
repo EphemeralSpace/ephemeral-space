@@ -152,18 +152,18 @@
   - type: AccessReader
     access: [ [ "Medical" ] ]
 
-# Medical doctor
+# Doctor
 - type: entity
   id: LockerMedical
   parent: [ LockerBaseSecurePersonal, LockerBase ]
-  name: medical doctor's locker
+  name: doctor's locker
   components:
   - type: EntityStorageVisuals
     stateBaseClosed: med_secure
     stateDoorOpen: med_secure_open
     stateDoorClosed: med_secure_door
   - type: ESPersonalLocker
-    job: ESPhysician
+    job: ESDoctor
 
 # Chemical
 - type: entity

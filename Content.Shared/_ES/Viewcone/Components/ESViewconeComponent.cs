@@ -1,7 +1,7 @@
 using System.Numerics;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._ES.Viewcone;
+namespace Content.Shared._ES.Viewcone.Components;
 
 /// <summary>
 /// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠀⠀⠀⡀⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -32,8 +32,15 @@ namespace Content.Shared._ES.Viewcone;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ESViewconeComponent : Component
 {
+    /// <summary>
+    ///     Base cone angle, without any modifications (from equipment or otherwise).
+    /// </summary>
+    /// <remarks>
+    ///     You probably don't want to refer to this directly if you're using it for actual calculations.
+    ///     Instead, use <see cref="ESViewconeAngleSystem.GetModifiedViewconeAngle"/>
+    /// </remarks>
     [DataField, AutoNetworkedField]
-    public float ConeAngle = 225f;
+    public float BaseConeAngle = 225f;
 
     [DataField, AutoNetworkedField]
     public float ConeFeather = 3f;

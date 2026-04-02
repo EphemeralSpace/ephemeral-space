@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingHeadLightBase
+  parent: [ClothingHeadLightBase, BaseClothingViewconeMedium]
   id: ESClothingHeadHelmetFire
   name: fire helmet
   suffix: ES
@@ -33,7 +33,7 @@
   - type: ESChameleonClothingWhitelist
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, BaseClothingViewconeMedium]
   id: ESClothingHeadHatHoodRadiation
   name: radiation hood
   suffix: ES
@@ -59,7 +59,7 @@
   - type: ESChameleonClothingWhitelist
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, BaseClothingViewconeMedium]
   id: ESClothingHeadHatHoodBio
   name: bio hood
   suffix: ES

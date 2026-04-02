@@ -65,10 +65,11 @@
   name: paramedic's wardrobe
 
 - type: entity
-  id: ESWardrobePhysician
+  id: ESWardrobeDoctor
   parent: WardrobeWhite
   suffix: ES
-  name: physician's wardrobe
+  name: doctor's wardrobe
+  description: "We've all played doctor before, now practice medicine."
 
 - type: entity
   id: ESWardrobeEngineering

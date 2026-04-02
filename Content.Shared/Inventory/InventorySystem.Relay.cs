@@ -1,3 +1,4 @@
+using Content.Shared._ES.Viewcone.Components;
 using Content.Shared.Armor;
 using Content.Shared.Atmos;
 using Content.Shared.Chat;
@@ -36,6 +37,10 @@ public partial class InventorySystem
 {
     public void InitializeRelay()
     {
+        // ES START events
+        SubscribeLocalEvent<InventoryComponent, ESViewconeGetAngleModifierEvent>(RefRelayInventoryEvent);
+        // ES END
+
         SubscribeLocalEvent<InventoryComponent, DamageModifyEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, ElectrocutionAttemptEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, SlipAttemptEvent>(RelayInventoryEvent);

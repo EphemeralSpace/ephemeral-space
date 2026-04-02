@@ -1,11 +1,10 @@
 - type: job
-  id: ESCargoTechnician
-  name: ESjob-name-cargotech
-  description: ESjob-description-cargotech
-  playTimeTracker: ESJobCargoTechnician
-  startingGear: ESCargoTechGear
-  icon: "JobIconCargoTechnician"
-  supervisors: job-supervisors-qm
+  id: ESQuartermaster
+  name: ESjob-name-quartermaster
+  description: ESjob-description-quartermaster
+  playTimeTracker: ESJobQuartermaster
+  startingGear: ESQuartermasterGear
+  icon: "JobIconCargoTechnician" # this is intentional, the upstream qm icon is just this but command-colored which we dont want
   access:
   - Cargo
   - Maintenance
@@ -13,7 +12,7 @@
   - Salvage
 
 - type: startingGear
-  id: ESCargoTechGear
+  id: ESQuartermasterGear
   equipment:
     shoes: ClothingShoesColorBlack
     id: CargoPDA
@@ -26,6 +25,6 @@
     - ESBoxSurvival
 
 - type: chameleonOutfit
-  id: ESCargoTechnician
-  job: ESCargoTechnician
+  id: ESQuartermaster
+  job: ESQuartermaster
   hidden: false

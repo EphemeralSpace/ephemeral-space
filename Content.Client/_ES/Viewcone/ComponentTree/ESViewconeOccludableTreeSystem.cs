@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Shared._ES.Viewcone;
+using Content.Shared._ES.Viewcone.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.ComponentTrees;
 using Robust.Shared.Physics;

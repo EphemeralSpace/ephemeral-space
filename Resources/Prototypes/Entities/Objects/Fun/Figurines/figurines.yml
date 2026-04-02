@@ -1,0 +1,64 @@
+# Base prototype
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseFigurine
+  name: figurine
+  description: A small miniature.
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 100
+  - type: Tag
+    tags:
+    - Figurine
+  - type: UseDelay
+    delay: 5
+  - type: UseDelayOnTrigger
+  - type: UseDelayTriggerCondition # prevent spam
+  - type: TriggerOnActivate
+  - type: TriggerOnSignal
+  - type: Speech
+    speechSounds: Pai # it just sounds better
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+
+# Nuke
+
+- type: entity
+  parent: BaseFigurine
+  id: ToyNuke
+  name: nuke toy
+  description: A plastic model of a Nuclear Fission Explosive. No uranium included... probably.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/toy_nuke.rsi
+    state: icon
+  - type: Clothing
+    quickEquip: false
+    sprite: Objects/Fun/toy_nuke.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        offset: "0, 0.12"
+  - type: Tag
+    tags:
+    - Figurine
+    - Payload
+  - type: UseDelay
+    delay: 180.0
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Machines/Nuke/nuke_alarm.ogg
+      params:
+        volume: -5
+        maxDistance: 10

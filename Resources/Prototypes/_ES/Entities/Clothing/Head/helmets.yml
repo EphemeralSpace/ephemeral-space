@@ -10,7 +10,7 @@
         Piercing: 1
 
 - type: entity
-  parent: [ESBaseHeadArmor, ClothingHeadBase]
+  parent: [ClothingHeadBase, ESBaseHeadArmor, BaseClothingViewconeMedium]
   id: ESClothingHeadHelmetSecurity
   name: helmet
   description: Standard security gear. Protects the head from impacts.
