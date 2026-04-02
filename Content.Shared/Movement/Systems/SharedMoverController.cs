@@ -77,10 +77,6 @@ public abstract partial class SharedMoverController : VirtualController
 
     private static readonly ProtoId<TagPrototype> FootstepSoundTag = "FootstepSound";
 
-    // ES START
-    private static readonly EntProtoId ESFootstepViewconeEffect = "ESViewconeEffectFootstep";
-    // ES END
-
     private bool _relativeMovement;
     private float _minDamping;
     private float _airDamping;
@@ -418,10 +414,6 @@ public abstract partial class SharedMoverController : VirtualController
                 {
                     _audio.PlayPredicted(sound, uid, uid, audioParams);
                 }
-
-                // ES START
-                _viewconeEffect.SpawnEffect(uid, ESFootstepViewconeEffect, wishDir.ToWorldAngle());
-                // ES END
             }
         }
     }
