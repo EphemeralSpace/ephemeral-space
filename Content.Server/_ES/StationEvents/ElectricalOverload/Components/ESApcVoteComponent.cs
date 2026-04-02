@@ -1,7 +1,7 @@
-namespace Content.Server._ES.StationEvents.LightOverload.Components;
+namespace Content.Server._ES.StationEvents.ElectricalOverload.Components;
 
 [RegisterComponent]
-[Access(typeof(ESLightOverloadRule))]
+[Access(typeof(ESElectricalOverloadRule))]
 public sealed partial class ESApcVoteComponent : Component
 {
     [DataField]
