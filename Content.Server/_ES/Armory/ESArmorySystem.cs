@@ -162,11 +162,10 @@ public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
 
     private void OpenArmory(ESArmoryGameRuleComponent component)
     {
-        var query = EntityQueryEnumerator<ESArmoryDoorComponent, DoorComponent, DoorBoltComponent>();
-        while (query.MoveNext(out var uid, out _, out var door, out _))
+        var query = EntityQueryEnumerator<ESArmoryDoorComponent, DoorComponent>();
+        while (query.MoveNext(out var uid, out _, out var door))
         {
-            // todo temp lol
-            QueueDel(uid);
+            _door.TryOpen(uid, door);
         }
 
         // Announcement
