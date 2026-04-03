@@ -11,5 +11,5 @@
     When they are killed by a non-parasite, they will instantly swap bodies with their killer.
     Their old body will also be revived and their killer will become a new Psychid.
 
-    <ESGuideMaskTipsEmbed Mask="ESPsychid"/>
+    <ESGuideTipsEmbed Mask="ESPsychid"/>
 </Document>

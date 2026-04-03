@@ -7,5 +7,5 @@
     If a non-parasite makes contact with these worms, they'll be converted into a Hemophage.
     Note however that anyone not infected is certain to report the event, making it much harder for subsequent infections to occur.
 
-    <ESGuideMaskTipsEmbed Mask="ESHemophage"/>
+    <ESGuideTipsEmbed Mask="ESHemophage"/>
 </Document>

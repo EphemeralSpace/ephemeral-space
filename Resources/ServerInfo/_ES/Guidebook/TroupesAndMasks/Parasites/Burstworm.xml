@@ -12,5 +12,5 @@
 
     Any worms that failed to find a mark will quickly die, falling to the ground as evidence of possible conversion.
 
-    <ESGuideMaskTipsEmbed Mask="ESBurstworm"/>
+    <ESGuideTipsEmbed Mask="ESBurstworm"/>
 </Document>
