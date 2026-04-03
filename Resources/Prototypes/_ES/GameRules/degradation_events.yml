@@ -51,16 +51,13 @@
   name: Mouse Swarm
   description: Sends mice into maintenance to nibble wires.
   components:
-  - type: ESSpawnRandomRule
-    spawnRegion: ESMaintenance
+  - type: ESVentSpawnEvent
     table:
       group:
       - id: MobMouse
       - id: MobMouse1
       - id: MobMouse2
       rolls: 5, 8
-  - type: ESTimedDespawn
-    lifetime: 1.0
   - type: StationEvent
     weight: 40
 

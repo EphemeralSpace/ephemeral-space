@@ -153,6 +153,12 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public List<ProtoId<GuideEntryPrototype>>? Guides;
+
+        /// <summary>
+        /// List of tips that apply to this job specifically. Should be tips that are also in the main tips dataset, but they don't necessarily need to be.
+        /// </summary>
+        [DataField]
+        public List<LocId> Tips = new();
     }
 
     /// <summary>

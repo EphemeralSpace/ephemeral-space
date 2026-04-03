@@ -11,8 +11,8 @@
             <gfx:StyleBoxFlat BorderThickness="1" BorderColor="#3c3c47"/>
         </PanelContainer.PanelOverride>
         <VStack>
-            <RichTextLabel Name="MaskTipsTitle" HorizontalAlignment="Center" Margin="5 10 5 0"/>
-            <RichTextLabel Name="MaskTips" Margin="5 5 5 5"/>
+            <RichTextLabel Name="TipsTitle" HorizontalAlignment="Center" Margin="5 10 5 0"/>
+            <RichTextLabel Name="Tips" Margin="5 5 5 5"/>
         </VStack>
     </Panel>
 </VStack>
