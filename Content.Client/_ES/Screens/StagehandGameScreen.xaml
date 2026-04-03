@@ -17,7 +17,7 @@
     VerticalAlignment="Bottom"
     HorizontalAlignment="Center">
     <HFillStack Name="FullScreenContainer">
-        <FillPanel Name="LeftPanel" StyleClasses="PanelDark">
+        <FillPanel Name="LeftPanel" StyleClasses="PanelDark" MinWidth="300">
             <observe:ESStagehandObserveControl Name="ObserveControl"/>
         </FillPanel>
         <VFillStack Stack.ExpandAxis="Horizontal">
