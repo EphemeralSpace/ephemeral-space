@@ -3,7 +3,7 @@
 
   The lobby is the theater where every player who joins the server appears. The theater is a physical space for you to immerse yourself in while waiting for a new round.
 
-  Everything you need to do to join a round is located here, as long as a few other interesting things to interact with.
+  Everything you need to do to join a round is located here, as well as a few interesting things to interact with.
 
 # The Stage
 
@@ -13,9 +13,35 @@
 
 # Latejoining
 
-  Once a round starts, anyone who wishes to join will have to speak to the Casting Director or the Stagehand Director.
+  Once a round starts, anyone who wishes to join will have to speak to the Casting Director or the Stagehand Director. They are located on the stage, behind the curtains that open up when the round starts.
 
-  Speaking to the Casting Director allows you to join the round as a player, though, anyone who latejoins will not be given a unique mask.
+  <Box>
+    ## The Casting Director
+  </Box>
 
-  Speaking to the Stagehand Director allows you to join the round as a stagehand, which is an observer who can vote on events throughout the round, and affect the players in a few minor ways to make the round more interesting.
+  <Box>
+    <GuideEntityEmbed Entity="ESMobTheaterStaffSpawning" Caption=""/>
+  </Box>
+
+  <Box>
+    The Casting Director allows you to join the round as a player, though, anyone who latejoins will not be given a unique mask.
+  </Box>
+
+  <Box>
+    ## The Stagehand Director
+  </Box>
+
+  <Box>
+    <GuideEntityEmbed Entity="ESMobTheaterStaffStagehand" Caption=""/>
+  </Box>
+
+  <Box>
+     The Stagehand Director allows you to join the round as a stagehand.
+  </Box>
+
+  <Box>
+    [color=#999999][italic]The stagehand is a spectator-type role that can vote on events throughout the round, and affect the players in a few minor ways to make the round more interesting.[italic][/color]
+  </Box>
+
+  If you die, and are sent back to the lobby, you can no longer talk to the Casting Director, and your only option to rejoin is talking to the Stagehand Director.
 </Document>

@@ -2,5 +2,5 @@
   id: Lobby
   hidden: false
   name: Lobby
-  priority: 3
+  priority: 1
   text: "/ServerInfo/_ES/Guidebook/Lobby.xml"
