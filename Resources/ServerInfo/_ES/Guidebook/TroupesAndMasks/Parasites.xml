@@ -1,0 +1,36 @@
+<Document>
+  # Parasites
+
+  <Box>
+    [color=#999999][italic]"You will be reborn in a beautiful new form. We are one now."[/italic][/color]
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ESWeaponParasiteWorm" Caption=""/>
+  </Box>
+  Parasites are an [color=yellowgreen]infectious collective[/color] that want to seize control of the station to turn it into a nest for the parasites to reproduce.
+
+  The various parasite masks all fall under the general role type of "jester"-- a mask whose objective it is to be killed.
+
+  <ESGuideObjectiveEmbed Objective="ESObjectiveParasiteDie"/>
+
+  When hosts of the parasitic infection are killed, the parasites will spring into actions, causing unique effects to occur and potentially infecting others.
+  Note that it has to be another player who takes your life, not the environment or an animal.
+
+  However, the hosts themselves are restricted by the very same parasites.
+  If they were to take the life of another, the hormonal spike in their brain would send the parasites into a frenzy, killing them almost instantly.
+
+  <ESGuideObjectiveEmbed Objective="ESObjectiveParasiteDoNotKill"/>
+
+  The parasites win if they seize control of the majority of the station.
+  Note that this only includes living players, so if members of other troupes die off, it's possible for the parasites to win with only relatively few infections.
+
+  <ESGuideObjectiveEmbed Objective="ESObjectiveParasiteInfect"/>
+
+  At that point, a psychic message will be sent, notifying that the parasite swarm will begin shortly.
+  After a short delay, all members will develop parasitic growths on their body and have a large parasite burst from their arm.
+
+  This larger worm can be used as a weapon, stunning people on hit and converting prone players in parasitic hosts.
+
+  After a few minutes, so long as the rampaging parasites are not wiped out, the round will end as a parasite troupe victory.
+
+</Document>

@@ -1,0 +1,29 @@
+- type: guideEntry
+  id: Parasites
+  name: Parasites
+  children:
+  - Burstworm
+  - Hemophage
+  - Psychid
+  - Host
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Parasites.xml"
+
+- type: guideEntry
+  id: Burstworm
+  name: Burstworm
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Parasites/Burstworm.xml"
+
+- type: guideEntry
+  id: Hemophage
+  name: Hemophage
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Parasites/Hemophage.xml"
+
+- type: guideEntry
+  id: Host
+  name: Host
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Parasites/Host.xml"
+
+- type: guideEntry
+  id: Psychid
+  name: Psychid
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Parasites/Psychid.xml"
