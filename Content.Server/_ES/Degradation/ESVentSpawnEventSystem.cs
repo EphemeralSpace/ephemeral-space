@@ -27,6 +27,9 @@ public sealed class ESVentSpawnEventSystem : StationEventSystem<ESVentSpawnEvent
 
     private void OnVentSpawnEntityTimer(Entity<ESVentSpawnEventComponent> ent, ref ESVentSpawnEntityTimerEvent args)
     {
+        if (!args.Coordinates.IsValid(EntityManager))
+            return;
+
         var spawn = SpawnAtPosition(args.Entity, args.Coordinates);
         _popup.PopupEntity(Loc.GetString("es-vent-swarm-popup", ("spawn", spawn)), spawn);
     }
