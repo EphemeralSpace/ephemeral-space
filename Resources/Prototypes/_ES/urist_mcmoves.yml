@@ -1,0 +1,176 @@
+- type: entity
+  name: urist mcmoves
+  parent: SimpleMobBase
+  id: MobUristMcMoves
+  description: Squeak!
+  components:
+  - type: Body
+    prototype: Human
+  - type: Speech
+    speechSounds: Squeak
+    speechVerb: SmallMob
+    allowedEmotes: ['Squeak']
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _ES/Mobs/urist-mcwalk.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: urist
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: urist_moving
+    noMovementLayers:
+      movement:
+        state: urist
+  - type: NpcFactionMember
+    factions:
+      - Mouse
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: MouseCompound
+  - type: Physics
+  - type: FaxableObject
+    insertingState: inserting_mouse
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 185
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Deathgasp
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritFakeDeath
+      - ActionCritLastWords
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      5: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-0
+      Critical:
+        Base: dead-0
+      Dead:
+        Base: splat-0
+  - type: Edible
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: Thirst
+    startingThirst: 25  # spawn with Okay thirst state
+    thresholds:
+      OverHydrated: 35
+      Okay: 25
+      Thirsty: 15
+      Parched: 10
+      Dead: 0
+    baseDecayRate: 0.04
+  - type: Hunger
+    thresholds:
+      Overfed: 35
+      Okay: 25
+      Peckish: 15
+      Starving: 10
+      Dead: 0
+    baseDecayRate: 0.5 # I'm very hungry! Give me. The cheese.
+  - type: Extractable
+    grindableSolutionName: food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatRat
+      amount: 1
+  - type: ReplacementAccent
+    accent: mouse
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0.25
+    damageRecovery:
+      types:
+        Asphyxiation: -0.25
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.1
+  - type: Vocal
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
+    wilhelmProbability: 0.001
+  # TODO: Remove CombatMode when Prototype Composition is added
+  - type: CombatMode
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 0
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
+  - type: CanEscapeInventory
+  - type: BadFood
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Mouse_burning
+  - type: FoodSequenceElement
+    entries:
+      Taco: RatTaco
+      Burger: RatBurger
+      Skewer: RatSkewer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 60
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
+
+- type: entity
+  name: Urist McMoves
+  parent: MobHuman
+  id: MobHumanMoves
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _ES/Mobs/urist-mcwalk.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: urist
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: urist_moving
+    noMovementLayers:
+      movement:
+        state: urist

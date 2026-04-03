@@ -358,6 +358,7 @@ CrateNPCHamlet: SpawnMobHamsterHamlet
 MaintenancePlantSpawner: ESSpawnerRandomMaintLootStructure
 SpacemenFigurineSpawner90: null
 LootSpawnerRandomCrateEngineering: CrateEngineeringSolar
+RandomSpawner: null # arrivals is complaining about this????? this isnt even a prototype as far as i'm aware, what the hell?
 
 # ES END
 
