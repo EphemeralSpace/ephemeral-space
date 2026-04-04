@@ -155,8 +155,8 @@ namespace Content.Client.Chat.UI
             var offset = (-_eyeManager.CurrentEye.Rotation).ToWorldVec() * -(EntityVerticalOffset + baseOffset);
             var worldPos = _transformSystem.GetWorldPosition(xform) + offset;
 
-            var lowerCenter = _eyeManager.WorldToScreen(worldPos) / UIScale;
-            var screenPos = lowerCenter - new Vector2(ContentSize.X / 2, ContentSize.Y + _verticalOffsetAchieved) - (Parent?.GlobalPixelPosition ?? Vector2.Zero);
+            var lowerCenter = (_eyeManager.WorldToScreen(worldPos) - (Parent?.GlobalPixelPosition ?? Vector2.Zero)) / UIScale;
+            var screenPos = lowerCenter - new Vector2(ContentSize.X / 2, ContentSize.Y + _verticalOffsetAchieved);
             // Round to nearest 0.5
             screenPos = (screenPos * 2).Rounded() / 2;
             LayoutContainer.SetPosition(this, screenPos);
