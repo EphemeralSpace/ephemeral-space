@@ -42,6 +42,32 @@
         amount: 2
 
 - type: entity
+  parent: ESBaseVendingMachine
+  id: ESVendingMachineGames
+  name: Good Clean Fun
+  description: Vends things that the Captain and Head of Personnel are probably not going to appreciate you fiddling with instead of your job...
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Vendors/games.rsi
+  - type: VendingMachine
+    ejectDelay: 1.8
+  - type: DatasetVocalizer
+    dataset: GoodCleanFunAds
+  - type: SpeakOnUIClosed
+    pack: GoodCleanFunGoodbyes
+  - type: PointLight
+    color: "#326e3f"
+  - type: ESEntityTableVendorFill
+    inventory:
+      all:
+      - tableId: Toys
+        rolls: 6
+      - tableId: BoardGames
+        rolls: 2
+      - id: d6Dice
+        amount: 4
+
+- type: entity
   parent: ESBaseVendingMachineDispenseOnHit
   id: ESVendingMachineSalvagedSams
   name: Salvaged Sam's Maintenance Surplus
