@@ -58,4 +58,10 @@ public sealed partial class ESCVars : CVars
     /// </summary>
     public static readonly CVarDef<bool> UserChatSanitizationEnabled =
     CVarDef.Create("es_chat.user_chat_sanitization_enabled", true, CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> FormattedHostName =
+        CVarDef.Create("es_status.formatted_host_name", "[{0}] [{1} RolePlay] MyServer", CVar.SERVERONLY);
+
+    public static readonly CVarDef<string> RoleplayLevels =
+        CVarDef.Create("es_status.roleplay_levels", "Default", CVar.SERVERONLY);
 }

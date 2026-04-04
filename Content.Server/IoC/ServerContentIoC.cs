@@ -1,3 +1,6 @@
+// ES CHANGES: Registering our IoCs.
+
+using Content.Server._ES.ServerStatus;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -78,5 +81,7 @@ internal static class ServerContentIoC
         deps.Register<CVarControlManager>();
         deps.Register<DiscordLink>();
         deps.Register<DiscordChatLink>();
+
+        deps.Register<StatusManager>();
     }
 }

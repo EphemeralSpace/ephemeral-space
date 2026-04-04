@@ -1,3 +1,6 @@
+// ES CHANGES: Initializing our IoCs.
+
+using Content.Server._ES.ServerStatus;
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -76,6 +79,8 @@ namespace Content.Server.Entry
         [Dependency] private readonly ServerInfoManager _serverInfo = default!;
         [Dependency] private readonly ServerUpdateManager _updateManager = default!;
 
+        [Dependency] private readonly StatusManager _status = default!;
+
         public override void PreInit()
         {
             ServerContentIoC.Register(Dependencies);
@@ -147,6 +152,8 @@ namespace Content.Server.Entry
             _connection.PostInit();
             _multiServerKick.Initialize();
             _cvarCtrl.Initialize();
+
+            _status.Initialize();
         }
 
         public override void Update(ModUpdateLevel level, FrameEventArgs frameEventArgs)
