@@ -2,7 +2,7 @@
   id: ESWeaponEnergyRifle
   name: energy rifle
   suffix: ES
-  description: A energy-based longarm that can fire pulse bolts that go through windows. Colloquially referred to as a "laser gun."
+  description: An energy-based longarm that can fire pulse bolts that go through windows. Colloquially referred to as a "laser gun."
   parent: BaseWeaponBattery
   components:
   - type: Item
