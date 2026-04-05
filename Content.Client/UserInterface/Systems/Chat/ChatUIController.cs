@@ -353,6 +353,7 @@ public sealed class ChatUIController : UIController
         root.AddChild(_speechBubbleRoot);
         LayoutContainer.SetAnchorPreset(_speechBubbleRoot, LayoutContainer.LayoutPreset.Wide);
         _speechBubbleRoot.SetPositionLast();
+        _speechBubbleRoot.RectClipContent = true;
     }
 
     private void OnAttachedChanged(EntityUid uid)
