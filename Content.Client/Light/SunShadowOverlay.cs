@@ -159,6 +159,8 @@ public sealed class SunShadowOverlay : Overlay
 
                     worldHandle.DrawTextureRect(res.Target.Texture, worldBounds, Color.Black.WithAlpha(alpha));
                 }, null);
+
+            worldHandle.SetTransform(Matrix3x2.Identity);
         }
     }
 

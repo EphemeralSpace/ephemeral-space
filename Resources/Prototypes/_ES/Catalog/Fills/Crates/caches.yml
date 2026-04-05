@@ -86,9 +86,11 @@
   table:
     all:
     - id: ESSubverterChip
-      amount: 2
+    - id: ESSleepyPen
     - id: ESWeaponPistol9mm
+      amount: 2
     - id: ESMagazine9mm
+      amount: 2
 
 # Demolitionist
 - type: entity

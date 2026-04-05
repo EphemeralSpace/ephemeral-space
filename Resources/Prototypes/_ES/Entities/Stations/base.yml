@@ -31,7 +31,7 @@
           volume: -4
       events:
         id: ESPortalEventAnomalies
-        amount: 3
+        amount: 2
     - announcement: es-telesci-announcement-stage-2
       announcementSound:
         path: /Audio/_ES/Announcements/attention_high.ogg
@@ -39,7 +39,7 @@
           volume: -4
       events:
         id: ESPortalEventAnomalies
-        amount: 4
+        amount: 3
     - announcement: es-telesci-announcement-stage-3
       announcementSound:
         path: /Audio/_ES/Announcements/attention_high.ogg
@@ -47,7 +47,7 @@
           volume: -4
       events:
         id: ESPortalEventAnomalies
-        amount: 5
+        amount: 4
     - announcement: es-telesci-announcement-stage-4
       announcementSound:
         path: /Audio/_ES/Announcements/attention_high.ogg

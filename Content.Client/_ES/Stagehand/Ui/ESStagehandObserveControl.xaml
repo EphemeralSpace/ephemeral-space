@@ -1,0 +1,35 @@
+<controls:ESStagehandObserveControl
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._ES.Stagehand.Ui"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    MinWidth="200">
+    <VFillStack>
+        <FillPanel StyleClasses="PanelDark">
+            <VScroll VerticalExpand="True" ReserveScrollbarSpace="True">
+                <VStack Name="MindsContainer" Margin="5" Access="Public"/>
+            </VScroll>
+        </FillPanel>
+        <!-- this syhould probabyl be diff style class-->
+        <FillPanel StyleClasses="PanelDark" Margin="5 5 5 5">
+            <VFillStack Name="PlayerInfoContainer" Stack.ExpandAxis="Vertical" Visible="False" Access="Public">
+                <HFillStack SizeFlagsStretchRatio="0.2">
+                    <VFillStack>
+                        <RichTextLabel Name="NameLabel" Access="Public" />
+                        <RichTextLabel Name="JobLabel" Access="Public" />
+                    </VFillStack>
+                    <VFillStack>
+                        <RichTextLabel Name="MaskLabel" Access="Public" HorizontalAlignment="Right"/>
+                        <RichTextLabel Name="TroupeLabel" Access="Public" HorizontalAlignment="Right"/>
+                    </VFillStack>
+                </HFillStack>
+                <Button Name="WarpButton" Access="Public" Text="{Loc 'es-observe-menu-button-warp'}"
+                        Stack.ExpandAxis="Horizontal" SetHeight="40" />
+                <RichTextLabel Text="{Loc 'es-observe-menu-label-objectives'}" />
+                <Spacer VSpace="5" />
+                <VScroll Stack.ExpandAxis="Vertical">
+                    <VFillStack Name="ObjectiveContainer" Margin="5 0" Access="Public" />
+                </VScroll>
+            </VFillStack>
+        </FillPanel>
+    </VFillStack>
+</controls:ESStagehandObserveControl>

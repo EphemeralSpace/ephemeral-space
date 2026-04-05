@@ -1,0 +1,11 @@
+<Document>
+    <ESGuideMaskEmbed Mask="ESHost"/>
+
+    Hosts are a unique mask that only appears during the ending "swarm" phase of parasites.
+    When a swarming parasite attacks a member of another troupe, they can convert them into a Host.
+
+    Hosts do not have any responsibility or unique goals.
+    Simply enjoy the chaos and join your fellow parasites in converting the rest of the crew.
+
+    <ESGuideTipsEmbed Mask="ESHost"/>
+</Document>

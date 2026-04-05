@@ -1,0 +1,15 @@
+<Document>
+    <ESGuideMaskEmbed Mask="ESPsychid"/>
+
+    The Psychid is am extremely stealthy member of the parasites that takes advantage of body swapping to slowly multiply across the station.
+
+    <Box>
+        <GuideEntityEmbed Entity="OrganHumanBrain" Caption=""/>
+        <GuideEntityEmbed Entity="OrganHumanBrain" Caption=""/>
+    </Box>
+
+    When they are killed by a non-parasite, they will instantly swap bodies with their killer.
+    Their old body will also be revived and their killer will become a new Psychid.
+
+    <ESGuideTipsEmbed Mask="ESPsychid"/>
+</Document>

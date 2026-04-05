@@ -1,0 +1,11 @@
+<Document>
+    <ESGuideMaskEmbed Mask="ESHemophage"/>
+
+    The Hemophage is a stealthy member of the parasites that relies on careful setup and planning to make the most of their ability.
+    When they are killed, all puddles of their blood across the station will momentarily swarm with clumps of worms.
+
+    If a non-parasite makes contact with these worms, they'll be converted into a Hemophage.
+    Note however that anyone not infected is certain to report the event, making it much harder for subsequent infections to occur.
+
+    <ESGuideTipsEmbed Mask="ESHemophage"/>
+</Document>

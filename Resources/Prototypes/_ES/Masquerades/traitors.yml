@@ -20,9 +20,9 @@
       16: ["#Firmsafes"] # 1 generic crew, 3 traitors.
       17: ["#Filler"]
       18: ["ESArmsDealer"]
-      19: ["ESMarauder"] # 1 generic crew, 4 traitors.
+      19: ["#Traitors"] # 1 generic crew, 4 traitors.
       20: ["#Filler"]
-      21: ["#Filler", "-ESMarauder", "#PowerTraitors"] # 1 generic crew, 4 traitors.
+      21: ["#Filler", "-#Traitors", "#PowerTraitors"] # 1 generic crew, 4 traitors.
       22: ["#Filler"]
       24: ["#TraitorGunners"] # 2 generic crew, 4 traitors.
       25: ["ESMarauder"] # 2 generic crew, 5 traitors.

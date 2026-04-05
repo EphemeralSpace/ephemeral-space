@@ -241,7 +241,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
     /// <summary>
     ///     Try to break bulb inside light fixture
     /// </summary>
-    public bool TryDestroyBulb(EntityUid uid, PoweredLightComponent? light = null, EntityUid? user = null)
+    public bool TryDestroyBulb(EntityUid uid, PoweredLightComponent? light = null, EntityUid? user = null, float tileFireChanceOverride = 0.05f)
     {
         if (!Resolve(uid, ref light, false))
             return false;
@@ -255,7 +255,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
 
         // break it
 // ES START
-        _sparks.DoSparks(uid, user: user, tileFireChance: 0.05f);
+        _sparks.DoSparks(uid, user: user, tileFireChance: tileFireChanceOverride);
 // ES END
         _bulbSystem.SetState(bulbUid.Value, LightBulbState.Broken, lightBulb);
         _bulbSystem.PlayBreakSound(bulbUid.Value, lightBulb, user);

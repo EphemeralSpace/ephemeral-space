@@ -87,6 +87,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
         var sightSize = sight.Size * scale;
         var expandedSize = sightSize + new Vector2(7f, 7f);
 
+        screen.SetTransform(Matrix3x2.Identity);
         screen.DrawTextureRect(sight,
             UIBox2.FromDimensions(centerPos - sightSize * 0.5f, sightSize), StrokeColor);
         screen.DrawTextureRect(sight,

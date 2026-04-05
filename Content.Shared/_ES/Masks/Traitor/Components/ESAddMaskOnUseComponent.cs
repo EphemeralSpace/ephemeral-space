@@ -14,7 +14,7 @@ public sealed partial class ESAddMaskOnUseComponent : Component
     /// Whether the target must be in crit to be converted
     /// </summary>
     [DataField]
-    public bool RequireCrit = true;
+    public bool RequireIncapacitated = true;
 
     /// <summary>
     /// Whether having a mindshield will prevent conversion
@@ -53,7 +53,7 @@ public sealed partial class ESAddMaskOnUseComponent : Component
     public LocId UsedExamineMessage = "es-subverter-chip-examined-used";
 
     [DataField]
-    public LocId NotCritMessage = "es-subverter-chip-not-crit";
+    public LocId NotIncapacitatedMessage = "es-subverter-chip-not-crit";
 
     [DataField]
     public LocId MindshieldedMessage = "es-subverter-chip-mindshielded";

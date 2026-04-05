@@ -23,24 +23,7 @@ public sealed class StationPowerTests : GameTest
 
     private static readonly string[] GameMaps =
     [
-        // ES START
-        // test toast, dont test upstream maps
         "ESToast",
-        /*
-        "Bagel",
-        "Box",
-        "Elkridge",
-        "Fland",
-        "Marathon",
-        "Oasis",
-        "Packed",
-        "Plasma",
-        "Relic",
-        "Snowball",
-        "Reach",
-        "Exo",
-        */
-        // ES END
     ];
 
     public override PoolSettings PoolSettings => new ()

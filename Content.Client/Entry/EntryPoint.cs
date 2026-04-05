@@ -131,6 +131,7 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("codewordFaction");
 // ES START
             _prototypeManager.RegisterIgnore("esStationConfig");
+            _prototypeManager.RegisterIgnore("esRoleplayLevels");
 // ES END
 
             _fontSelectionManager.Initialize();

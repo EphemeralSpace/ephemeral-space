@@ -72,3 +72,6 @@ es-tips-dataset-67 = As a stagehand, you can use the Verb Menu to orbit around a
 es-tips-dataset-68 = The antimatter engine is a high-priority target and is easily sabotaged. Make sure to set up the Solars so that you don't run out of power if it blows.
 es-tips-dataset-69 = Though using an EMAG is a giveaway if someone sees you do it, the effect of using an EMAG on a door is indistinguishable from natural airlock bolt degradation, and can be passed off as such.
 es-tips-dataset-70 = As an Infiltrator, your cache's C4 is a tool available elsewhere. If you're caught, consider passing it off as stolen from Engineering.
+es-tips-dataset-71 = As a Burstworm, make sure your body ends up somewhere with a lot of people around. You won't convert anyone if you end up dying alone in maints.
+es-tips-dataset-72 = As a Hemophage, try to spread your blood in areas that people would expect to be messy. If you're too obvious, the crew might suspect you and try to rapidly clean the station.
+es-tips-dataset-73 = As a Psychid, keep in mind that the player you convert will end up in your situation. Thrown into space, locked in the brig, or welded inside a locker are all terrible starting points for the new member of your troupe.

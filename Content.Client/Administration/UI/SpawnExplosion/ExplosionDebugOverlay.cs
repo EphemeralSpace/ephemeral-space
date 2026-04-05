@@ -81,6 +81,7 @@ public sealed class ExplosionDebugOverlay : Overlay
     private void DrawScreen(OverlayDrawArgs args)
     {
         var handle = args.ScreenHandle;
+        handle.SetTransform(Matrix3x2.Identity);
         Box2 gridBounds;
         var xformQuery = _entityManager.GetEntityQuery<TransformComponent>();
         var xformSystem = _entityManager.System<TransformSystem>();
