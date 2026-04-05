@@ -5,12 +5,6 @@ If someone finds themselves injured, Medical is tasked with bringing them to hea
 ## Personnel
 [color=#5b97bc]Medical[/color] primarily employs [color=cyan]Doctors[/color], [color=cyan]Paramedics[/color], and [color=cyan]Coroners[/color].
 
-<Box>
-  <GuideEntityEmbed Entity="ToyFigurineMedicalDoctor" Caption="Doctor"/>
-  <GuideEntityEmbed Entity="ToyFigurineParamedic" Caption="Paramedic"/>
-  <GuideEntityEmbed Entity="ToyFigurineMedicalDoctor" Caption="Coroner"/>
-</Box>
-
 ## Doctors
 
 [color=cyan]Doctors[/color] serve as the primary practitioners within the [color=#5b97bc]Medical[/color] ward, and are responsible for bringing patients to good health. This is done through performing surgeries and other intensive care as necessary.

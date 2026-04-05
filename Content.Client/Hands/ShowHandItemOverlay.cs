@@ -65,6 +65,7 @@ namespace Content.Client.Hands
                 return;
 
             var screen = args.ScreenHandle;
+            screen.SetTransform(Matrix3x2.Identity);
             var offset = _cfg.GetCVar(CCVars.HudHeldItemOffset);
             var offsetVec = new Vector2(offset, offset);
 

@@ -23,8 +23,6 @@
   - type: ESTroupeRule
     troupe: ESTraitor
   - type: ESTraitorRule
-  - type: LoadMapRule
-    mapPath: /Maps/_ES/syndiebase.yml
 
 - type: entity
   parent: ESBaseTroupeRule

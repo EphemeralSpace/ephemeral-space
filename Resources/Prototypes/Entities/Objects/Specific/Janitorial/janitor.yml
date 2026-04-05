@@ -279,11 +279,7 @@
 - type: weightedRandomEntity
   id: PlungerLoot
   weights:
-    RandomSpawner100: 56
-    SpacemenFigurineSpawner90: 28
     SpawnMobCockroach: 5
-    MaintenanceToolSpawner: 5
-    SpawnMobMoproach: 2
 
 - type: entity
   parent: BaseItem

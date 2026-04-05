@@ -8,6 +8,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Core.Timer.Components;
+using Content.Shared._ES.Masks;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Systems;
@@ -18,6 +19,7 @@ using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.Audio;
 using Robust.Server.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.Troupes.Parasite;
 
@@ -70,6 +72,7 @@ public sealed class ESParasiteRuleSystem : EntitySystem
 
     private void OnSwarmTimer(Entity<ESParasiteRuleComponent> ent, ref ESParasiteSwarmTimerEvent args)
     {
+        ent.Comp.SwarmStarted = true;
         TransformTroupeMembers(ent);
     }
 
@@ -83,6 +86,9 @@ public sealed class ESParasiteRuleSystem : EntitySystem
         foreach (var hit in args.HitEntities)
         {
             if (!_mind.TryGetMind(hit, out var mind))
+                continue;
+
+            if (_mind.IsCharacterDeadIc(mind))
                 continue;
 
             if (_mask.GetTroupeOrNull(mind.Value.AsNullable()) == ent.Comp.IgnoreTroupe)
@@ -112,7 +118,7 @@ public sealed class ESParasiteRuleSystem : EntitySystem
         }
 
         _entityTimer.SpawnTimer(ent, ent.Comp.SwarmDelay, new ESParasiteSwarmTimerEvent());
-        _entityTimer.SpawnTimer(ent, ent.Comp.WinDelay, new ESParasiteWinCheckTimerEvent());
+        _entityTimer.SpawnTimer(ent, ent.Comp.SwarmDelay + ent.Comp.WinDelay, new ESParasiteWinCheckTimerEvent());
     }
 
     private void TransformTroupeMembers(Entity<ESParasiteRuleComponent> ent)
@@ -131,6 +137,21 @@ public sealed class ESParasiteRuleSystem : EntitySystem
         }
     }
 
+    private bool AllPlayersConverted(EntityUid troupe)
+    {
+        var nonTroupeCount = 0;
+        foreach (var mind in _mask.GetNotTroupeMembers(troupe))
+        {
+            if (!TryComp<MindComponent>(mind, out var mindComp))
+                continue;
+
+            if (!_mind.IsCharacterDeadIc(mindComp))
+                ++nonTroupeCount;
+        }
+
+        return nonTroupeCount == 0;
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -138,6 +159,15 @@ public sealed class ESParasiteRuleSystem : EntitySystem
         var query = EntityQueryEnumerator<ESParasiteRuleComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
+            if (!comp.SwarmStarted)
+                continue;
+
+            if (AllPlayersConverted(uid))
+            {
+                _roundEnd.EndRound(TimeSpan.FromMinutes(1));
+                continue;
+            }
+
             if (!comp.WinStarted)
                 continue;
 

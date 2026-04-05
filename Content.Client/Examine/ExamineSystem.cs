@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using System.Threading;
 using Content.Client.Verbs;
+using Content.Client.Viewport;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Input;
@@ -95,14 +96,6 @@ namespace Content.Client.Examine
             if (examinerComp.SkipChecks)
                 return true;
 
-            if (examinerComp.CheckInRangeUnOccluded)
-            {
-                // TODO fix this. This should be using the examiner's eye component, not eye manager.
-                var b = _eyeManager.GetWorldViewbounds();
-                if (!b.Contains(target.Position))
-                    return false;
-            }
-
             return base.CanExamine(examiner, target, predicate, examined, examinerComp);
         }
 
@@ -111,6 +104,22 @@ namespace Content.Client.Examine
             var entity = args.EntityUid;
 
             if (!args.EntityUid.IsValid() || !Exists(entity))
+            {
+                return false;
+            }
+
+            if (_eyeManager.MainViewport is not ScalingViewport svp)
+                return false;
+
+            // this is kind of weird but whatever this logic makes sense to me.
+            // its not good that this just precludes examining things that are in other viewports but
+            // trying to actually work with viewports and figuring out which one you're operating with is insanely convoluted and annoying
+            // if we were just in an overlay it would be trivial but this probably shouldnt be an overlay.
+            // itd be nice if there was like. an input handler that actually propagated the viewport & entity you clicked on down
+            // but as far as i can tell that doesnt really exist
+            // also im pretty sure this is like. weird. if you have viewports overlapping because one is in a ui window. whatever.
+            // i think that was true of the previous version too. i dont want to spend any longer dealing with this than i have to
+            if (svp.Window?.Id != args.ScreenCoordinates.Window || !svp.GlobalRect.Contains(args.ScreenCoordinates.Position / svp.UIScale))
             {
                 return false;
             }

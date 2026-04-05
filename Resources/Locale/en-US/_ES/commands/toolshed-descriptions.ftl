@@ -24,3 +24,5 @@ command-description-mq-force =
     Forces the masquerade to be the given one.
 command-description-mq-unforce =
     Unsets the forced masquerade.
+command-description-rerollhostname =
+    Rerolls the server's hostname to feature a new roleplay level.

@@ -23,7 +23,7 @@ public sealed partial class ESTileFireComponent : Component
     public float FirestacksRemoveOnSpread = 3;
 
     [DataField]
-    public float BaseSpreadChance = 0.66f;
+    public float BaseSpreadChance = 0.33f;
 
     [DataField]
     public float MinimumOxyMolesToSpread = 8f;
@@ -32,13 +32,13 @@ public sealed partial class ESTileFireComponent : Component
     ///     Minimum time after the fire spawns at which it will smolder (return to first stage and stop spreading)
     /// </summary>
     [DataField]
-    public TimeSpan MinSmolderTime = TimeSpan.FromMinutes(14);
+    public TimeSpan MinSmolderTime = TimeSpan.FromMinutes(10);
 
     /// <summary>
     ///     Maximum time after the fire spawns at which it will smolder, see <see cref="MinSmolderTime"/>
     /// </summary>
     [DataField]
-    public TimeSpan MaxSmolderTime = TimeSpan.FromMinutes(17);
+    public TimeSpan MaxSmolderTime = TimeSpan.FromMinutes(14);
 
     /// <summary>
     ///     Time chosen for this fire to smolder, using <see cref="MinSmolderTime"/> and <see cref="MaxSmolderTime"/>.

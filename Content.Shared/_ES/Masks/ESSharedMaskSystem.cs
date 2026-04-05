@@ -74,13 +74,19 @@ public abstract class ESSharedMaskSystem : EntitySystem
         {
             if (mask.Abstract)
                 continue;
+
+            var troupe = PrototypeManager.Index(mask.Troupe);
+
             var verb = new Verb
             {
                 Category = ESMask,
+                Icon = PrototypeManager.Index(troupe.MetaIcon).Icon,
                 Text = Loc.GetString("es-verb-apply-mask-name",
                     ("name", Loc.GetString(mask.Name)),
-                    ("troupe", Loc.GetString(PrototypeManager.Index(mask.Troupe).Name))),
-                Message = Loc.GetString("es-verb-apply-mask-desc", ("mask", Loc.GetString(mask.Name))),
+                    ("color", mask.Color)),
+                Message = Loc.GetString("es-verb-apply-mask-desc",
+                    ("mask", Loc.GetString(mask.Name)),
+                    ("troupe", Loc.GetString(troupe.Name))),
                 Priority = idx++,
                 ConfirmationPopup = true,
                 Act = () =>
@@ -330,9 +336,18 @@ public abstract class ESSharedMaskSystem : EntitySystem
         }
     }
 
+    /// <inheritdoc cref="GetNotTroupeMembers(ProtoId{ESTroupePrototype})"/>
+    public IEnumerable<EntityUid> GetNotTroupeMembers(Entity<ESTroupeRuleComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return [];
+
+        return GetNotTroupeMembers(ent.Comp.Troupe);
+    }
+
     /// <summary>
     /// Returns all minds who are members of a troupe that is NOT the specified troupe.
-    /// Set difference between all player minds and <see cref="GetTroupeMembers"/>
+    /// Set difference between all player minds and <see cref="GetTroupeMembers(ProtoId{ESTroupePrototype})"/>
     /// </summary>
     public IEnumerable<EntityUid> GetNotTroupeMembers(ProtoId<ESTroupePrototype> troupe)
     {

@@ -6,8 +6,8 @@
   components:
   - type: ESObjective
     icon:
-      sprite: Structures/Wallmounts/signs.rsi
-      state: bio
+      sprite: _ES/Objects/Weapons/Melee/wormblade.rsi
+      state: icon
   - type: ESTroupeOutnumberObjective
     troupe: ESParasite
 

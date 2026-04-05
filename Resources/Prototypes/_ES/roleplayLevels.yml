@@ -1,0 +1,23 @@
+﻿- type: esRoleplayLevels
+  id: Default
+  forbidCharacters: [ 'L', 'M', 'H', 'E', 'N' ]
+  localizedDatasets: [ ESNameAdjectives ]
+  roleplays:
+  - tubular
+  - worm
+  - cat
+  - special
+  - bad
+  - best
+  - odd
+  - questionable
+  - fungus
+  - anti
+  - possible
+  - garbage
+  - subversive
+  - unspecified
+  - bar
+  - traitorous
+  - town-carpet
+  - roleplay

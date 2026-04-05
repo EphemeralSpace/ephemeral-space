@@ -4,6 +4,8 @@
   name: es-mask-burstworm-name
   description: es-mask-burstworm-desc
   color: yellowgreen
+  tips:
+  - es-tips-dataset-71
   mindComponents:
   - type: ESBurstworm
 
@@ -13,6 +15,8 @@
   name: es-mask-hemophage-name
   description: es-mask-hemophage-desc
   color: brown
+  tips:
+  - es-tips-dataset-72
   mindComponents:
   - type: ESHemophage
 
@@ -25,6 +29,7 @@
   weight: 0 # do not assign in masquerades.
   gear: ESParasiteSwarmGear
   objectives: !type:NoneSelector
+  prohibitedJobs: [] # not relevant since these are not assigned directly, but important for guidebook display
 
 - type: esMask
   parent: ESBaseParasite
@@ -32,5 +37,7 @@
   name: es-mask-psychid-name
   description: es-mask-psychid-desc
   color: lightsteelblue
+  tips:
+  - es-tips-dataset-73
   mindComponents:
   - type: ESPsychid

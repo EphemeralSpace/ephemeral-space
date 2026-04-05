@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using Content.Client._ES.Screens;
 using Content.Client.Administration.Managers;
 using Content.Client.Chat;
 using Content.Client.Chat.Managers;
@@ -287,86 +288,18 @@ public sealed class ChatUIController : UIController
 
     public void SetMainChat(bool setting)
     {
-        if (UIManager.ActiveScreen == null)
+        if (UIManager.ActiveScreen is not InGameScreen screen)
         {
             return;
         }
 
-        ChatBox chatBox;
-        string? chatSizeRaw;
-
-        switch (UIManager.ActiveScreen)
+        if (UIManager.GetActiveUIWidgetOrNull<ChatBox>() is not { } chatBox)
         {
-            case DefaultGameScreen defaultScreen:
-                chatBox = defaultScreen.ChatBox;
-                chatSizeRaw = _config.GetCVar(CCVars.DefaultScreenChatSize);
-                SetChatSizing(chatSizeRaw, defaultScreen, setting);
-                break;
-            case SeparatedChatGameScreen separatedScreen:
-                chatBox = separatedScreen.ChatBox;
-                chatSizeRaw = _config.GetCVar(CCVars.SeparatedScreenChatSize);
-                SetChatSizing(chatSizeRaw, separatedScreen, setting);
-                break;
-            default:
-                // this could be better?
-                var maybeChat = UIManager.ActiveScreen.GetWidget<ChatBox>();
-
-                chatBox = maybeChat ?? throw new Exception("Cannot get chat box in screen!");
-
-                break;
+            Log.Error($"Could not find chatbox in ingame screen {UIManager.ActiveScreen.GetType().Name}!");
+            return;
         }
 
         chatBox.Main = setting;
-    }
-
-    private void SetChatSizing(string sizing, InGameScreen screen, bool setting)
-    {
-        if (!setting)
-        {
-            screen.OnChatResized -= StoreChatSize;
-            return;
-        }
-
-        screen.OnChatResized += StoreChatSize;
-
-        if (string.IsNullOrEmpty(sizing))
-        {
-            return;
-        }
-
-        var split = sizing.Split(",");
-
-        var chatSize = new Vector2(
-            float.Parse(split[0], CultureInfo.InvariantCulture),
-            float.Parse(split[1], CultureInfo.InvariantCulture));
-
-
-        screen.SetChatSize(chatSize);
-    }
-
-    private void StoreChatSize(Vector2 size)
-    {
-        if (UIManager.ActiveScreen == null)
-        {
-            throw new Exception("Cannot get active screen!");
-        }
-
-        var stringSize =
-            $"{size.X.ToString(CultureInfo.InvariantCulture)},{size.Y.ToString(CultureInfo.InvariantCulture)}";
-        switch (UIManager.ActiveScreen)
-        {
-            case DefaultGameScreen _:
-                _config.SetCVar(CCVars.DefaultScreenChatSize, stringSize);
-                break;
-            case SeparatedChatGameScreen _:
-                _config.SetCVar(CCVars.SeparatedScreenChatSize, stringSize);
-                break;
-            default:
-                // do nothing
-                return;
-        }
-
-        _config.SaveToFile();
     }
 
     private void FocusChat()
@@ -421,6 +354,7 @@ public sealed class ChatUIController : UIController
         root.AddChild(_speechBubbleRoot);
         LayoutContainer.SetAnchorPreset(_speechBubbleRoot, LayoutContainer.LayoutPreset.Wide);
         _speechBubbleRoot.SetPositionLast();
+        _speechBubbleRoot.RectClipContent = true;
     }
 
     private void OnAttachedChanged(EntityUid uid)

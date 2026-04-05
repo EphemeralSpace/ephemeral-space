@@ -1,0 +1,16 @@
+<Document>
+    <ESGuideMaskEmbed Mask="ESBurstworm"/>
+
+    The Burstworm is an explosive addition to the parasites that specializes in instantaneous mass conversion of groups.
+    When they are killed, their body will wriggle visibly before exploding in a ring of 16 parasites.
+
+    <Box>
+        <GuideEntityEmbed Entity="ESItemBurstwormDead"/>
+    </Box>
+
+    If a non-parasite is struck by one of these parasitic projectiles, it will burrow into their body after a short delay, converting them into another Burstworm.
+
+    Any worms that failed to find a mark will quickly die, falling to the ground as evidence of possible conversion.
+
+    <ESGuideTipsEmbed Mask="ESBurstworm"/>
+</Document>

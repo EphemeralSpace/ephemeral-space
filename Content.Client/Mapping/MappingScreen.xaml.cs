@@ -195,11 +195,6 @@ public sealed partial class MappingScreen : InGameScreen
         }
     }
 
-    public override void SetChatSize(Vector2 size)
-    {
-        ScreenContainer.ResizeMode = SplitContainer.SplitResizeMode.RespectChildrenMinSize;
-    }
-
     public void UnPressActionsExcept(Control except)
     {
         Add.Pressed = Add == except;

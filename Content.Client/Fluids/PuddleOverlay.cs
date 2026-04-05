@@ -103,8 +103,8 @@ public sealed class PuddleOverlay : Overlay
     private void DrawScreen(in OverlayDrawArgs args)
     {
         var drawHandle = args.ScreenHandle;
+        drawHandle.SetTransform(Matrix3x2.Identity);
         var xformQuery = _entityManager.GetEntityQuery<TransformComponent>();
-
 
         foreach (var gridId in _debugOverlaySystem.TileData.Keys)
         {

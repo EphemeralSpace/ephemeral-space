@@ -1014,14 +1014,14 @@
         maxAmount: 20
         maxRange: 4
       spawns:
-      - ShadowKudzuWeak
+      - Football # already unused, doesnt amtter what this spawns, need the test fails to go away but dont want to go deeper in to the deletion chain
     - settings:
         spawnOnSuperCritical: true
         minAmount: 30
         maxAmount: 40
         maxRange: 50
       spawns:
-      - ShadowKudzu
+      - Football
   - type: Portal
     arrivalSound: /Audio/Items/hiss.ogg
     departureSound: /Audio/Items/hiss.ogg

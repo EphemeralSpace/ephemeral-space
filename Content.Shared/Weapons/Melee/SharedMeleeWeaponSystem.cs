@@ -605,7 +605,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             // ES START
             // dog shit copy plaste but thats melee for you
             var userShakeRotation = new ESScreenshakeParameters()
-                { Trauma = 0.08f, DecayRate = 1.0f, Frequency = 0.009f };
+                { Trauma = 0.05f, DecayRate = 1.0f, Frequency = 0.009f };
             var otherShakeTranslation = new ESScreenshakeParameters() { Trauma = 0.45f, DecayRate = 1.1f, Frequency = 0.04f };
             _shake.Screenshake(user, null, userShakeRotation);
             foreach (var shakeTarget in targets)

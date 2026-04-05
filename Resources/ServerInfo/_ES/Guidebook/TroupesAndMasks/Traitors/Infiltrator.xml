@@ -11,5 +11,5 @@
 
     The EMAG can be used to open any airlock or locker, damaging them in the process and bolting open airlocks.
 
-    <ESGuideMaskTipsEmbed Mask="ESInfiltrator"/>
+    <ESGuideTipsEmbed Mask="ESInfiltrator"/>
 </Document>
