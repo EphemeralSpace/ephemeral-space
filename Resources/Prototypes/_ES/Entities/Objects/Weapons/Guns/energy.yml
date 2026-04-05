@@ -99,7 +99,7 @@
   id: ESWeaponCaptainEnergyGun
   name: captain's antique energy gun
   suffix: ES
-  description: This is an antique energy gun. All craftsmanship is of the highest quality. It is decorated with a mahogany grip and chrome filigree. The object menaces with spikes of energy. On the item is an image of a captain and a clown. The clown is dead. The captain is striking a heroic pose.
+  description: An automatically recharging, burst-fire energy gun. They don't make em' like they used to.
   parent: ESWeaponEnergyRifle
   components:
   - type: Tag
@@ -111,7 +111,7 @@
     storedOffset: -2,0
     size: Huge
     shape:
-    - 0,0,4,3 #illogically bulky, but it's for game design reasons
+    - 0,0,4,3 # possibly illogically bulky, but it needs to be like this to make it hard to carry. this is part of why they were phased out, okay?
   - type: Sprite
     sprite: _ES/Objects/Weapons/Guns/antiquelasergun.rsi
     layers:

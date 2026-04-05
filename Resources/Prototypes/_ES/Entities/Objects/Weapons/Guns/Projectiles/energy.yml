@@ -52,6 +52,11 @@
   parent: ESEnergyBolt
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Projectiles/capslaser.rsi
+    layers:
+    - state: icon
+      shader: unshaded
   - type: Projectile
     damage:
       types:
