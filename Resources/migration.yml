@@ -330,6 +330,11 @@ PortableGeneratorSuperPacman: PortableGeneratorPacman
 # 2026-3-23
 FireAxeCabinetFilled: ESFireAxeCabinetFilled
 
+########################################################################################
+# PAST THIS POINT MARKS HARDFORK CITY.                                                 #
+# Do not expect migrations to be made for things that don't need it in ES specifically.#
+########################################################################################
+
 # 2026-3-26
 ShardGlassUranium: ShardGlass
 ShardGlassClockwork: ShardGlass
@@ -347,6 +352,13 @@ ESSpawnPointBotanist: null
 WardrobeMedicalDoctor: ESWardrobeDoctor
 ESWardrobePhysician: ESWardrobeDoctor
 ESWardrobePhysicianFilled: ESWardrobeDoctorFilled
+
+# 2026-4-2
+CrateNPCHamlet: SpawnMobHamsterHamlet
+MaintenancePlantSpawner: ESSpawnerRandomMaintLootStructure
+SpacemenFigurineSpawner90: null
+LootSpawnerRandomCrateEngineering: CrateEngineeringSolar
+RandomSpawner: ESSpawnerRandomTrashFood50 # yes, this is actually a trash spawner. i have no idea why its just called RandomSpawner
 
 # ES END
 

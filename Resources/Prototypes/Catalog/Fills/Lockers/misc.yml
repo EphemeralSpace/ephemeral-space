@@ -224,7 +224,6 @@
     - id: CigPackSyndicate
     - id: SoapSyndie
     - id: SyndicatePersonalAI
-    - id: UplinkLighterBox
 
 - type: entityTable
   id: ToiletCisternLoot

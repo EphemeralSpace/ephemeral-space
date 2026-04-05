@@ -132,20 +132,6 @@
 
 - type: entity
   parent: MarkerBase
-  id: SpawnMobCrabAtmos
-  name: Tropico Spawner
-  suffix: Atmos Pet
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: ai
-  - type: ConditionalSpawner
-    prototypes:
-    - MobCrabAtmos
-
-- type: entity
-  parent: MarkerBase
   id: SpawnMobFoxRenault
   name: Fox Renault Spawner
   suffix: Captain Pet
@@ -176,7 +162,6 @@
   parent: MarkerBase
   id: SpawnMobHamsterHamlet
   name: Hamster Hamlet Spawner
-  suffix: Bridge Pet (crate)
   components:
   - type: Sprite
     layers:
@@ -186,7 +171,7 @@
     - state: ai
   - type: ConditionalSpawner
     prototypes:
-    - CrateNPCHamlet
+    - MobHamsterHamlet
 
 - type: entity
   parent: MarkerBase
