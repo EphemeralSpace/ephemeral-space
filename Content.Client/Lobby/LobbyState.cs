@@ -4,7 +4,6 @@
 // but mostly its all diffy
 using Content.Client.Audio;
 using Content.Client.GameTicking.Managers;
-using Content.Client.LateJoin;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
 using Content.Client.Playtime;
@@ -18,18 +17,14 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
-// ES START
-using Content.Client._ES.Spawning.Ui;
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
-using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.Viewport;
 using Content.Shared.Chat;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
-
-// ES END
+using Robust.Shared;
 
 namespace Content.Client.Lobby
 {
@@ -90,15 +85,8 @@ namespace Content.Client.Lobby
             // ES END
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
 
-            var lobbyNameCvar = _cfg.GetCVar(CCVars.ServerLobbyName);
-            var serverName = _baseClient.GameInfo?.ServerName ?? string.Empty;
-
-            Lobby.ServerName.Text = string.IsNullOrEmpty(lobbyNameCvar)
-                ? Loc.GetString("ui-lobby-title", ("serverName", serverName))
-                : lobbyNameCvar;
-
-            var width = _cfg.GetCVar(CCVars.ServerLobbyRightPanelWidth);
-            //Lobby.RightSide.SetWidth = width;
+            _cfg.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);
+            _cfg.OnValueChanged(CCVars.ServerLobbyName, OnServerNameChanged, true);
 
             UpdateLobbyUi();
 
@@ -142,6 +130,16 @@ namespace Content.Client.Lobby
         {
             SetReady(false);
             Lobby?.SwitchState(LobbyGui.LobbyGuiState.CharacterSetup);
+        }
+
+        private void OnServerNameChanged(string _)
+        {
+            var lobbyNameCvar = _cfg.GetCVar(CCVars.ServerLobbyName);
+            var serverName = _cfg.GetCVar(CVars.GameHostName);
+
+            Lobby?.ServerName.Text = string.IsNullOrEmpty(lobbyNameCvar)
+                ? Loc.GetString("ui-lobby-title", ("serverName", serverName))
+                : lobbyNameCvar;
         }
 
         public override void FrameUpdate(FrameEventArgs e)
