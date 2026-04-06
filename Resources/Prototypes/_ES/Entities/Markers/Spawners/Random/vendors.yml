@@ -71,6 +71,7 @@
     - id: ESVendingMachineWoodgrain
     - id: ESVendingMachineSuspiciousWater
     - id: ESVendingMachineSalvagedSams
+    - id: ESVendingMachineGames
 
 - type: entity
   id: ESSpawnerDormsVendor
@@ -87,9 +88,5 @@
   - type: EntityTableSpawner
     table:
       group:
-      - tableId: ESColaVendors
-        weight: 2
-      - tableId: ESSnackVendors
-        weight: 2
       - tableId: ESSpecialVendors
-        weight: 2
+
