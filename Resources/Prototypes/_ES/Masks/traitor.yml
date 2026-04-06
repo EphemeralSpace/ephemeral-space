@@ -28,8 +28,8 @@
   description: es-mask-infiltrator-desc
   color: yellow
   tips:
-  - es-tips-dataset-67
-  - es-tips-dataset-68
+  - InfiltratorC4Deniability
+  - EmagAirlockDeniability
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto:

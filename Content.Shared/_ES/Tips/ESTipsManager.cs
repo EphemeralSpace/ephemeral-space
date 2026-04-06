@@ -31,4 +31,10 @@ public sealed class ESTipsManager
     {
         return _loc.TryGetString($"es-tip-{tip.ID}", out var str) ? str : tip.UnlocalizedText;
     }
+
+    /// <see cref="GetTipText(ESTipPrototype)"/>
+    public string GetTipText(ProtoId<ESTipPrototype> tip)
+    {
+        return GetTipText(_proto.Index(tip));
+    }
 }

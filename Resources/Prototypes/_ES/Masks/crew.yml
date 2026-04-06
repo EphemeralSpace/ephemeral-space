@@ -150,6 +150,6 @@
   description: es-mask-vip-desc
   color: gold
   tips:
-  - es-tips-dataset-90
+  - VIPFingerprintScanner
   weight: 0.5
   gear: ESMaskVIPGear

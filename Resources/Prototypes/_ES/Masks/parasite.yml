@@ -5,7 +5,7 @@
   description: es-mask-burstworm-desc
   color: yellowgreen
   tips:
-  - es-tips-dataset-69
+  - BurstwormConversion
   mindComponents:
   - type: ESBurstworm
 
@@ -16,7 +16,7 @@
   description: es-mask-hemophage-desc
   color: brown
   tips:
-  - es-tips-dataset-70
+  - HemophageBloodSpreading
   mindComponents:
   - type: ESHemophage
 
@@ -38,6 +38,6 @@
   description: es-mask-psychid-desc
   color: lightsteelblue
   tips:
-  - es-tips-dataset-71
+  - PsychidConversion
   mindComponents:
   - type: ESPsychid
