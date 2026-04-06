@@ -28,8 +28,8 @@
   description: es-mask-infiltrator-desc
   color: yellow
   tips:
-  - es-tips-dataset-69
-  - es-tips-dataset-70
+  - es-tips-dataset-67
+  - es-tips-dataset-68
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto:
