@@ -10,7 +10,6 @@ using Content.Client.Playtime;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
 using Content.Shared.CCVar;
-using Robust.Client;
 using Robust.Client.Console;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
@@ -34,7 +33,6 @@ namespace Content.Client.Lobby
     // resizing stuff that that allows bc we just will not allow resizing the chat in lobby i think
     public sealed class LobbyState : GameplayStateBase, IMainViewportState
     {
-        [Dependency] private readonly IBaseClient _baseClient = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
