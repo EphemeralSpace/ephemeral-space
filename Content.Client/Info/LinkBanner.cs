@@ -1,6 +1,5 @@
 ﻿using Content.Client.Changelog;
 using Content.Client.UserInterface.Systems.EscapeMenu;
-using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared.CCVar;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -28,22 +27,15 @@ namespace Content.Client.Info
             _cfg = IoCManager.Resolve<IConfigurationManager>();
 
             var rulesButton = new Button() {Text = Loc.GetString("server-info-rules-button"), HorizontalExpand = true, StyleClasses = { "OpenRight" }};
-            rulesButton.OnPressed += args => new RulesAndInfoWindow().Open();
+            rulesButton.OnPressed += _ => new RulesAndInfoWindow().OpenCentered();
             buttons.AddChild(rulesButton);
 
+            AddInfoButton("server-info-github-button", CCVars.InfoLinksGithub);
             AddInfoButton("server-info-discord-button", CCVars.InfoLinksDiscord);
             AddInfoButton("server-info-website-button", CCVars.InfoLinksWebsite);
             AddInfoButton("server-info-wiki-button", CCVars.InfoLinksWiki);
             AddInfoButton("server-info-forum-button", CCVars.InfoLinksForum);
             AddInfoButton("server-info-telegram-button", CCVars.InfoLinksTelegram);
-
-            var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
-            var guidebookButton = new Button() { Text = Loc.GetString("server-info-guidebook-button"), HorizontalExpand = true, StyleClasses = { "OpenBoth" } };
-            guidebookButton.OnPressed += _ =>
-            {
-                guidebookController.ToggleGuidebook();
-            };
-            buttons.AddChild(guidebookButton);
 
             var changelogButton = new ChangelogButton { HorizontalExpand = true, StyleClasses = { "OpenLeft" }};
             changelogButton.OnPressed += args => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
