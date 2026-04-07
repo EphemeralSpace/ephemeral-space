@@ -1,4 +1,5 @@
 using Content.Shared._ES.Masks.Components;
+using Content.Shared._ES.Tips;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
@@ -29,10 +30,10 @@ public sealed partial class ESTroupePrototype : IPrototype, IInheritingPrototype
     public LocId Description;
 
     /// <summary>
-    /// List of tips that apply to this troupe specifically. Should be tips that are also in the main tips dataset, but they don't necessarily need to be.
+    /// Set of tips that apply to this troupe specifically.
     /// </summary>
     [DataField]
-    public List<LocId> Tips = new();
+    public HashSet<ProtoId<ESTipPrototype>> Tips = new();
 
     /// <summary>
     /// Color used in UI

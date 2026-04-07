@@ -1,3 +1,4 @@
+using Content.Shared._ES.Tips;
 using Content.Shared.Access;
 using Content.Shared.Guidebook;
 using Content.Shared.Players.PlayTimeTracking;
@@ -155,10 +156,10 @@ namespace Content.Shared.Roles
         public List<ProtoId<GuideEntryPrototype>>? Guides;
 
         /// <summary>
-        /// List of tips that apply to this job specifically. Should be tips that are also in the main tips dataset, but they don't necessarily need to be.
+        /// Set of tips that apply to this job specifically.
         /// </summary>
         [DataField]
-        public List<LocId> Tips = new();
+        public HashSet<ProtoId<ESTipPrototype>> Tips = new();
     }
 
     /// <summary>

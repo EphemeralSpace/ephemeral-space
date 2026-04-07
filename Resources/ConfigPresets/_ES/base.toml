@@ -43,10 +43,5 @@ maximum_width = 15
 grid_fill = false
 arrivals_planet = false
 
-# Tips
-[tips]
-dataset = "ESTips"
-login_dataset = "ESTips"
-
 [server]
 default_guide = "ESNewPlayer"

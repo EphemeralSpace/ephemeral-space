@@ -76,7 +76,7 @@
                 </BoxContainer>
             </controls:StripeBack>
             <BoxContainer Orientation="Vertical" Margin="5 5 5 5" >
-                <RichTextLabel Name="LoginTip" VerticalExpand="True" />
+                <RichTextLabel Name="LoginTip" VerticalExpand="True" HorizontalAlignment="Center"/>
             </BoxContainer>
         </BoxContainer>
     </PanelContainer>
