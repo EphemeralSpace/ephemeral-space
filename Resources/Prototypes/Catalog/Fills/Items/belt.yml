@@ -107,9 +107,7 @@
         - id: Brutepack
           amount: 2
         - id: Ointment
-          #ES START
         - id: Suture
-          #ES END
         - id: Gauze
         - id: EmergencyMedipen #You never know what people are going to latejoin into
         # Begin Offbrand Additions
