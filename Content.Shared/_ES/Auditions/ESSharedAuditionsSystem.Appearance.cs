@@ -58,7 +58,7 @@ public abstract partial class ESSharedAuditionsSystem
         var profile = RandomProfile(_random);
         var species = _prototypeManager.Index(profile.Species);
 
-        GenerateName(profile, ESNameConfig.Default, species, out var baseName);
+        profile.Name = GenerateName(ESNameConfig.Default, species, profile.Gender, out var baseName);
 
         var (ent, mind) = _mind.CreateMind(null, profile.Name);
         var character = EnsureComp<ESCharacterComponent>(ent);
@@ -173,9 +173,9 @@ public abstract partial class ESSharedAuditionsSystem
         return color;
     }
 
-    public void GenerateName(HumanoidCharacterProfile profile, ESNameConfig config, SpeciesPrototype species, out string baseName)
+    public string GenerateName(ESNameConfig config, SpeciesPrototype species, Gender gender, out string baseName)
     {
-        var firstNameDataSet = _prototypeManager.Index(profile.Gender switch
+        var firstNameDataSet = _prototypeManager.Index(gender switch
         {
             Gender.Male => species.MaleFirstNames,
             Gender.Female => species.FemaleFirstNames,
@@ -187,7 +187,7 @@ public abstract partial class ESSharedAuditionsSystem
 
         var lastNameDataSet = _prototypeManager.Index(species.LastNames);
 
-        var prefix = Prefix(config, profile.Gender);
+        var prefix = Prefix(config, gender);
         var suffix = Suffix(config);
         var firstName = FirstName(config, firstNameDataSet);
 
@@ -227,8 +227,8 @@ public abstract partial class ESSharedAuditionsSystem
         }
 
         // double-spaces can occur when firstname/lastname are removed and a prefix/suffix exists
-        profile.Name = $"{prefix} {firstName} {lastName} {suffix}".Trim().Replace("  ", " ");
         baseName = $"{firstName} {lastName}".Replace("  ", " ");
+        return $"{prefix} {firstName} {lastName} {suffix}".Trim().Replace("  ", " ");
     }
 
     private string Prefix(ESNameConfig config, Gender gender)
