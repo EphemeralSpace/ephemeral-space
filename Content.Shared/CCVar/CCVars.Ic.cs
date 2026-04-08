@@ -53,12 +53,6 @@ public sealed partial class CCVars
         CVarDef.Create("ic.name_case", true, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
-    ///     Whether or not players' characters are randomly generated rather than using their selected characters in the creator.
-    /// </summary>
-    public static readonly CVarDef<bool> ICRandomCharacters =
-        CVarDef.Create("ic.random_characters", false, CVar.SERVER);
-
-    /// <summary>
     ///     A weighted random prototype used to determine the species selected for random characters.
     ///     If blank, will use a round start species picked at random.
     /// </summary>
