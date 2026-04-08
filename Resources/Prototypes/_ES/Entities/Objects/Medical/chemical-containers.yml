@@ -82,8 +82,6 @@
         - ReagentId: Dylovene
           Quantity: 100
 
-
-
 - type: entity
   parent: LargeBeaker
   id: ESLargeBeakerEpinephrine
