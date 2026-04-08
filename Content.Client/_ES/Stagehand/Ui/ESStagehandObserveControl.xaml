@@ -10,9 +10,9 @@
             </VScroll>
         </FillPanel>
         <!-- this syhould probabyl be diff style class-->
-        <FillPanel StyleClasses="PanelDark" Margin="5 5 5 5">
+        <FillPanel StyleClasses="PanelDark" Margin="5 5 5 5" SizeFlagsStretchRatio="0.75">
             <VFillStack Name="PlayerInfoContainer" Stack.ExpandAxis="Vertical" Visible="False" Access="Public">
-                <HFillStack SizeFlagsStretchRatio="0.2">
+                <HFillStack SizeFlagsStretchRatio="0.15">
                     <VFillStack>
                         <RichTextLabel Name="NameLabel" Access="Public" />
                         <RichTextLabel Name="JobLabel" Access="Public" />

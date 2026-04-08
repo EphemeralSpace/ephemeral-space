@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics;
 using Content.Client._ES.Core;
 using Content.Client._ES.Masks;
 using Content.Client._ES.Objectives;
@@ -31,22 +32,12 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
     {
         _mask?.OnMaskChanged += OnMaskChanged;
         _objective?.OnObjectivesChanged += OnObjectivesChanged;
-
-        if (UIManager.GetActiveUIWidgetOrNull<ESStagehandObserveControl>() is not { } observe)
-            return;
-
-        Update(observe);
     }
 
     public void OnStateExited(GameplayState state)
     {
         _mask?.OnMaskChanged -= OnMaskChanged;
         _objective?.OnObjectivesChanged -= OnObjectivesChanged;
-
-        if (UIManager.GetActiveUIWidgetOrNull<ESStagehandObserveControl>() is not { } observe)
-            return;
-
-        Reset(observe);
     }
 
     private void OnMaskChanged(EntityUid mind, ProtoId<ESMaskPrototype>? mask)
@@ -177,7 +168,7 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
         }
 
         observe.ObjectiveContainer.Children.Clear();
-        observe.ObjectiveScroll.VScrollTarget = 0f;
+        observe.ObjectiveScroll.SetScrollValue(Vector2.Zero);
         if (_objective == null)
             return;
 
