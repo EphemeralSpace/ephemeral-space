@@ -1,5 +1,19 @@
 ﻿- type: entity
   parent: LargeBeaker
+  id: ESLargeBeakerArithrazine
+  suffix: ES, Arithrazine
+  components:
+  - type: Label
+    currentLabel: reagent-name-arithrazine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Arithrazine
+          Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
   id: ESLargeBeakerBicaridine
   suffix: ES, Bicaridine
   components:
@@ -10,48 +24,6 @@
       beaker:
         reagents:
         - ReagentId: Bicaridine
-          Quantity: 100
-
-- type: entity
-  parent: LargeBeaker
-  id: ESLargeBeakerDermaline
-  suffix: ES, Dermaline
-  components:
-  - type: Label
-    currentLabel: reagent-name-dermaline
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        reagents:
-        - ReagentId: Dermaline
-          Quantity: 100
-
-- type: entity
-  parent: LargeBeaker
-  id: ESLargeBeakerInaprovaline
-  suffix: ES, Inaprovaline
-  components:
-  - type: Label
-    currentLabel: reagent-name-inaprovaline
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        reagents:
-        - ReagentId: Inaprovaline
-          Quantity: 100
-
-- type: entity
-  parent: LargeBeaker
-  id: ESLargeBeakerTricordrazine
-  suffix: ES, Tricordrazine
-  components:
-  - type: Label
-    currentLabel: reagent-name-tricordrazine
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        reagents:
-        - ReagentId: Tricordrazine
           Quantity: 100
 
 - type: entity
@@ -70,16 +42,16 @@
 
 - type: entity
   parent: LargeBeaker
-  id: ESLargeBeakerEpinephrine
-  suffix: ES, Epinephrine
+  id: ESLargeBeakerDermaline
+  suffix: ES, Dermaline
   components:
   - type: Label
-    currentLabel: reagent-name-epinephrine
+    currentLabel: reagent-name-dermaline
   - type: SolutionContainerManager
     solutions:
       beaker:
         reagents:
-        - ReagentId: Epinephrine
+        - ReagentId: Dermaline
           Quantity: 100
 
 - type: entity
@@ -98,16 +70,46 @@
 
 - type: entity
   parent: LargeBeaker
-  id: ESLargeBeakerTramadol
-  suffix: ES, Tramadol
+  id: ESLargeBeakerDylovene
+  suffix: ES, Dylovene
   components:
   - type: Label
-    currentLabel: reagent-name-tramadol
+    currentLabel: reagent-name-dylovene
   - type: SolutionContainerManager
     solutions:
       beaker:
         reagents:
-        - ReagentId: Tramadol
+        - ReagentId: Dylovene
+          Quantity: 100
+
+
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerEpinephrine
+  suffix: ES, Epinephrine
+  components:
+  - type: Label
+    currentLabel: reagent-name-epinephrine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerInaprovaline
+  suffix: ES, Inaprovaline
+  components:
+  - type: Label
+    currentLabel: reagent-name-inaprovaline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Inaprovaline
           Quantity: 100
 
 - type: entity
@@ -139,30 +141,44 @@
           Quantity: 100
 
 - type: entity
-  parent: LargeBeaker
-  id: ESLargeBeakerDylovene
-  suffix: ES, Dylovene
+  id: ChemistryBottlePlasma
+  suffix: plasma
+  parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-name-dylovene
+    currentLabel: reagent-name-plasma
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
+        maxVol: 30
         reagents:
-        - ReagentId: Dylovene
-          Quantity: 100
-
+        - ReagentId: Plasma
+          Quantity: 30
 
 - type: entity
   parent: LargeBeaker
-  id: ESLargeBeakerArithrazine
-  suffix: ES, Arithrazine
+  id: ESLargeBeakerTramadol
+  suffix: ES, Tramadol
   components:
   - type: Label
-    currentLabel: reagent-name-arithrazine
+    currentLabel: reagent-name-tramadol
   - type: SolutionContainerManager
     solutions:
       beaker:
         reagents:
-        - ReagentId: Arithrazine
+        - ReagentId: Tramadol
+          Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerTricordrazine
+  suffix: ES, Tricordrazine
+  components:
+  - type: Label
+    currentLabel: reagent-name-tricordrazine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Tricordrazine
           Quantity: 100

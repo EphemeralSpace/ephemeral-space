@@ -662,23 +662,6 @@
         - ReagentId: Phalanximine
           Quantity: 30
 
-#ES START
-- type: entity
-  id: ChemistryBottlePlasma
-  suffix: plasma
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-plasma
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Plasma
-          Quantity: 30
-#ES END
-
 - type: entity
   id: ChemistryBottlePolypyryliumOligomers
   suffix: poly-oli
