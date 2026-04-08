@@ -1,3 +1,4 @@
+using Content.Shared._ES.Auditions;
 using Content.Shared._ES.Tips;
 using Content.Shared.Access;
 using Content.Shared.Guidebook;
@@ -5,6 +6,9 @@ using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+
+// ES START
+// Add name configs to job prototypes
 
 namespace Content.Shared.Roles
 {
@@ -126,6 +130,12 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public EntProtoId? JobPreviewEntity = null;
+
+        /// <summary>
+        /// Configuration to be used in name generation.
+        /// </summary>
+        [DataField]
+        public ESNameConfig NameConfig = ESNameConfig.Default;
 
         [DataField]
         public ProtoId<JobIconPrototype> Icon { get; private set; } = "JobIconUnknown";
