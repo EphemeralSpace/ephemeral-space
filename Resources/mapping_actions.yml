@@ -143,9 +143,6 @@
 - entity: WindowReinforcedDirectional
   assignments:
   - 5: 2
-- entity: PlasmaWindowDirectional
-  assignments:
-  - 5: 3
 - entity: Railing
   assignments:
   - 5: 6
