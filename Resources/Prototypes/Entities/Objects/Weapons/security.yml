@@ -13,12 +13,6 @@
     energyPerUse: 50
   - type: ItemToggle
     predictable: false
-# ES START
-#    soundActivate:
-#      collection: sparks
-#      params:
-#        variation: 0.250
-# ES END
     soundDeactivate:
       collection: sparks
       params:
@@ -45,6 +39,23 @@
 # ES START
   - type: ESSparkOnItemToggle
     count: 1
+  - type: PointLight
+    enabled: false
+    color: "#FF8040"
+    radius: 1.5
+    energy: 3
+    falloff: 6
+    netsync: false
+  - type: ItemTogglePointLight
+  - type: ToggleableVisuals
+    spriteLayer: stunbaton_on
+    inhandVisuals:
+      left:
+      - state: on-inhand-left
+        shader: unshaded
+      right:
+      - state: on-inhand-right
+        shader: unshaded
 # ES END
   - type: StaminaDamageOnHit
     damage: 35
@@ -65,10 +76,6 @@
     quickEquip: false
     slots:
     - Belt
-  # ES Start
-  #- type: DisarmMalus
-  #  malus: 0.225
-  # ES End
   - type: Appearance
   - type: GenericVisualizer
     visuals:

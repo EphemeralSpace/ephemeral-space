@@ -11,6 +11,15 @@
     - timer
     duration: 30
     spreadAmount: 50
+  - type: ReleaseGasOnTrigger
+    keysIn:
+    - timer
+    removeFraction: 0.25
+    air:
+      volume: 100
+      moles:
+        Smoke: 50
+      temperature: 293.15 # room temp
   - type: EmitSoundOnTrigger
     keysIn:
     - timer
