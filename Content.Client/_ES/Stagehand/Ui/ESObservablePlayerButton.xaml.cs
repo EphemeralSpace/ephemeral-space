@@ -12,7 +12,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._ES.Stagehand.Ui;
 
 [GenerateTypedNameReferences]
-public sealed partial class ESObservablePlayerButton : Button
+public sealed partial class ESObservablePlayerButton : ContainerButton
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -30,6 +30,7 @@ public sealed partial class ESObservablePlayerButton : Button
         _sprite = _entityManager.System<SpriteSystem>();
 
         ToggleMode = true;
+        AddStyleClass(StyleClassButton);
     }
 
     public void SetEntity(EntityUid uid)

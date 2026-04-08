@@ -22,8 +22,6 @@
                         <RichTextLabel Name="TroupeLabel" Access="Public" HorizontalAlignment="Right"/>
                     </VFillStack>
                 </HFillStack>
-                <Button Name="WarpButton" Access="Public" Text="{Loc 'es-observe-menu-button-warp'}"
-                        Stack.ExpandAxis="Horizontal" SetHeight="40" />
                 <RichTextLabel Text="{Loc 'es-observe-menu-label-objectives'}" />
                 <Spacer VSpace="5" />
                 <VScroll Stack.ExpandAxis="Vertical" Name="ObjectiveScroll" ReserveScrollbarSpace="true" Access="Public">

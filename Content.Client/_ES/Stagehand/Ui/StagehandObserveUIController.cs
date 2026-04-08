@@ -42,6 +42,11 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
     {
         _mask?.OnMaskChanged -= OnMaskChanged;
         _objective?.OnObjectivesChanged -= OnObjectivesChanged;
+
+        if (UIManager.GetActiveUIWidgetOrNull<ESStagehandObserveControl>() is not { } observe)
+            return;
+
+        Reset(observe);
     }
 
     private void OnMaskChanged(EntityUid mind, ProtoId<ESMaskPrototype>? mask)
@@ -60,6 +65,13 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
 
         if (mind == observe.CurrentEntity)
             UpdateInfoPanel(observe);
+    }
+
+    public void Reset(ESStagehandObserveControl observe)
+    {
+        observe.MindsContainer.Children.Clear();
+        observe.ObjectiveContainer.Children.Clear();
+        observe.PlayerInfoContainer.Visible = false;
     }
 
     public void Update(ESStagehandObserveControl observe)
@@ -99,6 +111,7 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
             button.OnPressed += _ =>
             {
                 SetInfoPanel(observe, mind);
+                observe.InvokeWarpForEntity(mind);
             };
             observe.MindsContainer.AddChild(button);
         }
@@ -137,7 +150,6 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
 
         var (uid, mind, character) = ent;
         observe.CurrentEntity = uid;
-        observe.WarpButton.Disabled = mind.CurrentEntity == null; // See ESStagehandSystem.cs
 
         var mask = _mask?.GetMaskOrNull((uid, mind));
         var troupe = _mask?.GetTroupeOrNull((uid, mind));
@@ -172,6 +184,5 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
             ctrl.SetObjective(objective);
             observe.ObjectiveContainer.AddChild(ctrl);
         }
-
     }
 }
