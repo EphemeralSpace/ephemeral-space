@@ -68,6 +68,7 @@
     - id: RubberStampDetective
     - id: BoxEvidenceMarkers
     - id: HandLabeler
+    - id: ClothingBeltSecurityFilled
 
 # Service
 - type: entityTable
@@ -143,3 +144,5 @@
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical
     - id: ClothingMaskSterile
+    - id: ClothingBeltMedicalFilled
+    - id: ClothingEyesHudMedical

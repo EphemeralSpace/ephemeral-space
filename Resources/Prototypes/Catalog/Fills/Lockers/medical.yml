@@ -101,14 +101,11 @@
       prob: 0.3
     - id: BoxPillCanister
     - id: BoxBottle
-    - id: BoxVial
-    - id: PlasmaChemistryVial
-    - id: ChemBag
-    - id: ClothingHandsGlovesLatex
-    - id: ClothingHeadsetMedical
-    - id: ClothingMaskSterile
+      #ES START
+      amount: 2
+    - id: ChemistryBottlePlasma
     - id: HandLabeler
-      prob: 0.5
+      #ES END
 
 - type: entity
   parent: LockerChemistry
