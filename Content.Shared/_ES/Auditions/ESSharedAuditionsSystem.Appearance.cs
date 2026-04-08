@@ -9,6 +9,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mind;
 using Content.Shared.Preferences;
 using Content.Shared.Random.Helpers;
+using Content.Shared.Roles;
 using JetBrains.Annotations;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
@@ -53,14 +54,16 @@ public abstract partial class ESSharedAuditionsSystem
     /// Generates a character with randomized name, age, gender and appearance.
     /// </summary>
     [PublicAPI]
-    public Entity<MindComponent> GenerateCharacter(Entity<ESProducerComponent?> producer)
+    public Entity<MindComponent> GenerateCharacter(Entity<ESProducerComponent?> producer, ProtoId<JobPrototype>? job = null)
     {
         if (!Resolve(producer, ref producer.Comp))
             return _mind.CreateMind(null);
 
+        var nameConfig = _prototypeManager.TryIndex(job, out var jobPrototype) ? jobPrototype.NameConfig : ESNameConfig.Default;
+
         var profile = RandomProfile(_random);
 
-        profile.Name = GenerateName(ESNameConfig.Default, profile.Gender, out var baseName);
+        profile.Name = GenerateName(nameConfig, profile.Gender, out var baseName);
 
         var ent = _mind.CreateMind(null, profile.Name);
         var character = EnsureComp<ESCharacterComponent>(ent);
