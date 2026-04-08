@@ -10,7 +10,6 @@ using Content.Shared.Mind;
 using Content.Shared.Preferences;
 using Content.Shared.Random.Helpers;
 using JetBrains.Annotations;
-using Robust.Shared.Collections;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -59,7 +58,7 @@ public abstract partial class ESSharedAuditionsSystem
         var profile = RandomProfile(_random);
         var species = _prototypeManager.Index(profile.Species);
 
-        GenerateName(profile, species, out var baseName);
+        GenerateName(profile, ESNameConfig.Default, species, out var baseName);
 
         var (ent, mind) = _mind.CreateMind(null, profile.Name);
         var character = EnsureComp<ESCharacterComponent>(ent);
@@ -174,36 +173,7 @@ public abstract partial class ESSharedAuditionsSystem
         return color;
     }
 
-    private const float GenderlessFirstNameChance = 0.5f; // the future is woke
-    private const float DoubleFirstNameChance = 0.01f;
-    private const float HyphenatedFirstMiddleNameChance = 0.01f;
-    private const float QuotedMiddleNameChance = 0.01f;
-    private const float HyphenatedLastNameChance = 0.03f;
-    private const float AbbreviatedMiddleChance = 0.07f;
-    private const float AbbreviatedFirstMiddleChance = 0.085f;
-    private const float AbbreviatedFirstMiddleAltChance = 0.4f;
-    private const float ParticleChance = 0.025f;
-    private const float SuffixChance = 0.04f;
-    private const float PrefixChance = 0.09f;
-    private const float PrefixGenderlessChance = 0.65f;
-    private const float PrefixFirstNameless = 0.7f;
-    private const float LastNamelessChance = 0.018f;
-    private const float FirstNamelessChance = 0.009f;
-    private const float AdjectiveFirstNameChance = 0.022f;
-    private const int AlliterationTotalChances = 6;
-    private const int AdjectiveAlliterationTotalChances = 3;
-
-    private static readonly ProtoId<LocalizedDatasetPrototype> ParticleDataset = "ESNameParticle";
-    private static readonly ProtoId<LocalizedDatasetPrototype> SuffixDataset = "ESNameSuffix";
-    private static readonly ProtoId<LocalizedDatasetPrototype> PrefixGenderlessDataset = "ESNamePrefixGenderless";
-    private static readonly ProtoId<LocalizedDatasetPrototype> PrefixMaleDataset = "ESNamePrefixMale";
-    private static readonly ProtoId<LocalizedDatasetPrototype> PrefixFemaleDataset = "ESNamePrefixFemale";
-    private static readonly ProtoId<LocalizedDatasetPrototype> PrefixNonbinaryDataset = "ESNamePrefixNonbinary";
-    private static readonly ProtoId<LocalizedDatasetPrototype> NameAdjectiveDataset = "ESNameAdjectives";
-
-    public void GenerateName(HumanoidCharacterProfile profile, SpeciesPrototype species) => GenerateName(profile, species, out _);
-
-    public void GenerateName(HumanoidCharacterProfile profile, SpeciesPrototype species, out string baseName)
+    public void GenerateName(HumanoidCharacterProfile profile, ESNameConfig config, SpeciesPrototype species, out string baseName)
     {
         var firstNameDataSet = _prototypeManager.Index(profile.Gender switch
         {
@@ -212,14 +182,14 @@ public abstract partial class ESSharedAuditionsSystem
             _ => _random.Pick(new []{species.FemaleFirstNames, species.GenderlessFirstNames, species.MaleFirstNames}),
         });
 
-        if (_random.Prob(GenderlessFirstNameChance))
+        if (_random.Prob(config.GenderlessFirstNameChance))
             firstNameDataSet = _prototypeManager.Index(species.GenderlessFirstNames);
 
         var lastNameDataSet = _prototypeManager.Index(species.LastNames);
 
-        var prefix = Prefix(profile.Gender);
-        var suffix = Suffix();
-        var firstName = FirstName(firstNameDataSet);
+        var prefix = Prefix(config, profile.Gender);
+        var suffix = Suffix(config);
+        var firstName = FirstName(config, firstNameDataSet);
 
         // when generating the lastname, we want to artificially boost the chance
         // that alliteration happens, because alliteration is usually really funny
@@ -227,28 +197,28 @@ public abstract partial class ESSharedAuditionsSystem
         // and if we generate an alliterative name, then we stop. otherwise, we just
         // take the last one that got generated
         var lastName = string.Empty;
-        for (var i = 0; i < AlliterationTotalChances; i++)
+        for (var i = 0; i < config.AlliterationTotalChances; i++)
         {
-            lastName = LastName(lastNameDataSet);
+            lastName = LastName(config, lastNameDataSet);
             if (firstName.First() == lastName.First())
                 break;
         }
 
-        if (prefix != string.Empty && _random.Prob(PrefixFirstNameless))
+        if (prefix != string.Empty && _random.Prob(config.PrefixFirstNameless))
             firstName = string.Empty;
 
-        if (_random.Prob(LastNamelessChance))
+        if (_random.Prob(config.LastNamelessChance))
             lastName = string.Empty;
-        else if (_random.Prob(FirstNamelessChance))
+        else if (_random.Prob(config.FirstNamelessChance))
             firstName = string.Empty;
 
-        if (firstName != string.Empty && _random.Prob(AdjectiveFirstNameChance))
+        if (firstName != string.Empty && _random.Prob(config.AdjectiveFirstNameChance))
         {
             lastName = string.Empty;
             suffix = string.Empty;
-            var adjectiveDataset = _prototypeManager.Index(NameAdjectiveDataset);
+            var adjectiveDataset = _prototypeManager.Index(config.NameAdjectiveDataset);
 
-            for (var i = 0; i < AdjectiveAlliterationTotalChances; i++)
+            for (var i = 0; i < config.AdjectiveAlliterationTotalChances; i++)
             {
                 prefix = _random.Pick(adjectiveDataset);
                 if (prefix.First() == firstName.First())
@@ -261,76 +231,76 @@ public abstract partial class ESSharedAuditionsSystem
         baseName = $"{firstName} {lastName}".Replace("  ", " ");
     }
 
-    private string Prefix(Gender gender)
+    private string Prefix(ESNameConfig config, Gender gender)
     {
-        if (!_random.Prob(PrefixChance))
+        if (!_random.Prob(config.PrefixChance))
             return string.Empty;
 
         var prefixDataSet = gender switch
         {
-            Gender.Male => PrefixMaleDataset,
-            Gender.Female => PrefixFemaleDataset,
-            _ => PrefixNonbinaryDataset,
+            Gender.Male => config.PrefixMaleDataset,
+            Gender.Female => config.PrefixFemaleDataset,
+            _ => config.PrefixNonbinaryDataset,
         };
 
-        if (_random.Prob(PrefixGenderlessChance))
-            prefixDataSet = PrefixGenderlessDataset;
+        if (_random.Prob(config.PrefixGenderlessChance))
+            prefixDataSet = config.PrefixGenderlessDataset;
 
         return _random.Pick(_prototypeManager.Index(prefixDataSet));
     }
 
-    private string FirstName(LocalizedDatasetPrototype dataset, bool recursive = false)
+    private string FirstName(ESNameConfig config, LocalizedDatasetPrototype dataset, bool recursive = false)
     {
         var firstName = _random.Pick(dataset);
 
-        if (_random.Prob(HyphenatedFirstMiddleNameChance))
+        if (_random.Prob(config.HyphenatedFirstMiddleNameChance))
         {
             firstName = Loc.GetString("es-name-hyphenation-fmt",
                 ("first", _random.Pick(dataset)),
                 ("second", _random.Pick(dataset)));
         }
-        else if (_random.Prob(QuotedMiddleNameChance) && !recursive)
+        else if (_random.Prob(config.QuotedMiddleNameChance) && !recursive)
         {
             firstName = Loc.GetString("es-name-quoted-fmt",
                 ("first", _random.Pick(dataset)),
                 ("second", _random.Pick(dataset)));
         }
 
-        if (_random.Prob(AbbreviatedMiddleChance) && !recursive)
+        if (_random.Prob(config.AbbreviatedMiddleChance) && !recursive)
         {
             firstName = Loc.GetString("es-name-middle-abbr-fmt", ("first", firstName), ("letter", RandomFirstLetter(dataset)));
         }
-        else if (_random.Prob(AbbreviatedFirstMiddleChance))
+        else if (_random.Prob(config.AbbreviatedFirstMiddleChance))
         {
-            var locId = _random.Prob(AbbreviatedFirstMiddleAltChance)
+            var locId = _random.Prob(config.AbbreviatedFirstMiddleAltChance)
                 ? "es-name-first-middle-abbr-fmt-alt"
                 : "es-name-first-middle-abbr-fmt";
             firstName = Loc.GetString(locId, ("letter1", RandomFirstLetter(dataset)), ("letter2", RandomFirstLetter(dataset)));
         }
 
         // yes, this can generate some abominations
-        if (_random.Prob(DoubleFirstNameChance))
+        if (_random.Prob(config.DoubleFirstNameChance))
         {
-            firstName = Loc.GetString("es-name-normal-fmt", ("first", firstName), ("second", FirstName(dataset, true)));
+            firstName = Loc.GetString("es-name-normal-fmt", ("first", firstName), ("second", FirstName(config, dataset, true)));
         }
 
         return firstName;
     }
 
-    private string LastName(LocalizedDatasetPrototype dataset)
+    private string LastName(ESNameConfig config, LocalizedDatasetPrototype dataset)
     {
         var lastName = _random.Pick(dataset);
 
-        if (_random.Prob(HyphenatedLastNameChance))
+        if (_random.Prob(config.HyphenatedLastNameChance))
         {
             lastName = Loc.GetString("es-name-hyphenation-fmt",
                 ("first", _random.Pick(dataset)),
                 ("second", _random.Pick(dataset)));
         }
 
-        if (_random.Prob(ParticleChance))
+        if (_random.Prob(config.ParticleChance))
         {
-            var particleDataSet = _prototypeManager.Index(ParticleDataset);
+            var particleDataSet = _prototypeManager.Index(config.ParticleDataset);
             lastName = Loc.GetString("es-name-normal-fmt",
                 ("first", _random.Pick(particleDataSet)),
                 ("second", lastName));
@@ -339,12 +309,12 @@ public abstract partial class ESSharedAuditionsSystem
         return lastName;
     }
 
-    private string Suffix()
+    private string Suffix(ESNameConfig config)
     {
-        if (!_random.Prob(SuffixChance))
+        if (!_random.Prob(config.SuffixChance))
             return string.Empty;
 
-        var suffixDataSet = _prototypeManager.Index(SuffixDataset);
+        var suffixDataSet = _prototypeManager.Index(config.SuffixDataset);
         return _random.Pick(suffixDataSet);
     }
 

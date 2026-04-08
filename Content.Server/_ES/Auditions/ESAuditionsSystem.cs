@@ -161,7 +161,7 @@ public sealed class CastCommand : ToolshedCommand
             var profile = HumanoidCharacterProfile.RandomWithSpecies();
             var species = _prototype.Index(profile.Species);
 
-            _auditions.GenerateName(profile, species);
+            _auditions.GenerateName(profile, ESNameConfig.Default, species, out _);
             yield return profile.Name;
         }
     }

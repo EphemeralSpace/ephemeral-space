@@ -10,6 +10,8 @@ namespace Content.Shared._ES.Auditions;
 [DataDefinition]
 public partial struct ESNameConfig
 {
+    public static ESNameConfig Default => new();
+
     /// <summary>
     /// Chance that the first name dataset used will solely be <see cref="SpeciesPrototype.GenderlessFirstNames"/>
     /// </summary>
