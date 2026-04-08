@@ -341,20 +341,6 @@
   canRotate: false
 
 - type: construction
-  id: PlasmaWindow
-  graph: Window
-  startNode: start
-  targetNode: plasmaWindow
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-    - !type:EmptyOrWindowValidInTile
-    - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-
-- type: construction
   id: ReinforcedPlasmaWindow
   graph: Window
   startNode: start
