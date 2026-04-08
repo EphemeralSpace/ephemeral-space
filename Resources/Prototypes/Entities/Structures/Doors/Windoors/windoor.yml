@@ -11,12 +11,6 @@
   description: It's a sturdy window and a sliding door. Wow!
 
 - type: entity
-  id: WindoorPlasma
-  parent: BasePlasmaWindoor
-  name: plasma windoor
-  description: It's a pink window *and* a sliding door. Amazing!
-
-- type: entity
   id: WindoorSecurePlasma
   parent: BaseSecurePlasmaWindoor
   name: secure plasma windoor
@@ -80,17 +74,6 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsJanitor ]
-
-- type: entity
-  parent: WindoorPlasma
-  id: PlasmaWindoorJanitorLocked
-  suffix: Janitor, Locked, Plasma
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsJanitor ]
-  - type: Wires
-    layoutId: AirlockService
 
 - type: entity
   parent: WindoorServiceLocked
