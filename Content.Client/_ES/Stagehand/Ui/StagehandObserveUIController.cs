@@ -162,6 +162,7 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
         }
 
         observe.ObjectiveContainer.Children.Clear();
+        observe.ObjectiveScroll.VScrollTarget = 0f;
         if (_objective == null)
             return;
 
@@ -171,5 +172,6 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
             ctrl.SetObjective(objective);
             observe.ObjectiveContainer.AddChild(ctrl);
         }
+
     }
 }

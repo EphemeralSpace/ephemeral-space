@@ -26,7 +26,7 @@
                         Stack.ExpandAxis="Horizontal" SetHeight="40" />
                 <RichTextLabel Text="{Loc 'es-observe-menu-label-objectives'}" />
                 <Spacer VSpace="5" />
-                <VScroll Stack.ExpandAxis="Vertical">
+                <VScroll Stack.ExpandAxis="Vertical" Name="ObjectiveScroll" ReserveScrollbarSpace="true" Access="Public">
                     <VFillStack Name="ObjectiveContainer" Margin="5 0" Access="Public" />
                 </VScroll>
             </VFillStack>

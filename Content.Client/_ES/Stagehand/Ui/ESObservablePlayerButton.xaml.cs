@@ -58,8 +58,12 @@ public sealed partial class ESObservablePlayerButton : Button
         if (_prototype.TryIndex(mask, out var maskPrototype))
             MaskLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(maskPrototype.Name))), maskPrototype.Color);
 
-        if (_prototype.TryIndex(troupe, out var troupePrototype))
-            TroupeLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(troupePrototype.Name))), troupePrototype.Color);
+        if (_prototype.TryIndex(troupe, out var troupePrototype)
+            && _prototype.TryIndex(troupePrototype.MetaIcon, out var troupeIcon))
+        {
+            TroupeIcon.Texture = _sprite.Frame0(troupeIcon.Icon);
+            TroupeIcon.ToolTip = Loc.GetString(troupePrototype.Name);
+        }
     }
 }
 
