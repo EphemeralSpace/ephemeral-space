@@ -12,6 +12,21 @@ public partial struct ESNameConfig
 {
     public static ESNameConfig Default => new();
 
+    [DataField]
+    public ProtoId<LocalizedDatasetPrototype> MaleFirstNames { get; private set; } = "ESNamesFirstMale";
+
+    [DataField]
+    public ProtoId<LocalizedDatasetPrototype> FemaleFirstNames { get; private set; } = "ESNamesFirstFemale";
+
+    /// <remarks>
+    /// This doesn't mean 'Stereotypical Nonbinary Names' or whatever this just means names anyone could have.
+    /// </remarks>
+    [DataField]
+    public ProtoId<LocalizedDatasetPrototype> GenderlessFirstNames { get; private set; } = "ESNamesFirstGenderless";
+
+    [DataField]
+    public ProtoId<LocalizedDatasetPrototype> LastNames { get; private set; } = "ESNamesLast";
+
     /// <summary>
     /// Chance that the first name dataset used will solely be <see cref="SpeciesPrototype.GenderlessFirstNames"/>
     /// </summary>

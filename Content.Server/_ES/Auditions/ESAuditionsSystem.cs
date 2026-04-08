@@ -7,7 +7,6 @@ using Content.Shared._ES.Auditions;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
-using Content.Shared.Humanoid;
 using Content.Shared.Localizations;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
@@ -153,17 +152,16 @@ public sealed class CastCommand : ToolshedCommand
         }
     }
 
+    private static readonly List<Gender> Genders = [Gender.Male, Gender.Female, Gender.Epicene];
+
     [CommandImplementation("generateNames")]
     public IEnumerable<string> GenerateNames(int count)
     {
         _auditions ??= GetSys<ESAuditionsSystem>();
 
-        var genders = new[] {Gender.Male, Gender.Female, Gender.Epicene};
-        var species = _prototype.Index(SharedHumanoidAppearanceSystem.DefaultSpecies);
-
         for (var i = 0; i < count; i++)
         {
-            yield return _auditions.GenerateName(ESNameConfig.Default, species, _random.Pick(genders), out _);
+            yield return _auditions.GenerateName(ESNameConfig.Default, _random.Pick(Genders), out _);
         }
     }
 }

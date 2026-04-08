@@ -56,9 +56,8 @@ public abstract partial class ESSharedAuditionsSystem
     public Entity<MindComponent, ESCharacterComponent> GenerateCharacter(Entity<ESProducerComponent> producer)
     {
         var profile = RandomProfile(_random);
-        var species = _prototypeManager.Index(profile.Species);
 
-        profile.Name = GenerateName(ESNameConfig.Default, species, profile.Gender, out var baseName);
+        profile.Name = GenerateName(ESNameConfig.Default, profile.Gender, out var baseName);
 
         var (ent, mind) = _mind.CreateMind(null, profile.Name);
         var character = EnsureComp<ESCharacterComponent>(ent);
@@ -173,19 +172,19 @@ public abstract partial class ESSharedAuditionsSystem
         return color;
     }
 
-    public string GenerateName(ESNameConfig config, SpeciesPrototype species, Gender gender, out string baseName)
+    public string GenerateName(ESNameConfig config, Gender gender, out string baseName)
     {
         var firstNameDataSet = _prototypeManager.Index(gender switch
         {
-            Gender.Male => species.MaleFirstNames,
-            Gender.Female => species.FemaleFirstNames,
-            _ => _random.Pick(new []{species.FemaleFirstNames, species.GenderlessFirstNames, species.MaleFirstNames}),
+            Gender.Male => config.MaleFirstNames,
+            Gender.Female => config.FemaleFirstNames,
+            _ => _random.Pick(new []{config.FemaleFirstNames, config.GenderlessFirstNames, config.MaleFirstNames}),
         });
 
         if (_random.Prob(config.GenderlessFirstNameChance))
-            firstNameDataSet = _prototypeManager.Index(species.GenderlessFirstNames);
+            firstNameDataSet = _prototypeManager.Index(config.GenderlessFirstNames);
 
-        var lastNameDataSet = _prototypeManager.Index(species.LastNames);
+        var lastNameDataSet = _prototypeManager.Index(config.LastNames);
 
         var prefix = Prefix(config, gender);
         var suffix = Suffix(config);
