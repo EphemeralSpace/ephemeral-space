@@ -1,6 +1,5 @@
 using Content.Server.Access.Systems;
 using Content.Server.Humanoid;
-using Content.Server.Mind;
 using Content.Server.PDA;
 using Content.Server.Station.Components;
 using Content.Shared.Access.Components;
@@ -44,7 +43,6 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly PdaSystem _pdaSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
 
     /// <summary>
     /// Attempts to spawn a player character onto the given station.
