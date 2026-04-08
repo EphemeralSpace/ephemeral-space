@@ -156,9 +156,11 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
 
         observe.NameLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-name-big", ("text", character.Name)));
 
+        observe.JobLabel.Clear();
         if (_job.MindTryGetJob(uid, out var job))
             observe.JobLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-job", ("text", job.LocalizedName)));
 
+        observe.MaskLabel.Clear();
         if (_prototype.TryIndex(mask, out var maskPrototype))
         {
             observe.MaskLabel.UnsafeSetMarkup(
@@ -166,6 +168,7 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
                 maskPrototype.Color);
         }
 
+        observe.TroupeLabel.Clear();
         if (_prototype.TryIndex(troupe, out var troupePrototype))
         {
             observe.TroupeLabel.UnsafeSetMarkup(
