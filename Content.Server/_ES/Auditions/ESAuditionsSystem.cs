@@ -6,7 +6,6 @@ using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Administration;
 using Content.Shared.Localizations;
 using Robust.Shared.Enums;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Toolshed;
 
@@ -20,7 +19,6 @@ public sealed class ESAuditionsSystem : ESSharedAuditionsSystem;
 [ToolshedCommand, AdminCommand(AdminFlags.Round)]
 public sealed class CastCommand : ToolshedCommand
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     private ESAuditionsSystem? _auditions;
