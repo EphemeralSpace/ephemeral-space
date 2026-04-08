@@ -1,12 +1,9 @@
 using System.Diagnostics;
 using System.Linq;
-using Content.Server._ES.Auditions.Components;
 using Content.Server.Administration;
-using Content.Server.Mind;
 using Content.Shared._ES.Auditions;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Administration;
-using Content.Shared.GameTicking;
 using Content.Shared.Localizations;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
@@ -18,55 +15,7 @@ namespace Content.Server._ES.Auditions;
 /// <summary>
 /// This handles the server-side of auditioning!
 /// </summary>
-public sealed class ESAuditionsSystem : ESSharedAuditionsSystem
-{
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
-    }
-
-    private void OnSpawnComplete(PlayerSpawnCompleteEvent ev)
-    {
-        if (!_mind.TryGetMind(ev.Mob, out var mind, out _))
-            return;
-
-        var cast = EnsureComp<ESStationCastComponent>(ev.Station);
-        cast.Crew.Add(mind);
-    }
-
-    public EntityUid GetRandomCharacterFromPool(Entity<ESProducerComponent?> station)
-    {
-        if (!Resolve(station, ref station.Comp, false))
-            return _mind.CreateMind(null);
-
-        if (station.Comp.UnusedCharacterPool.Count < station.Comp.PoolRefreshSize)
-        {
-            Log.Debug($"Pool depleted below refresh size ({station.Comp.PoolRefreshSize}). Replenishing pool.");
-            GenerateCast((station, station.Comp), station.Comp.PoolSize - station.Comp.UnusedCharacterPool.Count);
-        }
-
-        if (station.Comp.UnusedCharacterPool.Count == 0)
-            throw new Exception("Failed to replenish character pool!");
-
-        return _random.PickAndTake(station.Comp.UnusedCharacterPool);
-    }
-
-    /// <summary>
-    /// Hires a cast, and integrates relationships between all of the characters.
-    /// </summary>
-    public void GenerateCast(Entity<ESProducerComponent> producer, int count)
-    {
-        for (var i = 0; i < count; i++)
-        {
-            GenerateCharacter(producer: producer);
-        }
-    }
-}
+public sealed class ESAuditionsSystem : ESSharedAuditionsSystem;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Round)]
 public sealed class CastCommand : ToolshedCommand
@@ -88,7 +37,10 @@ public sealed class CastCommand : ToolshedCommand
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        _auditions.GenerateCast((station, producer), crewSize);
+        for (var i = 0; i < crewSize; ++i)
+        {
+            _auditions.GenerateCharacter((station, producer));
+        }
 
         yield return $"Generated cast in {stopwatch.Elapsed.TotalMilliseconds} ms.";
     }
@@ -141,7 +93,7 @@ public sealed class CastCommand : ToolshedCommand
             yield break;
 
         _auditions ??= GetSys<ESAuditionsSystem>();
-        foreach (var character in producer.UsedCharacters)
+        foreach (var character in producer.Characters)
         {
             foreach (var line in View(character))
             {

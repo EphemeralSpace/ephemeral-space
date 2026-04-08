@@ -219,7 +219,7 @@ namespace Content.Server.GameTicking
             EntityUid? newMind = null;
             if (_esAuditions.RandomCharactersEnabled)
             {
-                newMind = _esAuditions.GetRandomCharacterFromPool(station);
+                newMind = _esAuditions.GenerateCharacter(station);
                 character = CompOrNull<ESCharacterComponent>(newMind)?.Profile ?? character;
             }
 
