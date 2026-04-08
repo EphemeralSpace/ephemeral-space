@@ -14,9 +14,9 @@
   - type: ReleaseGasOnTrigger
     keysIn:
     - timer
-    removeFraction: 0.25
     air:
-      volume: 100
+      removalFraction: 0.125 # release over roughly 10 seconds so u dont choke instantly
+      volume: 500 # idk I pulled these out my ass they work ok
       moles:
         Smoke: 50
       temperature: 293.15 # room temp
@@ -25,9 +25,6 @@
     - timer
     sound: /Audio/Items/smoke_grenade_smoke.ogg
     positional: true
-  - type: DeleteOnTrigger
-    keysIn:
-    - timer
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Items/smoke_grenade_prime.ogg
