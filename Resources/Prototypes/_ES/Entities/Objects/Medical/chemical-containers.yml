@@ -137,3 +137,32 @@
         reagents:
         - ReagentId: Peridaxon
           Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerDylovene
+  suffix: ES, Dylovene
+  components:
+  - type: Label
+    currentLabel: reagent-name-dylovene
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Dylovene
+          Quantity: 100
+
+
+- type: entity
+  parent: LargeBeaker
+  id: ESLargeBeakerArithrazine
+  suffix: ES, Arithrazine
+  components:
+  - type: Label
+    currentLabel: reagent-name-arithrazine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Arithrazine
+          Quantity: 100
