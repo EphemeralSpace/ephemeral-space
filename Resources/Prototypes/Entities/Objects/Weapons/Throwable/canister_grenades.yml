@@ -11,23 +11,18 @@
     - timer
     duration: 30
     spreadAmount: 50
-  - type: ReleaseGasOnTrigger
-    keysIn:
-    - timer
-    air:
-      removalFraction: 0.125 # release over roughly 10 seconds so u dont choke instantly
-      volume: 500 # idk I pulled these out my ass they work ok
-      moles:
-        Smoke: 50
-      temperature: 293.15 # room temp
   - type: EmitSoundOnTrigger
     keysIn:
     - timer
     sound: /Audio/Items/smoke_grenade_smoke.ogg
     positional: true
   - type: TimerTriggerVisuals
+    primingSprite: primed
     primingSound:
       path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
 
 - type: entity
   parent: [ BaseCivilianContraband, SmokeGrenade ]
