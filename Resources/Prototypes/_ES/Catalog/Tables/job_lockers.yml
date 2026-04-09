@@ -120,8 +120,16 @@
 # Cargo
 - type: entityTable
   id: LockerFillQuartermaster
-  table: !type:AllSelector
-    children: []
+  table:
+    all:
+    - id: SheetSteel
+    - id: SheetGlass
+    - id: SheetPlastic
+    - id: BoxFolderClipboardEmpty
+    - id: Pen
+    - id: BoxFolderYellow
+    - id: Paper
+      amount: 1, 5
 
 # Science
 - type: entityTable
