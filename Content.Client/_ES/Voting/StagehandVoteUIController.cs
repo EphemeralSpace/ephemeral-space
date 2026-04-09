@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics;
 using Content.Client._ES.Voting.Ui;
 using Content.Client.Gameplay;
 using Content.Shared._ES.Voting;
@@ -11,19 +12,10 @@ using Robust.Client.UserInterface.Controllers;
 namespace Content.Client._ES.Voting;
 
 [UsedImplicitly]
-public sealed class StagehandVoteUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
+public sealed class StagehandVoteUIController : UIController
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [UISystemDependency] private ESVoteSystem _vote = default!;
-
-    public void OnStateEntered(GameplayState state)
-    {
-        FindAndUpdateWidget();
-    }
-
-    public void OnStateExited(GameplayState state)
-    {
-    }
 
     private void OnVoteChanged(Entity<ESVoteComponent> entity, ESVoteOption option, bool selected)
     {
@@ -48,6 +40,7 @@ public sealed class StagehandVoteUIController : UIController, IOnStateEntered<Ga
 
         if (votes.Count != voting.LastVotes.Count || votes.Intersect(voting.LastVotes).Count() != votes.Count)
         {
+            voting.VotesScroll.SetScrollValue(Vector2.Zero);
             voting.VotesContainer.Children.Clear();
             foreach (var vote in votes)
             {
@@ -70,5 +63,11 @@ public sealed class StagehandVoteUIController : UIController, IOnStateEntered<Ga
                 ctrl.Update((ctrl.Vote, comp), owner);
             }
         }
+    }
+
+    public void Reset(ESVotingManagerControl voting)
+    {
+        voting.VotesScroll.SetScrollValue(Vector2.Zero);
+        voting.VotesContainer.Children.Clear();
     }
 }

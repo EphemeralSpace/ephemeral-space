@@ -39,7 +39,7 @@
         <FillPanel Name="SeparatedChatPanel" StyleClasses="PanelDark">
             <VFillStack SeparationOverride="10" Margin="10">
                 <menuBar:GameTopMenuBar Name="TopBar" Access="Public" />
-                <vote:ESVotingManagerControl Name="VoteControl" SetHeight="250"/>
+                <vote:ESVotingManagerControl Name="VoteControl" SetHeight="300"/>
                 <chat:ChatBox StyleClasses="ChatOutput" Stack.ExpandAxis="Vertical" Name="Chat"
                               Access="Protected" MinWidth="520" />
             </VFillStack>
