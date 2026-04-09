@@ -16,12 +16,13 @@
     - timer
     sound: /Audio/Items/smoke_grenade_smoke.ogg
     positional: true
+  - type: TimerTriggerVisuals
+    primingSprite: primed
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
   - type: DeleteOnTrigger
     keysIn:
     - timer
-  - type: TimerTriggerVisuals
-    primingSound:
-      path: /Audio/Items/smoke_grenade_prime.ogg
 
 - type: entity
   parent: [ BaseCivilianContraband, SmokeGrenade ]

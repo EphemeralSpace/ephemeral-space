@@ -381,6 +381,7 @@
     damage:
       types:
         Heat: 14
+        Structural: 30
   # mining laser real
   - type: GatheringProjectile
   - type: Tag
