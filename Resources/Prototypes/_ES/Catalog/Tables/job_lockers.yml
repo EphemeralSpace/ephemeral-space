@@ -103,8 +103,17 @@
 
 - type: entityTable
   id: LockerFillJanitor
-  table: !type:AllSelector
-    children: []
+  table:
+    all:
+    - id: ClothingShoesGaloshes
+    - id: ClothingBeltJanitorFilled
+    - id: LightReplacer
+    - id: SprayBottleSpaceCleaner
+    - id: MopItem
+    - id: BoxMousetrap
+    - id: TrashBag
+    - id: Plunger
+    - id: WireBrush
 
 # Civilian
 - type: entityTable

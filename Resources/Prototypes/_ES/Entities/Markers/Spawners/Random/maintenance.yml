@@ -267,6 +267,8 @@
         weight: 2
       - id: ClosetToolFilled
         weight: 2
+      - id: ClosetJanitorFilled
+        weight: 2
       - id: ClosetRadiationSuitFilled
         weight: 1
       weight: 95
