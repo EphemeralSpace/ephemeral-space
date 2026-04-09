@@ -17,8 +17,10 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
+      sprite: _ES/Structures/Storage/Closets/base_components.rsi
     - state: welded
       visible: false
+      sprite: _ES/Structures/Storage/Closets/base_components.rsi
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: paper
       visible: false
