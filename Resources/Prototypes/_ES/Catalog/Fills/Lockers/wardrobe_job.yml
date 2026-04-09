@@ -67,7 +67,10 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage:
-        tableId: ESFillWardrobeClown
+        all:
+        - tableId: ESFillWardrobeClown
+        - tableId: ESFillWardrobeTheatre
+          rolls: 2
 
 - type: entityTable
   id: ESFillWardrobeClown

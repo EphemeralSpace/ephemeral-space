@@ -109,13 +109,24 @@
 # Civilian
 - type: entityTable
   id: LockerFillClown
-  table: !type:AllSelector
-    children: []
+  table:
+    all:
+    - id: BikeHorn
+    - id: FoodBanana
+      amount: 1, 2
+    - id: TrashBananaPeel
+      amount: 1, 4
+    - id: FoodPieBananaCream
+    - id: ClownRecorder
 
 - type: entityTable
   id: LockerFillReporter
-  table: !type:AllSelector
-    children: []
+  table:
+    all:
+    - id: BoxFolderGrey
+    - id: Pen
+      amount: 2, 3
+    # Handheld camera, ideally
 
 # Cargo
 - type: entityTable
