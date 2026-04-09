@@ -8,26 +8,6 @@
   },
   "states": [
     {
-      "name": "unlocked"
-    },
-    {
-      "name": "locked"
-    },
-    {
-      "name": "sparking",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ]
-      ]
-    },
-    {
-      "name": "welded"
-    },
-    {
       "name": "generic"
     },
     {
