@@ -164,6 +164,15 @@ namespace Content.Shared.GameTicking
         public Dictionary<NetEntity, string> StationNames { get; } = stationNames;
     }
 
+    /// <summary>
+    /// Event raised by RoundEndSystem to inform the client of when the game is going to restart.
+    /// </summary>
+    [Serializable, NetSerializable]
+    public sealed partial class QueuedRoundRestartTimeEvent(TimeSpan restartTime) : EntityEventArgs
+    {
+        public TimeSpan RestartTime = restartTime;
+    }
+
     [Serializable, NetSerializable, DataDefinition]
     public sealed partial class RoundEndMessageEvent : EntityEventArgs
     {

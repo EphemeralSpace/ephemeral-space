@@ -236,6 +236,7 @@ namespace Content.Server.RoundEnd
             _countdownTokenSource = new();
 
             countdownTime ??= TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.RoundRestartTime));
+            RaiseNetworkEvent(new QueuedRoundRestartTimeEvent(_gameTiming.CurTime + countdownTime.Value));
             int time;
             string unitsLocString;
             if (countdownTime.Value.TotalSeconds < 60)
