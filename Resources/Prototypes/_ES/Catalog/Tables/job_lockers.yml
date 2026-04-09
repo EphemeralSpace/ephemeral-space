@@ -89,6 +89,33 @@
       - id: ESShotgunShellsBoxBeanbag
       - id: RagItem
 
+- type: entityTable
+  id: LockerFillChef
+  table: !type:AllSelector
+    children: []
+
+- type: entityTable
+  id: LockerFillJanitor
+  table: !type:AllSelector
+    children: []
+
+# Civilian
+- type: entityTable
+  id: LockerFillClown
+  table: !type:AllSelector
+    children: []
+
+- type: entityTable
+  id: LockerFillReporter
+  table: !type:AllSelector
+    children: []
+
+# Cargo
+- type: entityTable
+  id: LockerFillQuartermaster
+  table: !type:AllSelector
+    children: []
+
 # Science
 - type: entityTable
   id: ESFillLockerScientist

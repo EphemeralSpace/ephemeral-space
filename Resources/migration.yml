@@ -22,7 +22,6 @@ ClosetJanitorBomb: ClosetBomb
 ClosetJanitorBombFilled: ClosetBomb
 LockerBrigmedic: LockerSecurity
 LockerBrigmedicFilled: LockerSecurityFilled
-LockerClown: LockerSteel
 LockerMime: LockerSteel
 LockerRepresentative: LockerSteel
 LockerParamedic: LockerMedical

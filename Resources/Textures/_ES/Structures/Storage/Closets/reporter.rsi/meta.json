@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/e8d7500bc7289325560b65210c81a1f6e0a29980, modified by EmoGarbage404",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "unlocked"
+    },
+    {
+      "name": "locked"
+    },
+    {
+      "name": "sparking",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "welded"
+    },
+    {
+      "name": "generic"
+    },
+    {
+      "name": "generic_door"
+    },
+    {
+      "name": "generic_open"
+    }
+  ]
+}
