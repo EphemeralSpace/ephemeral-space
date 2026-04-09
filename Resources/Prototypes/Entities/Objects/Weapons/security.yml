@@ -36,7 +36,6 @@
     bluntStaminaDamageFactor: 2.0
     angle: 60
     wideAnimation: WeaponArcThrust
-# ES START
   - type: ESSparkOnItemToggle
     count: 1
   - type: PointLight
@@ -56,7 +55,6 @@
       right:
       - state: on-inhand-right
         shader: unshaded
-# ES END
   - type: StaminaDamageOnHit
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
