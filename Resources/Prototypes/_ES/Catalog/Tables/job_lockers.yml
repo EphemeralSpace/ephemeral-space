@@ -112,12 +112,12 @@
   table:
     all:
     - id: BikeHorn
-    - id: FoodBanana
-      amount: 1, 2
     - id: TrashBananaPeel
       amount: 1, 4
     - id: FoodPieBananaCream
     - id: ClownRecorder
+    - id: ToyHammer
+    - id: LauncherCreamPie
 
 - type: entityTable
   id: LockerFillReporter
