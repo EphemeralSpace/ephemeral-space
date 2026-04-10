@@ -18,7 +18,7 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 85
+      weight: 95
       children:
       - id: WardrobeGreyFilled
       - id: WardrobeMixedFilled
@@ -28,9 +28,6 @@
       - id: WardrobePinkFilled
       - id: WardrobeBlackFilled
       - id: WardrobeGreenFilled
-    - !type:GroupSelector
-      weight: 10 # These contain headsets so should be significantly rarer
-      children:
       - id: ESWardrobeBartenderFilled
       - id: ESWardrobeChefFilled
       - id: ESWardrobeCargoFilled
