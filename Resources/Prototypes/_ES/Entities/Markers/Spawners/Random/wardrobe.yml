@@ -62,7 +62,7 @@
       - id: ESWardrobeJanitor
       - id: ESWardrobeMime
       - id: ESWardrobeReporter
-      - id: ESWardrobeSecurity
+      - id: WardrobeSecurity
       - id: ESWardrobeScience
       - id: ESWardrobeDoctor
       - id: ESWardrobeParamedic
