@@ -18,7 +18,7 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector
-      weight: 95
+      weight: 85
       children:
       - id: WardrobeGreyFilled
       - id: WardrobeMixedFilled
@@ -28,6 +28,23 @@
       - id: WardrobePinkFilled
       - id: WardrobeBlackFilled
       - id: WardrobeGreenFilled
+    - !type:GroupSelector
+      weight: 10 # These contain headsets so should be significantly rarer
+      children:
+      - id: ESWardrobeBartenderFilled
+      - id: ESWardrobeChefFilled
+      - id: ESWardrobeCargoFilled
+      - id: ESWardrobeCoronerFilled
+      - id: ESWardrobeClownFilled
+      - id: ESWardrobeDetectiveFilled
+      - id: ESWardrobeJanitorFilled
+      - id: ESWardrobeMimeFilled
+      - id: ESWardrobeReporterFilled
+      - id: ESWardrobeSecurityFilled
+      - id: ESWardrobeScienceFilled
+      - id: ESWardrobeDoctorFilled
+      - id: ESWardrobeParamedicFilled
+      - id: ESWardrobeEngineeringFilled
     - !type:GroupSelector
       weight: 5 # Rare chance to spawn empty
       children:
@@ -39,3 +56,17 @@
       - id: WardrobePink
       - id: WardrobeBlack
       - id: WardrobeGreen
+      - id: ESWardrobeBartender
+      - id: ESWardrobeChef
+      - id: ESWardrobeCargo
+      - id: ESWardrobeCoroner
+      - id: ESWardrobeClown
+      - id: ESWardrobeDetective
+      - id: ESWardrobeJanitor
+      - id: ESWardrobeMime
+      - id: ESWardrobeReporter
+      - id: ESWardrobeSecurity
+      - id: ESWardrobeScience
+      - id: ESWardrobeDoctor
+      - id: ESWardrobeParamedic
+      - id: ESWardrobeEngineering
