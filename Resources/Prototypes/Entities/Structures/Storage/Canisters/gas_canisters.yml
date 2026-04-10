@@ -395,7 +395,7 @@
       gasMixture:
         volume: 1500
         moles:
-          Plasma: 500
+          Plasma: 750
         temperature: 293.15
     - type: Destructible
       thresholds:
