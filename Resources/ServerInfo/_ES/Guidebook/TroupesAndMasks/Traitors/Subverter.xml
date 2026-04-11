@@ -28,5 +28,6 @@
 	
 	<GuideReagentEmbed Reagent="ChloralHydrate"/>
 	<GuideReagentEmbed Reagent="MuteToxin"/>
-	
+
+    <ESGuideTipsEmbed Mask="ESSubverter"/>
 </Document>
