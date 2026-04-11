@@ -49,7 +49,7 @@
   name: es-mask-hater-name
   troupe: ESCrew
   description: es-mask-hater-desc
-  color: lightseagreen
+  color: peru
   assignmentOrder: 11 # Needs to be assigned after other masks
   objectives:
     all:
@@ -86,7 +86,7 @@
   name: es-mask-phantom-name
   troupe: ESCrew
   description: es-mask-phantom-desc
-  color: lavender
+  color: plum
   weight: 0.5
   mindComponents:
   - type: ESReincarnateMind

@@ -1,0 +1,10 @@
+<Document>
+    <ESGuideMaskEmbed Mask="ESSleeperAgent"/>
+
+    The Sleeper Agent is a member of a crew who is waiting to turn and defect to the Syndicate at a moment's notice.
+
+    If all other [textlink="traitors" link="Traitors"] on-board the station die, the Sleeper Agent will be given a random traitor mask and tasked with finishing their work.
+    If the other traitors do not die, however, the Sleeper Agent will remain a crew member, simply needing to bide their time and stay alive in the event they are called upon.
+
+  <ESGuideTipsEmbed Mask="ESSleeperAgent"/>
+</Document>

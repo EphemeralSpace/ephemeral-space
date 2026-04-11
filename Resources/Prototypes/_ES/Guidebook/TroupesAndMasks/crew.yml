@@ -2,4 +2,83 @@
   id: Crew
   hidden: false
   name: Crew
+  children:
+  - ArmsDealer
+  - Avenger
+  - Crewmember
+  - Guzzler
+  - Hater
+  - Mercenary
+  - Nobleman
+  - Phantom
+  - Rebel
+  - Secretary
+  - SleeperAgent
+  - Vigilante
+  - VIP
   text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew.xml"
+
+- type: guideEntry
+  id: ArmsDealer
+  name: Arms Dealer
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/ArmsDealer.xml"
+
+- type: guideEntry
+  id: Avenger
+  name: Avenger
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Avenger.xml"
+
+- type: guideEntry
+  id: Crewmember
+  name: Crewmember
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Crewmember.xml"
+
+- type: guideEntry
+  id: Guzzler
+  name: Guzzler
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Guzzler.xml"
+
+- type: guideEntry
+  id: Hater
+  name: Hater
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Hater.xml"
+
+- type: guideEntry
+  id: Mercenary
+  name: Mercenary
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Mercenary.xml"
+
+- type: guideEntry
+  id: Nobleman
+  name: Nobleman
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Nobleman.xml"
+
+- type: guideEntry
+  id: Phantom
+  name: Phantom
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Phantom.xml"
+
+- type: guideEntry
+  id: Rebel
+  name: Rebel
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Rebel.xml"
+
+- type: guideEntry
+  id: Secretary
+  name: Secretary
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Secretary.xml"
+
+- type: guideEntry
+  id: SleeperAgent
+  name: Sleeper Agent
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/SleeperAgent.xml"
+
+- type: guideEntry
+  id: Vigilante
+  name: Vigilante
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Vigilante.xml"
+
+- type: guideEntry
+  id: VIP
+  name: VIP
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/VIP.xml"
