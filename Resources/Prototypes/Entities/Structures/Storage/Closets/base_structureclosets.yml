@@ -19,6 +19,7 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+      sprite: _ES/Structures/Storage/Closets/base_components.rsi
     - state: paper
       visible: false
       sprite: Structures/Storage/closet_labels.rsi

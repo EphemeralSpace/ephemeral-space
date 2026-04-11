@@ -22,7 +22,6 @@ ClosetJanitorBomb: ClosetBomb
 ClosetJanitorBombFilled: ClosetBomb
 LockerBrigmedic: LockerSecurity
 LockerBrigmedicFilled: LockerSecurityFilled
-LockerClown: LockerSteel
 LockerMime: LockerSteel
 LockerRepresentative: LockerSteel
 LockerParamedic: LockerMedical
@@ -359,6 +358,10 @@ MaintenancePlantSpawner: ESSpawnerRandomMaintLootStructure
 SpacemenFigurineSpawner90: null
 LootSpawnerRandomCrateEngineering: CrateEngineeringSolar
 RandomSpawner: ESSpawnerRandomTrashFood50 # yes, this is actually a trash spawner. i have no idea why its just called RandomSpawner
+
+# 2026-4-9
+ESWardrobeTheatre: LockerClown
+ESWardrobeTheatreFilled: LockerClownFilled
 
 # ES END
 

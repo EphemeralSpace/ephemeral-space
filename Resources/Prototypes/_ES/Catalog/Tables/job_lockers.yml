@@ -89,6 +89,68 @@
       - id: ESShotgunShellsBoxBeanbag
       - id: RagItem
 
+- type: entityTable
+  id: LockerFillChef
+  table:
+    all:
+    - id: ButchCleaver
+    - id: ClothingOuterApronChef
+    - id: ESWeaponKnife
+      amount: 2
+    - id: ClothingBeltChefFilled
+    - id: BoxMousetrap
+    - id: RagItem
+
+- type: entityTable
+  id: LockerFillJanitor
+  table:
+    all:
+    - id: ClothingShoesGaloshes
+    - id: ClothingBeltJanitorFilled
+    - id: LightReplacer
+    - id: SprayBottleSpaceCleaner
+    - id: MopItem
+    - id: BoxMousetrap
+    - id: TrashBag
+    - id: Plunger
+    - id: WireBrush
+
+# Civilian
+- type: entityTable
+  id: LockerFillClown
+  table:
+    all:
+    - id: BikeHorn
+    - id: TrashBananaPeel
+      amount: 1, 4
+    - id: FoodPieBananaCream
+    - id: ClownRecorder
+    - id: ToyHammer
+    - id: LauncherCreamPie
+
+- type: entityTable
+  id: LockerFillReporter
+  table:
+    all:
+    - id: BoxFolderGrey
+    - id: Pen
+      amount: 2, 3
+    # Handheld camera, ideally
+
+# Cargo
+- type: entityTable
+  id: LockerFillQuartermaster
+  table:
+    all:
+    - id: SheetSteel
+    - id: SheetGlass
+    - id: SheetPlastic
+    - id: BoxFolderClipboardEmpty
+    - id: Pen
+    - id: BoxFolderYellow
+    - id: Paper
+      amount: 1, 5
+
 # Science
 - type: entityTable
   id: ESFillLockerScientist

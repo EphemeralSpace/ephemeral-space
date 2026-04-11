@@ -23,7 +23,6 @@
     head: ClothingHeadHatChef
     jumpsuit: ClothingUniformJumpsuitChef
     outerClothing: ClothingOuterJacketChef
-    belt: ClothingBeltChefFilled
     back: ClothingBackpack
   storage:
     back:

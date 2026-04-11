@@ -8,13 +8,27 @@
   },
   "states": [
     {
-      "name": "generic"
+      "name": "unlocked"
     },
     {
-      "name": "generic_door"
+      "name": "locked"
     },
     {
-      "name": "generic_open"
+      "name": "id-locked"
+    },
+    {
+      "name": "sparking",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "welded"
     }
   ]
 }

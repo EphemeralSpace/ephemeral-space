@@ -152,7 +152,7 @@
   id: ClosetJanitor
   parent: WardrobeMixed
   name: custodial closet
-  description: It's a storage unit for janitorial clothes and gear.
+  description: It's a storage unit for custodial supplies.
 
 - type: entity
   id: WardrobeFormal
