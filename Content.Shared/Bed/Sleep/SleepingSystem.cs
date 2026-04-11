@@ -1,7 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Damage.Systems;
@@ -74,6 +73,7 @@ public sealed partial class SleepingSystem : EntitySystem
         SubscribeLocalEvent<ForcedSleepingStatusEffectComponent, StatusEffectAppliedEvent>(OnStatusEffectApplied);
 // ES START
         SubscribeLocalEvent<ForcedSleepingStatusEffectComponent, StatusEffectEndTimeUpdatedEvent>(OnForcedSleepingEndTimeUpdated);
+        SubscribeLocalEvent<ForcedSleepingStatusEffectComponent, StatusEffectRemovedEvent>(OnStatusEffectRemoved);
 // ES END
         SubscribeLocalEvent<SleepingComponent, UnbuckleAttemptEvent>(OnUnbuckleAttempt);
         SubscribeLocalEvent<SleepingComponent, EmoteAttemptEvent>(OnEmoteAttempt);
@@ -299,6 +299,11 @@ public sealed partial class SleepingSystem : EntitySystem
             var cooldown = endTime.Value - _gameTiming.CurTime;
             _actionsSystem.SetCooldown(sleeping.WakeAction, cooldown);
         }
+    }
+
+    private void OnStatusEffectRemoved(Entity<ForcedSleepingStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
+    {
+        TryWaking(args.Target);
     }
 // ES END
 
