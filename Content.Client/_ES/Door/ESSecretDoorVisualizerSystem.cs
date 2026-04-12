@@ -43,6 +43,10 @@ public sealed class ESSecretDoorVisualizerSystem : VisualizerSystem<ESSecretDoor
         var hidden = state == DoorState.Closed;
 
         SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.Base, !hidden);
+        SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.BaseBolted, !hidden);
+        SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.BaseEmagging, !hidden);
+        SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.BaseEmergencyAccess, !hidden);
+        SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.BaseUnlit, !hidden);
         SpriteSystem.LayerSetVisible((ent, ent), IconSmoothSystem.CornerLayers.NE, hidden);
         SpriteSystem.LayerSetVisible((ent, ent), IconSmoothSystem.CornerLayers.NW, hidden);
         SpriteSystem.LayerSetVisible((ent, ent), IconSmoothSystem.CornerLayers.SE, hidden);
