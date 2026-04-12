@@ -43,10 +43,14 @@ public sealed class ESSecretDoorVisualizerSystem : VisualizerSystem<ESSecretDoor
         var hidden = state == DoorState.Closed;
 
         SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.Base, !hidden);
-        SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.BaseBolted, !hidden);
-        SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.BaseEmagging, !hidden);
-        SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.BaseEmergencyAccess, !hidden);
-        SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.BaseUnlit, !hidden);
+        if (SpriteSystem.LayerExists((ent, ent), DoorVisualLayers.BaseBolted))
+            SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.BaseBolted, !hidden);
+        if (SpriteSystem.LayerExists((ent, ent), DoorVisualLayers.BaseEmagging))
+            SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.BaseEmagging, !hidden);
+        if (SpriteSystem.LayerExists((ent, ent), DoorVisualLayers.BaseEmergencyAccess))
+            SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.BaseEmergencyAccess, !hidden);
+        if (SpriteSystem.LayerExists((ent, ent), DoorVisualLayers.BaseUnlit))
+          SpriteSystem.LayerSetVisible((ent, ent), DoorVisualLayers.BaseUnlit, !hidden);
         SpriteSystem.LayerSetVisible((ent, ent), IconSmoothSystem.CornerLayers.NE, hidden);
         SpriteSystem.LayerSetVisible((ent, ent), IconSmoothSystem.CornerLayers.NW, hidden);
         SpriteSystem.LayerSetVisible((ent, ent), IconSmoothSystem.CornerLayers.SE, hidden);
