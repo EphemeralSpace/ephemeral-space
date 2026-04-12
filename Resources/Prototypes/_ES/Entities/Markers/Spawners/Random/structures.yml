@@ -128,7 +128,7 @@
   components:
   - type: Sprite
     layers:
-    - sprite: Structures/Doors/secret_door.rsi
+    - sprite: _ES/Structures/Doors/secret_door.rsi
       state: open
     - state: random
     - state: es
@@ -149,7 +149,7 @@
   components:
   - type: Sprite
     layers:
-    - sprite: Structures/Doors/secret_door.rsi
+    - sprite: _ES/Structures/Doors/secret_door.rsi
       state: open
     - state: random
     - state: es
@@ -168,7 +168,7 @@
   components:
   - type: Sprite
     layers:
-    - sprite: Structures/Doors/secret_door.rsi
+    - sprite: _ES/Structures/Doors/secret_door.rsi
       state: open
     - state: random
     - state: es
