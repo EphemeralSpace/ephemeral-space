@@ -4,8 +4,8 @@ meta:
   engineVersion: 275.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/12/2026 20:58:02
-  entityCount: 14523
+  time: 04/12/2026 21:02:55
+  entityCount: 14524
 maps:
 - 3
 grids:
@@ -31593,6 +31593,14 @@ entities:
     components:
     - type: Transform
       pos: -0.5,7.5
+      parent: 2
+- proto: DefaultStationBeaconJanitorsCloset
+  entities:
+  - uid: 9485
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,-22.5
       parent: 2
 - proto: DefaultStationBeaconKitchen
   entities:
