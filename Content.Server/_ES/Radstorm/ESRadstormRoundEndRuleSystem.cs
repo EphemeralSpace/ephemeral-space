@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Server._ES.Radio;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
@@ -136,7 +137,7 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
     {
         if (phase.AnnouncementText != null)
         {
-            var minutes = (int) Math.Round(comp.RadstormTimeRemaining.TotalMinutes);
+            var minutes = (int) Math.Round(GetRadstormEstimatedArrivalTime().TotalMinutes);
             var msg = Loc.GetString(phase.AnnouncementText, ("minutes", (minutes)));
             if (phase.AnnouncementDistortion > 0f)
                 msg = FormattedMessage.RemoveMarkupPermissive(ESRadioSystem.DistortRadioMessage(msg, phase.AnnouncementDistortion, _proto, _random, Loc));
@@ -207,5 +208,29 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
     private float GetRadstormSpeedMultiplier()
     {
         return 1;
+    }
+
+    private bool TryGetRadstormRule([NotNullWhen(true)] out Entity<ESRadstormRoundEndRuleComponent>? ent)
+    {
+        var query = EntityQueryEnumerator<ESRadstormRoundEndRuleComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            ent = (uid, comp);
+            return true;
+        }
+
+        ent = null;
+        return false;
+    }
+
+    /// <summary>
+    /// Gets the estimated time til the radstorm arrives, based on the current radstorm speed multiplier.
+    /// </summary>
+    public TimeSpan GetRadstormEstimatedArrivalTime()
+    {
+        if (!TryGetRadstormRule(out var ent))
+            return TimeSpan.Zero;
+
+        return ent.Value.Comp.RadstormTimeRemaining / GetRadstormSpeedMultiplier();
     }
 }
