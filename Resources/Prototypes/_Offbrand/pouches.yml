@@ -10,8 +10,7 @@
   - type: Item
     size: Small
     shape:
-    - 0,0,0,1
-    storedRotation: -90
+    - 0,0,1,0
   - type: Storage
     maxItemSize: Small
     grid:
@@ -33,6 +32,12 @@
     sound: null
   - type: StorageOpenable
   - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        item:
+          True: { state: basic_open }
+          False: { state: basic }
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -48,6 +53,12 @@
         - id: BruteAutoInjector
         - id: Brutepack
         - id: PainkillerAutoInjector
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        item:
+          True: { state: brute_open }
+          False: { state: brute }
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -63,6 +74,12 @@
         - id: BurnAutoInjector
         - id: Ointment
         - id: PainkillerAutoInjector
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        item:
+          True: { state: burn_open }
+          False: { state: burn }
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -70,13 +87,19 @@
   name: emergency toxin pouch
   components:
   - type: Sprite
-    state: toxin
+    state: tox
   - type: EntityTableContainerFill
     containers:
       storagebase:
         all:
         - id: AntiPoisonMedipen
         - id: PillDylovene
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        item:
+          True: { state: tox_open }
+          False: { state: tox }
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -84,13 +107,20 @@
   name: emergency radiation pouch
   components:
   - type: Sprite
-    state: radiation
+    state: rad
   - type: EntityTableContainerFill
     containers:
       storagebase:
         all:
         - id: RadAutoInjector
         - id: Brutepack
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        item:
+          True: { state: rad_open }
+          False: { state: rad }
+
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -106,3 +136,9 @@
         - id: AirlossAutoInjector
         - id: PillDexalin
         - id: EpinephrineMedipen
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        item:
+          True: { state: o2_open }
+          False: { state: o2 }

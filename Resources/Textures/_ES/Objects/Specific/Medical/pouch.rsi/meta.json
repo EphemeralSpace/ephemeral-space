@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "license": "CC-BY-SA-3.0",
+    "license": "CC-BY-SA-4.0",
     "copyright": "Made by Flareguy for Ephemeral Space",
     "size": {
         "x": 32,
@@ -11,19 +11,37 @@
             "name": "basic"
         },
         {
+            "name": "basic_open"
+        },
+        {
             "name": "brute"
+        },
+        {
+            "name": "brute_open"
         },
         {
             "name": "burn"
         },
         {
+            "name": "burn_open"
+        },
+        {
             "name": "o2"
         },
         {
-            "name": "radiation"
+            "name": "o2_open"
         },
         {
-            "name": "toxin"
+            "name": "rad"
+        },
+        {
+            "name": "rad_open"
+        },
+        {
+            "name": "tox"
+        },
+        {
+            "name": "tox_open"
         }
     ]
 }
