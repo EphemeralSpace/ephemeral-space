@@ -11,6 +11,7 @@
     size: Small
     shape:
     - 0,0,1,0
+    heldPrefix: basic
   - type: Storage
     maxItemSize: Small
     grid:
@@ -46,6 +47,8 @@
   components:
   - type: Sprite
     state: brute
+  - type: Item
+    heldPrefix: brute
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -88,6 +91,8 @@
   components:
   - type: Sprite
     state: tox
+  - type: Item
+    heldPrefix: tox
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -108,6 +113,8 @@
   components:
   - type: Sprite
     state: rad
+  - type: Item
+    heldPrefix: rad
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -129,6 +136,8 @@
   components:
   - type: Sprite
     state: o2
+  - type: Item
+    heldPrefix: o2
   - type: EntityTableContainerFill
     containers:
       storagebase:
