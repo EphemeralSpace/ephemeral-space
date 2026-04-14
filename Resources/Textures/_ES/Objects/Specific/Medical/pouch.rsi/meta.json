@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by Flareguy for Ephemeral Space",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "basic"
+        },
+        {
+            "name": "brute"
+        },
+        {
+            "name": "burn"
+        },
+        {
+            "name": "o2"
+        },
+        {
+            "name": "radiation"
+        },
+        {
+            "name": "toxin"
+        }
+    ]
+}

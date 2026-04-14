@@ -2,19 +2,16 @@
   abstract: true
   parent: BaseStorageItem
   id: BaseEmergencyPouch
-  description: For use in emergency situations
+  description: For use in emergency situations.
   components:
   - type: Sprite
-    sprite: _Offbrand/pouch.rsi
-    layers:
-    - state: closed
-      map: ["item"]
-    - state: cross
-      color: "#ffffff"
+    sprite: _ES/Objects/Specific/Medical/pouch.rsi
+    state: basic
   - type: Item
     size: Small
     shape:
     - 0,0,0,1
+    storedRotation: -90
   - type: Storage
     maxItemSize: Small
     grid:
@@ -36,12 +33,6 @@
     sound: null
   - type: StorageOpenable
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.OpenableVisuals.Opened:
-        item:
-          True: { state: open }
-          False: { state: closed }
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -49,12 +40,7 @@
   name: emergency brute pouch
   components:
   - type: Sprite
-    layers:
-    - state: closed
-      map: ["item"]
-      color: "#ff7cc5"
-    - state: cross
-      color: "#ffffff"
+    state: brute
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -69,12 +55,7 @@
   name: emergency burn pouch
   components:
   - type: Sprite
-    layers:
-    - state: closed
-      map: ["item"]
-      color: "#e8cb2d"
-    - state: cross
-      color: "#ffffff"
+    state: burn
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -89,12 +70,7 @@
   name: emergency toxin pouch
   components:
   - type: Sprite
-    layers:
-    - state: closed
-      map: ["item"]
-      color: "#3dd425"
-    - state: cross
-      color: "#ffffff"
+    state: toxin
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -108,12 +84,7 @@
   name: emergency radiation pouch
   components:
   - type: Sprite
-    layers:
-    - state: closed
-      map: ["item"]
-      color: "#e93d58"
-    - state: cross
-      color: "#ffffff"
+    state: radiation
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -127,12 +98,7 @@
   name: emergency oxygen deprivation pouch
   components:
   - type: Sprite
-    layers:
-    - state: closed
-      map: ["item"]
-      color: "#44f0d3"
-    - state: cross
-      color: "#ffffff"
+    state: o2
   - type: EntityTableContainerFill
     containers:
       storagebase:
