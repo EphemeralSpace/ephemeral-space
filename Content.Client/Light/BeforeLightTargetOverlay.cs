@@ -43,7 +43,7 @@ public sealed class BeforeLightTargetOverlay : Overlay
         if (res.EnlargedLightTarget?.Size != size)
         {
             res.EnlargedLightTarget = _clyde
-                .CreateRenderTarget(size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "enlarged-light-copy");
+                .CreateRenderTarget(size, new RenderTargetFormatParameters(RenderTargetColorFormat.R11FG11FB10F), name: "enlarged-light-copy");
         }
 
         args.WorldHandle.RenderInRenderTarget(res.EnlargedLightTarget,
