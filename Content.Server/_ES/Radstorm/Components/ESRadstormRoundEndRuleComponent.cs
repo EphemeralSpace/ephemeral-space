@@ -1,9 +1,10 @@
 using Content.Shared.Damage;
 using Robust.Shared.Audio;
 
-namespace Content.Server._ES.Radstorm;
+namespace Content.Server._ES.Radstorm.Components;
 
 [RegisterComponent, AutoGenerateComponentPause]
+[Access(typeof(ESRadstormRoundEndRuleSystem))]
 public sealed partial class ESRadstormRoundEndRuleComponent : Component
 {
     [DataField(required: true)]
