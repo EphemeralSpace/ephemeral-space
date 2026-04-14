@@ -207,7 +207,10 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
 
     private float GetRadstormSpeedMultiplier()
     {
-        return 1;
+        var ev = new GetRadstormSpeedMultiplierEvent();
+        RaiseLocalEvent(ref ev);
+
+        return ev.Speed;
     }
 
     private bool TryGetRadstormRule([NotNullWhen(true)] out Entity<ESRadstormRoundEndRuleComponent>? ent)
@@ -233,4 +236,13 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
 
         return ent.Value.Comp.RadstormTimeRemaining / GetRadstormSpeedMultiplier();
     }
+}
+
+/// <summary>
+/// Event broadcast when determining the speed multiplier for the radstorm timer.
+/// </summary>
+[ByRefEvent]
+public record struct GetRadstormSpeedMultiplierEvent()
+{
+    public float Speed = 1f;
 }
