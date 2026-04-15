@@ -4,8 +4,8 @@ meta:
   engineVersion: 275.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/15/2026 07:18:19
-  entityCount: 14523
+  time: 04/15/2026 07:26:12
+  entityCount: 14524
 maps:
 - 3
 grids:
@@ -64045,6 +64045,11 @@ entities:
     components:
     - type: Transform
       pos: -22.5,-25.5
+      parent: 2
+  - uid: 9521
+    components:
+    - type: Transform
+      pos: -24.5,-25.5
       parent: 2
 - proto: LockerWeldingSuppliesFilled
   entities:
