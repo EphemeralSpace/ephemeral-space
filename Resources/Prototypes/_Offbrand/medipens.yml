@@ -9,22 +9,23 @@
       left:
       - state: base-needle-inhand-left
       - state: base-colorA-inhand-left
-        color: "#47F5F5"
+        color: "#cb68fc"
       - state: base-colorB-inhand-left
+        color: "#a1253e"
       right:
       - state: base-needle-inhand-right
       - state: base-colorA-inhand-right
-        color: "#47F5F5"
+        color: "#cb68fc"
       - state: base-colorB-inhand-right
+        color: "#a1253e"
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
     layers:
-    - state: salpen
+    - state: painkiller
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: salpen_empty
+    emptySpriteName: painkiller_used
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -43,15 +44,28 @@
   name: epinephrine medipen
   description: A single-dose, non-refillable medipen containing epinephrine, used to temporarily stabilize patients in critical condition and buy time for them to recieve proper medical treatment. Beware of overdose.
   components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#9fd6d1"
+      - state: base-colorB-inhand-left
+        color: "#666666"
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#9fd6d1"
+      - state: base-colorB-inhand-right
+        color: "#666666"
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
     layers:
-    - state: medipen
+    - state: epi
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: medipen_empty
+    emptySpriteName: epi_used
   - type: SolutionContainerManager
     solutions:
       pen:
