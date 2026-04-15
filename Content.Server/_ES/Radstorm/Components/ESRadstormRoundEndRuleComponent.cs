@@ -1,9 +1,10 @@
 using Content.Shared.Damage;
 using Robust.Shared.Audio;
 
-namespace Content.Server._ES.Radstorm;
+namespace Content.Server._ES.Radstorm.Components;
 
 [RegisterComponent, AutoGenerateComponentPause]
+[Access(typeof(ESRadstormRoundEndRuleSystem))]
 public sealed partial class ESRadstormRoundEndRuleComponent : Component
 {
     [DataField(required: true)]
@@ -13,26 +14,50 @@ public sealed partial class ESRadstormRoundEndRuleComponent : Component
     public DamageSpecifier RadstormDamagePerSecond = new();
 
     /// <summary>
-    ///     Average time that the radstorm can start at. Used when randomly picking <see cref="RadstormStartTime"/>.
+    ///     Average time that the radstorm can start at. Used when randomly picking <see cref="RadstormTimeRemaining"/>.
     /// </summary>
     [DataField]
-    public TimeSpan RadstormStartTimeAvg = TimeSpan.FromMinutes(60f);
+    public TimeSpan RadstormStartTimeAvg = TimeSpan.FromMinutes(70f);
 
     /// <summary>
-    ///     Standard deviation for time that the radstorm can start at. Used when randomly picking <see cref="RadstormStartTime"/>.
+    ///     Standard deviation for time that the radstorm can start at. Used when randomly picking <see cref="RadstormTimeRemaining"/>.
     /// </summary>
     [DataField]
     public TimeSpan RadstormStartTimeStdDev = TimeSpan.FromMinutes(2f);
 
     /// <summary>
-    ///     Picked randomly when the rule is added. Time into the round that the radstorm should start (i.e. when people should start dying),
-    ///     and time relative to which the phases should be announced.
+    ///     Time at which <see cref="RadstormTimeRemaining"/> will update and phases will be updated
+    /// </summary>
+    [DataField, AutoPausedField]
+    public TimeSpan NextUpdateTime;
+
+    /// <summary>
+    ///     Time inbetween updates.
+    /// </summary>
+    [DataField]
+    public TimeSpan UpdateRate = TimeSpan.FromSeconds(1);
+
+    /// <summary>
+    ///     Picked randomly when the rule is added. Amount of time left until the radstorm should start (i.e. when people should start dying).
+    ///     Note that this does not decrease linearly, as it varies based on the radstorm modifiers.
     /// </summary>
     /// <remarks>
     ///     You are not really intended to write to this from YAML, but if you do, it won't be overridden.
     /// </remarks>
-    [DataField, AutoPausedField]
-    public TimeSpan RadstormStartTime = TimeSpan.Zero;
+    [DataField]
+    public TimeSpan RadstormTimeRemaining = TimeSpan.Zero;
+
+    /// <summary>
+    ///     The total unadjusted time it takes for the radstorm to arrive.
+    /// </summary>
+    [DataField]
+    public TimeSpan RadstormDuration = TimeSpan.Zero;
+
+    /// <summary>
+    ///     Time that has passed for the radstorm so far.
+    /// </summary>
+    [ViewVariables]
+    public TimeSpan ElapsedRadstormTime => RadstormDuration - RadstormTimeRemaining;
 
     /// <summary>
     ///     Time that the next radstorm damage tick should occur. Written to when the radstorm starts.
