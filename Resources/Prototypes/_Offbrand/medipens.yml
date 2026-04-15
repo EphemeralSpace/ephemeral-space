@@ -17,14 +17,13 @@
         color: "#47F5F5"
       - state: base-colorB-inhand-right
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
     layers:
-    - state: salpen
+    - state: painkiller
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: salpen_empty
+    emptySpriteName: painkiller_used
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -44,14 +43,13 @@
   description: A single-dose, non-refillable medipen containing epinephrine, used to temporarily stabilize patients in critical condition and buy time for them to recieve proper medical treatment. Beware of overdose.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
     layers:
-    - state: medipen
+    - state: epi
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: medipen_empty
+    emptySpriteName: epi_used
   - type: SolutionContainerManager
     solutions:
       pen:
