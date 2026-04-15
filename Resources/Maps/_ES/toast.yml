@@ -4,7 +4,7 @@ meta:
   engineVersion: 275.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/15/2026 06:06:41
+  time: 04/15/2026 07:18:19
   entityCount: 14523
 maps:
 - 3
@@ -38725,11 +38725,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 13.5,-0.5
       parent: 2
-  - uid: 1106
-    components:
-    - type: Transform
-      pos: -4.5,-41.5
-      parent: 2
   - uid: 1275
     components:
     - type: Transform
@@ -38747,29 +38742,11 @@ entities:
     - type: Transform
       pos: 16.5,11.5
       parent: 2
-  - uid: 1546
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,-38.5
-      parent: 2
-  - uid: 1701
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-45.5
-      parent: 2
   - uid: 2021
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 24.5,-31.5
-      parent: 2
-  - uid: 2051
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-38.5
       parent: 2
   - uid: 2153
     components:
@@ -38780,12 +38757,6 @@ entities:
     components:
     - type: Transform
       pos: 25.5,-34.5
-      parent: 2
-  - uid: 2550
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -43.5,-20.5
       parent: 2
   - uid: 2582
     components:
@@ -38805,11 +38776,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-13.5
       parent: 2
-  - uid: 2940
-    components:
-    - type: Transform
-      pos: -42.5,-10.5
-      parent: 2
   - uid: 3020
     components:
     - type: Transform
@@ -38828,58 +38794,17 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -25.5,-11.5
       parent: 2
-  - uid: 3125
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -40.5,-27.5
-      parent: 2
-  - uid: 3127
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -39.5,-16.5
-      parent: 2
   - uid: 3130
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,-20.5
       parent: 2
-  - uid: 3132
-    components:
-    - type: Transform
-      pos: -26.5,-21.5
-      parent: 2
-  - uid: 3206
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 20.5,-5.5
-      parent: 2
-  - uid: 3268
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -25.5,-19.5
-      parent: 2
-  - uid: 3537
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -27.5,-13.5
-      parent: 2
   - uid: 3579
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -5.5,7.5
-      parent: 2
-  - uid: 3991
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -35.5,-23.5
       parent: 2
   - uid: 4428
     components:
@@ -38960,6 +38885,89 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -56.5,-37.5
+      parent: 2
+- proto: ESPoweredLightDepartmentWarm
+  entities:
+  - uid: 528
+    components:
+    - type: Transform
+      pos: -4.5,-41.5
+      parent: 2
+  - uid: 1106
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-38.5
+      parent: 2
+  - uid: 1546
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-45.5
+      parent: 2
+  - uid: 1701
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-38.5
+      parent: 2
+  - uid: 2051
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -43.5,-20.5
+      parent: 2
+  - uid: 2550
+    components:
+    - type: Transform
+      pos: -42.5,-10.5
+      parent: 2
+  - uid: 2940
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -40.5,-27.5
+      parent: 2
+  - uid: 3125
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -39.5,-16.5
+      parent: 2
+  - uid: 3127
+    components:
+    - type: Transform
+      pos: -26.5,-21.5
+      parent: 2
+  - uid: 3132
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 20.5,-5.5
+      parent: 2
+  - uid: 3206
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -25.5,-19.5
+      parent: 2
+  - uid: 3268
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -27.5,-13.5
+      parent: 2
+  - uid: 3537
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -35.5,-23.5
+      parent: 2
+  - uid: 3991
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -29.5,-25.5
       parent: 2
 - proto: ESPoweredLightHallway
   entities:
@@ -39199,12 +39207,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.5,-8.5
-      parent: 2
-  - uid: 528
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -29.5,-25.5
       parent: 2
   - uid: 625
     components:

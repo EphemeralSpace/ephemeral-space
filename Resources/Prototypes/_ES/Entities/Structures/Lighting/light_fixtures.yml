@@ -9,13 +9,27 @@
   parent: Poweredlight
   name: light fixture
   description: Draws power and produces light when equipped with a light tube.
-  suffix: ES, Departments
+  suffix: ES, Cool Department
   components:
   - type: PointLight
     color: "#acb4c2"
     energy: 1.45
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeDepartment
+  - type: ESNightshiftReplacementMarker
+
+- type: entity
+  id: ESPoweredLightDepartmentWarm
+  parent: Poweredlight
+  name: light fixture
+  description: Draws power and produces light when equipped with a light tube.
+  suffix: ES, Warm Department
+  components:
+  - type: PointLight
+    color: "#ece2dd"
+    energy: 1.45
+  - type: PoweredLight
+    hasLampOnSpawn: ESLightTubeDepartmentWarm
   - type: ESNightshiftReplacementMarker
 
 # Nightshift lighting. Replaces department lighting randomly at roundstart.
@@ -43,7 +57,7 @@
   suffix: ES, Hallway
   components:
   - type: PointLight
-    color: "#917c7b"
+    color: "#a08684"
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeHallway
   - type: DeviceNetwork

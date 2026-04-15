@@ -2,10 +2,21 @@
 - type: entity
   id: ESLightTubeDepartment
   parent: LightTube
-  suffix: ES, Department
+  suffix: ES, Cool Department
   components:
   - type: LightBulb
     color: "#acb4c2"
+    glowColorOverride: "#ffffffff"
+    lightEnergy: 1.45
+    lightSoftness: 2
+
+- type: entity
+  id: ESLightTubeDepartmentWarm
+  parent: LightTube
+  suffix: ES, Warm Department
+  components:
+  - type: LightBulb
+    color: "#ece2dd"
     glowColorOverride: "#ffffffff"
     lightEnergy: 1.45
     lightSoftness: 2
@@ -29,7 +40,7 @@
   suffix: ES, Hallway
   components:
   - type: LightBulb
-    color: "#917c7b"
+    color: "#a08684"
     glowColorOverride: "#aaaaaaff"
     lightSoftness: 2
 
