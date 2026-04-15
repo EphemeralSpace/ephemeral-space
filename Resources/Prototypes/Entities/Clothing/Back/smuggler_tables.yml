@@ -523,11 +523,6 @@
     - id: BurnAutoInjector
       amount: !type:RangeNumberSelector
         range: 1, 5
-    - id: SpaceMedipen
-      amount: !type:RangeNumberSelector
-        range: 1, 5
-    - id: Stimpack
-    - id: CombatMedipen
 
 - type: entityTable #1x Medium
   id: RandomSatchelMysteriesTable
