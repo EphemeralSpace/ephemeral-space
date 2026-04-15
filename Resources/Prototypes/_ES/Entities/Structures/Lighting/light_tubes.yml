@@ -5,8 +5,8 @@
   suffix: ES, Department
   components:
   - type: LightBulb
-    color: "#ece2dd"
-    glowColorOverride: "#ffffff"
+    color: "#acb4c2"
+    glowColorOverride: "#ffffffff"
     lightEnergy: 1.45
     lightSoftness: 2
 
@@ -16,8 +16,8 @@
   suffix: ES, Nightshift
   components:
   - type: LightBulb
-    color: "#8f6e5d"
-    glowColorOverride: "#e9732b"
+    color: "#a17660"
+    glowColorOverride: "#e9732bff"
     lightEnergy: 1.45
     lightSoftness: 2
 
@@ -29,6 +29,31 @@
   suffix: ES, Hallway
   components:
   - type: LightBulb
-    color: "#828281"
-    glowColorOverride: "#aaaaaa"
+    color: "#917c7b"
+    glowColorOverride: "#aaaaaaff"
+    lightSoftness: 2
+
+- type: entity
+  id: ESLightTubeCool
+  parent: LightTube
+  name: fluorescent light tube
+  description: A light fixture.
+  suffix: ES, Cool
+  components:
+  - type: LightBulb
+    color: "#687785"
+    lightEnergy: 1.45
+    lightSoftness: 2
+
+- type: entity
+  id: ESLightTubeCrimson
+  parent: LightTube
+  name: fluorescent light tube
+  description: A light fixture.
+  suffix: ES, Crimson
+  components:
+  - type: LightBulb
+    color: "#c26d72"
+    glowColorOverride: "#cc0000ff"
+    lightEnergy: 1.45
     lightSoftness: 2
