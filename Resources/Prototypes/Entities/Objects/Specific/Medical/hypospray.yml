@@ -155,6 +155,7 @@
   id: ChemicalMedipen
   name: chemical medipen
   description: A single-dose, non-refillable medipen.
+  abstract: true
   components:
   - type: Sprite
     sprite: _ES/Objects/Specific/Medical/medipen.rsi
@@ -167,13 +168,15 @@
       left:
       - state: base-needle-inhand-left
       - state: base-colorA-inhand-left
-        color: "#439822"
+        color: "#68de39"
       - state: base-colorB-inhand-left
+        color: "#f6e322"
       right:
       - state: base-needle-inhand-right
       - state: base-colorA-inhand-right
-        color: "#439822"
+        color: "#68de39"
       - state: base-colorB-inhand-right
+        color: "#f6e322"
     size: Tiny
   - type: SolutionContainerManager
     solutions:
@@ -231,13 +234,15 @@
       left:
       - state: base-needle-inhand-left
       - state: base-colorA-inhand-left
-        color: "#573d9e"
+        color: "#76b524"
       - state: base-colorB-inhand-left
+        color: "#f6e322"
       right:
       - state: base-needle-inhand-right
       - state: base-colorA-inhand-right
-        color: "#573d9e"
+        color: "#76b524"
       - state: base-colorB-inhand-right
+        color: "#f6e322"
   - type: Sprite
     layers:
     - state: tox
@@ -267,13 +272,15 @@
       left:
       - state: base-needle-inhand-left
       - state: base-colorA-inhand-left
-        color: "#c73333"
+        color: "#fab9d0"
       - state: base-colorB-inhand-left
+        color: "#f6e322"
       right:
       - state: base-needle-inhand-right
       - state: base-colorA-inhand-right
-        color: "#c73333"
+        color: "#fab9d0"
       - state: base-colorB-inhand-right
+        color: "#f6e322"
   - type: Sprite
     layers:
     - state: brute
@@ -303,13 +310,15 @@
       left:
       - state: base-needle-inhand-left
       - state: base-colorA-inhand-left
-        color: "#427485"
+        color: "#ffe400"
       - state: base-colorB-inhand-left
+        color: "#f6e322"
       right:
       - state: base-needle-inhand-right
       - state: base-colorA-inhand-right
-        color: "#427485"
+        color: "#ffe400"
       - state: base-colorB-inhand-right
+        color: "#f6e322"
   - type: Sprite
     layers:
     - state: burn
@@ -337,13 +346,15 @@
       left:
       - state: base-needle-inhand-left
       - state: base-colorA-inhand-left
-        color: "#e3832f"
+        color: "#ff3d01"
       - state: base-colorB-inhand-left
+        color: "#f6e322"
       right:
       - state: base-needle-inhand-right
       - state: base-colorA-inhand-right
-        color: "#e3832f"
+        color: "#ff3d01"
       - state: base-colorB-inhand-right
+        color: "#f6e322"
   - type: Sprite
     layers:
     - state: rad
@@ -373,13 +384,15 @@
       left:
       - state: base-needle-inhand-left
       - state: base-colorA-inhand-left
-        color: "#5d81c7"
+        color: "#71a7d1"
       - state: base-colorB-inhand-left
+        color: "#f6e322"
       right:
       - state: base-needle-inhand-right
       - state: base-colorA-inhand-right
-        color: "#5d81c7"
+        color: "#71a7d1"
       - state: base-colorB-inhand-right
+        color: "#f6e322"
   - type: Sprite
     layers:
     - state: o2
