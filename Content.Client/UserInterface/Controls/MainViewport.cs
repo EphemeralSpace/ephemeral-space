@@ -5,8 +5,6 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 
-// ES MODIFIED : right-aligned main viewport instead of centered
-
 namespace Content.Client.UserInterface.Controls
 {
     /// <summary>
@@ -109,15 +107,6 @@ namespace Content.Client.UserInterface.Controls
 
         private int? CalcSnappingFactor()
         {
-            // Margin tolerance is tolerance of "the window is too big"
-            // where we add a margin to the viewport to make it fit.
-            var cfgToleranceMargin = _cfg.GetCVar(CCVars.ViewportSnapToleranceMargin);
-            // Clip tolerance is tolerance of "the window is too small"
-            // where we are clipping the viewport to make it fit.
-            var cfgToleranceClip = _cfg.GetCVar(CCVars.ViewportSnapToleranceClip);
-
-            var cfgVerticalFit = _cfg.GetCVar(CCVars.ViewportVerticalFit);
-
             // erm
             if (Root == null)
                 return null;
@@ -129,12 +118,17 @@ namespace Content.Client.UserInterface.Controls
 
             var minPossible = Math.Min(possibleSize.X, possibleSize.Y);
 
-            if (minPossible >= 1)
-            {
-                return (int)Math.Floor(minPossible);
-            }
+            // check closest fits on a .5 increment basis
+            // (0.5 = no snap, 1 = snap, 1.5 = no snap, etc)
+            if (minPossible < 0.5)
+                return null; // too tiny
 
-            // uhhh too tiny try again later
+            var doubledScale = (int)Math.Floor(minPossible * 2f);
+            // if its even, this is an integer fit
+            // if it isnt, it fits closer to a .5 increment, so just let scaling handle it
+            if ((doubledScale % 2 == 0))
+                return doubledScale / 2;
+
             return null;
         }
 
