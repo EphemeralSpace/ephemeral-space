@@ -47,3 +47,13 @@
   - type: Sprite
     sprite: _ES/Structures/Wallmounts/signs.rsi
     state: portal
+
+- type: entity
+  parent: BaseSign
+  id: ESSignThruster
+  name: thruster generator sign
+  description: A sign indicating a thruster.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Wallmounts/signs.rsi
+    state: thruster
