@@ -74,7 +74,8 @@
   - type: Appearance
   - type: PointLight
     radius: 2.5
-    energy: 0.5
+    energy: 4
+    curveFactor: 1.0
     # Gravity generator is a large machine, not casting shadows is fine within the radius set above.
     castShadows: false
     color: "#a8ffd9"
