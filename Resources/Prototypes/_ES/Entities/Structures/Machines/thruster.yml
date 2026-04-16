@@ -24,7 +24,7 @@
     anchored: true
   - type: ApcPowerReceiver
   - type: ApcPowerReceiverBattery
-    idleRate: 25
+    idleLoad: 25
     batteryRechargeRate: 50
   - type: Battery
     netsync: false
