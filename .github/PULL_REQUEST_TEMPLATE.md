@@ -8,7 +8,6 @@
 
 N/A
 
-
 **Changelog**
 <!-- Add a Changelog entry to make players aware of new features or changes that could affect gameplay.
 Changelog must have a :cl: symbol, so the bot recognizes the changes and adds them to the game's changelog. -->
