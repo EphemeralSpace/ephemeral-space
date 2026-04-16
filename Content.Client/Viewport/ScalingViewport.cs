@@ -1,17 +1,11 @@
-using System;
-using System.Collections.Generic;
 using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Graphics;
-using Robust.Shared.IoC;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Robust.Shared.ViewVariables;
 using SixLabors.ImageSharp.PixelFormats;
 
 // ES MODIFIED: support for changing horizontal alignment of the actual rendered viewport, instead of it always being centered
@@ -128,7 +122,7 @@ namespace Content.Client.Viewport
 
         protected override Vector2 MeasureOverride(Vector2 availableSize)
         {
-            return _viewport is null ? Vector2.Zero : (GetDrawBox().Size / UIScale);
+            return _viewport is null ? Vector2.Zero : (GetViewportSize(availableSize).Size / UIScale);
         }
 
         protected override void KeyBindDown(GUIBoundKeyEventArgs args)
@@ -174,7 +168,7 @@ namespace Content.Client.Viewport
                 _queuedScreenshots.Clear();
             }
 
-            var drawBox = GetDrawBox();
+            var drawBox = GetViewportSize(PixelSize);
             var drawBoxGlobal = drawBox.Translated(GlobalPixelPosition);
             _viewport.RenderScreenOverlaysBelow(handle, this, drawBoxGlobal);
             handle.DrawingHandleScreen.DrawTextureRect(_viewport.RenderTarget.Texture, drawBox);
@@ -187,16 +181,15 @@ namespace Content.Client.Viewport
         }
 
         // Draw box in pixel coords to draw the viewport at.
-        private UIBox2i GetDrawBox()
+        private UIBox2i GetViewportSize(Vector2 availableSize)
         {
             DebugTools.AssertNotNull(_viewport);
 
             var vpSize = _viewport!.Size;
-            var ourSize = (Vector2) PixelSize;
 
             if (FixedStretchSize == null)
             {
-                var (ratioX, ratioY) = ourSize / vpSize;
+                var (ratioX, ratioY) = availableSize / vpSize;
                 var ratio = 1f;
                 switch (_ignoreDimension)
                 {
@@ -328,7 +321,7 @@ namespace Content.Client.Viewport
         {
             EnsureViewportCreated();
 
-            var drawBox = GetDrawBox();
+            var drawBox = GetViewportSize(PixelSize);
             var scaleFactor = drawBox.Size / (Vector2) _viewport!.Size;
 
             if (scaleFactor.X == 0 || scaleFactor.Y == 0)
