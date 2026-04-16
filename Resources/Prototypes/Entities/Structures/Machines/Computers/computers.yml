@@ -42,6 +42,8 @@
   - type: ActivatableUI
     singleUser: true
     key: enum.AtmosAlertsComputerUiKey.Key
+  - type: PointLight
+    color: "#adf7f9"
   - type: UserInterface
     interfaces:
         enum.AtmosAlertsComputerUiKey.Key:
@@ -78,6 +80,8 @@
   - type: ActivatableUI
     singleUser: true
     key: enum.AtmosMonitoringConsoleUiKey.Key
+  - type: PointLight
+    color: "#adf7f9"
   - type: UserInterface
     interfaces:
       enum.AtmosMonitoringConsoleUiKey.Key:
@@ -109,8 +113,6 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
     color: "#43ccb5"
 
 - type: entity
@@ -131,8 +133,6 @@
           type: WiresBoundUserInterface
   - type: RadarConsole
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
     color: "#43ccb5"
   - type: ItemSlots
     slots:
@@ -196,8 +196,6 @@
   - type: RadarConsole
     maxRange: 384
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
     color: "#c94242"
   - type: Computer
     board: SyndicateShuttleConsoleCircuitboard
@@ -275,8 +273,6 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
     color: "#c9c042"
   - type: Computer
     board: PowerComputerCircuitboard
@@ -317,9 +313,7 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#1f8c28"
+    color: "#85b6fe"
   - type: Computer
     board: MedicalRecordsComputerCircuitboard
 
@@ -358,9 +352,7 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#1f8c28"
+    color: "#e9755e"
   - type: Computer
     board: CriminalRecordsComputerCircuitboard
 # ES Start
@@ -387,9 +379,7 @@
   - type: ActivatableUI
     key: enum.GeneralStationRecordConsoleKey.Key
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#1f8c28"
+    color: "#70ff67"
   - type: Computer
     board: StationRecordsComputerCircuitboard
   - type: GuideHelp
@@ -415,9 +405,7 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#006400"
+    color: "#85b6fe"
   - type: Computer
     board: CrewMonitoringComputerCircuitboard
   - type: ActivatableUI
@@ -520,9 +508,7 @@
   - type: Computer
     board: IDComputerCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#3c5eb5"
+    color: "#4ba5d9"
   - type: ItemSlots
   - type: ContainerContainer
     containers:
@@ -544,8 +530,6 @@
   - type: Computer
     board: BodyScannerComputerCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
     color: "#1f8c28"
 
 - type: entity
@@ -591,9 +575,7 @@
   - type: Computer
     board: CommsComputerCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#3c5eb5"
+    color: "#4ba5d9"
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
@@ -630,8 +612,6 @@
   - type: Computer
     board: CentcommCommsComputerCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
     color: "#00FF00"
 
 - type: entity
@@ -664,9 +644,7 @@
   - type: Computer
     board: SolarControlComputerCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#e6e227"
+    color: "#d3e840"
   - type: GuideHelp
     guides:
     - SolarPanels
@@ -702,8 +680,6 @@
   - type: Computer
     board: RadarConsoleCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
     color: "#e6e227"
 
 - type: entity
@@ -733,8 +709,6 @@
   - type: Computer
     board: CloningConsoleComputerCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
     color: "#1f8c28"
   - type: DeviceLinkSource
     range: 4
@@ -788,6 +762,8 @@
   - type: ActivatableUIRequiresVision
   - type: Transform
     anchored: true
+  - type: PointLight
+    color: "#ed765d"
   - type: UserInterface
     interfaces:
         enum.SurveillanceCameraMonitorUiKey.Key:
@@ -829,6 +805,8 @@
   - type: ActivatableUI
     key: enum.SurveillanceCameraMonitorUiKey.Key
   - type: ActivatableUIRequiresVision
+  - type: PointLight
+    color: "#ed765d"
   - type: UserInterface
     interfaces:
         enum.SurveillanceCameraMonitorUiKey.Key:
@@ -869,6 +847,8 @@
   - type: ActivatableUIRequiresVision
   - type: Transform
     anchored: true
+  - type: PointLight
+    color: "#7e8195"
   - type: UserInterface
     interfaces:
         enum.NewsWriterUiKey.Key:
@@ -899,8 +879,6 @@
         - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
           state: generic_panel_open
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
       color: "#43ccb5"
     - type: Computer
       board: SensorConsoleCircuitboard

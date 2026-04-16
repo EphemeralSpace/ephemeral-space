@@ -13,6 +13,7 @@ significantly modified from old lobbygui, basically everything diff-->
     xmlns:hotbar="clr-namespace:Content.Client.UserInterface.Systems.Hotbar.Widgets"
     xmlns:alerts="clr-namespace:Content.Client.UserInterface.Systems.Alerts.Widgets"
     xmlns:actions="clr-namespace:Content.Client.UserInterface.Systems.Actions.Widgets"
+    xmlns:screens="clr-namespace:Content.Client._ES.Screens"
     VerticalExpand="False"
     VerticalAlignment="Bottom"
     HorizontalAlignment="Center">
@@ -21,37 +22,26 @@ significantly modified from old lobbygui, basically everything diff-->
                  Stretch="KeepAspectCovered" />-->
     <!-- ES START -->
     <Control Access="Public" Visible="False" Name="CharacterSetupState" VerticalExpand="True" />
-    <HFillStack Name="FullScreenContainer">
-        <PanelContainer Name="LeftPanel" HorizontalExpand="True">
+    <screens:HudViewportContainer Name="FullScreenContainer" PanelRatio="0.5">
+        <PanelContainer Name="LeftPanel">
             <PanelContainer.PanelOverride>
                 <graphics:StyleBoxFlat BackgroundColor="#000000" />
             </PanelContainer.PanelOverride>
         </PanelContainer>
-        <VFillStack HorizontalExpand="True">
-            <PanelContainer VerticalExpand="True">
-                <PanelContainer.PanelOverride>
-                    <graphics:StyleBoxFlat BackgroundColor="#000000" />
-                </PanelContainer.PanelOverride>
-            </PanelContainer>
-            <LayoutContainer Name="ViewportContainer" HorizontalExpand="True" VerticalExpand="True">
-                <!-- Character setup state -->
-                <!-- This is injected on startup. Funky! -->
-                <controls:MainViewport Name="MainViewport" Margin="0 0 100 0"/>
-                <hotbar:HotbarGui Name="Hotbar" Access="Protected" />
-                <BoxContainer Name="TopLeftContainer" Orientation="Vertical">
-                    <actions:ActionsBar Name="Actions" Access="Protected" />
-                    <BoxContainer Name="VoteMenu" Access="Public" Orientation="Vertical" />
-                </BoxContainer>
-                <alerts:AlertsUI Name="Alerts" Access="Protected" />
-            </LayoutContainer>
-            <PanelContainer VerticalExpand="True">
-                <PanelContainer.PanelOverride>
-                    <graphics:StyleBoxFlat BackgroundColor="#000000" />
-                </PanelContainer.PanelOverride>
-            </PanelContainer>
-        </VFillStack>
 
-        <PanelContainer Name="SeparatedChatPanel" MinWidth="300">
+        <LayoutContainer Name="ViewportContainer">
+            <!-- Character setup state -->
+            <!-- This is injected on startup. Funky! -->
+            <controls:MainViewport Name="MainViewport" VerticalAlignment="Center" />
+            <hotbar:HotbarGui Name="Hotbar" Access="Protected" />
+            <BoxContainer Name="TopLeftContainer" Orientation="Vertical">
+                <actions:ActionsBar Name="Actions" Access="Protected" />
+                <BoxContainer Name="VoteMenu" Access="Public" Orientation="Vertical" />
+            </BoxContainer>
+            <alerts:AlertsUI Name="Alerts" Access="Protected" />
+        </LayoutContainer>
+
+        <PanelContainer Name="SeparatedChatPanel">
             <PanelContainer.PanelOverride>
                 <graphics:StyleBoxFlat BackgroundColor="#2B2C3B" />
             </PanelContainer.PanelOverride>
@@ -97,5 +87,5 @@ significantly modified from old lobbygui, basically everything diff-->
                 <widgets:ChatBox Name="Chat" Access="Public" VerticalExpand="True" Margin="3 3 3 3" MinHeight="50" />
             </BoxContainer>
         </PanelContainer>
-    </HFillStack>
+    </screens:HudViewportContainer>
 </lobbyUi:LobbyGui>
