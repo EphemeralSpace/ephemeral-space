@@ -93,9 +93,11 @@
     enabled: false
     usesApcPower: true
   - type: PointLight
+    radius: 1.26
+    energy: 50
+    curveFactor: 1.0
     enabled: false
     castShadows: false
-    radius: 1.5
   - type: LitOnPowered
   - type: ApcPowerReceiver
     # ES START
@@ -204,6 +206,8 @@
     pack: GenericVendGoodbyes
   - type: Transform
     noRot: false
+  - type: PointLight
+    energy: 2
 
 - type: entity
   parent: VendingMachine
@@ -260,6 +264,9 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["Bar"]]
+  - type: PointLight
+    color: "#5F90A4"
+    energy: 3
   - type: GuideHelp
     guides:
     - Bartender
@@ -1428,6 +1435,8 @@
   name: gas tank dispenser
   description: A vendor for dispensing gas tanks.
   components:
+  - type: PointLight
+    energy: 1
   - type: VendingMachine
     pack: TankDispenserEVAInventory
   - type: Sprite
@@ -1441,6 +1450,8 @@
   name: gas tank dispenser
   description: A vendor for dispensing gas tanks. This one has an engineering livery.
   components:
+  - type: PointLight
+    energy: 1
   - type: VendingMachine
     pack: TankDispenserEngineeringInventory
   - type: Sprite
