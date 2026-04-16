@@ -120,8 +120,8 @@ namespace Content.Client.UserInterface.Controls
 
             // check closest fits on a .5 increment basis
             // (0.5 = no snap, 1 = snap, 1.5 = no snap, etc)
-            if (minPossible < 0.5)
-                return null; // too tiny
+            if (minPossible < 1)
+                return null; // too tiny, always scale
 
             var doubledScale = (int)Math.Floor(minPossible * 2f);
             // if its even, this is an integer fit

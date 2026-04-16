@@ -122,7 +122,7 @@ namespace Content.Client.Viewport
 
         protected override Vector2 MeasureOverride(Vector2 availableSize)
         {
-            return _viewport is null ? Vector2.Zero : (GetViewportSize(availableSize).Size / UIScale);
+            return _viewport is null ? Vector2.Zero : (GetViewportBox(availableSize).Size / UIScale);
         }
 
         protected override void KeyBindDown(GUIBoundKeyEventArgs args)
@@ -168,7 +168,7 @@ namespace Content.Client.Viewport
                 _queuedScreenshots.Clear();
             }
 
-            var drawBox = GetViewportSize(PixelSize);
+            var drawBox = GetViewportBox(PixelSize);
             var drawBoxGlobal = drawBox.Translated(GlobalPixelPosition);
             _viewport.RenderScreenOverlaysBelow(handle, this, drawBoxGlobal);
             handle.DrawingHandleScreen.DrawTextureRect(_viewport.RenderTarget.Texture, drawBox);
@@ -181,7 +181,7 @@ namespace Content.Client.Viewport
         }
 
         // Draw box in pixel coords to draw the viewport at.
-        private UIBox2i GetViewportSize(Vector2 availableSize)
+        private UIBox2i GetViewportBox(Vector2 availableSize)
         {
             DebugTools.AssertNotNull(_viewport);
 
@@ -321,7 +321,7 @@ namespace Content.Client.Viewport
         {
             EnsureViewportCreated();
 
-            var drawBox = GetViewportSize(PixelSize);
+            var drawBox = GetViewportBox(PixelSize);
             var scaleFactor = drawBox.Size / (Vector2) _viewport!.Size;
 
             if (scaleFactor.X == 0 || scaleFactor.Y == 0)
