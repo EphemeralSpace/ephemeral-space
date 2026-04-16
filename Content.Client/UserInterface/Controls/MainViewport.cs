@@ -112,22 +112,22 @@ namespace Content.Client.UserInterface.Controls
                 return null;
 
             // Instead of all that, we just snap to the largest integer scale that fits.
-            // If that (pre-clamp) scale is <1, we return null and let the scaling logic handle it.
+            // If that (pre-clamp) scale is <1, or we arent close enough to an integer fit, we return null and let the scaling logic handle it.
             // TODO: This should probably enforce margins around the viewport.
             var possibleSize = ((Vector2)Root.PixelSize) / ((Vector2)Viewport.ViewportSize);
 
             var minPossible = Math.Min(possibleSize.X, possibleSize.Y);
 
-            // check closest fits on a .5 increment basis
-            // (0.5 = no snap, 1 = snap, 1.5 = no snap, etc)
+            // check closest fits on a .25 increment basis
+            // (0-1 = no snap, 1 = snap, >1.25 = no snap, etc)
             if (minPossible < 1)
                 return null; // too tiny, always scale
 
-            var doubledScale = (int)Math.Floor(minPossible * 2f);
+            var quadScale = (int)Math.Floor(minPossible * 4f);
             // if its even, this is an integer fit
-            // if it isnt, it fits closer to a .5 increment, so just let scaling handle it
-            if ((doubledScale % 2 == 0))
-                return doubledScale / 2;
+            // if it isnt, it fits closer to a .25 increment, so just let scaling handle it
+            if ((quadScale % 4 == 0))
+                return quadScale / 4;
 
             return null;
         }
