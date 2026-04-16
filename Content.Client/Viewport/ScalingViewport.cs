@@ -8,7 +8,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using SixLabors.ImageSharp.PixelFormats;
 
-// ES MODIFIED: support for changing horizontal alignment of the actual rendered viewport, instead of it always being centered
+// ES MODIFIED: a lot
 
 namespace Content.Client.Viewport
 {

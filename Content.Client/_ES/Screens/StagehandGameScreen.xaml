@@ -16,33 +16,30 @@
     VerticalExpand="False"
     VerticalAlignment="Bottom"
     HorizontalAlignment="Center">
-    <HFillStack Name="FullScreenContainer">
-        <FillPanel Name="LeftPanel" StyleClasses="PanelDark" MinWidth="300">
+    <screens:HudViewportContainer Name="FullScreenContainer" PanelRatio="0.8">
+        <FillPanel Name="LeftPanel" StyleClasses="PanelDark">
             <observe:ESStagehandObserveControl Name="ObserveControl"/>
         </FillPanel>
-        <VFillStack Stack.ExpandAxis="Horizontal">
-            <FillPanel StyleClasses="PanelDark"/>
-            <LayoutContainer Name="ViewportContainer" Stack.ExpandAxis="Vertical">
-                <controls:MainViewport Name="MainViewport"/>
-                <widgets:GhostGui Name="Ghost" Access="Protected" />
-                <inventory:InventoryGui Name="Inventory" Access="Protected" />
-                <hotbar:HotbarGui Name="Hotbar" Access="Protected" />
-                <BoxContainer Name="TopLeftContainer" Orientation="Vertical">
-                    <actions:ActionsBar Name="Actions" Access="Protected" />
-                    <BoxContainer Name="VoteMenu" Access="Public" Orientation="Vertical" />
-                </BoxContainer>
-                <alerts:AlertsUI Name="Alerts" Access="Protected" Margin="0 250 0 0" />
-            </LayoutContainer>
-            <FillPanel StyleClasses="PanelDark"/>
-        </VFillStack>
+
+        <LayoutContainer Name="ViewportContainer">
+            <controls:MainViewport Name="MainViewport" VerticalAlignment="Center"/>
+            <widgets:GhostGui Name="Ghost" Access="Protected" />
+            <inventory:InventoryGui Name="Inventory" Access="Protected" />
+            <hotbar:HotbarGui Name="Hotbar" Access="Protected" />
+            <BoxContainer Name="TopLeftContainer" Orientation="Vertical">
+                <actions:ActionsBar Name="Actions" Access="Protected" />
+                <BoxContainer Name="VoteMenu" Access="Public" Orientation="Vertical" />
+            </BoxContainer>
+            <alerts:AlertsUI Name="Alerts" Access="Protected" Margin="0 250 0 0" />
+        </LayoutContainer>
 
         <FillPanel Name="SeparatedChatPanel" StyleClasses="PanelDark">
             <VFillStack SeparationOverride="10" Margin="10">
                 <menuBar:GameTopMenuBar Name="TopBar" Access="Public" />
                 <vote:ESVotingManagerControl Name="VoteControl" SetHeight="300"/>
                 <chat:ChatBox StyleClasses="ChatOutput" Stack.ExpandAxis="Vertical" Name="Chat"
-                              Access="Protected" MinWidth="520" />
+                              Access="Protected" />
             </VFillStack>
         </FillPanel>
-    </HFillStack>
+    </screens:HudViewportContainer>
 </screens:StagehandGameScreen>
