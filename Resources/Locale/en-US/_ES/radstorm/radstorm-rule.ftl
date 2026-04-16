@@ -4,5 +4,5 @@ es-radstorm-15min-announcement = Radiation storm ETA: approximately {$minutes} m
 es-radstorm-5min-announcement = {$minutes} minutes remain until the radiation storm reaches the station. Space surrounding the station is now unsafe for organic life. Recommended course of action: NULL. Do not enter space. Do not enter space. Do not enter space.
 es-radstorm-starting-announcement = Critical levels of radiation detected. Critical levels of radiation detected. Critical levels of radiation detected. Critical levels of radiation detected.
 
-es-radstorm-power-on-navigation-console-on = Navigation systems have resumed operation. Recalculated radiation storm ETA: approximately {$minutes} minutes.
-es-radstorm-power-on-navigation-console-off = Navigation systems have gone offline. Recalculated radiation storm ETA: approximately {$minutes} minutes.
+es-radstorm-power-on-navigation-console = Navigation systems have resumed operation. Recalculated radiation storm ETA: approximately {$minutes} minutes.
+es-radstorm-power-off-navigation-console = Navigation systems have gone offline. Recalculated radiation storm ETA: approximately {$minutes} minutes.
