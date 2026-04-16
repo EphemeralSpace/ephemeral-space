@@ -407,8 +407,9 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: ESRadstormModifierMachine
-    enableAnnouncement: es-radstorm-power-on-navigation-console
-    disableAnnouncement: es-radstorm-power-off-navigation-console
+    modifier: 0.13
+    disableAnnouncement: es-radstorm-power-on-navigation-console
+    enableAnnouncement: es-radstorm-power-off-navigation-console
   - type: PointLight
     color: "#1bfff3"
   - type: ApcPowerReceiverBattery

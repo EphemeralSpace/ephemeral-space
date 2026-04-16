@@ -6,3 +6,12 @@ es-radstorm-starting-announcement = Critical levels of radiation detected. Criti
 
 es-radstorm-power-on-navigation-console = Navigation systems have resumed operation. Recalculated radiation storm ETA: approximately {$minutes} minutes.
 es-radstorm-power-off-navigation-console = Navigation systems have gone offline. Recalculated radiation storm ETA: approximately {$minutes} minutes.
+
+es-radstorm-power-on-thruster-north = North station propulsion thruster has resumed operation. Recalculated radiation storm ETA: approximately {$minutes} minutes.
+es-radstorm-power-off-thruster-north = North station propulsion thruster has been interrupted. Adjusting for decreased speed. Recalculated radiation storm ETA: approximately {$minutes} minutes.
+
+es-radstorm-power-on-thruster-west = West station propulsion thruster has resumed operation. Recalculated radiation storm ETA: approximately {$minutes} minutes.
+es-radstorm-power-off-thruster-west = West station propulsion thruster has been interrupted. Adjusting for decreased speed. Recalculated radiation storm ETA: approximately {$minutes} minutes.
+
+es-radstorm-power-on-thruster-south = South station propulsion thruster has resumed operation. Recalculated radiation storm ETA: approximately {$minutes} minutes.
+es-radstorm-power-off-thruster-south = South station propulsion thruster has been interrupted. Adjusting for decreased speed. Recalculated radiation storm ETA: approximately {$minutes} minutes.

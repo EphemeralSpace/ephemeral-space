@@ -13,7 +13,7 @@ public sealed partial class ESRadstormModifierMachineComponent : Component
     /// Indicator if <see cref="Modifier"/> should be applied.
     /// </summary>
     [DataField]
-    public bool Enabled = true;
+    public bool Enabled;
 
     /// <summary>
     /// Additive modifier applied to radstorm speed when <see cref="Enabled"/> is true
