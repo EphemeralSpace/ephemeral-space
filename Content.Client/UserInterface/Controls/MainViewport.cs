@@ -118,16 +118,16 @@ namespace Content.Client.UserInterface.Controls
 
             var minPossible = Math.Min(possibleSize.X, possibleSize.Y);
 
-            // check closest fits on a .25 increment basis
-            // (0-1 = no snap, 1 = snap, >1.25 = no snap, etc)
+            // check closest fits on a .5 increment basis
+            // (0-1 = no snap, 1 = snap, >1.5 = no snap, etc)
             if (minPossible < 1)
                 return null; // too tiny, always scale
 
-            var quadScale = (int)Math.Floor(minPossible * 4f);
+            var doubleScale = (int)Math.Floor(minPossible * 2f);
             // if its even, this is an integer fit
-            // if it isnt, it fits closer to a .25 increment, so just let scaling handle it
-            if ((quadScale % 4 == 0))
-                return quadScale / 4;
+            // if it isnt, it fits closer to a .5 increment, so just let scaling handle it
+            if ((doubleScale % 2 == 0))
+                return doubleScale / 2;
 
             return null;
         }
