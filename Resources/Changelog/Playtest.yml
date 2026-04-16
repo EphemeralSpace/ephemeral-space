@@ -1,8 +1,16 @@
 Entries:
 - author: test
   changes:
-  - message: test
-    type: Add
+    - message: test
+      type: Add
   id: 1
   time: '2025-08-31T12:54:45.0000000+00:00'
   url: https://github.com/EphemeralSpace/ephemeral-space/pull/1
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: >-
+        Viewport scaling should work better in most situations, including on
+        720p/1440p monitors where it was previously kinda awful
+  id: 2
+  time: '2026-04-16T23:54:27.0000000+00:00'
