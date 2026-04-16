@@ -13,5 +13,4 @@ N/A
 Changelog must have a :cl: symbol, so the bot recognizes the changes and adds them to the game's changelog. -->
 
 :cl:
-Playtest:
 - add: CHANGELOG HERE
