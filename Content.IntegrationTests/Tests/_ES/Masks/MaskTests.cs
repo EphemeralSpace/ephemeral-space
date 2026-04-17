@@ -58,7 +58,7 @@ public sealed class MaskTests : GameTest
     private static readonly Dictionary<ProtoId<ESMaskPrototype>, string> CannotBeAttackerMasks =
         new()
         {
-            {"ESHost", "Has blocked hands and cannot actually pick anything up as result"},
+            {"Host", "Has blocked hands and cannot actually pick anything up as result"},
         };
 
     private static IEnumerable<TestCaseData> AttackerMasks =>
