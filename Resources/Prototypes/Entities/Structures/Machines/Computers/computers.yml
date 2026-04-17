@@ -114,6 +114,7 @@
           type: WiresBoundUserInterface
   - type: PointLight
     color: "#43ccb5"
+  - type: ESAmbientMusicMarkerCommand
 
 - type: entity
   parent: BaseComputer
@@ -362,6 +363,7 @@
 # ES START
   - type: ESSabotageTarget
 # ES END
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -516,6 +518,7 @@
       IdCardConsole-privilegedId: !type:ContainerSlot
       IdCardConsole-targetId: !type:ContainerSlot
   - type: ESSabotageTarget
+  - type: ESAmbientMusicMarkerCommand
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -583,6 +586,7 @@
   # This is a traitor sabotage objective
   - type: ESSabotageTarget
 # ES END
+  - type: ESAmbientMusicMarkerCommand
 
 - type: entity
   parent: ComputerComms
@@ -770,6 +774,7 @@
           type: SurveillanceCameraMonitorBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: BaseComputer
@@ -813,6 +818,7 @@
           type: SurveillanceCameraMonitorBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: BaseComputerAiAccess

@@ -131,6 +131,7 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: ESAmbientMusicMarkerCommand
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -282,6 +283,7 @@
   components:
   - type: ESCargoRequestConsole
     defaultConsoleId: department-Security
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: ESComputerSupplyRequest
@@ -346,6 +348,7 @@
         type: ESCryptoNukeConsoleBui
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+  - type: ESAmbientMusicMarkerCommand # it's not really a "command" object, but it makes sense to play command ambience near these
 
 - type: entity
   parent: ESBaseComputerTerminal
@@ -410,3 +413,4 @@
     netsync: false
     maxCharge: 450
   - type: ExaminableBattery
+  - type: ESAmbientMusicMarkerCommand

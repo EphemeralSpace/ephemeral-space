@@ -170,6 +170,7 @@
   - type: AccessReader
     access: [["Security"]]
   - type: ESSabotageTarget
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: ESBaseTabletopComputerAiAccess
@@ -310,6 +311,7 @@
       IdCardConsole-privilegedId: !type:ContainerSlot
       IdCardConsole-targetId: !type:ContainerSlot
   - type: ESSabotageTarget
+  - type: ESAmbientMusicMarkerCommand
 
 - type: entity
   parent: ESBaseTabletopComputer
@@ -347,6 +349,7 @@
           type: SurveillanceCameraMonitorBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: ESBaseTabletopComputer
@@ -386,6 +389,7 @@
           type: SurveillanceCameraMonitorBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: [ ESBaseComputerSupplyRequest, ESBaseTabletopComputer ]
