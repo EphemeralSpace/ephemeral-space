@@ -22,6 +22,9 @@ public sealed class ESHemophageSystem : EntitySystem
 
     private void OnPlayerKilled(Entity<ESHemophageComponent> ent, ref ESPlayerKilledEvent args)
     {
+        if (!args.ValidKill)
+            return;
+
         if (!TryComp<MindComponent>(ent, out var mind) ||
             mind.OwnedEntity is not { } owned)
             return;
