@@ -377,3 +377,36 @@
         type: ESPortalGeneratorConsoleBui
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+
+- type: entity
+  parent: ESBaseComputerTerminal
+  id: ESBaseComputerTerminalNavigation
+  name: navigation terminal
+  description: Keep going and take the next left.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: navigation
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ESRadstormModifierMachine
+    modifier: 0.13
+    disableAnnouncement: es-radstorm-power-on-navigation-console
+    enableAnnouncement: es-radstorm-power-off-navigation-console
+  - type: PointLight
+    color: "#1bfff3"
+  - type: ApcPowerReceiverBattery
+    batteryRechargeRate: 25
+  - type: Battery
+    netsync: false
+    maxCharge: 450
+  - type: ExaminableBattery

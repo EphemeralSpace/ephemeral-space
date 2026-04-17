@@ -37,3 +37,27 @@
   components:
   - type: NavMapBeacon
     defaultText: es-station-beacon-armory-access
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: ESDefaultStationBeaconThrusterNorth
+  suffix: North Thruster, ES
+  components:
+  - type: NavMapBeacon
+    defaultText: es-station-beacon-thruster-north
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: ESDefaultStationBeaconThrusterSouth
+  suffix: South Thruster, ES
+  components:
+  - type: NavMapBeacon
+    defaultText: es-station-beacon-thruster-south
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: ESDefaultStationBeaconThrusterWest
+  suffix: West Thruster, ES
+  components:
+  - type: NavMapBeacon
+    defaultText: es-station-beacon-thruster-west

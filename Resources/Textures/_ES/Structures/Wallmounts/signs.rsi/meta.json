@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by Spessmann: https://github.com/Spessmann",
+    "copyright": "Created by Spessmann: https://github.com/Spessmann, thruster created by EmoGarbage404",
     "size": {
         "x": 32,
         "y": 32
@@ -21,6 +21,9 @@
         },
         {
             "name": "tech"
+        },
+        {
+            "name": "thruster"
         }
     ]
 }
