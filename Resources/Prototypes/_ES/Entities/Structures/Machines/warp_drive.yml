@@ -1,12 +1,20 @@
 - type: entity
   parent: BaseStructure
-  id: ESMachineSciencePortalGenerator
-  name: portal generator
-  description: Through a wrinkle in time, vast and distant dimensions can be brought close together simultaneously, allowing for the instant transfer of materia.
+  id: ESMachineScienceWarpDrive
+  name: gravitational warp drive
+  description: Through a singularity in time and space, vast and distant dimensions can be brought close together simultaneously, allowing for the instant transfer of materia.
   suffix: ES
   components:
-# to be indestructible, we need to re-construct basemachine without the damageable part
+  # to be indestructible, we need to re-construct basemachine without the damageable part
   - type: InteractionOutline
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Effects/singularity.ogg
+  - type: SingularityDistortion
+    intensity: 75
+    falloffPower: 2.6
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -27,6 +35,9 @@
     - state: base
     - state: cube-off
       map: [ "cube" ]
+    - sprite: Structures/Power/Generation/Singularity/singularity_1.rsi
+      state: singularity_1
+      color: "#FFFFFFCC"
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -42,7 +53,7 @@
     enabled: false
     radius: 8
     energy: 15
-    color: "#3399ff"
+    color: "#b74c95"
     netsync: false
   - type: ESGenericPointLightVisualizer
     visuals:
