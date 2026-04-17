@@ -42,7 +42,7 @@
           tags:
           - FireAxe
   - type: Lock
-  - type: ESAmbientMusicMarkerAtmos
+  - type: ESAmbientMusicMarkerEngineering
 
 - type: entity
   parent: ESFireAxeCabinet

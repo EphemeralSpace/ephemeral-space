@@ -33,12 +33,3 @@
     - type: ESAmbientMusicMarkerSecurity
     count: 3
     range: 5
-
-- type: rules
-  id: ESNearAtmos
-  rules:
-  - !type:NearbyComponentsRule
-    components:
-    - type: ESAmbientMusicMarkerAtmos
-    count: 2
-    range: 7
