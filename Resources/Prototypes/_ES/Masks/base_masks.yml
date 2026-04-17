@@ -19,12 +19,12 @@
 - type: esMask
   parent: ESBaseCommandRestricted
   id: ESBaseParasite
-  troupe: ESParasite
+  troupe: Parasite
   abstract: true
   components:
   - type: ESTroupeFactionIcon
     icon: ESParasite
-    troupe: ESParasite
+    troupe: Parasite
     examineString: es-mask-troupe-parasite-examine
   objectives:
     all:
@@ -34,10 +34,10 @@
 - type: esMask
   parent: ESBaseCommandRestricted
   id: ESBaseTraitor
-  troupe: ESTraitor
+  troupe: Traitor
   abstract: true
   components:
   - type: ESTroupeFactionIcon
     icon: ESTraitor
-    troupe: ESTraitor
+    troupe: Traitor
     examineString: es-mask-troupe-traitor-examine

@@ -9,10 +9,10 @@ namespace Content.Server._ES.Troupes.Parasite.Components;
 public sealed partial class ESParasiteConverterComponent : Component
 {
     [DataField]
-    public ProtoId<ESTroupePrototype> IgnoreTroupe = "ESParasite";
+    public ProtoId<ESTroupePrototype> IgnoreTroupe = "Parasite";
 
     [DataField]
-    public ProtoId<ESMaskPrototype> Mask = "ESHost";
+    public ProtoId<ESMaskPrototype> Mask = "Host";
 
     [DataField]
     public SoundSpecifier Sound = new SoundCollectionSpecifier("desecration");

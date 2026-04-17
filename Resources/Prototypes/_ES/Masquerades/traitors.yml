@@ -6,10 +6,10 @@
   minPlayers: 6
   gameRules: []
   masquerade:
-    defaultMask: "ESCrewmember"
+    defaultMask: "Crewmember"
     superfanTarget: "#Traitors"
     roles:
-      6: ["ESMarauder", "ESInfiltrator", "#Filler(2)", "ESRebel", "#Targeters"] # 0 generic crew, 2 traitors
+      6: ["Marauder", "Infiltrator", "#Filler(2)", "Rebel", "#Targeters"] # 0 generic crew, 2 traitors
       7: ["#Filler"]
       8: ["#Filler"]
       9: ["ESVigilante"]
@@ -25,7 +25,7 @@
       21: ["#Filler", "-#Traitors", "#PowerTraitors"] # 1 generic crew, 4 traitors.
       22: ["#Filler"]
       24: ["#TraitorGunners"] # 2 generic crew, 4 traitors.
-      25: ["ESMarauder"] # 2 generic crew, 5 traitors.
+      25: ["Marauder"] # 2 generic crew, 5 traitors.
       26: ["#Filler"]
       28: ["#TraitorGunners"] # 3 generic crew, 5 traitors.
       29: ["#Filler"]

@@ -8,6 +8,7 @@ using Content.Server.Chat;
 using Content.Server.Mind;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Masks.Components;
+using Content.Shared.Guidebook;
 using Content.Shared.Mind;
 using Robust.Shared.Prototypes;
 
@@ -26,6 +27,7 @@ public sealed class MaskTests : GameTest
     };
 
     public static readonly string[] Masks = GameDataScrounger.PrototypesOfKind<ESMaskPrototype>();
+    public static readonly string[] Troupes = GameDataScrounger.PrototypesOfKind<ESTroupePrototype>();
 
     [Test]
     [TestCaseSource(nameof(Masks))]
@@ -129,5 +131,27 @@ public sealed class MaskTests : GameTest
         // Few seconds for stuff to settle.
         // Don't worry tests don't run in realtime.
         await RunSeconds(20);
+    }
+
+    [Test]
+    [TestCaseSource(nameof(Masks))]
+    [Description("Ensures every mask has a corresponding guide entry with the same ID.")]
+    public async Task EnsureMaskGuideEntries(string maskProto)
+    {
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(Server.ProtoMan.HasIndex<GuideEntryPrototype>(maskProto), $"{maskProto} must have a guide entry with the same ID as the mask!");
+        });
+    }
+
+    [Test]
+    [TestCaseSource(nameof(Troupes))]
+    [Description("Ensures every troupe has a corresponding guide entry with the same ID.")]
+    public async Task EnsureTroupeGuideEntries(string troupeProto)
+    {
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(Server.ProtoMan.HasIndex<GuideEntryPrototype>(troupeProto), $"{troupeProto} must have a guide entry with the same ID as the troupe!");
+        });
     }
 }

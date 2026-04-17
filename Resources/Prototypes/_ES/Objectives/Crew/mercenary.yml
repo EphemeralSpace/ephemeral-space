@@ -9,6 +9,6 @@
       sprite: _ES/Objects/Weapons/Guns/357.rsi
       state: icon
   - type: ESKillTroupeObjective
-    troupe: ESCrew
+    troupe: Crew
     invert: true
   - type: ESCounterObjective
