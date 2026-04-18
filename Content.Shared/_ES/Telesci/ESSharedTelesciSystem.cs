@@ -144,8 +144,6 @@ public abstract class ESSharedTelesciSystem : EntitySystem
     {
         ent.Comp.AccumulatedChargeTime = TimeSpan.Zero;
         Dirty(ent);
-
-        _appearance.SetData(ent, ESPortalGeneratorVisuals.Charged, false);
     }
 
     public override void Update(float frameTime)
@@ -163,8 +161,6 @@ public abstract class ESSharedTelesciSystem : EntitySystem
                 continue;
             comp.AccumulatedChargeTime += comp.UpdateDelay;
             Dirty(uid, comp);
-
-            _appearance.SetData(uid, ESPortalGeneratorVisuals.Charged, comp.Charged);
         }
 
         var consoleQuery = EntityQueryEnumerator<ESPortalGeneratorConsoleComponent, UserInterfaceComponent>();

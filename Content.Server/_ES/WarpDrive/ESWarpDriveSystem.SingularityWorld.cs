@@ -8,6 +8,7 @@ using Content.Shared.Teleportation.Systems;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -28,6 +29,7 @@ public sealed partial class ESWarpDriveSystem
     private static readonly ProtoId<ESSpawnRegionPrototype> TeleportInWorld = "ESSingularityWorldTeleportInWorld";
 
     public MapId? SingularityWorldMapId;
+    public HashSet<Entity<MapGridComponent>>? SingularityWorldGrids;
 
     private void InitializeSingularityWorld()
     {
@@ -76,12 +78,13 @@ public sealed partial class ESWarpDriveSystem
     {
         // Load singularity world
         var opts = DeserializationOptions.Default with {InitializeMaps = true};
-        if (!_loader.TryLoadMap(component.SingularityWorldMap, out var map, out _, opts))
+        if (!_loader.TryLoadMap(component.SingularityWorldMap, out var map, out var grids, opts))
         {
             throw new Exception($"Failed to load singularity world map {component.SingularityWorldMap}");
         }
 
         SingularityWorldMapId = map.Value.Comp.MapId;
+        SingularityWorldGrids = grids;
         Log.Info($"Created new singularity world at map ID {SingularityWorldMapId}");
 
         // Properly set up the teleporting effect

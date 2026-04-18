@@ -359,16 +359,17 @@
       sprite: _ES/Structures/Machines/computer.rsi
       state: terminal
     - map: ["computerLayerKeyboard"]
-      state: teleport_key_off
+      state: tech_key_off
     - map: ["computerLayerScreen"]
-      state: teleport
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: warpdrive
     - map: ["computerLayerKeys"]
-      state: teleport_key
+      state: tech_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: ESPortalGeneratorConsole
   - type: PointLight
-    color: "#0099ff"
+    color: "#c471aa"
   - type: ActivatableUI
     key: enum.ESPortalGeneratorConsoleUiKey.Key
   - type: UserInterface

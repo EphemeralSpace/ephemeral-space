@@ -47,7 +47,7 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ESPortalGeneratorVisuals.Charged:
+      enum.ESWarpDriveVisuals.Charging:
         cube:
           True:
             state: cube
@@ -63,7 +63,7 @@
     netsync: false
   - type: ESGenericPointLightVisualizer
     visuals:
-      enum.ESPortalGeneratorVisuals.Charged:
+      enum.ESWarpDriveVisuals.Charging:
         True:
           enabled: true
         False:
