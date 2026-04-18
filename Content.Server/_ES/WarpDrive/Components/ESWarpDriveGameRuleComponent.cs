@@ -47,6 +47,7 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     /// <summary>
     ///     Used to calculate if an interruption should occur from manual sabotage.
     /// </summary>
+    [DataField]
     public int ItemsTeleportedSinceLastInterruption = 0;
 
     /// <summary>
@@ -67,19 +68,19 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     ///     Min amount of time between random interruptions.
     /// </summary>
     [DataField]
-    public TimeSpan MinRandomInterruptionTime = TimeSpan.FromMinutes(9);
+    public TimeSpan MinRandomInterruptionTime = TimeSpan.FromMinutes(8);
 
     /// <summary>
     ///     Max amount of time between random interruptions.
     /// </summary>
     [DataField]
-    public TimeSpan MaxRandomInterruptionTime = TimeSpan.FromMinutes(12);
+    public TimeSpan MaxRandomInterruptionTime = TimeSpan.FromMinutes(10);
 
     /// <summary>
     ///     How long a warp drive interruption event can last before it (violently) ends on its own
     /// </summary>
-    [DataField]
-    public TimeSpan InterruptionForceEndTime = TimeSpan.FromMinutes(5);
+    //[DataField]
+    //public TimeSpan InterruptionForceEndTime = TimeSpan.FromMinutes(5);
 
     [DataField]
     public int MinInterruptionTrashSpawns = 3;

@@ -191,6 +191,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             else if (warpDrive.ItemsTeleportedSinceLastInterruption > warpDrive.FinalPhaseForceEndItems
                      && warpDrive.InFinalPhase)
             {
+                warpDrive.ItemsTeleportedSinceLastInterruption = 0;
                 warpDrive.InFinalPhase = false;
                 _chat.DispatchGlobalAnnouncement(
                     Loc.GetString("es-warp-drive-announcement-final-phase-force-ended"),
