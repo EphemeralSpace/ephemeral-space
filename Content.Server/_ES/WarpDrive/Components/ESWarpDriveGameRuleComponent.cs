@@ -62,7 +62,7 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     ///     occurs after
     /// </summary>
     [DataField]
-    public TimeSpan FinalPhaseTime = TimeSpan.FromMinutes(4);
+    public TimeSpan FinalPhaseTime = TimeSpan.FromMinutes(3);
 
     /// <summary>
     ///     Min amount of time between random interruptions.

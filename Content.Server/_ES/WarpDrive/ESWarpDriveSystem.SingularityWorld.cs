@@ -45,7 +45,7 @@ public sealed partial class ESWarpDriveSystem
         SpawnAtPosition(TeleportEffect, Transform(args.Entity).Coordinates);
         _popup.PopupEntity(Loc.GetString("es-warp-drive-singularity-teleport-user"), args.Entity, args.Entity);
         IncrementTeleportedEntitiesCount();
-        _brainDamage.TryChangeBrainDamage(args.Entity, 10);
+        _brainDamage.TryChangeBrainDamage(args.Entity, 20);
     }
 
     private void ActiveTickSingularityWorld()

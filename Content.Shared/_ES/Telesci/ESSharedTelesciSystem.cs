@@ -1,6 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared._ES.Objectives;
-using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Telesci.Components;
 using Content.Shared.EntityTable;
 using Content.Shared.Gravity;
@@ -12,24 +10,15 @@ namespace Content.Shared._ES.Telesci;
 public abstract class ESSharedTelesciSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] protected readonly EntityTableSystem EntityTable = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly ESSharedObjectiveSystem _objective = default!;
     [Dependency] protected readonly SharedStationSystem Station = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<ESPortalGeneratorComponent, MapInitEvent>(OnGeneratorMapInit);
         SubscribeLocalEvent<ESPortalGeneratorConsoleComponent, MapInitEvent>(OnConsoleMapInit);
-        Subs.BuiEvents<ESPortalGeneratorConsoleComponent>(ESPortalGeneratorConsoleUiKey.Key,
-            subs =>
-            {
-                subs.Event<ESActivePortalGeneratorBuiMessage>(OnActivePortalGenerator);
-            }
-        );
     }
 
     private void OnGeneratorMapInit(Entity<ESPortalGeneratorComponent> ent, ref MapInitEvent args)
@@ -41,20 +30,6 @@ public abstract class ESSharedTelesciSystem : EntitySystem
     private void OnConsoleMapInit(Entity<ESPortalGeneratorConsoleComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.NextUpdateTime = _timing.CurTime + ent.Comp.NextUpdateTime;
-    }
-
-    private void OnActivePortalGenerator(Entity<ESPortalGeneratorConsoleComponent> ent, ref ESActivePortalGeneratorBuiMessage args)
-    {
-        if (!TryGetPortalGenerator(out var generator))
-            return;
-
-        if (!generator.Value.Comp.Charged || generator.Value.Comp.ThreatsLeft > 0)
-            return;
-
-        if (!Station.TryGetOwningStation<ESTelesciStationComponent>(ent, out var station))
-            return;
-
-        AdvanceTelesciStage(station.Value.AsNullable());
     }
 
     public void AdvanceTelesciStage(Entity<ESTelesciStationComponent?> ent)
@@ -107,25 +82,6 @@ public abstract class ESSharedTelesciSystem : EntitySystem
         return ent.Comp.Stage >= ent.Comp.MaxStage;
     }
 
-    private void UpdateUiState(Entity<ESPortalGeneratorConsoleComponent, UserInterfaceComponent> ent)
-    {
-        if (Station.GetOwningStation(ent) is not { } station ||
-            !TryComp<ESTelesciStationComponent>(station, out var stationComp))
-            return;
-
-        if (!TryGetPortalGenerator(out var generator))
-            return;
-
-        var state = new ESPortalGeneratorConsoleBuiState
-        {
-            Charge = (float) Math.Clamp(generator.Value.Comp.AccumulatedChargeTime.TotalSeconds / generator.Value.Comp.ChargeDuration.TotalSeconds, 0, 1),
-            Charging = generator.Value.Comp.Powered,
-            CurrentResearchStage = stationComp.Stage,
-            MaxResearchStage = stationComp.MaxStage,
-            ThreatsLeft = generator.Value.Comp.ThreatsLeft
-        };
-        _userInterface.SetUiState((ent, ent.Comp2), ESPortalGeneratorConsoleUiKey.Key, state);
-    }
 
     public bool TryGetPortalGenerator([NotNullWhen(true)] out Entity<ESPortalGeneratorComponent>? ent)
     {
@@ -164,13 +120,11 @@ public abstract class ESSharedTelesciSystem : EntitySystem
         }
 
         var consoleQuery = EntityQueryEnumerator<ESPortalGeneratorConsoleComponent, UserInterfaceComponent>();
-        while (consoleQuery.MoveNext(out var uid, out var comp, out var ui))
+        while (consoleQuery.MoveNext(out var uid, out var comp, out _))
         {
             if (_timing.CurTime < comp.NextUpdateTime)
                 continue;
             comp.NextUpdateTime += comp.UpdateDelay;
-
-            UpdateUiState((uid, comp, ui));
         }
     }
 }

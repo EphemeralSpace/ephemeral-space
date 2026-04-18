@@ -6,6 +6,7 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.RoundEnd;
 using Content.Shared._ES.Objectives.Components;
+using Content.Shared._ES.Telesci.Components;
 using Content.Shared._ES.WarpDrive;
 using Content.Shared.Administration;
 using Content.Shared.EntityTable;
@@ -32,6 +33,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
     [Dependency] private readonly ESObjectiveSystem _objective = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
@@ -40,7 +42,30 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         SubscribeLocalEvent<ESWarpDriveObjectiveComponent, ESGetObjectiveProgressEvent>(OnGetObjectiveProgress);
         SubscribeLocalEvent<ESSingularityWorldInterruptionComponent, GotEquippedHandEvent>(OnInterruptionPickedUp);
 
+        Subs.BuiEvents<ESPortalGeneratorConsoleComponent>(ESPortalGeneratorConsoleUiKey.Key,
+            subs =>
+            {
+                subs.Event<ESActivePortalGeneratorBuiMessage>(OnActivateWarpDrive);
+            }
+        );
+
         InitializeSingularityWorld();
+    }
+
+    private void OnActivateWarpDrive(EntityUid uid, ESPortalGeneratorConsoleComponent component, ESActivePortalGeneratorBuiMessage args)
+    {
+        var query = EntityQueryEnumerator<ESWarpDriveGameRuleComponent>();
+        while (query.MoveNext(out _, out var warp))
+        {
+            warp.FinalPhaseAt = _timing.CurTime;
+            warp.InFinalPhase = true;
+
+            _chat.DispatchGlobalAnnouncement(
+                Loc.GetString("es-warp-drive-announcement-final-phase-started"),
+                Loc.GetString("es-warpdrive-announcer"),
+                announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg"),
+                colorOverride: Color.MediumVioletRed);
+        }
     }
 
     private void OnInterruptionPickedUp(Entity<ESSingularityWorldInterruptionComponent> ent, ref GotEquippedHandEvent args)
@@ -92,10 +117,12 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         {
             _objective.RefreshObjectiveProgress<ESWarpDriveObjectiveComponent>();
             _roundEnd.EndRound(TimeSpan.FromMinutes(1));
+            return;
         }
 
         // check if we should play our announcements
         var currentCharge = GetChargePercentage(component);
+        UpdateUiState(currentCharge, component.InFinalPhase);
         foreach (var announcement in component.Announcements)
         {
             if (announcement.Completed)
@@ -164,6 +191,15 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
                 Loc.GetString("es-warpdrive-announcer"),
                 announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_medium.ogg"),
                 colorOverride: Color.MediumVioletRed);
+        }
+    }
+
+    private void UpdateUiState(float charge, bool finalPhase)
+    {
+        var query = EntityQueryEnumerator<ESPortalGeneratorConsoleComponent>();
+        while (query.MoveNext(out var uid, out _))
+        {
+            _ui.SetUiState(uid, ESPortalGeneratorConsoleUiKey.Key, new ESPortalGeneratorConsoleBuiState() { Charge = charge, FinalPhase = finalPhase });
         }
     }
 
