@@ -15,21 +15,18 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.PowerDeviceVisuals.Powered:
+      enum.ESRadstormModifierMachineVisuals.Enabled:
         enum.PowerDeviceVisualLayers.Powered:
-          True: {visible: true}
-          False: {visible: false}
+          False: {visible: true}
+          True: {visible: false}
+  - type: ESGenericPointLightVisualizer
+    visuals:
+      enum.ESRadstormModifierMachineVisuals.Enabled:
+        True: { enabled: false }
+        False: { enabled: true }
   - type: InteractionOutline
   - type: Transform
     anchored: true
-  - type: ApcPowerReceiver
-  - type: ApcPowerReceiverBattery
-    idleLoad: 25
-    batteryRechargeRate: 50
-  - type: Battery
-    netsync: false
-    maxCharge: 2500
-  - type: ExtensionCableReceiver
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -53,8 +50,8 @@
     range: 7
     sound:
       path: /Audio/Effects/shuttle_thruster.ogg
-  - type: LitOnPowered
   - type: PointLight
+    netsync: false
     offset: 0, -1.5
     radius: 2.5
     energy: 0.5
@@ -67,7 +64,7 @@
   suffix: North
   components:
   - type: ESRadstormModifierMachine
-    enableAnnouncement: es-radstorm-power-on-thruster-north
+    enableAnnouncement: es-radstorm-power-off-thruster-north
     disableAnnouncement: es-radstorm-power-on-thruster-north
 
 - type: entity
@@ -76,7 +73,7 @@
   suffix: West
   components:
   - type: ESRadstormModifierMachine
-    enableAnnouncement: es-radstorm-power-on-thruster-west
+    enableAnnouncement: es-radstorm-power-off-thruster-west
     disableAnnouncement: es-radstorm-power-on-thruster-west
 
 - type: entity
@@ -85,5 +82,5 @@
   suffix: South
   components:
   - type: ESRadstormModifierMachine
-    enableAnnouncement: es-radstorm-power-on-thruster-south
+    enableAnnouncement: es-radstorm-power-off-thruster-south
     disableAnnouncement: es-radstorm-power-on-thruster-south

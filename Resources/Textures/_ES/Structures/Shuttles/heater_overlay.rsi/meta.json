@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "copyright": "Created by Flareguy for Ephemeral Space",
+  "license": "CC-BY-SA-3.0",
+  "states": [
+    {
+      "name": "overlay"
+    }
+  ]
+}
