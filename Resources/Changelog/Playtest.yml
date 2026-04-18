@@ -34,3 +34,12 @@ Entries:
       message: Fixed being unable to use "T" and other chat shortcuts in the lobby.
   id: 5
   time: '2026-04-18T20:52:02.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        The station now has several thrusters which keep it moving away from the
+        radstorm. Make sure these are fueled up with welding fuel, or else you
+        may find the storm approaching faster than expected.
+  id: 6
+  time: '2026-04-18T21:54:34.0000000+00:00'
