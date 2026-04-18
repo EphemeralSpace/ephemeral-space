@@ -4,8 +4,8 @@ meta:
   engineVersion: 275.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/18/2026 16:06:37
-  entityCount: 14689
+  time: 04/18/2026 19:18:11
+  entityCount: 14692
 maps:
 - 3
 grids:
@@ -38569,12 +38569,12 @@ entities:
   - uid: 11715
     components:
     - type: Transform
-      pos: -46.5,-18.5
+      pos: -42.5,5.5
       parent: 2
   - uid: 11775
     components:
     - type: Transform
-      pos: -66.5,-11.5
+      pos: -3.5,4.5
       parent: 2
   - uid: 11791
     components:
@@ -38770,6 +38770,21 @@ entities:
     components:
     - type: Transform
       pos: -27.5,-25.5
+      parent: 2
+  - uid: 12392
+    components:
+    - type: Transform
+      pos: -20.5,24.5
+      parent: 2
+  - uid: 12402
+    components:
+    - type: Transform
+      pos: -8.5,-41.5
+      parent: 2
+  - uid: 12405
+    components:
+    - type: Transform
+      pos: 11.5,31.5
       parent: 2
 - proto: ESMedkitBruteFilled
   entities:
