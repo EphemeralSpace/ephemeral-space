@@ -16,10 +16,7 @@ namespace Content.Server.CartridgeLoader.Cartridges;
 public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
 {
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {
