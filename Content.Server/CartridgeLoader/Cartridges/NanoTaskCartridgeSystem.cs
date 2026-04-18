@@ -127,18 +127,9 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
             {
                 if (!task.Item.Validate())
                     return;
-                if (_timing.CurTime < ent.Comp.NextPrintAllowedAfter)
-                    return;
 
                 // die
                 return;
-
-                ent.Comp.NextPrintAllowedAfter = _timing.CurTime + ent.Comp.PrintDelay;
-                var printed = Spawn("PaperNanoTaskItem", Transform(message.Actor).Coordinates);
-                _hands.PickupOrDrop(message.Actor, printed);
-                _audio.PlayPvs(new SoundPathSpecifier("/Audio/Machines/printer.ogg"), ent.Owner);
-                SetupPrintedTask(printed, task.Item);
-                break;
             }
         }
 
