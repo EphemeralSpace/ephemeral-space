@@ -1,13 +1,20 @@
+using Content.Server._ES.Objectives;
 using Content.Server._ES.WarpDrive.Components;
+using Content.Server.Administration;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
+using Content.Server.RoundEnd;
+using Content.Shared._ES.Objectives.Components;
+using Content.Shared._ES.WarpDrive;
+using Content.Shared.Administration;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Hands;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Toolshed;
 
 namespace Content.Server._ES.WarpDrive;
 
@@ -22,11 +29,14 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly EntityTableSystem _table = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly ESObjectiveSystem _objective = default!;
+    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<ESWarpDriveObjectiveComponent, ESGetObjectiveProgressEvent>(OnGetObjectiveProgress);
         SubscribeLocalEvent<ESSingularityWorldInterruptionComponent, GotEquippedHandEvent>(OnInterruptionPickedUp);
 
         InitializeSingularityWorld();
@@ -38,10 +48,26 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         _popup.PopupEntity(Loc.GetString("es-warp-drive-interruption-picked-up-user"), args.User, args.User);
     }
 
+    private void OnGetObjectiveProgress(Entity<ESWarpDriveObjectiveComponent> ent, ref ESGetObjectiveProgressEvent args)
+    {
+        var query = EntityQueryEnumerator<ESWarpDriveGameRuleComponent>();
+        while (query.MoveNext(out _, out var warp))
+        {
+            args.Progress = WarpDriveSuccess(warp) ? 1f : 0f;
+        }
+    }
+
     public float GetChargePercentage(ESWarpDriveGameRuleComponent component)
     {
         var totalTime = (_timing.CurTime - _ticker.RoundStartTimeSpan) - component.AccumulatedInterruptionTime;
         return (float) (totalTime / component.BaseChargeTime);
+    }
+
+    public bool WarpDriveSuccess(ESWarpDriveGameRuleComponent component)
+    {
+        return component.InFinalPhase
+               && component.FinalPhaseAt is { } startTime
+               && _timing.CurTime > (startTime + component.FinalPhaseTime);
     }
 
     protected override void Started(EntityUid uid,
@@ -60,10 +86,53 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
 
         ActiveTickSingularityWorld(component, frameTime);
 
+        // check if we should win from final phase ending
+        if (WarpDriveSuccess(component))
+        {
+            _objective.RefreshObjectiveProgress<ESWarpDriveObjectiveComponent>();
+            _roundEnd.EndRound(TimeSpan.FromMinutes(1));
+        }
+
+        // check if we should play our announcements
+        var currentCharge = GetChargePercentage(component);
+        foreach (var announcement in component.Announcements)
+        {
+            if (announcement.Completed)
+                continue;
+
+            if (currentCharge < announcement.AfterChargePercentage)
+                continue;
+
+            _chat.DispatchGlobalAnnouncement(
+                Loc.GetString(announcement.AnnouncementText),
+                Loc.GetString("es-warpdrive-announcer"),
+                announcementSound: announcement.AnnouncementSound,
+                colorOverride: Color.MediumVioletRed);
+
+            announcement.Completed = true;
+        }
+
+        // check if we should make a new random interruption
+        if (_timing.CurTime > component.NextInterruptionTime)
+        {
+            // uhh... i seem to have.. caught you at a very interrupted time..
+            // lets try again in a bit
+            if (component.Interrupted)
+            {
+                component.NextInterruptionTime = _timing.CurTime + _random.Next(
+                    component.MinRandomInterruptionTime / 2,
+                    component.MaxRandomInterruptionTime / 2);
+            }
+            else
+            {
+                CauseInterruption(component);
+            }
+        }
+
         // check if there are any active interrupting entities
         var interruptions = 0;
         var query = EntityQueryEnumerator<ESSingularityWorldInterruptionComponent, TransformComponent>();
-        while (query.MoveNext(out var interruption, out _, out var xform))
+        while (query.MoveNext(out _, out _, out var xform))
         {
             if (xform.MapID != SingularityWorldMapId)
                 continue;
@@ -93,23 +162,6 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
                 announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_medium.ogg"),
                 colorOverride: Color.MediumVioletRed);
         }
-
-        // check if we should make a new random interruption
-        if (_timing.CurTime > component.NextInterruptionTime)
-        {
-            // uhh... i seem to have.. caught you at a very interrupted time..
-            // lets try again in a bit
-            if (component.Interrupted)
-            {
-                component.NextInterruptionTime = _timing.CurTime + _random.Next(
-                    component.MinRandomInterruptionTime / 2,
-                    component.MaxRandomInterruptionTime / 2);
-            }
-            else
-            {
-
-            }
-        }
     }
 
     private void IncrementTeleportedEntitiesCount(EntityUid teleportedEntity)
@@ -122,16 +174,22 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
                 && warpDrive is { Interrupted: false, InFinalPhase: false })
             {
                 warpDrive.ItemsTeleportedSinceLastInterruption = 0;
+                CauseInterruption(warpDrive);
             }
             else if (warpDrive.ItemsTeleportedSinceLastInterruption > warpDrive.FinalPhaseForceEndItems
                      && warpDrive.InFinalPhase)
             {
                 warpDrive.InFinalPhase = false;
+                _chat.DispatchGlobalAnnouncement(
+                    Loc.GetString("es-warp-drive-announcement-final-phase-force-ended"),
+                    Loc.GetString("es-warpdrive-announcer"),
+                    announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg"),
+                    colorOverride: Color.MediumVioletRed);
             }
         }
     }
 
-    private void CauseInterruption(ESWarpDriveGameRuleComponent component)
+    public void CauseInterruption(ESWarpDriveGameRuleComponent component)
     {
         if (SingularityWorldGrids is null || _proto.Index(component.InterruptionTrashTable) is not  { } table)
             return;
@@ -151,6 +209,24 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             amt--;
         }
 
+        component.NextInterruptionTime = _timing.CurTime + _random.Next(component.MinRandomInterruptionTime, component.MaxRandomInterruptionTime);
         // no announcement thats handled later by it noticing
+    }
+}
+
+[ToolshedCommand, AdminCommand(AdminFlags.Debug)]
+public sealed class CauseWarpDriveInterruptionCommand : ToolshedCommand
+{
+    private ESWarpDriveSystem? _sys;
+
+    [CommandImplementation]
+    public void CauseWarpDriveInterruption()
+    {
+        _sys ??= GetSys<ESWarpDriveSystem>();
+        var query = EntityManager.EntityQueryEnumerator<ESWarpDriveGameRuleComponent>();
+        while (query.MoveNext(out _, out var rule))
+        {
+            _sys.CauseInterruption(rule);
+        }
     }
 }
