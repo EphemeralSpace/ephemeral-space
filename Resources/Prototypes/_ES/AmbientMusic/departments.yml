@@ -10,16 +10,6 @@
   priority: 3
 
 - type: ambientMusic
-  id: ESAtmos
-  disabled: false
-  sound:
-    params:
-      volume: -8
-    collection: AmbienceAtmos
-  rules: ESNearAtmos
-  priority: 3
-
-- type: ambientMusic
   id: ESEngineering
   disabled: false
   sound:
