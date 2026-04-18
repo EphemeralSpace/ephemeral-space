@@ -1,0 +1,5 @@
+- type: entity
+  id: ESWarpDriveRule
+  parent: BaseGameRule
+  components:
+  - type: ESWarpDriveGameRule

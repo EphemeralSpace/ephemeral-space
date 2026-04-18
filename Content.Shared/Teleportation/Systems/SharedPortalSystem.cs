@@ -239,6 +239,11 @@ public abstract class SharedPortalSystem : EntitySystem
 
         LogTeleport(ent, subject, Transform(subject).Coordinates, target);
 
+        var portalEv = new PortalTeleportedEvent(subject);
+        var teleportedEv = new TeleportedByPortalEvent(ent.Owner);
+        RaiseLocalEvent(ent.Owner, ref portalEv);
+        RaiseLocalEvent(subject, ref teleportedEv);
+
         _transform.SetCoordinates(subject, target);
 
         if (!playSound)
@@ -279,3 +284,15 @@ public abstract class SharedPortalSystem : EntitySystem
     {
     }
 }
+
+/// <summary>
+///     Raised by ref on an entity when it is sent through a portal.
+/// </summary>
+[ByRefEvent]
+public record struct TeleportedByPortalEvent(EntityUid Portal);
+
+/// <summary>
+///     Raised by ref on an entity when it teleports an entity as a portal.
+/// </summary>
+[ByRefEvent]
+public record struct PortalTeleportedEvent(EntityUid Entity);

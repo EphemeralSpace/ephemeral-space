@@ -21,13 +21,22 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
+          !type:PhysShapeCircle
+          radius: 0.2
         density: 190
         mask:
         - MachineMask
         layer:
         - MachineLayer
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
   - type: Sprite
     sprite: _ES/Structures/Machines/Telesci/portalgen.rsi
     noRot: true
@@ -62,7 +71,12 @@
           enabled: true
         False:
           enabled: false
-  - type: ESPortalGenerator
+  - type: ESWarpDrive
+  - type: Portal
+    arrivalSound: /Audio/_ES/Effects/teleport.ogg
+    departureSound: /Audio/_ES/Effects/teleport.ogg
+    randomTeleport: false
+    canTeleportToOtherMaps: true
   - type: Transform
     anchored: true
     noRot: true
