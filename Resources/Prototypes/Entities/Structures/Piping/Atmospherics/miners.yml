@@ -35,7 +35,7 @@
     - type: GuideHelp
       guides:
       - GasMiningAndStorage
-    - type: ESAmbientMusicMarkeEngineering
+    - type: ESAmbientMusicMarkerEngineering
 
 - type: entity
   name: O2 gas miner
