@@ -62,7 +62,7 @@
     enabled: false
     radius: 8
     energy: 15
-    color: "#b74c95"
+    color: "#9A007B"
     netsync: false
   - type: ESGenericPointLightVisualizer
     visuals:
