@@ -7,7 +7,7 @@
   gameRule: ESTroupeRuleCrew
   objectives:
     all:
-    - id: ESObjectiveResearchTelescience
+    - id: ESObjectiveWarpDrive
 
 - type: esTroupe
   id: Traitor

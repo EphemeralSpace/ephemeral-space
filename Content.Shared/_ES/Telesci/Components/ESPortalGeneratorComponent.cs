@@ -51,8 +51,3 @@ public sealed partial class ESPortalGeneratorComponent : Component
     public int ThreatsLeft = 0;
 }
 
-[Serializable, NetSerializable]
-public enum ESPortalGeneratorVisuals : byte
-{
-    Charged,
-}

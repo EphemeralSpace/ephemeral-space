@@ -363,6 +363,12 @@ RandomSpawner: ESSpawnerRandomTrashFood50 # yes, this is actually a trash spawne
 ESWardrobeTheatre: LockerClown
 ESWardrobeTheatreFilled: LockerClownFilled
 
+# 2026-4-17
+ESAnomalyResonator: null
+ESAnomalyProbe: null
+ESComputerAnomaly: null
+ESMarkerSpawnRegionAnomaly: null
+
 # ES END
 
 # 2026-01-07

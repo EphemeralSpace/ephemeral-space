@@ -352,9 +352,9 @@
 
 - type: entity
   parent: ESBaseComputerTerminal
-  id: ESBaseComputerTerminalTelesci
-  name: telescience terminal
-  description: A hefty terminal that controls the advanced portal generator in the heart of science.
+  id: ESBaseComputerTerminalWarpDrive
+  name: warp drive terminal
+  description: A hefty terminal that controls the gravitational warp drive at the heart of the station.
   components:
   - type: Sprite
     layers:
@@ -362,16 +362,17 @@
       sprite: _ES/Structures/Machines/computer.rsi
       state: terminal
     - map: ["computerLayerKeyboard"]
-      state: teleport_key_off
+      state: tech_key_off
     - map: ["computerLayerScreen"]
-      state: teleport
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: warpdrive
     - map: ["computerLayerKeys"]
-      state: teleport_key
+      state: tech_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: ESPortalGeneratorConsole
   - type: PointLight
-    color: "#0099ff"
+    color: "#c471aa"
   - type: ActivatableUI
     key: enum.ESPortalGeneratorConsoleUiKey.Key
   - type: UserInterface

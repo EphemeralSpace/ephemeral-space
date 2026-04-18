@@ -2,8 +2,8 @@
     xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client._ES.Mind.Ui"
     Title="{Loc 'es-character-info-title'}"
-    MinSize="725 425"
-    SetWidth="725"
+    MinSize="800 425"
+    SetWidth="800"
     SetHeight="575">
     <HStack Margin="10 5 10 10">
         <VStack SetWidth="270">
