@@ -28,3 +28,9 @@ Entries:
         page
   id: 4
   time: '2026-04-18T00:15:12.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed being unable to use "T" and other chat shortcuts in the lobby.
+  id: 5
+  time: '2026-04-18T20:52:02.0000000+00:00'
