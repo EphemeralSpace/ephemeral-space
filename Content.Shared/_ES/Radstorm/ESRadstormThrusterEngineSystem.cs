@@ -1,8 +1,10 @@
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Radstorm.Components;
+using Content.Shared._ES.Random;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Fluids;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -11,6 +13,7 @@ namespace Content.Shared._ES.Radstorm;
 public sealed class ESRadstormThrusterEngineSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private readonly SharedPuddleSystem _puddle = default!;
@@ -19,7 +22,7 @@ public sealed class ESRadstormThrusterEngineSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<ESRadstormThrusterEngineComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<ESRadstormThrusterEngineComponent, MapInitEvent>(OnMapInit, after: [ typeof(SharedSolutionContainerSystem) ]);
         SubscribeLocalEvent<ESRadstormThrusterEngineComponent, SolutionContainerChangedEvent>(OnSolutionChanged);
         SubscribeLocalEvent<ESRadstormThrusterEngineComponent, ESThrusterEngineNoFuelTimerEvent>(OnThrusterEngineNoFuelTimer);
     }
@@ -27,6 +30,13 @@ public sealed class ESRadstormThrusterEngineSystem : EntitySystem
     private void OnMapInit(Entity<ESRadstormThrusterEngineComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.NextUpdate = _timing.CurTime + ent.Comp.UpdateRate;
+
+        if (_solutionContainer.TryGetSolution(ent.Owner, ent.Comp.FuelTankSolutionId, out var solution))
+        {
+            _solutionContainer.TryAddReagent(solution.Value,
+                ent.Comp.FuelReagent,
+                _random.Next(ent.Comp.MinStartingFuel, ent.Comp.MaxStartingFuel));
+        }
     }
 
     private void OnThrusterEngineNoFuelTimer(Entity<ESRadstormThrusterEngineComponent> ent, ref ESThrusterEngineNoFuelTimerEvent args)

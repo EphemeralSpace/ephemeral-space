@@ -52,13 +52,10 @@
   - type: SolutionContainerManager
     solutions:
       fuel-tank:
-        maxVol: 1000
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 15
+        maxVol: 1500
   - type: RefillableSolution
     solution: fuel-tank
   - type: SolutionContainerVisuals
     changeColor: false
-    maxFillLevels: 9
+    maxFillLevels: 8
     fillBaseName: fill-
