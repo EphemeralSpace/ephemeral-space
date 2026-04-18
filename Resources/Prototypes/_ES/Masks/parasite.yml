@@ -1,6 +1,6 @@
 - type: esMask
   parent: ESBaseParasite
-  id: ESBurstworm
+  id: Burstworm
   name: es-mask-burstworm-name
   description: es-mask-burstworm-desc
   color: yellowgreen
@@ -11,7 +11,7 @@
 
 - type: esMask
   parent: ESBaseParasite
-  id: ESHemophage
+  id: Hemophage
   name: es-mask-hemophage-name
   description: es-mask-hemophage-desc
   color: brown
@@ -22,7 +22,7 @@
 
 - type: esMask
   parent: ESBaseParasite
-  id: ESHost
+  id: Host
   name: es-mask-host-name
   description: es-mask-host-desc
   color: palegoldenrod
@@ -33,7 +33,7 @@
 
 - type: esMask
   parent: ESBaseParasite
-  id: ESPsychid
+  id: Psychid
   name: es-mask-psychid-name
   description: es-mask-psychid-desc
   color: lightsteelblue

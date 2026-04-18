@@ -3,13 +3,13 @@
              # and might have an outsized impact but never be too insane.
   masks:
     # Freaks, funny in moderation.
-    ESGuzzler: 0.3
+    Guzzler: 0.3
 
     # Influencers (not that kind)
-    ESAvenger: 1
-    ESHater: 1
-    ESSecretary: 1
+    Avenger: 1
+    Hater: 1
+    Secretary: 1
 
     # Freaks^2
-    ESNobleman: 0.2
-    ESPhantom: 0.2
+    Nobleman: 0.2
+    Phantom: 0.2

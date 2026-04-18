@@ -8,7 +8,7 @@
     <HStack Margin="10 5 10 10">
         <VStack SetWidth="270">
             <VStack VerticalExpand="True" VerticalAlignment="Bottom" SizeFlagsStretchRatio="3">
-                <TextureButton Name="MaskHelpButton" StyleClasses="windowHelpButton" VerticalAlignment="Center" HorizontalAlignment="Right" Disabled="True" Visible="False" />
+                <TextureButton Name="MaskHelpButton" StyleClasses="windowHelpButton" VerticalAlignment="Center" HorizontalAlignment="Right" Visible="False" />
                 <VStack HorizontalAlignment="Center">
                     <RichTextLabel Name="MaskLabel" Margin="20 0" HorizontalAlignment="Center"/>
                     <LowDivider/>

@@ -1,7 +1,7 @@
 - type: esMask
-  id: ESArmsDealer
+  id: ArmsDealer
   name: es-mask-arms-dealer-name
-  troupe: ESCrew
+  troupe: Crew
   description: es-mask-arms-dealer-desc
   color: lime
   weight: 1
@@ -16,25 +16,25 @@
       amount: 6
 
 - type: esMask
-  id: ESAvenger
+  id: Avenger
   name: es-mask-avenger-name
-  troupe: ESCrew
+  troupe: Crew
   description: es-mask-avenger-desc
   color: peachpuff
   objectives:
     id: ESObjectiveAvengerProtectRandom
 
 - type: esMask
-  id: ESCrewmember
+  id: Crewmember
   name: es-mask-crewmember-name
-  troupe: ESCrew
+  troupe: Crew
   description: es-mask-crewmember-desc
   color: white
 
 - type: esMask
-  id: ESGuzzler
+  id: Guzzler
   name: es-mask-guzzler-name
-  troupe: ESCrew
+  troupe: Crew
   description: es-mask-guzzler-desc
   color: cyan
   weight: 1
@@ -45,9 +45,9 @@
     - id: ESObjectiveGuzzleSpecialInterest
 
 - type: esMask
-  id: ESHater
+  id: Hater
   name: es-mask-hater-name
-  troupe: ESCrew
+  troupe: Crew
   description: es-mask-hater-desc
   color: peru
   assignmentOrder: 11 # Needs to be assigned after other masks
@@ -57,9 +57,9 @@
     - id: ESObjectiveHaterDontKill
 
 - type: esMask
-  id: ESMercenary
+  id: Mercenary
   name: es-mask-mercenary-name
-  troupe: ESCrew
+  troupe: Crew
   description: es-mask-mercenary-desc
   color: ruber
   weight: 1
@@ -71,9 +71,9 @@
       id: ESCrateCacheCrewMercenary
 
 - type: esMask
-  id: ESNobleman
+  id: Nobleman
   name: es-mask-nobleman-name
-  troupe: ESCrew
+  troupe: Crew
   description: es-mask-nobleman-desc
   color: gold
   weight: 1
@@ -82,9 +82,9 @@
     - id: ESObjectiveNoblemanDontKill
 
 - type: esMask
-  id: ESPhantom
+  id: Phantom
   name: es-mask-phantom-name
-  troupe: ESCrew
+  troupe: Crew
   description: es-mask-phantom-desc
   color: plum
   weight: 0.5
@@ -96,9 +96,9 @@
 
 - type: esMask
   parent: ESBaseCommandRestricted
-  id: ESRebel
+  id: Rebel
   name: es-mask-rebel-name
-  troupe: ESCrew
+  troupe: Crew
   description: es-mask-rebel-desc
   color: tomato
   weight: 0.2
@@ -119,9 +119,9 @@
       amount: 1, 2
 
 - type: esMask
-  id: ESSecretary
+  id: Secretary
   name: es-mask-secretary-name
-  troupe: ESCrew
+  troupe: Crew
   description: es-mask-secretary-desc
   color: palegreen
   assignmentOrder: 11 # Needs to be assigned after other masks
@@ -130,9 +130,9 @@
     - id: ESObjectiveSecretaryAssist
 
 - type: esMask
-  id: ESVigilante
+  id: Vigilante
   name: es-mask-vigilante-name
-  troupe: ESCrew
+  troupe: Crew
   description: es-mask-vigilante-desc
   color: orchid
   weight: 1
@@ -144,9 +144,9 @@
       id: ESCrateCacheCrewVigilante
 
 - type: esMask
-  id: ESVIP
+  id: VIP
   name: es-mask-vip-name
-  troupe: ESCrew
+  troupe: Crew
   description: es-mask-vip-desc
   color: gold
   tips:

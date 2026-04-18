@@ -14,5 +14,5 @@ public sealed partial class ESPsychidComponent : Component
     /// Troupe that, if the killer, will not cause the effect to occur.
     /// </summary>
     [DataField]
-    public ProtoId<ESTroupePrototype> IgnoredTroupe = "ESParasite";
+    public ProtoId<ESTroupePrototype> IgnoredTroupe = "Parasite";
 }

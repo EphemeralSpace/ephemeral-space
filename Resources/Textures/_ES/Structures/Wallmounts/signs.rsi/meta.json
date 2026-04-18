@@ -24,6 +24,10 @@
         },
         {
             "name": "thruster"
+        },
+        {
+            "name": "thruster_dir",
+            "directions": 4
         }
     ]
 }

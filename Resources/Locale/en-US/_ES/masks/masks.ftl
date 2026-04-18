@@ -84,4 +84,4 @@ es-mask-gear-cache-messsage = Your gear can be found in {$cacheLocation}.
 
 es-mask-selected-chat-message =
     {""}[font size=16][italic]The parts are given and the show begins![/italic]
-    You've been cast as {INDEFINITE($role)} [bold]{$role}[/bold]. {$description}[/font]
+    You've been cast as {INDEFINITE($role)} [bold]{$role}[/bold]. Check the guidebook for more information on your role. {$description}[/font]

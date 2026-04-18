@@ -20,7 +20,7 @@ public sealed class ESSuperfanSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
-    private static readonly ProtoId<ESTroupePrototype> TraitorsTroupe = "ESTraitor";
+    private static readonly ProtoId<ESTroupePrototype> TraitorsTroupe = "Traitor";
 
     /// <inheritdoc/>
     public override void Initialize()

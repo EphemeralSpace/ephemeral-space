@@ -1,8 +1,8 @@
 <Document>
-    <ESGuideMaskEmbed Mask="ESPhantom"/>
+    <ESGuideMaskEmbed Mask="Phantom"/>
 
     Phantoms are members of the crew who want to reincarnate and haunt their target until they die.
-    Much like [textlink="parasites" link="Parasites"], they do this by being killed.
+    Much like [textlink="parasites" link="Parasite"], they do this by being killed.
 
     <ESGuideObjectiveEmbed Objective="ESObjectivePhantomDie"/>
     <ESGuideObjectiveEmbed Objective="ESObjectivePhantomAvenge"/>
@@ -22,5 +22,5 @@
     However, they cannot use combat mode and attack directly.
     If they are hit in this form, they will become incorporeal again and will need to wait for a long cooldown before taking form again.
 
-    <ESGuideTipsEmbed Mask="ESPhantom"/>
+    <ESGuideTipsEmbed Mask="Phantom"/>
 </Document>
