@@ -1,12 +1,12 @@
 using Robust.Shared.Audio;
+using Robust.Shared.Serialization;
 
-namespace Content.Server._ES.Radstorm.Components;
+namespace Content.Shared._ES.Radstorm.Components;
 
 /// <summary>
 /// Used for a machine which changes the speed of the radstorm based on whether it has power.
 /// </summary>
 [RegisterComponent]
-[Access(typeof(ESRadstormModifierMachineSystem))]
 public sealed partial class ESRadstormModifierMachineComponent : Component
 {
     /// <summary>
@@ -35,4 +35,10 @@ public sealed partial class ESRadstormModifierMachineComponent : Component
 
     [DataField]
     public SoundSpecifier AnnouncementSound = new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg");
+}
+
+[Serializable, NetSerializable]
+public enum ESRadstormModifierMachineVisuals : byte
+{
+    Enabled,
 }
