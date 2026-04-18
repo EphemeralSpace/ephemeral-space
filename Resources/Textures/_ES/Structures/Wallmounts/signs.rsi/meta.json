@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by Spessmann: https://github.com/Spessmann, thruster created by EmoGarbage404",
+    "copyright": "Created by Spessmann: https://github.com/Spessmann, thruster created by EmoGarbage404, warp edited by mirrorcult",
     "size": {
         "x": 32,
         "y": 32
@@ -17,7 +17,7 @@
             "name": "control"
         },
         {
-            "name": "portal"
+            "name": "warp"
         },
         {
             "name": "tech"
