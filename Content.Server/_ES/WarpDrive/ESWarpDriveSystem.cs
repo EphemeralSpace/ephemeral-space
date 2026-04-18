@@ -31,6 +31,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ESObjectiveSystem _objective = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
@@ -144,6 +145,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         {
             component.Interrupted = false;
             component.AccumulatedInterruptionTime += (_timing.CurTime - time);
+            UpdateAppearance(true);
 
             _chat.DispatchGlobalAnnouncement(
                 Loc.GetString("es-warp-drive-announcement-interruptions-cleared"),
@@ -155,12 +157,22 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         {
             component.Interrupted = true;
             component.LastInterruptionTime = _timing.CurTime;
+            UpdateAppearance(false);
 
             _chat.DispatchGlobalAnnouncement(
                 Loc.GetString("es-warp-drive-announcement-interruptions-detected"),
                 Loc.GetString("es-warpdrive-announcer"),
                 announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_medium.ogg"),
                 colorOverride: Color.MediumVioletRed);
+        }
+    }
+
+    private void UpdateAppearance(bool charging)
+    {
+        var query = EntityQueryEnumerator<ESWarpDriveComponent>();
+        while (query.MoveNext(out var uid, out _))
+        {
+            _appearance.SetData(uid, ESWarpDriveVisuals.Charging, charging);
         }
     }
 
