@@ -304,10 +304,8 @@ public sealed class ChatUIController : UIController
 
     private void FocusChat()
     {
-        Logger.Debug($"Chat box count: {_chats.Count}");
         foreach (var chat in _chats)
         {
-            Logger.Debug($"IsMain? {chat.Main}");
             if (!chat.Main)
                 continue;
 
