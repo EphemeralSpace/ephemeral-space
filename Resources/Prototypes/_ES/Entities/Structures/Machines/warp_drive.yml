@@ -69,7 +69,7 @@
         False:
           enabled: false
   - type: SingularityDistortion
-    intensity: 500
+    intensity: 700
     falloffPower: 2.6
   - type: ESWarpDrive
   - type: Portal
