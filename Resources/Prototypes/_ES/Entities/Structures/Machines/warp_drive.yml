@@ -13,7 +13,7 @@
     sound:
       path: /Audio/Effects/singularity.ogg
   - type: SingularityDistortion
-    intensity: 75
+    intensity: 500
     falloffPower: 2.6
   - type: Physics
     bodyType: Static
