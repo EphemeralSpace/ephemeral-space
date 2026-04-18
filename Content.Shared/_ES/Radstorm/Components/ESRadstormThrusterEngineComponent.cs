@@ -20,7 +20,7 @@ public sealed partial class ESRadstormThrusterEngineComponent : Component
     public string FuelTankSolutionId = "fuel-tank";
 
     [DataField]
-    public FixedPoint2 FuelConsumptionRate = 0.83f;
+    public FixedPoint2 FuelConsumptionRate = 0.55f;
 
     [DataField]
     public ProtoId<ReagentPrototype> FuelReagent = "WeldingFuel";

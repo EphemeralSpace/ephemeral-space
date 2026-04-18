@@ -43,16 +43,22 @@
     drawdepth: SmallObjects
     layers:
     - state: station
-    - state: overlay
+    - state: fill-9
       sprite: _ES/Structures/Shuttles/heater_overlay.rsi
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Appearance
   - type: InteractionOutline
   - type: ESRadstormThrusterEngine
   - type: SolutionContainerManager
     solutions:
       fuel-tank:
-        maxVol: 2000
+        maxVol: 1000
         reagents:
         - ReagentId: WeldingFuel
           Quantity: 15
   - type: RefillableSolution
     solution: fuel-tank
+  - type: SolutionContainerVisuals
+    changeColor: false
+    maxFillLevels: 9
+    fillBaseName: fill-
