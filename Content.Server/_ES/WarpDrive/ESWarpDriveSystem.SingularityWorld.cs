@@ -4,6 +4,7 @@ using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.SpawnRegion;
 using Content.Shared._ES.SpawnRegion.Components;
+using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Teleportation.Systems;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
@@ -21,6 +22,7 @@ public sealed partial class ESWarpDriveSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly ESSharedSpawnRegionSystem _spawnRegion = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly BrainDamageSystem _brainDamage = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
@@ -29,7 +31,7 @@ public sealed partial class ESWarpDriveSystem
     private static readonly ProtoId<ESSpawnRegionPrototype> TeleportInWorld = "ESSingularityWorldTeleportInWorld";
 
     public MapId? SingularityWorldMapId;
-    public HashSet<Entity<MapGridComponent>>? SingularityWorldGrids;
+    public HashSet<EntityUid>? SingularityWorldGrids;
 
     private void InitializeSingularityWorld()
     {
@@ -43,6 +45,8 @@ public sealed partial class ESWarpDriveSystem
 
         SpawnAtPosition(TeleportEffect, Transform(args.Entity).Coordinates);
         _popup.PopupEntity(Loc.GetString("es-warp-drive-singularity-teleport-user"), args.Entity, args.Entity);
+        IncrementTeleportedEntitiesCount(args.Entity);
+        _brainDamage.TryChangeBrainDamage(args.Entity, 5);
     }
 
     private void ActiveTickSingularityWorld(ESWarpDriveGameRuleComponent component, float frameTime)
@@ -84,7 +88,7 @@ public sealed partial class ESWarpDriveSystem
         }
 
         SingularityWorldMapId = map.Value.Comp.MapId;
-        SingularityWorldGrids = grids;
+        SingularityWorldGrids = grids.Select(a => a.Owner).ToHashSet();
         Log.Info($"Created new singularity world at map ID {SingularityWorldMapId}");
 
         // Properly set up the teleporting effect
