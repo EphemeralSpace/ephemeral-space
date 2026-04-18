@@ -1,14 +1,15 @@
+using System.Linq;
 using Content.Server._ES.WarpDrive.Components;
+using Content.Server.Popups;
+using Content.Server.Station.Systems;
 using Content.Shared._ES.SpawnRegion;
 using Content.Shared._ES.SpawnRegion.Components;
-using Content.Shared.GameTicking.Components;
-using Content.Shared.Teleportation.Components;
 using Content.Shared.Teleportation.Systems;
-using Robust.Shared.Audio;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server._ES.WarpDrive;
 
@@ -16,14 +17,57 @@ public sealed partial class ESWarpDriveSystem
 {
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly LinkedEntitySystem _linked = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly ESSharedSpawnRegionSystem _spawnRegion = default!;
+    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    private static readonly ProtoId<ESSpawnRegionPrototype> SingularityWorldTeleportStation = "ESSingularityWorldTeleportStation";
-    private static readonly ProtoId<ESSpawnRegionPrototype> SingularityWorldTeleportInWorld = "ESSingularityWorldTeleportInWorld";
+    private static readonly EntProtoId TeleportEffect = "ESTeleportEffectWarpDrive";
+    private static readonly ProtoId<ESSpawnRegionPrototype> TeleportStation = "ESSingularityWorldTeleportStation";
+    private static readonly ProtoId<ESSpawnRegionPrototype> TeleportInWorld = "ESSingularityWorldTeleportInWorld";
 
     public MapId? SingularityWorldMapId;
 
     private void InitializeSingularityWorld()
     {
+        SubscribeLocalEvent<ESWarpDriveComponent, PortalTeleportedEvent>(OnWarpDriveTeleport);
+    }
+
+    private void OnWarpDriveTeleport(Entity<ESWarpDriveComponent> ent, ref PortalTeleportedEvent args)
+    {
+        var teleport = EnsureComp<ESSingularityWorldTeleportedEntityComponent>(args.Entity);
+        teleport.TeleportOutTime = _timing.CurTime + ent.Comp.SingularityWorldTeleportOutTime;
+
+        _popup.PopupEntity(Loc.GetString("es-warp-drive-singularity-teleport-user"), args.Entity, args.Entity);
+    }
+
+    private void ActiveTickSingularityWorld(ESWarpDriveGameRuleComponent component, float frameTime)
+    {
+        var query = EntityQueryEnumerator<ESSingularityWorldTeleportedEntityComponent, TransformComponent>();
+
+        while (query.MoveNext(out var uid, out var time, out var xform))
+        {
+            if (_timing.CurTime < time.TeleportOutTime)
+                continue;
+
+            // choose area to send them to
+            var station = _station.GetStationsSet().First(); // forgive me
+            if (!_spawnRegion.TryGetRandomCoordsInRegion(TeleportStation,
+                    station,
+                    out var coords,
+                    checkPlayerLOS: false,
+                    minPlayerDistance: 1f))
+            {
+                Log.Error($"Couldn't send entity {uid} anywhere after teleport timer is up somehow !!! They are fucking scared!!!");
+                RemCompDeferred<ESSingularityWorldTeleportedEntityComponent>(uid);
+                continue;
+            }
+
+            SpawnAtPosition(TeleportEffect, xform.Coordinates);
+            SpawnAtPosition(TeleportEffect, coords.Value);
+            _transform.SetCoordinates(uid, coords.Value);
+        }
     }
 
     private void StartedSingularityWorld(ESWarpDriveGameRuleComponent component)
@@ -48,7 +92,7 @@ public sealed partial class ESWarpDriveSystem
             var locationQuery = EntityQueryEnumerator<ESSpawnRegionMarkerComponent>();
             while (locationQuery.MoveNext(out var regionEntity, out var marker))
             {
-                if (marker.Area != SingularityWorldTeleportInWorld)
+                if (marker.Area != TeleportInWorld)
                     continue;
 
                 teleportLocation = regionEntity;

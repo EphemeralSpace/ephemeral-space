@@ -292,7 +292,7 @@ public abstract class SharedPortalSystem : EntitySystem
 public record struct TeleportedByPortalEvent(EntityUid Portal);
 
 /// <summary>
-///     Raised by ref on an entity when it teleports an entity as a portal.
+///     Raised by ref on a portal when it teleports an entity.
 /// </summary>
 [ByRefEvent]
 public record struct PortalTeleportedEvent(EntityUid Entity);

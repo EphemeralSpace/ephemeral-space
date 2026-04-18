@@ -25,11 +25,6 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     public TimeSpan FinalPhaseTime = TimeSpan.FromMinutes(3);
 
     /// <summary>
-    ///     After something / someone enters the singularity world, how long before they're teleported out
-    /// </summary>
-    public TimeSpan SingularityWorldTeleportOutTime = TimeSpan.FromSeconds(30);
-
-    /// <summary>
     ///     where it all goes
     /// </summary>
     public ResPath SingularityWorldMap = new("/Maps/_ES/singularity_world.yml");
