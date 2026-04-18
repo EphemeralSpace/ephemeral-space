@@ -239,12 +239,12 @@ public abstract class SharedPortalSystem : EntitySystem
 
         LogTeleport(ent, subject, Transform(subject).Coordinates, target);
 
+        _transform.SetCoordinates(subject, target);
+
         var portalEv = new PortalTeleportedEvent(subject);
         var teleportedEv = new TeleportedByPortalEvent(ent.Owner);
         RaiseLocalEvent(ent.Owner, ref portalEv);
         RaiseLocalEvent(subject, ref teleportedEv);
-
-        _transform.SetCoordinates(subject, target);
 
         if (!playSound)
             return;

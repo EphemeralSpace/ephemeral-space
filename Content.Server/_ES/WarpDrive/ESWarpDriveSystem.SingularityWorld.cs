@@ -39,6 +39,7 @@ public sealed partial class ESWarpDriveSystem
         var teleport = EnsureComp<ESSingularityWorldTeleportedEntityComponent>(args.Entity);
         teleport.TeleportOutTime = _timing.CurTime + ent.Comp.SingularityWorldTeleportOutTime;
 
+        SpawnAtPosition(TeleportEffect, Transform(args.Entity).Coordinates);
         _popup.PopupEntity(Loc.GetString("es-warp-drive-singularity-teleport-user"), args.Entity, args.Entity);
     }
 
@@ -67,6 +68,7 @@ public sealed partial class ESWarpDriveSystem
             SpawnAtPosition(TeleportEffect, xform.Coordinates);
             SpawnAtPosition(TeleportEffect, coords.Value);
             _transform.SetCoordinates(uid, coords.Value);
+            RemCompDeferred<ESSingularityWorldTeleportedEntityComponent>(uid);
         }
     }
 

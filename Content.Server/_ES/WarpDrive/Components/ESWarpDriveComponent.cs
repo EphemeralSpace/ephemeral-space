@@ -10,5 +10,5 @@ public sealed partial class ESWarpDriveComponent : Component
     /// <summary>
     ///     After something / someone enters the singularity world, how long before they're teleported out
     /// </summary>
-    public TimeSpan SingularityWorldTeleportOutTime = TimeSpan.FromSeconds(30);
+    public TimeSpan SingularityWorldTeleportOutTime = TimeSpan.FromSeconds(20);
 }

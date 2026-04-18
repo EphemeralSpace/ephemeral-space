@@ -38,7 +38,7 @@
     - state: base
       color: "#c13e4f"
       shader: unshaded
-    - state: anom
+    - state: warp
       shader: unshaded
   - type: ESSpawnRegionMarker
     area: ESSingularityWorldTeleportStation
@@ -54,7 +54,7 @@
     - state: base
       color: "#c13e4f"
       shader: unshaded
-    - state: anom
+    - state: warp
       shader: unshaded
   - type: ESSpawnRegionMarker
     area: ESSingularityWorldTeleportInWorld

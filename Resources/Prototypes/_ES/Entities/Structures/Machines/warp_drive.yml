@@ -73,8 +73,6 @@
     falloffPower: 2.6
   - type: ESWarpDrive
   - type: Portal
-    arrivalSound: /Audio/_ES/Effects/teleport.ogg
-    departureSound: /Audio/_ES/Effects/teleport.ogg
     randomTeleport: false
     canTeleportToOtherMaps: true
   - type: Transform
