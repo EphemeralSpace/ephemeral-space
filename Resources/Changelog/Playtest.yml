@@ -20,3 +20,11 @@ Entries:
       message: Stagehands now get a notification when a new stagehand joins the crew
   id: 3
   time: '2026-04-18T00:04:02.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        The help button in the character menu now opens the mask's guidebook
+        page
+  id: 4
+  time: '2026-04-18T00:15:12.0000000+00:00'
