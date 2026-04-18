@@ -43,7 +43,7 @@
     drawdepth: SmallObjects
     layers:
     - state: station
-    - state: fill-9
+    - state: fill-8
       sprite: _ES/Structures/Shuttles/heater_overlay.rsi
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: Appearance
