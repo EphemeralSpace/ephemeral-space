@@ -35,8 +35,6 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     /// </summary>
     public TimeSpan AccumulatedInterruptionTime = TimeSpan.Zero;
 
-    public bool FullyCharged = false;
-
     public bool InFinalPhase = false;
 
     /// <summary>
