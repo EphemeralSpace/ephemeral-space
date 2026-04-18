@@ -275,6 +275,7 @@
     pack: SustenanceInventory
   - type: PointLight
     color: "#9ca0af"
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -360,6 +361,7 @@
   - type: GuideHelp
     guides:
     - SecurityOfficer
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -395,6 +397,7 @@
     color: "#fcafc1"
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
+  - type: ESAmbientMusicMarkerCommand
 
 - type: entity
   parent: ESBaseVendingMachine
