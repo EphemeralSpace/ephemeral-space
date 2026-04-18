@@ -12,6 +12,7 @@
   - ESBasicRoundstartVariation
   - ESRoundEndRuleRadstorm
   - ESArmoryRule
+  - ESWarpDriveRule
 
 - type: gamePreset
   id: ESExtended
@@ -24,6 +25,7 @@
   - ESBasicRoundstartVariation
   - ESRoundEndRuleRadstorm
   - ESArmoryRule
+  - ESWarpDriveRule
 
 # Nonstandard modes
 

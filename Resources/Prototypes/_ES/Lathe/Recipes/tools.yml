@@ -4,20 +4,3 @@
   result: ESWeaponKnife
   materials:
     Steel: 500
-
-- type: latheRecipe
-  parent: BaseToolRecipe
-  id: ESAnomalyResonator
-  result: ESAnomalyResonator
-  materials:
-    Steel: 500
-    Glass: 300
-    Plastic: 200
-
-- type: latheRecipe
-  parent: BaseToolRecipe
-  id: ESAnomalyProbe
-  result: ESAnomalyProbe
-  materials:
-    Steel: 300
-    Glass: 100

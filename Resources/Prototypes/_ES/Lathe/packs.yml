@@ -28,8 +28,6 @@
   - RCDAmmo
   - ESOxygenTank
   - ESEmergencyOxygenTank
-  - ESAnomalyResonator
-  - ESAnomalyProbe
 
 - type: latheRecipePack
   id: ESPartsStatic
