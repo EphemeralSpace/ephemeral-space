@@ -18,7 +18,6 @@
     - /Audio/Ambience/ambidanger.ogg
     - /Audio/Ambience/ambidanger2.ogg
 
-
 # Radstorm
 - type: soundCollection
   id: ESAmbienceRadstorm
