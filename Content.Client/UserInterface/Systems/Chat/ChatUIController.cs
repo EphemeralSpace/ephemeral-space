@@ -288,7 +288,7 @@ public sealed class ChatUIController : UIController
 
     public void SetMainChat(bool setting)
     {
-        if (UIManager.ActiveScreen is not InGameScreen screen)
+        if (UIManager.ActiveScreen is null)
         {
             return;
         }
@@ -304,8 +304,10 @@ public sealed class ChatUIController : UIController
 
     private void FocusChat()
     {
+        Logger.Debug($"Chat box count: {_chats.Count}");
         foreach (var chat in _chats)
         {
+            Logger.Debug($"IsMain? {chat.Main}");
             if (!chat.Main)
                 continue;
 

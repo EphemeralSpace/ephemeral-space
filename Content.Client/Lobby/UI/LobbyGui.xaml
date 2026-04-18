@@ -46,10 +46,9 @@ significantly modified from old lobbygui, basically everything diff-->
                 <graphics:StyleBoxFlat BackgroundColor="#2B2C3B" />
             </PanelContainer.PanelOverride>
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="10" Margin="10">
-                <BoxContainer Orientation="Horizontal" MinSize="0 40" Name="HeaderContainer" Access="Public"
-                              SeparationOverride="4">
-                    <Label Name="ServerName" Access="Public" StyleClasses="LabelHeadingBigger" VAlign="Center"
-                           HorizontalExpand="True" HorizontalAlignment="Center" />
+                <BoxContainer Orientation="Horizontal" MinHeight="40" Name="HeaderContainer" Access="Public"
+                              HorizontalExpand="True">
+                    <RichTextLabel Name="ServerName" Access="Public" HorizontalAlignment="Center"/>
                 </BoxContainer>
                 <!-- Gold line -->
                 <controls:HLine StyleClasses="highlight" Thickness="2" />

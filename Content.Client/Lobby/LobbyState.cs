@@ -135,9 +135,10 @@ namespace Content.Client.Lobby
             var lobbyNameCvar = _cfg.GetCVar(CCVars.ServerLobbyName);
             var serverName = _cfg.GetCVar(CVars.GameHostName);
 
-            Lobby?.ServerName.Text = string.IsNullOrEmpty(lobbyNameCvar)
-                ? Loc.GetString("ui-lobby-title", ("serverName", serverName))
-                : lobbyNameCvar;
+            Lobby?.ServerName.Text = Loc.GetString("ui-lobby-title-fmt",
+                ("text", string.IsNullOrEmpty(lobbyNameCvar)
+                    ? Loc.GetString("ui-lobby-title", ("serverName", serverName))
+                    : lobbyNameCvar));
         }
 
         public override void FrameUpdate(FrameEventArgs e)
