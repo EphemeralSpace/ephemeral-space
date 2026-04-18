@@ -97,7 +97,7 @@
   components:
   - type: ESPoster
     state: poster2_contraband
-  - type: ESAmbientMusicMarkerAtmos
+  - type: ESAmbientMusicMarkerEngineering
 
 - type: entity
   parent: PosterBase
