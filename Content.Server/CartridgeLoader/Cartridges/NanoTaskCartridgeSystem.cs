@@ -130,6 +130,9 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
                 if (_timing.CurTime < ent.Comp.NextPrintAllowedAfter)
                     return;
 
+                // die
+                return;
+
                 ent.Comp.NextPrintAllowedAfter = _timing.CurTime + ent.Comp.PrintDelay;
                 var printed = Spawn("PaperNanoTaskItem", Transform(message.Actor).Coordinates);
                 _hands.PickupOrDrop(message.Actor, printed);
