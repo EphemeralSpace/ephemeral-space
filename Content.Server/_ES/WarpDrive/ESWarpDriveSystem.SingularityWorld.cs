@@ -9,7 +9,6 @@ using Content.Shared.Teleportation.Systems;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -45,11 +44,11 @@ public sealed partial class ESWarpDriveSystem
 
         SpawnAtPosition(TeleportEffect, Transform(args.Entity).Coordinates);
         _popup.PopupEntity(Loc.GetString("es-warp-drive-singularity-teleport-user"), args.Entity, args.Entity);
-        IncrementTeleportedEntitiesCount(args.Entity);
+        IncrementTeleportedEntitiesCount();
         _brainDamage.TryChangeBrainDamage(args.Entity, 5);
     }
 
-    private void ActiveTickSingularityWorld(ESWarpDriveGameRuleComponent component, float frameTime)
+    private void ActiveTickSingularityWorld()
     {
         var query = EntityQueryEnumerator<ESSingularityWorldTeleportedEntityComponent, TransformComponent>();
 

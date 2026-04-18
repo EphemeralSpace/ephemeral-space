@@ -120,8 +120,8 @@ public sealed partial class ESWarpDriveAnnouncementConfig
     public float AfterChargePercentage;
 
     [DataField(required: true)]
-    public LocId AnnouncementText;
+    public LocId Text;
 
     [DataField(required: true)]
-    public SoundSpecifier AnnouncementSound;
+    public SoundSpecifier Sound;
 }

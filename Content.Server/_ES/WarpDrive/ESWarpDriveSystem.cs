@@ -85,7 +85,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
     {
         base.ActiveTick(uid, component, gameRule, frameTime);
 
-        ActiveTickSingularityWorld(component, frameTime);
+        ActiveTickSingularityWorld();
 
         // check if we should win from final phase ending
         if (WarpDriveSuccess(component))
@@ -105,9 +105,9 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
                 continue;
 
             _chat.DispatchGlobalAnnouncement(
-                Loc.GetString(announcement.AnnouncementText),
+                Loc.GetString(announcement.Text),
                 Loc.GetString("es-warpdrive-announcer"),
-                announcementSound: announcement.AnnouncementSound,
+                announcementSound: announcement.Sound,
                 colorOverride: Color.MediumVioletRed);
 
             announcement.Completed = true;
@@ -176,7 +176,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         }
     }
 
-    private void IncrementTeleportedEntitiesCount(EntityUid teleportedEntity)
+    private void IncrementTeleportedEntitiesCount()
     {
         var query = EntityQueryEnumerator<ESWarpDriveGameRuleComponent>();
         while (query.MoveNext(out _, out var warpDrive))
