@@ -8,8 +8,8 @@ namespace Content.Server._ES.Masks.Hemophage.Components;
 public sealed partial class ESMaskConvertOnCollideComponent : Component
 {
     [DataField]
-    public ProtoId<ESTroupePrototype> IgnoreTroupe = "ESParasite";
+    public ProtoId<ESTroupePrototype> IgnoreTroupe = "Parasite";
 
     [DataField]
-    public ProtoId<ESMaskPrototype> Mask = "ESHemophage";
+    public ProtoId<ESMaskPrototype> Mask = "Hemophage";
 }

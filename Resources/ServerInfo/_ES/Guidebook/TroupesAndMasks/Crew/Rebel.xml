@@ -1,7 +1,7 @@
 <Document>
-    <ESGuideMaskEmbed Mask="ESRebel"/>
+    <ESGuideMaskEmbed Mask="Rebel"/>
 
-    Rebels are members of the crew which have [textlink="traitor-like" link="Traitors"] sabotage objectives and traitor caches, but are otherwise members of the crew.
+    Rebels are members of the crew which have [textlink="traitor-like" link="Traitor"] sabotage objectives and traitor caches, but are otherwise members of the crew.
     Although they may often be mistaken for traitors, and their objectives may cause havoc, they are still good guys who want the crew to succeed.
 
     <ESGuideObjectiveEmbed Objective="ESObjectiveRebelSabotageCommunications"/>
@@ -10,5 +10,5 @@
     <ESGuideObjectiveEmbed Objective="ESObjectiveRebelSabotageCriminalRecords"/>
     <ESGuideObjectiveEmbed Objective="ESObjectiveRebelSabotageTelecom"/>
 
-    <ESGuideTipsEmbed Mask="ESRebel"/>
+    <ESGuideTipsEmbed Mask="Rebel"/>
 </Document>

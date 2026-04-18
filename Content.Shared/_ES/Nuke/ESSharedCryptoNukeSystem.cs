@@ -23,7 +23,7 @@ public abstract class ESSharedCryptoNukeSystem : EntitySystem
     [Dependency] protected readonly SharedStationSystem Station = default!;
     [Dependency] protected readonly SharedUserInterfaceSystem UserInterface = default!;
 
-    public static readonly ProtoId<ESTroupePrototype> TraitorTroupe = "ESTraitor";
+    public static readonly ProtoId<ESTroupePrototype> TraitorTroupe = "Traitor";
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -12,7 +12,7 @@
   id: ESTroupeRuleCrew
   components:
   - type: ESTroupeRule
-    troupe: ESCrew
+    troupe: Crew
     priority: 10
 
 - type: entity
@@ -21,7 +21,7 @@
   name: The Traitors
   components:
   - type: ESTroupeRule
-    troupe: ESTraitor
+    troupe: Traitor
   - type: ESTraitorRule
 
 - type: entity
@@ -30,6 +30,6 @@
   id: ESTroupeRuleParasite
   components:
   - type: ESTroupeRule
-    troupe: ESParasite
+    troupe: Parasite
     priority: 10
   - type: ESParasiteRule

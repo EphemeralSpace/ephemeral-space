@@ -9,10 +9,10 @@ namespace Content.Server._ES.Masks.Burstworm.Components;
 public sealed partial class ESMaskConversionProjectileComponent : Component
 {
     [DataField]
-    public ProtoId<ESTroupePrototype> IgnoreTroupe = "ESParasite";
+    public ProtoId<ESTroupePrototype> IgnoreTroupe = "Parasite";
 
     [DataField]
-    public ProtoId<ESMaskPrototype> Mask = "ESBurstworm";
+    public ProtoId<ESMaskPrototype> Mask = "Burstworm";
 
     [DataField]
     public TimeSpan ConvertDelay = TimeSpan.FromSeconds(5);

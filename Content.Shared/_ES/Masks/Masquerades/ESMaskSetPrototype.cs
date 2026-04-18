@@ -100,7 +100,7 @@ public sealed partial class ESTroupeMasksProvider : MaskSetProvider
     private readonly IPrototypeManager _proto = default!;
 
     [DataField(required: true)]
-    public ProtoId<ESTroupePrototype> Troupe = "ESCrew";
+    public ProtoId<ESTroupePrototype> Troupe = "Crew";
 
     private Dictionary<ProtoId<ESMaskPrototype>, float>? _masks = null;
 

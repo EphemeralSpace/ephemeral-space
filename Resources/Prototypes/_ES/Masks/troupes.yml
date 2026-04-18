@@ -1,5 +1,5 @@
 - type: esTroupe
-  id: ESCrew
+  id: Crew
   name: es-troupe-crew-name
   description: es-troupe-crew-description
   color: yellow
@@ -10,7 +10,7 @@
     - id: ESObjectiveResearchTelescience
 
 - type: esTroupe
-  id: ESTraitor
+  id: Traitor
   name: es-troupe-traitor-name
   description: es-troupe-traitor-description
   color: red
@@ -33,7 +33,7 @@
     - id: ESObjectiveTraitorDetonateNuke
 
 - type: esTroupe
-  id: ESParasite
+  id: Parasite
   name: es-troupe-parasite-name
   description: es-troupe-parasite-description
   color: tan

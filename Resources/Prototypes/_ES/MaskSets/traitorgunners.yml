@@ -2,4 +2,4 @@
   id: TraitorGunners # Gunners, including masks that play best in traitor-centric modes.
   parent: [Gunners]
   masks:
-    ESMercenary: 1
+    Mercenary: 1
