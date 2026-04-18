@@ -30,8 +30,6 @@ public abstract class ESSharedTelesciSystem : EntitySystem
                 subs.Event<ESActivePortalGeneratorBuiMessage>(OnActivePortalGenerator);
             }
         );
-
-        SubscribeLocalEvent<ESTelesciObjectiveComponent, ESGetObjectiveProgressEvent>(OnGetObjectiveProgress);
     }
 
     private void OnGeneratorMapInit(Entity<ESPortalGeneratorComponent> ent, ref MapInitEvent args)
@@ -59,18 +57,6 @@ public abstract class ESSharedTelesciSystem : EntitySystem
         AdvanceTelesciStage(station.Value.AsNullable());
     }
 
-    private void OnGetObjectiveProgress(Entity<ESTelesciObjectiveComponent> ent, ref ESGetObjectiveProgressEvent args)
-    {
-        // Technically we CAN have multiple but this is unsupported behavior.
-        foreach (var comp in EntityQuery<ESTelesciStationComponent>())
-        {
-            if (comp.MaxStage == 0)
-                continue;
-            args.Progress = (float) comp.Stage / comp.MaxStage;
-            break;
-        }
-    }
-
     public void AdvanceTelesciStage(Entity<ESTelesciStationComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp))
@@ -94,7 +80,6 @@ public abstract class ESSharedTelesciSystem : EntitySystem
         SpawnEvents((ent, ent.Comp), stage);
         SendAnnouncement(ent, stage);
 
-        // TODO: replace with real screen shake once we have it
         foreach (var grid in Station.GetGrids(ent.Owner))
         {
             _gravity.StartGridShake(grid);
@@ -102,8 +87,6 @@ public abstract class ESSharedTelesciSystem : EntitySystem
 
         ent.Comp.Stage = stageIdx;
         Dirty(ent);
-
-        _objective.RefreshObjectiveProgress<ESTelesciObjectiveComponent>();
 
         // End the round after we refresh progress so the EoR screen is always correct.
         TryCallShuttle((ent, ent.Comp));
