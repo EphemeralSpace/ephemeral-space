@@ -12,9 +12,6 @@
     range: 5
     sound:
       path: /Audio/Effects/singularity.ogg
-  - type: SingularityDistortion
-    intensity: 500
-    falloffPower: 2.6
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -71,6 +68,9 @@
           enabled: true
         False:
           enabled: false
+  - type: SingularityDistortion
+    intensity: 500
+    falloffPower: 2.6
   - type: ESWarpDrive
   - type: Portal
     arrivalSound: /Audio/_ES/Effects/teleport.ogg
@@ -80,15 +80,6 @@
   - type: Transform
     anchored: true
     noRot: true
-  - type: PowerConsumer
-    drawRate: 1000
-    voltage: Medium
-  - type: NodeContainer
-    examinable: true
-    nodes:
-      input:
-        !type:CableDeviceNode
-        nodeGroupID: MVPower
   - type: Anchorable
     flags:
     - Anchorable
