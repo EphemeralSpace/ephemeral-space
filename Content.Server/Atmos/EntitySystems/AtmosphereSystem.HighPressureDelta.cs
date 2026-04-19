@@ -22,7 +22,7 @@ namespace Content.Server.Atmos.EntitySystems
         // 75 -> 60
         private const int SpaceWindSoundCooldownCycles = 60;
 
-        private const int ESSpaceWindPressureDeltaThreshold = 40;
+        private const int ESSpaceWindPressureDeltaThreshold = 10;
         // ES END
 
         // ES START
