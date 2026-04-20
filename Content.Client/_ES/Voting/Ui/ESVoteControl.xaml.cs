@@ -68,7 +68,7 @@ public sealed partial class ESVoteControl : PanelContainer
                 continue;
 
             voteButton.Pressed = vote.Comp.Votes.GetValueOrDefault(voteButton.Option)?.Contains(netOwner) ?? false;
-            voteButton.ToolTip = string.IsNullOrEmpty(voteButton.Option.Tooltip) ? null : voteButton.Option.Tooltip;
+            voteButton.ToolTip = string.IsNullOrEmpty(voteButton.Option.Tooltip) ? voteButton.Option.DisplayString : voteButton.Option.Tooltip;
 
             var votes = vote.Comp.Votes.GetValueOrDefault(voteButton.Option) ?? [];
             if (vote.Comp.ShowCount)
@@ -105,6 +105,7 @@ public sealed partial class ESVoteControl : PanelContainer
             StyleClasses.Add(StyleClassButton);
             StyleClasses.Add(StyleClass.ButtonOpenBoth);
             ToggleMode = true;
+            RectClipContent = true;
 
             Label = new RichTextLabel();
             AddChild(Label);
