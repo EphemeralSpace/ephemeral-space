@@ -6,6 +6,7 @@ using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Shared._ES.Masks.Pickpocket;
 using Content.Shared._ES.Viewcone;
+using Content.Shared.ActionBlocker;
 using Content.Shared.DoAfter;
 using Content.Shared.Inventory;
 using Content.Shared.Storage;
@@ -17,6 +18,7 @@ namespace Content.Server._ES.Masks.Pickpocket;
 public sealed class ESPickpocketMaskSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
@@ -28,13 +30,16 @@ public sealed class ESPickpocketMaskSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<ESPickpocketEvents>(OnPickpocketTargetAction);
+        SubscribeLocalEvent<ESPickpocketTargetActionEvent>(OnPickpocketTargetAction);
         SubscribeLocalEvent<DoAfterComponent, ESPickpocketTargetDoAfterEvent>(OnPickpocketTargetDoAfter);
         SubscribeLocalEvent<DoAfterAttemptEvent<ESPickpocketTargetDoAfterEvent>>(OnDoAfterAttempt);
     }
 
-    private void OnPickpocketTargetAction(ESPickpocketEvents args)
+    private void OnPickpocketTargetAction(ESPickpocketTargetActionEvent args)
     {
+        if (!_actionBlocker.CanInteract(args.Target, null))
+            return;
+
         if (_viewconeAngle.InViewcone(args.Target, args.Performer))
         {
             _popup.PopupEntity(Loc.GetString("es-pickpocket-action-in-view"), args.Target, args.Performer);
@@ -78,17 +83,16 @@ public sealed class ESPickpocketMaskSystem : EntitySystem
         }
 
         var item = _random.Pick(bag.Value.Comp.Container.ContainedEntities);
-        if (!_container.Remove(item, bag.Value.Comp.Container) ||
-            !_hands.TryPickupAnyHand(args.User, item))
-        {
+        if (!_container.Remove(item, bag.Value.Comp.Container))
             return;
-        }
 
         var comp = EnsureComp<ESPickpocketStolenComponent>(item);
         if (_mind.TryGetMind(args.User, out var userMind))
             comp.StealerMinds.Add(userMind.Value);
         if (_mind.TryGetMind(target, out var targetMind))
-            comp.TargetMinds.Add(targetMind.Value);
+            comp.StolenMinds.Add(targetMind.Value);
+
+        _hands.TryPickupAnyHand(args.User, item);
     }
 
     private void OnDoAfterAttempt(DoAfterAttemptEvent<ESPickpocketTargetDoAfterEvent> args)

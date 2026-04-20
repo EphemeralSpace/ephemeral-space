@@ -105,6 +105,9 @@
   - type: ActionGrant
     actions:
     - ActionMaskPickpocketSnatch
+  objectives:
+    all:
+    - id: ESObjectivePickpocketSteal
 
 - type: esMask
   parent: ESBaseCommandRestricted

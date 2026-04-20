@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Masks.Pickpocket;
 
-public sealed partial class ESPickpocketEvents : EntityTargetActionEvent
+public sealed partial class ESPickpocketTargetActionEvent : EntityTargetActionEvent
 {
     [DataField]
     public TimeSpan Delay = TimeSpan.FromSeconds(2);
