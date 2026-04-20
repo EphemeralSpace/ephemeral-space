@@ -46,6 +46,14 @@ public sealed class ESPickpocketMaskSystem : EntitySystem
             return;
         }
 
+        if (TryComp<ESPickpocketedMarkerComponent>(args.Target, out var comp) &&
+            _mind.TryGetMind(args.Performer, out var mind) &&
+            comp.PickpocketMinds.Contains(mind.Value))
+        {
+            _popup.PopupEntity(Loc.GetString("es-pickpocket-action-already-pickpocketed"), args.Target, args.Performer);
+            return;
+        }
+
         if (!TryGetBag(args.Target, out _))
         {
             _popup.PopupEntity(Loc.GetString("es-pickpocket-action-no-bag"), args.Target, args.Performer);
@@ -88,11 +96,18 @@ public sealed class ESPickpocketMaskSystem : EntitySystem
 
         var comp = EnsureComp<ESPickpocketStolenComponent>(item);
         if (_mind.TryGetMind(args.User, out var userMind))
+        {
             comp.StealerMinds.Add(userMind.Value);
-        if (_mind.TryGetMind(target, out var targetMind))
-            comp.StolenMinds.Add(targetMind.Value);
+            var markerComp = EnsureComp<ESPickpocketedMarkerComponent>(target);
+            markerComp.PickpocketMinds.Add(userMind.Value);
+        }
 
-        _hands.TryPickupAnyHand(args.User, item);
+        if (_mind.TryGetMind(target, out var targetMind))
+        {
+            comp.StolenMinds.Add(targetMind.Value);
+        }
+
+        _hands.TryPickupAnyHand(args.User, item, animate: false);
     }
 
     private void OnDoAfterAttempt(DoAfterAttemptEvent<ESPickpocketTargetDoAfterEvent> args)
