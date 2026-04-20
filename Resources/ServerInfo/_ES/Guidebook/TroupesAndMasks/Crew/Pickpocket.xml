@@ -1,0 +1,18 @@
+<Document>
+    <ESGuideMaskEmbed Mask="Pickpocket"/>
+
+    The Pickpocket is a crew mask that wants nothing more than to line their pockets with belongings from their fellow crewmembers.
+
+    They may use an action to grab an item out of someone's bag.
+    The target is given no indication of this occuring. However, if they turn to face the Pickpocket, it'll cancel the theft.
+
+    <Box>
+      <ESGuideObjectiveEmbed Objective="ESObjectivePickpocketSteal"/>
+    </Box>
+
+    The Pickpocket cannot simply loot how they please, however.
+    They cannot steal from someone they've stolen from before, who is unconscious, or is without a bag on their back.
+    The item they steal is also randomly selected, and must be held onto in order to complete the objective.
+
+    <ESGuideTipsEmbed Mask="Pickpocket"/>
+</Document>
