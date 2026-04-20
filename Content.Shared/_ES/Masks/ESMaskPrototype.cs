@@ -76,6 +76,13 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     public ProtoId<StartingGearPrototype>? Gear;
 
     /// <summary>
+    /// Actions provided to the player when they receive this mask.
+    /// Removed when the mask is removed.
+    /// </summary>
+    [DataField]
+    public EntityTableSelector Actions = new NoneSelector();
+
+    /// <summary>
     /// Objectives to assign
     /// </summary>
     [DataField]

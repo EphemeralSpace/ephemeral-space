@@ -101,10 +101,9 @@
   description: es-mask-pickpocket-desc
   color: olivedrab
   weight: 1
-  components:
-  - type: ActionGrant
-    actions:
-    - ActionMaskPickpocketSnatch
+  actions:
+    all:
+    - id: ActionMaskPickpocketSnatch
   objectives:
     all:
     - id: ESObjectivePickpocketSteal
