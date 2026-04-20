@@ -11,5 +11,7 @@
   - type: ESHoldPickpocketedObjective
   - type: ESCounterObjective
     title: es-pickpocket-steal-objective-title
-    target: 3
-    maxTarget: 6
+  - type: ESPopulationProportionCounterObjective
+    proportion: 0.5
+    minimum: 2
+    maximum: 6

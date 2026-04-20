@@ -8,31 +8,38 @@ public abstract partial class ESSharedObjectiveSystem
     {
         SubscribeLocalEvent<ESCounterObjectiveComponent, ESInitializeObjectiveEvent>(OnInitializeObjective);
         SubscribeLocalEvent<ESCounterObjectiveComponent, ESGetObjectiveProgressEvent>(OnCounterGetProgress);
+
+        SubscribeLocalEvent<ESPopulationProportionCounterObjectiveComponent, ESGetCounterObjectiveTargetEvent>(OnGetPopulationProportionCounterObjectiveTarget);
     }
 
     private void OnInitializeObjective(Entity<ESCounterObjectiveComponent> ent, ref ESInitializeObjectiveEvent args)
     {
-        // No variation in target, no further logic needed
-        if (ent.Comp.MaxTarget is not { } maxTarget)
-            return;
-
-        // Generate a random value on [target, maxTarget] in chunks of targetIncrement
-        var range = maxTarget - ent.Comp.Target;
-        var incrementCount = (int) Math.Ceiling(range / ent.Comp.TargetIncrement);
-        var blend = _random.Next(0, incrementCount + 1); // non-inclusive right bound adjustment
-        ent.Comp.Target = Math.Clamp(ent.Comp.Target + blend * ent.Comp.TargetIncrement, ent.Comp.Target, maxTarget);
-        Dirty(ent);
-
-        // Initialize name and description
-        if (ent.Comp.Title != null)
-            _metaData.SetEntityName(ent, Loc.GetString(ent.Comp.Title, ("count", ent.Comp.Target)));
-        if (ent.Comp.Description != null)
-            _metaData.SetEntityDescription(ent, Loc.GetString(ent.Comp.Description, ("count", ent.Comp.Target)));
+        var ev = new ESGetCounterObjectiveTargetEvent();
+        RaiseLocalEvent(ent, ref ev);
+        if (ev.Handled)
+        {
+            SetObjectiveCounterTarget(ent.AsNullable(), ev.Target);
+        }
+        else if (ent.Comp.MaxTarget is { } maxTarget)
+        {
+            // Generate a random value on [target, maxTarget] in chunks of targetIncrement
+            var range = maxTarget - ent.Comp.Target;
+            var incrementCount = (int) Math.Ceiling(range / ent.Comp.TargetIncrement);
+            var blend = _random.Next(0, incrementCount + 1); // non-inclusive right bound adjustment
+            var target = Math.Clamp(ent.Comp.Target + blend * ent.Comp.TargetIncrement, ent.Comp.Target, maxTarget);
+            SetObjectiveCounterTarget(ent.AsNullable(), target);
+        }
     }
 
     private void OnCounterGetProgress(Entity<ESCounterObjectiveComponent> ent, ref ESGetObjectiveProgressEvent args)
     {
         args.Progress = ent.Comp.Counter / ent.Comp.Target;
+    }
+
+    private void OnGetPopulationProportionCounterObjectiveTarget(Entity<ESPopulationProportionCounterObjectiveComponent> ent, ref ESGetCounterObjectiveTargetEvent args)
+    {
+        args.Target = Math.Clamp(MathF.Round(_player.PlayerCount * ent.Comp.Proportion), ent.Comp.Minimum, ent.Comp.Maximum);
+        args.Handled = true;
     }
 
     /// <summary>
@@ -45,6 +52,24 @@ public abstract partial class ESSharedObjectiveSystem
             return -1;
 
         return ent.Comp.Target;
+    }
+
+    /// <summary>
+    /// Sets the counter's target value, updating entity name and description.
+    /// </summary>
+    public void SetObjectiveCounterTarget(Entity<ESCounterObjectiveComponent?> ent, float value)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
+        ent.Comp.Target = value;
+
+        // Initialize name and description
+        if (ent.Comp.Title != null)
+            _metaData.SetEntityName(ent, Loc.GetString(ent.Comp.Title, ("count", ent.Comp.Target)));
+        if (ent.Comp.Description != null)
+            _metaData.SetEntityDescription(ent, Loc.GetString(ent.Comp.Description, ("count", ent.Comp.Target)));
+        Dirty(ent);
     }
 
     /// <summary>
