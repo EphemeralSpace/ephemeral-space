@@ -1,5 +1,6 @@
 // ES CHANGES: Registering our IoCs.
 
+using Content.Server._ES.Chat;
 using Content.Server._ES.ServerStatus;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -25,6 +26,7 @@ using Content.Server.Preferences.Managers;
 using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
 using Content.Server.Voting.Managers;
+using Content.Shared._ES.Chat;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
@@ -40,6 +42,8 @@ internal static class ServerContentIoC
     public static void Register(IDependencyCollection deps)
     {
         SharedContentIoC.Register(deps);
+        deps.Register<IESSharedChatManager, ESChatManager>();
+
         deps.Register<IChatManager, ChatManager>();
         deps.Register<ISharedChatManager, ChatManager>();
         deps.Register<IChatSanitizationManager, ChatSanitizationManager>();

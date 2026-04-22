@@ -1,0 +1,10 @@
+- type: esChatChannel
+  id: TestChat
+  chatProcessor: TestChatProcessor
+
+- type: entity
+  id: TestChatProcessor
+  components:
+  - type: ESChatProcessor
+    channel: TestChat
+  - type: ESGlobalChatChannel

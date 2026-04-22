@@ -1,0 +1,334 @@
+using System.Linq;
+using Content.Shared._ES.Chat.Components;
+using Content.Shared.Chat;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
+
+namespace Content.Shared._ES.Chat;
+
+public sealed class ESSharedChatSystem : EntitySystem
+{
+    [Dependency] private readonly IESSharedChatManager _chat = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+
+    /// <inheritdoc/>
+    public override void Initialize()
+    {
+
+    }
+
+    /// <summary>
+    /// Retrieves the corresponding processor entity for a given chat channel
+    /// </summary>
+    /// <remarks>
+    /// If the processor already exists, it'll use the existing one.
+    /// Otherwise, it'll initialize a new one and then reuse it for further calls.
+    /// </remarks>
+    private Entity<ESChatProcessorComponent> GetProcessor(ProtoId<ESChatChannelPrototype> channel)
+    {
+        // TODO: Consider directly mapping these for performance.
+        // Currently this is just an O(n) linear lookup.
+        // Directly caching in a dict would be O(1) but has the added complexity of needing to dump refs.
+        var query = EntityQueryEnumerator<ESChatProcessorComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.Channel == channel)
+                return (uid, comp);
+        }
+
+        var prototype = _prototype.Index(channel);
+        var processorUid = Spawn(prototype.ChatProcessor);
+        var processorComp = EnsureComp<ESChatProcessorComponent>(processorUid);
+
+        return (processorUid, processorComp);
+    }
+
+    // TODO: separate method for deriving channel out of prefixes, etc.
+
+    public bool TrySendMessage(
+        string content,
+        ProtoId<ESChatChannelPrototype> channel,
+        EntityUid source)
+    {
+        var processer = GetProcessor(channel);
+        return TrySendMessage(
+            content,
+            processer,
+            source);
+    }
+
+    public bool TrySendMessage(
+        string content,
+        Entity<ESChatProcessorComponent> processor,
+        EntityUid source)
+    {
+        // TODO: Generic ratelimiting
+
+        if (!CanSendMessage(source, processor))
+        {
+            // TODO: Attempt to coerce channel into a sendable type.
+            // If someone talks but is only able to whisper, attempt to resend
+            // the message as a whisper automatically.
+            return false;
+        }
+
+        // TODO: Chat filtering occurs here
+
+        // TODO: Get modified source + name override
+
+        var ev = new ESTransformChatMessageEvent(content, source, processor);
+        RaiseLocalEvent(source, ref ev);
+        RaiseLocalEvent(processor, ref ev);
+
+        var transformedContent = ev.Content;
+
+        // TODO: Determine speech verb and the message format.
+
+        foreach (var recipient in GetMessageRecipients(source, processor))
+        {
+            if (!_player.TryGetSessionByEntity(recipient, out var session))
+                continue;
+
+            var recipientEv = new ESRecipientTransformChatMessageEvent(transformedContent, source, processor);
+            RaiseLocalEvent(recipient, ref recipientEv);
+
+            _chat.SendChatMessage(
+                recipientEv.Content,
+                session,
+                recipientEv.Channel,
+                source,
+                "{0}: {1}");
+        }
+
+        // TODO: Entity spoke event
+
+        // TODO: Logging
+
+        return true;
+    }
+
+    public bool CanSendMessage(
+        EntityUid source,
+        ProtoId<ESChatChannelPrototype> channel)
+    {
+        var processor = GetProcessor(channel);
+        return CanSendMessage(source, processor);
+    }
+
+    public bool CanSendMessage(
+        EntityUid source,
+        Entity<ESChatProcessorComponent> processor)
+    {
+        var sourceEv = new ESSendChatMessageAttemptEvent(source, processor);
+        RaiseLocalEvent(source, ref sourceEv);
+
+        if (sourceEv.Canceled)
+            return false;
+
+        var processorEv = new ESSendChatMessageAttemptEvent(source, processor);
+        RaiseLocalEvent(processor, ref processorEv);
+
+        if (processorEv.Canceled)
+            return false;
+
+        return true;
+    }
+
+    /// <summary>
+    /// Gets the recipients (people who will be sent the message) for a message
+    /// sent by the given source on the specified channel
+    /// </summary>
+    private IEnumerable<EntityUid> GetMessageRecipients(
+        EntityUid source,
+        Entity<ESChatProcessorComponent> processor)
+    {
+        var sourceEv = new ESGetChatMessageRecipientsEvent(source, processor);
+        RaiseLocalEvent(source, ref sourceEv);
+
+        var processorEv = new ESGetChatMessageRecipientsEvent(source, processor);
+        RaiseLocalEvent(processor, ref processorEv);
+
+        foreach (var recipient in sourceEv.GetRecipients().Concat(processorEv.GetRecipients()).Distinct())
+        {
+            var recipientEv = new ESReceiveChatMessageAttemptEvent(source, processor);
+            RaiseLocalEvent(recipient, ref recipientEv);
+
+            if (recipientEv.Canceled)
+                continue;
+
+            yield return recipient;
+        }
+    }
+}
+
+/// <summary>
+/// Event raised on a chat message source and processor when a message is attempted to be sent over a channel.
+/// </summary>
+[ByRefEvent]
+public record struct ESSendChatMessageAttemptEvent(EntityUid Source, Entity<ESChatProcessorComponent> Processor)
+{
+    /// <summary>
+    /// The message's source
+    /// </summary>
+    public readonly EntityUid Source = Source;
+
+    /// <summary>
+    /// The chat processor entity
+    /// </summary>
+    public readonly Entity<ESChatProcessorComponent> Processor = Processor;
+
+    /// <summary>
+    /// The message's chat channel
+    /// </summary>
+    public ProtoId<ESChatChannelPrototype> Channel => Processor.Comp.Channel;
+
+    public bool Canceled { get; private set; } = false;
+
+    public void Cancel()
+    {
+        Canceled = true;
+    }
+}
+
+/// <summary>
+/// Event raised on both the source and processor of a chat message to determine who will receive the message.
+/// Recipients collected through this event may be further filtered via <see cref="ESReceiveChatMessageAttemptEvent"/>
+/// </summary>
+[ByRefEvent]
+public record struct ESGetChatMessageRecipientsEvent(EntityUid Source, Entity<ESChatProcessorComponent> Processor)
+{
+    /// <summary>
+    /// The message's source
+    /// </summary>
+    public readonly EntityUid Source = Source;
+
+    /// <summary>
+    /// The chat processor entity
+    /// </summary>
+    public readonly Entity<ESChatProcessorComponent> Processor = Processor;
+
+    /// <summary>
+    /// The message's chat channel
+    /// </summary>
+    public ProtoId<ESChatChannelPrototype> Channel => Processor.Comp.Channel;
+
+    private readonly HashSet<EntityUid> _recipients = new();
+
+    public void AddRecipient(params EntityUid[] recipients)
+    {
+        foreach (var recipient in recipients)
+        {
+            _recipients.Add(recipient);
+        }
+    }
+
+    public void AddRecipient(IEnumerable<EntityUid> recipients)
+    {
+        foreach (var recipient in recipients)
+        {
+            _recipients.Add(recipient);
+        }
+    }
+
+    public IEnumerable<EntityUid> GetRecipients()
+    {
+        return _recipients;
+    }
+}
+
+/// <summary>
+/// Event raised first on a message source and then on the processor to modify the content of the message.
+/// </summary>
+[ByRefEvent]
+public record struct ESTransformChatMessageEvent(string Content, EntityUid Source, Entity<ESChatProcessorComponent> Processor)
+{
+    /// <summary>
+    /// The original string sent
+    /// </summary>
+    public readonly string OriginalContent = Content;
+
+    /// <summary>
+    /// The modified message.
+    /// </summary>
+    public string Content = Content;
+
+    /// <summary>
+    /// The message's source
+    /// </summary>
+    public readonly EntityUid Source = Source;
+
+    /// <summary>
+    /// The chat processor entity
+    /// </summary>
+    public readonly Entity<ESChatProcessorComponent> Processor = Processor;
+
+    /// <summary>
+    /// The message's chat channel
+    /// </summary>
+    public ProtoId<ESChatChannelPrototype> Channel => Processor.Comp.Channel;
+}
+
+/// <summary>
+/// Event raised on the recipient of a chat message to modify its content.
+/// This is the final modification done to the text itself before being displayed.
+/// </summary>
+[ByRefEvent]
+public record struct ESRecipientTransformChatMessageEvent(string Content, EntityUid Source, Entity<ESChatProcessorComponent> Processor)
+{
+    /// <summary>
+    /// The original string sent
+    /// </summary>
+    public readonly string OriginalContent = Content;
+
+    /// <summary>
+    /// The modified message.
+    /// </summary>
+    public string Content = Content;
+
+    /// <summary>
+    /// The message's source
+    /// </summary>
+    public readonly EntityUid Source = Source;
+
+    /// <summary>
+    /// The chat processor entity
+    /// </summary>
+    public readonly Entity<ESChatProcessorComponent> Processor = Processor;
+
+    /// <summary>
+    /// The message's chat channel
+    /// </summary>
+    public ProtoId<ESChatChannelPrototype> Channel => Processor.Comp.Channel;
+}
+
+/// <summary>
+/// Event raised on a potential recipient of a chat message in order to determine if they are actually capable of receiving this.
+/// By default, recipients retrieved via <see cref="ESGetChatMessageRecipientsEvent"/> will be sent the chat message.
+/// However, this event allows the behavior to be canceled.
+/// </summary>
+[ByRefEvent]
+public record struct ESReceiveChatMessageAttemptEvent(EntityUid Source, Entity<ESChatProcessorComponent> Processor)
+{
+    /// <summary>
+    /// The message's source
+    /// </summary>
+    public readonly EntityUid Source = Source;
+
+    /// <summary>
+    /// The chat processor entity
+    /// </summary>
+    public readonly Entity<ESChatProcessorComponent> Processor = Processor;
+
+    /// <summary>
+    /// The message's chat channel
+    /// </summary>
+    public ProtoId<ESChatChannelPrototype> Channel => Processor.Comp.Channel;
+
+    public bool Canceled { get; private set; } = false;
+
+    public void Cancel()
+    {
+        Canceled = true;
+    }
+}

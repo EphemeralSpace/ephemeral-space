@@ -24,6 +24,7 @@ using Content.Server.Preferences.Managers;
 using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
 using Content.Server.Voting.Managers;
+using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
@@ -42,6 +43,7 @@ namespace Content.Server.Entry
         internal const string ConfigPresetsDir = "/ConfigPresets/";
         private const string ConfigPresetsDirBuild = $"{ConfigPresetsDir}Build/";
 
+        [Dependency] private readonly IESSharedChatManager _esChat = default!;
         [Dependency] private readonly CVarControlManager _cvarCtrl = default!;
         [Dependency] private readonly ContentLocalizationManager _loc = default!;
         [Dependency] private readonly ContentNetworkResourceManager _netResMan = default!;
@@ -136,6 +138,7 @@ namespace Content.Server.Entry
         {
             base.PostInit();
 
+            _esChat.Initialize();
             _chatSan.Initialize();
             _chat.Initialize();
 

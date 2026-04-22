@@ -1,3 +1,4 @@
+using Content.Client._ES.Chat;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -22,6 +23,7 @@ using Content.Shared.Administration.Logs;
 using Content.Client.Lobby;
 using Content.Client.Players.RateLimiting;
 using Content.Client.Stylesheets.Fonts;
+using Content.Shared._ES.Chat;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
 using Content.Shared.IoC;
@@ -35,6 +37,8 @@ namespace Content.Client.IoC
         public static void Register(IDependencyCollection collection)
         {
             SharedContentIoC.Register(collection);
+            collection.Register<IESSharedChatManager, ESChatManager>();
+
             collection.Register<IParallaxManager, ParallaxManager>();
             collection.Register<GeneratedParallaxCache>();
             collection.Register<IChatManager, ChatManager>();

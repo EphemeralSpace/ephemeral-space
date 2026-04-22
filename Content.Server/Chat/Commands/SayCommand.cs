@@ -1,6 +1,5 @@
-using Content.Server.Chat.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared.Administration;
-using Content.Shared.Chat;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
 
@@ -9,7 +8,7 @@ namespace Content.Server.Chat.Commands
     [AnyCommand]
     internal sealed class SayCommand : LocalizedEntityCommands
     {
-        [Dependency] private readonly ChatSystem _chatSystem = default!;
+        [Dependency] private readonly ESSharedChatSystem _chatSystem = default!;
         public override string Command => "say";
 
         public override void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -36,7 +35,7 @@ namespace Content.Server.Chat.Commands
             if (string.IsNullOrEmpty(message))
                 return;
 
-            _chatSystem.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Speak, ChatTransmitRange.Normal, false, shell, player);
+            _chatSystem.TrySendMessage(message, "TestChat", playerEntity);
         }
     }
 }

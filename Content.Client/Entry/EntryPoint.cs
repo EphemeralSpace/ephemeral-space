@@ -24,6 +24,7 @@ using Content.Client.Stylesheets.Fonts;
 using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
+using Content.Shared._ES.Chat;
 using Content.Shared.Ame.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Localizations;
@@ -44,6 +45,7 @@ namespace Content.Client.Entry
 {
     public sealed class EntryPoint : GameClient
     {
+        [Dependency] private readonly IESSharedChatManager _esChat = default!;
         [Dependency] private readonly IBaseClient _baseClient = default!;
         [Dependency] private readonly IGameController _gameController = default!;
         [Dependency] private readonly IStateManager _stateManager = default!;
@@ -176,6 +178,7 @@ namespace Content.Client.Entry
 
             _overlayManager.AddOverlay(new SingularityOverlay());
             _overlayManager.AddOverlay(new RadiationPulseOverlay());
+            _esChat.Initialize();
             _chatManager.Initialize();
             _clientPreferencesManager.Initialize();
             _euiManager.Initialize();
