@@ -393,7 +393,7 @@
         - state: orange
     - type: GasCanister
       gasMixture:
-        volume: 1500
+        volume: 500
         moles:
           Plasma: 900
         temperature: 293.15
