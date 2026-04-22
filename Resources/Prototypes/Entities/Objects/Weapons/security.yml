@@ -13,12 +13,6 @@
     energyPerUse: 50
   - type: ItemToggle
     predictable: false
-# ES START
-#    soundActivate:
-#      collection: sparks
-#      params:
-#        variation: 0.250
-# ES END
     soundDeactivate:
       collection: sparks
       params:
@@ -42,10 +36,25 @@
     bluntStaminaDamageFactor: 2.0
     angle: 60
     wideAnimation: WeaponArcThrust
-# ES START
   - type: ESSparkOnItemToggle
     count: 1
-# ES END
+  - type: PointLight
+    enabled: false
+    color: "#FF8040"
+    radius: 1.5
+    energy: 3
+    falloff: 6
+    netsync: false
+  - type: ItemTogglePointLight
+  - type: ToggleableVisuals
+    spriteLayer: stunbaton_on
+    inhandVisuals:
+      left:
+      - state: on-inhand-left
+        shader: unshaded
+      right:
+      - state: on-inhand-right
+        shader: unshaded
   - type: StaminaDamageOnHit
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
@@ -65,10 +74,6 @@
     quickEquip: false
     slots:
     - Belt
-  # ES Start
-  #- type: DisarmMalus
-  #  malus: 0.225
-  # ES End
   - type: Appearance
   - type: GenericVisualizer
     visuals:

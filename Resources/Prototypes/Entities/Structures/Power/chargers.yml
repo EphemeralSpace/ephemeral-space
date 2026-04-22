@@ -171,6 +171,8 @@
         blacklist:
           tags:
           - PotatoBattery
+  - type: ESAmbientMusicMarkerCommand
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: BaseItemRecharger

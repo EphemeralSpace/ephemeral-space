@@ -24,11 +24,11 @@
     title: es-objective-condition-crewmember-kill-title
   - type: ESTargetPlayersObjective
   - type: ESTargetTroupeObjective
-    troupe: ESTraitor
+    troupe: Traitor
     invert: true
   - type: ESTargetMaskBlacklist
     maskBlacklist:
-    - ESSleeperAgent
+    - SleeperAgent
   - type: ESKillTargetObjective
 
 ### Sabotage objectives

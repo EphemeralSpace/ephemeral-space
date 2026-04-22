@@ -47,12 +47,6 @@
   name: reporter's wardrobe
 
 - type: entity
-  parent: WardrobeMixed
-  id: ESWardrobeTheatre
-  suffix: ES
-  name: theatre wardrobe
-
-- type: entity
   id: ESWardrobeScience
   parent: WardrobeWhite
   suffix: ES

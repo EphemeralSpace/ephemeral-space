@@ -45,3 +45,18 @@
     - state: teleport_gray_center
   - type: PointLight
     color: "#fa2a00"
+
+- type: entity
+  parent: ESTeleportEffect
+  id: ESTeleportEffectWarpDrive
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: teleport_gray
+      color: "#dc54b7"
+    - state: teleport_gray_electric
+      color: "#dc54b7"
+    - state: teleport_gray_center
+  - type: PointLight
+    color: "#9A007B"

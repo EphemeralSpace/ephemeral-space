@@ -46,4 +46,24 @@
   components:
   - type: Sprite
     sprite: _ES/Structures/Wallmounts/signs.rsi
-    state: portal
+    state: warp
+
+- type: entity
+  parent: BaseSign
+  id: ESSignThruster
+  name: thruster sign
+  description: A sign indicating a station propulsion thruster.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Wallmounts/signs.rsi
+    state: thruster
+
+- type: entity
+  parent: BaseSignDirectional
+  id: SignThrusterDirectional
+  name: thruster sign
+  description: A direction sign, pointing out which way the station propulsion thruster is.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Wallmounts/signs.rsi
+    state: thruster_dir

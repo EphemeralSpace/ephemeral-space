@@ -303,6 +303,8 @@ public abstract class SharedPoweredLightSystem : EntitySystem
                 {
                     SetLight(uid, true, lightBulb.Color, light, lightBulb.LightRadius, lightBulb.LightEnergy, lightBulb.LightSoftness);
                     _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.On, appearance);
+                    _appearance.SetData(uid, PoweredLightVisuals.GlowColor, lightBulb.GlowColorOverride ?? lightBulb.Color, appearance);
+
                     var time = GameTiming.CurTime;
 // ES START
                     // dont play light sound if round just started

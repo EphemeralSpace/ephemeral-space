@@ -10,13 +10,11 @@ using Content.Server.Preferences.Managers;
 using Content.Server.ServerUpdates;
 using Content.Server.Station.Systems;
 using Content.Shared.Alert;
-using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
 using Robust.Server;
-using Robust.Server.GameObjects;
 using Robust.Server.GameStates;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Console;
@@ -66,9 +64,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly MetaDataSystem _metaData = default!;
         [Dependency] private readonly SharedRoleSystem _roles = default!;
         [Dependency] private readonly ServerDbEntryManager _dbEntryManager = default!;
-        // ES START
         [Dependency] private readonly AlertsSystem _alerts = default!;
-        // ES END
 
         [ViewVariables] private bool _initialized;
         [ViewVariables] private bool _postInitialized;
@@ -76,8 +72,6 @@ namespace Content.Server.GameTicking
         [ViewVariables] public MapId DefaultMap { get; private set; }
 
         private ISawmill _sawmill = default!;
-
-        private bool _randomizeCharacters;
 
         public override void Initialize()
         {
@@ -88,8 +82,6 @@ namespace Content.Server.GameTicking
 
             _sawmill = _logManager.GetSawmill("ticker");
             _sawmillReplays = _logManager.GetSawmill("ticker.replays");
-
-            Subs.CVar(_cfg, CCVars.ICRandomCharacters, e => _randomizeCharacters = e, true);
 
             // Initialize the other parts of the game ticker.
             InitializeStatusShell();

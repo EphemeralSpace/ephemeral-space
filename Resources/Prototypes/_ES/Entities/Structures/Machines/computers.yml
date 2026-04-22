@@ -52,13 +52,9 @@
         - MachineLayer
   - type: LitOnPowered
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    offset: "0, 0.4" # shine from the top, not bottom of the computer
-    castShadows: false
+    radius: 1.4
+    energy: 40
+    curveFactor: 1.0
   - type: EmitSoundOnUIOpen
     sound:
       collection: Keyboard
@@ -131,12 +127,11 @@
   - type: Computer
     board: ESComputerEvacBeaconCircuitBoard
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
     color: "#3c5eb5"
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: ESAmbientMusicMarkerCommand
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -168,9 +163,7 @@
   - type: Computer
     board: ESComputerWarehouseManifestCircuitBoard
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#b89f25"
+    color: "#f7a259"
 
 # Anomaly Console
 - type: entity
@@ -190,7 +183,7 @@
   - type: Computer
     board: ESComputerAnomalyCircuitBoard
   - type: PointLight
-    color: "#b53ca1"
+    color: "#aa4fc7"
 
 - type: entity
   parent: [ ESBaseComputerAnomaly, ESBaseComputerTerminal ]
@@ -229,7 +222,7 @@
   - type: Computer
     board: ESComputerSupplyRequestCircuitBoard
   - type: PointLight
-    color: "#b89f25"
+    color: "#d69c02"
 
 - type: entity
   parent: [ ESBaseComputerSupplyRequest, BaseComputerAiAccess ]
@@ -290,6 +283,7 @@
   components:
   - type: ESCargoRequestConsole
     defaultConsoleId: department-Security
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: ESComputerSupplyRequest
@@ -345,7 +339,7 @@
       state: generic_panel_open
   - type: ESCryptoNukeConsole
   - type: PointLight
-    color: "#ff0000"
+    color: "#ff6971"
   - type: ActivatableUI
     key: enum.ESCryptoNukeConsoleUiKey.Key
   - type: UserInterface
@@ -354,12 +348,13 @@
         type: ESCryptoNukeConsoleBui
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+  - type: ESAmbientMusicMarkerCommand # it's not really a "command" object, but it makes sense to play command ambience near these
 
 - type: entity
   parent: ESBaseComputerTerminal
-  id: ESBaseComputerTerminalTelesci
-  name: telescience terminal
-  description: A hefty terminal that controls the advanced portal generator in the heart of science.
+  id: ESBaseComputerTerminalWarpDrive
+  name: warp drive terminal
+  description: A hefty terminal that controls the gravitational warp drive at the heart of the station.
   components:
   - type: Sprite
     layers:
@@ -367,16 +362,17 @@
       sprite: _ES/Structures/Machines/computer.rsi
       state: terminal
     - map: ["computerLayerKeyboard"]
-      state: teleport_key_off
+      state: tech_key_off
     - map: ["computerLayerScreen"]
-      state: teleport
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: warpdrive
     - map: ["computerLayerKeys"]
-      state: teleport_key
+      state: tech_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: ESPortalGeneratorConsole
   - type: PointLight
-    color: "#0099ff"
+    color: "#c471aa"
   - type: ActivatableUI
     key: enum.ESPortalGeneratorConsoleUiKey.Key
   - type: UserInterface
@@ -385,3 +381,37 @@
         type: ESPortalGeneratorConsoleBui
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+
+- type: entity
+  parent: ESBaseComputerTerminal
+  id: ESBaseComputerTerminalNavigation
+  name: navigation terminal
+  description: Keep going and take the next left.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: navigation
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ESRadstormModifierMachine
+    modifier: 0.13
+    disableAnnouncement: es-radstorm-power-on-navigation-console
+    enableAnnouncement: es-radstorm-power-off-navigation-console
+  - type: PointLight
+    color: "#1bfff3"
+  - type: ApcPowerReceiverBattery
+    batteryRechargeRate: 25
+  - type: Battery
+    netsync: false
+    maxCharge: 450
+  - type: ExaminableBattery
+  - type: ESAmbientMusicMarkerCommand

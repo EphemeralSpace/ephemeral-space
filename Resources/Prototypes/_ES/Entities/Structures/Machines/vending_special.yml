@@ -13,6 +13,8 @@
     pack: GenderVendorGoodbyes
   - type: PointLight
     color: "#fe0000"
+  - type: RgbLightController
+    cycleRate: 0.025
   - type: ESEntityTableVendorFill
     inventory:
       all:

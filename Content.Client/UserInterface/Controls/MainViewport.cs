@@ -5,8 +5,6 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 
-// ES MODIFIED : right-aligned main viewport instead of centered
-
 namespace Content.Client.UserInterface.Controls
 {
     /// <summary>
@@ -109,32 +107,28 @@ namespace Content.Client.UserInterface.Controls
 
         private int? CalcSnappingFactor()
         {
-            // Margin tolerance is tolerance of "the window is too big"
-            // where we add a margin to the viewport to make it fit.
-            var cfgToleranceMargin = _cfg.GetCVar(CCVars.ViewportSnapToleranceMargin);
-            // Clip tolerance is tolerance of "the window is too small"
-            // where we are clipping the viewport to make it fit.
-            var cfgToleranceClip = _cfg.GetCVar(CCVars.ViewportSnapToleranceClip);
-
-            var cfgVerticalFit = _cfg.GetCVar(CCVars.ViewportVerticalFit);
-
             // erm
             if (Root == null)
                 return null;
 
             // Instead of all that, we just snap to the largest integer scale that fits.
-            // If that (pre-clamp) scale is <1, we return null and let the scaling logic handle it.
+            // If that (pre-clamp) scale is <1, or we arent close enough to an integer fit, we return null and let the scaling logic handle it.
             // TODO: This should probably enforce margins around the viewport.
             var possibleSize = ((Vector2)Root.PixelSize) / ((Vector2)Viewport.ViewportSize);
 
             var minPossible = Math.Min(possibleSize.X, possibleSize.Y);
 
-            if (minPossible >= 1)
-            {
-                return (int)Math.Floor(minPossible);
-            }
+            // check closest fits on a .5 increment basis
+            // (0-1 = no snap, 1 = snap, >1.5 = no snap, etc)
+            if (minPossible < 1)
+                return null; // too tiny, always scale
 
-            // uhhh too tiny try again later
+            var doubleScale = (int)Math.Floor(minPossible * 2f);
+            // if its even, this is an integer fit
+            // if it isnt, it fits closer to a .5 increment, so just let scaling handle it
+            if ((doubleScale % 2 == 0))
+                return doubleScale / 2;
+
             return null;
         }
 

@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics;
 using Content.Client._ES.Core;
 using Content.Client._ES.Masks;
 using Content.Client._ES.Objectives;
@@ -31,11 +32,6 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
     {
         _mask?.OnMaskChanged += OnMaskChanged;
         _objective?.OnObjectivesChanged += OnObjectivesChanged;
-
-        if (UIManager.GetActiveUIWidgetOrNull<ESStagehandObserveControl>() is not { } observe)
-            return;
-
-        Update(observe);
     }
 
     public void OnStateExited(GameplayState state)
@@ -60,6 +56,13 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
 
         if (mind == observe.CurrentEntity)
             UpdateInfoPanel(observe);
+    }
+
+    public void Reset(ESStagehandObserveControl observe)
+    {
+        observe.MindsContainer.Children.Clear();
+        observe.ObjectiveContainer.Children.Clear();
+        observe.PlayerInfoContainer.Visible = false;
     }
 
     public void Update(ESStagehandObserveControl observe)
@@ -99,6 +102,7 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
             button.OnPressed += _ =>
             {
                 SetInfoPanel(observe, mind);
+                observe.InvokeWarpForEntity(mind);
             };
             observe.MindsContainer.AddChild(button);
         }
@@ -137,16 +141,17 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
 
         var (uid, mind, character) = ent;
         observe.CurrentEntity = uid;
-        observe.WarpButton.Disabled = mind.CurrentEntity == null; // See ESStagehandSystem.cs
 
         var mask = _mask?.GetMaskOrNull((uid, mind));
         var troupe = _mask?.GetTroupeOrNull((uid, mind));
 
         observe.NameLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-name-big", ("text", character.Name)));
 
+        observe.JobLabel.Clear();
         if (_job.MindTryGetJob(uid, out var job))
             observe.JobLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-job", ("text", job.LocalizedName)));
 
+        observe.MaskLabel.Clear();
         if (_prototype.TryIndex(mask, out var maskPrototype))
         {
             observe.MaskLabel.UnsafeSetMarkup(
@@ -154,6 +159,7 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
                 maskPrototype.Color);
         }
 
+        observe.TroupeLabel.Clear();
         if (_prototype.TryIndex(troupe, out var troupePrototype))
         {
             observe.TroupeLabel.UnsafeSetMarkup(
@@ -162,6 +168,7 @@ public sealed class StagehandObserveUIController : UIController, IOnStateEntered
         }
 
         observe.ObjectiveContainer.Children.Clear();
+        observe.ObjectiveScroll.SetScrollValue(Vector2.Zero);
         if (_objective == null)
             return;
 

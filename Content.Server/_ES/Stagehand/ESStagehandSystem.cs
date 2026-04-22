@@ -18,6 +18,7 @@ namespace Content.Server._ES.Stagehand;
 /// </summary>
 public sealed class ESStagehandSystem : EntitySystem
 {
+    [Dependency] private readonly ESStagehandNotificationsSystem _notif = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly FollowerSystem _follower = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
@@ -89,6 +90,7 @@ public sealed class ESStagehandSystem : EntitySystem
         var stagehand = SpawnAtPosition(StagehandPrototype, coords);
         _mind.TransferTo(mind, stagehand, mind: mind);
 
+        _notif.SendStagehandNotification(Loc.GetString("es-stagehand-notification-new-stagehand", ("username", player.Name)));
         _adminLog.Add(LogType.Mind, $"{ToPrettyString(mind):player} became a stagehand.");
     }
 }

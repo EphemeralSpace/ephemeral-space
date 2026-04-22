@@ -5,23 +5,20 @@
     HandheldHealthAnalyzer: 3
     Gauze: 5
     Brutepack: 5
+    Suture: 5
     Ointment: 5
-    Bloodpack: 5
-    ChemistryBottleParacetamol: 3
-    ChemistryBottleInaprovaline: 3 # Offbrand
-    ChemistryBottleBicaridine: 3
-    ChemistryBottleDylovene: 3 # Offbrand
-    ChemistryBottleDexalin: 3 # Offbrand
-    TourniquetOffbrand: 2 # Offbrand
-    Splints: 2 # Offbrand
-    ChemistryBottleEpinephrine: 3
     Syringe: 5
+    ChemistryBottleParacetamol: 3 # Stabilisation chems
+    ChemistryBottleInaprovaline: 3
+    ChemistryBottleEpinephrine: 3
+    ChemistryBottleBicaridine: 3 # Treatment chems
+    ChemistryBottleDermaline: 3
+    ChemistryBottleDylovene: 3
+    ChemistryBottleDexalin: 3
+    ChemistryBottleTricordrazine: 3
+    TourniquetOffbrand: 2
+    Splints: 2
     BoxBottle: 3
-    PillCanisterTricordrazine: 3
-    PillCanisterIron: 1
-    PillCanisterCopper: 1
-    PillCanisterPotassiumIodide: 1
-    SyringeIpecac: 1
     ClothingEyesHudMedical: 2
   contrabandInventory:
     PillCanisterRandom: 3

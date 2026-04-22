@@ -32,21 +32,20 @@
   id: FillClosetJanitor
   table: !type:AllSelector
     children:
-    - id: WetFloorSign
-      amount: 3
-    - id: LightReplacer
+    - id: MopItem
     - id: BoxLightMixed
-    - id: Holoprojector
-    - !type:AllSelector
-      rolls: 2
-      children:
-      - id: MopItem
-      - id: BoxMousetrap
-      - id: TrashBag
-      - id: SoapNT
-      - id: FlashlightLantern
-      - id: Plunger
-      - id: WireBrush
+    - id: WetFloorSign
+      amount: 1, 3
+    - pick:
+        all:
+        - id: WetFloorSign
+        - id: Mousetrap
+        - id: TrashBag
+        - tableId: ESSoap
+        - id: FlashlightLantern
+        - id: Plunger
+        - id: Bucket
+      amount: 3
 
 - type: entity
   id: ClosetLegalFilled

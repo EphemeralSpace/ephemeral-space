@@ -2,4 +2,7 @@
   id: ESMaintenance
 
 - type: esSpawnRegion
-  id: ESAnomaly
+  id: ESSingularityWorldTeleportStation
+
+- type: esSpawnRegion
+  id: ESSingularityWorldTeleportInWorld
