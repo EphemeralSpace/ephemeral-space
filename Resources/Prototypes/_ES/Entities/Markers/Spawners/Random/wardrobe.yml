@@ -3,23 +3,46 @@
   parent: ESSpawnerBase
   name: Random Wardrobe Spawner
   components:
-    - type: Sprite
-      layers:
-        - state: wardrobe
-        - state: random
-        - state: es
-        - state: c100
-    - type: EntityTableSpawner
-      table: !type:NestedSelector
-        tableId: ESWardrobeTypes
+  - type: Sprite
+    layers:
+    - state: wardrobe
+    - state: random
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    table:
+      tableId: ESWardrobeTypes
 
 - type: entityTable
   id: ESWardrobeTypes
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector
-      weight: 95
-      children:
+  table:
+    group:
+    - tableId: ESWardrobeGeneric
+      weight: 75
+    - tableId: ESWardrobeJob
+      weight: 25
+
+- type: entity
+  id: ESSpawnerRandomGenericWardrobe
+  parent: ESSpawnerBase
+  name: Random Generic Wardrobe Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: wardrobe
+    - state: color
+    - state: random
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    table:
+      tableId: ESWardrobeGeneric
+
+- type: entityTable
+  id: ESWardrobeGeneric
+  table:
+    group:
+    - group:
       - id: WardrobeGreyFilled
       - id: WardrobeMixedFilled
       - id: WardrobeYellowFilled
@@ -28,6 +51,39 @@
       - id: WardrobePinkFilled
       - id: WardrobeBlackFilled
       - id: WardrobeGreenFilled
+      weight: 95
+    - group:
+      - id: WardrobeGrey
+      - id: WardrobeMixed
+      - id: WardrobeYellow
+      - id: WardrobeWhite
+      - id: WardrobeBlue
+      - id: WardrobePink
+      - id: WardrobeBlack
+      - id: WardrobeGreen
+      weight: 5 # Rare chance to spawn empty
+
+- type: entity
+  id: ESSpawnerRandomJobWardrobe
+  parent: ESSpawnerBase
+  name: Random Job Wardrobe Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: wardrobe
+    - state: job
+    - state: random
+    - state: es
+    - state: c100
+  - type: EntityTableSpawner
+    table:
+      tableId: ESWardrobeJob
+
+- type: entityTable
+  id: ESWardrobeJob
+  table:
+    group:
+    - group:
       - id: ESWardrobeBartenderFilled
       - id: ESWardrobeChefFilled
       - id: ESWardrobeCargoFilled
@@ -42,17 +98,8 @@
       - id: ESWardrobeDoctorFilled
       - id: ESWardrobeParamedicFilled
       - id: ESWardrobeEngineeringFilled
-    - !type:GroupSelector
-      weight: 5 # Rare chance to spawn empty
-      children:
-      - id: WardrobeGrey
-      - id: WardrobeMixed
-      - id: WardrobeYellow
-      - id: WardrobeWhite
-      - id: WardrobeBlue
-      - id: WardrobePink
-      - id: WardrobeBlack
-      - id: WardrobeGreen
+      weight: 95
+    - group:
       - id: ESWardrobeBartender
       - id: ESWardrobeChef
       - id: ESWardrobeCargo
@@ -67,3 +114,4 @@
       - id: ESWardrobeDoctor
       - id: ESWardrobeParamedic
       - id: ESWardrobeEngineering
+      weight: 5 # Also a rare chance to spawn empty
