@@ -81,10 +81,10 @@
       supplyRampRate: 1000
     - type: PointLight
       # ES START
-      radius: 1.8
-      energy: 3
+      radius: 2.3
+      energy: 2
       falloff: 10
-      color: "#c9c042"
+      color: "#f7a847"
       curveFactor: 1.0
       # ES END
     - type: WiresPanel

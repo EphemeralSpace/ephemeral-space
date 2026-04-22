@@ -1,4 +1,5 @@
-ui-lobby-title = Lobby: {$serverName}
+ui-lobby-title = {$serverName}
+ui-lobby-title-fmt = [font size=20][bold][color=#a88b5e]{$text}[/color][/bold][/font]
 ui-lobby-ahelp-button = AHelp
 ui-lobby-options-button = Options
 ui-lobby-leave-button = Leave

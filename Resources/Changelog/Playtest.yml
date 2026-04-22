@@ -1,0 +1,45 @@
+Entries:
+- author: test
+  changes:
+    - message: test
+      type: Add
+  id: 1
+  time: '2025-08-31T12:54:45.0000000+00:00'
+  url: https://github.com/EphemeralSpace/ephemeral-space/pull/1
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: >-
+        Viewport scaling should work better in most situations, including on
+        720p/1440p monitors where it was previously kinda awful
+  id: 2
+  time: '2026-04-16T23:54:27.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Stagehands now get a notification when a new stagehand joins the crew
+  id: 3
+  time: '2026-04-18T00:04:02.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        The help button in the character menu now opens the mask's guidebook
+        page
+  id: 4
+  time: '2026-04-18T00:15:12.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed being unable to use "T" and other chat shortcuts in the lobby.
+  id: 5
+  time: '2026-04-18T20:52:02.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        The station now has several thrusters which keep it moving away from the
+        radstorm. Make sure these are fueled up with welding fuel, or else you
+        may find the storm approaching faster than expected.
+  id: 6
+  time: '2026-04-18T21:54:34.0000000+00:00'

@@ -6,28 +6,28 @@
   minPlayers: 6
   gameRules: []
   masquerade:
-    defaultMask: "ESCrewmember/ESVIP"
+    defaultMask: "Crewmember/VIP"
     superfanTarget: "#Traitors"
     roles:
-      6: ["ESMarauder", "ESInfiltrator", "#Filler", "ESVIP", "ESRebel", "#Targeters"] # 0 generic crew, 2 traitors
+      6: ["Marauder", "Infiltrator", "#Filler", "VIP", "Rebel", "#Targeters"] # 0 generic crew, 2 traitors
       7: ["#Filler"]
-      8: ["ESVIP"]
-      9: ["ESVigilante"]
+      8: ["VIP"]
+      9: ["Vigilante"]
       10: ["#TraitorAdjacent"]
-      11: ["ESVIP"]
-      13: ["ESAssassin"]  # 0 generic crew, 3 traitors.
+      11: ["VIP"]
+      13: ["Assassin"]  # 0 generic crew, 3 traitors.
       14: ["#Filler"]
-      16: ["ESAvenger"] # 1 generic crew, 3 traitors.
+      16: ["Avenger"] # 1 generic crew, 3 traitors.
       17: ["#Filler"]
-      18: ["ESArmsDealer"]
-      19: ["ESMarauder"] # 1 generic crew, 4 traitors.
-      20: ["ESVIP"]
-      21: ["#Filler", "-ESMarauder", "#PowerTraitors"] # 1 generic crew, 4 traitors.
-      22: ["ESVIP"]
+      18: ["ArmsDealer"]
+      19: ["Marauder"] # 1 generic crew, 4 traitors.
+      20: ["VIP"]
+      21: ["#Filler", "-Marauder", "#PowerTraitors"] # 1 generic crew, 4 traitors.
+      22: ["VIP"]
       24: ["#TraitorGunners"] # 2 generic crew, 4 traitors.
-      25: ["ESMarauder"] # 2 generic crew, 5 traitors.
+      25: ["Marauder"] # 2 generic crew, 5 traitors.
       26: ["#Filler"]
       28: ["#TraitorGunners"] # 3 generic crew, 5 traitors.
-      29: ["ESVIP"]
+      29: ["VIP"]
       30: ["#Filler"]
       31: ["#Traitors", "#Filler"] # 3 generic crew, 6 traitors.

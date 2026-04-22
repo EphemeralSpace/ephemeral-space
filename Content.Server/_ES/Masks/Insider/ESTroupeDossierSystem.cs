@@ -21,7 +21,7 @@ public sealed class ESTroupeDossierSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
 
-    private static readonly ProtoId<ESTroupePrototype> CrewTroupe = "ESCrew";
+    private static readonly ProtoId<ESTroupePrototype> CrewTroupe = "Crew";
 
     /// <inheritdoc/>
     public override void Initialize()

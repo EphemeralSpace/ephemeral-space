@@ -1,8 +1,6 @@
 using System.IO;
 using System.Linq;
 using System.Numerics;
-using Content.Shared.CCVar;
-using Content.Shared.Decals;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -20,11 +18,12 @@ using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
-// ES START
 using Content.Shared._ES.Auditions;
 using Content.Shared.IdentityManagement.Components;
 using Robust.Shared.ColorNaming;
-// ES END
+
+// ES CHANGES
+// Make LoadProfile() not error on non-humans
 
 namespace Content.Shared.Humanoid;
 
@@ -442,7 +441,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (profile == null)
             return;
 
-        if (!Resolve(uid, ref humanoid))
+        if (!Resolve(uid, ref humanoid, false))
         {
             return;
         }

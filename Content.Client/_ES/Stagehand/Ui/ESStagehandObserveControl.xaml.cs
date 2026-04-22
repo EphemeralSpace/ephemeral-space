@@ -15,17 +15,8 @@ public sealed partial class ESStagehandObserveControl : UIWidget
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-
-        WarpButton.OnPressed += InvokeWarp;
     }
 
-    private void InvokeWarp(BaseButton.ButtonEventArgs obj)
-    {
-        if (CurrentEntity.HasValue)
-            OnWarpButtonPressed?.Invoke(CurrentEntity.Value);
-    }
-
-    //??? why is this necessary idk why emo it like this
     public void InvokeWarpForEntity(EntityUid entity)
     {
         OnWarpButtonPressed?.Invoke(entity);

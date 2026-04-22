@@ -26,6 +26,9 @@ public sealed class ESLobbyCurtainsUIController : UIController
 
     public LobbyCurtainState CurtainState { get; private set; } = LobbyCurtainState.Open;
 
+    public bool IsOpen => CurtainState == LobbyCurtainState.Open;
+    public bool IsClosed => CurtainState == LobbyCurtainState.Closed;
+
     private LayoutContainer _curtainRoot = default!;
     private TextureRect _leftCurtain = default!;
     private TextureRect _rightCurtain = default!;

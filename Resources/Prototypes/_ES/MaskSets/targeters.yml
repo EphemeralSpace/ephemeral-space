@@ -1,7 +1,7 @@
 ﻿- type: esMaskSet
   id: Targeters # Masks that rely on targeting others for their interactions.
   masks:
-    ESAvenger: 0.6
-    ESHater: 1
-    ESSecretary: 1
-    ESVigilante: 0.6
+    Avenger: 0.6
+    Hater: 1
+    Secretary: 1
+    Vigilante: 0.6

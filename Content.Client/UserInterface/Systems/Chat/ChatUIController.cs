@@ -288,7 +288,7 @@ public sealed class ChatUIController : UIController
 
     public void SetMainChat(bool setting)
     {
-        if (UIManager.ActiveScreen is not InGameScreen screen)
+        if (UIManager.ActiveScreen is null)
         {
             return;
         }

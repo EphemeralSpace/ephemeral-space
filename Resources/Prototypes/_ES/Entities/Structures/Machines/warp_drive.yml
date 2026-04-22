@@ -1,0 +1,83 @@
+- type: entity
+  parent: BaseStructure
+  id: ESMachineScienceWarpDrive
+  name: gravitational warp drive
+  description: Through a singularity in time and space, vast and distant dimensions can be brought close together simultaneously, allowing for the instant transfer of materia.
+  suffix: ES
+  components:
+  # to be indestructible, we need to re-construct basemachine without the damageable part
+  - type: InteractionOutline
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Effects/singularity.ogg
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: Sprite
+    sprite: _ES/Structures/Machines/Telesci/portalgen.rsi
+    noRot: true
+    layers:
+    - state: base
+    - state: cube-off
+      map: [ "cube" ]
+    - sprite: Structures/Power/Generation/Singularity/singularity_1.rsi
+      state: singularity_1
+      color: "#FFFFFFCC"
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ESWarpDriveVisuals.Charging:
+        cube:
+          True:
+            state: cube
+            shader: unshaded
+          False:
+            state: cube-off
+            shader: shaded
+  - type: PointLight
+    enabled: false
+    radius: 8
+    energy: 15
+    color: "#9A007B"
+    netsync: false
+  - type: ESGenericPointLightVisualizer
+    visuals:
+      enum.ESWarpDriveVisuals.Charging:
+        True:
+          enabled: true
+        False:
+          enabled: false
+  - type: SingularityDistortion
+    intensity: 700
+    falloffPower: 2.6
+  - type: ESWarpDrive
+  - type: Portal
+    randomTeleport: false
+    canTeleportToOtherMaps: true
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Anchorable
+    flags:
+    - Anchorable

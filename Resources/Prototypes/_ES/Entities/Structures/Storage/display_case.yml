@@ -95,3 +95,4 @@
     containers:
       display-case:
         id: ESWeaponCaptainEnergyGun
+  - type: ESAmbientMusicMarkerCommand

@@ -191,6 +191,7 @@
       - Injector
       - Pill
       - HandLabeler
+      - Tending
   - type: ItemMapper
     sprite: *BeltOverlay
     mapLayers:

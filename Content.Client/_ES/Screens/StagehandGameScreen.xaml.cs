@@ -46,6 +46,8 @@ public sealed partial class StagehandGameScreen : InGameScreen
     {
         base.OnUnloaded();
 
+        UserInterfaceManager.GetUIController<StagehandObserveUIController>().Reset(ObserveControl);
+        UserInterfaceManager.GetUIController<StagehandVoteUIController>().Reset(VoteControl);
         ObserveControl.OnWarpButtonPressed -= OnWarpButtonPressed;
     }
 
