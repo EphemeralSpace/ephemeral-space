@@ -12,5 +12,5 @@
   - type: ESCounterObjective
     title: es-arsonist-light-fires-objective-title
     target: 32
-    maxTarget: 64
-    targetIncrement: 4
+    maxTarget: 52
+    targetIncrement: 2
