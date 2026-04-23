@@ -21,6 +21,8 @@
   troupe: Crew
   description: es-mask-arsonist-desc
   color: red
+  objectives:
+    id: ESObjectiveArsonistLightFires
 
 - type: esMask
   id: Avenger

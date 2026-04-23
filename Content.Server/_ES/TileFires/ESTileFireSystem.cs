@@ -164,10 +164,11 @@ public sealed class ESTileFireSystem : ESSharedTileFireSystem
 
         SpawnAtPosition(proto, coords);
 
-        var ev = new ESTileFireCreatedEvent(coords, originatingUser, stage);
-        RaiseLocalEvent(ref ev);
-
-        // TODO arsonist update counter objective for originating user u get the idea etc etc
+        if (originatingUser.HasValue)
+        {
+            var ev = new ESTileFireCreatedEvent(coords, originatingUser, stage);
+            RaiseLocalEvent(originatingUser.Value, ref ev);
+        }
         return true;
     }
 
