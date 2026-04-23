@@ -23,6 +23,9 @@ es-mask-nobleman-desc = As a Nobleman, prevent the corruption of your pure blood
 es-mask-phantom-name = Phantom
 es-mask-phantom-desc = As a Phantom, reincarnate as a vengeful spirit on death and haunt your murderer until they also die.
 
+es-mask-pickpocket-name = Pickpocket
+es-mask-pickpocket-desc = As a Pickpocket, sneak behind peoples' backs to snatch their belongings and grow your collection.
+
 es-mask-secretary-name = Secretary
 es-mask-secretary-desc = As a Secretary, do whatever you can to help your target complete their objectives.
 

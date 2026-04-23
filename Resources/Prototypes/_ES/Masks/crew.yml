@@ -95,6 +95,20 @@
     - id: ESObjectivePhantomDie
 
 - type: esMask
+  id: Pickpocket
+  name: es-mask-pickpocket-name
+  troupe: Crew
+  description: es-mask-pickpocket-desc
+  color: olivedrab
+  weight: 1
+  actions:
+    all:
+    - id: ActionMaskPickpocketSnatch
+  objectives:
+    all:
+    - id: ESObjectivePickpocketSteal
+
+- type: esMask
   parent: ESBaseCommandRestricted
   id: Rebel
   name: es-mask-rebel-name

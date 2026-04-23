@@ -11,6 +11,7 @@
   - Mercenary
   - Nobleman
   - Phantom
+  - Pickpocket
   - Rebel
   - Secretary
   - SleeperAgent
@@ -57,6 +58,11 @@
   id: Phantom
   name: Phantom
   text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Phantom.xml"
+
+- type: guideEntry
+  id: Pickpocket
+  name: Pickpocket
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Pickpocket.xml"
 
 - type: guideEntry
   id: Rebel

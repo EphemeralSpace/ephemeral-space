@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server._ES.Stagehand;
+using Content.Server.Actions;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Roles.Jobs;
@@ -8,6 +9,7 @@ using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Masks.Components;
 using Content.Shared.Chat;
+using Content.Shared.EntityTable;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
@@ -23,6 +25,8 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 {
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly EntityTableSystem _entityTable = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly JobSystem _job = default!;
     [Dependency] private readonly ESStagehandNotificationsSystem _stagehandNotifications = default!;
@@ -229,6 +233,14 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
             _stationSpawning.EquipStartingGear(ownedEntity, mask.Gear);
             EntityManager.AddComponents(ownedEntity, mask.Components);
             EnsureComp<ESBodyLastMaskComponent>(ownedEntity).LastMask = mask;
+
+            // TODO: these should be tied to the mind, but OH MY GOD that code is ass.
+            // Save that shit for another day.
+            foreach (var action in _entityTable.GetSpawns(mask.Actions))
+            {
+                if (_actions.AddAction(ownedEntity, action) is { } actionEntity)
+                    role.Value.Comp2.Actions.Add(actionEntity);
+            }
         }
         EntityManager.AddComponents(mind, mask.MindComponents);
 
@@ -250,18 +262,22 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
 
     public override void RemoveMask(Entity<MindComponent> mind)
     {
-        if (!TryGetMask(mind.AsNullable(), out var maskId))
+        if (!TryGetMask(mind.AsNullable(), out var maskId) ||
+            !Role.MindHasRole<ESMaskRoleComponent>(mind.Owner, out var role))
             return;
 
         var mask = PrototypeManager.Index(maskId);
-
-        Role.MindRemoveRole(mind.AsNullable(), new EntProtoId<MindRoleComponent>(MindRole));
 
         if (mind.Comp.OwnedEntity is { } ownedEntity)
         {
             EntityManager.RemoveComponents(ownedEntity, mask.Components);
         }
         EntityManager.RemoveComponents(mind, mask.MindComponents);
+
+        foreach (var action in role.Value.Comp2.Actions)
+        {
+            _actions.RemoveAction(action);
+        }
 
         foreach (var objective in Objective.GetOwnedObjectives<ESMaskObjectiveComponent>(mind.Owner))
         {
@@ -272,6 +288,8 @@ public sealed class ESMaskSystem : ESSharedMaskSystem
         {
             troupeEntity.Value.Comp.TroupeMemberMinds.Remove(mind);
         }
+
+        Role.MindRemoveRole(mind.AsNullable(), new EntProtoId<MindRoleComponent>(MindRole));
 
         Objective.RegenerateObjectiveList(mind.Owner);
         RefreshCharacterInfoBlurb(mind.AsNullable());
