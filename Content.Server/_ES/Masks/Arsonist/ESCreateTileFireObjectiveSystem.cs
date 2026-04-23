@@ -15,10 +15,16 @@ public sealed class ESCreateTileFireObjectiveSystem : ESBaseObjectiveSystem<ESCr
         base.Initialize();
 
         SubscribeLocalEvent<ESCreateTileFireObjectiveComponent, ESBodyCreatedTileFireEvent>(OnCreatedTileFire);
+        SubscribeLocalEvent<ESCreateTileFireObjectiveComponent, ESBodyExtinguishedTileFireEvent>(OnExtinguishedTileFire);
     }
 
     private void OnCreatedTileFire(Entity<ESCreateTileFireObjectiveComponent> ent, ref ESBodyCreatedTileFireEvent args)
     {
         ObjectivesSys.AdjustObjectiveCounter(ent.Owner);
+    }
+
+    private void OnExtinguishedTileFire(Entity<ESCreateTileFireObjectiveComponent> ent, ref ESBodyExtinguishedTileFireEvent args)
+    {
+        ObjectivesSys.AdjustObjectiveCounter(ent.Owner, -1);
     }
 }

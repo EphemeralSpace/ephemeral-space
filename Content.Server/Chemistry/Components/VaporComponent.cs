@@ -33,5 +33,8 @@ namespace Content.Server.Chemistry.Components
 
         [DataField]
         public bool Active;
+
+        [DataField]
+        public EntityUid? Origin;
     }
 }

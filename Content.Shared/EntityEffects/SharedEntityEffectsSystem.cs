@@ -42,7 +42,7 @@ public sealed partial class SharedEntityEffectsSystem : EntitySystem, IEntityEff
                 if (!group.Contains(args.Method))
                     continue;
 
-                ApplyEffects(entity, val.Effects, scale);
+                ApplyEffects(entity, val.Effects, scale, args.Origin);
             }
         }
 

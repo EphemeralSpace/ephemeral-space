@@ -92,7 +92,7 @@ namespace Content.Server.Atmos.EntitySystems
 
             // You know I'm really not sure if having AdjustFireStacks *after* Extinguish,
             // but I'm just moving this code, not questioning it.
-            AdjustFireStacks(ent, args.FireStacksAdjustment, ent.Comp);
+            AdjustFireStacks(ent, args.FireStacksAdjustment, ent.Comp, user: args.User);
             // ES END
         }
 
@@ -312,15 +312,15 @@ namespace Content.Server.Atmos.EntitySystems
             _appearance.SetData(uid, ToggleableVisuals.Enabled, flammable.OnFire, appearance);
         }
 
-        public void AdjustFireStacks(EntityUid uid, float relativeFireStacks, FlammableComponent? flammable = null, bool ignite = false)
+        public void AdjustFireStacks(EntityUid uid, float relativeFireStacks, FlammableComponent? flammable = null, bool ignite = false, EntityUid? user = null)
         {
             if (!Resolve(uid, ref flammable))
                 return;
 
-            SetFireStacks(uid, flammable.FireStacks + relativeFireStacks, flammable, ignite);
+            SetFireStacks(uid, flammable.FireStacks + relativeFireStacks, flammable, ignite, user: user);
         }
 
-        public void SetFireStacks(EntityUid uid, float stacks, FlammableComponent? flammable = null, bool ignite = false)
+        public void SetFireStacks(EntityUid uid, float stacks, FlammableComponent? flammable = null, bool ignite = false, EntityUid? user = null)
         {
             if (!Resolve(uid, ref flammable))
                 return;
@@ -329,7 +329,7 @@ namespace Content.Server.Atmos.EntitySystems
 
             if (flammable.FireStacks <= 0)
             {
-                Extinguish(uid, flammable);
+                Extinguish(uid, flammable, user: user);
             }
             else
             {
@@ -338,7 +338,7 @@ namespace Content.Server.Atmos.EntitySystems
             }
         }
 
-        public void Extinguish(EntityUid uid, FlammableComponent? flammable = null)
+        public void Extinguish(EntityUid uid, FlammableComponent? flammable = null, EntityUid? user = null)
         {
             if (!Resolve(uid, ref flammable))
                 return;
@@ -354,6 +354,12 @@ namespace Content.Server.Atmos.EntitySystems
 
             var extinguished = new ExtinguishedEvent();
             RaiseLocalEvent(uid, ref extinguished);
+
+            if (user.HasValue)
+            {
+                var userExtinguishedEv = new ESUserExtinguishedEvent(uid);
+                RaiseLocalEvent(user.Value, ref userExtinguishedEv);
+            }
 
             // ES START
             if (flammable.DeleteOnExtinguish)

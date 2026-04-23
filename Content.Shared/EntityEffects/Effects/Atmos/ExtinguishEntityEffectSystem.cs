@@ -16,6 +16,7 @@ public sealed partial class ExtinguishEntityEffectSystem : EntityEffectSystem<Fl
         var ev = new ExtinguishEvent
         {
             FireStacksAdjustment = args.Effect.FireStacksAdjustment * args.Scale,
+            User = args.User,
         };
 
         RaiseLocalEvent(entity, ref ev);

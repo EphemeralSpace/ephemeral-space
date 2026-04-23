@@ -41,10 +41,14 @@ namespace Content.Server.Chemistry.EntitySystems
         {
             if (!TryComp(entity.Owner, out SolutionContainerManagerComponent? contents)) return;
 
+            var origin = Exists(entity.Comp.Origin) && !TerminatingOrDeleted(entity.Comp.Origin)
+                ? entity.Comp.Origin
+                : null;
+
             foreach (var (_, soln) in _solutionContainerSystem.EnumerateSolutions((entity.Owner, contents)))
             {
                 var solution = soln.Comp.Solution;
-                _reactive.DoEntityReaction(args.OtherEntity, solution, ReactionMethod.Touch);
+                _reactive.DoEntityReaction(args.OtherEntity, solution, ReactionMethod.Touch, origin: origin);
             }
 
             // Check for collision with a impassable object (e.g. wall) and stop
