@@ -252,7 +252,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         var posFound = _transformSystem.TryGetMapOrGridCoordinates(uid, out var gridPos, pos);
 
-        QueueExplosion(mapPos, typeId, totalIntensity, slope, maxTileIntensity, uid, tileBreakScale, maxTileBreak, canCreateVacuum, addLog: false);
+        QueueExplosion(mapPos, typeId, totalIntensity, slope, maxTileIntensity, uid, tileBreakScale, maxTileBreak, canCreateVacuum, addLog: false, origin: user);
 
         if (!addLog)
             return;
@@ -288,7 +288,8 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         float tileBreakScale = 1f,
         int maxTileBreak = int.MaxValue,
         bool canCreateVacuum = true,
-        bool addLog = true)
+        bool addLog = true,
+        EntityUid? origin = null)
     {
         if (totalIntensity <= 0 || slope <= 0)
             return;
@@ -328,7 +329,8 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             TileBreakScale = tileBreakScale,
             MaxTileBreak = maxTileBreak,
             CanCreateVacuum = canCreateVacuum,
-            Cause = cause
+            Cause = cause,
+            Origin = origin,
         };
         _explosionQueue.Enqueue(boom);
         _queuedExplosions.Add(boom);
@@ -353,11 +355,6 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         var (area, iterationIntensity, spaceData, gridData, spaceMatrix) = results.Value;
 
         var visualEnt = CreateExplosionVisualEntity(pos, queued.Proto.ID, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
-
-        // camera shake
-        // ES START
-        // CameraShake(iterationIntensity.Count * 4f, pos, queued.TotalIntensity);
-        // ES END
 
         //For whatever bloody reason, sound system requires ENTITY coordinates.
         var mapEntityCoords = _transformSystem.ToCoordinates(_map.GetMap(pos.MapId), pos);
@@ -389,6 +386,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             : queued.Proto.SoundFar;
 
         // ES START
+        // camera shake
         var farTranslationShake = iterationIntensity.Count < queued.Proto.SmallSoundIterationThreshold
             ? new ESScreenshakeParameters() { Trauma = 0.4f, DecayRate = 0.2f, Frequency = 0.014f }
             : new ESScreenshakeParameters() { Trauma = 0.6f, DecayRate = 0.05f, Frequency = 0.014f };
@@ -412,30 +410,8 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             EntityManager,
             visualEnt,
             queued.Cause,
+            queued.Origin,
             _map,
             _damageableSystem);
-    }
-
-    private void CameraShake(float range, MapCoordinates epicenter, float totalIntensity)
-    {
-        var players = Filter.Empty();
-        players.AddInRange(epicenter, range, _playerManager, EntityManager);
-
-        foreach (var player in players.Recipients)
-        {
-            if (player.AttachedEntity is not EntityUid uid)
-                continue;
-
-            var playerPos = _transformSystem.GetWorldPosition(player.AttachedEntity!.Value);
-            var delta = epicenter.Position - playerPos;
-
-            if (delta.EqualsApprox(Vector2.Zero))
-                delta = new(0.01f, 0);
-
-            var distance = delta.Length();
-            var effect = 5 * MathF.Pow(totalIntensity, 0.5f) * (1 - distance / range);
-            if (effect > 0.01f)
-                _recoilSystem.KickCamera(uid, -delta.Normalized() * effect);
-        }
     }
 }
