@@ -16,6 +16,13 @@
       amount: 6
 
 - type: esMask
+  id: Arsonist
+  name: es-mask-arsonist-name
+  troupe: Crew
+  description: es-mask-arsonist-desc
+  color: red
+
+- type: esMask
   id: Avenger
   name: es-mask-avenger-name
   troupe: Crew

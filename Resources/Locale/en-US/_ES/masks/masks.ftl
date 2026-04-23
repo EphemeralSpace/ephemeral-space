@@ -2,6 +2,9 @@
 es-mask-arms-dealer-name = Arms Dealer
 es-mask-arms-dealer-desc = As an Arms Dealer, help people out--by passing out guns to whoever you think might be able to use it responsibly.
 
+es-mask-arsonist-name = Arsonist
+es-mask-arsonist-desc = As an Arsonist, light fires around the station to fulfill your sick desires.
+
 es-mask-avenger-name = Avenger
 es-mask-avenger-desc = As an Avenger, protect your target from being killed at all costs. If that fails, kill their murderer.
 
