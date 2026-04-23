@@ -43,3 +43,11 @@ Entries:
         may find the storm approaching faster than expected.
   id: 6
   time: '2026-04-18T21:54:34.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Pickpocket, a new crew mask that is tasked with snatching
+        items from people using their unique sneaky ability.
+  id: 7
+  time: '2026-04-23T13:44:18.0000000+00:00'
