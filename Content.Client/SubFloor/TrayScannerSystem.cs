@@ -118,7 +118,8 @@ public sealed partial class TrayScannerSystem : SharedTrayScannerSystem
                 if (sprite.Color.A >= SubfloorRevealAlpha || _animation.HasRunningAnimation(uid, TRayAnimationKey))
                     continue;
 
-                _animation.Play(uid, new Animation()
+                _animation.Play(uid,
+                    new Animation()
                 {
                     Length = TimeSpan.FromSeconds(AnimationLength),
                     AnimationTracks =
@@ -134,7 +135,8 @@ public sealed partial class TrayScannerSystem : SharedTrayScannerSystem
                             }
                         }
                     }
-                }, TRayAnimationKey);
+                },
+                    TRayAnimationKey);
             }
             // Hiding
             else
@@ -153,7 +155,8 @@ public sealed partial class TrayScannerSystem : SharedTrayScannerSystem
                 if (_animation.HasRunningAnimation(uid, TRayAnimationKey))
                     continue;
 
-                _animation.Play(uid, new Animation()
+                _animation.Play(uid,
+                    new Animation()
                 {
                     Length = TimeSpan.FromSeconds(AnimationLength),
                     AnimationTracks =
@@ -169,7 +172,8 @@ public sealed partial class TrayScannerSystem : SharedTrayScannerSystem
                             }
                         }
                     }
-                }, TRayAnimationKey);
+                },
+                    TRayAnimationKey);
             }
         }
     }
