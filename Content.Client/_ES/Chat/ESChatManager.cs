@@ -16,7 +16,7 @@ public sealed class ESChatManager : IESSharedChatManager
         ICommonSession recipient,
         ProtoId<ESChatChannelPrototype> channel,
         EntityUid source,
-        string format,
+        string format = IESSharedChatManager.DefaultFormat,
         bool ephemeral = false,
         bool recordReplay = true,
         SoundSpecifier? sound = null,

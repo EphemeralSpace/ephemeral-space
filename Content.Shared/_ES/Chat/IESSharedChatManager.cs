@@ -6,6 +6,8 @@ namespace Content.Shared._ES.Chat;
 
 public interface IESSharedChatManager
 {
+    const string DefaultFormat = "{0}";
+
     void Initialize();
 
     void SendChatMessage(
@@ -13,7 +15,7 @@ public interface IESSharedChatManager
         ICommonSession recipient,
         ProtoId<ESChatChannelPrototype> channel,
         EntityUid source,
-        string format,
+        string format = DefaultFormat,
         bool ephemeral = false,
         bool recordReplay = true,
         SoundSpecifier? sound = null,

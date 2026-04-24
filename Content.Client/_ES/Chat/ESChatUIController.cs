@@ -18,6 +18,6 @@ public sealed class ESChatUIController : UIController
     private void OnChatMessage(ESChatNetMessage msg)
     {
         var message = msg.Message;
-        Log.Debug($"ES CHAT: {message.Name}: {message.Content}");
+        Log.Debug(string.Format(message.Format, message.Content, message.Name ?? string.Empty));
     }
 }

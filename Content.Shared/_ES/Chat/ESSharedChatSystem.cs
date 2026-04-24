@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Shared._ES.Chat.Components;
-using Content.Shared.Chat;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -15,7 +14,12 @@ public sealed class ESSharedChatSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
+        SubscribeLocalEvent<ESSimpleFormatChatChannelComponent, ESGetChatMessageFormatEvent>(OnSimpleGetFormat);
+    }
 
+    private void OnSimpleGetFormat(Entity<ESSimpleFormatChatChannelComponent> ent, ref ESGetChatMessageFormatEvent args)
+    {
+        args.Format = Loc.GetString(ent.Comp.Format);
     }
 
     /// <summary>
@@ -76,6 +80,7 @@ public sealed class ESSharedChatSystem : EntitySystem
         // TODO: Chat filtering occurs here
 
         // TODO: Get modified source + name override
+        var name = Name(source);
 
         var ev = new ESTransformChatMessageEvent(content, source, processor);
         RaiseLocalEvent(source, ref ev);
@@ -83,7 +88,9 @@ public sealed class ESSharedChatSystem : EntitySystem
 
         var transformedContent = ev.Content;
 
-        // TODO: Determine speech verb and the message format.
+        // Get the message format
+        var formatEv = new ESGetChatMessageFormatEvent(transformedContent, source);
+        RaiseLocalEvent(processor, ref formatEv);
 
         foreach (var recipient in GetMessageRecipients(source, processor))
         {
@@ -98,7 +105,8 @@ public sealed class ESSharedChatSystem : EntitySystem
                 session,
                 recipientEv.Channel,
                 source,
-                "{0}: {1}");
+                formatEv.Format,
+                name: name);
         }
 
         // TODO: Entity spoke event
@@ -267,6 +275,28 @@ public record struct ESTransformChatMessageEvent(string Content, EntityUid Sourc
     /// The message's chat channel
     /// </summary>
     public ProtoId<ESChatChannelPrototype> Channel => Processor.Comp.Channel;
+}
+
+/// <summary>
+/// Event raised on a chat processor to determine how the message's content and name will be formatted.
+/// </summary>
+[ByRefEvent]
+public record struct ESGetChatMessageFormatEvent(string Content, EntityUid Source)
+{
+    /// <summary>
+    /// The original message sent
+    /// </summary>
+    public readonly string Content = Content;
+
+    /// <summary>
+    /// The message's source
+    /// </summary>
+    public readonly EntityUid Source = Source;
+
+    /// <summary>
+    /// Formatting string that will be used to
+    /// </summary>
+    public string Format = IESSharedChatManager.DefaultFormat;
 }
 
 /// <summary>

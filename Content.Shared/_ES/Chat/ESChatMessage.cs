@@ -55,7 +55,7 @@ public struct ESChatMessage
     /// <summary>
     /// Name used for display in the chat message
     /// </summary>
-    public string Name;
+    public string? Name;
 
     /// <summary>
     /// Optional override font for message display
@@ -94,7 +94,7 @@ public struct ESChatMessage
         bool ephemeral,
         SoundSpecifier? sound,
         Color color,
-        string name,
+        string? name,
         string? font,
         int? fontSize,
         string format,
