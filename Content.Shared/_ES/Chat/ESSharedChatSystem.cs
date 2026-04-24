@@ -100,6 +100,8 @@ public sealed class ESSharedChatSystem : EntitySystem
             var recipientEv = new ESRecipientTransformChatMessageEvent(transformedContent, source, processor);
             RaiseLocalEvent(recipient, ref recipientEv);
 
+            // TODO: Don't record messages for replays here. Otherwise, we'll log the same message multiple times.
+            // Instead, record the "canonical" message after this loop.
             _chat.SendChatMessage(
                 recipientEv.Content,
                 session,
