@@ -4,6 +4,7 @@
   name: Crew
   children:
   - ArmsDealer
+  - Arsonist
   - Avenger
   - Crewmember
   - Guzzler
@@ -23,6 +24,11 @@
   id: ArmsDealer
   name: Arms Dealer
   text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/ArmsDealer.xml"
+
+- type: guideEntry
+  id: Arsonist
+  name: Arsonist
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Arsonist.xml"
 
 - type: guideEntry
   id: Avenger

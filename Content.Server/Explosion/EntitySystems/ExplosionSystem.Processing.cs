@@ -204,7 +204,8 @@ public sealed partial class ExplosionSystem
         float? fireStacks,
         float? temperature,
         float currentIntensity,
-        EntityUid? cause)
+        EntityUid? cause,
+        EntityUid? origin)
     {
         var size = grid.Comp.TileSize;
         var gridBox = new Box2(tile * size, (tile + 1) * size);
@@ -223,7 +224,7 @@ public sealed partial class ExplosionSystem
         // process those entities
         foreach (var (uid, xform) in list)
         {
-            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause, origin);
         }
 
         // process anchored entities
@@ -233,7 +234,7 @@ public sealed partial class ExplosionSystem
         foreach (var entity in _anchored)
         {
             processed.Add(entity);
-            ProcessEntity(entity, epicenter, damage, throwForce, id, null, fireStacks, cause);
+            ProcessEntity(entity, epicenter, damage, throwForce, id, null, fireStacks, cause, origin);
         }
 
         // heat the atmosphere
@@ -262,7 +263,8 @@ public sealed partial class ExplosionSystem
             if (_robustRandom.Prob(explosionType.FireChance))
             {
                 _tileFire.TryDoTileFire(_map.ToCoordinates(grid, tile, grid),
-                    stage: _robustRandom.Next(explosionType.MinFireLevel, explosionType.MaxFireLevel + 1));
+                    stage: _robustRandom.Next(explosionType.MinFireLevel, explosionType.MaxFireLevel + 1),
+                    originatingUser: origin);
             }
         }
 // ES END
@@ -286,7 +288,7 @@ public sealed partial class ExplosionSystem
         {
             // Here we only throw, no dealing damage. Containers n such might drop their entities after being destroyed, but
             // they should handle their own damage pass-through, with their own damage reduction calculation.
-            ProcessEntity(uid, epicenter, null, throwForce, id, xform, null, cause);
+            ProcessEntity(uid, epicenter, null, throwForce, id, xform, null, cause, origin);
         }
 
         return !tileBlocked;
@@ -323,7 +325,8 @@ public sealed partial class ExplosionSystem
         HashSet<EntityUid> processed,
         string id,
         float? fireStacks,
-        EntityUid? cause)
+        EntityUid? cause,
+        EntityUid? origin)
     {
         var gridBox = Box2.FromDimensions(tile * DefaultTileSize, new Vector2(DefaultTileSize, DefaultTileSize));
         var worldBox = spaceMatrix.TransformBox(gridBox);
@@ -339,7 +342,7 @@ public sealed partial class ExplosionSystem
         foreach (var (uid, xform) in state.Item1)
         {
             processed.Add(uid);
-            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause, origin);
         }
 
         if (throwForce <= 0)
@@ -353,7 +356,7 @@ public sealed partial class ExplosionSystem
 
         foreach (var (uid, xform) in list)
         {
-            ProcessEntity(uid, epicenter, null, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, null, throwForce, id, xform, fireStacks, cause, origin);
         }
     }
 
@@ -452,7 +455,8 @@ public sealed partial class ExplosionSystem
         string id,
         TransformComponent? xform,
         float? fireStacksOnIgnite,
-        EntityUid? cause)
+        EntityUid? cause,
+        EntityUid? origin)
     {
         if (originalDamage is not null)
         {
@@ -462,8 +466,7 @@ public sealed partial class ExplosionSystem
                 if (!_damageableQuery.TryComp(entity, out var damageable))
                     continue;
 
-                // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
-                _damageableSystem.TryChangeDamage((entity, damageable), damage, ignoreResistances: true, ignoreGlobalModifiers: true);
+                _damageableSystem.TryChangeDamage((entity, damageable), damage, ignoreResistances: true, ignoreGlobalModifiers: true, origin: origin);
 
                 if (_actorQuery.HasComp(entity))
                 {
@@ -683,6 +686,7 @@ sealed class Explosion
     public readonly EntityUid VisualEnt;
 
     public readonly EntityUid? Cause;
+    public readonly EntityUid? Origin;
 
     /// <summary>
     ///     Initialize a new instance for processing
@@ -701,11 +705,13 @@ sealed class Explosion
         IEntityManager entMan,
         EntityUid visualEnt,
         EntityUid? cause,
+        EntityUid? origin,
         SharedMapSystem mapSystem,
         Shared.Damage.Systems.DamageableSystem damageable)
     {
         VisualEnt = visualEnt;
         Cause = cause;
+        Origin = origin;
         _system = system;
         _mapSystem = mapSystem;
         ExplosionType = explosionType;
@@ -876,7 +882,8 @@ sealed class Explosion
                     ExplosionType.FireStacks,
                     ExplosionType.Temperature,
                     _currentIntensity,
-                    Cause);
+                    Cause,
+                    Origin);
 
                 // If the floor is not blocked by some dense object, damage the floor tiles.
                 if (canDamageFloor)
@@ -895,7 +902,8 @@ sealed class Explosion
                     ProcessedEntities,
                     ExplosionType.ID,
                     ExplosionType.FireStacks,
-                    Cause);
+                    Cause,
+                    Origin);
             }
 
             if (!MoveNext())
@@ -937,4 +945,9 @@ public sealed class QueuedExplosion(ExplosionPrototype proto)
     public int MaxTileBreak;
     public bool CanCreateVacuum;
     public EntityUid? Cause; // The entity that exploded, for logging purposes.
+
+    /// <summary>
+    /// Entity that caused the explosion to occur
+    /// </summary>
+    public EntityUid? Origin;
 }

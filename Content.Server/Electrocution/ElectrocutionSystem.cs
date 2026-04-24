@@ -381,7 +381,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
             return false;
         }
 
-        _esSparks.DoSparks(sourceUid.Value);
+        _esSparks.DoSparks(sourceUid.Value, user: uid);
         return true;
     }
 // ES END

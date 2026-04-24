@@ -11,15 +11,15 @@ public sealed class ReactiveSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
-    public void DoEntityReaction(EntityUid uid, Solution solution, ReactionMethod method)
+    public void DoEntityReaction(EntityUid uid, Solution solution, ReactionMethod method, EntityUid? origin = null)
     {
         foreach (var reagent in solution.Contents.ToArray())
         {
-            ReactionEntity(uid, method, reagent);
+            ReactionEntity(uid, method, reagent, origin);
         }
     }
 
-    public void ReactionEntity(EntityUid uid, ReactionMethod method, ReagentQuantity reagentQuantity)
+    public void ReactionEntity(EntityUid uid, ReactionMethod method, ReagentQuantity reagentQuantity, EntityUid? origin = null)
     {
         if (reagentQuantity.Quantity == FixedPoint2.Zero)
             return;
@@ -28,7 +28,7 @@ public sealed class ReactiveSystem : EntitySystem
         if (!_proto.Resolve<ReagentPrototype>(reagentQuantity.Reagent.Prototype, out var proto))
             return;
 
-        var ev = new ReactionEntityEvent(method, reagentQuantity, proto);
+        var ev = new ReactionEntityEvent(method, reagentQuantity, proto, origin);
         RaiseLocalEvent(uid, ref ev);
     }
 }
@@ -40,4 +40,4 @@ Ingestion,
 }
 
 [ByRefEvent]
-public readonly record struct ReactionEntityEvent(ReactionMethod Method, ReagentQuantity ReagentQuantity, ReagentPrototype Reagent);
+public readonly record struct ReactionEntityEvent(ReactionMethod Method, ReagentQuantity ReagentQuantity, ReagentPrototype Reagent, EntityUid? Origin);

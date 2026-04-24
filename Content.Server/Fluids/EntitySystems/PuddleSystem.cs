@@ -436,7 +436,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
             }
 
             targets.Add(owner);
-            Reactive.DoEntityReaction(owner, splitSolution, ReactionMethod.Touch);
+            Reactive.DoEntityReaction(owner, splitSolution, ReactionMethod.Touch, user);
             Popups.PopupEntity(Loc.GetString("spill-land-spilled-on-other",
                     ("spillable", entity),
                     ("target", Identity.Entity(owner, EntityManager))),
