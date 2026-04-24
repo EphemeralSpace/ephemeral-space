@@ -51,3 +51,11 @@ Entries:
         items from people using their unique sneaky ability.
   id: 7
   time: '2026-04-23T13:44:18.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Arsonist, a new crew mask focused on lighting fires across the
+        station.
+  id: 8
+  time: '2026-04-24T15:13:40.0000000+00:00'
