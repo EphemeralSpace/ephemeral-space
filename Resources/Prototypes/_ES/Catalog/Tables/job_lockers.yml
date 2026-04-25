@@ -43,7 +43,6 @@
     - id: FlashlightSeclite
       prob: 0.8
     - id: ESClothingHeadHelmetSecurity
-    - id: ESClothingOuterArmorSecurity
     - id: ClothingBeltSecurityFilled
     - id: Flash
       prob: 0.5
