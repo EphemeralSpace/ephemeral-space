@@ -83,10 +83,6 @@ public sealed partial class ESWarpDriveSystem
 
     private void StartedSingularityWorld(ESWarpDriveGameRuleComponent component)
     {
-        // todo this is stupid and im realizing the handling for storing the world and stuff should
-        // just be a station component but cant be assed rn
-        // or just make my own event that raises on rules for post-mapload. whatever
-
         // Load singularity world
         var opts = DeserializationOptions.Default with { InitializeMaps = true };
         if (!_loader.TryLoadMap(component.SingularityWorldMap, out var map, out var grids, opts))
