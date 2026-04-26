@@ -102,6 +102,8 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         GameRuleStartedEvent args)
     {
         component.NextInterruptionTime = _timing.CurTime + _random.Next(component.MinRandomInterruptionTime, component.MaxRandomInterruptionTime);
+
+        StartedSingularityWorld(component);
     }
 
     protected override void ActiveTick(EntityUid uid, ESWarpDriveGameRuleComponent component, GameRuleComponent gameRule, float frameTime)
