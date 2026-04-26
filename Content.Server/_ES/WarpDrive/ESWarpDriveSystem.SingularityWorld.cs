@@ -1,10 +1,12 @@
 using System.Linq;
 using Content.Server._ES.WarpDrive.Components;
 using Content.Server.Popups;
+using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.SpawnRegion;
 using Content.Shared._ES.SpawnRegion.Components;
 using Content.Shared._Offbrand.Wounds;
+using Content.Shared.Ghost;
 using Content.Shared.Teleportation.Systems;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
@@ -35,10 +37,15 @@ public sealed partial class ESWarpDriveSystem
     private void InitializeSingularityWorld()
     {
         SubscribeLocalEvent<ESWarpDriveComponent, PortalTeleportedEvent>(OnWarpDriveTeleport);
+
+        SubscribeLocalEvent<StationPostInitEvent>(OnStationPostInit);
     }
 
     private void OnWarpDriveTeleport(Entity<ESWarpDriveComponent> ent, ref PortalTeleportedEvent args)
     {
+        if (HasComp<GhostComponent>(ent))
+            return;
+
         var teleport = EnsureComp<ESSingularityWorldTeleportedEntityComponent>(args.Entity);
         teleport.TeleportOutTime = _timing.CurTime + ent.Comp.SingularityWorldTeleportOutTime;
 
@@ -77,42 +84,51 @@ public sealed partial class ESWarpDriveSystem
         }
     }
 
-    private void StartedSingularityWorld(ESWarpDriveGameRuleComponent component)
+    private void OnStationPostInit(ref StationPostInitEvent ev)
     {
+        // todo this is stupid and im realizing the handling for storing the world and stuff should
+        // just be a station component but cant be assed rn
+        // or just make my own event that raises on rules for post-mapload. whatever
+
         // Load singularity world
-        var opts = DeserializationOptions.Default with {InitializeMaps = true};
-        if (!_loader.TryLoadMap(component.SingularityWorldMap, out var map, out var grids, opts))
+        var ruleQuery = EntityQueryEnumerator<ESWarpDriveGameRuleComponent>();
+        while (ruleQuery.MoveNext(out _, out var component))
         {
-            throw new Exception($"Failed to load singularity world map {component.SingularityWorldMap}");
-        }
-
-        SingularityWorldMapId = map.Value.Comp.MapId;
-        SingularityWorldGrids = grids.Select(a => a.Owner).ToHashSet();
-        Log.Info($"Created new singularity world at map ID {SingularityWorldMapId}");
-
-        // Properly set up the teleporting effect
-        var query = EntityQueryEnumerator<ESWarpDriveComponent>();
-        while (query.MoveNext(out var driveEntity, out _))
-        {
-            EntityUid? teleportLocation = null;
-            // Pick a random in-world marker to be the teleport location
-            // (ideally itd pick any but whatever not rn)
-            var locationQuery = EntityQueryEnumerator<ESSpawnRegionMarkerComponent>();
-            while (locationQuery.MoveNext(out var regionEntity, out var marker))
+            var opts = DeserializationOptions.Default with {InitializeMaps = true};
+            if (!_loader.TryLoadMap(component.SingularityWorldMap, out var map, out var grids, opts))
             {
-                if (marker.Area != TeleportInWorld)
-                    continue;
-
-                teleportLocation = regionEntity;
+                throw new Exception($"Failed to load singularity world map {component.SingularityWorldMap}");
             }
 
-            if (teleportLocation == null)
-            {
-                throw new Exception("Singularity world map has no valid teleport locations for linking!");
-            }
+            SingularityWorldMapId = map.Value.Comp.MapId;
+            SingularityWorldGrids = grids.Select(a => a.Owner).ToHashSet();
+            Log.Info($"Created new singularity world at map ID {SingularityWorldMapId}");
 
-            // Set up link
-            _linked.TryLink(driveEntity, teleportLocation.Value);
+            // Properly set up the teleporting effect
+            var query = AllEntityQuery<ESWarpDriveComponent>();
+            while (query.MoveNext(out var driveEntity, out _))
+            {
+                EntityUid? teleportLocation = null;
+                // Pick a random in-world marker to be the teleport location
+                // (ideally itd pick any but whatever not rn)
+                var locationQuery = EntityQueryEnumerator<ESSpawnRegionMarkerComponent>();
+                while (locationQuery.MoveNext(out var regionEntity, out var marker))
+                {
+                    if (marker.Area != TeleportInWorld)
+                        continue;
+
+                    teleportLocation = regionEntity;
+                    break;
+                }
+
+                if (teleportLocation == null)
+                {
+                    throw new Exception("Singularity world map has no valid teleport locations for linking!");
+                }
+
+                // Set up link
+                _linked.TryLink(driveEntity, teleportLocation.Value);
+            }
         }
     }
 }
