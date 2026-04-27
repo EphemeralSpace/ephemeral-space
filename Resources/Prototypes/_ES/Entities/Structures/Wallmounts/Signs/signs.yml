@@ -41,8 +41,8 @@
 - type: entity
   parent: BaseSign
   id: ESSignPortal
-  name: portal generator sign
-  description: A sign indicating the portal generator.
+  name: warp drive sign
+  description: A sign indicating the warp drive.
   components:
   - type: Sprite
     sprite: _ES/Structures/Wallmounts/signs.rsi
