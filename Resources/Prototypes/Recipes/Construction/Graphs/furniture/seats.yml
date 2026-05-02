@@ -236,20 +236,6 @@
             - tool: Screwing
               doAfter: 1
 
-    - node: stoolCard
-      entity: CardStool
-      edges:
-        - to: start
-          completed:
-            - !type:SpawnPrototype
-              prototype: MaterialCardboard1
-              amount: 3
-            - !type:PlaySound
-              sound: /Audio/Items/Toys/ToyFall2.ogg
-          steps:
-            - tool: Slicing
-              doAfter: 1
-
     - node: chairWoodBench
       entity: WoodenBench
       edges:

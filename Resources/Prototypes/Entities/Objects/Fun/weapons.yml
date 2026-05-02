@@ -280,39 +280,6 @@
 
 - type: entity
   parent: [ BaseItem, BaseToySword ]
-  id: CardSword
-  name: cardboard sword
-  description: A cardboard tube fashioned into the shape of a sword.
-  components:
-  - type: Sprite
-    sprite: Objects/Fun/card_sword.rsi
-    state: icon
-  - type: Clothing
-    sprite: Objects/Fun/card_sword.rsi
-    slots:
-    - Back
-# ES START
-#    - SuitStorage
-# ES END
-  - type: Appearance
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    attackRate: 1.25
-    soundHit:
-      path: /Audio/Items/Toys/card_tube_bonk.ogg
-  - type: Construction
-    graph: CardSword
-    node: cardSword
-  - type: Item
-    size: Normal
-    storedSprite:
-      state: icon
-      sprite: Objects/Fun/card_sword.rsi
-    shape:
-    - 0,0,1,3
-
-- type: entity
-  parent: [ BaseItem, BaseToySword ]
   id: ToyHammer
   name: rubber hammer
   description: A brightly colored hammer made of rubber.

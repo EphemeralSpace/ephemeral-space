@@ -208,19 +208,6 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: Cardwall
-  graph: Cardwall
-  startNode: start
-  targetNode: cardwall
-  category: construction-category-structures
-  conditions:
-  - !type:TileNotBlocked
-    failIfSpace: false
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-
-- type: construction
   id: Grille
   graph: Grille
   startNode: start
