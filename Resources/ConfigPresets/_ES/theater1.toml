@@ -6,6 +6,3 @@ tags = "lang:en,region:am_n_e"
 
 [replay]
 auto_record = true
-
-[whitelist]
-enabled = true
