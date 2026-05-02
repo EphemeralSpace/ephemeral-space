@@ -303,35 +303,6 @@
 #Magic/Cult Shields (give these to wizard for now)
 
 - type: entity
-  name: clockwork shield
-  parent: BaseRepairableShield
-  id: ClockworkShield
-  description: Ratvar oyrffrf lbh jvgu uvf cebgrpgvba.
-  components:
-    - type: Sprite
-      state: ratvarian-icon
-    - type: Item
-      heldPrefix: ratvarian
-    - type: Blocking
-      passiveBlockModifier:
-        coefficients:
-          Blunt: 0.8
-          Slash: 0.8
-          Piercing: 0.8
-          Heat: 1.5
-      activeBlockModifier:
-        coefficients:
-          Blunt: 0.7
-          Slash: 0.7
-          Piercing: 0.7
-          Heat: 1.5
-        flatReductions:
-          Blunt: 1
-          Slash: 1
-          Piercing: 1
-      #Have it break into brass when clock cult is in
-
-- type: entity
   name: mirror shield
   parent: [ BaseShield, BaseMagicalContraband ]
   id: MirrorShield

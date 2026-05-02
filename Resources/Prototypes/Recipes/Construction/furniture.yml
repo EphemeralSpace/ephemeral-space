@@ -36,18 +36,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ChairBrass
-  graph: Seat
-  startNode: start
-  targetNode: chairBrass
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   id: ChairOfficeLight
   graph: Seat
   startNode: start
@@ -259,18 +247,6 @@
   graph: Table
   startNode: start
   targetNode: TablePlasmaGlass
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: TableBrass
-  graph: Table
-  startNode: start
-  targetNode: TableBrass
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
