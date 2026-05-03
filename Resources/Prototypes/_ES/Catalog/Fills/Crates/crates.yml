@@ -115,9 +115,9 @@
     containers:
       entity_storage:
         all:
-        - id: MedkitBurnFilled
-        - id: MedkitBruteFilled
-        - id: MedkitRadiationFilled
+        - id: ESMedkitBurnFilled
+        - id: ESMedkitBruteFilled
+        - id: ESMedkitRadiationFilled
 
 - type: entity
   parent: CrateEmergencyAdvancedKit
