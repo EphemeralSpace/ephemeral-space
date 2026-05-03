@@ -59,3 +59,11 @@ Entries:
         station.
   id: 8
   time: '2026-04-24T15:13:40.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Being in braincrit now allows you to succumb with an action once more
+        (or say last words)
+  id: 9
+  time: '2026-05-03T00:53:56.0000000+00:00'
