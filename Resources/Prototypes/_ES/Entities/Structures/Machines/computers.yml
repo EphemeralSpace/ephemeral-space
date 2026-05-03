@@ -340,6 +340,7 @@
   - type: ESCryptoNukeConsole
   - type: PointLight
     color: "#ff6971"
+  - type: NavMapBeacon # default text is just the entity name
   - type: ActivatableUI
     key: enum.ESCryptoNukeConsoleUiKey.Key
   - type: UserInterface
