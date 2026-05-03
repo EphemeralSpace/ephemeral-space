@@ -4,7 +4,7 @@
   troupe: Crew
   description: es-mask-arms-dealer-desc
   color: lime
-  weight: 1
+  weight: 0.75
   objectives:
     id: ESObjectiveHoldSummonedGuns
   mindComponents:
@@ -21,6 +21,7 @@
   troupe: Crew
   description: es-mask-arsonist-desc
   color: red
+  weight: 0.75
   objectives:
     id: ESObjectiveArsonistLightFires
 
@@ -38,6 +39,7 @@
   name: es-mask-crewmember-name
   troupe: Crew
   description: es-mask-crewmember-desc
+  weight: 0.33
   color: white
 
 - type: esMask
@@ -46,7 +48,7 @@
   troupe: Crew
   description: es-mask-guzzler-desc
   color: cyan
-  weight: 1
+  weight: 0.15
   objectives:
     all:
     - id: ESObjectiveGuzzle
@@ -71,7 +73,6 @@
   troupe: Crew
   description: es-mask-mercenary-desc
   color: ruber
-  weight: 1
   objectives:
     id: ESObjectiveKillNonCrew
   mindComponents:
@@ -85,7 +86,7 @@
   troupe: Crew
   description: es-mask-nobleman-desc
   color: gold
-  weight: 1
+  weight: 0.25
   objectives:
     all:
     - id: ESObjectiveNoblemanDontKill
@@ -124,7 +125,7 @@
   troupe: Crew
   description: es-mask-rebel-desc
   color: tomato
-  weight: 0.2
+  weight: 0.75
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto:
@@ -158,7 +159,6 @@
   troupe: Crew
   description: es-mask-vigilante-desc
   color: orchid
-  weight: 1
   objectives:
     id: ESObjectiveVigilanteKillKiller
   mindComponents:
@@ -174,5 +174,5 @@
   color: gold
   tips:
   - VIPFingerprintScanner
-  weight: 0.5
+  weight: 0.25
   gear: ESMaskVIPGear

@@ -1,9 +1,9 @@
 - type: esMaskSet
   id: Antagonistic # Masks that fill various niches of "traitor-like"
   masks:
-    Rebel: 0.3    # While harmless, they're not that interesting to have tons of. Let the others shine.
-    Pickpocket: 0.3
+    Rebel: 0.25    # While harmless, they're not that interesting to have tons of. Let the others shine.
+    Pickpocket: 0.5
     Avenger: 1
     Arsonist: 1
-    Hater: 0.5
-    Vigilante: 0.5
+    Hater: 0.75
+    Vigilante: 0.75

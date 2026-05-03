@@ -2,7 +2,7 @@
   id: RedCarpet
   name: Red Carpet
   description: strands a party of VIPs with our harrowing crew
-  weight: 1
+  weight: 0
   minPlayers: 6
   gameRules: []
   masquerade:
