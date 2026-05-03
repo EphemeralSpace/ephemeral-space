@@ -67,3 +67,12 @@ Entries:
         (or say last words)
   id: 9
   time: '2026-05-03T00:53:56.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        New fully-random masquerades incorporating parasites have been added.
+        All masquerades will be random for a moment as we test it out and see
+        what things work to help with designing masquerades in the future.
+  id: 10
+  time: '2026-05-03T20:28:29.0000000+00:00'
