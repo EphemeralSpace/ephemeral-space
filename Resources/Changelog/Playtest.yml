@@ -76,3 +76,11 @@ Entries:
         what things work to help with designing masquerades in the future.
   id: 10
   time: '2026-05-03T20:28:29.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Slight rebalance of crew thrusters + nav console + warp drive to be a
+        little more relevant
+  id: 11
+  time: '2026-05-03T21:35:10.0000000+00:00'
