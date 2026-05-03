@@ -63,11 +63,6 @@
             - material: Steel
               amount: 2
               doAfter: 1
-        - to: stoolCard
-          steps:
-            - material: Cardboard
-              amount: 3
-              doAfter: 1
         - to: chairWoodBench
           steps:
             - material: WoodPlank
