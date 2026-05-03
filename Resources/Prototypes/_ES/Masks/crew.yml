@@ -73,7 +73,6 @@
   troupe: Crew
   description: es-mask-mercenary-desc
   color: ruber
-  weight: 1
   objectives:
     id: ESObjectiveKillNonCrew
   mindComponents:

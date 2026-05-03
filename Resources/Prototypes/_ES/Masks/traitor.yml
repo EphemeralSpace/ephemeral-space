@@ -74,6 +74,6 @@
   troupe: Crew
   description: es-mask-sleeper-agent-desc
   color: darkturquoise
-  weight: 0.5
+  weight: 0 # otherwise it can roll in randomasquerades with no traitors. temp fix
   mindComponents:
   - type: ESSuperfan
