@@ -143,18 +143,12 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         // check if we should make a new random interruption
         if (_timing.CurTime > component.NextInterruptionTime)
         {
-            // uhh... i seem to have.. caught you at a very interrupted time..
-            // lets try again in a bit
-            if (component.Interrupted)
+            if (!component.Interrupted)
             {
-                component.NextInterruptionTime = _timing.CurTime + _random.Next(
-                    component.MinRandomInterruptionTime / 2,
-                    component.MaxRandomInterruptionTime / 2);
+                SpawnInterruptionObjects(component);
             }
-            else
-            {
-                CauseInterruption(component);
-            }
+
+            component.NextInterruptionTime = _timing.CurTime + _random.Next(component.MinRandomInterruptionTime, component.MaxRandomInterruptionTime);
         }
 
         // check if there are any active interrupting entities
@@ -168,7 +162,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             interruptions++;
         }
 
-        if (interruptions == 0 && component.Interrupted && component.LastInterruptionTime is { } time)
+        if (interruptions <= 0 && component.Interrupted && component.LastInterruptionTime is { } time)
         {
             component.Interrupted = false;
             component.AccumulatedInterruptionTime += (_timing.CurTime - time);
@@ -222,7 +216,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
                 && warpDrive is { Interrupted: false, InFinalPhase: false })
             {
                 warpDrive.ItemsTeleportedSinceLastInterruption = 0;
-                CauseInterruption(warpDrive);
+                SpawnInterruptionObjects(warpDrive);
             }
             else if (warpDrive.ItemsTeleportedSinceLastInterruption > warpDrive.FinalPhaseForceEndItems
                      && warpDrive.InFinalPhase)
@@ -238,7 +232,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         }
     }
 
-    public void CauseInterruption(ESWarpDriveGameRuleComponent component)
+    public void SpawnInterruptionObjects(ESWarpDriveGameRuleComponent component)
     {
         if (SingularityWorldGrids is null || _proto.Index(component.InterruptionTrashTable) is not  { } table)
             return;
@@ -258,7 +252,6 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             amt--;
         }
 
-        component.NextInterruptionTime = _timing.CurTime + _random.Next(component.MinRandomInterruptionTime, component.MaxRandomInterruptionTime);
         // no announcement thats handled later by it noticing
     }
 }
@@ -275,7 +268,7 @@ public sealed class CauseWarpDriveInterruptionCommand : ToolshedCommand
         var query = EntityManager.EntityQueryEnumerator<ESWarpDriveGameRuleComponent>();
         while (query.MoveNext(out _, out var rule))
         {
-            _sys.CauseInterruption(rule);
+            _sys.SpawnInterruptionObjects(rule);
         }
     }
 }

@@ -53,7 +53,7 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     ///     ~Essentially a lower bound on crew win time
     /// </summary>
     [DataField]
-    public TimeSpan BaseChargeTime = TimeSpan.FromMinutes(40);
+    public TimeSpan BaseChargeTime = TimeSpan.FromMinutes(45);
 
     /// <summary>
     ///     Like nuke defense but for crew. After the drive is fully charged, this timer starts and the win only
@@ -66,7 +66,7 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     ///     Min amount of time between random interruptions.
     /// </summary>
     [DataField]
-    public TimeSpan MinRandomInterruptionTime = TimeSpan.FromMinutes(8);
+    public TimeSpan MinRandomInterruptionTime = TimeSpan.FromMinutes(5);
 
     /// <summary>
     ///     Max amount of time between random interruptions.
@@ -90,13 +90,13 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     ///     How many entities to be thrown into the warp drive to cause an interruption.
     /// </summary>
     [DataField]
-    public int ManualInterruptionItems = 6;
+    public int ManualInterruptionItems = 5;
 
     /// <summary>
     ///     # of entities to be thrown into the warp drive during final phase to cancel it and require it to be restarted.
     /// </summary>
     [DataField]
-    public int FinalPhaseForceEndItems = 10;
+    public int FinalPhaseForceEndItems = 5;
 
     /// <summary>
     ///     where it all goes
