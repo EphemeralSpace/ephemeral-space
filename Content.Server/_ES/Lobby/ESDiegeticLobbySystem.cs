@@ -1,3 +1,4 @@
+using Content.Server.Administration;
 using Content.Server.Chat.Managers;
 using Content.Server.Doors.Systems;
 using Content.Server.GameTicking;
@@ -6,6 +7,7 @@ using Content.Server.Preferences.Managers;
 using Content.Shared._ES.CCVar;
 using Content.Shared._ES.Lobby;
 using Content.Shared._ES.Lobby.Components;
+using Content.Shared.Administration;
 using Content.Shared.Alert;
 using Content.Shared.Doors.Components;
 using Content.Shared.GameTicking;
@@ -18,6 +20,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Toolshed;
 using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Lobby;
@@ -64,19 +67,19 @@ public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
         };
         _preferences.ESOnAfterCharacterUpdated += RefreshReadiedJobCounts;
 
-        _cfg.OnValueChanged(ESCVars.LobbyClosed, UpdateLobbyClosedBarriers);
+        _cfg.OnValueChanged(ESCVars.LobbyClosed, UpdateLobbyClosedStatus);
     }
 
     private void OnLobbyWorldCreated(ref ESLobbyWorldCreatedEvent ev)
     {
         // if lobby should be closed when we create it,
-        // immediately make sure the barriers are spawned
+        // immediately make sure the doors are closed
         // if it should be disabled, we dont need to do anything special
         if (_cfg.GetCVar(ESCVars.LobbyClosed))
-            UpdateLobbyClosedBarriers(true);
+            UpdateLobbyClosedStatus(true);
     }
 
-    private void UpdateLobbyClosedBarriers(bool closing)
+    private void UpdateLobbyClosedStatus(bool closing)
     {
         _ticker.PauseStart(closing);
 
@@ -177,5 +180,18 @@ public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
             Actions.RemoveAction(uid, comp.ConfigurePrefsActionEntity);
             comp.ConfigurePrefsActionEntity = null;
         }
+    }
+}
+
+[ToolshedCommand(Name = "lobby"), AdminCommand(AdminFlags.Server)]
+public sealed class LobbyCommands : ToolshedCommand
+{
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+
+    [CommandImplementation("toggleclosed")]
+    public void ToggleClosed()
+    {
+        var closed = _cfg.GetCVar(ESCVars.LobbyClosed);
+        _cfg.SetCVar(ESCVars.LobbyClosed, !closed);
     }
 }
