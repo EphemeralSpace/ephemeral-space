@@ -1,5 +1,7 @@
 using System.Numerics;
+using Content.Client.Lobby;
 using Content.Client.Resources;
+using Content.Shared._ES.CCVar;
 using Content.Shared.CCVar;
 using JetBrains.Annotations;
 using Robust.Client.ResourceManagement;
@@ -14,10 +16,11 @@ namespace Content.Client._ES.Lobby;
 
 /// <summary>
 ///     Handles the opening/closing curtains animation when lobby->game or gameend->lobby transitions
+///     Also handles other diegetic lobby related things (opening the popup window when the lobby is closed etc)
 ///     Creates controls on init and attaches them to the root control, sorry
 /// </summary>
 [UsedImplicitly]
-public sealed class ESLobbyCurtainsUIController : UIController
+public sealed class ESDiegeticLobbyUIController : UIController, IOnStateEntered<LobbyState>
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
@@ -50,6 +53,17 @@ public sealed class ESLobbyCurtainsUIController : UIController
         _conHost.RegisterCommand("togglelobbycurtains", "Toggles the lobby curtains animation", "togglelobbycurtains", (_, _, _) => StartCurtainAnimation(CurtainState < LobbyCurtainState.Opening));
 
         CreateCurtainControls();
+    }
+
+    public void OnStateEntered(LobbyState state)
+    {
+        // Open popup window informing people the lobby is closed
+        // .. when the lobby is closed
+        if (!_cfg.GetCVar(ESCVars.LobbyClosed))
+            return;
+
+        var popup = new ESLobbyClosedPopupWindow();
+        popup.OpenCentered();
     }
 
     public override void FrameUpdate(FrameEventArgs args)

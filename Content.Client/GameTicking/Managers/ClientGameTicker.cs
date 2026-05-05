@@ -26,7 +26,7 @@ namespace Content.Client.GameTicking.Managers
         [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
 
-        private ESLobbyCurtainsUIController _lobbyCurtains = default!;
+        private ESDiegeticLobbyUIController _lobbyCurtains = default!;
 
         private Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>  _jobsAvailable = new();
         private Dictionary<NetEntity, string> _stationNames = new();
@@ -79,7 +79,7 @@ namespace Content.Client.GameTicking.Managers
 
             _admin.AdminStatusUpdated += OnAdminUpdated;
             // ES START
-            _lobbyCurtains = _userInterfaceManager.GetUIController<ESLobbyCurtainsUIController>();
+            _lobbyCurtains = _userInterfaceManager.GetUIController<ESDiegeticLobbyUIController>();
             // ES END
             OnAdminUpdated();
         }
