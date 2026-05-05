@@ -59,12 +59,6 @@ namespace Content.Server.GameTicking
         private static readonly ProtoId<AlertCategoryPrototype> ReadyAlertCategory = "ESReadyStatus";
 
         // Manages loading the diegetic lobby world and spawning players into it.
-        // FOR MIRROR NOTES
-        // lobby persists thru restarts (?)
-        // create once at server start
-        // characters also persist
-        // diegetic mechanism for readying = chairs diegetic mechanism for marking as observer = uhh idk lol
-        // maptext for directions, 'projector' entit ythat shows maptext, use a different font, idk
         private void CreateLobbyWorld()
         {
             if (_runLevel != GameRunLevel.PreRoundLobby)
@@ -114,7 +108,7 @@ namespace Content.Server.GameTicking
             data.LobbyEntity = theatergoer;
         }
 
-        private EntityCoordinates GetTheatergoerSpawnPoint()
+        public EntityCoordinates GetTheatergoerSpawnPoint()
         {
             if (DiegeticLobbyMapId == null)
                 return EntityCoordinates.Invalid;
