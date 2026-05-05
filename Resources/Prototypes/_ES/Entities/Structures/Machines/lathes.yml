@@ -55,6 +55,7 @@
     - MaterialsStatic
     - ESBasicChemistryStatic
     - RollerBedsStatic
+    - ESMedicalToolsStatic
     - ESLightsStatic
     - ESServiceStatic
     - ESElectronicsStatic
