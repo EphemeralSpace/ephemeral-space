@@ -5,5 +5,8 @@ formatted_host_name = "[{0}] [{1} RolePlay] Ephemeral Space Theater [US East]"
 tags = "lang:en,region:am_n_e"
 advertise = true
 
+[es_lobby]
+closed = true
+
 [replay]
 auto_record = true
