@@ -1,0 +1,15 @@
+- type: entity
+  parent: MobStatusEffectBase
+  id: ESStatusEffectSprinting
+  name: sprinting
+  components:
+  - type: PopupOnAppliedStatusEffect
+    message: es-sprint-started-user
+  - type: MovementModStatusEffect
+    sprintSpeedModifier: 1.35
+    walkSpeedModifier: 1.35
+  - type: MeleeModifiersStatusEffect
+    attackRateMultiplier: 0.7
+  - type: GunAccuracyStatusEffect
+    angleRangeModifier: 2.5
+  - type: CannotUseHeadsetStatusEffect
