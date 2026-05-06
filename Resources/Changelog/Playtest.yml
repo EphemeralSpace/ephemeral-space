@@ -107,3 +107,9 @@ Entries:
       message: Adrenaline rush action has been removed, goodbye urist mcflowerfield
   id: 14
   time: '2026-05-06T00:02:36.0000000+00:00'
+- author: Coolsurf6
+  changes:
+    - type: Tweak
+      message: Jerrycans are now 3x3
+  id: 15
+  time: '2026-05-06T01:22:46.0000000+00:00'
