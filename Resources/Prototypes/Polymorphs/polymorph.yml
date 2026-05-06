@@ -121,17 +121,6 @@
     inventory: Drop
     cooldown: 160
 
-- type: polymorph
-  id: SmartCorgiMorph
-  configuration:
-    entity: MobCorgiSmart
-    forced: false
-    inventory: Drop
-    transferName: true
-    revertOnCrit: false
-    revertOnDeath: false
-    allowRepeatedMorphs: false
-
 # Desynchronized / Void Pocket status
 - type: polymorph
   id: VoidPocket

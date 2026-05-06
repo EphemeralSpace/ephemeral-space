@@ -559,14 +559,10 @@
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 2
-        - ReagentId: Honk
-          Quantity: 5
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: JuiceBanana
-        Quantity: 5
-      - ReagentId: Honk
         Quantity: 5
   - type: Appearance
   - type: Item

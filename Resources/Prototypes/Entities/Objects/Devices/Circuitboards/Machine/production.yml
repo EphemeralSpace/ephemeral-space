@@ -5,7 +5,7 @@
   description: A machine printed circuit board for an autolathe.
   components:
     - type: MachineBoard
-      prototype: Autolathe
+      prototype: ESAutolathe
       stackRequirements:
         Manipulator: 4
         Glass: 1

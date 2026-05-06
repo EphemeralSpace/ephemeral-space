@@ -51,7 +51,6 @@
     staticPacks:
     - ESToolsStatic
     - ESPartsStatic
-    - ESCargoStatic
     - ESBasicChemistryStatic
     - ESRollerBedsStatic
     - ESLightsStatic

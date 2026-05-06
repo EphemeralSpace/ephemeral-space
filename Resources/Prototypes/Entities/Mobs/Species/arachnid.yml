@@ -44,7 +44,7 @@
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
-      - ReagentId: CopperBlood
+      - ReagentId: Blood
         Quantity: 300
   # Damage (Others)
   - type: MeleeWeapon

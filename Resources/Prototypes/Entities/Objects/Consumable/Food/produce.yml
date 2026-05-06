@@ -170,8 +170,6 @@
           Quantity: 3
         - ReagentId: Sugar
           Quantity: 5
-        - ReagentId: Laughter
-          Quantity: 5
   - type: Extractable
     juiceSolution:
       reagents:
@@ -457,18 +455,7 @@
     - BananaPeel
     - Ruminant
     - HamsterWearable
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 4
-        reagents:
-        - ReagentId: PulpedBananaPeel
-          Quantity: 4
-  - type: Extractable
-    grindableSolutionName: food
   - type: SpaceGarbage
-  - type: Edible
-    requiresSpecialDigestion: true
   - type: Clothing
     sprite: Objects/Specific/Hydroponics/banana.rsi
     equippedPrefix: peel
@@ -494,10 +481,6 @@
     solutions:
       food:
         reagents:
-        - ReagentId: PulpedBananaPeel
-          Quantity: 1
-        - ReagentId: Bananadine
-          Quantity: 1
         - ReagentId: Carbon
           Quantity: 2
 
@@ -1649,8 +1632,6 @@
       food:
         maxVol: 40
         reagents:
-        - ReagentId: Ultravasculine
-          Quantity: 20
         - ReagentId: Epinephrine
           Quantity: 20
   - type: Sprite
@@ -1761,7 +1742,7 @@
       food:
         maxVol: 25
         reagents:
-        - ReagentId: Stellibinin
+        - ReagentId: Toxin
           Quantity: 25
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/galaxythistle.rsi
@@ -1798,8 +1779,6 @@
       food:
         maxVol: 25
         reagents:
-        - ReagentId: Razorium
-          Quantity: 15
         - ReagentId: Desoxyephedrine
           Quantity: 10
   - type: Sprite
@@ -2046,8 +2025,6 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 1
-        - ReagentId: PolypyryliumOligomers
-          Quantity: 3
   - type: Produce
     seedId: spacemansTrumpet
   - type: Tag
@@ -2429,8 +2406,6 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
-        - ReagentId: Bungotoxin
-          Quantity: 5
   - type: Extractable
     grindableSolutionName: food
   - type: Seed
@@ -2484,12 +2459,8 @@
       food:
         maxVol: 8
         reagents:
-        - ReagentId: Happiness
-          Quantity: 3
         - ReagentId: Nutriment
           Quantity: 3
-        - ReagentId: Pax
-          Quantity: 2
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/world_pea.rsi
   - type: Item

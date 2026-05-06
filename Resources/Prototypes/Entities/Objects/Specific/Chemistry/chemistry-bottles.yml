@@ -393,21 +393,6 @@
           Quantity: 30
 
 - type: entity
-  id: ChemistryBottleEthyloxyephedrine
-  suffix: ethyloxyephedrine
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-ethyloxyephedrine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Ethyloxyephedrine
-          Quantity: 30
-
-- type: entity
   id: ChemistryBottleEthylredoxrazine
   suffix: ethylredoxrazine
   parent: BaseChemistryBottleFilled
@@ -663,21 +648,6 @@
           Quantity: 30
 
 - type: entity
-  id: ChemistryBottlePolypyryliumOligomers
-  suffix: poly-oli
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-polypyrylium-oligomers
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: PolypyryliumOligomers
-          Quantity: 30
-
-- type: entity
   id: ChemistryBottlePotassiumIodide
   suffix: iodide
   parent: BaseChemistryBottleFilled
@@ -693,66 +663,6 @@
           Quantity: 30
 
 - type: entity
-  id: ChemistryBottlePsicodine
-  suffix: psicodine
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-psicodine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Psicodine
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottlePulpedBananaPeel
-  suffix: pulped-banana-peel
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-pulped-banana-peel
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: PulpedBananaPeel
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottlePuncturase
-  suffix: puncturase
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-puncturase
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Puncturase
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottlePyrazine
-  suffix: pyrazine
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-pyrazine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Pyrazine
-          Quantity: 30
-
-- type: entity
   id: ChemistryBottleSaline
   suffix: saline
   parent: BaseChemistryBottleFilled
@@ -765,51 +675,6 @@
         maxVol: 30
         reagents:
         - ReagentId: Saline
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleSiderlac
-  suffix: siderlac
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-siderlac
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Siderlac
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleSigynate
-  suffix: sigynate
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-sigynate
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Sigynate
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleStellibinin
-  suffix: stellibinin
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-stellibinin
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Stellibinin
           Quantity: 30
 
 - type: entity
@@ -855,21 +720,6 @@
         maxVol: 30
         reagents:
         - ReagentId: Tricordrazine
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleUltravasculine
-  suffix: ultravasculine
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-ultravasculine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Ultravasculine
           Quantity: 30
 
 # Other bottles
@@ -965,21 +815,6 @@
           Quantity: 30
 
 - type: entity
-  id: ChemistryBottlePax
-  suffix: pax
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-pax
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Pax
-          Quantity: 30
-
-- type: entity
   id: ChemistryBottleMuteToxin
   suffix: mute toxin
   parent: BaseChemistryBottleFilled
@@ -992,21 +827,6 @@
         maxVol: 30
         reagents:
         - ReagentId: MuteToxin
-          Quantity: 30
-
-- type: entity
-  id: ChemistryBottleLead
-  suffix: lead
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-lead
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Lead
           Quantity: 30
 
 - type: entity
@@ -1378,59 +1198,4 @@
     - id: ChemistryBottleTricordrazine
     - id: ChemistryBottleTranexamicAcid
     - id: ChemistryBottleOculine
-    - id: ChemistryBottleTramadol # Offbrand
-
-- type: entityTable
-  id: AllMedicineReagentBottlesTable
-  table: !type:GroupSelector
-    children:
-    - id: ChemistryBottleAloxadone
-    - id: ChemistryBottleArithrazine
-    - id: ChemistryBottleBarozine
-    - id: ChemistryBottleBicaridine
-    - id: ChemistryBottleBruizine
-    - id: ChemistryBottleCognizine
-    - id: ChemistryBottleCryoxadone
-    - id: ChemistryBottleCryptobiolin
-    - id: ChemistryBottleDermaline
-    - id: ChemistryBottleDexalin
-    - id: ChemistryBottleDexalinPlus
-    - id: ChemistryBottleDiphenhydramine
-    - id: ChemistryBottleDiphenylmethylamine
-    - id: ChemistryBottleDoxarubixadone
-    - id: ChemistryBottleDylovene
-    - id: ChemistryBottleEpinephrine
-    - id: ChemistryBottleEthyloxyephedrine
-    - id: ChemistryBottleEthylredoxrazine
-    - id: ChemistryBottleHaloperidol
-    - id: ChemistryBottleHolywater
-    - id: ChemistryBottleHyronalin
-    - id: ChemistryBottleInaprovaline
-    - id: ChemistryBottleInsuzine
-    - id: ChemistryBottleIpecac
-    - id: ChemistryBottleKelotane
-    - id: ChemistryBottleLacerinol
-    - id: ChemistryBottleLeporazine
-    - id: ChemistryBottleLipozine
-    - id: ChemistryBottleMannitol
-    - id: ChemistryBottleNecrosol
-    - id: ChemistryBottleOculine
-    - id: ChemistryBottleOmnizine
-    - id: ChemistryBottleOpporozidone
-    - id: ChemistryBottlePhalanximine
-    - id: ChemistryBottlePolypyryliumOligomers
-    - id: ChemistryBottlePotassiumIodide
-    - id: ChemistryBottlePsicodine
-    - id: ChemistryBottlePulpedBananaPeel
-    - id: ChemistryBottlePuncturase
-    - id: ChemistryBottlePyrazine
-    - id: ChemistryBottleSaline
-    - id: ChemistryBottleSiderlac
-    - id: ChemistryBottleSigynate
-    - id: ChemistryBottleStellibinin
-    - id: ChemistryBottleSynaptizine
-    - id: ChemistryBottleTranexamicAcid
-    - id: ChemistryBottleTricordrazine
-    - id: ChemistryBottleUltravasculine
-    - id: ChemistryBottleParacetamol # Offbrand
     - id: ChemistryBottleTramadol # Offbrand

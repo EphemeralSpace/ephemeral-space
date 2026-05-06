@@ -899,9 +899,6 @@
         - id: PillSpaceDrugs
           weight: 0.75
           amount: *Range1to6
-        - id: StrangePill
-          weight: 0.75
-          amount: *Range1to6
 
 # Syringes
 - type: entity
@@ -1101,7 +1098,6 @@
     - id: PillKelotane
     - id: PillPotassiumIodide
     - id: PillTricordrazine
-    - id: StrangePill
 
 - type: entityTable
   id: RandomSafeSyringeTable

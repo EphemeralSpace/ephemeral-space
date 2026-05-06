@@ -194,10 +194,6 @@
       Min: 1
       Max: 10
       PotencyDivisor: 5
-    Laughter:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 5
 
 - type: seed
   id: lemon
@@ -988,26 +984,10 @@
       Min: 1
       Max: 15
       PotencyDivisor: 10
-    Lipolicide:
-      Min: 1
-      Max: 15
-      PotencyDivisor: 10
     MindbreakerToxin:
       Min: 1
       Max: 5
       PotencyDivisor: 20
-    Happiness:
-      Min: 1
-      Max: 5
-#     PotencyDivisor: 20
-#   ColorfulReagent:
-#     Min: 0
-#     Max: 5
-#     PotencyDivisor: 20
-    Psicodine:
-      Min: 0
-      Max: 5
-      PotencyDivisor: 33
 
 - type: seed
   id: tobacco
@@ -1254,10 +1234,6 @@
   growthStages: 3
   waterConsumption: 0.60
   chemicals:
-    Ultravasculine:
-      Min: 1
-      Max: 20
-      PotencyDivisor: 5
     Epinephrine:
       Min: 1
       Max: 20
@@ -1348,7 +1324,7 @@
   growthStages: 3
   waterConsumption: 0.60
   chemicals:
-    Stellibinin:
+    Toxin:
       Min: 1
       Max: 25
       PotencyDivisor: 4
@@ -1370,10 +1346,6 @@
   growthStages: 3
   waterConsumption: 0.5
   chemicals:
-    Razorium:
-      Min: 1
-      Max: 25
-      PotencyDivisor: 4
     Desoxyephedrine: # meff!!
       Min: 1
       Max: 10
@@ -1561,10 +1533,6 @@
       Min: 1
       Max: 5
       PotencyDivisor: 50
-    PolypyryliumOligomers:
-      Min: 1
-      Max: 15
-      PotencyDivisor: 5
 
 - type: seed
   id: koibean
@@ -1812,18 +1780,10 @@
   nutrientConsumption: 0.5
   waterConsumption: 0.5
   chemicals:
-    Happiness:
-      Min: 1
-      Max: 3
-      PotencyDivisor: 25
     Nutriment:
       Min: 1
       Max: 3
       PotencyDivisor: 20
-    Pax:
-      Min: 1
-      Max: 2
-      PotencyDivisor: 50
 
 - type: seed
   id: pumpkin

@@ -58,9 +58,6 @@
     - id: PillSpaceDrugs
       amount: !type:RangeNumberSelector
         range: 1, 2
-    - id: StrangePill
-      amount: !type:RangeNumberSelector
-        range: 1, 5
 
 - type: entityTable #5x tiny
   id: RandomSatchelCannabisTable
@@ -617,9 +614,6 @@
       amount: !type:RangeNumberSelector
         range: 1, 10
     - id: GoatCube
-      amount: !type:RangeNumberSelector
-        range: 1, 10
-    - id: MothroachCube
       amount: !type:RangeNumberSelector
         range: 1, 10
     - id: MouseCube

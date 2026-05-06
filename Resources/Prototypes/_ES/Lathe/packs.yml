@@ -10,14 +10,10 @@
   - Multitool
   - Signaller
   - ESFireExtinguisherMini
-  - SprayPainter
-  - SprayPainterAmmo
-  - FlashlightLantern
   - HandheldGPSBasic
   - TRayScanner
   - UtilityBelt
   - Handcuffs
-  - HandheldStationMap
   - ClothingHeadHatCone
   - GasAnalyzer
   - CableStack
@@ -34,9 +30,6 @@
   - ESVoiceTrigger
   - ESProximitySensor
   - Igniter
-  - ModularReceiver
-  - MicroManipulatorStockPart
-  - ConveyorBeltAssembly
 
 - type: latheRecipePack
   id: ESLightsStatic
@@ -45,7 +38,6 @@
   - ESLightTubeHallway
   - ESLightTubeNightshift
   - LightBulb
-  - DimLightBulb
 
 - type: latheRecipePack
   id: ESElectronicsStatic
@@ -54,15 +46,12 @@
   - FirelockElectronics
   - DoorElectronics
   - AirAlarmElectronics
-  - StationMapElectronics
   - FireAlarmElectronics
-  - SignalTimerElectronics
   - APCElectronics
   - SMESMachineCircuitboard
   - SubstationMachineCircuitboard
   - CellRechargerCircuitboard
   - WeaponCapacitorRechargerCircuitboard
-  - FreezerElectronics
 
 # Medical
 - type: latheRecipePack

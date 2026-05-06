@@ -375,15 +375,6 @@
     FoodBreadBun: 1
     FoodMeatXeno: 1
 
-- type: microwaveMealRecipe
-  id: RecipeMothRoachburger
-  name: mothroachburger recipe
-  result: FoodBurgerMothRoach
-  group: Savory
-  solids:
-    FoodBreadBun: 1
-    MobMothroach: 1
-
 #Breads & Sandwiches
 
 - type: microwaveMealRecipe
@@ -1666,17 +1657,6 @@
     OrganHumanBrain: 1
 
 - type: microwaveMealRecipe
-  id: RecipeSlimeCake
-  name: slime cake recipe
-  result: FoodCakeSlime
-  time: 5
-  group: Cake
-  reagents:
-    Slime: 15
-  solids:
-    FoodCakePlain: 1
-
-- type: microwaveMealRecipe
   id: RecipeCatCake
   name: cat cake recipe
   result: MobCatCake
@@ -2415,19 +2395,6 @@
     FoodMeat: 1
     FoodTomato: 1
     FoodSoybeans: 2 # replace these with green beans once those become a thing
-
-- type: microwaveMealRecipe
-  id: RecipeMoproach # TODO: Move this to be an actual surgery instead, once surgery gets implemented.
-  name: moproach recipe
-  result: MobMoproach
-  time: 30
-  group: Other
-  reagents:
-    SpaceCleaner: 15
-  solids:
-    MobMothroach: 1
-    OrganAnimalHeart: 1
-    MoproachShoes: 1
 
 - type: microwaveMealRecipe
   id: RecipeCottonCake

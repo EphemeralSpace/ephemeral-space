@@ -31,7 +31,7 @@
             Quantity: 5
         organ:
           reagents:
-          - ReagentId: Slime
+          - ReagentId: Blood
             Quantity: 10
     - type: Item
       size: Small
@@ -63,7 +63,7 @@
     solutions:
       organ:
         reagents:
-        - ReagentId: Slime
+        - ReagentId: Blood
           Quantity: 10
       Lung:
         maxVol: 100.0
