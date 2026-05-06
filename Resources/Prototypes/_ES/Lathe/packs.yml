@@ -107,6 +107,11 @@
   - ChemistryEmptyVial
   - Dropper
 
+- type: latheRecipePack
+  id: ESMedicalToolsStatic
+  recipes:
+  - Defibrillator
+
 # Security
 - type: latheRecipePack
   id: ESSecurityEquipmentStatic
