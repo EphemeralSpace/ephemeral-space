@@ -36,4 +36,4 @@ es-cryptonuke-ui-button-already-hacked-tooltip = Terminal is already hacked!
 
 es-cryptonuke-examine-compromised = This terminal has been [color=red][bold]hacked[/color][/bold]!
 
-es-cryptonuke-beacon = Nuclear Cryptographic Terminal
+es-cryptonuke-beacon = Nuke Terminal
