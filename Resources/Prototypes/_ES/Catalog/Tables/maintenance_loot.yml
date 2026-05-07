@@ -141,6 +141,7 @@
     - id: CleanerGrenade
     - id: Beaker
     - id: ChemistryEmptyBottle01
+    - id: RagItem
     - id: Syringe
     - id: Matchbox
     - id: Lighter
