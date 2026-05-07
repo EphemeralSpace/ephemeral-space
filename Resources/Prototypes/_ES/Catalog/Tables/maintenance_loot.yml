@@ -3,11 +3,11 @@
   table:
     group:
     - tableId: ESMaintLootWorthless
-      weight: 45
+      weight: 35
     - tableId: ESMaintLootCommon
-      weight: 45
+      weight: 52
     - tableId: ESMaintLootUncommon
-      weight: 9
+      weight: 12
     - tableId: ESMaintLootRare
       weight: 1
 
@@ -35,11 +35,11 @@
   table:
     group:
     - tableId: ESMaintLootCommon
-      weight: 45
+      weight: 40
     - tableId: ESMaintLootUncommon
-      weight: 9
+      weight: 15
     - tableId: ESMaintLootRare
-      weight: 1
+      weight: 2
 
 - type: entityTable
   id: ESMaintLootWorthless
@@ -80,19 +80,22 @@
   table:
     group:
     - id: GasAnalyzer
-    - id: Crowbar
     - id: GeigerCounter
     - id: HandheldGPSBasic
     - id: MopItem
     - id: Bucket
-    - id: Screwdriver
-    - id: trayScanner
-    - id: Welder
-    - id: Wirecutter
-    - id: Wrench
-    - id: SprayPainter
+
+    - group:
+      - id: Screwdriver
+      - id: trayScanner
+      - id: Welder
+      - id: Wirecutter
+      - id: Wrench
+      - id: Crowbar
     - id: ESNet
+      weight: 3 # temp increase since its new
     - id: ESDoorJammer
+      weight: 3 # temp increase since its new
 
     - tableId: ESMixedBasicGloves
     - id: ClothingEyesGlassesMeson
@@ -127,18 +130,17 @@
     - id: RemoteSignaller
     - id: ESParcelWrap10
 
-    - id: DoorElectronics
-    - id: APCElectronics
-    - id: FirelockElectronics
-    - id: FireAlarmElectronics
-    - id: AirAlarmElectronics
-    - id: IntercomElectronics
+    - group:
+      - id: DoorElectronics
+      - id: APCElectronics
+      - id: FirelockElectronics
+      - id: FireAlarmElectronics
+      - id: AirAlarmElectronics
+      - id: IntercomElectronics
 
     - id: CleanerGrenade
     - id: Beaker
     - id: ChemistryEmptyBottle01
-      weight: 2
-    - id: RagItem
     - id: Syringe
     - id: Matchbox
     - id: Lighter
@@ -148,17 +150,19 @@
       - id: CigPackBlue
       - id: CigPackBlack
 
-    - id: DrinkBeerBottleFull
-    - id: DrinkHotCoffee
+    - group:
+      - id: DrinkBeerBottleFull
+      - id: DrinkHotCoffee
     - id: ESStrangePill
+      weight: 2
 
     - id: BodyBagFolded
     - id: FireExtinguisher
-    - id: SmokeGrenade # TODO: sus?
+    - id: SmokeGrenade
+      weight: 2
     - id: RadioHandheld
     - id: EmergencyOxygenTank
     - id: SprayPainterAmmo
-    - id: ClothingHeadHatCone
 
     - group:
       - id: GlowstickGreen
@@ -173,7 +177,9 @@
       - id: ClothingHeadHatHardhatWhite
       - id: ClothingHeadHatHardhatYellow
       - id: ClothingHeadHatHardhatYellowDark
+      - id: ClothingHeadHatCone
     - id: FlashlightLantern
+      weight: 2
     - id: Flare # dode
 
 - type: entityTable
@@ -188,6 +194,7 @@
     - id: Bola
     - id: EmergencyRollerBedSpawnFolded
     - id: Spear
+    - id: SprayPainter
     - id: BaseBallBat
     - id: WelderIndustrial
     - id: Plunger
@@ -197,7 +204,9 @@
     - id: ClothingEyesHudMedical
     - tableId: FillWelderSupplies # Welding masks
     - id: ClothingBeltUtility
+      weight: 2
     - id: ESClothingHeadHelmetSecurity
+    - id: ClothingBackpackSatchelSmugglerUnanchored
 
     - id: DefaultStationBeaconUnanchored
     - tableId: ESSoap
@@ -214,10 +223,11 @@
 
     - id: EmergencyMedipen
 
-    - id: DrinkVodkaBottleFull
-    - id: DrinkFourteenLokoCan
-    - id: DrinkSpaceGlue
-    - id: DrinkSpaceLube
+    - group:
+      - id: DrinkVodkaBottleFull
+      - id: DrinkFourteenLokoCan
+      - id: DrinkSpaceGlue
+      - id: DrinkSpaceLube
 
     - id: SprayBottle
     - id: SprayBottleSpaceCleaner
@@ -234,10 +244,6 @@
       - id: FoodBoxDonkpocketHonk
     - id: MonkeyCube
 
-    - id: BlockGameArcadeComputerCircuitboard
-      weight: 0.5
-    - id: SpaceVillainArcadeComputerCircuitboard
-      weight: 0.5
     - id: SMESMachineCircuitboard
     - id: SubstationMachineCircuitboard
 
@@ -291,33 +297,31 @@
     - group:
       - id: ClothingShoesBootsLaceup
       - id: ClothingShoesLeather
+      - id: ClothingShoesBootsBlack
       weight: 0.5
 
     - id: SpectralLocator
     - id: d20Dice
     - id: Wristwatch
+    - id: Binoculars
 
 - type: entityTable
   id: ESMaintLootRare
   table:
     group:
     - tableId: ESMaintsTraitorLoot
-      weight: 2
+      weight: 4
     - id: ESWeaponKnife
       weight: 2
-    - id: Handcuffs
     - id: WelderIndustrialAdvanced
-    - id: Binoculars
     - id: PinpointerUniversal
     - id: PinpointerNuclear
     - id: CameraBug
-    - id: ClothingBackpackSatchelSmugglerUnanchored
     - id: ESMedkitFilled
 
     - id: ClothingEyesHudSecurity
     - id: ClothingEyesGlassesSunglasses
     - id: ClothingHandsGlovesColorYellow
-    - id: ClothingShoesBootsBlack
 
     - all: # Russian Outfit
       - id: ESClothingHeadUshanka
@@ -343,3 +347,4 @@
       - id: WristwatchGold
       - id: RubberStampGreytide
       - id: ClothingNeckBling
+      weight: 0.25
