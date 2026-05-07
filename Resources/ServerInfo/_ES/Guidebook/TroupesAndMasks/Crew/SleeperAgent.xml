@@ -3,8 +3,11 @@
 
     The Sleeper Agent is a member of a crew who is waiting to turn and defect to the Syndicate at a moment's notice.
 
-    If all other [textlink="traitors" link="Traitor"] on-board the station die, the Sleeper Agent will be given a random traitor mask and tasked with finishing their work.
-    If the other traitors do not die, however, the Sleeper Agent will remain a crew member, simply needing to bide their time and stay alive in the event they are called upon.
+    If a [textlink="traitor" link="Traitor"] on-board the station dies, the Sleeper Agent will have a chance to be woken up, converting them into a random traitor mask.
+    This chance scales based on the number of traitors who have died.
+
+    In the event that they are not woken up, however, the Sleeper Agent will remain a crew member.
+    They can choose either to work as a perfectly normal member of the crew, or scheme and prepare for their (potentially inevitable) conversion into a traitor.
 
   <ESGuideTipsEmbed Mask="SleeperAgent"/>
 </Document>

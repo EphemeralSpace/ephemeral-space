@@ -79,7 +79,7 @@ es-mask-psychid-desc = As a Psychid, be killed in order to swap bodies and creat
 
 # Oddballs
 es-mask-sleeper-agent-name = Sleeper Agent
-es-mask-sleeper-agent-desc = As a Sleeper Agent, you're a member of crew and win with them, unless the entire traitors team dies, upon which you switch sides and gain a new mask.
+es-mask-sleeper-agent-desc = As a Sleeper Agent, you're a member of crew and win with them. When a traitor dies, you have a chance to switch sides and gain a new mask.
 
 # Meta
 es-objective-issuer-mask = Mask
