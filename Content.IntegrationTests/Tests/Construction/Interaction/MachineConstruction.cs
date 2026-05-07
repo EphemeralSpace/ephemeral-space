@@ -33,8 +33,7 @@ public sealed class MachineConstruction : InteractionTest
         AssertDeleted();
         await AssertEntityLookup(
             (Steel, 5),
-            (Cable, 1),
-            (Cable, 1),
+            (Cable, 2),
             (Glass, 2),
             (Manipulator1, 1),
             (MicrowaveBoard, 1));
@@ -52,7 +51,7 @@ public sealed class MachineConstruction : InteractionTest
         await InteractUsing("AutolatheMachineCircuitboard");
         AssertPrototype(MachineFrame);
         await Interact(Manipulator1, Manipulator1, Manipulator1, Manipulator1, Glass, Screw);
-        AssertPrototype("Autolathe");
+        AssertPrototype("ESAutolathe");
     }
 }
 
