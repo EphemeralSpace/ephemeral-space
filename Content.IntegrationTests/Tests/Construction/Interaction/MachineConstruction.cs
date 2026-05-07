@@ -8,7 +8,6 @@ public sealed class MachineConstruction : InteractionTest
     private const string Unfinished = "UnfinishedMachineFrame";
     private const string MicrowaveBoard = "MicrowaveMachineCircuitboard";
     private const string Microwave = "KitchenMicrowave";
-    private const string Beaker = "Beaker";
 
     [Test]
     public async Task ConstructMicrowave()
