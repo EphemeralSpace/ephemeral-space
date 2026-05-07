@@ -91,7 +91,8 @@
     - id: Wirecutter
     - id: Wrench
     - id: SprayPainter
-    - id: ESAnomalyResonator
+    - id: ESNet
+    - id: ESDoorJammer
 
     - tableId: ESMixedBasicGloves
     - id: ClothingEyesGlassesMeson
