@@ -121,3 +121,9 @@ Entries:
         not just after the last one dies.
   id: 16
   time: '2026-05-07T19:23:36.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Add
+      message: Nuclear cryptographic terminals now have a navmap beacon
+  id: 17
+  time: '2026-05-07T19:26:29.0000000+00:00'
