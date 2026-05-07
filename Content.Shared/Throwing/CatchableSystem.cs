@@ -61,9 +61,14 @@ public sealed partial class CatchableSystem : EntitySystem
         if (!rand.Prob(ent.Comp.CatchChance))
             return;
 
-        // Try to catch!
-        if (!_hands.TryPickupAnyHand(args.Target, ent.Owner, handsComp: handsComp, animate: false))
-            return; // The hands are full!
+        switch (ent.Comp.OnlyActiveHand)
+        {
+            // Try to catch with the active hand!
+            case true when !_hands.TryPickup(args.Target, ent.Owner, handsComp: handsComp, animate: false):
+            // Try to catch with any hand!
+            case false when !_hands.TryPickupAnyHand(args.Target, ent.Owner, handsComp: handsComp, animate: false):
+                return; // The desired hand was full!
+        }
 
         // Success!
 
