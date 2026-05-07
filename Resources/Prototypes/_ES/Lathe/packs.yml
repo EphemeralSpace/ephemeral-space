@@ -95,15 +95,8 @@
 - type: latheRecipePack
   id: ESSecurityEquipmentStatic
   recipes:
-  - ClothingEyesHudSecurity
-  - ForensicPad
   - Handcuffs
-  - Zipties
   - Flash
-  - Stunbaton
-  - RiotShield
-  - GrenadeEMP
-  - GrenadeFlash
 
 - type: latheRecipePack
   id: ESAmmunition
