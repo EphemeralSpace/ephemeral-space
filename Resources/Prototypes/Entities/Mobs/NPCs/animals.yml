@@ -2245,7 +2245,7 @@
     solution: melee
     generated:
       reagents:
-      - ReagentId: Mechanotoxin
+      - ReagentId: Toxin
         Quantity: 1
   - type: MeleeChemicalInjector
     transferAmount: 0.75

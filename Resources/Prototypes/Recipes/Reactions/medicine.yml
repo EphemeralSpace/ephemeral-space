@@ -67,16 +67,6 @@
     Cryoxadone: 3
 
 - type: reaction
-  id: Doxarubixadone
-  reactants:
-    Cryoxadone:
-      amount: 1
-    UnstableMutagen:
-      amount: 1
-  products:
-    Doxarubixadone: 2
-
-- type: reaction
   id: Epinephrine
   reactants:
     Phenol:
@@ -170,18 +160,6 @@
     Kelotane: 2
 
 - type: reaction
-  id: Phalanximine
-  reactants:
-    Hyronalin:
-      amount: 1
-    Ethanol:
-      amount: 1
-    UnstableMutagen:
-      amount: 1
-  products:
-    Phalanximine: 3
-
-- type: reaction
   id: Synaptizine
   reactants:
     Lithium:
@@ -212,19 +190,6 @@
       amount: 1
   products:
     HeartbreakerToxin: 2
-
-- type: reaction
-  id: Impedrezene
-  minTemp: 370
-  reactants:
-    Mercury:
-      amount: 1
-    Oxygen:
-      amount: 1
-    Water:
-      amount: 1
-  products:
-    Impedrezene: 1
 
 - type: reaction
   id: Mannitol
@@ -328,16 +293,4 @@
       amount: 1
   products:
     Haloperidol: 5
-
-- type: reaction
-  id: Warfarin
-  reactants:
-    SulfuricAcid:
-      amount: 1
-    Nitrogen:
-      amount: 1
-    Sodium:
-      amount: 1
-  products:
-    Warfarin: 2
 

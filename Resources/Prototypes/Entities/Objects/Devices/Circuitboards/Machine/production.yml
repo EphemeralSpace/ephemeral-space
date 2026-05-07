@@ -660,42 +660,6 @@
       Cable: 1
 
 - type: entity
-  id: OreProcessorMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: ore processor machine board
-  components:
-    - type: Sprite
-      state: supply
-    - type: MachineBoard
-      prototype: OreProcessor
-      stackRequirements:
-        Manipulator: 4
-        Glass: 1
-
-- type: entity
-  parent: BaseMachineCircuitboard
-  id: OreProcessorIndustrialMachineCircuitboard
-  name: industrial ore processor machine board
-  components:
-  - type: Sprite
-    state: supply
-  - type: MachineBoard
-    prototype: OreProcessorIndustrial
-    stackRequirements:
-      Manipulator: 4
-      Glass: 1
-
-- type: entity
-  id: SheetifierMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: sheet-meister 2000 machine board
-  components:
-  - type: MachineBoard
-    prototype: Sheetifier
-    stackRequirements:
-      Manipulator: 2
-
-- type: entity
   id: MicrowaveMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: microwave machine board
@@ -943,18 +907,6 @@
       Steel: 2
       Glass: 5
       Cable: 2
-
-- type: entity
-  parent: BaseMachineCircuitboard
-  id: CutterMachineCircuitboard
-  name: cutter machine board
-  components:
-  - type: MachineBoard
-    prototype: CutterMachine
-    stackRequirements:
-      Steel: 2
-      Manipulator: 2
-      Cable: 1
 
 - type: entity
   parent: BaseMachineCircuitboard

@@ -26,9 +26,9 @@
   reactants:
     Water:
       amount: 1
-    Fersilicite:
+    SpaceCleaner:
       amount: 1
     Oxygen:
       amount: 1
   products:
-    SpaceLube: 5
+    SpaceLube: 3

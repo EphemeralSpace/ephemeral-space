@@ -47,6 +47,22 @@
         probability: 0.33
 
 - type: reagent
+  id: VentCrud
+  name: reagent-name-vent-crud
+  group: Toxins
+  desc: reagent-desc-vent-crud
+  physicalDesc: reagent-physical-desc-sticky
+  flavor: bitter
+  color: "#000000"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 2
+
+- type: reagent
   id: ChloralHydrate
   name: reagent-name-chloral-hydrate
   group: Toxins

@@ -215,7 +215,7 @@
       beaker:
         maxVol: 400
         reagents:
-        - ReagentId: AmmoniaBlood
+        - ReagentId: Blood
           Quantity: 400
 
 - type: entity

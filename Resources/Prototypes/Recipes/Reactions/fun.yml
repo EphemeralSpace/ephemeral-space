@@ -1,22 +1,9 @@
 - type: reaction
-  id: Carpetium
-  reactants:
-    SpaceDrugs:
-      amount: 1
-    Fiber:
-      amount: 2
-  products:
-    Carpetium: 3
-
-- type: reaction
   id: SpaceGlue
-  requiredMixerCategories:
-  - Stir # prevents turning slimes to glue, TODO: make it react only X units per second; make bloodstream an open thermal system
-  minTemp: 370
   reactants:
     SpaceLube:
       amount: 1
-    Slime:
+    InsectBlood:
       amount: 1
   products:
     SpaceGlue: 2
