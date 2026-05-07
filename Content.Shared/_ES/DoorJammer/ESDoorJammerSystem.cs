@@ -25,6 +25,8 @@ public sealed class ESDoorJammerSystem : EntitySystem
             return;
 
         ent.Comp.WasAlreadyBolted = _door.IsBolted(args.Embedded, doorBolt);
+        Dirty(ent);
+
         if (ent.Comp.WasAlreadyBolted.Value)
             return;
 
@@ -36,9 +38,10 @@ public sealed class ESDoorJammerSystem : EntitySystem
         if (!HasComp<DoorComponent>(args.Embedded) || !TryComp<DoorBoltComponent>(args.Embedded, out var doorBolt))
             return;
 
-        if (ent.Comp.WasAlreadyBolted is not false)
-            return;
+        if (ent.Comp.WasAlreadyBolted is false)
+            _door.TrySetBoltDown((args.Embedded, doorBolt), false, args.Detacher, predicted: true);;
 
-        _door.TrySetBoltDown((args.Embedded, doorBolt), false, args.Detacher, predicted: true);
+        ent.Comp.WasAlreadyBolted = null;
+        Dirty(ent);
     }
 }
