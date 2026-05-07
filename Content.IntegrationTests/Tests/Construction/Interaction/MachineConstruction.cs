@@ -2,7 +2,6 @@ using Content.IntegrationTests.Tests.Interaction;
 
 namespace Content.IntegrationTests.Tests.Construction.Interaction;
 
-[Ignore("im glad this just hardcodes fucking everything")]
 public sealed class MachineConstruction : InteractionTest
 {
     private const string MachineFrame = "MachineFrame";
