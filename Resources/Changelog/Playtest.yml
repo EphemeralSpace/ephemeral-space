@@ -127,3 +127,18 @@ Entries:
       message: Nuclear cryptographic terminals now have a navmap beacon
   id: 17
   time: '2026-05-07T19:26:29.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: 'Added two new common maints utility items: the door jammer & the net. '
+    - type: Add
+      message: >-
+        The door jammer is a jury-rigged screwdriver that forcibly bolts any
+        door it's thrown and embedded into, until it's removed. 
+    - type: Add
+      message: >-
+        The net is an item that steals the item out of someone's active hand
+        when it's thrown at them, carrying it along until it lands. If the
+        target's active hand is empty, they'll simply catch the net instead.
+  id: 18
+  time: '2026-05-07T21:33:39.0000000+00:00'
