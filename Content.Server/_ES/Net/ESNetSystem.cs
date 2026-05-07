@@ -78,6 +78,7 @@ public sealed class ESNetSystem : EntitySystem
         while (enumerator.MoveNext(out var child))
         {
             _transform.AttachToGridOrMap(child);
+            _transform.SetLocalRotation(child, Angle.Zero);
         }
     }
 }
