@@ -590,15 +590,6 @@
     materialComposition:
       Steel: 100
   - type: SpaceGarbage
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: ToxinTrash
-          Quantity: 5
-  - type: Edible
-    requiresSpecialDigestion: true
 
 - type: entity
   categories: [ HideSpawnMenu ]

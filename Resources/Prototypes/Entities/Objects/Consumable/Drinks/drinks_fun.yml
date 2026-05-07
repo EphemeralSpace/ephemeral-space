@@ -98,8 +98,6 @@
     weight: 5
     reagents:
     - Blood
-    - CopperBlood
-    - Slime
     - Vomit
   - quantity: 10
     weight: 4

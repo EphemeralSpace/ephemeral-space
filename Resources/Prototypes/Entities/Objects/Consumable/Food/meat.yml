@@ -506,8 +506,6 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
-        - ReagentId: GastroToxin
-          Quantity: 4
         - ReagentId: Fat
           Quantity: 4
   - type: Item
@@ -828,7 +826,7 @@
   - type: Extractable
     juiceSolution:
       reagents:
-      - ReagentId: Slime
+      - ReagentId: Blood
         Quantity: 10
   - type: Sprite
     state: slime

@@ -217,8 +217,6 @@
   id: RandomSoakedSmokeTable
   table: !type:GroupSelector
     children:
-    - id: CigaretteLicoxide
-      weight: 1
     - id: CigaretteFrezon
       weight: 1
     - id: CigarettePhlogiston
@@ -245,14 +243,6 @@
       weight: 4
     - id: CigaretteDexalin
       weight: 4
-    - id: CigaretteHaloperidol
-      weight: 6
-    - id: CigaretteLaughter
-      weight: 6
-    - id: CigaretteLipolicide
-      weight: 6
-    - id: CigaretteSodiumPolyacrylate
-      weight: 6
     - id: CigaretteRobustHarvest
       weight: 6
     - id: CigaretteBanana

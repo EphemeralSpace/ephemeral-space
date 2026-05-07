@@ -1,4 +1,14 @@
 - type: latheRecipe
+  abstract: true
+  id: BasePartRecipe
+  categories:
+  - Parts
+  completetime: 2
+  materials:
+    Steel: 300
+    Plastic: 200
+
+- type: latheRecipe
   parent: BaseToolRecipe
   id: ESFireExtinguisherMini
   result: FireExtinguisherMini

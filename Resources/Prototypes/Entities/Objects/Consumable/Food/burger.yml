@@ -710,8 +710,6 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 8
-        - ReagentId: Licoxide
-          Quantity: 5
 # Tastes like bun, pure electricity.
 
 - type: entity
@@ -1300,40 +1298,4 @@
 
 # Note: I would put a bunch of colored burgers here as listed in the tg .dm but
 # I'd rather wait for a custom burger component.
-
-- type: entity
-  parent: FoodBurgerBase
-  id: FoodBurgerMothRoach
-  name: mothroachburger
-  description: The last lamp it saw was the one inside the microwave.
-  components:
-  - type: Item
-    shape:
-    - 0,0,0,1
-    inhandVisuals:
-      left:
-      - state: mothroach-inhand-left
-      right:
-      - state: mothroach-inhand-right
-  - type: FlavorProfile
-    flavors:
-      - bun
-      - meaty
-      - light
-  - type: Sprite
-    state: mothroach
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Protein
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 7
-  - type: Tag
-    tags:
-    - Meat
 

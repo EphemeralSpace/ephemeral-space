@@ -310,52 +310,6 @@
             Quantity: 10
           - ReagentId: Haloperidol
             Quantity: 10
-
-- type: entity
-  id: CigaretteLaughter
-  parent: SoakedCigarette
-  name: Clown Adjacency Bonus
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-          - ReagentId: Nicotine
-            Quantity: 10
-          - ReagentId: Laughter
-            Quantity: 10
-
-- type: entity
-  id: CigaretteLipolicide
-  parent: SoakedCigarette
-  name: 80's Workout Routine
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-          - ReagentId: Nicotine
-            Quantity: 10
-          - ReagentId: Lipolicide
-            Quantity: 10
-
-- type: entity
-  id: CigaretteSodiumPolyacrylate
-  parent: SoakedCigarette
-  name: Unhealthy Habits
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-          - ReagentId: Nicotine
-            Quantity: 10
-          - ReagentId: SodiumPolyacrylate
-            Quantity: 10
-
 - type: entity
   id: CigaretteMold
   parent: SoakedCigarette
@@ -369,21 +323,6 @@
           - ReagentId: Nicotine
             Quantity: 10
           - ReagentId: Mold
-            Quantity: 10
-
-- type: entity
-  id: CigaretteLicoxide
-  parent: SoakedCigarette
-  name: Wake Up Call
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-          - ReagentId: Nicotine
-            Quantity: 10
-          - ReagentId: Licoxide
             Quantity: 10
 
 - type: entity

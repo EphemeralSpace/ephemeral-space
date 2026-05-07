@@ -1,3 +1,10 @@
+- type: latheRecipe
+  abstract: true
+  id: BaseAmmoRecipe
+  categories:
+  - Ammo
+  completetime: 5
+
 # Handgun
 - type: latheRecipe
   parent: BaseAmmoRecipe

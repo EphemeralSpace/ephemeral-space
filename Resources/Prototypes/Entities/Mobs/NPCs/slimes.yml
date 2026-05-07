@@ -55,7 +55,7 @@
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
-      - ReagentId: Slime
+      - ReagentId: Blood
         Quantity: 150
     bloodlossDamage:
       types:

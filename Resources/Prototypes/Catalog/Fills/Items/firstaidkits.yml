@@ -81,7 +81,6 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: SyringePhalanximine
         - id: RadAutoInjector
         - id: PillCanisterPotassiumIodide
         - id: PillCanisterHyronalin
