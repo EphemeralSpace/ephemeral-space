@@ -113,3 +113,11 @@ Entries:
       message: Jerrycans are now 3x3
   id: 15
   time: '2026-05-06T01:22:46.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Sleeper agents now have a chance to convert after each traitor death,
+        not just after the last one dies.
+  id: 16
+  time: '2026-05-07T19:23:36.0000000+00:00'
