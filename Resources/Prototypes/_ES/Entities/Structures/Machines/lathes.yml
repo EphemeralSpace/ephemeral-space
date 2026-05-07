@@ -52,6 +52,7 @@
     - ESToolsStatic
     - ESPartsStatic
     - ESBasicChemistryStatic
+    - ESMedicalToolsStatic
     - ESRollerBedsStatic
     - ESLightsStatic
     - ESServiceStatic
