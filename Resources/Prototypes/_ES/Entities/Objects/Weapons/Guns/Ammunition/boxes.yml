@@ -73,3 +73,53 @@
     - state: mag-beanbag-4
       map: ["enum.GunVisualLayers.Mag"]
     - state: beanbag
+
+# Toys
+- type: entity
+  parent: BaseStorageItem
+  id: BoxDonkSoftBox
+  name: foam dart box
+  description: A cardboard box of foam darts.
+  components:
+  - type: Appearance
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
+  - type: Item
+    size: Normal
+  - type: StorageFill
+    contents:
+    - id: BulletFoam
+      amount: 12
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+    layers:
+    - state: boxwidetoy
+    - state: shelltoy
+
+- type: entity
+  parent: BaseStorageItem
+  id: BoxCartridgeCap
+  name: cap gun cartridge box
+  description: A cardboard box of cap gun cartridges.
+  components:
+  - type: Appearance
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
+  - type: Item
+    size: Normal
+  - type: StorageFill
+    contents:
+    - id: CartridgeCap
+      amount: 12
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-cap-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: capbase

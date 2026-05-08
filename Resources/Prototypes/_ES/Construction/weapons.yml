@@ -32,15 +32,6 @@
   objectType: Item
 
 - type: construction
-  id: ESWoodenBuckler
-  hide: false
-  graph: WoodenBuckler
-  startNode: start
-  targetNode: woodenBuckler
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
   id: ESImprovisedArrow
   hide: false
   graph: ImprovisedArrow
