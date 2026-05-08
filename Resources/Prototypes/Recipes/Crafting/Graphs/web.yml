@@ -64,8 +64,6 @@
   - node: cloth
     entity: MaterialCloth1
 
-  - node: shield
-    entity: WebShield
 
   - node: boots
     entity: ClothingShoesBootsWinterWeb

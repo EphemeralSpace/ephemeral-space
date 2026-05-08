@@ -1,20 +1,4 @@
 - type: construction
-  id: BladedFlatcapGrey
-  graph: BladedFlatcapGrey
-  startNode: start
-  targetNode: icon
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
-  id: BladedFlatcapBrown
-  graph: BladedFlatcapBrown
-  startNode: start
-  targetNode: icon
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
   id: Shiv
   graph: Shiv
   startNode: start
@@ -47,14 +31,6 @@
   objectType: Item
 
 - type: construction
-  id: SpearSharkMinnow
-  graph: SpearSharkMinnow
-  startNode: start
-  targetNode: spear
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
   id: Bola
   graph: Bola
   startNode: start
@@ -63,34 +39,10 @@
   objectType: Item
 
 - type: construction
-  id: WoodenBuckler
-  graph: WoodenBuckler
-  startNode: start
-  targetNode: woodenBuckler
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
-  id: MakeshiftShield
-  graph: MakeshiftShield
-  startNode: start
-  targetNode: makeshiftShield
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
   id: ImprovisedArrow
   graph: ImprovisedArrow
   startNode: start
   targetNode: ImprovisedArrow
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
-  id: ImprovisedArrowCarp
-  graph: ImprovisedArrowCarp
-  startNode: start
-  targetNode: ImprovisedArrowCarp
   category: construction-category-weapons
   objectType: Item
 
@@ -107,13 +59,5 @@
   graph: ImprovisedBow
   startNode: start
   targetNode: ImprovisedBow
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
-  id: SpearBone
-  graph: SpearBone
-  startNode: start
-  targetNode: spear
   category: construction-category-weapons
   objectType: Item
