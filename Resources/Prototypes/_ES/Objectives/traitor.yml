@@ -170,7 +170,7 @@
   parent: ESBaseTraitorObjective
   id: ESObjectiveSympathizerDetonateNuke
   name: Help the traitors detonate the nuclear fission explosive
-  description: Figure out who the traitors might be, then help them complete their objectives and detonate the nuke
+  description: Figure out who the traitors might be, then help them complete their objectives and detonate the nuke.
   components:
   - type: ESObjective
     icon:
