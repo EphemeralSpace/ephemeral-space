@@ -12,9 +12,9 @@ public sealed class ESTakeDamageObjectiveSystem : ESBaseObjectiveSystem<ESTakeDa
 {
     public override Type[] RelayComponents => new[] { typeof(ESDamageTakerRelayComponent) };
 
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
 
     public override void Initialize()
     {

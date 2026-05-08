@@ -11,8 +11,8 @@ namespace Content.Client._ES.Masks;
 
 public sealed class ESMaskSystem : ESSharedMaskSystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private ContainerSystem _container = default!;
 
     public event Action<EntityUid, ProtoId<ESMaskPrototype>?>? OnMaskChanged;
 

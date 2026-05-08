@@ -6,8 +6,8 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed class JitterOnTriggerSystem : XOnTriggerSystem<JitterOnTriggerComponent>
 {
-    [Dependency] private readonly SharedJitteringSystem _jittering = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private SharedJitteringSystem _jittering = default!;
+    [Dependency] private INetManager _net = default!;
 
     protected override void OnTrigger(Entity<JitterOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {

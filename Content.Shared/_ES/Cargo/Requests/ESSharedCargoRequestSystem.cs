@@ -11,11 +11,11 @@ namespace Content.Shared._ES.Cargo.Requests;
 
 public abstract class ESSharedCargoRequestSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private SharedUserInterfaceSystem _userInterface = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

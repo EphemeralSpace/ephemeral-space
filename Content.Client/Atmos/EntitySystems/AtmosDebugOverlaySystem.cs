@@ -10,7 +10,7 @@ namespace Content.Client.Atmos.EntitySystems
     [UsedImplicitly]
     internal sealed class AtmosDebugOverlaySystem : SharedAtmosDebugOverlaySystem
     {
-        [Dependency] private readonly IOverlayManager _overlayManager = default!;
+        [Dependency] private IOverlayManager _overlayManager = default!;
 
         public readonly Dictionary<EntityUid, AtmosDebugOverlayMessage> TileData = [];
 

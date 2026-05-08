@@ -10,8 +10,8 @@ namespace Content.Server._ES.Troupes.Parasite;
 
 public sealed class ESTroupeOutnumberObjectiveSystem : ESBaseObjectiveSystem<ESTroupeOutnumberObjectiveComponent>
 {
-    [Dependency] private readonly ESMaskSystem _mask = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private ESMaskSystem _mask = default!;
+    [Dependency] private MindSystem _mind = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

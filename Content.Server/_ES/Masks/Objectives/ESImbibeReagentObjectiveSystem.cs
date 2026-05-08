@@ -15,9 +15,9 @@ namespace Content.Server._ES.Masks.Objectives;
 /// <seealso cref="ESImbibeReagentObjectiveComponent"/>
 public sealed class ESImbibeReagentObjectiveSystem : ESBaseObjectiveSystem<ESImbibeReagentObjectiveComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
 
     public override Type[] RelayComponents => new[] { typeof(ESMuncherRelayComponent) };
 

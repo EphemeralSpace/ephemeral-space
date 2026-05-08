@@ -16,9 +16,9 @@ namespace Content.Client._ES.Audio;
 /// </summary>
 public sealed class ESBraincritMusicSystem : EntitySystem
 {
-    [Dependency] private readonly ContentAudioSystem _content = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private ContentAudioSystem _content = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     private static ResPath _braincritMusicPath = new("/Audio/_ES/Ambience/approach.ogg");
     private Entity<AudioComponent>? _audioStream = null;

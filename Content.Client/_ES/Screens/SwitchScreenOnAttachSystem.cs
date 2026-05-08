@@ -11,8 +11,8 @@ namespace Content.Client._ES.Screens;
 /// </summary>
 public sealed class SwitchScreenOnAttachSystem : EntitySystem
 {
-    [Dependency] private readonly IStateManager _state = default!;
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
+    [Dependency] private IStateManager _state = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
 
     public override void Initialize()
     {

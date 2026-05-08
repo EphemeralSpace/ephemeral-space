@@ -10,8 +10,8 @@ namespace Content.Server._ES.Debugging;
 /// </summary>
 public sealed class ESDebugVerbsSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminManager _admin = default!;
-    [Dependency] private readonly BrainDamageSystem _brain = default!;
+    [Dependency] private IAdminManager _admin = default!;
+    [Dependency] private BrainDamageSystem _brain = default!;
 
     public override void Initialize()
     {

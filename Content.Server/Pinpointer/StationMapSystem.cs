@@ -10,10 +10,10 @@ namespace Content.Server.Pinpointer;
 
 public sealed class StationMapSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly PowerCellSystem _cell = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private PowerCellSystem _cell = default!;
+    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
 
     public override void Initialize()
     {

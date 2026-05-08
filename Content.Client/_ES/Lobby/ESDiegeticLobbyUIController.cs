@@ -22,10 +22,10 @@ namespace Content.Client._ES.Lobby;
 [UsedImplicitly]
 public sealed class ESDiegeticLobbyUIController : UIController, IOnStateEntered<LobbyState>
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    [Dependency] private readonly IConsoleHost _conHost = default!;
-    [Dependency] private readonly IResourceCache _resCache = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private IConsoleHost _conHost = default!;
+    [Dependency] private IResourceCache _resCache = default!;
 
     public LobbyCurtainState CurtainState { get; private set; } = LobbyCurtainState.Open;
 

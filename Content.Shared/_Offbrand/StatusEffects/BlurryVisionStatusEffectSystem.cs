@@ -5,7 +5,7 @@ namespace Content.Shared._Offbrand.StatusEffects;
 
 public sealed class BlurryVisionStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly BlurryVisionSystem _blurryVision = default!;
+    [Dependency] private BlurryVisionSystem _blurryVision = default!;
 
     public override void Initialize()
     {

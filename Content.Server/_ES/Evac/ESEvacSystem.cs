@@ -8,8 +8,8 @@ namespace Content.Server._ES.Evac;
 /// <inheritdoc/>
 public sealed class ESEvacSystem : ESSharedEvacSystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
 
     public override void SetEvacVote(Entity<ESEvacStationComponent> ent, bool value, string? overrideMessage = null)
     {

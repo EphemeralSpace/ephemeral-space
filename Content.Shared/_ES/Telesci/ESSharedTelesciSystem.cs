@@ -9,10 +9,10 @@ namespace Content.Shared._ES.Telesci;
 
 public abstract class ESSharedTelesciSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] protected readonly EntityTableSystem EntityTable = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] protected readonly SharedStationSystem Station = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] protected EntityTableSystem EntityTable = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
+    [Dependency] protected SharedStationSystem Station = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

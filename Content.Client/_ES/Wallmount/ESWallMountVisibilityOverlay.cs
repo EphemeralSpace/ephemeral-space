@@ -13,7 +13,7 @@ namespace Content.Client._ES.Wallmount;
 /// </summary>
 public sealed class ESWallMountVisibilityOverlay : Overlay
 {
-    [Dependency] private readonly IEntityManager _ent = default!;
+    [Dependency] private IEntityManager _ent = default!;
     private readonly TransformSystem _xform;
     private readonly SpriteSystem _sprite;
     private readonly ESWallMountTreeSystem _tree;

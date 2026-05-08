@@ -7,7 +7,7 @@ namespace Content.Shared._ES.Degradation;
 
 public sealed class ESAirlockFailureSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     /// <summary>
     /// Adds an airlock failure charge to the target entity.

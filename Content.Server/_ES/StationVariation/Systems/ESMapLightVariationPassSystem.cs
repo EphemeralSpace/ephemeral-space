@@ -10,8 +10,8 @@ namespace Content.Server._ES.StationVariation.Systems;
 /// </summary>
 public sealed class ESMapLightVariationPassSystem : VariationPassSystem<ESMapLightVariationPassComponent>
 {
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
 
     protected override void ApplyVariation(Entity<ESMapLightVariationPassComponent> ent, ref StationVariationPassEvent args)
     {

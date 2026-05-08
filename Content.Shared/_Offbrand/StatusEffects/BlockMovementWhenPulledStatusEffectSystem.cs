@@ -9,7 +9,7 @@ namespace Content.Shared._Offbrand.StatusEffects;
 
 public sealed class BlockMovementWhenPulledStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
 
     public override void Initialize()
     {

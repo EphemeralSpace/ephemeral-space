@@ -79,10 +79,10 @@ public enum MetricRanking : byte
 
 public abstract class SharedWoundableHealthAnalyzerSystem : EntitySystem
 {
-    [Dependency] private readonly BrainDamageSystem _brainDamage = default!;
-    [Dependency] private readonly HeartSystem _heart = default!;
-    [Dependency] private readonly ShockThresholdsSystem _shockThresholds = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private BrainDamageSystem _brainDamage = default!;
+    [Dependency] private HeartSystem _heart = default!;
+    [Dependency] private ShockThresholdsSystem _shockThresholds = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
     protected const string MedicineGroup = "Medicine";
 

@@ -30,14 +30,14 @@ namespace Content.Server._ES.Lobby;
 /// </summary>
 public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IServerPreferencesManager _preferences = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly TransformSystem _xform = default!;
-    [Dependency] private readonly DoorSystem _door = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IServerPreferencesManager _preferences = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private TransformSystem _xform = default!;
+    [Dependency] private DoorSystem _door = default!;
 
     private static readonly ProtoId<AlertPrototype> NotReadiedAlert = "ESNotReadiedUp";
 
@@ -186,7 +186,7 @@ public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
 [ToolshedCommand(Name = "lobby"), AdminCommand(AdminFlags.Server)]
 public sealed class LobbyCommands : ToolshedCommand
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     [CommandImplementation("toggleclosed")]
     public void ToggleClosed()

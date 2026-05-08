@@ -5,7 +5,7 @@ namespace Content.Shared._ES.Masks;
 
 public sealed class ESTargetMaskSystem : EntitySystem
 {
-    [Dependency] private readonly ESSharedMaskSystem _mask = default!;
+    [Dependency] private ESSharedMaskSystem _mask = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

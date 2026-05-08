@@ -14,7 +14,7 @@ public sealed partial class StartHeart : EntityEffectBase<StartHeart>
 
 public sealed class StartHeartEntityEffectSystem : EntityEffectSystem<HeartrateComponent, StartHeart>
 {
-    [Dependency] private readonly HeartSystem _heart = default!;
+    [Dependency] private HeartSystem _heart = default!;
 
     protected override void Effect(Entity<HeartrateComponent> ent, ref EntityEffectEvent<StartHeart> args)
     {

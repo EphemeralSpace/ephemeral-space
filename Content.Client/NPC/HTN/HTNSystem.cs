@@ -6,7 +6,7 @@ namespace Content.Client.NPC.HTN;
 
 public sealed class HTNSystem : EntitySystem
 {
-    [Dependency] private readonly IFontSelectionManager _fontSelection = default!;
+    [Dependency] private IFontSelectionManager _fontSelection = default!;
 
     /*
      * Mainly handles clientside debugging for HTN NPCs.

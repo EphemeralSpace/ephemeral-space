@@ -16,10 +16,10 @@ namespace Content.Server.Audio;
 
 public sealed class ContentAudioSystem : SharedContentAudioSystem
 {
-    [Dependency] private readonly AudioSystem _serverAudio = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private AudioSystem _serverAudio = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     // ES START
     private static readonly ProtoId<SoundCollectionPrototype> RoundEndMusicCollection = "ESRoundEndMusic";

@@ -11,11 +11,11 @@ namespace Content.Client.Stylesheets
 {
     public sealed class StylesheetManager : IStylesheetManager, IPostInjectInit
     {
-        [Dependency] private readonly ILogManager _logManager = default!;
-        [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
-        [Dependency] private readonly IReflectionManager _reflection = default!;
-        [Dependency] private readonly IDependencyCollection _deps = default!;
-        [Dependency] private readonly IFontSelectionManager _fontSelection = default!;
+        [Dependency] private ILogManager _logManager = default!;
+        [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
+        [Dependency] private IReflectionManager _reflection = default!;
+        [Dependency] private IDependencyCollection _deps = default!;
+        [Dependency] private IFontSelectionManager _fontSelection = default!;
 
         // TODO: REMOVE (obsolete; used to construct StyleNano/StyleSpace)
         [Dependency]

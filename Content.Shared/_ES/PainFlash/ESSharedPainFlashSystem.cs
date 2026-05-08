@@ -8,7 +8,7 @@ namespace Content.Shared._ES.PainFlash;
 
 public abstract class ESSharedPainFlashSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] protected IGameTiming Timing = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

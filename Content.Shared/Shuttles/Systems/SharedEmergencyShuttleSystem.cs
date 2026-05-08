@@ -8,8 +8,8 @@ namespace Content.Shared.Shuttles.Systems;
 
 public abstract class SharedEmergencyShuttleSystem : EntitySystem
 {
-    [Dependency] protected readonly IConfigurationManager ConfigManager = default!;
-    [Dependency] protected readonly SharedPopupSystem Popup = default!;
+    [Dependency] protected IConfigurationManager ConfigManager = default!;
+    [Dependency] protected SharedPopupSystem Popup = default!;
 
     private bool _emergencyEarlyLaunchAllowed;
 

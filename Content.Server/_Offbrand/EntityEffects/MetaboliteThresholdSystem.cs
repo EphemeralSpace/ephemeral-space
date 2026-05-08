@@ -11,7 +11,7 @@ namespace Content.Server._Offbrand.EntityEffects;
 
 public sealed class MetaboliteThresholdEntityConditionSystem : EntityConditionSystem<MetabolizerComponent, MetaboliteThresholdCondition>
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     private Solution? GetSolution(Entity<MetabolizerComponent, OrganComponent?> ent)
     {

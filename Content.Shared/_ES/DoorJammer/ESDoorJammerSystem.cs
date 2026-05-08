@@ -9,7 +9,7 @@ namespace Content.Shared._ES.DoorJammer;
 /// </summary>
 public sealed class ESDoorJammerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedDoorSystem _door = default!;
+    [Dependency] private SharedDoorSystem _door = default!;
 
     public override void Initialize()
     {

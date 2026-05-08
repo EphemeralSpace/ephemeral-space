@@ -13,8 +13,8 @@ namespace Content.Server.VendingMachines
 {
     public sealed class VendingMachineSystem : SharedVendingMachineSystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private ThrowingSystem _throwingSystem = default!;
 
         private const float WallVendEjectDistanceFromWall = 1f;
 

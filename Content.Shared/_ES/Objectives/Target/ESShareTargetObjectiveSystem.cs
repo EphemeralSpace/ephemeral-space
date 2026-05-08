@@ -6,8 +6,8 @@ namespace Content.Shared._ES.Objectives.Target;
 
 public sealed class ESShareTargetObjectiveSystem : ESBaseObjectiveSystem<ESShareTargetObjectiveComponent>
 {
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
-    [Dependency] private readonly ESTargetObjectiveSystem _targetObjective = default!;
+    [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private ESTargetObjectiveSystem _targetObjective = default!;
 
     protected override void InitializeObjective(Entity<ESShareTargetObjectiveComponent> ent, ref ESInitializeObjectiveEvent args)
     {

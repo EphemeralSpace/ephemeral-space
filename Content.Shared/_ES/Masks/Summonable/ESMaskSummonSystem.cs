@@ -9,9 +9,9 @@ namespace Content.Shared._ES.Masks.Summonable;
 
 public sealed class ESMaskSummonSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

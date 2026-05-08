@@ -12,7 +12,7 @@ namespace Content.Server._ES.Masks.Objectives.Relays;
 /// </summary>
 public sealed class ESDamageTakerRelaySystem : ESBaseMindRelay
 {
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private MindSystem _mind = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -13,10 +13,10 @@ namespace Content.Server._ES.Masks.Burstworm;
 
 public sealed class ESBurstwormSystem : EntitySystem
 {
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ESEntityTimerSystem _entityTimer = default!;
-    [Dependency] private readonly GunSystem _gun = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ESEntityTimerSystem _entityTimer = default!;
+    [Dependency] private GunSystem _gun = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

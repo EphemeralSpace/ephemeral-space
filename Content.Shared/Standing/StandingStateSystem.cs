@@ -16,12 +16,12 @@ namespace Content.Shared.Standing;
 public sealed class StandingStateSystem : EntitySystem
 {
     // ES START
-    [Dependency] private readonly SharedGameTicker _ticker = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private SharedGameTicker _ticker = default!;
+    [Dependency] private IGameTiming _timing = default!;
     // ES END
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
 
     // If StandingCollisionLayer value is ever changed to more than one layer, the logic needs to be edited.
     public const int StandingCollisionLayer = (int) CollisionGroup.MidImpassable;

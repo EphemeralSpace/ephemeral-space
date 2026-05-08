@@ -10,7 +10,7 @@ namespace Content.Client._ES.Lighting;
 /// </summary>
 public sealed class ESInherentLightSystem : EntitySystem
 {
-    [Dependency] private readonly PointLightSystem _light = default!;
+    [Dependency] private PointLightSystem _light = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -7,8 +7,8 @@ namespace Content.Client._ES.UI;
 
 public sealed class SpawnWindowCommand : IConsoleCommand
 {
-    [Dependency] private readonly IReflectionManager _reflectionManager = default!;
-    [Dependency] private readonly ISandboxHelper _sandboxHelper = default!;
+    [Dependency] private IReflectionManager _reflectionManager = default!;
+    [Dependency] private ISandboxHelper _sandboxHelper = default!;
 
     public string Command => "spawnwindow";
     public string Description => "Spawns a window of the given type";

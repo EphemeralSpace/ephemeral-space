@@ -6,7 +6,7 @@ namespace Content.Shared._Offbrand.Triggers;
 
 public sealed class StatusEffectOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {

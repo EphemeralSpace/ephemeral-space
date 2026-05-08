@@ -11,7 +11,7 @@ namespace Content.Server._ES.Masks.Summonable;
 /// </summary>
 public sealed class ESHoldSummonableObjectiveSystem : ESBaseObjectiveSystem<ESHoldSummonableObjectiveComponent>
 {
-    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private ContainerSystem _container = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

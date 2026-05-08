@@ -10,16 +10,16 @@ namespace Content.Shared._ES.Light;
 
 public sealed class ESFlashlightSystem : EntitySystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedHandheldLightSystem _handheldLight = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly UnpoweredFlashlightSystem _unpoweredFlashlight = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private SharedHandheldLightSystem _handheldLight = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private UnpoweredFlashlightSystem _unpoweredFlashlight = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<UnpoweredFlashlightComponent, ExaminedEvent>(OnExamine);
-        
+
         SubscribeAllEvent<ESToggleFlashlightEvent>(OnToggleFlashlight);
     }
 

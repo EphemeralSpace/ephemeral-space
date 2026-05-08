@@ -5,7 +5,7 @@ namespace Content.Shared._Offbrand.Wounds;
 
 public sealed class LungDamageTemperatureSystem : EntitySystem
 {
-    [Dependency] private readonly LungDamageSystem _lungDamage = default!;
+    [Dependency] private LungDamageSystem _lungDamage = default!;
 
     public override void Initialize()
     {

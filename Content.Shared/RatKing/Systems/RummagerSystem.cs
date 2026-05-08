@@ -10,10 +10,10 @@ namespace Content.Shared.RatKing.Systems;
 
 public sealed class RummagerSystem : EntitySystem
 {
-    [Dependency] private readonly EntityTableSystem _entityTable =  default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private EntityTableSystem _entityTable =  default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

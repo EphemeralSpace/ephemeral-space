@@ -13,7 +13,7 @@ namespace Content.Shared._ES.Viewcone;
 /// </summary>
 public sealed class ESViewconeAngleSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {

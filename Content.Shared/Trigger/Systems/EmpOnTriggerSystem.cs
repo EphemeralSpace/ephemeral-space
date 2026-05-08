@@ -5,7 +5,7 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed class EmpOnTriggerSystem : XOnTriggerSystem<EmpOnTriggerComponent>
 {
-    [Dependency] private readonly SharedEmpSystem _emp = default!;
+    [Dependency] private SharedEmpSystem _emp = default!;
 
     protected override void OnTrigger(Entity<EmpOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {

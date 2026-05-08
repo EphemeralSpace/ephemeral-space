@@ -7,7 +7,7 @@ namespace Content.Client._ES.Wallmount.Systems;
 /// </summary>
 public sealed class ESWallMountVisibilitySystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlay = default!;
+    [Dependency] private IOverlayManager _overlay = default!;
 
     public override void Initialize()
     {

@@ -12,8 +12,8 @@ namespace Content.Shared._ES.EntityEffects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class ESTryHealWoundEntityEffectSystem : EntityEffectSystem<WoundableComponent, ESTryHealWound>
 {
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
-    [Dependency] private readonly WoundableSystem _wound = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] private WoundableSystem _wound = default!;
 
     protected override void Effect(Entity<WoundableComponent> entity, ref EntityEffectEvent<ESTryHealWound> args)
     {

@@ -31,15 +31,15 @@ namespace Content.Server._ES.Armory;
 // todo test this behavior should be easily testable more or less
 public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly DeviceNetworkSystem _devicenet = default!;
-    [Dependency] private readonly DoorSystem _door = default!;
-    [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly ESEntityTimerSystem _timer = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private DeviceNetworkSystem _devicenet = default!;
+    [Dependency] private DoorSystem _door = default!;
+    [Dependency] private ElectrocutionSystem _electrocution = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private ESEntityTimerSystem _timer = default!;
+    [Dependency] private ChatSystem _chat = default!;
 
     public override void Initialize()
     {

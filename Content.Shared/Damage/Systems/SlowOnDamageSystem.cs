@@ -9,7 +9,7 @@ namespace Content.Shared.Damage.Systems;
 
 public sealed class SlowOnDamageSystem : EntitySystem
 {
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
 
     public override void Initialize()
     {

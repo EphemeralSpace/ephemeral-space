@@ -5,7 +5,7 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed class KnockdownOnTriggerSystem : XOnTriggerSystem<KnockdownOnTriggerComponent>
 {
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
 
     protected override void OnTrigger(Entity<KnockdownOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {

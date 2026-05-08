@@ -231,7 +231,7 @@ internal sealed class MasqueradeEntrySerializer : ITypeSerializer<MasqueradeEntr
     ITypeSerializer<MasqueradeEntry.DirectEntry, ValueDataNode>,
     ITypeSerializer<MasqueradeEntry.SetEntry, ValueDataNode>
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public ValidationNode Validate(ISerializationManager serializationManager,
         ValueDataNode node,

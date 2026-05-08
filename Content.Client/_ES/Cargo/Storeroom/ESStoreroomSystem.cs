@@ -6,7 +6,7 @@ namespace Content.Client._ES.Cargo.Storeroom;
 
 public sealed class ESStoreroomSystem : ESSharedStoreroomSystem
 {
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
 
     public override void Initialize()
     {

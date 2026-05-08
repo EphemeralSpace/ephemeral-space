@@ -14,7 +14,7 @@ namespace Content.Client._ES.Viewcone.Overlays;
 /// </summary>
 public sealed class ESViewconeResetAlphaOverlay : Overlay
 {
-    [Dependency] private readonly IEntityManager _ent = default!;
+    [Dependency] private IEntityManager _ent = default!;
     private readonly ESViewconeOverlayManagementSystem _cone;
     private readonly SpriteSystem _sprite;
 

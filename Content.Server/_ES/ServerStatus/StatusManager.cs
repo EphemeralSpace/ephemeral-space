@@ -12,10 +12,10 @@ namespace Content.Server._ES.ServerStatus;
 /// </summary>
 public sealed class StatusManager
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public string? CurrentRoleplayLevel { get; private set; }
 

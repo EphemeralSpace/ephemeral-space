@@ -13,8 +13,8 @@ namespace Content.Server._ES.Degradation;
 /// </summary>
 public sealed class ESDegradationEventSystem : StationEventSystem<ESDegradationEventComponent>
 {
-    [Dependency] private readonly ESDegradationSystem _degradation = default!;
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private ESDegradationSystem _degradation = default!;
+    [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
 
     protected override void Started(EntityUid uid,
         ESDegradationEventComponent component,

@@ -12,11 +12,11 @@ namespace Content.Shared._ES.Objectives.Target;
 
 public sealed class ESTargetObjectiveSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedJobSystem _job = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly ESSharedObjectiveSystem _objective = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedJobSystem _job = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private ESSharedObjectiveSystem _objective = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

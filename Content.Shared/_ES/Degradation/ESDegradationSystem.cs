@@ -11,8 +11,8 @@ namespace Content.Shared._ES.Degradation;
 /// </summary>
 public sealed class ESDegradationSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Dependency] private readonly ESSparksSystem _sparks = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private ESSparksSystem _sparks = default!;
 
     public bool TryDegrade(Entity<ESQueuedDegradationComponent?> ent, EntityUid? user)
     {

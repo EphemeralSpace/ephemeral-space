@@ -25,7 +25,7 @@ namespace Content.Client._ES.Lighting.Ui;
 [UsedImplicitly]
 public sealed class ESFlashlightUIController : UIController, IOnStateChanged<GameplayState>
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     [UISystemDependency] private readonly HandsSystem _hands = default!;
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;

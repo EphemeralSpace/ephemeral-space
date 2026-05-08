@@ -6,7 +6,7 @@ namespace Content.Client._ES.Mind;
 
 public sealed class ESMindVisualsSystem : ESSharedMindVisualsSystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

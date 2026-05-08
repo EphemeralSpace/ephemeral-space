@@ -5,7 +5,7 @@ namespace Content.Shared._Offbrand.StatusEffects;
 
 public sealed class StaminaDamageOnAppliedStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private SharedStaminaSystem _stamina = default!;
 
     public override void Initialize()
     {

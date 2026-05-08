@@ -96,11 +96,11 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         Entry("['=", "chatsan-tearfully-smiles"),
     ];
 
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
     // ES EDIT: Chat sanitizer toggle per-user.
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IServerNetConfigurationManager _netConfigManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IServerNetConfigurationManager _netConfigManager = default!;
     // END ES EDIT
 
     private bool _doSanitize;

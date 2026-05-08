@@ -5,8 +5,8 @@ namespace Content.Shared._Offbrand.Wounds;
 
 public sealed class HeartrateAlertsSystem : EntitySystem
 {
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly HeartSystem _heart = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private HeartSystem _heart = default!;
 
     public override void Initialize()
     {

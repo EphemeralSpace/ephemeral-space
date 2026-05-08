@@ -13,7 +13,7 @@ namespace Content.Server._ES.Masks.Secretary;
 /// </summary>
 public sealed class ESTargetCompleteObjectivesSystem : ESBaseTargetObjectiveSystem<ESTargetCompleteOwnedObjectiveComponent>
 {
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
 
     public override Type[] TargetRelayComponents { get; } = [typeof(ESTargetCompleteOwnedObjectiveMarkerComponent)];
 

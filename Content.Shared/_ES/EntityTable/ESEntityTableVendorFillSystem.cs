@@ -10,7 +10,7 @@ namespace Content.Shared._ES.EntityTable;
 /// </summary>
 public sealed class ESEntityTableVendorFillSystem : EntitySystem
 {
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

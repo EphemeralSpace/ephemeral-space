@@ -23,14 +23,14 @@ namespace Content.Server._ES.Masks;
 
 public sealed class ESMaskSystem : ESSharedMaskSystem
 {
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly JobSystem _job = default!;
-    [Dependency] private readonly ESStagehandNotificationsSystem _stagehandNotifications = default!;
-    [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private JobSystem _job = default!;
+    [Dependency] private ESStagehandNotificationsSystem _stagehandNotifications = default!;
+    [Dependency] private StationSpawningSystem _stationSpawning = default!;
 
     private static readonly EntProtoId<ESMaskRoleComponent> MindRole = "ESMindRoleMask";
 

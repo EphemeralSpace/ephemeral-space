@@ -10,8 +10,8 @@ namespace Content.Shared._ES.Masks.Traitor;
 /// </summary>
 public sealed class ESSabotageConditionSystem : ESBaseObjectiveSystem<ESSabotageConditionComponent>
 {
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

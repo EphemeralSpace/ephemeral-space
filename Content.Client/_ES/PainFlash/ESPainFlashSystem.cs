@@ -14,9 +14,9 @@ namespace Content.Client._ES.PainFlash;
 /// <inheritdoc/>
 public sealed class ESPainFlashSystem : ESSharedPainFlashSystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IOverlayManager _overlayManager = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlayManager = default!;
 
     private ESPainFlashOverlay _overlay = default!;
 

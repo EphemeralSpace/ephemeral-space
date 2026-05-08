@@ -14,7 +14,7 @@ namespace Content.Client._ES.Voting;
 [UsedImplicitly]
 public sealed class StagehandVoteUIController : UIController
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IPlayerManager _player = default!;
     [UISystemDependency] private ESVoteSystem _vote = default!;
 
     private void OnVoteChanged(Entity<ESVoteComponent> entity, ESVoteOption option, bool selected)

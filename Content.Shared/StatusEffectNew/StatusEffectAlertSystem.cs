@@ -8,7 +8,7 @@ namespace Content.Shared.StatusEffectNew;
 /// </summary>
 public sealed class StatusEffectAlertSystem : EntitySystem
 {
-    [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
 
     private EntityQuery<StatusEffectComponent> _effectQuery;
 

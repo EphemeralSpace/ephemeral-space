@@ -9,9 +9,9 @@ namespace Content.Shared._ES.Light;
 
 public sealed class ESRoofSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedRoofSystem _roof = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedRoofSystem _roof = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

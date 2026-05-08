@@ -12,8 +12,8 @@ namespace Content.Server._ES.Spawning;
 
 public sealed class ESPersonalLockerSystem : EntitySystem
 {
-    [Dependency] private readonly NameModifierSystem _nameModifier = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private NameModifierSystem _nameModifier = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
 
     public override void Initialize()
     {

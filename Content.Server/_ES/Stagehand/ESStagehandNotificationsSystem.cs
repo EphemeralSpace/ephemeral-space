@@ -20,10 +20,10 @@ namespace Content.Server._ES.Stagehand;
 /// </summary>
 public sealed class ESStagehandNotificationsSystem : EntitySystem
 {
-    [Dependency] private readonly ESSharedObjectiveSystem _objectives = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private ESSharedObjectiveSystem _objectives = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private MindSystem _mind = default!;
 
     public override void Initialize()
     {

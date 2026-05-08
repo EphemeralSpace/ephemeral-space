@@ -6,8 +6,8 @@ namespace Content.Server._Offbrand.Wounds;
 
 public sealed class ShockGaspThresholdsSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly PainSystem _pain = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private PainSystem _pain = default!;
 
     public override void Initialize()
     {

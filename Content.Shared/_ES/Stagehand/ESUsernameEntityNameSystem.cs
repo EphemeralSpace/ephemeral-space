@@ -5,7 +5,7 @@ namespace Content.Shared._ES.Stagehand;
 
 public sealed class ESUsernameEntityNameSystem : EntitySystem
 {
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

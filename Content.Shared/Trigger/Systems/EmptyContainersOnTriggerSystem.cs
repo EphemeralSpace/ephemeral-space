@@ -8,7 +8,7 @@ namespace Content.Shared.Trigger.Systems;
 /// </summary>
 public sealed class EmptyContainersOnTriggerSystem : XOnTriggerSystem<EmptyContainersOnTriggerComponent>
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 
     protected override void OnTrigger(Entity<EmptyContainersOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
@@ -46,7 +46,7 @@ public sealed class EmptyContainersOnTriggerSystem : XOnTriggerSystem<EmptyConta
 /// </summary>
 public sealed class CleanContainersOnTriggerSystem : XOnTriggerSystem<CleanContainersOnTriggerComponent>
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 
     protected override void OnTrigger(Entity<CleanContainersOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {

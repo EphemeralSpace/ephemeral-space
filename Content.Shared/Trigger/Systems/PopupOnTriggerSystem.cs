@@ -9,7 +9,7 @@ namespace Content.Shared.Trigger.Systems;
 /// </summary>
 public sealed class PopupOnTriggerSystem : XOnTriggerSystem<PopupOnTriggerComponent>
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     protected override void OnTrigger(Entity<PopupOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {

@@ -8,8 +8,8 @@ namespace Content.Shared._Offbrand.StatusEffects;
 
 public sealed class DamageOverTimeStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Update(float frameTime)
     {

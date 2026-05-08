@@ -9,8 +9,8 @@ namespace Content.Shared._Offbrand.Wounds;
 
 public sealed class LungDamageSystem : EntitySystem
 {
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

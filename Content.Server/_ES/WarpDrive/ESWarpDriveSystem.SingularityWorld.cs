@@ -17,14 +17,14 @@ namespace Content.Server._ES.WarpDrive;
 
 public sealed partial class ESWarpDriveSystem
 {
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly LinkedEntitySystem _linked = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly ESSharedSpawnRegionSystem _spawnRegion = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly BrainDamageSystem _brainDamage = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private MapLoaderSystem _loader = default!;
+    [Dependency] private LinkedEntitySystem _linked = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private ESSharedSpawnRegionSystem _spawnRegion = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private BrainDamageSystem _brainDamage = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     private static readonly EntProtoId TeleportEffect = "ESTeleportEffectWarpDrive";
     private static readonly ProtoId<ESSpawnRegionPrototype> TeleportStation = "ESSingularityWorldTeleportStation";

@@ -6,7 +6,7 @@ namespace Content.Shared.Weapons.Hitscan.Systems;
 
 public sealed class HitscanStunSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private SharedStaminaSystem _stamina = default!;
 
     public override void Initialize()
     {

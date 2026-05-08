@@ -5,7 +5,7 @@ namespace Content.Client._ES.Wallmount.Posters;
 /// <inheritdoc cref="ESPosterComponent"/>
 public sealed class ESPosterSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

@@ -8,7 +8,7 @@ namespace Content.Server._ES.Masks.Pickpocket;
 
 public sealed class ESHoldPickpocketedObjectiveSystem : ESBaseObjectiveSystem<ESHoldPickpocketedObjectiveComponent>
 {
-    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private ContainerSystem _container = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

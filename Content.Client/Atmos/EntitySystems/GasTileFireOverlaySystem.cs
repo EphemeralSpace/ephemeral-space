@@ -10,7 +10,7 @@ namespace Content.Client.Atmos.EntitySystems;
 [UsedImplicitly]
 public sealed class GasTileFireOverlaySystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
 
     private GasTileFireOverlay _fireOverlay = default!;
 

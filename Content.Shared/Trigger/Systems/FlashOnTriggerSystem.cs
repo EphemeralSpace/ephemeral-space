@@ -5,7 +5,7 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed class FlashOnTriggerSystem : XOnTriggerSystem<FlashOnTriggerComponent>
 {
-    [Dependency] private readonly SharedFlashSystem _flash = default!;
+    [Dependency] private SharedFlashSystem _flash = default!;
 
     protected override void OnTrigger(Entity<FlashOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {

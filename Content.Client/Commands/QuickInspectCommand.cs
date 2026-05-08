@@ -13,8 +13,8 @@ namespace Content.Client.Commands;
 /// </summary>
 public sealed class QuickInspectCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IInputManager _inputManager = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private IInputManager _inputManager = default!;
 
     public override string Command => "quickinspect";
 

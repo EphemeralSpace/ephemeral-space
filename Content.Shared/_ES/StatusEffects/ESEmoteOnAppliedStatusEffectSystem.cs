@@ -7,7 +7,7 @@ namespace Content.Shared._ES.StatusEffects;
 
 public sealed class ESEmoteOnAppliedStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly SharedChatSystem _chat = default!;
+    [Dependency] private SharedChatSystem _chat = default!;
 
     public override void Initialize()
     {

@@ -10,10 +10,10 @@ namespace Content.Client.Fluids;
 
 public sealed class PuddleOverlay : Overlay
 {
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
-    [Dependency] private readonly IFontSelectionManager _fontSelection = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private IFontSelectionManager _fontSelection = default!;
     private readonly PuddleDebugOverlaySystem _debugOverlaySystem;
     private readonly SharedTransformSystem _transformSystem;
 

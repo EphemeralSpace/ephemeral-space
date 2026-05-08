@@ -9,8 +9,8 @@ namespace Content.Shared._ES.Mind;
 /// </summary>
 public abstract class ESBaseMindRelay : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly ESSharedObjectiveSystem _objective = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private ESSharedObjectiveSystem _objective = default!;
 
     protected bool TryGetMind(EntityUid body, [NotNullWhen(true)] out Entity<MindComponent>? mind)
     {

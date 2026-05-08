@@ -13,9 +13,9 @@ namespace Content.Client._ES.Guidebook.Controls;
 [UsedImplicitly]
 public sealed class ESGuideObjectiveEmbed : Control, IDocumentTag
 {
-    [Dependency] private readonly IEntityManager _entMan = default!;
-    [Dependency] private readonly IEntitySystemManager _sysMan = default!;
-    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private IEntityManager _entMan = default!;
+    [Dependency] private IEntitySystemManager _sysMan = default!;
+    [Dependency] private ILogManager _log = default!;
 
     private readonly TagSystem _tagSys;
     private readonly ISawmill _sawmill;

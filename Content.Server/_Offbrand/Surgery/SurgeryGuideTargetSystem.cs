@@ -6,8 +6,8 @@ namespace Content.Server._Offbrand.Surgery;
 
 public sealed class SurgeryGuideTargetSystem : SharedSurgeryGuideTargetSystem
 {
-    [Dependency] private readonly ConstructionSystem _construction = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private ConstructionSystem _construction = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     protected override void OnStartSurgery(Entity<SurgeryGuideTargetComponent> ent, ref SurgeryGuideStartSurgeryMessage args)
     {

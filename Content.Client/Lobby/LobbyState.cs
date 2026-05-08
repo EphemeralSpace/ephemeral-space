@@ -34,17 +34,17 @@ namespace Content.Client.Lobby
     // resizing stuff that that allows bc we just will not allow resizing the chat in lobby i think
     public sealed class LobbyState : GameplayStateBase, IMainViewportState
     {
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly IResourceCache _resourceCache = default!;
-        [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly IVoteManager _voteManager = default!;
-        [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IClientConsoleHost _consoleHost = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        [Dependency] private IResourceCache _resourceCache = default!;
+        [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
+        [Dependency] private IVoteManager _voteManager = default!;
+        [Dependency] private ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
 
         // ES START
-        [Dependency] private readonly IEyeManager _eyeManager = default!;
+        [Dependency] private IEyeManager _eyeManager = default!;
         public MainViewport Viewport => _userInterfaceManager.ActiveScreen!.GetWidget<MainViewport>()!;
         private GameplayStateLoadController _loadController = default!;
         // ES END

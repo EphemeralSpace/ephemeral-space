@@ -6,7 +6,7 @@ namespace Content.Client._ES.Lighting;
 
 public sealed class ESGenericPointLightVisualizerSystem : VisualizerSystem<ESGenericPointLightVisualizerComponent>
 {
-    [Dependency] private readonly PointLightSystem _pointLight = default!;
+    [Dependency] private PointLightSystem _pointLight = default!;
 
     protected override void OnAppearanceChange(EntityUid uid, ESGenericPointLightVisualizerComponent component, ref AppearanceChangeEvent args)
     {

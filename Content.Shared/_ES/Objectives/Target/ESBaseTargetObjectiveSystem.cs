@@ -8,7 +8,7 @@ namespace Content.Shared._ES.Objectives.Target;
 public abstract class ESBaseTargetObjectiveSystem<TComponent> : ESBaseObjectiveSystem<TComponent>
     where TComponent : Component
 {
-    [Dependency] protected readonly ESTargetObjectiveSystem TargetObjective = default!;
+    [Dependency] protected ESTargetObjectiveSystem TargetObjective = default!;
 
     /// <summary>
     /// A list of all relays present on the target that this objective relies on existing

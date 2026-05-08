@@ -12,8 +12,8 @@ namespace Content.Client._ES.Viewcone.Overlays;
 /// </summary>
 public sealed class ESViewconeConeOverlay : Overlay
 {
-    [Dependency] private readonly IEntityManager _ent = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IEntityManager _ent = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
     private readonly ESViewconeAngleSystem _angle;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;

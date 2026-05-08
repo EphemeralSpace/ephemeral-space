@@ -9,7 +9,7 @@ namespace Content.Client.UserInterface.RichText;
 /// </summary>
 public sealed class MonoTag : IMarkupTagHandler
 {
-    [Dependency] private readonly IFontSelectionManager _fontSelection = default!;
+    [Dependency] private IFontSelectionManager _fontSelection = default!;
 
     public string Name => "mono";
 

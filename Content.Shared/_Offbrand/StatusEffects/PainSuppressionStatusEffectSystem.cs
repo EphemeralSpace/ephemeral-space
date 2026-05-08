@@ -5,7 +5,7 @@ namespace Content.Shared._Offbrand.StatusEffects;
 
 public sealed class PainSuppressionStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly PainSystem _pain = default!;
+    [Dependency] private PainSystem _pain = default!;
 
     public override void Initialize()
     {

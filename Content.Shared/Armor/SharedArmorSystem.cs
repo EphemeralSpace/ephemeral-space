@@ -13,7 +13,7 @@ namespace Content.Shared.Armor;
 /// </summary>
 public sealed class SharedArmorSystem : EntitySystem
 {
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
 
     /// <inheritdoc />
     public override void Initialize()

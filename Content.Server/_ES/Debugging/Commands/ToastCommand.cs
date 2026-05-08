@@ -11,7 +11,7 @@ namespace Content.Server._ES.Debugging.Commands;
 [ToolshedCommand, AdminCommand(AdminFlags.Debug)]
 public sealed class ToastCommand : ToolshedCommand
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
     private GameTicker? _ticker;
 
     [CommandImplementation]

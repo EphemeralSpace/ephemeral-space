@@ -9,10 +9,10 @@ namespace Content.Shared.Containers;
 
 public sealed class ExitContainerOnMoveSystem : EntitySystem
 {
-    [Dependency] private readonly ClimbSystem _climb = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private ClimbSystem _climb = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 // ES START
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
 // ES END
 
     public override void Initialize()

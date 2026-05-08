@@ -15,8 +15,8 @@ namespace Content.Client._ES.Mind.Ui;
 [UsedImplicitly]
 public sealed class ESCharacterUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private ESCharacterWindow? _window;
 

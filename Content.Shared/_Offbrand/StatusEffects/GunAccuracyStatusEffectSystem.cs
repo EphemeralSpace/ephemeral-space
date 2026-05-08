@@ -9,8 +9,8 @@ namespace Content.Shared._Offbrand.StatusEffects;
 
 public sealed class GunAccuracyStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly SharedGunSystem _gun = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {

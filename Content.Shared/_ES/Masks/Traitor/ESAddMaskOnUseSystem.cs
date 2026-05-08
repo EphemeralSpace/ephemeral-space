@@ -15,14 +15,14 @@ namespace Content.Shared._ES.Masks.Traitor;
 
 public sealed class ESAddMaskOnUseSystem : EntitySystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly ESSharedMaskSystem _mask = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doafter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly RejuvenateSystem _rejuv = default!;
-    [Dependency] private readonly HealthRankingSystem _health = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private ESSharedMaskSystem _mask = default!;
+    [Dependency] private SharedDoAfterSystem _doafter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private RejuvenateSystem _rejuv = default!;
+    [Dependency] private HealthRankingSystem _health = default!;
 
     public override void Initialize()
     {

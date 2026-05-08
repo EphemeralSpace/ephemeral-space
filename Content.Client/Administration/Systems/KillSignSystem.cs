@@ -7,8 +7,8 @@ namespace Content.Client.Administration.Systems;
 
 public sealed class KillSignSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     public override void Initialize()
     {

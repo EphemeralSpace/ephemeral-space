@@ -15,8 +15,8 @@ namespace Content.Server.CartridgeLoader.Cartridges;
 /// </summary>
 public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
 {
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
+    [Dependency] private PaperSystem _paper = default!;
 
     public override void Initialize()
     {

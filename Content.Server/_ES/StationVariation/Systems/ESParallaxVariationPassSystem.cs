@@ -8,9 +8,9 @@ namespace Content.Server._ES.StationVariation.Systems;
 /// <summary>
 /// Handles changing the parallax on the station map as a variation pass (for sauce)
 /// </summary>
-public sealed class ESParallaxVariationPassSystem : VariationPassSystem<ESParallaxVariationPassComponent>
+public sealed partial class ESParallaxVariationPassSystem : VariationPassSystem<ESParallaxVariationPassComponent>
 {
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
 
     protected override void ApplyVariation(Entity<ESParallaxVariationPassComponent> ent, ref StationVariationPassEvent args)
     {

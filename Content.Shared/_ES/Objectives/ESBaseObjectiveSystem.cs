@@ -14,9 +14,9 @@ namespace Content.Shared._ES.Objectives;
 public abstract class ESBaseObjectiveSystem<TComponent> : EntitySystem
     where TComponent: Component
 {
-    [Dependency] protected readonly SharedMindSystem MindSys = default!;
-    [Dependency] protected readonly ESSharedObjectiveSystem ObjectivesSys = default!;
-    [Dependency] protected readonly ESSharedMaskSystem MaskSys = default!;
+    [Dependency] protected SharedMindSystem MindSys = default!;
+    [Dependency] protected ESSharedObjectiveSystem ObjectivesSys = default!;
+    [Dependency] protected ESSharedMaskSystem MaskSys = default!;
 
     /// <summary>
     ///     A list of all the relays this objective relies on existing.

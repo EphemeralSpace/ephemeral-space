@@ -7,9 +7,9 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed class WeatherTriggerSystem : XOnTriggerSystem<WeatherOnTriggerComponent>
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedWeatherSystem _weather = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedWeatherSystem _weather = default!;
 
     protected override void OnTrigger(Entity<WeatherOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {

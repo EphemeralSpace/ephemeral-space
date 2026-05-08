@@ -7,8 +7,8 @@ namespace Content.Shared._Offbrand.Buckle;
 
 public sealed class StatusEffectOnStrapSystem : EntitySystem
 {
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
 
     public override void Initialize()
     {

@@ -13,13 +13,13 @@ namespace Content.Server._ES.Masks.Insider;
 
 public sealed class ESTroupeDossierSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ESCluesSystem _clues = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly ESMaskSystem _mask = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ESCluesSystem _clues = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private ESMaskSystem _mask = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private PaperSystem _paper = default!;
 
     private static readonly ProtoId<ESTroupePrototype> CrewTroupe = "Crew";
 

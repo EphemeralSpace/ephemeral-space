@@ -10,7 +10,7 @@ namespace Content.Client._ES.Lobby;
 /// <inheritdoc/>
 public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     private ESJobPrefsWindow? _jobPrefsWindow;
 

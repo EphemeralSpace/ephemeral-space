@@ -11,9 +11,9 @@ namespace Content.Server._ES.Masks.Objectives;
 
 public sealed class ESEatFoodObjectiveSystem : ESBaseObjectiveSystem<ESEatFoodObjectiveComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
 
     public override Type[] RelayComponents => [typeof(ESMuncherRelayComponent)];
 

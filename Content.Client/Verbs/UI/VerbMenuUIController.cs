@@ -32,8 +32,8 @@ namespace Content.Client.Verbs.UI
         IOnStateEntered<LobbyState>, IOnStateExited<LobbyState>
         // ES END
     {
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly ContextMenuUIController _context = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private ContextMenuUIController _context = default!;
 
         [UISystemDependency] private readonly CombatModeSystem _combatMode = default!;
         [UISystemDependency] private readonly VerbSystem _verbSystem = default!;
