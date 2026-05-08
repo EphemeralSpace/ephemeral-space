@@ -7,7 +7,7 @@ namespace Content.Shared.Trigger.Systems;
 /// <summary>
 /// System for creating triggers when entities are equipped or unequipped from inventory slots.
 /// </summary>
-public sealed class TriggerOnEquipmentSystem : TriggerOnXSystem
+public sealed partial class TriggerOnEquipmentSystem : TriggerOnXSystem
 {
     [Dependency] private IGameTiming _timing = default!;
 

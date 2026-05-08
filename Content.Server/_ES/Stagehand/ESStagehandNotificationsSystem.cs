@@ -18,7 +18,7 @@ namespace Content.Server._ES.Stagehand;
 /// <summary>
 ///     Handles sending stagehand notifications for various non-stagehand events ingame: objective completions, deaths, etc.
 /// </summary>
-public sealed class ESStagehandNotificationsSystem : EntitySystem
+public sealed partial class ESStagehandNotificationsSystem : EntitySystem
 {
     [Dependency] private ESSharedObjectiveSystem _objectives = default!;
     [Dependency] private IChatManager _chat = default!;

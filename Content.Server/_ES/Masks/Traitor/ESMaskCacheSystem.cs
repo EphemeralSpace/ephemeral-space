@@ -12,7 +12,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks.Traitor;
 
-public sealed class ESMaskCacheSystem : ESSharedMaskCacheSystem
+public sealed partial class ESMaskCacheSystem : ESSharedMaskCacheSystem
 {
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private NavMapSystem _navMap = default!;

@@ -15,7 +15,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Coroner;
 
-public sealed class ESCoronerSystem : ESSharedCoronerSystem
+public sealed partial class ESCoronerSystem : ESSharedCoronerSystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPrototypeManager _prototype = default!;

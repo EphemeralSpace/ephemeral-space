@@ -14,7 +14,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Masks.Traitor;
 
-public abstract class ESSharedMaskCacheSystem : EntitySystem
+public abstract partial class ESSharedMaskCacheSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private AlertsSystem _alerts = default!;

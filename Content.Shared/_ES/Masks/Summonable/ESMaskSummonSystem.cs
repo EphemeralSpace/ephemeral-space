@@ -7,7 +7,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared._ES.Masks.Summonable;
 
-public sealed class ESMaskSummonSystem : EntitySystem
+public sealed partial class ESMaskSummonSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;

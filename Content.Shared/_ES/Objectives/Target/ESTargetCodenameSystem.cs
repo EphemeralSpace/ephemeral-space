@@ -5,7 +5,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._ES.Objectives.Target;
 
-public sealed class ESTargetCodenameSystem : EntitySystem
+public sealed partial class ESTargetCodenameSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;

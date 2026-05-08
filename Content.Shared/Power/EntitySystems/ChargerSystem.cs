@@ -11,7 +11,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Power.EntitySystems;
 
-public sealed class ChargerSystem : EntitySystem
+public sealed partial class ChargerSystem : EntitySystem
 {
     [Dependency] private SharedBatterySystem _battery = default!;
     [Dependency] private SharedPowerReceiverSystem _receiver = default!;

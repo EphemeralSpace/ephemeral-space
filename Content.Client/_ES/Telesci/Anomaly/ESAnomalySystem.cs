@@ -7,7 +7,7 @@ using Robust.Client.GameObjects;
 namespace Content.Client._ES.Telesci.Anomaly;
 
 /// <inheritdoc/>
-public sealed class ESAnomalySystem : ESSharedAnomalySystem
+public sealed partial class ESAnomalySystem : ESSharedAnomalySystem
 {
     [Dependency] private AnimationPlayerSystem _animationPlayer = default!;
 

@@ -9,7 +9,7 @@ using Robust.Shared.Map;
 namespace Content.Server._ES.Nuke;
 
 /// <inheritdoc/>
-public sealed class ESCryptoNukeSystem : ESSharedCryptoNukeSystem
+public sealed partial class ESCryptoNukeSystem : ESSharedCryptoNukeSystem
 {
     [Dependency] private TransformSystem _transform = default!;
 

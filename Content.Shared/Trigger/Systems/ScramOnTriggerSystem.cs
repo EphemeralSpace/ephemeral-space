@@ -11,7 +11,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class ScramOnTriggerSystem : XOnTriggerSystem<ScramOnTriggerComponent>
+public sealed partial class ScramOnTriggerSystem : XOnTriggerSystem<ScramOnTriggerComponent>
 {
     [Dependency] private PullingSystem _pulling = default!;
     [Dependency] private SharedTransformSystem _transform = default!;

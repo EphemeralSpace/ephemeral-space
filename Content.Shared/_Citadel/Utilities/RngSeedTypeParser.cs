@@ -6,7 +6,7 @@ using Robust.Shared.Toolshed.TypeParsers;
 
 namespace Content.Shared._Citadel.Utilities;
 
-public sealed class RngSeedTypeParser : TypeParser<RngSeed>
+public sealed partial class RngSeedTypeParser : TypeParser<RngSeed>
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ToolshedManager _shed = default!;

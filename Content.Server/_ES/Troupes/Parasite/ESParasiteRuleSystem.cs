@@ -23,7 +23,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.Troupes.Parasite;
 
-public sealed class ESParasiteRuleSystem : EntitySystem
+public sealed partial class ESParasiteRuleSystem : EntitySystem
 {
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;

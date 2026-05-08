@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class AdminLogOnTriggerSystem : XOnTriggerSystem<AdminLogOnTriggerComponent>
+public sealed partial class AdminLogOnTriggerSystem : XOnTriggerSystem<AdminLogOnTriggerComponent>
 {
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
 

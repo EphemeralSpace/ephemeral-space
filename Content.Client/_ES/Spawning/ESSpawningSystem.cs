@@ -4,7 +4,7 @@ using Robust.Client.Player;
 namespace Content.Client._ES.Spawning;
 
 /// <inheritdoc/>
-public sealed class ESSpawningSystem : ESSharedSpawningSystem
+public sealed partial class ESSpawningSystem : ESSharedSpawningSystem
 {
     [Dependency] private IPlayerManager _player = default!;
 

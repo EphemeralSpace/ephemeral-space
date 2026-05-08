@@ -14,7 +14,7 @@ using Robust.Shared.Toolshed;
 namespace Content.Server._ES.Voting;
 
 /// <inheritdoc/>
-public sealed class ESVoteSystem : ESSharedVoteSystem
+public sealed partial class ESVoteSystem : ESSharedVoteSystem
 {
     [Dependency] private IAdminLogManager _adminLog = default!;
     [Dependency] private IChatManager _chat = default!;

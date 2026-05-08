@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Chemistry;
 
-public sealed class ESDisguiseOnSolutionEmptySystem : EntitySystem
+public sealed partial class ESDisguiseOnSolutionEmptySystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private MetaDataSystem _metaData = default!;

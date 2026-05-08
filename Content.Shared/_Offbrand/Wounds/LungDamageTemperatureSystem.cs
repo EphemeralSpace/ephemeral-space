@@ -3,7 +3,7 @@ using Content.Shared._Offbrand.Wounds;
 
 namespace Content.Shared._Offbrand.Wounds;
 
-public sealed class LungDamageTemperatureSystem : EntitySystem
+public sealed partial class LungDamageTemperatureSystem : EntitySystem
 {
     [Dependency] private LungDamageSystem _lungDamage = default!;
 

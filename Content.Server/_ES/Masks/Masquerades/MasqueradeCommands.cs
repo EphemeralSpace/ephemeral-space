@@ -14,7 +14,7 @@ namespace Content.Server._ES.Masks.Masquerades;
 
 [ToolshedCommand(Name = "mq")]
 [AdminCommand(AdminFlags.Round )]
-public sealed class MasqueradeCommands : ToolshedCommand
+public sealed partial class MasqueradeCommands : ToolshedCommand
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IRobustRandom _random = default!;

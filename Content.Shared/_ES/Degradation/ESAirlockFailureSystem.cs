@@ -5,7 +5,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Degradation;
 
-public sealed class ESAirlockFailureSystem : EntitySystem
+public sealed partial class ESAirlockFailureSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
 

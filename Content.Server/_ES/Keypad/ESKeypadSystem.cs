@@ -5,7 +5,7 @@ using Content.Shared._ES.Keypad.Components;
 namespace Content.Server._ES.Keypad;
 
 /// <inheritdoc/>
-public sealed class ESKeypadSystem : ESSharedKeypadSystem
+public sealed partial class ESKeypadSystem : ESSharedKeypadSystem
 {
     [Dependency] private DeviceLinkSystem _deviceLink = default!;
 

@@ -33,7 +33,7 @@ public sealed partial class AdjustReagentGaussian : EntityEffectBase<AdjustReage
     }
 }
 
-public sealed class AdjustReagentGaussianEntityEffectSystem : EntityEffectSystem<SolutionComponent, AdjustReagentGaussian>
+public sealed partial class AdjustReagentGaussianEntityEffectSystem : EntityEffectSystem<SolutionComponent, AdjustReagentGaussian>
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;

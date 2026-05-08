@@ -3,7 +3,7 @@ using Content.Shared.RepulseAttract;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class RepulseAttractOnTriggerSystem : XOnTriggerSystem<RepulseAttractOnTriggerComponent>
+public sealed partial class RepulseAttractOnTriggerSystem : XOnTriggerSystem<RepulseAttractOnTriggerComponent>
 {
     [Dependency] private RepulseAttractSystem _repulse = default!;
     [Dependency] private SharedTransformSystem _transform = default!;

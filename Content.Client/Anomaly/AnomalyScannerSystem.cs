@@ -8,7 +8,7 @@ using SixLabors.ImageSharp.PixelFormats;
 namespace Content.Client.Anomaly;
 
 /// <inheritdoc cref="SharedAnomalyScannerSystem"/>
-public sealed class AnomalyScannerSystem : SharedAnomalyScannerSystem
+public sealed partial class AnomalyScannerSystem : SharedAnomalyScannerSystem
 {
     [Dependency] private IClyde _clyde = default!;
     [Dependency] private SpriteSystem _sprite = default!;

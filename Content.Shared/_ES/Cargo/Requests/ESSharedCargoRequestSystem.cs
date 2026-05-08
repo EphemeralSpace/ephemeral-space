@@ -9,7 +9,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Cargo.Requests;
 
-public abstract class ESSharedCargoRequestSystem : EntitySystem
+public abstract partial class ESSharedCargoRequestSystem : EntitySystem
 {
     [Dependency] private ISharedAdminLogManager _adminLog = default!;
     [Dependency] private IRobustRandom _random = default!;

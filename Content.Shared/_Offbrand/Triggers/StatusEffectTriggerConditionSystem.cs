@@ -3,7 +3,7 @@ using Content.Shared.Trigger;
 
 namespace Content.Shared._Offbrand.Triggers;
 
-public sealed class StatusEffectTriggerConditionSystem : EntitySystem
+public sealed partial class StatusEffectTriggerConditionSystem : EntitySystem
 {
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
 

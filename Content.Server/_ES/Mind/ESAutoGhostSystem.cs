@@ -13,7 +13,7 @@ namespace Content.Server._ES.Mind;
 /// <summary>
 /// Handles automatically ghosting the player and removing their mind when they die.
 /// </summary>
-public sealed class ESAutoGhostSystem : EntitySystem
+public sealed partial class ESAutoGhostSystem : EntitySystem
 {
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private GhostSystem _ghost = default!;

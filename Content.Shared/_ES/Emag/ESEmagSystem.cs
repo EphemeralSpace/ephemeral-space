@@ -18,7 +18,7 @@ namespace Content.Shared._ES.Emag;
 /// <summary>
 /// This handles <see cref="ESEmagComponent"/>
 /// </summary>
-public sealed class ESEmagSystem : EntitySystem
+public sealed partial class ESEmagSystem : EntitySystem
 {
     [Dependency] private ISharedAdminLogManager _adminLog = default!;
     [Dependency] private SharedChargesSystem _charges = default!;

@@ -29,7 +29,7 @@ namespace Content.Server._ES.Armory;
 ///       with an announcement, and the buttons cannot be pressed again for a certain amount of time
 /// </summary>
 // todo test this behavior should be easily testable more or less
-public sealed class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
+public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComponent>
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private AudioSystem _audio = default!;

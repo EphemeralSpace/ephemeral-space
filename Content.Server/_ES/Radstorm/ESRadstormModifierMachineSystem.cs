@@ -4,7 +4,7 @@ using Content.Shared.Power;
 
 namespace Content.Server._ES.Radstorm;
 
-public sealed class ESRadstormModifierMachineSystem : EntitySystem
+public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private ChatSystem _chat = default!;

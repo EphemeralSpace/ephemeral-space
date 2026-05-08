@@ -15,7 +15,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Projectiles;
 
-public sealed class ProjectileSystem : SharedProjectileSystem
+public sealed partial class ProjectileSystem : SharedProjectileSystem
 {
     // ES START
     [Dependency] private ESScreenshakeSystem _shake = default!;

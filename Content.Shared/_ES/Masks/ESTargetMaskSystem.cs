@@ -3,7 +3,7 @@ using Content.Shared._ES.Objectives.Target.Components;
 
 namespace Content.Shared._ES.Masks;
 
-public sealed class ESTargetMaskSystem : EntitySystem
+public sealed partial class ESTargetMaskSystem : EntitySystem
 {
     [Dependency] private ESSharedMaskSystem _mask = default!;
 

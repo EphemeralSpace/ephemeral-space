@@ -11,7 +11,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Offbrand.VitalsMonitor;
 
-public sealed class VitalsMonitorSystem : EntitySystem
+public sealed partial class VitalsMonitorSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _net = default!;

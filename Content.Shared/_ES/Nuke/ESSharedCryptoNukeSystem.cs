@@ -13,7 +13,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Nuke;
 
-public abstract class ESSharedCryptoNukeSystem : EntitySystem
+public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
 {
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] private IRobustRandom _random = default!;

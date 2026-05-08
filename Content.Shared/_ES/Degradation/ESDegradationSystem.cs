@@ -9,7 +9,7 @@ namespace Content.Shared._ES.Degradation;
 /// This handles equipment on the station slowly breaking and degrading over the course of the round.
 /// Note that this happens in response to player events, not simply happening at will.
 /// </summary>
-public sealed class ESDegradationSystem : EntitySystem
+public sealed partial class ESDegradationSystem : EntitySystem
 {
     [Dependency] private ISharedAdminLogManager _adminLog = default!;
     [Dependency] private ESSparksSystem _sparks = default!;

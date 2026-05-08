@@ -11,7 +11,7 @@ namespace Content.Server._ES.Masks.Secretary;
 /// <summary>
 /// This handles <see cref="ESTargetCompleteOwnedObjectiveComponent"/>
 /// </summary>
-public sealed class ESTargetCompleteObjectivesSystem : ESBaseTargetObjectiveSystem<ESTargetCompleteOwnedObjectiveComponent>
+public sealed partial class ESTargetCompleteObjectivesSystem : ESBaseTargetObjectiveSystem<ESTargetCompleteOwnedObjectiveComponent>
 {
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
 

@@ -6,7 +6,7 @@ using Robust.Shared.Map;
 
 namespace Content.Server._ES.SpawnRegion;
 
-public sealed class ESSpawnRandomRule : GameRuleSystem<ESSpawnRandomRuleComponent>
+public sealed partial class ESSpawnRandomRule : GameRuleSystem<ESSpawnRandomRuleComponent>
 {
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private ESSpawnRegionSystem _spawnRegion = default!;

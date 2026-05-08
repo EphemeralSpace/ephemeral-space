@@ -11,7 +11,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.StationEvents.VentSwarm;
 
-public sealed class ESVentSwarmRule : StationEventSystem<ESVentSwarmRuleComponent>
+public sealed partial class ESVentSwarmRule : StationEventSystem<ESVentSwarmRuleComponent>
 {
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private NavMapSystem _navMap = default!;

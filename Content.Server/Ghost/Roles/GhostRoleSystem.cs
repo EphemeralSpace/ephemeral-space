@@ -42,7 +42,7 @@ using Content.Server.Administration;
 namespace Content.Server.Ghost.Roles;
 
 [UsedImplicitly]
-public sealed class GhostRoleSystem : EntitySystem
+public sealed partial class GhostRoleSystem : EntitySystem
 {
     [Dependency] private IBanManager _ban = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
@@ -925,7 +925,7 @@ public sealed class GhostRoleSystem : EntitySystem
 //[AnyCommand]
 [AdminCommand(AdminFlags.Debug)]
 // ES END
-public sealed class GhostRoles : IConsoleCommand
+public sealed partial class GhostRoles : IConsoleCommand
 {
     [Dependency] private IEntityManager _e = default!;
 

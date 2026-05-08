@@ -15,7 +15,7 @@ namespace Content.Server._ES.Masks.Traitor;
 /// <summary>
 /// This handles <see cref="ESTraitorRuleComponent"/>
 /// </summary>
-public sealed class ESTraitorRuleSystem : EntitySystem
+public sealed partial class ESTraitorRuleSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;

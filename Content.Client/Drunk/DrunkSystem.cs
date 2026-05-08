@@ -6,7 +6,7 @@ using Robust.Shared.Player;
 
 namespace Content.Client.Drunk;
 
-public sealed class DrunkSystem : SharedDrunkSystem
+public sealed partial class DrunkSystem : SharedDrunkSystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IOverlayManager _overlayMan = default!;

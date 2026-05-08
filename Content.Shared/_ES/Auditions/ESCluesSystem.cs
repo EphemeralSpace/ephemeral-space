@@ -12,7 +12,7 @@ namespace Content.Shared._ES.Auditions;
 /// Clues are general character-related aspects that can be used to identify players.
 /// They are based on a character's round-start attributes and may become out-of-date over a round.
 /// </summary>
-public sealed class ESCluesSystem : EntitySystem
+public sealed partial class ESCluesSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;

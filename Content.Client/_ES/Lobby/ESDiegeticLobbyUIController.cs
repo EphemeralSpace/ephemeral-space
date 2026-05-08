@@ -20,7 +20,7 @@ namespace Content.Client._ES.Lobby;
 ///     Creates controls on init and attaches them to the root control, sorry
 /// </summary>
 [UsedImplicitly]
-public sealed class ESDiegeticLobbyUIController : UIController, IOnStateEntered<LobbyState>
+public sealed partial class ESDiegeticLobbyUIController : UIController, IOnStateEntered<LobbyState>
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IUserInterfaceManager _ui = default!;

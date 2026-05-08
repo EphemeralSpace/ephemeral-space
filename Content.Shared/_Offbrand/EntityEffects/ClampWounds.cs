@@ -16,7 +16,7 @@ public sealed partial class ClampWounds : EntityEffectBase<ClampWounds>
     }
 }
 
-public sealed class ClampWoundsEntityEffectSystem : EntityEffectSystem<WoundableComponent, ClampWounds>
+public sealed partial class ClampWoundsEntityEffectSystem : EntityEffectSystem<WoundableComponent, ClampWounds>
 {
     [Dependency] private WoundableSystem _woundable = default!;
 

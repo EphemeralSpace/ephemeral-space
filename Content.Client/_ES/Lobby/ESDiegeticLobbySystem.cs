@@ -8,7 +8,7 @@ using Robust.Shared.Physics.Events;
 namespace Content.Client._ES.Lobby;
 
 /// <inheritdoc/>
-public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
+public sealed partial class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
 {
     [Dependency] private IPlayerManager _player = default!;
 

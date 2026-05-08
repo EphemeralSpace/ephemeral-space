@@ -12,7 +12,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks.Avenger;
 
-public sealed class ESAvengeOnKillObjectiveSystem : ESBaseTargetObjectiveSystem<ESAvengeOnKillObjectiveComponent>
+public sealed partial class ESAvengeOnKillObjectiveSystem : ESBaseTargetObjectiveSystem<ESAvengeOnKillObjectiveComponent>
 {
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private IPlayerManager _player = default!;

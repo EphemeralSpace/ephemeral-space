@@ -5,7 +5,7 @@ using Content.Shared._ES.Mind;
 
 namespace Content.Server._ES.Masks.Objectives.Relays;
 
-public sealed class ESKilledRelaySystem : ESBaseMindRelay
+public sealed partial class ESKilledRelaySystem : ESBaseMindRelay
 {
     [Dependency] private MindSystem _mind = default!;
 

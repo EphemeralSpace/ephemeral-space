@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 namespace Content.Shared.Kitchen.EntitySystems;
 
 [UsedImplicitly]
-public abstract class SharedReagentGrinderSystem : EntitySystem
+public abstract partial class SharedReagentGrinderSystem : EntitySystem
 {
     [Dependency] private SharedSolutionContainerSystem _solutionContainersSystem = default!;
 

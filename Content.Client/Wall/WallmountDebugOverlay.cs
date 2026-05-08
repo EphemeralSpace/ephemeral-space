@@ -9,7 +9,7 @@ namespace Content.Client.Wall;
 /// <summary>
 /// Shows the area in which entities with <see cref="WallMountComponent" /> can be interacted from.
 /// </summary>
-public sealed class WallmountDebugOverlay : Overlay
+public sealed partial class WallmountDebugOverlay : Overlay
 {
     [Dependency] private IEntityManager _entManager = default!;
     private readonly SharedTransformSystem _transform;

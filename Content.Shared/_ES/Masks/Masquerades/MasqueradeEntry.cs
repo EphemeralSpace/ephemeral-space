@@ -227,7 +227,7 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
 }
 
 [TypeSerializer]
-internal sealed class MasqueradeEntrySerializer : ITypeSerializer<MasqueradeEntry, ValueDataNode>,
+internal sealed partial class MasqueradeEntrySerializer : ITypeSerializer<MasqueradeEntry, ValueDataNode>,
     ITypeSerializer<MasqueradeEntry.DirectEntry, ValueDataNode>,
     ITypeSerializer<MasqueradeEntry.SetEntry, ValueDataNode>
 {

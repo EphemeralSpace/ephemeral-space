@@ -9,7 +9,7 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Client.Radiation.Overlays;
 
-public sealed class RadiationDebugOverlay : Overlay
+public sealed partial class RadiationDebugOverlay : Overlay
 {
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IFontSelectionManager _fontSelection = default!;

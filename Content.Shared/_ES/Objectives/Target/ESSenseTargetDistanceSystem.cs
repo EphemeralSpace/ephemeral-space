@@ -10,7 +10,7 @@ using Robust.Shared.Network;
 
 namespace Content.Shared._ES.Objectives.Target;
 
-public sealed class ESSenseTargetDistanceSystem : EntitySystem
+public sealed partial class ESSenseTargetDistanceSystem : EntitySystem
 {
     [Dependency] private INetManager _netManager = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;

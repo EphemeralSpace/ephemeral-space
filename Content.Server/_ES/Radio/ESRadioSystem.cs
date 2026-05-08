@@ -10,7 +10,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Radio;
 
-public sealed class ESRadioSystem : EntitySystem
+public sealed partial class ESRadioSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;

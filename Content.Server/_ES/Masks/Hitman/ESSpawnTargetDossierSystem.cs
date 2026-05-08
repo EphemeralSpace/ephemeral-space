@@ -12,7 +12,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks.Hitman;
 
-public sealed class ESSpawnTargetDossierSystem : EntitySystem
+public sealed partial class ESSpawnTargetDossierSystem : EntitySystem
 {
     [Dependency] private ESCluesSystem _clues = default!;
     [Dependency] private ESSharedObjectiveSystem _objective = default!;

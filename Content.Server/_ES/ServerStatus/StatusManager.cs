@@ -10,7 +10,7 @@ namespace Content.Server._ES.ServerStatus;
 /// <summary>
 ///     This currently just manages the hostname.
 /// </summary>
-public sealed class StatusManager
+public sealed partial class StatusManager
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPrototypeManager _proto = default!;

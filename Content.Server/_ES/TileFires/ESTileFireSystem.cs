@@ -19,7 +19,7 @@ namespace Content.Server._ES.TileFires;
 ///     Server-side logic for tile fire growth logic, e.g. stages, requiring oxygen, etc.
 ///     Also spawning logic.
 /// </summary>
-public sealed class ESTileFireSystem : ESSharedTileFireSystem
+public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
 {
     [Dependency] private AtmosphereSystem _atmos = default!;
     [Dependency] private FlammableSystem _flammable = default!;

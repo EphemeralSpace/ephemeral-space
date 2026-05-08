@@ -13,7 +13,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Ephemera;
 
-public sealed class ESEphemeraSpeechSystem : EntitySystem
+public sealed partial class ESEphemeraSpeechSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPrototypeManager _prototype = default!;

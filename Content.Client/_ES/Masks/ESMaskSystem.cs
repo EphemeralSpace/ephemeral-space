@@ -9,7 +9,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._ES.Masks;
 
-public sealed class ESMaskSystem : ESSharedMaskSystem
+public sealed partial class ESMaskSystem : ESSharedMaskSystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private ContainerSystem _container = default!;

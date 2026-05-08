@@ -12,7 +12,7 @@ using Robust.Shared.Random;
 
 namespace Content.Client._ST.Interaction;
 
-public sealed class StellarInteractionParticleSystem : EntitySystem
+public sealed partial class StellarInteractionParticleSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SpriteSystem _sprite = default!;

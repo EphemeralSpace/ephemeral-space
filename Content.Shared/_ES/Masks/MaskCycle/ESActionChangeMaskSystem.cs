@@ -5,7 +5,7 @@ namespace Content.Shared._ES.Masks.MaskCycle;
 /// <summary>
 /// This handles the mask change action.
 /// </summary>
-public sealed class ESActionChangeMaskSystem : EntitySystem
+public sealed partial class ESActionChangeMaskSystem : EntitySystem
 {
     [Dependency] private ESSharedMaskSystem _mask = default!;
     [Dependency] private SharedMindSystem _mind = default!;

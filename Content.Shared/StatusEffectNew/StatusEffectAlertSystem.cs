@@ -6,7 +6,7 @@ namespace Content.Shared.StatusEffectNew;
 /// <summary>
 /// Handles displaying status effects that should show an alert, optionally with a duration.
 /// </summary>
-public sealed class StatusEffectAlertSystem : EntitySystem
+public sealed partial class StatusEffectAlertSystem : EntitySystem
 {
     [Dependency] private AlertsSystem _alerts = default!;
 

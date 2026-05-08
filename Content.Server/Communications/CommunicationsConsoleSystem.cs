@@ -32,7 +32,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Communications
 {
-    public sealed class CommunicationsConsoleSystem : EntitySystem
+    public sealed partial class CommunicationsConsoleSystem : EntitySystem
     {
 // ES START
         [Dependency] private IPrototypeManager _prototype = default!;

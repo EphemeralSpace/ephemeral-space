@@ -16,7 +16,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Offbrand.IV;
 
-public sealed class IVSystem : EntitySystem
+public sealed partial class IVSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private ItemSlotsSystem _itemSlots = default!;

@@ -9,7 +9,7 @@ namespace Content.Client._ES.Screens;
 /// <summary>
 ///     Switches game screen between <see cref="PerformerGameScreen"/> and <see cref="StagehandGameScreen"/> on entity attach.
 /// </summary>
-public sealed class SwitchScreenOnAttachSystem : EntitySystem
+public sealed partial class SwitchScreenOnAttachSystem : EntitySystem
 {
     [Dependency] private IStateManager _state = default!;
     [Dependency] private IUserInterfaceManager _ui = default!;

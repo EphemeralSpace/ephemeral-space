@@ -8,7 +8,7 @@ namespace Content.Server._ES.StationVariation.Systems;
 /// <summary>
 /// Handles changing the map ambient light on the station map as a variation pass (for variety sauce)
 /// </summary>
-public sealed class ESMapLightVariationPassSystem : VariationPassSystem<ESMapLightVariationPassComponent>
+public sealed partial class ESMapLightVariationPassSystem : VariationPassSystem<ESMapLightVariationPassComponent>
 {
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedTransformSystem _xform = default!;

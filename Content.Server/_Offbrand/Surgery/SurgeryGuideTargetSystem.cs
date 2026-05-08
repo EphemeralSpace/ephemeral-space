@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Offbrand.Surgery;
 
-public sealed class SurgeryGuideTargetSystem : SharedSurgeryGuideTargetSystem
+public sealed partial class SurgeryGuideTargetSystem : SharedSurgeryGuideTargetSystem
 {
     [Dependency] private ConstructionSystem _construction = default!;
     [Dependency] private IPrototypeManager _prototype = default!;

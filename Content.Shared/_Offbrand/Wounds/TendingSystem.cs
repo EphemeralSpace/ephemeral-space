@@ -12,7 +12,7 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._Offbrand.Wounds;
 
-public sealed class TendingSystem : EntitySystem
+public sealed partial class TendingSystem : EntitySystem
 {
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

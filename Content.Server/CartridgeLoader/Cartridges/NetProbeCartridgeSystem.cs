@@ -9,9 +9,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 
-public sealed class NetProbeCartridgeSystem : EntitySystem
+public sealed partial class NetProbeCartridgeSystem : EntitySystem
 {
-    [Dependency] private CartridgeLoaderSystem? _cartridgeLoaderSystem = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;
@@ -84,6 +84,6 @@ public sealed class NetProbeCartridgeSystem : EntitySystem
             return;
 
         var state = new NetProbeUiState(component.ProbedDevices);
-        _cartridgeLoaderSystem?.UpdateCartridgeUiState(loaderUid, state);
+        _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, state);
     }
 }

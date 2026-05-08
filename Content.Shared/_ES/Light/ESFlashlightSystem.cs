@@ -8,7 +8,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Light;
 
-public sealed class ESFlashlightSystem : EntitySystem
+public sealed partial class ESFlashlightSystem : EntitySystem
 {
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private SharedHandheldLightSystem _handheldLight = default!;

@@ -9,7 +9,7 @@ using Robust.Server.Player;
 
 namespace Content.Server._ES.Masks.Phantom;
 
-public sealed class ESAvengeSelfObjectiveSystem : ESBaseObjectiveSystem<ESAvengeSelfObjectiveComponent>
+public sealed partial class ESAvengeSelfObjectiveSystem : ESBaseObjectiveSystem<ESAvengeSelfObjectiveComponent>
 {
     [Dependency] private IChatManager _chat = default!;
     [Dependency] private IPlayerManager _player = default!;

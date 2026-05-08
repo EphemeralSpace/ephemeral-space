@@ -32,7 +32,7 @@ namespace Content.Client.Lobby
     // it is slightly cursed for lobbystate to inherit gameplaystatebase, yeah
     // things we do not need: ingamescreen, separated chat stuff ; we are not going to use any of the
     // resizing stuff that that allows bc we just will not allow resizing the chat in lobby i think
-    public sealed class LobbyState : GameplayStateBase, IMainViewportState
+    public sealed partial class LobbyState : GameplayStateBase, IMainViewportState
     {
         [Dependency] private IConfigurationManager _cfg = default!;
         [Dependency] private IClientConsoleHost _consoleHost = default!;

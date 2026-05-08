@@ -6,7 +6,7 @@ using Robust.Server.GameObjects;
 namespace Content.Server._ES.Telesci.Anomaly;
 
 /// <inheritdoc/>
-public sealed class ESAnomalySystem : ESSharedAnomalySystem
+public sealed partial class ESAnomalySystem : ESSharedAnomalySystem
 {
     [Dependency] private UserInterfaceSystem _ui = default!;
 

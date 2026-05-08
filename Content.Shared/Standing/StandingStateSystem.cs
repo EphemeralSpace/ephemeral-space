@@ -13,7 +13,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Standing;
 
-public sealed class StandingStateSystem : EntitySystem
+public sealed partial class StandingStateSystem : EntitySystem
 {
     // ES START
     [Dependency] private SharedGameTicker _ticker = default!;

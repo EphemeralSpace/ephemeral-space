@@ -6,7 +6,7 @@ using Robust.Shared.Serialization.Manager;
 
 namespace Content.Client.DisplacementMap;
 
-public sealed class DisplacementMapSystem : EntitySystem
+public sealed partial class DisplacementMapSystem : EntitySystem
 {
     [Dependency] private ISerializationManager _serialization = default!;
     [Dependency] private SpriteSystem _sprite = default!;

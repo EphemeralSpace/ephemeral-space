@@ -15,7 +15,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.StationEvents.ElectricalOverload;
 
-public sealed class ESElectricalOverloadRule : StationEventSystem<ESElectricalOverloadRuleComponent>
+public sealed partial class ESElectricalOverloadRule : StationEventSystem<ESElectricalOverloadRuleComponent>
 {
     [Dependency] private EntityLookupSystem _entityLookup = default!;
     [Dependency] private PoweredLightSystem _poweredLight = default!;

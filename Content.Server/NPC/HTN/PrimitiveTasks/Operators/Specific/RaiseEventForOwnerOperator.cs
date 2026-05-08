@@ -37,7 +37,7 @@ public sealed partial class RaiseEventForOwnerOperator : HTNOperator
     }
 }
 
-public sealed partial class HTNRaisedEvent(EntityUid owner, EntityUid? target, EntityEventArgs args) : EntityEventArgs
+public sealed class HTNRaisedEvent(EntityUid owner, EntityUid? target, EntityEventArgs args) : EntityEventArgs
 {
     // Owner and target are both included here in case we want to add a "RaiseEventForTargetOperator" in the future
     // while reusing this event.

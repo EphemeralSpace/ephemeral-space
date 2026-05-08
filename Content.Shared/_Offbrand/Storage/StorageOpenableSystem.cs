@@ -3,7 +3,7 @@ using Content.Shared.Storage;
 
 namespace Content.Shared._Offbrand.Storage;
 
-public sealed class StorageOpenableSystem : EntitySystem
+public sealed partial class StorageOpenableSystem : EntitySystem
 {
     [Dependency] private OpenableSystem _openable = default!;
 

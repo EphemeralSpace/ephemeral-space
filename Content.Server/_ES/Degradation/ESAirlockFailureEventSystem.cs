@@ -8,7 +8,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Degradation;
 
-public sealed class ESAirlockFailureEventSystem : StationEventSystem<ESAirlockFailureEventComponent>
+public sealed partial class ESAirlockFailureEventSystem : StationEventSystem<ESAirlockFailureEventComponent>
 {
     [Dependency] private ESAirlockFailureSystem _airlockFailure = default!;
 

@@ -77,7 +77,7 @@ public enum MetricRanking : byte
     Dangerous = 4,
 }
 
-public abstract class SharedWoundableHealthAnalyzerSystem : EntitySystem
+public abstract partial class SharedWoundableHealthAnalyzerSystem : EntitySystem
 {
     [Dependency] private BrainDamageSystem _brainDamage = default!;
     [Dependency] private HeartSystem _heart = default!;

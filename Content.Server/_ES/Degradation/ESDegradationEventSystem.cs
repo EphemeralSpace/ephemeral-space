@@ -11,7 +11,7 @@ namespace Content.Server._ES.Degradation;
 /// <summary>
 /// Handles <see cref="ESDegradationEventComponent"/>
 /// </summary>
-public sealed class ESDegradationEventSystem : StationEventSystem<ESDegradationEventComponent>
+public sealed partial class ESDegradationEventSystem : StationEventSystem<ESDegradationEventComponent>
 {
     [Dependency] private ESDegradationSystem _degradation = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;

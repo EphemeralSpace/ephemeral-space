@@ -15,7 +15,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.StationEvents.GreyTideVirus;
 
-public sealed class ESGreyTideVirusRule : StationEventSystem<ESGreyTideVirusComponent>
+public sealed partial class ESGreyTideVirusRule : StationEventSystem<ESGreyTideVirusComponent>
 {
     [Dependency] private AccessReaderSystem _accessReader = default!;
     [Dependency] private DoorSystem _door = default!;

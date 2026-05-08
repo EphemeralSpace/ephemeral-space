@@ -18,7 +18,7 @@ namespace Content.Client.Atmos.Overlays;
 /// <summary>
 ///     Overlay responsible for rendering atmos fire animation.
 /// </summary>
-public sealed class GasTileFireOverlay : Overlay
+public sealed partial class GasTileFireOverlay : Overlay
 {
     [Dependency] private IPrototypeManager _protoMan = default!;
     [Dependency] private IResourceCache _resourceCache = default!;

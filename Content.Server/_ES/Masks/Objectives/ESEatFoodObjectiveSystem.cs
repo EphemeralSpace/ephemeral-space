@@ -9,7 +9,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Masks.Objectives;
 
-public sealed class ESEatFoodObjectiveSystem : ESBaseObjectiveSystem<ESEatFoodObjectiveComponent>
+public sealed partial class ESEatFoodObjectiveSystem : ESBaseObjectiveSystem<ESEatFoodObjectiveComponent>
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;

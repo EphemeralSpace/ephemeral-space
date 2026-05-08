@@ -14,7 +14,7 @@ namespace Content.Client._ES.Audio;
 /// <summary>
 ///     Handles playing/starting/stopping the braincrit music correctly when you enter it
 /// </summary>
-public sealed class ESBraincritMusicSystem : EntitySystem
+public sealed partial class ESBraincritMusicSystem : EntitySystem
 {
     [Dependency] private ContentAudioSystem _content = default!;
     [Dependency] private AudioSystem _audio = default!;

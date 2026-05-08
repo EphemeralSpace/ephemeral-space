@@ -15,7 +15,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Weapons.Ranged.Attachments;
 
-public abstract class ESSharedGunAttachmentsSystem : EntitySystem
+public abstract partial class ESSharedGunAttachmentsSystem : EntitySystem
 {
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private SharedContainerSystem _container = default!;

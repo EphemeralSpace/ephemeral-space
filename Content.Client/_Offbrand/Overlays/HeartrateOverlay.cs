@@ -12,7 +12,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Offbrand.Overlays;
 
-public sealed class HeartrateOverlay : Overlay
+public sealed partial class HeartrateOverlay : Overlay
 {
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IGameTiming _timing = default!;

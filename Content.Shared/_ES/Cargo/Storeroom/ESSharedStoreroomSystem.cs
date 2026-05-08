@@ -10,7 +10,7 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared._ES.Cargo.Storeroom;
 
-public abstract class ESSharedStoreroomSystem : EntitySystem
+public abstract partial class ESSharedStoreroomSystem : EntitySystem
 {
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;

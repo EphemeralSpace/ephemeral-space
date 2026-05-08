@@ -9,7 +9,7 @@ using Content.Shared.FixedPoint;
 
 namespace Content.Server._Offbrand.EntityEffects;
 
-public sealed class MetaboliteThresholdEntityConditionSystem : EntityConditionSystem<MetabolizerComponent, MetaboliteThresholdCondition>
+public sealed partial class MetaboliteThresholdEntityConditionSystem : EntityConditionSystem<MetabolizerComponent, MetaboliteThresholdCondition>
 {
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 

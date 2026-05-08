@@ -4,7 +4,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class ShockOnTriggerSystem : XOnTriggerSystem<ShockOnTriggerComponent>
+public sealed partial class ShockOnTriggerSystem : XOnTriggerSystem<ShockOnTriggerComponent>
 {
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedElectrocutionSystem _electrocution = default!;

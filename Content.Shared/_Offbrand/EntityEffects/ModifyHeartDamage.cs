@@ -19,7 +19,7 @@ public sealed partial class ModifyHeartDamage : EntityEffectBase<ModifyHeartDama
     }
 }
 
-public sealed class ModifyHeartDamageEntityEffectSystem : EntityEffectSystem<HeartrateComponent, ModifyHeartDamage>
+public sealed partial class ModifyHeartDamageEntityEffectSystem : EntityEffectSystem<HeartrateComponent, ModifyHeartDamage>
 {
     [Dependency] private HeartSystem _heart = default!;
 

@@ -11,7 +11,7 @@ namespace Content.Shared._ES.Viewcone;
 /// <summary>
 ///     Public API for getting the actual modified viewcone angle (including equipment etc) rather than just the base angle
 /// </summary>
-public sealed class ESViewconeAngleSystem : EntitySystem
+public sealed partial class ESViewconeAngleSystem : EntitySystem
 {
     [Dependency] private SharedTransformSystem _transform = default!;
 

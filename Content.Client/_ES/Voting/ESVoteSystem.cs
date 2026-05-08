@@ -7,7 +7,7 @@ using Robust.Shared.Timing;
 namespace Content.Client._ES.Voting;
 
 /// <inheritdoc/>
-public sealed class ESVoteSystem : ESSharedVoteSystem
+public sealed partial class ESVoteSystem : ESSharedVoteSystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IUserInterfaceManager _ui = default!;

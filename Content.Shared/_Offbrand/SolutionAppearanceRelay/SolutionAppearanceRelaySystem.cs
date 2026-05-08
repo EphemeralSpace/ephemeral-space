@@ -7,7 +7,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._Offbrand.SolutionAppearanceRelay;
 
-public sealed class SolutionAppearanceRelaySystem : EntitySystem
+public sealed partial class SolutionAppearanceRelaySystem : EntitySystem
 {
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private SharedContainerSystem _container = default!;

@@ -7,7 +7,7 @@ namespace Content.Shared.Power.EntitySystems;
 /// Generic system that handles entities with <see cref="PowerStateComponent"/>.
 /// Used for simple machines that only need to switch between "idle" and "working" power states.
 /// </summary>
-public sealed class PowerStateSystem : EntitySystem
+public sealed partial class PowerStateSystem : EntitySystem
 {
     [Dependency] private SharedPowerReceiverSystem _powerReceiverSystem = default!;
 

@@ -10,7 +10,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Offbrand.StatusEffects;
 
-public sealed class GunBackfireStatusEffectSystem : EntitySystem
+public sealed partial class GunBackfireStatusEffectSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

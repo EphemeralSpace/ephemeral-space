@@ -4,7 +4,7 @@ using Robust.Shared.Player;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class TippyOnTriggerSystem : EntitySystem
+public sealed partial class TippyOnTriggerSystem : EntitySystem
 {
     [Dependency] private SharedTipsSystem _tips = default!;
 

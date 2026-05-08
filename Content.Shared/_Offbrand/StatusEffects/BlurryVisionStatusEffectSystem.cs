@@ -3,7 +3,7 @@ using Content.Shared.StatusEffectNew;
 
 namespace Content.Shared._Offbrand.StatusEffects;
 
-public sealed class BlurryVisionStatusEffectSystem : EntitySystem
+public sealed partial class BlurryVisionStatusEffectSystem : EntitySystem
 {
     [Dependency] private BlurryVisionSystem _blurryVision = default!;
 

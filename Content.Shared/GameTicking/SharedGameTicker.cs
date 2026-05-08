@@ -12,7 +12,7 @@ using Content.Shared.GameTicking.Prototypes;
 
 namespace Content.Shared.GameTicking
 {
-    public abstract class SharedGameTicker : EntitySystem
+    public abstract partial class SharedGameTicker : EntitySystem
     {
         [Dependency] private IReplayRecordingManager _replay = default!;
         [Dependency] private IGameTiming _gameTiming = default!;
@@ -168,7 +168,7 @@ namespace Content.Shared.GameTicking
     /// Event raised by RoundEndSystem to inform the client of when the game is going to restart.
     /// </summary>
     [Serializable, NetSerializable]
-    public sealed partial class QueuedRoundRestartTimeEvent(TimeSpan restartTime) : EntityEventArgs
+    public sealed class QueuedRoundRestartTimeEvent(TimeSpan restartTime) : EntityEventArgs
     {
         public TimeSpan RestartTime = restartTime;
     }

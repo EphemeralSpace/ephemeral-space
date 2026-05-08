@@ -5,7 +5,7 @@ using Robust.Client.Player;
 
 namespace Content.Client.Administration.Systems;
 
-public sealed class KillSignSystem : EntitySystem
+public sealed partial class KillSignSystem : EntitySystem
 {
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private IPlayerManager _player = default!;

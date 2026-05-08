@@ -23,7 +23,7 @@ namespace Content.Client._ES.Lighting.Ui;
 /// UI controller that handles toggling flashlights.
 /// </summary>
 [UsedImplicitly]
-public sealed class ESFlashlightUIController : UIController, IOnStateChanged<GameplayState>
+public sealed partial class ESFlashlightUIController : UIController, IOnStateChanged<GameplayState>
 {
     [Dependency] private IPlayerManager _player = default!;
 

@@ -46,7 +46,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.UserInterface.Systems.Chat;
 
-public sealed class ChatUIController : UIController
+public sealed partial class ChatUIController : UIController
 {
     [Dependency] private IClientAdminManager _admin = default!;
     [Dependency] private IChatManager _manager = default!;

@@ -4,7 +4,7 @@ using Robust.Shared.Physics.Events;
 
 namespace Content.Server._ES.Masks.Hemophage;
 
-public sealed class ESMaskConvertOnCollideSystem : EntitySystem
+public sealed partial class ESMaskConvertOnCollideSystem : EntitySystem
 {
     [Dependency] private ESMaskSystem _mask = default!;
     [Dependency] private MindSystem _mind = default!;

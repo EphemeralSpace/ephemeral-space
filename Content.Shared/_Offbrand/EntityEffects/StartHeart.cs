@@ -12,7 +12,7 @@ public sealed partial class StartHeart : EntityEffectBase<StartHeart>
     }
 }
 
-public sealed class StartHeartEntityEffectSystem : EntityEffectSystem<HeartrateComponent, StartHeart>
+public sealed partial class StartHeartEntityEffectSystem : EntityEffectSystem<HeartrateComponent, StartHeart>
 {
     [Dependency] private HeartSystem _heart = default!;
 

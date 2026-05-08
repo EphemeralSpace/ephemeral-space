@@ -7,7 +7,7 @@ using Robust.Server.Player;
 
 namespace Content.Server._ES.Masks.Avenger;
 
-public sealed class ESDirectKillTargetObjectiveSystem : ESBaseTargetObjectiveSystem<ESDirectKillTargetObjectiveComponent>
+public sealed partial class ESDirectKillTargetObjectiveSystem : ESBaseTargetObjectiveSystem<ESDirectKillTargetObjectiveComponent>
 {
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private IPlayerManager _player = default!;

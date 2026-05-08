@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Offbrand.Wounds;
 
-public sealed class ShockAlertsSystem : EntitySystem
+public sealed partial class ShockAlertsSystem : EntitySystem
 {
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private PainSystem _pain = default!;

@@ -8,7 +8,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Degradation;
 
-public sealed class ESLightFailureEventSystem : StationEventSystem<ESLightFailureEventComponent>
+public sealed partial class ESLightFailureEventSystem : StationEventSystem<ESLightFailureEventComponent>
 {
     [Dependency] private PoweredLightSystem _lights = default!;
 

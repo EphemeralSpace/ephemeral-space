@@ -44,7 +44,7 @@ using Content.Shared.Temperature.Components;
 
 namespace Content.Server.Kitchen.EntitySystems
 {
-    public sealed class MicrowaveSystem : EntitySystem
+    public sealed partial class MicrowaveSystem : EntitySystem
     {
         [Dependency] private BodySystem _bodySystem = default!;
         [Dependency] private DeviceLinkSystem _deviceLink = default!;

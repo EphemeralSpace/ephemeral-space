@@ -8,7 +8,7 @@ using Content.Shared.Verbs;
 
 namespace Content.Shared._Offbrand.StatusEffects;
 
-public sealed class RemovableStatusEffectSystem : EntitySystem
+public sealed partial class RemovableStatusEffectSystem : EntitySystem
 {
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedHandsSystem _hands = default!;

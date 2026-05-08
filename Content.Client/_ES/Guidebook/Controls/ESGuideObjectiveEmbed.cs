@@ -11,7 +11,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._ES.Guidebook.Controls;
 
 [UsedImplicitly]
-public sealed class ESGuideObjectiveEmbed : Control, IDocumentTag
+public sealed partial class ESGuideObjectiveEmbed : Control, IDocumentTag
 {
     [Dependency] private IEntityManager _entMan = default!;
     [Dependency] private IEntitySystemManager _sysMan = default!;

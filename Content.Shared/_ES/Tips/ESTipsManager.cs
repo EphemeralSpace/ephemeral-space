@@ -9,7 +9,7 @@ namespace Content.Shared._ES.Tips;
 ///     Exposes picking a random tip from our tip prototypes & localizing tip text properly.
 /// </summary>
 [PublicAPI]
-public sealed class ESTipsManager
+public sealed partial class ESTipsManager
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IRobustRandom _random = default!;

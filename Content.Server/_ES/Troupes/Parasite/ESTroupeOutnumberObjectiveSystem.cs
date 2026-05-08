@@ -8,7 +8,7 @@ using Content.Shared.Mind;
 
 namespace Content.Server._ES.Troupes.Parasite;
 
-public sealed class ESTroupeOutnumberObjectiveSystem : ESBaseObjectiveSystem<ESTroupeOutnumberObjectiveComponent>
+public sealed partial class ESTroupeOutnumberObjectiveSystem : ESBaseObjectiveSystem<ESTroupeOutnumberObjectiveComponent>
 {
     [Dependency] private ESMaskSystem _mask = default!;
     [Dependency] private MindSystem _mind = default!;

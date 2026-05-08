@@ -17,7 +17,7 @@ using Robust.Shared.Timing;
 namespace Content.Client.Inventory
 {
     [UsedImplicitly]
-    public sealed class ClientInventorySystem : InventorySystem
+    public sealed partial class ClientInventorySystem : InventorySystem
     {
         [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] private IUserInterfaceManager _ui = default!;

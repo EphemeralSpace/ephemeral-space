@@ -10,7 +10,7 @@ namespace Content.Server._ES.Spawner;
 /// <summary>
 /// Handles custom spawners for Ephemeral Space
 /// </summary>
-public sealed class ESSpawnerSystem : EntitySystem
+public sealed partial class ESSpawnerSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private EntityLookupSystem _entityLookup = default!;

@@ -8,7 +8,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Masks.Objectives;
 
-public sealed class ESTakeDamageObjectiveSystem : ESBaseObjectiveSystem<ESTakeDamageObjectiveComponent>
+public sealed partial class ESTakeDamageObjectiveSystem : ESBaseObjectiveSystem<ESTakeDamageObjectiveComponent>
 {
     public override Type[] RelayComponents => new[] { typeof(ESDamageTakerRelayComponent) };
 

@@ -12,7 +12,7 @@ namespace Content.Shared.Maps;
 /// <summary>
 ///     This system provides various useful helper methods for turfs & tiles. Replacement for <see cref="TurfHelpers"/>
 /// </summary>
-public sealed class TurfSystem : EntitySystem
+public sealed partial class TurfSystem : EntitySystem
 {
     [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private EntityLookupSystem _entityLookup = default!;
@@ -201,7 +201,7 @@ public sealed class TurfSystem : EntitySystem
 /// <summary>
 ///     Extension methods for looking up entities with respect to given turfs.
 /// </summary>
-public static partial class TurfLookupExtensions
+public static class TurfLookupExtensions
 {
     /// <summary>
     ///     Collects all of the entities overlapping with a given turf into a provided <see cref="HashSet{EntityUid}"/>.

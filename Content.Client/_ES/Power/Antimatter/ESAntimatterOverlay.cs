@@ -11,7 +11,7 @@ using Robust.Shared.Random;
 
 namespace Content.Client._ES.Power.Antimatter;
 
-public sealed class ESAntimatterOverlay : Overlay
+public sealed partial class ESAntimatterOverlay : Overlay
 {
     private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
 

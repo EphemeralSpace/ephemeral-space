@@ -11,7 +11,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Offbrand.Wounds;
 
-public sealed class WoundableHealthAnalyzerSystem : SharedWoundableHealthAnalyzerSystem
+public sealed partial class WoundableHealthAnalyzerSystem : SharedWoundableHealthAnalyzerSystem
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private IPrototypeManager _prototype = default!;

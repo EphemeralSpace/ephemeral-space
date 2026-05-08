@@ -9,7 +9,7 @@ namespace Content.Client._ES.Viewcone.ComponentTree;
 /// <summary>
 ///     Handles gathering sprites to modify alpha in the viewcone overlays
 /// </summary>
-public sealed class ESViewconeOccludableTreeSystem : ComponentTreeSystem<ESViewconeOccludableTreeComponent, ESViewconeOccludableComponent>
+public sealed partial class ESViewconeOccludableTreeSystem : ComponentTreeSystem<ESViewconeOccludableTreeComponent, ESViewconeOccludableComponent>
 {
     [Dependency] private SpriteSystem _sprite = default!;
 

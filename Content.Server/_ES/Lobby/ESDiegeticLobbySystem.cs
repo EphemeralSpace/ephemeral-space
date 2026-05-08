@@ -28,7 +28,7 @@ namespace Content.Server._ES.Lobby;
 /// <summary>
 /// handles serverside diegetic lobby stuff, notably readying on trigger and closing the lobby
 /// </summary>
-public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
+public sealed partial class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPlayerManager _player = default!;
@@ -184,7 +184,7 @@ public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
 }
 
 [ToolshedCommand(Name = "lobby"), AdminCommand(AdminFlags.Server)]
-public sealed class LobbyCommands : ToolshedCommand
+public sealed partial class LobbyCommands : ToolshedCommand
 {
     [Dependency] private IConfigurationManager _cfg = default!;
 

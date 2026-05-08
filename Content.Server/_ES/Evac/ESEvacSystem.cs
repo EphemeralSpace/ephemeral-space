@@ -6,7 +6,7 @@ using Content.Shared._ES.Evac.Components;
 namespace Content.Server._ES.Evac;
 
 /// <inheritdoc/>
-public sealed class ESEvacSystem : ESSharedEvacSystem
+public sealed partial class ESEvacSystem : ESSharedEvacSystem
 {
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;

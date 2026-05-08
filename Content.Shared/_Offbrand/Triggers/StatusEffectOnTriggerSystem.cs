@@ -4,7 +4,7 @@ using Content.Shared.Trigger;
 
 namespace Content.Shared._Offbrand.Triggers;
 
-public sealed class StatusEffectOnTriggerSystem : EntitySystem
+public sealed partial class StatusEffectOnTriggerSystem : EntitySystem
 {
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
 

@@ -14,7 +14,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Masks.Traitor;
 
-public sealed class ESSabotageSystem : EntitySystem
+public sealed partial class ESSabotageSystem : EntitySystem
 {
     [Dependency] private ISharedAdminManager _admin = default!;
     [Dependency] private ESDegradationSystem _degradation = default!;

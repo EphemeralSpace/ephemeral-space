@@ -3,7 +3,7 @@ using Content.Shared.Chemistry.EntitySystems;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class SolutionTriggerSystem : XOnTriggerSystem<AddSolutionOnTriggerComponent>
+public sealed partial class SolutionTriggerSystem : XOnTriggerSystem<AddSolutionOnTriggerComponent>
 {
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 

@@ -3,7 +3,7 @@ using Content.Shared.StatusEffectNew;
 
 namespace Content.Shared._Offbrand.StatusEffects;
 
-public sealed class PopupOnAppliedStatusEffectSystem : EntitySystem
+public sealed partial class PopupOnAppliedStatusEffectSystem : EntitySystem
 {
     [Dependency] private SharedPopupSystem _popup = default!;
 

@@ -6,7 +6,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Internals;
 
-public sealed class ESInternalsSystem : EntitySystem
+public sealed partial class ESInternalsSystem : EntitySystem
 {
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;

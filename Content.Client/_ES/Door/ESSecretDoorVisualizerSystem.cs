@@ -5,7 +5,7 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._ES.Door;
 
-public sealed class ESSecretDoorVisualizerSystem : VisualizerSystem<ESSecretDoorVisualsComponent>
+public sealed partial class ESSecretDoorVisualizerSystem : VisualizerSystem<ESSecretDoorVisualsComponent>
 {
     [Dependency] private AnimationPlayerSystem _animationPlayer = default!;
 

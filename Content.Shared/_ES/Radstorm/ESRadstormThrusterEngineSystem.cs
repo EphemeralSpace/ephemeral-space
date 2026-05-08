@@ -10,7 +10,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Radstorm;
 
-public sealed class ESRadstormThrusterEngineSystem : EntitySystem
+public sealed partial class ESRadstormThrusterEngineSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;

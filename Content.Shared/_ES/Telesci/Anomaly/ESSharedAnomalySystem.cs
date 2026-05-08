@@ -15,7 +15,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Telesci.Anomaly;
 
-public abstract class ESSharedAnomalySystem : EntitySystem
+public abstract partial class ESSharedAnomalySystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;

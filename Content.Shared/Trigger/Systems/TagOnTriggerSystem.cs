@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class AddTagsOnTriggerSystem : XOnTriggerSystem<AddTagsOnTriggerComponent>
+public sealed partial class AddTagsOnTriggerSystem : XOnTriggerSystem<AddTagsOnTriggerComponent>
 {
     [Dependency] private TagSystem _tag = default!;
 
@@ -14,7 +14,7 @@ public sealed class AddTagsOnTriggerSystem : XOnTriggerSystem<AddTagsOnTriggerCo
     }
 }
 
-public sealed class RemoveTagsOnTriggerSystem : XOnTriggerSystem<RemoveTagsOnTriggerComponent>
+public sealed partial class RemoveTagsOnTriggerSystem : XOnTriggerSystem<RemoveTagsOnTriggerComponent>
 {
     [Dependency] private TagSystem _tag = default!;
 

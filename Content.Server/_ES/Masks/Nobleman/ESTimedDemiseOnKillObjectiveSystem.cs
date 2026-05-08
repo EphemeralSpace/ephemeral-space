@@ -12,7 +12,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server._ES.Masks.Nobleman;
 
-public sealed class ESTimedDemiseOnKillObjectiveSystem : ESBaseObjectiveSystem<ESTimedDemiseOnKillObjectiveComponent>
+public sealed partial class ESTimedDemiseOnKillObjectiveSystem : ESBaseObjectiveSystem<ESTimedDemiseOnKillObjectiveComponent>
 {
     [Dependency] private ESEntityTimerSystem _timer = default!;
     [Dependency] private SuicideSystem _suicide = default!;

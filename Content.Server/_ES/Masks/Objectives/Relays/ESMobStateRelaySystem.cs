@@ -6,7 +6,7 @@ using Content.Shared.Mobs.Components;
 
 namespace Content.Server._ES.Masks.Objectives.Relays;
 
-public sealed class ESMobStateRelaySystem : ESBaseMindRelay
+public sealed partial class ESMobStateRelaySystem : ESBaseMindRelay
 {
     [Dependency] private MindSystem _mind = default!;
 

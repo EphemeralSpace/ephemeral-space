@@ -11,7 +11,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Offbrand.Wounds;
 
-public sealed class CprSystem : EntitySystem
+public sealed partial class CprSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;

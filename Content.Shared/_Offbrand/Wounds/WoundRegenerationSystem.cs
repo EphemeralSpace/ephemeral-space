@@ -3,7 +3,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Offbrand.Wounds;
 
-public sealed class WoundRegenerationSystem : EntitySystem
+public sealed partial class WoundRegenerationSystem : EntitySystem
 {
 	[Dependency] private IGameTiming _timing = default!;
     [Dependency] private WoundableSystem _woundable = default!;

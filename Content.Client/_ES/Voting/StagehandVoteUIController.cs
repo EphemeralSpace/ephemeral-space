@@ -12,7 +12,7 @@ using Robust.Client.UserInterface.Controllers;
 namespace Content.Client._ES.Voting;
 
 [UsedImplicitly]
-public sealed class StagehandVoteUIController : UIController
+public sealed partial class StagehandVoteUIController : UIController
 {
     [Dependency] private IPlayerManager _player = default!;
     [UISystemDependency] private ESVoteSystem _vote = default!;

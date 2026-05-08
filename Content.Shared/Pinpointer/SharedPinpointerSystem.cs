@@ -6,7 +6,7 @@ using Content.Shared.Interaction;
 
 namespace Content.Shared.Pinpointer;
 
-public abstract class SharedPinpointerSystem : EntitySystem
+public abstract partial class SharedPinpointerSystem : EntitySystem
 {
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
 

@@ -11,7 +11,7 @@ namespace Content.Shared._ES.TileFires;
 ///     Shared API for spawning tile fires.
 ///     See serverside system for actual growth logic.
 /// </summary>
-public abstract class ESSharedTileFireSystem : EntitySystem
+public abstract partial class ESSharedTileFireSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] protected SharedMapSystem MapSys = default!;

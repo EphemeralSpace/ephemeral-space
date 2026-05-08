@@ -12,7 +12,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Degradation;
 
-public sealed class ESVentSpawnEventSystem : StationEventSystem<ESVentSpawnEventComponent>
+public sealed partial class ESVentSpawnEventSystem : StationEventSystem<ESVentSpawnEventComponent>
 {
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;

@@ -8,7 +8,7 @@ namespace Content.Server._ES.Debugging;
 /// <summary>
 ///     Various verbs we use to debug specific things
 /// </summary>
-public sealed class ESDebugVerbsSystem : EntitySystem
+public sealed partial class ESDebugVerbsSystem : EntitySystem
 {
     [Dependency] private IAdminManager _admin = default!;
     [Dependency] private BrainDamageSystem _brain = default!;

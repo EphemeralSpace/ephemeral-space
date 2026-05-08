@@ -18,7 +18,7 @@ namespace Content.Server._ES.Net;
 ///     Handles grabbing items out of the active hand of anyone the net is thrown at,
 ///     parenting the item during the throw, then unparenting it once the throw ends.
 /// </summary>
-public sealed class ESNetSystem : EntitySystem
+public sealed partial class ESNetSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private AudioSystem _audio = default!;

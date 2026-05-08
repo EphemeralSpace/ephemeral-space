@@ -21,7 +21,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks;
 
-public sealed class ESMaskSystem : ESSharedMaskSystem
+public sealed partial class ESMaskSystem : ESSharedMaskSystem
 {
     [Dependency] private IChatManager _chat = default!;
     [Dependency] private IPlayerManager _player = default!;

@@ -7,7 +7,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks.Secretary;
 
-public sealed class ESTargetCharacterBlurbSystem : EntitySystem
+public sealed partial class ESTargetCharacterBlurbSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;

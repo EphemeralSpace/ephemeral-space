@@ -24,7 +24,7 @@ namespace Content.Shared._ES.Spawning;
 /// <summary>
 /// Handles specific logic related to respawning
 /// </summary>
-public abstract class ESSharedSpawningSystem : EntitySystem
+public abstract partial class ESSharedSpawningSystem : EntitySystem
 {
     [Dependency] private ISharedAdminManager _admin = default!;
     [Dependency] private IConfigurationManager _config = default!;

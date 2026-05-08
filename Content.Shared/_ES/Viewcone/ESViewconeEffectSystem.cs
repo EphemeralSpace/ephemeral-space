@@ -11,7 +11,7 @@ namespace Content.Shared._ES.Viewcone;
 ///     it spawns in the correct pos and shit
 /// </summary>
 [PublicAPI]
-public sealed class ESViewconeEffectSystem : EntitySystem
+public sealed partial class ESViewconeEffectSystem : EntitySystem
 {
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedTransformSystem _xform = default!;

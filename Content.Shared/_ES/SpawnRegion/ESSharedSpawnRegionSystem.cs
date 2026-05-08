@@ -18,7 +18,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._ES.SpawnRegion;
 
-public abstract class ESSharedSpawnRegionSystem : EntitySystem
+public abstract partial class ESSharedSpawnRegionSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private EntityLookupSystem _entityLookup = default!;

@@ -17,7 +17,7 @@ using Content.Shared._Offbrand.Wounds; // Offbrand
 namespace Content.Client.UserInterface.Systems.DamageOverlays;
 
 [UsedImplicitly]
-public sealed class DamageOverlayUiController : UIController
+public sealed partial class DamageOverlayUiController : UIController
 {
     [Dependency] private IOverlayManager _overlayManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;

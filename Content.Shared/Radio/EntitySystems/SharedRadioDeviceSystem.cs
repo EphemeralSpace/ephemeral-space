@@ -3,7 +3,7 @@ using Content.Shared.Radio.Components;
 
 namespace Content.Shared.Radio.EntitySystems;
 
-public abstract class SharedRadioDeviceSystem : EntitySystem
+public abstract partial class SharedRadioDeviceSystem : EntitySystem
 {
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;

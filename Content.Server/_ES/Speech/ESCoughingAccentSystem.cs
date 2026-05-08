@@ -7,7 +7,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Speech;
 
-public sealed class ESCoughingAccentSystem : EntitySystem
+public sealed partial class ESCoughingAccentSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _proto = default!;

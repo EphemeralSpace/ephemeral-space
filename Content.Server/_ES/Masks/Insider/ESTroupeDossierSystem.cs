@@ -11,7 +11,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks.Insider;
 
-public sealed class ESTroupeDossierSystem : EntitySystem
+public sealed partial class ESTroupeDossierSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;

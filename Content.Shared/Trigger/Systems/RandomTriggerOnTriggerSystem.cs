@@ -5,7 +5,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class RandomTriggerOnTriggerSystem : XOnTriggerSystem<RandomTriggerOnTriggerComponent>
+public sealed partial class RandomTriggerOnTriggerSystem : XOnTriggerSystem<RandomTriggerOnTriggerComponent>
 {
     [Dependency] private TriggerSystem _trigger = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

@@ -7,7 +7,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._ES.Lighting;
 
-public sealed class ESTimedDespawnLightFadeSystem : VisualizerSystem<ESTimedDespawnLightFadeComponent>
+public sealed partial class ESTimedDespawnLightFadeSystem : VisualizerSystem<ESTimedDespawnLightFadeComponent>
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private AnimationPlayerSystem _animationPlayer = default!;

@@ -39,7 +39,7 @@ namespace Content.Shared.Chemistry.EntitySystems;
 /// </remarks>
 /// <param name="Solution">The solution entity that has been modified.</param>
 [ByRefEvent]
-public readonly partial record struct SolutionChangedEvent(Entity<SolutionComponent> Solution);
+public readonly record struct SolutionChangedEvent(Entity<SolutionComponent> Solution);
 
 /// <summary>
 /// The event raised whenever a solution entity is filled past its capacity.
@@ -47,7 +47,7 @@ public readonly partial record struct SolutionChangedEvent(Entity<SolutionCompon
 /// <param name="Solution">The solution entity that has been overfilled.</param>
 /// <param name="Overflow">The amount by which the solution entity has been overfilled.</param>
 [ByRefEvent]
-public partial record struct SolutionOverflowEvent(Entity<SolutionComponent> Solution, FixedPoint2 Overflow)
+public record struct SolutionOverflowEvent(Entity<SolutionComponent> Solution, FixedPoint2 Overflow)
 {
     /// <summary>The solution entity that has been overfilled.</summary>
     public readonly Entity<SolutionComponent> Solution = Solution;
@@ -58,7 +58,7 @@ public partial record struct SolutionOverflowEvent(Entity<SolutionComponent> Sol
 }
 
 [ByRefEvent]
-public partial record struct SolutionAccessAttemptEvent(string SolutionName)
+public record struct SolutionAccessAttemptEvent(string SolutionName)
 {
     public bool Cancelled;
 }

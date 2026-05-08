@@ -5,7 +5,7 @@ using Content.Shared.FixedPoint;
 
 namespace Content.Shared._Offbrand.Wounds;
 
-public sealed class HeartDamageOnDamageSystem : EntitySystem
+public sealed partial class HeartDamageOnDamageSystem : EntitySystem
 {
     [Dependency] private HeartSystem _heart = default!;
 

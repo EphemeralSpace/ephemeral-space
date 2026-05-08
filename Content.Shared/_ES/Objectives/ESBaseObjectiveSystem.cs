@@ -11,7 +11,7 @@ namespace Content.Shared._ES.Objectives;
 ///     This is a base class for objectives that need certain common behavior like relays.
 ///     This ensures they're always implemented correctly, instead of copy-pasting the mind added/removed logic for them.
 /// </summary>
-public abstract class ESBaseObjectiveSystem<TComponent> : EntitySystem
+public abstract partial class ESBaseObjectiveSystem<TComponent> : EntitySystem
     where TComponent: Component
 {
     [Dependency] protected SharedMindSystem MindSys = default!;

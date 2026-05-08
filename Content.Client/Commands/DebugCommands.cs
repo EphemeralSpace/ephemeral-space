@@ -5,7 +5,7 @@ using Robust.Shared.Console;
 
 namespace Content.Client.Commands;
 
-internal sealed class ShowMarkersCommand : LocalizedEntityCommands
+internal sealed partial class ShowMarkersCommand : LocalizedEntityCommands
 {
     [Dependency] private MarkerSystem _markerSystem = default!;
 
@@ -17,7 +17,7 @@ internal sealed class ShowMarkersCommand : LocalizedEntityCommands
     }
 }
 
-internal sealed class ShowSubFloor : LocalizedEntityCommands
+internal sealed partial class ShowSubFloor : LocalizedEntityCommands
 {
     [Dependency] private SubFloorHideSystem _subfloorSystem = default!;
 
@@ -29,7 +29,7 @@ internal sealed class ShowSubFloor : LocalizedEntityCommands
     }
 }
 
-internal sealed class NotifyCommand : LocalizedEntityCommands
+internal sealed partial class NotifyCommand : LocalizedEntityCommands
 {
     [Dependency] private PopupSystem _popupSystem = default!;
 

@@ -8,7 +8,7 @@ namespace Content.Shared._ES.Masks.Traitor;
 /// <summary>
 /// This handles <see cref="ESSabotageConditionComponent"/>
 /// </summary>
-public sealed class ESSabotageConditionSystem : ESBaseObjectiveSystem<ESSabotageConditionComponent>
+public sealed partial class ESSabotageConditionSystem : ESBaseObjectiveSystem<ESSabotageConditionComponent>
 {
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private SharedMindSystem _mind = default!;

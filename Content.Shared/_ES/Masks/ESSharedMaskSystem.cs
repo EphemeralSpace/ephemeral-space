@@ -18,7 +18,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Masks;
 
-public abstract class ESSharedMaskSystem : EntitySystem
+public abstract partial class ESSharedMaskSystem : EntitySystem
 {
     [Dependency] protected ISharedAdminManager AdminManager = default!;
     [Dependency] private INetManager _netManager = default!;

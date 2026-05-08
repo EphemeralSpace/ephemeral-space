@@ -9,7 +9,7 @@ using Robust.Shared.Reflection;
 
 namespace Content.Client.Stylesheets
 {
-    public sealed class StylesheetManager : IStylesheetManager, IPostInjectInit
+    public sealed partial class StylesheetManager : IStylesheetManager, IPostInjectInit
     {
         [Dependency] private ILogManager _logManager = default!;
         [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
@@ -19,7 +19,7 @@ namespace Content.Client.Stylesheets
 
         // TODO: REMOVE (obsolete; used to construct StyleNano/StyleSpace)
         [Dependency]
-        private readonly IResourceCache _resCache = default!;
+        private IResourceCache _resCache = default!;
 
         private readonly Dictionary<Control, Func<IStylesheetAccessor, Stylesheet>> _controlStylesheetSubs = [];
         private readonly Dictionary<string, Stylesheet> _stylesheets = [];

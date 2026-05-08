@@ -3,7 +3,7 @@ using Content.Shared.StatusEffectNew;
 
 namespace Content.Shared._Offbrand.StatusEffects;
 
-public sealed class PainSuppressionStatusEffectSystem : EntitySystem
+public sealed partial class PainSuppressionStatusEffectSystem : EntitySystem
 {
     [Dependency] private PainSystem _pain = default!;
 

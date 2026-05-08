@@ -18,7 +18,7 @@ public sealed partial class RemoveStatusEffect : EntityEffectBase<RemoveStatusEf
             ("key", prototype.Index(EffectProto).Name));
 }
 
-public sealed class RemoveStatusEffectEntityEffectSystem : EntityEffectSystem<StatusEffectContainerComponent, RemoveStatusEffect>
+public sealed partial class RemoveStatusEffectEntityEffectSystem : EntityEffectSystem<StatusEffectContainerComponent, RemoveStatusEffect>
 {
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
 

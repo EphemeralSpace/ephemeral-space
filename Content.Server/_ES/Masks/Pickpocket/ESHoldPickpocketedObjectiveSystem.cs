@@ -6,7 +6,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._ES.Masks.Pickpocket;
 
-public sealed class ESHoldPickpocketedObjectiveSystem : ESBaseObjectiveSystem<ESHoldPickpocketedObjectiveComponent>
+public sealed partial class ESHoldPickpocketedObjectiveSystem : ESBaseObjectiveSystem<ESHoldPickpocketedObjectiveComponent>
 {
     [Dependency] private ContainerSystem _container = default!;
 

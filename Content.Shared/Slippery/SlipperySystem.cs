@@ -19,7 +19,7 @@ using Robust.Shared.Physics.Events;
 namespace Content.Shared.Slippery;
 
 [UsedImplicitly]
-public sealed class SlipperySystem : EntitySystem
+public sealed partial class SlipperySystem : EntitySystem
 {
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;

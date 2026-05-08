@@ -26,7 +26,7 @@ using Content.Shared.Power;
 namespace Content.Server.Kitchen.EntitySystems
 {
     [UsedImplicitly]
-    internal sealed class ReagentGrinderSystem : SharedReagentGrinderSystem
+    internal sealed partial class ReagentGrinderSystem : SharedReagentGrinderSystem
     {
         [Dependency] private IGameTiming _timing = default!;
         [Dependency] private SharedSolutionContainerSystem _solutionContainersSystem = default!;

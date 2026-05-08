@@ -12,7 +12,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Client.Guidebook.RichText;
 
 [UsedImplicitly]
-public sealed class TextLinkTag : IMarkupTagHandler
+public sealed partial class TextLinkTag : IMarkupTagHandler
 {
     [Dependency] private IPrototypeManager _proto = default!;
 

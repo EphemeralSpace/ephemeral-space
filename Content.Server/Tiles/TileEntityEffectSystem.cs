@@ -3,7 +3,7 @@ using Content.Shared.EntityEffects;
 
 namespace Content.Server.Tiles;
 
-public sealed class TileEntityEffectSystem : EntitySystem
+public sealed partial class TileEntityEffectSystem : EntitySystem
 {
     [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
 

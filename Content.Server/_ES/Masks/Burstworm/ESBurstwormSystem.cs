@@ -11,7 +11,7 @@ using Robust.Server.Audio;
 
 namespace Content.Server._ES.Masks.Burstworm;
 
-public sealed class ESBurstwormSystem : EntitySystem
+public sealed partial class ESBurstwormSystem : EntitySystem
 {
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;

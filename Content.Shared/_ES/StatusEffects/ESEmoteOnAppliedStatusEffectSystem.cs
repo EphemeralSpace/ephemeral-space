@@ -5,7 +5,7 @@ using Content.Shared.StatusEffectNew;
 
 namespace Content.Shared._ES.StatusEffects;
 
-public sealed class ESEmoteOnAppliedStatusEffectSystem : EntitySystem
+public sealed partial class ESEmoteOnAppliedStatusEffectSystem : EntitySystem
 {
     [Dependency] private SharedChatSystem _chat = default!;
 

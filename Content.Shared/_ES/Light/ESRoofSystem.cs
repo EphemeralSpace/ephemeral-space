@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Light;
 
-public sealed class ESRoofSystem : EntitySystem
+public sealed partial class ESRoofSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedMapSystem _map = default!;

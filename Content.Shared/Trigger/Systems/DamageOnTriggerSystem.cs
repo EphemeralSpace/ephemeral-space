@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class DamageOnTriggerSystem : XOnTriggerSystem<DamageOnTriggerComponent>
+public sealed partial class DamageOnTriggerSystem : XOnTriggerSystem<DamageOnTriggerComponent>
 {
     [Dependency] private Damage.Systems.DamageableSystem _damageableSystem = default!;
 

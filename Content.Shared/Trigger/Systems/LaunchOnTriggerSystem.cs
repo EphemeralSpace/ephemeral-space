@@ -5,7 +5,7 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class LaunchOnTriggerSystem : XOnTriggerSystem<LaunchOnTriggerComponent>
+public sealed partial class LaunchOnTriggerSystem : XOnTriggerSystem<LaunchOnTriggerComponent>
 {
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;

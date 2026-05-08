@@ -30,7 +30,7 @@ namespace Content.Server._ES.Radstorm;
 ///     Controls the radstorm round end behavior: after a certain amount of time, a radstorm will come and slowly kill everyone onboard the station.
 ///     This is announced on the shuttle, as well as announced
 /// </summary>
-public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoundEndRuleComponent>
+public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoundEndRuleComponent>
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private BrainDamageSystem _brainDamage = default!;

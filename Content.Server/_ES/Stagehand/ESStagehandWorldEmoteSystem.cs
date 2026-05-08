@@ -10,7 +10,7 @@ using Robust.Shared.Random;
 namespace Content.Server._ES.Stagehand;
 
 /// <see cref="ESStagehandWorldEmoteComponent"/>
-public sealed class ESStagehandWorldEmoteSystem : EntitySystem
+public sealed partial class ESStagehandWorldEmoteSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _proto = default!;

@@ -15,7 +15,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Remotes.EntitySystems;
 
-public abstract class SharedDoorRemoteSystem : EntitySystem
+public abstract partial class SharedDoorRemoteSystem : EntitySystem
 {
     [Dependency] private SharedAirlockSystem _airlock = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

@@ -7,7 +7,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Telesci;
 
-public abstract class ESSharedTelesciSystem : EntitySystem
+public abstract partial class ESSharedTelesciSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] protected EntityTableSystem EntityTable = default!;

@@ -20,7 +20,7 @@ namespace Content.Client.Atmos.Overlays;
 /// <summary>
 /// Overlay responsible for rendering visible atmos gasses (like plasma for example) usin.
 /// </summary>
-public sealed class GasTileVisibleGasOverlay : Overlay
+public sealed partial class GasTileVisibleGasOverlay : Overlay
 {
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private IResourceCache _resourceCache = default!;

@@ -4,7 +4,7 @@ using Robust.Client.Graphics;
 
 namespace Content.Client.NPC.HTN;
 
-public sealed class HTNSystem : EntitySystem
+public sealed partial class HTNSystem : EntitySystem
 {
     [Dependency] private IFontSelectionManager _fontSelection = default!;
 

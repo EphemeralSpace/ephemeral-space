@@ -4,7 +4,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._ES.Lighting;
 
-public sealed class ESGenericPointLightVisualizerSystem : VisualizerSystem<ESGenericPointLightVisualizerComponent>
+public sealed partial class ESGenericPointLightVisualizerSystem : VisualizerSystem<ESGenericPointLightVisualizerComponent>
 {
     [Dependency] private PointLightSystem _pointLight = default!;
 

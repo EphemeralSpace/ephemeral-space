@@ -8,7 +8,7 @@ using Robust.Client.Graphics;
 namespace Content.Client._ES.Blinking;
 
 /// <inheritdoc/>
-public sealed class ESBlinkingSystem : ESSharedBlinkingSystem
+public sealed partial class ESBlinkingSystem : ESSharedBlinkingSystem
 {
     [Dependency] private AnimationPlayerSystem _animationPlayer = default!;
     [Dependency] private SpriteSystem _sprite = default!;

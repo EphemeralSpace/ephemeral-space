@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Chemistry.EntitySystems;
 
-public sealed class InjectorStatusControlSystem : EntitySystem
+public sealed partial class InjectorStatusControlSystem : EntitySystem
 {
     [Dependency] private SharedSolutionContainerSystem _solutionContainers = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

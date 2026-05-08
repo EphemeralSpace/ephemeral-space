@@ -13,7 +13,7 @@ using Robust.Shared.Input.Binding;
 namespace Content.Client._ES.Mind.Ui;
 
 [UsedImplicitly]
-public sealed class ESCharacterUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
+public sealed partial class ESCharacterUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IConfigurationManager _cfg = default!;

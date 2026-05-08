@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class ExplodeOnTriggerSystem : XOnTriggerSystem<ExplodeOnTriggerComponent>
+public sealed partial class ExplodeOnTriggerSystem : XOnTriggerSystem<ExplodeOnTriggerComponent>
 {
     [Dependency] private SharedExplosionSystem _explosion = default!;
 
@@ -14,7 +14,7 @@ public sealed class ExplodeOnTriggerSystem : XOnTriggerSystem<ExplodeOnTriggerCo
     }
 }
 
-public sealed class ExplosionOnTriggerSystem : XOnTriggerSystem<ExplosionOnTriggerComponent>
+public sealed partial class ExplosionOnTriggerSystem : XOnTriggerSystem<ExplosionOnTriggerComponent>
 {
     [Dependency] private SharedExplosionSystem _explosion = default!;
 

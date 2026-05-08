@@ -5,7 +5,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._ES.Cargo.Requests;
 
-public sealed class ESCargoRequestSystem : ESSharedCargoRequestSystem
+public sealed partial class ESCargoRequestSystem : ESSharedCargoRequestSystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SpriteSystem _sprite = default!;

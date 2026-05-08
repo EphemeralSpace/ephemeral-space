@@ -10,7 +10,7 @@ using Content.Shared.Mind;
 
 namespace Content.Server._ES.Masks.Phantom;
 
-public sealed class ESReincarnateSystem : EntitySystem
+public sealed partial class ESReincarnateSystem : EntitySystem
 {
     [Dependency] private BrainDamageSystem _brain = default!;
     [Dependency] private GameTicker _gameTicker = default!;

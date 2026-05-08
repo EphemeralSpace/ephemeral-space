@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class RejuvenateOnTriggerSystem : XOnTriggerSystem<RejuvenateOnTriggerComponent>
+public sealed partial class RejuvenateOnTriggerSystem : XOnTriggerSystem<RejuvenateOnTriggerComponent>
 {
     [Dependency] private RejuvenateSystem _rejuvenate = default!;
 

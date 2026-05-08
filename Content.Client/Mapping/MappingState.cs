@@ -35,7 +35,7 @@ using static Robust.Shared.Input.Binding.PointerInputCmdHandler;
 
 namespace Content.Client.Mapping;
 
-public sealed class MappingState : GameplayStateBase
+public sealed partial class MappingState : GameplayStateBase
 {
     #if !FULL_RELEASE
     [Dependency] private IClientAdminManager _admin = default!;

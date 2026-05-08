@@ -22,7 +22,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Power.Antimatter;
 
-public sealed class ESAntimatterSystem : ESSharedAntimatterSystem
+public sealed partial class ESAntimatterSystem : ESSharedAntimatterSystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IViewVariablesManager _viewVariables = default!;

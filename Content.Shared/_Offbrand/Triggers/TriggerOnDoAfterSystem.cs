@@ -11,7 +11,7 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._Offbrand.Triggers;
 
-public sealed class TriggerOnDoAfterSystem : EntitySystem
+public sealed partial class TriggerOnDoAfterSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;

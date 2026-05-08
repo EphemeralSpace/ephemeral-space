@@ -3,7 +3,7 @@ using Content.Shared.StatusEffectNew;
 
 namespace Content.Shared._Offbrand.StatusEffects;
 
-public sealed class KnockdownOnAppliedStatusEffectSystem : EntitySystem
+public sealed partial class KnockdownOnAppliedStatusEffectSystem : EntitySystem
 {
     [Dependency] private SharedStunSystem _stun = default!;
 

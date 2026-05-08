@@ -17,7 +17,7 @@ namespace Content.Server._ES.Auditions;
 public sealed class ESAuditionsSystem : ESSharedAuditionsSystem;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Round)]
-public sealed class CastCommand : ToolshedCommand
+public sealed partial class CastCommand : ToolshedCommand
 {
     [Dependency] private IRobustRandom _random = default!;
 

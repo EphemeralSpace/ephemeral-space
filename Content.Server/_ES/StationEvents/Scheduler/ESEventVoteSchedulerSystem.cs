@@ -11,7 +11,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.StationEvents.Scheduler;
 
-public sealed class ESEventVoteSchedulerSystem : GameRuleSystem<ESEventVoteSchedulerComponent>
+public sealed partial class ESEventVoteSchedulerSystem : GameRuleSystem<ESEventVoteSchedulerComponent>
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private EventManagerSystem _eventManager = default!;

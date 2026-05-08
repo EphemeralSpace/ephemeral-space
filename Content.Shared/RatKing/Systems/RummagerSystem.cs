@@ -8,7 +8,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.RatKing.Systems;
 
-public sealed class RummagerSystem : EntitySystem
+public sealed partial class RummagerSystem : EntitySystem
 {
     [Dependency] private EntityTableSystem _entityTable =  default!;
     [Dependency] private SharedAudioSystem _audio = default!;

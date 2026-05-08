@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class KnockdownOnTriggerSystem : XOnTriggerSystem<KnockdownOnTriggerComponent>
+public sealed partial class KnockdownOnTriggerSystem : XOnTriggerSystem<KnockdownOnTriggerComponent>
 {
     [Dependency] private SharedStunSystem _stun = default!;
 

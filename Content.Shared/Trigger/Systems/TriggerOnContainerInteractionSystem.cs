@@ -7,7 +7,7 @@ namespace Content.Shared.Trigger.Systems;
 /// <summary>
 /// System for creating triggers when entities are inserted into or removed from containers.
 /// </summary>
-public sealed class TriggerOnContainerInteractionSystem : TriggerOnXSystem
+public sealed partial class TriggerOnContainerInteractionSystem : TriggerOnXSystem
 {
     [Dependency] private IGameTiming _timing = default!;
 

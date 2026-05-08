@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 namespace Content.Client._ES.Keypad;
 
 /// <inheritdoc/>
-public sealed class ESKeypadSystem : ESSharedKeypadSystem
+public sealed partial class ESKeypadSystem : ESSharedKeypadSystem
 {
     [Dependency] private IGameTiming _timing = default!;
 

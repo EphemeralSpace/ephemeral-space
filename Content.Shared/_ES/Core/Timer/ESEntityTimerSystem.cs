@@ -11,7 +11,7 @@ namespace Content.Shared._ES.Core.Timer;
 /// <summary>
 /// Used for creating generic timers which serialize to the world.
 /// </summary>
-public sealed class ESEntityTimerSystem : EntitySystem
+public sealed partial class ESEntityTimerSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IComponentFactory _factory = default!;

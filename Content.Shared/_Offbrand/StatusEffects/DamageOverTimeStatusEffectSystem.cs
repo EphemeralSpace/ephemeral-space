@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Offbrand.StatusEffects;
 
-public sealed class DamageOverTimeStatusEffectSystem : EntitySystem
+public sealed partial class DamageOverTimeStatusEffectSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private DamageableSystem _damageable = default!;

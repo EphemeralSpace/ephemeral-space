@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Keypad;
 
-public abstract class ESSharedKeypadSystem : EntitySystem
+public abstract partial class ESSharedKeypadSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;

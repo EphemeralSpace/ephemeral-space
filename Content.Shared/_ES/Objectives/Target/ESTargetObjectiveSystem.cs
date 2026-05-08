@@ -10,7 +10,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._ES.Objectives.Target;
 
-public sealed class ESTargetObjectiveSystem : EntitySystem
+public sealed partial class ESTargetObjectiveSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedJobSystem _job = default!;

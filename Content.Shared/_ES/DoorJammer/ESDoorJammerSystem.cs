@@ -7,7 +7,7 @@ namespace Content.Shared._ES.DoorJammer;
 /// <summary>
 ///     Controls bolting & unbolting a door properly while a door jammer is embedded.
 /// </summary>
-public sealed class ESDoorJammerSystem : EntitySystem
+public sealed partial class ESDoorJammerSystem : EntitySystem
 {
     [Dependency] private SharedDoorSystem _door = default!;
 

@@ -10,7 +10,7 @@ namespace Content.Client._ES.Viewcone.Overlays;
 /// <summary>
 ///     Renders the actual "cone" part of the viewcone, no alpha modulation
 /// </summary>
-public sealed class ESViewconeConeOverlay : Overlay
+public sealed partial class ESViewconeConeOverlay : Overlay
 {
     [Dependency] private IEntityManager _ent = default!;
     [Dependency] private IPrototypeManager _proto = default!;

@@ -5,7 +5,7 @@ using Robust.Shared.Sandboxing;
 
 namespace Content.Client._ES.UI;
 
-public sealed class SpawnWindowCommand : IConsoleCommand
+public sealed partial class SpawnWindowCommand : IConsoleCommand
 {
     [Dependency] private IReflectionManager _reflectionManager = default!;
     [Dependency] private ISandboxHelper _sandboxHelper = default!;

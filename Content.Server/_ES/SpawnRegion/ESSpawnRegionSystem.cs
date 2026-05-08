@@ -4,7 +4,7 @@ using Content.Shared.Atmos;
 
 namespace Content.Server._ES.SpawnRegion;
 
-public sealed class ESSpawnRegionSystem : ESSharedSpawnRegionSystem
+public sealed partial class ESSpawnRegionSystem : ESSharedSpawnRegionSystem
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
 

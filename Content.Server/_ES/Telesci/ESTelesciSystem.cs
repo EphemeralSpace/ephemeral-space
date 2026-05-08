@@ -13,7 +13,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Telesci;
 
-public sealed class ESTelesciSystem : ESSharedTelesciSystem
+public sealed partial class ESTelesciSystem : ESSharedTelesciSystem
 {
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private NavMapSystem _nav = default!;

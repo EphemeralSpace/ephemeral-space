@@ -10,7 +10,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class BluespaceLockerRule : StationEventSystem<BluespaceLockerRuleComponent>
+public sealed partial class BluespaceLockerRule : StationEventSystem<BluespaceLockerRuleComponent>
 {
     [Dependency] private BluespaceLockerSystem _bluespaceLocker = default!;
     [Dependency] private SharedTransformSystem _transform = default!;

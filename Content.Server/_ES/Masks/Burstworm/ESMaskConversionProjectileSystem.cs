@@ -9,7 +9,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Masks.Burstworm;
 
-public sealed class ESMaskConversionProjectileSystem : EntitySystem
+public sealed partial class ESMaskConversionProjectileSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;

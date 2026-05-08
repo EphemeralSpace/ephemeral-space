@@ -18,7 +18,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Offbrand.Wounds;
 
-public sealed class WoundableSystem : EntitySystem
+public sealed partial class WoundableSystem : EntitySystem
 {
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private IGameTiming _timing = default!;

@@ -7,7 +7,7 @@ using Content.Shared.Whitelist;
 namespace Content.Shared._Offbrand.Surgery;
 
 // this code needs to use predicted popups when construction gets predicted
-public sealed class SurgeryToolSystem : EntitySystem
+public sealed partial class SurgeryToolSystem : EntitySystem
 {
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private InventorySystem _inventory = default!;

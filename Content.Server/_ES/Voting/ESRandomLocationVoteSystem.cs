@@ -8,7 +8,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Voting;
 
-public sealed class ESRandomLocationVoteSystem : EntitySystem
+public sealed partial class ESRandomLocationVoteSystem : EntitySystem
 {
     [Dependency] private NavMapSystem _navMap = default!;
     [Dependency] private ESSpawnRegionSystem _spawnRegion = default!;

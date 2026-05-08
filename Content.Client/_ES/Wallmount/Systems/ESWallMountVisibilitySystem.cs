@@ -5,7 +5,7 @@ namespace Content.Client._ES.Wallmount.Systems;
 /// <summary>
 ///     Handles adding and removing the wallmount visibility overlay (which is not an "overlay", really, but)
 /// </summary>
-public sealed class ESWallMountVisibilitySystem : EntitySystem
+public sealed partial class ESWallMountVisibilitySystem : EntitySystem
 {
     [Dependency] private IOverlayManager _overlay = default!;
 

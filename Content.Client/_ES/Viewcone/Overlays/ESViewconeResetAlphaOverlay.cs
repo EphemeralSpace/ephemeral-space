@@ -12,7 +12,7 @@ namespace Content.Client._ES.Viewcone.Overlays;
 ///     After <see cref="ESViewconeSetAlphaOverlay"/> has run, resets the alpha of affected entities
 ///     back to normal.
 /// </summary>
-public sealed class ESViewconeResetAlphaOverlay : Overlay
+public sealed partial class ESViewconeResetAlphaOverlay : Overlay
 {
     [Dependency] private IEntityManager _ent = default!;
     private readonly ESViewconeOverlayManagementSystem _cone;

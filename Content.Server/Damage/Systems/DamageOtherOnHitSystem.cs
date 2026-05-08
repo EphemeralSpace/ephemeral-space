@@ -14,7 +14,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Damage.Systems;
 
-public sealed class DamageOtherOnHitSystem : SharedDamageOtherOnHitSystem
+public sealed partial class DamageOtherOnHitSystem : SharedDamageOtherOnHitSystem
 {
     // ES START
     [Dependency] private ESScreenshakeSystem _shake = default!;

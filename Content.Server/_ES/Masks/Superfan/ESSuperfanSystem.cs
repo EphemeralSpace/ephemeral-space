@@ -10,7 +10,7 @@ using Robust.Shared.Random;
 namespace Content.Server._ES.Masks.Superfan;
 
 /// <seealso cref="ESSuperfanComponent"/>
-public sealed class ESSuperfanSystem : EntitySystem
+public sealed partial class ESSuperfanSystem : EntitySystem
 {
     [Dependency] private ESMaskSystem _mask = default!;
     [Dependency] private ESMasqueradeSystem _masquerade = default!;

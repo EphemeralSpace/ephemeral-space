@@ -17,7 +17,7 @@ using Robust.Shared.Utility;
 namespace Content.Server._ES.Spawning;
 
 /// <inheritdoc/>
-public sealed class ESSpawningSystem : ESSharedSpawningSystem
+public sealed partial class ESSpawningSystem : ESSharedSpawningSystem
 {
     [Dependency] private IAdminManager _adminManager = default!;
     [Dependency] private IConfigurationManager _config = default!;

@@ -3,7 +3,7 @@ using Content.Shared._ES.Objectives.Target.Components;
 
 namespace Content.Shared._ES.Masks;
 
-public sealed class ESTargetTroupeObjectiveSystem : EntitySystem
+public sealed partial class ESTargetTroupeObjectiveSystem : EntitySystem
 {
     [Dependency] private ESSharedMaskSystem _mask = default!;
 

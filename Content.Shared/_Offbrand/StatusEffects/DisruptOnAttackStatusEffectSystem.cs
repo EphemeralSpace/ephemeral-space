@@ -7,7 +7,7 @@ using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Offbrand.StatusEffects;
 
-public sealed class DisruptOnAttackStatusEffectSystem : EntitySystem
+public sealed partial class DisruptOnAttackStatusEffectSystem : EntitySystem
 {
     [Dependency] private SharedUserInterfaceSystem _userInterface = default!;
 

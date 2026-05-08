@@ -8,7 +8,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Evac;
 
-public abstract class ESSharedEvacSystem : EntitySystem
+public abstract partial class ESSharedEvacSystem : EntitySystem
 {
     [Dependency] private ISharedAdminLogManager _adminLog = default!;
     [Dependency] private IConfigurationManager _config = default!;

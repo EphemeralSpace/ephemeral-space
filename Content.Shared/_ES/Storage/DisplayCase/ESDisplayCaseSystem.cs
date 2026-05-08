@@ -5,7 +5,7 @@ using Content.Shared.Examine;
 
 namespace Content.Shared._ES.Storage.DisplayCase;
 
-public sealed class ESDisplayCaseSystem : EntitySystem
+public sealed partial class ESDisplayCaseSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private ItemSlotsSystem _itemSlots = default!;

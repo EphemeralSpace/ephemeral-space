@@ -4,7 +4,7 @@ using Content.Shared.Whitelist;
 
 namespace Content.Shared._ES.Objectives.Target;
 
-public sealed class ESShareTargetObjectiveSystem : ESBaseObjectiveSystem<ESShareTargetObjectiveComponent>
+public sealed partial class ESShareTargetObjectiveSystem : ESBaseObjectiveSystem<ESShareTargetObjectiveComponent>
 {
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private ESTargetObjectiveSystem _targetObjective = default!;

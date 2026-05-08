@@ -11,7 +11,7 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared._ES.Masks.Phantom;
 
-public sealed class ESPhantomSystem : EntitySystem
+public sealed partial class ESPhantomSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;

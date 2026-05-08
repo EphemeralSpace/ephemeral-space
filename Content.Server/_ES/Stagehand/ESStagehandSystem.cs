@@ -16,7 +16,7 @@ namespace Content.Server._ES.Stagehand;
 /// <summary>
 /// This handles logic for spawning in stagehands into the round.
 /// </summary>
-public sealed class ESStagehandSystem : EntitySystem
+public sealed partial class ESStagehandSystem : EntitySystem
 {
     [Dependency] private ESStagehandNotificationsSystem _notif = default!;
     [Dependency] private IAdminLogManager _adminLog = default!;

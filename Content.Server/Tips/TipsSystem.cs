@@ -13,7 +13,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Tips;
 
-public sealed class TipsSystem : SharedTipsSystem
+public sealed partial class TipsSystem : SharedTipsSystem
 {
     [Dependency] private IChatManager _chat = default!;
     [Dependency] private IConfigurationManager _cfg = default!;

@@ -13,7 +13,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Masks.Traitor;
 
-public sealed class ESAddMaskOnUseSystem : EntitySystem
+public sealed partial class ESAddMaskOnUseSystem : EntitySystem
 {
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private ESSharedMaskSystem _mask = default!;

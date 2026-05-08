@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Power.Antimatter;
 
-public abstract class ESSharedAntimatterSystem : EntitySystem
+public abstract partial class ESSharedAntimatterSystem : EntitySystem
 {
     [Dependency] protected SharedAppearanceSystem Appearance = default!;
     [Dependency] protected IGameTiming Timing = default!;

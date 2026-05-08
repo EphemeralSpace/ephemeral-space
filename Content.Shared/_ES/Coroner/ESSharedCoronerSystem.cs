@@ -13,7 +13,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Coroner;
 
-public abstract class ESSharedCoronerSystem : EntitySystem
+public abstract partial class ESSharedCoronerSystem : EntitySystem
 {
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

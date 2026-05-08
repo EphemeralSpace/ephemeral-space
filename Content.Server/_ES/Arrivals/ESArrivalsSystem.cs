@@ -35,7 +35,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._ES.Arrivals;
 
-public sealed class ESArrivalsSystem : EntitySystem
+public sealed partial class ESArrivalsSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private IGameTiming _timing = default!;

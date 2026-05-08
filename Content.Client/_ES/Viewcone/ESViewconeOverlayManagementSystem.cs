@@ -17,7 +17,7 @@ namespace Content.Client._ES.Viewcone;
 ///     Handles adding and removing the viewcone overlays, as well as ferrying data between them
 ///     Also handles calculating desired view angle for active viewcones so overlays can use it
 /// </summary>
-public sealed class ESViewconeOverlayManagementSystem : EntitySystem
+public sealed partial class ESViewconeOverlayManagementSystem : EntitySystem
 {
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private IPlayerManager _playerManager = default!;

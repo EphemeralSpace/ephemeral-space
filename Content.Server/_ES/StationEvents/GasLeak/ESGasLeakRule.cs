@@ -14,7 +14,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.StationEvents.GasLeak;
 
-public sealed class ESGasLeakRule : StationEventSystem<ESGasLeakRuleComponent>
+public sealed partial class ESGasLeakRule : StationEventSystem<ESGasLeakRuleComponent>
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private NavMapSystem _navMap = default!;

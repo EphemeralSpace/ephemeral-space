@@ -7,7 +7,7 @@ using Content.Shared.Mind;
 
 namespace Content.Server._ES.Masks.Psychid;
 
-public sealed class ESPsychidSystem : EntitySystem
+public sealed partial class ESPsychidSystem : EntitySystem
 {
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private ESSharedMaskSystem _mask = default!;

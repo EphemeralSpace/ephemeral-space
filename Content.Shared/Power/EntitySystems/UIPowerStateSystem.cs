@@ -7,7 +7,7 @@ namespace Content.Shared.Power.EntitySystems;
 /// Entities with this component will increase their power usage to a working state
 /// when a UI on the entity is open.
 /// </summary>
-public sealed class UIPowerStateSystem : EntitySystem
+public sealed partial class UIPowerStateSystem : EntitySystem
 {
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
     [Dependency] private PowerStateSystem _powerState = default!;
