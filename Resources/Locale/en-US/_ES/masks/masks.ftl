@@ -2,6 +2,9 @@
 es-mask-arms-dealer-name = Arms Dealer
 es-mask-arms-dealer-desc = As an Arms Dealer, help people out--by passing out guns to whoever you think might be able to use it responsibly.
 
+es-mask-arsonist-name = Arsonist
+es-mask-arsonist-desc = As an Arsonist, light fires around the station to fulfill your sick desires.
+
 es-mask-avenger-name = Avenger
 es-mask-avenger-desc = As an Avenger, protect your target from being killed at all costs. If that fails, kill their murderer.
 
@@ -22,6 +25,9 @@ es-mask-nobleman-desc = As a Nobleman, prevent the corruption of your pure blood
 
 es-mask-phantom-name = Phantom
 es-mask-phantom-desc = As a Phantom, reincarnate as a vengeful spirit on death and haunt your murderer until they also die.
+
+es-mask-pickpocket-name = Pickpocket
+es-mask-pickpocket-desc = As a Pickpocket, sneak behind peoples' backs to snatch their belongings and grow your collection.
 
 es-mask-secretary-name = Secretary
 es-mask-secretary-desc = As a Secretary, do whatever you can to help your target complete their objectives.
@@ -73,7 +79,7 @@ es-mask-psychid-desc = As a Psychid, be killed in order to swap bodies and creat
 
 # Oddballs
 es-mask-sleeper-agent-name = Sleeper Agent
-es-mask-sleeper-agent-desc = As a Sleeper Agent, you're a member of crew and win with them, unless the entire traitors team dies, upon which you switch sides and gain a new mask.
+es-mask-sleeper-agent-desc = As a Sleeper Agent, you're a member of crew and win with them. When a traitor dies, you have a chance to switch sides and gain a new mask.
 
 # Meta
 es-objective-issuer-mask = Mask

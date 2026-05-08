@@ -35,7 +35,7 @@
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
-      - ReagentId: Sap
+      - ReagentId: Blood
         Quantity: 300
   - type: Reactive
     groups:

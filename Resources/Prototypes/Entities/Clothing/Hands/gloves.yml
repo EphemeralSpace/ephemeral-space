@@ -421,24 +421,6 @@
     - Kangaroo
 
 - type: entity
-  parent: [ClothingHandsKnuckleDusters, BaseMinorContraband] #Craftable version of base knuckledusters
-  id: ClothingHandsKnuckleDustersBrass
-  name: brass knuckle dusters
-  description: "Brass knuckle dusters, just like how they used to make em and still hit just as hard."
-  components:
-  - type: Sprite
-    sprite: Clothing/Hands/Gloves/KnuckleDusters/brassknuckleduster.rsi
-    state: brassknuckleduster
-  - type: Clothing
-    sprite: Clothing/Hands/Gloves/KnuckleDusters/brassknuckleduster.rsi
-  - type: Construction
-    graph: ClothingHandsKnuckleDustersBrass
-    node: icon
-  - type: Tag
-    tags:
-    - Kangaroo
-
-- type: entity
   parent: [ClothingHandsBase, BaseGrandTheftContraband]
   id: ClothingHandsKnuckleDustersQM
   name: QM's golden knuckle dusters

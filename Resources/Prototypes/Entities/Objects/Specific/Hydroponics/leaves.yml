@@ -91,16 +91,10 @@
         reagents:
         - ReagentId: SpaceDrugs
           Quantity: 3
-        - ReagentId: Lipolicide
-          Quantity: 3
         - ReagentId: MindbreakerToxin
-          Quantity: 2
-        - ReagentId: Happiness
           Quantity: 2
 #       - ReagentId: ColorfulReagent
 #         Quantity: 1
-        - ReagentId: Psicodine
-          Quantity: 0.6
 
 - type: entity
   name: dried rainbow cannabis leaves
@@ -118,16 +112,10 @@
         reagents:
         - ReagentId: SpaceDrugs
           Quantity: 2.4
-        - ReagentId: Lipolicide
-          Quantity: 2.4
         - ReagentId: MindbreakerToxin
-          Quantity: 1.6
-        - ReagentId: Happiness
           Quantity: 1.6
 #       - ReagentId: ColorfulReagent
 #         Quantity: 0.8
-        - ReagentId: Psicodine
-          Quantity: 0.48
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
     state: dried
@@ -147,16 +135,10 @@
         reagents:
         - ReagentId: SpaceDrugs
           Quantity: 4
-        - ReagentId: Lipolicide
-          Quantity: 4
         - ReagentId: MindbreakerToxin
-          Quantity: 2.66
-        - ReagentId: Happiness
           Quantity: 2.66
 #       - ReagentId: ColorfulReagent
 #         Quantity: 1.33
-        - ReagentId: Psicodine
-          Quantity: 0.8
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
     state: powderpile_rainbow

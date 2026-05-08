@@ -168,7 +168,7 @@ public abstract partial class SharedPuddleSystem
                 + $"splashed {SharedSolutionContainerSystem.ToPrettyString(splitSolution):solution} "
                 + $"from {ToPrettyString(entity.Owner):entity} onto {ToPrettyString(hit):target}");
 
-            Reactive.DoEntityReaction(hit, splitSolution, ReactionMethod.Touch);
+            Reactive.DoEntityReaction(hit, splitSolution, ReactionMethod.Touch, args.User);
 
             Popups.PopupClient(Loc.GetString("spill-melee-hit-attacker",
                     ("amount", totalSplit / hitCount),

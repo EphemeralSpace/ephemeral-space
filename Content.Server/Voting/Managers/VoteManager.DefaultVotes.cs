@@ -79,6 +79,8 @@ namespace Content.Server.Voting.Managers
 
         private void CreateRestartVote(ICommonSession? initiator)
         {
+            if (_gameTicker?.RunLevel != GameRunLevel.InRound)
+                return;
 
             var playerVoteMaximum = _cfg.GetCVar(CCVars.VoteRestartMaxPlayers);
             var totalPlayers = _playerManager.Sessions.Count(session => session.Status != SessionStatus.Disconnected);

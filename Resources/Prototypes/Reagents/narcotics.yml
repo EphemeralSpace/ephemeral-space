@@ -265,35 +265,6 @@
       - !type:ModifyLungDamage
         amount: 0.25
 
-# TODO: Replace these nonstandardized effects with generic brain damage
-- type: reagent
-  id: Impedrezene
-  name: reagent-name-impedrezene
-  group: Narcotics
-  desc: reagent-desc-impedrezene
-  physicalDesc: reagent-physical-desc-acrid
-  contrabandSeverity: Minor
-  flavor: bitter
-  color: "#215263"
-  metabolisms:
-    Narcotic:
-      effects:
-      - !type:MovementSpeedModifier
-        walkSpeedModifier: 0.65
-        sprintSpeedModifier: 0.65
-      - !type:HealthChange
-        damage:
-          types:
-            Poison: 2
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectSeeingRainbow
-        time: 10
-        type: Add
-      - !type:Vomit # Vomiting is a symptom of brain damage
-        probability: 0.05
-      - !type:Drunk # Headaches and slurring are major symptoms of brain damage, this is close enough
-        boozePower: 5
-
 - type: reagent
   id: SpaceDrugs
   name: reagent-name-space-drugs
@@ -302,22 +273,6 @@
   physicalDesc: reagent-physical-desc-syrupy
   flavor: bitter
   color: "#63806e"
-  metabolisms:
-    Narcotic:
-      effects:
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectSeeingRainbow
-        type: Add
-        time: 5
-
-- type: reagent
-  id: Bananadine
-  name: reagent-name-bananadine
-  group: Narcotics
-  desc: reagent-desc-bananadine
-  physicalDesc: reagent-physical-desc-powdery
-  flavor: bitter
-  color: "#ffff00"
   metabolisms:
     Narcotic:
       effects:
@@ -478,55 +433,3 @@
         - !type:ReagentCondition
           reagent: TearGas
           min: 4
-
-- type: reagent
-  id: Happiness
-  name: reagent-name-happiness
-  group: Narcotics
-  desc: reagent-desc-happiness
-  physicalDesc: reagent-physical-desc-soothing
-  flavor: paintthinner
-  color: "#EE35FF"
-  metabolisms:
-    Narcotic:
-      effects:
-      - !type:Emote
-        emote: Laugh
-        showInChat: true
-        probability: 0.1
-        conditions:
-        - !type:ReagentCondition
-          reagent: Happiness
-          max: 20
-      - !type:Emote
-        emote: Whistle
-        showInChat: true
-        probability: 0.1
-        conditions:
-        - !type:ReagentCondition
-          reagent: Happiness
-          max: 20
-      - !type:Emote
-        emote: Crying
-        showInChat: true
-        probability: 0.1
-        conditions:
-        - !type:ReagentCondition
-          reagent: Happiness
-          min: 20
-      - !type:PopupMessage # we dont have sanity/mood so this will have to do
-        type: Local
-        visualType: Medium
-        messages:
-        - "psicodine-effect-fearless"
-        - "psicodine-effect-anxieties-wash-away"
-        - "psicodine-effect-at-peace"
-        probability: 0.2
-        conditions:
-        - !type:ReagentCondition
-          reagent: Happiness
-          max: 20
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectSeeingRainbow
-        type: Add
-        time: 5

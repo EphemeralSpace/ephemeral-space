@@ -123,14 +123,6 @@
         Base: dead
       Dead:
         Base: dead
-  - type: Extractable
-    grindableSolutionName: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: GroundBee
-          Quantity: 1
   - type: Butcherable
     spawned:
     - id: null # Should give nothing when you butcher it so we set the item id it needs to spawn to null
@@ -408,7 +400,7 @@
     solutions:
       food:
         reagents:
-        - ReagentId: Slime
+        - ReagentId: InsectBlood
           Quantity: 5
   - type: Butcherable
     spawned:
@@ -476,162 +468,6 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-
-- type: entity
-  name: mothroach
-  parent: MobCockroach
-  id: MobMothroach
-  description: This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches.
-  components:
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.2
-        density: 120
-        mask:
-        - SmallMobMask
-        layer:
-        - SmallMobLayer
-  - type: Speech
-    speechVerb: Moth
-    speechSounds: Squeak
-    allowedEmotes: ['Chitter', 'Squeak']
-  - type: FaxableObject
-    insertingState: inserting_mothroach
-  - type: MothAccent
-  - type: Sprite
-    sprite: Mobs/Animals/mothroach/mothroach.rsi
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: mothroach
-  - type: SpriteMovement
-    movementLayers:
-      movement:
-        state: mothroach-moving
-    noMovementLayers:
-      movement:
-        state: mothroach
-  - type: Item
-    size: Normal
-  - type: Clothing
-    quickEquip: false
-    sprite: Mobs/Animals/mothroach/mothroach.rsi
-    equippedPrefix: 0
-    slots:
-    - HEAD
-  - type: Appearance
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: mothroach
-      Critical:
-        Base: mothroach_dead
-      Dead:
-        Base: mothroach_dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      40: Critical
-      60: Dead
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 2.5
-    baseSprintSpeed : 4
-    weightlessAcceleration: 1.5
-    weightlessFriction: 1
-    baseWeightlessModifier: 1
-  - type: Damageable
-    damageContainer: Biological
-    damageModifierSet: Moth
-  - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: InsectBlood
-        Quantity: 20
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 0.5
-    damageRecovery:
-      types:
-        Asphyxiation: -0.5
-  - type: CombatMode
-  - type: Butcherable
-    spawned:
-    - id: FoodMeatSlime
-      amount: 2
-  - type: Extractable
-    grindableSolutionName: food
-  - type: ReplacementAccent
-    accent: mothroach
-  - type: Vocal
-    sounds:
-      Male: UnisexMoth
-      Female: UnisexMoth
-      Unsexed: UnisexMoth
-    wilhelmProbability: 0.001
-  - type: Tag
-    tags:
-    - Trash
-    - VimPilot
-  - type: ESCannotSuicide
-  - type: CanEscapeInventory
-  - type: NpcFactionMember
-    factions:
-    - Mouse
-  - type: Body
-    prototype: Mothroach
-  - type: TypingIndicator
-    proto: moth
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
-        damage: 60
-      behaviors:
-      - !type:GibBehavior
-        recursive: false
-  - type: FireVisuals
-    sprite: Mobs/Effects/onfire.rsi
-    normalState: Mouse_burning
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
-  - type: InventorySlots
-  - type: Inventory
-    speciesId: hamster
-    templateId: hamster
-    displacements:
-      head:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/mothroach/displacement.rsi
-            state: head
-      mask:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/mothroach/displacement.rsi
-            state: mask
-      suitstorage:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/mothroach/displacement.rsi
-            state: suitstorage
-      eyes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/mothroach/displacement.rsi
-            state: eyes
-      neck:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/mothroach/displacement.rsi
-            state: neck
-
 
 # Note that the mallard duck is actually a male drake mallard, with the brown duck being the female variant of the same species, however ss14 lacks sex specific textures
 # The white duck is more akin to a pekin or call duck.
@@ -978,7 +814,7 @@
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
-      - ReagentId: CopperBlood
+      - ReagentId: Blood
         Quantity: 50
   - type: Tag
     tags:
@@ -2409,7 +2245,7 @@
     solution: melee
     generated:
       reagents:
-      - ReagentId: Mechanotoxin
+      - ReagentId: Toxin
         Quantity: 1
   - type: MeleeChemicalInjector
     transferAmount: 0.75
@@ -2431,7 +2267,7 @@
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
-      - ReagentId: CopperBlood
+      - ReagentId: Blood
         Quantity: 150
   - type: Speech
     speechVerb: Arachnid
@@ -2569,7 +2405,7 @@
     - type: Bloodstream
       bloodReferenceSolution:
         reagents:
-        - ReagentId: Laughter
+        - ReagentId: Blood
           Quantity: 150
 
 - type: entity
@@ -3477,7 +3313,7 @@
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
-      - ReagentId: Sap
+      - ReagentId: Blood
         Quantity: 60
   - type: DamageStateVisuals
     states:
@@ -3634,72 +3470,3 @@
         Base: reindeer_doe_dead
       Dead:
         Base: reindeer_doe_dead
-
-- type: entity
-  parent: MobCorgiBase
-  id: MobCorgiSmart
-  name: smart corgi
-  description: An unusually smart dog.
-  components:
-  # Use corgi sprite, need to add handcuff layer
-  - type: Sprite
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: corgi
-    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
-      color: "#ffffff"
-      sprite: Objects/Misc/handcuffs.rsi # Would do a custom dog handcuff sprite but unfortunately handcuffs have their overlay baked-in to the cuff itself so this is mostly filler
-      state: body-overlay-2
-      visible: false
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-  # Custom inventory template
-  - type: Inventory
-    speciesId: dog
-    templateId: SmartCorgi
-    displacements:
-      belt:
-        sizeMaps:
-          32:
-            sprite: Mobs/Pets/displacements.rsi
-            state: corgi_belt_displacement
-      ears:
-        sizeMaps:
-          32:
-            sprite: Mobs/Pets/displacements.rsi
-            state: corgi_belt_displacement
-      head:
-        sizeMaps:
-          32:
-            sprite: Mobs/Pets/displacements.rsi
-            state: corgi_head_displacement
-  - type: Hands # HANDS!
-  - type: Puller
-  - type: Cuffable # bad dog!
-  - type: BlockWriting # dogs can't write, paws unwieldy; mouth-writing is a myth
-  - type: Stripping
-  - type: ComplexInteraction
-  # Implement custom borgi body type
-  - type: Body
-    prototype: SmartCorgi
-  - type: RotationVisuals
-    defaultRotation: 90
-    horizontalRotation: 180
-  - type: Grammar
-    attributes:
-      gender: epicene # Gender neutral
-      proper: true
-  - type: Tag
-    tags:
-    - VimPilot
-    - CanPilot
-    - DoorBumpOpener
-  - type: StatusIcon # marks them as crew
-    bounds: -0.5,-0.5,0.5,0.5
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen

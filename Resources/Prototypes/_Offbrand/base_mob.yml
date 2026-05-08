@@ -296,6 +296,11 @@
       70: DefaultBraingasp
     oxygenThresholds:
       0: DefaultBrainslump
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritLastWords
 
 - type: entity
   abstract: true

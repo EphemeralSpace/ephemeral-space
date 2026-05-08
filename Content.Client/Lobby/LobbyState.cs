@@ -24,6 +24,7 @@ using Content.Shared.Chat;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Shared;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Lobby
 {
@@ -111,6 +112,9 @@ namespace Content.Client.Lobby
             _gameTicker.LobbyLateJoinStatusUpdated -= LobbyLateJoinStatusUpdated;
             _contentAudioSystem.LobbySoundtrackChanged -= UpdateLobbySoundtrackInfo;
 
+            _cfg.UnsubValueChanged(CVars.GameHostName, OnServerNameChanged);
+            _cfg.UnsubValueChanged(CCVars.ServerLobbyName, OnServerNameChanged);
+
             _voteManager.ClearPopupContainer();
 
             Lobby!.CharacterPreview.CharacterSetupButton.OnPressed -= OnSetupPressed;
@@ -132,8 +136,8 @@ namespace Content.Client.Lobby
 
         private void OnServerNameChanged(string _)
         {
-            var lobbyNameCvar = _cfg.GetCVar(CCVars.ServerLobbyName);
-            var serverName = _cfg.GetCVar(CVars.GameHostName);
+            var lobbyNameCvar = FormattedMessage.EscapeText(_cfg.GetCVar(CCVars.ServerLobbyName));
+            var serverName = FormattedMessage.EscapeText(_cfg.GetCVar(CVars.GameHostName));
 
             Lobby?.ServerName.Text = Loc.GetString("ui-lobby-title-fmt",
                 ("text", string.IsNullOrEmpty(lobbyNameCvar)

@@ -912,7 +912,6 @@
     - UnstableMutagen
     - Mold
     - PolytrinicAcid
-    - FerrochromicAcid
     - FluorosulfuricAcid
     - SulfuricAcid
     - HeartbreakerToxin
@@ -945,15 +944,11 @@
     - Nocturine
     - MuteToxin
     - NorepinephricAcid
-    - Pax
     - Ipecac
-    - Cognizine
     - Beer
     - SpaceGlue
     - SpaceLube
     - CogChamp
-    - Honk
-    - Carpetium
   - type: Edible
     edible: Drink
     solution: anomaly

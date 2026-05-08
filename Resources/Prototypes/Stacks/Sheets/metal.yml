@@ -12,9 +12,3 @@
   icon: { sprite: /Textures/Objects/Materials/Sheets/metal.rsi, state: plasteel }
   spawn: SheetPlasteel1
 
-- type: stack
-  parent: BaseSheetStack
-  id: Brass
-  name: stack-brass
-  icon: { sprite: /Textures/Objects/Materials/Sheets/metal.rsi, state: brass }
-  spawn: SheetBrass1

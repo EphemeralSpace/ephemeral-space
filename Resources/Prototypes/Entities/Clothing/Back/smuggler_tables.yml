@@ -58,9 +58,6 @@
     - id: PillSpaceDrugs
       amount: !type:RangeNumberSelector
         range: 1, 2
-    - id: StrangePill
-      amount: !type:RangeNumberSelector
-        range: 1, 5
 
 - type: entityTable #5x tiny
   id: RandomSatchelCannabisTable
@@ -123,10 +120,8 @@
       amount: !type:RangeNumberSelector
         range: 1, 5
     - id: ChemistryBottleOmnizine
-    - id: ChemistryBottleCognizine
     - id: ChemistryBottleToxin
     - id: ChemistryBottleNocturine
-    - id: VestineChemistryVial
 
 - type: entityTable
   id: RandomSatchelTable2
@@ -217,23 +212,6 @@
     children:
     - id: SpaceCash100
       weight: 15
-    - id: ChemDispenserMachineCircuitboard
-    - id: SyndicateMicrowaveMachineCircuitboard
-    - id: HydroponicsTrayMachineCircuitboard
-    - id: DawInstrumentMachineCircuitboard
-    - id: PortableGeneratorPacmanMachineCircuitboard
-    - id: PortableGeneratorSuperPacmanMachineCircuitboard
-    - id: HellfireFreezerMachineCircuitBoard
-    - id: HellfireHeaterMachineCircuitBoard
-    - id: ReagentGrinderMachineCircuitboard
-    - id: ReagentGrinderIndustrialMachineCircuitboard
-    - id: BoozeDispenserMachineCircuitboard
-    - id: MiniGravityGeneratorCircuitboard
-    - id: AmmoTechFabCircuitboard
-    - id: CryoPodMachineCircuitboard
-    - id: PowerCageRechargerCircuitboard
-    - id: ShuttleConsoleCircuitboard
-    - id: TurboItemRechargerCircuitboard
 
 - type: entityTable
   id: RandomSatchelTable3
@@ -617,9 +595,6 @@
       amount: !type:RangeNumberSelector
         range: 1, 10
     - id: GoatCube
-      amount: !type:RangeNumberSelector
-        range: 1, 10
-    - id: MothroachCube
       amount: !type:RangeNumberSelector
         range: 1, 10
     - id: MouseCube

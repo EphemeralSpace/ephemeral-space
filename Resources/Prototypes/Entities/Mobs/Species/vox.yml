@@ -100,7 +100,7 @@
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
-      - ReagentId: AmmoniaBlood
+      - ReagentId: Blood
         Quantity: 300
   - type: MeleeWeapon
     soundHit:

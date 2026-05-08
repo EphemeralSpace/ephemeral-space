@@ -41,7 +41,6 @@
   name: es-mask-marauder-name
   description: es-mask-marauder-desc
   color: coral
-  weight: 1.5
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto:
@@ -61,7 +60,7 @@
   name: es-mask-subverter-name
   description: es-mask-subverter-desc
   color: gray
-  weight: 0.5
+  weight: 0.75
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto:
@@ -75,5 +74,6 @@
   troupe: Crew
   description: es-mask-sleeper-agent-desc
   color: darkturquoise
+  weight: 0 # otherwise it can roll in randomasquerades with no traitors. temp fix
   mindComponents:
   - type: ESSuperfan
