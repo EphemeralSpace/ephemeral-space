@@ -13,12 +13,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Telesci;
 
-public sealed class ESTelesciSystem : ESSharedTelesciSystem
+public sealed partial class ESTelesciSystem : ESSharedTelesciSystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly NavMapSystem _nav = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private NavMapSystem _nav = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

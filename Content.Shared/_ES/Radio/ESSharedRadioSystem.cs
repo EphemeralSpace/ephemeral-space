@@ -7,11 +7,11 @@ using Content.Shared.Verbs;
 
 namespace Content.Shared._ES.Radio;
 
-public sealed class ESSharedRadioSystem : EntitySystem
+public sealed partial class ESSharedRadioSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly ESSparksSystem _sparks = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private ESSparksSystem _sparks = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

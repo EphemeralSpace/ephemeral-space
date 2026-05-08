@@ -19,9 +19,9 @@ public sealed partial class ModifyHeartDamage : EntityEffectBase<ModifyHeartDama
     }
 }
 
-public sealed class ModifyHeartDamageEntityEffectSystem : EntityEffectSystem<HeartrateComponent, ModifyHeartDamage>
+public sealed partial class ModifyHeartDamageEntityEffectSystem : EntityEffectSystem<HeartrateComponent, ModifyHeartDamage>
 {
-    [Dependency] private readonly HeartSystem _heart = default!;
+    [Dependency] private HeartSystem _heart = default!;
 
     protected override void Effect(Entity<HeartrateComponent> ent, ref EntityEffectEvent<ModifyHeartDamage> args)
     {

@@ -22,15 +22,15 @@ using Robust.Shared.Timing;
 namespace Content.Client.Gameplay
 {
     [Virtual]
-    public class GameplayState : GameplayStateBase, IMainViewportState
+    public partial class GameplayState : GameplayStateBase, IMainViewportState
     {
-        [Dependency] private readonly IEyeManager _eyeManager = default!;
-        [Dependency] private readonly IOverlayManager _overlayManager = default!;
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly ChangelogManager _changelog = default!;
-        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-        [Dependency] private readonly IPlayerManager _player = default!;
-        [Dependency] private readonly IEntityManager _ent = default!;
+        [Dependency] private IEyeManager _eyeManager = default!;
+        [Dependency] private IOverlayManager _overlayManager = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
+        [Dependency] private ChangelogManager _changelog = default!;
+        [Dependency] private IConfigurationManager _configurationManager = default!;
+        [Dependency] private IPlayerManager _player = default!;
+        [Dependency] private IEntityManager _ent = default!;
 
         private FpsCounter _fpsCounter = default!;
         private Label _version = default!;

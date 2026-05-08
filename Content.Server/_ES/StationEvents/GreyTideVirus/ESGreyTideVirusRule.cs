@@ -15,11 +15,11 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.StationEvents.GreyTideVirus;
 
-public sealed class ESGreyTideVirusRule : StationEventSystem<ESGreyTideVirusComponent>
+public sealed partial class ESGreyTideVirusRule : StationEventSystem<ESGreyTideVirusComponent>
 {
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly DoorSystem _door = default!;
-    [Dependency] private readonly LockSystem _lock = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private DoorSystem _door = default!;
+    [Dependency] private LockSystem _lock = default!;
 
     public override void Initialize()
     {

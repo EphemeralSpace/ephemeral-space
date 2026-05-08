@@ -23,21 +23,21 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.Troupes.Parasite;
 
-public sealed class ESParasiteRuleSystem : EntitySystem
+public sealed partial class ESParasiteRuleSystem : EntitySystem
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ESEntityTimerSystem _entityTimer = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly ESMaskSystem _mask = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly ESObjectiveSystem _objective = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly RejuvenateSystem _rejuvenate = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ESEntityTimerSystem _entityTimer = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private ESMaskSystem _mask = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private ESObjectiveSystem _objective = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private RejuvenateSystem _rejuvenate = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private StationSpawningSystem _stationSpawning = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

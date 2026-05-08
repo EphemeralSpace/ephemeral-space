@@ -21,9 +21,9 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._ES.Stagehand.Ui;
 
 [UsedImplicitly]
-public sealed class StagehandObserveUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
+public sealed partial class StagehandObserveUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
     [UISystemDependency] private readonly JobSystem _job = default!;
     [UISystemDependency] private readonly ESMaskSystem? _mask = default!;
     [UISystemDependency] private readonly ESObjectiveSystem? _objective = default!;

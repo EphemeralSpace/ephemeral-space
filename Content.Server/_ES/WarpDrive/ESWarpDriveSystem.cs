@@ -25,15 +25,15 @@ namespace Content.Server._ES.WarpDrive;
 /// <see cref="ESWarpDriveGameRuleComponent"/>
 public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly EntityTableSystem _table = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ESObjectiveSystem _objective = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private EntityTableSystem _table = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ESObjectiveSystem _objective = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {

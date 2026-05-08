@@ -6,7 +6,7 @@ using Content.Shared.Sound.Components;
 
 namespace Content.Server.Sound;
 
-public sealed partial class SpamEmitSoundRequirePowerSystem : SharedSpamEmitSoundRequirePowerSystem
+public sealed class SpamEmitSoundRequirePowerSystem : SharedSpamEmitSoundRequirePowerSystem
 {
     public override void Initialize()
     {

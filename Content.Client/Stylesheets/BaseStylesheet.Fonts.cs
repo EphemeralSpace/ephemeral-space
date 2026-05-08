@@ -13,10 +13,10 @@ public abstract partial class BaseStylesheet : IStyleResources
     private static readonly FontKind[] AllFontKinds =
         [FontKind.Regular, FontKind.Bold, FontKind.Italic, FontKind.BoldItalic];
 
-    [Dependency] protected readonly ISandboxHelper SandboxHelper = default!;
-    [Dependency] protected readonly IReflectionManager ReflectionManager = default!;
-    [Dependency] protected internal readonly IResourceCache ResCache = default!;
-    [Dependency] protected readonly IFontSelectionManager FontSelection = null!;
+    [Dependency] protected ISandboxHelper SandboxHelper = default!;
+    [Dependency] protected IReflectionManager ReflectionManager = default!;
+    [Dependency] protected internal IResourceCache ResCache = default!;
+    [Dependency] protected IFontSelectionManager FontSelection = null!;
 
     public Stylesheet Stylesheet { get; init; }
 

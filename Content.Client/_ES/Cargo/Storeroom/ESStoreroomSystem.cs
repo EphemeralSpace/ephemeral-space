@@ -4,9 +4,9 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._ES.Cargo.Storeroom;
 
-public sealed class ESStoreroomSystem : ESSharedStoreroomSystem
+public sealed partial class ESStoreroomSystem : ESSharedStoreroomSystem
 {
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
 
     public override void Initialize()
     {

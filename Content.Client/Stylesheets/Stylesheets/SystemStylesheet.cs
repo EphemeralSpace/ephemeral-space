@@ -9,7 +9,6 @@ using static Robust.Client.UserInterface.StylesheetHelpers;
 
 namespace Content.Client.Stylesheets.Stylesheets;
 
-[Virtual]
 public sealed partial class SystemStylesheet : CommonStylesheet
 {
     public override string StylesheetName => "System";

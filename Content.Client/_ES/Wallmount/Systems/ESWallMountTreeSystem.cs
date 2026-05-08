@@ -10,9 +10,9 @@ namespace Content.Client._ES.Wallmount.Systems;
 /// <summary>
 ///     Handles updating the component tree for wallmount visibility purposes, so we can query it fast in <see cref="ESWallMountVisibilityOverlay"/>
 /// </summary>
-public sealed class ESWallMountTreeSystem : ComponentTreeSystem<ESWallMountTreeComponent, WallMountComponent>
+public sealed partial class ESWallMountTreeSystem : ComponentTreeSystem<ESWallMountTreeComponent, WallMountComponent>
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     protected override bool DoFrameUpdate => true;
     protected override bool DoTickUpdate => false;

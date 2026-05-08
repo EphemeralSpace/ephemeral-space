@@ -12,11 +12,11 @@ using Robust.Shared.Random;
 
 namespace Content.Client._ST.Interaction;
 
-public sealed class StellarInteractionParticleSystem : EntitySystem
+public sealed partial class StellarInteractionParticleSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private AnimationPlayerSystem _animation = default!;
 
     private const string AnimateKey = "particle-animation";
 

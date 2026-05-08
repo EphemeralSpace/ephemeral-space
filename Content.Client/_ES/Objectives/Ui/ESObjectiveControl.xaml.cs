@@ -10,7 +10,7 @@ namespace Content.Client._ES.Objectives.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class ESObjectiveControl : BoxContainer
 {
-    [Dependency] private readonly EntityManager _ent = default!;
+    [Dependency] private EntityManager _ent = default!;
     private readonly ESObjectiveSystem _objective;
     private readonly SpriteSystem _sprite;
 

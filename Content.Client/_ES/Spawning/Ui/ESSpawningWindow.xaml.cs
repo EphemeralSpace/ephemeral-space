@@ -25,11 +25,11 @@ namespace Content.Client._ES.Spawning.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class ESSpawningWindow : FancyWindow
 {
-    [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
-    [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
+    [Dependency] private IClientPreferencesManager _preferencesManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystem = default!;
+    [Dependency] private JobRequirementsManager _jobRequirements = default!;
 
     private ESDiegeticLobbyUIController _lobbyCurtains;
     private readonly ClientGameTicker _gameTicker;
