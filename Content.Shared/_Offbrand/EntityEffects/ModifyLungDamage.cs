@@ -19,9 +19,9 @@ public sealed partial class ModifyLungDamage : EntityEffectBase<ModifyLungDamage
     }
 }
 
-public sealed class ModifyLungDamageEntityEffectSystem : EntityEffectSystem<LungDamageComponent, ModifyLungDamage>
+public sealed partial class ModifyLungDamageEntityEffectSystem : EntityEffectSystem<LungDamageComponent, ModifyLungDamage>
 {
-    [Dependency] private readonly LungDamageSystem _lungDamage = default!;
+    [Dependency] private LungDamageSystem _lungDamage = default!;
 
     protected override void Effect(Entity<LungDamageComponent> ent, ref EntityEffectEvent<ModifyLungDamage> args)
     {

@@ -18,14 +18,14 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Masks;
 
-public abstract class ESSharedMaskSystem : EntitySystem
+public abstract partial class ESSharedMaskSystem : EntitySystem
 {
-    [Dependency] protected readonly ISharedAdminManager AdminManager = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
-    [Dependency] protected readonly SharedMindSystem Mind = default!;
-    [Dependency] protected readonly ESSharedObjectiveSystem Objective = default!;
-    [Dependency] protected readonly SharedRoleSystem Role = default!;
+    [Dependency] protected ISharedAdminManager AdminManager = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] protected IPrototypeManager PrototypeManager = default!;
+    [Dependency] protected SharedMindSystem Mind = default!;
+    [Dependency] protected ESSharedObjectiveSystem Objective = default!;
+    [Dependency] protected SharedRoleSystem Role = default!;
 
     protected static readonly VerbCategory ESMask =
         new("es-verb-categories-mask", "/Textures/Interface/emotes.svg.192dpi.png");

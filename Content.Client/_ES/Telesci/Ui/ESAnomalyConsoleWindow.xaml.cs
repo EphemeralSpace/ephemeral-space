@@ -12,7 +12,7 @@ namespace Content.Client._ES.Telesci.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class ESAnomalyConsoleWindow : FancyWindow
 {
-    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
 
     private string _currentSelected = string.Empty;
 

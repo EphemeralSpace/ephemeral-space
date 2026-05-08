@@ -8,9 +8,9 @@ namespace Content.Client._ES.Lighting;
 /// <summary>
 ///     Handles enabling and disabling mob inherent pointlights when locally attaching to a new mob.
 /// </summary>
-public sealed class ESInherentLightSystem : EntitySystem
+public sealed partial class ESInherentLightSystem : EntitySystem
 {
-    [Dependency] private readonly PointLightSystem _light = default!;
+    [Dependency] private PointLightSystem _light = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

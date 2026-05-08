@@ -2,4 +2,4 @@
 
 namespace Content.Client.Implants;
 
-public sealed partial class ChameleonControllerSystem : SharedChameleonControllerSystem;
+public sealed class ChameleonControllerSystem : SharedChameleonControllerSystem;

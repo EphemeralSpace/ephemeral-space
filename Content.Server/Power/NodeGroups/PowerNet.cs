@@ -23,7 +23,7 @@ namespace Content.Server.Power.NodeGroups
 
     [NodeGroup(NodeGroupID.HVPower, NodeGroupID.MVPower)]
     [UsedImplicitly]
-    public sealed partial class PowerNet : BasePowerNet<IPowerNet>, IPowerNet
+    public sealed class PowerNet : BasePowerNet<IPowerNet>, IPowerNet
     {
         [ViewVariables] public readonly List<BatteryChargerComponent> Chargers = new();
         [ViewVariables] public readonly List<BatteryDischargerComponent> Dischargers = new();

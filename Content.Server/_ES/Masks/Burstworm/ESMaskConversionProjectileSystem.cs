@@ -9,13 +9,13 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Masks.Burstworm;
 
-public sealed class ESMaskConversionProjectileSystem : EntitySystem
+public sealed partial class ESMaskConversionProjectileSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ESEntityTimerSystem _entityTimer = default!;
-    [Dependency] private readonly ESMaskSystem _mask = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ESEntityTimerSystem _entityTimer = default!;
+    [Dependency] private ESMaskSystem _mask = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

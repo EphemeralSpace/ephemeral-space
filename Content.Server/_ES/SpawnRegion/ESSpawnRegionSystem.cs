@@ -4,9 +4,9 @@ using Content.Shared.Atmos;
 
 namespace Content.Server._ES.SpawnRegion;
 
-public sealed class ESSpawnRegionSystem : ESSharedSpawnRegionSystem
+public sealed partial class ESSpawnRegionSystem : ESSharedSpawnRegionSystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
 
     protected override bool IsMarkerPressureSafe(EntityUid grid, EntityUid? map, Vector2i indices)
     {

@@ -6,9 +6,9 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Offbrand.Wounds;
 
-public sealed class MaximumDamageSystem : EntitySystem
+public sealed partial class MaximumDamageSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

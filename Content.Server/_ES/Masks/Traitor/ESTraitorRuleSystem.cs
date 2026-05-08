@@ -15,12 +15,12 @@ namespace Content.Server._ES.Masks.Traitor;
 /// <summary>
 /// This handles <see cref="ESTraitorRuleComponent"/>
 /// </summary>
-public sealed class ESTraitorRuleSystem : EntitySystem
+public sealed partial class ESTraitorRuleSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private MapLoaderSystem _mapLoader = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

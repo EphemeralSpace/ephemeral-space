@@ -13,13 +13,13 @@ using Robust.Server.GameObjects;
 namespace Content.Server.Spawners.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class ConditionalSpawnerSystem : EntitySystem
+    public sealed partial class ConditionalSpawnerSystem : EntitySystem
     {
-        [Dependency] private readonly IRobustRandom _robustRandom = default!;
-        [Dependency] private readonly GameTicker _ticker = default!;
-        [Dependency] private readonly EntityTableSystem _entityTable = default!;
+        [Dependency] private IRobustRandom _robustRandom = default!;
+        [Dependency] private GameTicker _ticker = default!;
+        [Dependency] private EntityTableSystem _entityTable = default!;
 // ES START
-        [Dependency] private readonly TransformSystem _esTransform = default!;
+        [Dependency] private TransformSystem _esTransform = default!;
 // ES END
 
         public override void Initialize()

@@ -10,7 +10,7 @@ using System.Numerics;
 namespace Content.Server.Chemistry.Containers.EntitySystems;
 
 [Obsolete("This is being depreciated. Use SharedSolutionContainerSystem instead!")]
-public sealed partial class SolutionContainerSystem : SharedSolutionContainerSystem
+public sealed class SolutionContainerSystem : SharedSolutionContainerSystem
 {
     [Obsolete("This is being depreciated. Use the ensure methods in SharedSolutionContainerSystem instead!")]
     public Solution EnsureSolution(Entity<MetaDataComponent?> entity, string name)

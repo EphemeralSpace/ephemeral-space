@@ -8,13 +8,13 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Masks.Objectives;
 
-public sealed class ESTakeDamageFromSourceObjectiveSystem : ESBaseObjectiveSystem<ESTakeDamageFromSourceObjectiveComponent>
+public sealed partial class ESTakeDamageFromSourceObjectiveSystem : ESBaseObjectiveSystem<ESTakeDamageFromSourceObjectiveComponent>
 {
     public override Type[] RelayComponents => new[] { typeof(ESDamageTakerRelayComponent) };
 
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     public override void Initialize()
     {

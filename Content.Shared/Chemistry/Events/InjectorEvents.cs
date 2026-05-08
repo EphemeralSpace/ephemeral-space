@@ -17,7 +17,7 @@ public sealed partial class InjectorDoAfterEvent : SimpleDoAfterEvent;
 /// <param name="usedInjector">The injector being used by the user.</param>
 /// <param name="target">The target who the user is trying to inject.</param>
 /// <param name="overrideMessage">The resulting message that gets displayed per popup.</param>
-public abstract partial class BeforeInjectTargetEvent(EntityUid user, EntityUid usedInjector, EntityUid target, string? overrideMessage = null)
+public abstract class BeforeInjectTargetEvent(EntityUid user, EntityUid usedInjector, EntityUid target, string? overrideMessage = null)
     : CancellableEntityEventArgs, IInventoryRelayEvent
 {
     public EntityUid EntityUsingInjector = user;

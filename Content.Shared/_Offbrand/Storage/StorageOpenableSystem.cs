@@ -3,9 +3,9 @@ using Content.Shared.Storage;
 
 namespace Content.Shared._Offbrand.Storage;
 
-public sealed class StorageOpenableSystem : EntitySystem
+public sealed partial class StorageOpenableSystem : EntitySystem
 {
-    [Dependency] private readonly OpenableSystem _openable = default!;
+    [Dependency] private OpenableSystem _openable = default!;
 
     public override void Initialize()
     {

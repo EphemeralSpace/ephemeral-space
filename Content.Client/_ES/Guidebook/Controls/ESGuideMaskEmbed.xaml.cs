@@ -17,8 +17,8 @@ namespace Content.Client._ES.Guidebook.Controls;
 [GenerateTypedNameReferences]
 public sealed partial class ESGuideMaskEmbed : VStack, IDocumentTag, IPrototypeRepresentationControl
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ILogManager _log = default!;
 
     private ISawmill _sawmill;
 

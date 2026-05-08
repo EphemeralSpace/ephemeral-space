@@ -4,11 +4,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Chemistry;
 
-public sealed class ESDisguiseOnSolutionEmptySystem : EntitySystem
+public sealed partial class ESDisguiseOnSolutionEmptySystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

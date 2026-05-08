@@ -12,9 +12,9 @@ namespace Content.Server._ES.Masks.Objectives.Relays;
 ///     This handles relaying <see cref="IngestingEvent"/> to the mind, allowing other objectives to listen to it.
 ///     It also contains some best effort logic to decipher if something is food or drink.
 /// </summary>
-public sealed class ESMuncherRelaySystem : ESBaseMindRelay
+public sealed partial class ESMuncherRelaySystem : ESBaseMindRelay
 {
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private MindSystem _mind = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

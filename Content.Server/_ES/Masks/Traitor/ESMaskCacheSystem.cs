@@ -12,11 +12,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks.Traitor;
 
-public sealed class ESMaskCacheSystem : ESSharedMaskCacheSystem
+public sealed partial class ESMaskCacheSystem : ESSharedMaskCacheSystem
 {
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly NavMapSystem _navMap = default!;
-    [Dependency] private readonly ESSharedSpawnRegionSystem _spawnRegion = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private ESSharedSpawnRegionSystem _spawnRegion = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

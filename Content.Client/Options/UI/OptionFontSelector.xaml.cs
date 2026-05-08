@@ -36,8 +36,8 @@ public sealed partial class OptionFontSelector : Control
         3.0f,
     ];
 
-    [Dependency] private readonly ISystemFontManager _systemFontManager = null!;
-    [Dependency] private readonly IFontSelectionManager _fontSelection = null!;
+    [Dependency] private ISystemFontManager _systemFontManager = null!;
+    [Dependency] private IFontSelectionManager _fontSelection = null!;
 
     private readonly List<AvailableFont> _availableFonts = new();
 

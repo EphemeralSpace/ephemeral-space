@@ -9,7 +9,7 @@ namespace Content.Shared.EntityEffects.Effects.Atmos;
 /// The amount of FireStacks reduced is modified by scale.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed partial class ExtinguishEntityEffectSystem : EntityEffectSystem<FlammableComponent, Extinguish>
+public sealed class ExtinguishEntityEffectSystem : EntityEffectSystem<FlammableComponent, Extinguish>
 {
     protected override void Effect(Entity<FlammableComponent> entity, ref EntityEffectEvent<Extinguish> args)
     {

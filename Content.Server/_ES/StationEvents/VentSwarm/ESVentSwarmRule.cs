@@ -11,11 +11,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.StationEvents.VentSwarm;
 
-public sealed class ESVentSwarmRule : StationEventSystem<ESVentSwarmRuleComponent>
+public sealed partial class ESVentSwarmRule : StationEventSystem<ESVentSwarmRuleComponent>
 {
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly NavMapSystem _navMap = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

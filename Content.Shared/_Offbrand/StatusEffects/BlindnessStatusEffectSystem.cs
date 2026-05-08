@@ -3,9 +3,9 @@ using Content.Shared.StatusEffectNew;
 
 namespace Content.Shared._Offbrand.StatusEffects;
 
-public sealed class BlindnessStatusEffectSystem : EntitySystem
+public sealed partial class BlindnessStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly BlindableSystem _blindable = default!;
+    [Dependency] private BlindableSystem _blindable = default!;
 
     public override void Initialize()
     {

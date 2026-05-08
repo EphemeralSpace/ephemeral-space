@@ -4,10 +4,10 @@ using Robust.Shared.Player;
 
 namespace Content.Shared._ES.Mind;
 
-public abstract class ESSharedMindVisualsSystem : EntitySystem
+public abstract partial class ESSharedMindVisualsSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
