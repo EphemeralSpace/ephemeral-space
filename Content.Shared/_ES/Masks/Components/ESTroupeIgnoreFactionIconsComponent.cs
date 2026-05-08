@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._ES.Masks.Components;
 
 /// <summary>
-///     Any mind with this objective will ignore faction icons for the given troupes, even if a member of that troupe.
+///     Any mind with this component will ignore faction icons for the given troupes, even if a member of that troupe.
 /// </summary>
 /// <see cref="ESTroupeNoSharedObjectivesComponent"/>
 [RegisterComponent, NetworkedComponent]
