@@ -118,7 +118,11 @@ public abstract class ESSharedMaskSystem : EntitySystem
         if (args.Player?.AttachedEntity is not { } attachedEntity)
             return;
 
-        args.Cancelled = GetTroupeOrNull(attachedEntity) != ent.Comp.Troupe;
+        var troupe = GetTroupeOrNull(attachedEntity);
+        var mind = Mind.GetMind(attachedEntity);
+        var ignored = TryComp<ESTroupeIgnoreFactionIconsComponent>(mind, out var ignoreIcons) &&
+                      ignoreIcons.Troupes.Contains(ent.Comp.Troupe);
+        args.Cancelled = troupe != ent.Comp.Troupe || ignored;
     }
 
     private void OnExaminedEvent(Entity<ESTroupeFactionIconComponent> ent, ref ExaminedEvent args)
@@ -159,6 +163,11 @@ public abstract class ESSharedMaskSystem : EntitySystem
         if (!TryGetTroupe(ent.AsNullable(), out var troupe) ||
             !TryGetTroupeEntity(troupe.Value, out var troupeEntity))
             return;
+
+        if (TryComp<ESTroupeNoSharedObjectivesComponent>(ent, out var noObjectives)
+            && noObjectives.Troupes.Contains(troupe.Value))
+            return;
+
         args.Objectives.AddRange(Objective.GetObjectives(troupeEntity.Value.Owner));
     }
 

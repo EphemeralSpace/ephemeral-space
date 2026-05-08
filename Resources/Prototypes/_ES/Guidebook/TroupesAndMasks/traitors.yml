@@ -46,3 +46,9 @@
   hidden: false
   name: Demolitionist
   text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Traitors/Demolitionist.xml"
+
+- type: guideEntry
+  id: Sympathizer
+  hidden: false
+  name: Sympathizer
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Traitors/Sympathizer.xml"
