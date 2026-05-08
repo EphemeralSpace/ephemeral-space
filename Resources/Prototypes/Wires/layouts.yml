@@ -163,12 +163,6 @@
   - !type:PowerWireAction
 
 - type: wireLayout
-  id: AnomalyGenerator
-  dummyWires: 2
-  wires:
-  - !type:PowerWireAction
-
-- type: wireLayout
   id: Computer
   dummyWires: 3
   wires:
@@ -191,24 +185,6 @@
   dummyWires: 2
   wires:
   - !type:PowerWireAction
-  - !type:AccessWireAction
-
-- type: wireLayout
-  id: WeaponEnergyTurret
-  dummyWires: 4
-  wires:
-  - !type:PowerWireAction
-  - !type:PowerWireAction
-    pulseTimeout: 15
-  - !type:AccessWireAction
-
-- type: wireLayout
-  id: TurretControls
-  dummyWires: 2
-  wires:
-  - !type:PowerWireAction
-  - !type:PowerWireAction
-    pulseTimeout: 15
   - !type:AccessWireAction
 
 - type: wireLayout

@@ -229,11 +229,9 @@
   - type: Rehydratable
     possibleSpawns:
     - MobCarpHolo
-    - MobXenoRavager
     - MobAngryBee
     - MobAdultSlimesYellowAngry
     - MobSpiderSpace
     - MobBearSpace
-    - MobPurpleSnake
     - MobKangarooSpace
     - MobTick

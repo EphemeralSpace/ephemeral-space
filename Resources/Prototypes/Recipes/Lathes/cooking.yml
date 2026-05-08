@@ -1,12 +1,4 @@
 - type: latheRecipe
-  parent: BaseToolRecipe
-  id: KitchenKnife
-  result: KitchenKnife
-  materials:
-    Steel: 200
-    Plastic: 50
-
-- type: latheRecipe
   abstract: true
   id: BaseGlasswareRecipe
   completetime: 0.8

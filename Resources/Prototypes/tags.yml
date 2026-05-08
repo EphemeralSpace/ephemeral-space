@@ -30,7 +30,7 @@
   id: BBQsauce # Storage whitelist: ClothingBeltChef and FoodCartHot. ItemMapper: ClothingBeltChef and FoodCartHot
 
 - type: Tag
-  id: BikeHorn # ConstructionGraph: HonkBot, BananiumHorn
+  id: BikeHorn # ConstructionGraph: HonkBot
 
 - type: Tag
   id: Bloodpack # Storage whitelist: ClothingBeltMedical
@@ -135,9 +135,6 @@
                # Storage whitelist: BodyBag, MachineArtifactCrusher
 
 - type: Tag
-  id: CaptainSabre # Storage whitelist: ClothingBeltSheath. ItemMapper: ClothingBeltSheath
-
-- type: Tag
   id: Carpet # CreateEntityTileReaction whitelist on Carpetium
 
 - type: Tag # NOT bullets. This is for the cart to load PDA programs.
@@ -149,34 +146,16 @@
 # Tagged entities always have CartridgeAmmoComponent.
 
 - type: Tag
-  id: CartridgeAntiMateriel # .60 high caliber ammo for powerful rifles like WeaponSniperHristov, Musket.
-
-- type: Tag
   id: CartridgeCap # Specialty ammo for RevolverCapGun, RevolverCapGunFake.
 
 - type: Tag
-  id: CartridgeCaselessRifle # Specialty ammo for WeaponPistolCobra.
-
-- type: Tag
   id: CartridgeDebug # Specialty ammo for debug guns like the deadly WeaponPistolDebug.
-
-- type: Tag
-  id: CartridgeHeavyRifle # .10 caliber ammo type only used by WeaponMinigun (but the tag is unused).
-
-- type: Tag
-  id: CartridgeLightRifle # .30 caliber used by lmgs and middle range rifles like WeaponLightMachineGunL6, WeaponRifleAk, WeaponSniperMosin.
 
 - type: Tag
   id: CartridgeMagnum # .45 caliber used by revolvers and big boy pistols like BaseWeaponRevolver, WeaponPistolN1984.
 
 - type: Tag
   id: CartridgePistol # .35 caliber used by pistols and smgs like WeaponPistolMk58, WeaponSubMachineGunC20r, WeaponSubMachineGunDrozd.
-
-- type: Tag
-  id: CartridgeRifle # .20 caliber used by precise rifles like WeaponRifleLecter, WeaponRifleEstoc.
-
-- type: Tag
-  id: CartridgeRocket # Specialty ammo for WeaponLauncherRocket.
 
 #endregion
 
@@ -239,9 +218,6 @@
 
 - type: Tag
   id: Coldsauce # Storage whitelist: ClothingBeltChef and FoodCartHot. ItemMapper: ClothingBeltChef and FoodCartHot
-
-- type: Tag
-  id: CombatKnife # Storage whitelist: ClothingBeltSecurity
 
 - type: Tag
   id: ComputerTelevisionCircuitboard # ConstructionGraph: WallmountTelevision
@@ -757,37 +733,7 @@
   id: MagazineDebug # WeaponPistolDebug
 
 - type: Tag
-  id: MagazineGrenade # ShuttleGunDuster
-
-- type: Tag
-  id: MagazineLightRifle # WeaponRifleAk
-
-- type: Tag
-  id: MagazineLightRifleBox # WeaponLightMachineGunL6
-
-- type: Tag
-  id: MagazineMagnum # WeaponPistolN1984
-
-- type: Tag
   id: MagazinePistol # WeaponPistolMk58, WeaponPistolViper, ClothingBeltSecurity
-
-- type: Tag
-  id: MagazinePistolCaselessRifle # WeaponPistolCobra
-
-- type: Tag
-  id: MagazinePistolHighCapacity # WeaponPistolViper
-
-- type: Tag
-  id: MagazinePistolSubMachineGun # WeaponSubMachineGunC20r, WeaponSubMachineGunDrozd, WeaponSubMachineGunAtreides
-
-- type: Tag
-  id: MagazinePistolSubMachineGunTopMounted # WeaponSubMachineGunWt550
-
-- type: Tag
-  id: MagazineRifle # WeaponRifleLecter, WeaponRifleEstoc, WeaponRifleM90GrenadeLauncher
-
-- type: Tag
-  id: MagazineShotgun # WeaponShotgunBulldog
 
 #endregion
 
@@ -954,7 +900,7 @@
   id: PillCanister # Storage whitelist: ClothingBeltMedical, ChemBag, ChemMaster, SmartFridge. ItemMapper: ClothingBeltMedical
 
 - type: Tag
-  id: Pipe # ConstructionGraph: BananiumHorn, ImprovisedShotgunGraph, PipeBomb, PneumaticCannon
+  id: Pipe # ConstructionGraph: ImprovisedShotgunGraph, PipeBomb, PneumaticCannon
 
 - type: Tag
   id: Pistachios # Blacklist on BountyFruit.

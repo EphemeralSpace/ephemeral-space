@@ -248,7 +248,7 @@
     tagRequirements:
       Knife:
         amount: 2
-        defaultPrototype: KitchenKnife
+        defaultPrototype: ESWeaponKnife
         examineName: construction-insert-info-examine-name-knife
 
 - type: entity

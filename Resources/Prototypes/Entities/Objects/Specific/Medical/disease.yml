@@ -16,21 +16,26 @@
   - type: BotanySwab
 
 - type: entity
-  parent: BaseAmmoProvider # this is for cycling swabs out and not spawning 30 entities, trust
+  parent: BoxCardboard
   id: BoxMouthSwab
   name: sterile swab dispenser
   description: Dispenses 30 sterile swabs, extremely useful for botany.
   components:
   - type: Sprite
     layers:
-    - state: boxwide
     - state: swab
-  - type: BallisticAmmoProvider
+  - type: Storage
     whitelist:
       components:
-      - BotanySwab
-    proto: DiseaseSwab
-    capacity: 30
+        - BotanySwab
+  - type: Dumpable
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: DiseaseSwab
+          amount: 9
+
 
 - type: entity
   parent: BaseItem
