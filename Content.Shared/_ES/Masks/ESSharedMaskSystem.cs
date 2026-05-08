@@ -113,16 +113,21 @@ public abstract class ESSharedMaskSystem : EntitySystem
         }
     }
 
+    private bool CanShowFactionIcons(Entity<ESTroupeFactionIconComponent> ent, EntityUid viewer)
+    {
+        var troupe = GetTroupeOrNull(viewer);
+        var mind = Mind.GetMind(viewer);
+        var ignored = TryComp<ESTroupeIgnoreFactionIconsComponent>(mind, out var ignoreIcons) &&
+                      ignoreIcons.Troupes.Contains(ent.Comp.Troupe);
+        return troupe == ent.Comp.Troupe && !ignored;
+    }
+
     private void OnComponentGetStateAttempt(Entity<ESTroupeFactionIconComponent> ent, ref ComponentGetStateAttemptEvent args)
     {
         if (args.Player?.AttachedEntity is not { } attachedEntity)
             return;
 
-        var troupe = GetTroupeOrNull(attachedEntity);
-        var mind = Mind.GetMind(attachedEntity);
-        var ignored = TryComp<ESTroupeIgnoreFactionIconsComponent>(mind, out var ignoreIcons) &&
-                      ignoreIcons.Troupes.Contains(ent.Comp.Troupe);
-        args.Cancelled = troupe != ent.Comp.Troupe || ignored;
+        args.Cancelled = !CanShowFactionIcons(ent, attachedEntity);
     }
 
     private void OnExaminedEvent(Entity<ESTroupeFactionIconComponent> ent, ref ExaminedEvent args)
@@ -134,7 +139,7 @@ public abstract class ESSharedMaskSystem : EntitySystem
         if (ent.Comp.ExamineString is not { } str)
             return;
 
-        if (GetTroupeOrNull(args.Examiner) != ent.Comp.Troupe)
+        if (!CanShowFactionIcons(ent, args.Examiner))
             return;
 
         args.PushMarkup(Loc.GetString(str));
