@@ -391,8 +391,6 @@
       - Radio
       - Sidearm
       - MagazinePistol
-      - MagazineMagnum
-      - CombatKnife
       - Truncheon
       - HandGrenade
       components:

@@ -186,13 +186,7 @@
         orGroup: GiftPool
       - id: ClothingBeltUtilityFilled
         orGroup: GiftPool
-      - id: WeaponFlareGun
-        orGroup: GiftPool
-      - id: Machete
-        orGroup: GiftPool
       - id: BaseBallBat
-        orGroup: GiftPool
-      - id: CombatKnife
         orGroup: GiftPool
       - id: FlashlightLantern
         orGroup: GiftPool

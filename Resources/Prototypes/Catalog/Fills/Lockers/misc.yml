@@ -127,14 +127,9 @@
     - id: ClothingBackpackDuffelSyndicate
     - id: CyberPen
     - id: CigPackSyndicate
-    - id: ClothingBackpackDuffelSyndicatePyjamaBundle
     - id: ClothingBeltMilitaryWebbing
-    - id: ClothingShoesBootsBlackFilled
     - id: ToolboxSyndicateFilled
     - id: BalloonSyn
-    - id: WeaponSniperMosin
-      weight: 2
-    - id: ClothingHandsKnuckleDustersSyndicate
 
 - type: entityTable
   id: MaintenanceLockerLoot
@@ -208,13 +203,10 @@
   id: ToiletCisternWeaponsTable
   table: !type:GroupSelector
     children:
-    - id: SurvivalKnife
     - id: ScalpelShiv
     - id: Shiv
     - id: SawImprov
     - id: HydroponicsToolHatchet
-    - id: ClothingHandsKnuckleDusters
-    - id: WeaponFlareGun
 
 - type: entityTable
   id: ToiletCisternSyndicateTable
