@@ -1,0 +1,15 @@
+- type: entity
+  name: TestWeaponGunWieldable
+  parent: [ BaseGunWieldable, BaseItem ]
+  id: TestWeaponGunWieldable
+  components:
+  - type: Gun
+  - type: ChamberMagazineAmmoProvider
+  - type: GunRequiresWield
+
+- type: entity
+  name: TestItemEmbeddable
+  parent: BaseItem
+  id: TestItemEmbeddable
+  components:
+  - type: EmbeddableProjectile
