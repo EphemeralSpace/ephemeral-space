@@ -518,20 +518,6 @@
     FoodDoughCotton: 1
 
 - type: microwaveMealRecipe
-  id: RecipeBaguetteSword
-  name: baguette sword recipe
-  result: WeaponBaguette
-  secretRecipe: true
-  time: 15
-  group: Secret
-  reagents:
-    TableSalt: 5
-    Blackpepper: 5
-  solids:
-    FoodDough: 1
-    PartRodMetal1: 1
-
-- type: microwaveMealRecipe
   id: RecipeButteredToast
   name: buttered toast recipe
   result: FoodBreadButteredToast
@@ -2280,45 +2266,6 @@
   solids:
     FoodCroissantRawCotton: 1
     FoodButterSlice: 1
-
-- type: microwaveMealRecipe
-  id: RecipeThrowingCroissant
-  name: throwing croissant recipe
-  result: WeaponCroissant
-  secretRecipe: true
-  time: 5
-  group: Secret
-  solids:
-    FoodCroissantRaw: 1
-    FoodButterSlice: 1
-    ShardGlass: 1
-
-- type: microwaveMealRecipe
-  id: RecipeInertAnomalyMeat
-  name: inert meat anomaly recipe
-  result: FoodMeatAnomaly
-  time: 5
-  group: Savory
-  solids:
-    AnomalyCoreFleshInert: 1
-
-- type: microwaveMealRecipe
-  id: RecipeAnomalyMeat
-  name: meat anomaly recipe
-  result: FoodMeatAnomaly
-  time: 5
-  group: Savory
-  solids:
-    AnomalyCoreFlesh: 1
-
-- type: microwaveMealRecipe
-  id: RecipeAnomalyMeatCooked
-  name: cooked meat anomaly recipe
-  result: FoodMeatAnomalyCooked
-  time: 5
-  group: Savory
-  solids:
-    FoodMeatAnomaly: 1
 
 - type: microwaveMealRecipe
   id: RecipeGrilledCheeseSandwich
