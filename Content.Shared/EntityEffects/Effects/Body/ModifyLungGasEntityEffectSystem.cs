@@ -8,7 +8,7 @@ namespace Content.Shared.EntityEffects.Effects.Body;
 /// The amount of gas adjusted is modified by scale.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed partial class ModifyLungGasEntityEffectSystem : EntityEffectSystem<LungComponent, ModifyLungGas>
+public sealed class ModifyLungGasEntityEffectSystem : EntityEffectSystem<LungComponent, ModifyLungGas>
 {
     // TODO: This shouldn't be an entity effect, gasses should just metabolize and make a byproduct by default...
     protected override void Effect(Entity<LungComponent> entity, ref EntityEffectEvent<ModifyLungGas> args)

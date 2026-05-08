@@ -10,13 +10,13 @@ using Content.Shared.Mind;
 
 namespace Content.Server._ES.Masks.Phantom;
 
-public sealed class ESReincarnateSystem : EntitySystem
+public sealed partial class ESReincarnateSystem : EntitySystem
 {
-    [Dependency] private readonly BrainDamageSystem _brain = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly ESObjectiveSystem _objective = default!;
+    [Dependency] private BrainDamageSystem _brain = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private ESObjectiveSystem _objective = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

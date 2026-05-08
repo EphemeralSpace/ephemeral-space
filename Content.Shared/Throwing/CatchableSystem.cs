@@ -15,13 +15,13 @@ namespace Content.Shared.Throwing;
 
 public sealed partial class CatchableSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ThrownItemSystem _thrown = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ThrownItemSystem _thrown = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
 
     private EntityQuery<HandsComponent> _handsQuery;
     private EntityQuery<CombatModeComponent> _combatModeQuery;
@@ -61,9 +61,14 @@ public sealed partial class CatchableSystem : EntitySystem
         if (!rand.Prob(ent.Comp.CatchChance))
             return;
 
-        // Try to catch!
-        if (!_hands.TryPickupAnyHand(args.Target, ent.Owner, handsComp: handsComp, animate: false))
-            return; // The hands are full!
+        switch (ent.Comp.OnlyActiveHand)
+        {
+            // Try to catch with the active hand!
+            case true when !_hands.TryPickup(args.Target, ent.Owner, handsComp: handsComp, animate: false):
+            // Try to catch with any hand!
+            case false when !_hands.TryPickupAnyHand(args.Target, ent.Owner, handsComp: handsComp, animate: false):
+                return; // The desired hand was full!
+        }
 
         // Success!
 

@@ -12,8 +12,8 @@ namespace Content.Client._ES.Evac.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class ESEvacConsoleWindow : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
     private readonly ESEvacSystem _esEvac;
     private readonly StationSystem _station;
 

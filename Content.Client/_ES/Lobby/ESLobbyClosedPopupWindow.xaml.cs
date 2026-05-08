@@ -10,8 +10,8 @@ namespace Content.Client._ES.Lobby;
 [GenerateTypedNameReferences]
 public sealed partial class ESLobbyClosedPopupWindow : FancyWindow
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IUriOpener _uri = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IUriOpener _uri = default!;
 
     public ESLobbyClosedPopupWindow()
     {

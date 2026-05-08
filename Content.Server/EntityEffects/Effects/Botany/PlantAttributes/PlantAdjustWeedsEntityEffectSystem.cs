@@ -4,7 +4,7 @@ using Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
 
 namespace Content.Server.EntityEffects.Effects.Botany.PlantAttributes;
 
-public sealed partial class PlantAdjustWeedsEntityEffectSystem : EntityEffectSystem<PlantHolderComponent, PlantAdjustWeeds>
+public sealed class PlantAdjustWeedsEntityEffectSystem : EntityEffectSystem<PlantHolderComponent, PlantAdjustWeeds>
 {
     protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEffectEvent<PlantAdjustWeeds> args)
     {

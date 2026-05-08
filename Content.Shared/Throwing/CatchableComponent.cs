@@ -36,4 +36,11 @@ public sealed partial class CatchableComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier? CatchSuccessSound;
+
+    /// <summary>
+    ///     If true, this item can only be caught in the active hand, and if the active hand is full,
+    ///     it will not be caught (even if another hand is free)
+    /// </summary>
+    [DataField]
+    public bool OnlyActiveHand = true;
 }

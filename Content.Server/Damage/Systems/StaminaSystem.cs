@@ -2,6 +2,6 @@
 
 namespace Content.Server.Damage.Systems;
 
-public sealed partial class StaminaSystem : SharedStaminaSystem
+public sealed class StaminaSystem : SharedStaminaSystem
 {
 }

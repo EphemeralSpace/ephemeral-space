@@ -11,7 +11,7 @@ namespace Content.Shared._ES.CCVar;
 /// </remarks>
 [CVarDefs]
 // ReSharper disable once InconsistentNaming | shh, be quiet
-public sealed partial class ESCVars : CVars
+public sealed class ESCVars : CVars
 {
     /// <summary>
     /// What's the current year?

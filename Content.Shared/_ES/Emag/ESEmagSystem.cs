@@ -18,15 +18,15 @@ namespace Content.Shared._ES.Emag;
 /// <summary>
 /// This handles <see cref="ESEmagComponent"/>
 /// </summary>
-public sealed class ESEmagSystem : EntitySystem
+public sealed partial class ESEmagSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Dependency] private readonly SharedChargesSystem _charges = default!;
-    [Dependency] private readonly SharedDoorSystem _door = default!;
-    [Dependency] private readonly LockSystem _lock = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ESSparksSystem _sparks = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
+    [Dependency] private SharedDoorSystem _door = default!;
+    [Dependency] private LockSystem _lock = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ESSparksSystem _sparks = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private static readonly ProtoId<TagPrototype> EmagImmuneTag = "EmagImmune";
 

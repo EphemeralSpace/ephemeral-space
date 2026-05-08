@@ -10,15 +10,15 @@ using Robust.Shared.Network;
 
 namespace Content.Shared._ES.Objectives.Target;
 
-public sealed class ESSenseTargetDistanceSystem : EntitySystem
+public sealed partial class ESSenseTargetDistanceSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly ESSharedObjectiveSystem _objectives = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ESTargetObjectiveSystem _targetObjective = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private ESSharedObjectiveSystem _objectives = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ESTargetObjectiveSystem _targetObjective = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -6,9 +6,9 @@ using Content.Shared._ES.Objectives;
 
 namespace Content.Server._ES.Masks.Vigilante;
 
-public sealed class ESKillKillerObjectiveSystem : ESBaseObjectiveSystem<ESKillKillerObjectiveComponent>
+public sealed partial class ESKillKillerObjectiveSystem : ESBaseObjectiveSystem<ESKillKillerObjectiveComponent>
 {
-    [Dependency] private readonly ESKillTrackingSystem _killTracking = default!;
+    [Dependency] private ESKillTrackingSystem _killTracking = default!;
 
     public override Type[] RelayComponents => [typeof(ESKilledRelayComponent)];
 

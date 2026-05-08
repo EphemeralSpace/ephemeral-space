@@ -12,7 +12,7 @@ namespace Content.Shared.Turrets;
 /// </summary>
 public sealed partial class TurretTargetSettingsSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
 
     /// <summary>
     /// Adds or removes access levels from a <see cref="TurretTargetSettingsComponent.ExemptAccessLevels"/> list.
