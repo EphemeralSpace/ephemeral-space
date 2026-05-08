@@ -1,9 +1,9 @@
 <Document>
   <ESGuideMaskEmbed Mask="Sympathizer"/>
 
-  The Sympathizer is a traitor mask wholly unique compared to every other traitor mask. Sympathizers are counted as traitors for all intents and purposes, but they [b]cannot tell who the other traitors are[/b] and [b]cannot see the shared traitor objectives, besides the nuke.[/b]
+  The Sympathizer is a traitor mask wholly unique compared to every other traitor mask. Sympathizers are counted as traitors for all intents and purposes, but they [bold]cannot tell who the other traitors are[/bold] and [bold]cannot see the shared traitor objectives, besides the nuke.[/bold]
 
-  In exchange, [b]command jobs can roll Sympathizer[/b] (and all other jobs as usual). This makes Sympathizer essentially 'traitor-lite', where you have an initial stage of deducing the traitors, and most of your traitorous actions are indirect; e.g., negotiating to get suspicious people out of prison, causing general chaos to cover for traitor activities, or defending the nuke when the time comes.
+  In exchange, [bold]command jobs can also roll Sympathizer[/bold]. This makes Sympathizer essentially 'traitor-lite', where you have an initial stage of deducing the traitors, and most of your traitorous actions are indirect; e.g., negotiating to get suspicious people out of prison, causing general chaos to cover for traitor activities, or defending the nuke when the time comes.
 
   <ESGuideObjectiveEmbed Objective="ESObjectiveSympathizerDetonateNuke"/>
 
