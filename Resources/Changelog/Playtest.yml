@@ -142,3 +142,9 @@ Entries:
         target's active hand is empty, they'll simply catch the net instead.
   id: 18
   time: '2026-05-07T21:33:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Positional audio should now sound much better (this is hard to explain)
+  id: 19
+  time: '2026-05-08T22:51:54.0000000+00:00'
