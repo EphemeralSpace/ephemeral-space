@@ -403,7 +403,6 @@
       - CartridgeAmmo
       - DoorRemote
       - Whistle
-      - BalloonPopper
   - type: ItemMapper
     sprite: *BeltOverlay
     mapLayers:
