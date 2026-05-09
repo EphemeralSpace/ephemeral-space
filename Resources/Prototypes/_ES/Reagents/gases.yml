@@ -33,4 +33,4 @@
           reagent: Smoke
           min: 0.25
         emote: Cough
-        probability: 0.33
+        probability: 0.5
