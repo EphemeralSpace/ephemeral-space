@@ -11,18 +11,6 @@
 
 - type: esMask
   parent: ESBaseTraitor
-  id: Demolitionist
-  name: es-mask-demolitionist-name
-  description: es-mask-demolitionist-desc
-  color: orangered
-  weight: 0.3
-  mindComponents:
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheTraitorDemolitionist
-
-- type: esMask
-  parent: ESBaseTraitor
   id: Infiltrator
   name: es-mask-infiltrator-name
   description: es-mask-infiltrator-desc
@@ -48,14 +36,6 @@
 
 - type: esMask
   parent: ESBaseTraitor
-  id: Recruit
-  name: es-mask-recruit-name
-  description: es-mask-recruit-desc
-  color: pink
-  weight: 0
-
-- type: esMask
-  parent: ESBaseTraitor
   id: Subverter
   name: es-mask-subverter-name
   description: es-mask-subverter-desc
@@ -65,6 +45,49 @@
   - type: ESMaskCacheSpawner
     cacheProto:
       id: ESCrateCacheTraitorSubverter
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: Recruit
+  name: es-mask-recruit-name
+  description: es-mask-recruit-desc
+  color: pink
+  weight: 0
+
+- type: esMask
+  parent: ESBaseTraitor
+  id: Demolitionist
+  name: es-mask-demolitionist-name
+  description: es-mask-demolitionist-desc
+  color: orangered
+  weight: 0.3
+  mindComponents:
+  - type: ESMaskCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorDemolitionist
+
+- type: esMask
+  # doesnt parent from basetraitor because we dont want the icon
+  # and doesnt parent from commandrestricted because this is a command-available traitor role!
+  id: Sympathizer
+  name: es-mask-sympathizer-name
+  troupe: Traitor
+  description: es-mask-sympathizer-desc
+  color: darkmagenta
+  tips:
+  - SympathizerCovertOperations
+  - SympathizerDeduction
+  - SympathizerPrisonbreak
+  - SympathizerPotentialTarget
+  weight: 0
+  mindComponents:
+  - type: ESTroupeNoSharedObjectives
+    troupes: [Traitor]
+  - type: ESTroupeIgnoreFactionIcons
+    troupes: [Traitor]
+  objectives:
+    all:
+    - id: ESObjectiveSympathizerDetonateNuke
 
 # Non-traitor masks that are dependent on traitors
 - type: esMask
