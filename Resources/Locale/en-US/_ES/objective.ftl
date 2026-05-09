@@ -7,12 +7,12 @@ es-objective-summary-fmt = {$name}: {$success ->
     *[other] ([color=gray]{$percent}%[/color])
 }
 
-es-objective-text-troupe = Troupe
-es-objective-tooltip-troupe = This is a [bold]shared objective[/bold].
+es-objective-text-troupe = Team
+es-objective-tooltip-troupe = This is a [bold]shared troupe objective[/bold].
 
-    All members of your troupe must work together to complete it.
+    All members of your troupe share this objective, and must work together. Objective completion is shared between everyone who has it assigned.
 
-es-objective-text-mask = Mask
-es-objective-tooltip-mask = This is a [bold]personal objective[/bold].
+es-objective-text-mask = Solo
+es-objective-tooltip-mask = This is a [bold]personal mask objective[/bold].
 
-    You have to complete it yourself, although other can choose to help you.
+    This is a unique objective based on the mask that you are assigned. Only you can view this objective. Other members of your troupe may have different personal objectives.

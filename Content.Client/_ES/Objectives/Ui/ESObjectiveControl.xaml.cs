@@ -59,9 +59,12 @@ public sealed partial class ESObjectiveControl : BoxContainer
 
             if (!string.IsNullOrWhiteSpace(descriptor.Tooltip))
             {
-                var tooltip = new Tooltip();
+                var tooltip = new Tooltip
+                {
+                    MaxWidth = 400,
+                };
                 tooltip.SetMessage(FormattedMessage.FromMarkupPermissive(descriptor.Tooltip));
-                OwnerPanel.TooltipSupplier = _ => tooltip;
+                TooltipSupplier = _ => tooltip;
             }
         }
         else
