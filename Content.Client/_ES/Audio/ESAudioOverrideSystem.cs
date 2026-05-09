@@ -15,18 +15,19 @@ namespace Content.Client._ES.Audio;
 /// <summary>
 ///     Overrides for clientside <see cref="AudioSystem"/> functions to use for our own Purposes
 /// </summary>
-public sealed class ESAudioOverrideSystem : EntitySystem
+public sealed partial class ESAudioOverrideSystem : EntitySystem
 {
-    [Dependency] private readonly AudioSystem _originalAudio = default!;
-    [Dependency] private readonly SharedMapSystem _maps = default!;
-    [Dependency] private readonly SharedTransformSystem _xformSys = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IBaseClient _baseClient = default!;
+    [Dependency] private AudioSystem _originalAudio = default!;
+    [Dependency] private SharedMapSystem _maps = default!;
+    [Dependency] private SharedTransformSystem _xformSys = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IBaseClient _baseClient = default!;
 
-    private ProtoId<AudioPresetPrototype> _reverbPreset = "SpaceStationMediumRoom";
+    private ProtoId<AudioPresetPrototype> _reverbPreset = "Room";
 
+    // ReSharper disable once InconsistentNaming
     // for vv testing purposes
     [ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<AudioPresetPrototype> ReverbPresetVV
@@ -38,9 +39,8 @@ public sealed class ESAudioOverrideSystem : EntitySystem
                 return;
 
             _reverbPreset = value;
-            QueueDel(_reverbAuxiliary?.Item1);
-            QueueDel(_reverbEffect?.Item1);
-            InitializeAuxiliaryEffect();
+            _originalAudio.SetEffectPreset(_reverbEffect!.Value.Item1, _reverbEffect!.Value.Item2, _proto.Index(value));
+            _originalAudio.SetEffect(_reverbAuxiliary!.Value.Item1, _reverbAuxiliary!.Value.Item2, _reverbEffect!.Value.Item1);
         }
     }
 
@@ -135,7 +135,7 @@ public sealed class ESAudioOverrideSystem : EntitySystem
         }
 
         // Base reverb audio effect handling
-        if (_reverbAuxiliary is not null)
+        if (_reverbAuxiliary is not null && component.Auxiliary == null)
         {
             _originalAudio.SetAuxiliary(entity, component, _reverbAuxiliary.Value.Item1);
         }
