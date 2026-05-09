@@ -26,6 +26,7 @@
   - type: ESTargetTroupeObjective
     troupe: Traitor
     invert: true
+    overrideMasks: [Sympathizer]
   - type: ESTargetMaskBlacklist
     maskBlacklist:
     - SleeperAgent
@@ -157,6 +158,19 @@
   id: ESObjectiveTraitorDetonateNuke
   name: Detonate the nuclear fission explosive
   description: Once all other objectives are complete, use the captain's authentication disk to arm the nuke and prevent the crew from stopping the detonation.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Devices/nuke.rsi
+      state: nuclearbomb_base
+  - type: ESCounterObjective
+  - type: ESDetonateNukeObjective
+
+- type: entity
+  parent: ESBaseTraitorObjective
+  id: ESObjectiveSympathizerDetonateNuke
+  name: Help the traitors detonate the nuclear fission explosive
+  description: Figure out who the traitors might be, then help them complete their objectives and detonate the nuke.
   components:
   - type: ESObjective
     icon:

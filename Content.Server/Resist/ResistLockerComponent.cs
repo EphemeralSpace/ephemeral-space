@@ -7,10 +7,10 @@ namespace Content.Server.Resist;
 public sealed partial class ResistLockerComponent : Component
 {
     /// <summary>
-    /// How long will this locker take to kick open, defaults to 2 minutes
+    /// How long will this locker take to kick open
     /// </summary>
     [DataField("resistTime")]
-    public float ResistTime = 120f;
+    public float ResistTime = 10f;
 
     /// <summary>
     /// For quick exit if the player attempts to move while already resisting
