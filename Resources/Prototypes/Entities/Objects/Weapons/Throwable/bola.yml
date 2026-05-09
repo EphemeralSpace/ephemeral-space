@@ -40,7 +40,7 @@
       types:
         Blunt: 5
   - type: Ensnaring
-    freeTime: 2.0
+    freeTime: 1
     breakoutTime: 1.5 #all bola should generally be fast to remove
     walkSpeed: 0.5 #makeshift bola shouldn't slow too much
     sprintSpeed: 0.5
