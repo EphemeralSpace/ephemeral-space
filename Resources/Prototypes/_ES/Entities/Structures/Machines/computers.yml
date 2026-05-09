@@ -406,7 +406,7 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: ESRadstormModifierMachine
-    modifier: 0.13
+    modifier: 0.5
     disableAnnouncement: es-radstorm-power-on-navigation-console
     enableAnnouncement: es-radstorm-power-off-navigation-console
   - type: PointLight
