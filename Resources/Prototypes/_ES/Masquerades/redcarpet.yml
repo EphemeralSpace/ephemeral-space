@@ -22,9 +22,9 @@
       20: ["#AllCrew"]
       21: ["#AllCrew", "-Marauder", "#PowerTraitors"] # 4 traitors.
       22: ["#AllCrew"]
-      24: ["#TraitorGunners"] # 4 traitors.
+      24: ["#Gunners"] # 4 traitors.
       25: ["Marauder"] # 5 traitors.
       26: ["#AllCrew"]
-      28: ["#TraitorGunners"] # 5 traitors.
+      28: ["#Gunners"] # 5 traitors.
       30: ["#AllCrew"]
       31: ["#Traitors", "#AllCrew"] # 6 traitors.
