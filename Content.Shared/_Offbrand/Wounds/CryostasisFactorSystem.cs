@@ -29,6 +29,11 @@ public sealed partial class CryostasisFactorSystem : EntitySystem
         if (!TryComp<TemperatureComponent>(ent, out var temp))
             return;
 
+        // es hack
+        // only function when inside cryopods, it feels bad elsewhere
+        if (!HasComp<InsideCryoPodComponent>(ent))
+            return;
+
         args.Multiplier *= Math.Max(ent.Comp.TemperatureCoefficient * temp.CurrentTemperature + ent.Comp.TemperatureConstant, 1);
     }
 }
