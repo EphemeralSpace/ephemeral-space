@@ -134,12 +134,6 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
             return;
         }
 
-        // Base reverb audio effect handling
-        if (_reverbAuxiliary is not null && component.Auxiliary == null)
-        {
-            _originalAudio.SetAuxiliary(entity, component, _reverbAuxiliary.Value.Item1);
-        }
-
         // Distance check
         if (distance > 0f && distance < 0.01f)
         {
