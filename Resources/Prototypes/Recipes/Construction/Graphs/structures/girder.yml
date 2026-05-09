@@ -141,7 +141,7 @@
               amount: 2
           steps:
             - tool: Welding
-              doAfter: 6
+              doAfter: 8
 
     - node: wallChitin
       entity: WallSolidChitin
