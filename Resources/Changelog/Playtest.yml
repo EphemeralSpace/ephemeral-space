@@ -207,3 +207,11 @@ Entries:
       message: Rebalanced non-random masquerades across the board
   id: 24
   time: '2026-05-09T19:49:04.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Objectives now state in the UI whether or not they belong to a mask or
+        to a troupe.
+  id: 25
+  time: '2026-05-09T21:53:57.0000000+00:00'
