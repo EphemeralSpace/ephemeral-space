@@ -64,13 +64,13 @@ public sealed partial class PullingSystem : EntitySystem
         SubscribeLocalEvent<PullableComponent, CollisionChangeEvent>(OnPullableCollisionChange);
         SubscribeLocalEvent<PullableComponent, JointRemovedEvent>(OnJointRemoved);
         SubscribeLocalEvent<PullableComponent, EntGotInsertedIntoContainerMessage>(OnPullableContainerInsert);
+        SubscribeLocalEvent<PullableComponent, ModifyUncuffDurationEvent>(OnModifyUncuffDuration);
         SubscribeLocalEvent<PullableComponent, StopBeingPulledAlertEvent>(OnStopBeingPulledAlert);
         SubscribeLocalEvent<PullableComponent, GetInteractingEntitiesEvent>(OnGetInteractingEntities);
 
         SubscribeLocalEvent<PullerComponent, MobStateChangedEvent>(OnStateChanged, after: [typeof(MobThresholdSystem)]);
         SubscribeLocalEvent<PullerComponent, AfterAutoHandleStateEvent>(OnAfterState);
         SubscribeLocalEvent<PullerComponent, EntGotInsertedIntoContainerMessage>(OnPullerContainerInsert);
-        SubscribeLocalEvent<PullableComponent, ModifyUncuffDurationEvent>(OnModifyUncuffDuration);
         SubscribeLocalEvent<PullerComponent, EntityUnpausedEvent>(OnPullerUnpaused);
         SubscribeLocalEvent<PullerComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
         SubscribeLocalEvent<PullerComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
