@@ -148,3 +148,15 @@ Entries:
       message: Positional audio should now sound much better (this is hard to explain)
   id: 19
   time: '2026-05-08T22:51:54.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Audio now has a base amount of reverb applied to it. More effects to
+        come in the future (in space, in crit, dynamic based on room size, etc)
+    - type: Remove
+      message: >-
+        Audio no longer dopplers. No longer will shit sound like ass while
+        moving around as a stagehand
+  id: 20
+  time: '2026-05-09T04:52:15.0000000+00:00'
