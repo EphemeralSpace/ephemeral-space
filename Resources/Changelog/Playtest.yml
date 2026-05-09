@@ -160,3 +160,14 @@ Entries:
         moving around as a stagehand
   id: 20
   time: '2026-05-09T04:52:15.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        New traitor mask: the Sympathizer. This mask can roll on any
+        job--including command--but they cannot tell who the other traitors are,
+        cannot be seen by other traitors, and cannot see the shared traitor
+        objectives. This means they must act indirectly and figure out who the
+        traitors are in order to be victorious.
+  id: 21
+  time: '2026-05-09T04:54:01.0000000+00:00'
