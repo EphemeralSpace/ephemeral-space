@@ -31,6 +31,6 @@
         conditions:
         - !type:ReagentCondition
           reagent: Smoke
-          min: 0.25
+          min: 0.2
         emote: Cough
         probability: 0.5
