@@ -6,9 +6,15 @@
     HorizontalExpand="True">
     <Panel HorizontalExpand="True" StyleClasses="BackgroundPanel" Margin="0 5">
         <VFillStack Margin="0 5">
-            <HStack>
+            <HStack Name="Header">
                 <controls1:ProgressTextureRect Name="Icon" Margin="0 0 5 0" VerticalAlignment="Center"/>
-                <RichTextLabel Name="TitleLabel" HorizontalExpand="True" VerticalAlignment="Center"/>
+                <RichTextLabel Name="TitleLabel" HorizontalExpand="False" VerticalAlignment="Center"/>
+                <Spacer HorizontalExpand="True"/>
+                <Panel Name="OwnerPanel" StyleClasses="BackgroundPanel" Margin="0 -5 -15 0" VerticalAlignment="Top" MouseFilter="Stop">
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Name="OwnerLabel" StyleClasses="LabelKeyText" Margin="5 0" VerticalAlignment="Center"/>
+                    </BoxContainer>
+                </Panel>
             </HStack>
             <customControls:HSeparator/>
             <HStack Margin="0 0 0 0" HorizontalExpand="True">
