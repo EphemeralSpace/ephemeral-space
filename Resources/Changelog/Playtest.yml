@@ -179,3 +179,25 @@ Entries:
         of fuel or the navigation console loses power.
   id: 22
   time: '2026-05-09T09:03:26.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Breaking out of cuffs, bolas, and welded/locked lockers is now
+        significantly faster in all cases
+    - type: Fix
+      message: Warp drive charge timer no longer ticks up while interrupted
+    - type: Fix
+      message: >-
+        Being in space no longer makes you take like 9999 minutes to die because
+        of cryostasis
+    - type: Tweak
+      message: >-
+        Smoke inhalation now has a higher reagent threshold and you'll more
+        reliably cough as a warning at lower thresholds
+    - type: Tweak
+      message: >-
+        Regular walls & girders now take longer to construct manually (without
+        an RCD) and take less time to deconstruct
+  id: 23
+  time: '2026-05-09T15:08:40.0000000+00:00'
