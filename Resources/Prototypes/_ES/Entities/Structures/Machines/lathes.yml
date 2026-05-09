@@ -51,18 +51,15 @@
     staticPacks:
     - ESToolsStatic
     - ESPartsStatic
-    - ESPaperworkStatic
-    - ESCargoStatic
-    - MaterialsStatic
     - ESBasicChemistryStatic
-    - RollerBedsStatic
+    - ESMedicalToolsStatic
+    - ESRollerBedsStatic
     - ESLightsStatic
     - ESServiceStatic
     - ESElectronicsStatic
     - ESAmmunition
-    - ESFluff
     - ESTopicalsStatic
-    - SurgeryStatic
+    - ESSurgeryStatic
     - OffbrandMedicalStatic
     - OffbrandSurgeryStatic
   - type: ContainerContainer

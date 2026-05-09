@@ -1,28 +1,28 @@
 ﻿using Content.Shared._ES.Masks.Traitor.Components;
 using Content.Shared._ES.Masks.Traitor.Events;
 using Content.Shared._Offbrand.Wounds;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Systems;
-using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Mind;
 using Content.Shared.Mindshield.Components;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Masks.Traitor;
 
-public sealed class ESAddMaskOnUseSystem : EntitySystem
+public sealed partial class ESAddMaskOnUseSystem : EntitySystem
 {
-    [Dependency] private readonly ESSharedMaskSystem _mask = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doafter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly RejuvenateSystem _rejuv = default!;
-    [Dependency] private readonly HealthRankingSystem _health = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private ESSharedMaskSystem _mask = default!;
+    [Dependency] private SharedDoAfterSystem _doafter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private RejuvenateSystem _rejuv = default!;
+    [Dependency] private HealthRankingSystem _health = default!;
 
     public override void Initialize()
     {
@@ -48,9 +48,11 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
             return;
         }
 
-        if (ent.Comp.RequireCrit && !_health.IsCritical((EntityUid)args.Target))
+        if (ent.Comp.RequireIncapacitated &&
+            !_health.IsCritical(args.Target.Value) &&
+            _actionBlocker.CanInteract(args.Target.Value, null))
         {
-            _popup.PopupClient(Loc.GetString(ent.Comp.NotCritMessage), args.User, args.User);
+            _popup.PopupClient(Loc.GetString(ent.Comp.NotIncapacitatedMessage), args.User, args.User);
             return;
         }
 
@@ -80,7 +82,7 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
         if (args.Cancelled || args.Handled || args.Target is not { } target)
             return;
 
-        if (_health.IsCritical(target) && ent.Comp.RequireCrit)
+        if (ent.Comp.RequireIncapacitated)
         {
             // TODO ES with offmed this should really be doing something more interesting honestly
             _rejuv.PerformRejuvenate(target);

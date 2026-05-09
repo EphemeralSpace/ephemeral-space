@@ -19,9 +19,9 @@ using Robust.Shared.Input.Binding;
 namespace Content.Client._ES.Internals.Ui;
 
 [UsedImplicitly]
-public sealed class ESInternalsUIController : UIController, IOnStateChanged<GameplayState>
+public sealed partial class ESInternalsUIController : UIController, IOnStateChanged<GameplayState>
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     [UISystemDependency] private readonly GasTankSystem _gasTank = default!;
     [UISystemDependency] private readonly HandsSystem _hands = default!;

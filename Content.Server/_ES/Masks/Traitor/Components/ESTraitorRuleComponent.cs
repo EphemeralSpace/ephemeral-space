@@ -1,4 +1,5 @@
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks.Traitor.Components;
 
@@ -14,6 +15,12 @@ public sealed partial class ESTraitorRuleComponent : Component
     /// </summary>
     [DataField]
     public List<EntityUid> BaseGrids = new();
+
+    /// <summary>
+    ///     Map to be loaded when the nuke is armed
+    /// </summary>
+    [DataField]
+    public ResPath SyndieBaseMapPath = new("/Maps/_ES/syndiebase.yml");
 
     /// <summary>
     /// Effect spawned when teleporting a player to the base

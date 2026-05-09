@@ -7,7 +7,7 @@ namespace Content.Shared.EntityConditions.Conditions.Body;
 /// Returns true if this entity is using internals. False if they are not or cannot use internals.
 /// </summary>
 /// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
-public sealed partial class InternalsOnEntityConditionSystem : EntityConditionSystem<InternalsComponent, InternalsCondition>
+public sealed class InternalsOnEntityConditionSystem : EntityConditionSystem<InternalsComponent, InternalsCondition>
 {
     protected override void Condition(Entity<InternalsComponent> entity, ref EntityConditionEvent<InternalsCondition> args)
     {

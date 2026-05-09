@@ -8,12 +8,12 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Client.Fluids;
 
-public sealed class PuddleOverlay : Overlay
+public sealed partial class PuddleOverlay : Overlay
 {
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
-    [Dependency] private readonly IFontSelectionManager _fontSelection = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private IFontSelectionManager _fontSelection = default!;
     private readonly PuddleDebugOverlaySystem _debugOverlaySystem;
     private readonly SharedTransformSystem _transformSystem;
 
@@ -103,8 +103,8 @@ public sealed class PuddleOverlay : Overlay
     private void DrawScreen(in OverlayDrawArgs args)
     {
         var drawHandle = args.ScreenHandle;
+        drawHandle.SetTransform(Matrix3x2.Identity);
         var xformQuery = _entityManager.GetEntityQuery<TransformComponent>();
-
 
         foreach (var gridId in _debugOverlaySystem.TileData.Keys)
         {

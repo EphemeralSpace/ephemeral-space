@@ -37,7 +37,6 @@
     jumpsuit: ClothingUniformJumpsuitClown
     back: ClothingBackpackClown
     pocket1: BikeHorn
-    pocket2: ClownRecorder
   storage:
     back:
     - ESBoxHug

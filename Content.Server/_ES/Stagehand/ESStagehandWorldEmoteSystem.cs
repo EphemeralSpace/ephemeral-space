@@ -10,14 +10,14 @@ using Robust.Shared.Random;
 namespace Content.Server._ES.Stagehand;
 
 /// <see cref="ESStagehandWorldEmoteComponent"/>
-public sealed class ESStagehandWorldEmoteSystem : EntitySystem
+public sealed partial class ESStagehandWorldEmoteSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ESStagehandNotificationsSystem _notif = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ESStagehandNotificationsSystem _notif = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
 
     private const float PlayForPlayersInRoundChance = 0.5f;
 

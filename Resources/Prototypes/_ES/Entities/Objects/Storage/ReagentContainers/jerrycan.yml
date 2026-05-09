@@ -20,6 +20,9 @@
     sprite: _ES/Objects/Storage/ReagentContainers/jerrycan.rsi
   - type: Item
     sprite: _ES/Objects/Storage/ReagentContainers/jerrycan.rsi
+    size: Large
+    shape:
+    - 0,0,2,2
   - type: Icon
     sprite: _ES/Objects/Storage/ReagentContainers/jerrycan.rsi
     state: icon_empty

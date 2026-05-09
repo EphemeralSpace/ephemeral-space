@@ -14,3 +14,5 @@ es-stagehand-notification-objective-completed = {$entity} successfully completed
 es-stagehand-notification-objective-failed = {$entity} failed their objective "{$objective}!"
 
 es-stagehand-notification-mask-change = {$player} donned a new mask, becoming {INDEFINITE($mask)} [bold]{$mask}![/bold]
+
+es-stagehand-notification-new-stagehand = {$username} has joined the backstage crew.

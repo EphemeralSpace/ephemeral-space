@@ -6,7 +6,8 @@ namespace Content.Shared.Light
     public enum PoweredLightVisuals : byte
     {
         BulbState,
-        Blinking
+        Blinking,
+        GlowColor
     }
 
     [Serializable, NetSerializable]

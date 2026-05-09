@@ -15,6 +15,7 @@
   table:
     all:
     - id: ESDegradationEventAirlocks
+    - id: ESDegradationEventLights
     - id: ESDegradationEventMouse
     - id: ESDegradationEventCommunicationsConsole
     - id: ESDegradationEventCriminalRecords
@@ -36,20 +37,27 @@
 
 - type: entity
   parent: ESBaseDegradationEvent
+  id: ESDegradationEventLights
+  name: Light Failure # just breaking rn but ideally also causes flickering lights and etc. more varied effects
+  description: Breaks a few random lights around the station.
+  components:
+  - type: ESLightFailureEvent
+  - type: StationEvent
+    weight: 40
+
+- type: entity
+  parent: ESBaseDegradationEvent
   id: ESDegradationEventMouse
   name: Mouse Swarm
   description: Sends mice into maintenance to nibble wires.
   components:
-  - type: ESSpawnRandomRule
-    spawnRegion: ESMaintenance
+  - type: ESVentSpawnEvent
     table:
       group:
       - id: MobMouse
       - id: MobMouse1
       - id: MobMouse2
       rolls: 5, 8
-  - type: ESTimedDespawn
-    lifetime: 1.0
   - type: StationEvent
     weight: 40
 

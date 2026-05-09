@@ -9,13 +9,27 @@
   parent: Poweredlight
   name: light fixture
   description: Draws power and produces light when equipped with a light tube.
-  suffix: ES, Departments
+  suffix: ES, Cool Department
+  components:
+  - type: PointLight
+    color: "#acb4c2"
+    energy: 1.45
+  - type: PoweredLight
+    hasLampOnSpawn: ESLightTubeDepartment
+  - type: ESNightshiftReplacementMarker
+
+- type: entity
+  id: ESPoweredLightDepartmentWarm
+  parent: Poweredlight
+  name: light fixture
+  description: Draws power and produces light when equipped with a light tube.
+  suffix: ES, Warm Department
   components:
   - type: PointLight
     color: "#ece2dd"
     energy: 1.45
   - type: PoweredLight
-    hasLampOnSpawn: ESLightTubeDepartment
+    hasLampOnSpawn: ESLightTubeDepartmentWarm
   - type: ESNightshiftReplacementMarker
 
 # Nightshift lighting. Replaces department lighting randomly at roundstart.
@@ -28,7 +42,7 @@
   suffix: ES, Nightshift
   components:
   - type: PointLight
-    color: "#8f6e5d"
+    color: "#a17660"
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeNightshift
   - type: DeviceNetwork
@@ -43,7 +57,7 @@
   suffix: ES, Hallway
   components:
   - type: PointLight
-    color: "#828281"
+    color: "#a08684"
   - type: PoweredLight
     hasLampOnSpawn: ESLightTubeHallway
   - type: DeviceNetwork
@@ -58,3 +72,29 @@
   components:
   - type: DeviceNetwork
     receiveFrequencyId: null
+
+- type: entity
+  id: ESPoweredLightCool
+  parent: Poweredlight
+  name: light fixture
+  description: Draws power and produces light when equipped with a light tube.
+  suffix: ES, Cool
+  components:
+  - type: PointLight
+    color: "#687785"
+    energy: 1.45
+  - type: PoweredLight
+    hasLampOnSpawn: ESLightTubeCool
+
+- type: entity
+  id: ESPoweredLightCrimson
+  parent: Poweredlight
+  name: light fixture
+  description: Draws power and produces light when equipped with a light tube.
+  suffix: ES, Crimson
+  components:
+  - type: PointLight
+    color: "#c26d72"
+    energy: 1.45
+  - type: PoweredLight
+    hasLampOnSpawn: ESLightTubeCrimson

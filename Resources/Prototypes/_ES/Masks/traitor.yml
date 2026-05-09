@@ -1,6 +1,6 @@
 - type: esMask
   parent: ESBaseTraitor
-  id: ESAssassin
+  id: Assassin
   name: es-mask-assassin-name
   description: es-mask-assassin-desc
   color: hotpink
@@ -11,7 +11,7 @@
 
 - type: esMask
   parent: ESBaseTraitor
-  id: ESDemolitionist
+  id: Demolitionist
   name: es-mask-demolitionist-name
   description: es-mask-demolitionist-desc
   color: orangered
@@ -23,13 +23,13 @@
 
 - type: esMask
   parent: ESBaseTraitor
-  id: ESInfiltrator
+  id: Infiltrator
   name: es-mask-infiltrator-name
   description: es-mask-infiltrator-desc
   color: yellow
   tips:
-  - es-tips-dataset-69
-  - es-tips-dataset-70
+  - InfiltratorC4Deniability
+  - EmagAirlockDeniability
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto:
@@ -37,11 +37,10 @@
 
 - type: esMask
   parent: ESBaseTraitor
-  id: ESMarauder
+  id: Marauder
   name: es-mask-marauder-name
   description: es-mask-marauder-desc
   color: coral
-  weight: 1.5
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto:
@@ -49,7 +48,7 @@
 
 - type: esMask
   parent: ESBaseTraitor
-  id: ESRecruit
+  id: Recruit
   name: es-mask-recruit-name
   description: es-mask-recruit-desc
   color: pink
@@ -57,11 +56,11 @@
 
 - type: esMask
   parent: ESBaseTraitor
-  id: ESSubverter
+  id: Subverter
   name: es-mask-subverter-name
   description: es-mask-subverter-desc
   color: gray
-  weight: 0.5
+  weight: 0.75
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto:
@@ -70,10 +69,11 @@
 # Non-traitor masks that are dependent on traitors
 - type: esMask
   parent: ESBaseCommandRestricted # same restriction as traitors
-  id: ESSleeperAgent
+  id: SleeperAgent
   name: es-mask-sleeper-agent-name
-  troupe: ESCrew
+  troupe: Crew
   description: es-mask-sleeper-agent-desc
   color: darkturquoise
+  weight: 0 # otherwise it can roll in randomasquerades with no traitors. temp fix
   mindComponents:
   - type: ESSuperfan

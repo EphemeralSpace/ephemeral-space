@@ -1,36 +1,43 @@
 - type: esMask
   parent: ESBaseParasite
-  id: ESBurstworm
+  id: Burstworm
   name: es-mask-burstworm-name
   description: es-mask-burstworm-desc
   color: yellowgreen
+  tips:
+  - BurstwormConversion
   mindComponents:
   - type: ESBurstworm
 
 - type: esMask
   parent: ESBaseParasite
-  id: ESHemophage
+  id: Hemophage
   name: es-mask-hemophage-name
   description: es-mask-hemophage-desc
   color: brown
+  tips:
+  - HemophageBloodSpreading
   mindComponents:
   - type: ESHemophage
 
 - type: esMask
   parent: ESBaseParasite
-  id: ESHost
+  id: Host
   name: es-mask-host-name
   description: es-mask-host-desc
   color: palegoldenrod
   weight: 0 # do not assign in masquerades.
   gear: ESParasiteSwarmGear
   objectives: !type:NoneSelector
+  prohibitedJobs: [] # not relevant since these are not assigned directly, but important for guidebook display
 
 - type: esMask
   parent: ESBaseParasite
-  id: ESPsychid
+  id: Psychid
   name: es-mask-psychid-name
   description: es-mask-psychid-desc
   color: lightsteelblue
+  tips:
+  - PsychidConversion
   mindComponents:
   - type: ESPsychid

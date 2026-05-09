@@ -6,13 +6,14 @@
   components:
   - type: Sprite
     layers:
-    - state: default
-    - state: stripe_top
-      color: &color-medical-top "#68aed6"
-    - state: stripe_bottom
-      color: &color-medical-bottom "#325f7a"
-    - sprite: &icon-rsi _ES/Interface/Misc/ES_job_icons.rsi
-      offset: &icon-offset -0.09375, 0.0625 #3 pixels left, 2 pixels up
-      state: coroner
+    - state: base_normal
+    - state: icon_1
+      color: &color-med-1 "#5b97bc"
+    - state: icon_2
+      color: &color-med-2 "#4582a8"
+    - state: icon_3
+      color: &color-med-3 "#36769e"
+    - state: strip
+      color: "#000000" # coroner is a dark guy
   - type: PresetIdCard
     job: ESCoroner

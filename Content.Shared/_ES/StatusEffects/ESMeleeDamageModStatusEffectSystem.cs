@@ -8,9 +8,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.StatusEffects;
 
-public sealed class ESMeleeDamageModStatusEffectSystem : EntitySystem
+public sealed partial class ESMeleeDamageModStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

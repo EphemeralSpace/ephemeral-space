@@ -1,3 +1,4 @@
+using Content.Client._ES.Screens;
 using Content.Client.Lobby.UI;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Gameplay;
@@ -8,9 +9,9 @@ using Robust.Client.UserInterface.Controllers;
 namespace Content.Client.UserInterface.Systems.Vote;
 
 [UsedImplicitly]
-public sealed class VoteUIController : UIController
+public sealed partial class VoteUIController : UIController
 {
-    [Dependency] private readonly IVoteManager _votes = default!;
+    [Dependency] private IVoteManager _votes = default!;
 
     public override void Initialize()
     {
@@ -27,8 +28,11 @@ public sealed class VoteUIController : UIController
             case DefaultGameScreen game:
                 _votes.SetPopupContainer(game.VoteMenu);
                 break;
-            case SeparatedChatGameScreen separated:
+            case PerformerGameScreen separated:
                 _votes.SetPopupContainer(separated.VoteMenu);
+                break;
+            case StagehandGameScreen stagehand:
+                _votes.SetPopupContainer(stagehand.VoteMenu);
                 break;
             // ES START
             case LobbyGui lobby:

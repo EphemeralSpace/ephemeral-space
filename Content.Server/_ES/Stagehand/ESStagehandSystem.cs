@@ -16,13 +16,14 @@ namespace Content.Server._ES.Stagehand;
 /// <summary>
 /// This handles logic for spawning in stagehands into the round.
 /// </summary>
-public sealed class ESStagehandSystem : EntitySystem
+public sealed partial class ESStagehandSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly FollowerSystem _follower = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly RoleSystem _role = default!;
+    [Dependency] private ESStagehandNotificationsSystem _notif = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private FollowerSystem _follower = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private RoleSystem _role = default!;
 
     private static readonly EntProtoId StagehandPrototype = "ESMobStagehand";
     private static readonly EntProtoId ObserverRole = "MindRoleObserver";
@@ -89,6 +90,7 @@ public sealed class ESStagehandSystem : EntitySystem
         var stagehand = SpawnAtPosition(StagehandPrototype, coords);
         _mind.TransferTo(mind, stagehand, mind: mind);
 
+        _notif.SendStagehandNotification(Loc.GetString("es-stagehand-notification-new-stagehand", ("username", player.Name)));
         _adminLog.Add(LogType.Mind, $"{ToPrettyString(mind):player} became a stagehand.");
     }
 }

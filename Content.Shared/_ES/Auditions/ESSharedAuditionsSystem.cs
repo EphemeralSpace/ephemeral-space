@@ -15,13 +15,13 @@ namespace Content.Shared._ES.Auditions;
 /// </summary>
 public abstract partial class ESSharedAuditionsSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedJobSystem _job = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedJobSystem _job = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
-    public bool RandomCharactersEnabled;
+    public bool RandomCharactersEnabled { get; private set; }
 
     public override void Initialize()
     {
@@ -38,29 +38,12 @@ public abstract partial class ESSharedAuditionsSystem : EntitySystem
         ent.Comp.OpinionConcepts.AddRange(_random.GetItems(dataset, ent.Comp.OpinionConceptCount, allowDuplicates: false));
     }
 
-    /// <summary>
-    /// Returns the number of characters on the station.
-    /// Only counts the number of people that have been spawned across the round,
-    /// does not account for people leaving or disconnecting.
-    /// </summary>
-    public int GetPlayerCount()
-    {
-        var count = 0;
-        var query = EntityQueryEnumerator<ESProducerComponent>();
-        while (query.MoveNext(out var comp))
-        {
-            count += comp.Characters.Count - comp.UnusedCharacterPool.Count;
-        }
-
-        return count;
-    }
-
     public IEnumerable<Entity<ESCharacterComponent>> GetCharacters()
     {
         var query = EntityQueryEnumerator<ESProducerComponent>();
         while (query.MoveNext(out var comp))
         {
-            foreach (var character in comp.UsedCharacters)
+            foreach (var character in comp.Characters)
             {
                 if (TryComp<ESCharacterComponent>(character, out var c))
                     yield return (character, c);

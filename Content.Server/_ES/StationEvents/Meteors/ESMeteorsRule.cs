@@ -13,10 +13,10 @@ using Robust.Shared.Physics.Components;
 
 namespace Content.Server._ES.StationEvents.Meteors;
 
-public sealed class ESMeteorsRule : StationEventSystem<ESMeteorsRuleComponent>
+public sealed partial class ESMeteorsRule : StationEventSystem<ESMeteorsRuleComponent>
 {
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly PhysicsSystem _physics = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private PhysicsSystem _physics = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

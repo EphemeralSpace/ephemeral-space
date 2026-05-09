@@ -23,24 +23,24 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Light.EntitySystems;
 
-public abstract class SharedPoweredLightSystem : EntitySystem
+public abstract partial class SharedPoweredLightSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming GameTiming = default!;
-    [Dependency] private readonly DamageOnInteractSystem _damageOnInteractSystem = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _ambientSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] protected readonly SharedContainerSystem ContainerSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly SharedLightBulbSystem _bulbSystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _receiver = default!;
-    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
-    [Dependency] private readonly SharedStorageSystem _storage = default!;
-    [Dependency] private readonly SharedDeviceLinkSystem _deviceLink = default!;
+    [Dependency] protected IGameTiming GameTiming = default!;
+    [Dependency] private DamageOnInteractSystem _damageOnInteractSystem = default!;
+    [Dependency] private SharedAmbientSoundSystem _ambientSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] protected SharedContainerSystem ContainerSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedLightBulbSystem _bulbSystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private SharedPowerReceiverSystem _receiver = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
+    [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] private SharedDeviceLinkSystem _deviceLink = default!;
 // ES START
-    [Dependency] private readonly SharedGameTicker _gameTicker = default!;
-    [Dependency] private readonly ESSparksSystem _sparks = default!;
+    [Dependency] private SharedGameTicker _gameTicker = default!;
+    [Dependency] private ESSparksSystem _sparks = default!;
 // ES END
 
     private static readonly TimeSpan ThunkDelay = TimeSpan.FromSeconds(2);
@@ -241,7 +241,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
     /// <summary>
     ///     Try to break bulb inside light fixture
     /// </summary>
-    public bool TryDestroyBulb(EntityUid uid, PoweredLightComponent? light = null, EntityUid? user = null)
+    public bool TryDestroyBulb(EntityUid uid, PoweredLightComponent? light = null, EntityUid? user = null, float tileFireChanceOverride = 0.05f)
     {
         if (!Resolve(uid, ref light, false))
             return false;
@@ -255,7 +255,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
 
         // break it
 // ES START
-        _sparks.DoSparks(uid, user: user, tileFireChance: 0.05f);
+        _sparks.DoSparks(uid, user: user, tileFireChance: tileFireChanceOverride);
 // ES END
         _bulbSystem.SetState(bulbUid.Value, LightBulbState.Broken, lightBulb);
         _bulbSystem.PlayBreakSound(bulbUid.Value, lightBulb, user);
@@ -303,6 +303,8 @@ public abstract class SharedPoweredLightSystem : EntitySystem
                 {
                     SetLight(uid, true, lightBulb.Color, light, lightBulb.LightRadius, lightBulb.LightEnergy, lightBulb.LightSoftness);
                     _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.On, appearance);
+                    _appearance.SetData(uid, PoweredLightVisuals.GlowColor, lightBulb.GlowColorOverride ?? lightBulb.Color, appearance);
+
                     var time = GameTiming.CurTime;
 // ES START
                     // dont play light sound if round just started

@@ -73,3 +73,11 @@
     enabled: false
   - type: Physics
     canCollide: false
+
+- type: entity
+  parent: ESCurtainsTheaterOpen
+  id: ESCurtainsTheaterLobbyClosed
+  suffix: ES, Lobby Closing
+  description: The stage is currently closed. Please return for a performance in the future.
+  components:
+  - type: ESLobbyClosingDoor

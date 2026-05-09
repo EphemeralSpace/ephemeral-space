@@ -1,5 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Server._ES.Radio;
-using Content.Server.Audio;
+using Content.Server._ES.Radstorm.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
@@ -14,7 +15,6 @@ using Content.Shared.Light.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
@@ -30,20 +30,20 @@ namespace Content.Server._ES.Radstorm;
 ///     Controls the radstorm round end behavior: after a certain amount of time, a radstorm will come and slowly kill everyone onboard the station.
 ///     This is announced on the shuttle, as well as announced
 /// </summary>
-public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoundEndRuleComponent>
+public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoundEndRuleComponent>
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly BrainDamageSystem _brainDamage = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly PointLightSystem _pointlight = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private BrainDamageSystem _brainDamage = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private DamageableSystem _damage = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private PointLightSystem _pointlight = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     protected override void Started(EntityUid uid,
         ESRadstormRoundEndRuleComponent component,
@@ -51,7 +51,7 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
         GameRuleStartedEvent args)
     {
         // don't override if it was set for whatever reason
-        if (component.RadstormStartTime != TimeSpan.Zero)
+        if (component.RadstormTimeRemaining != TimeSpan.Zero)
             return;
 
         var randomMins = _random.NextGaussian(component.RadstormStartTimeAvg.TotalMinutes, component.RadstormStartTimeStdDev.TotalMinutes);
@@ -63,7 +63,9 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
         // round to nearest minute
         randomMins = Math.Round(randomMins);
 
-        component.RadstormStartTime = _timing.CurTime + TimeSpan.FromMinutes(randomMins);
+        component.NextUpdateTime = _timing.CurTime + component.UpdateRate;
+        component.RadstormTimeRemaining = TimeSpan.FromMinutes(randomMins);
+        component.RadstormDuration = TimeSpan.FromMinutes(randomMins);
         Log.Info($"Picked {randomMins} minutes into the round as the start time for the radstorm.");
     }
 
@@ -75,9 +77,15 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
         if (_ticker.RunLevel != GameRunLevel.InRound)
             return;
 
+        if (_timing.CurTime >= component.NextUpdateTime)
+        {
+            component.NextUpdateTime += component.UpdateRate;
+            component.RadstormTimeRemaining -= component.UpdateRate * GetRadstormSpeedMultiplier();
+        }
+
         var mapUid = _map.GetMap(_ticker.DefaultMap);
 
-        if ((_timing.CurTime >= component.RadstormStartTime || component.SpaceDangerous)
+        if ((RadstormStarted((uid, component)) || component.SpaceDangerous)
             && _timing.CurTime >= component.RadstormNextDamageTickTime)
         {
             component.RadstormNextDamageTickTime = _timing.CurTime + TimeSpan.FromSeconds(1);
@@ -96,7 +104,7 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
 
                 // if they're not in space (i.e. not parented to the map)
                 // and we haven't technically started yet, that means we're only space-dangerous, so don't hurt them
-                if (xform.ParentUid != mapUid && _timing.CurTime < component.RadstormStartTime)
+                if (xform.ParentUid != mapUid && !RadstormStarted((uid, component)))
                     continue;
 
                 if (TryComp<BrainDamageComponent>(mob, out var brainDamage))
@@ -111,7 +119,7 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
             // show is over
             // (make sure we only actually do this if after time and not just deadly space)
             // (i kind of implemented that in a weird way huh)
-            if (stillAlive == 0 && _timing.CurTime >= component.RadstormStartTime)
+            if (stillAlive == 0 && RadstormStarted((uid, component)))
                 _roundEnd.EndRound();
 
             return;
@@ -119,16 +127,7 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
 
         foreach (var phase in component.RadstormPhases)
         {
-            if (phase.Completed)
-                continue;
-
-            var phaseStart = TimeSpan.Zero;
-            if (phase.TimeBeforeEnd != null)
-                phaseStart = component.RadstormStartTime - phase.TimeBeforeEnd.Value;
-            else if (phase.TimeAfterStart != null)
-                phaseStart = _ticker.RoundStartTimeSpan + phase.TimeAfterStart.Value;
-
-            if (_timing.CurTime < phaseStart)
+            if (!CanStartPhase((uid, component), phase))
                 continue;
 
             DoPhase(component, phase);
@@ -139,7 +138,7 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
     {
         if (phase.AnnouncementText != null)
         {
-            var minutes = (int) Math.Round((comp.RadstormStartTime - _ticker.RoundStartTimeSpan).TotalMinutes);
+            var minutes = (int) Math.Round(GetRadstormEstimatedArrivalTime().TotalMinutes);
             var msg = Loc.GetString(phase.AnnouncementText, ("minutes", (minutes)));
             if (phase.AnnouncementDistortion > 0f)
                 msg = FormattedMessage.RemoveMarkupPermissive(ESRadioSystem.DistortRadioMessage(msg, phase.AnnouncementDistortion, _proto, _random, Loc));
@@ -182,4 +181,69 @@ public sealed class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoun
 
         phase.Completed = true;
     }
+
+    private bool RadstormStarted(Entity<ESRadstormRoundEndRuleComponent> ent)
+    {
+        return ent.Comp.RadstormTimeRemaining <= TimeSpan.Zero;
+    }
+
+    private bool CanStartPhase(Entity<ESRadstormRoundEndRuleComponent> ent, ESRadstormPhaseConfig phase)
+    {
+        // Don't start a phase which has already completed.
+        if (phase.Completed)
+            return false;
+
+        if (phase.TimeAfterStart.HasValue)
+        {
+            return ent.Comp.ElapsedRadstormTime >= phase.TimeAfterStart;
+        }
+
+        if (phase.TimeBeforeEnd.HasValue)
+        {
+            return ent.Comp.RadstormTimeRemaining <= phase.TimeBeforeEnd.Value;
+        }
+
+        throw new Exception("Phase has no valid start condition!");
+    }
+
+    private float GetRadstormSpeedMultiplier()
+    {
+        var ev = new GetRadstormSpeedMultiplierEvent();
+        RaiseLocalEvent(ref ev);
+
+        return ev.Speed;
+    }
+
+    private bool TryGetRadstormRule([NotNullWhen(true)] out Entity<ESRadstormRoundEndRuleComponent>? ent)
+    {
+        var query = EntityQueryEnumerator<ESRadstormRoundEndRuleComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            ent = (uid, comp);
+            return true;
+        }
+
+        ent = null;
+        return false;
+    }
+
+    /// <summary>
+    /// Gets the estimated time til the radstorm arrives, based on the current radstorm speed multiplier.
+    /// </summary>
+    public TimeSpan GetRadstormEstimatedArrivalTime()
+    {
+        if (!TryGetRadstormRule(out var ent))
+            return TimeSpan.Zero;
+
+        return ent.Value.Comp.RadstormTimeRemaining / GetRadstormSpeedMultiplier();
+    }
+}
+
+/// <summary>
+/// Event broadcast when determining the speed multiplier for the radstorm timer.
+/// </summary>
+[ByRefEvent]
+public record struct GetRadstormSpeedMultiplierEvent()
+{
+    public float Speed = 1f;
 }

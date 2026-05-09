@@ -2,19 +2,16 @@
   abstract: true
   parent: BaseStorageItem
   id: BaseEmergencyPouch
-  description: For use in emergency situations
+  description: For use in emergency situations.
   components:
   - type: Sprite
-    sprite: _Offbrand/pouch.rsi
-    layers:
-    - state: closed
-      map: ["item"]
-    - state: cross
-      color: "#ffffff"
+    sprite: _ES/Objects/Specific/Medical/pouch.rsi
+    state: basic
   - type: Item
     size: Small
     shape:
-    - 0,0,0,1
+    - 0,0,1,0
+    heldPrefix: basic
   - type: Storage
     maxItemSize: Small
     grid:
@@ -40,8 +37,8 @@
     visuals:
       enum.OpenableVisuals.Opened:
         item:
-          True: { state: open }
-          False: { state: closed }
+          True: { state: basic_open }
+          False: { state: basic }
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -49,12 +46,9 @@
   name: emergency brute pouch
   components:
   - type: Sprite
-    layers:
-    - state: closed
-      map: ["item"]
-      color: "#ff7cc5"
-    - state: cross
-      color: "#ffffff"
+    state: brute
+  - type: Item
+    heldPrefix: brute
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -62,6 +56,12 @@
         - id: BruteAutoInjector
         - id: Brutepack
         - id: PainkillerAutoInjector
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        item:
+          True: { state: brute_open }
+          False: { state: brute }
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -69,12 +69,9 @@
   name: emergency burn pouch
   components:
   - type: Sprite
-    layers:
-    - state: closed
-      map: ["item"]
-      color: "#e8cb2d"
-    - state: cross
-      color: "#ffffff"
+    state: burn
+  - type: Item
+    heldPrefix: burn
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -82,6 +79,12 @@
         - id: BurnAutoInjector
         - id: Ointment
         - id: PainkillerAutoInjector
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        item:
+          True: { state: burn_open }
+          False: { state: burn }
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -89,18 +92,21 @@
   name: emergency toxin pouch
   components:
   - type: Sprite
-    layers:
-    - state: closed
-      map: ["item"]
-      color: "#3dd425"
-    - state: cross
-      color: "#ffffff"
+    state: tox
+  - type: Item
+    heldPrefix: tox
   - type: EntityTableContainerFill
     containers:
       storagebase:
         all:
         - id: AntiPoisonMedipen
         - id: PillDylovene
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        item:
+          True: { state: tox_open }
+          False: { state: tox }
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -108,18 +114,22 @@
   name: emergency radiation pouch
   components:
   - type: Sprite
-    layers:
-    - state: closed
-      map: ["item"]
-      color: "#e93d58"
-    - state: cross
-      color: "#ffffff"
+    state: rad
+  - type: Item
+    heldPrefix: rad
   - type: EntityTableContainerFill
     containers:
       storagebase:
         all:
         - id: RadAutoInjector
         - id: Brutepack
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        item:
+          True: { state: rad_open }
+          False: { state: rad }
+
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -127,12 +137,9 @@
   name: emergency oxygen deprivation pouch
   components:
   - type: Sprite
-    layers:
-    - state: closed
-      map: ["item"]
-      color: "#44f0d3"
-    - state: cross
-      color: "#ffffff"
+    state: o2
+  - type: Item
+    heldPrefix: o2
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -140,3 +147,9 @@
         - id: AirlossAutoInjector
         - id: PillDexalin
         - id: EpinephrineMedipen
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        item:
+          True: { state: o2_open }
+          False: { state: o2 }

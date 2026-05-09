@@ -78,9 +78,6 @@
     interfaces:
       enum.DisposalUnitUiKey.Key:
         type: DisposalUnitBoundUserInterface
-  - type: Rummageable
-    table: !type:NestedSelector
-      tableId: RatKingLoot
   - type: SolutionContainerManager
     solutions:
       drainBuffer:
@@ -141,7 +138,7 @@
         reagents:
         - ReagentId: Water
           Quantity: 180
-        - ReagentId: GastroToxin
+        - ReagentId: Toxin
           Quantity: 20
 
 - type: entity
@@ -218,5 +215,5 @@
           Quantity: 160
         - ReagentId: Gold
           Quantity: 20
-        - ReagentId: GastroToxin
+        - ReagentId: Toxin
           Quantity: 20

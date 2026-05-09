@@ -1,9 +1,8 @@
 - type: vendingMachineInventory
   id: ESDinnerwareInventory
   startingInventory:
-    ButchCleaver: 1
-    ESWeaponKnife: 5
-    RollingPin: 4
+    ESWeaponKnife: 1
+    RollingPin: 2
     Spoon: 4
     Fork: 4
     PairedChopsticks: 4
@@ -38,7 +37,6 @@
     FoodCondimentBottleVinegar: 2
     ReagentContainerOliveoil: 2
     ReagentContainerMayo: 1
-    MonkeyCubeBox: 1
     FoodContainerEgg: 1
     DrinkMilkCarton: 2
     DrinkSoyMilkCarton: 1

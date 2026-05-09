@@ -9,4 +9,4 @@
     sprite: _ES/Objects/Devices/subverter.rsi
     state: icon
   - type: ESAddMaskOnUse
-    maskToAdd: ESRecruit
+    maskToAdd: Recruit

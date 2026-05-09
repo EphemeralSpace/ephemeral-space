@@ -8,10 +8,10 @@ using Robust.Client.Graphics;
 namespace Content.Client._ES.Blinking;
 
 /// <inheritdoc/>
-public sealed class ESBlinkingSystem : ESSharedBlinkingSystem
+public sealed partial class ESBlinkingSystem : ESSharedBlinkingSystem
 {
-    [Dependency] private readonly AnimationPlayerSystem _animationPlayer = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private AnimationPlayerSystem _animationPlayer = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     private const string AnimationKey = "anim-blink";
 

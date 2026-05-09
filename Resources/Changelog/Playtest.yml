@@ -1,0 +1,150 @@
+Entries:
+- author: test
+  changes:
+    - message: test
+      type: Add
+  id: 1
+  time: '2025-08-31T12:54:45.0000000+00:00'
+  url: https://github.com/EphemeralSpace/ephemeral-space/pull/1
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: >-
+        Viewport scaling should work better in most situations, including on
+        720p/1440p monitors where it was previously kinda awful
+  id: 2
+  time: '2026-04-16T23:54:27.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Stagehands now get a notification when a new stagehand joins the crew
+  id: 3
+  time: '2026-04-18T00:04:02.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        The help button in the character menu now opens the mask's guidebook
+        page
+  id: 4
+  time: '2026-04-18T00:15:12.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed being unable to use "T" and other chat shortcuts in the lobby.
+  id: 5
+  time: '2026-04-18T20:52:02.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        The station now has several thrusters which keep it moving away from the
+        radstorm. Make sure these are fueled up with welding fuel, or else you
+        may find the storm approaching faster than expected.
+  id: 6
+  time: '2026-04-18T21:54:34.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Pickpocket, a new crew mask that is tasked with snatching
+        items from people using their unique sneaky ability.
+  id: 7
+  time: '2026-04-23T13:44:18.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Arsonist, a new crew mask focused on lighting fires across the
+        station.
+  id: 8
+  time: '2026-04-24T15:13:40.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Being in braincrit now allows you to succumb with an action once more
+        (or say last words)
+  id: 9
+  time: '2026-05-03T00:53:56.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        New fully-random masquerades incorporating parasites have been added.
+        All masquerades will be random for a moment as we test it out and see
+        what things work to help with designing masquerades in the future.
+  id: 10
+  time: '2026-05-03T20:28:29.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Slight rebalance of crew thrusters + nav console + warp drive to be a
+        little more relevant
+  id: 11
+  time: '2026-05-03T21:35:10.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        The server is now advertising on the hub! While we're not running
+        rounds, the curtains leading to the stage will be closed, and you'll get
+        a popup telling you what's going on.
+  id: 12
+  time: '2026-05-05T22:19:41.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Default viewcone angle + feathering for the overlay has been altered
+        slightly
+  id: 13
+  time: '2026-05-06T00:00:34.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: Adrenaline rush action has been removed, goodbye urist mcflowerfield
+  id: 14
+  time: '2026-05-06T00:02:36.0000000+00:00'
+- author: Coolsurf6
+  changes:
+    - type: Tweak
+      message: Jerrycans are now 3x3
+  id: 15
+  time: '2026-05-06T01:22:46.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Sleeper agents now have a chance to convert after each traitor death,
+        not just after the last one dies.
+  id: 16
+  time: '2026-05-07T19:23:36.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Add
+      message: Nuclear cryptographic terminals now have a navmap beacon
+  id: 17
+  time: '2026-05-07T19:26:29.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: 'Added two new common maints utility items: the door jammer & the net. '
+    - type: Add
+      message: >-
+        The door jammer is a jury-rigged screwdriver that forcibly bolts any
+        door it's thrown and embedded into, until it's removed. 
+    - type: Add
+      message: >-
+        The net is an item that steals the item out of someone's active hand
+        when it's thrown at them, carrying it along until it lands. If the
+        target's active hand is empty, they'll simply catch the net instead.
+  id: 18
+  time: '2026-05-07T21:33:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Positional audio should now sound much better (this is hard to explain)
+  id: 19
+  time: '2026-05-08T22:51:54.0000000+00:00'

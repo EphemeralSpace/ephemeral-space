@@ -12,10 +12,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._ES.Stagehand.Ui;
 
 [GenerateTypedNameReferences]
-public sealed partial class ESObservablePlayerButton : Button
+public sealed partial class ESObservablePlayerButton : ContainerButton
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
     private readonly JobSystem _job;
     private readonly ESMaskSystem _mask;
     private readonly SpriteSystem _sprite;
@@ -30,6 +30,7 @@ public sealed partial class ESObservablePlayerButton : Button
         _sprite = _entityManager.System<SpriteSystem>();
 
         ToggleMode = true;
+        AddStyleClass(StyleClassButton);
     }
 
     public void SetEntity(EntityUid uid)
@@ -58,8 +59,12 @@ public sealed partial class ESObservablePlayerButton : Button
         if (_prototype.TryIndex(mask, out var maskPrototype))
             MaskLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(maskPrototype.Name))), maskPrototype.Color);
 
-        if (_prototype.TryIndex(troupe, out var troupePrototype))
-            TroupeLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(troupePrototype.Name))), troupePrototype.Color);
+        if (_prototype.TryIndex(troupe, out var troupePrototype)
+            && _prototype.TryIndex(troupePrototype.MetaIcon, out var troupeIcon))
+        {
+            TroupeIcon.Texture = _sprite.Frame0(troupeIcon.Icon);
+            TroupeIcon.ToolTip = Loc.GetString(troupePrototype.Name);
+        }
     }
 }
 

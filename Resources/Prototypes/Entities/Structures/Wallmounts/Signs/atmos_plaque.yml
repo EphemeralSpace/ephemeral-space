@@ -33,6 +33,7 @@
   components:
   - type: Sprite
     state: atmosplaque
+  - type: ESAmbientMusicMarkerEngineering
 
 - type: entity
   parent: PlaqueAtmosFEA
@@ -40,6 +41,8 @@
   name: LINDA Atmospherics Division plaque
   description: This plaque commemorates the fall of the Atmos LINDA division. For all the charred, dizzy, and brittle men who have died in its hands.
   categories: [ HideSpawnMenu ]
+  components:
+  - type: ESAmbientMusicMarkerEngineering
 
 - type: entity
   parent: PlaqueAtmosFEA
@@ -47,6 +50,8 @@
   name: ZAS Atmospherics Division plaque
   description: This plaque commemorates the fall of the Atmos ZAS division. For all the charred, dizzy, and brittle men who have died in its hands.
   categories: [ HideSpawnMenu ]
+  components:
+  - type: ESAmbientMusicMarkerEngineering
 
 # If you get the ZUM plaque it means your round will be blessed with good engineering luck.
 - type: entity
@@ -58,3 +63,4 @@
   components:
   - type: Sprite
     state: zumosplaque
+  - type: ESAmbientMusicMarkerEngineering

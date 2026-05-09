@@ -11,10 +11,10 @@ namespace Content.Shared._ES.Viewcone;
 ///     it spawns in the correct pos and shit
 /// </summary>
 [PublicAPI]
-public sealed class ESViewconeEffectSystem : EntitySystem
+public sealed partial class ESViewconeEffectSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
 
     /// <summary>
     ///     Spawns the given effect entity at the player source, and sets relevant variables

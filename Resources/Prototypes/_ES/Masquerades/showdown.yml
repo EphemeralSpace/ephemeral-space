@@ -2,16 +2,16 @@
   id: Showdown
   name: Showdown
   description: is a real showdown, with many more guns than usual
-  weight: 1 # Not that common
+  weight: 0 # Not that common
   minPlayers: 8
   gameRules: []
   masquerade:
-    defaultMask: "ESCrewmember"
+    defaultMask: "Crewmember"
     roles:
-      8: ["ESMarauder(2)", "ESRebel", "#Targeters", "ESVIP", "ESArmsDealer", "#Filler(2)"] # 0 generic crew, 2 traitors
+      8: ["Marauder(2)", "Rebel", "#Targeters", "VIP", "ArmsDealer", "#Filler(2)"] # 0 generic crew, 2 traitors
       9: ["#Filler"]
-      10: ["ESInfiltrator"] # 0 generic crew, 3 traitors.
-      11: ["ESArmsDealer"] # Guarantee another arms dealer, this is definitely balanced around an armed crew.
+      10: ["Infiltrator"] # 0 generic crew, 3 traitors.
+      11: ["ArmsDealer"] # Guarantee another arms dealer, this is definitely balanced around an armed crew.
       12: ["#Antagonistic"]
       13: ["#TraitorGunners"]
       14: ["#Filler"]

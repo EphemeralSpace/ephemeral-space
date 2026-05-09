@@ -193,25 +193,6 @@
         path: /Audio/Effects/extinguish.ogg
 
 - type: reaction
-  id: UraniumEmpExplosion
-  impact: High
-  priority: 20
-  conserveEnergy: false
-  reactants:
-    Iron:
-      amount: 1
-    Uranium:
-      amount: 1
-    Aluminium:
-      amount: 1
-  effects:
-    - !type:Emp
-      rangeModifier: 0.2
-      maxRange: 6
-      energyConsumption: 12500
-      duration: 15
-
-- type: reaction
   id: Flash
   impact: High
   priority: 20
@@ -225,17 +206,6 @@
       amount: 1
   effects:
     - !type:Flash
-
-- type: reaction
-  id: TableSalt
-  minTemp: 370
-  reactants:
-    Chlorine:
-      amount: 1
-    Sodium:
-      amount: 1
-  products:
-    TableSalt: 2
 
 - type: reaction
   id: TableSaltBreakdown
@@ -315,22 +285,6 @@
   products:
     Desoxyephedrine: 4 #I kinda remember having to heat this up, and if you heated it up too much, it went boom, I can't remember the specific values tho.
 
-# ES START
-#- type: reaction
-#  id: Stimulants
-#  impact: Medium
-#  minTemp: 370
-#  reactants:
-#    Ephedrine:
-#      amount: 1
-#    Vestine:
-#      amount: 1
-#    Oxygen:
-#      amount: 2
-#  products:
-#    Stimulants: 2
-# ES END
-
 - type: reaction
   id: Ephedrine
   impact: Medium
@@ -346,22 +300,6 @@
   products:
     Ephedrine: 4
 
-# ES START
-#- type: reaction
-#  id: MuteToxin
-#  impact: Medium
-#  minTemp: 370
-#  reactants:
-#    Uranium:
-#      amount: 1
-#    Vestine:
-#      amount: 2
-#    SpaceGlue:
-#      amount: 2
-#  products:
-#    MuteToxin: 2
-# ES END
-
 - type: reaction
   id: ChloralHydrate
   impact: Medium
@@ -376,19 +314,6 @@
     ChloralHydrate: 1
 
 - type: reaction
-  id: Pax
-  impact: Medium
-  reactants:
-    MindbreakerToxin:
-      amount: 1
-    Synaptizine:
-      amount: 1
-    Water:
-      amount: 1
-  products:
-    Pax: 3
-
-- type: reaction
   id: Charcoal
   reactants:
     Carbon:
@@ -397,137 +322,6 @@
       amount: 1
   products:
     Charcoal: 1
-
-- type: reaction
-  id: NorepinephricAcid
-  impact: Medium
-  reactants:
-    Uranium:
-      amount: 1
-    Epinephrine:
-      amount: 1
-  products:
-    NorepinephricAcid: 2
-
-- type: reaction
-  id: Ethyloxyephedrine
-  impact: Medium
-  reactants:
-    Desoxyephedrine:
-      amount: 1
-    Stellibinin:
-      amount: 1
-  products:
-    Ethyloxyephedrine: 2
-
-- type: reaction
-  id: Diphenylmethylamine
-  impact: Medium
-  reactants:
-    Ethyloxyephedrine:
-      amount: 1
-    SodiumCarbonate:
-      amount: 1
-    Coffee:
-      amount: 1
-  products:
-    Diphenylmethylamine: 3
-
-- type: reaction
-  id: SodiumCarbonate
-  impact: Medium
-  reactants:
-    Ammonia:
-      amount: 1
-    TableSalt:
-      amount: 1
-    Carbon:
-      amount: 1
-    Oxygen:
-      amount: 1
-  products:
-    SodiumCarbonate: 4
-
-- type: reaction
-  id: Benzene
-  minTemp: 310
-  reactants:
-    Hydrogen:
-      amount: 1
-    Carbon:
-      amount: 1
-  products:
-    Benzene: 1
-
-- type: reaction
-  minTemp: 310
-  id: Hydroxide
-  priority: -1 #needs to be here due to how sulfuric acid reaction words
-  reactants:
-    Oxygen:
-      amount: 1
-    Hydrogen:
-      amount: 1
-  products:
-    Hydroxide: 2
-
-- type: reaction
-  id: SodiumHydroxide
-  reactants:
-    Hydroxide:
-      amount: 1
-    Sodium:
-      amount: 1
-  products:
-    SodiumHydroxide: 2
-
-- type: reaction
-  minTemp: 310
-  id: Fersilicite
-  reactants:
-    Iron:
-      amount: 1
-    Silicon:
-      amount: 1
-  products:
-    Fersilicite: 2
-
-- type: reaction
-  id: SodiumPolyacrylate
-  impact: Medium
-  reactants:
-    Oxygen:
-      amount: 2
-    Sodium:
-      amount: 1
-    Nitrogen:
-      amount: 1
-  products:
-    SodiumPolyacrylate: 4
-
-# ES START
-#- type: reaction
-#  id: Nocturine
-#  impact: High
-#  reactants:
-#    Impedrezene:
-#      amount: 2
-#    Vestine:
-#      amount: 1
-#  products:
-#    Nocturine: 1
-#
-#- type: reaction
-#  id: Tazinide
-#  impact: Medium
-#  reactants:
-#    Licoxide:
-#      amount: 1
-#    Vestine:
-#      amount: 1
-#  products:
-#    Tazinide: 1
-# ES END
 
 - type: reaction
   id: Lye

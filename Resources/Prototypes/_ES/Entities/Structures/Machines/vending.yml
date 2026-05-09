@@ -21,9 +21,6 @@
     normalState: normal-unshaded
     ejectState: normal-unshaded
     denyState: deny-unshaded
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
 
 # Variant that dispenses goods on hit
 - type: entity
@@ -49,6 +46,9 @@
     dataset: CigaretteMachineAds
   - type: SpeakOnUIClosed
     pack: CigaretteMachineGoodbyes
+  - type: PointLight
+    color: "#a7cabe"
+    energy: 35
 
 - type: entity
   parent: ESBaseVendingMachineDispenseOnHit
@@ -79,8 +79,7 @@
   - type: SpeakOnUIClosed
     pack: HotDrinksMachineGoodbyes
   - type: PointLight
-    energy: 2.0
-    color: "#ad7c4b"
+    color: "#ec9e66"
 
 - type: entity
   parent: ESBaseVendingMachineDispenseOnHit
@@ -99,7 +98,7 @@
   - type: SpeakOnUIClosed
     pack: RobustSoftdrinksGoodbyes
   - type: PointLight
-    color: "#3c5eb5"
+    color: "#5581f1"
 
 - type: entity
   parent: ESVendingMachineCola
@@ -109,7 +108,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/cola-black.rsi
   - type: PointLight
-    color: "#423438"
+    color: "#b7aecc"
 
 - type: entity
   parent: ESVendingMachineCola
@@ -120,7 +119,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/cola-red.rsi
   - type: PointLight
-    color: "#A50824"
+    color: "#e04f54"
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -135,7 +134,7 @@
   - type: AccessReader
     access: [["Engineering"]]
   - type: PointLight
-    color: "#b89e2a"
+    color: "#d8c471"
   - type: ESAmbientMusicMarkerEngineering
 
 - type: entity
@@ -185,7 +184,7 @@
   - type: SpeakOnUIClosed
     pack: GenericVendGoodbyes
   - type: PointLight
-    color: "#326e3f"
+    color: "#7acb89"
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -204,7 +203,7 @@
   - type: AccessReader
     access: [["Hydroponics"]]
   - type: PointLight
-    color: "#326e3f"
+    color: "#93a857"
 
 - type: entity
   parent: ESBaseVendingMachineDispenseOnHit
@@ -232,7 +231,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/snack-blue.rsi
   - type: PointLight
-    color: "#3c5eb5"
+    color: "#587dd7"
 
 - type: entity
   parent: ESVendingMachineSnack
@@ -242,7 +241,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/snack-orange.rsi
   - type: PointLight
-    color: "#CE3401"
+    color: "#ff643e"
 
 - type: entity
   parent: ESVendingMachineSnack
@@ -252,7 +251,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/snack-green.rsi
   - type: PointLight
-    color: "#5F6A1C"
+    color: "#8aa65f"
 
 - type: entity
   parent: ESVendingMachineSnack
@@ -262,7 +261,7 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/snack-teal.rsi
   - type: PointLight
-    color: "#207E79"
+    color: "#70c6c0"
 
 - type: entity
   parent: ESVendingMachineSnack
@@ -275,7 +274,8 @@
   - type: VendingMachine
     pack: SustenanceInventory
   - type: PointLight
-    color: "#737785"
+    color: "#9ca0af"
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -294,25 +294,7 @@
   - type: AccessReader
     access: [["Kitchen"]]
   - type: PointLight
-    color: "#4b93ad"
-
-- type: entity
-  parent: ESBaseVendingMachine
-  id: ESVendingMachineGames
-  name: Good Clean Fun
-  description: Vends things that the Captain and Head of Personnel are probably not going to appreciate you fiddling with instead of your job...
-  components:
-  - type: Sprite
-    sprite: _ES/Structures/Vendors/games.rsi
-  - type: VendingMachine
-    pack: ESGoodCleanFunInventory
-    ejectDelay: 1.8
-  - type: DatasetVocalizer
-    dataset: GoodCleanFunAds
-  - type: SpeakOnUIClosed
-    pack: GoodCleanFunGoodbyes
-  - type: PointLight
-    color: "#326e3f"
+    color: "#72bad5"
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -334,6 +316,8 @@
   - type: GuideHelp
     guides:
     - OffbrandPhysician
+  - type: PointLight
+    color: "#95c2df"
   - type: ESAmbientMusicMarkerMedical
 
 - type: entity
@@ -352,6 +336,8 @@
   - type: GuideHelp
     guides:
     - Chemicals
+  - type: PointLight
+    color: "#cbba8d"
   - type: ESAmbientMusicMarkerMedical
 
 - type: entity
@@ -371,11 +357,11 @@
   - type: AccessReader
     access: [["Security"]]
   - type: PointLight
-    energy: 3.0
-    color: "#78645c"
+    color: "#ad8d8b"
   - type: GuideHelp
     guides:
     - SecurityOfficer
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -394,7 +380,7 @@
   - type: AccessReader
     access: [["Service"]]
   - type: PointLight
-    color: "#4b93ad"
+    color: "#8da7bf"
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -407,10 +393,11 @@
   - type: VendingMachine
     pack: PTechInventory
   - type: PointLight
-    energy: 2.0
-    color: "#ffb0b0"
+    energy: 35
+    color: "#fcafc1"
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
+  - type: ESAmbientMusicMarkerCommand
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -427,7 +414,7 @@
   - type: SpeakOnUIClosed
     pack: GenericVendGoodbyes
   - type: PointLight
-    color: "#B0ADA9"
+    color: "#beaa8f"
   - type: AccessReader
     access: [["Research"]]
 

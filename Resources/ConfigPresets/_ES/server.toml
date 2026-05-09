@@ -2,7 +2,7 @@
 
 [game]
 desc             = "Engage in treachery and social deduction on stage in the Ephemeral Space theater!"
-soft_max_players = 35
+soft_max_players = 32
 lobbyenabled     = true
 lobbyduration    = 450 # 7.5 minute lobby timer
 

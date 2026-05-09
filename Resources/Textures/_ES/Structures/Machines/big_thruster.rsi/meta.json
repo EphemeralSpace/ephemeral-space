@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Sprites taken from tgstation at commit https://github.com/tgstation/tgstation/commit/fb2d71495bfe81446159ef528534193d09dd8d34",
+    "size": {
+        "x": 96,
+        "y": 96
+    },
+    "states": [
+        {
+            "name": "base"
+        },
+        {
+            "name": "unlit"
+        }
+    ]
+}

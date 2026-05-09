@@ -145,21 +145,6 @@
   - type: Item
     size: Normal
     sprite: Objects/Fun/Plushies/bee.rsi
-  - type: Extractable
-    grindableSolutionName: bee
-  - type: SolutionContainerManager
-    solutions:
-      bee:
-        reagents:
-        - ReagentId: GroundBee
-          Quantity: 10
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: GroundBee
-          Quantity: 5
-        - ReagentId: Fiber
-          Quantity: 5
   - type: Clothing
     quickEquip: false
     sprite: Objects/Fun/Plushies/bee.rsi

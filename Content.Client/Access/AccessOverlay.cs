@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using System.Text;
 using Content.Client.Stylesheets.Fonts;
 using Content.Shared.Access.Components;
@@ -109,6 +110,7 @@ public sealed class AccessOverlay : Overlay
             }
 
             var accessInfoText = textBuffer.ToString();
+            args.ScreenHandle.SetTransform(Matrix3x2.Identity);
             var screenPos = args.ViewportControl.WorldToScreen(_transformSystem.GetWorldPosition(transform));
             args.ScreenHandle.DrawString(_font, screenPos, accessInfoText, Color.Gold);
         }

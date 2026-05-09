@@ -6,9 +6,9 @@ using Robust.Client.GameObjects;
 namespace Content.Client._ES.Evac;
 
 /// <inheritdoc/>
-public sealed class ESEvacSystem : ESSharedEvacSystem
+public sealed partial class ESEvacSystem : ESSharedEvacSystem
 {
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
 
     public override void Initialize()
     {

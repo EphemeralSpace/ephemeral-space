@@ -2060,13 +2060,6 @@ entities:
     - type: Transform
       pos: 11.5,-8.5
       parent: 1
-- proto: CircuitImprinter
-  entities:
-  - uid: 130
-    components:
-    - type: Transform
-      pos: 11.5,2.5
-      parent: 1
 - proto: ClosetEmergencyFilledRandom
   entities:
   - uid: 133
@@ -4073,13 +4066,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 15.5,-4.5
-      parent: 1
-- proto: Protolathe
-  entities:
-  - uid: 129
-    components:
-    - type: Transform
-      pos: 11.5,3.5
       parent: 1
 - proto: Rack
   entities:

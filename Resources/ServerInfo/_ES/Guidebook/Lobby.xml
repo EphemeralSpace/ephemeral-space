@@ -1,0 +1,35 @@
+<Document>
+# The Theater
+
+  The theater is the lobby where every player who joins the server appears. The theater is a physical space for you to immerse yourself in while waiting for a new round.
+
+  Everything you need to do to join a round is located here, as well as a few interesting things to interact with.
+
+# The Stage
+
+  The stage is where you go to join a round. If the round hasn't started, you can [bold]stand on the stage to ready up[/bold] for the next round.
+
+  When on stage, you can change your job preferences menu via the action in the top left.
+
+# Latejoining
+
+  Once a round starts, anyone who wishes to join will have to speak to the Casting Director or the Stagehand Director. They are located on the stage, behind the curtains that open up when the round starts.
+
+## The Directors
+
+
+  <Box>
+    <GuideEntityEmbed Entity="ESMobTheaterStaffSpawning" Caption=""/>
+    <GuideEntityEmbed Entity="ESMobTheaterStaffStagehand" Caption=""/>
+  </Box>
+
+  The Casting Director allows you to join the round as a player, though, anyone who latejoins will not be given a unique mask.
+
+  The Stagehand Director allows you to join the round as a stagehand.
+
+  <Box>
+    [color=#999999][italic]The stagehand is a spectator role that can vote on events throughout the round and affect the players in different ways.[italic][/color]
+  </Box>
+
+  When you die, you'll be sent back to the lobby. At which point, you can rejoin the round by becoming a stagehand by talking to the Stagehand Director.
+</Document>

@@ -9,8 +9,8 @@ namespace Content.Shared._Offbrand.Wounds;
 
 public sealed partial class UniqueWoundOnDamageSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly WoundableSystem _woundable = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private WoundableSystem _woundable = default!;
 
     public override void Initialize()
     {

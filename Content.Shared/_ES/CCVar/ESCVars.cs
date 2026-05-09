@@ -11,7 +11,7 @@ namespace Content.Shared._ES.CCVar;
 /// </remarks>
 [CVarDefs]
 // ReSharper disable once InconsistentNaming | shh, be quiet
-public sealed partial class ESCVars : CVars
+public sealed class ESCVars : CVars
 {
     /// <summary>
     /// What's the current year?
@@ -58,4 +58,18 @@ public sealed partial class ESCVars : CVars
     /// </summary>
     public static readonly CVarDef<bool> UserChatSanitizationEnabled =
     CVarDef.Create("es_chat.user_chat_sanitization_enabled", true, CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> FormattedHostName =
+        CVarDef.Create("es_status.formatted_host_name", "[{0}] [{1} RolePlay] MyServer", CVar.SERVERONLY);
+
+    public static readonly CVarDef<string> RoleplayLevels =
+        CVarDef.Create("es_status.roleplay_levels", "Default", CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Controls whether the lobby is "closed".
+    ///     While the lobby is closed, the main theater stage is blocked off, the welcome message indicates that the lobby is closed,
+    ///     and rounds cannot start.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyClosed =
+        CVarDef.Create("es_lobby.closed", false, CVar.SERVER | CVar.REPLICATED);
 }

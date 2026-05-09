@@ -64,6 +64,24 @@
       "name": "id-icon"
     },
     {
+      "name": "navigation"
+    },
+    {
+      "name": "warpdrive",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
       "name": "request-0"
     },
     {

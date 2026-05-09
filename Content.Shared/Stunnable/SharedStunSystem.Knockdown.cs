@@ -31,12 +31,12 @@ public abstract partial class SharedStunSystem
 {
     private EntityQuery<CrawlerComponent> _crawlerQuery;
 
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly StandingStateSystem _standingState = default!;
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private StandingStateSystem _standingState = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
 
     public static readonly ProtoId<AlertPrototype> KnockdownAlert = "Knockdown";
 
@@ -290,7 +290,7 @@ public abstract partial class SharedStunSystem
             if (!CanStand((entity, entity.Comp)))
                 return false;
             // End Offbrand
-            
+
             // If we can't crawl then just have us sit back up...
             // In case you're wondering, the KnockdownOverCheck, returns if we're able to move, so if next update is null.
             // An entity that can't crawl will stand up the next time they can move, which should prevent moving while knocked down.

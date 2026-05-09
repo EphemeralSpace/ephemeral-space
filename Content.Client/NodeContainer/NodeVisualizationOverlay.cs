@@ -118,6 +118,7 @@ namespace Content.Client.NodeContainer
             sb.Append($"grid pos: {gridTile}\n");
             sb.Append(group.DebugData);
 
+            args.ScreenHandle.SetTransform(Matrix3x2.Identity);
             args.ScreenHandle.DrawString(_font, mousePos + new Vector2(20, -20), sb.ToString());
         }
 

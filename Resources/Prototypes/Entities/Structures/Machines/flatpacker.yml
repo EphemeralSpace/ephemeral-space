@@ -61,6 +61,12 @@
     interfaces:
       enum.FlatpackCreatorUIKey.Key:
         type: FlatpackCreatorBoundUserInterface
+  - type: PointLight
+    energy: 4
+    radius: 1.8
+    curveFactor: 0.75
+    color: "#65b8e1"
+  - type: LitOnPowered
   - type: ItemSlots
     slots:
       board_slot:

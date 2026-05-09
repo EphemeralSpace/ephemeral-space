@@ -13,7 +13,7 @@ public sealed partial class PlantMutateChemicals : EntityEffectBase<PlantMutateC
     /// The Reagent list this mutation draws from.
     /// </summary>
     [DataField]
-    public ProtoId<WeightedRandomFillSolutionPrototype> RandomPickBotanyReagent = "RandomPickBotanyReagent";
+    public ProtoId<WeightedRandomFillSolutionPrototype> RandomPickBotanyReagent = "ESRandomFillTrashPuddle"; // temp until we nuke this shit from orbit
 
     /// <inheritdoc/>
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)

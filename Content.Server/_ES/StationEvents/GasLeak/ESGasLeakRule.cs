@@ -14,12 +14,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.StationEvents.GasLeak;
 
-public sealed class ESGasLeakRule : StationEventSystem<ESGasLeakRuleComponent>
+public sealed partial class ESGasLeakRule : StationEventSystem<ESGasLeakRuleComponent>
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly NavMapSystem _navMap = default!;
-    [Dependency] private readonly ESSparksSystem _sparks = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private ESSparksSystem _sparks = default!;
+    [Dependency] private StationSystem _station = default!;
 
     public override void Initialize()
     {

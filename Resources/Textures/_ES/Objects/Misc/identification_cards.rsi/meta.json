@@ -1,0 +1,67 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/6f959e719255fcfaacb64807d9de8ba325a044d7 and modified for Ephemeral Space by Flareguy",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "base_normal"
+        },
+        {
+            "name": "base_silver"
+        },
+        {
+            "name": "base_gold"
+        },
+        {
+            "name": "base_prisoner"
+        },
+        {
+            "name": "icon_1"
+        },
+        {
+            "name": "icon_2"
+        },
+        {
+            "name": "icon_3"
+        },
+        {
+            "name": "strip"
+        },
+        {
+            "name": "normal-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "normal-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "silver-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "silver-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "gold-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "gold-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "prisoner-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "prisoner-inhand-right",
+            "directions": 4
+        }
+    ]
+}

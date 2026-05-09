@@ -19,13 +19,13 @@ namespace Content.Server._ES.TileFires;
 ///     Server-side logic for tile fire growth logic, e.g. stages, requiring oxygen, etc.
 ///     Also spawning logic.
 /// </summary>
-public sealed class ESTileFireSystem : ESSharedTileFireSystem
+public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly FlammableSystem _flammable = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    [Dependency] private FlammableSystem _flammable = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private static EntProtoId _stage1Fire = "ESTileFire";
 
@@ -164,10 +164,11 @@ public sealed class ESTileFireSystem : ESSharedTileFireSystem
 
         SpawnAtPosition(proto, coords);
 
-        var ev = new ESTileFireCreatedEvent(coords, originatingUser, stage);
-        RaiseLocalEvent(ref ev);
-
-        // TODO arsonist update counter objective for originating user u get the idea etc etc
+        if (originatingUser.HasValue)
+        {
+            var ev = new ESTileFireCreatedEvent(coords, originatingUser, stage);
+            RaiseLocalEvent(originatingUser.Value, ref ev);
+        }
         return true;
     }
 

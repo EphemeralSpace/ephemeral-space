@@ -22,15 +22,15 @@ namespace Content.Shared.Teleportation.Systems;
 /// Uses <see cref="LinkedEntitySystem"/> to get linked portals.
 /// </summary>
 /// <seealso cref="PortalComponent"/>
-public abstract class SharedPortalSystem : EntitySystem
+public abstract partial class SharedPortalSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     private const string PortalFixture = "portalFixture";
     private const string ProjectileFixture = "projectile";
@@ -241,6 +241,11 @@ public abstract class SharedPortalSystem : EntitySystem
 
         _transform.SetCoordinates(subject, target);
 
+        var portalEv = new PortalTeleportedEvent(subject);
+        var teleportedEv = new TeleportedByPortalEvent(ent.Owner);
+        RaiseLocalEvent(ent.Owner, ref portalEv);
+        RaiseLocalEvent(subject, ref teleportedEv);
+
         if (!playSound)
             return;
 
@@ -279,3 +284,15 @@ public abstract class SharedPortalSystem : EntitySystem
     {
     }
 }
+
+/// <summary>
+///     Raised by ref on an entity when it is sent through a portal.
+/// </summary>
+[ByRefEvent]
+public record struct TeleportedByPortalEvent(EntityUid Portal);
+
+/// <summary>
+///     Raised by ref on a portal when it teleports an entity.
+/// </summary>
+[ByRefEvent]
+public record struct PortalTeleportedEvent(EntityUid Entity);

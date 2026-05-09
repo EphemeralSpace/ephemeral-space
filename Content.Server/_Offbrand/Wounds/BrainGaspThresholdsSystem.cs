@@ -4,9 +4,9 @@ using Content.Shared._Offbrand.Wounds;
 
 namespace Content.Server._Offbrand.Wounds;
 
-public sealed class BrainGaspThresholdsSystem : EntitySystem
+public sealed partial class BrainGaspThresholdsSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private ChatSystem _chat = default!;
 
     public override void Initialize()
     {

@@ -1,6 +1,5 @@
 using Content.Server.Access.Systems;
 using Content.Server.Humanoid;
-using Content.Server.Mind;
 using Content.Server.PDA;
 using Content.Server.Station.Components;
 using Content.Shared.Access.Components;
@@ -22,9 +21,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-// ES START
-using Content.Shared._ES.Spawning.Components;
-// ES END
+
+// ES CHANGE
+// Don't exit early when using custom job entities.
 
 namespace Content.Server.Station.Systems;
 
@@ -33,18 +32,17 @@ namespace Content.Server.Station.Systems;
 /// Also provides helpers for spawning in the player's mob.
 /// </summary>
 [PublicAPI]
-public sealed class StationSpawningSystem : SharedStationSpawningSystem
+public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
 {
-    [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
-    [Dependency] private readonly ActorSystem _actors = default!;
-    [Dependency] private readonly IdCardSystem _cardSystem = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
-    [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly PdaSystem _pdaSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private SharedAccessSystem _accessSystem = default!;
+    [Dependency] private ActorSystem _actors = default!;
+    [Dependency] private IdCardSystem _cardSystem = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidSystem = default!;
+    [Dependency] private IdentitySystem _identity = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private PdaSystem _pdaSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     /// <summary>
     /// Attempts to spawn a player character onto the given station.
@@ -113,59 +111,39 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         if (prototype?.JobEntity != null)
         {
             DebugTools.Assert(entity is null);
-            var jobEntity = Spawn(prototype.JobEntity, coordinates);
-            _mindSystem.MakeSentient(jobEntity);
-
-            // Make sure custom names get handled, what is gameticker control flow whoopy.
-            if (loadout != null)
-            {
-                EquipRoleName(jobEntity, loadout, roleProto!);
-            }
-
-            DoJobSpecials(job, jobEntity);
-            _identity.QueueIdentityUpdate(jobEntity);
-            return jobEntity;
+            entity = Spawn(prototype.JobEntity, coordinates);
         }
+        else
+        {
+            string speciesId = profile?.Species ?? SharedHumanoidAppearanceSystem.DefaultSpecies;
 
-        string speciesId = profile != null ? profile.Species : SharedHumanoidAppearanceSystem.DefaultSpecies;
+            if (!_prototypeManager.TryIndex<SpeciesPrototype>(speciesId, out var species))
+                throw new ArgumentException($"Invalid species prototype was used: {speciesId}");
 
-        if (!_prototypeManager.TryIndex<SpeciesPrototype>(speciesId, out var species))
-            throw new ArgumentException($"Invalid species prototype was used: {speciesId}");
-
-        entity ??= Spawn(species.Prototype, coordinates);
+            entity ??= Spawn(species.Prototype, coordinates);
+        }
 
         if (profile != null)
         {
             _humanoidSystem.LoadProfile(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
 
-            if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
+            if (!string.IsNullOrWhiteSpace(profile.FlavorText) && _configurationManager.GetCVar(CCVars.FlavorText))
             {
                 AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
             }
         }
 
-// ES START
-        if (job != null &&
-            TryComp<ESStationGearOverrideComponent>(station, out var esJobOverride) &&
-            esJobOverride.Overrides.TryGetValue(job.Value, out var esGearOverride))
+        if (loadout != null)
         {
-            EquipStartingGear(entity.Value, _prototypeManager.Index(esGearOverride), raiseEvent: false);
+            EquipRoleLoadout(entity.Value, loadout, roleProto!);
         }
-        else
-        {
-            if (loadout != null)
-            {
-                EquipRoleLoadout(entity.Value, loadout, roleProto!);
-            }
 
-            if (prototype?.StartingGear != null)
-            {
-                var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
-                EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
-            }
+        if (prototype?.StartingGear != null)
+        {
+            var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
+            EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
         }
-// ES END
 
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
         RaiseLocalEvent(entity.Value, ref gearEquippedEv);

@@ -9,13 +9,14 @@ namespace Content.Shared.EntityEffects.Effects.Atmos;
 /// The amount of FireStacks reduced is modified by scale.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed partial class ExtinguishEntityEffectSystem : EntityEffectSystem<FlammableComponent, Extinguish>
+public sealed class ExtinguishEntityEffectSystem : EntityEffectSystem<FlammableComponent, Extinguish>
 {
     protected override void Effect(Entity<FlammableComponent> entity, ref EntityEffectEvent<Extinguish> args)
     {
         var ev = new ExtinguishEvent
         {
             FireStacksAdjustment = args.Effect.FireStacksAdjustment * args.Scale,
+            User = args.User,
         };
 
         RaiseLocalEvent(entity, ref ev);
@@ -30,7 +31,7 @@ public sealed partial class Extinguish : EntityEffectBase<Extinguish>
     /// </summary>
     [DataField]
     // ES START
-    public float FireStacksAdjustment = -0.66f;
+    public float FireStacksAdjustment = -0.5f;
     // ES END
 
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>

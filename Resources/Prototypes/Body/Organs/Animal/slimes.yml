@@ -63,5 +63,5 @@
         food:
           maxVol: 5
           reagents:
-          - ReagentId: Slime
+          - ReagentId: Blood
             Quantity: 5

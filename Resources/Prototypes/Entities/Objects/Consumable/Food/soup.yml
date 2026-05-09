@@ -720,8 +720,6 @@
           Quantity: 9
         - ReagentId: Water
           Quantity: 10
-        - ReagentId: Razorium
-          Quantity: 1 # silly
 
 - type: entity
   name: vegetable soup
@@ -1203,8 +1201,6 @@
         reagents:
           - ReagentId: Nutriment
             Quantity: 15
-          - ReagentId: Licoxide
-            Quantity: 6
 
 - type: entity
   name: bungo curry

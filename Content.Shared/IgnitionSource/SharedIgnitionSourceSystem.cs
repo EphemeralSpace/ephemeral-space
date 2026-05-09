@@ -7,7 +7,7 @@ namespace Content.Shared.IgnitionSource;
 /// Ignites flammable gases when the ignition source is toggled on.
 /// Also makes the entity hot so that it can be used to ignite matchsticks, cigarettes ect.
 /// </summary>
-public abstract partial class SharedIgnitionSourceSystem : EntitySystem
+public abstract class SharedIgnitionSourceSystem : EntitySystem
 {
     public override void Initialize()
     {

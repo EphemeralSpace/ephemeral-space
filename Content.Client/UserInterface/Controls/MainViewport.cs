@@ -11,10 +11,10 @@ namespace Content.Client.UserInterface.Controls
     ///     Wrapper for <see cref="ScalingViewport"/> that listens to configuration variables.
     ///     Also does NN-snapping within tolerances.
     /// </summary>
-    public sealed class MainViewport : UIWidget
+    public sealed partial class MainViewport : UIWidget
     {
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly ViewportManager _vpManager = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private ViewportManager _vpManager = default!;
 
         public ScalingViewport Viewport { get; }
 
@@ -107,53 +107,36 @@ namespace Content.Client.UserInterface.Controls
 
         private int? CalcSnappingFactor()
         {
-            // Margin tolerance is tolerance of "the window is too big"
-            // where we add a margin to the viewport to make it fit.
-            var cfgToleranceMargin = _cfg.GetCVar(CCVars.ViewportSnapToleranceMargin);
-            // Clip tolerance is tolerance of "the window is too small"
-            // where we are clipping the viewport to make it fit.
-            var cfgToleranceClip = _cfg.GetCVar(CCVars.ViewportSnapToleranceClip);
+            // erm
+            if (Root == null)
+                return null;
 
-            var cfgVerticalFit = _cfg.GetCVar(CCVars.ViewportVerticalFit);
+            // Instead of all that, we just snap to the largest integer scale that fits.
+            // If that (pre-clamp) scale is <1, or we arent close enough to an integer fit, we return null and let the scaling logic handle it.
+            // TODO: This should probably enforce margins around the viewport.
+            var possibleSize = ((Vector2)Root.PixelSize) / ((Vector2)Viewport.ViewportSize);
 
-            // Calculate if the viewport, when rendered at an integer scale,
-            // is close enough to the control size to enable "snapping" to NN,
-            // potentially cutting a tiny bit off/leaving a margin.
-            //
-            // Idea here is that if you maximize the window at 1080p or 1440p
-            // we are close enough to an integer scale (2x and 3x resp) that we should "snap" to it.
+            var minPossible = Math.Min(possibleSize.X, possibleSize.Y);
 
-            // Just do it iteratively.
-            // I'm sure there's a smarter approach that needs one try with math but I'm dumb.
-            for (var i = 1; i <= 10; i++)
-            {
-                var toleranceMargin = i * cfgToleranceMargin;
-                var toleranceClip = i * cfgToleranceClip;
-                var scaled = (Vector2) Viewport.ViewportSize * i;
-                var (dx, dy) = PixelSize - scaled;
+            // check closest fits on a .5 increment basis
+            // (0-1 = no snap, 1 = snap, >1.5 = no snap, etc)
+            if (minPossible < 1)
+                return null; // too tiny, always scale
 
-                // The rule for which snap fits is that at LEAST one axis needs to be in the tolerance size wise.
-                // One axis MAY be larger but not smaller than tolerance.
-                // Obviously if it's too small it's bad, and if it's too big on both axis we should stretch up.
-                // Additionally, if the viewport's supposed  to be vertically fit, then the horizontal scale should just be ignored where appropriate.
-                if ((Fits(dx) || cfgVerticalFit) && Fits(dy) || !cfgVerticalFit && Fits(dx) && Larger(dy) || Larger(dx) && Fits(dy))
-                {
-                    // Found snap that fits.
-                    return i;
-                }
-
-                bool Larger(float a)
-                {
-                    return a > toleranceMargin;
-                }
-
-                bool Fits(float a)
-                {
-                    return a <= toleranceMargin && a >= -toleranceClip;
-                }
-            }
+            var doubleScale = (int)Math.Floor(minPossible * 2f);
+            // if its even, this is an integer fit
+            // if it isnt, it fits closer to a .5 increment, so just let scaling handle it
+            if ((doubleScale % 2 == 0))
+                return doubleScale / 2;
 
             return null;
+        }
+
+        protected override Vector2 MeasureOverride(Vector2 availableSize)
+        {
+            UpdateCfg();
+
+            return base.MeasureOverride(availableSize);
         }
 
         protected override void Resized()

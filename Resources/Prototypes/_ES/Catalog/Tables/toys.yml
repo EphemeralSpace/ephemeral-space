@@ -1,0 +1,21 @@
+- type: entityTable
+  id: BoardGames
+  table:
+    group:
+    - id: BackgammonBoard
+    - id: ParchisBoard
+    - id: ChessBoard
+    - id: CheckerBoard
+
+- type: entityTable
+  id: Toys
+  table:
+    group:
+    - all:
+      - id: RevolverCapGun
+      - id: BoxCartridgeCap
+    - id: Basketball
+    - id: BeachBall
+    - id: CrayonBox
+    - id: ClothingShoesSkates
+    - id: ToyHammer

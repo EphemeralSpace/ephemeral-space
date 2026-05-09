@@ -18,7 +18,7 @@ namespace Content.Client.Mapping;
 [GenerateTypedNameReferences]
 public sealed partial class MappingScreen : InGameScreen
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public DecalPlacementSystem DecalSystem = default!;
 
@@ -193,11 +193,6 @@ public sealed partial class MappingScreen : InGameScreen
                 childButton.Visible = IsDecalVisible?.Invoke(childButton) ?? true;
             }
         }
-    }
-
-    public override void SetChatSize(Vector2 size)
-    {
-        ScreenContainer.ResizeMode = SplitContainer.SplitResizeMode.RespectChildrenMinSize;
     }
 
     public void UnPressActionsExcept(Control except)

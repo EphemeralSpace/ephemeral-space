@@ -1,15 +1,16 @@
 using Content.Shared._ES.Voting;
 using Content.Shared._ES.Voting.Components;
 using Robust.Client.GameObjects;
+using Robust.Client.UserInterface;
 using Robust.Shared.Timing;
 
 namespace Content.Client._ES.Voting;
 
 /// <inheritdoc/>
-public sealed class ESVoteSystem : ESSharedVoteSystem
+public sealed partial class ESVoteSystem : ESSharedVoteSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -25,22 +26,12 @@ public sealed class ESVoteSystem : ESSharedVoteSystem
         if (!_timing.ApplyingState)
             return;
 
-        var query = EntityQueryEnumerator<ESVoterComponent, UserInterfaceComponent>();
-        while (query.MoveNext(out var uid, out _, out var ui))
-        {
-            if (_userInterface.TryGetOpenUi((uid, ui), ESVoterUiKey.Key, out var bui))
-                bui.Update();
-        }
+        _ui.GetUIController<StagehandVoteUIController>().FindAndUpdateWidget();
     }
 
     private void OnRemove(Entity<ESVoteComponent> ent, ref ComponentRemove args)
     {
-        var query = EntityQueryEnumerator<ESVoterComponent, UserInterfaceComponent>();
-        while (query.MoveNext(out var uid, out _, out var ui))
-        {
-            if (_userInterface.TryGetOpenUi((uid, ui), ESVoterUiKey.Key, out var bui))
-                bui.Update();
-        }
+        _ui.GetUIController<StagehandVoteUIController>().FindAndUpdateWidget();
     }
 
     protected override void OnSetVote(ESSetVoteMessage args, EntitySessionEventArgs ev)
@@ -53,7 +44,6 @@ public sealed class ESVoteSystem : ESSharedVoteSystem
         if (ev.SenderSession.AttachedEntity is not { } attachedEntity)
             return;
 
-        if (_userInterface.TryGetOpenUi(attachedEntity, ESVoterUiKey.Key, out var bui))
-            bui.Update();
+        _ui.GetUIController<StagehandVoteUIController>().FindAndUpdateWidget();
     }
 }

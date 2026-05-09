@@ -48,16 +48,10 @@
         reagents:
         - ReagentId: SpaceDrugs
           Quantity: 4
-        - ReagentId: Lipolicide
-          Quantity: 4
         - ReagentId: MindbreakerToxin
-          Quantity: 2.66
-        - ReagentId: Happiness
           Quantity: 2.66
 #       - ReagentId: ColorfulReagent
 #         Quantity: 1.33
-        - ReagentId: Psicodine
-          Quantity: 0.8
 
 - type: entity
   id: Blunt
@@ -109,13 +103,7 @@
         reagents:
         - ReagentId: SpaceDrugs
           Quantity: 4
-        - ReagentId: Lipolicide
-          Quantity: 4
         - ReagentId: MindbreakerToxin
-          Quantity: 2.66
-        - ReagentId: Happiness
           Quantity: 2.66
 #       - ReagentId: ColorfulReagent
 #         Quantity: 1.33
-        - ReagentId: Psicodine
-          Quantity: 0.8

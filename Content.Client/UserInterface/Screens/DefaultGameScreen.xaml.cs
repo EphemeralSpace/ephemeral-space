@@ -50,12 +50,4 @@ public sealed partial class DefaultGameScreen : InGameScreen
     }
 
     public override ChatBox ChatBox => Chat;
-
-    //TODO: There's probably a better way to do this... but this is also the easiest way.
-    public override void SetChatSize(Vector2 size)
-    {
-        SetMarginBottom(Chat, size.X);
-        SetMarginLeft(Chat, size.Y);
-        SetMarginTop(Alerts, size.X);
-    }
 }

@@ -7,8 +7,6 @@
       weight: 85
     - id: BriefcaseSmugglerCash
       weight: 10
-    - id: ClothingBackpackDuffelClownSmuggler
-      weight: 5
 
 #Table
 - type: entityTable
@@ -60,9 +58,6 @@
     - id: PillSpaceDrugs
       amount: !type:RangeNumberSelector
         range: 1, 2
-    - id: StrangePill
-      amount: !type:RangeNumberSelector
-        range: 1, 5
 
 - type: entityTable #5x tiny
   id: RandomSatchelCannabisTable
@@ -125,10 +120,8 @@
       amount: !type:RangeNumberSelector
         range: 1, 5
     - id: ChemistryBottleOmnizine
-    - id: ChemistryBottleCognizine
     - id: ChemistryBottleToxin
     - id: ChemistryBottleNocturine
-    - id: VestineChemistryVial
 
 - type: entityTable
   id: RandomSatchelTable2
@@ -219,23 +212,6 @@
     children:
     - id: SpaceCash100
       weight: 15
-    - id: ChemDispenserMachineCircuitboard
-    - id: SyndicateMicrowaveMachineCircuitboard
-    - id: HydroponicsTrayMachineCircuitboard
-    - id: DawInstrumentMachineCircuitboard
-    - id: PortableGeneratorPacmanMachineCircuitboard
-    - id: PortableGeneratorSuperPacmanMachineCircuitboard
-    - id: HellfireFreezerMachineCircuitBoard
-    - id: HellfireHeaterMachineCircuitBoard
-    - id: ReagentGrinderMachineCircuitboard
-    - id: ReagentGrinderIndustrialMachineCircuitboard
-    - id: BoozeDispenserMachineCircuitboard
-    - id: MiniGravityGeneratorCircuitboard
-    - id: AmmoTechFabCircuitboard
-    - id: CryoPodMachineCircuitboard
-    - id: PowerCageRechargerCircuitboard
-    - id: ShuttleConsoleCircuitboard
-    - id: TurboItemRechargerCircuitboard
 
 - type: entityTable
   id: RandomSatchelTable3
@@ -244,8 +220,6 @@
     - !type:NestedSelector
       tableId: RandomSatchelBurgerTable #2x medium
     - !type:NestedSelector
-      tableId: RandomSatchelPresentsOrToysTable #3x small
-    - !type:NestedSelector
       tableId: RandomSatchelCashTable #1x small
     - !type:NestedSelector
       tableId: RandomSatchelWeaponTable #5x small
@@ -253,20 +227,6 @@
       tableId: RandomSatchelGenericTableSmall #1x small
     - !type:NestedSelector
       tableId: RandomSatchelKeysTable #1x small
-
-- type: entityTable #3x small
-  id: RandomSatchelPresentsOrToysTable
-  table: !type:GroupSelector
-    children:
-    - id: SpaceCash100
-      weight: 5
-    - id: PresentRandom
-      amount: !type:RangeNumberSelector
-        range: 1, 3
-    - id: ToyFigurineHamlet
-    - id: ToyFigurineSpaceDragon
-    - id: ToyFigurineQueen
-    - id: ToyFigurineRatKing
 
 - type: entityTable #1x small
   id: RandomSatchelCashTable
@@ -541,11 +501,6 @@
     - id: BurnAutoInjector
       amount: !type:RangeNumberSelector
         range: 1, 5
-    - id: SpaceMedipen
-      amount: !type:RangeNumberSelector
-        range: 1, 5
-    - id: Stimpack
-    - id: CombatMedipen
 
 - type: entityTable #1x Medium
   id: RandomSatchelMysteriesTable
@@ -640,9 +595,6 @@
       amount: !type:RangeNumberSelector
         range: 1, 10
     - id: GoatCube
-      amount: !type:RangeNumberSelector
-        range: 1, 10
-    - id: MothroachCube
       amount: !type:RangeNumberSelector
         range: 1, 10
     - id: MouseCube

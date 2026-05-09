@@ -110,24 +110,6 @@
 
 - type: entity
   parent: RehydratableAnimalCube
-  id: MothroachCube
-  name: mothroach cube
-  components:
-  - type: Rehydratable
-    possibleSpawns:
-    - MobMothroach
-
-- type: entity
-  parent: RehydratableAnimalCube
-  id: MoproachCube
-  name: moproach cube
-  components:
-  - type: Rehydratable
-    possibleSpawns:
-    - MobMoproach
-
-- type: entity
-  parent: RehydratableAnimalCube
   id: MouseCube
   name: mouse cube
   components:
@@ -255,16 +237,3 @@
     - MobPurpleSnake
     - MobKangarooSpace
     - MobTick
-
-- type: entity
-  parent: RehydratableItem
-  id: MopBucketCube
-  name: mop bucket cube
-  description: Just add water! And then more water!
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Janitorial/janitorial.rsi
-    state: mopbucket_cube
-  - type: Rehydratable
-    possibleSpawns:
-    - MopBucket

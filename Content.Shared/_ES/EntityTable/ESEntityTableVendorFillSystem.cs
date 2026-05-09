@@ -8,9 +8,9 @@ namespace Content.Shared._ES.EntityTable;
 /// <summary>
 /// This handles <see cref="ESEntityTableVendorFillComponent"/>
 /// </summary>
-public sealed class ESEntityTableVendorFillSystem : EntitySystem
+public sealed partial class ESEntityTableVendorFillSystem : EntitySystem
 {
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

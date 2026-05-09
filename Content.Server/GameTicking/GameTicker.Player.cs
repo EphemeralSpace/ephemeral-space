@@ -22,10 +22,10 @@ namespace Content.Server.GameTicking
     [UsedImplicitly]
     public sealed partial class GameTicker
     {
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
 // ES START
-        [Dependency] private readonly MobStateSystem _mobState = default!;
-        [Dependency] private readonly ESStagehandSystem _stagehand = default!;
+        [Dependency] private MobStateSystem _mobState = default!;
+        [Dependency] private ESStagehandSystem _stagehand = default!;
 // ES END
 
         private void InitializePlayer()

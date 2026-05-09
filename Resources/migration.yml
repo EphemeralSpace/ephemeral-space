@@ -22,7 +22,6 @@ ClosetJanitorBomb: ClosetBomb
 ClosetJanitorBombFilled: ClosetBomb
 LockerBrigmedic: LockerSecurity
 LockerBrigmedicFilled: LockerSecurityFilled
-LockerClown: LockerSteel
 LockerMime: LockerSteel
 LockerRepresentative: LockerSteel
 LockerParamedic: LockerMedical
@@ -330,6 +329,11 @@ PortableGeneratorSuperPacman: PortableGeneratorPacman
 # 2026-3-23
 FireAxeCabinetFilled: ESFireAxeCabinetFilled
 
+########################################################################################
+# PAST THIS POINT MARKS HARDFORK CITY.                                                 #
+# Do not expect migrations to be made for things that don't need it in ES specifically.#
+########################################################################################
+
 # 2026-3-26
 ShardGlassUranium: ShardGlass
 ShardGlassClockwork: ShardGlass
@@ -347,6 +351,23 @@ ESSpawnPointBotanist: null
 WardrobeMedicalDoctor: ESWardrobeDoctor
 ESWardrobePhysician: ESWardrobeDoctor
 ESWardrobePhysicianFilled: ESWardrobeDoctorFilled
+
+# 2026-4-2
+CrateNPCHamlet: SpawnMobHamsterHamlet
+MaintenancePlantSpawner: ESSpawnerRandomMaintLootStructure
+SpacemenFigurineSpawner90: null
+LootSpawnerRandomCrateEngineering: CrateEngineeringSolar
+RandomSpawner: ESSpawnerRandomTrashFood50 # yes, this is actually a trash spawner. i have no idea why its just called RandomSpawner
+
+# 2026-4-9
+ESWardrobeTheatre: LockerClown
+ESWardrobeTheatreFilled: LockerClownFilled
+
+# 2026-4-17
+ESAnomalyResonator: null
+ESAnomalyProbe: null
+ESComputerAnomaly: null
+ESMarkerSpawnRegionAnomaly: null
 
 # ES END
 

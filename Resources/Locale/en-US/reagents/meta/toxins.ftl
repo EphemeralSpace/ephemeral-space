@@ -13,9 +13,6 @@ reagent-desc-polytrinic-acid = An extremely corrosive chemical substance. Severe
 reagent-name-chloral-hydrate = chloral hydrate
 reagent-desc-chloral-hydrate = A sedative and hypnotic chemical. Commonly used to put other people to sleep, whether they want to or not.
 
-reagent-name-gastrotoxin = gastrotoxin
-reagent-desc-gastrotoxin = A moderately toxic byproduct of decomposition. Most commonly found in spoiled food.
-
 reagent-name-ferrochromic-acid = ferrochromic acid
 reagent-desc-ferrochromic-acid = A mildy corrosive solution, unable of causing severe danger unless ingested.
 
@@ -30,9 +27,6 @@ reagent-desc-unstable-mutagen = Causes mutations when injected into living peopl
 
 reagent-name-heartbreaker-toxin = heartbreaker toxin
 reagent-desc-heartbreaker-toxin = A hallucinogenic compound derived from mindbreaker toxin. it blocks neurological signals to the respiratory system, causing asphyxiation. Dexalin plus and epinephrine will filter it out, however.
-
-reagent-name-lexorin = lexorin
-reagent-desc-lexorin = A fast-acting chemical used to asphyxiate people rapidly.
 
 reagent-name-mindbreaker-toxin = mindbreaker toxin
 reagent-desc-mindbreaker-toxin = A potent hallucinogenic compound that is formerly known as LSD.
@@ -60,30 +54,3 @@ reagent-desc-allicin = An organosulfur compound found in alliums like garlic, on
 
 reagent-name-pax = pax
 reagent-desc-pax = A psychiatric chemical which prevents the patient from directly harming anyone.
-
-reagent-name-honk = honk
-reagent-desc-honk = A toxin found in bananium. Causes severe honking and internal bleeding, may also cause the patient to mutate.
-
-reagent-name-lead = lead
-reagent-desc-lead = A slow-acting but incredibly lethal toxin found in steel, albeit in trace amounts. Tasteless.
-
-reagent-name-bungotoxin = bungotoxin
-reagent-desc-bungotoxin = A moderately slow-acting poison found within the pit of the bungo fruit.
-
-reagent-name-vestine = vestine
-reagent-desc-vestine = Has an adverse reaction within the body causing major jittering. While not particularly useful on its own, it can be used to produce a small variety of chemicals.
-
-reagent-name-tazinide = tazinide
-reagent-desc-tazinide = A highly dangerous metallic mixture which can interfere with most movement through an electrifying current.
-
-reagent-name-lipolicide = lipolicide
-reagent-desc-lipolicide = A powerful toxin that will destroy fat cells, massively reducing body weight in a short time. Deadly to those without nutriment in their body.
-
-reagent-name-mechanotoxin = mechanotoxin
-reagent-desc-mechanotoxin = A neurotoxin used as venom by some species of spider. Degrades movement when built up.
-
-reagent-name-toxintrash = reprocessed material
-reagent-desc-toxintrash = An awful-smelling slurry efficiently refined from discarded matter. It represents a perfect, zero-waste conversion of salvage into Vox sustenance, though it is a violent poison to others.
-
-reagent-name-hemorrhinol = hemorrhinol
-reagent-desc-hemorrhinol = A toxin that causes severe damage to blood vessels, causing rapid bleeding.

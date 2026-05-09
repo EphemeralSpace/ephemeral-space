@@ -44,9 +44,8 @@
     - id: ESStationEventPowerGridCheck
     - id: ESStationEventSolarFlare
     - id: ESStationEventVentClog
-    - id: ESStationEventLightOverload
+    - id: ESStationEventElectricalOverload
     - id: ESStationEventMeteorSwarm
-    - id: ESStationEventElectricalFire
     - id: ESStationEventVentSwarm
 
 # Event Prototypes
@@ -281,57 +280,29 @@
     duration: 30
   - type: ESAngleVote
 
-## Electrical Fire
+## Electrical Overload
 - type: entity
   parent: ESBaseStationEventNoDelay
-  id: ESStationEventElectricalFire
-  name: Electrical Fire
-  description: Start a raging fire somewhere on the station.
+  id: ESStationEventElectricalOverload
+  name: Electrical Overload
+  description: Overload several APCs across the station, starting a fire and breaking all lights attached to them.
   components:
   - type: StationEvent
     startAudio:
       path: /Audio/_ES/Announcements/electrical_fire.ogg
       params:
         volume: -4
-  - type: ESElectricalFireRule
+    startAnnouncement: es-station-event-electrical-overload-start-announcement
+  - type: ESElectricalOverloadRule
   - type: ESSynchronizedVoteManager
     votes:
-    - ESVoteElectricalFireLocation
+    - ESVoteElectricalOverloadAPC
 
 - type: entity
-  id: ESVoteElectricalFireLocation
-  name: Where should the fire start?
-  components:
-  - type: ESVote
-    queryString: es-voter-query-string-electrical-fire-location
-    duration: 30
-  - type: ESRandomLocationVote
-    count: 6
-    checkLOS: false
-
-## Light Overload
-- type: entity
-  parent: ESBaseStationEvent
-  id: ESStationEventLightOverload
-  name: Light Overload
-  description: Overload several APCs across the station, breaking all lights attached to them.
-  components:
-  - type: StationEvent
-    startAudio:
-      path: /Audio/_ES/Announcements/light_break.ogg
-      params:
-        volume: -4
-    startAnnouncement: es-station-event-light-overload-start-announcement
-  - type: ESLightOverloadRule
-  - type: ESSynchronizedVoteManager
-    votes:
-    - ESVoteLightOverloadAPC
-
-- type: entity
-  id: ESVoteLightOverloadAPC
+  id: ESVoteElectricalOverloadAPC
   name: Which APC should be overloaded?
   components:
   - type: ESVote
-    queryString: es-voter-query-string-light-overload-location
+    queryString: es-voter-query-string-electrical-overload-location
     duration: 30
   - type: ESApcVote

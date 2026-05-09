@@ -1,12 +1,4 @@
 - type: entity
-  id: SupplyOffbrandItemsVariationPass
-  parent: BaseVariationPass
-  components:
-  - type: SupplyNearLatheVariationPass
-    lathePrototype: MedicalTechFab
-    entityToSpawn: CrateOffbrandMedicalSupplies
-
-- type: entity
   parent: BaseFlatpack
   id: OperatingTableFlatpack
   name: operating table flatpack

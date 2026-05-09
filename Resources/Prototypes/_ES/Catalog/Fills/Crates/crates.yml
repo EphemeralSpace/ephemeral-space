@@ -115,9 +115,9 @@
     containers:
       entity_storage:
         all:
-        - id: MedkitBurnFilled
-        - id: MedkitBruteFilled
-        - id: MedkitRadiationFilled
+        - id: ESMedkitBurnFilled
+        - id: ESMedkitBruteFilled
+        - id: ESMedkitRadiationFilled
 
 - type: entity
   parent: CrateEmergencyAdvancedKit
@@ -166,7 +166,7 @@
         - id: ESShotgunShellsBoxBuckshot
 
 - type: entity
-  parent: CrateSecNonlethalThrowables
+  parent: CrateSecgear
   id: ESCrateSecurityThrowables
   name: security throwables crate
   description: Contains four flashbangs, smoke grenades, and bolas. Requires Security access to open.
@@ -183,7 +183,7 @@
           amount: 4
 
 - type: entity
-  parent: CrateArmoryPistols
+  parent: CrateWeaponSecure
   id: ESCrateSecurityPistols
   name: pistol crate
   description: Contains two 9mm pistols and a spare mag for each. Requires Armory access to open.
@@ -199,7 +199,7 @@
           amount: 2
 
 - type: entity
-  parent: CrateArmoryShotgun
+  parent: CrateWeaponSecure
   id: ESCrateSecurityShotgun
   name: shotgun crate
   description: Contains one shotgun and two boxes of shells. Requires Armory access to open.
@@ -213,7 +213,7 @@
         - id: ESWeaponShotgun
 
 - type: entity
-  parent: CrateSecurityNonlethal
+  parent: CrateSecgear
   id: ESCrateSecurityNonlethals
   name: nonlethals crate
   description: Contains two tasers, two batons, and three flashes. Requires Security access to open.
@@ -231,7 +231,7 @@
           amount: 2
 
 - type: entity
-  parent: CrateArmoryLaser
+  parent: CrateWeaponSecure
   id: ESCrateSecurityEnergyRifles
   name: energy rifle crate
   description: Contains two energy rifles. Requires Armory access to open.

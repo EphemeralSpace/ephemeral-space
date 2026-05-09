@@ -12,8 +12,8 @@ namespace Content.Client._ES.Voting.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class ESVoteControl : PanelContainer
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public event Action<Entity<ESVoteComponent>, ESVoteOption, bool>? OnVoteChanged;
 
@@ -68,7 +68,7 @@ public sealed partial class ESVoteControl : PanelContainer
                 continue;
 
             voteButton.Pressed = vote.Comp.Votes.GetValueOrDefault(voteButton.Option)?.Contains(netOwner) ?? false;
-            voteButton.ToolTip = string.IsNullOrEmpty(voteButton.Option.Tooltip) ? null : voteButton.Option.Tooltip;
+            voteButton.ToolTip = string.IsNullOrEmpty(voteButton.Option.Tooltip) ? voteButton.Option.DisplayString : voteButton.Option.Tooltip;
 
             var votes = vote.Comp.Votes.GetValueOrDefault(voteButton.Option) ?? [];
             if (vote.Comp.ShowCount)
@@ -105,6 +105,7 @@ public sealed partial class ESVoteControl : PanelContainer
             StyleClasses.Add(StyleClassButton);
             StyleClasses.Add(StyleClass.ButtonOpenBoth);
             ToggleMode = true;
+            RectClipContent = true;
 
             Label = new RichTextLabel();
             AddChild(Label);

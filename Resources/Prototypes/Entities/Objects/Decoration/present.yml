@@ -100,48 +100,6 @@
         orGroup: GiftPool
       - id: ClothingNeckCloakMoth
         orGroup: GiftPool
-      - id: TennisBall
-        orGroup: GiftPool
-      - id: ToyMouse
-        orGroup: GiftPool
-      - id: ToyAi
-        orGroup: GiftPool
-      - id: ToyNuke
-        orGroup: GiftPool
-      - id: ToyFigurinePassenger
-        orGroup: GiftPool
-      - id: ToyFigurineGriffin
-        orGroup: GiftPool
-      - id: ToyHonk
-        orGroup: GiftPool
-      - id: ToyIan
-        orGroup: GiftPool
-      - id: ToyMarauder
-        orGroup: GiftPool
-      - id: ToyMauler
-        orGroup: GiftPool
-      - id: ToyGygax
-        orGroup: GiftPool
-      - id: ToyOdysseus
-        orGroup: GiftPool
-      - id: ToyFigurineOwlman
-        orGroup: GiftPool
-      - id: ToyDeathRipley
-        orGroup: GiftPool
-      - id: ToyPhazon
-        orGroup: GiftPool
-      - id: ToyFireRipley
-        orGroup: GiftPool
-      - id: ToyReticence
-        orGroup: GiftPool
-      - id: ToyRipley
-        orGroup: GiftPool
-      - id: ToySeraph
-        orGroup: GiftPool
-      - id: ToyDurand
-        orGroup: GiftPool
-      - id: ToyFigurineSkeleton
-        orGroup: GiftPool
       - id: FoamBlade
         orGroup: GiftPool
       - id: AcousticGuitarInstrument
@@ -199,8 +157,6 @@
       - id: ClothingNeckCloakTrans
         orGroup: GiftPool
       - id: ClothingNeckCloakAdmin
-        orGroup: GiftPool
-      - id: ToyFigurineSkeleton
         orGroup: GiftPool
       - id: Basketball
         orGroup: GiftPool

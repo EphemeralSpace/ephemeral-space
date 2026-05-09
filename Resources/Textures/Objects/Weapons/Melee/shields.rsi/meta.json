@@ -40,28 +40,6 @@
       "name": "riot_bullet-inhand-left",
       "directions": 4
     },
-    {
-      "name": "ratvarian-icon"
-    },
-    {
-      "name": "ratvarian-inhand-right",
-      "directions": 4
-    },
-    {
-      "name": "ratvarian-inhand-left",
-      "directions": 4
-    },
-    {
-      "name": "cardshield-icon"
-    },
-    {
-      "name": "cardshield-inhand-right",
-      "directions": 4
-    },
-    {
-      "name": "cardshield-inhand-left",
-      "directions": 4
-    },
 
     {
       "name": "mirror-icon",

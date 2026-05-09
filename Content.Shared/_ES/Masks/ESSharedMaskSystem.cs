@@ -18,14 +18,14 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Masks;
 
-public abstract class ESSharedMaskSystem : EntitySystem
+public abstract partial class ESSharedMaskSystem : EntitySystem
 {
-    [Dependency] protected readonly ISharedAdminManager AdminManager = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
-    [Dependency] protected readonly SharedMindSystem Mind = default!;
-    [Dependency] protected readonly ESSharedObjectiveSystem Objective = default!;
-    [Dependency] protected readonly SharedRoleSystem Role = default!;
+    [Dependency] protected ISharedAdminManager AdminManager = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] protected IPrototypeManager PrototypeManager = default!;
+    [Dependency] protected SharedMindSystem Mind = default!;
+    [Dependency] protected ESSharedObjectiveSystem Objective = default!;
+    [Dependency] protected SharedRoleSystem Role = default!;
 
     protected static readonly VerbCategory ESMask =
         new("es-verb-categories-mask", "/Textures/Interface/emotes.svg.192dpi.png");
@@ -74,13 +74,19 @@ public abstract class ESSharedMaskSystem : EntitySystem
         {
             if (mask.Abstract)
                 continue;
+
+            var troupe = PrototypeManager.Index(mask.Troupe);
+
             var verb = new Verb
             {
                 Category = ESMask,
+                Icon = PrototypeManager.Index(troupe.MetaIcon).Icon,
                 Text = Loc.GetString("es-verb-apply-mask-name",
                     ("name", Loc.GetString(mask.Name)),
-                    ("troupe", Loc.GetString(PrototypeManager.Index(mask.Troupe).Name))),
-                Message = Loc.GetString("es-verb-apply-mask-desc", ("mask", Loc.GetString(mask.Name))),
+                    ("color", mask.Color)),
+                Message = Loc.GetString("es-verb-apply-mask-desc",
+                    ("mask", Loc.GetString(mask.Name)),
+                    ("troupe", Loc.GetString(troupe.Name))),
                 Priority = idx++,
                 ConfirmationPopup = true,
                 Act = () =>
@@ -330,9 +336,18 @@ public abstract class ESSharedMaskSystem : EntitySystem
         }
     }
 
+    /// <inheritdoc cref="GetNotTroupeMembers(ProtoId{ESTroupePrototype})"/>
+    public IEnumerable<EntityUid> GetNotTroupeMembers(Entity<ESTroupeRuleComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return [];
+
+        return GetNotTroupeMembers(ent.Comp.Troupe);
+    }
+
     /// <summary>
     /// Returns all minds who are members of a troupe that is NOT the specified troupe.
-    /// Set difference between all player minds and <see cref="GetTroupeMembers"/>
+    /// Set difference between all player minds and <see cref="GetTroupeMembers(ProtoId{ESTroupePrototype})"/>
     /// </summary>
     public IEnumerable<EntityUid> GetNotTroupeMembers(ProtoId<ESTroupePrototype> troupe)
     {

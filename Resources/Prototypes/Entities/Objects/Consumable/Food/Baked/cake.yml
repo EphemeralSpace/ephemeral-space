@@ -982,8 +982,6 @@
           Quantity: 30
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: PolypyryliumOligomers
-          Quantity: 15
   - type: Item
     heldPrefix: trumpet
 
@@ -1004,8 +1002,6 @@
           Quantity: 8
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: PolypyryliumOligomers
-          Quantity: 3
   - type: Item
     heldPrefix: trumpet-slice
 # Tastes like sweetness, cake, jam.

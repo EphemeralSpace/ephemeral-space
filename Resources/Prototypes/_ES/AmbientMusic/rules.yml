@@ -15,3 +15,21 @@
     - type: ESAmbientMusicMarkerMedical
     count: 3
     range: 5
+
+- type: rules
+  id: ESNearCommand
+  rules:
+  - !type:NearbyComponentsRule
+    components:
+    - type: ESAmbientMusicMarkerCommand
+    count: 3
+    range: 5
+
+- type: rules
+  id: ESNearSecurity
+  rules:
+  - !type:NearbyComponentsRule
+    components:
+    - type: ESAmbientMusicMarkerSecurity
+    count: 3
+    range: 5
