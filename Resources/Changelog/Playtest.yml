@@ -215,3 +215,9 @@ Entries:
         to a troupe.
   id: 25
   time: '2026-05-09T21:53:57.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: i had to remove the reverb that shit was brokey my bad
+  id: 26
+  time: '2026-05-09T22:41:31.0000000+00:00'
