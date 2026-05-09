@@ -9,9 +9,9 @@ using Robust.Shared.Map;
 namespace Content.Server._ES.Nuke;
 
 /// <inheritdoc/>
-public sealed class ESCryptoNukeSystem : ESSharedCryptoNukeSystem
+public sealed partial class ESCryptoNukeSystem : ESSharedCryptoNukeSystem
 {
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     protected override void UpdateUiState(Entity<ESCryptoNukeConsoleComponent, UserInterfaceComponent> ent)
     {

@@ -13,15 +13,15 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Nuke;
 
-public abstract class ESSharedCryptoNukeSystem : EntitySystem
+public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ESSharedMaskSystem _mask = default!;
-    [Dependency] private readonly ESSharedObjectiveSystem _objective = default!;
-    [Dependency] private readonly ESSparksSystem _sparks = default!;
-    [Dependency] protected readonly SharedStationSystem Station = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UserInterface = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ESSharedMaskSystem _mask = default!;
+    [Dependency] private ESSharedObjectiveSystem _objective = default!;
+    [Dependency] private ESSparksSystem _sparks = default!;
+    [Dependency] protected SharedStationSystem Station = default!;
+    [Dependency] protected SharedUserInterfaceSystem UserInterface = default!;
 
     public static readonly ProtoId<ESTroupePrototype> TraitorTroupe = "Traitor";
 

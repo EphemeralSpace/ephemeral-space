@@ -15,17 +15,17 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Telesci.Anomaly;
 
-public abstract class ESSharedAnomalySystem : EntitySystem
+public abstract partial class ESSharedAnomalySystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ESSparksSystem _sparks = default!;
-    [Dependency] private readonly ESTimedDespawnSystem _timedDespawn = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ESSparksSystem _sparks = default!;
+    [Dependency] private ESTimedDespawnSystem _timedDespawn = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

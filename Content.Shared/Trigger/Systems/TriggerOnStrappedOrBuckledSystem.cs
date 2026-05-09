@@ -8,7 +8,7 @@ namespace Content.Shared.Trigger.Systems;
 /// The users of strap components are the objects having an entity strapped to them (IE: Chairs)
 /// The users of buckle components are entities being buckled to an object. (IE: Mobs and players)
 /// </summary>
-public sealed partial class TriggerOnStrappedOrBuckledSystem : TriggerOnXSystem
+public sealed class TriggerOnStrappedOrBuckledSystem : TriggerOnXSystem
 {
     public override void Initialize()
     {

@@ -20,12 +20,12 @@ namespace Content.Client._ES.Lobby;
 ///     Creates controls on init and attaches them to the root control, sorry
 /// </summary>
 [UsedImplicitly]
-public sealed class ESDiegeticLobbyUIController : UIController, IOnStateEntered<LobbyState>
+public sealed partial class ESDiegeticLobbyUIController : UIController, IOnStateEntered<LobbyState>
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    [Dependency] private readonly IConsoleHost _conHost = default!;
-    [Dependency] private readonly IResourceCache _resCache = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private IConsoleHost _conHost = default!;
+    [Dependency] private IResourceCache _resCache = default!;
 
     public LobbyCurtainState CurtainState { get; private set; } = LobbyCurtainState.Open;
 

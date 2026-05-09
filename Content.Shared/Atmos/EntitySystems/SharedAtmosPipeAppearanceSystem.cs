@@ -2,7 +2,7 @@ using Content.Shared.Atmos.Components;
 
 namespace Content.Shared.Atmos.EntitySystems;
 
-public abstract partial class SharedAtmosPipeAppearanceSystem : EntitySystem
+public abstract class SharedAtmosPipeAppearanceSystem : EntitySystem
 {
     /// <summary>
     /// Returns the max number of pipe layers supported by a entity.

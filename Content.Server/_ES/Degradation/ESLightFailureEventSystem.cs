@@ -8,9 +8,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Degradation;
 
-public sealed class ESLightFailureEventSystem : StationEventSystem<ESLightFailureEventComponent>
+public sealed partial class ESLightFailureEventSystem : StationEventSystem<ESLightFailureEventComponent>
 {
-    [Dependency] private readonly PoweredLightSystem _lights = default!;
+    [Dependency] private PoweredLightSystem _lights = default!;
 
     protected override void Started(EntityUid uid,
         ESLightFailureEventComponent component,

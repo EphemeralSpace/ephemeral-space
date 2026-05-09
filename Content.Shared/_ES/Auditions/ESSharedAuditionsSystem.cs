@@ -15,11 +15,11 @@ namespace Content.Shared._ES.Auditions;
 /// </summary>
 public abstract partial class ESSharedAuditionsSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedJobSystem _job = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedJobSystem _job = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public bool RandomCharactersEnabled { get; private set; }
 

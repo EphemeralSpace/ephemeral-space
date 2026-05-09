@@ -7,11 +7,11 @@ using Content.Shared.Mind;
 
 namespace Content.Server._ES.Masks.Psychid;
 
-public sealed class ESPsychidSystem : EntitySystem
+public sealed partial class ESPsychidSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly ESSharedMaskSystem _mask = default!;
-    [Dependency] private readonly RejuvenateSystem _rejuvenate = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private ESSharedMaskSystem _mask = default!;
+    [Dependency] private RejuvenateSystem _rejuvenate = default!;
 
     public override void Initialize()
     {

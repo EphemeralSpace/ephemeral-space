@@ -6,11 +6,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Blinking;
 
-public abstract class ESSharedBlinkingSystem : EntitySystem
+public abstract partial class ESSharedBlinkingSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -10,9 +10,9 @@ using Content.Shared.Mind;
 
 namespace Content.Server._ES.Masks.Hemophage;
 
-public sealed class ESHemophageSystem : EntitySystem
+public sealed partial class ESHemophageSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

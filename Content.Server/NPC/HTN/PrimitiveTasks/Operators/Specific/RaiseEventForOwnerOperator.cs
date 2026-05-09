@@ -6,7 +6,7 @@
 /// </summary>
 public sealed partial class RaiseEventForOwnerOperator : HTNOperator
 {
-    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private IEntityManager _entMan = default!;
 
     /// <summary>
     /// The conceptual "target" of this event. Note that this is NOT the entity for which the event is raised. If null,
@@ -37,7 +37,7 @@ public sealed partial class RaiseEventForOwnerOperator : HTNOperator
     }
 }
 
-public sealed partial class HTNRaisedEvent(EntityUid owner, EntityUid? target, EntityEventArgs args) : EntityEventArgs
+public sealed class HTNRaisedEvent(EntityUid owner, EntityUid? target, EntityEventArgs args) : EntityEventArgs
 {
     // Owner and target are both included here in case we want to add a "RaiseEventForTargetOperator" in the future
     // while reusing this event.

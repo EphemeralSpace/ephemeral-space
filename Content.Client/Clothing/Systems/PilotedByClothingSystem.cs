@@ -3,7 +3,7 @@ using Robust.Client.Physics;
 
 namespace Content.Client.Clothing.Systems;
 
-public sealed partial class PilotedByClothingSystem : EntitySystem
+public sealed class PilotedByClothingSystem : EntitySystem
 {
     public override void Initialize()
     {

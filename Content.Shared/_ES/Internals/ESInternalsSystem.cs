@@ -6,11 +6,11 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Internals;
 
-public sealed class ESInternalsSystem : EntitySystem
+public sealed partial class ESInternalsSystem : EntitySystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedGasTankSystem _internals = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedGasTankSystem _internals = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

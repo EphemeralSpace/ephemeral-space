@@ -15,17 +15,17 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Masks.Pickpocket;
 
-public sealed class ESPickpocketMaskSystem : EntitySystem
+public sealed partial class ESPickpocketMaskSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly ESViewconeAngleSystem _viewconeAngle = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private DoAfterSystem _doAfter = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private ESViewconeAngleSystem _viewconeAngle = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

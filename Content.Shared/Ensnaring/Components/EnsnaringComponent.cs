@@ -12,13 +12,13 @@ public sealed partial class EnsnaringComponent : Component
     /// How long it should take to free someone else.
     /// </summary>
     [DataField]
-    public float FreeTime = 3.5f;
+    public float FreeTime = 1f;
 
     /// <summary>
     /// How long it should take for an entity to free themselves.
     /// </summary>
     [DataField]
-    public float BreakoutTime = 30.0f;
+    public float BreakoutTime = 1.5f;
 
     /// <summary>
     /// How much should this slow down the entities walk?

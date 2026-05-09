@@ -10,13 +10,13 @@ using Robust.Shared.Random;
 namespace Content.Server._ES.Masks.Superfan;
 
 /// <seealso cref="ESSuperfanComponent"/>
-public sealed class ESSuperfanSystem : EntitySystem
+public sealed partial class ESSuperfanSystem : EntitySystem
 {
-    [Dependency] private readonly ESMaskSystem _mask = default!;
-    [Dependency] private readonly ESMasqueradeSystem _masquerade = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private ESMaskSystem _mask = default!;
+    [Dependency] private ESMasqueradeSystem _masquerade = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     private static readonly ProtoId<ESTroupePrototype> TraitorsTroupe = "Traitor";
 

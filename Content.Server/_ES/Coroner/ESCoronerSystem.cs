@@ -15,14 +15,14 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Coroner;
 
-public sealed class ESCoronerSystem : ESSharedCoronerSystem
+public sealed partial class ESCoronerSystem : ESSharedCoronerSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ESCluesSystem _clues = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ESCluesSystem _clues = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private MindSystem _mind = default!;
 
     protected override FormattedMessage GetReport(EntityUid target)
     {

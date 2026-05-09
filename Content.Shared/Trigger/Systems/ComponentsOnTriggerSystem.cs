@@ -2,7 +2,7 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed partial class AddComponentsOnTriggerSystem : XOnTriggerSystem<AddComponentsOnTriggerComponent>
+public sealed class AddComponentsOnTriggerSystem : XOnTriggerSystem<AddComponentsOnTriggerComponent>
 {
     protected override void OnTrigger(Entity<AddComponentsOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
@@ -17,7 +17,7 @@ public sealed partial class AddComponentsOnTriggerSystem : XOnTriggerSystem<AddC
     }
 }
 
-public sealed partial class RemoveComponentsOnTriggerSystem : XOnTriggerSystem<RemoveComponentsOnTriggerComponent>
+public sealed class RemoveComponentsOnTriggerSystem : XOnTriggerSystem<RemoveComponentsOnTriggerComponent>
 {
     protected override void OnTrigger(Entity<RemoveComponentsOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
@@ -32,7 +32,7 @@ public sealed partial class RemoveComponentsOnTriggerSystem : XOnTriggerSystem<R
     }
 }
 
-public sealed partial class ToggleComponentsOnTriggerSystem : XOnTriggerSystem<ToggleComponentsOnTriggerComponent>
+public sealed class ToggleComponentsOnTriggerSystem : XOnTriggerSystem<ToggleComponentsOnTriggerComponent>
 {
     protected override void OnTrigger(Entity<ToggleComponentsOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {

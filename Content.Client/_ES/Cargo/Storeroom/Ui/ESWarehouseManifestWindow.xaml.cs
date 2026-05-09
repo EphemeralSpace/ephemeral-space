@@ -10,7 +10,7 @@ namespace Content.Client._ES.Cargo.Storeroom.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class ESWarehouseManifestWindow : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
     private readonly StationSystem _station;
 
     public ESWarehouseManifestWindow()

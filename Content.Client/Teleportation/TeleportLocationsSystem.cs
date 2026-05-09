@@ -5,7 +5,7 @@ namespace Content.Client.Teleportation;
 /// <summary>
 /// <inheritdoc cref="SharedTeleportLocationsSystem"/>
 /// </summary>
-public sealed partial class TeleportLocationsSystem : SharedTeleportLocationsSystem
+public sealed class TeleportLocationsSystem : SharedTeleportLocationsSystem
 {
 
 }
