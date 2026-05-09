@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/09/2026 09:54:51
+  time: 05/09/2026 21:55:11
   entityCount: 14700
 maps:
 - 3
@@ -40216,6 +40216,13 @@ entities:
     - type: Transform
       pos: -18.5,-41.5
       parent: 2
+- proto: ESSpawnerRandomGenericWardrobe
+  entities:
+  - uid: 9512
+    components:
+    - type: Transform
+      pos: -51.5,12.5
+      parent: 2
 - proto: ESSpawnerRandomGrille25
   entities:
   - uid: 3038
@@ -43905,11 +43912,6 @@ entities:
     components:
     - type: Transform
       pos: -9.5,5.5
-      parent: 2
-  - uid: 9512
-    components:
-    - type: Transform
-      pos: -51.5,12.5
       parent: 2
   - uid: 9513
     components:
