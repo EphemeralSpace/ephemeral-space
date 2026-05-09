@@ -171,3 +171,11 @@ Entries:
         traitors are in order to be victorious.
   id: 21
   time: '2026-05-09T04:54:01.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The radstorm now advances significantly quicker when thrusters run out
+        of fuel or the navigation console loses power.
+  id: 22
+  time: '2026-05-09T09:03:26.0000000+00:00'
