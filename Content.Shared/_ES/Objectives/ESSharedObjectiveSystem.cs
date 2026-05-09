@@ -3,8 +3,6 @@ using System.Linq;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Mind;
 using Content.Shared._ES.Objectives.Components;
-using Content.Shared.EntityTable;
-using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using JetBrains.Annotations;
@@ -24,7 +22,6 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
 {
     [Dependency] private ISharedPlayerManager _player = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedPvsOverrideSystem _pvsOverride = default!;
 
@@ -341,16 +338,6 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     }
 
     /// <summary>
-    /// Attempts to create and add multiple objectives
-    /// </summary>
-    /// <returns>Returns true if all objectives succeed</returns>
-    public bool TryAddObjective(Entity<ESObjectiveHolderComponent?> ent, EntityTableSelector table)
-    {
-        var spawns = _entityTable.GetSpawns(table);
-        return spawns.All(e => TryAddObjective(ent, e));
-    }
-
-    /// <summary>
     /// Attempts to create and assign an objective to an entity
     /// </summary>
     /// <param name="ent">The entity that will be assigned the objective</param>
@@ -451,5 +438,14 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
             ("name", Name(ent)),
             ("success", IsCompleted(ent)),
             ("percent", (int) (GetProgress(ent) * 100)));
+    }
+
+    public void SetDescriptor(EntityUid uid, string text, Color color, string tooltip)
+    {
+        var comp = EnsureComp<ESObjectiveDescriptorComponent>(uid);
+        comp.Text = text;
+        comp.Color = color;
+        comp.Tooltip = tooltip;
+        Dirty(uid, comp);
     }
 }

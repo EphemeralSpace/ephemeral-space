@@ -16,6 +16,7 @@ public sealed class ESObjectiveSystem : ESSharedObjectiveSystem
 
         SubscribeLocalEvent<ESObjectiveHolderComponent, AfterAutoHandleStateEvent>(OnHolderAfterAutoHandleStateEvent);
         SubscribeLocalEvent<ESObjectiveComponent, AfterAutoHandleStateEvent>(OnObjectiveAfterAutoHandleState);
+        SubscribeLocalEvent<ESObjectiveDescriptorComponent, AfterAutoHandleStateEvent>(OnDescriptorAfterAutoHandleState);
     }
 
     private void OnHolderAfterAutoHandleStateEvent(Entity<ESObjectiveHolderComponent> ent, ref AfterAutoHandleStateEvent args)
@@ -26,5 +27,11 @@ public sealed class ESObjectiveSystem : ESSharedObjectiveSystem
     private void OnObjectiveAfterAutoHandleState(Entity<ESObjectiveComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         OnObjectiveProgressChanged?.Invoke(ent);
+    }
+
+    private void OnDescriptorAfterAutoHandleState(Entity<ESObjectiveDescriptorComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        if (TryComp<ESObjectiveComponent>(ent, out var comp))
+            OnObjectiveProgressChanged?.Invoke((ent, comp));
     }
 }
