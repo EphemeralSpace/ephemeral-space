@@ -86,6 +86,8 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
     public float GetChargePercentage(ESWarpDriveGameRuleComponent component)
     {
         var totalTime = (_timing.CurTime - _ticker.RoundStartTimeSpan) - component.AccumulatedInterruptionTime;
+        if (component.LastInterruptionTime is { } lastInterruption)
+            totalTime -= (_timing.CurTime - lastInterruption);
         return (float) (totalTime / component.BaseChargeTime);
     }
 
