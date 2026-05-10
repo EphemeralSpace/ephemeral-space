@@ -6,6 +6,7 @@
   - type: Gun
   - type: ChamberMagazineAmmoProvider
   - type: GunRequiresWield
+  - type: ItemSlots
     slots:
       gun_chamber:
         name: Chamber
