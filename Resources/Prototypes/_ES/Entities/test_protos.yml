@@ -6,6 +6,12 @@
   - type: Gun
   - type: ChamberMagazineAmmoProvider
   - type: GunRequiresWield
+    slots:
+      gun_chamber:
+        name: Chamber
+  - type: ContainerContainer
+    containers:
+      gun_chamber: !type:ContainerSlot
 
 - type: entity
   name: TestItemEmbeddable
