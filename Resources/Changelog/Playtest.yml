@@ -221,3 +221,11 @@ Entries:
       message: i had to remove the reverb that shit was brokey my bad
   id: 26
   time: '2026-05-09T22:41:31.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Thrusters and navigation terminal now properly affect the ship speed
+        when they run out of fuel/power.
+  id: 27
+  time: '2026-05-10T03:20:05.0000000+00:00'
