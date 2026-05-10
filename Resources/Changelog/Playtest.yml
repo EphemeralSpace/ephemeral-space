@@ -148,3 +148,84 @@ Entries:
       message: Positional audio should now sound much better (this is hard to explain)
   id: 19
   time: '2026-05-08T22:51:54.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Audio now has a base amount of reverb applied to it. More effects to
+        come in the future (in space, in crit, dynamic based on room size, etc)
+    - type: Remove
+      message: >-
+        Audio no longer dopplers. No longer will shit sound like ass while
+        moving around as a stagehand
+  id: 20
+  time: '2026-05-09T04:52:15.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        New traitor mask: the Sympathizer. This mask can roll on any
+        job--including command--but they cannot tell who the other traitors are,
+        cannot be seen by other traitors, and cannot see the shared traitor
+        objectives. This means they must act indirectly and figure out who the
+        traitors are in order to be victorious.
+  id: 21
+  time: '2026-05-09T04:54:01.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The radstorm now advances significantly quicker when thrusters run out
+        of fuel or the navigation console loses power.
+  id: 22
+  time: '2026-05-09T09:03:26.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Breaking out of cuffs, bolas, and welded/locked lockers is now
+        significantly faster in all cases
+    - type: Fix
+      message: Warp drive charge timer no longer ticks up while interrupted
+    - type: Fix
+      message: >-
+        Being in space no longer makes you take like 9999 minutes to die because
+        of cryostasis
+    - type: Tweak
+      message: >-
+        Smoke inhalation now has a higher reagent threshold and you'll more
+        reliably cough as a warning at lower thresholds
+    - type: Tweak
+      message: >-
+        Regular walls & girders now take longer to construct manually (without
+        an RCD) and take less time to deconstruct
+  id: 23
+  time: '2026-05-09T15:08:40.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Rebalanced non-random masquerades across the board
+  id: 24
+  time: '2026-05-09T19:49:04.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Objectives now state in the UI whether or not they belong to a mask or
+        to a troupe.
+  id: 25
+  time: '2026-05-09T21:53:57.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: i had to remove the reverb that shit was brokey my bad
+  id: 26
+  time: '2026-05-09T22:41:31.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Thrusters and navigation terminal now properly affect the ship speed
+        when they run out of fuel/power.
+  id: 27
+  time: '2026-05-10T03:20:05.0000000+00:00'

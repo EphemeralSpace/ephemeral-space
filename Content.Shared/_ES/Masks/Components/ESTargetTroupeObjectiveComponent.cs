@@ -21,4 +21,10 @@ public sealed partial class ESTargetTroupeObjectiveComponent : Component
     /// </summary>
     [DataField]
     public bool Invert;
+
+    /// <summary>
+    /// If a given player has any mask in this set, they will NOT be invalidated, even if they otherwise would be.
+    /// </summary>
+    [DataField]
+    public HashSet<ProtoId<ESMaskPrototype>> OverrideMasks = new();
 }

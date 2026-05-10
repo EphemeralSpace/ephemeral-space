@@ -22,7 +22,6 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Pulling.Events;
 using Content.Shared.Standing;
-using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Physics;
@@ -64,7 +63,6 @@ public sealed partial class PullingSystem : EntitySystem
         SubscribeLocalEvent<PullableComponent, MoveInputEvent>(OnPullableMoveInput);
         SubscribeLocalEvent<PullableComponent, CollisionChangeEvent>(OnPullableCollisionChange);
         SubscribeLocalEvent<PullableComponent, JointRemovedEvent>(OnJointRemoved);
-        SubscribeLocalEvent<PullableComponent, GetVerbsEvent<Verb>>(AddPullVerbs);
         SubscribeLocalEvent<PullableComponent, EntGotInsertedIntoContainerMessage>(OnPullableContainerInsert);
         SubscribeLocalEvent<PullableComponent, ModifyUncuffDurationEvent>(OnModifyUncuffDuration);
         SubscribeLocalEvent<PullableComponent, StopBeingPulledAlertEvent>(OnStopBeingPulledAlert);
@@ -256,17 +254,6 @@ public sealed partial class PullingSystem : EntitySystem
         {
             TryStopPull(args.BlockingEntity, comp);
         }
-    }
-
-    private void AddPullVerbs(EntityUid uid, PullableComponent component, GetVerbsEvent<Verb> args)
-    {
-        if (!args.CanAccess || !args.CanInteract)
-            return;
-
-        // ES START
-        // No pull verbs
-        return;
-        // ES END
     }
 
     private void OnRefreshMovespeed(EntityUid uid, PullerComponent component, RefreshMovementSpeedModifiersEvent args)
@@ -492,8 +479,10 @@ public sealed partial class PullingSystem : EntitySystem
         return TogglePull((puller.Pulling.Value, pullable), pullerUid);
     }
 
-    public bool TryStartPull(EntityUid pullerUid, EntityUid pullableUid,
-        PullerComponent? pullerComp = null, PullableComponent? pullableComp = null)
+    public bool TryStartPull(EntityUid pullerUid,
+        EntityUid pullableUid,
+        PullerComponent? pullerComp = null,
+        PullableComponent? pullableComp = null)
     {
         if (!Resolve(pullerUid, ref pullerComp, false) ||
             !Resolve(pullableUid, ref pullableComp, false))
@@ -554,9 +543,11 @@ public sealed partial class PullingSystem : EntitySystem
         // joint state handling will manage its own state
         if (!_timing.ApplyingState)
         {
-            var joint = _joints.CreateDistanceJoint(pullableUid, pullerUid,
-                    pullablePhysics.LocalCenter, pullerPhysics.LocalCenter,
-                    id: pullableComp.PullJointId);
+            var joint = _joints.CreateDistanceJoint(pullableUid,
+                pullerUid,
+                pullablePhysics.LocalCenter,
+                pullerPhysics.LocalCenter,
+                id: pullableComp.PullJointId);
             joint.CollideConnected = false;
             // This maximum has to be there because if the object is constrained too closely, the clamping goes backwards and asserts.
             // Internally, the joint length has been set to the distance between the pivots.
@@ -605,8 +596,7 @@ public sealed partial class PullingSystem : EntitySystem
             Loc.GetString("getting-pulled-popup", ("puller", Identity.Entity(pullerUid, EntityManager)));
         _popup.PopupEntity(pullingMessage, pullableUid, pullableUid);
 
-        _adminLogger.Add(LogType.Action, LogImpact.Low,
-            $"{ToPrettyString(pullerUid):user} started pulling {ToPrettyString(pullableUid):target}");
+        _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(pullerUid):user} started pulling {ToPrettyString(pullableUid):target}");
         return true;
     }
 

@@ -41,7 +41,7 @@
         layer:
         - WallLayer
   - type: ESRadstormModifierMachine
-    modifier: 0.29
+    modifier: 1.00
     enableAnnouncement: es-radstorm-power-on-navigation-console
     disableAnnouncement: es-radstorm-power-off-navigation-console
   - type: AmbientSound

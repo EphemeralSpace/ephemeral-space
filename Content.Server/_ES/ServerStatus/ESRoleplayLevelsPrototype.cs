@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Content.Shared.Dataset;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -23,12 +22,6 @@ public sealed partial class ESRoleplayLevelsPrototype : IPrototype, ISerializati
     /// </summary>
     [DataField(required: true)]
     public List<char> ForbidCharacters = default!;
-
-    /// <summary>
-    ///     Localized datasets we also add in to our list of roleplays.
-    /// </summary>
-    [DataField]
-    public List<ProtoId<LocalizedDatasetPrototype>> LocalizedDatasets = new();
 
     /// <summary>
     ///     The kinds of roleplays in this dataset.
@@ -60,16 +53,6 @@ public sealed partial class ESRoleplayLevelsPrototype : IPrototype, ISerializati
 
     public string GetPossibleRoleplay(ILocalizationManager loc, IPrototypeManager proto, IRobustRandom random)
     {
-        var roleplays = new List<string>();
-
-        foreach (var setProtoId in LocalizedDatasets)
-        {
-            var set = proto.Index(setProtoId);
-            roleplays.AddRange(set.Values.Where(x => !CheckForbidCharactersViolation(x)));
-        }
-
-        roleplays.AddRange(Roleplays);
-
-        return random.Pick(roleplays);
+        return random.Pick(Roleplays);
     }
 }

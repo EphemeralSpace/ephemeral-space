@@ -113,12 +113,21 @@ public abstract partial class ESSharedMaskSystem : EntitySystem
         }
     }
 
+    private bool CanShowFactionIcons(Entity<ESTroupeFactionIconComponent> ent, EntityUid viewer)
+    {
+        var troupe = GetTroupeOrNull(viewer);
+        var mind = Mind.GetMind(viewer);
+        var ignored = TryComp<ESTroupeIgnoreFactionIconsComponent>(mind, out var ignoreIcons) &&
+                      ignoreIcons.Troupes.Contains(ent.Comp.Troupe);
+        return troupe == ent.Comp.Troupe && !ignored;
+    }
+
     private void OnComponentGetStateAttempt(Entity<ESTroupeFactionIconComponent> ent, ref ComponentGetStateAttemptEvent args)
     {
         if (args.Player?.AttachedEntity is not { } attachedEntity)
             return;
 
-        args.Cancelled = GetTroupeOrNull(attachedEntity) != ent.Comp.Troupe;
+        args.Cancelled = !CanShowFactionIcons(ent, attachedEntity);
     }
 
     private void OnExaminedEvent(Entity<ESTroupeFactionIconComponent> ent, ref ExaminedEvent args)
@@ -130,7 +139,7 @@ public abstract partial class ESSharedMaskSystem : EntitySystem
         if (ent.Comp.ExamineString is not { } str)
             return;
 
-        if (GetTroupeOrNull(args.Examiner) != ent.Comp.Troupe)
+        if (!CanShowFactionIcons(ent, args.Examiner))
             return;
 
         args.PushMarkup(Loc.GetString(str));
@@ -159,6 +168,11 @@ public abstract partial class ESSharedMaskSystem : EntitySystem
         if (!TryGetTroupe(ent.AsNullable(), out var troupe) ||
             !TryGetTroupeEntity(troupe.Value, out var troupeEntity))
             return;
+
+        if (TryComp<ESTroupeNoSharedObjectivesComponent>(ent, out var noObjectives)
+            && noObjectives.Troupes.Contains(troupe.Value))
+            return;
+
         args.Objectives.AddRange(Objective.GetObjectives(troupeEntity.Value.Owner));
     }
 

@@ -62,6 +62,9 @@ es-mask-subverter-desc = As a Subverter, you have received two brain-altering ch
 es-mask-demolitionist-name = Demolitionist
 es-mask-demolitionist-desc = As a Demolitionist, you have been trained by the Syndicate for both controlled and uncontrolled "demolitions"--including in the use of explosive implants, should things turn out that way.
 
+es-mask-sympathizer-name = Sympathizer
+es-mask-sympathizer-desc = As a Sympathizer, you are an adherent to Syndicate philosophy, win with the traitors, and count as a traitor--but you are unaware of who the traitors are and what their objectives are.
+
 # Paraiste masks
 es-mask-troupe-parasite-examine = They're a fellow host of the [bold][color=tan]parasitic infection[/color][/bold]. Conspire with them to spread the infection.
 
