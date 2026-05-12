@@ -6,7 +6,7 @@ namespace Content.Shared.EntityEffects.Effects;
 /// A brief summary of the effect.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T, TEffect}"/>
-public sealed partial class TemplateEntityEffectSystem : EntityEffectSystem<MetaDataComponent, Template>
+public sealed class TemplateEntityEffectSystem : EntityEffectSystem<MetaDataComponent, Template>
 {
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<Template> args)
     {

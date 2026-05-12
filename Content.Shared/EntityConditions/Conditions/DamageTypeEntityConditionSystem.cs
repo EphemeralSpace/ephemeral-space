@@ -10,7 +10,7 @@ namespace Content.Shared.EntityConditions.Conditions;
 /// Returns true if this entity can take damage and if its damage of a given damage type is within a specified minimum and maximum.
 /// </summary>
 /// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
-public sealed partial class DamageTypeEntityConditionSystem : EntityConditionSystem<DamageableComponent, DamageTypeCondition>
+public sealed class DamageTypeEntityConditionSystem : EntityConditionSystem<DamageableComponent, DamageTypeCondition>
 {
     protected override void Condition(Entity<DamageableComponent> entity, ref EntityConditionEvent<DamageTypeCondition> args)
     {

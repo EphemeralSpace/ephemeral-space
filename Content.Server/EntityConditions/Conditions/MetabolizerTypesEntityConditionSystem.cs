@@ -9,7 +9,7 @@ namespace Content.Server.EntityConditions.Conditions;
 /// Returns true if this entity has any of the listed metabolizer types.
 /// </summary>
 /// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
-public sealed partial class MetabolizerTypeEntityConditionSystem : EntityConditionSystem<MetabolizerComponent, MetabolizerTypeCondition>
+public sealed class MetabolizerTypeEntityConditionSystem : EntityConditionSystem<MetabolizerComponent, MetabolizerTypeCondition>
 {
     protected override void Condition(Entity<MetabolizerComponent> entity, ref EntityConditionEvent<MetabolizerTypeCondition> args)
     {

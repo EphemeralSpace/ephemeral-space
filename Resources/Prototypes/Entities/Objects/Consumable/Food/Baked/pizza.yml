@@ -727,10 +727,6 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
-        - ReagentId: Happiness
-          Quantity: 12
-        - ReagentId: Pax
-          Quantity: 8
 
 - type: entity
   name: slice of world peazza
@@ -754,7 +750,3 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 3.5
-        - ReagentId: Happiness
-          Quantity: 2
-        - ReagentId: Pax
-          Quantity: 1.5

@@ -12,11 +12,11 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Degradation;
 
-public sealed class ESVentSpawnEventSystem : StationEventSystem<ESVentSpawnEventComponent>
+public sealed partial class ESVentSpawnEventSystem : StationEventSystem<ESVentSpawnEventComponent>
 {
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly ESEntityTimerSystem _entityTimer = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private ESEntityTimerSystem _entityTimer = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     public override void Initialize()
     {

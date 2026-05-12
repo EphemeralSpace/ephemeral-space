@@ -43,3 +43,189 @@ Entries:
         may find the storm approaching faster than expected.
   id: 6
   time: '2026-04-18T21:54:34.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Pickpocket, a new crew mask that is tasked with snatching
+        items from people using their unique sneaky ability.
+  id: 7
+  time: '2026-04-23T13:44:18.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Arsonist, a new crew mask focused on lighting fires across the
+        station.
+  id: 8
+  time: '2026-04-24T15:13:40.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Being in braincrit now allows you to succumb with an action once more
+        (or say last words)
+  id: 9
+  time: '2026-05-03T00:53:56.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        New fully-random masquerades incorporating parasites have been added.
+        All masquerades will be random for a moment as we test it out and see
+        what things work to help with designing masquerades in the future.
+  id: 10
+  time: '2026-05-03T20:28:29.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Slight rebalance of crew thrusters + nav console + warp drive to be a
+        little more relevant
+  id: 11
+  time: '2026-05-03T21:35:10.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        The server is now advertising on the hub! While we're not running
+        rounds, the curtains leading to the stage will be closed, and you'll get
+        a popup telling you what's going on.
+  id: 12
+  time: '2026-05-05T22:19:41.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Default viewcone angle + feathering for the overlay has been altered
+        slightly
+  id: 13
+  time: '2026-05-06T00:00:34.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: Adrenaline rush action has been removed, goodbye urist mcflowerfield
+  id: 14
+  time: '2026-05-06T00:02:36.0000000+00:00'
+- author: Coolsurf6
+  changes:
+    - type: Tweak
+      message: Jerrycans are now 3x3
+  id: 15
+  time: '2026-05-06T01:22:46.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Sleeper agents now have a chance to convert after each traitor death,
+        not just after the last one dies.
+  id: 16
+  time: '2026-05-07T19:23:36.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Add
+      message: Nuclear cryptographic terminals now have a navmap beacon
+  id: 17
+  time: '2026-05-07T19:26:29.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: 'Added two new common maints utility items: the door jammer & the net. '
+    - type: Add
+      message: >-
+        The door jammer is a jury-rigged screwdriver that forcibly bolts any
+        door it's thrown and embedded into, until it's removed. 
+    - type: Add
+      message: >-
+        The net is an item that steals the item out of someone's active hand
+        when it's thrown at them, carrying it along until it lands. If the
+        target's active hand is empty, they'll simply catch the net instead.
+  id: 18
+  time: '2026-05-07T21:33:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Positional audio should now sound much better (this is hard to explain)
+  id: 19
+  time: '2026-05-08T22:51:54.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Audio now has a base amount of reverb applied to it. More effects to
+        come in the future (in space, in crit, dynamic based on room size, etc)
+    - type: Remove
+      message: >-
+        Audio no longer dopplers. No longer will shit sound like ass while
+        moving around as a stagehand
+  id: 20
+  time: '2026-05-09T04:52:15.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        New traitor mask: the Sympathizer. This mask can roll on any
+        job--including command--but they cannot tell who the other traitors are,
+        cannot be seen by other traitors, and cannot see the shared traitor
+        objectives. This means they must act indirectly and figure out who the
+        traitors are in order to be victorious.
+  id: 21
+  time: '2026-05-09T04:54:01.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The radstorm now advances significantly quicker when thrusters run out
+        of fuel or the navigation console loses power.
+  id: 22
+  time: '2026-05-09T09:03:26.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Breaking out of cuffs, bolas, and welded/locked lockers is now
+        significantly faster in all cases
+    - type: Fix
+      message: Warp drive charge timer no longer ticks up while interrupted
+    - type: Fix
+      message: >-
+        Being in space no longer makes you take like 9999 minutes to die because
+        of cryostasis
+    - type: Tweak
+      message: >-
+        Smoke inhalation now has a higher reagent threshold and you'll more
+        reliably cough as a warning at lower thresholds
+    - type: Tweak
+      message: >-
+        Regular walls & girders now take longer to construct manually (without
+        an RCD) and take less time to deconstruct
+  id: 23
+  time: '2026-05-09T15:08:40.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Rebalanced non-random masquerades across the board
+  id: 24
+  time: '2026-05-09T19:49:04.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Objectives now state in the UI whether or not they belong to a mask or
+        to a troupe.
+  id: 25
+  time: '2026-05-09T21:53:57.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: i had to remove the reverb that shit was brokey my bad
+  id: 26
+  time: '2026-05-09T22:41:31.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Thrusters and navigation terminal now properly affect the ship speed
+        when they run out of fuel/power.
+  id: 27
+  time: '2026-05-10T03:20:05.0000000+00:00'

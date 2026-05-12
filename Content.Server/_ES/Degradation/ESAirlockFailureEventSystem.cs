@@ -8,9 +8,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Degradation;
 
-public sealed class ESAirlockFailureEventSystem : StationEventSystem<ESAirlockFailureEventComponent>
+public sealed partial class ESAirlockFailureEventSystem : StationEventSystem<ESAirlockFailureEventComponent>
 {
-    [Dependency] private readonly ESAirlockFailureSystem _airlockFailure = default!;
+    [Dependency] private ESAirlockFailureSystem _airlockFailure = default!;
 
     protected override void Started(EntityUid uid,
         ESAirlockFailureEventComponent component,

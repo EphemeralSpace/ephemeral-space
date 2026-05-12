@@ -25,15 +25,15 @@ namespace Content.Server._ES.WarpDrive;
 /// <see cref="ESWarpDriveGameRuleComponent"/>
 public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly EntityTableSystem _table = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ESObjectiveSystem _objective = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private EntityTableSystem _table = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ESObjectiveSystem _objective = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
@@ -86,6 +86,8 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
     public float GetChargePercentage(ESWarpDriveGameRuleComponent component)
     {
         var totalTime = (_timing.CurTime - _ticker.RoundStartTimeSpan) - component.AccumulatedInterruptionTime;
+        if (component.LastInterruptionTime is { } lastInterruption)
+            totalTime -= (_timing.CurTime - lastInterruption);
         return (float) (totalTime / component.BaseChargeTime);
     }
 
@@ -143,18 +145,12 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         // check if we should make a new random interruption
         if (_timing.CurTime > component.NextInterruptionTime)
         {
-            // uhh... i seem to have.. caught you at a very interrupted time..
-            // lets try again in a bit
-            if (component.Interrupted)
+            if (!component.Interrupted)
             {
-                component.NextInterruptionTime = _timing.CurTime + _random.Next(
-                    component.MinRandomInterruptionTime / 2,
-                    component.MaxRandomInterruptionTime / 2);
+                SpawnInterruptionObjects(component);
             }
-            else
-            {
-                CauseInterruption(component);
-            }
+
+            component.NextInterruptionTime = _timing.CurTime + _random.Next(component.MinRandomInterruptionTime, component.MaxRandomInterruptionTime);
         }
 
         // check if there are any active interrupting entities
@@ -168,7 +164,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             interruptions++;
         }
 
-        if (interruptions == 0 && component.Interrupted && component.LastInterruptionTime is { } time)
+        if (interruptions <= 0 && component.Interrupted && component.LastInterruptionTime is { } time)
         {
             component.Interrupted = false;
             component.AccumulatedInterruptionTime += (_timing.CurTime - time);
@@ -222,7 +218,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
                 && warpDrive is { Interrupted: false, InFinalPhase: false })
             {
                 warpDrive.ItemsTeleportedSinceLastInterruption = 0;
-                CauseInterruption(warpDrive);
+                SpawnInterruptionObjects(warpDrive);
             }
             else if (warpDrive.ItemsTeleportedSinceLastInterruption > warpDrive.FinalPhaseForceEndItems
                      && warpDrive.InFinalPhase)
@@ -238,7 +234,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         }
     }
 
-    public void CauseInterruption(ESWarpDriveGameRuleComponent component)
+    public void SpawnInterruptionObjects(ESWarpDriveGameRuleComponent component)
     {
         if (SingularityWorldGrids is null || _proto.Index(component.InterruptionTrashTable) is not  { } table)
             return;
@@ -258,7 +254,6 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             amt--;
         }
 
-        component.NextInterruptionTime = _timing.CurTime + _random.Next(component.MinRandomInterruptionTime, component.MaxRandomInterruptionTime);
         // no announcement thats handled later by it noticing
     }
 }
@@ -275,7 +270,7 @@ public sealed class CauseWarpDriveInterruptionCommand : ToolshedCommand
         var query = EntityManager.EntityQueryEnumerator<ESWarpDriveGameRuleComponent>();
         while (query.MoveNext(out _, out var rule))
         {
-            _sys.CauseInterruption(rule);
+            _sys.SpawnInterruptionObjects(rule);
         }
     }
 }

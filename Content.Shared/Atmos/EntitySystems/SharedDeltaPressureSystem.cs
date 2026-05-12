@@ -3,7 +3,7 @@ using Content.Shared.Examine;
 
 namespace Content.Shared.Atmos.EntitySystems;
 
-public abstract partial class SharedDeltaPressureSystem : EntitySystem
+public abstract class SharedDeltaPressureSystem : EntitySystem
 {
     public override void Initialize()
     {

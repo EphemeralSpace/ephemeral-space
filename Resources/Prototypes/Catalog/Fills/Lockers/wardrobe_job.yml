@@ -62,7 +62,6 @@
       - id: ToyAmongPequeno
       - id: WhoopieCushion
       - id: Brutepack
-      - id: StrangePill
       - id: Shiv
     - !type:GroupSelector
       prob: 0.1

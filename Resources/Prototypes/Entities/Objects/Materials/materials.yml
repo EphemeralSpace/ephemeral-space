@@ -56,13 +56,6 @@
           Quantity: 6
   - type: Item
     heldPrefix: cardboard
-  - type: FloorTile
-    outputs:
-    - Plating
-  - type: SpawnAfterInteract #Nuke after convert to FloorTile
-    prototype: CarpetCard
-    doAfter: 0.5
-    removeOnInteract: true
 
 - type: entity
   parent: MaterialCardboard
@@ -566,14 +559,10 @@
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 2
-        - ReagentId: Honk
-          Quantity: 5
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: JuiceBanana
-        Quantity: 5
-      - ReagentId: Honk
         Quantity: 5
   - type: Appearance
   - type: Item

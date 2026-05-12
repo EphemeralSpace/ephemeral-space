@@ -515,26 +515,3 @@
 #  - type: ActiveJetpack # I think this will need a custom component to not make tests angry.
   - type: MovementAlwaysTouching
 
-- type: entity
-  parent: MobSnail
-  id: MobSnailMoth
-  name: Snoth
-  components:
-  - type: Body
-    prototype: Mothroach
-  - type: GhostRole
-    name: ghost-role-information-snoth-name
-    description: ghost-role-information-snoth-description
-    rules: ghost-role-information-freeagent-rules
-  - type: Sprite
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: snoth
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: snoth
-      Critical:
-        Base: snothdead
-      Dead:
-        Base: snothdead

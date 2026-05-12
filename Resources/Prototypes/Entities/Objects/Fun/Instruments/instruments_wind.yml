@@ -23,14 +23,6 @@
       "Baritone": {67: 0}
   - type: Sprite
     sprite: Objects/Fun/Instruments/saxophone.rsi
-  - type: Extractable
-    grindableSolutionName: sax
-  - type: SolutionContainerManager
-    solutions:
-      sax:
-        reagents:
-          - ReagentId: Saxoite
-            Quantity: 10
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -49,7 +41,7 @@
     slots:
     - neck
   - type: ActivatableUI
-    inHandsOnly: false  
+    inHandsOnly: false
 
 - type: entity
   parent: BaseWoodwindInstrument

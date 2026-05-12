@@ -11,7 +11,7 @@ namespace Content.Client._ES.Screens;
 [GenerateTypedNameReferences]
 public sealed partial class StagehandGameScreen : InGameScreen
 {
-    [Dependency] private readonly IEntityManager _ent = default!;
+    [Dependency] private IEntityManager _ent = default!;
 
     public const string StyleClassChatContainer = "ChatContainer";
     public const string StyleClassChatOutput = "ChatOutput";

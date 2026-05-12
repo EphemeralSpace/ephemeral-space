@@ -11,12 +11,12 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Offbrand.Wounds;
 
-public sealed class WoundableHealthAnalyzerSystem : SharedWoundableHealthAnalyzerSystem
+public sealed partial class WoundableHealthAnalyzerSystem : SharedWoundableHealthAnalyzerSystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     public override Dictionary<ProtoId<ReagentPrototype>, (FixedPoint2 InBloodstream, FixedPoint2 Metabolites)>? SampleReagents(EntityUid uid, out bool hasNonMedical)
     {

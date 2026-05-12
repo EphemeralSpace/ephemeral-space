@@ -1,0 +1,20 @@
+- type: entity
+  parent: BaseItem
+  id: ESNet
+  name: net
+  description: Used equally for spacefishing and yoinking items out of occupied hands with a simple toss. Remarkably useful, even when it can be grabbed out of the air just as easily.
+  suffix: ES
+  components:
+  - type: ESNet
+    sound: /Audio/Effects/thudswoosh.ogg
+  - type: Sprite
+    sprite: _ES/Objects/Tools/net.rsi
+    state: icon
+    drawdepth: BelowMobs # draw above most items (so they look like they're in the net)
+  - type: Item
+    size: Normal
+    sprite: _ES/Objects/Tools/net.rsi
+  - type: LandAtCursor
+  - type: Catchable # better make sure their active hand isn't empty
+  - type: Transform
+    noRot: true

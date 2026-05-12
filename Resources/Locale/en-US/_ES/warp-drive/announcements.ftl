@@ -1,4 +1,4 @@
-es-warp-drive-announcement-interruptions-detected = Foreign Contaminants detected in My (Warp Drive)'s transitory dimension, Likely due to Accelerated Charging. Sickened. Enter my World and Dispel the Interruption, or Charging cannot continue.
+es-warp-drive-announcement-interruptions-detected = Foreign Contaminants detected in My (Warp Drive)'s transitory dimension, Perhaps due to Manual Sabotage or Random Debris. Sickened. Do not Throw stuff in there if you want me to Work at all. Enter my World and Dispel the Interruption, or Charging cannot continue.
 es-warp-drive-announcement-interruptions-cleared = Thank You for clearing the Devious Interruption. Restoring Charging Immediately.
 
 es-warp-drive-announcement-percentage-one-tenth = This is Your warp Drive Over Seer Speaking. It Is Charged at Ten Percent. Please continue to be Diligent about Dealing with Various Issues and tending to Me and You Will All Live. Please do not Throw Objects into me as it will Disrupt the Process.

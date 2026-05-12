@@ -340,6 +340,9 @@
   - type: ESCryptoNukeConsole
   - type: PointLight
     color: "#ff6971"
+  - type: NavMapBeacon
+    defaultText: es-cryptonuke-beacon
+    color: "#a91409"
   - type: ActivatableUI
     key: enum.ESCryptoNukeConsoleUiKey.Key
   - type: UserInterface
@@ -403,7 +406,7 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: ESRadstormModifierMachine
-    modifier: 0.13
+    modifier: 0.5
     disableAnnouncement: es-radstorm-power-on-navigation-console
     enableAnnouncement: es-radstorm-power-off-navigation-console
   - type: PointLight
@@ -412,6 +415,6 @@
     batteryRechargeRate: 25
   - type: Battery
     netsync: false
-    maxCharge: 450
+    maxCharge: 200
   - type: ExaminableBattery
   - type: ESAmbientMusicMarkerCommand

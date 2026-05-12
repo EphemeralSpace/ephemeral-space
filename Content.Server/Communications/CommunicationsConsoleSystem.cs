@@ -32,23 +32,23 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Communications
 {
-    public sealed class CommunicationsConsoleSystem : EntitySystem
+    public sealed partial class CommunicationsConsoleSystem : EntitySystem
     {
 // ES START
-        [Dependency] private readonly IPrototypeManager _prototype = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly ESDegradationSystem _degradation = default!;
+        [Dependency] private IPrototypeManager _prototype = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private ESDegradationSystem _degradation = default!;
 // ES END
-        [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
-        [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
-        [Dependency] private readonly ChatSystem _chatSystem = default!;
-        [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
-        [Dependency] private readonly StationSystem _stationSystem = default!;
-        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private AccessReaderSystem _accessReaderSystem = default!;
+        [Dependency] private AlertLevelSystem _alertLevelSystem = default!;
+        [Dependency] private ChatSystem _chatSystem = default!;
+        [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private RoundEndSystem _roundEndSystem = default!;
+        [Dependency] private StationSystem _stationSystem = default!;
+        [Dependency] private UserInterfaceSystem _uiSystem = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
 
         private const float UIUpdateInterval = 5.0f;
 

@@ -4,11 +4,11 @@ using Content.Shared.Power;
 
 namespace Content.Server._ES.Radstorm;
 
-public sealed class ESRadstormModifierMachineSystem : EntitySystem
+public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly ESRadstormRoundEndRuleSystem _radstormRoundEndRule = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESRadstormRoundEndRuleSystem _radstormRoundEndRule = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -34,7 +34,7 @@ public sealed class ESRadstormModifierMachineSystem : EntitySystem
         while (query.MoveNext(out var comp))
         {
             if (!comp.Enabled)
-                return;
+                continue;
 
             ev.Speed += comp.Modifier;
         }

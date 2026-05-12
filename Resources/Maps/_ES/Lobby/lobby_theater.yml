@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 270.1.0
+  engineVersion: 275.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/15/2026 03:05:40
+  time: 05/05/2026 21:14:47
   entityCount: 1630
 maps:
 - 1
@@ -6774,31 +6774,27 @@ entities:
     - type: Transform
       pos: -19.5,-105.5
       parent: 2
-- proto: ESCurtainsTheaterOpen
+- proto: ESCurtainsTheaterLobbyClosed
   entities:
   - uid: 416
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 6.5,-5.5
+      pos: -5.5,-5.5
       parent: 2
   - uid: 420
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -4.5,-5.5
+      pos: 5.5,-5.5
       parent: 2
   - uid: 421
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,-5.5
+      pos: -4.5,-5.5
       parent: 2
   - uid: 432
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -5.5,-5.5
+      pos: 6.5,-5.5
       parent: 2
 - proto: ESCurtainsTheaterStage
   entities:

@@ -252,7 +252,7 @@
   - type: PopupOnAppliedStatusEffect
     message: minor-pain-applied
   - type: ESViewconeModifier
-    angleModifier: -30
+    angleModifier: -45
 
 - type: entity
   parent: MobStatusEffectBase
@@ -280,7 +280,7 @@
     effects:
     - [StatusEffectPainStuttering, 5]
   - type: ESViewconeModifier
-    angleModifier: -60
+    angleModifier: -75
 
 - type: entity
   parent: MobStatusEffectBase
@@ -299,7 +299,7 @@
   - type: GunAccuracyStatusEffect
     angleRangeModifier: 6
   - type: ESViewconeModifier
-    angleModifier: -90
+    angleModifier: -110
 
 - type: entity
   parent: MobStatusEffectBase

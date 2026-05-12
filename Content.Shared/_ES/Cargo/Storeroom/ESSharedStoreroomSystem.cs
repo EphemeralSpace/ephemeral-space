@@ -10,12 +10,12 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared._ES.Cargo.Storeroom;
 
-public abstract class ESSharedStoreroomSystem : EntitySystem
+public abstract partial class ESSharedStoreroomSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
-    [Dependency] private readonly SharedStackSystem _stack = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private SharedStackSystem _stack = default!;
+    [Dependency] private SharedStationSystem _station = default!;
 
     private readonly HashSet<Entity<ESStoreroomPalletComponent, TransformComponent>> _pallets = new();
     private readonly HashSet<EntityUid> _palletGoods = new();

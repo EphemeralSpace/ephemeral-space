@@ -16,9 +16,9 @@ namespace Content.Shared.EntityEffects;
 /// </summary>
 public sealed partial class SharedEntityEffectsSystem : EntitySystem, IEntityEffectRaiser
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Dependency] private readonly SharedEntityConditionsSystem _condition = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private SharedEntityConditionsSystem _condition = default!;
 
     public override void Initialize()
     {
@@ -42,7 +42,7 @@ public sealed partial class SharedEntityEffectsSystem : EntitySystem, IEntityEff
                 if (!group.Contains(args.Method))
                     continue;
 
-                ApplyEffects(entity, val.Effects, scale);
+                ApplyEffects(entity, val.Effects, scale, args.Origin);
             }
         }
 
@@ -155,7 +155,7 @@ public sealed partial class SharedEntityEffectsSystem : EntitySystem, IEntityEff
 /// </summary>
 /// <typeparam name="T">The Component that is required for the effect</typeparam>
 /// <typeparam name="TEffect">The Entity Effect itself</typeparam>
-public abstract partial class EntityEffectSystem<T, TEffect> : EntitySystem where T : Component where TEffect : EntityEffectBase<TEffect>
+public abstract class EntityEffectSystem<T, TEffect> : EntitySystem where T : Component where TEffect : EntityEffectBase<TEffect>
 {
     /// <inheritdoc/>
     public override void Initialize()

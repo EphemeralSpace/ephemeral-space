@@ -21,11 +21,6 @@
             - material: Steel
               amount: 1
               doAfter: 1
-        - to: chairBrass
-          steps:
-            - material: Brass
-              amount: 1
-              doAfter: 1
         - to: chairOffice
           steps:
             - material: Steel
@@ -67,11 +62,6 @@
           steps:
             - material: Steel
               amount: 2
-              doAfter: 1
-        - to: stoolCard
-          steps:
-            - material: Cardboard
-              amount: 3
               doAfter: 1
         - to: chairWoodBench
           steps:
@@ -122,17 +112,6 @@
           completed:
             - !type:SpawnPrototype
               prototype: SheetSteel1
-          steps:
-            - tool: Screwing
-              doAfter: 1
-
-    - node: chairBrass
-      entity: ChairBrass
-      edges:
-        - to: start
-          completed:
-            - !type:SpawnPrototype
-              prototype: SheetBrass1
           steps:
             - tool: Screwing
               doAfter: 1
@@ -234,20 +213,6 @@
               amount: 2
           steps:
             - tool: Screwing
-              doAfter: 1
-
-    - node: stoolCard
-      entity: CardStool
-      edges:
-        - to: start
-          completed:
-            - !type:SpawnPrototype
-              prototype: MaterialCardboard1
-              amount: 3
-            - !type:PlaySound
-              sound: /Audio/Items/Toys/ToyFall2.ogg
-          steps:
-            - tool: Slicing
               doAfter: 1
 
     - node: chairWoodBench

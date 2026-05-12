@@ -103,14 +103,3 @@
     sprite: Objects/Specific/Chapel/honk.rsi
   - type: Item
     sprite: Objects/Specific/Chapel/honk.rsi
-
-- type: entity
-  id: BibleRatvar
-  name: tablet of ratvar
-  parent: Bible
-  description: "A holy relic of the Clockwork Cult, blessed by the Clockwork Justice, Ratvar."
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Chapel/ratvartablet.rsi
-  - type: Item
-    sprite: Objects/Specific/Chapel/ratvartablet.rsi

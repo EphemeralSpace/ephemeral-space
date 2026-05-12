@@ -20,15 +20,15 @@ using System.Numerics;
 namespace Content.Server.Chemistry.EntitySystems
 {
     [UsedImplicitly]
-    internal sealed class VaporSystem : EntitySystem
+    internal sealed partial class VaporSystem : EntitySystem
     {
-        [Dependency] private readonly IPrototypeManager _protoManager = default!;
-        [Dependency] private readonly SharedMapSystem _map = default!;
-        [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-        [Dependency] private readonly ThrowingSystem _throwing = default!;
-        [Dependency] private readonly ReactiveSystem _reactive = default!;
-        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+        [Dependency] private IPrototypeManager _protoManager = default!;
+        [Dependency] private SharedMapSystem _map = default!;
+        [Dependency] private SharedPhysicsSystem _physics = default!;
+        [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+        [Dependency] private ThrowingSystem _throwing = default!;
+        [Dependency] private ReactiveSystem _reactive = default!;
+        [Dependency] private SharedTransformSystem _transformSystem = default!;
 
         public override void Initialize()
         {
@@ -41,10 +41,14 @@ namespace Content.Server.Chemistry.EntitySystems
         {
             if (!TryComp(entity.Owner, out SolutionContainerManagerComponent? contents)) return;
 
+            var origin = Exists(entity.Comp.Origin) && !TerminatingOrDeleted(entity.Comp.Origin)
+                ? entity.Comp.Origin
+                : null;
+
             foreach (var (_, soln) in _solutionContainerSystem.EnumerateSolutions((entity.Owner, contents)))
             {
                 var solution = soln.Comp.Solution;
-                _reactive.DoEntityReaction(args.OtherEntity, solution, ReactionMethod.Touch);
+                _reactive.DoEntityReaction(args.OtherEntity, solution, ReactionMethod.Touch, origin: origin);
             }
 
             // Check for collision with a impassable object (e.g. wall) and stop

@@ -3,9 +3,9 @@ using Robust.Shared.Player;
 
 namespace Content.Shared._ES.Stagehand;
 
-public sealed class ESUsernameEntityNameSystem : EntitySystem
+public sealed partial class ESUsernameEntityNameSystem : EntitySystem
 {
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -2,7 +2,6 @@
   id: SmallCritterEntityTable
   table: !type:GroupSelector
     children:
-    - id: MobMothroach
     - id: MobCockroach
     - !type:GroupSelector
       children:
@@ -15,4 +14,3 @@
       children:
       - id: MobSnail
       - id: MobSnailSpeed
-      - id: MobSnailMoth

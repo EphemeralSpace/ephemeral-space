@@ -17,9 +17,9 @@ namespace Content.Client._ES.Viewcone.Overlays;
 ///
 ///     This alpha pass only works because of <see cref="ESViewconeResetAlphaOverlay"/>, which resets in a later stage of rendering.
 /// </summary>
-public sealed class ESViewconeSetAlphaOverlay : Overlay
+public sealed partial class ESViewconeSetAlphaOverlay : Overlay
 {
-    [Dependency] private readonly IEntityManager _ent = default!;
+    [Dependency] private IEntityManager _ent = default!;
     private readonly ESViewconeOverlayManagementSystem _cone;
     private readonly ESViewconeAngleSystem _angle;
     private readonly ESViewconeOccludableTreeSystem _tree;

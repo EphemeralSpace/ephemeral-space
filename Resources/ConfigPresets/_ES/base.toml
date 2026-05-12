@@ -43,5 +43,8 @@ maximum_width = 15
 grid_fill = false
 arrivals_planet = false
 
+[vote]
+preset_enabled = false
+
 [server]
 default_guide = "ESNewPlayer"
