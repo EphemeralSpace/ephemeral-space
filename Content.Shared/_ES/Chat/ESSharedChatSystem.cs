@@ -5,11 +5,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Chat;
 
-public sealed class ESSharedChatSystem : EntitySystem
+public sealed partial class ESSharedChatSystem : EntitySystem
 {
-    [Dependency] private readonly IESSharedChatManager _chat = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

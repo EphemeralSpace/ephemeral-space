@@ -8,13 +8,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._ES.Chat;
 
-public sealed class ESChatManager : IESSharedChatManager
+public sealed partial class ESChatManager : IESSharedChatManager
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IReplayRecordingManager _replayRecording = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IReplayRecordingManager _replayRecording = default!;
 
     public void Initialize()
     {
