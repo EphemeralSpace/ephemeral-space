@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._ES.Core;
 using Content.Client.Chat.Managers;
 using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
@@ -178,21 +179,6 @@ namespace Content.Client.Chat.UI
                 _deathTime = _timing.RealTime + FadeTime;
             }
         }
-
-        protected FormattedMessage FormatSpeech(string message, Color? fontColor = null)
-        {
-            var msg = new FormattedMessage();
-            if (fontColor != null)
-                msg.PushColor(fontColor.Value);
-            msg.AddMarkupOrThrow(message);
-            return msg;
-        }
-
-        protected FormattedMessage ExtractAndFormatSpeechSubstring(ESChatMessage message, string tag, Color? fontColor = null)
-        {
-            return FormatSpeech(message.Content, fontColor);
-        }
-
     }
 
     public sealed class TextSpeechBubble : SpeechBubble
@@ -209,7 +195,7 @@ namespace Content.Client.Chat.UI
                 MaxWidth = SpeechMaxWidth,
             };
 
-            label.SetMessage(FormatSpeech(message.FormattedMessage, fontColor));
+            label.UnsafeSetMarkup(message.Content, fontColor);
 
             var panel = new PanelContainer
             {
@@ -239,7 +225,7 @@ namespace Content.Client.Chat.UI
                     MaxWidth = SpeechMaxWidth
                 };
 
-                label.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor));
+                label.UnsafeSetMarkup(message.Content, fontColor);
 
                 var unfanciedPanel = new PanelContainer
                 {
@@ -250,6 +236,7 @@ namespace Content.Client.Chat.UI
                 return unfanciedPanel;
             }
 
+            // TODO: add header formatting back. I dont personally enable this option but uh some people do.
             var bubbleHeader = new RichTextLabel
             {
                 ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.SpeechBubbleSpeakerOpacity)),
@@ -264,9 +251,8 @@ namespace Content.Client.Chat.UI
                 StyleClasses = { "bubbleContent" },
             };
 
-            //We'll be honest. *Yes* this is hacky. Doing this in a cleaner way would require a bottom-up refactor of how saycode handles sending chat messages. -Myr
-            bubbleHeader.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleHeader", fontColor));
-            bubbleContent.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor));
+            bubbleHeader.UnsafeSetMarkup(message.Name, fontColor);
+            bubbleContent.UnsafeSetMarkup(message.Content, fontColor);
 
             //As for below: Some day this could probably be converted to xaml. But that is not today. -Myr
             var mainPanel = new PanelContainer

@@ -57,7 +57,7 @@ public sealed class ESChatMessage
     /// <summary>
     /// Name used for display in the chat message
     /// </summary>
-    public string? Name;
+    public string Name;
 
     /// <summary>
     /// Optional override font for message display
@@ -109,7 +109,7 @@ public sealed class ESChatMessage
         Ephemeral = ephemeral;
         Sound = sound;
         Color = color;
-        Name = name;
+        Name = name ?? string.Empty;
         Font = font;
         FontSize = fontSize;
         Format = format;
