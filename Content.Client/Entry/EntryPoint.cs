@@ -1,3 +1,4 @@
+using Content.Client._ES.Chat;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -24,9 +25,7 @@ using Content.Client.Stylesheets.Fonts;
 using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
-using Content.Shared._ES.Chat;
 using Content.Shared.Ame.Components;
-using Content.Shared.Gravity;
 using Content.Shared.Localizations;
 using Robust.Client;
 using Robust.Client.Graphics;
@@ -45,7 +44,7 @@ namespace Content.Client.Entry
 {
     public sealed partial class EntryPoint : GameClient
     {
-        [Dependency] private IESSharedChatManager _esChat = default!;
+        [Dependency] private IESChatManager _esChat = default!;
         [Dependency] private IBaseClient _baseClient = default!;
         [Dependency] private IGameController _gameController = default!;
         [Dependency] private IStateManager _stateManager = default!;

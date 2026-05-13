@@ -1,7 +1,5 @@
-using System.Globalization;
 using System.Linq;
-using System.Numerics;
-using Content.Client._ES.Screens;
+using Content.Client._ES.Chat;
 using Content.Client.Administration.Managers;
 using Content.Client.Chat;
 using Content.Client.Chat.Managers;
@@ -10,11 +8,8 @@ using Content.Client.Chat.UI;
 using Content.Client.Examine;
 using Content.Client.Gameplay;
 using Content.Client.Ghost;
-using Content.Client.Lobby.UI;
 using Content.Client.Mind;
 using Content.Client.Roles;
-using Content.Client.Stylesheets;
-using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Shared._ES.Chat;
@@ -25,7 +20,6 @@ using Content.Shared.Damage.ForceSay;
 using Content.Shared.Decals;
 using Content.Shared.Input;
 using Content.Shared.Radio;
-using Content.Shared.Roles.RoleCodeword;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -35,7 +29,6 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
-using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
@@ -49,6 +42,7 @@ namespace Content.Client.UserInterface.Systems.Chat;
 
 public sealed partial class ChatUIController : UIController
 {
+    [Dependency] private IESChatManager _esChat = default!;
     [Dependency] private IClientAdminManager _admin = default!;
     [Dependency] private IChatManager _manager = default!;
     [Dependency] private IConfigurationManager _config = default!;
@@ -185,7 +179,7 @@ public sealed partial class ChatUIController : UIController
         _player.LocalPlayerDetached += OnAttachedChanged;
         _state.OnStateChanged += StateChanged;
         _net.RegisterNetMessage<MsgChatMessage>(OnChatMessage);
-        _net.RegisterNetMessage<ESChatNetMessage>(OnChatMessage);
+        _esChat.OnChatMessageSent += OnChatMessageSent;
         _net.RegisterNetMessage<MsgDeleteChatMessagesBy>(OnDeleteChatMessagesBy);
         SubscribeNetworkEvent<DamageForceSayEvent>(OnDamageForceSay);
         _config.OnValueChanged(CCVars.ChatEnableColorName, (value) => { _chatNameColorsEnabled = value; });
@@ -754,6 +748,11 @@ public sealed partial class ChatUIController : UIController
         {
             _replayRecording.RecordClientMessage(msg);
         }
+    }
+
+    private void OnChatMessageSent(ESChatMessage msg)
+    {
+        ProcessChatMessage(msg);
     }
 
     public void ProcessChatMessage(ESChatMessage msg, bool speechBubble = true)
