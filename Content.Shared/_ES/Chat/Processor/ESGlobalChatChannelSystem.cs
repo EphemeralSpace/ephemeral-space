@@ -3,9 +3,9 @@ using Robust.Shared.Player;
 
 namespace Content.Shared._ES.Chat.Processor;
 
-public sealed class ESGlobalChatChannelSystem : EntitySystem
+public sealed partial class ESGlobalChatChannelSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -4,11 +4,11 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._ES.Chat.SpeechVerb;
 
-public sealed class ESSpeechVerbSystem : EntitySystem
+public sealed partial class ESSpeechVerbSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
     // TODO: combine this dependency into this system
-    [Dependency] private readonly SharedChatSystem _chat = default!;
+    [Dependency] private SharedChatSystem _chat = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
