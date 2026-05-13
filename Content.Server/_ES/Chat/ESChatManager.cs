@@ -47,7 +47,7 @@ public sealed partial class ESChatManager : IESSharedChatManager
             null,
             ephemeral,
             sound,
-            color ?? Color.White,
+            color ?? Color.White, // TODO: per-channel default color
             name,
             font,
             fontSize,

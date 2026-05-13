@@ -1,4 +1,5 @@
 using Content.Client.UserInterface.Systems.Chat.Controls;
+using Content.Shared._ES.Chat;
 using Content.Shared.Chat;
 using Content.Shared.Input;
 using Robust.Client.Audio;
@@ -51,22 +52,27 @@ public partial class ChatBox : UIWidget
         _controller.SendMessage(this, SelectedChannel);
     }
 
-    private void OnMessageAdded(ChatMessage msg)
+    private void OnMessageAdded(ESChatMessage msg)
     {
-        _sawmill.Debug($"{msg.Channel}: {msg.Message}");
+        _sawmill.Debug($"{msg.Channel}: {msg.Content}");
+
+        // TODO: chat filters
+        /*
         if (!ChatInput.FilterButton.Popup.IsActive(msg.Channel))
         {
             return;
         }
+        */
 
+        // TODO:
+        /*
         if (msg is { Read: false, AudioPath: { } })
             _entManager.System<AudioSystem>().PlayGlobal(msg.AudioPath, Filter.Local(), false, AudioParams.Default.WithVolume(msg.AudioVolume));
+        */
 
         msg.Read = true;
 
-        var color = msg.MessageColorOverride ?? msg.Channel.TextColor();
-
-        AddLine(msg.WrappedMessage, color);
+        AddLine(msg.FormattedMessage, msg.Color);
     }
 
     private void OnHighlightsUpdated(string highlights)

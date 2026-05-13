@@ -12,8 +12,10 @@ using Robust.Shared.Utility;
 namespace Content.Shared._ES.Chat;
 
 [Serializable, NetSerializable]
-public struct ESChatMessage
+public sealed class ESChatMessage
 {
+    public string FormattedMessage => string.Format(Format, Content, Name ?? string.Empty);
+
     /// <summary>
     /// Content of the message
     /// </summary>
@@ -123,7 +125,7 @@ public sealed class ESChatNetMessage : NetMessage
 {
     public override MsgGroups MsgGroup => MsgGroups.Command;
 
-    public ESChatMessage Message;
+    public ESChatMessage Message = default!;
 
     public ESChatNetMessage()
     {

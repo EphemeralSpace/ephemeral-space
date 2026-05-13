@@ -4,6 +4,7 @@ using Content.Client.MainMenu;
 using Content.Client.Replay.Spectator;
 using Content.Client.Replay.UI.Loading;
 using Content.Client.UserInterface.Systems.Chat;
+using Content.Shared._ES.Chat;
 using Content.Shared.Chat;
 using Content.Shared.Effects;
 using Content.Shared.GameTicking;
@@ -170,7 +171,7 @@ public sealed partial class ContentReplayPlaybackManager
                 if (!_entMan.EntityExists(_player.LocalEntity))
                     _entMan.System<ReplaySpectatorSystem>().SetSpectatorPosition(default);
                 return true;
-            case ChatMessage chat:
+            case ESChatMessage chat:
                 _uiMan.GetUIController<ChatUIController>().ProcessChatMessage(chat, speechBubble: !skipEffects);
                 return true;
         }

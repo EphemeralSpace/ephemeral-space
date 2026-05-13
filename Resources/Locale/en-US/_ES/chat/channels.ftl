@@ -1,1 +1,1 @@
-es-chat-channel-speech-fmt-verb = {"{1}"} {$verb}, "{"{0}"}"
+es-chat-channel-speech-fmt-verb = [bold]{"{1}"}[/bold] {$verb}, "{"{0}"}"

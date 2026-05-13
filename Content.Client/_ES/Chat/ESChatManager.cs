@@ -10,6 +10,7 @@ public sealed class ESChatManager : IESSharedChatManager
     public void Initialize()
     {
 
+
     }
 
     public void SendChatMessage(string content,

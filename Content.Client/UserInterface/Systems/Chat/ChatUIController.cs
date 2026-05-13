@@ -17,6 +17,7 @@ using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
 using Content.Client.UserInterface.Systems.Gameplay;
+using Content.Shared._ES.Chat;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -152,7 +153,7 @@ public sealed partial class ChatUIController : UIController
     private readonly Dictionary<ChatChannel, int> _unreadMessages = new();
 
     // TODO add a cap for this for non-replays
-    public readonly List<(GameTick Tick, ChatMessage Msg)> History = new();
+    public readonly List<(GameTick Tick, ESChatMessage Msg)> History = new();
 
     // Maintains which channels a client should be able to filter (for showing in the chatbox)
     // and select (for attempting to send on).
@@ -173,7 +174,7 @@ public sealed partial class ChatUIController : UIController
     public event Action<ChatChannel>? FilterableChannelsChanged;
     public event Action<ChatSelectChannel>? SelectableChannelsChanged;
     public event Action<ChatChannel, int?>? UnreadMessageCountsUpdated;
-    public event Action<ChatMessage>? MessageAdded;
+    public event Action<ESChatMessage>? MessageAdded;
 
     public override void Initialize()
     {
@@ -184,6 +185,7 @@ public sealed partial class ChatUIController : UIController
         _player.LocalPlayerDetached += OnAttachedChanged;
         _state.OnStateChanged += StateChanged;
         _net.RegisterNetMessage<MsgChatMessage>(OnChatMessage);
+        _net.RegisterNetMessage<ESChatNetMessage>(OnChatMessage);
         _net.RegisterNetMessage<MsgDeleteChatMessagesBy>(OnDeleteChatMessagesBy);
         SubscribeNetworkEvent<DamageForceSayEvent>(OnDamageForceSay);
         _config.OnValueChanged(CCVars.ChatEnableColorName, (value) => { _chatNameColorsEnabled = value; });
@@ -362,13 +364,13 @@ public sealed partial class ChatUIController : UIController
         UpdateChannelPermissions();
     }
 
-    private void AddSpeechBubble(ChatMessage msg, SpeechBubble.SpeechType speechType)
+    private void AddSpeechBubble(ESChatMessage msg, SpeechType speechType)
     {
-        var ent = EntityManager.GetEntity(msg.SenderEntity);
+        var ent = EntityManager.GetEntity(msg.Source);
 
         if (!EntityManager.EntityExists(ent))
         {
-            _sawmill.Debug("Got local chat message with invalid sender entity: {0}", msg.SenderEntity);
+            _sawmill.Debug("Got local chat message with invalid sender entity: {0}", msg.Source);
             return;
         }
 
@@ -413,7 +415,7 @@ public sealed partial class ChatUIController : UIController
         RemoveSpeechBubble(entity, bubble);
     }
 
-    private void EnqueueSpeechBubble(EntityUid entity, ChatMessage message, SpeechBubble.SpeechType speechType)
+    private void EnqueueSpeechBubble(EntityUid entity, ESChatMessage message, SpeechType speechType)
     {
         // Don't enqueue speech bubbles for other maps. TODO: Support multiple viewports/maps?
         if (EntityManager.GetComponent<TransformComponent>(entity).MapID != _eye.CurrentEye.Position.MapId)
@@ -554,7 +556,7 @@ public sealed partial class ChatUIController : UIController
 
             var msg = queueData.MessageQueue.Dequeue();
 
-            queueData.TimeLeft += BubbleDelayBase + msg.Message.Message.Length * BubbleDelayFactor;
+            queueData.TimeLeft += BubbleDelayBase + msg.Message.Content.Length * BubbleDelayFactor;
 
             // We keep the queue around while it has 0 items. This allows us to keep the timer.
             // When the timer hits 0 and there's no messages left, THEN we can clear it up.
@@ -739,26 +741,38 @@ public sealed partial class ChatUIController : UIController
 
     private void OnChatMessage(MsgChatMessage message)
     {
+        // no op
+    }
+
+    private void OnChatMessage(ESChatNetMessage message)
+    {
         var msg = message.Message;
         ProcessChatMessage(msg);
 
-        if ((msg.Channel & ChatChannel.AdminRelated) == 0 ||
+        if (_prototypeManager.Index(msg.Channel).SaveReplay &&
             _config.GetCVar(CCVars.ReplayRecordAdminChat))
         {
             _replayRecording.RecordClientMessage(msg);
         }
     }
 
-    public void ProcessChatMessage(ChatMessage msg, bool speechBubble = true)
+    public void ProcessChatMessage(ESChatMessage msg, bool speechBubble = true)
     {
+        var channel = _prototypeManager.Index(msg.Channel);
+
         // color the name unless it's something like "the old man"
+        // TODO: what the fuck.
+        /*
         if ((msg.Channel == ChatChannel.Local || msg.Channel == ChatChannel.Whisper) && _chatNameColorsEnabled)
         {
             var grammar = _ent.GetComponentOrNull<GrammarComponent>(_ent.GetEntity(msg.SenderEntity));
             if (grammar != null && grammar.ProperNoun == true)
                 msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")));
         }
+        */
 
+        // TODO: what the FUCK is this code. Do this shit serverside goddamn.
+        /*
         // Color any codewords for minds that have roles that use them
         if (_player.LocalUser != null && _mindSystem != null && _roleCodewordSystem != null)
         {
@@ -766,34 +780,43 @@ public sealed partial class ChatUIController : UIController
             {
                 foreach (var (_, codewordData) in codewordComp.RoleCodewords)
                 {
-                    foreach (string codeword in codewordData.Codewords)
+                    foreach (var codeword in codewordData.Codewords)
+                    {
                         msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, codeword, "color", codewordData.Color.ToHex());
+                    }
                 }
             }
         }
+        */
 
         // Log all incoming chat to repopulate when filter is un-toggled
-        if (!msg.HideChat)
+        if (!msg.Ephemeral)
         {
             History.Add((_timing.CurTick, msg));
             MessageAdded?.Invoke(msg);
 
             if (!msg.Read)
             {
-                _sawmill.Debug($"Message filtered: {msg.Channel}: {msg.Message}");
+                // TODO restore
+                /*
+                _sawmill.Debug($"Message filtered: {msg.Channel}: {msg.FormattedMessage}");
                 if (!_unreadMessages.TryGetValue(msg.Channel, out var count))
                     count = 0;
 
                 count += 1;
                 _unreadMessages[msg.Channel] = count;
                 UnreadMessageCountsUpdated?.Invoke(msg.Channel, count);
+                */
             }
         }
 
         // Local messages that have an entity attached get a speech bubble.
-        if (!speechBubble || msg.SenderEntity == default)
+        if (!speechBubble || msg.Source == default || channel.SpeechBubbleType == SpeechType.None)
             return;
 
+        AddSpeechBubble(msg, channel.SpeechBubbleType);
+
+        /*
         switch (msg.Channel)
         {
             case ChatChannel.Local:
@@ -828,10 +851,11 @@ public sealed partial class ChatUIController : UIController
                 if (UIManager.ActiveScreen is LobbyGui)
                     // could probably use a different styled speechbubble but I didn't have any great ideas with the
                     // current limitations of styling them.
-                    AddSpeechBubble(msg, SpeechBubble.SpeechType.Say);
+                    AddSpeechBubble(msg, SpeechType.Say);
                 break;
             // ES END
         }
+        */
     }
 
     public void OnDeleteChatMessagesBy(MsgDeleteChatMessagesBy msg)
@@ -840,7 +864,7 @@ public sealed partial class ChatUIController : UIController
         // Usages of the erase admin verb should be rare enough that this does not matter.
         // Otherwise the client would need to know that one entity has multiple author players,
         // or the server would need to track when and which entities a player sent messages as.
-        History.RemoveAll(h => h.Msg.SenderKey == msg.Key || msg.Entities.Contains(h.Msg.SenderEntity));
+        History.RemoveAll(h => h.Msg.SourceKey == msg.Key || msg.Entities.Contains(h.Msg.Source));
         Repopulate();
     }
 
@@ -888,7 +912,7 @@ public sealed partial class ChatUIController : UIController
         return _chatNameColors[colorIdx];
     }
 
-    private readonly record struct SpeechBubbleData(ChatMessage Message, SpeechBubble.SpeechType Type);
+    private readonly record struct SpeechBubbleData(ESChatMessage Message, SpeechType Type);
 
     private sealed class SpeechBubbleQueueData
     {

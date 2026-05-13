@@ -17,4 +17,7 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     /// </summary>
     [DataField]
     public bool SaveReplay = true;
+
+    [DataField]
+    public SpeechType SpeechBubbleType = SpeechType.Say;
 }
