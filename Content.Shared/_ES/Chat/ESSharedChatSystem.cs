@@ -82,7 +82,10 @@ public sealed partial class ESSharedChatSystem : EntitySystem
         // TODO: Get modified source + name override
         var name = Name(source);
 
-        var ev = new ESTransformChatMessageEvent(content, source, processor);
+        var ev = new ESTransformChatMessageEvent(content, source);
+        RaiseLocalEvent(processor, ref ev);
+
+        var postEv = new ESTransformChatMessageEvent(content, source);
         RaiseLocalEvent(processor, ref ev);
 
         var transformedContent = ev.Content;
@@ -96,7 +99,7 @@ public sealed partial class ESSharedChatSystem : EntitySystem
             if (!_player.TryGetSessionByEntity(recipient, out var session))
                 continue;
 
-            var recipientEv = new ESRecipientTransformChatMessageEvent(transformedContent, source, processor);
+            var recipientEv = new ESRecipientTransformChatMessageEvent(transformedContent, source);
             RaiseLocalEvent(source, ref recipientEv);
 
             // TODO: Don't record messages for replays here. Otherwise, we'll log the same message multiple times.
@@ -104,7 +107,7 @@ public sealed partial class ESSharedChatSystem : EntitySystem
             _chat.SendChatMessage(
                 recipientEv.Content,
                 session,
-                recipientEv.Channel,
+                processor.Comp.Channel,
                 source,
                 formatEv.Format,
                 name: name);
@@ -129,13 +132,13 @@ public sealed partial class ESSharedChatSystem : EntitySystem
         EntityUid source,
         Entity<ESChatProcessorComponent> processor)
     {
-        var sourceEv = new ESSendChatMessageAttemptEvent(source, processor);
+        var sourceEv = new ESSendChatMessageAttemptEvent(source);
         RaiseLocalEvent(source, ref sourceEv);
 
         if (sourceEv.Canceled)
             return false;
 
-        var processorEv = new ESSendChatMessageAttemptEvent(source, processor);
+        var processorEv = new ESSendChatMessageAttemptEvent(source);
         RaiseLocalEvent(processor, ref processorEv);
 
         if (processorEv.Canceled)
@@ -152,15 +155,15 @@ public sealed partial class ESSharedChatSystem : EntitySystem
         EntityUid source,
         Entity<ESChatProcessorComponent> processor)
     {
-        var sourceEv = new ESGetChatMessageRecipientsEvent(source, processor);
+        var sourceEv = new ESGetChatMessageRecipientsEvent(source);
         RaiseLocalEvent(source, ref sourceEv);
 
-        var processorEv = new ESGetChatMessageRecipientsEvent(source, processor);
+        var processorEv = new ESGetChatMessageRecipientsEvent(source);
         RaiseLocalEvent(processor, ref processorEv);
 
         foreach (var recipient in sourceEv.GetRecipients().Concat(processorEv.GetRecipients()).Distinct())
         {
-            var recipientEv = new ESReceiveChatMessageAttemptEvent(source, processor);
+            var recipientEv = new ESReceiveChatMessageAttemptEvent(source);
             RaiseLocalEvent(recipient, ref recipientEv);
 
             if (recipientEv.Canceled)
@@ -175,22 +178,12 @@ public sealed partial class ESSharedChatSystem : EntitySystem
 /// Event raised on a chat message source and processor when a message is attempted to be sent over a channel.
 /// </summary>
 [ByRefEvent]
-public record struct ESSendChatMessageAttemptEvent(EntityUid Source, Entity<ESChatProcessorComponent> Processor)
+public record struct ESSendChatMessageAttemptEvent(EntityUid Source)
 {
     /// <summary>
     /// The message's source
     /// </summary>
     public readonly EntityUid Source = Source;
-
-    /// <summary>
-    /// The chat processor entity
-    /// </summary>
-    public readonly Entity<ESChatProcessorComponent> Processor = Processor;
-
-    /// <summary>
-    /// The message's chat channel
-    /// </summary>
-    public ProtoId<ESChatChannelPrototype> Channel => Processor.Comp.Channel;
 
     public bool Canceled { get; private set; } = false;
 
@@ -205,22 +198,12 @@ public record struct ESSendChatMessageAttemptEvent(EntityUid Source, Entity<ESCh
 /// Recipients collected through this event may be further filtered via <see cref="ESReceiveChatMessageAttemptEvent"/>
 /// </summary>
 [ByRefEvent]
-public record struct ESGetChatMessageRecipientsEvent(EntityUid Source, Entity<ESChatProcessorComponent> Processor)
+public record struct ESGetChatMessageRecipientsEvent(EntityUid Source)
 {
     /// <summary>
     /// The message's source
     /// </summary>
     public readonly EntityUid Source = Source;
-
-    /// <summary>
-    /// The chat processor entity
-    /// </summary>
-    public readonly Entity<ESChatProcessorComponent> Processor = Processor;
-
-    /// <summary>
-    /// The message's chat channel
-    /// </summary>
-    public ProtoId<ESChatChannelPrototype> Channel => Processor.Comp.Channel;
 
     private readonly HashSet<EntityUid> _recipients = new();
 
@@ -250,7 +233,7 @@ public record struct ESGetChatMessageRecipientsEvent(EntityUid Source, Entity<ES
 /// Event raised once on the chat processor entity per chat message.
 /// </summary>
 [ByRefEvent]
-public record struct ESTransformChatMessageEvent(string Content, EntityUid Source, Entity<ESChatProcessorComponent> Processor)
+public record struct ESTransformChatMessageEvent(string Content, EntityUid Source)
 {
     /// <summary>
     /// The original string sent
@@ -266,16 +249,6 @@ public record struct ESTransformChatMessageEvent(string Content, EntityUid Sourc
     /// The message's source
     /// </summary>
     public readonly EntityUid Source = Source;
-
-    /// <summary>
-    /// The chat processor entity
-    /// </summary>
-    public readonly Entity<ESChatProcessorComponent> Processor = Processor;
-
-    /// <summary>
-    /// The message's chat channel
-    /// </summary>
-    public ProtoId<ESChatChannelPrototype> Channel => Processor.Comp.Channel;
 }
 
 /// <summary>
@@ -298,6 +271,16 @@ public record struct ESGetChatMessageFormatEvent(string Content, EntityUid Sourc
     /// Formatting string that will be used to
     /// </summary>
     public string Format = IESSharedChatManager.DefaultFormat;
+
+    /// <summary>
+    /// Override message font size
+    /// </summary>
+    public int? FontSize = null;
+
+    /// <summary>
+    /// Override message font
+    /// </summary>
+    public string? Font = null;
 }
 
 /// <summary>
@@ -305,7 +288,7 @@ public record struct ESGetChatMessageFormatEvent(string Content, EntityUid Sourc
 /// This is the final modification done to the text itself before being displayed.
 /// </summary>
 [ByRefEvent]
-public record struct ESRecipientTransformChatMessageEvent(string Content, EntityUid Source, Entity<ESChatProcessorComponent> Processor)
+public record struct ESRecipientTransformChatMessageEvent(string Content, EntityUid Source)
 {
     /// <summary>
     /// The original string sent
@@ -321,16 +304,6 @@ public record struct ESRecipientTransformChatMessageEvent(string Content, Entity
     /// The message's source
     /// </summary>
     public readonly EntityUid Source = Source;
-
-    /// <summary>
-    /// The chat processor entity
-    /// </summary>
-    public readonly Entity<ESChatProcessorComponent> Processor = Processor;
-
-    /// <summary>
-    /// The message's chat channel
-    /// </summary>
-    public ProtoId<ESChatChannelPrototype> Channel => Processor.Comp.Channel;
 }
 
 /// <summary>
@@ -339,22 +312,12 @@ public record struct ESRecipientTransformChatMessageEvent(string Content, Entity
 /// However, this event allows the behavior to be canceled.
 /// </summary>
 [ByRefEvent]
-public record struct ESReceiveChatMessageAttemptEvent(EntityUid Source, Entity<ESChatProcessorComponent> Processor)
+public record struct ESReceiveChatMessageAttemptEvent(EntityUid Source)
 {
     /// <summary>
     /// The message's source
     /// </summary>
     public readonly EntityUid Source = Source;
-
-    /// <summary>
-    /// The chat processor entity
-    /// </summary>
-    public readonly Entity<ESChatProcessorComponent> Processor = Processor;
-
-    /// <summary>
-    /// The message's chat channel
-    /// </summary>
-    public ProtoId<ESChatChannelPrototype> Channel => Processor.Comp.Channel;
 
     public bool Canceled { get; private set; } = false;
 

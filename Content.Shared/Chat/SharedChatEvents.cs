@@ -14,7 +14,7 @@ public sealed class TransformSpeakerNameEvent : EntityEventArgs, IInventoryRelay
     public SlotFlags TargetSlots { get; } = SlotFlags.WITHOUT_POCKET;
     public EntityUid Sender;
     public string VoiceName;
-    public ProtoId<SpeechVerbPrototype>? SpeechVerb;
+    public ProtoId<SpeechVerbPrototype>? SpeechVerb; // TODO: migrate these instances over to the new system.
 
     public TransformSpeakerNameEvent(EntityUid sender, string name)
     {
