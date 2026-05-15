@@ -83,7 +83,6 @@ public sealed partial class ESSharedChatSystem : EntitySystem
         var name = Name(source);
 
         var ev = new ESTransformChatMessageEvent(content, source, processor);
-        RaiseLocalEvent(source, ref ev);
         RaiseLocalEvent(processor, ref ev);
 
         var transformedContent = ev.Content;
@@ -98,7 +97,7 @@ public sealed partial class ESSharedChatSystem : EntitySystem
                 continue;
 
             var recipientEv = new ESRecipientTransformChatMessageEvent(transformedContent, source, processor);
-            RaiseLocalEvent(recipient, ref recipientEv);
+            RaiseLocalEvent(source, ref recipientEv);
 
             // TODO: Don't record messages for replays here. Otherwise, we'll log the same message multiple times.
             // Instead, record the "canonical" message after this loop.
@@ -248,7 +247,7 @@ public record struct ESGetChatMessageRecipientsEvent(EntityUid Source, Entity<ES
 }
 
 /// <summary>
-/// Event raised first on a message source and then on the processor to modify the content of the message.
+/// Event raised once on the chat processor entity per chat message.
 /// </summary>
 [ByRefEvent]
 public record struct ESTransformChatMessageEvent(string Content, EntityUid Source, Entity<ESChatProcessorComponent> Processor)
@@ -302,7 +301,7 @@ public record struct ESGetChatMessageFormatEvent(string Content, EntityUid Sourc
 }
 
 /// <summary>
-/// Event raised on the recipient of a chat message to modify its content.
+/// Event raised on a chat processor entity per recipient of a chat message to modify its content.
 /// This is the final modification done to the text itself before being displayed.
 /// </summary>
 [ByRefEvent]

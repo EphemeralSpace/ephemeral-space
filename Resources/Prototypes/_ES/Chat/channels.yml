@@ -10,3 +10,4 @@
   - type: ESGlobalChatChannel
   - type: ESSpeechVerbChatChannel
     format: es-chat-channel-speech-fmt-verb
+  - type: ESSpeechChatChannel
