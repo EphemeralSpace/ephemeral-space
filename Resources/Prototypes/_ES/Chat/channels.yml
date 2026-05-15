@@ -13,3 +13,4 @@
     format: es-chat-channel-speech-fmt-verb
     boldFormat: es-chat-channel-speech-bold-fmt-verb
   - type: ESSpeechChatChannel
+  - type: ESRequireCanSpeakChatChannel
