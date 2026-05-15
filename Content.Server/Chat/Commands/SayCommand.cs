@@ -35,7 +35,7 @@ namespace Content.Server.Chat.Commands
             if (string.IsNullOrEmpty(message))
                 return;
 
-            _chatSystem.TrySendMessage(message, "TestChat", playerEntity);
+            _chatSystem.TrySendMessage(message, "Speak", playerEntity);
         }
     }
 }

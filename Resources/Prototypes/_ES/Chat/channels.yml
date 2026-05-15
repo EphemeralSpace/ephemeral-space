@@ -1,16 +1,35 @@
 - type: esChatChannel
-  id: TestChat
-  chatProcessor: TestChatProcessor
+  id: Speak
+  chatProcessor: SpeakChatProcessor
 
 - type: entity
-  id: TestChatProcessor
+  id: SpeakChatProcessor
   components:
   - type: ESChatProcessor
-    channel: TestChat
+    channel: Speak
   - type: ESGhostListenableChatChannel
   - type: ESRangedChatChannel
   - type: ESSpeechVerbChatChannel
-    format: es-chat-channel-speech-fmt-verb
-    boldFormat: es-chat-channel-speech-bold-fmt-verb
+    format: es-chat-channel-speak-fmt-verb
+    boldFormat: es-chat-channel-speak-bold-fmt-verb
   - type: ESSpeechChatChannel
   - type: ESRequireCanSpeakChatChannel
+
+- type: esChatChannel
+  id: Whisper
+  chatProcessor: WhisperChatProcessor
+  speechBubbleType: whisper
+
+- type: entity
+  id: WhisperChatProcessor
+  components:
+  - type: ESChatProcessor
+    channel: Whisper
+  - type: ESGhostListenableChatChannel
+  - type: ESRangedChatChannel
+    range: 5
+  - type: ESSimpleFormatChatChannel
+    format: es-chat-channel-whisper-fmt
+  - type: ESSpeechChatChannel
+  - type: ESRequireCanSpeakChatChannel
+  - type: ESWhisperChatChannel

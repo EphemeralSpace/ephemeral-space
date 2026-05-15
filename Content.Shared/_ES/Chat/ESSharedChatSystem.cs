@@ -99,8 +99,8 @@ public sealed partial class ESSharedChatSystem : EntitySystem
             if (!_player.TryGetSessionByEntity(recipient, out var session))
                 continue;
 
-            var recipientEv = new ESRecipientTransformChatMessageEvent(transformedContent, source);
-            RaiseLocalEvent(source, ref recipientEv);
+            var recipientEv = new ESRecipientTransformChatMessageEvent(transformedContent, source, recipient);
+            RaiseLocalEvent(processor, ref recipientEv);
 
             // TODO: Don't record messages for replays here. Otherwise, we'll log the same message multiple times.
             // Instead, record the "canonical" message after this loop.
@@ -288,7 +288,7 @@ public record struct ESGetChatMessageFormatEvent(string Content, EntityUid Sourc
 /// This is the final modification done to the text itself before being displayed.
 /// </summary>
 [ByRefEvent]
-public record struct ESRecipientTransformChatMessageEvent(string Content, EntityUid Source)
+public record struct ESRecipientTransformChatMessageEvent(string Content, EntityUid Source, EntityUid Recipient)
 {
     /// <summary>
     /// The original string sent
@@ -304,6 +304,11 @@ public record struct ESRecipientTransformChatMessageEvent(string Content, Entity
     /// The message's source
     /// </summary>
     public readonly EntityUid Source = Source;
+
+    /// <summary>
+    /// The message's recipient
+    /// </summary>
+    public readonly EntityUid Recipient = Recipient;
 }
 
 /// <summary>
