@@ -229,3 +229,9 @@ Entries:
         when they run out of fuel/power.
   id: 27
   time: '2026-05-10T03:20:05.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Remove
+      message: 'Temporarily removed scientists. '
+  id: 28
+  time: '2026-05-16T22:36:26.0000000+00:00'
