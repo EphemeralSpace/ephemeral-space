@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared._ES.Masks;
 using Content.Shared._ES.Nuke.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
@@ -8,7 +7,6 @@ using Content.Shared._ES.Sparks;
 using Content.Shared.Examine;
 using Content.Shared.Mind;
 using Content.Shared.Station;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -18,14 +16,11 @@ public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
 {
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private ESSharedMaskSystem _mask = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private ESSharedObjectiveSystem _objective = default!;
     [Dependency] private ESSparksSystem _sparks = default!;
     [Dependency] protected SharedStationSystem Station = default!;
     [Dependency] protected SharedUserInterfaceSystem UserInterface = default!;
-
-    public static readonly ProtoId<ESTroupePrototype> TraitorTroupe = "Traitor";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -138,18 +133,6 @@ public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
             return false;
 
         return _objective.GetObjectives<ESNukePrereqObjectiveComponent>(mind.Value.Owner)
-            .All(e => _objective.IsCompleted(e.Owner));
-    }
-
-    /// <summary>
-    /// Checks if a given entity is capable of hacking the terminal
-    /// </summary>
-    public bool ArePreRequisiteObjectivesDone()
-    {
-        if (!_mask.TryGetTroupeEntity(TraitorTroupe, out var troupe))
-            return false;
-
-        return _objective.GetObjectives<ESNukePrereqObjectiveComponent>(troupe.Value.Owner)
             .All(e => _objective.IsCompleted(e.Owner));
     }
 }
