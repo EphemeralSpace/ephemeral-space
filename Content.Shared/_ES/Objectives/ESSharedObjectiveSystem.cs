@@ -421,6 +421,17 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     }
 
     /// <summary>
+    /// Checks if a given entity has any objectives of a specific type.
+    /// </summary>
+    public bool HasObjectiveOfType<T>([NotNullWhen(true)] EntityUid? potentialHolder) where T : Component
+    {
+        if (potentialHolder == null)
+            return false;
+
+        return GetObjectives<T>(potentialHolder.Value).Any();
+    }
+
+    /// <summary>
     /// Checks if a given entity has the given objective assigned to them.
     /// Unlike <see cref="TryFindObjectiveHolder"/>, this works for any type of inherited ownership, not just direct holding.
     /// </summary>
