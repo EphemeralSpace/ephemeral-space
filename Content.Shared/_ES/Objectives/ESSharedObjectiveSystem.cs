@@ -171,6 +171,13 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         return ent.Comp.Icon ?? SpriteSpecifier.Invalid;
     }
 
+    public bool IsObjectiveInitialized(Entity<ESObjectiveComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+        return ent.Comp.ObjectiveInitialized;
+    }
+
     /// <summary>
     /// Re-generates the list of objectives an entity should have, adding all new objectives and removing ones that should no longer be there,
     /// e.g. as a result of troupe or mask changes.
@@ -369,6 +376,10 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         ent.Comp.OwnedObjectives.Add(objective.Value);
         RegenerateObjectiveList(ent);
         RefreshObjectiveProgress(objective.Value.AsNullable());
+
+        objective.Value.Comp.ObjectiveInitialized = true;
+        Dirty(objective.Value);
+
         return true;
     }
 

@@ -34,6 +34,9 @@ public sealed partial class ESObjectiveComponent : Component
     /// </summary>
     [DataField]
     public SpriteSpecifier? Icon;
+
+    [DataField, AutoNetworkedField]
+    public bool ObjectiveInitialized;
 }
 
 /// <summary>
