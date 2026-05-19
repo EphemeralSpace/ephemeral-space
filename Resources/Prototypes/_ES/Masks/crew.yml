@@ -159,6 +159,10 @@
   troupe: Crew
   description: es-mask-tragedian-desc
   color: royalblue
+  objectives:
+    all:
+    - id: ESObjectiveTragedianDie
+    - id: ESObjectiveTragedianEmbodyTheme
 
 - type: esMask
   id: Vigilante
