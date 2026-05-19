@@ -1,0 +1,19 @@
+- type: entity
+  parent: TableBase
+  id: ESTableRound
+  name: round wood table
+  suffix: ES
+  description: It seems like it's made from a single piece of wood. You've definitely already lost count of the growth rings...
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Furniture/Tables/round.rsi
+  - type: Icon
+    sprite: _ES/Structures/Furniture/Tables/round.rsi
+  # assuming it to be indestructible.
+  # assuming it to be inconstructible.
+  - type: Tag
+    tags:
+    - Wooden
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWood
