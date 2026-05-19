@@ -1,4 +1,6 @@
 es-embody-theme-objective-title = Embody the theme of "{$theme}"
+es-embody-theme-vote-title = Did {$name} embody the theme of "{$theme}?"
+es-embody-theme-vote-query = Has the tragedian embodied their theme:
 
 es-tragedian-theme-1 = A Fall From Grace
 es-tragedian-theme-2 = Addiction

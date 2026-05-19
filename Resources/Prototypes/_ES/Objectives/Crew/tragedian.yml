@@ -24,3 +24,13 @@
       state: icon
   - type: ESCounterObjective
   - type: ESEmbodyThemeObjective
+
+- type: entity
+  id: ESVoteTragedianSuccess
+  components:
+  - type: ESVote
+    queryString: es-embody-theme-vote-query
+    duration: 120
+    strategy: HighestValue
+    multiVote: false
+  - type: ESBooleanVote

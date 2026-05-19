@@ -15,4 +15,10 @@ public sealed partial class ESEmbodyThemeObjectiveComponent : Component
 
     [DataField]
     public LocId Title = "es-embody-theme-objective-title";
+
+    [DataField]
+    public EntProtoId VoteEntity = "ESVoteTragedianSuccess";
+
+    [DataField]
+    public LocId VoteTitle = "es-embody-theme-vote-title";
 }
