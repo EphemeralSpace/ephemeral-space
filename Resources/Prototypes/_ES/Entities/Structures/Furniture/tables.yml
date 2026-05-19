@@ -1,6 +1,6 @@
 - type: entity
   parent: TableBase
-  id: ESTableRound
+  id: TableRound
   name: round wood table
   suffix: ES
   description: It seems like it's made from a single piece of wood. You've definitely already lost count of the growth rings...
