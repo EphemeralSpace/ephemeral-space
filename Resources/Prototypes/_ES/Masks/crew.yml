@@ -154,6 +154,13 @@
     - id: ESObjectiveSecretaryAssist
 
 - type: esMask
+  id: Tragedian
+  name: es-mask-tragedian-name
+  troupe: Crew
+  description: es-mask-tragedian-desc
+  color: royalblue
+
+- type: esMask
   id: Vigilante
   name: es-mask-vigilante-name
   troupe: Crew
