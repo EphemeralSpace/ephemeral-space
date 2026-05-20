@@ -167,7 +167,7 @@
     all:
     - id: ESActionMaskTragedianSummon
   components:
-  - type: ESAlwaysHearStagehandEmotes
+  - type: ESAlwaysHearStagehandEmote
 
 - type: esMask
   id: Vigilante
