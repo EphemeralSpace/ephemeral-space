@@ -79,13 +79,7 @@ public sealed partial class ESSharedChatSystem : EntitySystem
 
         // TODO: Chat filtering occurs here
 
-        // TODO: Get modified source + name override
-        var name = Name(source);
-
         var ev = new ESTransformChatMessageEvent(content, source);
-        RaiseLocalEvent(processor, ref ev);
-
-        var postEv = new ESTransformChatMessageEvent(content, source);
         RaiseLocalEvent(processor, ref ev);
 
         var transformedContent = ev.Content;
@@ -99,6 +93,9 @@ public sealed partial class ESSharedChatSystem : EntitySystem
             if (!_player.TryGetSessionByEntity(recipient, out var session))
                 continue;
 
+            var nameEv = new ESTransformMessageSourceNameEvent(Name(source), source, recipient);
+            RaiseLocalEvent(processor, ref nameEv);
+
             var recipientEv = new ESRecipientTransformChatMessageEvent(transformedContent, source, recipient);
             RaiseLocalEvent(processor, ref recipientEv);
 
@@ -110,7 +107,7 @@ public sealed partial class ESSharedChatSystem : EntitySystem
                 processor.Comp.Channel,
                 source,
                 formatEv.Format,
-                name: name);
+                name: nameEv.Name);
         }
 
         // TODO: Entity spoke event
@@ -281,6 +278,16 @@ public record struct ESGetChatMessageFormatEvent(string Content, EntityUid Sourc
     /// Override message font
     /// </summary>
     public string? Font = null;
+}
+
+[ByRefEvent]
+public record struct ESTransformMessageSourceNameEvent(string Name, EntityUid Source, EntityUid Recipient)
+{
+    public readonly EntityUid Source = Source;
+
+    public readonly EntityUid Recipient = Recipient;
+
+    public string Name = Name;
 }
 
 /// <summary>

@@ -1,6 +1,5 @@
-using Content.Server.Chat.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared.Administration;
-using Content.Shared.Chat;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
 
@@ -9,7 +8,7 @@ namespace Content.Server.Chat.Commands
     [AnyCommand]
     internal sealed partial class MeCommand : LocalizedEntityCommands
     {
-        [Dependency] private ChatSystem _chatSystem = default!;
+        [Dependency] private ESSharedChatSystem _chatSystem = default!;
 
         public override string Command => "me";
 
@@ -37,7 +36,7 @@ namespace Content.Server.Chat.Commands
             if (string.IsNullOrEmpty(message))
                 return;
 
-            _chatSystem.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Emote, ChatTransmitRange.Normal, false, shell, player);
+            _chatSystem.TrySendMessage(message, "Emote", playerEntity);
         }
     }
 }
