@@ -8,8 +8,6 @@
   id: BaseToyGun
   components:
   - type: PacifismAllowedGun # They don't hurt!
-  - type: Gun
-    clumsyProof: true # Clown proficiency
 
 - type: entity
   parent: [ BaseItem, BaseToyGun ]

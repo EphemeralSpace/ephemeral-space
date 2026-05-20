@@ -24,7 +24,6 @@ using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Clumsy;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
@@ -87,7 +86,6 @@ public sealed partial class AdminVerbSystem
     [Dependency] private WeldableSystem _weldableSystem = default!;
     [Dependency] private SharedContentEyeSystem _eyeSystem = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;
-    [Dependency] private SuperBonkSystem _superBonkSystem = default!;
     [Dependency] private SlipperySystem _slipperySystem = default!;
     [Dependency] private GibbingSystem _gibbing = default!;
     [Dependency] private OutfitSystem _outfit = default!;
@@ -604,7 +602,6 @@ public sealed partial class AdminVerbSystem
                     {
                         if (HasComp<ClothingComponent>(clothing))
                             EnsureComp<UnremoveableComponent>(clothing);
-                        EnsureComp<ClumsyComponent>(args.Target);
                     });
                 },
                 Impact = LogImpact.Extreme,
@@ -867,37 +864,6 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", superSpeedName, Loc.GetString("admin-smite-super-speed-description"))
         };
         args.Verbs.Add(superSpeed);
-
-        //Bonk
-        var superBonkLiteName = Loc.GetString("admin-smite-super-bonk-lite-name").ToLowerInvariant();
-        Verb superBonkLite = new()
-        {
-            Text = superBonkLiteName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("Structures/Furniture/Tables/glass.rsi"), "full"),
-            Act = () =>
-            {
-                _superBonkSystem.StartSuperBonk(args.Target, stopWhenDead: true);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", superBonkLiteName, Loc.GetString("admin-smite-super-bonk-lite-description"))
-        };
-        args.Verbs.Add(superBonkLite);
-
-        var superBonkName = Loc.GetString("admin-smite-super-bonk-name").ToLowerInvariant();
-        Verb superBonk = new()
-        {
-            Text = superBonkName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("Structures/Furniture/Tables/generic.rsi"), "full"),
-            Act = () =>
-            {
-                _superBonkSystem.StartSuperBonk(args.Target);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", superBonkName, Loc.GetString("admin-smite-super-bonk-description"))
-        };
-        args.Verbs.Add(superBonk);
 
         var superslipName = Loc.GetString("admin-smite-super-slip-name").ToLowerInvariant();
         Verb superslip = new()
