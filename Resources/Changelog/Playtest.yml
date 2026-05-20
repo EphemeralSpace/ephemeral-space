@@ -241,3 +241,9 @@ Entries:
       message: Sympathizers can no longer hack nuke terminals.
   id: 29
   time: '2026-05-20T00:41:43.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Psychids no longer become immortal after being killed.
+  id: 30
+  time: '2026-05-20T00:42:34.0000000+00:00'
