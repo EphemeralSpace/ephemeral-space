@@ -14,6 +14,7 @@
     boldFormat: es-chat-channel-speak-bold-fmt-verb
   - type: ESSpeechChatChannel
   - type: ESRequireCanSpeakChatChannel
+  - type: ESSanitizationChatChannel
 
 - type: esChatChannel
   id: Whisper
@@ -33,6 +34,7 @@
   - type: ESSpeechChatChannel
   - type: ESRequireCanSpeakChatChannel
   - type: ESWhisperChatChannel
+  - type: ESSanitizationChatChannel
 
 - type: esChatChannel
   id: Emote
@@ -50,3 +52,5 @@
     format: es-chat-channel-emote-fmt
   - type: ESIdentityChatChannel
   - type: ESRequireCanEmoteChatChannel
+  - type: ESSanitizationChatChannel
+    shouldCapitalize: false

@@ -79,7 +79,10 @@ public sealed partial class ESSharedChatSystem : EntitySystem
 
         // TODO: Chat filtering occurs here
 
-        var ev = new ESTransformChatMessageEvent(content, source);
+        var preEv = new ESPreTransformChatMessageEvent(content, source);
+        RaiseLocalEvent(processor, ref preEv);
+
+        var ev = new ESTransformChatMessageEvent(preEv.Content, source);
         RaiseLocalEvent(processor, ref ev);
 
         var transformedContent = ev.Content;
@@ -224,6 +227,25 @@ public record struct ESGetChatMessageRecipientsEvent(EntityUid Source)
     {
         return _recipients;
     }
+}
+
+[ByRefEvent]
+public record struct ESPreTransformChatMessageEvent(string Content, EntityUid Source)
+{
+    /// <summary>
+    /// The original string sent
+    /// </summary>
+    public readonly string OriginalContent = Content;
+
+    /// <summary>
+    /// The modified message.
+    /// </summary>
+    public string Content = Content;
+
+    /// <summary>
+    /// The message's source
+    /// </summary>
+    public readonly EntityUid Source = Source;
 }
 
 /// <summary>
