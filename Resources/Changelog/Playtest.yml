@@ -235,3 +235,9 @@ Entries:
       message: 'Temporarily removed scientists. '
   id: 28
   time: '2026-05-16T22:36:26.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Sympathizers can no longer hack nuke terminals.
+  id: 29
+  time: '2026-05-20T00:41:43.0000000+00:00'
