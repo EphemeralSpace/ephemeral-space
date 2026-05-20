@@ -247,3 +247,9 @@ Entries:
       message: Psychids no longer become immortal after being killed.
   id: 30
   time: '2026-05-20T00:42:34.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Removed clumsy interactions.
+  id: 31
+  time: '2026-05-20T23:07:10.0000000+00:00'
