@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.Chat;
 using Robust.Shared.Audio;
 using Robust.Shared.Network;
@@ -61,5 +62,27 @@ public sealed partial class ESChatManager : IESSharedChatManager
         {
             _replayRecording.RecordServerMessage(msg);
         }
+    }
+
+    // TODO: i dont like this being duped across client and server but i cant be fucked to figure out the jank interface inheritance
+    public bool TryGetChannelFromMessage(string content, [NotNullWhen(true)] out ESChatChannelPrototype? channel)
+    {
+        channel = null;
+
+        content = content.Trim();
+        if (content.Length == 0)
+            return false;
+
+        var c = content[0];
+        foreach (var channelPrototype in _prototype.EnumeratePrototypes<ESChatChannelPrototype>())
+        {
+            if (channelPrototype.Prefixes.Contains(c))
+            {
+                channel = channelPrototype;
+                return true;
+            }
+        }
+
+        return false;
     }
 }

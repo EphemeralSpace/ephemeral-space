@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -23,4 +24,8 @@ public interface IESSharedChatManager
         string? name = null,
         string? font = null,
         int? fontSize = null);
+
+    bool TryGetChannelFromMessage(
+        string content,
+        [NotNullWhen(true)] out ESChatChannelPrototype? channel);
 }

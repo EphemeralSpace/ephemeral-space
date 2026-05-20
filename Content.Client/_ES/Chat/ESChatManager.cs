@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
 using Robust.Shared.Audio;
@@ -49,5 +50,27 @@ public sealed partial class ESChatManager : IESChatManager
         int? fontSize = null)
     {
         // No functionality on client.
+    }
+
+    // TODO: i dont like this being duped across client and server but i cant be fucked to figure out the jank interface inheritance
+    public bool TryGetChannelFromMessage(string content, [NotNullWhen(true)] out ESChatChannelPrototype? channel)
+    {
+        channel = null;
+
+        content = content.Trim();
+        if (content.Length == 0)
+            return false;
+
+        var c = content[0];
+        foreach (var channelPrototype in _prototype.EnumeratePrototypes<ESChatChannelPrototype>())
+        {
+            if (channelPrototype.Prefixes.Contains(c))
+            {
+                channel = channelPrototype;
+                return true;
+            }
+        }
+
+        return false;
     }
 }

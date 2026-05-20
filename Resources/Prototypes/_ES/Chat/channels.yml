@@ -1,6 +1,7 @@
 - type: esChatChannel
   id: Speak
   chatProcessor: SpeakChatProcessor
+  prefixes: [ '>' ]
 
 - type: entity
   id: SpeakChatProcessor
@@ -19,6 +20,7 @@
 - type: esChatChannel
   id: Whisper
   chatProcessor: WhisperChatProcessor
+  prefixes: [ ',' ]
   speechBubbleType: whisper
 
 - type: entity
@@ -39,6 +41,7 @@
 - type: esChatChannel
   id: Emote
   chatProcessor: EmoteChatProcessor
+  prefixes: [ '@', '*' ]
   speechBubbleType: emote
 
 - type: entity

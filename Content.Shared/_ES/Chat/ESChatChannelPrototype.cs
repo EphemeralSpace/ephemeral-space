@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Chat;
@@ -12,6 +13,9 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     [DataField(required: true)]
     public EntProtoId ChatProcessor;
 
+    [DataField]
+    public List<char> Prefixes = new();
+
     /// <summary>
     /// Determines whether any message sent on this channel will be saved to replay.
     /// </summary>
@@ -20,4 +24,14 @@ public sealed partial class ESChatChannelPrototype : IPrototype
 
     [DataField]
     public SpeechType SpeechBubbleType = SpeechType.Say;
+
+    public bool TryGetDefaultPrefix([NotNullWhen(true)] out char? prefix)
+    {
+        prefix = null;
+        if (Prefixes.Count == 0)
+            return false;
+
+        prefix = Prefixes[0];
+        return true;
+    }
 }
