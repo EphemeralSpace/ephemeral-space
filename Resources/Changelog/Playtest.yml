@@ -261,3 +261,9 @@ Entries:
         approval of stagehands.
   id: 32
   time: '2026-05-23T20:04:23.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Fix
+      message: cans no longer deal damage upon being thrown
+  id: 33
+  time: '2026-05-23T21:10:18.0000000+00:00'
