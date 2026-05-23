@@ -2,7 +2,6 @@ using Content.Shared._ES.Stagehand;
 using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.Popups;
 using Robust.Server.Audio;
-using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -48,6 +47,13 @@ public sealed partial class ESStagehandWorldEmoteSystem : EntitySystem
         {
             _popup.PopupEntity(Loc.GetString("es-stagehand-emote-performers-heard"), ent, ent, PopupType.SmallCaution);
             _audio.PlayGlobal(resolved, playersInRange, false, proto.Sound.Params.WithVolume(-7f));
+        }
+        else
+        {
+            var filter = Filter.Empty()
+                .AddInRange(coords, 7f)
+                .RemoveWhereAttachedEntity(e => !HasComp<Components.ESAlwaysHearStagehandEmoteComponent>(e));
+            _audio.PlayGlobal(resolved, filter, false, proto.Sound.Params.WithVolume(-7f));
         }
 
         args.Handled = true;

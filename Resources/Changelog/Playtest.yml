@@ -253,3 +253,17 @@ Entries:
       message: Removed clumsy interactions.
   id: 31
   time: '2026-05-20T23:07:10.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Tragedian, a crew mask who must act out a theme for the
+        approval of stagehands.
+  id: 32
+  time: '2026-05-23T20:04:23.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Fix
+      message: cans no longer deal damage upon being thrown
+  id: 33
+  time: '2026-05-23T21:10:18.0000000+00:00'
