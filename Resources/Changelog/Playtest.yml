@@ -267,3 +267,9 @@ Entries:
       message: cans no longer deal damage upon being thrown
   id: 33
   time: '2026-05-23T21:10:18.0000000+00:00'
+- author: SpeltIncorrectyl
+  changes:
+    - type: Remove
+      message: removed the detective's stun baton
+  id: 34
+  time: '2026-05-23T22:44:29.0000000+00:00'
