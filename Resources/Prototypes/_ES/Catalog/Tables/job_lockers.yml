@@ -56,7 +56,7 @@
     children:
     - id: ClothingEyesGlassesNoir
     - id: ESWeaponRevolver357 # sure, the other security roles don't get guns, but what is a detective without their revolver?
-    - id: ClothingBeltSecurity
+    - id: ClothingBeltSecurity # this belt is supposed to be empty so det doesn't get a batong
     - id: ClothingHeadHatDetGadget
       prob: 0.15
     - id: ESClothingOuterArmorDetective
