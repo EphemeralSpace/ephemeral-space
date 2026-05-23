@@ -58,7 +58,6 @@
     - id: ESWeaponRevolver357 # sure, the other security roles don't get guns, but what is a detective without their revolver?
     - id: ClothingHeadHatDetGadget
       prob: 0.15
-    - id: Stunbaton
     - id: ESClothingOuterArmorDetective
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
@@ -68,7 +67,6 @@
     - id: RubberStampDetective
     - id: BoxEvidenceMarkers
     - id: HandLabeler
-    - id: ClothingBeltSecurityFilled
 
 # Service
 - type: entityTable
