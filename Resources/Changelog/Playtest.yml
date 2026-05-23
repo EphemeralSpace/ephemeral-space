@@ -279,3 +279,11 @@ Entries:
       message: Updated the stagehand cheer and boo icons
   id: 35
   time: '2026-05-23T22:48:30.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        Crewmember is now more common in masquerades, and arsonist is now less
+        common.
+  id: 36
+  time: '2026-05-23T22:48:36.0000000+00:00'
