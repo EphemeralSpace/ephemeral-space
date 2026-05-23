@@ -1,0 +1,11 @@
+- type: entity
+  id: ESClothingBeltHolsterFilled
+  parent: ClothingBeltHolster
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ESWeaponRevolver357
+        - id: SpeedLoaderMagnum
