@@ -8,4 +8,4 @@
       storagebase: !type:AllSelector
         children:
         - id: ESWeaponRevolver357
-        - id: SpeedLoaderMagnum
+        - id: ESSpeedLoader357
