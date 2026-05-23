@@ -21,7 +21,7 @@
   troupe: Crew
   description: es-mask-arsonist-desc
   color: red
-  weight: 0.75
+  weight: 0.33
   objectives:
     id: ESObjectiveArsonistLightFires
 
@@ -39,7 +39,7 @@
   name: es-mask-crewmember-name
   troupe: Crew
   description: es-mask-crewmember-desc
-  weight: 0.33
+  weight: 2
   color: white
 
 - type: esMask
