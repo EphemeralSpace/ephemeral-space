@@ -159,6 +159,7 @@
   troupe: Crew
   description: es-mask-tragedian-desc
   color: royalblue
+  weight: 0.25
   objectives:
     all:
     - id: ESObjectiveTragedianDie
