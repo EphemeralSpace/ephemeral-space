@@ -1,0 +1,12 @@
+- type: entity
+  id: StandingMicrophone
+  parent: BaseStructure
+  name: standing microphone
+  description: They're all listening!
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _ES/Structures/Decoration/theatre.rsi
+    state: microphone
+    drawdepth: Mobs
+  - type: Fixtures
