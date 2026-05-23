@@ -39,7 +39,7 @@
   name: es-mask-crewmember-name
   troupe: Crew
   description: es-mask-crewmember-desc
-  weight: 1
+  weight: 2
   color: white
 
 - type: esMask
