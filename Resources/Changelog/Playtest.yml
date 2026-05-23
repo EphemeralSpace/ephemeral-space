@@ -207,3 +207,63 @@ Entries:
       message: Rebalanced non-random masquerades across the board
   id: 24
   time: '2026-05-09T19:49:04.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Objectives now state in the UI whether or not they belong to a mask or
+        to a troupe.
+  id: 25
+  time: '2026-05-09T21:53:57.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: i had to remove the reverb that shit was brokey my bad
+  id: 26
+  time: '2026-05-09T22:41:31.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Thrusters and navigation terminal now properly affect the ship speed
+        when they run out of fuel/power.
+  id: 27
+  time: '2026-05-10T03:20:05.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Remove
+      message: 'Temporarily removed scientists. '
+  id: 28
+  time: '2026-05-16T22:36:26.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Sympathizers can no longer hack nuke terminals.
+  id: 29
+  time: '2026-05-20T00:41:43.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Psychids no longer become immortal after being killed.
+  id: 30
+  time: '2026-05-20T00:42:34.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Removed clumsy interactions.
+  id: 31
+  time: '2026-05-20T23:07:10.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Tragedian, a crew mask who must act out a theme for the
+        approval of stagehands.
+  id: 32
+  time: '2026-05-23T20:04:23.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Fix
+      message: cans no longer deal damage upon being thrown
+  id: 33
+  time: '2026-05-23T21:10:18.0000000+00:00'

@@ -34,7 +34,7 @@ public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
         while (query.MoveNext(out var comp))
         {
             if (!comp.Enabled)
-                return;
+                continue;
 
             ev.Speed += comp.Modifier;
         }

@@ -179,7 +179,17 @@ public sealed partial class ESMaskSystem : ESSharedMaskSystem
     public void InitializeTroupeObjectives(Entity<ESTroupeRuleComponent> rule)
     {
         var troupe = PrototypeManager.Index(rule.Comp.Troupe);
-        Objective.TryAddObjective(rule.Owner, troupe.Objectives);
+        foreach (var objective in _entityTable.GetSpawns(troupe.Objectives))
+        {
+            if (!Objective.TryAddObjective(rule.Owner, objective, out var objectiveUid))
+                continue;
+
+            Objective.SetDescriptor(
+                objectiveUid.Value,
+                Loc.GetString("es-objective-text-troupe"),
+                troupe.Color,
+                Loc.GetString("es-objective-tooltip-troupe"));
+        }
     }
 
     public bool IsPlayerValid(ESMaskPrototype mask, ICommonSession player)
@@ -217,7 +227,17 @@ public sealed partial class ESMaskSystem : ESSharedMaskSystem
         roleComp.Mask = maskId;
         Dirty(role.Value, roleComp);
 
-        Objective.TryAddObjective(mind.Owner, mask.Objectives);
+        foreach (var objective in _entityTable.GetSpawns(mask.Objectives))
+        {
+            if (!Objective.TryAddObjective(mind.Owner, objective, out var objectiveUid))
+                continue;
+
+            Objective.SetDescriptor(
+                objectiveUid.Value,
+                Loc.GetString("es-objective-text-mask"),
+                mask.Color,
+                Loc.GetString("es-objective-tooltip-mask"));
+        }
 
         var msg = Loc.GetString("es-mask-selected-chat-message",
             ("role", Loc.GetString(mask.Name)),

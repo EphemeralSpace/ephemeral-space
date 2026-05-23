@@ -1,13 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared._ES.Masks;
 using Content.Shared._ES.Nuke.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Sparks;
 using Content.Shared.Examine;
+using Content.Shared.Mind;
 using Content.Shared.Station;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -17,13 +16,11 @@ public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
 {
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private ESSharedMaskSystem _mask = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private ESSharedObjectiveSystem _objective = default!;
     [Dependency] private ESSparksSystem _sparks = default!;
     [Dependency] protected SharedStationSystem Station = default!;
     [Dependency] protected SharedUserInterfaceSystem UserInterface = default!;
-
-    public static readonly ProtoId<ESTroupePrototype> TraitorTroupe = "Traitor";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -62,10 +59,7 @@ public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
         if (ent.Comp.Compromised)
             return;
 
-        if (_mask.GetTroupeOrNull(args.Actor) != TraitorTroupe)
-            return;
-
-        if (!ArePreRequisiteObjectivesDone())
+        if (!CanHack(args.Actor))
             return;
 
         _sparks.DoSparks(ent, user: args.Actor, cooldown: false);
@@ -120,14 +114,25 @@ public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
     }
 
     /// <summary>
-    /// Checks if a given entity is capable of hacking the terminal
+    /// Checks if an entity has the capability of hacking the cryptonuke console.
     /// </summary>
-    public bool ArePreRequisiteObjectivesDone()
+    public bool CanPotentiallyHack(EntityUid uid)
     {
-        if (!_mask.TryGetTroupeEntity(TraitorTroupe, out var troupe))
+        return _objective.HasObjectiveOfType<ESCryptoNukeHackObjectiveComponent>(_mind.GetMind(uid));
+    }
+
+    /// <summary>
+    /// Checks if the entity is currently able to hack the cryptonuke console.
+    /// </summary>
+    public bool CanHack(EntityUid uid)
+    {
+        if (!_mind.TryGetMind(uid, out var mind))
             return false;
 
-        return _objective.GetObjectives<ESNukePrereqObjectiveComponent>(troupe.Value.Owner)
+        if (!_objective.HasObjectiveOfType<ESCryptoNukeHackObjectiveComponent>(mind))
+            return false;
+
+        return _objective.GetObjectives<ESNukePrereqObjectiveComponent>(mind.Value.Owner)
             .All(e => _objective.IsCompleted(e.Owner));
     }
 }

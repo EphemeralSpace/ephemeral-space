@@ -26,7 +26,6 @@
       path: /Audio/Effects/thunk.ogg
     soundEmpty:
       path: /Audio/Items/hiss.ogg
-    clumsyProof: true
   - type: ContainerAmmoProvider
     container: storagebase
   - type: PneumaticCannon
@@ -90,7 +89,6 @@
       path: /Audio/Effects/thunk.ogg
     soundEmpty:
       path: /Audio/Items/hiss.ogg
-    clumsyProof: true
   - type: ContainerAmmoProvider
     container: storagebase
   - type: Item
@@ -125,7 +123,6 @@
       path: /Audio/Effects/thunk.ogg
     soundEmpty:
       path: /Audio/Items/hiss.ogg
-    clumsyProof: true
   - type: BatteryAmmoProvider
     proto: FoodPieBananaCream
     fireCost: 30
@@ -165,7 +162,6 @@
       path: /Audio/Weapons/Guns/Gunshots/syringe_gun.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-    clumsyProof: true
   - type: ContainerAmmoProvider
     container: storagebase
   - type: Item
