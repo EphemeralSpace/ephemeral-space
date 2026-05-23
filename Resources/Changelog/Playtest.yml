@@ -273,3 +273,9 @@ Entries:
       message: removed the detective's stun baton
   id: 34
   time: '2026-05-23T22:44:29.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Updated the stagehand cheer and boo icons
+  id: 35
+  time: '2026-05-23T22:48:30.0000000+00:00'
