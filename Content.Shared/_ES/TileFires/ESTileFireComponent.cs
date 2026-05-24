@@ -32,13 +32,13 @@ public sealed partial class ESTileFireComponent : Component
     ///     Minimum time after the fire spawns at which it will smolder (return to first stage and stop spreading)
     /// </summary>
     [DataField]
-    public TimeSpan MinSmolderTime = TimeSpan.FromMinutes(0);
+    public TimeSpan MinSmolderTime = TimeSpan.FromMinutes(6);
 
     /// <summary>
     ///     Maximum time after the fire spawns at which it will smolder, see <see cref="MinSmolderTime"/>
     /// </summary>
     [DataField]
-    public TimeSpan MaxSmolderTime = TimeSpan.FromMinutes(0.25);
+    public TimeSpan MaxSmolderTime = TimeSpan.FromMinutes(6.25);
 
     /// <summary>
     ///     Chance that when a fire smolders its just deleted
