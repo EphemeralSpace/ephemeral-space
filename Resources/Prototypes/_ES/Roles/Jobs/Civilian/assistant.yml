@@ -16,7 +16,7 @@
     shoes: ClothingShoesColorBlack
     id: PassengerPDA
     ears: ClothingHeadsetGrey
-    jumpsuit: ClothingUniformJumpsuitColorGrey
+    jumpsuit: ESClothingUniformJumpsuitAssistant
     back: ClothingBackpack
   storage:
     back:
