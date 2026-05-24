@@ -33,7 +33,7 @@
     - id: ClothingUniformJumpsuitColorGrey
       amount: 2
     - id: ClothingShoesColorBlack
-      amount: 3
+      amount: 2
     - id: ClothingHeadHatGreysoft
     - id: ClothingOuterCoatBomber
       prob: 0.3
@@ -123,7 +123,6 @@
     children:
     - id: ClothingUniformJumpsuitColorYellow
     - id: ClothingShoesColorOrange
-      amount: 2
     - id: ClothingHeadBandGold
 
 
@@ -161,7 +160,6 @@
     children:
     - id: ClothingUniformJumpsuitColorWhite
     - id: ClothingShoesColorWhite
-      amount: 2
     - id: ClothingHeadHatMimesoft
 
 - type: entity
@@ -198,7 +196,6 @@
     children:
     - id: ClothingUniformJumpsuitColorBlue
     - id: ClothingShoesColorBrown
-      amount: 2
 
 - type: entity
   id: WardrobePinkFilled
@@ -234,7 +231,6 @@
     children:
     - id: ClothingUniformJumpsuitColorPink
     - id: ClothingShoesColorBrown
-      amount: 2
 
 - type: entity
   id: WardrobeBlackFilled
@@ -270,7 +266,6 @@
     children:
     - id: ClothingUniformJumpsuitColorBlack
     - id: ClothingShoesColorBlack
-      amount: 2
     - id: ClothingHeadBandBlack
     - id: ClothingHeadBandSkull
       prob: 0.4
@@ -309,5 +304,4 @@
     children:
     - id: ClothingUniformJumpsuitColorGreen
     - id: ClothingShoesColorBlack
-      amount: 2
     - id: ClothingHeadBandGreen
