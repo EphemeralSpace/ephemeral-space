@@ -11,6 +11,7 @@
     iconOn:
       sprite: _ES/Actions/masks/pickpocket.rsi
       state: pickpocket-on
+    useDelay: 30
   - type: TargetAction
   - type: EntityTargetAction
     event: !type:ESPickpocketTargetActionEvent
