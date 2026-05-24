@@ -1,6 +1,5 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.TileFires;
 
@@ -45,4 +44,7 @@ public sealed partial class ESTileFireComponent : Component
     /// </summary>
     [DataField, AutoPausedField]
     public TimeSpan SmolderTime;
+
+    [DataField]
+    public EntityUid? Origin;
 }

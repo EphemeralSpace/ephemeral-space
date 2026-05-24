@@ -2,8 +2,6 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
-using Robust.Shared.Network;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.TileFires;
 
@@ -15,7 +13,6 @@ public abstract partial class ESSharedTileFireSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] protected SharedMapSystem MapSys = default!;
-    [Dependency] protected SharedTransformSystem XformSys = default!;
 
     public override void Initialize()
     {
@@ -23,6 +20,9 @@ public abstract partial class ESSharedTileFireSystem : EntitySystem
 
         // appearance on startup
         SubscribeLocalEvent<FlammableComponent, ComponentStartup>(OnStartup);
+
+        SubscribeLocalEvent<ESTileFireComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<ESTileFireOriginComponent, ComponentShutdown>(OnOriginShutdown);
     }
 
     #region Events
@@ -35,6 +35,21 @@ public abstract partial class ESSharedTileFireSystem : EntitySystem
 
         _appearance.SetData(ent, FireVisuals.OnFire, flammable.OnFire, appearance);
         _appearance.SetData(ent, FireVisuals.FireStacks, (int) MathF.Floor(flammable.FireStacks / flammable.FirestackVisualDivisor), appearance);
+    }
+
+    private void OnShutdown(Entity<ESTileFireComponent> ent, ref ComponentShutdown args)
+    {
+        if (TryComp<ESTileFireOriginComponent>(ent.Comp.Origin, out var comp))
+            comp.Fires.Remove(ent);
+    }
+
+    private void OnOriginShutdown(Entity<ESTileFireOriginComponent> ent, ref ComponentShutdown args)
+    {
+        foreach (var fire in ent.Comp.Fires)
+        {
+            if (TryComp<ESTileFireComponent>(fire, out var comp))
+                comp.Origin = null;
+        }
     }
     #endregion
 
@@ -65,5 +80,4 @@ public abstract partial class ESSharedTileFireSystem : EntitySystem
 [ByRefEvent]
 public record struct ESTileFireCreatedEvent(
     EntityCoordinates Coordinates,
-    EntityUid? OriginatingUser = null,
-    int Stage = 1);
+    EntityUid? OriginatingUser = null);
