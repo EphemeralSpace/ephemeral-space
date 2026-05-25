@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/16/2026 20:42:27
+  time: 05/24/2026 18:12:45
   entityCount: 14694
 maps:
 - 3
@@ -44634,6 +44634,13 @@ entities:
     - type: Transform
       pos: -22.5,5.5
       parent: 2
+- proto: ESWardrobeAssistantFilled
+  entities:
+  - uid: 5121
+    components:
+    - type: Transform
+      pos: -52.5,12.5
+      parent: 2
 - proto: ESWardrobeBartenderFilled
   entities:
   - uid: 5086
@@ -86627,13 +86634,6 @@ entities:
     components:
     - type: Transform
       pos: -54.5,-13.5
-      parent: 2
-- proto: WardrobeMixedFilled
-  entities:
-  - uid: 7402
-    components:
-    - type: Transform
-      pos: -52.5,12.5
       parent: 2
 - proto: WarningAir
   entities:

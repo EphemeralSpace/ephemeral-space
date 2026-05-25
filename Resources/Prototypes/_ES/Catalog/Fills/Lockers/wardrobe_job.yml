@@ -1,6 +1,27 @@
 # Eyewear, headsets, and armor go in the job locker instead of the wardrobe.
 
 - type: entity
+  parent: ESWardrobeAssistant
+  id: ESWardrobeAssistantFilled
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESFillWardrobeAssistant
+        rolls: 3
+
+- type: entityTable
+  id: ESFillWardrobeAssistant
+  table:
+    all:
+    - id: ClothingBackpack
+    - id: ClothingBackpackDuffel
+    - id: ClothingShoesColorBlack
+    - id: ESClothingUniformJumpsuitAssistant
+    - id: ClothingHeadHatGreysoft
+
+- type: entity
   parent: ESWardrobeBartender
   id: ESWardrobeBartenderFilled
   suffix: ES, Filled
