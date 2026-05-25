@@ -20,6 +20,7 @@ namespace Content.Server.Power.EntitySystems;
 public sealed partial class ApcSystem : EntitySystem
 {
     [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private BatterySystem _battery = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private PopupSystem _popup = default!;
@@ -240,6 +241,12 @@ public sealed partial class ApcSystem : EntitySystem
         {
             ApcToggleBreaker(ent, ent);
         }
+
+        if (TryComp<PowerNetworkBatteryComponent>(ent, out var battery))
+            battery.CanCharge = !args.Broken;
+
+        if (args.Broken)
+            _battery.SetCharge(ent.Owner, 0);
     }
 
     // TODO: This subscription should be in shared.

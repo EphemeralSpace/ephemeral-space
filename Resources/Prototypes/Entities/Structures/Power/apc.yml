@@ -120,9 +120,6 @@
     inHandsOnly: false
     key: enum.ApcUiKey.Key
   - type: ESBreakableActivatableUi
-  - type: Construction
-    graph: APC
-    node: apc
   - type: PowerNetworkBattery
     maxSupply: 10000
     maxChargeRate: 5000
@@ -166,45 +163,6 @@
     guides:
     - VoltageNetworks
     - Power
-
-# APC under construction
-- type: entity
-  parent: BaseWallmountMetallic
-  categories: [ HideSpawnMenu ]
-  id: APCFrame
-  name: APC frame
-  description: A control terminal for the area's electrical systems, lacking the electronics.
-  placement:
-    mode: SnapgridCenter
-  components:
-  - type: Sprite
-    sprite: Structures/Power/apc.rsi
-    state: frame
-  - type: Construction
-    graph: APC
-    node: apcFrame
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors: #excess damage, don't spawn entities.
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          SheetSteel1:
-            min: 1
-            max: 1
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
 
 # Constructed APC
 - type: entity

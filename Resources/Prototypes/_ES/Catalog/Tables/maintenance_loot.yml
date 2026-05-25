@@ -132,7 +132,6 @@
 
     - group:
       - id: DoorElectronics
-      - id: APCElectronics
       - id: FirelockElectronics
       - id: FireAlarmElectronics
       - id: AirAlarmElectronics
