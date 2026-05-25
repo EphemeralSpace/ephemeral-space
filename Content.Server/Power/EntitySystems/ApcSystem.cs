@@ -1,6 +1,7 @@
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.Pow3r;
+using Content.Shared._ES.Breakable;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.APC;
@@ -37,6 +38,7 @@ public sealed partial class ApcSystem : EntitySystem
         SubscribeLocalEvent<ApcComponent, ChargeChangedEvent>(OnBatteryChargeChanged);
         SubscribeLocalEvent<ApcComponent, ApcToggleMainBreakerMessage>(OnToggleMainBreaker);
 
+        SubscribeLocalEvent<ApcComponent, ESBrokenStateChanged>(OnBrokenStateChanged);
         SubscribeLocalEvent<ApcComponent, EmpPulseEvent>(OnEmpPulse);
     }
 
@@ -229,6 +231,15 @@ public sealed partial class ApcSystem : EntitySystem
         }
 
         return ApcExternalPowerState.Good;
+    }
+
+    private void OnBrokenStateChanged(Entity<ApcComponent> ent, ref ESBrokenStateChanged args)
+    {
+        if (args.Broken && ent.Comp.MainBreakerEnabled ||
+            !args.Broken && !ent.Comp.MainBreakerEnabled)
+        {
+            ApcToggleBreaker(ent, ent);
+        }
     }
 
     // TODO: This subscription should be in shared.

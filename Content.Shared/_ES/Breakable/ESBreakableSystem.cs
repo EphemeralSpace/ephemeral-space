@@ -2,6 +2,7 @@ using Content.Shared._ES.Breakable.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
 using Content.Shared.Examine;
+using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Repairable;
 using Robust.Shared.Prototypes;
 
@@ -12,15 +13,23 @@ public sealed partial class ESBreakableSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private NameModifierSystem _nameModififer = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
+        SubscribeLocalEvent<ESBreakableComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
         SubscribeLocalEvent<ESBreakableComponent, ExaminedEvent>(OnExamined);
 
         SubscribeLocalEvent<ESBreakableComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<ESBreakableComponent, BreakageEventArgs>(OnBreakage);
         SubscribeLocalEvent<ESBreakableComponent, RepairedEvent>(OnRepaired);
+    }
+
+    private void OnRefreshNameModifiers(Entity<ESBreakableComponent> ent, ref RefreshNameModifiersEvent args)
+    {
+        if (ent.Comp.Broken)
+            args.AddModifier("es-broken-name-prefix");
     }
 
     private void OnExamined(Entity<ESBreakableComponent> ent, ref ExaminedEvent args)
@@ -61,7 +70,7 @@ public sealed partial class ESBreakableSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        return true;
+        return ent.Comp.Broken;
     }
 
     /// <summary>
@@ -78,6 +87,7 @@ public sealed partial class ESBreakableSystem : EntitySystem
         ent.Comp.Broken = broken;
         Dirty(ent);
 
+        _nameModififer.RefreshNameModifiers(ent.Owner);
         _appearance.SetData(ent, ESBreakableVisuals.Broken, broken);
 
         var ev = new ESBrokenStateChanged(broken);

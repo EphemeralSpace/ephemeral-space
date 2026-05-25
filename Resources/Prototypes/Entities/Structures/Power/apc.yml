@@ -35,6 +35,7 @@
     sprite: Structures/Power/apc.rsi
     layers:
     - state: base
+      map: ["base"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
       visible: false
@@ -62,6 +63,20 @@
       map: ["enum.ApcVisualLayers.Environment"]
       visible: false
   - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ESBreakableVisuals.Broken:
+        base:
+          True: { state: "broken" }
+          False: { state: "base" }
+        enum.ApcVisualLayers.ChargeState:
+          True: { visible: false }
+          False: { visible: true }
+  - type: ESGenericPointLightVisualizer
+    visuals:
+      enum.ESBreakableVisuals.Broken:
+        True: { enabled: false }
+        False: { enabled: true }
   - type: ApcVisuals
   - type: Battery
     # Very important:
@@ -104,6 +119,7 @@
   - type: ActivatableUI
     inHandsOnly: false
     key: enum.ApcUiKey.Key
+  - type: ESBreakableActivatableUi
   - type: Construction
     graph: APC
     node: apc
