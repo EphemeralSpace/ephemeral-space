@@ -301,3 +301,11 @@ Entries:
         once they smolder
   id: 38
   time: '2026-05-25T15:38:03.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Arsonists' objective now progresses when their fire spreads. To
+        compensate, they need to create more fires.
+  id: 39
+  time: '2026-05-25T21:12:09.0000000+00:00'
