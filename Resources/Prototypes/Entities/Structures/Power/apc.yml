@@ -126,27 +126,16 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 200
-      behaviors: #excess damage, don't spawn entities.
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalGlassBreak
-    - trigger:
-        !type:DamageTrigger
         damage: 50
       behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          SheetSteel1:
-            min: 1
-            max: 1
       - !type:DoActsBehavior
-        acts: [ "Destruction" ]
+        acts: [ "Breakage" ]
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
+  - type: ESBreakable
+  - type: Repairable
+    fuelCost: 25
   - type: StationInfiniteBatteryTarget
   - type: Electrified
     onHandInteract: false
