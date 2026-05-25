@@ -31,7 +31,7 @@ public sealed partial class ESPickpocketMaskSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<ESPickpocketTargetActionEvent>(OnPickpocketTargetAction);
-        SubscribeLocalEvent<DoAfterComponent, ESPickpocketTargetDoAfterEvent>(OnPickpocketTargetDoAfter);
+        SubscribeLocalEvent<ESPickpocketTargetDoAfterEvent>(OnPickpocketTargetDoAfter);
         SubscribeLocalEvent<DoAfterAttemptEvent<ESPickpocketTargetDoAfterEvent>>(OnDoAfterAttempt);
     }
 
@@ -65,17 +65,17 @@ public sealed partial class ESPickpocketMaskSystem : EntitySystem
             args.Performer,
             args.Delay,
             new ESPickpocketTargetDoAfterEvent(),
-            args.Performer,
+            null,
             args.Target)
         {
             AttemptFrequency = AttemptFrequency.EveryTick,
             DuplicateCondition = DuplicateConditions.SameEvent,
             BreakOnMove = true,
-            Hidden = true,
+            Broadcast = true,
         });
     }
 
-    private void OnPickpocketTargetDoAfter(Entity<DoAfterComponent> ent, ref ESPickpocketTargetDoAfterEvent args)
+    private void OnPickpocketTargetDoAfter(ESPickpocketTargetDoAfterEvent args)
     {
         if (args.Cancelled || args.Target is not { } target)
             return;

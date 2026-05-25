@@ -12,6 +12,5 @@
   - type: ESCounterObjective
     title: es-pickpocket-steal-objective-title
   - type: ESPopulationProportionCounterObjective
-    proportion: 0.5
     minimum: 2
     maximum: 6
