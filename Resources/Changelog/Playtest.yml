@@ -293,3 +293,11 @@ Entries:
       message: Assistants now have their own unique jumpsuit
   id: 37
   time: '2026-05-25T15:35:41.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Fires now smolder much faster, and have a chance to get put out entirely
+        once they smolder
+  id: 38
+  time: '2026-05-25T15:38:03.0000000+00:00'
