@@ -385,8 +385,8 @@ ESMedkitToxin: MedkitToxin
 ESMedkitToxinFilled: MedkitToxinFilled
 ESMedkitRadiation: MedkitRadiation
 ESMedkitRadiationFilled: MedkitRadiationFilled
-ESMedkitO2: MedkitO2
-ESMedkitO2Filled: MedkitO2Filled
+ESMedkitO2: MedkitOxygen
+ESMedkitO2Filled: MedkitOxygenFilled
 ESBriefcaseBlack: BriefcaseBlack
 # remove upstream medkits that are unused
 MedkitAdvanced: Medkit

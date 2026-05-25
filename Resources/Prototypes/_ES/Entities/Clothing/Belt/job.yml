@@ -8,6 +8,7 @@
     sprite: Clothing/Belt/medical.rsi
   - type: Clothing
     sprite: Clothing/Belt/medical.rsi
+  - type: Storage
     whitelist:
       tags:
       - Bottle
