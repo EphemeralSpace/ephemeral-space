@@ -94,50 +94,6 @@
         - id: FlashlightLantern
 
 - type: entity
-  id: ClothingBeltMedicalFilled
-  parent: ClothingBeltMedical
-  suffix: Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: Brutepack
-          amount: 2
-        - id: Ointment
-        - id: Suture
-        - id: Gauze
-        - id: EmergencyMedipen #You never know what people are going to latejoin into
-        # Begin Offbrand Additions
-        - id: ChemistryBottleParacetamol
-        - id: ChemistryBottleInaprovaline
-        - id: ChemistryBottleDexalin
-        - id: ChemistryBottleDylovene
-        # End Offbrand Additions
-
-- type: entity
-  id: ClothingBeltMedicalEMTFilled
-  parent: ClothingBeltMedicalEMT
-  suffix: Paramedic,Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: Brutepack
-        - id: Ointment
-        - id: Bloodpack
-        - id: Gauze
-        - id: EmergencyMedipen #You never know what people are going to latejoin into
-          amount: 3
-        # Begin Offbrand Additions
-        - id: ChemistryBottleParacetamol
-        - id: ChemistryBottleInaprovaline
-        - id: ChemistryBottleDexalin
-        - id: ChemistryBottleDylovene
-        # End Offbrand Additions
-
-- type: entity
   id: ClothingBeltPlantFilled
   parent: ClothingBeltPlant
   suffix: Filled
@@ -185,22 +141,6 @@
           amount: 2
 
 - type: entity
-  id: ClothingBeltMilitaryWebbingMedFilled
-  parent: ClothingBeltMilitaryWebbingMed
-  suffix: Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: ChemistryBottleEpinephrine
-          amount: 2
-        - id: ChemistryBottleEphedrine
-          amount: 2
-        - id: ChemistryBottleOmnizine
-        - id: MedkitCombatFilled
-
-- type: entity
   id: ClothingBeltHolsterFilled
   parent: ClothingBeltHolster
   suffix: Filled
@@ -223,3 +163,4 @@
         children:
         - id: FoodShakerSalt
         - id: FoodShakerPepper
+

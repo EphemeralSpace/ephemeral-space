@@ -1,8 +1,7 @@
 - type: entity
   parent: BriefcaseBrown
-  id: ESBriefcaseBlack
+  id: BriefcaseBlack
   name: black briefcase
-  suffix: ES
   components:
   - type: Sprite
     sprite: _ES/Objects/Storage/Briefcases/briefcase_black.rsi

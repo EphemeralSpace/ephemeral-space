@@ -1,0 +1,34 @@
+- type: entity
+  parent: BriefcaseBlack
+  id: BriefcaseBlackFilledCoroner
+  name: coroner's briefcase
+  suffix: Filled, Coroner
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: ESScalpelAutopsy
+        - id: Pen
+        - id: BoxFolderYellowEmpty
+        - id: Paper
+          amount: 1, 3
+
+- type: entity
+  parent: BriefcaseBlack
+  id: BriefcaseBlackFilledDoctor
+  name: surgical briefcase
+  suffix: Filled, Doctor
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        all:
+        - id: Scalpel
+        - id: Saw
+        - id: Hemostat
+        - id: Retractor
+        - id: Cautery
+        - id: BoneSetter
+        - id: VascularRecoupler
+        - id: Drill

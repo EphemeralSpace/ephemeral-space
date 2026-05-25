@@ -369,6 +369,31 @@ ESAnomalyProbe: null
 ESComputerAnomaly: null
 ESMarkerSpawnRegionAnomaly: null
 
+# 2026-5-24
+# medkit cleanup
+# remove stabilization medkits
+ESMedkitStabilization: MedkitO2
+ESMedkitStabilizationFilled: MedkitO2Filled
+# remove ES prefix
+ESMedkit: Medkit
+ESMedkitFilled: MedkitFilled
+ESMedkitBrute: MedkitBrute
+ESMedkitBruteFilled: MedkitBruteFilled
+ESMedkitBurn: MedkitBurn
+ESMedkitBurnFilled: MedkitBurnFilled
+ESMedkitToxin: MedkitToxin
+ESMedkitToxinFilled: MedkitToxinFilled
+ESMedkitRadiation: MedkitRadiation
+ESMedkitRadiationFilled: MedkitRadiationFilled
+ESMedkitO2: MedkitO2
+ESMedkitO2Filled: MedkitO2Filled
+ESBriefcaseBlack: BriefcaseBlack
+# remove upstream medkits that are unused
+MedkitAdvanced: Medkit
+MedkitAdvancedFilled: MedkitFilled
+MedkitCombat: Medkit
+MedkitCombatFilled: MedkitFilled
+
 # ES END
 
 # 2026-01-07

@@ -146,17 +146,6 @@
 
 - type: entity
   parent: CrateMedical
-  id: CrateEmergencyAdvancedKit
-  name: emergency advanced kit
-  description: Crate filled with an advanced treatment kit.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        id: MedkitAdvancedFilled
-
-- type: entity
-  parent: CrateMedical
   id: CrateEmergencyRadiationKit
   name: emergency radiation kit
   description: Crate filled with a radiation treatment kit.
