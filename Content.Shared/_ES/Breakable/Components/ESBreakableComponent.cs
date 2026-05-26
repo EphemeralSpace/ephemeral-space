@@ -1,4 +1,5 @@
 using Content.Shared.FixedPoint;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
@@ -19,10 +20,15 @@ public sealed partial class ESBreakableComponent : Component
 
     /// <summary>
     /// Damage threshold which this object becomes broken at.
-    /// If null, will be ignored.
     /// </summary>
     [DataField]
-    public FixedPoint2? Threshold;
+    public FixedPoint2 Threshold = 100;
+
+    /// <summary>
+    /// Sound optionally played when this object is broken
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? Sound = new SoundCollectionSpecifier("MetalBreak");
 }
 
 [Serializable, NetSerializable]

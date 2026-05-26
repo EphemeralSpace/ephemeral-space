@@ -135,18 +135,10 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Breakage" ]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalGlassBreak
   - type: ESBreakable
+    threshold: 50
+    sound:
+      collection: MetalGlassBreak
   - type: Repairable
     fuelCost: 25
   - type: StationInfiniteBatteryTarget

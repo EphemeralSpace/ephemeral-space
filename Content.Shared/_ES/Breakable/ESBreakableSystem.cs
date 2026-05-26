@@ -1,19 +1,24 @@
 using Content.Shared._ES.Breakable.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Destructible;
 using Content.Shared.Examine;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Repairable;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Breakable;
 
 public sealed partial class ESBreakableSystem : EntitySystem
 {
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _net = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private DamageableSystem _damageable = default!;
-    [Dependency] private NameModifierSystem _nameModififer = default!;
+    [Dependency] private NameModifierSystem _nameModifier = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -22,8 +27,6 @@ public sealed partial class ESBreakableSystem : EntitySystem
         SubscribeLocalEvent<ESBreakableComponent, ExaminedEvent>(OnExamined);
 
         SubscribeLocalEvent<ESBreakableComponent, DamageChangedEvent>(OnDamageChanged);
-        SubscribeLocalEvent<ESBreakableComponent, BreakageEventArgs>(OnBreakage);
-        SubscribeLocalEvent<ESBreakableComponent, RepairedEvent>(OnRepaired);
     }
 
     private void OnRefreshNameModifiers(Entity<ESBreakableComponent> ent, ref RefreshNameModifiersEvent args)
@@ -46,20 +49,11 @@ public sealed partial class ESBreakableSystem : EntitySystem
 
     private void OnDamageChanged(Entity<ESBreakableComponent> ent, ref DamageChangedEvent args)
     {
-        if (ent.Comp.Threshold is null)
+        // Necessary guard since this event gets raised in weird contexts.
+        if (_timing.ApplyingState)
             return;
 
         SetBroken(ent.AsNullable(), _damageable.GetDamage((ent, args.Damageable)).GetTotal() >= ent.Comp.Threshold);
-    }
-
-    private void OnBreakage(Entity<ESBreakableComponent> ent, ref BreakageEventArgs args)
-    {
-        SetBroken(ent.AsNullable(), true);
-    }
-
-    private void OnRepaired(Entity<ESBreakableComponent> ent, ref RepairedEvent args)
-    {
-        SetBroken(ent.AsNullable(), false);
     }
 
     /// <summary>
@@ -87,7 +81,12 @@ public sealed partial class ESBreakableSystem : EntitySystem
         ent.Comp.Broken = broken;
         Dirty(ent);
 
-        _nameModififer.RefreshNameModifiers(ent.Owner);
+        // TODO: Because audio prediction is hacky garbage i'm going to do this.
+        // Otherwise, every single unpredicted damage source is going to not play audio properly.
+        if (broken && _net.IsServer)
+            _audio.PlayPvs(ent.Comp.Sound, ent);
+
+        _nameModifier.RefreshNameModifiers(ent.Owner);
         _appearance.SetData(ent, ESBreakableVisuals.Broken, broken);
 
         var ev = new ESBrokenStateChanged(broken);
