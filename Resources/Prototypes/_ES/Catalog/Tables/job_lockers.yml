@@ -167,7 +167,7 @@
   id: ESLockerFillPhysician
   table: !type:AllSelector
     children:
-    - id: BriefcaseBlackFilledDoctor
+    - id: BriefcaseAluminumFilledDoctor
     - id: ClothingHeadMirror
       prob: 0.1
     - id: ClothingHandsGlovesColorBlue

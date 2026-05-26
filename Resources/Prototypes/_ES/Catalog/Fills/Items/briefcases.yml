@@ -16,7 +16,7 @@
 
 - type: entity
   parent: BriefcaseAluminum
-  id: BriefcaseBlackFilledDoctor
+  id: BriefcaseAluminumFilledDoctor
   name: surgical briefcase
   suffix: Filled, Doctor
   components:
