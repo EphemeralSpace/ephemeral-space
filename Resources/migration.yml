@@ -369,6 +369,9 @@ ESAnomalyProbe: null
 ESComputerAnomaly: null
 ESMarkerSpawnRegionAnomaly: null
 
+# 2026-5-25
+APCFrame: null
+
 # ES END
 
 # 2026-01-07

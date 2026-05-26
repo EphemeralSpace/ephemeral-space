@@ -5653,8 +5653,6 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-- proto: APCConstructed
-  entities:
   - uid: 11386
     components:
     - type: MetaData
