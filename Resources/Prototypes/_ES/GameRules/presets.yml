@@ -13,6 +13,7 @@
   - ESRoundEndRuleRadstorm
   - ESArmoryRule
   - ESWarpDriveRule
+  - ESFirstDeathAnnouncementRule
 
 - type: gamePreset
   id: ESExtended
@@ -26,6 +27,7 @@
   - ESRoundEndRuleRadstorm
   - ESArmoryRule
   - ESWarpDriveRule
+  - ESFirstDeathAnnouncementRule
 
 # Nonstandard modes
 
