@@ -15,7 +15,7 @@
           amount: 1, 3
 
 - type: entity
-  parent: BriefcaseBlack
+  parent: BriefcaseAluminum
   id: BriefcaseBlackFilledDoctor
   name: surgical briefcase
   suffix: Filled, Doctor
