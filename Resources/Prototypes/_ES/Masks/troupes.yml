@@ -19,6 +19,7 @@
   disguisedMaskName: es-news-disguise-traitors
   objectives:
     all:
+    - id: ESObjectiveTraitorBugAPC
     - pick:
         all:
         - id: ESObjectiveTraitorKillRandom

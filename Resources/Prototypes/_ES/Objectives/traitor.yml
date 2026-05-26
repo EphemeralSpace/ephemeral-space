@@ -32,6 +32,19 @@
     - SleeperAgent
   - type: ESKillTargetObjective
 
+- type: entity
+  parent: ESBaseTraitorObjectiveMinor
+  id: ESObjectiveTraitorBugAPC
+  name: Bug a specific department's APC
+  description: The syndicate needs to make sure they don't interfere with our plans.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Structures/Power/apc.rsi
+      state: static
+  - type: ESCounterObjective
+  - type: ESTraitorBugObjective
+
 ### Sabotage objectives
 # These are split into base so we can have traitor/rebel variants, since rebel wants a separate description, and no nuke prereq
 
