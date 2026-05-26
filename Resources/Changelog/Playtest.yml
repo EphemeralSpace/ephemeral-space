@@ -309,3 +309,9 @@ Entries:
         compensate, they need to create more fires.
   id: 39
   time: '2026-05-25T21:12:09.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: An ominous bell will now toll when the first death of the show occurs.
+  id: 40
+  time: '2026-05-26T16:18:56.0000000+00:00'
