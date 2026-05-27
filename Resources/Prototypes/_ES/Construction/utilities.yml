@@ -17,17 +17,6 @@
 
 # POWER
 - type: construction
-  id: ESAPC
-  hide: false
-  graph: APC
-  startNode: start
-  targetNode: apc
-  category: construction-category-utilities
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: true
-
-- type: construction
   id: ESCableTerminal
   hide: false
   graph: CableTerminal

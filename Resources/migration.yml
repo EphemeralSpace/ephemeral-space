@@ -369,8 +369,10 @@ ESAnomalyProbe: null
 ESComputerAnomaly: null
 ESMarkerSpawnRegionAnomaly: null
 
-# 2026-5-24
-# medkit cleanup
+# 2026-5-25
+APCFrame: null
+
+# 2026-5-26
 # remove stabilization medkits
 ESMedkitStabilization: MedkitO2
 ESMedkitStabilizationFilled: MedkitO2Filled

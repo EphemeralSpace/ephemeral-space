@@ -7,7 +7,7 @@ namespace Content.Shared._ES.Masks.Pickpocket;
 public sealed partial class ESPickpocketTargetActionEvent : EntityTargetActionEvent
 {
     [DataField]
-    public TimeSpan Delay = TimeSpan.FromSeconds(2);
+    public TimeSpan Delay = TimeSpan.FromSeconds(3);
 }
 
 [Serializable, NetSerializable]
