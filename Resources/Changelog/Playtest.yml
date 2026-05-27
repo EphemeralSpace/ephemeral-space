@@ -339,3 +339,9 @@ Entries:
       message: The circular saw now attacks much faster. Find some meat!
   id: 42
   time: '2026-05-27T21:37:33.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Secretaries can no longer get objectives to assist non-crew masks.
+  id: 43
+  time: '2026-05-27T21:48:24.0000000+00:00'
