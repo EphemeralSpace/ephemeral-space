@@ -152,7 +152,7 @@
     - id: ClothingOuterSuitAtmosFire
     - id: ClothingHeadHelmetAtmosFire
     - id: GasAnalyzer
-    - id: MedkitOxygenFilled
+    - id: MedkitO2Filled
     - id: HolofanProjector
     - id: RCD
     - id: RCDAmmo

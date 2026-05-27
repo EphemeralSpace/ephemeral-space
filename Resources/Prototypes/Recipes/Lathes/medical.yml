@@ -35,7 +35,7 @@
 - type: latheRecipe
   parent: BaseSurgicalRecipe
   id: Saw
-  result: Saw
+  result: SawElectric
 
 - type: latheRecipe
   parent: BaseSurgicalRecipe

@@ -117,26 +117,6 @@
 # ES END
 
 - type: entityTable
-  id: SyndieMaintLoot
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector
-      children:
-      - id: ClothingUniformJumpsuitOperative
-      - id: ClothingUniformJumpskirtOperative
-    - id: ClothingBackpackDuffelSyndicate
-    - id: CyberPen
-    - id: CigPackSyndicate
-    - id: ClothingBackpackDuffelSyndicatePyjamaBundle
-    - id: ClothingBeltMilitaryWebbing
-    - id: ClothingShoesBootsBlackFilled
-    - id: ToolboxSyndicateFilled
-    - id: BalloonSyn
-    - id: WeaponSniperMosin
-      weight: 2
-    - id: ClothingHandsKnuckleDustersSyndicate
-
-- type: entityTable
   id: MaintenanceLockerLoot
   table: !type:AllSelector
     children:
@@ -209,9 +189,7 @@
   table: !type:GroupSelector
     children:
     - id: SurvivalKnife
-    - id: ScalpelShiv
     - id: Shiv
-    - id: SawImprov
     - id: HydroponicsToolHatchet
     - id: ClothingHandsKnuckleDusters
     - id: WeaponFlareGun

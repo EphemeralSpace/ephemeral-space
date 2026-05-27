@@ -167,8 +167,7 @@
   id: ESLockerFillPhysician
   table: !type:AllSelector
     children:
-    - id: HandheldHealthAnalyzer
-      prob: 0.6
+    - id: BriefcaseAluminumFilledDoctor
     - id: ClothingHeadMirror
       prob: 0.1
     - id: ClothingHandsGlovesColorBlue
@@ -189,16 +188,13 @@
     - id: ClothingBeltMedicalFilled
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical
-    - id: ESMedkitStabilizationFilled
+    - id: MedkitFilled
 
 - type: entityTable
   id: ESLockerFillCoroner
   table:
     all:
-    - id: ESScalpelAutopsy
-    - id: BoxFolderYellow
-    - id: HandLabeler
-    - id: BoxBodyBag
+    - id: BriefcaseBlackFilledCoroner
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical
     - id: ClothingMaskSterile
