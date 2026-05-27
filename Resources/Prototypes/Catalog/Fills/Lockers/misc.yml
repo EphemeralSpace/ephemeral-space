@@ -189,9 +189,7 @@
   table: !type:GroupSelector
     children:
     - id: SurvivalKnife
-    - id: ScalpelShiv
     - id: Shiv
-    - id: SawImprov
     - id: HydroponicsToolHatchet
     - id: ClothingHandsKnuckleDusters
     - id: WeaponFlareGun

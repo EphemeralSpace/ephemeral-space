@@ -9,7 +9,7 @@
       storagebase: !type:AllSelector
         children:
         - id: Hemostat
-        - id: Saw
+        - id: SawElectric
         - id: Drill
         - id: Cautery
         - id: Retractor

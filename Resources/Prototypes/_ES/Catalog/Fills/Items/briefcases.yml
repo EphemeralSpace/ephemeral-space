@@ -25,10 +25,10 @@
       storagebase:
         all:
         - id: Scalpel
-        - id: Saw
         - id: Hemostat
+        - id: SawElectric
         - id: Retractor
-        - id: Cautery
         - id: BoneSetter
+        - id: Cautery
         - id: VascularRecoupler
         - id: Drill

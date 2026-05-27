@@ -393,6 +393,13 @@ MedkitAdvanced: Medkit
 MedkitAdvancedFilled: MedkitFilled
 MedkitCombat: Medkit
 MedkitCombatFilled: MedkitFilled
+# remove useless surgical tools
+Saw: SawElectric
+SawImprov: SawElectric
+SawAdvanced: SawElectric
+ScalpelShiv: Scalpel
+ScalpelAdvanced: Scalpel
+ScalpelLaser: Scalpel
 
 # ES END
 
