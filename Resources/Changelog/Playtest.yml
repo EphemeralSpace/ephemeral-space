@@ -325,3 +325,17 @@ Entries:
       message: APCs can no longer be constructed.
   id: 41
   time: '2026-05-26T16:20:14.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: >-
+        Changed all medical roles to have better and more consistent locker/belt
+        fills (doctors have access to a full set of tools now!)
+    - type: Remove
+      message: Replaced all redundant medical items with equivalent counterparts.
+    - type: Tweak
+      message: Resprited all surgical tools.
+    - type: Tweak
+      message: The circular saw now attacks much faster. Find some meat!
+  id: 42
+  time: '2026-05-27T21:37:33.0000000+00:00'
