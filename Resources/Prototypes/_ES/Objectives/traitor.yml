@@ -36,7 +36,7 @@
   parent: ESBaseTraitorObjectiveMinor
   id: ESObjectiveTraitorBugAPC
   name: Bug a specific department's APC
-  description: The syndicate needs to make sure they don't interfere with our plans.
+  description: It'll take a few minutes to work, so keep an eye on it
   components:
   - type: ESObjective
     icon:

@@ -6,11 +6,8 @@ namespace Content.Shared._ES.Masks.Traitor.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(ESTraitorBugSystem))]
-public sealed partial class ESTraitorBugObjectiveComponent : Component
+public sealed partial class ESTraitorBuggableComponent : Component
 {
-    [DataField]
-    public LocId Title = "es-bug-objective-title";
-
     [DataField, AutoNetworkedField]
-    public ProtoId<AccessGroupPrototype>? Target;
+    public ProtoId<AccessGroupPrototype>? Department;
 }
