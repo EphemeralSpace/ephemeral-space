@@ -301,3 +301,27 @@ Entries:
         once they smolder
   id: 38
   time: '2026-05-25T15:38:03.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Arsonists' objective now progresses when their fire spreads. To
+        compensate, they need to create more fires.
+  id: 39
+  time: '2026-05-25T21:12:09.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: An ominous bell will now toll when the first death of the show occurs.
+  id: 40
+  time: '2026-05-26T16:18:56.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        APCs now become broken when damaged. In this state, they do not provide
+        power.
+    - type: Tweak
+      message: APCs can no longer be constructed.
+  id: 41
+  time: '2026-05-26T16:20:14.0000000+00:00'
