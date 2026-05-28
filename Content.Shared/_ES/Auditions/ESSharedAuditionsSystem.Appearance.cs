@@ -150,7 +150,14 @@ public abstract partial class ESSharedAuditionsSystem
         profile.Appearance.HairStyleId = random.Pick(hairOptions);
 
         if (random.Prob(ShavenChance))
+        {
             profile.Appearance.FacialHairStyleId = HairStyles.DefaultFacialHairStyle;
+        }
+        else if (sex != Sex.Female)
+        {
+            var facialHairStyles = _marking.MarkingsByCategoryAndSpecies(MarkingCategories.FacialHair, speciesId).Keys.ToList();
+            profile.Appearance.FacialHairStyleId = random.Pick(facialHairStyles);
+        }
 
         return profile;
     }
