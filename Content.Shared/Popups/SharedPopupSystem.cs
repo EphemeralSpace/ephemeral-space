@@ -13,14 +13,6 @@ namespace Content.Shared.Popups
         [Dependency] protected IGameTiming Timing = default!;
 
         /// <summary>
-        ///     Shows a popup at the local users' cursor. Does nothing on the server.
-        /// </summary>
-        /// <param name="message">The message to display.</param>
-        /// <param name="type">Used to customize how this popup should appear visually.</param>
-        [Obsolete] // TODO: this method should only be on the client
-        public abstract void PopupCursor(string? message, PopupType type = PopupType.Small);
-
-        /// <summary>
         ///     Shows a popup at a users' cursor.
         /// </summary>
         /// <param name="message">The message to display.</param>
@@ -35,14 +27,6 @@ namespace Content.Shared.Popups
         /// <param name="recipient">Client that will see this popup.</param>
         /// <param name="type">Used to customize how this popup should appear visually.</param>
         public abstract void PopupCursor(string? message, EntityUid recipient, PopupType type = PopupType.Small);
-
-        /// <summary>
-        /// Variant of <see cref="PopupCursor(string?, ICommonSession, PopupType)"/> for use with prediction.
-        /// The local client will show the popup to the recipient. Does nothing on the server.
-        /// </summary>
-        [Obsolete]
-        public void PopupPredictedCursor(string? message, ICommonSession recipient, PopupType type = PopupType.Small)
-            => PopupCursor(message, recipient, type);
 
         /// <summary>
         /// Variant of <see cref="PopupCursor(string?, EntityUid, PopupType)"/> for use with prediction.
@@ -117,7 +101,10 @@ namespace Content.Shared.Popups
         /// </summary>
         [Obsolete]
         public void PopupClient(string? message, EntityUid? recipient, PopupType type = PopupType.Small)
-            => PopupCursor(message, type); // TODO: add API for entityUid? recipient
+        {
+            if (recipient.HasValue)
+                PopupCursor(message, recipient.Value, type);
+        }
 
         /// <summary>
         /// Variant of <see cref="PopupEntity(string, EntityUid, EntityUid, PopupType)"/> that only runs on the client, outside of prediction.
@@ -163,7 +150,7 @@ namespace Content.Shared.Popups
         /// Variant of <see cref="PopupPredicted(string?, EntityUid, EntityUid?, PopupType)"/> that displays <paramref name="recipientMessage"/>
         /// to the recipient and <paramref name="othersMessage"/> to everyone else in PVS range.
         /// </summary>
-        [Obsolete]
+        // TODO: this method should be renamed
         public void PopupPredicted(string? recipientMessage,
             string? othersMessage,
             EntityUid uid,

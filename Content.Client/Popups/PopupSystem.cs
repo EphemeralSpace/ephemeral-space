@@ -152,7 +152,12 @@ namespace Content.Client.Popups
             _aliveCursorLabels.Add(popupData, label);
         }
 
-        public override void PopupCursor(string? message, PopupType type = PopupType.Small)
+        /// <summary>
+        ///     Shows a popup at the local users' cursor. Does nothing on the server.
+        /// </summary>
+        /// <param name="message">The message to display.</param>
+        /// <param name="type">Used to customize how this popup should appear visually.</param>
+        public void PopupCursor(string? message, PopupType type = PopupType.Small)
         {
             if (!_timing.IsFirstTimePredicted || message is null)
                 return;

@@ -12,11 +12,6 @@ namespace Content.Server.Popups
         [Dependency] private IConfigurationManager _cfg = default!;
         [Dependency] private SharedTransformSystem _transform = default!;
 
-        public override void PopupCursor(string? message, PopupType type = PopupType.Small)
-        {
-            // No local user.
-        }
-
         public override void PopupCursor(string? message, ICommonSession recipient, PopupType type = PopupType.Small)
         {
             if (message == null)
