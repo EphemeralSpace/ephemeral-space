@@ -36,7 +36,7 @@ namespace Content.Client.Popups
         private readonly Dictionary<WorldPopupData, WorldPopupLabel> _aliveWorldLabels = new();
         private readonly Dictionary<CursorPopupData, CursorPopupLabel> _aliveCursorLabels = new();
 
-        private readonly HashSet<IPopupPredictionInstance> _predictionInstances = new();
+        private readonly List<IPopupPredictionInstance> _predictionInstances = new();
 
         public const float MinimumPopupLifetime = 0.7f;
         public const float MaximumPopupLifetime = 5f;
@@ -266,6 +266,11 @@ namespace Content.Client.Popups
 
         public override void FrameUpdate(float frameTime)
         {
+            if (_predictionInstances.Count != 0)
+            {
+                _predictionInstances.RemoveAll(p => (int) Timing.CurTick.Value - (int) p.Tick.Value > 5000);
+            }
+
             if (_aliveWorldLabels.Count == 0 && _aliveCursorLabels.Count == 0)
                 return;
 
