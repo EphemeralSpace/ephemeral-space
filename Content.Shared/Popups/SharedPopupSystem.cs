@@ -26,7 +26,7 @@ namespace Content.Shared.Popups
         /// <param name="message">The message to display.</param>
         /// <param name="recipient">Client that will see this popup.</param>
         /// <param name="type">Used to customize how this popup should appear visually.</param>
-        public abstract void PopupCursor(string? message, EntityUid recipient, PopupType type = PopupType.Small);
+        public abstract void PopupCursor(string? message, EntityUid? recipient, PopupType type = PopupType.Small);
 
         /// <summary>
         ///     Shows a popup at a world location to every entity in PVS range.
@@ -77,17 +77,6 @@ namespace Content.Shared.Popups
         ///     if the filtering has to be more specific than simply PVS range based.
         /// </summary>
         public abstract void PopupEntity(string? message, EntityUid uid, Filter filter, bool recordReplay, PopupType type = PopupType.Small);
-
-        /// <summary>
-        /// Variant of <see cref="PopupCursor(string, EntityUid, PopupType)"/> that only runs on the client, outside of prediction.
-        /// Useful for shared code that is always ran by both sides to avoid duplicate popups.
-        /// </summary>
-        [Obsolete]
-        public void PopupClient(string? message, EntityUid? recipient, PopupType type = PopupType.Small)
-        {
-            if (recipient.HasValue)
-                PopupCursor(message, recipient.Value, type);
-        }
 
         /// <summary>
         /// Variant of <see cref="PopupEntity(string, EntityUid, EntityUid, PopupType)"/> that only runs on the client, outside of prediction.

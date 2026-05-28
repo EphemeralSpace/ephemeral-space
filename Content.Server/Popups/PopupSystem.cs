@@ -20,7 +20,7 @@ namespace Content.Server.Popups
             RaiseNetworkEvent(new PopupCursorEvent(message, type, Timing.CurTick), recipient);
         }
 
-        public override void PopupCursor(string? message, EntityUid recipient, PopupType type = PopupType.Small)
+        public override void PopupCursor(string? message, EntityUid? recipient, PopupType type = PopupType.Small)
         {
             if (message == null)
                 return;

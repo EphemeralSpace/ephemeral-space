@@ -172,7 +172,7 @@ namespace Content.Client.Popups
                 PopupCursor(message, type);
         }
 
-        public override void PopupCursor(string? message, EntityUid recipient, PopupType type = PopupType.Small)
+        public override void PopupCursor(string? message, EntityUid? recipient, PopupType type = PopupType.Small)
         {
             if (_playerManager.LocalEntity == recipient)
                 PopupCursor(message, type);

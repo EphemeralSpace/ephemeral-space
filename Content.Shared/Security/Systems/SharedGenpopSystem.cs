@@ -81,7 +81,7 @@ public abstract partial class SharedGenpopSystem : EntitySystem
 
         if (!_accessReader.IsAllowed(user, ent))
         {
-            _popup.PopupClient(Loc.GetString("lock-comp-has-user-access-fail"), user);
+            _popup.PopupCursor(Loc.GetString("lock-comp-has-user-access-fail"), user);
             return;
         }
 

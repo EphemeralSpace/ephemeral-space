@@ -915,7 +915,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             {
                 // Notify disarmable
                 if (HasComp<MobStateComponent>(target.Value))
-                    PopupSystem.PopupClient(Loc.GetString("disarm-action-disarmable", ("targetName", target.Value)), target.Value);
+                    PopupSystem.PopupCursor(Loc.GetString("disarm-action-disarmable", ("targetName", target.Value)), target.Value);
 
                 return false;
             }

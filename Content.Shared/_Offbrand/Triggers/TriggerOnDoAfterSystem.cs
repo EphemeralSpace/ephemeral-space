@@ -114,7 +114,7 @@ public sealed partial class TriggerOnDoAfterSystem : EntitySystem
             if (attemptTriggerEvent.Cancelled)
             {
                 if (trigger.Comp.ConditionFailedRepeat is { } conditionFailedRepeat)
-                    _popup.PopupClient(Loc.GetString(conditionFailedRepeat, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)), args.User);
+                    _popup.PopupCursor(Loc.GetString(conditionFailedRepeat, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)), args.User);
             }
             else
                 args.Repeat = true;
@@ -122,7 +122,7 @@ public sealed partial class TriggerOnDoAfterSystem : EntitySystem
         else
         {
             if (trigger.Comp.ItemsUsedUp is { } usedUp)
-                _popup.PopupClient(Loc.GetString(usedUp, ("trigger", args.Used.Value)), args.Args.User);
+                _popup.PopupCursor(Loc.GetString(usedUp, ("trigger", args.Used.Value)), args.Args.User);
         }
     }
 
@@ -137,7 +137,7 @@ public sealed partial class TriggerOnDoAfterSystem : EntitySystem
         if (attemptTriggerEvent.Cancelled)
         {
             if (trigger.Comp.ConditionFailed is { } conditionFailed)
-                _popup.PopupClient(Loc.GetString(conditionFailed, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)), user);
+                _popup.PopupCursor(Loc.GetString(conditionFailed, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)), user);
 
             return true;
         }
