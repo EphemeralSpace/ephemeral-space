@@ -1,5 +1,4 @@
 using Content.Shared.Popups;
-using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -23,7 +22,7 @@ namespace Content.Server.Popups
             if (message == null)
                 return;
 
-            RaiseNetworkEvent(new PopupCursorEvent(message, type), recipient);
+            RaiseNetworkEvent(new PopupCursorEvent(message, type, Timing.CurTick), recipient);
         }
 
         public override void PopupCursor(string? message, EntityUid recipient, PopupType type = PopupType.Small)
@@ -32,17 +31,7 @@ namespace Content.Server.Popups
                 return;
 
             if (TryComp(recipient, out ActorComponent? actor))
-                RaiseNetworkEvent(new PopupCursorEvent(message, type), actor.PlayerSession);
-        }
-
-        public override void PopupPredictedCursor(string? message, ICommonSession recipient, PopupType type = PopupType.Small)
-        {
-            // Do nothing, since the client already predicted the popup.
-        }
-
-        public override void PopupPredictedCursor(string? message, EntityUid recipient, PopupType type = PopupType.Small)
-        {
-            // Do nothing, since the client already predicted the popup.
+                RaiseNetworkEvent(new PopupCursorEvent(message, type, Timing.CurTick), actor.PlayerSession);
         }
 
         public override void PopupCoordinates(string? message, EntityCoordinates coordinates, Filter filter, bool replayRecord, PopupType type = PopupType.Small)
@@ -50,7 +39,7 @@ namespace Content.Server.Popups
             if (message == null)
                 return;
 
-            RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, GetNetCoordinates(coordinates)), filter, replayRecord);
+            RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, Timing.CurTick, GetNetCoordinates(coordinates)), filter, replayRecord);
         }
 
         public override void PopupCoordinates(string? message, EntityCoordinates coordinates, PopupType type = PopupType.Small)
@@ -59,7 +48,7 @@ namespace Content.Server.Popups
                 return;
             var mapPos = _transform.ToMapCoordinates(coordinates);
             var filter = Filter.Empty().AddPlayersByPvs(mapPos, entManager: EntityManager, playerMan: _player, cfgMan: _cfg);
-            RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, GetNetCoordinates(coordinates)), filter);
+            RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, Timing.CurTick, GetNetCoordinates(coordinates)), filter);
         }
 
         public override void PopupCoordinates(string? message, EntityCoordinates coordinates, ICommonSession recipient, PopupType type = PopupType.Small)
@@ -67,7 +56,7 @@ namespace Content.Server.Popups
             if (message == null)
                 return;
 
-            RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, GetNetCoordinates(coordinates)), recipient);
+            RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, Timing.CurTick, GetNetCoordinates(coordinates)), recipient);
         }
 
         public override void PopupCoordinates(string? message, EntityCoordinates coordinates, EntityUid recipient, PopupType type = PopupType.Small)
@@ -76,22 +65,7 @@ namespace Content.Server.Popups
                 return;
 
             if (TryComp(recipient, out ActorComponent? actor))
-                RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, GetNetCoordinates(coordinates)), actor.PlayerSession);
-        }
-
-        public override void PopupPredictedCoordinates(string? message, EntityCoordinates coordinates, EntityUid? recipient, PopupType type = PopupType.Small)
-        {
-            if (message == null)
-                return;
-
-            var mapPos = _transform.ToMapCoordinates(coordinates);
-            var filter = Filter.Empty().AddPlayersByPvs(mapPos, entManager: EntityManager, playerMan: _player, cfgMan: _cfg);
-            if (recipient != null)
-            {
-                // Don't send to recipient, since they predicted it locally
-                filter = filter.RemovePlayerByAttachedEntity(recipient.Value);
-            }
-            RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, GetNetCoordinates(coordinates)), filter);
+                RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, Timing.CurTick, GetNetCoordinates(coordinates)), actor.PlayerSession);
         }
 
         public override void PopupEntity(string? message, EntityUid uid, PopupType type = PopupType.Small)
@@ -100,7 +74,7 @@ namespace Content.Server.Popups
                 return;
 
             var filter = Filter.Empty().AddPlayersByPvs(uid, entityManager: EntityManager, playerMan: _player, cfgMan: _cfg);
-            RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)), filter);
+            RaiseNetworkEvent(new PopupEntityEvent(message, type, Timing.CurTick, GetNetEntity(uid)), filter);
         }
 
         public override void PopupEntity(string? message, EntityUid uid, EntityUid recipient, PopupType type = PopupType.Small)
@@ -109,20 +83,7 @@ namespace Content.Server.Popups
                 return;
 
             if (TryComp(recipient, out ActorComponent? actor))
-                RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)), actor.PlayerSession);
-        }
-
-        public override void PopupClient(string? message, EntityUid? recipient, PopupType type = PopupType.Small)
-        {
-        }
-
-        public override void PopupClient(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)
-        {
-            // do nothing duh its for client only
-        }
-
-        public override void PopupClient(string? message, EntityCoordinates coordinates, EntityUid? recipient, PopupType type = PopupType.Small)
-        {
+                RaiseNetworkEvent(new PopupEntityEvent(message, type, Timing.CurTick, GetNetEntity(uid)), actor.PlayerSession);
         }
 
         public override void PopupEntity(string? message, EntityUid uid, ICommonSession recipient, PopupType type = PopupType.Small)
@@ -130,7 +91,7 @@ namespace Content.Server.Popups
             if (message == null)
                 return;
 
-            RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)), recipient);
+            RaiseNetworkEvent(new PopupEntityEvent(message, type, Timing.CurTick, GetNetEntity(uid)), recipient);
         }
 
         public override void PopupEntity(string? message, EntityUid uid, Filter filter, bool recordReplay, PopupType type = PopupType.Small)
@@ -138,44 +99,7 @@ namespace Content.Server.Popups
             if (message == null)
                 return;
 
-            RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)), filter, recordReplay);
-        }
-
-        public override void PopupPredicted(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)
-        {
-            if (message == null)
-                return;
-
-            if (recipient != null)
-            {
-                // Don't send to recipient, since they predicted it locally
-                var filter = Filter.PvsExcept(recipient.Value, entityManager: EntityManager);
-                RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)), filter);
-            }
-            else
-            {
-                // With no recipient, send to everyone (in PVS range)
-                RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)));
-            }
-        }
-
-        public override void PopupPredicted(string? message, EntityUid uid, EntityUid? recipient, Filter filter, bool recordReplay, PopupType type = PopupType.Small)
-        {
-            if (message == null)
-                return;
-
-            if (recipient != null)
-            {
-                // Don't send to recipient, since they predicted it locally
-                filter = filter.RemovePlayerByAttachedEntity(recipient.Value);
-            }
-
-            RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)), filter, recordReplay);
-        }
-
-        public override void PopupPredicted(string? recipientMessage, string? othersMessage, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)
-        {
-            PopupPredicted(othersMessage, uid, recipient, type);
+            RaiseNetworkEvent(new PopupEntityEvent(message, type, Timing.CurTick, GetNetEntity(uid)), filter, recordReplay);
         }
     }
 }

@@ -1,19 +1,23 @@
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Popups
 {
     /// <summary>
     ///     System for displaying small text popups on users' screens.
     /// </summary>
-    public abstract class SharedPopupSystem : EntitySystem
+    public abstract partial class SharedPopupSystem : EntitySystem
     {
+        [Dependency] protected IGameTiming Timing = default!;
+
         /// <summary>
         ///     Shows a popup at the local users' cursor. Does nothing on the server.
         /// </summary>
         /// <param name="message">The message to display.</param>
         /// <param name="type">Used to customize how this popup should appear visually.</param>
+        [Obsolete]
         public abstract void PopupCursor(string? message, PopupType type = PopupType.Small);
 
         /// <summary>
@@ -36,13 +40,17 @@ namespace Content.Shared.Popups
         /// Variant of <see cref="PopupCursor(string?, ICommonSession, PopupType)"/> for use with prediction.
         /// The local client will show the popup to the recipient. Does nothing on the server.
         /// </summary>
-        public abstract void PopupPredictedCursor(string? message, ICommonSession recipient, PopupType type = PopupType.Small);
+        [Obsolete]
+        public void PopupPredictedCursor(string? message, ICommonSession recipient, PopupType type = PopupType.Small)
+            => PopupCursor(message, recipient, type);
 
         /// <summary>
         /// Variant of <see cref="PopupCursor(string?, EntityUid, PopupType)"/> for use with prediction.
         /// The local client will show the popup to the recipient. Does nothing on the server.
         /// </summary>
-        public abstract void PopupPredictedCursor(string? message, EntityUid recipient, PopupType type = PopupType.Small);
+        [Obsolete]
+        public void PopupPredictedCursor(string? message, EntityUid recipient, PopupType type = PopupType.Small)
+            => PopupCursor(message, recipient, type);
 
         /// <summary>
         ///     Shows a popup at a world location to every entity in PVS range.
@@ -75,7 +83,9 @@ namespace Content.Shared.Popups
         ///    the popup to the recipient, and the server will show it to every other player in PVS range. If recipient is null, the local
         ///    client will do nothing and the server will show the message to every player in PVS range.
         /// </summary>
-        public abstract void PopupPredictedCoordinates(string? message, EntityCoordinates coordinates, EntityUid? recipient, PopupType type = PopupType.Small);
+        [Obsolete]
+        public void PopupPredictedCoordinates(string? message, EntityCoordinates coordinates, EntityUid? recipient, PopupType type = PopupType.Small)
+            => PopupCoordinates(message, coordinates, type);
 
         /// <summary>
         ///     Shows a popup above an entity for every player in pvs range.
@@ -105,26 +115,34 @@ namespace Content.Shared.Popups
         /// Variant of <see cref="PopupCursor(string, EntityUid, PopupType)"/> that only runs on the client, outside of prediction.
         /// Useful for shared code that is always ran by both sides to avoid duplicate popups.
         /// </summary>
-        public abstract void PopupClient(string? message, EntityUid? recipient, PopupType type = PopupType.Small);
+        [Obsolete]
+        public void PopupClient(string? message, EntityUid? recipient, PopupType type = PopupType.Small)
+            => PopupCursor(message, type); // TODO: add API for entityUid? recipient
 
         /// <summary>
         /// Variant of <see cref="PopupEntity(string, EntityUid, EntityUid, PopupType)"/> that only runs on the client, outside of prediction.
         /// Useful for shared code that is always ran by both sides to avoid duplicate popups.
         /// </summary>
-        public abstract void PopupClient(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small);
+        [Obsolete]
+        public void PopupClient(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)
+            => PopupEntity(message, uid, type);
 
         /// <summary>
         /// Variant of <see cref="PopupCoordinates(string, EntityCoordinates, PopupType)"/> that only runs on the client, outside of prediction.
         /// Useful for shared code that is always ran by both sides to avoid duplicate popups.
         /// </summary>
-        public abstract void PopupClient(string? message, EntityCoordinates coordinates, EntityUid? recipient, PopupType type = PopupType.Small);
+        [Obsolete]
+        public void PopupClient(string? message, EntityCoordinates coordinates, EntityUid? recipient, PopupType type = PopupType.Small)
+            => PopupCoordinates(message, coordinates, type);
 
         /// <summary>
         /// Variant of <see cref="PopupEntity(string, EntityUid, EntityUid, PopupType)"/> for use with prediction. The local client will show
         /// the popup to the recipient, and the server will show it to every other player in PVS range. If recipient is null, the local client
         /// will do nothing and the server will show the message to every player in PVS range.
         /// </summary>
-        public abstract void PopupPredicted(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small);
+        [Obsolete]
+        public void PopupPredicted(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)
+            => PopupEntity(message, uid, type);
 
         /// <summary>
         /// Variant of <see cref="PopupEntity(string, EntityUid, Filter, bool, PopupType)"/> for use with prediction.
@@ -137,13 +155,23 @@ namespace Content.Shared.Popups
         /// <param name="filter">Filter for players that will see the popup from the server.</param>
         /// <param name="recordReplay">If true, this pop-up will be considered as a globally visible pop-up that gets shown during replays.</param>
         /// <param name="type">Used to customize how this popup should appear visually. See: <see cref="PopupType"/>.</param>
-        public abstract void PopupPredicted(string? message, EntityUid uid, EntityUid? recipient, Filter filter, bool recordReplay, PopupType type = PopupType.Small);
+        [Obsolete]
+        public void PopupPredicted(string? message, EntityUid uid, EntityUid? recipient, Filter filter, bool recordReplay, PopupType type = PopupType.Small)
+            => PopupEntity(message, uid, filter, recordReplay, type);
 
         /// <summary>
         /// Variant of <see cref="PopupPredicted(string?, EntityUid, EntityUid?, PopupType)"/> that displays <paramref name="recipientMessage"/>
         /// to the recipient and <paramref name="othersMessage"/> to everyone else in PVS range.
         /// </summary>
-        public abstract void PopupPredicted(string? recipientMessage, string? othersMessage, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small);
+        [Obsolete]
+        public void PopupPredicted(string? recipientMessage,
+            string? othersMessage,
+            EntityUid uid,
+            EntityUid? recipient,
+            PopupType type = PopupType.Small)
+        {
+            // TODO: figure this thing out
+        }
     }
 
     /// <summary>
@@ -156,12 +184,17 @@ namespace Content.Shared.Popups
 
         public PopupType Type { get; }
 
-        protected PopupEvent(string message, PopupType type)
+        public GameTick Tick { get; }
+
+        protected PopupEvent(string message, PopupType type, GameTick tick)
         {
             Message = message;
             Type = type;
+            Tick = tick;
         }
     }
+
+    public interface IPopupPredictionInstance;
 
     /// <summary>
     ///     Network event for displaying a popup on the user's cursor.
@@ -169,9 +202,11 @@ namespace Content.Shared.Popups
     [Serializable, NetSerializable]
     public sealed class PopupCursorEvent : PopupEvent
     {
-        public PopupCursorEvent(string message, PopupType type) : base(message, type)
+        public PopupCursorEvent(string message, PopupType type, GameTick tick) : base(message, type, tick)
         {
         }
+
+        public record struct PredictionInstance(string Message, PopupType Type, GameTick Tick) : IPopupPredictionInstance;
     }
 
     /// <summary>
@@ -182,10 +217,12 @@ namespace Content.Shared.Popups
     {
         public NetCoordinates Coordinates { get; }
 
-        public PopupCoordinatesEvent(string message, PopupType type, NetCoordinates coordinates) : base(message, type)
+        public PopupCoordinatesEvent(string message, PopupType type, GameTick tick, NetCoordinates coordinates) : base(message, type, tick)
         {
             Coordinates = coordinates;
         }
+
+        public record struct PredictionInstance(string Message, PopupType Type, GameTick Tick, NetCoordinates Coordinates) : IPopupPredictionInstance;
     }
 
     /// <summary>
@@ -196,10 +233,12 @@ namespace Content.Shared.Popups
     {
         public NetEntity Uid { get; }
 
-        public PopupEntityEvent(string message, PopupType type, NetEntity uid) : base(message, type)
+        public PopupEntityEvent(string message, PopupType type, GameTick tick, NetEntity uid) : base(message, type, tick)
         {
             Uid = uid;
         }
+
+        public record struct PredictionInstance(string Message, PopupType Type, GameTick Tick, NetEntity Uid) : IPopupPredictionInstance;
     }
 
     /// <summary>

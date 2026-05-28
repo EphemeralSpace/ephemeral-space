@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared.Containers;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Popups;
@@ -36,6 +35,8 @@ namespace Content.Client.Popups
 
         private readonly Dictionary<WorldPopupData, WorldPopupLabel> _aliveWorldLabels = new();
         private readonly Dictionary<CursorPopupData, CursorPopupLabel> _aliveCursorLabels = new();
+
+        private readonly HashSet<IPopupPredictionInstance> _predictionInstances = new();
 
         public const float MinimumPopupLifetime = 0.7f;
         public const float MaximumPopupLifetime = 5f;
@@ -84,9 +85,9 @@ namespace Content.Client.Popups
             if (recordReplay && _replayRecording.IsRecording)
             {
                 if (entity != null)
-                    _replayRecording.RecordClientMessage(new PopupEntityEvent(message, type, GetNetEntity(entity.Value)));
+                    _replayRecording.RecordClientMessage(new PopupEntityEvent(message, type, Timing.CurTick, GetNetEntity(entity.Value)));
                 else
-                    _replayRecording.RecordClientMessage(new PopupCoordinatesEvent(message, type, GetNetCoordinates(coordinates)));
+                    _replayRecording.RecordClientMessage(new PopupCoordinatesEvent(message, type, Timing.CurTick, GetNetCoordinates(coordinates)));
             }
 
             var popupData = new WorldPopupData(message, type, coordinates, entity);
@@ -123,19 +124,13 @@ namespace Content.Client.Popups
                 PopupMessage(message, type, coordinates, null, true);
         }
 
-        public override void PopupPredictedCoordinates(string? message, EntityCoordinates coordinates, EntityUid? recipient, PopupType type = PopupType.Small)
-        {
-            if (recipient != null && _timing.IsFirstTimePredicted)
-                PopupCoordinates(message, coordinates, recipient.Value, type);
-        }
-
         private void PopupCursorInternal(string? message, PopupType type, bool recordReplay)
         {
             if (message == null)
                 return;
 
             if (recordReplay && _replayRecording.IsRecording)
-                _replayRecording.RecordClientMessage(new PopupCursorEvent(message, type));
+                _replayRecording.RecordClientMessage(new PopupCursorEvent(message, type, Timing.CurTick));
 
             var popupData = new CursorPopupData(message, type);
             if (_aliveCursorLabels.TryGetValue(popupData, out var existingLabel))
@@ -173,16 +168,6 @@ namespace Content.Client.Popups
                 PopupCursor(message, type);
         }
 
-        public override void PopupPredictedCursor(string? message, ICommonSession recipient, PopupType type = PopupType.Small)
-        {
-            PopupCursor(message, recipient, type);
-        }
-
-        public override void PopupPredictedCursor(string? message, EntityUid recipient, PopupType type = PopupType.Small)
-        {
-            PopupCursor(message, recipient, type);
-        }
-
         public override void PopupCoordinates(string? message, EntityCoordinates coordinates, Filter filter, bool replayRecord, PopupType type = PopupType.Small)
         {
             PopupCoordinates(message, coordinates, type);
@@ -208,55 +193,16 @@ namespace Content.Client.Popups
             PopupEntity(message, uid, type);
         }
 
-        public override void PopupClient(string? message, EntityUid? recipient, PopupType type = PopupType.Small)
-        {
-            if (recipient == null)
-                return;
-
-            if (_timing.IsFirstTimePredicted)
-                PopupCursor(message, recipient.Value, type);
-        }
-
-        public override void PopupClient(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)
-        {
-            if (recipient == null)
-                return;
-
-            if (_timing.IsFirstTimePredicted)
-                PopupEntity(message, uid, recipient.Value, type);
-        }
-
-        public override void PopupClient(string? message, EntityCoordinates coordinates, EntityUid? recipient, PopupType type = PopupType.Small)
-        {
-            if (recipient == null)
-                return;
-
-            if (_timing.IsFirstTimePredicted)
-                PopupCoordinates(message, coordinates, recipient.Value, type);
-        }
-
         public override void PopupEntity(string? message, EntityUid uid, PopupType type = PopupType.Small)
         {
-            if (TryComp(uid, out TransformComponent? transform))
-                PopupMessage(message, type, transform.Coordinates, uid, true);
-        }
+            if (message is null || !Timing.IsFirstTimePredicted)
+                return;
 
-        public override void PopupPredicted(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)
-        {
-            if (recipient != null && _timing.IsFirstTimePredicted)
-                PopupEntity(message, uid, recipient.Value, type);
-        }
+            if (!TryComp(uid, out TransformComponent? transform))
+                return;
 
-        public override void PopupPredicted(string? message, EntityUid uid, EntityUid? recipient, Filter filter, bool recordReplay, PopupType type = PopupType.Small)
-        {
-            if (recipient != null && _timing.IsFirstTimePredicted)
-                PopupEntity(message, uid, recipient.Value, type);
-        }
-
-        public override void PopupPredicted(string? recipientMessage, string? othersMessage, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)
-        {
-            if (recipient != null && _timing.IsFirstTimePredicted)
-                PopupEntity(recipientMessage, uid, recipient.Value, type);
+            _predictionInstances.Add(new PopupEntityEvent.PredictionInstance(message, type, Timing.CurTick, GetNetEntity(uid)));
+            PopupMessage(message, type, transform.Coordinates, uid, true);
         }
 
         #endregion
@@ -275,6 +221,10 @@ namespace Content.Client.Popups
 
         private void OnPopupEntityEvent(PopupEntityEvent ev)
         {
+            var instance = new PopupEntityEvent.PredictionInstance(ev.Message, ev.Type, ev.Tick, ev.Uid);
+            if (_predictionInstances.Remove(instance))
+                return;
+
             var entity = GetEntity(ev.Uid);
 
             if (TryComp(entity, out TransformComponent? transform))
