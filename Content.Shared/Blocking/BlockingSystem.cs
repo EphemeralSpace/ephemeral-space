@@ -210,13 +210,13 @@ public sealed partial class BlockingSystem : EntitySystem
     private void CantBlockError(EntityUid user)
     {
         var msgError = Loc.GetString("action-popup-blocking-user-cant-block");
-        _popupSystem.PopupClient(msgError, user, user);
+        _popupSystem.PopupEntity(msgError, user, user);
     }
 
     private void TooCloseError(EntityUid user)
     {
         var msgError = Loc.GetString("action-popup-blocking-user-too-close");
-        _popupSystem.PopupClient(msgError, user, user);
+        _popupSystem.PopupEntity(msgError, user, user);
     }
 
     /// <summary>

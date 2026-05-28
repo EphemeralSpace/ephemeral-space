@@ -128,7 +128,7 @@ public sealed partial class SharedKitchenSpikeSystem : EntitySystem
         if (args.Handled || !victim.HasValue)
             return;
 
-        _popupSystem.PopupClient(Loc.GetString("butcherable-need-knife",
+        _popupSystem.PopupEntity(Loc.GetString("butcherable-need-knife",
             ("target", Identity.Entity(victim.Value, EntityManager))),
             ent,
             args.User,
@@ -148,7 +148,7 @@ public sealed partial class SharedKitchenSpikeSystem : EntitySystem
 
         if (!TryComp<SharpComponent>(args.Used, out var sharp))
         {
-            _popupSystem.PopupClient(Loc.GetString("butcherable-need-knife",
+            _popupSystem.PopupEntity(Loc.GetString("butcherable-need-knife",
                     ("target", Identity.Entity(victim.Value, EntityManager))),
                     ent,
                     args.User,
@@ -339,7 +339,7 @@ public sealed partial class SharedKitchenSpikeSystem : EntitySystem
 
         _audioSystem.PlayPredicted(ent.Comp.ButcherSound, ent, args.User);
 
-        _popupSystem.PopupClient(Loc.GetString("butcherable-knife-butchered-success",
+        _popupSystem.PopupEntity(Loc.GetString("butcherable-knife-butchered-success",
             ("target", Identity.Entity(args.Target.Value, EntityManager)),
             ("knife", args.Used.Value)),
             ent,

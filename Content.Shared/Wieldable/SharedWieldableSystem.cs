@@ -95,7 +95,7 @@ public abstract partial class SharedWieldableSystem : EntitySystem
             {
                 component.LastPopup = time;
                 var message = Loc.GetString("wieldable-component-requires", ("item", uid));
-                _popup.PopupClient(message, args.Used, args.User);
+                _popup.PopupEntity(message, args.Used, args.User);
             }
         }
     }
@@ -247,7 +247,7 @@ public abstract partial class SharedWieldableSystem : EntitySystem
         if (!TryComp<HandsComponent>(user, out var hands))
         {
             if (!quiet)
-                _popup.PopupClient(Loc.GetString("wieldable-component-no-hands"), user, user);
+                _popup.PopupEntity(Loc.GetString("wieldable-component-no-hands"), user, user);
             return false;
         }
 
@@ -255,7 +255,7 @@ public abstract partial class SharedWieldableSystem : EntitySystem
         if (!_hands.IsHolding((user, hands), uid, out _))
         {
             if (!quiet)
-                _popup.PopupClient(Loc.GetString("wieldable-component-not-in-hands", ("item", uid)), user, user);
+                _popup.PopupEntity(Loc.GetString("wieldable-component-not-in-hands", ("item", uid)), user, user);
             return false;
         }
 
@@ -265,7 +265,7 @@ public abstract partial class SharedWieldableSystem : EntitySystem
             {
                 var message = Loc.GetString("wieldable-component-not-enough-free-hands",
                     ("number", component.FreeHandsRequired), ("item", uid));
-                _popup.PopupClient(message, user, user);
+                _popup.PopupEntity(message, user, user);
             }
             return false;
         }
@@ -295,7 +295,7 @@ public abstract partial class SharedWieldableSystem : EntitySystem
         if (attemptEv.Cancelled)
         {
             if (attemptEv.Message != null)
-                _popup.PopupClient(attemptEv.Message, user, user);
+                _popup.PopupEntity(attemptEv.Message, user, user);
             return false;
         }
 
@@ -356,7 +356,7 @@ public abstract partial class SharedWieldableSystem : EntitySystem
             if (attemptEv.Cancelled)
             {
                 if (attemptEv.Message != null)
-                    _popup.PopupClient(attemptEv.Message, user, user);
+                    _popup.PopupEntity(attemptEv.Message, user, user);
                 return false;
             }
         }

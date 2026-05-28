@@ -61,7 +61,7 @@ public sealed partial class CprSystem : EntitySystem
         {
             if (_woundable.TryWound((ent, woundable), ent.Comp.Wound, unique: true, refreshDamage: true))
             {
-                _popup.PopupClient(
+                _popup.PopupEntity(
                     Loc.GetString(ent.Comp.WoundPopup, ("target", Identity.Entity(ent, EntityManager))),
                     ent.Owner,
                     args.User,

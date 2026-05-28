@@ -339,7 +339,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         {
             if (attemptEv.Message != null)
             {
-                PopupSystem.PopupClient(attemptEv.Message, gun, user);
+                PopupSystem.PopupEntity(attemptEv.Message, gun, user);
             }
             gun.Comp.BurstActivated = false;
             gun.Comp.BurstShotsCount = 0;

@@ -92,7 +92,7 @@ public abstract partial class SharedInternalsSystem : EntitySystem
             }
             else
             {
-                _popupSystem.PopupClient(message, target, user, PopupType.Medium);
+                _popupSystem.PopupEntity(message, target, user, PopupType.Medium);
             }
 // ES END
             return false;
@@ -112,7 +112,7 @@ public abstract partial class SharedInternalsSystem : EntitySystem
             }
             else
             {
-                _popupSystem.PopupClient(message, target, user, PopupType.Medium);
+                _popupSystem.PopupEntity(message, target, user, PopupType.Medium);
             }
 // ES END
             return false;

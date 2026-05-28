@@ -16,6 +16,6 @@ public sealed partial class PopupOnAppliedStatusEffectSystem : EntitySystem
 
     private void OnStatusEffectApplied(Entity<PopupOnAppliedStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
     {
-        _popup.PopupClient(Loc.GetString(ent.Comp.Message), args.Target, args.Target, ent.Comp.VisualType);
+        _popup.PopupEntity(Loc.GetString(ent.Comp.Message), args.Target, args.Target, ent.Comp.VisualType);
     }
 }

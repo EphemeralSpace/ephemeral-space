@@ -72,7 +72,7 @@ namespace Content.Server.Popups
             RaiseNetworkEvent(new PopupEntityEvent(message, type, Timing.CurTick, GetNetEntity(uid)), filter);
         }
 
-        public override void PopupEntity(string? message, EntityUid uid, EntityUid recipient, PopupType type = PopupType.Small)
+        public override void PopupEntity(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)
         {
             if (message == null)
                 return;

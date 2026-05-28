@@ -80,7 +80,7 @@ public sealed partial class ESEmagSystem : EntitySystem
         if (_charges.IsEmpty(used.Owner))
         {
             if (user != null)
-                _popup.PopupClient(Loc.GetString("emag-no-charges"), user.Value, user.Value);
+                _popup.PopupEntity(Loc.GetString("emag-no-charges"), user.Value, user.Value);
             return false;
         }
 

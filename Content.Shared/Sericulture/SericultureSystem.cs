@@ -74,7 +74,7 @@ public abstract partial class SharedSericultureSystem : EntitySystem
                 _hungerSystem.GetHunger(hungerComp) - comp.HungerCost,
                 hungerComp))
         {
-            _popupSystem.PopupClient(Loc.GetString(comp.PopupText), uid, uid);
+            _popupSystem.PopupEntity(Loc.GetString(comp.PopupText), uid, uid);
             return;
         }
 
@@ -102,7 +102,7 @@ public abstract partial class SharedSericultureSystem : EntitySystem
                 _hungerSystem.GetHunger(hungerComp) - comp.HungerCost,
                 hungerComp))
         {
-            _popupSystem.PopupClient(Loc.GetString(comp.PopupText), uid, uid);
+            _popupSystem.PopupEntity(Loc.GetString(comp.PopupText), uid, uid);
             return;
         }
 

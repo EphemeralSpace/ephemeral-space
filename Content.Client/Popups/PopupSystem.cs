@@ -183,7 +183,7 @@ namespace Content.Client.Popups
             PopupCoordinates(message, coordinates, type);
         }
 
-        public override void PopupEntity(string? message, EntityUid uid, EntityUid recipient, PopupType type = PopupType.Small)
+        public override void PopupEntity(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)
         {
             if (_playerManager.LocalEntity == recipient)
                 PopupEntity(message, uid, type);
