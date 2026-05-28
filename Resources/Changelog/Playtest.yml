@@ -345,3 +345,9 @@ Entries:
       message: Secretaries can no longer get objectives to assist non-crew masks.
   id: 43
   time: '2026-05-27T21:48:24.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Characters now generate with facial hair again.
+  id: 44
+  time: '2026-05-28T23:20:23.0000000+00:00'
