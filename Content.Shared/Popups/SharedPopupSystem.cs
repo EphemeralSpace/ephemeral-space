@@ -170,7 +170,15 @@ namespace Content.Shared.Popups
             EntityUid? recipient,
             PopupType type = PopupType.Small)
         {
-            // TODO: figure this thing out
+            if (recipient.HasValue)
+            {
+                PopupEntity(othersMessage, uid, Filter.PvsExcept(recipient.Value), true, type);
+                PopupEntity(recipientMessage, uid, recipient.Value, type);
+            }
+            else
+            {
+                PopupEntity(othersMessage, uid, type);
+            }
         }
     }
 

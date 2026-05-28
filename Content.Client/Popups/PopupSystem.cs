@@ -109,6 +109,10 @@ namespace Content.Client.Popups
         #region Abstract Method Implementations
         public override void PopupCoordinates(string? message, EntityCoordinates coordinates, PopupType type = PopupType.Small)
         {
+            if (!Timing.IsFirstTimePredicted || message is null)
+                return;
+
+            _predictionInstances.Add(new PopupCoordinatesEvent.PredictionInstance(message, type, Timing.CurTick, GetNetCoordinates(coordinates)));
             PopupMessage(message, type, coordinates, null, true);
         }
 
@@ -221,6 +225,10 @@ namespace Content.Client.Popups
 
         private void OnPopupCoordinatesEvent(PopupCoordinatesEvent ev)
         {
+            var instance = new PopupCoordinatesEvent.PredictionInstance(ev.Message, ev.Type, ev.Tick, ev.Coordinates);
+            if (_predictionInstances.Remove(instance))
+                return;
+
             PopupMessage(ev.Message, ev.Type, GetCoordinates(ev.Coordinates), null, false);
         }
 
