@@ -95,7 +95,7 @@ public abstract partial class SharedVendingMachineSystem
         var othersMessage = Loc.GetString("vending-machine-restock-start-others",
             ("user", Identity.Entity(args.User, EntityManager)),
             ("target", target));
-        Popup.PopupPredicted(selfMessage, othersMessage, target, args.User, PopupType.Medium);
+        Popup.PopupEntity(selfMessage, othersMessage, target, args.User, PopupType.Medium);
 
 
         if (!Timing.IsFirstTimePredicted)
@@ -130,7 +130,7 @@ public abstract partial class SharedVendingMachineSystem
         var othersMessage = Loc.GetString("vending-machine-restock-done-others",
             ("user", Identity.Entity(args.User, EntityManager)),
             ("target", ent));
-        Popup.PopupPredicted(userMessage, othersMessage, ent, args.User, PopupType.Medium);
+        Popup.PopupEntity(userMessage, othersMessage, ent, args.User, PopupType.Medium);
 
         Audio.PlayPredicted(restockComponent.SoundRestockDone, ent, args.User);
 

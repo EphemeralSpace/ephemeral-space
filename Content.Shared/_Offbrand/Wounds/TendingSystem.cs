@@ -104,7 +104,7 @@ public sealed partial class TendingSystem : EntitySystem
 
         if (differentTarget)
         {
-            _popup.PopupPredicted(
+            _popup.PopupEntity(
                 Loc.GetString(ent.Comp.UserPopup, ("target", Identity.Entity(target, EntityManager)), ("tending", ent), ("wound", foundWound)),
                 Loc.GetString(ent.Comp.OtherPopup, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)), ("tending", ent), ("wound", foundWound)),
                 target,

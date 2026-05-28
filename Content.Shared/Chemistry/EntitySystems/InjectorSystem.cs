@@ -484,7 +484,7 @@ public sealed partial class InjectorSystem : EntitySystem
         {
             var userMessage = Loc.GetString("injector-component-blocked-user");
             var otherMessage = Loc.GetString("injector-component-blocked-other", ("target", target), ("user", user));
-            _popup.PopupPredicted(userMessage, otherMessage, target, user, PopupType.SmallCaution);
+            _popup.PopupEntity(userMessage, otherMessage, target, user, PopupType.SmallCaution);
             return true;
         }
 

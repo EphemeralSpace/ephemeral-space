@@ -122,8 +122,7 @@ namespace Content.Shared.Popups
         /// Variant of <see cref="PopupPredicted(string?, EntityUid, EntityUid?, PopupType)"/> that displays <paramref name="recipientMessage"/>
         /// to the recipient and <paramref name="othersMessage"/> to everyone else in PVS range.
         /// </summary>
-        // TODO: this method should be renamed
-        public void PopupPredicted(string? recipientMessage,
+        public void PopupEntity(string? recipientMessage,
             string? othersMessage,
             EntityUid uid,
             EntityUid? recipient,

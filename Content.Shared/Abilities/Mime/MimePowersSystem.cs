@@ -104,7 +104,7 @@ public sealed partial class MimePowersSystem : EntitySystem
 
         var messageSelf = Loc.GetString("mime-invisible-wall-popup-self", ("mime", Identity.Entity(ent.Owner, EntityManager)));
         var messageOthers = Loc.GetString("mime-invisible-wall-popup-others", ("mime", Identity.Entity(ent.Owner, EntityManager)));
-        _popupSystem.PopupPredicted(messageSelf, messageOthers, ent, ent);
+        _popupSystem.PopupEntity(messageSelf, messageOthers, ent, ent);
 
         // Make sure we set the invisible wall to despawn properly
         PredictedSpawnAtPosition(ent.Comp.WallPrototype, _turf.GetTileCenter(tile.Value));

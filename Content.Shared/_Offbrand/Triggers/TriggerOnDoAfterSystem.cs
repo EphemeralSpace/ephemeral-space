@@ -62,7 +62,7 @@ public sealed partial class TriggerOnDoAfterSystem : EntitySystem
         {
             if (trigger.Comp.UserCompleted is { } userCompleted && trigger.Comp.OtherCompleted is { } otherCompleted)
             {
-                _popup.PopupPredicted(
+                _popup.PopupEntity(
                     Loc.GetString(userCompleted, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     Loc.GetString(otherCompleted, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     target,
@@ -74,7 +74,7 @@ public sealed partial class TriggerOnDoAfterSystem : EntitySystem
         {
             if (trigger.Comp.SelfUserCompleted is { } selfUserCompleted && trigger.Comp.SelfOtherCompleted is { } selfOtherCompleted)
             {
-                _popup.PopupPredicted(
+                _popup.PopupEntity(
                     Loc.GetString(selfUserCompleted, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     Loc.GetString(selfOtherCompleted, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     target,
@@ -157,7 +157,7 @@ public sealed partial class TriggerOnDoAfterSystem : EntitySystem
         {
             if (trigger.Comp.UserStarted is { } userStarted && trigger.Comp.OtherStarted is { } otherStarted)
             {
-                _popup.PopupPredicted(
+                _popup.PopupEntity(
                     Loc.GetString(userStarted, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     Loc.GetString(otherStarted, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     target,
@@ -169,7 +169,7 @@ public sealed partial class TriggerOnDoAfterSystem : EntitySystem
         {
             if (trigger.Comp.SelfUserStarted is { } selfUserStarted && trigger.Comp.SelfOtherStarted is { } selfOtherStarted)
             {
-                _popup.PopupPredicted(
+                _popup.PopupEntity(
                     Loc.GetString(selfUserStarted, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     Loc.GetString(selfOtherStarted, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     target,

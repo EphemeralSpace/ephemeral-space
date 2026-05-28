@@ -31,7 +31,7 @@ public sealed partial class CprSystem : EntitySystem
 
     private void TryStartCpr(Entity<CprTargetComponent> ent, EntityUid user)
     {
-        _popup.PopupPredicted(
+        _popup.PopupEntity(
             Loc.GetString(ent.Comp.UserPopup, ("target", Identity.Entity(ent, EntityManager))),
             Loc.GetString(ent.Comp.OtherPopup, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(ent, EntityManager))),
             ent,
