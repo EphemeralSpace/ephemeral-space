@@ -87,16 +87,7 @@ namespace Content.Shared.Popups
             => PopupEntity(message, uid, type);
 
         /// <summary>
-        /// Variant of <see cref="PopupEntity(string, EntityUid, EntityUid, PopupType)"/> for use with prediction. The local client will show
-        /// the popup to the recipient, and the server will show it to every other player in PVS range. If recipient is null, the local client
-        /// will do nothing and the server will show the message to every player in PVS range.
-        /// </summary>
-        [Obsolete]
-        public void PopupPredicted(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)
-            => PopupEntity(message, uid, type);
-
-        /// <summary>
-        /// Variant of <see cref="PopupPredicted(string?, EntityUid, EntityUid?, PopupType)"/> that displays <paramref name="recipientMessage"/>
+        /// Variant of <see cref="PopupEntity(string?, EntityUid, PopupType)"/> that displays <paramref name="recipientMessage"/>
         /// to the recipient and <paramref name="othersMessage"/> to everyone else in PVS range.
         /// </summary>
         public void PopupEntity(string? recipientMessage,

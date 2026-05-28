@@ -470,7 +470,7 @@ public sealed partial class InjectorSystem : EntitySystem
         {
             // Clowns will now also fumble Syringes.
             if (selfEv.OverrideMessage != null)
-                _popup.PopupPredicted(selfEv.OverrideMessage, user, user);
+                _popup.PopupEntity(selfEv.OverrideMessage, user);
             return true;
         }
 

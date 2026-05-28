@@ -74,7 +74,7 @@ public sealed partial class ESAddMaskOnUseSystem : EntitySystem
 
         _doafter.TryStartDoAfter(doAfterArgs);
 
-        _popup.PopupPredicted(Loc.GetString(ent.Comp.UsingMessage), ent, ent, PopupType.MediumCaution);
+        _popup.PopupEntity(Loc.GetString(ent.Comp.UsingMessage), ent, PopupType.MediumCaution);
     }
 
     private void OnDoAfter(Entity<ESAddMaskOnUseComponent> ent, ref ESAddMaskOnUseDoAfterEvent args)

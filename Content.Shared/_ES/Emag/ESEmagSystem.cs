@@ -93,10 +93,9 @@ public sealed partial class ESEmagSystem : EntitySystem
         _charges.TryUseCharge(used.Owner);
         if (user.HasValue)
         {
-            _popup.PopupPredicted(
+            _popup.PopupEntity(
                 Loc.GetString("emag-success", ("target", Identity.Entity(target, EntityManager))),
                 user.Value,
-                user,
                 PopupType.Medium);
         }
 

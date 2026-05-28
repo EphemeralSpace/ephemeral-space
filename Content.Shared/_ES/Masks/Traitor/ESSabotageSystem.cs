@@ -85,7 +85,7 @@ public sealed partial class ESSabotageSystem : EntitySystem
                     }))
                     return;
 
-                _popup.PopupPredicted(Loc.GetString("es-sabotage-popup-starting"), ent, user, PopupType.SmallCaution);
+                _popup.PopupEntity(Loc.GetString("es-sabotage-popup-starting"), ent, PopupType.SmallCaution);
             },
         });
     }
