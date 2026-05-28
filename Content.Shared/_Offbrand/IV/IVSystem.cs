@@ -214,7 +214,7 @@ public sealed partial class IVSystem : EntitySystem
 
         if (_itemSlots.GetItemOrNull(source, source.Comp.SlotName) is not { } contained)
         {
-            _popup.PopupPredictedCursor(Loc.GetString(source.Comp.NoBagInserted), user);
+            _popup.PopupCursor(Loc.GetString(source.Comp.NoBagInserted), user);
             return;
         }
 

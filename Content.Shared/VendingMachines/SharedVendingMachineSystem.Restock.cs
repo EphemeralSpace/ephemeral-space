@@ -16,7 +16,7 @@ public abstract partial class SharedVendingMachineSystem
     {
         if (!TryComp<WiresPanelComponent>(target, out var panel) || !panel.Open)
         {
-            Popup.PopupPredictedCursor(Loc.GetString("vending-machine-restock-needs-panel-open",
+            Popup.PopupCursor(Loc.GetString("vending-machine-restock-needs-panel-open",
                     ("this", uid),
                     ("user", user),
                     ("target", target)),
@@ -39,7 +39,7 @@ public abstract partial class SharedVendingMachineSystem
 
         if (!component.CanRestock.Contains(machineComponent.PackPrototypeId))
         {
-            Popup.PopupPredictedCursor(Loc.GetString("vending-machine-restock-invalid-inventory", ("this", uid), ("user", user),
+            Popup.PopupCursor(Loc.GetString("vending-machine-restock-invalid-inventory", ("this", uid), ("user", user),
                 ("target", target)), user);
 
             return false;
