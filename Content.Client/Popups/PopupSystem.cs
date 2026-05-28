@@ -150,9 +150,10 @@ namespace Content.Client.Popups
 
         public override void PopupCursor(string? message, PopupType type = PopupType.Small)
         {
-            if (!_timing.IsFirstTimePredicted)
+            if (!_timing.IsFirstTimePredicted || message is null)
                 return;
 
+            _predictionInstances.Add(new PopupCursorEvent.PredictionInstance(message, type, Timing.CurTick));
             PopupCursorInternal(message, type, true);
         }
 
@@ -211,6 +212,10 @@ namespace Content.Client.Popups
 
         private void OnPopupCursorEvent(PopupCursorEvent ev)
         {
+            var instance = new PopupCursorEvent.PredictionInstance(ev.Message, ev.Type, ev.Tick);
+            if (_predictionInstances.Remove(instance))
+                return;
+
             PopupCursorInternal(ev.Message, ev.Type, false);
         }
 

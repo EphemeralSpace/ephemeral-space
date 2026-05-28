@@ -17,7 +17,7 @@ namespace Content.Shared.Popups
         /// </summary>
         /// <param name="message">The message to display.</param>
         /// <param name="type">Used to customize how this popup should appear visually.</param>
-        [Obsolete]
+        [Obsolete] // TODO: this method should only be on the client
         public abstract void PopupCursor(string? message, PopupType type = PopupType.Small);
 
         /// <summary>
@@ -194,7 +194,10 @@ namespace Content.Shared.Popups
         }
     }
 
-    public interface IPopupPredictionInstance;
+    public interface IPopupPredictionInstance
+    {
+        GameTick Tick { get; }
+    }
 
     /// <summary>
     ///     Network event for displaying a popup on the user's cursor.
@@ -206,7 +209,7 @@ namespace Content.Shared.Popups
         {
         }
 
-        public record struct PredictionInstance(string Message, PopupType Type, GameTick Tick) : IPopupPredictionInstance;
+        public readonly record struct PredictionInstance(string Message, PopupType Type, GameTick Tick) : IPopupPredictionInstance;
     }
 
     /// <summary>
@@ -222,7 +225,7 @@ namespace Content.Shared.Popups
             Coordinates = coordinates;
         }
 
-        public record struct PredictionInstance(string Message, PopupType Type, GameTick Tick, NetCoordinates Coordinates) : IPopupPredictionInstance;
+        public readonly record struct PredictionInstance(string Message, PopupType Type, GameTick Tick, NetCoordinates Coordinates) : IPopupPredictionInstance;
     }
 
     /// <summary>
@@ -238,7 +241,7 @@ namespace Content.Shared.Popups
             Uid = uid;
         }
 
-        public record struct PredictionInstance(string Message, PopupType Type, GameTick Tick, NetEntity Uid) : IPopupPredictionInstance;
+        public readonly record struct PredictionInstance(string Message, PopupType Type, GameTick Tick, NetEntity Uid) : IPopupPredictionInstance;
     }
 
     /// <summary>
