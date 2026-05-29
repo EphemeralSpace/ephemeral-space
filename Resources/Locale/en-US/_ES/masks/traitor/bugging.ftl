@@ -1,1 +1,1 @@
-es-bug-objective-title = Bug a {CAPITALIZE($department)} APC
+es-bug-objective-title = Bug {INDEFINITE($department)} {CAPITALIZE($department)} APC

@@ -13,6 +13,10 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
 
+    // TODO: This is mostly just a bad hack for the fact that you can't have a nullable value that's easily editable in VV.
+    // I would like to not go insane editing all the APCs for this until we have an actual system that does it semi-reasonably.
+    private static readonly ProtoId<AccessGroupPrototype> IgnoreDepartment = "AllAccess";
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -28,8 +32,8 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
         var query = EntityQueryEnumerator<ESTraitorBuggableComponent>();
         while (query.MoveNext(out var comp))
         {
-            if (comp.Department.HasValue)
-                options.Add(comp.Department.Value);
+            if (comp.Department != IgnoreDepartment)
+                options.Add(comp.Department);
         }
 
         if (options.Count == 0)

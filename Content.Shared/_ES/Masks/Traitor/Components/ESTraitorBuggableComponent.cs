@@ -9,5 +9,5 @@ namespace Content.Shared._ES.Masks.Traitor.Components;
 public sealed partial class ESTraitorBuggableComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public ProtoId<AccessGroupPrototype>? Department;
+    public ProtoId<AccessGroupPrototype> Department = "AllAccess";
 }
