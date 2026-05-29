@@ -97,7 +97,7 @@
         all:
         - id: MedkitFilled
           amount: 2
-        - id: ESMedkitStabilizationFilled
+        - id: MedkitO2Filled
         - id: Gauze
           amount: 2
         - id: Bloodpack
@@ -115,22 +115,9 @@
     containers:
       entity_storage:
         all:
-        - id: ESMedkitBurnFilled
-        - id: ESMedkitBruteFilled
-        - id: ESMedkitRadiationFilled
-
-- type: entity
-  parent: CrateEmergencyAdvancedKit
-  id: ESCrateEmergencyAdvancedKits
-  name: advanced medical kit
-  description: Crate filled with two advanced medical kits.
-  suffix: ES
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-          id: MedkitAdvancedFilled
-          amount: 2
+        - id: MedkitBurnFilled
+        - id: MedkitBruteFilled
+        - id: MedkitRadiationFilled
 
 #Security
 - type: entity

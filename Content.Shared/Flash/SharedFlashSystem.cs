@@ -128,7 +128,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
         {
             _appearance.SetData(ent.Owner, FlashVisuals.Burnt, true);
             _tag.AddTag(ent.Owner, TrashTag);
-            _popup.PopupClient(Loc.GetString("flash-component-becomes-empty"), user);
+            _popup.PopupCursor(Loc.GetString("flash-component-becomes-empty"), user);
         }
 
         return true;

@@ -80,7 +80,7 @@ public abstract partial class ESSharedAnomalySystem : EntitySystem
                 {
                     SetProbeSignal(ent, signal);
                     _sparks.DoSparks(ent.Owner, 1, user: user);
-                    _popup.PopupPredicted(Loc.GetString("es-anomaly-probe-popup-freq-set", ("type", GetSignalString(Loc, signal))), ent, user);
+                    _popup.PopupEntity(Loc.GetString("es-anomaly-probe-popup-freq-set", ("type", GetSignalString(Loc, signal))), ent);
                 },
             };
             args.Verbs.Add(v);
@@ -141,7 +141,7 @@ public abstract partial class ESSharedAnomalySystem : EntitySystem
 
         _sparks.DoSparks(ent, user: args.User);
         _audio.PlayPredicted(ent.Comp.CompleteSound, ent, args.User);
-        _popup.PopupPredicted(Loc.GetString("es-anomaly-probe-completed-probe"), target, args.User, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString("es-anomaly-probe-completed-probe"), target, PopupType.Medium);
         var query = EntityQueryEnumerator<ESAnomalyConsoleComponent>();
         while (query.MoveNext(out var comp))
         {
@@ -196,7 +196,7 @@ public abstract partial class ESSharedAnomalySystem : EntitySystem
         Dirty(ent);
         UpdateConsolesUi();
 
-        _popup.PopupPredicted(Loc.GetString("anomaly-popup-correct"), ent, user, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString("anomaly-popup-correct"), ent, PopupType.Medium);
 
         if (ent.Comp.CodeIndex >= ent.Comp.CodeLength)
         {
@@ -228,7 +228,7 @@ public abstract partial class ESSharedAnomalySystem : EntitySystem
     public void PulseAnomalyRadiation(Entity<ESPortalAnomalyComponent> ent, EntityUid? user)
     {
         _audio.PlayPredicted(ent.Comp.RadPulseSound, ent, user);
-        _popup.PopupPredicted(Loc.GetString("anomaly-popup-fail"), ent, user, PopupType.MediumCaution);
+        _popup.PopupEntity(Loc.GetString("anomaly-popup-fail"), ent, PopupType.MediumCaution);
         PredictedSpawnAttachedTo(ent.Comp.RadiationEntity, Transform(ent).Coordinates);
         ent.Comp.NextSignalTime = _timing.CurTime + TimeSpan.FromSeconds(3);
         RaiseNetworkEvent(new ESAnomalyRadiationAnimationEvent

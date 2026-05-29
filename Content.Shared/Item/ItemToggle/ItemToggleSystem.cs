@@ -174,7 +174,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
             if (showPopup && attempt.Popup != null && user != null)
             {
                 if (predicted)
-                    _popup.PopupClient(attempt.Popup, uid, user.Value);
+                    _popup.PopupEntity(attempt.Popup, uid, user.Value);
                 else
                     _popup.PopupEntity(attempt.Popup, uid, user.Value);
             }
@@ -216,7 +216,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
             if (showPopup && attempt.Popup != null && user != null)
             {
                 if (predicted)
-                    _popup.PopupClient(attempt.Popup, uid, user.Value);
+                    _popup.PopupEntity(attempt.Popup, uid, user.Value);
                 else
                     _popup.PopupEntity(attempt.Popup, uid, user.Value);
             }
@@ -236,7 +236,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
         {
             _audio.PlayPredicted(soundToPlay, uid, user);
             if (showPopup && ent.Comp.PopupActivate != null && user != null)
-                _popup.PopupClient(Loc.GetString(ent.Comp.PopupActivate), user.Value, user.Value);
+                _popup.PopupEntity(Loc.GetString(ent.Comp.PopupActivate), user.Value, user.Value);
         }
         else
         {
@@ -264,7 +264,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
         {
             _audio.PlayPredicted(soundToPlay, uid, user);
             if (showPopup && ent.Comp.PopupDeactivate != null && user != null)
-                _popup.PopupClient(Loc.GetString(ent.Comp.PopupDeactivate), user.Value, user.Value);
+                _popup.PopupEntity(Loc.GetString(ent.Comp.PopupDeactivate), user.Value, user.Value);
         }
         else
         {

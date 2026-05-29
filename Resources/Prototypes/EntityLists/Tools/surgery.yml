@@ -3,8 +3,8 @@
   entities:
   - Cautery
   - Drill
-  - ScalpelLaser
+  - Scalpel
   - Retractor
   - Hemostat
-  - SawAdvanced
+  - SawElectric
 # - Drapes

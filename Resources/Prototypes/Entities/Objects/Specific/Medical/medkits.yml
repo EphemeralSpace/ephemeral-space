@@ -8,7 +8,7 @@
     sprite: Objects/Specific/Medical/firstaidkits.rsi
     state: firstaid
   - type: Storage
-    maxItemSize: Small
+    maxItemSize: Normal
     grid:
     - 0,0,3,1
   - type: Item
@@ -67,17 +67,6 @@
     heldPrefix: brutekit
 
 - type: entity
-  name: advanced first aid kit
-  description: "An advanced kit to help deal with advanced wounds."
-  parent: Medkit
-  id: MedkitAdvanced
-  components:
-  - type: Sprite
-    state: advkit
-  - type: Item
-    heldPrefix: advkit
-
-- type: entity
   name: radiation treatment kit
   description: "If you took your Rad-X you wouldn't need this."
   parent: Medkit
@@ -87,16 +76,3 @@
     state: radkit
   - type: Item
     heldPrefix: radkit
-
-- type: entity
-  name: combat medical kit
-  description: "For the big weapons among us."
-  parent: Medkit
-  id: MedkitCombat
-  components:
-  - type: Sprite
-    state: blackkit
-  - type: Item
-    heldPrefix: blackkit
-    size: Normal
-
