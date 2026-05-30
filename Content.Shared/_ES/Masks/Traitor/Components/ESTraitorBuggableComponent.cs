@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.Core.Timer.Components;
 using Content.Shared.Access;
 using Content.Shared.DoAfter;
@@ -29,12 +30,15 @@ public sealed partial class ESTraitorBuggableComponent : Component
     [DataField]
     public float BuggedSparkChance = 1f / 60;
 
-    [ViewVariables]
+    [ViewVariables, MemberNotNullWhen(true, nameof(Timer))]
     public bool IsBugged => Timer != null;
 }
 
 [Serializable, NetSerializable]
 public sealed partial class ESPlantTraitorBugDoAfterEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class ESRemoveTraitorBugDoAfterEvent : SimpleDoAfterEvent;
 
 [Serializable, NetSerializable]
 public sealed partial class ESTraitorBugTimerEvent : ESEntityTimerEvent;

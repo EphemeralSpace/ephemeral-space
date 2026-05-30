@@ -1,3 +1,4 @@
+using Content.Shared._ES.Breakable;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Masks.Traitor.Components;
 using Content.Shared._ES.Objectives;
@@ -7,6 +8,7 @@ using Content.Shared.Access;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
 using Content.Shared.DoAfter;
+using Content.Shared.Examine;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
@@ -22,6 +24,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
     [Dependency] private INetManager _net = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ESBreakableSystem _breakable = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
@@ -38,16 +41,59 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
     {
         base.Initialize();
 
+        SubscribeLocalEvent<ESTraitorBuggableComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<ESTraitorBuggableComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
         SubscribeLocalEvent<ESTraitorBuggableComponent, ESPlantTraitorBugDoAfterEvent>(OnPlantTraitorBugDoAfter);
+        SubscribeLocalEvent<ESTraitorBuggableComponent, ESRemoveTraitorBugDoAfterEvent>(OnRemoveTraitorBugDoAfter);
         SubscribeLocalEvent<ESTraitorBuggableComponent, ESTraitorBugTimerEvent>(OnTraitorBugTimer);
+        SubscribeLocalEvent<ESTraitorBuggableComponent, ESBrokenStateChanged>(OnBrokenStateChanged);
+    }
+
+    private void OnExamined(Entity<ESTraitorBuggableComponent> ent, ref ExaminedEvent args)
+    {
+        using (args.PushGroup(nameof(ESTraitorBuggableComponent)))
+        {
+            if (ent.Comp.IsBugged && args.IsInDetailsRange)
+            {
+                var progress = _entityTimer.GetTimerProgress(ent.Comp.Timer.Value);
+                args.PushMarkup(Loc.GetString("es-sabotage-progress-examine-text", ("progress", (int) (progress * 100))));
+            }
+
+            if (CanBug(ent.AsNullable(), args.Examiner))
+            {
+                args.PushMarkup(Loc.GetString("es-sabotage-examine-text"));
+            }
+        }
     }
 
     private void OnGetVerbs(Entity<ESTraitorBuggableComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
         if (ent.Comp.IsBugged)
         {
-            // TODO: remove bug verb
+            var user = args.User;
+            args.Verbs.Add(new AlternativeVerb
+            {
+                Priority = 2,
+                Text = Loc.GetString("es-remove-bug-verb-text"),
+                DoContactInteraction = true,
+                Act = () =>
+                {
+                    if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager,
+                            user,
+                            ent.Comp.BugPlantTime,
+                            new ESRemoveTraitorBugDoAfterEvent(),
+                            eventTarget: ent,
+                            ent)
+                        {
+                            DuplicateCondition = DuplicateConditions.SameEvent,
+                            BreakOnMove = true,
+                            BreakOnDamage = true,
+                        }))
+                        return;
+
+                    _popup.PopupEntity(Loc.GetString("es-remove-bug-popup"), ent);
+                },
+            });
         }
 
         if (CanBug(ent.Owner, args.User))
@@ -83,7 +129,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
 
     private void OnPlantTraitorBugDoAfter(Entity<ESTraitorBuggableComponent> ent, ref ESPlantTraitorBugDoAfterEvent args)
     {
-        if (args.Cancelled)
+        if (args.Cancelled || !CanBug(ent.AsNullable(), args.User))
             return;
 
         _popup.PopupEntity(Loc.GetString("es-bug-popup-planted"), ent, args.User);
@@ -95,12 +141,22 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
         args.Handled = true;
     }
 
+    private void OnRemoveTraitorBugDoAfter(Entity<ESTraitorBuggableComponent> ent, ref ESRemoveTraitorBugDoAfterEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        CancelBug(ent.AsNullable());
+        args.Handled = true;
+    }
+
     private void OnTraitorBugTimer(Entity<ESTraitorBuggableComponent> ent, ref ESTraitorBugTimerEvent args)
     {
         ent.Comp.Timer = null;
         Dirty(ent);
 
         // TODO: greytide virus goes here.
+        _sparks.DoSparks(ent);
 
         // Globally increment all matching bug objectives. Maybe this should be user, specific, but it doesn't matter right now.
         foreach (var objective in ObjectivesSys.GetObjectives<ESTraitorBugObjectiveComponent>())
@@ -108,6 +164,12 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
             if (objective.Comp1.Target == ent.Comp.Department)
                 ObjectivesSys.AdjustObjectiveCounter(objective.Owner);
         }
+    }
+
+    private void OnBrokenStateChanged(Entity<ESTraitorBuggableComponent> ent, ref ESBrokenStateChanged args)
+    {
+        if (args.Broken)
+            CancelBug(ent.AsNullable());
     }
 
     protected override void InitializeObjective(Entity<ESTraitorBugObjectiveComponent> ent, ref ESInitializeObjectiveEvent args)
@@ -133,9 +195,22 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
         Dirty(ent);
     }
 
+    public void CancelBug(Entity<ESTraitorBuggableComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        PredictedDel(ent.Comp.Timer);
+        ent.Comp.Timer = null;
+        Dirty(ent);
+    }
+
     public bool CanBug(Entity<ESTraitorBuggableComponent?> ent, EntityUid user)
     {
         if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        if (_breakable.IsBroken(ent.Owner))
             return false;
 
         if (ent.Comp.Department == IgnoreDepartment)
@@ -160,6 +235,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
     {
         base.Update(frameTime);
 
+        // We don't bother predicting this. It wouldn't matter in any case.
         if (!_net.IsServer)
             return;
 
