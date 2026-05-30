@@ -351,3 +351,12 @@ Entries:
       message: Characters now generate with facial hair again.
   id: 44
   time: '2026-05-28T23:20:23.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Traitors now have an objective to bug a department's APC. After the
+        hacking bug finishes, the GreyTide virus will be unleashed. Crew can
+        disarm this by removing the bug if they notice it's suspicious sparking.
+  id: 45
+  time: '2026-05-30T22:24:15.0000000+00:00'
