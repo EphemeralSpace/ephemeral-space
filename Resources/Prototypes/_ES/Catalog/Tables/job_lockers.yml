@@ -59,7 +59,6 @@
     - id: ClothingBeltSecurity # this belt is supposed to be empty so det doesn't get a batong
     - id: ClothingHeadHatDetGadget
       prob: 0.15
-    - id: ESClothingOuterArmorDetective
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
     - id: ForensicScanner
