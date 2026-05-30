@@ -10,6 +10,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -18,6 +19,7 @@ namespace Content.Shared._ES.Masks.Traitor;
 public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitorBugObjectiveComponent>
 {
     [Dependency] private ISharedAdminManager _admin = default!;
+    [Dependency] private INetManager _net = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
@@ -152,5 +154,23 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
         }
 
         return false;
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (!_net.IsServer)
+            return;
+
+        var query = EntityQueryEnumerator<ESTraitorBuggableComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (!comp.IsBugged)
+                continue;
+
+            if (_random.Prob(comp.BuggedSparkChance * frameTime))
+                _sparks.DoSparks(uid);
+        }
     }
 }

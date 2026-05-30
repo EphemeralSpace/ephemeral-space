@@ -18,10 +18,16 @@ public sealed partial class ESTraitorBuggableComponent : Component
     public TimeSpan BugPlantTime = TimeSpan.FromSeconds(3);
 
     [DataField]
-    public TimeSpan BugDuration = TimeSpan.FromMinutes(1);
+    public TimeSpan BugDuration = TimeSpan.FromMinutes(2.5);
 
     [DataField, AutoNetworkedField]
     public EntityUid? Timer;
+
+    /// <summary>
+    /// Chance (per second) that the bugged entity will spark
+    /// </summary>
+    [DataField]
+    public float BuggedSparkChance = 1f / 60;
 
     [ViewVariables]
     public bool IsBugged => Timer != null;
