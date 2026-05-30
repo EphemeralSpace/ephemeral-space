@@ -42,3 +42,6 @@ public sealed partial class ESRemoveTraitorBugDoAfterEvent : SimpleDoAfterEvent;
 
 [Serializable, NetSerializable]
 public sealed partial class ESTraitorBugTimerEvent : ESEntityTimerEvent;
+
+[ByRefEvent]
+public readonly record struct ESTraitorBugHackedEvent(ProtoId<AccessGroupPrototype> Group);

@@ -68,6 +68,9 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
 
     private void OnGetVerbs(Entity<ESTraitorBuggableComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
+        if (!args.CanAccess)
+            return;
+
         if (ent.Comp.IsBugged)
         {
             var user = args.User;
@@ -155,8 +158,9 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
         ent.Comp.Timer = null;
         Dirty(ent);
 
-        // TODO: greytide virus goes here.
         _sparks.DoSparks(ent);
+        var ev = new ESTraitorBugHackedEvent(ent.Comp.Department);
+        RaiseLocalEvent(ref ev);
 
         // Globally increment all matching bug objectives. Maybe this should be user, specific, but it doesn't matter right now.
         foreach (var objective in ObjectivesSys.GetObjectives<ESTraitorBugObjectiveComponent>())
