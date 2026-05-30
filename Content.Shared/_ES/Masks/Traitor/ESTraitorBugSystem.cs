@@ -83,7 +83,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
                 {
                     if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager,
                             user,
-                            ent.Comp.BugPlantTime,
+                            ent.Comp.BugRemoveTime,
                             new ESRemoveTraitorBugDoAfterEvent(),
                             eventTarget: ent,
                             ent)

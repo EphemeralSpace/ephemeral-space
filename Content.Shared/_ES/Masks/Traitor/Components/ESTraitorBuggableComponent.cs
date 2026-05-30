@@ -16,10 +16,13 @@ public sealed partial class ESTraitorBuggableComponent : Component
     public ProtoId<AccessGroupPrototype> Department = "AllAccess";
 
     [DataField]
+    public TimeSpan BugRemoveTime = TimeSpan.FromSeconds(5);
+
+    [DataField]
     public TimeSpan BugPlantTime = TimeSpan.FromSeconds(3);
 
     [DataField]
-    public TimeSpan BugDuration = TimeSpan.FromMinutes(2.5);
+    public TimeSpan BugDuration = TimeSpan.FromMinutes(5);
 
     [DataField, AutoNetworkedField]
     public EntityUid? Timer;
