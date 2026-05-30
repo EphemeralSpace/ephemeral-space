@@ -19,7 +19,6 @@
   disguisedMaskName: es-news-disguise-traitors
   objectives:
     all:
-    - id: ESObjectiveTraitorBugAPC
     - pick:
         all:
         - id: ESObjectiveTraitorKillRandom
@@ -29,7 +28,8 @@
         - id: ESObjectiveTraitorSabotageIDComputer
         - id: ESObjectiveTraitorSabotageCriminalRecords
         - id: ESObjectiveTraitorSabotageTelecom
-      amount: 4
+      amount: 3
+    - id: ESObjectiveTraitorBugAPC
     - id: ESObjectiveTraitorHackCryptoNukeConsoles
     - id: ESObjectiveTraitorDetonateNuke
 
