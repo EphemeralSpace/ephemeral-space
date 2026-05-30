@@ -28,7 +28,8 @@
         - id: ESObjectiveTraitorSabotageIDComputer
         - id: ESObjectiveTraitorSabotageCriminalRecords
         - id: ESObjectiveTraitorSabotageTelecom
-      amount: 4
+      amount: 3
+    - id: ESObjectiveTraitorBugAPC
     - id: ESObjectiveTraitorHackCryptoNukeConsoles
     - id: ESObjectiveTraitorDetonateNuke
 
