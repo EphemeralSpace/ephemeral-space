@@ -28,6 +28,7 @@ public sealed partial class ESStagehandSystem : EntitySystem
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private RoleSystem _role = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     private static readonly EntProtoId StagehandPrototype = "ESMobStagehand";
     private static readonly EntProtoId ObserverRole = "MindRoleObserver";
@@ -88,9 +89,9 @@ public sealed partial class ESStagehandSystem : EntitySystem
     {
         if (!position.HasValue)
         {
-            if (_gameTicker.GetObserverSpawnPoint() is not { EntityId.Id: > 0 } coords)
+            position = _gameTicker.GetObserverSpawnPoint();
+            if (!IsValidSpawnPosition(position))
                 return null;
-            position = coords;
         }
 
         var name = _player.GetPlayerData(player).UserName;
@@ -109,5 +110,22 @@ public sealed partial class ESStagehandSystem : EntitySystem
         _adminLog.Add(LogType.Mind, $"{ToPrettyString(mind):player} became a stagehand.");
 
         return stagehand;
+    }
+
+    private bool IsValidSpawnPosition(EntityCoordinates? spawnPosition)
+    {
+        if (spawnPosition?.IsValid(EntityManager) != true)
+            return false;
+
+        var mapUid = _transform.GetMap(spawnPosition.Value);
+        var gridUid = spawnPosition?.EntityId;
+        // Test if the map is being deleted
+        if (mapUid == null || TerminatingOrDeleted(mapUid.Value))
+            return false;
+        // Test if the grid is being deleted
+        if (gridUid != null && TerminatingOrDeleted(gridUid.Value))
+            return false;
+
+        return true;
     }
 }

@@ -73,11 +73,11 @@ public sealed partial class MindSystem : SharedMindSystem
         if (!component.GhostOnShutdown || _gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
             return;
 
+        _transform.TryGetMapOrGridCoordinates(uid, out var spawnPosition);
+
         var success = _gameTicker.LobbyEnabled
             ? _ghosts.OnGhostAttempt(mindId, false, forced: true, mind: mind)
-            : mind.UserId.HasValue &&
-              _transform.TryGetMapOrGridCoordinates(uid , out var spawnPosition) &&
-              _stagehand.SpawnStagehand(mind.UserId.Value, spawnPosition) != null;
+            : mind.UserId.HasValue && _stagehand.SpawnStagehand(mind.UserId.Value, spawnPosition) != null;
 
         if (success)
             // Log these to make sure they're not causing the GameTicker round restart bugs...
