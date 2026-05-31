@@ -21,10 +21,10 @@ public sealed partial class ESRadstormThrusterEngineComponent : Component
     public string FuelTankSolutionId = "fuel-tank";
 
     [DataField]
-    public FixedPoint2 MinStartingFuel = 300;
+    public FixedPoint2 MinStartingFuel = 480;
 
     [DataField]
-    public FixedPoint2 MaxStartingFuel = 1200;
+    public FixedPoint2 MaxStartingFuel = 1500;
 
     [DataField]
     public FixedPoint2 FuelConsumptionRate = 0.8f;
