@@ -56,12 +56,12 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
             if (ent.Comp.IsBugged && args.IsInDetailsRange)
             {
                 var progress = _entityTimer.GetTimerProgress(ent.Comp.Timer.Value);
-                args.PushMarkup(Loc.GetString("es-sabotage-progress-examine-text", ("progress", (int) (progress * 100))));
+                args.PushMarkup(Loc.GetString("es-bugging-progress-examine-text", ("progress", (int) (progress * 100))));
             }
 
             if (CanBug(ent.AsNullable(), args.Examiner))
             {
-                args.PushMarkup(Loc.GetString("es-sabotage-examine-text"));
+                args.PushMarkup(Loc.GetString("es-bugging-examine-text"));
             }
         }
     }
