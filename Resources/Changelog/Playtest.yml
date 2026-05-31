@@ -368,3 +368,15 @@ Entries:
       message: The captain no longer starts with a forensic scanner.
   id: 46
   time: '2026-05-30T22:26:56.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed getting stuck in brains when your body explodes.
+    - type: Fix
+      message: Fixed the death toll bell playing when non-players die.
+    - type: Tweak
+      message: >-
+        Traitors now always have 1 kill objective, 2 sabotage objectives, and an
+        APC bug objective.
+  id: 47
+  time: '2026-05-31T19:10:51.0000000+00:00'
