@@ -8,6 +8,9 @@ using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.Database;
 using Content.Shared.Follower;
 using Content.Shared.Mind;
+using Robust.Server.Player;
+using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -20,6 +23,7 @@ public sealed partial class ESStagehandSystem : EntitySystem
 {
     [Dependency] private ESStagehandNotificationsSystem _notif = default!;
     [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private IPlayerManager _player = default!;
     [Dependency] private FollowerSystem _follower = default!;
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private MindSystem _mind = default!;
@@ -75,22 +79,35 @@ public sealed partial class ESStagehandSystem : EntitySystem
         }
     }
 
-    public void SpawnStagehand(ICommonSession player)
+    public EntityUid? SpawnStagehand(ICommonSession player, EntityCoordinates? position = null)
     {
-        if (_gameTicker.GetObserverSpawnPoint() is not { EntityId.Id: > 0 } coords)
-            return;
+        return SpawnStagehand(player.UserId, position);
+    }
+
+    public EntityUid? SpawnStagehand(NetUserId player, EntityCoordinates? position = null)
+    {
+        if (!position.HasValue)
+        {
+            if (_gameTicker.GetObserverSpawnPoint() is not { EntityId.Id: > 0 } coords)
+                return null;
+            position = coords;
+        }
+
+        var name = _player.GetPlayerData(player).UserName;
 
         // Always make a new mind
-        var mind = _mind.CreateMind(player.UserId, player.Name);
+        var mind = _mind.CreateMind(player, name);
         mind.Comp.PreventGhosting = true;
-        _mind.SetUserId(mind, player.UserId);
+        _mind.SetUserId(mind, player);
 
         _role.MindAddRole(mind, ObserverRole);
 
-        var stagehand = SpawnAtPosition(StagehandPrototype, coords);
+        var stagehand = SpawnAtPosition(StagehandPrototype, position.Value);
         _mind.TransferTo(mind, stagehand, mind: mind);
 
-        _notif.SendStagehandNotification(Loc.GetString("es-stagehand-notification-new-stagehand", ("username", player.Name)));
+        _notif.SendStagehandNotification(Loc.GetString("es-stagehand-notification-new-stagehand", ("username", name)));
         _adminLog.Add(LogType.Mind, $"{ToPrettyString(mind):player} became a stagehand.");
+
+        return stagehand;
     }
 }
