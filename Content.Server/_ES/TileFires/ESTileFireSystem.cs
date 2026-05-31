@@ -178,7 +178,7 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
 
         var fire = SpawnAtPosition(proto, coords);
 
-        if (originatingUser.HasValue)
+        if (!TerminatingOrDeleted(originatingUser) && Exists(originatingUser))
         {
             EnsureComp<ESTileFireComponent>(fire).Origin = originatingUser;
             EnsureComp<ESTileFireOriginComponent>(originatingUser.Value).Fires.Add(fire);

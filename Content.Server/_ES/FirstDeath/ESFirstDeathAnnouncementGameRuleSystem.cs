@@ -1,4 +1,5 @@
 using Content.Server.GameTicking.Rules;
+using Content.Server.Mind;
 using Content.Shared._ES.KillTracking.Components;
 using Robust.Server.Audio;
 using Robust.Shared.Player;
@@ -11,6 +12,7 @@ namespace Content.Server._ES.FirstDeath;
 public sealed partial class ESFirstDeathAnnouncementGameRuleSystem : GameRuleSystem<ESFirstDeathAnnouncementGameRuleComponent>
 {
     [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private MindSystem _mind = default!;
 
     public override void Initialize()
     {
@@ -21,6 +23,10 @@ public sealed partial class ESFirstDeathAnnouncementGameRuleSystem : GameRuleSys
 
     private void OnPlayerKilled(ref ESPlayerKilledEvent ev)
     {
+        // don't play for mindless simplemobs
+        if (!_mind.TryGetMind(ev.Killed, out _))
+            return;
+
         // this intentionally triggers on non-player kills also (suicides environment etc)
         var query = EntityQueryEnumerator<ESFirstDeathAnnouncementGameRuleComponent>();
         while (query.MoveNext(out _, out var announcement))
