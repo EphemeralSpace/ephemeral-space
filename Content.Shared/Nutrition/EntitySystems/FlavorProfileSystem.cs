@@ -22,17 +22,14 @@ public sealed partial class FlavorProfileSystem : EntitySystem
     public string GetLocalizedFlavorsMessage(Entity<FlavorProfileComponent?> entity, EntityUid user, Solution? solution)
     {
         HashSet<string> flavors = new();
-        HashSet<string>? ignore = null;
 
         if (Resolve(entity, ref entity.Comp, false))
         {
             flavors = entity.Comp.Flavors;
-            ignore = entity.Comp.IgnoreReagents;
         }
 
-
         if (solution != null)
-            flavors.UnionWith(GetFlavorsFromReagents(solution, FlavorLimit - flavors.Count, ignore));
+            flavors.UnionWith(GetFlavorsFromReagents(solution, FlavorLimit - flavors.Count));
 
         var ev = new FlavorProfileModificationEvent(user, flavors);
 
@@ -85,16 +82,11 @@ public sealed partial class FlavorProfileSystem : EntitySystem
         return Loc.GetString(BackupFlavorMessage);
     }
 
-    private HashSet<string> GetFlavorsFromReagents(Solution solution, int desiredAmount, HashSet<string>? toIgnore = null)
+    private HashSet<string> GetFlavorsFromReagents(Solution solution, int desiredAmount)
     {
         var flavors = new HashSet<string>();
         foreach (var (reagent, quantity) in solution.GetReagentPrototypes(_prototypeManager))
         {
-            if (toIgnore != null && toIgnore.Contains(reagent.ID))
-            {
-                continue;
-            }
-
             if (flavors.Count == desiredAmount)
             {
                 break;

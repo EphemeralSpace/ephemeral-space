@@ -30,7 +30,7 @@
 # For produce that can be immediately eaten
 
 - type: entity
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: FoodProduceBase
   abstract: true
   components:
@@ -1341,7 +1341,7 @@
 # Slices
 
 - type: entity
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: ProduceSliceBase
   abstract: true
   components:
@@ -2389,7 +2389,7 @@
 
 - type: entity
   name: bungo pit
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: FoodBungoPit
   components:
   - type: Sprite
@@ -2686,7 +2686,7 @@
 
 - type: entity
   name: cherry pit
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: TrashCherryPit
   components:
   - type: Sprite

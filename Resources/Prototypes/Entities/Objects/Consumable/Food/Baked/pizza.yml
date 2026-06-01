@@ -3,7 +3,7 @@
 
 - type: entity
   abstract: true
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: FoodPizzaBase
   components:
   - type: FlavorProfile
@@ -34,7 +34,7 @@
     - ReptilianFood
 
 - type: entity
-  parent: FoodInjectableBase # Not sliceable
+  parent: FoodBase # Not sliceable
   id: FoodPizzaSliceBase
   abstract: true
   components:

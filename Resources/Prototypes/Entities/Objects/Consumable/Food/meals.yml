@@ -6,7 +6,7 @@
 
 - type: entity
   abstract: true
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: FoodMealBase
   description: A delicious meal, cooked with love.
   components:

@@ -2,7 +2,7 @@
 # Base
 
 - type: entity
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: FoodBakedBase
   abstract: true
   components:
@@ -22,7 +22,7 @@
 
 - type: entity
   name: muffin
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: FoodBakedMuffin
   description: A delicious and spongy little cake.
   components:

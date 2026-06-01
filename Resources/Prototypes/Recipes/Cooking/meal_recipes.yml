@@ -397,18 +397,6 @@
     FoodDoughCornmeal: 1
 
 - type: microwaveMealRecipe
-  id: RecipeCreamCheeseBread
-  name: cream cheese bread recipe
-  result: FoodBreadCreamcheese
-  time: 15
-  group: Breads
-  reagents:
-    Milk: 5
-  solids:
-    FoodDough: 1
-    FoodCheeseSlice: 2
-
-- type: microwaveMealRecipe
   id: RecipeMeatBread
   name: meat bread recipe
   result: FoodBreadMeat
@@ -439,15 +427,6 @@
   group: Breads
   solids:
     FoodDough: 1
-
-- type: microwaveMealRecipe
-  id: RecipeBreadCotton
-  name: cotton bread recipe
-  result: FoodBreadCotton
-  time: 10
-  group: Moth
-  solids:
-    FoodDoughCotton: 1
 
 - type: microwaveMealRecipe
   id: RecipeSausageBread
@@ -1669,18 +1648,6 @@
     Milk: 10
 
 - type: microwaveMealRecipe
-  id: RecipeDumplings
-  name: dumplings recipe
-  result: FoodBakedDumplings
-  time: 15
-  group: Savory
-  reagents:
-    Water: 10
-    UncookedAnimalProteins: 6
-  solids:
-    FoodDoughSlice: 3
-
-- type: microwaveMealRecipe
   id: RecipeBrownies
   name: brownie recipe
   result: FoodBakedBrownieBatch
@@ -2328,17 +2295,6 @@
   group: Savory
   solids:
     FoodBreadPlainSlice: 2
-    FoodCheeseSlice: 1
-    FoodButterSlice: 1
-
-- type: microwaveMealRecipe
-  id: RecipeGrilledCheeseSandwichCotton
-  name: cotton grilled cheese sandwich recipe
-  result: FoodBakedGrilledCheeseSandwichCotton
-  time: 10
-  group: Moth
-  solids:
-    FoodBreadCottonSlice: 2
     FoodCheeseSlice: 1
     FoodButterSlice: 1
 

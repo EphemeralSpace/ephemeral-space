@@ -2,7 +2,7 @@
 
 - type: entity
   abstract: true
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: FoodBowlBase
   components:
   - type: Item
@@ -559,7 +559,7 @@
     - state: spacelibertyduff
 
 - type: entity
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: FoodJellyAmanita
   name: amanita jelly
   description: It's evil, don't touch it!

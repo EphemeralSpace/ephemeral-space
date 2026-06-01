@@ -3,7 +3,7 @@
 
 - type: entity
   abstract: true
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: FoodPieBase
   components:
   - type: Item
@@ -35,7 +35,7 @@
     - Pie
 
 - type: entity
-  parent: FoodInjectableBase # Not sliceable
+  parent: FoodBase # Not sliceable
   id: FoodPieSliceBase
   abstract: true
   description: A slice of pie. Tasty!

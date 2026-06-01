@@ -1,7 +1,7 @@
 # Base
 
 - type: entity
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: FoodDonkpocketBase
   abstract: true
   components:

@@ -18,16 +18,11 @@
     Drink:
       effects:
       - !type:SatiateThirst
-        factor: 1.0
+        factor: 0.5
         conditions:
           - !type:MetabolizerTypeCondition
             type: [ Human ]
             inverted: true
-    Food:
-      effects:
-        - !type:AdjustReagent
-          reagent: UncookedAnimalProteins
-          amount: 0.1
     Medicine:
       effects:
       - !type:HealthChange

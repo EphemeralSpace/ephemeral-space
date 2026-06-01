@@ -6,21 +6,6 @@
   - type: Sprite
     sprite: Mobs/Species/Diona/organs.rsi
   - type: Organ
-  - type: Edible
-  - type: Extractable
-    grindableSolutionName: organ
-  - type: SolutionContainerManager
-    solutions:
-      organ:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Cellulose
-          Quantity: 5
   - type: FlavorProfile
     flavors:
       - people
@@ -38,19 +23,9 @@
     state: brain
   - type: SolutionContainerManager
     solutions:
-      organ:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
       Lung:
         maxVol: 100
         canReact: False
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: GreyMatter
-          Quantity: 5
 
 - type: entity
   id: OrganDionaEyes
@@ -75,11 +50,6 @@
     solutions:
       stomach:
         maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Cellulose
-          Quantity: 5
   - type: Stomach
   - type: Metabolizer
     maxReagents: 6
@@ -118,19 +88,9 @@
       rateModifier: 100.0
   - type: SolutionContainerManager
     solutions:
-      organ:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
       Lung:
         maxVol: 100
         canReact: False
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Cellulose
-          Quantity: 5
 
 # Organs that turn into nymphs on removal
 - type: entity

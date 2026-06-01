@@ -39,7 +39,7 @@
 
 - type: entity
   abstract: true
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: FoodTacoBase
   components:
   - type: FlavorProfile

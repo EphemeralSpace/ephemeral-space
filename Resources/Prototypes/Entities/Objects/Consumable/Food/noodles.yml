@@ -3,7 +3,7 @@
 
 - type: entity
   abstract: true
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: FoodNoodlesBase
   description: Now that's a nice pasta!
   components:

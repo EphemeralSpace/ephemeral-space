@@ -3125,8 +3125,6 @@
     solutions:
       food:
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
         - ReagentId: Blood
           Quantity: 55
         - ReagentId: Fat
