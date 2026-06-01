@@ -177,21 +177,6 @@
             Quantity: 10
 
 - type: entity
-  id: CigaretteNutriment
-  parent: SoakedCigarette
-  name: Grandma's Christmas Fruitcake
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-          - ReagentId: Nicotine
-            Quantity: 10
-          - ReagentId: Nutriment
-            Quantity: 10
-
-- type: entity
   id: CigaretteBicaridine
   parent: SoakedCigarette
   name: Wet Dog Enhanced Cigarette

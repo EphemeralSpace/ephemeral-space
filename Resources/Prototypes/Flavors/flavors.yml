@@ -215,21 +215,6 @@
   description: flavor-complex-honey
 
 - type: flavor
-  id: nutriment
-  flavorType: Complex
-  description: flavor-complex-nutriment
-
-- type: flavor
-  id: vitamin
-  flavorType: Complex
-  description: flavor-complex-vitamin
-
-- type: flavor
-  id: protein
-  flavorType: Complex
-  description: flavor-complex-protein
-
-- type: flavor
   id: food
   flavorType: Complex
   description: flavor-complex-food

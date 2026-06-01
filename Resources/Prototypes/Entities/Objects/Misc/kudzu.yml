@@ -95,12 +95,6 @@
     - type: FlavorProfile
       flavors:
       - fiber
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          reagents:
-          - ReagentId: Nutriment
-            Quantity: 0.1
     - type: Tag
       tags:
       - Ruminant
@@ -252,12 +246,6 @@
       ignoreWhitelist:
         tags:
         - Flesh
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          reagents:
-          - ReagentId: Protein
-            Quantity: 1
     - type: AutoEmote # Meat Kudzu used to have respirator, but couldn't breathe so all it would do is gasp.
       emotes:
       - MeatGasp

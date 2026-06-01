@@ -32369,7 +32369,7 @@ entities:
     - type: Transform
       pos: -36.5,9.5
       parent: 2
-- proto: CrateHydroponicsSeeds
+- proto: ESCrateHydroponicsSeeds
   entities:
   - uid: 8778
     components:

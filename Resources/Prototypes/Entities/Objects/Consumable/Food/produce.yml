@@ -658,13 +658,6 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/soybeans.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 4
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
   - type: Produce
     seedId: soybeans
   - type: Extractable
@@ -692,17 +685,6 @@
   - type: FlavorProfile
     flavors:
       - watermelon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Vitamin
-          Quantity: 5
-        - ReagentId: Water
-          Quantity: 10
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/watermelon.rsi
   - type: Produce
@@ -780,15 +762,6 @@
   - type: FlavorProfile
     flavors:
       - berry
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 11
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Vitamin
-          Quantity: 4
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/berries.rsi
   - type: Item

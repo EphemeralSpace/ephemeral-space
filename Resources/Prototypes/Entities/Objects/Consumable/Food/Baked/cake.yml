@@ -44,17 +44,6 @@
   components:
   - type: Sprite
     state: plain
-  - type: SliceableFood
-    slice: FoodCakePlainSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 55
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 20
-        - ReagentId: Vitamin
-          Quantity: 5
   - type: Item
     heldPrefix: plain
 
@@ -67,15 +56,6 @@
   components:
   - type: Sprite
     state: plain-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 1
   - type: Item
     heldPrefix: plain-slice
 # Tastes like sweetness, cake.
@@ -88,8 +68,6 @@
   components:
   - type: Sprite
     state: cheese
-  - type: SliceableFood
-    slice: FoodCakeCheeseSlice
   - type: Item
     inhandVisuals:
       left:
@@ -131,18 +109,12 @@
     layers:
     - state: alpha
       color: "#ba672e"
-  - type: SliceableFood
-    slice: FoodCakeChocolateSlice
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 55
+        maxVol: 5
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 40
         - ReagentId: Theobromine
-          Quantity: 5
-        - ReagentId: Vitamin
           Quantity: 5
   - type: Item
     inhandVisuals:
@@ -165,14 +137,10 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 1
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 8
         - ReagentId: Theobromine
           Quantity: 1
-        - ReagentId: Vitamin
-          Quantity: 2
   - type: Item
     inhandVisuals:
       left:
@@ -191,8 +159,6 @@
   components:
   - type: Sprite
     state: birthday
-  - type: SliceableFood
-    slice: FoodCakeBirthdaySlice
   - type: Item
     heldPrefix: birthday
 
@@ -218,12 +184,6 @@
   components:
   - type: Sprite
     state: suppermatter
-  - type: SliceableFood
-    slice: FoodCakeSuppermatterSlice
-    count: 8
-  - type: Edible
-  - type: ESFood
-
   - type: Item
     size: Normal
     heldPrefix: suppermatter
@@ -240,7 +200,6 @@
   components:
   - type: Sprite
     state: suppermatter-shard
-  - type: Edible
   - type: PointLight
     color: "#FFFF00"
     radius: 1.4

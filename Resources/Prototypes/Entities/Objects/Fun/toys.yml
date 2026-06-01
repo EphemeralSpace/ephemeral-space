@@ -202,13 +202,6 @@
     sprite: error.rsi
     state: error
   - type: Edible
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 26
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
   - type: Slippery
     slipData:
       knockdownTime: 3

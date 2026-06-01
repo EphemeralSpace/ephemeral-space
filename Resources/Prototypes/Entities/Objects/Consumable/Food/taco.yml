@@ -15,14 +15,6 @@
     - state: tacoshell_back
     - map: ["foodSequenceLayers"]
     - state: tacoshell_forward
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        canReact: false # Dont want cause reactions inside tacos after merging ingredients
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6.66
   - type: FoodSequenceStartPoint
     key: Taco
     maxLayers: 3

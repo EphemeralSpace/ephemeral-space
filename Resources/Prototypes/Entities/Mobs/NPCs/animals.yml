@@ -643,14 +643,6 @@
         Base: dead
       Dead:
         Base: dead
-  - type: Extractable
-    grindableSolutionName: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 1
   - type: Butcherable
     spawned:
     - id: null # Should give nothing when you butcher it so we set the item id it needs to spawn to null
@@ -1529,14 +1521,6 @@
       Starving: 10
       Dead: 0
     baseDecayRate: 0.5 # I'm very hungry! Give me. The cheese.
-  - type: Extractable
-    grindableSolutionName: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 3
   - type: Butcherable
     spawned:
     - id: FoodMeatRat
@@ -1717,8 +1701,6 @@
     solutions:
       food:
         reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 3
         - ReagentId: Uranium
           Quantity: 10
   - type: Butcherable

@@ -910,48 +910,6 @@
     energy: 2.0
     color: "#78645c"
 
-
-- type: entity
-  parent: VendingMachine
-  id: VendingMachineSeedsUnlocked
-  name: MegaSeed Servitor
-  description: For when you need seeds fast. Hands down the best seed selection on the station!
-  suffix: Unlocked
-  components:
-  - type: VendingMachine
-    pack: MegaSeedServitorInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-    denyState: deny-unshaded
-  - type: DatasetVocalizer
-    dataset: MegaSeedAds
-  - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/seeds.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#326e3f"
-
-- type: entity
-  parent: VendingMachineSeedsUnlocked
-  id: VendingMachineSeeds
-  suffix: Hydroponics
-  components:
-  - type: AccessReader
-    access: [["Hydroponics"]]
-
 - type: entity
   parent: VendingMachine
   id: VendingMachineSnack

@@ -550,15 +550,6 @@
     trash:
     - TrashBananiumPeel
   - type: BadFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 11
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 2
   - type: Extractable
     juiceSolution:
       reagents:
@@ -735,13 +726,6 @@
   - type: Appearance
   - type: Edible
   - type: BadFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Vitamin
-          Quantity: 3
   - type: Item
     heldPrefix: bones
 

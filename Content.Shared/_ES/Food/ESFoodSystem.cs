@@ -8,10 +8,8 @@ public sealed partial class ESFoodSystem : EntitySystem
 {
     [Dependency] private HungerSystem _hunger = default!;
 
-    public override void Update(float frameTime)
+    public override void Initialize()
     {
-        base.Update(frameTime);
-
         SubscribeLocalEvent<ESFoodComponent, BeforeIngestedEvent>(OnBeforeFoodIngested, after: [typeof(IngestionSystem)]);
         SubscribeLocalEvent<ESFoodComponent, IngestedEvent>(OnFoodIngested, after: [typeof(IngestionSystem)]);
     }
