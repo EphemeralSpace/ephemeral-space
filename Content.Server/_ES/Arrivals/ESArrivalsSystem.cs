@@ -168,16 +168,10 @@ public sealed partial class ESArrivalsSystem : EntitySystem
 
         if (!HasShuttleDocked(ev.Station.Value))
         {
-            if (TryComp<HungerComponent>(ev.SpawnResult, out var hunger) &&
-                hunger.Thresholds.TryGetValue(HungerThreshold.Okay, out var hungerThreshold))
+            if (TryComp<HungerComponent>(ev.SpawnResult, out var hunger))
             {
-                _hunger.SetHunger(ev.SpawnResult.Value, hungerThreshold + _random.NextFloat(-30, 30), hunger);
-            }
-
-            if (TryComp<ThirstComponent>(ev.SpawnResult, out var thirst) &&
-                thirst.ThirstThresholds.TryGetValue(ThirstThreshold.Okay, out var thirstThreshold))
-            {
-                _thirst.SetThirst(ev.SpawnResult.Value, thirst, thirstThreshold + _random.NextFloat(-75, 75));
+                var threshold = _random.Prob(0.5f) ? HungerThreshold.Peckish : HungerThreshold.Hungry;
+                _hunger.SetHunger((ev.SpawnResult.Value, hunger), threshold);
             }
 
             var sicknessTime = TimeSpan.FromSeconds(Math.Max((arrivals.ArrivalTime - _timing.CurTime).TotalSeconds + _random.Next(10, 20), _random.Next(10, 15)));

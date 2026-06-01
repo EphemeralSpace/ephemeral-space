@@ -307,7 +307,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Fluids/vomit_toxin.rsi"), "vomit_toxin-1"),
                 Act = () =>
                 {
-                    _vomitSystem.Vomit(args.Target, -1000, -1000); // You feel hollow!
+                    _vomitSystem.Vomit(args.Target, -1000, -5); // You feel hollow!
                     var organs = _bodySystem.GetBodyOrganEntityComps<TransformComponent>((args.Target, body));
                     var baseXform = Transform(args.Target);
                     foreach (var organ in organs)

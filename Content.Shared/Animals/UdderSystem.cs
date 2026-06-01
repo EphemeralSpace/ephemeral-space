@@ -74,10 +74,10 @@ public sealed partial class UdderSystem : EntitySystem
             if (TryComp(uid, out HungerComponent? hunger))
             {
                 // Is there enough nutrition to produce reagent?
-                if (_hunger.GetHungerThreshold(hunger) < HungerThreshold.Okay)
+                if (hunger.CurrentHunger < HungerThreshold.Okay)
                     continue;
 
-                _hunger.ModifyHunger(uid, -udder.HungerUsage, hunger);
+                _hunger.ModifyHunger((uid, hunger), -1);
             }
 
             //TODO: toxins from bloodstream !?
