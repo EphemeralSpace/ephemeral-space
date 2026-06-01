@@ -63,17 +63,3 @@
     state: pink
   - type: Item
     heldPrefix: pink
-
-- type: entity
-  name: bungo donut
-  parent: FoodDonutBase
-  id: FoodDonutBungo
-  description: Goes great with a mason jar of hippie's delight.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - sweet
-      - bungo
-  - type: Sprite
-    state: yellow
-# Tastes like donut, tropical sweetness.

@@ -1099,48 +1099,6 @@
   tags:
   - Fruit
 
-# bungo
-
-- type: foodSequenceElement
-  id: Bungo
-  name: food-sequence-content-bungo
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/bungo.rsi
-    state: produce
-  tags:
-  - Fruit
-
-# Pea
-
-- type: foodSequenceElement
-  id: Pea
-  name: food-sequence-content-pea
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/pea.rsi
-    state: produce
-  tags:
-  - Vegetable
-
-# World Pea
-
-- type: foodSequenceElement
-  id: WorldPea
-  name: food-sequence-content-world-pea
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/world_pea.rsi
-    state: produce
-  tags:
-  - Vegetable
-
-- type: foodSequenceElement
-  id: WorldPeaBurger
-  name: food-sequence-burger-content-world-pea
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/world_pea.rsi
-    state: produce
-  tags:
-  - Vegetable
-
 # Cherry
 
 - type: foodSequenceElement

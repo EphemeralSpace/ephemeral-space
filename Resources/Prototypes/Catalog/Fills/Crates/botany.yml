@@ -20,8 +20,6 @@
           amount: 2
         - id: FlyAmanitaSeeds
           amount: 2
-        - id: BungoSeeds
-          amount: 2
 
 - type: entity
   parent: CrateHydroSecure
