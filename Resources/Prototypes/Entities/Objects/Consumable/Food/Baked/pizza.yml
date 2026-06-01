@@ -196,19 +196,6 @@
   - type: Sprite
     layers:
     - state: vegetable
-  - type: SliceableFood
-    slice: FoodPizzaVegetableSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 40
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 25
-        - ReagentId: JuiceCarrot
-          Quantity: 5
-        - ReagentId: Vitamin
-          Quantity: 5
 
 - type: entity
   name: slice of vegetable pizza

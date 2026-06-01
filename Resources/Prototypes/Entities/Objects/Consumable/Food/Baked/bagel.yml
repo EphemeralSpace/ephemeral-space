@@ -36,7 +36,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 12
+        maxVol: 3
         reagents:
         - ReagentId: Bicaridine
           Quantity: 3
