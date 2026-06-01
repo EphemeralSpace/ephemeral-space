@@ -91,7 +91,7 @@ public sealed partial class VomitSystem : EntitySystem
 
         // Vomiting makes you hungrier and thirstier
         if (TryComp<HungerComponent>(uid, out var hunger))
-            _hunger.ModifyHunger((uid, hunger), hungerAdded);
+            _hunger.ModifySatiety((uid, hunger), hungerAdded);
 
         if (TryComp<ThirstComponent>(uid, out var thirst))
             _thirst.ModifyThirst(uid, thirst, thirstAdded);

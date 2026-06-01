@@ -1,3 +1,4 @@
+using Content.Shared._ES.Food;
 using Content.Shared.Alert;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
@@ -23,6 +24,7 @@ public sealed partial class HungerSystem : EntitySystem
         SubscribeLocalEvent<HungerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<HungerComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMoveSpeed);
         SubscribeLocalEvent<HungerComponent, RejuvenateEvent>(OnRejuvenate);
+        SubscribeLocalEvent<HungerComponent, IngestionAttemptEvent>(OnIngesting);
     }
 
     public override void Update(float frameTime)
@@ -38,7 +40,7 @@ public sealed partial class HungerSystem : EntitySystem
             // decay hunger by 1 and reset time
             // it clamps but check anyway to reduce work
             if (hunger.CurrentHunger != HungerThreshold.Starving)
-                ModifyHunger((uid, hunger), -1);
+                ModifySatiety((uid, hunger), -1);
 
             hunger.NextDecayTime = _timing.CurTime + hunger.HungerDecayTime;
         }
@@ -68,6 +70,19 @@ public sealed partial class HungerSystem : EntitySystem
         SetHunger((uid, component), HungerThreshold.Okay);
     }
 
+    private void OnIngesting(Entity<HungerComponent> ent, ref IngestionAttemptEvent args)
+    {
+        if (!TryComp<ESFoodComponent>(args.Ingested, out var food))
+            return;
+
+        if (food.SatietyMultiplier <= 0 || ent.Comp.CurrentHunger != HungerThreshold.Okay)
+            return;
+
+        args.Cancelled = true;
+        args.Blocker = ent.Owner;
+        args.Popup = "ingestion-already-full";
+    }
+
     /// <summary>
     ///     Gets the current hunger value of the given entity, returning null if they do not have hunger
     /// </summary>
@@ -81,8 +96,9 @@ public sealed partial class HungerSystem : EntitySystem
 
     /// <summary>
     ///     Adds to the current hunger of an entity by the specified value
+    ///     Modifying satiety because +1 is less hunger, not more
     /// </summary>
-    public void ModifyHunger(Entity<HungerComponent?> ent, int amount)
+    public void ModifySatiety(Entity<HungerComponent?> ent, int amount)
     {
         if (!Resolve(ent, ref ent.Comp))
             return;

@@ -77,7 +77,7 @@ public sealed partial class UdderSystem : EntitySystem
                 if (hunger.CurrentHunger < HungerThreshold.Okay)
                     continue;
 
-                _hunger.ModifyHunger((uid, hunger), -1);
+                _hunger.ModifySatiety((uid, hunger), -1);
             }
 
             //TODO: toxins from bloodstream !?

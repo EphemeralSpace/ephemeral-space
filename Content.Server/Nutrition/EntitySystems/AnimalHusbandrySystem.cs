@@ -121,8 +121,8 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
         if (TryComp<InteractionPopupComponent>(uid, out var interactionPopup))
             _audio.PlayPvs(interactionPopup.InteractSuccessSound, uid);
 
-        _hunger.ModifyHunger(uid, -component.HungerPerBirth);
-        _hunger.ModifyHunger(partner, -component.HungerPerBirth);
+        _hunger.ModifySatiety(uid, -component.HungerPerBirth);
+        _hunger.ModifySatiety(partner, -component.HungerPerBirth);
 
         component.GestationEndTime = _timing.CurTime + component.GestationDuration;
         component.Gestating = true;

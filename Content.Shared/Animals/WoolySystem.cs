@@ -70,7 +70,7 @@ public sealed partial class WoolySystem : EntitySystem
                 if (hunger.CurrentHunger < HungerThreshold.Okay)
                     continue;
 
-                _hunger.ModifyHunger((uid, hunger), -1);
+                _hunger.ModifySatiety((uid, hunger), -1);
             }
 
             _solutionContainer.TryAddReagent(wooly.Solution.Value, wooly.ReagentId, wooly.Quantity, out _);

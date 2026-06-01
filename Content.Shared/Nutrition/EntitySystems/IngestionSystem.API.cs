@@ -81,14 +81,14 @@ public sealed partial class IngestionSystem
             return false;
         }
 
-        var attempt = new IngestionAttemptEvent(flags);
+        var attempt = new IngestionAttemptEvent(flags, target);
         RaiseLocalEvent(target, ref attempt);
 
         if (!attempt.Cancelled)
             return true;
 
         if (attempt.Blocker != null)
-            _popup.PopupEntity(Loc.GetString("ingestion-remove-mask", ("entity", attempt.Blocker.Value)), target, user);
+            _popup.PopupEntity(Loc.GetString(attempt.Popup, ("entity", attempt.Blocker.Value)), target, user);
 
         return false;
     }

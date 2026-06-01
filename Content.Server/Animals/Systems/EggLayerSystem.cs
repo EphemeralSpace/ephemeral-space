@@ -90,7 +90,7 @@ public sealed partial class EggLayerSystem : EntitySystem
                 return false;
             }
 
-            _hunger.ModifyHunger((uid, hunger), -1);
+            _hunger.ModifySatiety((uid, hunger), -1);
         }
 
         foreach (var ent in EntitySpawnCollection.GetSpawns(egglayer.EggSpawn, _random))

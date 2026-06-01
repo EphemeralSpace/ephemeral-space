@@ -42,16 +42,20 @@ public record struct EdibleEvent(EntityUid User)
 public record struct AttemptIngestEvent(EntityUid User, EntityUid Ingested, bool Ingest, bool Handled = false);
 
 /// <summary>
-///     Raised on an entity that is consuming another entity to see if there is anything attached to the entity
-///     that is preventing it from doing the consumption.
+///     Raised on an entity that is consuming something to see if there is anything preventing it from eating.
 /// </summary>
 [ByRefEvent]
-public record struct IngestionAttemptEvent(SlotFlags TargetSlots, bool Cancelled = false) : IInventoryRelayEvent
+public record struct IngestionAttemptEvent(SlotFlags TargetSlots, EntityUid Ingested, bool Cancelled = false) : IInventoryRelayEvent
 {
     /// <summary>
-    ///     The equipment that is blocking consumption. Should only be non-null if the event was canceled.
+    ///     The entity that is blocking consumption. Should be set to the user if there's nothing else in particular blocking it
     /// </summary>
     public EntityUid? Blocker = null;
+
+    /// <summary>
+    ///     Popup to show the user if a cancellation happens.
+    /// </summary>
+    public LocId Popup = "ingestion-remove-mask";
 }
 
 /// <summary>
