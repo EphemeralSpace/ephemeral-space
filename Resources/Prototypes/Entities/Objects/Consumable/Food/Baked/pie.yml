@@ -97,8 +97,6 @@
     layers:
     - state: tin
     - state: baklava
-  - type: SliceableFood
-    slice: FoodPieBaklavaSlice
 
 - type: entity
   name: slice of baklava
@@ -186,8 +184,6 @@
     layers:
     - state: tin
     - state: meat
-  - type: SliceableFood
-    slice: FoodPieMeatSlice
   - type: Tag
     tags:
     - Meat
@@ -227,8 +223,6 @@
     layers:
     - state: tin
     - state: pumpkin
-  - type: SliceableFood
-    slice: FoodPiePumpkinSlice
   - type: Tag
     tags:
     - Pie
