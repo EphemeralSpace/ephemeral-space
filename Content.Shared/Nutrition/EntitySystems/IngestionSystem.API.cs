@@ -186,57 +186,6 @@ public sealed partial class IngestionSystem
     }
 
     /// <summary>
-    /// Gets the total metabolizable nutrition from an entity, checks first if we can metabolize it.
-    /// If we can't then it's not worth any nutrition.
-    /// </summary>
-    /// <param name="entity">The consumed entity</param>
-    /// <param name="consumer">The entity doing the consuming</param>
-    /// <returns>The amount of nutrition the consumable is worth</returns>
-    public float TotalNutrition(Entity<EdibleComponent?> entity, EntityUid consumer)
-    {
-        if (!CanIngest(consumer, entity))
-            return 0f;
-
-        return TotalNutrition(entity);
-    }
-
-    /// <summary>
-    /// Gets the total metabolizable nutrition from an entity, assumes we can eat and metabolize it.
-    /// </summary>
-    /// <param name="entity">The consumed entity</param>
-    /// <returns>The amount of nutrition the consumable is worth</returns>
-    public float TotalNutrition(Entity<EdibleComponent?> entity)
-    {
-        if (!Resolve(entity, ref entity.Comp))
-            return 0f;
-
-        if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.Solution, out _, out var solution))
-            return 0f;
-
-        var total = 0f;
-        foreach (var quantity in solution.Contents)
-        {
-            var reagent = _proto.Index<ReagentPrototype>(quantity.Reagent.Prototype);
-            if (reagent.Metabolisms == null)
-                continue;
-
-            foreach (var entry in reagent.Metabolisms.Values)
-            {
-                foreach (var effect in entry.Effects)
-                {
-                    // ignores any effect conditions, just cares about how much it can hydrate
-                    if (effect is SatiateHunger hunger)
-                    {
-                        total += hunger.Factor * quantity.Quantity.Float();
-                    }
-                }
-            }
-        }
-
-        return total;
-    }
-
-    /// <summary>
     /// Gets the total metabolizable hydration from an entity, checks first if we can metabolize it.
     /// If we can't then it's not worth any hydration.
     /// </summary>
@@ -248,7 +197,7 @@ public sealed partial class IngestionSystem
         if (!CanIngest(consumer, entity))
             return 0f;
 
-        return TotalNutrition(entity);
+        return TotalHydration(entity);
     }
 
     /// <summary>
