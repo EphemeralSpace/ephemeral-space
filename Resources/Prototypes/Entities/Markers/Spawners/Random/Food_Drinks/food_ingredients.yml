@@ -85,7 +85,4 @@
     - !type:GroupSelector
       weight: 0.5
       children:
-      - id: FoodCannabisButter
-        amount: !type:RangeNumberSelector
-          range: 1, 2
       - id: EggBoxBroken

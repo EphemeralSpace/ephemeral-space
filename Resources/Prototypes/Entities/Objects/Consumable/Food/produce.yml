@@ -127,9 +127,9 @@
       food:
         reagents:
         - ReagentId: SulfuricAcid
-          Quantity: 15
+          Quantity: 5
         - ReagentId: FluorosulfuricAcid
-          Quantity: 15
+          Quantity: 5
   - type: Produce
     seedId: deathNettle
   - type: MeleeChemicalInjector
