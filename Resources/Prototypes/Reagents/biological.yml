@@ -103,10 +103,6 @@
   flavor: mindful
   color: "#C584B8"
   metabolisms:
-    Drink:
-      effects:
-      - !type:SatiateHunger
-        factor: 1.5
     Poison:
       effects:
       - !type:HealthChange
