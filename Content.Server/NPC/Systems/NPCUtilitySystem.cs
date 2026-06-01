@@ -206,14 +206,15 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 var avoidBadFood = !HasComp<IgnoreBadFoodComponent>(owner);
 
                 // only eat when hungry or if it will eat anything
-                if (TryComp<HungerComponent>(owner, out var hunger) && hunger.CurrentThreshold > HungerThreshold.Okay && avoidBadFood)
+                if (TryComp<HungerComponent>(owner, out var hunger) && hunger.CurrentHunger >= HungerThreshold.Okay && avoidBadFood)
                     return 0f;
 
                 // no mouse don't eat the uranium-235
                 if (avoidBadFood && HasComp<BadFoodComponent>(targetUid))
                     return 0f;
 
-                var nutrition = _ingestion.TotalNutrition(targetUid, owner);
+                // TODO mirror
+                var nutrition = 0.0f;
                 if (nutrition == 0.0f)
                     return 0f;
 

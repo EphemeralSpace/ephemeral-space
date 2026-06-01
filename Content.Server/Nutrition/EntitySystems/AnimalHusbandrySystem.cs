@@ -148,7 +148,7 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
         if (_mobState.IsIncapacitated(uid))
             return false;
 
-        if (TryComp<HungerComponent>(uid, out var hunger) && _hunger.GetHungerThreshold(hunger) < HungerThreshold.Okay)
+        if (TryComp<HungerComponent>(uid, out var hunger) && hunger.CurrentHunger < HungerThreshold.Okay)
             return false;
 
         if (TryComp<ThirstComponent>(uid, out var thirst) && thirst.CurrentThirstThreshold < ThirstThreshold.Okay)

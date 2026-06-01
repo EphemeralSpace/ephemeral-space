@@ -691,23 +691,6 @@
         Cable: 2
 
 - type: entity
-  id: FatExtractorMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: lipid extractor machine board
-  components:
-    - type: Sprite
-      state: service
-    - type: MachineBoard
-      prototype: FatExtractor
-      stackRequirements:
-        Manipulator: 1
-      componentRequirements:
-        Utensil:
-          amount: 1
-          defaultPrototype: ForkPlastic
-          examineName: construction-insert-info-examine-name-utensil
-
-- type: entity
   parent: BaseMachineCircuitboard
   id: FlatpackerMachineCircuitboard
   name: Flatpacker 1001 machine board

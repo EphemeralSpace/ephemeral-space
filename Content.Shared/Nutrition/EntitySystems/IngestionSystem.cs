@@ -455,7 +455,6 @@ public sealed partial class IngestionSystem : EntitySystem
     private void OnEdibleIngested(Entity<EdibleComponent> entity, ref IngestedEvent args)
     {
         // This is a lot but there wasn't really a way to separate this from the EdibleComponent otherwise I would've moved it.
-
         if (args.Handled)
             return;
 
