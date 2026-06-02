@@ -145,7 +145,7 @@ public record struct BeforeIngestedEvent(FixedPoint2 Min, FixedPoint2 Max, Solut
 /// <param name="Split">The solution being ingested</param>
 /// <param name="ForceFed">Whether or not we're being forced</param>
 [ByRefEvent]
-public record struct IngestingEvent(EntityUid Food, Solution Split, bool ForceFed);
+public record struct IngestingEvent(EntityUid Food, Solution? Split, bool ForceFed);
 
 /// <summary>
 /// Raised on an entity when it is being made to be eaten.
@@ -155,7 +155,7 @@ public record struct IngestingEvent(EntityUid Food, Solution Split, bool ForceFe
 /// <param name="Split">The solution we're currently eating.</param>
 /// <param name="ForceFed">Whether we're being fed by someone else, checkec enough I might as well pass it.</param>
 [ByRefEvent]
-public record struct IngestedEvent(EntityUid User, EntityUid Target, Solution Split, bool ForceFed)
+public record struct IngestedEvent(EntityUid User, EntityUid Target, Solution? Split, bool ForceFed)
 {
     // Should we destroy the ingested entity?
     public bool Destroy;

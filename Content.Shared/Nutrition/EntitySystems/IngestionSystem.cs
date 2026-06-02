@@ -141,8 +141,6 @@ public sealed partial class IngestionSystem : EntitySystem
         // This ensures that tests fail when you configured the yaml from and EdibleComponent uses the wrong solution,
         if (TryComp<DrainableSolutionComponent>(entity, out var existingDrainable))
             entity.Comp.Solution = existingDrainable.Solution;
-        else
-            _solutionContainer.EnsureSolution(entity.Owner, entity.Comp.Solution, out _);
 
         UpdateAppearance(entity);
 
@@ -282,7 +280,7 @@ public sealed partial class IngestionSystem : EntitySystem
             return;
 
         args.Handled = true;
-        var foodSolution = solution.Value.Comp.Solution;
+        var foodSolution = solution?.Comp.Solution;
 
         if (forceFed)
         {
@@ -290,12 +288,12 @@ public sealed partial class IngestionSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("edible-force-feed", ("user", userName), ("verb", GetEdibleVerb(food))), args.User, entity);
 
             // logging
-            _adminLogger.Add(LogType.ForceFeed, LogImpact.Medium, $"{ToPrettyString(args.User):user} is forcing {ToPrettyString(entity):target} to eat {ToPrettyString(food):food} {SharedSolutionContainerSystem.ToPrettyString(foodSolution)}");
+            _adminLogger.Add(LogType.ForceFeed, LogImpact.Medium, $"{ToPrettyString(args.User):user} is forcing {ToPrettyString(entity):target} to eat {ToPrettyString(food):food}");
         }
         else
         {
             // log voluntary eating
-            _adminLogger.Add(LogType.Ingestion, LogImpact.Low, $"{ToPrettyString(entity):target} is eating {ToPrettyString(food):food} {SharedSolutionContainerSystem.ToPrettyString(foodSolution)}");
+            _adminLogger.Add(LogType.Ingestion, LogImpact.Low, $"{ToPrettyString(entity):target} is eating {ToPrettyString(food):food}");
         }
     }
 
@@ -350,7 +348,7 @@ public sealed partial class IngestionSystem : EntitySystem
             return;
         }
 
-        var beforeEv = new BeforeIngestedEvent(FixedPoint2.Zero, highestAvailable, solution.Value.Comp.Solution);
+        var beforeEv = new BeforeIngestedEvent(FixedPoint2.Zero, highestAvailable, solution?.Comp.Solution);
         RaiseLocalEvent(food, ref beforeEv);
         RaiseLocalEvent(entity, ref beforeEv);
 
@@ -367,21 +365,28 @@ public sealed partial class IngestionSystem : EntitySystem
 
         var transfer = FixedPoint2.Clamp(beforeEv.Transfer, beforeEv.Min, beforeEv.Max);
 
-        var split = _solutionContainer.SplitSolution(solution.Value, transfer);
+        Solution? split = null;
+        if (solution != null)
+        {
+            split = _solutionContainer.SplitSolution(solution.Value, transfer);
 
-        if (beforeEv.Refresh)
-            _solutionContainer.TryAddSolution(solution.Value, split);
+            if (beforeEv.Refresh)
+                _solutionContainer.TryAddSolution(solution.Value, split);
+        }
+
 
         var ingestEv = new IngestingEvent(food, split, forceFed);
         RaiseLocalEvent(entity, ref ingestEv);
 
-        _reaction.DoEntityReaction(entity, split, ReactionMethod.Ingestion);
+        if (split != null)
+            _reaction.DoEntityReaction(entity, split, ReactionMethod.Ingestion);
 
         // Everything is good to go item has been successfuly eaten
         var afterEv = new IngestedEvent(args.User, entity, split, forceFed);
         RaiseLocalEvent(food, ref afterEv);
 
-        _stomach.TryTransferSolution(stomachToUse.Value.Owner, split, stomachToUse);
+        if (split != null)
+            _stomach.TryTransferSolution(stomachToUse.Value.Owner, split, stomachToUse);
 
         if (!afterEv.Destroy)
         {
