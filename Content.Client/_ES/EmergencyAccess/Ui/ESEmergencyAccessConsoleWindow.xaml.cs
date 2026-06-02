@@ -45,6 +45,8 @@ public sealed partial class ESEmergencyAccessConsoleWindow : FancyWindow
         var key = string.IsNullOrWhiteSpace(comp.CurrentKey) ? "null" : comp.CurrentKey;
         NotFoundLabel.Text = Loc.GetString("es-emergency-access-ui-no-valid-airlock", ("key", key));
 
+        AccessKeyLabel.Text = Loc.GetString("es-emergency-access-ui-key-status", ("key", key.ToUpperInvariant()));
+
         EmergencyAccessStatusLabel.Text = comp.EmergencyEnabled
             ? Loc.GetString("es-emergency-access-ui-emergency-access-status-enabled")
             : Loc.GetString("es-emergency-access-ui-emergency-access-status-disabled");

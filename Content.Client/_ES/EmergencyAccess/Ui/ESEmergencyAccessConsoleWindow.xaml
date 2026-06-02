@@ -17,6 +17,11 @@
             <BoxContainer Name="InfoBox" Orientation="Vertical" Margin="20 0 20 20">
                 <Control VerticalExpand="True"/>
                 <BoxContainer Orientation="Horizontal">
+                    <RichTextLabel Text="{Loc 'es-emergency-access-ui-key-label'}" HorizontalExpand="True"/>
+                    <RichTextLabel Name="AccessKeyLabel" HorizontalAlignment="Right"/>
+                </BoxContainer>
+                <Control VerticalExpand="True"/>
+                <BoxContainer Orientation="Horizontal">
                     <RichTextLabel Text="{Loc 'es-emergency-access-ui-emergency-access-label'}" HorizontalExpand="True"/>
                     <RichTextLabel Name="EmergencyAccessStatusLabel" HorizontalAlignment="Right"/>
                 </BoxContainer>
