@@ -58,11 +58,12 @@ public sealed class ESFoodStatusControl : Control
 
         AddChild(wrapper);
 
-        for (var i = 0; i < parent.Comp.StartingPortions; i++)
+        // always create 5 sections, even if there arent that many portions
+        for (var i = 0; i < 5; i++)
         {
             var colorBox = parent.Comp.SatietyMultiplier < 0 ? StyleBoxBad : StyleBoxLit;
             var style = i <= ((_oldPortionsLeft ?? parent.Comp.StartingPortions) - 1) ? colorBox : StyleBoxUnlit;
-            var panel = new PanelContainer { MinSize = new Vector2(20, 20), PanelOverride = style };
+            var panel = new PanelContainer { MinSize = new Vector2(16, 16), PanelOverride = style };
             wrapper.AddChild(panel);
             _sections.Add(panel);
         }

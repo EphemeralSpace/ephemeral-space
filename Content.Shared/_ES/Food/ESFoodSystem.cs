@@ -1,3 +1,4 @@
+using Content.Shared.Examine;
 using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.EntitySystems;
 
@@ -12,6 +13,7 @@ public sealed partial class ESFoodSystem : EntitySystem
     {
         SubscribeLocalEvent<ESFoodComponent, BeforeIngestedEvent>(OnBeforeFoodIngested, after: [typeof(IngestionSystem)]);
         SubscribeLocalEvent<ESFoodComponent, IngestedEvent>(OnFoodIngested, after: [typeof(IngestionSystem)]);
+        SubscribeLocalEvent<ESFoodComponent, ExaminedEvent>(OnFoodExamined);
     }
 
     private void OnBeforeFoodIngested(Entity<ESFoodComponent> ent, ref BeforeIngestedEvent args)
@@ -43,5 +45,13 @@ public sealed partial class ESFoodSystem : EntitySystem
         // satiate
         _hunger.ModifySatiety(args.User, 1 * ent.Comp.SatietyMultiplier);
         Dirty(ent);
+    }
+
+    private void OnFoodExamined(Entity<ESFoodComponent> ent, ref ExaminedEvent args)
+    {
+        using var _ = args.PushGroup(nameof(ESFoodComponent));
+        args.PushMarkup(Loc.GetString("es-food-examine-portions", ("portions", ent.Comp.PortionsLeft ?? ent.Comp.StartingPortions)));
+        if (ent.Comp.SatietyMultiplier < 0)
+            args.PushMarkup(Loc.GetString("es-food-examine-not-appetizing"));
     }
 }
