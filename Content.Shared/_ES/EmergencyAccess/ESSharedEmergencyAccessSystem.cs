@@ -7,6 +7,7 @@ using Content.Shared.Examine;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Timing;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 
 namespace Content.Shared._ES.EmergencyAccess;
@@ -15,6 +16,7 @@ public abstract partial class ESSharedEmergencyAccessSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedAirlockSystem _airlock = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedDoorSystem _door = default!;
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
     [Dependency] private UseDelaySystem _useDelay = default!;
@@ -107,6 +109,8 @@ public abstract partial class ESSharedEmergencyAccessSystem : EntitySystem
         _airlock.SetEmergencyAccess((door.Value, airlock), !airlock.EmergencyAccess);
         component.EmergencyEnabled = airlock.EmergencyAccess;
         Dirty(uid, component);
+
+        _audio.PlayPvs(component.EmergencyEnabled ? airlock.EmergencyOnSound : airlock.EmergencyOffSound, uid);
     }
 
     private void OnMapInit(Entity<ESEmergencyAccessDoorComponent> ent, ref MapInitEvent args)
