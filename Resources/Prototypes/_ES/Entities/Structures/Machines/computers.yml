@@ -397,15 +397,18 @@
       sprite: _ES/Structures/Machines/computer.rsi
       state: terminal
     - map: ["computerLayerKeyboard"]
-      state: tech_key_off
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: emerg_key_off
     - map: ["computerLayerScreen"]
-      state: comm_logs
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: emerg
     - map: ["computerLayerKeys"]
-      state: tech_key
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: emerg_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: PointLight
-    color: "#00FF00"
+    color: "#ffff55"
   - type: ESEmergencyAccessConsole
   - type: UseDelay
     delay: 0.5
