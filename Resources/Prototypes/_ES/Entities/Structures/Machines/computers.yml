@@ -387,6 +387,39 @@
 
 - type: entity
   parent: ESBaseComputerTerminal
+  id: ESComputerTerminalEmergencyAccess
+  name: emergency access terminal
+  description: A hefty terminal that can remotely toggle access on airlocks.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
+    - map: ["computerLayerKeyboard"]
+      state: tech_key_off
+    - map: ["computerLayerScreen"]
+      state: comm_logs
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    color: "#00FF00"
+  - type: ESEmergencyAccessConsole
+  - type: UseDelay
+    delay: 0.5
+  - type: ActivatableUI
+    key: enum.ESEmergencyAccessConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ESEmergencyAccessConsoleUiKey.Key:
+        type: ESEmergencyAccessConsoleBui
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
+  parent: ESBaseComputerTerminal
   id: ESBaseComputerTerminalNavigation
   name: navigation terminal
   description: Keep going and take the next left.
