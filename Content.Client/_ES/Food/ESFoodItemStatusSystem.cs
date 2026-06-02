@@ -52,7 +52,8 @@ public sealed class ESFoodStatusControl : Control
         {
             Orientation = BoxContainer.LayoutOrientation.Horizontal,
             SeparationOverride = 4,
-            HorizontalAlignment = HAlignment.Center
+            HorizontalAlignment = HAlignment.Left,
+            Margin = new Thickness(5)
         };
 
         AddChild(wrapper);

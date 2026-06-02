@@ -19,7 +19,7 @@ public sealed partial class ESFoodComponent : Component
     ///     Each portion of food reduces hunger by 1.
     /// </summary>
     [DataField("portions"), AutoNetworkedField]
-    public int StartingPortions = 3;
+    public int StartingPortions = 1;
 
     /// <summary>
     ///     The actual amount of portions left.

@@ -34,7 +34,7 @@ public sealed partial class HungerSystem : EntitySystem
         var query = EntityQueryEnumerator<HungerComponent>();
         while (query.MoveNext(out var uid, out var hunger))
         {
-            if (_timing.CurTime < hunger.NextDecayTime)
+            if (hunger.NextDecayTime is null || _timing.CurTime < hunger.NextDecayTime)
                 continue;
 
             // decay hunger by 1 and reset time

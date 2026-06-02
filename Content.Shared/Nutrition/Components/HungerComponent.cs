@@ -29,7 +29,7 @@ public sealed partial class HungerComponent : Component
     /// The time when the hunger threshold will decay next.
     /// </summary>
     [DataField, AutoNetworkedField, AutoPausedField]
-    public TimeSpan NextDecayTime;
+    public TimeSpan? NextDecayTime;
 
     /// <summary>
     /// A dictionary relating hunger thresholds to corresponding alerts.

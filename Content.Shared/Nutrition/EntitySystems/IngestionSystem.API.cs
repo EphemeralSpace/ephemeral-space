@@ -59,20 +59,7 @@ public sealed partial class IngestionSystem
         return AttemptIngest(user, user, ingested, false);
     }
 
-    /// <summary>
-    ///     Check whether we have an open pie-hole that's in range.
-    /// </summary>
-    /// <param name="user">The one performing the action</param>
-    /// <param name="target">The target whose mouth is checked</param>
-    /// <returns></returns>
-    public bool HasMouthAvailable(EntityUid user, EntityUid target)
-    {
-        return HasMouthAvailable(user, target, DefaultFlags);
-    }
-
-    /// <inheritdoc cref="HasMouthAvailable(EntityUid, EntityUid)"/>
-    /// Overflow which takes custom flags for a mouth being blocked, in case the entity has a mouth not on the face.
-    public bool HasMouthAvailable(EntityUid user, EntityUid target, SlotFlags flags)
+    public bool TargetCanIngest(EntityUid user, EntityUid target, EntityUid item, SlotFlags flags = DefaultFlags)
     {
         if (!_transform.GetMapCoordinates(user).InRange(_transform.GetMapCoordinates(target), MaxFeedDistance))
         {
@@ -81,7 +68,7 @@ public sealed partial class IngestionSystem
             return false;
         }
 
-        var attempt = new IngestionAttemptEvent(flags, target);
+        var attempt = new IngestionAttemptEvent(flags, item);
         RaiseLocalEvent(target, ref attempt);
 
         if (!attempt.Cancelled)
@@ -129,7 +116,7 @@ public sealed partial class IngestionSystem
         solution = null;
         time = null;
 
-        if (!HasMouthAvailable(user, target))
+        if (!TargetCanIngest(user, target, ingested))
             return false;
 
         // If we don't have the tools to eat we can't eat.
