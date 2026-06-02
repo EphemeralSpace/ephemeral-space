@@ -387,6 +387,8 @@
       - ReagentId: InsectBlood
         Quantity: 20
   - type: Edible
+  - type: ESFood
+    satietyMultiplier: -1
   - type: FlavorProfile
     flavors:
     - horrible
@@ -876,14 +878,6 @@
     growthDelay: 20
   - type: ExaminableHunger
   - type: Wooly
-  - type: Edible
-    destroyOnEmpty: false
-    solution: wool
-    requiresSpecialDigestion: true
-    requireDead: false
-  - type: FlavorProfile
-    flavors:
-    - fiber
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -1500,9 +1494,13 @@
       Dead:
         Base: splat-0
   - type: Edible
+  - type: ESFood
+    satietyMultiplier: -1
   - type: FlavorProfile
     flavors:
-    - meaty
+    - horrible
+    - terrible
+    - chewy
   - type: Thirst
     startingThirst: 25  # spawn with Okay thirst state
     thresholds:
@@ -3086,9 +3084,13 @@
       Dead:
         Base: splat-0
   - type: Edible
+  - type: ESFood
+    satietyMultiplier: -1
   - type: FlavorProfile
     flavors:
-    - meaty
+    - horrible
+    - terrible
+    - chewy
   - type: Hunger
   - type: Extractable
     grindableSolutionName: food

@@ -92,6 +92,7 @@
     - type: Edible
       requiresSpecialDigestion: true
       delay: 0.5
+    - type: ESFood
     - type: FlavorProfile
       flavors:
       - fiber

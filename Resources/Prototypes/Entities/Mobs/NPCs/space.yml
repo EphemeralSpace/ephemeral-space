@@ -422,6 +422,13 @@
       Dead:
         Base: dead
   - type: Edible
+  - type: ESFood
+    satietyMultiplier: -1
+  - type: FlavorProfile
+    flavors:
+    - horrible
+    - terrible
+    - chewy
   - type: Thirst
     startingThirst: 25  # spawn with Okay thirst state
     thresholds:

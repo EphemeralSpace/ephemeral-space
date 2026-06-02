@@ -136,18 +136,6 @@
     - state: cloth_3
       map: ["base"]
   - type: Appearance
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: FlavorProfile
-    flavors:
-    - fiber
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 5
   - type: Tag
     tags:
       - ClothMade
@@ -206,15 +194,6 @@
   - type: Construction
     graph: Durathread
     node: MaterialDurathread
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 5
   - type: Tag
     tags:
       - ClothMade
@@ -427,18 +406,6 @@
     - state: cotton_3
       map: ["base"]
   - type: Appearance
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: FlavorProfile
-    flavors:
-    - fiber
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 5
   - type: Extractable
     juiceSolution:
       reagents:
@@ -485,17 +452,6 @@
     - state: pyrotton_3
       map: ["base"]
   - type: Appearance
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 5
-        - ReagentId: Phlogiston
-          Quantity: 5
   - type: Extractable
     juiceSolution:
       reagents:
@@ -709,8 +665,6 @@
     - state: cotton_3
       map: ["base"]
   - type: Appearance
-  - type: Edible
-  - type: BadFood
   - type: Item
     heldPrefix: bones
 
