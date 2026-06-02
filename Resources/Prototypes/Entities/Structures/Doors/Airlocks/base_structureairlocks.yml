@@ -186,6 +186,7 @@
     guides:
     - Wires
 # ES START
+  - type: ESEmergencyAccessDoor
   - type: ESGreyTideVirusTarget
   - type: ESSparkOnHit
     prob: 0.25
