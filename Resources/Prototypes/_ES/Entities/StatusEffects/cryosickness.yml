@@ -8,6 +8,8 @@
     walkSpeedModifier: 0.85
   - type: ESMeleeDamageModStatusEffect
     coefficient: 0.05
+  - type: MeleeModifiersStatusEffect
+    attackRateMultiplier: 0.5
   - type: StaminaModifierStatusEffect
     modifier: 0.33
   - type: StatusEffectAlert
