@@ -6,7 +6,7 @@ namespace Content.IntegrationTests.Tests.SmartFridge;
 public sealed class SmartFridgeInteractionTest : InteractionTest
 {
     private const string SmartFridgeProtoId = "SmartFridge";
-    private const string SampleItemProtoId = "FoodAmbrosiaVulgaris";
+    private const string SampleItemProtoId = "FoodApple";
     private const string SampleDumpableAndInsertableId = "PillCanisterSomething";
     private const int SampleDumpableCount = 5;
     private const string SampleDumpableId = "ChemBagSomething";
