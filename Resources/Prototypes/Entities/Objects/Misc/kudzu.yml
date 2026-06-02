@@ -140,8 +140,6 @@
       - LightTree
       - LightTree
       - CrystalCyan
-      rarePrototypes:
-      - AnomalyFloraBulb
     - type: Tag
       tags:
       - Ruminant
@@ -156,8 +154,6 @@
     - type: RandomSpawner
       chance: 0.05
       rarePrototypes:
-      - AnomalyFloraBulb
-      - AnomalyFloraBulb
       - MobLuminousEntity
       - MobLuminousObject
       - MobLuminousPerson

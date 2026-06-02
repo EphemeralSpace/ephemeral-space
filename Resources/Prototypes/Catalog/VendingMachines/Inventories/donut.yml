@@ -1,7 +1,7 @@
 - type: vendingMachineInventory
   id: DonutInventory
   startingInventory:
-    FoodDonutChocolate: 5
+    FoodDonutPlain: 5
     FoodDonutHomer: 3
     FoodDonutPink: 3
   contrabandInventory:

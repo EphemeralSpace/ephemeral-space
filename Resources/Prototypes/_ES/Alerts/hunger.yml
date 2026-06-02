@@ -2,8 +2,8 @@
   id: HungerOkay
   category: Hunger
   icons:
-  - sprite: Textures/_ES/Interface/Alerts/hunger.rsi
-    state: starving
+  - sprite: /Textures/_ES/Interface/Alerts/hunger.rsi
+    state: okay
   name: es-alerts-hunger-okay-name
   description: es-alerts-hunger-okay-desc
 
@@ -20,7 +20,7 @@
   id: HungerHungry
   category: Hunger
   icons:
-  - sprite: Textures/_ES/Interface/Alerts/hunger.rsi
+  - sprite: /Textures/_ES/Interface/Alerts/hunger.rsi
     state: hungry
   name: es-alerts-hunger-hungry-name
   description: es-alerts-hunger-hungry-desc
@@ -29,7 +29,7 @@
   id: HungerStarving
   category: Hunger
   icons:
-  - sprite: Textures/_ES/Interface/Alerts/hunger.rsi
+  - sprite: /Textures/_ES/Interface/Alerts/hunger.rsi
     state: starving
   name: es-alerts-hunger-starving-name
   description: es-alerts-hunger-starving-desc

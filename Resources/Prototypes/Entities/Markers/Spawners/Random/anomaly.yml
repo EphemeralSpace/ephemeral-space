@@ -19,7 +19,6 @@
     - AnomalyIce
     - RandomRockAnomalySpawner
     - AnomalyLiquid
-    - AnomalyFlora
     - AnomalyShadow
     - AnomalyTech
     #- AnomalySanta
@@ -66,7 +65,6 @@
     - AnomalyTrapElectricity
     - AnomalyTrapShadow
     - AnomalyTrapIce
-    - AnomalyTrapFlora
     - AnomalyTrapBluespace
     - AnomalyTrapFlesh
     - AnomalyTrapGravity

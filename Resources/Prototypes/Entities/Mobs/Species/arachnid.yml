@@ -22,7 +22,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-      - id: FoodMeatSpider
+      - id: FoodMeat
         amount: 5
   - type: Reactive
     reactions:

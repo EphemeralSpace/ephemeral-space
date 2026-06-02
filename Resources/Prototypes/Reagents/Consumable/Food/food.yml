@@ -21,10 +21,3 @@
   metamorphicMaxFillLevels: 7
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-
-- type: reagent
-  id: PumpkinFlesh #Just so pumpkins spill orange stuff when smashed
-  name: reagent-name-pumpkin-flesh
-  desc: reagent-desc-pumpkin-flesh
-  flavor: pumpkin
-  color: "#fc9300"

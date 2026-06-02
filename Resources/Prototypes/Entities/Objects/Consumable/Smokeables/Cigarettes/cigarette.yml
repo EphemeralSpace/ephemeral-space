@@ -20,9 +20,6 @@
     size: Tiny
     sprite: Objects/Consumable/Smokeables/Cigarettes/cigarette.rsi
     heldPrefix: unlit
-  - type: Construction
-    graph: smokeableCigarette
-    node: cigarette
   - type: Extractable
     grindableSolutionName: smokable
 
@@ -47,9 +44,6 @@
     equippedPrefix: unlit
   - type: Item
     size: Tiny
-  - type: Construction
-    graph: smokeableCigarette
-    node: cigarette
 
 - type: entity
   id: CigaretteSpent

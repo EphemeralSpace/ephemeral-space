@@ -13,7 +13,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatHuman
+    - id: FoodMeat
       amount: 5
   - type: HumanoidAppearance
     species: Human

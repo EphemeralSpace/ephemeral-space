@@ -7,7 +7,7 @@
   isShaded: true
 
 - type: satiationIcon
-  id: HungerIcon
+  id: HungerIconOverfed
   parent: HungerIcon
   icon:
     sprite: /Textures/Interface/Misc/food_icons.rsi

@@ -456,7 +456,6 @@
   - type: Item
     heldPrefix: cotton
 
-
 - type: entity
   parent: MaterialCotton
   id: MaterialCotton1
@@ -543,13 +542,6 @@
     layerStates:
       - bananium
       - bananium_1
-  - type: FlavorProfile
-    flavors:
-      - banana
-  - type: Edible
-    trash:
-    - TrashBananiumPeel
-  - type: BadFood
   - type: Extractable
     juiceSolution:
       reagents:
@@ -585,13 +577,6 @@
   - type: Stack
     count: 50
     stackType: WebSilk
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: FlavorProfile
-    flavors:
-      - cobwebs
-    ignoreReagents:
-      - Fiber
   - type: Extractable
     juiceSolution:
       reagents:

@@ -35988,7 +35988,7 @@ entities:
     - type: Transform
       pos: 28.5,-19.5
       parent: 2
-- proto: DonkpocketBoxSpawner
+- proto: FoodBoxDonkpocket
   entities:
   - uid: 9071
     components:
@@ -71660,13 +71660,6 @@ entities:
       name: North Thruster Substation
     - type: Transform
       pos: -48.5,32.5
-      parent: 2
-- proto: SmokingPipeFilledTobacco
-  entities:
-  - uid: 2456
-    components:
-    - type: Transform
-      pos: 28.451164,-22.548763
       parent: 2
 - proto: SoapNT
   entities:

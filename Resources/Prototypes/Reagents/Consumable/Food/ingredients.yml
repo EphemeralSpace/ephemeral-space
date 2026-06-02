@@ -118,9 +118,6 @@
       - !type:AdjustReagent
         reagent: Water
         amount: 0.4
-      - !type:AdjustReagent
-        reagent: Vitamin
-        amount: 0.1
       - !type:Vomit
         probability: 0.1
         conditions:

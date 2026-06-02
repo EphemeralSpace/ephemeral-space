@@ -195,7 +195,7 @@
         Base: spacespider_dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatSpider
+    - id: FoodMeat
       amount: 2
     - id: EggSpider
       amount: 1
@@ -291,7 +291,7 @@
           Base: dead_spacecobra
     - type: Butcherable
       spawned:
-        - id: FoodMeatSnake
+        - id: FoodMeat
           amount: 2
         - id: UraniumOre1
           amount: 1
@@ -432,18 +432,11 @@
       Dead: 0
     baseDecayRate: 0.04
   - type: Hunger
-    thresholds:
-      Overfed: 35
-      Okay: 25
-      Peckish: 15
-      Starving: 10
-      Dead: 0
-    baseDecayRate: 0.1
   - type: Extractable
     grindableSolutionName: food
   - type: Butcherable
     spawned:
-    - id: FoodMeatSnail
+    - id: FoodMeat
       amount: 1
   - type: Tag
     tags:

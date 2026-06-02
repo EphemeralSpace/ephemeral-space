@@ -180,29 +180,6 @@
     FoodTomato: 2
 
 - type: microwaveMealRecipe
-  id: RecipeButterNoodles
-  name: butter noodles recipe
-  result: FoodNoodlesButter
-  time: 10
-  group: Pasta
-  solids:
-    FoodNoodlesBoiled: 1
-    FoodButter: 1
-
-- type: microwaveMealRecipe
-  id: RecipeChowMein
-  name: chow mein recipe
-  result: FoodNoodlesChowmein
-  time: 10
-  group: Pasta
-  reagents:
-    Egg: 6
-  solids:
-    FoodNoodlesBoiled: 1
-    FoodCarrot: 1
-    FoodCorn: 1
-
-- type: microwaveMealRecipe
   id: RecipeBoiledRice
   name: boiled rice recipe
   result: FoodRiceBoiled
@@ -282,7 +259,7 @@
     Water: 10
   solids:
     FoodBowlBig: 1
-    FoodOnionSlice: 5
+    FoodOnion: 1
     FoodCheeseSlice: 1
 
 - type: microwaveMealRecipe
@@ -339,7 +316,6 @@
     FoodCorn: 1
     FoodCarrot: 1
     FoodPotato: 1
-    FoodEggplant: 1
 
 #Pies
 
@@ -628,7 +604,7 @@
     FoodBowlBig: 1
     FoodChiliPepper: 1
     FoodMeatCutlet: 1
-    FoodOnionSlice: 1
+    FoodOnion: 1
     FoodTomato: 1
 
 - type: microwaveMealRecipe

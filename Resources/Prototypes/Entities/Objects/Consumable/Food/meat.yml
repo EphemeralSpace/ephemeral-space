@@ -287,6 +287,38 @@
     heldPrefix: generic-pink
 
 - type: entity
+  parent: FoodMeatBase
+  id: FoodMeatCooked
+  name: steak
+  description: A cooked slab of meat. Smells primal.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+    - Steak
+  - type: Sprite
+    layers:
+    - state: plain-cooked
+  - type: SliceableFood
+    count: 3
+    slice: FoodMeatCutletCooked
+  - type: Construction
+    graph: MeatSteak
+    node: meat steak
+  - type: FoodSequenceElement
+    entries:
+      Burger: MeatSteak
+      Taco: MeatSteak
+  - type: Item
+    storedOffset: -2,1
+    inhandVisuals:
+      left:
+      - state: plain-cooked-inhand-left
+      right:
+      - state: plain-cooked-inhand-right
+
+- type: entity
   parent: FoodMeatCookedBase
   id: FoodMeatBaconCooked
   name: bacon

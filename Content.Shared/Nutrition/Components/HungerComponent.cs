@@ -17,7 +17,7 @@ public sealed partial class HungerComponent : Component
     /// The current hunger threshold the entity is at
     /// </summary>
     [DataField, AutoNetworkedField]
-    public HungerThreshold CurrentHunger;
+    public HungerThreshold CurrentHunger = HungerThreshold.Okay;
 
     /// <summary>
     /// The time it takes for the hunger value to decay once

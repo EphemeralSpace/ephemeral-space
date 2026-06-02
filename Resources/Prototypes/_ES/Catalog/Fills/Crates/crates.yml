@@ -285,7 +285,7 @@
           - id: RiceSeeds
           - id: SoybeanSeeds
           - id: WatermelonSeeds
-          amount: 6
+        amount: 6
 
 - type: entity
   parent: CratePlastic

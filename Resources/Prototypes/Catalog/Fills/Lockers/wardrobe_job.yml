@@ -37,7 +37,6 @@
       - id: FoodSnackCheesie
       - id: FoodSnackChips
       - id: FoodSnackRaisins
-      - id: FoodSnackMREBrownie
       - id: FoodSnackChocolate
       - id: FoodSnackChowMein
     - !type:GroupSelector
@@ -73,9 +72,6 @@
       - id: Cigarette
         amount: !type:RangeNumberSelector
           range: 1, 4
-      - id: GroundCannabis
-        amount: !type:RangeNumberSelector
-          range: 1, 6
 
 - type: entity
   id: WardrobeScienceFilled

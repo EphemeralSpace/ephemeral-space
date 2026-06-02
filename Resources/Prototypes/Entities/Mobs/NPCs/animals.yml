@@ -393,7 +393,6 @@
     - terrible
     - chewy
   - type: Hunger
-    baseDecayRate: 0.25
   - type: Extractable
     grindableSolutionName: food
   - type: SolutionContainerManager
@@ -404,7 +403,7 @@
           Quantity: 5
   - type: Butcherable
     spawned:
-    - id: FoodMeatSlime
+    - id: FoodMeat
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Cockroach
@@ -467,7 +466,7 @@
     - SimpleHostile
   - type: Butcherable
     spawned:
-    - id: FoodMeatSlime
+    - id: FoodMeat
 
 # Note that the mallard duck is actually a male drake mallard, with the brown duck being the female variant of the same species, however ss14 lacks sex specific textures
 # The white duck is more akin to a pekin or call duck.
@@ -522,7 +521,7 @@
         Base: dead-0
   - type: Butcherable
     spawned:
-    - id: FoodMeatDuck
+    - id: FoodMeat
       amount: 1
   - type: InteractionPopup
     successChance: 0.9
@@ -792,7 +791,7 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatCrab
+    - id: FoodMeat
       amount: 2
   - type: InteractionPopup
     successChance: 0.5
@@ -1514,13 +1513,6 @@
       Dead: 0
     baseDecayRate: 0.04
   - type: Hunger
-    thresholds:
-      Overfed: 35
-      Okay: 25
-      Peckish: 15
-      Starving: 10
-      Dead: 0
-    baseDecayRate: 0.5 # I'm very hungry! Give me. The cheese.
   - type: Butcherable
     spawned:
     - id: FoodMeatRat
@@ -1613,8 +1605,6 @@
   - type: TimedDespawn
     lifetime: 60
   - type: Hunger
-    baseDecayRate: 10 # always hungry
-    starvingSlowdownModifier: 1
   - type: Thirst
     baseDecayRate: 10 # always thirsty
 
@@ -1749,7 +1739,7 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatLizard
+    - id: FoodMeat
       amount: 1
   - type: InteractionPopup
     successChance: 0.3
@@ -2014,7 +2004,7 @@
         Base: penguin_dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatPenguin
+    - id: FoodMeat
       amount: 3
   - type: InteractionPopup
     successChance: 0.5
@@ -2150,7 +2140,7 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatSnake
+    - id: FoodMeat
       amount: 1
   - type: InteractionPopup
     successChance: 0.6
@@ -2187,7 +2177,7 @@
         - MobLayer
   - type: Butcherable
     spawned:
-    - id: FoodMeatSpider
+    - id: FoodMeat
       amount: 2
   - type: CombatMode
   - type: Body
@@ -3100,7 +3090,6 @@
     flavors:
     - meaty
   - type: Hunger
-    baseDecayRate: 0.3
   - type: Extractable
     grindableSolutionName: food
   - type: SolutionContainerManager

@@ -485,8 +485,3 @@
   potency: 10
   idealHeat: 288
   growthStages: 3
-  chemicals:
-    PumpkinFlesh:
-      Min: 1
-      Max: 20
-      PotencyDivisor: 5

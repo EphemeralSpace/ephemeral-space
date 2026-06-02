@@ -18,9 +18,6 @@
     equippedPrefix: unlit
   - type: Item
     size: Tiny
-  - type: Construction
-    graph: smokeableJoint
-    node: joint
   - type: SolutionContainerManager
     solutions:
       smokable:

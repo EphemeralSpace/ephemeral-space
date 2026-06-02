@@ -793,13 +793,6 @@
   - type: FlavorProfile
     flavors:
       - pumpkin
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: PumpkinFlesh
-          Quantity: 5
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/pumpkin.rsi
   - type: Produce

@@ -776,9 +776,7 @@
         Base: rainbow_baby_slime_dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatSlime
-      amount: 1
-    - id: MaterialSmileExtract
+    - id: FoodMeat
       amount: 1
   - type: Damageable
     damageModifierSet: SlimePet

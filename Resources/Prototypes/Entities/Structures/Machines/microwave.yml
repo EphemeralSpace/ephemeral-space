@@ -166,10 +166,6 @@
     snapCardinals: true
   - type: Machine
     board: SyndicateMicrowaveMachineCircuitboard
-  - type: FoodRecipeProvider
-    providedRecipes:
-    - RecipeBaguetteSword
-    - RecipeThrowingCroissant
   - type: Item
     sprite: Structures/Machines/microwave_syndie.rsi
     size: Ginormous

@@ -146,7 +146,6 @@
   products:
     Fat: 6
     Water: 3
-    Protein: 1 #water & protein represent aqueous proteins
 
 - type: reaction
   id: AllicinBreakdown

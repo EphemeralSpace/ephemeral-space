@@ -1,7 +1,0 @@
-- type: construction
-  id: smokeableJoint
-  graph: smokeableJoint
-  startNode: start
-  targetNode: joint
-  category: construction-category-misc
-  objectType: Item
