@@ -90,26 +90,26 @@
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCrewMonitoring]
   description: The syndicate is trying to acquire sensitive crew medical records. It can be extracted from the crew monitoring server.
 
-# ID card computer
+# Emergency access terminal
 - type: entity
-  id: ESBaseObjectiveSabotageIDComputer
-  name: Sabotage the ID card computer
+  id: ESBaseObjectiveSabotageEmergencyAccessTerminal
+  name: Sabotage the emergency access terminal
   abstract: true
   components:
   - type: ESObjective
     icon:
       sprite: _ES/Structures/Machines/computer.rsi
-      state: id-icon
+      state: emerg-icon
   - type: ESCounterObjective
   - type: ESSabotageCondition
     whitelist:
       components:
-      - IdCardConsole
+      - ESEmergencyAccessConsole
 
 - type: entity
-  id: ESObjectiveTraitorSabotageIDComputer
-  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageIDComputer]
-  description: The syndicate want to steal the crew manifest data. It can be extracted from the ID card computer.
+  id: ESObjectiveTraitorSabotageEmergencyAccessTerminal
+  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageEmergencyAccessTerminal]
+  description: The syndicate want to infiltrate the station's central access network. It can be done at the emergency access terminal.
 
 # Criminal records
 - type: entity

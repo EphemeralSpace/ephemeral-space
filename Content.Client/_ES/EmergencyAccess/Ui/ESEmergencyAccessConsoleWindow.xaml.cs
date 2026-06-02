@@ -56,6 +56,8 @@ public sealed partial class ESEmergencyAccessConsoleWindow : FancyWindow
         PowerStatusLabel.Text = comp.PowerEnabled
             ? Loc.GetString("es-emergency-access-ui-power-status-enabled")
             : Loc.GetString("es-emergency-access-ui-power-status-disabled");
+
+        ToggleButton.Disabled = !comp.PowerEnabled;
     }
 }
 

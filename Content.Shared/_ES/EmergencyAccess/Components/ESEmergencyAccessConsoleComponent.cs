@@ -1,4 +1,6 @@
+using Content.Shared.Access;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.EmergencyAccess.Components;
@@ -21,6 +23,12 @@ public sealed partial class ESEmergencyAccessConsoleComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool PowerEnabled;
+
+    [DataField]
+    public int DegradationDoorSabotageCount = 10;
+
+    [DataField]
+    public HashSet<ProtoId<AccessLevelPrototype>> IgnoredAccessList = ["Maintenance"];
 }
 
 [Serializable, NetSerializable]

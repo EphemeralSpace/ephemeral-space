@@ -1,5 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using Content.Shared._ES.Degradation;
 using Content.Shared._ES.EmergencyAccess.Components;
+using Content.Shared.Access.Systems;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
@@ -8,13 +11,16 @@ using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Timing;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
 using Robust.Shared.Random;
 
 namespace Content.Shared._ES.EmergencyAccess;
 
 public abstract partial class ESSharedEmergencyAccessSystem : EntitySystem
 {
+    [Dependency] private INetManager _net = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
     [Dependency] private SharedAirlockSystem _airlock = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedDoorSystem _door = default!;
@@ -30,6 +36,7 @@ public abstract partial class ESSharedEmergencyAccessSystem : EntitySystem
         SubscribeLocalEvent<ESEmergencyAccessDoorComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<ESEmergencyAccessDoorComponent, DoorBoltsChangedEvent>(OnDoorBoltsChanged);
 
+        SubscribeLocalEvent<ESEmergencyAccessConsoleComponent, ESUndergoDegradationEvent>(OnUndergoDegradation);
         Subs.BuiEvents<ESEmergencyAccessConsoleComponent>(ESEmergencyAccessConsoleUiKey.Key,
             subs =>
             {
@@ -72,6 +79,38 @@ public abstract partial class ESSharedEmergencyAccessSystem : EntitySystem
             comp.PowerEnabled = args.Powered;
             Dirty(uid, comp);
         }
+    }
+
+    private void OnUndergoDegradation(Entity<ESEmergencyAccessConsoleComponent> ent, ref ESUndergoDegradationEvent args)
+    {
+        if (_net.IsClient)
+        {
+            args.Handled = true;
+            return;
+        }
+
+        var doors = new List<Entity<AirlockComponent>>();
+
+        var query = EntityQueryEnumerator<ESEmergencyAccessDoorComponent, AirlockComponent>();
+        while (query.MoveNext(out var uid, out _, out var airlock))
+        {
+            if (airlock.EmergencyAccess)
+                continue;
+
+            if (!_accessReader.GetMainAccessReader(uid, out var access) ||
+                access.Value.Comp.AccessLists.Any(p => p.IsSubsetOf(ent.Comp.IgnoredAccessList)) ||
+                access.Value.Comp.AccessLists.Sum(p => p.Count) == 0)
+                continue;
+
+            doors.Add((uid, airlock));
+        }
+
+        foreach (var door in _random.GetItems(doors, ent.Comp.DegradationDoorSabotageCount))
+        {
+            _airlock.SetEmergencyAccess(door, true);
+        }
+
+        args.Handled = true;
     }
 
     private void OnSearchMessage(EntityUid uid, ESEmergencyAccessConsoleComponent component, ESEmergencyAccessSearchBuiMessage args)
