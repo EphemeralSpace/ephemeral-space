@@ -389,7 +389,7 @@
   parent: ESBaseComputerTerminal
   id: ESComputerTerminalEmergencyAccess
   name: emergency access terminal
-  description: A hefty terminal that can remotely toggle access on airlocks.
+  description: A hefty terminal that can remotely toggle access on airlocks using the printed access key on the door. You remembered what the key was, right?
   components:
   - type: Sprite
     layers:
