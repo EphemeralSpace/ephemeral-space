@@ -182,44 +182,6 @@
 
 - type: entity
   parent: BaseAnomalyInjector
-  id: AnomalyTrapFlora
-  suffix: Flora
-  components:
-  - type: Sprite
-    layers:
-    - state: pink
-    - sprite: Structures/Specific/Anomalies/flora_anom.rsi
-      state: pulse
-    - sprite: Mobs/Species/Human/parts.rsi
-      state: full
-  - type: InnerBodyAnomalyInjector
-    injectionComponents:
-      - type: Anomaly
-        deleteEntity: false
-        maxPointsPerSecond: 100
-        corePrototype: AnomalyCoreFlora
-        coreInertPrototype: AnomalyCoreFloraInert
-        supercriticalSoundAtAnimationStart:
-          collection: AnomalyFloraSupercritical
-      - type: InnerBodyAnomaly
-        injectionProto: AnomalyInjectionFlora
-        startMessage: inner-anomaly-start-message-flora
-        fallbackSprite:
-          sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
-          state: flora
-        speciesSprites:
-          Vox:
-            sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
-            state: flora_VOX
-          Arachnid:
-            sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
-            state: flora_ARACHNID
-          Moth:
-            sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
-            state: flora_MOTH
-
-- type: entity
-  parent: BaseAnomalyInjector
   id: AnomalyTrapBluespace
   suffix: Bluespace
   components:

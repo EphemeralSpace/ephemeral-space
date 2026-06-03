@@ -126,7 +126,7 @@
           path: /Audio/Effects/gib1.ogg
       - !type:SpawnEntitiesBehavior
         spawn:
-          FoodMeatXeno:
+          FoodMeat:
             min: 3
             max: 5
   - type: InteractionPopup

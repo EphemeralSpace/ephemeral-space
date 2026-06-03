@@ -593,7 +593,7 @@
   parent: [BaseBrandedLighter]
   id: DonkcoLighter
   name: Donk Co. flippo
-  description: "The flippo of choice for the seasoned traitor. A Breaded novelty lighter made by Donk Co. Somehow edible while lit."
+  description: "The flippo of choice for the seasoned traitor. A Breaded novelty lighter made by Donk Co. Not edible while lit."
   components:
   - type: Sprite
     sprite: Objects/Tools/Lighters/donkco.rsi
@@ -614,21 +614,11 @@
         - ReagentId: WeldingFuel
           Quantity: 12
         maxVol: 12
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Omnizine
-          Quantity: 10
   - type: FlavorProfile
     flavors:
       - bread
       - meaty
       - cheap
-  - type: ComponentToggler
-    components:
-    - type: Edible # This shouldn't be component toggler, but doesn't work when it's not
   - type: PointLight
     enabled: false
     netsync: false

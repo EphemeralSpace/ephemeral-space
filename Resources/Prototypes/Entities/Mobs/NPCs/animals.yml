@@ -387,13 +387,14 @@
       - ReagentId: InsectBlood
         Quantity: 20
   - type: Edible
+  - type: ESFood
+    satietyMultiplier: -1
   - type: FlavorProfile
     flavors:
     - horrible
     - terrible
     - chewy
   - type: Hunger
-    baseDecayRate: 0.25
   - type: Extractable
     grindableSolutionName: food
   - type: SolutionContainerManager
@@ -404,7 +405,7 @@
           Quantity: 5
   - type: Butcherable
     spawned:
-    - id: FoodMeatSlime
+    - id: FoodMeat
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Cockroach
@@ -467,7 +468,7 @@
     - SimpleHostile
   - type: Butcherable
     spawned:
-    - id: FoodMeatSlime
+    - id: FoodMeat
 
 # Note that the mallard duck is actually a male drake mallard, with the brown duck being the female variant of the same species, however ss14 lacks sex specific textures
 # The white duck is more akin to a pekin or call duck.
@@ -522,7 +523,7 @@
         Base: dead-0
   - type: Butcherable
     spawned:
-    - id: FoodMeatDuck
+    - id: FoodMeat
       amount: 1
   - type: InteractionPopup
     successChance: 0.9
@@ -643,14 +644,6 @@
         Base: dead
       Dead:
         Base: dead
-  - type: Extractable
-    grindableSolutionName: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 1
   - type: Butcherable
     spawned:
     - id: null # Should give nothing when you butcher it so we set the item id it needs to spawn to null
@@ -800,7 +793,7 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatCrab
+    - id: FoodMeat
       amount: 2
   - type: InteractionPopup
     successChance: 0.5
@@ -885,14 +878,6 @@
     growthDelay: 20
   - type: ExaminableHunger
   - type: Wooly
-  - type: Edible
-    destroyOnEmpty: false
-    solution: wool
-    requiresSpecialDigestion: true
-    requireDead: false
-  - type: FlavorProfile
-    flavors:
-    - fiber
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -1509,9 +1494,13 @@
       Dead:
         Base: splat-0
   - type: Edible
+  - type: ESFood
+    satietyMultiplier: -1
   - type: FlavorProfile
     flavors:
-    - meaty
+    - horrible
+    - terrible
+    - chewy
   - type: Thirst
     startingThirst: 25  # spawn with Okay thirst state
     thresholds:
@@ -1522,21 +1511,6 @@
       Dead: 0
     baseDecayRate: 0.04
   - type: Hunger
-    thresholds:
-      Overfed: 35
-      Okay: 25
-      Peckish: 15
-      Starving: 10
-      Dead: 0
-    baseDecayRate: 0.5 # I'm very hungry! Give me. The cheese.
-  - type: Extractable
-    grindableSolutionName: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 3
   - type: Butcherable
     spawned:
     - id: FoodMeatRat
@@ -1629,8 +1603,6 @@
   - type: TimedDespawn
     lifetime: 60
   - type: Hunger
-    baseDecayRate: 10 # always hungry
-    starvingSlowdownModifier: 1
   - type: Thirst
     baseDecayRate: 10 # always thirsty
 
@@ -1717,8 +1689,6 @@
     solutions:
       food:
         reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 3
         - ReagentId: Uranium
           Quantity: 10
   - type: Butcherable
@@ -1767,7 +1737,7 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatLizard
+    - id: FoodMeat
       amount: 1
   - type: InteractionPopup
     successChance: 0.3
@@ -2032,7 +2002,7 @@
         Base: penguin_dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatPenguin
+    - id: FoodMeat
       amount: 3
   - type: InteractionPopup
     successChance: 0.5
@@ -2168,7 +2138,7 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatSnake
+    - id: FoodMeat
       amount: 1
   - type: InteractionPopup
     successChance: 0.6
@@ -2205,7 +2175,7 @@
         - MobLayer
   - type: Butcherable
     spawned:
-    - id: FoodMeatSpider
+    - id: FoodMeat
       amount: 2
   - type: CombatMode
   - type: Body
@@ -3114,19 +3084,20 @@
       Dead:
         Base: splat-0
   - type: Edible
+  - type: ESFood
+    satietyMultiplier: -1
   - type: FlavorProfile
     flavors:
-    - meaty
+    - horrible
+    - terrible
+    - chewy
   - type: Hunger
-    baseDecayRate: 0.3
   - type: Extractable
     grindableSolutionName: food
   - type: SolutionContainerManager
     solutions:
       food:
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
         - ReagentId: Blood
           Quantity: 55
         - ReagentId: Fat

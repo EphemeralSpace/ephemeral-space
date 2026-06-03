@@ -1,0 +1,25 @@
+<Document>
+  # Hunger
+
+  Everyone gets hungry sometimes.
+
+  Hunger has four states: [color=green]okay[/color], [color=lightskyblue]peckish[/color], [color=orange]hungry[/color], and [color=red]starving[/color]. While you're hungry or starving, your movement speed is slowed significantly.
+
+  Each bite of a piece of food [bold]immediately reduces your hunger by 1 stage[/bold]. Most foods only have 1 portion, but most cooked foods have up to 3, 4, or even 5.
+
+  <Box>
+    <GuideEntityEmbed Entity="FoodSnackRaisins" Caption="A mere 1-portion meal."/>
+    <GuideEntityEmbed Entity="FoodCakeBirthday" Caption="A veritable feast."/>
+  </Box>
+
+  Some foods have reagents in them, which may be helpful or harmful. Each portion of food will have the same amount of reagents in it.
+
+  <Box>
+    <GuideEntityEmbed Entity="FoodDonkpocketWarm" Caption="A helpful treat!"/>
+    <GuideEntityEmbed Entity="FoodJellyAmanita" Caption="Less helpful."/>
+  </Box>
+
+  Your hunger decays over time. After eating a meal, the timer for your hunger decay is reset. While you're full (at "okay" hunger), you cannot eat anymore.
+
+  Some say that, in the future, you may be able to "Expend" your "Hunger" to perform various "Actions". That's strange??!?!
+</Document>

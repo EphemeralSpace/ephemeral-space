@@ -84,13 +84,13 @@ public sealed partial class EggLayerSystem : EntitySystem
         // Allow infinitely laying eggs if they can't get hungry.
         if (TryComp<HungerComponent>(uid, out var hunger))
         {
-            if (_hunger.GetHunger(hunger) < egglayer.HungerUsage)
+            if (hunger.CurrentHunger == HungerThreshold.Starving)
             {
                 _popup.PopupEntity(Loc.GetString("action-popup-lay-egg-too-hungry"), uid, uid);
                 return false;
             }
 
-            _hunger.ModifyHunger(uid, -egglayer.HungerUsage, hunger);
+            _hunger.ModifySatiety((uid, hunger), -1);
         }
 
         foreach (var ent in EntitySpawnCollection.GetSpawns(egglayer.EggSpawn, _random))

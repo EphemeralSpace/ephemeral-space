@@ -28,6 +28,9 @@ public sealed partial class MessyDrinkerSystem : EntitySystem
         if (ent.Comp.SpillImmuneTag != null && _tag.HasTag(ev.Food, ent.Comp.SpillImmuneTag.Value))
             return;
 
+        if (ev.Split == null)
+            return;
+
         // Cannot spill if you're being forced to drink.
         if (ev.ForceFed)
             return;

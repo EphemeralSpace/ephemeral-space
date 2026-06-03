@@ -201,9 +201,6 @@
   suffix: Full
   components:
   - type: Material
-  - type: Edible
-    transferAmount: 10
-  - type: BadFood
   - type: PhysicalComposition
     materialComposition:
       Uranium: 100
@@ -271,17 +268,6 @@
     - type: Item
       sprite: Objects/Materials/Sheets/meaterial.rsi
       heldPrefix: meat
-    - type: Extractable
-      grindableSolutionName: meatsheet
-    - type: SolutionContainerManager
-      solutions:
-        meatsheet:
-          reagents:
-          - ReagentId: Protein
-            Quantity: 7
-          - ReagentId: Fat
-            Quantity: 3
-          canReact: false
 
 - type: entity
   parent: MaterialSheetMeat

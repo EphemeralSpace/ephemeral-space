@@ -331,15 +331,6 @@
   description: alerts-piloting-desc
 
 - type: alert
-  id: Peckish
-  category: Hunger
-  icons:
-  - sprite: /Textures/Interface/Alerts/hunger.rsi
-    state: peckish
-  name: alerts-hunger-name
-  description: alerts-hunger-desc
-
-- type: alert
   id: Stamina
   category: Stamina
   icons:
@@ -361,15 +352,6 @@
   description: alerts-stamina-desc
   minSeverity: 0
   maxSeverity: 6
-
-- type: alert
-  id: Starving
-  category: Hunger
-  icons:
-  - sprite: /Textures/Interface/Alerts/hunger.rsi
-    state: starving
-  name: alerts-starving-name
-  description: alerts-starving-desc
 
 - type: alert
   id: Thirsty

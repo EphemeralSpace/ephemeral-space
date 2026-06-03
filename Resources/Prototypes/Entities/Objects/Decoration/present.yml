@@ -218,22 +218,6 @@
         orGroup: GiftPool
       - id: FoodBoxDonkpocket
         orGroup: GiftPool
-      - id: FoodBoxDonkpocketSpicy
-        orGroup: GiftPool
-      - id: FoodBoxDonkpocketTeriyaki
-        orGroup: GiftPool
-      - id: FoodBoxDonkpocketPizza
-        orGroup: GiftPool
-      - id: FoodBoxDonkpocketStonk
-        orGroup: GiftPool
-      - id: FoodBoxDonkpocketCarp
-        orGroup: GiftPool
-      - id: FoodBoxDonkpocketBerry
-        orGroup: GiftPool
-      - id: FoodBoxDonkpocketHonk
-        orGroup: GiftPool
-      - id: FoodBoxDonkpocketMoth
-        orGroup: GiftPool
       - id: ClothingHandsGlovesColorPurple
         orGroup: GiftPool
       - id: ClothingHandsGlovesColorYellow
@@ -251,8 +235,6 @@
       - id: ClothingHeadHatXmasCrown
         orGroup: GiftPool
       - id: ClothingHeadHatBunny
-        orGroup: GiftPool
-      - id: FoodPoppy
         orGroup: GiftPool
       - id: ClothingMaskClown
         orGroup: GiftPool

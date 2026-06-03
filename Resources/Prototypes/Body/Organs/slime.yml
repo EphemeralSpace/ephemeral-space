@@ -24,11 +24,6 @@
       solutions:
         stomach:
           maxVol: 50.0
-        food:
-          maxVol: 5
-          reagents:
-          - ReagentId: GreyMatter
-            Quantity: 5
         organ:
           reagents:
           - ReagentId: Blood
@@ -68,11 +63,6 @@
       Lung:
         maxVol: 100.0
         canReact: false
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
   - type: Item
     size: Small
     heldPrefix: lungs

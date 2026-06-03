@@ -32369,7 +32369,7 @@ entities:
     - type: Transform
       pos: -36.5,9.5
       parent: 2
-- proto: CrateHydroponicsSeeds
+- proto: ESCrateHydroponicsSeeds
   entities:
   - uid: 8778
     components:
@@ -35988,7 +35988,7 @@ entities:
     - type: Transform
       pos: 28.5,-19.5
       parent: 2
-- proto: DonkpocketBoxSpawner
+- proto: FoodBoxDonkpocket
   entities:
   - uid: 9071
     components:
@@ -46248,13 +46248,6 @@ entities:
     components:
     - type: Transform
       pos: -24.5,-23.5
-      parent: 2
-- proto: FoodMeatClown
-  entities:
-  - uid: 13116
-    components:
-    - type: Transform
-      pos: 10.5,-37.5
       parent: 2
 - proto: FoodPieBananaCream
   entities:
@@ -71660,13 +71653,6 @@ entities:
       name: North Thruster Substation
     - type: Transform
       pos: -48.5,32.5
-      parent: 2
-- proto: SmokingPipeFilledTobacco
-  entities:
-  - uid: 2456
-    components:
-    - type: Transform
-      pos: 28.451164,-22.548763
       parent: 2
 - proto: SoapNT
   entities:

@@ -165,7 +165,7 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatTomato
+    - id: FoodMeat
       amount: 2
   - type: Destructible
     thresholds:
@@ -176,7 +176,7 @@
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
-          FoodMeatTomato:
+          FoodMeat:
             min: 1
             max: 2
       - !type:DoActsBehavior
@@ -219,8 +219,6 @@
     grindableSolutionName: bloodstream
   - type: PotencyVisuals
   - type: Appearance
-  - type: Produce
-    seedId: killerTomato
   - type: PassiveDamage # Slight passive damage. 35 hp \ 5 min \ 60 sec = 0.08
     allowedStates:
     - Alive

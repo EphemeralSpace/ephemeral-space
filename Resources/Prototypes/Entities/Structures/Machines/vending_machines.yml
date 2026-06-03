@@ -336,39 +336,6 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineChefvend
-  name: ChefVend
-  description: An ingredient vendor for all your cheffin needs.
-  components:
-  - type: VendingMachine
-    pack: ChefvendInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-  - type: DatasetVocalizer
-    dataset: ChefvendAds
-  - type: SpeakOnUIClosed
-    pack: ChefvendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/chefvend.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["Service"]]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#4b93ad"
-
-- type: entity
-  parent: VendingMachine
   id: VendingMachineCigs
   name: ShadyCigs Deluxe
   description: If you want to get cancer, might as well do it in style.
@@ -758,39 +725,6 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineDinnerware
-  name: Plasteel Chef's Dinnerware Vendor
-  description: A kitchen and restaurant equipment vendor.
-  components:
-  - type: VendingMachine
-    pack: DinnerwareInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-  - type: DatasetVocalizer
-    dataset: DinnerwareAds
-  - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/dinnerware.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["Kitchen"]]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#4b93ad"
-
-- type: entity
-  parent: VendingMachine
   id: VendingMachineDiscount
   name: Discount Dan's
   description: A vending machine containing discount snacks from the infamous 'Discount Dan' franchise.
@@ -975,48 +909,6 @@
     radius: 1
     energy: 2.0
     color: "#78645c"
-
-
-- type: entity
-  parent: VendingMachine
-  id: VendingMachineSeedsUnlocked
-  name: MegaSeed Servitor
-  description: For when you need seeds fast. Hands down the best seed selection on the station!
-  suffix: Unlocked
-  components:
-  - type: VendingMachine
-    pack: MegaSeedServitorInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-    denyState: deny-unshaded
-  - type: DatasetVocalizer
-    dataset: MegaSeedAds
-  - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/seeds.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#326e3f"
-
-- type: entity
-  parent: VendingMachineSeedsUnlocked
-  id: VendingMachineSeeds
-  suffix: Hydroponics
-  components:
-  - type: AccessReader
-    access: [["Hydroponics"]]
 
 - type: entity
   parent: VendingMachine

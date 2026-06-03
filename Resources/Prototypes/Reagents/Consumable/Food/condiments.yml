@@ -129,8 +129,6 @@
   metabolisms:
     Food:
       effects:
-      - !type:SatiateHunger
-        factor: 0.5
       - !type:SatiateThirst
         factor: -0.5 # high salt content
 
@@ -177,12 +175,6 @@
   viscosity: 0.55 #Start using syrup to attach your remote recievers to your microwaves!
   tileReactions:
     - !type:SpillTileReaction
-  metabolisms:
-    Food:
-      # 12 diona blood for 1 unit of syrup, this stuff better be worthwhile.
-      effects:
-      - !type:SatiateHunger
-        factor: 6.0 #Stronger than cookedramen
   footstepSound:
     collection: FootstepSlime
     params:

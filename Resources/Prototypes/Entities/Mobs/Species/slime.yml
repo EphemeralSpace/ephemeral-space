@@ -111,7 +111,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatSlime
+    - id: FoodMeat
       amount: 5
   - type: Respirator
     damage:

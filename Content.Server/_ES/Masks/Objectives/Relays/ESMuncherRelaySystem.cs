@@ -57,7 +57,7 @@ public sealed partial class ESMuncherRelaySystem : ESBaseMindRelay
 /// <param name="IsForceFed">Whether we're being forcefed.</param>
 /// <param name="IsDrink">Whether this is a drink.</param>
 [ByRefEvent]
-public readonly record struct ESBodyIngestingEvent(EntityUid Body, EntityUid Food, Solution FoodSolution, bool IsForceFed, bool IsDrink);
+public readonly record struct ESBodyIngestingEvent(EntityUid Body, EntityUid Food, Solution? FoodSolution, bool IsForceFed, bool IsDrink);
 
 /// <summary>
 ///     Raised directed on the mind when the body has fully consumed some food and it's about to be deleted.

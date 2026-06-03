@@ -25,7 +25,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatHuman
+    - id: FoodMeat
       amount: 5
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
