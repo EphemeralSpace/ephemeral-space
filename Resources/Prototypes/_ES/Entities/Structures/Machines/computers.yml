@@ -5,6 +5,7 @@
   name: computer
   placement:
     mode: SnapgridCenter
+  suffix: Terminal
   abstract: true
   components:
   - type: Sprite

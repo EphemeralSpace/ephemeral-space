@@ -426,12 +426,10 @@
     range: 1200
 
 - type: entity
-  # ES START
-  parent: ESBaseComputerTerminal
-  # ES END
-  id: ComputerId
+  id: BaseComputerId
   name: ID card computer
   description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
+  abstract: true
   components:
   - type: IdCardConsole
     privilegedIdSlot:
@@ -452,33 +450,6 @@
       whitelist:
         components:
         - IdCard
-# ES START
-    accessLevels: # TODO this dupe with the tabletop ID card computer sucks
-    - Armory
-    - Atmospherics
-    - Bar
-    - Brig
-    - Detective
-    - Captain
-    - Cargo
-    - Chemistry
-    - Command
-    - Engineering
-    - External
-    - GenpopEnter
-    - GenpopLeave
-    - HeadOfPersonnel
-    - HeadOfSecurity
-    - Hydroponics
-    - Janitor
-    - Kitchen
-    - Maintenance
-    - Medical
-    - Research
-    - Security
-    - Service
-    - Theatre
-# ES END
   - type: ActivatableUI
     key: enum.IdCardConsoleUiKey.Key
   - type: UserInterface
@@ -492,21 +463,6 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Pai
-  - type: Sprite
-    layers:
-    # ES START
-    - map: ["computerLayerBody"]
-      sprite: _ES/Structures/Machines/computer.rsi
-      state: terminal
-    # ES END
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: id
-    - map: ["computerLayerKeys"]
-      state: id_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
   - type: Computer
     board: IDComputerCircuitboard
   - type: PointLight
@@ -517,8 +473,41 @@
       board: !type:Container
       IdCardConsole-privilegedId: !type:ContainerSlot
       IdCardConsole-targetId: !type:ContainerSlot
-  - type: ESSabotageTarget
-  - type: ESAmbientMusicMarkerCommand
+
+- type: entity
+  parent: [ BaseComputerId, BaseComputer ]
+  id: ComputerId
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: id
+    - map: ["computerLayerKeys"]
+      state: id_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+
+- type: entity
+  parent: [ BaseComputerId, ESBaseComputerTerminal ]
+  id: ComputerTerminalId
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: id
+    - map: ["computerLayerKeys"]
+      state: id_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
 
 - type: entity
   parent: BaseComputerAiAccess
