@@ -29,6 +29,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Atmos.Components;
 using System.Linq;
 using Content.Server._ES.NPCs.Queries.Considerations;
+using Content.Shared._ES.Food;
 using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
 using Content.Shared._Offbrand.Wounds;
@@ -213,8 +214,13 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 if (avoidBadFood && HasComp<BadFoodComponent>(targetUid))
                     return 0f;
 
-                // TODO mirror
-                var nutrition = 0.0f;
+                if (!TryComp<ESFoodComponent>(targetUid, out var food))
+                    return 0f;
+
+                if (avoidBadFood && food.SatietyMultiplier < 0)
+                    return 0f;
+
+                var nutrition = food.PortionsLeft ?? food.StartingPortions;
                 if (nutrition == 0.0f)
                     return 0f;
 
