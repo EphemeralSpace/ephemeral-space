@@ -388,3 +388,28 @@ Entries:
         station.
   id: 48
   time: '2026-06-03T04:24:20.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: >-
+        A lot of food items + botany seeds have been removed in preparation of
+        upcoming cooking/botany changes
+    - type: Add
+      message: >-
+        Chef nutrivend and seed crates now have more randomized contents, and
+        can have cannabis/deathnettle/some other more exotic seeds on roundstart
+        now
+    - type: Tweak
+      message: >-
+        Hunger now works completely differently. Each food item now has a
+        different number of "portions", and each bite of food will immediately
+        restore 1 stage of hunger. Some bad foods will increase your hunger
+        instead
+    - type: Tweak
+      message: >-
+        Food can now be examined to show its satiety + they now have item
+        statuses
+    - type: Tweak
+      message: Melee damage on the shuttle is now even worse
+  id: 49
+  time: '2026-06-03T05:09:08.0000000+00:00'
