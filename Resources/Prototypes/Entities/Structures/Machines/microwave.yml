@@ -158,7 +158,6 @@
     cookTimeMultiplier: 0.5
     baseHeatMultiplier: 200
     capacity: 10
-    canMicrowaveIdsSafely: false
     explosionChance: 0.3
   - type: Sprite
     sprite: Structures/Machines/microwave_syndie.rsi

@@ -7,6 +7,7 @@
   icon: "JobIconHeadOfPersonnel"
   supervisors: job-supervisors-captain
   canBeAntag: false
+  overrideConsoleVisibility: false
   access:
   - Command
   - HeadOfPersonnel
