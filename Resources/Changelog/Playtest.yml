@@ -380,3 +380,11 @@ Entries:
         APC bug objective.
   id: 47
   time: '2026-05-31T19:10:51.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The captain and head of personnel no longer have All Access to the
+        station.
+  id: 48
+  time: '2026-06-03T04:24:20.0000000+00:00'
