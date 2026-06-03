@@ -10,8 +10,11 @@
   supervisors: job-supervisors-centcom
   canBeAntag: false
   overrideConsoleVisibility: false
-  accessGroups:
-  - AllAccess
+  access:
+  - Command
+  - Captain
+  - Maintenance
+  - External
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
