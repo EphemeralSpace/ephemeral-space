@@ -432,15 +432,6 @@
   abstract: true
   components:
   - type: IdCardConsole
-    privilegedIdSlot:
-      name: id-card-console-privileged-id
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-      ejectOnBreak: true
-      swap: false
-      whitelist:
-        components:
-        - IdCard
     targetIdSlot:
       name: id-card-console-target-id
       ejectSound: /Audio/Machines/id_swipe.ogg
