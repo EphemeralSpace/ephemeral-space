@@ -36,6 +36,7 @@
     - SemiAuto
   - type: GunSpreadModifier
     spread: 1.5
+  - type: ESPickpocketPriorityItem
 
 - type: entity
   parent: [ESWeaponShotgun, BaseSecurityBartenderContraband]

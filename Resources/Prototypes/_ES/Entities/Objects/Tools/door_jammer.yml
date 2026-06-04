@@ -41,3 +41,4 @@
         Piercing: 6
     soundHit:
       path: "/Audio/Weapons/bladeslice.ogg"
+  - type: ESPickpocketPriorityItem

@@ -10,3 +10,4 @@
     state: icon
   - type: ESAddMaskOnUse
     maskToAdd: Recruit
+  - type: ESPickpocketPriorityItem
