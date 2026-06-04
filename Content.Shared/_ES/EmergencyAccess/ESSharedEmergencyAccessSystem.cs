@@ -163,9 +163,6 @@ public abstract partial class ESSharedEmergencyAccessSystem : EntitySystem
 
     private void OnMapInit(Entity<ESEmergencyAccessDoorComponent> ent, ref MapInitEvent args)
     {
-        if (_net.IsClient)
-            return;
-
         ent.Comp.Key = GenerateUniqueKey();
         Dirty(ent);
     }
