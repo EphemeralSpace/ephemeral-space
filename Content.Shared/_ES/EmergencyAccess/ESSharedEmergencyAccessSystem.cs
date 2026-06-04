@@ -7,6 +7,7 @@ using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Examine;
+using Content.Shared.GameTicking;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Timing;
@@ -27,6 +28,8 @@ public abstract partial class ESSharedEmergencyAccessSystem : EntitySystem
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
     [Dependency] private UseDelaySystem _useDelay = default!;
 
+    private readonly HashSet<string> _usedKeys = new();
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -35,6 +38,7 @@ public abstract partial class ESSharedEmergencyAccessSystem : EntitySystem
         SubscribeLocalEvent<ESEmergencyAccessDoorComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<ESEmergencyAccessDoorComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<ESEmergencyAccessDoorComponent, DoorBoltsChangedEvent>(OnDoorBoltsChanged);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 
         SubscribeLocalEvent<ESEmergencyAccessConsoleComponent, ESUndergoDegradationEvent>(OnUndergoDegradation);
         Subs.BuiEvents<ESEmergencyAccessConsoleComponent>(ESEmergencyAccessConsoleUiKey.Key,
@@ -79,6 +83,11 @@ public abstract partial class ESSharedEmergencyAccessSystem : EntitySystem
             comp.PowerEnabled = args.Powered;
             Dirty(uid, comp);
         }
+    }
+
+    private void OnRoundRestart(RoundRestartCleanupEvent ev)
+    {
+        _usedKeys.Clear();
     }
 
     private void OnUndergoDegradation(Entity<ESEmergencyAccessConsoleComponent> ent, ref ESUndergoDegradationEvent args)
@@ -154,6 +163,9 @@ public abstract partial class ESSharedEmergencyAccessSystem : EntitySystem
 
     private void OnMapInit(Entity<ESEmergencyAccessDoorComponent> ent, ref MapInitEvent args)
     {
+        if (_net.IsClient)
+            return;
+
         ent.Comp.Key = GenerateUniqueKey();
         Dirty(ent);
     }
@@ -183,23 +195,14 @@ public abstract partial class ESSharedEmergencyAccessSystem : EntitySystem
 
             key = $"{letter}{digit}";
 
-            // Questionably efficient? At least it's the most logical approach.
-            var fail = false;
-            var query = AllEntityQuery<ESEmergencyAccessDoorComponent>();
-            while (query.MoveNext(out var comp))
-            {
-                if (!string.Equals(comp.Key, key, StringComparison.InvariantCultureIgnoreCase))
-                    continue;
-                fail = true;
-                break;
-            }
-
-            if (!fail)
+            if (_usedKeys.Add(key))
                 return key;
         }
 
         // Ok i give up. generate some unique bullshit.
-        return $"{key}-{_random.Next(0, 10)}";
+        key = $"{key}-{_random.Next(0, 10)}";
+        _usedKeys.Add(key);
+        return key;
     }
 
     /// <summary>
