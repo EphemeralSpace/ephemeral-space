@@ -90,7 +90,21 @@ public sealed partial class ESPickpocketMaskSystem : EntitySystem
             return;
         }
 
+        var PriorityItems = new List<EntityUid>();
         var item = _random.Pick(bag.Value.Comp.Container.ContainedEntities);
+
+        foreach (var entity in bag.Value.Comp.Container.ContainedEntities)
+        {
+            if (HasComp<ESPickpocketPriorityItemComponent>(entity))
+                PriorityItems.Add(entity);
+        }
+
+        if (PriorityItems.Count != 0 && _random.Prob(args.PriorityItemChance))
+        {
+            item = _random.Pick(PriorityItems);
+        }
+
+
         if (!_container.Remove(item, bag.Value.Comp.Container))
             return;
 

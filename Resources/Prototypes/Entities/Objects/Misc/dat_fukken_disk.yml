@@ -19,6 +19,7 @@
       - GhostOnlyWarp
 # ES START - necessary for warp stuff rn
   - type: ESStagehandAware
+  - type: ESPickpocketPriorityItem
 # ES END
   - type: Tag
     tags:

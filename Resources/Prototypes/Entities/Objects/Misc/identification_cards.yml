@@ -35,6 +35,9 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+  # ES start - Prioritization for pickpocket stealing
+  - type: ESPickpocketPriorityItem
+  # ES end
 
 #IDs with layers
 

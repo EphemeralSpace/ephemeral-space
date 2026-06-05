@@ -11,4 +11,11 @@ public sealed partial class ESPickpocketTargetActionEvent : EntityTargetActionEv
 }
 
 [Serializable, NetSerializable]
-public sealed partial class ESPickpocketTargetDoAfterEvent : SimpleDoAfterEvent;
+public sealed partial class ESPickpocketTargetDoAfterEvent : SimpleDoAfterEvent
+{
+    /// <summary>
+    /// Chance that the pickpocket will take from the priority item pool instead of just the random one
+    /// </summary>
+    [DataField]
+    public float PriorityItemChance = 0.60f;
+}
