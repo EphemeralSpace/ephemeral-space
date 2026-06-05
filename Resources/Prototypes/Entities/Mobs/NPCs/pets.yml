@@ -734,7 +734,7 @@
 - type: entity
   name: Smile
   id: MobSlimesPet
-  parent: [MobAdultSlimes, StripableInventoryBase]
+  parent: [BaseMobAdultSlimes, StripableInventoryBase]
   description: This masterpiece has gone through thousands of experiments. But it is the sweetest creature in the world. Smile Slime!
   components:
   - type: Sprite

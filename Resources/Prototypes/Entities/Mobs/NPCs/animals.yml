@@ -816,7 +816,7 @@
     rootTask:
       task: RuminantCompound
   - type: Body
-    prototype: AnimalHemocyanin
+    prototype: Animal
 
 - type: entity
   name: goat
@@ -2179,7 +2179,7 @@
       amount: 2
   - type: CombatMode
   - type: Body
-    prototype: AnimalHemocyanin
+    prototype: Animal
   - type: MobThresholds
     thresholds:
       0: Alive

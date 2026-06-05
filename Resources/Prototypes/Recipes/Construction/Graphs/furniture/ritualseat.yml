@@ -35,15 +35,3 @@
               state: "head_m"
             name: construction-graph-tag-human-head
             doAfter: 1
-
-    - node: chairCursed
-      entity: ChairCursed
-      edges:
-        - to: chairRitual
-          completed:
-            - !type:SpawnPrototype
-              prototype: HeadSkeleton
-              amount: 1
-          steps:
-            - tool: Prying
-              doAfter: 1
