@@ -413,3 +413,11 @@ Entries:
       message: Melee damage on the shuttle is now even worse
   id: 49
   time: '2026-06-03T05:09:08.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the emergency access terminal, a unique bridge computer capable of
+        remotely enabling emergency access into various areas on station.
+  id: 50
+  time: '2026-06-05T02:19:09.0000000+00:00'
