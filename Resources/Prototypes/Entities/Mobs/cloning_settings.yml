@@ -79,15 +79,3 @@
   copyEquipment: null
   copyInternalStorage: false
   copyImplants: false
-
-# spawner
-- type: entity
-  id: RandomCloneSpawner
-  name: Random Clone
-  suffix: Non-Antag
-  components:
-  - type: Sprite
-    sprite: Mobs/Aliens/paradox_clone.rsi
-    state: preview
-  - type: RandomCloneSpawner
-    settings: BaseClone
