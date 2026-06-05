@@ -429,3 +429,13 @@ Entries:
         now only assigns presets, not individual access levels.
   id: 51
   time: '2026-06-05T02:20:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Reduced the delay between the meteor announcement and when they hit the
+        station.
+    - type: Tweak
+      message: Meteors can now occur before the 30 minute mark.
+  id: 52
+  time: '2026-06-05T02:24:01.0000000+00:00'
