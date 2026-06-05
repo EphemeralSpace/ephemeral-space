@@ -28,14 +28,14 @@
 - type: entity
   parent: ESBaseMaskObjective
   id: ESObjectiveParasiteDoNotKill
-  name: Don't kill anyone
-  description: The parasite in your head is extremely sensitive to hormonal changes caused by taking the life of another. Any influx could send it on a frenzy, eating your brain and killing you.
+  name: Don't harm others
+  description: The parasite in your head is extremely sensitive to hormonal changes caused by harming. A small amount would be fine, but too much will send it into a frenzy, killing you.
   components:
   - type: ESObjective
     icon:
-      sprite: _ES/Interface/Objectives/parasite.rsi
-      state: icon
-  - type: ESTimedDemiseOnKillObjective
-    killDelay: 1m
-    notificationTitle: es-parasite-killer-quickdialog-title
-    notificationBody: es-parasite-killer-quickdialog-msg
+      sprite: Mobs/Species/Human/organs.rsi
+      state: brain
+    invertProgress: true
+  - type: ESCounterObjective
+    target: 200
+  - type: ESParasiteDamageObjective
