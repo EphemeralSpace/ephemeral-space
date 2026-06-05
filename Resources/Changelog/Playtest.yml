@@ -421,3 +421,11 @@ Entries:
         remotely enabling emergency access into various areas on station.
   id: 50
   time: '2026-06-05T02:19:09.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The ID card console no longer needs a privileged ID to assign access and
+        now only assigns presets, not individual access levels.
+  id: 51
+  time: '2026-06-05T02:20:15.0000000+00:00'
