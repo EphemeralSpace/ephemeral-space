@@ -89,7 +89,7 @@
         messages: [ "slime-hurt-by-water-popup" ]
         probability: 0.25
   - type: Body
-    prototype: Slimes
+    prototype: Animal
     requiredLegs: 1
   - type: MeleeWeapon
     altDisarm: false

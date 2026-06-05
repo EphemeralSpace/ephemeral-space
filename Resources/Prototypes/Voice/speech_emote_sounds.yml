@@ -261,8 +261,6 @@
 #      path: /Audio/Voice/Diona/diona_scream.ogg
     Laugh:
       collection: DionaLaugh
-    Chirp:
-      path: /Audio/Animals/nymph_chirp.ogg
 #    Honk:
 #      collection: BikeHorn
 #    Weh:
@@ -627,12 +625,6 @@
     path: /Audio/Animals/kangaroo_grunt.ogg
     params:
       variation: 0.125
-
-- type: emoteSounds
-  id: Nymph
-  sounds:
-    Chirp:
-      path: /Audio/Animals/nymph_chirp.ogg
 
 - type: emoteSounds
   id: Parrot
