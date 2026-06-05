@@ -451,3 +451,9 @@ Entries:
   changes: []
   id: 54
   time: '2026-06-05T21:22:32.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: Pickpockets now prioritize more interesting items
+  id: 55
+  time: '2026-06-05T21:26:11.0000000+00:00'
