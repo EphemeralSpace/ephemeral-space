@@ -96,12 +96,6 @@ accent-words-kobold-7 = Hiss!
 accent-words-kobold-8 = Eeee!
 accent-words-kobold-9 = Yip.
 
-# Nymph
-accent-words-nymph-1 = Chirp!
-accent-words-nymph-2 = Churr...
-accent-words-nymph-3 = Cheep?
-accent-words-nymph-4 = Chrrup!
-
 # TomatoKiller
 accent-words-tomato-1 = Totato!
 accent-words-tomato-2 = Trotect

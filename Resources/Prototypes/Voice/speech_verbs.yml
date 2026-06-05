@@ -37,46 +37,11 @@
   priority: 10
 
 - type: speechVerb
-  id: Arachnid
-  name: chat-speech-verb-name-arachnid
-  speechVerbStrings:
-  - chat-speech-verb-insect-1
-  - chat-speech-verb-insect-2
-  - chat-speech-verb-insect-3
-  - chat-speech-verb-reptilian-1
-
-- type: speechVerb
-  id: Moth
-  name: chat-speech-verb-name-moth
-  speechVerbStrings:
-  - chat-speech-verb-winged-1
-  - chat-speech-verb-winged-2
-  - chat-speech-verb-winged-3
-  - chat-speech-verb-insect-1
-
-- type: speechVerb
   id: Robotic
   name: chat-speech-verb-name-robotic
   speechVerbStrings:
   - chat-speech-verb-robotic-1
   - chat-speech-verb-robotic-2
-
-- type: speechVerb
-  id: Reptilian
-  name: chat-speech-verb-name-reptilian
-  speechVerbStrings:
-  - chat-speech-verb-reptilian-1
-  - chat-speech-verb-reptilian-2
-  - chat-speech-verb-reptilian-3
-  - chat-speech-verb-insect-2
-
-- type: speechVerb
-  id: Skeleton
-  name: chat-speech-verb-name-skeleton
-  speechVerbStrings:
-  - chat-speech-verb-skeleton-1
-  - chat-speech-verb-skeleton-2
-  - chat-speech-verb-skeleton-3
 
 - type: speechVerb
   id: Slime
@@ -85,22 +50,6 @@
   - chat-speech-verb-slime-1
   - chat-speech-verb-slime-2
   - chat-speech-verb-slime-3
-
-- type: speechVerb
-  id: Vox
-  name: chat-speech-verb-name-vox
-  speechVerbStrings:
-  - chat-speech-verb-vox-1
-  - chat-speech-verb-vox-2
-  - chat-speech-verb-vox-3
-
-- type: speechVerb
-  id: Plant
-  name: chat-speech-verb-name-plant
-  speechVerbStrings:
-  - chat-speech-verb-plant-1
-  - chat-speech-verb-plant-2
-  - chat-speech-verb-plant-3
 
 - type: speechVerb
   id: Canine
@@ -172,21 +121,3 @@
   - chat-speech-verb-electricity-1
   - chat-speech-verb-electricity-2
   - chat-speech-verb-electricity-3
-
-- type: speechVerb
-  id: Vulpkanin
-  name: chat-speech-verb-vulpkanin
-  speechVerbStrings:
-  - chat-speech-verb-vulpkanin-1
-  - chat-speech-verb-vulpkanin-2
-  - chat-speech-verb-vulpkanin-3
-  - chat-speech-verb-vulpkanin-4
-
-- type: speechVerb
-  id: Wawa
-  name: chat-speech-verb-name-wawa
-  speechVerbStrings:
-  - chat-speech-verb-wawa-1
-  - chat-speech-verb-wawa-2
-  - chat-speech-verb-wawa-3
-  - chat-speech-verb-wawa-4
