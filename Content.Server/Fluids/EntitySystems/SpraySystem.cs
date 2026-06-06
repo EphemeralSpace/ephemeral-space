@@ -39,6 +39,8 @@ public sealed partial class SpraySystem : SharedSpraySystem
 
     private float _gridImpulseMultiplier;
 
+    private const string SprayUseDelay = "spray-delay";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -100,7 +102,7 @@ public sealed partial class SpraySystem : SharedSpraySystem
             return;
         }
 
-        if (_useDelay.IsDelayed((entity, null)))
+        if (_useDelay.IsDelayed((entity, null), SprayUseDelay))
             return;
 
         if (solution.Volume <= 0)
@@ -121,12 +123,7 @@ public sealed partial class SpraySystem : SharedSpraySystem
             return;
 
         var diffNorm = diffPos.Normalized();
-        var diffLength = diffPos.Length();
-
-        if (diffLength > entity.Comp.SprayDistance)
-        {
-            diffLength = entity.Comp.SprayDistance;
-        }
+        var diffLength = entity.Comp.SprayDistance;
 
         var diffAngle = diffNorm.ToAngle();
 
@@ -134,8 +131,10 @@ public sealed partial class SpraySystem : SharedSpraySystem
         var threeQuarters = diffNorm * 0.75f;
         var quarter = diffNorm * 0.25f;
 
-        var amount = Math.Max(Math.Min((solution.Volume / entity.Comp.TransferAmount).Int(), entity.Comp.VaporAmount), 1);
+        var amount = Math.Max(Math.Min((solution.Volume / (entity.Comp.TransferAmount / entity.Comp.VaporAmount)).Int(), entity.Comp.VaporAmount), 1);
         var spread = entity.Comp.VaporSpread / amount;
+
+        var sprayedSolution = _solutionContainer.SplitSolution(soln.Value, entity.Comp.TransferAmount);
 
         for (var i = 0; i < amount; i++)
         {
@@ -150,8 +149,10 @@ public sealed partial class SpraySystem : SharedSpraySystem
             if (distance > entity.Comp.SprayDistance)
                 target = sprayerMapPos.Offset(diffNorm * entity.Comp.SprayDistance);
 
-            var adjustedSolutionAmount = entity.Comp.TransferAmount / entity.Comp.VaporAmount;
-            var newSolution = _solutionContainer.SplitSolution(soln.Value, adjustedSolutionAmount);
+            var adjustedSolutionAmount = i != amount
+                ? entity.Comp.TransferAmount / entity.Comp.VaporAmount
+                : sprayedSolution.Volume;
+            var newSolution = sprayedSolution.SplitSolution(adjustedSolutionAmount);
 
             if (newSolution.Volume <= FixedPoint2.Zero)
                 break;
@@ -165,7 +166,7 @@ public sealed partial class SpraySystem : SharedSpraySystem
 
             if (TryComp(vapor, out AppearanceComponent? appearance))
             {
-                _appearance.SetData(vapor, VaporVisuals.Color, solution.GetColor(_proto).WithAlpha(1f), appearance);
+                _appearance.SetData(vapor, VaporVisuals.Color, newSolution.GetColor(_proto).WithAlpha(1f), appearance);
                 _appearance.SetData(vapor, VaporVisuals.State, true, appearance);
             }
 
@@ -208,6 +209,6 @@ public sealed partial class SpraySystem : SharedSpraySystem
 
         _audio.PlayPvs(entity.Comp.SpraySound, entity, entity.Comp.SpraySound.Params.WithVariation(0.125f));
 
-        _useDelay.TryResetDelay(entity);
+        _useDelay.TryResetDelay(entity, id: SprayUseDelay);
     }
 }
