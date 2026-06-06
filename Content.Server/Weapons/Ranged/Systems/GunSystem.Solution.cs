@@ -1,4 +1,4 @@
-using Content.Server.Chemistry.Components;
+using Content.Shared._ES.Chemistry.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
