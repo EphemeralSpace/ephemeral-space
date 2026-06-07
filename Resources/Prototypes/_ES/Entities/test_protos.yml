@@ -6,6 +6,7 @@
   - type: Gun
   - type: BallisticAmmoProvider
     capacity: 10
+    proto: BaseBullet
   - type: GunRequiresWield
   - type: Wieldable
   - type: ItemSlots
