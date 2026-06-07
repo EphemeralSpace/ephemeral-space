@@ -1,0 +1,40 @@
+- type: entity
+  parent: BaseItem
+  id: TestWeaponGunWieldable
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Gun
+  - type: BallisticAmmoProvider
+    capacity: 10
+    proto: TestCartridge
+  - type: GunRequiresWield
+  - type: Wieldable
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  parent: ESBaseBullet
+  id: TestBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 1
+
+- type: entity
+  parent: BaseCartridge
+  id: TestCartridge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: CartridgeAmmo
+    proto: TestBullet
+
+- type: entity
+  parent: BaseItem
+  id: TestItemEmbeddable
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmbeddableProjectile
