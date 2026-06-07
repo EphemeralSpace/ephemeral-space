@@ -33,15 +33,3 @@
     sprite: _ES/Structures/Decoration/statues.rsi
     state: fungus
     drawdepth: Mobs
-    
-- type: entity
-  id: ESStatueCold
-  parent: BaseStructure
-  name: blistering cold statue
-  description: One like us. He seems to have been caught in a nasty blizzard on his way to the show. Maybe one day he'll thaw. Maybe one day.
-  components:
-    - type: Sprite
-      noRot: true
-      sprite: _ES/Structures/Decoration/statues.rsi
-      state: blisteringcold
-      drawdepth: Mobs
