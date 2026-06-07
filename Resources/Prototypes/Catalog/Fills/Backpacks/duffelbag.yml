@@ -9,7 +9,7 @@
       storagebase: !type:AllSelector
         children:
         - id: Hemostat
-        - id: Saw
+        - id: SawElectric
         - id: Drill
         - id: Cautery
         - id: Retractor
@@ -18,3 +18,24 @@
         - id: BoneSetter # Offbrand
         - id: VascularRecoupler # Offbrand
         - id: MedicatedSuture # Offbrand
+
+- type: entity
+  parent: ClothingBackpackChameleon
+  id: ClothingBackpackChameleonFill
+  suffix: Fill, Chameleon
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ChameleonPDA
+        - id: ClothingUniformJumpsuitChameleon
+        - id: ClothingOuterChameleon
+        - id: ClothingNeckChameleon
+        - id: ClothingMaskGasChameleon
+        - id: ClothingHeadHatChameleon
+        - id: ClothingHandsChameleon
+        - id: ClothingEyesChameleon
+        - id: ClothingHeadsetChameleon
+        - id: ClothingShoesChameleon
+        - id: ChameleonControllerImplanter

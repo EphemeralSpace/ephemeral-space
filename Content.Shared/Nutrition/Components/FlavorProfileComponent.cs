@@ -10,15 +10,4 @@ public sealed partial class FlavorProfileComponent : Component
     /// </summary>
     [DataField]
     public HashSet<string> Flavors { get; private set; } = new();
-
-    /// <summary>
-    ///     Reagent IDs to ignore when processing this flavor profile. Defaults to nutriment.
-    /// </summary>
-    [DataField]
-    public HashSet<string> IgnoreReagents { get; private set; } = new()
-    {
-        "Nutriment",
-        "Vitamin",
-        "Protein",
-    };
 }

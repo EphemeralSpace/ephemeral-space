@@ -10,8 +10,12 @@
     sprite: _ES/Objects/Tools/door_jammer.rsi
     state: icon
   - type: Item
+    size: Small
     sprite: _ES/Objects/Tools/door_jammer.rsi
-    storedRotation: -135
+    storedRotation: -90
+    storedSprite:
+      state: storage
+      sprite: _ES/Objects/Tools/door_jammer.rsi
   - type: Tool
     qualities:
     - Screwing
@@ -37,3 +41,4 @@
         Piercing: 6
     soundHit:
       path: "/Audio/Weapons/bladeslice.ogg"
+  - type: ESPickpocketPriorityItem

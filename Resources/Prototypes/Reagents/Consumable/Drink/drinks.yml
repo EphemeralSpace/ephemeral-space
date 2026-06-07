@@ -498,11 +498,6 @@
   physicalDesc: reagent-physical-desc-wormy
   flavor: cheapnoodles
   color: "#664300"
-  metabolisms:
-    Food:
-      effects:
-      - !type:SatiateHunger
-        factor: 1
 
 - type: reagent
   id: HotRamen
@@ -512,11 +507,6 @@
   physicalDesc: reagent-physical-desc-wormy
   flavor: cheapnoodles
   color: "#664300"
-  metabolisms:
-    Food:
-      effects:
-      - !type:SatiateHunger
-        factor: 4
 
 - type: reagent
   id: ArnoldPalmer

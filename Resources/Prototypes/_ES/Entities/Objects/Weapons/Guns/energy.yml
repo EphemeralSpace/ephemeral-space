@@ -62,6 +62,7 @@
   - type: BatteryAmmoProvider
     proto: ESEnergyBolt
     fireCost: 70
+  - type: ESPickpocketPriorityItem
 
 - type: entity
   id: ESWeaponCaptainEnergyGun

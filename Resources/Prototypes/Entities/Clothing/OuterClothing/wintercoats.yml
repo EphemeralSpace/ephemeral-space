@@ -19,15 +19,6 @@
         Slash: 0.95
         Heat: 0.90
     priceMultiplier: 0
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 30
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 30
   - type: Tag
     tags:
     - ClothMade
@@ -855,11 +846,6 @@
     spawned:
     - id: MaterialWebSilk1
       amount: 5
-  - type: FlavorProfile
-    flavors:
-      - cobwebs
-    ignoreReagents:
-      - Fiber
   - type: SolutionContainerManager
     solutions: # 15 (3 (fiber count of web) * 5 (to craft)) + 5 (magical crafting bonus)
       food:

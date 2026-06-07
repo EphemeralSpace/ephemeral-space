@@ -50,7 +50,7 @@ public sealed partial class TriggerOnMobstateChangeSystem : TriggerOnXSystem
         if (!component.PreventSuicide)
             return;
 
-        _popup.PopupClient(Loc.GetString("suicide-prevented"), args.Victim);
+        _popup.PopupCursor(Loc.GetString("suicide-prevented"), args.Victim);
         args.Handled = true;
     }
 
@@ -62,7 +62,7 @@ public sealed partial class TriggerOnMobstateChangeSystem : TriggerOnXSystem
         if (!component.PreventSuicide)
             return;
 
-        _popup.PopupClient(Loc.GetString("suicide-prevented"), args.Event.Victim);
+        _popup.PopupCursor(Loc.GetString("suicide-prevented"), args.Event.Victim);
         args.Event.Handled = true;
     }
 }

@@ -209,25 +209,6 @@
       - state: meson
 
 - type: entity
-  name: M.R.E.
-  parent: BoxCardboard
-  id: BoxMRE
-  description: A box of decades old military surplus rations. It is surprisingly not rotten.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: DrinkMREFlask
-        - id: FoodSnackNutribrick
-        - id: FoodSnackMREBrownie
-        - id: FoodCondimentPacketKetchup
-  - type: Sprite
-    layers:
-      - state: box
-      - state: writing
-
-- type: entity
   parent: BoxHug
   id: BoxHugHealing
   suffix: Medical

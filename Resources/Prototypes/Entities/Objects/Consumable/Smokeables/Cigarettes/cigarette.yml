@@ -20,9 +20,6 @@
     size: Tiny
     sprite: Objects/Consumable/Smokeables/Cigarettes/cigarette.rsi
     heldPrefix: unlit
-  - type: Construction
-    graph: smokeableCigarette
-    node: cigarette
   - type: Extractable
     grindableSolutionName: smokable
 
@@ -47,9 +44,6 @@
     equippedPrefix: unlit
   - type: Item
     size: Tiny
-  - type: Construction
-    graph: smokeableCigarette
-    node: cigarette
 
 - type: entity
   id: CigaretteSpent
@@ -174,21 +168,6 @@
           - ReagentId: Nicotine
             Quantity: 10
           - ReagentId: Arithrazine
-            Quantity: 10
-
-- type: entity
-  id: CigaretteNutriment
-  parent: SoakedCigarette
-  name: Grandma's Christmas Fruitcake
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-          - ReagentId: Nicotine
-            Quantity: 10
-          - ReagentId: Nutriment
             Quantity: 10
 
 - type: entity

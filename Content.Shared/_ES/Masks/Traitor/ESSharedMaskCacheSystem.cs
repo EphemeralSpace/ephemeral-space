@@ -137,7 +137,7 @@ public abstract partial class ESSharedMaskCacheSystem : EntitySystem
         var pos = Transform(ent).Coordinates;
         var cache = PredictedSpawnAtPosition(ent.Comp.CacheLoot, pos);
         PredictedQueueDel(ent);
-        _popup.PopupPredicted(Loc.GetString("es-ceiling-cache-popup"), cache, user);
+        _popup.PopupEntity(Loc.GetString("es-ceiling-cache-popup"), ent);
         _audio.PlayPredicted(ent.Comp.RevealSound, pos, user);
 
         if (ent.Comp.MindId.HasValue)

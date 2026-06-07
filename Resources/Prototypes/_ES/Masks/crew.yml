@@ -21,7 +21,7 @@
   troupe: Crew
   description: es-mask-arsonist-desc
   color: red
-  weight: 0.75
+  weight: 0.33
   objectives:
     id: ESObjectiveArsonistLightFires
 
@@ -39,7 +39,7 @@
   name: es-mask-crewmember-name
   troupe: Crew
   description: es-mask-crewmember-desc
-  weight: 0.33
+  weight: 4
   color: white
 
 - type: esMask
@@ -136,7 +136,7 @@
         all:
         - id: ESObjectiveRebelSabotageCommunications
         - id: ESObjectiveRebelSabotageCrewMonitoring
-        - id: ESObjectiveRebelSabotageIDComputer
+        - id: ESObjectiveRebelSabotageEmergencyAccessTerminal
         - id: ESObjectiveRebelSabotageCriminalRecords
         - id: ESObjectiveRebelSabotageTelecom
           weight: 2
@@ -152,6 +152,23 @@
   objectives:
     all:
     - id: ESObjectiveSecretaryAssist
+
+- type: esMask
+  id: Tragedian
+  name: es-mask-tragedian-name
+  troupe: Crew
+  description: es-mask-tragedian-desc
+  color: royalblue
+  weight: 0.5
+  objectives:
+    all:
+    - id: ESObjectiveTragedianDie
+    - id: ESObjectiveTragedianEmbodyTheme
+  actions:
+    all:
+    - id: ESActionMaskTragedianSummon
+  components:
+  - type: ESAlwaysHearStagehandEmote
 
 - type: esMask
   id: Vigilante

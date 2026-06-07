@@ -65,6 +65,9 @@ public sealed partial class ESStagehandNotificationsSystem : EntitySystem
 
     private void OnObjectiveProgressChanged(ref ESObjectiveProgressChangedEvent ev)
     {
+        if (!_objectives.IsObjectiveInitialized(ev.Objective.Owner))
+            return;
+
         LocId? msgId;
 
         switch (ev)
@@ -142,7 +145,7 @@ public sealed partial class ESStagehandNotificationsSystem : EntitySystem
     /// </remarks>
     public string WrapEntityNameWithUsername(Entity<ActorComponent?> entity)
     {
-        string? username = null;
+        string? username;
         if (Resolve(entity, ref entity.Comp, false))
         {
             username = entity.Comp.PlayerSession.Name;

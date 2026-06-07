@@ -29,6 +29,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Atmos.Components;
 using System.Linq;
 using Content.Server._ES.NPCs.Queries.Considerations;
+using Content.Shared._ES.Food;
 using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
 using Content.Shared._Offbrand.Wounds;
@@ -206,14 +207,20 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 var avoidBadFood = !HasComp<IgnoreBadFoodComponent>(owner);
 
                 // only eat when hungry or if it will eat anything
-                if (TryComp<HungerComponent>(owner, out var hunger) && hunger.CurrentThreshold > HungerThreshold.Okay && avoidBadFood)
+                if (TryComp<HungerComponent>(owner, out var hunger) && hunger.CurrentHunger >= HungerThreshold.Okay && avoidBadFood)
                     return 0f;
 
                 // no mouse don't eat the uranium-235
                 if (avoidBadFood && HasComp<BadFoodComponent>(targetUid))
                     return 0f;
 
-                var nutrition = _ingestion.TotalNutrition(targetUid, owner);
+                if (!TryComp<ESFoodComponent>(targetUid, out var food))
+                    return 0f;
+
+                if (avoidBadFood && food.SatietyMultiplier < 0)
+                    return 0f;
+
+                var nutrition = food.PortionsLeft ?? food.StartingPortions;
                 if (nutrition == 0.0f)
                     return 0f;
 

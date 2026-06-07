@@ -117,21 +117,6 @@
 # ES END
 
 - type: entityTable
-  id: SyndieMaintLoot
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector
-      children:
-      - id: ClothingUniformJumpsuitOperative
-      - id: ClothingUniformJumpskirtOperative
-    - id: ClothingBackpackDuffelSyndicate
-    - id: CyberPen
-    - id: CigPackSyndicate
-    - id: ClothingBeltMilitaryWebbing
-    - id: ToolboxSyndicateFilled
-    - id: BalloonSyn
-
-- type: entityTable
   id: MaintenanceLockerLoot
   table: !type:AllSelector
     children:
@@ -203,9 +188,7 @@
   id: ToiletCisternWeaponsTable
   table: !type:GroupSelector
     children:
-    - id: ScalpelShiv
     - id: Shiv
-    - id: SawImprov
     - id: HydroponicsToolHatchet
 
 - type: entityTable

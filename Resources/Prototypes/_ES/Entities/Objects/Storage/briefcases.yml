@@ -1,0 +1,19 @@
+- type: entity
+  parent: BriefcaseBrown
+  id: BriefcaseBlack
+  name: black briefcase
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Storage/Briefcases/briefcase_black.rsi
+  - type: Item
+    sprite: _ES/Objects/Storage/Briefcases/briefcase_black.rsi
+
+- type: entity
+  parent: BriefcaseBrown
+  id: BriefcaseAluminum
+  name: aluminum briefcase
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Storage/Briefcases/briefcase_aluminum.rsi
+  - type: Item
+    sprite: _ES/Objects/Storage/Briefcases/briefcase_aluminum.rsi

@@ -29,11 +29,14 @@ es-mask-phantom-desc = As a Phantom, reincarnate as a vengeful spirit on death a
 es-mask-pickpocket-name = Pickpocket
 es-mask-pickpocket-desc = As a Pickpocket, sneak behind peoples' backs to snatch their belongings and grow your collection.
 
+es-mask-rebel-name = Rebel
+es-mask-rebel-desc = As a Rebel, sabotage machines around the station in fervent protest. Try not to get pinned as a Traitor.
+
 es-mask-secretary-name = Secretary
 es-mask-secretary-desc = As a Secretary, do whatever you can to help your target complete their objectives.
 
-es-mask-rebel-name = Rebel
-es-mask-rebel-desc = As a Rebel, sabotage machines around the station in fervent protest. Try not to get pinned as a Traitor.
+es-mask-tragedian-name = Tragedian
+es-mask-tragedian-desc = As a Tragedian, perform your theme to the bitter end in order to please the watching stagehands.
 
 es-mask-vigilante-name = Vigilante
 es-mask-vigilante-desc = As a Vigilante, seek out those who have killed others and bring them to justice by killing them yourself.

@@ -25,7 +25,7 @@ public sealed partial class ChemicalInjectorSystem : EntitySystem
 
         if (!_health.IsCritical(args.Performer) && args.OnlyUsableWhileCrit)
         {
-            _popupSystem.PopupPredicted(Loc.GetString(args.FailMessage), args.Performer, args.Performer, PopupType.Medium);
+            _popupSystem.PopupEntity(Loc.GetString(args.FailMessage), args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 

@@ -310,39 +310,6 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineChefvend
-  name: ChefVend
-  description: An ingredient vendor for all your cheffin needs.
-  components:
-  - type: VendingMachine
-    pack: ChefvendInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-  - type: DatasetVocalizer
-    dataset: ChefvendAds
-  - type: SpeakOnUIClosed
-    pack: ChefvendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/chefvend.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["Service"]]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#4b93ad"
-
-- type: entity
-  parent: VendingMachine
   id: VendingMachineCigs
   name: ShadyCigs Deluxe
   description: If you want to get cancer, might as well do it in style.
@@ -885,24 +852,23 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineSeedsUnlocked
-  name: MegaSeed Servitor
-  description: For when you need seeds fast. Hands down the best seed selection on the station!
-  suffix: Unlocked
+  id: VendingMachineSec
+  name: SecTech
+  description: A vending machine containing Security equipment. A label reads SECURITY PERSONNEL ONLY.
   components:
   - type: VendingMachine
-    pack: MegaSeedServitorInventory
+    pack: SecTechInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
   - type: DatasetVocalizer
-    dataset: MegaSeedAds
+    dataset: SecTechAds
   - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
+    pack: SecTechGoodbyes
   - type: Sprite
-    sprite: Structures/Machines/VendingMachines/seeds.rsi
+    sprite: Structures/Machines/VendingMachines/sec.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -911,18 +877,12 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#326e3f"
-
-- type: entity
-  parent: VendingMachineSeedsUnlocked
-  id: VendingMachineSeeds
-  suffix: Hydroponics
-  components:
   - type: AccessReader
-    access: [["Hydroponics"]]
+    access: [["Security"]]
+  - type: PointLight
+    radius: 1
+    energy: 2.0
+    color: "#78645c"
 
 - type: entity
   parent: VendingMachine

@@ -10,31 +10,6 @@ namespace Content.IntegrationTests.Tests.Minds;
 public sealed partial class MindTests
 {
     // This test will do the following:
-    // - attach a player to a ghost (not visiting)
-    // - disconnect
-    // - reconnect
-    // - assert that they spawned in as a new entity
-    [Test]
-    public async Task TestGhostsCanReconnect()
-    {
-        var pair = await SetupPair();
-        var entMan = pair.Server.ResolveDependency<IEntityManager>();
-        var mind = GetMind(pair);
-
-        var ghost = await BecomeGhost(pair);
-        await DisconnectReconnect(pair);
-
-        // Player in control of a new ghost, but with the same mind
-        Assert.Multiple(() =>
-        {
-            Assert.That(GetMind(pair), Is.EqualTo(mind));
-            Assert.That(entMan.Deleted(ghost));
-            Assert.That(entMan.HasComponent<GhostComponent>(mind.Comp.OwnedEntity));
-            Assert.That(mind.Comp.VisitingEntity, Is.Null);
-        });
-    }
-
-    // This test will do the following:
     // - disconnect a player
     // - delete their original entity
     // - reconnect
@@ -75,10 +50,10 @@ public sealed partial class MindTests
         {
             Assert.That(user, Is.EqualTo(player.UserId));
 
-            // Player is now a new ghost entity
-            Assert.That(GetMind(pair), Is.EqualTo(mind));
-            Assert.That(mind.Comp.OwnedEntity, Is.Not.EqualTo(entity));
-            Assert.That(entMan.HasComponent<GhostComponent>(mind.Comp.OwnedEntity));
+            // Player is now a new ghost entity with a new mind
+            Assert.That(GetMind(pair), Is.Not.EqualTo(mind));
+            Assert.That(GetMind(pair).Comp.OwnedEntity, Is.Not.EqualTo(entity));
+            Assert.That(entMan.HasComponent<GhostComponent>(GetMind(pair).Comp.OwnedEntity));
         });
     }
 

@@ -23,11 +23,13 @@ public sealed partial class ESPsychidSystem : EntitySystem
 
     private void OnKillReported(Entity<ESPsychidComponent> ent, ref ESPlayerKilledEvent args)
     {
-        if (!args.ValidKill || !_mind.TryGetMind(args.Killer.Value, out var killerMind))
+        if (!args.ValidKill ||
+            !_mind.TryGetMind(args.Killer.Value, out var killerMind) ||
+            _mask.GetTroupeOrNull(killerMind.Value.AsNullable()) == ent.Comp.IgnoredTroupe)
+        {
+            ent.Comp.KillerMind = null;
             return;
-
-        if (_mask.GetTroupeOrNull(killerMind.Value.AsNullable()) == ent.Comp.IgnoredTroupe)
-            return;
+        }
 
         ent.Comp.KillerMind = killerMind;
 
@@ -58,6 +60,9 @@ public sealed partial class ESPsychidSystem : EntitySystem
 
         _mask.ChangeMask((killerMind, killerMindComp), victimMask.Value);
         _mind.SwapMinds(killerMind, killerBody, ent.Owner, ownedEntity);
+
+        // Reset this so we don't hold a reference
+        ent.Comp.KillerMind = null;
 
         args.Handled = true;
         args.Result = true;

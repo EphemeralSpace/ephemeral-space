@@ -68,14 +68,8 @@ alerts-internals-desc = [color=yellow]Click[/color] here or press [color=yellow]
 alerts-piloting-name = Piloting Shuttle
 alerts-piloting-desc = You are piloting a shuttle. Click the alert to stop.
 
-alerts-hunger-name = [color=yellow]Peckish[/color]
-alerts-hunger-desc = Some food would be good right about now.
-
 alerts-stamina-name = Stamina
 alerts-stamina-desc = Stuns you if it is too low.
-
-alerts-starving-name = [color=red]Starving[/color]
-alerts-starving-desc = You're severely malnourished. The hunger pains make moving around a chore.
 
 alerts-thirsty-name = [color=yellow]Thirsty[/color]
 alerts-thirsty-desc = Something to drink would be good right about now.

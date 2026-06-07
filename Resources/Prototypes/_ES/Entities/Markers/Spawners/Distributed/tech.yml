@@ -25,7 +25,6 @@
     - id: WeaponCapacitorRechargerCircuitboard
     - id: SubstationMachineCircuitboard
     - id: PortableGeneratorJrPacmanMachineCircuitboard
-    - id: APCElectronics
     # Command
     - id: StationRecordsComputerCircuitboard
     # Med

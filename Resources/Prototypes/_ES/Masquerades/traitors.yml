@@ -13,6 +13,7 @@
       10: ["#SemiTraitor"]
       11: ["#Antagonistic"]
       13: ["Assassin"]  # 3 traitors.
+      15: [ "Tragedian" ]
       16: ["#Firmsafes"] # 3 traitors.
       17: ["#SemiTraitor"]
       19: ["#Traitors"] # 1 generic crew, 4 traitors.

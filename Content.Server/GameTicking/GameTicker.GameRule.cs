@@ -74,6 +74,16 @@ public sealed partial class GameTicker
     public EntityUid AddGameRule(string ruleId)
     {
         var ruleEntity = Spawn(ruleId, MapCoordinates.Nullspace);
+        return AddGameRule(ruleEntity, ruleId);
+    }
+
+    /// <summary>
+    /// Adds a game rule to the list, but does not
+    /// start it yet, instead waiting until the rule is actually started by other code (usually roundstart)
+    /// </summary>
+    /// <returns>The entity for the added gamerule</returns>
+    public EntityUid AddGameRule(EntityUid ruleEntity, string ruleId)
+    {
         _sawmill.Info($"Added game rule {ToPrettyString(ruleEntity)}");
         _adminLogger.Add(LogType.EventStarted, $"Added game rule {ToPrettyString(ruleEntity)}");
         var str = Loc.GetString("station-event-system-run-event", ("eventName", ToPrettyString(ruleEntity)));

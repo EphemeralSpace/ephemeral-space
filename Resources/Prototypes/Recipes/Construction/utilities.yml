@@ -33,16 +33,6 @@
 
 # POWER
 - type: construction
-  id: APC
-  graph: APC
-  startNode: start
-  targetNode: apc
-  category: construction-category-utilities
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: true
-
-- type: construction
   id: CableTerminal
   graph: CableTerminal
   startNode: start

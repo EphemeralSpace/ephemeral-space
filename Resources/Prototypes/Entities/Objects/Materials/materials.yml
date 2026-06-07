@@ -136,18 +136,6 @@
     - state: cloth_3
       map: ["base"]
   - type: Appearance
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: FlavorProfile
-    flavors:
-    - fiber
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 5
   - type: Tag
     tags:
       - ClothMade
@@ -206,15 +194,6 @@
   - type: Construction
     graph: Durathread
     node: MaterialDurathread
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 5
   - type: Tag
     tags:
       - ClothMade
@@ -427,18 +406,6 @@
     - state: cotton_3
       map: ["base"]
   - type: Appearance
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: FlavorProfile
-    flavors:
-    - fiber
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 5
   - type: Extractable
     juiceSolution:
       reagents:
@@ -455,7 +422,6 @@
       Cotton: 100
   - type: Item
     heldPrefix: cotton
-
 
 - type: entity
   parent: MaterialCotton
@@ -486,17 +452,6 @@
     - state: pyrotton_3
       map: ["base"]
   - type: Appearance
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 5
-        - ReagentId: Phlogiston
-          Quantity: 5
   - type: Extractable
     juiceSolution:
       reagents:
@@ -543,22 +498,6 @@
     layerStates:
       - bananium
       - bananium_1
-  - type: FlavorProfile
-    flavors:
-      - banana
-  - type: Edible
-    trash:
-    - TrashBananiumPeel
-  - type: BadFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 11
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 2
   - type: Extractable
     juiceSolution:
       reagents:
@@ -594,13 +533,6 @@
   - type: Stack
     count: 50
     stackType: WebSilk
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: FlavorProfile
-    flavors:
-      - cobwebs
-    ignoreReagents:
-      - Fiber
   - type: Extractable
     juiceSolution:
       reagents:
@@ -733,15 +665,6 @@
     - state: cotton_3
       map: ["base"]
   - type: Appearance
-  - type: Edible
-  - type: BadFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Vitamin
-          Quantity: 3
   - type: Item
     heldPrefix: bones
 

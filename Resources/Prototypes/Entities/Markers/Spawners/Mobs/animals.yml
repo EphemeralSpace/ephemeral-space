@@ -102,34 +102,6 @@
 
 - type: entity
   parent: MarkerBase
-  id: SpawnMobCrab
-  name: Crab Spawner
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: crab
-      sprite: Mobs/Animals/crab.rsi
-  - type: ConditionalSpawner
-    prototypes:
-    - MobCrab
-
-- type: entity
-  parent: MarkerBase
-  id: SpawnMobFrog
-  name: Frog Spawner
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: frog
-      sprite: Mobs/Animals/frog.rsi
-  - type: ConditionalSpawner
-    prototypes:
-    - MobFrog
-
-- type: entity
-  parent: MarkerBase
   id: SpawnMobGoat
   name: Goat Spawner
   components:
@@ -214,48 +186,6 @@
   - type: ConditionalSpawner
     prototypes:
     - MobParrot
-
-- type: entity
-  parent: MarkerBase
-  id: SpawnMobPenguin
-  name: Penguin Spawner
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: penguin
-      sprite: Mobs/Animals/penguin.rsi
-  - type: ConditionalSpawner
-    prototypes:
-    - MobPenguin
-
-- type: entity
-  parent: MarkerBase
-  id: SpawnMobReindeerBuck
-  name: Reindeer Buck Spawner
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: reindeer_buck_still
-      sprite: Mobs/Animals/reindeer_buck.rsi
-  - type: ConditionalSpawner
-    prototypes:
-    - MobReindeerBuck
-
-- type: entity
-  parent: MarkerBase
-  id: SpawnMobReindeerDoe
-  name: Reindeer Doe Spawner
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: reindeer_doe_still
-      sprite: Mobs/Animals/reindeer_doe.rsi
-  - type: ConditionalSpawner
-    prototypes:
-    - MobReindeerDoe
 
 - type: entity
   parent: MarkerBase

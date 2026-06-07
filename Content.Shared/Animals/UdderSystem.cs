@@ -74,10 +74,10 @@ public sealed partial class UdderSystem : EntitySystem
             if (TryComp(uid, out HungerComponent? hunger))
             {
                 // Is there enough nutrition to produce reagent?
-                if (_hunger.GetHungerThreshold(hunger) < HungerThreshold.Okay)
+                if (hunger.CurrentHunger < HungerThreshold.Okay)
                     continue;
 
-                _hunger.ModifyHunger(uid, -udder.HungerUsage, hunger);
+                _hunger.ModifySatiety((uid, hunger), -1);
             }
 
             //TODO: toxins from bloodstream !?
@@ -115,7 +115,7 @@ public sealed partial class UdderSystem : EntitySystem
         var quantity = solution.Volume;
         if (quantity == 0)
         {
-            _popupSystem.PopupClient(Loc.GetString("udder-system-dry"), entity.Owner, args.Args.User);
+            _popupSystem.PopupEntity(Loc.GetString("udder-system-dry"), entity.Owner, args.Args.User);
             return;
         }
 
@@ -125,7 +125,7 @@ public sealed partial class UdderSystem : EntitySystem
         var split = _solutionContainerSystem.SplitSolution(entity.Comp.Solution.Value, quantity);
         _solutionContainerSystem.TryAddSolution(targetSoln.Value, split);
 
-        _popupSystem.PopupClient(Loc.GetString("udder-system-success", ("amount", quantity), ("target", Identity.Entity(args.Args.Used.Value, EntityManager))), entity.Owner,
+        _popupSystem.PopupEntity(Loc.GetString("udder-system-success", ("amount", quantity), ("target", Identity.Entity(args.Args.Used.Value, EntityManager))), entity.Owner,
             args.Args.User, PopupType.Medium);
     }
 
