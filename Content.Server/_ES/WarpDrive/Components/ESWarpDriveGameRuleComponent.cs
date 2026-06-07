@@ -1,6 +1,7 @@
 using Content.Shared.EntityTable;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Utility;
 
 namespace Content.Server._ES.WarpDrive.Components;
@@ -24,13 +25,13 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     /// <summary>
     ///     The time we were last interrupted at.
     /// </summary>
-    [DataField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan? LastInterruptionTime;
 
     /// <summary>
     ///     At start and after each interruption is quelled, picks a random time for a new interruption.
     /// </summary>
-    [DataField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan? NextInterruptionTime;
 
     /// <summary>
@@ -45,7 +46,7 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     /// <summary>
     ///     IF in final phase, the time we entered it at/ whatever
     /// </summary>
-    [DataField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan? FinalPhaseAt;
 
     /// <summary>
@@ -107,6 +108,7 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     /// <summary>
     ///     where it all goes
     /// </summary>
+    [DataField]
     public ResPath SingularityWorldMap = new("/Maps/_ES/singularity_world.yml");
 
     [DataField]
