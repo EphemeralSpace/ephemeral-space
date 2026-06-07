@@ -86,7 +86,7 @@
 
 - type: entity
   name: Foam Force Astro Ace
-  parent: [ BaseToyGun, BaseWeaponShotgun, BaseGunWieldable ]
+  parent: [ BaseToyGun, BaseWeaponShotgun ]
   id: WeaponRifleFoam
   description: A premium foam rifle of the highest quality. Its plastic feels rugged, and its mechanisms sturdy.
   components:
@@ -103,7 +103,6 @@
     whitelist: *WhitelistFoam
     capacity: 10
     proto: BulletFoam
-  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 2
     selectedMode: SemiAuto

@@ -1,18 +1,21 @@
 - type: entity
   name: TestWeaponGunWieldable
-  parent: [ BaseGunWieldable, BaseItem ]
+  parent: BaseItem
   id: TestWeaponGunWieldable
   components:
   - type: Gun
-  - type: ChamberMagazineAmmoProvider
+  - type: BallisticAmmoProvider
+    capacity: 10
   - type: GunRequiresWield
+  - type: Wieldable
   - type: ItemSlots
     slots:
       gun_chamber:
         name: Chamber
   - type: ContainerContainer
     containers:
-      gun_chamber: !type:ContainerSlot
+      ballistic-ammo: !type:Container
+        ents: []
 
 - type: entity
   name: TestItemEmbeddable
