@@ -18,35 +18,41 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     ///     Main interaction with the warp drive.
     ///     Interruptions can be random, or manually caused by throwing items in.
     /// </summary>
-    public bool Interrupted = false;
+    [DataField]
+    public bool Interrupted;
 
     /// <summary>
     ///     The time we were last interrupted at.
     /// </summary>
-    public TimeSpan? LastInterruptionTime = null;
+    [DataField]
+    public TimeSpan? LastInterruptionTime;
 
     /// <summary>
     ///     At start and after each interruption is quelled, picks a random time for a new interruption.
     /// </summary>
-    public TimeSpan? NextInterruptionTime = null;
+    [DataField]
+    public TimeSpan? NextInterruptionTime;
 
     /// <summary>
     ///     Accumulated time spent interrupted, to subtract.
     /// </summary>
+    [DataField]
     public TimeSpan AccumulatedInterruptionTime = TimeSpan.Zero;
 
-    public bool InFinalPhase = false;
+    [DataField]
+    public bool InFinalPhase;
 
     /// <summary>
     ///     IF in final phase, the time we entered it at/ whatever
     /// </summary>
-    public TimeSpan? FinalPhaseAt = null;
+    [DataField]
+    public TimeSpan? FinalPhaseAt;
 
     /// <summary>
     ///     Used to calculate if an interruption should occur from manual sabotage.
     /// </summary>
     [DataField]
-    public int ItemsTeleportedSinceLastInterruption = 0;
+    public int ItemsTeleportedSinceLastInterruption;
 
     /// <summary>
     ///     Base charge time if there were literally 0 interruptions (which there will be)
