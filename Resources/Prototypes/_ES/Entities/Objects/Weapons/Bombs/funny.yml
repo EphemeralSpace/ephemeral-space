@@ -51,18 +51,3 @@
     - id: TrashBananaPeelExplosive
     sound:
       path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  parent: SnapPop
-  id: SnapPopExplosive
-  suffix: explosive
-  components:
-  - type: Explosive
-    explosionType: Default
-    maxIntensity: 0.8
-    intensitySlope: 1
-    totalIntensity: 3.5
-    canCreateVacuum: false
-  - type: Construction
-    graph: SnapPopExplosiveGraph
-    node: snapPopExplosive

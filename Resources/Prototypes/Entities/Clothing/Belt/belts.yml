@@ -126,17 +126,6 @@
 
 - type: entity
   parent: ClothingBeltMilitaryWebbing
-  id: ClothingBeltMilitaryWebbingMed
-  name: medical chest rig
-  description: A set of tactical webbing worn by Gorlex Marauder medic operatives.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/militarywebbingmed.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/militarywebbingmed.rsi
-
-- type: entity
-  parent: ClothingBeltMilitaryWebbing
   id: ClothingBeltMilitaryWebbingERT
   name: ERT chest rig
   description: A set of tactical webbing worn by Emergency Response Team operatives.
