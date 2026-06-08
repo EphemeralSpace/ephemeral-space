@@ -457,3 +457,15 @@ Entries:
       message: Pickpockets now prioritize more interesting items
   id: 55
   time: '2026-06-05T21:26:11.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        The warp drive console now shows when the warp drive is interrupted or
+        doing the final charge
+    - type: Fix
+      message: >-
+        Fixed an issue where the warp drive progress would not update and would
+        show the same value continuously
+  id: 56
+  time: '2026-06-08T00:11:19.0000000+00:00'
