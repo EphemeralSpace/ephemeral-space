@@ -10,6 +10,7 @@
     sprite: _ES/Mobs/Ghosts/theatergoer.rsi
     layers:
     - state: body
+      map: [ "body" ]
       shader: unshaded
     - state: head-1
       map: [ "face" ]
@@ -65,6 +66,12 @@
   - type: GhostHearing
   - type: ESStagehand
   - type: ESUsernameEntityName
+  - type: GenericVisualizer
+    visuals:
+      enum.ESUsernameEntityVisuals.Admin:
+        base:
+          True: { state: admin, shader: unshaded }
+          False: { state: body, shader: unshaded }
   - type: ESMindVisuals
   - type: ESBlockInteraction
   - type: ShowElectrocutionHUD

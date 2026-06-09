@@ -8,6 +8,7 @@
     sprite: _ES/Mobs/Ghosts/theatergoer.rsi
     layers:
     - state: body
+      map: [ "body" ]
     - state: head-1
       map: [ "face" ]
   - type: RandomSprite
@@ -42,6 +43,12 @@
   - type: Examiner
   - type: ESTheatergoerMarker
   - type: ESUsernameEntityName
+  - type: GenericVisualizer
+    visuals:
+      enum.ESUsernameEntityVisuals.Admin:
+        base:
+          True: { state: admin }
+          False: { state: body }
   - type: ESMindVisuals
   - type: Buckle
   - type: Hands
