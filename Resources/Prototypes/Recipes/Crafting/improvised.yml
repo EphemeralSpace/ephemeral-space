@@ -79,14 +79,6 @@
   objectType: Item
 
 - type: construction
-  id: CottonWovenCloth
-  graph: CottonObjects
-  startNode: start
-  targetNode: cottoncloth
-  category: construction-category-misc
-  objectType: Item
-
-- type: construction
   id: strawHat
   graph: StrawHat
   startNode: start
