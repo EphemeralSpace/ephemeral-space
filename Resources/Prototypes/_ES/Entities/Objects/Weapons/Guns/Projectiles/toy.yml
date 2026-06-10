@@ -32,6 +32,8 @@
   - type: ThrowingAngle
     angle: 180
   - type: LandAtCursor
+  - type: Item
+    size: Tiny
 
 - type: entity
   id: BulletCap
