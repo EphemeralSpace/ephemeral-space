@@ -18,24 +18,19 @@
 - type: entity
   parent: BoxCardboard
   id: BoxMouthSwab
-  name: sterile swab dispenser
-  description: Dispenses 30 sterile swabs, extremely useful for botany.
+  name: sterile swab box
+  description: 9 sterile swabs in convenient cardboard packaging.
   components:
   - type: Sprite
     layers:
+    - state: box
     - state: swab
-  - type: Storage
-    whitelist:
-      components:
-        - BotanySwab
-  - type: Dumpable
   - type: EntityTableContainerFill
     containers:
       storagebase:
         all:
         - id: DiseaseSwab
           amount: 9
-
 
 - type: entity
   parent: BaseItem
