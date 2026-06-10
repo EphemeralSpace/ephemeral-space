@@ -1,7 +1,6 @@
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, BaseTest ]
   id: TestWeaponGunWieldable
-  categories: [ HideSpawnMenu ]
   components:
   - type: Gun
   - type: BallisticAmmoProvider
@@ -15,9 +14,8 @@
         ents: []
 
 - type: entity
-  parent: ESBaseBullet
+  parent: [ ESBaseBullet, BaseTest ]
   id: TestBullet
-  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
@@ -25,16 +23,14 @@
         Piercing: 1
 
 - type: entity
-  parent: BaseCartridge
+  parent: [ BaseCartridge, BaseTest ]
   id: TestCartridge
-  categories: [ HideSpawnMenu ]
   components:
   - type: CartridgeAmmo
     proto: TestBullet
 
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, BaseTest ]
   id: TestItemEmbeddable
-  categories: [ HideSpawnMenu ]
   components:
   - type: EmbeddableProjectile
