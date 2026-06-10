@@ -10,7 +10,7 @@ public sealed class EmbedTest : InteractionTest
     /// <summary>
     /// Embeddable entity that will be thrown at the target.
     /// </summary>
-    private const string EmbeddableProtoId = "SurvivalKnife";
+    private const string EmbeddableProtoId = "TestItemEmbeddable";
 
     /// <summary>
     /// Target entity that the thrown item will embed into.
