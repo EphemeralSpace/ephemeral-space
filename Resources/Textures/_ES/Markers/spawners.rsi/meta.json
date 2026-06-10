@@ -50,6 +50,9 @@
             "name": "c100"
         },
         {
+            "name": "all"
+        },
+        {
             "name": "arcade"
         },
         {
@@ -74,6 +77,9 @@
             "name": "closet_text"
         },
         {
+            "name": "color"
+        },
+        {
             "name": "combo"
         },
         {
@@ -94,6 +100,9 @@
         },
         {
             "name": "id"
+        },
+        {
+            "name": "job"
         },
         {
             "name": "random"
