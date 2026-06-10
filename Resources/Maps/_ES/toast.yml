@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/02/2026 21:23:48
-  entityCount: 14694
+  time: 06/10/2026 10:13:00
+  entityCount: 14692
 maps:
 - 3
 grids:
@@ -32362,13 +32362,6 @@ entities:
     - type: Transform
       pos: -36.5,9.5
       parent: 2
-- proto: ESCrateHydroponicsSeeds
-  entities:
-  - uid: 8778
-    components:
-    - type: Transform
-      pos: 25.5,13.5
-      parent: 2
 - proto: CrateHydroponicsTools
   entities:
   - uid: 333
@@ -35981,13 +35974,6 @@ entities:
     - type: Transform
       pos: 28.5,-19.5
       parent: 2
-- proto: FoodBoxDonkpocket
-  entities:
-  - uid: 9071
-    components:
-    - type: Transform
-      pos: 28.5,-8.5
-      parent: 2
 - proto: Dresser
   entities:
   - uid: 13216
@@ -36963,6 +36949,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-44.5
+      parent: 2
+- proto: ESCrateHydroponicsSeeds
+  entities:
+  - uid: 8778
+    components:
+    - type: Transform
+      pos: 25.5,13.5
       parent: 2
 - proto: ESCrateMaterialGlass
   entities:
@@ -40159,6 +40152,13 @@ entities:
     components:
     - type: Transform
       pos: -18.5,-41.5
+      parent: 2
+- proto: ESSpawnerRandomGenericWardrobe
+  entities:
+  - uid: 2456
+    components:
+    - type: Transform
+      pos: -51.5,12.5
       parent: 2
 - proto: ESSpawnerRandomGrille25
   entities:
@@ -43861,11 +43861,6 @@ entities:
     - type: Transform
       pos: -9.5,5.5
       parent: 2
-  - uid: 9512
-    components:
-    - type: Transform
-      pos: -51.5,12.5
-      parent: 2
   - uid: 9513
     components:
     - type: Transform
@@ -46231,6 +46226,13 @@ entities:
     components:
     - type: Transform
       pos: 10.5,-35.5
+      parent: 2
+- proto: FoodBoxDonkpocket
+  entities:
+  - uid: 9071
+    components:
+    - type: Transform
+      pos: 28.5,-8.5
       parent: 2
 - proto: FoodBoxDonut
   entities:
