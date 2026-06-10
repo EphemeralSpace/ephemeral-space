@@ -174,13 +174,9 @@ public sealed partial class ShuttleSystem
             var toUsEnergy = otherMass * energyMult * inertiaMult * ourMassDR;
             var toOtherEnergy = ourMass * energyMult * inertiaMult * otherMassDR;
 
-            var impact = LogImpact.High;
-            // if impact isn't tiny, log it as extreme
-            if (toUsEnergy + toOtherEnergy > 2f * _tileBreakEnergyMultiplier * _platingMass)
-                impact = LogImpact.Extreme;
             // TODO: would be nice for it to also log who is piloting the grid(s)
             if (CheckShouldLog(args.OurEntity) && CheckShouldLog(args.OtherEntity))
-                _logger.Add(LogType.ShuttleImpact, impact, $"Shuttle impact of {ToPrettyString(args.OurEntity)} with {ToPrettyString(args.OtherEntity)} at {worldPoint}");
+                _logger.Add(LogType.ShuttleImpact, LogImpact.High, $"Shuttle impact of {ToPrettyString(args.OurEntity)} with {ToPrettyString(args.OtherEntity)} at {worldPoint}");
 
             _impactedAt[args.OurEntity] = _gameTiming.CurTime;
             _impactedAt[args.OtherEntity] = _gameTiming.CurTime;
