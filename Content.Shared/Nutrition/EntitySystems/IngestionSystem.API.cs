@@ -59,36 +59,23 @@ public sealed partial class IngestionSystem
         return AttemptIngest(user, user, ingested, false);
     }
 
-    /// <summary>
-    ///     Check whether we have an open pie-hole that's in range.
-    /// </summary>
-    /// <param name="user">The one performing the action</param>
-    /// <param name="target">The target whose mouth is checked</param>
-    /// <returns></returns>
-    public bool HasMouthAvailable(EntityUid user, EntityUid target)
-    {
-        return HasMouthAvailable(user, target, DefaultFlags);
-    }
-
-    /// <inheritdoc cref="HasMouthAvailable(EntityUid, EntityUid)"/>
-    /// Overflow which takes custom flags for a mouth being blocked, in case the entity has a mouth not on the face.
-    public bool HasMouthAvailable(EntityUid user, EntityUid target, SlotFlags flags)
+    public bool TargetCanIngest(EntityUid user, EntityUid target, EntityUid item, SlotFlags flags = DefaultFlags)
     {
         if (!_transform.GetMapCoordinates(user).InRange(_transform.GetMapCoordinates(target), MaxFeedDistance))
         {
             var message = Loc.GetString("interaction-system-user-interaction-cannot-reach");
-            _popup.PopupClient(message, user, user);
+            _popup.PopupEntity(message, user, user);
             return false;
         }
 
-        var attempt = new IngestionAttemptEvent(flags);
+        var attempt = new IngestionAttemptEvent(flags, item);
         RaiseLocalEvent(target, ref attempt);
 
         if (!attempt.Cancelled)
             return true;
 
         if (attempt.Blocker != null)
-            _popup.PopupClient(Loc.GetString("ingestion-remove-mask", ("entity", attempt.Blocker.Value)), target, user);
+            _popup.PopupEntity(Loc.GetString(attempt.Popup, ("entity", attempt.Blocker.Value)), target, user);
 
         return false;
     }
@@ -123,13 +110,13 @@ public sealed partial class IngestionSystem
     public bool CanConsume(EntityUid user,
         EntityUid target,
         EntityUid ingested,
-        [NotNullWhen(true)] out Entity<SolutionComponent>? solution,
+        out Entity<SolutionComponent>? solution,
         out TimeSpan? time)
     {
         solution = null;
         time = null;
 
-        if (!HasMouthAvailable(user, target))
+        if (!TargetCanIngest(user, target, ingested))
             return false;
 
         // If we don't have the tools to eat we can't eat.
@@ -186,57 +173,6 @@ public sealed partial class IngestionSystem
     }
 
     /// <summary>
-    /// Gets the total metabolizable nutrition from an entity, checks first if we can metabolize it.
-    /// If we can't then it's not worth any nutrition.
-    /// </summary>
-    /// <param name="entity">The consumed entity</param>
-    /// <param name="consumer">The entity doing the consuming</param>
-    /// <returns>The amount of nutrition the consumable is worth</returns>
-    public float TotalNutrition(Entity<EdibleComponent?> entity, EntityUid consumer)
-    {
-        if (!CanIngest(consumer, entity))
-            return 0f;
-
-        return TotalNutrition(entity);
-    }
-
-    /// <summary>
-    /// Gets the total metabolizable nutrition from an entity, assumes we can eat and metabolize it.
-    /// </summary>
-    /// <param name="entity">The consumed entity</param>
-    /// <returns>The amount of nutrition the consumable is worth</returns>
-    public float TotalNutrition(Entity<EdibleComponent?> entity)
-    {
-        if (!Resolve(entity, ref entity.Comp))
-            return 0f;
-
-        if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.Solution, out _, out var solution))
-            return 0f;
-
-        var total = 0f;
-        foreach (var quantity in solution.Contents)
-        {
-            var reagent = _proto.Index<ReagentPrototype>(quantity.Reagent.Prototype);
-            if (reagent.Metabolisms == null)
-                continue;
-
-            foreach (var entry in reagent.Metabolisms.Values)
-            {
-                foreach (var effect in entry.Effects)
-                {
-                    // ignores any effect conditions, just cares about how much it can hydrate
-                    if (effect is SatiateHunger hunger)
-                    {
-                        total += hunger.Factor * quantity.Quantity.Float();
-                    }
-                }
-            }
-        }
-
-        return total;
-    }
-
-    /// <summary>
     /// Gets the total metabolizable hydration from an entity, checks first if we can metabolize it.
     /// If we can't then it's not worth any hydration.
     /// </summary>
@@ -248,7 +184,7 @@ public sealed partial class IngestionSystem
         if (!CanIngest(consumer, entity))
             return 0f;
 
-        return TotalNutrition(entity);
+        return TotalHydration(entity);
     }
 
     /// <summary>
@@ -300,17 +236,11 @@ public sealed partial class IngestionSystem
     /// <param name="time">The time it takes us to eat this entity</param>
     public bool CanAccessSolution(Entity<SolutionContainerManagerComponent?> ingested,
         EntityUid user,
-        [NotNullWhen(true)] out Entity<SolutionComponent>? solution,
+        out Entity<SolutionComponent>? solution,
         out TimeSpan? time)
     {
         solution = null;
         time = null;
-
-        if (!Resolve(ingested, ref ingested.Comp))
-        {
-            _popup.PopupClient(Loc.GetString("ingestion-try-use-is-empty", ("entity", ingested)), ingested, user);
-            return false;
-        }
 
         var ev = new EdibleEvent(user);
         RaiseLocalEvent(ingested, ref ev);
@@ -318,7 +248,7 @@ public sealed partial class IngestionSystem
         solution = ev.Solution;
         time = ev.Time;
 
-        return !ev.Cancelled && solution != null;
+        return !ev.Cancelled;
     }
 
     /// <summary>

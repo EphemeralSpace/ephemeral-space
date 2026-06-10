@@ -2,189 +2,14 @@
 # Base
 
 - type: entity
-  parent: FoodInjectableBase
+  parent: FoodBase
   id: FoodBakedBase
   abstract: true
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/misc.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 6
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
   - type: Item
     size: Tiny
-
-# Muffins
-
-- type: entity
-  name: muffin
-  parent: FoodInjectableBase
-  id: FoodBakedMuffin
-  description: A delicious and spongy little cake.
-  components:
-  - type: Edible
-    trash:
-    - FoodPlateMuffinTin
-  - type: Sprite
-    sprite: Objects/Consumable/Food/Baked/misc.rsi
-    state: muffin
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 2
-  - type: FlavorProfile
-    flavors:
-      - sweet
-  - type: Item
-    size: Tiny
-
-- type: entity
-  name: berry muffin
-  parent: FoodBakedMuffin
-  id: FoodBakedMuffinBerry
-  description: A delicious and spongy little cake, with berries.
-  components:
-  - type: Sprite
-    state: muffin-berry
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 12
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 2
-        - ReagentId: JuiceBerry
-          Quantity: 2
-  - type: Tag
-    tags:
-    - Fruit
-
-- type: entity
-  name: cherry muffin
-  parent: FoodBakedMuffin
-  id: FoodBakedMuffinCherry
-  description: A sweet muffin with cherry bits.
-  components:
-  - type: Sprite
-    state: muffin-cherry
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 12
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 2
-        - ReagentId: JuiceCherry
-          Quantity: 2
-  - type: Tag
-    tags:
-    - Fruit
-
-- type: entity
-  name: bluecherry muffin
-  parent: FoodBakedMuffin
-  id: FoodBakedMuffinBluecherry
-  description: Blue cherries inside a delicious muffin.
-  components:
-  - type: Sprite
-    state: muffin-bluecherry
-  - type: Tag
-    tags:
-    - Fruit
-
-- type: entity
-  name: chocolate muffin
-  parent: FoodBakedMuffin
-  id: FoodBakedMuffinChocolate
-  description: A delicious and spongy chocolate muffin.
-  components:
-  - type: Sprite
-    state: muffin-chocolate
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 12
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 2
-        - ReagentId: CocoaPowder
-          Quantity: 2
-
-- type: entity
-  name: banana muffin
-  parent: FoodBakedMuffin
-  id: FoodBakedMuffinBanana
-  description: A delicious and spongy banana muffin.
-  components:
-  - type: Sprite
-    state: muffin-banana
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 12
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 2
-        - ReagentId: JuiceBanana
-          Quantity: 2
-  - type: Tag
-    tags:
-    - Fruit
-
-# Buns
-
-- type: entity
-  name: honey bun #TODO honey
-  parent: FoodBakedBase
-  id: FoodBakedBunHoney
-  description: A sticky pastry bun glazed with honey.
-  components:
-  - type: Sprite
-    state: bun-honey
-
-- type: entity
-  name: hotcross bun
-  parent: FoodBakedBase
-  id: FoodBakedBunHotX
-  description: A sticky pastry bun glazed with a distinct white cross.
-  components:
-  - type: Sprite
-    state: bun-hotcross
-
-- type: entity
-  name: meat bun
-  parent: FoodBakedBase
-  id: FoodBakedBunMeat
-  description: Has the potential to not be dog.
-  components:
-  - type: Sprite
-    state: bun-meat
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 2
 
 # Cookies
 
@@ -196,45 +21,6 @@
   components:
   - type: Sprite
     state: COOKIE!!!
-
-- type: entity
-  name: oatmeal cookie
-  parent: FoodBakedBase
-  id: FoodBakedCookieOatmeal
-  description: The best of both cookie and oat.
-  components:
-  - type: Sprite
-    state: cookie-oatmeal
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 8
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Vitamin
-          Quantity: 1
-
-- type: entity
-  name: raisin cookie
-  parent: FoodBakedBase
-  id: FoodBakedCookieRaisin
-  description: Why would you put raisins in a cookie?
-  components:
-  - type: Sprite
-    state: cookie-raisin
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 8
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Vitamin
-          Quantity: 1
-  - type: Tag
-    tags:
-    - Fruit
 
 - type: entity
   name: sugar cookie
@@ -269,17 +55,6 @@
           lizard: ""
           star: ""
           corgi: ""
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 8
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Protein
-          Quantity: 2
-        - ReagentId: Vitamin
-          Quantity: 1
 
 # Waffles/Pancakes
 
@@ -341,117 +116,6 @@
     - Pancake
 
 - type: entity
-  name: blueberry pancake
-  parent: FoodBakedPancake
-  id: FoodBakedPancakeBb
-  description: A fluffy and delicious blueberry pancake.
-  components:
-  - type: Stack
-    stackType: PancakeBb
-    layerStates:
-    - pancakesbb1
-    - pancakesbb2
-    - pancakesbb3
-    - pancakesbb4
-    - pancakesbb5
-    - pancakesbb6
-    - pancakesbb7
-    - pancakesbb8
-    - pancakesbb9
-  - type: Sprite
-    state: pancakesbb1
-    layers:
-    - state: pancakesbb1
-      map: ["pancakesbb1"]
-      visible: false
-    - state: pancakesbb2
-      map: ["pancakesbb2"]
-      visible: false
-    - state: pancakesbb3
-      map: ["pancakesbb3"]
-      visible: false
-    - state: pancakesbb4
-      map: ["pancakesbb4"]
-      visible: false
-    - state: pancakesbb5
-      map: ["pancakesbb5"]
-      visible: false
-    - state: pancakesbb6
-      map: ["pancakesbb6"]
-      visible: false
-    - state: pancakesbb7
-      map: ["pancakesbb7"]
-      visible: false
-    - state: pancakesbb8
-      map: ["pancakesbb8"]
-      visible: false
-    - state: pancakesbb9
-      map: ["pancakesbb9"]
-      visible: false
-  - type: Tag
-    tags:
-    - Pancake
-    - Fruit
-
-- type: entity
-  name: chocolate chip pancake
-  parent: FoodBakedPancake
-  id: FoodBakedPancakeCc
-  description: A fluffy and delicious chocolate chip pancake.
-  components:
-  - type: Stack
-    stackType: PancakeCc
-    layerStates:
-    - pancakescc1
-    - pancakescc2
-    - pancakescc3
-    - pancakescc4
-    - pancakescc5
-    - pancakescc6
-    - pancakescc7
-    - pancakescc8
-    - pancakescc9
-  - type: Sprite
-    state: pancakescc1
-    layers:
-    - state: pancakescc1
-      map: ["pancakescc1"]
-      visible: false
-    - state: pancakescc2
-      map: ["pancakescc2"]
-      visible: false
-    - state: pancakescc3
-      map: ["pancakescc3"]
-      visible: false
-    - state: pancakescc4
-      map: ["pancakescc4"]
-      visible: false
-    - state: pancakescc5
-      map: ["pancakescc5"]
-      visible: false
-    - state: pancakescc6
-      map: ["pancakescc6"]
-      visible: false
-    - state: pancakescc7
-      map: ["pancakescc7"]
-      visible: false
-    - state: pancakescc8
-      map: ["pancakescc8"]
-      visible: false
-    - state: pancakescc9
-      map: ["pancakescc9"]
-      visible: false
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 6
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Theobromine
-          Quantity: 1
-
-- type: entity
   name: waffles
   parent: FoodBakedBase
   id: FoodBakedWaffle
@@ -461,15 +125,8 @@
     layers:
       - state: tray
       - state: waffles
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 8
-        - ReagentId: Vitamin
-          Quantity: 1
+  - type: ESFood
+    portions: 2
 
 - type: entity
   name: soy waffles
@@ -481,84 +138,10 @@
     layers:
       - state: tray
       - state: waffles-soy
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Vitamin
-          Quantity: 1
-
-- type: entity
-  name: soylent waffles
-  parent: FoodBakedWaffle
-  id: FoodBakedWaffleSoylent
-  description: Not made of people. Honest. # Definitely people
-  components:
-  - type: Sprite
-    layers:
-      - state: tray
-      - state: waffles-soylent
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Vitamin
-          Quantity: 1
-
-- type: entity
-  name: roffle waffles
-  parent: FoodBakedWaffle
-  id: FoodBakedWaffleRoffle
-  description: Waffles from Roffle. Co.
-  components:
-  - type: Sprite
-    layers:
-      - state: tray
-      - state: waffles-roffle
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 8
-        - ReagentId: Vitamin
-          Quantity: 2
+  - type: ESFood
+    portions: 2
 
 # Misc
-
-- type: entity
-  name: poppy pretzel
-  parent: FoodBakedBase
-  id: FoodBakedPretzel
-  description: It's all twisted up!
-  components:
-  - type: Sprite
-    state: pretzel
-
-- type: entity
-  name: cannoli
-  parent: FoodBakedBase
-  id: FoodBakedCannoli
-  description: A Sicilian treat that makes you into a wise guy.
-  components:
-  - type: Sprite
-    state: cannoli
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Vitamin
-          Quantity: 1
 
 - type: entity
   name: dumplings
@@ -568,15 +151,8 @@
   components:
   - type: Sprite
     state: dumplings
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 8
-        - ReagentId: Protein
-          Quantity: 2
+  - type: ESFood
+    portions: 2
   - type: FlavorProfile
     flavors:
       - meaty
@@ -584,62 +160,6 @@
   - type: Tag
     tags:
     - Meat
-
-- type: entity
-  name: chèvre chaud
-  parent: FoodBakedBase
-  id: FoodBakedChevreChaud
-  description: A disk of slightly melted chèvre flopped on top of a crostini, and toasted all-round.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - bread
-      - nutty
-      - creamy
-      - smokey
-  - type: Sprite
-    state: chevrechaud
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Vitamin
-          Quantity: 0.5
-
-- type: entity
-  name: cotton chèvre chaud
-  parent: FoodBakedChevreChaud
-  id: FoodBakedChevreChaudCotton
-  description: A disk of slightly melted chèvre flopped on top of a... cotton crostini, and toasted all-round.
-  components:
-  - type: FlavorProfile
-    flavors:
-    - bread
-    - nutty
-    - creamy
-    - smokey
-    - cotton
-  - type: Sprite
-    state: chevrechaud-cotton
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: Tag
-    tags:
-    - ClothMade
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 1
-        - ReagentId: Fiber
-          Quantity: 1
-        - ReagentId: Vitamin
-          Quantity: 0.5
 
 - type: entity
   parent: FoodBakedBase
@@ -660,15 +180,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 78
+        maxVol: 3
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 30
         - ReagentId: Theobromine
-          Quantity: 18
-  - type: SliceableFood
-    count: 6
-    slice: FoodBakedBrownie
+          Quantity: 3
+  - type: ESFood
+    portions: 4
 
 - type: entity
   name: brownie
@@ -687,10 +204,8 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 13
+        maxVol: 3
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
         - ReagentId: Theobromine
           Quantity: 3
   - type: Tag
@@ -717,17 +232,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 228
+        maxVol: 10
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 30
         - ReagentId: Theobromine
-          Quantity: 18
+          Quantity: 3
         - ReagentId: THC
-          Quantity: 150
-  - type: SliceableFood
-    count: 6
-    slice: FoodBakedCannabisBrownie
+          Quantity: 7
+  - type: ESFood
+    portions: 5 # ... more than regular brownies ?!
 
 - type: entity
   parent: FoodBakedBase
@@ -746,14 +258,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 38
+        maxVol: 10
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
         - ReagentId: Theobromine
           Quantity: 3
         - ReagentId: THC
-          Quantity: 25
+          Quantity: 7
   - type: Tag
     tags:
     - Slice
@@ -775,12 +285,8 @@
         food:
           maxVol: 4
           reagents:
-          - ReagentId: Nutriment
-            Quantity: 1
           - ReagentId: Allicin
-            Quantity: 1
-          - ReagentId: Vitamin
-            Quantity: 1
+            Quantity: 4
 
 - type: entity
   parent: FoodBakedBase
@@ -800,58 +306,6 @@
       - butter
   - type: Sprite
     state: croissant
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 7
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Butter
-          Quantity: 2
-        - ReagentId: Vitamin
-          Quantity: 1
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Blunt: 0 # so the damage stats icon doesn't immediately give away the syndie ones
-
-- type: entity
-  parent: FoodBakedCroissant
-  id: FoodBakedCroissantCotton
-  name: cotton croissant
-  description: Buttery, flaky, fibery goodness.
-  components:
-  - type: Item
-    size: Small
-    shape:
-    - 0,0,1,0
-    - 0,1,0,1
-  - type: FlavorProfile
-    flavors:
-    - bread
-    - butter
-    - cotton
-  - type: Sprite
-    state: croissant-cotton
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: Tag
-    tags:
-    - ClothMade
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 7
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 1.5
-        - ReagentId: Fiber
-          Quantity: 1.5
-        - ReagentId: Butter
-          Quantity: 2
-        - ReagentId: Vitamin
-          Quantity: 1
 
 - type: entity
   parent: FoodBakedBase
@@ -870,50 +324,8 @@
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/misc.rsi
     state: grilled-cheese
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 21
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 11
-        - ReagentId: Butter
-          Quantity: 2
-        - ReagentId: Vitamin
-          Quantity: 3
-
-- type: entity
-  parent: FoodBakedGrilledCheeseSandwich
-  id: FoodBakedGrilledCheeseSandwichCotton
-  name: cotton grilled cheese sandwich
-  description: Cotton bread slightly burnt in butter, with melted cheese. Moths find it difficult to resist this combination.
-  components:
-  - type: FlavorProfile
-    flavors:
-    - cheesy
-    - bread
-    - cotton
-  - type: Sprite
-    sprite: Objects/Consumable/Food/Baked/misc.rsi
-    state: grilled-cheese-cotton
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: Tag
-    tags:
-    - ClothMade
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 21
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Fiber
-          Quantity: 5
-        - ReagentId: Butter
-          Quantity: 2
-        - ReagentId: Vitamin
-          Quantity: 3
+  - type: ESFood
+    portions: 3
 
 # Entity Tables
 
@@ -921,20 +333,7 @@
   id: FoodRandomCakeTable
   table: !type:GroupSelector
     children:
-    - id: FoodCakeApple
     - id: FoodCakeBirthday
-    - id: FoodCakeBlueberry
     - id: FoodCakePlain
-    - id: FoodCakeCarrot
     - id: FoodCakeCheese
     - id: FoodCakeChocolate
-    - id: FoodCakeChristmas
-    - id: FoodCakeClown
-    - id: FoodCakeLemon
-    - id: FoodCakeLime
-    - id: FoodCakeOrange
-    - id: FoodCakePumpkin
-    - id: FoodCakeSlime
-    - id: FoodCakeSpaceman
-    - id: FoodCakeVanilla
-    - id: FoodCakeLemoon

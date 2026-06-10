@@ -9,7 +9,7 @@
   - type: Sprite
     sprite: _ES/Mobs/Ghosts/theatergoer.rsi
     layers:
-    - state: stagehand
+    - state: body
       shader: unshaded
     - state: head-1
       map: [ "face" ]

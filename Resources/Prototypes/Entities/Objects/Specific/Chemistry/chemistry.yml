@@ -575,7 +575,6 @@
     edible: Pill
   - type: BadFood
   - type: FlavorProfile
-    ignoreReagents: []
   - type: SolutionContainerManager
     solutions:
       food:

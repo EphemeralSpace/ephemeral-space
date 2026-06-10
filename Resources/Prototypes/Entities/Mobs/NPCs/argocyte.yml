@@ -78,7 +78,7 @@
       30: Dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 1
   - type: MovementSpeedModifier
     baseSprintSpeed : 3.5
@@ -112,7 +112,7 @@
       30: Dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 1
   - type: Fixtures
     fixtures:
@@ -152,7 +152,7 @@
       30: Dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 1
   - type: Fixtures
     fixtures:
@@ -192,7 +192,7 @@
       60: Dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 2
   - type: MovementSpeedModifier
     baseSprintSpeed : 5
@@ -218,7 +218,7 @@
       100: Dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 2
   - type: MovementSpeedModifier
     baseSprintSpeed : 4
@@ -245,7 +245,7 @@
       100: Dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 2
   - type: MeleeWeapon
     damage:
@@ -274,7 +274,7 @@
       100: Dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 2
   - type: MeleeWeapon
     damage:
@@ -306,7 +306,7 @@
       150: Dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 2
   - type: MeleeWeapon
     damage:
@@ -337,7 +337,7 @@
       150: Dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 2
   - type: MeleeWeapon
     damage:
@@ -370,7 +370,7 @@
       300: Dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 3
   - type: MeleeWeapon
     damage:
@@ -401,7 +401,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 5
   - type: Fixtures
     fixtures:
@@ -447,7 +447,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 10
   - type: Fixtures
     fixtures:

@@ -7,32 +7,12 @@
   icon: "JobIconHeadOfPersonnel"
   supervisors: job-supervisors-captain
   canBeAntag: false
+  overrideConsoleVisibility: false
   access:
   - Command
   - HeadOfPersonnel
-  - Bar
-  - Service
   - Maintenance
-  - Janitor
-  - Theatre
-  - Kitchen
-  - Chapel
-  - Hydroponics
   - External
-  - Chemistry
-  - Engineering
-  - Research
-  - Detective
-  - Salvage
-  - Security
-  - Brig
-  - Lawyer
-  - Cargo
-  - Atmospherics
-  - Medical
-  - GenpopEnter
-  - GenpopLeave
-  # Effectively all access minus Captain, Head of Security, and Armory as of 23/12/25
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

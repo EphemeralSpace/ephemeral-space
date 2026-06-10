@@ -13,7 +13,7 @@ public sealed partial class VomitEntityEffectSystem : EntityEffectSystem<MetaDat
 
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<Vomit> args)
     {
-        _vomit.Vomit(entity.Owner, args.Effect.ThirstAmount * args.Scale, args.Effect.HungerAmount * args.Scale);
+        _vomit.Vomit(entity.Owner, args.Effect.ThirstAmount * args.Scale, args.Effect.HungerAmount);
     }
 }
 
@@ -30,7 +30,7 @@ public sealed partial class Vomit : EntityEffectBase<Vomit>
     /// How much we adjust our hunger after vomiting.
     /// </summary>
     [DataField]
-    public float HungerAmount = -8f;
+    public int HungerAmount = -1;
 
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("entity-effect-guidebook-vomit", ("chance", Probability));

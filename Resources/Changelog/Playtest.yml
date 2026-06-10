@@ -267,3 +267,193 @@ Entries:
       message: cans no longer deal damage upon being thrown
   id: 33
   time: '2026-05-23T21:10:18.0000000+00:00'
+- author: SpeltIncorrectyl
+  changes:
+    - type: Remove
+      message: removed the detective's stun baton
+  id: 34
+  time: '2026-05-23T22:44:29.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Updated the stagehand cheer and boo icons
+  id: 35
+  time: '2026-05-23T22:48:30.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        Crewmember is now more common in masquerades, and arsonist is now less
+        common.
+  id: 36
+  time: '2026-05-23T22:48:36.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Assistants now have their own unique jumpsuit
+  id: 37
+  time: '2026-05-25T15:35:41.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Fires now smolder much faster, and have a chance to get put out entirely
+        once they smolder
+  id: 38
+  time: '2026-05-25T15:38:03.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Arsonists' objective now progresses when their fire spreads. To
+        compensate, they need to create more fires.
+  id: 39
+  time: '2026-05-25T21:12:09.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: An ominous bell will now toll when the first death of the show occurs.
+  id: 40
+  time: '2026-05-26T16:18:56.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        APCs now become broken when damaged. In this state, they do not provide
+        power.
+    - type: Tweak
+      message: APCs can no longer be constructed.
+  id: 41
+  time: '2026-05-26T16:20:14.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: >-
+        Changed all medical roles to have better and more consistent locker/belt
+        fills (doctors have access to a full set of tools now!)
+    - type: Remove
+      message: Replaced all redundant medical items with equivalent counterparts.
+    - type: Tweak
+      message: Resprited all surgical tools.
+    - type: Tweak
+      message: The circular saw now attacks much faster. Find some meat!
+  id: 42
+  time: '2026-05-27T21:37:33.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Secretaries can no longer get objectives to assist non-crew masks.
+  id: 43
+  time: '2026-05-27T21:48:24.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Characters now generate with facial hair again.
+  id: 44
+  time: '2026-05-28T23:20:23.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Traitors now have an objective to bug a department's APC. After the
+        hacking bug finishes, the GreyTide virus will be unleashed. Crew can
+        disarm this by removing the bug if they notice it's suspicious sparking.
+  id: 45
+  time: '2026-05-30T22:24:15.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Remove
+      message: The detective no longer starts with an armor vest.
+    - type: Remove
+      message: The captain no longer starts with a forensic scanner.
+  id: 46
+  time: '2026-05-30T22:26:56.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed getting stuck in brains when your body explodes.
+    - type: Fix
+      message: Fixed the death toll bell playing when non-players die.
+    - type: Tweak
+      message: >-
+        Traitors now always have 1 kill objective, 2 sabotage objectives, and an
+        APC bug objective.
+  id: 47
+  time: '2026-05-31T19:10:51.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The captain and head of personnel no longer have All Access to the
+        station.
+  id: 48
+  time: '2026-06-03T04:24:20.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: >-
+        A lot of food items + botany seeds have been removed in preparation of
+        upcoming cooking/botany changes
+    - type: Add
+      message: >-
+        Chef nutrivend and seed crates now have more randomized contents, and
+        can have cannabis/deathnettle/some other more exotic seeds on roundstart
+        now
+    - type: Tweak
+      message: >-
+        Hunger now works completely differently. Each food item now has a
+        different number of "portions", and each bite of food will immediately
+        restore 1 stage of hunger. Some bad foods will increase your hunger
+        instead
+    - type: Tweak
+      message: >-
+        Food can now be examined to show its satiety + they now have item
+        statuses
+    - type: Tweak
+      message: Melee damage on the shuttle is now even worse
+  id: 49
+  time: '2026-06-03T05:09:08.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the emergency access terminal, a unique bridge computer capable of
+        remotely enabling emergency access into various areas on station.
+  id: 50
+  time: '2026-06-05T02:19:09.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The ID card console no longer needs a privileged ID to assign access and
+        now only assigns presets, not individual access levels.
+  id: 51
+  time: '2026-06-05T02:20:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Reduced the delay between the meteor announcement and when they hit the
+        station.
+    - type: Tweak
+      message: Meteors can now occur before the 30 minute mark.
+  id: 52
+  time: '2026-06-05T02:24:01.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The Parasite objective for "do not kill" players now works based on
+        total damage dealt rather than kills.
+  id: 53
+  time: '2026-06-05T02:27:55.0000000+00:00'
+- author: Sadie-silly
+  changes: []
+  id: 54
+  time: '2026-06-05T21:22:32.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: Pickpockets now prioritize more interesting items
+  id: 55
+  time: '2026-06-05T21:26:11.0000000+00:00'

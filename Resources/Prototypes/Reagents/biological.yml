@@ -18,16 +18,11 @@
     Drink:
       effects:
       - !type:SatiateThirst
-        factor: 1.0
+        factor: 0.5
         conditions:
           - !type:MetabolizerTypeCondition
             type: [ Human ]
             inverted: true
-    Food:
-      effects:
-        - !type:AdjustReagent
-          reagent: UncookedAnimalProteins
-          amount: 0.1
     Medicine:
       effects:
       - !type:HealthChange
@@ -86,9 +81,6 @@
       effects:
       - !type:SatiateThirst
         factor: 0.5
-      - !type:AdjustReagent
-        reagent: Nutriment
-        amount: 0.1
   footstepSound:
     collection: FootstepBlood
     params:
@@ -103,10 +95,6 @@
   flavor: mindful
   color: "#C584B8"
   metabolisms:
-    Drink:
-      effects:
-      - !type:SatiateHunger
-        factor: 1.5
     Poison:
       effects:
       - !type:HealthChange

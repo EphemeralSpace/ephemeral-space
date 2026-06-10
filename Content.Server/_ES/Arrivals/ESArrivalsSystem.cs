@@ -168,19 +168,13 @@ public sealed partial class ESArrivalsSystem : EntitySystem
 
         if (!HasShuttleDocked(ev.Station.Value))
         {
-            if (TryComp<HungerComponent>(ev.SpawnResult, out var hunger) &&
-                hunger.Thresholds.TryGetValue(HungerThreshold.Starving, out var starving))
+            if (TryComp<HungerComponent>(ev.SpawnResult, out var hunger))
             {
-                _hunger.SetHunger(ev.SpawnResult.Value, starving + _random.NextFloat(-20, 0), hunger);
+                var threshold = _random.Prob(0.5f) ? HungerThreshold.Peckish : HungerThreshold.Hungry;
+                _hunger.SetHunger((ev.SpawnResult.Value, hunger), threshold);
             }
 
-            if (TryComp<ThirstComponent>(ev.SpawnResult, out var thirst) &&
-                thirst.ThirstThresholds.TryGetValue(ThirstThreshold.Parched, out var lowerThirst))
-            {
-                _thirst.SetThirst(ev.SpawnResult.Value, thirst, lowerThirst + _random.NextFloat(-50, 0));
-            }
-
-            var sicknessTime = TimeSpan.FromSeconds(Math.Max((arrivals.ArrivalTime - _timing.CurTime).TotalSeconds + _random.Next(0, 10), _random.Next(10, 15)));
+            var sicknessTime = TimeSpan.FromSeconds(Math.Max((arrivals.ArrivalTime - _timing.CurTime).TotalSeconds + _random.Next(10, 20), _random.Next(10, 15)));
             _statusEffects.TryAddStatusEffectDuration(ev.SpawnResult.Value, CryoSicknessEffect, sicknessTime);
         }
 

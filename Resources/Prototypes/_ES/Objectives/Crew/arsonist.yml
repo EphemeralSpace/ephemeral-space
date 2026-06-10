@@ -11,6 +11,6 @@
   - type: ESCreateTileFireObjective
   - type: ESCounterObjective
     title: es-arsonist-light-fires-objective-title
-    target: 32
-    maxTarget: 52
-    targetIncrement: 2
+    target: 64
+    maxTarget: 112
+    targetIncrement: 8

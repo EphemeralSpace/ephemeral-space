@@ -31,7 +31,7 @@ public sealed partial class ESPickpocketMaskSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<ESPickpocketTargetActionEvent>(OnPickpocketTargetAction);
-        SubscribeLocalEvent<DoAfterComponent, ESPickpocketTargetDoAfterEvent>(OnPickpocketTargetDoAfter);
+        SubscribeLocalEvent<ESPickpocketTargetDoAfterEvent>(OnPickpocketTargetDoAfter);
         SubscribeLocalEvent<DoAfterAttemptEvent<ESPickpocketTargetDoAfterEvent>>(OnDoAfterAttempt);
     }
 
@@ -65,17 +65,17 @@ public sealed partial class ESPickpocketMaskSystem : EntitySystem
             args.Performer,
             args.Delay,
             new ESPickpocketTargetDoAfterEvent(),
-            args.Performer,
+            null,
             args.Target)
         {
             AttemptFrequency = AttemptFrequency.EveryTick,
             DuplicateCondition = DuplicateConditions.SameEvent,
             BreakOnMove = true,
-            Hidden = true,
+            Broadcast = true,
         });
     }
 
-    private void OnPickpocketTargetDoAfter(Entity<DoAfterComponent> ent, ref ESPickpocketTargetDoAfterEvent args)
+    private void OnPickpocketTargetDoAfter(ESPickpocketTargetDoAfterEvent args)
     {
         if (args.Cancelled || args.Target is not { } target)
             return;
@@ -90,7 +90,21 @@ public sealed partial class ESPickpocketMaskSystem : EntitySystem
             return;
         }
 
+        var PriorityItems = new List<EntityUid>();
         var item = _random.Pick(bag.Value.Comp.Container.ContainedEntities);
+
+        foreach (var entity in bag.Value.Comp.Container.ContainedEntities)
+        {
+            if (HasComp<ESPickpocketPriorityItemComponent>(entity))
+                PriorityItems.Add(entity);
+        }
+
+        if (PriorityItems.Count != 0 && _random.Prob(args.PriorityItemChance))
+        {
+            item = _random.Pick(PriorityItems);
+        }
+
+
         if (!_container.Remove(item, bag.Value.Comp.Container))
             return;
 

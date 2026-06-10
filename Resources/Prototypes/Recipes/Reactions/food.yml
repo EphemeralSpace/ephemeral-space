@@ -107,22 +107,6 @@
       entity: FoodDoughPie
 
 - type: reaction
-  id: CreateMeatball
-  impact: Low
-  quantized: true
-  conserveEnergy: false
-  reactants:
-    UncookedAnimalProteins:
-      amount: 5
-    Flour:
-      amount: 5
-    Egg:
-      amount: 6
-  effects:
-    - !type:SpawnEntity
-      entity: FoodMeatMeatball
-
-- type: reaction
   id: CreateChocolate
   impact: Low
   quantized: true
@@ -162,7 +146,6 @@
   products:
     Fat: 6
     Water: 3
-    Protein: 1 #water & protein represent aqueous proteins
 
 - type: reaction
   id: AllicinBreakdown
@@ -178,19 +161,6 @@
     Water: 1
 
 - type: reaction
-  id: NutrimentBreakdown
-  source: true
-  requiredMixerCategories:
-  - Centrifuge
-  reactants:
-    Nutriment:
-      amount: 5
-  products:
-    Water: 2
-    Carbon: 2
-    Sugar: 1
-
-- type: reaction
   id: FatBreakdown
   source: true
   requiredMixerCategories:
@@ -202,49 +172,6 @@
     Carbon: 5
     Hydrogen: 10
     Oxygen: 1
-
-# Proteins are hydrocarbons
-- type: reaction
-  id: UncookedAnimalProteinBreakdown
-  source: true
-  requiredMixerCategories:
-  - Electrolysis
-  reactants:
-    UncookedAnimalProteins:
-      amount: 10
-  products:
-    Carbon: 2
-    Hydrogen: 4
-    Phosphorus: 3
-    Oxygen: 1
-
-- type: reaction
-  id: ProteinBreakdown
-  source: true
-  requiredMixerCategories:
-  - Electrolysis
-  reactants:
-    Protein:
-      amount: 10
-  products:
-    Carbon: 2
-    Hydrogen: 4
-    Phosphorus: 3
-    Oxygen: 1
-
-# Vitamin = Healthy = Green = Nitrogenous
-- type: reaction
-  id: VitaminBreakdown
-  source: true
-  requiredMixerCategories:
-  - Centrifuge
-  reactants:
-    Vitamin:
-      amount: 4
-  products:
-    Carbon: 1
-    Water: 1
-    Nitrogen: 2
 
 - type: reaction
   id: ReduceMilk #makes Cream renewable

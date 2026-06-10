@@ -29,11 +29,6 @@
 
 # Power
 - type: latheRecipe
-  parent: [ BaseCheapCircuitboardRecipe, BaseCircuitryRecipeCategory ]
-  id: APCElectronics
-  result: APCElectronics
-
-- type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseCircuitryRecipeCategory ]
   id: SolarTrackerElectronics
   result: SolarTrackerElectronics

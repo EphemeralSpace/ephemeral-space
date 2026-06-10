@@ -974,8 +974,6 @@
       effects:
       - !type:SatiateThirst
         factor: 2
-      - !type:SatiateHunger
-        factor: -2
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.05

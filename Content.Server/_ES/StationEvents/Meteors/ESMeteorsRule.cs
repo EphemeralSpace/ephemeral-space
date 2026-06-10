@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Server._ES.StationEvents.Meteors.Components;
 using Content.Server.StationEvents.Events;
@@ -10,6 +11,7 @@ using Content.Shared.Localizations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Random;
 
 namespace Content.Server._ES.StationEvents.Meteors;
 
@@ -29,9 +31,13 @@ public sealed partial class ESMeteorsRule : StationEventSystem<ESMeteorsRuleComp
 
     private void OnGetVoteOptions(Entity<ESAngleVoteComponent> ent, ref ESGetVoteOptionsEvent args)
     {
-        for (var i = 0; i < ent.Comp.Count; i++)
+        var angles = Enum.GetValues<Direction>()
+            .Select(d => new Angle(d.ToAngle().Theta * RobustRandom.NextFloat(0.85f, 1.15f)))
+            .ToList();
+
+        for (var i = 0; i < ent.Comp.Count; ++i)
         {
-            var angle = RobustRandom.NextAngle();
+            var angle = RobustRandom.PickAndTake(angles);
             var readableAngle = angle.ToCompassAngle();
             args.Options.Add(new ESAngleVoteOption
             {

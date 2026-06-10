@@ -37,6 +37,7 @@
   - type: BatteryAmmoProvider
     proto: ESEnergyBolt
     fireCost: 70
+  - type: ESPickpocketPriorityItem
 
 # TODO: Try giving this a small pointlight to see if it looks good.
 - type: entity

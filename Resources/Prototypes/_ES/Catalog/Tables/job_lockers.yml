@@ -20,19 +20,15 @@
   id: ESLockerFillHeadOfPersonnel
   table: !type:AllSelector
     children:
-    - id: AccessConfigurator
-    - id: BoxEncryptionKeyPassenger
-    - id: BoxEncryptionKeyService
-    - id: BoxHeadset
-    - id: BoxHoPStamps
-    - id: BoxID
-    - id: BoxPDA
+    - id: RubberStampApproved
+    - id: RubberStampDenied
     - id: CigarGoldCase
       prob: 0.25
     - id: ClothingHeadsetCommand
     - id: ClothingNeckGoldmedal
     - id: HoPIDCard
     - id: Stunbaton
+    - id: LuxuryPen
     - id: ClothingEyesHudSecurity
 
 # Security
@@ -56,10 +52,9 @@
     children:
     - id: ClothingEyesGlassesNoir
     - id: ESWeaponRevolver357 # sure, the other security roles don't get guns, but what is a detective without their revolver?
+    - id: ClothingBeltSecurity # this belt is supposed to be empty so det doesn't get a batong
     - id: ClothingHeadHatDetGadget
       prob: 0.15
-    - id: Stunbaton
-    - id: ESClothingOuterArmorDetective
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
     - id: ForensicScanner
@@ -68,7 +63,6 @@
     - id: RubberStampDetective
     - id: BoxEvidenceMarkers
     - id: HandLabeler
-    - id: ClothingBeltSecurityFilled
 
 # Service
 - type: entityTable
@@ -168,8 +162,7 @@
   id: ESLockerFillPhysician
   table: !type:AllSelector
     children:
-    - id: HandheldHealthAnalyzer
-      prob: 0.6
+    - id: BriefcaseAluminumFilledDoctor
     - id: ClothingHeadMirror
       prob: 0.1
     - id: ClothingHandsGlovesColorBlue
@@ -190,16 +183,13 @@
     - id: ClothingBeltMedicalFilled
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical
-    - id: ESMedkitStabilizationFilled
+    - id: MedkitFilled
 
 - type: entityTable
   id: ESLockerFillCoroner
   table:
     all:
-    - id: ESScalpelAutopsy
-    - id: BoxFolderYellow
-    - id: HandLabeler
-    - id: BoxBodyBag
+    - id: BriefcaseBlackFilledCoroner
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical
     - id: ClothingMaskSterile

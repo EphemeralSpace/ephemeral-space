@@ -2,6 +2,7 @@ using Content.Server._ES.StationEvents.GreyTideVirus.Components;
 using Content.Server.Doors.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
+using Content.Shared._ES.Masks.Traitor.Components;
 using Content.Shared._ES.Voting.Components;
 using Content.Shared._ES.Voting.Results;
 using Content.Shared.Access;
@@ -21,12 +22,26 @@ public sealed partial class ESGreyTideVirusRule : StationEventSystem<ESGreyTideV
     [Dependency] private DoorSystem _door = default!;
     [Dependency] private LockSystem _lock = default!;
 
+    private static readonly EntProtoId VirusRuleId = "ESStationEventGreyTideVirusNoVote";
+
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<ESTraitorBugHackedEvent>(OnTraitorBugHacked);
+
         SubscribeLocalEvent<ESGreyTideVirusComponent, ESSynchronizedVotesCompletedEvent>(OnSynchronizedVotesCompleted);
         SubscribeLocalEvent<ESAccessGroupVoteComponent, ESGetVoteOptionsEvent>(OnGetVoteOptions);
+    }
+
+    private void OnTraitorBugHacked(ref ESTraitorBugHackedEvent ev)
+    {
+        var virus = Spawn(VirusRuleId);
+        var comp = EnsureComp<ESGreyTideVirusComponent>(virus);
+
+        SetVirusGroup((virus, comp), ev.Group);
+
+        GameTicker.AddGameRule(virus, VirusRuleId);
     }
 
     private void OnSynchronizedVotesCompleted(Entity<ESGreyTideVirusComponent> ent, ref ESSynchronizedVotesCompletedEvent args)
@@ -34,12 +49,16 @@ public sealed partial class ESGreyTideVirusRule : StationEventSystem<ESGreyTideV
         if (!args.TryGetResult<ESAccessVoteOption>(0, out var access))
             return;
 
-        ent.Comp.AccessGroup = access.Access;
+        SetVirusGroup(ent, access.Access);
+    }
 
+    public void SetVirusGroup(Entity<ESGreyTideVirusComponent> ent, ProtoId<AccessGroupPrototype> access)
+    {
+        ent.Comp.AccessGroup = access;
         if (TryComp<StationEventComponent>(ent, out var stationEvent))
         {
             stationEvent.StartAnnouncement = Loc.GetString("es-station-event-greytide-virus-start-announcement",
-                ("dept", Loc.GetString(PrototypeManager.Index(access.Access).GetAccessGroupName())));
+                ("dept", Loc.GetString(PrototypeManager.Index(access).GetAccessGroupName())));
         }
     }
 

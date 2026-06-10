@@ -15,9 +15,6 @@
         amount: 0.4
       - !type:SatiateThirst
         factor: -0.2 #its flour
-      - !type:AdjustReagent
-        reagent: Nutriment
-        amount: 0.1
 
 - type: reagent
   id: Cornmeal
@@ -32,9 +29,6 @@
       effects:
       - !type:SatiateThirst
         factor: -0.2 #its cornflour
-      - !type:AdjustReagent
-        reagent: Nutriment
-        amount: 0.1
 
 - type: reagent
   id: Oats
@@ -50,9 +44,6 @@
       - !type:AdjustReagent
         reagent: Sugar
         amount: 0.2
-      - !type:AdjustReagent
-        reagent: Nutriment
-        amount: 0.3
 
 - type: reagent
   id: Enzyme
@@ -72,12 +63,6 @@
   flavor: raw-egg
   color: white
   recognizable: true
-  metabolisms:
-    Food:
-      effects:
-      - !type:AdjustReagent
-        reagent: UncookedAnimalProteins
-        amount: 0.5
 
 - type: reagent
   id: EggCooked
@@ -88,12 +73,6 @@
   flavor: egg
   color: white
   recognizable: true
-  metabolisms:
-    Food:
-      effects:
-      - !type:AdjustReagent
-        reagent: Protein
-        amount: 1
 
 - type: reagent
   id: Blackpepper
@@ -139,9 +118,6 @@
       - !type:AdjustReagent
         reagent: Water
         amount: 0.4
-      - !type:AdjustReagent
-        reagent: Vitamin
-        amount: 0.1
       - !type:Vomit
         probability: 0.1
         conditions:
@@ -164,9 +140,6 @@
       - !type:AdjustReagent
         reagent: Sugar
         amount: 0.4
-      - !type:AdjustReagent
-        reagent: Nutriment
-        amount: 0.1
 
 - type: reagent
   id: OilOlive
@@ -178,12 +151,6 @@
   flavorMinimum: 0.05
   color: olive
   recognizable: true
-  metabolisms:
-    Food:
-      effects:
-      - !type:AdjustReagent
-        reagent: Nutriment
-        amount: 0.75
 
 - type: reagent
   id: Oil
@@ -213,11 +180,6 @@
   meltingPoint: 146
   boilingPoint: 410 # Really high boiling point compared to its melting
   metabolisms:
-    Food:
-      effects:
-      - !type:AdjustReagent
-        reagent: Nutriment #Oils enhance nutrition
-        amount: 0.75
     Poison:
       effects:
         - !type:AdjustTemperature
@@ -244,15 +206,6 @@
   flavor: chocolate
   color: "#800000"
   meltingPoint: 146.0
-  metabolisms:
-    Food:
-      effects:
-      - !type:SatiateHunger
-        conditions:
-        - !type:ReagentCondition #Only satiates when eaten with nutriment
-          reagent: Nutriment
-          min: 0.1
-        factor: 1
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: 0.1
@@ -272,12 +225,6 @@
   meltingPoint: 32.0
   boilingPoint: 100.0
   recognizable: true
-  metabolisms:
-    Food:
-      effects:
-      - !type:AdjustReagent
-        reagent: Nutriment
-        amount: 0.75
 
 - type: reagent
   id: TeaPowder
@@ -292,9 +239,6 @@
       effects:
       - !type:SatiateThirst
         factor: -0.2
-      - !type:AdjustReagent
-        reagent: Nutriment
-        amount: 0.1
 
 - type: reagent
   id: FrostOil
@@ -305,11 +249,6 @@
   flavor: cold
   color: skyblue
   metabolisms:
-    Food:
-      effects:
-      - !type:AdjustReagent
-        reagent: Nutriment #Oils enhance nutrition
-        amount: 0.75
     Poison:
       effects:
       - !type:AdjustTemperature

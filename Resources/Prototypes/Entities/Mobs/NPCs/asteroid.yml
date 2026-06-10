@@ -92,7 +92,7 @@
   - type: NoSlip
   - type: Butcherable
     spawned:
-    - id: FoodMeatGoliath
+    - id: FoodMeat
       amount: 3
     - id: MaterialGoliathHide1
       amount: 3

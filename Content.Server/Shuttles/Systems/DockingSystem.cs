@@ -361,7 +361,7 @@ namespace Content.Server.Shuttles.Systems
             if (!TryGetEntity(args.DockEntity, out var dockEnt) ||
                 !TryComp(dockEnt, out DockingComponent? dockComp))
             {
-                _popup.PopupCursor(Loc.GetString("shuttle-console-undock-fail"));
+                _popup.PopupCursor(Loc.GetString("shuttle-console-undock-fail"), args.Actor);
                 return;
             }
 
@@ -369,7 +369,7 @@ namespace Content.Server.Shuttles.Systems
 
             if (!CanUndock(dock))
             {
-                _popup.PopupCursor(Loc.GetString("shuttle-console-undock-fail"));
+                _popup.PopupCursor(Loc.GetString("shuttle-console-undock-fail"), args.Actor);
                 return;
             }
 
@@ -382,7 +382,7 @@ namespace Content.Server.Shuttles.Systems
 
             if (console == null)
             {
-                _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"));
+                _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"), args.Actor);
                 return;
             }
 
@@ -390,7 +390,7 @@ namespace Content.Server.Shuttles.Systems
 
             if (!CanShuttleDock(shuttleUid))
             {
-                _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"));
+                _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"), args.Actor);
                 return;
             }
 
@@ -399,7 +399,7 @@ namespace Content.Server.Shuttles.Systems
                 !TryComp(ourDock, out DockingComponent? ourDockComp) ||
                 !TryComp(targetDock, out DockingComponent? targetDockComp))
             {
-                _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"));
+                _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"), args.Actor);
                 return;
             }
 
@@ -407,7 +407,7 @@ namespace Content.Server.Shuttles.Systems
             if (!TryComp(ourDock, out TransformComponent? xformA) ||
                 xformA.GridUid != shuttleUid)
             {
-                _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"));
+                _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"), args.Actor);
                 return;
             }
 
@@ -415,7 +415,7 @@ namespace Content.Server.Shuttles.Systems
             // Also need to check preventpilot + enabled / dockedwith
             if (!CanDock((ourDock.Value, ourDockComp), (targetDock.Value, targetDockComp)))
             {
-                _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"));
+                _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"), args.Actor);
                 return;
             }
 

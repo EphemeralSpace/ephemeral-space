@@ -9,8 +9,12 @@
   joinNotifyCrew: true
   supervisors: job-supervisors-centcom
   canBeAntag: false
-  accessGroups:
-  - AllAccess
+  overrideConsoleVisibility: false
+  access:
+  - Command
+  - Captain
+  - Maintenance
+  - External
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

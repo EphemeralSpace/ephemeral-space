@@ -158,7 +158,6 @@
     cookTimeMultiplier: 0.5
     baseHeatMultiplier: 200
     capacity: 10
-    canMicrowaveIdsSafely: false
     explosionChance: 0.3
   - type: Sprite
     sprite: Structures/Machines/microwave_syndie.rsi
@@ -166,10 +165,6 @@
     snapCardinals: true
   - type: Machine
     board: SyndicateMicrowaveMachineCircuitboard
-  - type: FoodRecipeProvider
-    providedRecipes:
-    - RecipeBaguetteSword
-    - RecipeThrowingCroissant
   - type: Item
     sprite: Structures/Machines/microwave_syndie.rsi
     size: Ginormous

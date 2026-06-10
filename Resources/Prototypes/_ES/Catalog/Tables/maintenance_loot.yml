@@ -132,7 +132,6 @@
 
     - group:
       - id: DoorElectronics
-      - id: APCElectronics
       - id: FirelockElectronics
       - id: FireAlarmElectronics
       - id: AirAlarmElectronics
@@ -235,14 +234,6 @@
 
     - id: FoodTinPeachesMaint
     - id: FoodBoxDonkpocket
-    - group:
-      - id: FoodBoxDonkpocketSpicy
-      - id: FoodBoxDonkpocketTeriyaki
-      - id: FoodBoxDonkpocketPizza
-      - id: FoodBoxDonkpocketStonk
-      - id: FoodBoxDonkpocketCarp
-      - id: FoodBoxDonkpocketBerry
-      - id: FoodBoxDonkpocketHonk
     - id: MonkeyCube
 
     - id: SMESMachineCircuitboard
@@ -318,7 +309,7 @@
     - id: PinpointerUniversal
     - id: PinpointerNuclear
     - id: CameraBug
-    - id: ESMedkitFilled
+    - id: MedkitFilled
 
     - id: ClothingEyesHudSecurity
     - id: ClothingEyesGlassesSunglasses

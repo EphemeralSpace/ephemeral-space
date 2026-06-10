@@ -5,6 +5,7 @@
   name: computer
   placement:
     mode: SnapgridCenter
+  suffix: Terminal
   abstract: true
   components:
   - type: Sprite
@@ -382,6 +383,43 @@
     interfaces:
       enum.ESPortalGeneratorConsoleUiKey.Key:
         type: ESPortalGeneratorConsoleBui
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
+  parent: ESBaseComputerTerminal
+  id: ESComputerTerminalEmergencyAccess
+  name: emergency access terminal
+  description: A hefty terminal that can remotely toggle access on airlocks using the printed access key on the door. You remembered what the key was, right?
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
+    - map: ["computerLayerKeyboard"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: emerg_key_off
+    - map: ["computerLayerScreen"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: emerg
+    - map: ["computerLayerKeys"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: emerg_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    color: "#ffff55"
+  - type: ESEmergencyAccessConsole
+  - type: ESSabotageTarget
+  - type: UseDelay
+    delay: 0.5
+  - type: ActivatableUI
+    key: enum.ESEmergencyAccessConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ESEmergencyAccessConsoleUiKey.Key:
+        type: ESEmergencyAccessConsoleBui
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
 

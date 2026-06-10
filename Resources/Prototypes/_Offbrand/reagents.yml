@@ -274,12 +274,6 @@
         - !type:ReagentCondition
           reagent: SalineGlucose
           max: 1
-      - !type:SatiateHunger
-        factor: 0.5
-        conditions:
-        - !type:ReagentCondition
-          reagent: SalineGlucose
-          max: 1
       - !type:HealthChange
         damage:
           groups:

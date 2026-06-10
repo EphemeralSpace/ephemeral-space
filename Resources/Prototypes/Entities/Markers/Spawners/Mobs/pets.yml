@@ -1,33 +1,5 @@
 - type: entity
   parent: MarkerBase
-  id: SpawnMobAlexander
-  name: Alexander Spawner
-  suffix: Chef Pet
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: ai
-  - type: ConditionalSpawner
-    prototypes:
-    - MobAlexander
-
-- type: entity
-  parent: MarkerBase
-  id: SpawnMobBandito
-  name: Bandito Spawner
-  suffix: RD Pet
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: ai
-  - type: ConditionalSpawner
-    prototypes:
-    - MobBandito
-
-- type: entity
-  parent: MarkerBase
   id: SpawnMobCat
   name: Random Cat Spawner
   suffix: CMO Pet
@@ -175,21 +147,6 @@
 
 - type: entity
   parent: MarkerBase
-  id: SpawnMobKangarooWillow
-  name: Willow Spawner
-  suffix: Boxer Pet
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: kangaroo
-      sprite: Mobs/Animals/kangaroo.rsi
-  - type: ConditionalSpawner
-    prototypes:
-    - MobKangarooWillow
-
-- type: entity
-  parent: MarkerBase
   id: SpawnMobMonkeyPunpun
   name: Pun Pun Spawner
   suffix: Bartender Pet
@@ -231,49 +188,6 @@
   - type: ConditionalSpawner
     prototypes:
     - MobPossumMortyOld
-
-- type: entity
-  parent: MarkerBase
-  id: SpawnMobRaccoonMorticia
-  name: Raccoon Morticia Spawner
-  suffix: QM Pet
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: ai
-  - type: ConditionalSpawner
-    prototypes:
-    - MobRaccoonMorticia
-
-- type: entity
-  parent: MarkerBase
-  id: SpawnMobShiva
-  name: Shiva Spawner
-  suffix: Security Pet
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: shiva
-      sprite: Mobs/Pets/shiva.rsi
-  - type: ConditionalSpawner
-    prototypes:
-    - MobSpiderShiva
-
-- type: entity
-  parent: MarkerBase
-  id: SpawnMobSlothPaperwork
-  name: Sloth Paperwork Spawner
-  suffix: Librarian Pet
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: ai
-  - type: ConditionalSpawner
-    prototypes:
-    - MobPaperwork
 
 - type: entity
   parent: MarkerBase

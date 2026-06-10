@@ -331,3 +331,11 @@ public sealed class DamageChangedEvent : EntityEventArgs
         InterruptsDoAfters = interruptsDoAfters && DamageIncreased;
     }
 }
+
+[ByRefEvent]
+public readonly record struct ESCausedDamageChanged(
+    Entity<DamageableComponent> Entity,
+    DamageSpecifier? DamageDelta,
+    EntityUid Origin,
+    EntityUid? Source,
+    EntityUid? Weapon);
