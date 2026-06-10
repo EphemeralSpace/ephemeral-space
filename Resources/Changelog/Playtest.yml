@@ -469,3 +469,9 @@ Entries:
         show the same value continuously
   id: 56
   time: '2026-06-08T00:11:19.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Add
+      message: Job wardrobes now have a chance of appearing in maints.
+  id: 57
+  time: '2026-06-10T14:04:42.0000000+00:00'
