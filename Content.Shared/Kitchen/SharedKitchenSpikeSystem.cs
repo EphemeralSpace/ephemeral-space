@@ -319,10 +319,8 @@ public sealed partial class SharedKitchenSpikeSystem : EntitySystem
         {
             _gibbing.Gib(args.Target.Value);
 
-            var logSeverity = HasComp<HumanoidAppearanceComponent>(args.Target) ? LogImpact.Extreme : LogImpact.High;
-
             _logger.Add(LogType.Gib,
-                logSeverity,
+                LogImpact.High,
                 $"{ToPrettyString(args.User):user} finished butchering {ToPrettyString(args.Target):target} on the {ToPrettyString(ent):spike}");
         }
         else
