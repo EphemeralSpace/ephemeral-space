@@ -136,7 +136,7 @@ public sealed partial class ExplosionPrototype : IPrototype
     public int MaxFireLevel = 1;
 
     /// <summary>
-    /// Whether the fire should be smoldering when spawned, meaning it does not spread.
+    /// Whether the fire should spread after being spawned.
     /// </summary>
     [DataField]
     public bool FireSpread;
