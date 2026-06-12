@@ -7,7 +7,6 @@
   startingGear: ESCaptainGear
   icon: "JobIconCaptain"
   joinNotifyCrew: true
-  supervisors: job-supervisors-centcom
   canBeAntag: false
   overrideConsoleVisibility: false
   access:

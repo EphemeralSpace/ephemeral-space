@@ -5,7 +5,6 @@
   playTimeTracker: ESJobParamedic
   startingGear: ESParamedicGear
   icon: "JobIconParamedic"
-  supervisors: job-supervisors-hop
   access:
   - Medical
   - Maintenance

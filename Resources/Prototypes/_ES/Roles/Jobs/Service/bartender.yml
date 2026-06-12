@@ -5,7 +5,6 @@
   playTimeTracker: ESJobBartender
   startingGear: ESBartenderGear
   icon: "JobIconBartender"
-  supervisors: job-supervisors-hop
   access:
   - Service
   - Maintenance

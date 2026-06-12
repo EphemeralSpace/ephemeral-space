@@ -5,7 +5,6 @@
   playTimeTracker: ESJobChef
   startingGear: ESChefGear
   icon: "JobIconChef"
-  supervisors: job-supervisors-hop
   access:
   - Service
   - Maintenance

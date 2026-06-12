@@ -5,7 +5,6 @@
   playTimeTracker: ESJobDoctor
   startingGear: ESDoctorGear
   icon: "JobIconMedicalDoctor"
-  supervisors: job-supervisors-hop
   access:
   - Medical
   - Maintenance

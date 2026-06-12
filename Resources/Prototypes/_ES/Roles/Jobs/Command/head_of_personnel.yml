@@ -5,7 +5,6 @@
   playTimeTracker: ESJobHeadOfPersonnel
   startingGear: ESHoPGear
   icon: "JobIconHeadOfPersonnel"
-  supervisors: job-supervisors-captain
   canBeAntag: false
   overrideConsoleVisibility: false
   access:
