@@ -2,12 +2,11 @@ using Content.Client._ES.Viewcone.ComponentTree;
 using Content.Client.Eye;
 using Content.Shared._ES.Viewcone;
 using Content.Shared._ES.Viewcone.Components;
-using Content.Shared.MouseRotator;
+using Content.Shared.Movement.Pulling.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Client.Input;
+using Robust.Client.Player;
 using Robust.Shared.Enums;
-using Robust.Shared.Map.Components;
 
 namespace Content.Client._ES.Viewcone.Overlays;
 
@@ -20,6 +19,7 @@ namespace Content.Client._ES.Viewcone.Overlays;
 public sealed partial class ESViewconeSetAlphaOverlay : Overlay
 {
     [Dependency] private IEntityManager _ent = default!;
+    [Dependency] private IPlayerManager _player = default!;
     private readonly ESViewconeOverlayManagementSystem _cone;
     private readonly ESViewconeAngleSystem _angle;
     private readonly ESViewconeOccludableTreeSystem _tree;
@@ -75,6 +75,11 @@ public sealed partial class ESViewconeSetAlphaOverlay : Overlay
         var eyePos = _xform.GetWorldPosition(eyeTransform);
         var eyeRot = cone.ViewAngle - eye.Rotation; // subtract rotation cuz idk. the lerp adds it but this doesnt want it for some reason idk.
 
+        // this is mildly hardcoded so we just don't occlude things we're pulling
+        // could easily be made more generic but i have literally no idea what other things would be relevant for this
+        // and so i don't see the need. if i see the need later then i'll just make it generic, its like 3 lines of code anyway
+        var currentlyPulledEnt = _ent.GetComponentOrNull<PullerComponent>(_player.LocalEntity)?.Pulling;
+
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // !! Thank You Bhijn God (TYBG) for 95% of the rest of this methods code !!
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -88,8 +93,8 @@ public sealed partial class ESViewconeSetAlphaOverlay : Overlay
             var (comp, xform) = entry;
             var uid = entry.Uid; // this uses component.Owner.. oh well
 
-            // dynamic clientside disabling, for effects like pulled entities
-            if (_ent.HasComponent<ESViewconeClientNoOccludeComponent>(uid))
+            // dynamic clientside disabling for pulled entities
+            if (uid == currentlyPulledEnt)
                 continue;
 
             if (!_ent.TryGetComponent<SpriteComponent>(uid, out var sprite))
