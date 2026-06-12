@@ -26,12 +26,6 @@ namespace Content.Shared.Roles
         public string PlayTimeTracker { get; private set; } = string.Empty;
 
         /// <summary>
-        ///     Who is the supervisor for this job.
-        /// </summary>
-        [DataField]
-        public LocId Supervisors = "job-supervisors-nobody";
-
-        /// <summary>
         ///     The name of this job as displayed to players.
         /// </summary>
         [DataField]
@@ -60,12 +54,6 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public bool JoinNotifyCrew { get; private set; } = false;
-
-        /// <summary>
-        ///     When true - the player will recieve a message about importancy of their job.
-        /// </summary>
-        [DataField]
-        public bool RequireAdminNotify { get; private set; } = false;
 
         /// <summary>
         ///     Should this job appear in preferences menu?
