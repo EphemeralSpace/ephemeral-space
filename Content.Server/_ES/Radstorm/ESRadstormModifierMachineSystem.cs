@@ -54,10 +54,11 @@ public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
         var minutes = (int) Math.Round(_radstormRoundEndRule.GetRadstormEstimatedArrivalTime().TotalMinutes);
         var msg = Loc.GetString(ent.Comp.Enabled ? ent.Comp.EnableAnnouncement : ent.Comp.DisableAnnouncement,
             ("minutes", (minutes)));
+        var sound = ent.Comp.Enabled ? ent.Comp.AnnouncementSoundEnabled : ent.Comp.AnnouncementSoundDisabled;
         _chat.DispatchGlobalAnnouncement(
             msg,
             Loc.GetString("es-radstorm-announcer"),
-            announcementSound: ent.Comp.AnnouncementSound,
+            announcementSound: sound,
             colorOverride: Color.LightSeaGreen);
     }
 }
