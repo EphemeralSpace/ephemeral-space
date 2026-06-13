@@ -178,10 +178,6 @@
   color: orchid
   objectives:
     id: ESObjectiveVigilanteKillKiller
-  mindComponents:
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheCrewVigilante
 
 - type: esMask
   id: VIP
