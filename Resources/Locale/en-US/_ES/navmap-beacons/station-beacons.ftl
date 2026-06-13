@@ -7,5 +7,3 @@ es-station-beacon-thruster-west = West Thruster
 es-station-beacon-thruster-south = South Thruster
 
 es-station-beacon-cargo-breakroom = Cargo Breakroom
-
-es-station-beacon-hop-secure-room = HoP Secure Room

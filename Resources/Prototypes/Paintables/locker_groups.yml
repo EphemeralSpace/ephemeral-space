@@ -14,7 +14,7 @@
     paramedic: ESLockerParamedic
     electrical: LockerElectricalSupplies
     engineer: LockerEngineer
-    hop: LockerHeadOfPersonnel
+    hop: LockerStationAdmin
     medicine: LockerMedicine
     scientist: LockerScientist
     security: LockerSecurity

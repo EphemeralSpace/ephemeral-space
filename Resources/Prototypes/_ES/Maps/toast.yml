@@ -16,7 +16,7 @@
         availableJobs: # 20 jobs total
           #command (2)
           ESCaptain: [ 1, 1 ]
-          ESHeadOfPersonnel: [ 1, 1 ]
+          ESStationAdmin: [ 1, 1 ]
           #service (2)
           ESBartender: [ 1, 1 ]
           ESChef: [ 1, 1 ]

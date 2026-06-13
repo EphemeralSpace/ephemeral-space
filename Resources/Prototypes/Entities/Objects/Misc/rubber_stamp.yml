@@ -127,9 +127,9 @@
     state: stamp-cmo
 
 - type: entity
-  name: head of personnel's rubber stamp
+  name: station administrator's rubber stamp
   parent: [RubberStampBase, BaseCommandContraband]
-  id: RubberStampHop
+  id: RubberStampStationAdmin
   categories: [ DoNotMap ]
   components:
   - type: Stamp

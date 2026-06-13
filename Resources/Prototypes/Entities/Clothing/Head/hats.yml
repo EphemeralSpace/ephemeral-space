@@ -387,9 +387,9 @@
 
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
-  id: ClothingHeadHatHopcap
-  name: head of personnel's cap
-  description: A stylish cap worn by the Head of Personnel. Shows paperwork who's in charge.
+  id: ClothingHeadHatStationAdminCap
+  name: station administrator's cap
+  description: A stylish cap worn by the Station Administrator. Shows paperwork who's in charge.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/hopcap.rsi

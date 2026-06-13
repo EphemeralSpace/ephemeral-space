@@ -51,11 +51,11 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconHeadOfPersonnel
+  id: JobIconStationAdmin
   icon:
     sprite: *icon-rsi
     state: HeadOfPersonnel
-  jobName: job-name-hop
+  jobName: job-name-station-admin
 
 - type: jobIcon
   parent: JobIcon

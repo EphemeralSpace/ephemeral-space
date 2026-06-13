@@ -30,7 +30,7 @@
   id: ESJobDoctor
 
 - type: playTimeTracker
-  id: ESJobHeadOfPersonnel
+  id: ESJobStationAdmin
 
 - type: playTimeTracker
   id: ESJobJanitor

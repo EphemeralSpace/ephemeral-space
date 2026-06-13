@@ -24,14 +24,6 @@
 
 - type: entity
   parent: DefaultStationBeacon
-  id: ESDefaultStationBeaconHeadOfPersonellSecureRoom
-  suffix: HoP Secure Room, ES
-  components:
-  - type: NavMapBeacon
-    defaultText: es-station-beacon-hop-secure-room
-
-- type: entity
-  parent: DefaultStationBeacon
   id: ESDefaultStationBeaconArmoryAccess
   suffix: Armory Access, ES
   components:

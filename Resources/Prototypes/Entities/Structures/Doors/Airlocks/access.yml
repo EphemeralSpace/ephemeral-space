@@ -337,12 +337,12 @@
 
 - type: entity
   parent: AirlockCommand
-  id: AirlockHeadOfPersonnelLocked
-  suffix: HeadOfPersonnel, Locked
+  id: AirlockStationAdminLocked
+  suffix: StationAdmin, Locked
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsHeadOfPersonnel ]
+      board: [ DoorElectronicsStationAdmin ]
 
 - type: entity
   parent: AirlockCommand
@@ -720,12 +720,12 @@
 
 - type: entity
   parent: AirlockCommandGlass
-  id: AirlockHeadOfPersonnelGlassLocked
-  suffix: HeadOfPersonnel, Locked
+  id: AirlockStationAdminGlassLocked
+  suffix: StationAdmin, Locked
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsHeadOfPersonnel ]
+      board: [ DoorElectronicsStationAdmin ]
 
 - type: entity
   parent: AirlockCommandGlass
@@ -1083,8 +1083,8 @@
 # ES END
 
 - type: entity
-  parent: AirlockHeadOfPersonnelLocked
-  id: AirlockMaintHOPLocked
+  parent: AirlockStationAdminLocked
+  id: AirlockMaintStationAdminLocked
 # ES START - hatch dept. maint airlocks
   name: maintenance hatch
   components:

@@ -165,8 +165,8 @@
 
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseCommandContraband]
-  id: ClothingUniformJumpskirtHoP
-  name: head of personnel's jumpskirt
+  id: ClothingUniformJumpskirtStationAdmin
+  name: station administrator's jumpskirt
   description: Rather bland and inoffensive. Perfect for vanishing off the face of the universe.
   components:
   - type: Sprite

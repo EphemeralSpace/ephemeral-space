@@ -300,8 +300,8 @@
 # ES START - Remove Foldable
   parent: [ClothingUniformBase, BaseCommandContraband ]
 # ES END
-  id: ClothingUniformJumpsuitHoP
-  name: head of personnel's jumpsuit
+  id: ClothingUniformJumpsuitStationAdmin
+  name: station administrator's jumpsuit
   description: Rather bland and inoffensive. Perfect for vanishing off the face of the universe.
   components:
   - type: Sprite

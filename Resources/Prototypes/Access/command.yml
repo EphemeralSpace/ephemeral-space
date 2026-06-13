@@ -7,8 +7,8 @@
   name: id-card-access-level-captain
 
 - type: accessLevel
-  id: HeadOfPersonnel
-  name: id-card-access-level-head-of-personnel
+  id: StationAdmin
+  name: id-card-access-level-station-admin
 
 - type: accessGroup
   id: Command
@@ -18,11 +18,11 @@
   - ChiefEngineer
   - ChiefMedicalOfficer
   - Cryogenics
-  - HeadOfPersonnel
+  - StationAdmin
   - HeadOfSecurity
   - Quartermaster
   - ResearchDirector
-  
+
 - type: accessLevel
   id: EmergencyShuttleRepealAll
   name: id-card-access-level-emergency-shuttle-repeal

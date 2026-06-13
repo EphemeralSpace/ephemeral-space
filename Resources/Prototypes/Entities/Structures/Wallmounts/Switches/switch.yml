@@ -198,11 +198,11 @@
 
 - type: entity
   parent: LockableButton
-  id: LockableButtonHeadOfPersonnel
-  suffix: HeadOfPersonnel
+  id: LockableButtonStationAdmin
+  suffix: StationAdmin
   components:
   - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+    access: [["StationAdmin"]]
 
 - type: entity
   parent: LockableButton

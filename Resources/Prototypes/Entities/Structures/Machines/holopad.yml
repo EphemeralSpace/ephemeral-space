@@ -255,14 +255,6 @@
 
 - type: entity
   parent: Holopad
-  id: HolopadCommandHop
-  suffix: HoP
-  components:
-  - type: Label
-    currentLabel: holopad-command-hop
-
-- type: entity
-  parent: Holopad
   id: HolopadCommandCmo
   suffix: CMO
   components:

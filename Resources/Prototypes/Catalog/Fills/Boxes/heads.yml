@@ -1,7 +1,7 @@
 - type: entity
   parent: BoxStamps
-  id: BoxHoPStamps
-  name: head of personnel's stamp box
+  id: BoxStationAdminStamps
+  name: station administrator's stamp box
   components:
   - type: EntityTableContainerFill
     containers:
@@ -9,7 +9,7 @@
         children:
         - id: RubberStampApproved
         - id: RubberStampDenied
-        - id: RubberStampHop
+        - id: RubberStampStationAdmin
 
 - type: entity
   parent: BoxStamps

@@ -125,13 +125,13 @@
       - state: captain
 
 - type: entity
-  id: ESSpawnPointHeadOfPersonnel
+  id: ESSpawnPointStationAdmin
   parent: SpawnPointJobBase
-  name: headofpersonnel
+  name: stationadmin
   suffix: ES
   components:
   - type: SpawnPoint
-    job_id: ESHeadOfPersonnel
+    job_id: ESStationAdmin
   - type: Sprite
     layers:
       - state: green

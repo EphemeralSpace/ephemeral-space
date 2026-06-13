@@ -435,7 +435,7 @@
     energy: 35
     color: "#fcafc1"
   - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+    access: [["StationAdmin"]]
   - type: ESAmbientMusicMarkerCommand
 
 - type: entity

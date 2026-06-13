@@ -324,8 +324,8 @@
 
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband]
-  id: ClothingOuterWinterHoP
-  name: head of personnel's winter coat
+  id: ClothingOuterWinterStationAdmin
+  name: station administrator's winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -343,7 +343,7 @@
       outerClothing:
       - state: HOP-equipped-OUTERCLOTHING
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodWinterHOP
+    clothingPrototype: ClothingHeadHatHoodWinterStationAdmin
 
 
 ##########################################################
