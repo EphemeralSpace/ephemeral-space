@@ -1,8 +1,6 @@
 - type: vendingMachineInventory
   id: PTechInventory
   startingInventory:
-    ClearPDA: 5
-    PassengerIDCard: 5
     BoxFolderPlasticClipboardEmpty: 2
     Paper: 10
     Envelope: 10
