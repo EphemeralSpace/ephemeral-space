@@ -483,3 +483,9 @@ Entries:
         Dedicated fiery explosions will still spread.
   id: 58
   time: '2026-06-12T15:32:27.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Vigilantes no longer get a cache. Fighting crime isn't free!
+  id: 59
+  time: '2026-06-13T21:36:04.0000000+00:00'
