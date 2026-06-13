@@ -489,3 +489,9 @@ Entries:
       message: Vigilantes no longer get a cache. Fighting crime isn't free!
   id: 59
   time: '2026-06-13T21:36:04.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Add
+      message: New announcement sounds for thrusters/nav console/armory
+  id: 60
+  time: '2026-06-13T22:43:52.0000000+00:00'
