@@ -23,7 +23,7 @@ public sealed partial class HungerComponent : Component
     /// The time it takes for the hunger value to decay once
     /// </summary>
     [DataField, AutoNetworkedField]
-    public TimeSpan HungerDecayTime = TimeSpan.FromMinutes(8);
+    public TimeSpan HungerDecayTime = TimeSpan.FromMinutes(14);
 
     /// <summary>
     /// The time when the hunger threshold will decay next.
