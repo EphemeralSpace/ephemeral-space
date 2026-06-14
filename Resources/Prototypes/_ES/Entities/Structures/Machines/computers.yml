@@ -455,6 +455,6 @@
     batteryRechargeRate: 25
   - type: Battery
     netsync: false
-    maxCharge: 200
+    maxCharge: 600
   - type: ExaminableBattery
   - type: ESAmbientMusicMarkerCommand
