@@ -112,7 +112,7 @@
 ## Grey Tide Virus
 - type: entity
   parent: ESBaseStationEvent
-  id: ESStationEventGreyTideVirus
+  id: ESStationEventGreyTideVirusNoVote
   name: Grey Tide Virus
   description: Infect a department with the Grey Tide virus, bolting open random doors and unlocking crates and closets.
   components:
@@ -125,6 +125,11 @@
   - type: ESGreyTideVirus
     blacklist:
     - External
+
+- type: entity
+  parent: ESStationEventGreyTideVirusNoVote
+  id: ESStationEventGreyTideVirus
+  components:
   - type: ESSynchronizedVoteManager
     votes:
     - ESVoteGreyTideVirusAccess
@@ -250,13 +255,12 @@
 
 ## Meteor Swarm
 - type: entity
-  parent: ESBaseStationEventDelayed
+  parent: ESBaseStationEvent
   id: ESStationEventMeteorSwarm
   name: Meteors
   description: Launch deadly meteors at the exterior of the station that smash through walls.
   components:
   - type: StationEvent
-    earliestStart: 30
     duration: null
     startAudio:
       path: /Audio/_ES/Announcements/meteors.ogg

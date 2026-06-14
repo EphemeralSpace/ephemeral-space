@@ -351,3 +351,147 @@ Entries:
       message: Characters now generate with facial hair again.
   id: 44
   time: '2026-05-28T23:20:23.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Traitors now have an objective to bug a department's APC. After the
+        hacking bug finishes, the GreyTide virus will be unleashed. Crew can
+        disarm this by removing the bug if they notice it's suspicious sparking.
+  id: 45
+  time: '2026-05-30T22:24:15.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Remove
+      message: The detective no longer starts with an armor vest.
+    - type: Remove
+      message: The captain no longer starts with a forensic scanner.
+  id: 46
+  time: '2026-05-30T22:26:56.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed getting stuck in brains when your body explodes.
+    - type: Fix
+      message: Fixed the death toll bell playing when non-players die.
+    - type: Tweak
+      message: >-
+        Traitors now always have 1 kill objective, 2 sabotage objectives, and an
+        APC bug objective.
+  id: 47
+  time: '2026-05-31T19:10:51.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The captain and head of personnel no longer have All Access to the
+        station.
+  id: 48
+  time: '2026-06-03T04:24:20.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: >-
+        A lot of food items + botany seeds have been removed in preparation of
+        upcoming cooking/botany changes
+    - type: Add
+      message: >-
+        Chef nutrivend and seed crates now have more randomized contents, and
+        can have cannabis/deathnettle/some other more exotic seeds on roundstart
+        now
+    - type: Tweak
+      message: >-
+        Hunger now works completely differently. Each food item now has a
+        different number of "portions", and each bite of food will immediately
+        restore 1 stage of hunger. Some bad foods will increase your hunger
+        instead
+    - type: Tweak
+      message: >-
+        Food can now be examined to show its satiety + they now have item
+        statuses
+    - type: Tweak
+      message: Melee damage on the shuttle is now even worse
+  id: 49
+  time: '2026-06-03T05:09:08.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the emergency access terminal, a unique bridge computer capable of
+        remotely enabling emergency access into various areas on station.
+  id: 50
+  time: '2026-06-05T02:19:09.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The ID card console no longer needs a privileged ID to assign access and
+        now only assigns presets, not individual access levels.
+  id: 51
+  time: '2026-06-05T02:20:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Reduced the delay between the meteor announcement and when they hit the
+        station.
+    - type: Tweak
+      message: Meteors can now occur before the 30 minute mark.
+  id: 52
+  time: '2026-06-05T02:24:01.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The Parasite objective for "do not kill" players now works based on
+        total damage dealt rather than kills.
+  id: 53
+  time: '2026-06-05T02:27:55.0000000+00:00'
+- author: Sadie-silly
+  changes: []
+  id: 54
+  time: '2026-06-05T21:22:32.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: Pickpockets now prioritize more interesting items
+  id: 55
+  time: '2026-06-05T21:26:11.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        The warp drive console now shows when the warp drive is interrupted or
+        doing the final charge
+    - type: Fix
+      message: >-
+        Fixed an issue where the warp drive progress would not update and would
+        show the same value continuously
+  id: 56
+  time: '2026-06-08T00:11:19.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Add
+      message: Job wardrobes now have a chance of appearing in maints.
+  id: 57
+  time: '2026-06-10T14:04:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Fires from grenades and other basic explosions no longer spread.
+        Dedicated fiery explosions will still spread.
+  id: 58
+  time: '2026-06-12T15:32:27.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Vigilantes no longer get a cache. Fighting crime isn't free!
+  id: 59
+  time: '2026-06-13T21:36:04.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Add
+      message: New announcement sounds for thrusters/nav console/armory
+  id: 60
+  time: '2026-06-13T22:43:52.0000000+00:00'

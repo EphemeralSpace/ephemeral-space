@@ -18,6 +18,8 @@ ingestion-other-cannot-ingest-any-more = {CAPITALIZE(SUBJECT($target))} can't {$
 ingestion-cant-digest = You can't digest {THE($entity)}!
 ingestion-cant-digest-other = {CAPITALIZE(SUBJECT($target))} can't digest {THE($entity)}!
 
+ingestion-already-full = You're not hungry.
+
 ## Action Verbs, not to be confused with Verbs
 
 ingestion-verb-food = Eat

@@ -258,10 +258,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         }
         else
         {
-            var alertMinExplosionIntensity = _cfg.GetCVar(CCVars.AdminAlertExplosionMinIntensity);
-            var logImpact = (alertMinExplosionIntensity > -1 && totalIntensity >= alertMinExplosionIntensity)
-                ? LogImpact.Extreme
-                : LogImpact.High;
+            var logImpact = LogImpact.High;
             if (posFound)
                 _adminLogger.Add(LogType.Explosion, logImpact, $"{ToPrettyString(user.Value):user} caused {ToPrettyString(uid):entity} to explode ({typeId}) at Pos:{gridPos:coordinates} with intensity {totalIntensity} slope {slope}");
             else

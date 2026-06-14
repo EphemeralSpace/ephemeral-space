@@ -1,6 +1,7 @@
 using Content.Shared.EntityTable;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Utility;
 
 namespace Content.Server._ES.WarpDrive.Components;
@@ -18,35 +19,41 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     ///     Main interaction with the warp drive.
     ///     Interruptions can be random, or manually caused by throwing items in.
     /// </summary>
-    public bool Interrupted = false;
+    [DataField]
+    public bool Interrupted;
 
     /// <summary>
     ///     The time we were last interrupted at.
     /// </summary>
-    public TimeSpan? LastInterruptionTime = null;
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    public TimeSpan? LastInterruptionTime;
 
     /// <summary>
     ///     At start and after each interruption is quelled, picks a random time for a new interruption.
     /// </summary>
-    public TimeSpan? NextInterruptionTime = null;
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    public TimeSpan? NextInterruptionTime;
 
     /// <summary>
     ///     Accumulated time spent interrupted, to subtract.
     /// </summary>
+    [DataField]
     public TimeSpan AccumulatedInterruptionTime = TimeSpan.Zero;
 
-    public bool InFinalPhase = false;
+    [DataField]
+    public bool InFinalPhase;
 
     /// <summary>
     ///     IF in final phase, the time we entered it at/ whatever
     /// </summary>
-    public TimeSpan? FinalPhaseAt = null;
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    public TimeSpan? FinalPhaseAt;
 
     /// <summary>
     ///     Used to calculate if an interruption should occur from manual sabotage.
     /// </summary>
     [DataField]
-    public int ItemsTeleportedSinceLastInterruption = 0;
+    public int ItemsTeleportedSinceLastInterruption;
 
     /// <summary>
     ///     Base charge time if there were literally 0 interruptions (which there will be)
@@ -101,6 +108,7 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     /// <summary>
     ///     where it all goes
     /// </summary>
+    [DataField]
     public ResPath SingularityWorldMap = new("/Maps/_ES/singularity_world.yml");
 
     [DataField]

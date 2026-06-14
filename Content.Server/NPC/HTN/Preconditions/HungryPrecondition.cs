@@ -12,7 +12,7 @@ public sealed partial class HungryPrecondition : HTNPrecondition
     [Dependency] private IEntityManager _entManager = default!;
 
     [DataField(required: true)]
-    public HungerThreshold MinHungerState = HungerThreshold.Starving;
+    public HungerThreshold MinHungerState = HungerThreshold.Peckish;
 
     public override bool IsMet(NPCBlackboard blackboard)
     {
@@ -21,6 +21,6 @@ public sealed partial class HungryPrecondition : HTNPrecondition
             return false;
         }
 
-        return _entManager.TryGetComponent<HungerComponent>(owner, out var hunger) ? hunger.CurrentThreshold <= MinHungerState : false;
+        return _entManager.TryGetComponent<HungerComponent>(owner, out var hunger) && hunger.CurrentHunger <= MinHungerState;
     }
 }

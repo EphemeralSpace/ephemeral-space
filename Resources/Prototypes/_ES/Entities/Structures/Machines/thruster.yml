@@ -44,6 +44,8 @@
     modifier: 1.00
     enableAnnouncement: es-radstorm-power-on-navigation-console
     disableAnnouncement: es-radstorm-power-off-navigation-console
+    announcementSoundEnabled: /Audio/_ES/Announcements/thruster_fuelled.ogg
+    announcementSoundDisabled: /Audio/_ES/Announcements/thruster_no_fuel.ogg
   - type: AmbientSound
     enabled: true
     volume: -6

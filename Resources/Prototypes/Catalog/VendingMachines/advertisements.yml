@@ -137,12 +137,6 @@
     count: 5
 
 - type: localizedDataset
-  id: FatExtractorFacts
-  values:
-    prefix: fat-extractor-fact-
-    count: 6
-
-- type: localizedDataset
   id: GoodCleanFunAds
   values:
     prefix: advertisement-goodcleanfun-

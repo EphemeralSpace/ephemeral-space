@@ -234,14 +234,6 @@
 
     - id: FoodTinPeachesMaint
     - id: FoodBoxDonkpocket
-    - group:
-      - id: FoodBoxDonkpocketSpicy
-      - id: FoodBoxDonkpocketTeriyaki
-      - id: FoodBoxDonkpocketPizza
-      - id: FoodBoxDonkpocketStonk
-      - id: FoodBoxDonkpocketCarp
-      - id: FoodBoxDonkpocketBerry
-      - id: FoodBoxDonkpocketHonk
     - id: MonkeyCube
 
     - id: SMESMachineCircuitboard

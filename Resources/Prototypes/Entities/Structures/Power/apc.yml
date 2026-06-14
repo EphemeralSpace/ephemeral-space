@@ -151,6 +151,7 @@
     lowVoltageNode: output
   - type: LightningTarget
     priority: 1
+  - type: ESTraitorBuggable
   - type: GuideHelp
     guides:
     - VoltageNetworks

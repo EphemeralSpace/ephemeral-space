@@ -84,7 +84,7 @@ public sealed partial class ReproductiveComponent : Component
     /// gives birth. A balancing tool to require feeding.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float HungerPerBirth = 75f;
+    public int HungerPerBirth = 3;
 
     /// <summary>
     /// Popup shown when an entity gives birth.

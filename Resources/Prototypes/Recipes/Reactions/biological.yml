@@ -11,7 +11,6 @@
     Iron: 0.5
     Sugar: 2
     CarbonDioxide: 3
-    Protein: 4
 
 - type: reaction
   id: InsectBloodBreakdown
@@ -26,4 +25,3 @@
     Sodium: 3
     Chlorine: 1.5
     CarbonDioxide: 5.5
-    Protein: 6

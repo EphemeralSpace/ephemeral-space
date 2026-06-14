@@ -61,9 +61,6 @@ namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    private readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
-    private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
-
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private BodySystem _bodySystem = default!;
@@ -307,7 +304,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Fluids/vomit_toxin.rsi"), "vomit_toxin-1"),
                 Act = () =>
                 {
-                    _vomitSystem.Vomit(args.Target, -1000, -1000); // You feel hollow!
+                    _vomitSystem.Vomit(args.Target, -1000, -5); // You feel hollow!
                     var organs = _bodySystem.GetBodyOrganEntityComps<TransformComponent>((args.Target, body));
                     var baseXform = Transform(args.Target);
                     foreach (var organ in organs)
@@ -694,36 +691,6 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", noGravityName, Loc.GetString("admin-smite-remove-gravity-description"))
         };
         args.Verbs.Add(noGravity);
-
-        var reptilianName = Loc.GetString("admin-smite-reptilian-species-swap-name").ToLowerInvariant();
-        Verb reptilian = new()
-        {
-            Text = reptilianName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Fun/Plushies/lizard.rsi"), "icon"),
-            Act = () =>
-            {
-                _polymorphSystem.PolymorphEntity(args.Target, LizardSmite);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", reptilianName, Loc.GetString("admin-smite-reptilian-species-swap-description"))
-        };
-        args.Verbs.Add(reptilian);
-
-        var vulpName = Loc.GetString("admin-smite-vulpkanin-species-swap-name").ToLowerInvariant();
-        Verb vulp = new()
-        {
-            Text = vulpName,
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Balls/tennisball.rsi"), "icon"),
-            Act = () =>
-            {
-                _polymorphSystem.PolymorphEntity(args.Target, VulpkaninSmite);
-            },
-            Impact = LogImpact.Extreme,
-            Message = string.Join(": ", vulpName, Loc.GetString("admin-smite-vulpkanin-species-swap-description"))
-        };
-        args.Verbs.Add(vulp);
 
         var lockerName = Loc.GetString("admin-smite-locker-stuff-name").ToLowerInvariant();
         Verb locker = new()

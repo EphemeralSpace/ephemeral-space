@@ -144,21 +144,6 @@
   - type: Electrified
 
 - type: entity
-  parent: BaseAnomalyCore
-  id: AnomalyCoreFlora
-  suffix: Flora
-  components:
-  - type: Seed
-    seedId: anomalyBerry
-  - type: Sprite
-    sprite: Structures/Specific/Anomalies/Cores/flora_core.rsi
-  - type: PointLight
-    radius: 1.5
-    energy: 2.0
-    color: "#6270bb"
-    castShadows: false
-
-- type: entity
   parent: [ BaseAnomalyCore, BaseShadow ]
   id: AnomalyCoreShadow
   suffix: Shadow
@@ -317,21 +302,6 @@
     radius: 1.5
     energy: 2.0
     color: "#ffffaa"
-    castShadows: false
-
-- type: entity
-  parent: BaseAnomalyInertCore
-  id: AnomalyCoreFloraInert #Turns into a seed that grows into artifexium
-  suffix: Flora, Inert
-  components:
-  - type: Seed
-    seedId: anomalyBerry
-  - type: Sprite
-    sprite: Structures/Specific/Anomalies/Cores/flora_core.rsi
-  - type: PointLight
-    radius: 1.5
-    energy: 2.0
-    color: "#6270bb"
     castShadows: false
 
 - type: entity

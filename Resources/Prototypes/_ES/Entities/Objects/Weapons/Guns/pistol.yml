@@ -83,6 +83,7 @@
         whitelist:
           tags:
           - ESGunAttachmentBallisticBarrel
+  - type: ESPickpocketPriorityItem
 
 - type: entity
   parent: ESWeaponPistol9mm

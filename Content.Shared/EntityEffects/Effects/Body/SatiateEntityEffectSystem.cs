@@ -20,19 +20,6 @@ public sealed partial class SatiateThirstEntityEffectsSystem : EntityEffectSyste
 }
 
 /// <summary>
-/// Modifies the hunger level of a given entity, multiplied by scale.
-/// </summary>
-/// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed partial class SatiateHungerEntityEffectsSystem : EntityEffectSystem<HungerComponent, SatiateHunger>
-{
-    [Dependency] private HungerSystem _hunger = default!;
-    protected override void Effect(Entity<HungerComponent> entity, ref EntityEffectEvent<SatiateHunger> args)
-    {
-        _hunger.ModifyHunger(entity, args.Effect.Factor * args.Scale, entity.Comp);
-    }
-}
-
-/// <summary>
 /// A type of <see cref="EntityEffectBase{T}"/> made for satiation effects.
 /// </summary>
 /// <typeparam name="T">The effect inheriting this BaseEffect</typeparam>
@@ -53,11 +40,4 @@ public sealed partial class SatiateThirst : Satiate<SatiateThirst>
 {
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("entity-effect-guidebook-satiate-thirst", ("chance", Probability), ("relative",  Factor / AverageSatiation));
-}
-
-/// <inheritdoc cref="Satiate{T}"/>
-public sealed partial class SatiateHunger : Satiate<SatiateHunger>
-{
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("entity-effect-guidebook-satiate-hunger", ("chance", Probability), ("relative", Factor / AverageSatiation));
 }

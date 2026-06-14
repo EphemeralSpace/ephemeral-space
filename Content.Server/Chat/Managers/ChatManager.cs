@@ -308,11 +308,6 @@ internal sealed partial class ChatManager : IChatManager
 
     private void SendAdminChat(ICommonSession player, string message)
     {
-        if (!_adminManager.IsAdmin(player))
-        {
-            _adminLogger.Add(LogType.Chat, LogImpact.Extreme, $"{player:Player} attempted to send admin message but was not admin");
-            return;
-        }
 
         var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
         var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message",

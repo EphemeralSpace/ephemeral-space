@@ -40,12 +40,6 @@ public sealed partial class EggLayerComponent : Component
     [DataField]
     public float EggLayCooldownMax = 120f;
 
-    /// <summary>
-    ///     The amount of nutrient consumed on update.
-    /// </summary>
-    [DataField]
-    public float HungerUsage = 60f;
-
     [DataField] public EntityUid? Action;
 
     /// <summary>

@@ -56,7 +56,6 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: SmokingPipeFilledTobacco
         - id: FlippoEngravedLighter
 
 - type: entity

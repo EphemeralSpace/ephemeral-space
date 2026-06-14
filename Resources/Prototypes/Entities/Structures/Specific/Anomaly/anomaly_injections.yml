@@ -360,7 +360,6 @@
       - PresentRandomCoal
       - PresentRandomCash
       - ClothingHeadHatSantahat
-      - FoodCakeChristmasSlice
     - settings:
         spawnOnSuperCritical: true
         minAmount: 5

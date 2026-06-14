@@ -121,8 +121,8 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
         if (TryComp<InteractionPopupComponent>(uid, out var interactionPopup))
             _audio.PlayPvs(interactionPopup.InteractSuccessSound, uid);
 
-        _hunger.ModifyHunger(uid, -component.HungerPerBirth);
-        _hunger.ModifyHunger(partner, -component.HungerPerBirth);
+        _hunger.ModifySatiety(uid, -component.HungerPerBirth);
+        _hunger.ModifySatiety(partner, -component.HungerPerBirth);
 
         component.GestationEndTime = _timing.CurTime + component.GestationDuration;
         component.Gestating = true;
@@ -148,7 +148,7 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
         if (_mobState.IsIncapacitated(uid))
             return false;
 
-        if (TryComp<HungerComponent>(uid, out var hunger) && _hunger.GetHungerThreshold(hunger) < HungerThreshold.Okay)
+        if (TryComp<HungerComponent>(uid, out var hunger) && hunger.CurrentHunger < HungerThreshold.Okay)
             return false;
 
         if (TryComp<ThirstComponent>(uid, out var thirst) && thirst.CurrentThirstThreshold < ThirstThreshold.Okay)

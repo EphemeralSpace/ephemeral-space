@@ -1,0 +1,35 @@
+- type: alert
+  id: HungerOkay
+  category: Hunger
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/hunger.rsi
+    state: okay
+  name: es-alerts-hunger-okay-name
+  description: es-alerts-hunger-okay-desc
+
+- type: alert
+  id: HungerPeckish
+  category: Hunger
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/hunger.rsi
+    state: peckish
+  name: es-alerts-hunger-peckish-name
+  description: es-alerts-hunger-peckish-desc
+
+- type: alert
+  id: HungerHungry
+  category: Hunger
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/hunger.rsi
+    state: hungry
+  name: es-alerts-hunger-hungry-name
+  description: es-alerts-hunger-hungry-desc
+
+- type: alert
+  id: HungerStarving
+  category: Hunger
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/hunger.rsi
+    state: starving
+  name: es-alerts-hunger-starving-name
+  description: es-alerts-hunger-starving-desc

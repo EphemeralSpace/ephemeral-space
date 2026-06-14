@@ -4157,28 +4157,6 @@ entities:
     - type: Transform
       pos: 6.5,2.5
       parent: 1
-- proto: RandomFoodSingle
-  entities:
-  - uid: 906
-    components:
-    - type: Transform
-      pos: 6.5,2.5
-      parent: 1
-  - uid: 907
-    components:
-    - type: Transform
-      pos: 6.5,2.5
-      parent: 1
-  - uid: 908
-    components:
-    - type: Transform
-      pos: 6.5,2.5
-      parent: 1
-  - uid: 909
-    components:
-    - type: Transform
-      pos: 6.5,2.5
-      parent: 1
 - proto: RCD
   entities:
   - uid: 41

@@ -92,15 +92,10 @@
     - type: Edible
       requiresSpecialDigestion: true
       delay: 0.5
+    - type: ESFood
     - type: FlavorProfile
       flavors:
       - fiber
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          reagents:
-          - ReagentId: Nutriment
-            Quantity: 0.1
     - type: Tag
       tags:
       - Ruminant
@@ -146,8 +141,6 @@
       - LightTree
       - LightTree
       - CrystalCyan
-      rarePrototypes:
-      - AnomalyFloraBulb
     - type: Tag
       tags:
       - Ruminant
@@ -162,8 +155,6 @@
     - type: RandomSpawner
       chance: 0.05
       rarePrototypes:
-      - AnomalyFloraBulb
-      - AnomalyFloraBulb
       - MobLuminousEntity
       - MobLuminousObject
       - MobLuminousPerson
@@ -252,12 +243,6 @@
       ignoreWhitelist:
         tags:
         - Flesh
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          reagents:
-          - ReagentId: Protein
-            Quantity: 1
     - type: AutoEmote # Meat Kudzu used to have respirator, but couldn't breathe so all it would do is gasp.
       emotes:
       - MeatGasp

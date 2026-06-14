@@ -108,18 +108,6 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: ChairRitual
-  graph: RitualSeat
-  startNode: start
-  targetNode: chairRitual
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   id: ChairFolding
   graph: Seat
   startNode: start

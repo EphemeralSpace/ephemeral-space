@@ -138,6 +138,7 @@
   fireChance: 0.8
   minFireLevel: 1
   maxFireLevel: 3
+  fireSpread: true
 # ES END
 
 # ES START
@@ -158,4 +159,5 @@
   fireChance: 0.6
   minFireLevel: 1
   maxFireLevel: 3
+  fireSpread: true
 # ES END
