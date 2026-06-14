@@ -30,6 +30,10 @@ public sealed partial class ESParasiteDamageObjectiveSystem : ESBaseObjectiveSys
         if (args.DamageDelta is null || !MindSys.TryGetMind(args.Entity, out _))
             return;
 
+        // dont accumulate selfdmg
+        if (args.Entity.Owner == args.Origin)
+            return;
+
         var damageDealt = DamageSpecifier.GetPositive(args.DamageDelta).GetTotal();
         ObjectivesSys.AdjustObjectiveCounter(ent.Owner, damageDealt.Float());
 
