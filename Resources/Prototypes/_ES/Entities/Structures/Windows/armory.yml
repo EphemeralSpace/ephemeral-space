@@ -11,10 +11,10 @@
     thresholds: [0]
     disabled: true
   - type: Sprite
-    sprite: _ES/Structures/Windows/antimatter.rsi
+    sprite: _ES/Structures/Windows/armory.rsi
   - type: Icon
-    sprite: _ES/Structures/Windows/antimatter.rsi
+    sprite: _ES/Structures/Windows/armory.rsi
     state: full
   - type: IconSmooth
-    key: amwindows
-    base: ame
+    key: armorywalls
+    base: solid
