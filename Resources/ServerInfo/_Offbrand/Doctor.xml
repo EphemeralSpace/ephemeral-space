@@ -28,7 +28,7 @@ Each wound can only be bandaged or salved once; different medicated bandages and
 <Box>
   <GuideEntityEmbed Entity="ChemistryBottleBicaridine" Caption="Bicaridine" />
   <GuideEntityEmbed Entity="ChemistryBottleDermaline" Caption="Dermaline" />
-  <GuideEntityEmbed Entity="ChemistryBottleDexalinPlus" Caption="Dexalin Plus" />
+  <GuideEntityEmbed Entity="ChemistryBottleDexalin" Caption="Dexalin" />
   <GuideEntityEmbed Entity="ChemistryBottleDylovene" Caption="Dylovene" />
   <GuideEntityEmbed Entity="ChemistryBottleInaprovaline" Caption="Inaprovaline" />
   <GuideEntityEmbed Entity="ChemistryBottleTramadol" Caption="Tramadol" />
