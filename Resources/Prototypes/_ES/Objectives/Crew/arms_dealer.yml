@@ -8,6 +8,7 @@
     icon:
       sprite: _ES/Objects/Weapons/Guns/shotgun.rsi
       state: icon
+    announceProgress: false
   - type: ESHoldSummonableObjective
   - type: ESCounterObjective
     title: es-arms-dealer-objective-title
