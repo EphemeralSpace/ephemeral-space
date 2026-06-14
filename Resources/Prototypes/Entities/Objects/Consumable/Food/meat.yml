@@ -288,7 +288,7 @@
 
 - type: entity
   parent: FoodMeatBase
-  id: FoodMeatCooked
+  id: FoodMeatCookedBase
   name: steak
   description: A cooked slab of meat. Smells primal.
   components:
