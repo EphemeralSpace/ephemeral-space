@@ -72,7 +72,6 @@
     - id: ClothingOuterVest
     - id: ESWeaponDoubleBarrelShotgunNonlethal
     - id: DrinkShaker
-    - id: ClothingEyesHudBeer
     - id: HandLabeler
     - id: DrinkBeerBottleFull
       amount: !type:BinomialNumberSelector
