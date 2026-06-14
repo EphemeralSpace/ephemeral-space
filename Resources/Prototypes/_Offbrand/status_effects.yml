@@ -370,7 +370,7 @@
   components:
   - type: PopupOnAppliedStatusEffect
     message: severe-brain-damage-applied
-  - type: StutteringAccent
+  - type: SlurredAccent
   - type: MeleeModifiersStatusEffect
     damageModifier:
       coefficients:
@@ -392,7 +392,7 @@
   - type: PopupOnAppliedStatusEffect
     message: brain-oxygen-depleted
     visualType: LargeCaution
-  - type: StutteringAccent
+  - type: SlowAccent
   - type: DrunkStatusEffect
   - type: KnockdownStatusEffect
   - type: KnockdownOnAppliedStatusEffect
