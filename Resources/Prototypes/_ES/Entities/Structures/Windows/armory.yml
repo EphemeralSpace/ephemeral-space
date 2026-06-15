@@ -6,10 +6,11 @@
   description: Lets you stare at the hooligans raiding the big guns... You aren't one of the hooligans, are you?
   components:
   - type: Sprite
-    sprite: _ES/Structures/Windows/antimatter.rsi
+    sprite: _ES/Structures/Windows/armory.rsi
   - type: Icon
-    sprite: _ES/Structures/Windows/antimatter.rsi
+    sprite: _ES/Structures/Windows/armory.rsi
     state: full
   - type: IconSmooth
-    key: armorywindow
-    base: ame
+    key: armorywalls
+    base: solid
+
