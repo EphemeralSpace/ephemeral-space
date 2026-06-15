@@ -501,3 +501,48 @@ Entries:
       message: Fixed ready status getting reset upon disconnecting.
   id: 61
   time: '2026-06-15T10:49:15.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: Sliceable items now work properly + various other food related fixes
+    - type: Tweak
+      message: Hunger is a little slower sorgy I miscalced
+    - type: Fix
+      message: Guzzler can no longer roll dexplus & removes all mention of dexplus
+    - type: Fix
+      message: Parasite no-damage obj no longer counts self damage
+    - type: Tweak
+      message: Smoke inhalation threshold is lower again
+    - type: Tweak
+      message: Special vendor is now in bar instead of dorms
+    - type: Tweak
+      message: Dorms now has a guaranteed snack vendor
+    - type: Tweak
+      message: Smartfridge is now med access only
+    - type: Fix
+      message: >-
+        Operating table is no longer toggleable and now has better power
+        indication
+    - type: Fix
+      message: Coroner scalpel melee sprite is the right way around now
+    - type: Fix
+      message: Warp drive charging visuals now toggle on when in final stage
+    - type: Tweak
+      message: >-
+        Pickpocket and arms dealer objectives no longer announce to stagehands,
+        too spammy
+    - type: Tweak
+      message: Nav terminal battery is now larger
+    - type: Remove
+      message: Bartender no longer gets beer goggles
+    - type: Add
+      message: >-
+        Different accents are used for various late stage medical issues in
+        offmed (brain damage + no brain oxygen) instead of it just being triple
+        stuttering
+    - type: Tweak
+      message: >-
+        Viewcone min angle is now 15 deg, no more tiny sliver of visibility in
+        blackout pain
+  id: 62
+  time: '2026-06-15T10:49:41.0000000+00:00'
