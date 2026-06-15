@@ -552,3 +552,9 @@ Entries:
       message: Fixed various posters around the map being rotated incorrectly.
   id: 63
   time: '2026-06-15T15:36:56.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Added new armory wall sprites.
+  id: 64
+  time: '2026-06-15T21:13:28.0000000+00:00'
