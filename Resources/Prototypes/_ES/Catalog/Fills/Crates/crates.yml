@@ -413,9 +413,10 @@
     - id: ESSleepyPen
       weight: 0.5
     - id: C4
-    - id: ESWeaponRevolver357
-    - id: ESWeaponPistol9mm
-    - id: ESWeaponPistol9mmSilenced
+    - group:
+      - id: ESWeaponRevolver357
+      - id: ESWeaponPistol9mm
+      - id: ESWeaponPistol9mmSilenced
     - id: ESClothingOuterArmorSecurity
     - id: ExGrenade
     - id: ESSpeedLoader357
