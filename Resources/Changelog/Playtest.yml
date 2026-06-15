@@ -546,3 +546,9 @@ Entries:
         blackout pain
   id: 62
   time: '2026-06-15T10:49:41.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed various posters around the map being rotated incorrectly.
+  id: 63
+  time: '2026-06-15T15:36:56.0000000+00:00'
