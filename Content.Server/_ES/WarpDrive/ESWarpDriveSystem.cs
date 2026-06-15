@@ -57,8 +57,12 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         var query = EntityQueryEnumerator<ESWarpDriveGameRuleComponent>();
         while (query.MoveNext(out _, out var warp))
         {
+            if (warp.InFinalPhase)
+                continue;
+
             warp.FinalPhaseAt = _timing.CurTime;
             warp.InFinalPhase = true;
+            UpdateAppearance(true);
 
             _chat.DispatchGlobalAnnouncement(
                 Loc.GetString("es-warp-drive-announcement-final-phase-started"),
@@ -85,10 +89,10 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
 
     public float GetChargePercentage(ESWarpDriveGameRuleComponent component)
     {
-        var totalTime = (_timing.CurTime - _ticker.RoundStartTimeSpan) - component.AccumulatedInterruptionTime;
-        if (component.LastInterruptionTime is { } lastInterruption)
-            totalTime -= (_timing.CurTime - lastInterruption);
-        return (float) (totalTime / component.BaseChargeTime);
+        var totalTime = _timing.CurTime - _ticker.RoundStartTimeSpan - component.AccumulatedInterruptionTime;
+        if (component.Interrupted && component.LastInterruptionTime is { } lastInterruption)
+            totalTime -= _timing.CurTime - lastInterruption;
+        return Math.Clamp((float) (totalTime / component.BaseChargeTime), 0, 1);
     }
 
     public bool WarpDriveSuccess(ESWarpDriveGameRuleComponent component)
@@ -124,7 +128,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
 
         // check if we should play our announcements
         var currentCharge = GetChargePercentage(component);
-        UpdateUiState(currentCharge, component.InFinalPhase);
+        UpdateUiState(currentCharge, component.Interrupted, component.InFinalPhase);
         foreach (var announcement in component.Announcements)
         {
             if (announcement.Completed)
@@ -143,7 +147,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         }
 
         // check if we should make a new random interruption
-        if (_timing.CurTime > component.NextInterruptionTime)
+        if (!component.InFinalPhase && _timing.CurTime > component.NextInterruptionTime)
         {
             if (!component.Interrupted)
             {
@@ -190,12 +194,18 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         }
     }
 
-    private void UpdateUiState(float charge, bool finalPhase)
+    private void UpdateUiState(float charge, bool interrupted, bool finalPhase)
     {
         var query = EntityQueryEnumerator<ESPortalGeneratorConsoleComponent>();
         while (query.MoveNext(out var uid, out _))
         {
-            _ui.SetUiState(uid, ESPortalGeneratorConsoleUiKey.Key, new ESPortalGeneratorConsoleBuiState() { Charge = charge, FinalPhase = finalPhase });
+            var state = new ESPortalGeneratorConsoleBuiState
+            {
+                Charge = charge,
+                Interrupted = interrupted,
+                FinalPhase = finalPhase,
+            };
+            _ui.SetUiState(uid, ESPortalGeneratorConsoleUiKey.Key, state);
         }
     }
 

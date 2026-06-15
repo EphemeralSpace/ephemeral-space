@@ -73,10 +73,13 @@ public sealed partial class SliceableFoodSystem : EntitySystem
         EntityUid user,
         EntityUid? usedItem)
     {
-        if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2, ref entity.Comp3) || string.IsNullOrEmpty(entity.Comp2.Slice))
+        if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2) || string.IsNullOrEmpty(entity.Comp2.Slice))
             return false;
 
-        _solutionContainer.TryGetSolution(entity.Owner, entity.Comp3.Solution, out var soln, out var solution);
+        // not required for sliceable things to be edible
+        Resolve(entity, ref entity.Comp3, false);
+
+        _solutionContainer.TryGetSolution(entity.Owner, entity.Comp3?.Solution, out var soln, out var solution);
 
         if (!TryComp<UtensilComponent>(usedItem, out var utensil) || (utensil.Types & UtensilType.Knife) == 0)
             return false;

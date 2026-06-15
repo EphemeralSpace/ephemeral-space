@@ -178,6 +178,13 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         return ent.Comp.ObjectiveInitialized;
     }
 
+    public bool ShouldAnnounceProgress(Entity<ESObjectiveComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+        return ent.Comp.AnnounceProgress;
+    }
+
     /// <summary>
     /// Re-generates the list of objectives an entity should have, adding all new objectives and removing ones that should no longer be there,
     /// e.g. as a result of troupe or mask changes.

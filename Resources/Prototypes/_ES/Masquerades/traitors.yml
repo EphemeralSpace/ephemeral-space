@@ -2,7 +2,7 @@
   id: Traitors
   name: Traitors
   description: is a standard, balanced cast of crew and traitors
-  weight: 1
+  weight: 3
   minPlayers: 6
   gameRules: []
   masquerade:

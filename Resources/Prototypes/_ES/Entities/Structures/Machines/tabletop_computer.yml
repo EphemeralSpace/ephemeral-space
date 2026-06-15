@@ -230,68 +230,9 @@
   - type: ESAmbientMusicMarkerMedical
 
 - type: entity
-  parent: ESBaseTabletopComputerAiAccess
+  parent: [ BaseComputerId, ESBaseTabletopComputerAiAccess ]
   id: ESComputerIdTabletop
-  name: ID card computer
-  description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
   components:
-  - type: IdCardConsole
-    privilegedIdSlot:
-      name: id-card-console-privileged-id
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-      ejectOnBreak: true
-      swap: false
-      whitelist:
-        components:
-        - IdCard
-    targetIdSlot:
-      name: id-card-console-target-id
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-      ejectOnBreak: true
-      swap: false
-      whitelist:
-        components:
-        - IdCard
-    accessLevels: # TODO: this dupe with the normal id card computer sucks ass
-    - Armory
-    - Atmospherics
-    - Bar
-    - Brig
-    - Detective
-    - Captain
-    - Cargo
-    - Chemistry
-    - Command
-    - Engineering
-    - External
-    - GenpopEnter
-    - GenpopLeave
-    - HeadOfPersonnel
-    - HeadOfSecurity
-    - Hydroponics
-    - Janitor
-    - Kitchen
-    - Maintenance
-    - Medical
-    - Research
-    - Security
-    - Service
-    - Theatre
-  - type: ActivatableUI
-    key: enum.IdCardConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.IdCardConsoleUiKey.Key:
-        type: IdCardConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: CrewManifestViewer
-    ownerKey: enum.IdCardConsoleUiKey.Key
-  - type: Speech
-    speechVerb: Robotic
-    speechSounds: Pai
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -300,18 +241,6 @@
       state: id
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: Computer
-    board: IDComputerCircuitboard
-  - type: PointLight
-    color: "#4ba5d9"
-  - type: ItemSlots
-  - type: ContainerContainer
-    containers:
-      board: !type:Container
-      IdCardConsole-privilegedId: !type:ContainerSlot
-      IdCardConsole-targetId: !type:ContainerSlot
-  - type: ESSabotageTarget
-  - type: ESAmbientMusicMarkerCommand
 
 - type: entity
   parent: ESBaseTabletopComputer

@@ -2,7 +2,7 @@
   id: Showdown
   name: Showdown
   description: is a real showdown, with many more guns than usual
-  weight: 0.4 # Not that common
+  weight: 1 # Not that common
   minPlayers: 8
   gameRules: []
   masquerade:

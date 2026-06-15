@@ -2,12 +2,13 @@
   parent: ESBaseMaskObjective
   id: ESObjectivePickpocketSteal
   name: Steal from people
-  description: Variety is the spice of life. Just make sure after you grab their shit, you hold onto it.
+  description: Variety is the spice of life. Just make sure that after you grab their shit, you hold onto it.
   components:
   - type: ESObjective
     icon:
       sprite: Clothing/Back/Backpacks/backpack.rsi
       state: icon
+    announceProgress: false
   - type: ESHoldPickpocketedObjective
   - type: ESCounterObjective
     title: es-pickpocket-steal-objective-title

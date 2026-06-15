@@ -115,15 +115,31 @@ public sealed partial class ExplosionPrototype : IPrototype
     // steal code from.
     [DataField("fireStates")]
     public int FireStates = 3;
+
 // ES START
+    /// <summary>
+    /// Chance per tile processed to start a fire.
+    /// </summary>
     [DataField]
     public float FireChance = 0.15f;
 
+    /// <summary>
+    /// Minimum level of fire started when <see cref="FireChance"/> occurs
+    /// </summary>
     [DataField]
     public int MinFireLevel = 1;
 
+    /// <summary>
+    /// Maximum level of fire started when <see cref="FireChance"/> occurs
+    /// </summary>
     [DataField]
     public int MaxFireLevel = 1;
+
+    /// <summary>
+    /// Whether the fire should spread after being spawned.
+    /// </summary>
+    [DataField]
+    public bool FireSpread;
 // ES END
 
     /// <summary>

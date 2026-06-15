@@ -413,3 +413,142 @@ Entries:
       message: Melee damage on the shuttle is now even worse
   id: 49
   time: '2026-06-03T05:09:08.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the emergency access terminal, a unique bridge computer capable of
+        remotely enabling emergency access into various areas on station.
+  id: 50
+  time: '2026-06-05T02:19:09.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The ID card console no longer needs a privileged ID to assign access and
+        now only assigns presets, not individual access levels.
+  id: 51
+  time: '2026-06-05T02:20:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Reduced the delay between the meteor announcement and when they hit the
+        station.
+    - type: Tweak
+      message: Meteors can now occur before the 30 minute mark.
+  id: 52
+  time: '2026-06-05T02:24:01.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The Parasite objective for "do not kill" players now works based on
+        total damage dealt rather than kills.
+  id: 53
+  time: '2026-06-05T02:27:55.0000000+00:00'
+- author: Sadie-silly
+  changes: []
+  id: 54
+  time: '2026-06-05T21:22:32.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: Pickpockets now prioritize more interesting items
+  id: 55
+  time: '2026-06-05T21:26:11.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        The warp drive console now shows when the warp drive is interrupted or
+        doing the final charge
+    - type: Fix
+      message: >-
+        Fixed an issue where the warp drive progress would not update and would
+        show the same value continuously
+  id: 56
+  time: '2026-06-08T00:11:19.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Add
+      message: Job wardrobes now have a chance of appearing in maints.
+  id: 57
+  time: '2026-06-10T14:04:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Fires from grenades and other basic explosions no longer spread.
+        Dedicated fiery explosions will still spread.
+  id: 58
+  time: '2026-06-12T15:32:27.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Vigilantes no longer get a cache. Fighting crime isn't free!
+  id: 59
+  time: '2026-06-13T21:36:04.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Add
+      message: New announcement sounds for thrusters/nav console/armory
+  id: 60
+  time: '2026-06-13T22:43:52.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed ready status getting reset upon disconnecting.
+  id: 61
+  time: '2026-06-15T10:49:15.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: Sliceable items now work properly + various other food related fixes
+    - type: Tweak
+      message: Hunger is a little slower sorgy I miscalced
+    - type: Fix
+      message: Guzzler can no longer roll dexplus & removes all mention of dexplus
+    - type: Fix
+      message: Parasite no-damage obj no longer counts self damage
+    - type: Tweak
+      message: Smoke inhalation threshold is lower again
+    - type: Tweak
+      message: Special vendor is now in bar instead of dorms
+    - type: Tweak
+      message: Dorms now has a guaranteed snack vendor
+    - type: Tweak
+      message: Smartfridge is now med access only
+    - type: Fix
+      message: >-
+        Operating table is no longer toggleable and now has better power
+        indication
+    - type: Fix
+      message: Coroner scalpel melee sprite is the right way around now
+    - type: Fix
+      message: Warp drive charging visuals now toggle on when in final stage
+    - type: Tweak
+      message: >-
+        Pickpocket and arms dealer objectives no longer announce to stagehands,
+        too spammy
+    - type: Tweak
+      message: Nav terminal battery is now larger
+    - type: Remove
+      message: Bartender no longer gets beer goggles
+    - type: Add
+      message: >-
+        Different accents are used for various late stage medical issues in
+        offmed (brain damage + no brain oxygen) instead of it just being triple
+        stuttering
+    - type: Tweak
+      message: >-
+        Viewcone min angle is now 15 deg, no more tiny sliver of visibility in
+        blackout pain
+  id: 62
+  time: '2026-06-15T10:49:41.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed various posters around the map being rotated incorrectly.
+  id: 63
+  time: '2026-06-15T15:36:56.0000000+00:00'

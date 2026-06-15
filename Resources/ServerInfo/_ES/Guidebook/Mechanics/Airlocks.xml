@@ -25,8 +25,18 @@
   Airlocks block gas flow, so they can be used to seal off areas in case of a [textlink="hull breach" link="Spacing"] or a [textlink="fire." link="Fires"]
   They also store gas on their tile, even when closed, so be careful when opening them during or after a gas leak.
 
-  ## Bolting and Emergency Access
+  ## Bolting
   Airlocks can be bolted to prevent them from being opened or pried open by hand. When this occurs, the airlock will display red lights on the top of the door.
+
+  ## Emergency Access
+  <Box>
+    <GuideEntityEmbed Entity="ESComputerTerminalEmergencyAccess" Caption=""/>
+  </Box>
+
+  The [bold]emergency access terminal[/bold] is a unique computer located inside the bridge that is able to remotely toggle emergency access on airlocks.
+  This is done by inputting an airlock's emergency access code (found by examining the airlock at close range) into the terminal.
+
+  When an airlock is in emergency access mode, it'll display yellow blinking lights and will allow any person to pass, regardless of their ID access.
 
   ## Styling
   Airlocks can come in different styles to match station departments. The department style commonly reflects the required access level.

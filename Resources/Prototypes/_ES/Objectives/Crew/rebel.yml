@@ -9,9 +9,9 @@
   description: I wonder what everyone's weird medical secrets are. How about checking the crew monitoring server?
 
 - type: entity
-  id: ESObjectiveRebelSabotageIDComputer
-  parent: [ESBaseMaskObjective, ESBaseObjectiveSabotageIDComputer]
-  description: The heads of staff are always so stuck-up about proper identification. Messing with the ID card computer should teach them a lesson.
+  id: ESObjectiveRebelSabotageEmergencyAccessTerminal
+  parent: [ESBaseMaskObjective, ESBaseObjectiveSabotageEmergencyAccessTerminal]
+  description: Doors hold back people. They separate us. They create hate. Hacking open a bunch of them would show Nanotrasen!
 
 - type: entity
   id: ESObjectiveRebelSabotageCriminalRecords

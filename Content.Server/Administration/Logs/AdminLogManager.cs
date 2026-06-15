@@ -78,7 +78,6 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
     private int _queueMax;
     private int _preRoundQueueMax;
     private int _dropThreshold;
-    private int _highImpactLogPlaytime;
 
     // Per update
     private TimeSpan _nextUpdateTime;
@@ -113,8 +112,6 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             value => _preRoundQueueMax = value, true);
         _configuration.OnValueChanged(CCVars.AdminLogsDropThreshold,
             value => _dropThreshold = value, true);
-        _configuration.OnValueChanged(CCVars.AdminLogsHighLogPlaytime,
-            value => _highImpactLogPlaytime = value, true);
 
         if (_metricsEnabled)
         {
@@ -461,18 +458,6 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             if (impact == LogImpact.Extreme) // Always chat-notify Extreme logs
                 adminLog = true;
 
-            if (impact == LogImpact.High) // Only chat-notify High logs if the player is below a threshold playtime
-            {
-                if (_highImpactLogPlaytime >= 0 && _player.TryGetSessionById(new NetUserId(id), out var session))
-                {
-                    var playtimes = _playtime.GetPlayTimes(session);
-                    if (playtimes.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out var overallTime) &&
-                        overallTime <= TimeSpan.FromHours(_highImpactLogPlaytime))
-                    {
-                        adminLog = true;
-                    }
-                }
-            }
         }
 
         if (adminLog)

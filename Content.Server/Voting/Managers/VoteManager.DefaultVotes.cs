@@ -46,7 +46,7 @@ namespace Content.Server.Voting.Managers
             if (initiator != null && args == null)
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"{initiator} initiated a {voteType.ToString()} vote");
             else if (initiator != null && args != null)
-                _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"{initiator} initiated a {voteType.ToString()} vote with the arguments: {String.Join(",", args)}");
+                _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"{initiator} initiated a {voteType.ToString()} vote with the arguments: {String.Join(",", args)}");
             else
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Initiated a {voteType.ToString()} vote");
 
@@ -344,7 +344,7 @@ namespace Content.Server.Voting.Managers
             if (_votingSystem != null && !await _votingSystem.CheckVotekickInitEligibility(initiator))
             {
                 _logManager.GetSawmill("admin.votekick").Warning($"User {initiator} attempted a votekick, despite not being eligible to!");
-                _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick attempted by {initiator}, but they are not eligible to votekick!");
+                _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Votekick attempted by {initiator}, but they are not eligible to votekick!");
                 DirtyCanCallVoteAll();
                 return;
             }
@@ -367,7 +367,7 @@ namespace Content.Server.Voting.Managers
             {
                 _logManager.GetSawmill("admin.votekick")
                     .Warning($"Votekick attempted for player {target} but they couldn't be found!");
-                _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick attempted by {initiator} for player string {target}, but they could not be found!");
+                _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Votekick attempted by {initiator} for player string {target}, but they could not be found!");
                 DirtyCanCallVoteAll();
                 return;
             }
@@ -379,7 +379,7 @@ namespace Content.Server.Voting.Managers
             {
                 _logManager.GetSawmill("admin.votekick")
                     .Warning($"Votekick attempted for player {target} but their session couldn't be found!");
-                _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick attempted by {initiator} for player string {target}, but they could not be found!");
+                _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Votekick attempted by {initiator} for player string {target}, but they could not be found!");
                 DirtyCanCallVoteAll();
                 return;
             }
@@ -406,7 +406,7 @@ namespace Content.Server.Voting.Managers
             // Don't let a user votekick themselves
             if (initiator == targetSession)
             {
-                _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick attempted by {initiator} for themselves? Votekick cancelled.");
+                _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Votekick attempted by {initiator} for themselves? Votekick cancelled.");
                 DirtyCanCallVoteAll();
                 return;
             }
@@ -414,7 +414,7 @@ namespace Content.Server.Voting.Managers
             // Cancels the vote if there's not enough voters; only the person initiating the vote gets a return message.
             if (eligibleVoterNumber < eligibleVoterNumberRequirement)
             {
-                _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick attempted by {initiator} for player {targetSession}, but there were not enough ghost roles! {eligibleVoterNumberRequirement} required, {eligibleVoterNumber} found.");
+                _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Votekick attempted by {initiator} for player {targetSession}, but there were not enough ghost roles! {eligibleVoterNumberRequirement} required, {eligibleVoterNumber} found.");
                 if (initiator != null)
                 {
                     var message = Loc.GetString("ui-vote-votekick-not-enough-eligible", ("voters", eligibleVoterNumber.ToString()), ("requirement", eligibleVoterNumberRequirement.ToString()));
@@ -428,7 +428,7 @@ namespace Content.Server.Voting.Managers
             // Check for stuff like the target being an admin. These targets shouldn't show up in the UI, but it's necessary to doublecheck in case someone writes the command in console.
             if (_votingSystem != null && !_votingSystem.CheckVotekickTargetEligibility(targetSession))
             {
-                _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick attempted by {initiator} for player {targetSession}, but they are not eligible to be votekicked!");
+                _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Votekick attempted by {initiator} for player {targetSession}, but they are not eligible to be votekicked!");
                 DirtyCanCallVoteAll();
                 return;
             }
@@ -460,7 +460,7 @@ namespace Content.Server.Voting.Managers
             WirePresetVoteInitiator(options, initiator);
 
             var vote = CreateVote(options);
-            _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick for {located.Username} ({targetEntityName}) due to {reason} started, initiated by {initiator}.");
+            _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Votekick for {located.Username} ({targetEntityName}) due to {reason} started, initiated by {initiator}.");
 
             // Create Discord webhook
             var webhookState = _voteWebhooks.CreateWebhookIfConfigured(options, _cfg.GetCVar(CCVars.DiscordVotekickWebhook), Loc.GetString("votekick-webhook-name"), options.Title + "\n" + Loc.GetString("votekick-webhook-description", ("initiator", initiatorName), ("target", targetSession)));
@@ -501,7 +501,7 @@ namespace Content.Server.Voting.Managers
                     // Check if an admin is online, and ignore the vote if the cvar is enabled
                     if (_cfg.GetCVar(CCVars.VotekickNotAllowedWhenAdminOnline) && _adminMgr.ActiveAdmins.Count() != 0)
                     {
-                        _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick for {located.Username} attempted to pass, but an admin was online. Yes: {votesYes} / No: {votesNo}. Yes: {yesVotersString} / No: {noVotersString}");
+                        _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Votekick for {located.Username} attempted to pass, but an admin was online. Yes: {votesYes} / No: {votesNo}. Yes: {yesVotersString} / No: {noVotersString}");
                         AnnounceCancelledVotekickForVoters(targetEntityName);
                         _voteWebhooks.UpdateCancelledWebhookIfConfigured(webhookState, Loc.GetString("votekick-webhook-cancelled-admin-online"));
                         return;
@@ -509,7 +509,7 @@ namespace Content.Server.Voting.Managers
                     // Check if the target is an antag and the vote reason is raiding (this is to prevent false positives)
                     else if (isAntagSafe && reason == VotekickReasonType.Raiding.ToString())
                     {
-                        _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick for {located.Username} due to {reason} finished, created by {initiator}, but was cancelled due to the target being an antagonist.");
+                        _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Votekick for {located.Username} due to {reason} finished, created by {initiator}, but was cancelled due to the target being an antagonist.");
                         AnnounceCancelledVotekickForVoters(targetEntityName);
                         _voteWebhooks.UpdateCancelledWebhookIfConfigured(webhookState, Loc.GetString("votekick-webhook-cancelled-antag-target"));
                         return;
@@ -517,14 +517,14 @@ namespace Content.Server.Voting.Managers
                     // Check if the target is an admin/de-admined admin
                     else if (targetSession.AttachedEntity != null && _adminMgr.IsAdmin(targetSession.AttachedEntity.Value, true))
                     {
-                        _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick for {located.Username} due to {reason} finished, created by {initiator}, but was cancelled due to the target being a de-admined admin.");
+                        _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Votekick for {located.Username} due to {reason} finished, created by {initiator}, but was cancelled due to the target being a de-admined admin.");
                         AnnounceCancelledVotekickForVoters(targetEntityName);
                         _voteWebhooks.UpdateCancelledWebhookIfConfigured(webhookState, Loc.GetString("votekick-webhook-cancelled-admin-target"));
                         return;
                     }
                     else
                     {
-                        _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick for {located.Username} succeeded:  Yes: {votesYes} / No: {votesNo}. Yes: {yesVotersString} / No: {noVotersString}");
+                        _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Votekick for {located.Username} succeeded:  Yes: {votesYes} / No: {votesNo}. Yes: {yesVotersString} / No: {noVotersString}");
                         _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-votekick-success", ("target", targetEntityName), ("reason", reason)));
 
                         if (!Enum.TryParse(_cfg.GetCVar(CCVars.VotekickBanDefaultSeverity), out NoteSeverity severity))
@@ -556,7 +556,7 @@ namespace Content.Server.Voting.Managers
                     // Discord webhook, failure
                     _voteWebhooks.UpdateWebhookIfConfigured(webhookState, eventArgs);
 
-                    _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick failed: Yes: {votesYes} / No: {votesNo}. Yes: {yesVotersString} / No: {noVotersString}");
+                    _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Votekick failed: Yes: {votesYes} / No: {votesNo}. Yes: {yesVotersString} / No: {noVotersString}");
                     _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-votekick-failure", ("target", targetEntityName), ("reason", reason)));
                 }
             };

@@ -6,6 +6,7 @@ using Content.Server.Doors.Systems;
 using Content.Server.Electrocution;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Popups;
+using Content.Server.Power.EntitySystems;
 using Content.Server.Screens.Components;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared.DeviceNetwork;
@@ -40,6 +41,7 @@ public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComp
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private ESEntityTimerSystem _timer = default!;
     [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private PowerReceiverSystem _powerReceiver = default!;
 
     public override void Initialize()
     {
@@ -116,7 +118,7 @@ public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComp
         if (!GameTicker.IsGameRuleActive<ESArmoryGameRuleComponent>() || GetArmorySingleton() is not { } armory)
             return;
 
-        if (armory.Opened)
+        if (armory.Opened || !_powerReceiver.IsPowered(ent.Owner))
             return;
 
         // no need to check cooldown time since the update loop will handle that stuff, just check if theres any cooldown

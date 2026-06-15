@@ -1,0 +1,45 @@
+- type: entity
+  id: OperatingTable
+  parent: Bed
+  name: operating table
+  description: A sterile surface for advanced medical procedures. When powered, has neural suppression to anesthetize patients laying on top of it.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Machines/optable.rsi
+    noRot: true
+    layers:
+    - state: base
+    - map: ["enum.PowerDeviceVisuals.Powered"]
+      state: power_off
+      shader: unshaded
+  # Begin Offbrand
+  - type: StatusEffectOnStrap
+    statusEffect: StatusEffectNeuralSuppression
+  - type: VitalsMonitorStrap
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+    powerDisabled: true
+  - type: ExtensionCableReceiver
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+  - type: Machine
+    board: OperatingTableCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+        # End Offbrand
+  - type: ESAutopsyTable
+  - type: Destructible
+    thresholds: [] # Indestructible
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { state: power_on }
+          False: { state: power_off }

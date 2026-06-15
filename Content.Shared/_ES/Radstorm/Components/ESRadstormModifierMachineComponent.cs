@@ -34,7 +34,10 @@ public sealed partial class ESRadstormModifierMachineComponent : Component
     public LocId DisableAnnouncement;
 
     [DataField]
-    public SoundSpecifier AnnouncementSound = new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg");
+    public SoundSpecifier AnnouncementSoundEnabled = new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg");
+
+    [DataField]
+    public SoundSpecifier AnnouncementSoundDisabled = new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg");
 }
 
 [Serializable, NetSerializable]

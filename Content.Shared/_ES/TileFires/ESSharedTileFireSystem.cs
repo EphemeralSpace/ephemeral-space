@@ -59,16 +59,16 @@ public abstract partial class ESSharedTileFireSystem : EntitySystem
     ///     Spawns a tile fire at stage <see cref="stage"/> at the given entity.
     /// </summary>
     [PublicAPI]
-    public bool TryDoTileFire(Entity<TransformComponent?> entity, EntityUid? originatingUser = null, int stage = 1)
+    public bool TryDoTileFire(Entity<TransformComponent?> entity, EntityUid? originatingUser = null, int stage = 1, bool spread = true)
     {
-        return TryDoTileFire(entity.Comp?.Coordinates ?? Transform(entity.Owner).Coordinates, originatingUser, stage);
+        return TryDoTileFire(entity.Comp?.Coordinates ?? Transform(entity.Owner).Coordinates, originatingUser, stage, spread);
     }
 
     /// <summary>
     ///     Spawns a tile fire at stage <see cref="stage"/> at the given entity's coordinates.
     /// </summary>
     [PublicAPI]
-    public virtual bool TryDoTileFire(EntityCoordinates coords, EntityUid? originatingUser = null, int stage = 1)
+    public virtual bool TryDoTileFire(EntityCoordinates coords, EntityUid? originatingUser = null, int stage = 1, bool spread = true)
     {
         // See server logic
         return false;

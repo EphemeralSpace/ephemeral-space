@@ -406,7 +406,6 @@
   - type: IdCard
     jobTitle: job-name-prisoner
     jobIcon: JobIconPrisoner
-    canMicrowave: false
   - type: ExpireIdCard
     expireMessage: genpop-prisoner-id-expire
     expiredAccess:

@@ -1,0 +1,43 @@
+<controls:ESEmergencyAccessConsoleWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._ES.EmergencyAccess.Ui"
+    MinSize="400 340"
+    Title="{Loc 'es-emergency-access-ui-title'}">
+    <BoxContainer Orientation="Vertical" Margin="20 15 20 20">
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <RichTextLabel Text="{Loc 'es-emergency-access-ui-access-key-label'}"/>
+            <Control MinWidth="5"/>
+            <LineEdit Name="SearchBar" SetWidth="70"/>
+            <Control MinWidth="5" HorizontalExpand="True"/>
+            <Button Name="SearchButton" Text="{Loc 'es-emergency-access-ui-search-button'}" HorizontalAlignment="Right"/>
+        </BoxContainer>
+        <Control MinHeight="10"/>
+        <FillPanel StyleClasses="PanelDark">
+            <RichTextLabel Name="NotFoundLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Visible="False"/>
+            <BoxContainer Name="InfoBox" Orientation="Vertical" Margin="20 0 20 20">
+                <Control VerticalExpand="True"/>
+                <BoxContainer Orientation="Horizontal">
+                    <RichTextLabel Text="{Loc 'es-emergency-access-ui-key-label'}" HorizontalExpand="True"/>
+                    <RichTextLabel Name="AccessKeyLabel" HorizontalAlignment="Right"/>
+                </BoxContainer>
+                <Control VerticalExpand="True"/>
+                <BoxContainer Orientation="Horizontal">
+                    <RichTextLabel Text="{Loc 'es-emergency-access-ui-emergency-access-label'}" HorizontalExpand="True"/>
+                    <RichTextLabel Name="EmergencyAccessStatusLabel" HorizontalAlignment="Right"/>
+                </BoxContainer>
+                <Control VerticalExpand="True"/>
+                <BoxContainer Orientation="Horizontal">
+                    <RichTextLabel Text="{Loc 'es-emergency-access-ui-bolt-status-label'}" HorizontalExpand="True"/>
+                    <RichTextLabel Name="BoltStatusLabel" HorizontalAlignment="Right"/>
+                </BoxContainer>
+                <Control VerticalExpand="True"/>
+                <BoxContainer Orientation="Horizontal">
+                    <RichTextLabel Text="{Loc 'es-emergency-access-ui-power-status-label'}" HorizontalExpand="True"/>
+                    <RichTextLabel Name="PowerStatusLabel" HorizontalAlignment="Right"/>
+                </BoxContainer>
+                <Control VerticalExpand="True"/>
+                <Button Name="ToggleButton" Text="{Loc 'es-emergency-access-ui-toggle-button'}" MinHeight="50" HorizontalExpand="True"/>
+            </BoxContainer>
+        </FillPanel>
+    </BoxContainer>
+</controls:ESEmergencyAccessConsoleWindow>

@@ -20,19 +20,15 @@
   id: ESLockerFillHeadOfPersonnel
   table: !type:AllSelector
     children:
-    - id: AccessConfigurator
-    - id: BoxEncryptionKeyPassenger
-    - id: BoxEncryptionKeyService
-    - id: BoxHeadset
-    - id: BoxHoPStamps
-    - id: BoxID
-    - id: BoxPDA
+    - id: RubberStampApproved
+    - id: RubberStampDenied
     - id: CigarGoldCase
       prob: 0.25
     - id: ClothingHeadsetCommand
     - id: ClothingNeckGoldmedal
     - id: HoPIDCard
     - id: Stunbaton
+    - id: LuxuryPen
     - id: ClothingEyesHudSecurity
 
 # Security
@@ -76,7 +72,6 @@
     - id: ClothingOuterVest
     - id: ESWeaponDoubleBarrelShotgunNonlethal
     - id: DrinkShaker
-    - id: ClothingEyesHudBeer
     - id: HandLabeler
     - id: DrinkBeerBottleFull
       amount: !type:BinomialNumberSelector
