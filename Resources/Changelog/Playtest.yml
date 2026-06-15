@@ -495,3 +495,9 @@ Entries:
       message: New announcement sounds for thrusters/nav console/armory
   id: 60
   time: '2026-06-13T22:43:52.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed ready status getting reset upon disconnecting.
+  id: 61
+  time: '2026-06-15T10:49:15.0000000+00:00'
