@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/10/2026 10:13:00
+  time: 06/14/2026 16:50:29
   entityCount: 14692
 maps:
 - 3
@@ -39946,10 +39946,10 @@ entities:
       parent: 2
 - proto: ESSpawnerDormsVendor
   entities:
-  - uid: 10480
+  - uid: 7282
     components:
     - type: Transform
-      pos: -49.5,6.5
+      pos: -3.5,-3.5
       parent: 2
 - proto: ESSpawnerMarkerDistributedArmory
   entities:
@@ -43849,6 +43849,13 @@ entities:
     - type: Transform
       pos: -18.5,-28.5
       parent: 2
+- proto: ESSpawnerRandomVendorSnack
+  entities:
+  - uid: 136
+    components:
+    - type: Transform
+      pos: -49.5,6.5
+      parent: 2
 - proto: ESSpawnerRandomWardrobe
   entities:
   - uid: 1679
@@ -44178,15 +44185,15 @@ entities:
       parent: 2
 - proto: ESVendingMachineCigs
   entities:
-  - uid: 136
-    components:
-    - type: Transform
-      pos: -3.5,-3.5
-      parent: 2
   - uid: 4795
     components:
     - type: Transform
       pos: -35.5,-1.5
+      parent: 2
+  - uid: 7402
+    components:
+    - type: Transform
+      pos: -40.5,-42.5
       parent: 2
   - uid: 9410
     components:
@@ -66320,6 +66327,11 @@ entities:
     - type: Transform
       pos: -13.5,6.5
       parent: 2
+  - uid: 7350
+    components:
+    - type: Transform
+      pos: -37.5,-42.5
+      parent: 2
   - uid: 7436
     components:
     - type: Transform
@@ -66329,16 +66341,6 @@ entities:
     components:
     - type: Transform
       pos: -40.5,-47.5
-      parent: 2
-  - uid: 7514
-    components:
-    - type: Transform
-      pos: -37.5,-42.5
-      parent: 2
-  - uid: 7515
-    components:
-    - type: Transform
-      pos: -40.5,-42.5
       parent: 2
   - uid: 7581
     components:

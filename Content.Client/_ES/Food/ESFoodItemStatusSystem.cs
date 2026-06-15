@@ -32,11 +32,6 @@ public sealed class ESFoodStatusControl : Control
         BackgroundColor = Color.LimeGreen
     };
 
-    private static readonly StyleBoxFlat StyleBoxUnlit = new()
-    {
-        BackgroundColor = Color.Black
-    };
-
     private static readonly StyleBoxFlat StyleBoxBad = new()
     {
         BackgroundColor = Color.Red
@@ -62,8 +57,8 @@ public sealed class ESFoodStatusControl : Control
         for (var i = 0; i < 5; i++)
         {
             var colorBox = parent.Comp.SatietyMultiplier < 0 ? StyleBoxBad : StyleBoxLit;
-            var style = i <= ((_oldPortionsLeft ?? parent.Comp.StartingPortions) - 1) ? colorBox : StyleBoxUnlit;
-            var panel = new PanelContainer { MinSize = new Vector2(16, 16), PanelOverride = style };
+            var visible = i <= ((_oldPortionsLeft ?? parent.Comp.StartingPortions) - 1);
+            var panel = new PanelContainer { MinSize = new Vector2(16, 16), PanelOverride = colorBox, Visible = visible};
             wrapper.AddChild(panel);
             _sections.Add(panel);
         }
@@ -81,9 +76,10 @@ public sealed class ESFoodStatusControl : Control
         for (var i = 0; i < _sections.Count; i++)
         {
             var colorBox = _parent.Comp.SatietyMultiplier < 0 ? StyleBoxBad : StyleBoxLit;
-            var style = i <= ((_oldPortionsLeft ?? _parent.Comp.StartingPortions) - 1) ? colorBox : StyleBoxUnlit;
+            var visible = i <= ((_oldPortionsLeft ?? _parent.Comp.StartingPortions) - 1);
             var panel = _sections[i];
-            panel.PanelOverride = style;
+            panel.PanelOverride = colorBox;
+            panel.Visible = visible;
         }
     }
 }

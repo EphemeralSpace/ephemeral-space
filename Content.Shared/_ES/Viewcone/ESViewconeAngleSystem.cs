@@ -62,8 +62,8 @@ public sealed partial class ESViewconeAngleSystem : EntitySystem
         var ev = new ESViewconeGetAngleModifierEvent();
         RaiseLocalEvent(ent, ref ev, true);
 
-        // clamps to 0, 360 since this is additive and could easily go over with stacking equipment items and shit
-        return Math.Clamp(ent.Comp.BaseConeAngle + ev.GetAngleModifier(), 0f, 360f);
+        // clamps to 15, 360 since this is additive and could easily go over/too low with stacking equipment items and shit
+        return Math.Clamp(ent.Comp.BaseConeAngle + ev.GetAngleModifier(), 15f, 360f);
     }
 
     /// <summary>

@@ -62,6 +62,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
 
             warp.FinalPhaseAt = _timing.CurTime;
             warp.InFinalPhase = true;
+            UpdateAppearance(true);
 
             _chat.DispatchGlobalAnnouncement(
                 Loc.GetString("es-warp-drive-announcement-final-phase-started"),
