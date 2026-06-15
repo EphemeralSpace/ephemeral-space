@@ -7,18 +7,18 @@
     - tableId: ESMaintLootCommon
       weight: 45
     - tableId: ESMaintLootUncommon
-      weight: 24
+      weight: 26
     - tableId: ESMaintLootRare
-      weight: 6
+      weight: 4
 
 - type: entityTable
   id: ESMaintLootExposed # for placing on racks or tables
   table:
     group:
     - tableId: ESMaintLootCommon
-      weight: 48
+      weight: 50
     - tableId: ESMaintLootUncommon
-      weight: 43
+      weight: 49
     - weight: 3
       group:
       - id: ToolboxEmergencyFilled
@@ -28,7 +28,7 @@
       - id: ToolboxArtisticFilled
         weight: 0.1
     - tableId: ESMaintLootRare
-      weight: 6
+      weight: 3
 
 - type: entityTable
   id: ESMaintLootValuable
