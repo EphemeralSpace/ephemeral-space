@@ -80,6 +80,9 @@ es-mask-hemophage-desc = As a Hemophage, spread your infected blood all across t
 es-mask-host-name = Host
 es-mask-host-desc = As a Host, partake in the festivites and swarm with your fellow parasites!
 
+es-mask-leapleech-name = Leapleech
+es-mask-leapleech-desc = As a Leapleech, take damage from multiple crew members to increase your leech count, once you die the amount of leeches that spawn will be based on how many people beat you.
+
 es-mask-psychid-name = Psychid
 es-mask-psychid-desc = As a Psychid, be killed in order to swap bodies and create a new psychid, spreading the parasitic infection even more.
 

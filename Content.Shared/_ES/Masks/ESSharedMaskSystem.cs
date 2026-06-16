@@ -1,5 +1,7 @@
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using Content.Shared._ES.Masks.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
@@ -9,6 +11,7 @@ using Content.Shared.Examine;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Content.Shared.Storage;
 using Content.Shared.Verbs;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
@@ -22,6 +25,8 @@ public abstract partial class ESSharedMaskSystem : EntitySystem
 {
     [Dependency] protected ISharedAdminManager AdminManager = default!;
     [Dependency] private INetManager _netManager = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
     [Dependency] protected SharedMindSystem Mind = default!;
     [Dependency] protected ESSharedObjectiveSystem Objective = default!;
@@ -347,6 +352,35 @@ public abstract partial class ESSharedMaskSystem : EntitySystem
         foreach (var mind in troupeEnt.Value.Comp.TroupeMemberMinds)
         {
             yield return mind;
+        }
+    }
+
+    /// <summary>
+    /// Returns all minds nearby who are members of a given troupe
+    /// </summary>
+    public IEnumerable<EntityUid> GetNearbyHostileTroupeMembers(Entity<ESHostileTowardsTroupeComponent?> ent, float range)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return Array.Empty<EntityUid>();
+
+        var hostiles = GetNearbyTroupeMembers(ent, range, ent.Comp.HostileTroupes);
+        return hostiles;
+    }
+
+    public IEnumerable<EntityUid> GetNearbyTroupeMembers(EntityUid ent, float range, HashSet<ProtoId<ESTroupePrototype>> troupes)
+    {
+        var xform = Transform(ent);
+
+        foreach (var entity in _lookup.GetEntitiesInRange<ESBodyLastMaskComponent>(_xform.GetMapCoordinates(ent, xform), range))
+        {
+            var mask = PrototypeManager.Index(entity.Comp.LastMask);
+            var troupe = mask.Troupe;
+
+             if (!troupes.Contains(troupe))
+                continue;
+
+
+            yield return entity.Owner;
         }
     }
 

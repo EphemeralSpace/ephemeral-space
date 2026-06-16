@@ -1,0 +1,67 @@
+﻿- type: entity
+  name: leepleach
+  id: ESMobLeepLeach
+  parent: [ SimpleMobBase, MobCombat ]
+  description: this leapy leech will leap to leech you.
+  components:
+  - type: ESHostileTowardsTroupe
+    hostileTroupes:
+    - Crew
+    - Traitor
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: ESLeepLeachCompound
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _ES/Mobs/Animals/leepleach.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: leepleach
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      10: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.5
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: leepleach
+      Dead:
+        Base: leepleach_dead
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Blunt: 2
+  - type: EmitSoundOnLand
+    sound:
+      collection: FootstepSnake
+  - type: TriggerOnMeleeHit
+    targetIsUser: true
+  - type: DamageOnTrigger
+    damage:
+      types:
+        Blunt: 10
+  - type: ESChangeMaskOnTrigger
+    mask: LeapLeech

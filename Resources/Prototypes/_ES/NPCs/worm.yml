@@ -1,0 +1,47 @@
+﻿# Really you should write your own
+- type: htnCompound
+  id: ESLeepLeachCompound
+  branches:
+  - tasks:
+    - !type:HTNCompoundTask
+      task: ESLeepLeachMelee
+  - tasks:
+    - !type:HTNCompoundTask
+      task: IdleCompound
+
+- type: htnCompound
+  id: ESLeepLeachMelee
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: ESNearbyHostileTroupeTargets
+    - !type:HTNCompoundTask
+      task: ESBeforeJumpAttackCompound
+
+- type: htnCompound
+  id: ESBeforeJumpAttackCompound
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:SetFloatOperator
+        targetKey: IdleTime
+        amount: 1
+
+    - !type:HTNPrimitiveTask
+      operator: !type:WaitOperator
+        key: IdleTime
+      preconditions:
+      - !type:KeyExistsPrecondition
+        key: IdleTime
+
+    - !type:HTNPrimitiveTask
+      operator: !type:JumpToOperator
+        targetKey: TargetCoordinates
+      services:
+      - !type:UtilityService
+        id: MeleeService
+        proto: NearbyMeleeTargets
+        key: TargetCoordinates
+    - !type:HTNCompoundTask
+      task: MeleeAttackTargetCompound
