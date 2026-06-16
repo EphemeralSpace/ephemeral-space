@@ -5,7 +5,6 @@
   playTimeTracker: ESJobSecurityOfficer
   startingGear: ESSecurityOfficerGear
   icon: "JobIconSecurityOfficer"
-  supervisors: job-supervisors-hop
   canBeAntag: false
   access:
   - Security

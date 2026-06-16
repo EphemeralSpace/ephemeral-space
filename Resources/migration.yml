@@ -195,7 +195,6 @@ SpawnPointBartender: ESSpawnPointBartender
 SpawnPointChef: ESSpawnPointChef
 SpawnPointJanitor: ESSpawnPointJanitor
 SpawnPointCaptain: ESSpawnPointCaptain
-SpawnPointHeadOfPersonnel: ESSpawnPointHeadOfPersonnel
 SpawnPointHeadOfSecurity: ESSpawnPointSecurityOfficer
 SpawnPointStationEngineer: ESSpawnPointStationEngineer
 SpawnPointAtmos: ESSpawnPointAtmos
@@ -263,7 +262,6 @@ LockerAtmosphericsFilled: ESLockerAtmosphericsFilled
 # 2026-2-4
 WardrobeMedicalDoctorFilled: ESWardrobePhysicianFilled
 WardrobeScienceFilled: ESWardrobeScienceFilled
-DresserHeadOfPersonnelFilled: ESDresserHeadOfPersonnelFilled
 DresserCaptainFilled: ESDresserCaptainFilled
 WardrobePrisonFilled: ESWardrobePrisonFilled
 WardrobeCargoFilled: ESWardrobeCargoFilled

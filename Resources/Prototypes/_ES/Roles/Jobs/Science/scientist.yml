@@ -5,7 +5,6 @@
   playTimeTracker: ESJobScientist
   startingGear: ESScientistGear
   icon: "JobIconScientist"
-  supervisors: job-supervisors-hop
   access:
   - Research
   - Maintenance

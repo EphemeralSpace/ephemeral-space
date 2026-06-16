@@ -5,7 +5,6 @@
   playTimeTracker: ESJobAtmosphericTechnician
   startingGear: ESAtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
-  supervisors: job-supervisors-hop
   access:
   - Maintenance
   - Engineering

@@ -4382,7 +4382,7 @@ entities:
     - type: Transform
       pos: -10.5,1.5
       parent: 2
-- proto: AirlockHeadOfPersonnelLocked
+- proto: AirlockStationAdminLocked
   entities:
   - uid: 33
     components:
@@ -4480,7 +4480,7 @@ entities:
     - type: Transform
       pos: -50.5,-0.5
       parent: 2
-- proto: AirlockMaintHOPLocked
+- proto: AirlockMaintStationAdminLocked
   entities:
   - uid: 6450
     components:
@@ -4993,7 +4993,7 @@ entities:
   - uid: 1109
     components:
     - type: MetaData
-      name: HOP APC
+      name: Station Administrator's Office APC
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,6.5
@@ -5459,7 +5459,7 @@ entities:
   - uid: 6917
     components:
     - type: MetaData
-      name: HoP Secure Room APC
+      name: Nuclear Terminal Room APC
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -8.5,6.5
@@ -32663,7 +32663,7 @@ entities:
     - type: Transform
       pos: -45.5,-7.5
       parent: 2
-- proto: DefaultStationBeaconHOPOffice
+- proto: DefaultStationBeaconStationAdminOffice
   entities:
   - uid: 4813
     components:
@@ -44079,7 +44079,7 @@ entities:
     - type: Transform
       pos: -27.5,-34.5
       parent: 2
-- proto: ESSpawnPointHeadOfPersonnel
+- proto: ESSpawnPointStationAdmin
   entities:
   - uid: 3197
     components:
@@ -45071,7 +45071,7 @@ entities:
       pos: -5.5,9.5
       parent: 2
     - type: FaxMachine
-      name: HoP
+      name: Station Administrator
   - uid: 1256
     components:
     - type: Transform
@@ -63634,7 +63634,7 @@ entities:
     - type: Transform
       pos: 29.5,-24.5
       parent: 2
-- proto: HolopadCommandHop
+- proto: ESHolopadCommandStationAdmin
   entities:
   - uid: 1121
     components:
@@ -64742,7 +64742,7 @@ entities:
     - type: Transform
       pos: 21.5,-28.5
       parent: 2
-- proto: LockerHeadOfPersonnelFilled
+- proto: LockerStationAdminFilled
   entities:
   - uid: 358
     components:
@@ -71029,7 +71029,7 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-- proto: SignDirectionalHop
+- proto: SignDirectionalStationAdmin
   entities:
   - uid: 14365
     components:
@@ -73038,7 +73038,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraCommand
       nameSet: True
-      id: HoP's Secure Room
+      id: Station Administrator's Terminal
   - uid: 14367
     components:
     - type: Transform
@@ -73054,7 +73054,7 @@ entities:
       pos: 1.5,9.5
       parent: 2
     - type: SurveillanceCamera
-      id: Head of Personnel's office
+      id: Station Administrator's office
 - proto: SurveillanceCameraEngineering
   entities:
   - uid: 128
@@ -73171,7 +73171,7 @@ entities:
       pos: -2.5,-1.5
       parent: 2
     - type: SurveillanceCamera
-      id: HoP Line
+      id: Station Administrator's Queue
   - uid: 14589
     components:
     - type: Transform
@@ -87140,7 +87140,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -38.5,-17.5
       parent: 2
-- proto: WindoorSecureHeadOfPersonnelLocked
+- proto: WindoorSecureStationAdminLocked
   entities:
   - uid: 1082
     components:

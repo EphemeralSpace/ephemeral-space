@@ -1,16 +1,15 @@
 - type: job
-  id: ESHeadOfPersonnel
-  name: ESjob-name-hop
-  description: ESjob-description-hop
-  playTimeTracker: ESJobHeadOfPersonnel
-  startingGear: ESHoPGear
-  icon: "JobIconHeadOfPersonnel"
-  supervisors: job-supervisors-captain
+  id: ESStationAdmin
+  name: ESjob-name-station-admin
+  description: ESjob-description-station-admin
+  playTimeTracker: ESJobStationAdmin
+  startingGear: ESStationAdminGear
+  icon: "JobIconStationAdmin"
   canBeAntag: false
   overrideConsoleVisibility: false
   access:
   - Command
-  - HeadOfPersonnel
+  - StationAdmin
   - Maintenance
   - External
   special:
@@ -18,14 +17,14 @@
     implants: [ MindShieldImplant ]
 
 - type: startingGear
-  id: ESHoPGear
+  id: ESStationAdminGear
   equipment:
     shoes: ClothingShoesColorBrown
-    id: HoPPDA
+    id: StationAdminPDA
     ears: ClothingHeadsetAltCommand
-    head: ClothingHeadHatHopcap
+    head: ClothingHeadHatStationAdminCap
     belt: BoxFolderClipboardThreePapers
-    jumpsuit: ClothingUniformJumpsuitHoP
+    jumpsuit: ClothingUniformJumpsuitStationAdmin
     back: ClothingBackpack
   storage:
     back:
@@ -33,6 +32,6 @@
     - Flash
 
 - type: chameleonOutfit
-  id: ESHeadOfPersonnel
-  job: ESHeadOfPersonnel
+  id: ESStationAdmin
+  job: ESStationAdmin
   hidden: false

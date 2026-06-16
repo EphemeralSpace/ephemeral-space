@@ -5,7 +5,6 @@
   playTimeTracker: ESJobStationEngineer
   startingGear: ESStationEngineerGear
   icon: "JobIconStationEngineer"
-  supervisors: job-supervisors-hop
   access:
   - Maintenance
   - Engineering

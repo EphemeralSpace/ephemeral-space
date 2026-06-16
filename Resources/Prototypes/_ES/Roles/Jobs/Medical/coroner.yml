@@ -5,7 +5,6 @@
   playTimeTracker: ESJobCoroner
   startingGear: ESCoronerGear
   icon: "ESJobIconCoroner"
-  supervisors: job-supervisors-hop
   access:
   - Medical
   - Maintenance

@@ -9,14 +9,14 @@
         tableId: ESLockerFillCaptain
 
 - type: entity
-  id: LockerHeadOfPersonnelFilled
+  id: LockerStationAdminFilled
   suffix: Filled
-  parent: LockerHeadOfPersonnel
+  parent: LockerStationAdmin
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage:
-        tableId: ESLockerFillHeadOfPersonnel
+        tableId: ESLockerFillStationAdmin
 
 - type: entityTable
   id: LockerFillVault

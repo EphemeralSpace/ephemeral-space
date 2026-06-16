@@ -3,7 +3,7 @@
   abstract: true
   prohibitedJobs:
   - ESCaptain
-  - ESHeadOfPersonnel
+  - ESStationAdmin
 
 - type: esMask
   id: ESBaseCommandSecRestricted
@@ -11,7 +11,7 @@
   prohibitedJobs:
   # Command
   - ESCaptain
-  - ESHeadOfPersonnel
+  - ESStationAdmin
   # Security
   - ESSecurityOfficer
   - ESDetective

@@ -40,16 +40,16 @@
     job: ESCaptain
 
 - type: entity
-  id: LockerHeadOfPersonnel
+  id: LockerStationAdmin
   parent: [ LockerBaseSecurePersonal, LockerBaseSecure ]
-  name: head of personnel's locker
+  name: station administrator's locker
   components:
   - type: EntityStorageVisuals
     stateBaseClosed: hop
     stateDoorOpen: hop_open
     stateDoorClosed: hop_door
   - type: ESPersonalLocker
-    job: ESHeadOfPersonnel
+    job: ESStationAdmin
 
 # Electrical supplies
 - type: entity

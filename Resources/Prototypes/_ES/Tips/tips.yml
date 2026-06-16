@@ -320,7 +320,7 @@
 
 - type: esTip
   id: CommandSympathizers
-  text: Though the Captain and Head of Personnel can't be regular traitor masks, they might still be Sympathizers, illicitly working to further the Syndicate's goals!
+  text: Though the Captain and Station Administrator can't be regular traitor masks, they might still be Sympathizers, illicitly working to further the Syndicate's goals!
 
 - type: esTip
   id: FakeSympathizer
