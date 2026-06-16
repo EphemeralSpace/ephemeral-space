@@ -447,8 +447,8 @@
     modifier: 0.5
     disableAnnouncement: es-radstorm-power-on-navigation-console
     enableAnnouncement: es-radstorm-power-off-navigation-console
-    announcementSoundEnabled: /Audio/_ES/Announcements/navigation_online.ogg
-    announcementSoundDisabled: /Audio/_ES/Announcements/navigation_offline.ogg
+    announcementSoundDisabled: /Audio/_ES/Announcements/navigation_online.ogg
+    announcementSoundEnabled: /Audio/_ES/Announcements/navigation_offline.ogg
   - type: PointLight
     color: "#1bfff3"
   - type: ApcPowerReceiverBattery
