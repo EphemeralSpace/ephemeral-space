@@ -558,3 +558,9 @@ Entries:
       message: Added new armory wall sprites.
   id: 64
   time: '2026-06-15T21:13:28.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed thruster and navigation console announcements being backwards.
+  id: 65
+  time: '2026-06-16T11:48:17.0000000+00:00'
