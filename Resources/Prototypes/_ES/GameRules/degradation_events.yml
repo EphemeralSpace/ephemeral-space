@@ -21,7 +21,7 @@
     - id: ESDegradationEventCriminalRecords
     - id: ESDegradationEventTelecoms
     - id: ESDegradationEventCrewMonitoring
-    - id: ESDegradationEventIDCardComputer
+    - id: ESDegradationEventEmergencyAccess
 
 # Event Prototypes
 
@@ -69,6 +69,7 @@
   components:
   - type: ESDegradationEvent
     component: CommunicationsConsole
+    degradeImmediately: true
 
 - type: entity
   parent: ESBaseDegradationEvent
@@ -103,9 +104,10 @@
 
 - type: entity
   parent: ESBaseDegradationEvent
-  id: ESDegradationEventIDCardComputer
-  name: ID Scramble
-  description: Messes up the icons on IDs all over the station.
+  id: ESDegradationEventEmergencyAccess
+  name: False Emergency Access
+  description: Randomly enables emergency access on various airlocks across the station.
   components:
   - type: ESDegradationEvent
-    component: IdCardConsole
+    component: ESEmergencyAccessConsole
+    degradeImmediately: true # Doesn't react to anything
