@@ -585,3 +585,11 @@ Entries:
         easier planning of evil strategies.
   id: 68
   time: '2026-06-17T16:34:32.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        You will now be slowed for a short time when swinging a melee weapon, or
+        when being hit by a melee weapon
+  id: 69
+  time: '2026-06-17T16:37:31.0000000+00:00'
