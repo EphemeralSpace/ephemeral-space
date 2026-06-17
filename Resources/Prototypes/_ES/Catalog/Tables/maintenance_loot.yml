@@ -3,13 +3,13 @@
   table:
     group:
     - tableId: ESMaintLootWorthless
-      weight: 35
+      weight: 25
     - tableId: ESMaintLootCommon
-      weight: 52
+      weight: 45
     - tableId: ESMaintLootUncommon
-      weight: 12
+      weight: 26
     - tableId: ESMaintLootRare
-      weight: 1
+      weight: 4
 
 - type: entityTable
   id: ESMaintLootExposed # for placing on racks or tables
@@ -18,7 +18,7 @@
     - tableId: ESMaintLootCommon
       weight: 50
     - tableId: ESMaintLootUncommon
-      weight: 45
+      weight: 49
     - weight: 3
       group:
       - id: ToolboxEmergencyFilled
@@ -28,7 +28,7 @@
       - id: ToolboxArtisticFilled
         weight: 0.1
     - tableId: ESMaintLootRare
-      weight: 2
+      weight: 3
 
 - type: entityTable
   id: ESMaintLootValuable
@@ -302,7 +302,7 @@
   table:
     group:
     - tableId: ESMaintsTraitorLoot
-      weight: 4
+      weight: 8
     - id: ESWeaponKnife
       weight: 2
     - id: WelderIndustrialAdvanced
