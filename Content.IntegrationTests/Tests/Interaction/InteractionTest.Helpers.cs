@@ -1158,11 +1158,6 @@ public abstract partial class InteractionTest
         await Pair.RunTicksSync(ticks);
     }
 
-    protected async Task RunSeconds(float seconds)
-    {
-        await Pair.RunSeconds(seconds);
-    }
-
     #endregion
 
     #region BUI
