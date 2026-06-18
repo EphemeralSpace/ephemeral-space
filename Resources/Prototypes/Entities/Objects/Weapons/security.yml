@@ -10,7 +10,7 @@
     - state: stunbaton_off
       map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Stunbaton
-    energyPerUse: 50
+    energyPerUse: 100
   - type: ItemToggle
     predictable: false
     soundDeactivate:
@@ -63,8 +63,8 @@
     sound: /Audio/Weapons/egloves.ogg
   - type: LandAtCursor # it deals stamina damage when thrown
   - type: Battery
-    maxCharge: 500
-    startingCharge: 500
+    maxCharge: 1000
+    startingCharge: 1000
   - type: UseDelay
   - type: Item
     heldPrefix: off
