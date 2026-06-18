@@ -426,15 +426,16 @@
   - type: Sprite
     sprite: Objects/Tools/shovel.rsi
     state: icon
-  - type: MeleeWeapon
+  - type: MeleeWeapon # large, difficult to swing, will knock you out because its a damn shovel
     wideAnimationRotation: 45
+    attackRate: 0.50
     damage:
       types:
-        Blunt: 14
+        Blunt: 17
     soundHit:
       collection: MetalThud
   - type: Item
-    size: Normal
+    size: Ginormous
     sprite: Objects/Tools/shovel.rsi
   - type: PhysicalComposition
     materialComposition:
