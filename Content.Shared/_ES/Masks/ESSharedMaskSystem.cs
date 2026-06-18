@@ -356,7 +356,7 @@ public abstract partial class ESSharedMaskSystem : EntitySystem
     }
 
     /// <summary>
-    /// Returns all minds nearby who are members of a given troupe
+    /// Returns all minds nearby who are members of a given hostile troupe
     /// </summary>
     public IEnumerable<EntityUid> GetNearbyHostileTroupeMembers(Entity<ESHostileTowardsTroupeComponent?> ent, float range)
     {
@@ -367,6 +367,9 @@ public abstract partial class ESSharedMaskSystem : EntitySystem
         return hostiles;
     }
 
+    /// <summary>
+    /// Returns all minds nearby who are members of a given troupe
+    /// </summary>
     public IEnumerable<EntityUid> GetNearbyTroupeMembers(EntityUid ent, float range, HashSet<ProtoId<ESTroupePrototype>> troupes)
     {
         var xform = Transform(ent);
