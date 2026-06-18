@@ -405,6 +405,8 @@ ScalpelLaser: Scalpel
 TearGasGrenade: SmokeGrenade
 MetalFoamGrenade: SmokeGrenade
 CrateEngineeringFoamGrenade: CrateEngineeringCableBulk
+ClothingHeadHatHardhatYellowDark: ClothingHeadHatHardhatYellow
+ClothingHeadHatHardhatArmored: ClothingHeadHatHardhatYellow
 
 # ES END
 
