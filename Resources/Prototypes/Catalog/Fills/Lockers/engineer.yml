@@ -199,7 +199,7 @@
     - id: trayScanner
     - id: RCD
     - id: RCDAmmo
-    - id: MetalFoamGrenade
+    - id: AirGrenade # TODO replace this with something better
 
 - type: entityTable
   id: FillEngineerHardsuit
@@ -219,40 +219,3 @@
     containers:
       entity_storage:
         tableId: ESFillRadiationSuit
-
-- type: entity
-  # ES START
-  # unused but old parent was removed? idk
-  parent: ClosetEmergency
-  # ES END
-  id: LockerEvacRepairFilled
-  suffix: Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillLockerEvacRepair
-
-- type: entity
-  # ES START
-  # unused but old parent was removed? idk
-  parent: ClosetWallEmergency
-  # ES END
-  id: LockerWallEvacRepairFilled
-  suffix: Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillLockerEvacRepair
-
-- type: entityTable
-  id: FillLockerEvacRepair
-  table: !type:AllSelector
-    children:
-    - id: BoxInflatable
-    - id: HolofanProjector
-    - id: MetalFoamGrenade
-      amount: 3
-    - id: AirGrenade
-      amount: 3
