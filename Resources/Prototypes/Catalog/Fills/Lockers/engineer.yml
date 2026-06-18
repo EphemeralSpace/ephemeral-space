@@ -44,7 +44,6 @@
       - id: ClothingHeadHatHardhatOrange
       - id: ClothingHeadHatHardhatWhite
       - id: ClothingHeadHatHardhatYellow
-      - id: ClothingHeadHatHardhatYellowDark
     - id: CableApcStack
       prob: 0.3
       rolls: !type:ConstantNumberSelector
