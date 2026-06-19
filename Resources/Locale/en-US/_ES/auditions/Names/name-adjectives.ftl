@@ -56,4 +56,4 @@ es-names-adjective-dataset-52 = Whimsical
 es-names-adjective-dataset-53 = Nuclear
 es-names-adjective-dataset-54 = Moldy
 es-names-adjective-dataset-55 = Pheemy
-Classic
+es-names-adjective-dataset-56 = Classic
