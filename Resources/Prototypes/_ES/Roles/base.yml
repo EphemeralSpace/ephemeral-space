@@ -27,8 +27,8 @@
   id: ESBaseJobSecurityNaming
   abstract: true
   nameConfig:
-    prefixChance: 0.12
-    prefixGenderlessChance: 0.75
+    prefixChance: 0.2
+    prefixGenderlessChance: 0.925
     prefixFirstNameless: 0.65
     prefixGenderlessDataset: ESNamePrefixGenderlessSecurity
 
