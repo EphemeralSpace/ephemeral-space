@@ -71,7 +71,7 @@
   id: ESNamePrefixMaleRoyal
   values:
     prefix: es-name-prefix-dataset-male-royal-
-    count: 4
+    count: 6
 
 - type: localizedDataset
   id: ESNamePrefixFemale
