@@ -1,5 +1,4 @@
 using Content.Server._ES.Masks.Nobleman.Components;
-using Content.Server._ES.Masks.Objectives.Relays;
 using Content.Server._ES.Masks.Objectives.Relays.Components;
 using Content.Server._ES.Masks.Parasite.Components;
 using Content.Server.Administration;

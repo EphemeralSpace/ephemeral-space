@@ -36,7 +36,7 @@
   id: LeapLeech
   name: es-mask-leapleech-name
   description: es-mask-leapleech-desc
-  color: ForestGreen
+  color: darkgoldenrod
   mindComponents:
   - type: ESLeapleech
 

@@ -13,5 +13,5 @@ public sealed partial class ESChangeMaskOnTriggerComponent : BaseXOnTriggerCompo
 
     // Do we want to be able to convert masks into the same mask they already are?
     [DataField]
-    public bool SameMaskConversion = false;
+    public bool SameTroupeConversion;
 }

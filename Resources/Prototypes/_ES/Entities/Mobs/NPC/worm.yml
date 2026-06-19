@@ -1,13 +1,12 @@
 ﻿- type: entity
-  name: leepleach
+  name: leapleech
   id: ESMobLeepLeach
   parent: [ SimpleMobBase, MobCombat ]
   description: this leapy leech will leap to leech you.
   components:
   - type: ESHostileTowardsTroupe
-    hostileTroupes:
-    - Crew
-    - Traitor
+    nonHostileTroupes:
+    - Parasite
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -59,9 +58,6 @@
       collection: FootstepSnake
   - type: TriggerOnMeleeHit
     targetIsUser: true
-  - type: DamageOnTrigger
-    damage:
-      types:
-        Blunt: 10
+  - type: DeleteOnTrigger
   - type: ESChangeMaskOnTrigger
     mask: LeapLeech
