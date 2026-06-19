@@ -26,6 +26,7 @@ namespace Content.Shared.Roles
         [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<JobPrototype>))]
         public string[]? Parents { get; private set; }
 
+        [NeverPushInheritance]
         [AbstractDataField]
         public bool Abstract { get; private set; }
 
