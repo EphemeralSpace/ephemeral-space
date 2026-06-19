@@ -483,11 +483,11 @@ es-names-first-dataset-male-468 = Johm
 es-names-first-dataset-male-469 = Wallace
 es-names-first-dataset-male-470 = Gromit
 # 2026-06
-Sergey
-Greeb
-Mortimer
-Bertolt
-Moreau
-Deckard
-Bumpus
-Rodion
+es-names-first-dataset-male-471 = Sergey
+es-names-first-dataset-male-472 = Greeb
+es-names-first-dataset-male-473 = Mortimer
+es-names-first-dataset-male-474 = Bertolt
+es-names-first-dataset-male-475 = Moreau
+es-names-first-dataset-male-476 = Deckard
+es-names-first-dataset-male-477 = Bumpus
+es-names-first-dataset-male-478 = Rodion

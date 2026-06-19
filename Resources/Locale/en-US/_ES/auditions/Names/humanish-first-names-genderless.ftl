@@ -362,9 +362,9 @@ es-names-first-dataset-genderless-347 = Clover
 es-names-first-dataset-genderless-348 = Jakulin
 es-names-first-dataset-genderless-349 = January
 # 2026-06
-Shokolat
-Tinsley
-Solarium
-Valentine
-Trisolaris
-Edit
+es-names-first-dataset-genderless-350 = Shokolat
+es-names-first-dataset-genderless-351 = Tinsley
+es-names-first-dataset-genderless-352 = Solarium
+es-names-first-dataset-genderless-353 = Valentine
+es-names-first-dataset-genderless-354 = Trisolaris
+es-names-first-dataset-genderless-355 = Edit
