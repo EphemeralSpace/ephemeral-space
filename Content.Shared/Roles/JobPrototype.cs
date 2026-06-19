@@ -6,6 +6,7 @@ using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
 // ES START
 // Add name configs to job prototypes
@@ -16,11 +17,17 @@ namespace Content.Shared.Roles
     ///     Describes information for a single job on the station.
     /// </summary>
     [Prototype]
-    public sealed partial class JobPrototype : IPrototype
+    public sealed partial class JobPrototype : IPrototype, IInheritingPrototype
     {
         [ViewVariables]
         [IdDataField]
         public string ID { get; private set; } = default!;
+
+        [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<JobPrototype>))]
+        public string[]? Parents { get; private set; }
+
+        [AbstractDataField]
+        public bool Abstract { get; private set; }
 
         [DataField(required: true, customTypeSerializer: typeof(PrototypeIdSerializer<PlayTimeTrackerPrototype>))]
         public string PlayTimeTracker { get; private set; } = string.Empty;

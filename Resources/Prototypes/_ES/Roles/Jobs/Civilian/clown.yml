@@ -16,6 +16,14 @@
       interval: 10
   - !type:AddImplantSpecial
     implants: [ SadTromboneImplant ]
+  nameConfig:
+    doubleFirstNameChance: 0.03
+    quotedMiddleNameChance: 0.03
+    abbreviatedMiddleChance: 0.005
+    abbreviatedFirstMiddleChance: 0.005
+    lastNamelessChance: 0.15
+    adjectiveFirstNameChance: 0.45
+    adjectiveAlliterationTotalChances: 10
 
 - type: startingGear
   id: ESClownGear

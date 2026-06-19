@@ -47,22 +47,46 @@
   id: ESNamePrefixGenderless
   values:
     prefix: es-name-prefix-dataset-genderless-
-    count: 6
+    count: 5
+
+- type: localizedDataset
+  id: ESNamePrefixGenderlessSecurity
+  values:
+    prefix: es-name-prefix-dataset-genderless-security-
+    count: 5
+
+- type: localizedDataset
+  id: ESNamePrefixGenderlessRoyal
+  values:
+    prefix: es-name-prefix-dataset-genderless-royal-
+    count: 1
 
 - type: localizedDataset
   id: ESNamePrefixMale
   values:
     prefix: es-name-prefix-dataset-male-
+    count: 2
+
+- type: localizedDataset
+  id: ESNamePrefixMaleRoyal
+  values:
+    prefix: es-name-prefix-dataset-male-royal
     count: 4
 
 - type: localizedDataset
   id: ESNamePrefixFemale
   values:
     prefix: es-name-prefix-dataset-female-
+    count: 4
+
+- type: localizedDataset
+  id: ESNamePrefixFemaleRoyal
+  values:
+    prefix: es-name-prefix-dataset-female-royal-
     count: 6
 
 - type: localizedDataset
   id: ESNamePrefixNonbinary
   values:
     prefix: es-name-prefix-dataset-nonbinary-
-    count: 2
+    count: 1

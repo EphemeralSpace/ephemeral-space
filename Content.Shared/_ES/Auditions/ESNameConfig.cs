@@ -31,7 +31,7 @@ public partial struct ESNameConfig
     /// Chance that the first name dataset used will solely be <see cref="SpeciesPrototype.GenderlessFirstNames"/>
     /// </summary>
     [DataField]
-    public float GenderlessFirstNameChance = 0.5f; // the future is woke
+    public float GenderlessFirstNameChance = 0.6f; // the future is woke
 
     /// <summary>
     /// Chance that the first name will recursively generate a second first name.
@@ -107,19 +107,19 @@ public partial struct ESNameConfig
     /// Chance that the name will be preceded by a prefix
     /// </summary>
     [DataField]
-    public float PrefixChance = 0.09f;
+    public float PrefixChance = 0.07f;
 
     /// <summary>
     /// Given <see cref="PrefixChance"/>, chance that the prefix dataset will be overriden with <see cref="PrefixGenderlessDataset"/>
     /// </summary>
     [DataField]
-    public float PrefixGenderlessChance = 0.65f;
+    public float PrefixGenderlessChance = 0.01f;
 
     /// <summary>
     /// Given <see cref="PrefixChance"/>, chance that there will be no first name
     /// </summary>
     [DataField]
-    public float PrefixFirstNameless = 0.7f;
+    public float PrefixFirstNameless = 0.825f;
 
     /// <summary>
     /// Chance that there will be no last name

@@ -1,5 +1,6 @@
 - type: job
   id: ESCaptain
+  parent: ESBaseJobRoyalNaming
   name: ESjob-name-captain
   description: ESjob-description-captain
   playTimeTracker: ESJobCaptain

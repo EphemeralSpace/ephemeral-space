@@ -1,5 +1,6 @@
 - type: job
   id: ESDoctor
+  parent: ESBaseJobProfessionalNaming
   name: ESjob-name-doctor
   description: ESjob-description-doctor
   playTimeTracker: ESJobDoctor
