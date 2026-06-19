@@ -593,3 +593,17 @@ Entries:
         when being hit by a melee weapon
   id: 69
   time: '2026-06-17T16:37:31.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Name pool has been expanded in some places and pruned in others
+    - type: Tweak
+      message: >-
+        Only professional-type jobs (doctors engis sci) can roll dr/prof/etc as
+        prefixes now
+    - type: Add
+      message: Security roles can now generate 'Officer' etc as prefixes
+    - type: Add
+      message: apple knowledge
+  id: 70
+  time: '2026-06-19T18:15:39.0000000+00:00'
