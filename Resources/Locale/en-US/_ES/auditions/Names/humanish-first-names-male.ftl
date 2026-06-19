@@ -482,3 +482,12 @@ es-names-first-dataset-male-467 = Buffalo
 es-names-first-dataset-male-468 = Johm
 es-names-first-dataset-male-469 = Wallace
 es-names-first-dataset-male-470 = Gromit
+# 2026-06
+Sergey
+Greeb
+Mortimer
+Bertolt
+Moreau
+Deckard
+Bumpus
+Rodion

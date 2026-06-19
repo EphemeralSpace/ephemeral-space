@@ -361,3 +361,10 @@ es-names-first-dataset-genderless-346 = Pratice
 es-names-first-dataset-genderless-347 = Clover
 es-names-first-dataset-genderless-348 = Jakulin
 es-names-first-dataset-genderless-349 = January
+# 2026-06
+Shokolat
+Tinsley
+Solarium
+Valentine
+Trisolaris
+Edit

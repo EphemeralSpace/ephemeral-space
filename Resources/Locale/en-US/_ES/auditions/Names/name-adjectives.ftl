@@ -52,3 +52,6 @@ es-names-adjective-dataset-49 = Discount
 es-names-adjective-dataset-50 = Stone-Cold
 es-names-adjective-dataset-51 = Freaky
 es-names-adjective-dataset-52 = Whimsical
+# 2026-06
+Nuclear
+Moldy

@@ -828,4 +828,27 @@ es-names-last-dataset-811 = Suppleguice
 es-names-last-dataset-812 = Gaplesauce
 es-names-last-dataset-813 = Guhub
 es-names-last-dataset-814 = Stainglass
-
+# 2026-06
+Sausage
+Adamantine
+Greebling
+Pastiche
+Wildberger
+Eataberger
+Insularis
+Misny
+Buttondials
+Keys
+Havfun
+Feedbak
+Silverhand
+Palette
+Butz
+Kepler
+Valentine
+Roughnecks
+Deckard
+Countermeasure
+Raskolnikov
+Appleseed
+Engooden
