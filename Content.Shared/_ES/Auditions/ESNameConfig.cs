@@ -65,7 +65,7 @@ public partial struct ESNameConfig
     /// Whatsapp-Fury, Dennis-Crater
     /// </example>
     [DataField]
-    public float HyphenatedLastNameChance = 0.03f;
+    public float HyphenatedLastNameChance = 0.025f;
 
     /// <summary>
     /// Chance that the first name will have an abbreviated middle name following it
