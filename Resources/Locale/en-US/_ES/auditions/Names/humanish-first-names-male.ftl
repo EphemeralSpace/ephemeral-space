@@ -491,12 +491,12 @@ es-names-first-dataset-male-475 = Moreau
 es-names-first-dataset-male-476 = Deckard
 es-names-first-dataset-male-477 = Bumpus
 es-names-first-dataset-male-478 = Rodion
-Stu
-Roach
-Trud
-Grub
-Kefka
-Prime
-Truk
-Cixin
-Rich
+es-names-first-dataset-male-479 = Stu
+es-names-first-dataset-male-480 = Roach
+es-names-first-dataset-male-481 = Trud
+es-names-first-dataset-male-482 = Grub
+es-names-first-dataset-male-483 = Kefka
+es-names-first-dataset-male-484 = Prime
+es-names-first-dataset-male-485 = Truk
+es-names-first-dataset-male-486 = Cixin
+es-names-first-dataset-male-487 = Rich
