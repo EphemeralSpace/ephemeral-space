@@ -353,7 +353,6 @@ es-names-first-dataset-genderless-339 = Lunch
 es-names-first-dataset-genderless-340 = Orphie
 es-names-first-dataset-genderless-341 = Snerd
 es-names-first-dataset-genderless-342 = Delicios
-es-names-first-dataset-genderless-343 = Quoris
 es-names-first-dataset-genderless-344 = Kilo
 # 2026-03-31
 es-names-first-dataset-genderless-345 = Seam
@@ -368,3 +367,14 @@ es-names-first-dataset-genderless-352 = Solarium
 es-names-first-dataset-genderless-353 = Valentine
 es-names-first-dataset-genderless-354 = Trisolaris
 es-names-first-dataset-genderless-355 = Edit
+Smog
+Dunk
+Slutch
+Stew
+Howdy
+Sock
+Reddit
+Burger
+Donk
+Juice
+Ducky

@@ -55,3 +55,4 @@ es-names-adjective-dataset-52 = Whimsical
 # 2026-06
 es-names-adjective-dataset-53 = Nuclear
 es-names-adjective-dataset-54 = Moldy
+Pheemy
