@@ -21,7 +21,7 @@
   id: ESNamesLast
   values:
     prefix: es-names-last-dataset-
-    count: 590
+    count: 591
 
 - type: localizedDataset
   id: ESNameAdjectives
