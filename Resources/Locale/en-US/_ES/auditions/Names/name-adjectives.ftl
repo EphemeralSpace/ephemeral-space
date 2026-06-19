@@ -52,3 +52,8 @@ es-names-adjective-dataset-49 = Discount
 es-names-adjective-dataset-50 = Stone-Cold
 es-names-adjective-dataset-51 = Freaky
 es-names-adjective-dataset-52 = Whimsical
+# 2026-06
+es-names-adjective-dataset-53 = Nuclear
+es-names-adjective-dataset-54 = Moldy
+es-names-adjective-dataset-55 = Pheemy
+es-names-adjective-dataset-56 = Classic

@@ -1,5 +1,6 @@
 - type: job
   id: ESSecurityOfficer
+  parent: ESBaseJobSecurityNaming
   name: ESjob-name-security
   description: ESjob-description-security
   playTimeTracker: ESJobSecurityOfficer

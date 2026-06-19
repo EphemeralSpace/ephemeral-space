@@ -1,5 +1,6 @@
 - type: job
   id: ESAtmosphericTechnician
+  parent: ESBaseJobProfessionalNaming
   name: ESjob-name-atmostech
   description: ESjob-description-atmostech
   playTimeTracker: ESJobAtmosphericTechnician
