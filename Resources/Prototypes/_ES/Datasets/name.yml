@@ -3,7 +3,7 @@
   id: ESNamesFirstMale
   values:
     prefix: es-names-first-dataset-male-
-    count: 388
+    count: 373
 
 - type: localizedDataset
   id: ESNamesFirstFemale
