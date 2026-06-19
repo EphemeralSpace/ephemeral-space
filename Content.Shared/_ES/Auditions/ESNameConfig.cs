@@ -74,7 +74,7 @@ public partial struct ESNameConfig
     /// Gibb P., Rigel F.
     /// </example>
     [DataField]
-    public float AbbreviatedMiddleChance = 0.07f;
+    public float AbbreviatedMiddleChance = 0.055f;
 
     /// <summary>
     /// Chance that the first name will be converted into a pair of abbreviations.
@@ -83,7 +83,7 @@ public partial struct ESNameConfig
     /// R.L., FE, J.K.
     /// </example>
     [DataField]
-    public float AbbreviatedFirstMiddleChance = 0.085f;
+    public float AbbreviatedFirstMiddleChance = 0.065f;
 
     /// <summary>
     /// Given <see cref="AbbreviatedFirstMiddleChance"/>, chance that the initials are formatted as "AB" instead of "A.B."
