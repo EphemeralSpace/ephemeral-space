@@ -282,11 +282,12 @@ public abstract partial class SharedMoverController : VirtualController
             var ev = new CanWeightlessMoveEvent(uid);
             RaiseLocalEvent(uid, ref ev, true);
 
-            touching = ev.CanMove || xform.GridUid != null || MapGridQuery.HasComp(xform.GridUid);
+            touching = ev.CanMove;
+            var onGrid = xform.GridUid != null || MapGridQuery.HasComp(xform.GridUid);
 
-            // If we're not on a grid, and not able to move in space check if we're close enough to a grid to touch.
+            // Check if we're close enough to a wall to count as touching
             if (!touching && MobMoverQuery.TryComp(uid, out var mobMover))
-                touching |= IsAroundCollider(_lookup, (uid, physicsComponent, mobMover, xform));
+                touching |= IsAroundCollider(_lookup, (uid, physicsComponent, mobMover, xform), onGrid);
 
             // If we're touching then use the weightless values
             if (touching)
@@ -516,13 +517,14 @@ public abstract partial class SharedMoverController : VirtualController
     /// <summary>
     /// Used for weightlessness to determine if we are near a wall.
     /// </summary>
-    private bool IsAroundCollider(EntityLookupSystem lookupSystem, Entity<PhysicsComponent, MobMoverComponent, TransformComponent> entity)
+    private bool IsAroundCollider(EntityLookupSystem lookupSystem, Entity<PhysicsComponent, MobMoverComponent, TransformComponent> entity, bool onGrid)
     {
         var (uid, collider, mover, transform) = entity;
+        // enlarge more off grid, on grid its fine to require being kinda close to stuff
         var enlargedAABB = _lookup.GetWorldAABB(entity.Owner, transform).Enlarged(mover.GrabRange);
 
         _aroundColliderSet.Clear();
-        lookupSystem.GetEntitiesIntersecting(transform.MapID, enlargedAABB, _aroundColliderSet);
+        lookupSystem.GetEntitiesIntersecting(transform.MapID, enlargedAABB, _aroundColliderSet, LookupFlags.Static);
         foreach (var otherEntity in _aroundColliderSet)
         {
             if (otherEntity == uid)
