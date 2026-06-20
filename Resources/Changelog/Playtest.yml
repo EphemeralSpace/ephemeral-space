@@ -663,3 +663,11 @@ Entries:
       message: There are now helpful bots on the shuttle.
   id: 77
   time: '2026-06-20T22:05:20.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        Nerfed revolver damage slightly. It now takes 4 shots to down instead of
+        3.
+  id: 78
+  time: '2026-06-20T22:22:36.0000000+00:00'
