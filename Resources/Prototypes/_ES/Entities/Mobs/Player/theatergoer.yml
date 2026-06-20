@@ -5,11 +5,12 @@
   description: A member of your troupe.
   components:
   - type: Sprite
-    sprite: _ES/Mobs/Ghosts/theatergoer.rsi
+    sprite: _ES/Mobs/Ghosts/theatergoer_body.rsi
     layers:
     - state: body
       map: [ "body" ]
     - state: head-1
+      sprite: _ES/Mobs/Ghosts/theatergoer_head.rsi
       map: [ "face" ]
   - type: RandomSprite
     available:
@@ -46,9 +47,9 @@
   - type: GenericVisualizer
     visuals:
       enum.ESUsernameEntityVisuals.Admin:
-        base:
-          True: { state: admin }
-          False: { state: body }
+        body:
+          True: { sprite: _ES/Mobs/Ghosts/theatergoer_body_admin.rsi }
+          False: { sprite: _ES/Mobs/Ghosts/theatergoer_body.rsi }
   - type: ESMindVisuals
   - type: Buckle
   - type: Hands

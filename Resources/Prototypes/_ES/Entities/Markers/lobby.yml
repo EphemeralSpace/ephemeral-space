@@ -9,7 +9,7 @@
     sprite: Markers/cross.rsi
     layers:
     - state: green
-    - sprite: _ES/Mobs/Ghosts/theatergoer.rsi
+    - sprite: _ES/Mobs/Ghosts/theatergoer_head.rsi
       state: head-1
   - type: Physics
     bodyType: Static
@@ -36,7 +36,7 @@
     sprite: Markers/cross.rsi
     layers:
     - state: red
-    - sprite: _ES/Mobs/Ghosts/theatergoer.rsi
+    - sprite: _ES/Mobs/Ghosts/theatergoer_head.rsi
       state: head-3
   - type: Physics
     bodyType: Static
