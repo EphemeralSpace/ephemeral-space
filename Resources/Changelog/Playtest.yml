@@ -643,3 +643,9 @@ Entries:
       message: Stagehands now have an ominous floating animation while moving about...
   id: 74
   time: '2026-06-20T16:32:09.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Last words should be a little more readable hopefully
+  id: 75
+  time: '2026-06-20T16:43:42.0000000+00:00'
