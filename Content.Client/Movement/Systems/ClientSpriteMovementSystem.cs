@@ -39,7 +39,6 @@ public sealed class ClientSpriteMovementSystem : VisualizerSystem<SpriteMovement
             }
         }
 
-        Log.Info($"setting layers {isMoving}");
         SetLayers(isMoving ? comp.MovementLayers : comp.NoMovementLayers);
         comp.WasMoving = isMoving;
     }
