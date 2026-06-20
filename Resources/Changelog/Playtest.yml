@@ -655,3 +655,11 @@ Entries:
       message: Bugged APCs now have a unique sprite.
   id: 76
   time: '2026-06-20T22:04:52.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: The cargo lathe is now inside of cargo.
+    - type: Tweak
+      message: There are now helpful bots on the shuttle.
+  id: 77
+  time: '2026-06-20T22:05:20.0000000+00:00'
