@@ -392,7 +392,6 @@
   - type: PopupOnAppliedStatusEffect
     message: brain-oxygen-depleted
     visualType: LargeCaution
-  - type: SlowAccent
   - type: DrunkStatusEffect
   - type: KnockdownStatusEffect
   - type: KnockdownOnAppliedStatusEffect
