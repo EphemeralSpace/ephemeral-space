@@ -649,3 +649,9 @@ Entries:
       message: Last words should be a little more readable hopefully
   id: 75
   time: '2026-06-20T16:43:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Bugged APCs now have a unique sprite.
+  id: 76
+  time: '2026-06-20T22:04:52.0000000+00:00'
