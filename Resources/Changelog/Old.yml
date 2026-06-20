@@ -1,8 +1,0 @@
-Entries:
-- author: test2
-  changes:
-  - message: test
-    type: Remove
-  id: 1
-  time: '2025-08-31T12:54:45.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/39027
