@@ -1,17 +1,14 @@
-using System.Numerics;
-using Content.Server.NPC.HTN.PrimitiveTasks.Operators.Interactions;
-using Content.Shared.CombatMode;
+using Content.Server.NPC;
+using Content.Server.NPC.HTN;
+using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Shared.Throwing;
-using Content.Shared.Weapons.Melee;
 using Robust.Shared.Map;
-using Robust.Shared.Physics;
 
-namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Combat.Melee;
+namespace Content.Server._ES.NPCs.Operators;
 
 public sealed partial class ESJumpToOperator : HTNOperator
 {
     private ThrowingSystem _throwingSystem = default!;
-
 
     /// <summary>
     /// Key that contains the target entity.
@@ -23,7 +20,7 @@ public sealed partial class ESJumpToOperator : HTNOperator
     /// Key that contains throw speed
     /// </summary>
     [DataField]
-    public float ThrowSpeedKey = 5f;
+    public float ThrowSpeedKey = 10f;
 
     public override void Initialize(IEntitySystemManager sysManager)
     {

@@ -16,8 +16,20 @@
     drawdepth: Mobs
     sprite: _ES/Mobs/Animals/leepleach.rsi
     layers:
+    - map: [ "jump" ]
+      state: leepleach_leaping
+      visible: false
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: leepleach
+  - type: GenericVisualizer
+    visuals:
+      enum.ESThrowVisuals.InAir:
+        jump:
+          True: { visible: true }
+          False: { visible: false }
+        enum.DamageStateVisualLayers.Base:
+          True: { visible: false }
+          False: { visible: true }
   - type: Physics
   - type: Fixtures
     fixtures:

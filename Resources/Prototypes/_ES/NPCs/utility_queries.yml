@@ -13,5 +13,5 @@
       preset: TargetHealth
   - !type:TargetAccessibleCon
     curve: !type:BoolCurve
-  - !type:TargetInLOSOrCurrentCon
+  - !type:TargetInLOSCon
     curve: !type:BoolCurve
