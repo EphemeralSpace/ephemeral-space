@@ -29,11 +29,7 @@ namespace Content.Server.Jobs
                 return;
 
             var entMan = IoCManager.Resolve<IEntityManager>();
-
-//            var entity = entMan.SpawnEntity(Prototype, entMan.GetComponent<TransformComponent>(mob).Coordinates);
-
-//            sysMan.GetEntitySystem<SharedHandsSystem>().PickupOrDrop(mob, entity);
-
+            
             entMan.SpawnInBag([Prototype], mob);
         }
     }
