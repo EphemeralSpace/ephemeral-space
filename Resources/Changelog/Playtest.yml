@@ -607,3 +607,19 @@ Entries:
       message: apple knowledge
   id: 70
   time: '2026-06-19T18:15:39.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        Captain and Station Administrator can now be subverted with the
+        subversion chip.
+    - type: Tweak
+      message: >-
+        Made the shovel's stats a bit more reasonable. It does more damage and
+        is slower, but cannot be stored.
+    - type: Tweak
+      message: Stunbatons now have half battery charge.
+    - type: Remove
+      message: Removed metal foam grenades
+  id: 71
+  time: '2026-06-20T13:41:13.0000000+00:00'
