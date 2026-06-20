@@ -32,7 +32,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 40
+        Piercing: 30
   - type: Tag
     tags:
     - ES357Projectile
