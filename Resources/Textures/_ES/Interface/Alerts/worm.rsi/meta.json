@@ -1,0 +1,44 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by EmoGarbage404",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "leech0"
+        },
+        {
+            "name": "leech1"
+        },
+        {
+            "name": "leech2"
+        },
+        {
+            "name": "leech3"
+        },
+        {
+            "name": "leech4"
+        },
+        {
+            "name": "leech5"
+        },
+        {
+            "name": "leech6"
+        },
+        {
+            "name": "leech7"
+        },
+        {
+            "name": "leech8"
+        },
+        {
+            "name": "leech9"
+        },
+        {
+            "name": "leech10"
+        }
+    ]
+}

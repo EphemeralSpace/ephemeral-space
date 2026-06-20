@@ -1,7 +1,7 @@
 <Document>
     <ESGuideMaskEmbed Mask="Psychid"/>
 
-    The Psychid is am extremely stealthy member of the parasites that takes advantage of body swapping to slowly multiply across the station.
+    The Psychid is an extremely stealthy member of the parasites that takes advantage of body swapping to slowly multiply across the station.
 
     <Box>
         <GuideEntityEmbed Entity="OrganHumanBrain" Caption=""/>
