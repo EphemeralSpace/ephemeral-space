@@ -401,6 +401,13 @@ ScalpelShiv: Scalpel
 ScalpelAdvanced: Scalpel
 ScalpelLaser: Scalpel
 
+# 2026-6-17
+TearGasGrenade: SmokeGrenade
+MetalFoamGrenade: SmokeGrenade
+CrateEngineeringFoamGrenade: CrateEngineeringCableBulk
+ClothingHeadHatHardhatYellowDark: ClothingHeadHatHardhatYellow
+ClothingHeadHatHardhatArmored: ClothingHeadHatHardhatYellow
+
 # ES END
 
 # 2026-01-07

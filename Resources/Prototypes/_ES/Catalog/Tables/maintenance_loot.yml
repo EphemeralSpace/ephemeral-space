@@ -176,7 +176,6 @@
       - id: ClothingHeadHatHardhatOrange
       - id: ClothingHeadHatHardhatWhite
       - id: ClothingHeadHatHardhatYellow
-      - id: ClothingHeadHatHardhatYellowDark
       - id: ClothingHeadHatCone
     - id: FlashlightLantern
       weight: 2
