@@ -5,7 +5,7 @@ namespace Content.Shared.Movement.Components;
 /// <summary>
 /// Updates a sprite layer based on whether an entity is moving via input or not.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class SpriteMovementComponent : Component
 {
     /// <summary>
@@ -20,6 +20,5 @@ public sealed partial class SpriteMovementComponent : Component
     [DataField]
     public Dictionary<string, PrototypeLayerData> NoMovementLayers = new();
 
-    [DataField, AutoNetworkedField]
-    public bool IsMoving;
+    public bool? WasMoving = null;
 }

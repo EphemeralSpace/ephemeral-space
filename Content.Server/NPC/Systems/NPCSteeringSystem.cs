@@ -60,6 +60,7 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
     [Dependency] private NpcFactionSystem _npcFaction = default!;
     [Dependency] private PathfindingSystem _pathfindingSystem = default!;
     [Dependency] private PryingSystem _pryingSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedMeleeWeaponSystem _melee = default!;
@@ -216,8 +217,8 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         {
             controller.CurTickSprintMovement = Vector2.Zero;
 
-            var ev = new SpriteMoveEvent(false);
-            RaiseLocalEvent(uid, ref ev);
+            if (controller.UsesSpriteMovement)
+                _appearance.SetData(uid, SpriteMovementVisuals.Moving, controller.HasDirectionalMovement);
         }
 
         component.PathfindToken?.Cancel();
@@ -297,8 +298,8 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         component.LastInputTick = _timing.CurTick;
         component.LastInputSubTick = ushort.MaxValue;
 
-        var ev = new SpriteMoveEvent(true);
-        RaiseLocalEvent(uid, ref ev);
+        if (component.UsesSpriteMovement)
+            _appearance.SetData(uid, SpriteMovementVisuals.Moving, component.HasDirectionalMovement);
     }
 
     /// <summary>

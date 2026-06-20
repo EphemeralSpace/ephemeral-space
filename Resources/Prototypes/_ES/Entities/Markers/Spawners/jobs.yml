@@ -7,7 +7,7 @@
     sprite: Markers/jobs.rsi
     layers:
     - state: green
-    - sprite: _ES/Mobs/Ghosts/theatergoer.rsi
+    - sprite: _ES/Mobs/Ghosts/theatergoer_body.rsi
       state: body
   - type: SpawnPoint
     spawn_type: Theatergoer
