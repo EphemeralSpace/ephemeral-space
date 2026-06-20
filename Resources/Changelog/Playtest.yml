@@ -631,3 +631,9 @@ Entries:
         in the form of dangerous jumping leeches.
   id: 72
   time: '2026-06-20T13:43:00.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Removed the Psychid.
+  id: 73
+  time: '2026-06-20T14:09:29.0000000+00:00'
