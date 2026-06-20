@@ -623,3 +623,11 @@ Entries:
       message: Removed metal foam grenades
   id: 71
   time: '2026-06-20T13:41:13.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: >-
+        Added the Leapleech, a new parasite mask that brings revenge to the crew
+        in the form of dangerous jumping leeches.
+  id: 72
+  time: '2026-06-20T13:43:00.0000000+00:00'
