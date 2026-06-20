@@ -5,6 +5,7 @@ using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.KillTracking.Components;
+using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Content.Shared.Gibbing;
 using Content.Shared.IdentityManagement;
@@ -19,6 +20,7 @@ namespace Content.Server._ES.Masks.Leapleech;
 
 public sealed partial class ESLeapleechSystem : EntitySystem
 {
+    [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private GibbingSystem _gibbing = default!;
@@ -30,7 +32,9 @@ public sealed partial class ESLeapleechSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<ESLeapleechComponent, ComponentStartup>(OnComponentStartup);
+        SubscribeLocalEvent<ESLeapleechComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<ESLeapleechComponent, MindGotAddedEvent>(OnMindGotAdded);
+        SubscribeLocalEvent<ESLeapleechComponent, MindGotRemovedEvent>(OnMindGotRemoved);
 
         SubscribeLocalEvent<ESLeapleechComponent, ESDamageTakenEvent>(OnDamageTaken);
         SubscribeLocalEvent<ESLeapleechComponent, ESPlayerKilledEvent>(OnPlayerKilled);
@@ -44,17 +48,34 @@ public sealed partial class ESLeapleechSystem : EntitySystem
             return;
 
         EnsureComp<ESDamageTakerRelayComponent>(owned);
+        _alerts.ShowAlert(owned, ent.Comp.Alert, 0);
+    }
+
+    private void OnComponentShutdown(Entity<ESLeapleechComponent> ent, ref ComponentShutdown args)
+    {
+        if (!TryComp<MindComponent>(ent, out var mind) ||
+            mind.OwnedEntity is not { } owned)
+            return;
+
+        _alerts.ClearAlert(owned, ent.Comp.Alert);
     }
 
     private void OnMindGotAdded(Entity<ESLeapleechComponent> ent, ref MindGotAddedEvent args)
     {
+        if (args.TransferEntity is not { } owned)
+            return;
+        EnsureComp<ESDamageTakerRelayComponent>(owned);
+        _alerts.ShowAlert(owned, ent.Comp.Alert, 0);
+    }
+
+    private void OnMindGotRemoved(Entity<ESLeapleechComponent> ent, ref MindGotRemovedEvent args)
+    {
         if (args.TransferEntity is { } owned)
-            EnsureComp<ESDamageTakerRelayComponent>(owned);
+            _alerts.ClearAlert(owned, ent.Comp.Alert);
     }
 
     private void OnDamageTaken(Entity<ESLeapleechComponent> ent, ref ESDamageTakenEvent args)
     {
-
         if (args.Origin is not { } origin ||
             _mask.GetTroupeOrNull(origin) == ent.Comp.IgnoreTroupe)
             return;
@@ -65,6 +86,9 @@ public sealed partial class ESLeapleechSystem : EntitySystem
         var damage = DamageSpecifier.GetPositive(args.DamageDone).GetTotal();
         var oldDamage = ent.Comp.LeechedEntities.GetOrNew(origin);
         ent.Comp.LeechedEntities[origin] = oldDamage + damage;
+
+        var level = Math.Clamp(ent.Comp.LeechCount, 0, _alerts.GetMaxSeverity(ent.Comp.Alert));
+        _alerts.ShowAlert(args.Body, ent.Comp.Alert, (short) level);
     }
 
     private void OnPlayerKilled(Entity<ESLeapleechComponent> ent, ref ESPlayerKilledEvent args)

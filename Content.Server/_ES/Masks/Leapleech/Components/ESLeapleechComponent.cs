@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Shared._ES.Core.Timer.Components;
 using Content.Shared._ES.Masks;
+using Content.Shared.Alert;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -31,6 +32,9 @@ public sealed partial class ESLeapleechComponent : Component
 
     [DataField]
     public ProtoId<ESTroupePrototype> IgnoreTroupe = "Parasite";
+
+    [DataField]
+    public ProtoId<AlertPrototype> Alert = "ESLeapleechCounter";
 }
 
 public sealed partial class ESLeapLeechBurstTimerEvent : ESEntityTimerEvent;
