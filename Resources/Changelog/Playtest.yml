@@ -637,3 +637,9 @@ Entries:
       message: Removed the Psychid.
   id: 73
   time: '2026-06-20T14:09:29.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Stagehands now have an ominous floating animation while moving about...
+  id: 74
+  time: '2026-06-20T16:32:09.0000000+00:00'
