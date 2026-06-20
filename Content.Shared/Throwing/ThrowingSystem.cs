@@ -28,7 +28,7 @@ public sealed partial class ThrowingSystem : EntitySystem
     public const float ESThrowSpeedDefault = 8.5f;
     // ES END
 
-    public const float PushbackDefault = 2f;
+    public const float PushbackDefault = 5f;
 
     public const float FlyTimePercentage = 0.8f;
 

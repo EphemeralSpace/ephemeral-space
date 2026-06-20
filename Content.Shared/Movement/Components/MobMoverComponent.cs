@@ -10,7 +10,7 @@ namespace Content.Shared.Movement.Components
     public sealed partial class MobMoverComponent : Component
     {
         private float _stepSoundDistance;
-        [DataField] public float GrabRange = 1.0f;
+        [DataField] public float GrabRange = 0.85f;
 
         [DataField] public float PushStrength = 600f;
 
