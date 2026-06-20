@@ -4,6 +4,7 @@ using Content.Shared.Roles;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared._ES.Core.Entity;
 
 namespace Content.Server.Jobs
 {
@@ -29,9 +30,11 @@ namespace Content.Server.Jobs
 
             var entMan = IoCManager.Resolve<IEntityManager>();
 
-            var entity = entMan.SpawnEntity(Prototype, entMan.GetComponent<TransformComponent>(mob).Coordinates);
+//            var entity = entMan.SpawnEntity(Prototype, entMan.GetComponent<TransformComponent>(mob).Coordinates);
 
-            sysMan.GetEntitySystem<SharedHandsSystem>().PickupOrDrop(mob, entity);
+//            sysMan.GetEntitySystem<SharedHandsSystem>().PickupOrDrop(mob, entity);
+
+            entMan.SpawnInBag([Prototype], mob);
         }
     }
 }
