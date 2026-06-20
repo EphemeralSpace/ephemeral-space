@@ -2,7 +2,7 @@
   name: leapleech
   id: ESMobLeepLeach
   parent: [ SimpleMobBase, MobCombat ]
-  description: this leapy leech will leap to leech you.
+  description: This leapy leech will leap to leech you.
   components:
   - type: ESHostileTowardsTroupe
     nonHostileTroupes:
@@ -60,4 +60,4 @@
     targetIsUser: true
   - type: DeleteOnTrigger
   - type: ESChangeMaskOnTrigger
-    mask: LeapLeech
+    mask: Leapleech
