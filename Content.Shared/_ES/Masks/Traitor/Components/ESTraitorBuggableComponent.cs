@@ -48,3 +48,9 @@ public sealed partial class ESTraitorBugTimerEvent : ESEntityTimerEvent;
 
 [ByRefEvent]
 public readonly record struct ESTraitorBugHackedEvent(ProtoId<AccessGroupPrototype> Group);
+
+[Serializable, NetSerializable]
+public enum ESTraitorBugVisuals : byte
+{
+    Bugged,
+}

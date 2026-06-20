@@ -62,6 +62,9 @@
       shader: unshaded
       map: ["enum.ApcVisualLayers.Environment"]
       visible: false
+    - state: bug
+      map: [ "buglayer" ]
+      visible: false
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -72,6 +75,10 @@
         enum.ApcVisualLayers.ChargeState:
           True: { visible: false }
           False: { visible: true }
+      enum.ESTraitorBugVisuals.Bugged:
+        buglayer:
+          True: { visible: true }
+          False: { visible: false }
   - type: ESGenericPointLightVisualizer
     visuals:
       enum.ESBreakableVisuals.Broken:
