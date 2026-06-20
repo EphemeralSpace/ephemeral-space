@@ -5,7 +5,6 @@
   - Burstworm
   - Hemophage
   - Leapleech
-  - Psychid
   - Host
   text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Parasites.xml"
 
@@ -28,8 +27,3 @@
   id: Leapleech
   name: Leapleech
   text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Parasites/Leapleech.xml"
-
-- type: guideEntry
-  id: Psychid
-  name: Psychid
-  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Parasites/Psychid.xml"
