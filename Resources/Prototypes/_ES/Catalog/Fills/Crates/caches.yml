@@ -112,6 +112,7 @@
     - id: ExGrenade
       amount: 2
     - id: ESMicroBombImplanter
+    - id: ESSyndicateBombFlatpack
 
 # Mercenary
 - type: entity
