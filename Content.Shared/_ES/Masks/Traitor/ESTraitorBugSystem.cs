@@ -157,8 +157,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
 
     private void OnTraitorBugTimer(Entity<ESTraitorBuggableComponent> ent, ref ESTraitorBugTimerEvent args)
     {
-        ent.Comp.Timer = null;
-        Dirty(ent);
+        CancelBug(ent.AsNullable());
 
         _sparks.DoSparks(ent);
         var ev = new ESTraitorBugHackedEvent(ent.Comp.Department);
