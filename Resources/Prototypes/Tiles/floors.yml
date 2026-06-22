@@ -1,5 +1,6 @@
 - type: tile
   id: FloorSteel
+  parent: ESBaseTileQuartertile
   name: tiles-steel-floor
   sprite: /Textures/Tiles/steel.png
   variants: 4
@@ -18,6 +19,7 @@
 
 - type: tile
   id: FloorSteelCheckerLight
+  parent: ESBaseTileQuartertile
   name: tiles-steel-floor-checker-light
   sprite: /Textures/Tiles/cafeteria.png
   variants: 4
@@ -36,6 +38,7 @@
 
 - type: tile
   id: FloorSteelCheckerDark
+  parent: ESBaseTileQuartertile
   name: tiles-steel-floor-checker-dark
   sprite: /Textures/Tiles/checker_dark.png
   variants: 4
@@ -69,6 +72,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteelMini
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorSteelPavement
@@ -87,6 +91,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteelPavement
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorSteelDiagonal
@@ -105,6 +110,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteelDiagonal
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorSteelOffset
@@ -117,6 +123,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteelOffset
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorSteelMono
@@ -267,6 +274,7 @@
 
 - type: tile
   id: FloorWhite
+  parent: ESBaseTileQuartertile
   name: tiles-white-floor
   sprite: /Textures/Tiles/white.png
   variants: 4
@@ -453,6 +461,7 @@
 
 - type: tile
   id: FloorDark
+  parent: ESBaseTileQuartertile
   name: tiles-dark-floor
   sprite: /Textures/Tiles/dark.png
   variants: 4
@@ -636,6 +645,7 @@
 
 - type: tile
   id: FloorTechMaint
+  parent: ESBaseTileQuartertile
   name: tiles-techmaint-floor
   sprite: /Textures/Tiles/tech_maint.png
   baseTurf: Plating
@@ -651,6 +661,7 @@
 
 - type: tile
   id: FloorTechMaintDark
+  parent: ESBaseTileQuartertile
   name: tiles-techmaint-floor-dark
   sprite: /Textures/Tiles/tech_maint_dark.png
   baseTurf: Plating
@@ -761,6 +772,7 @@
 
 - type: tile
   id: FloorBlue
+  parent: ESBaseTileQuartertile
   name: tiles-blue-tile
   sprite: /Textures/Tiles/blue.png
   baseTurf: Plating
@@ -829,6 +841,7 @@
 # Departmental
 - type: tile
   id: FloorFreezer
+  parent: ESBaseTileQuartertile
   name: tiles-freezer
   sprite: /Textures/Tiles/freezer.png
   baseTurf: Plating
@@ -841,6 +854,7 @@
 
 - type: tile
   id: FloorShowroom
+  parent: ESBaseTileQuartertile
   name: tiles-showroom-floor
   sprite: /Textures/Tiles/showroom.png
   baseTurf: Plating
@@ -853,6 +867,7 @@
 
 - type: tile
   id: FloorHydro
+  parent: ESBaseTileQuartertile
   name: tiles-hydro-floor
   sprite: /Textures/Tiles/hydro.png
   baseTurf: Plating
@@ -865,6 +880,7 @@
 
 - type: tile
   id: FloorBar
+  parent: ESBaseTileQuartertile
   name: tiles-bar-floor
   sprite: /Textures/Tiles/bar.png
   variants: 4
@@ -883,6 +899,7 @@
 
 - type: tile
   id: FloorClown
+  parent: ESBaseTileQuartertile
   name: tiles-clown-floor
   sprite: /Textures/Tiles/clown.png
   baseTurf: Plating
@@ -908,6 +925,7 @@
 
 - type: tile
   id: FloorKitchen
+  parent: ESBaseTileQuartertile
   name: tiles-kitchen-floor
   sprite: /Textures/Tiles/kitchen.png
   baseTurf: Plating
@@ -920,6 +938,7 @@
 
 - type: tile
   id: FloorLaundry
+  parent: ESBaseTileQuartertile
   name: tiles-laundry-floor
   sprite: /Textures/Tiles/laundry.png
   baseTurf: Plating
@@ -1896,6 +1915,7 @@
 
 - type: tile
   id: FloorTechMaint2
+  parent: ESBaseTileQuartertile
   name: tiles-techmaint2-floor
   sprite: /Textures/Tiles/steel_maint.png
   baseTurf: Plating
@@ -1908,6 +1928,7 @@
 
 - type: tile
   id: FloorTechMaint3
+  parent: ESBaseTileQuartertile
   name: tiles-techmaint3-floor
   sprite: /Textures/Tiles/grating_maint.png
   variants: 4

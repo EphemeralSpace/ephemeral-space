@@ -4,6 +4,7 @@
 - type: tile
   id: Plating
   name: tiles-plating
+  parent: ESBaseTilePlating
   # ES START
   sprite: /Textures/_ES/Tiles/plating.png
   variants: 4
@@ -56,6 +57,7 @@
 - type: tile
   id: PlatingAsteroid
   name: tiles-asteroid-plating
+  parent: ESBaseTilePlating
   # ES START
   sprite: /Textures/_ES/Tiles/plating_asteroid.png
   # ES END
