@@ -160,7 +160,7 @@ public sealed partial class ESEntityTimerSystem : EntitySystem
                 RaiseLocalEvent(target, (object) timer.TimerEndEvent);
             }
 
-            if (TerminatingOrDeleted(uid))
+            if (!TerminatingOrDeleted(uid))
                 PredictedQueueDel(uid);
         }
     }
