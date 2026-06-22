@@ -101,7 +101,7 @@
   id: Lattice
   name: tiles-lattice
   sprite: /Textures/Tiles/lattice.png
-  baseTurf: Space
+  baseTurf: ESDamagedLattice
   isSubfloor: true
   deconstructTools: [ Cutting ]
   weather: true

@@ -542,7 +542,7 @@ public sealed partial class ExplosionSystem
             if (string.IsNullOrEmpty(tileDef.BaseTurf))
                 break;
 
-            if (_tileDefinitionManager[tileDef.BaseTurf] is not ContentTileDefinition newDef)
+            if (tileDef.Indestructible || _tileDefinitionManager[tileDef.BaseTurf] is not ContentTileDefinition newDef)
                 break;
 
             if (newDef.MapAtmosphere && !canCreateVacuum)
@@ -554,7 +554,7 @@ public sealed partial class ExplosionSystem
         if (tileDef.TileId == tileRef.Tile.TypeId)
             return;
 
-        damagedTiles.Add((tileRef.GridIndices, new Tile(tileDef.TileId)));
+        damagedTiles.Add((tileRef.GridIndices, new Tile(tileDef.TileId, variant: _tile.PickVariant(tileDef))));
     }
 }
 

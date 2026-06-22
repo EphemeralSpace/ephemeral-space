@@ -16,6 +16,7 @@ using Content.Shared.Explosion.Components;
 using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
+using Content.Shared.Maps;
 using Content.Shared.Projectiles;
 using Content.Shared.Throwing;
 using Robust.Server.GameStates;
@@ -35,6 +36,8 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     // ES START
     [Dependency] private ESScreenshakeSystem _shake = default!;
     [Dependency] private ESTileFireSystem _tileFire = default!;
+
+    [Dependency] private TileSystem _tile = default!;
     // ES END
 
     [Dependency] private IMapManager _mapManager = default!;

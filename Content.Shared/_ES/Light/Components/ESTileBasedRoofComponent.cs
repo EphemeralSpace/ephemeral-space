@@ -18,6 +18,7 @@ public sealed partial class ESTileBasedRoofComponent : Component
     public HashSet<ProtoId<ContentTileDefinition>> UnRoofedTiles = new()
     {
         "Lattice", // Space structures
+        "ESDamagedLattice",
         "FloorGlass", // See-through tiles
         "FloorRGlass",
         "FloorAsteroidSand", // natural non-station tiles

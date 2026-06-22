@@ -1,0 +1,20 @@
+# indestructible
+- type: tile
+  id: ESDamagedLattice
+  name: es-tiles-damaged-lattice
+  sprite: /Textures/_ES/Tiles/lattice_damaged.png
+  baseTurf: Space
+  isSubfloor: true
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  weather: true
+  indestructible: true
+  footstepSounds:
+    collection: FootstepCatwalk
+  isSpace: true
+  heatCapacity: 10000
+  mass: 200
