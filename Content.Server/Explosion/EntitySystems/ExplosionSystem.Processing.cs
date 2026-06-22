@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -17,6 +18,9 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Numerics;
+using Content.Server.Decals;
+using Content.Shared.Decals;
+using Robust.Shared.Prototypes;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 
 namespace Content.Server.Explosion.EntitySystems;
@@ -521,6 +525,7 @@ public sealed partial class ExplosionSystem
         int maxTileBreak,
         bool canCreateVacuum,
         List<(Vector2i GridIndices, Tile Tile)> damagedTiles,
+        List<(TileRef tile, ProtoId<DecalPrototype> decal)> damageDecals,
         ExplosionPrototype type)
     {
         if (_tileDefinitionManager[tileRef.Tile.TypeId] is not ContentTileDefinition tileDef
@@ -533,8 +538,21 @@ public sealed partial class ExplosionSystem
             canCreateVacuum = true; // is already a vacuum.
 
         int tileBreakages = 0;
-        while (maxTileBreak > tileBreakages && _robustRandom.Prob(type.TileBreakChance(effectiveIntensity)))
+        while (maxTileBreak > tileBreakages)
         {
+            if (!_robustRandom.Prob(type.TileBreakChance(effectiveIntensity)))
+            {
+                // damage tile instead of replacing it
+                if (tileDef.DamagedTile != null)
+                    tileDef = (ContentTileDefinition) _tileDefinitionManager[tileDef.DamagedTile];
+                else if (tileDef.DamageDecals != null)
+                {
+                    damageDecals.Add((tileRef, _robustRandom.Pick(tileDef.DamageDecals)));
+                }
+
+                break;
+            }
+
             tileBreakages++;
             effectiveIntensity -= type.TileBreakRerollReduction;
 
@@ -563,7 +581,7 @@ public sealed partial class ExplosionSystem
 ///     cref="ExplosionSystem"/>.
 /// </summary>
 /// <remarks>
-///     This is basically the output of <see cref="ExplosionSystem.GetExplosionTiles()"/>, but with some utility functions for
+///     This is basically the output of <see cref="ExplosionSystem.GetExplosionTiles"/>, but with some utility functions for
 ///     iterating over the tiles, along with the ability to keep track of what entities have already been damaged by
 ///     this explosion.
 /// </remarks>
@@ -652,6 +670,14 @@ sealed class Explosion
     /// </summary>
     private readonly Dictionary<Entity<MapGridComponent>, List<(Vector2i, Tile)>> _tileUpdateDict = new();
 
+    /// <summary>
+    ///     Damage decals queued to be added after all tiles are updated.
+    /// </summary>
+    /// <remarks>
+    ///     this is mildly inefficient because of how decals work atm. ideally it would do the same kind of thing as mapsystem
+    /// </remarks>
+    private readonly List<(TileRef, ProtoId<DecalPrototype>)> _queuedDecals = new();
+
     // Entity Queries
     private readonly EntityQuery<TransformComponent> _xformQuery;
     private readonly EntityQuery<PhysicsComponent> _physicsQuery;
@@ -683,6 +709,7 @@ sealed class Explosion
     private readonly ExplosionSystem _system;
     private readonly SharedMapSystem _mapSystem;
     private readonly Shared.Damage.Systems.DamageableSystem _damageable;
+    private readonly DecalSystem _decal;
 
     public readonly EntityUid VisualEnt;
 
@@ -708,7 +735,8 @@ sealed class Explosion
         EntityUid? cause,
         EntityUid? origin,
         SharedMapSystem mapSystem,
-        Shared.Damage.Systems.DamageableSystem damageable)
+        Shared.Damage.Systems.DamageableSystem damageable,
+        DecalSystem decal)
     {
         VisualEnt = visualEnt;
         Cause = cause;
@@ -725,6 +753,7 @@ sealed class Explosion
         _canCreateVacuum = canCreateVacuum;
         _entMan = entMan;
         _damageable = damageable;
+        _decal = decal;
 
         _xformQuery = entMan.GetEntityQuery<TransformComponent>();
         _physicsQuery = entMan.GetEntityQuery<PhysicsComponent>();
@@ -888,7 +917,7 @@ sealed class Explosion
 
                 // If the floor is not blocked by some dense object, damage the floor tiles.
                 if (canDamageFloor)
-                    _system.DamageFloorTile(tileRef, _currentIntensity * _tileBreakScale, _maxTileBreak, _canCreateVacuum, tileUpdateList, ExplosionType);
+                    _system.DamageFloorTile(tileRef, _currentIntensity * _tileBreakScale, _maxTileBreak, _canCreateVacuum, tileUpdateList, _queuedDecals, ExplosionType);
             }
             else
             {
@@ -932,6 +961,12 @@ sealed class Explosion
             }
         }
         _tileUpdateDict.Clear();
+
+        foreach (var (tile, decal) in _queuedDecals)
+        {
+            _decal.TryAddDecal(decal, new EntityCoordinates(tile.GridUid, tile.GridIndices), out _);
+        }
+        _queuedDecals.Clear();
     }
 }
 

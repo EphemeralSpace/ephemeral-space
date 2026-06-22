@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server._ES.TileFires;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Decals;
 using Content.Server.Destructible;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NPC.Pathfinding;
@@ -36,8 +37,9 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     // ES START
     [Dependency] private ESScreenshakeSystem _shake = default!;
     [Dependency] private ESTileFireSystem _tileFire = default!;
-
     [Dependency] private TileSystem _tile = default!;
+
+    [Dependency] private DecalSystem _decal = default!;
     // ES END
 
     [Dependency] private IMapManager _mapManager = default!;
@@ -406,6 +408,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             queued.Cause,
             queued.Origin,
             _map,
-            _damageableSystem);
+            _damageableSystem,
+            _decal);
     }
 }
