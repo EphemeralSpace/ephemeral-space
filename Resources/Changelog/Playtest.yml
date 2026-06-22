@@ -671,3 +671,9 @@ Entries:
         3.
   id: 78
   time: '2026-06-20T22:22:36.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: There should be less welded/bolted doors in maints in general
+  id: 79
+  time: '2026-06-22T21:30:24.0000000+00:00'
