@@ -22,6 +22,7 @@
   flammability: 0.5
   # ES END
 
+# you probably shouldnt use these
 - type: tile
   id: PlatingDamaged
   name: tiles-plating
@@ -49,6 +50,7 @@
   heatCapacity: 10000
   # ES START
   flammability: 0.5
+  editorHidden: true
   # ES END
 
 - type: tile
@@ -75,6 +77,7 @@
   footstepSounds:
     collection: FootstepPlating
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: PlatingSnow
@@ -85,6 +88,7 @@
   footstepSounds:
     collection: FootstepPlating
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: PlatingIronsand
@@ -96,6 +100,7 @@
     collection: FootstepPlating
   friction: 1.5
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: Lattice
@@ -103,12 +108,11 @@
   sprite: /Textures/Tiles/lattice.png
   baseTurf: ESDamagedLattice
   isSubfloor: true
-  deconstructTools: [ Cutting ]
+  indestructible: true
   weather: true
   footstepSounds:
     collection: FootstepCatwalk
   isSpace: true
-  itemDrop: PartRodMetal1
   heatCapacity: 10000
   mass: 200
 
@@ -126,3 +130,4 @@
   itemDrop: PartRodMetal1
   heatCapacity: 10000
   mass: 200
+  editorHidden: true

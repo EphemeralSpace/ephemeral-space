@@ -135,6 +135,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemSteelMono
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorSteelPavementVertical
@@ -153,6 +154,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemSteelPavementVertical
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorSteelHerringbone
@@ -171,6 +173,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemSteelHerringbone
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorSteelDiagonalMini
@@ -189,6 +192,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemSteelDiagonalMini
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorBrassFilled
@@ -201,6 +205,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemBrassFilled
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorBrassReebe
@@ -213,6 +218,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemBrassReebe
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorPlastic
@@ -233,6 +239,7 @@
   heatCapacity: 10000
   # ES START
   flammability: 3
+  editorHidden: true
   # ES END
 
 - type: tile
@@ -296,6 +303,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhiteMini
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorWhitePavement
@@ -314,6 +322,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhitePavement
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorWhiteDiagonal
@@ -332,6 +341,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhiteDiagonal
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorWhiteOffset
@@ -344,6 +354,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhiteOffset
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorWhiteMono
@@ -362,6 +373,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhiteMono
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorWhitePavementVertical
@@ -380,6 +392,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhitePavementVertical
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorWhiteHerringbone
@@ -398,6 +411,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhiteHerringbone
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorWhiteDiagonalMini
@@ -416,6 +430,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhiteDiagonalMini
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorWhitePlastic
@@ -434,6 +449,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhite
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorDark
@@ -470,6 +486,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkMini
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorDarkPavement
@@ -488,6 +505,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkPavement
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorDarkDiagonal
@@ -506,6 +524,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkDiagonal
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorDarkOffset
@@ -518,6 +537,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkOffset
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorDarkMono
@@ -536,6 +556,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkMono
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorDarkPavementVertical
@@ -554,6 +575,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkPavementVertical
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorDarkHerringbone
@@ -572,6 +594,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkHerringbone
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorDarkDiagonalMini
@@ -590,6 +613,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkDiagonalMini
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorDarkPlastic
@@ -608,6 +632,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDark
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorTechMaint
@@ -662,6 +687,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemMono
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorLino
@@ -692,6 +718,7 @@
     collection: FootstepPlating
   itemDrop: FloorTileItemDirty
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorElevatorShaft
@@ -704,6 +731,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemElevatorShaft
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorMetalDiamond
@@ -716,6 +744,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemMetalDiamond
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorRockVault
@@ -728,6 +757,7 @@
     collection: FootstepAsteroid
   itemDrop: FloorTileItemRockVault
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorBlue
@@ -758,6 +788,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemLime
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorMining
@@ -873,6 +904,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemMime
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorKitchen
@@ -916,6 +948,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteel #This should probably be made null when it becomes possible to make it such, in SS13 prying destroyed tiles wouldn't give you anything.
   heatCapacity: 10000
+  editorHidden: true
 
 # Concrete
 - type: tile
@@ -935,6 +968,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemConcrete
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorConcreteMono
@@ -953,6 +987,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemConcreteMono
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorConcreteSmooth
@@ -971,6 +1006,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemConcreteSmooth
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorGrayConcrete
@@ -989,6 +1025,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemGrayConcrete
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorGrayConcreteMono
@@ -1007,6 +1044,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemGrayConcreteMono
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorGrayConcreteSmooth
@@ -1025,6 +1063,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemGrayConcreteSmooth
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorOldConcrete
@@ -1043,6 +1082,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemOldConcrete
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorOldConcreteMono
@@ -1061,6 +1101,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemOldConcreteMono
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorOldConcreteSmooth
@@ -1079,6 +1120,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemOldConcreteSmooth
   heatCapacity: 10000
+  editorHidden: true
 
 # Carpets (non smoothing)
 - type: tile
@@ -1203,6 +1245,7 @@
   # ES END
   itemDrop: FloorTileItemBoxing
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorGym
@@ -1224,6 +1267,7 @@
   # ES END
   itemDrop: FloorTileItemGym
   heatCapacity: 10000
+  editorHidden: true
 
 # Shuttle
 - type: tile
@@ -1365,6 +1409,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemGold
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorSilver
@@ -1377,6 +1422,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemSilver
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorGlass
@@ -1434,6 +1480,7 @@
     collection: FootstepHull
   itemDrop: SheetSteel1
   heatCapacity: 10000
+  editorHidden: true
 
 # Circuits
 - type: tile
@@ -1933,6 +1980,7 @@
     collection: BarestepCarpet
   itemDrop: FloorTileItemWeb
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorChromite
@@ -1952,6 +2000,7 @@
   footstepSounds:
     collection: FootstepAsteroid
   heatCapacity: 10000
+  editorHidden: true
 
 #Hull tiles
 - type: tile
@@ -1964,6 +2013,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemSteel #probably should not be normally obtainable, but the game shits itself and dies when you try to put null here
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorHullReinforced
@@ -1976,6 +2026,7 @@
   itemDrop: FloorTileItemSteel
   heatCapacity: 100000 #/tg/ has this set as "INFINITY." I don't know if that exists here so I've just added an extra 0
   indestructible: true
+  editorHidden: true
 
 - type: tile
   id: FloorReinforcedHardened
@@ -1986,6 +2037,7 @@
   footstepSounds:
     collection: FootstepHull
   itemDrop: PartRodMetal1 #same case as FloorHull
+  editorHidden: true
 
 # Faux sci tiles
 
@@ -2126,6 +2178,7 @@
   deconstructTools: [ Prying ]
   itemDrop: FloorTileItemAstroIronsand
   weather: false
+  editorHidden: true
 
 - type: tile
   id: FloorAstroIronsandBorderless
@@ -2136,6 +2189,7 @@
   deconstructTools: [ Prying ]
   itemDrop: FloorTileItemAstroIronsandBorderless
   weather: false
+  editorHidden: true
 
 - type: tile
   id: FloorWoodLarge
