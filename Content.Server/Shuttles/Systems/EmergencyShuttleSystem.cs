@@ -335,7 +335,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
             _chatSystem.DispatchStationAnnouncement(
                 result.Station,
                 Loc.GetString(stationShuttleComp.FailureAnnouncement),
-                playDefaultSound: false);
+                playSound: false);
 
             // TODO: Need filter extensions or something don't blame me.
             _audio.PlayGlobal(stationShuttleComp.FailureAudio, Filter.Broadcast(), true);

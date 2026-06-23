@@ -1,3 +1,4 @@
+using Content.Server._ES.Announcements;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
@@ -21,6 +22,7 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
     [Dependency] protected IAdminLogManager AdminLogManager = default!;
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
     [Dependency] protected ChatSystem ChatSystem = default!;
+    [Dependency] protected ESAnnouncementSystem AnnouncementSystem = default!;
     [Dependency] protected SharedAudioSystem Audio = default!;
     [Dependency] protected StationSystem StationSystem = default!;
 
@@ -43,15 +45,10 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
 
         AdminLogManager.Add(LogType.EventAnnounced, $"Event added / announced: {ToPrettyString(uid)}");
 
-        // we don't want to send to players who aren't in game (i.e. in the lobby)
-        Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
-
         //ES Start
         if (stationEvent.StartAnnouncement != null)
-            ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.StartAnnouncement), playSound: false, colorOverride: stationEvent.StartAnnouncementColor, sender: Loc.GetString("es-station-event-announcer"));
+            AnnouncementSystem.DispatchGlobalAnnouncement(Loc.GetString(stationEvent.StartAnnouncement), announcementSound: stationEvent.StartAudio, colorOverride: stationEvent.StartAnnouncementColor, sender: Loc.GetString("es-station-event-announcer"));
         //ES End
-
-        Audio.PlayGlobal(stationEvent.StartAudio, allPlayersInGame, true);
     }
 
     /// <inheritdoc/>
@@ -89,10 +86,8 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
 
         //ES Start
         if (stationEvent.EndAnnouncement != null)
-            ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.EndAnnouncement), playSound: false, colorOverride: stationEvent.EndAnnouncementColor, sender: Loc.GetString("es-station-event-announcer"));
+            AnnouncementSystem.DispatchGlobalAnnouncement( Loc.GetString(stationEvent.EndAnnouncement), announcementSound: stationEvent.EndAudio, colorOverride: stationEvent.EndAnnouncementColor, sender: Loc.GetString("es-station-event-announcer"));
         //ES End
-
-        Audio.PlayGlobal(stationEvent.EndAudio, allPlayersInGame, true);
     }
 
     /// <summary>
