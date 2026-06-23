@@ -143,11 +143,13 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
             var msg = Loc.GetString(phase.AnnouncementText, ("minutes", (minutes)));
             if (phase.AnnouncementDistortion > 0f)
                 msg = FormattedMessage.RemoveMarkupPermissive(ESRadioSystem.DistortRadioMessage(msg, phase.AnnouncementDistortion, _proto, _random, Loc));
-            _chat.DispatchGlobalAnnouncement(
+
+            _chat.DispatchRoundAnnouncement(default,
                 msg,
                 Loc.GetString("es-radstorm-announcer"),
                 announcementSound: phase.AnnouncementSound,
-                colorOverride: Color.LightSeaGreen);
+                colorOverride: Color.LightSeaGreen,
+                important: true);
         }
 
         // if text is null but sound isnt, this phase just wants to play a sound with no announcement

@@ -128,7 +128,7 @@ namespace Content.Server.Communications
 
             msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
 
-            _chatSystem.DispatchRoundAnnouncement(ent, msg, title, announcementSound: DegradationSoundEffect, colorOverride: Color.DarkGray);
+            _chatSystem.DispatchRoundAnnouncement(ent, msg, title, announcementSound: DegradationSoundEffect, colorOverride: Color.DarkGray, important: true);
 
             args.Handled = true;
         }
@@ -298,16 +298,13 @@ namespace Content.Server.Communications
 
             if (comp.Global)
             {
-                _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
-
+                _chatSystem.DispatchRoundAnnouncement(uid, msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following global announcement: {msg}");
                 return;
             }
 
             _chatSystem.DispatchRoundAnnouncement(uid, msg, title, colorOverride: comp.Color);
-
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
-
         }
 
         private void OnBroadcastMessage(EntityUid uid, CommunicationsConsoleComponent component, CommunicationsConsoleBroadcastMessage message)

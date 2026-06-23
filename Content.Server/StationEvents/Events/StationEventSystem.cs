@@ -47,7 +47,7 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
 
         //ES Start
         if (stationEvent.StartAnnouncement != null)
-            AnnouncementSystem.DispatchGlobalAnnouncement(Loc.GetString(stationEvent.StartAnnouncement), announcementSound: stationEvent.StartAudio, colorOverride: stationEvent.StartAnnouncementColor, sender: Loc.GetString("es-station-event-announcer"));
+            AnnouncementSystem.DispatchRoundAnnouncement(uid, Loc.GetString(stationEvent.StartAnnouncement), announcementSound: stationEvent.StartAudio, colorOverride: stationEvent.StartAnnouncementColor, sender: Loc.GetString("es-station-event-announcer"));
         //ES End
     }
 
@@ -81,12 +81,9 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
 
         AdminLogManager.Add(LogType.EventStopped, $"Event ended: {ToPrettyString(uid)}");
 
-        // we don't want to send to players who aren't in game (i.e. in the lobby)
-        Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
-
         //ES Start
         if (stationEvent.EndAnnouncement != null)
-            AnnouncementSystem.DispatchGlobalAnnouncement( Loc.GetString(stationEvent.EndAnnouncement), announcementSound: stationEvent.EndAudio, colorOverride: stationEvent.EndAnnouncementColor, sender: Loc.GetString("es-station-event-announcer"));
+            AnnouncementSystem.DispatchRoundAnnouncement( uid, Loc.GetString(stationEvent.EndAnnouncement), announcementSound: stationEvent.EndAudio, colorOverride: stationEvent.EndAnnouncementColor, sender: Loc.GetString("es-station-event-announcer"));
         //ES End
     }
 

@@ -503,7 +503,7 @@ ES END */
             ("time", (int) component.RemainingTime),
             ("location", FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString((uid, nukeXform)))));
         var sender = Loc.GetString("nuke-component-announcement-sender");
-        _chatSystem.DispatchRoundAnnouncement(stationUid ?? uid, announcement, sender, false, null, Color.Red);
+        _chatSystem.DispatchRoundAnnouncement(stationUid ?? uid, announcement, sender, false, null, Color.Red, important: true);
 
         _sound.PlayGlobalOnStation(uid, _audio.ResolveSound(component.ArmSound));
         _nukeSongLength = (float) _audio.GetAudioLength(_selectedNukeSong).TotalSeconds;
@@ -549,7 +549,7 @@ ES END */
         // warn a crew
         var announcement = Loc.GetString("nuke-component-announcement-unarmed");
         var sender = Loc.GetString("nuke-component-announcement-sender");
-        _chatSystem.DispatchRoundAnnouncement(uid, announcement, sender, false);
+        _chatSystem.DispatchRoundAnnouncement(uid, announcement, sender, false, important: true);
 
         component.PlayedNukeSong = false;
         _sound.PlayGlobalOnStation(uid, _audio.ResolveSound(component.DisarmSound));

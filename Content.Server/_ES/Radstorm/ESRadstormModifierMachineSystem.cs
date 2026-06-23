@@ -60,6 +60,7 @@ public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
             msg,
             Loc.GetString("es-radstorm-announcer"),
             announcementSound: sound,
-            colorOverride: Color.LightSeaGreen);
+            colorOverride: Color.LightSeaGreen,
+            important: ent.Comp.Enabled);
     }
 }

@@ -68,7 +68,8 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
                 Loc.GetString("es-warp-drive-announcement-final-phase-started"),
                 Loc.GetString("es-warpdrive-announcer"),
                 announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg"),
-                colorOverride: Color.MediumVioletRed);
+                colorOverride: Color.MediumVioletRed,
+                important: true);
         }
     }
 
@@ -141,7 +142,8 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
                 Loc.GetString(announcement.Text),
                 Loc.GetString("es-warpdrive-announcer"),
                 announcementSound: announcement.Sound,
-                colorOverride: Color.MediumVioletRed);
+                colorOverride: Color.MediumVioletRed,
+                important: true);
 
             announcement.Completed = true;
         }
@@ -239,7 +241,8 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
                     Loc.GetString("es-warp-drive-announcement-final-phase-force-ended"),
                     Loc.GetString("es-warpdrive-announcer"),
                     announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg"),
-                    colorOverride: Color.MediumVioletRed);
+                    colorOverride: Color.MediumVioletRed,
+                    important: true);
             }
         }
     }

@@ -155,7 +155,8 @@ public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComp
             Loc.GetString("es-armory-announcer"),
             true,
             component.ArmoryOpeningAnnouncementSound,
-            Color.Coral);
+            Color.Coral,
+            important: true);
 
         // start open timer
         _ = _timer.SpawnMethodTimer(component.ArmoryOpenDelay, () => OpenArmory(component));
@@ -170,12 +171,13 @@ public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComp
         }
 
         // Announcement
-        _chat.DispatchGlobalAnnouncement(
+        _chat.DispatchRoundAnnouncement(default,
             Loc.GetString("es-armory-opened-announcement"),
             Loc.GetString("es-armory-announcer"),
             true,
             component.ArmoryOpenedAnnouncementSound,
-            Color.Coral);
+            Color.Coral,
+            important: true);
     }
 
     // Fail army #FailArmyNation
@@ -205,7 +207,7 @@ public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComp
         }
 
         // Announcement
-        _chat.DispatchGlobalAnnouncement(
+        _chat.DispatchRoundAnnouncement(rule.Owner,
             Loc.GetString("es-armory-failed-to-open-announcement"),
             Loc.GetString("es-armory-announcer"),
             true,
