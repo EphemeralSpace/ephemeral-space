@@ -24,7 +24,7 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private IGameTiming _timing = default!;
 
-    private static readonly TimeSpan MinTimeBetweenAnnouncements = TimeSpan.FromSeconds(15);
+    private static readonly TimeSpan MinTimeBetweenAnnouncements = TimeSpan.FromSeconds(10);
     private static readonly TimeSpan ImmediateAnnouncementCutoffDelay = TimeSpan.FromSeconds(1);
     private static readonly SoundSpecifier DefaultAnnouncementSound = new SoundPathSpecifier("/Audio/_ES/Announcements/attention_low.ogg");
     private static readonly SoundSpecifier AnnouncementCutoffSound = new SoundPathSpecifier("/Audio/_ES/Announcements/cutoff.ogg");
@@ -44,11 +44,20 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
 
         while (_immediateAnnouncements.TryDequeue(out var immediateAnnouncement))
         {
-            _audio.Stop(_currentlyPlayingAnnouncementSound?.Item1, _currentlyPlayingAnnouncementSound?.Item2);
-            _audio.PlayGlobal(AnnouncementCutoffSound, immediateAnnouncement.Filter, true);
+            if (_audio.IsPlaying(_currentlyPlayingAnnouncementSound?.Item1, _currentlyPlayingAnnouncementSound?.Item2))
+            {
+                _audio.Stop(_currentlyPlayingAnnouncementSound?.Item1, _currentlyPlayingAnnouncementSound?.Item2);
+                _audio.PlayGlobal(AnnouncementCutoffSound, immediateAnnouncement.Filter, true);
 
-            _timer.SpawnMethodTimer(ImmediateAnnouncementCutoffDelay,
-                () => DoQueuedAnnouncement(immediateAnnouncement));
+                _timer.SpawnMethodTimer(ImmediateAnnouncementCutoffDelay,
+                    () => DoQueuedAnnouncement(immediateAnnouncement));
+            }
+            else
+            {
+                DoQueuedAnnouncement(immediateAnnouncement);
+            }
+
+            _lastAnnouncementTime = _timing.CurTime;
         }
 
         if (_lastAnnouncementTime != null && _timing.CurTime < (_lastAnnouncementTime + MinTimeBetweenAnnouncements))

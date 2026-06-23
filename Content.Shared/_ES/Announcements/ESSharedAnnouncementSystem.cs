@@ -11,7 +11,6 @@ namespace Content.Shared._ES.Announcements;
 /// </summary>
 public abstract class ESSharedAnnouncementSystem : EntitySystem
 {
-
     /// <summary>
     ///     Dispatches an announcement to all players in the server.
     /// </summary>
