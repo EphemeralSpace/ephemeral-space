@@ -35,7 +35,7 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
     // regular announcements which respect the min time
     private readonly Queue<QueuedAnnouncement> _queuedAnnouncements = new();
 
-    private TimeSpan _lastAnnouncementTime = TimeSpan.MinValue;
+    private TimeSpan? _lastAnnouncementTime;
     private (EntityUid, AudioComponent)? _currentlyPlayingAnnouncementSound;
 
     public override void Update(float frameTime)
@@ -51,7 +51,7 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
                 () => DoQueuedAnnouncement(immediateAnnouncement));
         }
 
-        if (_timing.CurTime < (_lastAnnouncementTime + MinTimeBetweenAnnouncements))
+        if (_lastAnnouncementTime != null && _timing.CurTime < (_lastAnnouncementTime + MinTimeBetweenAnnouncements))
             return;
 
         if(_queuedAnnouncements.TryDequeue(out var announcement))
@@ -122,7 +122,7 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
         var filter = Filter.Empty().AddWhere(_ticker.UserHasJoinedGame);
         var sound = playSound ? (announcementSound ?? DefaultAnnouncementSound) : null;
-        QueueAnnouncement(filter, message, wrappedMessage, default, sound, colorOverride, important);
+        QueueAnnouncement(filter, message, wrappedMessage, source, sound, colorOverride, important);
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Round Announcement on {source} from {sender}: {message}");
     }
