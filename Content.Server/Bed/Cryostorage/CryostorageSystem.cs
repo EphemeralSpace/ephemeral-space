@@ -233,8 +233,7 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
             _stationRecords.RemoveRecord(key, stationRecords);
         }
 
-        _chatSystem.DispatchRoundAnnouncement(station.Value,
-            Loc.GetString(
+        _chatSystem.DispatchRoundAnnouncement(Loc.GetString(
                 "earlyleave-cryo-announcement",
                 ("character", name),
                 ("entity", ent.Owner), // gender things for supporting downstreams with other languages

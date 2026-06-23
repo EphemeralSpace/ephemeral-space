@@ -126,9 +126,7 @@ namespace Content.Server.PowerSink
             if (station == null)
                 return;
 
-            _chat.DispatchRoundAnnouncement(
-                station.Value,
-                Loc.GetString("powersink-imminent-explosion-announcement"),
+            _chat.DispatchRoundAnnouncement(Loc.GetString("powersink-imminent-explosion-announcement"),
                 playSound: true,
                 colorOverride: Color.Yellow
             );

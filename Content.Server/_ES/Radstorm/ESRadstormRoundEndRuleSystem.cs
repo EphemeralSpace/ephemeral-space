@@ -144,8 +144,7 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
             if (phase.AnnouncementDistortion > 0f)
                 msg = FormattedMessage.RemoveMarkupPermissive(ESRadioSystem.DistortRadioMessage(msg, phase.AnnouncementDistortion, _proto, _random, Loc));
 
-            _chat.DispatchRoundAnnouncement(default,
-                msg,
+            _chat.DispatchRoundAnnouncement(msg,
                 Loc.GetString("es-radstorm-announcer"),
                 announcementSound: phase.AnnouncementSound,
                 colorOverride: Color.LightSeaGreen,

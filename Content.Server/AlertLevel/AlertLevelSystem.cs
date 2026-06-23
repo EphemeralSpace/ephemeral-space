@@ -201,8 +201,10 @@ public sealed partial class AlertLevelSystem : EntitySystem
 
         if (announce)
         {
-            _chatSystem.DispatchRoundAnnouncement(station, announcementFull, playSound: playDefault,
-                colorOverride: detail.Color, sender: stationName);
+            _chatSystem.DispatchRoundAnnouncement(announcementFull,
+                playSound: playDefault,
+                colorOverride: detail.Color,
+                sender: stationName);
         }
 
         RaiseLocalEvent(new AlertLevelChangedEvent(station, level));

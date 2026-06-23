@@ -47,7 +47,7 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
 
         //ES Start
         if (stationEvent.StartAnnouncement != null)
-            AnnouncementSystem.DispatchRoundAnnouncement(uid, Loc.GetString(stationEvent.StartAnnouncement), announcementSound: stationEvent.StartAudio, colorOverride: stationEvent.StartAnnouncementColor, sender: Loc.GetString("es-station-event-announcer"));
+            AnnouncementSystem.DispatchRoundAnnouncement(Loc.GetString(stationEvent.StartAnnouncement), announcementSound: stationEvent.StartAudio, colorOverride: stationEvent.StartAnnouncementColor, sender: Loc.GetString("es-station-event-announcer"));
         //ES End
     }
 
@@ -83,7 +83,7 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
 
         //ES Start
         if (stationEvent.EndAnnouncement != null)
-            AnnouncementSystem.DispatchRoundAnnouncement( uid, Loc.GetString(stationEvent.EndAnnouncement), announcementSound: stationEvent.EndAudio, colorOverride: stationEvent.EndAnnouncementColor, sender: Loc.GetString("es-station-event-announcer"));
+            AnnouncementSystem.DispatchRoundAnnouncement(Loc.GetString(stationEvent.EndAnnouncement), announcementSound: stationEvent.EndAudio, colorOverride: stationEvent.EndAnnouncementColor, sender: Loc.GetString("es-station-event-announcer"));
         //ES End
     }
 

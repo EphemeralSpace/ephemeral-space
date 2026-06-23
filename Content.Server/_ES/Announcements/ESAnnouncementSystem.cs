@@ -120,7 +120,6 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
 
     /// <inheritdoc />
     public override void DispatchRoundAnnouncement(
-        EntityUid source,
         string message,
         string? sender = null,
         bool playSound = true,
@@ -131,9 +130,9 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
         sender ??= Loc.GetString("chat-manager-sender-announcement");
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
         var sound = playSound ? (announcementSound ?? DefaultAnnouncementSound) : null;
-        QueueAnnouncement(false, message, wrappedMessage, source, sound, colorOverride, important);
+        QueueAnnouncement(false, message, wrappedMessage, default, sound, colorOverride, important);
 
-        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Round Announcement on {source} from {sender}: {message}");
+        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Round Announcement from {sender}: {message}");
     }
 
     /// <summary>

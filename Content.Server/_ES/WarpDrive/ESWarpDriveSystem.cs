@@ -64,8 +64,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             warp.InFinalPhase = true;
             UpdateAppearance(true);
 
-            _chat.DispatchRoundAnnouncement(uid,
-                Loc.GetString("es-warp-drive-announcement-final-phase-started"),
+            _chat.DispatchRoundAnnouncement(Loc.GetString("es-warp-drive-announcement-final-phase-started"),
                 Loc.GetString("es-warpdrive-announcer"),
                 announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg"),
                 colorOverride: Color.MediumVioletRed,
@@ -138,8 +137,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             if (currentCharge < announcement.AfterChargePercentage)
                 continue;
 
-            _chat.DispatchRoundAnnouncement(uid,
-                Loc.GetString(announcement.Text),
+            _chat.DispatchRoundAnnouncement(Loc.GetString(announcement.Text),
                 Loc.GetString("es-warpdrive-announcer"),
                 announcementSound: announcement.Sound,
                 colorOverride: Color.MediumVioletRed,
@@ -176,8 +174,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             component.AccumulatedInterruptionTime += (_timing.CurTime - time);
             UpdateAppearance(true);
 
-            _chat.DispatchRoundAnnouncement(uid,
-                Loc.GetString("es-warp-drive-announcement-interruptions-cleared"),
+            _chat.DispatchRoundAnnouncement(Loc.GetString("es-warp-drive-announcement-interruptions-cleared"),
                 Loc.GetString("es-warpdrive-announcer"),
                 announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_low.ogg"),
                 colorOverride: Color.MediumVioletRed);
@@ -188,8 +185,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             component.LastInterruptionTime = _timing.CurTime;
             UpdateAppearance(false);
 
-            _chat.DispatchRoundAnnouncement(uid,
-                Loc.GetString("es-warp-drive-announcement-interruptions-detected"),
+            _chat.DispatchRoundAnnouncement(Loc.GetString("es-warp-drive-announcement-interruptions-detected"),
                 Loc.GetString("es-warpdrive-announcer"),
                 announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_medium.ogg"),
                 colorOverride: Color.MediumVioletRed);
@@ -237,8 +233,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             {
                 warpDrive.ItemsTeleportedSinceLastInterruption = 0;
                 warpDrive.InFinalPhase = false;
-                _chat.DispatchRoundAnnouncement(uid,
-                    Loc.GetString("es-warp-drive-announcement-final-phase-force-ended"),
+                _chat.DispatchRoundAnnouncement(Loc.GetString("es-warp-drive-announcement-final-phase-force-ended"),
                     Loc.GetString("es-warpdrive-announcer"),
                     announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg"),
                     colorOverride: Color.MediumVioletRed,

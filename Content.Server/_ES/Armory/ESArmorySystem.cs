@@ -150,8 +150,7 @@ public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComp
         TrySetArmoryControlRoomDoorBolt(false);
 
         // Announcement
-        _chat.DispatchRoundAnnouncement(default,
-            Loc.GetString("es-armory-opening-announcement"),
+        _chat.DispatchRoundAnnouncement(Loc.GetString("es-armory-opening-announcement"),
             Loc.GetString("es-armory-announcer"),
             true,
             component.ArmoryOpeningAnnouncementSound,
@@ -171,8 +170,7 @@ public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComp
         }
 
         // Announcement
-        _chat.DispatchRoundAnnouncement(default,
-            Loc.GetString("es-armory-opened-announcement"),
+        _chat.DispatchRoundAnnouncement(Loc.GetString("es-armory-opened-announcement"),
             Loc.GetString("es-armory-announcer"),
             true,
             component.ArmoryOpenedAnnouncementSound,
@@ -207,8 +205,7 @@ public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComp
         }
 
         // Announcement
-        _chat.DispatchRoundAnnouncement(rule.Owner,
-            Loc.GetString("es-armory-failed-to-open-announcement"),
+        _chat.DispatchRoundAnnouncement(Loc.GetString("es-armory-failed-to-open-announcement"),
             Loc.GetString("es-armory-announcer"),
             true,
             component.ArmoryFailedAnnouncementSound,

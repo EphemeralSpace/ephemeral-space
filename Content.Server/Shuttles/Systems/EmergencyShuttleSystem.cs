@@ -333,9 +333,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
         if (result.ResultType == ShuttleDockResultType.GoodLuck)
         {
-            _chatSystem.DispatchRoundAnnouncement(
-                result.Station,
-                Loc.GetString(stationShuttleComp.FailureAnnouncement),
+            _chatSystem.DispatchRoundAnnouncement(Loc.GetString(stationShuttleComp.FailureAnnouncement),
                 playSound: false);
 
             // TODO: Need filter extensions or something don't blame me.
@@ -363,9 +361,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
             ? stationShuttleComp.NearbyAnnouncement
             : stationShuttleComp.DockedAnnouncement;
 
-        _chatSystem.DispatchRoundAnnouncement(
-            result.Station,
-            Loc.GetString(
+        _chatSystem.DispatchRoundAnnouncement(Loc.GetString(
                 locKey,
                 ("time", $"{_consoleAccumulator:0}"),
                 ("direction", direction),

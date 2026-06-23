@@ -56,8 +56,7 @@ public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
         var msg = Loc.GetString(ent.Comp.Enabled ? ent.Comp.EnableAnnouncement : ent.Comp.DisableAnnouncement,
             ("minutes", (minutes)));
         var sound = ent.Comp.Enabled ? ent.Comp.AnnouncementSoundEnabled : ent.Comp.AnnouncementSoundDisabled;
-        _chat.DispatchRoundAnnouncement(ent.Owner,
-            msg,
+        _chat.DispatchRoundAnnouncement(msg,
             Loc.GetString("es-radstorm-announcer"),
             announcementSound: sound,
             colorOverride: Color.LightSeaGreen,

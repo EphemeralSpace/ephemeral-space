@@ -81,8 +81,7 @@ public sealed partial class ESTelesciSystem : ESSharedTelesciSystem
 
             var location = FormattedMessage.RemoveMarkupPermissive(_nav.GetNearestBeaconString(ent.Owner));
 
-            _chat.DispatchRoundAnnouncement(uid,
-                Loc.GetString(msg, ("location", location), ("threats", generator.ThreatsLeft)),
+            _chat.DispatchRoundAnnouncement(Loc.GetString(msg, ("location", location), ("threats", generator.ThreatsLeft)),
                 Loc.GetString("es-telesci-announcement-sender"),
                 announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_low.ogg"),
                 colorOverride: Color.Magenta);
@@ -91,8 +90,7 @@ public sealed partial class ESTelesciSystem : ESSharedTelesciSystem
 
     protected override void SendAnnouncement(EntityUid ent, ESTelesciStage stage)
     {
-        _chat.DispatchRoundAnnouncement(ent,
-            Loc.GetString(stage.Announcement),
+        _chat.DispatchRoundAnnouncement(Loc.GetString(stage.Announcement),
             Loc.GetString("es-telesci-announcement-sender"),
             announcementSound: stage.AnnouncementSound,
             colorOverride: Color.Magenta);
