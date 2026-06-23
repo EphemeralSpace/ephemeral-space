@@ -9,7 +9,6 @@ using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -47,8 +46,9 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
         {
             if (_audio.IsPlaying(_currentlyPlayingAnnouncementSound?.Item1, _currentlyPlayingAnnouncementSound?.Item2))
             {
+                var filter = immediateAnnouncement.Global ? Filter.Broadcast() : Filter.Empty().AddWhere(_ticker.UserHasJoinedGame);
                 _audio.Stop(_currentlyPlayingAnnouncementSound?.Item1, _currentlyPlayingAnnouncementSound?.Item2);
-                _audio.PlayGlobal(AnnouncementCutoffSound, immediateAnnouncement.Filter, true);
+                _audio.PlayGlobal(AnnouncementCutoffSound, filter, true);
 
                 _timer.SpawnMethodTimer(ImmediateAnnouncementCutoffDelay,
                     () => DoQueuedAnnouncement(immediateAnnouncement));
@@ -73,7 +73,9 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
 
     private void DoQueuedAnnouncement(QueuedAnnouncement announcement)
     {
-        _chatManager.ChatMessageToManyFiltered(announcement.Filter,
+        var filter = announcement.Global ? Filter.Broadcast() : Filter.Empty().AddWhere(_ticker.UserHasJoinedGame);
+
+        _chatManager.ChatMessageToManyFiltered(filter,
             ChatChannel.Radio,
             announcement.Message,
             announcement.WrappedMessage,
@@ -83,10 +85,10 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
             announcement.Color);
 
         if (announcement.Sound != null)
-            _currentlyPlayingAnnouncementSound = _audio.PlayGlobal(announcement.Sound, announcement.Filter, true, AudioParams.Default.WithVolume(-2f));
+            _currentlyPlayingAnnouncementSound = _audio.PlayGlobal(announcement.Sound, filter, true, AudioParams.Default.WithVolume(-2f));
     }
 
-    private void QueueAnnouncement(Filter filter,
+    private void QueueAnnouncement(bool global,
         string message,
         string wrappedMessage,
         EntityUid source,
@@ -95,7 +97,7 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
         bool important)
     {
         var queue = important ? _immediateAnnouncements : _queuedAnnouncements;
-        var announcement = new QueuedAnnouncement(filter, message, wrappedMessage, source, sound, color);
+        var announcement = new QueuedAnnouncement(global, message, wrappedMessage, source, sound, color);
         queue.Enqueue(announcement);
     }
 
@@ -110,9 +112,8 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
     {
         sender ??= Loc.GetString("chat-manager-sender-announcement");
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
-        var filter = Filter.Broadcast();
         var sound = playSound ? (announcementSound ?? DefaultAnnouncementSound) : null;
-        QueueAnnouncement(filter, message, wrappedMessage, default, sound, colorOverride, important);
+        QueueAnnouncement(true, message, wrappedMessage, default, sound, colorOverride, important);
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global announcement from {sender}: {message}");
     }
@@ -129,9 +130,8 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
     {
         sender ??= Loc.GetString("chat-manager-sender-announcement");
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
-        var filter = Filter.Empty().AddWhere(_ticker.UserHasJoinedGame);
         var sound = playSound ? (announcementSound ?? DefaultAnnouncementSound) : null;
-        QueueAnnouncement(filter, message, wrappedMessage, source, sound, colorOverride, important);
+        QueueAnnouncement(false, message, wrappedMessage, source, sound, colorOverride, important);
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Round Announcement on {source} from {sender}: {message}");
     }
@@ -140,7 +140,7 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
     ///     Stores data for an announcement to be played later.
     /// </summary>
     private record struct QueuedAnnouncement(
-        Filter Filter,
+        bool Global, // true = all players false = players in round, todo more granularity somehow later. better api is possible
         string Message,
         string WrappedMessage,
         EntityUid Source,
