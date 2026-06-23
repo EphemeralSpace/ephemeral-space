@@ -63,6 +63,13 @@ public sealed partial class ExplosionPrototype : IPrototype
     public float TileBreakRerollReduction = 10f;
 
     /// <summary>
+    ///     If the effective intensity for a tile (after <see cref="TileBreakRerollReduction"/> is potentially applied)
+    ///     is below this value, no damage decals/tiles will be spawned at all. If it's above this, then they can spawn.
+    /// </summary>
+    [DataField]
+    public float TileBreakNoDamageThreshold = -5f;
+
+    /// <summary>
     ///     Color emitted by a point light at the center of the explosion.
     /// </summary>
     [DataField("lightColor")]

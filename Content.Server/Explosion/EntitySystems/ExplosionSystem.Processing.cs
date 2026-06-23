@@ -540,13 +540,13 @@ public sealed partial class ExplosionSystem
         int tileBreakages = 0;
         while (maxTileBreak > tileBreakages)
         {
-            if (effectiveIntensity <= 0)
+            if (effectiveIntensity <= type.TileBreakNoDamageThreshold)
                 break;
 
             // essentially how this works: if it succeeds the tilebreak roll, then itll break into the underlying tile
             // otherwise, itll just change into the damaged variant / spawn damage decals
             // because of the check above, if a tile breaks then its not guaranteed the underlying tile will immediately
-            // become damaged, only if the intensity is very low and it fails the roll again
+            // become damaged if the effective intensity was very low and it went below the threshold
             if (!_robustRandom.Prob(type.TileBreakChance(effectiveIntensity)))
             {
                 // damage tile instead of replacing it
