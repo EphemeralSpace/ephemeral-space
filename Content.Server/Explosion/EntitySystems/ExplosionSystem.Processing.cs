@@ -540,6 +540,9 @@ public sealed partial class ExplosionSystem
         int tileBreakages = 0;
         while (maxTileBreak > tileBreakages)
         {
+            if (effectiveIntensity <= 0)
+                break;
+
             if (!_robustRandom.Prob(type.TileBreakChance(effectiveIntensity)))
             {
                 // damage tile instead of replacing it

@@ -110,7 +110,6 @@
   sprite: /Textures/Tiles/lattice.png
   baseTurf: ESDamagedLattice
   isSubfloor: true
-  indestructible: true
   weather: true
   footstepSounds:
     collection: FootstepCatwalk
