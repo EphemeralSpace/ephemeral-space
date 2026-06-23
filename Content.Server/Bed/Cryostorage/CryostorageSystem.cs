@@ -1,13 +1,12 @@
 using System.Globalization;
+using Content.Server._ES.Announcements;
 using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
 using Content.Server.Ghost;
 using Content.Server.Hands.Systems;
 using Content.Server.Inventory;
 using Content.Server.Popups;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Access.Systems;
 using Content.Shared.Bed.Cryostorage;
@@ -37,7 +36,7 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private AccessReaderSystem _accessReader = default!;
-    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private ESAnnouncementSystem _chatSystem = default!;
     [Dependency] private ClimbSystem _climb = default!;
     [Dependency] private ContainerSystem _container = default!;
     [Dependency] private GhostSystem _ghostSystem = default!;
@@ -234,7 +233,7 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
             _stationRecords.RemoveRecord(key, stationRecords);
         }
 
-        _chatSystem.DispatchStationAnnouncement(station.Value,
+        _chatSystem.DispatchRoundAnnouncement(station.Value,
             Loc.GetString(
                 "earlyleave-cryo-announcement",
                 ("character", name),

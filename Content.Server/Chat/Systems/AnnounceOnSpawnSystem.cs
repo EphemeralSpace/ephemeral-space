@@ -1,10 +1,10 @@
-using Content.Server.Chat;
+using Content.Server._ES.Announcements;
 
 namespace Content.Server.Chat.Systems;
 
 public sealed partial class AnnounceOnSpawnSystem : EntitySystem
 {
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESAnnouncementSystem _chat = default!;
 
     public override void Initialize()
     {

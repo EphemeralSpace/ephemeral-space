@@ -1,6 +1,5 @@
-using System.Collections;
+using Content.Server._ES.Announcements;
 using Content.Server._ES.Armory.Components;
-using Content.Server.Chat.Systems;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Doors.Systems;
 using Content.Server.Electrocution;
@@ -40,7 +39,7 @@ public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComp
     [Dependency] private ElectrocutionSystem _electrocution = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private ESEntityTimerSystem _timer = default!;
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESAnnouncementSystem _chat = default!;
     [Dependency] private PowerReceiverSystem _powerReceiver = default!;
 
     public override void Initialize()
@@ -151,7 +150,7 @@ public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComp
         TrySetArmoryControlRoomDoorBolt(false);
 
         // Announcement
-        _chat.DispatchGlobalAnnouncement(
+        _chat.DispatchRoundAnnouncement(default,
             Loc.GetString("es-armory-opening-announcement"),
             Loc.GetString("es-armory-announcer"),
             true,
