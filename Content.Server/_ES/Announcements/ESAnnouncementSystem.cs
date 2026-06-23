@@ -9,6 +9,7 @@ using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -24,7 +25,7 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private IGameTiming _timing = default!;
 
-    private static readonly TimeSpan MinTimeBetweenAnnouncements = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan MinTimeBetweenAnnouncements = TimeSpan.FromSeconds(15);
     private static readonly TimeSpan ImmediateAnnouncementCutoffDelay = TimeSpan.FromSeconds(1);
     private static readonly SoundSpecifier DefaultAnnouncementSound = new SoundPathSpecifier("/Audio/_ES/Announcements/attention_low.ogg");
     private static readonly SoundSpecifier AnnouncementCutoffSound = new SoundPathSpecifier("/Audio/_ES/Announcements/cutoff.ogg");
@@ -63,11 +64,10 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
         if (_lastAnnouncementTime != null && _timing.CurTime < (_lastAnnouncementTime + MinTimeBetweenAnnouncements))
             return;
 
-        if(_queuedAnnouncements.TryDequeue(out var announcement))
-        {
-            DoQueuedAnnouncement(announcement);
-        }
+        if (!_queuedAnnouncements.TryDequeue(out var announcement))
+            return;
 
+        DoQueuedAnnouncement(announcement);
         _lastAnnouncementTime = _timing.CurTime;
     }
 
