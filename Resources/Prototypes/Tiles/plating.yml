@@ -111,7 +111,7 @@
   # its intentional that damaged lattice uses baseturf stuff
   # rather than being 'damagedTile' ; thought it made more sense to represent it in this way
   # (esp wrt repairability), though i dont think itd make sense to do for pretty much any other tiles
-  baseTurf: ESDamagedLattice
+  baseTurf: ESLatticeDamaged
   isSubfloor: true
   weather: true
   footstepSounds:

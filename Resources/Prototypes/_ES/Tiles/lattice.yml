@@ -1,6 +1,6 @@
 # indestructible
 - type: tile
-  id: ESDamagedLattice
+  id: ESLatticeDamaged
   name: es-tiles-damaged-lattice
   sprite: /Textures/_ES/Tiles/lattice_damaged.png
   baseTurf: Space
