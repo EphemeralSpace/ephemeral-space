@@ -677,3 +677,12 @@ Entries:
       message: There should be less welded/bolted doors in maints in general
   id: 79
   time: '2026-06-22T21:30:24.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Burstworm explosions have been amped up to the point where they both
+        destroy the original body and have enough strength to force open
+        containers.
+  id: 80
+  time: '2026-06-24T10:24:05.0000000+00:00'
