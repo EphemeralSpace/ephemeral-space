@@ -238,9 +238,6 @@
     - id: SMESMachineCircuitboard
     - id: SubstationMachineCircuitboard
 
-    - all:
-      - id: ClothingOuterCoatJensen
-      - id: ClothingEyesGlassesJensen
     - group:
       - id: ClothingNeckLGBTPin
       - id: ClothingNeckAllyPin
@@ -281,9 +278,7 @@
       weight: 0.5
     - id: ClothingOuterCoatGentle
       weight: 0.5
-    - all:
-      - id: ClothingOuterCoatJensen
-      - id: ClothingEyesGlassesJensen
+    - id: ClothingOuterCoatJensen
       weight: 0.5
     - group:
       - id: ClothingShoesBootsLaceup
