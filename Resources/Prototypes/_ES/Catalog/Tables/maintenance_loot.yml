@@ -239,41 +239,18 @@
     - id: SubstationMachineCircuitboard
 
     - group:
-      - id: ClothingNeckLGBTPin
-      - id: ClothingNeckAllyPin
-      - id: ClothingNeckAromanticPin
-      - id: ClothingNeckAsexualPin
-      - id: ClothingNeckAroacePin
-      - id: ClothingNeckBisexualPin
-      - id: ClothingNeckGayPin
-      - id: ClothingNeckIntersexPin
-      - id: ClothingNeckLesbianPin
-      - id: ClothingNeckNonBinaryPin
-      - id: ClothingNeckPansexualPin
-      - id: ClothingNeckPluralPin
-      - id: ClothingNeckOmnisexualPin
-      - id: ClothingNeckGenderqueerPin
-      - id: ClothingNeckGenderfluidPin
-      - id: ClothingNeckTransPin
-      - id: ClothingNeckAutismPin
-      - id: ClothingNeckGoldAutismPin
-      weight: 0.5
-    - group:
-      - id: ClothingNeckCloakTrans
-      - id: ClothingNeckCloakAdmin
-      - id: ClothingNeckCloakMoth
-      - id: ClothingNeckCloakVoid
-      - id: ClothingNeckCloakGoliathCloak
-      - id: ClothingNeckCloakAce
-      - id: ClothingNeckCloakAro
-      - id: ClothingNeckCloakAroace
-      - id: ClothingNeckCloakBi
-      - id: ClothingNeckCloakIntersex
-      - id: ClothingNeckCloakLesbian
-      - id: ClothingNeckCloakGay
-      - id: ClothingNeckCloakEnby
-      - id: ClothingNeckCloakPan
-      weight: 0.5
+      - id: ClothingUniformColorRainbow
+      - id: ClothingUniformJumpsuitAromantic
+      - id: ClothingUniformJumpsuitAsexual
+      - id: ClothingUniformJumpsuitGay
+      - id: ClothingUniformJumpsuitLesbian
+      - id: ClothingUniformJumpsuitBisexual
+      - id: ClothingUniformJumpsuitPansexual
+      - id: ClothingUniformJumpsuitTransgender
+      - id: ClothingUniformJumpsuitNonbinary
+      - id: ClothingUniformJumpsuitGenderfluid
+      - id: ClothingUniformJumpsuitIntersex
+      - id: ClothingUniformJumpsuitGenderqueer
     - id: ClothingEyesEyepatch
       weight: 0.5
     - id: ClothingOuterCoatGentle
