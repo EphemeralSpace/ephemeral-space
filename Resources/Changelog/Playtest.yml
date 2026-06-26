@@ -704,3 +704,16 @@ Entries:
       message: New syndicate bomb flatpack in demolitionist cache
   id: 82
   time: '2026-06-26T14:21:10.0000000+00:00'
+- author: Flareguy, mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Explosions/meteors can no longer reduce a tile to space, instead it is
+        replaced by damaged lattice which can be repaired with a metal rod back
+        to a normal lattice
+    - type: Add
+      message: >-
+        Explosions will now spawn saucy damage overlays on most tiles they
+        damage
+  id: 83
+  time: '2026-06-26T14:22:13.0000000+00:00'
