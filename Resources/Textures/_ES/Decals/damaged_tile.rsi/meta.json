@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "tgstation at 606005645d3a14c4439e5ce14785650121b22678, cut into alpha layers by Flareguy",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "plating_1"
+    },
+    {
+      "name": "plating_2"
+    },
+    {
+      "name": "plating_3"
+    },
+    {
+      "name": "quartertile_1"
+    },
+    {
+      "name": "quartertile_2"
+    },
+    {
+      "name": "quartertile_3"
+    },
+    {
+      "name": "quartertile_4"
+    },
+    {
+      "name": "quartertile_5"
+    }
+  ]
+}
