@@ -698,3 +698,9 @@ Entries:
         currently-playing announcements in a fun way rather than being delayed
   id: 81
   time: '2026-06-26T14:20:37.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Tweak
+      message: New syndicate bomb flatpack in demolitionist cache
+  id: 82
+  time: '2026-06-26T14:21:10.0000000+00:00'
