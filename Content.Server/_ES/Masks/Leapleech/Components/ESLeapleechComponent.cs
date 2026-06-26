@@ -19,7 +19,7 @@ public sealed partial class ESLeapleechComponent : Component
     public int LeechCount => LeechedEntities.Count(p => p.Value >= LeechDamageThreshold);
 
     [DataField]
-    public FixedPoint2 LeechDamageThreshold = 50;
+    public FixedPoint2 LeechDamageThreshold = 10;
 
     [DataField]
     public TimeSpan BurstDelay = TimeSpan.FromSeconds(1.5f);
