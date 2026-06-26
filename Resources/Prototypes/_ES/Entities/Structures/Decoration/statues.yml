@@ -25,8 +25,8 @@
 - type: entity
   id: ESStatueFungus
   parent: BaseStructure
-  name: dancing fungus statue
-  description: A painstakingly chiseled statue commemorating the best dance ever performed in all of existence.
+  name: dancing fungus
+  description: A mysterious fungal growth. It's hitting a dance so perfect you can't help but watch.
   components:
   - type: Sprite
     noRot: true
