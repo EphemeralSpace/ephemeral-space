@@ -1,4 +1,4 @@
-using Content.Server.Chat.Systems;
+using Content.Server._ES.Announcements;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -28,7 +28,7 @@ namespace Content.Server.PowerSink
         private readonly TimeSpan _explosionDelayTime = TimeSpan.FromSeconds(1.465);
 
         [Dependency] private IGameTiming _gameTiming = default!;
-        [Dependency] private ChatSystem _chat = default!;
+        [Dependency] private ESAnnouncementSystem _chat = default!;
         [Dependency] private ExplosionSystem _explosionSystem = default!;
         [Dependency] private SharedAudioSystem _audio = default!;
         [Dependency] private StationSystem _station = default!;
@@ -126,10 +126,8 @@ namespace Content.Server.PowerSink
             if (station == null)
                 return;
 
-            _chat.DispatchStationAnnouncement(
-                station.Value,
-                Loc.GetString("powersink-imminent-explosion-announcement"),
-                playDefaultSound: true,
+            _chat.DispatchRoundAnnouncement(Loc.GetString("powersink-imminent-explosion-announcement"),
+                playSound: true,
                 colorOverride: Color.Yellow
             );
         }

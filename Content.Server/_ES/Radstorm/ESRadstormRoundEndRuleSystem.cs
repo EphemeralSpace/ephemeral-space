@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Server._ES.Announcements;
 using Content.Server._ES.Radio;
 using Content.Server._ES.Radstorm.Components;
-using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.RoundEnd;
@@ -9,7 +9,6 @@ using Content.Shared._ES.CCVar;
 using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Light.Components;
 using Content.Shared.Mobs;
@@ -34,7 +33,7 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private BrainDamageSystem _brainDamage = default!;
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESAnnouncementSystem _chat = default!;
     [Dependency] private DamageableSystem _damage = default!;
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private SharedMapSystem _map = default!;
@@ -144,11 +143,12 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
             var msg = Loc.GetString(phase.AnnouncementText, ("minutes", (minutes)));
             if (phase.AnnouncementDistortion > 0f)
                 msg = FormattedMessage.RemoveMarkupPermissive(ESRadioSystem.DistortRadioMessage(msg, phase.AnnouncementDistortion, _proto, _random, Loc));
-            _chat.DispatchGlobalAnnouncement(
-                msg,
+
+            _chat.DispatchRoundAnnouncement(msg,
                 Loc.GetString("es-radstorm-announcer"),
                 announcementSound: phase.AnnouncementSound,
-                colorOverride: Color.LightSeaGreen);
+                colorOverride: Color.LightSeaGreen,
+                important: true);
         }
 
         // if text is null but sound isnt, this phase just wants to play a sound with no announcement

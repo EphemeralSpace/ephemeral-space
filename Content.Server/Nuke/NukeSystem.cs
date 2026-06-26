@@ -1,6 +1,6 @@
+using Content.Server._ES.Announcements;
 using Content.Server.AlertLevel;
 using Content.Server.Audio;
-using Content.Server.Chat.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Pinpointer;
 using Content.Server.Popups;
@@ -11,14 +11,12 @@ using Content.Shared.Coordinates.Helpers;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Kitchen;
-using Content.Shared.Maps;
 using Content.Shared.Nuke;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
@@ -28,7 +26,7 @@ namespace Content.Server.Nuke;
 public sealed partial class NukeSystem : EntitySystem
 {
     [Dependency] private AlertLevelSystem _alertLevel = default!;
-    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private ESAnnouncementSystem _chatSystem = default!;
     [Dependency] private ExplosionSystem _explosions = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
@@ -505,7 +503,7 @@ ES END */
             ("time", (int) component.RemainingTime),
             ("location", FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString((uid, nukeXform)))));
         var sender = Loc.GetString("nuke-component-announcement-sender");
-        _chatSystem.DispatchStationAnnouncement(stationUid ?? uid, announcement, sender, false, null, Color.Red);
+        _chatSystem.DispatchRoundAnnouncement(announcement, sender, false, null, Color.Red, important: true);
 
         _sound.PlayGlobalOnStation(uid, _audio.ResolveSound(component.ArmSound));
         _nukeSongLength = (float) _audio.GetAudioLength(_selectedNukeSong).TotalSeconds;
@@ -551,7 +549,7 @@ ES END */
         // warn a crew
         var announcement = Loc.GetString("nuke-component-announcement-unarmed");
         var sender = Loc.GetString("nuke-component-announcement-sender");
-        _chatSystem.DispatchStationAnnouncement(uid, announcement, sender, false);
+        _chatSystem.DispatchRoundAnnouncement(announcement, sender, false, important: true);
 
         component.PlayedNukeSong = false;
         _sound.PlayGlobalOnStation(uid, _audio.ResolveSound(component.DisarmSound));

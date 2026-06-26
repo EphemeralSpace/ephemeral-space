@@ -8,7 +8,7 @@
   copyright: "Made by pigeonbeans using sounds from tgstation"
   source: "https://github.com/tgstation/tgstation/tree/master/sound/announcer/vox_fem"
 
-- files: ["first_death.ogg"]
+- files: ["first_death.ogg", "cutoff.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made by pigeonbeans using sounds from freesound"
   source: "https://freesound.org/people/Janosch-JR/sounds/611101/"
