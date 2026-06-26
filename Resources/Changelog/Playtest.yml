@@ -686,3 +686,15 @@ Entries:
         containers.
   id: 80
   time: '2026-06-24T10:24:05.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Announcements will now queue and will delay themselves rather than
+        playing a trillion sounds at once if multiple announcements play
+    - type: Add
+      message: >-
+        Some announcements are 'important' and will cut off the sound of
+        currently-playing announcements in a fun way rather than being delayed
+  id: 81
+  time: '2026-06-26T14:20:37.0000000+00:00'
