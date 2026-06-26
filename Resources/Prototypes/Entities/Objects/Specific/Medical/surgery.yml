@@ -170,6 +170,8 @@
   - type: Item
     size: Large
     sprite: _ES/Objects/Specific/Medical/Tools/csaw.rsi
+    shape:
+    - 0,0,2,1
   - type: MeleeWeapon
     damage:
       groups:

@@ -104,17 +104,15 @@
     sprite: Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
 
 - type: entity
-  parent: ClothingOuterStorageToggleableBase
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatJensen
-  name: jensen coat
-  description: A jensen coat.
+  name: trench coat
+  description: Tumbling rapidly out of style since 1999.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/jensencoat.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/jensencoat.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodChaplainHood
 
 - type: entity
   parent: ClothingOuterStorageBase
