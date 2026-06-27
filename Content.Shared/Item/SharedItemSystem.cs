@@ -118,8 +118,8 @@ public abstract partial class SharedItemSystem : EntitySystem
         {
             BlockDuplicate = false,
             BreakOnHandChange = false,
-            BreakOnMove = false,
-            DistanceThreshold = 0.5f,
+            BreakOnMove = true,
+            MovementThreshold = 0.5f,
         };
 
         args.Handled = _doafter.TryStartDoAfter(ev);
