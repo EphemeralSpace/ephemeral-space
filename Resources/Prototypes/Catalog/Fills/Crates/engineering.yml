@@ -206,18 +206,6 @@
         id: RCD
 
 - type: entity
-  parent: CrateEngineeringSecure
-  id: CrateParticleDecelerators
-  name: particle decelerators crate
-  description: A crate containing 3 Particle Decelerators.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        id: WeaponParticleDecelerator
-        amount: 3
-
-- type: entity
   parent: CrateEngineering
   id: CrateEngineeringSpaceHeater
   name: space heater crate

@@ -188,11 +188,8 @@
   id: ToiletCisternWeaponsTable
   table: !type:GroupSelector
     children:
-    - id: SurvivalKnife
     - id: Shiv
     - id: HydroponicsToolHatchet
-    - id: ClothingHandsKnuckleDusters
-    - id: WeaponFlareGun
 
 - type: entityTable
   id: ToiletCisternSyndicateTable

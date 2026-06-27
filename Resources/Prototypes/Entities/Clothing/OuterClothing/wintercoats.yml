@@ -820,44 +820,6 @@
 
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
-  id: ClothingOuterWinterWeb
-  name: web winter coat
-  description: Feels like the inside of a cocoon, not that this would make you less afraid of being in one.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    layers:
-    - state: WEB-icon
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: WEB-inhand-left
-      right:
-      - state: WEB-inhand-right
-  - type: Clothing
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    clothingVisuals:
-      outerClothing:
-      - state: WEB-equipped-OUTERCLOTHING
-  - type: Construction
-    graph: WebObjects
-    node: coat
-  - type: Butcherable
-    spawned:
-    - id: MaterialWebSilk1
-      amount: 5
-  - type: SolutionContainerManager
-    solutions: # 15 (3 (fiber count of web) * 5 (to craft)) + 5 (magical crafting bonus)
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 20
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodWinterWeb
-
-- type: entity
-  parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterColorBlack
   name: black winter coat
   components:

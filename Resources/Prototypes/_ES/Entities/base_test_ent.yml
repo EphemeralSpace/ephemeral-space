@@ -1,0 +1,10 @@
+# Tests often need things to have sprites, and
+# items shouldn't be appearing in the spawn menu if they
+# are used exclusively for testing
+- type: entity
+  id: BaseTest
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: deprecated.rsi
+    state: deprecated

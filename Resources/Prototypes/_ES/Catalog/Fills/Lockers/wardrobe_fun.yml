@@ -85,7 +85,6 @@
     all:
     - id: ClothingHeadHatShrineMaidenWig
     - id: ClothingOuterSuitShrineMaiden
-    - id: Gohei
 
 - type: entityTable
   id: ESOutfitVaquero

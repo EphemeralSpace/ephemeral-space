@@ -1,0 +1,369 @@
+# Toy guns
+
+- type: entity
+  abstract: true
+  id: BaseToyGun
+  components:
+  - type: PacifismAllowedGun # They don't hurt!
+
+- type: entity
+  parent: [ BaseItem, BaseToyGun ]
+  id: RevolverCapGun
+  name: cap gun
+  description: Looks almost like the real thing! Ages 8 and up.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/capgun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    storedOffset: -2,-7
+    sprite: Objects/Fun/capgun.rsi
+  - type: Tag
+    tags:
+    - Sidearm
+    - ToySidearm
+  - type: AmmoCounter
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+      params:
+        volume: 2.25
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeCap
+      - SpeedLoaderCap
+    proto: CartridgeCap
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+  - type: ContainerContainer
+    containers:
+      revolver-ammo: !type:Container
+
+
+- type: entity
+  parent: [ BaseItem, BaseToyGun ]
+  id: FoamCrossbow
+  name: foam crossbow
+  description: Aiming this at Security may get you filled with lead.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/Foam/foam_crossbow.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Objects/Fun/Foam/foam_crossbow.rsi
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/energycrossbow_shoot.ogg
+  - type: BallisticAmmoProvider
+    whitelist: &WhitelistFoam
+      tags:
+      - BulletFoam
+    capacity: 1
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/energycrossbow_reload.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  name: Foam Force Astro Ace
+  parent: [ BaseToyGun, BaseWeaponShotgun ]
+  id: WeaponRifleFoam
+  description: A premium foam rifle of the highest quality. Its plastic feels rugged, and its mechanisms sturdy.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/Foam/foam_rifle.rsi
+  - type: Clothing
+    sprite: Objects/Fun/Foam/foam_rifle.rsi
+  - type: Item
+    sprite: Objects/Fun/Foam/foam_rifle_inhand_64x.rsi
+    size: Normal
+    shape:
+    - 0,0,3,0
+  - type: BallisticAmmoProvider
+    whitelist: *WhitelistFoam
+    capacity: 10
+    proto: BulletFoam
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+
+# Grappling gun
+- type: entity
+  name: grappling gun
+  parent: BaseItem
+  id: WeaponGrapplingGun
+  components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    storedOffset: 0,-6
+  - type: AmmoCounter
+  - type: GrapplingGun
+  - type: Gun
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
+    fireRate: 0.5
+  - type: BasicEntityAmmoProvider
+    proto: GrapplingHook
+    capacity: 1
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
+    layers:
+    - state: base
+    - state: base-unshaded
+      map: [ "unshaded" ]
+      visible: true
+  - type: UseDelay
+    delay: 1.5
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TetherVisualsStatus.Key:
+        unshaded:
+          True: { state: base-unshaded }
+          False: { state: base-unshaded-off }
+  - type: PacifismAllowedGun
+
+# Cannons
+- type: entity
+  name: improvised pneumatic cannon
+  parent: BaseStorageItem
+  id: WeaponImprovisedPneumaticCannon
+  description: Improvised using nothing but a pipe, some zipties, and a pneumatic cannon. Doesn't accept tanks without enough gas.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Cannons/pneumatic_cannon.rsi
+    layers:
+    - state: icon
+    - state: tank
+      map: [ "tank" ]
+      visible: false
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: ContainerAmmoProvider
+    container: storagebase
+  - type: PneumaticCannon
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,1,1
+  - type: Appearance
+  - type: ItemMapper
+    containerWhitelist: [gas_tank]
+    mapLayers:
+      tank:
+        whitelist:
+          components:
+          - GasTank
+  - type: Construction
+    graph: PneumaticCannon
+    node: cannon
+  - type: ItemSlots
+    slots:
+      gas_tank:
+        name: pneumatic-cannon-component-itemslot-name
+        whitelist:
+          components:
+          - GasTank
+        insertSound:
+          path: /Audio/Weapons/click.ogg
+          params:
+            volume: -3
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      gas_tank: !type:ContainerSlot
+
+- type: entity
+  parent: BaseStorageItem
+  id: LauncherCreamPie
+  name: pie cannon
+  suffix: Empty
+  description: Load cream pie for optimal results.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Cannons/pie_cannon.rsi
+    layers:
+    - state: piecannon
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,7,3
+    whitelist:
+      components:
+      - CreamPie
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: ContainerAmmoProvider
+    container: storagebase
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Cannons/pie_cannon.rsi
+    quickEquip: false
+    slots:
+    - Back
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+
+# Watergun(s?)
+- type: entity
+  id: WeaponWaterGunBase
+  abstract: true
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/water_pistol.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/water_pistol.rsi
+    slots: BELT
+  - type: Item
+    sprite: Objects/Weapons/Guns/Pistols/water_pistol.rsi
+    size: Small
+  - type: Gun
+    cameraRecoilScalar: 0 #no recoil
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/water_spray.ogg
+  - type: SolutionContainerManager
+    solutions:
+      chamber:
+        maxVol: 50 #10 shots
+  - type: SolutionAmmoProvider
+    solutionId: chamber
+    proto: BulletWaterShot
+  - type: SolutionTransfer
+    transferAmount: 5
+    maxTransferAmount: 50
+    minTransferAmount: 5
+    canChangeTransferAmount: true
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: DrawableSolution
+    solution: chamber
+  - type: DrainableSolution
+    solution: chamber
+  - type: RefillableSolution
+    solution: chamber
+  - type: ExaminableSolution
+    solution: chamber
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 150
+
+- type: entity
+  id: WeaponWaterPistol
+  parent: WeaponWaterGunBase
+  name: water pistol
+  description: The dinkiest of water-based weaponry. You swear the trigger doesn't do anything.
+  components:
+  - type: Item
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    storedOffset: -4,-4
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/water_pistol.rsi
+    layers:
+    - state: detail
+    - state: icon
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        icon: Rainbow
+
+- type: entity
+  id: WeaponSprayNozzle
+  parent: BaseItem
+  name: spray nozzle
+  description: A high-powered spray nozzle used in conjunction with a backpack-mounted water tank.
+  components:
+  - type: Tag
+    tags:
+    - SprayNozzle
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
+    size: Normal
+  - type: Gun
+    cameraRecoilScalar: 0 #no recoil
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/water_spray.ogg
+  - type: Absorbent
+    pickupAmount: 35
+    solutionName: tank
+    useAbsorberSolution: false
+    pickupSound:
+      path: /Audio/Effects/Fluids/vacuum-cleaner-fast.ogg
+  - type: Appearance
+  - type: ClothingSlotAmmoProvider
+  - type: SlotBasedConnectedContainer
+    targetSlot: BACK
+    containerWhitelist:
+      tags:
+      - NozzleBackTank
+  - type: UseDelay
+    delay: 1.0

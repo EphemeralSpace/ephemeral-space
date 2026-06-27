@@ -211,32 +211,6 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineAmmo
-  name: liberation station
-  description: An overwhelming amount of ancient patriotism washes over you just by looking at the machine.
-  components:
-  - type: VendingMachine
-    pack: AmmoVendInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-  - type: DatasetVocalizer
-    dataset: CondimentVendAds
-  - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/ammo.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-
-- type: entity
-  parent: VendingMachine
   id: VendingMachineBooze
   name: Booze-O-Mat
   description: A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one.
@@ -875,40 +849,6 @@
     radius: 1.5
     energy: 3.0
     color: "#326e3f"
-
-- type: entity
-  parent: VendingMachine
-  id: VendingMachineSec
-  name: SecTech
-  description: A vending machine containing Security equipment. A label reads SECURITY PERSONNEL ONLY.
-  components:
-  - type: VendingMachine
-    pack: SecTechInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-    denyState: deny-unshaded
-  - type: DatasetVocalizer
-    dataset: SecTechAds
-  - type: SpeakOnUIClosed
-    pack: SecTechGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/sec.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["Security"]]
-  - type: PointLight
-    radius: 1
-    energy: 2.0
-    color: "#78645c"
 
 - type: entity
   parent: VendingMachine

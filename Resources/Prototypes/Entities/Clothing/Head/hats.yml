@@ -1195,34 +1195,6 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatGreyFlatcap
-  name: grey flatcap
-  description: Fashionable for both the working class and old man Jenkins.
-  components:
-  - type: Tag
-    tags:
-    - BrimFlatcapGrey
-  - type: Sprite
-    sprite: Clothing/Head/Hats/greyflatcap.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/greyflatcap.rsi
-
-- type: entity
-  parent: ClothingHeadBase
-  id: ClothingHeadHatBrownFlatcap
-  name: brown flatcap
-  description: "\"Stupid clown! You made me look bad!\""
-  components:
-  - type: Tag
-    tags:
-    - BrimFlatcapBrown
-  - type: Sprite
-    sprite: Clothing/Head/Hats/brownflatcap.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/brownflatcap.rsi
-
-- type: entity
-  parent: ClothingHeadBase
   id: ClothingHeadHatCowboyBrown
   name: brown cowboy hat
   description: "\"This hat ain't big enough for the two of us.\""

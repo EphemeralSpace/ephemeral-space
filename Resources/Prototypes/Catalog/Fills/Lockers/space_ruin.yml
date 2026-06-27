@@ -59,7 +59,6 @@
   id: FilLockerSyndicateShipGearBasicChameleonKit
   table: !type:AllSelector
     children:
-    - id: ClothingBackpackChameleonFill
     - id: CrowbarRed
       prob: 0.6
     - id: ClothingShoesBootsBlack

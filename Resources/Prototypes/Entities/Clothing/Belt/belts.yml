@@ -1,38 +1,6 @@
 ## Belts that need/have visualizers
 
 - type: entity
-  parent: [ClothingBeltBase, ClothingSlotBase, BaseCommandContraband]
-  id: ClothingBeltSheath
-  name: sabre sheath
-  description: An ornate sheath designed to hold an officer's blade.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/sheath.rsi
-    state: sheath
-  - type: Clothing
-    sprite: Clothing/Belt/sheath.rsi
-  - type: Item
-    size: Ginormous
-  - type: ItemSlots
-    slots:
-      item:
-        name: Sabre
-        insertVerbText: sheath-insert-verb
-        ejectVerbText: sheath-eject-verb
-        insertSound: /Audio/Items/sheath.ogg
-        ejectSound: /Audio/Items/unsheath.ogg
-        whitelist:
-          tags:
-          - CaptainSabre
-  - type: ItemMapper
-    mapLayers:
-      sheath-sabre:
-        whitelist:
-          tags:
-          - CaptainSabre
-  - type: Appearance
-
-- type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltQuiver
   name: quiver
@@ -155,17 +123,6 @@
     sprite: Clothing/Belt/militarywebbing.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.1
-
-- type: entity
-  parent: ClothingBeltMilitaryWebbing
-  id: ClothingBeltMilitaryWebbingMed
-  name: medical chest rig
-  description: A set of tactical webbing worn by Gorlex Marauder medic operatives.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/militarywebbingmed.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/militarywebbingmed.rsi
 
 - type: entity
   parent: ClothingBeltMilitaryWebbing
