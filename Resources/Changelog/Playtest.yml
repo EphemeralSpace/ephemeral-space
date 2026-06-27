@@ -721,3 +721,13 @@ Entries:
   changes: []
   id: 84
   time: '2026-06-26T14:24:42.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Fix
+      message: phantoms can no longer steal from the armory
+    - type: Tweak
+      message: armory now stuns you for longer
+    - type: Tweak
+      message: leep leaches damage threshold lowered to 10 from 50
+  id: 85
+  time: '2026-06-27T01:42:15.0000000+00:00'
