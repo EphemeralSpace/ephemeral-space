@@ -25,23 +25,11 @@
 - type: entity
   id: ESStatueFungus
   parent: BaseStructure
-  name: dancing fungus statue
-  description: A painstakingly chiseled statue commemorating the best dance ever performed in all of existence.
+  name: dancing fungus
+  description: A mysterious fungal growth. It's hitting a dance so perfect you can't help but watch.
   components:
   - type: Sprite
     noRot: true
     sprite: _ES/Structures/Decoration/statues.rsi
     state: fungus
     drawdepth: Mobs
-    
-- type: entity
-  id: ESStatueCold
-  parent: BaseStructure
-  name: blistering cold statue
-  description: One like us. He seems to have been caught in a nasty blizzard on his way to the show. Maybe one day he'll thaw. Maybe one day.
-  components:
-    - type: Sprite
-      noRot: true
-      sprite: _ES/Structures/Decoration/statues.rsi
-      state: blisteringcold
-      drawdepth: Mobs

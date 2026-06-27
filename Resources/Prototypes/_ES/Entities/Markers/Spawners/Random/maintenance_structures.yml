@@ -17,7 +17,9 @@
       - id: AirlockMaintLocked
         weight: 1.5
       - id: ESAirlockMaintLockedWelded
+        weight: 0.5
       - id: ESAirlockMaintLockedBolted
+        weight: 0.25
       - all:
         - id: AirlockMaintLocked
         - id: BarricadeBlock
@@ -43,13 +45,15 @@
       - id: AirlockMaintLocked
         weight: 1.5
       - id: ESAirlockMaintLockedWelded
+        weight: 0.5
       - id: ESAirlockMaintLockedBolted
+        weight: 0.25
       - all:
         - id: AirlockMaintLocked
         - id: BarricadeBlock
       - id: WallSolid
-      - id: SolidSecretDoor
         weight: 0.5
+      - id: SolidSecretDoor
 
 # Obstructions (random girders/grilles/etc.)
 - type: entity

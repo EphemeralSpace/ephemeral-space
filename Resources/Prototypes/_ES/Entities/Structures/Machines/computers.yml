@@ -95,45 +95,6 @@
     containers:
       board: !type:Container
 
-# Computers
-- type: entity
-  parent: BaseComputerAiAccess
-  id: ESComputerEvacBeacon
-  name: emergency beacon console
-  description: A computer for broadcasting and coordinating emergency beacon signals. Used for hailing emergency shuttles.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: comm
-    - map: ["computerLayerKeys"]
-      state: generic_keys
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: AccessReader
-    access: [[ "Command" ]]
-  - type: ESEvacConsole
-  - type: ActivatableUI
-    key: enum.ESEvacUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.ESEvacUiKey.Key:
-        type: ESEvacBeaconBui
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Computer
-    board: ESComputerEvacBeaconCircuitBoard
-  - type: PointLight
-    color: "#3c5eb5"
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: ESAmbientMusicMarkerCommand
-
 - type: entity
   parent: BaseComputerAiAccess
   id: ESComputerWarehouseManifest
@@ -447,12 +408,14 @@
     modifier: 0.5
     disableAnnouncement: es-radstorm-power-on-navigation-console
     enableAnnouncement: es-radstorm-power-off-navigation-console
+    announcementSoundDisabled: /Audio/_ES/Announcements/navigation_online.ogg
+    announcementSoundEnabled: /Audio/_ES/Announcements/navigation_offline.ogg
   - type: PointLight
     color: "#1bfff3"
   - type: ApcPowerReceiverBattery
     batteryRechargeRate: 25
   - type: Battery
     netsync: false
-    maxCharge: 200
+    maxCharge: 600
   - type: ExaminableBattery
   - type: ESAmbientMusicMarkerCommand

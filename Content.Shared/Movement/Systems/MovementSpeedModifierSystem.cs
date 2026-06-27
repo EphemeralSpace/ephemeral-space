@@ -34,7 +34,7 @@ namespace Content.Shared.Movement.Systems
             ent.Comp.WeightlessAcceleration = ent.Comp.BaseWeightlessAcceleration;
             ent.Comp.WeightlessModifier = ent.Comp.BaseWeightlessModifier;
             ent.Comp.WeightlessFriction = _airDamping * ent.Comp.BaseWeightlessFriction;
-            ent.Comp.WeightlessFrictionNoInput = _airDamping * ent.Comp.BaseWeightlessFriction;
+            ent.Comp.WeightlessFrictionNoInput = _airDamping * ent.Comp.BaseWeightlessFrictionNoInput;
             ent.Comp.OffGridFriction = _offGridDamping * ent.Comp.BaseWeightlessFriction;
             ent.Comp.Acceleration = ent.Comp.BaseAcceleration;
             ent.Comp.Friction = _frictionModifier * ent.Comp.BaseFriction;

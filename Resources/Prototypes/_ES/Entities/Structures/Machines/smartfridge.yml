@@ -10,6 +10,8 @@
       smart_fridge_inventory:
         tableId: ESSmartFridgeMedicalFill
   - type: ESAmbientMusicMarkerMedical
+  - type: AccessReader
+    access: [[ "Medical" ]]
 
 - type: entityTable
   id: ESSmartFridgeMedicalFill

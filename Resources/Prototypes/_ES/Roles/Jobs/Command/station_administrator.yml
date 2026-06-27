@@ -1,0 +1,34 @@
+- type: job
+  id: ESStationAdmin
+  name: ESjob-name-station-admin
+  description: ESjob-description-station-admin
+  playTimeTracker: ESJobStationAdmin
+  startingGear: ESStationAdminGear
+  icon: "JobIconStationAdmin"
+  canBeAntag: false
+  overrideConsoleVisibility: false
+  access:
+  - Command
+  - StationAdmin
+  - Maintenance
+  - External
+
+- type: startingGear
+  id: ESStationAdminGear
+  equipment:
+    shoes: ClothingShoesColorBrown
+    id: StationAdminPDA
+    ears: ClothingHeadsetAltCommand
+    head: ClothingHeadHatStationAdminCap
+    belt: BoxFolderClipboardThreePapers
+    jumpsuit: ClothingUniformJumpsuitStationAdmin
+    back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival
+    - Flash
+
+- type: chameleonOutfit
+  id: ESStationAdmin
+  job: ESStationAdmin
+  hidden: false

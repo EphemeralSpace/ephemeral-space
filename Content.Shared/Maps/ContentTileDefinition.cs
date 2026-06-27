@@ -1,4 +1,5 @@
 using Content.Shared.Atmos;
+using Content.Shared.Decals;
 using Content.Shared.Light.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Tools;
@@ -96,6 +97,22 @@ namespace Content.Shared.Maps
         [DataField]
         public float Flammability = 1f;
         // ES END
+
+        /// <summary>
+        ///     Tile definition to use if this tile wants to become "damaged", separate from it turning into its base tile form.
+        /// </summary>
+        /// <remarks>
+        ///     Most things shouldn't use this. Instead, they should use decals with <see cref="DamageDecals"/>.
+        /// </remarks>
+        [DataField]
+        public ProtoId<ContentTileDefinition>? DamagedTile = null;
+
+        /// <summary>
+        ///     Decals that can be spawned when a tile is damaged. If <see cref="DamagedTile"/> is non-null, that will be prioritized instead.
+        ///     A random decal is chosen.
+        /// </summary>
+        [DataField]
+        public HashSet<ProtoId<DecalPrototype>>? DamageDecals = null;
 
         // Heat capacity is opt-in, not opt-out.
         [DataField("heatCapacity")] public float HeatCapacity = Atmospherics.MinimumHeatCapacity;

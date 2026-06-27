@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseFlatpack
+  id: ESSyndicateBombFlatpack
+  name: syndicate bomb flatpack
+  description: A flatpack for when you need to make a room disappear.
+  components:
+    - type: Sprite
+      sprite: _ES/Objects/Devices/flatpack.rsi
+      layers:
+        - state: syndicate-bomb
+    - type: Flatpack
+      entity: SyndicateBomb

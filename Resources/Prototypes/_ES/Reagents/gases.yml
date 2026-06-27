@@ -24,13 +24,16 @@
             Asphyxiation:
               2
       - !type:ESAddWound
-        minScale: 1.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: Smoke
+          min: 0.75
         wound: ESWoundSmokeInhalation
-        probability: 0.2
+        probability: 0.33
       - !type:Emote
         conditions:
         - !type:ReagentCondition
           reagent: Smoke
-          min: 0.2
+          min: 0.25
         emote: Cough
-        probability: 0.5
+        probability: 0.75

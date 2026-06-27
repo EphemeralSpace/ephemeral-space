@@ -1,23 +1,84 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "vaporwave and karlmarx taken from tgstation at https://github.com/tgstation/tgstation/blob/master/icons/obj/art/statue.dmi, fungus origin and licensing unknown - modified by pigeonbeans, blistering cold statue by artxmisery on discord.",
+  "copyright": "vaporwave and karlmarx taken from tgstation at https://github.com/tgstation/tgstation/blob/master/icons/obj/art/statue.dmi, fungus origin and licensing unknown - modified by pigeonbeans",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "fungus"
+      "name": "fungus",
+      "delays": [
+        [
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04
+        ]
+      ]
     },
     {
       "name": "karlmarx"
     },
     {
       "name": "vaporwave"
-    },
-    {
-      "name": "blisteringcold"
     }
   ]
 }

@@ -158,11 +158,11 @@
 
 - type: entity
   parent: DefaultStationBeaconCommand
-  id: DefaultStationBeaconHOPOffice
-  suffix: HOP's Office
+  id: DefaultStationBeaconStationAdminOffice
+  suffix: Station Admin's Office
   components:
   - type: NavMapBeacon
-    defaultText: station-beacon-hop
+    defaultText: station-beacon-station-admin
 
 - type: entity
   parent: DefaultStationBeacon

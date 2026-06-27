@@ -162,7 +162,7 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
     #region API
 
     [PublicAPI]
-    public override bool TryDoTileFire(EntityCoordinates coords, EntityUid? originatingUser = null, int stage = 1)
+    public override bool TryDoTileFire(EntityCoordinates coords, EntityUid? originatingUser = null, int stage = 1, bool spread = true)
     {
         var xform = Transform(coords.EntityId);
         if (xform.GridUid is not { } grid || !TryComp<MapGridComponent>(grid, out var mapGrid))
@@ -178,10 +178,18 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
 
         var fire = SpawnAtPosition(proto, coords);
 
+        if (!spread)
+        {
+            RemCompDeferred<ESTileFireComponent>(fire);
+        }
+
         if (!TerminatingOrDeleted(originatingUser) && Exists(originatingUser))
         {
-            EnsureComp<ESTileFireComponent>(fire).Origin = originatingUser;
-            EnsureComp<ESTileFireOriginComponent>(originatingUser.Value).Fires.Add(fire);
+            if (spread)
+            {
+                EnsureComp<ESTileFireComponent>(fire).Origin = originatingUser;
+                EnsureComp<ESTileFireOriginComponent>(originatingUser.Value).Fires.Add(fire);
+            }
 
             var ev = new ESTileFireCreatedEvent(coords, originatingUser);
             RaiseLocalEvent(originatingUser.Value, ref ev);

@@ -1,11 +1,10 @@
+using Content.Server._ES.Announcements;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
-using Content.Server.Chat.Systems;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Screens.Components;
-using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -41,7 +40,7 @@ namespace Content.Server.Communications
 // ES END
         [Dependency] private AccessReaderSystem _accessReaderSystem = default!;
         [Dependency] private AlertLevelSystem _alertLevelSystem = default!;
-        [Dependency] private ChatSystem _chatSystem = default!;
+        [Dependency] private ESAnnouncementSystem _chatSystem = default!;
         [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
         [Dependency] private PopupSystem _popupSystem = default!;
         [Dependency] private RoundEndSystem _roundEndSystem = default!;
@@ -129,7 +128,7 @@ namespace Content.Server.Communications
 
             msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
 
-            _chatSystem.DispatchStationAnnouncement(ent, msg, title, announcementSound: DegradationSoundEffect, colorOverride: Color.DarkGray);
+            _chatSystem.DispatchRoundAnnouncement(msg, title, announcementSound: DegradationSoundEffect, colorOverride: Color.DarkGray, important: true);
 
             args.Handled = true;
         }
@@ -299,16 +298,13 @@ namespace Content.Server.Communications
 
             if (comp.Global)
             {
-                _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
-
+                _chatSystem.DispatchRoundAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following global announcement: {msg}");
                 return;
             }
 
-            _chatSystem.DispatchStationAnnouncement(uid, msg, title, colorOverride: comp.Color);
-
+            _chatSystem.DispatchRoundAnnouncement(msg, title, colorOverride: comp.Color);
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
-
         }
 
         private void OnBroadcastMessage(EntityUid uid, CommunicationsConsoleComponent component, CommunicationsConsoleBroadcastMessage message)

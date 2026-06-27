@@ -17,7 +17,7 @@
     - id: ClothingEyesGlassesSecurity
 
 - type: entityTable
-  id: ESLockerFillHeadOfPersonnel
+  id: ESLockerFillStationAdmin
   table: !type:AllSelector
     children:
     - id: RubberStampApproved
@@ -26,7 +26,7 @@
       prob: 0.25
     - id: ClothingHeadsetCommand
     - id: ClothingNeckGoldmedal
-    - id: HoPIDCard
+    - id: StationAdminIDCard
     - id: Stunbaton
     - id: LuxuryPen
     - id: ClothingEyesHudSecurity
@@ -72,7 +72,6 @@
     - id: ClothingOuterVest
     - id: ESWeaponDoubleBarrelShotgunNonlethal
     - id: DrinkShaker
-    - id: ClothingEyesHudBeer
     - id: HandLabeler
     - id: DrinkBeerBottleFull
       amount: !type:BinomialNumberSelector

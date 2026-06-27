@@ -10,7 +10,7 @@
   - type: Item
     storedRotation: 90
   - type: MeleeWeapon
-    wideAnimationRotation: 90
+    wideAnimationRotation: -90
     swingLeft: true
     attackRate: 1.5
     damage:

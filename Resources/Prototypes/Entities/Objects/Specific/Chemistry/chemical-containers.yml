@@ -513,18 +513,3 @@
         reagents:
         - ReagentId: Saline
           Quantity: 200
-
-- type: entity
-  parent: Jug
-  suffix: dexalin plus
-  id: JugDexalinPlus
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Label
-    currentLabel: reagent-name-dexalin-plus
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: DexalinPlus
-          Quantity: 200

@@ -19,8 +19,7 @@ public sealed partial class StatusManager
 
     public string? CurrentRoleplayLevel { get; private set; }
 
-    public string? CurrentRoleplayAbbreviation
-        => CurrentRoleplayLevel != null ? $"{char.ToUpperInvariant(CurrentRoleplayLevel[0])}RP" : null;
+    public string CurrentRoleplayAbbreviation => CurrentRoleplayLevel?.GetRoleplayAbbreviation() + "RP";
 
     public void Initialize()
     {

@@ -143,9 +143,9 @@
 
 - type: entity
   parent: BaseSignDirectional
-  id: SignDirectionalHop
+  id: SignDirectionalStationAdmin
   name: hop sign
-  description: A direction sign, pointing out which way Head of Personnel's office is.
+  description: A direction sign, pointing out which way Station Administrator's office is.
   components:
   - type: Sprite
     state: direction_hop

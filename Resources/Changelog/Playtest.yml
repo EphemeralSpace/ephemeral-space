@@ -457,3 +457,267 @@ Entries:
       message: Pickpockets now prioritize more interesting items
   id: 55
   time: '2026-06-05T21:26:11.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        The warp drive console now shows when the warp drive is interrupted or
+        doing the final charge
+    - type: Fix
+      message: >-
+        Fixed an issue where the warp drive progress would not update and would
+        show the same value continuously
+  id: 56
+  time: '2026-06-08T00:11:19.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Add
+      message: Job wardrobes now have a chance of appearing in maints.
+  id: 57
+  time: '2026-06-10T14:04:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Fires from grenades and other basic explosions no longer spread.
+        Dedicated fiery explosions will still spread.
+  id: 58
+  time: '2026-06-12T15:32:27.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Vigilantes no longer get a cache. Fighting crime isn't free!
+  id: 59
+  time: '2026-06-13T21:36:04.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Add
+      message: New announcement sounds for thrusters/nav console/armory
+  id: 60
+  time: '2026-06-13T22:43:52.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed ready status getting reset upon disconnecting.
+  id: 61
+  time: '2026-06-15T10:49:15.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: Sliceable items now work properly + various other food related fixes
+    - type: Tweak
+      message: Hunger is a little slower sorgy I miscalced
+    - type: Fix
+      message: Guzzler can no longer roll dexplus & removes all mention of dexplus
+    - type: Fix
+      message: Parasite no-damage obj no longer counts self damage
+    - type: Tweak
+      message: Smoke inhalation threshold is lower again
+    - type: Tweak
+      message: Special vendor is now in bar instead of dorms
+    - type: Tweak
+      message: Dorms now has a guaranteed snack vendor
+    - type: Tweak
+      message: Smartfridge is now med access only
+    - type: Fix
+      message: >-
+        Operating table is no longer toggleable and now has better power
+        indication
+    - type: Fix
+      message: Coroner scalpel melee sprite is the right way around now
+    - type: Fix
+      message: Warp drive charging visuals now toggle on when in final stage
+    - type: Tweak
+      message: >-
+        Pickpocket and arms dealer objectives no longer announce to stagehands,
+        too spammy
+    - type: Tweak
+      message: Nav terminal battery is now larger
+    - type: Remove
+      message: Bartender no longer gets beer goggles
+    - type: Add
+      message: >-
+        Different accents are used for various late stage medical issues in
+        offmed (brain damage + no brain oxygen) instead of it just being triple
+        stuttering
+    - type: Tweak
+      message: >-
+        Viewcone min angle is now 15 deg, no more tiny sliver of visibility in
+        blackout pain
+  id: 62
+  time: '2026-06-15T10:49:41.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed various posters around the map being rotated incorrectly.
+  id: 63
+  time: '2026-06-15T15:36:56.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Added new armory wall sprites.
+  id: 64
+  time: '2026-06-15T21:13:28.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed thruster and navigation console announcements being backwards.
+  id: 65
+  time: '2026-06-16T11:48:17.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Add
+      message: The head of personnel has been renamed to the station administrator.
+  id: 66
+  time: '2026-06-16T21:43:50.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Increased the odds of traitor, and likewise rare items, from maintenance
+  id: 67
+  time: '2026-06-17T13:19:27.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Traitors now have an action with a long-ish cooldown which lets then
+        transmit a covert radio message to all other traitors. Use this for
+        easier planning of evil strategies.
+  id: 68
+  time: '2026-06-17T16:34:32.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        You will now be slowed for a short time when swinging a melee weapon, or
+        when being hit by a melee weapon
+  id: 69
+  time: '2026-06-17T16:37:31.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Name pool has been expanded in some places and pruned in others
+    - type: Tweak
+      message: >-
+        Only professional-type jobs (doctors engis sci) can roll dr/prof/etc as
+        prefixes now
+    - type: Add
+      message: Security roles can now generate 'Officer' etc as prefixes
+    - type: Add
+      message: apple knowledge
+  id: 70
+  time: '2026-06-19T18:15:39.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        Captain and Station Administrator can now be subverted with the
+        subversion chip.
+    - type: Tweak
+      message: >-
+        Made the shovel's stats a bit more reasonable. It does more damage and
+        is slower, but cannot be stored.
+    - type: Tweak
+      message: Stunbatons now have half battery charge.
+    - type: Remove
+      message: Removed metal foam grenades
+  id: 71
+  time: '2026-06-20T13:41:13.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: >-
+        Added the Leapleech, a new parasite mask that brings revenge to the crew
+        in the form of dangerous jumping leeches.
+  id: 72
+  time: '2026-06-20T13:43:00.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Removed the Psychid.
+  id: 73
+  time: '2026-06-20T14:09:29.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Stagehands now have an ominous floating animation while moving about...
+  id: 74
+  time: '2026-06-20T16:32:09.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Last words should be a little more readable hopefully
+  id: 75
+  time: '2026-06-20T16:43:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Bugged APCs now have a unique sprite.
+  id: 76
+  time: '2026-06-20T22:04:52.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: The cargo lathe is now inside of cargo.
+    - type: Tweak
+      message: There are now helpful bots on the shuttle.
+  id: 77
+  time: '2026-06-20T22:05:20.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        Nerfed revolver damage slightly. It now takes 4 shots to down instead of
+        3.
+  id: 78
+  time: '2026-06-20T22:22:36.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: There should be less welded/bolted doors in maints in general
+  id: 79
+  time: '2026-06-22T21:30:24.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Burstworm explosions have been amped up to the point where they both
+        destroy the original body and have enough strength to force open
+        containers.
+  id: 80
+  time: '2026-06-24T10:24:05.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Announcements will now queue and will delay themselves rather than
+        playing a trillion sounds at once if multiple announcements play
+    - type: Add
+      message: >-
+        Some announcements are 'important' and will cut off the sound of
+        currently-playing announcements in a fun way rather than being delayed
+  id: 81
+  time: '2026-06-26T14:20:37.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Tweak
+      message: New syndicate bomb flatpack in demolitionist cache
+  id: 82
+  time: '2026-06-26T14:21:10.0000000+00:00'
+- author: Flareguy, mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Explosions/meteors can no longer reduce a tile to space, instead it is
+        replaced by damaged lattice which can be repaired with a metal rod back
+        to a normal lattice
+    - type: Add
+      message: >-
+        Explosions will now spawn saucy damage overlays on most tiles they
+        damage
+  id: 83
+  time: '2026-06-26T14:22:13.0000000+00:00'
+- author: Sadie-silly
+  changes: []
+  id: 84
+  time: '2026-06-26T14:24:42.0000000+00:00'

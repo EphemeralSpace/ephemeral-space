@@ -40,9 +40,6 @@
     state: icon
   - type: Item
     sprite: _ES/Objects/Specific/Medical/Tools/recoupler.rsi
-    shape:
-    - 0,0,1,0
-    - 0,1,0,1 # Offbrand
   - type: Tool
     qualities:
     - Recoupling

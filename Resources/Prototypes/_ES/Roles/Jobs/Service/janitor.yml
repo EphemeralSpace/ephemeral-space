@@ -5,7 +5,6 @@
   playTimeTracker: ESJobJanitor
   startingGear: ESJanitorGear
   icon: "JobIconJanitor"
-  supervisors: job-supervisors-hop
   access:
   - Service
   - Janitor

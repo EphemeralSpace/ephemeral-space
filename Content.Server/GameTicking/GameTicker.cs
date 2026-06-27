@@ -1,3 +1,4 @@
+using Content.Server._ES.Announcements;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -48,7 +49,7 @@ namespace Content.Server.GameTicking
 #endif
         [Dependency] private IServerPreferencesManager _prefsManager = default!;
         [Dependency] private IServerDbManager _db = default!;
-        [Dependency] private ChatSystem _chatSystem = default!;
+        [Dependency] private ESAnnouncementSystem _chatSystem = default!;
         [Dependency] private MapLoaderSystem _loader = default!;
         [Dependency] private SharedMapSystem _map = default!;
         [Dependency] private GhostSystem _ghost = default!;

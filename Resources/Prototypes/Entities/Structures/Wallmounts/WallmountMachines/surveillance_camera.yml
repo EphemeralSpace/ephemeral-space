@@ -8,13 +8,6 @@
     bodyType: Static
   - type: Fixtures
     fixtures:
-      light:
-        shape:
-          !type:PhysShapeCircle
-          radius: 5
-        hard: false
-        mask:
-        - GhostImpassable
       fix1:
         shape:
           !type:PhysShapeAabb

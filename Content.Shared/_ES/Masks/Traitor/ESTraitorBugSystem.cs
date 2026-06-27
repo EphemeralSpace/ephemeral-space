@@ -24,6 +24,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
     [Dependency] private INetManager _net = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private ESBreakableSystem _breakable = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
@@ -138,6 +139,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
         _popup.PopupEntity(Loc.GetString("es-bug-popup-planted"), ent, args.User);
         _sparks.DoSparks(ent, user: args.User, cooldown: false);
 
+        _appearance.SetData(ent, ESTraitorBugVisuals.Bugged, true);
         ent.Comp.Timer = _entityTimer.SpawnTimer(ent, ent.Comp.BugDuration, new ESTraitorBugTimerEvent());
         Dirty(ent);
 
@@ -155,8 +157,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
 
     private void OnTraitorBugTimer(Entity<ESTraitorBuggableComponent> ent, ref ESTraitorBugTimerEvent args)
     {
-        ent.Comp.Timer = null;
-        Dirty(ent);
+        CancelBug(ent.AsNullable());
 
         _sparks.DoSparks(ent);
         var ev = new ESTraitorBugHackedEvent(ent.Comp.Department);
@@ -203,6 +204,8 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return;
+
+        _appearance.SetData(ent, ESTraitorBugVisuals.Bugged, false);
 
         PredictedDel(ent.Comp.Timer);
         ent.Comp.Timer = null;

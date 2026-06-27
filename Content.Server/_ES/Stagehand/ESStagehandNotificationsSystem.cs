@@ -65,7 +65,8 @@ public sealed partial class ESStagehandNotificationsSystem : EntitySystem
 
     private void OnObjectiveProgressChanged(ref ESObjectiveProgressChangedEvent ev)
     {
-        if (!_objectives.IsObjectiveInitialized(ev.Objective.Owner))
+        if (!_objectives.IsObjectiveInitialized(ev.Objective.AsNullable())
+            || !_objectives.ShouldAnnounceProgress(ev.Objective.AsNullable()))
             return;
 
         LocId? msgId;

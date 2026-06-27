@@ -31,7 +31,7 @@ public partial struct ESNameConfig
     /// Chance that the first name dataset used will solely be <see cref="SpeciesPrototype.GenderlessFirstNames"/>
     /// </summary>
     [DataField]
-    public float GenderlessFirstNameChance = 0.5f; // the future is woke
+    public float GenderlessFirstNameChance = 0.6f; // the future is woke
 
     /// <summary>
     /// Chance that the first name will recursively generate a second first name.
@@ -65,7 +65,7 @@ public partial struct ESNameConfig
     /// Whatsapp-Fury, Dennis-Crater
     /// </example>
     [DataField]
-    public float HyphenatedLastNameChance = 0.03f;
+    public float HyphenatedLastNameChance = 0.025f;
 
     /// <summary>
     /// Chance that the first name will have an abbreviated middle name following it
@@ -74,7 +74,7 @@ public partial struct ESNameConfig
     /// Gibb P., Rigel F.
     /// </example>
     [DataField]
-    public float AbbreviatedMiddleChance = 0.07f;
+    public float AbbreviatedMiddleChance = 0.055f;
 
     /// <summary>
     /// Chance that the first name will be converted into a pair of abbreviations.
@@ -83,7 +83,7 @@ public partial struct ESNameConfig
     /// R.L., FE, J.K.
     /// </example>
     [DataField]
-    public float AbbreviatedFirstMiddleChance = 0.085f;
+    public float AbbreviatedFirstMiddleChance = 0.065f;
 
     /// <summary>
     /// Given <see cref="AbbreviatedFirstMiddleChance"/>, chance that the initials are formatted as "AB" instead of "A.B."
@@ -107,19 +107,19 @@ public partial struct ESNameConfig
     /// Chance that the name will be preceded by a prefix
     /// </summary>
     [DataField]
-    public float PrefixChance = 0.09f;
+    public float PrefixChance = 0.07f;
 
     /// <summary>
     /// Given <see cref="PrefixChance"/>, chance that the prefix dataset will be overriden with <see cref="PrefixGenderlessDataset"/>
     /// </summary>
     [DataField]
-    public float PrefixGenderlessChance = 0.65f;
+    public float PrefixGenderlessChance = 0.01f;
 
     /// <summary>
     /// Given <see cref="PrefixChance"/>, chance that there will be no first name
     /// </summary>
     [DataField]
-    public float PrefixFirstNameless = 0.7f;
+    public float PrefixFirstNameless = 0.8f;
 
     /// <summary>
     /// Chance that there will be no last name
@@ -137,7 +137,7 @@ public partial struct ESNameConfig
     /// Chance that a name will generate a random adjective from <see cref="NameAdjectiveDataset"/> as a prefix
     /// </summary>
     [DataField]
-    public float AdjectiveFirstNameChance = 0.022f;
+    public float AdjectiveFirstNameChance = 0.035f;
 
     /// <summary>
     /// Number of attempted last name generations to create an alliterative first name + last name combo
