@@ -315,16 +315,6 @@
     sprite: Clothing/Head/Hats/chefhat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/chefhat.rsi
-  - type: Storage
-    grid:
-    - 0,0,0,0
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
   - type: PilotedClothing
     pilotWhitelist:
       tags:
@@ -1057,16 +1047,6 @@
     size: Small
     sprite: Clothing/Head/Hats/magician.rsi
     storedRotation: 0
-  - type: Storage
-    grid:
-    - 0,0,0,0
-  - type: UserInterface
-    interfaces:
-        enum.StorageUiKey.Key:
-          type: StorageBoundUserInterface
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
   - type: Tag
     tags:
     - PetWearable
