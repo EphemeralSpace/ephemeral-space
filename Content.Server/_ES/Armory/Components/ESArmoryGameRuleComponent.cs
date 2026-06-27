@@ -49,7 +49,7 @@ public sealed partial class ESArmoryGameRuleComponent : Component
     /// </summary>
     // Who up failwrithing
     [DataField, AutoNetworkedField]
-    public TimeSpan FailWritheDuration = TimeSpan.FromSeconds(5);
+    public TimeSpan FailWritheDuration = TimeSpan.FromSeconds(15);
 
     [DataField]
     public SoundSpecifier ArmoryOpeningAnnouncementSound =
