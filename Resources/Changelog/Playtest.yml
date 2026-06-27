@@ -731,3 +731,19 @@ Entries:
       message: leep leaches damage threshold lowered to 10 from 50
   id: 85
   time: '2026-06-27T01:42:15.0000000+00:00'
+- author: sowelipililimute
+  changes:
+    - type: Tweak
+      message: Interaction particles are now less energetic.
+    - type: Fix
+      message: Interaction particles no longer spawn when opening the strip menu.
+    - type: Add
+      message: Pulling now has a unique particle effect
+    - type: Tweak
+      message: >-
+        Interaction particles now only spawn on UIs if the UIs have an
+        associated open sound
+    - type: Fix
+      message: Interaction particles no longer spawn on closing a UI
+  id: 86
+  time: '2026-06-27T22:02:31.0000000+00:00'
