@@ -747,3 +747,21 @@ Entries:
       message: Interaction particles no longer spawn on closing a UI
   id: 86
   time: '2026-06-27T22:02:31.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        (very experimental) Picking up items now has a short doafter, including
+        when taking them out of storage.
+    - type: Add
+      message: >-
+        Storage items now have multipliers for how long the pickup doafter is.
+        Bags are 2x, belts are 0.5x (so taking stuff out of a belt is faster)
+    - type: Remove
+      message: >-
+        (also very experimental it will probably come back) Smart equipping has
+        been removed entirely
+    - type: Remove
+      message: Outerclothing with storage have had their storage removed
+  id: 87
+  time: '2026-06-27T22:41:06.0000000+00:00'
