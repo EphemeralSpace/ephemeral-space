@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterBase
   id: ClothingOuterWinterCoat
   name: winter coat
   description: A heavy jacket made from 'synthetic' animal furs.
@@ -36,8 +36,6 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
-      storagebase: !type:Container
-        ents: []
 
 - type: entity
   parent: ClothingOuterWinterCoatToggleable

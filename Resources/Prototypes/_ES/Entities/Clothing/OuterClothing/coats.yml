@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterBase
   id: ESClothingOuterCoatCaptain
   name: captain's coat
   suffix: ES
@@ -30,7 +30,7 @@
         color: "#e9744a"
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterBase, AllowSuitStorageClothing]
   id: ESClothingOuterCoatDetective
   name: detective trenchcoat
   suffix: ES
@@ -42,7 +42,7 @@
     sprite: Clothing/OuterClothing/Coats/detective.rsi
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterBase, AllowSuitStorageClothing]
   id: ESClothingOuterCoatDetectiveLoadout
   name: detective trenchcoat
   suffix: ES

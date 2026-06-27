@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterBase
   id: ClothingOuterApron
   name: apron
   description: A fancy apron for a stylish person.
@@ -11,7 +11,7 @@
 
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterBase
   id: ClothingOuterApronBar
   suffix: Bartender
   name: apron
@@ -24,7 +24,7 @@
 
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterBase
   id: ClothingOuterApronBotanist
   name: apron
   suffix: Botanical
@@ -37,7 +37,7 @@
 
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterBase
   id: ClothingOuterApronChef
   name: apron
   suffix: Chef
@@ -50,7 +50,7 @@
 
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterBase
   id: ClothingOuterJacketChef
   name: chef jacket
   description: An apron-jacket used by a high class chef.
