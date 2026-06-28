@@ -1,0 +1,53 @@
+- type: entity
+  parent: TrashBananaPeel
+  id: TrashBananaPeelExplosive
+  suffix: Explosive
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/banana.rsi
+    layers:
+    - state: peel
+    - state: primed
+      shader: unshaded
+  - type: TriggerOnSlip
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 3.4
+    intensitySlope: 3
+    totalIntensity: 20
+    canCreateVacuum: false
+  - type: DeleteOnTrigger
+  - type: AnimationPlayer
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:TriggerBehavior
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Tag
+    tags:
+    - Recyclable
+    - Trash
+    - BananaPeel
+
+- type: entity
+  parent: BaseItem
+  id: TrashBananaPeelExplosiveUnarmed
+  name: banana
+  suffix: Unarmed
+  description: There's something unusual about this banana.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/banana.rsi
+    state: produce
+  - type: SpawnItemsOnUse
+    items:
+    - id: TrashBananaPeelExplosive
+    sound:
+      path: /Audio/Effects/unwrap.ogg

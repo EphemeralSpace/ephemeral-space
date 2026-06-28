@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using System.Threading;
+using Content.Server._ES.Announcements;
 using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -52,7 +53,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private AccessReaderSystem _reader = default!;
-    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private ESAnnouncementSystem _chatSystem = default!;
     [Dependency] private CommunicationsConsoleSystem _commsConsole = default!;
     [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
     [Dependency] private DockingSystem _dock = default!;
@@ -332,10 +333,8 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
         if (result.ResultType == ShuttleDockResultType.GoodLuck)
         {
-            _chatSystem.DispatchStationAnnouncement(
-                result.Station,
-                Loc.GetString(stationShuttleComp.FailureAnnouncement),
-                playDefaultSound: false);
+            _chatSystem.DispatchRoundAnnouncement(Loc.GetString(stationShuttleComp.FailureAnnouncement),
+                playSound: false);
 
             // TODO: Need filter extensions or something don't blame me.
             _audio.PlayGlobal(stationShuttleComp.FailureAudio, Filter.Broadcast(), true);
@@ -362,15 +361,13 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
             ? stationShuttleComp.NearbyAnnouncement
             : stationShuttleComp.DockedAnnouncement;
 
-        _chatSystem.DispatchStationAnnouncement(
-            result.Station,
-            Loc.GetString(
+        _chatSystem.DispatchRoundAnnouncement(Loc.GetString(
                 locKey,
                 ("time", $"{_consoleAccumulator:0}"),
                 ("direction", direction),
                 ("location", location),
                 ("extended", extendedText)),
-            playDefaultSound: false);
+            playSound: false);
 
         // Trigger shuttle timers on the shuttle.
 

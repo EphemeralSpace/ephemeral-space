@@ -28,7 +28,7 @@ public sealed partial class ThrowingSystem : EntitySystem
     public const float ESThrowSpeedDefault = 8.5f;
     // ES END
 
-    public const float PushbackDefault = 2f;
+    public const float PushbackDefault = 5f;
 
     public const float FlyTimePercentage = 0.8f;
 
@@ -47,6 +47,7 @@ public sealed partial class ThrowingSystem : EntitySystem
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private IConfigurationManager _configManager = default!;
     // ES START
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private RotateToFaceSystem _rotate = default!;
     // ES END
 
@@ -199,6 +200,8 @@ public sealed partial class ThrowingSystem : EntitySystem
         comp.PlayLandSound = playSound;
         AddComp(uid, comp, true);
 
+        _appearance.SetData(uid, ESThrowVisuals.InAir, true);
+
         ThrowingAngleComponent? throwingAngle = null;
 
         // Give it a l'il spin.
@@ -306,4 +309,10 @@ public enum ThrowingUnanchorStrength : byte
     /// All entities will be unanchored.
     /// </summary>
     All,
+}
+
+[Serializable, NetSerializable]
+public enum ESThrowVisuals : byte
+{
+    InAir,
 }

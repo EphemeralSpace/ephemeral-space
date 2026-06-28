@@ -105,12 +105,6 @@ public sealed partial class CCVars
         CVarDef.Create("admin.alert.min_players_sharing_connection", -1, CVar.SERVERONLY);
 
     /// <summary>
-    ///     Minimum explosion intensity to create an admin alert message. -1 to disable the alert.
-    /// </summary>
-    public static readonly CVarDef<int> AdminAlertExplosionMinIntensity =
-        CVarDef.Create("admin.alert.explosion_min_intensity", 60, CVar.SERVERONLY);
-
-    /// <summary>
     ///     Minimum particle accelerator strength to create an admin alert message.
     /// </summary>
     public static readonly CVarDef<int> AdminAlertParticleAcceleratorMinPowerState =

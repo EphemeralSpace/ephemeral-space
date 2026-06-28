@@ -100,8 +100,8 @@ namespace Content.Shared.Movement.Systems
             RaiseLocalEvent(entity, ref moveEvent);
             Dirty(entity, entity.Comp);
 
-            var ev = new SpriteMoveEvent(entity.Comp.HasDirectionalMovement);
-            RaiseLocalEvent(entity, ref ev);
+            if (entity.Comp.UsesSpriteMovement)
+                _appearance.SetData(entity, SpriteMovementVisuals.Moving, entity.Comp.HasDirectionalMovement);
         }
 
         private void OnMoverHandleState(Entity<InputMoverComponent> entity, ref ComponentHandleState args)
@@ -126,8 +126,8 @@ namespace Content.Shared.Movement.Systems
                 entity.Comp.HeldMoveButtons = state.HeldMoveButtons;
                 RaiseLocalEvent(entity.Owner, ref moveEvent);
 
-                var ev = new SpriteMoveEvent(entity.Comp.HasDirectionalMovement);
-                RaiseLocalEvent(entity, ref ev);
+                if (entity.Comp.UsesSpriteMovement)
+                    _appearance.SetData(entity, SpriteMovementVisuals.Moving, entity.Comp.HasDirectionalMovement);
             }
         }
 

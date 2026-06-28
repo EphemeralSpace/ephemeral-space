@@ -2,7 +2,7 @@
   id: Sycophancy
   name: Sycophancy
   description: is a traitors-focused show with parasitic undertones
-  weight: 1
+  weight: 3
   minPlayers: 10
   gameRules: []
   masquerade:

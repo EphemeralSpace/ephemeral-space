@@ -25,12 +25,14 @@ public sealed partial class ProjectileComponent : Component
     ///     User that shot this projectile.
     /// </summary>
     [DataField, AutoNetworkedField]
+    [Access(typeof(SharedProjectileSystem), Other = AccessPermissions.ReadExecute)]
     public EntityUid? Shooter;
 
     /// <summary>
     ///     Weapon used to shoot.
     /// </summary>
     [DataField, AutoNetworkedField]
+    [Access(typeof(SharedProjectileSystem), Other = AccessPermissions.ReadExecute)]
     public EntityUid? Weapon;
 
     /// <summary>

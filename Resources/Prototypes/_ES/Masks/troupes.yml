@@ -24,7 +24,7 @@
         all:
         - id: ESObjectiveTraitorSabotageCommunications
         - id: ESObjectiveTraitorSabotageCrewMonitoring
-        - id: ESObjectiveTraitorSabotageIDComputer
+        - id: ESObjectiveTraitorSabotageEmergencyAccessTerminal
         - id: ESObjectiveTraitorSabotageCriminalRecords
         - id: ESObjectiveTraitorSabotageTelecom
       amount: 2

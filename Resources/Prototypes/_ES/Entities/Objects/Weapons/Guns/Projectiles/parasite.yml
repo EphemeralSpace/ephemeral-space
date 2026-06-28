@@ -13,7 +13,6 @@
   - type: ESMaskConversionProjectile
   - type: Projectile
     deleteOnCollide: false
-    onlyCollideWhenShot: true
     damage:
       types:
         Piercing: 5

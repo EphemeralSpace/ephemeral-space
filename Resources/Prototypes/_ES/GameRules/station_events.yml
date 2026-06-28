@@ -255,13 +255,12 @@
 
 ## Meteor Swarm
 - type: entity
-  parent: ESBaseStationEventDelayed
+  parent: ESBaseStationEvent
   id: ESStationEventMeteorSwarm
   name: Meteors
   description: Launch deadly meteors at the exterior of the station that smash through walls.
   components:
   - type: StationEvent
-    earliestStart: 30
     duration: null
     startAudio:
       path: /Audio/_ES/Announcements/meteors.ogg

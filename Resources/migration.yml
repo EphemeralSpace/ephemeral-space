@@ -71,8 +71,6 @@ WeaponShotgunEnforcerRubber: ESWeaponDoubleBarrelShotgunNonlethal
 WeaponShotgunDoubleBarreled: ESWeaponDoubleBarrelShotgun
 WeaponShotgunDoubleBarreledRubber: ESWeaponDoubleBarrelShotgunNonlethal
 WeaponLaserCarbine: ESWeaponEnergyRifle
-WeaponDisabler: ESWeaponHybridTaser
-WeaponTaser: ESWeaponHybridTaser
 
 # 2025-9-29
 # Amends a prototype that was missing a prefix.
@@ -195,7 +193,6 @@ SpawnPointBartender: ESSpawnPointBartender
 SpawnPointChef: ESSpawnPointChef
 SpawnPointJanitor: ESSpawnPointJanitor
 SpawnPointCaptain: ESSpawnPointCaptain
-SpawnPointHeadOfPersonnel: ESSpawnPointHeadOfPersonnel
 SpawnPointHeadOfSecurity: ESSpawnPointSecurityOfficer
 SpawnPointStationEngineer: ESSpawnPointStationEngineer
 SpawnPointAtmos: ESSpawnPointAtmos
@@ -263,7 +260,6 @@ LockerAtmosphericsFilled: ESLockerAtmosphericsFilled
 # 2026-2-4
 WardrobeMedicalDoctorFilled: ESWardrobePhysicianFilled
 WardrobeScienceFilled: ESWardrobeScienceFilled
-DresserHeadOfPersonnelFilled: ESDresserHeadOfPersonnelFilled
 DresserCaptainFilled: ESDresserCaptainFilled
 WardrobePrisonFilled: ESWardrobePrisonFilled
 WardrobeCargoFilled: ESWardrobeCargoFilled
@@ -402,6 +398,16 @@ SawAdvanced: SawElectric
 ScalpelShiv: Scalpel
 ScalpelAdvanced: Scalpel
 ScalpelLaser: Scalpel
+
+# 2026-6-17
+TearGasGrenade: SmokeGrenade
+MetalFoamGrenade: SmokeGrenade
+CrateEngineeringFoamGrenade: CrateEngineeringCableBulk
+ClothingHeadHatHardhatYellowDark: ClothingHeadHatHardhatYellow
+ClothingHeadHatHardhatArmored: ClothingHeadHatHardhatYellow
+
+# 2026-6-24
+ClothingEyesGlassesJensen: null
 
 # ES END
 

@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterBase
   id: ClothingOuterWinterCoat
   name: winter coat
   description: A heavy jacket made from 'synthetic' animal furs.
@@ -36,8 +36,6 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
-      storagebase: !type:Container
-        ents: []
 
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
@@ -324,8 +322,8 @@
 
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband]
-  id: ClothingOuterWinterHoP
-  name: head of personnel's winter coat
+  id: ClothingOuterWinterStationAdmin
+  name: station administrator's winter coat
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
@@ -343,7 +341,7 @@
       outerClothing:
       - state: HOP-equipped-OUTERCLOTHING
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodWinterHOP
+    clothingPrototype: ClothingHeadHatHoodWinterStationAdmin
 
 
 ##########################################################
@@ -817,44 +815,6 @@
     sprite: Clothing/OuterClothing/WinterCoats/coatnomi.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/coatnomi.rsi
-
-- type: entity
-  parent: ClothingOuterWinterCoatToggleable
-  id: ClothingOuterWinterWeb
-  name: web winter coat
-  description: Feels like the inside of a cocoon, not that this would make you less afraid of being in one.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    layers:
-    - state: WEB-icon
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: WEB-inhand-left
-      right:
-      - state: WEB-inhand-right
-  - type: Clothing
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    clothingVisuals:
-      outerClothing:
-      - state: WEB-equipped-OUTERCLOTHING
-  - type: Construction
-    graph: WebObjects
-    node: coat
-  - type: Butcherable
-    spawned:
-    - id: MaterialWebSilk1
-      amount: 5
-  - type: SolutionContainerManager
-    solutions: # 15 (3 (fiber count of web) * 5 (to craft)) + 5 (magical crafting bonus)
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 20
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodWinterWeb
 
 - type: entity
   parent: ClothingOuterWinterCoatToggleable

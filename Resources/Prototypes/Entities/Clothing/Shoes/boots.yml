@@ -11,11 +11,12 @@
   - type: Matchbox
 
 - type: entity
-  parent: ClothingShoesMilitaryBase
+  parent: ClothingShoesBase
   id: ClothingShoesBootsBlack
   name: black boots
   description: Robust black boots.
   components:
+  - type: Matchbox # Funny thing preserved
   - type: Sprite
     sprite: _ES/Clothing/Shoes/Boots/black_boots.rsi
   - type: Clothing
@@ -43,38 +44,6 @@
     sprite: Clothing/Shoes/Boots/performer.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/performer.rsi
-
-- type: entity
-  parent: ClothingShoesMilitaryBase
-  id: ClothingShoesHighheelBoots
-  name: high-heeled boots
-  description: Snazy boots for when you want to be stylish, yet prepared.
-  components:
-  - type: MeleeWeapon
-    damage:
-      types:
-        Piercing: 6
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/highheelboots.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/highheelboots.rsi
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepHighHeels
-      params:
-        volume: -6
-        variation: 0.09
-
-- type: entity
-  parent: [ ClothingShoesMilitaryBase ]
-  id: ClothingShoesBootsMerc
-  name: mercenary boots
-  description: Boots that have gone through many conflicts and that have proven their combat reliability.
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/mercboots.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/mercboots.rsi
 
 - type: entity
   parent: ClothingShoesBaseButcherable
@@ -138,53 +107,7 @@
     sprite: Clothing/Shoes/Boots/winterbootssci.rsi
 
 - type: entity
-  parent: [ClothingShoesBaseWinterBoots, ClothingShoesMilitaryBase, BaseSecurityContraband]
-  id: ClothingShoesBootsWinterSec
-  name: security winter boots
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/winterbootssec.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/winterbootssec.rsi
-
-- type: entity
-  parent: [ClothingShoesBaseWinterBoots, BaseSyndicateContraband]
-  id: ClothingShoesBootsWinterSyndicate
-  name: syndicate's winter boots
-  description: Durable heavy boots, looks like merch from "Syndieland".
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/winterbootssyndicate.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/winterbootssyndicate.rsi
-
-- type: entity
-  parent: ClothingShoesBaseWinterBoots
-  id: ClothingShoesBootsWinterWeb
-  name: web winter boots
-  description: Boots made out of dense webbing to help survive even the coldest of winters.
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/winterbootsweb.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/winterbootsweb.rsi
-  - type: SolutionContainerManager
-    solutions: # 6 (3 (fiber count of web) * 2 (to craft)) + 4 (magical crafting bonus)
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
-  - type: Butcherable
-    spawned:
-    - id: MaterialWebSilk1
-      amount: 2
-  - type: Construction
-    graph: WebObjects
-    node: boots
-
-- type: entity
-  parent: ClothingShoesMilitaryBase
+  parent: ClothingShoesBase
   id: ClothingShoesBootsCowboyBrown
   name: brown cowboy boots
   description: They got spurs that jingle and/or jangle.

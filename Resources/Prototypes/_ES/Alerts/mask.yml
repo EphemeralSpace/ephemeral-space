@@ -6,3 +6,33 @@
     state: icon
   name: es-alert-ceiling-cache-name
   description: es-alert-ceiling-cache-desc
+
+- type: alert
+  id: ESLeapleechCounter
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/worm.rsi
+    state: leech0
+  - sprite: /Textures/_ES/Interface/Alerts/worm.rsi
+    state: leech1
+  - sprite: /Textures/_ES/Interface/Alerts/worm.rsi
+    state: leech2
+  - sprite: /Textures/_ES/Interface/Alerts/worm.rsi
+    state: leech3
+  - sprite: /Textures/_ES/Interface/Alerts/worm.rsi
+    state: leech4
+  - sprite: /Textures/_ES/Interface/Alerts/worm.rsi
+    state: leech5
+  - sprite: /Textures/_ES/Interface/Alerts/worm.rsi
+    state: leech6
+  - sprite: /Textures/_ES/Interface/Alerts/worm.rsi
+    state: leech7
+  - sprite: /Textures/_ES/Interface/Alerts/worm.rsi
+    state: leech8
+  - sprite: /Textures/_ES/Interface/Alerts/worm.rsi
+    state: leech9
+  - sprite: /Textures/_ES/Interface/Alerts/worm.rsi
+    state: leech10
+  name: es-alert-leapleech-name
+  description: es-alert-leapleech-desc
+  minSeverity: 0
+  maxSeverity: 10

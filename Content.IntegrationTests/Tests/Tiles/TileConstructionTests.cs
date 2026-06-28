@@ -6,58 +6,6 @@ namespace Content.IntegrationTests.Tests.Tiles;
 public sealed class TileConstructionTests : InteractionTest
 {
     /// <summary>
-    /// Test placing and cutting a single lattice.
-    /// </summary>
-    [Test]
-    public async Task PlaceThenCutLattice()
-    {
-        await AssertTile(Plating);
-        await AssertTile(Plating, PlayerCoords);
-        AssertGridCount(1);
-        await SetTile(null);
-        await InteractUsing(Rod);
-        await AssertTile(Lattice);
-        Assert.That(HandSys.GetActiveItem((SEntMan.GetEntity(Player), Hands)), Is.Null);
-        await InteractUsing(Cut);
-        await AssertTile(null);
-        await AssertEntityLookup((Rod, 1));
-        AssertGridCount(1);
-    }
-
-    /// <summary>
-    /// Test placing and cutting a single lattice in space (not adjacent to any existing grid.
-    /// </summary>
-    [Test]
-    public async Task CutThenPlaceLatticeNewGrid()
-    {
-        await AssertTile(Plating);
-        await AssertTile(Plating, PlayerCoords);
-        AssertGridCount(1);
-
-        // Remove grid
-        await SetTile(null);
-        await SetTile(null, PlayerCoords);
-        Assert.That(MapData.Grid.Comp.Deleted);
-        AssertGridCount(0);
-
-        // Place Lattice
-        var oldPos = TargetCoords;
-        TargetCoords = SEntMan.GetNetCoordinates(new EntityCoordinates(MapData.MapUid, 1, 0));
-        await InteractUsing(Rod);
-        TargetCoords = oldPos;
-        await AssertTile(Lattice);
-        AssertGridCount(1);
-
-        // Cut lattice
-        Assert.That(HandSys.GetActiveItem((SEntMan.GetEntity(Player), Hands)), Is.Null);
-        await InteractUsing(Cut);
-        await AssertTile(null);
-        AssertGridCount(0);
-
-        await AssertEntityLookup((Rod, 1));
-    }
-
-    /// <summary>
     /// Test space -> floor -> plating
     /// </summary>
     [Test]
@@ -73,11 +21,17 @@ public sealed class TileConstructionTests : InteractionTest
         Assert.That(MapData.Grid.Comp.Deleted);
         AssertGridCount(0);
 
-        // Space -> Lattice
+        // Space -> Damaged Lattice
         var oldPos = TargetCoords;
         TargetCoords = SEntMan.GetNetCoordinates(new EntityCoordinates(MapData.MapUid, 1, 0));
         await InteractUsing(Rod);
         TargetCoords = oldPos;
+        await AssertTile(LatticeDamaged);
+        AssertGridCount(1);
+
+        // Damaged Lattice -> Lattice
+        await InteractUsing(Rod);
+        Assert.That(HandSys.GetActiveItem((SEntMan.GetEntity(Player), Hands)), Is.Null);
         await AssertTile(Lattice);
         AssertGridCount(1);
 

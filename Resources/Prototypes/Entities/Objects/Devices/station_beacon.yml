@@ -158,11 +158,11 @@
 
 - type: entity
   parent: DefaultStationBeaconCommand
-  id: DefaultStationBeaconHOPOffice
-  suffix: HOP's Office
+  id: DefaultStationBeaconStationAdminOffice
+  suffix: Station Admin's Office
   components:
   - type: NavMapBeacon
-    defaultText: station-beacon-hop
+    defaultText: station-beacon-station-admin
 
 - type: entity
   parent: DefaultStationBeacon
@@ -374,14 +374,6 @@
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-artifact-lab
-
-- type: entity
-  parent: DefaultStationBeaconScience
-  id: DefaultStationBeaconAnomalyGenerator
-  suffix: Anomaly Generator
-  components:
-  - type: NavMapBeacon
-    defaultText: station-beacon-anomaly-gen
 
 - type: entity
   parent: DefaultStationBeacon

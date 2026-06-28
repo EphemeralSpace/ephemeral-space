@@ -1,0 +1,57 @@
+# Plating
+- type: decal
+  id: ESDamagedPlating1
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: plating_1
+
+- type: decal
+  id: ESDamagedPlating2
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: plating_2
+
+- type: decal
+  id: ESDamagedPlating3
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: plating_3
+
+# Quartertiles
+- type: decal
+  id: ESDamagedQuartertile1
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: quartertile_1
+
+- type: decal
+  id: ESDamagedQuartertile2
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: quartertile_2
+
+- type: decal
+  id: ESDamagedQuartertile3
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: quartertile_3
+
+- type: decal
+  id: ESDamagedQuartertile4
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: quartertile_4
+
+- type: decal
+  id: ESDamagedQuartertile5
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: quartertile_5

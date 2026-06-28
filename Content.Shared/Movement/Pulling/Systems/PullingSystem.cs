@@ -1,3 +1,5 @@
+using Content.Shared._ST.Interaction; // Stellar - interaction particles
+using Content.Shared._ES.Viewcone.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
@@ -354,6 +356,11 @@ public sealed partial class PullingSystem : EntitySystem
 
             _physics.SetDensity(pullableUid, id, fixture, oldDensity, manager: fix);
         }
+
+        if (TryComp<ESViewconeOccludableComponent>(pullableUid, out var cone) && cone.RemoveOnPullDropped)
+        {
+            RemCompDeferred<ESViewconeOccludableComponent>(pullableUid);
+        }
         // ES END
 
         // No more joints with puller -> force stop pull.
@@ -528,7 +535,7 @@ public sealed partial class PullingSystem : EntitySystem
 
         // Pulling confirmed
 
-        _interaction.DoContactInteraction(pullableUid, pullerUid, null, true); // Stellar - Interaction particles
+        _interaction.DoContactInteraction(pullerUid, pullableUid,null, true, interactionParticleType: StellarInteractionParticleType.Pull); // Stellar - Interaction particles
 
         // Use net entity so it's consistent across client and server.
         pullableComp.PullJointId = $"pull-joint-{GetNetEntity(pullableUid)}";
@@ -577,6 +584,13 @@ public sealed partial class PullingSystem : EntitySystem
         {
             pullableComp.OldFixtureDensities.Add(id, fixture.Density);
             _physics.SetDensity(pullableUid, id, fixture, 1f, manager: fix);
+        }
+
+        // check first so we dont set the property if they already have it
+        if (!HasComp<ESViewconeOccludableComponent>(pullableUid))
+        {
+            var comp = new ESViewconeOccludableComponent() { RemoveOnPullDropped = true };
+            AddComp(pullableUid, comp);
         }
         // ES END
 

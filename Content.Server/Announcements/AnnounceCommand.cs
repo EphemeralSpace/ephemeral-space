@@ -1,5 +1,5 @@
+using Content.Server._ES.Announcements;
 using Content.Server.Administration;
-using Content.Server.Chat.Systems;
 using Content.Shared.Administration;
 using Robust.Shared.Audio;
 using Robust.Shared.Console;
@@ -11,7 +11,7 @@ namespace Content.Server.Announcements;
 [AdminCommand(AdminFlags.Moderator)]
 public sealed partial class AnnounceCommand : LocalizedEntityCommands
 {
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESAnnouncementSystem _chat = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IResourceManager _res = default!;
 

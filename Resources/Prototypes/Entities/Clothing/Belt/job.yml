@@ -309,8 +309,6 @@
       - Radio
       - Sidearm
       - MagazinePistol
-      - MagazineMagnum
-      - CombatKnife
       - Truncheon
       - HandGrenade
       components:
@@ -323,7 +321,6 @@
       - CartridgeAmmo
       - DoorRemote
       - Whistle
-      - BalloonPopper
   - type: ItemMapper
     sprite: *BeltOverlay
     mapLayers:

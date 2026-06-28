@@ -21,7 +21,7 @@
   troupe: Crew
   description: es-mask-arsonist-desc
   color: red
-  weight: 0.33
+  weight: 0.25
   objectives:
     id: ESObjectiveArsonistLightFires
 
@@ -39,7 +39,7 @@
   name: es-mask-crewmember-name
   troupe: Crew
   description: es-mask-crewmember-desc
-  weight: 4
+  weight: 5
   color: white
 
 - type: esMask
@@ -110,7 +110,7 @@
   troupe: Crew
   description: es-mask-pickpocket-desc
   color: olivedrab
-  weight: 1
+  weight: 0.75
   actions:
     all:
     - id: ActionMaskPickpocketSnatch
@@ -136,7 +136,7 @@
         all:
         - id: ESObjectiveRebelSabotageCommunications
         - id: ESObjectiveRebelSabotageCrewMonitoring
-        - id: ESObjectiveRebelSabotageIDComputer
+        - id: ESObjectiveRebelSabotageEmergencyAccessTerminal
         - id: ESObjectiveRebelSabotageCriminalRecords
         - id: ESObjectiveRebelSabotageTelecom
           weight: 2
@@ -159,7 +159,6 @@
   troupe: Crew
   description: es-mask-tragedian-desc
   color: royalblue
-  weight: 0.5
   objectives:
     all:
     - id: ESObjectiveTragedianDie
@@ -178,10 +177,6 @@
   color: orchid
   objectives:
     id: ESObjectiveVigilanteKillKiller
-  mindComponents:
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheCrewVigilante
 
 - type: esMask
   id: VIP
@@ -191,5 +186,5 @@
   color: gold
   tips:
   - VIPFingerprintScanner
-  weight: 0.25
+  weight: 0.2
   gear: ESMaskVIPGear

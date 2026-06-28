@@ -1,0 +1,15 @@
+- type: tile
+  id: ESBaseTilePlating
+  damageDecals:
+  - ESDamagedPlating1
+  - ESDamagedPlating2
+  - ESDamagedPlating3
+
+- type: tile
+  id: ESBaseTileQuartertile
+  damageDecals:
+  - ESDamagedQuartertile1
+  - ESDamagedQuartertile2
+  - ESDamagedQuartertile3
+  - ESDamagedQuartertile4
+  - ESDamagedQuartertile5

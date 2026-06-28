@@ -10,3 +10,7 @@
   license: "CC-BY-SA-3.0"
   copyright: "Based on tiles from /vg/station at commit edaa4b129bf6e7353cb465ac9ade1f12da726917, modified by @EmoGarbage404 and variants by @mirrorcult"
   source: "https://github.com/vgstation-coders/vgstation13/blob/edaa4b129bf6e7353cb465ac9ade1f12da726917/icons/turf/floors.dmi"
+- files: ["lattice_damaged.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Based on tiles from /vg/station at commit edaa4b129bf6e7353cb465ac9ade1f12da726917, modified and sprited by Flareguy"
+  source: "https://github.com/vgstation-coders/vgstation13/blob/edaa4b129bf6e7353cb465ac9ade1f12da726917/icons/turf/floors.dmi"

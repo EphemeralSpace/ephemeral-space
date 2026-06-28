@@ -71,9 +71,13 @@ public sealed partial class DamageableSystem : EntitySystem
 
         // TODO DAMAGE
         // byref struct event.
-// ES START
         RaiseLocalEvent(ent, new DamageChangedEvent(ent.Comp, damageDelta, interruptsDoAfters, origin, forceRefresh, source, weapon));
-// ES END
+
+        if (origin.HasValue)
+        {
+            var originEv = new ESCausedDamageChanged(ent, damageDelta, origin.Value, source, weapon);
+            RaiseLocalEvent(origin.Value, ref originEv);
+        }
     }
 
     private void DamageableGetState(Entity<DamageableComponent> ent, ref ComponentGetState args)

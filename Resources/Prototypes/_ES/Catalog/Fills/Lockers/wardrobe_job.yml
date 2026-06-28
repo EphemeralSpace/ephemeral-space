@@ -1,4 +1,5 @@
 # Eyewear, headsets, and armor go in the job locker instead of the wardrobe.
+# Add these to the spawner in Entities/Markers
 
 - type: entity
   parent: ESWardrobeAssistant
@@ -38,6 +39,27 @@
     - id: ClothingBackpack
     - id: ClothingShoesColorBlack
     - id: ClothingUniformJumpsuitBartender
+
+- type: entity
+  id: ESWardrobeCargoFilled
+  suffix: ES, Filled
+  parent: ESWardrobeCargo
+  description: "This locker? Maybe 500 spesos. Brotherhood? Priceless."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESFillWardrobeCargo
+
+- type: entityTable
+  id: ESFillWardrobeCargo
+  table:
+    all:
+    - id: ClothingHeadHatCargosoft
+    - id: ClothingUniformJumpsuitCargo
+    - id: ClothingBackpack
+    - id: ClothingShoesColorBlack
+    - id: ClothingHandsGlovesFingerless
 
 - type: entity
   parent: ESWardrobeChef
@@ -289,27 +311,6 @@
     - id: ClothingBackpackEngineering
     - id: ClothingShoesColorOrange
     - id: ClothingOuterVestHazard
-
-- type: entity
-  id: ESWardrobeCargoFilled
-  suffix: ES, Filled
-  parent: ESWardrobeCargo
-  description: "This locker? Maybe 500 spesos. Brotherhood? Priceless."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESFillWardrobeCargo
-
-- type: entityTable
-  id: ESFillWardrobeCargo
-  table:
-    all:
-    - id: ClothingHeadHatCargosoft
-    - id: ClothingUniformJumpsuitCargo
-    - id: ClothingBackpack
-    - id: ClothingShoesColorBlack
-    - id: ClothingHandsGlovesFingerless
 
 - type: entity
   id: ESWardrobePrisonFilled

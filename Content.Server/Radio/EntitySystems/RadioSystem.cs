@@ -160,7 +160,9 @@ public sealed partial class RadioSystem : EntitySystem
             if (attemptEv.Cancelled)
                 continue;
 // ES START
-            var distortedMessage = _esRadio.DistortMessage(radioSource, receiver, FormattedMessage.EscapeText(message));
+            var escapedMsg = FormattedMessage.EscapeText(message);
+            // HACK HACK HACK remove later dont care right now
+            var distortedMessage = channel.ID == "Syndicate" ? escapedMsg : _esRadio.DistortMessage(radioSource, receiver, escapedMsg);
             var distortedWrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
                 ("color", channel.Color),
                 ("fontType", speech.FontId),

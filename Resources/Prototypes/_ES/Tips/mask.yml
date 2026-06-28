@@ -11,10 +11,6 @@
   text: As a Hemophage, try to spread your blood in areas that people would expect to be messy. If you're too obvious, the crew might suspect you and try to rapidly clean the station.
 
 - type: esTip
-  id: PsychidConversion
-  text: As a Psychid, keep in mind that the player you convert will end up in your situation. Thrown into space, locked in the brig, or welded inside a locker are all terrible starting points for the new member of your troupe.
-
-- type: esTip
   id: VIPFingerprintScanner
   text: As a VIP, if your status is important in a given round, consider cooperating with someone who has a fingerprint scanner to keep records. It's a good way to deter against people stealing your card.
 

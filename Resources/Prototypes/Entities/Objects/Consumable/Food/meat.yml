@@ -287,7 +287,7 @@
     heldPrefix: generic-pink
 
 - type: entity
-  parent: FoodMeatBase
+  parent: FoodMeatCookedBase
   id: FoodMeatCooked
   name: steak
   description: A cooked slab of meat. Smells primal.

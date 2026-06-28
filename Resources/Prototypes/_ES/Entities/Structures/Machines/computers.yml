@@ -5,6 +5,7 @@
   name: computer
   placement:
     mode: SnapgridCenter
+  suffix: Terminal
   abstract: true
   components:
   - type: Sprite
@@ -93,45 +94,6 @@
   - type: ContainerContainer
     containers:
       board: !type:Container
-
-# Computers
-- type: entity
-  parent: BaseComputerAiAccess
-  id: ESComputerEvacBeacon
-  name: emergency beacon console
-  description: A computer for broadcasting and coordinating emergency beacon signals. Used for hailing emergency shuttles.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: comm
-    - map: ["computerLayerKeys"]
-      state: generic_keys
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: AccessReader
-    access: [[ "Command" ]]
-  - type: ESEvacConsole
-  - type: ActivatableUI
-    key: enum.ESEvacUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.ESEvacUiKey.Key:
-        type: ESEvacBeaconBui
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Computer
-    board: ESComputerEvacBeaconCircuitBoard
-  - type: PointLight
-    color: "#3c5eb5"
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: ESAmbientMusicMarkerCommand
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -387,6 +349,43 @@
 
 - type: entity
   parent: ESBaseComputerTerminal
+  id: ESComputerTerminalEmergencyAccess
+  name: emergency access terminal
+  description: A hefty terminal that can remotely toggle access on airlocks using the printed access key on the door. You remembered what the key was, right?
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
+    - map: ["computerLayerKeyboard"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: emerg_key_off
+    - map: ["computerLayerScreen"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: emerg
+    - map: ["computerLayerKeys"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: emerg_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    color: "#ffff55"
+  - type: ESEmergencyAccessConsole
+  - type: ESSabotageTarget
+  - type: UseDelay
+    delay: 0.5
+  - type: ActivatableUI
+    key: enum.ESEmergencyAccessConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ESEmergencyAccessConsoleUiKey.Key:
+        type: ESEmergencyAccessConsoleBui
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
+  parent: ESBaseComputerTerminal
   id: ESBaseComputerTerminalNavigation
   name: navigation terminal
   description: Keep going and take the next left.
@@ -409,12 +408,14 @@
     modifier: 0.5
     disableAnnouncement: es-radstorm-power-on-navigation-console
     enableAnnouncement: es-radstorm-power-off-navigation-console
+    announcementSoundDisabled: /Audio/_ES/Announcements/navigation_online.ogg
+    announcementSoundEnabled: /Audio/_ES/Announcements/navigation_offline.ogg
   - type: PointLight
     color: "#1bfff3"
   - type: ApcPowerReceiverBattery
     batteryRechargeRate: 25
   - type: Battery
     netsync: false
-    maxCharge: 200
+    maxCharge: 600
   - type: ExaminableBattery
   - type: ESAmbientMusicMarkerCommand

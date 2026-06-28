@@ -10,7 +10,7 @@ namespace Content.Server.Destructible.Thresholds.Behaviors
     {
         [DataField("recursive")] private bool _recursive = true;
 
-        public LogImpact Impact => LogImpact.Extreme;
+        public LogImpact Impact => LogImpact.High;
 
         public void Execute(EntityUid owner, DestructibleSystem system, EntityUid? cause = null)
         {

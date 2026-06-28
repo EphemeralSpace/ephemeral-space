@@ -248,7 +248,7 @@
     tagRequirements:
       Knife:
         amount: 2
-        defaultPrototype: KitchenKnife
+        defaultPrototype: ESWeaponKnife
         examineName: construction-insert-info-examine-name-knife
 
 - type: entity
@@ -675,20 +675,6 @@
     - type: Tag
       tags:
       - MicrowaveMachineBoard
-
-- type: entity
-  id: SyndicateMicrowaveMachineCircuitboard
-  parent: [ BaseMachineCircuitboard, BaseSyndicateContraband ]
-  name: donk co. microwave machine board
-  components:
-    - type: Sprite
-      state: service
-    - type: MachineBoard
-      prototype: SyndicateMicrowave
-      stackRequirements:
-        Manipulator: 1
-        Glass: 2
-        Cable: 2
 
 - type: entity
   parent: BaseMachineCircuitboard

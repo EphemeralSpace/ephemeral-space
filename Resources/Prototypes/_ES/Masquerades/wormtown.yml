@@ -2,7 +2,7 @@
   id: Wormtown
   name: Wormtown
   description: is a parasite festival, with a large supply of antagonistic / gunner masks to ensure a party
-  weight: 0.75
+  weight: 1
   minPlayers: 6
   gameRules: []
   masquerade:

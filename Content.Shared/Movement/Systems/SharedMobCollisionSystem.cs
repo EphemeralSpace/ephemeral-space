@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Shared.CCVar;
+using Content.Shared.Gravity;
 using Content.Shared.Movement.Components;
 using Robust.Shared;
 using Robust.Shared.Configuration;
@@ -22,6 +23,7 @@ public abstract partial class SharedMobCollisionSystem : EntitySystem
 
     protected EntityQuery<MobCollisionComponent> MobQuery;
     protected EntityQuery<PhysicsComponent> PhysicsQuery;
+    protected EntityQuery<GravityAffectedComponent> WeightlessQuery;
 
     /// <summary>
     /// <see cref="CCVars.MovementPushingCap"/>
@@ -66,6 +68,7 @@ public abstract partial class SharedMobCollisionSystem : EntitySystem
 
         MobQuery = GetEntityQuery<MobCollisionComponent>();
         PhysicsQuery = GetEntityQuery<PhysicsComponent>();
+        WeightlessQuery = GetEntityQuery<GravityAffectedComponent>();
         SubscribeAllEvent<MobCollisionMessage>(OnCollision);
         SubscribeLocalEvent<MobCollisionComponent, RefreshMovementSpeedModifiersEvent>(OnMoveModifier);
 
@@ -103,12 +106,17 @@ public abstract partial class SharedMobCollisionSystem : EntitySystem
             {
                 DebugTools.Assert(direction.LengthSquared() >= _minimumPushSquared);
 
+                // mildly jank but just make pushing less effective when weightless.
+                var impulseMultiplier = 1f;
+                if (WeightlessQuery.TryGetComponent(uid, out var weightless) && weightless.Weightless)
+                    impulseMultiplier /= 10f;
+
                 if (direction.Length() > _pushingCap)
                 {
                     direction = direction.Normalized() * _pushingCap;
                 }
 
-                Physics.ApplyLinearImpulse(uid, direction * physics.Mass, body: physics);
+                Physics.ApplyLinearImpulse(uid, direction * physics.Mass * impulseMultiplier, body: physics);
                 comp.Direction = Vector2.Zero;
                 DirtyField(uid, comp, nameof(MobCollisionComponent.Direction));
             }

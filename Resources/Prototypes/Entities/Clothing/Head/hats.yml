@@ -315,16 +315,6 @@
     sprite: Clothing/Head/Hats/chefhat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/chefhat.rsi
-  - type: Storage
-    grid:
-    - 0,0,0,0
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
   - type: PilotedClothing
     pilotWhitelist:
       tags:
@@ -387,9 +377,9 @@
 
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
-  id: ClothingHeadHatHopcap
-  name: head of personnel's cap
-  description: A stylish cap worn by the Head of Personnel. Shows paperwork who's in charge.
+  id: ClothingHeadHatStationAdminCap
+  name: station administrator's cap
+  description: A stylish cap worn by the Station Administrator. Shows paperwork who's in charge.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/hopcap.rsi
@@ -1057,16 +1047,6 @@
     size: Small
     sprite: Clothing/Head/Hats/magician.rsi
     storedRotation: 0
-  - type: Storage
-    grid:
-    - 0,0,0,0
-  - type: UserInterface
-    interfaces:
-        enum.StorageUiKey.Key:
-          type: StorageBoundUserInterface
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
   - type: Tag
     tags:
     - PetWearable
@@ -1192,34 +1172,6 @@
     - PetWearable
     - CorgiWearable
     - HamsterWearable
-
-- type: entity
-  parent: ClothingHeadBase
-  id: ClothingHeadHatGreyFlatcap
-  name: grey flatcap
-  description: Fashionable for both the working class and old man Jenkins.
-  components:
-  - type: Tag
-    tags:
-    - BrimFlatcapGrey
-  - type: Sprite
-    sprite: Clothing/Head/Hats/greyflatcap.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/greyflatcap.rsi
-
-- type: entity
-  parent: ClothingHeadBase
-  id: ClothingHeadHatBrownFlatcap
-  name: brown flatcap
-  description: "\"Stupid clown! You made me look bad!\""
-  components:
-  - type: Tag
-    tags:
-    - BrimFlatcapBrown
-  - type: Sprite
-    sprite: Clothing/Head/Hats/brownflatcap.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/brownflatcap.rsi
 
 - type: entity
   parent: ClothingHeadBase

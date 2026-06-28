@@ -225,18 +225,6 @@
     - Wooden
 
 - type: entity
-  name: ritual chair
-  id: ChairRitual
-  parent: ChairWood
-  description: Looks uncomfortable.
-  components:
-  - type: Sprite
-    state: ritual
-  - type: Construction
-    graph: RitualSeat
-    node: chairRitual
-
-- type: entity
   id: ChairMeat
   parent: UnanchoredChairBase
   name: meat chair
@@ -247,46 +235,6 @@
   - type: Construction
     graph: Seat
     node: chairMeat
-
-- type: entity
-  name: cursed chair
-  id: ChairCursed
-  parent: ChairWood
-  description: It's staring back.
-  components:
-  - type: Sprite
-    state: cursed
-  - type: Strap
-    buckleSound:
-      collection: MaleScreams
-  - type: Destructible
-    thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Voice/Human/womanlaugh.ogg
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Voice/Human/womanlaugh.ogg
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialWoodPlank:
-            min: 1
-            max: 1
-  - type: Construction
-    graph: RitualSeat
-    node: chairCursed
 
 - type: entity
   name: web chair

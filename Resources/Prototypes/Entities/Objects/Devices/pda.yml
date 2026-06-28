@@ -327,14 +327,14 @@
 
 - type: entity
   parent: BasePDA
-  id: HoPPDA
-  name: head of personnel PDA
+  id: StationAdminPDA
+  name: station administrator PDA
   description: Looks like it's been chewed on.
   components:
   - type: Pda
-    id: HoPIDCard
+    id: StationAdminIDCard
     penSlot:
-      startingItem: PenHop
+      startingItem: LuxuryPen
       priority: -1
       whitelist:
         tags:

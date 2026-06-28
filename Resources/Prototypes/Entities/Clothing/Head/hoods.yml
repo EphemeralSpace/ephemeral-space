@@ -336,9 +336,9 @@
 
 - type: entity
   parent: ClothingHeadHatHoodWinterBase
-  id: ClothingHeadHatHoodWinterHOP
+  id: ClothingHeadHatHoodWinterStationAdmin
   categories: [ HideSpawnMenu ]
-  name: head of personnel's winter coat hood
+  name: station admin's winter coat hood
   components:
   - type: Sprite
     sprite: Clothing/Head/Hoods/Coat/hoodhop.rsi
@@ -498,17 +498,6 @@
     sprite: Clothing/Head/Hoods/Coat/hoodsec.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Coat/hoodsec.rsi
-
-- type: entity
-  parent: ClothingHeadHatHoodWinterBase
-  id: ClothingHeadHatHoodWinterWeb
-  categories: [ HideSpawnMenu ]
-  name: web coat hood
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hoods/Coat/hoodweb.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hoods/Coat/hoodweb.rsi
 
 - type: entity
   parent: ClothingHeadHatHoodWinterBase

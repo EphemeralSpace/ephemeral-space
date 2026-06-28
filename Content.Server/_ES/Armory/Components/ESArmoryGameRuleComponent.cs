@@ -49,17 +49,17 @@ public sealed partial class ESArmoryGameRuleComponent : Component
     /// </summary>
     // Who up failwrithing
     [DataField, AutoNetworkedField]
-    public TimeSpan FailWritheDuration = TimeSpan.FromSeconds(5);
+    public TimeSpan FailWritheDuration = TimeSpan.FromSeconds(15);
 
     [DataField]
     public SoundSpecifier ArmoryOpeningAnnouncementSound =
-        new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg");
+        new SoundPathSpecifier("/Audio/_ES/Announcements/armory_opening.ogg");
 
     [DataField]
     public SoundSpecifier ArmoryOpenedAnnouncementSound =
-        new SoundPathSpecifier("/Audio/_ES/Announcements/attention_medium.ogg");
+        new SoundPathSpecifier("/Audio/_ES/Announcements/armory_opened.ogg");
 
     [DataField]
     public SoundSpecifier ArmoryFailedAnnouncementSound =
-        new SoundPathSpecifier("/Audio/_ES/Announcements/attention_medium.ogg");
+        new SoundPathSpecifier("/Audio/_ES/Announcements/armory_trespassers.ogg");
 }

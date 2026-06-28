@@ -1,6 +1,7 @@
 using Content.Shared.Examine;
 using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Popups;
 
 namespace Content.Shared._ES.Food;
 
@@ -8,6 +9,7 @@ namespace Content.Shared._ES.Food;
 public sealed partial class ESFoodSystem : EntitySystem
 {
     [Dependency] private HungerSystem _hunger = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -45,6 +47,11 @@ public sealed partial class ESFoodSystem : EntitySystem
         // satiate
         _hunger.ModifySatiety(args.User, 1 * ent.Comp.SatietyMultiplier);
         Dirty(ent);
+
+        if (ent.Comp.SatietyMultiplier < 0)
+        {
+            _popup.PopupEntity(Loc.GetString("es-food-popup-bad-food"), args.User, args.User);
+        }
     }
 
     private void OnFoodExamined(Entity<ESFoodComponent> ent, ref ExaminedEvent args)

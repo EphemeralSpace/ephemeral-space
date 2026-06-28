@@ -197,9 +197,6 @@
     spawned:
     - id: FoodMeat
       amount: 2
-    - id: EggSpider
-      amount: 1
-      prob: 0.5
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:

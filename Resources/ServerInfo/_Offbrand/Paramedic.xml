@@ -60,7 +60,7 @@ When responding to injuries, the first thing you should do is apply the best typ
 <Box>
   <GuideEntityEmbed Entity="ChemistryBottleBicaridine" Caption="Bicaridine" />
   <GuideEntityEmbed Entity="ChemistryBottleDermaline" Caption="Dermaline" />
-  <GuideEntityEmbed Entity="ChemistryBottleDexalinPlus" Caption="Dexalin Plus" />
+  <GuideEntityEmbed Entity="ChemistryBottleDexalin" Caption="Dexalin" />
   <GuideEntityEmbed Entity="ChemistryBottleDylovene" Caption="Dylovene" />
   <GuideEntityEmbed Entity="ChemistryBottleInaprovaline" Caption="Inaprovaline" />
   <GuideEntityEmbed Entity="ChemistryBottleTramadol" Caption="Tramadol" />

@@ -290,7 +290,7 @@
       # Begin Offbrand
       metabolismRate: 0.1
       statusEffects:
-      - statusEffect: StatusEffectMajorOxygenationDexalinPlus
+      - statusEffect: StatusEffectMajorOxygenationDexalin
       # End Offbrand
       effects:
       - !type:HealthChange
@@ -307,44 +307,6 @@
           types:
             Asphyxiation: 3
             Cold: 1
-
-- type: reagent
-  id: DexalinPlus
-  name: reagent-name-dexalin-plus
-  group: Medicine
-  desc: reagent-desc-dexalin-plus
-  physicalDesc: reagent-physical-desc-cloudy
-  flavor: medicine
-  color: "#4da0bd"
-  metabolisms:
-    Medicine:
-      # Begin Offbrand
-      metabolismRate: 0.1
-      statusEffects:
-      - statusEffect: StatusEffectMajorOxygenationDexalinPlus
-      # End Offbrand
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Asphyxiation: -1.5
-            Bloodloss: -1
-      - !type:AdjustReagent
-        conditions:
-        - !type:ReagentCondition
-          reagent: HeartbreakerToxin
-          min: 1
-        reagent: HeartbreakerToxin
-        amount: -3
-      - !type:HealthChange
-        conditions:
-          - !type:ReagentCondition
-            reagent: DexalinPlus
-            min: 25
-        damage:
-          types:
-            Asphyxiation: 5
-            Cold: 3
 
 # this ones a doozy
 - type: reagent
