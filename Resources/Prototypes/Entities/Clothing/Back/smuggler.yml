@@ -53,17 +53,3 @@
   - type: Sprite
     sprite: Clothing/Back/Satchels/smuggler.rsi
     state: icon
-
-- type: entity
-  parent: [ BaseSubfloorAnchorStorageAnchored, BriefcaseSyndie ]
-  id: BriefcaseSmugglerCash
-  name: smuggler's briefcase
-  suffix: Smuggler, Do Not Map
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: SpaceCash5000
-          amount: !type:RangeNumberSelector
-            range: 1, 11
