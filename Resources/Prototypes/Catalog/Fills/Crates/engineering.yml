@@ -117,7 +117,7 @@
           amount: 2
 
 - type: entity
-  parent: CratePlastic
+  parent: CrateGenericSteel
   id: CrateEngineeringStationBeaconBundle
   name: station beacon bundle
   description: A crate containing 5 station beacon assemblies for modifying the station map.

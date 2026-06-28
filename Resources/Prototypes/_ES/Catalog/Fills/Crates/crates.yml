@@ -288,7 +288,7 @@
         amount: 6
 
 - type: entity
-  parent: CratePlastic
+  parent: CrateGenericSteel
   id: ESCrateServiceJanitorialSupplies
   name: janitorial supplies crate
   description: Fight back against dirt and grime with Nanotrasen's Janitorial Essentials(tm)!
