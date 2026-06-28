@@ -5,9 +5,7 @@
   Engineers are responsible for maintaining the station's power grid, ensuring that power is supplied, distributed, and all departments are satisfied.
 
   <Box>
-    <GuideEntityEmbed Entity="SingularityGenerator" Caption=""/>
-    <GuideEntityEmbed Entity="TeslaGenerator" Caption=""/>
-    <GuideEntityEmbed Entity="AmeController" Caption=""/>
+    <GuideEntityEmbed Entity="ESNegentropyAccumulator" Caption=""/>
     <GuideEntityEmbed Entity="SMESBasic" Caption=""/>
     <GuideEntityEmbed Entity="SubstationBasic" Caption=""/>
     <GuideEntityEmbed Entity="APCBasic" Caption=""/>
