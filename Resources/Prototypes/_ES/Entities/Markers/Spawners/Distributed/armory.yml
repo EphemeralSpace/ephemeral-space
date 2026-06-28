@@ -22,9 +22,7 @@
       amount: 3
     - all:
       - id: ESShotgunShellsBoxBuckshot
-      - group:
-        - id: ESShotgunShellsBoxSlug
-        - id: ESShotgunShellsBoxBeanbag
+      - id: ESShotgunShellsBoxBeanbag
     - all:
       - id: ESClothingOuterArmorSecurity
         amount: 2
