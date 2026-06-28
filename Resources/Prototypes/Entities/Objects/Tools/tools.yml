@@ -441,7 +441,6 @@
     materialComposition:
       Steel: 100
       Wood: 50
-  - type: Shovel
 
 - type: entity
   parent: BaseItem
