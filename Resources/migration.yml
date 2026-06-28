@@ -57,7 +57,6 @@ XenoResinWindow: ReinforcedWindow
 # This is extremely far from being a cohesive list of all of the kinds of things that need to be migrated, and only targets things that have been *directly* replaced by ES items thus far. More will definitely need to be done in the future.
 BoxBeanbag: ESShotgunShellsBoxBeanbag
 BoxLethalshot: ESShotgunShellsBoxBuckshot
-BoxShotgunSlug: ESShotgunShellsBoxSlug
 WeaponPistolMk58: ESWeaponPistol9mm
 WeaponPistolViper: ESWeaponPistol9mm
 WeaponPistolCobra: ESWeaponPistol9mmSilenced

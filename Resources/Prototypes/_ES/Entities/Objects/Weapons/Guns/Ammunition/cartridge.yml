@@ -153,21 +153,6 @@
   - type: SpentAmmoVisuals
     state: "beanbag"
 
-- type: entity
-  id: ESShellShotgunSlug
-  name: shotgun slug
-  description: A 12-gauge lead slug. It can cleave through armor more effectively then the typical buckshot ammunition.
-  parent: [ ESBaseShellShotgun, BaseSecurityContraband]
-  components:
-  - type: Sprite
-    layers:
-      - state: slug
-        map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: ESPelletShotgunSlug
-  - type: SpentAmmoVisuals
-    state: "slug"
-
 # toy
 - type: entity
   parent: ESBaseRound
