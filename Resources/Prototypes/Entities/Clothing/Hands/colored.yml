@@ -70,8 +70,6 @@
 - type: entity
   parent: ClothingHandsGlovesSyntheticBase
   id: ClothingHandsGlovesColorBlue
-# ES Start
-# Turned in to nitrile gloves
   name: nitrile gloves
   description: High-quality nitrile gloves. Expensive medical PPE.
   components:
@@ -257,38 +255,6 @@
 # ES START
   - type: ESChameleonClothingWhitelist
 # ES END
-
-# Orange Gloves
-- type: entity
-  parent: ClothingHandsGlovesSyntheticBase
-  id: ClothingHandsGlovesColorOrange
-  # ES Start
-  categories: [ HideSpawnMenu ]
-  # ES End
-  name: orange gloves
-  description: Regular orange gloves that do not keep you from frying.
-  components:
-  - type: Sprite
-    sprite: Clothing/Hands/Gloves/Color/color.rsi
-    layers:
-    - state: icon
-      color: "#EF8100"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: "#EF8100"
-      right:
-      - state: inhand-right
-        color: "#EF8100"
-  - type: Clothing
-    sprite: Clothing/Hands/Gloves/Color/color.rsi
-    clothingVisuals:
-      gloves:
-      - state: equipped-HAND
-        color: "#EF8100"
-  - type: Fiber
-    fiberColor: fibers-orange
 
 # White Gloves
 - type: entity

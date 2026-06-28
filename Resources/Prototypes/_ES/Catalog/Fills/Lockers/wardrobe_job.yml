@@ -161,7 +161,7 @@
   table:
     all:
     - id: ClothingBackpack
-    - id: ESClothingHandsGlovesColorOrange
+    - id: ESClothingHandsGlovesSanitation
     - id: ClothingHeadHatPurplesoft
     - id: ClothingShoesColorBlack
     - id: ClothingUniformJumpsuitJanitor
