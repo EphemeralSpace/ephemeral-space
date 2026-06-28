@@ -97,20 +97,6 @@
     - UtilityBelt
 
 - type: entity
-  parent: BaseClothingBeltEngineering
-  id: ClothingBeltChiefEngineer
-  name: chief engineer's toolbelt
-  description: Holds tools, looks snazzy.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/ce.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/ce.rsi
-  - type: Storage
-    grid:
-    - 0,0,9,1
-
-- type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltJanitor
   name: janibelt
@@ -154,57 +140,6 @@
         whitelist:
           tags:
           - Wrench
-  - type: Appearance
-
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltPlant
-  name: botanical belt
-  description: A belt used to hold most hydroponics supplies. Suprisingly, not green.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/plant.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/plant.rsi
-  - type: Storage
-    whitelist:
-      tags:
-      - PlantSampleTaker
-      - BotanyShovel
-      - BotanyHoe
-      - BotanyHatchet
-      - PlantBGone
-      - Bottle
-      - Syringe
-      - CigPack
-      - Dropper
-      components:
-      - Seed
-      - Smokable
-      - HandLabeler
-  - type: ItemMapper
-    sprite: *BeltOverlay
-    mapLayers:
-      hatchet:
-        whitelist:
-          tags:
-          - BotanyHatchet
-      hoe:
-        whitelist:
-          tags:
-          - BotanyHoe
-      secateurs: # We don't have secateurs and this looks similar enough.
-        whitelist:
-          tags:
-          - BotanyShovel
-      plantbgone:
-        whitelist:
-          tags:
-          - PlantBGone
-      bottle:
-        whitelist:
-          tags:
-          - Bottle
   - type: Appearance
 
 - type: entity
