@@ -257,17 +257,6 @@
     prototype: ComputerShuttle
 
 - type: entity
-  parent: [ BaseComputerCircuitboard, BaseSyndicateContraband ]
-  id: SyndicateShuttleConsoleCircuitboard
-  name: syndicate shuttle console board
-  description: A computer printed circuit board for a syndicate shuttle console.
-  components:
-  - type: Sprite
-    state: cpu_syndicate
-  - type: ComputerBoard
-    prototype: ComputerShuttleSyndie
-
-- type: entity
   parent: BaseComputerCircuitboard
   id: CloningConsoleComputerCircuitboard
   name: cloning console computer board
@@ -288,17 +277,6 @@
       state: cpu_command
     - type: ComputerBoard
       prototype: ComputerIFF
-
-- type: entity
-  parent: [ BaseComputerCircuitboard, BaseSyndicateContraband ]
-  id: ComputerIFFSyndicateCircuitboard
-  name: syndicate IFF console board
-  description: Allows you to control the IFF and stealth characteristics of this vessel.
-  components:
-  - type: Sprite
-    state: cpu_syndicate
-  - type: ComputerBoard
-    prototype: ComputerIFFSyndicate
 
 - type: entity
   parent: BaseComputerCircuitboard

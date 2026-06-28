@@ -62,40 +62,6 @@
     targetName: nuclear authentication disk
 
 - type: entity
-  name: syndicate pinpointer
-  description: Produced specifically for nuclear operative missions, get that disk!
-  id: PinpointerSyndicateNuclear
-  parent: [ PinpointerBase, BaseSyndicateContraband ]
-  components:
-  - type: Sprite
-    layers:
-    - state: pinpointer-syndicate
-      map: ["enum.PinpointerLayers.Base"]
-    - state: pinonnull
-      map: ["enum.PinpointerLayers.Screen"]
-      shader: unshaded
-      visible: false
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-base
-        color: "#202020"
-      - state: inhand-left-stripe
-        color: "#6c0014"
-      - state: inhand-left-top
-      right:
-      - state: inhand-right-base
-        color: "#202020"
-      - state: inhand-right-stripe
-        color: "#6c0014"
-      - state: inhand-right-top
-  - type: Icon
-    state: pinpointer-syndicate
-  - type: Pinpointer
-    component: NukeDisk
-    targetName: nuclear authentication disk
-
-- type: entity
   name: universal pinpointer
   description: A handheld tracking device that locks onto any physical entity while off. Keep upright to retain accuracy.
   id: PinpointerUniversal
