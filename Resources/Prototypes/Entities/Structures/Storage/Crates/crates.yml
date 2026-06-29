@@ -17,32 +17,8 @@
   - type: RadiationBlockingContainer
     resistance: 2.5
 
-# ES Start
-# Plastic crates have been removed so that all of them can look like painted steel.
-# Instead of removing this prototype, changing the ones that use it, and eating the conflicts, we can just make it identical to the steel crate.
 - type: entity
-  parent: CrateBaseWeldable
-  id: CratePlastic
-  categories: [ HideSpawnMenu ]
-  name: crate
-  components:
-  - type: Icon
-    sprite: Structures/Storage/Crates/generic.rsi
-  - type: Sprite
-    sprite: Structures/Storage/Crates/generic.rsi
-  - type: Reflect
-    reflects:
-    - Energy
-    reflectProb: 0.2
-    spread: 90
-  - type: Paintable
-    group: CrateSteel
-  - type: RadiationBlockingContainer
-    resistance: 2.5
-# ES End
-
-- type: entity
-  parent: CratePlastic
+  parent: CrateGenericSteel
   id: CrateFreezer
   name: freezer
   components:
@@ -62,7 +38,7 @@
     group: CrateFreezer
 
 - type: entity
-  parent: CratePlastic
+  parent: CrateGenericSteel
   id: CrateHydroponics
   name: hydroponics crate
   components:
@@ -72,7 +48,7 @@
     sprite: Structures/Storage/Crates/hydroponics.rsi
 
 - type: entity
-  parent: CratePlastic
+  parent: CrateGenericSteel
   id: CrateMedical
   name: medical crate
   components:
@@ -93,7 +69,7 @@
     sprite: Structures/Storage/Crates/radiation.rsi
 
 - type: entity
-  parent: CratePlastic
+  parent: CrateGenericSteel
   id: CrateInternals
   name: oxygen crate
   components:

@@ -15,7 +15,7 @@
           amount: 2
 
 - type: entity
-  parent: CratePlastic
+  parent: CrateGenericSteel
   id: CrateEmergencyInflatablewall
   name: inflatable wall crate
   description: Three stacks of inflatable walls for when the stations metal walls don't want to hold atmosphere anymore.

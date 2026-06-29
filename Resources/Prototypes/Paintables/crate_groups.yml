@@ -15,16 +15,6 @@
 # ES Start
 #    surgery: CrateSurgery
 
-#- type: paintableGroup
-#  id: CratePlastic
-#  cost: 2
-#  defaultStyle: basic
-#  styles:
-#    basic: CratePlastic
-#    hydroponics: CrateHydroponics
-#    medical: CrateMedical
-#    oxygen: CrateInternals
-
 - type: paintableGroup
   id: CrateFreezer
   cost: 2
@@ -33,7 +23,7 @@
     basic: CrateFreezer
     surgery: CrateSurgery
 # ES End
-    
+
 - type: paintableGroup
   id: CrateSecure
   cost: 2
