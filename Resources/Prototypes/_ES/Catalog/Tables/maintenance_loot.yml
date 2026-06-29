@@ -258,7 +258,6 @@
     - id: ClothingOuterCoatJensen
       weight: 0.5
     - group:
-      - id: ClothingShoesBootsLaceup
       - id: ClothingShoesLeather
       - id: ClothingShoesBootsBlack
       weight: 0.5
@@ -292,7 +291,6 @@
       - id: ClothingShoesColorBrown
       weight: 0.5
     - group: # Funny Shoes
-      - id: ClothingShoeSlippersDuck
       - id: ClothingUnderSocksBee
       - id: ClothingUnderSocksCoder
       weight: 0.5

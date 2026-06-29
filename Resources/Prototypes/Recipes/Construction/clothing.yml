@@ -63,14 +63,6 @@
   objectType: Item
 
 - type: construction
-  id: ClothingShoeSlippersDuck
-  graph: ClothingShoeSlippersDuck
-  startNode: start
-  targetNode: shoes
-  category: construction-category-clothing
-  objectType: Item
-
-- type: construction
   id: ClothingEyesGlassesSecurity
   graph: GlassesSecHUD
   startNode: start

@@ -1,16 +1,4 @@
 - type: entity
-  parent: ClothingShoesBaseButcherable
-  id: ClothingShoesBootsWork
-  name: workboots
-  description: Engineering lace-up work boots for the especially blue-collar.
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/workboots.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/workboots.rsi
-  - type: Matchbox
-
-- type: entity
   parent: ClothingShoesBase
   id: ClothingShoesBootsBlack
   name: black boots
@@ -24,18 +12,6 @@
 
 - type: entity
   parent: ClothingShoesBaseButcherable
-  id: ClothingShoesBootsSalvage
-  name: salvage boots
-  description: Steel-toed salvage boots for salvaging in hazardous environments.
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/explorer.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/explorer.rsi
-  - type: Matchbox
-
-- type: entity
-  parent: ClothingShoesBaseButcherable
   id: ClothingShoesBootsPerformer
   name: performer's boots
   description: These boots provide great traction for when you're up on stage.
@@ -44,67 +20,6 @@
     sprite: Clothing/Shoes/Boots/performer.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/performer.rsi
-
-- type: entity
-  parent: ClothingShoesBaseButcherable
-  id: ClothingShoesBootsLaceup
-  name: laceup shoes
-  description: The height of fashion, and they're pre-polished!
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/laceups.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/laceups.rsi
-
-- type: entity
-  parent: ClothingShoesBaseWinterBoots
-  id: ClothingShoesBootsWinter
-  name: winter boots
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/winterboots.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/winterboots.rsi
-
-- type: entity
-  parent: ClothingShoesBaseWinterBoots
-  id: ClothingShoesBootsWinterCargo
-  name: cargo winter boots
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/winterbootscargo.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/winterbootscargo.rsi
-
-- type: entity
-  parent: ClothingShoesBaseWinterBoots
-  id: ClothingShoesBootsWinterEngi
-  name: engineering winter boots
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/winterbootsengi.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/winterbootsengi.rsi
-
-- type: entity
-  parent: ClothingShoesBaseWinterBoots
-  id: ClothingShoesBootsWinterMed
-  name: medical winter boots
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/winterbootsmed.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/winterbootsmed.rsi
-
-- type: entity
-  parent: ClothingShoesBaseWinterBoots
-  id: ClothingShoesBootsWinterSci
-  name: science winter boots
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/winterbootssci.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/winterbootssci.rsi
 
 - type: entity
   parent: ClothingShoesBase
@@ -142,13 +57,3 @@
     sprite: Clothing/Shoes/Boots/cowboybootswhite.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/cowboybootswhite.rsi
-
-- type: entity
-  parent: ClothingShoesBootsCowboyBrown
-  id: ClothingShoesBootsCowboyFancy
-  name: fancy cowboy boots
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/cowboybootsfancy.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/cowboybootsfancy.rsi
