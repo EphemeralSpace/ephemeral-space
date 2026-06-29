@@ -1,0 +1,23 @@
+- type: construction
+  id: ClothingEyesGlassesSecurity
+  graph: GlassesSecHUD
+  startNode: start
+  targetNode: glassesSec
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: ClothingBeltQuiver
+  graph: Quiver
+  startNode: start
+  targetNode: Quiver
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: ClothingHeadHelmetJustice
+  graph: HelmetJustice
+  startNode: start
+  targetNode: helmet
+  category: construction-category-clothing
+  objectType: Item
