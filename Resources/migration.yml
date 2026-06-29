@@ -364,6 +364,12 @@ ESAnomalyProbe: null
 ESComputerAnomaly: null
 ESMarkerSpawnRegionAnomaly: null
 
+#2026-4-22
+PlasmaWindow: ReinforcedPlasmaWindow
+PlasmaWindowDirectional: PlasmaReinforcedWindowDirectional
+PlasmaWindoor: WindoorSecurePlasma
+PlasmaWindowDiagonal: ReinforcedPlasmaWindowDiagonal
+
 # 2026-5-25
 APCFrame: null
 

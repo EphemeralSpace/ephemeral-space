@@ -4,12 +4,6 @@
   graph:
     - node: start
       edges:
-        - to: plasmaWindow
-          steps:
-            - material: PlasmaGlass
-              amount: 2
-              doAfter: 2
-
         - to: reinforcedWindow
           steps:
             - material: ReinforcedGlass
@@ -99,25 +93,6 @@
             - tool: Anchoring
               doAfter: 2
 
-    - node: plasmaWindow
-      entity: PlasmaWindow
-      edges:
-        - to: start
-          completed:
-            - !type:GivePrototype
-              prototype: SheetPGlass1
-              amount: 2
-            - !type:DeleteEntity {}
-          steps:
-            - tool: Screwing
-              doAfter: 2
-            - tool: Prying
-              doAfter: 3
-            - tool: Screwing
-              doAfter: 2
-            - tool: Anchoring
-              doAfter: 3
-
     - node: reinforcedPlasmaWindow
       entity: ReinforcedPlasmaWindow
       edges:
@@ -140,7 +115,7 @@
               doAfter: 2
             - tool: Anchoring
               doAfter: 3
-    
+
     - node: shuttleWindow
       entity: ShuttleWindow
       edges:

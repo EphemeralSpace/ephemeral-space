@@ -146,21 +146,6 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: ESPlasmaWindow
-  hide: false
-  graph: Window
-  startNode: start
-  targetNode: plasmaWindow
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-  - !type:EmptyOrWindowValidInTile
-  - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-
-- type: construction
   id: ESReinforcedPlasmaWindow
   hide: false
   graph: Window
@@ -195,20 +180,6 @@
   graph: WindowDirectional
   startNode: start
   targetNode: windowReinforcedDirectional
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-  - !type:EmptyOrWindowValidInTile
-  - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
-
-- type: construction
-  id: ESPlasmaWindowDirectional
-  hide: false
-  graph: WindowDirectional
-  startNode: start
-  targetNode: plasmaWindowDirectional
   category: construction-category-structures
   canBuildInImpassable: true
   conditions:
