@@ -31436,13 +31436,6 @@ entities:
     - type: Transform
       pos: 2.5,-7.5
       parent: 2
-- proto: ClothingBeltChampion
-  entities:
-  - uid: 2220
-    components:
-    - type: Transform
-      pos: 24.596928,-27.860514
-      parent: 2
 - proto: ClothingBeltUtility
   entities:
   - uid: 7897
@@ -31497,13 +31490,6 @@ entities:
     - type: Transform
       pos: 24.081303,-26.344889
       parent: 2
-- proto: ClothingNeckLawyerbadge
-  entities:
-  - uid: 9265
-    components:
-    - type: Transform
-      pos: -36.5,-33.5
-      parent: 2
 - proto: ClothingNeckTieSci
   entities:
   - uid: 14570
@@ -31545,13 +31531,6 @@ entities:
     components:
     - type: Transform
       pos: 20.5,19.5
-      parent: 2
-- proto: ClothingUniformJumpsuitLibrarian
-  entities:
-  - uid: 7993
-    components:
-    - type: Transform
-      pos: -66.5,3.5
       parent: 2
 - proto: ClothingUniformJumpsuitMime
   entities:
@@ -65199,7 +65178,7 @@ entities:
     - type: Transform
       pos: 30.253004,-36.224808
       parent: 2
-- proto: NanotrasenFlippo
+- proto: FlippoLighter
   entities:
   - uid: 2290
     components:
