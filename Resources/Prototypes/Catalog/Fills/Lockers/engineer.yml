@@ -105,8 +105,6 @@
       weight: 0.25
     - id: ClothingHeadHatWeldingMaskFlameBlue
       weight: 0.25
-    - id: ClothingHeadHatWeldingMaskPainted
-      weight: 0.25
 
 - type: entityTable
   id: FillWelderSuppliesMask

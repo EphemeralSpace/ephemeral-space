@@ -68,7 +68,6 @@
   id: ESMixedBasicHatSoft
   table:
     group:
-    - id: ClothingHeadHatMimesoft
     - id: ClothingHeadHatGreysoft
     - id: ClothingHeadHatBlacksoft
     - id: ClothingHeadHatOrangesoft

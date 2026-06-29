@@ -167,28 +167,6 @@
     - id: ClothingUniformJumpsuitJanitor
 
 - type: entity
-  parent: ESWardrobeMime
-  id: ESWardrobeMimeFilled
-  suffix: ES, Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESFillWardrobeMime
-
-- type: entityTable
-  id: ESFillWardrobeMime
-  table:
-    all:
-    - id: ClothingBackpackMime
-    - id: ClothingBeltSuspendersRed
-    - id: ClothingHandsGlovesColorWhite
-    - id: ClothingHeadHatBeretFrench
-    - id: ClothingMaskMime
-    - id: ClothingShoesColorWhite
-    - id: ClothingUniformJumpsuitMime
-
-- type: entity
   parent: ESWardrobeReporter
   id: ESWardrobeReporterFilled
   suffix: ES, Filled
