@@ -11,15 +11,15 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._Offbrand.Triggers;
 
-public sealed class TriggerOnDoAfterSystem : EntitySystem
+public sealed partial class TriggerOnDoAfterSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedStackSystem _stack = default!;
-    [Dependency] private readonly TriggerSystem _trigger = default!;
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedStackSystem _stack = default!;
+    [Dependency] private TriggerSystem _trigger = default!;
+    [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
 
     public override void Initialize()
     {
@@ -62,7 +62,7 @@ public sealed class TriggerOnDoAfterSystem : EntitySystem
         {
             if (trigger.Comp.UserCompleted is { } userCompleted && trigger.Comp.OtherCompleted is { } otherCompleted)
             {
-                _popup.PopupPredicted(
+                _popup.PopupEntity(
                     Loc.GetString(userCompleted, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     Loc.GetString(otherCompleted, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     target,
@@ -74,7 +74,7 @@ public sealed class TriggerOnDoAfterSystem : EntitySystem
         {
             if (trigger.Comp.SelfUserCompleted is { } selfUserCompleted && trigger.Comp.SelfOtherCompleted is { } selfOtherCompleted)
             {
-                _popup.PopupPredicted(
+                _popup.PopupEntity(
                     Loc.GetString(selfUserCompleted, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     Loc.GetString(selfOtherCompleted, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     target,
@@ -114,7 +114,7 @@ public sealed class TriggerOnDoAfterSystem : EntitySystem
             if (attemptTriggerEvent.Cancelled)
             {
                 if (trigger.Comp.ConditionFailedRepeat is { } conditionFailedRepeat)
-                    _popup.PopupClient(Loc.GetString(conditionFailedRepeat, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)), args.User);
+                    _popup.PopupCursor(Loc.GetString(conditionFailedRepeat, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)), args.User);
             }
             else
                 args.Repeat = true;
@@ -122,7 +122,7 @@ public sealed class TriggerOnDoAfterSystem : EntitySystem
         else
         {
             if (trigger.Comp.ItemsUsedUp is { } usedUp)
-                _popup.PopupClient(Loc.GetString(usedUp, ("trigger", args.Used.Value)), args.Args.User);
+                _popup.PopupCursor(Loc.GetString(usedUp, ("trigger", args.Used.Value)), args.Args.User);
         }
     }
 
@@ -137,7 +137,7 @@ public sealed class TriggerOnDoAfterSystem : EntitySystem
         if (attemptTriggerEvent.Cancelled)
         {
             if (trigger.Comp.ConditionFailed is { } conditionFailed)
-                _popup.PopupClient(Loc.GetString(conditionFailed, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)), user);
+                _popup.PopupCursor(Loc.GetString(conditionFailed, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)), user);
 
             return true;
         }
@@ -157,7 +157,7 @@ public sealed class TriggerOnDoAfterSystem : EntitySystem
         {
             if (trigger.Comp.UserStarted is { } userStarted && trigger.Comp.OtherStarted is { } otherStarted)
             {
-                _popup.PopupPredicted(
+                _popup.PopupEntity(
                     Loc.GetString(userStarted, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     Loc.GetString(otherStarted, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     target,
@@ -169,7 +169,7 @@ public sealed class TriggerOnDoAfterSystem : EntitySystem
         {
             if (trigger.Comp.SelfUserStarted is { } selfUserStarted && trigger.Comp.SelfOtherStarted is { } selfOtherStarted)
             {
-                _popup.PopupPredicted(
+                _popup.PopupEntity(
                     Loc.GetString(selfUserStarted, ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     Loc.GetString(selfOtherStarted, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)), ("trigger", trigger)),
                     target,

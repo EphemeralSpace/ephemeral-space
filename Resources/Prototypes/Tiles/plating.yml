@@ -4,6 +4,7 @@
 - type: tile
   id: Plating
   name: tiles-plating
+  parent: ESBaseTilePlating
   # ES START
   sprite: /Textures/_ES/Tiles/plating.png
   variants: 4
@@ -22,6 +23,7 @@
   flammability: 0.5
   # ES END
 
+# you probably shouldnt use these
 - type: tile
   id: PlatingDamaged
   name: tiles-plating
@@ -49,11 +51,13 @@
   heatCapacity: 10000
   # ES START
   flammability: 0.5
+  editorHidden: true
   # ES END
 
 - type: tile
   id: PlatingAsteroid
   name: tiles-asteroid-plating
+  parent: ESBaseTilePlating
   # ES START
   sprite: /Textures/_ES/Tiles/plating_asteroid.png
   # ES END
@@ -75,6 +79,7 @@
   footstepSounds:
     collection: FootstepPlating
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: PlatingSnow
@@ -85,6 +90,7 @@
   footstepSounds:
     collection: FootstepPlating
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: PlatingIronsand
@@ -96,19 +102,21 @@
     collection: FootstepPlating
   friction: 1.5
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: Lattice
   name: tiles-lattice
   sprite: /Textures/Tiles/lattice.png
-  baseTurf: Space
+  # its intentional that damaged lattice uses baseturf stuff
+  # rather than being 'damagedTile' ; thought it made more sense to represent it in this way
+  # (esp wrt repairability), though i dont think itd make sense to do for pretty much any other tiles
+  baseTurf: ESLatticeDamaged
   isSubfloor: true
-  deconstructTools: [ Cutting ]
   weather: true
   footstepSounds:
     collection: FootstepCatwalk
   isSpace: true
-  itemDrop: PartRodMetal1
   heatCapacity: 10000
   mass: 200
 
@@ -126,3 +134,4 @@
   itemDrop: PartRodMetal1
   heatCapacity: 10000
   mass: 200
+  editorHidden: true

@@ -34,6 +34,15 @@ public sealed partial class ESObjectiveComponent : Component
     /// </summary>
     [DataField]
     public SpriteSpecifier? Icon;
+
+    [DataField, AutoNetworkedField]
+    public bool ObjectiveInitialized;
+
+    /// <summary>
+    /// If true, this objective changing progress will announce the new progress to stagehands.
+    /// </summary>
+    [DataField]
+    public bool AnnounceProgress = true;
 }
 
 /// <summary>

@@ -12,14 +12,14 @@ namespace Content.Shared.Maps;
 /// <summary>
 ///     Handles server-side tile manipulation like prying/deconstructing tiles.
 /// </summary>
-public sealed class TileSystem : EntitySystem
+public sealed partial class TileSystem : EntitySystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
-    [Dependency] private readonly SharedDecalSystem _decal = default!;
-    [Dependency] private readonly SharedMapSystem _maps = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
+    [Dependency] private SharedDecalSystem _decal = default!;
+    [Dependency] private SharedMapSystem _maps = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     /// <summary>
     ///     Returns a weighted pick of a tile variant.
@@ -43,6 +43,9 @@ public sealed class TileSystem : EntitySystem
     /// </summary>
     public byte PickVariant(ContentTileDefinition tile, System.Random random)
     {
+        if (tile.Variants == 1)
+            return 0;
+
         var variants = tile.PlacementVariants;
 
         var sum = variants.Sum();
@@ -119,7 +122,6 @@ public sealed class TileSystem : EntitySystem
         if (!Resolve(grid, ref component))
             return false;
 
-
         var variant = PickVariant(replacementTile);
         var decals = _decal.GetDecalsInRange(tileref.GridUid, _turf.GetTileCenter(tileref).Position, 0.5f);
         foreach (var (id, _) in decals)
@@ -138,7 +140,7 @@ public sealed class TileSystem : EntitySystem
 
         var tileDef = (ContentTileDefinition) _tileDefinitionManager[tileRef.Tile.TypeId];
 
-        if (string.IsNullOrEmpty(tileDef.BaseTurf))
+        if (string.IsNullOrEmpty(tileDef.BaseTurf) || tileDef.Indestructible)
             return false;
 
         var gridUid = tileRef.GridUid;
@@ -163,8 +165,8 @@ public sealed class TileSystem : EntitySystem
             _decal.RemoveDecal(tileRef.GridUid, id);
         }
 
-        var plating = _tileDefinitionManager[tileDef.BaseTurf];
-        _maps.SetTile(gridUid, mapGrid, tileRef.GridIndices, new Tile(plating.TileId));
+        var plating = (ContentTileDefinition) _tileDefinitionManager[tileDef.BaseTurf];
+        _maps.SetTile(gridUid, mapGrid, tileRef.GridIndices, new Tile(plating.TileId, PickVariant(plating)));
 
         return true;
     }

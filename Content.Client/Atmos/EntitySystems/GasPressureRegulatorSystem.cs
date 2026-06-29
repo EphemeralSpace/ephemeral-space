@@ -7,7 +7,7 @@ namespace Content.Client.Atmos.EntitySystems;
 /// Represents the client system responsible for managing and updating the gas pressure regulator interface.
 /// Inherits from the shared system <see cref="SharedGasPressureRegulatorSystem"/>.
 /// </summary>
-public sealed partial class GasPressureRegulatorSystem : SharedGasPressureRegulatorSystem
+public sealed class GasPressureRegulatorSystem : SharedGasPressureRegulatorSystem
 {
     public override void Initialize()
     {

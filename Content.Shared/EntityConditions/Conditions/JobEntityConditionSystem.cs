@@ -12,7 +12,7 @@ namespace Content.Shared.EntityConditions.Conditions;
 /// Returns true if this entity has any of the specified jobs. False if the entity has no mind, none of the specified jobs, or is jobless.
 /// </summary>
 /// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
-public sealed partial class HasJobEntityConditionSystem : EntityConditionSystem<MindContainerComponent, JobCondition>
+public sealed class HasJobEntityConditionSystem : EntityConditionSystem<MindContainerComponent, JobCondition>
 {
     protected override void Condition(Entity<MindContainerComponent> entity, ref EntityConditionEvent<JobCondition> args)
     {

@@ -78,3 +78,23 @@
 
 - type: Tag
   id: ESSplints
+
+# Used for medical belt fill visuals
+
+- type: Tag
+  id: EmergencyPouch
+
+- type: Tag
+  id: BrutePouch
+
+- type: Tag
+  id: BurnPouch
+
+- type: Tag
+  id: ToxinPouch
+
+- type: Tag
+  id: RadiationPouch
+
+- type: Tag
+  id: OxygenPouch

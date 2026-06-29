@@ -8,13 +8,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
-public sealed class MessyDrinkerSystem : EntitySystem
+public sealed partial class MessyDrinkerSystem : EntitySystem
 {
-    [Dependency] private readonly IngestionSystem _ingestion = default!;
-    [Dependency] private readonly SharedPuddleSystem _puddle = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private IngestionSystem _ingestion = default!;
+    [Dependency] private SharedPuddleSystem _puddle = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     public override void Initialize()
     {
@@ -26,6 +26,9 @@ public sealed class MessyDrinkerSystem : EntitySystem
     private void OnIngested(Entity<MessyDrinkerComponent> ent, ref IngestingEvent ev)
     {
         if (ent.Comp.SpillImmuneTag != null && _tag.HasTag(ev.Food, ent.Comp.SpillImmuneTag.Value))
+            return;
+
+        if (ev.Split == null)
             return;
 
         // Cannot spill if you're being forced to drink.
@@ -44,7 +47,7 @@ public sealed class MessyDrinkerSystem : EntitySystem
             return;
 
         if (ent.Comp.SpillMessagePopup != null)
-            _popup.PopupPredicted(Loc.GetString(ent.Comp.SpillMessagePopup), null, ent, ent, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString(ent.Comp.SpillMessagePopup), null, ent, ent, PopupType.MediumCaution);
 
         var split = ev.Split.SplitSolution(ent.Comp.SpillAmount);
 

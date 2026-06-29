@@ -14,8 +14,8 @@ namespace Content.Client._ES.Stagehand.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class ESObservablePlayerButton : ContainerButton
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
     private readonly JobSystem _job;
     private readonly ESMaskSystem _mask;
     private readonly SpriteSystem _sprite;

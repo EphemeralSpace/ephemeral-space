@@ -138,32 +138,8 @@
         reagents:
         - ReagentId: Water
           Quantity: 180
-        - ReagentId: GastroToxin
+        - ReagentId: Toxin
           Quantity: 20
-
-- type: entity
-  parent: ToiletEmpty
-  id: ToiletFilled
-  suffix: Empty, Random Cistern Loot
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      stash: !type:NestedSelector
-        tableId: ToiletCisternLoot
-        rolls: !type:RangeNumberSelector
-          range: 0, 1
-
-- type: entity
-  parent: ToiletDirtyWater
-  id: ToiletDirtyWaterFilled
-  suffix: Dirty Water, Random Cistern Loot
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      stash: !type:NestedSelector
-        tableId: ToiletCisternLoot
-        rolls: !type:RangeNumberSelector
-          range: 0, 1
 
 - type: entity
   parent: BaseToilet
@@ -215,5 +191,5 @@
           Quantity: 160
         - ReagentId: Gold
           Quantity: 20
-        - ReagentId: GastroToxin
+        - ReagentId: Toxin
           Quantity: 20

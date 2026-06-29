@@ -22,10 +22,10 @@ namespace Content.Server.GameTicking
     [UsedImplicitly]
     public sealed partial class GameTicker
     {
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
 // ES START
-        [Dependency] private readonly MobStateSystem _mobState = default!;
-        [Dependency] private readonly ESStagehandSystem _stagehand = default!;
+        [Dependency] private MobStateSystem _mobState = default!;
+        [Dependency] private ESStagehandSystem _stagehand = default!;
 // ES END
 
         private void InitializePlayer()
@@ -239,7 +239,17 @@ namespace Content.Server.GameTicking
                 AttachPlayerToLobbyCharacter(session);
 // ES END
 
-            _playerGameStatuses[session.UserId] = LobbyEnabled ? PlayerGameStatus.NotReadyToPlay : PlayerGameStatus.ReadyToPlay;
+            if (LobbyEnabled)
+            {
+                // If we're in the lobby, preserve ready up status if we are coming the lobby
+                if (!_playerGameStatuses.TryGetValue(session.UserId, out var oldStatus) ||
+                    oldStatus != PlayerGameStatus.ReadyToPlay)
+                    _playerGameStatuses[session.UserId] = PlayerGameStatus.NotReadyToPlay;
+            }
+            else
+            {
+                _playerGameStatuses[session.UserId] = PlayerGameStatus.ReadyToPlay;
+            }
             _db.AddRoundPlayers(RoundId, session.UserId);
 
             var client = session.Channel;

@@ -69,6 +69,7 @@
     - id: ESWeaponKnife
     - id: ESClothingOuterArmorSecurity
     - id: ExGrenade
+      amount: 2
 
 # Subverter
 - type: entity
@@ -112,6 +113,7 @@
     - id: ExGrenade
       amount: 2
     - id: ESMicroBombImplanter
+    - id: ESSyndicateBombFlatpack
 
 # Mercenary
 - type: entity
@@ -134,32 +136,6 @@
       - id: ESWeaponPistol9mm
         weight: 2
       - id: ESWeaponPistol9mmSilenced
-
-# Vigilante
-- type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheCrewVigilante
-  suffix: ES, Vigilante Cache
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESCrewCacheVigilante
-
-- type: entityTable
-  id: ESCrewCacheVigilante
-  table:
-    all:
-    - group:
-      - all:
-        - id: ESWeaponRevolver357
-      - group:
-        - id: ESWeaponPistol9mm
-          weight: 2
-        - id: ESWeaponPistol9mmSilenced
-    - id: ESWeaponKnife
-    - id: ESClothingOuterArmorSecurity
-    - id: ExGrenade
 
 # Insider
 - type: entity
@@ -197,30 +173,6 @@
         - id: ESWeaponDoubleBarrelShotgun
           weight: 1
         rolls: 2
-
-# Fruit Vendor
-- type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheCrewFruitVendor
-  suffix: ES, Fruit Vendor Cache
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        group:
-        - id: FoodBanana
-        - id: FoodLemon
-        - id: FoodLime
-        - id: FoodOrange
-        - id: FoodPineapple
-        - id: FoodTomato
-        - id: FoodApple
-        - id: FoodWatermelon
-        - id: FoodGrape
-        - id: FoodPumpkin
-        - id: FoodCherry
-        - id: FoodBerries
-        rolls: 4, 5
 
 # Hitman
 - type: entity

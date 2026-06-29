@@ -6,9 +6,9 @@ namespace Content.Server._ES.ServerStatus;
 
 [ToolshedCommand]
 [AdminCommand(AdminFlags.Fun)]
-public sealed class RerollHostnameCommand : ToolshedCommand
+public sealed partial class RerollHostnameCommand : ToolshedCommand
 {
-    [Dependency] private readonly StatusManager _status = default!;
+    [Dependency] private StatusManager _status = default!;
 
     [CommandImplementation]
     public void RerollHostname()

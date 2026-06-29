@@ -17,15 +17,15 @@ using Robust.Shared.Utility;
 namespace Content.Server._ES.Spawning;
 
 /// <inheritdoc/>
-public sealed class ESSpawningSystem : ESSharedSpawningSystem
+public sealed partial class ESSpawningSystem : ESSharedSpawningSystem
 {
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ESEntityTimerSystem _timer = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobs = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ESEntityTimerSystem _timer = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private StationJobsSystem _stationJobs = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

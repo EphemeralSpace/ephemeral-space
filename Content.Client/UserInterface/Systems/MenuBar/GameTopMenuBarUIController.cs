@@ -15,18 +15,18 @@ using Content.Client._ES.Mind.Ui;
 
 namespace Content.Client.UserInterface.Systems.MenuBar;
 
-public sealed class GameTopMenuBarUIController : UIController
+public sealed partial class GameTopMenuBarUIController : UIController
 {
-    [Dependency] private readonly EscapeUIController _escape = default!;
-    [Dependency] private readonly AdminUIController _admin = default!;
-    [Dependency] private readonly CraftingUIController _crafting = default!;
-    [Dependency] private readonly AHelpUIController _ahelp = default!;
-    [Dependency] private readonly ActionUIController _action = default!;
-    [Dependency] private readonly SandboxUIController _sandbox = default!;
-    [Dependency] private readonly GuidebookUIController _guidebook = default!;
-    [Dependency] private readonly EmotesUIController _emotes = default!;
+    [Dependency] private EscapeUIController _escape = default!;
+    [Dependency] private AdminUIController _admin = default!;
+    [Dependency] private CraftingUIController _crafting = default!;
+    [Dependency] private AHelpUIController _ahelp = default!;
+    [Dependency] private ActionUIController _action = default!;
+    [Dependency] private SandboxUIController _sandbox = default!;
+    [Dependency] private GuidebookUIController _guidebook = default!;
+    [Dependency] private EmotesUIController _emotes = default!;
 // ES START
-    [Dependency] private readonly ESCharacterUIController _esCharacter = default!;
+    [Dependency] private ESCharacterUIController _esCharacter = default!;
 // ES END
 
     private GameTopMenuBar? GameTopMenuBar => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>();

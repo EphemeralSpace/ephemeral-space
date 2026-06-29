@@ -1,12 +1,15 @@
-using System.Linq;
 using Content.Shared.GameTicking;
 using Content.Server.Station.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using System.Text;
+using Content.Server.Construction.Components;
+using Content.Server.Destructible;
 using Content.Server.Spawners.Components;
 using Content.Shared.Alert;
 using Content.Shared.CCVar;
+using Content.Shared.Damage.Components;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.Players;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.Map;
@@ -18,6 +21,8 @@ namespace Content.Server.GameTicking
 {
     public sealed partial class GameTicker
     {
+        [Dependency] private EntityLookupSystem _entityLookup = default!;
+
         [ViewVariables]
         private readonly Dictionary<NetUserId, PlayerGameStatus> _playerGameStatuses = new();
 
@@ -59,12 +64,6 @@ namespace Content.Server.GameTicking
         private static readonly ProtoId<AlertCategoryPrototype> ReadyAlertCategory = "ESReadyStatus";
 
         // Manages loading the diegetic lobby world and spawning players into it.
-        // FOR MIRROR NOTES
-        // lobby persists thru restarts (?)
-        // create once at server start
-        // characters also persist
-        // diegetic mechanism for readying = chairs diegetic mechanism for marking as observer = uhh idk lol
-        // maptext for directions, 'projector' entit ythat shows maptext, use a different font, idk
         private void CreateLobbyWorld()
         {
             if (_runLevel != GameRunLevel.PreRoundLobby)
@@ -91,6 +90,16 @@ namespace Content.Server.GameTicking
                 AttachPlayerToLobbyCharacter(player);
             }
 
+            var entities = new HashSet<Entity<DamageableComponent>>();
+            _entityLookup.GetEntitiesOnMap(DiegeticLobbyMapId.Value, entities);
+            foreach (var uid in entities)
+            {
+                RemComp<DamageableComponent>(uid);
+                RemComp<DestructibleComponent>(uid);
+                RemComp<ConstructionComponent>(uid);
+                RemComp<ButcherableComponent>(uid);
+            }
+
             var ev = new ESLobbyWorldCreatedEvent();
             RaiseLocalEvent(ref ev);
         }
@@ -114,7 +123,7 @@ namespace Content.Server.GameTicking
             data.LobbyEntity = theatergoer;
         }
 
-        private EntityCoordinates GetTheatergoerSpawnPoint()
+        public EntityCoordinates GetTheatergoerSpawnPoint()
         {
             if (DiegeticLobbyMapId == null)
                 return EntityCoordinates.Invalid;
@@ -181,7 +190,7 @@ namespace Content.Server.GameTicking
             }
 
             var playerCount = $"{_playerManager.PlayerCount}";
-            var readyCount = _playerGameStatuses.Values.Count(x => x == PlayerGameStatus.ReadyToPlay);
+            var readyCount = ReadyPlayerCount();
 
             var stationNames = new StringBuilder();
             var query =

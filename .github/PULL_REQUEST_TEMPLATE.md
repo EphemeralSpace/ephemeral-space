@@ -13,4 +13,7 @@ N/A
 Changelog must have a :cl: symbol, so the bot recognizes the changes and adds them to the game's changelog. -->
 
 :cl:
-- add: CHANGELOG HERE
+- add: ADDITION HERE
+- tweak: TWEAK HERE
+- fix: FIX HERE
+- remove: REMOVAL HERE

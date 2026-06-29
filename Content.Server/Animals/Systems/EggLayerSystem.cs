@@ -17,15 +17,15 @@ namespace Content.Server.Animals.Systems;
 ///     Gives the ability to lay eggs/other things;
 ///     produces endlessly if the owner does not have a HungerComponent.
 /// </summary>
-public sealed class EggLayerSystem : EntitySystem
+public sealed partial class EggLayerSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly HungerSystem _hunger = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private HungerSystem _hunger = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {
@@ -84,13 +84,13 @@ public sealed class EggLayerSystem : EntitySystem
         // Allow infinitely laying eggs if they can't get hungry.
         if (TryComp<HungerComponent>(uid, out var hunger))
         {
-            if (_hunger.GetHunger(hunger) < egglayer.HungerUsage)
+            if (hunger.CurrentHunger == HungerThreshold.Starving)
             {
                 _popup.PopupEntity(Loc.GetString("action-popup-lay-egg-too-hungry"), uid, uid);
                 return false;
             }
 
-            _hunger.ModifyHunger(uid, -egglayer.HungerUsage, hunger);
+            _hunger.ModifySatiety((uid, hunger), -1);
         }
 
         foreach (var ent in EntitySpawnCollection.GetSpawns(egglayer.EggSpawn, _random))

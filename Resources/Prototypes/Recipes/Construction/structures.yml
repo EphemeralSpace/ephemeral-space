@@ -25,19 +25,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ClockworkGirder
-  graph: ClockworkGirder
-  startNode: start
-  targetNode: clockGirder
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   id: Wall
   graph: Girder
   startNode: start
@@ -55,19 +42,6 @@
   graph: Girder
   startNode: start
   targetNode: reinforcedWall
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: WallClock
-  graph: ClockworkGirder
-  startNode: start
-  targetNode: clockworkWall
   category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter
@@ -208,19 +182,6 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: Cardwall
-  graph: Cardwall
-  startNode: start
-  targetNode: cardwall
-  category: construction-category-structures
-  conditions:
-  - !type:TileNotBlocked
-    failIfSpace: false
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-
-- type: construction
   id: Grille
   graph: Grille
   startNode: start
@@ -234,35 +195,10 @@
   canRotate: false
 
 - type: construction
-  id: ClockGrille
-  graph: ClockGrille
-  startNode: start
-  targetNode: clockGrille
-  category: construction-category-structures
-  conditions:
-    - !type:TileNotBlocked
-      failIfSpace: false
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-
-- type: construction
   id: GrilleDiagonal
   graph: GrilleDiagonal
   startNode: start
   targetNode: grilleDiagonal
-  category: construction-category-structures
-  conditions:
-    - !type:TileNotBlocked
-      failIfSpace: false
-  objectType: Structure
-  placementMode: SnapgridCenter
-
-- type: construction
-  id: ClockworkGrilleDiagonal
-  graph: GrilleDiagonal
-  startNode: start
-  targetNode: clockworkGrilleDiagonal
   category: construction-category-structures
   conditions:
     - !type:TileNotBlocked
@@ -1064,18 +1000,6 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-
-- type: construction
-  id: CarpStatue
-  graph: CarpStatue
-  startNode: start
-  targetNode: statue
-  category: construction-category-structures
-  placementMode: SnapgridCenter
-  objectType: Structure
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
 
 - type: construction
   id: BananiumClownStatue

@@ -1,5 +1,48 @@
 - type: entity
-  parent: [BaseWeaponShotgun, BaseSecurityContraband]
+  name: BaseWeaponShotgun
+  parent: BaseItem
+  id: BaseWeaponShotgun
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,4,0
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 7
+    proto: ShellShotgun
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  parent: BaseWeaponShotgun
   id: ESWeaponShotgun
   name: riot shotgun
   description: A powerful shotgun, useful for "apprehending" criminals. Uses shotgun shells as ammo.
@@ -36,9 +79,10 @@
     - SemiAuto
   - type: GunSpreadModifier
     spread: 1.5
+  - type: ESPickpocketPriorityItem
 
 - type: entity
-  parent: [ESWeaponShotgun, BaseSecurityBartenderContraband]
+  parent: ESWeaponShotgun
   id: ESWeaponDoubleBarrelShotgun
   name: double-barrel shotgun
   description: An immortal classic. Uses shotgun shells as ammo.

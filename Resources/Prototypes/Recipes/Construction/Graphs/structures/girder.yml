@@ -8,7 +8,7 @@
           steps:
             - material: Steel
               amount: 2
-              doAfter: 1
+              doAfter: 5
 
     - node: girder
       entity: Girder
@@ -35,7 +35,7 @@
           steps:
             - material: Steel
               amount: 2
-              doAfter: 2
+              doAfter: 10
 
         - to: reinforcedGirder
           completed:
@@ -141,7 +141,7 @@
               amount: 2
           steps:
             - tool: Welding
-              doAfter: 10
+              doAfter: 8
 
     - node: wallChitin
       entity: WallSolidChitin

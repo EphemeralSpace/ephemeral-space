@@ -8,7 +8,7 @@ namespace Content.Server._ES.NPCs.Operators;
 
 public sealed partial class ESSnipCableOperator : HTNOperator
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
     private ElectrocutionSystem _electrocution;
 
     /// <summary>

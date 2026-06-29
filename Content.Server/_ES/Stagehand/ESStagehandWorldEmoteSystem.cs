@@ -2,7 +2,6 @@ using Content.Shared._ES.Stagehand;
 using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.Popups;
 using Robust.Server.Audio;
-using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -10,14 +9,14 @@ using Robust.Shared.Random;
 namespace Content.Server._ES.Stagehand;
 
 /// <see cref="ESStagehandWorldEmoteComponent"/>
-public sealed class ESStagehandWorldEmoteSystem : EntitySystem
+public sealed partial class ESStagehandWorldEmoteSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ESStagehandNotificationsSystem _notif = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ESStagehandNotificationsSystem _notif = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
 
     private const float PlayForPlayersInRoundChance = 0.5f;
 
@@ -48,6 +47,13 @@ public sealed class ESStagehandWorldEmoteSystem : EntitySystem
         {
             _popup.PopupEntity(Loc.GetString("es-stagehand-emote-performers-heard"), ent, ent, PopupType.SmallCaution);
             _audio.PlayGlobal(resolved, playersInRange, false, proto.Sound.Params.WithVolume(-7f));
+        }
+        else
+        {
+            var filter = Filter.Empty()
+                .AddInRange(coords, 7f)
+                .RemoveWhereAttachedEntity(e => !HasComp<Components.ESAlwaysHearStagehandEmoteComponent>(e));
+            _audio.PlayGlobal(resolved, filter, false, proto.Sound.Params.WithVolume(-7f));
         }
 
         args.Handled = true;

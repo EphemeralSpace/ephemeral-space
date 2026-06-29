@@ -10,19 +10,6 @@
           task: IdleCompound
 
 - type: htnCompound
-  id: RatServantTargetAttackCompound
-  branches:
-    - tasks:
-        - !type:HTNCompoundTask
-          task: RatServantCombatCompound
-    - tasks:
-        - !type:HTNCompoundTask
-          task: FollowCompound
-    - tasks:
-        - !type:HTNCompoundTask
-          task: IdleCompound
-
-- type: htnCompound
   id: MouseCompound
   branches:
 # ES START
@@ -36,19 +23,6 @@
     - tasks:
         - !type:HTNCompoundTask
           task: IdleCompound
-
-- type: htnCompound
-  id: MoproachCompound
-  branches:
-  - tasks:
-    - !type:HTNCompoundTask
-      task: FoodCompound
-  - tasks:
-    - !type:HTNCompoundTask
-      task: BufferNearbyPuddlesCompound
-  - tasks:
-    - !type:HTNCompoundTask
-      task: IdleCompound
 
 - type: htnCompound
   id: GlockroachCompound

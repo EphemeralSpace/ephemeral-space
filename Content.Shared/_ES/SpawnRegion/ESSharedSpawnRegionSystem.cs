@@ -18,14 +18,14 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._ES.SpawnRegion;
 
-public abstract class ESSharedSpawnRegionSystem : EntitySystem
+public abstract partial class ESSharedSpawnRegionSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     private readonly List<Entity<ESSpawnRegionMarkerComponent>> _markers = new();
     private readonly HashSet<EntityUid> _lookupSet = new();

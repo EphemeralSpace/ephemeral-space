@@ -6,25 +6,22 @@
   minPlayers: 8
   gameRules: []
   masquerade:
-    defaultMask: "Crewmember"
+    defaultMask: "#AllCrew"
+    superfanTarget: "#Traitors"
     roles:
-      8: ["Marauder(2)", "Rebel", "#Targeters", "VIP", "ArmsDealer", "#Filler(2)"] # 0 generic crew, 2 traitors
-      9: ["#Filler"]
-      10: ["Infiltrator"] # 0 generic crew, 3 traitors.
+      8: ["Marauder", "#Traitors", "Rebel", "#Targeters", "ArmsDealer"] # 2 traitors
+      10: ["Infiltrator"] # 3 traitors.
       11: ["ArmsDealer"] # Guarantee another arms dealer, this is definitely balanced around an armed crew.
       12: ["#Antagonistic"]
-      13: ["#TraitorGunners"]
-      14: ["#Filler"]
-      15: ["#PowerTraitors"] # 0 generic crew, 4 traitors.
+      13: ["#Gunners"]
+      14: ["#SemiTraitor"]
+      15: ["#Traitors"] # 4 traitors.
       16: ["#Firmsafes"]
-      17: ["#Traitors"] # 0 generic crew, 5 traitors.
-      18: ["#Antagonistic"] # 0 generic crew, 5 traitors.
-      20: ["#Traitors"] # 1 generic crew, 6 traitors.
-      21: ["#Filler"]
-      22: ["#TraitorGunners"] # 1 generic crew, 6 traitors.
-      24: ["#Filler(2)"]
-      25: ["#PowerTraitors"] # 1 generic crew, 7 traitors.
+      17: ["#Traitors"] # 5 traitors.
+      18: ["#Antagonistic"] # 5 traitors.
+      19: [ "Tragedian" ]
+      20: ["#Traitors"] # 6 traitors.
+      22: ["#Gunners"] # 6 traitors.
+      25: ["#PowerTraitors"] # 7 traitors.
       26: ["#Antagonistic"]
-      27: ["#Filler"]
-      28: ["#Filler"]
-      30: ["#Traitors"] # 2 generic crew, 8 traitors.
+      30: ["#Traitors"] # 8 traitors.

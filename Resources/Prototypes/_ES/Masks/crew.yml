@@ -4,7 +4,7 @@
   troupe: Crew
   description: es-mask-arms-dealer-desc
   color: lime
-  weight: 1
+  weight: 0.75
   objectives:
     id: ESObjectiveHoldSummonedGuns
   mindComponents:
@@ -14,6 +14,16 @@
     cacheProto:
       id: ESCrateCacheCrewArmsDealer
       amount: 6
+
+- type: esMask
+  id: Arsonist
+  name: es-mask-arsonist-name
+  troupe: Crew
+  description: es-mask-arsonist-desc
+  color: red
+  weight: 0.25
+  objectives:
+    id: ESObjectiveArsonistLightFires
 
 - type: esMask
   id: Avenger
@@ -29,6 +39,7 @@
   name: es-mask-crewmember-name
   troupe: Crew
   description: es-mask-crewmember-desc
+  weight: 5
   color: white
 
 - type: esMask
@@ -37,7 +48,7 @@
   troupe: Crew
   description: es-mask-guzzler-desc
   color: cyan
-  weight: 1
+  weight: 0.15
   objectives:
     all:
     - id: ESObjectiveGuzzle
@@ -62,7 +73,6 @@
   troupe: Crew
   description: es-mask-mercenary-desc
   color: ruber
-  weight: 1
   objectives:
     id: ESObjectiveKillNonCrew
   mindComponents:
@@ -76,7 +86,7 @@
   troupe: Crew
   description: es-mask-nobleman-desc
   color: gold
-  weight: 1
+  weight: 0.25
   objectives:
     all:
     - id: ESObjectiveNoblemanDontKill
@@ -95,13 +105,27 @@
     - id: ESObjectivePhantomDie
 
 - type: esMask
+  id: Pickpocket
+  name: es-mask-pickpocket-name
+  troupe: Crew
+  description: es-mask-pickpocket-desc
+  color: olivedrab
+  weight: 0.75
+  actions:
+    all:
+    - id: ActionMaskPickpocketSnatch
+  objectives:
+    all:
+    - id: ESObjectivePickpocketSteal
+
+- type: esMask
   parent: ESBaseCommandRestricted
   id: Rebel
   name: es-mask-rebel-name
   troupe: Crew
   description: es-mask-rebel-desc
   color: tomato
-  weight: 0.2
+  weight: 0.75
   mindComponents:
   - type: ESMaskCacheSpawner
     cacheProto:
@@ -112,7 +136,7 @@
         all:
         - id: ESObjectiveRebelSabotageCommunications
         - id: ESObjectiveRebelSabotageCrewMonitoring
-        - id: ESObjectiveRebelSabotageIDComputer
+        - id: ESObjectiveRebelSabotageEmergencyAccessTerminal
         - id: ESObjectiveRebelSabotageCriminalRecords
         - id: ESObjectiveRebelSabotageTelecom
           weight: 2
@@ -130,18 +154,29 @@
     - id: ESObjectiveSecretaryAssist
 
 - type: esMask
+  id: Tragedian
+  name: es-mask-tragedian-name
+  troupe: Crew
+  description: es-mask-tragedian-desc
+  color: royalblue
+  objectives:
+    all:
+    - id: ESObjectiveTragedianDie
+    - id: ESObjectiveTragedianEmbodyTheme
+  actions:
+    all:
+    - id: ESActionMaskTragedianSummon
+  components:
+  - type: ESAlwaysHearStagehandEmote
+
+- type: esMask
   id: Vigilante
   name: es-mask-vigilante-name
   troupe: Crew
   description: es-mask-vigilante-desc
   color: orchid
-  weight: 1
   objectives:
     id: ESObjectiveVigilanteKillKiller
-  mindComponents:
-  - type: ESMaskCacheSpawner
-    cacheProto:
-      id: ESCrateCacheCrewVigilante
 
 - type: esMask
   id: VIP
@@ -151,5 +186,5 @@
   color: gold
   tips:
   - VIPFingerprintScanner
-  weight: 0.5
+  weight: 0.2
   gear: ESMaskVIPGear

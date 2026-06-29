@@ -46,11 +46,11 @@ public interface IFontSelectionManager : IFontAccessor
 /// </summary>
 internal sealed partial class FontSelectionManager : IFontSelectionManager, IPostInjectInit
 {
-    [Dependency] private readonly IConfigurationManager _cfg = null!;
-    [Dependency] private readonly ISystemFontManager _fontManager = null!;
-    [Dependency] private readonly IResourceCache _resourceCache = null!;
-    [Dependency] private readonly ILogManager _logManager = null!;
-    [Dependency] private readonly FontTagHijackHolder _fontTagHijack = null!;
+    [Dependency] private IConfigurationManager _cfg = null!;
+    [Dependency] private ISystemFontManager _fontManager = null!;
+    [Dependency] private IResourceCache _resourceCache = null!;
+    [Dependency] private ILogManager _logManager = null!;
+    [Dependency] private FontTagHijackHolder _fontTagHijack = null!;
 
     private readonly Dictionary<StandardFontType, FontData> _fontData = [];
     private readonly Dictionary<string, ISystemFontFace[]> _systemFontFaces = [];

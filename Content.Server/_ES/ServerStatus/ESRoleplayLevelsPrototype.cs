@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using Content.Shared.Dataset;
+﻿using System.Globalization;
+using System.Linq;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -22,13 +22,7 @@ public sealed partial class ESRoleplayLevelsPrototype : IPrototype, ISerializati
     ///     These get validated and will cause validation failures.
     /// </summary>
     [DataField(required: true)]
-    public List<char> ForbidCharacters = default!;
-
-    /// <summary>
-    ///     Localized datasets we also add in to our list of roleplays.
-    /// </summary>
-    [DataField]
-    public List<ProtoId<LocalizedDatasetPrototype>> LocalizedDatasets = new();
+    public List<string> ForbidCharacters = default!;
 
     /// <summary>
     ///     The kinds of roleplays in this dataset.
@@ -55,21 +49,21 @@ public sealed partial class ESRoleplayLevelsPrototype : IPrototype, ISerializati
 
     private bool CheckForbidCharactersViolation(string word)
     {
-        return ForbidCharacters.Any(x => char.ToUpperInvariant(word[0]) == char.ToUpperInvariant(x));
+        return ForbidCharacters.Contains(word.GetRoleplayAbbreviation());
     }
 
     public string GetPossibleRoleplay(ILocalizationManager loc, IPrototypeManager proto, IRobustRandom random)
     {
-        var roleplays = new List<string>();
+        return random.Pick(Roleplays);
+    }
+}
 
-        foreach (var setProtoId in LocalizedDatasets)
-        {
-            var set = proto.Index(setProtoId);
-            roleplays.AddRange(set.Values.Where(x => !CheckForbidCharactersViolation(x)));
-        }
+public static class ESRoleplayLevelHelpers
+{
+    public static string GetRoleplayAbbreviation(this string level)
+    {
+        var titleCase = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(level);
 
-        roleplays.AddRange(Roleplays);
-
-        return random.Pick(roleplays);
+        return string.Join(string.Empty, titleCase.ToCharArray().Where(char.IsUpper).ToList());
     }
 }

@@ -8,10 +8,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Singularity.EntitySystems;
 
-public abstract class SharedEmitterSystem : EntitySystem
+public abstract partial class SharedEmitterSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -48,7 +48,7 @@ public abstract class SharedEmitterSystem : EntitySystem
                 {
                     ent.Comp.BoltType = type;
                     Dirty(ent);
-                    _popup.PopupClient(Loc.GetString("emitter-component-type-set", ("type", proto.Name)), ent.Owner);
+                    _popup.PopupCursor(Loc.GetString("emitter-component-type-set", ("type", proto.Name)), ent.Owner);
                 },
             };
             args.Verbs.Add(v);

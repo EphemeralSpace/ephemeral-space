@@ -17,6 +17,12 @@ public sealed partial class ESEntityTimerComponent : Component
     public ESEntityTimerEvent TimerEndEvent;
 
     /// <summary>
+    /// The duration of the timer.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public TimeSpan Duration;
+
+    /// <summary>
     /// Time at which this timer will end.
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]

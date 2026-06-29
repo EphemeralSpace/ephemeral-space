@@ -4,3 +4,12 @@
   result: ESWeaponKnife
   materials:
     Steel: 500
+
+- type: latheRecipe
+  parent: BaseLightRecipe
+  id: ESFlashlightLantern
+  result: EmptyFlashlightLantern
+  materials:
+    Steel: 100
+    Glass: 100
+    Plastic: 100

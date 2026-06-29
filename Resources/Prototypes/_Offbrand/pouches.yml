@@ -39,6 +39,9 @@
         item:
           True: { state: basic_open }
           False: { state: basic }
+  - type: Tag
+    tags:
+    - EmergencyPouch
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -62,6 +65,10 @@
         item:
           True: { state: brute_open }
           False: { state: brute }
+  - type: Tag
+    tags:
+    - EmergencyPouch
+    - BrutePouch
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -85,6 +92,10 @@
         item:
           True: { state: burn_open }
           False: { state: burn }
+  - type: Tag
+    tags:
+    - EmergencyPouch
+    - BurnPouch
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -107,6 +118,10 @@
         item:
           True: { state: tox_open }
           False: { state: tox }
+  - type: Tag
+    tags:
+    - EmergencyPouch
+    - ToxinPouch
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -129,7 +144,10 @@
         item:
           True: { state: rad_open }
           False: { state: rad }
-
+  - type: Tag
+    tags:
+    - EmergencyPouch
+    - RadiationPouch
 
 - type: entity
   parent: BaseEmergencyPouch
@@ -153,3 +171,7 @@
         item:
           True: { state: o2_open }
           False: { state: o2 }
+  - type: Tag
+    tags:
+    - EmergencyPouch
+    - OxygenPouch

@@ -32,10 +32,8 @@
     children:
     - id: ClothingUniformJumpsuitColorGrey
       amount: 2
-    - id: ClothingUniformJumpskirtColorGrey
-      amount: 2
     - id: ClothingShoesColorBlack
-      amount: 3
+      amount: 2
     - id: ClothingHeadHatGreysoft
     - id: ClothingOuterCoatBomber
       prob: 0.3
@@ -82,12 +80,7 @@
     - !type:NestedSelector
       tableId: ESMixedLockerJumpsuitTable
       rolls: !type:RangeNumberSelector
-        range: 2, 4
-# Jumpskirts
-    - !type:NestedSelector
-      tableId: ESMixedLockerJumpskirtTable
-      rolls: !type:RangeNumberSelector
-        range: 1, 3
+        range: 2, 8
 # Bonus (Hats, bandanas, etc.)
     - !type:NestedSelector
       tableId: ESMixedLockerBonusTable
@@ -129,9 +122,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingUniformJumpsuitColorYellow
-    - id: ClothingUniformJumpskirtColorYellow
     - id: ClothingShoesColorOrange
-      amount: 2
     - id: ClothingHeadBandGold
 
 
@@ -168,9 +159,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingUniformJumpsuitColorWhite
-    - id: ClothingUniformJumpskirtColorWhite
     - id: ClothingShoesColorWhite
-      amount: 2
     - id: ClothingHeadHatMimesoft
 
 - type: entity
@@ -206,9 +195,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingUniformJumpsuitColorBlue
-    - id: ClothingUniformJumpskirtColorBlue
     - id: ClothingShoesColorBrown
-      amount: 2
 
 - type: entity
   id: WardrobePinkFilled
@@ -243,9 +230,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingUniformJumpsuitColorPink
-    - id: ClothingUniformJumpskirtColorPink
     - id: ClothingShoesColorBrown
-      amount: 2
 
 - type: entity
   id: WardrobeBlackFilled
@@ -280,9 +265,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingUniformJumpsuitColorBlack
-    - id: ClothingUniformJumpskirtColorBlack
     - id: ClothingShoesColorBlack
-      amount: 2
     - id: ClothingHeadBandBlack
     - id: ClothingHeadBandSkull
       prob: 0.4
@@ -320,7 +303,5 @@
   table: !type:AllSelector
     children:
     - id: ClothingUniformJumpsuitColorGreen
-    - id: ClothingUniformJumpskirtColorGreen
     - id: ClothingShoesColorBlack
-      amount: 2
     - id: ClothingHeadBandGreen

@@ -5,11 +5,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._ES.Cargo.Requests;
 
-public sealed class ESCargoRequestSystem : ESSharedCargoRequestSystem
+public sealed partial class ESCargoRequestSystem : ESSharedCargoRequestSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

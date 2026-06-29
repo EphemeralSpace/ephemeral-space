@@ -104,24 +104,6 @@
 ## Reagent filled
 
 - type: entity
-  parent: ChemistryEmptyVial
-  id: VestineChemistryVial
-  suffix: vestine
-  components:
-  - type: Label
-    currentLabel: reagent-name-vestine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Vestine
-          Quantity: 30
-  - type: Tag
-    tags: &TagVial # Remove trash tag when we have a filled solution
-    - CentrifugeCompatible
-
-- type: entity
   parent: ChemistryEmptyVialSmall
   id: RadiumChemistryVial
   suffix: radium
@@ -135,8 +117,6 @@
         reagents:
           - ReagentId: Radium
             Quantity: 5
-  - type: Tag
-    tags: *TagVial
 
 - type: entity
   parent: ChemistryEmptyVialSmall
@@ -152,8 +132,6 @@
         reagents:
           - ReagentId: Chlorine
             Quantity: 5
-  - type: Tag
-    tags: *TagVial
 
 - type: entity
   parent: ChemistryEmptyVialSmall
@@ -169,5 +147,3 @@
         reagents:
           - ReagentId: Plasma
             Quantity: 10
-  - type: Tag
-    tags: *TagVial

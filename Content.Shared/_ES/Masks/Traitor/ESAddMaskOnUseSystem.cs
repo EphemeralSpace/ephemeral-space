@@ -13,16 +13,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Masks.Traitor;
 
-public sealed class ESAddMaskOnUseSystem : EntitySystem
+public sealed partial class ESAddMaskOnUseSystem : EntitySystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly ESSharedMaskSystem _mask = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doafter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly RejuvenateSystem _rejuv = default!;
-    [Dependency] private readonly HealthRankingSystem _health = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private ESSharedMaskSystem _mask = default!;
+    [Dependency] private SharedDoAfterSystem _doafter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private RejuvenateSystem _rejuv = default!;
+    [Dependency] private HealthRankingSystem _health = default!;
 
     public override void Initialize()
     {
@@ -44,7 +44,7 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
 
         if (ent.Comp.MindshieldPrevent && HasComp<MindShieldComponent>(args.Target))
         {
-            _popup.PopupClient(Loc.GetString(ent.Comp.MindshieldedMessage), args.User, args.User);
+            _popup.PopupEntity(Loc.GetString(ent.Comp.MindshieldedMessage), args.User, args.User);
             return;
         }
 
@@ -52,13 +52,13 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
             !_health.IsCritical(args.Target.Value) &&
             _actionBlocker.CanInteract(args.Target.Value, null))
         {
-            _popup.PopupClient(Loc.GetString(ent.Comp.NotIncapacitatedMessage), args.User, args.User);
+            _popup.PopupEntity(Loc.GetString(ent.Comp.NotIncapacitatedMessage), args.User, args.User);
             return;
         }
 
         if (ent.Comp.Used)
         {
-            _popup.PopupClient(Loc.GetString(ent.Comp.UsedMessage), args.User, args.User, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString(ent.Comp.UsedMessage), args.User, args.User, PopupType.Medium);
             return;
         }
 
@@ -74,7 +74,7 @@ public sealed class ESAddMaskOnUseSystem : EntitySystem
 
         _doafter.TryStartDoAfter(doAfterArgs);
 
-        _popup.PopupPredicted(Loc.GetString(ent.Comp.UsingMessage), ent, ent, PopupType.MediumCaution);
+        _popup.PopupEntity(Loc.GetString(ent.Comp.UsingMessage), ent, PopupType.MediumCaution);
     }
 
     private void OnDoAfter(Entity<ESAddMaskOnUseComponent> ent, ref ESAddMaskOnUseDoAfterEvent args)

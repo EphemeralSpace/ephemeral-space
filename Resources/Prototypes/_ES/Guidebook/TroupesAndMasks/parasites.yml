@@ -4,7 +4,7 @@
   children:
   - Burstworm
   - Hemophage
-  - Psychid
+  - Leapleech
   - Host
   text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Parasites.xml"
 
@@ -24,6 +24,6 @@
   text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Parasites/Host.xml"
 
 - type: guideEntry
-  id: Psychid
-  name: Psychid
-  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Parasites/Psychid.xml"
+  id: Leapleech
+  name: Leapleech
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Parasites/Leapleech.xml"

@@ -5,7 +5,7 @@ namespace Content.Server.ItemRecall;
 /// <summary>
 /// System for handling the ItemRecall ability for wizards.
 /// </summary>
-public sealed partial class ItemRecallSystem : SharedItemRecallSystem
+public sealed class ItemRecallSystem : SharedItemRecallSystem
 {
 
 }

@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components.Triggers;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed partial class TriggerOnSlipSystem : TriggerOnXSystem
+public sealed class TriggerOnSlipSystem : TriggerOnXSystem
 {
     public override void Initialize()
     {

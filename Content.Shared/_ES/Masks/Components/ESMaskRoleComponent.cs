@@ -16,4 +16,10 @@ public sealed partial class ESMaskRoleComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public ProtoId<ESMaskPrototype>? Mask;
+
+    /// <summary>
+    /// Actions added to the entity from the mask.
+    /// </summary>
+    [DataField]
+    public List<EntityUid> Actions = new();
 }

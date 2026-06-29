@@ -13,15 +13,15 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Coroner;
 
-public abstract class ESSharedCoronerSystem : EntitySystem
+public abstract partial class ESSharedCoronerSystem : EntitySystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private PaperSystem _paper = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -46,7 +46,7 @@ public abstract class ESSharedCoronerSystem : EntitySystem
         if (!CanUseCoronerTool(ent.AsNullable(), args.User, target, out _))
             return;
 
-        _popup.PopupClient(Loc.GetString("es-coroner-report-complete-popup"), target, args.User, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString("es-coroner-report-complete-popup"), target, args.User, PopupType.Medium);
         _audio.PlayPredicted(ent.Comp.AutopsySound, target, args.User);
         var paper = PredictedSpawnNextToOrDrop(ent.Comp.ReportPrototype, target);
         _paper.SetContent(paper, GetReport(target).ToMarkup());
@@ -59,7 +59,7 @@ public abstract class ESSharedCoronerSystem : EntitySystem
         if (!CanUseCoronerTool(tool, user, target, out var reason))
         {
             if (!string.IsNullOrEmpty(reason))
-                _popup.PopupClient(reason, target, user, PopupType.SmallCaution);
+                _popup.PopupEntity(reason, target, user, PopupType.SmallCaution);
 
             return false;
         }

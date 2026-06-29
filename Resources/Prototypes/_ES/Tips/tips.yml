@@ -92,11 +92,11 @@
 
 - type: esTip
   id: CaptainNukeDisk
-  text: As the Captain, always take the nuclear disk and pinpointer with you every shift. It's a good idea to give one of these to someone you can trust.
+  text: As the Captain, always take the nuclear disk with you every shift. Consider giving it to someone you can trust.
 
 - type: esTip
   id: CaptainComdom
-  text: As the Captain, you have absolute access and control over the station, but this does not mean that being a horrible person won't result in mutiny.
+  text: As the Captain, you have the most power and control over the station, but this does not mean that being a horrible person won't result in mutiny.
 
 - type: esTip
   id: DoctorOverdose
@@ -239,22 +239,6 @@
   text: Though using an EMAG is a giveaway if someone sees you do it, the effect of using an EMAG on a door is indistinguishable from natural airlock bolt degradation, and can be passed off as such.
 
 - type: esTip
-  id: InfiltratorC4Deniability
-  text: As an Infiltrator, your cache's C4 is a tool available elsewhere. If you're caught, consider passing it off as stolen from Engineering.
-
-- type: esTip
-  id: BurstwormConversion
-  text: As a Burstworm, make sure your body ends up somewhere with a lot of people around. You won't convert anyone if you end up dying alone in maints.
-
-- type: esTip
-  id: HemophageBloodSpreading
-  text: As a Hemophage, try to spread your blood in areas that people would expect to be messy. If you're too obvious, the crew might suspect you and try to rapidly clean the station.
-
-- type: esTip
-  id: PsychidConversion
-  text: As a Psychid, keep in mind that the player you convert will end up in your situation. Thrown into space, locked in the brig, or welded inside a locker are all terrible starting points for the new member of your troupe.
-
-- type: esTip
   id: TraitorNukeTerminalPower
   text: As a Traitor, don't forget that the nuclear authentication terminals require power! Things can quickly go from good to unwinnable if you aren't in a situation that allows you to easily retrieve portable generators to power them.
 
@@ -327,9 +311,17 @@
   text: As a Janitor, you are the main line of defense against a Hemophage. If blood starts pooling up in large enough quantities, it could infect a significant portion of the station at once!
 
 - type: esTip
-  id: VIPFingerprintScanner
-  text: As a VIP, if your status is important in a given round, consider cooperating with someone who has a fingerprint scanner to keep records. It's a good way to deter against people stealing your card.
-
-- type: esTip
   id: MasqueradeDeduction
   text: If you're attentive to the mask composition, it's often possible to guess what the masquerade is. For example, a large amount of VIPs probably signifies that the masquerade is Red Carpet.
+
+- type: esTip
+  id: WatchOutForSympathizers
+  text: Just because someone has no traitor gear and hasn't been seen sabotaging anything doesn't mean they're not a traitor. There are Sympathizers everywhere.
+
+- type: esTip
+  id: CommandSympathizers
+  text: Though the Captain and Station Administrator can't be regular traitor masks, they might still be Sympathizers, illicitly working to further the Syndicate's goals!
+
+- type: esTip
+  id: FakeSympathizer
+  text: A traitor might think twice about magdumping you if you lie about being a Sympathizer first. Or, you know, if you're actually telling the truth, too.

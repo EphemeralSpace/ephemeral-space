@@ -6,11 +6,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Power.Antimatter;
 
-public abstract class ESSharedAntimatterSystem : EntitySystem
+public abstract partial class ESSharedAntimatterSystem : EntitySystem
 {
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] protected readonly SharedPointLightSystem PointLight = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] protected SharedPointLightSystem PointLight = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

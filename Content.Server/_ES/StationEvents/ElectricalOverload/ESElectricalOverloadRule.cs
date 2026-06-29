@@ -15,13 +15,13 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.StationEvents.ElectricalOverload;
 
-public sealed class ESElectricalOverloadRule : StationEventSystem<ESElectricalOverloadRuleComponent>
+public sealed partial class ESElectricalOverloadRule : StationEventSystem<ESElectricalOverloadRuleComponent>
 {
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly PoweredLightSystem _poweredLight = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly ESSharedTileFireSystem _tileFire = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private PoweredLightSystem _poweredLight = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private ESSharedTileFireSystem _tileFire = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

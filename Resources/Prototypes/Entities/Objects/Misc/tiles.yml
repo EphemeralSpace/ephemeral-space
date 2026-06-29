@@ -581,9 +581,6 @@
       - FloorBrassFilled
   - type: Stack
     stackType: FloorTileBrassFilled
-  - type: Construction
-    graph: TilesBrass
-    node: filledPlate
 
 - type: entity
   name: smooth brass plate
@@ -600,9 +597,6 @@
       - FloorBrassReebe
   - type: Stack
     stackType: FloorTileBrassReebe
-  - type: Construction
-    graph: TilesBrass
-    node: reebe
 
 - type: entity
   name: dirty tile
@@ -1477,23 +1471,6 @@
       - FloorTechMaint3
   - type: Stack
     stackType: FloorTileGratingMaint
-
-- type: entity
-  name: web tile
-  parent: FloorTileItemBase
-  id: FloorTileItemWeb
-  components:
-  - type: Sprite
-    sprite: Objects/Tiles/web.rsi
-    state: icon
-  - type: FloorTile
-    outputs:
-      - FloorWebTile
-  - type: Stack
-    stackType: FloorTileWeb
-  - type: Construction
-    graph: WebObjects
-    node: tile
 
 # Faux science tiles
 

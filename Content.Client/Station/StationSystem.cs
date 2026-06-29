@@ -3,4 +3,4 @@
 namespace Content.Client.Station;
 
 /// <inheritdoc/>
-public sealed partial class StationSystem : SharedStationSystem;
+public sealed class StationSystem : SharedStationSystem;

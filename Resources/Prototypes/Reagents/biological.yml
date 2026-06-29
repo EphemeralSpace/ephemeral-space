@@ -18,16 +18,11 @@
     Drink:
       effects:
       - !type:SatiateThirst
-        factor: 1.0
+        factor: 0.5
         conditions:
           - !type:MetabolizerTypeCondition
             type: [ Human ]
             inverted: true
-    Food:
-      effects:
-        - !type:AdjustReagent
-          reagent: UncookedAnimalProteins
-          amount: 0.1
     Medicine:
       effects:
       - !type:HealthChange
@@ -58,86 +53,6 @@
   physicalDesc: reagent-physical-desc-slimy
 
 - type: reagent
-  id: Slime
-  name: reagent-name-slime
-  group: Biological
-  desc: reagent-desc-slime
-  flavor: slimy
-  color: "#2cf274"
-  recognizable: true
-  standsout: true
-  physicalDesc: reagent-physical-desc-viscous
-  viscosity: 0.25
-  tileReactions:
-    - !type:SpillTileReaction
-  metabolisms:
-    Food:
-      # Delicious!
-      effects:
-      - !type:SatiateHunger
-        factor: 1
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [Slime]
-          inverted: true
-      - !type:ModifyBloodLevel
-        amount: 0.5 # drawing 15u removes 5% blood level from a slimeperson, this will add 5% when injecting 15u
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [Slime]
-  footstepSound:
-    collection: FootstepSlime # makes sense
-    params:
-      volume: 6
-
-- type: reagent
-  id: Sap
-  name: reagent-name-sap
-  group: Biological
-  desc: reagent-desc-sap
-  flavor: sweet
-  color: "#cd7314"
-  recognizable: true
-  physicalDesc: reagent-physical-desc-sticky
-  viscosity: 0.10
-  tileReactions:
-    - !type:SpillTileReaction
-  metabolisms:
-    Food:
-      # Sweet!
-      effects:
-      - !type:SatiateHunger
-        factor: 1
-      - !type:SatiateThirst
-        factor: 1
-  footstepSound:
-    collection: FootstepSlime
-    params:
-      volume: 6
-
-- type: reagent
-  parent: Blood
-  id: CopperBlood
-  name: reagent-name-hemocyanin-blood
-  group: Biological
-  desc: reagent-desc-hemocyanin-blood
-  flavor: metallic
-  color: "#162581"
-  recognizable: true
-  physicalDesc: reagent-physical-desc-metallic
-
-- type: reagent
-  parent: Blood
-  id: AmmoniaBlood
-  name: reagent-name-ammonia-blood
-  group: Biological
-  desc: reagent-desc-ammonia-blood
-  flavor: bitter
-  color: "#7a8bf2"
-  recognizable: true
-  physicalDesc: reagent-physical-desc-pungent
-
-- type: reagent
   id: Fat
   name: reagent-name-fat
   group: Biological
@@ -166,9 +81,6 @@
       effects:
       - !type:SatiateThirst
         factor: 0.5
-      - !type:AdjustReagent
-        reagent: Nutriment
-        amount: 0.1
   footstepSound:
     collection: FootstepBlood
     params:
@@ -183,10 +95,6 @@
   flavor: mindful
   color: "#C584B8"
   metabolisms:
-    Drink:
-      effects:
-      - !type:SatiateHunger
-        factor: 1.5
     Poison:
       effects:
       - !type:HealthChange

@@ -38,29 +38,6 @@
       - id: ClothingUniformJumpsuitColorPurple
 
 - type: entityTable
-  id: ESMixedLockerJumpskirtTable
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector
-      children:
-      - id: ClothingUniformJumpskirtColorWhite
-      - id: ClothingUniformJumpskirtColorGrey
-      - id: ClothingUniformJumpskirtColorBlack
-      - id: ClothingUniformJumpskirtColorBrown
-      - id: ClothingUniformJumpskirtColorLightBrown
-      - id: ClothingUniformJumpskirtColorRed
-      - id: ClothingUniformJumpskirtColorMaroon
-      - id: ClothingUniformJumpskirtColorPink
-      - id: ClothingUniformJumpskirtColorOrange
-      - id: ClothingUniformJumpskirtColorYellow
-      - id: ClothingUniformJumpskirtColorDarkBlue
-      - id: ClothingUniformJumpskirtColorBlue
-      - id: ClothingUniformJumpskirtColorTeal
-      - id: ClothingUniformJumpskirtColorGreen
-      - id: ClothingUniformJumpskirtColorDarkGreen
-      - id: ClothingUniformJumpskirtColorPurple
-
-- type: entityTable
   id: ESMixedLockerBonusTable
   table: !type:GroupSelector
     children:
@@ -81,7 +58,7 @@
     - id: ClothingHandsGlovesColorGray
     - id: ClothingHandsGlovesColorBrown
     - id: ClothingHandsGlovesColorLightBrown
-    - id: ClothingHandsGlovesColorOrange
+    - id: ESClothingHandsGlovesSanitation
     - id: ClothingHandsGlovesColorRed
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHandsGlovesColorTeal
@@ -91,7 +68,6 @@
   id: ESMixedBasicHatSoft
   table:
     group:
-    - id: ClothingHeadHatMimesoft
     - id: ClothingHeadHatGreysoft
     - id: ClothingHeadHatBlacksoft
     - id: ClothingHeadHatOrangesoft

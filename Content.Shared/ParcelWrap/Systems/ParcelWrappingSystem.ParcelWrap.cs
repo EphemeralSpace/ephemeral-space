@@ -70,7 +70,7 @@ public sealed partial class ParcelWrappingSystem
         if (target == user)
         {
             var selfMsg = Loc.GetString("parcel-wrap-popup-being-wrapped-self");
-            _popup.PopupClient(selfMsg, user, user);
+            _popup.PopupEntity(selfMsg, user, user);
         }
         else
         {

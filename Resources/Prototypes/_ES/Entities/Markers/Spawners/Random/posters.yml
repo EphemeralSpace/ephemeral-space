@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESSpawnerBase
+  parent: ESSpawnerBaseDirectional
   id: ESRandomPosterAny
   name: random poster spawner
   suffix: ES
@@ -16,10 +16,9 @@
   - type: EntityTableSpawner
     table:
       tableId: ESPosterAny
-    directional: true
 
 - type: entity
-  parent: ESSpawnerBase
+  parent: ESSpawnerBaseDirectional
   id: ESRandomPosterContraband
   name: random contraband poster spawner
   suffix: ES
@@ -35,10 +34,9 @@
   - type: EntityTableSpawner
     table:
       tableId: ESPosterContraband
-    directional: true
 
 - type: entity
-  parent: ESSpawnerBase
+  parent: ESSpawnerBaseDirectional
   id: ESRandomPosterLegit
   name: random legit poster spawner
   suffix: ES
@@ -54,4 +52,3 @@
   - type: EntityTableSpawner
     table:
       tableId: ESPosterLegit
-    directional: true

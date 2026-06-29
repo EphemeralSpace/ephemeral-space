@@ -13,13 +13,13 @@ namespace Content.Shared.Damage.Systems;
 
 public sealed partial class DamageableSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly SharedChemistryGuideDataSystem _chemistryGuideData = default!;
-    [Dependency] private readonly SharedExplosionSystem _explosion = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private SharedChemistryGuideDataSystem _chemistryGuideData = default!;
+    [Dependency] private SharedExplosionSystem _explosion = default!;
 
     private EntityQuery<AppearanceComponent> _appearanceQuery;
     private EntityQuery<DamageableComponent> _damageableQuery;
@@ -71,9 +71,13 @@ public sealed partial class DamageableSystem : EntitySystem
 
         // TODO DAMAGE
         // byref struct event.
-// ES START
         RaiseLocalEvent(ent, new DamageChangedEvent(ent.Comp, damageDelta, interruptsDoAfters, origin, forceRefresh, source, weapon));
-// ES END
+
+        if (origin.HasValue)
+        {
+            var originEv = new ESCausedDamageChanged(ent, damageDelta, origin.Value, source, weapon);
+            RaiseLocalEvent(origin.Value, ref originEv);
+        }
     }
 
     private void DamageableGetState(Entity<DamageableComponent> ent, ref ComponentGetState args)

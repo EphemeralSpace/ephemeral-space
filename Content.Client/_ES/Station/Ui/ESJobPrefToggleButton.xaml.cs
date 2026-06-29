@@ -15,10 +15,10 @@ namespace Content.Client._ES.Station.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class ESJobPrefToggleButton : Control
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
-    [Dependency] private readonly IClientPreferencesManager _preferences = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private JobRequirementsManager _jobRequirements = default!;
+    [Dependency] private IClientPreferencesManager _preferences = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private readonly ESStationSystem _station;
     private readonly SpriteSystem _sprite;

@@ -3,9 +3,9 @@ using Content.Shared.Destructible;
 
 namespace Content.Shared._ES.Destructible;
 
-public sealed class ESDestroyOnUnanchorSystem : EntitySystem
+public sealed partial class ESDestroyOnUnanchorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedDestructibleSystem _destructible = default!;
+    [Dependency] private SharedDestructibleSystem _destructible = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

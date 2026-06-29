@@ -9,7 +9,6 @@ These medicines primarily slow down how fast a patient's condition worsens, with
 
 <GuideReagentEmbed Reagent="Inaprovaline"/>
 <GuideReagentEmbed Reagent="Dexalin"/>
-<GuideReagentEmbed Reagent="DexalinPlus"/>
 
 ## Painkillers
 
@@ -32,7 +31,6 @@ These medicines heal various injuries, but cannot treat severe internal wounds t
 <GuideReagentEmbed Reagent="Tricordrazine"/>
 <GuideReagentEmbed Reagent="Hyronalin"/>
 <GuideReagentEmbed Reagent="Arithrazine"/>
-<GuideReagentEmbed Reagent="Phalanximine"/>
 
 ## Cryogenic Medicines
 

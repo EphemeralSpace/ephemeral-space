@@ -44,15 +44,15 @@
   id: Slicing
   name: tool-quality-slicing-name
   toolName: tool-quality-slicing-tool-name
-  spawn: KitchenKnife
+  spawn: ESWeaponKnife
   icon: { sprite: Objects/Weapons/Melee/kitchen_knife.rsi, state: icon }
 
 - type: tool
   id: Sawing
   name: tool-quality-sawing-name
   toolName: tool-quality-sawing-tool-name
-  spawn: Saw
-  icon: { sprite: Objects/Specific/Medical/Surgery/saw.rsi, state: saw }
+  spawn: SawElectric
+  icon: { sprite: _ES/Objects/Specific/Medical/Tools/csaw.rsi, state: icon }
 
 - type: tool
   id: Honking

@@ -43,3 +43,733 @@ Entries:
         may find the storm approaching faster than expected.
   id: 6
   time: '2026-04-18T21:54:34.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Pickpocket, a new crew mask that is tasked with snatching
+        items from people using their unique sneaky ability.
+  id: 7
+  time: '2026-04-23T13:44:18.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Arsonist, a new crew mask focused on lighting fires across the
+        station.
+  id: 8
+  time: '2026-04-24T15:13:40.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Being in braincrit now allows you to succumb with an action once more
+        (or say last words)
+  id: 9
+  time: '2026-05-03T00:53:56.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        New fully-random masquerades incorporating parasites have been added.
+        All masquerades will be random for a moment as we test it out and see
+        what things work to help with designing masquerades in the future.
+  id: 10
+  time: '2026-05-03T20:28:29.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Slight rebalance of crew thrusters + nav console + warp drive to be a
+        little more relevant
+  id: 11
+  time: '2026-05-03T21:35:10.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        The server is now advertising on the hub! While we're not running
+        rounds, the curtains leading to the stage will be closed, and you'll get
+        a popup telling you what's going on.
+  id: 12
+  time: '2026-05-05T22:19:41.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Default viewcone angle + feathering for the overlay has been altered
+        slightly
+  id: 13
+  time: '2026-05-06T00:00:34.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: Adrenaline rush action has been removed, goodbye urist mcflowerfield
+  id: 14
+  time: '2026-05-06T00:02:36.0000000+00:00'
+- author: Coolsurf6
+  changes:
+    - type: Tweak
+      message: Jerrycans are now 3x3
+  id: 15
+  time: '2026-05-06T01:22:46.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Sleeper agents now have a chance to convert after each traitor death,
+        not just after the last one dies.
+  id: 16
+  time: '2026-05-07T19:23:36.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Add
+      message: Nuclear cryptographic terminals now have a navmap beacon
+  id: 17
+  time: '2026-05-07T19:26:29.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: 'Added two new common maints utility items: the door jammer & the net. '
+    - type: Add
+      message: >-
+        The door jammer is a jury-rigged screwdriver that forcibly bolts any
+        door it's thrown and embedded into, until it's removed. 
+    - type: Add
+      message: >-
+        The net is an item that steals the item out of someone's active hand
+        when it's thrown at them, carrying it along until it lands. If the
+        target's active hand is empty, they'll simply catch the net instead.
+  id: 18
+  time: '2026-05-07T21:33:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Positional audio should now sound much better (this is hard to explain)
+  id: 19
+  time: '2026-05-08T22:51:54.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Audio now has a base amount of reverb applied to it. More effects to
+        come in the future (in space, in crit, dynamic based on room size, etc)
+    - type: Remove
+      message: >-
+        Audio no longer dopplers. No longer will shit sound like ass while
+        moving around as a stagehand
+  id: 20
+  time: '2026-05-09T04:52:15.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        New traitor mask: the Sympathizer. This mask can roll on any
+        job--including command--but they cannot tell who the other traitors are,
+        cannot be seen by other traitors, and cannot see the shared traitor
+        objectives. This means they must act indirectly and figure out who the
+        traitors are in order to be victorious.
+  id: 21
+  time: '2026-05-09T04:54:01.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The radstorm now advances significantly quicker when thrusters run out
+        of fuel or the navigation console loses power.
+  id: 22
+  time: '2026-05-09T09:03:26.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Breaking out of cuffs, bolas, and welded/locked lockers is now
+        significantly faster in all cases
+    - type: Fix
+      message: Warp drive charge timer no longer ticks up while interrupted
+    - type: Fix
+      message: >-
+        Being in space no longer makes you take like 9999 minutes to die because
+        of cryostasis
+    - type: Tweak
+      message: >-
+        Smoke inhalation now has a higher reagent threshold and you'll more
+        reliably cough as a warning at lower thresholds
+    - type: Tweak
+      message: >-
+        Regular walls & girders now take longer to construct manually (without
+        an RCD) and take less time to deconstruct
+  id: 23
+  time: '2026-05-09T15:08:40.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Rebalanced non-random masquerades across the board
+  id: 24
+  time: '2026-05-09T19:49:04.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Objectives now state in the UI whether or not they belong to a mask or
+        to a troupe.
+  id: 25
+  time: '2026-05-09T21:53:57.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: i had to remove the reverb that shit was brokey my bad
+  id: 26
+  time: '2026-05-09T22:41:31.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Thrusters and navigation terminal now properly affect the ship speed
+        when they run out of fuel/power.
+  id: 27
+  time: '2026-05-10T03:20:05.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Remove
+      message: 'Temporarily removed scientists. '
+  id: 28
+  time: '2026-05-16T22:36:26.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Sympathizers can no longer hack nuke terminals.
+  id: 29
+  time: '2026-05-20T00:41:43.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Psychids no longer become immortal after being killed.
+  id: 30
+  time: '2026-05-20T00:42:34.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Removed clumsy interactions.
+  id: 31
+  time: '2026-05-20T23:07:10.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Tragedian, a crew mask who must act out a theme for the
+        approval of stagehands.
+  id: 32
+  time: '2026-05-23T20:04:23.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Fix
+      message: cans no longer deal damage upon being thrown
+  id: 33
+  time: '2026-05-23T21:10:18.0000000+00:00'
+- author: SpeltIncorrectyl
+  changes:
+    - type: Remove
+      message: removed the detective's stun baton
+  id: 34
+  time: '2026-05-23T22:44:29.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Updated the stagehand cheer and boo icons
+  id: 35
+  time: '2026-05-23T22:48:30.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        Crewmember is now more common in masquerades, and arsonist is now less
+        common.
+  id: 36
+  time: '2026-05-23T22:48:36.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Assistants now have their own unique jumpsuit
+  id: 37
+  time: '2026-05-25T15:35:41.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Fires now smolder much faster, and have a chance to get put out entirely
+        once they smolder
+  id: 38
+  time: '2026-05-25T15:38:03.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Arsonists' objective now progresses when their fire spreads. To
+        compensate, they need to create more fires.
+  id: 39
+  time: '2026-05-25T21:12:09.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: An ominous bell will now toll when the first death of the show occurs.
+  id: 40
+  time: '2026-05-26T16:18:56.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        APCs now become broken when damaged. In this state, they do not provide
+        power.
+    - type: Tweak
+      message: APCs can no longer be constructed.
+  id: 41
+  time: '2026-05-26T16:20:14.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: >-
+        Changed all medical roles to have better and more consistent locker/belt
+        fills (doctors have access to a full set of tools now!)
+    - type: Remove
+      message: Replaced all redundant medical items with equivalent counterparts.
+    - type: Tweak
+      message: Resprited all surgical tools.
+    - type: Tweak
+      message: The circular saw now attacks much faster. Find some meat!
+  id: 42
+  time: '2026-05-27T21:37:33.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Secretaries can no longer get objectives to assist non-crew masks.
+  id: 43
+  time: '2026-05-27T21:48:24.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Characters now generate with facial hair again.
+  id: 44
+  time: '2026-05-28T23:20:23.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Traitors now have an objective to bug a department's APC. After the
+        hacking bug finishes, the GreyTide virus will be unleashed. Crew can
+        disarm this by removing the bug if they notice it's suspicious sparking.
+  id: 45
+  time: '2026-05-30T22:24:15.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Remove
+      message: The detective no longer starts with an armor vest.
+    - type: Remove
+      message: The captain no longer starts with a forensic scanner.
+  id: 46
+  time: '2026-05-30T22:26:56.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed getting stuck in brains when your body explodes.
+    - type: Fix
+      message: Fixed the death toll bell playing when non-players die.
+    - type: Tweak
+      message: >-
+        Traitors now always have 1 kill objective, 2 sabotage objectives, and an
+        APC bug objective.
+  id: 47
+  time: '2026-05-31T19:10:51.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The captain and head of personnel no longer have All Access to the
+        station.
+  id: 48
+  time: '2026-06-03T04:24:20.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: >-
+        A lot of food items + botany seeds have been removed in preparation of
+        upcoming cooking/botany changes
+    - type: Add
+      message: >-
+        Chef nutrivend and seed crates now have more randomized contents, and
+        can have cannabis/deathnettle/some other more exotic seeds on roundstart
+        now
+    - type: Tweak
+      message: >-
+        Hunger now works completely differently. Each food item now has a
+        different number of "portions", and each bite of food will immediately
+        restore 1 stage of hunger. Some bad foods will increase your hunger
+        instead
+    - type: Tweak
+      message: >-
+        Food can now be examined to show its satiety + they now have item
+        statuses
+    - type: Tweak
+      message: Melee damage on the shuttle is now even worse
+  id: 49
+  time: '2026-06-03T05:09:08.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the emergency access terminal, a unique bridge computer capable of
+        remotely enabling emergency access into various areas on station.
+  id: 50
+  time: '2026-06-05T02:19:09.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The ID card console no longer needs a privileged ID to assign access and
+        now only assigns presets, not individual access levels.
+  id: 51
+  time: '2026-06-05T02:20:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Reduced the delay between the meteor announcement and when they hit the
+        station.
+    - type: Tweak
+      message: Meteors can now occur before the 30 minute mark.
+  id: 52
+  time: '2026-06-05T02:24:01.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        The Parasite objective for "do not kill" players now works based on
+        total damage dealt rather than kills.
+  id: 53
+  time: '2026-06-05T02:27:55.0000000+00:00'
+- author: Sadie-silly
+  changes: []
+  id: 54
+  time: '2026-06-05T21:22:32.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: Pickpockets now prioritize more interesting items
+  id: 55
+  time: '2026-06-05T21:26:11.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        The warp drive console now shows when the warp drive is interrupted or
+        doing the final charge
+    - type: Fix
+      message: >-
+        Fixed an issue where the warp drive progress would not update and would
+        show the same value continuously
+  id: 56
+  time: '2026-06-08T00:11:19.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Add
+      message: Job wardrobes now have a chance of appearing in maints.
+  id: 57
+  time: '2026-06-10T14:04:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Fires from grenades and other basic explosions no longer spread.
+        Dedicated fiery explosions will still spread.
+  id: 58
+  time: '2026-06-12T15:32:27.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Vigilantes no longer get a cache. Fighting crime isn't free!
+  id: 59
+  time: '2026-06-13T21:36:04.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Add
+      message: New announcement sounds for thrusters/nav console/armory
+  id: 60
+  time: '2026-06-13T22:43:52.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed ready status getting reset upon disconnecting.
+  id: 61
+  time: '2026-06-15T10:49:15.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: Sliceable items now work properly + various other food related fixes
+    - type: Tweak
+      message: Hunger is a little slower sorgy I miscalced
+    - type: Fix
+      message: Guzzler can no longer roll dexplus & removes all mention of dexplus
+    - type: Fix
+      message: Parasite no-damage obj no longer counts self damage
+    - type: Tweak
+      message: Smoke inhalation threshold is lower again
+    - type: Tweak
+      message: Special vendor is now in bar instead of dorms
+    - type: Tweak
+      message: Dorms now has a guaranteed snack vendor
+    - type: Tweak
+      message: Smartfridge is now med access only
+    - type: Fix
+      message: >-
+        Operating table is no longer toggleable and now has better power
+        indication
+    - type: Fix
+      message: Coroner scalpel melee sprite is the right way around now
+    - type: Fix
+      message: Warp drive charging visuals now toggle on when in final stage
+    - type: Tweak
+      message: >-
+        Pickpocket and arms dealer objectives no longer announce to stagehands,
+        too spammy
+    - type: Tweak
+      message: Nav terminal battery is now larger
+    - type: Remove
+      message: Bartender no longer gets beer goggles
+    - type: Add
+      message: >-
+        Different accents are used for various late stage medical issues in
+        offmed (brain damage + no brain oxygen) instead of it just being triple
+        stuttering
+    - type: Tweak
+      message: >-
+        Viewcone min angle is now 15 deg, no more tiny sliver of visibility in
+        blackout pain
+  id: 62
+  time: '2026-06-15T10:49:41.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed various posters around the map being rotated incorrectly.
+  id: 63
+  time: '2026-06-15T15:36:56.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Added new armory wall sprites.
+  id: 64
+  time: '2026-06-15T21:13:28.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed thruster and navigation console announcements being backwards.
+  id: 65
+  time: '2026-06-16T11:48:17.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Add
+      message: The head of personnel has been renamed to the station administrator.
+  id: 66
+  time: '2026-06-16T21:43:50.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Increased the odds of traitor, and likewise rare items, from maintenance
+  id: 67
+  time: '2026-06-17T13:19:27.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Traitors now have an action with a long-ish cooldown which lets then
+        transmit a covert radio message to all other traitors. Use this for
+        easier planning of evil strategies.
+  id: 68
+  time: '2026-06-17T16:34:32.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        You will now be slowed for a short time when swinging a melee weapon, or
+        when being hit by a melee weapon
+  id: 69
+  time: '2026-06-17T16:37:31.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Name pool has been expanded in some places and pruned in others
+    - type: Tweak
+      message: >-
+        Only professional-type jobs (doctors engis sci) can roll dr/prof/etc as
+        prefixes now
+    - type: Add
+      message: Security roles can now generate 'Officer' etc as prefixes
+    - type: Add
+      message: apple knowledge
+  id: 70
+  time: '2026-06-19T18:15:39.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        Captain and Station Administrator can now be subverted with the
+        subversion chip.
+    - type: Tweak
+      message: >-
+        Made the shovel's stats a bit more reasonable. It does more damage and
+        is slower, but cannot be stored.
+    - type: Tweak
+      message: Stunbatons now have half battery charge.
+    - type: Remove
+      message: Removed metal foam grenades
+  id: 71
+  time: '2026-06-20T13:41:13.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: >-
+        Added the Leapleech, a new parasite mask that brings revenge to the crew
+        in the form of dangerous jumping leeches.
+  id: 72
+  time: '2026-06-20T13:43:00.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Removed the Psychid.
+  id: 73
+  time: '2026-06-20T14:09:29.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Stagehands now have an ominous floating animation while moving about...
+  id: 74
+  time: '2026-06-20T16:32:09.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Last words should be a little more readable hopefully
+  id: 75
+  time: '2026-06-20T16:43:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Bugged APCs now have a unique sprite.
+  id: 76
+  time: '2026-06-20T22:04:52.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: The cargo lathe is now inside of cargo.
+    - type: Tweak
+      message: There are now helpful bots on the shuttle.
+  id: 77
+  time: '2026-06-20T22:05:20.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        Nerfed revolver damage slightly. It now takes 4 shots to down instead of
+        3.
+  id: 78
+  time: '2026-06-20T22:22:36.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: There should be less welded/bolted doors in maints in general
+  id: 79
+  time: '2026-06-22T21:30:24.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Burstworm explosions have been amped up to the point where they both
+        destroy the original body and have enough strength to force open
+        containers.
+  id: 80
+  time: '2026-06-24T10:24:05.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Announcements will now queue and will delay themselves rather than
+        playing a trillion sounds at once if multiple announcements play
+    - type: Add
+      message: >-
+        Some announcements are 'important' and will cut off the sound of
+        currently-playing announcements in a fun way rather than being delayed
+  id: 81
+  time: '2026-06-26T14:20:37.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Tweak
+      message: New syndicate bomb flatpack in demolitionist cache
+  id: 82
+  time: '2026-06-26T14:21:10.0000000+00:00'
+- author: Flareguy, mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Explosions/meteors can no longer reduce a tile to space, instead it is
+        replaced by damaged lattice which can be repaired with a metal rod back
+        to a normal lattice
+    - type: Add
+      message: >-
+        Explosions will now spawn saucy damage overlays on most tiles they
+        damage
+  id: 83
+  time: '2026-06-26T14:22:13.0000000+00:00'
+- author: Sadie-silly
+  changes: []
+  id: 84
+  time: '2026-06-26T14:24:42.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Fix
+      message: phantoms can no longer steal from the armory
+    - type: Tweak
+      message: armory now stuns you for longer
+    - type: Tweak
+      message: leep leaches damage threshold lowered to 10 from 50
+  id: 85
+  time: '2026-06-27T01:42:15.0000000+00:00'
+- author: sowelipililimute
+  changes:
+    - type: Tweak
+      message: Interaction particles are now less energetic.
+    - type: Fix
+      message: Interaction particles no longer spawn when opening the strip menu.
+    - type: Add
+      message: Pulling now has a unique particle effect
+    - type: Tweak
+      message: >-
+        Interaction particles now only spawn on UIs if the UIs have an
+        associated open sound
+    - type: Fix
+      message: Interaction particles no longer spawn on closing a UI
+  id: 86
+  time: '2026-06-27T22:02:31.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        (very experimental) Picking up items now has a short doafter, including
+        when taking them out of storage.
+    - type: Add
+      message: >-
+        Storage items now have multipliers for how long the pickup doafter is.
+        Bags are 2x, belts are 0.5x (so taking stuff out of a belt is faster)
+    - type: Remove
+      message: >-
+        (also very experimental it will probably come back) Smart equipping has
+        been removed entirely
+    - type: Remove
+      message: Outerclothing with storage have had their storage removed
+  id: 87
+  time: '2026-06-27T22:41:06.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Maurader has two grenades again
+    - type: Tweak
+      message: Traitor explosives are less common maints loot
+  id: 88
+  time: '2026-06-29T07:43:40.0000000+00:00'

@@ -1,6 +1,6 @@
 namespace Content.Shared.NPC.Systems;
 
-public abstract partial class SharedNPCSystem : EntitySystem
+public abstract class SharedNPCSystem : EntitySystem
 {
     /// <summary>
     /// Returns whether the given entity is an NPC.

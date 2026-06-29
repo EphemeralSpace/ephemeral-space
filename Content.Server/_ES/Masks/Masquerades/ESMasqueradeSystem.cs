@@ -26,13 +26,13 @@ namespace Content.Server._ES.Masks.Masquerades;
 /// </summary>
 public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRuleComponent>
 {
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ESEntityTimerSystem _timer = default!;
-    [Dependency] private readonly ESMaskSystem _mask = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly NewsSystem _news = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ESEntityTimerSystem _timer = default!;
+    [Dependency] private ESMaskSystem _mask = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private NewsSystem _news = default!;
 
     // Icky global state.
     private ProtoId<ESMasqueradePrototype>? _forcedMasquerade;

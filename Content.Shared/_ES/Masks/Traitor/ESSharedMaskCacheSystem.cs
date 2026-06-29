@@ -14,16 +14,16 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Masks.Traitor;
 
-public abstract class ESSharedMaskCacheSystem : EntitySystem
+public abstract partial class ESSharedMaskCacheSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly ESEntityTimerSystem _entityTimer = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private ESEntityTimerSystem _entityTimer = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] protected SharedTransformSystem TransformSystem = default!;
 
     protected static readonly EntProtoId<ESCeilingCacheComponent> CeilingCachePrototype = "ESMarkerTraitorCeilingCache";
 
@@ -137,7 +137,7 @@ public abstract class ESSharedMaskCacheSystem : EntitySystem
         var pos = Transform(ent).Coordinates;
         var cache = PredictedSpawnAtPosition(ent.Comp.CacheLoot, pos);
         PredictedQueueDel(ent);
-        _popup.PopupPredicted(Loc.GetString("es-ceiling-cache-popup"), cache, user);
+        _popup.PopupEntity(Loc.GetString("es-ceiling-cache-popup"), ent);
         _audio.PlayPredicted(ent.Comp.RevealSound, pos, user);
 
         if (ent.Comp.MindId.HasValue)

@@ -22,5 +22,11 @@ public sealed partial class FloatingVisualsComponent : Component
     [DataField, AutoNetworkedField]
     public bool CanFloat;
 
+    /// <summary>
+    /// If true, this sprite will always be floating irrespective of gravity status.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool AlwaysFloat;
+
     public readonly string AnimationKey = "gravity";
 }

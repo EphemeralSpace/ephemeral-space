@@ -1,10 +1,4 @@
 - type: localizedDataset
-  id: AmmoVendAds
-  values:
-    prefix: advertisement-ammo-
-    count: 10
-
-- type: localizedDataset
   id: AtmosDrobeAds
   values:
     prefix: advertisement-atmosdrobe-
@@ -135,12 +129,6 @@
   values:
     prefix: advertisement-engidrobe-
     count: 5
-
-- type: localizedDataset
-  id: FatExtractorFacts
-  values:
-    prefix: fat-extractor-fact-
-    count: 6
 
 - type: localizedDataset
   id: GoodCleanFunAds

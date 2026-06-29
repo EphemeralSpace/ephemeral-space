@@ -35,7 +35,7 @@ public sealed partial class SmokeOnTriggerComponent : BaseXOnTriggerComponent
     /// Solution to add to each smoke cloud.
     /// </summary>
     /// <remarks>
-    /// When using repeating trigger this essentially gets multiplied so dont do anything crazy like omnizine or lexorin.
+    /// When using repeating trigger this essentially gets multiplied so dont do anything crazy like omnizine.
     /// </remarks>
     [DataField, AutoNetworkedField]
     public Solution Solution = new();

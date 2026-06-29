@@ -8,8 +8,8 @@ namespace Content.Shared.Gravity;
 public abstract partial class SharedGravitySystem
 {
     // ES START
-    [Dependency] private readonly SharedGameTicker _ticker = default!;
-    [Dependency] private readonly ESScreenshakeSystem _shake = default!;
+    [Dependency] private SharedGameTicker _ticker = default!;
+    [Dependency] private ESScreenshakeSystem _shake = default!;
     // ES END
 
     protected const float GravityKick = 100.0f;

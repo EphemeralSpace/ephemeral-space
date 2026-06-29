@@ -18,14 +18,16 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Masks;
 
-public abstract class ESSharedMaskSystem : EntitySystem
+public abstract partial class ESSharedMaskSystem : EntitySystem
 {
-    [Dependency] protected readonly ISharedAdminManager AdminManager = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
-    [Dependency] protected readonly SharedMindSystem Mind = default!;
-    [Dependency] protected readonly ESSharedObjectiveSystem Objective = default!;
-    [Dependency] protected readonly SharedRoleSystem Role = default!;
+    [Dependency] protected ISharedAdminManager AdminManager = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] protected IPrototypeManager PrototypeManager = default!;
+    [Dependency] protected SharedMindSystem Mind = default!;
+    [Dependency] protected ESSharedObjectiveSystem Objective = default!;
+    [Dependency] protected SharedRoleSystem Role = default!;
 
     protected static readonly VerbCategory ESMask =
         new("es-verb-categories-mask", "/Textures/Interface/emotes.svg.192dpi.png");
@@ -113,12 +115,21 @@ public abstract class ESSharedMaskSystem : EntitySystem
         }
     }
 
+    private bool CanShowFactionIcons(Entity<ESTroupeFactionIconComponent> ent, EntityUid viewer)
+    {
+        var troupe = GetTroupeOrNull(viewer);
+        var mind = Mind.GetMind(viewer);
+        var ignored = TryComp<ESTroupeIgnoreFactionIconsComponent>(mind, out var ignoreIcons) &&
+                      ignoreIcons.Troupes.Contains(ent.Comp.Troupe);
+        return troupe == ent.Comp.Troupe && !ignored;
+    }
+
     private void OnComponentGetStateAttempt(Entity<ESTroupeFactionIconComponent> ent, ref ComponentGetStateAttemptEvent args)
     {
         if (args.Player?.AttachedEntity is not { } attachedEntity)
             return;
 
-        args.Cancelled = GetTroupeOrNull(attachedEntity) != ent.Comp.Troupe;
+        args.Cancelled = !CanShowFactionIcons(ent, attachedEntity);
     }
 
     private void OnExaminedEvent(Entity<ESTroupeFactionIconComponent> ent, ref ExaminedEvent args)
@@ -130,7 +141,7 @@ public abstract class ESSharedMaskSystem : EntitySystem
         if (ent.Comp.ExamineString is not { } str)
             return;
 
-        if (GetTroupeOrNull(args.Examiner) != ent.Comp.Troupe)
+        if (!CanShowFactionIcons(ent, args.Examiner))
             return;
 
         args.PushMarkup(Loc.GetString(str));
@@ -159,6 +170,11 @@ public abstract class ESSharedMaskSystem : EntitySystem
         if (!TryGetTroupe(ent.AsNullable(), out var troupe) ||
             !TryGetTroupeEntity(troupe.Value, out var troupeEntity))
             return;
+
+        if (TryComp<ESTroupeNoSharedObjectivesComponent>(ent, out var noObjectives)
+            && noObjectives.Troupes.Contains(troupe.Value))
+            return;
+
         args.Objectives.AddRange(Objective.GetObjectives(troupeEntity.Value.Owner));
     }
 
@@ -333,6 +349,31 @@ public abstract class ESSharedMaskSystem : EntitySystem
         foreach (var mind in troupeEnt.Value.Comp.TroupeMemberMinds)
         {
             yield return mind;
+        }
+    }
+
+    /// <summary>
+    /// Returns all minds nearby who are members of a given hostile troupe
+    /// </summary>
+    public IEnumerable<EntityUid> GetNearbyHostileTroupeMembers(Entity<ESHostileTowardsTroupeComponent?> ent, float range)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            yield break;
+
+        var xform = Transform(ent);
+
+        foreach (var entity in _lookup.GetEntitiesInRange<ESBodyLastMaskComponent>(_xform.GetMapCoordinates(ent, xform), range))
+        {
+            var mask = PrototypeManager.Index(entity.Comp.LastMask);
+            var troupe = mask.Troupe;
+
+            if (ent.Comp.NonHostileTroupes != null && ent.Comp.NonHostileTroupes.Contains(troupe))
+                continue;
+
+            if (ent.Comp.HostileTroupes != null && !ent.Comp.HostileTroupes.Contains(troupe))
+                continue;
+
+            yield return entity.Owner;
         }
     }
 

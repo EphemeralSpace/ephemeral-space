@@ -13,15 +13,15 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Ephemera;
 
-public sealed class ESEphemeraSpeechSystem : EntitySystem
+public sealed partial class ESEphemeraSpeechSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private RotateToFaceSystem _rotateToFace = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     // This is only meant to be like an anti-spam system, so it doesn't have to
     // really reflect how long it would take a person to read the dialogue.

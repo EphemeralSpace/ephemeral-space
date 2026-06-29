@@ -5,6 +5,7 @@ using Content.Server.Station.Systems;
 using Content.Shared._ES.SpawnRegion;
 using Content.Shared._ES.SpawnRegion.Components;
 using Content.Shared._Offbrand.Wounds;
+using Content.Shared.Ghost;
 using Content.Shared.Teleportation.Systems;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
@@ -16,14 +17,14 @@ namespace Content.Server._ES.WarpDrive;
 
 public sealed partial class ESWarpDriveSystem
 {
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly LinkedEntitySystem _linked = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly ESSharedSpawnRegionSystem _spawnRegion = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly BrainDamageSystem _brainDamage = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private MapLoaderSystem _loader = default!;
+    [Dependency] private LinkedEntitySystem _linked = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private ESSharedSpawnRegionSystem _spawnRegion = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private BrainDamageSystem _brainDamage = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     private static readonly EntProtoId TeleportEffect = "ESTeleportEffectWarpDrive";
     private static readonly ProtoId<ESSpawnRegionPrototype> TeleportStation = "ESSingularityWorldTeleportStation";
@@ -39,6 +40,9 @@ public sealed partial class ESWarpDriveSystem
 
     private void OnWarpDriveTeleport(Entity<ESWarpDriveComponent> ent, ref PortalTeleportedEvent args)
     {
+        if (HasComp<GhostComponent>(ent))
+            return;
+
         var teleport = EnsureComp<ESSingularityWorldTeleportedEntityComponent>(args.Entity);
         teleport.TeleportOutTime = _timing.CurTime + ent.Comp.SingularityWorldTeleportOutTime;
 
@@ -80,7 +84,7 @@ public sealed partial class ESWarpDriveSystem
     private void StartedSingularityWorld(ESWarpDriveGameRuleComponent component)
     {
         // Load singularity world
-        var opts = DeserializationOptions.Default with {InitializeMaps = true};
+        var opts = DeserializationOptions.Default with { InitializeMaps = true };
         if (!_loader.TryLoadMap(component.SingularityWorldMap, out var map, out var grids, opts))
         {
             throw new Exception($"Failed to load singularity world map {component.SingularityWorldMap}");
@@ -91,7 +95,7 @@ public sealed partial class ESWarpDriveSystem
         Log.Info($"Created new singularity world at map ID {SingularityWorldMapId}");
 
         // Properly set up the teleporting effect
-        var query = EntityQueryEnumerator<ESWarpDriveComponent>();
+        var query = AllEntityQuery<ESWarpDriveComponent>();
         while (query.MoveNext(out var driveEntity, out _))
         {
             EntityUid? teleportLocation = null;
@@ -104,6 +108,7 @@ public sealed partial class ESWarpDriveSystem
                     continue;
 
                 teleportLocation = regionEntity;
+                break;
             }
 
             if (teleportLocation == null)

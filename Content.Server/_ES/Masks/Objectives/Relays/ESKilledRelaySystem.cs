@@ -5,9 +5,9 @@ using Content.Shared._ES.Mind;
 
 namespace Content.Server._ES.Masks.Objectives.Relays;
 
-public sealed class ESKilledRelaySystem : ESBaseMindRelay
+public sealed partial class ESKilledRelaySystem : ESBaseMindRelay
 {
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private MindSystem _mind = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

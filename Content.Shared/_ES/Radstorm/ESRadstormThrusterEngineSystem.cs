@@ -10,14 +10,14 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Radstorm;
 
-public sealed class ESRadstormThrusterEngineSystem : EntitySystem
+public sealed partial class ESRadstormThrusterEngineSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly ESEntityTimerSystem _entityTimer = default!;
-    [Dependency] private readonly SharedPuddleSystem _puddle = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private ESEntityTimerSystem _entityTimer = default!;
+    [Dependency] private SharedPuddleSystem _puddle = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -8,9 +8,9 @@ namespace Content.Shared._ES.Chat.Obfuscation;
 /// <summary>
 /// This handles <see cref="ESVoiceObfuscatorComponent"/>
 /// </summary>
-public abstract class ESSharedVoiceObfuscatorSystem : EntitySystem
+public abstract partial class ESSharedVoiceObfuscatorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

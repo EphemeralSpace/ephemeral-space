@@ -3,12 +3,19 @@
     xmlns:controls="clr-namespace:Content.Client._ES.Objectives.Ui"
     xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
-    HorizontalExpand="True">
+    HorizontalExpand="True"
+    MouseFilter="Stop">
     <Panel HorizontalExpand="True" StyleClasses="BackgroundPanel" Margin="0 5">
         <VFillStack Margin="0 5">
-            <HStack>
+            <HStack Name="Header">
                 <controls1:ProgressTextureRect Name="Icon" Margin="0 0 5 0" VerticalAlignment="Center"/>
-                <RichTextLabel Name="TitleLabel" HorizontalExpand="True" VerticalAlignment="Center"/>
+                <RichTextLabel Name="TitleLabel" HorizontalExpand="False" VerticalAlignment="Center"/>
+                <Spacer HorizontalExpand="True"/>
+                <Panel Name="OwnerPanel" StyleClasses="BackgroundPanel" Margin="0 -5 -15 0" VerticalAlignment="Top">
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Name="OwnerLabel" StyleClasses="LabelKeyText" Margin="5 0" VerticalAlignment="Center"/>
+                    </BoxContainer>
+                </Panel>
             </HStack>
             <customControls:HSeparator/>
             <HStack Margin="0 0 0 0" HorizontalExpand="True">

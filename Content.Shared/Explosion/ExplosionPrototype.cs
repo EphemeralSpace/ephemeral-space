@@ -63,6 +63,13 @@ public sealed partial class ExplosionPrototype : IPrototype
     public float TileBreakRerollReduction = 10f;
 
     /// <summary>
+    ///     If the effective intensity for a tile (after <see cref="TileBreakRerollReduction"/> is potentially applied)
+    ///     is below this value, no damage decals/tiles will be spawned at all. If it's above this, then they can spawn.
+    /// </summary>
+    [DataField]
+    public float TileBreakNoDamageThreshold = -5f;
+
+    /// <summary>
     ///     Color emitted by a point light at the center of the explosion.
     /// </summary>
     [DataField("lightColor")]
@@ -115,15 +122,31 @@ public sealed partial class ExplosionPrototype : IPrototype
     // steal code from.
     [DataField("fireStates")]
     public int FireStates = 3;
+
 // ES START
+    /// <summary>
+    /// Chance per tile processed to start a fire.
+    /// </summary>
     [DataField]
     public float FireChance = 0.15f;
 
+    /// <summary>
+    /// Minimum level of fire started when <see cref="FireChance"/> occurs
+    /// </summary>
     [DataField]
     public int MinFireLevel = 1;
 
+    /// <summary>
+    /// Maximum level of fire started when <see cref="FireChance"/> occurs
+    /// </summary>
     [DataField]
     public int MaxFireLevel = 1;
+
+    /// <summary>
+    /// Whether the fire should spread after being spawned.
+    /// </summary>
+    [DataField]
+    public bool FireSpread;
 // ES END
 
     /// <summary>

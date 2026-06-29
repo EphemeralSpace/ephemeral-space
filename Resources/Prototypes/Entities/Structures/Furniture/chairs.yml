@@ -138,17 +138,6 @@
     node: stoolBar
 
 - type: entity
-  name: brass chair
-  id: ChairBrass
-  parent: StoolBase
-  components:
-  - type: Sprite
-    state: brass_chair
-  - type: Construction
-    graph: Seat
-    node: chairBrass
-
-- type: entity
   name: white office chair
   id: ChairOfficeLight
   parent: OfficeChairBase
@@ -236,18 +225,6 @@
     - Wooden
 
 - type: entity
-  name: ritual chair
-  id: ChairRitual
-  parent: ChairWood
-  description: Looks uncomfortable.
-  components:
-  - type: Sprite
-    state: ritual
-  - type: Construction
-    graph: RitualSeat
-    node: chairRitual
-
-- type: entity
   id: ChairMeat
   parent: UnanchoredChairBase
   name: meat chair
@@ -258,46 +235,6 @@
   - type: Construction
     graph: Seat
     node: chairMeat
-
-- type: entity
-  name: cursed chair
-  id: ChairCursed
-  parent: ChairWood
-  description: It's staring back.
-  components:
-  - type: Sprite
-    state: cursed
-  - type: Strap
-    buckleSound:
-      collection: MaleScreams
-  - type: Destructible
-    thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Voice/Human/womanlaugh.ogg
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Voice/Human/womanlaugh.ogg
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialWoodPlank:
-            min: 1
-            max: 1
-  - type: Construction
-    graph: RitualSeat
-    node: chairCursed
 
 - type: entity
   name: web chair
@@ -382,89 +319,6 @@
     folded: true
   - type: Strap
     enabled: False
-
-- type: entity
-  name: steel bench
-  id: SteelBench
-  parent: ChairBase
-  description: A long chair made for a metro. Really standard design.
-  components:
-  - type: Sprite
-    state: steel-bench
-  - type: Construction
-    graph: Seat
-    node: chairSteelBench
-
-- type: entity
-  name: cardboard stool
-  id: CardStool
-  parent: UnanchoredChairBase
-  description: Make sure you sit *really* gently.
-  components:
-  - type: Sprite
-    state: card-stool
-  - type: Construction
-    graph: Seat
-    node: stoolCard
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Card
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 40
-      behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 10
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialCardboard:
-            min: 1
-            max: 2
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-
-- type: entity
-  name: wooden bench
-  id: WoodenBench
-  parent: ChairBase
-  description: Did you get a splinter? Well, at least it’s eco friendly.
-  components:
-  - type: Sprite
-    state: wooden-bench
-  - type: Construction
-    graph: Seat
-    node: chairWoodBench
-  - type: Destructible
-    thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WoodDestroy
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WoodDestroy
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialWoodPlank:
-            min: 2
-            max: 4
 
 - type: entity
   parent: StoolBase

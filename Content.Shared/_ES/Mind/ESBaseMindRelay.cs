@@ -7,10 +7,10 @@ namespace Content.Shared._ES.Mind;
 /// <summary>
 ///     This provides a base class for mind relays and handles raising events on both the mind, and its objectives.
 /// </summary>
-public abstract class ESBaseMindRelay : EntitySystem
+public abstract partial class ESBaseMindRelay : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly ESSharedObjectiveSystem _objective = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private ESSharedObjectiveSystem _objective = default!;
 
     protected bool TryGetMind(EntityUid body, [NotNullWhen(true)] out Entity<MindComponent>? mind)
     {

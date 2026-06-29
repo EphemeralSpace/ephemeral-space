@@ -4,9 +4,9 @@ using Robust.Shared.Player;
 
 namespace Content.Shared._ES.Stagehand;
 
-public sealed class ESStagehandAwareSystem : EntitySystem
+public sealed partial class ESStagehandAwareSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvsOverride = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

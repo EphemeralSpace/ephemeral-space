@@ -1,8 +1,7 @@
 ﻿- type: esRoleplayLevels
   id: Default
   forbidCharacters: [ 'L', 'M', 'H', 'E', 'N' ]
-  localizedDatasets: [ ESNameAdjectives ]
-  roleplays:
+  roleplays: # WARNING! Any word in this list will appear ON THE HUB! Anything vulgar/inappropriate has a chance to get a HUB STRIKE
   - tubular
   - worm
   - cat
@@ -19,5 +18,65 @@
   - unspecified
   - bar
   - traitorous
-  - town-carpet
   - roleplay
+  - average
+  - dark
+  - unusual
+  - strange
+  - crazy
+  - stupid
+  - delightful
+  - silly
+  - ancient
+  - suspicious
+  - wacky
+  - whimsical
+  - jubilant
+  - joyous
+  - discount
+  - generic
+  - subpar
+  - spiritual
+  - fantastic
+  - bodacious
+  - ominous
+  - auspicious
+  - recursive
+  - introspective
+  - isolated
+  - peculiar
+  - radical
+  - pheem
+  - fail
+  - opposed to
+  - against
+  - pro
+  - anime
+  - silent
+  - rule-breaking
+  - no intent to
+  - cow
+  - incredible
+  - unrealistic
+  - positive
+  - fulfilling
+  - thermonuclear
+  - automatic
+  - potential
+  - disagreeable
+  - wretched
+  - spiteful
+  - yucky
+  - putrid
+  - good enough
+  - live action
+  - generic universal
+  - diegetic
+  - fanciful
+  - post
+  - felonious
+  - turbulent
+  - trite
+  - joyous
+  - grungy
+  - done enough # spells "DERP"

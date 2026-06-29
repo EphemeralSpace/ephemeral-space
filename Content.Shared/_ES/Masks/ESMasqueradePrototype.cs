@@ -74,7 +74,7 @@ public sealed partial class ESMasqueradePrototype : IPrototype, ISerializationHo
     ///     How long after roundstart/rule startup should the news be broadcast.
     /// </summary>
     [DataField]
-    public TimeSpan? StartupNewsArticleTime = TimeSpan.FromSeconds(60);
+    public TimeSpan? StartupNewsArticleTime;
 
     /// <summary>
     ///     The title to use for the roundstart news article.

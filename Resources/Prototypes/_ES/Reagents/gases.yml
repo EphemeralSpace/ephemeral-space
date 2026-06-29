@@ -17,20 +17,23 @@
     Gas:
       effects:
       - !type:HealthChange
-        minScale: 0.25
+        minScale: 0.5
         ignoreResistances: true
         damage:
           types:
             Asphyxiation:
               2
       - !type:ESAddWound
-        minScale: 0.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: Smoke
+          min: 0.75
         wound: ESWoundSmokeInhalation
         probability: 0.33
       - !type:Emote
         conditions:
         - !type:ReagentCondition
           reagent: Smoke
-          min: 0.1
+          min: 0.25
         emote: Cough
-        probability: 0.05
+        probability: 0.75

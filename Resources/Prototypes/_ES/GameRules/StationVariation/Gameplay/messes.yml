@@ -43,8 +43,6 @@
     weight: 3
     reagents:
     - Blood
-    - CopperBlood
-    - Slime
   - quantity: 25
     weight: 1
     reagents:

@@ -15,17 +15,17 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Telesci.Anomaly;
 
-public abstract class ESSharedAnomalySystem : EntitySystem
+public abstract partial class ESSharedAnomalySystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ESSparksSystem _sparks = default!;
-    [Dependency] private readonly ESTimedDespawnSystem _timedDespawn = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ESSparksSystem _sparks = default!;
+    [Dependency] private ESTimedDespawnSystem _timedDespawn = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -80,7 +80,7 @@ public abstract class ESSharedAnomalySystem : EntitySystem
                 {
                     SetProbeSignal(ent, signal);
                     _sparks.DoSparks(ent.Owner, 1, user: user);
-                    _popup.PopupPredicted(Loc.GetString("es-anomaly-probe-popup-freq-set", ("type", GetSignalString(Loc, signal))), ent, user);
+                    _popup.PopupEntity(Loc.GetString("es-anomaly-probe-popup-freq-set", ("type", GetSignalString(Loc, signal))), ent);
                 },
             };
             args.Verbs.Add(v);
@@ -141,7 +141,7 @@ public abstract class ESSharedAnomalySystem : EntitySystem
 
         _sparks.DoSparks(ent, user: args.User);
         _audio.PlayPredicted(ent.Comp.CompleteSound, ent, args.User);
-        _popup.PopupPredicted(Loc.GetString("es-anomaly-probe-completed-probe"), target, args.User, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString("es-anomaly-probe-completed-probe"), target, PopupType.Medium);
         var query = EntityQueryEnumerator<ESAnomalyConsoleComponent>();
         while (query.MoveNext(out var comp))
         {
@@ -196,7 +196,7 @@ public abstract class ESSharedAnomalySystem : EntitySystem
         Dirty(ent);
         UpdateConsolesUi();
 
-        _popup.PopupPredicted(Loc.GetString("anomaly-popup-correct"), ent, user, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString("anomaly-popup-correct"), ent, PopupType.Medium);
 
         if (ent.Comp.CodeIndex >= ent.Comp.CodeLength)
         {
@@ -228,7 +228,7 @@ public abstract class ESSharedAnomalySystem : EntitySystem
     public void PulseAnomalyRadiation(Entity<ESPortalAnomalyComponent> ent, EntityUid? user)
     {
         _audio.PlayPredicted(ent.Comp.RadPulseSound, ent, user);
-        _popup.PopupPredicted(Loc.GetString("anomaly-popup-fail"), ent, user, PopupType.MediumCaution);
+        _popup.PopupEntity(Loc.GetString("anomaly-popup-fail"), ent, PopupType.MediumCaution);
         PredictedSpawnAttachedTo(ent.Comp.RadiationEntity, Transform(ent).Coordinates);
         ent.Comp.NextSignalTime = _timing.CurTime + TimeSpan.FromSeconds(3);
         RaiseNetworkEvent(new ESAnomalyRadiationAnimationEvent

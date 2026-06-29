@@ -23,9 +23,9 @@ namespace Content.Client._ES.Lighting.Ui;
 /// UI controller that handles toggling flashlights.
 /// </summary>
 [UsedImplicitly]
-public sealed class ESFlashlightUIController : UIController, IOnStateChanged<GameplayState>
+public sealed partial class ESFlashlightUIController : UIController, IOnStateChanged<GameplayState>
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     [UISystemDependency] private readonly HandsSystem _hands = default!;
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
@@ -64,7 +64,7 @@ public sealed class ESFlashlightUIController : UIController, IOnStateChanged<Gam
         }
         else
         {
-            _popup.PopupPredictedCursor(Loc.GetString("es-flashlight-popup-no-flashlight"), player, PopupType.Medium);
+            _popup.PopupCursor(Loc.GetString("es-flashlight-popup-no-flashlight"), player, PopupType.Medium);
         }
         return true;
     }

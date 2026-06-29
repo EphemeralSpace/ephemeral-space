@@ -1,10 +1,10 @@
-using Content.Server.Chat;
+using Content.Server._ES.Announcements;
 
 namespace Content.Server.Chat.Systems;
 
-public sealed class AnnounceOnSpawnSystem : EntitySystem
+public sealed partial class AnnounceOnSpawnSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private ESAnnouncementSystem _chat = default!;
 
     public override void Initialize()
     {
@@ -17,6 +17,6 @@ public sealed class AnnounceOnSpawnSystem : EntitySystem
     {
         var message = Loc.GetString(comp.Message);
         var sender = comp.Sender != null ? Loc.GetString(comp.Sender) : Loc.GetString("chat-manager-sender-announcement");
-        _chat.DispatchGlobalAnnouncement(message, sender, playSound: true, comp.Sound, comp.Color);
+        _chat.DispatchRoundAnnouncement(message, sender, playSound: true, comp.Sound, comp.Color);
     }
 }

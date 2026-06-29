@@ -14,15 +14,15 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Masks.Traitor;
 
-public sealed class ESSabotageSystem : EntitySystem
+public sealed partial class ESSabotageSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminManager _admin = default!;
-    [Dependency] private readonly ESDegradationSystem _degradation = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
-    [Dependency] private readonly ESSharedObjectiveSystem _objective = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private ISharedAdminManager _admin = default!;
+    [Dependency] private ESDegradationSystem _degradation = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private ESSharedObjectiveSystem _objective = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -85,7 +85,7 @@ public sealed class ESSabotageSystem : EntitySystem
                     }))
                     return;
 
-                _popup.PopupPredicted(Loc.GetString("es-sabotage-popup-starting"), ent, user, PopupType.SmallCaution);
+                _popup.PopupEntity(Loc.GetString("es-sabotage-popup-starting"), ent, PopupType.SmallCaution);
             },
         });
     }

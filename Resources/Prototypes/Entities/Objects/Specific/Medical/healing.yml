@@ -899,9 +899,6 @@
         - id: PillSpaceDrugs
           weight: 0.75
           amount: *Range1to6
-        - id: StrangePill
-          weight: 0.75
-          amount: *Range1to6
 
 # Syringes
 - type: entity
@@ -1010,21 +1007,6 @@
           Quantity: 15
 
 - type: entity
-  suffix: sigynate
-  parent: PrefilledSyringe
-  id: SyringeSigynate
-  components:
-  - type: Label
-    currentLabel: reagent-name-sigynate
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-        reagents:
-          - ReagentId: Sigynate
-            Quantity: 15
-
-- type: entity
   suffix: ethylredoxrazine
   parent: PrefilledSyringe
   id: SyringeEthylredoxrazine
@@ -1037,21 +1019,6 @@
         maxVol: 15
         reagents:
           - ReagentId: Ethylredoxrazine
-            Quantity: 15
-
-- type: entity
-  suffix: phalanximine
-  parent: PrefilledSyringe
-  id: SyringePhalanximine
-  components:
-  - type: Label
-    currentLabel: reagent-name-phalanximine
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-        reagents:
-          - ReagentId: Phalanximine
             Quantity: 15
 
 - type: entity
@@ -1101,7 +1068,6 @@
     - id: PillKelotane
     - id: PillPotassiumIodide
     - id: PillTricordrazine
-    - id: StrangePill
 
 - type: entityTable
   id: RandomSafeSyringeTable
@@ -1114,7 +1080,5 @@
     - id: SyringeHyronalin
     - id: SyringeInaprovaline
     - id: SyringeIpecac
-    - id: SyringePhalanximine
     - id: SyringeTramadol # Offbrand
-    - id: SyringeSigynate
     - id: SyringeTranexamicAcid

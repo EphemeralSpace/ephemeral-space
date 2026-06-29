@@ -7,11 +7,13 @@
   description: Every show needs a loyal crew in the back making it tick. Today, that person is you.
   components:
   - type: Sprite
-    sprite: _ES/Mobs/Ghosts/theatergoer.rsi
+    sprite: _ES/Mobs/Ghosts/theatergoer_body.rsi
     layers:
-    - state: stagehand
+    - state: body
+      map: [ "body" ]
       shader: unshaded
     - state: head-1
+      sprite: _ES/Mobs/Ghosts/theatergoer_head.rsi
       map: [ "face" ]
       shader: unshaded
   - type: RandomSprite
@@ -65,6 +67,30 @@
   - type: GhostHearing
   - type: ESStagehand
   - type: ESUsernameEntityName
+  - type: GenericVisualizer
+    visuals:
+      enum.ESUsernameEntityVisuals.Admin:
+        body:
+          True:
+            sprite: _ES/Mobs/Ghosts/theatergoer_body_admin.rsi
+            loop: false
+          False:
+            sprite: _ES/Mobs/Ghosts/theatergoer_body.rsi
+            loop: false
+  - type: FloatingVisuals
+    offset: 0,0.1
+    alwaysFloat: true
+  - type: InputMover
+    usesSpriteMovement: true
+  - type: SpriteMovement
+    movementLayers:
+      body:
+        state: body-floating
+        loop: false
+    noMovementLayers:
+      body:
+        state: body-floating-reversed
+        loop: false
   - type: ESMindVisuals
   - type: ESBlockInteraction
   - type: ShowElectrocutionHUD

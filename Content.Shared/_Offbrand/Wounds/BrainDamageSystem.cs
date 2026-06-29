@@ -11,8 +11,8 @@ namespace Content.Shared._Offbrand.Wounds;
 
 public sealed partial class BrainDamageSystem : EntitySystem
 {
-    [Dependency] private readonly HeartSystem _heart = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private HeartSystem _heart = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

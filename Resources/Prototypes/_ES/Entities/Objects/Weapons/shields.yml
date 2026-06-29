@@ -1,0 +1,96 @@
+- type: entity
+  name: base shield
+  parent: BaseItem
+  id: BaseShield
+  description: A shield!
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: Objects/Weapons/Melee/shields.rsi
+      state: riot-icon
+    - type: Item
+      sprite: Objects/Weapons/Melee/shields.rsi
+      size: Ginormous
+      heldPrefix: riot
+    - type: Damageable
+      damageContainer: Shield
+    - type: ExaminableDamage
+      messages: ShieldMessages
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 140
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 100 #This is probably enough damage before it breaks
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel:
+                  min: 2
+                  max: 2
+                SheetGlass:
+                  min: 2
+                  max: 2
+
+- type: entity
+  name: base repairable shield
+  parent: BaseShield
+  id: BaseRepairableShield
+  description: A repairable shield!
+  abstract: true
+  components:
+  - type: Repairable # Negative values represent healing
+    damage:
+      groups:
+        Brute: -60 # 20 of each Brute Type - 20% of a basic shield HP
+      types:
+        Heat: -20
+    fuelCost: 10 # 1/2 of a Welder for a full repair
+    doAfterDelay: 5
+    allowSelfRepair: false
+
+- type: entity
+  name: makeshift shield
+  parent: BaseRepairableShield
+  id: MakeshiftShield
+  description: A rundown looking shield, not good for much.
+  components:
+    - type: Sprite
+      state: makeshift-icon
+    - type: Item
+      heldPrefix: metal
+    - type: Construction
+      graph: MakeshiftShield
+      node: makeshiftShield
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 40
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 20 #Very weak shield
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel:
+                  min: 1
+                  max: 2

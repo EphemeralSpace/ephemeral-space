@@ -1,22 +1,31 @@
 using System.Numerics;
 using Content.Server._ES.Masks.Burstworm.Components;
 using Content.Server.Popups;
+using Content.Server.Storage.EntitySystems;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.KillTracking.Components;
+using Content.Shared.Gibbing;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Lock;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
+using Content.Shared.Storage.Components;
 using Robust.Server.Audio;
+using Robust.Server.Containers;
 
 namespace Content.Server._ES.Masks.Burstworm;
 
-public sealed class ESBurstwormSystem : EntitySystem
+public sealed partial class ESBurstwormSystem : EntitySystem
 {
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ESEntityTimerSystem _entityTimer = default!;
-    [Dependency] private readonly GunSystem _gun = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private EntityStorageSystem _entityStorage = default!;
+    [Dependency] private ESEntityTimerSystem _entityTimer = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
+    [Dependency] private GunSystem _gun = default!;
+    [Dependency] private LockSystem _lock = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -49,6 +58,14 @@ public sealed class ESBurstwormSystem : EntitySystem
             mind.OwnedEntity is not { } owned)
             return;
 
+        if (_container.TryGetContainingContainer(owned, out var container) &&
+            TryComp<EntityStorageComponent>(container.Owner, out var storage))
+        {
+            _lock.Unlock(container.Owner, null);
+            _entityStorage.OpenStorage(container.Owner, storage);
+        }
+
+        _gibbing.Gib(owned);
         _audio.PlayPvs(ent.Comp.BurstSound, owned);
 
         var angleSegment = MathF.Tau / ent.Comp.ProjectileCount;

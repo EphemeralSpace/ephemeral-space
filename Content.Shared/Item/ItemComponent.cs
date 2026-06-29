@@ -60,6 +60,13 @@ public sealed partial class ItemComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public Vector2i StoredOffset;
+
+    /// <summary>
+    /// Base time it takes to pick up this item.
+    /// Will be modified in other contexts by the storage item, whether it's clothing, whether it's in a pocket, etc.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public TimeSpan BasePickupTime = TimeSpan.FromSeconds(0.5f);
 }
 
 /// <summary>

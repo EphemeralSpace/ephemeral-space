@@ -1,6 +1,7 @@
 ﻿using Content.Server.Administration;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
+using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Chat;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -14,15 +15,14 @@ namespace Content.Server.Mobs;
 /// <summary>
 ///     Handles performing crit-specific actions.
 /// </summary>
-public sealed class CritMobActionsSystem : EntitySystem
+public sealed partial class CritMobActionsSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly DeathgaspSystem _deathgasp = default!;
-    [Dependency] private readonly IServerConsoleHost _host = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private DeathgaspSystem _deathgasp = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private BrainDamageSystem _brainDamage = default!;
     private const int MaxLastWordsLength = 30;
 
     public override void Initialize()
@@ -36,10 +36,10 @@ public sealed class CritMobActionsSystem : EntitySystem
 
     private void OnSuccumb(EntityUid uid, MobStateActionsComponent component, CritSuccumbEvent args)
     {
-        if (!TryComp<ActorComponent>(uid, out var actor) || !_mobState.IsCritical(uid))
+        if (!_mobState.IsCritical(uid))
             return;
 
-        _host.ExecuteCommand(actor.PlayerSession, "ghost");
+        _brainDamage.KillBrain(uid);
         args.Handled = true;
     }
 
@@ -81,7 +81,7 @@ public sealed class CritMobActionsSystem : EntitySystem
                 lastWords += "...";
 
                 _chat.TrySendInGameICMessage(uid, lastWords, InGameICChatType.Whisper, ChatTransmitRange.Normal, checkRadioPrefix: false, ignoreActionBlocker: true);
-                _host.ExecuteCommand(actor.PlayerSession, "ghost");
+                _brainDamage.KillBrain(uid);
             });
 
         args.Handled = true;

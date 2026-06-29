@@ -11,13 +11,13 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared._ES.Masks.Phantom;
 
-public sealed class ESPhantomSystem : EntitySystem
+public sealed partial class ESPhantomSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -40,7 +40,7 @@ public sealed class ESPhantomSystem : EntitySystem
     {
         if (_physics.GetEntitiesIntersectingBody(ent, (int) CollisionGroup.Impassable).Count > 0)
         {
-            _popup.PopupPredicted(Loc.GetString("es-phantom-materialize-fail"), ent, ent, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("es-phantom-materialize-fail"), ent, ent, PopupType.Medium);
             return;
         }
 

@@ -5,11 +5,11 @@ using Content.Shared.Popups;
 
 namespace Content.Shared._ES.Masks.ChemicalInjector;
 
-public sealed class ChemicalInjectorSystem : EntitySystem
+public sealed partial class ChemicalInjectorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly HealthRankingSystem _health = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private HealthRankingSystem _health = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -25,7 +25,7 @@ public sealed class ChemicalInjectorSystem : EntitySystem
 
         if (!_health.IsCritical(args.Performer) && args.OnlyUsableWhileCrit)
         {
-            _popupSystem.PopupPredicted(Loc.GetString(args.FailMessage), args.Performer, args.Performer, PopupType.Medium);
+            _popupSystem.PopupEntity(Loc.GetString(args.FailMessage), args.Performer, args.Performer, PopupType.Medium);
             return;
         }
 

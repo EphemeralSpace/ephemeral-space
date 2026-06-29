@@ -14,16 +14,16 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Mining;
 
-public sealed class MeteorSystem : EntitySystem
+public sealed partial class MeteorSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly DestructibleSystem _destructible = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private DestructibleSystem _destructible = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
 // ES START
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private TileSystem _tile = default!;
+    [Dependency] private TurfSystem _turf = default!;
 // ES END
 
     /// <inheritdoc/>

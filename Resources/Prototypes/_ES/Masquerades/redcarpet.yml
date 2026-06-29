@@ -2,32 +2,30 @@
   id: RedCarpet
   name: Red Carpet
   description: strands a party of VIPs with our harrowing crew
-  weight: 1
+  weight: 0.1
   minPlayers: 6
   gameRules: []
   masquerade:
-    defaultMask: "Crewmember/VIP"
+    defaultMask: "VIP"
     superfanTarget: "#Traitors"
     roles:
-      6: ["Marauder", "Infiltrator", "#Filler", "VIP", "Rebel", "#Targeters"] # 0 generic crew, 2 traitors
-      7: ["#Filler"]
-      8: ["VIP"]
-      9: ["Vigilante"]
-      10: ["#TraitorAdjacent"]
-      11: ["VIP"]
-      13: ["Assassin"]  # 0 generic crew, 3 traitors.
-      14: ["#Filler"]
-      16: ["Avenger"] # 1 generic crew, 3 traitors.
-      17: ["#Filler"]
+      6: ["#Traitors(2)", "#AllCrew(2)", "Rebel", "#Targeters"] # 2 traitors
+      7: ["#AllCrew"]
+      8: ["#AllCrew"]
+      10: ["#SemiTraitor"]
+      13: ["#Traitors"]  # 3 traitors.
+      14: ["#AllCrew"]
+      15: [ "Tragedian" ]
+      16: ["Avenger"] # 3 traitors.
+      17: ["#SemiTraitor"]
       18: ["ArmsDealer"]
-      19: ["Marauder"] # 1 generic crew, 4 traitors.
-      20: ["VIP"]
-      21: ["#Filler", "-Marauder", "#PowerTraitors"] # 1 generic crew, 4 traitors.
-      22: ["VIP"]
-      24: ["#TraitorGunners"] # 2 generic crew, 4 traitors.
-      25: ["Marauder"] # 2 generic crew, 5 traitors.
-      26: ["#Filler"]
-      28: ["#TraitorGunners"] # 3 generic crew, 5 traitors.
-      29: ["VIP"]
-      30: ["#Filler"]
-      31: ["#Traitors", "#Filler"] # 3 generic crew, 6 traitors.
+      19: ["Marauder"] # 4 traitors.
+      20: ["#AllCrew"]
+      21: ["#AllCrew", "-Marauder", "#PowerTraitors"] # 4 traitors.
+      22: ["#AllCrew"]
+      24: ["#Gunners"] # 4 traitors.
+      25: ["Marauder"] # 5 traitors.
+      26: ["#AllCrew"]
+      28: ["#Gunners"] # 5 traitors.
+      30: ["#AllCrew"]
+      31: ["#Traitors", "#AllCrew"] # 6 traitors.

@@ -1,6 +1,7 @@
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.Pow3r;
+using Content.Shared._ES.Breakable;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.APC;
@@ -16,15 +17,16 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Power.EntitySystems;
 
-public sealed class ApcSystem : EntitySystem
+public sealed partial class ApcSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private BatterySystem _battery = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
@@ -37,6 +39,7 @@ public sealed class ApcSystem : EntitySystem
         SubscribeLocalEvent<ApcComponent, ChargeChangedEvent>(OnBatteryChargeChanged);
         SubscribeLocalEvent<ApcComponent, ApcToggleMainBreakerMessage>(OnToggleMainBreaker);
 
+        SubscribeLocalEvent<ApcComponent, ESBrokenStateChanged>(OnBrokenStateChanged);
         SubscribeLocalEvent<ApcComponent, EmpPulseEvent>(OnEmpPulse);
     }
 
@@ -84,7 +87,8 @@ public sealed class ApcSystem : EntitySystem
     // Change the APC's state only when the battery state changes, or when it's first created.
     private void OnBatteryChargeChanged(EntityUid uid, ApcComponent component, ref ChargeChangedEvent args)
     {
-        UpdateApcState(uid, component);
+        // Defer until the next tick.
+        component.NeedStateUpdate = true;
     }
 
     private static void OnApcStartup(EntityUid uid, ApcComponent component, ComponentStartup args)
@@ -228,6 +232,21 @@ public sealed class ApcSystem : EntitySystem
         }
 
         return ApcExternalPowerState.Good;
+    }
+
+    private void OnBrokenStateChanged(Entity<ApcComponent> ent, ref ESBrokenStateChanged args)
+    {
+        if (args.Broken && ent.Comp.MainBreakerEnabled ||
+            !args.Broken && !ent.Comp.MainBreakerEnabled)
+        {
+            ApcToggleBreaker(ent, ent);
+        }
+
+        if (TryComp<PowerNetworkBatteryComponent>(ent, out var battery))
+            battery.CanCharge = !args.Broken;
+
+        if (args.Broken)
+            _battery.SetCharge(ent.Owner, 0);
     }
 
     // TODO: This subscription should be in shared.

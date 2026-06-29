@@ -1,32 +1,27 @@
 ﻿- type: esMasquerade
   id: Wormtown
   name: Wormtown
-  description: is a parasite festival, with a large supply of targeting masks to ensure a party
+  description: is a parasite festival, with a large supply of antagonistic / gunner masks to ensure a party
   weight: 1
   minPlayers: 6
   gameRules: []
   masquerade:
-    defaultMask: "Crewmember"
+    defaultMask: "#AllCrew"
     roles:
-      6: [ "#AllParasites(2)", "#Filler(2)", "#Targeters", "Rebel" ] # 0 generic crew, 2 parasites
-      7: [ "#Filler" ]
-      8: [ "#Targeters" ]
-      9: [ "#Filler" ]
+      6: [ "#AllParasites(2)", "#Antagonistic", "Rebel" ] # 2 parasites
+      8: [ "#Antagonistic" ]
       10: [ "#Gunners" ]
-      11: [ "#Antagonistic" ]
-      13: [ "#AllParasites" ]  # 0 generic crew, 3 parasites.
-      14: [ "#Filler" ]
-      16: [ "#Firmsafes" ] # 1 generic crew, 3 parasites.
-      17: [ "#Targeters" ]
+      11: [ "Arsonist" ]
+      13: [ "#AllParasites" ]  # 3 parasites.
+      15: [ "Tragedian" ]
+      16: [ "#Firmsafes" ] # 3 parasites.
+      17: [ "#Antagonistic" ]
       18: [ "ArmsDealer" ]
-      19: [ "#AllParasites" ] # 1 generic crew, 4 parasites.
-      20: [ "#Filler" ]
-      21: [ "#Filler" ] # 1 generic crew, 4 parasites.
-      22: [ "#Targeters" ]
-      24: [ "#Gunners" ] # 2 generic crew, 4 parasites.
-      25: [ "#AllParasites" ] # 2 generic crew, 5 parasites.
-      26: [ "#Filler" ]
-      28: [ "#Gunners" ] # 3 generic crew, 5 parasites.
-      29: [ "#Filler" ]
+      19: [ "#AllParasites" ] # 4 parasites.
+      21: [ "#Targeters" ] # 4 parasites.
+      22: [ "#Antagonistic" ]
+      24: [ "#Gunners" ] # 4 parasites.
+      25: [ "#AllParasites" ] # 5 parasites.
+      28: [ "#Gunners" ] # 5 parasites.
       30: [ "#Targeters" ]
-      31: [ "#AllParasites", "#Filler" ] # 3 generic crew, 6 parasites.
+      31: [ "#AllParasites" ] # 6 parasites.

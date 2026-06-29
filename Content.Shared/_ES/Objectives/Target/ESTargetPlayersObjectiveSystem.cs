@@ -10,10 +10,10 @@ namespace Content.Shared._ES.Objectives.Target;
 /// <summary>
 /// This handles <see cref="ESTargetPlayersObjectiveComponent"/>
 /// </summary>
-public sealed class ESTargetPlayersObjectiveSystem : EntitySystem
+public sealed partial class ESTargetPlayersObjectiveSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

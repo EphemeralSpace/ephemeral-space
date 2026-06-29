@@ -227,11 +227,11 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
 }
 
 [TypeSerializer]
-internal sealed class MasqueradeEntrySerializer : ITypeSerializer<MasqueradeEntry, ValueDataNode>,
+internal sealed partial class MasqueradeEntrySerializer : ITypeSerializer<MasqueradeEntry, ValueDataNode>,
     ITypeSerializer<MasqueradeEntry.DirectEntry, ValueDataNode>,
     ITypeSerializer<MasqueradeEntry.SetEntry, ValueDataNode>
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public ValidationNode Validate(ISerializationManager serializationManager,
         ValueDataNode node,

@@ -25,9 +25,9 @@ namespace Content.Client._ES.Guidebook.Controls;
 [GenerateTypedNameReferences, UsedImplicitly]
 public sealed partial class ESGuideTipsEmbed : VStack, IDocumentTag
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ILogManager _log = default!;
-    [Dependency] private readonly ESTipsManager _tips = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ILogManager _log = default!;
+    [Dependency] private ESTipsManager _tips = default!;
 
     private ISawmill _sawmill;
 

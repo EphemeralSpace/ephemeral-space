@@ -2,32 +2,23 @@
   id: Traitors
   name: Traitors
   description: is a standard, balanced cast of crew and traitors
-  weight: 10
+  weight: 3
   minPlayers: 6
   gameRules: []
   masquerade:
-    defaultMask: "Crewmember"
+    defaultMask: "#AllCrew"
     superfanTarget: "#Traitors"
     roles:
-      6: ["Marauder", "Infiltrator", "#Filler(2)", "Rebel", "#Targeters"] # 0 generic crew, 2 traitors
-      7: ["#Filler"]
-      8: ["#Filler"]
-      9: ["Vigilante"]
-      10: ["#TraitorAdjacent"]
+      6: ["#Traitors", "Infiltrator", "Rebel", "#Targeters"] # 2 traitors
+      10: ["#SemiTraitor"]
       11: ["#Antagonistic"]
-      13: ["Assassin"]  # 0 generic crew, 3 traitors.
-      14: ["#Filler"]
-      16: ["#Firmsafes"] # 1 generic crew, 3 traitors.
-      17: ["#Filler"]
-      18: ["ArmsDealer"]
+      13: ["Assassin"]  # 3 traitors.
+      15: [ "Tragedian" ]
+      16: ["#Firmsafes"] # 3 traitors.
+      17: ["#SemiTraitor"]
       19: ["#Traitors"] # 1 generic crew, 4 traitors.
-      20: ["#Filler"]
-      21: ["#Filler", "-#Traitors", "#PowerTraitors"] # 1 generic crew, 4 traitors.
-      22: ["#Filler"]
-      24: ["#TraitorGunners"] # 2 generic crew, 4 traitors.
-      25: ["Marauder"] # 2 generic crew, 5 traitors.
-      26: ["#Filler"]
-      28: ["#TraitorGunners"] # 3 generic crew, 5 traitors.
-      29: ["#Filler"]
-      30: ["#Filler"]
-      31: ["#Traitors", "#Filler"] # 3 generic crew, 6 traitors.
+      24: ["#Gunners"] # 4 traitors.
+      25: ["Marauder"] # 5 traitors.
+      27: ["#SemiTraitor"]
+      28: ["#Gunners"] # 5 traitors.
+      31: ["#Traitors"] # 6 traitors.

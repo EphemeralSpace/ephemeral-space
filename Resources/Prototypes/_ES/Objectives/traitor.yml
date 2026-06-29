@@ -26,10 +26,24 @@
   - type: ESTargetTroupeObjective
     troupe: Traitor
     invert: true
+    overrideMasks: [Sympathizer]
   - type: ESTargetMaskBlacklist
     maskBlacklist:
     - SleeperAgent
   - type: ESKillTargetObjective
+
+- type: entity
+  parent: ESBaseTraitorObjectiveMinor
+  id: ESObjectiveTraitorBugAPC
+  name: Bug a specific department's APC
+  description: We need you to temporarily disrupt the station network. It'll take a few minutes to work, so keep an eye on it to make sure no one stops it.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Structures/Power/apc.rsi
+      state: static
+  - type: ESCounterObjective
+  - type: ESTraitorBugObjective
 
 ### Sabotage objectives
 # These are split into base so we can have traitor/rebel variants, since rebel wants a separate description, and no nuke prereq
@@ -76,26 +90,26 @@
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCrewMonitoring]
   description: The syndicate is trying to acquire sensitive crew medical records. It can be extracted from the crew monitoring server.
 
-# ID card computer
+# Emergency access terminal
 - type: entity
-  id: ESBaseObjectiveSabotageIDComputer
-  name: Sabotage the ID card computer
+  id: ESBaseObjectiveSabotageEmergencyAccessTerminal
+  name: Sabotage the emergency access terminal
   abstract: true
   components:
   - type: ESObjective
     icon:
       sprite: _ES/Structures/Machines/computer.rsi
-      state: id-icon
+      state: emerg-icon
   - type: ESCounterObjective
   - type: ESSabotageCondition
     whitelist:
       components:
-      - IdCardConsole
+      - ESEmergencyAccessConsole
 
 - type: entity
-  id: ESObjectiveTraitorSabotageIDComputer
-  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageIDComputer]
-  description: The syndicate want to steal the crew manifest data. It can be extracted from the ID card computer.
+  id: ESObjectiveTraitorSabotageEmergencyAccessTerminal
+  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageEmergencyAccessTerminal]
+  description: The syndicate want to infiltrate the station's central access network. It can be done at the emergency access terminal.
 
 # Criminal records
 - type: entity
@@ -157,6 +171,19 @@
   id: ESObjectiveTraitorDetonateNuke
   name: Detonate the nuclear fission explosive
   description: Once all other objectives are complete, use the captain's authentication disk to arm the nuke and prevent the crew from stopping the detonation.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Devices/nuke.rsi
+      state: nuclearbomb_base
+  - type: ESCounterObjective
+  - type: ESDetonateNukeObjective
+
+- type: entity
+  parent: ESBaseTraitorObjective
+  id: ESObjectiveSympathizerDetonateNuke
+  name: Help the traitors detonate the nuclear fission explosive
+  description: Figure out who the traitors might be, then help them complete their objectives and detonate the nuke.
   components:
   - type: ESObjective
     icon:

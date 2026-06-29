@@ -1,9 +1,0 @@
-## Random humanoids
-
-- type: randomHumanoidSettings
-  id: EventHumanoid
-  components:
-    - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: GhostTakeoverAvailable
-    - type: IdBind

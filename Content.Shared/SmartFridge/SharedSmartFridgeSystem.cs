@@ -14,15 +14,15 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.SmartFridge;
 
-public abstract class SharedSmartFridgeSystem : EntitySystem
+public abstract partial class SharedSmartFridgeSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -115,7 +115,7 @@ public abstract class SharedSmartFridgeSystem : EntitySystem
         if (_accessReader.IsAllowed(user, machine))
             return true;
 
-        _popup.PopupPredicted(Loc.GetString("smart-fridge-component-try-eject-access-denied"), machine, user);
+        _popup.PopupEntity(Loc.GetString("smart-fridge-component-try-eject-access-denied"), machine);
         _audio.PlayPredicted(machine.Comp.SoundDeny, machine, user);
         return false;
     }
@@ -131,7 +131,7 @@ public abstract class SharedSmartFridgeSystem : EntitySystem
         if (!ent.Comp.ContainedEntries.TryGetValue(args.Entry, out var contained))
         {
             _audio.PlayPredicted(ent.Comp.SoundDeny, ent, args.Actor);
-            _popup.PopupPredicted(Loc.GetString("smart-fridge-component-try-eject-unknown-entry"), ent, args.Actor);
+            _popup.PopupEntity(Loc.GetString("smart-fridge-component-try-eject-unknown-entry"), ent);
             return;
         }
 
@@ -148,7 +148,7 @@ public abstract class SharedSmartFridgeSystem : EntitySystem
         }
 
         _audio.PlayPredicted(ent.Comp.SoundDeny, ent, args.Actor);
-        _popup.PopupPredicted(Loc.GetString("smart-fridge-component-try-eject-out-of-stock"), ent, args.Actor);
+        _popup.PopupEntity(Loc.GetString("smart-fridge-component-try-eject-out-of-stock"), ent);
     }
 
     private void OnGetAltVerb(Entity<SmartFridgeComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)

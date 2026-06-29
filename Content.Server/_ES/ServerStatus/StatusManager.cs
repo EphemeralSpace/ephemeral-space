@@ -10,17 +10,16 @@ namespace Content.Server._ES.ServerStatus;
 /// <summary>
 ///     This currently just manages the hostname.
 /// </summary>
-public sealed class StatusManager
+public sealed partial class StatusManager
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public string? CurrentRoleplayLevel { get; private set; }
 
-    public string? CurrentRoleplayAbbreviation
-        => CurrentRoleplayLevel != null ? $"{char.ToUpperInvariant(CurrentRoleplayLevel[0])}RP" : null;
+    public string CurrentRoleplayAbbreviation => CurrentRoleplayLevel?.GetRoleplayAbbreviation() + "RP";
 
     public void Initialize()
     {

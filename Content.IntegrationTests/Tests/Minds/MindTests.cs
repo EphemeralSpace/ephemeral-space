@@ -295,6 +295,7 @@ public sealed partial class MindTests : GameTest
     }
 
     [Test]
+    [Ignore("Differing ghost behavior from upstream")]
     public async Task TestPlayerCanGhost()
     {
         // Client is needed to spawn session

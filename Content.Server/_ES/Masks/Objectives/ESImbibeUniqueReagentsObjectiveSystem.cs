@@ -26,6 +26,9 @@ public sealed class ESImbibeUniqueReagentsObjectiveSystem : ESBaseObjectiveSyste
         if (!ent.Comp.CanBeFromFood && !args.IsDrink)
             return;
 
+        if (args.FoodSolution == null)
+            return;
+
         foreach (var reagent in args.FoodSolution)
         {
             ent.Comp.SeenReagents.Add(reagent.Reagent);

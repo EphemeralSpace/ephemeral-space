@@ -2,6 +2,9 @@
 es-mask-arms-dealer-name = Arms Dealer
 es-mask-arms-dealer-desc = As an Arms Dealer, help people out--by passing out guns to whoever you think might be able to use it responsibly.
 
+es-mask-arsonist-name = Arsonist
+es-mask-arsonist-desc = As an Arsonist, light fires around the station to fulfill your sick desires.
+
 es-mask-avenger-name = Avenger
 es-mask-avenger-desc = As an Avenger, protect your target from being killed at all costs. If that fails, kill their murderer.
 
@@ -23,11 +26,17 @@ es-mask-nobleman-desc = As a Nobleman, prevent the corruption of your pure blood
 es-mask-phantom-name = Phantom
 es-mask-phantom-desc = As a Phantom, reincarnate as a vengeful spirit on death and haunt your murderer until they also die.
 
-es-mask-secretary-name = Secretary
-es-mask-secretary-desc = As a Secretary, do whatever you can to help your target complete their objectives.
+es-mask-pickpocket-name = Pickpocket
+es-mask-pickpocket-desc = As a Pickpocket, sneak behind peoples' backs to snatch their belongings and grow your collection.
 
 es-mask-rebel-name = Rebel
 es-mask-rebel-desc = As a Rebel, sabotage machines around the station in fervent protest. Try not to get pinned as a Traitor.
+
+es-mask-secretary-name = Secretary
+es-mask-secretary-desc = As a Secretary, do whatever you can to help your target complete their objectives.
+
+es-mask-tragedian-name = Tragedian
+es-mask-tragedian-desc = As a Tragedian, perform your theme to the bitter end in order to please the watching stagehands.
 
 es-mask-vigilante-name = Vigilante
 es-mask-vigilante-desc = As a Vigilante, seek out those who have killed others and bring them to justice by killing them yourself.
@@ -56,6 +65,9 @@ es-mask-subverter-desc = As a Subverter, you have received two brain-altering ch
 es-mask-demolitionist-name = Demolitionist
 es-mask-demolitionist-desc = As a Demolitionist, you have been trained by the Syndicate for both controlled and uncontrolled "demolitions"--including in the use of explosive implants, should things turn out that way.
 
+es-mask-sympathizer-name = Sympathizer
+es-mask-sympathizer-desc = As a Sympathizer, you are an adherent to Syndicate philosophy, win with the traitors, and count as a traitor--but you are unaware of who the traitors are and what their objectives are.
+
 # Paraiste masks
 es-mask-troupe-parasite-examine = They're a fellow host of the [bold][color=tan]parasitic infection[/color][/bold]. Conspire with them to spread the infection.
 
@@ -68,12 +80,12 @@ es-mask-hemophage-desc = As a Hemophage, spread your infected blood all across t
 es-mask-host-name = Host
 es-mask-host-desc = As a Host, partake in the festivites and swarm with your fellow parasites!
 
-es-mask-psychid-name = Psychid
-es-mask-psychid-desc = As a Psychid, be killed in order to swap bodies and create a new psychid, spreading the parasitic infection even more.
+es-mask-leapleech-name = Leapleech
+es-mask-leapleech-desc = As a Leapleech, take damage from multiple crew members to increase your power. Upon death, spawn a horde of leaping parasitic leeches based on how many people wronged you.
 
 # Oddballs
 es-mask-sleeper-agent-name = Sleeper Agent
-es-mask-sleeper-agent-desc = As a Sleeper Agent, you're a member of crew and win with them, unless the entire traitors team dies, upon which you switch sides and gain a new mask.
+es-mask-sleeper-agent-desc = As a Sleeper Agent, you're a member of crew and win with them. When a traitor dies, you have a chance to switch sides and gain a new mask.
 
 # Meta
 es-objective-issuer-mask = Mask

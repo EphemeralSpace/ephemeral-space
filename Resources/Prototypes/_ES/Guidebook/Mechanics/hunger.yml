@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: Hunger
+  hidden: false
+  name: Hunger
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Hunger.xml"

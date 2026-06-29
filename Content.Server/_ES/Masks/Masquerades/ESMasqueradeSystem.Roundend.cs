@@ -6,7 +6,7 @@ namespace Content.Server._ES.Masks.Masquerades;
 
 public sealed partial class ESMasqueradeSystem
 {
-    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
 
     protected override void AppendRoundEndText(EntityUid uid, ESMasqueradeRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent ev)
     {

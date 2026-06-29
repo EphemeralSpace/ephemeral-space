@@ -2,28 +2,25 @@
   id: Sycophancy
   name: Sycophancy
   description: is a traitors-focused show with parasitic undertones
-  weight: 10
+  weight: 3
   minPlayers: 10
   gameRules: []
   masquerade:
-    defaultMask: "Crewmember"
+    defaultMask: "#AllCrew"
+    superfanTarget: "#Traitors"
     roles:
-      # 0 generic crew, 2 traitors, 1 parasite.
-      10: ["Marauder", "Infiltrator", "#Filler(4)", "Rebel", "#Targeters", "Vigilante", "#AllParasites"]
+      # 2 traitors, 1 parasite.
+      10: ["Marauder", "#Traitors", "#SemiTraitor", "Rebel", "#AllParasites"]
       11: [ "#Antagonistic" ]
-      13: [ "Assassin" ]  # 0 generic crew, 3 traitors, 1 parasite.
-      14: [ "#AllParasites" ] # 0 generic crew, 3 traitors, 2 parasite.
-      16: [ "#Firmsafes" ] # 1 generic crew, 3 traitors, 2 parasite.
-      17: [ "#Filler" ]
-      18: [ "ArmsDealer" ]
-      19: [ "#Traitors" ] # 1 generic crew, 4 traitors, 2 parasite.
-      20: [ "#Filler" ]
-      21: [ "#Filler", "-#Traitors", "#PowerTraitors" ] # 1 generic crew, 4 traitors, 2 parasites.
-      22: [ "#Filler" ]
-      24: [ "#TraitorGunners" ] # 2 generic crew, 4 traitors, 2 parasites.
-      25: [ "Marauder" ] # 2 generic crew, 5 traitors, 2 parasites.
-      26: [ "#AllParasites" ] # 2 generic crew, 5 traitors, 3 parasites.
-      28: [ "#TraitorGunners" ] # 3 generic crew, 5 traitors, 3 parasites.
-      29: [ "#Filler" ]
-      30: [ "#Filler" ]
-      31: [ "#Traitors", "#AllParasites" ] # 3 generic crew, 6 traitors, 4 parasites.
+      13: [ "Assassin" ]  # 3 traitors, 1 parasite.
+      14: [ "#AllParasites" ] # 3 traitors, 2 parasite.
+      15: [ "Tragedian" ]
+      16: [ "#Firmsafes" ] # 3 traitors, 2 parasite.
+      18: [ "Arsonist" ]
+      19: [ "#Traitors" ] # 4 traitors, 2 parasite.
+      21: [ "#Gunners", ] # 4 traitors, 2 parasites.
+      24: [ "#SemiTraitor" ] # 4 traitors, 2 parasites.
+      25: [ "Marauder" ] # 5 traitors, 2 parasites.
+      26: [ "#AllParasites" ] # 5 traitors, 3 parasites.
+      28: [ "#Gunners" ] # 5 traitors, 3 parasites.
+      31: [ "#Traitors", "#AllParasites" ] # 6 traitors, 4 parasites.

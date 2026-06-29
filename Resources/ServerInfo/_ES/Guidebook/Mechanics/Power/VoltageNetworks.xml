@@ -17,9 +17,9 @@
   <Box>
     <GuideEntityEmbed Entity="PoweredSmallLight" Caption=""/>
     <GuideEntityEmbed Entity="ComputerComms" Caption=""/>
-    <GuideEntityEmbed Entity="Autolathe" Caption=""/>
-    <GuideEntityEmbed Entity="VendingMachineEngivend" Caption=""/>
-    <GuideEntityEmbed Entity="VendingMachineMedical" Caption=""/>
+    <GuideEntityEmbed Entity="ESAutolathe" Caption=""/>
+    <GuideEntityEmbed Entity="ESVendingMachineEngivend" Caption=""/>
+    <GuideEntityEmbed Entity="ESVendingMachineMedical" Caption=""/>
     <GuideEntityEmbed Entity="AlwaysPoweredWallLight" Caption=""/>
   </Box>
 

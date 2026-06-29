@@ -1,0 +1,31 @@
+- type: esTip
+  id: InfiltratorC4Deniability
+  text: As an Infiltrator, your cache's C4 is a tool available elsewhere. If you're caught, consider passing it off as stolen from Engineering.
+
+- type: esTip
+  id: BurstwormConversion
+  text: As a Burstworm, make sure your body ends up somewhere with a lot of people around. You won't convert anyone if you end up dying alone in maints.
+
+- type: esTip
+  id: HemophageBloodSpreading
+  text: As a Hemophage, try to spread your blood in areas that people would expect to be messy. If you're too obvious, the crew might suspect you and try to rapidly clean the station.
+
+- type: esTip
+  id: VIPFingerprintScanner
+  text: As a VIP, if your status is important in a given round, consider cooperating with someone who has a fingerprint scanner to keep records. It's a good way to deter against people stealing your card.
+
+- type: esTip
+  id: SympathizerCovertOperations
+  text: As a Sympathizer, your best bet at ensuring a traitor victory in the mid to late portions of the round is causing indirect chaos and cover for traitors, like delaying the warp drive or opening the armory.
+
+- type: esTip
+  id: SympathizerDeduction
+  text: As a Sympathizer, use the early periods of the round to try and deduce who you think the Traitors might be--and maybe tell them about your alignment, if you're willing to risk them not believing you.
+
+- type: esTip
+  id: SympathizerPrisonbreak
+  text: As a Sympathizer, it's in your best interest to make sure any traitors are out of Security's clutches as fast as possible. Interrupting arrests and plotting prison breaks are valuable endeavors.
+
+- type: esTip
+  id: SympathizerPotentialTarget
+  text: As a Sympathizer, remember that you are not a red blooded member of the Syndicate. Their objectives may even require killing *you*. Are you prepared to die for the cause?

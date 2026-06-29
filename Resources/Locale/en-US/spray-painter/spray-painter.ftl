@@ -55,7 +55,6 @@ spray-painter-tab-group-airlockstandard = Standard
 spray-painter-tab-group-airlockglass = Glass
 
 spray-painter-tab-group-cratesteel = Steel
-spray-painter-tab-group-crateplastic = Plastic
 spray-painter-tab-group-cratesecure = Secure
 
 spray-painter-tab-group-closet = Unlocked
@@ -104,7 +103,7 @@ spray-painter-style-locker-doctor = Doctor
 spray-painter-style-locker-electrical = Electrical
 spray-painter-style-locker-engineer = Engineer
 spray-painter-style-locker-evac = Evac repair
-spray-painter-style-locker-hop = HOP
+spray-painter-style-locker-station-admin = Station Admin
 spray-painter-style-locker-medicine = Medicine
 spray-painter-style-locker-coroner = Coroner
 spray-painter-style-locker-paramedic = Paramedic
@@ -154,13 +153,11 @@ spray-painter-style-cratesteel-engineering = Engineering
 spray-painter-style-cratesteel-radiation = Radiation
 spray-painter-style-cratesteel-science = Science
 spray-painter-style-cratesteel-surgery = Surgery
-
-spray-painter-style-crateplastic-basic = Basic
-spray-painter-style-crateplastic-chemistry = Chemistry
-spray-painter-style-crateplastic-command = Command
-spray-painter-style-crateplastic-hydroponics = Hydroponics
-spray-painter-style-crateplastic-medical = Medical
-spray-painter-style-crateplastic-oxygen = Oxygen
+spray-painter-style-cratesteel-chemistry = Chemistry
+spray-painter-style-cratesteel-command = Command
+spray-painter-style-cratesteel-hydroponics = Hydroponics
+spray-painter-style-cratesteel-medical = Medical
+spray-painter-style-cratesteel-oxygen = Oxygen
 
 spray-painter-style-cratesecure-basic = Basic
 spray-painter-style-cratesecure-chemistry = Chemistry

@@ -23,3 +23,14 @@
     # shader: unshaded
   - type: EntityTableSpawner
     offset: 0.0
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerBaseDirectional
+  abstract: true
+  components:
+  - type: EntityTableSpawner
+    directional: true
+  - type: Tag
+    tags:
+    - ForceNoFixRotations

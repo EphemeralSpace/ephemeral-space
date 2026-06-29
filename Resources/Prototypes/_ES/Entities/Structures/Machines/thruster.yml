@@ -41,9 +41,9 @@
         layer:
         - WallLayer
   - type: ESRadstormModifierMachine
-    modifier: 0.29
-    enableAnnouncement: es-radstorm-power-on-navigation-console
-    disableAnnouncement: es-radstorm-power-off-navigation-console
+    modifier: 1.00
+    announcementSoundDisabled: /Audio/_ES/Announcements/thruster_fuelled.ogg
+    announcementSoundEnabled: /Audio/_ES/Announcements/thruster_no_fuel.ogg
   - type: AmbientSound
     enabled: true
     volume: -6

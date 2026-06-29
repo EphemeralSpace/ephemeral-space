@@ -17,7 +17,7 @@ These are the basic set of chemicals any [color=#5b97bc]Medical[/color] ward sho
 
 <GuideReagentEmbed Reagent="Tramadol" />
 <GuideReagentEmbed Reagent="Paracetamol" />
-<GuideReagentEmbed Reagent="DexalinPlus" />
+<GuideReagentEmbed Reagent="Dexalin" />
 <GuideReagentEmbed Reagent="Inaprovaline" />
 
 ### Other Basic Chemicals
@@ -28,27 +28,19 @@ These are the basic set of chemicals any [color=#5b97bc]Medical[/color] ward sho
 
 These chemicals are harder to make and for less common types of injuries, but are still necessary for a [color=#5b97bc]Medical[/color] ward to efficiently treat people.
 
-<GuideReagentEmbed Reagent="Sigynate" />
 <GuideReagentEmbed Reagent="Arithrazine" />
-<GuideReagentEmbed Reagent="Phalanximine" />
 
 ## Cryogenics
 
 These chemicals are important for the usage of [color=cyan]Cryo Pods[/color], and are relatively easy to produce.
 
 <GuideReagentEmbed Reagent="Cryoxadone" />
-<GuideReagentEmbed Reagent="Doxarubixadone" />
 
 ## Advanced Chemicals
 
-These chemicals focus on one damage type only, but do a particularly good job at it.
+These chemicals focus on one thing only, but do a particularly good job at it.
 
-<GuideReagentEmbed Reagent="Bruizine" />
-<GuideReagentEmbed Reagent="Lacerinol" />
-<GuideReagentEmbed Reagent="Puncturase" />
-<GuideReagentEmbed Reagent="Insuzine" />
 <GuideReagentEmbed Reagent="Leporazine" />
-<GuideReagentEmbed Reagent="Pyrazine" />
 <GuideReagentEmbed Reagent="Diphenhydramine" />
 
 </Document>

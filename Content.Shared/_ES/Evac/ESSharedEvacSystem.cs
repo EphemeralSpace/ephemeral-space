@@ -8,13 +8,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.Evac;
 
-public abstract class ESSharedEvacSystem : EntitySystem
+public abstract partial class ESSharedEvacSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
 
     public float EvacVotePercentage { get; protected set; }
 

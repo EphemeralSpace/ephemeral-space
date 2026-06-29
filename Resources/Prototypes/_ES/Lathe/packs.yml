@@ -10,24 +10,19 @@
   - Multitool
   - Signaller
   - ESFireExtinguisherMini
-  - FireExtinguisher
-  - SprayPainter
-  - SprayPainterAmmo
-  - FlashlightLantern
   - HandheldGPSBasic
   - TRayScanner
   - UtilityBelt
   - Handcuffs
-  - HandheldStationMap
-  - ClothingHeadHatWelding
   - ClothingHeadHatCone
+  - ESFlashlightLantern
   - GasAnalyzer
   - CableStack
   - CableMVStack
   - CableHVStack
   - RCDAmmo
-  - ESOxygenTank
   - ESEmergencyOxygenTank
+  - ESWeaponKnife
 
 - type: latheRecipePack
   id: ESPartsStatic
@@ -36,9 +31,6 @@
   - ESVoiceTrigger
   - ESProximitySensor
   - Igniter
-  - ModularReceiver
-  - MicroManipulatorStockPart
-  - ConveyorBeltAssembly
 
 - type: latheRecipePack
   id: ESLightsStatic
@@ -47,7 +39,6 @@
   - ESLightTubeHallway
   - ESLightTubeNightshift
   - LightBulb
-  - DimLightBulb
 
 - type: latheRecipePack
   id: ESElectronicsStatic
@@ -56,37 +47,11 @@
   - FirelockElectronics
   - DoorElectronics
   - AirAlarmElectronics
-  - StationMapElectronics
   - FireAlarmElectronics
-  - SignalTimerElectronics
-  - APCElectronics
   - SMESMachineCircuitboard
   - SubstationMachineCircuitboard
-  - WallmountSubstationElectronics
   - CellRechargerCircuitboard
   - WeaponCapacitorRechargerCircuitboard
-  - FreezerElectronics
-
-- type: latheRecipePack
-  id: ESFluff
-  recipes:
-  - TargetClown
-  - TargetHuman
-  - TargetSyndicate
-
-- type: latheRecipePack
-  id: ESPaperworkStatic
-  recipes:
-  - BoxFolderClipboardEmpty
-  - BoxFolderPlasticClipboardEmpty
-
-# Departmental
-# Cargo
-- type: latheRecipePack
-  id: ESCargoStatic
-  recipes:
-  - Pickaxe
-  - ESWeaponKnife
 
 # Medical
 - type: latheRecipePack
@@ -94,7 +59,21 @@
   recipes:
   - Brutepack
   - Ointment
-  - Gauze
+
+- type: latheRecipePack
+  id: ESSurgeryStatic
+  recipes:
+  - Scalpel
+  - Retractor
+  - Cautery
+  - Drill
+  - Saw
+  - Hemostat
+
+- type: latheRecipePack
+  id: ESRollerBedsStatic
+  recipes:
+  - RollerBedSpawnFolded
 
 - type: latheRecipePack
   id: ESBasicChemistryStatic
@@ -107,19 +86,17 @@
   - ChemistryEmptyVial
   - Dropper
 
+- type: latheRecipePack
+  id: ESMedicalToolsStatic
+  recipes:
+  - Defibrillator
+
 # Security
 - type: latheRecipePack
   id: ESSecurityEquipmentStatic
   recipes:
-  - ClothingEyesHudSecurity
-  - ForensicPad
   - Handcuffs
-  - Zipties
   - Flash
-  - Stunbaton
-  - RiotShield
-  - GrenadeEMP
-  - GrenadeFlash
 
 - type: latheRecipePack
   id: ESAmmunition
@@ -138,16 +115,8 @@
   recipes:
   - Bucket
   - DrinkGlass
-  - DrinkShotGlass
-  - FoodPlate
-  - FoodPlateSmall
-  - FoodBowlBig
-  - FoodPlateTin
-  - FoodPlateMuffinTin
-  - FoodKebabSkewer
   - SprayBottle
   - TrashBag
   - LightReplacer
   - MopItem
   - WetFloorSign
-  - WireBrush

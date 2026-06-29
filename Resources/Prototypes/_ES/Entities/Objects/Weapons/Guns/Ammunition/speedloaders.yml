@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseItem, BaseSecurityContraband ]
+  parent: BaseItem
   id: ESBaseSpeedLoader357
   name: .357 speed loader
   description: A cowboy's friend; let's you slam 6 shots into your revolver in an instant. Holds .357 rounds.

@@ -18,18 +18,19 @@ namespace Content.Shared.Throwing
     /// <summary>
     ///     Handles throwing landing and collisions.
     /// </summary>
-    public sealed class ThrownItemSystem : EntitySystem
+    public sealed partial class ThrownItemSystem : EntitySystem
     {
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly INetManager _netMan = default!;
-        [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly FixtureSystem _fixtures = default!;
-        [Dependency] private readonly SharedBroadphaseSystem _broadphase = default!;
-        [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-        [Dependency] private readonly SharedGravitySystem _gravity = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
+        [Dependency] private INetManager _netMan = default!;
+        [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+        [Dependency] private FixtureSystem _fixtures = default!;
+        [Dependency] private SharedBroadphaseSystem _broadphase = default!;
+        [Dependency] private SharedPhysicsSystem _physics = default!;
+        [Dependency] private SharedGravitySystem _gravity = default!;
         // ES START
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly ESViewconeEffectSystem _effect = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
+        [Dependency] private ESViewconeEffectSystem _effect = default!;
 
         public static EntProtoId LandViewconeEffect = "ESViewconeEffectAttack";
         // ES END
@@ -100,6 +101,8 @@ namespace Content.Shared.Throwing
 
         public void StopThrow(EntityUid uid, ThrownItemComponent thrownItemComponent)
         {
+            _appearance.SetData(uid, ESThrowVisuals.InAir, false);
+
             if (TryComp<PhysicsComponent>(uid, out var physics))
             {
                 _physics.SetBodyStatus(uid, physics, BodyStatus.OnGround);

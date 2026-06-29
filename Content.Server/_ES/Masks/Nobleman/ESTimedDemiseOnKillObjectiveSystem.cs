@@ -12,13 +12,13 @@ using Robust.Shared.Player;
 
 namespace Content.Server._ES.Masks.Nobleman;
 
-public sealed class ESTimedDemiseOnKillObjectiveSystem : ESBaseObjectiveSystem<ESTimedDemiseOnKillObjectiveComponent>
+public sealed partial class ESTimedDemiseOnKillObjectiveSystem : ESBaseObjectiveSystem<ESTimedDemiseOnKillObjectiveComponent>
 {
-    [Dependency] private readonly ESEntityTimerSystem _timer = default!;
-    [Dependency] private readonly SuicideSystem _suicide = default!;
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-    [Dependency] private readonly ESSharedObjectiveSystem _objective = default!;
+    [Dependency] private ESEntityTimerSystem _timer = default!;
+    [Dependency] private SuicideSystem _suicide = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private ESSharedObjectiveSystem _objective = default!;
 
     public override Type[] RelayComponents => [typeof(ESKilledRelayComponent)];
 

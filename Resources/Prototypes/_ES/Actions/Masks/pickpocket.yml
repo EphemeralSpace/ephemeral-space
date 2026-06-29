@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseAction
+  id: ActionMaskPickpocketSnatch
+  name: Pickpocket
+  description: From behind someone's back, reach into their bag and steal from them. Only works once per person.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/masks/pickpocket.rsi
+      state: pickpocket
+    iconOn:
+      sprite: _ES/Actions/masks/pickpocket.rsi
+      state: pickpocket-on
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:ESPickpocketTargetActionEvent
+    whitelist:
+      components:
+      - Inventory

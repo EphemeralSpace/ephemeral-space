@@ -73,7 +73,7 @@ public sealed partial class AwaitedDoAfterEvent : SimpleDoAfterEvent
 ///     This event will optionally get raised every tick while a do-after is in progress to check whether the do-after
 ///     should be canceled.
 /// </summary>
-public sealed partial class DoAfterAttemptEvent<TEvent> : CancellableEntityEventArgs where TEvent : DoAfterEvent
+public sealed class DoAfterAttemptEvent<TEvent> : CancellableEntityEventArgs where TEvent : DoAfterEvent
 {
     /// <summary>
     ///     The do after that triggered this event.

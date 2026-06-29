@@ -8,11 +8,11 @@ using Content.Shared.Verbs;
 
 namespace Content.Shared._Offbrand.StatusEffects;
 
-public sealed class RemovableStatusEffectSystem : EntitySystem
+public sealed partial class RemovableStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -49,7 +49,7 @@ public sealed class RemovableStatusEffectSystem : EntitySystem
         {
             if (ent.Comp.UserStarted is { } userStarted && ent.Comp.OtherStarted is { } otherStarted)
             {
-                _popup.PopupPredicted(
+                _popup.PopupEntity(
                     Loc.GetString(userStarted, ("target", Identity.Entity(target, EntityManager)), ("effect", ent)),
                     Loc.GetString(otherStarted, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)), ("effect", ent)),
                     target,
@@ -61,7 +61,7 @@ public sealed class RemovableStatusEffectSystem : EntitySystem
         {
             if (ent.Comp.SelfUserStarted is { } selfUserStarted && ent.Comp.SelfOtherStarted is { } selfOtherStarted)
             {
-                _popup.PopupPredicted(
+                _popup.PopupEntity(
                     Loc.GetString(selfUserStarted, ("target", Identity.Entity(target, EntityManager)), ("effect", ent)),
                     Loc.GetString(selfOtherStarted, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)), ("effect", ent)),
                     target,
@@ -93,7 +93,7 @@ public sealed class RemovableStatusEffectSystem : EntitySystem
         {
             if (ent.Comp.UserCompleted is { } userCompleted && ent.Comp.OtherCompleted is { } otherCompleted)
             {
-                _popup.PopupPredicted(
+                _popup.PopupEntity(
                     Loc.GetString(userCompleted, ("target", Identity.Entity(target, EntityManager)), ("effect", ent)),
                     Loc.GetString(otherCompleted, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)), ("effect", ent)),
                     target,
@@ -105,7 +105,7 @@ public sealed class RemovableStatusEffectSystem : EntitySystem
         {
             if (ent.Comp.SelfUserCompleted is { } selfUserCompleted && ent.Comp.SelfOtherCompleted is { } selfOtherCompleted)
             {
-                _popup.PopupPredicted(
+                _popup.PopupEntity(
                     Loc.GetString(selfUserCompleted, ("target", Identity.Entity(target, EntityManager)), ("effect", ent)),
                     Loc.GetString(selfOtherCompleted, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)), ("effect", ent)),
                     target,

@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Contraband;
 using Content.Shared.Emp;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
@@ -23,19 +22,18 @@ using Content.Shared.Prototypes;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
-public abstract class SharedChameleonClothingSystem : EntitySystem
+public abstract partial class SharedChameleonClothingSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ClothingSystem _clothingSystem = default!;
-    [Dependency] private readonly ContrabandSystem _contraband = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedItemSystem _itemSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly LockSystem _lock = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ClothingSystem _clothingSystem = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedItemSystem _itemSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private LockSystem _lock = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] protected SharedUserInterfaceSystem UI = default!;
+    [Dependency] private INetManager _net = default!;
 
     private static readonly SlotFlags[] IgnoredSlots =
     {
@@ -116,17 +114,6 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
         {
             _appearance.AppendData(appearanceOther, uid);
             Dirty(uid, appearance);
-        }
-
-        // properly mark contraband
-        if (proto.TryGetComponent(out ContrabandComponent? contra, Factory))
-        {
-            EnsureComp<ContrabandComponent>(uid, out var current);
-            _contraband.CopyDetails(uid, contra, current);
-        }
-        else
-        {
-            RemComp<ContrabandComponent>(uid);
         }
     }
 

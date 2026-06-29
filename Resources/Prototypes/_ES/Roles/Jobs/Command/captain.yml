@@ -1,5 +1,6 @@
 - type: job
   id: ESCaptain
+  parent: ESBaseJobRoyalNaming
   name: ESjob-name-captain
   description: ESjob-description-captain
   playTimeTracker: ESJobCaptain
@@ -7,13 +8,13 @@
   startingGear: ESCaptainGear
   icon: "JobIconCaptain"
   joinNotifyCrew: true
-  supervisors: job-supervisors-centcom
   canBeAntag: false
-  accessGroups:
-  - AllAccess
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+  overrideConsoleVisibility: false
+  access:
+  - Command
+  - Captain
+  - Maintenance
+  - External
 
 - type: startingGear
   id: ESCaptainGear
@@ -22,7 +23,7 @@
     id: CaptainPDA
     gloves: ClothingHandsGlovesCaptain
     ears: ClothingHeadsetAltCommand
-    head: ClothingHeadHatCaptain
+    head: ESClothingHeadHatCaptain
     jumpsuit: ClothingUniformJumpsuitCaptain
     outerClothing: ESClothingOuterArmorCaptainCarapace
     back: ClothingBackpackCaptain

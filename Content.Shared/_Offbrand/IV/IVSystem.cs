@@ -16,16 +16,16 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Offbrand.IV;
 
-public sealed class IVSystem : EntitySystem
+public sealed partial class IVSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedJointSystem _joint = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedJointSystem _joint = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     public override void Initialize()
     {
@@ -154,7 +154,7 @@ public sealed class IVSystem : EntitySystem
         if (!TryComp<PhysicsComponent>(target, out var targetPhysics))
             return;
 
-        _popup.PopupPredicted(
+        _popup.PopupEntity(
             Loc.GetString(source.Comp.ConnectedUser, ("target", Identity.Entity(target, EntityManager)), ("source", Identity.Entity(source, EntityManager)), ("user", Identity.Entity(user, EntityManager))),
             Loc.GetString(source.Comp.ConnectedOthers, ("target", Identity.Entity(target, EntityManager)), ("source", Identity.Entity(source, EntityManager)), ("user", Identity.Entity(user, EntityManager))),
             target,
@@ -187,7 +187,7 @@ public sealed class IVSystem : EntitySystem
         if (!Resolve(source, ref source.Comp) || !Resolve(target, ref target.Comp))
             return;
 
-        _popup.PopupPredicted(
+        _popup.PopupEntity(
             Loc.GetString(source.Comp.DisconnectedUser, ("target", Identity.Entity(target, EntityManager)), ("source", Identity.Entity(source, EntityManager)), ("user", Identity.Entity(user, EntityManager))),
             Loc.GetString(source.Comp.DisconnectedOthers, ("target", Identity.Entity(target, EntityManager)), ("source", Identity.Entity(source, EntityManager)), ("user", Identity.Entity(user, EntityManager))),
             target,
@@ -214,11 +214,11 @@ public sealed class IVSystem : EntitySystem
 
         if (_itemSlots.GetItemOrNull(source, source.Comp.SlotName) is not { } contained)
         {
-            _popup.PopupPredictedCursor(Loc.GetString(source.Comp.NoBagInserted), user);
+            _popup.PopupCursor(Loc.GetString(source.Comp.NoBagInserted), user);
             return;
         }
 
-        _popup.PopupPredicted(
+        _popup.PopupEntity(
             Loc.GetString(source.Comp.StartConnectionUser, ("target", Identity.Entity(target, EntityManager)), ("source", Identity.Entity(source, EntityManager)), ("user", Identity.Entity(user, EntityManager))),
             Loc.GetString(source.Comp.StartConnectionOthers, ("target", Identity.Entity(target, EntityManager)), ("source", Identity.Entity(source, EntityManager)), ("user", Identity.Entity(user, EntityManager))),
             target,
@@ -241,7 +241,7 @@ public sealed class IVSystem : EntitySystem
         if (!Resolve(source, ref source.Comp) || !Resolve(target, ref target.Comp) || source.Comp.IVTarget is null || target.Comp.IVSource is null || source.Comp.IVTarget != target || target.Comp.IVSource != source)
             return;
 
-        _popup.PopupPredicted(
+        _popup.PopupEntity(
             Loc.GetString(source.Comp.StartDisconnectionUser, ("target", Identity.Entity(target, EntityManager)), ("source", Identity.Entity(source, EntityManager)), ("user", Identity.Entity(user, EntityManager))),
             Loc.GetString(source.Comp.StartDisconnectionOthers, ("target", Identity.Entity(target, EntityManager)), ("source", Identity.Entity(source, EntityManager)), ("user", Identity.Entity(user, EntityManager))),
             target,

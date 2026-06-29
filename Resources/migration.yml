@@ -71,8 +71,6 @@ WeaponShotgunEnforcerRubber: ESWeaponDoubleBarrelShotgunNonlethal
 WeaponShotgunDoubleBarreled: ESWeaponDoubleBarrelShotgun
 WeaponShotgunDoubleBarreledRubber: ESWeaponDoubleBarrelShotgunNonlethal
 WeaponLaserCarbine: ESWeaponEnergyRifle
-WeaponDisabler: ESWeaponHybridTaser
-WeaponTaser: ESWeaponHybridTaser
 
 # 2025-9-29
 # Amends a prototype that was missing a prefix.
@@ -195,7 +193,6 @@ SpawnPointBartender: ESSpawnPointBartender
 SpawnPointChef: ESSpawnPointChef
 SpawnPointJanitor: ESSpawnPointJanitor
 SpawnPointCaptain: ESSpawnPointCaptain
-SpawnPointHeadOfPersonnel: ESSpawnPointHeadOfPersonnel
 SpawnPointHeadOfSecurity: ESSpawnPointSecurityOfficer
 SpawnPointStationEngineer: ESSpawnPointStationEngineer
 SpawnPointAtmos: ESSpawnPointAtmos
@@ -263,7 +260,6 @@ LockerAtmosphericsFilled: ESLockerAtmosphericsFilled
 # 2026-2-4
 WardrobeMedicalDoctorFilled: ESWardrobePhysicianFilled
 WardrobeScienceFilled: ESWardrobeScienceFilled
-DresserHeadOfPersonnelFilled: ESDresserHeadOfPersonnelFilled
 DresserCaptainFilled: ESDresserCaptainFilled
 WardrobePrisonFilled: ESWardrobePrisonFilled
 WardrobeCargoFilled: ESWardrobeCargoFilled
@@ -271,7 +267,6 @@ WardrobeEngineeringFilled: ESWardrobeEngineeringFilled
 WardrobeTheaterFilled: ESWardrobeTheatreFilled
 
 # 2026-2-5
-ClothingHandsGlovesColorOrange: ESClothingHandsGlovesColorOrange
 ClothingHeadHelmetFire: ESClothingHeadHelmetFire
 ClothingHeadHelmetAtmosFire: ESClothingHeadHelmetFire
 ClothingOuterSuitFire: ESClothingOuterSuitFire
@@ -374,6 +369,50 @@ PlasmaWindow: ReinforcedPlasmaWindow
 PlasmaWindowDirectional: PlasmaReinforcedWindowDirectional
 PlasmaWindoor: WindoorSecurePlasma
 PlasmaWindowDiagonal: ReinforcedPlasmaWindowDiagonal
+
+# 2026-5-25
+APCFrame: null
+
+# 2026-5-26
+# remove stabilization medkits
+ESMedkitStabilization: MedkitO2
+ESMedkitStabilizationFilled: MedkitO2Filled
+# remove ES prefix
+ESMedkit: Medkit
+ESMedkitFilled: MedkitFilled
+ESMedkitBrute: MedkitBrute
+ESMedkitBruteFilled: MedkitBruteFilled
+ESMedkitBurn: MedkitBurn
+ESMedkitBurnFilled: MedkitBurnFilled
+ESMedkitToxin: MedkitToxin
+ESMedkitToxinFilled: MedkitToxinFilled
+ESMedkitRadiation: MedkitRadiation
+ESMedkitRadiationFilled: MedkitRadiationFilled
+ESMedkitO2: MedkitO2
+ESMedkitO2Filled: MedkitO2Filled
+ESBriefcaseBlack: BriefcaseBlack
+# remove upstream medkits that are unused
+MedkitAdvanced: Medkit
+MedkitAdvancedFilled: MedkitFilled
+MedkitCombat: Medkit
+MedkitCombatFilled: MedkitFilled
+# remove useless surgical tools
+Saw: SawElectric
+SawImprov: SawElectric
+SawAdvanced: SawElectric
+ScalpelShiv: Scalpel
+ScalpelAdvanced: Scalpel
+ScalpelLaser: Scalpel
+
+# 2026-6-17
+TearGasGrenade: SmokeGrenade
+MetalFoamGrenade: SmokeGrenade
+CrateEngineeringFoamGrenade: CrateEngineeringCableBulk
+ClothingHeadHatHardhatYellowDark: ClothingHeadHatHardhatYellow
+ClothingHeadHatHardhatArmored: ClothingHeadHatHardhatYellow
+
+# 2026-6-24
+ClothingEyesGlassesJensen: null
 
 # ES END
 

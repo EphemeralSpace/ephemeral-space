@@ -3,8 +3,6 @@ using System.Linq;
 using Content.Shared._ES.Masks;
 using Content.Shared._ES.Mind;
 using Content.Shared._ES.Objectives.Components;
-using Content.Shared.EntityTable;
-using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using JetBrains.Annotations;
@@ -22,11 +20,10 @@ namespace Content.Shared._ES.Objectives;
 /// </summary>
 public abstract partial class ESSharedObjectiveSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedPvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvsOverride = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -172,6 +169,20 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return SpriteSpecifier.Invalid;
         return ent.Comp.Icon ?? SpriteSpecifier.Invalid;
+    }
+
+    public bool IsObjectiveInitialized(Entity<ESObjectiveComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+        return ent.Comp.ObjectiveInitialized;
+    }
+
+    public bool ShouldAnnounceProgress(Entity<ESObjectiveComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+        return ent.Comp.AnnounceProgress;
     }
 
     /// <summary>
@@ -341,16 +352,6 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     }
 
     /// <summary>
-    /// Attempts to create and add multiple objectives
-    /// </summary>
-    /// <returns>Returns true if all objectives succeed</returns>
-    public bool TryAddObjective(Entity<ESObjectiveHolderComponent?> ent, EntityTableSelector table)
-    {
-        var spawns = _entityTable.GetSpawns(table);
-        return spawns.All(e => TryAddObjective(ent, e));
-    }
-
-    /// <summary>
     /// Attempts to create and assign an objective to an entity
     /// </summary>
     /// <param name="ent">The entity that will be assigned the objective</param>
@@ -382,6 +383,10 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         ent.Comp.OwnedObjectives.Add(objective.Value);
         RegenerateObjectiveList(ent);
         RefreshObjectiveProgress(objective.Value.AsNullable());
+
+        objective.Value.Comp.ObjectiveInitialized = true;
+        Dirty(objective.Value);
+
         return true;
     }
 
@@ -434,6 +439,17 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     }
 
     /// <summary>
+    /// Checks if a given entity has any objectives of a specific type.
+    /// </summary>
+    public bool HasObjectiveOfType<T>([NotNullWhen(true)] EntityUid? potentialHolder) where T : Component
+    {
+        if (potentialHolder == null)
+            return false;
+
+        return GetObjectives<T>(potentialHolder.Value).Any();
+    }
+
+    /// <summary>
     /// Checks if a given entity has the given objective assigned to them.
     /// Unlike <see cref="TryFindObjectiveHolder"/>, this works for any type of inherited ownership, not just direct holding.
     /// </summary>
@@ -451,5 +467,14 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
             ("name", Name(ent)),
             ("success", IsCompleted(ent)),
             ("percent", (int) (GetProgress(ent) * 100)));
+    }
+
+    public void SetDescriptor(EntityUid uid, string text, Color color, string tooltip)
+    {
+        var comp = EnsureComp<ESObjectiveDescriptorComponent>(uid);
+        comp.Text = text;
+        comp.Color = color;
+        comp.Tooltip = tooltip;
+        Dirty(uid, comp);
     }
 }

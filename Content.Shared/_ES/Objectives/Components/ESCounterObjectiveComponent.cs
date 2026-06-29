@@ -47,3 +47,9 @@ public sealed partial class ESCounterObjectiveComponent : Component
     [DataField]
     public LocId? Description;
 }
+
+/// <summary>
+/// Event raised on a counter objective to determine what it's target will be.
+/// </summary>
+[ByRefEvent]
+public record struct ESGetCounterObjectiveTargetEvent(float Target = 0, bool Handled = false);

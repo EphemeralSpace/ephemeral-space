@@ -5,9 +5,9 @@ namespace Content.Server._ES.ServerStatus;
 /// <summary>
 /// This handles hooking StatusManager into sim a bit.
 /// </summary>
-public sealed class StatusSystem : EntitySystem
+public sealed partial class StatusSystem : EntitySystem
 {
-    [Dependency] private readonly StatusManager _status = default!;
+    [Dependency] private StatusManager _status = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

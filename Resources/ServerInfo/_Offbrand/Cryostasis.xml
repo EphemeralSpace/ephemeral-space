@@ -24,13 +24,6 @@ Patients can be inserted into cryo pods to cool them down, slowing their metabol
 
 <GuideReagentEmbed Reagent="Leporazine"/>
 
-Other medicines are less common, but have their uses.
-
-<GuideReagentEmbed Reagent="Aloxadone"/>
-<GuideReagentEmbed Reagent="Doxarubixadone"/>
-<GuideReagentEmbed Reagent="Necrosol"/>
-<GuideReagentEmbed Reagent="Opporozidone"/>
-
 ### Setting Up Cryo Pods
 
 Cryo pods have a network of pipes carrying cold air to the patient, and carrying out their exhaled breaths.

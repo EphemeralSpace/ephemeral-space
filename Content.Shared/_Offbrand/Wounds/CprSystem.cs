@@ -11,14 +11,14 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Offbrand.Wounds;
 
-public sealed class CprSystem : EntitySystem
+public sealed partial class CprSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly WoundableSystem _woundable = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private WoundableSystem _woundable = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {
@@ -31,7 +31,7 @@ public sealed class CprSystem : EntitySystem
 
     private void TryStartCpr(Entity<CprTargetComponent> ent, EntityUid user)
     {
-        _popup.PopupPredicted(
+        _popup.PopupEntity(
             Loc.GetString(ent.Comp.UserPopup, ("target", Identity.Entity(ent, EntityManager))),
             Loc.GetString(ent.Comp.OtherPopup, ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(ent, EntityManager))),
             ent,
@@ -61,7 +61,7 @@ public sealed class CprSystem : EntitySystem
         {
             if (_woundable.TryWound((ent, woundable), ent.Comp.Wound, unique: true, refreshDamage: true))
             {
-                _popup.PopupClient(
+                _popup.PopupEntity(
                     Loc.GetString(ent.Comp.WoundPopup, ("target", Identity.Entity(ent, EntityManager))),
                     ent.Owner,
                     args.User,

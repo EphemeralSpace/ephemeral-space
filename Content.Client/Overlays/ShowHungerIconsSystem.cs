@@ -1,13 +1,23 @@
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Overlays;
+using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Overlays;
 
-public sealed class ShowHungerIconsSystem : EquipmentHudSystem<ShowHungerIconsComponent>
+public sealed partial class ShowHungerIconsSystem : EquipmentHudSystem<ShowHungerIconsComponent>
 {
-    [Dependency] private readonly HungerSystem _hunger = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+
+    private static readonly Dictionary<HungerThreshold, ProtoId<SatiationIconPrototype>?> StatusIcons = new()
+    {
+        { HungerThreshold.Starving, "HungerIconStarving" },
+        { HungerThreshold.Hungry, "HungerIconPeckish" },
+        { HungerThreshold.Peckish, "HungerIconPeckish" },
+        { HungerThreshold.Okay, null },
+    };
 
     public override void Initialize()
     {
@@ -21,7 +31,8 @@ public sealed class ShowHungerIconsSystem : EquipmentHudSystem<ShowHungerIconsCo
         if (!IsActive)
             return;
 
-        if (_hunger.TryGetStatusIconPrototype(component, out var iconPrototype))
-            ev.StatusIcons.Add(iconPrototype);
+        if (StatusIcons.TryGetValue(component.CurrentHunger, out var icon)
+            && icon != null && _proto.TryIndex(icon, out var proto))
+            ev.StatusIcons.Add(proto);
     }
 }

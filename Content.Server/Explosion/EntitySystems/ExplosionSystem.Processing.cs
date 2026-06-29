@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -17,6 +18,9 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Numerics;
+using Content.Server.Decals;
+using Content.Shared.Decals;
+using Robust.Shared.Prototypes;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 
 namespace Content.Server.Explosion.EntitySystems;
@@ -204,7 +208,8 @@ public sealed partial class ExplosionSystem
         float? fireStacks,
         float? temperature,
         float currentIntensity,
-        EntityUid? cause)
+        EntityUid? cause,
+        EntityUid? origin)
     {
         var size = grid.Comp.TileSize;
         var gridBox = new Box2(tile * size, (tile + 1) * size);
@@ -223,7 +228,7 @@ public sealed partial class ExplosionSystem
         // process those entities
         foreach (var (uid, xform) in list)
         {
-            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause, origin);
         }
 
         // process anchored entities
@@ -233,7 +238,7 @@ public sealed partial class ExplosionSystem
         foreach (var entity in _anchored)
         {
             processed.Add(entity);
-            ProcessEntity(entity, epicenter, damage, throwForce, id, null, fireStacks, cause);
+            ProcessEntity(entity, epicenter, damage, throwForce, id, null, fireStacks, cause, origin);
         }
 
         // heat the atmosphere
@@ -262,7 +267,9 @@ public sealed partial class ExplosionSystem
             if (_robustRandom.Prob(explosionType.FireChance))
             {
                 _tileFire.TryDoTileFire(_map.ToCoordinates(grid, tile, grid),
-                    stage: _robustRandom.Next(explosionType.MinFireLevel, explosionType.MaxFireLevel + 1));
+                    stage: _robustRandom.Next(explosionType.MinFireLevel, explosionType.MaxFireLevel + 1),
+                    originatingUser: origin,
+                    spread: explosionType.FireSpread);
             }
         }
 // ES END
@@ -286,7 +293,7 @@ public sealed partial class ExplosionSystem
         {
             // Here we only throw, no dealing damage. Containers n such might drop their entities after being destroyed, but
             // they should handle their own damage pass-through, with their own damage reduction calculation.
-            ProcessEntity(uid, epicenter, null, throwForce, id, xform, null, cause);
+            ProcessEntity(uid, epicenter, null, throwForce, id, xform, null, cause, origin);
         }
 
         return !tileBlocked;
@@ -323,7 +330,8 @@ public sealed partial class ExplosionSystem
         HashSet<EntityUid> processed,
         string id,
         float? fireStacks,
-        EntityUid? cause)
+        EntityUid? cause,
+        EntityUid? origin)
     {
         var gridBox = Box2.FromDimensions(tile * DefaultTileSize, new Vector2(DefaultTileSize, DefaultTileSize));
         var worldBox = spaceMatrix.TransformBox(gridBox);
@@ -339,7 +347,7 @@ public sealed partial class ExplosionSystem
         foreach (var (uid, xform) in state.Item1)
         {
             processed.Add(uid);
-            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause, origin);
         }
 
         if (throwForce <= 0)
@@ -353,7 +361,7 @@ public sealed partial class ExplosionSystem
 
         foreach (var (uid, xform) in list)
         {
-            ProcessEntity(uid, epicenter, null, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, null, throwForce, id, xform, fireStacks, cause, origin);
         }
     }
 
@@ -452,7 +460,8 @@ public sealed partial class ExplosionSystem
         string id,
         TransformComponent? xform,
         float? fireStacksOnIgnite,
-        EntityUid? cause)
+        EntityUid? cause,
+        EntityUid? origin)
     {
         if (originalDamage is not null)
         {
@@ -462,8 +471,7 @@ public sealed partial class ExplosionSystem
                 if (!_damageableQuery.TryComp(entity, out var damageable))
                     continue;
 
-                // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
-                _damageableSystem.TryChangeDamage((entity, damageable), damage, ignoreResistances: true, ignoreGlobalModifiers: true);
+                _damageableSystem.TryChangeDamage((entity, damageable), damage, ignoreResistances: true, ignoreGlobalModifiers: true, origin: origin);
 
                 if (_actorQuery.HasComp(entity))
                 {
@@ -517,6 +525,7 @@ public sealed partial class ExplosionSystem
         int maxTileBreak,
         bool canCreateVacuum,
         List<(Vector2i GridIndices, Tile Tile)> damagedTiles,
+        List<(TileRef tile, ProtoId<DecalPrototype> decal)> damageDecals,
         ExplosionPrototype type)
     {
         if (_tileDefinitionManager[tileRef.Tile.TypeId] is not ContentTileDefinition tileDef
@@ -529,8 +538,28 @@ public sealed partial class ExplosionSystem
             canCreateVacuum = true; // is already a vacuum.
 
         int tileBreakages = 0;
-        while (maxTileBreak > tileBreakages && _robustRandom.Prob(type.TileBreakChance(effectiveIntensity)))
+        while (maxTileBreak > tileBreakages)
         {
+            if (effectiveIntensity <= type.TileBreakNoDamageThreshold)
+                break;
+
+            // essentially how this works: if it succeeds the tilebreak roll, then itll break into the underlying tile
+            // otherwise, itll just change into the damaged variant / spawn damage decals
+            // because of the check above, if a tile breaks then its not guaranteed the underlying tile will immediately
+            // become damaged if the effective intensity was very low and it went below the threshold
+            if (!_robustRandom.Prob(type.TileBreakChance(effectiveIntensity)))
+            {
+                // damage tile instead of replacing it
+                if (tileDef.DamagedTile != null)
+                    tileDef = (ContentTileDefinition) _tileDefinitionManager[tileDef.DamagedTile];
+                else if (tileDef.DamageDecals != null)
+                {
+                    damageDecals.Add((tileRef, _robustRandom.Pick(tileDef.DamageDecals)));
+                }
+
+                break;
+            }
+
             tileBreakages++;
             effectiveIntensity -= type.TileBreakRerollReduction;
 
@@ -538,7 +567,7 @@ public sealed partial class ExplosionSystem
             if (string.IsNullOrEmpty(tileDef.BaseTurf))
                 break;
 
-            if (_tileDefinitionManager[tileDef.BaseTurf] is not ContentTileDefinition newDef)
+            if (tileDef.Indestructible || _tileDefinitionManager[tileDef.BaseTurf] is not ContentTileDefinition newDef)
                 break;
 
             if (newDef.MapAtmosphere && !canCreateVacuum)
@@ -550,7 +579,7 @@ public sealed partial class ExplosionSystem
         if (tileDef.TileId == tileRef.Tile.TypeId)
             return;
 
-        damagedTiles.Add((tileRef.GridIndices, new Tile(tileDef.TileId)));
+        damagedTiles.Add((tileRef.GridIndices, new Tile(tileDef.TileId, variant: _tile.PickVariant(tileDef))));
     }
 }
 
@@ -559,7 +588,7 @@ public sealed partial class ExplosionSystem
 ///     cref="ExplosionSystem"/>.
 /// </summary>
 /// <remarks>
-///     This is basically the output of <see cref="ExplosionSystem.GetExplosionTiles()"/>, but with some utility functions for
+///     This is basically the output of <see cref="ExplosionSystem.GetExplosionTiles"/>, but with some utility functions for
 ///     iterating over the tiles, along with the ability to keep track of what entities have already been damaged by
 ///     this explosion.
 /// </remarks>
@@ -648,6 +677,14 @@ sealed class Explosion
     /// </summary>
     private readonly Dictionary<Entity<MapGridComponent>, List<(Vector2i, Tile)>> _tileUpdateDict = new();
 
+    /// <summary>
+    ///     Damage decals queued to be added after all tiles are updated.
+    /// </summary>
+    /// <remarks>
+    ///     this is mildly inefficient because of how decals work atm. ideally it would do the same kind of thing as mapsystem
+    /// </remarks>
+    private readonly List<(TileRef, ProtoId<DecalPrototype>)> _queuedDecals = new();
+
     // Entity Queries
     private readonly EntityQuery<TransformComponent> _xformQuery;
     private readonly EntityQuery<PhysicsComponent> _physicsQuery;
@@ -679,10 +716,12 @@ sealed class Explosion
     private readonly ExplosionSystem _system;
     private readonly SharedMapSystem _mapSystem;
     private readonly Shared.Damage.Systems.DamageableSystem _damageable;
+    private readonly DecalSystem _decal;
 
     public readonly EntityUid VisualEnt;
 
     public readonly EntityUid? Cause;
+    public readonly EntityUid? Origin;
 
     /// <summary>
     ///     Initialize a new instance for processing
@@ -701,11 +740,14 @@ sealed class Explosion
         IEntityManager entMan,
         EntityUid visualEnt,
         EntityUid? cause,
+        EntityUid? origin,
         SharedMapSystem mapSystem,
-        Shared.Damage.Systems.DamageableSystem damageable)
+        Shared.Damage.Systems.DamageableSystem damageable,
+        DecalSystem decal)
     {
         VisualEnt = visualEnt;
         Cause = cause;
+        Origin = origin;
         _system = system;
         _mapSystem = mapSystem;
         ExplosionType = explosionType;
@@ -718,6 +760,7 @@ sealed class Explosion
         _canCreateVacuum = canCreateVacuum;
         _entMan = entMan;
         _damageable = damageable;
+        _decal = decal;
 
         _xformQuery = entMan.GetEntityQuery<TransformComponent>();
         _physicsQuery = entMan.GetEntityQuery<PhysicsComponent>();
@@ -876,11 +919,12 @@ sealed class Explosion
                     ExplosionType.FireStacks,
                     ExplosionType.Temperature,
                     _currentIntensity,
-                    Cause);
+                    Cause,
+                    Origin);
 
                 // If the floor is not blocked by some dense object, damage the floor tiles.
                 if (canDamageFloor)
-                    _system.DamageFloorTile(tileRef, _currentIntensity * _tileBreakScale, _maxTileBreak, _canCreateVacuum, tileUpdateList, ExplosionType);
+                    _system.DamageFloorTile(tileRef, _currentIntensity * _tileBreakScale, _maxTileBreak, _canCreateVacuum, tileUpdateList, _queuedDecals, ExplosionType);
             }
             else
             {
@@ -895,7 +939,8 @@ sealed class Explosion
                     ProcessedEntities,
                     ExplosionType.ID,
                     ExplosionType.FireStacks,
-                    Cause);
+                    Cause,
+                    Origin);
             }
 
             if (!MoveNext())
@@ -923,6 +968,12 @@ sealed class Explosion
             }
         }
         _tileUpdateDict.Clear();
+
+        foreach (var (tile, decal) in _queuedDecals)
+        {
+            _decal.TryAddDecal(decal, new EntityCoordinates(tile.GridUid, tile.GridIndices), out _);
+        }
+        _queuedDecals.Clear();
     }
 }
 
@@ -937,4 +988,9 @@ public sealed class QueuedExplosion(ExplosionPrototype proto)
     public int MaxTileBreak;
     public bool CanCreateVacuum;
     public EntityUid? Cause; // The entity that exploded, for logging purposes.
+
+    /// <summary>
+    /// Entity that caused the explosion to occur
+    /// </summary>
+    public EntityUid? Origin;
 }

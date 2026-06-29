@@ -1,11 +1,10 @@
+using Content.Server._ES.Announcements;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
-using Content.Server.Chat.Systems;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Screens.Components;
-using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -32,23 +31,23 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Communications
 {
-    public sealed class CommunicationsConsoleSystem : EntitySystem
+    public sealed partial class CommunicationsConsoleSystem : EntitySystem
     {
 // ES START
-        [Dependency] private readonly IPrototypeManager _prototype = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly ESDegradationSystem _degradation = default!;
+        [Dependency] private IPrototypeManager _prototype = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private ESDegradationSystem _degradation = default!;
 // ES END
-        [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
-        [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
-        [Dependency] private readonly ChatSystem _chatSystem = default!;
-        [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
-        [Dependency] private readonly StationSystem _stationSystem = default!;
-        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private AccessReaderSystem _accessReaderSystem = default!;
+        [Dependency] private AlertLevelSystem _alertLevelSystem = default!;
+        [Dependency] private ESAnnouncementSystem _chatSystem = default!;
+        [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private RoundEndSystem _roundEndSystem = default!;
+        [Dependency] private StationSystem _stationSystem = default!;
+        [Dependency] private UserInterfaceSystem _uiSystem = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
 
         private const float UIUpdateInterval = 5.0f;
 
@@ -129,7 +128,7 @@ namespace Content.Server.Communications
 
             msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
 
-            _chatSystem.DispatchStationAnnouncement(ent, msg, title, announcementSound: DegradationSoundEffect, colorOverride: Color.DarkGray);
+            _chatSystem.DispatchRoundAnnouncement(msg, title, announcementSound: DegradationSoundEffect, colorOverride: Color.DarkGray, important: true);
 
             args.Handled = true;
         }
@@ -299,16 +298,13 @@ namespace Content.Server.Communications
 
             if (comp.Global)
             {
-                _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
-
+                _chatSystem.DispatchRoundAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following global announcement: {msg}");
                 return;
             }
 
-            _chatSystem.DispatchStationAnnouncement(uid, msg, title, colorOverride: comp.Color);
-
+            _chatSystem.DispatchRoundAnnouncement(msg, title, colorOverride: comp.Color);
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
-
         }
 
         private void OnBroadcastMessage(EntityUid uid, CommunicationsConsoleComponent component, CommunicationsConsoleBroadcastMessage message)

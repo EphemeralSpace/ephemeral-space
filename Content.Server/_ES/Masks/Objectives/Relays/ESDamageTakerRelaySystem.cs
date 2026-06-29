@@ -10,9 +10,9 @@ namespace Content.Server._ES.Masks.Objectives.Relays;
 /// <summary>
 ///     This handles relaying <see cref="DamageChangedEvent"/> to the mind, allowing other objectives to listen to it.
 /// </summary>
-public sealed class ESDamageTakerRelaySystem : ESBaseMindRelay
+public sealed partial class ESDamageTakerRelaySystem : ESBaseMindRelay
 {
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private MindSystem _mind = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

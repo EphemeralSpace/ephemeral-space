@@ -97,20 +97,6 @@
     - UtilityBelt
 
 - type: entity
-  parent: BaseClothingBeltEngineering
-  id: ClothingBeltChiefEngineer
-  name: chief engineer's toolbelt
-  description: Holds tools, looks snazzy.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/ce.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/ce.rsi
-  - type: Storage
-    grid:
-    - 0,0,9,1
-
-- type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltJanitor
   name: janibelt
@@ -154,139 +140,6 @@
         whitelist:
           tags:
           - Wrench
-  - type: Appearance
-
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltMedical
-  name: medical belt
-  description: Can hold various medical equipment.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/medical.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/medical.rsi
-  - type: Storage
-    whitelist:
-      tags:
-      - Wrench
-      - Bottle
-      - Spray
-      - Brutepack
-      - Bloodpack
-      - Gauze
-      - Ointment
-      - Tourniquet
-      - CigPack
-      - PillCanister
-      - Radio
-      - DiscreteHealthAnalyzer
-      - SurgeryTool
-      - Dropper
-      # ES START
-      - ESTourniquetOffbrand
-      - ESSplints
-      # ES END
-      components:
-      - Injector
-      - Pill
-      - HandLabeler
-      - Tending
-  - type: ItemMapper
-    sprite: *BeltOverlay
-    mapLayers:
-      bottle:
-        whitelist:
-          tags:
-          - Bottle
-      hypo:
-        whitelist:
-          tags:
-          - Hypospray
-      pill:
-        whitelist:
-          components:
-          - Pill
-          tags:
-          - PillCanister
-      bottle_spray:
-        whitelist:
-          tags:
-          - Spray
-      # spray_med:
-      #   whitelist:
-      #     tags:
-      #     - SprayMedical
-      # wrench_medical:
-      #   whitelist:
-      #     tags:
-      #     - WrenchMedical
-      wrench:
-        whitelist:
-          tags:
-          - Wrench
-  - type: Appearance
-
-- type: entity
-  parent: ClothingBeltMedical
-  id: ClothingBeltMedicalEMT
-  name: EMT belt
-  description: Perfect for holding various equipment for medical emergencies.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/emt.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/emt.rsi
-
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltPlant
-  name: botanical belt
-  description: A belt used to hold most hydroponics supplies. Suprisingly, not green.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/plant.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/plant.rsi
-  - type: Storage
-    whitelist:
-      tags:
-      - PlantSampleTaker
-      - BotanyShovel
-      - BotanyHoe
-      - BotanyHatchet
-      - PlantBGone
-      - Bottle
-      - Syringe
-      - CigPack
-      - Dropper
-      components:
-      - Seed
-      - Smokable
-      - HandLabeler
-  - type: ItemMapper
-    sprite: *BeltOverlay
-    mapLayers:
-      hatchet:
-        whitelist:
-          tags:
-          - BotanyHatchet
-      hoe:
-        whitelist:
-          tags:
-          - BotanyHoe
-      secateurs: # We don't have secateurs and this looks similar enough.
-        whitelist:
-          tags:
-          - BotanyShovel
-      plantbgone:
-        whitelist:
-          tags:
-          - PlantBGone
-      bottle:
-        whitelist:
-          tags:
-          - Bottle
   - type: Appearance
 
 - type: entity
@@ -368,7 +221,7 @@
 
 - type: entity
 # ES START
-  parent: [ClothingBeltStorageBase, BaseSecurityContraband]
+  parent: ClothingBeltStorageBase
 # ES END
   id: ClothingBeltSecurity
   name: security belt
@@ -391,8 +244,6 @@
       - Radio
       - Sidearm
       - MagazinePistol
-      - MagazineMagnum
-      - CombatKnife
       - Truncheon
       - HandGrenade
       components:
@@ -405,7 +256,6 @@
       - CartridgeAmmo
       - DoorRemote
       - Whistle
-      - BalloonPopper
   - type: ItemMapper
     sprite: *BeltOverlay
     mapLayers:

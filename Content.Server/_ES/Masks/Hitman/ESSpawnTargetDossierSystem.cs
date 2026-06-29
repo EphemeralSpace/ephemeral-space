@@ -12,14 +12,14 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks.Hitman;
 
-public sealed class ESSpawnTargetDossierSystem : EntitySystem
+public sealed partial class ESSpawnTargetDossierSystem : EntitySystem
 {
-    [Dependency] private readonly ESCluesSystem _clues = default!;
-    [Dependency] private readonly ESSharedObjectiveSystem _objective = default!;
-    [Dependency] private readonly ESTargetObjectiveSystem _target = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private ESCluesSystem _clues = default!;
+    [Dependency] private ESSharedObjectiveSystem _objective = default!;
+    [Dependency] private ESTargetObjectiveSystem _target = default!;
+    [Dependency] private PaperSystem _paper = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

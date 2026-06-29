@@ -15,7 +15,7 @@ namespace Content.Server.Atmos.EntitySystems
 {
     public sealed partial class AtmosphereSystem
     {
-        [Dependency] private readonly TransformSystem _transformSystem = default!;
+        [Dependency] private TransformSystem _transformSystem = default!;
         private static readonly ProtoId<SoundCollectionPrototype> DefaultSpaceWindSounds = "SpaceWind";
 
         // ES START

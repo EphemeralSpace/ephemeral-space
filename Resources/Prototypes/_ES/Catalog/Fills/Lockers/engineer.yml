@@ -18,7 +18,7 @@
     - id: ClothingEyesGlassesMeson
     - id: ClothingMaskGas
     - id: GasAnalyzer
-    - id: MedkitOxygenFilled
+    - id: MedkitO2Filled
     - id: FireExtinguisherMini
     - id: ClothingBeltUtilityEngineering
     - id: RCD
@@ -46,4 +46,4 @@
     - id: ClothingBeltUtilityEngineering
     - id: RCD
     - id: RCDAmmo
-    - id: MetalFoamGrenade
+    - id: AirGrenade

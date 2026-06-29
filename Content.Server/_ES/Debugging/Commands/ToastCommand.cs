@@ -1,6 +1,5 @@
 using Content.Server.Administration;
 using Content.Server.GameTicking;
-using Content.Server.Maps;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
@@ -9,9 +8,9 @@ using Robust.Shared.Toolshed;
 namespace Content.Server._ES.Debugging.Commands;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Debug)]
-public sealed class ToastCommand : ToolshedCommand
+public sealed partial class ToastCommand : ToolshedCommand
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
     private GameTicker? _ticker;
 
     [CommandImplementation]

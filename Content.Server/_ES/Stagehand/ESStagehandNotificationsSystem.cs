@@ -18,12 +18,12 @@ namespace Content.Server._ES.Stagehand;
 /// <summary>
 ///     Handles sending stagehand notifications for various non-stagehand events ingame: objective completions, deaths, etc.
 /// </summary>
-public sealed class ESStagehandNotificationsSystem : EntitySystem
+public sealed partial class ESStagehandNotificationsSystem : EntitySystem
 {
-    [Dependency] private readonly ESSharedObjectiveSystem _objectives = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private ESSharedObjectiveSystem _objectives = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private MindSystem _mind = default!;
 
     public override void Initialize()
     {
@@ -65,6 +65,10 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
 
     private void OnObjectiveProgressChanged(ref ESObjectiveProgressChangedEvent ev)
     {
+        if (!_objectives.IsObjectiveInitialized(ev.Objective.AsNullable())
+            || !_objectives.ShouldAnnounceProgress(ev.Objective.AsNullable()))
+            return;
+
         LocId? msgId;
 
         switch (ev)
@@ -142,7 +146,7 @@ public sealed class ESStagehandNotificationsSystem : EntitySystem
     /// </remarks>
     public string WrapEntityNameWithUsername(Entity<ActorComponent?> entity)
     {
-        string? username = null;
+        string? username;
         if (Resolve(entity, ref entity.Comp, false))
         {
             username = entity.Comp.PlayerSession.Name;

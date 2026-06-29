@@ -211,32 +211,6 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineAmmo
-  name: liberation station
-  description: An overwhelming amount of ancient patriotism washes over you just by looking at the machine.
-  components:
-  - type: VendingMachine
-    pack: AmmoVendInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-  - type: DatasetVocalizer
-    dataset: CondimentVendAds
-  - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/ammo.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-
-- type: entity
-  parent: VendingMachine
   id: VendingMachineBooze
   name: Booze-O-Mat
   description: A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one.
@@ -332,40 +306,7 @@
     energy: 2.0
     color: "#ffb0b0"
   - type: AccessReader
-    access: [["HeadOfPersonnel"]]
-
-- type: entity
-  parent: VendingMachine
-  id: VendingMachineChefvend
-  name: ChefVend
-  description: An ingredient vendor for all your cheffin needs.
-  components:
-  - type: VendingMachine
-    pack: ChefvendInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-  - type: DatasetVocalizer
-    dataset: ChefvendAds
-  - type: SpeakOnUIClosed
-    pack: ChefvendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/chefvend.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["Service"]]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#4b93ad"
+    access: [["StationAdmin"]]
 
 - type: entity
   parent: VendingMachine
@@ -758,39 +699,6 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineDinnerware
-  name: Plasteel Chef's Dinnerware Vendor
-  description: A kitchen and restaurant equipment vendor.
-  components:
-  - type: VendingMachine
-    pack: DinnerwareInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-  - type: DatasetVocalizer
-    dataset: DinnerwareAds
-  - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/dinnerware.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["Kitchen"]]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#4b93ad"
-
-- type: entity
-  parent: VendingMachine
   id: VendingMachineDiscount
   name: Discount Dan's
   description: A vending machine containing discount snacks from the infamous 'Discount Dan' franchise.
@@ -854,62 +762,6 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineMedicalBase
-  name: NanoMed Civilian
-  description: It's a medical drug dispenser. Natural chemicals only!
-  components:
-  - type: VendingMachine
-    pack: NanoMedCivilianInventory
-    offState: off-civilian
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-    denyState: deny-unshaded
-    ejectDelay: 0.6
-  - type: DatasetVocalizer
-    dataset: NanoMedAds
-  - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/medical.rsi
-    layers:
-    - state: "off-civilian"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off-civilian"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#9dc5c9"
-  - type: GuideHelp
-    guides:
-    - OffbrandMedical # Offbrand
-
-- type: entity
-  parent: VendingMachineMedicalBase
-  id: VendingMachineMedical
-  name: NanoMed Plus
-  components:
-  - type: VendingMachine
-    pack: NanoMedPlusInventory
-    offState: off
-  - type: Sprite
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["Medical"]]
-
-- type: entity
-  parent: VendingMachine
   id: VendingMachineNutri
   name: NutriMax
   description: A vending machine containing nutritional substances for plants and botanical tools.
@@ -941,82 +793,6 @@
     radius: 1.5
     energy: 3.0
     color: "#326e3f"
-
-- type: entity
-  parent: VendingMachine
-  id: VendingMachineSec
-  name: SecTech
-  description: A vending machine containing Security equipment. A label reads SECURITY PERSONNEL ONLY.
-  components:
-  - type: VendingMachine
-    pack: SecTechInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-    denyState: deny-unshaded
-  - type: DatasetVocalizer
-    dataset: SecTechAds
-  - type: SpeakOnUIClosed
-    pack: SecTechGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/sec.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["Security"]]
-  - type: PointLight
-    radius: 1
-    energy: 2.0
-    color: "#78645c"
-
-
-- type: entity
-  parent: VendingMachine
-  id: VendingMachineSeedsUnlocked
-  name: MegaSeed Servitor
-  description: For when you need seeds fast. Hands down the best seed selection on the station!
-  suffix: Unlocked
-  components:
-  - type: VendingMachine
-    pack: MegaSeedServitorInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-    denyState: deny-unshaded
-  - type: DatasetVocalizer
-    dataset: MegaSeedAds
-  - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/seeds.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#326e3f"
-
-- type: entity
-  parent: VendingMachineSeedsUnlocked
-  id: VendingMachineSeeds
-  suffix: Hydroponics
-  components:
-  - type: AccessReader
-    access: [["Hydroponics"]]
 
 - type: entity
   parent: VendingMachine
@@ -1234,41 +1010,6 @@
 
 - type: entity
   parent: VendingMachine
-  id: VendingMachineRobotics
-  name: Robotech Deluxe
-  description: All the tools you need to create your own robot army.
-  components:
-  - type: VendingMachine
-    pack: RoboticsInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-    denyState: deny-unshaded
-  - type: DatasetVocalizer
-    dataset: VendomatAds
-  - type: SpeakOnUIClosed
-    pack: GenericVendGoodbyes
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/robotics.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["Research"]]
-  - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#B0ADA9"
-
-
-- type: entity
-  parent: VendingMachine
   id: VendingMachineYouTool
   name: YouTool
   description: "A vending machine containing standard tools. A label reads: Tools for tools."
@@ -1299,7 +1040,7 @@
   parent: VendingMachine
   id: VendingMachineGames
   name: Good Clean Fun
-  description: Vends things that the Captain and Head of Personnel are probably not going to appreciate you fiddling with instead of your job...
+  description: Vends things that the Captain and Station Administrator are probably not going to appreciate you fiddling with instead of your job...
   components:
   - type: VendingMachine
     pack: GoodCleanFunInventory
@@ -1501,54 +1242,3 @@
     normalState: normal
     denyState: deny
     ejectDelay: 2
-
-# wallmount
-- type: entity
-  parent: VendingMachineWallmount
-  id: VendingMachineWallMedicalCivilian
-  name: NanoMed band-aid
-  description: It's a wall-mounted medical equipment dispenser. Natural chemicals only!
-  components:
-  - type: VendingMachine
-    pack: NanoMedCivilianWallInventory
-    offState: off-civilian
-    brokenState: broken
-    normalState: normal-unshaded
-    denyState: deny-unshaded
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/wallmed.rsi
-    layers:
-    - state: "off-civilian"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off-civilian"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - texture: Structures/Machines/VendingMachines/maintenance_panel.png
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PointLight
-    radius: 1.3
-    energy: 3.0
-    color: "#43ccb5"
-  - type: GuideHelp
-    guides:
-    - OffbrandMedical # Offbrand
-
-- type: entity
-  parent: VendingMachineWallMedicalCivilian
-  id: VendingMachineWallMedical
-  name: NanoMed
-  components:
-  - type: VendingMachine
-    pack: NanoMedInventory
-    offState: off
-  - type: Sprite
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - texture: Structures/Machines/VendingMachines/maintenance_panel.png
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["Medical"]]

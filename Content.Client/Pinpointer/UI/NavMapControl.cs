@@ -28,7 +28,7 @@ namespace Content.Client.Pinpointer.UI;
 [UsedImplicitly, Virtual]
 public partial class NavMapControl : MapGridControl
 {
-    [Dependency] private readonly IFontSelectionManager _fontSelection = default!;
+    [Dependency] private IFontSelectionManager _fontSelection = default!;
     private readonly SharedTransformSystem _transformSystem;
     private readonly SharedNavMapSystem _navMapSystem;
 

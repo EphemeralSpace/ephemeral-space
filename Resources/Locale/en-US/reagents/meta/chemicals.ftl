@@ -19,14 +19,8 @@ reagent-desc-sodium-hydroxide = A white, odorless, water-soluble salt that yield
 reagent-name-fersilicite = fersilicite
 reagent-desc-fersilicite = An intermetallic compound with unusual magnetic properties at low temperatures.
 
-reagent-name-sodium-polyacrylate = sodium polyacrylate
-reagent-desc-sodium-polyacrylate = A super-absorbent polymer with assorted industrial uses.
-
 reagent-name-cellulose = cellulose fibers
 reagent-desc-cellulose = A crystaline polydextrose polymer, plants swear by this stuff.
-
-reagent-name-rororium = rororium
-reagent-desc-rororium = A strange substance which fills the cores of the hivelords that roam the mining asteroid. Thought to be the source of their regenerative powers.
 
 reagent-name-lye = lye
 reagent-desc-lye = A translucent, orange, alkaline solution used in traditional soap production.

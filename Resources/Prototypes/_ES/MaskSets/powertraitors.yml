@@ -1,5 +1,5 @@
 - type: esMaskSet
   id: PowerTraitors # Higher power tots.
   masks:
-    Subverter: 0.5
-    Demolitionist: 1
+    Subverter: 1
+    Demolitionist: 0.6

@@ -19,11 +19,13 @@
   name: bone setter
   components:
   - type: Sprite
-    sprite: _Offbrand/surgery_tools.rsi
-    state: bonesetter
+    sprite: _ES/Objects/Specific/Medical/Tools/bonesetter.rsi
+    state: icon
   - type: Item
-    sprite: _Offbrand/surgery_tools.rsi
-    heldPrefix: bonesetter
+    sprite: _ES/Objects/Specific/Medical/Tools/bonesetter.rsi
+    storedSprite:
+      sprite: _ES/Objects/Specific/Medical/Tools/bonesetter.rsi
+      state: storage
   - type: Tool
     qualities:
     - BoneSetting
@@ -34,11 +36,10 @@
   name: vascular recoupler
   components:
   - type: Sprite
-    sprite: _Offbrand/surgery_tools.rsi
-    state: bloodfilter
+    sprite: _ES/Objects/Specific/Medical/Tools/recoupler.rsi
+    state: icon
   - type: Item
-    sprite: _Offbrand/surgery_tools.rsi
-    heldPrefix: bloodfilter
+    sprite: _ES/Objects/Specific/Medical/Tools/recoupler.rsi
   - type: Tool
     qualities:
     - Recoupling

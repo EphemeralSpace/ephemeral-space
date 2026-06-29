@@ -97,7 +97,7 @@ public abstract class MaskSetProvider
 public sealed partial class ESTroupeMasksProvider : MaskSetProvider
 {
     [Dependency]
-    private readonly IPrototypeManager _proto = default!;
+    private IPrototypeManager _proto = default!;
 
     [DataField(required: true)]
     public ProtoId<ESTroupePrototype> Troupe = "Crew";

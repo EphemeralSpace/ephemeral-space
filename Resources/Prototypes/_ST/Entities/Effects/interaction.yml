@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: LicenseRef-Wallening
 
 - type: entity
-  id: StellarInteractionParticle
+  id: StellarInteractionParticleUse
   categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
@@ -21,3 +21,12 @@
   # ES START
   - type: ESViewconeOccludable
   # ES END
+
+- type: entity
+  parent: StellarInteractionParticleUse
+  id: StellarInteractionParticlePull
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: pulling
+    loop: false

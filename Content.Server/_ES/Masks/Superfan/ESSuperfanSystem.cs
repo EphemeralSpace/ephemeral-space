@@ -1,24 +1,22 @@
 using System.Linq;
 using Content.Server._ES.Masks.Masquerades;
-using Content.Server.KillTracking;
 using Content.Server.Mind;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Masks;
 using Content.Shared.Mind;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Masks.Superfan;
 
 /// <seealso cref="ESSuperfanComponent"/>
-public sealed class ESSuperfanSystem : EntitySystem
+public sealed partial class ESSuperfanSystem : EntitySystem
 {
-    [Dependency] private readonly ESMaskSystem _mask = default!;
-    [Dependency] private readonly ESMasqueradeSystem _masquerade = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private ESMaskSystem _mask = default!;
+    [Dependency] private ESMasqueradeSystem _masquerade = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     private static readonly ProtoId<ESTroupePrototype> TraitorsTroupe = "Traitor";
 
@@ -30,13 +28,9 @@ public sealed class ESSuperfanSystem : EntitySystem
 
     private void OnKillReported(ref ESPlayerKilledEvent ev)
     {
-        // TODO: This feels fishy. I'll leave the kill reporting rewrite nerds to
-        //       figure out having a kill report for entire troupes down the line.
-        foreach (var member in _mask.GetTroupeMembers(TraitorsTroupe))
-        {
-            if (!_mind.IsCharacterDeadIc(Comp<MindComponent>(member)))
-                return; // Well the troupe ain't dead.
-        }
+        // Only activate if our target troupe died.
+        if (_mask.GetTroupeOrNull(ev.Killed) != TraitorsTroupe)
+            return;
 
         if (!_masquerade.TryGetMasqueradeData(out var set))
             return; // Well, no masquerade means no conversion target.
@@ -47,10 +41,27 @@ public sealed class ESSuperfanSystem : EntitySystem
             return;
         }
 
-        var fanQuery = EntityQueryEnumerator<ESSuperfanComponent, MindComponent>();
-
-        while (fanQuery.MoveNext(out var ent, out var fan, out var mind))
+        var total = 0;
+        var dead = 0;
+        foreach (var member in _mask.GetTroupeMembers(TraitorsTroupe))
         {
+            total += 1;
+
+            if (_mind.IsCharacterDeadIc(Comp<MindComponent>(member)))
+                dead += 1;
+        }
+
+        // Chance to be converted is proportional to the number of dead troupe members.
+        var prob = total != 0
+            ? (float)dead / total
+            : 1;
+
+        var fanQuery = EntityQueryEnumerator<ESSuperfanComponent, MindComponent>();
+        while (fanQuery.MoveNext(out var ent, out _, out var mind))
+        {
+            if (!_random.Prob(prob))
+                continue;
+
             if (_mind.IsCharacterDeadIc(mind))
                 continue; // Don't assign the dead to tot masks.
 

@@ -6,10 +6,10 @@ using Robust.Shared.Toolshed.TypeParsers;
 
 namespace Content.Shared._Citadel.Utilities;
 
-public sealed class RngSeedTypeParser : TypeParser<RngSeed>
+public sealed partial class RngSeedTypeParser : TypeParser<RngSeed>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ToolshedManager _shed = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ToolshedManager _shed = default!;
 
     public override bool TryParse(ParserContext ctx, out RngSeed result)
     {

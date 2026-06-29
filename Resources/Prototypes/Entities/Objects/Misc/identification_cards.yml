@@ -35,6 +35,9 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+  # ES start - Prioritization for pickpocket stealing
+  - type: ESPickpocketPriorityItem
+  # ES end
 
 #IDs with layers
 
@@ -60,7 +63,7 @@
 #Command
 
 - type: entity
-  parent: [IDCardStandard, BaseGrandTheftContraband]
+  parent: IDCardStandard
   id: CaptainIDCard
   name: captain ID card
   components:
@@ -85,8 +88,8 @@
 
 - type: entity
   parent: IDCardStandard
-  id: HoPIDCard
-  name: head of personnel ID card
+  id: StationAdminIDCard
+  name: station administrator ID card
   components:
   - type: Sprite
     layers:
@@ -102,7 +105,7 @@
   - type: Item
     heldPrefix: silver
   - type: PresetIdCard
-    job: ESHeadOfPersonnel
+    job: ESStationAdmin
 
 #Engineering
 
@@ -403,7 +406,6 @@
   - type: IdCard
     jobTitle: job-name-prisoner
     jobIcon: JobIconPrisoner
-    canMicrowave: false
   - type: ExpireIdCard
     expireMessage: genpop-prisoner-id-expire
     expiredAccess:

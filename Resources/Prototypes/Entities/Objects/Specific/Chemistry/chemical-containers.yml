@@ -24,54 +24,6 @@
 
 - type: entity
   parent: Jug
-  id: JugPunctTranex
-  suffix: punct & tranex
-  components:
-  - type: Label
-    currentLabel: reagent-name-puncturase-tranexamic
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Puncturase
-          Quantity: 160
-        - ReagentId: TranexamicAcid
-          Quantity: 40
-
-- type: entity
-  parent: Jug
-  id: JugPyraDerma
-  suffix: pyra & derma
-  components:
-  - type: Label
-    currentLabel: reagent-name-pyrazine-dermaline
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Pyrazine
-          Quantity: 50
-        - ReagentId: Dermaline
-          Quantity: 150
-
-- type: entity
-  parent: Jug
-  id: JugDexPlusSaline
-  suffix: dex+ & saline
-  components:
-  - type: Label
-    currentLabel: reagent-name-dexalin-plus-saline
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: DexalinPlus
-          Quantity: 100
-        - ReagentId: Saline
-          Quantity: 100
-
-- type: entity
-  parent: Jug
   id: JugTrico
   suffix: tricordrazine
   components:
@@ -489,21 +441,6 @@
 
 - type: entity
   parent: Jug
-  suffix: puncturase
-  id: JugPuncturase
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Label
-    currentLabel: reagent-name-puncturase
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Puncturase
-          Quantity: 200
-
-- type: entity
-  parent: Jug
   suffix: dermaline
   id: JugDermaline
   categories: [ HideSpawnMenu ]
@@ -575,19 +512,4 @@
       drink:
         reagents:
         - ReagentId: Saline
-          Quantity: 200
-
-- type: entity
-  parent: Jug
-  suffix: dexalin plus
-  id: JugDexalinPlus
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Label
-    currentLabel: reagent-name-dexalin-plus
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: DexalinPlus
           Quantity: 200

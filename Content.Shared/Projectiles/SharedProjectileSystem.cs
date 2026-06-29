@@ -7,7 +7,6 @@ using Content.Shared.Inventory;
 using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -21,17 +20,20 @@ public abstract partial class SharedProjectileSystem : EntitySystem
 {
     public const string ProjectileFixture = "projectile";
 
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<ProjectileComponent, PreventCollideEvent>(PreventCollision);
+        SubscribeLocalEvent<ProjectileComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<ESProjectileShooterComponent, ComponentShutdown>(OnShooterShutdown);
+        SubscribeLocalEvent<ESProjectileWeaponComponent, ComponentShutdown>(OnWeaponShutdown);
         SubscribeLocalEvent<EmbeddableProjectileComponent, ProjectileHitEvent>(OnEmbedProjectileHit);
         SubscribeLocalEvent<EmbeddableProjectileComponent, ThrowDoHitEvent>(OnEmbedThrowDoHit);
         SubscribeLocalEvent<EmbeddableProjectileComponent, ActivateInWorldEvent>(OnEmbedActivate);
@@ -207,13 +209,84 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         }
     }
 
+    private void OnShutdown(Entity<ProjectileComponent> ent, ref ComponentShutdown args)
+    {
+        if (TryComp<ESProjectileShooterComponent>(ent.Comp.Shooter, out var shooterComp))
+        {
+            shooterComp.Projectiles.Remove(ent);
+            Dirty(ent.Comp.Shooter.Value, shooterComp);
+        }
+
+        if (TryComp<ESProjectileWeaponComponent>(ent.Comp.Weapon, out var weaponComp))
+        {
+            weaponComp.Projectiles.Remove(ent);
+            Dirty(ent.Comp.Weapon.Value, weaponComp);
+        }
+    }
+
+    private void OnShooterShutdown(Entity<ESProjectileShooterComponent> ent, ref ComponentShutdown args)
+    {
+        foreach (var projectile in ent.Comp.Projectiles)
+        {
+            if (!TryComp<ProjectileComponent>(projectile, out var comp))
+                continue;
+            comp.Shooter = null;
+            Dirty(projectile, comp);
+        }
+    }
+
+    private void OnWeaponShutdown(Entity<ESProjectileWeaponComponent> ent, ref ComponentShutdown args)
+    {
+        foreach (var projectile in ent.Comp.Projectiles)
+        {
+            if (!TryComp<ProjectileComponent>(projectile, out var comp))
+                continue;
+            comp.Weapon = null;
+            Dirty(projectile, comp);
+        }
+    }
+
     public void SetShooter(EntityUid id, ProjectileComponent component, EntityUid shooterId)
     {
         if (component.Shooter == shooterId)
             return;
 
+        if (component.Shooter is { } oldShooter)
+        {
+            var oldShooterComp = EnsureComp<ESProjectileShooterComponent>(oldShooter);
+            oldShooterComp.Projectiles.Remove(id);
+            Dirty(oldShooter, oldShooterComp);
+        }
+
         component.Shooter = shooterId;
         Dirty(id, component);
+
+        var shooterComp = EnsureComp<ESProjectileShooterComponent>(shooterId);
+        shooterComp.Projectiles.Add(id);
+        Dirty(shooterId, shooterComp);
+    }
+
+    public void SetWeapon(EntityUid uid, ProjectileComponent component, EntityUid? weapon)
+    {
+        if (component.Weapon == weapon)
+            return;
+
+        if (component.Weapon is { } oldWeapon)
+        {
+            var oldWeaponComp = EnsureComp<ESProjectileWeaponComponent>(oldWeapon);
+            oldWeaponComp.Projectiles.Remove(uid);
+            Dirty(oldWeapon, oldWeaponComp);
+        }
+
+        component.Weapon = weapon;
+        Dirty(uid, component);
+
+        if (weapon.HasValue)
+        {
+            var weaponComp = EnsureComp<ESProjectileWeaponComponent>(weapon.Value);
+            weaponComp.Projectiles.Add(uid);
+            Dirty(weapon.Value, weaponComp);
+        }
     }
 
     [Serializable, NetSerializable]

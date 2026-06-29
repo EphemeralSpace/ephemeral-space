@@ -10,35 +10,23 @@
     - Ephedrine
     - Omnizine
     - Tricordrazine
-    - Vitamin
-    - PolypyryliumOligomers
     - Charcoal
   # Neutral - weight: 30
   - quantity: 20
     weight: 25
     reagents:
     - Ipecac
-    - SodiumPolyacrylate
     - SpaceDrugs
     - SpaceGlue
-    - Lipozine
-    - Carpetium
-    - Bananadine
     - THC
     - MindbreakerToxin
     - Mustard
     - HorseradishSauce
-  - quantity: 5
-    weight: 5
-    reagents:
-    - Honk
   # Bad - weight: 25
   - quantity: 20
     weight: 10
     reagents:
     - MuteToxin
-    - Pax
-    - Fresium
     - Cryptobiolin
   - quantity: 10
     weight: 10

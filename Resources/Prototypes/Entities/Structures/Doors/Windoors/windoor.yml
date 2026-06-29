@@ -427,9 +427,9 @@
 
 - type: entity
   parent: WindoorSecureCommandLocked
-  id: WindoorSecureHeadOfPersonnelLocked
-  suffix: HeadOfPersonnel, Locked
+  id: WindoorSecureStationAdminLocked
+  suffix: StationAdmin, Locked
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsHeadOfPersonnel ]
+      board: [ DoorElectronicsStationAdmin ]

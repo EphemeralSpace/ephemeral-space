@@ -71,51 +71,11 @@
   objectType: Item
 
 - type: construction
-  id: improvisedshotgun
-  graph: ImprovisedShotgunGraph
-  startNode: start
-  targetNode: shotgun
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
-  id: ShellShotgunImprovised
-  graph: ImprovisedShotgunShellGraph
-  startNode: start
-  targetNode: shell
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
-  id: riflestock
-  graph: RifleStockGraph
-  startNode: start
-  targetNode: riflestock
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
   id: firebomb
   graph: FireBomb
   startNode: start
   targetNode: firebomb
   category: construction-category-weapons
-  objectType: Item
-
-- type: construction
-  id: CottonWovenCloth
-  graph: CottonObjects
-  startNode: start
-  targetNode: cottoncloth
-  category: construction-category-misc
-  objectType: Item
-
-- type: construction
-  id: strawHat
-  graph: StrawHat
-  startNode: start
-  targetNode: strawhat
-  category: construction-category-clothing
   objectType: Item
 
 - type: construction
@@ -142,28 +102,3 @@
   category: construction-category-misc
   objectType: Item
 
-- type: construction
-  id: HardsuitGoliath
-  graph: HardsuitGoliath
-  startNode: start
-  targetNode: hardsuitGoliath
-  category: construction-category-clothing
-  objectType: Item
-
-#ES START
-# - type: construction
-#  id: scraparmor
-#  graph: scraparmor
-#  startNode: start
-#  targetNode: scraparmorfinished
-#  category: construction-category-clothing
-#  objectType: Item
-
-#- type: construction
-#  id: scraphelmet
-#  graph: scraphelmet
-#  startNode: start
-#  targetNode: scraphelmet
-#  category: construction-category-clothing
-#  objectType: Item
-#ES END
