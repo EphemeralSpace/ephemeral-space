@@ -94,7 +94,6 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: ClothingMaskGasSecurity
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: Flare
@@ -113,7 +112,6 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: ClothingMaskGasSecurity
         - id: EmergencyNitrogenTankFilled
         - id: EmergencyMedipen
         - id: Flare

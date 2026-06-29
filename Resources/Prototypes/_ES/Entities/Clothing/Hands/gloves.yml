@@ -1,7 +1,7 @@
 # Sanitation gloves
 - type: entity
   parent: ClothingHandsGlovesSyntheticBase
-  id: ESClothingHandsGlovesColorOrange
+  id: ESClothingHandsGlovesSanitation
   name: sanitation gloves
   description: Biohazard-resistant orange gloves. Useful for preventing contamination.
   suffix: ES

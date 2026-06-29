@@ -249,10 +249,7 @@
       storagebase: !type:AllSelector
         children:
         - id: ClothingShoesBootsPerformer
-        - id: ClothingUniformJumpskirtPerformer
         - id: ClothingHeadPerformerWig
-        - id: FoodMealMemoryleek
-          amount: 2
 
 - type: entity
   name: flare box
@@ -405,7 +402,7 @@
 
 - type: entity
   name: syndicate encryption key box
-  parent: [BoxEncryptionKeyPassenger, BaseSyndicateContraband]
+  parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeySyndie
   description: Two syndicate encryption keys for the price of one. Miniaturized for ease of use.
   components:

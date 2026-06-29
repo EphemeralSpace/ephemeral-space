@@ -32,7 +32,7 @@
 ## Belts without visualizers
 
 - type: entity
-  parent: [ClothingBeltAmmoProviderBase, BaseSecurityBartenderContraband]
+  parent: ClothingBeltAmmoProviderBase
   id: ClothingBeltBandolier
   name: bandolier
   description: A bandolier for holding shotgun ammunition.
@@ -64,73 +64,3 @@
   - type: Storage
     grid:
     - 0,0,3,1
-
-- type: entity
-  parent: [ClothingBeltStorageBase, BaseSyndicateContraband]
-  id: ClothingBeltSyndieHolster
-  name: syndicate shoulder holster
-  description: A deep shoulder holster capable of holding many types of ballistics.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/syndieholster.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/syndieholster.rsi
-  - type: Storage
-    maxItemSize: Huge
-    grid:
-    - 0,0,3,3
-    whitelist:
-      components:
-      - Gun
-      - BallisticAmmoProvider
-      - CartridgeAmmo
-
-## Webbing
-
-# Weirdly the only webbing with a storage whitelist and item mapper.
-# Might be worth making less common (armory only?) and removing the whitelist to eliminate the inconsistency.
-- type: entity
-  parent: ClothingBeltSecurity
-  id: ClothingBeltSecurityWebbing
-  name: security carrier
-  description: Unique and versatile chest rig, can hold security gear.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/securitywebbing.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/securitywebbing.rsi
-
-- type: entity
-  parent: [ ClothingBeltStorageBase, BaseSecurityCargoContraband ]
-  id: ClothingBeltMercWebbing
-  name: mercenary webbing
-  description: Ideal for storing everything from ammo to weapons and combat essentials.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/mercwebbing.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/mercwebbing.rsi
-
-- type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseSyndicateContraband]
-  id: ClothingBeltMilitaryWebbing
-  name: chest rig
-  description: A set of tactical webbing worn by Syndicate boarding parties.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/militarywebbing.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/militarywebbing.rsi
-  - type: ExplosionResistance
-    damageCoefficient: 0.1
-
-- type: entity
-  parent: ClothingBeltMilitaryWebbing
-  id: ClothingBeltMilitaryWebbingERT
-  name: ERT chest rig
-  description: A set of tactical webbing worn by Emergency Response Team operatives.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/militarywebbingert.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/militarywebbingert.rsi

@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Contraband;
 using Content.Shared.Emp;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
@@ -27,7 +26,6 @@ public abstract partial class SharedChameleonClothingSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private ClothingSystem _clothingSystem = default!;
-    [Dependency] private ContrabandSystem _contraband = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedItemSystem _itemSystem = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
@@ -116,17 +114,6 @@ public abstract partial class SharedChameleonClothingSystem : EntitySystem
         {
             _appearance.AppendData(appearanceOther, uid);
             Dirty(uid, appearance);
-        }
-
-        // properly mark contraband
-        if (proto.TryGetComponent(out ContrabandComponent? contra, Factory))
-        {
-            EnsureComp<ContrabandComponent>(uid, out var current);
-            _contraband.CopyDetails(uid, contra, current);
-        }
-        else
-        {
-            RemComp<ContrabandComponent>(uid);
         }
     }
 

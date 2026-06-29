@@ -11,7 +11,7 @@
     sprite: _ES/Clothing/Head/Softcaps/paramedic.rsi
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatParamedicsoft]
+  parent: [ClothingHeadHeadHatBaseFlipped, ESClothingHeadHatParamedicsoft]
   id: ESClothingHeadHatParamedicsoftFlipped
   name: paramedic's cap
   suffix: ES
