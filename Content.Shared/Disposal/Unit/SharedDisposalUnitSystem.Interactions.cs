@@ -1,4 +1,3 @@
-using Content.Shared.Body;
 using Content.Shared.Containers;
 using Content.Shared.Database;
 using Content.Shared.Disposal.Components;
@@ -13,6 +12,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Shared.Body.Components;
 
 namespace Content.Shared.Disposal.Unit;
 
@@ -143,9 +143,7 @@ public abstract partial class SharedDisposalUnitSystem
 
         if (GetContainedEntityCount(ent) >= ent.Comp.MaxCapacity)
         {
-            // TODO: If ContainerIsInsertingAttemptEvent ever ends up having the user
-            // attached to the event, we'll be able to predict the pop up
-            _popup.PopupPredicted(Loc.GetString("disposal-unit-is-full"), ent, null);
+            _popup.PopupEntity(Loc.GetString("disposal-unit-is-full"), ent);
 
             args.Cancel();
             return;
