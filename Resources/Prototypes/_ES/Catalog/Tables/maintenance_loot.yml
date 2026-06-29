@@ -290,13 +290,9 @@
       - id: ESClothingUniformJumpsuitRussianColorGrey
       - id: ClothingShoesColorBrown
       weight: 0.5
-    - group: # Funny Shoes
-      - id: ClothingUnderSocksBee
-      - id: ClothingUnderSocksCoder
-      weight: 0.5
     - all:
       - id: ClothingOuterCoatPirate
-      - id: ClothingHeadHatPirateTricord
+      - id: ClothingHeadHatPirate
       weight: 0.5
 
     - group: # Goofy items
