@@ -24,7 +24,7 @@
     - id: RubberStampDenied
     - id: CigarGoldCase
       prob: 0.25
-    - id: ClothingHeadsetCommand
+    - id: ClothingHeadsetAltCommand
     - id: ClothingNeckGoldmedal
     - id: StationAdminIDCard
     - id: Stunbaton
@@ -50,11 +50,9 @@
   id: ESFillLockerDetective
   table: !type:AllSelector
     children:
-    - id: ClothingEyesGlassesNoir
+    - id: ClothingEyesGlassesSunglasses
     - id: ESWeaponRevolver357 # sure, the other security roles don't get guns, but what is a detective without their revolver?
     - id: ClothingBeltSecurity # this belt is supposed to be empty so det doesn't get a batong
-    - id: ClothingHeadHatDetGadget
-      prob: 0.15
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
     - id: ForensicScanner
@@ -161,8 +159,6 @@
   table: !type:AllSelector
     children:
     - id: BriefcaseAluminumFilledDoctor
-    - id: ClothingHeadMirror
-      prob: 0.1
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical
     - id: ClothingEyesHudMedical

@@ -31419,13 +31419,6 @@ entities:
     - type: Transform
       pos: -3.5,17.5
       parent: 2
-- proto: ClosetLegalFilled
-  entities:
-  - uid: 6160
-    components:
-    - type: Transform
-      pos: -39.5,-35.5
-      parent: 2
 - proto: ClosetRadiationSuitFilled
   entities:
   - uid: 7349
@@ -31531,13 +31524,6 @@ entities:
     components:
     - type: Transform
       pos: -4.5,-47.5
-      parent: 2
-- proto: ClothingOuterWinterChef
-  entities:
-  - uid: 3336
-    components:
-    - type: Transform
-      pos: -15.5,-11.5
       parent: 2
 - proto: ClothingShoesBootsMag
   entities:

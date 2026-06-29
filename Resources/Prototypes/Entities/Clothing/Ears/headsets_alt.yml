@@ -1,0 +1,25 @@
+- type: entity
+  abstract: true
+  parent: ClothingHeadset
+  id: ClothingHeadsetAlt
+  name: headset
+  description: An updated, modular intercom that fits over the head. Takes encryption keys.
+  components:
+  - type: Sprite
+    state: icon_alt
+  - type: Clothing
+    equippedPrefix: alt
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltCommand
+  name: command over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/command.rsi

@@ -26,10 +26,3 @@
       storagebase: !type:AllSelector
         children:
         - id: ClothingNeckGoldmedal
-        - id: ClothingNeckBronzeheart
-        - id: ClothingNeckCargomedal
-        - id: ClothingNeckEngineermedal
-        - id: ClothingNeckMedicalmedal
-        - id: ClothingNeckSciencemedal
-        - id: ClothingNeckSecuritymedal
-        - id: ClothingNeckClownmedal

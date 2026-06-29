@@ -310,7 +310,7 @@
   - type: Pda
     id: CaptainIDCard
     penSlot:
-      startingItem: PenCap
+      startingItem: Pen
       priority: -1
       whitelist:
         tags:
@@ -455,7 +455,7 @@
   components:
   - type: Pda
     penSlot:
-      startingItem: PenCentcom
+      startingItem: Pen
       priority: -1
       whitelist:
         tags:

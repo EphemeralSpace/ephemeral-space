@@ -59,7 +59,6 @@
     - id: ClothingUniformJumpsuitCargo
     - id: ClothingBackpack
     - id: ClothingShoesColorBlack
-    - id: ClothingHandsGlovesFingerless
 
 - type: entity
   parent: ESWardrobeChef
@@ -78,7 +77,6 @@
     - id: ClothingBackpack
     - id: ClothingHeadHatChef
     - id: ClothingOuterJacketChef
-    - id: ClothingOuterWinterChef
     - id: ClothingShoesChef
     - id: ClothingUniformJumpsuitChef
 

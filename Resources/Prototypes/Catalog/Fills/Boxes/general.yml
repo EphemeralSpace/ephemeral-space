@@ -249,10 +249,7 @@
       storagebase: !type:AllSelector
         children:
         - id: ClothingShoesBootsPerformer
-        - id: ClothingUniformJumpskirtPerformer
         - id: ClothingHeadPerformerWig
-        - id: FoodMealMemoryleek
-          amount: 2
 
 - type: entity
   name: flare box

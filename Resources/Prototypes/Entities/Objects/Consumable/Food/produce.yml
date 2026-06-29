@@ -717,10 +717,6 @@
   - type: SliceableFood
     count: 5
     slice: FoodWatermelonSlice
-  - type: Butcherable
-    butcheringType: Knife
-    spawned:
-    - id: ClothingHeadHatWatermelon
   - type: Tag
     tags:
     - Fruit
