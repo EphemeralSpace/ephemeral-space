@@ -117,8 +117,6 @@
   - type: ContainerContainer
     containers:
       DisposalUnitComponent: !type:Container
-  - type: StaticPrice
-    price: 70
   - type: PowerSwitch
 
 - type: entity
