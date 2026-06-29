@@ -69,7 +69,7 @@
     - id: ESWeaponKnife
     - id: ESClothingOuterArmorSecurity
     - id: ExGrenade
-    - id: ExGrenade
+      amount: 2
 
 # Subverter
 - type: entity
