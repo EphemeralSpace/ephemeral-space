@@ -11,47 +11,6 @@
       HeadTop : HEAD
       HeadSide : HEAD
 
-#Fire Helmet
-- type: entity
-  parent: ClothingHeadLightBase
-  id: ClothingHeadHelmetFire
-  # ES Start
-  categories: [ HideSpawnMenu ]
-  # ES End
-  name: fire helmet
-  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Helmets/firehelmet.rsi
-# ES Start
-    layers:
-    - state: icon
-    - state: light-icon
-      shader: unshaded
-      visible: false
-      map: [ "light" ]
-  - type: ESChameleonClothingWhitelist
-# ES End
-  - type: Clothing
-    sprite: Clothing/Head/Helmets/firehelmet.rsi
-# ES Start
-    equippedPrefix: off
-# ES End
-    quickEquip: true
-  - type: IngestionBlocker
-  - type: TemperatureProtection
-    heatingCoefficient: 0.5
-    coolingCoefficient: 0.8
-  - type: FireProtection
-    reduction: 0.15 # not fully sealed so less protection
-  - type: Tag
-    tags:
-    - FireHelmet
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
-      Snout: HEAD
-
 #Justice Helmet
 - type: entity
   parent: ClothingHeadHelmetBasic

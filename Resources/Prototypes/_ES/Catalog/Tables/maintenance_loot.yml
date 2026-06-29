@@ -253,7 +253,7 @@
       - id: ClothingUniformJumpsuitGenderqueer
     - id: ClothingEyesEyepatch
       weight: 0.5
-    - id: ClothingOuterCoatGentle
+    - id: ClothingOuterCoatBomber
       weight: 0.5
     - id: ClothingOuterCoatJensen
       weight: 0.5
