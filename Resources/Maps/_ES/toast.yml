@@ -75548,13 +75548,6 @@ entities:
     - type: Transform
       pos: -29.5,-41.5
       parent: 2
-- proto: TowelColorNT
-  entities:
-  - uid: 2210
-    components:
-    - type: Transform
-      pos: 24.188343,-28.2178
-      parent: 2
 - proto: ToyRubberDuck
   entities:
   - uid: 2436
