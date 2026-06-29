@@ -15,15 +15,6 @@ public sealed class MachineBoardTest : GameTest
     /// </summary>
     private readonly HashSet<string> _ignoredPrototypes = new()
     {
-        //These have their own construction thing going on here
-        "MachineParticleAcceleratorEndCapCircuitboard",
-        "MachineParticleAcceleratorFuelChamberCircuitboard",
-        "MachineParticleAcceleratorFuelChamberCircuitboard",
-        "MachineParticleAcceleratorPowerBoxCircuitboard",
-        "MachineParticleAcceleratorEmitterStarboardCircuitboard",
-        "MachineParticleAcceleratorEmitterForeCircuitboard",
-        "MachineParticleAcceleratorEmitterPortCircuitboard",
-        "ParticleAcceleratorComputerCircuitboard"
     };
 
     /// <summary>

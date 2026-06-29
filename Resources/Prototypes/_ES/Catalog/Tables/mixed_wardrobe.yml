@@ -58,7 +58,7 @@
     - id: ClothingHandsGlovesColorGray
     - id: ClothingHandsGlovesColorBrown
     - id: ClothingHandsGlovesColorLightBrown
-    - id: ClothingHandsGlovesColorOrange
+    - id: ESClothingHandsGlovesSanitation
     - id: ClothingHandsGlovesColorRed
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHandsGlovesColorTeal
@@ -68,7 +68,6 @@
   id: ESMixedBasicHatSoft
   table:
     group:
-    - id: ClothingHeadHatMimesoft
     - id: ClothingHeadHatGreysoft
     - id: ClothingHeadHatBlacksoft
     - id: ClothingHeadHatOrangesoft

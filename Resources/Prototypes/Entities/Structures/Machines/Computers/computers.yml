@@ -174,34 +174,6 @@
     board: ShuttleConsoleCircuitboard
 
 - type: entity
-  parent: BaseComputerShuttle
-  id: ComputerShuttleSyndie
-  name: syndicate shuttle console
-  description: Used to pilot a syndicate shuttle.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: syndishuttle
-    - map: ["computerLayerKeys"]
-      state: syndie_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: Tag
-    tags:
-      - Syndicate
-  - type: RadarConsole
-    maxRange: 384
-  - type: PointLight
-    color: "#c94242"
-  - type: Computer
-    board: SyndicateShuttleConsoleCircuitboard
-
-- type: entity
   parent: BaseComputerAiAccess
   id: ComputerIFF
   name: IFF computer
@@ -231,29 +203,6 @@
           type: WiresBoundUserInterface
   - type: Computer
     board: ComputerIFFCircuitboard
-
-- type: entity
-  parent: ComputerIFF
-  id: ComputerIFFSyndicate
-  name: IFF computer
-  suffix: Syndicate
-  description: Allows you to control the IFF and stealth characteristics of this vessel.
-  components:
-  - type: IFFConsole
-    allowedFlags:
-      - Hide
-      - HideLabel
-    hideOnInit: true
-  - type: ActivatableUI
-    key: enum.IFFConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-        enum.IFFConsoleUiKey.Key:
-          type: IFFConsoleBoundUserInterface
-        enum.WiresUiKey.Key:
-          type: WiresBoundUserInterface
-  - type: Computer
-    board: ComputerIFFSyndicateCircuitboard
 
 - type: entity
   parent: BaseComputerAiAccess

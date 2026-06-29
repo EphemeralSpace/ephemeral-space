@@ -30,23 +30,6 @@
         - id: Welder
         - id: Multitool
 
-- type: entity
-  id: ClothingBeltChiefEngineerFilled
-  parent: ClothingBeltChiefEngineer
-  suffix: Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: PowerDrill
-        - id: JawsOfLife
-        - id: WelderExperimental
-        - id: Multitool
-        - id: HolofanProjector
-        - id: GasAnalyzer
-        - id: trayScanner
-
 - type: entityTable
   id: BeltSecurityEntityTable
   table: !type:AllSelector
@@ -60,16 +43,6 @@
 - type: entity
   id: ClothingBeltSecurityFilled
   parent: ClothingBeltSecurity
-  suffix: Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:NestedSelector
-        tableId: BeltSecurityEntityTable
-
-- type: entity
-  id: ClothingBeltSecurityWebbingFilled
-  parent: ClothingBeltSecurityWebbing
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -92,20 +65,6 @@
         - id: CleanerGrenade
           amount: 2
         - id: FlashlightLantern
-
-- type: entity
-  id: ClothingBeltPlantFilled
-  parent: ClothingBeltPlant
-  suffix: Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: HydroponicsToolMiniHoe
-        - id: HydroponicsToolSpade
-        - id: HydroponicsToolClippers
-        - id: ChemistryBottleRobustHarvest
 
 - type: entity
   id: ClothingBeltChefFilled

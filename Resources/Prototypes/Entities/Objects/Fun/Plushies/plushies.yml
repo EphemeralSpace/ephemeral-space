@@ -115,9 +115,6 @@
   - type: Item
     size: Normal
   - type: MultiHandedItem
-  - type: Construction
-    graph: PlushieGhostRevenant
-    node: plushie
   - type: FoodSequenceElement
     entries:
       CottonBurger: RevenantPlushie

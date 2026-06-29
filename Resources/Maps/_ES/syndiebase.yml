@@ -2353,33 +2353,12 @@ entities:
     - type: Transform
       pos: 7.5,10.5
       parent: 2
-- proto: ClothingHeadPyjamaSyndicateBlack
-  entities:
-  - uid: 450
-    components:
-    - type: Transform
-      pos: 11.5,-4.5
-      parent: 2
-- proto: ClothingNeckScarfStripedSyndieRed
-  entities:
-  - uid: 243
-    components:
-    - type: Transform
-      pos: 11.5,2.5
-      parent: 2
 - proto: ClothingNeckStethoscope
   entities:
   - uid: 441
     components:
     - type: Transform
       pos: -15.5,-0.5
-      parent: 2
-- proto: ClothingUniformJumpsuitPyjamaSyndicateBlack
-  entities:
-  - uid: 451
-    components:
-    - type: Transform
-      pos: 11.5,-4.5
       parent: 2
 - proto: Cobweb1
   entities:
@@ -3354,7 +3333,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -15.5,0.5
       parent: 2
-- proto: InterdyneFlippo
+- proto: FlippoLighter
   entities:
   - uid: 850
     components:

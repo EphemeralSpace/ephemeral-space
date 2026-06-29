@@ -91,7 +91,6 @@
       - id: ESWardrobeClownFilled
       - id: ESWardrobeDetectiveFilled
       - id: ESWardrobeJanitorFilled
-      - id: ESWardrobeMimeFilled
       - id: ESWardrobeReporterFilled
       - id: ESWardrobeSecurityFilled
       - id: ESWardrobeScienceFilled
@@ -107,7 +106,6 @@
       - id: ESWardrobeClown
       - id: ESWardrobeDetective
       - id: ESWardrobeJanitor
-      - id: ESWardrobeMime
       - id: ESWardrobeReporter
       - id: WardrobeSecurity
       - id: ESWardrobeScience

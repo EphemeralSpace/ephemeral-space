@@ -57,14 +57,3 @@
     sprite: Clothing/Head/Welding/blue_flame_welding_mask.rsi
   - type: Clothing
     sprite: Clothing/Head/Welding/blue_flame_welding_mask.rsi
-
-- type: entity
-  parent: WeldingMaskBase
-  id: ClothingHeadHatWeldingMaskPainted
-  name: painted welding mask
-  description: A welding helmet, painted in crimson.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Welding/paintedwelding.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Welding/paintedwelding.rsi

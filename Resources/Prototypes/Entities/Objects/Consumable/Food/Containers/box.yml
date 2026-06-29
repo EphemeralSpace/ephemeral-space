@@ -349,5 +349,3 @@
         children:
         - id: FoodDonkpocket
           amount: 6
-        - id: DonkcoLighter
-          prob: 0.10

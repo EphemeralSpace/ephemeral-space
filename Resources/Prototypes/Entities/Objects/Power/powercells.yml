@@ -42,25 +42,6 @@
           Empty: {visible: false}
 
 - type: entity
-  name: potato battery
-  description: Someone's stuck two nails and some wire in a large potato. Somehow it provides a little charge.
-  id: PowerCellPotato
-  parent: BasePowerCell
-  components:
-  - type: Sprite
-    layers:
-    - state: potato
-  - type: Battery
-    maxCharge: 70
-    startingCharge: 70
-  - type: Tag
-    tags:
-      - PotatoBattery
-  - type: Construction
-    graph: PowerCellPotato
-    node: potatobattery
-
-- type: entity
   name: small-capacity power cell
   description: A rechargeable power cell. This is the cheapest kind you can find.
   id: PowerCellSmall
