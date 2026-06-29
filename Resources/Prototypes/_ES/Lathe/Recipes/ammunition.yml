@@ -58,11 +58,3 @@
   materials:
     Steel: 150
     Plastic: 140
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: ESShellShotgunSlug
-  result: ESShellShotgunSlug
-  materials:
-    Steel: 190
-    Plastic: 100

@@ -6,6 +6,9 @@
   suffix: ES
   components:
   - type: ESDoorJammer
+  - type: Tag
+    tags:
+      - Screwdriver
   - type: Sprite
     sprite: _ES/Objects/Tools/door_jammer.rsi
     state: icon
