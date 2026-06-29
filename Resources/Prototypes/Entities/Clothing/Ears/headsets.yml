@@ -115,7 +115,7 @@
     sprite: Clothing/Ears/Headsets/medicalscience.rsi
 
 - type: entity
-  parent: [ClothingHeadset, BaseSecurityLawyerContraband]
+  parent: ClothingHeadset
   id: ClothingHeadsetSecurity
   name: security headset
   description: This is used by your elite security force.

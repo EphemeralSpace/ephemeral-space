@@ -1,5 +1,5 @@
 - type: entity
-  parent: [VolatileGrenadeBase, GrenadeBase, BaseSecurityContraband ]
+  parent: [VolatileGrenadeBase, GrenadeBase ]
   id: SmokeGrenade
   name: smoke grenade
   description: A tactical grenade that releases a large, long-lasting cloud of smoke when used.
@@ -25,7 +25,7 @@
     - timer
 
 - type: entity
-  parent: [ BaseCivilianContraband, SmokeGrenade ]
+  parent: SmokeGrenade
   id: CleanerGrenade
   name: cleanade
   description: Special grenade for janitors, releasing large cloud of space cleaner foam.
@@ -44,7 +44,7 @@
         Quantity: 30
 
 - type: entity
-  parent: [ BaseEngineeringContraband, SmokeGrenade ]
+  parent: SmokeGrenade
   id: MetalFoamGrenade
   name: metal foam grenade
   description: An emergency tool used for patching hull breaches with special quick-set metal foam. Almost as good as real floors!
@@ -61,7 +61,7 @@
     smokePrototype: AluminiumMetalFoam
 
 - type: entity
-  parent: [ BaseEngineeringContraband, VolatileGrenadeBase, GrenadeBase ] # Prevent inheriting DeleteOnTrigger from SmokeGrenade
+  parent: [ VolatileGrenadeBase, GrenadeBase ] # Prevent inheriting DeleteOnTrigger from SmokeGrenade
   id: AirGrenade
   name: air grenade
   description: A special solid state chemical grenade used for quickly releasing standard air into a spaced area. Fills up to 30 tiles!

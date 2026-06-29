@@ -156,7 +156,7 @@
 # ES END
 
 - type: entity
-  parent: [BaseComputerCircuitboard, BaseCommandContraband]
+  parent: BaseComputerCircuitboard
   id: IDComputerCircuitboard
   name: ID card computer board
   description: A computer printed circuit board for an ID card console.
@@ -185,7 +185,7 @@
       prototype: computerBodyScanner
 
 - type: entity
-  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  parent: BaseComputerCircuitboard
   id: CommsComputerCircuitboard
   name: communications computer board
   description: A computer printed circuit board for a communications console.

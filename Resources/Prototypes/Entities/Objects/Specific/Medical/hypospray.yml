@@ -18,7 +18,7 @@
   - type: Appearance
 
 - type: entity
-  parent: [BaseHypospray, BaseGrandTheftContraband]
+  parent: BaseHypospray
   id: Hypospray
   name: hypospray
   description: A sterile injector for rapid administration of drugs to patients.

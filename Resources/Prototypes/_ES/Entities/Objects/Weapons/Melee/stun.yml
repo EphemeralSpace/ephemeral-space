@@ -1,6 +1,6 @@
 - type: entity
   name: stun baton
-  parent: [BaseItem, BaseSecurityContraband]
+  parent: BaseItem
   id: Stunbaton
   description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
   components:

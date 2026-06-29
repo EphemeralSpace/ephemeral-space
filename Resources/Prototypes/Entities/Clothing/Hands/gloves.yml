@@ -30,7 +30,7 @@
     - Kangaroo
 
 - type: entity
-  parent: [ClothingHandsBase, BaseCommandContraband]
+  parent: ClothingHandsBase
   id: ClothingHandsGlovesCaptain
   name: captain gloves
   description: Regal brown gloves, with a nice gold trim. Swanky.
@@ -80,7 +80,7 @@
         Caustic: 5
 
 - type: entity
-  parent: [ClothingHandsBase, BaseSecurityContraband]
+  parent: ClothingHandsBase
   id: ClothingHandsGlovesForensic
   name: forensic gloves
   description: Do not leave fibers or fingerprints. If you work without them, you're A TERRIBLE DETECTIVE.

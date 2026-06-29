@@ -55,7 +55,7 @@
 - type: entity
   name: pinpointer
   id: PinpointerNuclear
-  parent: [ PinpointerBase, BaseCommandContraband ]
+  parent: PinpointerBase
   components:
   - type: Pinpointer
     component: NukeDisk

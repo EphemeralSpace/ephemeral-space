@@ -69473,7 +69473,7 @@ entities:
     - type: Transform
       pos: -4.356143,-38.02817
       parent: 2
-- proto: RubberStampTrader
+- proto: RubberStampQm
   entities:
   - uid: 1541
     components:

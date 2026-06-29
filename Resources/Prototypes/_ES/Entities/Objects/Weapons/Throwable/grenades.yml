@@ -24,7 +24,7 @@
 - type: entity
   name: flashbang
   description: Eeeeeeeeeeeeeeeeeeeeee.
-  parent: [ FragileGrenadeBase, GrenadeBase, BaseSecurityContraband ]
+  parent: [ FragileGrenadeBase, GrenadeBase ]
   id: GrenadeFlashBang
   components:
   - type: Sprite

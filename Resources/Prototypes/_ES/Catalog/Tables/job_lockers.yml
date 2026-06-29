@@ -60,7 +60,6 @@
     - id: ForensicScanner
     - id: BoxForensicPad
     - id: DrinkDetFlask
-    - id: RubberStampDetective
     - id: BoxEvidenceMarkers
     - id: HandLabeler
 

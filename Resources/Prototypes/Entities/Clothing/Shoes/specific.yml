@@ -61,7 +61,7 @@
     - ClownShoes
 
 - type: entity
-  parent: [ ClothingShoesBase, BaseJanitorContraband ]
+  parent: ClothingShoesBase
   id: ClothingShoesGaloshes
   name: galoshes
   description: Specialised non-slip rubber boots, designed to reduce janitorial workplace accidents; a tider's treasure.

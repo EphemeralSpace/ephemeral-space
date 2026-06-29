@@ -22,7 +22,7 @@
     sprite: Clothing/Back/Satchels/leather.rsi
 
 - type: entity
-  parent: ClothingBackpackSatchelHolding
+  parent: ClothingBackpackHolding
   id: ClothingBackpackSatchelAdmin
   name: satchel of administration
   suffix: Admin

@@ -221,7 +221,7 @@
 
 - type: entity
 # ES START
-  parent: [ClothingBeltStorageBase, BaseSecurityContraband]
+  parent: ClothingBeltStorageBase
 # ES END
   id: ClothingBeltSecurity
   name: security belt

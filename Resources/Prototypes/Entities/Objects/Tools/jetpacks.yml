@@ -145,7 +145,7 @@
 #Empty captain
 - type: entity
   id: JetpackCaptain
-  parent: [BaseJetpack, BaseGrandTheftContraband]
+  parent: BaseJetpack
   name: captain's jetpack
   suffix: Empty
   components:
@@ -227,7 +227,7 @@
 #Empty security
 - type: entity
   id: JetpackSecurity
-  parent: [JetpackMini, BaseSecurityContraband]
+  parent: JetpackMini
   name: security mini jetpack
   description: A compact jetpack utilized by station security when patrolling the station's exterior. Not intended for long range travel, it holds only 1.5 L of gas.
   suffix: Empty
