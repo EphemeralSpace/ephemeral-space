@@ -8,7 +8,6 @@ using Content.Shared.Disposal.Holder;
 using Content.Shared.Disposal.Tube;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Explosion;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -65,7 +64,6 @@ public abstract partial class SharedDisposalUnitSystem : EntitySystem
         SubscribeLocalEvent<DisposalUnitComponent, PowerChangedEvent>(OnPowerChange);
         SubscribeLocalEvent<DisposalUnitComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<DisposalUnitComponent, PreventCollideEvent>(OnPreventCollide);
-        SubscribeLocalEvent<DisposalUnitComponent, GotEmaggedEvent>(OnEmagged);
 
         // See SharedDisposalUnitSystem.Interactions
         SubscribeLocalEvent<DisposalUnitComponent, GetVerbsEvent<InteractionVerb>>(AddInteractionVerb);
@@ -121,12 +119,6 @@ public abstract partial class SharedDisposalUnitSystem : EntitySystem
         {
             args.Cancelled = true;
         }
-    }
-
-    protected void OnEmagged(Entity<DisposalUnitComponent> ent, ref GotEmaggedEvent args)
-    {
-        ent.Comp.DisablePressure = true;
-        args.Handled = true;
     }
 
     private void OnGetDumpableVerb(Entity<DisposalUnitComponent> ent, ref GetDumpableVerbEvent args)
@@ -188,7 +180,6 @@ public abstract partial class SharedDisposalUnitSystem : EntitySystem
     /// <param name="ent">The disposal unit.</param>
     /// <param name="inserted">The entity inserted.</param>
     /// <param name="user">The one who inserted the entity.</param>
-    /// <param name="doInsert">Do the insertion now.</param>
     protected void Insert(Entity<DisposalUnitComponent> ent, EntityUid inserted, EntityUid? user = null)
     {
         if (ent.Comp.Container != null)
@@ -224,14 +215,14 @@ public abstract partial class SharedDisposalUnitSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<DisposalUnitComponent, MetaDataComponent>();
-        while (query.MoveNext(out var uid, out var unit, out var metadata))
+        var query = EntityQueryEnumerator<DisposalUnitComponent>();
+        while (query.MoveNext(out var uid, out var unit))
         {
-            UpdateDisposalUnit((uid, unit), metadata);
+            UpdateDisposalUnit((uid, unit));
         }
     }
 
-    private void UpdateDisposalUnit(Entity<DisposalUnitComponent> ent, MetaDataComponent metadata)
+    private void UpdateDisposalUnit(Entity<DisposalUnitComponent> ent)
     {
         var state = GetState(ent);
 
@@ -330,6 +321,7 @@ public abstract partial class SharedDisposalUnitSystem : EntitySystem
     /// </summary>
     /// <param name="ent">The disposal unit.</param>
     /// <param name="tube">The tube leading into disposals.</param>
+    /// <param name="tags">Tags to add to the disposal holder when they enter.</param>
     /// <returns>True if the transfer was successful.</returns>
     public bool TryTransfer(Entity<DisposalUnitComponent> ent, Entity<DisposalTubeComponent> tube, IEnumerable<string>? tags = null)
     {
@@ -448,7 +440,7 @@ public abstract partial class SharedDisposalUnitSystem : EntitySystem
     /// Sets a disposal unit to move towards flushing itself.
     /// </summary>
     /// <param name="ent">The disposal unit.</param>
-    /// <param name="metadata">The disposal unit's metadata.</param>
+    /// <param name="engaged">Whether it should be engaged or not.</param>
     public void SetEngage(Entity<DisposalUnitComponent> ent, bool engaged)
     {
         ent.Comp.Engaged = engaged;
@@ -461,7 +453,6 @@ public abstract partial class SharedDisposalUnitSystem : EntitySystem
     /// Primes a disposal unit to automatically flush sometime in the future.
     /// </summary>
     /// <param name="ent">The disposal unit.</param>
-    /// <param name="metadata">The disposal unit's metadata.</param>
     public void AutomaticEngage(Entity<DisposalUnitComponent> ent)
     {
         if (!ent.Comp.AutomaticEngage)
