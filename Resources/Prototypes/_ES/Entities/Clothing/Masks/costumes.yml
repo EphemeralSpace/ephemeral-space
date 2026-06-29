@@ -1,0 +1,18 @@
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskMime
+  name: mime mask
+  description: The traditional mime's mask. It has an eerie facial posture.
+  components:
+  - type: Sprite
+    sprite: Clothing/Mask/mime.rsi
+  - type: Clothing
+    sprite: Clothing/Mask/mime.rsi
+  - type: BreathMask
+  - type: IdentityBlocker
+  - type: Tag
+    tags:
+    - HamsterWearable
+  - type: HideLayerClothing
+    slots:
+    - Snout

@@ -31419,13 +31419,6 @@ entities:
     - type: Transform
       pos: -3.5,17.5
       parent: 2
-- proto: ClosetLegalFilled
-  entities:
-  - uid: 6160
-    components:
-    - type: Transform
-      pos: -39.5,-35.5
-      parent: 2
 - proto: ClosetRadiationSuitFilled
   entities:
   - uid: 7349
@@ -31442,13 +31435,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-7.5
-      parent: 2
-- proto: ClothingBeltChampion
-  entities:
-  - uid: 2220
-    components:
-    - type: Transform
-      pos: 24.596928,-27.860514
       parent: 2
 - proto: ClothingBeltUtility
   entities:
@@ -31504,13 +31490,6 @@ entities:
     - type: Transform
       pos: 24.081303,-26.344889
       parent: 2
-- proto: ClothingNeckLawyerbadge
-  entities:
-  - uid: 9265
-    components:
-    - type: Transform
-      pos: -36.5,-33.5
-      parent: 2
 - proto: ClothingNeckTieSci
   entities:
   - uid: 14570
@@ -31532,13 +31511,6 @@ entities:
     - type: Transform
       pos: -4.5,-47.5
       parent: 2
-- proto: ClothingOuterWinterChef
-  entities:
-  - uid: 3336
-    components:
-    - type: Transform
-      pos: -15.5,-11.5
-      parent: 2
 - proto: ClothingShoesBootsMag
   entities:
   - uid: 4824
@@ -31559,13 +31531,6 @@ entities:
     components:
     - type: Transform
       pos: 20.5,19.5
-      parent: 2
-- proto: ClothingUniformJumpsuitLibrarian
-  entities:
-  - uid: 7993
-    components:
-    - type: Transform
-      pos: -66.5,3.5
       parent: 2
 - proto: ClothingUniformJumpsuitMime
   entities:
@@ -65213,7 +65178,7 @@ entities:
     - type: Transform
       pos: 30.253004,-36.224808
       parent: 2
-- proto: NanotrasenFlippo
+- proto: FlippoLighter
   entities:
   - uid: 2290
     components:
@@ -69472,13 +69437,6 @@ entities:
     components:
     - type: Transform
       pos: -4.356143,-38.02817
-      parent: 2
-- proto: RubberStampTrader
-  entities:
-  - uid: 1541
-    components:
-    - type: Transform
-      pos: -4.5320687,-38.213356
       parent: 2
 - proto: SawElectric
   entities:
@@ -75547,13 +75505,6 @@ entities:
     components:
     - type: Transform
       pos: -29.5,-41.5
-      parent: 2
-- proto: TowelColorNT
-  entities:
-  - uid: 2210
-    components:
-    - type: Transform
-      pos: 24.188343,-28.2178
       parent: 2
 - proto: ToyRubberDuck
   entities:

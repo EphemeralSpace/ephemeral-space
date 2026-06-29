@@ -200,7 +200,7 @@
 # Secure Crates
 
 - type: entity
-  parent: [ CrateBaseSecure, BaseSecurityContraband ]
+  parent: CrateBaseSecure
   id: CrateSecgear
   name: secgear crate
   components:
@@ -316,7 +316,7 @@
     access: [["Armory"]]
 
 - type: entity
-  parent: [ CrateBaseSecure, BaseSecurityContraband ]
+  parent: CrateBaseSecure
   suffix: Armory, Secure
   id: CrateContrabandStorageSecure
   name: contraband storage crate
@@ -550,84 +550,6 @@
     node: cratecoffin
     containers:
     - entity_storage
-
-- type: entity
-  parent: CrateGeneric
-  id: CrateWoodenGrave
-  name: grave
-  suffix: wooden
-  description: Someone died here...
-  components:
-  - type: Sprite
-    sprite: Structures/Storage/Crates/wooden_grave.rsi
-    layers:
-    - state: base
-    - state: closed
-      map: ["enum.StorageVisualLayers.Door"]
-    - state: paper
-      sprite: Structures/Storage/Crates/labels.rsi
-      offset: "-0.28125,0.625"
-      map: ["enum.PaperLabelVisuals.Layer"]
-  - type: Icon
-    sprite: Structures/Storage/Crates/wooden_grave.rsi
-    state: base
-  - type: Destructible
-    thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WoodDestroy
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
-        damage: 200 # discourage just beating the grave to break it open
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WoodDestroy
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialWoodPlank1:
-            min: 1
-            max: 4
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: Physics
-    bodyType: Static
-  - type: Grave
-  - type: ProRottingContainer
-  - type: EntityStorage
-    airtight: true
-    isCollidableWhenOpen: false
-    closeSound:
-      path: /Audio/Items/shovel_dig.ogg
-    openSound:
-      path: /Audio/Items/shovel_dig.ogg
-
-- type: entity
-  parent: CrateWoodenGrave
-  id: CrateStoneGrave
-  name: grave
-  suffix: stone
-  description: Someone died here...
-  components:
-  - type: Sprite
-    sprite: Structures/Storage/Crates/stone_grave.rsi
-    layers:
-    - state: base
-    - state: closed
-      map: ["enum.StorageVisualLayers.Door"]
-    - state: paper
-      sprite: Structures/Storage/Crates/labels.rsi
-      offset: "-0.3125,0.5625"
-      map: ["enum.PaperLabelVisuals.Layer"]
-  - type: Icon
-    sprite: Structures/Storage/Crates/stone_grave.rsi
-    state: base
 
 # ES Start
 - type: entity

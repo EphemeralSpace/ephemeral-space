@@ -42,29 +42,10 @@
     children:
     - id: HandheldHealthAnalyzer
       prob: 0.6
-    - id: ClothingHeadMirror
-      prob: 0.1
     - id: ClothingHandsGlovesLatex
     - id: ClothingHeadsetMedical
     - id: ClothingEyesHudMedical
-    - !type:GroupSelector
-      children:
-      - id: ClothingHeadHatSurgcapGreen
-        weight: 0.1
-      - id: ClothingHeadHatSurgcapPurple
-        weight: 0.05
-      - id: ClothingHeadHatSurgcapBlue
-        weight: 0.90
-    - !type:GroupSelector
-      children:
-      - id: UniformScrubsColorBlue
-        weight: 0.5
-      - id: UniformScrubsColorGreen
-        weight: 0.1
-      - id: UniformScrubsColorPurple
-        weight: 0.05
     - id: ClothingMaskSterile
-    - id: JetInjector
 
 - type: entity
   parent: LockerMedical

@@ -23,6 +23,25 @@
     - id: ClothingHeadHatGreysoft
 
 - type: entity
+  id: WardrobeAtmosphericsFilled
+  suffix: Filled
+  parent: WardrobeAtmospherics
+  description: "This locker contains a uniform for atmospheric technicians."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: FillWardrobeAtmospherics
+
+- type: entityTable
+  id: FillWardrobeAtmospherics
+  table:
+    all:
+    - id: ClothingUniformJumpsuitAtmos
+    - id: ClothingBackpackEngineering
+    - id: ClothingShoesColorWhite
+
+- type: entity
   parent: ESWardrobeBartender
   id: ESWardrobeBartenderFilled
   suffix: ES, Filled
@@ -59,7 +78,6 @@
     - id: ClothingUniformJumpsuitCargo
     - id: ClothingBackpack
     - id: ClothingShoesColorBlack
-    - id: ClothingHandsGlovesFingerless
 
 - type: entity
   parent: ESWardrobeChef
@@ -78,7 +96,6 @@
     - id: ClothingBackpack
     - id: ClothingHeadHatChef
     - id: ClothingOuterJacketChef
-    - id: ClothingOuterWinterChef
     - id: ClothingShoesChef
     - id: ClothingUniformJumpsuitChef
 
@@ -147,6 +164,49 @@
     - id: ClothingHandsGlovesForensic
 
 - type: entity
+  id: ESWardrobeDoctorFilled
+  suffix: ES, Filled
+  parent: ESWardrobeDoctor
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESFillWardrobeDoctor
+
+- type: entityTable
+  id: ESFillWardrobeDoctor
+  table:
+    all:
+    - id: ClothingUniformJumpsuitMedicalDoctor
+    - id: ClothingBackpackMedical
+    - id: ClothingShoesColorWhite
+    - id: ClothingOuterCoatLabOpened
+    - id: ClothingHandsGlovesColorBlue
+    - id: ClothingEyesGlasses
+      prob: 0.3
+
+- type: entity
+  id: ESWardrobeEngineeringFilled
+  suffix: ES, Filled
+  parent: ESWardrobeEngineering
+  description: "This locker contains a uniform for engineering; or social engineering."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESFillWardrobeEngineering
+
+- type: entityTable
+  id: ESFillWardrobeEngineering
+  table:
+    all:
+    - id: ClothingHeadHatHardhatYellow
+    - id: ClothingUniformJumpsuitEngineering
+    - id: ClothingBackpackEngineering
+    - id: ClothingShoesColorOrange
+    - id: ClothingOuterVestHazard
+
+- type: entity
   parent: ESWardrobeJanitor
   id: ESWardrobeJanitorFilled
   suffix: ES, Filled
@@ -161,32 +221,10 @@
   table:
     all:
     - id: ClothingBackpack
-    - id: ESClothingHandsGlovesColorOrange
+    - id: ESClothingHandsGlovesSanitation
     - id: ClothingHeadHatPurplesoft
     - id: ClothingShoesColorBlack
     - id: ClothingUniformJumpsuitJanitor
-
-- type: entity
-  parent: ESWardrobeMime
-  id: ESWardrobeMimeFilled
-  suffix: ES, Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESFillWardrobeMime
-
-- type: entityTable
-  id: ESFillWardrobeMime
-  table:
-    all:
-    - id: ClothingBackpackMime
-    - id: ClothingBeltSuspendersRed
-    - id: ClothingHandsGlovesColorWhite
-    - id: ClothingHeadHatBeretFrench
-    - id: ClothingMaskMime
-    - id: ClothingShoesColorWhite
-    - id: ClothingUniformJumpsuitMime
 
 - type: entity
   parent: ESWardrobeReporter
@@ -250,28 +288,6 @@
       prob: 0.1
 
 - type: entity
-  id: ESWardrobeDoctorFilled
-  suffix: ES, Filled
-  parent: ESWardrobeDoctor
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESFillWardrobeDoctor
-
-- type: entityTable
-  id: ESFillWardrobeDoctor
-  table:
-    all:
-    - id: ClothingUniformJumpsuitMedicalDoctor
-    - id: ClothingBackpackMedical
-    - id: ClothingShoesColorWhite
-    - id: ClothingOuterCoatLabOpened
-    - id: ClothingHandsGlovesColorBlue
-    - id: ClothingEyesGlasses
-      prob: 0.3
-
-- type: entity
   id: ESWardrobeParamedicFilled
   suffix: ES, Filled
   parent: ESWardrobeParamedic
@@ -290,27 +306,6 @@
     - id: ESClothingHeadHatParamedicsoft
     - id: ESClothingUniformJumpsuitParamedic
     - id: ClothingBackpackMedical
-
-- type: entity
-  id: ESWardrobeEngineeringFilled
-  suffix: ES, Filled
-  parent: ESWardrobeEngineering
-  description: "This locker contains a uniform for engineering; or social engineering."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESFillWardrobeEngineering
-
-- type: entityTable
-  id: ESFillWardrobeEngineering
-  table:
-    all:
-    - id: ClothingHeadHatHardhatYellow
-    - id: ClothingUniformJumpsuitEngineering
-    - id: ClothingBackpackEngineering
-    - id: ClothingShoesColorOrange
-    - id: ClothingOuterVestHazard
 
 - type: entity
   id: ESWardrobePrisonFilled

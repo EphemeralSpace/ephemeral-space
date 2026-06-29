@@ -21,7 +21,7 @@
     id: JanitorPDA
     ears: ClothingHeadsetService
     head: ClothingHeadHatPurplesoft
-    gloves: ESClothingHandsGlovesColorOrange
+    gloves: ESClothingHandsGlovesSanitation
     jumpsuit: ClothingUniformJumpsuitJanitor
     back: ClothingBackpack
   storage:

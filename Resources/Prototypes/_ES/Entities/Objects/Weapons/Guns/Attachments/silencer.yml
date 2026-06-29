@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseItem, BaseSecurityContraband ]
+  parent: BaseItem
   id: ESGunAttachmentSilencer
   name: silencer
   description: Shh...

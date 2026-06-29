@@ -34,6 +34,24 @@
 
 - type: entity
   parent: ClothingHeadBase
+  id: ClothingHeadHatStationAdminCap
+  name: station administrator's cap
+  description: A stylish cap worn by the Station Administrator. Shows paperwork who's in charge.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/hopcap.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/hopcap.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadBase
   id: ESClothingHeadHatCoroner
   name: coroner's hat
   description: A tall, blue-brimmed hat. Smells kinda funny.

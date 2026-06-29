@@ -7,7 +7,6 @@
     - tableId: ESOutfitCowboy
     - tableId: ESOutfitJapan
     - tableId: ESOutfitJester
-    - tableId: ESOutfitJudge
     - tableId: ESOutfitSanta
     - tableId: ESOutfitSkub
     - tableId: ESOutfitShrineMaiden
@@ -58,13 +57,6 @@
     - id: ClothingShoesJester
 
 - type: entityTable
-  id: ESOutfitJudge
-  table:
-    all:
-    - id: ClothingHeadHatPwig
-    - id: ClothingOuterRobesJudge
-
-- type: entityTable
   id: ESOutfitSanta
   table:
     all:
@@ -97,5 +89,5 @@
   id: ESOutfitWitch
   table:
     all:
-    - id: ClothingHeadHatWitch1
+    - id: ClothingHeadHatWitch
     - id: ClothingOuterSuitWitchRobes
