@@ -1,11 +1,11 @@
 - type: job
   id: ESAtmosphericTechnician
+  parent: ESBaseJobProfessionalNaming
   name: ESjob-name-atmostech
   description: ESjob-description-atmostech
   playTimeTracker: ESJobAtmosphericTechnician
   startingGear: ESAtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
-  supervisors: job-supervisors-hop
   access:
   - Maintenance
   - Engineering

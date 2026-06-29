@@ -1,0 +1,12 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by mirrorcult",
+    "size": { "x": 32, "y": 32 },
+    "states": [
+        { "name": "starving", "directions": 1},
+        { "name": "hungry", "directions": 1},
+        { "name": "peckish", "directions": 1},
+        { "name": "okay", "directions": 1}
+    ]
+}

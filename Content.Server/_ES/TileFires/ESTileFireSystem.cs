@@ -1,4 +1,3 @@
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Spreader;
 using Content.Shared._ES.TileFires;
@@ -27,7 +26,7 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IGameTiming _timing = default!;
 
-    private static EntProtoId _stage1Fire = "ESTileFire";
+    private static readonly EntProtoId Stage1Fire = "ESTileFire";
 
     public override void Initialize()
     {
@@ -49,8 +48,14 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
             if (_timing.CurTime < tilefire.SmolderTime)
                 continue;
 
+            if (_random.Prob(tilefire.SmolderDeleteFireChance))
+            {
+                QueueDel(uid);
+                continue;
+            }
+
             // lower it to a random lower stage fire and disable growing in strength
-            var randomDivisor = _random.Next(2, 6);
+            var randomDivisor = _random.Next(2, 7);
             _flammable.SetFireStacks(uid, flammable.FireStacks / randomDivisor, flammable);
             flammable.FirestackFade = 0f;
             Dirty(uid, flammable);
@@ -137,7 +142,16 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
                 return;
 
             var coords = _random.PickAndTake(weights);
-            Spawn(ent.Comp.Prototype, coords);
+            var fire = Spawn(ent.Comp.Prototype, coords);
+
+            if (ent.Comp.Origin is { } origin)
+            {
+                EnsureComp<ESTileFireComponent>(fire).Origin = origin;
+                EnsureComp<ESTileFireOriginComponent>(origin).Fires.Add(fire);
+
+                var ev = new ESTileFireCreatedEvent(coords, origin);
+                RaiseLocalEvent(origin, ref ev);
+            }
 
             _flammable.AdjustFireStacks(ent, _random.NextFloat(0.25f, 1.25f) * -ent.Comp.FirestacksRemoveOnSpread, flammable);
             args.Updates--;
@@ -148,7 +162,7 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
     #region API
 
     [PublicAPI]
-    public override bool TryDoTileFire(EntityCoordinates coords, EntityUid? originatingUser = null, int stage = 1)
+    public override bool TryDoTileFire(EntityCoordinates coords, EntityUid? originatingUser = null, int stage = 1, bool spread = true)
     {
         var xform = Transform(coords.EntityId);
         if (xform.GridUid is not { } grid || !TryComp<MapGridComponent>(grid, out var mapGrid))
@@ -160,13 +174,24 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
             return false;
 
         // ESTileFire vs ESTileFireStage2/3/4
-        EntProtoId proto = stage == 1 ? _stage1Fire : $"{_stage1Fire}Stage{stage}";
+        EntProtoId proto = stage == 1 ? Stage1Fire : $"{Stage1Fire}Stage{stage}";
 
-        SpawnAtPosition(proto, coords);
+        var fire = SpawnAtPosition(proto, coords);
 
-        if (originatingUser.HasValue)
+        if (!spread)
         {
-            var ev = new ESTileFireCreatedEvent(coords, originatingUser, stage);
+            RemCompDeferred<ESTileFireComponent>(fire);
+        }
+
+        if (!TerminatingOrDeleted(originatingUser) && Exists(originatingUser))
+        {
+            if (spread)
+            {
+                EnsureComp<ESTileFireComponent>(fire).Origin = originatingUser;
+                EnsureComp<ESTileFireOriginComponent>(originatingUser.Value).Fires.Add(fire);
+            }
+
+            var ev = new ESTileFireCreatedEvent(coords, originatingUser);
             RaiseLocalEvent(originatingUser.Value, ref ev);
         }
         return true;

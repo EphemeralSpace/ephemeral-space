@@ -17,7 +17,7 @@
   - type: FlashImmunity
 
 - type: entity
-  parent: ClothingHeadEyeBaseFlippable
+  parent: ClothingEyesBase
   id: ClothingEyesEyepatch
   name: eyepatch
   description: Yarr.
@@ -28,8 +28,3 @@
     sprite: Clothing/Eyes/Misc/eyepatch.rsi
   - type: EyeProtection
     protectionTime: 5
-
-- type: entity
-  parent: [ClothingEyesEyepatch, ClothingHeadEyeBaseFlipped]
-  id: ClothingEyesEyepatchFlipped
-  suffix: flipped

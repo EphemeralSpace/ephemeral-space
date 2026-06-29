@@ -10,7 +10,6 @@
     FoodPlate: 10
     FoodPlateSmall: 10
     FoodPlateTin: 5
-    FoodPlateMuffinTin: 5
     FoodKebabSkewer: 5
     DrinkGlass: 5
     Beaker: 5
@@ -47,4 +46,3 @@
     EggBoxBroken: 1
     FoodBoxDonkpocket: 1
     FoodFrozenSandwich: 2
-    FoodFrozenSandwichStrawberry: 2

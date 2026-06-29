@@ -97,7 +97,7 @@
         all:
         - id: MedkitFilled
           amount: 2
-        - id: ESMedkitStabilizationFilled
+        - id: MedkitO2Filled
         - id: Gauze
           amount: 2
         - id: Bloodpack
@@ -115,22 +115,9 @@
     containers:
       entity_storage:
         all:
-        - id: ESMedkitBurnFilled
-        - id: ESMedkitBruteFilled
-        - id: ESMedkitRadiationFilled
-
-- type: entity
-  parent: CrateEmergencyAdvancedKit
-  id: ESCrateEmergencyAdvancedKits
-  name: advanced medical kit
-  description: Crate filled with two advanced medical kits.
-  suffix: ES
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-          id: MedkitAdvancedFilled
-          amount: 2
+        - id: MedkitBurnFilled
+        - id: MedkitBruteFilled
+        - id: MedkitRadiationFilled
 
 #Security
 - type: entity
@@ -273,6 +260,34 @@
           amount: 2
 
 - type: entity
+  parent: CrateHydroponics
+  id: ESCrateHydroponicsSeeds
+  name: seeds crate
+  description: Big things have small beginnings. Contains many different seeds.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        pick:
+          all:
+          - id: ChiliSeeds
+          - id: CornSeeds
+          - id: TomatoSeeds
+          - id: WheatSeeds
+          - id: CarrotSeeds
+          - id: CabbageSeeds
+          - id: GarlicSeeds
+          - id: ChanterelleSeeds
+          - id: PotatoSeeds
+          - id: SugarcaneSeeds
+          - id: OnionSeeds
+          - id: RiceSeeds
+          - id: SoybeanSeeds
+          - id: WatermelonSeeds
+        amount: 6
+
+- type: entity
   parent: CratePlastic
   id: ESCrateServiceJanitorialSupplies
   name: janitorial supplies crate
@@ -398,9 +413,10 @@
     - id: ESSleepyPen
       weight: 0.5
     - id: C4
-    - id: ESWeaponRevolver357
-    - id: ESWeaponPistol9mm
-    - id: ESWeaponPistol9mmSilenced
+    - group:
+      - id: ESWeaponRevolver357
+      - id: ESWeaponPistol9mm
+      - id: ESWeaponPistol9mmSilenced
     - id: ESClothingOuterArmorSecurity
     - id: ExGrenade
     - id: ESSpeedLoader357

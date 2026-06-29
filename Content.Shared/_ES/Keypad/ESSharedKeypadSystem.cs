@@ -173,7 +173,7 @@ public abstract partial class ESSharedKeypadSystem : EntitySystem
             ent.Comp.Passcode = ent.Comp.CodeInput;
             ent.Comp.CodeInput = string.Empty;
             _audio.PlayPredicted(ent.Comp.RightCodeSound, ent, user, ent.Comp.RightCodeSound.Params.WithPitchScale(1.15f));
-            _popup.PopupPredicted(Loc.GetString("es-keypad-popup-code-changed"), ent, user);
+            _popup.PopupEntity(Loc.GetString("es-keypad-popup-code-changed"), ent);
             Dirty(ent);
             return;
         }

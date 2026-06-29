@@ -89,7 +89,6 @@
   - type: Stripping
   - type: SolutionScanner
   - type: IgnoreUIRange
-  - type: ShowContrabandDetails
   - type: Inventory
     templateId: aghost
   - type: Loadout

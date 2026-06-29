@@ -260,26 +260,6 @@ binds:
 - function: OpenInventoryMenu
   type: State
   key: I
-- function: SmartEquipBackpack
-  type: State
-  key: B
-  mod1: Shift
-- function: SmartEquipBelt
-  type: State
-  key: E
-  mod1: Shift
-- function: SmartEquipPocket1
-  type: State
-  key: F
-  mod1: Shift
-- function: SmartEquipPocket2
-  type: State
-  key: G
-  mod1: Shift
-- function: SmartEquipSuitStorage
-  type: State
-  key: H
-  mod1: Shift
 - function: OpenBackpack
   type: State
   key: V

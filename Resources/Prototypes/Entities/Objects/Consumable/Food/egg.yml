@@ -1,7 +1,7 @@
 # Base
 
 - type: entity
-  parent: [FoodInjectableBase, ItemHeftyBase]
+  parent: [FoodBase, ItemHeftyBase]
   id: FoodEggBase
   description: An egg!
   abstract: true
@@ -13,6 +13,8 @@
   - type: Edible
     trash:
     - Eggshells
+  - type: ESFood
+    satietyMultiplier: -1
   - type: Sprite
     sprite: Objects/Consumable/Food/egg.rsi
   - type: Item
@@ -76,19 +78,11 @@
   id: Eggshells
   description: You're walkin' on 'em bud.
   components:
-  - type: Edible
   - type: Sprite
     sprite: Objects/Consumable/Food/egg.rsi
     state: eggshells
   - type: Item
     size: Tiny
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 2
-        reagents:
-        - ReagentId: Egg
-          Quantity: 1
   - type: Tag
     tags:
     - Egg

@@ -85,18 +85,6 @@
         amount: 3
 
 - type: entity
-  parent: CrateEngineeringSecure
-  id: CrateEngineeringFoamGrenade
-  name: sealant grenade crate
-  description: 5 metal foam sealant grenades.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        id: MetalFoamGrenade
-        amount: 5
-
-- type: entity
   parent: CrateElectrical
   id: CrateEngineeringCableBulk
   name: bulk cable crate
@@ -180,21 +168,6 @@
           amount: 6
 
 - type: entity
-  parent: CrateCommandSecure
-  id: CrateEvaKit
-  name: EVA kit
-  description: A set consisting of two prestigious EVA suits and helmets.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: ClothingHeadHelmetEVA
-          amount: 2
-        - id: ClothingOuterHardsuitEVA
-          amount: 2
-
-- type: entity
   parent: CrateEngineering
   id: CrateRCDAmmo
   name: compressed matter crate
@@ -218,18 +191,6 @@
         id: RCD
 
 - type: entity
-  parent: CrateEngineeringSecure
-  id: CrateParticleDecelerators
-  name: particle decelerators crate
-  description: A crate containing 3 Particle Decelerators.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        id: WeaponParticleDecelerator
-        amount: 3
-
-- type: entity
   parent: CrateEngineering
   id: CrateEngineeringSpaceHeater
   name: space heater crate
@@ -248,7 +209,6 @@
     - id: FireAlarmElectronics
     - id: DoorElectronics
     - id: FirelockElectronics
-    - id: APCElectronics
     - id: SignalTimerElectronics
     - id: SMESMachineCircuitboard
     - id: SubstationMachineCircuitboard

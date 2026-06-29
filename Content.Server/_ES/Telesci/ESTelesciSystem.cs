@@ -1,5 +1,5 @@
+using Content.Server._ES.Announcements;
 using Content.Server.Administration;
-using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Pinpointer;
 using Content.Server.Power.EntitySystems;
@@ -15,7 +15,7 @@ namespace Content.Server._ES.Telesci;
 
 public sealed partial class ESTelesciSystem : ESSharedTelesciSystem
 {
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESAnnouncementSystem _chat = default!;
     [Dependency] private NavMapSystem _nav = default!;
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;
@@ -81,8 +81,7 @@ public sealed partial class ESTelesciSystem : ESSharedTelesciSystem
 
             var location = FormattedMessage.RemoveMarkupPermissive(_nav.GetNearestBeaconString(ent.Owner));
 
-            _chat.DispatchStationAnnouncement(uid,
-                Loc.GetString(msg, ("location", location), ("threats", generator.ThreatsLeft)),
+            _chat.DispatchRoundAnnouncement(Loc.GetString(msg, ("location", location), ("threats", generator.ThreatsLeft)),
                 Loc.GetString("es-telesci-announcement-sender"),
                 announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_low.ogg"),
                 colorOverride: Color.Magenta);
@@ -91,8 +90,7 @@ public sealed partial class ESTelesciSystem : ESSharedTelesciSystem
 
     protected override void SendAnnouncement(EntityUid ent, ESTelesciStage stage)
     {
-        _chat.DispatchStationAnnouncement(ent,
-            Loc.GetString(stage.Announcement),
+        _chat.DispatchRoundAnnouncement(Loc.GetString(stage.Announcement),
             Loc.GetString("es-telesci-announcement-sender"),
             announcementSound: stage.AnnouncementSound,
             colorOverride: Color.Magenta);

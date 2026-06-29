@@ -34,6 +34,14 @@ public sealed partial class ESViewconeOccludableComponent : Component, IComponen
     [DataField, AutoNetworkedField]
     public EntityUid? Source = null;
 
+    /// <summary>
+    ///     Kind of strange but essentially this is to help handle adding occludable dynamically to objects
+    ///     that are being pulled, assuming they don't already have it. If they don't already have it, this is set
+    ///     and this component will be removed when the object is no longer pulled.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool RemoveOnPullDropped = false;
+
     // Clientside comptree stuff
     public EntityUid? TreeUid { get; set; }
     public DynamicTree<ComponentTreeEntry<ESViewconeOccludableComponent>>? Tree { get; set; }

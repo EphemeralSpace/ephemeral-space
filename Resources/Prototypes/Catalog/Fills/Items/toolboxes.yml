@@ -35,17 +35,6 @@
       storagebase: !type:NestedSelector
         tableId: ToolboxElectricalEntityTable
 
-- type: entity
-  id: ToolboxElectricalTurretFilled
-  name: electrical toolbox
-  suffix: Syndicate, Turret, Filled
-  parent: ToolboxElectricalTurret
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:NestedSelector
-        tableId: ToolboxElectricalEntityTable
-
 - type: entityTable
   id: ToolboxElectricalEntityTable
   table: !type:AllSelector

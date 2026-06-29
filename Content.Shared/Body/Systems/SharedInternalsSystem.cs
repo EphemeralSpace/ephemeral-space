@@ -88,11 +88,11 @@ public abstract partial class SharedInternalsSystem : EntitySystem
             var message = user == target ? Loc.GetString("internals-self-no-breath-tool") : Loc.GetString("internals-other-no-breath-tool", ("ent", Identity.Entity(target, EntityManager, user)));
             if (user == target)
             {
-                _popupSystem.PopupPredictedCursor(message, user, PopupType.Medium);
+                _popupSystem.PopupCursor(message, user, PopupType.Medium);
             }
             else
             {
-                _popupSystem.PopupClient(message, target, user, PopupType.Medium);
+                _popupSystem.PopupEntity(message, target, user, PopupType.Medium);
             }
 // ES END
             return false;
@@ -108,11 +108,11 @@ public abstract partial class SharedInternalsSystem : EntitySystem
             var message = user == target ? Loc.GetString("internals-self-no-tank") : Loc.GetString("internals-other-no-tank", ("ent", Identity.Entity(target, EntityManager, user)));
             if (user == target)
             {
-                _popupSystem.PopupPredictedCursor(message, user, PopupType.Medium);
+                _popupSystem.PopupCursor(message, user, PopupType.Medium);
             }
             else
             {
-                _popupSystem.PopupClient(message, target, user, PopupType.Medium);
+                _popupSystem.PopupEntity(message, target, user, PopupType.Medium);
             }
 // ES END
             return false;

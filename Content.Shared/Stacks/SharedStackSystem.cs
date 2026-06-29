@@ -87,24 +87,24 @@ public abstract partial class SharedStackSystem : EntitySystem
         switch (transferred)
         {
             case > 0:
-                Popup.PopupClient($"+{transferred}", popupPos, args.User);
+                Popup.PopupCoordinates($"+{transferred}", popupPos);
 
                 if (GetAvailableSpace(recipientStack) == 0)
                 {
-                    Popup.PopupClient(Loc.GetString("comp-stack-becomes-full"),
-                        popupPos.Offset(new Vector2(0, -0.5f)),
-                        args.User);
+                    Popup.PopupCoordinates(Loc.GetString("comp-stack-becomes-full"),
+                        popupPos.Offset(new Vector2(0, -0.5f)));
                 }
 
                 break;
 
             case 0 when GetAvailableSpace(recipientStack) == 0:
-                Popup.PopupClient(Loc.GetString("comp-stack-already-full"), popupPos, args.User);
+                Popup.PopupCoordinates(Loc.GetString("comp-stack-already-full"), popupPos);
                 break;
         }
 
         var localRotation = Transform(args.Used).LocalRotation;
         _storage.PlayPickupAnimation(args.Used, popupPos, userCoords, localRotation, args.User);
+        args.InteractionParticle = false; // Stellar
     }
 
     private void OnStackStarted(Entity<StackComponent> ent, ref ComponentStartup args)

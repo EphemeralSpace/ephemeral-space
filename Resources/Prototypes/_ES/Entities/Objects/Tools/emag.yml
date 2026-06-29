@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseItem, BaseSyndicateContraband]
+  parent: BaseItem
   id: ESEmag
   name: cryptographic sequencer
   description: The all-in-one hacking solution. Friend of any syndicate. The iconic EMAG.
@@ -14,3 +14,4 @@
   - type: ESEmag
   - type: LimitedCharges
     maxCharges: 6
+  - type: ESPickpocketPriorityItem

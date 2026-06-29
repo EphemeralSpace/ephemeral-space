@@ -1,11 +1,11 @@
 - type: job
   id: ESCoroner
+  parent: ESBaseJobProfessionalNaming
   name: ESjob-name-coroner
   description: ESjob-description-coroner
   playTimeTracker: ESJobCoroner
   startingGear: ESCoronerGear
   icon: "ESJobIconCoroner"
-  supervisors: job-supervisors-hop
   access:
   - Medical
   - Maintenance

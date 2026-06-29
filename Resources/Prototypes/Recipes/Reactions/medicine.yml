@@ -184,7 +184,7 @@
 - type: reaction
   id: HeartbreakerToxin
   reactants:
-    DexalinPlus:
+    Dexalin:
       amount: 1
     MindbreakerToxin:
       amount: 1

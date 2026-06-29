@@ -1,3 +1,4 @@
+using Content.Server._ES.Announcements;
 using Content.Server.Chat.Systems;
 using Content.Shared._ES.Radstorm.Components;
 using Content.Shared.Power;
@@ -7,7 +8,7 @@ namespace Content.Server._ES.Radstorm;
 public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESAnnouncementSystem _chat = default!;
     [Dependency] private ESRadstormRoundEndRuleSystem _radstormRoundEndRule = default!;
 
     /// <inheritdoc/>
@@ -54,10 +55,11 @@ public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
         var minutes = (int) Math.Round(_radstormRoundEndRule.GetRadstormEstimatedArrivalTime().TotalMinutes);
         var msg = Loc.GetString(ent.Comp.Enabled ? ent.Comp.EnableAnnouncement : ent.Comp.DisableAnnouncement,
             ("minutes", (minutes)));
-        _chat.DispatchGlobalAnnouncement(
-            msg,
+        var sound = ent.Comp.Enabled ? ent.Comp.AnnouncementSoundEnabled : ent.Comp.AnnouncementSoundDisabled;
+        _chat.DispatchRoundAnnouncement(msg,
             Loc.GetString("es-radstorm-announcer"),
-            announcementSound: ent.Comp.AnnouncementSound,
-            colorOverride: Color.LightSeaGreen);
+            announcementSound: sound,
+            colorOverride: Color.LightSeaGreen,
+            important: ent.Comp.Enabled);
     }
 }

@@ -176,7 +176,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         if (_accessReader.IsAllowed(sender, uid, accessReader))
             return true;
 
-        Popup.PopupClient(Loc.GetString("vending-machine-component-try-eject-access-denied"), uid, sender);
+        Popup.PopupEntity(Loc.GetString("vending-machine-component-try-eject-access-denied"), uid, sender);
         Deny((uid, vendComponent), sender);
         return false;
     }
@@ -215,14 +215,14 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
         if (string.IsNullOrEmpty(entry?.ID))
         {
-            Popup.PopupClient(Loc.GetString("vending-machine-component-try-eject-invalid-item"), uid);
+            Popup.PopupCursor(Loc.GetString("vending-machine-component-try-eject-invalid-item"), uid);
             Deny((uid, vendComponent));
             return;
         }
 
         if (entry.Amount <= 0)
         {
-            Popup.PopupClient(Loc.GetString("vending-machine-component-try-eject-out-of-stock"), uid);
+            Popup.PopupCursor(Loc.GetString("vending-machine-component-try-eject-out-of-stock"), uid);
             Deny((uid, vendComponent));
             return;
         }

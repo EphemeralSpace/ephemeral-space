@@ -171,6 +171,20 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         return ent.Comp.Icon ?? SpriteSpecifier.Invalid;
     }
 
+    public bool IsObjectiveInitialized(Entity<ESObjectiveComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+        return ent.Comp.ObjectiveInitialized;
+    }
+
+    public bool ShouldAnnounceProgress(Entity<ESObjectiveComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+        return ent.Comp.AnnounceProgress;
+    }
+
     /// <summary>
     /// Re-generates the list of objectives an entity should have, adding all new objectives and removing ones that should no longer be there,
     /// e.g. as a result of troupe or mask changes.
@@ -369,6 +383,10 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         ent.Comp.OwnedObjectives.Add(objective.Value);
         RegenerateObjectiveList(ent);
         RefreshObjectiveProgress(objective.Value.AsNullable());
+
+        objective.Value.Comp.ObjectiveInitialized = true;
+        Dirty(objective.Value);
+
         return true;
     }
 
@@ -418,6 +436,17 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
 
         holder = foundHolder;
         return holder != null;
+    }
+
+    /// <summary>
+    /// Checks if a given entity has any objectives of a specific type.
+    /// </summary>
+    public bool HasObjectiveOfType<T>([NotNullWhen(true)] EntityUid? potentialHolder) where T : Component
+    {
+        if (potentialHolder == null)
+            return false;
+
+        return GetObjectives<T>(potentialHolder.Value).Any();
     }
 
     /// <summary>

@@ -12,6 +12,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
+using Content.Server._ES.Stagehand;
 
 namespace Content.Server.Mind;
 
@@ -23,6 +24,7 @@ public sealed partial class MindSystem : SharedMindSystem
     [Dependency] private GhostSystem _ghosts = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private PvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private ESStagehandSystem _stagehand = default!;
 
     public override void Initialize()
     {
@@ -71,14 +73,15 @@ public sealed partial class MindSystem : SharedMindSystem
         if (!component.GhostOnShutdown || _gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
             return;
 
-// ES START
+        _transform.TryGetMapOrGridCoordinates(uid, out var spawnPosition);
+
         var success = _gameTicker.LobbyEnabled
             ? _ghosts.OnGhostAttempt(mindId, false, forced: true, mind: mind)
-            : _ghosts.SpawnGhost((mindId, mind), uid) != null;
+            : mind.UserId.HasValue && _stagehand.SpawnStagehand(mind.UserId.Value, spawnPosition) != null;
+
         if (success)
             // Log these to make sure they're not causing the GameTicker round restart bugs...
             Log.Debug($"Entity \"{ToPrettyString(uid)}\" for {mind.CharacterName} was deleted, spawned ghost.");
-// ES END
         else
             // This should be an error, if it didn't cause tests to start erroring when they delete a player.
             Log.Warning($"Entity \"{ToPrettyString(uid)}\" for {mind.CharacterName} was deleted, and no applicable spawn location is available.");

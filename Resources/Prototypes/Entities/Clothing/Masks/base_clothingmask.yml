@@ -14,10 +14,6 @@
   abstract: true
   parent: ClothingMaskBase
   id: ClothingMaskPullableBase
-  # ES START
-  # components:
-  # - type: Mask
-  # ES END
 
 - type: entity
   parent: BaseAction
@@ -44,15 +40,6 @@
   - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
     materialComposition:
       Cloth: 50
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
   - type: Tag
     tags:
     - ClothMade

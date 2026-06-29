@@ -75,6 +75,13 @@ namespace Content.Shared.Storage
         public TimeSpan OpenUiCooldown = TimeSpan.Zero;
 
         /// <summary>
+        /// Multiplier on the doafter time for picking up an item.
+        /// Less than 1 means a shorter time, more than 1 means a longer time.
+        /// </summary>
+        [DataField]
+        public float ItemPickupTimeMultiplier = 1f;
+
+        /// <summary>
         /// Can insert stuff by clicking the storage entity with it.
         /// </summary>
         [DataField]

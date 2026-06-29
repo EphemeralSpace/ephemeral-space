@@ -31,6 +31,7 @@ public sealed partial class ReflectSystem : EntitySystem
     [Dependency] private ItemToggleSystem _toggle = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedProjectileSystem _projectile = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
 
@@ -129,9 +130,8 @@ public sealed partial class ReflectSystem : EntitySystem
         {
             _adminLogger.Add(LogType.BulletHit, LogImpact.Medium, $"{ToPrettyString(user)} reflected {ToPrettyString(projectile)} from {ToPrettyString(projectile.Comp.Weapon)} shot by {projectile.Comp.Shooter}");
 
-            projectile.Comp.Shooter = user;
-            projectile.Comp.Weapon = user;
-            Dirty(projectile, projectile.Comp);
+            _projectile.SetShooter(projectile, projectile.Comp, user);
+            _projectile.SetWeapon(projectile, projectile.Comp, user);
         }
         else
         {

@@ -23,9 +23,20 @@ public sealed partial class ESPortalGeneratorConsoleWindow : FancyWindow
 
     public void Update(ESPortalGeneratorConsoleBuiState state)
     {
-        StatusLabel.UnsafeSetMarkup(state.Charge >= 1
-            ? Loc.GetString("es-ui-portalgen-console-label-status-ready")
-            : Loc.GetString("es-ui-portalgen-console-label-status-charging"));
+        if (state.FinalPhase)
+        {
+            StatusLabel.UnsafeSetMarkup(Loc.GetString("es-ui-portalgen-console-label-status-final-charging"));
+        }
+        else if (state.Interrupted)
+        {
+            StatusLabel.UnsafeSetMarkup(Loc.GetString("es-ui-portalgen-console-label-status-blocked"));
+        }
+        else
+        {
+            StatusLabel.UnsafeSetMarkup(state.Charge >= 1
+                ? Loc.GetString("es-ui-portalgen-console-label-status-ready")
+                : Loc.GetString("es-ui-portalgen-console-label-status-charging"));
+        }
 
         ActivateButton.Disabled = state.Charge < 1 || state.FinalPhase;
 

@@ -44,7 +44,7 @@ public sealed partial class ESAddMaskOnUseSystem : EntitySystem
 
         if (ent.Comp.MindshieldPrevent && HasComp<MindShieldComponent>(args.Target))
         {
-            _popup.PopupClient(Loc.GetString(ent.Comp.MindshieldedMessage), args.User, args.User);
+            _popup.PopupEntity(Loc.GetString(ent.Comp.MindshieldedMessage), args.User, args.User);
             return;
         }
 
@@ -52,13 +52,13 @@ public sealed partial class ESAddMaskOnUseSystem : EntitySystem
             !_health.IsCritical(args.Target.Value) &&
             _actionBlocker.CanInteract(args.Target.Value, null))
         {
-            _popup.PopupClient(Loc.GetString(ent.Comp.NotIncapacitatedMessage), args.User, args.User);
+            _popup.PopupEntity(Loc.GetString(ent.Comp.NotIncapacitatedMessage), args.User, args.User);
             return;
         }
 
         if (ent.Comp.Used)
         {
-            _popup.PopupClient(Loc.GetString(ent.Comp.UsedMessage), args.User, args.User, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString(ent.Comp.UsedMessage), args.User, args.User, PopupType.Medium);
             return;
         }
 
@@ -74,7 +74,7 @@ public sealed partial class ESAddMaskOnUseSystem : EntitySystem
 
         _doafter.TryStartDoAfter(doAfterArgs);
 
-        _popup.PopupPredicted(Loc.GetString(ent.Comp.UsingMessage), ent, ent, PopupType.MediumCaution);
+        _popup.PopupEntity(Loc.GetString(ent.Comp.UsingMessage), ent, PopupType.MediumCaution);
     }
 
     private void OnDoAfter(Entity<ESAddMaskOnUseComponent> ent, ref ESAddMaskOnUseDoAfterEvent args)

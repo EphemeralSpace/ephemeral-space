@@ -36,8 +36,6 @@ public abstract partial class SharedChatSystem : EntitySystem
     public const int VoiceRange = 10; // how far voice goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
     public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
-    public static readonly SoundSpecifier DefaultAnnouncementSound
-        = new SoundPathSpecifier("/Audio/Announcements/announce.ogg");
 
     public static readonly ProtoId<RadioChannelPrototype> CommonChannel = "Common";
 
@@ -397,61 +395,6 @@ public abstract partial class SharedChatSystem : EntitySystem
         IConsoleShell? shell = null,
         ICommonSession? player = null
         )
-    { }
-
-    /// <summary>
-    /// Dispatches an announcement to all.
-    /// </summary>
-    /// <param name="message">The contents of the message.</param>
-    /// <param name="sender">The sender (Communications Console in Communications Console Announcement).</param>
-    /// <param name="playSound">Play the announcement sound.</param>
-    /// <param name="announcementSound">Sound to play.</param>
-    /// <param name="colorOverride">Optional color for the announcement message.</param>
-    public virtual void DispatchGlobalAnnouncement(
-        string message,
-        string? sender = null,
-        bool playSound = true,
-        SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null
-        )
-    { }
-
-    /// <summary>
-    /// Dispatches an announcement to players selected by filter.
-    /// </summary>
-    /// <param name="filter">Filter to select players who will recieve the announcement.</param>
-    /// <param name="message">The contents of the message.</param>
-    /// <param name="source">The entity making the announcement (used to determine the station).</param>
-    /// <param name="sender">The sender (Communications Console in Communications Console Announcement).</param>
-    /// <param name="playSound">Play the announcement sound.</param>
-    /// <param name="announcementSound">Sound to play.</param>
-    /// <param name="colorOverride">Optional color for the announcement message.</param>
-    public virtual void DispatchFilteredAnnouncement(
-        Filter filter,
-        string message,
-        EntityUid? source = null,
-        string? sender = null,
-        bool playSound = true,
-        SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null)
-    { }
-
-    /// <summary>
-    /// Dispatches an announcement on a specific station.
-    /// </summary>
-    /// <param name="source">The entity making the announcement (used to determine the station).</param>
-    /// <param name="message">The contents of the message.</param>
-    /// <param name="sender">The sender (Communications Console in Communications Console Announcement).</param>
-    /// <param name="playDefaultSound">Play the announcement sound.</param>
-    /// <param name="announcementSound">Sound to play.</param>
-    /// <param name="colorOverride">Optional color for the announcement message.</param>
-    public virtual void DispatchStationAnnouncement(
-        EntityUid source,
-        string message,
-        string? sender = null,
-        bool playDefaultSound = true,
-        SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null)
     { }
 }
 

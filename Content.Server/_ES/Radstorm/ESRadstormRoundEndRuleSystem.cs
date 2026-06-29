@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Server._ES.Announcements;
 using Content.Server._ES.Radio;
 using Content.Server._ES.Radstorm.Components;
-using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.RoundEnd;
@@ -9,7 +9,6 @@ using Content.Shared._ES.CCVar;
 using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Light.Components;
 using Content.Shared.Mobs;
@@ -34,7 +33,7 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private BrainDamageSystem _brainDamage = default!;
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESAnnouncementSystem _chat = default!;
     [Dependency] private DamageableSystem _damage = default!;
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private SharedMapSystem _map = default!;
@@ -90,8 +89,6 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
         {
             component.RadstormNextDamageTickTime = _timing.CurTime + TimeSpan.FromSeconds(1);
 
-            // HELL EVERLASTING! DIE FOREVER!
-            var stillAlive = 0;
             // this should probably not be bounded to mobstate and instead be its own thing but whatever
             var killQuery = EntityQueryEnumerator<MobStateComponent, DamageableComponent, TransformComponent>();
             while (killQuery.MoveNext(out var mob, out var state, out var damageable, out var xform))
@@ -110,18 +107,22 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
                 if (TryComp<BrainDamageComponent>(mob, out var brainDamage))
                     _brainDamage.TryChangeBrainDamage((mob, brainDamage), brainDamage.MaxDamage / 20);
 
-                // only count mobs which actually end up taking damage from this
-                var dmg = _damage.ChangeDamage((mob, damageable), component.RadstormDamagePerSecond, true, false);
-                if (dmg.GetTotal() > FixedPoint2.Zero && state.CurrentState != MobState.Dead)
-                    stillAlive += 1;
+                _damage.ChangeDamage((mob, damageable), component.RadstormDamagePerSecond, true, false);
             }
+        }
 
-            // show is over
-            // (make sure we only actually do this if after time and not just deadly space)
-            // (i kind of implemented that in a weird way huh)
-            if (stillAlive == 0 && RadstormStarted((uid, component)))
-                _roundEnd.EndRound();
+        // If everyone's dead, end the round
+        var actorQuery = EntityQueryEnumerator<ActorComponent>();
+        var allDead = true;
+        while (actorQuery.MoveNext(out var mob, out _))
+        {
+            if (TryComp<MobStateComponent>(mob, out var state) && state.CurrentState != MobState.Dead)
+                allDead = false;
+        }
 
+        if (allDead)
+        {
+            _roundEnd.EndRound();
             return;
         }
 
@@ -142,11 +143,12 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
             var msg = Loc.GetString(phase.AnnouncementText, ("minutes", (minutes)));
             if (phase.AnnouncementDistortion > 0f)
                 msg = FormattedMessage.RemoveMarkupPermissive(ESRadioSystem.DistortRadioMessage(msg, phase.AnnouncementDistortion, _proto, _random, Loc));
-            _chat.DispatchGlobalAnnouncement(
-                msg,
+
+            _chat.DispatchRoundAnnouncement(msg,
                 Loc.GetString("es-radstorm-announcer"),
                 announcementSound: phase.AnnouncementSound,
-                colorOverride: Color.LightSeaGreen);
+                colorOverride: Color.LightSeaGreen,
+                important: true);
         }
 
         // if text is null but sound isnt, this phase just wants to play a sound with no announcement

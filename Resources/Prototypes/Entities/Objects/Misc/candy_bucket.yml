@@ -8,9 +8,6 @@
     sprite: Objects/Fun/candy_bucket.rsi
     layers:
     - state: empty_icon
-      map: [ "enum.ToggleableVisuals.Layer" ]
-  - type: ContainerHeld
-    threshold: 1
   - type: Item
     heldPrefix: empty
     size: Normal

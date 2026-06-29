@@ -5,7 +5,6 @@
   playTimeTracker: ESJobJanitor
   startingGear: ESJanitorGear
   icon: "JobIconJanitor"
-  supervisors: job-supervisors-hop
   access:
   - Service
   - Janitor
@@ -22,7 +21,7 @@
     id: JanitorPDA
     ears: ClothingHeadsetService
     head: ClothingHeadHatPurplesoft
-    gloves: ESClothingHandsGlovesColorOrange
+    gloves: ESClothingHandsGlovesSanitation
     jumpsuit: ClothingUniformJumpsuitJanitor
     back: ClothingBackpack
   storage:

@@ -46,7 +46,7 @@ public abstract partial class ESSharedCoronerSystem : EntitySystem
         if (!CanUseCoronerTool(ent.AsNullable(), args.User, target, out _))
             return;
 
-        _popup.PopupClient(Loc.GetString("es-coroner-report-complete-popup"), target, args.User, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString("es-coroner-report-complete-popup"), target, args.User, PopupType.Medium);
         _audio.PlayPredicted(ent.Comp.AutopsySound, target, args.User);
         var paper = PredictedSpawnNextToOrDrop(ent.Comp.ReportPrototype, target);
         _paper.SetContent(paper, GetReport(target).ToMarkup());
@@ -59,7 +59,7 @@ public abstract partial class ESSharedCoronerSystem : EntitySystem
         if (!CanUseCoronerTool(tool, user, target, out var reason))
         {
             if (!string.IsNullOrEmpty(reason))
-                _popup.PopupClient(reason, target, user, PopupType.SmallCaution);
+                _popup.PopupEntity(reason, target, user, PopupType.SmallCaution);
 
             return false;
         }

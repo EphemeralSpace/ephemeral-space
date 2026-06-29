@@ -16,7 +16,7 @@ namespace Content.Shared.Nutrition.Components;
 public sealed partial class EdibleComponent : Component
 {
     /// <summary>
-    /// Name of the solution that stores the consumable reagents
+    /// Name of the solution that stores the consumable reagents. If this solution doesn't exist, no solution operations will occur
     /// </summary>
     [DataField]
     public string Solution = "food";

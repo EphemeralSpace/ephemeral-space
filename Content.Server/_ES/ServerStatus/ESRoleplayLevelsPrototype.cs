@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -21,7 +22,7 @@ public sealed partial class ESRoleplayLevelsPrototype : IPrototype, ISerializati
     ///     These get validated and will cause validation failures.
     /// </summary>
     [DataField(required: true)]
-    public List<char> ForbidCharacters = default!;
+    public List<string> ForbidCharacters = default!;
 
     /// <summary>
     ///     The kinds of roleplays in this dataset.
@@ -48,11 +49,21 @@ public sealed partial class ESRoleplayLevelsPrototype : IPrototype, ISerializati
 
     private bool CheckForbidCharactersViolation(string word)
     {
-        return ForbidCharacters.Any(x => char.ToUpperInvariant(word[0]) == char.ToUpperInvariant(x));
+        return ForbidCharacters.Contains(word.GetRoleplayAbbreviation());
     }
 
     public string GetPossibleRoleplay(ILocalizationManager loc, IPrototypeManager proto, IRobustRandom random)
     {
         return random.Pick(Roleplays);
+    }
+}
+
+public static class ESRoleplayLevelHelpers
+{
+    public static string GetRoleplayAbbreviation(this string level)
+    {
+        var titleCase = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(level);
+
+        return string.Join(string.Empty, titleCase.ToCharArray().Where(char.IsUpper).ToList());
     }
 }

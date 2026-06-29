@@ -2,7 +2,7 @@
   parent: ESBaseMaskObjective
   id: ESObjectiveWarpDrive
   name: Outrun the radstorm and charge the warp drive
-  description: Keep the station functional, ensure the thrusters and navigation console stay powered, and make sure the warp drive charges successfully so you can escape.
+  description: Keep the station functional, ensure the thrusters and navigation terminal stay powered, and make sure the warp drive charges successfully so you can escape.
   components:
   - type: ESObjective
     icon:

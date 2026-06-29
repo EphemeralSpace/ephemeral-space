@@ -610,7 +610,7 @@ namespace Content.Server.Ghost
                 }
                 else
                 {
-                    _stagehand.SpawnStagehand(player);
+                    _stagehand.SpawnStagehand(player, position);
                 }
             }
             return true;

@@ -740,7 +740,20 @@ public abstract partial class SharedStorageSystem : EntitySystem
                 LogImpact.Low,
                 $"{ToPrettyString(player):player} is attempting to take {ToPrettyString(item):item} out of {ToPrettyString(storage):storage}");
 
-            if (_sharedHandsSystem.TryPickupAnyHand(player, item, handsComp: player.Comp)
+            var ev = new DoAfterArgs(EntityManager,
+                player,
+                item.Comp.BasePickupTime * storage.Comp.ItemPickupTimeMultiplier,
+                new ItemPickupDoAfterEvent(),
+                item.Owner,
+                item.Owner)
+            {
+                BlockDuplicate = false,
+                BreakOnHandChange = false,
+                BreakOnMove = false,
+                DistanceThreshold = 0.5f,
+            };
+
+            if (_doAfterSystem.TryStartDoAfter(ev)
                 && storage.Comp.StorageRemoveSound != null
                 && !_tag.HasTag(player, storage.Comp.SilentStorageUserTag))
             {
@@ -823,6 +836,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
             return;
         }
 
+        // todo mirror probably suss this out later if this can bypass anything
         if (!TryComp(localPlayer, out HandsComponent? handsComp) || !_sharedHandsSystem.TryPickup(localPlayer.Value, itemEnt, handsComp: handsComp, animate: false))
             return;
 
@@ -1259,13 +1273,13 @@ public abstract partial class SharedStorageSystem : EntitySystem
 
         if (!CanInsert(ent, toInsert.Value, out var reason, ent.Comp))
         {
-            _popupSystem.PopupClient(Loc.GetString(reason ?? "comp-storage-cant-insert"), ent, player);
+            _popupSystem.PopupEntity(Loc.GetString(reason ?? "comp-storage-cant-insert"), ent, player);
             return false;
         }
 
         if (!_sharedHandsSystem.CanDrop(player, toInsert.Value))
         {
-            _popupSystem.PopupClient(Loc.GetString("comp-storage-cant-drop", ("entity", toInsert.Value)), ent, player);
+            _popupSystem.PopupEntity(Loc.GetString("comp-storage-cant-drop", ("entity", toInsert.Value)), ent, player);
             return false;
         }
 
@@ -1287,7 +1301,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
 
         if (!Insert(uid, toInsert, out _, user: player, uid.Comp, playSound: playSound))
         {
-            _popupSystem.PopupClient(Loc.GetString("comp-storage-cant-insert"), uid, player);
+            _popupSystem.PopupEntity(Loc.GetString("comp-storage-cant-insert"), uid, player);
             return false;
         }
         return true;

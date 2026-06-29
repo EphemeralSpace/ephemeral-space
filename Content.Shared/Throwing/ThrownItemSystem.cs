@@ -28,6 +28,7 @@ namespace Content.Shared.Throwing
         [Dependency] private SharedPhysicsSystem _physics = default!;
         [Dependency] private SharedGravitySystem _gravity = default!;
         // ES START
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
         [Dependency] private SharedTransformSystem _transform = default!;
         [Dependency] private ESViewconeEffectSystem _effect = default!;
 
@@ -100,6 +101,8 @@ namespace Content.Shared.Throwing
 
         public void StopThrow(EntityUid uid, ThrownItemComponent thrownItemComponent)
         {
+            _appearance.SetData(uid, ESThrowVisuals.InAir, false);
+
             if (TryComp<PhysicsComponent>(uid, out var physics))
             {
                 _physics.SetBodyStatus(uid, physics, BodyStatus.OnGround);

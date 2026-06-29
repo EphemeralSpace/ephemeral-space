@@ -310,7 +310,7 @@
   - type: Pda
     id: CaptainIDCard
     penSlot:
-      startingItem: PenCap
+      startingItem: Pen
       priority: -1
       whitelist:
         tags:
@@ -327,14 +327,14 @@
 
 - type: entity
   parent: BasePDA
-  id: HoPPDA
-  name: head of personnel PDA
+  id: StationAdminPDA
+  name: station administrator PDA
   description: Looks like it's been chewed on.
   components:
   - type: Pda
-    id: HoPIDCard
+    id: StationAdminIDCard
     penSlot:
-      startingItem: PenHop
+      startingItem: LuxuryPen
       priority: -1
       whitelist:
         tags:
@@ -455,7 +455,7 @@
   components:
   - type: Pda
     penSlot:
-      startingItem: PenCentcom
+      startingItem: Pen
       priority: -1
       whitelist:
         tags:
@@ -558,7 +558,7 @@
     state: pda-clear
 
 - type: entity
-  parent: [ BasePDA, BaseSyndicateContraband ]
+  parent: BasePDA
   id: SyndiPDA
   name: syndicate PDA
   description: Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people!

@@ -74,7 +74,7 @@ public sealed partial class PryingSystem : EntitySystem
         if (!CanPry(target, user, out var message, comp))
         {
             if (!string.IsNullOrWhiteSpace(message))
-                _popup.PopupClient(Loc.GetString(message), target, user);
+                _popup.PopupEntity(Loc.GetString(message), target, user);
             // If we have reached this point we want the event that caused this
             // to be marked as handled.
             return true;
@@ -164,7 +164,7 @@ public sealed partial class PryingSystem : EntitySystem
         if (!CanPry(uid, args.User, out var message, comp))
         {
             if (!string.IsNullOrWhiteSpace(message))
-                _popup.PopupClient(Loc.GetString(message), uid, args.User);
+                _popup.PopupEntity(Loc.GetString(message), uid, args.User);
             return;
         }
 

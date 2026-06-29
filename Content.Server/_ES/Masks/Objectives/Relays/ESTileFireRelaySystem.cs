@@ -20,7 +20,7 @@ public sealed class ESTileFireRelaySystem : ESBaseMindRelay
         if (!TryGetMind(ent, out var mind))
             return;
 
-        var ev = new ESBodyCreatedTileFireEvent(args.Coordinates, ent, args.Stage);
+        var ev = new ESBodyCreatedTileFireEvent(args.Coordinates, ent);
         RaiseMindEvent(mind.Value, ref ev);
     }
 
@@ -38,7 +38,7 @@ public sealed class ESTileFireRelaySystem : ESBaseMindRelay
 }
 
 [ByRefEvent]
-public readonly record struct ESBodyCreatedTileFireEvent(EntityCoordinates Coordinates, EntityUid User, int Stage = 1);
+public readonly record struct ESBodyCreatedTileFireEvent(EntityCoordinates Coordinates, EntityUid User);
 
 [ByRefEvent]
 public readonly record struct ESBodyExtinguishedTileFireEvent(EntityUid Fire, EntityUid User);

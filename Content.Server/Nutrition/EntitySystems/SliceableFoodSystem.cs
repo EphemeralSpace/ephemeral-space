@@ -28,13 +28,13 @@ public sealed partial class SliceableFoodSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<SliceableFoodComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<SliceableFoodComponent, SliceFoodDoAfterEvent>(OnSlicedoAfter);
-        SubscribeLocalEvent<SliceableFoodComponent, ComponentStartup>(OnComponentStartup);
     }
 
     private void OnInteractUsing(Entity<SliceableFoodComponent> entity, ref InteractUsingEvent args)
@@ -73,19 +73,24 @@ public sealed partial class SliceableFoodSystem : EntitySystem
         EntityUid user,
         EntityUid? usedItem)
     {
-        if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2, ref entity.Comp3) || string.IsNullOrEmpty(entity.Comp2.Slice))
+        if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2) || string.IsNullOrEmpty(entity.Comp2.Slice))
             return false;
 
-        if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp3.Solution, out var soln, out var solution))
-            return false;
+        // not required for sliceable things to be edible
+        Resolve(entity, ref entity.Comp3, false);
+
+        _solutionContainer.TryGetSolution(entity.Owner, entity.Comp3?.Solution, out var soln, out var solution);
 
         if (!TryComp<UtensilComponent>(usedItem, out var utensil) || (utensil.Types & UtensilType.Knife) == 0)
             return false;
 
-        var sliceVolume = solution.Volume / FixedPoint2.New(entity.Comp2.TotalCount);
-        for (int i = 0; i < entity.Comp2.TotalCount; i++)
+        var sliceVolume = (solution?.Volume ?? FixedPoint2.Zero) / FixedPoint2.New(entity.Comp2.TotalCount);
+        for (var i = 0; i < entity.Comp2.TotalCount; i++)
         {
             var sliceUid = Slice(entity, user);
+
+            if (soln == null || solution == null)
+                continue;
 
             var lostSolution =
                 _solutionContainer.SplitSolution(soln.Value, sliceVolume);
@@ -154,17 +159,6 @@ public sealed partial class SliceableFoodSystem : EntitySystem
 
         var lostSolutionPart = solution.SplitSolution(itsSolution.AvailableVolume);
         _solutionContainer.TryAddSolution(itsSoln.Value, lostSolutionPart);
-    }
-
-    private void OnComponentStartup(Entity<SliceableFoodComponent> entity, ref ComponentStartup args)
-    {
-        // TODO: When Food Component is fully kill delete this awful method
-        // This exists just to make tests fail I guess, awesome!
-        // If you're here because your test just failed, make sure that:
-        // Your food has the edible component
-        // The solution listed in the edible component exists
-        var foodComp = EnsureComp<EdibleComponent>(entity);
-        _solutionContainer.EnsureSolution(entity.Owner, foodComp.Solution, out _);
     }
 }
 

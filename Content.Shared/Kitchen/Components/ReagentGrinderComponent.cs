@@ -7,7 +7,7 @@ namespace Content.Shared.Kitchen.Components;
 /// <summary>
 /// The combo reagent grinder/juicer. The reason why grinding and juicing are seperate is simple,
 /// think of grinding as a utility to break an object down into its reagents. Think of juicing as
-/// converting something into its single juice form. E.g, grind an apple and get the nutriment and sugar
+/// converting something into its single juice form. E.g, grind an apple and get the sugar
 /// it contained, juice an apple and get "apple juice".
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]

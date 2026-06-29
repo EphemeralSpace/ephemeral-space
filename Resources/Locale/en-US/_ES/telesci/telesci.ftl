@@ -7,7 +7,9 @@ es-telesci-announcement-stage-4 = The station has undergone a beta-magnitude tel
 es-ui-portalgen-console-title = Warp Drive Control Terminal
 es-ui-portalgen-console-label-current-status = [bold]Current Status:[/bold]
 es-ui-portalgen-console-label-status-nopower = [font size=18][color=red][bold]No Power[/bold][/color][/font]
+es-ui-portalgen-console-label-status-blocked = [font size=18][color=red][bold]Interruption Present[/bold][/color][/font]
 es-ui-portalgen-console-label-status-charging = [font size=18][color=yellow][bold]Charging[/bold][/color][/font]
+es-ui-portalgen-console-label-status-final-charging = [font size=18][color=magenta][bold]Final Phase Charging[/bold][/color][/font]
 es-ui-portalgen-console-label-status-stillthreats = [font size=14][color=lavender][bold]{$threats} Anomalies Left[/bold][/color][/font]
 es-ui-portalgen-console-label-status-ready = [font size=18][color=lime][bold]Ready[/bold][/color][/font]
 es-ui-portalgen-console-label-charge-header = [bold]Charge:[/bold]

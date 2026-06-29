@@ -1,4 +1,10 @@
 - type: entity
+  parent: WardrobeGrey
+  id: ESWardrobeAssistant
+  suffix: ES
+  name: assistant's wardrobe
+
+- type: entity
   parent: WardrobeBlack
   id: ESWardrobeBartender
   suffix: ES
@@ -33,12 +39,6 @@
   id: ESWardrobeJanitor
   suffix: ES
   name: janitor's wardrobe
-
-- type: entity
-  parent: WardrobeWhite
-  id: ESWardrobeMime
-  suffix: ES
-  name: mime's wardrobe
 
 - type: entity
   parent: WardrobeBlack

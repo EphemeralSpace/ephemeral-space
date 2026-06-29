@@ -29,11 +29,14 @@ es-mask-phantom-desc = As a Phantom, reincarnate as a vengeful spirit on death a
 es-mask-pickpocket-name = Pickpocket
 es-mask-pickpocket-desc = As a Pickpocket, sneak behind peoples' backs to snatch their belongings and grow your collection.
 
+es-mask-rebel-name = Rebel
+es-mask-rebel-desc = As a Rebel, sabotage machines around the station in fervent protest. Try not to get pinned as a Traitor.
+
 es-mask-secretary-name = Secretary
 es-mask-secretary-desc = As a Secretary, do whatever you can to help your target complete their objectives.
 
-es-mask-rebel-name = Rebel
-es-mask-rebel-desc = As a Rebel, sabotage machines around the station in fervent protest. Try not to get pinned as a Traitor.
+es-mask-tragedian-name = Tragedian
+es-mask-tragedian-desc = As a Tragedian, perform your theme to the bitter end in order to please the watching stagehands.
 
 es-mask-vigilante-name = Vigilante
 es-mask-vigilante-desc = As a Vigilante, seek out those who have killed others and bring them to justice by killing them yourself.
@@ -77,8 +80,8 @@ es-mask-hemophage-desc = As a Hemophage, spread your infected blood all across t
 es-mask-host-name = Host
 es-mask-host-desc = As a Host, partake in the festivites and swarm with your fellow parasites!
 
-es-mask-psychid-name = Psychid
-es-mask-psychid-desc = As a Psychid, be killed in order to swap bodies and create a new psychid, spreading the parasitic infection even more.
+es-mask-leapleech-name = Leapleech
+es-mask-leapleech-desc = As a Leapleech, take damage from multiple crew members to increase your power. Upon death, spawn a horde of leaping parasitic leeches based on how many people wronged you.
 
 # Oddballs
 es-mask-sleeper-agent-name = Sleeper Agent

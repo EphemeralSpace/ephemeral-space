@@ -48,7 +48,7 @@ public abstract partial class SharedEmitterSystem : EntitySystem
                 {
                     ent.Comp.BoltType = type;
                     Dirty(ent);
-                    _popup.PopupClient(Loc.GetString("emitter-component-type-set", ("type", proto.Name)), ent.Owner);
+                    _popup.PopupCursor(Loc.GetString("emitter-component-type-set", ("type", proto.Name)), ent.Owner);
                 },
             };
             args.Verbs.Add(v);

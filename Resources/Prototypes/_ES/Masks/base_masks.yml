@@ -3,7 +3,7 @@
   abstract: true
   prohibitedJobs:
   - ESCaptain
-  - ESHeadOfPersonnel
+  - ESStationAdmin
 
 - type: esMask
   id: ESBaseCommandSecRestricted
@@ -11,7 +11,7 @@
   prohibitedJobs:
   # Command
   - ESCaptain
-  - ESHeadOfPersonnel
+  - ESStationAdmin
   # Security
   - ESSecurityOfficer
   - ESDetective
@@ -36,8 +36,31 @@
   id: ESBaseTraitor
   troupe: Traitor
   abstract: true
+  actions:
+    all:
+    - id: ESActionSyndieTransponder
   components:
   - type: ESTroupeFactionIcon
     icon: ESTraitor
     troupe: Traitor
     examineString: es-mask-troupe-traitor-examine
+  # TODO chat refactor this is obviously malicious client-abusable
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Syndicate
+
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionSyndieTransponder
+  name: Syndicate Transponder
+  description: Allows you to covertly relay information to your fellow traitors.
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Devices/communication.rsi
+      state: old-radio
+    useDelay: 60
+  - type: InstantAction
+    event: !type:ESTransponderActionEvent
+      channel: Syndicate

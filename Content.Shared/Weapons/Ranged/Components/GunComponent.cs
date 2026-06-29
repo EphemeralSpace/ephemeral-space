@@ -252,13 +252,6 @@ public sealed partial class GunComponent : Component
     public bool ShowExamineText = true;
 
     /// <summary>
-    /// Whether or not someone with the
-    /// clumsy trait can shoot this
-    /// </summary>
-    [DataField]
-    public bool ClumsyProof = false;
-
-    /// <summary>
     /// Firing direction for an item not being held (e.g. shuttle cannons, thrown guns still firing).
     /// </summary>
     [DataField]

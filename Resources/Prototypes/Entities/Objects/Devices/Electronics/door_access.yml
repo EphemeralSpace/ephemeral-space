@@ -9,11 +9,11 @@
 
 - type: entity
   parent: DoorElectronics
-  id: DoorElectronicsHeadOfPersonnel
-  suffix: HeadOfPersonnel, Locked
+  id: DoorElectronicsStationAdmin
+  suffix: StationAdmin, Locked
   components:
   - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+    access: [["StationAdmin"]]
 
 - type: entity
   parent: DoorElectronics

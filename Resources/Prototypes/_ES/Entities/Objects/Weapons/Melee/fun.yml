@@ -1,0 +1,145 @@
+# When adding new "weapons", also add it to id: AllToyWeaponsTable
+- type: entity
+  abstract: true
+  id: BaseToySword
+  components:
+  - type: DisarmMalus
+    malus: -0.3 # Easy to disarm for epic reversals
+  - type: StaminaDamageOnHit
+    damage: 8 # Too small for real combat, but allows for foam fights to have a conclusion
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 0.3 # Not even close to real damage, but creates the red flash to give the illusion of damage
+
+- type: entity
+  parent: [ BaseItem, BaseToySword ]
+  id: FoamBlade
+  name: foamblade
+  description: It says "Sternside Changs number 1 fan" on it.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/Foam/foam_blade.rsi
+    state: icon
+  - type: MeleeWeapon
+    attackRate: 1.5
+    angle: 0
+    animation: WeaponArcThrust
+    wideAnimationRotation: 90
+  - type: Item
+    size: Small
+    sprite: Objects/Fun/Foam/foam_blade.rsi
+
+- type: entity
+  parent: [ BaseItem, BaseToySword ]
+  id: FoamCutlass
+  name: foam cutlass
+  description: Cosplay as a pirate and force your friends to walk the plank.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/cutlass.rsi
+    state: foam_icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    range: 2.0
+  - type: Item
+    size: Normal
+    storedSprite:
+      state: foam_storage
+      sprite: Objects/Weapons/Melee/cutlass.rsi
+    shape:
+    - 0,0,0,2
+
+- type: entity
+  parent: [ BaseItem, BaseToySword ]
+  id: ToySword
+  name: toy sword
+  description: New Sandy-Cat plastic sword! Comes with realistic sound and full color! Looks almost like the real thing!
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_sword.rsi
+    layers:
+    - state: e_sword
+    - state: e_sword_blade
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: EnergySword
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/ebladeon.ogg
+    soundDeactivate:
+      path: /Audio/Weapons/ebladeoff.ogg
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Weapons/ebladehum.ogg
+  - type: Item
+    size: Small
+    sprite: Objects/Weapons/Melee/e_sword-inhands.rsi
+  - type: UseDelay
+    delay: 1.0
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 2
+    color: white
+    netsync: false
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: blade
+    inhandVisuals:
+      left:
+      - state: inhand-left-blade
+        shader: unshaded
+      right:
+      - state: inhand-right-blade
+        shader: unshaded
+  - type: ItemTogglePointLight
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 0
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        variation: 0.125
+    activatedDamage:
+      types:
+        Heat: 0.3
+
+- type: entity
+  parent: [ BaseItem, BaseToySword ]
+  id: ToyHammer
+  name: rubber hammer
+  description: A brightly colored hammer made of rubber.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/rubber_hammer.rsi
+    state: icon
+  - type: WeaponRandom # 1 in 100,000 to "win" the "fight"
+    damageBonus:
+      types:
+        Blunt: 1000
+  - type: Item
+    size: Small
+    sprite: Objects/Fun/rubber_hammer.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    soundHit: &SoundRubberHammer
+      collection: RubberHammer
+      params:
+        variation: 0.03
+        volume: 3
+    soundNoDamage: *SoundRubberHammer
