@@ -69438,13 +69438,6 @@ entities:
     - type: Transform
       pos: -4.356143,-38.02817
       parent: 2
-- proto: RubberStampQm
-  entities:
-  - uid: 1541
-    components:
-    - type: Transform
-      pos: -4.5320687,-38.213356
-      parent: 2
 - proto: SawElectric
   entities:
   - uid: 8820
