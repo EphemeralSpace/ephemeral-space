@@ -24,7 +24,6 @@ When none of the above are available, normal painkillers are an option.
 In order to conduct surgery, your patient must not have any clothing obstructing them, and must be laying down.
 
 <Box>
-  <GuideEntityEmbed Entity="ClothingOuterVestTank" Caption="tank harness" />
   <GuideEntityEmbed Entity="ClothingOuterHospitalGown" Caption="hospital gown" />
 </Box>
 

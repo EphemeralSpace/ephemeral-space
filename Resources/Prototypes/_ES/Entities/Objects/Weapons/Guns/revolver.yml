@@ -63,7 +63,7 @@
   - type: Clothing
     sprite: _ES/Objects/Weapons/Guns/357.rsi
   - type: Gun
-    fireRate: 1.1
+    fireRate: 0.65
     soundGunshot:
       path: /Audio/_ES/Weapons/Guns/Gunshots/revolver_shot.ogg
     soundEmpty:

@@ -7,7 +7,7 @@
     containers:
       storagebase:
         all:
-        - id: ClothingHeadHatCaptain
+        - id: ESClothingHeadHatCaptain
         - id: ClothingHandsGlovesCaptain
         - id: ClothingUniformJumpsuitCaptain
         - id: ClothingShoesColorBrown

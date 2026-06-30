@@ -26,25 +26,8 @@
 
 - type: entity
   abstract: true
-  parent: ClothingOuterBase
-  id: ClothingOuterStorageBase
-  components:
-  - type: Storage
-    grid:
-    - 0,0,2,1
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-
-- type: entity
-  abstract: true
-  parent: [ClothingOuterStorageBase, BaseFoldable]
-  id: ClothingOuterStorageFoldableBase
+  parent: [ClothingOuterBase, BaseFoldable]
+  id: ClothingOuterFoldableBase
   components:
   - type: Appearance
   - type: Foldable
@@ -64,8 +47,8 @@
 
 - type: entity
   abstract: true
-  parent: ClothingOuterStorageFoldableBase
-  id: ClothingOuterStorageFoldableBaseOpened
+  parent: ClothingOuterFoldableBase
+  id: ClothingOuterFoldableBaseOpened
   suffix: opened
   components:
   - type: Foldable
@@ -82,20 +65,6 @@
     - state: icon-open
       map: ["foldedLayer"]
       visible: true
-
-- type: entity
-  abstract: true
-  parent: ClothingOuterStorageBase
-  id: ClothingOuterStorageToggleableBase
-  components:
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodWinterDefault
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
-      storagebase: !type:Container
-        ents: []
 
 - type: entity
   abstract: true
@@ -190,8 +159,6 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
-      storagebase: !type:Container
-        ents: []
 
 - type: entity
   abstract: true

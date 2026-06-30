@@ -24,8 +24,6 @@ using Content.Client.Stylesheets.Fonts;
 using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
-using Content.Shared.Ame.Components;
-using Content.Shared.Gravity;
 using Content.Shared.Localizations;
 using Robust.Client;
 using Robust.Client.Graphics;
@@ -98,10 +96,6 @@ namespace Content.Client.Entry
             _contentLoc.Initialize();
             _componentFactory.DoAutoRegistrations();
             _componentFactory.IgnoreMissingComponents();
-
-            // Do not add to these, they are legacy.
-            _componentFactory.RegisterClass<SharedAmeControllerComponent>();
-            // Do not add to the above, they are legacy
 
             _prototypeManager.RegisterIgnore("utilityQuery");
             _prototypeManager.RegisterIgnore("utilityCurvePreset");

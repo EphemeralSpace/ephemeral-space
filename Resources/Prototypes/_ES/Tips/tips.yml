@@ -268,7 +268,7 @@
 
 - type: esTip
   id: ArmorPenetration
-  text: Revolvers & shotgun slugs cleave through armor thanks to their high damage. They're a perfect tool for assassinating targets like Security Officers or the Captain.
+  text: Revolvers cleave through armor thanks to their high damage. They're a perfect tool for assassinating targets like Security Officers or the Captain.
 
 - type: esTip
   id: ArmorDT

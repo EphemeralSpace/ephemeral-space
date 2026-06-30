@@ -1,15 +1,13 @@
+using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Verbs;
 using Content.Shared.Examine;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Storage;
 using JetBrains.Annotations;
-using Robust.Shared.Collections;
 using Robust.Shared.Containers;
-using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Item;
 
@@ -17,13 +15,14 @@ public abstract partial class SharedItemSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doafter = default!;
     [Dependency] protected SharedContainerSystem Container = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ItemComponent, GetVerbsEvent<InteractionVerb>>(AddPickupVerb);
         SubscribeLocalEvent<ItemComponent, InteractHandEvent>(OnHandInteract);
+        SubscribeLocalEvent<ItemComponent, ItemPickupDoAfterEvent>(OnPickupDoafter);
         SubscribeLocalEvent<ItemComponent, AfterAutoHandleStateEvent>(OnItemAutoState);
 
         SubscribeLocalEvent<ItemComponent, ExaminedEvent>(OnExamine);
@@ -110,22 +109,28 @@ public abstract partial class SharedItemSystem : EntitySystem
         if (args.Handled)
             return;
 
-        args.Handled = _handsSystem.TryPickup(args.User, uid, null, animateUser: false);
+        var ev = new DoAfterArgs(EntityManager,
+            args.User,
+            component.BasePickupTime,
+            new ItemPickupDoAfterEvent(),
+            uid,
+            uid)
+        {
+            BlockDuplicate = false,
+            BreakOnHandChange = false,
+            BreakOnMove = true,
+            MovementThreshold = 0.5f,
+        };
+
+        args.Handled = _doafter.TryStartDoAfter(ev);
     }
 
-    private void AddPickupVerb(EntityUid uid, ItemComponent component, GetVerbsEvent<InteractionVerb> args)
+    private void OnPickupDoafter(Entity<ItemComponent> ent, ref ItemPickupDoAfterEvent args)
     {
-        if (args.Hands == null ||
-            args.Using != null ||
-            !args.CanAccess ||
-            !args.CanInteract ||
-            !_handsSystem.CanPickupAnyHand(args.User, args.Target, handsComp: args.Hands, item: component))
+        if (args.Cancelled)
             return;
 
-        // ES START
-        // No pickup verb
-        return;
-        // ES START
+        args.Handled = _handsSystem.TryPickup(args.User, ent.Owner, animateUser: false);
     }
 
     private void OnExamine(EntityUid uid, ItemComponent component, ExaminedEvent args)
@@ -261,4 +266,10 @@ public abstract partial class SharedItemSystem : EntitySystem
             }
         }
     }
+}
+
+[Serializable, NetSerializable]
+public sealed partial class ItemPickupDoAfterEvent : DoAfterEvent
+{
+    public override DoAfterEvent Clone() => this;
 }

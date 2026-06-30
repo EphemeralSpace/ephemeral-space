@@ -1,8 +1,8 @@
 - type: entity
   parent: [ClothingEyesBase, BaseChameleon]
   id: ClothingEyesChameleon # no flash immunity, sorry
-  name: sun glasses
-  description: Useful both for security and cargonia.
+  name: sunglasses
+  description: A pair of black sunglasses.
   suffix: Chameleon
   components:
     - type: Tag

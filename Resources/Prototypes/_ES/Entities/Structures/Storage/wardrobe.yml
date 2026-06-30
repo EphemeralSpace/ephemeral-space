@@ -41,12 +41,6 @@
   name: janitor's wardrobe
 
 - type: entity
-  parent: WardrobeWhite
-  id: ESWardrobeMime
-  suffix: ES
-  name: mime's wardrobe
-
-- type: entity
   parent: WardrobeBlack
   id: ESWardrobeReporter
   suffix: ES

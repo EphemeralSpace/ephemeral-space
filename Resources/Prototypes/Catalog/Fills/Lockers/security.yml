@@ -32,8 +32,6 @@
   id: FillClosetBomb
   table: !type:AllSelector
     children:
-    - id: ClothingHeadHelmetBombSuit
-    - id: ClothingOuterSuitBomb
     - id: Wirecutter
     - id: Screwdriver
     - id: Multitool

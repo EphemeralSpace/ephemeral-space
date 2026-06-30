@@ -3321,7 +3321,7 @@ entities:
     - type: Transform
       pos: -1.3943815,-0.2637577
       parent: 1
-- proto: ESShotgunShellsBoxSlug
+- proto: ESShotgunShellsBoxBuckshot
   entities:
   - uid: 372
     components:
