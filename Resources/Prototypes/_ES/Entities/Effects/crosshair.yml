@@ -6,10 +6,11 @@
     - type: Sprite
       sprite: _ES/Effects/crosshair.rsi
       drawdepth: Effects
-      layers:
-      - state: crosshair
       noRot: true
-      visible: false
+      layers:
+      - map: ["enum.ESCrosshairVisualLayers.Crosshair"]
+        state: crosshair
+        visible: false
     - type: Appearance
     - type: Tag
       tags:

@@ -1,5 +1,8 @@
+using System.Numerics;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Shared._ES.Crosshair;
+using Content.Shared._ES.Viewcone;
+using Content.Shared.Examine;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -21,8 +24,11 @@ public sealed partial class ESClientCrosshairSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IUserInterfaceManager _ui = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
-    [Dependency] private OccluderSystem _occluder = default!;
+    [Dependency] private ExamineSystemShared _occluder = default!;
+    [Dependency] private ESViewconeAngleSystem _viewcone = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+
+    private const float LerpHalfLife = 0.025f;
 
     public override void Initialize()
     {
@@ -54,35 +60,33 @@ public sealed partial class ESClientCrosshairSystem : EntitySystem
         {
             if (entity.User is not { } user)
             {
-                _sprite.SetVisible((uid, sprite), false);
+                _sprite.LayerSetVisible((uid, sprite), ESCrosshairVisualLayers.Crosshair, false);
                 continue;
             }
+
+            // lerp and offset
+            // we do this clientside and per frame to not fuck up prediction
+            // we could do this by drawing in an overlay but im using sprite offset because whatever
+            var actualPos = _xform.GetWorldPosition(xform);
+            entity.LerpPos ??= actualPos;
+            entity.LerpPos = Vector2.Lerp(entity.LerpPos.Value, actualPos, 1f - MathF.Pow(2f, -(frameTime / LerpHalfLife)));
+            var eyeRot = _eye.CurrentEye.Rotation;
+            _sprite.SetOffset((uid, sprite), eyeRot.RotateVec(entity.LerpPos.Value - actualPos));
 
             if (user == _player.LocalEntity)
             {
-                _sprite.SetVisible((uid, sprite), true);
-                continue;
-            }
-
-            // check if the crosshair itself is occluded
-            var entPos = _xform.GetMapCoordinates(xform);
-            var entOccluded = _occluder.InRangeUnoccluded(playerPos, entPos, 10f, true);
-            if (entOccluded)
-            {
-                _sprite.SetVisible((uid, sprite), false);
+                _sprite.LayerSetVisible((uid, sprite), ESCrosshairVisualLayers.Crosshair, true);
                 continue;
             }
 
             // check if the user of the crosshair is occluded
-            var userPos = _xform.GetMapCoordinates(user);
-            var userOccluded = _occluder.InRangeUnoccluded(playerPos, userPos, 10f, true);
-            if (userOccluded)
+            if (!_occluder.InRangeUnOccluded(user, playerPos) || !_viewcone.InViewcone(playerEnt, user))
             {
-                _sprite.SetVisible((uid, sprite), false);
+                _sprite.LayerSetVisible((uid, sprite), ESCrosshairVisualLayers.Crosshair, false);
                 continue;
             }
 
-            _sprite.SetVisible((uid, sprite), true);
+            _sprite.LayerSetVisible((uid, sprite), ESCrosshairVisualLayers.Crosshair, true);
         }
     }
 
@@ -98,18 +102,27 @@ public sealed partial class ESClientCrosshairSystem : EntitySystem
         if (player == null || !TryComp<ESCrosshairAimerComponent>(player, out var aimer))
             return;
 
+        var coords = _input.MouseScreenPosition;
+        var mousePos = _eye.PixelToMap(coords);
+
         if (aimer.CrosshairEntity == null)
             return;
 
-        var coords = _input.MouseScreenPosition;
-        var mapPos = _eye.PixelToMap(coords);
+        var pos = _xform.GetMapCoordinates(aimer.CrosshairEntity.Value);
+        if (mousePos.Position.EqualsApprox(pos.Position, 0.01d))
+            return;
 
-        if (mapPos.MapId == MapId.Nullspace)
+        if (mousePos.MapId == MapId.Nullspace)
             return;
 
         RaisePredictiveEvent(new ESCrosshairNetworkEvent()
         {
-            Coordinates = mapPos,
+            Coordinates = mousePos,
         });
     }
+}
+
+public enum ESCrosshairVisualLayers : byte
+{
+    Crosshair
 }

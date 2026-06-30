@@ -1,7 +1,5 @@
-using System.Linq;
 using System.Numerics;
 using Content.Shared.CombatMode;
-using Content.Shared.Decals;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
@@ -19,7 +17,6 @@ public sealed partial class ESCrosshairSystem : EntitySystem
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
 
-    private const float LerpHalfLife = 0.02f;
     private static readonly EntProtoId CrosshairEffect = "ESCrosshairEffect";
 
     public override void Initialize()
@@ -31,7 +28,7 @@ public sealed partial class ESCrosshairSystem : EntitySystem
         SubscribeLocalEvent<ESCrosshairAimerComponent, CombatModeToggledEvent>(OnCombatModeToggled);
         SubscribeLocalEvent<ESCrosshairAimerComponent, EntityTerminatingEvent>(OnAimerTerminating);
 
-        SubscribeNetworkEvent<ESCrosshairNetworkEvent>(OnCrosshair);
+        SubscribeAllEvent<ESCrosshairNetworkEvent>(OnCrosshair);
     }
 
     private void OnHandDeselected(Entity<ESCrosshairProviderComponent> ent, ref HandDeselectedEvent args)
@@ -110,27 +107,6 @@ public sealed partial class ESCrosshairSystem : EntitySystem
 
     #endregion
 
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var query = EntityQueryEnumerator<ESCrosshairEntityComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var entity, out var xform))
-        {
-            var target = entity.Target;
-            if (target == MapCoordinates.Nullspace)
-                continue;
-
-            var coords = _xform.GetMapCoordinates(xform);
-            var newCoordinates = new MapCoordinates(Vector2.Lerp(coords.Position,
-                target.Position,
-                1f - MathF.Pow(2f, -(frameTime / LerpHalfLife))),
-                target.MapId);
-
-            _xform.SetMapCoordinates((uid, xform), newCoordinates);
-        }
-    }
-
     private void OnCrosshair(ESCrosshairNetworkEvent msg, EntitySessionEventArgs args)
     {
         if (!msg.Coordinates.Position.IsValid())
@@ -139,15 +115,13 @@ public sealed partial class ESCrosshairSystem : EntitySystem
         if (args.SenderSession.AttachedEntity is not { } ent || !TryComp<ESCrosshairAimerComponent>(ent, out var aimer))
             return;
 
-        var crosshairEntity = aimer.CrosshairEntity;
-        if (crosshairEntity is null || !TryComp<ESCrosshairEntityComponent>(crosshairEntity, out var crosshair)) // wait for it to get spawned
-            return;
-
         var userXform = Transform(ent);
-        if (userXform.MapID != msg.Coordinates.MapId)
+        if (aimer.CrosshairEntity is not { } crosshairEntity || userXform.MapUid is not { } map)
             return;
 
-        crosshair.Target = msg.Coordinates;
-        Dirty(crosshairEntity.Value, crosshair);
+        var crosshairXform = Transform(crosshairEntity);
+
+        _xform.SetParent(crosshairEntity, crosshairXform, map);
+        _xform.SetLocalPosition(crosshairEntity, msg.Coordinates.Position, crosshairXform);
     }
 }
