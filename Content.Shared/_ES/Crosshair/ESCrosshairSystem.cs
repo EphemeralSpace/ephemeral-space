@@ -1,7 +1,10 @@
+using System.Linq;
 using System.Numerics;
 using Content.Shared.CombatMode;
+using Content.Shared.Decals;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.IdentityManagement;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
@@ -11,11 +14,12 @@ namespace Content.Shared._ES.Crosshair;
 
 public sealed partial class ESCrosshairSystem : EntitySystem
 {
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedCombatModeSystem _combat = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
 
-    private const float LerpHalfLife = 0.25f;
+    private const float LerpHalfLife = 0.02f;
     private static readonly EntProtoId CrosshairEffect = "ESCrosshairEffect";
 
     public override void Initialize()
@@ -91,6 +95,9 @@ public sealed partial class ESCrosshairSystem : EntitySystem
         if (enabled)
         {
             entity.Comp.CrosshairEntity = PredictedSpawnAtPosition(CrosshairEffect, Transform(entity).Coordinates);
+            var comp = new ESCrosshairEntityComponent() { User = entity.Owner };
+            AddComp(entity.Comp.CrosshairEntity.Value, comp);
+            _appearance.SetData(entity.Comp.CrosshairEntity.Value, ESCrosshairVisuals.Name, Identity.Name(entity.Owner, EntityManager));
         }
         else
         {

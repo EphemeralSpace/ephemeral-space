@@ -70,7 +70,7 @@ public sealed partial class ChatUIController : UIController
     [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
 
     private static readonly ProtoId<ColorPalettePrototype> ChatNamePalette = "ChatNames";
-    private string[] _chatNameColors = default!;
+    private Color[] _chatNameColors = default!;
     private bool _chatNameColorsEnabled;
 
     private ISawmill _sawmill = default!;
@@ -234,10 +234,10 @@ public sealed partial class ChatUIController : UIController
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
 
         var nameColors = _prototypeManager.Index(ChatNamePalette).Colors.Values.ToArray();
-        _chatNameColors = new string[nameColors.Length];
+        _chatNameColors = new Color[nameColors.Length];
         for (var i = 0; i < nameColors.Length; i++)
         {
-            _chatNameColors[i] = nameColors[i].ToHex();
+            _chatNameColors[i] = nameColors[i];
         }
 
         _config.OnValueChanged(CCVars.ChatWindowOpacity, OnChatWindowOpacityChanged);
@@ -756,7 +756,7 @@ public sealed partial class ChatUIController : UIController
         {
             var grammar = _ent.GetComponentOrNull<GrammarComponent>(_ent.GetEntity(msg.SenderEntity));
             if (grammar != null && grammar.ProperNoun == true)
-                msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")));
+                msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")).ToHex());
         }
 
         // Color any codewords for minds that have roles that use them
@@ -881,8 +881,8 @@ public sealed partial class ChatUIController : UIController
     /// Returns the chat name color for a mob
     /// </summary>
     /// <param name="name">Name of the mob</param>
-    /// <returns>Hex value of the color</returns>
-    public string GetNameColor(string name)
+    /// <returns>The name color</returns>
+    public Color GetNameColor(string name)
     {
         var colorIdx = Math.Abs(name.GetHashCode() % _chatNameColors.Length);
         return _chatNameColors[colorIdx];

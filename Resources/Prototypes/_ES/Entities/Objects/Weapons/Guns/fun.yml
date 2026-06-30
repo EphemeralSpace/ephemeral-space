@@ -5,6 +5,7 @@
   id: BaseToyGun
   components:
   - type: PacifismAllowedGun # They don't hurt!
+  - type: ESCrosshairProvider
 
 - type: entity
   parent: [ BaseItem, BaseToyGun ]

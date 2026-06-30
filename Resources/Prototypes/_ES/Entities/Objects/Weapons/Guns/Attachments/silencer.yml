@@ -12,6 +12,7 @@
     size: Small
     storedRotation: -90
   - type: ESGunAttachment
+  # TODO MIRROR make silencer not do crosshairprovider
   - type: ESGunSoundAttachment
     sound:
       path: /Audio/_ES/Weapons/Guns/Gunshots/pistol_shot_suppressed.ogg

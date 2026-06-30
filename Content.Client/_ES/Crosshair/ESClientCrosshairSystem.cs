@@ -1,8 +1,10 @@
+using Content.Client.UserInterface.Systems.Chat;
 using Content.Shared._ES.Crosshair;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
+using Robust.Client.UserInterface;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
@@ -17,9 +19,26 @@ public sealed partial class ESClientCrosshairSystem : EntitySystem
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IEyeManager _eye = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private OccluderSystem _occluder = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<ESCrosshairEntityComponent, AppearanceChangeEvent>(OnAppearanceChanged);
+    }
+
+    private void OnAppearanceChanged(Entity<ESCrosshairEntityComponent> ent, ref AppearanceChangeEvent args)
+    {
+        if (args.Sprite is null || !args.AppearanceData.TryGetValue(ESCrosshairVisuals.Name, out var obj) || obj is not string name)
+            return;
+
+        var controller = _ui.GetUIController<ChatUIController>();
+        _sprite.SetColor((ent.Owner, args.Sprite), controller.GetNameColor(name));
+    }
 
     public override void FrameUpdate(float frameTime)
     {
@@ -47,7 +66,7 @@ public sealed partial class ESClientCrosshairSystem : EntitySystem
 
             // check if the crosshair itself is occluded
             var entPos = _xform.GetMapCoordinates(xform);
-            var entOccluded = _occluder.InRangeUnoccluded(playerPos, entPos, 10f, false);
+            var entOccluded = _occluder.InRangeUnoccluded(playerPos, entPos, 10f, true);
             if (entOccluded)
             {
                 _sprite.SetVisible((uid, sprite), false);
@@ -56,7 +75,7 @@ public sealed partial class ESClientCrosshairSystem : EntitySystem
 
             // check if the user of the crosshair is occluded
             var userPos = _xform.GetMapCoordinates(user);
-            var userOccluded = _occluder.InRangeUnoccluded(playerPos, userPos, 10f, false);
+            var userOccluded = _occluder.InRangeUnoccluded(playerPos, userPos, 10f, true);
             if (userOccluded)
             {
                 _sprite.SetVisible((uid, sprite), false);

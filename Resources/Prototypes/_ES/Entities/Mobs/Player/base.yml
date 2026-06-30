@@ -9,3 +9,4 @@
   - type: ESHoldToFace
   - type: ESKillTracker
   - type: ESPainFlash
+  - type: ESCrosshairAimer

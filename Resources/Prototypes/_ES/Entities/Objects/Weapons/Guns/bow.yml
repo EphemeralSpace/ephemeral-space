@@ -13,9 +13,6 @@
     quickEquip: false
     slots:
       - Back
-# ES START
-      # - suitStorage
-# ES END
   - type: Wieldable
     wieldSound:
       path: /Audio/Items/bow_pull.ogg
@@ -47,6 +44,7 @@
       projectiles: !type:ContainerSlot
   - type: ContainerAmmoProvider
     container: projectiles
+  - type: ESCrosshairProvider
 
 - type: entity
   id: BowImprovised

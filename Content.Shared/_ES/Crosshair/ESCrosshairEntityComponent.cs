@@ -1,5 +1,6 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Crosshair;
 
@@ -13,4 +14,10 @@ public sealed partial class ESCrosshairEntityComponent : Component
     public EntityUid? User;
 
     public MapCoordinates Target = MapCoordinates.Nullspace;
+}
+
+[Serializable, NetSerializable]
+public enum ESCrosshairVisuals : byte
+{
+    Name
 }

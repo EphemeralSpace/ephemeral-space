@@ -3,13 +3,13 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: ESViewconeOccludable
-      inverted: true
-      overrideBaseAlpha: true
     - type: Sprite
       sprite: _ES/Effects/crosshair.rsi
-      state: crosshair
       drawdepth: Effects
+      layers:
+      - state: crosshair
       noRot: true
+    - type: Appearance
     - type: Tag
       tags:
         - HideContextMenu
