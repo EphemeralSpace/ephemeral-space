@@ -1,10 +1,9 @@
-using System.Numerics;
 using Content.Shared.CombatMode;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Mobs;
 using JetBrains.Annotations;
-using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -26,10 +25,13 @@ public sealed partial class ESCrosshairSystem : EntitySystem
         SubscribeLocalEvent<ESCrosshairProviderComponent, HandDeselectedEvent>(OnHandDeselected);
         SubscribeLocalEvent<ESCrosshairProviderComponent, HandSelectedEvent>(OnHandSelected);
         SubscribeLocalEvent<ESCrosshairAimerComponent, CombatModeToggledEvent>(OnCombatModeToggled);
+        SubscribeLocalEvent<ESCrosshairAimerComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<ESCrosshairAimerComponent, EntityTerminatingEvent>(OnAimerTerminating);
 
         SubscribeAllEvent<ESCrosshairNetworkEvent>(OnCrosshair);
     }
+
+    #region Events / API
 
     private void OnHandDeselected(Entity<ESCrosshairProviderComponent> ent, ref HandDeselectedEvent args)
     {
@@ -50,8 +52,6 @@ public sealed partial class ESCrosshairSystem : EntitySystem
         }
     }
 
-    #region Events / API
-
     private void OnCombatModeToggled(Entity<ESCrosshairAimerComponent> ent, ref CombatModeToggledEvent args)
     {
         if (!_hands.TryGetActiveItem(ent.Owner, out var item)
@@ -63,6 +63,17 @@ public sealed partial class ESCrosshairSystem : EntitySystem
 
         var valid = args.Enabled || !provider.RequiresCombatMode;
         SetCrosshair(ent.AsNullable(), valid);
+    }
+
+    private void OnMobStateChanged(Entity<ESCrosshairAimerComponent> ent, ref MobStateChangedEvent args)
+    {
+        // we dont worry about the inverse (going from crit to alive or whatever)
+        // cuz in that case they arent gonna be holding a gun or shit anyway
+        // so i dont think its realistically possible for them to be in an invalid state.
+        if (args.NewMobState is not (MobState.Critical or MobState.Dead))
+            return;
+
+        SetCrosshair(ent.AsNullable(), false);
     }
 
     private void OnAimerTerminating(Entity<ESCrosshairAimerComponent> ent, ref EntityTerminatingEvent args)
@@ -80,17 +91,17 @@ public sealed partial class ESCrosshairSystem : EntitySystem
         if (!Resolve(entity, ref entity.Comp, false))
             return;
 
-        // todo this could probably get reused for npcs to instead point at whatever their target is somehow
-        // but for now no
-        if (!HasComp<ActorComponent>(entity))
-            return;
-
         if (entity.Comp.CrosshairEntity is not null && enabled
             || entity.Comp.CrosshairEntity is null && !enabled)
             return;
 
         if (enabled)
         {
+            // todo this could probably get reused for npcs to instead point at whatever their target is somehow
+            // but for now no
+            if (!HasComp<ActorComponent>(entity))
+                return;
+
             entity.Comp.CrosshairEntity = PredictedSpawnAtPosition(CrosshairEffect, Transform(entity).Coordinates);
             var comp = new ESCrosshairEntityComponent() { User = entity.Owner };
             AddComp(entity.Comp.CrosshairEntity.Value, comp);
