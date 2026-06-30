@@ -51,20 +51,20 @@ public sealed partial class ESGuideSecretIdentityEmbed : VStack, IDocumentTag, I
             Loc.GetString("es-guidebook-mask-embed-name",
                 ("color", mask.Color),
                 ("name", Loc.GetString(mask.Name))));
-        MaskName.SetMessage(nameMsg, tagsAllowed: null);
+        SecretIdentityName.SetMessage(nameMsg, tagsAllowed: null);
 
         var descMsg = FormattedMessage.FromMarkupOrThrow(
             Loc.GetString("es-guidebook-mask-embed-description",
                 ("description", Loc.GetString(mask.Description))));
-        MaskDescription.SetMessage(descMsg, tagsAllowed: null);
+        SecretIdentityDescription.SetMessage(descMsg, tagsAllowed: null);
 
         var jobsList = ContentLocalizationManager.FormatList(mask.ProhibitedJobs.Select(p => _proto.Index(p).LocalizedName).ToList());
         var prohibitedJobsMsg = FormattedMessage.FromMarkupOrThrow(
             Loc.GetString("es-guidebook-mask-embed-prohibited-jobs", ("jobs", jobsList)));
-        MaskProhibitedJobs.SetMessage(prohibitedJobsMsg, tagsAllowed: null);
+        SecretIdentityProhibitedJobs.SetMessage(prohibitedJobsMsg, tagsAllowed: null);
 
         if (jobsList.Length == 0)
-            MaskProhibitedJobs.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("es-guidebook-mask-embed-prohibited-jobs-none")), tagsAllowed: null);
+            SecretIdentityProhibitedJobs.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("es-guidebook-mask-embed-prohibited-jobs-none")), tagsAllowed: null);
 
         RepresentedPrototype = mask;
         control = this;
