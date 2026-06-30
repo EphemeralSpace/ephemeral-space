@@ -1,5 +1,4 @@
 using Content.Shared._ES.Crosshair;
-using Content.Shared.Interaction;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -12,26 +11,59 @@ namespace Content.Client._ES.Crosshair;
 /// <summary>
 ///     Handles occluding crosshairs out of view of the local player as well as raising events if we have a crosshair.
 /// </summary>
-public sealed class ESClientCrosshairSystem : EntitySystem
+public sealed partial class ESClientCrosshairSystem : EntitySystem
 {
     [Dependency] private IInputManager _input = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IEyeManager _eye = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private OccluderSystem _occluder = default!;
     [Dependency] private SpriteSystem _sprite = default!;
 
     public override void FrameUpdate(float frameTime)
     {
         base.FrameUpdate(frameTime);
 
-        var query = EntityQueryEnumerator<ESCrosshairEntityComponent, SpriteComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var entity, out var sprite, out var xf orm))
-        {
-            if (entity.User == _player.LocalEntity)
-                _sprite.SetVisible((uid, sprite), true);
+        if (_player.LocalEntity is not { } playerEnt)
+            return;
 
+        var playerXform = Transform(playerEnt);
+        var playerPos = _xform.GetMapCoordinates(playerXform);
+        var query = EntityQueryEnumerator<ESCrosshairEntityComponent, SpriteComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var entity, out var sprite, out var xform))
+        {
+            if (entity.User is not { } user)
+            {
+                _sprite.SetVisible((uid, sprite), false);
+                continue;
+            }
+
+            if (user == _player.LocalEntity)
+            {
+                _sprite.SetVisible((uid, sprite), true);
+                continue;
+            }
+
+            // check if the crosshair itself is occluded
+            var entPos = _xform.GetMapCoordinates(xform);
+            var entOccluded = _occluder.InRangeUnoccluded(playerPos, entPos, 10f, false);
+            if (entOccluded)
+            {
+                _sprite.SetVisible((uid, sprite), false);
+                continue;
+            }
+
+            // check if the user of the crosshair is occluded
+            var userPos = _xform.GetMapCoordinates(user);
+            var userOccluded = _occluder.InRangeUnoccluded(playerPos, userPos, 10f, false);
+            if (userOccluded)
+            {
+                _sprite.SetVisible((uid, sprite), false);
+                continue;
+            }
+
+            _sprite.SetVisible((uid, sprite), true);
         }
     }
 
@@ -50,7 +82,6 @@ public sealed class ESClientCrosshairSystem : EntitySystem
         if (aimer.CrosshairEntity == null)
             return;
 
-        var xform = Transform(player.Value);
         var coords = _input.MouseScreenPosition;
         var mapPos = _eye.PixelToMap(coords);
 
@@ -60,7 +91,6 @@ public sealed class ESClientCrosshairSystem : EntitySystem
         RaisePredictiveEvent(new ESCrosshairNetworkEvent()
         {
             Coordinates = mapPos,
-            User = GetNetEntity(player)
         });
     }
 }

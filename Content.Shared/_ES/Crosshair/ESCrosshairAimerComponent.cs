@@ -1,11 +1,16 @@
+using Robust.Shared.GameStates;
+
 namespace Content.Shared._ES.Crosshair;
 
 /// <summary>
-///     An entity which can aim with a crosshair.
+///     An entity which has the capability of spawning a
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ESCrosshairAimerComponent : Component
 {
+    /// <summary>
+    ///     Null if the user is not currently aiming.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? CrosshairEntity;
 }

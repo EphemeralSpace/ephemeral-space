@@ -7,8 +7,7 @@ namespace Content.Shared._ES.Crosshair;
 ///     Raised on an entity with <see cref="ESCrosshairAimerComponent"/> as a predictive event on the client
 /// </summary>
 [Serializable, NetSerializable]
-public sealed partial class ESCrosshairNetworkEvent : EntityEventArgs
+public sealed class ESCrosshairNetworkEvent : EntityEventArgs
 {
     public MapCoordinates Coordinates;
-    public NetEntity? User;
 }
