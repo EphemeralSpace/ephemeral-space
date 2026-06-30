@@ -9,6 +9,7 @@
       layers:
       - state: crosshair
       noRot: true
+      visible: false
     - type: Appearance
     - type: Tag
       tags:
