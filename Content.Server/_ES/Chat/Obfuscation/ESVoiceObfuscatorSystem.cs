@@ -9,7 +9,7 @@ namespace Content.Server._ES.Chat.Obfuscation;
 /// <inheritdoc/>
 public sealed partial class ESVoiceObfuscatorSystem : ESSharedVoiceObfuscatorSystem
 {
-    [Dependency] private MaskSystem _mask = default!;
+    [Dependency] private MaskSystem _secretIdentity = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -21,7 +21,7 @@ public sealed partial class ESVoiceObfuscatorSystem : ESSharedVoiceObfuscatorSys
 
     private void OnTransformSpeakerName(Entity<ESVoiceObfuscatorComponent> ent, ref InventoryRelayedEvent<TransformSpeakerNameEvent> args)
     {
-        if (_mask.IsToggled(ent.Owner))
+        if (_secretIdentity.IsToggled(ent.Owner))
             return;
 
         args.Args.VoiceName = GetObfuscatedVoice(args.Owner);

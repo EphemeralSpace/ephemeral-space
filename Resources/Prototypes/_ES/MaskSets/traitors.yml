@@ -1,4 +1,4 @@
-- type: esMaskSet
+- type: esSecretIdentitySet
   id: Traitors
   masks:
     Marauder: 1

@@ -1,4 +1,4 @@
-using Content.Shared._ES.Masks;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Filters;
 using JetBrains.Annotations;
@@ -17,7 +17,7 @@ public sealed partial class ESHasTroupeFilter : MindFilter
 
     protected override bool ShouldRemove(Entity<MindComponent> mind, EntityUid? exclude, IEntityManager entMan, SharedMindSystem mindSys)
     {
-        var maskSys = entMan.System<ESSharedMaskSystem>();
+        var maskSys = entMan.System<ESSharedSecretIdentitySystem>();
         return maskSys.GetTroupeOrNull(mind.AsNullable()) != Troupe;
     }
 }

@@ -1,4 +1,4 @@
-- type: esMaskSet
+- type: esSecretIdentitySet
   id: SemiTraitor # not quite a full traitor
   masks:
     SleeperAgent: 0.45

@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared._ES.Masks;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.Mind;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Mind;

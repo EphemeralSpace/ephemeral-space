@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Content.Shared._ES.Masks;
-using Content.Shared._ES.Masks.Masquerades;
+using Content.Shared._ES.SecretIdentity;
+using Content.Shared._ES.SecretIdentity.Masquerades;
 using NUnit.Framework;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Markdown.Value;

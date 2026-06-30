@@ -1,4 +1,4 @@
-- type: esMask
+- type: esSecretIdentity
   id: ArmsDealer
   name: es-mask-arms-dealer-name
   troupe: Crew
@@ -8,14 +8,14 @@
   objectives:
     id: ESObjectiveHoldSummonedGuns
   mindComponents:
-  - type: ESMaskSummoner
+  - type: ESSecretIdentitySummoner
     examineString: es-summonable-examine-arms-dealer
-  - type: ESMaskCacheSpawner
+  - type: ESSecretIdentityCacheSpawner
     cacheProto:
       id: ESCrateCacheCrewArmsDealer
       amount: 6
 
-- type: esMask
+- type: esSecretIdentity
   id: Arsonist
   name: es-mask-arsonist-name
   troupe: Crew
@@ -25,7 +25,7 @@
   objectives:
     id: ESObjectiveArsonistLightFires
 
-- type: esMask
+- type: esSecretIdentity
   id: Avenger
   name: es-mask-avenger-name
   troupe: Crew
@@ -34,7 +34,7 @@
   objectives:
     id: ESObjectiveAvengerProtectRandom
 
-- type: esMask
+- type: esSecretIdentity
   id: Crewmember
   name: es-mask-crewmember-name
   troupe: Crew
@@ -42,7 +42,7 @@
   weight: 5
   color: white
 
-- type: esMask
+- type: esSecretIdentity
   id: Guzzler
   name: es-mask-guzzler-name
   troupe: Crew
@@ -55,7 +55,7 @@
     - id: ESObjectiveGuzzleUniqueReagents
     - id: ESObjectiveGuzzleSpecialInterest
 
-- type: esMask
+- type: esSecretIdentity
   id: Hater
   name: es-mask-hater-name
   troupe: Crew
@@ -67,7 +67,7 @@
     - id: ESObjectiveHaterHate
     - id: ESObjectiveHaterDontKill
 
-- type: esMask
+- type: esSecretIdentity
   id: Mercenary
   name: es-mask-mercenary-name
   troupe: Crew
@@ -76,11 +76,11 @@
   objectives:
     id: ESObjectiveKillNonCrew
   mindComponents:
-  - type: ESMaskCacheSpawner
+  - type: ESSecretIdentityCacheSpawner
     cacheProto:
       id: ESCrateCacheCrewMercenary
 
-- type: esMask
+- type: esSecretIdentity
   id: Nobleman
   name: es-mask-nobleman-name
   troupe: Crew
@@ -91,7 +91,7 @@
     all:
     - id: ESObjectiveNoblemanDontKill
 
-- type: esMask
+- type: esSecretIdentity
   id: Phantom
   name: es-mask-phantom-name
   troupe: Crew
@@ -104,7 +104,7 @@
     all:
     - id: ESObjectivePhantomDie
 
-- type: esMask
+- type: esSecretIdentity
   id: Pickpocket
   name: es-mask-pickpocket-name
   troupe: Crew
@@ -118,7 +118,7 @@
     all:
     - id: ESObjectivePickpocketSteal
 
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseCommandRestricted
   id: Rebel
   name: es-mask-rebel-name
@@ -127,7 +127,7 @@
   color: tomato
   weight: 0.75
   mindComponents:
-  - type: ESMaskCacheSpawner
+  - type: ESSecretIdentityCacheSpawner
     cacheProto:
       id: ESSpawnerRandomTraitorCache
   objectives:
@@ -142,7 +142,7 @@
           weight: 2
       amount: 1, 2
 
-- type: esMask
+- type: esSecretIdentity
   id: Secretary
   name: es-mask-secretary-name
   troupe: Crew
@@ -153,7 +153,7 @@
     all:
     - id: ESObjectiveSecretaryAssist
 
-- type: esMask
+- type: esSecretIdentity
   id: Tragedian
   name: es-mask-tragedian-name
   troupe: Crew
@@ -169,7 +169,7 @@
   components:
   - type: ESAlwaysHearStagehandEmote
 
-- type: esMask
+- type: esSecretIdentity
   id: Vigilante
   name: es-mask-vigilante-name
   troupe: Crew
@@ -178,7 +178,7 @@
   objectives:
     id: ESObjectiveVigilanteKillKiller
 
-- type: esMask
+- type: esSecretIdentity
   id: VIP
   name: es-mask-vip-name
   troupe: Crew
@@ -187,4 +187,4 @@
   tips:
   - VIPFingerprintScanner
   weight: 0.2
-  gear: ESMaskVIPGear
+  gear: ESSecretIdentityVIPGear

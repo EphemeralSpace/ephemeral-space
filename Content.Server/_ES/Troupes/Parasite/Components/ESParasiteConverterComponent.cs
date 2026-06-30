@@ -1,4 +1,4 @@
-using Content.Shared._ES.Masks;
+using Content.Shared._ES.SecretIdentity;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
@@ -12,7 +12,7 @@ public sealed partial class ESParasiteConverterComponent : Component
     public ProtoId<ESTroupePrototype> IgnoreTroupe = "Parasite";
 
     [DataField]
-    public ProtoId<ESMaskPrototype> Mask = "Host";
+    public ProtoId<ESSecretIdentityPrototype> Mask = "Host";
 
     [DataField]
     public SoundSpecifier Sound = new SoundCollectionSpecifier("desecration");

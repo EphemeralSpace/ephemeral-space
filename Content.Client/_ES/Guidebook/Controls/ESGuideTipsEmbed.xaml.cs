@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using Content.Client._ES.UI.Controls.Layout;
 using Content.Client.Guidebook.Richtext;
-using Content.Shared._ES.Masks;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.Tips;
 using Content.Shared.Roles;
 using JetBrains.Annotations;
@@ -44,7 +44,7 @@ public sealed partial class ESGuideTipsEmbed : VStack, IDocumentTag
         HashSet<ProtoId<ESTipPrototype>> tips = new();
         if (args.TryGetValue("Mask", out var maskProto))
         {
-            if (!_proto.TryIndex<ESMaskPrototype>(maskProto, out var mask))
+            if (!_proto.TryIndex<ESSecretIdentityPrototype>(maskProto, out var mask))
             {
                 _sawmill.Error($"Mask prototype passed to tips embed tag is invalid: {maskProto}");
                 return false;

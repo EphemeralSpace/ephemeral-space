@@ -1,4 +1,4 @@
-- type: esMaskSet
+- type: esSecretIdentitySet
   id: AllTraitors # Every traitor, with their mask's weight.
   maskProvider: !type:ESTroupeMasksProvider
     troupe: Traitor

@@ -1,5 +1,5 @@
-using Content.Server._ES.Masks;
-using Content.Shared._ES.Masks;
+using Content.Server._ES.SecretIdentity;
+using Content.Shared._ES.SecretIdentity;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Fixtures;
@@ -9,11 +9,11 @@ public sealed partial class TestPlayer
     /// <summary>
     ///     Sets the player's mask on the server.
     /// </summary>
-    public void SSetMask(ProtoId<ESMaskPrototype> mask)
+    public void SSetMask(ProtoId<ESSecretIdentityPrototype> mask)
     {
         AssertServer();
 
-        var maskSys = _test.Server.System<ESMaskSystem>();
+        var maskSys = _test.Server.System<ESSecretIdentitySystem>();
 
         maskSys.ApplyMask(SMindEntity, mask);
     }
@@ -22,11 +22,11 @@ public sealed partial class TestPlayer
     ///     Gets the player's mask on the server.
     /// </summary>
     /// <returns></returns>
-    public ProtoId<ESMaskPrototype>? SGetMask()
+    public ProtoId<ESSecretIdentityPrototype>? SGetMask()
     {
         AssertServer();
 
-        var maskSys = _test.Server.System<ESMaskSystem>();
+        var maskSys = _test.Server.System<ESSecretIdentitySystem>();
 
         return maskSys.GetMaskOrNull(SMindEntity);
     }

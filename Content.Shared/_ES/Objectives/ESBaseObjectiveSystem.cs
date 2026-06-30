@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Shared._ES.Masks;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -16,7 +16,7 @@ public abstract partial class ESBaseObjectiveSystem<TComponent> : EntitySystem
 {
     [Dependency] protected SharedMindSystem MindSys = default!;
     [Dependency] protected ESSharedObjectiveSystem ObjectivesSys = default!;
-    [Dependency] protected ESSharedMaskSystem MaskSys = default!;
+    [Dependency] protected ESSharedSecretIdentitySystem MaskSys = default!;
 
     /// <summary>
     ///     A list of all the relays this objective relies on existing.

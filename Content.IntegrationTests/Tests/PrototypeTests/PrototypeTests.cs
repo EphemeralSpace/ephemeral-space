@@ -1,7 +1,7 @@
 #nullable enable
 using System.Collections.Generic;
 using System.Linq;
-using Content.Shared._ES.Masks;
+using Content.Shared._ES.SecretIdentity;
 using Content.IntegrationTests.Fixtures;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;

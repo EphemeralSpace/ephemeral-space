@@ -4,13 +4,13 @@ using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.IntegrationTests.Utility;
-using Content.Server._ES.Masks.Masquerades;
+using Content.Server._ES.SecretIdentity.Masquerades;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Shared._Citadel.Utilities;
-using Content.Shared._ES.Masks;
-using Content.Shared._ES.Masks.Components;
-using Content.Shared._ES.Masks.Masquerades;
+using Content.Shared._ES.SecretIdentity;
+using Content.Shared._ES.SecretIdentity.Components;
+using Content.Shared._ES.SecretIdentity.Masquerades;
 using Content.Shared.GameTicking;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
@@ -35,7 +35,7 @@ public sealed class MasqueradeTests : GameTest
         Assert.Throws<NotImplementedException>(() =>
         {
             _ser.WriteValue<MasqueradeEntry>(
-                new MasqueradeEntry.DirectEntry(new HashSet<ProtoId<ESMaskPrototype>>() { "Foo", "Bar" }, 1, false),
+                new MasqueradeEntry.DirectEntry(new HashSet<ProtoId<ESSecretIdentityPrototype>>() { "Foo", "Bar" }, 1, false),
                 notNullableOverride: true);
         });
     }
@@ -106,7 +106,7 @@ public sealed class MasqueradeTests : GameTest
     [RunOnSide(Side.Server)]
     public void MaskSetsHaveMasks()
     {
-        foreach (var maskSet in _proto.EnumeratePrototypes<ESMaskSetPrototype>())
+        foreach (var maskSet in _proto.EnumeratePrototypes<ESSecretIdentitySetPrototype>())
         {
             Assert.That(maskSet.AllMasks(), Is.Not.Empty);
         }
@@ -169,14 +169,14 @@ public sealed class MasqueradeRunTests : GameTest
                 Is.Not.Null,
                 "By the time the round starts, the masquerade should exist.");
 
-            Assert.That(SQueryCount<ESMaskRoleComponent>(),
+            Assert.That(SQueryCount<ESSecretIdentityRoleComponent>(),
                 Is.EqualTo(userCount),
                 "Expected in-game players with everyone assigned masks.");
 
             if (rule.Value.Comp.Masquerade!.Masquerade is { } set)
             {
                 var roles =
-                    SQueryList<ESMaskRoleComponent>()
+                    SQueryList<ESSecretIdentityRoleComponent>()
                         .Select(x => x.Comp.Mask!.Value.Id)
                         .OrderDescending();
 

@@ -1,13 +1,13 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client._ES.Core;
-using Content.Client._ES.Masks;
+using Content.Client._ES.SecretIdentity;
 using Content.Client._ES.Objectives;
 using Content.Client._ES.Objectives.Ui;
 using Content.Client.Gameplay;
 using Content.Client.Roles;
 using Content.Shared._ES.Auditions.Components;
-using Content.Shared._ES.Masks;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.Mind;
@@ -25,22 +25,22 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [UISystemDependency] private readonly JobSystem _job = default!;
-    [UISystemDependency] private readonly ESMaskSystem? _mask = default!;
+    [UISystemDependency] private readonly ESSecretIdentitySystem? _secretIdentity = default!;
     [UISystemDependency] private readonly ESObjectiveSystem? _objective = default!;
 
     public void OnStateEntered(GameplayState state)
     {
-        _mask?.OnMaskChanged += OnMaskChanged;
+        _secretIdentity?.OnMaskChanged += OnMaskChanged;
         _objective?.OnObjectivesChanged += OnObjectivesChanged;
     }
 
     public void OnStateExited(GameplayState state)
     {
-        _mask?.OnMaskChanged -= OnMaskChanged;
+        _secretIdentity?.OnMaskChanged -= OnMaskChanged;
         _objective?.OnObjectivesChanged -= OnObjectivesChanged;
     }
 
-    private void OnMaskChanged(EntityUid mind, ProtoId<ESMaskPrototype>? mask)
+    private void OnMaskChanged(EntityUid mind, ProtoId<ESSecretIdentityPrototype>? mask)
     {
         if (UIManager.GetActiveUIWidgetOrNull<ESStagehandObserveControl>() is not { } observe)
             return;
@@ -88,7 +88,7 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
         }
 
         var orderedMinds = minds
-            .OrderBy(m => _mask?.GetTroupeOrNull((m, m.Comp1)))
+            .OrderBy(m => _secretIdentity?.GetTroupeOrNull((m, m.Comp1)))
             .ThenBy(m => m.Comp2.Name);
 
         var grp = new ButtonGroup();
@@ -142,8 +142,8 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
         var (uid, mind, character) = ent;
         observe.CurrentEntity = uid;
 
-        var mask = _mask?.GetMaskOrNull((uid, mind));
-        var troupe = _mask?.GetTroupeOrNull((uid, mind));
+        var mask = _secretIdentity?.GetMaskOrNull((uid, mind));
+        var troupe = _secretIdentity?.GetTroupeOrNull((uid, mind));
 
         observe.NameLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-name-big", ("text", character.Name)));
 

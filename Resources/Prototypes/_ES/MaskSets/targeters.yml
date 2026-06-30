@@ -1,4 +1,4 @@
-﻿- type: esMaskSet
+﻿- type: esSecretIdentitySet
   id: Targeters # Masks that rely on targeting others for their interactions.
   masks:
     Avenger: 0.6

@@ -1,4 +1,4 @@
-using Content.Shared._ES.Masks;
+using Content.Shared._ES.SecretIdentity;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.Troupes.Parasite.Components;

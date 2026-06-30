@@ -3,16 +3,16 @@ using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.IntegrationTests.Utility;
-using Content.Server._ES.Masks;
+using Content.Server._ES.SecretIdentity;
 using Content.Server.Chat;
 using Content.Server.Mind;
-using Content.Shared._ES.Masks;
-using Content.Shared._ES.Masks.Components;
+using Content.Shared._ES.SecretIdentity;
+using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared.Guidebook;
 using Content.Shared.Mind;
 using Robust.Shared.Prototypes;
 
-namespace Content.IntegrationTests.Tests._ES.Masks;
+namespace Content.IntegrationTests.Tests._ES.SecretIdentity;
 
 [TestFixture]
 [TestMap(TestMapMode.Arena)]
@@ -26,7 +26,7 @@ public sealed class MaskTests : GameTest
         Connected = true, // We need a guy to mask up.
     };
 
-    public static readonly string[] Masks = GameDataScrounger.PrototypesOfKind<ESMaskPrototype>();
+    public static readonly string[] Masks = GameDataScrounger.PrototypesOfKind<ESSecretIdentityPrototype>();
     public static readonly string[] Troupes = GameDataScrounger.PrototypesOfKind<ESTroupePrototype>();
 
     [Test]
@@ -47,7 +47,7 @@ public sealed class MaskTests : GameTest
                 Assert.That(mask, Is.EqualTo(maskProto));
 
                 // Verify a side effect: the mask role entity exists.
-                Assert.That(SQueryCount<ESMaskRoleComponent>(), Is.EqualTo(1));
+                Assert.That(SQueryCount<ESSecretIdentityRoleComponent>(), Is.EqualTo(1));
             }
         });
     }
@@ -55,14 +55,14 @@ public sealed class MaskTests : GameTest
     // Very strong, suitable for extreme violence.
     private static readonly EntProtoId Weapon = "MeleeDebug200";
 
-    private static readonly Dictionary<ProtoId<ESMaskPrototype>, string> CannotBeAttackerMasks =
+    private static readonly Dictionary<ProtoId<ESSecretIdentityPrototype>, string> CannotBeAttackerMasks =
         new()
         {
             {"Host", "Has blocked hands and cannot actually pick anything up as result"},
         };
 
     private static IEnumerable<TestCaseData> AttackerMasks =>
-        GameDataScrounger.PrototypesOfKind<ESMaskPrototype>()
+        GameDataScrounger.PrototypesOfKind<ESSecretIdentityPrototype>()
         .WithIgnores(CannotBeAttackerMasks);
 
     [Test]
@@ -111,7 +111,7 @@ public sealed class MaskTests : GameTest
         {
             var mind = Server.System<MindSystem>().GetMind(target)!;
 
-            Server.System<ESMaskSystem>()
+            Server.System<ESSecretIdentitySystem>()
                 .ApplyMask((mind!.Value, SComp<MindComponent>(mind!.Value)), maskProto);
         });
 

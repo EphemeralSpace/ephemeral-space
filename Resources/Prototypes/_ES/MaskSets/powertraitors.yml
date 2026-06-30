@@ -1,4 +1,4 @@
-- type: esMaskSet
+- type: esSecretIdentitySet
   id: PowerTraitors # Higher power tots.
   masks:
     Subverter: 1

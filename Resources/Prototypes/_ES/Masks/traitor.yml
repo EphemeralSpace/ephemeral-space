@@ -1,15 +1,15 @@
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseTraitor
   id: Assassin
   name: es-mask-assassin-name
   description: es-mask-assassin-desc
   color: hotpink
   mindComponents:
-  - type: ESMaskCacheSpawner
+  - type: ESSecretIdentityCacheSpawner
     cacheProto:
       id: ESCrateCacheTraitorAssassin
 
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseTraitor
   id: Infiltrator
   name: es-mask-infiltrator-name
@@ -19,22 +19,22 @@
   - InfiltratorC4Deniability
   - EmagAirlockDeniability
   mindComponents:
-  - type: ESMaskCacheSpawner
+  - type: ESSecretIdentityCacheSpawner
     cacheProto:
       id: ESCrateCacheTraitorInfiltrator
 
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseTraitor
   id: Marauder
   name: es-mask-marauder-name
   description: es-mask-marauder-desc
   color: coral
   mindComponents:
-  - type: ESMaskCacheSpawner
+  - type: ESSecretIdentityCacheSpawner
     cacheProto:
       id: ESCrateCacheTraitorMarauder
 
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseTraitor
   id: Subverter
   name: es-mask-subverter-name
@@ -42,11 +42,11 @@
   color: gray
   weight: 0.75
   mindComponents:
-  - type: ESMaskCacheSpawner
+  - type: ESSecretIdentityCacheSpawner
     cacheProto:
       id: ESCrateCacheTraitorSubverter
 
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseTraitor
   id: Recruit
   name: es-mask-recruit-name
@@ -54,7 +54,7 @@
   color: pink
   weight: 0
 
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseTraitor
   id: Demolitionist
   name: es-mask-demolitionist-name
@@ -62,11 +62,11 @@
   color: orangered
   weight: 0.3
   mindComponents:
-  - type: ESMaskCacheSpawner
+  - type: ESSecretIdentityCacheSpawner
     cacheProto:
       id: ESCrateCacheTraitorDemolitionist
 
-- type: esMask
+- type: esSecretIdentity
   # doesnt parent from basetraitor because we dont want the icon
   # and doesnt parent from commandrestricted because this is a command-available traitor role!
   id: Sympathizer
@@ -90,7 +90,7 @@
     - id: ESObjectiveSympathizerDetonateNuke
 
 # Non-traitor masks that are dependent on traitors
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseCommandRestricted # same restriction as traitors
   id: SleeperAgent
   name: es-mask-sleeper-agent-name

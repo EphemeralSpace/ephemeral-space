@@ -3,12 +3,12 @@
   name: Mask Role
   components:
   - type: MindRole
-  - type: ESMaskRole
+  - type: ESSecretIdentityRole
 
 - type: entity
   id: ESBaseMaskObjective
   abstract: true
   components:
   - type: ESObjective
-  - type: ESMaskObjective
+  - type: ESSecretIdentityObjective
   - type: ESStagehandAware

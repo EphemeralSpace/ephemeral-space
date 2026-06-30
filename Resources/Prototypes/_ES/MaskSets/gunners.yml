@@ -1,4 +1,4 @@
-- type: esMaskSet
+- type: esSecretIdentitySet
   id: Gunners
   masks:
     ArmsDealer: 0.5

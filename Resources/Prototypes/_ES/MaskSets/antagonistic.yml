@@ -1,4 +1,4 @@
-- type: esMaskSet
+- type: esSecretIdentitySet
   id: Antagonistic # Masks that fill various niches of "traitor-like"
   masks:
     Rebel: 0.2    # While harmless, they're not that interesting to have tons of. Let the others shine.

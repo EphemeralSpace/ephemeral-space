@@ -1,4 +1,4 @@
-using Content.Server._ES.Masks;
+using Content.Server._ES.SecretIdentity;
 using Content.Server._ES.Objectives;
 using Content.Server._ES.Troupes.Parasite.Components;
 using Content.Server.Chat.Managers;
@@ -8,7 +8,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Core.Timer.Components;
-using Content.Shared._ES.Masks;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Systems;
@@ -31,7 +31,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private GameTicker _gameTicker = default!;
-    [Dependency] private ESMaskSystem _mask = default!;
+    [Dependency] private ESSecretIdentitySystem _secretIdentity = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private ESObjectiveSystem _objective = default!;
     [Dependency] private PopupSystem _popup = default!;
@@ -91,13 +91,13 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
             if (_mind.IsCharacterDeadIc(mind))
                 continue;
 
-            if (_mask.GetTroupeOrNull(mind.Value.AsNullable()) == ent.Comp.IgnoreTroupe)
+            if (_secretIdentity.GetTroupeOrNull(mind.Value.AsNullable()) == ent.Comp.IgnoreTroupe)
                 continue;
 
             if (_actionBlocker.CanMove(hit))
                 continue;
 
-            _mask.ChangeMask(mind.Value, ent.Comp.Mask);
+            _secretIdentity.ChangeMask(mind.Value, ent.Comp.Mask);
             _audio.PlayPvs(ent.Comp.Sound, hit);
         }
     }
@@ -108,7 +108,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
 
         var msg = Loc.GetString("es-parasite-swarm-notif");
         var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
-        foreach (var mind in _mask.GetTroupeMembers(ent.Owner))
+        foreach (var mind in _secretIdentity.GetTroupeMembers(ent.Owner))
         {
             if (!TryComp<MindComponent>(mind, out var mindComp) ||
                 !_playerManager.TryGetSessionById(mindComp.UserId, out var session))
@@ -123,7 +123,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
 
     private void TransformTroupeMembers(Entity<ESParasiteRuleComponent> ent)
     {
-        foreach (var mind in _mask.GetTroupeMembers(ent.Owner))
+        foreach (var mind in _secretIdentity.GetTroupeMembers(ent.Owner))
         {
             if (!TryComp<MindComponent>(mind, out var mindComp ) ||
                 mindComp.OwnedEntity is not { } owned)
@@ -140,7 +140,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
     private bool AllPlayersConverted(EntityUid troupe)
     {
         var nonTroupeCount = 0;
-        foreach (var mind in _mask.GetNotTroupeMembers(troupe))
+        foreach (var mind in _secretIdentity.GetNotTroupeMembers(troupe))
         {
             if (!TryComp<MindComponent>(mind, out var mindComp))
                 continue;

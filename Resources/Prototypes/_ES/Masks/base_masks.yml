@@ -1,11 +1,11 @@
-- type: esMask
+- type: esSecretIdentity
   id: ESBaseCommandRestricted
   abstract: true
   prohibitedJobs:
   - ESCaptain
   - ESStationAdmin
 
-- type: esMask
+- type: esSecretIdentity
   id: ESBaseCommandSecRestricted
   abstract: true
   prohibitedJobs:
@@ -16,7 +16,7 @@
   - ESSecurityOfficer
   - ESDetective
 
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseCommandRestricted
   id: ESBaseParasite
   troupe: Parasite
@@ -31,7 +31,7 @@
     - id: ESObjectiveParasiteDie
     - id: ESObjectiveParasiteDoNotKill
 
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseCommandRestricted
   id: ESBaseTraitor
   troupe: Traitor

@@ -1,4 +1,4 @@
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseParasite
   id: Burstworm
   name: es-mask-burstworm-name
@@ -9,7 +9,7 @@
   mindComponents:
   - type: ESBurstworm
 
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseParasite
   id: Hemophage
   name: es-mask-hemophage-name
@@ -20,7 +20,7 @@
   mindComponents:
   - type: ESHemophage
 
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseParasite
   id: Host
   name: es-mask-host-name
@@ -31,7 +31,7 @@
   objectives: !type:NoneSelector
   prohibitedJobs: [] # not relevant since these are not assigned directly, but important for guidebook display
 
-- type: esMask
+- type: esSecretIdentity
   parent: ESBaseParasite
   id: Leapleech
   name: es-mask-leapleech-name

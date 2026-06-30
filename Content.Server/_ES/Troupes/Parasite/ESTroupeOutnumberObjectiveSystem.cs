@@ -1,4 +1,4 @@
-using Content.Server._ES.Masks;
+using Content.Server._ES.SecretIdentity;
 using Content.Server._ES.Troupes.Parasite.Components;
 using Content.Server.Mind;
 using Content.Shared._ES.KillTracking.Components;
@@ -10,7 +10,7 @@ namespace Content.Server._ES.Troupes.Parasite;
 
 public sealed partial class ESTroupeOutnumberObjectiveSystem : ESBaseObjectiveSystem<ESTroupeOutnumberObjectiveComponent>
 {
-    [Dependency] private ESMaskSystem _mask = default!;
+    [Dependency] private ESSecretIdentitySystem _secretIdentity = default!;
     [Dependency] private MindSystem _mind = default!;
 
     /// <inheritdoc/>
@@ -18,11 +18,11 @@ public sealed partial class ESTroupeOutnumberObjectiveSystem : ESBaseObjectiveSy
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ESMaskChangedEvent>(OnMaskChanged);
+        SubscribeLocalEvent<ESSecretIdentityChangedEvent>(OnMaskChanged);
         SubscribeLocalEvent<ESPlayerKilledEvent>(OnPlayerKilled);
     }
 
-    private void OnMaskChanged(ref ESMaskChangedEvent ev)
+    private void OnMaskChanged(ref ESSecretIdentityChangedEvent ev)
     {
         ObjectivesSys.RefreshObjectiveProgress<ESTroupeOutnumberObjectiveComponent>();
     }
@@ -37,7 +37,7 @@ public sealed partial class ESTroupeOutnumberObjectiveSystem : ESBaseObjectiveSy
         base.GetObjectiveProgress(ent, ref args);
 
         var troupeCount = 0;
-        foreach (var mind in _mask.GetTroupeMembers(ent.Comp.Troupe))
+        foreach (var mind in _secretIdentity.GetTroupeMembers(ent.Comp.Troupe))
         {
             if (!TryComp<MindComponent>(mind, out var mindComp))
                 continue;
@@ -47,7 +47,7 @@ public sealed partial class ESTroupeOutnumberObjectiveSystem : ESBaseObjectiveSy
         }
 
         var nonTroupeCount = 0;
-        foreach (var mind in _mask.GetNotTroupeMembers(ent.Comp.Troupe))
+        foreach (var mind in _secretIdentity.GetNotTroupeMembers(ent.Comp.Troupe))
         {
             if (!TryComp<MindComponent>(mind, out var mindComp))
                 continue;

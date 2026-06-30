@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Client._ES.Auditions;
 using Content.Client._ES.Core;
-using Content.Client._ES.Masks;
+using Content.Client._ES.SecretIdentity;
 using Content.Client._ES.Objectives;
 using Content.Client._ES.Objectives.Ui;
 using Content.Client.Mind;
@@ -10,7 +10,7 @@ using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared._ES.Auditions;
 using Content.Shared._ES.Auditions.Components;
-using Content.Shared._ES.Masks;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Guidebook;
 using Content.Shared.Localizations;
@@ -34,7 +34,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
     private readonly ESAuditionsSystem _auditions;
     private readonly ESCluesSystem _clues;
     private readonly JobSystem _job;
-    private readonly ESMaskSystem _mask;
+    private readonly ESSecretIdentitySystem _secretIdentity;
     private readonly MindSystem _mind;
     private readonly ESObjectiveSystem _objective;
     private readonly SpriteSystem _sprite;
@@ -48,7 +48,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
         _auditions = _ent.System<ESAuditionsSystem>();
         _clues = _ent.System<ESCluesSystem>();
         _job = _ent.System<JobSystem>();
-        _mask = _ent.System<ESMaskSystem>();
+        _secretIdentity = _ent.System<ESSecretIdentitySystem>();
         _mind = _ent.System<MindSystem>();
         _objective = _ent.System<ESObjectiveSystem>();
         _sprite = _ent.System<SpriteSystem>();
@@ -62,7 +62,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
     {
         base.Opened();
 
-        _mask.OnMaskChanged += OnMaskChanged;
+        _secretIdentity.OnMaskChanged += OnMaskChanged;
         _objective.OnObjectivesChanged += OnObjectivesChanged;
     }
 
@@ -70,11 +70,11 @@ public sealed partial class ESCharacterWindow : FancyWindow
     {
         base.Close();
 
-        _mask.OnMaskChanged -= OnMaskChanged;
+        _secretIdentity.OnMaskChanged -= OnMaskChanged;
         _objective.OnObjectivesChanged -= OnObjectivesChanged;
     }
 
-    private void OnMaskChanged(EntityUid mind, ProtoId<ESMaskPrototype>? mask)
+    private void OnMaskChanged(EntityUid mind, ProtoId<ESSecretIdentityPrototype>? mask)
     {
         if (_player.LocalUser is null)
             return;
@@ -106,7 +106,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
 
         // if theres a guide entry with the same id as the mask then open that
         // with the troupe guide as the root
-        if (_mask.TryGetMask((mind, mindComp), out var maskId)
+        if (_secretIdentity.TryGetMask((mind, mindComp), out var maskId)
             && _prototype.Index(maskId.Value) is { } mask
             && _prototype.HasIndex<GuideEntryPrototype>(mask.ID)
             && _prototype.HasIndex<GuideEntryPrototype>(mask.Troupe.Id))
@@ -148,7 +148,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
             JobIconTexture.Texture = _sprite.Frame0(_prototype.Index(job.Icon).Icon);
         }
 
-        if (_mask.TryGetMask((mind, mindComp), out var maskId))
+        if (_secretIdentity.TryGetMask((mind, mindComp), out var maskId))
         {
             var mask = _prototype.Index(maskId);
             var troupe = _prototype.Index(mask.Troupe);
@@ -176,7 +176,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
             MaskHelpButton.Visible = false;
         }
 
-        var info = _mask.GetCharacterInfoBlurb(mind);
+        var info = _secretIdentity.GetCharacterInfoBlurb(mind);
         var formattedMsg = new FormattedMessage();
         foreach (var msg in info)
         {

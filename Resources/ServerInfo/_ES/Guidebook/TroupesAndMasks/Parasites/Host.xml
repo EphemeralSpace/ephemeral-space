@@ -1,5 +1,5 @@
 <Document>
-    <ESGuideMaskEmbed Mask="Host"/>
+    <ESGuideSecretIdentityEmbed Mask="Host"/>
 
     Hosts are a unique mask that only appears during the ending "swarm" phase of parasites.
     When a swarming parasite attacks a member of another troupe, they can convert them into a Host.
