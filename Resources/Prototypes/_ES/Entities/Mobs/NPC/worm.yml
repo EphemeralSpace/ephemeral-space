@@ -72,4 +72,4 @@
     targetIsUser: true
   - type: DeleteOnTrigger
   - type: ESChangeSecretIdentityOnTrigger
-    mask: Leapleech
+    secretIdentity: Leapleech

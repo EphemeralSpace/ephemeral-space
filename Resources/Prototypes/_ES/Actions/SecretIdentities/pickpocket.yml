@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseAction
-  id: ActionMaskPickpocketSnatch
+  id: ActionSecretIdentityPickpocketSnatch
   name: Pickpocket
   description: From behind someone's back, reach into their bag and steal from them. Only works once per person.
   components:

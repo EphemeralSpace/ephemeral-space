@@ -1,12 +1,12 @@
 - type: entity
-  id: ESMindRoleMask
-  name: Mask Role
+  id: ESMindRoleSecretIdentity
+  name: SecretIdentity Role
   components:
   - type: MindRole
   - type: ESSecretIdentityRole
 
 - type: entity
-  id: ESBaseMaskObjective
+  id: ESBaseSecretIdentityObjective
   abstract: true
   components:
   - type: ESObjective

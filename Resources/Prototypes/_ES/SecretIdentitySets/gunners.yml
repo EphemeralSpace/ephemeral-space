@@ -1,6 +1,6 @@
 - type: esSecretIdentitySet
   id: Gunners
-  masks:
+  secretIdentities:
     ArmsDealer: 0.5
     Mercenary: 1
     Vigilante: 1

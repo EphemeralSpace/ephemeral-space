@@ -1,6 +1,6 @@
 ﻿- type: esSecretIdentitySet
-  id: Targeters # Masks that rely on targeting others for their interactions.
-  masks:
+  id: Targeters # Identities that rely on targeting others for their interactions.
+  secretIdentities:
     Avenger: 0.6
     Hater: 1
     Secretary: 1

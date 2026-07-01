@@ -16,7 +16,7 @@
     targetIncrement: 50
 
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectiveGuzzleSpecialInterest
   name: Guzzle your special interest
   description: Consume as much of your Special Interest as you can!
@@ -48,7 +48,7 @@
     targetIncrement: 10
 
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectiveGuzzleUniqueReagents
   name: Guzzle unique flavors
   description: Consume as many unique liquids as you can, from anywhere you can get them!

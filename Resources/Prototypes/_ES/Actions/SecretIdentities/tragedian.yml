@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseMentalAction
-  id: ESActionMaskTragedianSummon
+  id: ESActionSecretIdentityTragedianSummon
   name: Call Stagehands
   description: Call over the stagehands to watch your performance.
   components:

@@ -1,7 +1,7 @@
 - type: esSecretIdentitySet
-  id: Firmsafes # Assorted masks that can confirm themselves in some capacity.
+  id: Firmsafes # Assorted identities that can confirm themselves in some capacity.
                 # This is funny guys like the VIP with obvious tells, and also
                 # those who have visible actions they can perform on a dime.
-  masks:
+  secretIdentities:
     VIP: 1 # Look it's right here I have my c-
     Pickpocket: 0.5

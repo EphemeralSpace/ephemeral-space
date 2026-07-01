@@ -6,7 +6,7 @@
   minPlayers: 1
   gameRules: []
   masquerade:
-    defaultSecretIdentity: "#AllCrew" # Everyone besides the traitors gets random crew masks.
+    defaultSecretIdentity: "#AllCrew" # Everyone besides the traitors gets random crew identities.
     superfanTarget: "#AllTraitors"
     roles:
       1: [] # Greenshift.
@@ -27,7 +27,7 @@
   minPlayers: 1
   gameRules: []
   masquerade:
-    defaultMask: "#AllCrew" # Everyone besides the parasites gets random crew masks.
+    defaultSecretIdentity: "#AllCrew" # Everyone besides the parasites gets random crew identities.
     roles:
       1: []
       4: ["#AllParasites"]
@@ -44,7 +44,7 @@
   minPlayers: 1
   gameRules: []
   masquerade:
-    defaultMask: "#AllCrew" # Everyone besides the traitors+parasites gets random crew masks.
+    defaultSecretIdentity: "#AllCrew" # Everyone besides the traitors+parasites gets random crew identities.
     superfanTarget: "#AllTraitors"
     roles:
       1: []

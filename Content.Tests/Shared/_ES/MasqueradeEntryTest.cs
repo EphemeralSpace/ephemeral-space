@@ -1,9 +1,5 @@
-using System.Collections.Generic;
-using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.SecretIdentity.Masquerades;
 using NUnit.Framework;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.Markdown.Value;
 
 namespace Content.Tests.Shared._ES;
 
@@ -37,11 +33,11 @@ public sealed class MasqueradeEntryTest
 
             if (entryParsed is MasqueradeEntry.DirectEntry e)
             {
-                Assert.That(e.Masks, Is.Not.Empty);
+                Assert.That(e.SecretIdentities, Is.Not.Empty);
             }
             else if (entryParsed is MasqueradeEntry.SetEntry e2)
             {
-                Assert.That(e2.MaskSet, Is.Not.EqualTo(string.Empty));
+                Assert.That(e2.SecretIdentitySet, Is.Not.EqualTo(string.Empty));
             }
         });
     }

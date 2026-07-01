@@ -1,6 +1,6 @@
 - type: esSecretIdentitySet
   id: Traitors
-  masks:
+  secretIdentities:
     Marauder: 1
     Assassin: 1
     Infiltrator: 1

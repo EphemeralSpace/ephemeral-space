@@ -89,7 +89,7 @@
     all:
     - id: ESObjectiveSympathizerDetonateNuke
 
-# Non-traitor masks that are dependent on traitors
+# Non-traitor identities that are dependent on traitors
 - type: esSecretIdentity
   parent: ESBaseCommandRestricted # same restriction as traitors
   id: SleeperAgent

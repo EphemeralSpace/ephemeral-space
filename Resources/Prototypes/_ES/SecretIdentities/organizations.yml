@@ -16,7 +16,7 @@
   color: red
   metaIcon: ESTraitor
   gameRule: ESOrganizationRuleTraitor
-  disguisedMaskName: es-news-disguise-traitors
+  disguisedSecretIdentityName: es-news-disguise-traitors
   objectives:
     all:
     - id: ESObjectiveTraitorKillRandom

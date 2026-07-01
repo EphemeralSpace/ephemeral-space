@@ -1,5 +1,5 @@
 - type: esSecretIdentitySet
   id: SemiTraitor # not quite a full traitor
-  masks:
+  secretIdentities:
     SleeperAgent: 0.45
     Sympathizer: 0.55

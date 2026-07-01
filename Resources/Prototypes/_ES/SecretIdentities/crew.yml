@@ -61,7 +61,7 @@
   organization: Crew
   description: es-secret-identity-hater-desc
   color: peru
-  assignmentOrder: 11 # Needs to be assigned after other masks
+  assignmentOrder: 11 # Needs to be assigned after other identities
   objectives:
     all:
     - id: ESObjectiveHaterHate
@@ -113,7 +113,7 @@
   weight: 0.75
   actions:
     all:
-    - id: ActionMaskPickpocketSnatch
+    - id: ActionSecretIdentityPickpocketSnatch
   objectives:
     all:
     - id: ESObjectivePickpocketSteal
@@ -148,7 +148,7 @@
   organization: Crew
   description: es-secret-identity-secretary-desc
   color: palegreen
-  assignmentOrder: 11 # Needs to be assigned after other masks
+  assignmentOrder: 11 # Needs to be assigned after other identities
   objectives:
     all:
     - id: ESObjectiveSecretaryAssist
@@ -165,7 +165,7 @@
     - id: ESObjectiveTragedianEmbodyTheme
   actions:
     all:
-    - id: ESActionMaskTragedianSummon
+    - id: ESActionSecretIdentityTragedianSummon
   components:
   - type: ESAlwaysHearStagehandEmote
 

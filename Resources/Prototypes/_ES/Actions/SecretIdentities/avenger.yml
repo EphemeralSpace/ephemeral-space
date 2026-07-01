@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseMentalAction
-  id: ESActionMaskAvengerSense
+  id: ESActionSecretIdentityAvengerSense
   name: Sense Distance
   description: Detect how far you are from your target.
   components:

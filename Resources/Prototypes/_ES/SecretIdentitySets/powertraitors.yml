@@ -1,5 +1,5 @@
 - type: esSecretIdentitySet
   id: PowerTraitors # Higher power tots.
-  masks:
+  secretIdentities:
     Subverter: 1
     Demolitionist: 0.6

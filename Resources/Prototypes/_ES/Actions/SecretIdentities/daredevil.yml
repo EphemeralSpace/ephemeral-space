@@ -1,6 +1,6 @@
 ﻿- type: entity
   parent: BaseMentalAction
-  id: ESActionMaskAdrenalinePump
+  id: ESActionSecretIdentityAdrenalinePump
   name: Adrenaline Pump
   description: Use this to pump yourself with adrenaline when crit.
   components:
