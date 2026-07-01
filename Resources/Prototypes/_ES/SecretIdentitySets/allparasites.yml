@@ -1,0 +1,4 @@
+﻿- type: esSecretIdentitySet
+  id: AllParasites # Every parasite, with their identities weight.
+  secretIdentityProvider: !type:ESOrganizationSecretIdentitiesProvider
+    organization: Parasite

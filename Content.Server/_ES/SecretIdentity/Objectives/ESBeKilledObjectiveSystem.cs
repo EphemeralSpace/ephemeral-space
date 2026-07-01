@@ -1,0 +1,32 @@
+using Content.Server._ES.SecretIdentity.Objectives.Components;
+using Content.Server._ES.SecretIdentity.Objectives.Relays.Components;
+using Content.Shared._ES.KillTracking.Components;
+using Content.Shared._ES.Objectives;
+
+namespace Content.Server._ES.SecretIdentity.Objectives;
+
+/// <summary>
+///     Handles objective logic for player-kills (e.g. for jester-types)
+/// </summary>
+public sealed class ESBeKilledObjectiveSystem : ESBaseObjectiveSystem<ESBeKilledObjectiveComponent>
+{
+    public override Type[] RelayComponents => [typeof(ESKilledRelayComponent)];
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<ESBeKilledObjectiveComponent, ESPlayerKilledEvent>(OnKilled);
+    }
+
+    private void OnKilled(Entity<ESBeKilledObjectiveComponent> ent, ref ESPlayerKilledEvent args)
+    {
+        if (!args.ValidKill || !MindSys.TryGetMind(args.Killer.Value, out var mind))
+            return;
+
+        if (ent.Comp.OrganizationRequired.HasValue && SecretIdentitySys.GetOrganizationOrNull(mind.Value.AsNullable()) != ent.Comp.OrganizationRequired)
+            return;
+
+        ObjectivesSys.SetObjectiveCounter(ent.Owner, 1f);
+    }
+}

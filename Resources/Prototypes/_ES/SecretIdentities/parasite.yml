@@ -1,0 +1,41 @@
+- type: esSecretIdentity
+  parent: ESBaseParasite
+  id: Burstworm
+  name: es-secret-identity-burstworm-name
+  description: es-secret-identity-burstworm-desc
+  color: yellowgreen
+  tips:
+  - BurstwormConversion
+  mindComponents:
+  - type: ESBurstworm
+
+- type: esSecretIdentity
+  parent: ESBaseParasite
+  id: Hemophage
+  name: es-secret-identity-hemophage-name
+  description: es-secret-identity-hemophage-desc
+  color: brown
+  tips:
+  - HemophageBloodSpreading
+  mindComponents:
+  - type: ESHemophage
+
+- type: esSecretIdentity
+  parent: ESBaseParasite
+  id: Host
+  name: es-secret-identity-host-name
+  description: es-secret-identity-host-desc
+  color: palegoldenrod
+  weight: 0 # do not assign in masquerades.
+  gear: ESParasiteSwarmGear
+  objectives: !type:NoneSelector
+  prohibitedJobs: [] # not relevant since these are not assigned directly, but important for guidebook display
+
+- type: esSecretIdentity
+  parent: ESBaseParasite
+  id: Leapleech
+  name: es-secret-identity-leapleech-name
+  description: es-secret-identity-leapleech-desc
+  color: darkgoldenrod
+  mindComponents:
+  - type: ESLeapleech

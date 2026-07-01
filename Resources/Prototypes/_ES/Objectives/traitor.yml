@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESBaseTraitorObjective
   abstract: true
 
@@ -23,12 +23,12 @@
   - type: ESTargetObjective
     title: es-objective-condition-crewmember-kill-title
   - type: ESTargetPlayersObjective
-  - type: ESTargetTroupeObjective
-    troupe: Traitor
+  - type: ESTargetOrganizationObjective
+    organization: Traitor
     invert: true
-    overrideMasks: [Sympathizer]
-  - type: ESTargetMaskBlacklist
-    maskBlacklist:
+    overrideSecretIdentities: [Sympathizer]
+  - type: ESTargetSecretIdentityBlacklist
+    secretIdentityBlacklist:
     - SleeperAgent
   - type: ESKillTargetObjective
 

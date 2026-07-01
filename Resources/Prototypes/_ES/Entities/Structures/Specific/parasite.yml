@@ -28,7 +28,7 @@
         - Impassable
         - HighImpassable
         - LowImpassable
-  - type: ESMaskConvertOnCollide
+  - type: ESSecretIdentityConvertOnCollide
   - type: ESTimedDespawn
     lifetime: 1.5
   - type: EmitSoundOnSpawn

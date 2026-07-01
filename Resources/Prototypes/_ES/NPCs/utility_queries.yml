@@ -1,7 +1,7 @@
 ﻿- type: utilityQuery
-  id: ESNearbyHostileTroupeTargets
+  id: ESNearbyHostileOrganizationTargets
   query:
-  - !type:ESNearbyHostileTroupeQuery
+  - !type:ESNearbyHostileOrganizationQuery
   considerations:
   - !type:TargetIsAliveCon
     curve: !type:BoolCurve

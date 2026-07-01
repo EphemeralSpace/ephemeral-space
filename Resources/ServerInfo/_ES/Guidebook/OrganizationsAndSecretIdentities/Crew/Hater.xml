@@ -1,0 +1,22 @@
+<Document>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Hater"/>
+
+    Haters function as the evil version of the [textlink="Secretary" link="Secretary"], being assigned to a random person to ensure that they do not complete all of their objectives.
+    Like the Secretary, they only target masks which have personal objectives.
+
+    <Box>
+        <ESGuideObjectiveEmbed Objective="ESObjectiveHaterHate"/>
+    </Box>
+
+    The Hater wins if their target does not complete all of their objectives.
+    Even if it's a partial success or they complete a few objectives, the Hater will still count it as a win.
+
+    <Box>
+      <ESGuideObjectiveEmbed Objective="ESObjectiveHaterDontKill"/>
+    </Box>
+
+    Additionally, the Hater is prohibited from killing their target (that would be illegal) and doing so voids the success of their other objective.
+    Even if their target has an objective to be killed, the Hater cannot be the one to do so.
+
+  <ESGuideTipsEmbed SecretIdentity="Hater"/>
+</Document>

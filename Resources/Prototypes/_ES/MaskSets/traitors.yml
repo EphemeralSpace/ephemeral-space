@@ -1,8 +1,0 @@
-- type: esMaskSet
-  id: Traitors
-  masks:
-    Marauder: 1
-    Assassin: 1
-    Infiltrator: 1
-    Subverter: 0.5
-    Demolitionist: 0.25

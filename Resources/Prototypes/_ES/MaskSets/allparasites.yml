@@ -1,4 +1,0 @@
-﻿- type: esMaskSet
-  id: AllParasites # Every parasite, with their mask's weight.
-  maskProvider: !type:ESTroupeMasksProvider
-    troupe: Parasite

@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectivePickpocketSteal
   name: Steal from people
   description: Variety is the spice of life. Just make sure that after you grab their shit, you hold onto it.
