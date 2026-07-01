@@ -93,7 +93,7 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
                 ConfirmationPopup = true,
                 Act = () =>
                 {
-                    ChangeMask(mind.Value, mask, eraseHistory: true);
+                    ChangeSecretIdentity(mind.Value, mask, eraseHistory: true);
                 },
             };
             args.Verbs.Add(verb);
@@ -316,7 +316,7 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
         // No Op
     }
 
-    public virtual void ChangeMask(Entity<MindComponent> mind,
+    public virtual void ChangeSecretIdentity(Entity<MindComponent> mind,
         ProtoId<ESSecretIdentityPrototype> maskId,
         Entity<ESTroupeRuleComponent>? troupe = null,
         bool eraseHistory = false)

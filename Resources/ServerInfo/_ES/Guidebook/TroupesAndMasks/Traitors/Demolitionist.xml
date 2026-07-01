@@ -1,5 +1,5 @@
 <Document>
-    <ESGuideSecretIdentityEmbed Mask="Demolitionist"/>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Demolitionist"/>
 
     The demolitionist is a mask with a lot of bombs they blow stuff up with. This mask is probably slated for a rework or removal so uhhhhh you will have to deal with this guide entry not being very meaty
 
@@ -20,5 +20,5 @@
 ### Micro-bomb Implant
 	An implant that creates a large explosion upon the user's death.
 
-    <ESGuideTipsEmbed Mask="Demolitionist"/>
+    <ESGuideTipsEmbed SecretIdentity="Demolitionist"/>
 </Document>

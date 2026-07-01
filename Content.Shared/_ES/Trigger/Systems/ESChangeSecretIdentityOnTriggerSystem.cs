@@ -7,13 +7,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Trigger.Systems;
 
-public sealed partial class ESChangeMaskOnTriggerSystem : XOnTriggerSystem<ESChangeMaskOnTriggerComponent>
+public sealed partial class ESChangeSecretIdentityOnTriggerSystem : XOnTriggerSystem<ESChangeSecretIdentityOnTriggerComponent>
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private ESSharedSecretIdentitySystem _secretIdentity = default!;
     [Dependency] private SharedMindSystem _mind = default!;
 
-    protected override void OnTrigger(Entity<ESChangeMaskOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
+    protected override void OnTrigger(Entity<ESChangeSecretIdentityOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
         if (args.User == null)
             return;
@@ -33,7 +33,7 @@ public sealed partial class ESChangeMaskOnTriggerSystem : XOnTriggerSystem<ESCha
                 return;
         }
 
-        _secretIdentity.ChangeMask(mind.Value, ent.Comp.Mask);
+        _secretIdentity.ChangeSecretIdentity(mind.Value, ent.Comp.Mask);
         args.Handled = true;
     }
 }

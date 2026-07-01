@@ -1,5 +1,5 @@
 <Document>
-    <ESGuideSecretIdentityEmbed Mask="Pickpocket"/>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Pickpocket"/>
 
     The Pickpocket is a crew mask that wants nothing more than to line their pockets with belongings from their fellow crewmembers.
 
@@ -14,5 +14,5 @@
     They cannot steal from someone they've stolen from before, who is unconscious, or is without a bag on their back.
     The item they steal is also randomly selected, and must be held onto in order to complete the objective.
 
-    <ESGuideTipsEmbed Mask="Pickpocket"/>
+    <ESGuideTipsEmbed SecretIdentity="Pickpocket"/>
 </Document>

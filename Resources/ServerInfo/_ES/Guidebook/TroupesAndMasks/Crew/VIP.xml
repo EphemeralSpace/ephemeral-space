@@ -1,5 +1,5 @@
 <Document>
-    <ESGuideSecretIdentityEmbed Mask="VIP"/>
+    <ESGuideSecretIdentityEmbed SecretIdentity="VIP"/>
 
     VIPs are members of the crew who are identical to the [textlink="Crewmember" link="Crewmember"] other than the fact that they spawn with a VIP card
 
@@ -10,5 +10,5 @@
     The VIP card confirms that whoever holds it is without question the VIP and not part of any other troupe.
     Keep in mind: the card itself doesn't specify the owner, so it can be stolen easily.
 
-    <ESGuideTipsEmbed Mask="VIP"/>
+    <ESGuideTipsEmbed SecretIdentity="VIP"/>
 </Document>

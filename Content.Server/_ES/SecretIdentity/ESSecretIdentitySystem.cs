@@ -321,7 +321,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         }
     }
 
-    public override void ChangeMask(Entity<MindComponent> mind,
+    public override void ChangeSecretIdentity(Entity<MindComponent> mind,
         ProtoId<ESSecretIdentityPrototype> maskId,
         Entity<ESTroupeRuleComponent>? troupe = null,
         bool eraseHistory = false)

@@ -1,5 +1,5 @@
 <Document>
-    <ESGuideSecretIdentityEmbed Mask="Guzzler"/>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Guzzler"/>
 
     The Guzzler is a weird freak who runs around the station drinking weird crusty maint juice.
     They never contribute anything and are generally a burden on everyone around them.
@@ -12,5 +12,5 @@
 
     <GuideReagentEmbed Reagent="Toxin"/>
 
-    <ESGuideTipsEmbed Mask="Guzzler"/>
+    <ESGuideTipsEmbed SecretIdentity="Guzzler"/>
 </Document>

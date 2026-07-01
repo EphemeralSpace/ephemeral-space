@@ -1,5 +1,5 @@
 <Document>
-    <ESGuideSecretIdentityEmbed Mask="SleeperAgent"/>
+    <ESGuideSecretIdentityEmbed SecretIdentity="SleeperAgent"/>
 
     The Sleeper Agent is a member of a crew who is waiting to turn and defect to the Syndicate at a moment's notice.
 
@@ -9,5 +9,5 @@
     In the event that they are not woken up, however, the Sleeper Agent will remain a crew member.
     They can choose either to work as a perfectly normal member of the crew, or scheme and prepare for their (potentially inevitable) conversion into a traitor.
 
-  <ESGuideTipsEmbed Mask="SleeperAgent"/>
+  <ESGuideTipsEmbed SecretIdentity="SleeperAgent"/>
 </Document>

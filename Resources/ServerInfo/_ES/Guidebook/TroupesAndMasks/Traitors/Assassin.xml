@@ -1,6 +1,6 @@
 <Document>
 # Assassin
-    <ESGuideSecretIdentityEmbed Mask="Assassin"/>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Assassin"/>
 
     Assassins are the stealthiest traitor mask. They are fantastic at confirming kills on isolated targets & escaping persuers, making them one of the most versatile members of the team.
 
@@ -27,5 +27,5 @@
 ### Smoke Grenade
 	Ejects a large plume of temporary, vision-obscuring smoke that lasts for a little over 30 seconds. Extremely useful for escaping persuers or hiding whatever you're doing.
 
-    <ESGuideTipsEmbed Mask="Assassin"/>
+    <ESGuideTipsEmbed SecretIdentity="Assassin"/>
 </Document>

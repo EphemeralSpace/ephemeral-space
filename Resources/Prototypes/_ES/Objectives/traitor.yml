@@ -27,8 +27,8 @@
     troupe: Traitor
     invert: true
     overrideMasks: [Sympathizer]
-  - type: ESTargetMaskBlacklist
-    maskBlacklist:
+  - type: ESTargetSecretIdentityBlacklist
+    secretIdentityBlacklist:
     - SleeperAgent
   - type: ESKillTargetObjective
 

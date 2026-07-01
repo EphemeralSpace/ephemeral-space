@@ -1,6 +1,6 @@
 <Document>
 # Infiltrator
-    <ESGuideSecretIdentityEmbed Mask="Infiltrator"/>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Infiltrator"/>
 
     Infiltrators are a critical member of the team with a kit meant for breaking and entering, usually to steal valuable items or sabotage machines.
 
@@ -23,5 +23,5 @@
 ### Chameleon Kit
     Special clothing that can change its appearance to look like almost any other piece of clothing. Don't forget that the bag is also a part of the kit, too.
 
-    <ESGuideTipsEmbed Mask="Infiltrator"/>
+    <ESGuideTipsEmbed SecretIdentity="Infiltrator"/>
 </Document>

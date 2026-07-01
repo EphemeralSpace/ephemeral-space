@@ -65,7 +65,7 @@ public sealed partial class ESSuperfanSystem : EntitySystem
             if (_mind.IsCharacterDeadIc(mind))
                 continue; // Don't assign the dead to tot masks.
 
-            _secretIdentity.ChangeMask((ent, mind), entry.PickMasks(_random, _proto).Single());
+            _secretIdentity.ChangeSecretIdentity((ent, mind), entry.PickMasks(_random, _proto).Single());
         }
     }
 }

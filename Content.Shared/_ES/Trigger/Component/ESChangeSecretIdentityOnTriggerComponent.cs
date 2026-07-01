@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._ES.Trigger.Component;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class ESChangeMaskOnTriggerComponent : BaseXOnTriggerComponent
+public sealed partial class ESChangeSecretIdentityOnTriggerComponent : BaseXOnTriggerComponent
 {
     [DataField]
     public ProtoId<ESSecretIdentityPrototype> Mask;

@@ -16,7 +16,7 @@ using Robust.Shared.Utility;
 namespace Content.Client._ES.Guidebook.Controls;
 
 /// <summary>
-///     Renders a panel with a list of tips, sourced from a mask prototype, troupe prototype, job prototype,
+///     Renders a panel with a list of tips, sourced from a secret identity prototype, troupe prototype, job prototype,
 ///     or any combination of the three (which will just combine the tips together).
 /// </summary>
 /// <remarks>
@@ -42,15 +42,15 @@ public sealed partial class ESGuideTipsEmbed : VStack, IDocumentTag
     {
         control = null;
         HashSet<ProtoId<ESTipPrototype>> tips = new();
-        if (args.TryGetValue("Mask", out var maskProto))
+        if (args.TryGetValue("SecretIdentity", out var secretIdentityProto))
         {
-            if (!_proto.TryIndex<ESSecretIdentityPrototype>(maskProto, out var mask))
+            if (!_proto.TryIndex<ESSecretIdentityPrototype>(secretIdentityProto, out var secretIdentity))
             {
-                _sawmill.Error($"Mask prototype passed to tips embed tag is invalid: {maskProto}");
+                _sawmill.Error($"Secret identity prototype passed to tips embed tag is invalid: {secretIdentityProto}");
                 return false;
             }
 
-            tips.UnionWith(mask.Tips);
+            tips.UnionWith(secretIdentity.Tips);
         }
 
         if (args.TryGetValue("Job", out var jobProto))

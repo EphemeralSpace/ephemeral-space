@@ -1,5 +1,5 @@
 <Document>
-    <ESGuideSecretIdentityEmbed Mask="Mercenary"/>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Mercenary"/>
 
     The Mercenary is a member of the crew who's dead-set on hunting down all masks who are members of other troupes.
     Unlike the moral [textlink="Vigilante" link="Vigilante"], the Mercenary doesn't care about the actions of who they kill, just who they belong to.
@@ -16,5 +16,5 @@
     To help with this, the Mercenary receives a sidearm inside a cache.
     Make sure to take your engagement carefully though, since killing someone who isn't a bad guy may lead the crew into thinking you're a traitor.
 
-    <ESGuideTipsEmbed Mask="Mercenary"/>
+    <ESGuideTipsEmbed SecretIdentity="Mercenary"/>
 </Document>

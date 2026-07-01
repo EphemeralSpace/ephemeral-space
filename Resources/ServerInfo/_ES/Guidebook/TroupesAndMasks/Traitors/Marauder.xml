@@ -1,6 +1,6 @@
 <Document>
 # Marauder
-    <ESGuideSecretIdentityEmbed Mask="Marauder"/>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Marauder"/>
 
     Marauders are a heavy-hitting force-of-nature, and the strongest traitor mask in terms of raw power. Their kit makes them highly versatile at murdering people.
 
@@ -24,5 +24,5 @@
 ### Explosive Grenade
 	Highly versatile and great for dealing massive damage to players in a pinch. Though it can sometimes do okay damage to weak structures like machines and windows, it's much better used as an offensive tool.
 
-    <ESGuideTipsEmbed Mask="Marauder"/>
+    <ESGuideTipsEmbed SecretIdentity="Marauder"/>
 </Document>

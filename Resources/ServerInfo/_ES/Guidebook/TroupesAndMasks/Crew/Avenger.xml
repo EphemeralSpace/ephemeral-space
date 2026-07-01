@@ -1,5 +1,5 @@
 <Document>
-    <ESGuideSecretIdentityEmbed Mask="Avenger"/>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Avenger"/>
 
     Avengers are a mask tasked with protecting a random person on the station from dying.
     They do not have any unique tools to do so, and must rely only on what they can find in their environment.
@@ -17,5 +17,5 @@
     Although this objective doesn't specify who must be killed, the Avenger will gain a new action, allowing them to check their surroundings for their target.
     Using this, they can slowly narrow in on their target before securing the kill.
 
-    <ESGuideTipsEmbed Mask="Avenger"/>
+    <ESGuideTipsEmbed SecretIdentity="Avenger"/>
 </Document>

@@ -97,7 +97,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
             if (_actionBlocker.CanMove(hit))
                 continue;
 
-            _secretIdentity.ChangeMask(mind.Value, ent.Comp.Mask);
+            _secretIdentity.ChangeSecretIdentity(mind.Value, ent.Comp.Mask);
             _audio.PlayPvs(ent.Comp.Sound, hit);
         }
     }

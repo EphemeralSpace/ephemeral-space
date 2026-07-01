@@ -23,6 +23,6 @@ public sealed partial class ESSecretIdentityConvertOnCollideSystem : EntitySyste
         if (_secretIdentity.GetTroupeOrNull(args.OtherEntity) == ent.Comp.IgnoreTroupe)
             return;
 
-        _secretIdentity.ChangeMask(mind.Value, ent.Comp.Mask);
+        _secretIdentity.ChangeSecretIdentity(mind.Value, ent.Comp.Mask);
     }
 }

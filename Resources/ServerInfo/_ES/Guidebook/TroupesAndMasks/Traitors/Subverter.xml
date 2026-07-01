@@ -1,6 +1,6 @@
 <Document>
 # Subverter
-    <ESGuideSecretIdentityEmbed Mask="Subverter"/>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Subverter"/>
 
     Subverters have a unique game plan compared to the other traitors masks. Instead of focusing on direct sabotage, their kit is focused around converting another player in to the traitor team.
 
@@ -29,5 +29,5 @@
 	<GuideReagentEmbed Reagent="ChloralHydrate"/>
 	<GuideReagentEmbed Reagent="MuteToxin"/>
 
-    <ESGuideTipsEmbed Mask="Subverter"/>
+    <ESGuideTipsEmbed SecretIdentity="Subverter"/>
 </Document>

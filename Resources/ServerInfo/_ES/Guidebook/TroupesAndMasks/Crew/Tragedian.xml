@@ -1,5 +1,5 @@
 <Document>
-    <ESGuideSecretIdentityEmbed Mask="Tragedian"/>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Tragedian"/>
 
     The Tragedian is a member of the crew who is tasked with acting out an assigned "theme" throughout the round.
     This theme can be a variety of abstract concepts like "revenge" or "betrayal."
@@ -24,5 +24,5 @@
     Upon death, a vote will be given to all stagehands, asking them if they thought the Tragedian embodied their theme.
     If the vote passes with a majority saying "yes," the objective will count as completed.
 
-    <ESGuideTipsEmbed Mask="Tragedian"/>
+    <ESGuideTipsEmbed SecretIdentity="Tragedian"/>
 </Document>

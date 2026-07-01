@@ -1,5 +1,5 @@
 <Document>
-  <ESGuideSecretIdentityEmbed Mask="Sympathizer"/>
+  <ESGuideSecretIdentityEmbed SecretIdentity="Sympathizer"/>
 
   The Sympathizer is a traitor mask wholly unique compared to every other traitor mask. Sympathizers are counted as traitors for all intents and purposes, but they [bold]cannot tell who the other traitors are (and vice versa)[/bold] and [bold]cannot see the shared traitor objectives, besides the nuke.[/bold]
 
@@ -11,5 +11,5 @@
 
   If you're being targeted by a traitor, be ready to scream as loud as you can about being a Sympathizer. Just don't expect them to always believe you.
 
-  <ESGuideTipsEmbed Mask="Sympathizer"/>
+  <ESGuideTipsEmbed SecretIdentity="Sympathizer"/>
 </Document>

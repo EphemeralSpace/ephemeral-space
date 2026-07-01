@@ -1,9 +1,9 @@
 <Document>
-    <ESGuideSecretIdentityEmbed Mask="Crewmember"/>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Crewmember"/>
 
     The Crewmember is the default member of the crew troupe and has no special abilities.
 
     In most masquerades, if someone joins into the round late, they'll always spawn as the Crewmember.
 
-    <ESGuideTipsEmbed Mask="Crewmember"/>
+    <ESGuideTipsEmbed SecretIdentity="Crewmember"/>
 </Document>

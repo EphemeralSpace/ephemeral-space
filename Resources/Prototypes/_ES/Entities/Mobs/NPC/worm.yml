@@ -71,5 +71,5 @@
   - type: TriggerOnMeleeHit
     targetIsUser: true
   - type: DeleteOnTrigger
-  - type: ESChangeMaskOnTrigger
+  - type: ESChangeSecretIdentityOnTrigger
     mask: Leapleech
