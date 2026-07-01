@@ -109,6 +109,9 @@ public abstract partial class SharedItemSystem : EntitySystem
         if (args.Handled)
             return;
 
+        if (!_handsSystem.CanPickupActiveHand(args.User, uid))
+            return;
+
         var ev = new DoAfterArgs(EntityManager,
             args.User,
             component.BasePickupTime,
@@ -269,7 +272,4 @@ public abstract partial class SharedItemSystem : EntitySystem
 }
 
 [Serializable, NetSerializable]
-public sealed partial class ItemPickupDoAfterEvent : DoAfterEvent
-{
-    public override DoAfterEvent Clone() => this;
-}
+public sealed partial class ItemPickupDoAfterEvent : SimpleDoAfterEvent;
