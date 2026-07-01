@@ -53,11 +53,11 @@ public sealed class MasqueradeTests : GameTest
                 var rng1 = rngSeed.IntoRandomizer();
                 var rng2 = rngSeed.IntoRandomizer();
 
-                var masks1 = entry!.PickMasks(rng1, _proto);
-                var masks2 = entry!.PickMasks(rng2, _proto);
+                var secretIdentities1 = entry.PickSecretIdentities(rng1, _proto);
+                var secretIdentities2 = entry.PickSecretIdentities(rng2, _proto);
 
-                Assert.That(masks1,
-                    Is.EqualTo(masks2),
+                Assert.That(secretIdentities1,
+                    Is.EqualTo(secretIdentities2),
                     $"Expected two calls from the same seed to be identical, and they weren't. Seed is {rngSeed.ToString()}");
             }
         }
@@ -93,22 +93,22 @@ public sealed class MasqueradeTests : GameTest
             var rng1 = rngSeed.IntoRandomizer();
             var rng2 = rngSeed.IntoRandomizer();
 
-            var masquerade = (MasqueradeRoleSet)traitors.Masquerade;
+            var masquerade = traitors.Masquerade;
 
-            Assert.That(masquerade.TryGetMasks(30, rng1, _proto, out var masks1));
-            Assert.That(masquerade.TryGetMasks(30, rng2, _proto, out var masks2));
+            Assert.That(masquerade.TryGetSecretIdentities(30, rng1, _proto, out var secretIdentities1));
+            Assert.That(masquerade.TryGetSecretIdentities(30, rng2, _proto, out var secretIdentities2));
 
-            Assert.That(masks1!, Is.EquivalentTo(masks2!));
+            Assert.That(secretIdentities1!, Is.EquivalentTo(secretIdentities2!));
         }
     }
 
     [Test]
     [RunOnSide(Side.Server)]
-    public void MaskSetsHaveMasks()
+    public void SecretIdentitySetsHaveSecretIdentities()
     {
-        foreach (var maskSet in _proto.EnumeratePrototypes<ESSecretIdentitySetPrototype>())
+        foreach (var secretIdentitySet in _proto.EnumeratePrototypes<ESSecretIdentitySetPrototype>())
         {
-            Assert.That(maskSet.AllMasks(), Is.Not.Empty);
+            Assert.That(secretIdentitySet.AllSecretIdentities(), Is.Not.Empty);
         }
     }
 }
@@ -161,7 +161,7 @@ public sealed class MasqueradeRunTests : GameTest
 
         await Server.WaitAssertion(() =>
         {
-            // Get the game rule, ensure it's running, ensure we don't have any leftover masks.
+            // Get the game rule, ensure it's running, ensure we don't have any leftover secret identities.
             Assert.That(SQuerySingle(out Entity<ESMasqueradeRuleComponent>? rule),
                 "Masquerade didn't start correctly, no rule was found.");
 
@@ -171,22 +171,22 @@ public sealed class MasqueradeRunTests : GameTest
 
             Assert.That(SQueryCount<ESSecretIdentityRoleComponent>(),
                 Is.EqualTo(userCount),
-                "Expected in-game players with everyone assigned masks.");
+                "Expected in-game players with everyone assigned secretIdentities.");
 
             if (rule.Value.Comp.Masquerade!.Masquerade is { } set)
             {
                 var roles =
                     SQueryList<ESSecretIdentityRoleComponent>()
-                        .Select(x => x.Comp.Mask!.Value.Id)
+                        .Select(x => x.Comp.SecretIdentity!.Value.Id)
                         .OrderDescending();
 
-                Assert.That(set.TryGetMasks(userCount, rule.Value.Comp.Seed.IntoRandomizer(), _proto, out var expectedRoles));
+                Assert.That(set.TryGetSecretIdentities(userCount, rule.Value.Comp.Seed.IntoRandomizer(), _proto, out var expectedRoles));
 
                 // We don't care about order so we sort both.
                 Assert.That(
                     expectedRoles!.Select(x => x.Id).OrderDescending(),
                     Is.EquivalentTo(roles),
-                    "The roles in the game did not match what was expected. Either there's nondeterminism, or masks are not being selected properly."
+                    "The roles in the game did not match what was expected. Either there's nondeterminism, or secretIdentities are not being selected properly."
                     );
             }
 

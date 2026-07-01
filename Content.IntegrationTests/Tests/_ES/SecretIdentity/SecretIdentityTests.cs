@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.IntegrationTests.Utility;
@@ -16,37 +15,37 @@ namespace Content.IntegrationTests.Tests._ES.SecretIdentity;
 
 [TestFixture]
 [TestMap(TestMapMode.Arena)]
-public sealed class MaskTests : GameTest
+public sealed class SecretIdentityTests : GameTest
 {
     [SidedDependency(Side.Server)] private readonly SuicideSystem _suicideSystem = default!;
 
     public override PoolSettings PoolSettings { get; } = new()
     {
         Dirty = true,
-        Connected = true, // We need a guy to mask up.
+        Connected = true, // We need a guyyyyyyy
     };
 
-    public static readonly string[] Masks = GameDataScrounger.PrototypesOfKind<ESSecretIdentityPrototype>();
-    public static readonly string[] Troupes = GameDataScrounger.PrototypesOfKind<ESTroupePrototype>();
+    public static readonly string[] SecretIdentities = GameDataScrounger.PrototypesOfKind<ESSecretIdentityPrototype>();
+    public static readonly string[] Organizations = GameDataScrounger.PrototypesOfKind<ESOrganizationPrototype>();
 
     [Test]
-    [TestCaseSource(nameof(Masks))]
-    [Description("Assigns each mask alone with no other players.")]
-    public async Task AssignMaskAlone(string maskProto)
+    [TestCaseSource(nameof(SecretIdentities))]
+    [Description("Assigns each secret identity alone with no other players.")]
+    public async Task AssignSecretIdentityAlone(string secretIdentityProto)
     {
         var player = await TestPlayer.CreatePlayer(this);
 
         await Server.WaitAssertion(() =>
         {
-            player.SSetMask(maskProto);
+            player.SSetSecretIdentity(secretIdentityProto);
 
-            var mask = player.SGetMask();
+            var secretIdentity = player.SGetSecretIdentity();
 
             using (Assert.EnterMultipleScope())
             {
-                Assert.That(mask, Is.EqualTo(maskProto));
+                Assert.That(secretIdentity, Is.EqualTo(secretIdentityProto));
 
-                // Verify a side effect: the mask role entity exists.
+                // Verify a side effect: the secret identity role entity exists.
                 Assert.That(SQueryCount<ESSecretIdentityRoleComponent>(), Is.EqualTo(1));
             }
         });
@@ -55,20 +54,20 @@ public sealed class MaskTests : GameTest
     // Very strong, suitable for extreme violence.
     private static readonly EntProtoId Weapon = "MeleeDebug200";
 
-    private static readonly Dictionary<ProtoId<ESSecretIdentityPrototype>, string> CannotBeAttackerMasks =
+    private static readonly Dictionary<ProtoId<ESSecretIdentityPrototype>, string> CannotBeAttackerIdentities =
         new()
         {
             {"Host", "Has blocked hands and cannot actually pick anything up as result"},
         };
 
-    private static IEnumerable<TestCaseData> AttackerMasks =>
+    private static IEnumerable<TestCaseData> AttackerIdentities =>
         GameDataScrounger.PrototypesOfKind<ESSecretIdentityPrototype>()
-        .WithIgnores(CannotBeAttackerMasks);
+        .WithIgnores(CannotBeAttackerIdentities);
 
     [Test]
-    [TestCaseSource(nameof(AttackerMasks))]
-    [Description("Has the given mask beat up a crew member, asserting it doesn't fail.")]
-    public async Task BeatUpCrewmember(string maskProto)
+    [TestCaseSource(nameof(AttackerIdentities))]
+    [Description("Has the given secret identity beat up a crew member, asserting it doesn't fail.")]
+    public async Task BeatUpCrewmember(string secretIdentityProto)
     {
         var deviant = await TestPlayer.CreatePlayer(this);
 
@@ -76,7 +75,7 @@ public sealed class MaskTests : GameTest
 
         var target = await AssignPlayerBody(targetSession);
 
-        await Server.WaitPost(() => { deviant.SSetMask(maskProto); });
+        await Server.WaitPost(() => { deviant.SSetSecretIdentity(secretIdentityProto); });
 
         // Grant them the Power.
         await deviant.SpawnAndPickUp(Weapon);
@@ -97,9 +96,9 @@ public sealed class MaskTests : GameTest
     }
 
     [Test]
-    [TestCaseSource(nameof(Masks))]
-    [Description("Has the a crew member beat up the given mask, asserting it doesn't fail.")]
-    public async Task GetBeatenUp(string maskProto)
+    [TestCaseSource(nameof(SecretIdentities))]
+    [Description("Has the a crew member beat up the given secret identity, asserting it doesn't fail.")]
+    public async Task GetBeatenUp(string secretIdentityProto)
     {
         var deviant = await TestPlayer.CreatePlayer(this);
 
@@ -112,7 +111,7 @@ public sealed class MaskTests : GameTest
             var mind = Server.System<MindSystem>().GetMind(target)!;
 
             Server.System<ESSecretIdentitySystem>()
-                .ApplyMask((mind!.Value, SComp<MindComponent>(mind!.Value)), maskProto);
+                .ApplySecretIdentity((mind!.Value, SComp<MindComponent>(mind!.Value)), secretIdentityProto);
         });
 
         // Grant them the Power.
@@ -134,24 +133,24 @@ public sealed class MaskTests : GameTest
     }
 
     [Test]
-    [TestCaseSource(nameof(Masks))]
+    [TestCaseSource(nameof(SecretIdentities))]
     [Description("Ensures every mask has a corresponding guide entry with the same ID.")]
-    public async Task EnsureMaskGuideEntries(string maskProto)
+    public async Task EnsureSecretIdentityGuideEntries(string secretIdentityProto)
     {
         await Server.WaitAssertion(() =>
         {
-            Assert.That(Server.ProtoMan.HasIndex<GuideEntryPrototype>(maskProto), $"{maskProto} must have a guide entry with the same ID as the mask!");
+            Assert.That(Server.ProtoMan.HasIndex<GuideEntryPrototype>(secretIdentityProto), $"{secretIdentityProto} must have a guide entry with the same ID as the secret identity!");
         });
     }
 
     [Test]
-    [TestCaseSource(nameof(Troupes))]
-    [Description("Ensures every troupe has a corresponding guide entry with the same ID.")]
-    public async Task EnsureTroupeGuideEntries(string troupeProto)
+    [TestCaseSource(nameof(Organizations))]
+    [Description("Ensures every organization has a corresponding guide entry with the same ID.")]
+    public async Task EnsureTroupeGuideEntries(string organizationProto)
     {
         await Server.WaitAssertion(() =>
         {
-            Assert.That(Server.ProtoMan.HasIndex<GuideEntryPrototype>(troupeProto), $"{troupeProto} must have a guide entry with the same ID as the troupe!");
+            Assert.That(Server.ProtoMan.HasIndex<GuideEntryPrototype>(organizationProto), $"{organizationProto} must have a guide entry with the same ID as the organization!");
         });
     }
 }

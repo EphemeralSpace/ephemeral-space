@@ -7,27 +7,27 @@ namespace Content.IntegrationTests.Fixtures;
 public sealed partial class TestPlayer
 {
     /// <summary>
-    ///     Sets the player's mask on the server.
+    ///     Sets the player's secret identity on the server.
     /// </summary>
-    public void SSetMask(ProtoId<ESSecretIdentityPrototype> mask)
+    public void SSetSecretIdentity(ProtoId<ESSecretIdentityPrototype> secretIdentity)
     {
         AssertServer();
 
-        var maskSys = _test.Server.System<ESSecretIdentitySystem>();
+        var secretIdentitySys = _test.Server.System<ESSecretIdentitySystem>();
 
-        maskSys.ApplyMask(SMindEntity, mask);
+        secretIdentitySys.ApplySecretIdentity(SMindEntity, secretIdentity);
     }
 
     /// <summary>
-    ///     Gets the player's mask on the server.
+    ///     Gets the player's secret identity on the server.
     /// </summary>
     /// <returns></returns>
-    public ProtoId<ESSecretIdentityPrototype>? SGetMask()
+    public ProtoId<ESSecretIdentityPrototype>? SGetSecretIdentity()
     {
         AssertServer();
 
-        var maskSys = _test.Server.System<ESSecretIdentitySystem>();
+        var secretIdentitySys = _test.Server.System<ESSecretIdentitySystem>();
 
-        return maskSys.GetMaskOrNull(SMindEntity);
+        return secretIdentitySys.GetSecretIdentityOrNull(SMindEntity);
     }
 }
