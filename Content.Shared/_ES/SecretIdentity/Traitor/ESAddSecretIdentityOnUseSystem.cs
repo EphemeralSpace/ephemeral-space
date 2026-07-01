@@ -39,7 +39,7 @@ public sealed partial class ESAddSecretIdentityOnUseSystem : EntitySystem
         if (!_mind.TryGetMind((EntityUid)args.Target!, out var mind, out var mindComponent)) // No SSD people
             return;
 
-        if (_secretIdentity.GetTroupeOrNull((mind, mindComponent)) == _proto.Index(ent.Comp.SecretIdentityToAdd).Troupe)
+        if (_secretIdentity.GetOrganizationOrNull((mind, mindComponent)) == _proto.Index(ent.Comp.SecretIdentityToAdd).Organization)
             return;
 
         if (ent.Comp.MindshieldPrevent && HasComp<MindShieldComponent>(args.Target))
@@ -93,9 +93,9 @@ public sealed partial class ESAddSecretIdentityOnUseSystem : EntitySystem
         if (!_mind.TryGetMind(target, out var mind, out var mindComponent))
             return;
 
-        var toAddTroupe = _proto.Index(ent.Comp.SecretIdentityToAdd).Troupe;
+        var toAddOrganization = _proto.Index(ent.Comp.SecretIdentityToAdd).Organization;
 
-        if (_secretIdentity.GetTroupeOrNull((mind, mindComponent)) == toAddTroupe)
+        if (_secretIdentity.GetOrganizationOrNull((mind, mindComponent)) == toAddOrganization)
             return;
 
         _secretIdentity.RemoveSecretIdentity((mind, mindComponent));

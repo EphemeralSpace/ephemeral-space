@@ -66,12 +66,12 @@ public sealed partial class ESSpawnTargetDossierSystem : EntitySystem
         if (!Resolve(mind, ref mind.Comp))
             return msg;
 
-        msg.AddMarkupOrThrow(Loc.GetString("es-troupe-dossier-header", ("name", codeName)));
+        msg.AddMarkupOrThrow(Loc.GetString("es-organization-dossier-header", ("name", codeName)));
         msg.PushNewline();
 
         foreach (var clue in _clues.GetClues(mind, ent.Comp.ClueCount))
         {
-            msg.AddMarkupOrThrow(Loc.GetString("es-troupe-dossier-clue-fmt", ("clue", clue)));
+            msg.AddMarkupOrThrow(Loc.GetString("es-organization-dossier-clue-fmt", ("clue", clue)));
             msg.PushNewline();
         }
 

@@ -22,7 +22,7 @@
   <ESGuideObjectiveEmbed Objective="ESObjectiveParasiteDoNotKill"/>
 
   The parasites win if they seize control of the majority of the station.
-  Note that this only includes living players, so if members of other troupes die off, it's possible for the parasites to win with only relatively few infections.
+  Note that this only includes living players, so if members of other organizations die off, it's possible for the parasites to win with only relatively few infections.
 
   <ESGuideObjectiveEmbed Objective="ESObjectiveParasiteInfect"/>
 
@@ -31,6 +31,6 @@
 
   This larger worm can be used as a weapon, stunning people on hit and converting prone players in parasitic hosts.
 
-  After a few minutes, so long as the rampaging parasites are not wiped out, the round will end as a parasite troupe victory.
+  After a few minutes, so long as the rampaging parasites are not wiped out, the round will end as a parasite organization victory.
 
 </Document>

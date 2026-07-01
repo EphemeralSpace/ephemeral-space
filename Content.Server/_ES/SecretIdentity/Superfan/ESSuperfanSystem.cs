@@ -18,7 +18,7 @@ public sealed partial class ESSuperfanSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _proto = default!;
 
-    private static readonly ProtoId<ESTroupePrototype> TraitorsTroupe = "Traitor";
+    private static readonly ProtoId<ESOrganizationPrototype> TraitorsOrganization = "Traitor";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -28,8 +28,8 @@ public sealed partial class ESSuperfanSystem : EntitySystem
 
     private void OnKillReported(ref ESPlayerKilledEvent ev)
     {
-        // Only activate if our target troupe died.
-        if (_secretIdentity.GetTroupeOrNull(ev.Killed) != TraitorsTroupe)
+        // Only activate if our target organization died.
+        if (_secretIdentity.GetOrganizationOrNull(ev.Killed) != TraitorsOrganization)
             return;
 
         if (!_masquerade.TryGetMasqueradeData(out var set))
@@ -43,7 +43,7 @@ public sealed partial class ESSuperfanSystem : EntitySystem
 
         var total = 0;
         var dead = 0;
-        foreach (var member in _secretIdentity.GetTroupeMembers(TraitorsTroupe))
+        foreach (var member in _secretIdentity.GetOrganizationMembers(TraitorsOrganization))
         {
             total += 1;
 
@@ -51,7 +51,7 @@ public sealed partial class ESSuperfanSystem : EntitySystem
                 dead += 1;
         }
 
-        // Chance to be converted is proportional to the number of dead troupe members.
+        // Chance to be converted is proportional to the number of dead organization members.
         var prob = total != 0
             ? (float)dead / total
             : 1;

@@ -13,5 +13,5 @@ public sealed partial class ESChangeSecretIdentityOnTriggerComponent : BaseXOnTr
 
     // Do we want to be able to convert secret identities into the same faction they already are?
     [DataField]
-    public bool SameTroupeConversion;
+    public bool SameOrganizationConversion;
 }

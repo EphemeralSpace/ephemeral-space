@@ -71,7 +71,7 @@
   # and doesnt parent from commandrestricted because this is a command-available traitor role!
   id: Sympathizer
   name: es-secret-identity-sympathizer-name
-  troupe: Traitor
+  organization: Traitor
   description: es-secret-identity-sympathizer-desc
   color: darkmagenta
   tips:
@@ -81,10 +81,10 @@
   - SympathizerPotentialTarget
   weight: 0
   mindComponents:
-  - type: ESTroupeNoSharedObjectives
-    troupes: [Traitor]
-  - type: ESTroupeIgnoreFactionIcons
-    troupes: [Traitor]
+  - type: ESOrganizationNoSharedObjectives
+    organizations: [Traitor]
+  - type: ESOrganizationIgnoreFactionIcons
+    organizations: [Traitor]
   objectives:
     all:
     - id: ESObjectiveSympathizerDetonateNuke
@@ -94,7 +94,7 @@
   parent: ESBaseCommandRestricted # same restriction as traitors
   id: SleeperAgent
   name: es-secret-identity-sleeper-agent-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-sleeper-agent-desc
   color: darkturquoise
   weight: 0 # otherwise it can roll in randomasquerades with no traitors. temp fix

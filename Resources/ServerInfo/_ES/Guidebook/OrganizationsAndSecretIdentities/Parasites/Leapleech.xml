@@ -2,7 +2,7 @@
     <ESGuideSecretIdentityEmbed SecretIdentity="Leapleech"/>
 
     The Leapleech is a member of the parasites focused on sending out a swarm of dangerous infectious leeches.
-    As members of other troupes attack them, they will grow more and more powerful.
+    As members of other organizations attack them, they will grow more and more powerful.
 
     <Box>
         <GuideEntityEmbed Entity="ESMobLeepLeach"/>

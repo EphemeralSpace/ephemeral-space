@@ -41,7 +41,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndTextAppend);
 
-        SubscribeLocalEvent<ESTroupeRuleComponent, GameRuleStartedEvent>(OnGameRuleStarted);
+        SubscribeLocalEvent<ESOrganizationRuleComponent, GameRuleStartedEvent>(OnGameRuleStarted);
 
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnRulePlayerJobsAssigned);
@@ -49,16 +49,16 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
     private void OnRoundEndTextAppend(RoundEndTextAppendEvent ev)
     {
-        var troupes = GetOrderedTroupes();
+        var organizations = GetOrderedOrganizations();
 
-        ev.AddLine(Loc.GetString("es-roundend-secret-identity-count-troupe"));
-        foreach (var troupe in troupes)
+        ev.AddLine(Loc.GetString("es-roundend-secret-identity-count-organization"));
+        foreach (var organization in organizations)
         {
-            var troupeProto = PrototypeManager.Index(troupe.Comp.Troupe);
-            ev.AddLine(Loc.GetString("es-roundend-secret-identity-troupe-list",
-                ("name", Loc.GetString(troupeProto.Name)),
-                ("color", troupeProto.Color)));
-            foreach (var objective in Objective.GetObjectives(troupe.Owner))
+            var organizationProto = PrototypeManager.Index(organization.Comp.Organization);
+            ev.AddLine(Loc.GetString("es-roundend-secret-identity-organization-list",
+                ("name", Loc.GetString(organizationProto.Name)),
+                ("color", organizationProto.Color)));
+            foreach (var objective in Objective.GetObjectives(organization.Owner))
             {
                 ev.AddLine(Loc.GetString("es-roundend-secret-identity-objective-fmt",
                     ("text", Objective.GetObjectiveString(objective.AsNullable()))));
@@ -67,14 +67,14 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         ev.AddLine(string.Empty);
         ev.AddLine(Loc.GetString("es-roundend-secret-identity-player-summary-header"));
-        foreach (var troupe in troupes)
+        foreach (var organization in organizations)
         {
-            var troupeProto = PrototypeManager.Index(troupe.Comp.Troupe);
+            var organizationProto = PrototypeManager.Index(organization.Comp.Organization);
 
             ev.AddLine(Loc.GetString("es-roundend-secret-identity-player-group",
-                ("name", Loc.GetString(troupeProto.Name)),
-                ("color", troupeProto.Color)));
-            foreach (var mind in troupe.Comp.TroupeMemberMinds)
+                ("name", Loc.GetString(organizationProto.Name)),
+                ("color", organizationProto.Color)));
+            foreach (var mind in organization.Comp.OrganizationMemberMinds)
             {
                 if (!TryComp<MindComponent>(mind, out var mindComp) ||
                     !TryComp<ESCharacterComponent>(mind, out var character))
@@ -88,7 +88,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
                 // get secret-identity-specific objectives
                 var objectives = Objective.GetObjectives(mind)
-                    .Except(Objective.GetObjectives(troupe.Owner))
+                    .Except(Objective.GetObjectives(organization.Owner))
                     .ToList();
 
                 ev.AddLine(Loc.GetString("es-roundend-secret-identity-player-summary",
@@ -140,10 +140,10 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         return outString;
     }
 
-    private void OnGameRuleStarted(Entity<ESTroupeRuleComponent> ent, ref GameRuleStartedEvent args)
+    private void OnGameRuleStarted(Entity<ESOrganizationRuleComponent> ent, ref GameRuleStartedEvent args)
     {
         if (_gameTicker.RunLevel == GameRunLevel.InRound)
-            InitializeTroupeObjectives(ent);
+            InitializeOrganizationObjectives(ent);
     }
 
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev)
@@ -151,44 +151,44 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         if (!ev.LateJoin)
             return;
 
-        var ev2 = new AssignLatejoinerToTroupeEvent(false, ev.Player);
+        var ev2 = new AssignLatejoinerToOrganizationEvent(false, ev.Player);
         RaiseLocalEvent(ref ev2);
     }
 
     private void OnRulePlayerJobsAssigned(RulePlayerJobsAssignedEvent args)
     {
-        AssignPlayersToTroupe(args.Players.ToList());
-        InitializeTroupeObjectives();
+        AssignPlayersToOrganization(args.Players.ToList());
+        InitializeOrganizationObjectives();
     }
 
-    public void AssignPlayersToTroupe(List<ICommonSession> players)
+    public void AssignPlayersToOrganization(List<ICommonSession> players)
     {
-        var ev = new AssignPlayersToTroupeEvent(false, players);
+        var ev = new AssignPlayersToOrganizationEvent(false, players);
         RaiseLocalEvent(ref ev);
     }
 
-    public void InitializeTroupeObjectives()
+    public void InitializeOrganizationObjectives()
     {
-        var query = EntityQueryEnumerator<ESTroupeRuleComponent>();
+        var query = EntityQueryEnumerator<ESOrganizationRuleComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            InitializeTroupeObjectives((uid, comp));
+            InitializeOrganizationObjectives((uid, comp));
         }
     }
 
-    public void InitializeTroupeObjectives(Entity<ESTroupeRuleComponent> rule)
+    public void InitializeOrganizationObjectives(Entity<ESOrganizationRuleComponent> rule)
     {
-        var troupe = PrototypeManager.Index(rule.Comp.Troupe);
-        foreach (var objective in _entityTable.GetSpawns(troupe.Objectives))
+        var organization = PrototypeManager.Index(rule.Comp.Organization);
+        foreach (var objective in _entityTable.GetSpawns(organization.Objectives))
         {
             if (!Objective.TryAddObjective(rule.Owner, objective, out var objectiveUid))
                 continue;
 
             Objective.SetDescriptor(
                 objectiveUid.Value,
-                Loc.GetString("es-objective-text-troupe"),
-                troupe.Color,
-                Loc.GetString("es-objective-tooltip-troupe"));
+                Loc.GetString("es-objective-text-organization"),
+                organization.Color,
+                Loc.GetString("es-objective-tooltip-organization"));
         }
     }
 
@@ -206,17 +206,17 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         return true;
     }
 
-    public override void ApplySecretIdentity(Entity<MindComponent> mind, ProtoId<ESSecretIdentityPrototype> secretIdentityId, Entity<ESTroupeRuleComponent>? troupe = null)
+    public override void ApplySecretIdentity(Entity<MindComponent> mind, ProtoId<ESSecretIdentityPrototype> secretIdentityId, Entity<ESOrganizationRuleComponent>? organization = null)
     {
         var secretIdentity = PrototypeManager.Index(secretIdentityId);
 
         // If we are spawning a new rule, we should initialize the objectives *after*
         // the first player is added to ensure targeting shenanigans don't happen.
-        var ruleExists = troupe.HasValue;
-        if (troupe is null && !TryGetTroupeEntityForSecretIdentity(secretIdentity, out troupe))
+        var ruleExists = organization.HasValue;
+        if (organization is null && !TryGetOrganizationEntityForSecretIdentity(secretIdentity, out organization))
         {
-            var troupeEnt = _gameTicker.AddGameRule(PrototypeManager.Index(secretIdentity.Troupe).GameRule);
-            troupe = (troupeEnt, Comp<ESTroupeRuleComponent>(troupeEnt));
+            var organizationEnt = _gameTicker.AddGameRule(PrototypeManager.Index(secretIdentity.Organization).GameRule);
+            organization = (organizationEnt, Comp<ESOrganizationRuleComponent>(organizationEnt));
         }
 
         // Only exists because the AddRole API does not return the newly added role (why???)
@@ -267,17 +267,17 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         var memoryComponent = EnsureComp<ESSecretIdentityMemoryComponent>(mind);
         memoryComponent.SecretIdentities.Add(secretIdentity);
 
-        troupe.Value.Comp.TroupeMemberMinds.Add(mind);
+        organization.Value.Comp.OrganizationMemberMinds.Add(mind);
         Objective.RegenerateObjectiveList(mind.Owner);
 
         // Our rule was only added in the beginning, now we should start it properly.
         if (!ruleExists)
-            _gameTicker.StartGameRule(troupe.Value);
+            _gameTicker.StartGameRule(organization.Value);
 
         RefreshCharacterInfoBlurb(mind.AsNullable());
 
         var ev = new ESSecretIdentityChangedEvent(mind, secretIdentity);
-        RaiseLocalEvent(troupe.Value, ref ev, true);
+        RaiseLocalEvent(organization.Value, ref ev, true);
     }
 
     public override void RemoveSecretIdentity(Entity<MindComponent> mind)
@@ -304,9 +304,9 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
             Objective.TryRemoveObjective(mind.Owner, objective.Owner);
         }
 
-        if (TryGetTroupeEntity(secretIdentity.Troupe, out var troupeEntity))
+        if (TryGetOrganizationEntity(secretIdentity.Organization, out var organizationEntity))
         {
-            troupeEntity.Value.Comp.TroupeMemberMinds.Remove(mind);
+            organizationEntity.Value.Comp.OrganizationMemberMinds.Remove(mind);
         }
 
         Role.MindRemoveRole(mind.AsNullable(), new EntProtoId<MindRoleComponent>(MindRole));
@@ -314,16 +314,16 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         Objective.RegenerateObjectiveList(mind.Owner);
         RefreshCharacterInfoBlurb(mind.AsNullable());
 
-        if (troupeEntity.HasValue)
+        if (organizationEntity.HasValue)
         {
             var ev = new ESSecretIdentityChangedEvent(mind, secretIdentity);
-            RaiseLocalEvent(troupeEntity.Value, ref ev, true);
+            RaiseLocalEvent(organizationEntity.Value, ref ev, true);
         }
     }
 
     public override void ChangeSecretIdentity(Entity<MindComponent> mind,
         ProtoId<ESSecretIdentityPrototype> secretIdentityId,
-        Entity<ESTroupeRuleComponent>? troupe = null,
+        Entity<ESOrganizationRuleComponent>? organization = null,
         bool eraseHistory = false)
     {
         RemoveSecretIdentity(mind);
@@ -333,7 +333,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
             if (comp.SecretIdentities.Count != 0)
                 comp.SecretIdentities.RemoveAt(comp.SecretIdentities.Count - 1);
         }
-        ApplySecretIdentity(mind, secretIdentityId, troupe);
+        ApplySecretIdentity(mind, secretIdentityId, organization);
 
         if (mind.Comp.OwnedEntity is { } owned)
         {
@@ -346,21 +346,21 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 }
 
 /// <summary>
-/// Raised on a troupe entity and broadcast when an entity's secret identity changes.
+/// Raised on a organization entity and broadcast when an entity's secret identity changes.
 /// </summary>
 [ByRefEvent]
 public record struct ESSecretIdentityChangedEvent(Entity<MindComponent> Mind, ESSecretIdentityPrototype? SecretIdentity);
 
 /// <summary>
-///     Fired when players are being assigned to a troupe. Old random assignment algorithm kicks in
+///     Fired when players are being assigned to a organization. Old random assignment algorithm kicks in
 ///     if not handled. (This is a mild hack.)
 /// </summary>
 [ByRefEvent]
-public record struct AssignPlayersToTroupeEvent(bool Handled, List<ICommonSession> Players);
+public record struct AssignPlayersToOrganizationEvent(bool Handled, List<ICommonSession> Players);
 
 /// <summary>
 ///     Fired when players are latejoining. Old random assignment algorithm kicks in
 ///     if not handled. (This is a mild hack.)
 /// </summary>
 [ByRefEvent]
-public record struct AssignLatejoinerToTroupeEvent(bool Handled, ICommonSession Victim);
+public record struct AssignLatejoinerToOrganizationEvent(bool Handled, ICommonSession Victim);

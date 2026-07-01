@@ -12,7 +12,7 @@
                 <VStack HorizontalAlignment="Center">
                     <RichTextLabel Name="SecretIdentityLabel" Margin="20 0" HorizontalAlignment="Center"/>
                     <LowDivider/>
-                    <RichTextLabel Name="TroupeLabel" HorizontalAlignment="Center"/>
+                    <RichTextLabel Name="OrganizationLabel" HorizontalAlignment="Center"/>
                 </VStack>
                 <SpriteView Name="SelfView" OverrideDirection="South" Scale="4 4" HorizontalAlignment="Center" Margin="5 5 5 15"/>
                 <RichTextLabel Name="NameLabel" HorizontalAlignment="Center" Margin="10 0"/>

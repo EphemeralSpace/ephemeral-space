@@ -4,20 +4,20 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._ES.SecretIdentity.Components;
 
 /// <summary>
-/// Used with <see cref="ESTargetObjectiveComponent"/> to filter based on a player's troupe
+/// Used with <see cref="ESTargetObjectiveComponent"/> to filter based on a player's organization
 /// </summary>
 [RegisterComponent]
-[Access(typeof(ESTargetTroupeObjectiveSystem))]
-public sealed partial class ESTargetTroupeObjectiveComponent : Component
+[Access(typeof(ESTargetOrganizationObjectiveSystem))]
+public sealed partial class ESTargetOrganizationObjectiveComponent : Component
 {
     /// <summary>
-    /// The troupe that must be present on the player
+    /// The organization that must be present on the player
     /// </summary>
     [DataField(required: true)]
-    public ProtoId<ESTroupePrototype> Troupe;
+    public ProtoId<ESOrganizationPrototype> Organization;
 
     /// <summary>
-    /// If true, will select if a given player does NOT have <see cref="Troupe"/> as their troupe
+    /// If true, will select if a given player does NOT have <see cref="Organization"/> as their organization
     /// </summary>
     [DataField]
     public bool Invert;

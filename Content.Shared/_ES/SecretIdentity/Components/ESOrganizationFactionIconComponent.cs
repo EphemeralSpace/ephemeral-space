@@ -5,17 +5,17 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._ES.SecretIdentity.Components;
 
 /// <summary>
-/// Used for members of a <see cref="ESTroupePrototype"/> that can see icons on each other
+/// Used for members of a <see cref="ESOrganizationPrototype"/> that can see icons on each other
 /// </summary>
 /// <remarks>
 /// The way this works is specifically for IC reasons and kinda strange deduction purposes.
 /// In the event that someone swaps bodies, they should still be able to identify other traitor's via their body.
 /// However, swapping INTO a traitor's body doesn't give you the same ability. The icon displays on BODIES with the icon
-/// But that only occurs if your MIND has knowledge of the traitor troupe.
+/// But that only occurs if your MIND has knowledge of the traitor organization.
 /// </remarks>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(ESSharedSecretIdentitySystem))]
-public sealed partial class ESTroupeFactionIconComponent : Component
+public sealed partial class ESOrganizationFactionIconComponent : Component
 {
     /// <summary>
     /// The status icon to show
@@ -24,13 +24,13 @@ public sealed partial class ESTroupeFactionIconComponent : Component
     public ProtoId<FactionIconPrototype> Icon;
 
     /// <summary>
-    /// The troupe that must be shared for this comp to be networked
+    /// The organization that must be shared for this comp to be networked
     /// </summary>
     [DataField(required: true), AutoNetworkedField]
-    public ProtoId<ESTroupePrototype> Troupe;
+    public ProtoId<ESOrganizationPrototype> Organization;
 
     /// <summary>
-    /// Field shown to members of the same troupe on examine.
+    /// Field shown to members of the same organization on examine.
     /// </summary>
     [DataField, AutoNetworkedField]
     public LocId? ExamineString;

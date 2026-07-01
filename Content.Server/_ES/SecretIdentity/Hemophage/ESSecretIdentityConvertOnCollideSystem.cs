@@ -20,7 +20,7 @@ public sealed partial class ESSecretIdentityConvertOnCollideSystem : EntitySyste
         if (!_mind.TryGetMind(args.OtherEntity, out var mind))
             return;
 
-        if (_secretIdentity.GetTroupeOrNull(args.OtherEntity) == ent.Comp.IgnoreTroupe)
+        if (_secretIdentity.GetOrganizationOrNull(args.OtherEntity) == ent.Comp.IgnoreOrganization)
             return;
 
         _secretIdentity.ChangeSecretIdentity(mind.Value, ent.Comp.SecretIdentity);

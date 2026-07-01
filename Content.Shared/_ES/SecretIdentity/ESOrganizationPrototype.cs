@@ -7,21 +7,21 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Shared._ES.SecretIdentity;
 
-[Prototype("esTroupe")]
-public sealed partial class ESTroupePrototype : IPrototype, IInheritingPrototype
+[Prototype("esOrganization")]
+public sealed partial class ESOrganizationPrototype : IPrototype, IInheritingPrototype
 {
     /// <inheritdoc/>
     [IdDataField]
     public string ID { get; private set; }  = default!;
 
-    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ESTroupePrototype>))]
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ESOrganizationPrototype>))]
     public string[]? Parents { get; private set; }
 
     [AbstractDataField]
     public bool Abstract { get; private set; }
 
     /// <summary>
-    /// Name of the troupe, in plain text.
+    /// Name of the organization, in plain text.
     /// </summary>
     [DataField(required: true)]
     public LocId Name;
@@ -30,7 +30,7 @@ public sealed partial class ESTroupePrototype : IPrototype, IInheritingPrototype
     public LocId Description;
 
     /// <summary>
-    /// Set of tips that apply to this troupe specifically.
+    /// Set of tips that apply to this organization specifically.
     /// </summary>
     [DataField]
     public HashSet<ProtoId<ESTipPrototype>> Tips = new();
@@ -48,16 +48,16 @@ public sealed partial class ESTroupePrototype : IPrototype, IInheritingPrototype
     public ProtoId<FactionIconPrototype> MetaIcon;
 
     /// <summary>
-    /// The objectives that this troupe gives to its members
+    /// The objectives that this organization gives to its members
     /// </summary>
     [DataField]
     public EntityTableSelector Objectives = new NoneSelector();
 
     [DataField(required: true)]
-    public EntProtoId<ESTroupeRuleComponent> GameRule;
+    public EntProtoId<ESOrganizationRuleComponent> GameRule;
 
     /// <summary>
-    /// String used to refer to the secret identities of this troupe on the news report for the masquerade.
+    /// String used to refer to the secret identities of this organization on the news report for the masquerade.
     /// </summary>
     [DataField]
     public LocId? DisguisedSecretIdentityName;

@@ -58,7 +58,7 @@ public sealed partial class MasqueradeCommands : ToolshedCommand
 
         var ordered = allSecretIdentities
             .GroupBy(n => n.SecretIdentity)
-            .OrderByDescending(p => p.Key.Troupe)
+            .OrderByDescending(p => p.Key.Organization)
             .ThenByDescending(p => (double) p.Sum(g => g.Count) / trials)
             .ThenBy(p => p.Key.ID);
 
@@ -68,7 +68,7 @@ public sealed partial class MasqueradeCommands : ToolshedCommand
             var sum = grouping.Sum(d => Math.Pow(d.Count - mean, 2));
             var stdDev = Math.Sqrt(sum / trials);
 
-            yield return $"{grouping.Key.ID} ({grouping.Key.Troupe}): μ={mean:F4}, σ={stdDev:F4}";
+            yield return $"{grouping.Key.ID} ({grouping.Key.Organization}): μ={mean:F4}, σ={stdDev:F4}";
         }
     }
 

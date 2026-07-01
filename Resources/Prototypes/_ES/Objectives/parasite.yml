@@ -8,8 +8,8 @@
     icon:
       sprite: _ES/Objects/Weapons/Melee/wormblade.rsi
       state: icon
-  - type: ESTroupeOutnumberObjective
-    troupe: Parasite
+  - type: ESOrganizationOutnumberObjective
+    organization: Parasite
 
 # Mask objectives, but used broadly for all parasites
 - type: entity

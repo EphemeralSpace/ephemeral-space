@@ -2,7 +2,7 @@ using Content.Shared.Roles;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._ES.Troupes.Parasite.Components;
+namespace Content.Server._ES.Organizations.Parasite.Components;
 
 [RegisterComponent]
 [Access(typeof(ESParasiteRuleSystem))]

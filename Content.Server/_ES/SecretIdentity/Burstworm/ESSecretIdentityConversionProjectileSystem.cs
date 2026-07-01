@@ -36,7 +36,7 @@ public sealed partial class ESSecretIdentityConversionProjectileSystem : EntityS
 
         if (embeddable.EmbeddedIntoUid is { } embedded &&
             _mind.TryGetMind(embedded, out var mind) &&
-            _secretIdentity.GetTroupeOrNull(mind.Value.AsNullable()) != ent.Comp.IgnoreTroupe)
+            _secretIdentity.GetOrganizationOrNull(mind.Value.AsNullable()) != ent.Comp.IgnoreOrganization)
         {
             _popup.PopupEntity(Loc.GetString(ent.Comp.Popup, ("ent", Identity.Entity(embedded, EntityManager))), embedded, PopupType.MediumCaution);
             _secretIdentity.ChangeSecretIdentity(mind.Value, ent.Comp.SecretIdentity);

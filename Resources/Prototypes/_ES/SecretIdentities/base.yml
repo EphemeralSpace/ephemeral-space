@@ -19,13 +19,13 @@
 - type: esSecretIdentity
   parent: ESBaseCommandRestricted
   id: ESBaseParasite
-  troupe: Parasite
+  organization: Parasite
   abstract: true
   components:
-  - type: ESTroupeFactionIcon
+  - type: ESOrganizationFactionIcon
     icon: ESParasite
-    troupe: Parasite
-    examineString: es-secret-identity-troupe-parasite-examine
+    organization: Parasite
+    examineString: es-secret-identity-organization-parasite-examine
   objectives:
     all:
     - id: ESObjectiveParasiteDie
@@ -34,16 +34,16 @@
 - type: esSecretIdentity
   parent: ESBaseCommandRestricted
   id: ESBaseTraitor
-  troupe: Traitor
+  organization: Traitor
   abstract: true
   actions:
     all:
     - id: ESActionSyndieTransponder
   components:
-  - type: ESTroupeFactionIcon
+  - type: ESOrganizationFactionIcon
     icon: ESTraitor
-    troupe: Traitor
-    examineString: es-secret-identity-troupe-traitor-examine
+    organization: Traitor
+    examineString: es-secret-identity-organization-traitor-examine
   # TODO chat refactor this is obviously malicious client-abusable
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio

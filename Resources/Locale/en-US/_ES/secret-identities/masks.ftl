@@ -45,7 +45,7 @@ es-secret-identity-vip-name = VIP
 es-secret-identity-vip-desc = As a VIP, use your fancy VIP card to help confirm your innocence in times of peril.
 
 # Traitor Secret Identities
-es-secret-identity-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete your group objectives.
+es-secret-identity-organization-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete your group objectives.
 
 es-secret-identity-assassin-name = Assassin
 es-secret-identity-assassin-desc =  As an Assassin, you have been trained by the Syndicate for deadly single-target assassinations.
@@ -69,7 +69,7 @@ es-secret-identity-sympathizer-name = Sympathizer
 es-secret-identity-sympathizer-desc = As a Sympathizer, you are an adherent to Syndicate philosophy, win with the traitors, and count as a traitor--but you are unaware of who the traitors are and what their objectives are.
 
 # Parasite Secret Identities
-es-secret-identity-troupe-parasite-examine = They're a fellow host of the [bold][color=tan]parasitic infection[/color][/bold]. Conspire with them to spread the infection.
+es-secret-identity-organization-parasite-examine = They're a fellow host of the [bold][color=tan]parasitic infection[/color][/bold]. Conspire with them to spread the infection.
 
 es-secret-identity-burstworm-name = Burstworm
 es-secret-identity-burstworm-desc = As a Burstworm, explode in a burst of devilish parasitic worms when you are killed, infecting anyone they bite.

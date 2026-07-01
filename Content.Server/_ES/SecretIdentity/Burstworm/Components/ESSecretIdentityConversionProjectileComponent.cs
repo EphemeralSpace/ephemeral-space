@@ -9,7 +9,7 @@ namespace Content.Server._ES.SecretIdentity.Burstworm.Components;
 public sealed partial class ESSecretIdentityConversionProjectileComponent : Component
 {
     [DataField]
-    public ProtoId<ESTroupePrototype> IgnoreTroupe = "Parasite";
+    public ProtoId<ESOrganizationPrototype> IgnoreOrganization = "Parasite";
 
     [DataField]
     public ProtoId<ESSecretIdentityPrototype> SecretIdentity = "Burstworm";

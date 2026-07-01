@@ -31,14 +31,14 @@ public sealed partial class ESTraitorRuleSystem : EntitySystem
 
     private void OnNukeArmed(NukeArmedEvent ev)
     {
-        var query = EntityQueryEnumerator<ESTraitorRuleComponent, ESTroupeRuleComponent>();
-        while (query.MoveNext(out var uid, out var traitor, out var troupe))
+        var query = EntityQueryEnumerator<ESTraitorRuleComponent, ESOrganizationRuleComponent>();
+        while (query.MoveNext(out var uid, out var traitor, out var organization))
         {
-            OnNukeArmed((uid, traitor, troupe));
+            OnNukeArmed((uid, traitor, organization));
         }
     }
 
-    private void OnNukeArmed(Entity<ESTraitorRuleComponent, ESTroupeRuleComponent> ent)
+    private void OnNukeArmed(Entity<ESTraitorRuleComponent, ESOrganizationRuleComponent> ent)
     {
         // load syndie base when nuke is armed
         var opts = DeserializationOptions.Default with {InitializeMaps = true};
@@ -55,16 +55,16 @@ public sealed partial class ESTraitorRuleSystem : EntitySystem
     {
         // We're just going to assume the nuke blew up in the right place.
         // That's a fair thing to assume, right? It probably won't matter
-        var query = EntityQueryEnumerator<ESTraitorRuleComponent, ESTroupeRuleComponent>();
-        while (query.MoveNext(out var uid, out var traitor, out var troupe))
+        var query = EntityQueryEnumerator<ESTraitorRuleComponent, ESOrganizationRuleComponent>();
+        while (query.MoveNext(out var uid, out var traitor, out var organization))
         {
-            OnNukeExploded((uid, traitor, troupe));
+            OnNukeExploded((uid, traitor, organization));
         }
 
         _roundEnd.EndRound(TimeSpan.FromMinutes(1));
     }
 
-    private void OnNukeExploded(Entity<ESTraitorRuleComponent, ESTroupeRuleComponent> ent)
+    private void OnNukeExploded(Entity<ESTraitorRuleComponent, ESOrganizationRuleComponent> ent)
     {
         if (ent.Comp1.BaseGrids.Count <= 0)
             return;
@@ -91,7 +91,7 @@ public sealed partial class ESTraitorRuleSystem : EntitySystem
 
         // Move players to spawn points
         var spawnPointIndex = 0;
-        foreach (var mind in ent.Comp2.TroupeMemberMinds)
+        foreach (var mind in ent.Comp2.OrganizationMemberMinds)
         {
             if (!TryComp<MindComponent>(mind, out var mindComp))
                 continue;

@@ -46,7 +46,7 @@ public sealed partial class ESObservablePlayerButton : ContainerButton
         var (uid, mind, character) = ent;
 
         var secretIdentity = _secretIdentity.GetSecretIdentityOrNull((uid, mind));
-        var troupe = _secretIdentity.GetTroupeOrNull((uid, mind));
+        var organization = _secretIdentity.GetOrganizationOrNull((uid, mind));
 
         NameLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-fmt", ("text", character.Name)));
 
@@ -59,11 +59,11 @@ public sealed partial class ESObservablePlayerButton : ContainerButton
         if (_prototype.TryIndex(secretIdentity, out var secretIdentityPrototype))
             SecretIdentityLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(secretIdentityPrototype.Name))), secretIdentityPrototype.Color);
 
-        if (_prototype.TryIndex(troupe, out var troupePrototype)
-            && _prototype.TryIndex(troupePrototype.MetaIcon, out var troupeIcon))
+        if (_prototype.TryIndex(organization, out var organizationPrototype)
+            && _prototype.TryIndex(organizationPrototype.MetaIcon, out var organizationIcon))
         {
-            TroupeIcon.Texture = _sprite.Frame0(troupeIcon.Icon);
-            TroupeIcon.ToolTip = Loc.GetString(troupePrototype.Name);
+            OrganizationIcon.Texture = _sprite.Frame0(organizationIcon.Icon);
+            OrganizationIcon.ToolTip = Loc.GetString(organizationPrototype.Name);
         }
     }
 }

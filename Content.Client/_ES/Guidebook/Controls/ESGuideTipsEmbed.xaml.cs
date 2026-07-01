@@ -15,7 +15,7 @@ using Robust.Shared.Utility;
 namespace Content.Client._ES.Guidebook.Controls;
 
 /// <summary>
-///     Renders a panel with a list of tips, sourced from a secret identity prototype, troupe prototype, job prototype,
+///     Renders a panel with a list of tips, sourced from a secret identity prototype, organization prototype, job prototype,
 ///     or any combination of the three (which will just combine the tips together).
 /// </summary>
 /// <remarks>
@@ -63,15 +63,15 @@ public sealed partial class ESGuideTipsEmbed : VStack, IDocumentTag
             tips.UnionWith(job.Tips);
         }
 
-        if (args.TryGetValue("Troupe", out var troupeProto))
+        if (args.TryGetValue("Organization", out var organizationProto))
         {
-            if (!_proto.TryIndex<ESTroupePrototype>(troupeProto, out var troupe))
+            if (!_proto.TryIndex<ESOrganizationPrototype>(organizationProto, out var organization))
             {
-                _sawmill.Error($"Troupe prototype passed to tips embed tag is invalid: {troupeProto}");
+                _sawmill.Error($"Organization prototype passed to tips embed tag is invalid: {organizationProto}");
                 return false;
             }
 
-            tips.UnionWith(troupe.Tips);
+            tips.UnionWith(organization.Tips);
         }
 
         if (tips.Count <= 0)

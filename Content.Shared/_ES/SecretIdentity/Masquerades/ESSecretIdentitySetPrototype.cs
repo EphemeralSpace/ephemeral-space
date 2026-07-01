@@ -94,13 +94,13 @@ public abstract class SecretIdentitySetProvider
 }
 
 [DataDefinition]
-public sealed partial class ESTroupeSecretIdentitiesProvider : SecretIdentitySetProvider
+public sealed partial class ESOrganizationSecretIdentitiesProvider : SecretIdentitySetProvider
 {
     [Dependency]
     private IPrototypeManager _proto = default!;
 
     [DataField(required: true)]
-    public ProtoId<ESTroupePrototype> Troupe = "Crew";
+    public ProtoId<ESOrganizationPrototype> Organization = "Crew";
 
     private Dictionary<ProtoId<ESSecretIdentityPrototype>, float>? _secretIdentities = null;
 
@@ -111,7 +111,7 @@ public sealed partial class ESTroupeSecretIdentitiesProvider : SecretIdentitySet
             return;
 
         _secretIdentities = _proto.EnumeratePrototypes<ESSecretIdentityPrototype>()
-            .Where(x => x.Troupe == Troupe)
+            .Where(x => x.Organization == Organization)
             .ToDictionary(x => new ProtoId<ESSecretIdentityPrototype>(x.ID), x => x.Weight);
     }
 

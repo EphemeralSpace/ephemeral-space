@@ -146,7 +146,7 @@ public sealed class SecretIdentityTests : GameTest
     [Test]
     [TestCaseSource(nameof(Organizations))]
     [Description("Ensures every organization has a corresponding guide entry with the same ID.")]
-    public async Task EnsureTroupeGuideEntries(string organizationProto)
+    public async Task EnsureOrganizationGuideEntries(string organizationProto)
     {
         await Server.WaitAssertion(() =>
         {

@@ -1,21 +1,21 @@
-- type: esTroupe
+- type: esOrganization
   id: Crew
-  name: es-troupe-crew-name
-  description: es-troupe-crew-description
+  name: es-organization-crew-name
+  description: es-organization-crew-description
   color: yellow
   metaIcon: ESCrew
-  gameRule: ESTroupeRuleCrew
+  gameRule: ESOrganizationRuleCrew
   objectives:
     all:
     - id: ESObjectiveWarpDrive
 
-- type: esTroupe
+- type: esOrganization
   id: Traitor
-  name: es-troupe-traitor-name
-  description: es-troupe-traitor-description
+  name: es-organization-traitor-name
+  description: es-organization-traitor-description
   color: red
   metaIcon: ESTraitor
-  gameRule: ESTroupeRuleTraitor
+  gameRule: ESOrganizationRuleTraitor
   disguisedMaskName: es-news-disguise-traitors
   objectives:
     all:
@@ -32,13 +32,13 @@
     - id: ESObjectiveTraitorHackCryptoNukeConsoles
     - id: ESObjectiveTraitorDetonateNuke
 
-- type: esTroupe
+- type: esOrganization
   id: Parasite
-  name: es-troupe-parasite-name
-  description: es-troupe-parasite-description
+  name: es-organization-parasite-name
+  description: es-organization-parasite-description
   color: tan
   metaIcon: ESParasite
-  gameRule: ESTroupeRuleParasite
+  gameRule: ESOrganizationRuleParasite
   objectives:
     all:
     - id: ESObjectiveParasiteInfect

@@ -1,5 +1,5 @@
-es-roundend-secret-identity-count-troupe = [font size=14]The show had the following troupes:[/font]
-es-roundend-secret-identity-troupe-list = [font size=16]The [color={$color}][bold]{$name}[/bold][/color] troupe[/font]
+es-roundend-secret-identity-count-organization = [font size=14]The show had the following organizations:[/font]
+es-roundend-secret-identity-organization-list = [font size=16]The [color={$color}][bold]{$name}[/bold][/color] organization[/font]
 es-roundend-secret-identity-objective-fmt = {"    "}{$text}
 
 es-roundend-secret-identity-player-summary-header = [font size=16]Our actors were playing the following roles:[/font]

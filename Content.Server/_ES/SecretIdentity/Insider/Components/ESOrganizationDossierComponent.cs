@@ -6,8 +6,8 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._ES.SecretIdentity.Insider.Components;
 
 [RegisterComponent]
-[Access(typeof(ESTroupeDossierSystem))]
-public sealed partial class ESTroupeDossierComponent : Component
+[Access(typeof(ESOrganizationDossierSystem))]
+public sealed partial class ESOrganizationDossierComponent : Component
 {
     /// <summary>
     /// Container where the <see cref="PaperPrototype"/> is spawned.

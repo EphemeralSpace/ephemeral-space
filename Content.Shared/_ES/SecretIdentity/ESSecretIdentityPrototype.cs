@@ -49,7 +49,7 @@ public sealed partial class ESSecretIdentityPrototype : IPrototype, IInheritingP
     public Color Color = Color.White;
 
     [DataField]
-    public ProtoId<ESTroupePrototype> Troupe;
+    public ProtoId<ESOrganizationPrototype> Organization;
 
     /// <summary>
     /// Description of what this role does.

@@ -31,7 +31,7 @@ public sealed partial class ESLeapleechComponent : Component
     public EntProtoId Projectile = "ESMobLeepLeach";
 
     [DataField]
-    public ProtoId<ESTroupePrototype> IgnoreTroupe = "Parasite";
+    public ProtoId<ESOrganizationPrototype> IgnoreOrganization = "Parasite";
 
     [DataField]
     public ProtoId<AlertPrototype> Alert = "ESLeapleechCounter";

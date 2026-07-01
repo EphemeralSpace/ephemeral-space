@@ -8,7 +8,7 @@ namespace Content.Server._ES.SecretIdentity.Hemophage.Components;
 public sealed partial class ESSecretIdentityConvertOnCollideComponent : Component
 {
     [DataField]
-    public ProtoId<ESTroupePrototype> IgnoreTroupe = "Parasite";
+    public ProtoId<ESOrganizationPrototype> IgnoreOrganization = "Parasite";
 
     [DataField]
     public ProtoId<ESSecretIdentityPrototype> SecretIdentity = "Hemophage";

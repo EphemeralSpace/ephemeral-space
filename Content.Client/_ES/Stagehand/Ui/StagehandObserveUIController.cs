@@ -88,7 +88,7 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
         }
 
         var orderedMinds = minds
-            .OrderBy(m => _secretIdentity?.GetTroupeOrNull((m, m.Comp1)))
+            .OrderBy(m => _secretIdentity?.GetOrganizationOrNull((m, m.Comp1)))
             .ThenBy(m => m.Comp2.Name);
 
         var grp = new ButtonGroup();
@@ -143,7 +143,7 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
         observe.CurrentEntity = uid;
 
         var secretIdentity = _secretIdentity?.GetSecretIdentityOrNull((uid, mind));
-        var troupe = _secretIdentity?.GetTroupeOrNull((uid, mind));
+        var organization = _secretIdentity?.GetOrganizationOrNull((uid, mind));
 
         observe.NameLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-name-big", ("text", character.Name)));
 
@@ -159,12 +159,12 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
                 secretIdentityPrototype.Color);
         }
 
-        observe.TroupeLabel.Clear();
-        if (_prototype.TryIndex(troupe, out var troupePrototype))
+        observe.OrganizationLabel.Clear();
+        if (_prototype.TryIndex(organization, out var organizationPrototype))
         {
-            observe.TroupeLabel.UnsafeSetMarkup(
-                Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(troupePrototype.Name))),
-                troupePrototype.Color);
+            observe.OrganizationLabel.UnsafeSetMarkup(
+                Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(organizationPrototype.Name))),
+                organizationPrototype.Color);
         }
 
         observe.ObjectiveContainer.Children.Clear();

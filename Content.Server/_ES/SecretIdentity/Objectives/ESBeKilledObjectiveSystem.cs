@@ -24,7 +24,7 @@ public sealed class ESBeKilledObjectiveSystem : ESBaseObjectiveSystem<ESBeKilled
         if (!args.ValidKill || !MindSys.TryGetMind(args.Killer.Value, out var mind))
             return;
 
-        if (ent.Comp.TroupeRequired.HasValue && SecretIdentitySys.GetTroupeOrNull(mind.Value.AsNullable()) != ent.Comp.TroupeRequired)
+        if (ent.Comp.OrganizationRequired.HasValue && SecretIdentitySys.GetOrganizationOrNull(mind.Value.AsNullable()) != ent.Comp.OrganizationRequired)
             return;
 
         ObjectivesSys.SetObjectiveCounter(ent.Owner, 1f);

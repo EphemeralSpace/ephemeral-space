@@ -2,7 +2,7 @@
     <ESGuideSecretIdentityEmbed SecretIdentity="Vigilante"/>
 
     Vigilantes are members of the crew who are tasked with taking down people who have taken the life of another.
-    Note that this is not necessarily a traitor or other evil troupe, but rather just a person who has killed someone, regardless of mask.
+    Note that this is not necessarily a traitor or other evil organization, but rather just a person who has killed someone, regardless of mask.
 
     <Box>
       <ESGuideObjectiveEmbed Objective="ESObjectiveVigilanteKillKiller"/>

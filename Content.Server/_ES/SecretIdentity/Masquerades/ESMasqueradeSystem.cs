@@ -44,11 +44,11 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
     {
         base.Initialize();
 
-        SubscribeLocalEvent<AssignLatejoinerToTroupeEvent>(OnAssignLatejoiner);
-        SubscribeLocalEvent<AssignPlayersToTroupeEvent>(OnAssignPlayers);
+        SubscribeLocalEvent<AssignLatejoinerToOrganizationEvent>(OnAssignLatejoiner);
+        SubscribeLocalEvent<AssignPlayersToOrganizationEvent>(OnAssignPlayers);
     }
 
-    private void OnAssignPlayers(ref AssignPlayersToTroupeEvent ev)
+    private void OnAssignPlayers(ref AssignPlayersToOrganizationEvent ev)
     {
         var rule = EntityQuery<ESMasqueradeRuleComponent>().SingleOrDefault();
 
@@ -86,11 +86,11 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
 
         // Add all of our game rules ahead of time so that they don't get started inside ApplySecretIdentity
         // This is because they may have logic that is dependent on having members assigned when they start.
-        var troupeRules = new List<EntityUid>();
-        foreach (var troupeId in GetTroupesFromMasquerade(rule.Masquerade, ev.Players.Count, rule.Seed.IntoRandomizer()))
+        var organizationRules = new List<EntityUid>();
+        foreach (var organizationId in GetOrganizationsFromMasquerade(rule.Masquerade, ev.Players.Count, rule.Seed.IntoRandomizer()))
         {
-            var troupe = _proto.Index(troupeId);
-            troupeRules.Add(GameTicker.AddGameRule(troupe.GameRule));
+            var organization = _proto.Index(organizationId);
+            organizationRules.Add(GameTicker.AddGameRule(organization.GameRule));
         }
 
         // Ensure no funny business with the player list, as the order masquerades output secret identities isn't random.
@@ -143,9 +143,9 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
 
         // Now that all of our roles have been assigned, we can start the rules
         // Which will create objectives and run other logic as necessary.
-        foreach (var troupeRule in troupeRules)
+        foreach (var organizationRule in organizationRules)
         {
-            GameTicker.StartGameRule(troupeRule);
+            GameTicker.StartGameRule(organizationRule);
         }
     }
 
@@ -156,7 +156,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         return secretIdentity.ProhibitedJobs.Count; // The tighter the prohibition list, the more careful we are.
     }
 
-    private void OnAssignLatejoiner(ref AssignLatejoinerToTroupeEvent ev)
+    private void OnAssignLatejoiner(ref AssignLatejoinerToOrganizationEvent ev)
     {
         var rule = EntityQuery<ESMasqueradeRuleComponent>().SingleOrDefault();
 
@@ -168,19 +168,19 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         if (!TryGetMindOrLog(ev.Victim, out var mind))
             return;
 
-        if (!TryGetTroupeForSecretIdentityOrLog(secretIdentity, rule, out var troupe))
+        if (!TryGetOrganizationForSecretIdentityOrLog(secretIdentity, rule, out var organization))
             return;
 
-        _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentity, troupe.Value);
+        _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentity, organization.Value);
     }
 
-    private bool TryGetTroupeForSecretIdentityOrLog(ProtoId<ESSecretIdentityPrototype> secretIdentity,
+    private bool TryGetOrganizationForSecretIdentityOrLog(ProtoId<ESSecretIdentityPrototype> secretIdentity,
         ESMasqueradeRuleComponent rule,
-        [NotNullWhen(true)] out Entity<ESTroupeRuleComponent>? troupe)
+        [NotNullWhen(true)] out Entity<ESOrganizationRuleComponent>? organization)
     {
-        if (!_secretIdentity.TryGetTroupeEntityForSecretIdentity(secretIdentity, out troupe))
+        if (!_secretIdentity.TryGetOrganizationEntityForSecretIdentity(secretIdentity, out organization))
         {
-            Log.Error($"Failed to find a running troupe for {secretIdentity}, is the masquerade {rule.Masquerade!.ID} missing a troupe rule?");
+            Log.Error($"Failed to find a running organization for {secretIdentity}, is the masquerade {rule.Masquerade!.ID} missing a organization rule?");
             return false;
         }
 
@@ -248,12 +248,12 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
 
                     var report = new StringBuilder();
 
-                    foreach (var secretIdentities in component.AssignedSecretIdentities.GroupBy(m => _proto.Index(m).Troupe))
+                    foreach (var secretIdentities in component.AssignedSecretIdentities.GroupBy(m => _proto.Index(m).Organization))
                     {
-                        var troupe = _proto.Index(secretIdentities.Key);
+                        var organization = _proto.Index(secretIdentities.Key);
 
                         // If we need to obscure the secretIdentity name, do it here then don't list individual secretIdentity names
-                        if (troupe.DisguisedSecretIdentityName is { } disguisedSecretIdentityName)
+                        if (organization.DisguisedSecretIdentityName is { } disguisedSecretIdentityName)
                         {
                             report.AppendLine(Loc.GetString(masquerade.StartupNewsArticleSecretIdentityEntry,
                                 ("count", secretIdentities.Count()),
@@ -299,9 +299,9 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
     }
 
     /// <summary>
-    /// For a given masquerade at a specified playercount and random seed, returns the troupes that will be present.
+    /// For a given masquerade at a specified playercount and random seed, returns the organizations that will be present.
     /// </summary>
-    public HashSet<ProtoId<ESTroupePrototype>> GetTroupesFromMasquerade(ESMasqueradePrototype masquerade, int playerCount, IRobustRandom random)
+    public HashSet<ProtoId<ESOrganizationPrototype>> GetOrganizationsFromMasquerade(ESMasqueradePrototype masquerade, int playerCount, IRobustRandom random)
     {
         // Try and get the unique secretIdentities we'll have at this pop level for this seed
         if (!masquerade.Masquerade.TryGetSecretIdentities(playerCount, random, _proto,  out var secretIdentities))
@@ -312,13 +312,13 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
             secretIdentities.Add(secretIdentity);
         }
 
-        var troupes = new HashSet<ProtoId<ESTroupePrototype>>();
+        var organizations = new HashSet<ProtoId<ESOrganizationPrototype>>();
         foreach (var secretIdentity in secretIdentities)
         {
-            troupes.Add(_proto.Index(secretIdentity).Troupe);
+            organizations.Add(_proto.Index(secretIdentity).Organization);
         }
 
-        return troupes;
+        return organizations;
     }
 
     public bool TryGetMasqueradeData([NotNullWhen(true)] out MasqueradeRoleSet? set)

@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._ES.SecretIdentity.Traitor.Components;
 
 /// <summary>
-/// Denotes an object that can be sabotaged by members of a particular troupe.
+/// Denotes an object that can be sabotaged by members of a particular organization.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 [Access(typeof(ESSabotageSystem))]

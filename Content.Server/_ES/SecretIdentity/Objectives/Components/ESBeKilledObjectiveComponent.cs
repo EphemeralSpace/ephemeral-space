@@ -10,8 +10,8 @@ namespace Content.Server._ES.SecretIdentity.Objectives.Components;
 public sealed partial class ESBeKilledObjectiveComponent : Component
 {
     /// <summary>
-    ///     If non-null, the killer must be of this troupe in order to count as a completion.
+    ///     If non-null, the killer must be of this organization in order to count as a completion.
     /// </summary>
     [DataField]
-    public ProtoId<ESTroupePrototype>? TroupeRequired = null;
+    public ProtoId<ESOrganizationPrototype>? OrganizationRequired = null;
 }

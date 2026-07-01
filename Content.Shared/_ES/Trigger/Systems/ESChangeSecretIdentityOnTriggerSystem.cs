@@ -21,7 +21,7 @@ public sealed partial class ESChangeSecretIdentityOnTriggerSystem : XOnTriggerSy
         if (!_mind.TryGetMind((EntityUid)args.User, out var mind))
             return;
 
-        if (!ent.Comp.SameTroupeConversion)
+        if (!ent.Comp.SameOrganizationConversion)
         {
             if (!TryComp<ESBodyLastSecretIdentityComponent>(args.User, out var secretIdentity))
                 return;
@@ -29,7 +29,7 @@ public sealed partial class ESChangeSecretIdentityOnTriggerSystem : XOnTriggerSy
             var secretIdentityPrototype = _prototype.Index(ent.Comp.SecretIdentity);
             var lastSecretIdentityPrototype = _prototype.Index(secretIdentity.LastSecretIdentity);
 
-            if (secretIdentityPrototype.Troupe == lastSecretIdentityPrototype.Troupe)
+            if (secretIdentityPrototype.Organization == lastSecretIdentityPrototype.Organization)
                 return;
         }
 

@@ -18,7 +18,7 @@
                     </VFillStack>
                     <VFillStack>
                         <RichTextLabel Name="SecretIdentityLabel" Access="Public" HorizontalAlignment="Right"/>
-                        <RichTextLabel Name="TroupeLabel" Access="Public" HorizontalAlignment="Right"/>
+                        <RichTextLabel Name="OrganizationLabel" Access="Public" HorizontalAlignment="Right"/>
                     </VFillStack>
                 </HFillStack>
                 <RichTextLabel Text="{Loc 'es-observe-menu-label-objectives'}" />

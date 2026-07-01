@@ -23,7 +23,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         SubscribeLocalEvent<ESSecretIdentityRoleComponent, AfterAutoHandleStateEvent>(OnRoleAfterHandleState);
 
         SubscribeLocalEvent<MindContainerComponent, GetStatusIconsEvent>(OnGetStagehandStatusIcons);
-        SubscribeLocalEvent<ESTroupeFactionIconComponent, GetStatusIconsEvent>(OnGetStatusIcons);
+        SubscribeLocalEvent<ESOrganizationFactionIconComponent, GetStatusIconsEvent>(OnGetStatusIcons);
     }
 
     private void OnRoleAfterHandleState(Entity<ESSecretIdentityRoleComponent> ent, ref AfterAutoHandleStateEvent args)
@@ -36,27 +36,27 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
     private void OnGetStagehandStatusIcons(Entity<MindContainerComponent> ent, ref GetStatusIconsEvent args)
     {
-        // Only stagehands should see the meta troupe icons.
+        // Only stagehands should see the meta organization icons.
         // Normal players will never receive the data anyways, but it prevents useless info
         // from bloating up the screen since they have no need for them.
         if (!HasComp<ESStagehandComponent>(_player.LocalEntity))
             return;
 
-        if (!TryGetTroupe(ent, out var troupe))
+        if (!TryGetOrganization(ent, out var organization))
             return;
 
-        args.StatusIcons.Add(PrototypeManager.Index(PrototypeManager.Index(troupe.Value).MetaIcon));
+        args.StatusIcons.Add(PrototypeManager.Index(PrototypeManager.Index(organization.Value).MetaIcon));
     }
 
-    private void OnGetStatusIcons(Entity<ESTroupeFactionIconComponent> ent, ref GetStatusIconsEvent args)
+    private void OnGetStatusIcons(Entity<ESOrganizationFactionIconComponent> ent, ref GetStatusIconsEvent args)
     {
         if (_player.LocalEntity is not { } local)
             return;
 
-        // The main filtering is done on the networking for ESTroupeFactionIconComponent,
+        // The main filtering is done on the networking for ESOrganizationFactionIconComponent,
         // but this exists largely to catch edge cases where we still have
         // the networked comp on the client even though we shouldn't have access to it.
-        if (GetTroupeOrNull(local) != ent.Comp.Troupe)
+        if (GetOrganizationOrNull(local) != ent.Comp.Organization)
             return;
         args.StatusIcons.Add(PrototypeManager.Index(ent.Comp.Icon));
     }

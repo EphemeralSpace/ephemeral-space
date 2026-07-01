@@ -1,6 +1,6 @@
 using Content.Server._ES.SecretIdentity;
 using Content.Server._ES.Objectives;
-using Content.Server._ES.Troupes.Parasite.Components;
+using Content.Server._ES.Organizations.Parasite.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Popups;
@@ -21,7 +21,7 @@ using Robust.Server.Audio;
 using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._ES.Troupes.Parasite;
+namespace Content.Server._ES.Organizations.Parasite;
 
 public sealed partial class ESParasiteRuleSystem : EntitySystem
 {
@@ -73,7 +73,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
     private void OnSwarmTimer(Entity<ESParasiteRuleComponent> ent, ref ESParasiteSwarmTimerEvent args)
     {
         ent.Comp.SwarmStarted = true;
-        TransformTroupeMembers(ent);
+        TransformOrganizationMembers(ent);
     }
 
     private void OnWinCheckTimer(Entity<ESParasiteRuleComponent> ent, ref ESParasiteWinCheckTimerEvent args)
@@ -91,7 +91,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
             if (_mind.IsCharacterDeadIc(mind))
                 continue;
 
-            if (_secretIdentity.GetTroupeOrNull(mind.Value.AsNullable()) == ent.Comp.IgnoreTroupe)
+            if (_secretIdentity.GetOrganizationOrNull(mind.Value.AsNullable()) == ent.Comp.IgnoreOrganization)
                 continue;
 
             if (_actionBlocker.CanMove(hit))
@@ -108,7 +108,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
 
         var msg = Loc.GetString("es-parasite-swarm-notif");
         var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
-        foreach (var mind in _secretIdentity.GetTroupeMembers(ent.Owner))
+        foreach (var mind in _secretIdentity.GetOrganizationMembers(ent.Owner))
         {
             if (!TryComp<MindComponent>(mind, out var mindComp) ||
                 !_playerManager.TryGetSessionById(mindComp.UserId, out var session))
@@ -121,9 +121,9 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
         _entityTimer.SpawnTimer(ent, ent.Comp.SwarmDelay + ent.Comp.WinDelay, new ESParasiteWinCheckTimerEvent());
     }
 
-    private void TransformTroupeMembers(Entity<ESParasiteRuleComponent> ent)
+    private void TransformOrganizationMembers(Entity<ESParasiteRuleComponent> ent)
     {
-        foreach (var mind in _secretIdentity.GetTroupeMembers(ent.Owner))
+        foreach (var mind in _secretIdentity.GetOrganizationMembers(ent.Owner))
         {
             if (!TryComp<MindComponent>(mind, out var mindComp ) ||
                 mindComp.OwnedEntity is not { } owned)
@@ -137,19 +137,19 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
         }
     }
 
-    private bool AllPlayersConverted(EntityUid troupe)
+    private bool AllPlayersConverted(EntityUid organization)
     {
-        var nonTroupeCount = 0;
-        foreach (var mind in _secretIdentity.GetNotTroupeMembers(troupe))
+        var nonOrganizationCount = 0;
+        foreach (var mind in _secretIdentity.GetNotOrganizationMembers(organization))
         {
             if (!TryComp<MindComponent>(mind, out var mindComp))
                 continue;
 
             if (!_mind.IsCharacterDeadIc(mindComp))
-                ++nonTroupeCount;
+                ++nonOrganizationCount;
         }
 
-        return nonTroupeCount == 0;
+        return nonOrganizationCount == 0;
     }
 
     public override void Update(float frameTime)

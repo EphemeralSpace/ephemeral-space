@@ -1,8 +1,8 @@
-es-troupe-dossier-name = {CAPITALIZE($name)}'s record
-es-troupe-dossier-header = [head=2]Info about "{CAPITALIZE($name)}"[/head]
-es-troupe-dossier-clue-fmt = - {CAPITALIZE($clue)}
-es-troupe-dossier-briefing-name = dossier briefing
-es-troupe-dossier-briefing-text = [head=2]NSPT Insider Report[/head]
+es-organization-dossier-name = {CAPITALIZE($name)}'s record
+es-organization-dossier-header = [head=2]Info about "{CAPITALIZE($name)}"[/head]
+es-organization-dossier-clue-fmt = - {CAPITALIZE($clue)}
+es-organization-dossier-briefing-name = dossier briefing
+es-organization-dossier-briefing-text = [head=2]NSPT Insider Report[/head]
 
     The following is known about the {$sum} targets enclosed:
     {""}- {$crew} of the targets {$crew ->

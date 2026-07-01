@@ -7,8 +7,8 @@ es-objective-summary-fmt = {$name}: {$success ->
     *[other] ([color=gray]{$percent}%[/color])
 }
 
-es-objective-text-troupe = Team
-es-objective-tooltip-troupe = This is a [bold]shared organization objective[/bold].
+es-objective-text-organization = Team
+es-objective-tooltip-organization = This is a [bold]shared organization objective[/bold].
 
     All members of your organization share this objective, and must work together. Objective completion is shared between everyone who has it assigned.
 

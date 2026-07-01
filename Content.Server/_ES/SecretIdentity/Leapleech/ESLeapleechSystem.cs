@@ -77,7 +77,7 @@ public sealed partial class ESLeapleechSystem : EntitySystem
     private void OnDamageTaken(Entity<ESLeapleechComponent> ent, ref ESDamageTakenEvent args)
     {
         if (args.Origin is not { } origin ||
-            _secretIdentity.GetTroupeOrNull(origin) == ent.Comp.IgnoreTroupe)
+            _secretIdentity.GetOrganizationOrNull(origin) == ent.Comp.IgnoreOrganization)
             return;
 
         if (!_mind.TryGetMind(origin, out _))

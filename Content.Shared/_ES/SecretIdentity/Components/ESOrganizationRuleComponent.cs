@@ -10,7 +10,7 @@ namespace Content.Shared._ES.SecretIdentity.Components;
 /// </remarks>
 [RegisterComponent]
 [Access(typeof(ESSharedSecretIdentitySystem))]
-public sealed partial class ESTroupeRuleComponent : Component
+public sealed partial class ESOrganizationRuleComponent : Component
 {
     /// <summary>
     /// Priority for the assignment of players.
@@ -20,14 +20,14 @@ public sealed partial class ESTroupeRuleComponent : Component
     public int Priority = 1;
 
     /// <summary>
-    /// Troupe that is associated with this rule
+    /// Organization that is associated with this rule
     /// </summary>
     [DataField(required: true)]
-    public ProtoId<ESTroupePrototype> Troupe;
+    public ProtoId<ESOrganizationPrototype> Organization;
 
     /// <summary>
-    /// Minds that are a part of this troupe.
+    /// Minds that are a part of this organization.
     /// </summary>
     [DataField]
-    public List<EntityUid> TroupeMemberMinds = new();
+    public List<EntityUid> OrganizationMemberMinds = new();
 }

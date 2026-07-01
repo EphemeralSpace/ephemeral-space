@@ -524,9 +524,9 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 break;
             }
             // ES Start
-            case ESNearbyHostileTroupeQuery:
+            case ESNearbyHostileOrganizationQuery:
             {
-                foreach (var ent in _secretIdentity.GetNearbyHostileTroupeMembers(owner, vision))
+                foreach (var ent in _secretIdentity.GetNearbyHostileOrganizationMembers(owner, vision))
                 {
                     entities.Add(ent);
                 }

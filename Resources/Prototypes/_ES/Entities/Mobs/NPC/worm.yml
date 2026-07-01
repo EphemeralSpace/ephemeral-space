@@ -4,8 +4,8 @@
   parent: [ SimpleMobBase, MobCombat ]
   description: This leapy leech will leap to leech you.
   components:
-  - type: ESHostileTowardsTroupe
-    nonHostileTroupes:
+  - type: ESHostileTowardsOrganization
+    nonHostileOrganizations:
     - Parasite
   - type: InputMover
   - type: MobMover

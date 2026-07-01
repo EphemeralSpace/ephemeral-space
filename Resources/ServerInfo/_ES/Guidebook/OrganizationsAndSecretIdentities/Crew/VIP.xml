@@ -7,7 +7,7 @@
         <GuideEntityEmbed Entity="ESItemCardVIP"/>
     </Box>
 
-    The VIP card confirms that whoever holds it is without question the VIP and not part of any other troupe.
+    The VIP card confirms that whoever holds it is without question the VIP and not part of any other organization.
     Keep in mind: the card itself doesn't specify the owner, so it can be stolen easily.
 
     <ESGuideTipsEmbed SecretIdentity="VIP"/>

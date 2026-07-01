@@ -6,10 +6,10 @@ using Content.Shared._ES.Objectives;
 namespace Content.Server._ES.SecretIdentity.Objectives;
 
 /// <summary>
-///     This handles the kill troupe objective.
+///     This handles the kill organization objective.
 /// </summary>
-/// <seealso cref="ESKillTroupeObjectiveComponent"/>
-public sealed class ESKillTroupeObjectiveSystem : ESBaseObjectiveSystem<ESKillTroupeObjectiveComponent>
+/// <seealso cref="ESKillOrganizationObjectiveComponent"/>
+public sealed class ESKillOrganizationObjectiveSystem : ESBaseObjectiveSystem<ESKillOrganizationObjectiveComponent>
 {
     public override Type[] RelayComponents => [typeof(ESKilledRelayComponent)];
 
@@ -18,18 +18,18 @@ public sealed class ESKillTroupeObjectiveSystem : ESBaseObjectiveSystem<ESKillTr
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ESKillTroupeObjectiveComponent, ESKilledPlayerEvent>(OnKill);
+        SubscribeLocalEvent<ESKillOrganizationObjectiveComponent, ESKilledPlayerEvent>(OnKill);
     }
 
-    private void OnKill(Entity<ESKillTroupeObjectiveComponent> ent, ref ESKilledPlayerEvent args)
+    private void OnKill(Entity<ESKillOrganizationObjectiveComponent> ent, ref ESKilledPlayerEvent args)
     {
         if (!args.ValidKill)
             return;
 
-        if (!SecretIdentitySys.TryGetTroupe(args.Killed, out var troupe))
+        if (!SecretIdentitySys.TryGetOrganization(args.Killed, out var organization))
             return;
 
-        if ((troupe == ent.Comp.Troupe) ^ ent.Comp.Invert)
+        if ((organization == ent.Comp.Organization) ^ ent.Comp.Invert)
             ObjectivesSys.AdjustObjectiveCounter(ent.Owner);
     }
 }

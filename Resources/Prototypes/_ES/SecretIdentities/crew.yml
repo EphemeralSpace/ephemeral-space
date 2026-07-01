@@ -1,7 +1,7 @@
 - type: esSecretIdentity
   id: ArmsDealer
   name: es-secret-identity-arms-dealer-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-arms-dealer-desc
   color: lime
   weight: 0.75
@@ -18,7 +18,7 @@
 - type: esSecretIdentity
   id: Arsonist
   name: es-secret-identity-arsonist-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-arsonist-desc
   color: red
   weight: 0.25
@@ -28,7 +28,7 @@
 - type: esSecretIdentity
   id: Avenger
   name: es-secret-identity-avenger-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-avenger-desc
   color: peachpuff
   objectives:
@@ -37,7 +37,7 @@
 - type: esSecretIdentity
   id: Crewmember
   name: es-secret-identity-crewmember-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-crewmember-desc
   weight: 5
   color: white
@@ -45,7 +45,7 @@
 - type: esSecretIdentity
   id: Guzzler
   name: es-secret-identity-guzzler-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-guzzler-desc
   color: cyan
   weight: 0.15
@@ -58,7 +58,7 @@
 - type: esSecretIdentity
   id: Hater
   name: es-secret-identity-hater-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-hater-desc
   color: peru
   assignmentOrder: 11 # Needs to be assigned after other masks
@@ -70,7 +70,7 @@
 - type: esSecretIdentity
   id: Mercenary
   name: es-secret-identity-mercenary-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-mercenary-desc
   color: ruber
   objectives:
@@ -83,7 +83,7 @@
 - type: esSecretIdentity
   id: Nobleman
   name: es-secret-identity-nobleman-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-nobleman-desc
   color: gold
   weight: 0.25
@@ -94,7 +94,7 @@
 - type: esSecretIdentity
   id: Phantom
   name: es-secret-identity-phantom-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-phantom-desc
   color: plum
   weight: 0.5
@@ -107,7 +107,7 @@
 - type: esSecretIdentity
   id: Pickpocket
   name: es-secret-identity-pickpocket-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-pickpocket-desc
   color: olivedrab
   weight: 0.75
@@ -122,7 +122,7 @@
   parent: ESBaseCommandRestricted
   id: Rebel
   name: es-secret-identity-rebel-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-rebel-desc
   color: tomato
   weight: 0.75
@@ -145,7 +145,7 @@
 - type: esSecretIdentity
   id: Secretary
   name: es-secret-identity-secretary-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-secretary-desc
   color: palegreen
   assignmentOrder: 11 # Needs to be assigned after other masks
@@ -156,7 +156,7 @@
 - type: esSecretIdentity
   id: Tragedian
   name: es-secret-identity-tragedian-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-tragedian-desc
   color: royalblue
   objectives:
@@ -172,7 +172,7 @@
 - type: esSecretIdentity
   id: Vigilante
   name: es-secret-identity-vigilante-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-vigilante-desc
   color: orchid
   objectives:
@@ -181,7 +181,7 @@
 - type: esSecretIdentity
   id: VIP
   name: es-secret-identity-vip-name
-  troupe: Crew
+  organization: Crew
   description: es-secret-identity-vip-desc
   color: gold
   tips:

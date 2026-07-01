@@ -105,13 +105,13 @@ public sealed partial class ESCharacterWindow : FancyWindow
             return;
 
         // if theres a guide entry with the same id as the secret identity then open that
-        // with the troupe guide as the root
+        // with the organization guide as the root
         if (_secretIdentity.TryGetSecretIdentity((mind, mindComp), out var secretIdentityId)
             && _prototype.Index(secretIdentityId.Value) is { } secretIdentity
             && _prototype.HasIndex<GuideEntryPrototype>(secretIdentity.ID)
-            && _prototype.HasIndex<GuideEntryPrototype>(secretIdentity.Troupe.Id))
+            && _prototype.HasIndex<GuideEntryPrototype>(secretIdentity.Organization.Id))
         {
-            var rootEntries = new List<ProtoId<GuideEntryPrototype>>() { secretIdentity.Troupe.Id };
+            var rootEntries = new List<ProtoId<GuideEntryPrototype>>() { secretIdentity.Organization.Id };
             _guidebook.OpenGuidebook(rootEntries: rootEntries, selected: secretIdentity.ID);
         }
     }
@@ -151,15 +151,15 @@ public sealed partial class ESCharacterWindow : FancyWindow
         if (_secretIdentity.TryGetSecretIdentity((mind, mindComp), out var secretIdentityId))
         {
             var secretIdentity = _prototype.Index(secretIdentityId);
-            var troupe = _prototype.Index(secretIdentity.Troupe);
+            var organization = _prototype.Index(secretIdentity.Organization);
 
             SecretIdentityLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-secret-identity-fmt",
                 ("name", Loc.GetString(secretIdentity.Name)),
                 ("color", secretIdentity.Color)));
 
-            TroupeLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-troupe-fmt",
-                ("name", Loc.GetString(troupe.Name)),
-                ("color", troupe.Color)));
+            OrganizationLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-organization-fmt",
+                ("name", Loc.GetString(organization.Name)),
+                ("color", organization.Color)));
 
             SecretIdentityHelpButton.Visible = true;
         }
@@ -169,7 +169,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
                 ("name", Loc.GetString("generic-unknown-title")),
                 ("color", Color.White)));
 
-            TroupeLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-troupe-fmt",
+            OrganizationLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-organization-fmt",
                 ("name", Loc.GetString("generic-unknown-title")),
                 ("color", Color.Gray)));
 

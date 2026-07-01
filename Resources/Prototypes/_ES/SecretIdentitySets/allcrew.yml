@@ -1,4 +1,4 @@
 - type: esSecretIdentitySet
   id: AllCrew # Just every crew member, with their mask's weight.
-  maskProvider: !type:ESTroupeMasksProvider
-    troupe: Crew
+  maskProvider: !type:ESOrganizationMasksProvider
+    organization: Crew
