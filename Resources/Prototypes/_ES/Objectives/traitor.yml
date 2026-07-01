@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESBaseTraitorObjective
   abstract: true
 
@@ -26,7 +26,7 @@
   - type: ESTargetTroupeObjective
     troupe: Traitor
     invert: true
-    overrideMasks: [Sympathizer]
+    overrideSecretIdentities: [Sympathizer]
   - type: ESTargetSecretIdentityBlacklist
     secretIdentityBlacklist:
     - SleeperAgent

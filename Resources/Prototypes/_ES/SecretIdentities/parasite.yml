@@ -1,8 +1,8 @@
 - type: esSecretIdentity
   parent: ESBaseParasite
   id: Burstworm
-  name: es-mask-burstworm-name
-  description: es-mask-burstworm-desc
+  name: es-secret-identity-burstworm-name
+  description: es-secret-identity-burstworm-desc
   color: yellowgreen
   tips:
   - BurstwormConversion
@@ -12,8 +12,8 @@
 - type: esSecretIdentity
   parent: ESBaseParasite
   id: Hemophage
-  name: es-mask-hemophage-name
-  description: es-mask-hemophage-desc
+  name: es-secret-identity-hemophage-name
+  description: es-secret-identity-hemophage-desc
   color: brown
   tips:
   - HemophageBloodSpreading
@@ -23,8 +23,8 @@
 - type: esSecretIdentity
   parent: ESBaseParasite
   id: Host
-  name: es-mask-host-name
-  description: es-mask-host-desc
+  name: es-secret-identity-host-name
+  description: es-secret-identity-host-desc
   color: palegoldenrod
   weight: 0 # do not assign in masquerades.
   gear: ESParasiteSwarmGear
@@ -34,8 +34,8 @@
 - type: esSecretIdentity
   parent: ESBaseParasite
   id: Leapleech
-  name: es-mask-leapleech-name
-  description: es-mask-leapleech-desc
+  name: es-secret-identity-leapleech-name
+  description: es-secret-identity-leapleech-desc
   color: darkgoldenrod
   mindComponents:
   - type: ESLeapleech

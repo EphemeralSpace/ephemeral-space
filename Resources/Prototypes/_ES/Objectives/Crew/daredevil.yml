@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectiveTakeDamage
   name: Take damage
   description: Take as much of a certain damage type as you can.
@@ -25,7 +25,7 @@
     targetIncrement: 25
 
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectiveTakeDamageFromSource
   name: Take damage from source
   description: Take as much damage from a certain source as you can.
@@ -47,7 +47,7 @@
     targetIncrement: 25
 
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectiveTakeTotalDamage
   name: Take total damage
   description: Take a total amount of damage.

@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectiveGuzzle
   name: Guzzle a certain amount of fluids
   description: Consume as much liquid as you can, from anywhere you can get it!

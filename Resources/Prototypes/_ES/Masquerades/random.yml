@@ -6,7 +6,7 @@
   minPlayers: 1
   gameRules: []
   masquerade:
-    defaultMask: "#AllCrew" # Everyone besides the traitors gets random crew masks.
+    defaultSecretIdentity: "#AllCrew" # Everyone besides the traitors gets random crew masks.
     superfanTarget: "#AllTraitors"
     roles:
       1: [] # Greenshift.

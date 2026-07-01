@@ -25,7 +25,7 @@
   - type: ESTroupeFactionIcon
     icon: ESParasite
     troupe: Parasite
-    examineString: es-mask-troupe-parasite-examine
+    examineString: es-secret-identity-troupe-parasite-examine
   objectives:
     all:
     - id: ESObjectiveParasiteDie
@@ -43,7 +43,7 @@
   - type: ESTroupeFactionIcon
     icon: ESTraitor
     troupe: Traitor
-    examineString: es-mask-troupe-traitor-examine
+    examineString: es-secret-identity-troupe-traitor-examine
   # TODO chat refactor this is obviously malicious client-abusable
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio

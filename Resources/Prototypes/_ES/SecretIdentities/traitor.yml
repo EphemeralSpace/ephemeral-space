@@ -1,8 +1,8 @@
 - type: esSecretIdentity
   parent: ESBaseTraitor
   id: Assassin
-  name: es-mask-assassin-name
-  description: es-mask-assassin-desc
+  name: es-secret-identity-assassin-name
+  description: es-secret-identity-assassin-desc
   color: hotpink
   mindComponents:
   - type: ESSecretIdentityCacheSpawner
@@ -12,8 +12,8 @@
 - type: esSecretIdentity
   parent: ESBaseTraitor
   id: Infiltrator
-  name: es-mask-infiltrator-name
-  description: es-mask-infiltrator-desc
+  name: es-secret-identity-infiltrator-name
+  description: es-secret-identity-infiltrator-desc
   color: yellow
   tips:
   - InfiltratorC4Deniability
@@ -26,8 +26,8 @@
 - type: esSecretIdentity
   parent: ESBaseTraitor
   id: Marauder
-  name: es-mask-marauder-name
-  description: es-mask-marauder-desc
+  name: es-secret-identity-marauder-name
+  description: es-secret-identity-marauder-desc
   color: coral
   mindComponents:
   - type: ESSecretIdentityCacheSpawner
@@ -37,8 +37,8 @@
 - type: esSecretIdentity
   parent: ESBaseTraitor
   id: Subverter
-  name: es-mask-subverter-name
-  description: es-mask-subverter-desc
+  name: es-secret-identity-subverter-name
+  description: es-secret-identity-subverter-desc
   color: gray
   weight: 0.75
   mindComponents:
@@ -49,16 +49,16 @@
 - type: esSecretIdentity
   parent: ESBaseTraitor
   id: Recruit
-  name: es-mask-recruit-name
-  description: es-mask-recruit-desc
+  name: es-secret-identity-recruit-name
+  description: es-secret-identity-recruit-desc
   color: pink
   weight: 0
 
 - type: esSecretIdentity
   parent: ESBaseTraitor
   id: Demolitionist
-  name: es-mask-demolitionist-name
-  description: es-mask-demolitionist-desc
+  name: es-secret-identity-demolitionist-name
+  description: es-secret-identity-demolitionist-desc
   color: orangered
   weight: 0.3
   mindComponents:
@@ -70,9 +70,9 @@
   # doesnt parent from basetraitor because we dont want the icon
   # and doesnt parent from commandrestricted because this is a command-available traitor role!
   id: Sympathizer
-  name: es-mask-sympathizer-name
+  name: es-secret-identity-sympathizer-name
   troupe: Traitor
-  description: es-mask-sympathizer-desc
+  description: es-secret-identity-sympathizer-desc
   color: darkmagenta
   tips:
   - SympathizerCovertOperations
@@ -93,9 +93,9 @@
 - type: esSecretIdentity
   parent: ESBaseCommandRestricted # same restriction as traitors
   id: SleeperAgent
-  name: es-mask-sleeper-agent-name
+  name: es-secret-identity-sleeper-agent-name
   troupe: Crew
-  description: es-mask-sleeper-agent-desc
+  description: es-secret-identity-sleeper-agent-desc
   color: darkturquoise
   weight: 0 # otherwise it can roll in randomasquerades with no traitors. temp fix
   mindComponents:
