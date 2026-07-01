@@ -32,7 +32,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
     [Dependency] private ESStagehandNotificationsSystem _stagehandNotifications = default!;
     [Dependency] private StationSpawningSystem _stationSpawning = default!;
 
-    private static readonly EntProtoId<ESSecretIdentityRoleComponent> MindRole = "ESMindRoleMask";
+    private static readonly EntProtoId<ESSecretIdentityRoleComponent> MindRole = "ESMindRoleSecretIdentity";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -51,27 +51,27 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
     {
         var troupes = GetOrderedTroupes();
 
-        ev.AddLine(Loc.GetString("es-roundend-mask-count-troupe"));
+        ev.AddLine(Loc.GetString("es-roundend-secret-identity-count-troupe"));
         foreach (var troupe in troupes)
         {
             var troupeProto = PrototypeManager.Index(troupe.Comp.Troupe);
-            ev.AddLine(Loc.GetString("es-roundend-mask-troupe-list",
+            ev.AddLine(Loc.GetString("es-roundend-secret-identity-troupe-list",
                 ("name", Loc.GetString(troupeProto.Name)),
                 ("color", troupeProto.Color)));
             foreach (var objective in Objective.GetObjectives(troupe.Owner))
             {
-                ev.AddLine(Loc.GetString("es-roundend-mask-objective-fmt",
+                ev.AddLine(Loc.GetString("es-roundend-secret-identity-objective-fmt",
                     ("text", Objective.GetObjectiveString(objective.AsNullable()))));
             }
         }
 
         ev.AddLine(string.Empty);
-        ev.AddLine(Loc.GetString("es-roundend-mask-player-summary-header"));
+        ev.AddLine(Loc.GetString("es-roundend-secret-identity-player-summary-header"));
         foreach (var troupe in troupes)
         {
             var troupeProto = PrototypeManager.Index(troupe.Comp.Troupe);
 
-            ev.AddLine(Loc.GetString("es-roundend-mask-player-group",
+            ev.AddLine(Loc.GetString("es-roundend-secret-identity-player-group",
                 ("name", Loc.GetString(troupeProto.Name)),
                 ("color", troupeProto.Color)));
             foreach (var mind in troupe.Comp.TroupeMemberMinds)
@@ -84,22 +84,22 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
                     ? _player.GetPlayerData(mindComp.OriginalOwnerUserId.Value).UserName
                     : Loc.GetString("generic-unknown-title");
 
-                var maskName = GetMaskMemoryString(mind);
+                var secretIdentityName = GetSecretIdentityMemoryString(mind);
 
-                // get mask-specific objectives
+                // get secret-identity-specific objectives
                 var objectives = Objective.GetObjectives(mind)
                     .Except(Objective.GetObjectives(troupe.Owner))
                     .ToList();
 
-                ev.AddLine(Loc.GetString("es-roundend-mask-player-summary",
+                ev.AddLine(Loc.GetString("es-roundend-secret-identity-player-summary",
                     ("name", character.Name),
                     ("username", username),
-                    ("maskName", maskName),
+                    ("secretIdentityName", secretIdentityName),
                     ("objCount", objectives.Count)));
 
                 foreach (var objective in objectives)
                 {
-                    ev.AddLine(Loc.GetString("es-roundend-mask-objective-fmt",
+                    ev.AddLine(Loc.GetString("es-roundend-secret-identity-objective-fmt",
                         ("text", Objective.GetObjectiveString(objective.AsNullable()))));
                 }
             }
@@ -108,33 +108,33 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
     }
 
     /// <summary>
-    /// Formats all masks a mind has owned in the form {mask1}-turned-{mask2}-turned-{mask3} and so on.
+    /// Formats all secret identities a mind has owned in the form {identity1}-turned-{identity2}-turned-{identity3} and so on.
     /// </summary>
-    public string GetMaskMemoryString(Entity<ESSecretIdentityMemoryComponent?> mind)
+    public string GetSecretIdentityMemoryString(Entity<ESSecretIdentityMemoryComponent?> mind)
     {
         if (!Resolve(mind, ref mind.Comp, false))
             return Loc.GetString("generic-unknown-title");
 
-        // You should always have SOME mask
-        DebugTools.Assert(mind.Comp.Masks.Count != 0);
+        // You should always have SOME identity
+        DebugTools.Assert(mind.Comp.SecretIdentities.Count != 0);
 
-        var firstMask = PrototypeManager.Index(mind.Comp.Masks.First());
+        var firstSecretIdentity = PrototypeManager.Index(mind.Comp.SecretIdentities.First());
 
-        var outString = Loc.GetString("es-roundend-mask-fmt",
-            ("name", Loc.GetString(firstMask.Name)),
-            ("color", firstMask.Color));
+        var outString = Loc.GetString("es-roundend-secret-identity-fmt",
+            ("name", Loc.GetString(firstSecretIdentity.Name)),
+            ("color", firstSecretIdentity.Color));
 
-        for (var i = 1; i < mind.Comp.Masks.Count; ++i)
+        for (var i = 1; i < mind.Comp.SecretIdentities.Count; ++i)
         {
-            var mask = PrototypeManager.Index(mind.Comp.Masks[i]);
-            var maskString = Loc.GetString("es-roundend-mask-fmt",
-                ("name", Loc.GetString(mask.Name)),
-                ("color", mask.Color));
+            var secretIdentity = PrototypeManager.Index(mind.Comp.SecretIdentities[i]);
+            var secretIdentityString = Loc.GetString("es-roundend-secret-identity-fmt",
+                ("name", Loc.GetString(secretIdentity.Name)),
+                ("color", secretIdentity.Color));
 
-            // Chain all the masks together.
-            outString = Loc.GetString("es-roundend-mask-link-fmt",
-                ("mask1", outString),
-                ("mask2", maskString));
+            // Chain all the identities together.
+            outString = Loc.GetString("es-roundend-secret-identity-link-fmt",
+                ("secretIdentity1", outString),
+                ("secretIdentity2", secretIdentityString));
         }
 
         return outString;
@@ -192,12 +192,12 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         }
     }
 
-    public bool IsPlayerValid(ESSecretIdentityPrototype mask, ICommonSession player)
+    public bool IsPlayerValid(ESSecretIdentityPrototype secretIdentity, ICommonSession player)
     {
         if (!Mind.TryGetMind(player, out var mind, out _))
             return false;
 
-        if (_job.MindTryGetJobId(mind, out var job) && mask.ProhibitedJobs.Contains(job.Value))
+        if (_job.MindTryGetJobId(mind, out var job) && secretIdentity.ProhibitedJobs.Contains(job.Value))
             return false;
 
         if (player.AttachedEntity is null)
@@ -206,42 +206,42 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         return true;
     }
 
-    public override void ApplyMask(Entity<MindComponent> mind, ProtoId<ESSecretIdentityPrototype> maskId, Entity<ESTroupeRuleComponent>? troupe = null)
+    public override void ApplySecretIdentity(Entity<MindComponent> mind, ProtoId<ESSecretIdentityPrototype> secretIdentityId, Entity<ESTroupeRuleComponent>? troupe = null)
     {
-        var mask = PrototypeManager.Index(maskId);
+        var secretIdentity = PrototypeManager.Index(secretIdentityId);
 
         // If we are spawning a new rule, we should initialize the objectives *after*
         // the first player is added to ensure targeting shenanigans don't happen.
         var ruleExists = troupe.HasValue;
-        if (troupe is null && !TryGetTroupeEntityForMask(mask, out troupe))
+        if (troupe is null && !TryGetTroupeEntityForSecretIdentity(secretIdentity, out troupe))
         {
-            var troupeEnt = _gameTicker.AddGameRule(PrototypeManager.Index(mask.Troupe).GameRule);
+            var troupeEnt = _gameTicker.AddGameRule(PrototypeManager.Index(secretIdentity.Troupe).GameRule);
             troupe = (troupeEnt, Comp<ESTroupeRuleComponent>(troupeEnt));
         }
 
         // Only exists because the AddRole API does not return the newly added role (why???)
         Role.MindAddRole(mind, MindRole, mind, true);
         if (!Role.MindHasRole<ESSecretIdentityRoleComponent>(mind.AsNullable(), out var role))
-            throw new Exception($"Failed to add mind role to {Mind.MindOwnerLoggingString(mind)} for mask {maskId}");
+            throw new Exception($"Failed to add mind role to {Mind.MindOwnerLoggingString(mind)} for secret identity {secretIdentityId}");
         var roleComp = role.Value.Comp2;
-        roleComp.Mask = maskId;
+        roleComp.SecretIdentity = secretIdentityId;
         Dirty(role.Value, roleComp);
 
-        foreach (var objective in _entityTable.GetSpawns(mask.Objectives))
+        foreach (var objective in _entityTable.GetSpawns(secretIdentity.Objectives))
         {
             if (!Objective.TryAddObjective(mind.Owner, objective, out var objectiveUid))
                 continue;
 
             Objective.SetDescriptor(
                 objectiveUid.Value,
-                Loc.GetString("es-objective-text-mask"),
-                mask.Color,
-                Loc.GetString("es-objective-tooltip-mask"));
+                Loc.GetString("es-objective-text-secret-identity"),
+                secretIdentity.Color,
+                Loc.GetString("es-objective-tooltip-secret-identity"));
         }
 
-        var msg = Loc.GetString("es-mask-selected-chat-message",
-            ("role", Loc.GetString(mask.Name)),
-            ("description", Loc.GetString(mask.Description)));
+        var msg = Loc.GetString("es-secret-identity-selected-chat-message",
+            ("role", Loc.GetString(secretIdentity.Name)),
+            ("description", Loc.GetString(secretIdentity.Description)));
 
         if (_player.TryGetSessionById(mind.Comp.UserId, out var session))
         {
@@ -250,22 +250,22 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         if (mind.Comp.OwnedEntity is { } ownedEntity)
         {
-            _stationSpawning.EquipStartingGear(ownedEntity, mask.Gear);
-            EntityManager.AddComponents(ownedEntity, mask.Components);
-            EnsureComp<ESBodyLastMaskComponent>(ownedEntity).LastMask = mask;
+            _stationSpawning.EquipStartingGear(ownedEntity, secretIdentity.Gear);
+            EntityManager.AddComponents(ownedEntity, secretIdentity.Components);
+            EnsureComp<ESBodyLastSecretIdentityComponent>(ownedEntity).LastSecretIdentity = secretIdentity;
 
             // TODO: these should be tied to the mind, but OH MY GOD that code is ass.
             // Save that shit for another day.
-            foreach (var action in _entityTable.GetSpawns(mask.Actions))
+            foreach (var action in _entityTable.GetSpawns(secretIdentity.Actions))
             {
                 if (_actions.AddAction(ownedEntity, action) is { } actionEntity)
                     role.Value.Comp2.Actions.Add(actionEntity);
             }
         }
-        EntityManager.AddComponents(mind, mask.MindComponents);
+        EntityManager.AddComponents(mind, secretIdentity.MindComponents);
 
         var memoryComponent = EnsureComp<ESSecretIdentityMemoryComponent>(mind);
-        memoryComponent.Masks.Add(mask);
+        memoryComponent.SecretIdentities.Add(secretIdentity);
 
         troupe.Value.Comp.TroupeMemberMinds.Add(mind);
         Objective.RegenerateObjectiveList(mind.Owner);
@@ -276,23 +276,23 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         RefreshCharacterInfoBlurb(mind.AsNullable());
 
-        var ev = new ESSecretIdentityChangedEvent(mind, mask);
+        var ev = new ESSecretIdentityChangedEvent(mind, secretIdentity);
         RaiseLocalEvent(troupe.Value, ref ev, true);
     }
 
-    public override void RemoveMask(Entity<MindComponent> mind)
+    public override void RemoveSecretIdentity(Entity<MindComponent> mind)
     {
-        if (!TryGetMask(mind.AsNullable(), out var maskId) ||
+        if (!TryGetSecretIdentity(mind.AsNullable(), out var secretIdentityId) ||
             !Role.MindHasRole<ESSecretIdentityRoleComponent>(mind.Owner, out var role))
             return;
 
-        var mask = PrototypeManager.Index(maskId);
+        var secretIdentity = PrototypeManager.Index(secretIdentityId);
 
         if (mind.Comp.OwnedEntity is { } ownedEntity)
         {
-            EntityManager.RemoveComponents(ownedEntity, mask.Components);
+            EntityManager.RemoveComponents(ownedEntity, secretIdentity.Components);
         }
-        EntityManager.RemoveComponents(mind, mask.MindComponents);
+        EntityManager.RemoveComponents(mind, secretIdentity.MindComponents);
 
         foreach (var action in role.Value.Comp2.Actions)
         {
@@ -304,7 +304,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
             Objective.TryRemoveObjective(mind.Owner, objective.Owner);
         }
 
-        if (TryGetTroupeEntity(mask.Troupe, out var troupeEntity))
+        if (TryGetTroupeEntity(secretIdentity.Troupe, out var troupeEntity))
         {
             troupeEntity.Value.Comp.TroupeMemberMinds.Remove(mind);
         }
@@ -316,40 +316,40 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         if (troupeEntity.HasValue)
         {
-            var ev = new ESSecretIdentityChangedEvent(mind, mask);
+            var ev = new ESSecretIdentityChangedEvent(mind, secretIdentity);
             RaiseLocalEvent(troupeEntity.Value, ref ev, true);
         }
     }
 
     public override void ChangeSecretIdentity(Entity<MindComponent> mind,
-        ProtoId<ESSecretIdentityPrototype> maskId,
+        ProtoId<ESSecretIdentityPrototype> secretIdentityId,
         Entity<ESTroupeRuleComponent>? troupe = null,
         bool eraseHistory = false)
     {
-        RemoveMask(mind);
+        RemoveSecretIdentity(mind);
         if (eraseHistory)
         {
             var comp = EnsureComp<ESSecretIdentityMemoryComponent>(mind);
-            if (comp.Masks.Count != 0)
-                comp.Masks.RemoveAt(comp.Masks.Count - 1);
+            if (comp.SecretIdentities.Count != 0)
+                comp.SecretIdentities.RemoveAt(comp.SecretIdentities.Count - 1);
         }
-        ApplyMask(mind, maskId, troupe);
+        ApplySecretIdentity(mind, secretIdentityId, troupe);
 
         if (mind.Comp.OwnedEntity is { } owned)
         {
-            var msg = Loc.GetString("es-stagehand-notification-mask-change",
+            var msg = Loc.GetString("es-stagehand-notification-secret-identity-change",
                 ("player", _stagehandNotifications.WrapEntityName(owned)),
-                ("mask", Loc.GetString(PrototypeManager.Index(maskId).Name)));
+                ("secretIdentity", Loc.GetString(PrototypeManager.Index(secretIdentityId).Name)));
             _stagehandNotifications.SendStagehandNotification(msg, ESStagehandNotificationSeverity.High);
         }
     }
 }
 
 /// <summary>
-/// Raised on a troupe entity and broadcast when an entity's mask changes.
+/// Raised on a troupe entity and broadcast when an entity's secret identity changes.
 /// </summary>
 [ByRefEvent]
-public record struct ESSecretIdentityChangedEvent(Entity<MindComponent> Mind, ESSecretIdentityPrototype? Mask);
+public record struct ESSecretIdentityChangedEvent(Entity<MindComponent> Mind, ESSecretIdentityPrototype? SecretIdentity);
 
 /// <summary>
 ///     Fired when players are being assigned to a troupe. Old random assignment algorithm kicks in

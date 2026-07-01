@@ -26,7 +26,7 @@ public sealed class ESKillTroupeObjectiveSystem : ESBaseObjectiveSystem<ESKillTr
         if (!args.ValidKill)
             return;
 
-        if (!MaskSys.TryGetTroupe(args.Killed, out var troupe))
+        if (!SecretIdentitySys.TryGetTroupe(args.Killed, out var troupe))
             return;
 
         if ((troupe == ent.Comp.Troupe) ^ ent.Comp.Invert)

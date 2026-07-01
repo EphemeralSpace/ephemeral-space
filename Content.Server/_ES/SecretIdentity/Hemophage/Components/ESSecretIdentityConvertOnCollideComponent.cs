@@ -11,5 +11,5 @@ public sealed partial class ESSecretIdentityConvertOnCollideComponent : Componen
     public ProtoId<ESTroupePrototype> IgnoreTroupe = "Parasite";
 
     [DataField]
-    public ProtoId<ESSecretIdentityPrototype> Mask = "Hemophage";
+    public ProtoId<ESSecretIdentityPrototype> SecretIdentity = "Hemophage";
 }

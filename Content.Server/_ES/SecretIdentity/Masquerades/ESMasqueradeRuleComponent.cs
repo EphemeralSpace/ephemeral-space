@@ -26,8 +26,8 @@ public sealed partial class ESMasqueradeRuleComponent : Component
     public SmallRandom Rng = default!;
 
     /// <summary>
-    ///     The masks assigned in this masquerade, if any.
-    ///     This may also be influenced by the impersonated masquerade, for the masks actually in-game, query it.
+    ///     The secret identities assigned in this masquerade, if any.
+    ///     This may also be influenced by the impersonated masquerade, for the identities actually in-game, query it.
     /// </summary>
-    public List<ProtoId<ESSecretIdentityPrototype>>? AssignedMasks = null;
+    public List<ProtoId<ESSecretIdentityPrototype>>? AssignedSecretIdentities = null;
 }

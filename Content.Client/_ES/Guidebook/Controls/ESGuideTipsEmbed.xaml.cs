@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Text;
 using Content.Client._ES.UI.Controls.Layout;
 using Content.Client.Guidebook.Richtext;

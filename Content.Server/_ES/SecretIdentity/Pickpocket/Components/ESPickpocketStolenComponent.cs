@@ -1,7 +1,7 @@
 namespace Content.Server._ES.SecretIdentity.Pickpocket.Components;
 
 [RegisterComponent]
-[Access(typeof(ESPickpocketMaskSystem), typeof(ESHoldPickpocketedObjectiveSystem))]
+[Access(typeof(ESPickpocketSecretIdentitySystem), typeof(ESHoldPickpocketedObjectiveSystem))]
 public sealed partial class ESPickpocketStolenComponent : Component
 {
     [DataField]

@@ -4,11 +4,11 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._ES.SecretIdentity.Traitor.Components;
 
 /// <summary>
-/// Adds a mask upon use of an entity
+/// Adds a secret identity upon use of an entity
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(ESAddMaskOnUseSystem))]
-public sealed partial class ESAddMaskOnUseComponent : Component
+[Access(typeof(ESAddSecretIdentityOnUseSystem))]
+public sealed partial class ESAddSecretIdentityOnUseComponent : Component
 {
     /// <summary>
     /// Whether the target must be in crit to be converted
@@ -35,10 +35,10 @@ public sealed partial class ESAddMaskOnUseComponent : Component
     public float Delay = 5f;
 
     /// <summary>
-    /// The mask the target will be given
+    /// The secret identity the target will be given
     /// </summary>
     [DataField]
-    public ProtoId<ESSecretIdentityPrototype> MaskToAdd;
+    public ProtoId<ESSecretIdentityPrototype> SecretIdentityToAdd;
 
     [DataField]
     public LocId UsedMessage = "es-subverter-chip-used";

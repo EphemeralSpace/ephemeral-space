@@ -15,7 +15,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.SecretIdentity.Pickpocket;
 
-public sealed partial class ESPickpocketMaskSystem : EntitySystem
+public sealed partial class ESPickpocketSecretIdentitySystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;

@@ -39,7 +39,7 @@ public sealed partial class ESSecretIdentityConversionProjectileSystem : EntityS
             _secretIdentity.GetTroupeOrNull(mind.Value.AsNullable()) != ent.Comp.IgnoreTroupe)
         {
             _popup.PopupEntity(Loc.GetString(ent.Comp.Popup, ("ent", Identity.Entity(embedded, EntityManager))), embedded, PopupType.MediumCaution);
-            _secretIdentity.ChangeSecretIdentity(mind.Value, ent.Comp.Mask);
+            _secretIdentity.ChangeSecretIdentity(mind.Value, ent.Comp.SecretIdentity);
         }
         else
         {

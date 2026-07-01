@@ -25,7 +25,7 @@ public sealed partial class ESSecretIdentityPrototype : IPrototype, IInheritingP
     public bool Abstract { get; private set; }
 
     /// <summary>
-    /// Arbitray number used to order which masks are assigned before other ones
+    /// Arbitray number used to order which secret identities are assigned before other ones
     /// </summary>
     [DataField]
     public int AssignmentOrder = 1;
@@ -58,7 +58,7 @@ public sealed partial class ESSecretIdentityPrototype : IPrototype, IInheritingP
     public LocId Description;
 
     /// <summary>
-    /// Set of tips that apply to this mask specifically.
+    /// Set of tips that apply to this secret identity specifically.
     /// </summary>
     [DataField]
     public HashSet<ProtoId<ESTipPrototype>> Tips = new();
@@ -70,14 +70,14 @@ public sealed partial class ESSecretIdentityPrototype : IPrototype, IInheritingP
     public ComponentRegistry MindComponents = new();
 
     /// <summary>
-    /// Gear applied to player when they receive this mask.
+    /// Gear applied to player when they receive this secret identity.
     /// </summary>
     [DataField]
     public ProtoId<StartingGearPrototype>? Gear;
 
     /// <summary>
-    /// Actions provided to the player when they receive this mask.
-    /// Removed when the mask is removed.
+    /// Actions provided to the player when they receive this secret identity.
+    /// Removed when the secret identity is removed.
     /// </summary>
     [DataField]
     public EntityTableSelector Actions = new NoneSelector();
@@ -89,7 +89,7 @@ public sealed partial class ESSecretIdentityPrototype : IPrototype, IInheritingP
     public EntityTableSelector Objectives = new NoneSelector();
 
     /// <summary>
-    /// Players with any of these jobs will be ineligible for receiving this mask
+    /// Players with any of these jobs will be ineligible for receiving this secret identity
     /// </summary>
     [DataField]
     public HashSet<ProtoId<JobPrototype>> ProhibitedJobs = new();

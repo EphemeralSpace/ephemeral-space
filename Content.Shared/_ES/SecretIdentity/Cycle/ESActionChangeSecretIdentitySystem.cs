@@ -3,7 +3,7 @@ using Content.Shared.Mind;
 namespace Content.Shared._ES.SecretIdentity.Cycle;
 
 /// <summary>
-/// This handles the mask change action.
+/// This handles the secret identity change action.
 /// </summary>
 public sealed partial class ESActionChangeSecretIdentitySystem : EntitySystem
 {
@@ -24,8 +24,8 @@ public sealed partial class ESActionChangeSecretIdentitySystem : EntitySystem
         if (!_mind.TryGetMind(args.Performer, out var mind, out var mindComp))
             return;
 
-        _secretIdentity.RemoveMask((mind, mindComp));
-        _secretIdentity.ApplyMask((mind, mindComp), args.Mask);
+        _secretIdentity.RemoveSecretIdentity((mind, mindComp));
+        _secretIdentity.ApplySecretIdentity((mind, mindComp), args.SecretIdentity);
 
         args.Handled = true;
     }

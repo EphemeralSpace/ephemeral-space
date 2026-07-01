@@ -16,12 +16,12 @@ using Robust.Shared.Utility;
 namespace Content.Shared._ES.SecretIdentity.Masquerades;
 
 /// <summary>
-///     An entry in a <see cref="MasqueradeRoleSet"/>, describing a set of masks, how many times to repeat them,
+///     An entry in a <see cref="MasqueradeRoleSet"/>, describing a set of secret identities, how many times to repeat them,
 ///     and whether this entry should cancel out some earlier entry.
 /// </summary>
 /// <remarks>
 ///     Subtract looks at the value of the entry itself and removes entries that way, it does not attempt to
-///     randomly pick masks, it's for removing entries entirely.
+///     randomly pick secret identities, it's for removing entries entirely.
 ///     Subtract is not factored in when comparing entries for equality.
 /// </remarks>
 public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<MasqueradeEntry>
@@ -53,12 +53,12 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
     }
 
     /// <summary>
-    ///     An entry containing a set of unweighted masks and how many times to repeat them.
+    ///     An entry containing a set of unweighted secret identities and how many times to repeat them.
     /// </summary>
-    public sealed record DirectEntry(IReadOnlySet<ProtoId<ESSecretIdentityPrototype>> Masks, int Count, bool Subtract)
+    public sealed record DirectEntry(IReadOnlySet<ProtoId<ESSecretIdentityPrototype>> SecretIdentities, int Count, bool Subtract)
         : MasqueradeEntry(Count, Subtract)
     {
-        public override List<ProtoId<ESSecretIdentityPrototype>> PickMasks(IRobustRandom random, IPrototypeManager proto)
+        public override List<ProtoId<ESSecretIdentityPrototype>> PickSecretIdentities(IRobustRandom random, IPrototypeManager proto)
         {
             DebugTools.Assert(!Subtract, "Subtractive entries shouldn't ever be picked from.");
 
@@ -66,7 +66,7 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
 
             for (var i = 0; i < Count; i++)
             {
-                list.Add(random.Pick(Masks));
+                list.Add(random.Pick(SecretIdentities));
             }
 
             return list;
@@ -78,14 +78,14 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
     }
 
     /// <summary>
-    ///     An entry pointing to a mask set prototype, and how many times to repeat it.
+    ///     An entry pointing to a secret identity set prototype, and how many times to repeat it.
     /// </summary>
-    public sealed record SetEntry(ProtoId<ESSecretIdentitySetPrototype> MaskSet, int Count, bool Subtract)
+    public sealed record SetEntry(ProtoId<ESSecretIdentitySetPrototype> SecretIdentitySet, int Count, bool Subtract)
         : MasqueradeEntry(Count, Subtract)
     {
-        public override List<ProtoId<ESSecretIdentityPrototype>> PickMasks(IRobustRandom random, IPrototypeManager proto)
+        public override List<ProtoId<ESSecretIdentityPrototype>> PickSecretIdentities(IRobustRandom random, IPrototypeManager proto)
         {
-            var set = proto.Index(MaskSet);
+            var set = proto.Index(SecretIdentitySet);
 
             return set.Pick(random, Count);
         }
@@ -100,7 +100,7 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
     // Not GeneratedRegex because I don't think that works on client.
     private static Regex _entryRegex =
             new(
-            @"^(?'subtractive'-)?(\#(?'maskset'[a-zA-Z0-9]+)|(?'maskn'[a-zA-Z0-9]+)(/(?'maskn'[a-zA-Z0-9]+))*)(\((?'count'[0-9]*)\))?$",
+            @"^(?'subtractive'-)?(\#(?'secretidentityset'[a-zA-Z0-9]+)|(?'secretidentityn'[a-zA-Z0-9]+)(/(?'secretidentityn'[a-zA-Z0-9]+))*)(\((?'count'[0-9]*)\))?$",
             RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture
             );
 
@@ -125,7 +125,7 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
             if (count == 0)
             {
                 action = null;
-                error = "Mask entry count cannot be 0.";
+                error = "Secret identity entry count cannot be 0.";
                 return false;
             }
         }
@@ -135,39 +135,39 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
             subtractive = true;
         }
 
-        if (match.Groups["maskn"].Length > 0)
+        if (match.Groups["secretidentityn"].Length > 0)
         {
-            var masks = new HashSet<ProtoId<ESSecretIdentityPrototype>>();
+            var secretIdentities = new HashSet<ProtoId<ESSecretIdentityPrototype>>();
 
-            foreach (Capture entry in match.Groups["maskn"].Captures)
+            foreach (Capture entry in match.Groups["secretidentityn"].Captures)
             {
                 var value = entry.Value; // This, despite being a property, allocates a new string every time.
 
                 if ((!proto?.TryIndex<ESSecretIdentityPrototype>(value, out _)) ?? false)
                 {
                     action = null;
-                    error = $"Mask {value} isn't a valid mask.";
+                    error = $"{value} isn't a valid secret identity.";
                     return false;
                 }
 
-                masks.Add(new(value));
+                secretIdentities.Add(new(value));
             }
 
             error = null;
-            action = new DirectEntry(masks, count, subtractive);
+            action = new DirectEntry(secretIdentities, count, subtractive);
             return true;
         }
-        else if (match.Groups["maskset"].Captures is [{Value: var maskSetCapture}])
+        else if (match.Groups["secretidentityset"].Captures is [{Value: var secretIdentitySetCapture}])
         {
-            if ((!proto?.TryIndex<ESSecretIdentitySetPrototype>(maskSetCapture, out _)) ?? false)
+            if ((!proto?.TryIndex<ESSecretIdentitySetPrototype>(secretIdentitySetCapture, out _)) ?? false)
             {
                 action = null;
-                error = $"Maskset {maskSetCapture} isn't a valid maskset.";
+                error = $"{secretIdentitySetCapture} isn't a valid secret identity set.";
                 return false;
             }
 
             error = null;
-            action = new SetEntry(maskSetCapture, count, subtractive);
+            action = new SetEntry(secretIdentitySetCapture, count, subtractive);
             return true;
         }
         else
@@ -176,15 +176,15 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
         }
     }
 
-    public abstract List<ProtoId<ESSecretIdentityPrototype>> PickMasks(IRobustRandom random, IPrototypeManager proto);
+    public abstract List<ProtoId<ESSecretIdentityPrototype>> PickSecretIdentities(IRobustRandom random, IPrototypeManager proto);
 
     public int Count { get; private set; } = Count;
     public bool Subtract { get; private set; } = Subtract;
 
     // should look identical to what's in yaml but i don't feel like testing that atm.
-    // Notably, the output order for masks in a direct set is *arbitrary*, making this unsuitable for serialization.
-    // This also always outputs a count, regardless of how it was originally written. `Mask(1)` is equivalent to `Mask`,
-    // this doesn't care and always outputs `Mask(1)`.
+    // Notably, the output order for secret identities in a direct set is *arbitrary*, making this unsuitable for serialization.
+    // This also always outputs a count, regardless of how it was originally written. `Identity(1)` is equivalent to `Identity`,
+    // this doesn't care and always outputs `Identity(1)`.
     public override string ToString()
     {
         var builder = new StringBuilder();
@@ -197,12 +197,12 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
             case DirectEntry direct:
             {
                 var first = true;
-                foreach (var mask in direct.Masks)
+                foreach (var secretIdentity in direct.SecretIdentities)
                 {
                     if (!first)
                         builder.Append('/');
 
-                    builder.Append(mask.ToString());
+                    builder.Append(secretIdentity.ToString());
 
                     first = false;
                 }
@@ -211,7 +211,7 @@ public abstract record MasqueradeEntry(int Count, bool Subtract) : IMergeable<Ma
             case SetEntry set:
             {
                 builder.Append('#');
-                builder.Append(set.MaskSet.ToString());
+                builder.Append(set.SecretIdentitySet.ToString());
                 break;
             }
             default:

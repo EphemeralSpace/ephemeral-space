@@ -21,16 +21,16 @@ public sealed partial class MasqueradeCommands : ToolshedCommand
 
     public static readonly ProtoId<GamePresetPrototype> MasqueradePreset = "ESMasqueradeManaged";
 
-    [CommandImplementation("pickFromMaskSet")]
-    public List<ProtoId<ESSecretIdentityPrototype>> PickFromMaskSet(
-        [CommandArgument] ProtoId<ESSecretIdentitySetPrototype> maskSet,
+    [CommandImplementation("pickFromSecretIdentitySet")]
+    public List<ProtoId<ESSecretIdentityPrototype>> PickFromSecretIdentitySet(
+        [CommandArgument] ProtoId<ESSecretIdentitySetPrototype> secretIdentitySet,
         [CommandArgument] RngSeed seed,
         [CommandArgument] int count
         )
     {
         var rng = seed.IntoRandomizer();
 
-        var set = _proto.Index(maskSet);
+        var set = _proto.Index(secretIdentitySet);
 
         return set.Pick(rng, count);
     }
@@ -44,20 +44,20 @@ public sealed partial class MasqueradeCommands : ToolshedCommand
     {
         var proto = _proto.Index(masquerade);
 
-        var allMasks = new List<(ESSecretIdentityPrototype Mask, int Count)>();
+        var allSecretIdentities = new List<(ESSecretIdentityPrototype SecretIdentity, int Count)>();
         for (var i = 0; i < trials; ++i)
         {
-            if (!proto.Masquerade.TryGetMasks(playerCount, _random, _proto, out var masks))
-                throw new Exception($"Failed to get masks for masquerade {masquerade} at pop level {playerCount}");
+            if (!proto.Masquerade.TryGetSecretIdentities(playerCount, _random, _proto, out var secretIdentities))
+                throw new Exception($"Failed to get secret identities for masquerade {masquerade} at pop level {playerCount}");
 
-            foreach (var grouping in masks.GroupBy(m => m))
+            foreach (var grouping in secretIdentities.GroupBy(m => m))
             {
-                allMasks.Add((_proto.Index(grouping.Key), grouping.Count()));
+                allSecretIdentities.Add((_proto.Index(grouping.Key), grouping.Count()));
             }
         }
 
-        var ordered = allMasks
-            .GroupBy(n => n.Mask)
+        var ordered = allSecretIdentities
+            .GroupBy(n => n.SecretIdentity)
             .OrderByDescending(p => p.Key.Troupe)
             .ThenByDescending(p => (double) p.Sum(g => g.Count) / trials)
             .ThenBy(p => p.Key.ID);

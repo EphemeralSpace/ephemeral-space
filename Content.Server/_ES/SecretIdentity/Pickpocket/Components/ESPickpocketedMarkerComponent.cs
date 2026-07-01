@@ -4,7 +4,7 @@ namespace Content.Server._ES.SecretIdentity.Pickpocket.Components;
 /// Marks an entity as having been pickpocketed by one of the specified minds.
 /// </summary>
 [RegisterComponent]
-[Access(typeof(ESPickpocketMaskSystem))]
+[Access(typeof(ESPickpocketSecretIdentitySystem))]
 public sealed partial class ESPickpocketedMarkerComponent : Component
 {
     [DataField]

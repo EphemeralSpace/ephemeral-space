@@ -18,11 +18,11 @@ public sealed partial class ESTroupeOutnumberObjectiveSystem : ESBaseObjectiveSy
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ESSecretIdentityChangedEvent>(OnMaskChanged);
+        SubscribeLocalEvent<ESSecretIdentityChangedEvent>(OnSecretIdentityChanged);
         SubscribeLocalEvent<ESPlayerKilledEvent>(OnPlayerKilled);
     }
 
-    private void OnMaskChanged(ref ESSecretIdentityChangedEvent ev)
+    private void OnSecretIdentityChanged(ref ESSecretIdentityChangedEvent ev)
     {
         ObjectivesSys.RefreshObjectiveProgress<ESTroupeOutnumberObjectiveComponent>();
     }

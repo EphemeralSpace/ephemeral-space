@@ -9,9 +9,9 @@ namespace Content.Shared._ES.Trigger.Component;
 public sealed partial class ESChangeSecretIdentityOnTriggerComponent : BaseXOnTriggerComponent
 {
     [DataField]
-    public ProtoId<ESSecretIdentityPrototype> Mask;
+    public ProtoId<ESSecretIdentityPrototype> SecretIdentity;
 
-    // Do we want to be able to convert masks into the same mask they already are?
+    // Do we want to be able to convert secret identities into the same faction they already are?
     [DataField]
     public bool SameTroupeConversion;
 }

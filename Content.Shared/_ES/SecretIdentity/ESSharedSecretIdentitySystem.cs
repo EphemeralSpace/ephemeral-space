@@ -30,7 +30,7 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
     [Dependency] protected SharedRoleSystem Role = default!;
 
     protected static readonly VerbCategory ESSecretIdentity =
-        new("es-verb-categories-mask", "/Textures/Interface/emotes.svg.192dpi.png");
+        new("es-verb-categories-secret-identity", "/Textures/Interface/emotes.svg.192dpi.png");
 
     public override void Initialize()
     {
@@ -38,7 +38,7 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
 
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(GetVerbs);
 
-        SubscribeLocalEvent<ESSecretIdentityRoleComponent, MindGotAddedEvent>(OnMaskRoleGotAdded);
+        SubscribeLocalEvent<ESSecretIdentityRoleComponent, MindGotAddedEvent>(OnSecretIdentityRoleGotAdded);
 
         SubscribeLocalEvent<ESTroupeRuleComponent, ESObjectivesChangedEvent>(OnObjectivesChanged);
 
@@ -69,42 +69,42 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
         }
 
         var idx = 0;
-        var masks = PrototypeManager.EnumeratePrototypes<ESSecretIdentityPrototype>()
+        var secretIdentities = PrototypeManager.EnumeratePrototypes<ESSecretIdentityPrototype>()
             .OrderBy(p => Loc.GetString(PrototypeManager.Index(p.Troupe).Name))
             .ThenByDescending(p => Loc.GetString(p.Name));
-        foreach (var mask in masks)
+        foreach (var secretIdentity in secretIdentities)
         {
-            if (mask.Abstract)
+            if (secretIdentity.Abstract)
                 continue;
 
-            var troupe = PrototypeManager.Index(mask.Troupe);
+            var troupe = PrototypeManager.Index(secretIdentity.Troupe);
 
             var verb = new Verb
             {
                 Category = ESSecretIdentity,
                 Icon = PrototypeManager.Index(troupe.MetaIcon).Icon,
-                Text = Loc.GetString("es-verb-apply-mask-name",
-                    ("name", Loc.GetString(mask.Name)),
-                    ("color", mask.Color)),
-                Message = Loc.GetString("es-verb-apply-mask-desc",
-                    ("mask", Loc.GetString(mask.Name)),
+                Text = Loc.GetString("es-verb-apply-secret-identity-name",
+                    ("name", Loc.GetString(secretIdentity.Name)),
+                    ("color", secretIdentity.Color)),
+                Message = Loc.GetString("es-verb-apply-secret-identity-desc",
+                    ("secretIdentity", Loc.GetString(secretIdentity.Name)),
                     ("troupe", Loc.GetString(troupe.Name))),
                 Priority = idx++,
                 ConfirmationPopup = true,
                 Act = () =>
                 {
-                    ChangeSecretIdentity(mind.Value, mask, eraseHistory: true);
+                    ChangeSecretIdentity(mind.Value, secretIdentity, eraseHistory: true);
                 },
             };
             args.Verbs.Add(verb);
         }
     }
 
-    private void OnMaskRoleGotAdded(Entity<ESSecretIdentityRoleComponent> ent, ref MindGotAddedEvent args)
+    private void OnSecretIdentityRoleGotAdded(Entity<ESSecretIdentityRoleComponent> ent, ref MindGotAddedEvent args)
     {
-        if (!ent.Comp.Mask.HasValue)
+        if (!ent.Comp.SecretIdentity.HasValue)
             return;
-        EnsureComp<ESBodyLastMaskComponent>(args.Container).LastMask = ent.Comp.Mask.Value;
+        EnsureComp<ESBodyLastSecretIdentityComponent>(args.Container).LastSecretIdentity = ent.Comp.SecretIdentity.Value;
     }
 
     private void OnObjectivesChanged(Entity<ESTroupeRuleComponent> ent, ref ESObjectivesChangedEvent args)
@@ -179,67 +179,67 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
     }
 
     /// <summary>
-    /// Retrieves the current mask from an entity, failing if they have no mind or mask
+    /// Retrieves the current secret identity from an entity, failing if they have no mind or secret identity
     /// </summary>
-    public bool TryGetMask(EntityUid uid, [NotNullWhen(true)] out ProtoId<ESSecretIdentityPrototype>? mask)
+    public bool TryGetSecretIdentity(EntityUid uid, [NotNullWhen(true)] out ProtoId<ESSecretIdentityPrototype>? secretIdentity)
     {
         if (Mind.TryGetMind(uid, out var mindUid, out var mindComp) &&
-            TryGetMask((mindUid, mindComp), out mask))
+            TryGetSecretIdentity((mindUid, mindComp), out secretIdentity))
             return true;
-        mask = null;
+        secretIdentity = null;
         return false;
     }
 
     /// <summary>
-    /// Retrieves the current mask from a mind, failing if one isn't assigned.
+    /// Retrieves the current secret identity from a mind, failing if one isn't assigned.
     /// </summary>
-    public bool TryGetMask(Entity<MindComponent?> mind, [NotNullWhen(true)] out ProtoId<ESSecretIdentityPrototype>? mask)
+    public bool TryGetSecretIdentity(Entity<MindComponent?> mind, [NotNullWhen(true)] out ProtoId<ESSecretIdentityPrototype>? secretIdentity)
     {
-        mask = null;
+        secretIdentity = null;
         if (!Role.MindHasRole<ESSecretIdentityRoleComponent>(mind, out var role))
             return false;
 
-        mask = role.Value.Comp2.Mask;
-        return mask != null;
+        secretIdentity = role.Value.Comp2.SecretIdentity;
+        return secretIdentity != null;
     }
 
-    public ProtoId<ESSecretIdentityPrototype>? GetMaskOrNull(EntityUid uid)
+    public ProtoId<ESSecretIdentityPrototype>? GetSecretIdentityOrNull(EntityUid uid)
     {
         if (!Mind.TryGetMind(uid, out var mindUid, out var mindComp))
             return null;
 
-        return GetMaskOrNull((mindUid, mindComp));
+        return GetSecretIdentityOrNull((mindUid, mindComp));
     }
 
-    public ProtoId<ESSecretIdentityPrototype>? GetMaskOrNull(Entity<MindComponent?> mind)
+    public ProtoId<ESSecretIdentityPrototype>? GetSecretIdentityOrNull(Entity<MindComponent?> mind)
     {
-        TryGetMask(mind, out var mask);
-        return mask;
+        TryGetSecretIdentity(mind, out var secretIdentity);
+        return secretIdentity;
     }
 
     /// <summary>
-    /// Helper version of <see cref="TryGetMask(Robust.Shared.GameObjects.EntityUid,out Robust.Shared.Prototypes.ProtoId{Content.Shared._ES.SecretIdentity.ESSecretIdentityPrototype}?)"/> that returns the troupe.
+    /// Helper version of <see cref="TryGetSecretIdentity(Robust.Shared.GameObjects.EntityUid,out Robust.Shared.Prototypes.ProtoId{Content.Shared._ES.SecretIdentity.ESSecretIdentityPrototype}?)"/> that returns the troupe.
     /// </summary>
     public bool TryGetTroupe(EntityUid uid, [NotNullWhen(true)] out ProtoId<ESTroupePrototype>? troupe)
     {
         troupe = null;
-        if (!TryGetMask(uid, out var mask))
+        if (!TryGetSecretIdentity(uid, out var secretIdentity))
             return false;
 
-        troupe = PrototypeManager.Index(mask).Troupe;
+        troupe = PrototypeManager.Index(secretIdentity).Troupe;
         return true;
     }
 
     /// <summary>
-    /// Helper version of <see cref="TryGetMask(Robust.Shared.GameObjects.Entity{Content.Shared.Mind.MindComponent?},out Robust.Shared.Prototypes.ProtoId{Content.Shared._ES.SecretIdentity.ESSecretIdentityPrototype}?)"/> that returns the troupe.
+    /// Helper version of <see cref="TryGetSecretIdentity(Robust.Shared.GameObjects.Entity{Content.Shared.Mind.MindComponent?},out Robust.Shared.Prototypes.ProtoId{Content.Shared._ES.SecretIdentity.ESSecretIdentityPrototype}?)"/> that returns the troupe.
     /// </summary>
     public bool TryGetTroupe(Entity<MindComponent?> mind, [NotNullWhen(true)] out ProtoId<ESTroupePrototype>? troupe)
     {
         troupe = null;
-        if (!TryGetMask(mind, out var mask))
+        if (!TryGetSecretIdentity(mind, out var secretIdentity))
             return false;
 
-        troupe = PrototypeManager.Index(mask).Troupe;
+        troupe = PrototypeManager.Index(secretIdentity).Troupe;
         return true;
     }
 
@@ -276,14 +276,14 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
     }
 
     /// <summary>
-    ///     Gets the troupe rule for the given mask.
+    ///     Gets the troupe rule for the given secret identity.
     /// </summary>
-    public bool TryGetTroupeEntityForMask(
-        ProtoId<ESSecretIdentityPrototype> mask,
+    public bool TryGetTroupeEntityForSecretIdentity(
+        ProtoId<ESSecretIdentityPrototype> secretIdentity,
         [NotNullWhen(true)] out Entity<ESTroupeRuleComponent>? troupe
         )
     {
-        return TryGetTroupeEntity(PrototypeManager.Index(mask).Troupe, out troupe);
+        return TryGetTroupeEntity(PrototypeManager.Index(secretIdentity).Troupe, out troupe);
     }
 
     public bool TryGetTroupeEntity(ProtoId<ESTroupePrototype> proto,
@@ -303,28 +303,28 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
     }
 
     /// <summary>
-    ///     Applies the given mask to a mind, without any checks.
+    ///     Applies the given secret identity to a mind, without any checks.
     /// </summary>
     /// <remarks>
-    ///     This allows "bad" game states like giving masks to roles they're incompatible with, and will automatically
+    ///     This allows "bad" game states like giving secret identities to roles they're incompatible with, and will automatically
     ///     start troupes as necessary.
     /// </remarks>
-    public virtual void ApplyMask(Entity<MindComponent> mind,
-        ProtoId<ESSecretIdentityPrototype> maskId,
+    public virtual void ApplySecretIdentity(Entity<MindComponent> mind,
+        ProtoId<ESSecretIdentityPrototype> secretIdentityId,
         Entity<ESTroupeRuleComponent>? troupe = null)
     {
         // No Op
     }
 
     public virtual void ChangeSecretIdentity(Entity<MindComponent> mind,
-        ProtoId<ESSecretIdentityPrototype> maskId,
+        ProtoId<ESSecretIdentityPrototype> secretIdentityId,
         Entity<ESTroupeRuleComponent>? troupe = null,
         bool eraseHistory = false)
     {
 
     }
 
-    public virtual void RemoveMask(Entity<MindComponent> mind)
+    public virtual void RemoveSecretIdentity(Entity<MindComponent> mind)
     {
 
     }
@@ -362,10 +362,10 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
 
         var xform = Transform(ent);
 
-        foreach (var entity in _lookup.GetEntitiesInRange<ESBodyLastMaskComponent>(_xform.GetMapCoordinates(ent, xform), range))
+        foreach (var entity in _lookup.GetEntitiesInRange<ESBodyLastSecretIdentityComponent>(_xform.GetMapCoordinates(ent, xform), range))
         {
-            var mask = PrototypeManager.Index(entity.Comp.LastMask);
-            var troupe = mask.Troupe;
+            var secretIdentity = PrototypeManager.Index(entity.Comp.LastSecretIdentity);
+            var troupe = secretIdentity.Troupe;
 
             if (ent.Comp.NonHostileTroupes != null && ent.Comp.NonHostileTroupes.Contains(troupe))
                 continue;

@@ -57,8 +57,8 @@ public sealed partial class ESTroupePrototype : IPrototype, IInheritingPrototype
     public EntProtoId<ESTroupeRuleComponent> GameRule;
 
     /// <summary>
-    /// String used to refer to the masks of this troupe on the news report for the masquerade.
+    /// String used to refer to the secret identities of this troupe on the news report for the masquerade.
     /// </summary>
     [DataField]
-    public LocId? DisguisedMaskName;
+    public LocId? DisguisedSecretIdentityName;
 }

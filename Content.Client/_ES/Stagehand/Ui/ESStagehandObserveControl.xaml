@@ -17,7 +17,7 @@
                         <RichTextLabel Name="JobLabel" Access="Public" />
                     </VFillStack>
                     <VFillStack>
-                        <RichTextLabel Name="MaskLabel" Access="Public" HorizontalAlignment="Right"/>
+                        <RichTextLabel Name="SecretIdentityLabel" Access="Public" HorizontalAlignment="Right"/>
                         <RichTextLabel Name="TroupeLabel" Access="Public" HorizontalAlignment="Right"/>
                     </VFillStack>
                 </HFillStack>

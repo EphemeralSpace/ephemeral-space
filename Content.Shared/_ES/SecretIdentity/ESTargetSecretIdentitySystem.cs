@@ -15,7 +15,7 @@ public sealed partial class ESTargetSecretIdentitySystem : EntitySystem
 
     private void Handler(Entity<ESTargetSecretIdentityBlacklistComponent> ent, ref ESValidateObjectiveTargetCandidates args)
     {
-        if (_secretIdentity.GetMaskOrNull(args.Candidate) is {} mask && ent.Comp.SecretIdentityBlacklist.Contains(mask))
+        if (_secretIdentity.GetSecretIdentityOrNull(args.Candidate) is {} secretIdentity && ent.Comp.SecretIdentityBlacklist.Contains(secretIdentity))
             args.Invalidate();
     }
 }

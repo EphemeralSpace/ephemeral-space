@@ -22,5 +22,5 @@ public sealed partial class ESAvengeOnKillObjectiveComponent : Component
     public LocId AvengeTitle = "es-objective-condition-avenge-title";
 
     [DataField]
-    public EntProtoId<ActionComponent> ActionPrototype = "ESActionMaskAvengerSense";
+    public EntProtoId<ActionComponent> ActionPrototype = "ESActionSecretIdentityAvengerSense";
 }

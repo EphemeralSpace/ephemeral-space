@@ -6,7 +6,7 @@ using Content.Shared._ES.Objectives;
 namespace Content.Server._ES.SecretIdentity.Objectives;
 
 /// <summary>
-///     Handles objective logic for player-kills (e.g. for jester masks)
+///     Handles objective logic for player-kills (e.g. for jester-types)
 /// </summary>
 public sealed class ESBeKilledObjectiveSystem : ESBaseObjectiveSystem<ESBeKilledObjectiveComponent>
 {
@@ -24,7 +24,7 @@ public sealed class ESBeKilledObjectiveSystem : ESBaseObjectiveSystem<ESBeKilled
         if (!args.ValidKill || !MindSys.TryGetMind(args.Killer.Value, out var mind))
             return;
 
-        if (ent.Comp.TroupeRequired.HasValue && MaskSys.GetTroupeOrNull(mind.Value.AsNullable()) != ent.Comp.TroupeRequired)
+        if (ent.Comp.TroupeRequired.HasValue && SecretIdentitySys.GetTroupeOrNull(mind.Value.AsNullable()) != ent.Comp.TroupeRequired)
             return;
 
         ObjectivesSys.SetObjectiveCounter(ent.Owner, 1f);

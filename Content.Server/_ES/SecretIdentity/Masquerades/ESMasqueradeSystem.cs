@@ -57,9 +57,9 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
 
         var set = rule.Masquerade.Masquerade;
 
-        if (!set.TryGetMasks(ev.Players.Count, rule.Rng, _proto, out var masks))
+        if (!set.TryGetSecretIdentities(ev.Players.Count, rule.Rng, _proto, out var secretIdentities))
         {
-            Log.Error($"Failed to assign masks for masquerade {rule.Masquerade!.ID}!");
+            Log.Error($"Failed to assign secret identities for masquerade {rule.Masquerade!.ID}!");
             return;
         }
 
@@ -67,24 +67,24 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         {
             var proto = _proto.Index(impersonate);
 
-            if (!proto.Masquerade.TryGetMasks(ev.Players.Count, rule.Rng, _proto, out var impersonationMasks))
+            if (!proto.Masquerade.TryGetSecretIdentities(ev.Players.Count, rule.Rng, _proto, out var impersonationSecretIdentities))
             {
-                Log.Error($"Failed to assign impersonation masks for masquerade {rule.Masquerade!.ID}!");
+                Log.Error($"Failed to assign impersonation identities for masquerade {rule.Masquerade!.ID}!");
                 return;
             }
 
-            rule.AssignedMasks = impersonationMasks;
+            rule.AssignedSecretIdentities = impersonationSecretIdentities;
         }
         else
         {
-            rule.AssignedMasks = masks.ShallowClone();
+            rule.AssignedSecretIdentities = secretIdentities.ShallowClone();
         }
 
-        DebugTools.AssertEqual(masks.Count, ev.Players.Count, "Player count mismatched mask count, shit broke.");
+        DebugTools.AssertEqual(secretIdentities.Count, ev.Players.Count, "Player count mismatched identity count, shit broke.");
 
         ev.Handled = true;
 
-        // Add all of our game rules ahead of time so that they don't get started inside ApplyMask
+        // Add all of our game rules ahead of time so that they don't get started inside ApplySecretIdentity
         // This is because they may have logic that is dependent on having members assigned when they start.
         var troupeRules = new List<EntityUid>();
         foreach (var troupeId in GetTroupesFromMasquerade(rule.Masquerade, ev.Players.Count, rule.Seed.IntoRandomizer()))
@@ -93,31 +93,31 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
             troupeRules.Add(GameTicker.AddGameRule(troupe.GameRule));
         }
 
-        // Ensure no funny business with the player list, as the order masquerades output masks isn't random.
+        // Ensure no funny business with the player list, as the order masquerades output secret identities isn't random.
         rule.Rng.Shuffle(ev.Players);
 
         var players = ev.Players;
 
-        var masksEnum = masks
+        var secretIdentitiesEnum = secretIdentities
             .OrderBy(m => _proto.Index(m).AssignmentOrder)
-            .ThenByDescending(MaskOrder);
+            .ThenByDescending(SecretIdentityOrder);
 
-        foreach (var maskId in masksEnum)
+        foreach (var secretIdentityId in secretIdentitiesEnum)
         {
-            var mask = _proto.Index(maskId);
+            var secretIdentity = _proto.Index(secretIdentityId);
             for (var i = 0; i < players.Count; i++)
             {
                 var player = players[i];
                 if (!TryGetMindOrLog(player, out var mind))
                     continue;
 
-                if (!_secretIdentity.IsPlayerValid(mask, player))
+                if (!_secretIdentity.IsPlayerValid(secretIdentity, player))
                     continue;
 
-                _secretIdentity.ApplyMask(mind.Value, maskId);
+                _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentityId);
 
                 players.RemoveAt(i);
-                goto exit; // escape to next mask.
+                goto exit; // escape to next identity.
             }
 
             // Ah hell, no dice, just take someone.
@@ -128,15 +128,15 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
                 if (!TryGetMindOrLog(player, out var mind))
                     continue;
 
-                _secretIdentity.ApplyMask(mind.Value, maskId);
+                _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentityId);
 
                 players.RemoveAt(i);
-                goto exit; // escape to next mask.
+                goto exit; // escape to next identity.
             }
 
             // Fuuuck okay fine don't assign.
 
-            Log.Error($"Was unable to assign {maskId} to any player.");
+            Log.Error($"Was unable to assign {secretIdentityId} to any player.");
 
             exit: ;
         }
@@ -149,11 +149,11 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         }
     }
 
-    private int MaskOrder(ProtoId<ESSecretIdentityPrototype> maskId)
+    private int SecretIdentityOrder(ProtoId<ESSecretIdentityPrototype> secretIdentityId)
     {
-        var mask = _proto.Index(maskId);
+        var secretIdentity = _proto.Index(secretIdentityId);
 
-        return mask.ProhibitedJobs.Count; // The tighter the prohibition list, the more careful we are.
+        return secretIdentity.ProhibitedJobs.Count; // The tighter the prohibition list, the more careful we are.
     }
 
     private void OnAssignLatejoiner(ref AssignLatejoinerToTroupeEvent ev)
@@ -163,24 +163,24 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         if (rule?.Masquerade is null)
             return;
 
-        var mask = rule.Masquerade.Masquerade.DefaultMask.PickMasks(rule.Rng, _proto).Single();
+        var secretIdentity = rule.Masquerade.Masquerade.DefaultSecretIdentity.PickSecretIdentities(rule.Rng, _proto).Single();
 
         if (!TryGetMindOrLog(ev.Victim, out var mind))
             return;
 
-        if (!TryGetTroupeForMaskOrLog(mask, rule, out var troupe))
+        if (!TryGetTroupeForSecretIdentityOrLog(secretIdentity, rule, out var troupe))
             return;
 
-        _secretIdentity.ApplyMask(mind.Value, mask, troupe.Value);
+        _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentity, troupe.Value);
     }
 
-    private bool TryGetTroupeForMaskOrLog(ProtoId<ESSecretIdentityPrototype> mask,
+    private bool TryGetTroupeForSecretIdentityOrLog(ProtoId<ESSecretIdentityPrototype> secretIdentity,
         ESMasqueradeRuleComponent rule,
         [NotNullWhen(true)] out Entity<ESTroupeRuleComponent>? troupe)
     {
-        if (!_secretIdentity.TryGetTroupeEntityForMask(mask, out troupe))
+        if (!_secretIdentity.TryGetTroupeEntityForSecretIdentity(secretIdentity, out troupe))
         {
-            Log.Error($"Failed to find a running troupe for {mask}, is the masquerade {rule.Masquerade!.ID} missing a troupe rule?");
+            Log.Error($"Failed to find a running troupe for {secretIdentity}, is the masquerade {rule.Masquerade!.ID} missing a troupe rule?");
             return false;
         }
 
@@ -243,35 +243,35 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
                     if (component.Deleted)
                         return;
 
-                    if (component.AssignedMasks == null)
+                    if (component.AssignedSecretIdentities == null)
                         return;
 
                     var report = new StringBuilder();
 
-                    foreach (var masks in component.AssignedMasks.GroupBy(m => _proto.Index(m).Troupe))
+                    foreach (var secretIdentities in component.AssignedSecretIdentities.GroupBy(m => _proto.Index(m).Troupe))
                     {
-                        var troupe = _proto.Index(masks.Key);
+                        var troupe = _proto.Index(secretIdentities.Key);
 
-                        // If we need to obscure the mask name, do it here then don't list individual mask names
-                        if (troupe.DisguisedMaskName is { } disguisedMaskName)
+                        // If we need to obscure the secretIdentity name, do it here then don't list individual secretIdentity names
+                        if (troupe.DisguisedSecretIdentityName is { } disguisedSecretIdentityName)
                         {
-                            report.AppendLine(Loc.GetString(masquerade.StartupNewsArticleMaskEntry,
-                                ("count", masks.Count()),
-                                ("mask", Loc.GetString(disguisedMaskName))));
+                            report.AppendLine(Loc.GetString(masquerade.StartupNewsArticleSecretIdentityEntry,
+                                ("count", secretIdentities.Count()),
+                                ("secretIdentity", Loc.GetString(disguisedSecretIdentityName))));
                             continue;
                         }
 
-                        foreach (var (maskId, count) in masks.CountBy(x => x))
+                        foreach (var (secretIdentityId, count) in secretIdentities.CountBy(x => x))
                         {
-                            report.AppendLine(Loc.GetString(masquerade.StartupNewsArticleMaskEntry,
+                            report.AppendLine(Loc.GetString(masquerade.StartupNewsArticleSecretIdentityEntry,
                                 ("count", count),
-                                ("mask", Loc.GetString(_proto.Index(maskId).Name))));
+                                ("secretIdentity", Loc.GetString(_proto.Index(secretIdentityId).Name))));
                         }
                     }
 
                     _news.TryAddNews(ent,
                         Loc.GetString(masquerade.StartupNewsArticleTitle),
-                        Loc.GetString(masquerade.StartupNewsArticleContents, ("maskEntries", report)),
+                        Loc.GetString(masquerade.StartupNewsArticleContents, ("secretIdentityEntries", report)),
                         out _,
                         enforceLimits: false);
                 });
@@ -303,19 +303,19 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
     /// </summary>
     public HashSet<ProtoId<ESTroupePrototype>> GetTroupesFromMasquerade(ESMasqueradePrototype masquerade, int playerCount, IRobustRandom random)
     {
-        // Try and get the unique masks we'll have at this pop level for this seed
-        if (!masquerade.Masquerade.TryGetMasks(playerCount, random, _proto,  out var masks))
+        // Try and get the unique secretIdentities we'll have at this pop level for this seed
+        if (!masquerade.Masquerade.TryGetSecretIdentities(playerCount, random, _proto,  out var secretIdentities))
             return [];
 
-        foreach (var mask in masquerade.Masquerade.DefaultMask.PickMasks(random, _proto))
+        foreach (var secretIdentity in masquerade.Masquerade.DefaultSecretIdentity.PickSecretIdentities(random, _proto))
         {
-            masks.Add(mask);
+            secretIdentities.Add(secretIdentity);
         }
 
         var troupes = new HashSet<ProtoId<ESTroupePrototype>>();
-        foreach (var mask in masks)
+        foreach (var secretIdentity in secretIdentities)
         {
-            troupes.Add(_proto.Index(mask).Troupe);
+            troupes.Add(_proto.Index(secretIdentity).Troupe);
         }
 
         return troupes;

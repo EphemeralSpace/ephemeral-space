@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._ES.SecretIdentity.Components;
 
 /// <summary>
-/// Handles assigning masks to players when they join into the round.
+/// Handles assigning secret identities to players when they join into the round.
 /// </summary>
 /// <remarks>
 /// Logic only present on server.

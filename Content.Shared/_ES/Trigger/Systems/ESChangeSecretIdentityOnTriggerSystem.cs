@@ -23,17 +23,17 @@ public sealed partial class ESChangeSecretIdentityOnTriggerSystem : XOnTriggerSy
 
         if (!ent.Comp.SameTroupeConversion)
         {
-            if (!TryComp<ESBodyLastMaskComponent>(args.User, out var mask))
+            if (!TryComp<ESBodyLastSecretIdentityComponent>(args.User, out var secretIdentity))
                 return;
 
-            var maskPrototype = _prototype.Index(ent.Comp.Mask);
-            var lastMaskPrototype = _prototype.Index(mask.LastMask);
+            var secretIdentityPrototype = _prototype.Index(ent.Comp.SecretIdentity);
+            var lastSecretIdentityPrototype = _prototype.Index(secretIdentity.LastSecretIdentity);
 
-            if (maskPrototype.Troupe == lastMaskPrototype.Troupe)
+            if (secretIdentityPrototype.Troupe == lastSecretIdentityPrototype.Troupe)
                 return;
         }
 
-        _secretIdentity.ChangeSecretIdentity(mind.Value, ent.Comp.Mask);
+        _secretIdentity.ChangeSecretIdentity(mind.Value, ent.Comp.SecretIdentity);
         args.Handled = true;
     }
 }

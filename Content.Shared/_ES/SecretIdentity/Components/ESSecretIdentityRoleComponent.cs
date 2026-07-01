@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._ES.SecretIdentity.Components;
 
 /// <summary>
-/// Component used to identify a mind as having a specific mask.
+/// Component used to identify a mind as having a specific secret identity.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState(true)]
@@ -12,13 +12,13 @@ namespace Content.Shared._ES.SecretIdentity.Components;
 public sealed partial class ESSecretIdentityRoleComponent : Component
 {
     /// <summary>
-    /// The mask corresponding to this role entity
+    /// The secret identity corresponding to this role entity
     /// </summary>
     [DataField, AutoNetworkedField]
-    public ProtoId<ESSecretIdentityPrototype>? Mask;
+    public ProtoId<ESSecretIdentityPrototype>? SecretIdentity;
 
     /// <summary>
-    /// Actions added to the entity from the mask.
+    /// Actions added to the entity from the secret identity.
     /// </summary>
     [DataField]
     public List<EntityUid> Actions = new();

@@ -13,7 +13,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.SecretIdentity.Traitor;
 
-public sealed partial class ESAddMaskOnUseSystem : EntitySystem
+public sealed partial class ESAddSecretIdentityOnUseSystem : EntitySystem
 {
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private ESSharedSecretIdentitySystem _secretIdentity = default!;
@@ -26,12 +26,12 @@ public sealed partial class ESAddMaskOnUseSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<ESAddMaskOnUseComponent, AfterInteractEvent>(OnInteract);
-        SubscribeLocalEvent<ESAddMaskOnUseComponent, ESAddMaskOnUseDoAfterEvent>(OnDoAfter);
-        SubscribeLocalEvent<ESAddMaskOnUseComponent, ExaminedEvent>(OnExamine);
+        SubscribeLocalEvent<ESAddSecretIdentityOnUseComponent, AfterInteractEvent>(OnInteract);
+        SubscribeLocalEvent<ESAddSecretIdentityOnUseComponent, ESAddSecretIdentityOnUseDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<ESAddSecretIdentityOnUseComponent, ExaminedEvent>(OnExamine);
     }
 
-    private void OnInteract(Entity<ESAddMaskOnUseComponent> ent, ref AfterInteractEvent args)
+    private void OnInteract(Entity<ESAddSecretIdentityOnUseComponent> ent, ref AfterInteractEvent args)
     {
         if (args.Target == null)
             return;
@@ -39,7 +39,7 @@ public sealed partial class ESAddMaskOnUseSystem : EntitySystem
         if (!_mind.TryGetMind((EntityUid)args.Target!, out var mind, out var mindComponent)) // No SSD people
             return;
 
-        if (_secretIdentity.GetTroupeOrNull((mind, mindComponent)) == _proto.Index(ent.Comp.MaskToAdd).Troupe)
+        if (_secretIdentity.GetTroupeOrNull((mind, mindComponent)) == _proto.Index(ent.Comp.SecretIdentityToAdd).Troupe)
             return;
 
         if (ent.Comp.MindshieldPrevent && HasComp<MindShieldComponent>(args.Target))
@@ -62,7 +62,7 @@ public sealed partial class ESAddMaskOnUseSystem : EntitySystem
             return;
         }
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.Delay, new ESAddMaskOnUseDoAfterEvent(), eventTarget: ent, args.Target, used: ent)
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.Delay, new ESAddSecretIdentityOnUseDoAfterEvent(), eventTarget: ent, args.Target, used: ent)
         {
             BlockDuplicate = true,
             BreakOnMove = true,
@@ -77,7 +77,7 @@ public sealed partial class ESAddMaskOnUseSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString(ent.Comp.UsingMessage), ent, PopupType.MediumCaution);
     }
 
-    private void OnDoAfter(Entity<ESAddMaskOnUseComponent> ent, ref ESAddMaskOnUseDoAfterEvent args)
+    private void OnDoAfter(Entity<ESAddSecretIdentityOnUseComponent> ent, ref ESAddSecretIdentityOnUseDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || args.Target is not { } target)
             return;
@@ -93,20 +93,20 @@ public sealed partial class ESAddMaskOnUseSystem : EntitySystem
         if (!_mind.TryGetMind(target, out var mind, out var mindComponent))
             return;
 
-        var toAddTroupe = _proto.Index(ent.Comp.MaskToAdd).Troupe;
+        var toAddTroupe = _proto.Index(ent.Comp.SecretIdentityToAdd).Troupe;
 
         if (_secretIdentity.GetTroupeOrNull((mind, mindComponent)) == toAddTroupe)
             return;
 
-        _secretIdentity.RemoveMask((mind, mindComponent));
-        _secretIdentity.ApplyMask((mind, mindComponent), ent.Comp.MaskToAdd);
+        _secretIdentity.RemoveSecretIdentity((mind, mindComponent));
+        _secretIdentity.ApplySecretIdentity((mind, mindComponent), ent.Comp.SecretIdentityToAdd);
 
         ent.Comp.Used = true;
         Dirty(ent);
         args.Handled = true;
     }
 
-    private void OnExamine(Entity<ESAddMaskOnUseComponent> ent, ref ExaminedEvent args)
+    private void OnExamine(Entity<ESAddSecretIdentityOnUseComponent> ent, ref ExaminedEvent args)
     {
         if (!args.IsInDetailsRange)
             return;

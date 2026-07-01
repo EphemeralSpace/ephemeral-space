@@ -16,7 +16,7 @@ public abstract partial class ESBaseObjectiveSystem<TComponent> : EntitySystem
 {
     [Dependency] protected SharedMindSystem MindSys = default!;
     [Dependency] protected ESSharedObjectiveSystem ObjectivesSys = default!;
-    [Dependency] protected ESSharedSecretIdentitySystem MaskSys = default!;
+    [Dependency] protected ESSharedSecretIdentitySystem SecretIdentitySys = default!;
 
     /// <summary>
     ///     A list of all the relays this objective relies on existing.

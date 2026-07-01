@@ -4,10 +4,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._ES.SecretIdentity.Cycle;
 
 /// <summary>
-///     An action event for changing to another mask.
+///     An action event for changing to another secret identity.
 /// </summary>
 public sealed partial class ESActionChangeSecretIdentityEvent : InstantActionEvent
 {
     [DataField(required: true)]
-    public ProtoId<ESSecretIdentityPrototype> Mask;
+    public ProtoId<ESSecretIdentityPrototype> SecretIdentity;
 }

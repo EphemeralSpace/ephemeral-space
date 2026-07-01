@@ -53,7 +53,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
         _objective = _ent.System<ESObjectiveSystem>();
         _sprite = _ent.System<SpriteSystem>();
 
-        MaskHelpButton.OnPressed += OnMaskHelpPressed;
+        SecretIdentityHelpButton.OnPressed += OnSecretIdentityHelpPressed;
         ObjectiveHeaderLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-objective-title"));
         Update();
     }
@@ -62,7 +62,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
     {
         base.Opened();
 
-        _secretIdentity.OnMaskChanged += OnMaskChanged;
+        _secretIdentity.OnSecretIdentityChanged += OnSecretIdentityChanged;
         _objective.OnObjectivesChanged += OnObjectivesChanged;
     }
 
@@ -70,11 +70,11 @@ public sealed partial class ESCharacterWindow : FancyWindow
     {
         base.Close();
 
-        _secretIdentity.OnMaskChanged -= OnMaskChanged;
+        _secretIdentity.OnSecretIdentityChanged -= OnSecretIdentityChanged;
         _objective.OnObjectivesChanged -= OnObjectivesChanged;
     }
 
-    private void OnMaskChanged(EntityUid mind, ProtoId<ESSecretIdentityPrototype>? mask)
+    private void OnSecretIdentityChanged(EntityUid mind, ProtoId<ESSecretIdentityPrototype>? secretIdentity)
     {
         if (_player.LocalUser is null)
             return;
@@ -96,7 +96,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
         Update();
     }
 
-    private void OnMaskHelpPressed(BaseButton.ButtonEventArgs? args)
+    private void OnSecretIdentityHelpPressed(BaseButton.ButtonEventArgs? args)
     {
         if (_player.LocalEntity is not { } localEntity)
             return;
@@ -104,15 +104,15 @@ public sealed partial class ESCharacterWindow : FancyWindow
         if (!_mind.TryGetMind(localEntity, out var mind, out var mindComp))
             return;
 
-        // if theres a guide entry with the same id as the mask then open that
+        // if theres a guide entry with the same id as the secret identity then open that
         // with the troupe guide as the root
-        if (_secretIdentity.TryGetMask((mind, mindComp), out var maskId)
-            && _prototype.Index(maskId.Value) is { } mask
-            && _prototype.HasIndex<GuideEntryPrototype>(mask.ID)
-            && _prototype.HasIndex<GuideEntryPrototype>(mask.Troupe.Id))
+        if (_secretIdentity.TryGetSecretIdentity((mind, mindComp), out var secretIdentityId)
+            && _prototype.Index(secretIdentityId.Value) is { } secretIdentity
+            && _prototype.HasIndex<GuideEntryPrototype>(secretIdentity.ID)
+            && _prototype.HasIndex<GuideEntryPrototype>(secretIdentity.Troupe.Id))
         {
-            var rootEntries = new List<ProtoId<GuideEntryPrototype>>() { mask.Troupe.Id };
-            _guidebook.OpenGuidebook(rootEntries: rootEntries, selected: mask.ID);
+            var rootEntries = new List<ProtoId<GuideEntryPrototype>>() { secretIdentity.Troupe.Id };
+            _guidebook.OpenGuidebook(rootEntries: rootEntries, selected: secretIdentity.ID);
         }
     }
 
@@ -148,24 +148,24 @@ public sealed partial class ESCharacterWindow : FancyWindow
             JobIconTexture.Texture = _sprite.Frame0(_prototype.Index(job.Icon).Icon);
         }
 
-        if (_secretIdentity.TryGetMask((mind, mindComp), out var maskId))
+        if (_secretIdentity.TryGetSecretIdentity((mind, mindComp), out var secretIdentityId))
         {
-            var mask = _prototype.Index(maskId);
-            var troupe = _prototype.Index(mask.Troupe);
+            var secretIdentity = _prototype.Index(secretIdentityId);
+            var troupe = _prototype.Index(secretIdentity.Troupe);
 
-            MaskLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-mask-fmt",
-                ("name", Loc.GetString(mask.Name)),
-                ("color", mask.Color)));
+            SecretIdentityLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-secret-identity-fmt",
+                ("name", Loc.GetString(secretIdentity.Name)),
+                ("color", secretIdentity.Color)));
 
             TroupeLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-troupe-fmt",
                 ("name", Loc.GetString(troupe.Name)),
                 ("color", troupe.Color)));
 
-            MaskHelpButton.Visible = true;
+            SecretIdentityHelpButton.Visible = true;
         }
         else
         {
-            MaskLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-mask-fmt",
+            SecretIdentityLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-secret-identity-fmt",
                 ("name", Loc.GetString("generic-unknown-title")),
                 ("color", Color.White)));
 
@@ -173,7 +173,7 @@ public sealed partial class ESCharacterWindow : FancyWindow
                 ("name", Loc.GetString("generic-unknown-title")),
                 ("color", Color.Gray)));
 
-            MaskHelpButton.Visible = false;
+            SecretIdentityHelpButton.Visible = false;
         }
 
         var info = _secretIdentity.GetCharacterInfoBlurb(mind);

@@ -10,7 +10,7 @@ using Robust.Shared.Utility;
 namespace Content.Shared._ES.SecretIdentity.Masquerades;
 
 /// <summary>
-///     A weighted collection of masks for use by Masquerades.
+///     A weighted collection of secret identities for use by Masquerades.
 /// </summary>
 /// <seealso cref="MasqueradeEntry"/>
 [Prototype("esSecretIdentitySet")]
@@ -30,39 +30,39 @@ public sealed partial class ESSecretIdentitySetPrototype : IPrototype, IInheriti
     public bool Abstract { get; private set; }
 
     [AlwaysPushInheritance]
-    [DataField("maskProvider")]
-    private MaskSetProvider? _secretIdentitySetProvider = default!;
+    [DataField("secretIdentityProvider")]
+    private SecretIdentitySetProvider? _secretIdentitySetProvider = default!;
 
     /// <summary>
-    ///     A weighted random bag of masks.
+    ///     A weighted random bag of secret identities.
     /// </summary>
     [AlwaysPushInheritance]
-    [DataField("masks")]
-    private Dictionary<ProtoId<ESSecretIdentityPrototype>, float>? _secretIdentitys = default!;
+    [DataField("secretIdentities")]
+    private Dictionary<ProtoId<ESSecretIdentityPrototype>, float>? _secretIdentities = default!;
 
     public List<ProtoId<ESSecretIdentityPrototype>> Pick(IRobustRandom random, int count)
     {
-        if (_secretIdentitys is not null)
-            return Enumerable.Range(0, count).Select(_ => random.Pick(_secretIdentitys)).ToList();
+        if (_secretIdentities is not null)
+            return Enumerable.Range(0, count).Select(_ => random.Pick(_secretIdentities)).ToList();
         else
             return _secretIdentitySetProvider!.Pick(random, count);
     }
 
-    public IEnumerable<ProtoId<ESSecretIdentityPrototype>> AllMasks()
+    public IEnumerable<ProtoId<ESSecretIdentityPrototype>> AllSecretIdentities()
     {
-        if (_secretIdentitys is not null)
-            return _secretIdentitys.Keys;
+        if (_secretIdentities is not null)
+            return _secretIdentities.Keys;
         else
-            return _secretIdentitySetProvider!.AllMasks();
+            return _secretIdentitySetProvider!.AllSecretIdentities();
     }
 
     void ISerializationHooks.AfterDeserialization()
     {
-        DebugTools.Assert(_secretIdentitys is null ^ _secretIdentitySetProvider is null, $"You need to specify ONE of masks or maskProvider on mask set {ID}");
+        DebugTools.Assert(_secretIdentities is null ^ _secretIdentitySetProvider is null, $"You need to specify ONE of secretIdentities or secretIdentityProvider on secret identity set {ID}");
     }
 }
 
-public abstract class MaskSetProvider
+public abstract class SecretIdentitySetProvider
 {
     private bool _injected = false; // Due to the weird spot this is in, we kinda just gotta eat an IOC injection.
 
@@ -73,11 +73,11 @@ public abstract class MaskSetProvider
         return PickInner(random, count);
     }
 
-    public IEnumerable<ProtoId<ESSecretIdentityPrototype>> AllMasks()
+    public IEnumerable<ProtoId<ESSecretIdentityPrototype>> AllSecretIdentities()
     {
         EnsureInjected();
 
-        return AllMasksInner();
+        return AllSecretIdentitiesInner();
     }
 
     private void EnsureInjected()
@@ -90,11 +90,11 @@ public abstract class MaskSetProvider
 
     protected abstract List<ProtoId<ESSecretIdentityPrototype>> PickInner(IRobustRandom random, int count);
 
-    protected abstract IEnumerable<ProtoId<ESSecretIdentityPrototype>> AllMasksInner();
+    protected abstract IEnumerable<ProtoId<ESSecretIdentityPrototype>> AllSecretIdentitiesInner();
 }
 
 [DataDefinition]
-public sealed partial class ESTroupeMasksProvider : MaskSetProvider
+public sealed partial class ESTroupeSecretIdentitiesProvider : SecretIdentitySetProvider
 {
     [Dependency]
     private IPrototypeManager _proto = default!;
@@ -102,15 +102,15 @@ public sealed partial class ESTroupeMasksProvider : MaskSetProvider
     [DataField(required: true)]
     public ProtoId<ESTroupePrototype> Troupe = "Crew";
 
-    private Dictionary<ProtoId<ESSecretIdentityPrototype>, float>? _secretIdentitys = null;
+    private Dictionary<ProtoId<ESSecretIdentityPrototype>, float>? _secretIdentities = null;
 
-    [MemberNotNull(nameof(_secretIdentitys))]
+    [MemberNotNull(nameof(_secretIdentities))]
     private void Init()
     {
-        if (_secretIdentitys is not null)
+        if (_secretIdentities is not null)
             return;
 
-        _secretIdentitys = _proto.EnumeratePrototypes<ESSecretIdentityPrototype>()
+        _secretIdentities = _proto.EnumeratePrototypes<ESSecretIdentityPrototype>()
             .Where(x => x.Troupe == Troupe)
             .ToDictionary(x => new ProtoId<ESSecretIdentityPrototype>(x.ID), x => x.Weight);
     }
@@ -119,13 +119,13 @@ public sealed partial class ESTroupeMasksProvider : MaskSetProvider
     {
         Init();
 
-        return Enumerable.Range(0, count).Select(_ => random.Pick(_secretIdentitys)).ToList();
+        return Enumerable.Range(0, count).Select(_ => random.Pick(_secretIdentities)).ToList();
     }
 
-    protected override IEnumerable<ProtoId<ESSecretIdentityPrototype>> AllMasksInner()
+    protected override IEnumerable<ProtoId<ESSecretIdentityPrototype>> AllSecretIdentitiesInner()
     {
         Init();
 
-        return _secretIdentitys.Keys;
+        return _secretIdentities.Keys;
     }
 }

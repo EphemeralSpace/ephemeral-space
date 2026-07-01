@@ -18,10 +18,10 @@ public sealed partial class MasqueradeRoleSet
     public int? MaxPlayers { get; set; }
 
     /// <summary>
-    ///     The default mask used for post-start latejoiners.
+    ///     The default secret identity used for post-start latejoiners.
     /// </summary>
     [DataField(readOnly: true, required: true)]
-    public MasqueradeEntry DefaultMask { get; set; } = default!;
+    public MasqueradeEntry DefaultSecretIdentity { get; set; } = default!;
 
     [DataField(readOnly: true)]
     public MasqueradeEntry? SuperfanTarget { get; set; } = default!;
@@ -35,38 +35,38 @@ public sealed partial class MasqueradeRoleSet
     private List<List<MasqueradeEntry>> _bakedRoles = new();
 
     /// <summary>
-    ///     Attempts to get a mask list for the current player count.
+    ///     Attempts to get a secret identity list for the current player count.
     /// </summary>
     /// <remarks>
-    ///     While the masks are random, the order in the output list is not.
+    ///     While the secret identities are random, the order in the output list is not.
     /// </remarks>
-    public bool TryGetMasks(int playerCount, IRobustRandom rng, IPrototypeManager proto, [NotNullWhen(true)] out List<ProtoId<ESSecretIdentityPrototype>>? masks)
+    public bool TryGetSecretIdentities(int playerCount, IRobustRandom rng, IPrototypeManager proto, [NotNullWhen(true)] out List<ProtoId<ESSecretIdentityPrototype>>? secretIdentities)
     {
         if (!TryGetEntriesForPop(playerCount, out var entries))
         {
-            masks = null;
+            secretIdentities = null;
             return false;
         }
 
-        masks = new(playerCount);
+        secretIdentities = new(playerCount);
 
         foreach (var entry in entries)
         {
-            masks.AddRange(entry.PickMasks(rng, proto));
+            secretIdentities.AddRange(entry.PickSecretIdentities(rng, proto));
         }
 
         var failsafe = 0;
 
-        while (masks.Count < playerCount && failsafe < 256)
+        while (secretIdentities.Count < playerCount && failsafe < 256)
         {
-            masks.AddRange(DefaultMask.PickMasks(rng, proto));
+            secretIdentities.AddRange(DefaultSecretIdentity.PickSecretIdentities(rng, proto));
             failsafe++;
         }
 
         if (failsafe > 256)
             throw new Exception("A masquerade would've spun forever during selection, loudly breaking instead.");
 
-        DebugTools.AssertEqual(masks.Count, playerCount);
+        DebugTools.AssertEqual(secretIdentities.Count, playerCount);
         return true;
     }
 
@@ -96,8 +96,8 @@ public sealed partial class MasqueradeRoleSet
         {
             return entry switch
             {
-                MasqueradeEntry.DirectEntry direct => new MqKeyDirect(direct.Masks),
-                MasqueradeEntry.SetEntry set => new MqKeySet(set.MaskSet),
+                MasqueradeEntry.DirectEntry direct => new MqKeyDirect(direct.SecretIdentities),
+                MasqueradeEntry.SetEntry set => new MqKeySet(set.SecretIdentitySet),
                 _ => throw new NotImplementedException(),
             };
         }
@@ -108,11 +108,11 @@ public sealed partial class MasqueradeRoleSet
             // So I have to do it this way instead.
             if (other is MqKeyDirect rhs && this is MqKeyDirect lhs)
             {
-                return rhs.Masks.SetEquals(lhs.Masks);
+                return rhs.SecretIdentities.SetEquals(lhs.SecretIdentities);
             }
             else if (other is MqKeySet rhs2 && this is MqKeySet lhs2)
             {
-                return rhs2.MaskSet.Equals(lhs2.MaskSet);
+                return rhs2.SecretIdentitySet.Equals(lhs2.SecretIdentitySet);
             }
             else
             {
@@ -136,26 +136,26 @@ public sealed partial class MasqueradeRoleSet
             if (this is MqKeyDirect direct)
                 // Yea so. You cannot hash a set in C#.
                 // Meaning we're bodging set hashes here. Yes I spent over an hour debugging this.
-                // MasqueradeEntry always has to have at least one mask so this is fine.
+                // MasqueradeEntry always has to have at least one secret identity so this is fine.
                 // Also can't use Sum because it yells if you overflow.
-                return direct.Masks.Aggregate(0, (hash, entry) => unchecked(hash + entry.GetHashCode()));
+                return direct.SecretIdentities.Aggregate(0, (hash, entry) => unchecked(hash + entry.GetHashCode()));
 
             if (this is MqKeySet set)
-                return HashCode.Combine(set.MaskSet);
+                return HashCode.Combine(set.SecretIdentitySet);
 
             throw new NotImplementedException();
         }
     }
 
-    private sealed class MqKeyDirect(IReadOnlySet<ProtoId<ESSecretIdentityPrototype>> masks) : MqKey
+    private sealed class MqKeyDirect(IReadOnlySet<ProtoId<ESSecretIdentityPrototype>> secretIdentities) : MqKey
     {
-        public IReadOnlySet<ProtoId<ESSecretIdentityPrototype>> Masks { get; } = masks;
+        public IReadOnlySet<ProtoId<ESSecretIdentityPrototype>> SecretIdentities { get; } = secretIdentities;
     }
 
-    private sealed class MqKeySet(ProtoId<ESSecretIdentitySetPrototype> maskSet) : MqKey
+    private sealed class MqKeySet(ProtoId<ESSecretIdentitySetPrototype> secretIdentitySet) : MqKey
     {
 
-        public ProtoId<ESSecretIdentitySetPrototype> MaskSet { get; } = maskSet;
+        public ProtoId<ESSecretIdentitySetPrototype> SecretIdentitySet { get; } = secretIdentitySet;
     }
 
     internal void Init()
@@ -171,7 +171,7 @@ public sealed partial class MasqueradeRoleSet
         DebugTools.Assert(minPlayers > 0, "You can't have any roles without players, minPlayers must be at least 1.");
         DebugTools.Assert(minPlayers == MinPlayers, $"Minimum players should match the first specified set of entries (expected {MinPlayers}, found {minPlayers})");
 
-        DebugTools.AssertEqual(DefaultMask.Count, 1);
+        DebugTools.AssertEqual(DefaultSecretIdentity.Count, 1);
         if (SuperfanTarget is not null)
             DebugTools.AssertEqual(SuperfanTarget.Count, 1);
 

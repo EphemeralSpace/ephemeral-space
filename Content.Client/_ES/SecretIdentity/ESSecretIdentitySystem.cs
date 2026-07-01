@@ -14,7 +14,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private ContainerSystem _container = default!;
 
-    public event Action<EntityUid, ProtoId<ESSecretIdentityPrototype>?>? OnMaskChanged;
+    public event Action<EntityUid, ProtoId<ESSecretIdentityPrototype>?>? OnSecretIdentityChanged;
 
     public override void Initialize()
     {
@@ -31,7 +31,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         if (!_container.TryGetContainingContainer(ent.Owner, out var roleContainer))
             return;
         var mind = roleContainer.Owner;
-        OnMaskChanged?.Invoke(mind, ent.Comp.Mask);
+        OnSecretIdentityChanged?.Invoke(mind, ent.Comp.SecretIdentity);
     }
 
     private void OnGetStagehandStatusIcons(Entity<MindContainerComponent> ent, ref GetStatusIconsEvent args)

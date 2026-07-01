@@ -30,17 +30,17 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
 
     public void OnStateEntered(GameplayState state)
     {
-        _secretIdentity?.OnMaskChanged += OnMaskChanged;
+        _secretIdentity?.OnSecretIdentityChanged += OnSecretIdentityChanged;
         _objective?.OnObjectivesChanged += OnObjectivesChanged;
     }
 
     public void OnStateExited(GameplayState state)
     {
-        _secretIdentity?.OnMaskChanged -= OnMaskChanged;
+        _secretIdentity?.OnSecretIdentityChanged -= OnSecretIdentityChanged;
         _objective?.OnObjectivesChanged -= OnObjectivesChanged;
     }
 
-    private void OnMaskChanged(EntityUid mind, ProtoId<ESSecretIdentityPrototype>? mask)
+    private void OnSecretIdentityChanged(EntityUid mind, ProtoId<ESSecretIdentityPrototype>? secretIdentity)
     {
         if (UIManager.GetActiveUIWidgetOrNull<ESStagehandObserveControl>() is not { } observe)
             return;
@@ -142,7 +142,7 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
         var (uid, mind, character) = ent;
         observe.CurrentEntity = uid;
 
-        var mask = _secretIdentity?.GetMaskOrNull((uid, mind));
+        var secretIdentity = _secretIdentity?.GetSecretIdentityOrNull((uid, mind));
         var troupe = _secretIdentity?.GetTroupeOrNull((uid, mind));
 
         observe.NameLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-name-big", ("text", character.Name)));
@@ -151,12 +151,12 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
         if (_job.MindTryGetJob(uid, out var job))
             observe.JobLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-job", ("text", job.LocalizedName)));
 
-        observe.MaskLabel.Clear();
-        if (_prototype.TryIndex(mask, out var maskPrototype))
+        observe.SecretIdentityLabel.Clear();
+        if (_prototype.TryIndex(secretIdentity, out var secretIdentityPrototype))
         {
-            observe.MaskLabel.UnsafeSetMarkup(
-                Loc.GetString("es-observe-menu-label-name-big", ("text", Loc.GetString(maskPrototype.Name))),
-                maskPrototype.Color);
+            observe.SecretIdentityLabel.UnsafeSetMarkup(
+                Loc.GetString("es-observe-menu-label-name-big", ("text", Loc.GetString(secretIdentityPrototype.Name))),
+                secretIdentityPrototype.Color);
         }
 
         observe.TroupeLabel.Clear();

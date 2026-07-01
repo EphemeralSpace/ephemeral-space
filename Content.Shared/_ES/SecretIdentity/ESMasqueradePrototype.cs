@@ -80,27 +80,27 @@ public sealed partial class ESMasqueradePrototype : IPrototype, ISerializationHo
     ///     The title to use for the roundstart news article.
     /// </summary>
     [DataField]
-    public LocId StartupNewsArticleTitle = "es-news-masks-no-info-report-title";
+    public LocId StartupNewsArticleTitle = "es-news-secret-identities-no-info-report-title";
 
     /// <summary>
     ///     The contents to use for the roundstart news article.
     /// </summary>
     [DataField]
-    public LocId StartupNewsArticleContents = "es-news-masks-no-info-report-body";
+    public LocId StartupNewsArticleContents = "es-news-secret-identities-no-info-report-body";
 
     /// <summary>
-    ///     The mask entry loc string to use for the roundstart news.
+    ///     The secret identity entry loc string to use for the roundstart news.
     /// </summary>
     /// <remarks>
-    ///     Fluent is responsible for pluralizing the mask names, so if you want to hide how many of each mask there is
+    ///     Fluent is responsible for pluralizing the secret identity names, so if you want to hide how many of each identity there is
     ///     use this.
     /// </remarks>
     [DataField]
-    public LocId StartupNewsArticleMaskEntry = "es-news-masks-entry";
+    public LocId StartupNewsArticleSecretIdentityEntry = "es-news-secret-identities-entry";
 
     /// <summary>
     ///     A masquerade to impersonate, if any. This tells the game to "act like this other masquerade" for things
-    ///     like the startup news article. For example, Freakshow impersonates Traitors and simply lies about the masks.
+    ///     like the startup news article.
     /// </summary>
     [DataField]
     public ProtoId<ESMasqueradePrototype>? ImpersonateMasquerade = null;

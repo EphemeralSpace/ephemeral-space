@@ -17,7 +17,7 @@ public sealed partial class ESHasTroupeFilter : MindFilter
 
     protected override bool ShouldRemove(Entity<MindComponent> mind, EntityUid? exclude, IEntityManager entMan, SharedMindSystem mindSys)
     {
-        var maskSys = entMan.System<ESSharedSecretIdentitySystem>();
-        return maskSys.GetTroupeOrNull(mind.AsNullable()) != Troupe;
+        var secretIdentitySys = entMan.System<ESSharedSecretIdentitySystem>();
+        return secretIdentitySys.GetTroupeOrNull(mind.AsNullable()) != Troupe;
     }
 }

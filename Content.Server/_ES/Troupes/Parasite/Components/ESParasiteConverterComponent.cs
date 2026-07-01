@@ -12,7 +12,7 @@ public sealed partial class ESParasiteConverterComponent : Component
     public ProtoId<ESTroupePrototype> IgnoreTroupe = "Parasite";
 
     [DataField]
-    public ProtoId<ESSecretIdentityPrototype> Mask = "Host";
+    public ProtoId<ESSecretIdentityPrototype> SecretIdentity = "Host";
 
     [DataField]
     public SoundSpecifier Sound = new SoundCollectionSpecifier("desecration");
