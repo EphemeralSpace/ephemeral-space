@@ -785,3 +785,11 @@ Entries:
       message: Door jammer fits in a utility belt
   id: 89
   time: '2026-06-29T19:39:03.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        We are renaming Masks to Secret Identities and Troupes to Organizations.
+        i am very deeply sorry or something if you got attached to those names
+  id: 90
+  time: '2026-07-01T06:05:10.0000000+00:00'
