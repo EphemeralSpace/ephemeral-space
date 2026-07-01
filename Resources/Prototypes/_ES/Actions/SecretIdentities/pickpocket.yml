@@ -6,10 +6,10 @@
   components:
   - type: Action
     icon:
-      sprite: _ES/Actions/masks/pickpocket.rsi
+      sprite: _ES/Actions/SecretIdentity/pickpocket.rsi
       state: pickpocket
     iconOn:
-      sprite: _ES/Actions/masks/pickpocket.rsi
+      sprite: _ES/Actions/SecretIdentity/pickpocket.rsi
       state: pickpocket-on
   - type: TargetAction
   - type: EntityTargetAction

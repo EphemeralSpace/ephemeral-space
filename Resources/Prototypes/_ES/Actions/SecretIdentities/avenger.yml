@@ -6,7 +6,7 @@
   components:
   - type: Action
     icon:
-      sprite: _ES/Actions/masks/avenger.rsi
+      sprite: _ES/Actions/SecretIdentity/avenger.rsi
       state: icon
     useDelay: 45
   - type: InstantAction
