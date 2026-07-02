@@ -1,0 +1,42 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by EmoGarbage",
+    "size":
+    {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "face_0"
+        },
+        {
+            "name": "face_1"
+        },
+        {
+            "name": "top_0"
+        },
+        {
+            "name": "top_1"
+        },
+        {
+            "name": "bottom_0"
+        },
+        {
+            "name": "bottom_1"
+        },
+        {
+            "name": "none_0"
+        },
+        {
+            "name": "none_1"
+        },
+        {
+            "name": "id_0"
+        },
+        {
+            "name": "id_1"
+        }
+    ]
+}

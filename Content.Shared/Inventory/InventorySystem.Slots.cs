@@ -192,6 +192,17 @@ public partial class InventorySystem : EntitySystem
         return new InventorySlotEnumerator(entity.Comp, flags);
     }
 
+    public IEnumerable<EntityUid> GetSlotEntities(Entity<InventoryComponent?> ent, SlotFlags flags = SlotFlags.All)
+    {
+        var enumerator = GetSlotEnumerator(ent, flags);
+
+        while (enumerator.MoveNext(out var slot))
+        {
+            if (slot.ContainedEntity is { } uid)
+                yield return uid;
+        }
+    }
+
     public bool TryGetSlots(EntityUid uid, [NotNullWhen(true)] out SlotDefinition[]? slotDefinitions)
     {
         if (!TryComp(uid, out InventoryComponent? inv))
