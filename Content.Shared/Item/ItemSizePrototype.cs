@@ -34,7 +34,7 @@ public sealed partial class ItemSizePrototype : IPrototype, IComparable<ItemSize
     /// Base time it takes to pick up this size of item.
     /// Will be modified in other contexts by the storage item, whether it's clothing, whether it's in a pocket, etc.
     /// </summary>
-    [DataField(required: true), AutoNetworkedField]
+    [DataField(required: true)]
     public TimeSpan BasePickupTime;
 
     public int CompareTo(ItemSizePrototype? other)
