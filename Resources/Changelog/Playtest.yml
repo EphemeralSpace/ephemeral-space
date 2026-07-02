@@ -815,3 +815,13 @@ Entries:
       message: Disposals no longer artbleeds you
   id: 92
   time: '2026-07-02T13:08:30.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Being in combat mode while holding a gun will now show a visible
+        crosshair to yourself and others. You can use it for fun activities like
+        scaring people badly by threatening to shoot them or by pointing at
+        various objects
+  id: 93
+  time: '2026-07-02T13:09:28.0000000+00:00'
