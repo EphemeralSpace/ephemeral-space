@@ -3,6 +3,7 @@
   id: Tiny
   weight: 1
   name: item-component-size-Tiny
+  basePickupTime: 0.3
   defaultShape:
   - 0,0,0,0
 
@@ -11,6 +12,7 @@
   id: Small
   weight: 2
   name: item-component-size-Small
+  basePickupTime: 0.5
   defaultShape:
   - 0,0,0,1
 
@@ -19,6 +21,7 @@
   id: Normal
   weight: 4
   name: item-component-size-Normal
+  basePickupTime: 0.75
   defaultShape:
   - 0,0,1,1
 
@@ -27,6 +30,7 @@
   id: Large
   weight: 8
   name: item-component-size-Large
+  basePickupTime: 1.25
   defaultShape:
   - 0,0,3,1
 
@@ -35,6 +39,7 @@
   id: Huge
   weight: 16
   name: item-component-size-Huge
+  basePickupTime: 1.65
   defaultShape:
   - 0,0,3,3
 
@@ -43,5 +48,6 @@
   id: Ginormous
   weight: 32
   name: item-component-size-Ginormous
+  basePickupTime: 2
   defaultShape:
   - 0,0,5,5

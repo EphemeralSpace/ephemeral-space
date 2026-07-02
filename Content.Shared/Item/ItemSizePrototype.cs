@@ -30,6 +30,13 @@ public sealed partial class ItemSizePrototype : IPrototype, IComparable<ItemSize
     [DataField(required: true)]
     public IReadOnlyList<Box2i> DefaultShape = new List<Box2i>();
 
+    /// <summary>
+    /// Base time it takes to pick up this size of item.
+    /// Will be modified in other contexts by the storage item, whether it's clothing, whether it's in a pocket, etc.
+    /// </summary>
+    [DataField(required: true), AutoNetworkedField]
+    public TimeSpan BasePickupTime;
+
     public int CompareTo(ItemSizePrototype? other)
     {
         if (other is not { } otherItemSize)

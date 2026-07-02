@@ -14,7 +14,7 @@
     slots:
     - back
   - type: Storage
-    itemPickupTimeMultiplier: 2
+    itemPickupTimeMultiplier: 1.5
     grid:
     - 0,0,6,3
     maxItemSize: Huge
