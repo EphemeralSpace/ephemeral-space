@@ -54,7 +54,7 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        if (!_combat.IsInCombatMode())
+        if (!_combat.IsInCombatMode() || _entMan.HasComponent<GunComponent>(_hands.GetActiveHandEntity()))
             return false;
 
         return base.BeforeDraw(in args);
@@ -67,19 +67,11 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
         if (mousePosMap.MapId != args.MapId)
             return;
 
-        var handEntity = _hands.GetActiveHandEntity();
-        var isHandGunItem = _entMan.HasComponent<GunComponent>(handEntity);
-        var isGunBolted = true;
-        if (_entMan.TryGetComponent(handEntity, out ChamberMagazineAmmoProviderComponent? chamber))
-            isGunBolted = chamber.BoltClosed ?? true;
-
-
         var mousePos = mouseScreenPosition.Position;
         var uiScale = (args.ViewportControl as Control)?.UIScale ?? 1f;
         var limitedScale = uiScale > 1.25f ? 1.25f : uiScale;
 
-        var sight = isHandGunItem ? (isGunBolted ? _gunSight : _gunBoltSight) : _meleeSight;
-        DrawSight(sight, args.ScreenHandle, mousePos, limitedScale * Scale);
+        DrawSight(_meleeSight, args.ScreenHandle, mousePos, limitedScale * Scale);
     }
 
     private void DrawSight(Texture sight, DrawingHandleScreen screen, Vector2 centerPos, float scale)
