@@ -17,7 +17,7 @@ public sealed partial class MouseRotatorComponent : Component
     ///     How much the desired angle needs to change before a predictive event is sent
     /// </summary>
     [DataField, AutoNetworkedField]
-    public Angle AngleTolerance = Angle.FromDegrees(22.5);
+    public Angle AngleTolerance = Angle.FromDegrees(11.25);
 
     /// <summary>
     ///     The angle that will be lerped to

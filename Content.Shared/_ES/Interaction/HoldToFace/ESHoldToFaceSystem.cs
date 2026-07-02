@@ -21,7 +21,7 @@ public sealed partial class ESHoldToFaceSystem : EntitySystem
 
     private void ToggleRotator(ICommonSession? session, bool value)
     {
-        if (session?.AttachedEntity is not { } ent || !HasComp<ESHoldToFaceComponent>(ent))
+        if (session?.AttachedEntity is not { } ent || !HasComp<ESHoldToFaceComponent>(ent) || HasComp<ESForcedFacingComponent>(ent))
             return;
 
         // Don't try and override combat mode doing the same thing

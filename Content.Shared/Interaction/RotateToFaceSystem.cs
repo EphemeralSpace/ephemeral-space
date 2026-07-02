@@ -1,6 +1,8 @@
 using System.Numerics;
+using Content.Shared._ES.Interaction.HoldToFace;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Movement.Components;
 using Content.Shared.Rotatable;
 using JetBrains.Annotations;
 
@@ -17,6 +19,18 @@ namespace Content.Shared.Interaction
     {
         [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] private SharedTransformSystem _transform = default!;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            SubscribeLocalEvent<ESForcedFacingComponent, ESRefreshNoRotateOnMoveEvent>(OnRefreshNoRotateOnMove);
+        }
+
+        private void OnRefreshNoRotateOnMove(Entity<ESForcedFacingComponent> ent, ref ESRefreshNoRotateOnMoveEvent args)
+        {
+            args.Enabled = true;
+        }
 
         /// <summary>
         /// Tries to rotate the entity towards the target rotation. Returns false if it needs to keep rotating.
@@ -106,5 +120,77 @@ namespace Content.Shared.Interaction
             _transform.SetWorldRotation(xform, diffAngle);
             return true;
         }
+
+        public void RefreshNoRotateOnMove(EntityUid uid)
+        {
+            var ev = new ESRefreshNoRotateOnMoveEvent();
+            RaiseLocalEvent(uid, ref ev);
+
+            if (ev.Enabled)
+            {
+                EnsureComp<NoRotateOnMoveComponent>(uid);
+            }
+            else
+            {
+                RemComp<NoRotateOnMoveComponent>(uid);
+            }
+        }
+
+        public void StartFacing(Entity<ESForcedFacingComponent?> ent, EntityUid target)
+        {
+            if (Resolve(ent, ref ent.Comp, false) && ent.Comp.Targets.Contains(target))
+                return;
+
+            var facing = EnsureComp<ESForcedFacingComponent>(ent);
+            facing.Targets.Add(target);
+            Dirty(ent, facing);
+
+            var facingTarget = EnsureComp<ESForcedFacingTargetComponent>(target);
+            facingTarget.Facing.Add(ent);
+            Dirty(target, facingTarget);
+
+            RefreshNoRotateOnMove(ent);
+        }
+
+        public void StopFacing(Entity<ESForcedFacingComponent?> ent, Entity<ESForcedFacingTargetComponent?> target)
+        {
+            if (!Resolve(ent, ref ent.Comp, false))
+                return;
+
+            ent.Comp.Targets.Remove(target);
+            Dirty(ent);
+
+            if (Resolve(target, ref target.Comp, false))
+            {
+                target.Comp.Facing.Remove(ent);
+                Dirty(target, target.Comp);
+
+                if (target.Comp.Facing.Count == 0)
+                    RemComp(target, target.Comp);
+            }
+
+            if (!ent.Comp.PrimaryTarget.HasValue)
+            {
+                RemComp(ent, ent.Comp);
+                RefreshNoRotateOnMove(ent);
+            }
+        }
+
+        public override void Update(float frameTime)
+        {
+            base.Update(frameTime);
+
+            foreach (var (uid, comp) in EntityQueryEnumerator<ESForcedFacingComponent>())
+            {
+                if (comp.PrimaryTarget is not { } target)
+                    continue;
+
+                var targetCoords = _transform.GetMapCoordinates(target).Position;
+                TryFaceCoordinates(uid, targetCoords);
+            }
+        }
     }
+
+    [ByRefEvent]
+    public record struct ESRefreshNoRotateOnMoveEvent(bool Enabled = false);
 }

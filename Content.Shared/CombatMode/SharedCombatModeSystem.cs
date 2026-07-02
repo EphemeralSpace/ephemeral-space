@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Interaction;
 using Content.Shared.Mind;
 using Content.Shared.MouseRotator;
 using Content.Shared.Movement.Components;
@@ -15,6 +16,7 @@ public abstract partial class SharedCombatModeSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedNPCSystem _npc = default!;
+    [Dependency] private RotateToFaceSystem _rotateToFace = default!;
 
     public override void Initialize()
     {
@@ -95,13 +97,13 @@ public abstract partial class SharedCombatModeSystem : EntitySystem
         if (value)
         {
             EnsureComp<MouseRotatorComponent>(uid);
-            EnsureComp<NoRotateOnMoveComponent>(uid);
         }
         else
         {
             RemComp<MouseRotatorComponent>(uid);
-            RemComp<NoRotateOnMoveComponent>(uid);
         }
+
+        _rotateToFace.RefreshNoRotateOnMove(uid);
     }
 }
 

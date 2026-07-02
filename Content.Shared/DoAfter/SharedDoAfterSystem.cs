@@ -18,6 +18,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 {
     [Dependency] protected IGameTiming GameTiming = default!;
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private RotateToFaceSystem _rotateToFace = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TagSystem _tag = default!;
 
@@ -91,6 +92,11 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
         if (component.AwaitedDoAfters.Remove(doAfter.Index, out var tcs))
             tcs.SetResult(doAfter.Cancelled ? DoAfterStatus.Cancelled : DoAfterStatus.Finished);
+
+        if (Exists(doAfter.Args.User) && Exists(doAfter.Args.Target))
+        {
+            _rotateToFace.StopFacing(doAfter.Args.User, doAfter.Args.Target.Value);
+        }
     }
 
     private void OnDoAfterGetState(EntityUid uid, DoAfterComponent comp, ref ComponentGetState args)
@@ -264,6 +270,11 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             RaiseDoAfterEvents(doAfter, comp);
             // We don't store instant do-afters. This is just a lazy way of hiding them from client-side visuals.
             return true;
+        }
+
+        if (args.Target.HasValue)
+        {
+            _rotateToFace.StartFacing(args.User, args.Target.Value);
         }
 
         comp.DoAfters.Add(doAfter.Index, doAfter);
