@@ -11,6 +11,7 @@
     - category: LungDamage # Offbrand
     - category: Stamina
     - alertType: SuitPower
+    - category: ESDisguise
     - category: Internals
     - alertType: Fire
     - alertType: Handcuffed

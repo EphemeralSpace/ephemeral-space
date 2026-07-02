@@ -176,14 +176,15 @@ public sealed partial class IdentitySystem : EntitySystem
             Dirty(ident, identityGrammar);
         }
 
+        var identityChangedEvent = new IdentityChangedEvent(ent, ident);
+        RaiseLocalEvent(ent, ref identityChangedEvent);
+
         if (name == Name(ident))
             return;
 
         _metaData.SetEntityName(ident, name);
 
         _adminLog.Add(LogType.Identity, LogImpact.Medium, $"{ToPrettyString(ent)} changed identity to {name}");
-        var identityChangedEvent = new IdentityChangedEvent(ent, ident);
-        RaiseLocalEvent(ent, ref identityChangedEvent);
         SetIdentityCriminalIcon(ent);
     }
 
@@ -259,6 +260,14 @@ public sealed partial class IdentitySystem : EntitySystem
         RaiseLocalEvent(target, ev);
 
         return ev.TotalCoverage.HasFlag(coverage);
+    }
+
+    public IdentityBlockerCoverage GetIdentityBlockerCoverage(EntityUid target)
+    {
+        var ev = new SeeIdentityAttemptEvent();
+        RaiseLocalEvent(target, ev);
+
+        return ev.TotalCoverage;
     }
 // ES END
 }
