@@ -112,17 +112,20 @@ public abstract partial class SharedItemSystem : EntitySystem
         if (!_handsSystem.CanPickupActiveHand(args.User, uid))
             return;
 
+        if (!ProtoMan.TryIndex(component.Size, out var size))
+            return;
+
         var ev = new DoAfterArgs(EntityManager,
             args.User,
-            component.BasePickupTime,
+            size.BasePickupTime,
             new ItemPickupDoAfterEvent(),
             uid,
             uid)
         {
             BlockDuplicate = false,
             BreakOnHandChange = false,
-            BreakOnMove = true,
-            MovementThreshold = 0.5f,
+            BreakOnMove = false,
+            DistanceThreshold = 1.5f,
         };
 
         args.Handled = _doafter.TryStartDoAfter(ev);

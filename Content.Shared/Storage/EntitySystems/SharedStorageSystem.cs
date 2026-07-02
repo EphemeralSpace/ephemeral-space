@@ -740,9 +740,12 @@ public abstract partial class SharedStorageSystem : EntitySystem
                 LogImpact.Low,
                 $"{ToPrettyString(player):player} is attempting to take {ToPrettyString(item):item} out of {ToPrettyString(storage):storage}");
 
+            if (!ProtoMan.TryIndex(item.Comp.Size, out var size))
+                return;
+
             var ev = new DoAfterArgs(EntityManager,
                 player,
-                item.Comp.BasePickupTime * storage.Comp.ItemPickupTimeMultiplier,
+                size.BasePickupTime * storage.Comp.ItemPickupTimeMultiplier,
                 new ItemPickupDoAfterEvent(),
                 item.Owner,
                 item.Owner)
@@ -750,7 +753,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
                 BlockDuplicate = false,
                 BreakOnHandChange = false,
                 BreakOnMove = false,
-                DistanceThreshold = 0.5f,
+                DistanceThreshold = 1.5f,
             };
 
             if (_doAfterSystem.TryStartDoAfter(ev)
