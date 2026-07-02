@@ -825,3 +825,11 @@ Entries:
         various objects
   id: 93
   time: '2026-07-02T13:09:28.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added a new alert that indicates if you're disguised and if your voice
+        is obscured.
+  id: 94
+  time: '2026-07-02T16:24:28.0000000+00:00'
