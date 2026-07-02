@@ -801,3 +801,17 @@ Entries:
         jammers.
   id: 91
   time: '2026-07-02T00:34:29.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Item pickup doafters tweaked across the board, should be generally lower
+        esp for smaller objects
+    - type: Fix
+      message: >-
+        Range/doafter distance for picking up items esp out of storage
+        containers should be more sensible
+    - type: Fix
+      message: Disposals no longer artbleeds you
+  id: 92
+  time: '2026-07-02T13:08:30.0000000+00:00'
