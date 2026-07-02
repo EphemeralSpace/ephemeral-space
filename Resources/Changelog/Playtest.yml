@@ -793,3 +793,11 @@ Entries:
         i am very deeply sorry or something if you got attached to those names
   id: 90
   time: '2026-07-01T06:05:10.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Fixed being unable to pick up embedded projectiles like spears and door
+        jammers.
+  id: 91
+  time: '2026-07-02T00:34:29.0000000+00:00'
