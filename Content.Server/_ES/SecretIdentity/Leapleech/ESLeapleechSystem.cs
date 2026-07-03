@@ -2,7 +2,6 @@
 using Content.Server._ES.SecretIdentity.Objectives.Relays;
 using Content.Server._ES.SecretIdentity.Objectives.Relays.Components;
 using Content.Server._ES.SecretIdentity.Parasite;
-using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared.Alert;
@@ -24,7 +23,6 @@ public sealed partial class ESLeapleechSystem : ESBaseParasiteSystem<ESLeapleech
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private GibbingSystem _gibbing = default!;
-    [Dependency] private MindSystem _mind = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private ThrowingSystem _throwingSystem = default!;
 
@@ -80,7 +78,7 @@ public sealed partial class ESLeapleechSystem : ESBaseParasiteSystem<ESLeapleech
             SecretIdentity.GetOrganizationOrNull(origin) == ent.Comp.IgnoreOrganization)
             return;
 
-        if (!_mind.TryGetMind(origin, out _))
+        if (!Mind.TryGetMind(origin, out _))
             return;
 
         var damage = DamageSpecifier.GetPositive(args.DamageDone).GetTotal();
