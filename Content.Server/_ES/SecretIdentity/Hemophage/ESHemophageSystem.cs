@@ -1,5 +1,5 @@
 using Content.Server._ES.SecretIdentity.Hemophage.Components;
-using Content.Shared._ES.KillTracking.Components;
+using Content.Server._ES.SecretIdentity.Parasite;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
@@ -10,26 +10,17 @@ using Content.Shared.Mind;
 
 namespace Content.Server._ES.SecretIdentity.Hemophage;
 
-public sealed partial class ESHemophageSystem : EntitySystem
+public sealed partial class ESHemophageSystem : ESBaseParasiteSystem<ESHemophageComponent>
 {
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
-    /// <inheritdoc/>
-    public override void Initialize()
+    protected override void OnValidParasiteKill(Entity<ESHemophageComponent> ent,
+        EntityUid killed,
+        EntityUid killer,
+        Entity<MindComponent> killedMind,
+        Entity<MindComponent> killerMind)
     {
-        SubscribeLocalEvent<ESHemophageComponent, ESPlayerKilledEvent>(OnPlayerKilled);
-    }
-
-    private void OnPlayerKilled(Entity<ESHemophageComponent> ent, ref ESPlayerKilledEvent args)
-    {
-        if (!args.ValidKill)
-            return;
-
-        if (!TryComp<MindComponent>(ent, out var mind) ||
-            mind.OwnedEntity is not { } owned)
-            return;
-
-        if (!TryComp<DnaComponent>(owned, out var dna) || dna.DNA == null)
+        if (!TryComp<DnaComponent>(killed, out var dna) || dna.DNA == null)
             return;
 
         var query = EntityQueryEnumerator<PuddleComponent, SolutionContainerManagerComponent, TransformComponent>();

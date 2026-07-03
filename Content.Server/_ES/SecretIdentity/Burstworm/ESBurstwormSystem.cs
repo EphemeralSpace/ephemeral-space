@@ -1,10 +1,10 @@
 using System.Numerics;
 using Content.Server._ES.SecretIdentity.Burstworm.Components;
+using Content.Server._ES.SecretIdentity.Parasite;
 using Content.Server.Popups;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared._ES.Core.Timer;
-using Content.Shared._ES.KillTracking.Components;
 using Content.Shared.Gibbing;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Lock;
@@ -16,7 +16,7 @@ using Robust.Server.Containers;
 
 namespace Content.Server._ES.SecretIdentity.Burstworm;
 
-public sealed partial class ESBurstwormSystem : EntitySystem
+public sealed partial class ESBurstwormSystem : ESBaseParasiteSystem<ESBurstwormComponent>
 {
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private ContainerSystem _container = default!;
@@ -30,18 +30,20 @@ public sealed partial class ESBurstwormSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<ESBurstwormComponent, ESPlayerKilledEvent>(OnPlayerKilled);
+        base.Initialize();
+
         SubscribeLocalEvent<ESBurstwormComponent, ESBurstwormBurstTimerEvent>(OnBurstTimer);
     }
 
-    private void OnPlayerKilled(Entity<ESBurstwormComponent> ent, ref ESPlayerKilledEvent args)
+    protected override void OnValidParasiteKill(Entity<ESBurstwormComponent> ent,
+        EntityUid killed,
+        EntityUid killer,
+        Entity<MindComponent> killedMind,
+        Entity<MindComponent> killerMind)
     {
-        if (!args.ValidKill)
-            return;
-
         _popup.PopupEntity(
-            Loc.GetString("es-parasite-burstworm-warning", ("name", Identity.Entity(args.Killed, EntityManager))),
-            args.Killed,
+            Loc.GetString("es-parasite-burstworm-warning", ("name", Identity.Entity(killed, EntityManager))),
+            killed,
             PopupType.LargeCaution);
 
         _entityTimer.SpawnTimer(ent, ent.Comp.BurstDelay, new ESBurstwormBurstTimerEvent());

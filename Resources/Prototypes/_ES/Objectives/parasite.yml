@@ -16,7 +16,7 @@
   parent: ESBaseSecretIdentityObjective
   id: ESObjectiveParasiteDie
   name: Be killed
-  description: Once someone kills you, the parasites in your body will respond to their brain hormones and launch into action.
+  description: Once someone not of our kind kills you, the parasites in our body will respond to their brain hormones and launch into action.
   components:
   - type: ESObjective
     icon:
