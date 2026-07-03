@@ -422,6 +422,4 @@
       - id: ESWeaponPistol9mmSilenced
     - id: ESClothingOuterArmorSecurity
     - id: ESSpeedLoader357
-      amount: 2
     - id: ESMagazine9mm
-      amount: 2
