@@ -239,7 +239,17 @@ namespace Content.Server.GameTicking
                 AttachPlayerToLobbyCharacter(session);
 // ES END
 
-            _playerGameStatuses[session.UserId] = LobbyEnabled ? PlayerGameStatus.NotReadyToPlay : PlayerGameStatus.ReadyToPlay;
+            if (LobbyEnabled)
+            {
+                // If we're in the lobby, preserve ready up status if we are coming the lobby
+                if (!_playerGameStatuses.TryGetValue(session.UserId, out var oldStatus) ||
+                    oldStatus != PlayerGameStatus.ReadyToPlay)
+                    _playerGameStatuses[session.UserId] = PlayerGameStatus.NotReadyToPlay;
+            }
+            else
+            {
+                _playerGameStatuses[session.UserId] = PlayerGameStatus.ReadyToPlay;
+            }
             _db.AddRoundPlayers(RoundId, session.UserId);
 
             var client = session.Channel;

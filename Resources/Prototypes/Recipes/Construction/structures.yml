@@ -1043,18 +1043,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: CarpStatue
-  graph: CarpStatue
-  startNode: start
-  targetNode: statue
-  category: construction-category-structures
-  placementMode: SnapgridCenter
-  objectType: Structure
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
   id: BananiumClownStatue
   graph: BananiumStatueClown
   startNode: start

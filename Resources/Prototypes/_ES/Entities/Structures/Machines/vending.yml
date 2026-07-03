@@ -178,13 +178,52 @@
   - type: Sprite
     sprite: _ES/Structures/Vendors/seeds.rsi
   - type: VendingMachine
-    pack: MegaSeedServitorInventory
   - type: DatasetVocalizer
     dataset: MegaSeedAds
   - type: SpeakOnUIClosed
     pack: GenericVendGoodbyes
   - type: PointLight
     color: "#7acb89"
+  - type: ESEntityTableVendorFill
+    inventory:
+      all:
+      # random smattering of different seeds for variety
+      - pick:
+          all:
+          - id: BananaSeeds
+            amount: 2
+          - id: CarrotSeeds
+          - id: BerrySeeds
+            amount: 2
+          - id: DeathNettleSeeds
+          - id: CannabisSeeds
+          - id: FlyAmanitaSeeds
+          - id: ChiliSeeds
+          - id: CocoaSeeds
+          - id: RiceSeeds
+          - id: SoybeanSeeds
+          - id: SugarcaneSeeds
+          - id: TowercapSeeds
+            amount: 2
+          - id: PumpkinSeeds
+          - id: GarlicSeeds
+          - id: ChanterelleSeeds
+          - id: WatermelonSeeds
+        amount: 10
+      # guaranteed plants you kinda need some of
+      - all:
+        - id: WheatSeeds
+          amount: 3
+        - id: TomatoSeeds
+          amount: 3
+        - id: CornSeeds
+          amount: 2
+        - id: OnionSeeds
+          amount: 2
+        - id: PotatoSeeds
+          amount: 2
+        - id: CabbageSeeds
+          amount: 2
 
 - type: entity
   parent: ESBaseVendingMachine
@@ -396,7 +435,7 @@
     energy: 35
     color: "#fcafc1"
   - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+    access: [["StationAdmin"]]
   - type: ESAmbientMusicMarkerCommand
 
 - type: entity

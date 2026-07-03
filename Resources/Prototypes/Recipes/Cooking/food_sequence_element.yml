@@ -979,46 +979,6 @@
   - sprite: Objects/Specific/Hydroponics/fly_amanita.rsi
     state: produce
 
-# Gatfruit
-
-- type: foodSequenceElement
-  id: Gatfruit
-  name: food-sequence-content-gatfruit
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/gatfruit.rsi
-    state: produce
-  tags:
-  - Fruit
-
-- type: foodSequenceElement
-  id: GatfruitBurger
-  name: food-sequence-burger-content-gatfruit
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/gatfruit.rsi
-    state: produce
-  tags:
-  - Fruit
-
-# Capfruit
-
-- type: foodSequenceElement
-  id: Capfruit
-  name: food-sequence-content-capfruit
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/capfruit.rsi
-    state: produce
-  tags:
-  - Fruit
-
-- type: foodSequenceElement
-  id: CapfruitBurger
-  name: food-sequence-burger-content-capfruit
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/capfruit.rsi
-    state: produce
-  tags:
-  - Fruit
-
 # Soybeans
 
 - type: foodSequenceElement
@@ -1099,48 +1059,6 @@
   tags:
   - Fruit
 
-# bungo
-
-- type: foodSequenceElement
-  id: Bungo
-  name: food-sequence-content-bungo
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/bungo.rsi
-    state: produce
-  tags:
-  - Fruit
-
-# Pea
-
-- type: foodSequenceElement
-  id: Pea
-  name: food-sequence-content-pea
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/pea.rsi
-    state: produce
-  tags:
-  - Vegetable
-
-# World Pea
-
-- type: foodSequenceElement
-  id: WorldPea
-  name: food-sequence-content-world-pea
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/world_pea.rsi
-    state: produce
-  tags:
-  - Vegetable
-
-- type: foodSequenceElement
-  id: WorldPeaBurger
-  name: food-sequence-burger-content-world-pea
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/world_pea.rsi
-    state: produce
-  tags:
-  - Vegetable
-
 # Cherry
 
 - type: foodSequenceElement
@@ -1188,22 +1106,6 @@
   - sprite: Objects/Consumable/Food/Baked/cake.rsi
     state: suppermatter-shard
 
-
-# Anomaly berries
-
-- type: foodSequenceElement
-  id: AnomalyBerry
-  name: food-sequence-content-anomaly-berry
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/anomaly_berry.rsi
-    state: produce
-
-- type: foodSequenceElement
-  id: AnomalyBerryBurger
-  name: food-sequence-burger-content-anomaly-berry
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/anomaly_berry.rsi
-    state: produce
 
 # Cotton Top Bun
 

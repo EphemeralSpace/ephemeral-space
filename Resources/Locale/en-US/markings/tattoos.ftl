@@ -28,24 +28,6 @@ marking-TattooEyeRight = Right Eye
 marking-TattooEyeLeft-tattoo_eye_l = Left Eye
 marking-TattooEyeLeft = Left Eye
 
-marking-TattooEyeMothRight-tattoo_eye_moth_r = Right Eye
-marking-TattooEyeMothRight = Right Eye
-
-marking-TattooEyeMothLeft-tattoo_eye_moth_l = Left Eye
-marking-TattooEyeMothLeft = Left Eye
-
-marking-TattooEyeVulpkaninRight-tattoo_eye_vulpkanin_r = Right Eye
-marking-TattooEyeVulpkaninRight = Right Eye
-
-marking-TattooEyeVulpkaninLeft-tattoo_eye_vulpkanin_l = Left Eye
-marking-TattooEyeVulpkaninLeft = Left Eye
-
-marking-TattooEyeVoxRight-tattoo_eye_vox_r = Right Eye
-marking-TattooEyeVoxRight = Right Eye
-
-marking-TattooEyeVoxLeft-tattoo_eye_vox_l = Left Eye
-marking-TattooEyeVoxLeft = Left Eye
-
 marking-TattooEyeshadowUpper-tattoo_eyeshadow_upper = Eyeshadow (Upper)
 marking-TattooEyeshadowUpper = Eyeshadow (Upper)
 

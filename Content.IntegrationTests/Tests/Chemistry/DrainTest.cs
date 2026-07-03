@@ -10,7 +10,7 @@ namespace Content.IntegrationTests.Tests.Chemistry;
 
 public sealed class DrainTest : InteractionTest
 {
-    private static readonly EntProtoId PizzaPrototype = "FoodPizzaMargherita";
+    private static readonly EntProtoId DonkPocketPrototype = "FoodDonkpocketWarm";
     private static readonly EntProtoId DrainPrototype = "FloorDrain";
     private static readonly EntProtoId BucketPrototype = "Bucket";
     private static readonly ProtoId<ReagentPrototype> BloodReagent = "Blood";
@@ -69,23 +69,23 @@ public sealed class DrainTest : InteractionTest
 
         await Delete(bucket);
 
-        // Spawn a pizza at the player's coordinates.
-        var pizza = await Spawn(PizzaPrototype, PlayerCoords);
+        // Spawn a donkpocket at the player's coordinates.
+        var donkpocket = await Spawn(DonkPocketPrototype, PlayerCoords);
 
-        // Check that the pizza is not empty.
-        var edibleSolutionId = Comp<EdibleComponent>(pizza).Solution;
-        Assert.That(solutionContainerSys.TryGetSolution(ToServer(pizza), edibleSolutionId, out solutionEnt, out solution), "Pizza had no edible solution.");
-        var pizzaVolume = solution.Volume;
-        Assert.That(pizzaVolume, Is.GreaterThan(FixedPoint2.Zero), "Pizza had no reagents inside its edible solution.");
+        // Check that the donkpocket is not empty.
+        var edibleSolutionId = Comp<EdibleComponent>(donkpocket).Solution;
+        Assert.That(solutionContainerSys.TryGetSolution(ToServer(donkpocket), edibleSolutionId, out solutionEnt, out solution), "Donkpocket had no edible solution.");
+        var donkpocketVolume = solution.Volume;
+        Assert.That(donkpocketVolume, Is.GreaterThan(FixedPoint2.Zero), "Donkpocket had no reagents inside its edible solution.");
 
-        // Drag drop the pizza onto the drain.
+        // Drag drop the donkpocket onto the drain.
         // Yes, this was a bug that existed before.
-        await DragDrop(pizza, drain);
+        await DragDrop(donkpocket, drain);
 
-        // Check that the pizza did not get deleted or had its reagents drained.
-        AssertExists(pizza);
-        Assert.That(solutionContainerSys.TryGetSolution(ToServer(pizza), edibleSolutionId, out solutionEnt, out solution), "Pizza had no edible solution.");
-        Assert.That(solution.Volume, Is.EqualTo(pizzaVolume), "Pizza lost reagents when drag dropped onto a drain.");
+        // Check that the donkpocket did not get deleted or had its reagents drained.
+        AssertExists(donkpocket);
+        Assert.That(solutionContainerSys.TryGetSolution(ToServer(donkpocket), edibleSolutionId, out solutionEnt, out solution), "Donkpocket had no edible solution.");
+        Assert.That(solution.Volume, Is.EqualTo(donkpocketVolume), "Donkpocket lost reagents when drag dropped onto a drain.");
     }
 
     /// <summary>

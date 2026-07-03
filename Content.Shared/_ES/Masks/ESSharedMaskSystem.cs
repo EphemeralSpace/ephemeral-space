@@ -22,6 +22,8 @@ public abstract partial class ESSharedMaskSystem : EntitySystem
 {
     [Dependency] protected ISharedAdminManager AdminManager = default!;
     [Dependency] private INetManager _netManager = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
     [Dependency] protected SharedMindSystem Mind = default!;
     [Dependency] protected ESSharedObjectiveSystem Objective = default!;
@@ -347,6 +349,31 @@ public abstract partial class ESSharedMaskSystem : EntitySystem
         foreach (var mind in troupeEnt.Value.Comp.TroupeMemberMinds)
         {
             yield return mind;
+        }
+    }
+
+    /// <summary>
+    /// Returns all minds nearby who are members of a given hostile troupe
+    /// </summary>
+    public IEnumerable<EntityUid> GetNearbyHostileTroupeMembers(Entity<ESHostileTowardsTroupeComponent?> ent, float range)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            yield break;
+
+        var xform = Transform(ent);
+
+        foreach (var entity in _lookup.GetEntitiesInRange<ESBodyLastMaskComponent>(_xform.GetMapCoordinates(ent, xform), range))
+        {
+            var mask = PrototypeManager.Index(entity.Comp.LastMask);
+            var troupe = mask.Troupe;
+
+            if (ent.Comp.NonHostileTroupes != null && ent.Comp.NonHostileTroupes.Contains(troupe))
+                continue;
+
+            if (ent.Comp.HostileTroupes != null && !ent.Comp.HostileTroupes.Contains(troupe))
+                continue;
+
+            yield return entity.Owner;
         }
     }
 

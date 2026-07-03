@@ -40,7 +40,7 @@ public sealed partial class ESPhantomSystem : EntitySystem
     {
         if (_physics.GetEntitiesIntersectingBody(ent, (int) CollisionGroup.Impassable).Count > 0)
         {
-            _popup.PopupPredicted(Loc.GetString("es-phantom-materialize-fail"), ent, ent, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("es-phantom-materialize-fail"), ent, ent, PopupType.Medium);
             return;
         }
 

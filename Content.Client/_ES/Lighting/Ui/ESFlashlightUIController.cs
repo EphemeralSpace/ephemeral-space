@@ -64,7 +64,7 @@ public sealed partial class ESFlashlightUIController : UIController, IOnStateCha
         }
         else
         {
-            _popup.PopupPredictedCursor(Loc.GetString("es-flashlight-popup-no-flashlight"), player, PopupType.Medium);
+            _popup.PopupCursor(Loc.GetString("es-flashlight-popup-no-flashlight"), player, PopupType.Medium);
         }
         return true;
     }

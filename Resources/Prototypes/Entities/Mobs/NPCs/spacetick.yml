@@ -63,7 +63,7 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 1
   - type: Bloodstream
     bloodReferenceSolution:

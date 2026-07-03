@@ -33,11 +33,9 @@
 
 - type: esMask
   parent: ESBaseParasite
-  id: Psychid
-  name: es-mask-psychid-name
-  description: es-mask-psychid-desc
-  color: lightsteelblue
-  tips:
-  - PsychidConversion
+  id: Leapleech
+  name: es-mask-leapleech-name
+  description: es-mask-leapleech-desc
+  color: darkgoldenrod
   mindComponents:
-  - type: ESPsychid
+  - type: ESLeapleech

@@ -274,12 +274,6 @@
         - !type:ReagentCondition
           reagent: SalineGlucose
           max: 1
-      - !type:SatiateHunger
-        factor: 0.5
-        conditions:
-        - !type:ReagentCondition
-          reagent: SalineGlucose
-          max: 1
       - !type:HealthChange
         damage:
           groups:
@@ -302,7 +296,6 @@
   physicalDesc: reagent-physical-desc-viscous
   flavor: metallic
   color: "#bf0000"
-  contrabandSeverity: Syndicate
   metabolisms:
     Medicine:
       metabolismRate: 0.2
@@ -321,7 +314,6 @@
   physicalDesc: reagent-physical-desc-putrid
   flavor: meaty
   color: "#c9abab"
-  contrabandSeverity: Syndicate
   metabolisms:
     Medicine:
       effects:

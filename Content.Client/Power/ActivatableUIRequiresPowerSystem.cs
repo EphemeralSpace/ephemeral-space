@@ -19,7 +19,7 @@ public sealed partial class ActivatableUIRequiresPowerSystem : SharedActivatable
         }
 
         if (!args.Silent)
-            _popup.PopupClient(Loc.GetString("base-computer-ui-component-not-powered", ("machine", ent.Owner)), args.User, args.User);
+            _popup.PopupEntity(Loc.GetString("base-computer-ui-component-not-powered", ("machine", ent.Owner)), args.User, args.User);
 
         args.Cancel();
     }

@@ -6,7 +6,7 @@
 
     <ESGuideObjectiveEmbed Objective="ESObjectiveRebelSabotageCommunications"/>
     <ESGuideObjectiveEmbed Objective="ESObjectiveRebelSabotageCrewMonitoring"/>
-    <ESGuideObjectiveEmbed Objective="ESObjectiveRebelSabotageIDComputer"/>
+    <ESGuideObjectiveEmbed Objective="ESObjectiveRebelSabotageEmergencyAccessTerminal"/>
     <ESGuideObjectiveEmbed Objective="ESObjectiveRebelSabotageCriminalRecords"/>
     <ESGuideObjectiveEmbed Objective="ESObjectiveRebelSabotageTelecom"/>
 

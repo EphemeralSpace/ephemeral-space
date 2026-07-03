@@ -78,6 +78,9 @@ public sealed class DoAfterOverlay : Overlay
             if (xform.MapID != args.MapId)
                 continue;
 
+            if (!sprite.Visible)
+                continue;
+
             if (comp.DoAfters.Count == 0)
                 continue;
 

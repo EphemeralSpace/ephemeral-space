@@ -52,14 +52,14 @@ public sealed partial class SolutionSpikerSystem : EntitySystem
 
         if (targetSolution.Volume == 0 && !spikableSource.IgnoreEmpty)
         {
-            _popup.PopupClient(Loc.GetString(spikableSource.PopupEmpty, ("spiked-entity", target), ("spike-entity", source)), user, user);
+            _popup.PopupEntity(Loc.GetString(spikableSource.PopupEmpty, ("spiked-entity", target), ("spike-entity", source)), user, user);
             return false;
         }
 
         if (!_solution.ForceAddSolution(targetSoln.Value, sourceSolution))
             return false;
 
-        _popup.PopupClient(Loc.GetString(spikableSource.Popup, ("spiked-entity", target), ("spike-entity", source)), user, user);
+        _popup.PopupEntity(Loc.GetString(spikableSource.Popup, ("spiked-entity", target), ("spike-entity", source)), user, user);
         sourceSolution.RemoveAllSolution();
         if (spikableSource.Delete)
             QueueDel(source);

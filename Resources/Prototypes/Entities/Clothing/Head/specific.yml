@@ -17,32 +17,3 @@
 # ES START
       default: ClothingHeadHatHardhatYellow
 # ES END
-
-- type: entity
-  parent: ClothingHeadHatFedoraBrown
-  id: ClothingHeadHatDetGadget
-  name: go go hat
-  description: A novel hat with a built in toolkit. Automatically stores and retrieves items at the say of a phrase!
-  components:
-  - type: TriggerOnVoice
-    defaultKeyPhrase: key-phrase-gadget
-    listenRange: 0
-  - type: ActiveListener
-    range: 0
-  - type: StorageVoiceControl
-    allowedSlots:
-    - HEAD
-  - type: Storage
-    showVerb: false
-    grid:
-    - 0,0,3,2
-    maxItemSize: Small
-    blacklist:
-      tags:
-      - HighRiskItem # no hiding objectives or trolling nukies
-      - FakeNukeDisk # no disk checking
-      - QuantumSpinInverter # avoid the morbillionth QSI bug
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: [ ]

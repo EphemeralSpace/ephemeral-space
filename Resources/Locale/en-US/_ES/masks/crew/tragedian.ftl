@@ -1,0 +1,36 @@
+es-embody-theme-objective-title = Embody the theme of "{$theme}"
+es-embody-theme-vote-title = Did {$name} embody the theme of "{$theme}?"
+es-embody-theme-vote-query = Has the tragedian embodied their theme:
+
+es-tragedian-call-stagehands-announcement = {$name} called over the stagehands to watch them.
+
+es-tragedian-theme-1 = A Fall From Grace
+es-tragedian-theme-2 = Addiction
+es-tragedian-theme-3 = Alienation
+es-tragedian-theme-4 = Betrayal
+es-tragedian-theme-5 = Corruption
+es-tragedian-theme-6 = Courage
+es-tragedian-theme-7 = Deception
+es-tragedian-theme-8 = Friendship
+es-tragedian-theme-9 = Greed
+es-tragedian-theme-10 = Grief
+es-tragedian-theme-11 = Honor
+es-tragedian-theme-12 = Hubris
+es-tragedian-theme-13 = Injustice
+es-tragedian-theme-14 = Loss
+es-tragedian-theme-15 = Love
+es-tragedian-theme-16 = Mercy
+es-tragedian-theme-17 = Overcoming Adversity
+es-tragedian-theme-18 = Paranoia
+es-tragedian-theme-19 = Perseverance
+es-tragedian-theme-20 = Rebellion
+es-tragedian-theme-21 = Redemption
+es-tragedian-theme-22 = Regret
+es-tragedian-theme-23 = Revenge
+es-tragedian-theme-24 = Sacrifice
+es-tragedian-theme-25 = Suffering
+es-tragedian-theme-26 = Teamwork
+es-tragedian-theme-27 = Tragedy
+es-tragedian-theme-28 = Truth
+es-tragedian-theme-29 = Violence
+es-tragedian-theme-30 = Virtue

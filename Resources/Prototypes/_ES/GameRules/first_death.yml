@@ -1,0 +1,5 @@
+- type: entity
+  id: ESFirstDeathAnnouncementRule
+  parent: BaseGameRule
+  components:
+  - type: ESFirstDeathAnnouncementGameRule

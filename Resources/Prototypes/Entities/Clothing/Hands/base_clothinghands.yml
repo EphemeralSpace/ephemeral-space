@@ -7,18 +7,9 @@
     state: icon
   - type: Clothing
     slots: [gloves]
-  - type: Edible
-    requiresSpecialDigestion: true
   - type: Item
     size: Small
     storedRotation: -90
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
   - type: Tag
     tags:
     - ClothMade

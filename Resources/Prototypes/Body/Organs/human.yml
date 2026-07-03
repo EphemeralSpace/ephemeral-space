@@ -6,20 +6,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
   - type: Organ
-  - type: Edible
-  - type: Extractable
-    grindableSolutionName: organ
-  - type: SolutionContainerManager
-    solutions:
-      organ:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
   - type: FlavorProfile
     flavors:
       - people
@@ -42,28 +28,9 @@
   - type: InputMover
   - type: Examiner
   - type: BlockMovement
-  - type: BadFood
-  - type: Tag
-    tags:
-      - Meat
-  - type: SolutionContainerManager
-    solutions:
-      organ:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: GreyMatter
-          Quantity: 5
   - type: FlavorProfile
     flavors:
       - people
-  - type: FoodSequenceElement
-    entries:
-      Burger: Brain
-      Taco: Brain
   - type: Item
     size: Small
     heldPrefix: brain
@@ -135,18 +102,9 @@
       rateModifier: 100.0
   - type: SolutionContainerManager
     solutions:
-      organ:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
       Lung:
         maxVol: 100.0
         canReact: false
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
 
 - type: entity
   id: OrganHumanHeart
@@ -185,11 +143,6 @@
     solutions:
       stomach:
         maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
   - type: Stomach
   # The stomach metabolizes stuff like foods and drinks.
   # TODO: Have it work off of the ent's solution container, and move this

@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.CCVar;
 using Content.Shared.GameTicking;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.Mind;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Configuration;
@@ -16,6 +17,7 @@ namespace Content.Shared._ES.Auditions;
 public abstract partial class ESSharedAuditionsSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private MarkingManager _marking = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private SharedJobSystem _job = default!;
     [Dependency] private SharedMindSystem _mind = default!;

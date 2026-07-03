@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server._ES.TileFires;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Decals;
 using Content.Server.Destructible;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NPC.Pathfinding;
@@ -16,6 +17,7 @@ using Content.Shared.Explosion.Components;
 using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
+using Content.Shared.Maps;
 using Content.Shared.Projectiles;
 using Content.Shared.Throwing;
 using Robust.Server.GameStates;
@@ -35,6 +37,9 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     // ES START
     [Dependency] private ESScreenshakeSystem _shake = default!;
     [Dependency] private ESTileFireSystem _tileFire = default!;
+    [Dependency] private TileSystem _tile = default!;
+
+    [Dependency] private DecalSystem _decal = default!;
     // ES END
 
     [Dependency] private IMapManager _mapManager = default!;
@@ -258,10 +263,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         }
         else
         {
-            var alertMinExplosionIntensity = _cfg.GetCVar(CCVars.AdminAlertExplosionMinIntensity);
-            var logImpact = (alertMinExplosionIntensity > -1 && totalIntensity >= alertMinExplosionIntensity)
-                ? LogImpact.Extreme
-                : LogImpact.High;
+            var logImpact = LogImpact.High;
             if (posFound)
                 _adminLogger.Add(LogType.Explosion, logImpact, $"{ToPrettyString(user.Value):user} caused {ToPrettyString(uid):entity} to explode ({typeId}) at Pos:{gridPos:coordinates} with intensity {totalIntensity} slope {slope}");
             else
@@ -406,6 +408,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             queued.Cause,
             queued.Origin,
             _map,
-            _damageableSystem);
+            _damageableSystem,
+            _decal);
     }
 }

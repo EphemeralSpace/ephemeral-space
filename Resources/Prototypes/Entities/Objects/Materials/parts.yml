@@ -55,6 +55,7 @@
   - type: Appearance
   - type: FloorTile
     outputs:
+    - ESLatticeDamaged
     - Lattice
     - FloorReinforced
   - type: Extractable

@@ -1,9 +1,9 @@
 using System.Threading;
+using Content.Server._ES.Announcements;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Shared.CCVar;
 using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Screens.Components;
@@ -35,7 +35,7 @@ namespace Content.Server.RoundEnd
         [Dependency] private IChatManager _chatManager = default!;
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private IPrototypeManager _protoManager = default!;
-        [Dependency] private ChatSystem _chatSystem = default!;
+        [Dependency] private ESAnnouncementSystem _chatSystem = default!;
         [Dependency] private GameTicker _gameTicker = default!;
         [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
         [Dependency] private EmergencyShuttleSystem _shuttle = default!;

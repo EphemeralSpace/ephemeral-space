@@ -28,6 +28,18 @@ public sealed partial class ESEntityTimerSystem : EntitySystem
     }
 
     /// <summary>
+    /// Returns the timer's progress on the interval of [0, 1)
+    /// </summary>
+    public float GetTimerProgress(Entity<ESEntityTimerComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return 0;
+
+        var timeRemaining = ent.Comp.TimerEnd - _timing.CurTime;
+        return 1f - (float) (timeRemaining / ent.Comp.Duration);
+    }
+
+    /// <summary>
     ///     Spawns a timer entity that raises a broadcast event after a specified duration.
     /// </summary>
     /// <param name="duration">Duration of the timer</param>
@@ -94,6 +106,7 @@ public sealed partial class ESEntityTimerSystem : EntitySystem
         var comp = _factory.GetComponent<ESEntityTimerComponent>();
 
         comp.TimerEndEvent = endEvent;
+        comp.Duration = duration;
         comp.TimerEnd = _timing.CurTime + duration;
 
         // This is essentially only checking that the type is net serializable, nothing more.
@@ -147,7 +160,8 @@ public sealed partial class ESEntityTimerSystem : EntitySystem
                 RaiseLocalEvent(target, (object) timer.TimerEndEvent);
             }
 
-            PredictedQueueDel(uid);
+            if (!TerminatingOrDeleted(uid))
+                PredictedQueueDel(uid);
         }
     }
 }

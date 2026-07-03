@@ -6,7 +6,6 @@
   weight: -99999 # pick these guys last we don't need more of them.
   startingGear: ESAssistantGear
   icon: "JobIconPassenger"
-  supervisors: job-supervisors-everyone
   access:
   - Maintenance
 
@@ -16,7 +15,7 @@
     shoes: ClothingShoesColorBlack
     id: PassengerPDA
     ears: ClothingHeadsetGrey
-    jumpsuit: ClothingUniformJumpsuitColorGrey
+    jumpsuit: ESClothingUniformJumpsuitAssistant
     back: ClothingBackpack
   storage:
     back:

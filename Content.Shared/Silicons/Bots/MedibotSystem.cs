@@ -70,7 +70,7 @@ public sealed partial class MedibotSystem : EntitySystem
 
         if (HasComp<NPCRecentlyInjectedComponent>(target))
         {
-            _popup.PopupClient(Loc.GetString("medibot-recently-injected"), medibot, medibot);
+            _popup.PopupEntity(Loc.GetString("medibot-recently-injected"), medibot, medibot);
             return false;
         }
 
@@ -80,14 +80,14 @@ public sealed partial class MedibotSystem : EntitySystem
 
         if (mobState.CurrentState != MobState.Alive && mobState.CurrentState != MobState.Critical)
         {
-            _popup.PopupClient(Loc.GetString("medibot-target-dead"), medibot, medibot);
+            _popup.PopupEntity(Loc.GetString("medibot-target-dead"), medibot, medibot);
             return false;
         }
 
         var total = damageable.TotalDamage;
         if (total == 0)
         {
-            _popup.PopupClient(Loc.GetString("medibot-target-healthy"), medibot, medibot);
+            _popup.PopupEntity(Loc.GetString("medibot-target-healthy"), medibot, medibot);
             return false;
         }
 
@@ -113,7 +113,7 @@ public sealed partial class MedibotSystem : EntitySystem
         _solutionContainer.TryAddReagent(injectable.Value, treatment.Reagent, treatment.Quantity, out _);
 
         _popup.PopupEntity(Loc.GetString("injector-component-feel-prick-message"), target, target);
-        _popup.PopupClient(Loc.GetString("medibot-target-injected"), medibot, medibot);
+        _popup.PopupEntity(Loc.GetString("medibot-target-injected"), medibot, medibot);
 
         _audio.PlayPredicted(medibot.Comp.InjectSound, medibot, medibot);
 

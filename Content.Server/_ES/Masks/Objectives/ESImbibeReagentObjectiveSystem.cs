@@ -46,7 +46,7 @@ public sealed partial class ESImbibeReagentObjectiveSystem : ESBaseObjectiveSyst
 
     private void OnBodyIngesting(Entity<ESImbibeReagentObjectiveComponent> ent, ref ESBodyIngestingEvent args)
     {
-        if (!args.IsDrink)
+        if (!args.IsDrink || args.FoodSolution == null)
             return;
 
         // I solemnly swear this is the best way I found to do this. Weird ass API.

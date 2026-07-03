@@ -13,7 +13,7 @@ namespace Content.IntegrationTests.Tests.Nutrition;
 public sealed class HungerThirstTest : InteractionTest
 {
     private readonly EntProtoId _drink = "DrinkCoconutWaterGlass"; // ES EDIT - Fuck you!
-    private readonly EntProtoId _food = "FoodCakeVanillaSlice";
+    private readonly EntProtoId _food = "FoodCakePlainSlice";
     protected override string PlayerPrototype => "MobHuman";
 
     /// <summary>
@@ -33,18 +33,18 @@ public sealed class HungerThirstTest : InteractionTest
         var ingestionSystem = SEntMan.System<IngestionSystem>();
 
         // Set initial value
-        hungerSystem.SetHunger(SPlayer, hungerComponent.Thresholds[HungerThreshold.Okay], hungerComponent);
+        hungerSystem.SetHunger((SPlayer, hungerComponent), HungerThreshold.Okay);
         thirstSystem.SetThirst(SPlayer, thirstComponent, thirstComponent.ThirstThresholds[ThirstThreshold.Okay]);
 
         // Ensure hunger and thirst value decrease over time (the Urist gets hungrier/thirstier)
-        var previousHungerValue = hungerSystem.GetHunger(hungerComponent);
+        var previousHungerValue = hungerComponent.CurrentHunger;
         var previousThirstValue = thirstComponent.CurrentThirst; // TODO: combined sation system with a sane API
 
         // Simulate long enough for both update loops to run
-        var runTime = Math.Max((float)hungerComponent.ThresholdUpdateRate.TotalSeconds, (float)thirstComponent.UpdateRate.TotalSeconds) + 1f;
+        var runTime = Math.Max((float)hungerComponent.HungerDecayTime.TotalSeconds, (float)thirstComponent.UpdateRate.TotalSeconds) + 1f;
         await RunSeconds(runTime);
 
-        var currentHungerValue = hungerSystem.GetHunger(hungerComponent);
+        var currentHungerValue = hungerComponent.CurrentHunger;
         Assert.That(currentHungerValue, Is.LessThan(previousHungerValue), "Hunger value did not decrease over time");
         previousHungerValue = currentHungerValue;
 
@@ -68,7 +68,7 @@ public sealed class HungerThirstTest : InteractionTest
         // END ES EDIT
 
         // Ensure that the hunger value has increased (The Urist is less hungry)
-        Assert.That(hungerSystem.GetHunger(hungerComponent), Is.GreaterThan(previousHungerValue), "Hunger value did not increase after eating food");
+        Assert.That(hungerComponent.CurrentHunger, Is.GreaterThan(previousHungerValue), "Hunger value did not increase after eating food");
 
         // Now we spawn a drink in the Urist's hand
         var drink = await PlaceInHands(_drink);

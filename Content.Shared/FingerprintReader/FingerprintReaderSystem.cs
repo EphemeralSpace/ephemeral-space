@@ -64,7 +64,7 @@ public sealed partial class FingerprintReaderSystem : EntitySystem
             denyReason = Loc.GetString("fingerprint-reader-fail-gloves", ("blocker", gloves));
 
             if (showPopup)
-                _popup.PopupClient(denyReason, target, user);
+                _popup.PopupEntity(denyReason, target, user);
 
             return false;
         }
@@ -76,7 +76,7 @@ public sealed partial class FingerprintReaderSystem : EntitySystem
             denyReason = Loc.GetString("fingerprint-reader-fail");
 
             if (showPopup)
-                _popup.PopupClient(denyReason, target, user);
+                _popup.PopupEntity(denyReason, target, user);
 
             return false;
         }

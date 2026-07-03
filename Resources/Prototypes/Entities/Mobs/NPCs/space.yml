@@ -195,11 +195,8 @@
         Base: spacespider_dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatSpider
+    - id: FoodMeat
       amount: 2
-    - id: EggSpider
-      amount: 1
-      prob: 0.5
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -291,13 +288,10 @@
           Base: dead_spacecobra
     - type: Butcherable
       spawned:
-        - id: FoodMeatSnake
+        - id: FoodMeat
           amount: 2
         - id: UraniumOre1
           amount: 1
-        - id: ClothingShoesSnakeskinBoots
-          amount: 1
-          prob: 0.3
     - type: Bloodstream
       bloodReferenceSolution:
         reagents:
@@ -422,6 +416,13 @@
       Dead:
         Base: dead
   - type: Edible
+  - type: ESFood
+    satietyMultiplier: -1
+  - type: FlavorProfile
+    flavors:
+    - horrible
+    - terrible
+    - chewy
   - type: Thirst
     startingThirst: 25  # spawn with Okay thirst state
     thresholds:
@@ -432,24 +433,11 @@
       Dead: 0
     baseDecayRate: 0.04
   - type: Hunger
-    thresholds:
-      Overfed: 35
-      Okay: 25
-      Peckish: 15
-      Starving: 10
-      Dead: 0
-    baseDecayRate: 0.1
   - type: Extractable
     grindableSolutionName: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 3
   - type: Butcherable
     spawned:
-    - id: FoodMeatSnail
+    - id: FoodMeat
       amount: 1
   - type: Tag
     tags:

@@ -1,11 +1,11 @@
 - type: job
   id: ESScientist
+  parent: ESBaseJobProfessionalNaming
   name: ESjob-name-scientist
   description: ESjob-description-scientist
   playTimeTracker: ESJobScientist
   startingGear: ESScientistGear
   icon: "JobIconScientist"
-  supervisors: job-supervisors-hop
   access:
   - Research
   - Maintenance

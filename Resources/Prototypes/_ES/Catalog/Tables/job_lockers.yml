@@ -17,22 +17,18 @@
     - id: ClothingEyesGlassesSecurity
 
 - type: entityTable
-  id: ESLockerFillHeadOfPersonnel
+  id: ESLockerFillStationAdmin
   table: !type:AllSelector
     children:
-    - id: AccessConfigurator
-    - id: BoxEncryptionKeyPassenger
-    - id: BoxEncryptionKeyService
-    - id: BoxHeadset
-    - id: BoxHoPStamps
-    - id: BoxID
-    - id: BoxPDA
+    - id: RubberStampApproved
+    - id: RubberStampDenied
     - id: CigarGoldCase
       prob: 0.25
-    - id: ClothingHeadsetCommand
+    - id: ClothingHeadsetAltCommand
     - id: ClothingNeckGoldmedal
-    - id: HoPIDCard
+    - id: StationAdminIDCard
     - id: Stunbaton
+    - id: LuxuryPen
     - id: ClothingEyesHudSecurity
 
 # Security
@@ -54,21 +50,16 @@
   id: ESFillLockerDetective
   table: !type:AllSelector
     children:
-    - id: ClothingEyesGlassesNoir
+    - id: ClothingEyesGlassesSunglasses
     - id: ESWeaponRevolver357 # sure, the other security roles don't get guns, but what is a detective without their revolver?
-    - id: ClothingHeadHatDetGadget
-      prob: 0.15
-    - id: Stunbaton
-    - id: ESClothingOuterArmorDetective
+    - id: ClothingBeltSecurity # this belt is supposed to be empty so det doesn't get a batong
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
     - id: ForensicScanner
     - id: BoxForensicPad
     - id: DrinkDetFlask
-    - id: RubberStampDetective
     - id: BoxEvidenceMarkers
     - id: HandLabeler
-    - id: ClothingBeltSecurityFilled
 
 # Service
 - type: entityTable
@@ -78,7 +69,6 @@
     - id: ClothingOuterVest
     - id: ESWeaponDoubleBarrelShotgunNonlethal
     - id: DrinkShaker
-    - id: ClothingEyesHudBeer
     - id: HandLabeler
     - id: DrinkBeerBottleFull
       amount: !type:BinomialNumberSelector
@@ -168,10 +158,7 @@
   id: ESLockerFillPhysician
   table: !type:AllSelector
     children:
-    - id: HandheldHealthAnalyzer
-      prob: 0.6
-    - id: ClothingHeadMirror
-      prob: 0.1
+    - id: BriefcaseAluminumFilledDoctor
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical
     - id: ClothingEyesHudMedical
@@ -190,16 +177,13 @@
     - id: ClothingBeltMedicalFilled
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical
-    - id: ESMedkitStabilizationFilled
+    - id: MedkitFilled
 
 - type: entityTable
   id: ESLockerFillCoroner
   table:
     all:
-    - id: ESScalpelAutopsy
-    - id: BoxFolderYellow
-    - id: HandLabeler
-    - id: BoxBodyBag
+    - id: BriefcaseBlackFilledCoroner
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical
     - id: ClothingMaskSterile

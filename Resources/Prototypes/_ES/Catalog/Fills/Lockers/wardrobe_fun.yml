@@ -1,0 +1,93 @@
+- type: entityTable
+  id: ESFillWardrobeTheatre
+  table:
+    group:
+    - tableId: ESOutfitCardborg
+    - tableId: ESOutfitChicken
+    - tableId: ESOutfitCowboy
+    - tableId: ESOutfitJapan
+    - tableId: ESOutfitJester
+    - tableId: ESOutfitSanta
+    - tableId: ESOutfitSkub
+    - tableId: ESOutfitShrineMaiden
+    - tableId: ESOutfitVaquero
+    - tableId: ESOutfitWitch
+
+- type: entityTable
+  id: ESOutfitCardborg
+  table:
+    all:
+    - id: ClothingHeadHatCardborg
+    - id: ClothingOuterCardborg
+
+- type: entityTable
+  id: ESOutfitChicken
+  table:
+    all:
+    - id: ClothingHeadHatChickenhead
+    - id: ClothingOuterSuitChicken
+
+- type: entityTable
+  id: ESOutfitCowboy
+  table:
+    group:
+    - all:
+      - id: ClothingHeadHatCowboyBrown
+      - id: ClothingShoesBootsCowboyBrown
+    - all:
+      - id: ClothingHeadHatCowboyBlack
+      - id: ClothingShoesBootsCowboyBlack
+    - all:
+      - id: ClothingHeadHatCowboyWhite
+      - id: ClothingShoesBootsCowboyWhite
+
+- type: entityTable
+  id: ESOutfitJapan
+  table:
+    all:
+    - id: ClothingHeadHatCasa
+    - id: ClothingUniformJumpsuitKimono
+
+- type: entityTable
+  id: ESOutfitJester
+  table:
+    all:
+    - id: ClothingHeadHatJesterAlt
+    - id: ClothingUniformJumpsuitJesterAlt
+    - id: ClothingShoesJester
+
+- type: entityTable
+  id: ESOutfitSanta
+  table:
+    all:
+    - id: ClothingHeadHatSantahat
+    - id: ClothingOuterSanta
+
+- type: entityTable
+  id: ESOutfitSkub
+  table:
+    all:
+    - id: ClothingHeadHatSkub
+    - id: ClothingOuterSkub
+    - id: Skub
+
+- type: entityTable
+  id: ESOutfitShrineMaiden
+  table:
+    all:
+    - id: ClothingHeadHatShrineMaidenWig
+    - id: ClothingOuterSuitShrineMaiden
+
+- type: entityTable
+  id: ESOutfitVaquero
+  table:
+    all:
+    - id: ClothingHeadHatSombrero
+    - id: ClothingOuterPonchoClassic
+
+- type: entityTable
+  id: ESOutfitWitch
+  table:
+    all:
+    - id: ClothingHeadHatWitch
+    - id: ClothingOuterSuitWitchRobes

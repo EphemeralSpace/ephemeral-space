@@ -31,6 +31,9 @@
     maxTransferAmount: 100
     transferAmount: 100
   - type: UseDelay
+    delays:
+      spray-delay:
+        length: 1
   - type: Spray
     transferAmount: 10
     pushbackAmount: 60

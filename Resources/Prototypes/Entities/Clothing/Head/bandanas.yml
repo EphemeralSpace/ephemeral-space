@@ -70,11 +70,6 @@
   name: skull bandana
 
 - type: entity
-  parent: [ClothingHeadBandBase, ClothingMaskBandMerc]
-  id: ClothingHeadBandMerc
-  name: mercenary bandana
-
-- type: entity
   parent: [ClothingHeadBandBase, ClothingMaskBandBrown]
   id: ClothingHeadBandBrown
   name: brown bandana

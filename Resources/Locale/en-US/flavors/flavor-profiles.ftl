@@ -70,11 +70,6 @@ flavor-complex-mustard = like mustard
 
 # Food-specific flavors.
 
-## Food chemicals. In case you get something that has this inside.
-flavor-complex-nutriment = like nutrition
-flavor-complex-vitamin = like vitamins
-flavor-complex-protein = like protein
-
 ## Generic food taste. This should be replaced with an actual flavor profile,
 ## if you have food that looks like this.
 flavor-complex-food = like food

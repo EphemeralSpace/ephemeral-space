@@ -26,6 +26,9 @@ public sealed class ESGuzzleObjectiveSystem : ESBaseObjectiveSystem<ESGuzzleObje
         if (!args.IsDrink)
             return; // We're NOT guzzling.
 
+        if (args.FoodSolution == null)
+            return;
+
         // Tally our guzzling.
         ObjectivesSys.AdjustObjectiveCounter(ent.Owner, args.FoodSolution.Volume.Float());
     }

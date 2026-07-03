@@ -3,13 +3,13 @@
   table:
     group:
     - tableId: ESMaintLootWorthless
-      weight: 35
+      weight: 25
     - tableId: ESMaintLootCommon
-      weight: 52
+      weight: 45
     - tableId: ESMaintLootUncommon
-      weight: 12
+      weight: 26
     - tableId: ESMaintLootRare
-      weight: 1
+      weight: 4
 
 - type: entityTable
   id: ESMaintLootExposed # for placing on racks or tables
@@ -18,7 +18,7 @@
     - tableId: ESMaintLootCommon
       weight: 50
     - tableId: ESMaintLootUncommon
-      weight: 45
+      weight: 49
     - weight: 3
       group:
       - id: ToolboxEmergencyFilled
@@ -28,7 +28,7 @@
       - id: ToolboxArtisticFilled
         weight: 0.1
     - tableId: ESMaintLootRare
-      weight: 2
+      weight: 3
 
 - type: entityTable
   id: ESMaintLootValuable
@@ -99,22 +99,17 @@
 
     - tableId: ESMixedBasicGloves
     - id: ClothingEyesGlassesMeson
-    - id: ClothingEyesGlassesChemical
     - id: ClothingHandsGlovesColorYellowBudget
     - id: ClothingMaskGas
     - id: ClothingShoesColorBlack
     - id: ClothingOuterVestHazard
     - id: ClothingOuterCoatLab
-    - group:
-      - id: ClothingUniformJumpsuitColorGrey
-      - id: ClothingUniformJumpskirtColorGrey
+    - id: ClothingUniformJumpsuitColorGrey
     - id: ClothingHeadsetGrey
     - group:
       - id: ClothingBackpack
       - id: ClothingBackpackSatchel
       - id: ClothingBackpackDuffel
-    - id: ClothingBeltStorageWaistbag
-
     - id: CableApcStack
     - id: CableMVStack
       weight: 0.5
@@ -132,7 +127,6 @@
 
     - group:
       - id: DoorElectronics
-      - id: APCElectronics
       - id: FirelockElectronics
       - id: FireAlarmElectronics
       - id: AirAlarmElectronics
@@ -177,7 +171,6 @@
       - id: ClothingHeadHatHardhatOrange
       - id: ClothingHeadHatHardhatWhite
       - id: ClothingHeadHatHardhatYellow
-      - id: ClothingHeadHatHardhatYellowDark
       - id: ClothingHeadHatCone
     - id: FlashlightLantern
       weight: 2
@@ -235,68 +228,31 @@
 
     - id: FoodTinPeachesMaint
     - id: FoodBoxDonkpocket
-    - group:
-      - id: FoodBoxDonkpocketSpicy
-      - id: FoodBoxDonkpocketTeriyaki
-      - id: FoodBoxDonkpocketPizza
-      - id: FoodBoxDonkpocketStonk
-      - id: FoodBoxDonkpocketCarp
-      - id: FoodBoxDonkpocketBerry
-      - id: FoodBoxDonkpocketHonk
     - id: MonkeyCube
 
     - id: SMESMachineCircuitboard
     - id: SubstationMachineCircuitboard
 
-    - all:
-      - id: ClothingOuterCoatJensen
-      - id: ClothingEyesGlassesJensen
     - group:
-      - id: ClothingNeckLGBTPin
-      - id: ClothingNeckAllyPin
-      - id: ClothingNeckAromanticPin
-      - id: ClothingNeckAsexualPin
-      - id: ClothingNeckAroacePin
-      - id: ClothingNeckBisexualPin
-      - id: ClothingNeckGayPin
-      - id: ClothingNeckIntersexPin
-      - id: ClothingNeckLesbianPin
-      - id: ClothingNeckNonBinaryPin
-      - id: ClothingNeckPansexualPin
-      - id: ClothingNeckPluralPin
-      - id: ClothingNeckOmnisexualPin
-      - id: ClothingNeckGenderqueerPin
-      - id: ClothingNeckGenderfluidPin
-      - id: ClothingNeckTransPin
-      - id: ClothingNeckAutismPin
-      - id: ClothingNeckGoldAutismPin
-      weight: 0.5
-    - group:
-      - id: ClothingNeckCloakTrans
-      - id: ClothingNeckCloakAdmin
-      - id: ClothingNeckCloakMoth
-      - id: ClothingNeckCloakVoid
-      - id: ClothingNeckCloakGoliathCloak
-      - id: ClothingNeckCloakAce
-      - id: ClothingNeckCloakAro
-      - id: ClothingNeckCloakAroace
-      - id: ClothingNeckCloakBi
-      - id: ClothingNeckCloakIntersex
-      - id: ClothingNeckCloakLesbian
-      - id: ClothingNeckCloakGay
-      - id: ClothingNeckCloakEnby
-      - id: ClothingNeckCloakPan
-      weight: 0.5
+      - id: ClothingUniformColorRainbow
+      - id: ClothingUniformJumpsuitAromantic
+      - id: ClothingUniformJumpsuitAsexual
+      - id: ClothingUniformJumpsuitGay
+      - id: ClothingUniformJumpsuitLesbian
+      - id: ClothingUniformJumpsuitBisexual
+      - id: ClothingUniformJumpsuitPansexual
+      - id: ClothingUniformJumpsuitTransgender
+      - id: ClothingUniformJumpsuitNonbinary
+      - id: ClothingUniformJumpsuitGenderfluid
+      - id: ClothingUniformJumpsuitIntersex
+      - id: ClothingUniformJumpsuitGenderqueer
     - id: ClothingEyesEyepatch
       weight: 0.5
-    - id: ClothingOuterCoatGentle
+    - id: ClothingOuterCoatBomber
       weight: 0.5
-    - all:
-      - id: ClothingOuterCoatJensen
-      - id: ClothingEyesGlassesJensen
+    - id: ClothingOuterCoatJensen
       weight: 0.5
     - group:
-      - id: ClothingShoesBootsLaceup
       - id: ClothingShoesLeather
       - id: ClothingShoesBootsBlack
       weight: 0.5
@@ -311,14 +267,14 @@
   table:
     group:
     - tableId: ESMaintsTraitorLoot
-      weight: 4
+      weight: 8
     - id: ESWeaponKnife
       weight: 2
     - id: WelderIndustrialAdvanced
     - id: PinpointerUniversal
     - id: PinpointerNuclear
     - id: CameraBug
-    - id: ESMedkitFilled
+    - id: MedkitFilled
 
     - id: ClothingEyesHudSecurity
     - id: ClothingEyesGlassesSunglasses
@@ -329,14 +285,9 @@
       - id: ESClothingUniformJumpsuitRussianColorGrey
       - id: ClothingShoesColorBrown
       weight: 0.5
-    - group: # Funny Shoes
-      - id: ClothingShoeSlippersDuck
-      - id: ClothingUnderSocksBee
-      - id: ClothingUnderSocksCoder
-      weight: 0.5
     - all:
       - id: ClothingOuterCoatPirate
-      - id: ClothingHeadHatPirateTricord
+      - id: ClothingHeadHatPirate
       weight: 0.5
 
     - group: # Goofy items
@@ -346,6 +297,5 @@
       - id: PonderingOrb
       - id: CigarGold
       - id: WristwatchGold
-      - id: RubberStampGreytide
       - id: ClothingNeckBling
       weight: 0.25

@@ -73,7 +73,7 @@ public sealed partial class VomitSystem : EntitySystem
     /// <summary>
     /// Make an entity vomit, if they have a stomach.
     /// </summary>
-    public void Vomit(EntityUid uid, float thirstAdded = -40f, float hungerAdded = -40f, bool force = false)
+    public void Vomit(EntityUid uid, float thirstAdded = -40f, int hungerAdded = -1, bool force = false)
     {
         // Vomit only if entity is alive
         // Ignore condition if force was set to true
@@ -91,7 +91,7 @@ public sealed partial class VomitSystem : EntitySystem
 
         // Vomiting makes you hungrier and thirstier
         if (TryComp<HungerComponent>(uid, out var hunger))
-            _hunger.ModifyHunger(uid, hungerAdded, hunger);
+            _hunger.ModifySatiety((uid, hunger), hungerAdded);
 
         if (TryComp<ThirstComponent>(uid, out var thirst))
             _thirst.ModifyThirst(uid, thirst, thirstAdded);

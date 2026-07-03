@@ -174,34 +174,6 @@
     board: ShuttleConsoleCircuitboard
 
 - type: entity
-  parent: BaseComputerShuttle
-  id: ComputerShuttleSyndie
-  name: syndicate shuttle console
-  description: Used to pilot a syndicate shuttle.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: syndishuttle
-    - map: ["computerLayerKeys"]
-      state: syndie_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: Tag
-    tags:
-      - Syndicate
-  - type: RadarConsole
-    maxRange: 384
-  - type: PointLight
-    color: "#c94242"
-  - type: Computer
-    board: SyndicateShuttleConsoleCircuitboard
-
-- type: entity
   parent: BaseComputerAiAccess
   id: ComputerIFF
   name: IFF computer
@@ -231,29 +203,6 @@
           type: WiresBoundUserInterface
   - type: Computer
     board: ComputerIFFCircuitboard
-
-- type: entity
-  parent: ComputerIFF
-  id: ComputerIFFSyndicate
-  name: IFF computer
-  suffix: Syndicate
-  description: Allows you to control the IFF and stealth characteristics of this vessel.
-  components:
-  - type: IFFConsole
-    allowedFlags:
-      - Hide
-      - HideLabel
-    hideOnInit: true
-  - type: ActivatableUI
-    key: enum.IFFConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-        enum.IFFConsoleUiKey.Key:
-          type: IFFConsoleBoundUserInterface
-        enum.WiresUiKey.Key:
-          type: WiresBoundUserInterface
-  - type: Computer
-    board: ComputerIFFSyndicateCircuitboard
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -426,23 +375,12 @@
     range: 1200
 
 - type: entity
-  # ES START
-  parent: ESBaseComputerTerminal
-  # ES END
-  id: ComputerId
+  id: BaseComputerId
   name: ID card computer
   description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
+  abstract: true
   components:
   - type: IdCardConsole
-    privilegedIdSlot:
-      name: id-card-console-privileged-id
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-      ejectOnBreak: true
-      swap: false
-      whitelist:
-        components:
-        - IdCard
     targetIdSlot:
       name: id-card-console-target-id
       ejectSound: /Audio/Machines/id_swipe.ogg
@@ -452,33 +390,6 @@
       whitelist:
         components:
         - IdCard
-# ES START
-    accessLevels: # TODO this dupe with the tabletop ID card computer sucks
-    - Armory
-    - Atmospherics
-    - Bar
-    - Brig
-    - Detective
-    - Captain
-    - Cargo
-    - Chemistry
-    - Command
-    - Engineering
-    - External
-    - GenpopEnter
-    - GenpopLeave
-    - HeadOfPersonnel
-    - HeadOfSecurity
-    - Hydroponics
-    - Janitor
-    - Kitchen
-    - Maintenance
-    - Medical
-    - Research
-    - Security
-    - Service
-    - Theatre
-# ES END
   - type: ActivatableUI
     key: enum.IdCardConsoleUiKey.Key
   - type: UserInterface
@@ -492,21 +403,6 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Pai
-  - type: Sprite
-    layers:
-    # ES START
-    - map: ["computerLayerBody"]
-      sprite: _ES/Structures/Machines/computer.rsi
-      state: terminal
-    # ES END
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: id
-    - map: ["computerLayerKeys"]
-      state: id_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
   - type: Computer
     board: IDComputerCircuitboard
   - type: PointLight
@@ -517,8 +413,41 @@
       board: !type:Container
       IdCardConsole-privilegedId: !type:ContainerSlot
       IdCardConsole-targetId: !type:ContainerSlot
-  - type: ESSabotageTarget
-  - type: ESAmbientMusicMarkerCommand
+
+- type: entity
+  parent: [ BaseComputerId, BaseComputer ]
+  id: ComputerId
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: id
+    - map: ["computerLayerKeys"]
+      state: id_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+
+- type: entity
+  parent: [ BaseComputerId, ESBaseComputerTerminal ]
+  id: ComputerTerminalId
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: id
+    - map: ["computerLayerKeys"]
+      state: id_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
 
 - type: entity
   parent: BaseComputerAiAccess

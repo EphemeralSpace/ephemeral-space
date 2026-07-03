@@ -1,0 +1,36 @@
+- type: entity
+  parent: [ BaseItem, BaseTest ]
+  id: TestWeaponGunWieldable
+  components:
+  - type: Gun
+  - type: BallisticAmmoProvider
+    capacity: 10
+    proto: TestCartridge
+  - type: GunRequiresWield
+  - type: Wieldable
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  parent: [ ESBaseBullet, BaseTest ]
+  id: TestBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 1
+
+- type: entity
+  parent: [ BaseCartridge, BaseTest ]
+  id: TestCartridge
+  components:
+  - type: CartridgeAmmo
+    proto: TestBullet
+
+- type: entity
+  parent: [ BaseItem, BaseTest ]
+  id: TestItemEmbeddable
+  components:
+  - type: EmbeddableProjectile

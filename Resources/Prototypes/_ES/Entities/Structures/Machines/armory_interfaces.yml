@@ -1,14 +1,12 @@
 # cmy cyan magenta yellow)
 - type: entity
   id: ESBaseArmoryInterface
-  parent: BaseStructure
+  parent: ESBaseComputerTerminal
   abstract: true
   components:
   - type: Sprite
     sprite: _ES/Structures/Machines/armory_interfaces.rsi
     noRot: true
-  - type: Clickable
-  - type: InteractionOutline
   - type: ESArmoryGovernanceInterface
 
 - type: entity
@@ -21,6 +19,9 @@
     layers:
     - state: terminal
     - state: casper
+      map: ["computerLayerScreen"]
+  - type: PointLight
+    color: "#00ffff"
 
 - type: entity
   id: ESArmoryInterfaceMelchior
@@ -32,6 +33,9 @@
     layers:
     - state: terminal
     - state: melchior
+      map: ["computerLayerScreen"]
+  - type: PointLight
+    color: "#ff00ff"
 
 - type: entity
   id: ESArmoryInterfaceYalthasar
@@ -43,3 +47,6 @@
     layers:
     - state: terminal
     - state: yalthasar
+      map: ["computerLayerScreen"]
+  - type: PointLight
+    color: "#ffff00"

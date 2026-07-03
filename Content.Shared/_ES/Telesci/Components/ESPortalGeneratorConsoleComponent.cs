@@ -30,6 +30,7 @@ public enum ESPortalGeneratorConsoleUiKey : byte
 public sealed class ESPortalGeneratorConsoleBuiState : BoundUserInterfaceState
 {
     public float Charge;
+    public bool Interrupted;
     public bool FinalPhase;
 }
 

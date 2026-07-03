@@ -43,6 +43,9 @@ public sealed partial class TileSystem : EntitySystem
     /// </summary>
     public byte PickVariant(ContentTileDefinition tile, System.Random random)
     {
+        if (tile.Variants == 1)
+            return 0;
+
         var variants = tile.PlacementVariants;
 
         var sum = variants.Sum();
@@ -119,7 +122,6 @@ public sealed partial class TileSystem : EntitySystem
         if (!Resolve(grid, ref component))
             return false;
 
-
         var variant = PickVariant(replacementTile);
         var decals = _decal.GetDecalsInRange(tileref.GridUid, _turf.GetTileCenter(tileref).Position, 0.5f);
         foreach (var (id, _) in decals)
@@ -138,7 +140,7 @@ public sealed partial class TileSystem : EntitySystem
 
         var tileDef = (ContentTileDefinition) _tileDefinitionManager[tileRef.Tile.TypeId];
 
-        if (string.IsNullOrEmpty(tileDef.BaseTurf))
+        if (string.IsNullOrEmpty(tileDef.BaseTurf) || tileDef.Indestructible)
             return false;
 
         var gridUid = tileRef.GridUid;
@@ -163,8 +165,8 @@ public sealed partial class TileSystem : EntitySystem
             _decal.RemoveDecal(tileRef.GridUid, id);
         }
 
-        var plating = _tileDefinitionManager[tileDef.BaseTurf];
-        _maps.SetTile(gridUid, mapGrid, tileRef.GridIndices, new Tile(plating.TileId));
+        var plating = (ContentTileDefinition) _tileDefinitionManager[tileDef.BaseTurf];
+        _maps.SetTile(gridUid, mapGrid, tileRef.GridIndices, new Tile(plating.TileId, PickVariant(plating)));
 
         return true;
     }

@@ -59,7 +59,7 @@ public sealed partial class ESInternalsUIController : UIController, IOnStateChan
         // If they can't connect to a tank, notify them!
         if (internals.BreathTools.Count == 0)
         {
-            _popup.PopupPredictedCursor(Loc.GetString("internals-self-no-breath-tool"), player, PopupType.Medium);
+            _popup.PopupCursor(Loc.GetString("internals-self-no-breath-tool"), player, PopupType.Medium);
             return true;
         }
 
@@ -105,7 +105,7 @@ public sealed partial class ESInternalsUIController : UIController, IOnStateChan
         switch (tanks.Count)
         {
             case 0:
-                _popup.PopupPredictedCursor(Loc.GetString("internals-self-no-tank"), player, PopupType.Medium);
+                _popup.PopupCursor(Loc.GetString("internals-self-no-tank"), player, PopupType.Medium);
                 break;
             case 1:
                 SendToggleMessage(tanks.First().Tank);

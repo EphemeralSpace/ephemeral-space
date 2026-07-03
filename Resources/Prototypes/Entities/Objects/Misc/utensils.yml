@@ -83,8 +83,6 @@
     damage:
       types:
         Blunt: 1
-  - type: Shovel
-    speedModifier: 0.1 # you can try
   - type: ReactionMixer
     mixMessage: "spoon-mixing-success"
     timeToMix: 0.5
@@ -104,8 +102,6 @@
   - type: Utensil
     types:
     - Spoon
-  - type: Shovel
-    speedModifier: 0.1 # you can try
   - type: ReactionMixer
     mixMessage: "spoon-mixing-success"
     timeToMix: 0.5
@@ -167,5 +163,3 @@
     damage:
       types:
         Blunt: 2
-  - type: Shovel
-    speedModifier: 0.05 # nah

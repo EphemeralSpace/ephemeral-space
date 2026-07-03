@@ -83,6 +83,12 @@ namespace Content.Shared.Movement.Components
 
         [ViewVariables(VVAccess.ReadWrite)]
         public bool CanMove = true;
+
+        /// <summary>
+        ///     Used to optimize not changing movement appearance data if it isnt necessary.
+        /// </summary>
+        [DataField]
+        public bool UsesSpriteMovement = false;
     }
 
     [Serializable, NetSerializable]

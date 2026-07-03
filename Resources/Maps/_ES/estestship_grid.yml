@@ -3391,7 +3391,7 @@ entities:
     - type: Transform
       pos: -0.5,-1.5
       parent: 1
-- proto: ESSpawnPointHeadOfPersonnel
+- proto: ESSpawnPointStationAdmin
   entities:
   - uid: 877
     components:
@@ -4153,28 +4153,6 @@ entities:
       pos: -5.5,7.5
       parent: 1
   - uid: 905
-    components:
-    - type: Transform
-      pos: 6.5,2.5
-      parent: 1
-- proto: RandomFoodSingle
-  entities:
-  - uid: 906
-    components:
-    - type: Transform
-      pos: 6.5,2.5
-      parent: 1
-  - uid: 907
-    components:
-    - type: Transform
-      pos: 6.5,2.5
-      parent: 1
-  - uid: 908
-    components:
-    - type: Transform
-      pos: 6.5,2.5
-      parent: 1
-  - uid: 909
     components:
     - type: Transform
       pos: 6.5,2.5

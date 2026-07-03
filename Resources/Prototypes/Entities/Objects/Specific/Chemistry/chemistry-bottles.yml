@@ -243,21 +243,6 @@
           Quantity: 30
 
 - type: entity
-  id: ChemistryBottleDexalinPlus
-  suffix: dex+
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-dexalin-plus
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: DexalinPlus
-          Quantity: 30
-
-- type: entity
   id: ChemistryBottleDiphenhydramine
   suffix: diphenhydramine
   parent: BaseChemistryBottleFilled
@@ -1001,7 +986,6 @@
     - id: ChemistryBottleDylovene
     - id: ChemistryBottleInaprovaline
     - id: ChemistryBottleDexalin
-    - id: ChemistryBottleDexalinPlus
     - id: ChemistryBottleSaline
     - id: ChemistryBottleTricordrazine
     - id: ChemistryBottleParacetamol # Offbrand

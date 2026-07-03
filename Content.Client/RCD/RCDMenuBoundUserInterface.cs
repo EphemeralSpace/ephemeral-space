@@ -135,7 +135,7 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
 
         // Popup message
         var popup = EntMan.System<PopupSystem>();
-        popup.PopupClient(msg, Owner, _playerManager.LocalSession.AttachedEntity);
+        popup.PopupEntity(msg, Owner, _playerManager.LocalSession.AttachedEntity);
     }
 
     private string GetTooltip(RCDPrototype proto)

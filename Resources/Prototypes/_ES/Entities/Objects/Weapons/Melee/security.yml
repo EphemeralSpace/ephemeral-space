@@ -1,0 +1,49 @@
+- type: entity
+  name: flash
+  parent: BaseItem
+  id: Flash
+  description: An ultrabright flashbulb with a trigger, which causes the victim to be dazed and lose their eyesight for a moment. Useless when burnt out.
+  components:
+    - type: Sprite
+      sprite: Objects/Weapons/Melee/flash.rsi
+      layers:
+      - state: flash
+        map: [ "enum.FlashVisualLayers.BaseLayer" ]
+      - state: flashing
+        map: [ "enum.FlashVisualLayers.LightLayer" ]
+        visible: false
+        shader: unshaded
+    - type: Flash
+    - type: LimitedCharges
+      maxCharges: 5
+    - type: MeleeWeapon
+      wideAnimationRotation: 180
+      damage:
+        types:
+          Blunt: 0 # melee weapon to allow flashing individual targets
+      angle: 10
+    - type: Item
+      size: Small
+      sprite: Objects/Weapons/Melee/flash.rsi
+    - type: UseDelay
+      delay: 4 # has to be the same as the FlashingTime datafield in FlashComponent
+    - type: UseDelayOnMeleeHit
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.FlashVisuals.Burnt:
+          enum.FlashVisualLayers.BaseLayer:
+            True: {state: burnt}
+        enum.FlashVisuals.Flashing:
+          enum.FlashVisualLayers.LightLayer:
+            True: {visible: true}
+            False: {visible: false}
+
+- type: entity
+  name: flash
+  parent: Flash
+  suffix: 2 charges
+  id: SciFlash
+  components:
+    - type: LimitedCharges
+      maxCharges: 2

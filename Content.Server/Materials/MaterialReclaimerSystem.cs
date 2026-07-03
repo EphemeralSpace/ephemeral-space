@@ -186,8 +186,7 @@ public sealed partial class MaterialReclaimerSystem : SharedMaterialReclaimerSys
 
         if (CanGib(uid, item, component))
         {
-            var logImpact = HasComp<HumanoidAppearanceComponent>(item) ? LogImpact.Extreme : LogImpact.Medium;
-            _adminLogger.Add(LogType.Gib, logImpact, $"{ToPrettyString(item):victim} was gibbed by {ToPrettyString(uid):entity} ");
+            _adminLogger.Add(LogType.Gib, LogImpact.Medium, $"{ToPrettyString(item):victim} was gibbed by {ToPrettyString(uid):entity} ");
             if (component.ReclaimSolutions)
                 SpawnChemicalsFromComposition(uid, item, completion, false, component, xform);
             _gibbing.Gib(item);

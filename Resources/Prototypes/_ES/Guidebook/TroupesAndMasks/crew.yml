@@ -16,6 +16,7 @@
   - Rebel
   - Secretary
   - SleeperAgent
+  - Tragedian
   - Vigilante
   - VIP
   text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew.xml"
@@ -84,6 +85,11 @@
   id: SleeperAgent
   name: Sleeper Agent
   text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/SleeperAgent.xml"
+
+- type: guideEntry
+  id: Tragedian
+  name: Tragedian
+  text: "/ServerInfo/_ES/Guidebook/TroupesAndMasks/Crew/Tragedian.xml"
 
 - type: guideEntry
   id: Vigilante

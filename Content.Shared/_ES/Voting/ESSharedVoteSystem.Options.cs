@@ -11,6 +11,7 @@ public abstract partial class ESSharedVoteSystem
     {
         SubscribeLocalEvent<ESEntityPrototypeVoteComponent, ESGetVoteOptionsEvent>(OnGetVoteOptions);
         SubscribeLocalEvent<ESGasVoteComponent, ESGetVoteOptionsEvent>(OnGasGetVoteOptions);
+        SubscribeLocalEvent<ESBooleanVoteComponent, ESGetVoteOptionsEvent>(OnBooleanGetVoteOptions);
     }
 
     private void OnGetVoteOptions(Entity<ESEntityPrototypeVoteComponent> ent, ref ESGetVoteOptionsEvent args)
@@ -37,5 +38,19 @@ public abstract partial class ESSharedVoteSystem
                 Gas = gas,
             });
         }
+    }
+
+    private void OnBooleanGetVoteOptions(Entity<ESBooleanVoteComponent> ent, ref ESGetVoteOptionsEvent args)
+    {
+        args.Options.Add(new ESBooleanVoteOption
+        {
+            DisplayString = Loc.GetString("es-vote-boolean-true"),
+            Value = true,
+        });
+        args.Options.Add(new ESBooleanVoteOption
+        {
+            DisplayString = Loc.GetString("es-vote-boolean-false"),
+            Value = false,
+        });
     }
 }

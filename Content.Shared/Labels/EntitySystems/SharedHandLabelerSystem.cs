@@ -70,7 +70,7 @@ public abstract partial class SharedHandLabelerSystem : EntitySystem
         if (_netManager.IsServer)
             _labelSystem.Label(target, ent.Comp.AssignedLabel);
 
-        _popupSystem.PopupClient(Loc.GetString("hand-labeler-successfully-applied"), user, user);
+        _popupSystem.PopupEntity(Loc.GetString("hand-labeler-successfully-applied"), user, user);
 
         // Log labeling
         _adminLogger.Add(LogType.Action, LogImpact.Low,
@@ -82,7 +82,7 @@ public abstract partial class SharedHandLabelerSystem : EntitySystem
         if (_netManager.IsServer)
             _labelSystem.Label(target, null);
 
-        _popupSystem.PopupClient(Loc.GetString("hand-labeler-successfully-removed"), user, user);
+        _popupSystem.PopupEntity(Loc.GetString("hand-labeler-successfully-removed"), user, user);
 
         // Log labeling
         _adminLogger.Add(LogType.Action, LogImpact.Low,

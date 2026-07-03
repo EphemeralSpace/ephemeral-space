@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: StationAdmin
+  hidden: false
+  name: Station Administrator
+  text: "/ServerInfo/_ES/Guidebook/Jobs/StationAdmin.xml"
