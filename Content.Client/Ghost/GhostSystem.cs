@@ -1,7 +1,9 @@
 using Content.Client._ES.Lighting;
 using Content.Client.Movement.Systems;
+using Content.Client.Overlays;
 using Content.Shared.Actions;
 using Content.Shared.Ghost;
+using Content.Shared.Overlays;
 using Robust.Client.Console;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
@@ -16,9 +18,7 @@ namespace Content.Client.Ghost
         [Dependency] private SharedActionsSystem _actions = default!;
         [Dependency] private ContentEyeSystem _contentEye = default!;
         [Dependency] private SpriteSystem _sprite = default!;
-        // ES START
-        [Dependency] private ESInherentLightSystem _inherentLight = default!;
-        // ES END
+        [Dependency] private NightVisionOverlaySystem _nv = default!;
 
         public int AvailableGhostRoleCount { get; private set; }
 
@@ -84,30 +84,25 @@ namespace Content.Client.Ghost
             if (args.Handled)
                 return;
 
-            // ES START
-            // pointlight to inherentlight
-            TryComp<ESInherentLightComponent>(uid, out var light);
-
             if (!component.DrawLight)
             {
                 // normal lighting
                 Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-lighting-manager-popup-normal"), args.Performer);
                 _contentEye.RequestEye(component.DrawFov, true);
             }
-            else if (!light?.Enabled ?? false) // skip this option if we have no ESInherentLightComponent
+            else if (TryComp<NightVisionComponent>(uid, out var nv) && !nv.Enabled)
             {
-                // enable personal light
-                Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-lighting-manager-popup-personal-light"), args.Performer);
-                _inherentLight.SetEnabled((uid, light), true);
+                Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-lighting-manager-popup-half-bright"), args.Performer);
+                _nv.SetEnabled((uid, nv), true);
             }
             else
             {
                 // fullbright mode
                 Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-lighting-manager-popup-fullbright"), args.Performer);
                 _contentEye.RequestEye(component.DrawFov, false);
-                _inherentLight.SetEnabled((uid, light), false);
+                _nv.SetEnabled((uid, nv), false);
             }
-            // ES END
+
             args.Handled = true;
         }
 

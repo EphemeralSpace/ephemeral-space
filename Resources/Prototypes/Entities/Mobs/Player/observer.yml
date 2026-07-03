@@ -59,12 +59,14 @@
   - type: ActiveRadio
     receiveAllChannels: true
     globalReceive: true
-  # ES START
   - type: ESBypassInteractionRangeChecks
-  - type: ESInherentLight
-    lightPrototype: ESMobObserverInherentLight
+  - type: NightVision
+    netsync: false
     enabled: false
-  # ES END
+    lightingColor: '#FFFFFF20'
+    overlayColor: '#FFFFFF00'
+    noiseAmount: 0 # In case default values change
+    noiseMultiplier: 0 # In case default values change
 
 # proto for player ghosts specifically
 - type: entity
