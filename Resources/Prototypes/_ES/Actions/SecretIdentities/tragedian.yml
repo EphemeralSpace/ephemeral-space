@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionSecretIdentityTragedianSummon
+  name: Call Stagehands
+  description: Call over the stagehands to watch your performance.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/SecretIdentity/tragedian.rsi
+      state: icon
+    useDelay: 10m
+  - type: InstantAction
+    event: !type:ESCallStagehandsInstantAction

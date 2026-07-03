@@ -16,5 +16,5 @@
   id: ESParasite
   locationPreference: Right
   icon:
-    sprite: /Textures/_ES/Interface/Misc/troupe_icons.rsi
+    sprite: /Textures/_ES/Interface/Misc/organization_icons.rsi
     state: parasite

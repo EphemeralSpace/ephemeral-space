@@ -63,6 +63,7 @@
   <Folder Name="/RobustToolbox/MSBuild/">
     <File Path="RobustToolbox/MSBuild/Robust.Analyzers.targets" />
     <File Path="RobustToolbox/MSBuild/Robust.CompNetworkGenerator.targets" />
+    <File Path="RobustToolbox/MSBuild/Robust.EntitySystemSubscriptionsGenerator.targets" />
     <File Path="RobustToolbox/MSBuild/Robust.Configurations.props" />
     <File Path="RobustToolbox/MSBuild/Robust.DefineConstants.targets" />
     <File Path="RobustToolbox/MSBuild/Robust.Engine.props" />
@@ -107,6 +108,10 @@
       <BuildType Solution="Tools|*" Project="Release" />
     </Project>
     <Project Path="RobustToolbox/Robust.Shared.CompNetworkGenerator/Robust.Shared.CompNetworkGenerator.csproj">
+      <BuildType Solution="DebugOpt|*" Project="Debug" />
+      <BuildType Solution="Tools|*" Project="Release" />
+    </Project>
+    <Project Path="RobustToolbox/Robust.Shared.EntitySystemSubscriptionsGenerator/Robust.Shared.EntitySystemSubscriptionsGenerator.csproj">
       <BuildType Solution="DebugOpt|*" Project="Debug" />
       <BuildType Solution="Tools|*" Project="Release" />
     </Project>

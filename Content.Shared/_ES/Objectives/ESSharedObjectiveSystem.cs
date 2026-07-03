@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared._ES.Masks;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.Mind;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Mind;
@@ -187,7 +187,7 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
 
     /// <summary>
     /// Re-generates the list of objectives an entity should have, adding all new objectives and removing ones that should no longer be there,
-    /// e.g. as a result of troupe or mask changes.
+    /// e.g. as a result of organization or secret identity changes.
     /// </summary>
     public void RegenerateObjectiveList(Entity<ESObjectiveHolderComponent?> ent)
     {

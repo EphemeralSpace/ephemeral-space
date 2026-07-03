@@ -1,0 +1,55 @@
+- type: guideEntry
+  id: Traitor
+  hidden: false
+  name: Traitors
+  children:
+  - Infiltrator
+  - Assassin
+  - Marauder
+  - Subverter
+  - Recruit
+  - Demolitionist
+  - Sympathizer
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Traitors.xml"
+
+- type: guideEntry
+  id: Infiltrator
+  hidden: false
+  name: Infiltrator
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Traitors/Infiltrator.xml"
+
+- type: guideEntry
+  id: Assassin
+  hidden: false
+  name: Assassin
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Traitors/Assassin.xml"
+
+- type: guideEntry
+  id: Marauder
+  hidden: false
+  name: Marauder
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Traitors/Marauder.xml"
+
+- type: guideEntry
+  id: Subverter
+  hidden: false
+  name: Subverter
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Traitors/Subverter.xml"
+
+- type: guideEntry
+  id: Recruit
+  hidden: false
+  name: Recruit
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Traitors/Recruit.xml"
+
+- type: guideEntry
+  id: Demolitionist
+  hidden: false
+  name: Demolitionist
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Traitors/Demolitionist.xml"
+
+- type: guideEntry
+  id: Sympathizer
+  hidden: false
+  name: Sympathizer
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Traitors/Sympathizer.xml"

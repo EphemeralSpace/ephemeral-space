@@ -1,0 +1,24 @@
+<Document>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Vigilante"/>
+
+    Vigilantes are members of the crew who are tasked with taking down people who have taken the life of another.
+    Note that this is not necessarily a traitor or other evil organization, but rather just a person who has killed someone, regardless of mask.
+
+    <Box>
+      <ESGuideObjectiveEmbed Objective="ESObjectiveVigilanteKillKiller"/>
+    </Box>
+
+    In order to help with this, Vigilantes receive a cache with a random assortment of gear.
+
+    <Box>
+      <GuideEntityEmbed Entity="ESWeaponRevolver357"/>
+      <GuideEntityEmbed Entity="ESWeaponPistol9mm"/>
+      <GuideEntityEmbed Entity="ESWeaponKnife"/>
+      <GuideEntityEmbed Entity="ExGrenade"/>
+    </Box>
+
+    Be aware: a Vigilante has no way of determining [italic]who[/italic] has actually killed someone, so they'll need to rely on observation and communication in order to complete their goal.
+    If all else fails, taking a stab at trying to kill a more powerful job like a security officer, captain, or coroner may lead to success.
+
+    <ESGuideTipsEmbed SecretIdentity="Vigilante"/>
+</Document>

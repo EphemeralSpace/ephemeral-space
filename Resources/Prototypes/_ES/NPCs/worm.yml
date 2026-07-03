@@ -15,7 +15,7 @@
   - tasks:
     - !type:HTNPrimitiveTask
       operator: !type:UtilityOperator
-        proto: ESNearbyHostileTroupeTargets
+        proto: ESNearbyHostileOrganizationTargets
     - !type:HTNCompoundTask
       task: ESBeforeJumpAttackCompound
 

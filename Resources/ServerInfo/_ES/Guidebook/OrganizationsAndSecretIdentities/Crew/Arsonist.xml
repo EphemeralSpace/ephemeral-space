@@ -1,0 +1,25 @@
+<Document>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Arsonist"/>
+
+    Arsonists are a dangerous crew mask that specializes in lighting fires across the station.
+    They do not have any unique gear or equipment: just the innate will to see things burn to a crisp.
+
+    <Box>
+      <ESGuideObjectiveEmbed Objective="ESObjectiveArsonistLightFires"/>
+    </Box>
+
+    Although the Arsonist progresses their objective by lighting fires, extinguishing fires will undo the progress, even if it's for a fire they didn't create.
+    This means that they are wholly incapable of containing any fires they start, as extinguishing any amount of spread would undo the progress made.
+
+    <Box>
+      <GuideEntityEmbed Entity="Jerrycan"/>
+      <GuideEntityEmbed Entity="WeldingFuelTank"/>
+      <GuideEntityEmbed Entity="FireBomb"/>
+    </Box>
+
+    <Box>
+      [italic][color=gray]Note the variety of fire-starting equipment on-station[/color][/italic]
+    </Box>
+
+    <ESGuideTipsEmbed SecretIdentity="Arsonist"/>
+</Document>

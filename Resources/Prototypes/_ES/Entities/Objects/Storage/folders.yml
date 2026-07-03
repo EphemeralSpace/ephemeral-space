@@ -3,7 +3,7 @@
   id: ESBoxFolderFilledInsider
   suffix: ES, Insider
   components:
-  - type: ESTroupeDossier
+  - type: ESOrganizationDossier
 
 - type: localizedDataset
   id: ESInsiderCodenames

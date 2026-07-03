@@ -6,7 +6,7 @@
   minPlayers: 8
   gameRules: []
   masquerade:
-    defaultMask: "#AllCrew"
+    defaultSecretIdentity: "#AllCrew"
     superfanTarget: "#Traitors"
     roles:
       8: ["Marauder", "#Traitors", "Rebel", "#Targeters", "ArmsDealer"] # 2 traitors

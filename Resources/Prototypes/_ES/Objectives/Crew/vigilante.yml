@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectiveVigilanteKillKiller
   name: Kill a killer
   description: Find someone who has taken the life of another and exact justice.

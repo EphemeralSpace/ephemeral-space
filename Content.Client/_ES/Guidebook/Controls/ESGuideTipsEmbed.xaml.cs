@@ -1,9 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Text;
 using Content.Client._ES.UI.Controls.Layout;
 using Content.Client.Guidebook.Richtext;
-using Content.Shared._ES.Masks;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.Tips;
 using Content.Shared.Roles;
 using JetBrains.Annotations;
@@ -16,7 +15,7 @@ using Robust.Shared.Utility;
 namespace Content.Client._ES.Guidebook.Controls;
 
 /// <summary>
-///     Renders a panel with a list of tips, sourced from a mask prototype, troupe prototype, job prototype,
+///     Renders a panel with a list of tips, sourced from a secret identity prototype, organization prototype, job prototype,
 ///     or any combination of the three (which will just combine the tips together).
 /// </summary>
 /// <remarks>
@@ -42,15 +41,15 @@ public sealed partial class ESGuideTipsEmbed : VStack, IDocumentTag
     {
         control = null;
         HashSet<ProtoId<ESTipPrototype>> tips = new();
-        if (args.TryGetValue("Mask", out var maskProto))
+        if (args.TryGetValue("SecretIdentity", out var secretIdentityProto))
         {
-            if (!_proto.TryIndex<ESMaskPrototype>(maskProto, out var mask))
+            if (!_proto.TryIndex<ESSecretIdentityPrototype>(secretIdentityProto, out var secretIdentity))
             {
-                _sawmill.Error($"Mask prototype passed to tips embed tag is invalid: {maskProto}");
+                _sawmill.Error($"Secret identity prototype passed to tips embed tag is invalid: {secretIdentityProto}");
                 return false;
             }
 
-            tips.UnionWith(mask.Tips);
+            tips.UnionWith(secretIdentity.Tips);
         }
 
         if (args.TryGetValue("Job", out var jobProto))
@@ -64,15 +63,15 @@ public sealed partial class ESGuideTipsEmbed : VStack, IDocumentTag
             tips.UnionWith(job.Tips);
         }
 
-        if (args.TryGetValue("Troupe", out var troupeProto))
+        if (args.TryGetValue("Organization", out var organizationProto))
         {
-            if (!_proto.TryIndex<ESTroupePrototype>(troupeProto, out var troupe))
+            if (!_proto.TryIndex<ESOrganizationPrototype>(organizationProto, out var organization))
             {
-                _sawmill.Error($"Troupe prototype passed to tips embed tag is invalid: {troupeProto}");
+                _sawmill.Error($"Organization prototype passed to tips embed tag is invalid: {organizationProto}");
                 return false;
             }
 
-            tips.UnionWith(troupe.Tips);
+            tips.UnionWith(organization.Tips);
         }
 
         if (tips.Count <= 0)

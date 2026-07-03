@@ -77,6 +77,9 @@ public abstract partial class SharedCombatModeSystem : EntitySystem
         if (component.CombatToggleActionEntity != null)
             _actionsSystem.SetToggled(component.CombatToggleActionEntity, component.IsInCombatMode);
 
+        var ev = new CombatModeToggledEvent(component.IsInCombatMode);
+        RaiseLocalEvent(entity, ref ev);
+
         // Change mouse rotator comps if flag is set
         if (!component.ToggleMouseRotator || _npc.IsNpc(entity) && !_mind.TryGetMind(entity, out _, out _))
             return;
@@ -85,6 +88,7 @@ public abstract partial class SharedCombatModeSystem : EntitySystem
     }
 
     // ES START
+    // what the fuck was i thinking?
     public void SetMouseRotatorComponents(EntityUid uid, bool value)
     // ES END
     {
@@ -105,3 +109,10 @@ public sealed partial class ToggleCombatActionEvent : InstantActionEvent
 {
 
 }
+
+/// <summary>
+///     Raised directed on an entity when it switches in or out of combat mode.
+/// </summary>
+/// <param name="Enabled">True if in combat mode, false otherwise.</param>
+[ByRefEvent]
+public record struct CombatModeToggledEvent(bool Enabled);

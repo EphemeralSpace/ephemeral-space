@@ -1,0 +1,17 @@
+- type: entity
+  id: ESCrosshairEffect
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ESViewconeOccludable
+    - type: Sprite
+      sprite: _ES/Effects/crosshair.rsi
+      drawdepth: Effects
+      noRot: true
+      layers:
+      - map: ["enum.ESCrosshairVisualLayers.Crosshair"]
+        state: crosshair
+        visible: false
+    - type: Appearance
+    - type: Tag
+      tags:
+        - HideContextMenu

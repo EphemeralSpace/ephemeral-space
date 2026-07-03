@@ -36,15 +36,6 @@
         amount: 5
         doAfter: 1
 
-    #to plasma
-    - to: pglass
-      conditions:
-      - !type:EntityAnchored {}
-      steps:
-      - material: PlasmaGlass
-        amount: 5
-        doAfter: 1
-
     #back to start
     - to: start
       conditions:
@@ -119,80 +110,6 @@
     entity: Windoor
     edges:
     - to: wired
-      conditions:
-      - !type:EntityAnchored {}
-      - !type:DoorBolted
-        value: false
-      - !type:WirePanel {}
-      - !type:AllWiresCut
-      completed:
-      - !type:EmptyAllContainers
-        pickup: true
-        emptyAtUser: true
-      steps:
-      - tool: Anchoring
-        doAfter: 1
-
-  #plasma windoor node
-  - node: pglass
-    entity: WindoorAssemblyPlasma
-    edges:
-    - to: pwired
-      conditions:
-      - !type:EntityAnchored { }
-      steps:
-      - material: Cable
-        amount: 5
-        doAfter: 1
-    - to: assembly
-      conditions:
-      - !type:EntityAnchored
-        anchored: false
-      completed:
-      - !type:SpawnPrototype
-        prototype: SheetPGlass1
-        amount: 5
-      steps:
-      - tool: Screwing
-        doAfter: 2
-
-  - node: pwired
-    entity: WindoorAssemblyPlasma
-    edges:
-    - to: pelectronics
-      conditions:
-      - !type:EntityAnchored {}
-      steps:
-      - tag: DoorElectronics
-        store: board
-        name: construction-graph-tag-door-electronics-circuit-board
-        icon:
-          sprite: "Objects/Misc/module.rsi"
-          state: "door_electronics"
-        doAfter: 1
-    - to: pglass
-      completed:
-      - !type:SpawnPrototype
-        prototype: CableApcStack1
-        amount: 5
-      steps:
-      - tool: Cutting
-        doAfter: 1
-
-  - node: pelectronics
-    entity: WindoorAssemblyPlasma
-    edges:
-    - to: pwindoor
-      conditions:
-      - !type:EntityAnchored {}
-      steps:
-      - tool: Screwing
-        doAfter: 2
-
-  - node: pwindoor
-    entity: WindoorPlasma
-    edges:
-    - to: pwired
       conditions:
       - !type:EntityAnchored {}
       - !type:DoorBolted

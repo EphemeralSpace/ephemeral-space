@@ -2,7 +2,7 @@ using Content.Server._ES.StationEvents.GreyTideVirus.Components;
 using Content.Server.Doors.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
-using Content.Shared._ES.Masks.Traitor.Components;
+using Content.Shared._ES.SecretIdentity.Traitor.Components;
 using Content.Shared._ES.Voting.Components;
 using Content.Shared._ES.Voting.Results;
 using Content.Shared.Access;
