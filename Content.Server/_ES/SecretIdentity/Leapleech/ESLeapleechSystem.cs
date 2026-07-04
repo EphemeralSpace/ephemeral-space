@@ -1,10 +1,9 @@
 ﻿using Content.Server._ES.SecretIdentity.Leapleech.Components;
 using Content.Server._ES.SecretIdentity.Objectives.Relays;
 using Content.Server._ES.SecretIdentity.Objectives.Relays.Components;
-using Content.Server.Mind;
+using Content.Server._ES.SecretIdentity.Parasite;
 using Content.Server.Popups;
 using Content.Shared._ES.Core.Timer;
-using Content.Shared._ES.KillTracking.Components;
 using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Content.Shared.Gibbing;
@@ -18,26 +17,25 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.SecretIdentity.Leapleech;
 
-public sealed partial class ESLeapleechSystem : EntitySystem
+public sealed partial class ESLeapleechSystem : ESBaseParasiteSystem<ESLeapleechComponent>
 {
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private GibbingSystem _gibbing = default!;
-    [Dependency] private ESSecretIdentitySystem _secretIdentity = default!;
-    [Dependency] private MindSystem _mind = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private ThrowingSystem _throwingSystem = default!;
 
     public override void Initialize()
     {
+        base.Initialize();
+
         SubscribeLocalEvent<ESLeapleechComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<ESLeapleechComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<ESLeapleechComponent, MindGotAddedEvent>(OnMindGotAdded);
         SubscribeLocalEvent<ESLeapleechComponent, MindGotRemovedEvent>(OnMindGotRemoved);
 
         SubscribeLocalEvent<ESLeapleechComponent, ESDamageTakenEvent>(OnDamageTaken);
-        SubscribeLocalEvent<ESLeapleechComponent, ESPlayerKilledEvent>(OnPlayerKilled);
         SubscribeLocalEvent<ESLeapleechComponent, ESLeapLeechBurstTimerEvent>(OnBurstTimer);
     }
 
@@ -77,10 +75,10 @@ public sealed partial class ESLeapleechSystem : EntitySystem
     private void OnDamageTaken(Entity<ESLeapleechComponent> ent, ref ESDamageTakenEvent args)
     {
         if (args.Origin is not { } origin ||
-            _secretIdentity.GetOrganizationOrNull(origin) == ent.Comp.IgnoreOrganization)
+            SecretIdentity.GetOrganizationOrNull(origin) == ent.Comp.IgnoreOrganization)
             return;
 
-        if (!_mind.TryGetMind(origin, out _))
+        if (!Mind.TryGetMind(origin, out _))
             return;
 
         var damage = DamageSpecifier.GetPositive(args.DamageDone).GetTotal();
@@ -91,14 +89,18 @@ public sealed partial class ESLeapleechSystem : EntitySystem
         _alerts.ShowAlert(args.Body, ent.Comp.Alert, (short) level);
     }
 
-    private void OnPlayerKilled(Entity<ESLeapleechComponent> ent, ref ESPlayerKilledEvent args)
+    protected override void OnValidParasiteKill(Entity<ESLeapleechComponent> ent,
+        EntityUid killed,
+        EntityUid killer,
+        Entity<MindComponent> killedMind,
+        Entity<MindComponent> killerMind)
     {
-        if (!args.ValidKill || ent.Comp.LeechCount == 0)
+        if (ent.Comp.LeechCount == 0)
             return;
 
         _popup.PopupEntity(
-            Loc.GetString("es-parasite-burstworm-warning", ("name", Identity.Entity(args.Killed, EntityManager))),
-            args.Killed,
+            Loc.GetString("es-parasite-burstworm-warning", ("name", Identity.Entity(killed, EntityManager))),
+            killed,
             PopupType.LargeCaution);
 
         _entityTimer.SpawnTimer(ent, ent.Comp.BurstDelay, new ESLeapLeechBurstTimerEvent());
