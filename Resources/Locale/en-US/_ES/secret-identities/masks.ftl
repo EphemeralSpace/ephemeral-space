@@ -38,9 +38,6 @@ es-secret-identity-secretary-desc = As a Secretary, do whatever you can to help 
 es-secret-identity-tragedian-name = Tragedian
 es-secret-identity-tragedian-desc = As a Tragedian, perform your theme to the bitter end in order to please the watching stagehands.
 
-es-secret-identity-vigilante-name = Vigilante
-es-secret-identity-vigilante-desc = As a Vigilante, seek out those who have killed others and bring them to justice by killing them yourself.
-
 es-secret-identity-vip-name = VIP
 es-secret-identity-vip-desc = As a VIP, use your fancy VIP card to help confirm your innocence in times of peril.
 

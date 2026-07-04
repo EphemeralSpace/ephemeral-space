@@ -17,7 +17,6 @@
   - Secretary
   - SleeperAgent
   - Tragedian
-  - Vigilante
   - VIP
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew.xml"
 
@@ -90,11 +89,6 @@
   id: Tragedian
   name: Tragedian
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Tragedian.xml"
-
-- type: guideEntry
-  id: Vigilante
-  name: Vigilante
-  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Vigilante.xml"
 
 - type: guideEntry
   id: VIP

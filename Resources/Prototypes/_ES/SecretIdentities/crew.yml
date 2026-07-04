@@ -170,15 +170,6 @@
   - type: ESAlwaysHearStagehandEmote
 
 - type: esSecretIdentity
-  id: Vigilante
-  name: es-secret-identity-vigilante-name
-  organization: Crew
-  description: es-secret-identity-vigilante-desc
-  color: orchid
-  objectives:
-    id: ESObjectiveVigilanteKillKiller
-
-- type: esSecretIdentity
   id: VIP
   name: es-secret-identity-vip-name
   organization: Crew
