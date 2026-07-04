@@ -8,7 +8,7 @@
   masquerade:
     defaultSecretIdentity: "#AllCrew"
     roles:
-      6: [ "#AllParasites(2)", "#Antagonistic", "Rebel" ] # 2 parasites
+      6: [ "#AllParasites(2)", "#Antagonistic", "Vandal" ] # 2 parasites
       8: [ "#Antagonistic" ]
       10: [ "#Gunners" ]
       11: [ "Arsonist" ]

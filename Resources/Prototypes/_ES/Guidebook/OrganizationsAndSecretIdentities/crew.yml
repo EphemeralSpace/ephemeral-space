@@ -13,10 +13,10 @@
   - Nobleman
   - Phantom
   - Pickpocket
-  - Rebel
   - Secretary
   - SleeperAgent
   - Tragedian
+  - Vandal
   - VIP
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew.xml"
 
@@ -71,11 +71,6 @@
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Pickpocket.xml"
 
 - type: guideEntry
-  id: Rebel
-  name: Rebel
-  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Rebel.xml"
-
-- type: guideEntry
   id: Secretary
   name: Secretary
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Secretary.xml"
@@ -89,6 +84,11 @@
   id: Tragedian
   name: Tragedian
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Tragedian.xml"
+
+- type: guideEntry
+  id: Vandal
+  name: Vandal
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Vandal.xml"
 
 - type: guideEntry
   id: VIP

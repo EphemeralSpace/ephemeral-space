@@ -1,24 +1,24 @@
 - type: entity
-  id: ESObjectiveRebelSabotageCommunications
+  id: ESObjectiveVandalSabotageCommunications
   parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageCommunications]
   description: It'd be pretty funny to see everybody freak out about a scary announcement message. Let's tinker with the communications computer.
 
 - type: entity
-  id: ESObjectiveRebelSabotageCrewMonitoring
+  id: ESObjectiveVandalSabotageCrewMonitoring
   parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageCrewMonitoring]
   description: I wonder what everyone's weird medical secrets are. How about checking the crew monitoring server?
 
 - type: entity
-  id: ESObjectiveRebelSabotageEmergencyAccessTerminal
+  id: ESObjectiveVandalSabotageEmergencyAccessTerminal
   parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageEmergencyAccessTerminal]
   description: Doors hold back people. They separate us. They create hate. Hacking open a bunch of them would show Nanotrasen!
 
 - type: entity
-  id: ESObjectiveRebelSabotageCriminalRecords
+  id: ESObjectiveVandalSabotageCriminalRecords
   parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageCriminalRecords]
   description: I really should try and make sure my long arrest history is a little more hidden. Scrambling the criminal records computer's database might be fun.
 
 - type: entity
-  id: ESObjectiveRebelSabotageTelecom
+  id: ESObjectiveVandalSabotageTelecom
   parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageTelecom]
   description: Those telecom processors have a whole heap of mandatory "diagnostic logging" built in. Why not let everyone know by hacking one?

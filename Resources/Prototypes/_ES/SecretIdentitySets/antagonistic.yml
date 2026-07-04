@@ -1,7 +1,7 @@
 - type: esSecretIdentitySet
   id: Antagonistic # Identities that fill various niches of "traitor-like"
   secretIdentities:
-    Rebel: 0.2    # While harmless, they're not that interesting to have tons of. Let the others shine.
+    Vandal: 0.2    # While harmless, they're not that interesting to have tons of. Let the others shine.
     Pickpocket: 0.5
     Avenger: 1
     Arsonist: 1
