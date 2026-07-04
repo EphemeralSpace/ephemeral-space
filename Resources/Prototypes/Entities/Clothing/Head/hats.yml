@@ -33,6 +33,24 @@
 
 - type: entity
   parent: ClothingHeadBase
+  id: ClothingHeadHatCaptain
+  name: captain's hardhat
+  description: Feels good being the king.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/captain.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/captain.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadBase
   id: ClothingHeadHatCardborg
   name: cardborg helmet
   description: A hat made out of a box.
