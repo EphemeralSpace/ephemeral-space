@@ -26,7 +26,7 @@ public sealed partial class ESTraitorRuleSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<NukeArmedEvent>(OnNukeArmed);
-        SubscribeLocalEvent<NukeExplodedEvent>(OnNukeExploded);
+        SubscribeLocalEvent<ESNukeAfterExplodedEvent>(OnNukeExploded);
     }
 
     private void OnNukeArmed(NukeArmedEvent ev)
@@ -51,7 +51,7 @@ public sealed partial class ESTraitorRuleSystem : EntitySystem
         ent.Comp1.BaseGrids = gridSet.Select( x => x.Owner).ToList();
     }
 
-    private void OnNukeExploded(NukeExplodedEvent args)
+    private void OnNukeExploded(ref ESNukeAfterExplodedEvent args)
     {
         // We're just going to assume the nuke blew up in the right place.
         // That's a fair thing to assume, right? It probably won't matter
