@@ -40,7 +40,7 @@ public sealed partial class ESWarpDriveSystem
 
     private void OnWarpDriveTeleport(Entity<ESWarpDriveComponent> ent, ref PortalTeleportedEvent args)
     {
-        if (HasComp<GhostComponent>(ent))
+        if (HasComp<GhostComponent>(args.Entity))
             return;
 
         var teleport = EnsureComp<ESSingularityWorldTeleportedEntityComponent>(args.Entity);

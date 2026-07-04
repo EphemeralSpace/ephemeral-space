@@ -153,8 +153,6 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             {
                 SpawnInterruptionObjects(component);
             }
-
-            component.NextInterruptionTime = _timing.CurTime + _random.Next(component.MinRandomInterruptionTime, component.MaxRandomInterruptionTime);
         }
 
         // check if there are any active interrupting entities
@@ -171,8 +169,10 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         if (interruptions <= 0 && component.Interrupted && component.LastInterruptionTime is { } time)
         {
             component.Interrupted = false;
-            component.AccumulatedInterruptionTime += (_timing.CurTime - time);
+            component.AccumulatedInterruptionTime += _timing.CurTime - time;
             UpdateAppearance(true);
+
+            component.NextInterruptionTime = _timing.CurTime + _random.Next(component.MinRandomInterruptionTime, component.MaxRandomInterruptionTime);
 
             _chat.DispatchRoundAnnouncement(Loc.GetString("es-warp-drive-announcement-interruptions-cleared"),
                 Loc.GetString("es-warpdrive-announcer"),
