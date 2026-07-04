@@ -839,3 +839,9 @@ Entries:
       message: Ammo can no longer be printed from the autolathe.
   id: 95
   time: '2026-07-04T13:01:10.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed the nuke objective not being counted.
+  id: 96
+  time: '2026-07-04T18:59:45.0000000+00:00'
