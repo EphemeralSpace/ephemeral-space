@@ -615,6 +615,9 @@ ES END */
             OwningGrid = transform.GridUid,
         });
 
+        var ev = new ESNukeAfterExplodedEvent(transform.GridUid);
+        RaiseLocalEvent(ref ev);
+
         _sound.StopStationEventMusic(uid, StationEventMusicType.Nuke);
         Del(uid);
     }
@@ -686,6 +689,12 @@ public sealed class NukeExplodedEvent : EntityEventArgs
 {
     public EntityUid? OwningGrid;
 }
+
+/// <summary>
+/// Event raised after <see cref="NukeExplodedEvent"/> is broadcast but before the nuke is deleted.
+/// </summary>
+[ByRefEvent]
+public readonly record struct ESNukeAfterExplodedEvent(EntityUid? OwningGrid);
 
 public sealed class NukeArmedEvent : EntityEventArgs
 {
