@@ -845,3 +845,11 @@ Entries:
       message: Fixed the nuke objective not being counted.
   id: 96
   time: '2026-07-04T18:59:45.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Removed Rebel and Vigilante identities.
+    - type: Add
+      message: Added back Vandal identity.
+  id: 97
+  time: '2026-07-04T22:44:56.0000000+00:00'
