@@ -119,30 +119,6 @@
     - id: ESObjectivePickpocketSteal
 
 - type: esSecretIdentity
-  parent: ESBaseCommandRestricted
-  id: Rebel
-  name: es-secret-identity-rebel-name
-  organization: Crew
-  description: es-secret-identity-rebel-desc
-  color: tomato
-  weight: 0.75
-  mindComponents:
-  - type: ESSecretIdentityCacheSpawner
-    cacheProto:
-      id: ESSpawnerRandomTraitorCache
-  objectives:
-    all:
-    - pick:
-        all:
-        - id: ESObjectiveRebelSabotageCommunications
-        - id: ESObjectiveRebelSabotageCrewMonitoring
-        - id: ESObjectiveRebelSabotageEmergencyAccessTerminal
-        - id: ESObjectiveRebelSabotageCriminalRecords
-        - id: ESObjectiveRebelSabotageTelecom
-          weight: 2
-      amount: 1, 2
-
-- type: esSecretIdentity
   id: Secretary
   name: es-secret-identity-secretary-name
   organization: Crew
@@ -170,13 +146,24 @@
   - type: ESAlwaysHearStagehandEmote
 
 - type: esSecretIdentity
-  id: Vigilante
-  name: es-secret-identity-vigilante-name
+  parent: ESBaseCommandRestricted
+  id: Vandal
+  name: es-secret-identity-vandal-name
   organization: Crew
-  description: es-secret-identity-vigilante-desc
-  color: orchid
+  description: es-secret-identity-vandal-desc
+  color: tomato
+  weight: 0.75
   objectives:
-    id: ESObjectiveVigilanteKillKiller
+    all:
+    - pick:
+        all:
+        - id: ESObjectiveVandalSabotageCommunications
+        - id: ESObjectiveVandalSabotageCrewMonitoring
+        - id: ESObjectiveVandalSabotageEmergencyAccessTerminal
+        - id: ESObjectiveVandalSabotageCriminalRecords
+        - id: ESObjectiveVandalSabotageTelecom
+          weight: 2
+      amount: 1, 2
 
 - type: esSecretIdentity
   id: VIP

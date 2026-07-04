@@ -9,7 +9,7 @@
     defaultSecretIdentity: "#AllCrew"
     superfanTarget: "#Traitors"
     roles:
-      6: ["#Traitors", "Infiltrator", "Rebel", "#Targeters"] # 2 traitors
+      6: ["#Traitors", "Infiltrator", "Vandal", "#Targeters"] # 2 traitors
       10: ["#SemiTraitor"]
       11: ["#Antagonistic"]
       13: ["Assassin"]  # 3 traitors.
