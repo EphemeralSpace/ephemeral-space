@@ -833,3 +833,9 @@ Entries:
         is obscured.
   id: 94
   time: '2026-07-02T16:24:28.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Ammo can no longer be printed from the autolathe.
+  id: 95
+  time: '2026-07-04T13:01:10.0000000+00:00'
