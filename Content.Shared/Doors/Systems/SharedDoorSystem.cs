@@ -468,6 +468,8 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (!SetState(uid, DoorState.Closing, door))
             return;
 
+        SetCollidable(uid, true, door);
+
         if (predicted)
             Audio.PlayPredicted(door.CloseSound, uid, user, AudioParams.Default.WithVolume(-5));
         else if (_net.IsServer)
