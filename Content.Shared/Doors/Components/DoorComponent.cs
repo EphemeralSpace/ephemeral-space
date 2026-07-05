@@ -34,25 +34,25 @@ public sealed partial class DoorComponent : Component
     /// Closing time until impassable. Total time is this plus <see cref="CloseTimeTwo"/>.
     /// </summary>
     [DataField]
-    public TimeSpan CloseTimeOne = TimeSpan.FromSeconds(0.4f);
+    public TimeSpan CloseTimeOne = TimeSpan.FromSeconds(0.2f);
 
     /// <summary>
     /// Closing time until fully closed. Total time is this plus <see cref="CloseTimeOne"/>.
     /// </summary>
     [DataField]
-    public TimeSpan CloseTimeTwo = TimeSpan.FromSeconds(0.2f);
+    public TimeSpan CloseTimeTwo = TimeSpan.FromSeconds(0.4f);
 
     /// <summary>
     /// Opening time until passable. Total time is this plus <see cref="OpenTimeTwo"/>.
     /// </summary>
     [DataField]
-    public TimeSpan OpenTimeOne = TimeSpan.FromSeconds(0.4f);
+    public TimeSpan OpenTimeOne = TimeSpan.FromSeconds(0.2f);
 
     /// <summary>
     /// Opening time until fully open. Total time is this plus <see cref="OpenTimeOne"/>.
     /// </summary>
     [DataField]
-    public TimeSpan OpenTimeTwo = TimeSpan.FromSeconds(0.2f);
+    public TimeSpan OpenTimeTwo = TimeSpan.FromSeconds(0.4f);
 
     /// <summary>
     ///     Interval between deny sounds & visuals;
