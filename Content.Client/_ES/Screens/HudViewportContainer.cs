@@ -36,33 +36,42 @@ public sealed class HudViewportContainer : Container
         return availableWidth >= ShowPanelsAbove;
     }
 
+    private (float left, float right) CalculatePanelWidths(float viewportWidth)
+    {
+        var panelSpace = Math.Max(0f, Size.X - viewportWidth);
+
+        var rightPanelWidth = panelSpace / (PanelRatio + 1);
+        var leftPanelWidth = panelSpace - rightPanelWidth;
+
+        return (leftPanelWidth, rightPanelWidth);
+    }
+
     protected override Vector2 ArrangeOverride(Vector2 finalSize)
     {
         if (ChildCount != 3)
             throw new ArgumentOutOfRangeException($"Child count of {nameof(HudViewportContainer)} must be exactly 3");
 
-        var (finalWidth, finalHeight) = finalSize;
+        Log.Info($"hvc arranging size {finalSize}");
+
+        var finalHeight = finalSize.Y;
 
         var leftPanel = GetChild(0);
         var centerContainer = GetChild(1);
         var rightPanel = GetChild(2);
 
-        // arrange viewport first
         var viewportWidth = centerContainer.DesiredSize.X;
-        var panelSpace = Math.Max(0f, finalWidth - viewportWidth);
-
-        var rightPanelWidth = panelSpace / (PanelRatio + 1);
-        var leftPanelWidth = panelSpace - rightPanelWidth;
-
+        var (leftPanelWidth, rightPanelWidth) = CalculatePanelWidths(viewportWidth);
         leftPanel.Visible = ShouldShowPanel(leftPanel, leftPanelWidth);
         rightPanel.Visible = ShouldShowPanel(rightPanel, rightPanelWidth);
 
-        // arrange panels around it
+        // arrange viewport first
         centerContainer.Arrange(UIBox2.FromDimensions(leftPanelWidth, 0, viewportWidth, finalHeight));
+
+        // arrange panels around it
         if (leftPanel.Visible)
             leftPanel.Arrange(UIBox2.FromDimensions(0, 0, leftPanelWidth, finalHeight));
         if (rightPanel.Visible)
-            rightPanel.Arrange(UIBox2.FromDimensions(leftPanelWidth + viewportWidth, 0, rightPanelWidth, finalHeight));
+            rightPanel.Arrange(UIBox2.FromDimensions((leftPanel.Visible ? leftPanelWidth : 0) + viewportWidth, 0, rightPanelWidth, finalHeight));
 
         return finalSize;
     }
