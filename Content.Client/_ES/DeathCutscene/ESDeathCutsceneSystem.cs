@@ -21,8 +21,8 @@ public sealed partial class ESDeathCutsceneSystem : EntitySystem
     [Dependency] private IUserInterfaceManager _ui = default!;
     private ESDiegeticLobbyUIController _curtains = default!;
 
-    private static readonly TimeSpan CurtainCloseTime = TimeSpan.FromSeconds(9);
-    private static readonly TimeSpan CurtainCloseDuration = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan CurtainCloseTime = TimeSpan.FromSeconds(8.5);
+    private static readonly TimeSpan CurtainCloseDuration = TimeSpan.FromSeconds(4.1);
     private static readonly TimeSpan CurtainOpenDuration = TimeSpan.FromSeconds(1.5);
     private static readonly SoundSpecifier PostDeathSound = new SoundPathSpecifier("/Audio/_ES/Ambience/death.ogg");
 
