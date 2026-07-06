@@ -853,3 +853,11 @@ Entries:
       message: Added back Vandal identity.
   id: 97
   time: '2026-07-04T22:44:56.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Doors now have collision immediately upon being closed rather than
+        partway through their animation
+  id: 98
+  time: '2026-07-06T05:08:48.0000000+00:00'
