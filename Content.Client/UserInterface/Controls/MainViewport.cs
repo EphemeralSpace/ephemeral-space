@@ -34,26 +34,26 @@ namespace Content.Client.UserInterface.Controls
 
             AddChild(Viewport);
 
-            _cfg.OnValueChanged(CCVars.ViewportScalingFilterMode, _ => UpdateCfg(Size));
-            _cfg.OnValueChanged(CCVars.ViewportMinimumWidth, _ => UpdateCfg(Size));
-            _cfg.OnValueChanged(CCVars.ViewportMaximumWidth, _ => UpdateCfg(Size));
-            _cfg.OnValueChanged(CCVars.ViewportWidth, _ => UpdateCfg(Size));
-            _cfg.OnValueChanged(CCVars.ViewportVerticalFit, _ => UpdateCfg(Size));
-            _cfg.OnValueChanged(CCVars.ViewportStretch, _ => UpdateCfg(Size));
-            _cfg.OnValueChanged(CCVars.ViewportSnapToleranceClip, _ => UpdateCfg(Size));
-            _cfg.OnValueChanged(CCVars.ViewportSnapToleranceMargin, _ => UpdateCfg(Size));
-            _cfg.OnValueChanged(CCVars.ViewportScaleRender, _ => UpdateCfg(Size));
-            _cfg.OnValueChanged(CCVars.ViewportFixedScaleFactor, _ => UpdateCfg(Size));
+            _cfg.OnValueChanged(CCVars.ViewportScalingFilterMode, _ => UpdateCfg());
+            _cfg.OnValueChanged(CCVars.ViewportMinimumWidth, _ => UpdateCfg());
+            _cfg.OnValueChanged(CCVars.ViewportMaximumWidth, _ => UpdateCfg());
+            _cfg.OnValueChanged(CCVars.ViewportWidth, _ => UpdateCfg());
+            _cfg.OnValueChanged(CCVars.ViewportVerticalFit, _ => UpdateCfg());
+            _cfg.OnValueChanged(CCVars.ViewportStretch, _ => UpdateCfg());
+            _cfg.OnValueChanged(CCVars.ViewportSnapToleranceClip, _ => UpdateCfg());
+            _cfg.OnValueChanged(CCVars.ViewportSnapToleranceMargin, _ => UpdateCfg());
+            _cfg.OnValueChanged(CCVars.ViewportScaleRender, _ => UpdateCfg());
+            _cfg.OnValueChanged(CCVars.ViewportFixedScaleFactor, _ => UpdateCfg());
         }
 
         protected override void EnteredTree()
         {
             base.EnteredTree();
 
-            UpdateCfg(Size);
+            UpdateCfg();
         }
 
-        private void UpdateCfg(Vector2 availableSize)
+        private void UpdateCfg()
         {
             var stretch = _cfg.GetCVar(CCVars.ViewportStretch);
             var renderScaleUp = _cfg.GetCVar(CCVars.ViewportScaleRender);
@@ -78,7 +78,7 @@ namespace Content.Client.UserInterface.Controls
 
             if (stretch)
             {
-                var snapFactor = CalcSnappingFactor(availableSize);
+                var snapFactor = CalcSnappingFactor();
                 if (snapFactor == null)
                 {
                     // Did not find a snap, enable stretching.
@@ -125,7 +125,7 @@ namespace Content.Client.UserInterface.Controls
             }
         }
 
-        private int? CalcSnappingFactor(Vector2 availableSize)
+        private int? CalcSnappingFactor()
         {
             // erm
             if (Root == null)
@@ -136,8 +136,7 @@ namespace Content.Client.UserInterface.Controls
 
             // Instead of all that, we just snap to the largest integer scale that fits.
             // If that (pre-clamp) scale is <1, or we arent close enough to an integer fit, we return null and let the scaling logic handle it.
-            var pixelSize = availableSize * UIScale;
-            var possibleSize = (pixelSize / Viewport.ViewportSize);
+            var possibleSize = (Root.PixelSize / Viewport.ViewportSize);
 
             var minPossible = Math.Min(possibleSize.X, possibleSize.Y);
 
@@ -157,7 +156,7 @@ namespace Content.Client.UserInterface.Controls
 
         protected override Vector2 MeasureOverride(Vector2 availableSize)
         {
-            UpdateCfg(availableSize);
+            UpdateCfg();
 
             return base.MeasureOverride(availableSize);
         }
@@ -166,14 +165,14 @@ namespace Content.Client.UserInterface.Controls
         {
             base.Resized();
 
-            UpdateCfg(Size);
+            UpdateCfg();
         }
 
         protected override void UIScaleChanged()
         {
             base.UIScaleChanged();
 
-            UpdateCfg(Size);
+            UpdateCfg();
         }
     }
 }
