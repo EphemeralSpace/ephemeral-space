@@ -19,6 +19,9 @@ namespace Content.Client.UserInterface.Controls
 
         private const int ViewportHeight = 15;
 
+        // basically
+        private const float MinSnapFillRatio = 0.85f;
+
         public MainViewport()
         {
             IoCManager.InjectDependencies(this);
@@ -35,13 +38,8 @@ namespace Content.Client.UserInterface.Controls
             AddChild(Viewport);
 
             _cfg.OnValueChanged(CCVars.ViewportScalingFilterMode, _ => UpdateCfg());
-            _cfg.OnValueChanged(CCVars.ViewportMinimumWidth, _ => UpdateCfg());
             _cfg.OnValueChanged(CCVars.ViewportMaximumWidth, _ => UpdateCfg());
-            _cfg.OnValueChanged(CCVars.ViewportWidth, _ => UpdateCfg());
-            _cfg.OnValueChanged(CCVars.ViewportVerticalFit, _ => UpdateCfg());
             _cfg.OnValueChanged(CCVars.ViewportStretch, _ => UpdateCfg());
-            _cfg.OnValueChanged(CCVars.ViewportSnapToleranceClip, _ => UpdateCfg());
-            _cfg.OnValueChanged(CCVars.ViewportSnapToleranceMargin, _ => UpdateCfg());
             _cfg.OnValueChanged(CCVars.ViewportScaleRender, _ => UpdateCfg());
             _cfg.OnValueChanged(CCVars.ViewportFixedScaleFactor, _ => UpdateCfg());
         }
@@ -58,21 +56,8 @@ namespace Content.Client.UserInterface.Controls
             var stretch = _cfg.GetCVar(CCVars.ViewportStretch);
             var renderScaleUp = _cfg.GetCVar(CCVars.ViewportScaleRender);
             var fixedFactor = _cfg.GetCVar(CCVars.ViewportFixedScaleFactor);
-            var verticalFit = _cfg.GetCVar(CCVars.ViewportVerticalFit);
             var filterMode = _cfg.GetCVar(CCVars.ViewportScalingFilterMode);
-
-            var min = _cfg.GetCVar(CCVars.ViewportMinimumWidth);
-            var max = _cfg.GetCVar(CCVars.ViewportMaximumWidth);
-            var width = _cfg.GetCVar(CCVars.ViewportWidth);
-
-            if (verticalFit)
-            {
-                width = max;
-            }
-            else if (width < min || width > max)
-            {
-                width = CCVars.ViewportWidth.DefaultValue;
-            }
+            var width = _cfg.GetCVar(CCVars.ViewportMaximumWidth);
 
             Viewport.ViewportSize = (EyeManager.PixelsPerMeter * width, EyeManager.PixelsPerMeter * ViewportHeight);
 
@@ -89,7 +74,7 @@ namespace Content.Client.UserInterface.Controls
                         "bilinear" => ScalingViewportStretchMode.Bilinear,
                         _ => ScalingViewportStretchMode.Nearest
                     };
-                    Viewport.IgnoreDimension = verticalFit ? ScalingViewportIgnoreDimension.Horizontal : ScalingViewportIgnoreDimension.None;
+                    Viewport.IgnoreDimension = ScalingViewportIgnoreDimension.Horizontal;
 
                     if (renderScaleUp)
                     {
@@ -134,22 +119,22 @@ namespace Content.Client.UserInterface.Controls
             if (Viewport.ViewportSize.X <= 0 || Viewport.ViewportSize.Y <= 0)
                 return null;
 
-            // Instead of all that, we just snap to the largest integer scale that fits.
-            // If that (pre-clamp) scale is <1, or we arent close enough to an integer fit, we return null and let the scaling logic handle it.
-            var possibleSize = (Root.PixelSize / Viewport.ViewportSize);
-
+            var possibleSize = Root.PixelSize / (Vector2)Viewport.ViewportSize;
             var minPossible = Math.Min(possibleSize.X, possibleSize.Y);
 
-            // check closest fits on a .5 increment basis
-            // (0-1 = no snap, 1 = snap, >1.5 = no snap, etc)
             if (minPossible < 1)
                 return null; // too tiny, always scale
 
-            var doubleScale = (int)Math.Floor(minPossible * 2f);
-            // if its even, this is an integer fit
-            // if it isnt, it fits closer to a .5 increment, so just let scaling handle it
-            if ((doubleScale % 2 == 0))
-                return doubleScale / 2;
+            var flooredScale = (int)Math.Floor(minPossible);
+            if (flooredScale < 1)
+                return null;
+
+            // if the desired integer scale doesnt fill up enough space
+            // just scale normally
+            var fillRatio = flooredScale / minPossible;
+
+            if (fillRatio >= MinSnapFillRatio)
+                return flooredScale;
 
             return null;
         }
