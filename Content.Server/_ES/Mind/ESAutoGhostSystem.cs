@@ -4,11 +4,11 @@ using Content.Server.Mind;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.DeathCutscene;
 using Content.Shared._ES.Mind;
+using Content.Shared._ES.Viewcone.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
 
 namespace Content.Server._ES.Mind;
@@ -24,7 +24,7 @@ public sealed partial class ESAutoGhostSystem : EntitySystem
     [Dependency] private MobStateSystem _mobState = default!;
 
     // time for death cutscene to play out
-    private static readonly TimeSpan AutoGhostDelay = TimeSpan.FromSeconds(18);
+    private static readonly TimeSpan AutoGhostDelay = TimeSpan.FromSeconds(15.5);
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -71,6 +71,9 @@ public sealed partial class ESAutoGhostSystem : EntitySystem
 
         if (!TryComp<ActorComponent>(uid, out var actor))
             return;
+
+        // uhh teehee
+        RemCompDeferred<ESViewconeComponent>(uid);
 
         Log.Info("sent cutscene event");
         RaiseNetworkEvent(new ESPlayDeathCutsceneNetworkEvent(), actor.PlayerSession);

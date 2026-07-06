@@ -21,8 +21,9 @@ public sealed partial class ESDeathCutsceneSystem : EntitySystem
     [Dependency] private IUserInterfaceManager _ui = default!;
     private ESDiegeticLobbyUIController _curtains = default!;
 
-    private static readonly TimeSpan CurtainCloseTime = TimeSpan.FromSeconds(15);
-    private static readonly TimeSpan CurtainCloseDuration = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan CurtainCloseTime = TimeSpan.FromSeconds(9);
+    private static readonly TimeSpan CurtainCloseDuration = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan CurtainOpenDuration = TimeSpan.FromSeconds(1.5);
     private static readonly SoundSpecifier PostDeathSound = new SoundPathSpecifier("/Audio/_ES/Ambience/death.ogg");
 
     public override void Initialize()
@@ -44,9 +45,12 @@ public sealed partial class ESDeathCutsceneSystem : EntitySystem
             () =>
             {
                 _curtains.StartCurtainAnimation(false, CurtainCloseDuration);
-                Log.Info("doing curtains");
             });
-        Log.Info("started cutscene");
+        _timer.SpawnMethodTimer(CurtainCloseTime + (CurtainCloseDuration * 2),
+            () =>
+            {
+                _curtains.StartCurtainAnimation(true, CurtainOpenDuration);
+            });
     }
 
     // stop the sequence on detach always
@@ -54,7 +58,5 @@ public sealed partial class ESDeathCutsceneSystem : EntitySystem
     {
         if (_overlay.HasOverlay<ESDeathCutsceneOverlay>())
             _overlay.RemoveOverlay<ESDeathCutsceneOverlay>();
-
-        Log.Info("removed overlay");
     }
 }

@@ -9,6 +9,9 @@ uniform highp float noise_intensity;
 const highp float RedHueRange = 5.0;
 const highp float MinSaturation = 0.4;
 
+const highp float grainMult = 0.15;
+const highp float grainBase = 0.05;
+
 // https://en.wikipedia.org/wiki/HSL_and_HSV#From_RGB
 highp vec3 rgb2hsv(highp vec3 c) {
     highp float xMax = max(c.r, max(c.g, c.b));
@@ -40,6 +43,9 @@ void fragment() {
     // Red is near 0 or 360 in hue
     bool is_red = hsv.x < RedHueRange || hsv.x > (360.0 - RedHueRange);
     bool saturated_enough = hsv.y > MinSaturation; // Avoid desaturated pinks/greys
+
+    highp float grain = zRandom(FRAGCOORD.xy * SCREEN_PIXEL_SIZE + vec2(fract(TIME))).x;
+    gray = mix(gray, gray * (grain * grainMult + grainBase), noise_intensity);
 
     if (is_red && saturated_enough) {
         COLOR = color;

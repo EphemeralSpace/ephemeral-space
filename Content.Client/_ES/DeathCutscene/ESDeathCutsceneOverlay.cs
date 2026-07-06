@@ -8,7 +8,7 @@ namespace Content.Client._ES.DeathCutscene;
 public sealed partial class ESDeathCutsceneOverlay : Overlay
 {
     private static readonly ProtoId<ShaderPrototype> Shader = "Noir";
-    private static readonly TimeSpan TimeUntilMaxIntensity = TimeSpan.FromSeconds(12);
+    private static readonly TimeSpan TimeUntilMaxIntensity = TimeSpan.FromSeconds(10);
 
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IGameTiming _timing = default!;
@@ -31,9 +31,8 @@ public sealed partial class ESDeathCutsceneOverlay : Overlay
         if (ScreenTexture == null)
             return;
 
-        var blend = (float)Math.Clamp((_startTime + _timing.RealTime).TotalSeconds / (_startTime + TimeUntilMaxIntensity).TotalSeconds, 0.0f, 1.0f);
-        var intensity = MathHelper.Lerp(0f, 1f, Easings.InSine(blend));
-        Logger.Info($"intensity {intensity}");
+        var blend = (float)Math.Clamp((_timing.RealTime - _startTime).TotalSeconds / TimeUntilMaxIntensity.TotalSeconds, 0.0f, 1.0f);
+        var intensity = MathHelper.Lerp(0f, 1f, Easings.OutSine(blend));
         var handle = args.WorldHandle;
         _shader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
         _shader.SetParameter("intensity", intensity);
