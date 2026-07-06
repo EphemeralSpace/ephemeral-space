@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using Content.Client.Viewport;
 using Content.Shared.CCVar;
-using Robust.Client.UserInterface;
+using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 
@@ -14,9 +14,10 @@ namespace Content.Client.UserInterface.Controls
     public sealed partial class MainViewport : UIWidget
     {
         [Dependency] private IConfigurationManager _cfg = default!;
-        [Dependency] private ViewportManager _vpManager = default!;
 
         public ScalingViewport Viewport { get; }
+
+        private const int ViewportHeight = 15;
 
         public MainViewport()
         {
@@ -26,29 +27,33 @@ namespace Content.Client.UserInterface.Controls
             {
                 AlwaysRender = true,
                 RenderScaleMode = ScalingViewportRenderScaleMode.CeilInt,
-                MouseFilter = MouseFilterMode.Stop
+                MouseFilter = MouseFilterMode.Stop,
+                HorizontalExpand = true,
+                VerticalExpand = true,
             };
 
             AddChild(Viewport);
 
-            _cfg.OnValueChanged(CCVars.ViewportScalingFilterMode, _ => UpdateCfg(), true);
+            _cfg.OnValueChanged(CCVars.ViewportScalingFilterMode, _ => UpdateCfg(Size));
+            _cfg.OnValueChanged(CCVars.ViewportMinimumWidth, _ => UpdateCfg(Size));
+            _cfg.OnValueChanged(CCVars.ViewportMaximumWidth, _ => UpdateCfg(Size));
+            _cfg.OnValueChanged(CCVars.ViewportWidth, _ => UpdateCfg(Size));
+            _cfg.OnValueChanged(CCVars.ViewportVerticalFit, _ => UpdateCfg(Size));
+            _cfg.OnValueChanged(CCVars.ViewportStretch, _ => UpdateCfg(Size));
+            _cfg.OnValueChanged(CCVars.ViewportSnapToleranceClip, _ => UpdateCfg(Size));
+            _cfg.OnValueChanged(CCVars.ViewportSnapToleranceMargin, _ => UpdateCfg(Size));
+            _cfg.OnValueChanged(CCVars.ViewportScaleRender, _ => UpdateCfg(Size));
+            _cfg.OnValueChanged(CCVars.ViewportFixedScaleFactor, _ => UpdateCfg(Size));
         }
 
         protected override void EnteredTree()
         {
             base.EnteredTree();
 
-            _vpManager.AddViewport(this);
+            UpdateCfg(Size);
         }
 
-        protected override void ExitedTree()
-        {
-            base.ExitedTree();
-
-            _vpManager.RemoveViewport(this);
-        }
-
-        public void UpdateCfg()
+        private void UpdateCfg(Vector2 availableSize)
         {
             var stretch = _cfg.GetCVar(CCVars.ViewportStretch);
             var renderScaleUp = _cfg.GetCVar(CCVars.ViewportScaleRender);
@@ -56,9 +61,24 @@ namespace Content.Client.UserInterface.Controls
             var verticalFit = _cfg.GetCVar(CCVars.ViewportVerticalFit);
             var filterMode = _cfg.GetCVar(CCVars.ViewportScalingFilterMode);
 
+            var min = _cfg.GetCVar(CCVars.ViewportMinimumWidth);
+            var max = _cfg.GetCVar(CCVars.ViewportMaximumWidth);
+            var width = _cfg.GetCVar(CCVars.ViewportWidth);
+
+            if (verticalFit)
+            {
+                width = max;
+            }
+            else if (width < min || width > max)
+            {
+                width = CCVars.ViewportWidth.DefaultValue;
+            }
+
+            Viewport.ViewportSize = (EyeManager.PixelsPerMeter * width, EyeManager.PixelsPerMeter * ViewportHeight);
+
             if (stretch)
             {
-                var snapFactor = CalcSnappingFactor();
+                var snapFactor = CalcSnappingFactor(availableSize);
                 if (snapFactor == null)
                 {
                     // Did not find a snap, enable stretching.
@@ -105,16 +125,19 @@ namespace Content.Client.UserInterface.Controls
             }
         }
 
-        private int? CalcSnappingFactor()
+        private int? CalcSnappingFactor(Vector2 availableSize)
         {
             // erm
             if (Root == null)
                 return null;
 
+            if (Viewport.ViewportSize.X <= 0 || Viewport.ViewportSize.Y <= 0)
+                return null;
+
             // Instead of all that, we just snap to the largest integer scale that fits.
             // If that (pre-clamp) scale is <1, or we arent close enough to an integer fit, we return null and let the scaling logic handle it.
-            // TODO: This should probably enforce margins around the viewport.
-            var possibleSize = ((Vector2)Root.PixelSize) / ((Vector2)Viewport.ViewportSize);
+            var pixelSize = availableSize * UIScale;
+            var possibleSize = (pixelSize / Viewport.ViewportSize);
 
             var minPossible = Math.Min(possibleSize.X, possibleSize.Y);
 
@@ -134,7 +157,7 @@ namespace Content.Client.UserInterface.Controls
 
         protected override Vector2 MeasureOverride(Vector2 availableSize)
         {
-            UpdateCfg();
+            UpdateCfg(availableSize);
 
             return base.MeasureOverride(availableSize);
         }
@@ -143,7 +166,14 @@ namespace Content.Client.UserInterface.Controls
         {
             base.Resized();
 
-            UpdateCfg();
+            UpdateCfg(Size);
+        }
+
+        protected override void UIScaleChanged()
+        {
+            base.UIScaleChanged();
+
+            UpdateCfg(Size);
         }
     }
 }
