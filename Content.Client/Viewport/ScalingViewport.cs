@@ -132,7 +132,8 @@ namespace Content.Client.Viewport
 
         protected override Vector2 MeasureOverride(Vector2 availableSize)
         {
-            return _viewport is null ? Vector2.Zero : (GetViewportBox(availableSize).Size / UIScale);
+            EnsureViewportCreated();
+            return GetViewportBox(availableSize * UIScale).Size / UIScale;
         }
 
         protected override void KeyBindDown(GUIBoundKeyEventArgs args)

@@ -33,8 +33,8 @@ public sealed class HudViewportContainer : Container
     private bool ShouldShowPanel(Control panel, float availableWidth)
     {
         if (panel.Visible)
-            return availableWidth >= HidePanelsBelow;
-        return availableWidth >= ShowPanelsAbove;
+            return (availableWidth * UIScale) >= HidePanelsBelow;
+        return (availableWidth * UIScale) >= ShowPanelsAbove;
     }
 
     private (float left, float right) CalculatePanelWidths(float viewportWidth)
@@ -71,7 +71,7 @@ public sealed class HudViewportContainer : Container
         if (ChildCount != 3)
             throw new ArgumentOutOfRangeException($"Child count of {nameof(HudViewportContainer)} must be exactly 3");
 
-        Log.Info($"{IoCManager.Resolve<IGameTiming>().CurFrame} | hvc arranging size {finalSize}");
+        Log.Info($"{IoCManager.Resolve<IGameTiming>().CurFrame} | UISCALE {UIScale} hvc arranging size {finalSize}");
 
         var finalHeight = finalSize.Y;
 

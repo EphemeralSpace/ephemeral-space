@@ -22,7 +22,7 @@ namespace Content.Client.UserInterface.Controls
         private const int ViewportHeight = 15;
 
         // basically
-        private const float MinSnapFillRatio = 0.85f;
+        private const float MinSnapFillRatio = 0.8f;
 
         public MainViewport()
         {
