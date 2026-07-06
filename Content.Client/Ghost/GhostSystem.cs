@@ -1,4 +1,3 @@
-using Content.Client._ES.Lighting;
 using Content.Client.Movement.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Ghost;

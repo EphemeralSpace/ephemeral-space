@@ -5,7 +5,7 @@ using Content.Shared.Overlays;
 namespace Content.Shared.NightVision;
 
 /// <summary>
-/// Shows/hides the <see cref="NightVisionOverlay"/> based on whether the observed
+/// Shows/hides the night vision overlay based on whether the observed
 /// entity has a <see cref="NightVisionComponent"/> equipped.
 /// </summary>
 public abstract partial class SharedNightVisionSystem : EntitySystem
@@ -26,13 +26,13 @@ public abstract partial class SharedNightVisionSystem : EntitySystem
     private void OnCompEquip(Entity<NightVisionComponent> ent, ref GotEquippedEvent args)
     {
         if (ent.Comp.RelayOverlay)
-            RefreshOverlay(args.EquipTarget);
+            RefreshOverlay(args.Equipee);
     }
 
     [SubscribeLocalEvent]
     private void OnCompUnequip(Entity<NightVisionComponent> ent, ref GotUnequippedEvent args)
     {
-        RefreshOverlay(args.EquipTarget);
+        RefreshOverlay(args.Equipee);
     }
 
     [SubscribeLocalEvent]
