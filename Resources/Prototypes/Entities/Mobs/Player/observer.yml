@@ -62,7 +62,7 @@
   - type: ESBypassInteractionRangeChecks
   - type: NightVision
     netsync: false
-    enabled: false
+    enabled: true
     prioritized: false
     relayOverlay: false # In case default values change
     lightingColor: '#acb4c235'
