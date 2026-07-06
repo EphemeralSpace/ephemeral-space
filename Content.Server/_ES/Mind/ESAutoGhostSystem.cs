@@ -2,11 +2,14 @@ using Content.Server.Ghost;
 using Content.Server.KillTracking;
 using Content.Server.Mind;
 using Content.Shared._ES.Core.Timer;
+using Content.Shared._ES.DeathCutscene;
 using Content.Shared._ES.Mind;
 using Content.Shared.Ghost;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
 
 namespace Content.Server._ES.Mind;
 
@@ -20,11 +23,13 @@ public sealed partial class ESAutoGhostSystem : EntitySystem
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private MobStateSystem _mobState = default!;
 
-    private static readonly TimeSpan AutoGhostDelay = TimeSpan.FromSeconds(0.5);
+    // time for death cutscene to play out
+    private static readonly TimeSpan AutoGhostDelay = TimeSpan.FromSeconds(18);
 
     /// <inheritdoc/>
     public override void Initialize()
     {
+        // todo call this some other shit and makle it more generic see the comment in esbasemob
         SubscribeLocalEvent<GhostOnMoveComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<GhostOnMoveComponent, MobStateChangedEvent>(OnMobStateChanged, after: [typeof(KillTrackingSystem)]);
 
@@ -63,5 +68,11 @@ public sealed partial class ESAutoGhostSystem : EntitySystem
             return;
 
         _entityTimer.SpawnTimer(uid, AutoGhostDelay, new ESAutoGhostEvent());
+
+        if (!TryComp<ActorComponent>(uid, out var actor))
+            return;
+
+        Log.Info("sent cutscene event");
+        RaiseNetworkEvent(new ESPlayDeathCutsceneNetworkEvent(), actor.PlayerSession);
     }
 }

@@ -2,6 +2,9 @@
 // Makes everything black and white, but keeps red colors.
 
 uniform sampler2D SCREEN_TEXTURE;
+uniform highp float intensity;
+uniform highp float noise_intensity;
+
 // Sensitivity, in degrees.
 const highp float RedHueRange = 5.0;
 const highp float MinSaturation = 0.4;
@@ -41,6 +44,6 @@ void fragment() {
     if (is_red && saturated_enough) {
         COLOR = color;
     } else {
-        COLOR = vec4(gray, color.a);
+        COLOR = vec4(mix(color.rgb, gray, intensity), color.a);
     }
 }
