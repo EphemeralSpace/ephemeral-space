@@ -22,12 +22,12 @@ public sealed class HudViewportContainer : Container
     /// <summary>
     ///     A panel will be hidden entirely if its calculated size would be below this value
     /// </summary>
-    public float HidePanelsBelow = 100.0f;
+    public float HidePanelsBelow { get; set; } = 100.0f;
 
     /// <summary>
     ///     A panel will be made visible (assuming its not already visible) if its calculated size would be above this value
     /// </summary>
-    public float ShowPanelsAbove = 150.0f;
+    public float ShowPanelsAbove { get; set; } = 150.0f;
 
     private bool ShouldShowPanel(Control panel, float availableWidth)
     {
@@ -55,7 +55,7 @@ public sealed class HudViewportContainer : Container
         var leftPanelWidth = panelSpace - rightPanelWidth;
 
         leftPanel.Visible = ShouldShowPanel(leftPanel, leftPanelWidth);
-        rightPanel.Visible = ShouldShowPanel(leftPanel, leftPanelWidth);
+        rightPanel.Visible = ShouldShowPanel(rightPanel, rightPanelWidth);
 
         // arrange panels around it
         centerContainer.Arrange(UIBox2.FromDimensions(leftPanelWidth, 0, viewportWidth, finalHeight));
