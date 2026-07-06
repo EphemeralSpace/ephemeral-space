@@ -85,7 +85,7 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
             announcement.Color);
 
         if (announcement.Sound != null)
-            _currentlyPlayingAnnouncementSound = _audio.PlayGlobal(announcement.Sound, filter, true);
+            _currentlyPlayingAnnouncementSound = _audio.PlayGlobal(announcement.Sound, filter, true, AudioParams.Default.WithVolume(2f));
     }
 
     private void QueueAnnouncement(bool global,
