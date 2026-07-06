@@ -53,7 +53,7 @@ namespace Content.Client.UserInterface.Controls
             UpdateCfg();
         }
 
-        private void UpdateCfg()
+        private void UpdateCfg(Vector2? measuredSizeOverride = null)
         {
             var stretch = _cfg.GetCVar(CCVars.ViewportStretch);
             var renderScaleUp = _cfg.GetCVar(CCVars.ViewportScaleRender);
@@ -66,7 +66,7 @@ namespace Content.Client.UserInterface.Controls
             if (stretch)
             {
                 var snapFactor = CalcSnappingFactor();
-                Log.Info($"{_timing.CurFrame} | recalcing snap factor as {snapFactor}, root pixel size {Root!.PixelSize}");
+                Log.Info($"{_timing.CurFrame} | recalcing snap factor as {snapFactor}, root pixel size {(measuredSizeOverride * UIScale) ?? Root!.PixelSize}");
                 if (snapFactor == null)
                 {
                     // Did not find a snap, enable stretching.
@@ -113,7 +113,7 @@ namespace Content.Client.UserInterface.Controls
             }
         }
 
-        private int? CalcSnappingFactor()
+        private int? CalcSnappingFactor(Vector2? measuredSizeOverride = null)
         {
             // erm
             if (Root == null)
@@ -122,7 +122,8 @@ namespace Content.Client.UserInterface.Controls
             if (Viewport.ViewportSize.X <= 0 || Viewport.ViewportSize.Y <= 0)
                 return null;
 
-            var possibleSize = Root.PixelSize / (Vector2)Viewport.ViewportSize;
+            var totalSize = (measuredSizeOverride * UIScale) ?? Root.PixelSize;
+            var possibleSize = totalSize / (Vector2)Viewport.ViewportSize;
             var minPossible = Math.Min(possibleSize.X, possibleSize.Y);
 
             if (minPossible < 1)
@@ -145,7 +146,7 @@ namespace Content.Client.UserInterface.Controls
         protected override Vector2 MeasureOverride(Vector2 availableSize)
         {
             Log.Info($"{_timing.CurFrame} | updating from measure change");
-            UpdateCfg();
+            UpdateCfg(availableSize);
 
             return base.MeasureOverride(availableSize);
         }

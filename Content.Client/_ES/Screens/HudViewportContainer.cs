@@ -47,6 +47,25 @@ public sealed class HudViewportContainer : Container
         return (leftPanelWidth, rightPanelWidth);
     }
 
+    protected override Vector2 MeasureOverride(Vector2 availableSize)
+    {
+        if (ChildCount != 3)
+            throw new ArgumentOutOfRangeException($"Child count of {nameof(HudViewportContainer)} must be exactly 3");
+
+        Log.Info($"{IoCManager.Resolve<IGameTiming>().CurFrame} | hvc measuring size {availableSize}");
+
+        var leftPanel = GetChild(0);
+        var centerContainer = GetChild(1);
+        var rightPanel = GetChild(2);
+
+        centerContainer.Measure(availableSize);
+        var (leftPanelWidth, rightPanelWidth) = CalculatePanelWidths(centerContainer.DesiredSize.X);
+        leftPanel.Measure(availableSize with { X = leftPanelWidth });
+        rightPanel.Measure(availableSize with { X = rightPanelWidth });
+
+        return availableSize;
+    }
+
     protected override Vector2 ArrangeOverride(Vector2 finalSize)
     {
         if (ChildCount != 3)
