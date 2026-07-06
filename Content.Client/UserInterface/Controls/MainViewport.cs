@@ -4,6 +4,7 @@ using Content.Shared.CCVar;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
+using Robust.Shared.Timing;
 
 namespace Content.Client.UserInterface.Controls
 {
@@ -14,6 +15,7 @@ namespace Content.Client.UserInterface.Controls
     public sealed partial class MainViewport : UIWidget
     {
         [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IGameTiming _timing = default!;
 
         public ScalingViewport Viewport { get; }
 
@@ -64,6 +66,7 @@ namespace Content.Client.UserInterface.Controls
             if (stretch)
             {
                 var snapFactor = CalcSnappingFactor();
+                Log.Info($"{_timing.CurFrame} | recalcing snap factor as {snapFactor}, root pixel size {Root!.PixelSize}");
                 if (snapFactor == null)
                 {
                     // Did not find a snap, enable stretching.
@@ -141,23 +144,10 @@ namespace Content.Client.UserInterface.Controls
 
         protected override Vector2 MeasureOverride(Vector2 availableSize)
         {
+            Log.Info($"{_timing.CurFrame} | updating from measure change");
             UpdateCfg();
 
             return base.MeasureOverride(availableSize);
-        }
-
-        protected override void Resized()
-        {
-            base.Resized();
-
-            UpdateCfg();
-        }
-
-        protected override void UIScaleChanged()
-        {
-            base.UIScaleChanged();
-
-            UpdateCfg();
         }
     }
 }

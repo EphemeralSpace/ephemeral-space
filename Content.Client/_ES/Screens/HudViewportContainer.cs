@@ -1,6 +1,7 @@
 using System.Numerics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Timing;
 
 namespace Content.Client._ES.Screens;
 
@@ -51,7 +52,7 @@ public sealed class HudViewportContainer : Container
         if (ChildCount != 3)
             throw new ArgumentOutOfRangeException($"Child count of {nameof(HudViewportContainer)} must be exactly 3");
 
-        Log.Info($"hvc arranging size {finalSize}");
+        Log.Info($"{IoCManager.Resolve<IGameTiming>().CurFrame} | hvc arranging size {finalSize}");
 
         var finalHeight = finalSize.Y;
 
