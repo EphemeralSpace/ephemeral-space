@@ -105,7 +105,7 @@
     enabled: true
     prioritized: false
     relayOverlay: false # In case default values change
-    lightingColor: '#acb4c235'
+    lightingColor: '#acb4c225'
     overlayColor: '#FFFFFF00'
     noiseAmount: 0 # In case default values change
     noiseMultiplier: 0 # In case default values change
