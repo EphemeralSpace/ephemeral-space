@@ -861,3 +861,15 @@ Entries:
         partway through their animation
   id: 98
   time: '2026-07-06T05:08:48.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Getting electrocuted by walking into stuff should happen much less often
+        if you're just walking by it rather than directly into it
+    - type: Tweak
+      message: >-
+        Chained electrocutions (from pulling) now ignore insulation past a depth
+        of 1
+  id: 99
+  time: '2026-07-07T09:13:37.0000000+00:00'
