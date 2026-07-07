@@ -29,6 +29,8 @@ public sealed partial class PerformerGameScreen : InGameScreen
         SetAnchorAndMarginPreset(Hotbar, LayoutPreset.BottomWide, margin: 5);
         SetAnchorAndMarginPreset(Alerts, LayoutPreset.TopRight, margin: 10);
 
+        Cinematic.SetPositionLast();
+
         ViewportContainer.OnResized += ResizeActionContainer;
     }
 

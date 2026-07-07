@@ -36,5 +36,6 @@ public sealed partial class ESCinematicPrototype : IPrototype
     ///     If this is non-null, the curtain close anim will play 2x this amount of seconds before the cinematic ends.
     ///     Then, the open animation will play when the cinematic ends.
     /// </summary>
+    [DataField]
     public TimeSpan? CurtainLength;
 }

@@ -8,14 +8,15 @@ namespace Content.Client._ES.Cinematic;
 /// </summary>
 public sealed class CinematicContainer : UIWidget
 {
-    public AnimatedTextureRect CinematicTexture { get; private set; }
+    public FunctionalAnimatedTextureRect CinematicTexture { get; private set; }
 
     public CinematicContainer()
     {
-        CinematicTexture = new AnimatedTextureRect();
+        CinematicTexture = new FunctionalAnimatedTextureRect();
         CinematicTexture.DisplayRect.Stretch = TextureRect.StretchMode.Scale;
+        CinematicTexture.HorizontalExpand = true;
+        CinematicTexture.VerticalExpand = true;
         AddChild(CinematicTexture);
-        SetPositionLast();
     }
 
     public void ResetCinematicTexture()
@@ -23,8 +24,10 @@ public sealed class CinematicContainer : UIWidget
         if (ChildCount != 0)
             RemoveAllChildren();
 
-        CinematicTexture = new AnimatedTextureRect();
+        CinematicTexture = new FunctionalAnimatedTextureRect();
         CinematicTexture.DisplayRect.Stretch = TextureRect.StretchMode.Scale;
+        CinematicTexture.HorizontalExpand = true;
+        CinematicTexture.VerticalExpand = true;
         AddChild(CinematicTexture);
     }
 }
