@@ -873,3 +873,9 @@ Entries:
         of 1
   id: 99
   time: '2026-07-07T09:13:37.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: announcement sounds.... They sound.. announcey
+  id: 100
+  time: '2026-07-07T09:13:50.0000000+00:00'
