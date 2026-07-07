@@ -60,7 +60,7 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     ///     ~Essentially a lower bound on crew win time
     /// </summary>
     [DataField]
-    public TimeSpan BaseChargeTime = TimeSpan.FromMinutes(45);
+    public TimeSpan BaseChargeTime = TimeSpan.FromMinutes(40);
 
     /// <summary>
     ///     Like nuke defense but for crew. After the drive is fully charged, this timer starts and the win only
