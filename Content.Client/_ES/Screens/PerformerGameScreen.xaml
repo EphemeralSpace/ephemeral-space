@@ -10,6 +10,7 @@
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     xmlns:inventory="clr-namespace:Content.Client.UserInterface.Systems.Inventory.Widgets"
+    xmlns:cinematic="clr-namespace:Content.Client._ES.Cinematic"
     Name="PerformerHud"
     VerticalExpand="False"
     VerticalAlignment="Bottom"
@@ -22,6 +23,7 @@
         </PanelContainer>
 
         <LayoutContainer Name="ViewportContainer">
+            <cinematic:CinematicContainer Name="Cinematic"/>
             <controls:MainViewport Name="MainViewport" VerticalAlignment="Center"/>
             <widgets:GhostGui Name="Ghost" Access="Protected" />
             <inventory:InventoryGui Name="Inventory" Access="Protected" />
