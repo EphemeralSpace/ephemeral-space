@@ -353,7 +353,8 @@ public sealed partial class ChatUIController : UIController
         _speechBubbleRoot.Orphan();
         root.AddChild(_speechBubbleRoot);
         LayoutContainer.SetAnchorPreset(_speechBubbleRoot, LayoutContainer.LayoutPreset.Wide);
-        _speechBubbleRoot.SetPositionLast();
+        // todo make the speech bubble container an actual uiwidget in the game screens instead of doing this dumb shit
+        _speechBubbleRoot.SetPositionInParent(root.ChildCount - 2);
         _speechBubbleRoot.RectClipContent = true;
     }
 

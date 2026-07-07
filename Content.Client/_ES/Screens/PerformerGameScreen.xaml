@@ -23,7 +23,6 @@
         </PanelContainer>
 
         <LayoutContainer Name="ViewportContainer">
-            <cinematic:CinematicContainer Name="Cinematic"/>
             <controls:MainViewport Name="MainViewport" VerticalAlignment="Center"/>
             <widgets:GhostGui Name="Ghost" Access="Protected" />
             <inventory:InventoryGui Name="Inventory" Access="Protected" />
@@ -33,6 +32,7 @@
                 <BoxContainer Name="VoteMenu" Access="Public" Orientation="Vertical" />
             </BoxContainer>
             <alerts:AlertsUI Name="Alerts" Access="Protected" Margin="0 250 0 0" />
+            <cinematic:CinematicContainer Name="Cinematic"/>
         </LayoutContainer>
 
         <PanelContainer Name="SeparatedChatPanel">

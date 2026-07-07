@@ -22,14 +22,12 @@ public sealed partial class PerformerGameScreen : InGameScreen
         SetAnchorPreset(FullScreenContainer, LayoutPreset.Wide);
         SetAnchorPreset(ViewportContainer, LayoutPreset.Wide);
         SetAnchorPreset(MainViewport, LayoutPreset.Wide);
-        SetAnchorPreset(Cinematic, LayoutPreset.Wide);
         SetAnchorAndMarginPreset(Inventory, LayoutPreset.BottomLeft, margin: 5);
         SetAnchorAndMarginPreset(TopLeftContainer, LayoutPreset.TopLeft, margin: 10);
         SetAnchorAndMarginPreset(Ghost, LayoutPreset.BottomWide, margin: 80);
         SetAnchorAndMarginPreset(Hotbar, LayoutPreset.BottomWide, margin: 5);
         SetAnchorAndMarginPreset(Alerts, LayoutPreset.TopRight, margin: 10);
-
-        Cinematic.SetPositionLast();
+        SetAnchorPreset(Cinematic, LayoutPreset.Wide);
 
         ViewportContainer.OnResized += ResizeActionContainer;
     }
