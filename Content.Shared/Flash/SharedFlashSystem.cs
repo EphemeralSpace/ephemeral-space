@@ -43,7 +43,6 @@ public abstract partial class SharedFlashSystem : EntitySystem
     [Dependency] private UseDelaySystem _useDelay = default!;
 
     private EntityQuery<StatusEffectsComponent> _statusEffectsQuery;
-    private EntityQuery<DamagedByFlashingComponent> _damagedByFlashingQuery;
     private HashSet<EntityUid> _entSet = new();
 
     // The tag to add when a flash has no charges left.
@@ -64,7 +63,6 @@ public abstract partial class SharedFlashSystem : EntitySystem
         SubscribeLocalEvent<FlashImmunityComponent, ExaminedEvent>(OnExamine);
 
         _statusEffectsQuery = GetEntityQuery<StatusEffectsComponent>();
-        _damagedByFlashingQuery = GetEntityQuery<DamagedByFlashingComponent>();
     }
 
     private void OnFlashMeleeHit(Entity<FlashComponent> ent, ref MeleeHitEvent args)
@@ -212,12 +210,12 @@ public abstract partial class SharedFlashSystem : EntitySystem
                 continue;
 
             // Is the entity affected by the flash either through status effects or by taking damage?
-            if (!_statusEffectsQuery.HasComponent(entity) && !_damagedByFlashingQuery.HasComponent(entity))
+            if (!_statusEffectsQuery.HasComponent(entity))
                 continue;
 
             // Check for entites in view.
             // Put DamagedByFlashingComponent in the predicate because shadow anomalies block vision.
-            if (!_examine.InRangeUnOccluded(entity, mapPosition, range, predicate: (e) => _damagedByFlashingQuery.HasComponent(e)))
+            if (!_examine.InRangeUnOccluded(entity, mapPosition, range))
                 continue;
 
             Flash(entity, user, source, flashDuration, slowTo, displayPopup);
