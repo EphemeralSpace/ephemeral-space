@@ -18,8 +18,8 @@ public sealed partial class SunShadowOverlay : Overlay
 
     [Dependency] private IClyde _clyde = default!;
     [Dependency] private IEntityManager _entManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;
+    private SharedMapSystem _mapManager;
     private readonly EntityLookupSystem _lookup;
     private readonly SharedTransformSystem _xformSys;
 
@@ -30,6 +30,7 @@ public sealed partial class SunShadowOverlay : Overlay
     public SunShadowOverlay()
     {
         IoCManager.InjectDependencies(this);
+        _mapManager = _entManager.System<SharedMapSystem>();
         _xformSys = _entManager.System<SharedTransformSystem>();
         _lookup = _entManager.System<EntityLookupSystem>();
         ZIndex = AfterLightTargetOverlay.ContentZIndex + 1;

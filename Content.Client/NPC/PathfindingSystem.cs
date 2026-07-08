@@ -20,7 +20,7 @@ namespace Content.Client.NPC
         [Dependency] private IEyeManager _eyeManager = default!;
         [Dependency] private IGameTiming _timing = default!;
         [Dependency] private IInputManager _inputManager = default!;
-        [Dependency] private IMapManager _mapManager = default!;
+        [Dependency] private SharedMapSystem _mapManager = default!;
         [Dependency] private IOverlayManager _overlayManager = default!;
         [Dependency] private IFontSelectionManager _fontSelection = default!;
         [Dependency] private NPCSteeringSystem _steering = default!;
@@ -138,7 +138,7 @@ namespace Content.Client.NPC
         private readonly IEntityManager _entManager;
         private readonly IEyeManager _eyeManager;
         private readonly IInputManager _inputManager;
-        private readonly IMapManager _mapManager;
+        private readonly SharedMapSystem _mapManager;
         private readonly IFontSelectionManager _fontSelection;
         private readonly PathfindingSystem _system;
         private readonly MapSystem _mapSystem;
@@ -153,7 +153,7 @@ namespace Content.Client.NPC
             IEntityManager entManager,
             IEyeManager eyeManager,
             IInputManager inputManager,
-            IMapManager mapManager,
+            SharedMapSystem mapManager,
             IFontSelectionManager fontSelection,
             PathfindingSystem system,
             MapSystem mapSystem,

@@ -13,13 +13,11 @@ namespace Content.Client.Light;
 
 public sealed partial class RoofOverlay : Overlay
 {
-    private readonly IEntityManager _entManager;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IOverlayManager _overlay = default!;
-
+    private readonly IEntityManager _entManager;
     private readonly EntityLookupSystem _lookup;
     private readonly SharedMapSystem _mapSystem;
-    private readonly SharedRoofSystem _roof = default!;
+    private readonly SharedRoofSystem _roof;
     private readonly SharedTransformSystem _xformSystem;
 
     private List<Entity<MapGridComponent>> _grids = new();
@@ -56,7 +54,7 @@ public sealed partial class RoofOverlay : Overlay
         var target = lightRes.EnlargedLightTarget;
 
         _grids.Clear();
-        _mapManager.FindGridsIntersecting(args.MapId, bounds, ref _grids, approx: true, includeMap: true);
+        _mapSystem.FindGridsIntersecting(args.MapId, bounds, ref _grids, approx: true, includeMap: true);
         var lightScale = viewport.LightRenderTarget.Size / (Vector2) viewport.Size;
         var scale = viewport.RenderScale / (Vector2.One / lightScale);
 
