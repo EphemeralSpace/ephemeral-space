@@ -60,10 +60,6 @@ public abstract partial class SharedWieldableSystem : EntitySystem
         SubscribeLocalEvent<MeleeRequiresWieldComponent, AttemptMeleeEvent>(OnMeleeAttempt);
         SubscribeLocalEvent<GunRequiresWieldComponent, ExaminedEvent>(OnExamineRequires);
         SubscribeLocalEvent<GunRequiresWieldComponent, ShotAttemptedEvent>(OnShootAttempt);
-        SubscribeLocalEvent<GunWieldBonusComponent, ItemWieldedEvent>(OnGunWielded);
-        SubscribeLocalEvent<GunWieldBonusComponent, ItemUnwieldedEvent>(OnGunUnwielded);
-        SubscribeLocalEvent<GunWieldBonusComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
-        SubscribeLocalEvent<GunWieldBonusComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<SpeedModifiedOnWieldComponent, ItemWieldedEvent>(OnSpeedModifierWielded);
         SubscribeLocalEvent<SpeedModifiedOnWieldComponent, ItemUnwieldedEvent>(OnSpeedModifierUnwielded);
         SubscribeLocalEvent<SpeedModifiedOnWieldComponent, HeldRelayedEvent<RefreshMovementSpeedModifiersEvent>>(OnRefreshSpeedWielded);
@@ -100,34 +96,12 @@ public abstract partial class SharedWieldableSystem : EntitySystem
         }
     }
 
-    private void OnGunUnwielded(EntityUid uid, GunWieldBonusComponent component, ItemUnwieldedEvent args)
-    {
-        _gun.RefreshModifiers(uid);
-    }
-
-    private void OnGunWielded(EntityUid uid, GunWieldBonusComponent component, ref ItemWieldedEvent args)
-    {
-        _gun.RefreshModifiers(uid);
-    }
-
     private void OnDeselectWieldable(EntityUid uid, WieldableComponent component, HandDeselectedEvent args)
     {
         if (_hands.GetHandCount(args.User) > 2)
             return;
 
         TryUnwield(uid, component, args.User);
-    }
-
-    private void OnGunRefreshModifiers(Entity<GunWieldBonusComponent> bonus, ref GunRefreshModifiersEvent args)
-    {
-        if (TryComp(bonus, out WieldableComponent? wield) &&
-            wield.Wielded)
-        {
-            args.MinAngle += bonus.Comp.MinAngle;
-            args.MaxAngle += bonus.Comp.MaxAngle;
-            args.AngleDecay += bonus.Comp.AngleDecay;
-            args.AngleIncrease += bonus.Comp.AngleIncrease;
-        }
     }
 
     private void OnSpeedModifierWielded(EntityUid uid, SpeedModifiedOnWieldComponent component, ItemWieldedEvent args)
@@ -152,15 +126,6 @@ public abstract partial class SharedWieldableSystem : EntitySystem
     {
         if (entity.Comp.WieldRequiresExamineMessage != null)
             args.PushText(Loc.GetString(entity.Comp.WieldRequiresExamineMessage));
-    }
-
-    private void OnExamine(EntityUid uid, GunWieldBonusComponent component, ref ExaminedEvent args)
-    {
-        if (HasComp<GunRequiresWieldComponent>(uid))
-            return;
-
-        if (component.WieldBonusExamineMessage != null)
-            args.PushText(Loc.GetString(component.WieldBonusExamineMessage));
     }
 
     private void AddToggleWieldVerb(EntityUid uid, WieldableComponent component, GetVerbsEvent<InteractionVerb> args)
