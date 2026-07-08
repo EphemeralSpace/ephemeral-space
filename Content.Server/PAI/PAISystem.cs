@@ -18,7 +18,6 @@ public sealed partial class PAISystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private ToggleableGhostRoleSystem _toggleableGhostRole = default!;
 
     /// <summary>
     /// Possible symbols that can be part of a scrambled pai's name.
@@ -74,9 +73,7 @@ public sealed partial class PAISystem : EntitySystem
         if (_random.Prob(comp.BrickChance))
         {
             _popup.PopupEntity(Loc.GetString(comp.BrickPopup), uid, PopupType.LargeCaution);
-            _toggleableGhostRole.Wipe(uid);
             RemComp<PAIComponent>(uid);
-            RemComp<ToggleableGhostRoleComponent>(uid);
         }
         else
         {
