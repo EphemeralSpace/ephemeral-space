@@ -56,8 +56,6 @@ public sealed partial class LockSystem : EntitySystem
 
         SubscribeLocalEvent<UIRequiresLockComponent, ActivatableUIOpenAttemptEvent>(OnUIOpenAttempt);
         SubscribeLocalEvent<UIRequiresLockComponent, LockToggledEvent>(LockToggled);
-
-        SubscribeLocalEvent<ItemToggleRequiresLockComponent, ItemToggleActivateAttemptEvent>(OnActivateAttempt);
     }
 
     private void OnStartup(EntityUid uid, LockComponent lockComp, ComponentStartup args)
@@ -479,25 +477,6 @@ public sealed partial class LockSystem : EntitySystem
         foreach (var key in component.UserInterfaceKeys)
         {
             _ui.CloseUi(uid, key);
-        }
-    }
-
-    private void OnActivateAttempt(EntityUid uid, ItemToggleRequiresLockComponent component, ref ItemToggleActivateAttemptEvent args)
-    {
-        if (args.Cancelled)
-            return;
-
-        if (!TryComp<LockComponent>(uid, out var lockComp) || lockComp.Locked == component.RequireLocked)
-            return;
-
-        args.Cancelled = true;
-
-        if (lockComp.Locked && component.LockedPopup != null)
-        {
-            _sharedPopupSystem.PopupEntity(Loc.GetString(component.LockedPopup,
-                    ("target", Identity.Entity(uid, EntityManager))),
-                uid,
-                args.User);
         }
     }
 }
