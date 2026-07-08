@@ -60,9 +60,6 @@ public abstract partial class SharedWieldableSystem : EntitySystem
         SubscribeLocalEvent<MeleeRequiresWieldComponent, AttemptMeleeEvent>(OnMeleeAttempt);
         SubscribeLocalEvent<GunRequiresWieldComponent, ExaminedEvent>(OnExamineRequires);
         SubscribeLocalEvent<GunRequiresWieldComponent, ShotAttemptedEvent>(OnShootAttempt);
-        SubscribeLocalEvent<SpeedModifiedOnWieldComponent, ItemWieldedEvent>(OnSpeedModifierWielded);
-        SubscribeLocalEvent<SpeedModifiedOnWieldComponent, ItemUnwieldedEvent>(OnSpeedModifierUnwielded);
-        SubscribeLocalEvent<SpeedModifiedOnWieldComponent, HeldRelayedEvent<RefreshMovementSpeedModifiersEvent>>(OnRefreshSpeedWielded);
 
         SubscribeLocalEvent<IncreaseDamageOnWieldComponent, GetMeleeDamageEvent>(OnGetMeleeDamage);
     }
@@ -102,24 +99,6 @@ public abstract partial class SharedWieldableSystem : EntitySystem
             return;
 
         TryUnwield(uid, component, args.User);
-    }
-
-    private void OnSpeedModifierWielded(EntityUid uid, SpeedModifiedOnWieldComponent component, ItemWieldedEvent args)
-    {
-        _movementSpeedModifier.RefreshMovementSpeedModifiers(args.User);
-    }
-
-    private void OnSpeedModifierUnwielded(EntityUid uid, SpeedModifiedOnWieldComponent component, ItemUnwieldedEvent args)
-    {
-        _movementSpeedModifier.RefreshMovementSpeedModifiers(args.User);
-    }
-
-    private void OnRefreshSpeedWielded(EntityUid uid, SpeedModifiedOnWieldComponent component, ref HeldRelayedEvent<RefreshMovementSpeedModifiersEvent> args)
-    {
-        if (TryComp<WieldableComponent>(uid, out var wield) && wield.Wielded)
-        {
-            args.Args.ModifySpeed(component.WalkModifier, component.SprintModifier);
-        }
     }
 
     private void OnExamineRequires(Entity<GunRequiresWieldComponent> entity, ref ExaminedEvent args)
