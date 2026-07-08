@@ -46,8 +46,6 @@ public sealed partial class PaperSystem : EntitySystem
 
         SubscribeLocalEvent<RandomPaperContentComponent, MapInitEvent>(OnRandomPaperContentMapInit);
 
-        SubscribeLocalEvent<ActivateOnPaperOpenedComponent, PaperWriteEvent>(OnPaperWrite);
-
         _paperQuery = GetEntityQuery<PaperComponent>();
     }
 
@@ -235,11 +233,6 @@ public sealed partial class PaperSystem : EntitySystem
 
         // Our work here is done
         RemCompDeferred(ent, ent.Comp);
-    }
-
-    private void OnPaperWrite(Entity<ActivateOnPaperOpenedComponent> entity, ref PaperWriteEvent args)
-    {
-        _interaction.UseInHandInteraction(args.User, entity);
     }
 
     /// <summary>
