@@ -18,11 +18,6 @@ public sealed partial class SlowOnDamageSystem : EntitySystem
         SubscribeLocalEvent<SlowOnDamageComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<SlowOnDamageComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
 
-        SubscribeLocalEvent<ClothingSlowOnDamageModifierComponent, InventoryRelayedEvent<ModifySlowOnDamageSpeedEvent>>(OnModifySpeed);
-        SubscribeLocalEvent<ClothingSlowOnDamageModifierComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<ClothingSlowOnDamageModifierComponent, ClothingGotEquippedEvent>(OnGotEquipped);
-        SubscribeLocalEvent<ClothingSlowOnDamageModifierComponent, ClothingGotUnequippedEvent>(OnGotUnequipped);
-
         SubscribeLocalEvent<IgnoreSlowOnDamageComponent, ComponentStartup>(OnIgnoreStartup);
         SubscribeLocalEvent<IgnoreSlowOnDamageComponent, ComponentShutdown>(OnIgnoreShutdown);
         SubscribeLocalEvent<IgnoreSlowOnDamageComponent, ModifySlowOnDamageSpeedEvent>(OnIgnoreModifySpeed);
@@ -61,32 +56,6 @@ public sealed partial class SlowOnDamageSystem : EntitySystem
         // code and this isn't a super hot path anyway since basically only humans have this
 
         _movementSpeedModifierSystem.RefreshMovementSpeedModifiers(uid);
-    }
-
-    private void OnModifySpeed(Entity<ClothingSlowOnDamageModifierComponent> ent, ref InventoryRelayedEvent<ModifySlowOnDamageSpeedEvent> args)
-    {
-        var dif = 1 - args.Args.Speed;
-        if (dif <= 0)
-            return;
-
-        // reduces the slowness modifier by the given coefficient
-        args.Args.Speed += dif * ent.Comp.Modifier;
-    }
-
-    private void OnExamined(Entity<ClothingSlowOnDamageModifierComponent> ent, ref ExaminedEvent args)
-    {
-        var msg = Loc.GetString("slow-on-damage-modifier-examine", ("mod", (1 - ent.Comp.Modifier) * 100));
-        args.PushMarkup(msg);
-    }
-
-    private void OnGotEquipped(Entity<ClothingSlowOnDamageModifierComponent> ent, ref ClothingGotEquippedEvent args)
-    {
-        _movementSpeedModifierSystem.RefreshMovementSpeedModifiers(args.Wearer);
-    }
-
-    private void OnGotUnequipped(Entity<ClothingSlowOnDamageModifierComponent> ent, ref ClothingGotUnequippedEvent args)
-    {
-        _movementSpeedModifierSystem.RefreshMovementSpeedModifiers(args.Wearer);
     }
 
     private void OnIgnoreStartup(Entity<IgnoreSlowOnDamageComponent> ent, ref ComponentStartup args)
