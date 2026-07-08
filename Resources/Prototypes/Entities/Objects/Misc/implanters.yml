@@ -15,8 +15,6 @@
       components:
       - MobState # no chair microbomb
     blacklist:
-      components:
-      - Guardian # no holoparasite macrobomb wombo combo
       tags:
       - Unimplantable
     currentMode: Draw

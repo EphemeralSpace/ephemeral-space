@@ -24,8 +24,6 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
 
         SubscribeLocalEvent<InternalTemperatureComponent, MapInitEvent>(OnInit);
 
-        SubscribeLocalEvent<ChangeTemperatureOnCollideComponent, ProjectileHitEvent>(ChangeTemperatureOnCollide);
-
         InitializeDamage();
     }
 
@@ -128,10 +126,5 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
         RaiseLocalEvent(uid, ref ev);
 
         args.TemperatureDelta *= ev.Coefficient;
-    }
-
-    private void ChangeTemperatureOnCollide(Entity<ChangeTemperatureOnCollideComponent> ent, ref ProjectileHitEvent args)
-    {
-        ChangeHeat(args.Target, ent.Comp.Heat, ent.Comp.IgnoreHeatResistance);// adjust the temperature
     }
 }

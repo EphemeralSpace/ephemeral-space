@@ -15,18 +15,11 @@
   - NpcFactionMember
   # traits
   - BlackAndWhiteOverlay
-  - ImpairedMobility
-  # - LegsParalyzed (you get healed)
-  - LightweightDrunk
   - Muted
-  - Narcolepsy
   - Pacified
-  - Paracusia
   - PermanentBlindness
   - Snoring
-  - Unrevivable
   # accents
-  - Accentless
   - BackwardsAccent
   - BarkAccent
   - BleatingAccent
