@@ -24,35 +24,6 @@
   - type: DrunkStatusEffect
 
 - type: entity
-  parent: BloodstreamStatusEffectBase
-  id: StatusEffectHemophiliaTrait
-  components:
-  - type: HemophiliaStatusEffect
-
-- type: entity
-  parent: BloodstreamStatusEffectDebuff
-  id: StatusEffectAnticoagulant # Decreases the amount of blood coagulation when bleeding.
-  name: thin blood
-  components:
-  - type: HemophiliaStatusEffect
-    bleedReductionMultiplier: 0.33
-    bleedAmountMultiplier: 1
-
-- type: entity
-  parent: BloodstreamStatusEffectDebuff
-  id: StatusEffectHemorrhage # Increases the amount of blood lost when bleeding.
-  name: hemorrhage
-  components:
-  - type: HemophiliaStatusEffect
-    bleedReductionMultiplier: 1 # We don't want it to also reduce coagulation, it would stack with Anticoagulant.
-    bleedAmountMultiplier: 1.33
-
-- type: entity
-  parent: [ PainNumbnessTraitStatusEffect, MobStatusEffectDebuff ]
-  id: StatusEffectPainNumbness
-  name: pain numbness
-
-- type: entity
   parent: MobStatusEffectBase
   id: StaminaModifierStatusEffect
   components:
