@@ -266,25 +266,35 @@ public sealed partial class ChatUIController : UIController
 
     private void SetChatWindowOpacity(float opacity)
     {
-        var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<StagehandChatBox>();
-
-        var panel = chatBox?.ChatWindowPanel;
-        if (panel is null)
-            return;
-
-        Color color;
-        if (panel.PanelOverride is StyleBoxFlat styleBoxFlat)
-            color = styleBoxFlat.BackgroundColor;
-        else if (panel.TryGetStyleProperty<StyleBox>(PanelContainer.StylePropertyPanel, out var style)
-                 && style is StyleBoxFlat propStyleBoxFlat)
-            color = propStyleBoxFlat.BackgroundColor;
-        else
-            color = Color.FromHex("#25252ADD");
-
-        panel.PanelOverride = new StyleBoxFlat
+        // dude what the fuck is this code doing man
+        var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>();
+        var stagehandChatBox = UIManager.ActiveScreen?.GetWidget<StagehandChatBox>();
+        if (chatBox != null)
         {
-            BackgroundColor = color.WithAlpha(opacity)
-        };
+            SetPanel(chatBox.ChatWindowPanel);
+        }
+        else if (stagehandChatBox != null)
+        {
+            SetPanel(stagehandChatBox.ChatWindowPanel);
+            SetPanel(stagehandChatBox.StagehandChatWindowPanel);
+        }
+
+        void SetPanel(PanelContainer panel)
+        {
+            Color color;
+            if (panel.PanelOverride is StyleBoxFlat styleBoxFlat)
+                color = styleBoxFlat.BackgroundColor;
+            else if (panel.TryGetStyleProperty<StyleBox>(PanelContainer.StylePropertyPanel, out var style)
+                     && style is StyleBoxFlat propStyleBoxFlat)
+                color = propStyleBoxFlat.BackgroundColor;
+            else
+                color = Color.FromHex("#25252ADD");
+
+            panel.PanelOverride = new StyleBoxFlat
+            {
+                BackgroundColor = color.WithAlpha(opacity)
+            };
+        }
     }
 
     public void SetMainChat(bool setting)
@@ -294,7 +304,10 @@ public sealed partial class ChatUIController : UIController
             return;
         }
 
-        if (UIManager.GetActiveUIWidgetOrNull<ChatBox>() is not { } chatBox)
+        var chatBox = UIManager.GetActiveUIWidgetOrNull<ChatBox>() ??
+                      UIManager.GetActiveUIWidgetOrNull<StagehandChatBox>();
+
+        if (chatBox == null)
         {
             Log.Error($"Could not find chatbox in ingame screen {UIManager.ActiveScreen.GetType().Name}!");
             return;
