@@ -22,7 +22,6 @@ public sealed partial class DamageOverlayUiController : UIController
     [Dependency] private IPlayerManager _playerManager = default!;
 
     [UISystemDependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-    [UISystemDependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [UISystemDependency] private readonly HeartSystem _heart = default!; // Offbrand
     [UISystemDependency] private readonly PainSystem _pain = default!; // Offbrand
 

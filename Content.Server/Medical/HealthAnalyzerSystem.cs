@@ -220,7 +220,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
         var bloodAmount = float.NaN;
         var bleeding = false;
-        var unrevivable = false;
 
         if (TryComp<BloodstreamComponent>(entity, out var bloodstream) &&
             _solutionContainerSystem.ResolveSolution(entity, bloodstream.BloodSolutionName,
