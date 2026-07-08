@@ -47,9 +47,6 @@
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectPainNumbness
-        time: 2
       # Interactions
       - !type:ModifyStatusEffect
         conditions:

@@ -1,5 +1,4 @@
 using Content.Shared.StatusEffectNew;
-using Content.Shared.Traits.Assorted;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Drunk;
@@ -9,11 +8,6 @@ public abstract partial class SharedDrunkSystem : EntitySystem
     public static EntProtoId Drunk = "StatusEffectDrunk";
 
     [Dependency] protected StatusEffectsSystem Status = default!;
-
-    public override void Initialize()
-    {
-        SubscribeLocalEvent<LightweightDrunkComponent, DrunkEvent>(OnLightweightDrinking);
-    }
 
     public void TryApplyDrunkenness(EntityUid uid, TimeSpan boozePower)
     {
@@ -31,11 +25,6 @@ public abstract partial class SharedDrunkSystem : EntitySystem
     public void TryRemoveDrunkennessTime(EntityUid uid, TimeSpan boozePower)
     {
         Status.TryAddTime(uid, Drunk, - boozePower);
-    }
-
-    private void OnLightweightDrinking(Entity<LightweightDrunkComponent> entity, ref DrunkEvent args)
-    {
-        args.Duration *= entity.Comp.BoozeStrengthMultiplier;
     }
 
     [ByRefEvent]

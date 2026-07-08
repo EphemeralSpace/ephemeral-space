@@ -10,7 +10,6 @@ public sealed partial class TriggerSystem
     private void InitializeSpawn()
     {
         SubscribeLocalEvent<TriggerOnSpawnComponent, MapInitEvent>(OnSpawnInit);
-        SubscribeLocalEvent<TriggerOnPlayerSpawnCompleteComponent, PlayerSpawnCompleteEvent>(OnPlayerSpawn);
 
         SubscribeLocalEvent<SpawnOnTriggerComponent, TriggerEvent>(HandleSpawnOnTrigger);
         SubscribeLocalEvent<SpawnEntityTableOnTriggerComponent, TriggerEvent>(HandleSpawnTableOnTrigger);

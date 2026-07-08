@@ -13,7 +13,6 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.PowerCell;
 using Content.Shared.Temperature.Components;
-using Content.Shared.Traits.Assorted;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -231,16 +230,13 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             bleeding = bloodstream.BleedAmount > 0;
         }
 
-        if (TryComp<UnrevivableComponent>(entity, out var unrevivableComp) && unrevivableComp.Analyzable)
-            unrevivable = true;
-
         return new HealthAnalyzerUiState(
             GetNetEntity(entity),
             bodyTemperature,
             bloodAmount,
             null,
             bleeding,
-            unrevivable,
+            false,
             _woundableHealthAnalyzer.TakeSample(entity) // Offbrand
         );
     }

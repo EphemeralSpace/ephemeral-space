@@ -24,17 +24,6 @@
   - type: DrunkStatusEffect
 
 - type: entity
-  parent: MobStatusEffectBase
-  id: PainNumbnessTraitStatusEffect
-  components:
-  - type: StatusEffect
-    whitelist:
-      components:
-      - MobState
-      - MobThresholds
-  - type: PainNumbnessStatusEffect
-
-- type: entity
   parent: BloodstreamStatusEffectBase
   id: StatusEffectHemophiliaTrait
   components:
