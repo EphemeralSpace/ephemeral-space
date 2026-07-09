@@ -6,6 +6,8 @@ using Content.Server.Decals;
 using Content.Server.Destructible;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NPC.Pathfinding;
+using Content.Shared._ES.Breakable;
+using Content.Shared._ES.Breakable.Components;
 using Content.Shared._ES.Camera;
 using Content.Shared.Atmos.Components;
 using Content.Shared.CCVar;
@@ -38,8 +40,10 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     [Dependency] private ESScreenshakeSystem _shake = default!;
     [Dependency] private ESTileFireSystem _tileFire = default!;
     [Dependency] private TileSystem _tile = default!;
-
+    [Dependency] private ESBreakableSystem _breakable = default!;
     [Dependency] private DecalSystem _decal = default!;
+
+    [Dependency] private EntityQuery<ESBreakableWallComponent> _breakableWallQuery = default!;
     // ES END
 
     [Dependency] private IMapManager _mapManager = default!;

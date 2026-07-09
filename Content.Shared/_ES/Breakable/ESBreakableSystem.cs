@@ -1,6 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.Breakable.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
+using Content.Shared.FixedPoint;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Repairable;
 using Robust.Shared.Audio.Systems;
@@ -19,6 +21,8 @@ public sealed partial class ESBreakableSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private NameModifierSystem _nameModifier = default!;
+
+    [Dependency] private EntityQuery<ESBreakableComponent> _breakableQuery = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -92,6 +96,16 @@ public sealed partial class ESBreakableSystem : EntitySystem
         var ev = new ESBrokenStateChanged(broken);
         RaiseLocalEvent(ent, ref ev);
 
+        return true;
+    }
+
+    public bool TryGetBrokenThreshold(Entity<ESBreakableComponent?> ent, [NotNullWhen(true)] out FixedPoint2? threshold)
+    {
+        threshold = null;
+        if (!_breakableQuery.Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        threshold = ent.Comp.Threshold;
         return true;
     }
 }
