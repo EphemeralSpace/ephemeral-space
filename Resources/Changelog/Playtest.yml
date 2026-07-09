@@ -879,3 +879,11 @@ Entries:
       message: announcement sounds.... They sound.. announcey
   id: 100
   time: '2026-07-07T09:13:50.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Storage items now have examine text to indicate if they are slower or
+        faster to take items out of.
+  id: 101
+  time: '2026-07-09T23:22:20.0000000+00:00'
