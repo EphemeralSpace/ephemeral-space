@@ -570,52 +570,27 @@
             collection: MetalSlam
 
 - type: entity
-  parent: BaseWall
+  parent: [ ESBaseWallBreakable, BaseWall ]
   id: WallReinforced
   name: reinforced wall
   components:
   - type: Sprite
-    # ES START
     sprite: _ES/Structures/Walls/reinforced.rsi
-    # ES END
   - type: Icon
-    # ES START
     sprite: _ES/Structures/Walls/reinforced.rsi
     state: full
-    # ES END
+  - type: ESBrokenVisuals
+    threshold: 400
+    baseRSI: _ES/Structures/Walls/reinforced.rsi
   - type: Construction
     graph: Girder
     node: reinforcedWall
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: ESWall
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 600
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: IconSmooth
     key: walls
-    # ES START
-    base: reinf
-    # ES END
+    base: solid
   - type: Appearance
   - type: GenericVisualizer
     visuals:
