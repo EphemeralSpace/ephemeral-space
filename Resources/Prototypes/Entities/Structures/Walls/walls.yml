@@ -108,6 +108,8 @@
   - type: Appearance
   - type: ESBrokenVisuals
     brokenRSI: _ES/Structures/Walls/destroyed.rsi
+    baseDrawDepth: Walls
+    brokenDrawDepth: OverMobs
 
 - type: entity
   parent: BaseWall

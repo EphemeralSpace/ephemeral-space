@@ -23,8 +23,10 @@ public sealed partial class ESBrokenVisualsSystem : EntitySystem
         if (!_appearance.TryGetData(ent, ESBreakableVisuals.Broken, out bool broken))
             return;
 
-        var sprite = broken ? ent.Comp.BrokenRSI : ent.Comp.BaseRSI;
+        var drawDepth = broken ? ent.Comp.BrokenDrawDepth : ent.Comp.BaseDrawDepth;
+        _sprite.SetDrawDepth(ent.Owner, drawDepth);
 
+        var sprite = broken ? ent.Comp.BrokenRSI : ent.Comp.BaseRSI;
         if (_resourceCache.TryGetResource<RSIResource>(SpriteSpecifierSerializer.TextureRoot / sprite, out var rsi))
         {
             _sprite.SetBaseRsi(ent.Owner, rsi.RSI);
