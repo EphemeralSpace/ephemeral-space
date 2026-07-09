@@ -103,6 +103,8 @@
       collection: MetalSlam
   - type: Repairable
     fuelCost: 15
+    doAfterDelay: 5
+  - type: ESBreakableWall
   - type: Appearance
   - type: ESBrokenVisuals
     brokenRSI: _ES/Structures/Walls/destroyed.rsi
