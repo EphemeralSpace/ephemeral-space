@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseItem
+  id: ESKitSecretDoor
+  name: secret door kit
+  description: A construction kit that can be used on regular walls to convert them into secret doors. How suspicious.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Materials/kits.rsi
+    state: secret
+  - type: Item
+    size: Huge
+  - type: Tag
+    tags: [ ESSecretWallKit ]

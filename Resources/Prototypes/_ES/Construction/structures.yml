@@ -327,21 +327,6 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: ESSolidSecretDoor
-  hide: false
-  name: recipes-secret-door-name
-  description: recipes-secret-door-desc
-  graph: SecretDoor
-  startNode: start
-  targetNode: solidSecretDoor
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
   id: ESBonfire
   hide: false
   graph: Bonfire
