@@ -1,6 +1,6 @@
 using Content.Shared.Doors.Components;
+using Content.Shared.Maps;
 using Robust.Shared.Audio.Systems;
-using Content.Shared.Popups;
 using Content.Shared.Prying.Components;
 using Content.Shared.Wires;
 using Robust.Shared.Timing;
@@ -13,8 +13,10 @@ public abstract partial class SharedAirlockSystem : EntitySystem
     [Dependency] protected SharedAppearanceSystem Appearance = default!;
     [Dependency] protected SharedAudioSystem Audio = default!;
     [Dependency] protected SharedDoorSystem DoorSystem = default!;
-    [Dependency] protected SharedPopupSystem Popup = default!;
+    [Dependency] private TurfSystem _turf = default!;
     [Dependency] private SharedWiresSystem _wiresSystem = default!;
+
+    [Dependency] private EntityQuery<ESAirlockBlockOpenComponent> _airlockBlockOpenQuery = default!;
 
     public override void Initialize()
     {
@@ -80,6 +82,16 @@ public abstract partial class SharedAirlockSystem : EntitySystem
 
     private void OnBeforeDoorOpened(EntityUid uid, AirlockComponent component, BeforeDoorOpenedEvent args)
     {
+        var xform = Transform(uid);
+        foreach (var ent in _turf.GetEntitiesInTile(xform.Coordinates))
+        {
+            if (_airlockBlockOpenQuery.HasComp(ent))
+            {
+                args.Cancel();
+                break;
+            }
+        }
+
         if (!CanChangeState(uid, component))
             args.Cancel();
     }

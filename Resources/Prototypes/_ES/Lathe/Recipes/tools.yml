@@ -22,3 +22,13 @@
   completetime: 5
   materials:
     Steel: 1000
+
+- type: latheRecipe
+  id: ESKitBarricade
+  categories:
+  - Parts
+  result: ESKitBarricade
+  completetime: 5
+  materials:
+    Wood: 500
+    Steel: 100

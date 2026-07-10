@@ -32,6 +32,7 @@
   - ESProximitySensor
   - Igniter
   - ESKitSecretDoor
+  - ESKitBarricade
 
 - type: latheRecipePack
   id: ESLightsStatic
