@@ -12,14 +12,3 @@
     curveFactor: 1.0
     castShadows: false
     enabled: false
-
-- type: entity
-  id: ESMobObserverInherentLight
-  name: inherent light
-  components:
-  - type: PointLight
-    netsync: false
-    color: "#ffffff"
-    radius: 6
-    castShadows: false
-    enabled: false

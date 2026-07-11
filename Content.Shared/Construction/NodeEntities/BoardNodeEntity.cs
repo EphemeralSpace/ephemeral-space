@@ -48,9 +48,6 @@ public sealed partial class BoardNodeEntity : IGraphNodeEntity
         }
 // ES END
 
-        if (args.EntityManager.TryGetComponent(board, out ElectronicsBoardComponent? electronics))
-            return electronics.Prototype;
-
         return null;
     }
 }

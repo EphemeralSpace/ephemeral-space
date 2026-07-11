@@ -14,7 +14,6 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
-using Content.Shared.Traits;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.State;
@@ -121,11 +120,6 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             if (obj.WasModified<SpeciesPrototype>())
             {
                 _profileEditor.RefreshSpecies();
-            }
-
-            if (obj.WasModified<TraitPrototype>())
-            {
-                _profileEditor.RefreshTraits();
             }
         }
     }

@@ -19,11 +19,11 @@ namespace Content.Client.UserInterface.Systems.Chat.Widgets;
 [Virtual]
 public partial class ChatBox : UIWidget
 {
-    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] protected IEntityManager EntManager = default!;
     [Dependency] private ILogManager _log = default!;
 
-    private readonly ISawmill _sawmill;
-    private readonly ChatUIController _controller;
+    protected readonly ISawmill Sawmill;
+    protected readonly ChatUIController Controller;
 
     public bool Main { get; set; }
 
@@ -32,7 +32,7 @@ public partial class ChatBox : UIWidget
     public ChatBox()
     {
         RobustXamlLoader.Load(this);
-        _sawmill = _log.GetSawmill("chat");
+        Sawmill = _log.GetSawmill("chat");
 
         ChatInput.Input.OnTextEntered += OnTextEntered;
         ChatInput.Input.OnKeyBindDown += OnInputKeyBindDown;
@@ -41,26 +41,26 @@ public partial class ChatBox : UIWidget
         ChatInput.Input.OnFocusExit += OnFocusExit;
         ChatInput.ChannelSelector.OnChannelSelect += OnChannelSelect;
         ChatInput.FilterButton.Popup.OnChannelFilter += OnChannelFilter;
-        _controller = UserInterfaceManager.GetUIController<ChatUIController>();
-        _controller.MessageAdded += OnMessageAdded;
-        _controller.RegisterChat(this);
+        Controller = UserInterfaceManager.GetUIController<ChatUIController>();
+        Controller.MessageAdded += OnMessageAdded;
+        Controller.RegisterChat(this);
     }
 
     private void OnTextEntered(LineEditEventArgs args)
     {
-        _controller.SendMessage(this, SelectedChannel);
+        Controller.SendMessage(this, SelectedChannel);
     }
 
-    private void OnMessageAdded(ChatMessage msg)
+    protected virtual void OnMessageAdded(ChatMessage msg)
     {
-        _sawmill.Debug($"{msg.Channel}: {msg.Message}");
+        Sawmill.Debug($"{msg.Channel}: {msg.Message}");
         if (!ChatInput.FilterButton.Popup.IsActive(msg.Channel))
         {
             return;
         }
 
         if (msg is { Read: false, AudioPath: { } })
-            _entManager.System<AudioSystem>().PlayGlobal(msg.AudioPath, Filter.Local(), false, AudioParams.Default.WithVolume(msg.AudioVolume));
+            EntManager.System<AudioSystem>().PlayGlobal(msg.AudioPath, Filter.Local(), false, AudioParams.Default.WithVolume(msg.AudioVolume));
 
         msg.Read = true;
 
@@ -76,31 +76,31 @@ public partial class ChatBox : UIWidget
 
     private void OnChannelSelect(ChatSelectChannel channel)
     {
-        _controller.UpdateSelectedChannel(this);
+        Controller.UpdateSelectedChannel(this);
     }
 
-    public void Repopulate()
+    public virtual void Repopulate()
     {
         Contents.Clear();
 
-        foreach (var message in _controller.History)
+        foreach (var message in Controller.History)
         {
             OnMessageAdded(message.Item2);
         }
     }
 
-    private void OnChannelFilter(ChatChannel channel, bool active)
+    protected virtual void OnChannelFilter(ChatChannel channel, bool active)
     {
         Contents.Clear();
 
-        foreach (var message in _controller.History)
+        foreach (var message in Controller.History)
         {
             OnMessageAdded(message.Item2);
         }
 
         if (active)
         {
-            _controller.ClearUnfilteredUnreads(channel);
+            Controller.ClearUnfilteredUnreads(channel);
         }
     }
 
@@ -136,15 +136,15 @@ public partial class ChatBox : UIWidget
             // go over every channel until we find one we can actually select.
             idx += forward ? 1 : -1;
             idx = MathHelper.Mod(idx, ChannelSelectorPopup.ChannelSelectorOrder.Length);
-        } while ((_controller.SelectableChannels & ChannelSelectorPopup.ChannelSelectorOrder[idx]) == 0);
+        } while ((Controller.SelectableChannels & ChannelSelectorPopup.ChannelSelectorOrder[idx]) == 0);
 
         SafelySelectChannel(ChannelSelectorPopup.ChannelSelectorOrder[idx]);
     }
 
     public void SafelySelectChannel(ChatSelectChannel toSelect)
     {
-        toSelect = _controller.MapLocalIfGhost(toSelect);
-        if ((_controller.SelectableChannels & toSelect) == 0)
+        toSelect = Controller.MapLocalIfGhost(toSelect);
+        if ((Controller.SelectableChannels & toSelect) == 0)
             return;
 
         ChatInput.ChannelSelector.Select(toSelect);
@@ -177,22 +177,22 @@ public partial class ChatBox : UIWidget
     private void OnTextChanged(LineEditEventArgs args)
     {
         // Update channel select button to correct channel if we have a prefix.
-        _controller.UpdateSelectedChannel(this);
+        Controller.UpdateSelectedChannel(this);
 
         // Warn typing indicator about change
-        _controller.NotifyChatTextChange();
+        Controller.NotifyChatTextChange();
     }
 
     private void OnFocusEnter(LineEditEventArgs args)
     {
         // Warn typing indicator about focus
-        _controller.NotifyChatFocus(true);
+        Controller.NotifyChatFocus(true);
     }
 
     private void OnFocusExit(LineEditEventArgs args)
     {
         // Warn typing indicator about focus
-        _controller.NotifyChatFocus(false);
+        Controller.NotifyChatFocus(false);
     }
 
     protected override void Dispose(bool disposing)
@@ -200,7 +200,7 @@ public partial class ChatBox : UIWidget
         base.Dispose(disposing);
 
         if (!disposing) return;
-        _controller.UnregisterChat(this);
+        Controller.UnregisterChat(this);
         ChatInput.Input.OnTextEntered -= OnTextEntered;
         ChatInput.Input.OnKeyBindDown -= OnInputKeyBindDown;
         ChatInput.Input.OnTextChanged -= OnTextChanged;

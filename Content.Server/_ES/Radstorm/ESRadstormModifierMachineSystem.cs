@@ -1,4 +1,5 @@
 using Content.Server._ES.Announcements;
+using Content.Server._ES.Radstorm.Components;
 using Content.Server.Chat.Systems;
 using Content.Shared._ES.Radstorm.Components;
 using Content.Shared.Power;
@@ -52,7 +53,8 @@ public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
         ent.Comp.Enabled = value;
         _appearance.SetData(ent, ESRadstormModifierMachineVisuals.Enabled, value);
 
-        var minutes = (int) Math.Round(_radstormRoundEndRule.GetRadstormEstimatedArrivalTime().TotalMinutes);
+        var newTime = _radstormRoundEndRule.GetRadstormEstimatedArrivalTime();
+        var minutes = (int) Math.Round(newTime.TotalMinutes);
         var msg = Loc.GetString(ent.Comp.Enabled ? ent.Comp.EnableAnnouncement : ent.Comp.DisableAnnouncement,
             ("minutes", (minutes)));
         var sound = ent.Comp.Enabled ? ent.Comp.AnnouncementSoundEnabled : ent.Comp.AnnouncementSoundDisabled;
@@ -61,5 +63,6 @@ public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
             announcementSound: sound,
             colorOverride: Color.LightSeaGreen,
             important: ent.Comp.Enabled);
+        _radstormRoundEndRule.UpdateScreenTimers(Single<ESRadstormRoundEndRuleComponent>(), newTime);
     }
 }

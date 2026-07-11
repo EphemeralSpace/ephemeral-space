@@ -25,7 +25,6 @@ public sealed partial class StoreSystem
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private ActionContainerSystem _actionContainer = default!;
-    [Dependency] private ActionUpgradeSystem _actionUpgrade = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private StackSystem _stack = default!;
@@ -225,27 +224,6 @@ public sealed partial class StoreSystem
                     }
                 }
             }
-        }
-
-        if (listing is { ProductUpgradeId: not null, ProductActionEntity: not null })
-        {
-            if (listing.ProductActionEntity != null)
-            {
-                component.BoughtEntities.Remove(listing.ProductActionEntity.Value);
-            }
-
-            if (!_actionUpgrade.TryUpgradeAction(listing.ProductActionEntity, out var upgradeActionId))
-            {
-                if (listing.ProductActionEntity != null)
-                    HandleRefundComp(uid, component, listing.ProductActionEntity.Value);
-
-                return;
-            }
-
-            listing.ProductActionEntity = upgradeActionId;
-
-            if (upgradeActionId != null)
-                HandleRefundComp(uid, component, upgradeActionId.Value);
         }
 
         if (listing.ProductEvent != null)
