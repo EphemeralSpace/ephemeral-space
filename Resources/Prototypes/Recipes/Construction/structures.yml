@@ -51,19 +51,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: WoodWall
-  graph: Barricade
-  startNode: start
-  targetNode: woodWall
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   id: UraniumWall
   graph: Girder
   startNode: start

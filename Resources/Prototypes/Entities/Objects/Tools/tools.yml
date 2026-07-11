@@ -288,18 +288,12 @@
     - Grille
     - Window
     - WindowDirectional
-    - WindowReinforcedDirectional
-    - ReinforcedWindow
-    - Airlock
-    - AirlockGlass
-    - Firelock
     - TubeLight
     - BulbLight
     - LVCable
     - MVCable
     - HVCable
     - CableTerminal
-    - Deconstruct
   - type: LimitedCharges
     maxCharges: 30
   - type: Sprite
