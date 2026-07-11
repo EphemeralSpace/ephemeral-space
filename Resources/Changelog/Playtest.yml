@@ -976,3 +976,9 @@ Entries:
       message: A cinematic will now play when the nuke is detonated.
   id: 108
   time: '2026-07-11T21:52:17.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: You now face entities while performing doafters on them.
+  id: 109
+  time: '2026-07-11T22:30:58.0000000+00:00'
