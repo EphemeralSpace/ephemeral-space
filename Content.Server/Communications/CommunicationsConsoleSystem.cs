@@ -159,6 +159,17 @@ namespace Content.Server.Communications
                 var entStation = _stationSystem.GetOwningStation(uid);
                 if (args.Station == entStation)
                     UpdateCommsConsoleInterface(uid, comp);
+
+                if (!TryComp<DeviceNetworkComponent>(uid, out var net))
+                    return;
+
+                var payload = new NetworkPayload
+                {
+                    [DVScreenPackets.ShowBorders] = true,
+                    [DVScreenPackets.Content] = DVScreenContent.AlertLevel,
+                };
+
+                _deviceNetworkSystem.QueuePacket(uid, null, payload, net.TransmitFrequency);
             }
         }
 

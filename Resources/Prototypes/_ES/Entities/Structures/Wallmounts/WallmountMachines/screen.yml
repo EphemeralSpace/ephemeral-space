@@ -119,6 +119,34 @@
     receiveFrequencyId: ShuttleTimer
   - type: DVTextVisuals
     marqueeRate: 0.12s
+  - type: Sprite
+    layers:
+    - state: frame
+      map: [ "base" ]
+    - shader: StencilClear
+      state: mask
+    - shader: StencilMask
+      state: mask
+    - map: [ "enum.DVTextScreenVisualLayers.Line1" ]
+      shader: StencilDraw
+      color: "#FF0000"
+      visible: false
+    - map: [ "enum.DVTextScreenVisualLayers.Line2" ]
+      shader: StencilDraw
+      color: "#FF0000"
+      visible: false
+    - map: [ "alert_status" ]
+      visible: true
+      state: status_display_green
+    - map: [ "alert_border" ]
+      visible: true
+      state: alert_border_blue
+    - state: directional
+      sprite: _ES/Markers/spawners.rsi
+      map: [ "directional" ]
+      visible: false
+  - type: PointLight
+    color: DodgerBlue
   - type: ESGenericPointLightVisualizer
     visuals:
       enum.ESBreakableVisuals.Broken:
@@ -130,7 +158,10 @@
         red: { color: Red }
         yellow: { color: Goldenrod }
         violet: { color: Violet }
-        delta: { color: Orange }
+        delta:
+          color: Orange
+          energy: 6
+          radius: 5
   - type: GenericVisualizer
     visuals:
       enum.ESBreakableVisuals.Broken:
@@ -161,7 +192,7 @@
           delta: { state: alert_border_delta }
         alert_status:
           green: { state: status_display_green }
-          blue: { state: status_display_blue }
+          blue: { state: status_display_green } #intentional
           red: { state: status_display_red }
           white: { state: status_display_white }
           yellow: { state: status_display_yellow }
