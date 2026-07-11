@@ -930,3 +930,13 @@ Entries:
         easier
   id: 104
   time: '2026-07-11T16:46:37.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Tweaked drawdepth for melee animation effects & redid clickattack effect
+    - type: Tweak
+      message: >-
+        Generic combat mode cursor indicator now has a sprite in the same style
+        as the gun crosshair
+  id: 105
+  time: '2026-07-11T19:26:05.0000000+00:00'
