@@ -1,15 +1,10 @@
 using Content.Client._ES.Viewcone.Overlays;
 using Content.Client.Eye;
 using Content.Shared._ES.Viewcone.Components;
-using Content.Shared.MouseRotator;
-using Content.Shared.Movement.Pulling.Events;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Client.Input;
 using Robust.Client.Player;
-using Robust.Shared.Map;
 using Robust.Shared.Player;
-using Robust.Shared.Timing;
 
 namespace Content.Client._ES.Viewcone;
 
@@ -19,11 +14,8 @@ namespace Content.Client._ES.Viewcone;
 /// </summary>
 public sealed partial class ESViewconeOverlayManagementSystem : EntitySystem
 {
-    [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IOverlayManager _overlayMan = default!;
-    [Dependency] private IInputManager _input = default!;
-    [Dependency] private IEyeManager _eye = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
     private ESViewconeConeOverlay _coneOverlay = default!;
     private ESViewconeSetAlphaOverlay _setAlphaOverlay = default!;
@@ -69,31 +61,6 @@ public sealed partial class ESViewconeOverlayManagementSystem : EntitySystem
             var (position, rotation) = _xform.GetWorldPositionRotation(xform);
             var playerAngle = rotation;
             var desiredWasNull = viewcone.DesiredViewAngle == null;
-
-            // if (HasComp<MouseRotatorComponent>(uid))
-            // {
-            //     var mousePos = _eye.PixelToMap(_input.MouseScreenPosition);
-            //     if (mousePos.MapId != MapId.Nullspace)
-            //         playerAngle = (mousePos.Position - _xform.GetMapCoordinates(xform).Position).ToAngle() + Angle.FromDegrees(90);
-            //
-            //     viewcone.LastMouseRotationAngle = playerAngle;
-            // }
-            // else if (viewcone.LastMouseRotationAngle != 0f)
-            // {
-            //     // if last frame we had a mouse rotation angle, but now we dont,
-            //     // that means it was disabled
-            //     // but, we should keep the old mouse angle for viewcone, at least until the real angle actually changes
-            //     // or they move
-            //     if (MathHelper.CloseToPercent(viewcone.LastWorldRotationAngle, playerAngle, .001d)
-            //         && viewcone.LastWorldPos == position)
-            //     {
-            //         playerAngle = viewcone.LastMouseRotationAngle;
-            //     }
-            //     else
-            //     {
-            //         viewcone.LastMouseRotationAngle = 0f;
-            //     }
-            // }
 
             viewcone.LastWorldPos = position;
             viewcone.LastWorldRotationAngle = rotation;
