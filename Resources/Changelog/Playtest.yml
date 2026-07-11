@@ -921,3 +921,12 @@ Entries:
         screens rather than like. four or whatever
   id: 103
   time: '2026-07-11T14:19:37.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Stagehand chat window now has a separate panel for the stagehand chat
+        specifically to make following game stuff/stagehand stuff separately
+        easier
+  id: 104
+  time: '2026-07-11T16:46:37.0000000+00:00'
