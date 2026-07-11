@@ -152,9 +152,6 @@
     - id: EmergencyOxygenTank
     - id: SprayPainterAmmo
 
-    - id: ESKitBarricade
-      weight: 0.5
-
     - group:
       - id: GlowstickGreen
       - id: GlowstickBlue
@@ -183,6 +180,8 @@
   id: ESMaintLootUncommon
   table:
     group:
+    - id: ESKitBarricade
+      weight: 2 # common for now?
     - id: FireBombEmpty
     - id: HydroponicsToolHatchet
     - id: Multitool
