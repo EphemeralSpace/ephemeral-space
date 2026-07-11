@@ -777,6 +777,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
                 BreakOnHandChange = false,
                 BreakOnMove = false,
                 DistanceThreshold = 1.5f,
+                FaceTarget = false,
             };
 
             if (_doAfterSystem.TryStartDoAfter(ev)

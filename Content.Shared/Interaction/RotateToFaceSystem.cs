@@ -157,7 +157,7 @@ namespace Content.Shared.Interaction
 
         public void StopFacing(Entity<ESForcedFacingComponent?> ent, Entity<ESForcedFacingTargetComponent?> target)
         {
-            if (!Resolve(ent, ref ent.Comp, false))
+            if (!Resolve(ent, ref ent.Comp, false) || !ent.Comp.Targets.Contains(target))
                 return;
 
             RemComp<NoRotateOnInteractComponent>(ent);

@@ -105,6 +105,7 @@ public sealed partial class ToggleableClothingSystem : EntitySystem
             // server-side at the moment.
             // TODO BUI REFACTOR.
             DistanceThreshold = 2,
+            FaceTarget = false,
         };
 
         if (!_doAfter.TryStartDoAfter(args))

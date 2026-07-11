@@ -93,7 +93,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         if (component.AwaitedDoAfters.Remove(doAfter.Index, out var tcs))
             tcs.SetResult(doAfter.Cancelled ? DoAfterStatus.Cancelled : DoAfterStatus.Finished);
 
-        if (doAfter.Args.FaceTarget && Exists(doAfter.Args.User) && Exists(doAfter.Args.Target))
+        if (Exists(doAfter.Args.User) && Exists(doAfter.Args.Target))
         {
             _rotateToFace.StopFacing(doAfter.Args.User, doAfter.Args.Target.Value);
         }
@@ -272,7 +272,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             return true;
         }
 
-        if (args.FaceTarget && args.Target.HasValue)
+        if (args.FaceTarget && args.Target.HasValue && args.Target != args.User)
         {
             _rotateToFace.StartFacing(args.User, args.Target.Value);
         }
