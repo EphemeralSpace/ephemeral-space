@@ -52,6 +52,9 @@
   id: Barricade
   parent: BaseBarricade
   components:
+  - type: Construction
+    graph: Barricade
+    node: barricadefull
   - type: Tag
     tags:
     - Wooden
@@ -73,6 +76,9 @@
   - type: Sprite
     sprite: Structures/barricades.rsi
     state: barricade
+  - type: Construction
+    graph: BarricadeCovering
+    node: barricadecover
   - type: ESAirlockBlockOpen
   - type: WallMount
     arc: 360
@@ -89,6 +95,9 @@
     sprite: Structures/barricades.rsi
     state: barricade_directional
     noRot: false #Results in smoother rotation when turning the camera, the sprite's dirs are just it rotated anyways so there's no reason to not set this.
+  - type: Construction
+    graph: BarricadeDirectional
+    node: barricadefull
   - type: Physics
   - type: Fixtures
     fixtures:
