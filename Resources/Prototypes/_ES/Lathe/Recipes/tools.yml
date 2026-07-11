@@ -30,5 +30,5 @@
   result: ESKitBarricade
   completetime: 5
   materials:
-    Wood: 500
-    Steel: 250
+    Wood: 400
+    Steel: 200

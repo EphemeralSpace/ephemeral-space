@@ -16,7 +16,7 @@
   parent: BaseItem
   id: ESKitBarricade
   name: barricade kit
-  description: It's well understood that barricading hallways and airlocks with wooden planks is enough to defend against any threat.
+  description: It's well understood that barricading hallways, airlocks and windows with wooden planks is enough to defend against any threat.
   components:
   - type: Sprite
     sprite: _ES/Objects/Materials/kits.rsi
@@ -29,4 +29,3 @@
   - type: LimitedCharges
     maxCharges: 3
     deleteOnEmpty: true
-

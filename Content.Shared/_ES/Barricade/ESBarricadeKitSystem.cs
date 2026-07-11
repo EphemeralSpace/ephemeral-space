@@ -84,6 +84,9 @@ public sealed partial class ESBarricadeKitSystem : EntitySystem
 
     private bool CanBarricade(EntityUid target)
     {
+        if (HasComp<ESBarricadeConstructibleComponent>(target))
+            return true;
+
         return HasComp<AirlockComponent>(target) &&
                _door.GetDoorState(target) == DoorState.Closed &&
                !_airlock.IsBarricaded(target);

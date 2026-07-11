@@ -2,7 +2,7 @@
 # DO NOT add things to this unless they are properties you want all windows having.
 - type: entity
   id: BaseWindow
-  parent: BaseStructure 
+  parent: BaseStructure
   description: Don't smudge up the glass down there.
   abstract: true
   placement:
@@ -63,6 +63,7 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
+  - type: ESBarricadeConstructible
 
 # Directional
 - type: entity
