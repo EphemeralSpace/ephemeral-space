@@ -20,6 +20,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 // ES START
 using Content.Server._ES.Radio;
+using Content.Shared._DV.Screens;
 using Content.Shared._ES.Degradation;
 using Content.Shared.Dataset;
 using Content.Shared.Random.Helpers;
@@ -314,7 +315,8 @@ namespace Content.Server.Communications
 
             var payload = new NetworkPayload
             {
-                [ScreenMasks.Text] = message.Message
+                [DVScreenPackets.Text] = (Loc.GetString("comms-console-screen-status-line1"), message.Message),
+                [DVScreenPackets.Content] = DVScreenContent.Text,
             };
 
             _deviceNetworkSystem.QueuePacket(uid, null, payload, net.TransmitFrequency);
