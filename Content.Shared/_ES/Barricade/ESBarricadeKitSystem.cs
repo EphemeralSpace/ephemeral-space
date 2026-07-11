@@ -1,4 +1,5 @@
 using Content.Shared._ES.Barricade.Components;
+using Content.Shared.Charges.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
@@ -11,6 +12,7 @@ public sealed partial class ESBarricadeKitSystem : EntitySystem
     [Dependency] private SharedAirlockSystem _airlock = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedDoorSystem _door = default!;
+    [Dependency] private SharedChargesSystem _charge = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -50,7 +52,7 @@ public sealed partial class ESBarricadeKitSystem : EntitySystem
             return;
 
         PredictedSpawnAtPosition(ent.Comp.AirlockBarricade, Transform(target).Coordinates);
-        PredictedQueueDel(ent);
+        _charge.TryUseCharge(ent.Owner);
         args.Handled = true;
     }
 

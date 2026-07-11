@@ -26,3 +26,7 @@
     shape:
     - 0,0,2,3
   - type: ESBarricadeKit
+  - type: LimitedCharges
+    maxCharges: 3
+    deleteOnEmpty: true
+
