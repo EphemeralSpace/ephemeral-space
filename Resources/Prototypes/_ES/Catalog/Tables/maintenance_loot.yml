@@ -152,6 +152,9 @@
     - id: EmergencyOxygenTank
     - id: SprayPainterAmmo
 
+    - id: ESKitBarricade
+      weight: 0.5
+
     - group:
       - id: GlowstickGreen
       - id: GlowstickBlue
@@ -275,6 +278,8 @@
     - id: PinpointerNuclear
     - id: CameraBug
     - id: MedkitFilled
+
+    - id: ESKitSecretDoor
 
     - id: ClothingEyesHudSecurity
     - id: ClothingEyesGlassesSunglasses

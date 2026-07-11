@@ -25,7 +25,7 @@
               anchored: true
           steps:
             - tool: Prying
-              doAfter: 5
+              doAfter: 10
         - to: woodWall
           completed:
             - !type:SnapToGrid
@@ -44,7 +44,7 @@
           amount: 2
         steps:
         - tool: Prying
-          doAfter: 10
+          doAfter: 8
 
 - type: constructionGraph
   id: BarricadeDirectional
@@ -71,7 +71,7 @@
               anchored: true
           steps:
             - tool: Prying
-              doAfter: 5
+              doAfter: 8
 
 - type: constructionGraph
   id: BarricadeCovering
@@ -89,7 +89,7 @@
       edges:
         - to: start
           completed:
-            - !type:SpawnPrototype
+            - !type:GivePrototype
               prototype: MaterialWoodPlank1
               amount: 2 #returns 1 less as one breaks
             - !type:DeleteEntity { }
@@ -98,4 +98,4 @@
               anchored: true
           steps:
             - tool: Prying
-              doAfter: 2
+              doAfter: 8

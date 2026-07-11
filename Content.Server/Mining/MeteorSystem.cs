@@ -1,5 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Destructible;
+using Content.Shared._ES.Breakable;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
@@ -24,6 +25,7 @@ public sealed partial class MeteorSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private TileSystem _tile = default!;
     [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private ESBreakableSystem _breakable = default!;
 // ES END
 
     /// <inheritdoc/>
@@ -50,6 +52,10 @@ public sealed partial class MeteorSystem : EntitySystem
         else if (_destructible.TryGetDestroyedAt(args.OtherEntity, out var destroyThreshold))
         {
             threshold = destroyThreshold.Value;
+        }
+        else if (_breakable.TryGetBrokenThreshold(args.OtherEntity, out var breakableThreshold))
+        {
+            threshold = breakableThreshold.Value;
         }
         else
         {

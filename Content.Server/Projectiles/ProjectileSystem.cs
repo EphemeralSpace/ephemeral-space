@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Destructible;
 using Content.Server.Effects;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._ES.Breakable;
 using Content.Shared._ES.Camera;
 using Content.Shared.Camera;
 using Content.Shared.Damage;
@@ -19,6 +20,7 @@ public sealed partial class ProjectileSystem : SharedProjectileSystem
 {
     // ES START
     [Dependency] private ESScreenshakeSystem _shake = default!;
+    [Dependency] private ESBreakableSystem _breakable = default!;
     // ES END
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private ColorFlashEffectSystem _color = default!;
@@ -55,6 +57,9 @@ public sealed partial class ProjectileSystem : SharedProjectileSystem
 
         var otherName = ToPrettyString(target);
         var damageRequired = _destructibleSystem.DestroyedAt(target);
+        if (_breakable.TryGetBrokenThreshold(target, out var threshold))
+            damageRequired = threshold.Value;
+
         if (TryComp<DamageableComponent>(target, out var damageableComponent))
         {
             damageRequired -= damageableComponent.TotalDamage;

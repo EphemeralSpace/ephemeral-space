@@ -76,18 +76,6 @@
 
 # Walls
 - type: rcd
-  id: WallSolid
-  category: WallsAndFlooring
-  sprite: /Textures/Interface/Radial/RCD/solid_wall.png
-  mode: ConstructObject
-  prototype: WallSolid
-  cost: 4
-  delay: 2
-  collisionMask: FullTileMask
-  rotation: Fixed
-  fx: EffectRCDConstruct2
-
-- type: rcd
   id: Grille
   category: WindowsAndGrilles
   sprite: /Textures/Interface/Radial/RCD/grille.png
