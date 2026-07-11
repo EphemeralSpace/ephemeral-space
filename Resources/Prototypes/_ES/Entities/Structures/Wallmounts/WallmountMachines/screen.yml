@@ -17,10 +17,9 @@
     drawdepth: WallMountedItems
     sprite: _ES/Structures/Wallmounts/screen.rsi
     noRot: true
-    snapCardinals: true
-    granularLayersRendering: true
     layers:
     - state: frame
+      map: ["base"]
     - shader: StencilClear
       state: mask
     - shader: StencilMask
@@ -42,15 +41,34 @@
     - state: directional
       sprite: _ES/Markers/spawners.rsi
       map: [ "directional" ]
-      renderingStrategy: Default
       visible: false
   - type: Marker
     layers: [ "directional" ]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Glass
+  - type: ESBreakableDeviceNetwork
+  - type: ESBreakable
+    threshold: 50
+    sound:
+      collection: GlassBreak
+  - type: Repairable
+    fuelCost: 25
   - type: Appearance
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: GenericVisualizer
     visuals:
+      enum.ESBreakableVisuals.Broken:
+        base:
+          True: { state: "frame_broken" }
+          False: { state: "frame" }
+        enum.DVTextScreenVisualLayers.Line1:
+          True: { visible: false }
+        enum.DVTextScreenVisualLayers.Line2:
+          True: { visible: false }
+        alert_status:
+          True: { visible: false }
       enum.DVScreenVisuals.Content:
         enum.DVTextScreenVisualLayers.Line1:
           Text: { visible: true }
@@ -131,6 +149,110 @@
   name: armory status display
   description: Displays the armory's opening cooldown timer.
   components:
+  # mildly annoying duplication bc of how sprite layers works
+  # but this + others is just to change the border to always visible and diff color
+  # and change the text color
+  - type: Sprite
+    layers:
+    - state: frame
+      map: ["base"]
+    - shader: StencilClear
+      state: mask
+    - shader: StencilMask
+      state: mask
+    - map: [ "enum.DVTextScreenVisualLayers.Line1" ]
+      shader: StencilDraw
+      color: "#FF0000"
+      visible: false
+    - map: [ "enum.DVTextScreenVisualLayers.Line2" ]
+      shader: StencilDraw
+      color: "#FF0000"
+      visible: false
+    - map: [ "alert_status" ]
+      visible: false
+      state: status_display_green
+    - map: [ "alert_border" ]
+      visible: true
+      state: alert_border_red
+    - state: directional
+      sprite: _ES/Markers/spawners.rsi
+      map: [ "directional" ]
+      visible: false
   - type: DeviceNetwork
     deviceNetId: Private
     receiveFrequencyId: ESArmoryTimer
+
+# radstorm
+- type: entity
+  id: ESStatusDisplayRadstorm
+  parent: ESStatusDisplay
+  name: station calamity display
+  suffix: Radstorm
+  description: The color indicates what kind of calamity it is. This one is green, so it's a green calamity.
+  components:
+  - type: Sprite
+    layers:
+    - state: frame
+      map: ["base"]
+    - shader: StencilClear
+      state: mask
+    - shader: StencilMask
+      state: mask
+    - map: [ "enum.DVTextScreenVisualLayers.Line1" ]
+      shader: StencilDraw
+      color: "#66FF00"
+      visible: false
+    - map: [ "enum.DVTextScreenVisualLayers.Line2" ]
+      shader: StencilDraw
+      color: "#66FF00"
+      visible: false
+    - map: [ "alert_status" ]
+      visible: false
+      state: status_display_green
+    - map: [ "alert_border" ]
+      visible: true
+      state: alert_border_green
+    - state: directional
+      sprite: _ES/Markers/spawners.rsi
+      map: [ "directional" ]
+      visible: false
+  - type: DeviceNetwork
+    deviceNetId: Private
+    receiveFrequencyId: ESRadstormTimer
+
+# warp drive
+- type: entity
+  id: ESStatusDisplayWarpDrive
+  parent: ESStatusDisplay
+  name: warp drive charge display
+  description: Communicates the happiness & satiety level of the "Warp Drive".
+  components:
+  - type: Sprite
+    layers:
+    - state: frame
+      map: ["base"]
+    - shader: StencilClear
+      state: mask
+    - shader: StencilMask
+      state: mask
+    - map: [ "enum.DVTextScreenVisualLayers.Line1" ]
+      shader: StencilDraw
+      color: "#FD7AF2"
+      visible: false
+    - map: [ "enum.DVTextScreenVisualLayers.Line2" ]
+      shader: StencilDraw
+      color: "#FD7AF2"
+      visible: false
+    - map: [ "alert_status" ]
+      visible: false
+      state: status_display_green
+    - map: [ "alert_border" ]
+      visible: true
+      state: alert_border_violet
+    - state: directional
+      sprite: _ES/Markers/spawners.rsi
+      map: [ "directional" ]
+      visible: false
+  - type: DeviceNetwork
+    deviceNetId: Private
+    receiveFrequencyId: ESWarpDriveTimer

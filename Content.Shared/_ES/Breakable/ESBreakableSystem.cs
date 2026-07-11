@@ -1,8 +1,10 @@
 using Content.Shared._ES.Breakable.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Examine;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Repairable;
+using Content.Shared.UserInterface;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -27,6 +29,9 @@ public sealed partial class ESBreakableSystem : EntitySystem
         SubscribeLocalEvent<ESBreakableComponent, ExaminedEvent>(OnExamined);
 
         SubscribeLocalEvent<ESBreakableComponent, DamageChangedEvent>(OnDamageChanged);
+
+        SubscribeLocalEvent<ESBreakableActivatableUiComponent, ActivatableUIOpenAttemptEvent>(OnOpenAttempt);
+        SubscribeLocalEvent<ESBreakableDeviceNetworkComponent, BeforePacketSentEvent>(OnBeforePacketSent);
     }
 
     private void OnRefreshNameModifiers(Entity<ESBreakableComponent> ent, ref RefreshNameModifiersEvent args)
@@ -54,6 +59,18 @@ public sealed partial class ESBreakableSystem : EntitySystem
             return;
 
         SetBroken(ent.AsNullable(), _damageable.GetDamage((ent, args.Damageable)).GetTotal() >= ent.Comp.Threshold);
+    }
+
+    private void OnOpenAttempt(Entity<ESBreakableActivatableUiComponent> ent, ref ActivatableUIOpenAttemptEvent args)
+    {
+        if (IsBroken(ent.Owner))
+            args.Cancel();
+    }
+
+    private void OnBeforePacketSent(Entity<ESBreakableDeviceNetworkComponent> ent, ref BeforePacketSentEvent args)
+    {
+        if (IsBroken(ent.Owner))
+            args.Cancel();
     }
 
     /// <summary>
