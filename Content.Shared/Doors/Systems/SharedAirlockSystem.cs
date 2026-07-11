@@ -16,7 +16,7 @@ public abstract partial class SharedAirlockSystem : EntitySystem
     [Dependency] private TurfSystem _turf = default!;
     [Dependency] private SharedWiresSystem _wiresSystem = default!;
 
-    [Dependency] private EntityQuery<ESAirlockBlockOpenComponent> _airlockBlockOpenQuery = default!;
+    [Dependency] private EntityQuery<ESAirlockBlockOpenComponent> _airlockBlockOpenQuery;
 
     public override void Initialize()
     {
@@ -82,18 +82,25 @@ public abstract partial class SharedAirlockSystem : EntitySystem
 
     private void OnBeforeDoorOpened(EntityUid uid, AirlockComponent component, BeforeDoorOpenedEvent args)
     {
+        if (IsBarricaded(uid))
+            args.Cancel();
+
+        if (!CanChangeState(uid, component))
+            args.Cancel();
+    }
+
+    public bool IsBarricaded(EntityUid uid)
+    {
         var xform = Transform(uid);
         foreach (var ent in _turf.GetEntitiesInTile(xform.Coordinates))
         {
             if (_airlockBlockOpenQuery.HasComp(ent))
             {
-                args.Cancel();
-                break;
+                return true;
             }
         }
 
-        if (!CanChangeState(uid, component))
-            args.Cancel();
+        return false;
     }
 
     private void OnBeforeDoorDenied(EntityUid uid, AirlockComponent component, BeforeDoorDeniedEvent args)

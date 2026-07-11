@@ -138,6 +138,14 @@ public abstract partial class SharedDoorSystem : EntitySystem
         _activeDoors.Remove(door);
     }
 
+    public DoorState GetDoorState(Entity<DoorComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return 0;
+
+        return ent.Comp.State;
+    }
+
     #region StateManagement
     private void OnHandleState(Entity<DoorComponent> ent, ref AfterAutoHandleStateEvent args)
     {
