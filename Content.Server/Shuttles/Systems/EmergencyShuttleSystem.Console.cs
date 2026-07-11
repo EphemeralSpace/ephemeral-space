@@ -175,33 +175,6 @@ public sealed partial class EmergencyShuttleSystem
                             _random.NextVector2(1000f)), _consoleAccumulator, TransitTime);
                 }
             }
-
-            var podQuery = AllEntityQuery<EscapePodComponent>();
-
-            // Stagger launches coz funny
-            while (podQuery.MoveNext(out _, out var pod))
-            {
-                pod.LaunchTime = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(0.05f, 0.75f));
-            }
-        }
-
-        var podLaunchQuery = EntityQueryEnumerator<EscapePodComponent, ShuttleComponent>();
-
-        while (podLaunchQuery.MoveNext(out var uid, out var pod, out var shuttle))
-        {
-            var stationUid = _station.GetOwningStation(uid);
-
-            if (!TryComp<StationCentcommComponent>(stationUid, out var centcomm) ||
-                Deleted(centcomm.Entity) ||
-                pod.LaunchTime == null ||
-                pod.LaunchTime > _timing.CurTime)
-            {
-                continue;
-            }
-
-            // Don't dock them. If you do end up doing this then stagger launch.
-            _shuttle.FTLToDock(uid, shuttle, centcomm.Entity.Value, hyperspaceTime: TransitTime);
-            RemCompDeferred<EscapePodComponent>(uid);
         }
 
         // Departed

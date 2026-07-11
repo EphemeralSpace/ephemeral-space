@@ -7,6 +7,7 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Screens.Components;
+using Content.Shared._DV.Screens;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
@@ -215,9 +216,12 @@ public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComp
         if (!TryComp<DeviceNetworkComponent>(ruleEnt, out var netComp))
             return;
 
+        (string?, string?) text = (Loc.GetString("es-armory-screen-line-1"), null);
         var payload = new NetworkPayload
         {
-            [ScreenMasks.Timer] = component.ArmoryCooldownTime,
+            [DVScreenPackets.Content] = DVScreenContent.GenericTargetTime,
+            [DVScreenPackets.Text] = text,
+            [DVScreenPackets.Time] = component.ArmoryCooldownTime,
         };
 
         _devicenet.QueuePacket(ruleEnt, null, payload, netComp.TransmitFrequency);

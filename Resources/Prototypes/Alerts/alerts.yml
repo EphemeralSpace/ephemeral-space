@@ -379,20 +379,6 @@
   description: alerts-muted-desc
 
 - type: alert
-  id: VowOfSilence
-  icons: [ /Textures/Interface/Alerts/Abilities/silenced.png ]
-  name: alerts-vow-silence-name
-  clickEvent: !type:BreakVowAlertEvent
-  description: alerts-vow-silence-desc
-
-- type: alert
-  id: VowBroken
-  icons: [ /Textures/Interface/Actions/scream.png ]
-  name: alerts-vow-broken-name
-  clickEvent: !type:RetakeVowAlertEvent
-  description: alerts-vow-broken-desc
-
-- type: alert
   id: Pulled
   icons: [ /Textures/Interface/Alerts/Pull/pulled.png ]
   clickEvent: !type:StopBeingPulledAlertEvent

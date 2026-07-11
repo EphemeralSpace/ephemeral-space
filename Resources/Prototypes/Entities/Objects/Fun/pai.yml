@@ -59,13 +59,6 @@
     allowedStates:
       - Alive
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ToggleableGhostRoleVisuals.Status:
-        screen:
-          Off: { state: pai-off-overlay }
-          Searching: { state: pai-searching-overlay }
-          On: { state: pai-on-overlay }
   - type: StationMap
   - type: Vocal
     sounds:
