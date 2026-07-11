@@ -134,10 +134,10 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
 
         var currentCharge = GetChargePercentage(component);
 
-        if (currentCharge >= (component.LastScreenUpdatedChargePercentage + 0.05f))
+        if ((int)(currentCharge * 100) >= (component.LastScreenUpdatedChargePercentage + 5))
         {
+            component.LastScreenUpdatedChargePercentage += 5;
             UpdateScreens((uid, component), currentCharge);
-            component.LastScreenUpdatedChargePercentage += 0.05f;
         }
 
         // check if we should play our announcements
