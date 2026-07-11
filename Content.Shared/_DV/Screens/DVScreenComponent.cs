@@ -56,6 +56,7 @@ public enum DVScreenContent : byte
 
 public static class DVScreenPackets
 {
+    public const string Time = "dv-screen-time";
     public const string Content = "dv-screen-content";
     public const string ShowBorders = "dv-screen-borders";
     public const string Text = "dv-screen-text";

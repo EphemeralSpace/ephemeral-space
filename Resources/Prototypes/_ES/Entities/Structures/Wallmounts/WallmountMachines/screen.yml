@@ -127,8 +127,8 @@
 # armory
 - type: entity
   id: ESStatusDisplayArmory
-  parent: Screen
-  name: armory screen
+  parent: ESStatusDisplay
+  name: armory status display
   description: Displays the armory's opening cooldown timer.
   components:
   - type: DeviceNetwork

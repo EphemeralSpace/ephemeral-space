@@ -7,6 +7,7 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Screens.Components;
+using Content.Shared._DV.Screens;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
@@ -217,7 +218,8 @@ public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComp
 
         var payload = new NetworkPayload
         {
-            [ScreenMasks.Timer] = component.ArmoryCooldownTime,
+            [DVScreenPackets.Content] = DVScreenContent.EstimatedTimeOfArrival,
+            [DVScreenPackets.Time] = component.ArmoryCooldownTime,
         };
 
         _devicenet.QueuePacket(ruleEnt, null, payload, netComp.TransmitFrequency);

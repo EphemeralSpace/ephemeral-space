@@ -22,6 +22,9 @@ public sealed partial class DVScreenSystem : DVSharedScreenSystem
 
     private void OnPacket(Entity<DVScreenComponent> ent, ref DeviceNetworkPacketEvent args)
     {
+        // es change
+        if (args.Data.TryGetValue(DVScreenPackets.Time, out TimeSpan timer))
+            OnTimerPacket(ent, timer);
         if (args.Data.TryGetValue(ShuttleTimerMasks.ShuttleMap, out _))
             OnShuttlePacket(ent, ref args);
         if (args.Data.TryGetValue(DVScreenPackets.Text, out (string, string)? text))
@@ -30,6 +33,14 @@ public sealed partial class DVScreenSystem : DVSharedScreenSystem
             OnBordersPacket(ent, showBorders.Value, ref args);
         if (args.Data.TryGetValue(DVScreenPackets.Content, out DVScreenContent? content))
             OnContentPacket(ent, content.Value, ref args);
+    }
+
+    // es change
+    private void OnTimerPacket(Entity<DVScreenComponent> ent, TimeSpan time)
+    {
+        ent.Comp.TargetTime = _timing.CurTime + time;
+        Dirty(ent);
+        UpdateVisuals(ent);
     }
 
     private void OnShuttlePacket(Entity<DVScreenComponent> ent, ref DeviceNetworkPacketEvent args)

@@ -87,7 +87,6 @@ public sealed partial class DVScreenSystem : DVSharedScreenSystem
 
         var time = (_timing.CurTime - ent.Comp.TargetTime).Duration();
         var formatted = time.ToString("mm\\:ss");
-        Log.Debug($"{_timing.CurTime} - {ent.Comp.TargetTime} = {time}");
         var title = ent.Comp.ScreenIsAtDestination ? Loc.GetString("status-display-etd") : Loc.GetString("status-display-eta");
 
         _textVisuals.SetText(ent.Owner, title, formatted);

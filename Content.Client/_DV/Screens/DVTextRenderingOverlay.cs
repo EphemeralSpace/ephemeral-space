@@ -10,9 +10,9 @@ using Robust.Shared.Enums;
 namespace Content.Client._DV.Screens;
 
 [UsedImplicitly]
-public sealed class DVTextRenderingOverlay : Overlay
+public sealed partial class DVTextRenderingOverlay : Overlay
 {
-    [Dependency] private readonly IClyde _clyde = default!;
+    [Dependency] private IClyde _clyde = default!;
     private readonly SpriteSystem _sprite;
     private readonly AnimationPlayerSystem _animationPlayer;
 
@@ -72,7 +72,7 @@ public sealed class DVTextRenderingOverlay : Overlay
                     _sprite.LayerSetOffset(queued.Entity.Owner, row.Layer, row.Offset);
                 }
 
-                args.DrawingHandle.RenderInRenderTarget(row.Texture,
+                screenHandle.RenderInRenderTarget(row.Texture,
                     () =>
                     {
                         screenHandle.DrawString(font, Vector2.Zero, row.Text);
