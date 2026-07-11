@@ -887,3 +887,21 @@ Entries:
         faster to take items out of.
   id: 101
   time: '2026-07-09T23:22:20.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Walls now become "broken walls" when damaged, which can be passed
+        through and repaired back into full walls.
+    - type: Remove
+      message: Removed the ability to craft walls directly.
+    - type: Add
+      message: >-
+        Added secret door kits, single-use kits that transform walls into secret
+        doors.
+    - type: Add
+      message: Added barrier kits, which can barricade airlocks.
+    - type: Fix
+      message: Fixed barricaded airlocks being openable.
+  id: 102
+  time: '2026-07-11T14:13:06.0000000+00:00'
