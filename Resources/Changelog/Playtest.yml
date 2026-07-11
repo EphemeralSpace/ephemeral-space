@@ -962,3 +962,17 @@ Entries:
       message: Barricades are no longer deconstructible by prying
   id: 107
   time: '2026-07-11T21:49:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Rather than instantly being transported to the lobby, a short little
+        post-death sequence will play out when you die
+    - type: Tweak
+      message: >-
+        Use of the ghost command is now only allowed if you are dead (and want
+        to expedite the death cutscene for some reason)
+    - type: Add
+      message: A cinematic will now play when the nuke is detonated.
+  id: 108
+  time: '2026-07-11T21:52:17.0000000+00:00'
