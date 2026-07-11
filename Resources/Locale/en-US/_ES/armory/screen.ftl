@@ -1,1 +1,1 @@
-es-armory-screen-line-1 = COOLDOWN
+es-armory-screen-line-1 = RETRY
