@@ -53,6 +53,22 @@
       collection: GlassBreak
   - type: Repairable
     fuelCost: 15
+  - type: PointLight
+    radius: 1.8
+    energy: 6
+    color: "#22ccff"
+    castShadows: false
+    netsync: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    offset: 0,-0.2
+    falloff: 20
+    curveFactor: 1.0
+    autoRot: true
+  - type: ESGenericPointLightVisualizer
+    visuals:
+      enum.ESBreakableVisuals.Broken:
+        True: { enabled: false }
+        False: { enabled: true }
   - type: Appearance
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
@@ -97,6 +113,18 @@
   name: station status display
   description: Notifies you of the various goings on and happenings of whoever decides to set the text to something.
   components:
+  - type: ESGenericPointLightVisualizer
+    visuals:
+      enum.ESBreakableVisuals.Broken:
+        True: { enabled: false }
+        False: { enabled: true }
+      enum.DVScreenVisuals.AlertLevel:
+        green: { color: LawnGreen }
+        blue: { color: DodgerBlue }
+        red: { color: Red }
+        yellow: { color: Goldenrod }
+        violet: { color: Violet }
+        delta: { color: Orange }
   - type: GenericVisualizer
     visuals:
       enum.ESBreakableVisuals.Broken:
@@ -199,6 +227,8 @@
       sprite: _ES/Markers/spawners.rsi
       map: [ "directional" ]
       visible: false
+  - type: PointLight
+    color: "#FF0000"
   - type: DeviceNetwork
     deviceNetId: Private
     receiveFrequencyId: ESArmoryTimer
@@ -237,6 +267,8 @@
       sprite: _ES/Markers/spawners.rsi
       map: [ "directional" ]
       visible: false
+  - type: PointLight
+    color: "#66FF00"
   - type: DeviceNetwork
     deviceNetId: Private
     receiveFrequencyId: ESRadstormTimer
@@ -274,6 +306,10 @@
       sprite: _ES/Markers/spawners.rsi
       map: [ "directional" ]
       visible: false
+  - type: PointLight
+    color: "#FD7AF2"
+  - type: DVTextVisuals
+    marqueeRate: 0.03s
   - type: DeviceNetwork
     deviceNetId: Private
     receiveFrequencyId: ESWarpDriveTimer
