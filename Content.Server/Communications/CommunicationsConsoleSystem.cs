@@ -20,6 +20,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 // ES START
 using Content.Server._ES.Radio;
+using Content.Shared._DV.Screens;
 using Content.Shared._ES.Degradation;
 using Content.Shared.Dataset;
 using Content.Shared.Random.Helpers;
@@ -312,14 +313,19 @@ namespace Content.Server.Communications
             if (!TryComp<DeviceNetworkComponent>(uid, out var net))
                 return;
 
+            var msg = message.Message;
+            if (msg.Length > 20)
+                msg = msg.Substring(0, 20);
+
             var payload = new NetworkPayload
             {
-                [ScreenMasks.Text] = message.Message
+                [DVScreenPackets.Text] = (Loc.GetString("comms-console-screen-status-line1"), msg),
+                [DVScreenPackets.Content] = DVScreenContent.Text,
             };
 
             _deviceNetworkSystem.QueuePacket(uid, null, payload, net.TransmitFrequency);
 
-            _adminLogger.Add(LogType.DeviceNetwork, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following broadcast: {message.Message:msg}");
+            _adminLogger.Add(LogType.DeviceNetwork, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following broadcast: {msg:msg}");
         }
 
         private void OnCallShuttleMessage(EntityUid uid, CommunicationsConsoleComponent comp, CommunicationsConsoleCallEmergencyShuttleMessage message)
