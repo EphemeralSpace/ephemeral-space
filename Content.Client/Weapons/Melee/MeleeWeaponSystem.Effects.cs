@@ -48,8 +48,6 @@ public sealed partial class MeleeWeaponSystem
             return;
         }
 
-        var offset = 1f;
-
         var spriteRotation = Angle.Zero;
         if (arcComponent.Animation != WeaponArcAnimation.None
             && TryComp(weapon, out MeleeWeaponComponent? meleeWeaponComponent))
