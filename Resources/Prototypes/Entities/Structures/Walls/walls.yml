@@ -1190,9 +1190,6 @@
     sprite: Structures/Walls/wood.rsi
   - type: Icon
     sprite: Structures/Walls/wood.rsi
-  - type: Construction
-    graph: Barricade
-    node: woodWall
   - type: Destructible
     thresholds:
     - trigger:
