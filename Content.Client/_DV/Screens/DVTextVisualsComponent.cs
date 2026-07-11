@@ -22,6 +22,7 @@ public sealed partial class DVTextVisualsComponent : Component
     [DataField]
     public int MarqueePadding = 8;
 
+    [ViewVariables]
     public Animation? Animation;
 
     public CancellationTokenSource? Token;

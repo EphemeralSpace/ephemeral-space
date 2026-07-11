@@ -60,7 +60,7 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     ///     ~Essentially a lower bound on crew win time
     /// </summary>
     [DataField]
-    public TimeSpan BaseChargeTime = TimeSpan.FromMinutes(45);
+    public TimeSpan BaseChargeTime = TimeSpan.FromMinutes(2);
 
     /// <summary>
     ///     Like nuke defense but for crew. After the drive is fully charged, this timer starts and the win only
@@ -104,6 +104,14 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     /// </summary>
     [DataField]
     public int FinalPhaseForceEndItems = 5;
+
+    /// <summary>
+    ///     The percentage the warp drive was charged at the last time a screen packet was sent out.
+    ///     Saved and checked to ensure we don't send too many screen updates, and instead only do it if the
+    ///     percentage changes by enough (0.05 atm)
+    /// </summary>
+    [DataField]
+    public float LastScreenUpdatedChargePercentage = 0.0f;
 
     /// <summary>
     ///     where it all goes

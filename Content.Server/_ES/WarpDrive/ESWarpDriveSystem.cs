@@ -2,13 +2,17 @@ using Content.Server._ES.Announcements;
 using Content.Server._ES.Objectives;
 using Content.Server._ES.WarpDrive.Components;
 using Content.Server.Administration;
+using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.RoundEnd;
+using Content.Shared._DV.Screens;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Telesci.Components;
 using Content.Shared._ES.WarpDrive;
 using Content.Shared.Administration;
+using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Hands;
@@ -34,6 +38,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
     [Dependency] private RoundEndSystem _roundEnd = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private DeviceNetworkSystem _devicenet = default!;
 
     public override void Initialize()
     {
@@ -55,7 +60,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
     private void OnActivateWarpDrive(EntityUid uid, ESPortalGeneratorConsoleComponent component, ESActivePortalGeneratorBuiMessage args)
     {
         var query = EntityQueryEnumerator<ESWarpDriveGameRuleComponent>();
-        while (query.MoveNext(out _, out var warp))
+        while (query.MoveNext(out var warpUid, out var warp))
         {
             if (warp.InFinalPhase)
                 continue;
@@ -63,6 +68,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             warp.FinalPhaseAt = _timing.CurTime;
             warp.InFinalPhase = true;
             UpdateAppearance(true);
+            UpdateScreens((warpUid, warp), 1.0f);
 
             _chat.DispatchRoundAnnouncement(Loc.GetString("es-warp-drive-announcement-final-phase-started"),
                 Loc.GetString("es-warpdrive-announcer"),
@@ -126,8 +132,15 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             return;
         }
 
-        // check if we should play our announcements
         var currentCharge = GetChargePercentage(component);
+
+        if (currentCharge >= (component.LastScreenUpdatedChargePercentage + 0.05f))
+        {
+            UpdateScreens((uid, component), currentCharge);
+            component.LastScreenUpdatedChargePercentage += 0.05f;
+        }
+
+        // check if we should play our announcements
         UpdateUiState(currentCharge, component.Interrupted, component.InFinalPhase);
         foreach (var announcement in component.Announcements)
         {
@@ -143,6 +156,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
                 colorOverride: Color.MediumVioletRed,
                 important: true);
 
+            UpdateScreens((uid, component), announcement.AfterChargePercentage);
             announcement.Completed = true;
         }
 
@@ -171,6 +185,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             component.Interrupted = false;
             component.AccumulatedInterruptionTime += _timing.CurTime - time;
             UpdateAppearance(true);
+            UpdateScreens((uid, component), currentCharge);
 
             component.NextInterruptionTime = _timing.CurTime + _random.Next(component.MinRandomInterruptionTime, component.MaxRandomInterruptionTime);
 
@@ -184,6 +199,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             component.Interrupted = true;
             component.LastInterruptionTime = _timing.CurTime;
             UpdateAppearance(false);
+            UpdateScreens((uid, component), currentCharge);
 
             _chat.DispatchRoundAnnouncement(Loc.GetString("es-warp-drive-announcement-interruptions-detected"),
                 Loc.GetString("es-warpdrive-announcer"),
@@ -216,10 +232,29 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         }
     }
 
+    private void UpdateScreens(Entity<ESWarpDriveGameRuleComponent> ent, float charge)
+    {
+        if (!TryComp<DeviceNetworkComponent>(ent, out var netComp))
+            return;
+
+        var prefix = ent.Comp.Interrupted ? "es-warp-drive-screen-interrupted" : "es-warp-drive-screen-charging";
+        if (charge >= 1f)
+            prefix = "es-warp-drive-screen-charged";
+
+        var text = (Loc.GetString($"{prefix}-line1"), Loc.GetString($"{prefix}-line2", ("charge", (int) (charge * 100))));
+        var payload = new NetworkPayload
+        {
+            [DVScreenPackets.Text] = text,
+            [DVScreenPackets.Content] = DVScreenContent.Text,
+        };
+
+        _devicenet.QueuePacket(ent, null, payload, netComp.TransmitFrequency, device: netComp);
+    }
+
     private void IncrementTeleportedEntitiesCount()
     {
         var query = EntityQueryEnumerator<ESWarpDriveGameRuleComponent>();
-        while (query.MoveNext(out var uid, out var warpDrive))
+        while (query.MoveNext(out _, out var warpDrive))
         {
             warpDrive.ItemsTeleportedSinceLastInterruption += 1;
             if (warpDrive.ItemsTeleportedSinceLastInterruption > warpDrive.ManualInterruptionItems
