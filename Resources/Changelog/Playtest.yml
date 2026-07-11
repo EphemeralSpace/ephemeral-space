@@ -940,3 +940,11 @@ Entries:
         as the gun crosshair
   id: 105
   time: '2026-07-11T19:26:05.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Using items in hand or interacting with things in your
+        pockets/bag/storage etc now has interaction particles
+  id: 106
+  time: '2026-07-11T19:26:39.0000000+00:00'
