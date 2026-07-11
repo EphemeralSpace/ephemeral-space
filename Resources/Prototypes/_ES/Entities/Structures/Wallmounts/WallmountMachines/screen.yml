@@ -36,8 +36,7 @@
       visible: false
       state: status_display_green
     - map: ["alert_border"]
-      visible: false
-      state: alert_border_green
+      state: alert_border_blue
     - state: directional
       sprite: _ES/Markers/spawners.rsi
       map: [ "directional" ]
@@ -49,11 +48,11 @@
     damageModifierSet: Glass
   - type: ESBreakableDeviceNetwork
   - type: ESBreakable
-    threshold: 50
+    threshold: 30
     sound:
       collection: GlassBreak
   - type: Repairable
-    fuelCost: 25
+    fuelCost: 15
   - type: Appearance
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
@@ -69,20 +68,26 @@
           True: { visible: false }
         alert_status:
           True: { visible: false }
+        alert_border:
+          True: { loop: false }
+          False: { loop: true }
       enum.DVScreenVisuals.Content:
         enum.DVTextScreenVisualLayers.Line1:
           Text: { visible: true }
           CurrentTime: { visible: true }
+          GenericTargetTime: { visible: true }
           EstimatedTimeOfArrival: { visible: true }
           AlertLevel: { visible: false }
         enum.DVTextScreenVisualLayers.Line2:
           Text: { visible: true }
           CurrentTime: { visible: true }
+          GenericTargetTime: { visible: true }
           EstimatedTimeOfArrival: { visible: true }
           AlertLevel: { visible: false }
         alert_status:
           Text: { visible: false }
           CurrentTime: { visible: false }
+          GenericTargetTime: { visible: false }
           EstimatedTimeOfArrival: { visible: false }
           AlertLevel: { visible: true }
 
@@ -90,10 +95,23 @@
   parent: ESStatusDisplay
   id: ESStatusDisplayStation
   name: station status display
-  description: Notifies you of the various messed up calamities and evil catastrophes that are affecting you personally.
+  description: Notifies you of the various goings on and happenings of whoever decides to set the text to something.
   components:
   - type: GenericVisualizer
     visuals:
+      enum.ESBreakableVisuals.Broken:
+        base:
+          True: { state: "frame_broken" }
+          False: { state: "frame" }
+        enum.DVTextScreenVisualLayers.Line1:
+          True: { visible: false }
+        enum.DVTextScreenVisualLayers.Line2:
+          True: { visible: false }
+        alert_status:
+          True: { visible: false }
+        alert_border:
+          True: { loop: false }
+          False: { loop: true }
       enum.DVScreenVisuals.ShowAlertBorder:
         alert_border:
           True: { visible: true }
@@ -119,16 +137,19 @@
         enum.DVTextScreenVisualLayers.Line1:
           Text: { visible: true }
           CurrentTime: { visible: true }
+          GenericTargetTime: { visible: true }
           EstimatedTimeOfArrival: { visible: true }
           AlertLevel: { visible: false }
         enum.DVTextScreenVisualLayers.Line2:
           Text: { visible: true }
           CurrentTime: { visible: true }
+          GenericTargetTime: { visible: true }
           EstimatedTimeOfArrival: { visible: true }
           AlertLevel: { visible: false }
         alert_status:
           Text: { visible: false }
           CurrentTime: { visible: false }
+          GenericTargetTime: { visible: false }
           EstimatedTimeOfArrival: { visible: false }
           AlertLevel: { visible: true }
 

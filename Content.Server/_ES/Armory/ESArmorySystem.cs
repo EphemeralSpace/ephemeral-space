@@ -216,9 +216,11 @@ public sealed partial class ESArmorySystem : GameRuleSystem<ESArmoryGameRuleComp
         if (!TryComp<DeviceNetworkComponent>(ruleEnt, out var netComp))
             return;
 
+        (string?, string?) text = (Loc.GetString("es-armory-screen-line-1"), null);
         var payload = new NetworkPayload
         {
-            [DVScreenPackets.Content] = DVScreenContent.EstimatedTimeOfArrival,
+            [DVScreenPackets.Content] = DVScreenContent.GenericTargetTime,
+            [DVScreenPackets.Text] = text,
             [DVScreenPackets.Time] = component.ArmoryCooldownTime,
         };
 

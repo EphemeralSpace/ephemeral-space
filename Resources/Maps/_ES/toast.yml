@@ -69457,7 +69457,7 @@ entities:
     - type: Transform
       pos: -1.3116426,26.360577
       parent: 2
-- proto: Screen
+- proto: ESStatusDisplayRadstorm
   entities:
   - uid: 2464
     components:

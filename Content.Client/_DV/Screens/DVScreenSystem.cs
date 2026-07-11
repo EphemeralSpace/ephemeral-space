@@ -1,6 +1,4 @@
-using System.Globalization;
 using Content.Client.GameTicking.Managers;
-using Content.Client.TextScreen;
 using Content.Shared._DV.Screens;
 using Robust.Shared.Timing;
 
@@ -33,6 +31,9 @@ public sealed partial class DVScreenSystem : DVSharedScreenSystem
                 case DVScreenContent.CurrentTime:
                     CurrentTime((uid, screen));
                     break;
+                case DVScreenContent.GenericTargetTime:
+                    GenericTargetTime((uid, screen));
+                    break;
                 case DVScreenContent.EstimatedTimeOfArrival:
                     EstimatedTimeOfArrival((uid, screen));
                     break;
@@ -56,6 +57,9 @@ public sealed partial class DVScreenSystem : DVSharedScreenSystem
             case DVScreenContent.CurrentTime:
                 CurrentTime(ent);
                 break;
+            case DVScreenContent.GenericTargetTime:
+                GenericTargetTime(ent);
+                break;
             case DVScreenContent.EstimatedTimeOfArrival:
                 EstimatedTimeOfArrival(ent);
                 break;
@@ -75,6 +79,21 @@ public sealed partial class DVScreenSystem : DVSharedScreenSystem
     {
         var time = (_timing.CurTime - _ticker.RoundStartTimeSpan).Duration();
         _textVisuals.SetText(ent.Owner, Loc.GetString("status-display-time"), time.ToString("hh\\:mm"));
+    }
+
+    private void GenericTargetTime(Entity<DVScreenComponent> ent)
+    {
+        if (ent.Comp.TargetTime <= _timing.CurTime)
+        {
+            _textVisuals.SetText(ent.Owner, string.Empty, string.Empty);
+            return;
+        }
+
+        var time = (_timing.CurTime - ent.Comp.TargetTime).Duration();
+        var formatted = $"{(int)time.TotalMinutes}:{time.Seconds:D2}";
+        var title = ent.Comp.Line1;
+
+        _textVisuals.SetText(ent.Owner, title, formatted);
     }
 
     private void EstimatedTimeOfArrival(Entity<DVScreenComponent> ent)

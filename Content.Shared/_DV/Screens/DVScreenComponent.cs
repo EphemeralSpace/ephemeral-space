@@ -50,6 +50,13 @@ public enum DVScreenContent : byte
 {
     Text,
     CurrentTime,
+    /// <summary>
+    ///     Generic target format. Line 2 will be the time, line 1 will stay at whatever it's set to.
+    /// </summary>
+    GenericTargetTime,
+    /// <summary>
+    ///     Formatted specifically for shuttle timers with ETA and ETD.
+    /// </summary>
     EstimatedTimeOfArrival,
     AlertLevel,
 }
