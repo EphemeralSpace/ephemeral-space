@@ -4,8 +4,8 @@ meta:
   engineVersion: 279.0.1
   forkId: ""
   forkVersion: ""
-  time: 07/11/2026 06:12:59
-  entityCount: 14735
+  time: 07/11/2026 14:30:50
+  entityCount: 14736
 maps:
 - 3
 grids:
@@ -1114,6 +1114,16 @@ entities:
             1108: -48,-44
             1109: -48,-45
         - node:
+            color: '#00FFFFFF'
+            id: WarnLineGreyscaleN
+          decals:
+            1158: -22,3
+        - node:
+            color: '#FF00FFFF'
+            id: WarnLineGreyscaleN
+          decals:
+            1159: -21,3
+        - node:
             color: '#FFFFFFFF'
             id: WarnLineGreyscaleN
           decals:
@@ -1197,6 +1207,18 @@ entities:
             627: -59,-42
             628: -59,-43
         - node:
+            color: '#000000FF'
+            id: WarnLineW
+          decals:
+            1154: -22,3
+            1155: -21,3
+            1156: -20,3
+        - node:
+            color: '#FFFF00FF'
+            id: WarnLineW
+          decals:
+            1157: -20,3
+        - node:
             color: '#FFFFFFFF'
             id: WarnLineW
           decals:
@@ -1221,21 +1243,6 @@ entities:
             930: 17,-50
             931: 18,-50
             932: 19,-50
-        - node:
-            color: '#00FFFFFF'
-            id: arrow
-          decals:
-            1118: -22,3
-        - node:
-            color: '#FF00FFFF'
-            id: arrow
-          decals:
-            1119: -21,3
-        - node:
-            color: '#FFFF00FF'
-            id: arrow
-          decals:
-            1120: -20,3
         - node:
             cleanable: True
             color: '#FF0000FF'
@@ -30844,12 +30851,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -7.5,-4.5
       parent: 2
-  - uid: 131
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -7.5,-4.5
-      parent: 2
   - uid: 132
     components:
     - type: Transform
@@ -30863,12 +30864,6 @@ entities:
       pos: -5.5,-3.5
       parent: 2
   - uid: 134
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -5.5,-4.5
-      parent: 2
-  - uid: 135
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -35953,6 +35948,11 @@ entities:
       parent: 2
 - proto: DrinkGildlagerBottleFull
   entities:
+  - uid: 135
+    components:
+    - type: Transform
+      pos: 32.74988,-24.25256
+      parent: 2
   - uid: 2219
     components:
     - type: Transform
@@ -36038,6 +36038,18 @@ entities:
     components:
     - type: Transform
       pos: -13.689304,-6.125881
+      parent: 2
+- proto: DrinkShotGlass
+  entities:
+  - uid: 131
+    components:
+    - type: Transform
+      pos: 32.255573,-24.262976
+      parent: 2
+  - uid: 14177
+    components:
+    - type: Transform
+      pos: 32.43613,-24.499086
       parent: 2
 - proto: DrinkVodkaBottleFull
   entities:
@@ -74877,6 +74889,11 @@ entities:
       parent: 2
 - proto: TableCarpet
   entities:
+  - uid: 2382
+    components:
+    - type: Transform
+      pos: 32.5,-24.5
+      parent: 2
   - uid: 2462
     components:
     - type: Transform
@@ -75985,11 +76002,6 @@ entities:
       parent: 2
 - proto: VendingMachineBooze
   entities:
-  - uid: 2382
-    components:
-    - type: Transform
-      pos: 32.5,-24.5
-      parent: 2
   - uid: 2941
     components:
     - type: Transform
