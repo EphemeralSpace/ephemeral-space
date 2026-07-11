@@ -1,31 +1,132 @@
-# dup of arrivals screens to be indestructible + no power
 - type: entity
   parent: BaseWallmountMachine
-  id: ESArrivalsShuttleTimer
-  name: arrivals screen
-  description: Displays the time until the shuttle reaches the station.
+  id: ESStatusDisplay
+  abstract: true
   components:
   - type: Rotatable
-  - type: TextScreenVisuals
-    textOffset: 0,3
-    timerOffset: 0,-4
-    rows: 2
+  - type: DVTextVisuals
+    rows:
+    - text: ""
+      layer: enum.DVTextScreenVisualLayers.Line1
+      offset: 0.03125,0.15625 # 1/32, 5/32
+    - text: ""
+      layer: enum.DVTextScreenVisualLayers.Line2
+      offset: 0.03125,-0.0625 # 1/32, 0/32
+  - type: DVScreen
   - type: Sprite
     drawdepth: WallMountedItems
-    sprite: Structures/Wallmounts/screen.rsi
-    state: screen
+    sprite: _ES/Structures/Wallmounts/screen.rsi
     noRot: true
+    snapCardinals: true
+    granularLayersRendering: true
+    layers:
+    - state: frame
+    - shader: StencilClear
+      state: mask
+    - shader: StencilMask
+      state: mask
+    - map: ["enum.DVTextScreenVisualLayers.Line1"]
+      shader: StencilDraw
+      color: "#22ccff"
+      visible: false
+    - map: ["enum.DVTextScreenVisualLayers.Line2"]
+      shader: StencilDraw
+      color: "#22ccff"
+      visible: false
+    - map: ["alert_status"]
+      visible: false
+      state: status_display_green
+    - map: ["alert_border"]
+      visible: false
+      state: alert_border_green
+    - state: directional
+      sprite: _ES/Markers/spawners.rsi
+      map: [ "directional" ]
+      renderingStrategy: Default
+      visible: false
+  - type: Marker
+    layers: [ "directional" ]
   - type: Appearance
-  - type: Screen
+  - type: ApcPowerReceiver
+  - type: ExtensionCableReceiver
+  - type: GenericVisualizer
+    visuals:
+      enum.DVScreenVisuals.Content:
+        enum.DVTextScreenVisualLayers.Line1:
+          Text: { visible: true }
+          CurrentTime: { visible: true }
+          EstimatedTimeOfArrival: { visible: true }
+          AlertLevel: { visible: false }
+        enum.DVTextScreenVisualLayers.Line2:
+          Text: { visible: true }
+          CurrentTime: { visible: true }
+          EstimatedTimeOfArrival: { visible: true }
+          AlertLevel: { visible: false }
+        alert_status:
+          Text: { visible: false }
+          CurrentTime: { visible: false }
+          EstimatedTimeOfArrival: { visible: false }
+          AlertLevel: { visible: true }
+
+- type: entity
+  parent: ESStatusDisplay
+  id: ESStatusDisplayStation
+  name: station status display
+  description: Notifies you of the various messed up calamities and evil catastrophes that are affecting you personally.
+  components:
+  - type: GenericVisualizer
+    visuals:
+      enum.DVScreenVisuals.ShowAlertBorder:
+        alert_border:
+          True: { visible: true }
+          False: { visible: false }
+      enum.DVScreenVisuals.AlertLevel:
+        alert_border:
+          green: { state: alert_border_green }
+          blue: { state: alert_border_blue }
+          red: { state: alert_border_red }
+          white: { state: alert_border_white }
+          yellow: { state: alert_border_yellow }
+          violet: { state: alert_border_violet }
+          delta: { state: alert_border_delta }
+        alert_status:
+          green: { state: status_display_green }
+          blue: { state: status_display_blue }
+          red: { state: status_display_red }
+          white: { state: status_display_white }
+          yellow: { state: status_display_yellow }
+          violet: { state: status_display_violet }
+          delta: { state: status_display_delta }
+      enum.DVScreenVisuals.Content:
+        enum.DVTextScreenVisualLayers.Line1:
+          Text: { visible: true }
+          CurrentTime: { visible: true }
+          EstimatedTimeOfArrival: { visible: true }
+          AlertLevel: { visible: false }
+        enum.DVTextScreenVisualLayers.Line2:
+          Text: { visible: true }
+          CurrentTime: { visible: true }
+          EstimatedTimeOfArrival: { visible: true }
+          AlertLevel: { visible: false }
+        alert_status:
+          Text: { visible: false }
+          CurrentTime: { visible: false }
+          EstimatedTimeOfArrival: { visible: false }
+          AlertLevel: { visible: true }
+
+- type: entity
+  parent: ESStatusDisplay
+  id: ESStatusDisplayArrivals
+  name: arrivals status display
+  description: Displays the time until the shuttle reaches the station.
+  components:
   - type: DeviceNetwork
     deviceNetId: Private
     receiveFrequencyId: ArrivalsShuttleTimer
-  - type: WallMount
-    arc: 360
 
 # armory
 - type: entity
-  id: ESArmoryTimer
+  id: ESStatusDisplayArmory
   parent: Screen
   name: armory screen
   description: Displays the armory's opening cooldown timer.

@@ -1,5 +1,6 @@
 - type: entity
   parent: BaseWallmountMachine
+  categories: [ HideSpawnMenu ]
   id: Screen
   name: screen
   description: Displays text or time.
@@ -41,6 +42,7 @@
 - type: entity
   id: ArrivalsShuttleTimer
   parent: Screen
+  categories: [ HideSpawnMenu ]
   name: arrivals screen
   description: Displays time of arrivals shuttle ETA.
   components:

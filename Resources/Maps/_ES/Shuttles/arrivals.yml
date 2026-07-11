@@ -2409,7 +2409,7 @@ entities:
     - type: Transform
       pos: 5.5,5.5
       parent: 1
-- proto: ESArrivalsShuttleTimer
+- proto: ESStatusDisplayArrivals
   entities:
   - uid: 253
     components:

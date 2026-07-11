@@ -36230,7 +36230,7 @@ entities:
     - type: Transform
       pos: -19.5,4.5
       parent: 2
-- proto: ESArmoryTimer
+- proto: ESStatusDisplayArmory
   entities:
   - uid: 10276
     components:
