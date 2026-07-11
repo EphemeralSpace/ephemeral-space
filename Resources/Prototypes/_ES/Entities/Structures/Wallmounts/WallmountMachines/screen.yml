@@ -37,6 +37,7 @@
       state: status_display_green
     - map: ["alert_border"]
       state: alert_border_blue
+      visible: false
     - state: directional
       sprite: _ES/Markers/spawners.rsi
       map: [ "directional" ]
@@ -318,7 +319,7 @@
   - type: DVTextVisuals
     marqueePadding: 2
     marqueeWidth: 24
-    marqueeRate: 0.025s
+    marqueeRate: 0.035s
   - type: DeviceNetwork
     deviceNetId: Private
     receiveFrequencyId: ESWarpDriveTimer
