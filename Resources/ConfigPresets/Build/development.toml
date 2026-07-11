@@ -47,3 +47,7 @@ ftl_time = 35 # not used by default, but useful if its enabled so it doesnt take
 [es_ic]
 open_character_menu_on_spawn = false
 # ES END
+
+[net]
+max_rapid_connections = 413
+max_ip_connections = 413
