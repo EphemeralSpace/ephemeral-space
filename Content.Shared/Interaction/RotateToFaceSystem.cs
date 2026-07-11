@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Shared._ES.Interaction.HoldToFace;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Rotatable;
 using JetBrains.Annotations;
@@ -141,6 +142,8 @@ namespace Content.Shared.Interaction
             if (Resolve(ent, ref ent.Comp, false) && ent.Comp.Targets.Contains(target))
                 return;
 
+            EnsureComp<NoRotateOnInteractComponent>(ent);
+
             var facing = EnsureComp<ESForcedFacingComponent>(ent);
             facing.Targets.Add(target);
             Dirty(ent, facing);
@@ -156,6 +159,8 @@ namespace Content.Shared.Interaction
         {
             if (!Resolve(ent, ref ent.Comp, false))
                 return;
+
+            RemComp<NoRotateOnInteractComponent>(ent);
 
             ent.Comp.Targets.Remove(target);
             Dirty(ent);
