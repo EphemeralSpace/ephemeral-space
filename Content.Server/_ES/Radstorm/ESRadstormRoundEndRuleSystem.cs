@@ -2,13 +2,17 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Server._ES.Announcements;
 using Content.Server._ES.Radio;
 using Content.Server._ES.Radstorm.Components;
+using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.RoundEnd;
+using Content.Shared._DV.Screens;
 using Content.Shared._ES.CCVar;
 using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Light.Components;
 using Content.Shared.Mobs;
@@ -33,6 +37,7 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private BrainDamageSystem _brainDamage = default!;
+    [Dependency] private DeviceNetworkSystem _devicenet = default!;
     [Dependency] private ESAnnouncementSystem _chat = default!;
     [Dependency] private DamageableSystem _damage = default!;
     [Dependency] private GameTicker _ticker = default!;
@@ -66,6 +71,8 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
         component.RadstormTimeRemaining = TimeSpan.FromMinutes(randomMins);
         component.RadstormDuration = TimeSpan.FromMinutes(randomMins);
         Log.Info($"Picked {randomMins} minutes into the round as the start time for the radstorm.");
+
+        UpdateScreenTimers((uid, component), component.RadstormTimeRemaining);
     }
 
     protected override void ActiveTick(EntityUid uid, ESRadstormRoundEndRuleComponent component, GameRuleComponent gameRule, float frameTime)
@@ -206,6 +213,23 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
         }
 
         throw new Exception("Phase has no valid start condition!");
+    }
+
+    public void UpdateScreenTimers(Entity<ESRadstormRoundEndRuleComponent> ent, TimeSpan newTime)
+    {
+        // Show timer on screen
+        if (!TryComp<DeviceNetworkComponent>(ent, out var netComp))
+            return;
+
+        (string?, string?) text = (Loc.GetString("es-radstorm-screen-line-1"), null);
+        var payload = new NetworkPayload
+        {
+            [DVScreenPackets.Text] = text,
+            [DVScreenPackets.Content] = DVScreenContent.GenericTargetTime,
+            [DVScreenPackets.Time] = newTime,
+        };
+
+        _devicenet.QueuePacket(ent, null, payload, netComp.TransmitFrequency, device: netComp);
     }
 
     private float GetRadstormSpeedMultiplier()

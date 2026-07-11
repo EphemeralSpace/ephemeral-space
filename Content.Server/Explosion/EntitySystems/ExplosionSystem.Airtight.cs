@@ -219,6 +219,11 @@ public sealed partial class ExplosionSystem
         {
             totalDamageTarget = _destructibleSystem.DestroyedAt(uid, destructible);
         }
+        else if (_breakable.TryGetBrokenThreshold(uid, out var threshold) &&
+                 _breakableWallQuery.HasComp(uid))
+        {
+            totalDamageTarget = threshold.Value;
+        }
 
         if (totalDamageTarget == FixedPoint2.MaxValue || !_damageableQuery.TryGetComponent(uid, out var damageable))
         {

@@ -282,7 +282,6 @@
   components:
   - type: RCD
     availablePrototypes:
-    - WallSolid
     - FloorSteel
     - Plating
     - Catwalk

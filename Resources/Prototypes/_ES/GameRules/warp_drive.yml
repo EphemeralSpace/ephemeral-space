@@ -16,3 +16,6 @@
     - afterChargePercentage: 1
       text: es-warp-drive-announcement-percentage-fully-charged
       sound: /Audio/_ES/Announcements/attention_high.ogg
+  - type: DeviceNetwork
+    deviceNetId: Private
+    transmitFrequencyId: ESWarpDriveTimer
