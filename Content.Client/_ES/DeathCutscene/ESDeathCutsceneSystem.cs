@@ -26,6 +26,8 @@ public sealed partial class ESDeathCutsceneSystem : EntitySystem
     private static readonly TimeSpan CurtainOpenDuration = TimeSpan.FromSeconds(1.5);
     private static readonly SoundSpecifier PostDeathSound = new SoundPathSpecifier("/Audio/_ES/Ambience/death.ogg");
 
+    private bool _audioPlaying = false;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -34,13 +36,20 @@ public sealed partial class ESDeathCutsceneSystem : EntitySystem
         SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnPlayerDetached);
 
         _curtains = _ui.GetUIController<ESDiegeticLobbyUIController>();
+        _audioPlaying = false;
     }
 
     private void OnPlayDeathCutscene(ESPlayDeathCutsceneNetworkEvent msg, EntitySessionEventArgs args)
     {
+        _overlay.AddOverlay(new ESDeathCutsceneOverlay(_timing.RealTime));
+
+        // order of this stuff is weird but its to handle the gib case which is aouhhhhh (die and then get detached and reattached to a new gib dummy entity)
+        if (_audioPlaying)
+            return;
+
+        _audioPlaying = true;
         _content.DisableAmbientMusic();
         _audio.PlayGlobal(PostDeathSound, Filter.Local(), false);
-        _overlay.AddOverlay(new ESDeathCutsceneOverlay(_timing.RealTime));
         _timer.SpawnMethodTimer(CurtainCloseTime,
             () =>
             {
@@ -50,6 +59,7 @@ public sealed partial class ESDeathCutsceneSystem : EntitySystem
             () =>
             {
                 _curtains.StartCurtainAnimation(true, CurtainOpenDuration);
+                _audioPlaying = false;
             });
     }
 

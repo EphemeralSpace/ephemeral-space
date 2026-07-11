@@ -6,9 +6,11 @@ using Content.Shared._ES.DeathCutscene;
 using Content.Shared._ES.Mind;
 using Content.Shared._ES.Viewcone.Components;
 using Content.Shared.Ghost;
+using Content.Shared.Gibbing;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Robust.Server.Player;
 using Robust.Shared.Player;
 
 namespace Content.Server._ES.Mind;
@@ -22,6 +24,8 @@ public sealed partial class ESAutoGhostSystem : EntitySystem
     [Dependency] private GhostSystem _ghost = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     // time for death cutscene to play out
     private static readonly TimeSpan AutoGhostDelay = TimeSpan.FromSeconds(15.5);
@@ -31,6 +35,7 @@ public sealed partial class ESAutoGhostSystem : EntitySystem
     {
         // todo call this some other shit and makle it more generic see the comment in esbasemob
         SubscribeLocalEvent<GhostOnMoveComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<GhostOnMoveComponent, BeingGibbedEvent>(OnBeingGibbed);
         SubscribeLocalEvent<GhostOnMoveComponent, MobStateChangedEvent>(OnMobStateChanged, after: [typeof(KillTrackingSystem)]);
 
         SubscribeLocalEvent<MindContainerComponent, ESAutoGhostEvent>(OnAutoGhost);
@@ -51,6 +56,20 @@ public sealed partial class ESAutoGhostSystem : EntitySystem
             return;
 
         AutoGhost(ent);
+    }
+
+    private void OnBeingGibbed(Entity<GhostOnMoveComponent> ent, ref BeingGibbedEvent args)
+    {
+        if (!TryComp<ActorComponent>(ent.Owner, out var actor) || !_mind.TryGetMind(ent.Owner, out var mind))
+            return;
+
+        // create dummy entity to attach plyer to
+        var dummy = SpawnAtPosition(null, Transform(ent.Owner).Coordinates);
+        _metadata.SetEntityName(dummy, $"gib dummy entity ({Name(ent.Owner)})");
+        _mind.TransferTo(mind.Value.Owner, dummy);
+        _player.SetAttachedEntity(actor.PlayerSession, dummy);
+
+        AutoGhost(dummy);
     }
 
     private void OnAutoGhost(Entity<MindContainerComponent> ent, ref ESAutoGhostEvent args)
@@ -74,8 +93,6 @@ public sealed partial class ESAutoGhostSystem : EntitySystem
 
         // uhh teehee
         RemCompDeferred<ESViewconeComponent>(uid);
-
-        Log.Info("sent cutscene event");
         RaiseNetworkEvent(new ESPlayDeathCutsceneNetworkEvent(), actor.PlayerSession);
     }
 }
