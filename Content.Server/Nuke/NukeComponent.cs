@@ -51,7 +51,7 @@ namespace Content.Server.Nuke
         ///     When this time is left, nuke will play last alert sound
         /// </summary>
         [DataField("alertTime")]
-        public float AlertSoundTime = 10.0f;
+        public float AlertSoundTime = 11.25f;
 
         /// <summary>
         ///     How long a user must wait to disarm the bomb.

@@ -107,7 +107,7 @@ namespace Content.Client.GameTicking.Managers
             // roundend->lobby closing
             if (ESExpectedRoundEndTime > curTime
                 && _lobbyCurtains.IsOpen
-                && ESExpectedRoundEndTime - curTime <= TimeSpan.FromSeconds(3))
+                && ESExpectedRoundEndTime - curTime <= TimeSpan.FromSeconds(2))
             {
                 _lobbyCurtains.StartCurtainAnimation(false);
                 ESExpectedRoundEndTime = null;

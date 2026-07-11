@@ -16,9 +16,9 @@ public sealed partial class ESCinematicUIController : UIController, IOnSystemCha
     [Dependency] private ESDiegeticLobbyUIController _lobby = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
 
-    private TimeSpan? _cinematicEndTime = null;
-    private TimeSpan? _cinematicCloseCurtainTime = null;
-    private ESCinematicPrototype? _currentCinematic = null;
+    private TimeSpan? _cinematicEndTime;
+    private TimeSpan? _cinematicCloseCurtainTime;
+    private ESCinematicPrototype? _currentCinematic;
 
     public override void FrameUpdate(FrameEventArgs args)
     {
@@ -29,14 +29,11 @@ public sealed partial class ESCinematicUIController : UIController, IOnSystemCha
 
         if (_timing.RealTime > time)
         {
-            _lobby.StartCurtainAnimation(true, _currentCinematic?.CurtainLength);
-
             _cinematicEndTime = null;
             _currentCinematic = null;
 
             if (UIManager.ActiveScreen?.GetWidget<CinematicContainer>() is { } container)
             {
-                Log.Info("resetting texture");
                 container.ResetCinematicTexture();
             }
 
@@ -59,7 +56,7 @@ public sealed partial class ESCinematicUIController : UIController, IOnSystemCha
 
     private void OnCinematicRequested(ProtoId<ESCinematicPrototype> cinematic)
     {
-        Log.Info("got cinematic request");
+        Log.Info($"Got cinematic request {cinematic.Id} from server");
 
         if (UIManager.ActiveScreen?.GetWidget<CinematicContainer>() is not { } container
             || !_proto.TryIndex(cinematic, out var prototype))
@@ -69,7 +66,7 @@ public sealed partial class ESCinematicUIController : UIController, IOnSystemCha
         if (_currentCinematic?.ID == cinematic.Id)
             return;
 
-        Log.Info($"playing {cinematic.Id}");
+        Log.Info($"Playing {cinematic.Id}");
         _currentCinematic = prototype;
         _cinematicEndTime = _timing.RealTime + prototype.Length;
         if (prototype.CurtainLength is { } curtainLength)
