@@ -32,6 +32,7 @@ public sealed partial class StagehandGameScreen : InGameScreen
         SetAnchorAndMarginPreset(Ghost, LayoutPreset.BottomWide, margin: 80);
         SetAnchorAndMarginPreset(Hotbar, LayoutPreset.BottomWide, margin: 5);
         SetAnchorAndMarginPreset(Alerts, LayoutPreset.TopRight, margin: 10);
+        SetAnchorPreset(Cinematic, LayoutPreset.Wide);
 
         ViewportContainer.OnResized += ResizeActionContainer;
     }
