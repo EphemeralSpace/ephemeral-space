@@ -81,8 +81,6 @@ public sealed partial class MeleeWeaponSystem
                     _animation.Play(animationUid, GetFadeAnimation(sprite, 0.15f, 0.25f), FadeAnimationKey);
                 break;
             case WeaponArcAnimation.Thrust:
-                track = EnsureComp<TrackUserComponent>(animationUid);
-                track.User = user;
                 _animation.Play(animationUid, GetThrustAnimation((animationUid, sprite), localPos), ThrustAnimationKey);
                 if (arcComponent.Fadeout)
                     _animation.Play(animationUid, GetFadeAnimation(sprite, 0.1f, 0.25f), FadeAnimationKey);
