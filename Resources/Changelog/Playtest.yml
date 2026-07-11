@@ -905,3 +905,19 @@ Entries:
       message: Fixed barricaded airlocks being openable.
   id: 102
   time: '2026-07-11T14:13:06.0000000+00:00'
+- author: mirrorcult,sowelipililimute
+  changes:
+    - type: Add
+      message: >-
+        Screens around the station now have proper borders, lights, actual text
+        rendering, and a marquee if text is too long
+    - type: Add
+      message: >-
+        New screens showing warp drive charge percentage & radstorm timer have
+        been added around the station
+    - type: Add
+      message: >-
+        Comms console can now broadcast up to 20 characters of text to status
+        screens rather than like. four or whatever
+  id: 103
+  time: '2026-07-11T14:19:37.0000000+00:00'
