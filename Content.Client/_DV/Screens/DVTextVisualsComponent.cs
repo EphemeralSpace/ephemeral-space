@@ -17,7 +17,7 @@ public sealed partial class DVTextVisualsComponent : Component
     public TimeSpan MarqueeRate = TimeSpan.FromSeconds(0.045f);
 
     [DataField]
-    public int MarqueeWidth = 30;
+    public int MarqueeWidth = 24;
 
     [DataField]
     public int MarqueePadding = 8;

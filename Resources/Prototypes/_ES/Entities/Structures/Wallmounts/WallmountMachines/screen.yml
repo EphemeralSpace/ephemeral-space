@@ -113,6 +113,11 @@
   name: station status display
   description: Notifies you of the various goings on and happenings of whoever decides to set the text to something.
   components:
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: ShuttleTimer
+  - type: DVTextVisuals
+    marqueeRate: 0.12s
   - type: ESGenericPointLightVisualizer
     visuals:
       enum.ESBreakableVisuals.Broken:
@@ -237,7 +242,7 @@
 - type: entity
   id: ESStatusDisplayRadstorm
   parent: ESStatusDisplay
-  name: station calamity display
+  name: station calamity status display
   suffix: Radstorm
   description: The color indicates what kind of calamity it is. This one is green, so it's a green calamity.
   components:
@@ -269,6 +274,8 @@
       visible: false
   - type: PointLight
     color: "#66FF00"
+  - type: DVTextVisuals
+    marqueeWidth: 30
   - type: DeviceNetwork
     deviceNetId: Private
     receiveFrequencyId: ESRadstormTimer
@@ -277,7 +284,7 @@
 - type: entity
   id: ESStatusDisplayWarpDrive
   parent: ESStatusDisplay
-  name: warp drive charge display
+  name: warp drive status display
   description: Communicates the happiness & satiety level of the "Warp Drive".
   components:
   - type: Sprite
@@ -309,7 +316,9 @@
   - type: PointLight
     color: "#FD7AF2"
   - type: DVTextVisuals
-    marqueeRate: 0.03s
+    marqueePadding: 2
+    marqueeWidth: 24
+    marqueeRate: 0.025s
   - type: DeviceNetwork
     deviceNetId: Private
     receiveFrequencyId: ESWarpDriveTimer
