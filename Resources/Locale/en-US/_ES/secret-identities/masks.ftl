@@ -29,17 +29,14 @@ es-secret-identity-phantom-desc = As a Phantom, reincarnate as a vengeful spirit
 es-secret-identity-pickpocket-name = Pickpocket
 es-secret-identity-pickpocket-desc = As a Pickpocket, sneak behind peoples' backs to snatch their belongings and grow your collection.
 
-es-secret-identity-rebel-name = Rebel
-es-secret-identity-rebel-desc = As a Rebel, sabotage machines around the station in fervent protest. Try not to get pinned as a Traitor.
-
 es-secret-identity-secretary-name = Secretary
 es-secret-identity-secretary-desc = As a Secretary, do whatever you can to help your target complete their objectives.
 
 es-secret-identity-tragedian-name = Tragedian
 es-secret-identity-tragedian-desc = As a Tragedian, perform your theme to the bitter end in order to please the watching stagehands.
 
-es-secret-identity-vigilante-name = Vigilante
-es-secret-identity-vigilante-desc = As a Vigilante, seek out those who have killed others and bring them to justice by killing them yourself.
+es-secret-identity-vandal-name = Vandal
+es-secret-identity-vandal-desc = As a Vandal, sabotage machines around the station in opposition of common morals. Try not to get pinned as a Traitor.
 
 es-secret-identity-vip-name = VIP
 es-secret-identity-vip-desc = As a VIP, use your fancy VIP card to help confirm your innocence in times of peril.

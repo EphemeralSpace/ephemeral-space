@@ -23,7 +23,7 @@
     id: CaptainPDA
     gloves: ClothingHandsGlovesCaptain
     ears: ClothingHeadsetAltCommand
-    head: ESClothingHeadHatCaptain
+    head: ClothingHeadHatCaptain
     jumpsuit: ClothingUniformJumpsuitCaptain
     outerClothing: ESClothingOuterArmorCaptainCarapace
     back: ClothingBackpackCaptain

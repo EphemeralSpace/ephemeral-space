@@ -4,13 +4,41 @@
   branches:
   - tasks:
     - !type:HTNCompoundTask
-      task: ESLeepLeachMelee
+      task: ESLeapLeechBite
+  - tasks:
+    - !type:HTNCompoundTask
+      task: ESLeepLeachJump
+  - tasks:
+    - !type:HTNCompoundTask
+      task: MeleeCombatCompound
   - tasks:
     - !type:HTNCompoundTask
       task: IdleCompound
 
 - type: htnCompound
-  id: ESLeepLeachMelee
+  id: ESLeapLeechBite
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: ESNearbyHostileOrganizationTargets
+    - !type:HTNPrimitiveTask
+      operator: !type:MeleeOperator
+        targetKey: Target
+      preconditions:
+      - !type:KeyExistsPrecondition
+        key: Target
+      - !type:TargetInRangePrecondition
+        targetKey: Target
+        rangeKey: MeleeRange
+      services:
+      - !type:UtilityService
+        id: ESNearbyHostileOrganizationTargets
+        proto: ESNearbyHostileOrganizationTargets
+        key: Target
+
+- type: htnCompound
+  id: ESLeepLeachJump
   branches:
   - tasks:
     - !type:HTNPrimitiveTask
@@ -41,7 +69,5 @@
       services:
       - !type:UtilityService
         id: MeleeService
-        proto: NearbyMeleeTargets
+        proto: ESNearbyHostileOrganizationTargets
         key: TargetCoordinates
-    - !type:HTNCompoundTask
-      task: MeleeAttackTargetCompound

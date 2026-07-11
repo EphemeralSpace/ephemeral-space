@@ -3,6 +3,8 @@ limited-charges-charges-remaining = {$charges ->
     *[other] It has [color=fuchsia]{$charges}[/color] charges remaining.
 }
 
+limited-charges-charge-status-control-label = Charges: [color=fuchsia]{$charges}[/color]
+
 limited-charges-max-charges = It's at [color=green]maximum[/color] charges.
 limited-charges-recharging = {$seconds ->
     [one] There is [color=yellow]{$seconds}[/color] second left until the next charge.

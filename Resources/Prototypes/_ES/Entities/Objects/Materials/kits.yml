@@ -1,0 +1,31 @@
+- type: entity
+  parent: BaseItem
+  id: ESKitSecretDoor
+  name: secret door kit
+  description: A construction kit that can be used on regular walls to convert them into secret doors. How suspicious.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Materials/kits.rsi
+    state: secret
+  - type: Item
+    size: Huge
+  - type: Tag
+    tags: [ ESSecretWallKit ]
+
+- type: entity
+  parent: BaseItem
+  id: ESKitBarricade
+  name: barricade kit
+  description: It's well understood that barricading hallways, airlocks and windows with wooden planks is enough to defend against any threat.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Materials/kits.rsi
+    state: barricade
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,2,3
+  - type: ESBarricadeKit
+  - type: LimitedCharges
+    maxCharges: 3
+    deleteOnEmpty: true

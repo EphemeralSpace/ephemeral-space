@@ -3,7 +3,7 @@
     xmlns:screens="clr-namespace:Content.Client._ES.Screens"
     xmlns:menuBar="clr-namespace:Content.Client.UserInterface.Systems.MenuBar.Widgets"
     xmlns:actions="clr-namespace:Content.Client.UserInterface.Systems.Actions.Widgets"
-    xmlns:chat="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets"
+    xmlns:chat="clr-namespace:Content.Client._ES.Chat"
     xmlns:alerts="clr-namespace:Content.Client.UserInterface.Systems.Alerts.Widgets"
     xmlns:hotbar="clr-namespace:Content.Client.UserInterface.Systems.Hotbar.Widgets"
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Ghost.Widgets"
@@ -12,6 +12,7 @@
     xmlns:inventory="clr-namespace:Content.Client.UserInterface.Systems.Inventory.Widgets"
     xmlns:observe="clr-namespace:Content.Client._ES.Stagehand.Ui"
     xmlns:vote="clr-namespace:Content.Client._ES.Voting.Ui"
+    xmlns:cinematic="clr-namespace:Content.Client._ES.Cinematic"
     Name="StagehandHud"
     VerticalExpand="False"
     VerticalAlignment="Bottom"
@@ -31,13 +32,14 @@
                 <BoxContainer Name="VoteMenu" Access="Public" Orientation="Vertical" />
             </BoxContainer>
             <alerts:AlertsUI Name="Alerts" Access="Protected" Margin="0 250 0 0" />
+            <cinematic:CinematicContainer Name="Cinematic"/>
         </LayoutContainer>
 
         <FillPanel Name="SeparatedChatPanel" StyleClasses="PanelDark">
             <VFillStack SeparationOverride="10" Margin="10">
                 <menuBar:GameTopMenuBar Name="TopBar" Access="Public" />
                 <vote:ESVotingManagerControl Name="VoteControl" SetHeight="300"/>
-                <chat:ChatBox StyleClasses="ChatOutput" Stack.ExpandAxis="Vertical" Name="Chat"
+                <chat:StagehandChatBox StyleClasses="ChatOutput" Stack.ExpandAxis="Vertical" Name="Chat"
                               Access="Protected" />
             </VFillStack>
         </FillPanel>

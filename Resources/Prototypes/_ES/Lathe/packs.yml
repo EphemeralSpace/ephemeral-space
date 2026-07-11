@@ -31,6 +31,8 @@
   - ESVoiceTrigger
   - ESProximitySensor
   - Igniter
+  - ESKitSecretDoor
+  - ESKitBarricade
 
 - type: latheRecipePack
   id: ESLightsStatic
@@ -97,16 +99,6 @@
   recipes:
   - Handcuffs
   - Flash
-
-- type: latheRecipePack
-  id: ESAmmunition
-  recipes:
-  - ESMagazine9mmEmpty
-  - ESRound9mm
-  - ESSpeedLoader357Empty
-  - ESRound357
-  - ESShellShotgunBeanbag
-  - ESShellShotgunBuckshot
 
 # Service
 - type: latheRecipePack

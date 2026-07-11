@@ -1,0 +1,89 @@
+- type: alert
+  id: ESDisguiseNone
+  category: ESDisguise
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/disguise.rsi
+    state: face_0
+  name: es-alert-disguise-none-name
+  description: es-alert-disguise-none-desc
+
+- type: alert
+  id: ESDisguiseNoneVoice
+  category: ESDisguise
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/disguise.rsi
+    state: face_1
+  name: es-alert-disguise-none-name
+  description: es-alert-disguise-none-voice-desc
+
+- type: alert
+  id: ESDisguiseBottom
+  category: ESDisguise
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/disguise.rsi
+    state: bottom_0
+  name: es-alert-disguise-partial-name
+  description: es-alert-disguise-partial-desc
+
+- type: alert
+  id: ESDisguiseBottomVoice
+  category: ESDisguise
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/disguise.rsi
+    state: bottom_1
+  name: es-alert-disguise-partial-name
+  description: es-alert-disguise-partial-voice-desc
+
+- type: alert
+  id: ESDisguiseTop
+  category: ESDisguise
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/disguise.rsi
+    state: top_0
+  name: es-alert-disguise-partial-name
+  description: es-alert-disguise-partial-desc
+
+- type: alert
+  id: ESDisguiseTopVoice
+  category: ESDisguise
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/disguise.rsi
+    state: top_1
+  name: es-alert-disguise-partial-name
+  description: es-alert-disguise-partial-voice-desc
+
+- type: alert
+  id: ESDisguiseFull
+  category: ESDisguise
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/disguise.rsi
+    state: none_0
+  name: es-alert-disguise-disguised-name
+  description: es-alert-disguise-disguised-desc
+
+- type: alert
+  id: ESDisguiseFullVoice
+  category: ESDisguise
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/disguise.rsi
+    state: none_1
+  name: es-alert-disguise-disguised-name
+  description: es-alert-disguise-disguised-voice-desc
+
+- type: alert
+  id: ESDisguiseID
+  category: ESDisguise
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/disguise.rsi
+    state: id_0
+  name: es-alert-disguise-impersonating-name
+  description: es-alert-disguise-impersonating-desc
+
+- type: alert
+  id: ESDisguiseIDVoice
+  category: ESDisguise
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/disguise.rsi
+    state: id_1
+  name: es-alert-disguise-impersonating-name
+  description: es-alert-disguise-impersonating-voice-desc

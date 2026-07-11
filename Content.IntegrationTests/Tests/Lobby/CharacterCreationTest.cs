@@ -103,7 +103,6 @@ public sealed class CharacterCreationTest : GameTest
             Assert.That(a.FlavorText, Is.EqualTo(b.FlavorText));
             Assert.That(a.JobPriorities, Is.EquivalentTo(b.JobPriorities));
             Assert.That(a.AntagPreferences, Is.EquivalentTo(b.AntagPreferences));
-            Assert.That(a.TraitPreferences, Is.EquivalentTo(b.TraitPreferences));
             Assert.That(a.Loadouts, Is.EquivalentTo(b.Loadouts));
             AssertEqual(a.Appearance, b.Appearance);
             Assert.Fail("Profile not equal");

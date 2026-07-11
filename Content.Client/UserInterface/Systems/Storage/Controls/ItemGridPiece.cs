@@ -18,7 +18,6 @@ public sealed class ItemGridPiece : Control, IEntityControl
 
     public readonly EntityUid Entity;
     public ItemStorageLocation Location;
-    public ItemGridPieceMarks? Marked;
 
     public event Action<GUIBoundKeyEventArgs, ItemGridPiece>? OnPiecePressed;
     public event Action<GUIBoundKeyEventArgs, ItemGridPiece>? OnPieceUnpressed;
@@ -42,10 +41,6 @@ public sealed class ItemGridPiece : Control, IEntityControl
     private Texture? _bottomLeftTexture;
     private readonly string _bottomRightTexturePath = "Storage/piece_bottomRight";
     private Texture? _bottomRightTexture;
-    private readonly string _markedFirstTexturePath = "Storage/marked_first";
-    private Texture? _markedFirstTexture;
-    private readonly string _markedSecondTexturePath = "Storage/marked_second";
-    private Texture? _markedSecondTexture;
     #endregion
 
     public ItemGridPiece(Entity<ItemComponent> entity, ItemStorageLocation location,  IEntityManager entityManager)
@@ -90,8 +85,6 @@ public sealed class ItemGridPiece : Control, IEntityControl
         _topRightTexture = Theme.ResolveTextureOrNull(_topRightTexturePath)?.Texture;
         _bottomLeftTexture = Theme.ResolveTextureOrNull(_bottomLeftTexturePath)?.Texture;
         _bottomRightTexture = Theme.ResolveTextureOrNull(_bottomRightTexturePath)?.Texture;
-        _markedFirstTexture = Theme.ResolveTextureOrNull(_markedFirstTexturePath)?.Texture;
-        _markedSecondTexture = Theme.ResolveTextureOrNull(_markedSecondTexturePath)?.Texture;
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -119,9 +112,6 @@ public sealed class ItemGridPiece : Control, IEntityControl
         //yeah, this coloring is kinda hardcoded. deal with it. B)
         Color? colorModulate = hovering  ? null : Color.FromHex("#a8a8a8");
 
-        var marked = Marked != null;
-        Vector2i? maybeMarkedPos = null;
-
         _texturesPositions.Clear();
         for (var y = boundingGrid.Bottom; y <= boundingGrid.Top; y++)
         {
@@ -142,12 +132,6 @@ public sealed class ItemGridPiece : Control, IEntityControl
                 {
                     _texturesPositions.Add((nwTexture, Position + offset / UIScale));
                     handle.DrawTextureRect(nwTexture, new UIBox2(topLeft, topLeft + size), colorModulate);
-
-                    if (marked && nwTexture == _topLeftTexture)
-                    {
-                        maybeMarkedPos = topLeft;
-                        marked = false;
-                    }
                 }
                 if (GetTexture(adjustedShape, new Vector2i(x, y), Direction.SouthEast) is {} seTexture)
                 {
@@ -200,21 +184,6 @@ public sealed class ItemGridPiece : Control, IEntityControl
                 Angle.Zero,
                 eyeRotation: iconRotation,
                 overrideDirection: Direction.South);
-        }
-
-        if (maybeMarkedPos is {} markedPos)
-        {
-            var markedTexture = Marked switch
-            {
-                ItemGridPieceMarks.First => _markedFirstTexture,
-                ItemGridPieceMarks.Second => _markedSecondTexture,
-                _ => null,
-            };
-
-            if (markedTexture != null)
-            {
-                handle.DrawTextureRect(markedTexture, new UIBox2(markedPos, markedPos + size));
-            }
         }
     }
 
@@ -299,10 +268,4 @@ public sealed class ItemGridPiece : Control, IEntityControl
     }
 
     public EntityUid? UiEntity => Entity;
-}
-
-public enum ItemGridPieceMarks
-{
-    First,
-    Second,
 }

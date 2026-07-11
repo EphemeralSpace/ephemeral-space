@@ -27,7 +27,6 @@ public sealed partial class NukeSystem : EntitySystem
 {
     [Dependency] private AlertLevelSystem _alertLevel = default!;
     [Dependency] private ESAnnouncementSystem _chatSystem = default!;
-    [Dependency] private ExplosionSystem _explosions = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] private NavMapSystem _navMap = default!;
@@ -604,16 +603,13 @@ ES END */
 
         component.Exploded = true;
 
-        _explosions.QueueExplosion(uid,
-            component.ExplosionType,
-            component.TotalIntensity,
-            component.IntensitySlope,
-            component.MaxIntensity);
-
         RaiseLocalEvent(new NukeExplodedEvent()
         {
             OwningGrid = transform.GridUid,
         });
+
+        var ev = new ESNukeAfterExplodedEvent(transform.GridUid);
+        RaiseLocalEvent(ref ev);
 
         _sound.StopStationEventMusic(uid, StationEventMusicType.Nuke);
         Del(uid);
@@ -686,6 +682,12 @@ public sealed class NukeExplodedEvent : EntityEventArgs
 {
     public EntityUid? OwningGrid;
 }
+
+/// <summary>
+/// Event raised after <see cref="NukeExplodedEvent"/> is broadcast but before the nuke is deleted.
+/// </summary>
+[ByRefEvent]
+public readonly record struct ESNukeAfterExplodedEvent(EntityUid? OwningGrid);
 
 public sealed class NukeArmedEvent : EntityEventArgs
 {

@@ -10,7 +10,7 @@
     superfanTarget: "#Traitors"
     roles:
       # 2 traitors, 1 parasite.
-      10: ["Marauder", "#Traitors", "#SemiTraitor", "Rebel", "#AllParasites"]
+      10: ["Marauder", "#Traitors", "#SemiTraitor", "Vandal", "#AllParasites"]
       11: [ "#Antagonistic" ]
       13: [ "Assassin" ]  # 3 traitors, 1 parasite.
       14: [ "#AllParasites" ] # 3 traitors, 2 parasite.
