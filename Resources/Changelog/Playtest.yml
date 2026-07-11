@@ -948,3 +948,17 @@ Entries:
         pockets/bag/storage etc now has interaction particles
   id: 106
   time: '2026-07-11T19:26:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Barricade kits can also barricade windows and create tile barricades
+        when used in hand
+    - type: Tweak
+      message: >-
+        Items that use charges (RCD barricade kit etc) now have itemstatus
+        showing the charge count 
+    - type: Remove
+      message: Barricades are no longer deconstructible by prying
+  id: 107
+  time: '2026-07-11T21:49:39.0000000+00:00'
