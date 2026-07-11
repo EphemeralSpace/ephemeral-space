@@ -12,7 +12,7 @@ public sealed class CinematicCommand : ToolshedCommand
 {
     private ESCinematicSystem? _cinematic;
 
-    [CommandImplementation("playall")]
+    [CommandImplementation("playAll")]
     public void PlayAll([CommandArgument] ProtoId<ESCinematicPrototype> cinematic)
     {
         _cinematic ??= GetSys<ESCinematicSystem>();
