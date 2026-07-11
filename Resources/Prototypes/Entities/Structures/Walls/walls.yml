@@ -579,8 +579,9 @@
   - type: Icon
     sprite: _ES/Structures/Walls/reinforced.rsi
     state: full
-  - type: ESBrokenVisuals
+  - type: ESBreakable
     threshold: 400
+  - type: ESBrokenVisuals
     baseRSI: _ES/Structures/Walls/reinforced.rsi
   - type: Construction
     graph: Girder
