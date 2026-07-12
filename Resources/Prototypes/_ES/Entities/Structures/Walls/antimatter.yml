@@ -13,8 +13,6 @@
   - type: IconSmooth
     key: amwalls
     base: ame
-  - type: ESBrokenVisuals
-    baseRSI: _ES/Structures/Walls/antimatter.rsi
   - type: ReinforcedWallReplacementMarker
     replace: false
   - type: ESAmbientMusicMarkerEngineering

@@ -13,19 +13,6 @@
     - node: girder
       entity: Girder
       edges:
-        - to: start
-          completed:
-            - !type:SpawnPrototype
-              prototype: SheetSteel1
-              amount: 2
-            - !type:DeleteEntity {}
-          conditions:
-            - !type:EntityAnchored
-              anchored: false
-          steps:
-            - tool: Screwing
-              doAfter: 2
-
         - to: wall
           completed:
             - !type:SnapToGrid
