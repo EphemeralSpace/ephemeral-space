@@ -12,6 +12,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
+using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.Audio;
 using Robust.Shared.Utility;
 
@@ -37,6 +38,8 @@ public sealed partial class ESLeapleechSystem : ESBaseParasiteSystem<ESLeapleech
 
         SubscribeLocalEvent<ESLeapleechComponent, ESDamageTakenEvent>(OnDamageTaken);
         SubscribeLocalEvent<ESLeapleechComponent, ESLeapLeechBurstTimerEvent>(OnBurstTimer);
+
+        SubscribeLocalEvent<ESLeapleechWormComponent, MeleeHitEvent>(OnMeleeHit);
     }
 
     private void OnComponentStartup(Entity<ESLeapleechComponent> ent, ref ComponentStartup args)
@@ -109,6 +112,21 @@ public sealed partial class ESLeapleechSystem : ESBaseParasiteSystem<ESLeapleech
     private void OnBurstTimer(Entity<ESLeapleechComponent> ent, ref ESLeapLeechBurstTimerEvent args)
     {
         Burst(ent);
+    }
+
+    private void OnMeleeHit(Entity<ESLeapleechWormComponent> ent, ref MeleeHitEvent args)
+    {
+        foreach (var hit in args.HitEntities)
+        {
+            if (!Mind.TryGetMind(hit, out var mind))
+                continue;
+
+            if (SecretIdentity.GetOrganizationOrNull(mind.Value.AsNullable()) == ent.Comp.IgnoreOrganization)
+                continue;
+
+            SecretIdentity.ChangeSecretIdentity(mind.Value, ent.Comp.Identity);
+            QueueDel(ent);
+        }
     }
 
     private void Burst(Entity<ESLeapleechComponent> ent)
