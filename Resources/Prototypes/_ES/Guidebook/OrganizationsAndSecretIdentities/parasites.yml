@@ -1,0 +1,29 @@
+- type: guideEntry
+  id: Parasite
+  name: Parasites
+  children:
+  - Burstworm
+  - Hemophage
+  - Leapleech
+  - Host
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Parasites.xml"
+
+- type: guideEntry
+  id: Burstworm
+  name: Burstworm
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Parasites/Burstworm.xml"
+
+- type: guideEntry
+  id: Hemophage
+  name: Hemophage
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Parasites/Hemophage.xml"
+
+- type: guideEntry
+  id: Host
+  name: Host
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Parasites/Host.xml"
+
+- type: guideEntry
+  id: Leapleech
+  name: Leapleech
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Parasites/Leapleech.xml"

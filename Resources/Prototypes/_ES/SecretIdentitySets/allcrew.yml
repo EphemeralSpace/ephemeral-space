@@ -1,0 +1,4 @@
+- type: esSecretIdentitySet
+  id: AllCrew # Just every crew member, with their identities weight.
+  secretIdentityProvider: !type:ESOrganizationSecretIdentitiesProvider
+    organization: Crew

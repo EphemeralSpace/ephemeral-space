@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESBaseTraitorObjective
   abstract: true
 
@@ -23,12 +23,12 @@
   - type: ESTargetObjective
     title: es-objective-condition-crewmember-kill-title
   - type: ESTargetPlayersObjective
-  - type: ESTargetTroupeObjective
-    troupe: Traitor
+  - type: ESTargetOrganizationObjective
+    organization: Traitor
     invert: true
-    overrideMasks: [Sympathizer]
-  - type: ESTargetMaskBlacklist
-    maskBlacklist:
+    overrideSecretIdentities: [Sympathizer]
+  - type: ESTargetSecretIdentityBlacklist
+    secretIdentityBlacklist:
     - SleeperAgent
   - type: ESKillTargetObjective
 
@@ -46,7 +46,7 @@
   - type: ESTraitorBugObjective
 
 ### Sabotage objectives
-# These are split into base so we can have traitor/rebel variants, since rebel wants a separate description, and no nuke prereq
+# These are split into base so we can have traitor/vandal variants, since vandal wants a separate description, and no nuke prereq
 
 # Communications
 - type: entity

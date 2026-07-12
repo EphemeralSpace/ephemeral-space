@@ -1,36 +1,20 @@
 - type: entity
   parent: ClothingHeadBase
-  id: ESClothingHeadHatCaptain
-  name: captain's cap
-  description: A hat styled after old-age mariner's caps. Designated for captains of Pomelo Interspace Transport vessels.
+  id: ClothingHeadHatStationAdminCap
+  name: station administrator's cap
+  description: A stylish cap worn by the Station Administrator. Shows paperwork who's in charge.
   components:
   - type: Sprite
-    sprite: _ES/Clothing/Head/Hats/captain.rsi
-    layers:
-    - state: icon
-    - state: icon-color
-      color: "#e9744a"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      - state: inhand-left-color
-        color: "#e9744a"
-      right:
-      - state: inhand-right
-      - state: inhand-right-color
-        color: "#e9744a"
+    sprite: Clothing/Head/Hats/hopcap.rsi
   - type: Clothing
-    sprite: _ES/Clothing/Head/Hats/captain.rsi
-    clothingVisuals:
-      head:
-      - state: equipped-HELMET
-      - state: equipped-HELMET-color
-        color: "#e9744a"
+    sprite: Clothing/Head/Hats/hopcap.rsi
   - type: Tag
     tags:
+    - PetWearable
+    - CorgiWearable
     - ClothMade
     - Recyclable
+    - HamsterWearable
 
 - type: entity
   parent: ClothingHeadBase

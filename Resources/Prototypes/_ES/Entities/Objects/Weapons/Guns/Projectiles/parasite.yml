@@ -10,7 +10,7 @@
     rotation: 270
     layers:
     - state: projectile
-  - type: ESMaskConversionProjectile
+  - type: ESSecretIdentityConversionProjectile
   - type: Projectile
     deleteOnCollide: false
     damage:

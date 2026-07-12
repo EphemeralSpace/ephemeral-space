@@ -1,0 +1,35 @@
+- type: entity
+  parent: BaseGameRule
+  id: ESBaseOrganizationRule
+  abstract: true
+  components:
+  - type: ESOrganizationRule
+  - type: ESObjectiveHolder # necessary for organization objectives
+
+- type: entity
+  parent: ESBaseOrganizationRule
+  name: The Crew
+  id: ESOrganizationRuleCrew
+  components:
+  - type: ESOrganizationRule
+    organization: Crew
+    priority: 10
+
+- type: entity
+  parent: ESBaseOrganizationRule
+  id: ESOrganizationRuleTraitor
+  name: The Traitors
+  components:
+  - type: ESOrganizationRule
+    organization: Traitor
+  - type: ESTraitorRule
+
+- type: entity
+  parent: ESBaseOrganizationRule
+  name: The Parasites
+  id: ESOrganizationRuleParasite
+  components:
+  - type: ESOrganizationRule
+    organization: Parasite
+    priority: 10
+  - type: ESParasiteRule

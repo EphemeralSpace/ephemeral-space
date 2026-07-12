@@ -1,6 +1,6 @@
 - type: alertLevels
   id: stationAlerts
-  defaultLevel: green
+  defaultLevel: blue
   levels:
     green:
       announcement: alert-level-green-announcement

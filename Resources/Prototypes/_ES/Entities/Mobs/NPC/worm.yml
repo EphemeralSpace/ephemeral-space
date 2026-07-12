@@ -4,8 +4,8 @@
   parent: [ SimpleMobBase, MobCombat ]
   description: This leapy leech will leap to leech you.
   components:
-  - type: ESHostileTowardsTroupe
-    nonHostileTroupes:
+  - type: ESHostileTowardsOrganization
+    nonHostileOrganizations:
     - Parasite
   - type: InputMover
   - type: MobMover
@@ -46,10 +46,10 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      10: Dead
+      25: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.5
-    baseSprintSpeed: 3.5
+    baseWalkSpeed: 2.25
+    baseSprintSpeed: 3.25
   - type: DamageStateVisuals
     states:
       Alive:
@@ -71,5 +71,5 @@
   - type: TriggerOnMeleeHit
     targetIsUser: true
   - type: DeleteOnTrigger
-  - type: ESChangeMaskOnTrigger
-    mask: Leapleech
+  - type: ESChangeSecretIdentityOnTrigger
+    secretIdentity: Leapleech

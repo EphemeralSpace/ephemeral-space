@@ -138,6 +138,14 @@ public abstract partial class SharedDoorSystem : EntitySystem
         _activeDoors.Remove(door);
     }
 
+    public DoorState GetDoorState(Entity<DoorComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return 0;
+
+        return ent.Comp.State;
+    }
+
     #region StateManagement
     private void OnHandleState(Entity<DoorComponent> ent, ref AfterAutoHandleStateEvent args)
     {
@@ -468,6 +476,10 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (!SetState(uid, DoorState.Closing, door))
             return;
 
+        // this is deliebrately not using setcollidable bc i want
+        // occlusion to update later on partialclose, not now.
+        PhysicsSystem.SetCanCollide(uid, true);
+
         if (predicted)
             Audio.PlayPredicted(door.CloseSound, uid, user, AudioParams.Default.WithVolume(-5));
         else if (_net.IsServer)
@@ -475,8 +487,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
     }
 
     /// <summary>
-    /// Called when the door is partially closed. This is when the door becomes "solid". If this process fails (e.g., a
-    /// mob entered the door as it was closing), then this returns false. Otherwise, returns true;
+    /// Called when the door is partially closed.
     /// </summary>
     public bool OnPartialClose(EntityUid uid, DoorComponent? door = null, PhysicsComponent? physics = null)
     {

@@ -77,7 +77,7 @@
 
 - type: entity
   name: shiv
-  parent: [BaseKnife, BaseMinorContraband]
+  parent: BaseKnife
   id: Shiv
   description: A crude weapon fashioned from a piece of cloth and a glass shard.
   components:

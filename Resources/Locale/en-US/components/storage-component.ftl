@@ -11,3 +11,7 @@ comp-storage-window-slots = Slots: { $itemCount }/{ $maxCount }, Max Size: {$siz
 comp-storage-window-dummy = Dummy
 comp-storage-verb-open-storage = Open Storage
 comp-storage-verb-close-storage = Close Storage
+es-storage-examine-pickup-speed = Taking things out of this {$name} is { $val ->
+    [true] [color=lime]{$mul}x faster[/color]
+    *[false] [color=red]{$mul}x slower[/color]
+} than normal.

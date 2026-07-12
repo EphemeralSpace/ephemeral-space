@@ -40,7 +40,7 @@
       visible: false
   - type: Storage
     grid:
-    - 0,0,5,0
+    - 0,0,2,1
     whitelist:
       tags:
       - Donut
@@ -349,5 +349,3 @@
         children:
         - id: FoodDonkpocket
           amount: 6
-        - id: DonkcoLighter
-          prob: 0.10

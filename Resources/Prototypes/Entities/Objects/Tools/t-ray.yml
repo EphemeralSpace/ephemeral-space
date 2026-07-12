@@ -23,3 +23,5 @@
     materialComposition:
       Steel: 400
       Glass: 150
+  - type: UseDelay
+    delay: 1

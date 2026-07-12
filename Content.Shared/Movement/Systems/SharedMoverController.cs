@@ -27,7 +27,6 @@ using Robust.Shared.Utility;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
 // ES START
 using Content.Shared._ES.Audio.Components;
-using Content.Shared._ES.Viewcone;
 // ES END
 
 namespace Content.Shared.Movement.Systems;
@@ -287,7 +286,7 @@ public abstract partial class SharedMoverController : VirtualController
 
             // Check if we're close enough to a wall to count as touching
             if (!touching && MobMoverQuery.TryComp(uid, out var mobMover))
-                touching |= IsAroundCollider(_lookup, (uid, physicsComponent, mobMover, xform), onGrid);
+                touching |= IsAroundCollider((uid, physicsComponent, mobMover, xform), onGrid);
 
             // If we're touching then use the weightless values
             if (touching)
@@ -517,27 +516,27 @@ public abstract partial class SharedMoverController : VirtualController
     /// <summary>
     /// Used for weightlessness to determine if we are near a wall.
     /// </summary>
-    private bool IsAroundCollider(EntityLookupSystem lookupSystem, Entity<PhysicsComponent, MobMoverComponent, TransformComponent> entity, bool onGrid)
+    private bool IsAroundCollider(Entity<PhysicsComponent, MobMoverComponent, TransformComponent> entity, bool onGrid)
     {
         var (uid, collider, mover, transform) = entity;
         // enlarge more off grid, on grid its fine to require being kinda close to stuff
         var enlargedAABB = _lookup.GetWorldAABB(entity.Owner, transform).Enlarged(mover.GrabRange);
 
         _aroundColliderSet.Clear();
-        lookupSystem.GetEntitiesIntersecting(transform.MapID, enlargedAABB, _aroundColliderSet, LookupFlags.Static);
+        _lookup.GetEntitiesIntersecting(transform.MapID, enlargedAABB, _aroundColliderSet, LookupFlags.Static);
         foreach (var otherEntity in _aroundColliderSet)
         {
-            if (otherEntity == uid)
-                continue; // Don't try to push off of yourself!
+            if (otherEntity == uid || _transform.IsParentOf(transform, otherEntity))
+                continue; // Don't try to push off of yourself or your children!
 
             if (!PhysicsQuery.TryComp(otherEntity, out var otherCollider))
                 continue;
 
             // Only allow pushing off of anchored things that have collision.
+            // NOTE: collision is one-way - we want the mover to push off (collide with) walls, not vice versa (consider bullets and lasers)
             if (otherCollider.BodyType != BodyType.Static ||
                 !otherCollider.CanCollide ||
-                (collider.CollisionMask & otherCollider.CollisionLayer) == 0 &&
-                (otherCollider.CollisionMask & collider.CollisionLayer) == 0 ||
+                (collider.CollisionMask & otherCollider.CollisionLayer) == 0 ||
                 PullableQuery.TryComp(otherEntity, out var pullable) && pullable.BeingPulled)
             {
                 continue;

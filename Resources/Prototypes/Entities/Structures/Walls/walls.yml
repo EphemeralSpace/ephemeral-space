@@ -9,13 +9,7 @@
     snap:
     - Wall
   components:
-# ES START
-#  - type: Anchorable
-#    flags:
-#    - Anchorable
-#  - type: Rotatable
   - type: ESDestroyOnUnanchor
-# ES END
   - type: RangedDamageSound
     soundGroups:
       Brute:
@@ -98,6 +92,24 @@
         - FullTileMask
         layer:
         - WallLayer
+
+- type: entity
+  id: ESBaseWallBreakable
+  abstract: true
+  components:
+  - type: ESBreakable
+    threshold: 200
+    sound:
+      collection: MetalSlam
+  - type: Repairable
+    fuelCost: 15
+    doAfterDelay: 5
+  - type: ESBreakableWall
+  - type: Appearance
+  - type: ESBrokenVisuals
+    brokenRSI: _ES/Structures/Walls/destroyed.rsi
+    baseDrawDepth: Walls
+    brokenDrawDepth: Mobs
 
 - type: entity
   parent: BaseWall
@@ -558,52 +570,28 @@
             collection: MetalSlam
 
 - type: entity
-  parent: BaseWall
+  parent: [ ESBaseWallBreakable, BaseWall ]
   id: WallReinforced
   name: reinforced wall
   components:
   - type: Sprite
-    # ES START
     sprite: _ES/Structures/Walls/reinforced.rsi
-    # ES END
   - type: Icon
-    # ES START
     sprite: _ES/Structures/Walls/reinforced.rsi
     state: full
-    # ES END
+  - type: ESBreakable
+    threshold: 400
+  - type: ESBrokenVisuals
+    baseRSI: _ES/Structures/Walls/reinforced.rsi
   - type: Construction
     graph: Girder
     node: reinforcedWall
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: ESWall
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 600
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: IconSmooth
     key: walls
-    # ES START
-    base: reinf
-    # ES END
+    base: solid
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -948,48 +936,20 @@
         density: 2000
 
 - type: entity
-  parent: BaseWall
+  parent: [ ESBaseWallBreakable, BaseWall ]
   id: WallSolid
   name: solid wall
   components:
   - type: Sprite
-    # ES START
     sprite: _ES/Structures/Walls/solid.rsi
-    # ES END
   - type: WallReplacementMarker
   - type: Construction
     graph: Girder
     node: wall
   - type: Icon
-    # ES START
     sprite: _ES/Structures/Walls/solid.rsi
-    # ES END
-  - type: RCDDeconstructable
-    cost: 6
-    delay: 8
-    fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
+  - type: ESBrokenVisuals
+    baseRSI: _ES/Structures/Walls/solid.rsi
   - type: IconSmooth
     key: walls
     base: solid
@@ -1230,9 +1190,6 @@
     sprite: Structures/Walls/wood.rsi
   - type: Icon
     sprite: Structures/Walls/wood.rsi
-  - type: Construction
-    graph: Barricade
-    node: woodWall
   - type: Destructible
     thresholds:
     - trigger:

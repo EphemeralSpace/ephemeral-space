@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectiveKillNonCrew
   name: Kill a bad guy
   description: Use your trusty weapon to kill a non-crew person on the station.
@@ -8,7 +8,7 @@
     icon:
       sprite: _ES/Objects/Weapons/Guns/357.rsi
       state: icon
-  - type: ESKillTroupeObjective
-    troupe: Crew
+  - type: ESKillOrganizationObjective
+    organization: Crew
     invert: true
   - type: ESCounterObjective

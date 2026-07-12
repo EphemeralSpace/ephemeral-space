@@ -11,35 +11,35 @@
       "name": "full"
     },
     {
-      "name": "reinf0",
+      "name": "solid0",
       "directions": 4
     },
     {
-      "name": "reinf1",
+      "name": "solid1",
       "directions": 4
     },
     {
-      "name": "reinf2",
+      "name": "solid2",
       "directions": 4
     },
     {
-      "name": "reinf3",
+      "name": "solid3",
       "directions": 4
     },
     {
-      "name": "reinf4",
+      "name": "solid4",
       "directions": 4
     },
     {
-      "name": "reinf5",
+      "name": "solid5",
       "directions": 4
     },
     {
-      "name": "reinf6",
+      "name": "solid6",
       "directions": 4
     },
     {
-      "name": "reinf7",
+      "name": "solid7",
       "directions": 4
     },
     {

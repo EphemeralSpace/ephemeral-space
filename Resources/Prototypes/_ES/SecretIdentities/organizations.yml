@@ -1,0 +1,44 @@
+- type: esOrganization
+  id: Crew
+  name: es-organization-crew-name
+  description: es-organization-crew-description
+  color: yellow
+  metaIcon: ESCrew
+  gameRule: ESOrganizationRuleCrew
+  objectives:
+    all:
+    - id: ESObjectiveWarpDrive
+
+- type: esOrganization
+  id: Traitor
+  name: es-organization-traitor-name
+  description: es-organization-traitor-description
+  color: red
+  metaIcon: ESTraitor
+  gameRule: ESOrganizationRuleTraitor
+  disguisedSecretIdentityName: es-news-disguise-traitors
+  objectives:
+    all:
+    - id: ESObjectiveTraitorKillRandom
+    - pick:
+        all:
+        - id: ESObjectiveTraitorSabotageCommunications
+        - id: ESObjectiveTraitorSabotageCrewMonitoring
+        - id: ESObjectiveTraitorSabotageEmergencyAccessTerminal
+        - id: ESObjectiveTraitorSabotageCriminalRecords
+        - id: ESObjectiveTraitorSabotageTelecom
+      amount: 2
+    - id: ESObjectiveTraitorBugAPC
+    - id: ESObjectiveTraitorHackCryptoNukeConsoles
+    - id: ESObjectiveTraitorDetonateNuke
+
+- type: esOrganization
+  id: Parasite
+  name: es-organization-parasite-name
+  description: es-organization-parasite-description
+  color: tan
+  metaIcon: ESParasite
+  gameRule: ESOrganizationRuleParasite
+  objectives:
+    all:
+    - id: ESObjectiveParasiteInfect

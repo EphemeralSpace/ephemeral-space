@@ -288,7 +288,7 @@
         amount: 6
 
 - type: entity
-  parent: CratePlastic
+  parent: CrateGenericSteel
   id: ESCrateServiceJanitorialSupplies
   name: janitorial supplies crate
   description: Fight back against dirt and grime with Nanotrasen's Janitorial Essentials(tm)!
@@ -413,13 +413,13 @@
     - id: ESSleepyPen
       weight: 0.5
     - id: C4
+      weight: 0.5
+    - id: ExGrenade
+      weight: 0.5
     - group:
       - id: ESWeaponRevolver357
       - id: ESWeaponPistol9mm
       - id: ESWeaponPistol9mmSilenced
     - id: ESClothingOuterArmorSecurity
-    - id: ExGrenade
     - id: ESSpeedLoader357
-      amount: 2
     - id: ESMagazine9mm
-      amount: 2

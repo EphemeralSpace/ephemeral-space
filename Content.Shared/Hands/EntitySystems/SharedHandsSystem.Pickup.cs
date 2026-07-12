@@ -168,6 +168,20 @@ public abstract partial class SharedHandsSystem
         return CanPickupToHand(uid, entity, hand, checkActionBlocker, showPopup, handsComp, item);
     }
 
+    public bool CanPickupActiveHand(Entity<HandsComponent?> handsEnt,
+        Entity<ItemComponent?> item,
+        bool checkActionBlocker = true,
+        bool showPopup = false)
+    {
+        if (!Resolve(handsEnt, ref handsEnt.Comp, false))
+            return false;
+
+        if (handsEnt.Comp.ActiveHandId is not { } activeHandId)
+            return false;
+
+        return CanPickupToHand(handsEnt, item, activeHandId, checkActionBlocker, showPopup, handsEnt, item);
+    }
+
     /// <summary>
     /// Checks whether a given item will fit into a specific user's hand.
     /// Unless otherwise specified, this will also check the general CanPickup action blocker.

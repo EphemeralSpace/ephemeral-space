@@ -1,0 +1,20 @@
+<Document>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Mercenary"/>
+
+    The Mercenary is a member of the crew who's dead-set on hunting down all masks who are members of other organizations.
+    They don't care about the actions of who they kill, just what organization they belong to.
+
+    <Box>
+      <ESGuideObjectiveEmbed Objective="ESObjectiveKillNonCrew"/>
+    </Box>
+
+    <Box>
+      <GuideEntityEmbed Entity="ESWeaponRevolver357"/>
+      <GuideEntityEmbed Entity="ESWeaponPistol9mm"/>
+    </Box>
+
+    To help with this, the Mercenary receives a sidearm inside a cache.
+    Make sure to take your engagement carefully though, since killing someone who isn't a bad guy may lead the crew into thinking you're a traitor.
+
+    <ESGuideTipsEmbed SecretIdentity="Mercenary"/>
+</Document>

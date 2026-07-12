@@ -13,6 +13,6 @@ es-stagehand-notification-kill-player = {$player} was killed by {$attacker}!
 es-stagehand-notification-objective-completed = {$entity} successfully completed their objective "{$objective}!"
 es-stagehand-notification-objective-failed = {$entity} failed their objective "{$objective}!"
 
-es-stagehand-notification-mask-change = {$player} donned a new mask, becoming {INDEFINITE($mask)} [bold]{$mask}![/bold]
+es-stagehand-notification-secret-identity-change = {$player} donned a new secret identity, becoming {INDEFINITE($secretIdentity)} [bold]{$secretIdentity}![/bold]
 
 es-stagehand-notification-new-stagehand = {$username} has joined the backstage crew.

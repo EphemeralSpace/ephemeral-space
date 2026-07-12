@@ -40,6 +40,7 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
+  - type: ESCrosshairProvider
 
 - type: entity
   parent: BaseWeaponShotgun

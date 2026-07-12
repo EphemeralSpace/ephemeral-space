@@ -321,55 +321,6 @@
     enabled: False
 
 - type: entity
-  name: steel bench
-  id: SteelBench
-  parent: ChairBase
-  description: A long chair made for a metro. Really standard design.
-  components:
-  - type: Sprite
-    state: steel-bench
-  - type: Construction
-    graph: Seat
-    node: chairSteelBench
-
-- type: entity
-  name: wooden bench
-  id: WoodenBench
-  parent: ChairBase
-  description: Did you get a splinter? Well, at least it’s eco friendly.
-  components:
-  - type: Sprite
-    state: wooden-bench
-  - type: Construction
-    graph: Seat
-    node: chairWoodBench
-  - type: Destructible
-    thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WoodDestroy
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WoodDestroy
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialWoodPlank:
-            min: 2
-            max: 4
-
-- type: entity
   parent: StoolBase
   id: ChairXeno
   name: xeno chair

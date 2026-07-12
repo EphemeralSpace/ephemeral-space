@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectiveArsonistLightFires
   name: Lights fires around the station
   description: Don't you love to watch the cinders dance? Set the station ablaze and don't even think about putting it out.

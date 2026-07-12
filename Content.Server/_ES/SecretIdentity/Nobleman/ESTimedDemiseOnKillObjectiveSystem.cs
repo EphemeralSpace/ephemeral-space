@@ -1,0 +1,71 @@
+﻿using Content.Server._ES.SecretIdentity.Nobleman.Components;
+using Content.Server._ES.SecretIdentity.Objectives.Relays.Components;
+using Content.Server.Administration;
+using Content.Server.Chat;
+using Content.Shared._ES.Core.Timer;
+using Content.Shared._ES.KillTracking.Components;
+using Content.Shared._ES.Objectives;
+using Content.Shared._ES.Objectives.Components;
+using Content.Shared.Gibbing;
+using Content.Shared.Mobs.Components;
+using Robust.Shared.Player;
+
+namespace Content.Server._ES.SecretIdentity.Nobleman;
+
+public sealed partial class ESTimedDemiseOnKillObjectiveSystem : ESBaseObjectiveSystem<ESTimedDemiseOnKillObjectiveComponent>
+{
+    [Dependency] private ESEntityTimerSystem _timer = default!;
+    [Dependency] private SuicideSystem _suicide = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private ESSharedObjectiveSystem _objective = default!;
+
+    public override Type[] RelayComponents => [typeof(ESKilledRelayComponent)];
+
+    /// <inheritdoc/>
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<ESTimedDemiseOnKillObjectiveComponent, ESKilledPlayerEvent>(OnKilledPlayer);
+        SubscribeLocalEvent<MobStateComponent, ESTimedDemiseOnKillEvent>(OnTimeToDie);
+    }
+
+    private void OnTimeToDie(Entity<MobStateComponent> ent, ref ESTimedDemiseOnKillEvent args)
+    {
+        if (!_suicide.Suicide(ent))
+        {
+            // you're not getting away that easily
+            _gibbing.Gib(ent.Owner);
+        }
+    }
+
+    private void OnKilledPlayer(Entity<ESTimedDemiseOnKillObjectiveComponent> ent, ref ESKilledPlayerEvent args)
+    {
+        if (args.Suicide)
+            return;
+
+        if (!MindSys.TryGetMind(args.Killed, out _))
+            return;
+
+        _timer.SpawnTimer(args.Killer, ent.Comp.KillDelay, new ESTimedDemiseOnKillEvent());
+
+        if (!TryComp<ActorComponent>(args.Killer, out var actor))
+            return;
+
+        var title = Loc.GetString(ent.Comp.NotificationTitle);
+        var msg = Loc.GetString(ent.Comp.NotificationBody);
+
+        _quickDialog.OpenDialog<string>(actor.PlayerSession, title, msg, _ => {});
+        ent.Comp.KilledAnyone = true;
+        _objective.RefreshObjectiveProgress<ESTimedDemiseOnKillObjectiveComponent>();
+    }
+
+    protected override void GetObjectiveProgress(Entity<ESTimedDemiseOnKillObjectiveComponent> ent, ref ESGetObjectiveProgressEvent args)
+    {
+        if (!ent.Comp.KilledAnyone)
+            args.Progress = ent.Comp.DefaultProgress;
+        else
+            args.Progress = 0;
+    }
+}

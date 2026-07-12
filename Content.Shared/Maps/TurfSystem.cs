@@ -212,7 +212,7 @@ public static class TurfLookupExtensions
     public static void GetEntitiesInTile(this EntityLookupSystem lookupSystem, TileRef turf, HashSet<EntityUid> intersecting, LookupFlags flags = LookupFlags.Static)
     {
         var bounds = lookupSystem.GetWorldBounds(turf);
-        bounds.Box = bounds.Box.Scale(0.9f); // Otherwise the box can clip into neighboring tiles.
+        bounds.Box = bounds.Box.Scale(0.75f); // Otherwise the box can clip into neighboring tiles.
         lookupSystem.GetEntitiesIntersecting(turf.GridUid, bounds, intersecting, flags);
     }
 

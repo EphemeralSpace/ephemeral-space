@@ -1,19 +1,10 @@
 namespace Content.Server.Screens.Components;
 
-[RegisterComponent]
-public sealed partial class ScreenComponent : Component
-{
-
-}
-
 /// <summary>
 ///     Player-facing hashable string consts for NetworkPayload
 /// </summary>
 public sealed class ScreenMasks
 {
-    // ES START
-    public static readonly string Timer = Loc.GetString("es-screen-timer");
-    // ES END
     public static readonly string Text = Loc.GetString("screen-text");
     public static readonly string Color = Loc.GetString("screen-color");
 }

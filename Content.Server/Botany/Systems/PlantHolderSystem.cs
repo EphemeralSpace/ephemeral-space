@@ -6,12 +6,10 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Botany;
-using Content.Shared.Burial.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
-using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -23,7 +21,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.EntityEffects;
@@ -240,26 +237,6 @@ public sealed partial class PlantHolderSystem : EntitySystem
             else
             {
                 _popup.PopupCursor(Loc.GetString("plant-holder-component-no-weeds-message"), args.User);
-            }
-
-            return;
-        }
-
-        if (HasComp<ShovelComponent>(args.Used))
-        {
-            args.Handled = true;
-            if (component.Seed != null)
-            {
-                _popup.PopupCursor(Loc.GetString("plant-holder-component-remove-plant-message",
-                    ("name", Comp<MetaDataComponent>(uid).EntityName)), args.User, PopupType.Medium);
-                _popup.PopupEntity(Loc.GetString("plant-holder-component-remove-plant-others-message",
-                    ("name", Comp<MetaDataComponent>(args.User).EntityName)), uid, Filter.PvsExcept(args.User), true);
-                RemovePlant(uid, component);
-            }
-            else
-            {
-                _popup.PopupCursor(Loc.GetString("plant-holder-component-no-plant-message",
-                    ("name", Comp<MetaDataComponent>(uid).EntityName)), args.User);
             }
 
             return;

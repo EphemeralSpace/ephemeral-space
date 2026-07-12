@@ -20,7 +20,7 @@
   name: es-preset-extended-title
   description: es-preset-extended-desc
   rules:
-  - ESTroupeRuleCrew
+  - ESOrganizationRuleCrew
   - ESSchedulerRuleStationEventVote
   - ESSchedulerRuleDegradationEventVote
   - ESBasicRoundstartVariation

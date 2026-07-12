@@ -1,0 +1,66 @@
+- type: esSecretIdentity
+  id: ESBaseCommandRestricted
+  abstract: true
+  prohibitedJobs:
+  - ESCaptain
+  - ESStationAdmin
+
+- type: esSecretIdentity
+  id: ESBaseCommandSecRestricted
+  abstract: true
+  prohibitedJobs:
+  # Command
+  - ESCaptain
+  - ESStationAdmin
+  # Security
+  - ESSecurityOfficer
+  - ESDetective
+
+- type: esSecretIdentity
+  parent: ESBaseCommandRestricted
+  id: ESBaseParasite
+  organization: Parasite
+  abstract: true
+  components:
+  - type: ESOrganizationFactionIcon
+    icon: ESParasite
+    organization: Parasite
+    examineString: es-secret-identity-organization-parasite-examine
+  objectives:
+    all:
+    - id: ESObjectiveParasiteDie
+    - id: ESObjectiveParasiteDoNotKill
+
+- type: esSecretIdentity
+  parent: ESBaseCommandRestricted
+  id: ESBaseTraitor
+  organization: Traitor
+  abstract: true
+  actions:
+    all:
+    - id: ESActionSyndieTransponder
+  components:
+  - type: ESOrganizationFactionIcon
+    icon: ESTraitor
+    organization: Traitor
+    examineString: es-secret-identity-organization-traitor-examine
+  # TODO chat refactor this is obviously malicious client-abusable
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Syndicate
+
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionSyndieTransponder
+  name: Syndicate Transponder
+  description: Allows you to covertly relay information to your fellow traitors.
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Devices/communication.rsi
+      state: old-radio
+    useDelay: 60
+  - type: InstantAction
+    event: !type:ESTransponderActionEvent
+      channel: Syndicate

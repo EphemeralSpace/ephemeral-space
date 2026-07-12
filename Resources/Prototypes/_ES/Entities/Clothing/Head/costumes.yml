@@ -1,0 +1,17 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatChickenhead
+  name: chicken head
+  description: "It's a chicken head. Bok bok bok!"
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Misc/chickenhead.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Misc/chickenhead.rsi
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide

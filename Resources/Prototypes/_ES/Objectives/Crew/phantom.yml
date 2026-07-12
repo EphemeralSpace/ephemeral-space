@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectivePhantomDie
   name: Get killed
   description: Meet your end at someone else's hand in order to be born anew.
@@ -14,7 +14,7 @@
   - type: ESAvengeSelfObjective
 
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectivePhantomAvenge
   name: Avenge yourself
   description: They must face retribution for your death. Make sure this station is their grave.

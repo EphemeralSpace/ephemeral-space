@@ -51,19 +51,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: WoodWall
-  graph: Barricade
-  startNode: start
-  targetNode: woodWall
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   id: UraniumWall
   graph: Girder
   startNode: start
@@ -277,20 +264,6 @@
   canRotate: false
 
 - type: construction
-  id: PlasmaWindow
-  graph: Window
-  startNode: start
-  targetNode: plasmaWindow
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-    - !type:EmptyOrWindowValidInTile
-    - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-
-- type: construction
   id: ReinforcedPlasmaWindow
   graph: Window
   startNode: start
@@ -317,20 +290,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
-
-- type: construction
-  id: PlasmaWindowDiagonal
-  name: construction-recipe-plasma-window-diagonal
-  graph: WindowDiagonal
-  startNode: start
-  targetNode: plasmaWindowDiagonal
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-    - !type:EmptyOrWindowValidInTile
-    - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
 
 - type: construction
   id: ReinforcedPlasmaWindowDiagonal
@@ -364,19 +323,6 @@
   graph: WindowDirectional
   startNode: start
   targetNode: windowReinforcedDirectional
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-    - !type:EmptyOrWindowValidInTile
-    - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
-
-- type: construction
-  id: PlasmaWindowDirectional
-  graph: WindowDirectional
-  startNode: start
-  targetNode: plasmaWindowDirectional
   category: construction-category-structures
   canBuildInImpassable: true
   conditions:
@@ -1075,20 +1021,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: SolidSecretDoor
-  name: recipes-secret-door-name
-  description: recipes-secret-door-desc
-  graph: SecretDoor
-  startNode: start
-  targetNode: solidSecretDoor
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked

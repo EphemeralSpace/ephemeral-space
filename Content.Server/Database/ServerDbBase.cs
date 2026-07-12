@@ -206,7 +206,6 @@ namespace Content.Server.Database
         {
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
-            var traits = profile.Traits.Select(t => new ProtoId<TraitPrototype>(t.TraitName));
 
             var sex = Sex.Male;
             if (Enum.TryParse<Sex>(profile.Sex, true, out var sexVal))
@@ -279,7 +278,6 @@ namespace Content.Server.Database
                 jobs,
                 (PreferenceUnavailableMode) profile.PreferenceUnavailable,
                 antags.ToHashSet(),
-                traits.ToHashSet(),
                 loadouts
             );
         }
@@ -326,11 +324,6 @@ namespace Content.Server.Database
             );
 
             profile.Traits.Clear();
-            profile.Traits.AddRange(
-                humanoid.TraitPreferences
-                        .Select(t => new Trait {TraitName = t})
-            );
-
             profile.Loadouts.Clear();
 
             foreach (var (role, loadouts) in humanoid.Loadouts)
@@ -1305,24 +1298,37 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         public async Task<List<IAdminRemarksRecord>> GetAllAdminRemarks(Guid player)
         {
-            await using var db = await GetDb();
-            List<IAdminRemarksRecord> notes = new();
-            notes.AddRange(
-                (await (from note in db.DbContext.AdminNotes
-                        where note.PlayerUserId == player &&
-                              !note.Deleted &&
-                              (note.ExpirationTime == null || DateTime.UtcNow < note.ExpirationTime)
-                        select note)
-                    .Include(note => note.Round)
-                    .ThenInclude(r => r!.Server)
-                    .Include(note => note.CreatedBy)
-                    .Include(note => note.LastEditedBy)
-                    .Include(note => note.Player)
-                    .ToListAsync()).Select(MakeAdminNoteRecord));
-            notes.AddRange(await GetActiveWatchlistsImpl(db, player));
-            notes.AddRange(await GetMessagesImpl(db, player));
-            notes.AddRange(await GetBansAsNotesForUser(db, player));
-            return notes;
+            return await ParallelCollect<IAdminRemarksRecord>(
+                async () =>
+                {
+                    await using var db = await GetDb();
+                    return (await (from note in db.DbContext.AdminNotes
+                            where note.PlayerUserId == player &&
+                                  !note.Deleted &&
+                                  (note.ExpirationTime == null || DateTime.UtcNow < note.ExpirationTime)
+                            select note)
+                        .Include(note => note.Round)
+                        .ThenInclude(r => r!.Server)
+                        .Include(note => note.CreatedBy)
+                        .Include(note => note.LastEditedBy)
+                        .Include(note => note.Player)
+                        .ToListAsync()).Select(MakeAdminNoteRecord);
+                },
+                async () =>
+                {
+                    await using var db = await GetDb();
+                    return await GetActiveWatchlistsImpl(db, player);
+                },
+                async () =>
+                {
+                    await using var db = await GetDb();
+                    return await GetMessagesImpl(db, player);
+                },
+                async () =>
+                {
+                    await using var db = await GetDb();
+                    return await GetBansAsNotesForUser(db, player);
+                });
         }
         public async Task EditAdminNote(int id, string message, NoteSeverity severity, bool secret, Guid editedBy, DateTimeOffset editedAt, DateTimeOffset? expiryTime)
         {
@@ -1747,6 +1753,13 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             }
 
             return [..results];
+        }
+
+        private static async Task<List<T>> ParallelCollect<T>(params IEnumerable<Func<Task<IEnumerable<T>>>> tasks)
+        {
+            var taskInstances = tasks.Select(a => a());
+            var results = await Task.WhenAll(taskInstances);
+            return results.SelectMany(x => x).ToList();
         }
     }
 }

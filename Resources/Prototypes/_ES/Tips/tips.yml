@@ -268,7 +268,7 @@
 
 - type: esTip
   id: ArmorPenetration
-  text: Revolvers & shotgun slugs cleave through armor thanks to their high damage. They're a perfect tool for assassinating targets like Security Officers or the Captain.
+  text: Revolvers cleave through armor thanks to their high damage. They're a perfect tool for assassinating targets like Security Officers or the Captain.
 
 - type: esTip
   id: ArmorDT
@@ -312,7 +312,7 @@
 
 - type: esTip
   id: MasqueradeDeduction
-  text: If you're attentive to the mask composition, it's often possible to guess what the masquerade is. For example, a large amount of VIPs probably signifies that the masquerade is Red Carpet.
+  text: If you're attentive to the secret identity composition, it's often possible to guess what the masquerade is. For example, a large amount of VIPs probably signifies that the masquerade is Red Carpet.
 
 - type: esTip
   id: WatchOutForSympathizers
@@ -320,7 +320,7 @@
 
 - type: esTip
   id: CommandSympathizers
-  text: Though the Captain and Station Administrator can't be regular traitor masks, they might still be Sympathizers, illicitly working to further the Syndicate's goals!
+  text: Though the Captain and Station Administrator can't be regular traitors, they might still be Sympathizers, illicitly working to further the Syndicate's goals!
 
 - type: esTip
   id: FakeSympathizer

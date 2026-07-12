@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using Content.Client._ES.Chat;
 using Content.Client._ES.Screens;
 using Content.Client.Administration.Managers;
 using Content.Client.Chat;
@@ -70,7 +71,7 @@ public sealed partial class ChatUIController : UIController
     [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
 
     private static readonly ProtoId<ColorPalettePrototype> ChatNamePalette = "ChatNames";
-    private string[] _chatNameColors = default!;
+    private Color[] _chatNameColors = default!;
     private bool _chatNameColorsEnabled;
 
     private ISawmill _sawmill = default!;
@@ -234,10 +235,10 @@ public sealed partial class ChatUIController : UIController
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
 
         var nameColors = _prototypeManager.Index(ChatNamePalette).Colors.Values.ToArray();
-        _chatNameColors = new string[nameColors.Length];
+        _chatNameColors = new Color[nameColors.Length];
         for (var i = 0; i < nameColors.Length; i++)
         {
-            _chatNameColors[i] = nameColors[i].ToHex();
+            _chatNameColors[i] = nameColors[i];
         }
 
         _config.OnValueChanged(CCVars.ChatWindowOpacity, OnChatWindowOpacityChanged);
@@ -265,25 +266,35 @@ public sealed partial class ChatUIController : UIController
 
     private void SetChatWindowOpacity(float opacity)
     {
-        var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<ResizableChatBox>();
-
-        var panel = chatBox?.ChatWindowPanel;
-        if (panel is null)
-            return;
-
-        Color color;
-        if (panel.PanelOverride is StyleBoxFlat styleBoxFlat)
-            color = styleBoxFlat.BackgroundColor;
-        else if (panel.TryGetStyleProperty<StyleBox>(PanelContainer.StylePropertyPanel, out var style)
-                 && style is StyleBoxFlat propStyleBoxFlat)
-            color = propStyleBoxFlat.BackgroundColor;
-        else
-            color = Color.FromHex("#25252ADD");
-
-        panel.PanelOverride = new StyleBoxFlat
+        // dude what the fuck is this code doing man
+        var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>();
+        var stagehandChatBox = UIManager.ActiveScreen?.GetWidget<StagehandChatBox>();
+        if (chatBox != null)
         {
-            BackgroundColor = color.WithAlpha(opacity)
-        };
+            SetPanel(chatBox.ChatWindowPanel);
+        }
+        else if (stagehandChatBox != null)
+        {
+            SetPanel(stagehandChatBox.ChatWindowPanel);
+            SetPanel(stagehandChatBox.StagehandChatWindowPanel);
+        }
+
+        void SetPanel(PanelContainer panel)
+        {
+            Color color;
+            if (panel.PanelOverride is StyleBoxFlat styleBoxFlat)
+                color = styleBoxFlat.BackgroundColor;
+            else if (panel.TryGetStyleProperty<StyleBox>(PanelContainer.StylePropertyPanel, out var style)
+                     && style is StyleBoxFlat propStyleBoxFlat)
+                color = propStyleBoxFlat.BackgroundColor;
+            else
+                color = Color.FromHex("#25252ADD");
+
+            panel.PanelOverride = new StyleBoxFlat
+            {
+                BackgroundColor = color.WithAlpha(opacity)
+            };
+        }
     }
 
     public void SetMainChat(bool setting)
@@ -293,7 +304,10 @@ public sealed partial class ChatUIController : UIController
             return;
         }
 
-        if (UIManager.GetActiveUIWidgetOrNull<ChatBox>() is not { } chatBox)
+        var chatBox = UIManager.GetActiveUIWidgetOrNull<ChatBox>() ??
+                      UIManager.GetActiveUIWidgetOrNull<StagehandChatBox>();
+
+        if (chatBox == null)
         {
             Log.Error($"Could not find chatbox in ingame screen {UIManager.ActiveScreen.GetType().Name}!");
             return;
@@ -353,7 +367,8 @@ public sealed partial class ChatUIController : UIController
         _speechBubbleRoot.Orphan();
         root.AddChild(_speechBubbleRoot);
         LayoutContainer.SetAnchorPreset(_speechBubbleRoot, LayoutContainer.LayoutPreset.Wide);
-        _speechBubbleRoot.SetPositionLast();
+        // todo make the speech bubble container an actual uiwidget in the game screens instead of doing this dumb shit
+        _speechBubbleRoot.SetPositionInParent(root.ChildCount - 2);
         _speechBubbleRoot.RectClipContent = true;
     }
 
@@ -701,7 +716,7 @@ public sealed partial class ChatUIController : UIController
 
     private void OnDamageForceSay(DamageForceSayEvent ev, EntitySessionEventArgs _)
     {
-        var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<ResizableChatBox>();
+        var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<StagehandChatBox>();
         if (chatBox == null)
             return;
 
@@ -756,7 +771,7 @@ public sealed partial class ChatUIController : UIController
         {
             var grammar = _ent.GetComponentOrNull<GrammarComponent>(_ent.GetEntity(msg.SenderEntity));
             if (grammar != null && grammar.ProperNoun == true)
-                msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")));
+                msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")).ToHex());
         }
 
         // Color any codewords for minds that have roles that use them
@@ -881,8 +896,8 @@ public sealed partial class ChatUIController : UIController
     /// Returns the chat name color for a mob
     /// </summary>
     /// <param name="name">Name of the mob</param>
-    /// <returns>Hex value of the color</returns>
-    public string GetNameColor(string name)
+    /// <returns>The name color</returns>
+    public Color GetNameColor(string name)
     {
         var colorIdx = Math.Abs(name.GetHashCode() % _chatNameColors.Length);
         return _chatNameColors[colorIdx];

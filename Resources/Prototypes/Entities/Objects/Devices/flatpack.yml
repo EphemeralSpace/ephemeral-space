@@ -48,18 +48,6 @@
 
 - type: entity
   parent: BaseFlatpack
-  id: AmePartFlatpack
-  name: AME flatpack
-  description: A flatpack used for constructing an antimatter engine reactor.
-  components:
-  - type: Sprite
-    layers:
-    - state: ame-part
-  - type: Flatpack
-    entity: AmeShielding
-
-- type: entity
-  parent: BaseFlatpack
   id: SingularityGeneratorFlatpack
   name: singularity generator flatpack
   description: A flatpack used for constructing a singularity generator.

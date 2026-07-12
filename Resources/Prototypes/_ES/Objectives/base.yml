@@ -1,0 +1,14 @@
+- type: entity
+  id: ESMindRoleSecretIdentity
+  name: SecretIdentity Role
+  components:
+  - type: MindRole
+  - type: ESSecretIdentityRole
+
+- type: entity
+  id: ESBaseSecretIdentityObjective
+  abstract: true
+  components:
+  - type: ESObjective
+  - type: ESSecretIdentityObjective
+  - type: ESStagehandAware

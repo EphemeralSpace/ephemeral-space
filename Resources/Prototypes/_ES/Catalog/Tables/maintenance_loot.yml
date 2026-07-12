@@ -68,13 +68,6 @@
     - id: Matchstick
     - id: DrinkGlass
 
-    - group:
-      - id: ESRound9mm
-      - id: ESRound357
-      - id: ESShellShotgunBuckshot
-      - id: ESShellShotgunBeanbag
-      weight: 0.125
-
 - type: entityTable
   id: ESMaintLootCommon
   table:
@@ -93,28 +86,23 @@
       - id: Wrench
       - id: Crowbar
     - id: ESNet
-      weight: 3 # temp increase since its new
+      weight: 1.5
     - id: ESDoorJammer
-      weight: 3 # temp increase since its new
+      weight: 1.5
 
     - tableId: ESMixedBasicGloves
     - id: ClothingEyesGlassesMeson
-    - id: ClothingEyesGlassesChemical
     - id: ClothingHandsGlovesColorYellowBudget
     - id: ClothingMaskGas
     - id: ClothingShoesColorBlack
     - id: ClothingOuterVestHazard
     - id: ClothingOuterCoatLab
-    - group:
-      - id: ClothingUniformJumpsuitColorGrey
-      - id: ClothingUniformJumpskirtColorGrey
+    - id: ClothingUniformJumpsuitColorGrey
     - id: ClothingHeadsetGrey
     - group:
       - id: ClothingBackpack
       - id: ClothingBackpackSatchel
       - id: ClothingBackpackDuffel
-    - id: ClothingBeltStorageWaistbag
-
     - id: CableApcStack
     - id: CableMVStack
       weight: 0.5
@@ -181,10 +169,19 @@
       weight: 2
     - id: Flare # dode
 
+    - group: # single ammunition rounds because it's very aura
+      - id: ESRound9mm
+        weight: 2
+      - id: ESRound357
+      - id: ESShellShotgunBuckshot
+      weight: 2
+
 - type: entityTable
   id: ESMaintLootUncommon
   table:
     group:
+    - id: ESKitBarricade
+      weight: 2 # common for now?
     - id: FireBombEmpty
     - id: HydroponicsToolHatchet
     - id: Multitool
@@ -253,12 +250,11 @@
       - id: ClothingUniformJumpsuitGenderqueer
     - id: ClothingEyesEyepatch
       weight: 0.5
-    - id: ClothingOuterCoatGentle
+    - id: ClothingOuterCoatBomber
       weight: 0.5
     - id: ClothingOuterCoatJensen
       weight: 0.5
     - group:
-      - id: ClothingShoesBootsLaceup
       - id: ClothingShoesLeather
       - id: ClothingShoesBootsBlack
       weight: 0.5
@@ -282,6 +278,8 @@
     - id: CameraBug
     - id: MedkitFilled
 
+    - id: ESKitSecretDoor
+
     - id: ClothingEyesHudSecurity
     - id: ClothingEyesGlassesSunglasses
     - id: ClothingHandsGlovesColorYellow
@@ -291,14 +289,9 @@
       - id: ESClothingUniformJumpsuitRussianColorGrey
       - id: ClothingShoesColorBrown
       weight: 0.5
-    - group: # Funny Shoes
-      - id: ClothingShoeSlippersDuck
-      - id: ClothingUnderSocksBee
-      - id: ClothingUnderSocksCoder
-      weight: 0.5
     - all:
       - id: ClothingOuterCoatPirate
-      - id: ClothingHeadHatPirateTricord
+      - id: ClothingHeadHatPirate
       weight: 0.5
 
     - group: # Goofy items
@@ -308,6 +301,5 @@
       - id: PonderingOrb
       - id: CigarGold
       - id: WristwatchGold
-      - id: RubberStampGreytide
       - id: ClothingNeckBling
       weight: 0.25
