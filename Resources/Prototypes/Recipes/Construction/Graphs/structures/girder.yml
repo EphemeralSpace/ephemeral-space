@@ -35,6 +35,15 @@
               amount: 2
               doAfter: 1
 
+        - to: secretDoor
+          steps:
+          - tag: ESSecretWallKit
+            name: es-construction-graph-tag-secret-door-kit
+            icon:
+              sprite: _ES/Objects/Materials/kits.rsi
+              state: secret
+            doAfter: 10
+
         - to: uraniumWall
           completed:
             - !type:SnapToGrid
@@ -129,22 +138,18 @@
           steps:
             - tool: Welding
               doAfter: 8
-        - to: secretDoor
-          steps:
-            - tag: ESSecretWallKit
-              name: es-construction-graph-tag-secret-door-kit
-              icon:
-                sprite: _ES/Objects/Materials/kits.rsi
-                state: secret
-              doAfter: 10
 
     - node: secretDoor
       entity: SolidSecretDoor
       edges:
-      - to: wall
-        steps:
-        - tool: Welding
-          doAfter: 8
+        - to: girder
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Welding
+              doAfter: 8
 
     - node: wallChitin
       entity: WallSolidChitin
