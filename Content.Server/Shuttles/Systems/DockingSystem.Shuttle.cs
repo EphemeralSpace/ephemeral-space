@@ -337,11 +337,11 @@ public sealed partial class DockingSystem
             // If it's a map check no hard collidable anchored entities overlap
             if (isMap)
             {
-                var localTiles = _mapSystem.GetLocalTilesEnumerator(gridEntity.Owner, gridEntity.Comp, aabb);
+                var localTiles = _mapManager.GetLocalTilesEnumerator(gridEntity.Owner, gridEntity.Comp, aabb);
 
                 while (localTiles.MoveNext(out var tile))
                 {
-                    var anchoredEnumerator = _mapSystem.GetAnchoredEntitiesEnumerator(gridEntity.Owner, gridEntity.Comp, tile.GridIndices);
+                    var anchoredEnumerator = _mapManager.GetAnchoredEntitiesEnumerator(gridEntity.Owner, gridEntity.Comp, tile.GridIndices);
 
                     while (anchoredEnumerator.MoveNext(out var anc))
                     {
@@ -359,7 +359,7 @@ public sealed partial class DockingSystem
             // If it's not a map check it doesn't overlap the grid.
             else
             {
-                if (_mapSystem.GetLocalTilesIntersecting(gridEntity.Owner, gridEntity.Comp, aabb).Any())
+                if (_mapManager.GetLocalTilesIntersecting(gridEntity.Owner, gridEntity.Comp, aabb).Any())
                     return false;
             }
         }

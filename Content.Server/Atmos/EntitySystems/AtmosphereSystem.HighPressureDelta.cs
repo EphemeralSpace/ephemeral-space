@@ -123,7 +123,7 @@ namespace Content.Server.Atmos.EntitySystems
             {
                 if (_spaceWindSoundCooldown == 0 && SpaceWindSound != null)
                 {
-                    var coordinates = _mapSystem.ToCenterCoordinates(tile.GridIndex, tile.GridIndices);
+                    var coordinates = _map.ToCenterCoordinates(tile.GridIndex, tile.GridIndices);
                     _audio.PlayPvs(SpaceWindSound, coordinates, SpaceWindSound.Params.WithVolume(MathHelper.Clamp(tile.PressureDifference / 10, 10, 100)));
                     // ES START
                     var rotation = tile.PressureDirection.ToAngle() + MathHelper.PiOver2;
@@ -191,7 +191,7 @@ namespace Content.Server.Atmos.EntitySystems
                         gridAtmosphere.Comp.UpdateCounter,
                         tile.PressureDifference,
                         tile.PressureDirection, 0,
-                        tile.PressureSpecificTarget != null ? _mapSystem.ToCenterCoordinates(tile.GridIndex, tile.PressureSpecificTarget.GridIndices) : EntityCoordinates.Invalid,
+                        tile.PressureSpecificTarget != null ? _map.ToCenterCoordinates(tile.GridIndex, tile.PressureSpecificTarget.GridIndices) : EntityCoordinates.Invalid,
                         gridWorldRotation,
                         xforms.GetComponent(entity),
                         body);

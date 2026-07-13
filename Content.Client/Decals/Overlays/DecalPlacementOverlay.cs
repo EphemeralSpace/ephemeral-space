@@ -12,19 +12,20 @@ public sealed partial class DecalPlacementOverlay : Overlay
 {
     [Dependency] private IEyeManager _eyeManager = default!;
     [Dependency] private IInputManager _inputManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
+    private SharedMapSystem _mapManager;
     private readonly DecalPlacementSystem _placement;
     private readonly SharedTransformSystem _transform;
     private readonly SpriteSystem _sprite;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceEntities;
 
-    public DecalPlacementOverlay(DecalPlacementSystem placement, SharedTransformSystem transform, SpriteSystem sprite)
+    public DecalPlacementOverlay(DecalPlacementSystem placement, SharedTransformSystem transform, SpriteSystem sprite, SharedMapSystem map)
     {
         IoCManager.InjectDependencies(this);
         _placement = placement;
         _transform = transform;
         _sprite = sprite;
+        _mapManager = map;
         ZIndex = 1000;
     }
 

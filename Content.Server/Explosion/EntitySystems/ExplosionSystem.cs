@@ -46,7 +46,6 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     [Dependency] private EntityQuery<ESBreakableWallComponent> _breakableWallQuery = default!;
     // ES END
 
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IRobustRandom _robustRandom = default!;
     [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

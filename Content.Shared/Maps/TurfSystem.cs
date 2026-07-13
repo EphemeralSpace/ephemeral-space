@@ -14,12 +14,10 @@ namespace Content.Shared.Maps;
 /// </summary>
 public sealed partial class TurfSystem : EntitySystem
 {
-    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private SharedMapSystem _mapManager = default!;
     [Dependency] private EntityLookupSystem _entityLookup = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private ITileDefinitionManager _tileDefinitions = default!;
-
 
     /// <summary>
     /// Attempts to get the turf at or under some given coordinates or null if no such turf exists.
@@ -35,7 +33,7 @@ public sealed partial class TurfSystem : EntitySystem
         if (!_mapManager.TryFindGridAt(pos, out var gridUid, out var gridComp))
             return null;
 
-        if (!_mapSystem.TryGetTileRef(gridUid, gridComp, coordinates, out var tile))
+        if (!_mapManager.TryGetTileRef(gridUid, gridComp, coordinates, out var tile))
             return null;
 
         return tile;
