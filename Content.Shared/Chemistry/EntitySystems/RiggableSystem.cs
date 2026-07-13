@@ -1,13 +1,14 @@
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Kitchen;
+using Content.Shared.Power;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Rejuvenate;
 
-namespace Content.Shared.Power.EntitySystems;
+namespace Content.Shared.Chemistry.EntitySystems;
 
 /// <summary>
 ///  Handles sabotaged/rigged objects
@@ -42,13 +43,13 @@ public sealed partial class RiggableSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnSolutionChanged(Entity<RiggableComponent> entity, ref SolutionChangedEvent args)
+    private void OnSolutionChanged(Entity<RiggableComponent> entity, ref SolutionContainerChangedEvent args)
     {
-        if (args.Solution.Comp.Id != entity.Comp.Solution)
+        if (args.Solution.Name != entity.Comp.Solution)
             return;
 
         var wasRigged = entity.Comp.IsRigged;
-        var solution = args.Solution.Comp.Solution;
+        var solution = args.Solution;
         var quantity = solution.GetReagentQuantity(entity.Comp.Reagent.Reagent);
         entity.Comp.IsRigged = quantity >= entity.Comp.Reagent.Quantity;
 
