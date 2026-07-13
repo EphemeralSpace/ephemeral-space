@@ -982,3 +982,15 @@ Entries:
       message: You now face entities while performing doafters on them.
   id: 109
   time: '2026-07-11T22:30:58.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Walls once again become girders while broken.
+    - type: Add
+      message: >-
+        Girders cannot be deconstructed and now become broken girders when
+        destroyed.
+    - type: Tweak
+      message: Secret door kits now must be used on girders rather than walls.
+  id: 110
+  time: '2026-07-13T17:55:45.0000000+00:00'
