@@ -2,7 +2,7 @@
   parent: BaseItem
   id: ESKitSecretDoor
   name: secret door kit
-  description: A construction kit that can be used on regular walls to convert them into secret doors. How suspicious.
+  description: A construction kit that can be used on girders to create secret doors. How suspicious.
   components:
   - type: Sprite
     sprite: _ES/Objects/Materials/kits.rsi

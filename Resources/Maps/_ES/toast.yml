@@ -60943,13 +60943,11 @@ entities:
   - uid: 900
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: -18.5,-4.5
       parent: 2
   - uid: 2598
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: -10.5,-49.5
       parent: 2
   - uid: 5985
@@ -60975,7 +60973,6 @@ entities:
   - uid: 8136
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 22.5,-7.5
       parent: 2
   - uid: 8333
@@ -61006,7 +61003,6 @@ entities:
   - uid: 11862
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -42.5,21.5
       parent: 2
   - uid: 12393

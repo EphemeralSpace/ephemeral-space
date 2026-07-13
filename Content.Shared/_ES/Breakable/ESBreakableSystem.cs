@@ -105,7 +105,7 @@ public sealed partial class ESBreakableSystem : EntitySystem
         // TODO: Because audio prediction is hacky garbage i'm going to do this.
         // Otherwise, every single unpredicted damage source is going to not play audio properly.
         if (broken && _net.IsServer)
-            _audio.PlayPvs(ent.Comp.Sound, ent);
+            _audio.PlayPvs(ent.Comp.Sound, Transform(ent).Coordinates);
 
         _nameModifier.RefreshNameModifiers(ent.Owner);
         _appearance.SetData(ent, ESBreakableVisuals.Broken, broken);
