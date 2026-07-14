@@ -994,3 +994,13 @@ Entries:
       message: Secret door kits now must be used on girders rather than walls.
   id: 110
   time: '2026-07-13T17:55:45.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: Fixed buckling/melee showing interaction particles
+    - type: Tweak
+      message: Increased nuke cinematic end time a bit
+    - type: Fix
+      message: Guidebook now defaults to the proper new player page whoops
+  id: 111
+  time: '2026-07-14T19:51:55.0000000+00:00'
