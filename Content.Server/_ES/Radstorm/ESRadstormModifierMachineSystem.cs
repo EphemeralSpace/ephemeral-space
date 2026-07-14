@@ -1,6 +1,6 @@
 using Content.Server._ES.Announcements;
 using Content.Server._ES.Radstorm.Components;
-using Content.Server.Chat.Systems;
+using Content.Server.GameTicking;
 using Content.Shared._ES.Radstorm.Components;
 using Content.Shared.Power;
 
@@ -11,6 +11,7 @@ public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private ESAnnouncementSystem _chat = default!;
     [Dependency] private ESRadstormRoundEndRuleSystem _radstormRoundEndRule = default!;
+    [Dependency] private GameTicker _ticker = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -52,6 +53,9 @@ public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
 
         ent.Comp.Enabled = value;
         _appearance.SetData(ent, ESRadstormModifierMachineVisuals.Enabled, value);
+
+        if (!_ticker.IsGameRuleActive<ESRadstormRoundEndRuleComponent>())
+            return;
 
         var newTime = _radstormRoundEndRule.GetRadstormEstimatedArrivalTime();
         var minutes = (int) Math.Round(newTime.TotalMinutes);
