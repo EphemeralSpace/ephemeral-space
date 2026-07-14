@@ -35,7 +35,7 @@ public sealed partial class ESTraitorRuleSystem : EntitySystem
     /// <summary>
     ///     Round will actually end (screen pops up music plays etc) this amount of time before the cinematic finishes.
     /// </summary>
-    private static readonly TimeSpan EndRoundDuration = TimeSpan.FromSeconds(7);
+    private static readonly TimeSpan EndRoundDuration = TimeSpan.FromSeconds(13);
     private static readonly ProtoId<ESCinematicPrototype> NukeCinematic = "NukeCinematic";
 
     /// <inheritdoc/>

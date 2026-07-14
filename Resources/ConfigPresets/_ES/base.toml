@@ -46,4 +46,4 @@ arrivals_planet = false
 preset_enabled = false
 
 [server]
-default_guide = "ESNewPlayer"
+default_guide = "NewPlayer"
