@@ -93,7 +93,7 @@
     duration: 30
   - type: ESGasVote
     gases:
-    - Ammonia
+    - Miasma
     - Plasma
     - Smoke
     - Frezon
