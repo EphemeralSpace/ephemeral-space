@@ -278,7 +278,7 @@ namespace Content.Shared.Movement.Systems
                 TryComp<ESMapCameraRotationOverrideComponent>(mapId, out var rotationOverride);
                 entity.Comp.RelativeEntity = relative;
                 entity.Comp.TargetRelativeRotation = rotationOverride?.RotationOverride ?? Angle.Zero;
-                entity.Comp.RelativeRotation = Angle.Zero;
+                entity.Comp.RelativeRotation = rotationOverride?.RotationOverride ?? Angle.Zero;
                 entity.Comp.LerpTarget = TimeSpan.Zero;
                 Dirty(entity.Owner, entity.Comp);
                 return;
@@ -353,6 +353,7 @@ namespace Content.Shared.Movement.Systems
             TryComp<ESMapCameraRotationOverrideComponent>(xform.MapUid, out var rotationOverride);
             entity.Comp.RelativeEntity = xform.GridUid ?? xform.MapUid;
             entity.Comp.TargetRelativeRotation = rotationOverride?.RotationOverride ?? Angle.Zero;
+            entity.Comp.RelativeRotation = rotationOverride?.RotationOverride ?? Angle.Zero;
         }
 
         private void HandleRunChange(EntityUid uid, ushort subTick, bool walking)

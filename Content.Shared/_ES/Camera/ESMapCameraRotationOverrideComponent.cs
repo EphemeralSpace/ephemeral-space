@@ -8,7 +8,7 @@ namespace Content.Shared._ES.Camera;
 ///     Any <see cref="InputMoverComponent"/>s which are on this map
 ///     will have their camera rotation locked to <see cref="RotationOverride"/>.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ESMapCameraRotationOverrideComponent : Component
 {
     [DataField, AutoNetworkedField]
