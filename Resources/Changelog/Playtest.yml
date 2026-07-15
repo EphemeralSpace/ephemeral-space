@@ -1014,3 +1014,9 @@ Entries:
       message: Camera rotation binds no longer rotate the camera
   id: 112
   time: '2026-07-15T21:33:20.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Doafters now have a smooth fadein and fadeout anim
+  id: 113
+  time: '2026-07-15T23:36:34.0000000+00:00'
