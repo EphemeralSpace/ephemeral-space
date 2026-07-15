@@ -21,3 +21,5 @@
       - tableId: ESMaplightParallaxVariationTable
       - id: ESNightshiftVariationPass
         prob: 0.10
+      - id: ESMirrorModeVariation
+        prob: 0.10

@@ -1,0 +1,6 @@
+- type: entity
+  id: ESMirrorModeVariation
+  parent: BaseVariationPass
+  components:
+  - type: ESRotatedCameraGameRule
+    angle: 180

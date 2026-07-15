@@ -6,6 +6,7 @@
   components:
   - type: Sprite
     sprite: Structures/Decoration/fireplace.rsi
+    noRot: true
     layers:
       - state: fireplace
       - state: fireplacefestive

@@ -106,6 +106,8 @@ public sealed partial class ESStagehandSystem : EntitySystem
         var stagehand = SpawnAtPosition(StagehandPrototype, position.Value);
         _mind.TransferTo(mind, stagehand, mind: mind);
 
+        var ev = new ESStagehandSpawnedEvent(stagehand, mind);
+        RaiseLocalEvent(ref ev);
         _notif.SendStagehandNotification(Loc.GetString("es-stagehand-notification-new-stagehand", ("username", name)));
         _adminLog.Add(LogType.Mind, $"{ToPrettyString(mind):player} became a stagehand.");
 
@@ -129,3 +131,9 @@ public sealed partial class ESStagehandSystem : EntitySystem
         return true;
     }
 }
+
+/// <summary>
+///     Raised broadcast when a new stagehand is spawned.
+/// </summary>
+[ByRefEvent]
+public record struct ESStagehandSpawnedEvent(EntityUid Stagehand, Entity<MindComponent> Mind);

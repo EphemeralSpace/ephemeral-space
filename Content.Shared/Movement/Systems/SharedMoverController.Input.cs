@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._ES.Camera;
 using Content.Shared.Alert;
 using Content.Shared.CCVar;
 using Content.Shared.Follower.Components;
@@ -274,9 +275,10 @@ namespace Content.Shared.Movement.Systems
             // If we change maps then reset eye rotation entirely.
             if (oldMapId != mapId)
             {
+                TryComp<ESMapCameraRotationOverrideComponent>(mapId, out var rotationOverride);
                 entity.Comp.RelativeEntity = relative;
-                entity.Comp.TargetRelativeRotation = Angle.Zero;
-                entity.Comp.RelativeRotation = Angle.Zero;
+                entity.Comp.TargetRelativeRotation = rotationOverride?.RotationOverride ?? Angle.Zero;
+                entity.Comp.RelativeRotation = rotationOverride?.RotationOverride ?? Angle.Zero;
                 entity.Comp.LerpTarget = TimeSpan.Zero;
                 Dirty(entity.Owner, entity.Comp);
                 return;
@@ -348,8 +350,10 @@ namespace Content.Shared.Movement.Systems
             if (!xform.ParentUid.IsValid())
                 return;
 
+            TryComp<ESMapCameraRotationOverrideComponent>(xform.MapUid, out var rotationOverride);
             entity.Comp.RelativeEntity = xform.GridUid ?? xform.MapUid;
-            entity.Comp.TargetRelativeRotation = Angle.Zero;
+            entity.Comp.TargetRelativeRotation = rotationOverride?.RotationOverride ?? Angle.Zero;
+            entity.Comp.RelativeRotation = rotationOverride?.RotationOverride ?? Angle.Zero;
         }
 
         private void HandleRunChange(EntityUid uid, ushort subTick, bool walking)
