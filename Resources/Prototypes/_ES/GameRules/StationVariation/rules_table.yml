@@ -22,4 +22,4 @@
       - id: ESNightshiftVariationPass
         prob: 0.10
       - id: ESMirrorModeVariation
-        prob: 1
+        prob: 0.10
