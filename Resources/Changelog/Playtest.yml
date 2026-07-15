@@ -1004,3 +1004,13 @@ Entries:
       message: Guidebook now defaults to the proper new player page whoops
   id: 111
   time: '2026-07-14T19:51:55.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        A very very very very very scary flipped mirrored reality may enter this
+        world with a 10% chance.
+    - type: Tweak
+      message: Camera rotation binds no longer rotate the camera
+  id: 112
+  time: '2026-07-15T21:33:20.0000000+00:00'
