@@ -57,7 +57,7 @@ public sealed partial class ThrownItemVisualizerSystem : EntitySystem
         _anim.Stop(uid, AnimationKey);
     }
 
-    private static Animation? GetAnimation(Entity<ThrownItemComponent, SpriteComponent> ent)
+    private Animation? GetAnimation(Entity<ThrownItemComponent, SpriteComponent> ent)
     {
         if (ent.Comp1.LandTime - ent.Comp1.ThrownTime is not { } length)
             return null;
@@ -67,6 +67,34 @@ public sealed partial class ThrownItemVisualizerSystem : EntitySystem
 
         var scale = ent.Comp2.Scale;
         var lenFloat = (float)length.TotalSeconds;
+
+        var anim = new Animation
+        {
+            Length = length,
+            AnimationTracks =
+            {
+                new AnimationTrackComponentProperty
+                {
+                    ComponentType = typeof(SpriteComponent),
+                    Property = nameof(SpriteComponent.Scale),
+                    KeyFrames =
+                    {
+                        // ES START
+                        new AnimationTrackProperty.KeyFrame(scale, 0.0f),
+                        new AnimationTrackProperty.KeyFrame(scale * 1.4f, lenFloat * 0.5f, Easings.OutQuad),
+                        new AnimationTrackProperty.KeyFrame(scale, lenFloat * 0.5f, Easings.InQuad)
+                        // ES END
+                    },
+                    InterpolationMode = AnimationInterpolationMode.Linear,
+                },
+            },
+        };
+
+        // early-out if this is an item with a throwing angle (dont do rotation anim)
+        if (HasComp<ThrowingAngleComponent>(ent))
+            return anim;
+
+        // throw rotation anim
 
         // We step the amount of 'full spins' according to throw time
         // and only do an integer amount of spins, always ending on 0 rotation
@@ -86,33 +114,14 @@ public sealed partial class ThrownItemVisualizerSystem : EntitySystem
             rotationKeyframes.Add(new AnimationTrackProperty.KeyFrame(Angle.Zero, timeFull));
         }
 
-        return new Animation
-        {
-            Length = length,
-            AnimationTracks =
+        anim.AnimationTracks.Add(new AnimationTrackComponentProperty()
             {
-                new AnimationTrackComponentProperty
-                {
-                    ComponentType = typeof(SpriteComponent),
-                    Property = nameof(SpriteComponent.Scale),
-                    KeyFrames =
-                    {
-                        // ES START
-                        new AnimationTrackProperty.KeyFrame(scale, 0.0f),
-                        new AnimationTrackProperty.KeyFrame(scale * 1.4f, lenFloat * 0.5f, Easings.OutQuad),
-                        new AnimationTrackProperty.KeyFrame(scale, lenFloat * 0.5f, Easings.InQuad)
-                        // ES END
-                    },
-                    InterpolationMode = AnimationInterpolationMode.Linear,
-                },
-                new AnimationTrackComponentProperty()
-                {
-                    ComponentType = typeof(SpriteComponent),
-                    Property = nameof(SpriteComponent.Rotation),
-                    KeyFrames = rotationKeyframes,
-                    InterpolationMode = AnimationInterpolationMode.Linear,
-                },
-            },
-        };
+                ComponentType = typeof(SpriteComponent),
+                Property = nameof(SpriteComponent.Rotation),
+                KeyFrames = rotationKeyframes,
+                InterpolationMode = AnimationInterpolationMode.Linear,
+            });
+
+        return anim;
     }
 }
