@@ -84,17 +84,18 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
         var sprite = Comp<SpriteComponent>(particle);
         sprite.NoRotation = true;
         var spriteColor = sprite.Color;
+        var startPos = performerXform.LocalPosition;
         var animation = type switch
         {
-            StellarInteractionParticleType.Use => GetUseAnimation(performerTargetDelta, spriteColor),
-            StellarInteractionParticleType.Pull => GetPullAnimation(performerTargetDelta, spriteColor),
-            StellarInteractionParticleType.InHand => GetUseAnimation(inHandDelta, spriteColor),
+            StellarInteractionParticleType.Use => GetUseAnimation(startPos, startPos + performerTargetDelta, spriteColor),
+            StellarInteractionParticleType.Pull => GetPullAnimation(startPos, startPos + performerTargetDelta, spriteColor),
+            StellarInteractionParticleType.InHand => GetUseAnimation(Vector2.Zero, inHandDelta, spriteColor, true),
             _ => throw new ArgumentOutOfRangeException(nameof(ev), $"Interaction particle event has unknown particle type {type}"),
         };
         _animation.Play(particle, animation, AnimateKey);
     }
 
-    private Animation GetUseAnimation(Vector2 endOffset, Color color)
+    private Animation GetUseAnimation(Vector2 startPosition, Vector2 endPosition, Color color, bool spriteOffset = false)
     {
         var startRotation = _random.NextAngle(Angle.FromDegrees(-40), Angle.FromDegrees(40));
         var endRotation = Angle.Zero;
@@ -102,12 +103,35 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
         var endScale = new Vector2(1f, 1f);
         var rotationLength = TimeSpan.FromMilliseconds(600);
 
-        var startOffset = new Vector2();
         var offsetLength = TimeSpan.FromMilliseconds(250);
 
         var startColor = color.WithAlpha(color.A * 0.7f);
         var endColor = color.WithAlpha(0f);
         var colorLength = rotationLength + offsetLength;
+
+        // use anim lerps transform local position
+        // but inhand just lerps sprite offset (since it gets parented to the performer)
+        var posTrack = spriteOffset
+            ? new AnimationTrackComponentProperty()
+            {
+                ComponentType = typeof(SpriteComponent),
+                Property = nameof(SpriteComponent.Offset),
+                KeyFrames =
+                {
+                    new AnimationTrackProperty.KeyFrame(startPosition, 0f),
+                    new AnimationTrackProperty.KeyFrame(endPosition, (float)offsetLength.TotalSeconds, Easings.OutBack),
+                },
+            }
+            : new AnimationTrackComponentProperty()
+            {
+                ComponentType = typeof(TransformComponent),
+                Property = nameof(TransformComponent.LocalPosition),
+                KeyFrames =
+                {
+                    new AnimationTrackProperty.KeyFrame(startPosition, 0f),
+                    new AnimationTrackProperty.KeyFrame(endPosition, (float)offsetLength.TotalSeconds, Easings.OutBack),
+                },
+            };
 
         return new Animation()
         {
@@ -138,16 +162,6 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
                 new AnimationTrackComponentProperty()
                 {
                     ComponentType = typeof(SpriteComponent),
-                    Property = nameof(SpriteComponent.Offset),
-                    KeyFrames =
-                    {
-                        new AnimationTrackProperty.KeyFrame(startOffset, 0f),
-                        new AnimationTrackProperty.KeyFrame(endOffset, (float)offsetLength.TotalSeconds, Easings.OutBack),
-                    },
-                },
-                new AnimationTrackComponentProperty()
-                {
-                    ComponentType = typeof(SpriteComponent),
                     Property = nameof(SpriteComponent.Color),
                     KeyFrames =
                     {
@@ -156,15 +170,15 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
                         new AnimationTrackProperty.KeyFrame(endColor, (float)offsetLength.TotalSeconds, Easings.InOutCirc),
                     },
                 },
+                posTrack
             },
         };
     }
 
-    private Animation GetPullAnimation(Vector2 endOffset, Color color)
+    private Animation GetPullAnimation(Vector2 startPosition, Vector2 endPosition, Color color)
     {
         var rotationLength = TimeSpan.FromMilliseconds(8f * (1000f / 12f));
 
-        var startOffset = new Vector2();
         var offsetLength = TimeSpan.FromMilliseconds(4f * (1000f / 12f));
 
         var endColor = color.WithAlpha(0f);
@@ -177,12 +191,12 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
             {
                 new AnimationTrackComponentProperty()
                 {
-                    ComponentType = typeof(SpriteComponent),
-                    Property = nameof(SpriteComponent.Offset),
+                    ComponentType = typeof(TransformComponent),
+                    Property = nameof(TransformComponent.LocalPosition),
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(startOffset, 0f),
-                        new AnimationTrackProperty.KeyFrame(endOffset, (float)rotationLength.TotalSeconds, Easings.InOutCirc),
+                        new AnimationTrackProperty.KeyFrame(startPosition, 0f),
+                        new AnimationTrackProperty.KeyFrame(endPosition, (float)rotationLength.TotalSeconds, Easings.InOutCirc),
                     },
                 },
                 new AnimationTrackComponentProperty()
