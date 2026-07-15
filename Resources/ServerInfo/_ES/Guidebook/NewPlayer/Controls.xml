@@ -166,10 +166,5 @@
   Click [color=yellow][bold][keybind="SaveItemLocation"][/bold][/color] on an item inside a container to [color=cyan]save[/color] its position, so it always goes back to that position when stored.
   View saved positions by [color=yellow][bold]hovering[/bold][/color] over items.
 
-  ## Camera
-  [color=cyan]Zoom[/color] the camera with [color=yellow][bold][keybind="ZoomIn"][/bold][/color] and [color=yellow][bold][keybind="ZoomOut"][/bold][/color] and reset with [color=yellow][bold][keybind="ResetZoom"][/bold][/color].
-  \n[color=cyan]Rotate[/color] it with [color=yellow][bold][keybind="CameraRotateLeft"][/bold][/color] and [color=yellow][bold][keybind="CameraRotateRight"][/bold][/color] and reset with [color=yellow][bold][keybind="CameraReset"][/bold][/color].
-  \n[italic]Note: maps are generally designed to be played with the default camera rotation.[/italic]
-
   For more details about controls, you can refer to the [color=cyan]Wiki[/color].
 </Document>

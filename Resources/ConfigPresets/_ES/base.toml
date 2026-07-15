@@ -41,6 +41,7 @@ maximum_width = 15
 [shuttle]
 grid_fill = false
 arrivals_planet = false
+camera_rotation_locked = true
 
 [vote]
 preset_enabled = false
