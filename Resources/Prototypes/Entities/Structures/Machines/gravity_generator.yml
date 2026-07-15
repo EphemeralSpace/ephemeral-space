@@ -14,6 +14,7 @@
       path: /Audio/Ambience/Objects/gravity_gen_hum.ogg
   - type: Sprite
     sprite: Structures/Machines/gravity_generator.rsi
+    noRot: true
     layers:
       - state: on
         map: ["enum.GravityGeneratorVisualLayers.Base"]
