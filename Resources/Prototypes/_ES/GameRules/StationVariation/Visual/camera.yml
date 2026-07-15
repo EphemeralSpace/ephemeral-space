@@ -1,5 +1,5 @@
 - type: entity
-  id: ESFlippedCameraVariation
+  id: ESMirrorModeVariation
   parent: BaseVariationPass
   components:
   - type: ESRotatedCameraGameRule

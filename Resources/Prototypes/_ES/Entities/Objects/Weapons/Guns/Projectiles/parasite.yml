@@ -8,6 +8,7 @@
   - type: Sprite
     sprite: _ES/Objects/Weapons/Projectiles/worm.rsi
     rotation: 270
+    noRot: false
     layers:
     - state: projectile
   - type: ESSecretIdentityConversionProjectile
