@@ -51,7 +51,8 @@ public sealed partial class ESSabotageSystem : EntitySystem
 
         foreach (var objective in _objective.GetObjectives<ESSabotageConditionComponent>(mind))
         {
-            if (_entityWhitelist.IsWhitelistPass(objective.Comp.Whitelist, target))
+            if (_entityWhitelist.IsWhitelistPass(objective.Comp.Whitelist, target) &&
+                !_objective.IsCompleted(objective.Owner))
                 return true;
         }
 
