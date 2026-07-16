@@ -65,8 +65,7 @@ namespace Content.Client.UserInterface.Controls
 
             if (stretch)
             {
-                var snapFactor = CalcSnappingFactor();
-                Log.Info($"{_timing.CurFrame} | recalcing snap factor as {snapFactor}, root pixel size {(measuredSizeOverride * UIScale) ?? Root!.PixelSize}");
+                var snapFactor = CalcSnappingFactor(measuredSizeOverride);
                 if (snapFactor == null)
                 {
                     // Did not find a snap, enable stretching.
