@@ -4,6 +4,7 @@ using Robust.Client.Audio;
 using Robust.Shared;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
+using Robust.Shared.Audio.Sources;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -80,6 +81,7 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
 
     private void ProcessStream(EntityUid entity, AudioComponent component, TransformComponent xform, MapCoordinates listener)
     {
+        var wasStarted = component.Started;
         if (!component.Started)
         {
             component.Started = true;
@@ -132,6 +134,11 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
             // Still keeps the source playing, just with no volume.
             component.Gain = 0f;
             return;
+        }
+
+        if (_reverbAuxiliary is not null && !wasStarted)
+        {
+            (component as IAudioSource).SetAuxiliary(_reverbAuxiliary.Value.Item2.Auxiliary);
         }
 
         // Distance check
