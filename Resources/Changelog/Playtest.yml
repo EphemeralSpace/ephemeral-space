@@ -1028,3 +1028,11 @@ Entries:
         votes
   id: 114
   time: '2026-07-16T14:26:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        A base level of reverb has been applied to positional sounds, will be
+        more dynamic based on room size in the future
+  id: 115
+  time: '2026-07-16T16:25:55.0000000+00:00'
