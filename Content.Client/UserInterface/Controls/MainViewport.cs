@@ -1,9 +1,10 @@
 ﻿using System.Numerics;
 using Content.Client.Viewport;
 using Content.Shared.CCVar;
-using Robust.Client.UserInterface;
+using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
+using Robust.Shared.Timing;
 
 namespace Content.Client.UserInterface.Controls
 {
@@ -14,9 +15,16 @@ namespace Content.Client.UserInterface.Controls
     public sealed partial class MainViewport : UIWidget
     {
         [Dependency] private IConfigurationManager _cfg = default!;
-        [Dependency] private ViewportManager _vpManager = default!;
+        [Dependency] private IGameTiming _timing = default!;
 
         public ScalingViewport Viewport { get; }
+
+        private const int ViewportHeight = 15;
+
+        // check fill ratio of the closest snap values below and above our size
+        // to see if its within acceptable margins
+        private const float MinSnapFillRatio = 0.84f;
+        private const float MaxSnapOverfillRatio = 1.06f;
 
         public MainViewport()
         {
@@ -26,39 +34,40 @@ namespace Content.Client.UserInterface.Controls
             {
                 AlwaysRender = true,
                 RenderScaleMode = ScalingViewportRenderScaleMode.CeilInt,
-                MouseFilter = MouseFilterMode.Stop
+                MouseFilter = MouseFilterMode.Stop,
+                HorizontalExpand = true,
+                VerticalExpand = true,
             };
 
             AddChild(Viewport);
 
-            _cfg.OnValueChanged(CCVars.ViewportScalingFilterMode, _ => UpdateCfg(), true);
+            _cfg.OnValueChanged(CCVars.ViewportScalingFilterMode, _ => UpdateCfg());
+            _cfg.OnValueChanged(CCVars.ViewportMaximumWidth, _ => UpdateCfg());
+            _cfg.OnValueChanged(CCVars.ViewportStretch, _ => UpdateCfg());
+            _cfg.OnValueChanged(CCVars.ViewportScaleRender, _ => UpdateCfg());
+            _cfg.OnValueChanged(CCVars.ViewportFixedScaleFactor, _ => UpdateCfg());
         }
 
         protected override void EnteredTree()
         {
             base.EnteredTree();
 
-            _vpManager.AddViewport(this);
+            UpdateCfg();
         }
 
-        protected override void ExitedTree()
-        {
-            base.ExitedTree();
-
-            _vpManager.RemoveViewport(this);
-        }
-
-        public void UpdateCfg()
+        private void UpdateCfg(Vector2? measuredSizeOverride = null)
         {
             var stretch = _cfg.GetCVar(CCVars.ViewportStretch);
             var renderScaleUp = _cfg.GetCVar(CCVars.ViewportScaleRender);
             var fixedFactor = _cfg.GetCVar(CCVars.ViewportFixedScaleFactor);
-            var verticalFit = _cfg.GetCVar(CCVars.ViewportVerticalFit);
             var filterMode = _cfg.GetCVar(CCVars.ViewportScalingFilterMode);
+            var width = _cfg.GetCVar(CCVars.ViewportMaximumWidth);
+
+            Viewport.ViewportSize = (EyeManager.PixelsPerMeter * width, EyeManager.PixelsPerMeter * ViewportHeight);
 
             if (stretch)
             {
-                var snapFactor = CalcSnappingFactor();
+                var snapFactor = CalcSnappingFactor(measuredSizeOverride);
                 if (snapFactor == null)
                 {
                     // Did not find a snap, enable stretching.
@@ -69,7 +78,7 @@ namespace Content.Client.UserInterface.Controls
                         "bilinear" => ScalingViewportStretchMode.Bilinear,
                         _ => ScalingViewportStretchMode.Nearest
                     };
-                    Viewport.IgnoreDimension = verticalFit ? ScalingViewportIgnoreDimension.Horizontal : ScalingViewportIgnoreDimension.None;
+                    Viewport.IgnoreDimension = ScalingViewportIgnoreDimension.Horizontal;
 
                     if (renderScaleUp)
                     {
@@ -105,45 +114,48 @@ namespace Content.Client.UserInterface.Controls
             }
         }
 
-        private int? CalcSnappingFactor()
+        private int? CalcSnappingFactor(Vector2? measuredSizeOverride = null)
         {
             // erm
             if (Root == null)
                 return null;
 
-            // Instead of all that, we just snap to the largest integer scale that fits.
-            // If that (pre-clamp) scale is <1, or we arent close enough to an integer fit, we return null and let the scaling logic handle it.
-            // TODO: This should probably enforce margins around the viewport.
-            var possibleSize = ((Vector2)Root.PixelSize) / ((Vector2)Viewport.ViewportSize);
+            if (Viewport.ViewportSize.X <= 0 || Viewport.ViewportSize.Y <= 0)
+                return null;
 
+            var totalSize = (measuredSizeOverride * UIScale) ?? Root.PixelSize;
+            var possibleSize = totalSize / (Vector2)Viewport.ViewportSize;
             var minPossible = Math.Min(possibleSize.X, possibleSize.Y);
 
-            // check closest fits on a .5 increment basis
-            // (0-1 = no snap, 1 = snap, >1.5 = no snap, etc)
             if (minPossible < 1)
                 return null; // too tiny, always scale
 
-            var doubleScale = (int)Math.Floor(minPossible * 2f);
-            // if its even, this is an integer fit
-            // if it isnt, it fits closer to a .5 increment, so just let scaling handle it
-            if ((doubleScale % 2 == 0))
-                return doubleScale / 2;
+            var flooredScale = (int)Math.Floor(minPossible);
+            if (flooredScale < 1)
+                return null;
+
+            // if the desired integer scale doesnt fill up enough space
+            // just scale normally
+            var fillRatio = flooredScale / minPossible;
+
+            if (fillRatio >= MinSnapFillRatio)
+                return flooredScale;
+
+            // if flooring it and checking still doesnt fill enough space
+            // check if overfilling the space has an acceptable margin
+            var ceiledScale = flooredScale + 1;
+            var overshootRatio = (ceiledScale / minPossible);
+            if (overshootRatio <= MaxSnapOverfillRatio)
+                return ceiledScale;
 
             return null;
         }
 
         protected override Vector2 MeasureOverride(Vector2 availableSize)
         {
-            UpdateCfg();
+            UpdateCfg(availableSize);
 
             return base.MeasureOverride(availableSize);
-        }
-
-        protected override void Resized()
-        {
-            base.Resized();
-
-            UpdateCfg();
         }
     }
 }

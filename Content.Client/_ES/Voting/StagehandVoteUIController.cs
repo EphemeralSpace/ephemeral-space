@@ -37,6 +37,7 @@ public sealed partial class StagehandVoteUIController : UIController
             return;
 
         var votes = _vote.EnumerateVotes().ToList();
+        voting.Visible = votes.Count != 0;
 
         if (votes.Count != voting.LastVotes.Count || votes.Intersect(voting.LastVotes).Count() != votes.Count)
         {
