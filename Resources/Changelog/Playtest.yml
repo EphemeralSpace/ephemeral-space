@@ -1020,3 +1020,11 @@ Entries:
       message: Doafters now have a smooth fadein and fadeout anim
   id: 113
   time: '2026-07-15T23:36:34.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Stagehand vote container will now be invisible if there are no active
+        votes
+  id: 114
+  time: '2026-07-16T14:26:39.0000000+00:00'
