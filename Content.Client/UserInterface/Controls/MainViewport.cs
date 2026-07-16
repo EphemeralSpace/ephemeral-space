@@ -21,8 +21,10 @@ namespace Content.Client.UserInterface.Controls
 
         private const int ViewportHeight = 15;
 
-        // basically
-        private const float MinSnapFillRatio = 0.8f;
+        // check fill ratio of the closest snap values below and above our size
+        // to see if its within acceptable margins
+        private const float MinSnapFillRatio = 0.84f;
+        private const float MaxSnapOverfillRatio = 1.06f;
 
         public MainViewport()
         {
@@ -138,6 +140,13 @@ namespace Content.Client.UserInterface.Controls
 
             if (fillRatio >= MinSnapFillRatio)
                 return flooredScale;
+
+            // if flooring it and checking still doesnt fill enough space
+            // check if overfilling the space has an acceptable margin
+            var ceiledScale = flooredScale + 1;
+            var overshootRatio = (ceiledScale / minPossible);
+            if (overshootRatio <= MaxSnapOverfillRatio)
+                return ceiledScale;
 
             return null;
         }
