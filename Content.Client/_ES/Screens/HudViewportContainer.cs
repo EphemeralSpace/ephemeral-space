@@ -21,14 +21,17 @@ public sealed class HudViewportContainer : Container
     public float PanelRatio { get; set; } = 1.0f;
 
     /// <summary>
-    ///     A panel will be hidden entirely if its calculated size would be below this value
+    ///     A panel will be hidden entirely if its calculated pixel size would be below this value
     /// </summary>
-    public float HidePanelsBelow { get; set; } = 100.0f;
+    public float HidePanelsBelow { get; set; } = 140.0f;
 
     /// <summary>
-    ///     A panel will be made visible (assuming its not already visible) if its calculated size would be above this value
+    ///     A panel will be made visible (assuming its not already visible) if its calculated pixel size would be above this value
     /// </summary>
-    public float ShowPanelsAbove { get; set; } = 150.0f;
+    public float ShowPanelsAbove { get; set; } = 160.0f;
+
+    private bool _leftVisible = false;
+    private bool _rightVisible = false;
 
     private bool ShouldShowPanel(Control panel, float availableWidth)
     {
@@ -37,9 +40,9 @@ public sealed class HudViewportContainer : Container
         return (availableWidth * UIScale) >= ShowPanelsAbove;
     }
 
-    private (float left, float right) CalculatePanelWidths(float viewportWidth)
+    private (float left, float right) CalculatePanelWidths(float totalWidth, float viewportWidth)
     {
-        var panelSpace = Math.Max(0f, Size.X - viewportWidth);
+        var panelSpace = Math.Max(0f, totalWidth - viewportWidth);
 
         var rightPanelWidth = panelSpace / (PanelRatio + 1);
         var leftPanelWidth = panelSpace - rightPanelWidth;
@@ -52,16 +55,21 @@ public sealed class HudViewportContainer : Container
         if (ChildCount != 3)
             throw new ArgumentOutOfRangeException($"Child count of {nameof(HudViewportContainer)} must be exactly 3");
 
-        Log.Info($"{IoCManager.Resolve<IGameTiming>().CurFrame} | hvc measuring size {availableSize}");
-
         var leftPanel = GetChild(0);
         var centerContainer = GetChild(1);
         var rightPanel = GetChild(2);
 
         centerContainer.Measure(availableSize);
-        var (leftPanelWidth, rightPanelWidth) = CalculatePanelWidths(centerContainer.DesiredSize.X);
-        leftPanel.Measure(availableSize with { X = leftPanelWidth });
-        rightPanel.Measure(availableSize with { X = rightPanelWidth });
+        var (leftPanelWidth, rightPanelWidth) = CalculatePanelWidths(availableSize.X, centerContainer.DesiredSize.X);
+        _leftVisible = ShouldShowPanel(leftPanel, leftPanelWidth);
+        _rightVisible = ShouldShowPanel(rightPanel, rightPanelWidth);
+        leftPanel.Visible = _leftVisible;
+        rightPanel.Visible = _rightVisible;
+
+        if (_leftVisible)
+            leftPanel.Measure(availableSize with { X = leftPanelWidth });
+        if (_rightVisible)
+            rightPanel.Measure(availableSize with { X = rightPanelWidth });
 
         return availableSize;
     }
@@ -71,8 +79,6 @@ public sealed class HudViewportContainer : Container
         if (ChildCount != 3)
             throw new ArgumentOutOfRangeException($"Child count of {nameof(HudViewportContainer)} must be exactly 3");
 
-        Log.Info($"{IoCManager.Resolve<IGameTiming>().CurFrame} | UISCALE {UIScale} hvc arranging size {finalSize}");
-
         var finalHeight = finalSize.Y;
 
         var leftPanel = GetChild(0);
@@ -80,18 +86,16 @@ public sealed class HudViewportContainer : Container
         var rightPanel = GetChild(2);
 
         var viewportWidth = centerContainer.DesiredSize.X;
-        var (leftPanelWidth, rightPanelWidth) = CalculatePanelWidths(viewportWidth);
-        leftPanel.Visible = ShouldShowPanel(leftPanel, leftPanelWidth);
-        rightPanel.Visible = ShouldShowPanel(rightPanel, rightPanelWidth);
+        var (leftPanelWidth, rightPanelWidth) = CalculatePanelWidths(finalSize.X, viewportWidth);
 
         // arrange viewport first
         centerContainer.Arrange(UIBox2.FromDimensions(leftPanelWidth, 0, viewportWidth, finalHeight));
 
         // arrange panels around it
-        if (leftPanel.Visible)
+        if (_leftVisible)
             leftPanel.Arrange(UIBox2.FromDimensions(0, 0, leftPanelWidth, finalHeight));
-        if (rightPanel.Visible)
-            rightPanel.Arrange(UIBox2.FromDimensions((leftPanel.Visible ? leftPanelWidth : 0) + viewportWidth, 0, rightPanelWidth, finalHeight));
+        if (_rightVisible)
+            rightPanel.Arrange(UIBox2.FromDimensions(leftPanelWidth + viewportWidth, 0, rightPanelWidth, finalHeight));
 
         return finalSize;
     }
