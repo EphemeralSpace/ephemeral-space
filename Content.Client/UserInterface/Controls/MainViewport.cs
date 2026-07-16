@@ -153,7 +153,6 @@ namespace Content.Client.UserInterface.Controls
 
         protected override Vector2 MeasureOverride(Vector2 availableSize)
         {
-            Log.Info($"{_timing.CurFrame} | updating from measure change");
             UpdateCfg(availableSize);
 
             return base.MeasureOverride(availableSize);
