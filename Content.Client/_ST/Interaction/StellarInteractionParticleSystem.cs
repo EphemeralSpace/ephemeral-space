@@ -66,7 +66,7 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
         }
 
         var performerTargetDelta = targetXform.LocalPosition - performerXform.LocalPosition;
-        var inHandDelta = new Vector2(0, 0.75f);
+        var inHandDelta = new Vector2(0, 0.85f);
         var particle = Spawn(InteractionParticleIds[type], performerXform.Coordinates);
 
         if (type == StellarInteractionParticleType.InHand)
