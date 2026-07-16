@@ -6,7 +6,7 @@ namespace Content.Shared._ES.Filth.Components;
 public sealed partial class ESMiasmaSourceComponent : Component
 {
     [DataField]
-    public float MolPerSecond = 0.2f;
+    public float MolPerSecond = 0.02f;
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextUpdate;
