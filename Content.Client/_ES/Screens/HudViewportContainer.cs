@@ -8,7 +8,8 @@ namespace Content.Client._ES.Screens;
 /// <summary>
 ///     Handles layouting for the hud UI with a left panel, viewport, and right panel.
 ///     All children will fill vertical space as much as possible.
-///     The viewport will be laid out first
+///     The viewport will be laid out first.
+///     The left and right panels may toggle visibility if their calculated size is too small.
 /// </summary>
 public sealed class HudViewportContainer : Container
 {
@@ -23,12 +24,12 @@ public sealed class HudViewportContainer : Container
     /// <summary>
     ///     A panel will be hidden entirely if its calculated pixel size would be below this value
     /// </summary>
-    public float HidePanelsBelow { get; set; } = 140.0f;
+    public float HidePanelsBelow { get; set; } = 180.0f;
 
     /// <summary>
     ///     A panel will be made visible (assuming its not already visible) if its calculated pixel size would be above this value
     /// </summary>
-    public float ShowPanelsAbove { get; set; } = 160.0f;
+    public float ShowPanelsAbove { get; set; } = 200.0f;
 
     private bool _leftVisible = false;
     private bool _rightVisible = false;
