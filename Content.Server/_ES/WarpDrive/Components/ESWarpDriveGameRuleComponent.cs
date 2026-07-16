@@ -106,6 +106,17 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     public int FinalPhaseForceEndItems = 5;
 
     /// <summary>
+    ///     The percentage the warp drive was charged at the last time a screen packet was sent out.
+    ///     Saved and checked to ensure we don't send too many screen updates, and instead only do it if the
+    ///     percentage changes by enough (5% atm)
+    /// </summary>
+    /// <remarks>
+    ///     Int to avoid getting float precision fucked
+    /// </remarks>
+    [DataField]
+    public int LastScreenUpdatedChargePercentage = 0;
+
+    /// <summary>
     ///     where it all goes
     /// </summary>
     [DataField]

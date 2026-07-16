@@ -189,6 +189,7 @@
        - Plunger
   - type: Sprite
     sprite: Objects/Specific/Janitorial/plunger.rsi
+    noRot: false
     state: plunger
   - type: Item
     sprite: Objects/Specific/Janitorial/plunger.rsi

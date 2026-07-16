@@ -51,19 +51,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: WoodWall
-  graph: Barricade
-  startNode: start
-  targetNode: woodWall
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   id: UraniumWall
   graph: Girder
   startNode: start
@@ -1034,20 +1021,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: SolidSecretDoor
-  name: recipes-secret-door-name
-  description: recipes-secret-door-desc
-  graph: SecretDoor
-  startNode: start
-  targetNode: solidSecretDoor
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked

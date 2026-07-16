@@ -13,3 +13,22 @@
     Steel: 100
     Glass: 100
     Plastic: 100
+
+- type: latheRecipe
+  id: ESKitSecretDoor
+  categories:
+  - Parts
+  result: ESKitSecretDoor
+  completetime: 5
+  materials:
+    Steel: 1000
+
+- type: latheRecipe
+  id: ESKitBarricade
+  categories:
+  - Parts
+  result: ESKitBarricade
+  completetime: 5
+  materials:
+    Wood: 400
+    Steel: 200

@@ -48,8 +48,6 @@ public sealed partial class MeleeWeaponSystem
             return;
         }
 
-        var offset = 1f;
-
         var spriteRotation = Angle.Zero;
         if (arcComponent.Animation != WeaponArcAnimation.None
             && TryComp(weapon, out MeleeWeaponComponent? meleeWeaponComponent))
@@ -58,13 +56,14 @@ public sealed partial class MeleeWeaponSystem
                 && TryComp(weapon, out SpriteComponent? weaponSpriteComponent))
                 _sprite.CopySprite((weapon, weaponSpriteComponent), (animationUid, sprite));
 
+            _sprite.SetDrawDepth((animationUid, sprite), (int) Shared.DrawDepth.DrawDepth.Effects);
+            sprite.NoRotation = true;
+
             spriteRotation = meleeWeaponComponent.WideAnimationRotation;
 
             if (meleeWeaponComponent.SwingLeft)
                 angle *= -1;
         }
-
-        _sprite.SetRotation((animationUid, sprite), localPos.ToWorldAngle());
 
         var xform = _xformQuery.GetComponent(animationUid);
         TrackUserComponent track;
@@ -74,20 +73,15 @@ public sealed partial class MeleeWeaponSystem
             case WeaponArcAnimation.Slash:
                 track = EnsureComp<TrackUserComponent>(animationUid);
                 track.User = user;
-// ES START
+                _sprite.SetRotation((animationUid, sprite), localPos.ToWorldAngle());
                 _animation.Play(animationUid, GetSlashAnimation((animationUid, sprite), angle, spriteRotation), SlashAnimationKey);
                 if (arcComponent.Fadeout)
                     _animation.Play(animationUid, GetFadeAnimation(sprite, 0.15f, 0.25f), FadeAnimationKey);
-// ES END
                 break;
             case WeaponArcAnimation.Thrust:
-                track = EnsureComp<TrackUserComponent>(animationUid);
-                track.User = user;
-// ES START
-                _animation.Play(animationUid, GetThrustAnimation((animationUid, sprite), offset, spriteRotation), ThrustAnimationKey);
+                _animation.Play(animationUid, GetThrustAnimation((animationUid, sprite), localPos), ThrustAnimationKey);
                 if (arcComponent.Fadeout)
-                    _animation.Play(animationUid, GetFadeAnimation(sprite, 0.05f, 0.15f), FadeAnimationKey);
-// ES END
+                    _animation.Play(animationUid, GetFadeAnimation(sprite, 0.1f, 0.25f), FadeAnimationKey);
                 break;
             case WeaponArcAnimation.None:
                 var (mapPos, mapRot) = TransformSystem.GetWorldPositionRotation(userXform);
@@ -111,7 +105,6 @@ public sealed partial class MeleeWeaponSystem
         var endRotationOffset = endRotation.RotateVec(new Vector2(0f, -1f));
         startRotation += spriteRotation;
         endRotation += spriteRotation;
-        sprite.Comp.NoRotation = true;
 
         return new Animation()
         {
@@ -145,14 +138,10 @@ public sealed partial class MeleeWeaponSystem
     }
 
 // ES START
-    private Animation GetThrustAnimation(Entity<SpriteComponent> sprite, float distance, Angle spriteRotation)
+    private Animation GetThrustAnimation(Entity<SpriteComponent> sprite, Vector2 endOffset)
     {
-        const float delay = 0.05f;
         const float length = 0.25f;
-        var startOffset = sprite.Comp.Rotation.RotateVec(new Vector2(0f, -distance / 2f));
-        var endOffset = sprite.Comp.Rotation.RotateVec(new Vector2(0f, -distance * 1.5f));
 // ES END
-        _sprite.SetRotation(sprite.AsNullable(), sprite.Comp.Rotation + spriteRotation);
 
         return new Animation()
         {
@@ -165,9 +154,8 @@ public sealed partial class MeleeWeaponSystem
                     Property = nameof(SpriteComponent.Offset),
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(startOffset, 0f),
-                        new AnimationTrackProperty.KeyFrame(startOffset, delay),
-                        new AnimationTrackProperty.KeyFrame(endOffset, length, Easings.OutQuint),
+                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, 0f),
+                        new AnimationTrackProperty.KeyFrame(endOffset, length, Easings.OutQuad),
                     }
                 },
             }

@@ -55,12 +55,6 @@ public sealed partial class RottingSystem : SharedRottingSystem
     /// <returns></returns>
     private float GetRotRate(EntityUid uid)
     {
-        if (_container.TryGetContainingContainer((uid, null, null), out var container) &&
-            TryComp<ProRottingContainerComponent>(container.Owner, out var rotContainer))
-        {
-            return rotContainer.DecayModifier;
-        }
-
         return 1f;
     }
 

@@ -21,7 +21,6 @@ using Content.Shared.Sound.Components;
 using Content.Shared.Speech;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
-using Content.Shared.Traits.Assorted;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -78,7 +77,7 @@ public sealed partial class SleepingSystem : EntitySystem
         SubscribeLocalEvent<SleepingComponent, UnbuckleAttemptEvent>(OnUnbuckleAttempt);
         SubscribeLocalEvent<SleepingComponent, EmoteAttemptEvent>(OnEmoteAttempt);
 
-        SubscribeLocalEvent<SleepingComponent, BeforeForceSayEvent>(OnChangeForceSay, after: new []{typeof(PainNumbnessSystem)});
+        SubscribeLocalEvent<SleepingComponent, BeforeForceSayEvent>(OnChangeForceSay);
     }
 
     private void OnUnbuckleAttempt(Entity<SleepingComponent> ent, ref UnbuckleAttemptEvent args)

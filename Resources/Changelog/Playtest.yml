@@ -861,3 +861,162 @@ Entries:
         partway through their animation
   id: 98
   time: '2026-07-06T05:08:48.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Getting electrocuted by walking into stuff should happen much less often
+        if you're just walking by it rather than directly into it
+    - type: Tweak
+      message: >-
+        Chained electrocutions (from pulling) now ignore insulation past a depth
+        of 1
+  id: 99
+  time: '2026-07-07T09:13:37.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: announcement sounds.... They sound.. announcey
+  id: 100
+  time: '2026-07-07T09:13:50.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Storage items now have examine text to indicate if they are slower or
+        faster to take items out of.
+  id: 101
+  time: '2026-07-09T23:22:20.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Walls now become "broken walls" when damaged, which can be passed
+        through and repaired back into full walls.
+    - type: Remove
+      message: Removed the ability to craft walls directly.
+    - type: Add
+      message: >-
+        Added secret door kits, single-use kits that transform walls into secret
+        doors.
+    - type: Add
+      message: Added barrier kits, which can barricade airlocks.
+    - type: Fix
+      message: Fixed barricaded airlocks being openable.
+  id: 102
+  time: '2026-07-11T14:13:06.0000000+00:00'
+- author: mirrorcult,sowelipililimute
+  changes:
+    - type: Add
+      message: >-
+        Screens around the station now have proper borders, lights, actual text
+        rendering, and a marquee if text is too long
+    - type: Add
+      message: >-
+        New screens showing warp drive charge percentage & radstorm timer have
+        been added around the station
+    - type: Add
+      message: >-
+        Comms console can now broadcast up to 20 characters of text to status
+        screens rather than like. four or whatever
+  id: 103
+  time: '2026-07-11T14:19:37.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Stagehand chat window now has a separate panel for the stagehand chat
+        specifically to make following game stuff/stagehand stuff separately
+        easier
+  id: 104
+  time: '2026-07-11T16:46:37.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Tweaked drawdepth for melee animation effects & redid clickattack effect
+    - type: Tweak
+      message: >-
+        Generic combat mode cursor indicator now has a sprite in the same style
+        as the gun crosshair
+  id: 105
+  time: '2026-07-11T19:26:05.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Using items in hand or interacting with things in your
+        pockets/bag/storage etc now has interaction particles
+  id: 106
+  time: '2026-07-11T19:26:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Barricade kits can also barricade windows and create tile barricades
+        when used in hand
+    - type: Tweak
+      message: >-
+        Items that use charges (RCD barricade kit etc) now have itemstatus
+        showing the charge count 
+    - type: Remove
+      message: Barricades are no longer deconstructible by prying
+  id: 107
+  time: '2026-07-11T21:49:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Rather than instantly being transported to the lobby, a short little
+        post-death sequence will play out when you die
+    - type: Tweak
+      message: >-
+        Use of the ghost command is now only allowed if you are dead (and want
+        to expedite the death cutscene for some reason)
+    - type: Add
+      message: A cinematic will now play when the nuke is detonated.
+  id: 108
+  time: '2026-07-11T21:52:17.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: You now face entities while performing doafters on them.
+  id: 109
+  time: '2026-07-11T22:30:58.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Walls once again become girders while broken.
+    - type: Add
+      message: >-
+        Girders cannot be deconstructed and now become broken girders when
+        destroyed.
+    - type: Tweak
+      message: Secret door kits now must be used on girders rather than walls.
+  id: 110
+  time: '2026-07-13T17:55:45.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: Fixed buckling/melee showing interaction particles
+    - type: Tweak
+      message: Increased nuke cinematic end time a bit
+    - type: Fix
+      message: Guidebook now defaults to the proper new player page whoops
+  id: 111
+  time: '2026-07-14T19:51:55.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        A very very very very very scary flipped mirrored reality may enter this
+        world with a 10% chance.
+    - type: Tweak
+      message: Camera rotation binds no longer rotate the camera
+  id: 112
+  time: '2026-07-15T21:33:20.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Doafters now have a smooth fadein and fadeout anim
+  id: 113
+  time: '2026-07-15T23:36:34.0000000+00:00'

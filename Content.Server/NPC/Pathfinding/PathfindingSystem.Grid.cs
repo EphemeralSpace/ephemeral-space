@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Shared._ES.Breakable;
 using Content.Shared.NPC;
 using Content.Shared.Physics;
 using Robust.Shared.Collections;
@@ -17,6 +18,8 @@ namespace Content.Server.NPC.Pathfinding;
 
 public sealed partial class PathfindingSystem
 {
+    [Dependency] private ESBreakableSystem _breakable = default!;
+
     private static readonly TimeSpan UpdateCooldown = TimeSpan.FromSeconds(0.45);
 
     // What relevant collision groups we track for pathfinding.
@@ -545,6 +548,10 @@ public sealed partial class PathfindingSystem
                             if (_destructibleQuery.TryGetComponent(ent, out var damageable))
                             {
                                 damage += _destructible.DestroyedAt(ent, damageable).Float();
+                            }
+                            else if (_breakable.TryGetBrokenThreshold(ent, out var threshold))
+                            {
+                                damage += threshold.Value.Float();
                             }
                         }
 

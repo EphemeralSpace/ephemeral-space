@@ -25,6 +25,7 @@
   - type: Ammo
   - type: Sprite
     sprite: Objects/Fun/Foam/foam_dart.rsi
+    noRot: false
     layers:
       - state: foamdart
   - type: EmbeddableProjectile

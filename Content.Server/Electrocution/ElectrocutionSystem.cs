@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Server.Administration.Logs;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Components;
@@ -31,10 +32,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
 using PullerComponent = Content.Shared.Movement.Pulling.Components.PullerComponent;
-// ES START
 using Content.Shared._ES.Sparks;
 using Content.Shared.Interaction.Events;
-// ES END
+using Robust.Shared.Timing;
 
 namespace Content.Server.Electrocution;
 
@@ -59,6 +59,7 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private TurfSystem _turf = default!;
 // ES START
+    [Dependency] private IGameTiming _timing = default!;
     [Dependency] private ESSparksSystem _esSparks = default!;
 // ES END
 
@@ -68,7 +69,7 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
 
     // Multiply and shift the log scale for shock damage.
     private const float RecursiveDamageMultiplier = 0.75f;
-    private const float RecursiveTimeMultiplier = 0.8f;
+    private const float RecursiveTimeMultiplier = 1.1f;
 
     private const float ParalyzeTimeMultiplier = 1f;
 
@@ -77,6 +78,8 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
     private const float JitterTimeMultiplier = 0.75f;
     private const float JitterAmplitude = 80f;
     private const float JitterFrequency = 8f;
+
+    private const float ElectrificationDotProductTolerance = -0.5f;
 
     public override void Initialize()
     {
@@ -162,8 +165,32 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
 
     private void OnElectrifiedStartCollide(EntityUid uid, ElectrifiedComponent electrified, ref StartCollideEvent args)
     {
-        if (electrified.OnBump)
-            TryDoElectrifiedAct(uid, args.OtherEntity, 1, electrified);
+        if (!electrified.OnBump)
+            return;
+
+        var normal = args.WorldNormal.Normalized();
+        var otherVelocity = args.OtherBody.LinearVelocity.Normalized();
+
+        // this can be nan for some reason
+        if (!normal.IsValid() || !otherVelocity.IsValid())
+            return;
+
+        if (electrified.LastAttemptedCollisionElectrocutionTime is { } time && time + electrified.MinTimeBetweenCollisionElectrocutions > _timing.CurTime)
+            return;
+
+        // this is kinda jank and should be per-player probably
+        // but all of this stuff is kinda wack idk its like completely non-predicted
+        // any situations where it would actually be bad are like. not really that possible and this easily fixes
+        // pretty much all possible weird collision cheese with a trillion things getting electrocuted at once too
+        electrified.LastAttemptedCollisionElectrocutionTime = _timing.CurTime;
+
+        // body must be moving in the direction of the collision for it to count
+        // so the normal & velocity should be in opposite dirs (<0 dot product)
+        // furthermore they must be moving in almost exactly opposite dirs, low tolerance
+        if (Vector2.Dot(normal, otherVelocity) >= ElectrificationDotProductTolerance)
+            return;
+
+        TryDoElectrifiedAct(uid, args.OtherEntity, 1, electrified);
     }
 
     private void OnElectrifiedAttacked(EntityUid uid, ElectrifiedComponent electrified, AttackedEvent args)
@@ -228,13 +255,15 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
             for (var i = targets.Count - 1; i >= 0; i--)
             {
                 var (entity, depth) = targets[i];
+                // past depth of 1, electrocutions ignore insulation
                 lastRet = TryDoElectrocution(
                     entity,
                     uid,
                     (int) (electrified.ShockDamage * MathF.Pow(RecursiveDamageMultiplier, depth)),
                     TimeSpan.FromSeconds(electrified.ShockTime * MathF.Pow(RecursiveTimeMultiplier, depth)),
                     true,
-                    electrified.SiemensCoefficient
+                    electrified.SiemensCoefficient,
+                    ignoreInsulation: depth > 1
                 );
             }
             return lastRet;
@@ -256,6 +285,7 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
             for (var i = targets.Count - 1; i >= 0; i--)
             {
                 var (entity, depth) = targets[i];
+                // past depth of 1, electrocutions ignore insulation
                 lastRet = TryDoElectrocutionPowered(
                     entity,
                     uid,
@@ -263,7 +293,9 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
                     (int) (electrified.ShockDamage * MathF.Pow(RecursiveDamageMultiplier, depth) * damageScalar),
                     TimeSpan.FromSeconds(electrified.ShockTime * MathF.Pow(RecursiveTimeMultiplier, depth) * timeScalar),
                     true,
-                    electrified.SiemensCoefficient);
+                    electrified.SiemensCoefficient,
+                    ignoreInsulation: depth > 1
+                    );
             }
             return lastRet;
         }
@@ -310,9 +342,10 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
         bool refresh,
         float siemensCoefficient = 1f,
         StatusEffectsComponent? statusEffects = null,
-        TransformComponent? sourceTransform = null)
+        TransformComponent? sourceTransform = null,
+        bool ignoreInsulation = false)
     {
-        if (!DoCommonElectrocutionAttempt(uid, sourceUid, ref siemensCoefficient))
+        if (!DoCommonElectrocutionAttempt(uid, sourceUid, ref siemensCoefficient, ignoreInsulation))
             return false;
 
         if (!DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects))

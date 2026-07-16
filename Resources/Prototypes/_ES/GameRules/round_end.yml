@@ -44,3 +44,6 @@
       announcementDistortion: 0.8
       forceStationLightColor: "#436d41ff"
       mapLight: "#3da63aff"
+  - type: DeviceNetwork
+    deviceNetId: Private
+    transmitFrequencyId: ESRadstormTimer

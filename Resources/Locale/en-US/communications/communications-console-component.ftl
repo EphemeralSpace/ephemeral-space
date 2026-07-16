@@ -11,6 +11,8 @@ comms-console-menu-recall-shuttle = Recall emergency shuttle
 comms-console-menu-emergency-shuttle-button-tooltip = Calls or recalls the emergency shuttle. You can only recall when there's enough time left.
 comms-console-menu-time-remaining = Time remaining: {$time}
 
+comms-console-screen-status-line1 = STATUS
+
 # Popup
 comms-console-permission-denied = Permission denied
 comms-console-shuttle-unavailable = Shuttle is currently unavailable

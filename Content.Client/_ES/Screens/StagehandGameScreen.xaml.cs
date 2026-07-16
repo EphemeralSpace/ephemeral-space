@@ -1,3 +1,4 @@
+using Content.Client._ES.Chat;
 using Content.Client._ES.Stagehand.Ui;
 using Content.Client._ES.Voting;
 using Content.Client.UserInterface.Screens;
@@ -31,6 +32,7 @@ public sealed partial class StagehandGameScreen : InGameScreen
         SetAnchorAndMarginPreset(Ghost, LayoutPreset.BottomWide, margin: 80);
         SetAnchorAndMarginPreset(Hotbar, LayoutPreset.BottomWide, margin: 5);
         SetAnchorAndMarginPreset(Alerts, LayoutPreset.TopRight, margin: 10);
+        SetAnchorPreset(Cinematic, LayoutPreset.Wide);
 
         ViewportContainer.OnResized += ResizeActionContainer;
     }
@@ -65,5 +67,5 @@ public sealed partial class StagehandGameScreen : InGameScreen
         Actions.ActionsContainer.MaxGridWidth = ViewportContainer.Size.X - indent;
     }
 
-    public override ChatBox ChatBox => GetWidget<ChatBox>()!;
+    public override ChatBox ChatBox => GetWidget<StagehandChatBox>()!;
 }

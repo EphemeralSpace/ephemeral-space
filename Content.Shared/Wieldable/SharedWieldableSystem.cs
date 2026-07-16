@@ -1,16 +1,11 @@
-using System.Linq;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
-using Content.Shared.Inventory.Events;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Timing;
 using Content.Shared.Verbs;
@@ -29,11 +24,9 @@ namespace Content.Shared.Wieldable;
 
 public abstract partial class SharedWieldableSystem : EntitySystem
 {
-    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private SharedGunSystem _gun = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedItemSystem _item = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
@@ -51,22 +44,9 @@ public abstract partial class SharedWieldableSystem : EntitySystem
         SubscribeLocalEvent<WieldableComponent, GetVerbsEvent<InteractionVerb>>(AddToggleWieldVerb);
         SubscribeLocalEvent<WieldableComponent, HandDeselectedEvent>(OnDeselectWieldable);
 
-        SubscribeLocalEvent<WieldingBlockerComponent, GotEquippedEvent>(OnBlockerEquipped);
-        SubscribeLocalEvent<WieldingBlockerComponent, GotEquippedHandEvent>(OnBlockerEquippedHand);
-        SubscribeLocalEvent<WieldingBlockerComponent, WieldAttemptEvent>(OnBlockerAttempt);
-        SubscribeLocalEvent<WieldingBlockerComponent, InventoryRelayedEvent<WieldAttemptEvent>>(OnBlockerAttempt);
-        SubscribeLocalEvent<WieldingBlockerComponent, HeldRelayedEvent<WieldAttemptEvent>>(OnBlockerAttempt);
-
         SubscribeLocalEvent<MeleeRequiresWieldComponent, AttemptMeleeEvent>(OnMeleeAttempt);
         SubscribeLocalEvent<GunRequiresWieldComponent, ExaminedEvent>(OnExamineRequires);
         SubscribeLocalEvent<GunRequiresWieldComponent, ShotAttemptedEvent>(OnShootAttempt);
-        SubscribeLocalEvent<GunWieldBonusComponent, ItemWieldedEvent>(OnGunWielded);
-        SubscribeLocalEvent<GunWieldBonusComponent, ItemUnwieldedEvent>(OnGunUnwielded);
-        SubscribeLocalEvent<GunWieldBonusComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
-        SubscribeLocalEvent<GunWieldBonusComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<SpeedModifiedOnWieldComponent, ItemWieldedEvent>(OnSpeedModifierWielded);
-        SubscribeLocalEvent<SpeedModifiedOnWieldComponent, ItemUnwieldedEvent>(OnSpeedModifierUnwielded);
-        SubscribeLocalEvent<SpeedModifiedOnWieldComponent, HeldRelayedEvent<RefreshMovementSpeedModifiersEvent>>(OnRefreshSpeedWielded);
 
         SubscribeLocalEvent<IncreaseDamageOnWieldComponent, GetMeleeDamageEvent>(OnGetMeleeDamage);
     }
@@ -100,16 +80,6 @@ public abstract partial class SharedWieldableSystem : EntitySystem
         }
     }
 
-    private void OnGunUnwielded(EntityUid uid, GunWieldBonusComponent component, ItemUnwieldedEvent args)
-    {
-        _gun.RefreshModifiers(uid);
-    }
-
-    private void OnGunWielded(EntityUid uid, GunWieldBonusComponent component, ref ItemWieldedEvent args)
-    {
-        _gun.RefreshModifiers(uid);
-    }
-
     private void OnDeselectWieldable(EntityUid uid, WieldableComponent component, HandDeselectedEvent args)
     {
         if (_hands.GetHandCount(args.User) > 2)
@@ -118,49 +88,10 @@ public abstract partial class SharedWieldableSystem : EntitySystem
         TryUnwield(uid, component, args.User);
     }
 
-    private void OnGunRefreshModifiers(Entity<GunWieldBonusComponent> bonus, ref GunRefreshModifiersEvent args)
-    {
-        if (TryComp(bonus, out WieldableComponent? wield) &&
-            wield.Wielded)
-        {
-            args.MinAngle += bonus.Comp.MinAngle;
-            args.MaxAngle += bonus.Comp.MaxAngle;
-            args.AngleDecay += bonus.Comp.AngleDecay;
-            args.AngleIncrease += bonus.Comp.AngleIncrease;
-        }
-    }
-
-    private void OnSpeedModifierWielded(EntityUid uid, SpeedModifiedOnWieldComponent component, ItemWieldedEvent args)
-    {
-        _movementSpeedModifier.RefreshMovementSpeedModifiers(args.User);
-    }
-
-    private void OnSpeedModifierUnwielded(EntityUid uid, SpeedModifiedOnWieldComponent component, ItemUnwieldedEvent args)
-    {
-        _movementSpeedModifier.RefreshMovementSpeedModifiers(args.User);
-    }
-
-    private void OnRefreshSpeedWielded(EntityUid uid, SpeedModifiedOnWieldComponent component, ref HeldRelayedEvent<RefreshMovementSpeedModifiersEvent> args)
-    {
-        if (TryComp<WieldableComponent>(uid, out var wield) && wield.Wielded)
-        {
-            args.Args.ModifySpeed(component.WalkModifier, component.SprintModifier);
-        }
-    }
-
     private void OnExamineRequires(Entity<GunRequiresWieldComponent> entity, ref ExaminedEvent args)
     {
         if (entity.Comp.WieldRequiresExamineMessage != null)
             args.PushText(Loc.GetString(entity.Comp.WieldRequiresExamineMessage));
-    }
-
-    private void OnExamine(EntityUid uid, GunWieldBonusComponent component, ref ExaminedEvent args)
-    {
-        if (HasComp<GunRequiresWieldComponent>(uid))
-            return;
-
-        if (component.WieldBonusExamineMessage != null)
-            args.PushText(Loc.GetString(component.WieldBonusExamineMessage));
     }
 
     private void AddToggleWieldVerb(EntityUid uid, WieldableComponent component, GetVerbsEvent<InteractionVerb> args)
@@ -206,41 +137,6 @@ public abstract partial class SharedWieldableSystem : EntitySystem
             args.ApplyDelay = false;
     }
 
-    private void OnBlockerEquipped(Entity<WieldingBlockerComponent> ent, ref GotEquippedEvent args)
-    {
-        if (ent.Comp.BlockEquipped)
-            UnwieldAll(args.Equipee, force: true);
-    }
-
-    private void OnBlockerEquippedHand(Entity<WieldingBlockerComponent> ent, ref GotEquippedHandEvent args)
-    {
-        if (ent.Comp.BlockInHand)
-            UnwieldAll(args.User, force: true);
-    }
-
-    private void OnBlockerAttempt(Entity<WieldingBlockerComponent> ent, ref InventoryRelayedEvent<WieldAttemptEvent> args)
-    {
-        if (ent.Comp.BlockEquipped)
-        {
-            args.Args.Message = Loc.GetString("wieldable-component-blocked-wield", ("blocker", ent.Owner), ("item", args.Args.Wielded));
-            args.Args.Cancelled = true;
-        }
-    }
-
-    private void OnBlockerAttempt(Entity<WieldingBlockerComponent> ent, ref HeldRelayedEvent<WieldAttemptEvent> args)
-    {
-        if (ent.Comp.BlockInHand)
-        {
-            args.Args.Message = Loc.GetString("wieldable-component-blocked-wield", ("blocker", ent.Owner), ("item", args.Args.Wielded));
-            args.Args.Cancelled = true;
-        }
-    }
-
-    private void OnBlockerAttempt(Entity<WieldingBlockerComponent> ent, ref WieldAttemptEvent args)
-    {
-        args.Cancelled = true;
-    }
-
     public bool CanWield(EntityUid uid, WieldableComponent component, EntityUid user, bool quiet = false)
     {
         // Do they have enough hands free?
@@ -264,7 +160,8 @@ public abstract partial class SharedWieldableSystem : EntitySystem
             if (!quiet)
             {
                 var message = Loc.GetString("wieldable-component-not-enough-free-hands",
-                    ("number", component.FreeHandsRequired), ("item", uid));
+                    ("number", component.FreeHandsRequired),
+                    ("item", uid));
                 _popup.PopupEntity(message, user, user);
             }
             return false;
@@ -371,7 +268,6 @@ public abstract partial class SharedWieldableSystem : EntitySystem
     /// <summary>
     /// Makes an entity unwield all currently wielded items.
     /// </summary>
-    /// <param name="force">If this is true we will bypass UnwieldAttemptEvent.</param>
     public void UnwieldAll(Entity<HandsComponent?> wielder, bool force = false)
     {
         foreach (var held in _hands.EnumerateHeld(wielder))

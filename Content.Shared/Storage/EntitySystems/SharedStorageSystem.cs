@@ -8,6 +8,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
+using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Implants.Components;
@@ -142,6 +143,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
         SubscribeLocalEvent<StorageComponent, GetVerbsEvent<ActivationVerb>>(AddUiVerb);
         SubscribeLocalEvent<StorageComponent, ComponentGetState>(OnStorageGetState);
         SubscribeLocalEvent<StorageComponent, ComponentInit>(OnComponentInit, before: new[] { typeof(SharedContainerSystem) });
+        SubscribeLocalEvent<StorageComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<StorageComponent, GetVerbsEvent<UtilityVerb>>(AddTransferVerbs);
         SubscribeLocalEvent<StorageComponent, InteractUsingEvent>(OnInteractUsing, after: new[] { typeof(ItemSlotsSystem) });
         SubscribeLocalEvent<StorageComponent, ActivateInWorldEvent>(OnActivate);
@@ -283,6 +285,27 @@ public abstract partial class SharedStorageSystem : EntitySystem
 
         // Make sure the initial starting grid is okay.
         UpdateOccupied((uid, storageComp));
+    }
+
+    private void OnExamined(Entity<StorageComponent> ent, ref ExaminedEvent args)
+    {
+        if (MathHelper.CloseTo(ent.Comp.ItemPickupTimeMultiplier, 1))
+            return;
+
+        if (ent.Comp.ItemPickupTimeMultiplier > 1)
+        {
+            args.PushMarkup(Loc.GetString("es-storage-examine-pickup-speed",
+                ("name", Name(ent)),
+                ("val", false),
+                ("mul", MathF.Round(ent.Comp.ItemPickupTimeMultiplier, 1))));
+        }
+        else
+        {
+            args.PushMarkup(Loc.GetString("es-storage-examine-pickup-speed",
+                ("name", Name(ent)),
+                ("val", true),
+                ("mul", MathF.Round(1f / ent.Comp.ItemPickupTimeMultiplier, 1))));
+        }
     }
 
     /// <summary>
@@ -754,6 +777,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
                 BreakOnHandChange = false,
                 BreakOnMove = false,
                 DistanceThreshold = 1.5f,
+                FaceTarget = false,
             };
 
             if (_doAfterSystem.TryStartDoAfter(ev)

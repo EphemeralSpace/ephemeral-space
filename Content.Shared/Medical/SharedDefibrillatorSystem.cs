@@ -13,7 +13,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.PowerCell;
 using Content.Shared.Timing;
-using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 
@@ -196,11 +195,6 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
         if (_rotting.IsRotten(target))
         {
             _chat.TrySendInGameICMessage(ent.Owner, Loc.GetString("defibrillator-rotten"),
-                InGameICChatType.Speak, true);
-        }
-        else if (TryComp<UnrevivableComponent>(target, out var unrevivable))
-        {
-            _chat.TrySendInGameICMessage(ent.Owner, Loc.GetString(unrevivable.ReasonMessage),
                 InGameICChatType.Speak, true);
         }
         else
