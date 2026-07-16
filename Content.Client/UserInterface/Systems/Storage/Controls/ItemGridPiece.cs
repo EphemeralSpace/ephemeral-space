@@ -92,7 +92,9 @@ public sealed class ItemGridPiece : Control, IEntityControl
         base.Draw(handle);
 
         // really just an "oh shit" catch.
-        if (!_entityManager.EntityExists(Entity) || !_entityManager.TryGetComponent<ItemComponent>(Entity, out var itemComponent))
+        if (!_entityManager.EntityExists(Entity) ||
+            !_entityManager.TryGetComponent<ItemComponent>(Entity, out var itemComponent) ||
+            !_entityManager.TryGetComponent<SpriteComponent>(Entity, out var spriteComponent))
         {
             Dispose();
             return;
@@ -177,6 +179,9 @@ public sealed class ItemGridPiece : Control, IEntityControl
         }
         else
         {
+            var oldNoRot = spriteComponent.NoRotation;
+            spriteComponent.NoRotation = false;
+
             _entityManager.System<SpriteSystem>().ForceUpdate(Entity);
             handle.DrawEntity(Entity,
                 PixelPosition + iconPosition,
@@ -184,6 +189,8 @@ public sealed class ItemGridPiece : Control, IEntityControl
                 Angle.Zero,
                 eyeRotation: iconRotation,
                 overrideDirection: Direction.South);
+
+            spriteComponent.NoRotation = oldNoRot;
         }
     }
 
