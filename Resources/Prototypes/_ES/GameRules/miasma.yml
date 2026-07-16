@@ -1,0 +1,5 @@
+- type: entity
+  id: ESMiasmaGeneratorRule
+  parent: BaseGameRule
+  components:
+  - type: ESMiasmaGeneratorGameRule
