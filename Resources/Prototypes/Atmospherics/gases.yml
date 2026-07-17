@@ -75,12 +75,10 @@
   molarMass: 44
   gasOverlaySprite: /Textures/_ES/Effects/atmospherics.rsi
   gasOverlayState: miasma
-  # ES START
   gasMolesVisible: 0.75
   gasMolesVisibleMax: 3
-  # ES END
   color: 56941E
-  reagent: Ammonia
+  reagent: Miasma
   pricePerMole: 0.15
 
 - type: gas

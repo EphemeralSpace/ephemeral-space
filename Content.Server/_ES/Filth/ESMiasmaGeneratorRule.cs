@@ -49,7 +49,7 @@ public sealed partial class ESMiasmaGeneratorRule : GameRuleSystem<ESMiasmaGener
                         station,
                         out var coords,
                         checkPlayerLOS: false,
-                        minPlayerDistance: 5,
+                        minPlayerDistance: 2.5f,
                         pred: IsTileMiasma))
                     break;
 

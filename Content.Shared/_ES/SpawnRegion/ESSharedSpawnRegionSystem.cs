@@ -283,7 +283,7 @@ public abstract partial class ESSharedSpawnRegionSystem : EntitySystem
         var tileRef = _map.GetTileRef((grid, gridComp), gridIndices);
 
         _lookupSet.Clear();
-        _entityLookup.GetEntitiesInTile(tileRef, _lookupSet, LookupFlags.Dynamic | LookupFlags.Static);
+        _entityLookup.GetEntitiesInTile(tileRef, _lookupSet, LookupFlags.All);
         foreach (var lookupEnt in _lookupSet)
         {
             if (_bodyQuery.TryComp(lookupEnt, out var body) &&
@@ -296,10 +296,10 @@ public abstract partial class ESSharedSpawnRegionSystem : EntitySystem
         {
             _actors.Clear();
             var box = Box2.CenteredAround(worldPos, PlayerViewRadius * Vector2.One * 2);
-            _entityLookup.GetEntitiesIntersecting(mapId, box, _actors, LookupFlags.Dynamic | LookupFlags.Static);
+            _entityLookup.GetEntitiesIntersecting(mapId, box, _actors);
             foreach (var actor in _actors)
             {
-                if (_ghostQuery.HasComp(actor) || !_mobState.IsAlive(actor) || !_mobState.IsCritical(actor))
+                if (_ghostQuery.HasComp(actor) || _mobState.IsDead(actor))
                     continue;
 
                 if (_examine.InRangeUnOccluded(actor.Owner, coords))
@@ -313,7 +313,7 @@ public abstract partial class ESSharedSpawnRegionSystem : EntitySystem
             _entityLookup.GetEntitiesInRange(coords, minPlayerDistance, _actors);
             foreach (var actor in _actors)
             {
-                if (_ghostQuery.HasComp(actor) || !_mobState.IsAlive(actor) || !_mobState.IsCritical(actor))
+                if (_ghostQuery.HasComp(actor) || _mobState.IsDead(actor))
                     continue;
 
                 return false;
