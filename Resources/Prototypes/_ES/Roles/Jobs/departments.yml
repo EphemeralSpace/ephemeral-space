@@ -19,6 +19,7 @@
   - ESBartender
   - ESChef
   - ESJanitor
+  - ESRatman
 
 - type: department
   id: ESCommand

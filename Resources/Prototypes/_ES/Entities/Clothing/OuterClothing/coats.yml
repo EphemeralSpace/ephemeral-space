@@ -38,3 +38,15 @@
     sprite: Clothing/OuterClothing/Coats/detective_grey.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/detective_grey.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ESClothingOuterCoatRatman
+  name: ratty trenchcoat
+  suffix: ES
+  description: An overcoat that protects, and has protected, precisely nothing from the elements. Damn, it's cool.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/OuterClothing/Coats/ratman.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/OuterClothing/Coats/ratman.rsi

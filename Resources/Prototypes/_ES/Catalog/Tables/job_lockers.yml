@@ -92,6 +92,17 @@
     - id: RagItem
 
 - type: entityTable
+  id: LockerFillRatman
+  table:
+    all:
+    - tableId: ESMaintLoot
+      amount: 1, 3
+    - tableId: ESMaintLootValuable
+      amount: 2, 5
+    - tableId: ESMaintLootWorthless
+      amount: 2, 3
+
+- type: entityTable
   id: LockerFillJanitor
   table:
     all:

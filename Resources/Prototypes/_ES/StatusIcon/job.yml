@@ -5,3 +5,11 @@
     sprite: /Textures/_ES/Interface/Misc/ES_job_icons.rsi
     state: coroner
   jobName: ESjob-name-coroner
+
+- type: jobIcon
+  parent: JobIcon
+  id: ESJobIconRatman
+  icon:
+    sprite: /Textures/_ES/Interface/Misc/ES_job_icons.rsi
+    state: ratman
+  jobName: ESjob-name-ratman

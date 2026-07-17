@@ -45,6 +45,17 @@
   - type: ESPersonalLocker
     job: ESJanitor
 
+# Ratman
+- type: entity
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
+  id: LockerRatman
+  name: ratty locker
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/ratman.rsi
+  - type: ESPersonalLocker
+    job: ESRatman
+
 # Paramed
 - type: entity
   parent: [ LockerBaseSecurePersonal, LockerBase ]

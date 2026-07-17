@@ -1,0 +1,37 @@
+- type: job
+  id: ESRatman
+  name: ESjob-name-ratman
+  description: ESjob-description-ratman
+  playTimeTracker: ESJobRatman
+  startingGear: ESRatmanGear
+  icon: "ESJobIconRatman"
+  access:
+  - Maintenance
+  - Ratman
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: NightVision
+      netsync: false
+      enabled: true
+      prioritized: false
+      lightingColor: '#c5afa21b'
+      overlayColor: '#FFFFFF00'
+
+- type: startingGear
+  id: ESRatmanGear
+  equipment:
+    shoes: ClothingShoesColorBrown
+    id: RatmanPDA
+    ears: ClothingHeadsetGrey
+    jumpsuit: ClothingUniformJumpsuitRatman
+    outerClothing: ClothingOuterCoatRatman
+    back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESRatman
+  job: ESRatman
+  hidden: false

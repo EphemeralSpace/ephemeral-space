@@ -20,3 +20,13 @@
   - type: GuideHelp
     guides:
     - OffbrandPhysician
+
+- type: entity
+  parent: PassengerPDA
+  id: RatmanPDA
+  name: ratty PDA
+  suffix: ES
+  description: At least one thing still functions.
+  components:
+  - type: Pda
+    id: RatmanCard
