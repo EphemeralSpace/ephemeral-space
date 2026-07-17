@@ -116,7 +116,7 @@ public sealed partial class ESMiasmaSystem : EntitySystem
             if (!IsRotting(uid))
                 continue;
 
-            var mixture = _atmosphere.GetTileMixture((uid, xform));
+            var mixture = _atmosphere.GetTileMixture((uid, xform), excite: true);
             mixture?.AdjustMoles(Gas.Miasma, (float) (comp.MolPerSecond * comp.UpdateRate.TotalSeconds));
         }
     }
