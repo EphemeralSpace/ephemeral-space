@@ -2,4 +2,12 @@
   id: ESMiasmaGeneratorRule
   parent: BaseGameRule
   components:
-  - type: ESMiasmaGeneratorGameRule
+  - type: ESMiasmaGeneratorRule
+    pestTable:
+      group:
+      - id: MobCockroach
+        weight: 4
+      - group:
+        - id: MobMouse
+        - id: MobMouse1
+        - id: MobMouse2
