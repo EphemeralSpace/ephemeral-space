@@ -3,11 +3,15 @@
   parent: BaseGameRule
   components:
   - type: ESMiasmaGeneratorRule
-    pestTable:
+    spawnTable:
       group:
-      - id: MobCockroach
-        weight: 4
+      - id: PlushieLizard # TODO placeholder for disease clouds
+        weight: 97.5
       - group:
-        - id: MobMouse
-        - id: MobMouse1
-        - id: MobMouse2
+        - id: MobCockroach
+          weight: 4
+        - group:
+          - id: MobMouse
+          - id: MobMouse1
+          - id: MobMouse2
+        weight: 2.5

@@ -49,10 +49,11 @@ public sealed partial class ESMiasmaGeneratorRule : GameRuleSystem<ESMiasmaGener
                         station,
                         out var coords,
                         checkPlayerLOS: false,
+                        minPlayerDistance: 5,
                         pred: IsTileMiasma))
                     break;
 
-                foreach (var spawn in _entityTable.GetSpawns(component.PestTable))
+                foreach (var spawn in _entityTable.GetSpawns(component.SpawnTable))
                 {
                     SpawnAtPosition(spawn, coords.Value);
                 }

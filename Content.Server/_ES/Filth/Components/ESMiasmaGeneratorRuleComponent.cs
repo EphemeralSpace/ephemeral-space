@@ -6,8 +6,10 @@ namespace Content.Server._ES.Filth.Components;
 [RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class ESMiasmaGeneratorRuleComponent : Component
 {
+    public const float MinEventMols = 1.5f;
+
     [DataField]
-    public EntityTableSelector PestTable = new NoneSelector();
+    public EntityTableSelector SpawnTable = new NoneSelector();
 
     [DataField]
     public TimeSpan UpdateRate = TimeSpan.FromSeconds(10f);
@@ -17,7 +19,4 @@ public sealed partial class ESMiasmaGeneratorRuleComponent : Component
 
     [DataField]
     public int TilesPerEvent = 128;
-
-    [DataField]
-    public const float MinEventMols = 1.5f;
 }
