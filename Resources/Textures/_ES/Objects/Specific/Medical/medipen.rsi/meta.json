@@ -50,6 +50,12 @@
             "name": "rad_used"
         },
         {
+            "name": "stimulant"
+        },
+        {
+            "name": "stimulant_used"
+        },
+        {
             "name": "tox"
         },
         {

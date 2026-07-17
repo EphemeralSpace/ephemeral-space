@@ -268,7 +268,7 @@
   id: ESMaintLootRare
   table:
     group:
-    - tableId: ESMaintsTraitorLoot
+    - tableId: MaintsTraitorLoot
       weight: 8
     - id: ESWeaponKnife
       weight: 2

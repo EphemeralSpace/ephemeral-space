@@ -5,7 +5,7 @@
     Subverters have a unique game plan compared to the other traitors masks. Instead of focusing on direct sabotage, their kit is focused around converting another player in to the traitor team.
 
 ## Tools of the Trade
-    Their cache contains two pistols, two spare 9mm magazines, a subverter chip, and a kockout medipen.
+    Their cache contains two guns, spare ammo for each, a subverter chip, and a kockout medipen.
 
     <Box>
         <GuideEntityEmbed Entity="ESWeaponPistol9mm"/>
@@ -14,8 +14,8 @@
         <GuideEntityEmbed Entity="ESSleepyPen"/>
     </Box>
 
-### 9mm Handgun(s)
-    Two run-of-the-mill pistols. You should probably give one of these (and your spare magazine) to whoever you convert, since they won't start with a cache.
+### Firearms
+    Two run-of-the-mill firearms. You can get either a pistol, revolver, or double-barrel shotgun. You should probably give one of these (and your spare ammo) to whoever you convert, since they won't start with a cache.
 
 ### Subverter Chip
     The subverter chip is an item that, when successfully used on any non-traitor that's unconcious or in critical condition, will convert them in to the traitor organization as a [textlink="Recruit" link="Recruit"], along with healing them. Using the item takes a few seconds and typically makes it fairly obvious to others around you what you're doing, so take caution.
