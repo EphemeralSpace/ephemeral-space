@@ -5,8 +5,8 @@
   - type: ESMiasmaGeneratorRule
     spawnTable:
       group:
-      - id: PlushieLizard # TODO placeholder for disease clouds
-        weight: 97.5
+      - id: ESMobMiasmaCloud
+        weight: 95
       - group:
         - id: MobCockroach
           weight: 4
@@ -14,4 +14,4 @@
           - id: MobMouse
           - id: MobMouse1
           - id: MobMouse2
-        weight: 2.5
+        weight: 5

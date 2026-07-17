@@ -1,0 +1,39 @@
+- type: entity
+  parent:
+  - FlyingMobBase
+  - BaseMob
+  - ESBaseMob
+  - Incorporeal
+  id: ESMobMiasmaCloud
+  name: miasma cloud
+  description: A thick cloud of miasma. Doesn't look safe to touch.
+  components:
+  - type: Sprite
+    sprite: _ES/Effects/miasma.rsi
+    layers:
+    - state: cloud
+  - type: HTN
+    rootTask:
+      task: ESMiasmaCompound
+    blackboard:
+      MovementRange: !type:Single
+        0.2
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+  - type: MovementSpeedModifier
+    baseAcceleration: 3.5
+    baseSprintSpeed : 5
+  - type: MovementAlwaysTouching
+  - type: ESTimedDespawn
+    lifetime: 15.0
+  - type: ESTimedDespawnSpriteFade
+    fadeTime: 1.0
+  - type: ESTimedDespawnLightFade
+    fadeTime: 0.7
+  - type: PointLight
+    energy: 2
+    radius: 1.5
+    falloff: 40
+    color: "#eec7ff"
+    castShadows: false

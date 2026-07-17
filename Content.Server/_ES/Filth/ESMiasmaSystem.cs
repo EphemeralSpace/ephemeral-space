@@ -50,12 +50,12 @@ public sealed partial class ESMiasmaSystem : EntitySystem
     /// <summary>
     /// Checks if an entity is rotting and putting out miasma.
     /// </summary>
-    public bool IsRotting(EntityUid uid)
+    public bool IsRotting(Entity<ESMiasmaSourceComponent> ent)
     {
-        if (_mobStateQuery.TryGetComponent(uid, out var mobState) && !_mobState.IsDead(uid, mobState))
+        if (ent.Comp.RequireDead && _mobStateQuery.TryGetComponent(ent, out var mobState) && !_mobState.IsDead(ent, mobState))
             return false;
 
-        if (_container.TryGetOuterContainer(uid, Transform(uid), out var container) &&
+        if (_container.TryGetOuterContainer(ent, Transform(ent), out var container) &&
             _antiRottingContainerQuery.HasComp(container.Owner))
         {
             return false;
@@ -113,7 +113,7 @@ public sealed partial class ESMiasmaSystem : EntitySystem
             comp.NextUpdate += comp.UpdateRate;
 
             // Don't emit miasma if this mob isn't dead.
-            if (!IsRotting(uid))
+            if (!IsRotting((uid, comp)))
                 continue;
 
             var mixture = _atmosphere.GetTileMixture((uid, xform), excite: true);

@@ -13,4 +13,7 @@ public sealed partial class ESMiasmaSourceComponent : Component
 
     [DataField]
     public TimeSpan UpdateRate = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public bool RequireDead = true;
 }
