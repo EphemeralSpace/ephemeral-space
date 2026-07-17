@@ -109,6 +109,20 @@
       - state: green
       - state: janitor
 
+- type: entity
+  id: ESSpawnPointRatman
+  parent: SpawnPointJobBase
+  name: ratman
+  suffix: ES
+  components:
+  - type: SpawnPoint
+    job_id: ESRatman
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _ES/Markers/job.rsi
+      state: ratman
+
 # Command
 
 - type: entity
