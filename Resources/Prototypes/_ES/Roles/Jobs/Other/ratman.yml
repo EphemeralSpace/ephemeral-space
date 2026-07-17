@@ -5,6 +5,7 @@
   playTimeTracker: ESJobRatman
   startingGear: ESRatmanGear
   icon: "ESJobIconRatman"
+  spawnsOnArrivals: false
   access:
   - Maintenance
   - Ratman

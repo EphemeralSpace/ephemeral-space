@@ -141,6 +141,10 @@ public sealed partial class ESArrivalsSystem : EntitySystem
         if (!TryComp<ESStationArrivalsComponent>(ev.Station, out var arrivals) || arrivals.ShuttleUid is not { } grid)
             return;
 
+        // is this a job that actually spawns on arrivals?
+        if (!ProtoMan.TryIndex(ev.Job, out var job) || !job.SpawnsOnArrivals)
+            return;
+
         var points = EntityQueryEnumerator<ContainerSpawnPointComponent, TransformComponent>();
         var possiblePositions = new List<(EntityUid, BaseContainer)>();
         while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
