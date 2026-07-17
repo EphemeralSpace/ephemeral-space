@@ -18,5 +18,5 @@ public sealed partial class ESMiasmaGeneratorRuleComponent : Component
     public TimeSpan NextUpdate;
 
     [DataField]
-    public int TilesPerEvent = 128;
+    public int TilesPerEvent = 100;
 }

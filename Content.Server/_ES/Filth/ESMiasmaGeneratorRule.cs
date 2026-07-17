@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server._ES.Filth.Components;
 using Content.Server._ES.SpawnRegion;
 using Content.Server.Atmos.EntitySystems;
@@ -41,15 +40,14 @@ public sealed partial class ESMiasmaGeneratorRule : GameRuleSystem<ESMiasmaGener
 
         foreach (var station in _station.GetStations())
         {
-            var count = GetMiasmaEventCount((uid, component), station);
+            var count = GetMiasmaEventCount((uid, component), station, out var validCoords);
 
             for (var i = 0; i < count; ++i)
             {
                 if (!_spawnRegion.TryGetRandomCoords(
-                        station,
+                        validCoords,
                         out var coords,
-                        checkPlayerLOS: false,
-                        pred: IsTileMiasma))
+                        checkPlayerLOS: false))
                     break;
 
                 foreach (var spawn in _entityTable.GetSpawns(component.SpawnTable))
@@ -60,37 +58,25 @@ public sealed partial class ESMiasmaGeneratorRule : GameRuleSystem<ESMiasmaGener
         }
     }
 
-    private bool IsTileMiasma(EntityCoordinates coords)
-    {
-        if (!TryComp<MapGridComponent>(coords.EntityId, out var map))
-            return false;
-
-        var indices = _map.LocalToTile(coords.EntityId, map, coords);
-        if (_atmosphere.GetTileMixture(coords.EntityId, null, indices) is not { } mixture)
-            return false;
-
-        return mixture.GetMoles(Gas.Miasma) >= ESMiasmaGeneratorRuleComponent.MinEventMols;
-    }
-
-    private int GetMiasmaEventCount(Entity<ESMiasmaGeneratorRuleComponent> ent, EntityUid station)
+    private int GetMiasmaEventCount(Entity<ESMiasmaGeneratorRuleComponent> ent, EntityUid station, out HashSet<EntityCoordinates> coords)
     {
         var count = 0;
+        coords = new();
 
         foreach (var grid in _station.GetGrids(station))
         {
             if (!TryComp<MapGridComponent>(grid, out var gridComp))
                 continue;
 
-            if (_atmosphere.GetTileMixtures(grid, null, _map.GetAllTiles(grid, gridComp).Select(t => t.GridIndices).ToList()) is not { } mixtures)
-                continue;
-
-            foreach (var mixture in mixtures)
+            foreach (var tile in _map.GetAllTiles(grid, gridComp))
             {
-                if (mixture == null)
+                if (_atmosphere.GetTileMixture(tile.GridUid, null, tile.GridIndices) is not { } mixture)
                     continue;
 
-                if (mixture.GetMoles(Gas.Miasma) >= ESMiasmaGeneratorRuleComponent.MinEventMols)
-                    count++;
+                if (mixture.GetMoles(Gas.Miasma) < ESMiasmaGeneratorRuleComponent.MinEventMols)
+                    continue;
+                count++;
+                coords.Add(_map.GridTileToLocal(grid, gridComp, tile.GridIndices));
             }
         }
 
