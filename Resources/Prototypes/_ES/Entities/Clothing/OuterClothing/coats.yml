@@ -41,7 +41,7 @@
 
 - type: entity
   parent: ClothingOuterBase
-  id: ESClothingOuterCoatRatman
+  id: ClothingOuterCoatRatman
   name: ratty trenchcoat
   suffix: ES
   description: An overcoat that protects, and has protected, precisely nothing from the elements. Damn, it's cool.

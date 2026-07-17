@@ -24,7 +24,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ESClothingUniformJumpsuitRatman
+  id: ClothingUniformJumpsuitRatman
   name: ratty jumpsuit
   suffix: ES
   description: A tattered jumpsuit falling to pieces before your very eyes. How did it sustain this damage in a few months?

@@ -22,7 +22,7 @@
   parent: IDCardStandard
   id: RatmanCard
   name: ratty ID card
-  description: The original was lost
+  description: The original was lost through a crack in the floorboards. At least theres.. a backup.
   suffix: ES
   components:
   - type: Sprite
