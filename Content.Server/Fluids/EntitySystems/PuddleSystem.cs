@@ -1,10 +1,14 @@
+using System.Linq;
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Fluids.Components;
 using Content.Server.Spreader;
+using Content.Shared.Atmos;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
 using Content.Shared.Effects;
 using Content.Shared.FixedPoint;
@@ -17,6 +21,7 @@ using Content.Shared.Slippery;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -36,6 +41,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
 
     private EntityQuery<PuddleComponent> _puddleQuery;
 
@@ -265,6 +271,29 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         // Take 15% of the puddle solution
         var splitSol = _solutionContainerSystem.SplitSolution(entity.Comp.Solution.Value, solution.Volume * 0.15f);
         Reactive.DoEntityReaction(args.Slipped, splitSol, ReactionMethod.Touch);
+    }
+
+    protected override void TickGas()
+    {
+        foreach (var (uid, puddle, soln, xform) in EntityQueryEnumerator<PuddleComponent, SolutionContainerManagerComponent, TransformComponent>())
+        {
+            if (!_solutionContainerSystem.ResolveSolution((uid, soln), puddle.SolutionName, ref puddle.Solution, out var puddleSolution))
+                continue;
+
+            foreach (var reagent in puddleSolution.Contents)
+            {
+                var reagentPrototype = _prototypeManager.Index<ReagentPrototype>(reagent.Reagent.Prototype);
+
+                if (reagentPrototype.PuddleGas.Sum() > 0 &&
+                    _atmosphere.GetTileMixture((uid, xform), true) is { } mixture)
+                {
+                    for (var i = 0; i < Atmospherics.TotalNumberOfGases; ++i)
+                    {
+                        mixture?.AdjustMoles(i, reagentPrototype.PuddleGas[i] * reagent.Quantity.Float());
+                    }
+                }
+            }
+        }
     }
 
     /// <summary>
