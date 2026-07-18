@@ -1103,3 +1103,9 @@ Entries:
       message: Resprited puddles and added unique sprites for certain liquids.
   id: 121
   time: '2026-07-18T19:50:18.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Remove
+      message: temporarily removed vitals monitors
+  id: 122
+  time: '2026-07-18T21:30:05.0000000+00:00'
