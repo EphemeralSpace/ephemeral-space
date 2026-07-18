@@ -237,6 +237,9 @@ public sealed partial class DoorComponent : Component
     /// </summary>
     public object EmaggingAnimation = default!;
 
+    [DataField]
+    public bool HasDenyingAnimation = true;
+
     #endregion Graphics
 
     #region Serialization
@@ -286,23 +289,32 @@ public sealed partial class DoorComponent : Component
     /// <summary>
     /// Whether the door blocks light.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public bool Occludes = true;
 
     /// <summary>
     /// Whether the door will open when it is bumped into.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public bool BumpOpen = true;
 
     /// <summary>
     /// Whether the door will open when it is activated or clicked.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public bool ClickOpen = true;
+
+    /// <summary>
+    ///     If true, closing the door will be allowed even with no access.
+    /// </summary>
+    [DataField]
+    public bool AllowCloseWithNoAccess = false;
+
+    /// <summary>
+    ///     If true, this door will be emaggable even without having to be an airlock.
+    /// </summary>
+    [DataField]
+    public bool AlwaysEmaggable = false;
 
     [DataField(customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
     public int OpenDrawDepth = (int) DrawDepth.DrawDepth.Doors;

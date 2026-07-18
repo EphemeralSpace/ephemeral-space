@@ -24,6 +24,18 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRatman
+  name: ratty jumpsuit
+  suffix: ES
+  description: A tattered jumpsuit falling to pieces before your very eyes. How did it sustain this damage in a few mere weeks?
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/ratman.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/ratman.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ESClothingUniformJumpsuitParamedic
   name: paramedic jumpsuit
   suffix: ES

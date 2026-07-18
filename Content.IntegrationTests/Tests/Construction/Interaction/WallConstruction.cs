@@ -26,8 +26,5 @@ public sealed class WallConstruction : InteractionTest
         await StartDeconstruction(WallSolid);
         await InteractUsing(Weld);
         AssertPrototype(Girder);
-        await Interact(Wrench, Screw);
-        AssertDeleted();
-        await AssertEntityLookup((Steel, 4));
     }
 }

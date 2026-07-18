@@ -39,6 +39,9 @@
   id: ESJobParamedic
 
 - type: playTimeTracker
+  id: ESJobRatman
+
+- type: playTimeTracker
   id: ESJobReporter
 
 - type: playTimeTracker

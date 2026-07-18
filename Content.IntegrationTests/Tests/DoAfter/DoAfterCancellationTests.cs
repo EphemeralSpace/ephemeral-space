@@ -34,14 +34,6 @@ public sealed class DoAfterCancellationTests : InteractionTest
         AssertPrototype(WallConstruction.Girder);
         await InteractUsing(Wrench);
         AssertAnchored(false);
-
-        // Repeat for screwdriver interaction.
-        AssertExists();
-        await InteractUsing(Screw, awaitDoAfters: false);
-        await CancelDoAfters();
-        AssertExists();
-        await InteractUsing(Screw);
-        AssertDeleted();
     }
 
     [Test]

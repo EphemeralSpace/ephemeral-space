@@ -113,7 +113,7 @@ public abstract partial class ESSharedSpawnRegionSystem : EntitySystem
         outCoords = null;
 
         _markers.Clear();
-        var query = EntityQueryEnumerator<ESSpawnRegionMarkerComponent>();
+        var query = AllEntityQuery<ESSpawnRegionMarkerComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
             _markers.Add((uid, comp));

@@ -68,8 +68,4 @@
   - type: EmitSoundOnLand
     sound:
       collection: FootstepSnake
-  - type: TriggerOnMeleeHit
-    targetIsUser: true
-  - type: DeleteOnTrigger
-  - type: ESChangeSecretIdentityOnTrigger
-    secretIdentity: Leapleech
+  - type: ESLeapleechWorm

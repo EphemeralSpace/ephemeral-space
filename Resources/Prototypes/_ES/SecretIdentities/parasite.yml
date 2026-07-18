@@ -31,6 +31,13 @@
   objectives: !type:NoneSelector
   prohibitedJobs: [] # not relevant since these are not assigned directly, but important for guidebook display
 
+- type: startingGear
+  id: ESParasiteSwarmGear
+  equipment:
+    head: ESClothingHeadParasiteSeed
+  inhand:
+  - ESWeaponParasiteWorm
+
 - type: esSecretIdentity
   parent: ESBaseParasite
   id: Leapleech

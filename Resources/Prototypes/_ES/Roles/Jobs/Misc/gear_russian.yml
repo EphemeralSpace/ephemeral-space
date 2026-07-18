@@ -1,9 +1,0 @@
-- type: startingGear
-  id: ESPassengerRussianGear
-  equipment:
-    id: PassengerPDA
-    ears: ClothingHeadsetGrey
-    head: ESClothingHeadUshanka
-    jumpsuit: ESClothingUniformJumpsuitRussianColorGrey
-    shoes: ClothingShoesColorBrown
-    back: ClothingBackpack

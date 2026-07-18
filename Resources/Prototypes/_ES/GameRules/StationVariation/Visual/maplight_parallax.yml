@@ -116,7 +116,7 @@
       - all:
         - id: ESVariationMaplightDarkVoidSpace
         - id: ESVariationParallaxEmptiness
-        weight: 1
+        weight: 3
       - all:
         - id: ESVariationMaplightDefault
         - id: ESVariationParallaxDefault
@@ -141,7 +141,7 @@
       # maplights
       - group:
         - id: ESVariationMaplightDefault
-          weight: 7
+          weight: 5
         - id: ESVariationMaplightBrightSpace
           weight: 2
         - id: ESVariationMaplightDarkVoidSpace
@@ -155,14 +155,15 @@
       # parallaxes
       - group:
         - id: ESVariationParallaxDefault
-          weight: 9
+          weight: 7
         - id: ESVariationParallaxNoStars
           weight: 3
         - id: ESVariationParallaxEmptiness
+          weight: 3
         - group:
           - id: ESVariationParallaxBlue
           - id: ESVariationParallaxRed
           - id: ESVariationParallaxYellow
           - id: ESVariationParallaxPurple
-          weight: 2
+          weight: 4
       weight: 1

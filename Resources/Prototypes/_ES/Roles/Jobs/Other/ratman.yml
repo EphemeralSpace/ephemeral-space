@@ -1,0 +1,49 @@
+- type: job
+  id: ESRatman
+  name: ESjob-name-ratman
+  description: ESjob-description-ratman
+  playTimeTracker: ESJobRatman
+  startingGear: ESRatmanGear
+  icon: "ESJobIconRatman"
+  spawnsOnArrivals: false
+  overrideConsoleVisibility: false
+  tips:
+  - RatmanPrepTime
+  - RatmanNightvision
+  access:
+  - Maintenance
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: NightVision
+      enabled: true
+      prioritized: false
+      lightingColor: '#c5afa209'
+      overlayColor: '#FFFFFF00'
+    - type: Access
+      tags:
+      - Ratman # inherent ratman access
+    - type: AddStatusEffectOnTrigger
+      keysIn: [ ratman ]
+      effectProto: ESStatusEffectHangoverSleep
+      duration: 20s
+    - type: TriggerOnSpawn
+      keyOut: ratman
+
+- type: startingGear
+  id: ESRatmanGear
+  equipment:
+    shoes: ClothingShoesColorBrown
+    id: RatmanPDA
+    ears: ClothingHeadsetGrey
+    jumpsuit: ClothingUniformJumpsuitRatman
+    outerClothing: ClothingOuterCoatRatman
+    back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESRatman
+  job: ESRatman
+  hidden: false

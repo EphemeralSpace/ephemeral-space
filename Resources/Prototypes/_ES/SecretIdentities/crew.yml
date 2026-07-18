@@ -175,3 +175,9 @@
   - VIPFingerprintScanner
   weight: 0.2
   gear: ESSecretIdentityVIPGear
+
+- type: startingGear
+  id: ESSecretIdentityVIPGear
+  storage:
+    back:
+    - ESItemCardVIP

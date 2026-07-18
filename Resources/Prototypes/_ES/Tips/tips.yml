@@ -91,22 +91,6 @@
   text: You can electrify grilles by placing powered cables beneath them.
 
 - type: esTip
-  id: CaptainNukeDisk
-  text: As the Captain, always take the nuclear disk with you every shift. Consider giving it to someone you can trust.
-
-- type: esTip
-  id: CaptainComdom
-  text: As the Captain, you have the most power and control over the station, but this does not mean that being a horrible person won't result in mutiny.
-
-- type: esTip
-  id: DoctorOverdose
-  text: As a Doctor, try to be wary of overdosing your patients, especially when working with someone else.
-
-- type: esTip
-  id: DoctorCryoPods
-  text: As a Doctor, don't underestimate your cryo pods! They heal almost every type of damage, making them very useful when you are overloaded or need to heal someone in a pinch.
-
-- type: esTip
   id: AskForHelp
   text: Don't be afraid to ask for help from your peers in character!
 
@@ -203,10 +187,6 @@
   text: Some weapons, such as knives & shivs, have a faster attack speed.
 
 - type: esTip
-  id: ParamedicJawsOfLife
-  text: The Paramedic's jaws of life can be used to open powered doors.
-
-- type: esTip
   id: WeldingEyeProtection
   text: Welding without proper eye protection can cause eye damage, which must be cured with oculine.
 
@@ -239,14 +219,6 @@
   text: Though using an EMAG is a giveaway if someone sees you do it, the effect of using an EMAG on a door is indistinguishable from natural airlock bolt degradation, and can be passed off as such.
 
 - type: esTip
-  id: TraitorNukeTerminalPower
-  text: As a Traitor, don't forget that the nuclear authentication terminals require power! Things can quickly go from good to unwinnable if you aren't in a situation that allows you to easily retrieve portable generators to power them.
-
-- type: esTip
-  id: TraitorSabotagePower
-  text: As a Traitor, your ability to sabotage works on machines without power. This can be used to great effect during a power outage.
-
-- type: esTip
   id: FiresuitProtection
   text: Don't underestimate fire suits! They make you near-immune to the effects of fires, including all but the highest amount of fire stacks.
 
@@ -275,10 +247,6 @@
   text: Weapons with low damage-per-bullet, like the captain's antique energy gun or buckshot shells, are not very effective against armored targets.
 
 - type: esTip
-  id: CaptainEnergyGun
-  text: The captain's antique energy gun isn't the strongest weapon around, but its auto recharge makes it great at passive attrition. If someone drops it mid-combat, it's usually a good idea to pick it up and run!
-
-- type: esTip
   id: DuffelBags
   text: Duffel bags are useful for carrying around large items like longarms more easily.
 
@@ -305,10 +273,6 @@
 - type: esTip
   id: SlashingVsStructures
   text: Despite their power against other players, slashing weapons don't tend to be very good at breaking structures - especially those made of glass.
-
-- type: esTip
-  id: JanitorHemophage
-  text: As a Janitor, you are the main line of defense against a Hemophage. If blood starts pooling up in large enough quantities, it could infect a significant portion of the station at once!
 
 - type: esTip
   id: MasqueradeDeduction

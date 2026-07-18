@@ -7,26 +7,19 @@
   - ESQuartermaster
 
 - type: department
-  id: ESService
-  name: department-Service
-  description: department-Service-description
-  color: "#639137"
-  weight: -5
-  roles:
-  - ESBartender
-  - ESChef
-  - ESJanitor
-
-- type: department
-  id: ESCivilian
-  name: department-Civilian
-  description: department-Civilian-description
+  id: ESOther
+  name: department-Other
+  description: department-Other-description
   color: "#6e6e6e"
   weight: -10
   roles:
   - ESClown
   - ESAssistant
   - ESReporter
+  - ESBartender
+  - ESChef
+  - ESJanitor
+  - ESRatman
 
 - type: department
   id: ESCommand

@@ -615,6 +615,14 @@
       proper: true
       gender: male
 
+- type: startingGear
+  id: MobMonkeyGear
+  equipment:
+    head: ClothingHeadHatTophat
+    ears: ClothingHeadsetService
+    jumpsuit: ClothingUniformJumpsuitJacketMonkey
+    id: PunPunIDCard
+
 - type: entity
   name: Polly the parrot
   parent: MobParrotBase
@@ -632,3 +640,7 @@
   - type: Loadout
     prototypes: [ MobPollyGear ]
 
+- type: startingGear
+  id: MobPollyGear
+  equipment:
+    ears: ClothingHeadsetEngineering

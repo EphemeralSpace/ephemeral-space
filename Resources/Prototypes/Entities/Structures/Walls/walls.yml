@@ -101,15 +101,8 @@
     threshold: 200
     sound:
       collection: MetalSlam
-  - type: Repairable
-    fuelCost: 15
-    doAfterDelay: 5
-  - type: ESBreakableWall
-  - type: Appearance
-  - type: ESBrokenVisuals
-    brokenRSI: _ES/Structures/Walls/destroyed.rsi
-    baseDrawDepth: Walls
-    brokenDrawDepth: Mobs
+  - type: ESChangeConstructionOnBreak
+    node: girder
 
 - type: entity
   parent: BaseWall
@@ -581,8 +574,6 @@
     state: full
   - type: ESBreakable
     threshold: 400
-  - type: ESBrokenVisuals
-    baseRSI: _ES/Structures/Walls/reinforced.rsi
   - type: Construction
     graph: Girder
     node: reinforcedWall
@@ -948,8 +939,6 @@
     node: wall
   - type: Icon
     sprite: _ES/Structures/Walls/solid.rsi
-  - type: ESBrokenVisuals
-    baseRSI: _ES/Structures/Walls/solid.rsi
   - type: IconSmooth
     key: walls
     base: solid

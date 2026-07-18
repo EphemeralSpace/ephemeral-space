@@ -23,8 +23,6 @@ public sealed partial class ThrowingSystem : EntitySystem
     public const float ThrowAngularImpulse = 5f;
 
     // ES START
-    public const float ESThrowSpinStep = 4f;
-
     public const float ESThrowSpeedDefault = 8.5f;
     // ES END
 
@@ -204,29 +202,16 @@ public sealed partial class ThrowingSystem : EntitySystem
 
         ThrowingAngleComponent? throwingAngle = null;
 
-        // Give it a l'il spin.
+        // rotate thrown item to the correct angle
+        // if the sprite is norot, this won't visually do anything
+        // so for items like spears, they should be `noRot: false`
         if (doSpin)
         {
-            if (physics.InvI > 0f && (!TryComp(uid, out throwingAngle) || throwingAngle.AngularVelocity))
-            {
-                // ES START
-                // We step the amount of 'full spins' according to distance
-                // less than 4m we dont want to spin at all, then 1 more full spin each 4 more
-                // this is so we can normalize the rotation to 0 at the end of the throw without it looking weird
-                // (we want to avoid arbitrarily rotated items where possible for readability reasons)
-                var spins = MathF.Floor(direction.Length() / ESThrowSpinStep);
-                if (spins > 0)
-                    _physics.ApplyAngularImpulse(uid, spins * MathF.Tau / (flyTime * physics.InvI), body: physics);
-                // ES END
-            }
-            else
-            {
-                Resolve(uid, ref throwingAngle, false);
-                var gridRot = _transform.GetWorldRotation(transform.ParentUid);
-                var angle = direction.ToWorldAngle() - gridRot;
-                var offset = throwingAngle?.Angle ?? Angle.Zero;
-                _transform.SetLocalRotation(uid, angle + offset);
-            }
+            Resolve(uid, ref throwingAngle, false);
+            var gridRot = _transform.GetWorldRotation(transform.ParentUid);
+            var angle = direction.ToWorldAngle() - gridRot;
+            var offset = throwingAngle?.Angle ?? Angle.Zero;
+            _transform.SetLocalRotation(uid, angle + offset);
         }
 
         if (user != null)

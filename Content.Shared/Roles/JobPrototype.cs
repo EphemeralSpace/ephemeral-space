@@ -127,6 +127,12 @@ namespace Content.Shared.Roles
         [DataField]
         public ESNameConfig NameConfig = ESNameConfig.Default;
 
+        /// <summary>
+        ///     If false, arrivals will not attempt to spawn anyone with this job.
+        /// </summary>
+        [DataField]
+        public bool SpawnsOnArrivals = true;
+
         [DataField]
         public ProtoId<JobIconPrototype> Icon { get; private set; } = "JobIconUnknown";
 

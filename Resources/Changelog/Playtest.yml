@@ -982,3 +982,104 @@ Entries:
       message: You now face entities while performing doafters on them.
   id: 109
   time: '2026-07-11T22:30:58.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Walls once again become girders while broken.
+    - type: Add
+      message: >-
+        Girders cannot be deconstructed and now become broken girders when
+        destroyed.
+    - type: Tweak
+      message: Secret door kits now must be used on girders rather than walls.
+  id: 110
+  time: '2026-07-13T17:55:45.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: Fixed buckling/melee showing interaction particles
+    - type: Tweak
+      message: Increased nuke cinematic end time a bit
+    - type: Fix
+      message: Guidebook now defaults to the proper new player page whoops
+  id: 111
+  time: '2026-07-14T19:51:55.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        A very very very very very scary flipped mirrored reality may enter this
+        world with a 10% chance.
+    - type: Tweak
+      message: Camera rotation binds no longer rotate the camera
+  id: 112
+  time: '2026-07-15T21:33:20.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Doafters now have a smooth fadein and fadeout anim
+  id: 113
+  time: '2026-07-15T23:36:34.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Stagehand vote container will now be invisible if there are no active
+        votes
+  id: 114
+  time: '2026-07-16T14:26:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        A base level of reverb has been applied to positional sounds, will be
+        more dynamic based on room size in the future
+  id: 115
+  time: '2026-07-16T16:25:55.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: >-
+        The marauder secret identity has been reworked. They now start with an
+        energy sword, stimulant medipens, and armor.
+    - type: Tweak
+      message: The syndicate bomb is no longer defusable.
+    - type: Tweak
+      message: >-
+        Subverters can have a chance for their pistol to be replaced with a
+        revolver or double-barrel shotgun.
+    - type: Tweak
+      message: Subverter and Demolitionist are now much more common.
+    - type: Tweak
+      message: >-
+        Machines can no longer repeatedly be sabotaged after the objective has
+        been completed.
+  id: 116
+  time: '2026-07-18T05:33:21.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Removed useless viewport width slider.
+  id: 117
+  time: '2026-07-18T13:37:18.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Joining into a round as a stagehand now plays the curtain animation.
+  id: 118
+  time: '2026-07-18T13:37:21.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: 'A new job has arrived on the station: the Ratman.'
+    - type: Add
+      message: >-
+        The Ratman spawns on the station, has a random set of doors that lead
+        into areas around the station, a locker full of valuables, and a small
+        amount of nightvision.
+    - type: Add
+      message: Yes girls can be ratmen too. And nonbineys
+    - type: Tweak
+      message: Arrivals time is 30sec shorter
+  id: 119
+  time: '2026-07-18T14:12:20.0000000+00:00'

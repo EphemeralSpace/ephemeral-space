@@ -138,7 +138,7 @@ public sealed partial class AtmosphereSystem
 
         if (_hotspotSoundCooldown++ == 0 && HotspotSound != null)
         {
-            var coordinates = _mapSystem.ToCenterCoordinates(tile.GridIndex, tile.GridIndices);
+            var coordinates = _map.ToCenterCoordinates(tile.GridIndex, tile.GridIndices);
 
             // A few details on the audio parameters for fire.
             // The greater the fire state, the lesser the pitch variation.
