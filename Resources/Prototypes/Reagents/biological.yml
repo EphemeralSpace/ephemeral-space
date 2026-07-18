@@ -5,6 +5,7 @@
   desc: reagent-desc-blood
   flavor: metallic
   color: "#800000"
+  puddleSpriteSet: Blood
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/bloodglass.rsi
     state: icon_empty

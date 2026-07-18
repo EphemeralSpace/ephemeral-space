@@ -1,15 +1,15 @@
-using Content.Client.IconSmoothing;
+using Content.Shared._Citadel.Utilities;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Random;
 
 namespace Content.Client.Fluids;
 
 public sealed partial class PuddleSystem : SharedPuddleSystem
 {
-    [Dependency] private IconSmoothSystem _smooth = default!;
     [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
@@ -31,31 +31,26 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
             volume = (float)volumeObj;
         }
 
-        // Update smoothing and sprite based on volume.
-        if (TryComp<IconSmoothComponent>(uid, out var smooth))
+        var spriteSetPrototype = DefaultPuddleSpriteSet;
+        if (args.AppearanceData.TryGetValue(PuddleVisuals.SpriteSet, out var spriteSetObj))
         {
-            if (volume < LowThreshold)
-            {
-                _sprite.LayerSetRsiState((uid, args.Sprite), 0, $"{smooth.StateBase}a");
-                _smooth.SetEnabled(uid, false, smooth);
-            }
-            else if (volume < MediumThreshold)
-            {
-                _sprite.LayerSetRsiState((uid, args.Sprite), 0, $"{smooth.StateBase}b");
-                _smooth.SetEnabled(uid, false, smooth);
-            }
-            else
-            {
-                if (!smooth.Enabled)
-                {
-                    _sprite.LayerSetRsiState((uid, args.Sprite), 0, $"{smooth.StateBase}0");
-                    _smooth.SetEnabled(uid, true, smooth);
-                    _smooth.DirtyNeighbours(uid);
-                }
-            }
+            spriteSetPrototype = (string)spriteSetObj;
         }
 
-        var baseColor = Color.White;
+        var spriteSet = ProtoMan.Index(spriteSetPrototype);
+
+        var sprites = volume switch
+        {
+            < LowThreshold => spriteSet.SmallSprites,
+            < MediumThreshold => spriteSet.MediumSprites,
+            _ => spriteSet.LargeSprites,
+        };
+
+        IRobustRandom random = new RngSeed().SeedForStep(GetNetEntity(uid).Id + sprites.GetHashCode()).IntoRandomizer();
+        _sprite.LayerSetSprite((uid, args.Sprite), 0, random.Pick(sprites));
+        _sprite.LayerSetRotation((uid, args.Sprite), 0, random.NextAngle().RoundToCardinalAngle());
+
+        var baseColor = spriteSet.BaseColor;
 
         if (args.AppearanceData.TryGetValue(PuddleVisuals.SolutionColor, out var colorObj))
         {

@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._ES.Fluids;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
@@ -24,6 +25,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Fluids;
 
@@ -52,6 +54,8 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     public const float LowThreshold = 0.3f;
 
     public const float MediumThreshold = 0.6f;
+
+    protected static readonly ProtoId<ESPuddleSpriteSetPrototype> DefaultPuddleSpriteSet = "Default";
 
     // Using local deletion queue instead of the standard queue so that we can easily "undelete" if a puddle
     // loses & then gains reagents in a single tick.
@@ -195,6 +199,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         if (!Resolve(ent, ref puddle, ref appearance))
             return;
 
+        var spriteSet = DefaultPuddleSpriteSet;
         var volume = FixedPoint2.Zero;
         var color = Color.White;
 
@@ -220,13 +225,26 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
                 var interpolateValue = quantity.Float() / solution.Volume.Float();
                 color = Color.InterpolateBetween(color,
-                    _prototypeManager.Index<ReagentPrototype>(standout).SubstanceColor,
+                    _prototypeManager.Index(standout).SubstanceColor,
                     interpolateValue);
             }
+
+            var spriteSets = new Dictionary<ProtoId<ESPuddleSpriteSetPrototype>, FixedPoint2>();
+            foreach (var (reagent, quantity) in solution.Contents)
+            {
+                var spriteSetId = _prototypeManager.Index<ReagentPrototype>(reagent.Prototype).PuddleSpriteSet;
+                var old = spriteSets.GetOrNew(spriteSetId);
+                spriteSets[spriteSetId] = old + quantity;
+            }
+
+            if (spriteSets.Count != 0)
+                spriteSet = spriteSets.MaxBy(p => p.Value).Key;
         }
 
         _appearance.SetData(ent, PuddleVisuals.CurrentVolume, volume.Float(), appearance);
         _appearance.SetData(ent, PuddleVisuals.SolutionColor, color, appearance);
+        // string cast due to type shenanigans when serializing data like this
+        _appearance.SetData(ent, PuddleVisuals.SpriteSet, (string) spriteSet, appearance);
     }
 
     private void UpdateSlip(Entity<PuddleComponent> entity, Solution solution)
