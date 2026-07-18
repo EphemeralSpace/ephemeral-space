@@ -23,8 +23,8 @@
         Heat: 4
         Cold: 4
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.7
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: HeldSpeedModifier
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
@@ -50,9 +50,6 @@
       flatReductions:
         Heat: 1
         Radiation: 3 #4DT total with the full set, split between helmet and suit until we get locational damage
-  - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET

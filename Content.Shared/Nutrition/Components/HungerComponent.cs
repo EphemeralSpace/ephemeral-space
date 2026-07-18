@@ -51,8 +51,8 @@ public sealed partial class HungerComponent : Component
     {
         { HungerThreshold.Okay, 1.0f },
         { HungerThreshold.Peckish, 1.0f },
-        { HungerThreshold.Hungry, 0.85f },
-        { HungerThreshold.Starving, 0.6f },
+        { HungerThreshold.Hungry, 0.9f },
+        { HungerThreshold.Starving, 0.75f },
     };
 }
 
