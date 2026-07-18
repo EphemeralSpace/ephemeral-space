@@ -6,6 +6,7 @@
   startingGear: ESRatmanGear
   icon: "ESJobIconRatman"
   spawnsOnArrivals: false
+  overrideConsoleVisibility: false
   access:
   - Maintenance
   special:
