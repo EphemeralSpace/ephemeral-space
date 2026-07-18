@@ -5,6 +5,7 @@
   desc: reagent-desc-blood
   flavor: metallic
   color: "#800000"
+  puddleSpriteSet: Blood
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/bloodglass.rsi
     state: icon_empty
@@ -74,6 +75,7 @@
   desc: reagent-desc-vomit
   flavor: terrible
   color: "#87ab08"
+  puddleSpriteSet: Vomit
   physicalDesc: reagent-physical-desc-pungent
   puddleGas:
     Miasma: 0.00005

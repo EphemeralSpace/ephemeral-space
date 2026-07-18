@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Default and water made by Flareguy for Ephemeral Space, blood taken from tgstation at https://github.com/tgstation/tgstation/blob/b4061f1800152a832ea62feca841350412ad1617/icons/effects/blood.dmi, vomit taken from tgstation at https://github.com/tgstation/tgstation/blob/b4061f1800152a832ea62feca841350412ad1617/icons/effects/blood.dmi and modified by Flareguy",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "small-1"
+    },
+    {
+      "name": "small-2"
+    },
+    {
+      "name": "small-3"
+    },
+    {
+      "name": "small-4"
+    },
+    {
+      "name": "small-5"
+    },
+    {
+      "name": "medium-1"
+    },
+    {
+      "name": "medium-2"
+    },
+    {
+      "name": "medium-3"
+    },
+    {
+      "name": "medium-4"
+    },
+    {
+      "name": "medium-5"
+    },
+    {
+      "name": "large-1"
+    },
+    {
+      "name": "large-2"
+    },
+    {
+      "name": "large-3"
+    },
+    {
+      "name": "large-4"
+    },
+    {
+      "name": "large-5"
+    },
+    {
+      "name": "large-6"
+    },
+    {
+      "name": "large-7"
+    },
+    {
+      "name": "blood-small-1"
+    },
+    {
+      "name": "blood-small-2"
+    },
+    {
+      "name": "blood-small-3"
+    },
+    {
+      "name": "blood-small-4"
+    },
+    {
+      "name": "blood-small-5"
+    },
+    {
+      "name": "blood-medium-1"
+    },
+    {
+      "name": "blood-medium-2"
+    },
+    {
+      "name": "blood-medium-3"
+    },
+    {
+      "name": "blood-medium-4"
+    },
+    {
+      "name": "blood-medium-5"
+    },
+    {
+      "name": "blood-large-1"
+    },
+    {
+      "name": "blood-large-2"
+    },
+    {
+      "name": "blood-large-3"
+    },
+    {
+      "name": "blood-large-4"
+    },
+    {
+      "name": "blood-large-5"
+    },
+    {
+      "name": "blood-large-6"
+    },
+    {
+      "name": "blood-large-7"
+    },
+    {
+      "name": "vomit-small-1"
+    },
+    {
+      "name": "vomit-small-2"
+    },
+    {
+      "name": "vomit-small-3"
+    },
+    {
+      "name": "vomit-small-4"
+    },
+    {
+      "name": "vomit-small-5"
+    },
+    {
+      "name": "vomit-medium-1"
+    },
+    {
+      "name": "vomit-medium-2"
+    },
+    {
+      "name": "vomit-medium-3"
+    },
+    {
+      "name": "vomit-medium-4"
+    },
+    {
+      "name": "vomit-medium-5"
+    },
+    {
+      "name": "vomit-large-1"
+    },
+    {
+      "name": "vomit-large-2"
+    },
+    {
+      "name": "vomit-large-3"
+    },
+    {
+      "name": "vomit-large-4"
+    },
+    {
+      "name": "vomit-large-5"
+    },
+    {
+      "name": "vomit-large-6"
+    },
+    {
+      "name": "vomit-large-7"
+    },
+    {
+      "name": "water-small-1"
+    },
+    {
+      "name": "water-small-2"
+    },
+    {
+      "name": "water-small-3"
+    },
+    {
+      "name": "water-small-4"
+    },
+    {
+      "name": "water-small-5"
+    },
+    {
+      "name": "water-medium-1"
+    },
+    {
+      "name": "water-medium-2"
+    },
+    {
+      "name": "water-medium-3"
+    },
+    {
+      "name": "water-medium-4"
+    },
+    {
+      "name": "water-medium-5"
+    },
+    {
+      "name": "water-large-1"
+    },
+    {
+      "name": "water-large-2"
+    },
+    {
+      "name": "water-large-3"
+    },
+    {
+      "name": "water-large-4"
+    },
+    {
+      "name": "water-large-5"
+    },
+    {
+      "name": "water-large-6"
+    },
+    {
+      "name": "water-large-7"
+    }
+  ]
+}

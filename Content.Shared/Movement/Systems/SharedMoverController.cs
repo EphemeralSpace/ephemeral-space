@@ -389,13 +389,9 @@ public abstract partial class SharedMoverController : VirtualController
                 _transform.SetLocalRotation(uid, xform.LocalRotation + wishDir.ToWorldAngle() - worldRot, xform);
             }
 
-            // ES START
-            // no footsteps on walk
             if (!weightless && MobMoverQuery.TryGetComponent(uid, out var mobMover) &&
-                mover.Sprinting && !forceWalk &&
                 TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, tileDef: tileDef))
             {
-                // ES END
                 var soundModifier = mover.Sprinting ? InputMoverComponent.SprintingSoundModifier
                     : InputMoverComponent.WalkingSoundModifier;
 

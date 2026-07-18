@@ -1,0 +1,161 @@
+- type: esPuddleSpriteSet
+  id: Default # Generic sprite set for 99% of fluids
+  baseColor: "#FFFFFF80"
+  smallSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: small-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: small-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: small-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: small-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: small-5
+  mediumSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: medium-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: medium-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: medium-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: medium-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: medium-5
+  largeSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: large-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: large-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: large-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: large-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: large-5
+  - sprite: _ES/Effects/puddle.rsi
+    state: large-6
+  - sprite: _ES/Effects/puddle.rsi
+    state: large-7
+
+- type: esPuddleSpriteSet
+  id: Blood
+  smallSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-small-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-small-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-small-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-small-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-small-5
+  mediumSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-medium-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-medium-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-medium-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-medium-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-medium-5
+  largeSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-5
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-6
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-7
+
+- type: esPuddleSpriteSet
+  id: Vomit
+  recolor: false
+  smallSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-small-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-small-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-small-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-small-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-small-5
+  mediumSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-medium-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-medium-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-medium-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-medium-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-medium-5
+  largeSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-5
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-6
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-7
+
+- type: esPuddleSpriteSet
+  id: Water
+  smallSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-small-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-small-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-small-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-small-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-small-5
+  mediumSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-medium-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-medium-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-medium-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-medium-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-medium-5
+  largeSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-large-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-large-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-large-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-large-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-large-5
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-large-6
+  - sprite: _ES/Effects/puddle.rsi
+    state: water-large-7
