@@ -8,6 +8,14 @@ namespace Content.Shared.Cuffs.Components;
 [Access(typeof(SharedCuffableSystem))]
 public sealed partial class HandcuffComponent : Component
 {
+    // ES START
+    /// <summary>
+    ///     The entity that used these handcuffs on another entity. Used for tracking purposes.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityUid? CuffedBy = null;
+    // ES END
+
     /// <summary>
     ///     The time it takes to cuff an entity.
     /// </summary>
