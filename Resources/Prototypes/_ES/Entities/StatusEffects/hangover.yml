@@ -1,18 +1,32 @@
 - type: entity
+  parent: MobStatusEffectDebuff
+  id: ESStatusEffectHangoverSleep
+  name: hangover forced sleep
+  components:
+  - type: ForcedSleepingStatusEffect
+  - type: StunnedStatusEffect
+  - type: KnockdownStatusEffect
+  - type: ESAddStatusEffectOnRemovedStatusEffect
+    statusEffect: ESStatusEffectHangover
+    duration: 130s
+
+- type: entity
   parent: StatusEffectSlowdown
   id: ESStatusEffectHangover
   name: hangover
   components:
   - type: MovementModStatusEffect
-    sprintSpeedModifier: 0.65
-    walkSpeedModifier: 0.65
+    sprintSpeedModifier: 0.4
+    walkSpeedModifier: 0.4
   - type: ESMeleeDamageModStatusEffect
     coefficient: 0.2
   - type: MeleeModifiersStatusEffect
     attackRateMultiplier: 0.5
   - type: DrunkStatusEffect
   - type: KnockdownOnAppliedStatusEffect
-    duration: 5
+    duration: 5s
+  - type: DrowsinessStatusEffect
+    timeBetweenIncidents: 20,40
   - type: SlurredAccent
   - type: StatusEffectAlert
     alert: ESHangover

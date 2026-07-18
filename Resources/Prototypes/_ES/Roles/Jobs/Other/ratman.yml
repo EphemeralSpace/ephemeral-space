@@ -12,18 +12,17 @@
   - !type:AddComponentSpecial
     components:
     - type: NightVision
-      netsync: false
       enabled: true
       prioritized: false
-      lightingColor: '#c5afa21b'
+      lightingColor: '#c5afa209'
       overlayColor: '#FFFFFF00'
     - type: Access
       tags:
       - Ratman # inherent ratman access
     - type: AddStatusEffectOnTrigger
       keysIn: [ ratman ]
-      effectProto: ESStatusEffectHangover
-      duration: 90s
+      effectProto: ESStatusEffectHangoverSleep
+      duration: 20s
     - type: TriggerOnSpawn
       keyOut: ratman
 
