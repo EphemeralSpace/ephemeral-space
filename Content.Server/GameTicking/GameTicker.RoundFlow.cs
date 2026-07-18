@@ -822,6 +822,12 @@ namespace Content.Server.GameTicking
             return true;
         }
 
+        public void ResetStartTime()
+        {
+            _roundStartTime = _gameTiming.CurTime + LobbyDuration;
+            RaiseNetworkEvent(new TickerLobbyCountdownEvent(_roundStartTime, Paused));
+        }
+
         private void UpdateRoundFlow(float frameTime)
         {
             if (RunLevel == GameRunLevel.InRound)
