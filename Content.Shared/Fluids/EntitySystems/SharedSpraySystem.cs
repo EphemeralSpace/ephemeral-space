@@ -72,6 +72,7 @@ public abstract partial class SharedSpraySystem : EntitySystem
         if (args.Handled)
             return;
 
+        args.SpawnInteractionParticles = false;
         args.Handled = true;
 
         var clickPos = _transform.ToMapCoordinates(args.ClickLocation);
