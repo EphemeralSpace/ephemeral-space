@@ -25,6 +25,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Fluids.EntitySystems;
 
@@ -36,6 +37,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _timing = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedColorFlashEffectSystem _color = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
@@ -59,6 +61,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         SubscribeLocalEvent<PuddleComponent, SpreadNeighborsEvent>(OnPuddleSpread);
         SubscribeLocalEvent<PuddleComponent, SlipEvent>(OnPuddleSlip);
+        SubscribeLocalEvent<PuddleComponent, MapInitEvent>(OnMapInit);
     }
 
     // TODO: This can be predicted once https://github.com/space-wizards/RobustToolbox/pull/5849 is merged
@@ -273,10 +276,19 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         Reactive.DoEntityReaction(args.Slipped, splitSol, ReactionMethod.Touch);
     }
 
+    private void OnMapInit(Entity<PuddleComponent> ent, ref MapInitEvent args)
+    {
+        ent.Comp.NextGasTick = _timing.CurTime + TimeSpan.FromSeconds(1);
+    }
+
     protected override void TickGas()
     {
         foreach (var (uid, puddle, soln, xform) in EntityQueryEnumerator<PuddleComponent, SolutionContainerManagerComponent, TransformComponent>())
         {
+            if (_timing.CurTime < puddle.NextGasTick)
+                continue;
+            puddle.NextGasTick += TimeSpan.FromSeconds(1);
+
             if (!_solutionContainerSystem.ResolveSolution((uid, soln), puddle.SolutionName, ref puddle.Solution, out var puddleSolution))
                 continue;
 

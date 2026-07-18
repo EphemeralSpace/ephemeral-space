@@ -15,7 +15,7 @@
   standsout: true
   physicalDesc: reagent-physical-desc-ferrous
   puddleGas:
-    Miasma: 0.000005
+    Miasma: 0.00001
   metabolisms:
     Drink:
       effects:
