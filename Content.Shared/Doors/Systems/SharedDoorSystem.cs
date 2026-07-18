@@ -442,7 +442,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
     }
 
     /// <summary>
-    /// Immediately start closing a door
+    /// Returns whether the user is able to close the door
     /// </summary>
     /// <param name="uid"> The uid of the door</param>
     /// <param name="door"> The doorcomponent of the door</param>
@@ -462,7 +462,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (ev.Cancelled)
             return false;
 
-        if (!HasAccess(uid, user, door))
+        if (!door.AllowCloseWithNoAccess && !HasAccess(uid, user, door))
             return false;
 
         return !ev.PerformCollisionCheck || !GetColliding(uid).Any();

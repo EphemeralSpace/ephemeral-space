@@ -1,0 +1,7 @@
+- type: alert
+  id: ESHangover
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/hangover.rsi
+    state: icon
+  name: es-alert-hangover-name
+  description: es-alert-hangover-desc

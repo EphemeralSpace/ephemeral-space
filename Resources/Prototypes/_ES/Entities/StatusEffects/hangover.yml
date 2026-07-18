@@ -1,0 +1,18 @@
+- type: entity
+  parent: StatusEffectSlowdown
+  id: ESStatusEffectHangover
+  name: hangover
+  components:
+  - type: MovementModStatusEffect
+    sprintSpeedModifier: 0.65
+    walkSpeedModifier: 0.65
+  - type: ESMeleeDamageModStatusEffect
+    coefficient: 0.2
+  - type: MeleeModifiersStatusEffect
+    attackRateMultiplier: 0.5
+  - type: DrunkStatusEffect
+  - type: KnockdownOnAppliedStatusEffect
+    duration: 5
+  - type: SlurredAccent
+  - type: StatusEffectAlert
+    alert: ESHangover

@@ -8,7 +8,6 @@
   spawnsOnArrivals: false
   access:
   - Maintenance
-  - Ratman
   special:
   - !type:AddComponentSpecial
     components:
@@ -18,6 +17,15 @@
       prioritized: false
       lightingColor: '#c5afa21b'
       overlayColor: '#FFFFFF00'
+    - type: Access
+      tags:
+      - Ratman # inherent ratman access
+    - type: AddStatusEffectOnTrigger
+      keysIn: [ ratman ]
+      effectProto: ESStatusEffectHangover
+      duration: 90s
+    - type: TriggerOnSpawn
+      keyOut: ratman
 
 - type: startingGear
   id: ESRatmanGear

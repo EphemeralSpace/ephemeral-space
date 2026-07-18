@@ -1,0 +1,19 @@
+- type: entity
+  id: SolidSecretDoor
+  name: ratman's gate
+  description: Strange wiring and a biometric scanner are affixed on this seemingly solid slab of metal.
+  parent: BaseSecretDoor
+  components:
+  - type: AccessReader
+    access: [["Ratman"]]
+  - type: Sprite
+    sprite: _ES/Structures/Doors/ratman_door.rsi
+    layers:
+    - state: closed
+      sprite: _ES/Structures/Doors/ratman_door.rsi
+      map: [ "enum.DoorVisualLayers.Base" ]
+  - type: Icon
+    sprite: _ES/Structures/Doors/ratman_door.rsi
+    state: closed
+  - type: Door
+    allowCloseWithNoAccess: true
