@@ -25,7 +25,6 @@ public sealed partial class ESSecretDoorVisualizerSystem : VisualizerSystem<ESSe
     {
         base.OnAppearanceChange(uid, component, ref args);
 
-
         UpdateAppearance((uid, args.Sprite, args.Component));
     }
 

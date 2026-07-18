@@ -9,7 +9,7 @@
     - tableId: ESMaintLootUncommon
       weight: 26
     - tableId: ESMaintLootRare
-      weight: 4
+      weight: 3
 
 - type: entityTable
   id: ESMaintLootExposed # for placing on racks or tables
@@ -39,7 +39,7 @@
     - tableId: ESMaintLootUncommon
       weight: 15
     - tableId: ESMaintLootRare
-      weight: 2
+      weight: 4
 
 - type: entityTable
   id: ESMaintLootWorthless
@@ -252,7 +252,7 @@
       weight: 0.5
     - id: ClothingOuterCoatBomber
       weight: 0.5
-    - id: ClothingOuterCoatJensen
+    - id: ClothingOuterCoatRatman
       weight: 0.5
     - group:
       - id: ClothingShoesLeather

@@ -80,6 +80,10 @@ public abstract partial class SharedPuddleSystem
         }
     }
 
+    protected virtual void TickGas()
+    {
+
+    }
 
     public ProtoId<ReagentPrototype>[] GetEvaporatingReagents(Solution solution)
     {

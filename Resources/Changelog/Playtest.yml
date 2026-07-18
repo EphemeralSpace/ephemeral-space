@@ -1056,3 +1056,44 @@ Entries:
         been completed.
   id: 116
   time: '2026-07-18T05:33:21.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Removed useless viewport width slider.
+  id: 117
+  time: '2026-07-18T13:37:18.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Joining into a round as a stagehand now plays the curtain animation.
+  id: 118
+  time: '2026-07-18T13:37:21.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: 'A new job has arrived on the station: the Ratman.'
+    - type: Add
+      message: >-
+        The Ratman spawns on the station, has a random set of doors that lead
+        into areas around the station, a locker full of valuables, and a small
+        amount of nightvision.
+    - type: Add
+      message: Yes girls can be ratmen too. And nonbineys
+    - type: Tweak
+      message: Arrivals time is 30sec shorter
+  id: 119
+  time: '2026-07-18T14:12:20.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Bodies now produce miasma immediately after dying.
+    - type: Add
+      message: Blood puddles now produce small amounts of miasma.
+    - type: Add
+      message: Miasma buildup now creates dirt decals and pests.
+    - type: Add
+      message: >-
+        Miasma buildup can now create miasma clouds, which can be protected
+        against with a bio suit.
+  id: 120
+  time: '2026-07-18T19:28:54.0000000+00:00'

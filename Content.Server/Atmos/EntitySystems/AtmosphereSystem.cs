@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._ES.Filth;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Server.Fluids.EntitySystems;
@@ -39,6 +40,8 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     [Dependency] private MapSystem _map = default!;
     [Dependency] public PuddleSystem Puddle = default!;
     [Dependency] private DamageableSystem _damage = default!;
+
+    [Dependency] public ESMiasmaSystem Miasma = default!;
 
     private const float ExposedUpdateDelay = 1f;
     private float _exposedTimer = 0f;

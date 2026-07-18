@@ -173,7 +173,7 @@ spray-painter-style-cratesecure-weapon = Weapon
 
 # Canisters
 spray-painter-style-canisters-air = Air
-spray-painter-style-canisters-ammonia = Ammonia
+spray-painter-style-canisters-miasma = Miasma
 spray-painter-style-canisters-carbon-dioxide = Carbon dioxide
 spray-painter-style-canisters-frezon = Frezon
 spray-painter-style-canisters-nitrogen = Nitrogen

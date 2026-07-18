@@ -17,6 +17,7 @@
   color: yellow
   tips:
   - InfiltratorC4Deniability
+  - InfiltratorRatmanDoors
   - EmagAirlockDeniability
   mindComponents:
   - type: ESSecretIdentityCacheSpawner

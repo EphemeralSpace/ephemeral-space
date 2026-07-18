@@ -63,7 +63,7 @@ public sealed partial class ESEmagSystem : EntitySystem
 
     private void OnDoorEmagged(Entity<DoorComponent> ent, ref ESEmaggedEvent args)
     {
-        if (!TryComp<AirlockComponent>(ent, out var airlock))
+        if (!TryComp<AirlockComponent>(ent, out var airlock) && !ent.Comp.AlwaysEmaggable)
             return;
 
         args.Handled = _door.TryOpenAndBolt(ent, ent, airlock);

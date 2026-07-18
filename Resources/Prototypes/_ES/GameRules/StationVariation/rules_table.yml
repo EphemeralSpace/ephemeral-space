@@ -18,6 +18,7 @@
       - id: ESBasicDecalDirtVariationPass
       - id: ESBasicDecalGraffitiVariationPass
       - id: ESBasicDecalDirtMonospaceVariationPass
+      - id: ESRatmanDoorVariationPass
       - tableId: ESMaplightParallaxVariationTable
       - id: ESNightshiftVariationPass
         prob: 0.10

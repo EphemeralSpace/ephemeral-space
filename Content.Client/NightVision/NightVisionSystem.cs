@@ -105,6 +105,9 @@ public sealed partial class NightVisionSystem : SharedNightVisionSystem
         var ev = new RefreshNightVisionEvent();
         RaiseLocalEvent(target, ref ev);
 
+        if (TryComp<NightVisionComponent>(target, out var selfNightVision))
+            ev.Components.Add(selfNightVision);
+
         if (ev.Components.Count > 0)
             Update(target, ev.Components);
         else

@@ -97,6 +97,18 @@
   - type: ExplosionResistance
     damageCoefficient: 0
 
+- type: startingGear
+  id: MobAghostGear
+  equipment:
+    back: ClothingBackpackSatchelAdmin
+    id: AdminPDA
+  storage:
+    back:
+    - GasAnalyzer
+    - trayScanner
+    - AccessConfiguratorUniversal
+    - Multitool
+
 - type: entity
   abstract: true
   parent: BaseAction
