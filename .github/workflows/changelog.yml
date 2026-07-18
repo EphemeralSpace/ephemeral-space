@@ -6,7 +6,9 @@
 
 # From https://github.com/DeltaV-Station/Delta-v/
 name: PR Changelogs
-concurrency: commit_action
+concurrency:
+  group: commit_action
+  cancel-in-progress: false
 on:
   pull_request_target:
     types: [closed]
