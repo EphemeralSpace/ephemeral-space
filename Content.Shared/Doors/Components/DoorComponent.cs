@@ -237,6 +237,9 @@ public sealed partial class DoorComponent : Component
     /// </summary>
     public object EmaggingAnimation = default!;
 
+    [DataField]
+    public bool HasDenyingAnimation = true;
+
     #endregion Graphics
 
     #region Serialization
@@ -306,6 +309,12 @@ public sealed partial class DoorComponent : Component
     /// </summary>
     [DataField]
     public bool AllowCloseWithNoAccess = false;
+
+    /// <summary>
+    ///     If true, this door will be emaggable even without having to be an airlock.
+    /// </summary>
+    [DataField]
+    public bool AlwaysEmaggable = false;
 
     [DataField(customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
     public int OpenDrawDepth = (int) DrawDepth.DrawDepth.Doors;

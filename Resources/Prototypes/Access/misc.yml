@@ -1,6 +1,7 @@
 - type: accessGroup
   id: AllAccess
   tags:
+  - Ratman
   - EmergencyShuttleRepealAll
   - Captain
   - StationAdmin

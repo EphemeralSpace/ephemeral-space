@@ -10,7 +10,7 @@
     layers:
     - map: [ "enum.ESPosterVisuals.Base" ]
       sprite: _ES/Structures/Wallmounts/posters.rsi
-      state: random_anything
+      state: ratman
     - map: [ "directional" ]
       sprite: _ES/Markers/spawners.rsi
       state: directional

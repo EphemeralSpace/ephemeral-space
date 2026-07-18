@@ -414,10 +414,12 @@ public abstract partial class SharedDoorSystem : EntitySystem
     /// </summary>
     public bool TryOpenAndBolt(EntityUid uid, DoorComponent? door = null, AirlockComponent? airlock = null)
     {
-        if (!Resolve(uid, ref door, ref airlock))
+        if (!Resolve(uid, ref door))
             return false;
 
-        if (IsBolted(uid) || !airlock.Powered || door.State != DoorState.Closed)
+        Resolve(uid, ref airlock, false);
+
+        if (IsBolted(uid) || !(airlock?.Powered ?? true) || door.State != DoorState.Closed)
         {
             return false;
         }
