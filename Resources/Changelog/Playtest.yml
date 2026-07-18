@@ -1062,3 +1062,9 @@ Entries:
       message: Removed useless viewport width slider.
   id: 117
   time: '2026-07-18T13:37:18.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Joining into a round as a stagehand now plays the curtain animation.
+  id: 118
+  time: '2026-07-18T13:37:21.0000000+00:00'
