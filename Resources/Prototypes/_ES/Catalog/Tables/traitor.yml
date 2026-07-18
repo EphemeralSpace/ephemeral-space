@@ -30,6 +30,8 @@
       weight: 0.5
     - id: ExGrenade
       weight: 0.5
+    - id: EnergySword
+      weight: 0.1
     - group:
       - id: ESWeaponRevolver357
       - id: ESWeaponPistol9mm
