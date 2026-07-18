@@ -203,7 +203,7 @@ public sealed partial class GameTicker
             return false;
 
         CurrentPreset = Preset;
-        foreach (var rule in Preset.Rules)
+        foreach (var rule in _entityTable.GetSpawns(Preset.Rules))
         {
             AddGameRule(rule);
         }

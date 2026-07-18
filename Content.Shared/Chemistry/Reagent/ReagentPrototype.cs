@@ -2,6 +2,8 @@ using System.Collections.Frozen;
 using System.Linq;
 using Content.Shared.FixedPoint;
 using System.Text.Json.Serialization;
+using Content.Shared._ES.Fluids;
+using Content.Shared.Atmos;
 using Content.Shared.Body.Prototypes;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.EntityEffects;
@@ -104,6 +106,15 @@ namespace Content.Shared.Chemistry.Reagent
         public float? MeltingPoint { get; private set; }
 
         [DataField]
+        public ProtoId<ESPuddleSpriteSetPrototype> PuddleSpriteSet = "Default";
+
+        /// <summary>
+        /// Optional override for <see cref="SubstanceColor"/> for usage only in puddles.
+        /// </summary>
+        [DataField]
+        public Color? PuddleColor;
+
+        [DataField]
         public SpriteSpecifier? MetamorphicSprite { get; private set; } = null;
 
         [DataField]
@@ -159,6 +170,12 @@ namespace Content.Shared.Chemistry.Reagent
         /// </summary>
         [DataField]
         public bool WorksOnTheDead;
+
+        /// <summary>
+        /// Gases per unit per second released for exposed puddles.
+        /// </summary>
+        [DataField(serverOnly: true, customTypeSerializer: typeof(GasArraySerializer))]
+        public float[] PuddleGas = new float[Atmospherics.AdjustedNumberOfGases];
 
         [DataField]
         public FrozenDictionary<ProtoId<MetabolismGroupPrototype>, ReagentEffectsEntry>? Metabolisms;

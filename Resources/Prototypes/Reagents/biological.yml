@@ -5,6 +5,7 @@
   desc: reagent-desc-blood
   flavor: metallic
   color: "#800000"
+  puddleSpriteSet: Blood
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/bloodglass.rsi
     state: icon_empty
@@ -14,6 +15,8 @@
   recognizable: true
   standsout: true
   physicalDesc: reagent-physical-desc-ferrous
+  puddleGas:
+    Miasma: 0.00001
   metabolisms:
     Drink:
       effects:
@@ -72,7 +75,10 @@
   desc: reagent-desc-vomit
   flavor: terrible
   color: "#87ab08"
+  puddleSpriteSet: Vomit
   physicalDesc: reagent-physical-desc-pungent
+  puddleGas:
+    Miasma: 0.00005
   slipData:
     requiredSlipSpeed: 4.0 #It's not as slippery as water
   friction: 0.4

@@ -1,0 +1,17 @@
+- type: entity
+  id: ESMiasmaGeneratorRule
+  parent: BaseGameRule
+  components:
+  - type: ESMiasmaGeneratorRule
+    spawnTable:
+      group:
+      - id: ESMobMiasmaCloud
+        weight: 95
+      - group:
+        - id: MobCockroach
+          weight: 4
+        - group:
+          - id: MobMouse
+          - id: MobMouse1
+          - id: MobMouse2
+        weight: 5

@@ -60,7 +60,10 @@ public abstract partial class SharedProjectileSystem : EntitySystem
             embeddable.Comp.RemovalTime.Value,
             new RemoveEmbeddedProjectileEvent(),
             eventTarget: embeddable,
-            target: embeddable));
+            target: embeddable)
+        {
+            FaceTarget = embeddable.Comp.EmbeddedIntoUid != args.User,
+        });
     }
 
     private void OnEmbedRemove(Entity<EmbeddableProjectileComponent> embeddable, ref RemoveEmbeddedProjectileEvent args)

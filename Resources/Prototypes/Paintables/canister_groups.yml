@@ -4,7 +4,7 @@
   defaultStyle: storage
   styles:
     air: AirCanister
-    ammonia: AmmoniaCanister
+    miasma: MiasmaCanister
     carbon-dioxide: CarbonDioxideCanister
     frezon: FrezonCanister
     nitrogen: NitrogenCanister

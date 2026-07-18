@@ -12,7 +12,7 @@
       Plasma: stationPlasma
       Tritium: stationTritium
       WaterVapor: stationWaterVapor
-      Ammonia: stationAmmonia
+      Miasma: stationMiasma
       NitrousOxide: stationNO
       Frezon: danger
 
@@ -36,7 +36,7 @@
     - Plasma
     - Tritium
     - WaterVapor
-    - Ammonia
+    - Miasma
     - NitrousOxide
     - Frezon
 

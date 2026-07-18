@@ -256,7 +256,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
         ratios:
-          Ammonia: 1.0
+          Miasma: 1.0
           Nitrogen: -1.0
       - !type:ModifyLungGas
         conditions:

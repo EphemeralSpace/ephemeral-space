@@ -190,6 +190,9 @@ namespace Content.Shared.Interaction
                 if (comp.PrimaryTarget is not { } target)
                     continue;
 
+                if (!Exists(target))
+                    continue;
+
                 var targetCoords = _transform.GetMapCoordinates(target).Position;
                 TryFaceCoordinates(uid, targetCoords);
             }

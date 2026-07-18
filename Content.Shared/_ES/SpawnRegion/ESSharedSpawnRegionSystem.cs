@@ -130,10 +130,12 @@ public abstract partial class ESSharedSpawnRegionSystem : EntitySystem
             if (!xform.Anchored)
                 continue;
 
+            if (!xform.GridUid.HasValue || !gridSet.Contains(xform.GridUid.Value))
+                continue;
+
             var coords = xform.Coordinates;
 
             if (!IsCoordinateValid(coords,
-                    gridSet,
                     blockLayer,
                     checkPlayerLOS,
                     minPlayerDistance,
@@ -232,7 +234,46 @@ public abstract partial class ESSharedSpawnRegionSystem : EntitySystem
             var coords = _map.ToCoordinates(tile, grid).Offset(grid.Comp.TileSizeHalfVector);
 
             if (!IsCoordinateValid(coords,
-                    gridSet,
+                    blockLayer,
+                    checkPlayerLOS,
+                    minPlayerDistance,
+                    checkAtmosPressure,
+                    checkAtmosTemperature,
+                    pred))
+            {
+                continue;
+            }
+
+            outCoords = coords;
+            return true;
+        }
+
+        outCoords = null;
+        return false;
+    }
+
+    public bool TryGetRandomCoords(HashSet<EntityCoordinates> coordinates,
+        [NotNullWhen(true)] out EntityCoordinates? outCoords,
+        CollisionGroup blockLayer = CollisionGroup.MobMask | CollisionGroup.Opaque,
+        bool checkPlayerLOS = true,
+        float minPlayerDistance = 3.5f,
+        bool checkAtmosPressure = true,
+        bool checkAtmosTemperature = true,
+        Func<EntityCoordinates, bool>? pred = null
+        )
+    {
+        if (coordinates.Count == 0)
+        {
+            outCoords = null;
+            return false;
+        }
+
+        var attemptCount = Math.Min(coordinates.Count, RandomAttempts);
+        for (var i = 0; i < attemptCount; i++)
+        {
+            var coords = _random.Pick(coordinates);
+
+            if (!IsCoordinateValid(coords,
                     blockLayer,
                     checkPlayerLOS,
                     minPlayerDistance,
@@ -255,7 +296,6 @@ public abstract partial class ESSharedSpawnRegionSystem : EntitySystem
     /// Checks if a given coordinate is valid according to specified conditions.
     /// </summary>
     private bool IsCoordinateValid(EntityCoordinates coords,
-        HashSet<EntityUid> gridSet,
         CollisionGroup blockLayer = CollisionGroup.MobMask | CollisionGroup.Opaque,
         bool checkPlayerLOS = true,
         float minPlayerDistance = 3.5f,
@@ -265,7 +305,6 @@ public abstract partial class ESSharedSpawnRegionSystem : EntitySystem
         )
     {
         if (_transform.GetGrid(coords) is not { } grid ||
-            !gridSet.Contains(grid) ||
             !_gridQuery.TryComp(grid, out var gridComp))
             return false;
 
@@ -283,7 +322,7 @@ public abstract partial class ESSharedSpawnRegionSystem : EntitySystem
         var tileRef = _map.GetTileRef((grid, gridComp), gridIndices);
 
         _lookupSet.Clear();
-        _entityLookup.GetEntitiesInTile(tileRef, _lookupSet, LookupFlags.Dynamic | LookupFlags.Static);
+        _entityLookup.GetEntitiesInTile(tileRef, _lookupSet, LookupFlags.All);
         foreach (var lookupEnt in _lookupSet)
         {
             if (_bodyQuery.TryComp(lookupEnt, out var body) &&
@@ -296,10 +335,10 @@ public abstract partial class ESSharedSpawnRegionSystem : EntitySystem
         {
             _actors.Clear();
             var box = Box2.CenteredAround(worldPos, PlayerViewRadius * Vector2.One * 2);
-            _entityLookup.GetEntitiesIntersecting(mapId, box, _actors, LookupFlags.Dynamic | LookupFlags.Static);
+            _entityLookup.GetEntitiesIntersecting(mapId, box, _actors);
             foreach (var actor in _actors)
             {
-                if (_ghostQuery.HasComp(actor) || !_mobState.IsAlive(actor) || !_mobState.IsCritical(actor))
+                if (_ghostQuery.HasComp(actor) || _mobState.IsDead(actor))
                     continue;
 
                 if (_examine.InRangeUnOccluded(actor.Owner, coords))
@@ -313,7 +352,7 @@ public abstract partial class ESSharedSpawnRegionSystem : EntitySystem
             _entityLookup.GetEntitiesInRange(coords, minPlayerDistance, _actors);
             foreach (var actor in _actors)
             {
-                if (_ghostQuery.HasComp(actor) || !_mobState.IsAlive(actor) || !_mobState.IsCritical(actor))
+                if (_ghostQuery.HasComp(actor) || _mobState.IsDead(actor))
                     continue;
 
                 return false;

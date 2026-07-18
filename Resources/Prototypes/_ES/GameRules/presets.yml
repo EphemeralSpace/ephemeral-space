@@ -6,28 +6,24 @@
   description: es-preset-masquerade-desc
   showInVote: true
   rules:
-  - ESMasqueradeGameRule
-  - ESSchedulerRuleStationEventVote
-  - ESSchedulerRuleDegradationEventVote
-  - ESBasicRoundstartVariation
-  - ESRoundEndRuleRadstorm
-  - ESArmoryRule
-  - ESWarpDriveRule
-  - ESFirstDeathAnnouncementRule
+    all:
+    - id: ESMasqueradeGameRule
+    - id: ESRoundEndRuleRadstorm
+    - id: ESWarpDriveRule
+    - tableId: ESEventGameRules
+    - tableId: ESCommonGameRules
 
 - type: gamePreset
   id: ESExtended
   name: es-preset-extended-title
   description: es-preset-extended-desc
   rules:
-  - ESOrganizationRuleCrew
-  - ESSchedulerRuleStationEventVote
-  - ESSchedulerRuleDegradationEventVote
-  - ESBasicRoundstartVariation
-  - ESRoundEndRuleRadstorm
-  - ESArmoryRule
-  - ESWarpDriveRule
-  - ESFirstDeathAnnouncementRule
+    all:
+    - id: ESOrganizationRuleCrew
+    - id: ESRoundEndRuleRadstorm
+    - id: ESWarpDriveRule
+    - tableId: ESEventGameRules
+    - tableId: ESCommonGameRules
 
 # Nonstandard modes
 
@@ -38,5 +34,25 @@
   showInVote: false
   maxPlayers: 5
   rules:
-  - ESBasicRoundstartVariation # included since it determines important features
-  - ESArmoryRule # this is stupid todo singleton stuff properly
+    all:
+    - tableId: ESCommonGameRules
+
+# Tables for common sets of rules
+
+## Used for basic event schedulers
+- type: entityTable
+  id: ESEventGameRules
+  table:
+    all:
+    - id: ESSchedulerRuleStationEventVote
+    - id: ESSchedulerRuleDegradationEventVote
+
+## Used for gamerules that should appear across presets
+- type: entityTable
+  id: ESCommonGameRules
+  table:
+    all:
+    - id: ESArmoryRule # this is stupid todo singleton stuff properly
+    - id: ESMiasmaGeneratorRule
+    - id: ESBasicRoundstartVariation # included since it determines important features
+    - id: ESFirstDeathAnnouncementRule

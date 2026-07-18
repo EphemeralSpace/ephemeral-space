@@ -48,6 +48,8 @@ jobs:
       shell: bash
 
     - name: Generate Changelog
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         cd "Tools/changelog"
         node changelog.js
