@@ -76,3 +76,4 @@
     slots:
     - Tail
   - type: GroupExamine
+  - type: ESDiseaseCloudProtection
