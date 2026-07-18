@@ -1056,3 +1056,9 @@ Entries:
         been completed.
   id: 116
   time: '2026-07-18T05:33:21.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Removed useless viewport width slider.
+  id: 117
+  time: '2026-07-18T13:37:18.0000000+00:00'
