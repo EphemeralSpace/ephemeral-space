@@ -81,6 +81,7 @@ public sealed partial class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
 
     private void UpdateLobbyClosedStatus(bool closing)
     {
+        _ticker.ResetStartTime();
         _ticker.PauseStart(closing);
 
         // Close/open doors

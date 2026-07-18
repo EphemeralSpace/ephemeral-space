@@ -13,29 +13,19 @@
   - type: ESDistributedSpawner
     id: ESSpawnerTechStorage
     tables:
-    # Cargo
-    - id: ESComputerSupplyRequestCircuitBoard
-    - id: ESComputerWarehouseManifestCircuitBoard
-    # Engi
     - id: AlertsComputerCircuitboard
     - id: AtmosMonitoringComputerCircuitboard
     - id: PowerComputerCircuitboard
     - id: SMESMachineCircuitboard
+      amount: 2
     - id: CellRechargerCircuitboard
     - id: WeaponCapacitorRechargerCircuitboard
     - id: SubstationMachineCircuitboard
+      amount: 2
     - id: PortableGeneratorJrPacmanMachineCircuitboard
-    # Command
     - id: StationRecordsComputerCircuitboard
-    # Med
-    - id: CrewMonitoringComputerCircuitboard
-    # - id: MedicalRecordsComputerCircuitboard
-    # Sci
-    - id: ESComputerAnomalyCircuitBoard
-    # Sec
-    - id: CriminalRecordsComputerCircuitboard
+    - id: OperatingTableCircuitboard
     - id: SurveillanceCameraMonitorCircuitboard
-    # Service
     - id: MicrowaveMachineCircuitboard
     - id: JukeboxCircuitBoard
 
@@ -105,7 +95,7 @@
     id: ESSpawnerSecureTechStorage
     tables:
     - id: IDComputerCircuitboard
-    - id: CommsComputerCircuitboard
+    - id: CrewMonitoringComputerCircuitboard
 
 - type: entity
   id: ESSpawnerMarkerDistributedTechStorageSecure
