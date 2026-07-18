@@ -14,10 +14,9 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Light.Components;
+using Content.Shared.Light.EntitySystems;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
@@ -43,11 +42,11 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;
-    [Dependency] private PointLightSystem _pointlight = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedRoofSystem _roof = default!;
 
     protected override void Started(EntityUid uid,
         ESRadstormRoundEndRuleComponent component,
@@ -172,16 +171,16 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
         }
 
         // todo this is silly jank do it better like with postprocess etc
-        // but i just want some minor juice for now
-        if (phase.ForceStationLightColor != null)
+        if (phase.RemoveGridRoof)
         {
-            var query = EntityQueryEnumerator<PoweredLightComponent, TransformComponent>();
-            while (query.MoveNext(out var uid, out _, out var xform))
+            foreach (var grid in _map.GetAllGrids(_ticker.DefaultMap))
             {
-                if (xform.MapID != _ticker.DefaultMap)
-                    continue;
-
-                _pointlight.SetColor(uid, phase.ForceStationLightColor.Value);
+                // this is kinda inefficient but like idk
+                var enumerator = _map.GetAllTilesEnumerator(grid.Owner, grid.Comp, ignoreEmpty: true);
+                while (enumerator.MoveNext(out var tile))
+                {
+                    _roof.SetRoof((grid.Owner, grid.Comp), tile.Value.GridIndices, false);
+                }
             }
         }
 

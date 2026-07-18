@@ -112,7 +112,7 @@ public sealed partial class ESSparksSystem : EntitySystem
         {
             var sparks = Spawn(sparksPrototype, _transform.ToMapCoordinates(coordinates), rotation: angle);
             angle += angleDelta;
-            _throwing.TryThrow(sparks, angle.ToVec(), 2f, animated: false);
+            _throwing.TryThrow(sparks, angle.ToVec(), 2f, animated: false, doSpin: false);
             _preventCollide.PreventCollide(sparks, ignored);
         }
 

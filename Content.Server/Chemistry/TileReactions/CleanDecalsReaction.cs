@@ -19,7 +19,7 @@ public sealed partial class CleanDecalsReaction : ITileReaction
     /// For every cleaned decal we lose this much reagent.
     /// </summary>
     [DataField]
-    public FixedPoint2 CleanCost { get; private set; } = FixedPoint2.New(0.25f);
+    public FixedPoint2 CleanCost { get; private set; } = FixedPoint2.New(0.1f);
 
 
     public FixedPoint2 TileReact(TileRef tile,

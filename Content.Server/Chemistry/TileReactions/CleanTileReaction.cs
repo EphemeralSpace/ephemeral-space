@@ -23,7 +23,7 @@ public sealed partial class CleanTileReaction : ITileReaction
     /// In terms of space cleaner can clean 1 average puddle per 5 units.
     /// </remarks>
     [DataField("cleanCost")]
-    public float CleanAmountMultiplier { get; private set; } = 0.25f;
+    public float CleanAmountMultiplier { get; private set; } = 0.1f;
 
     /// <summary>
     /// What reagent to replace the tile conents with.

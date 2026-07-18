@@ -196,6 +196,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         comp.ThrownTime = _gameTiming.CurTime;
         comp.LandTime = comp.ThrownTime + TimeSpan.FromSeconds(flyTime);
         comp.PlayLandSound = playSound;
+        comp.Animate = doSpin;
         AddComp(uid, comp, true);
 
         _appearance.SetData(uid, ESThrowVisuals.InAir, true);

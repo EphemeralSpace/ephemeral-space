@@ -54,6 +54,12 @@ namespace Content.Server.Nuke
         public float AlertSoundTime = 11.25f;
 
         /// <summary>
+        ///     When this time is left, the pre-explosion event is raised (for things like traitor teleport)
+        /// </summary>
+        [DataField]
+        public float PreExplosionTime = 3.0f;
+
+        /// <summary>
         ///     How long a user must wait to disarm the bomb.
         /// </summary>
         [DataField("disarmDoafterLength")]
@@ -185,6 +191,11 @@ namespace Content.Server.Nuke
         ///     Check if nuke has already played the nuke song so we don't do it again
         /// </summary>
         public bool PlayedNukeSong = false;
+
+        /// <summary>
+        ///     Check if nuke has raised pre-explosion event
+        /// </summary>
+        public bool RaisedPreExplosion = false;
 
         /// <summary>
         ///     Check if nuke has already played last alert sound

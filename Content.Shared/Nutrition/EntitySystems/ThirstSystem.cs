@@ -65,7 +65,7 @@ public sealed partial class ThirstSystem : EntitySystem
         if (_jetpack.IsUserFlying(uid))
             return;
 
-        var mod = component.CurrentThirstThreshold <= ThirstThreshold.Parched ? 0.75f : 1.0f;
+        var mod = component.CurrentThirstThreshold <= ThirstThreshold.Parched ? 0.85f : 1.0f;
         args.ModifySpeed(mod, mod);
     }
 

@@ -42,7 +42,7 @@
       announcementText: es-radstorm-starting-announcement
       announcementSound: /Audio/_ES/Announcements/radstorm_start.ogg
       announcementDistortion: 0.8
-      forceStationLightColor: "#436d41ff"
+      removeGridRoof: true
       mapLight: "#3da63aff"
   - type: DeviceNetwork
     deviceNetId: Private
