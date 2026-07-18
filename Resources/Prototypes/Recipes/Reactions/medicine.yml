@@ -231,14 +231,18 @@
 - type: reaction
   id: Oculine
   reactants:
-    TableSalt:
+    Sodium:
       amount: 1
-    Blood:
+    Chlorine:
       amount: 1
-    Hydroxide:
-      amount: 2
+    Oxygen:
+      amount: 1
+    Hydrogen:
+      amount: 1
+    Iron:
+      amount: 1
   products:
-    Oculine: 4
+    Oculine: 5
 
 - type: reaction
   id: Saline
