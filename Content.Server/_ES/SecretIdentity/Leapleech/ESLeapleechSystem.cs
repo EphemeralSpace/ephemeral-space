@@ -145,7 +145,7 @@ public sealed partial class ESLeapleechSystem : ESBaseParasiteSystem<ESLeapleech
             angle += angleSegment;
 
             var projectile = SpawnNextToOrDrop(ent.Comp.Projectile, owned);
-            _throwingSystem.TryThrow(projectile, angle.ToVec(), 5f);
+            _throwingSystem.TryThrow(projectile, angle.ToVec(), 5f, doSpin: false);
         }
 
         _gibbing.Gib(owned);
