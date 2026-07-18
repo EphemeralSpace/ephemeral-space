@@ -10,5 +10,5 @@ public sealed partial class ESRatmanDoorVariationPassComponent : Component
     public EntProtoId Replacement = "SolidSecretDoorRatman";
 
     [DataField]
-    public int Count = 5;
+    public int Count = 6;
 }
