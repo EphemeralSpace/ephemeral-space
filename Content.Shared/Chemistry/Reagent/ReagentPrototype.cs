@@ -107,6 +107,12 @@ namespace Content.Shared.Chemistry.Reagent
         [DataField]
         public ProtoId<ESPuddleSpriteSetPrototype> PuddleSpriteSet = "Default";
 
+        /// <summary>
+        /// Optional override for <see cref="SubstanceColor"/> for usage only in puddles.
+        /// </summary>
+        [DataField]
+        public Color? PuddleColor;
+
         [DataField]
         public SpriteSpecifier? MetamorphicSprite { get; private set; } = null;
 

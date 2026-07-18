@@ -166,7 +166,6 @@
     anchored: true
   - type: Sprite
     drawdepth: Puddles
-    color: "#FFFFFF80"
     layers:
     - sprite: _ES/Effects/puddle.rsi
       state: large-2

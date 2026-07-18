@@ -887,6 +887,11 @@ namespace Content.Shared.Chemistry.Components
 
         public Color GetColorWithout(IPrototypeManager? protoMan, params ProtoId<ReagentPrototype>[] without)
         {
+            return GetColorWithout(protoMan, without.ToList());
+        }
+
+        public Color GetColorWithout(IPrototypeManager? protoMan, List<ProtoId<ReagentPrototype>> without, bool isPuddle = false)
+        {
             if (Volume == FixedPoint2.Zero)
             {
                 return Color.Transparent;
@@ -910,15 +915,19 @@ namespace Content.Shared.Chemistry.Components
                     continue;
                 }
 
+                var color = isPuddle
+                    ? (proto.PuddleColor ?? proto.SubstanceColor)
+                    : proto.SubstanceColor;
+
                 if (first)
                 {
                     first = false;
-                    mixColor = proto.SubstanceColor;
+                    mixColor = color;
                     continue;
                 }
 
                 var interpolateValue = quantity.Float() / runningTotalQuantity.Float();
-                mixColor = Color.InterpolateBetween(mixColor, proto.SubstanceColor, interpolateValue);
+                mixColor = Color.InterpolateBetween(mixColor, color, interpolateValue);
             }
             return mixColor;
         }

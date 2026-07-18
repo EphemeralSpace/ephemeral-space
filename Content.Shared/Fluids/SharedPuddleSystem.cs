@@ -214,8 +214,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
             // Kinda EH
             // Could potentially do alpha per-solution but future problem.
 
-            color = solution.GetColorWithout(_prototypeManager, _standoutReagents);
-            color = color.WithAlpha(0.7f);
+            color = solution.GetColorWithout(_prototypeManager, _standoutReagents.ToList(), isPuddle: true);
 
             foreach (var standout in _standoutReagents)
             {
@@ -223,9 +222,10 @@ public abstract partial class SharedPuddleSystem : EntitySystem
                 if (quantity <= FixedPoint2.Zero)
                     continue;
 
+                var standoutReagent = _prototypeManager.Index(standout);
                 var interpolateValue = quantity.Float() / solution.Volume.Float();
                 color = Color.InterpolateBetween(color,
-                    _prototypeManager.Index(standout).SubstanceColor,
+                    standoutReagent.PuddleColor ?? standoutReagent.SubstanceColor,
                     interpolateValue);
             }
 
