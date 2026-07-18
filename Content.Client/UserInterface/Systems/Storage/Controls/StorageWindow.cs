@@ -21,9 +21,9 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.UserInterface.Systems.Storage.Controls;
 
-public sealed class StorageWindow : BaseWindow
+public sealed partial class StorageWindow : BaseWindow
 {
-    [Dependency] private readonly IEntityManager _entity = default!;
+    [Dependency] private IEntityManager _entity = default!;
     private readonly StorageUIController _storageController;
 
     public EntityUid? StorageEntity;
@@ -444,8 +444,6 @@ public sealed class StorageWindow : BaseWindow
         {
             if (storageComp.StoredItems.TryGetValue(ent, out var updated))
             {
-                data.Control.Marked = IsMarked(ent);
-
                 if (data.Loc.Equals(updated))
                 {
                     DebugTools.Assert(data.Control.Location == updated);
@@ -484,7 +482,6 @@ public sealed class StorageWindow : BaseWindow
                 var gridPiece = new ItemGridPiece((ent, itemEntComponent), loc, _entity)
                 {
                     MinSize = size,
-                    Marked = IsMarked(ent),
                 };
                 gridPiece.OnPiecePressed += OnPiecePressed;
                 gridPiece.OnPieceUnpressed += OnPieceUnpressed;
@@ -494,16 +491,6 @@ public sealed class StorageWindow : BaseWindow
                 _pieces[ent] = (loc, gridPiece);
             }
         }
-    }
-
-    private ItemGridPieceMarks? IsMarked(EntityUid uid)
-    {
-        return _contained.IndexOf(uid) switch
-        {
-            0 => ItemGridPieceMarks.First,
-            1 => ItemGridPieceMarks.Second,
-            _ => null,
-        };
     }
 
     protected override void FrameUpdate(FrameEventArgs args)

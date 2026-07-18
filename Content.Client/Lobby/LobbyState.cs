@@ -4,32 +4,27 @@
 // but mostly its all diffy
 using Content.Client.Audio;
 using Content.Client.GameTicking.Managers;
-using Content.Client.LateJoin;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
 using Content.Client.Playtime;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
 using Content.Shared.CCVar;
-using Robust.Client;
 using Robust.Client.Console;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
-// ES START
-using Content.Client._ES.Spawning.Ui;
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
-using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.Viewport;
 using Content.Shared.Chat;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
-
-// ES END
+using Robust.Shared;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Lobby
 {
@@ -37,20 +32,19 @@ namespace Content.Client.Lobby
     // it is slightly cursed for lobbystate to inherit gameplaystatebase, yeah
     // things we do not need: ingamescreen, separated chat stuff ; we are not going to use any of the
     // resizing stuff that that allows bc we just will not allow resizing the chat in lobby i think
-    public sealed class LobbyState : GameplayStateBase, IMainViewportState
+    public sealed partial class LobbyState : GameplayStateBase, IMainViewportState
     {
-        [Dependency] private readonly IBaseClient _baseClient = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly IResourceCache _resourceCache = default!;
-        [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly IVoteManager _voteManager = default!;
-        [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IClientConsoleHost _consoleHost = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        [Dependency] private IResourceCache _resourceCache = default!;
+        [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
+        [Dependency] private IVoteManager _voteManager = default!;
+        [Dependency] private ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
 
         // ES START
-        [Dependency] private readonly IEyeManager _eyeManager = default!;
+        [Dependency] private IEyeManager _eyeManager = default!;
         public MainViewport Viewport => _userInterfaceManager.ActiveScreen!.GetWidget<MainViewport>()!;
         private GameplayStateLoadController _loadController = default!;
         // ES END
@@ -90,15 +84,8 @@ namespace Content.Client.Lobby
             // ES END
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
 
-            var lobbyNameCvar = _cfg.GetCVar(CCVars.ServerLobbyName);
-            var serverName = _baseClient.GameInfo?.ServerName ?? string.Empty;
-
-            Lobby.ServerName.Text = string.IsNullOrEmpty(lobbyNameCvar)
-                ? Loc.GetString("ui-lobby-title", ("serverName", serverName))
-                : lobbyNameCvar;
-
-            var width = _cfg.GetCVar(CCVars.ServerLobbyRightPanelWidth);
-            //Lobby.RightSide.SetWidth = width;
+            _cfg.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);
+            _cfg.OnValueChanged(CCVars.ServerLobbyName, OnServerNameChanged, true);
 
             UpdateLobbyUi();
 
@@ -125,6 +112,9 @@ namespace Content.Client.Lobby
             _gameTicker.LobbyLateJoinStatusUpdated -= LobbyLateJoinStatusUpdated;
             _contentAudioSystem.LobbySoundtrackChanged -= UpdateLobbySoundtrackInfo;
 
+            _cfg.UnsubValueChanged(CVars.GameHostName, OnServerNameChanged);
+            _cfg.UnsubValueChanged(CCVars.ServerLobbyName, OnServerNameChanged);
+
             _voteManager.ClearPopupContainer();
 
             Lobby!.CharacterPreview.CharacterSetupButton.OnPressed -= OnSetupPressed;
@@ -142,6 +132,17 @@ namespace Content.Client.Lobby
         {
             SetReady(false);
             Lobby?.SwitchState(LobbyGui.LobbyGuiState.CharacterSetup);
+        }
+
+        private void OnServerNameChanged(string _)
+        {
+            var lobbyNameCvar = FormattedMessage.EscapeText(_cfg.GetCVar(CCVars.ServerLobbyName));
+            var serverName = FormattedMessage.EscapeText(_cfg.GetCVar(CVars.GameHostName));
+
+            Lobby?.ServerName.Text = Loc.GetString("ui-lobby-title-fmt",
+                ("text", string.IsNullOrEmpty(lobbyNameCvar)
+                    ? Loc.GetString("ui-lobby-title", ("serverName", serverName))
+                    : lobbyNameCvar));
         }
 
         public override void FrameUpdate(FrameEventArgs e)

@@ -1,7 +1,7 @@
 - type: entity
   id: BaseFirelock
   abstract: true
-  parent: BaseStructure
+  parent: [ DeflectionSturdyStructure, BaseStructure ]
   name: firelock
   description: Apply crowbar.
   components:
@@ -22,7 +22,7 @@
     - type: InteractionOutline
     - type: Damageable
       damageContainer: StructuralInorganic
-      damageModifierSet: StructuralMetallicStrong
+      damageModifierSet: ESMachine
     - type: RCDDeconstructable
       cost: 4
       delay: 6
@@ -133,8 +133,6 @@
     #  arc: 360
     - type: ESInteractionIgnoreAnchoredInTile
     # ES END
-    - type: StaticPrice
-      price: 150
     - type: AccessReader
       access: [ [ "Engineering" ] ]
       examinationText: access-reader-examination-functionality-restricted
@@ -152,16 +150,18 @@
     - type: NavMapDoor
     - type: GuideHelp
       guides:
-      - FireAndGasControl
       - Fires
-      - Spacing
     - type: SyncSprite
+# ES Start
+    - type: ESSparkOnHit
+      prob: 0.25
+      count: 2
+# ES End
 
 - type: entity
   id: Firelock
   parent: BaseFirelock
   components:
-  - type: StationAiWhitelist
   - type: ContainerContainer
     containers:
       board: !type:Container
@@ -179,7 +179,6 @@
   parent: Firelock
   name: glass firelock
   components:
-    - type: StationAiWhitelist
     - type: Sprite
       sprite: Structures/Doors/Airlocks/Glass/firelock.rsi
     - type: Occluder
@@ -205,7 +204,6 @@
   parent: Firelock
   name: firelock
   components:
-    - type: StationAiWhitelist
     - type: Sprite
       sprite: Structures/Doors/edge_door_hazard.rsi
       snapCardinals: false
@@ -234,8 +232,6 @@
       occludes: false
     - type: Physics
       canCollide: false
-    - type: StaticPrice
-      price: 100
     - type: Construction
       graph: Firelock
       node: FirelockEdge

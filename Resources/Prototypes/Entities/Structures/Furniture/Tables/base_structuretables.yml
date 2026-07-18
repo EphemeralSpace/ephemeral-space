@@ -5,10 +5,8 @@
   description: A square piece of metal standing on four metal legs.
   abstract: true
   components:
-  - type: Animateable
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
   - type: PlaceableSurface
   - type: Fixtures
     fixtures:
@@ -40,21 +38,3 @@
   - type: Tag
     tags:
     - ForceFixRotations
-
-- type: entity
-  id: CounterBase
-  parent: TableBase
-  name: counter
-  abstract: true
-  components:
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 55
-        mask:
-        - TableMask
-        layer:
-        - TableLayer

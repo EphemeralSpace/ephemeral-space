@@ -18,12 +18,12 @@ namespace Content.Shared._ES.Voting;
 /// </summary>
 public abstract partial class ESSharedVoteSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly SharedPvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAtmosphereSystem _atmosphere = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvsOverride = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -137,11 +137,18 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
                 result = _random.Pick(winningOptions);
                 break;
             case ResultStrategy.WeightedPick:
-                // Convert each option into a weight based on counts
-                var weights = ent.Comp.Votes
-                    .Select(p => (p.Key, (float) (1 + p.Value.Count))) // + 1 so every option can be chosen
-                    .ToDictionary();
-                result = _random.Pick(weights);
+                if (ent.Comp.Votes.Values.Sum(p => p.Count) == 0)
+                {
+                    result = _random.Pick(ent.Comp.VoteOptions);
+                }
+                else
+                {
+                    // Convert each option into a weight based on counts
+                    var weights = ent.Comp.Votes
+                        .Select(p => (p.Key, (float) p.Value.Count))
+                        .ToDictionary();
+                    result = _random.Pick(weights);
+                }
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

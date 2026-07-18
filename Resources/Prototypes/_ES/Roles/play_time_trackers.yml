@@ -9,19 +9,13 @@
   id: ESJobBartender
 
 - type: playTimeTracker
-  id: ESJobBotanist
-
-- type: playTimeTracker
   id: ESJobCaptain
 
 - type: playTimeTracker
-  id: ESJobCargoTechnician
+  id: ESJobQuartermaster
 
 - type: playTimeTracker
   id: ESJobChef
-
-- type: playTimeTracker
-  id: ESJobChemist
 
 - type: playTimeTracker
   id: ESJobClown
@@ -33,7 +27,10 @@
   id: ESJobDetective
 
 - type: playTimeTracker
-  id: ESJobHeadOfPersonnel
+  id: ESJobDoctor
+
+- type: playTimeTracker
+  id: ESJobStationAdmin
 
 - type: playTimeTracker
   id: ESJobJanitor
@@ -42,7 +39,7 @@
   id: ESJobParamedic
 
 - type: playTimeTracker
-  id: ESJobPhysician
+  id: ESJobRatman
 
 - type: playTimeTracker
   id: ESJobReporter

@@ -218,30 +218,30 @@
 
 - type: entity
   parent: MobStatusEffectBase
-  id: StatusEffectMinorOxygenationDexalin
+  id: StatusEffectMinorOxygenationHalf
   name: 50% artificial respiration
   components:
   - type: LungFunctionModifierStatusEffect
     function: 0.5
 
 - type: entity
-  parent: StatusEffectMinorOxygenationDexalin
+  parent: StatusEffectMinorOxygenationHalf
   id: StatusEffectMinorOxygenationPolypyryliumOligomers
 
 - type: entity
-  parent: StatusEffectMinorOxygenationDexalin
+  parent: StatusEffectMinorOxygenationHalf
   id: StatusEffectMinorOxygenationCryoxadone
 
 - type: entity
   parent: MobStatusEffectBase
-  id: StatusEffectMajorOxygenationDexalinPlus
+  id: StatusEffectMajorOxygenationDexalin
   name: 90% artificial respiration
   components:
   - type: LungFunctionModifierStatusEffect
     function: 0.9
 
 - type: entity
-  parent: StatusEffectMajorOxygenationDexalinPlus
+  parent: StatusEffectMajorOxygenationDexalin
   id: StatusEffectMajorOxygenationCloneoxadone
 
 - type: entity
@@ -251,6 +251,8 @@
   components:
   - type: PopupOnAppliedStatusEffect
     message: minor-pain-applied
+  - type: ESViewconeModifier
+    angleModifier: -45
 
 - type: entity
   parent: MobStatusEffectBase
@@ -277,6 +279,8 @@
     updateInterval: 5
     effects:
     - [StatusEffectPainStuttering, 5]
+  - type: ESViewconeModifier
+    angleModifier: -75
 
 - type: entity
   parent: MobStatusEffectBase
@@ -294,6 +298,8 @@
     attackRateConstant: -0.05
   - type: GunAccuracyStatusEffect
     angleRangeModifier: 6
+  - type: ESViewconeModifier
+    angleModifier: -110
 
 - type: entity
   parent: MobStatusEffectBase
@@ -305,6 +311,7 @@
     visualType: LargeCaution
   - type: MovementModStatusEffect
   - type: KnockdownStatusEffect
+    crawl: true
   - type: KnockdownOnAppliedStatusEffect
     duration: 5
   - type: MeleeModifiersStatusEffect
@@ -321,11 +328,9 @@
   - type: CannotUseHeadsetStatusEffect
   - type: SilencedStatusEffect
   - type: BlockMovementWhenPulledStatusEffect
-  - type: GunBackfireStatusEffect
-    probability: 0.9
-  - type: HyposprayBackfireStatusEffect
-    probability: 0.9
   - type: DisruptOnAttackStatusEffect
+  - type: ESViewconeModifier
+    angleModifier: -180
 
 - type: entity
   parent: MobStatusEffectBase
@@ -365,7 +370,7 @@
   components:
   - type: PopupOnAppliedStatusEffect
     message: severe-brain-damage-applied
-  - type: StutteringAccent
+  - type: SlurredAccent
   - type: MeleeModifiersStatusEffect
     damageModifier:
       coefficients:
@@ -377,10 +382,6 @@
     attackRateConstant: -0.1
   - type: GunAccuracyStatusEffect
     angleRangeModifier: 24
-  - type: GunBackfireStatusEffect
-    probability: 0.9
-  - type: HyposprayBackfireStatusEffect
-    probability: 0.9
   - type: DisruptOnAttackStatusEffect
 
 - type: entity
@@ -391,7 +392,6 @@
   - type: PopupOnAppliedStatusEffect
     message: brain-oxygen-depleted
     visualType: LargeCaution
-  - type: StutteringAccent
   - type: DrunkStatusEffect
   - type: KnockdownStatusEffect
   - type: KnockdownOnAppliedStatusEffect

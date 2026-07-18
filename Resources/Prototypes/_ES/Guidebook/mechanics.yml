@@ -1,0 +1,17 @@
+- type: guideEntry
+  id: Mechanics
+  hidden: false
+  name: Mechanics
+  priority: 1
+  text: "/ServerInfo/_ES/Guidebook/Mechanics.xml"
+  children:
+  - OffbrandMedical
+  - Power
+  - Hunger
+  - Atmospherics
+  - Botany
+  - Construction
+  - Fires
+  - Forensics
+  - Wires
+  - Airlocks

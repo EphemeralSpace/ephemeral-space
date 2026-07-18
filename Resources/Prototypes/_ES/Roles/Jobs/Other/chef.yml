@@ -1,0 +1,33 @@
+- type: job
+  id: ESChef
+  name: ESjob-name-chef
+  description: ESjob-description-chef
+  playTimeTracker: ESJobChef
+  startingGear: ESChefGear
+  icon: "JobIconChef"
+  access:
+  - Service
+  - Maintenance
+  - Kitchen
+  - Hydroponics
+  extendedAccess:
+  - Bar
+
+- type: startingGear
+  id: ESChefGear
+  equipment:
+    shoes: ClothingShoesChef
+    id: ChefPDA
+    ears: ClothingHeadsetService
+    head: ClothingHeadHatChef
+    jumpsuit: ClothingUniformJumpsuitChef
+    outerClothing: ClothingOuterJacketChef
+    back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESChef
+  job: ESChef
+  hidden: false

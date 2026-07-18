@@ -1,11 +1,12 @@
 using Content.Client._ES.Viewcone.ComponentTree;
+using Content.Client.Eye;
 using Content.Shared._ES.Viewcone;
-using Content.Shared.MouseRotator;
+using Content.Shared._ES.Viewcone.Components;
+using Content.Shared.Movement.Pulling.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Client.Input;
+using Robust.Client.Player;
 using Robust.Shared.Enums;
-using Robust.Shared.Map.Components;
 
 namespace Content.Client._ES.Viewcone.Overlays;
 
@@ -15,10 +16,12 @@ namespace Content.Client._ES.Viewcone.Overlays;
 ///
 ///     This alpha pass only works because of <see cref="ESViewconeResetAlphaOverlay"/>, which resets in a later stage of rendering.
 /// </summary>
-public sealed class ESViewconeSetAlphaOverlay : Overlay
+public sealed partial class ESViewconeSetAlphaOverlay : Overlay
 {
-    [Dependency] private readonly IEntityManager _ent = default!;
+    [Dependency] private IEntityManager _ent = default!;
+    [Dependency] private IPlayerManager _player = default!;
     private readonly ESViewconeOverlayManagementSystem _cone;
+    private readonly ESViewconeAngleSystem _angle;
     private readonly ESViewconeOccludableTreeSystem _tree;
     private readonly TransformSystem _xform;
     private readonly SpriteSystem _sprite;
@@ -33,6 +36,7 @@ public sealed class ESViewconeSetAlphaOverlay : Overlay
         IoCManager.InjectDependencies(this);
 
         _cone = _ent.EntitySysManager.GetEntitySystem<ESViewconeOverlayManagementSystem>();
+        _angle = _ent.EntitySysManager.GetEntitySystem<ESViewconeAngleSystem>();
         _tree = _ent.EntitySysManager.GetEntitySystem<ESViewconeOccludableTreeSystem>();
         _xform  = _ent.EntitySysManager.GetEntitySystem<TransformSystem>();
         _sprite = _ent.EntitySysManager.GetEntitySystem<SpriteSystem>();
@@ -46,9 +50,9 @@ public sealed class ESViewconeSetAlphaOverlay : Overlay
             return false;
 
         // This is really stupid but there isn't another way to reverse an eye entity from just an IEye afaict
-        // It's not really inefficient though. theres barely any of those fuckin things anyway (? verify that) (maybe this scales with players in view) (shit)
-        var enumerator = _ent.AllEntityQueryEnumerator<EyeComponent, ESViewconeComponent>();
-        while (enumerator.MoveNext(out var uid, out var eye, out var viewcone))
+        // It's not really inefficient though. theres only 1 of these anyway usually with the lerpingeye bound
+        var enumerator = _ent.AllEntityQueryEnumerator<LerpingEyeComponent, EyeComponent, ESViewconeComponent>();
+        while (enumerator.MoveNext(out var uid, out _, out var eye, out var viewcone))
         {
             if (args.Viewport.Eye != eye.Eye)
                 continue;
@@ -71,10 +75,15 @@ public sealed class ESViewconeSetAlphaOverlay : Overlay
         var eyePos = _xform.GetWorldPosition(eyeTransform);
         var eyeRot = cone.ViewAngle - eye.Rotation; // subtract rotation cuz idk. the lerp adds it but this doesnt want it for some reason idk.
 
+        // this is mildly hardcoded so we just don't occlude things we're pulling
+        // could easily be made more generic but i have literally no idea what other things would be relevant for this
+        // and so i don't see the need. if i see the need later then i'll just make it generic, its like 3 lines of code anyway
+        var currentlyPulledEnt = _ent.GetComponentOrNull<PullerComponent>(_player.LocalEntity)?.Pulling;
+
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // !! Thank You Bhijn God (TYBG) for 95% of the rest of this methods code !!
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        var radConeAngle = MathHelper.DegreesToRadians(cone.ConeAngle);
+        var radConeAngle = MathHelper.DegreesToRadians(_angle.GetModifiedViewconeAngle((ent, cone)));
         var radConeFeather = MathHelper.DegreesToRadians(cone.ConeFeather);
 
         _cone.CachedBaseAlphas.Clear();
@@ -84,8 +93,8 @@ public sealed class ESViewconeSetAlphaOverlay : Overlay
             var (comp, xform) = entry;
             var uid = entry.Uid; // this uses component.Owner.. oh well
 
-            // dynamic clientside disabling, for effects like pulled entities
-            if (_ent.HasComponent<ESViewconeClientNoOccludeComponent>(uid))
+            // dynamic clientside disabling for pulled entities
+            if (uid == currentlyPulledEnt)
                 continue;
 
             if (!_ent.TryGetComponent<SpriteComponent>(uid, out var sprite))

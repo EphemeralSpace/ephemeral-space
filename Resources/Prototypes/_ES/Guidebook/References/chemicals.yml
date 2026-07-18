@@ -1,0 +1,72 @@
+- type: guideEntry
+  id: Chemicals
+  hidden: false
+  name: Chemicals
+  text: "/ServerInfo/_ES/Guidebook/References/Chemicals.xml"
+  children:
+  - Elements
+  - OffbrandMedicineList
+  - Narcotics
+  - Pyrotechnic
+  - Toxins
+  - Foods
+  - Biological
+  - Special
+  - Others
+  filterEnabled: True
+
+- type: guideEntry
+  id: Elements
+  hidden: false
+  name: Elements
+  text: "/ServerInfo/_ES/Guidebook/References/Chemicals/Elements.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: Narcotics
+  hidden: false
+  name: Narcotics
+  text: "/ServerInfo/_ES/Guidebook/References/Chemicals/Narcotics.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: Pyrotechnic
+  hidden: false
+  name: Pyrotechnics
+  text: "/ServerInfo/_ES/Guidebook/References/Chemicals/Pyrotechnic.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: Toxins
+  hidden: false
+  name: Toxins
+  text: "/ServerInfo/_ES/Guidebook/References/Chemicals/Toxins.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: Foods
+  hidden: false
+  name: Foods
+  text: "/ServerInfo/_ES/Guidebook/References/Chemicals/Foods.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: Biological
+  hidden: false
+  name: Biological
+  text: "/ServerInfo/_ES/Guidebook/References/Chemicals/Biological.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: Special
+  hidden: false
+  name: Special
+  text: "/ServerInfo/_ES/Guidebook/References/Chemicals/Special.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: Others
+  hidden: false
+  name: Others
+  text: "/ServerInfo/_ES/Guidebook/References/Chemicals/Other.xml"
+  filterEnabled: True

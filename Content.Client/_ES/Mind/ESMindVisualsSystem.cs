@@ -4,9 +4,9 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._ES.Mind;
 
-public sealed class ESMindVisualsSystem : ESSharedMindVisualsSystem
+public sealed partial class ESMindVisualsSystem : ESSharedMindVisualsSystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -54,7 +54,7 @@
       - MopBasic
   - type: GuideHelp
     guides:
-    - Janitorial
+    - Janitor
   - type: DnaSubstanceTrace
 
 - type: entity
@@ -116,7 +116,6 @@
   - type: Tag
     tags:
       - WetFloorSign
-      - WhitelistChameleon
 
 
 - type: entity
@@ -176,7 +175,7 @@
   - type: TriggerOnVerb
     text: trigger-on-verb-detonation
   - type: Tag
-    tags: # ignore "WhitelistChameleon" tag
+    tags:
     - WetFloorSign
 
 - type: entity
@@ -188,16 +187,16 @@
   - type: Tag
     tags:
        - Plunger
-       - WhitelistChameleon
   - type: Sprite
     sprite: Objects/Specific/Janitorial/plunger.rsi
+    noRot: false
     state: plunger
   - type: Item
     sprite: Objects/Specific/Janitorial/plunger.rsi
     heldPrefix: plunger
   - type: GuideHelp
     guides:
-    - Janitorial
+    - Janitor
   - type: Clothing
     sprite: Objects/Specific/Janitorial/plunger.rsi
     slots:
@@ -254,7 +253,6 @@
     tags:
     - GoldenPlunger
     - Plunger
-    - WhitelistChameleon
   - type: Sprite
     sprite: Objects/Specific/Janitorial/golden_plunger.rsi
     state: plunger
@@ -282,11 +280,7 @@
 - type: weightedRandomEntity
   id: PlungerLoot
   weights:
-    RandomSpawner100: 56
-    SpacemenFigurineSpawner90: 28
     SpawnMobCockroach: 5
-    MaintenanceToolSpawner: 5
-    SpawnMobMoproach: 2
 
 - type: entity
   parent: BaseItem
@@ -364,8 +358,6 @@
     - Brushing
     useSound:
       path: /Audio/Items/wirebrushing.ogg
-  - type: StaticPrice
-    price: 22
   - type: MeleeWeapon
     wideAnimationRotation: 45
     damage:

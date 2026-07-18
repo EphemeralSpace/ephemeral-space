@@ -11,11 +11,11 @@ using Robust.Shared.Random;
 namespace Content.Server.GameTicking.Rules;
 
 /// <inheritdoc cref="RoundstartStationVariationRuleComponent"/>
-public sealed class RoundstartStationVariationRuleSystem : GameRuleSystem<RoundstartStationVariationRuleComponent>
+public sealed partial class RoundstartStationVariationRuleSystem : GameRuleSystem<RoundstartStationVariationRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
     // ES START
-    [Dependency] private readonly EntityTableSystem _table = default!;
+    [Dependency] private EntityTableSystem _table = default!;
     // ES END
 
     public override void Initialize()

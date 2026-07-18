@@ -1,0 +1,5 @@
+- type: esSecretIdentitySet
+  id: PowerTraitors # Higher power tots.
+  secretIdentities:
+    Subverter: 1
+    Demolitionist: 1

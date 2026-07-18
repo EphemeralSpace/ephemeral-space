@@ -13,7 +13,7 @@
     - Plasma
     - Tritium
     - WaterVapor
-    - Ammonia
+    - Miasma
     - NitrousOxide
     - Frezon
     #- Helium3 TODO: fusion
@@ -24,7 +24,7 @@
     - Plasma
     - Tritium
     - WaterVapor
-    - Ammonia
+    - Miasma
     - NitrousOxide
     - Frezon
     #- Helium3 TODO: fusion
@@ -90,9 +90,6 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/mechmove03.ogg
-  - type: GuideHelp
-    guides:
-    - Robotics
   - type: Destructible
     thresholds:
     - trigger:

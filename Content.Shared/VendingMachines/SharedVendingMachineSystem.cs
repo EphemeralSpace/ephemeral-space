@@ -5,8 +5,6 @@ using Content.Shared.Advertise.Components;
 using Content.Shared.Advertise.Systems;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
-using Content.Shared.Emag.Components;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -23,26 +21,24 @@ namespace Content.Shared.VendingMachines;
 
 public abstract partial class SharedVendingMachineSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
-    [Dependency] private   readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private   readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] private   readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] protected readonly SharedPointLightSystem Light = default!;
-    [Dependency] private   readonly SharedPowerReceiverSystem _receiver = default!;
-    [Dependency] protected readonly SharedPopupSystem Popup = default!;
-    [Dependency] private   readonly SharedSpeakOnUIClosedSystem _speakOn = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UISystem = default!;
-    [Dependency] protected readonly IRobustRandom Randomizer = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] protected IPrototypeManager PrototypeManager = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] protected SharedPointLightSystem Light = default!;
+    [Dependency] private SharedPowerReceiverSystem _receiver = default!;
+    [Dependency] protected SharedPopupSystem Popup = default!;
+    [Dependency] private SharedSpeakOnUIClosedSystem _speakOn = default!;
+    [Dependency] protected SharedUserInterfaceSystem UISystem = default!;
+    [Dependency] protected IRobustRandom Randomizer = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<VendingMachineComponent, ComponentGetState>(OnVendingGetState);
         SubscribeLocalEvent<VendingMachineComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<VendingMachineComponent, RestockDoAfterEvent>(OnRestockDoAfter);
         SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
@@ -177,10 +173,10 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         if (!TryComp<AccessReaderComponent>(uid, out var accessReader))
             return true;
 
-        if (_accessReader.IsAllowed(sender, uid, accessReader) || HasComp<EmaggedComponent>(uid))
+        if (_accessReader.IsAllowed(sender, uid, accessReader))
             return true;
 
-        Popup.PopupClient(Loc.GetString("vending-machine-component-try-eject-access-denied"), uid, sender);
+        Popup.PopupEntity(Loc.GetString("vending-machine-component-try-eject-access-denied"), uid, sender);
         Deny((uid, vendComponent), sender);
         return false;
     }
@@ -189,9 +185,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return null;
-
-        if (type == InventoryType.Emagged && HasComp<EmaggedComponent>(uid))
-            return component.EmaggedInventory.GetValueOrDefault(entryId);
 
         if (type == InventoryType.Contraband && component.Contraband)
             return component.ContrabandInventory.GetValueOrDefault(entryId);
@@ -222,14 +215,14 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
         if (string.IsNullOrEmpty(entry?.ID))
         {
-            Popup.PopupClient(Loc.GetString("vending-machine-component-try-eject-invalid-item"), uid);
+            Popup.PopupCursor(Loc.GetString("vending-machine-component-try-eject-invalid-item"), uid);
             Deny((uid, vendComponent));
             return;
         }
 
         if (entry.Amount <= 0)
         {
-            Popup.PopupClient(Loc.GetString("vending-machine-component-try-eject-out-of-stock"), uid);
+            Popup.PopupCursor(Loc.GetString("vending-machine-component-try-eject-out-of-stock"), uid);
             Deny((uid, vendComponent));
             return;
         }
@@ -325,6 +318,9 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             return;
         }
 
+        if (component.PackPrototypeId == null)
+            return;
+
         if (!PrototypeManager.TryIndex(component.PackPrototypeId, out VendingMachineInventoryPrototype? packPrototype))
             return;
 
@@ -332,18 +328,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         AddInventoryFromPrototype(uid, packPrototype.EmaggedInventory, InventoryType.Emagged, component, restockQuality);
         AddInventoryFromPrototype(uid, packPrototype.ContrabandInventory, InventoryType.Contraband, component, restockQuality);
         Dirty(uid, component);
-    }
-
-    private void OnEmagged(EntityUid uid, VendingMachineComponent component, ref GotEmaggedEvent args)
-    {
-        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-            return;
-
-        if (_emag.CheckFlag(uid, EmagType.Interaction))
-            return;
-
-        // only emag if there are emag-only items
-        args.Handled = component.EmaggedInventory.Count > 0;
     }
 
     /// <summary>
@@ -360,9 +344,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             return new();
 
         var inventory = new List<VendingMachineInventoryEntry>(component.Inventory.Values);
-
-        if (_emag.CheckFlag(uid, EmagType.Interaction))
-            inventory.AddRange(component.EmaggedInventory.Values);
 
         if (component.Contraband)
             inventory.AddRange(component.ContrabandInventory.Values);

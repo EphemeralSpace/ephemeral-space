@@ -1,4 +1,4 @@
-using Content.Shared._ES.Viewcone;
+using Content.Shared._ES.Viewcone.Components;
 using Robust.Shared.ComponentTrees;
 using Robust.Shared.Physics;
 

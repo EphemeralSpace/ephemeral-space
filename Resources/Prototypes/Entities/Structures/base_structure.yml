@@ -26,6 +26,10 @@
   - type: Tag
     tags:
       - Structure
+# ES Start
+  - type: ESDamageDeflection
+    threshold: 6 # Need something better then your fists to break any structure.
+# ES End
 
 - type: entity
   # This means that it's not anchored on spawn.

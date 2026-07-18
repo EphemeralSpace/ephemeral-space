@@ -1,9 +1,10 @@
 - type: accessGroup
   id: AllAccess
   tags:
+  - Ratman
   - EmergencyShuttleRepealAll
   - Captain
-  - HeadOfPersonnel
+  - StationAdmin
   - ChiefEngineer
   - ChiefMedicalOfficer
   - HeadOfSecurity

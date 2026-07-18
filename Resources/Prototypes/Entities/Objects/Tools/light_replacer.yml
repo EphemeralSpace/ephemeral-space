@@ -17,8 +17,6 @@
       amount: 8
     - id: LightBulb
       amount: 5
-  - type: StaticPrice
-    price: 100
   - type: ContainerContainer
     containers:
       light_replacer_storage: !type:Container

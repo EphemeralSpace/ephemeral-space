@@ -1,0 +1,70 @@
+using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
+
+namespace Content.Shared._DV.Screens;
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), AutoGenerateComponentPause]
+[Access(typeof(DVSharedScreenSystem))]
+public sealed partial class DVScreenComponent : Component
+{
+    [DataField, AutoNetworkedField]
+    public string? AlertLevel; // I don't like this but uhhh the prototype isn't client-accessible
+
+    [DataField, AutoNetworkedField]
+    public bool ShowAlertBorder;
+
+    [DataField, AutoNetworkedField]
+    public DVScreenContent Content = DVScreenContent.Text;
+
+    #region Text Screens
+
+    [DataField, AutoNetworkedField]
+    public string Line1 = string.Empty;
+
+    [DataField, AutoNetworkedField]
+    public string Line2 = string.Empty;
+
+    #endregion
+
+    #region ETA Screens
+
+    [DataField, AutoNetworkedField]
+    public bool ScreenIsAtDestination;
+
+    [DataField, AutoNetworkedField, AutoPausedField]
+    public TimeSpan TargetTime = TimeSpan.Zero;
+
+    #endregion
+}
+
+[Serializable, NetSerializable]
+public enum DVScreenVisuals : byte
+{
+    AlertLevel,
+    ShowAlertBorder,
+    Content,
+}
+
+[Serializable, NetSerializable]
+public enum DVScreenContent : byte
+{
+    Text,
+    CurrentTime,
+    /// <summary>
+    ///     Generic target format. Line 2 will be the time, line 1 will stay at whatever it's set to.
+    /// </summary>
+    GenericTargetTime,
+    /// <summary>
+    ///     Formatted specifically for shuttle timers with ETA and ETD.
+    /// </summary>
+    EstimatedTimeOfArrival,
+    AlertLevel,
+}
+
+public static class DVScreenPackets
+{
+    public const string Time = "dv-screen-time";
+    public const string Content = "dv-screen-content";
+    public const string ShowBorders = "dv-screen-borders";
+    public const string Text = "dv-screen-text";
+}

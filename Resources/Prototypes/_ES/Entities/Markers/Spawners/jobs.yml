@@ -7,7 +7,7 @@
     sprite: Markers/jobs.rsi
     layers:
     - state: green
-    - sprite: _ES/Mobs/Ghosts/theatergoer.rsi
+    - sprite: _ES/Mobs/Ghosts/theatergoer_body.rsi
       state: body
   - type: SpawnPoint
     spawn_type: Theatergoer
@@ -15,17 +15,17 @@
 # Cargo
 
 - type: entity
-  id: ESSpawnPointCargoTechnician
+  id: ESSpawnPointQuartermaster
   parent: SpawnPointJobBase
-  name: cargotechnician
+  name: quartermaster
   suffix: ES
   components:
   - type: SpawnPoint
-    job_id: ESCargoTechnician
+    job_id: ESQuartermaster
   - type: Sprite
     layers:
       - state: green
-      - state: cargo_tech
+      - state: qm
 
 # Civilian
 
@@ -97,19 +97,6 @@
       - state: chef
 
 - type: entity
-  id: ESSpawnPointBotanist
-  parent: SpawnPointJobBase
-  name: botanist
-  suffix: ES
-  components:
-  - type: SpawnPoint
-    job_id: ESBotanist
-  - type: Sprite
-    layers:
-      - state: green
-      - state: botanist
-
-- type: entity
   id: ESSpawnPointJanitor
   parent: SpawnPointJobBase
   name: janitor
@@ -121,6 +108,20 @@
     layers:
       - state: green
       - state: janitor
+
+- type: entity
+  id: ESSpawnPointRatman
+  parent: SpawnPointJobBase
+  name: ratman
+  suffix: ES
+  components:
+  - type: SpawnPoint
+    job_id: ESRatman
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _ES/Markers/job.rsi
+      state: ratman
 
 # Command
 
@@ -138,13 +139,13 @@
       - state: captain
 
 - type: entity
-  id: ESSpawnPointHeadOfPersonnel
+  id: ESSpawnPointStationAdmin
   parent: SpawnPointJobBase
-  name: headofpersonnel
+  name: stationadmin
   suffix: ES
   components:
   - type: SpawnPoint
-    job_id: ESHeadOfPersonnel
+    job_id: ESStationAdmin
   - type: Sprite
     layers:
       - state: green
@@ -183,28 +184,15 @@
 - type: entity
   id: ESSpawnPointMedicalDoctor
   parent: SpawnPointJobBase
-  name: physician
+  name: doctor
   suffix: ES
   components:
   - type: SpawnPoint
-    job_id: ESPhysician
+    job_id: ESDoctor
   - type: Sprite
     layers:
       - state: green
       - state: doctor
-
-- type: entity
-  id: ESSpawnPointChemist
-  parent: SpawnPointJobBase
-  name: chemist
-  suffix: ES
-  components:
-  - type: SpawnPoint
-    job_id: ESChemist
-  - type: Sprite
-    layers:
-      - state: green
-      - state: chemist
 
 - type: entity
   id: ESSpawnPointCoroner

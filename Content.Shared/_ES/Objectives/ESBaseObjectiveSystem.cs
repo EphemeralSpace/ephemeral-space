@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Shared._ES.Masks;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -11,12 +11,12 @@ namespace Content.Shared._ES.Objectives;
 ///     This is a base class for objectives that need certain common behavior like relays.
 ///     This ensures they're always implemented correctly, instead of copy-pasting the mind added/removed logic for them.
 /// </summary>
-public abstract class ESBaseObjectiveSystem<TComponent> : EntitySystem
+public abstract partial class ESBaseObjectiveSystem<TComponent> : EntitySystem
     where TComponent: Component
 {
-    [Dependency] protected readonly SharedMindSystem MindSys = default!;
-    [Dependency] protected readonly ESSharedObjectiveSystem ObjectivesSys = default!;
-    [Dependency] protected readonly ESSharedMaskSystem MaskSys = default!;
+    [Dependency] protected SharedMindSystem MindSys = default!;
+    [Dependency] protected ESSharedObjectiveSystem ObjectivesSys = default!;
+    [Dependency] protected ESSharedSecretIdentitySystem SecretIdentitySys = default!;
 
     /// <summary>
     ///     A list of all the relays this objective relies on existing.

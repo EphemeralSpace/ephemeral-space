@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._ES.Fluids;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
@@ -21,26 +22,29 @@ using Content.Shared.StepTrigger.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Fluids;
 
 public abstract partial class SharedPuddleSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] protected readonly ISharedAdminLogManager AdminLogger = default!;
-    [Dependency] protected readonly OpenableSystem Openable = default!;
-    [Dependency] protected readonly ReactiveSystem Reactive = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] protected readonly SharedPopupSystem Popups = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly SpeedModifierContactsSystem _speedModContacts = default!;
-    [Dependency] private readonly StepTriggerSystem _stepTrigger = default!;
-    [Dependency] private readonly TileFrictionController _tile = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] protected ISharedAdminLogManager AdminLogger = default!;
+    [Dependency] protected OpenableSystem Openable = default!;
+    [Dependency] protected ReactiveSystem Reactive = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] protected SharedPopupSystem Popups = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private SpeedModifierContactsSystem _speedModContacts = default!;
+    [Dependency] private StepTriggerSystem _stepTrigger = default!;
+    [Dependency] private TileFrictionController _tile = default!;
+    [Dependency] private INetManager _net = default!;
 
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
 
@@ -50,6 +54,8 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     public const float LowThreshold = 0.3f;
 
     public const float MediumThreshold = 0.6f;
+
+    protected static readonly ProtoId<ESPuddleSpriteSetPrototype> DefaultPuddleSpriteSet = "Default";
 
     // Using local deletion queue instead of the standard queue so that we can easily "undelete" if a puddle
     // loses & then gains reagents in a single tick.
@@ -96,6 +102,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         _deletionQueue.Clear();
 
         TickEvaporation();
+        TickGas();
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)
@@ -114,6 +121,10 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
     private void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionContainerChangedEvent args)
     {
+        // The changes are already networked as part of the same game state.
+        if (_timing.ApplyingState)
+            return;
+
         if (args.SolutionId != entity.Comp.SolutionName)
             return;
 
@@ -189,6 +200,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         if (!Resolve(ent, ref puddle, ref appearance))
             return;
 
+        var spriteSet = DefaultPuddleSpriteSet;
         var volume = FixedPoint2.Zero;
         var color = Color.White;
 
@@ -203,8 +215,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
             // Kinda EH
             // Could potentially do alpha per-solution but future problem.
 
-            color = solution.GetColorWithout(_prototypeManager, _standoutReagents);
-            color = color.WithAlpha(0.7f);
+            color = solution.GetColorWithout(_prototypeManager, _standoutReagents.ToList(), isPuddle: true);
 
             foreach (var standout in _standoutReagents)
             {
@@ -212,15 +223,29 @@ public abstract partial class SharedPuddleSystem : EntitySystem
                 if (quantity <= FixedPoint2.Zero)
                     continue;
 
+                var standoutReagent = _prototypeManager.Index(standout);
                 var interpolateValue = quantity.Float() / solution.Volume.Float();
                 color = Color.InterpolateBetween(color,
-                    _prototypeManager.Index<ReagentPrototype>(standout).SubstanceColor,
+                    standoutReagent.PuddleColor ?? standoutReagent.SubstanceColor,
                     interpolateValue);
             }
+
+            var spriteSets = new Dictionary<ProtoId<ESPuddleSpriteSetPrototype>, FixedPoint2>();
+            foreach (var (reagent, quantity) in solution.Contents)
+            {
+                var spriteSetId = _prototypeManager.Index<ReagentPrototype>(reagent.Prototype).PuddleSpriteSet;
+                var old = spriteSets.GetOrNew(spriteSetId);
+                spriteSets[spriteSetId] = old + quantity;
+            }
+
+            if (spriteSets.Count != 0)
+                spriteSet = spriteSets.MaxBy(p => p.Value).Key;
         }
 
         _appearance.SetData(ent, PuddleVisuals.CurrentVolume, volume.Float(), appearance);
         _appearance.SetData(ent, PuddleVisuals.SolutionColor, color, appearance);
+        // string cast due to type shenanigans when serializing data like this
+        _appearance.SetData(ent, PuddleVisuals.SpriteSet, (string) spriteSet, appearance);
     }
 
     private void UpdateSlip(Entity<PuddleComponent> entity, Solution solution)

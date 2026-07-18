@@ -15,11 +15,11 @@ using static Robust.Client.UserInterface.Controls.BoxContainer;
 
 namespace Content.Client.UserInterface.Systems.Atmos.GasTank;
 
-public sealed class GasTankWindow
+public sealed partial class GasTankWindow
     : BaseWindow
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IResourceCache _cache = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IResourceCache _cache = default!;
 
     private readonly RichTextLabel _lblPressure;
     private readonly FloatSpinBox _spbPressure;
@@ -90,6 +90,7 @@ public sealed class GasTankWindow
 
         LayoutContainer.SetAnchorPreset(topContainerWrap, LayoutContainer.LayoutPreset.Wide);
 
+        // TODO: Move fonts to stylesheets, respect user font preferences.
         var font = _cache.GetFont("/Fonts/Boxfont-round/Boxfont Round.ttf", 13);
 
         _topLabel = new Label

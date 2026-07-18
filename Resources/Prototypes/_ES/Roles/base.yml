@@ -1,0 +1,41 @@
+# The Job MindRole holds the mob's Job prototype
+- type: entity
+  id: MindRoleJob
+  name: Job Role
+  components:
+  - type: MindRole
+
+- type: entity
+  id: MindRoleObserver
+  name: Observer Role
+  components:
+  - type: ObserverRole
+  - type: MindRole
+    sortWeight: -10
+
+# Bases for job prototypes (mostly for naming purposes)
+# professional as in 'dr.' 'prof.' etc for roles where that makes sense (engi med sci yknow)
+- type: job
+  id: ESBaseJobProfessionalNaming
+  abstract: true
+  nameConfig:
+    prefixChance: 0.12
+    prefixGenderlessChance: 0.75
+    prefixFirstNameless: 0.65
+
+- type: job
+  id: ESBaseJobSecurityNaming
+  abstract: true
+  nameConfig:
+    prefixChance: 0.2
+    prefixGenderlessChance: 0.925
+    prefixFirstNameless: 0.65
+    prefixGenderlessDataset: ESNamePrefixGenderlessSecurity
+
+- type: job
+  id: ESBaseJobRoyalNaming
+  abstract: true
+  nameConfig:
+    prefixGenderlessChance: 0.9
+    prefixFirstNameless: 0.3
+    prefixGenderlessDataset: ESNamePrefixGenderlessRoyal

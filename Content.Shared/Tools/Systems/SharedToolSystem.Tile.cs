@@ -13,7 +13,7 @@ namespace Content.Shared.Tools.Systems;
 
 public abstract partial class SharedToolSystem
 {
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private INetManager _net = default!;
 
     public void InitializeTile()
     {
@@ -45,8 +45,8 @@ public abstract partial class SharedToolSystem
             return;
         }
 
-        var tileRef = _maps.GetTileRef(gridUid, grid, args.GridTile);
-        var coords = _maps.ToCoordinates(tileRef, grid);
+        var tileRef = _mapManager.GetTileRef(gridUid, grid, args.GridTile);
+        var coords = _mapManager.ToCoordinates(tileRef, grid);
         if (comp.RequiresUnobstructed && _turfs.IsTileBlocked(gridUid, tileRef.GridIndices, CollisionGroup.MobMask))
             return;
 
@@ -71,7 +71,7 @@ public abstract partial class SharedToolSystem
         if (!_mapManager.TryFindGridAt(_transformSystem.ToMapCoordinates(clickLocation), out var gridUid, out var mapGrid))
             return false;
 
-        var tileRef = _maps.GetTileRef(gridUid, mapGrid, clickLocation);
+        var tileRef = _mapManager.GetTileRef(gridUid, mapGrid, clickLocation);
         var tileDef = (ContentTileDefinition) _tileDefManager[tileRef.Tile.TypeId];
 
         if (!tool.Qualities.ContainsAny(tileDef.DeconstructTools))
@@ -83,7 +83,7 @@ public abstract partial class SharedToolSystem
         if (comp.RequiresUnobstructed && _turfs.IsTileBlocked(gridUid, tileRef.GridIndices, CollisionGroup.MobMask))
             return false;
 
-        var coordinates = _maps.GridTileToLocal(gridUid, mapGrid, tileRef.GridIndices);
+        var coordinates = _mapManager.GridTileToLocal(gridUid, mapGrid, tileRef.GridIndices);
         if (!InteractionSystem.InRangeUnobstructed(user, coordinates, popup: false))
             return false;
 

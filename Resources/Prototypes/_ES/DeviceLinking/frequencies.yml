@@ -1,0 +1,14 @@
+- type: deviceFrequency
+  id: ESArmoryTimer
+  name: es-device-frequency-prototype-name-armory-timer
+  frequency: 2777
+
+- type: deviceFrequency
+  id: ESRadstormTimer
+  name: es-device-frequency-prototype-name-radstorm-timer
+  frequency: 2778
+
+- type: deviceFrequency
+  id: ESWarpDriveTimer
+  name: es-device-frequency-prototype-name-warpdrive-timer
+  frequency: 2779

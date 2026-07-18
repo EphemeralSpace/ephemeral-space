@@ -201,7 +201,7 @@
       - !type:RemoveStatusEffect
         effect: WoundBoneDeath
       steps:
-      - material: MedicatedSuture
+      - material: Suture
         amount: 3
         doAfter: 5
   - node: OpenRibCageSetting

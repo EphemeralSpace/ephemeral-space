@@ -22,15 +22,15 @@ namespace Content.Client.Weapons.Melee;
 
 public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 {
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IInputManager _inputManager = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IStateManager _stateManager = default!;
-    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
-    [Dependency] private readonly InputSystem _inputSystem = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IInputManager _inputManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IStateManager _stateManager = default!;
+    [Dependency] private AnimationPlayerSystem _animation = default!;
+    [Dependency] private InputSystem _inputSystem = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -107,30 +107,6 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         else
         {
             coordinates = TransformSystem.ToCoordinates(_map.GetMap(mousePos.MapId), mousePos);
-        }
-
-        // If the gun has AltFireComponent, it can be used to attack.
-        if (TryComp<GunComponent>(weaponUid, out var gun) && gun.UseKey)
-        {
-            if (!TryComp<AltFireMeleeComponent>(weaponUid, out var altFireComponent) || altDown != BoundKeyState.Down)
-                return;
-
-            switch(altFireComponent.AttackType)
-            {
-                case AltFireAttackType.Light:
-                    ClientLightAttack(entity, mousePos, coordinates, weaponUid, weapon);
-                    break;
-
-                case AltFireAttackType.Heavy:
-                    ClientHeavyAttack(entity, coordinates, weaponUid, weapon);
-                    break;
-
-                case AltFireAttackType.Disarm:
-                    ClientDisarm(entity, mousePos, coordinates);
-                    break;
-            }
-
-            return;
         }
 
         // Heavy attack.

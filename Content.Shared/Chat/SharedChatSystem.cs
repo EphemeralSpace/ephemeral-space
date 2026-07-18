@@ -36,21 +36,19 @@ public abstract partial class SharedChatSystem : EntitySystem
     public const int VoiceRange = 10; // how far voice goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
     public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
-    public static readonly SoundSpecifier DefaultAnnouncementSound
-        = new SoundPathSpecifier("/Audio/Announcements/announce.ogg");
 
     public static readonly ProtoId<RadioChannelPrototype> CommonChannel = "Common";
 
     public static readonly string DefaultChannelPrefix = $"{RadioChannelPrefix}{DefaultChannelKey}";
     public static readonly ProtoId<SpeechVerbPrototype> DefaultSpeechVerb = "Default";
 
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private INetManager _net = default!;
 
     /// <summary>
     /// Cache of the keycodes for faster lookup.
@@ -298,7 +296,10 @@ public abstract partial class SharedChatSystem : EntitySystem
     public static string InjectTagAroundString(ChatMessage message, string targetString, string tag, string? tagParameter)
     {
         var rawmsg = message.WrappedMessage;
+        // TODO: Figure out if there's any way we can cache this, and if not then rewrite this to not use regex.
+#pragma warning disable RA0026
         rawmsg = Regex.Replace(rawmsg, "(?i)(" + targetString + ")(?-i)(?![^[]*])", $"[{tag}={tagParameter}]$1[/{tag}]");
+#pragma warning restore RA0026
         return rawmsg;
     }
 
@@ -394,61 +395,6 @@ public abstract partial class SharedChatSystem : EntitySystem
         IConsoleShell? shell = null,
         ICommonSession? player = null
         )
-    { }
-
-    /// <summary>
-    /// Dispatches an announcement to all.
-    /// </summary>
-    /// <param name="message">The contents of the message.</param>
-    /// <param name="sender">The sender (Communications Console in Communications Console Announcement).</param>
-    /// <param name="playSound">Play the announcement sound.</param>
-    /// <param name="announcementSound">Sound to play.</param>
-    /// <param name="colorOverride">Optional color for the announcement message.</param>
-    public virtual void DispatchGlobalAnnouncement(
-        string message,
-        string? sender = null,
-        bool playSound = true,
-        SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null
-        )
-    { }
-
-    /// <summary>
-    /// Dispatches an announcement to players selected by filter.
-    /// </summary>
-    /// <param name="filter">Filter to select players who will recieve the announcement.</param>
-    /// <param name="message">The contents of the message.</param>
-    /// <param name="source">The entity making the announcement (used to determine the station).</param>
-    /// <param name="sender">The sender (Communications Console in Communications Console Announcement).</param>
-    /// <param name="playSound">Play the announcement sound.</param>
-    /// <param name="announcementSound">Sound to play.</param>
-    /// <param name="colorOverride">Optional color for the announcement message.</param>
-    public virtual void DispatchFilteredAnnouncement(
-        Filter filter,
-        string message,
-        EntityUid? source = null,
-        string? sender = null,
-        bool playSound = true,
-        SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null)
-    { }
-
-    /// <summary>
-    /// Dispatches an announcement on a specific station.
-    /// </summary>
-    /// <param name="source">The entity making the announcement (used to determine the station).</param>
-    /// <param name="message">The contents of the message.</param>
-    /// <param name="sender">The sender (Communications Console in Communications Console Announcement).</param>
-    /// <param name="playDefaultSound">Play the announcement sound.</param>
-    /// <param name="announcementSound">Sound to play.</param>
-    /// <param name="colorOverride">Optional color for the announcement message.</param>
-    public virtual void DispatchStationAnnouncement(
-        EntityUid source,
-        string message,
-        string? sender = null,
-        bool playDefaultSound = true,
-        SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null)
     { }
 }
 

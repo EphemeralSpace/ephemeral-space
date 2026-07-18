@@ -72,17 +72,12 @@
     maxIntensity: 100
     intensitySlope: 2
     totalIntensity: 200
-  - type: StaticPrice
-    price: 500
   - type: Electrified
     onHandInteract: false
     onInteractUsing: false
     onBump: false
     requirePower: true
     highVoltageNode: output
-  - type: GuideHelp
-    guides:
-    - ShuttleCraft
 
 # Base Wallmount Generator
 
@@ -127,9 +122,7 @@
     supplyRate: 3000
     supplyRampRate: 500
     supplyRampTolerance: 500
-  - type: GuideHelp
-    guides:
-    - ShuttleCraft
+
 
 # Construction Frames
 
@@ -177,8 +170,6 @@
   - type: Construction
     graph: WallmountGenerator
     node: generator
-  - type: StaticPrice
-    price: 14
   - type: ContainerFill
     containers:
       board: [ WallmountGeneratorElectronics ]
@@ -203,17 +194,13 @@
   - type: Construction
     graph: WallmountGenerator
     node: APU
-  - type: StaticPrice
-    price: 38
   - type: ContainerFill
     containers:
       board: [ WallmountGeneratorAPUElectronics ]
   - type: ContainerContainer
     containers:
       board: !type:Container
-  - type: GuideHelp
-    guides:
-    - ShuttleCraft
+
 # ES START
   - type: NodeContainer
     examinable: true
@@ -265,10 +252,6 @@
     range: 5
     sound:
       path: /Audio/Ambience/Objects/buzzing.ogg
-  - type: GuideHelp
-    guides:
-    - RTG
-    - Power
   - type: Destructible
     thresholds:
       - trigger:

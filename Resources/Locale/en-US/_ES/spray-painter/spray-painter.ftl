@@ -8,9 +8,6 @@ spray-painter-style-esairlockhatch-maintenance = Maintenance
 spray-painter-style-esairlockhatch-substation = Substation
 
 # Crates
-spray-painter-style-cratesteel-hydroponics = Hydroponics
-spray-painter-style-cratesteel-medical = Medical
-spray-painter-style-cratesteel-oxygen = Oxygen
 spray-painter-style-cratesteel-syndicate = Syndicate
 
 spray-painter-style-cratefreezer-basic = Basic

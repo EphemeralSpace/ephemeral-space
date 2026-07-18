@@ -7,6 +7,7 @@
   - type: Sprite
     sprite: Structures/Machines/fax_machine.rsi
     drawdepth: SmallObjects
+    noRot: true
     layers:
     - state: icon
       map: [ "enum.FaxMachineVisuals.VisualState" ]
@@ -34,7 +35,6 @@
     interfaces:
       enum.FaxUiKey.Key:
         type: FaxBoundUi
-  - type: StationAiWhitelist
   - type: ApcPowerReceiver
     # ES START
     powerLoad: 200
@@ -50,9 +50,6 @@
       whitelist:
         components:
           - FaxableObject #used to be PaperComponent - brainfood1183
-      blacklist:
-        components:
-          - CargoSlip
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
@@ -105,8 +102,6 @@
     name: "ERR*?*%!"
     responsePings: false
     notifyAdmins: true
-  - type: Emagged
-    emagType: Interaction
 
 - type: entity
   parent: FaxMachineBase
@@ -117,5 +112,3 @@
     - type: FaxMachine
       name: "Captain's Office"
       receiveNukeCodes: true
-    - type: StealTarget
-      stealGroup: FaxMachineCaptain

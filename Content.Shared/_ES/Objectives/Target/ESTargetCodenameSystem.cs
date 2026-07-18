@@ -5,12 +5,12 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._ES.Objectives.Target;
 
-public sealed class ESTargetCodenameSystem : EntitySystem
+public sealed partial class ESTargetCodenameSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly ESSharedObjectiveSystem _objective = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private ESSharedObjectiveSystem _objective = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using Content.Server.Atmos.Components;
 using Content.Server.Explosion.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Explosion;
 using Content.Shared.FixedPoint;
@@ -217,6 +218,11 @@ public sealed partial class ExplosionSystem
         if (_destructibleQuery.TryGetComponent(uid, out var destructible))
         {
             totalDamageTarget = _destructibleSystem.DestroyedAt(uid, destructible);
+        }
+        else if (_breakable.TryGetBrokenThreshold(uid, out var threshold) &&
+                 _breakableWallQuery.HasComp(uid))
+        {
+            totalDamageTarget = threshold.Value;
         }
 
         if (totalDamageTarget == FixedPoint2.MaxValue || !_damageableQuery.TryGetComponent(uid, out var damageable))

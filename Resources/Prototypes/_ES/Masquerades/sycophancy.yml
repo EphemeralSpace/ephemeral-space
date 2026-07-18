@@ -1,0 +1,26 @@
+﻿- type: esMasquerade
+  id: Sycophancy
+  name: Sycophancy
+  description: is a traitors-focused show with parasitic undertones
+  weight: 3
+  minPlayers: 10
+  gameRules: []
+  masquerade:
+    defaultSecretIdentity: "#AllCrew"
+    superfanTarget: "#Traitors"
+    roles:
+      # 2 traitors, 1 parasite.
+      10: ["Marauder", "#Traitors", "#SemiTraitor", "Vandal", "#AllParasites"]
+      11: [ "#Antagonistic" ]
+      13: [ "Assassin" ]  # 3 traitors, 1 parasite.
+      14: [ "#AllParasites" ] # 3 traitors, 2 parasite.
+      15: [ "Tragedian" ]
+      16: [ "#Firmsafes" ] # 3 traitors, 2 parasite.
+      18: [ "Arsonist" ]
+      19: [ "#Traitors" ] # 4 traitors, 2 parasite.
+      21: [ "#Gunners", ] # 4 traitors, 2 parasites.
+      24: [ "#SemiTraitor" ] # 4 traitors, 2 parasites.
+      25: [ "Marauder" ] # 5 traitors, 2 parasites.
+      26: [ "#AllParasites" ] # 5 traitors, 3 parasites.
+      28: [ "#Gunners" ] # 5 traitors, 3 parasites.
+      31: [ "#Traitors", "#AllParasites" ] # 6 traitors, 4 parasites.

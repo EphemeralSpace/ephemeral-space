@@ -24,7 +24,7 @@
     all:
     - id: ESWeaponPistol9mmSilenced
     - id: ESMagazine9mm
-    - id: ESSleepyPen
+    - id: SleepyPen
       amount: 2
     - id: SmokeGrenade
       amount: 2
@@ -64,11 +64,10 @@
   id: ESTraitorCacheMarauder
   table:
     all:
-    - id: ESWeaponRevolver357
-    - id: ESSpeedLoader357
-    - id: ESWeaponKnife
+    - id: EnergySword
+    - id: StimulantPen
+      amount: 2
     - id: ESClothingOuterArmorSecurity
-    - id: ExGrenade
 
 # Subverter
 - type: entity
@@ -86,9 +85,9 @@
   table:
     all:
     - id: ESSubverterChip
-      amount: 2
-    - id: ESWeaponPistol9mm
-    - id: ESMagazine9mm
+    - id: SleepyPen
+    - tableId: SubverterWeapons
+      rolls: 2
 
 # Demolitionist
 - type: entity
@@ -110,20 +109,21 @@
     - id: ExGrenade
       amount: 2
     - id: ESMicroBombImplanter
+    - id: ESSyndicateBombFlatpack
 
-# Veteran
+# Mercenary
 - type: entity
   parent: ESCrateCache
-  id: ESCrateCacheCrewVeteran
-  suffix: ES, Veteran Cache
+  id: ESCrateCacheCrewMercenary
+  suffix: ES, Mercenary Cache
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage:
-        tableId: ESCrewCacheVeteran
+        tableId: ESCrewCacheMercenary
 
 - type: entityTable
-  id: ESCrewCacheVeteran
+  id: ESCrewCacheMercenary
   table:
     group:
     - all:
@@ -132,32 +132,6 @@
       - id: ESWeaponPistol9mm
         weight: 2
       - id: ESWeaponPistol9mmSilenced
-
-# Survivalist
-- type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheCrewSurvivalist
-  suffix: ES, Survivalist Cache
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESCrewCacheSurvivalist
-
-- type: entityTable
-  id: ESCrewCacheSurvivalist
-  table:
-    all:
-    - group:
-      - id: MedkitAdvancedFilled
-      - id: MedkitBurnFilled
-      - id: MedkitBruteFilled
-    - group:
-      - id: ToolboxEmergencyFilled
-      - id: ToolboxMechanicalFilled
-      - id: ToolboxElectricalFilled
-    - tableId: ESMaintLootRare
-      rolls: 2
 
 # Insider
 - type: entity
@@ -195,30 +169,6 @@
         - id: ESWeaponDoubleBarrelShotgun
           weight: 1
         rolls: 2
-
-# Fruit Vendor
-- type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheCrewFruitVendor
-  suffix: ES, Fruit Vendor Cache
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        group:
-        - id: FoodBanana
-        - id: FoodLemon
-        - id: FoodLime
-        - id: FoodOrange
-        - id: FoodPineapple
-        - id: FoodTomato
-        - id: FoodApple
-        - id: FoodWatermelon
-        - id: FoodGrape
-        - id: FoodPumpkin
-        - id: FoodCherry
-        - id: FoodBerries
-        rolls: 4, 5
 
 # Hitman
 - type: entity

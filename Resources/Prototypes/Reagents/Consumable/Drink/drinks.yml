@@ -441,6 +441,8 @@
   physicalDesc: reagent-physical-desc-translucent
   flavor: water
   color: "#75b1f0"
+  puddleColor: "#ffffff"
+  puddleSpriteSet: Water
   recognizable: true
   boilingPoint: 100.0
   meltingPoint: 0.0
@@ -498,11 +500,6 @@
   physicalDesc: reagent-physical-desc-wormy
   flavor: cheapnoodles
   color: "#664300"
-  metabolisms:
-    Food:
-      effects:
-      - !type:SatiateHunger
-        factor: 1
 
 - type: reagent
   id: HotRamen
@@ -512,11 +509,6 @@
   physicalDesc: reagent-physical-desc-wormy
   flavor: cheapnoodles
   color: "#664300"
-  metabolisms:
-    Food:
-      effects:
-      - !type:SatiateHunger
-        factor: 4
 
 - type: reagent
   id: ArnoldPalmer

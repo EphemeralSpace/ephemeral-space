@@ -8,7 +8,6 @@ using Content.Shared.Hands;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Polymorph;
-using Content.Shared.Silicons.StationAi;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
@@ -24,15 +23,15 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Follower;
 
-public sealed class FollowerSystem : EntitySystem
+public sealed partial class FollowerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedJointSystem _jointSystem = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly ISharedAdminManager _adminManager = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private SharedJointSystem _jointSystem = default!;
+    [Dependency] private SharedPhysicsSystem _physicsSystem = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private ISharedAdminManager _adminManager = default!;
 
     private static readonly ProtoId<TagPrototype> ForceableFollowTag = "ForceableFollow";
     private static readonly ProtoId<TagPrototype> PreventGhostnadoWarpTag = "NotGhostnadoWarpable";
@@ -51,7 +50,6 @@ public sealed class FollowerSystem : EntitySystem
         SubscribeLocalEvent<FollowedComponent, EntityTerminatingEvent>(OnFollowedTerminating);
         SubscribeLocalEvent<BeforeSerializationEvent>(OnBeforeSave);
         SubscribeLocalEvent<FollowedComponent, PolymorphedEvent>(OnFollowedPolymorphed);
-        SubscribeLocalEvent<FollowedComponent, StationAiRemoteEntityReplacementEvent>(OnFollowedStationAiRemoteEntityReplaced);
     }
 
     private void OnFollowedAttempt(Entity<FollowedComponent> ent, ref ComponentGetStateAttemptEvent args)
@@ -166,17 +164,6 @@ public sealed class FollowerSystem : EntitySystem
         }
     }
 
-    // TODO: Slartibarfast mentioned that ideally this should be generalized and made part of SetRelay in SharedMoverController.Relay.cs.
-    // This would apply to polymorphed entities as well
-    private void OnFollowedStationAiRemoteEntityReplaced(Entity<FollowedComponent> entity, ref StationAiRemoteEntityReplacementEvent args)
-    {
-        if (args.NewRemoteEntity == null)
-            return;
-
-        foreach (var follower in entity.Comp.Following)
-            StartFollowingEntity(follower, args.NewRemoteEntity.Value);
-    }
-
     /// <summary>
     ///     Makes an entity follow another entity, by parenting to it.
     /// </summary>
@@ -269,7 +256,7 @@ public sealed class FollowerSystem : EntitySystem
         var targetEv = new EntityStoppedFollowingEvent(target, uid);
 
         RaiseLocalEvent(uid, uidEv, true);
-        RaiseLocalEvent(target, targetEv, false);
+        RaiseLocalEvent(target, targetEv);
         Dirty(target, followed);
         RaiseLocalEvent(uid, uidEv);
         RaiseLocalEvent(target, targetEv);

@@ -15,8 +15,6 @@
   - type: UseDelayOnTrigger
   - type: UseDelayTriggerCondition
   - type: UseDelay
-  - type: StaticPrice
-    price: 40
   - type: DeviceLinkSource
     ports:
       - Pressed
@@ -46,5 +44,3 @@
       - state: advanced-inhand-right
   - type: WirelessNetworkConnection
     range: 50
-  - type: StaticPrice
-    price: 30

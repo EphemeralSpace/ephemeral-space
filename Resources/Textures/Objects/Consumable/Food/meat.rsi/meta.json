@@ -269,20 +269,6 @@
     {
       "name": "xenocutlet-cooked"
     },
-	{
-      "name": "dragon"
-    },
-    {
-      "name": "dragon-inhand-right",
-      "directions": 4
-    },
-    {
-      "name": "dragon-inhand-left",
-      "directions": 4
-    },
-	{
-      "name": "dragon_veins"
-    },
     {
       "name": "rouny"
     },
@@ -294,26 +280,6 @@
     },
     {
       "name": "anomalymeat-cooked"
-    },
-    {
-      "name": "dragon-cooked"
-    },
-    {
-      "name": "dragon-cooked-inhand-right",
-      "directions": 4
-    },
-    {
-      "name": "dragon-cooked-inhand-left",
-      "directions": 4
-    },
-    {
-      "name": "dragoncutlet"
-    },
-    {
-      "name": "dragoncutlet_veins"
-    },
-    {
-      "name": "dragoncutlet-cooked"
     },
     {
       "name": "raw_patty"

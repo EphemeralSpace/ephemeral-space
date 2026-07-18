@@ -8,13 +8,6 @@
     bodyType: Static
   - type: Fixtures
     fixtures:
-      light:
-        shape:
-          !type:PhysShapeCircle
-          radius: 5
-        hard: false
-        mask:
-        - GhostImpassable
       fix1:
         shape:
           !type:PhysShapeAabb
@@ -24,13 +17,6 @@
         - None
         layer:
         - TabletopMachineLayer
-  - type: LightOnCollide
-  - type: PointLight
-    enabled: false
-    radius: 5
-  - type: SlimPoweredLight
-    enabled: false
-  - type: StationAiVision
   - type: Clickable
   - type: InteractionOutline
   - type: Construction
@@ -77,8 +63,6 @@
         type: SurveillanceCameraSetupBoundUi
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-  - type: StaticPrice
-    price: 200
   - type: Destructible
     thresholds:
       - trigger:

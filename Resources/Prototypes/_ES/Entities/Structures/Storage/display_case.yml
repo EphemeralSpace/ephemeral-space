@@ -7,6 +7,7 @@
   components:
   - type: Sprite
     sprite: _ES/Structures/Storage/display_case.rsi
+    noRot: true
     layers:
     - state: light
       color: "#fff5"
@@ -95,3 +96,4 @@
     containers:
       display-case:
         id: ESWeaponCaptainEnergyGun
+  - type: ESAmbientMusicMarkerCommand

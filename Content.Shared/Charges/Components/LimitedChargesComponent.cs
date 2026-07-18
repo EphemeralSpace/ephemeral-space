@@ -19,6 +19,9 @@ public sealed partial class LimitedChargesComponent : Component
     [DataField, AutoNetworkedField]
     public int MaxCharges = 3;
 
+    [DataField, AutoNetworkedField]
+    public bool DeleteOnEmpty = false;
+
     /// <summary>
     /// Last time charges was changed. Used to derive current charges.
     /// </summary>

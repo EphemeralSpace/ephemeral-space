@@ -65,17 +65,6 @@
     event: !type:ScreamActionEvent
 
 - type: entity
-  parent: BaseMentalAction
-  id: ActionTurnUndead
-  name: Turn Undead
-  description: Succumb to your infection and become a zombie.
-  components:
-  - type: Action
-    icon: Interface/Actions/zombie-turn.png
-  - type: InstantAction
-    event: !type:ZombifySelfActionEvent
-
-- type: entity
   parent: BaseToggleAction
   id: ActionToggleLight
   name: Toggle Light
@@ -143,21 +132,6 @@
     icon:
       sprite: Actions/Implants/implants.rsi
       state: freedom
-
-- type: entity
-  parent: BaseAction
-  id: ActionOpenUplinkImplant
-  name: Open Uplink
-  description: Opens the syndicate uplink embedded under your skin
-  components:
-  - type: Action
-    itemIconStyle: BigAction
-    priority: -20
-    icon:
-      sprite: Objects/Devices/communication.rsi
-      state: old-radio
-  - type: InstantAction
-    event: !type:OpenUplinkImplantEvent
 
 - type: entity
   parent: BaseImplantAction
@@ -253,17 +227,6 @@
     icon: { sprite: Interface/Actions/voice-mask.rsi, state: icon }
   - type: InstantAction
     event: !type:VoiceMaskSetNameEvent
-
-- type: entity
-  parent: BaseAction
-  id: ActionShootWater
-  name: Spray water!
-  description: Spray water towards your enemies.
-  components:
-  - type: Action
-    icon: { sprite: Clothing/Neck/Misc/pins.rsi, state: flower }
-  - type: InstantAction
-    event: !type:SprayLiquidEvent
 
 - type: entity
   parent: BaseAction
@@ -414,57 +377,6 @@
       state: icon-siren
     useDelay: 1
     itemIconStyle: BigAction
-
-#  TODO: Add back once we have animated tails again. Were removed due to the sprite rework, causing all of them to not fit anymore.
-# - type: entity
-#   parent: ActionToggleWagging
-#   id: ActionToggleWaggingVulpkanin
-#   components:
-#   - type: Action
-#     icon: { sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi, state: tail-wag-icon }
-#     iconOn: { sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi, state: tail-wag-icon }
-#     itemIconStyle: NoItem
-#     useDelay: 1 # Prevents Emote Spam
-
-- type: entity
-  parent: BaseAction
-  id: ActionGravityJump
-  name: Jump
-  description: Activating the advanced propulsion system, you propel yourself a short distance in the direction of your gaze.
-  components:
-  - type: Action
-    useDelay: 8
-    icon:
-      sprite: Interface/Actions/jump.rsi
-      state: icon
-  - type: InstantAction
-    event: !type:GravityJumpEvent {}
-
-- type: entity
-  parent: BaseAction
-  id: ActionVulpkaninGravityJump
-  name: Leap
-  description: Use your agile legs to leap a short distance. Be careful not to bump into anything!
-  components:
-  - type: Action
-    useDelay: 12
-    icon:
-      sprite: Interface/Actions/jump.rsi
-      state: icon
-  - type: InstantAction
-    event: !type:GravityJumpEvent {}
-
-- type: entity
-  parent: BaseToggleAction
-  id: ActionToggleRootable
-  name: Rootable
-  description: Begin or stop being rooted to the floor.
-  components:
-  - type: Action
-    icon: Interface/Actions/rooting.png
-    iconOn: Interface/Actions/rooting.png
-    itemIconStyle: NoItem
-    useDelay: 1
 
 - type: entity
   id: ActionChameleonController

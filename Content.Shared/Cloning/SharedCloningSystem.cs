@@ -2,7 +2,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Cloning;
 
-public abstract partial class SharedCloningSystem : EntitySystem
+public abstract class SharedCloningSystem : EntitySystem
 {
     /// <summary>
     /// Copy components from one entity to another based on a CloningSettingsPrototype.

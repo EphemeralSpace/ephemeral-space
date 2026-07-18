@@ -18,9 +18,15 @@ command-description-estelesci-setStage =
     For a given station, sets the telescience research to the specified stage.
 command-description-stationvariation-runPass =
     Spawns and raises the variation pass event on a variation game rule entity.
-command-description-mq-pickFromMaskSet =
-    Picks masks from the given set using a seed.
+command-description-mq-pickFromSecretIdentitySet =
+    Picks secret identities from the given set using a seed.
+command-description-mq-sim =
+    Simulates and calculates the average secret identity distribution at a given player count.
 command-description-mq-force =
     Forces the masquerade to be the given one.
 command-description-mq-unforce =
     Unsets the forced masquerade.
+command-description-rerollhostname =
+    Rerolls the server's hostname to feature a new roleplay level.
+command-description-cinematic-playAll =
+    Plays the given cinematic for all clients.

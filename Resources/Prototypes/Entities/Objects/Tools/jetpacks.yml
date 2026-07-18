@@ -60,8 +60,6 @@
         enum.JetpackVisuals.Layer:
           True: {state: icon-on}
           False: {state: icon}
-  - type: StaticPrice
-    price: 100
 
 - type: entity
   parent: BaseAction
@@ -114,7 +112,7 @@
 #Empty black
 - type: entity
   id: JetpackBlack
-  parent: [BaseJetpack, BaseSyndicateContraband]
+  parent: BaseJetpack
   name: jetpack
   suffix: Empty
   components:
@@ -126,8 +124,6 @@
     sprite: Objects/Tanks/Jetpacks/black.rsi
     slots:
       - Back
-  - type: StaticPrice
-    price: 1000
 
 # Filled black
 - type: entity
@@ -149,7 +145,7 @@
 #Empty captain
 - type: entity
   id: JetpackCaptain
-  parent: [BaseJetpack, BaseGrandTheftContraband]
+  parent: BaseJetpack
   name: captain's jetpack
   suffix: Empty
   components:
@@ -168,8 +164,6 @@
   - type: Tag
     tags:
     - HighRiskItem
-  - type: StealTarget
-    stealGroup: JetpackCaptainFilled
 
 # Filled captain
 - type: entity
@@ -233,7 +227,7 @@
 #Empty security
 - type: entity
   id: JetpackSecurity
-  parent: [JetpackMini, BaseSecurityContraband]
+  parent: JetpackMini
   name: security mini jetpack
   description: A compact jetpack utilized by station security when patrolling the station's exterior. Not intended for long range travel, it holds only 1.5 L of gas.
   suffix: Empty
@@ -298,22 +292,3 @@
       moles:
         Oxygen: 1.025689525 # oxygen
         Nitrogen: 1.025689525 # nitrogen
-
-# Infinite jetpack
-- type: entity
-  parent: [ JetpackBlack, BaseXenoborgContraband ]
-  id: JetpackXenoborg
-  name: xenoborg jetpack
-  suffix: Infinite
-  components:
-  - type: GasTank
-    outputPressure: 21.3
-    air:
-      volume: 5
-      temperature: 293.15
-  - type: Jetpack
-    moleUsage: 0
-  - type: MovementSpeedModifier
-    weightlessAcceleration: 1.3
-    weightlessFriction: 0.3
-    weightlessModifier: 1

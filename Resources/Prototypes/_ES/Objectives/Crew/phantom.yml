@@ -1,0 +1,28 @@
+- type: entity
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectivePhantomDie
+  name: Get killed
+  description: Meet your end at someone else's hand in order to be born anew.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
+  - type: ESCounterObjective
+  - type: ESBeKilledObjective
+  - type: ESReincarnateObjective
+  - type: ESAvengeSelfObjective
+
+- type: entity
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectivePhantomAvenge
+  name: Avenge yourself
+  description: They must face retribution for your death. Make sure this station is their grave.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Weapons/Melee/kitchen_knife.rsi
+      state: icon
+  - type: ESTargetObjective
+    title: es-phantom-avenge-objective-title
+  - type: ESKillTargetObjective

@@ -19,6 +19,8 @@ public struct ExtinguishEvent : IInventoryRelayEvent
     /// </summary>
     public float FireStacksAdjustment;
 
+    public EntityUid? User;
+
     SlotFlags IInventoryRelayEvent.TargetSlots => SlotFlags.WITHOUT_POCKET;
 }
 
@@ -31,6 +33,13 @@ public struct ExtinguishEvent : IInventoryRelayEvent
 /// <seealso cref="ExtinguishEvent"/>
 [ByRefEvent]
 public struct ExtinguishedEvent;
+
+/// <summary>
+/// Event raised on a user when they extinguish a flammable entity.
+/// This gets raised before the entity is deleted.
+/// </summary>
+[ByRefEvent]
+public readonly record struct ESUserExtinguishedEvent(EntityUid Flammable);
 
 /// <summary>
 /// A flammable entity has been ignited.

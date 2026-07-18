@@ -1,32 +1,14 @@
 - type: entity
-  parent: UnsensoredClothingUniformBase
-  id: ESUnsensoredClothingUniformJumpsuitEngineeringPIT
-  name: engineering overalls
-  description: A rugged orange shirt with dark overalls. It bares the color and logo of Pomelo Interspace Transit.
+  parent: ClothingUniformBase
+  id: ESClothingUniformJumpsuitAssistant
+  name: assistant jumpsuit
+  suffix: ES
+  description: A grey jumpsuit worn by the grunts of the Nanotrasen workforce. Now with new, boisterous olive accents!
   components:
   - type: Sprite
-    sprite: _ES/Clothing/Uniforms/Jumpsuit/engineering.rsi
-    layers:
-    - state: icon-jumpsuit
-    - state: icon-shirt
-      color: "#e9744a"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-jumpsuit
-      - state: inhand-left-shirt
-        color: "#e9744a"
-      right:
-      - state: inhand-right-jumpsuit
-      - state: inhand-right-shirt
-        color: "#e9744a"
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/assistant.rsi
   - type: Clothing
-    sprite: _ES/Clothing/Uniforms/Jumpsuit/engineering.rsi
-    clothingVisuals:
-      jumpsuit:
-      - state: equipped-INNERCLOTHING-jumpsuit
-      - state: equipped-INNERCLOTHING-shirt
-        color: "#e9744a"
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/assistant.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -42,6 +24,18 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRatman
+  name: ratty jumpsuit
+  suffix: ES
+  description: A tattered jumpsuit falling to pieces before your very eyes. How did it sustain this damage in a few mere weeks?
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/ratman.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/ratman.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ESClothingUniformJumpsuitParamedic
   name: paramedic jumpsuit
   suffix: ES
@@ -51,17 +45,6 @@
     sprite: _ES/Clothing/Uniforms/Jumpsuit/paramedic.rsi
   - type: Clothing
     sprite: _ES/Clothing/Uniforms/Jumpsuit/paramedic.rsi
-
-- type: entity
-  parent: UnsensoredClothingUniformBase
-  id: ESUnsensoredClothingUniformJumpsuitCaptain
-  name: captain's uniform
-  description: A collared long-sleeve shirt with dark brown slacks. Thankfully, a necktie is not part of dress code.
-  components:
-  - type: Sprite
-    sprite: _ES/Clothing/Uniforms/Jumpsuit/captain.rsi
-  - type: Clothing
-    sprite: _ES/Clothing/Uniforms/Jumpsuit/captain.rsi
 
 # Russian Jumpsuits
 

@@ -1,0 +1,5 @@
+- type: esSecretIdentitySet
+  id: Gunners
+  secretIdentities:
+    ArmsDealer: 0.5
+    Mercenary: 1

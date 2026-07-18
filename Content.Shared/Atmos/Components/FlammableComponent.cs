@@ -3,14 +3,40 @@ using Content.Shared.Damage;
 using Robust.Shared.GameStates;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Atmos.Components
 {
-    [RegisterComponent, NetworkedComponent]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause] // TODO: Access restriction so that other systems have to use the API to modify fire stacks
     public sealed partial class FlammableComponent : Component
     {
+        /// <summary>
+        /// Is the mob currently resisting being on fire
+        /// (i.e. throwing themselves onto the ground to extinguish themselves)?
+        /// </summary>
+        [ViewVariables]
+        public bool Resisting => ResistCompleteTime.HasValue;
+
+        /// <summary>
+        /// The time stamp at which the active resist will be over and the mob's flame stacks will be reduced.
+        /// </summary>
+        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+        [AutoPausedField]
+        public TimeSpan? ResistCompleteTime;
+
+        /// <summary>
+        /// Timestamp for the next update.
+        /// </summary>
+        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+        [AutoPausedField]
+        public TimeSpan NextUpdate;
+
+        /// <summary>
+        /// The time resisting being on fire will take.
+        /// The mob will be paralyzed for this duration.
+        /// </summary>
         [DataField]
-        public bool Resisting;
+        public TimeSpan ResistTime = TimeSpan.FromSeconds(2);
 
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField]
@@ -132,7 +158,7 @@ namespace Content.Shared.Atmos.Components
         /// </summary>
         // this is like stupidly low for a fire obviously. but i dont really want it to have much pronounced gameplay effect
         [DataField]
-        public float MaxFireTemperature = Atmospherics.T0C + 85f;
+        public float MaxFireTemperature = Atmospherics.T0C + 130f;
         // ES END
     }
 }

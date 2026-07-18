@@ -8,7 +8,7 @@ namespace Content.Shared.EntityConditions.Conditions;
 /// Returns true if this entity has an amount of reagent in it within a specified minimum and maximum.
 /// </summary>
 /// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
-public sealed partial class TemperatureEntityConditionSystem : EntityConditionSystem<TemperatureComponent, TemperatureCondition>
+public sealed class TemperatureEntityConditionSystem : EntityConditionSystem<TemperatureComponent, TemperatureCondition>
 {
     protected override void Condition(Entity<TemperatureComponent> entity, ref EntityConditionEvent<TemperatureCondition> args)
     {
@@ -21,7 +21,7 @@ public sealed partial class TemperatureEntityConditionSystem : EntityConditionSy
 /// Returns true if this solution entity has an amount of reagent in it within a specified minimum and maximum.
 /// </summary>
 /// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
-public sealed partial class SolutionTemperatureEntityConditionSystem : EntityConditionSystem<SolutionComponent, TemperatureCondition>
+public sealed class SolutionTemperatureEntityConditionSystem : EntityConditionSystem<SolutionComponent, TemperatureCondition>
 {
     protected override void Condition(Entity<SolutionComponent> entity, ref EntityConditionEvent<TemperatureCondition> args)
     {

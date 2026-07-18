@@ -1,7 +1,7 @@
 - type: entity
   name: handheld crew monitor
   categories: [ DoNotMap ]
-  parent: [ BaseHandheldComputer, BaseGrandTheftContraband ]
+  parent: BaseHandheldComputer
   # CMO-only bud, don't add more.
   id: HandheldCrewMonitor
   description: A hand-held crew monitor displaying the status of suit sensors.
@@ -24,13 +24,9 @@
   - type: WirelessNetworkConnection
     range: 500
   - type: StationLimitedNetwork
-  - type: StaticPrice
-    price: 500
   - type: Tag
     tags:
     - HighRiskItem
-  - type: StealTarget
-    stealGroup: HandheldCrewMonitor
 
 - type: entity
   id: HandheldCrewMonitorEmpty

@@ -1,9 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.Mind;
 using Content.Shared._ES.Objectives.Components;
-using Content.Shared.EntityTable;
-using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using JetBrains.Annotations;
@@ -21,11 +20,10 @@ namespace Content.Shared._ES.Objectives;
 /// </summary>
 public abstract partial class ESSharedObjectiveSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedPvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvsOverride = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -37,6 +35,8 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
 
         SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<ESObjectiveHolderComponent, ESMindPlayerDetachedEvent>(OnPlayerDetached);
+
+        SubscribeLocalEvent<ESObjectiveHolderComponent, ESGetCharacterInfoBlurbEvent>(OnGetCharacterInfoBlurb);
 
         SubscribeLocalEvent<ESObjectiveComponent, EntityRenamedEvent>(OnObjectiveRenamed);
     }
@@ -73,6 +73,14 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         }
     }
 
+    private void OnGetCharacterInfoBlurb(Entity<ESObjectiveHolderComponent> ent, ref ESGetCharacterInfoBlurbEvent args)
+    {
+        foreach (var objective in GetObjectives(ent.AsNullable()))
+        {
+            RaiseLocalEvent(objective, ref args);
+        }
+    }
+
     private void OnObjectiveRenamed(Entity<ESObjectiveComponent> ent, ref EntityRenamedEvent args)
     {
         // We need to dirty when we get renamed so that we can raise events on the client and update UIs.
@@ -92,6 +100,10 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
 
         var oldProgress = ent.Comp.Progress;
         var newProgress = Math.Clamp(ev.Progress, 0, 1);
+
+        // "inverted" progress means that a win is a fail, and vice versa.
+        if (ent.Comp.InvertProgress)
+            newProgress = 1 - newProgress;
 
         // If they are unchanged, then don't update anything.
         if (MathHelper.CloseTo(oldProgress, newProgress))
@@ -138,6 +150,20 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         return GetProgress(ent) >= 1 || MathHelper.CloseTo(GetProgress(ent), 1);
     }
 
+    /// <summary>
+    /// Checks if all owned objectives on a holder are completed
+    /// </summary>
+    public bool AllCompleted(Entity<ESObjectiveHolderComponent?> ent)
+    {
+        foreach (var objective in GetObjectives(ent))
+        {
+            if (!IsCompleted(objective.AsNullable()))
+                return false;
+        }
+
+        return true;
+    }
+
     public SpriteSpecifier GetIcon(Entity<ESObjectiveComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp))
@@ -145,9 +171,23 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         return ent.Comp.Icon ?? SpriteSpecifier.Invalid;
     }
 
+    public bool IsObjectiveInitialized(Entity<ESObjectiveComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+        return ent.Comp.ObjectiveInitialized;
+    }
+
+    public bool ShouldAnnounceProgress(Entity<ESObjectiveComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+        return ent.Comp.AnnounceProgress;
+    }
+
     /// <summary>
     /// Re-generates the list of objectives an entity should have, adding all new objectives and removing ones that should no longer be there,
-    /// e.g. as a result of troupe or mask changes.
+    /// e.g. as a result of organization or secret identity changes.
     /// </summary>
     public void RegenerateObjectiveList(Entity<ESObjectiveHolderComponent?> ent)
     {
@@ -312,16 +352,6 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     }
 
     /// <summary>
-    /// Attempts to create and add multiple objectives
-    /// </summary>
-    /// <returns>Returns true if all objectives succeed</returns>
-    public bool TryAddObjective(Entity<ESObjectiveHolderComponent?> ent, EntityTableSelector table)
-    {
-        var spawns = _entityTable.GetSpawns(table);
-        return spawns.All(e => TryAddObjective(ent, e));
-    }
-
-    /// <summary>
     /// Attempts to create and assign an objective to an entity
     /// </summary>
     /// <param name="ent">The entity that will be assigned the objective</param>
@@ -353,7 +383,19 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         ent.Comp.OwnedObjectives.Add(objective.Value);
         RegenerateObjectiveList(ent);
         RefreshObjectiveProgress(objective.Value.AsNullable());
+
+        objective.Value.Comp.ObjectiveInitialized = true;
+        Dirty(objective.Value);
+
         return true;
+    }
+
+    public bool TryRemoveObjective(Entity<ESObjectiveComponent?> objective)
+    {
+        if (!TryFindObjectiveHolder(objective, out var holder))
+            return false;
+
+        return TryRemoveObjective(holder.Value.AsNullable(), objective);
     }
 
     public bool TryRemoveObjective(Entity<ESObjectiveHolderComponent?> ent, Entity<ESObjectiveComponent?> objective)
@@ -361,7 +403,8 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp) || !Resolve(objective, ref objective.Comp))
             return false;
 
-        ent.Comp.OwnedObjectives.Remove(objective);
+        if (!ent.Comp.OwnedObjectives.Remove(objective))
+            return false;
         RegenerateObjectiveList(ent);
         Del(objective);
         return true;
@@ -396,6 +439,28 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     }
 
     /// <summary>
+    /// Checks if a given entity has any objectives of a specific type.
+    /// </summary>
+    public bool HasObjectiveOfType<T>([NotNullWhen(true)] EntityUid? potentialHolder) where T : Component
+    {
+        if (potentialHolder == null)
+            return false;
+
+        return GetObjectives<T>(potentialHolder.Value).Any();
+    }
+
+    /// <summary>
+    /// Checks if a given entity has a completed objective of a specific type.
+    /// </summary>
+    public bool HasCompletedObjectiveOfType<T>([NotNullWhen(true)] EntityUid? potentialHolder) where T : Component
+    {
+        if (potentialHolder == null)
+            return false;
+
+        return GetObjectives<T>(potentialHolder.Value).Any(o => IsCompleted(o.Owner));
+    }
+
+    /// <summary>
     /// Checks if a given entity has the given objective assigned to them.
     /// Unlike <see cref="TryFindObjectiveHolder"/>, this works for any type of inherited ownership, not just direct holding.
     /// </summary>
@@ -413,5 +478,14 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
             ("name", Name(ent)),
             ("success", IsCompleted(ent)),
             ("percent", (int) (GetProgress(ent) * 100)));
+    }
+
+    public void SetDescriptor(EntityUid uid, string text, Color color, string tooltip)
+    {
+        var comp = EnsureComp<ESObjectiveDescriptorComponent>(uid);
+        comp.Text = text;
+        comp.Color = color;
+        comp.Tooltip = tooltip;
+        Dirty(uid, comp);
     }
 }

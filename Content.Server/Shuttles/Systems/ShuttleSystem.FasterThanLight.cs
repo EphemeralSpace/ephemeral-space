@@ -26,6 +26,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
+using Robust.Shared.Random;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -985,7 +986,6 @@ public sealed partial class ShuttleSystem
 
             // Handle clearing biome stuff as relevant.
             tileSet.Clear();
-            _biomes.ReserveTiles(xform.MapUid.Value, aabb, tileSet);
             _lookupEnts.Clear();
             _immuneEnts.Clear();
             // TODO: Ideally we'd query first BEFORE moving grid but needs adjustments above.
@@ -1012,7 +1012,7 @@ public sealed partial class ShuttleSystem
 
                 if (_bodyQuery.TryGetComponent(ent, out var mob))
                 {
-                    _logger.Add(LogType.Gib, LogImpact.Extreme, $"{ToPrettyString(ent):player} got gibbed by the shuttle" +
+                    _logger.Add(LogType.Gib, LogImpact.High, $"{ToPrettyString(ent):player} got gibbed by the shuttle" +
                                                                 $" {ToPrettyString(uid)} arriving from FTL at {xform.Coordinates:coordinates}");
                     var gibs = _gibbing.Gib(ent);
                     _immuneEnts.UnionWith(gibs);

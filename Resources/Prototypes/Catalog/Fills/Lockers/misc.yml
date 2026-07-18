@@ -1,43 +1,3 @@
-- type: entity
-  id: LockerSyndicatePersonalFilled
-  suffix: Nukie, Filled
-  parent: LockerSyndicatePersonal
-  description: It's a personal storage unit for operative gear.
-  components:
-  - type: AccessReader
-    access: [["NuclearOperative"]]
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: ClothingBeltMilitaryWebbing
-        - id: ClothingHandsGlovesCombat
-        - id: JetpackBlackFilled
-        - id: ClothingUniformJumpsuitOperative
-        - id: ClothingUniformJumpskirtOperative
-        - id: ClothingHeadsetAltSyndicate
-        - id: ClothingEyesHudSyndicate
-
-- type: entity
-  id: LockerSyndicateWallFilled
-  suffix: Nukie, Filled
-  parent: LockerWallSyndicate
-  description: It's a personal storage unit for operative gear.
-  components:
-  - type: AccessReader
-    access: [["NuclearOperative"]]
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: ClothingBeltMilitaryWebbing
-        - id: ClothingHandsGlovesCombat
-        - id: JetpackBlackFilled
-        - id: ClothingUniformJumpsuitOperative
-        - id: ClothingUniformJumpskirtOperative
-        - id: ClothingHeadsetAltSyndicate
-        - id: ClothingEyesHudSyndicate
-
 # ES Start
 # Removes emergency suits, flareguns, and MREs
 - type: entityTable
@@ -54,7 +14,7 @@
     - group:
       - id: EmergencyPouchOxygenDeprivation
       - id: EmergencyPouchBrute
-      prob: 0.5
+      prob: 0.25
 # ES End
 
 - type: entity
@@ -113,25 +73,6 @@
       entity_storage: !type:NestedSelector
         tableId: FillLockerEmergencyN2Standard
 
-- type: entityTable
-  id: FillLockerFireStandard
-  table: !type:AllSelector
-    children:
-    - id: ClothingOuterSuitFire
-    - id: ClothingHeadHelmetFire
-    - id: ClothingMaskGas
-    - !type:GroupSelector
-      children:
-      - id: EmergencyOxygenTankFilled
-      - id: OxygenTankFilled
-    - id: CrowbarRed
-    - !type:GroupSelector
-      children:
-      - id: FireExtinguisher
-        weight: 98
-      - id: SprayBottleWater #It's just budget cut after budget cut man
-        weight: 2
-
 - type: entity
   id: ClosetFireFilled
   parent: ClosetFire
@@ -155,26 +96,6 @@
 # ES START
         tableId: ESFillLockerFireStandard
 # ES END
-
-- type: entityTable
-  id: SyndieMaintLoot
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector
-      children:
-      - id: ClothingUniformJumpsuitOperative
-      - id: ClothingUniformJumpskirtOperative
-    - id: ClothingBackpackDuffelSyndicate
-    - id: CyberPen
-    - id: CigPackSyndicate
-    - id: ClothingBackpackDuffelSyndicatePyjamaBundle
-    - id: ClothingBeltMilitaryWebbing
-    - id: ClothingShoesBootsCombatFilled
-    - id: ToolboxSyndicateFilled
-    - id: BalloonSyn
-    - id: WeaponSniperMosin
-      weight: 2
-    - id: ClothingHandsKnuckleDustersSyndicate
 
 - type: entityTable
   id: MaintenanceLockerLoot
@@ -205,83 +126,3 @@
     containers:
       entity_storage: !type:NestedSelector
         tableId: MaintenanceLockerLoot
-
-# Intended to very occasionally be useful for prisoners, so mostly functional items instead of fluff
-
-- type: entityTable
-  id: ToiletCisternCommonToolsTable
-  table: !type:GroupSelector
-    children:
-    - id: Screwdriver
-    - id: Wrench
-    - id: Wirecutter
-    - id: Welder
-    - id: ClothingMaskGas
-    - id: PowerCellSmall
-    - id: RadioHandheld
-    - id: Syringe
-    - id: CableApcStack
-    - id: Lighter
-
-- type: entityTable
-  id: ToiletCisternRareToolsTable
-  table: !type:GroupSelector
-    children:
-    - id: ClothingHandsGlovesColorYellow
-    - id: DrinkSpaceLube
-    - id: WelderIndustrial
-    - id: ClothingHeadHatWeldingMaskFlame
-    - id: PowerCellMedium
-    - id: DoubleEmergencyOxygenTankFilled
-    - id: DoubleEmergencyNitrogenTankFilled
-
-- type: entityTable
-  id: ToiletCisternUtilityTable
-  table: !type:GroupSelector
-    children:
-    - id: Brutepack
-    - id: Ointment
-    - id: Gauze
-    - id: ChemistryBottleUnstableMutagen
-
-- type: entityTable
-  id: ToiletCisternWeaponsTable
-  table: !type:GroupSelector
-    children:
-    - id: SurvivalKnife
-    - id: ScalpelShiv
-    - id: Shiv
-    - id: SawImprov
-    - id: HydroponicsToolHatchet
-    - id: ClothingHandsKnuckleDusters
-    - id: WeaponFlareGun
-
-- type: entityTable
-  id: ToiletCisternSyndicateTable
-  table: !type:GroupSelector
-    children:
-    - id: CyberPen
-    - id: CigPackSyndicate
-    - id: SoapSyndie
-    - id: SyndicatePersonalAI
-    - id: UplinkLighterBox
-
-- type: entityTable
-  id: ToiletCisternLoot
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      weight: 25
-      tableId: ToiletCisternCommonToolsTable
-    - !type:NestedSelector
-      weight: 8
-      tableId: ToiletCisternRareToolsTable
-    - !type:NestedSelector
-      weight: 5
-      tableId: ToiletCisternUtilityTable
-    - !type:NestedSelector
-      weight: 3
-      tableId: ToiletCisternWeaponsTable
-    - !type:NestedSelector
-      weight: 1
-      tableId: ToiletCisternSyndicateTable

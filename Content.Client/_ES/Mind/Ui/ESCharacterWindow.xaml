@@ -1,18 +1,18 @@
 <controls:ESCharacterWindow
     xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client._ES.Mind.Ui"
-    Title="{Loc 'character-info-title'}"
-    MinSize="725 425"
-    SetWidth="725"
+    Title="{Loc 'es-character-info-title'}"
+    MinSize="800 425"
+    SetWidth="800"
     SetHeight="575">
     <HStack Margin="10 5 10 10">
         <VStack SetWidth="270">
             <VStack VerticalExpand="True" VerticalAlignment="Bottom" SizeFlagsStretchRatio="3">
-                <TextureButton Name="MaskHelpButton" StyleClasses="windowHelpButton" VerticalAlignment="Center" HorizontalAlignment="Right" Disabled="True" Visible="False" />
+                <TextureButton Name="SecretIdentityHelpButton" StyleClasses="windowHelpButton" VerticalAlignment="Center" HorizontalAlignment="Right" Visible="False" />
                 <VStack HorizontalAlignment="Center">
-                    <RichTextLabel Name="MaskLabel" Margin="20 0" HorizontalAlignment="Center"/>
+                    <RichTextLabel Name="SecretIdentityLabel" Margin="20 0" HorizontalAlignment="Center"/>
                     <LowDivider/>
-                    <RichTextLabel Name="TroupeLabel" HorizontalAlignment="Center"/>
+                    <RichTextLabel Name="OrganizationLabel" HorizontalAlignment="Center"/>
                 </VStack>
                 <SpriteView Name="SelfView" OverrideDirection="South" Scale="4 4" HorizontalAlignment="Center" Margin="5 5 5 15"/>
                 <RichTextLabel Name="NameLabel" HorizontalAlignment="Center" Margin="10 0"/>

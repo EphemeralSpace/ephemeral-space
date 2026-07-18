@@ -1,10 +1,14 @@
+using System.Linq;
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Fluids.Components;
 using Content.Server.Spreader;
+using Content.Shared.Atmos;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
 using Content.Shared.Effects;
 using Content.Shared.FixedPoint;
@@ -17,9 +21,11 @@ using Content.Shared.Slippery;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Fluids.EntitySystems;
 
@@ -28,14 +34,16 @@ namespace Content.Server.Fluids.EntitySystems;
 /// </summary>
 public sealed partial class PuddleSystem : SharedPuddleSystem
 {
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
 
     private EntityQuery<PuddleComponent> _puddleQuery;
 
@@ -53,6 +61,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         SubscribeLocalEvent<PuddleComponent, SpreadNeighborsEvent>(OnPuddleSpread);
         SubscribeLocalEvent<PuddleComponent, SlipEvent>(OnPuddleSlip);
+        SubscribeLocalEvent<PuddleComponent, MapInitEvent>(OnMapInit);
     }
 
     // TODO: This can be predicted once https://github.com/space-wizards/RobustToolbox/pull/5849 is merged
@@ -267,6 +276,38 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         Reactive.DoEntityReaction(args.Slipped, splitSol, ReactionMethod.Touch);
     }
 
+    private void OnMapInit(Entity<PuddleComponent> ent, ref MapInitEvent args)
+    {
+        ent.Comp.NextGasTick = _timing.CurTime + TimeSpan.FromSeconds(1);
+    }
+
+    protected override void TickGas()
+    {
+        foreach (var (uid, puddle, soln, xform) in EntityQueryEnumerator<PuddleComponent, SolutionContainerManagerComponent, TransformComponent>())
+        {
+            if (_timing.CurTime < puddle.NextGasTick)
+                continue;
+            puddle.NextGasTick += TimeSpan.FromSeconds(1);
+
+            if (!_solutionContainerSystem.ResolveSolution((uid, soln), puddle.SolutionName, ref puddle.Solution, out var puddleSolution))
+                continue;
+
+            foreach (var reagent in puddleSolution.Contents)
+            {
+                var reagentPrototype = _prototypeManager.Index<ReagentPrototype>(reagent.Reagent.Prototype);
+
+                if (reagentPrototype.PuddleGas.Sum() > 0 &&
+                    _atmosphere.GetTileMixture((uid, xform), true) is { } mixture)
+                {
+                    for (var i = 0; i < Atmospherics.TotalNumberOfGases; ++i)
+                    {
+                        mixture?.AdjustMoles(i, reagentPrototype.PuddleGas[i] * reagent.Quantity.Float());
+                    }
+                }
+            }
+        }
+    }
+
     /// <summary>
     ///     Gets the current volume of the given puddle, which may not necessarily be PuddleVolume.
     /// </summary>
@@ -436,7 +477,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
             }
 
             targets.Add(owner);
-            Reactive.DoEntityReaction(owner, splitSolution, ReactionMethod.Touch);
+            Reactive.DoEntityReaction(owner, splitSolution, ReactionMethod.Touch, user);
             Popups.PopupEntity(Loc.GetString("spill-land-spilled-on-other",
                     ("spillable", entity),
                     ("target", Identity.Entity(owner, EntityManager))),

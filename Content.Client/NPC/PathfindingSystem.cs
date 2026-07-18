@@ -1,11 +1,12 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using Content.Client.Stylesheets.Fonts;
 using Content.Shared.NPC;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
-using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -14,17 +15,17 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.NPC
 {
-    public sealed class PathfindingSystem : SharedPathfindingSystem
+    public sealed partial class PathfindingSystem : SharedPathfindingSystem
     {
-        [Dependency] private readonly IEyeManager _eyeManager = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IInputManager _inputManager = default!;
-        [Dependency] private readonly IMapManager _mapManager = default!;
-        [Dependency] private readonly IOverlayManager _overlayManager = default!;
-        [Dependency] private readonly IResourceCache _cache = default!;
-        [Dependency] private readonly NPCSteeringSystem _steering = default!;
-        [Dependency] private readonly MapSystem _mapSystem = default!;
-        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+        [Dependency] private IEyeManager _eyeManager = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IInputManager _inputManager = default!;
+        [Dependency] private SharedMapSystem _mapManager = default!;
+        [Dependency] private IOverlayManager _overlayManager = default!;
+        [Dependency] private IFontSelectionManager _fontSelection = default!;
+        [Dependency] private NPCSteeringSystem _steering = default!;
+        [Dependency] private MapSystem _mapSystem = default!;
+        [Dependency] private SharedTransformSystem _transformSystem = default!;
 
         public PathfindingDebugMode Modes
         {
@@ -39,7 +40,7 @@ namespace Content.Client.NPC
                 }
                 else if (!_overlayManager.HasOverlay<PathfindingOverlay>())
                 {
-                    _overlayManager.AddOverlay(new PathfindingOverlay(EntityManager, _eyeManager, _inputManager, _mapManager, _cache, this, _mapSystem, _transformSystem));
+                    _overlayManager.AddOverlay(new PathfindingOverlay(EntityManager, _eyeManager, _inputManager, _mapManager, _fontSelection, this, _mapSystem, _transformSystem));
                 }
 
                 if ((value & PathfindingDebugMode.Steering) != 0x0)
@@ -137,22 +138,23 @@ namespace Content.Client.NPC
         private readonly IEntityManager _entManager;
         private readonly IEyeManager _eyeManager;
         private readonly IInputManager _inputManager;
-        private readonly IMapManager _mapManager;
+        private readonly SharedMapSystem _mapManager;
+        private readonly IFontSelectionManager _fontSelection;
         private readonly PathfindingSystem _system;
         private readonly MapSystem _mapSystem;
         private readonly SharedTransformSystem _transformSystem;
 
         public override OverlaySpace Space => OverlaySpace.ScreenSpace | OverlaySpace.WorldSpace;
 
-        private readonly Font _font;
+        private Font _font;
         private List<Entity<MapGridComponent>> _grids = new();
 
         public PathfindingOverlay(
             IEntityManager entManager,
             IEyeManager eyeManager,
             IInputManager inputManager,
-            IMapManager mapManager,
-            IResourceCache cache,
+            SharedMapSystem mapManager,
+            IFontSelectionManager fontSelection,
             PathfindingSystem system,
             MapSystem mapSystem,
             SharedTransformSystem transformSystem)
@@ -161,10 +163,32 @@ namespace Content.Client.NPC
             _eyeManager = eyeManager;
             _inputManager = inputManager;
             _mapManager = mapManager;
+            _fontSelection = fontSelection;
             _system = system;
             _mapSystem = mapSystem;
             _transformSystem = transformSystem;
-            _font = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf"), 10);
+
+            UpdateFont();
+            _fontSelection.OnFontChanged += OnFontChanged;
+        }
+
+        protected override void DisposeBehavior()
+        {
+            base.DisposeBehavior();
+
+            _fontSelection.OnFontChanged -= OnFontChanged;
+        }
+
+        private void OnFontChanged(StandardFontType type)
+        {
+            if (type == StandardFontType.Main)
+                UpdateFont();
+        }
+
+        [MemberNotNull(nameof(_font))]
+        private void UpdateFont()
+        {
+            _font = _fontSelection.GetFont(StandardFontType.Main, 10);
         }
 
         protected override void Draw(in OverlayDrawArgs args)

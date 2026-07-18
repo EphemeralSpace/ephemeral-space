@@ -16,36 +16,19 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Body.Systems;
 
-public sealed class BodySystem : SharedBodySystem
+public sealed partial class BodySystem : SharedBodySystem
 {
-    [Dependency] private readonly GhostSystem _ghostSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+    [Dependency] private GhostSystem _ghostSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BodyComponent, MoveInputEvent>(OnRelayMoveInput);
         SubscribeLocalEvent<BodyComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
-    }
-
-    private void OnRelayMoveInput(Entity<BodyComponent> ent, ref MoveInputEvent args)
-    {
-        // If they haven't actually moved then ignore it.
-        if ((args.Entity.Comp.HeldMoveButtons &
-             (MoveButtons.Down | MoveButtons.Left | MoveButtons.Up | MoveButtons.Right)) == 0x0)
-        {
-            return;
-        }
-
-        if (_mobState.IsDead(ent) && _mindSystem.TryGetMind(ent, out var mindId, out var mind))
-        {
-            mind.TimeOfDeath ??= _gameTiming.RealTime;
-            _ghostSystem.OnGhostAttempt(mindId, canReturnGlobal: true, mind: mind);
-        }
     }
 
     private void OnApplyMetabolicMultiplier(

@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.EntityConditions;
 
@@ -78,7 +78,7 @@ public sealed partial class SharedEntityConditionsSystem : EntitySystem, IEntity
 /// </summary>
 /// <typeparam name="T">The Component that is required for the effect</typeparam>
 /// <typeparam name="TCon">The Condition we're testing</typeparam>
-public abstract partial class EntityConditionSystem<T, TCon> : EntitySystem where T : Component where TCon : EntityConditionBase<TCon>
+public abstract class EntityConditionSystem<T, TCon> : EntitySystem where T : Component where TCon : EntityConditionBase<TCon>
 {
     /// <inheritdoc/>
     public override void Initialize()
@@ -137,7 +137,8 @@ public abstract partial class EntityCondition
 /// </summary>
 /// <param name="Condition">The Condition we're checking</param>
 [ByRefEvent]
-public record struct EntityConditionEvent<T>(T Condition) where T : EntityConditionBase<T>
+[DataRecord]
+public partial record struct EntityConditionEvent<T>(T Condition) where T : EntityConditionBase<T>
 {
     /// <summary>
     /// The result of our check, defaults to false if nothing handles it.

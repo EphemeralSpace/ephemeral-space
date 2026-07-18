@@ -1,0 +1,10 @@
+- type: guideEntry
+  id: NewPlayer
+  hidden: false
+  name: New Player Guide
+  priority: 0
+  text: "/ServerInfo/_ES/Guidebook/NewPlayer.xml"
+  children:
+  - Roundflow
+  - Controls
+  - BasicSurvival

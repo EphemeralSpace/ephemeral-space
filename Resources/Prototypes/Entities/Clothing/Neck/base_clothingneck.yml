@@ -19,20 +19,10 @@
   - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
     materialComposition:
       Cloth: 100
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
   - type: Tag
     tags:
     - ClothMade
     - Recyclable
-    - WhitelistChameleon
 
 - type: entity
   abstract: true
@@ -44,4 +34,3 @@
     - Scarf
     - ClothMade
     - Recyclable
-    - WhitelistChameleon

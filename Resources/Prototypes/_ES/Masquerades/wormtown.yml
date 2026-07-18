@@ -1,0 +1,27 @@
+﻿- type: esMasquerade
+  id: Wormtown
+  name: Wormtown
+  description: is a parasite festival, with a large supply of antagonistic / gunner identities to ensure a party
+  weight: 1
+  minPlayers: 6
+  gameRules: []
+  masquerade:
+    defaultSecretIdentity: "#AllCrew"
+    roles:
+      6: [ "#AllParasites(2)", "#Antagonistic", "Vandal" ] # 2 parasites
+      8: [ "#Antagonistic" ]
+      10: [ "#Gunners" ]
+      11: [ "Arsonist" ]
+      13: [ "#AllParasites" ]  # 3 parasites.
+      15: [ "Tragedian" ]
+      16: [ "#Firmsafes" ] # 3 parasites.
+      17: [ "#Antagonistic" ]
+      18: [ "ArmsDealer" ]
+      19: [ "#AllParasites" ] # 4 parasites.
+      21: [ "#Targeters" ] # 4 parasites.
+      22: [ "#Antagonistic" ]
+      24: [ "#Gunners" ] # 4 parasites.
+      25: [ "#AllParasites" ] # 5 parasites.
+      28: [ "#Gunners" ] # 5 parasites.
+      30: [ "#Targeters" ]
+      31: [ "#AllParasites" ] # 6 parasites.

@@ -12,23 +12,10 @@ namespace Content.Shared.EntityEffects.Effects.Body;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class SatiateThirstEntityEffectsSystem : EntityEffectSystem<ThirstComponent, SatiateThirst>
 {
-    [Dependency] private readonly ThirstSystem _thirst = default!;
+    [Dependency] private ThirstSystem _thirst = default!;
     protected override void Effect(Entity<ThirstComponent> entity, ref EntityEffectEvent<SatiateThirst> args)
     {
         _thirst.ModifyThirst(entity, entity.Comp, args.Effect.Factor * args.Scale);
-    }
-}
-
-/// <summary>
-/// Modifies the hunger level of a given entity, multiplied by scale.
-/// </summary>
-/// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed partial class SatiateHungerEntityEffectsSystem : EntityEffectSystem<HungerComponent, SatiateHunger>
-{
-    [Dependency] private readonly HungerSystem _hunger = default!;
-    protected override void Effect(Entity<HungerComponent> entity, ref EntityEffectEvent<SatiateHunger> args)
-    {
-        _hunger.ModifyHunger(entity, args.Effect.Factor * args.Scale, entity.Comp);
     }
 }
 
@@ -53,11 +40,4 @@ public sealed partial class SatiateThirst : Satiate<SatiateThirst>
 {
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("entity-effect-guidebook-satiate-thirst", ("chance", Probability), ("relative",  Factor / AverageSatiation));
-}
-
-/// <inheritdoc cref="Satiate{T}"/>
-public sealed partial class SatiateHunger : Satiate<SatiateHunger>
-{
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("entity-effect-guidebook-satiate-hunger", ("chance", Probability), ("relative", Factor / AverageSatiation));
 }

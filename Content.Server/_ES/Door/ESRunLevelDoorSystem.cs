@@ -8,9 +8,9 @@ namespace Content.Server._ES.Door;
 /// <summary>
 /// This handles <see cref="ESRunLevelDoorComponent"/>
 /// </summary>
-public sealed class ESRunLevelDoorSystem : EntitySystem
+public sealed partial class ESRunLevelDoorSystem : EntitySystem
 {
-    [Dependency] private readonly DoorSystem _door = default!;
+    [Dependency] private DoorSystem _door = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

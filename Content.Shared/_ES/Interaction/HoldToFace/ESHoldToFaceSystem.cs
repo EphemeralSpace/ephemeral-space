@@ -5,9 +5,9 @@ using Robust.Shared.Player;
 
 namespace Content.Shared._ES.Interaction.HoldToFace;
 
-public sealed class ESHoldToFaceSystem : EntitySystem
+public sealed partial class ESHoldToFaceSystem : EntitySystem
 {
-    [Dependency] private readonly SharedCombatModeSystem _combat = default!;
+    [Dependency] private SharedCombatModeSystem _combat = default!;
 
     public override void Initialize()
     {
@@ -21,7 +21,7 @@ public sealed class ESHoldToFaceSystem : EntitySystem
 
     private void ToggleRotator(ICommonSession? session, bool value)
     {
-        if (session?.AttachedEntity is not { } ent || !HasComp<ESHoldToFaceComponent>(ent))
+        if (session?.AttachedEntity is not { } ent || !HasComp<ESHoldToFaceComponent>(ent) || HasComp<ESForcedFacingComponent>(ent))
             return;
 
         // Don't try and override combat mode doing the same thing

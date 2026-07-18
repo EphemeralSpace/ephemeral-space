@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Atmos.Piping.Components;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Singularity.Events;
@@ -8,6 +7,7 @@ using Content.Server.Spreader;
 using Content.Shared._ES.Power.Antimatter;
 using Content.Shared._ES.Power.Antimatter.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Item;
 using Content.Shared.Power.Components;
 using Content.Shared.Repairable;
@@ -22,17 +22,17 @@ using Robust.Shared.Random;
 
 namespace Content.Server._ES.Power.Antimatter;
 
-public sealed class ESAntimatterSystem : ESSharedAntimatterSystem
+public sealed partial class ESAntimatterSystem : ESSharedAntimatterSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IViewVariablesManager _viewVariables = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly ExplosionSystem _explosion = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IViewVariablesManager _viewVariables = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private BatterySystem _battery = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private ExplosionSystem _explosion = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private MapSystem _map = default!;
 
     private EntityQuery<ItemComponent> _itemQuery;
 

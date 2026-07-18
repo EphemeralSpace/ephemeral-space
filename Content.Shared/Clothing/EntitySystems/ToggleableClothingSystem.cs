@@ -16,17 +16,17 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
-public sealed class ToggleableClothingSystem : EntitySystem
+public sealed partial class ToggleableClothingSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedStrippableSystem _strippable = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedStrippableSystem _strippable = default!;
 
     public override void Initialize()
     {
@@ -105,6 +105,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
             // server-side at the moment.
             // TODO BUI REFACTOR.
             DistanceThreshold = 2,
+            FaceTarget = false,
         };
 
         if (!_doAfter.TryStartDoAfter(args))
@@ -244,7 +245,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
             _inventorySystem.TryUnequip(user, parent, component.Slot, force: true);
         else if (_inventorySystem.TryGetSlotEntity(parent, component.Slot, out var existing))
         {
-            _popupSystem.PopupClient(Loc.GetString("toggleable-clothing-remove-first", ("entity", existing)),
+            _popupSystem.PopupEntity(Loc.GetString("toggleable-clothing-remove-first", ("entity", existing)),
                 user, user);
         }
         else

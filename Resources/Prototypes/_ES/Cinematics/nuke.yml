@@ -1,0 +1,7 @@
+- type: esCinematic
+  id: NukeCinematic
+  animation:
+    sprite: _ES/Cinematics/nuke_cutscene.rsi
+    state: station_explode_fade_red
+  sound: /Audio/_ES/Cinematics/explosion_nuke.ogg
+  length: 26s

@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC0-1.0",
-    "copyright": "Created by EmoGarbage404",
+    "copyright": "Created by EmoGarbage404, warp & rat created by mirrorcult",
     "size": {
         "x": 32,
         "y": 32
@@ -12,6 +12,12 @@
         },
         {
             "name": "maints"
+        },
+        {
+            "name": "warp"
+        },
+        {
+            "name": "rat"
         }
     ]
 }

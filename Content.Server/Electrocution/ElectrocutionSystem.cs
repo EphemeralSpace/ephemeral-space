@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Server.Administration.Logs;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Components;
@@ -31,34 +32,35 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
 using PullerComponent = Content.Shared.Movement.Pulling.Components.PullerComponent;
-// ES START
 using Content.Shared._ES.Sparks;
-// ES END
+using Content.Shared.Interaction.Events;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Electrocution;
 
-public sealed class ElectrocutionSystem : SharedElectrocutionSystem
+public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly MeleeWeaponSystem _meleeWeapon = default!;
-    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-    [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly SharedJitteringSystem _jittering = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedStutteringSystem _stuttering = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private MeleeWeaponSystem _meleeWeapon = default!;
+    [Dependency] private NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private NodeGroupSystem _nodeGroup = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private SharedJitteringSystem _jittering = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedStutteringSystem _stuttering = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private TurfSystem _turf = default!;
 // ES START
-    [Dependency] private readonly ESSparksSystem _esSparks = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ESSparksSystem _esSparks = default!;
 // ES END
 
     private static readonly ProtoId<StatusEffectPrototype> StatusKeyIn = "Electrocution";
@@ -67,7 +69,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
 
     // Multiply and shift the log scale for shock damage.
     private const float RecursiveDamageMultiplier = 0.75f;
-    private const float RecursiveTimeMultiplier = 0.8f;
+    private const float RecursiveTimeMultiplier = 1.1f;
 
     private const float ParalyzeTimeMultiplier = 1f;
 
@@ -77,14 +79,17 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
     private const float JitterAmplitude = 80f;
     private const float JitterFrequency = 8f;
 
+    private const float ElectrificationDotProductTolerance = -0.5f;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<ElectrifiedComponent, StartCollideEvent>(OnElectrifiedStartCollide);
         SubscribeLocalEvent<ElectrifiedComponent, AttackedEvent>(OnElectrifiedAttacked);
-        SubscribeLocalEvent<ElectrifiedComponent, InteractHandEvent>(OnElectrifiedHandInteract);
-        SubscribeLocalEvent<ElectrifiedComponent, InteractUsingEvent>(OnElectrifiedInteractUsing);
+// ES START
+        SubscribeLocalEvent<ElectrifiedComponent, ContactInteractionEvent>(OnContactInteraction);
+// ES END
         SubscribeLocalEvent<RandomInsulationComponent, MapInitEvent>(OnRandomInsulationMapInit);
         SubscribeLocalEvent<PoweredLightComponent, AttackedEvent>(OnLightAttacked);
 
@@ -160,8 +165,32 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
 
     private void OnElectrifiedStartCollide(EntityUid uid, ElectrifiedComponent electrified, ref StartCollideEvent args)
     {
-        if (electrified.OnBump)
-            TryDoElectrifiedAct(uid, args.OtherEntity, 1, electrified);
+        if (!electrified.OnBump)
+            return;
+
+        var normal = args.WorldNormal.Normalized();
+        var otherVelocity = args.OtherBody.LinearVelocity.Normalized();
+
+        // this can be nan for some reason
+        if (!normal.IsValid() || !otherVelocity.IsValid())
+            return;
+
+        if (electrified.LastAttemptedCollisionElectrocutionTime is { } time && time + electrified.MinTimeBetweenCollisionElectrocutions > _timing.CurTime)
+            return;
+
+        // this is kinda jank and should be per-player probably
+        // but all of this stuff is kinda wack idk its like completely non-predicted
+        // any situations where it would actually be bad are like. not really that possible and this easily fixes
+        // pretty much all possible weird collision cheese with a trillion things getting electrocuted at once too
+        electrified.LastAttemptedCollisionElectrocutionTime = _timing.CurTime;
+
+        // body must be moving in the direction of the collision for it to count
+        // so the normal & velocity should be in opposite dirs (<0 dot product)
+        // furthermore they must be moving in almost exactly opposite dirs, low tolerance
+        if (Vector2.Dot(normal, otherVelocity) >= ElectrificationDotProductTolerance)
+            return;
+
+        TryDoElectrifiedAct(uid, args.OtherEntity, 1, electrified);
     }
 
     private void OnElectrifiedAttacked(EntityUid uid, ElectrifiedComponent electrified, AttackedEvent args)
@@ -175,12 +204,6 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         TryDoElectrifiedAct(uid, args.User, 1, electrified);
     }
 
-    private void OnElectrifiedHandInteract(EntityUid uid, ElectrifiedComponent electrified, InteractHandEvent args)
-    {
-        if (electrified.OnHandInteract)
-            TryDoElectrifiedAct(uid, args.User, 1, electrified);
-    }
-
     private void OnLightAttacked(EntityUid uid, PoweredLightComponent component, AttackedEvent args)
     {
         if (!component.CurrentLit || args.Used != args.User)
@@ -192,17 +215,15 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         TryDoElectrocution(args.User, uid, component.UnarmedHitShock, component.UnarmedHitStun, false);
     }
 
-    private void OnElectrifiedInteractUsing(EntityUid uid, ElectrifiedComponent electrified, InteractUsingEvent args)
+// ES START
+    private void OnContactInteraction(Entity<ElectrifiedComponent> ent, ref ContactInteractionEvent args)
     {
-        if (!electrified.OnInteractUsing)
+        if (!ent.Comp.OnInteractUsing)
             return;
 
-        var siemens = TryComp<InsulatedComponent>(args.Used, out var insulation)
-            ? insulation.Coefficient
-            : 1;
-
-        TryDoElectrifiedAct(uid, args.User, siemens, electrified);
+        args.Handled = TryDoElectrifiedAct(ent, args.Other, 1f, ent.Comp);
     }
+// ES END
 
     public bool TryDoElectrifiedAct(EntityUid uid, EntityUid targetUid,
         float siemens = 1,
@@ -234,13 +255,15 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
             for (var i = targets.Count - 1; i >= 0; i--)
             {
                 var (entity, depth) = targets[i];
+                // past depth of 1, electrocutions ignore insulation
                 lastRet = TryDoElectrocution(
                     entity,
                     uid,
                     (int) (electrified.ShockDamage * MathF.Pow(RecursiveDamageMultiplier, depth)),
                     TimeSpan.FromSeconds(electrified.ShockTime * MathF.Pow(RecursiveTimeMultiplier, depth)),
                     true,
-                    electrified.SiemensCoefficient
+                    electrified.SiemensCoefficient,
+                    ignoreInsulation: depth > 1
                 );
             }
             return lastRet;
@@ -262,6 +285,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
             for (var i = targets.Count - 1; i >= 0; i--)
             {
                 var (entity, depth) = targets[i];
+                // past depth of 1, electrocutions ignore insulation
                 lastRet = TryDoElectrocutionPowered(
                     entity,
                     uid,
@@ -269,7 +293,9 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
                     (int) (electrified.ShockDamage * MathF.Pow(RecursiveDamageMultiplier, depth) * damageScalar),
                     TimeSpan.FromSeconds(electrified.ShockTime * MathF.Pow(RecursiveTimeMultiplier, depth) * timeScalar),
                     true,
-                    electrified.SiemensCoefficient);
+                    electrified.SiemensCoefficient,
+                    ignoreInsulation: depth > 1
+                    );
             }
             return lastRet;
         }
@@ -316,9 +342,10 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         bool refresh,
         float siemensCoefficient = 1f,
         StatusEffectsComponent? statusEffects = null,
-        TransformComponent? sourceTransform = null)
+        TransformComponent? sourceTransform = null,
+        bool ignoreInsulation = false)
     {
-        if (!DoCommonElectrocutionAttempt(uid, sourceUid, ref siemensCoefficient))
+        if (!DoCommonElectrocutionAttempt(uid, sourceUid, ref siemensCoefficient, ignoreInsulation))
             return false;
 
         if (!DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects))
@@ -387,7 +414,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
             return false;
         }
 
-        _esSparks.DoSparks(sourceUid.Value);
+        _esSparks.DoSparks(sourceUid.Value, user: uid);
         return true;
     }
 // ES END

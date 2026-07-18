@@ -15,13 +15,13 @@ namespace Content.Shared.Plunger.Systems;
 /// <summary>
 /// Plungers can be used to unblock entities with PlungerUseComponent.
 /// </summary>
-public sealed class PlungerSystem : EntitySystem
+public sealed partial class PlungerSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -63,7 +63,7 @@ public sealed class PlungerSystem : EntitySystem
         if (!TryComp(target, out PlungerUseComponent? plunge))
             return;
 
-        _popup.PopupClient(Loc.GetString("plunger-unblock", ("target", target)), args.User, args.User, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString("plunger-unblock", ("target", target)), args.User, args.User, PopupType.Medium);
         plunge.Plunged = true;
 
         var spawn = _proto.Index<WeightedRandomEntityPrototype>(plunge.PlungerLoot).Pick(_random);

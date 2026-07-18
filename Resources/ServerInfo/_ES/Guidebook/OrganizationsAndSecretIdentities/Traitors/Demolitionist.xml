@@ -1,0 +1,27 @@
+<Document>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Demolitionist"/>
+
+    The demolitionist is a mask with a lot of explosives. They're great at a lot of things - causing distractions, property damage, and murder - but their explosives are limited and obvious.
+    Their cache contains two explosive grenades, 3 C-4 charges, a syndicate bomb, and a micro-bomb implant.
+
+    <Box>
+        <GuideEntityEmbed Entity="C4"/>
+        <GuideEntityEmbed Entity="ExGrenade"/>
+        <GuideEntityEmbed Entity="ESSyndicateBombFlatpack"/>
+        <GuideEntityEmbed Entity="ESMicroBombImplanter"/>
+    </Box>
+
+### C4
+    Blows up whatever is on the tile it's on, and not much else. Great for breaching, but not that good at damaging players. Must be planted to arm; cannot be manually activated like other explosives.
+
+### Explosive Grenade
+	Highly versatile and great for dealing massive damage to players in a pinch. Though it can sometimes do okay damage to weak structures like machines and windows, it's much better used as an offensive tool.
+
+### Syndicate Bomb
+	A loud stationary bomb with a 60-second-long fuse that creates a gigantic explosion. It's strong enough to definitively render entire rooms unusable until extensive repairs are done.
+
+### Micro-bomb Implant
+	An implant that creates a medium-sized explosion upon the user's death. It deals a huge amount of damage upon death - enough to instantly send anyone caught in to the radius in to critical condition.
+
+    <ESGuideTipsEmbed SecretIdentity="Demolitionist"/>
+</Document>

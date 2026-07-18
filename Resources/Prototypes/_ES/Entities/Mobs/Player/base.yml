@@ -9,11 +9,6 @@
   - type: ESHoldToFace
   - type: ESKillTracker
   - type: ESPainFlash
-
-- type: entity
-  id: ESBaseMobActions
-  abstract: true
-  components:
-  - type: ActionGrant
-    actions:
-    - ESActionSprint
+  - type: ESCrosshairAimer
+  - type: GhostOnMove # todo this kinda doesnt make any sense and it should really just always happen if someone controls something and dies.
+    # also the name doesnt maek any sense

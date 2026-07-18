@@ -11,8 +11,8 @@ namespace Content.Shared.Inventory;
 
 public partial class InventorySystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IViewVariablesManager _vvm = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IViewVariablesManager _vvm = default!;
 
     private void InitializeSlots()
     {
@@ -190,6 +190,17 @@ public partial class InventorySystem : EntitySystem
             return InventorySlotEnumerator.Empty;
 
         return new InventorySlotEnumerator(entity.Comp, flags);
+    }
+
+    public IEnumerable<EntityUid> GetSlotEntities(Entity<InventoryComponent?> ent, SlotFlags flags = SlotFlags.All)
+    {
+        var enumerator = GetSlotEnumerator(ent, flags);
+
+        while (enumerator.MoveNext(out var slot))
+        {
+            if (slot.ContainedEntity is { } uid)
+                yield return uid;
+        }
     }
 
     public bool TryGetSlots(EntityUid uid, [NotNullWhen(true)] out SlotDefinition[]? slotDefinitions)

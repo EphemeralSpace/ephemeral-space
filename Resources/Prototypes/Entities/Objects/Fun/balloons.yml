@@ -18,9 +18,7 @@
     damageContainer: Inorganic
   - type: TileFrictionModifier
     modifier: 0.3
-  - type: Tag
-    tags:
-    - Balloon
+  - type: ESBalloon
 
 - type: entity
   parent: BaseBalloon
@@ -33,8 +31,6 @@
     state: icon
   - type: Item
     sprite: Objects/Fun/Balloons/syndicate.rsi
-  - type: StaticPrice
-    price: 100 # Entertainment.
 
 - type: entity
   parent: BaseBalloon

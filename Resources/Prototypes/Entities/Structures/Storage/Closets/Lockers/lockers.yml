@@ -1,24 +1,13 @@
 - type: entity
   id: LockerBooze
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBaseCabinet ]
   name: booze storage
   description: This is where the bartender keeps the booze.
   components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: cabinet
-    stateDoorOpen: cabinet_open
-    stateDoorClosed: cabinet_door
-
   - type: AccessReader
-    access: [["Bar"]]
-  - type: EntityStorage
-    closeSound:
-      path: /Audio/Effects/woodenclosetclose.ogg
-    openSound:
-      path: /Audio/Effects/woodenclosetopen.ogg
-  - type: Paintable
-    group: null # not shaped like other lockers
+    requireKey: true
+  - type: ESPersonalLocker
+    job: ESBartender
 
 # Basic
 - type: entity
@@ -26,80 +15,41 @@
   parent: LockerBaseSecure
   name: secure closet
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: secure
     stateDoorOpen: secure_open
     stateDoorClosed: secure_door
 
-# Cargo
 - type: entity
-  id: LockerQuarterMaster
-  parent: LockerBaseSecure
-  name: quartermaster's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: qm
-    stateDoorOpen: qm_open
-    stateDoorClosed: qm_door
-  - type: AccessReader
-    access: [["Quartermaster"]]
+  parent: LockerBaseCabinet
+  id: LockerCabinet
 
-- type: entity
-  id: LockerSalvageSpecialist
-  parent: LockerBase
-  name: salvage specialist's equipment
-  description: Nevermind the pickaxe.
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: mining
-    stateDoorOpen: mining_open
-    stateDoorClosed: mining_door
-  - type: AccessReader
-    access: [["Salvage"]]
+# Cargo
 
 # Command
 - type: entity
   id: LockerCaptain
-  parent: LockerBaseSecure
+  parent: [ LockerBaseSecurePersonal, LockerBaseSecure ]
   name: captain's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: cap
     stateDoorOpen: cap_open
     stateDoorClosed: cap_door
-  - type: AccessReader
-    access: [["Captain"]]
+  - type: ESPersonalLocker
+    job: ESCaptain
 
 - type: entity
-  id: LockerHeadOfPersonnel
-  parent: LockerBaseSecure
-  name: head of personnel's locker
+  id: LockerStationAdmin
+  parent: [ LockerBaseSecurePersonal, LockerBaseSecure ]
+  name: station administrator's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: hop
     stateDoorOpen: hop_open
     stateDoorClosed: hop_door
-  - type: AccessReader
-    access: [["HeadOfPersonnel"]]
-
-# CE
-- type: entity
-  id: LockerChiefEngineer
-  parent: LockerBaseSecure
-  name: chief engineer's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: ce
-    stateDoorOpen: ce_open
-    stateDoorClosed: ce_door
-  - type: AccessReader
-    access: [ [ "ChiefEngineer" ] ]
+  - type: ESPersonalLocker
+    job: ESStationAdmin
 
 # Electrical supplies
 - type: entity
@@ -132,30 +82,28 @@
 # Atmos tech
 - type: entity
   id: LockerAtmospherics
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: atmospheric technician's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: atmos
     stateDoorOpen: atmos_open
     stateDoorClosed: atmos_door
-  - type: AccessReader
-    access: [ [ "Atmospherics" ] ]
+  - type: ESPersonalLocker
+    job: ESAtmosphericTechnician
 
 # Engineer
 - type: entity
   id: LockerEngineer
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: engineer's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: eng_secure
     stateDoorOpen: eng_secure_open
     stateDoorClosed: eng_secure_door
-  - type: AccessReader
-    access: [ [ "Engineering" ] ]
+  - type: ESPersonalLocker
+    job: ESStationEngineer
 
 # Freezer
 - type: entity
@@ -189,20 +137,6 @@
   - type: AccessReader
     access: [ [ "Kitchen" ] ]
 
-# Botanist
-- type: entity
-  id: LockerBotanist
-  parent: LockerBase
-  name: botanist's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: hydro
-    stateDoorOpen: hydro_open
-    stateDoorClosed: hydro_door
-  - type: AccessReader
-    access: [ [ "Hydroponics" ] ]
-
 # Medicine
 - type: entity
   id: LockerMedicine
@@ -218,19 +152,18 @@
   - type: AccessReader
     access: [ [ "Medical" ] ]
 
-# Medical doctor
+# Doctor
 - type: entity
   id: LockerMedical
-  parent: LockerBase
-  name: medical doctor's locker
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
+  name: doctor's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: med_secure
     stateDoorOpen: med_secure_open
     stateDoorClosed: med_secure_door
-  - type: AccessReader
-    access: [ [ "Medical" ] ]
+  - type: ESPersonalLocker
+    job: ESDoctor
 
 # Chemical
 - type: entity
@@ -246,88 +179,31 @@
   - type: AccessReader
     access: [ [ "Chemistry" ] ]
 
-# CMO
-- type: entity
-  id: LockerChiefMedicalOfficer
-  parent: LockerBaseSecure
-  name: chief medical officer's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: cmo
-    stateDoorOpen: cmo_open
-    stateDoorClosed: cmo_door
-  - type: AccessReader
-    access: [ [ "ChiefMedicalOfficer" ] ]
-
 # Science
 - type: entity
-  id: LockerResearchDirector
-  parent: LockerBase
-  name: research director's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: rd
-    stateDoorOpen: rd_open
-    stateDoorClosed: rd_door
-  - type: AccessReader
-    access: [ [ "ResearchDirector" ] ]
-
-- type: entity
   id: LockerScientist
-  parent: LockerBase
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: scientist's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: science
     stateDoorOpen: science_open
     stateDoorClosed: science_door
-  - type: AccessReader
-    access: [ [ "Research" ] ]
-
-# HoS
-- type: entity
-  id: LockerHeadOfSecurity
-  parent: LockerBaseSecure
-  name: head of security's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: hos
-    stateDoorOpen: hos_open
-    stateDoorClosed: hos_door
-  - type: AccessReader
-    access: [["HeadOfSecurity"]]
-
-# Warden
-- type: entity
-  id: LockerWarden
-  parent: LockerBaseSecure
-  name: warden's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: warden
-    stateDoorOpen: warden_open
-    stateDoorClosed: warden_door
-  - type: AccessReader
-    access: [["Armory"]]
+  - type: ESPersonalLocker
+    job: ESScientist
 
 # Security Officer
 - type: entity
   id: LockerSecurity
-  parent: LockerBaseSecure
+  parent: [ LockerBaseSecurePersonal, LockerBaseSecure ]
   name: security officer's locker
   components:
-  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: sec
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
-  - type: AccessReader
-    access: [["Security"]]
+  - type: ESPersonalLocker
+    job: ESSecurityOfficer
 
 - type: entity
   id: GunSafe
@@ -345,8 +221,6 @@
     node: done
     containers:
     - entity_storage
-  - type: StaticPrice
-    price: 660
 
 - type: entity
   id: GunSafeBaseSecure
@@ -470,19 +344,23 @@
 # Detective
 - type: entity
   id: LockerDetective
-  parent: LockerBooze
+  parent: [ LockerBaseSecurePersonal, LockerBaseCabinet ]
   name: detective's cabinet
   description: Usually cold and empty... like your heart.
   components:
-  - type: AccessReader
-    access: [["Detective"]]
+  - type: ESPersonalLocker
+    job: ESDetective
 
 - type: entity
   id: LockerEvidence
-  parent: LockerSecurity
+  parent: LockerBaseSecure
   name: evidence locker
   description: To store bags of bullet casings and detainee belongings.
   components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec
+    stateDoorOpen: sec_open
+    stateDoorClosed: sec_door
   - type: AccessReader
     access: [["Security"]]
 
@@ -499,32 +377,3 @@
     stateBaseClosed: syndicate
     stateDoorOpen: syndicate_open
     stateDoorClosed: syndicate_door
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
-
-# Bluespace
-- type: entity
-  id: LockerBluespaceStation
-  name: bluespace locker
-  suffix: once to station
-  parent: LockerSyndicatePersonal
-  description: Advanced locker technology.
-  components:
-    - type: ArrivalsBlacklist
-    - type: BluespaceLocker
-      minBluespaceLinks: 1
-      behaviorProperties:
-        delay: 1
-        actOnOpen: false
-        bluespaceEffectOnInit: true
-        bluespaceEffectOnTeleportSource: true
-        bluespaceEffectOnTeleportTarget: true
-        destroyAfterUses: 1
-        destroyAfterUsesMinItemsToCountUse: 1
-        destroyType: Delete
-      autoLinksUseProperties: true
-      autoLinkProperties:
-        actOnOpen: false
-        actOnClose: false
-        destroyAfterUses: 2
-        destroyType: DeleteComponent

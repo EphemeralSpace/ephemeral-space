@@ -1,20 +1,22 @@
 using Content.Shared.Doors.Components;
+using Content.Shared.Maps;
 using Robust.Shared.Audio.Systems;
-using Content.Shared.Popups;
 using Content.Shared.Prying.Components;
 using Content.Shared.Wires;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Doors.Systems;
 
-public abstract class SharedAirlockSystem : EntitySystem
+public abstract partial class SharedAirlockSystem : EntitySystem
 {
-    [Dependency] private   readonly IGameTiming _timing = default!;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] protected readonly SharedDoorSystem DoorSystem = default!;
-    [Dependency] protected readonly SharedPopupSystem Popup = default!;
-    [Dependency] private   readonly SharedWiresSystem _wiresSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] protected SharedDoorSystem DoorSystem = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private SharedWiresSystem _wiresSystem = default!;
+
+    [Dependency] private EntityQuery<ESAirlockBlockOpenComponent> _airlockBlockOpenQuery;
 
     public override void Initialize()
     {
@@ -80,8 +82,25 @@ public abstract class SharedAirlockSystem : EntitySystem
 
     private void OnBeforeDoorOpened(EntityUid uid, AirlockComponent component, BeforeDoorOpenedEvent args)
     {
+        if (IsBarricaded(uid))
+            args.Cancel();
+
         if (!CanChangeState(uid, component))
             args.Cancel();
+    }
+
+    public bool IsBarricaded(EntityUid uid)
+    {
+        var xform = Transform(uid);
+        foreach (var ent in _turf.GetEntitiesInTile(xform.Coordinates))
+        {
+            if (_airlockBlockOpenQuery.HasComp(ent))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void OnBeforeDoorDenied(EntityUid uid, AirlockComponent component, BeforeDoorDeniedEvent args)

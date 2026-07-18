@@ -2,32 +2,23 @@
   id: Traitors
   name: Traitors
   description: is a standard, balanced cast of crew and traitors
-  weight: 10
+  weight: 3
   minPlayers: 6
   gameRules: []
   masquerade:
-    defaultMask: "ESCrewmember"
+    defaultSecretIdentity: "#AllCrew"
     superfanTarget: "#Traitors"
     roles:
-      6: ["ESMarauder", "ESInfiltrator", "#Filler(2)", "ESVandal", "ESMercenary"] # 0 generic crew, 2 traitors
-      7: ["ESMartyr"]
-      8: ["#Filler"]
-      9: ["ESVeteran"]
-      10: ["#TraitorAdjacent"]
+      6: ["#Traitors", "Infiltrator", "Vandal", "#Targeters"] # 2 traitors
+      10: ["#SemiTraitor"]
       11: ["#Antagonistic"]
-      13: ["ESAssassin"]  # 0 generic crew, 3 traitors.
-      14: ["#Jesters"]
-      16: ["#Firmsafes"] # 1 generic crew, 3 traitors.
-      17: ["#Filler"]
-      18: ["ESArmsDealer"]
-      19: ["ESMarauder"] # 1 generic crew, 4 traitors.
-      20: ["#Filler"]
-      21: ["#Jesters", "-ESMarauder", "#PowerTraitors"] # 1 generic crew, 4 traitors.
-      22: ["#Filler"]
-      24: ["#Gunners"] # 2 generic crew, 4 traitors.
-      25: ["ESMarauder"] # 2 generic crew, 5 traitors.
-      26: ["#Filler"]
-      28: ["#Gunners"] # 3 generic crew, 5 traitors.
-      29: ["#Filler"]
-      30: ["#Jesters"]
-      31: ["#Traitors", "#Filler"] # 3 generic crew, 6 traitors.
+      13: ["Assassin"]  # 3 traitors.
+      15: [ "Tragedian" ]
+      16: ["#Firmsafes"] # 3 traitors.
+      17: ["#SemiTraitor"]
+      19: ["#Traitors"] # 1 generic crew, 4 traitors.
+      24: ["#Gunners"] # 4 traitors.
+      25: ["Marauder"] # 5 traitors.
+      27: ["#SemiTraitor"]
+      28: ["#Gunners"] # 5 traitors.
+      31: ["#Traitors"] # 6 traitors.

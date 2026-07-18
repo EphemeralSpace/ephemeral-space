@@ -1,0 +1,10 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'es-lobby-closed-popup-window-title'}"
+                      SetSize="560 260">
+    <VFillStack>
+        <RichTextLabel Text="{Loc 'es-lobby-closed-popup-window-label'}" HorizontalAlignment="Center" Margin="10 20"/>
+        <controls:HSpacer Spacing="40" Visible="False" />
+        <Button Name="DiscordButton" Text="{Loc 'es-lobby-closed-popup-window-open-discord'}" HorizontalAlignment="Center" Margin="0 20"/>
+    </VFillStack>
+</controls:FancyWindow>

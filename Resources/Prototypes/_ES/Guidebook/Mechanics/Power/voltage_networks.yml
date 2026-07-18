@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: VoltageNetworks
+  hidden: false
+  name: Voltage Networks
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Power/VoltageNetworks.xml"

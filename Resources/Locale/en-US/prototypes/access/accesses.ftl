@@ -1,6 +1,6 @@
 id-card-access-level-command = Command
 id-card-access-level-captain = Captain
-id-card-access-level-head-of-personnel = Head of Personnel
+id-card-access-level-station-admin = Station Admin
 id-card-access-level-cryogenics = Cryogenics
 id-card-access-level-emergency-shuttle-repeal = E.Shuttle Repeal All
 
@@ -51,5 +51,3 @@ id-card-access-level-wizard = Wizard
 id-card-access-level-station-ai = Artifical Intelligence
 id-card-access-level-borg = Cyborg
 id-card-access-level-basic-silicon = Robot
-
-id-card-access-level-basic-xenoborg = Xenoborg

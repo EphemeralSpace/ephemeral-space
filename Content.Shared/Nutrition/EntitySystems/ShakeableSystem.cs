@@ -11,10 +11,10 @@ namespace Content.Shared.Nutrition.EntitySystems;
 
 public sealed partial class ShakeableSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {
@@ -74,6 +74,7 @@ public sealed partial class ShakeableSystem : EntitySystem
             DistanceThreshold = 1,
             MovementThreshold = 0.01f,
             BreakOnHandChange = entity.Comp.RequireInHand,
+            FaceTarget = false,
         };
         if (entity.Comp.RequireInHand)
             doAfterArgs.BreakOnHandChange = true;
@@ -86,7 +87,7 @@ public sealed partial class ShakeableSystem : EntitySystem
 
         var selfMessage = Loc.GetString(entity.Comp.ShakePopupMessageSelf, ("user", userName), ("shakeable", shakeableName));
         var othersMessage = Loc.GetString(entity.Comp.ShakePopupMessageOthers, ("user", userName), ("shakeable", shakeableName));
-        _popup.PopupPredicted(selfMessage, othersMessage, user, user);
+        _popup.PopupEntity(selfMessage, othersMessage, user, user);
 
         _audio.PlayPredicted(entity.Comp.ShakeSound, entity, user);
 

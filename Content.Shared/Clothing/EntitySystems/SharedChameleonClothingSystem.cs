@@ -1,41 +1,39 @@
 using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Contraband;
 using Content.Shared.Emp;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
 using Content.Shared.Lock;
-using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-// ES START
 using Content.Shared._ES.Clothing.Chameleon.Components;
 using Content.Shared.Implants;
 using Content.Shared.Prototypes;
-// ES END
+
+// ES CHANGE
+// We got rid of the silly chameleon tagging, clothes sets are determined
+// by premade clothing set prototypes.
 
 namespace Content.Shared.Clothing.EntitySystems;
 
-public abstract class SharedChameleonClothingSystem : EntitySystem
+public abstract partial class SharedChameleonClothingSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ClothingSystem _clothingSystem = default!;
-    [Dependency] private readonly ContrabandSystem _contraband = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedItemSystem _itemSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly LockSystem _lock = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ClothingSystem _clothingSystem = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedItemSystem _itemSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private LockSystem _lock = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] protected SharedUserInterfaceSystem UI = default!;
+    [Dependency] private INetManager _net = default!;
 
     private static readonly SlotFlags[] IgnoredSlots =
     {
@@ -47,10 +45,6 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
     private static readonly SlotFlags[] Slots = Enum.GetValues<SlotFlags>().Except(IgnoredSlots).ToArray();
 
     private readonly Dictionary<SlotFlags, List<EntProtoId>> _data = new();
-
-    public readonly Dictionary<SlotFlags, List<string>> ValidVariants = new();
-
-    private static readonly ProtoId<TagPrototype> WhitelistChameleonTag = "WhitelistChameleon";
 
     public override void Initialize()
     {
@@ -121,17 +115,6 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
             _appearance.AppendData(appearanceOther, uid);
             Dirty(uid, appearance);
         }
-
-        // properly mark contraband
-        if (proto.TryGetComponent(out ContrabandComponent? contra, Factory))
-        {
-            EnsureComp<ContrabandComponent>(uid, out var current);
-            _contraband.CopyDetails(uid, contra, current);
-        }
-        else
-        {
-            RemComp<ContrabandComponent>(uid);
-        }
     }
 
     private void OnVerb(Entity<ChameleonClothingComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
@@ -160,8 +143,13 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
 
         if (_net.IsServer) // needs RandomPredicted
         {
-            var pick = GetRandomValidPrototype(component.Slot, component.RequireTag);
-            SetSelectedPrototype(uid, pick, component: component);
+// ES START
+            if (GetValidTargets(component.Slot).Any())
+            {
+                var pick = GetRandomValidPrototype(component.Slot);
+                SetSelectedPrototype(uid, pick, component: component);
+            }
+// ES END
         }
 
         args.Affected = true;
@@ -173,7 +161,7 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
     /// <summary>
     ///     Check if this entity prototype is valid target for chameleon item.
     /// </summary>
-    public bool IsValidTarget(EntityPrototype proto, SlotFlags chameleonSlot = SlotFlags.NONE, string? requiredTag = null)
+    public bool IsValidTarget(EntityPrototype proto, SlotFlags chameleonSlot = SlotFlags.NONE)
     {
         // check if entity is valid
         if (proto.Abstract || proto.HideSpawnMenu)
@@ -186,23 +174,17 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
             .Where(j => j.StartingGear != null)
             .SelectMany(j => _proto.Index(j.StartingGear)!.Equipment.Values)
             .ToHashSet();
+
         if (!validClothes.Contains(proto) && !proto.HasComponent<ESChameleonClothingWhitelistComponent>())
             return false;
 
         if (proto.HasComponent<ESChameleonClothingBlacklistComponent>())
             return false;
 
-        // // check if it is marked as valid chameleon target
-        // if (!proto.TryGetComponent(out TagComponent? tag, Factory) || !_tag.HasTag(tag, WhitelistChameleonTag))
-        //     return false;
-        //
-        // if (requiredTag != null && !_tag.HasTag(tag, requiredTag))
-        //     return false;
-// ES END
-
         // check if it's valid clothing
         if (!proto.TryGetComponent(out ClothingComponent? clothing, Factory))
             return false;
+
         if (!clothing.Slots.HasFlag(chameleonSlot))
             return false;
 
@@ -219,13 +201,15 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
         {
             foreach (var proto in _data[slot])
             {
-                if (IsValidTarget(_proto.Index(proto), slot, tag))
+                if (IsValidTarget(_proto.Index(proto), slot))
                     validTargets.Add(proto);
             }
         }
         else
         {
-            validTargets = _data[slot];
+// ES START
+            validTargets = _data.GetValueOrDefault(slot) ?? [];
+// ES END
         }
 
         return validTargets;

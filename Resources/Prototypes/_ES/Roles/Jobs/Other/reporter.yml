@@ -1,0 +1,28 @@
+- type: job
+  id: ESReporter
+  name: ESjob-name-reporter
+  description: ESjob-description-reporter
+  playTimeTracker: ESJobReporter
+  startingGear: ESReporterGear
+  icon: "JobIconReporter"
+  access:
+  - Service
+  - Maintenance
+
+- type: startingGear
+  id: ESReporterGear
+  equipment:
+    shoes: ClothingShoesColorBrown
+    id: ReporterPDA
+    ears: ClothingHeadsetService
+    head: ClothingHeadHatFedoraGrey
+    jumpsuit: ClothingUniformJumpsuitReporter
+    back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESReporter
+  job: ESReporter
+  hidden: false

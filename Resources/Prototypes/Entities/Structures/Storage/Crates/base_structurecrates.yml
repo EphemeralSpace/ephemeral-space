@@ -5,7 +5,6 @@
   name: crate
   description: A large container for items.
   components:
-  - type: Animateable
   - type: Transform
     noRot: true
   - type: Icon
@@ -62,8 +61,6 @@
     containers:
       entity_storage: !type:Container
       paper_label: !type:ContainerSlot
-  - type: StaticPrice
-    price: 75
   - type: Construction
     graph: CrateGenericSteel
     node: crategenericsteel
@@ -79,9 +76,11 @@
   - type: Weldable
   - type: ResistLocker
 
+# ES TODO: make these use the same hp values as secure lockers as a shared prototype
 - type: entity
-  parent: CrateBaseWeldable
+  parent: [ DeflectionVerySturdyStructure, CrateBaseWeldable ]
   id: CrateBaseSecure
+  description: A secure container for items. It's engineered to be as annoying as possible to break in to.
   suffix: Secure
   components:
   - type: Lock
@@ -113,7 +112,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 350
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]

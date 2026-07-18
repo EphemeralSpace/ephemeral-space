@@ -25,13 +25,13 @@ namespace Content.Client._ES.Spawning.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class ESSpawningWindow : FancyWindow
 {
-    [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
-    [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
+    [Dependency] private IClientPreferencesManager _preferencesManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystem = default!;
+    [Dependency] private JobRequirementsManager _jobRequirements = default!;
 
-    private ESLobbyCurtainsUIController _lobbyCurtains;
+    private ESDiegeticLobbyUIController _lobbyCurtains;
     private readonly ClientGameTicker _gameTicker;
     private readonly SpriteSystem _sprites;
     private readonly StationSystem _station;
@@ -46,7 +46,7 @@ public sealed partial class ESSpawningWindow : FancyWindow
         _sprites = _entitySystem.GetEntitySystem<SpriteSystem>();
         _gameTicker = _entitySystem.GetEntitySystem<ClientGameTicker>();
         _station = _entitySystem.GetEntitySystem<StationSystem>();
-        _lobbyCurtains = UserInterfaceManager.GetUIController<ESLobbyCurtainsUIController>();
+        _lobbyCurtains = UserInterfaceManager.GetUIController<ESDiegeticLobbyUIController>();
 
         Rebuild();
         _jobRequirements.Updated += RebuildJobLists;

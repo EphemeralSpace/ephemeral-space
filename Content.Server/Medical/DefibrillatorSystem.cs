@@ -6,7 +6,6 @@ using Content.Server.EUI;
 using Content.Server.Ghost;
 using Content.Server.Popups;
 using Content.Shared.PowerCell;
-using Content.Shared.Traits.Assorted;
 using Content.Shared.Chat;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -18,8 +17,6 @@ using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Pulling.Components;
-using Content.Shared.PowerCell;
 using Content.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
@@ -30,24 +27,24 @@ namespace Content.Server.Medical;
 /// <summary>
 /// This handles interactions and logic relating to <see cref="DefibrillatorComponent"/>
 /// </summary>
-public sealed class DefibrillatorSystem : EntitySystem
+public sealed partial class DefibrillatorSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chatManager = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
-    [Dependency] private readonly EuiManager _euiManager = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly RottingSystem _rotting = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private ChatSystem _chatManager = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private DoAfterSystem _doAfter = default!;
+    [Dependency] private ElectrocutionSystem _electrocution = default!;
+    [Dependency] private EuiManager _euiManager = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private RottingSystem _rotting = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -212,11 +209,6 @@ public sealed class DefibrillatorSystem : EntitySystem
         if (_rotting.IsRotten(target))
         {
             _chatManager.TrySendInGameICMessage(uid, Loc.GetString("defibrillator-rotten"),
-                InGameICChatType.Speak, true);
-        }
-        else if (heartDefibrillatable is null && TryComp<UnrevivableComponent>(target, out var unrevivable)) // Offbrand
-        {
-            _chatManager.TrySendInGameICMessage(uid, Loc.GetString(unrevivable.ReasonMessage),
                 InGameICChatType.Speak, true);
         }
         // Begin offbrand

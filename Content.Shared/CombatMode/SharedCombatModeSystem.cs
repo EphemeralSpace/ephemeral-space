@@ -1,19 +1,22 @@
 using Content.Shared.Actions;
+using Content.Shared.Interaction;
 using Content.Shared.Mind;
 using Content.Shared.MouseRotator;
 using Content.Shared.Movement.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
-using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.CombatMode;
 
-public abstract class SharedCombatModeSystem : EntitySystem
+public abstract partial class SharedCombatModeSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private   readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private   readonly SharedPopupSystem _popup = default!;
-    [Dependency] private   readonly SharedMindSystem  _mind = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedNPCSystem _npc = default!;
+    [Dependency] private RotateToFaceSystem _rotateToFace = default!;
 
     public override void Initialize()
     {
@@ -46,7 +49,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
         SetInCombatMode(uid, !component.IsInCombatMode, component);
 
         var msg = component.IsInCombatMode ? "action-popup-combat-enabled" : "action-popup-combat-disabled";
-        _popup.PopupClient(Loc.GetString(msg), args.Performer, args.Performer);
+        _popup.PopupEntity(Loc.GetString(msg), args.Performer, args.Performer);
     }
 
     public void SetCanDisarm(EntityUid entity, bool canDisarm, CombatModeComponent? component = null)
@@ -76,34 +79,42 @@ public abstract class SharedCombatModeSystem : EntitySystem
         if (component.CombatToggleActionEntity != null)
             _actionsSystem.SetToggled(component.CombatToggleActionEntity, component.IsInCombatMode);
 
+        var ev = new CombatModeToggledEvent(component.IsInCombatMode);
+        RaiseLocalEvent(entity, ref ev);
+
         // Change mouse rotator comps if flag is set
-        if (!component.ToggleMouseRotator || IsNpc(entity) && !_mind.TryGetMind(entity, out _, out _))
+        if (!component.ToggleMouseRotator || _npc.IsNpc(entity) && !_mind.TryGetMind(entity, out _, out _))
             return;
 
         SetMouseRotatorComponents(entity, value);
     }
 
     // ES START
+    // what the fuck was i thinking?
     public void SetMouseRotatorComponents(EntityUid uid, bool value)
     // ES END
     {
         if (value)
         {
             EnsureComp<MouseRotatorComponent>(uid);
-            EnsureComp<NoRotateOnMoveComponent>(uid);
         }
         else
         {
             RemComp<MouseRotatorComponent>(uid);
-            RemComp<NoRotateOnMoveComponent>(uid);
         }
-    }
 
-    // todo: When we stop making fucking garbage abstract shared components, remove this shit too.
-    protected abstract bool IsNpc(EntityUid uid);
+        _rotateToFace.RefreshNoRotateOnMove(uid);
+    }
 }
 
 public sealed partial class ToggleCombatActionEvent : InstantActionEvent
 {
 
 }
+
+/// <summary>
+///     Raised directed on an entity when it switches in or out of combat mode.
+/// </summary>
+/// <param name="Enabled">True if in combat mode, false otherwise.</param>
+[ByRefEvent]
+public record struct CombatModeToggledEvent(bool Enabled);

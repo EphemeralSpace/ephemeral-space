@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Destructible;
 using Content.Server.Effects;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._ES.Breakable;
 using Content.Shared._ES.Camera;
 using Content.Shared.Camera;
 using Content.Shared.Damage;
@@ -15,17 +16,18 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Projectiles;
 
-public sealed class ProjectileSystem : SharedProjectileSystem
+public sealed partial class ProjectileSystem : SharedProjectileSystem
 {
     // ES START
-    [Dependency] private readonly ESScreenshakeSystem _shake = default!;
+    [Dependency] private ESScreenshakeSystem _shake = default!;
+    [Dependency] private ESBreakableSystem _breakable = default!;
     // ES END
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
-    [Dependency] private readonly GunSystem _guns = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private ColorFlashEffectSystem _color = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private DestructibleSystem _destructibleSystem = default!;
+    [Dependency] private GunSystem _guns = default!;
+    [Dependency] private SharedCameraRecoilSystem _sharedCameraRecoil = default!;
 
     public override void Initialize()
     {
@@ -55,6 +57,9 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
         var otherName = ToPrettyString(target);
         var damageRequired = _destructibleSystem.DestroyedAt(target);
+        if (_breakable.TryGetBrokenThreshold(target, out var threshold))
+            damageRequired = threshold.Value;
+
         if (TryComp<DamageableComponent>(target, out var damageableComponent))
         {
             damageRequired -= damageableComponent.TotalDamage;

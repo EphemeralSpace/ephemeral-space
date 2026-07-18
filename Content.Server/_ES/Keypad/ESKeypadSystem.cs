@@ -5,9 +5,9 @@ using Content.Shared._ES.Keypad.Components;
 namespace Content.Server._ES.Keypad;
 
 /// <inheritdoc/>
-public sealed class ESKeypadSystem : ESSharedKeypadSystem
+public sealed partial class ESKeypadSystem : ESSharedKeypadSystem
 {
-    [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
+    [Dependency] private DeviceLinkSystem _deviceLink = default!;
 
     protected override void OnLockToggled(Entity<ESKeypadComponent> ent)
     {

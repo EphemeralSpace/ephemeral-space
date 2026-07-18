@@ -27,17 +27,17 @@ namespace Content.Server.Administration.Logs;
 
 public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogManager
 {
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IDynamicTypeFactory _typeFactory = default!;
-    [Dependency] private readonly IReflectionManager _reflection = default!;
-    [Dependency] private readonly IDependencyCollection _dependencies = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly ISharedPlaytimeManager _playtime = default!;
-    [Dependency] private readonly ISharedChatManager _chat = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IDynamicTypeFactory _typeFactory = default!;
+    [Dependency] private IReflectionManager _reflection = default!;
+    [Dependency] private IDependencyCollection _dependencies = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private ISharedPlaytimeManager _playtime = default!;
+    [Dependency] private ISharedChatManager _chat = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public const string SawmillId = "admin.logs";
 
@@ -78,7 +78,6 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
     private int _queueMax;
     private int _preRoundQueueMax;
     private int _dropThreshold;
-    private int _highImpactLogPlaytime;
 
     // Per update
     private TimeSpan _nextUpdateTime;
@@ -113,8 +112,6 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             value => _preRoundQueueMax = value, true);
         _configuration.OnValueChanged(CCVars.AdminLogsDropThreshold,
             value => _dropThreshold = value, true);
-        _configuration.OnValueChanged(CCVars.AdminLogsHighLogPlaytime,
-            value => _highImpactLogPlaytime = value, true);
 
         if (_metricsEnabled)
         {
@@ -461,18 +458,6 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
             if (impact == LogImpact.Extreme) // Always chat-notify Extreme logs
                 adminLog = true;
 
-            if (impact == LogImpact.High) // Only chat-notify High logs if the player is below a threshold playtime
-            {
-                if (_highImpactLogPlaytime >= 0 && _player.TryGetSessionById(new NetUserId(id), out var session))
-                {
-                    var playtimes = _playtime.GetPlayTimes(session);
-                    if (playtimes.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out var overallTime) &&
-                        overallTime <= TimeSpan.FromHours(_highImpactLogPlaytime))
-                    {
-                        adminLog = true;
-                    }
-                }
-            }
         }
 
         if (adminLog)

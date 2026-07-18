@@ -1,16 +1,20 @@
+using Content.Server.Administration.Managers;
 using Content.Server.Popups;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Robust.Shared.Console;
 using Content.Server.GameTicking;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 
 namespace Content.Server.Ghost
 {
     [AnyCommand]
-    public sealed class GhostCommand : IConsoleCommand
+    public sealed partial class GhostCommand : IConsoleCommand
     {
-        [Dependency] private readonly IEntityManager _entities = default!;
+        [Dependency] private IEntityManager _entities = default!;
+        [Dependency] private IAdminManager _admin = default!;
 
         public string Command => "ghost";
         public string Description => Loc.GetString("ghost-command-description");
@@ -19,27 +23,35 @@ namespace Content.Server.Ghost
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
             var player = shell.Player;
+
             if (player == null)
             {
                 shell.WriteLine(Loc.GetString("ghost-command-no-session"));
                 return;
             }
 
+            var isAdmin = _admin.HasAdminFlag(player, AdminFlags.Admin);
+
+            if (player.AttachedEntity is not { Valid: true } playerEntity)
+            {
+                shell.WriteLine(Loc.GetString("ghost-command-denied"));
+                return;
+            }
+
             var gameTicker = _entities.System<GameTicker>();
-            if (!gameTicker.PlayerGameStatuses.TryGetValue(player.UserId, out var playerStatus) ||
-                playerStatus is not PlayerGameStatus.JoinedGame)
+            if (!isAdmin && (!gameTicker.PlayerGameStatuses.TryGetValue(player.UserId, out var playerStatus) ||
+                playerStatus is not PlayerGameStatus.JoinedGame))
             {
                 shell.WriteLine(Loc.GetString("ghost-command-error-lobby"));
                 return;
             }
 
-            if (player.AttachedEntity is { Valid: true } frozen &&
-                _entities.HasComponent<AdminFrozenComponent>(frozen))
+            if (_entities.HasComponent<AdminFrozenComponent>(playerEntity))
             {
                 var deniedMessage = Loc.GetString("ghost-command-denied");
                 shell.WriteLine(deniedMessage);
                 _entities.System<PopupSystem>()
-                    .PopupEntity(deniedMessage, frozen, frozen);
+                    .PopupEntity(deniedMessage, playerEntity, playerEntity);
                 return;
             }
 
@@ -48,6 +60,14 @@ namespace Content.Server.Ghost
             {
                 mindId = minds.CreateMind(player.UserId);
                 mind = _entities.GetComponent<MindComponent>(mindId);
+            }
+
+            var mobStateSys = _entities.System<MobStateSystem>();
+            if (!isAdmin && (_entities.TryGetComponent<MobStateComponent>(playerEntity, out var mobState) &&
+                !mobStateSys.IsDead(playerEntity, mobState)))
+            {
+                shell.WriteLine(Loc.GetString("ghost-command-not-dead"));
+                return;
             }
 
             if (!_entities.System<GhostSystem>().OnGhostAttempt(mindId, true, true, mind: mind))

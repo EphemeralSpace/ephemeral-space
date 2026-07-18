@@ -50,6 +50,9 @@
             "name": "c100"
         },
         {
+            "name": "all"
+        },
+        {
             "name": "arcade"
         },
         {
@@ -74,10 +77,16 @@
             "name": "closet_text"
         },
         {
+            "name": "color"
+        },
+        {
             "name": "combo"
         },
         {
             "name": "door"
+        },
+        {
+            "name": "dorms"
         },
         {
             "name": "directional",
@@ -91,6 +100,9 @@
         },
         {
             "name": "id"
+        },
+        {
+            "name": "job"
         },
         {
             "name": "random"
@@ -147,6 +159,9 @@
             "name": "vendor-snack"
         },
         {
+            "name": "vendor-special"
+        },
+        {
             "name": "wardrobe"
         },
         {
@@ -154,6 +169,9 @@
         },
         {
             "name": "cables"
+        },
+        {
+            "name": "rat"
         }
     ]
 }

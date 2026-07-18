@@ -21,10 +21,10 @@ namespace Content.MapRenderer
         private static readonly Func<string, string> ChosenMapIdNotIntMessage = id => $"The chosen id is not a valid integer: {id}";
         private static readonly Func<int, string> NoMapFoundWithIdMessage = id => $"No map found with chosen id: {id}";
 
-        internal static async Task Main(string[] args)
+        internal static async Task<int> Main(string[] args)
         {
             if (!CommandLineArguments.TryParse(args, out var arguments))
-                return;
+                return 1;
 
             var testContext = new ExternalTestContext("Content.MapRenderer", Console.Out);
 
@@ -51,7 +51,7 @@ namespace Content.MapRenderer
                 if (input == null)
                 {
                     Console.WriteLine(NoMapsChosenMessage);
-                    return;
+                    return 0;
                 }
 
                 var selectedIds = new List<int>();
@@ -65,7 +65,7 @@ namespace Content.MapRenderer
                     if (inputArray.Length == 0)
                     {
                         Console.WriteLine(NoMapsChosenMessage);
-                        return;
+                        return 0;
                     }
 
                     foreach (var idString in inputArray)
@@ -73,7 +73,7 @@ namespace Content.MapRenderer
                         if (!int.TryParse(idString.Trim(), out var id))
                         {
                             Console.WriteLine(ChosenMapIdNotIntMessage(idString));
-                            return;
+                            return 1;
                         }
 
                         selectedIds.Add(id);
@@ -86,7 +86,7 @@ namespace Content.MapRenderer
                     if (id < 0 || id >= mapIds.Length)
                     {
                         Console.WriteLine(NoMapFoundWithIdMessage(id));
-                        return;
+                        return 1;
                     }
 
                     selectedMapPrototypes.Add(mapIds[id]);
@@ -97,7 +97,7 @@ namespace Content.MapRenderer
                 if (selectedMapPrototypes.Count == 0)
                 {
                     Console.WriteLine(NoMapsChosenMessage);
-                    return;
+                    return 0;
                 }
 
                 Console.WriteLine($"Selected maps: {string.Join(", ", selectedMapPrototypes)}");
@@ -145,7 +145,7 @@ namespace Content.MapRenderer
                 {
                     Console.Write($"Following map files did not exist on disk directly, searching through prototypes: {string.Join(", ", lookupPrototypeFiles)}");
 
-                    await using var pair = await PoolManager.GetServerClient();
+                    await using var pair = await PoolManager.GetServerClient(testContext: testContext);
                     var mapPrototypes = pair.Server
                         .ResolveDependency<IPrototypeManager>()
                         .EnumeratePrototypes<GameMapPrototype>()
@@ -177,11 +177,12 @@ namespace Content.MapRenderer
                 }
             }
 
-            await Run(arguments, maps, testContext);
+            var success = await Run(arguments, maps, testContext);
             PoolManager.Shutdown();
+            return success;
         }
 
-        private static async Task Run(
+        private static async Task<int> Run(
             CommandLineArguments arguments,
             List<RenderMap> toRender,
             ExternalTestContext testContext)
@@ -245,9 +246,8 @@ namespace Content.MapRenderer
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Painting map {map} failed due to an internal exception:");
-                    Console.WriteLine(ex);
-                    continue;
+                    Console.WriteLine($"::error::Painting map {map} failed due to an internal exception: {ex}");
+                    return 1;
                 }
 
                 if (arguments.ExportViewerJson)
@@ -262,7 +262,8 @@ namespace Content.MapRenderer
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Exception while shutting down painter: {e}");
+                    Console.WriteLine($"::error::Exception while shutting down painter: {e}");
+                    return 1;
                 }
             }
 
@@ -270,6 +271,7 @@ namespace Content.MapRenderer
             Console.WriteLine($@"::set-output name=map_names::{mapNamesString}");
             Console.WriteLine($"Processed {arguments.Maps.Count} maps.");
             Console.WriteLine($"It's now safe to manually exit the process (automatic exit in a few moments...)");
+            return 0;
         }
     }
 }

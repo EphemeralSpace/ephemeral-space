@@ -6,7 +6,6 @@
     - Debug
   cost:
     DebugDollar: 10
-    Telecrystal: 10
 
 - type: listing
   id: DebugListing3

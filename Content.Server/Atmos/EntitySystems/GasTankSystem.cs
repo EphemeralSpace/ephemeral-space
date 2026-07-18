@@ -2,7 +2,6 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
-using Content.Shared.Cargo;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
@@ -15,15 +14,15 @@ using Content.Shared.CCVar;
 namespace Content.Server.Atmos.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class GasTankSystem : SharedGasTankSystem
+    public sealed partial class GasTankSystem : SharedGasTankSystem
     {
-        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-        [Dependency] private readonly ExplosionSystem _explosions = default!;
-        [Dependency] private readonly SharedAudioSystem _audioSys = default!;
-        [Dependency] private readonly UserInterfaceSystem _ui = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly ThrowingSystem _throwing = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+        [Dependency] private ExplosionSystem _explosions = default!;
+        [Dependency] private SharedAudioSystem _audioSys = default!;
+        [Dependency] private UserInterfaceSystem _ui = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private ThrowingSystem _throwing = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
 
         private const float TimerDelay = 0.5f;
         private float _timer = 0f;
@@ -35,7 +34,6 @@ namespace Content.Server.Atmos.EntitySystems
             base.Initialize();
             SubscribeLocalEvent<GasTankComponent, EntParentChangedMessage>(OnParentChange);
             SubscribeLocalEvent<GasTankComponent, GasAnalyzerScanEvent>(OnAnalyzed);
-            SubscribeLocalEvent<GasTankComponent, PriceCalculationEvent>(OnGasTankPrice);
             Subs.CVar(_cfg, CCVars.AtmosTankFragment, UpdateMaxRange, true);
         }
 
@@ -228,11 +226,6 @@ namespace Content.Server.Atmos.EntitySystems
         {
             args.GasMixtures ??= new List<(string, GasMixture?)>();
             args.GasMixtures.Add((Name(uid), component.Air));
-        }
-
-        private void OnGasTankPrice(EntityUid uid, GasTankComponent component, ref PriceCalculationEvent args)
-        {
-            args.Price += _atmosphereSystem.GetPrice(component.Air);
         }
     }
 }

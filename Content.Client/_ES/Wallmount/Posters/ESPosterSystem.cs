@@ -3,9 +3,9 @@ using Robust.Client.GameObjects;
 namespace Content.Client._ES.Wallmount.Posters;
 
 /// <inheritdoc cref="ESPosterComponent"/>
-public sealed class ESPosterSystem : EntitySystem
+public sealed partial class ESPosterSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

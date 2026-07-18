@@ -24,15 +24,15 @@ namespace Content.Shared._ES.Spawning;
 /// <summary>
 /// Handles specific logic related to respawning
 /// </summary>
-public abstract class ESSharedSpawningSystem : EntitySystem
+public abstract partial class ESSharedSpawningSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminManager _admin = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] protected readonly ISharedPlayerManager Player = default!;
-    [Dependency] private readonly SharedPvsOverrideSystem _pvsOverride = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private ISharedAdminManager _admin = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] protected ISharedPlayerManager Player = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
     protected bool RespawnsEnabled;
     protected TimeSpan RespawnDelay;

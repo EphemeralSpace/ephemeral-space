@@ -17,55 +17,21 @@
     - id: ClothingEyesGlassesSecurity
 
 - type: entityTable
-  id: ESLockerFillHeadOfPersonnel
+  id: ESLockerFillStationAdmin
   table: !type:AllSelector
     children:
-    - id: AccessConfigurator
-    - id: BoxEncryptionKeyPassenger
-    - id: BoxEncryptionKeyService
-    - id: BoxHeadset
-    - id: BoxHoPStamps
-    - id: BoxID
-    - id: BoxPDA
+    - id: RubberStampApproved
+    - id: RubberStampDenied
     - id: CigarGoldCase
       prob: 0.25
-    - id: ClothingHeadsetCommand
+    - id: ClothingHeadsetAltCommand
     - id: ClothingNeckGoldmedal
-    - id: HoPIDCard
+    - id: StationAdminIDCard
     - id: Stunbaton
+    - id: LuxuryPen
     - id: ClothingEyesHudSecurity
 
 # Security
-- type: entityTable
-  id: ESLockerFillHeadOfSecurity
-  table: !type:AllSelector
-    children:
-    - id: BoxEncryptionKeySecurity
-    - id: CigarGoldCase
-      prob: 0.50
-    - id: ClothingBeltSecurityFilled
-    - id: ClothingEyesGlassesSecurity
-    - id: ClothingHeadsetAltSecurity
-    - id: ESClothingOuterCoatHoSTrench
-    - id: ClothingShoesBootsJack
-    - id: FlashlightSeclite
-    - id: RubberStampHos
-    - id: DrinkHosFlask
-
-- type: entityTable
-  id: ESFillLockerWarden
-  table: !type:AllSelector
-    children:
-    - id: FlashlightSeclite
-    - id: ClothingBeltSecurityFilled
-    - id: Flash
-    - id: ClothingEyesGlassesSecurity
-    - id: ClothingHandsGlovesColorBlack
-    - id: ClothingShoesBootsJack
-    - id: ESClothingOuterCoatWarden
-    - id: RubberStampWarden
-    - id: Binoculars
-
 - type: entityTable
   id: ESFillLockerSecurity
   table: !type:AllSelector
@@ -84,20 +50,14 @@
   id: ESFillLockerDetective
   table: !type:AllSelector
     children:
-    - id: ClothingEyesGlassesNoir
+    - id: ClothingEyesGlassesSunglasses
     - id: ESWeaponRevolver357 # sure, the other security roles don't get guns, but what is a detective without their revolver?
-    - id: ESSpeedLoader357
-    - id: ClothingBeltHolster # realistically this should just contain the gun, but, i dont want to make a new filled prototype right now. sorry.
-    - id: ClothingHeadHatDetGadget
-      prob: 0.15
-    - id: Stunbaton
-    - id: ESClothingOuterArmorDetective
+    - id: ClothingBeltSecurity # this belt is supposed to be empty so det doesn't get a batong
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
     - id: ForensicScanner
     - id: BoxForensicPad
     - id: DrinkDetFlask
-    - id: RubberStampDetective
     - id: BoxEvidenceMarkers
     - id: HandLabeler
 
@@ -109,7 +69,6 @@
     - id: ClothingOuterVest
     - id: ESWeaponDoubleBarrelShotgunNonlethal
     - id: DrinkShaker
-    - id: ClothingEyesHudBeer
     - id: HandLabeler
     - id: DrinkBeerBottleFull
       amount: !type:BinomialNumberSelector
@@ -120,6 +79,77 @@
       - id: ESShotgunShellsBoxBeanbag
       - id: RagItem
 
+- type: entityTable
+  id: LockerFillChef
+  table:
+    all:
+    - id: ButchCleaver
+    - id: ClothingOuterApronChef
+    - id: ESWeaponKnife
+      amount: 2
+    - id: ClothingBeltChefFilled
+    - id: BoxMousetrap
+    - id: RagItem
+
+- type: entityTable
+  id: LockerFillRatman
+  table:
+    all:
+    - tableId: ESMaintLootValuable
+      rolls: 9
+    - tableId: ESMaintLootWorthless
+      rolls: 3
+
+- type: entityTable
+  id: LockerFillJanitor
+  table:
+    all:
+    - id: ClothingShoesGaloshes
+    - id: ClothingBeltJanitorFilled
+    - id: LightReplacer
+    - id: SprayBottleSpaceCleaner
+    - id: MopItem
+    - id: BoxMousetrap
+    - id: TrashBag
+    - id: Plunger
+    - id: WireBrush
+
+# Civilian
+- type: entityTable
+  id: LockerFillClown
+  table:
+    all:
+    - id: BikeHorn
+    - id: TrashBananaPeel
+      amount: 1, 4
+    - id: FoodPieBananaCream
+    - id: ClownRecorder
+    - id: ToyHammer
+    - id: LauncherCreamPie
+
+- type: entityTable
+  id: LockerFillReporter
+  table:
+    all:
+    - id: BoxFolderGrey
+    - id: Pen
+      amount: 2, 3
+    # Handheld camera, ideally
+
+# Cargo
+- type: entityTable
+  id: LockerFillQuartermaster
+  table:
+    all:
+    - id: SheetSteel
+    - id: SheetGlass
+    - id: SheetPlastic
+    - id: BoxFolderClipboardEmpty
+    - id: Pen
+    - id: BoxFolderYellow
+    - id: Paper
+      amount: 1, 5
+
 # Science
 - type: entityTable
   id: ESFillLockerScientist
@@ -129,9 +159,6 @@
     - id: ClothingHeadsetScience
     - id: ClothingNeckTieSci
     - id: ClothingOuterCoatLabOpened
-    - id: ESAnomalyResonator
-      prob: 0.75
-    - id: ESAnomalyProbe
     - id: Multitool
       prob: 0.5
 
@@ -140,10 +167,7 @@
   id: ESLockerFillPhysician
   table: !type:AllSelector
     children:
-    - id: HandheldHealthAnalyzer
-      prob: 0.6
-    - id: ClothingHeadMirror
-      prob: 0.1
+    - id: BriefcaseAluminumFilledDoctor
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical
     - id: ClothingEyesHudMedical
@@ -162,16 +186,15 @@
     - id: ClothingBeltMedicalFilled
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical
-    - id: ESMedkitStabilization
+    - id: MedkitFilled
 
 - type: entityTable
   id: ESLockerFillCoroner
   table:
     all:
-    - id: ESScalpelAutopsy
-    - id: BoxFolderYellow
-    - id: HandLabeler
-    - id: BoxBodyBag
+    - id: BriefcaseBlackFilledCoroner
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical
     - id: ClothingMaskSterile
+    - id: ClothingBeltMedicalFilled
+    - id: ClothingEyesHudMedical

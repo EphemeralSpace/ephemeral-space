@@ -1,34 +1,5 @@
 ### ES-specific
 - type: construction
-  id: ESWallTube
-  hide: false
-  graph: Girder
-  startNode: start
-  targetNode: ESWallTube
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
-  id: ESWallDiagonalTube
-  hide: false
-  name: es-construction-recipe-diagonal-tube-wall
-  graph: Girder
-  startNode: start
-  targetNode: ESWallDiagonalTube
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: true
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
   id: ESKeypadFrame
   hide: false
   graph: ESKeypad
@@ -45,76 +16,6 @@
 ###
 ### Upstream inherited
 ###
-- type: construction
-  id: ESGirder
-  hide: false
-  graph: Girder
-  startNode: start
-  targetNode: girder
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
-  id: ESReinforcedGirder
-  hide: false
-  graph: Girder
-  startNode: start
-  targetNode: reinforcedGirder
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
-  id: ESWall
-  hide: false
-  graph: Girder
-  startNode: start
-  targetNode: wall
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
-  id: ESReinforcedWall
-  hide: false
-  graph: Girder
-  startNode: start
-  targetNode: reinforcedWall
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
-  id: ESWoodWall
-  hide: false
-  graph: Barricade
-  startNode: start
-  targetNode: woodWall
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
 - type: construction
   id: ESGrille
   hide: false
@@ -175,21 +76,6 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: ESPlasmaWindow
-  hide: false
-  graph: Window
-  startNode: start
-  targetNode: plasmaWindow
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-  - !type:EmptyOrWindowValidInTile
-  - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-
-- type: construction
   id: ESReinforcedPlasmaWindow
   hide: false
   graph: Window
@@ -224,20 +110,6 @@
   graph: WindowDirectional
   startNode: start
   targetNode: windowReinforcedDirectional
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-  - !type:EmptyOrWindowValidInTile
-  - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
-
-- type: construction
-  id: ESPlasmaWindowDirectional
-  hide: false
-  graph: WindowDirectional
-  startNode: start
-  targetNode: plasmaWindowDirectional
   category: construction-category-structures
   canBuildInImpassable: true
   conditions:
@@ -305,17 +177,6 @@
   graph: Shutters
   startNode: start
   targetNode: ShuttersWindow
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: true
-
-- type: construction
-  id: ESBlastDoor
-  hide: false
-  graph: BlastDoor
-  startNode: start
-  targetNode: blastdoor
   category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter
@@ -458,21 +319,6 @@
   graph: ConveyorGraph
   startNode: start
   targetNode: entity
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
-  id: ESSolidSecretDoor
-  hide: false
-  name: recipes-secret-door-name
-  description: recipes-secret-door-desc
-  graph: SecretDoor
-  startNode: start
-  targetNode: solidSecretDoor
   category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter

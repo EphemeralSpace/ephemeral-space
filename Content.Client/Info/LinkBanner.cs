@@ -1,6 +1,5 @@
 ﻿using Content.Client.Changelog;
 using Content.Client.UserInterface.Systems.EscapeMenu;
-using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared.CCVar;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -19,38 +18,32 @@ namespace Content.Client.Info
         {
             var buttons = new BoxContainer
             {
-                Orientation = LayoutOrientation.Horizontal
+                Orientation = LayoutOrientation.Horizontal,
+                HorizontalExpand = true,
             };
             AddChild(buttons);
 
             var uriOpener = IoCManager.Resolve<IUriOpener>();
             _cfg = IoCManager.Resolve<IConfigurationManager>();
 
-            var rulesButton = new Button() {Text = Loc.GetString("server-info-rules-button")};
-            rulesButton.OnPressed += args => new RulesAndInfoWindow().Open();
+            var rulesButton = new Button() {Text = Loc.GetString("server-info-rules-button"), HorizontalExpand = true, StyleClasses = { "OpenRight" }};
+            rulesButton.OnPressed += _ => new RulesAndInfoWindow().OpenCentered();
             buttons.AddChild(rulesButton);
 
+            AddInfoButton("server-info-github-button", CCVars.InfoLinksGithub);
             AddInfoButton("server-info-discord-button", CCVars.InfoLinksDiscord);
             AddInfoButton("server-info-website-button", CCVars.InfoLinksWebsite);
             AddInfoButton("server-info-wiki-button", CCVars.InfoLinksWiki);
             AddInfoButton("server-info-forum-button", CCVars.InfoLinksForum);
             AddInfoButton("server-info-telegram-button", CCVars.InfoLinksTelegram);
 
-            var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
-            var guidebookButton = new Button() { Text = Loc.GetString("server-info-guidebook-button") };
-            guidebookButton.OnPressed += _ =>
-            {
-                guidebookController.ToggleGuidebook();
-            };
-            buttons.AddChild(guidebookButton);
-
-            var changelogButton = new ChangelogButton();
+            var changelogButton = new ChangelogButton { HorizontalExpand = true, StyleClasses = { "OpenLeft" }};
             changelogButton.OnPressed += args => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
             buttons.AddChild(changelogButton);
 
             void AddInfoButton(string loc, CVarDef<string> cVar)
             {
-                var button = new Button { Text = Loc.GetString(loc) };
+                var button = new Button { Text = Loc.GetString(loc), HorizontalExpand = true, StyleClasses = { "OpenBoth" }};
                 button.OnPressed += _ => uriOpener.OpenUri(_cfg.GetCVar(cVar));
                 buttons.AddChild(button);
                 _infoLinks.Add((cVar, button));

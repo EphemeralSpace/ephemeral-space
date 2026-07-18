@@ -1,5 +1,6 @@
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Shared._ES.Tips;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Dataset;
@@ -12,19 +13,18 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Tips;
 
-public sealed class TipsSystem : SharedTipsSystem
+public sealed partial class TipsSystem : SharedTipsSystem
 {
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private ESTipsManager _tips = default!;
 
     private bool _tipsEnabled;
     private float _tipTimeOutOfRound;
     private float _tipTimeInRound;
-    private string _tipsDataset = "";
     private float _tipTippyChance;
 
     [ViewVariables(VVAccess.ReadWrite)]
@@ -38,7 +38,6 @@ public sealed class TipsSystem : SharedTipsSystem
         Subs.CVar(_cfg, CCVars.TipsEnabled, SetEnabled, true);
         Subs.CVar(_cfg, CCVars.TipFrequencyOutOfRound, value => _tipTimeOutOfRound = value, true);
         Subs.CVar(_cfg, CCVars.TipFrequencyInRound, value => _tipTimeInRound = value, true);
-        Subs.CVar(_cfg, CCVars.TipsDataset, value => _tipsDataset = value, true);
         Subs.CVar(_cfg, CCVars.TipsTippyChance, value => _tipTippyChance = value, true);
 
         RecalculateNextTipTime();
@@ -113,10 +112,7 @@ public sealed class TipsSystem : SharedTipsSystem
 
     public override void AnnounceRandomTip()
     {
-        if (!_prototype.TryIndex<LocalizedDatasetPrototype>(_tipsDataset, out var tips))
-            return;
-
-        var tip = _random.Pick(tips.Values);
+        var tip = _tips.GetRandomTip();
         var msg = Loc.GetString("tips-system-chat-message-wrap", ("tip", Loc.GetString(tip)));
 
         if (_random.Prob(_tipTippyChance))

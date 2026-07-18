@@ -1,9 +1,9 @@
 # Reporting a security vulnerability
-You can report a security vulnerability through Discord or through email.
 
-If you want to send an email, you can contact us at <support@spacestation14.com>.
-If you want to contact us through Discord, you can join [our server](https://discord.gg/MwDDf6t)
-and then **privately** message anyone with the `@Wizard` or `@SS14 Maintainer` role.
+If the vulnerability results from code also present in [upstream Space Station 14](https://github.com/space-wizards/space-station-14), please
+report it to them instead of us.
 
-In either case, **do not publicly disclose the vulnerability until we explicitly give
-you permission to do so**.
+You can report a security vulnerability through Discord, by joining [our server](https://discord.gg/jNFV9ap2nX)
+and then **privately** messaging anyone with the `@maint` role.
+
+In either case, **please do not publicly disclose the vulnerability until we explicitly give you permission to do so**.

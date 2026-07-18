@@ -7,9 +7,9 @@ using Content.Shared.Inventory;
 namespace Content.Server._ES.Chat.Obfuscation;
 
 /// <inheritdoc/>
-public sealed class ESVoiceObfuscatorSystem : ESSharedVoiceObfuscatorSystem
+public sealed partial class ESVoiceObfuscatorSystem : ESSharedVoiceObfuscatorSystem
 {
-    [Dependency] private readonly MaskSystem _mask = default!;
+    [Dependency] private MaskSystem _mask = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -14,8 +14,6 @@
         Glass: 50
       chemicalComposition:
         Silicon: 20
-    - type: StaticPrice
-      price: 34
 
 # Wallmount Substation
 - type: entity
@@ -27,8 +25,6 @@
     - type: Sprite
       sprite: Objects/Misc/module.rsi
       state: charger_APC
-    - type: StaticPrice
-      price: 40
     - type: Tag
       tags:
         - WallmountSubstationElectronics
@@ -43,8 +39,6 @@
   - type: Sprite
     sprite: Objects/Misc/module.rsi
     state: charger_APC
-  - type: StaticPrice
-    price: 20
   - type: PhysicalComposition
     materialComposition:
       Glass: 90
@@ -62,8 +56,6 @@
     - type: Sprite
       sprite: Objects/Misc/module.rsi
       state: charger_APC
-    - type: StaticPrice
-      price: 40
     - type: Tag
       tags:
         - WallmountGeneratorAPUElectronics
@@ -78,8 +70,6 @@
     - type: Sprite
       sprite: Objects/Misc/module.rsi
       state: engineering
-    - type: StaticPrice
-      price: 85
     - type: Tag
       tags:
         - SolarTrackerElectronics

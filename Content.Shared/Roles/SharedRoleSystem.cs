@@ -17,31 +17,21 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Roles;
 
-public abstract class SharedRoleSystem : EntitySystem
+public abstract partial class SharedRoleSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] protected readonly ISharedPlayerManager Player = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly SharedMindSystem _minds = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] protected ISharedPlayerManager Player = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedMindSystem _minds = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     private JobRequirementOverridePrototype? _requirementOverride;
 
     public override void Initialize()
     {
         Subs.CVar(_cfg, CCVars.GameRoleTimerOverride, SetRequirementOverride, true);
-
-        SubscribeLocalEvent<StartingMindRoleComponent, PlayerSpawnCompleteEvent>(OnSpawn);
-    }
-
-    private void OnSpawn(EntityUid uid, StartingMindRoleComponent component, PlayerSpawnCompleteEvent args)
-    {
-        if (!_minds.TryGetMind(uid, out var mindId, out var mindComp))
-            return;
-
-        MindAddRole(mindId, component.MindRole, mind: mindComp, silent: component.Silent);
     }
 
     private void SetRequirementOverride(string value)
@@ -172,11 +162,9 @@ public abstract class SharedRoleSystem : EntitySystem
             DebugTools.Assert(!mindRoleComp.ExclusiveAntag);
         }
 
-        var update = MindRolesUpdate((mindId, mind));
-
         // RoleType refresh, Role time tracking, Update Admin playerlist
 
-        var message = new RoleAddedEvent(mindId, mind, update, silent);
+        var message = new RoleAddedEvent(mindId, mind, false, silent);
         RaiseLocalEvent(mindId, message, true);
 
         var name = Loc.GetString(protoEnt.Name);
@@ -200,36 +188,6 @@ public abstract class SharedRoleSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Select the mind's currently "active" mind role entity, and update the mind's role type, if necessary
-    /// </summary>
-    /// <returns>
-    ///     True if this changed the mind's role type
-    /// </returns>>
-    private bool MindRolesUpdate(Entity<MindComponent?> ent)
-    {
-        if (!Resolve(ent.Owner, ref ent.Comp))
-            return false;
-
-        //get the most important/latest mind role
-        var (roleType, subtype) = GetRoleTypeByTime(ent.Comp);
-
-        if (ent.Comp.RoleType == roleType && ent.Comp.Subtype == subtype)
-            return false;
-
-        SetRoleType(ent.Owner, roleType, subtype);
-        return true;
-    }
-
-    /// <summary>
-    ///     Return the most recently specified role type and subtype, or Neutral
-    /// </summary>
-    private (ProtoId<RoleTypePrototype>, LocId?) GetRoleTypeByTime(MindComponent mind)
-    {
-        var role = GetRoleCompByTime(mind);
-        return (role?.Comp?.RoleType ?? "Neutral", role?.Comp?.Subtype);
-    }
-
-    /// <summary>
     ///     Return the most recently specified role type's mind role entity, or null
     /// </summary>
     public Entity<MindRoleComponent>? GetRoleCompByTime(MindComponent mind)
@@ -245,47 +203,6 @@ public abstract class SharedRoleSystem : EntitySystem
 
         Entity<MindRoleComponent>? result = roles.Count > 0 ? roles.LastOrDefault() : null;
         return (result);
-    }
-
-    private void SetRoleType(EntityUid mind, ProtoId<RoleTypePrototype> roleTypeId, LocId? subtype)
-    {
-        if (!TryComp<MindComponent>(mind, out var comp))
-        {
-            Log.Error($"Failed to update Role Type of mind entity {ToPrettyString(mind)} to {roleTypeId}, {subtype}. MindComponent not found.");
-            return;
-        }
-
-        if (!_prototypes.HasIndex(roleTypeId))
-        {
-            Log.Error($"Failed to change Role Type of {_minds.MindOwnerLoggingString(comp)} to {roleTypeId}, {subtype}. Invalid role");
-            return;
-        }
-
-        comp.RoleType = roleTypeId;
-        comp.Subtype = subtype;
-        Dirty(mind, comp);
-
-        // Update player character window
-        if (Player.TryGetSessionById(comp.UserId, out var session))
-            RaiseNetworkEvent(new MindRoleTypeChangedEvent(), session.Channel);
-        else
-        {
-            var error = $"The Character Window of {_minds.MindOwnerLoggingString(comp)} potentially did not update immediately : session error";
-            _adminLogger.Add(LogType.Mind, LogImpact.Medium, $"{error}");
-        }
-
-        if (comp.OwnedEntity is null)
-        {
-            Log.Error($"{ToPrettyString(mind)} does not have an OwnedEntity!");
-            _adminLogger.Add(LogType.Mind,
-                LogImpact.Medium,
-                $"Role Type of {ToPrettyString(mind)} changed to {roleTypeId}, {subtype}");
-            return;
-        }
-
-        _adminLogger.Add(LogType.Mind,
-            LogImpact.High,
-            $"Role Type of {ToPrettyString(comp.OwnedEntity)} changed to {roleTypeId}, {subtype}");
     }
 
     /// <summary>
@@ -410,9 +327,7 @@ public abstract class SharedRoleSystem : EntitySystem
             PredictedDel(role);
         }
 
-        var update = MindRolesUpdate(mind);
-
-        var message = new RoleRemovedEvent(mind.Owner, mind.Comp, update);
+        var message = new RoleRemovedEvent(mind.Owner, mind.Comp, false);
         RaiseLocalEvent(mind, message, true);
 
         _adminLogger.Add(LogType.Mind,

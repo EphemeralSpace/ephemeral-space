@@ -57,7 +57,7 @@
   - type: GuideHelp
     guides:
     - Chef
-    - FoodRecipes
+    - Food
   - type: ContainerContainer
     containers:
       body: !type:ContainerSlot

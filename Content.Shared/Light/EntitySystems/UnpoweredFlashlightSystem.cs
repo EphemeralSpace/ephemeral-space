@@ -1,5 +1,4 @@
 using Content.Shared.Actions;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Light.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Storage.Components;
@@ -12,18 +11,14 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Light.EntitySystems;
 
-public sealed class UnpoweredFlashlightSystem : EntitySystem
+public sealed partial class UnpoweredFlashlightSystem : EntitySystem
 {
     // TODO: Split some of this to ItemTogglePointLight
-
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedPointLightSystem _light = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedPointLightSystem _light = default!;
 
     public override void Initialize()
     {
@@ -33,7 +28,6 @@ public sealed class UnpoweredFlashlightSystem : EntitySystem
         SubscribeLocalEvent<UnpoweredFlashlightComponent, GetItemActionsEvent>(OnGetActions);
         SubscribeLocalEvent<UnpoweredFlashlightComponent, ToggleActionEvent>(OnToggleAction);
         SubscribeLocalEvent<UnpoweredFlashlightComponent, MindAddedMessage>(OnMindAdded);
-        SubscribeLocalEvent<UnpoweredFlashlightComponent, GotEmaggedEvent>(OnGotEmagged);
         SubscribeLocalEvent<UnpoweredFlashlightComponent, MapInitEvent>(OnMapInit);
     }
 
@@ -57,7 +51,6 @@ public sealed class UnpoweredFlashlightSystem : EntitySystem
 // ES START
         return;
 // ES END
-        args.AddAction(component.ToggleActionEntity);
     }
 
     private void AddToggleLightVerbs(EntityUid uid, UnpoweredFlashlightComponent component, GetVerbsEvent<ActivationVerb> args)
@@ -79,24 +72,6 @@ public sealed class UnpoweredFlashlightSystem : EntitySystem
     private void OnMindAdded(EntityUid uid, UnpoweredFlashlightComponent component, MindAddedMessage args)
     {
         _actionsSystem.AddAction(uid, ref component.ToggleActionEntity, component.ToggleAction);
-    }
-
-    private void OnGotEmagged(EntityUid uid, UnpoweredFlashlightComponent component, ref GotEmaggedEvent args)
-    {
-        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-            return;
-
-        if (!_light.TryGetLight(uid, out var light))
-            return;
-
-        if (_prototypeManager.Resolve(component.EmaggedColorsPrototype, out var possibleColors))
-        {
-            var pick = _random.Pick(possibleColors.Colors.Values);
-            _light.SetColor(uid, pick, light);
-        }
-
-        args.Repeatable = true;
-        args.Handled = true;
     }
 
     public void TryToggleLight(Entity<UnpoweredFlashlightComponent?> ent, EntityUid? user = null, bool quiet = false)

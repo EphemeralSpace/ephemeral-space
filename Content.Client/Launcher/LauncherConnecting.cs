@@ -1,4 +1,6 @@
 using System;
+using Content.Client.Stylesheets;
+using Content.Shared._ES.Tips;
 using Robust.Client;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
@@ -10,17 +12,16 @@ using Robust.Shared.Random;
 
 namespace Content.Client.Launcher
 {
-    public sealed class LauncherConnecting : Robust.Client.State.State
+    public sealed partial class LauncherConnecting : Robust.Client.State.State
     {
-        [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
-        [Dependency] private readonly IClientNetManager _clientNetManager = default!;
-        [Dependency] private readonly IGameController _gameController = default!;
-        [Dependency] private readonly IBaseClient _baseClient = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IClipboardManager _clipboard = default!;
-        [Dependency] private readonly ILogManager _logManager = default!;
+        [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
+        [Dependency] private IClientNetManager _clientNetManager = default!;
+        [Dependency] private IGameController _gameController = default!;
+        [Dependency] private IBaseClient _baseClient = default!;
+        [Dependency] private IClipboardManager _clipboard = default!;
+        [Dependency] private IStylesheetManager _stylesheets = default!;
+        [Dependency] private ILogManager _logManager = default!;
+        [Dependency] private ESTipsManager _tips = default!;
 
         private LauncherConnectingGui? _control;
         private ISawmill _sawmill = default!;
@@ -61,7 +62,7 @@ namespace Content.Client.Launcher
 
         protected override void Startup()
         {
-            _control = new LauncherConnectingGui(this, _random, _prototypeManager, _cfg, _clipboard);
+            _control = new LauncherConnectingGui(this, _clipboard, _stylesheets, _tips);
 
             _sawmill = _logManager.GetSawmill("launcher-ui");
 

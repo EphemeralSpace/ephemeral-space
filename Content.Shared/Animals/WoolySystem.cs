@@ -12,12 +12,12 @@ namespace Content.Shared.Animals;
 ///     Gives ability to produce fiber reagents;
 ///     produces endlessly if the owner has no HungerComponent.
 /// </summary>
-public sealed class WoolySystem : EntitySystem
+public sealed partial class WoolySystem : EntitySystem
 {
-    [Dependency] private readonly HungerSystem _hunger = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private HungerSystem _hunger = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     public override void Initialize()
     {
@@ -67,10 +67,10 @@ public sealed class WoolySystem : EntitySystem
             if (TryComp(uid, out HungerComponent? hunger))
             {
                 // Is there enough nutrition to produce reagent?
-                if (_hunger.GetHungerThreshold(hunger) < HungerThreshold.Okay)
+                if (hunger.CurrentHunger < HungerThreshold.Okay)
                     continue;
 
-                _hunger.ModifyHunger(uid, -wooly.HungerUsage, hunger);
+                _hunger.ModifySatiety((uid, hunger), -1);
             }
 
             _solutionContainer.TryAddReagent(wooly.Solution.Value, wooly.ReagentId, wooly.Quantity, out _);

@@ -1,16 +1,20 @@
 using Content.Client._ES.Station.Ui;
+using Content.Client.GameTicking.Managers;
 using Content.Shared._ES.Lobby;
 using Content.Shared._ES.Lobby.Components;
 using Content.Shared.GameTicking;
 using Robust.Client.Player;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Timing;
 
 namespace Content.Client._ES.Lobby;
 
 /// <inheritdoc/>
-public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
+public sealed partial class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ClientGameTicker _ticker = default!;
 
     private ESJobPrefsWindow? _jobPrefsWindow;
 
@@ -31,12 +35,24 @@ public sealed class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
     protected override void OnTriggerCollided(Entity<ESReadyTriggerMarkerComponent> ent, ref StartCollideEvent args)
     {
         if (!HasComp<ESTheatergoerMarkerComponent>(args.OtherEntity)
-            || args.OtherEntity != _player.LocalEntity)
+            || args.OtherEntity != _player.LocalEntity
+            || !_timing.IsFirstTimePredicted
+            || _ticker.IsGameStarted)
             return;
 
+        // open prefs window on the first time we enter stage after connecting
         if (ent.Comp.Behavior is PlayerGameStatus.ReadyToPlay)
-            return;
-        _jobPrefsWindow?.Close();
+        {
+            if (_jobPrefsWindow != null)
+                return;
+
+            _jobPrefsWindow = new ESJobPrefsWindow();
+            _jobPrefsWindow.OpenCentered();
+        }
+        else
+        {
+            _jobPrefsWindow?.Close();
+        }
     }
 
     private void OnConfigurePrefsToggleAction(Entity<ESTheatergoerMarkerComponent> ent, ref ESConfigurePrefsToggleActionEvent args)

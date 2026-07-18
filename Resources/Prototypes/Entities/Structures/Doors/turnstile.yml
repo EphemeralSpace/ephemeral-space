@@ -86,6 +86,7 @@
   components:
   - type: AccessReader
     access: [["GenpopEnter"], ["Security"]]
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   id: TurnstileGenpopLeave
@@ -94,3 +95,4 @@
   components:
   - type: AccessReader
     access: [["GenpopLeave"], ["Security"]]
+  - type: ESAmbientMusicMarkerSecurity

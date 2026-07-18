@@ -6,18 +6,29 @@
     Steel: 500
 
 - type: latheRecipe
-  parent: BaseToolRecipe
-  id: ESAnomalyResonator
-  result: ESAnomalyResonator
+  parent: BaseLightRecipe
+  id: ESFlashlightLantern
+  result: EmptyFlashlightLantern
   materials:
-    Steel: 500
-    Glass: 300
-    Plastic: 200
+    Steel: 100
+    Glass: 100
+    Plastic: 100
 
 - type: latheRecipe
-  parent: BaseToolRecipe
-  id: ESAnomalyProbe
-  result: ESAnomalyProbe
+  id: ESKitSecretDoor
+  categories:
+  - Parts
+  result: ESKitSecretDoor
+  completetime: 5
   materials:
-    Steel: 300
-    Glass: 100
+    Steel: 1000
+
+- type: latheRecipe
+  id: ESKitBarricade
+  categories:
+  - Parts
+  result: ESKitBarricade
+  completetime: 5
+  materials:
+    Wood: 400
+    Steel: 200

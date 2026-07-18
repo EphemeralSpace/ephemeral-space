@@ -1,36 +1,5 @@
 - type: entity
-  parent: ClothingOuterStorageBase
-  id: ESClothingOuterCoatCaptain
-  name: captain's coat
-  suffix: ES
-  description: A dark coat fit for a captain. Its stripes match the color of Pomelo Interspace Transit.
-  components:
-  - type: Sprite
-    sprite: _ES/Clothing/OuterClothing/Coats/captain.rsi
-    layers:
-    - state: icon
-    - state: icon-color
-      color: "#e9744a"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      - state: inhand-left-color
-        color: "#e9744a"
-      right:
-      - state: inhand-right
-      - state: inhand-right-color
-        color: "#e9744a"
-  - type: Clothing
-    sprite: _ES/Clothing/OuterClothing/Coats/captain.rsi
-    clothingVisuals:
-      outerClothing:
-      - state: equipped-OUTERCLOTHING
-      - state: equipped-OUTERCLOTHING-color
-        color: "#e9744a"
-
-- type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterBase, AllowSuitStorageClothing]
   id: ESClothingOuterCoatDetective
   name: detective trenchcoat
   suffix: ES
@@ -42,7 +11,7 @@
     sprite: Clothing/OuterClothing/Coats/detective.rsi
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterBase, AllowSuitStorageClothing]
   id: ESClothingOuterCoatDetectiveLoadout
   name: detective trenchcoat
   suffix: ES
@@ -56,7 +25,6 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: SmokingPipeFilledTobacco
         - id: FlippoEngravedLighter
 
 - type: entity
@@ -70,3 +38,15 @@
     sprite: Clothing/OuterClothing/Coats/detective_grey.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/detective_grey.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatRatman
+  name: ratty trenchcoat
+  suffix: ES
+  description: An overcoat that protects, and has protected, precisely nothing from the elements. Damn, it's cool.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/OuterClothing/Coats/ratman.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/OuterClothing/Coats/ratman.rsi

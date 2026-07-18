@@ -1,4 +1,3 @@
-using Content.Shared.Research.Prototypes;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Lathe.Prototypes;

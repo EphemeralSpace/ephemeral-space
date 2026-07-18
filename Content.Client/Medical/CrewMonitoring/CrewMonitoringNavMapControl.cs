@@ -5,7 +5,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Medical.CrewMonitoring;
 
-public sealed partial class CrewMonitoringNavMapControl : NavMapControl
+public sealed class CrewMonitoringNavMapControl : NavMapControl
 {
     public NetEntity? Focus;
     public Dictionary<NetEntity, string> LocalizedNames = new();

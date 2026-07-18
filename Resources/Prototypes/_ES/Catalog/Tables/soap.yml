@@ -1,0 +1,16 @@
+- type: entityTable
+  id: ESSoap
+  table:
+    group:
+    - group:
+      - id: Soap
+      - id: SoapNT
+      - id: SoapDeluxe
+      weight: 8
+    - group:
+      - id: SoapHomemade
+      - id: SoapSyndie
+      weight: 1
+    - group:
+      - id: SoapOmega
+      weight: 0.05

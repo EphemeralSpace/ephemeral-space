@@ -1,23 +1,27 @@
+using System.Numerics;
 using Content.Shared.Stunnable;
 using Content.Shared.Damage.Components;
 using Content.Shared.Effects;
+using Content.Shared.Popups;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Damage.Systems;
 
-public sealed class DamageOnHighSpeedImpactSystem : EntitySystem
+public sealed partial class DamageOnHighSpeedImpactSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -40,21 +44,25 @@ public sealed class DamageOnHighSpeedImpactSystem : EntitySystem
             return;
 
         if (component.LastHit != null
-            && (_gameTiming.CurTime - component.LastHit.Value).TotalSeconds < component.DamageCooldown)
+            && (_gameTiming.CurTime - component.LastHit.Value) < component.DamageCooldown)
             return;
 
         component.LastHit = _gameTiming.CurTime;
 
-        if (_robustRandom.Prob(component.StunChance))
-            _stun.TryUpdateStunDuration(uid, TimeSpan.FromSeconds(component.StunSeconds));
+        _stun.TryUpdateParalyzeDuration(uid, component.StunTime);
 
         var damageScale = component.SpeedDamageFactor * speed / component.MinimumSpeed;
 
         _damageable.TryChangeDamage(uid, component.Damage * damageScale);
 
-        if (_gameTiming.IsFirstTimePredicted)
-            _audio.PlayPvs(component.SoundHit, uid, AudioParams.Default.WithVariation(0.125f).WithVolume(-0.125f));
+        var msg = Loc.GetString("es-damage-high-speed-impact-impacted",
+            ("entity", uid),
+            ("impacted", args.OtherEntity));
+        _popup.PopupEntity(msg, uid, Filter.Pvs(uid), true, PopupType.MediumCaution);
+
+        _audio.PlayPredicted(component.SoundHit, uid, uid, AudioParams.Default.WithVariation(0.125f).WithVolume(-0.125f));
         _color.RaiseEffect(Color.Red, new List<EntityUid>() { uid }, Filter.Pvs(uid, entityManager: EntityManager));
+        _physics.SetLinearVelocity(uid, Vector2.Zero);
     }
 
     public void ChangeCollide(EntityUid uid, float minimumSpeed, float stunSeconds, float damageCooldown, float speedDamage, DamageOnHighSpeedImpactComponent? collide = null)
@@ -62,9 +70,10 @@ public sealed class DamageOnHighSpeedImpactSystem : EntitySystem
         if (!Resolve(uid, ref collide, false))
             return;
 
+        // TODO ew what the fuck
         collide.MinimumSpeed = minimumSpeed;
-        collide.StunSeconds = stunSeconds;
-        collide.DamageCooldown = damageCooldown;
+        collide.StunTime = TimeSpan.FromSeconds(stunSeconds);
+        collide.DamageCooldown = TimeSpan.FromSeconds(damageCooldown);
         collide.SpeedDamageFactor = speedDamage;
         Dirty(uid, collide);
     }

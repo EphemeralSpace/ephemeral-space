@@ -1,9 +1,9 @@
-using Content.Shared.Objectives.Components;
+using Content.Shared._ES.Objectives.Components;
 
 namespace Content.Shared._ES.Nuke.Components;
 
 /// <summary>
-/// <see cref="ObjectiveComponent"/> that is completed by compromising all <see cref="ESCryptoNukeConsoleComponent"/> on station.
+/// <see cref="ESObjectiveComponent"/> that is completed by compromising all <see cref="ESCryptoNukeConsoleComponent"/> on station.
 /// </summary>
 [RegisterComponent]
 [Access(typeof(ESSharedCryptoNukeSystem))]

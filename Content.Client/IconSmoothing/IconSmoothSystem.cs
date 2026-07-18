@@ -16,8 +16,8 @@ namespace Content.Client.IconSmoothing
     [UsedImplicitly]
     public sealed partial class IconSmoothSystem : EntitySystem
     {
-        [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-        [Dependency] private readonly SpriteSystem _sprite = default!;
+        [Dependency] private SharedMapSystem _mapSystem = default!;
+        [Dependency] private SpriteSystem _sprite = default!;
 
         private readonly Queue<EntityUid> _dirtyEntities = new();
         private readonly Queue<EntityUid> _anchorChangedEntities = new();
@@ -532,7 +532,7 @@ namespace Content.Client.IconSmoothing
             Clockwise = 4,
         }
 
-        private enum CornerLayers : byte
+        public enum CornerLayers : byte
         {
             SE,
             NE,

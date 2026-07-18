@@ -1,0 +1,53 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/6f959e719255fcfaacb64807d9de8ba325a044d7 and modified for Ephemeral Space by Flareguy",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "cart"
+        },
+        {
+            "name": "cart_bucket"
+        },
+        {
+            "name": "cart_garbage"
+        },
+        {
+            "name": "cart_mop"
+        },
+        {
+            "name": "cart_plunger"
+        },
+        {
+            "name": "cart_replacer"
+        },
+        {
+            "name": "cart_sign1"
+        },
+        {
+            "name": "cart_sign2"
+        },
+        {
+            "name": "cart_sign3"
+        },
+        {
+            "name": "cart_sign4"
+        },
+        {
+            "name": "cart_spray"
+        },
+        {
+            "name": "cart_water-1"
+        },
+        {
+            "name": "cart_water-2"
+        },
+        {
+            "name": "cart_water-3"
+        }
+    ]
+}

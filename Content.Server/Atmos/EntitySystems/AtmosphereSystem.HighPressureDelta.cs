@@ -1,8 +1,8 @@
-using Content.Server.Atmos.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -15,13 +15,14 @@ namespace Content.Server.Atmos.EntitySystems
 {
     public sealed partial class AtmosphereSystem
     {
+        [Dependency] private TransformSystem _transformSystem = default!;
         private static readonly ProtoId<SoundCollectionPrototype> DefaultSpaceWindSounds = "SpaceWind";
 
         // ES START
         // 75 -> 60
         private const int SpaceWindSoundCooldownCycles = 60;
 
-        private const int ESSpaceWindPressureDeltaThreshold = 40;
+        private const int ESSpaceWindPressureDeltaThreshold = 10;
         // ES END
 
         // ES START
@@ -122,7 +123,7 @@ namespace Content.Server.Atmos.EntitySystems
             {
                 if (_spaceWindSoundCooldown == 0 && SpaceWindSound != null)
                 {
-                    var coordinates = _mapSystem.ToCenterCoordinates(tile.GridIndex, tile.GridIndices);
+                    var coordinates = _map.ToCenterCoordinates(tile.GridIndex, tile.GridIndices);
                     _audio.PlayPvs(SpaceWindSound, coordinates, SpaceWindSound.Params.WithVolume(MathHelper.Clamp(tile.PressureDifference / 10, 10, 100)));
                     // ES START
                     var rotation = tile.PressureDirection.ToAngle() + MathHelper.PiOver2;
@@ -146,7 +147,7 @@ namespace Content.Server.Atmos.EntitySystems
                 return;
 
             // Used by ExperiencePressureDifference to correct push/throw directions from tile-relative to physics world.
-            var gridWorldRotation = _transformSystem.GetWorldRotation(gridAtmosphere);
+            var gridWorldRotation = XformSystem.GetWorldRotation(gridAtmosphere);
 
             // If we're using monstermos, smooth out the yeet direction to follow the flow
             if (MonstermosEqualization)
@@ -190,7 +191,7 @@ namespace Content.Server.Atmos.EntitySystems
                         gridAtmosphere.Comp.UpdateCounter,
                         tile.PressureDifference,
                         tile.PressureDirection, 0,
-                        tile.PressureSpecificTarget != null ? _mapSystem.ToCenterCoordinates(tile.GridIndex, tile.PressureSpecificTarget.GridIndices) : EntityCoordinates.Invalid,
+                        tile.PressureSpecificTarget != null ? _map.ToCenterCoordinates(tile.GridIndex, tile.PressureSpecificTarget.GridIndices) : EntityCoordinates.Invalid,
                         gridWorldRotation,
                         xforms.GetComponent(entity),
                         body);
@@ -265,7 +266,7 @@ namespace Content.Server.Atmos.EntitySystems
                     // TODO: Technically these directions won't be correct but uhh I'm just here for optimisations buddy not to fix my old bugs.
                     if (throwTarget != EntityCoordinates.Invalid)
                     {
-                        var pos = ((_transformSystem.ToMapCoordinates(throwTarget).Position - _transformSystem.GetWorldPosition(xform)).Normalized() + dirVec).Normalized();
+                        var pos = ((XformSystem.ToMapCoordinates(throwTarget).Position - XformSystem.GetWorldPosition(xform)).Normalized() + dirVec).Normalized();
                         _physics.ApplyLinearImpulse(uid, pos * moveForce, body: physics);
                     }
                     else

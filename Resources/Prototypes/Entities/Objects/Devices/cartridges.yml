@@ -135,8 +135,6 @@
       sprite: Objects/Misc/books.rsi
       state: icon_magnifier
   - type: WantedListCartridge
-  - type: StealTarget
-    stealGroup: WantedListCartridge
 
 - type: entity
   parent: BasePDACartridge

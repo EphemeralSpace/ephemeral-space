@@ -17,8 +17,8 @@ namespace Content.Client.UserInterface.Controls;
 [Virtual]
 public partial class MapGridControl : LayoutContainer
 {
-    [Dependency] protected readonly IEntityManager EntManager = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] protected IEntityManager EntManager = default!;
+    [Dependency] protected IGameTiming Timing = default!;
 
     protected static readonly Color BackingColor = new Color(0.08f, 0.08f, 0.08f);
 
@@ -95,6 +95,7 @@ public partial class MapGridControl : LayoutContainer
         ActualRadarRange = range;
 
         var cache = IoCManager.Resolve<IResourceCache>();
+        // TODO: Move fonts to stylesheets, respect user font preferences.
         _largerFont = new VectorFont(cache.GetResource<FontResource>("/EngineFonts/NotoSans/NotoSans-Regular.ttf"), 16);
     }
 

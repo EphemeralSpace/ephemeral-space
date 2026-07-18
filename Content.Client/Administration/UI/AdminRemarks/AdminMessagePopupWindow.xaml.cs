@@ -12,7 +12,7 @@ namespace Content.Client.Administration.UI.AdminRemarks;
 [GenerateTypedNameReferences]
 public sealed partial class AdminMessagePopupWindow : Control
 {
-    [Dependency] private readonly IStylesheetManager _styleMan = default!;
+    [Dependency] private IStylesheetManager _styleMan = default!;
 
     private float _timer = float.MaxValue;
 
@@ -23,8 +23,6 @@ public sealed partial class AdminMessagePopupWindow : Control
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-
-        Stylesheet = _styleMan.SheetSystem;
 
         AcceptButton.OnPressed += OnAcceptButtonPressed;
         DismissButton.OnPressed += OnDismissButtonPressed;
@@ -84,5 +82,19 @@ public sealed partial class AdminMessagePopupWindow : Control
             AcceptButton.Disabled = false;
             DismissButton.Disabled = false;
         }
+    }
+
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
+
+        _styleMan.UseStylesheet(this, static sm => sm.SheetSystem);
+    }
+
+    protected override void ExitedTree()
+    {
+        base.ExitedTree();
+
+        _styleMan.StopStylesheet(this);
     }
 }

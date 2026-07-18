@@ -92,9 +92,6 @@
             "name": "HeadOfSecurity"
         },
         {
-            "name": "HeadRevolutionary"
-        },
-        {
             "name": "InitialInfected"
         },
         {
@@ -131,9 +128,6 @@
             "name": "Nanotrasen"
         },
         {
-            "name": "Ninja"
-        },
-        {
             "name": "NoId"
         },
         {
@@ -165,9 +159,6 @@
         },
         {
             "name": "ResearchDirector"
-        },
-        {
-            "name": "Revolutionary"
         },
         {
             "name": "Roboticist"

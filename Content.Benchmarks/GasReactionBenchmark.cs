@@ -1,8 +1,8 @@
+using System.IO;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using Content.IntegrationTests;
 using Content.IntegrationTests.Pair;
-using Content.Server.Atmos;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Reactions;
 using Content.Shared.Atmos;
@@ -32,26 +32,18 @@ public class GasReactionBenchmark
     // Reaction instances
     private PlasmaFireReaction _plasmaFireReaction = default!;
     private TritiumFireReaction _tritiumFireReaction = default!;
-    private FrezonProductionReaction _frezonProductionReaction = default!;
     private FrezonCoolantReaction _frezonCoolantReaction = default!;
-    private AmmoniaOxygenReaction _ammoniaOxygenReaction = default!;
-    private N2ODecompositionReaction _n2oDecompositionReaction = default!;
-    private WaterVaporReaction _waterVaporReaction = default!;
     // Gas mixtures for each reaction type
     private GasMixture _plasmaFireMixture = default!;
     private GasMixture _tritiumFireMixture = default!;
-    private GasMixture _frezonProductionMixture = default!;
     private GasMixture _frezonCoolantMixture = default!;
-    private GasMixture _ammoniaOxygenMixture = default!;
-    private GasMixture _n2oDecompositionMixture = default!;
-    private GasMixture _waterVaporMixture = default!;
 
     [GlobalSetup]
     public async Task SetupAsync()
     {
         ProgramShared.PathOffset = "../../../../";
         PoolManager.Startup();
-        _pair = await PoolManager.GetServerClient();
+        _pair = await PoolManager.GetServerClient(testContext: new ExternalTestContext("Benchmark", StreamWriter.Null));
         var server = _pair.Server;
 
         // Create test map and grid
@@ -65,11 +57,7 @@ public class GasReactionBenchmark
 
             _plasmaFireReaction = new PlasmaFireReaction();
             _tritiumFireReaction = new TritiumFireReaction();
-            _frezonProductionReaction = new FrezonProductionReaction();
             _frezonCoolantReaction = new FrezonCoolantReaction();
-            _ammoniaOxygenReaction = new AmmoniaOxygenReaction();
-            _n2oDecompositionReaction = new N2ODecompositionReaction();
-            _waterVaporReaction = new WaterVaporReaction();
 
             SetupGasMixtures();
             SetupTile();
@@ -96,16 +84,6 @@ public class GasReactionBenchmark
         _tritiumFireMixture.AdjustMoles(Gas.Tritium, 20f);
         _tritiumFireMixture.AdjustMoles(Gas.Oxygen, 100f);
 
-        // Frezon Production: Oxygen + Tritium + Nitrogen catalyst
-        // Optimal temperature for efficiency (80% of max efficiency temp)
-        _frezonProductionMixture = new GasMixture(Atmospherics.CellVolume)
-        {
-            Temperature = Atmospherics.FrezonProductionMaxEfficiencyTemperature * 0.8f // ~48K
-        };
-        _frezonProductionMixture.AdjustMoles(Gas.Oxygen, 50f);
-        _frezonProductionMixture.AdjustMoles(Gas.Tritium, 50f);
-        _frezonProductionMixture.AdjustMoles(Gas.Nitrogen, 10f);
-
         // Frezon Coolant: Frezon + Nitrogen
         // Temperature must be > FrezonCoolLowerTemperature (23.15K) for reaction to occur
         _frezonCoolantMixture = new GasMixture(Atmospherics.CellVolume)
@@ -114,28 +92,6 @@ public class GasReactionBenchmark
         };
         _frezonCoolantMixture.AdjustMoles(Gas.Frezon, 30f);
         _frezonCoolantMixture.AdjustMoles(Gas.Nitrogen, 100f);
-
-        // Ammonia + Oxygen reaction (concentration-dependent, no temp requirement)
-        _ammoniaOxygenMixture = new GasMixture(Atmospherics.CellVolume)
-        {
-            Temperature = Atmospherics.T20C + 100f // ~393K
-        };
-        _ammoniaOxygenMixture.AdjustMoles(Gas.Ammonia, 40f);
-        _ammoniaOxygenMixture.AdjustMoles(Gas.Oxygen, 40f);
-
-        // N2O Decomposition (no temperature requirement, just needs N2O moles)
-        _n2oDecompositionMixture = new GasMixture(Atmospherics.CellVolume)
-        {
-            Temperature = Atmospherics.T20C + 100f // ~393K
-        };
-        _n2oDecompositionMixture.AdjustMoles(Gas.NitrousOxide, 100f);
-
-        // Water Vapor - needs water vapor to condense
-        _waterVaporMixture = new GasMixture(Atmospherics.CellVolume)
-        {
-            Temperature = Atmospherics.T20C
-        };
-        _waterVaporMixture.AdjustMoles(Gas.WaterVapor, 50f);
     }
 
     private void SetupTile()
@@ -180,19 +136,6 @@ public class GasReactionBenchmark
     }
 
     [Benchmark]
-    public async Task FrezonProductionReaction()
-    {
-        await _pair.Server.WaitPost(() =>
-        {
-            for (var i = 0; i < Iterations; i++)
-            {
-                var mixture = CloneMixture(_frezonProductionMixture);
-                _frezonProductionReaction.React(mixture, _testTile, _atmosphereSystem, 1f);
-            }
-        });
-    }
-
-    [Benchmark]
     public async Task FrezonCoolantReaction()
     {
         await _pair.Server.WaitPost(() =>
@@ -201,45 +144,6 @@ public class GasReactionBenchmark
             {
                 var mixture = CloneMixture(_frezonCoolantMixture);
                 _frezonCoolantReaction.React(mixture, _testTile, _atmosphereSystem, 1f);
-            }
-        });
-    }
-
-    [Benchmark]
-    public async Task AmmoniaOxygenReaction()
-    {
-        await _pair.Server.WaitPost(() =>
-        {
-            for (var i = 0; i < Iterations; i++)
-            {
-                var mixture = CloneMixture(_ammoniaOxygenMixture);
-                _ammoniaOxygenReaction.React(mixture, _testTile, _atmosphereSystem, 1f);
-            }
-        });
-    }
-
-    [Benchmark]
-    public async Task N2ODecompositionReaction()
-    {
-        await _pair.Server.WaitPost(() =>
-        {
-            for (var i = 0; i < Iterations; i++)
-            {
-                var mixture = CloneMixture(_n2oDecompositionMixture);
-                _n2oDecompositionReaction.React(mixture, _testTile, _atmosphereSystem, 1f);
-            }
-        });
-    }
-
-    [Benchmark]
-    public async Task WaterVaporReaction()
-    {
-        await _pair.Server.WaitPost(() =>
-        {
-            for (var i = 0; i < Iterations; i++)
-            {
-                var mixture = CloneMixture(_waterVaporMixture);
-                _waterVaporReaction.React(mixture, _testTile, _atmosphereSystem, 1f);
             }
         });
     }

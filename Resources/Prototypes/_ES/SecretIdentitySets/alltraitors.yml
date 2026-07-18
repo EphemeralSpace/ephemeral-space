@@ -1,0 +1,4 @@
+- type: esSecretIdentitySet
+  id: AllTraitors # Every traitor, with their identities weight.
+  secretIdentityProvider: !type:ESOrganizationSecretIdentitiesProvider
+    organization: Traitor

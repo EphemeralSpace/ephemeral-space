@@ -59,7 +59,6 @@ public sealed partial class StencilOverlay
 
         }, Color.Transparent);
 
-        worldHandle.SetTransform(Matrix3x2.Identity);
         worldHandle.UseShader(_protoManager.Index(StencilMask).Instance());
         worldHandle.DrawTextureRect(res.Blep!.Texture, worldBounds);
         var curTime = _timing.RealTime;

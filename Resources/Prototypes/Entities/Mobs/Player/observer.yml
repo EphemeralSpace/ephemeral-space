@@ -9,7 +9,6 @@
     overrideContainerOcclusion: true # Always show up regardless of where they're contained.
     drawdepth: Ghosts
   - type: FTLSmashImmune
-  - type: CargoSellBlacklist
   - type: MovementSpeedModifier
     baseSprintSpeed: 12
     baseWalkSpeed: 8
@@ -60,14 +59,16 @@
   - type: ActiveRadio
     receiveAllChannels: true
     globalReceive: true
-  - type: Tag
-    tags:
-    - BypassInteractionRangeChecks
-  # ES START
-  - type: ESInherentLight
-    lightPrototype: ESMobObserverInherentLight
-    enabled: false
-  # ES END
+  - type: ESBypassInteractionRangeChecks
+  - type: NightVision
+    netsync: false
+    enabled: true
+    prioritized: false
+    relayOverlay: false # In case default values change
+    lightingColor: '#acb4c225'
+    overlayColor: '#FFFFFF00'
+    noiseAmount: 0 # In case default values change
+    noiseMultiplier: 0 # In case default values change
 
 # proto for player ghosts specifically
 - type: entity
@@ -75,9 +76,8 @@
   id: MobObserver
   components:
   - type: Spectral
-  - type: Tag
-    tags: # BAD: Intentional removal of inherited tag
-    - AllowGhostShownByEvent
+  - type: Ghost
+    madeVisibleByEvents: true
 
 - type: entity
   parent: BaseMentalAction

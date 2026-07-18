@@ -1,7 +1,7 @@
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Maps;
 using Content.Shared.Spreader;
 using Content.Shared.Tag;
@@ -17,13 +17,13 @@ namespace Content.Server.Spreader;
 /// <summary>
 /// Handles generic spreading logic, where one anchored entity spreads to neighboring tiles.
 /// </summary>
-public sealed class SpreaderSystem : EntitySystem
+public sealed partial class SpreaderSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     /// <summary>
     /// Cached maximum number of updates per spreader prototype. This is applied per-grid.

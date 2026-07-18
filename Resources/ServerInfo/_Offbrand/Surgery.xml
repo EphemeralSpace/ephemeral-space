@@ -24,7 +24,6 @@ When none of the above are available, normal painkillers are an option.
 In order to conduct surgery, your patient must not have any clothing obstructing them, and must be laying down.
 
 <Box>
-  <GuideEntityEmbed Entity="ClothingOuterVestTank" Caption="tank harness" />
   <GuideEntityEmbed Entity="ClothingOuterHospitalGown" Caption="hospital gown" />
 </Box>
 
@@ -125,7 +124,7 @@ An incision must be open.
 
 <Table Columns="1">
   <Box>
-    <GuideEntityEmbed Entity="Saw" Caption="" />
+    <GuideEntityEmbed Entity="SawElectric" Caption="" />
   </Box>
   <Box>
     1. Open the ribs

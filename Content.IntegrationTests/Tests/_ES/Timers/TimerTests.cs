@@ -1,8 +1,11 @@
+#nullable enable
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Content.IntegrationTests.Tests._Citadel;
-using Content.IntegrationTests.Tests._Citadel.Constraints;
+using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Fixtures.Attributes;
+using Content.IntegrationTests.NUnit.Constraints;
+using Content.IntegrationTests.Utility;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Core.Timer.Components;
 using Robust.Server.GameStates;
@@ -16,38 +19,34 @@ namespace Content.IntegrationTests.Tests._ES.Timers;
 [TestFixture]
 public sealed class TimerTests : GameTest
 {
-    // Just uses the pool instead of trying to spin up reflectionmanager standalone, as we already have functional
-    // pairs floating around in a normal CI testing environment.
+    [SidedDependency(Side.Server)] private readonly ESEntityTimerSystem _sTimer = default!;
+    [SidedDependency(Side.Server)] private readonly ESTimerTestSystem _sTimerTest = default!;
+    [SidedDependency(Side.Server)] private readonly PvsOverrideSystem _pvsOverride = default!;
 
-    [SidedDependency(Side.Server)] private readonly IReflectionManager _reflection = default!;
-
-    [System(Side.Server)] private readonly ESEntityTimerSystem _sTimer = default!;
-    [System(Side.Server)] private readonly PvsOverrideSystem _pvsOverride = default!;
+    private static IEnumerable<Type> TimerTypes => GameDataScrounger.GetAllChildren<ESEntityTimerEvent>();
 
     [Test]
     [TestOf(typeof(ESEntityTimerEvent))]
+    [TestCaseSource(nameof(TimerTypes))]
     [Description("Asserts that all timer events are marked appropriately for their side.")]
     [RunOnSide(Side.Server)]
-    public void EnsureTimerEventSanity()
+    public void EnsureTimerEventSanity(Type type)
     {
         using (Assert.EnterMultipleScope())
         {
-            foreach (var type in _reflection.GetAllChildren<ESEntityTimerEvent>())
-            {
-                var side = GetSideOfType(type);
+            var side = GetSideOfType(type);
 
-                switch (side)
-                {
-                    case Side.Client:
-                    case Side.Server:
-                        Assert.That(type, Has.No.Attribute<NetSerializableAttribute>());
-                        break;
-                    case Side.Neither: // Shared
-                        Assert.That(type, Has.Attribute<NetSerializableAttribute>().Or.Attribute<NonNetworkedTimerEventAttribute>());
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+            switch (side)
+            {
+                case Side.Client:
+                case Side.Server:
+                    Assert.That(type, Has.No.Attribute<NetSerializableAttribute>());
+                    break;
+                case Side.Both: // Shared
+                    Assert.That(type, Has.Attribute<NetSerializableAttribute>().Or.Attribute<NonNetworkedTimerEventAttribute>());
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }
@@ -125,6 +124,82 @@ public sealed class TimerTests : GameTest
         Assert.That(ran, Is.True, "Method timer should've ran by now.");
     }
 
+    [Test]
+    [TestOf(typeof(ESEntityTimerSystem))]
+    [Description("Ensures that timers in nullspace only broadcast if they have no target, not just because they're in nullspace.")]
+    [TrackingIssue("https://github.com/EphemeralSpace/ephemeral-space/issues/1535")]
+    [PairConfig(nameof(PsDisconnected))]
+    public async Task EnsureNullSpaceTimersDontBroadcast()
+    {
+        var parent = EntityUid.Invalid;
+        var timer = EntityUid.Invalid;
+
+        var passed = false;
+        _sTimerTest.DirectedReceived += () => passed = true;
+
+        await Server.WaitAssertion(() =>
+        {
+            // get ourselves a parent to direct at.
+            parent = SSpawn(null);
+            SEntMan.AddComponent<ESEnsureNullSpaceTimersDontBroadcastComponent>(parent);
+            // And a timer.
+            timer = _sTimer.SpawnTimer(parent,
+                TimeSpan.FromMilliseconds(1),
+                new EnsureNullSpaceTimersDontBroadcastEvent())!.Value;
+
+            Assert.That(timer,
+                Has
+                .Comp<TransformComponent>(Server)
+                .Property(nameof(TransformComponent.ParentUid))
+                .EqualTo(parent));
+        });
+
+        await RunTicksSync(10);
+
+        Assert.That(passed, "Expected nullspace timers to at least fire the event at all.");
+    }
+
+    [Test]
+    [TestOf(typeof(ESEntityTimerSystem))]
+    [Description("Ensures that timers in nullspace only broadcast if they have no target, not just because they're in nullspace.")]
+    [TrackingIssue("https://github.com/EphemeralSpace/ephemeral-space/issues/1536")]
+    [Ignore("""
+    This is a variant on EnsureNullSpaceTimersDontBroadcast that runs for the client too.
+    Due to client nullspace detachment, this can cause the event to broadcast anyway if
+    the client sees it too quickly.
+
+    So this test reproduces that, and fails currently due to this bug.
+    """)]
+    public async Task EnsureNullSpaceTimersDontBroadcastClient()
+    {
+        var parent = EntityUid.Invalid;
+        var timer = EntityUid.Invalid;
+
+        var passed = false;
+        _sTimerTest.DirectedReceived += () => passed = true;
+
+        await Server.WaitAssertion(() =>
+        {
+            // get ourselves a parent to direct at.
+            parent = SSpawn(null);
+            SEntMan.AddComponent<ESEnsureNullSpaceTimersDontBroadcastComponent>(parent);
+            // And a timer.
+            timer = _sTimer.SpawnTimer(parent,
+                TimeSpan.FromMilliseconds(1),
+                new EnsureNullSpaceTimersDontBroadcastEvent())!.Value;
+
+            Assert.That(timer,
+                Has
+                    .Comp<TransformComponent>(Server)
+                    .Property(nameof(TransformComponent.ParentUid))
+                    .EqualTo(parent));
+        });
+
+        await RunTicksSync(10);
+
+        Assert.That(passed, "Expected nullspace timers to at least fire the event at all.");
+    }
+
 
     // TODO(Kaylie): This might be useful as some smarter, global helper somewhere.
     //               But right now it's fine here.
@@ -157,12 +232,12 @@ public sealed class TimerTests : GameTest
             }
             else
             {
-                _assembliesToSide.Add(a, Side.Neither);
-                return Side.Neither;
+                _assembliesToSide.Add(a, Side.Both);
+                return Side.Both;
             }
         }
 
-        _assembliesToSide.Add(a, Side.Neither);
-        return Side.Neither;
+        _assembliesToSide.Add(a, Side.Both);
+        return Side.Both;
     }
 }

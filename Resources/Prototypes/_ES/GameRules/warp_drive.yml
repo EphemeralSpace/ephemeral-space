@@ -1,0 +1,21 @@
+- type: entity
+  id: ESWarpDriveRule
+  parent: BaseGameRule
+  components:
+  - type: ESWarpDriveGameRule
+    announcements:
+    - afterChargePercentage: 0.1
+      text: es-warp-drive-announcement-percentage-one-tenth
+      sound: /Audio/_ES/Announcements/attention_medium.ogg
+    - afterChargePercentage: 0.33
+      text: es-warp-drive-announcement-percentage-one-third
+      sound: /Audio/_ES/Announcements/attention_medium.ogg
+    - afterChargePercentage: 0.66
+      text: es-warp-drive-announcement-percentage-two-thirds
+      sound: /Audio/_ES/Announcements/attention_medium.ogg
+    - afterChargePercentage: 1
+      text: es-warp-drive-announcement-percentage-fully-charged
+      sound: /Audio/_ES/Announcements/attention_high.ogg
+  - type: DeviceNetwork
+    deviceNetId: Private
+    transmitFrequencyId: ESWarpDriveTimer

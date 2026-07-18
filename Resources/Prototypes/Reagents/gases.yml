@@ -136,8 +136,6 @@
   name: reagent-name-tritium
   desc: reagent-desc-tritium
   physicalDesc: reagent-physical-desc-ionizing
-  allowedDepartments:
-  - Engineering
   flavor: bitter
   color: "#66ff33"
   tileReactions:
@@ -258,7 +256,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
         ratios:
-          Ammonia: 1.0
+          Miasma: 1.0
           Nitrogen: -1.0
       - !type:ModifyLungGas
         conditions:
@@ -358,10 +356,6 @@
   name: reagent-name-frezon
   desc: reagent-desc-frezon
   physicalDesc: reagent-physical-desc-gaseous
-  allowedDepartments:
-  - Engineering
-  allowedJobs:
-  - Chemist
   flavor: bitter
   color: "#3a758c"
   boilingPoint: -195.8

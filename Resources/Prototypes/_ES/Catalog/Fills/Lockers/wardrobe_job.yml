@@ -1,4 +1,45 @@
 # Eyewear, headsets, and armor go in the job locker instead of the wardrobe.
+# Add these to the spawner in Entities/Markers
+
+- type: entity
+  parent: ESWardrobeAssistant
+  id: ESWardrobeAssistantFilled
+  suffix: ES, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESFillWardrobeAssistant
+        rolls: 3
+
+- type: entityTable
+  id: ESFillWardrobeAssistant
+  table:
+    all:
+    - id: ClothingBackpack
+    - id: ClothingBackpackDuffel
+    - id: ClothingShoesColorBlack
+    - id: ESClothingUniformJumpsuitAssistant
+    - id: ClothingHeadHatGreysoft
+
+- type: entity
+  id: WardrobeAtmosphericsFilled
+  suffix: Filled
+  parent: WardrobeAtmospherics
+  description: "This locker contains a uniform for atmospheric technicians."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: FillWardrobeAtmospherics
+
+- type: entityTable
+  id: FillWardrobeAtmospherics
+  table:
+    all:
+    - id: ClothingUniformJumpsuitAtmos
+    - id: ClothingBackpackEngineering
+    - id: ClothingShoesColorWhite
 
 - type: entity
   parent: ESWardrobeBartender
@@ -19,6 +60,26 @@
     - id: ClothingUniformJumpsuitBartender
 
 - type: entity
+  id: ESWardrobeCargoFilled
+  suffix: ES, Filled
+  parent: ESWardrobeCargo
+  description: "This locker? Maybe 500 spesos. Brotherhood? Priceless."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESFillWardrobeCargo
+
+- type: entityTable
+  id: ESFillWardrobeCargo
+  table:
+    all:
+    - id: ClothingHeadHatCargosoft
+    - id: ClothingUniformJumpsuitCargo
+    - id: ClothingBackpack
+    - id: ClothingShoesColorBlack
+
+- type: entity
   parent: ESWardrobeChef
   id: ESWardrobeChefFilled
   suffix: ES, Filled
@@ -33,7 +94,8 @@
   table:
     all:
     - id: ClothingBackpack
-    - id: ClothingOuterApronChef
+    - id: ClothingHeadHatChef
+    - id: ClothingOuterJacketChef
     - id: ClothingShoesChef
     - id: ClothingUniformJumpsuitChef
 
@@ -65,7 +127,10 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage:
-        tableId: ESFillWardrobeClown
+        all:
+        - tableId: ESFillWardrobeClown
+        - tableId: ESFillWardrobeTheatre
+          rolls: 2
 
 - type: entityTable
   id: ESFillWardrobeClown
@@ -99,6 +164,49 @@
     - id: ClothingHandsGlovesForensic
 
 - type: entity
+  id: ESWardrobeDoctorFilled
+  suffix: ES, Filled
+  parent: ESWardrobeDoctor
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESFillWardrobeDoctor
+
+- type: entityTable
+  id: ESFillWardrobeDoctor
+  table:
+    all:
+    - id: ClothingUniformJumpsuitMedicalDoctor
+    - id: ClothingBackpackMedical
+    - id: ClothingShoesColorWhite
+    - id: ClothingOuterCoatLabOpened
+    - id: ClothingHandsGlovesColorBlue
+    - id: ClothingEyesGlasses
+      prob: 0.3
+
+- type: entity
+  id: ESWardrobeEngineeringFilled
+  suffix: ES, Filled
+  parent: ESWardrobeEngineering
+  description: "This locker contains a uniform for engineering; or social engineering."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESFillWardrobeEngineering
+
+- type: entityTable
+  id: ESFillWardrobeEngineering
+  table:
+    all:
+    - id: ClothingHeadHatHardhatYellow
+    - id: ClothingUniformJumpsuitEngineering
+    - id: ClothingBackpackEngineering
+    - id: ClothingShoesColorOrange
+    - id: ClothingOuterVestHazard
+
+- type: entity
   parent: ESWardrobeJanitor
   id: ESWardrobeJanitorFilled
   suffix: ES, Filled
@@ -113,32 +221,10 @@
   table:
     all:
     - id: ClothingBackpack
-    - id: ESClothingHandsGlovesColorOrange
+    - id: ESClothingHandsGlovesSanitation
     - id: ClothingHeadHatPurplesoft
     - id: ClothingShoesColorBlack
     - id: ClothingUniformJumpsuitJanitor
-
-- type: entity
-  parent: ESWardrobeMime
-  id: ESWardrobeMimeFilled
-  suffix: ES, Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESFillWardrobeMime
-
-- type: entityTable
-  id: ESFillWardrobeMime
-  table:
-    all:
-    - id: ClothingBackpackMime
-    - id: ClothingBeltSuspendersRed
-    - id: ClothingHandsGlovesColorWhite
-    - id: ClothingHeadHatBeretFrench
-    - id: ClothingMaskMime
-    - id: ClothingShoesColorWhite
-    - id: ClothingUniformJumpsuitMime
 
 - type: entity
   parent: ESWardrobeReporter
@@ -154,6 +240,7 @@
   id: ESFillWardrobeReporter
   table:
     all:
+    - id: ClothingHeadHatFedoraGrey
     - id: ClothingBackpack
     - id: ClothingShoesColorBrown
     - id: ClothingUniformJumpsuitReporter
@@ -164,7 +251,7 @@
     all:
     - id: ClothingUniformJumpsuitSec
     - id: ClothingBackpackSecurity
-    - id: ClothingShoesBootsJack
+    - id: ClothingShoesBootsBlack
 
 - type: entity
   parent: WardrobeSecurity
@@ -201,54 +288,6 @@
       prob: 0.1
 
 - type: entity
-  id: ESWardrobeBotanistFilled
-  suffix: ES, Filled
-  parent: ESWardrobeBotanist
-  description: "Plant yourself among the plant men with these 100% natural plant-derived clothes."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESFillWardrobeBotanist
-
-- type: entityTable
-  id: ESFillWardrobeBotanist
-  table:
-    all:
-    - id: ClothingUniformJumpsuitHydroponics
-    - id: ClothingBackpackHydroponics
-    - id: ClothingShoesColorBrown
-    - id: ClothingOuterApronBotanist
-    - id: ClothingUniformOveralls
-    - id: ClothingHeadHatTrucker #the hat itself is a subtle joke
-      prob: 0.15
-    - id: ClothingHandsGlovesLeather
-      prob: 0.5
-
-- type: entity
-  id: ESWardrobePhysicianFilled
-  suffix: ES, Filled
-  parent: ESWardrobePhysician
-  description: "We've all played doctor before, now practice medicine."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESFillWardrobePhysician
-
-- type: entityTable
-  id: ESFillWardrobePhysician
-  table:
-    all:
-    - id: ClothingUniformJumpsuitMedicalDoctor
-    - id: ClothingBackpackMedical
-    - id: ClothingShoesColorWhite
-    - id: ClothingOuterCoatLabOpened
-    - id: ClothingHandsGlovesColorBlue
-    - id: ClothingEyesGlasses
-      prob: 0.3
-
-- type: entity
   id: ESWardrobeParamedicFilled
   suffix: ES, Filled
   parent: ESWardrobeParamedic
@@ -267,49 +306,6 @@
     - id: ESClothingHeadHatParamedicsoft
     - id: ESClothingUniformJumpsuitParamedic
     - id: ClothingBackpackMedical
-
-- type: entity
-  id: ESWardrobeEngineeringFilled
-  suffix: ES, Filled
-  parent: ESWardrobeEngineering
-  description: "This locker contains a uniform for engineering; or social engineering."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESFillWardrobeEngineering
-
-- type: entityTable
-  id: ESFillWardrobeEngineering
-  table:
-    all:
-    - id: ClothingHeadHatHardhatYellow
-    - id: ClothingUniformJumpsuitEngineering
-    - id: ClothingBackpackEngineering
-    - id: ClothingShoesColorOrange
-    - id: ClothingOuterVestHazard
-
-- type: entity
-  id: ESWardrobeCargoFilled
-  suffix: ES, Filled
-  parent: ESWardrobeCargo
-  description: "This locker? Maybe 500 spesos. Brotherhood? Priceless."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESFillWardrobeCargo
-
-- type: entityTable
-  id: ESFillWardrobeCargo
-  table:
-    all:
-    - id: ClothingHeadHatCargosoft
-    - id: ClothingUniformJumpsuitCargo
-    - id: ClothingBackpack
-    - id: ClothingShoesColorBlack
-    - id: ClothingHandsGlovesFingerless
-    - id: AppraisalTool
 
 - type: entity
   id: ESWardrobePrisonFilled

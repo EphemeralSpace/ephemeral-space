@@ -1,0 +1,40 @@
+# IMPORTANT: always prefer using damage deflection over making these, as it is less work and more intuitive.
+# avoid making bespoke resistance values unless your're trying to fill a niche that your object seriously needs / there's some kind of new property you want to add
+
+- type: damageModifierSet
+  id: ESWall # regular weapons should never work on walls, you need some insane firepower or explosives to do anything to them
+  flatReductions:
+    Blunt: 10
+    Slash: 30
+    Piercing: 30
+    Structural: 20 # fireaxe is not effective without this
+
+- type: damageModifierSet
+  id: ESWindow # gets instantly broken by 9mm, also you can't really cut windows very well
+  coefficients:
+    Piercing: 6
+    Structural: 4
+  flatReductions:
+    Slash: 8
+
+- type: damageModifierSet
+  id: ESReinforcedWindow # bulletproof glass. for consistency & gamefeel, piercing weapons are still effective, but it does not get instakilled by 9mm rounds like normal windows does.
+  coefficients:
+    Piercing: 2
+    Structural: 4
+  flatReductions:
+    Slash: 16
+
+- type: damageModifierSet
+  id: ESComputer # like glass except it can be cut & doesn't get owned by bullets as hard. fireaxe also insta-breaks them with these values.
+  coefficients:
+    Piercing: 3
+    Structural: 2
+  flatReductions:
+    Slash: 8
+
+- type: damageModifierSet
+  id: ESMachine # we don't usually want people easily breaking machines. so they have a bit of resistance against the most common weapon types
+  flatReductions:
+    Blunt: 2
+    Slash: 6

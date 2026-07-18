@@ -3,29 +3,3 @@
   id: ESBasePortalEvent
   name: Unnamed Portal Event
   abstract: true
-
-# TODO: this is very placeholdery and only until we have proper events
-- type: entity
-  parent: ESBasePortalEvent
-  id: ESPortalEventAnomalies
-  name: Anomaly
-  components:
-  - type: ESSpawnRandomRule
-    table:
-      group:
-      - id: AnomalyPyroclastic
-      - id: AnomalyElectricity
-      - id: AnomalyFlesh
-      - id: AnomalyBluespace
-      - id: AnomalyIce
-      - group:
-        - id: AnomalyRockIron
-        - id: AnomalyRockCoal
-        - id: AnomalyRockSilver
-        - id: AnomalyRockGold
-        - id: AnomalyRockQuartz
-        - id: AnomalyRockUranium
-        - id: AnomalyRockBananium
-      - id: AnomalyFlora
-  - type: ESTimedDespawn
-    lifetime: 1.0

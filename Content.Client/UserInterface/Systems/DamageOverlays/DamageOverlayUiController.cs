@@ -4,7 +4,6 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.StatusEffectNew;
-using Content.Shared.Traits.Assorted;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -17,13 +16,12 @@ using Content.Shared._Offbrand.Wounds; // Offbrand
 namespace Content.Client.UserInterface.Systems.DamageOverlays;
 
 [UsedImplicitly]
-public sealed class DamageOverlayUiController : UIController
+public sealed partial class DamageOverlayUiController : UIController
 {
-    [Dependency] private readonly IOverlayManager _overlayManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IOverlayManager _overlayManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     [UISystemDependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-    [UISystemDependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [UISystemDependency] private readonly HeartSystem _heart = default!; // Offbrand
     [UISystemDependency] private readonly PainSystem _pain = default!; // Offbrand
 
@@ -156,21 +154,6 @@ public sealed class DamageOverlayUiController : UIController
             {
                 FixedPoint2 painLevel = 0;
                 _overlay.PainLevel = 0;
-
-                if (!_statusEffects.TryEffectsWithComp<PainNumbnessStatusEffectComponent>(entity, out _))
-                {
-                    foreach (var painDamageType in damageable.PainDamageGroups)
-                    {
-                        damageable.DamagePerGroup.TryGetValue(painDamageType, out var painDamage);
-                        painLevel += painDamage;
-                    }
-                    _overlay.PainLevel = FixedPoint2.Min(1f, painLevel / critThreshold).Float();
-
-                    if (_overlay.PainLevel < 0.05f) // Don't show damage overlay if they're near enough to max.
-                    {
-                        _overlay.PainLevel = 0;
-                    }
-                }
 
                 if (damageable.DamagePerGroup.TryGetValue("Airloss", out var oxyDamage))
                 {

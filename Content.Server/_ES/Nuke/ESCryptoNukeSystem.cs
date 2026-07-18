@@ -9,9 +9,9 @@ using Robust.Shared.Map;
 namespace Content.Server._ES.Nuke;
 
 /// <inheritdoc/>
-public sealed class ESCryptoNukeSystem : ESSharedCryptoNukeSystem
+public sealed partial class ESCryptoNukeSystem : ESSharedCryptoNukeSystem
 {
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     protected override void UpdateUiState(Entity<ESCryptoNukeConsoleComponent, UserInterfaceComponent> ent)
     {
@@ -48,8 +48,6 @@ public sealed class ESCryptoNukeSystem : ESSharedCryptoNukeSystem
                     state.Codes.Add(nukeComp.Code);
             }
         }
-
-        state.CanHack = ArePreRequisiteObjectivesDone();
 
         UserInterface.SetUiState((ent, ent), ESCryptoNukeConsoleUiKey.Key, state);
     }

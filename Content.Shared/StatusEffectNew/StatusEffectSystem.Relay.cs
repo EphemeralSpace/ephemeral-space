@@ -1,3 +1,4 @@
+using Content.Shared._ES.Viewcone.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Damage.Events;
 using Content.Shared.Mobs.Events;
@@ -69,6 +70,7 @@ public sealed partial class StatusEffectsSystem
         SubscribeLocalEvent<StatusEffectContainerComponent, Content.Shared.Verbs.GetVerbsEvent<Content.Shared.Verbs.AlternativeVerb>>(RelayStatusEffectEvent); // Offbrand
         // ES START
         SubscribeLocalEvent<StatusEffectContainerComponent, GetMeleeDamageEvent>(RefRelayStatusEffectEvent);
+        SubscribeLocalEvent<StatusEffectContainerComponent, ESViewconeGetAngleModifierEvent>(RelayStatusEffectEvent);
         // ES END
     }
 

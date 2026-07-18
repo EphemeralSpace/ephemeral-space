@@ -1,0 +1,41 @@
+- type: entityTable
+  id: SubverterWeapons
+  table:
+    group:
+    - group:
+      - all:
+        - id: ESWeaponPistol9mm
+        - id: ESMagazine9mm
+        weight: 8
+      - all:
+        - id: ESWeaponDoubleBarrelShotgun
+        - id: ESShotgunShellsBoxBuckshot
+        weight: 2
+      - all:
+        - id: ESWeaponRevolver357
+        - id: ESSpeedLoader357
+        weight: 2
+
+- type: entityTable
+  id: MaintsTraitorLoot
+  table:
+    group:
+    - id: ESEmag
+      weight: 0.5
+    - id: SleepyPen
+      weight: 0.5
+    - id: StimulantPen
+      weight: 0.5
+    - id: C4
+      weight: 0.5
+    - id: ExGrenade
+      weight: 0.5
+    - id: EnergySword
+      weight: 0.1
+    - group:
+      - id: ESWeaponRevolver357
+      - id: ESWeaponPistol9mm
+      - id: ESWeaponPistol9mmSilenced
+    - id: ESClothingOuterArmorSecurity
+    - id: ESSpeedLoader357
+    - id: ESMagazine9mm

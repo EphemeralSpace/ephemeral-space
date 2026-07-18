@@ -2,32 +2,30 @@
   id: RedCarpet
   name: Red Carpet
   description: strands a party of VIPs with our harrowing crew
-  weight: 1
+  weight: 0.1
   minPlayers: 6
   gameRules: []
   masquerade:
-    defaultMask: "ESCrewmember/ESVIP"
+    defaultSecretIdentity: "VIP"
     superfanTarget: "#Traitors"
     roles:
-      6: ["ESMarauder", "ESInfiltrator", "#Filler", "ESVIP", "ESVandal", "ESMercenary"] # 0 generic crew, 2 traitors
-      7: ["ESMartyr"]
-      8: ["ESVIP"]
-      9: ["ESVeteran"]
-      10: ["#TraitorAdjacent"]
-      11: ["ESVIP"]
-      13: ["ESAssassin"]  # 0 generic crew, 3 traitors.
-      14: ["#Jesters"]
-      16: ["ESAvenger"] # 1 generic crew, 3 traitors.
-      17: ["#Filler"]
-      18: ["ESArmsDealer"]
-      19: ["ESMarauder"] # 1 generic crew, 4 traitors.
-      20: ["ESVIP"]
-      21: ["#Jesters", "-ESMarauder", "#PowerTraitors"] # 1 generic crew, 4 traitors.
-      22: ["ESVIP"]
-      24: ["#Gunners"] # 2 generic crew, 4 traitors.
-      25: ["ESMarauder"] # 2 generic crew, 5 traitors.
-      26: ["#Filler"]
-      28: ["#Gunners"] # 3 generic crew, 5 traitors.
-      29: ["ESVIP"]
-      30: ["#Jesters"]
-      31: ["#Traitors", "#Filler"] # 3 generic crew, 6 traitors.
+      6: ["#Traitors(2)", "#AllCrew(2)", "Vandal", "#Targeters"] # 2 traitors
+      7: ["#AllCrew"]
+      8: ["#AllCrew"]
+      10: ["#SemiTraitor"]
+      13: ["#Traitors"]  # 3 traitors.
+      14: ["#AllCrew"]
+      15: [ "Tragedian" ]
+      16: ["Avenger"] # 3 traitors.
+      17: ["#SemiTraitor"]
+      18: ["ArmsDealer"]
+      19: ["Marauder"] # 4 traitors.
+      20: ["#AllCrew"]
+      21: ["#AllCrew", "-Marauder", "#PowerTraitors"] # 4 traitors.
+      22: ["#AllCrew"]
+      24: ["#Gunners"] # 4 traitors.
+      25: ["Marauder"] # 5 traitors.
+      26: ["#AllCrew"]
+      28: ["#Gunners"] # 5 traitors.
+      30: ["#AllCrew"]
+      31: ["#Traitors", "#AllCrew"] # 6 traitors.

@@ -1,3 +1,4 @@
+using Content.Server.Chat.Components;
 using Content.Server.Ghost;
 using Content.Server.Hands.Systems;
 using Content.Shared.Administration.Logs;
@@ -18,18 +19,15 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Chat;
 
-public sealed class SuicideSystem : EntitySystem
+public sealed partial class SuicideSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly GhostSystem _ghostSystem = default!;
-    [Dependency] private readonly SharedSuicideSystem _suicide = default!;
-
-    private static readonly ProtoId<TagPrototype> CannotSuicideTag = "CannotSuicide";
+    [Dependency] private EntityLookupSystem _entityLookupSystem = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private GhostSystem _ghostSystem = default!;
+    [Dependency] private SharedSuicideSystem _suicide = default!;
 
     public override void Initialize()
     {
@@ -64,7 +62,7 @@ public sealed class SuicideSystem : EntitySystem
 
         // Suicide is considered a fail if the user wasn't able to ghost
         // Suiciding with the CannotSuicide tag will ghost the player but not kill the body
-        if (!suicideGhostEvent.Handled || _tagSystem.HasTag(victim, CannotSuicideTag))
+        if (!suicideGhostEvent.Handled || HasComp<ESCannotSuicideComponent>(victim))
             return false;
 
         // TODO: fix this
@@ -102,7 +100,7 @@ public sealed class SuicideSystem : EntitySystem
 
         // CannotSuicide tag will allow the user to ghost, but also return to their mind
         // This is kind of weird, not sure what it applies to?
-        if (_tagSystem.HasTag(victim, CannotSuicideTag))
+        if (HasComp<ESCannotSuicideComponent>(victim))
             args.CanReturnToBody = true;
 
         if (_ghostSystem.OnGhostAttempt(victim.Comp.Mind.Value, args.CanReturnToBody, mind: mindComponent))

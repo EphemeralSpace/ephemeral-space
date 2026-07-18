@@ -5,9 +5,3 @@
   id: FloorTileFlesh
   name: stack-flesh-floor
   spawn: FloorTileItemFlesh
-
-- type: stack
-  parent: BaseTileStack
-  id: FloorTileWeb
-  name: stack-web-tile
-  spawn: FloorTileItemWeb

@@ -53,8 +53,6 @@
       cube:
         maxVol: 19 # needs 1u room for water
         reagents: # equals one piece of raw meat, ideally should vary depending on the animal type, but idk how to link this to biomass costs
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 9
         - ReagentId: Fat
           Quantity: 9
   - type: Edible
@@ -110,24 +108,6 @@
 
 - type: entity
   parent: RehydratableAnimalCube
-  id: MothroachCube
-  name: mothroach cube
-  components:
-  - type: Rehydratable
-    possibleSpawns:
-    - MobMothroach
-
-- type: entity
-  parent: RehydratableAnimalCube
-  id: MoproachCube
-  name: moproach cube
-  components:
-  - type: Rehydratable
-    possibleSpawns:
-    - MobMoproach
-
-- type: entity
-  parent: RehydratableAnimalCube
   id: MouseCube
   name: mouse cube
   components:
@@ -156,8 +136,6 @@
       cube:
         maxVol: 24 # needs 1u room for water
         reagents: # equals one piece of raw meat - plus a deadly toxin!
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 9
         - ReagentId: Fat
           Quantity: 9
         - ReagentId: CarpoToxin
@@ -198,7 +176,7 @@
 # It inherits FoodComponent from PlushieCarp, but is de-facto inedible
 # PlushieCarp has requiresSpecialDigestion:true, and this one is not whitelisted anywhere, so it behaves like it's not edible
 - type: entity
-  parent: [PlushieCarp, RehydratableItem, BaseSyndicateContraband]
+  parent: [PlushieCarp, RehydratableItem]
   id: DehydratedSpaceCarp
   name: dehydrated space carp
   description: Looks like a plush toy carp, but just add water and it becomes a real-life space carp!
@@ -238,33 +216,3 @@
   - type: Tag # overwriting PlushieCarp tags to remove ClothMade and Payload
     tags:
     - PlushieCarp
-
-- type: entity
-  parent: MonkeyCube
-  id: SyndicateSponge
-  suffix: Syndicate
-  components:
-  - type: Rehydratable
-    possibleSpawns:
-    - MobCarpHolo
-    - MobXenoRavager
-    - MobAngryBee
-    - MobAdultSlimesYellowAngry
-    - MobSpiderSpace
-    - MobBearSpace
-    - MobPurpleSnake
-    - MobKangarooSpace
-    - MobTick
-
-- type: entity
-  parent: RehydratableItem
-  id: MopBucketCube
-  name: mop bucket cube
-  description: Just add water! And then more water!
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Janitorial/janitorial.rsi
-    state: mopbucket_cube
-  - type: Rehydratable
-    possibleSpawns:
-    - MopBucket

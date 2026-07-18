@@ -1,0 +1,52 @@
+# cmy cyan magenta yellow)
+- type: entity
+  id: ESBaseArmoryInterface
+  parent: ESBaseComputerTerminal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Machines/armory_interfaces.rsi
+    noRot: true
+  - type: ESArmoryGovernanceInterface
+
+- type: entity
+  id: ESArmoryInterfaceCasper
+  parent: ESBaseArmoryInterface
+  name: armory governance interface "Casper"
+  description: Gifts of melted gold.
+  components:
+  - type: Sprite
+    layers:
+    - state: terminal
+    - state: casper
+      map: ["computerLayerScreen"]
+  - type: PointLight
+    color: "#00ffff"
+
+- type: entity
+  id: ESArmoryInterfaceMelchior
+  parent: ESBaseArmoryInterface
+  name: armory governance interface "Melchior"
+  description: Gifts of gunpowder perfume.
+  components:
+  - type: Sprite
+    layers:
+    - state: terminal
+    - state: melchior
+      map: ["computerLayerScreen"]
+  - type: PointLight
+    color: "#ff00ff"
+
+- type: entity
+  id: ESArmoryInterfaceYalthasar
+  parent: ESBaseArmoryInterface
+  name: armory governance interface "Yalthasar"
+  description: Gifts of myrrhder.
+  components:
+  - type: Sprite
+    layers:
+    - state: terminal
+    - state: yalthasar
+      map: ["computerLayerScreen"]
+  - type: PointLight
+    color: "#ffff00"

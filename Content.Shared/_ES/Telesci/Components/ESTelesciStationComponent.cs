@@ -33,7 +33,7 @@ public sealed partial class ESTelesciStationComponent : Component
     /// Time it takes to evac after the last stage is complete
     /// </summary>
     [DataField]
-    public TimeSpan EvacTime = TimeSpan.FromMinutes(5);
+    public TimeSpan EvacTime = TimeSpan.FromMinutes(9);
 }
 
 /// <summary>

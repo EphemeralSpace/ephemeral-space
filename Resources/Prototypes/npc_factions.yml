@@ -1,0 +1,78 @@
+- type: npcFaction
+  id: Dragon
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Xeno
+  - PetsNT
+  - AllHostile
+
+- type: npcFaction
+  id: NanoTrasen
+  hostile:
+  - SimpleHostile
+  - Syndicate
+  - Xeno
+  - AllHostile
+
+- type: npcFaction
+  id: Mouse
+  hostile:
+  - PetsNT
+  - AllHostile
+
+- type: npcFaction
+  id: Passive
+
+- type: npcFaction
+  id: PetsNT
+  friendly:
+  - NanoTrasen
+  hostile:
+  - Mouse
+  - SimpleHostile
+  - Xeno
+  - AllHostile
+
+- type: npcFaction
+  id: SimpleHostile
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Passive
+  - PetsNT
+  - Xeno
+  - AllHostile
+
+- type: npcFaction
+  id: SimpleNeutral
+
+- type: npcFaction
+  id: Syndicate
+  hostile:
+  - NanoTrasen
+  - SimpleHostile
+  - Xeno
+  - PetsNT
+  - AllHostile
+
+- type: npcFaction
+  id: Xeno
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Passive
+  - PetsNT
+  - AllHostile
+
+- type: npcFaction
+  id: AllHostile
+  hostile:
+  - NanoTrasen
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
+  - Xeno

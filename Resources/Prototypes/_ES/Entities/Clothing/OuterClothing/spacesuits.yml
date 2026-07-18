@@ -19,7 +19,6 @@
     tags:
     - SuitEVA
     - MonkeyWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ESBaseClothingOuterSpaceSuit
@@ -36,7 +35,6 @@
     - SuitEVA
     - ESSuitEVAEngi
     - MonkeyWearable
-    - WhitelistChameleon
 
 # ============================== DESIGN NOTE ====================================
 # Spacesuits for sec/command intentionally do not have any form of armor on them.
@@ -60,7 +58,6 @@
     - SuitEVA
     - ESSuitEVASec
     - MonkeyWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ESBaseClothingOuterSpaceSuit
@@ -77,4 +74,3 @@
     - SuitEVA
     - ESSuitEVACaptain
     - MonkeyWearable
-    - WhitelistChameleon

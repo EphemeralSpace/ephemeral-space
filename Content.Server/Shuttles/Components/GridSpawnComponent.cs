@@ -1,6 +1,5 @@
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Dataset;
-using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -59,41 +58,6 @@ public interface IGridSpawnGroup
     /// Should we add this to the station's grids (if possible / relevant).
     /// </summary>
     public bool StationGrid { get; set; }
-}
-
-[DataRecord]
-public sealed partial class DungeonSpawnGroup : IGridSpawnGroup
-{
-    /// <summary>
-    /// Prototypes we can choose from to spawn.
-    /// </summary>
-    public List<ProtoId<DungeonConfigPrototype>> Protos = new();
-
-    /// <inheritdoc />
-    public float MinimumDistance { get; }
-
-    public float MaximumDistance { get; }
-
-    /// <inheritdoc />
-    public ProtoId<LocalizedDatasetPrototype>? NameDataset { get; }
-
-    /// <inheritdoc />
-    public int MinCount { get; set; } = 1;
-
-    /// <inheritdoc />
-    public int MaxCount { get; set; } = 1;
-
-    /// <inheritdoc />
-    public ComponentRegistry AddComponents { get; set; } = new();
-
-    /// <inheritdoc />
-    public bool Hide { get; set; } = false;
-
-    /// <inheritdoc />
-    public bool NameGrid { get; set; } = false;
-
-    /// <inheritdoc />
-    public bool StationGrid { get; set; } = false;
 }
 
 [DataRecord]

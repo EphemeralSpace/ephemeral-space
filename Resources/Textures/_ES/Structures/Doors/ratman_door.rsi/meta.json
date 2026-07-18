@@ -1,0 +1,64 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "sparks by mirrocult, rat overlay by EmoGarbage, based on wall sprites from tgstation https://github.com/tgstation/tgstation/commit/e8d7500bc7289325560b65210c81a1f6e0a29980",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "closed",
+            "delays": [
+                [
+                    1.0
+                ]
+            ]
+        },
+        {
+            "name": "closing",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "open",
+            "delays": [
+                [
+                    1.0
+                ]
+            ]
+        },
+        {
+            "name": "opening",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "sparks",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        }
+    ]
+}

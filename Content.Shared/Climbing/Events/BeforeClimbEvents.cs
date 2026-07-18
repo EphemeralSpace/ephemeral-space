@@ -3,7 +3,7 @@ using Content.Shared.Climbing.Components;
 
 namespace Content.Shared.Climbing.Events;
 
-public abstract partial class BeforeClimbEvent : CancellableEntityEventArgs
+public abstract class BeforeClimbEvent : CancellableEntityEventArgs
 {
     public readonly EntityUid GettingPutOnTable;
     public readonly EntityUid PuttingOnTable;

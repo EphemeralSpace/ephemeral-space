@@ -48,8 +48,6 @@
       Steel: 3000 # 30 sheets, 1 stack
   - type: ExaminableSolution
     solution: tank
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   parent: BaseBarrelChem

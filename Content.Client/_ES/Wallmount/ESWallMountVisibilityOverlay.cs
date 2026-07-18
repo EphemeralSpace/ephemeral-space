@@ -11,9 +11,9 @@ namespace Content.Client._ES.Wallmount;
 ///     This abuses the fact that sprite render commands (like setting visibility) are not batched in any way, and we can
 ///     just set the visibility to something else mid-render
 /// </summary>
-public sealed class ESWallMountVisibilityOverlay : Overlay
+public sealed partial class ESWallMountVisibilityOverlay : Overlay
 {
-    [Dependency] private readonly IEntityManager _ent = default!;
+    [Dependency] private IEntityManager _ent = default!;
     private readonly TransformSystem _xform;
     private readonly SpriteSystem _sprite;
     private readonly ESWallMountTreeSystem _tree;

@@ -6,7 +6,6 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.Lathe.Components;
 using Content.Server.Materials;
 using Content.Server.Popups;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Stack;
@@ -16,17 +15,11 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.UserInterface;
 using Content.Shared.Database;
-using Content.Shared.Emag.Components;
-using Content.Shared.Emag.Systems;
-using Content.Shared.Examine;
 using Content.Shared.Lathe;
 using Content.Shared.Lathe.Prototypes;
-using Content.Shared.Localizations;
 using Content.Shared.Materials;
 using Content.Shared.Power;
 using Content.Shared.ReagentSpeed;
-using Content.Shared.Research.Components;
-using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -37,25 +30,23 @@ using Robust.Shared.Timing;
 namespace Content.Server.Lathe
 {
     [UsedImplicitly]
-    public sealed class LatheSystem : SharedLatheSystem
+    public sealed partial class LatheSystem : SharedLatheSystem
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IPrototypeManager _proto = default!;
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly ContainerSystem _container = default!;
-        [Dependency] private readonly EmagSystem _emag = default!;
-        [Dependency] private readonly UserInterfaceSystem _uiSys = default!;
-        [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
-        [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly PuddleSystem _puddle = default!;
-        [Dependency] private readonly ReagentSpeedSystem _reagentSpeed = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-        [Dependency] private readonly StackSystem _stack = default!;
-        [Dependency] private readonly TransformSystem _transform = default!;
-        [Dependency] private readonly RadioSystem _radio = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IPrototypeManager _proto = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private AtmosphereSystem _atmosphere = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private ContainerSystem _container = default!;
+        [Dependency] private UserInterfaceSystem _uiSys = default!;
+        [Dependency] private MaterialStorageSystem _materialStorage = default!;
+        [Dependency] private PopupSystem _popup = default!;
+        [Dependency] private PuddleSystem _puddle = default!;
+        [Dependency] private ReagentSpeedSystem _reagentSpeed = default!;
+        [Dependency] private SharedSolutionContainerSystem _solution = default!;
+        [Dependency] private StackSystem _stack = default!;
+        [Dependency] private TransformSystem _transform = default!;
 
         /// <summary>
         /// Per-tick cache
@@ -68,9 +59,6 @@ namespace Content.Server.Lathe
             SubscribeLocalEvent<LatheComponent, GetMaterialWhitelistEvent>(OnGetWhitelist);
             SubscribeLocalEvent<LatheComponent, MapInitEvent>(OnMapInit);
             SubscribeLocalEvent<LatheComponent, PowerChangedEvent>(OnPowerChanged);
-            SubscribeLocalEvent<LatheComponent, TechnologyDatabaseModifiedEvent>(OnDatabaseModified);
-            SubscribeLocalEvent<LatheAnnouncingComponent, TechnologyDatabaseModifiedEvent>(OnTechnologyDatabaseModified);
-            SubscribeLocalEvent<LatheComponent, ResearchRegistrationChangedEvent>(OnResearchRegistrationChanged);
 
             SubscribeLocalEvent<LatheComponent, LatheQueueRecipeMessage>(OnLatheQueueRecipeMessage);
             SubscribeLocalEvent<LatheComponent, LatheSyncRequestMessage>(OnLatheSyncRequestMessage);
@@ -80,7 +68,6 @@ namespace Content.Server.Lathe
 
             SubscribeLocalEvent<LatheComponent, BeforeActivatableUIOpenEvent>((u, c, _) => UpdateUserInterfaceState(u, c));
             SubscribeLocalEvent<LatheComponent, MaterialAmountChangedEvent>(OnMaterialAmountChanged);
-            SubscribeLocalEvent<TechnologyDatabaseComponent, LatheGetRecipesEvent>(OnGetRecipes);
             SubscribeLocalEvent<EmagLatheRecipesComponent, LatheGetRecipesEvent>(GetEmagLatheRecipes);
             SubscribeLocalEvent<LatheHeatProducingComponent, LatheStartPrintingEvent>(OnHeatStartPrinting);
         }
@@ -286,40 +273,8 @@ namespace Content.Server.Lathe
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
         }
 
-        /// <summary>
-        /// Adds every unlocked recipe from each pack to the recipes list.
-        /// </summary>
-        public void AddRecipesFromDynamicPacks(ref LatheGetRecipesEvent args, TechnologyDatabaseComponent database, IEnumerable<ProtoId<LatheRecipePackPrototype>> packs)
-        {
-            foreach (var id in packs)
-            {
-                var pack = _proto.Index(id);
-                foreach (var recipe in pack.Recipes)
-                {
-                    if (args.GetUnavailable || database.UnlockedRecipes.Contains(recipe))
-                        args.Recipes.Add(recipe);
-                }
-            }
-        }
-
-        private void OnGetRecipes(EntityUid uid, TechnologyDatabaseComponent component, LatheGetRecipesEvent args)
-        {
-            if (uid == args.Lathe)
-                AddRecipesFromDynamicPacks(ref args, component, args.Comp.DynamicPacks);
-        }
-
         private void GetEmagLatheRecipes(EntityUid uid, EmagLatheRecipesComponent component, LatheGetRecipesEvent args)
         {
-            if (uid != args.Lathe)
-                return;
-
-            if (!args.GetUnavailable && !_emag.CheckFlag(uid, EmagType.Interaction))
-                return;
-
-            AddRecipesFromPacks(args.Recipes, component.EmagStaticPacks);
-
-            if (TryComp<TechnologyDatabaseComponent>(uid, out var database))
-                AddRecipesFromDynamicPacks(ref args, database, component.EmagDynamicPacks);
         }
 
         private void OnHeatStartPrinting(EntityUid uid, LatheHeatProducingComponent component, LatheStartPrintingEvent args)
@@ -363,58 +318,6 @@ namespace Content.Server.Lathe
             {
                 TryStartProducing(uid, component);
             }
-        }
-
-        private void OnDatabaseModified(EntityUid uid, LatheComponent component, ref TechnologyDatabaseModifiedEvent args)
-        {
-            UpdateUserInterfaceState(uid, component);
-        }
-
-        private void OnTechnologyDatabaseModified(Entity<LatheAnnouncingComponent> ent, ref TechnologyDatabaseModifiedEvent args)
-        {
-            if (args.NewlyUnlockedRecipes is null)
-                return;
-
-            if (!TryGetAvailableRecipes(ent.Owner, out var potentialRecipes))
-                return;
-
-            var recipeNames = new List<string>();
-            foreach (var recipeId in args.NewlyUnlockedRecipes)
-            {
-                if (!potentialRecipes.Contains(new(recipeId)))
-                    continue;
-
-                if (!_proto.TryIndex(recipeId, out LatheRecipePrototype? recipe))
-                    continue;
-
-                var itemName = GetRecipeName(recipe!);
-                recipeNames.Add(Loc.GetString("lathe-unlock-recipe-radio-broadcast-item", ("item", itemName)));
-            }
-
-            if (recipeNames.Count == 0)
-                return;
-
-            var message =
-                recipeNames.Count > ent.Comp.MaximumItems ?
-                    Loc.GetString(
-                        "lathe-unlock-recipe-radio-broadcast-overflow",
-                        ("items", ContentLocalizationManager.FormatList(recipeNames.GetRange(0, ent.Comp.MaximumItems))),
-                        ("count", recipeNames.Count)
-                    ) :
-                    Loc.GetString(
-                        "lathe-unlock-recipe-radio-broadcast",
-                        ("items", ContentLocalizationManager.FormatList(recipeNames))
-                    );
-
-            foreach (var channel in ent.Comp.Channels)
-            {
-                _radio.SendRadioMessage(ent.Owner, message, channel, ent.Owner, escapeMarkup: false);
-            }
-        }
-
-        private void OnResearchRegistrationChanged(EntityUid uid, LatheComponent component, ref ResearchRegistrationChangedEvent args)
-        {
-            UpdateUserInterfaceState(uid, component);
         }
 
         protected override bool HasRecipe(EntityUid uid, LatheRecipePrototype recipe, LatheComponent component)

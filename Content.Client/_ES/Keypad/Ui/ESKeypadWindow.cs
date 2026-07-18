@@ -7,7 +7,7 @@ namespace Content.Client._ES.Keypad.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class ESKeypadWindow : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     public ESKeypadWindow()
     {

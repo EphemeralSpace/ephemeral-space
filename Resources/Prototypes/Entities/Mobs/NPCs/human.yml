@@ -1,35 +1,4 @@
 - type: entity
-  name: civilian
-  parent: BaseMobHuman
-  id: MobCivilian
-  description: A miserable pile of secrets.
-  components:
-  - type: InputMover
-  - type: MobMover
-  - type: Loadout
-    prototypes: [LimitedPassengerGear]
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
-
-- type: entity
-  name: salvager
-  parent: BaseMobHuman
-  id: MobSalvager
-  components:
-    - type: NpcFactionMember
-      factions:
-        - Syndicate
-    - type: Loadout
-      prototypes:
-        - SalvageSpecialistGear
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
-
-- type: entity
   name: spirate
   parent: BaseMobHuman
   id: MobSpirate
@@ -38,36 +7,11 @@
   - type: NpcFactionMember
     factions:
       - Syndicate
-  - type: Loadout
-    prototypes:
-      - PirateGear
   - type: InputMover
   - type: MobMover
   - type: HTN
     rootTask:
       task: SimpleHumanoidHostileCompound
-
-- type: entity
-  name: syndicate footsoldier
-  parent: BaseMobHuman
-  id: MobSyndicateFootsoldier
-  components:
-    - type: NpcFactionMember
-      factions:
-        - Syndicate
-    - type: Loadout
-      prototypes:
-        - SyndicateFootsoldierGearRuin
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
-
-- type: entity
-  name: syndicate shuttle pilot
-  parent: MobSyndicateFootsoldier
-  id: MobSyndicateFootsoldierPilot
 
 - type: entity
   parent: BaseMobHuman
@@ -77,8 +21,6 @@
   name: unidentified corpse
   description: I think they're dead.
   components:
-  - type: RandomHumanoidAppearance
-    randomizeName: false
   - type: Damageable
     damage:
       types:
@@ -103,6 +45,5 @@
   name: person
   description: A polymorphed unfortunate.
   components:
-  - type: Cluwne
   - type: Speech
     speechVerb: Cluwne

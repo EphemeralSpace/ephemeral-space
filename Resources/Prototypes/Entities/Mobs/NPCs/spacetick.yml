@@ -63,7 +63,7 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatXeno
+    - id: FoodMeat
       amount: 1
   - type: Bloodstream
     bloodReferenceSolution:
@@ -91,12 +91,3 @@
     accent: genericAggressive
   - type: Speech
     speechVerb: SmallMob
-  - type: NonSpreaderZombie
-
-- type: entity
-  id: MobTickSalvage
-  parent: MobTick
-  suffix: "Salvage Ruleset"
-  components:
-  - type: SalvageMobRestrictions
-

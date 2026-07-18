@@ -128,7 +128,7 @@
   components:
   - type: Sprite
     layers:
-    - sprite: Structures/Doors/secret_door.rsi
+    - sprite: _ES/Structures/Doors/secret_door.rsi
       state: open
     - state: random
     - state: es
@@ -149,7 +149,7 @@
   components:
   - type: Sprite
     layers:
-    - sprite: Structures/Doors/secret_door.rsi
+    - sprite: _ES/Structures/Doors/secret_door.rsi
       state: open
     - state: random
     - state: es
@@ -168,7 +168,7 @@
   components:
   - type: Sprite
     layers:
-    - sprite: Structures/Doors/secret_door.rsi
+    - sprite: _ES/Structures/Doors/secret_door.rsi
       state: open
     - state: random
     - state: es
@@ -182,7 +182,7 @@
         weight: 1
 
 - type: entity
-  parent: ESSpawnerBase
+  parent: ESSpawnerBaseDirectional
   id: ESSpawnerRandomArcadeOrPiano
   name: Bar Entertainment Spawner
   suffix: ES
@@ -201,4 +201,3 @@
         weight: 2
       - id: ESInstrumentPiano
         weight: 1
-    directional: true

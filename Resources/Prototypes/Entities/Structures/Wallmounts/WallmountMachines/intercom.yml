@@ -5,7 +5,6 @@
   description: An intercom. For when the station just needs to know something.
   abstract: true
   components:
-  - type: StationAiWhitelist
   - type: Electrified
     enabled: false
     usesApcPower: true

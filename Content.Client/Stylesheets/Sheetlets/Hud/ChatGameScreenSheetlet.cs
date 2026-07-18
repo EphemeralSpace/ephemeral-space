@@ -1,3 +1,4 @@
+using Content.Client._ES.Screens;
 using Content.Client.UserInterface.Screens;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
@@ -14,10 +15,10 @@ public sealed class ChatGameScreenSheetlet : Sheetlet<PalettedStylesheet>
         return
         [
             E()
-                .Class(SeparatedChatGameScreen.StyleClassChatContainer)
+                .Class(PerformerGameScreen.StyleClassChatContainer)
                 .Panel(new StyleBoxFlat(sheet.SecondaryPalette.Background)),
             E<OutputPanel>()
-                .Class(SeparatedChatGameScreen.StyleClassChatOutput)
+                .Class(PerformerGameScreen.StyleClassChatOutput)
                 .Panel(new StyleBoxFlat(sheet.SecondaryPalette.BackgroundDark)),
         ];
     }

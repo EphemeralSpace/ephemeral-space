@@ -15,9 +15,9 @@
   - type: Computer
     board: ComputerTelevisionCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 3.0
-    color: "#b89f25"
+    radius: 1.25
+    energy: 50
+    color: "#5170af"
   - type: Fixtures
     fixtures:
       fix1:

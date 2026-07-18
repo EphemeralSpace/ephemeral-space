@@ -1,11 +1,11 @@
 - type: job
   id: ESSecurityOfficer
+  parent: ESBaseJobSecurityNaming
   name: ESjob-name-security
   description: ESjob-description-security
   playTimeTracker: ESJobSecurityOfficer
   startingGear: ESSecurityOfficerGear
   icon: "JobIconSecurityOfficer"
-  supervisors: job-supervisors-hop
   canBeAntag: false
   access:
   - Security
@@ -16,7 +16,7 @@
 - type: startingGear
   id: ESSecurityOfficerGear
   equipment:
-    shoes: ClothingShoesBootsJack
+    shoes: ClothingShoesBootsBlack
     id: SecurityPDA
     gloves: ClothingHandsGlovesColorBlack
     ears: ClothingHeadsetSecurity

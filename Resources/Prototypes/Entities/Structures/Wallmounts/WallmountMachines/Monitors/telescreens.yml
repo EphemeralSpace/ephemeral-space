@@ -23,9 +23,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
-  - type: Construction
-    graph: WallmountTelescreen
-    node: Telescreen
   - type: PointLight
     radius: 1.5
     energy: 3.0
@@ -52,9 +49,6 @@
   name: telescreen frame
   description: Finally, some decent reception around here...
   components:
-  - type: Construction
-    graph: WallmountTelescreen
-    node: TelescreenFrame
   - type: Sprite
     sprite: Structures/Machines/computers.rsi
     layers:

@@ -3,8 +3,6 @@ using Content.Client.Administration.Managers;
 using Content.Client.Gameplay;
 using Content.Client.Lobby;
 using Content.Client.RoundEnd;
-using Content.Client.UserInterface.Systems.Guidebook;
-using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Prototypes;
 using Content.Shared.GameWindow;
@@ -15,23 +13,20 @@ using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
-using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 
 namespace Content.Client.GameTicking.Managers
 {
     [UsedImplicitly]
-    public sealed class ClientGameTicker : SharedGameTicker
+    public sealed partial class ClientGameTicker : SharedGameTicker
     {
-        [Dependency] private readonly IStateManager _stateManager = default!;
-        [Dependency] private readonly IClientAdminManager _admin = default!;
-        [Dependency] private readonly IClyde _clyde = default!;
-        [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
-        // ES START
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        private ESLobbyCurtainsUIController _lobbyCurtains = default!;
-        // ES END
+        [Dependency] private IStateManager _stateManager = default!;
+        [Dependency] private IClientAdminManager _admin = default!;
+        [Dependency] private IClyde _clyde = default!;
+        [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
+        [Dependency] private IGameTiming _timing = default!;
+
+        private ESDiegeticLobbyUIController _lobbyCurtains = default!;
 
         private Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>  _jobsAvailable = new();
         private Dictionary<NetEntity, string> _stationNames = new();
@@ -80,10 +75,11 @@ namespace Content.Client.GameTicking.Managers
             SubscribeNetworkEvent<RequestWindowAttentionEvent>(OnAttentionRequest);
             SubscribeNetworkEvent<TickerLateJoinStatusEvent>(LateJoinStatus);
             SubscribeNetworkEvent<TickerJobsAvailableEvent>(UpdateJobsAvailable);
+            SubscribeNetworkEvent<QueuedRoundRestartTimeEvent>(OnQueuedRoundRestartTime);
 
             _admin.AdminStatusUpdated += OnAdminUpdated;
             // ES START
-            _lobbyCurtains = _userInterfaceManager.GetUIController<ESLobbyCurtainsUIController>();
+            _lobbyCurtains = _userInterfaceManager.GetUIController<ESDiegeticLobbyUIController>();
             // ES END
             OnAdminUpdated();
         }
@@ -99,10 +95,10 @@ namespace Content.Client.GameTicking.Managers
             var realTime = _timing.RealTime;
 
             // lobby->game closing
-            if (ReadyStatus is (PlayerGameStatus.Observing or PlayerGameStatus.ReadyToPlay)
+            if (ReadyStatus is PlayerGameStatus.Observing or PlayerGameStatus.ReadyToPlay
                 && !Paused
                 && StartTime > curTime
-                && _lobbyCurtains.CurtainState == LobbyCurtainState.Open
+                && _lobbyCurtains.IsOpen
                 && StartTime - curTime <= TimeSpan.FromSeconds(3))
             {
                 _lobbyCurtains.StartCurtainAnimation(false);
@@ -110,8 +106,8 @@ namespace Content.Client.GameTicking.Managers
 
             // roundend->lobby closing
             if (ESExpectedRoundEndTime > curTime
-                && _lobbyCurtains.CurtainState == LobbyCurtainState.Open
-                && ESExpectedRoundEndTime - curTime <= TimeSpan.FromSeconds(3))
+                && _lobbyCurtains.IsOpen
+                && ESExpectedRoundEndTime - curTime <= TimeSpan.FromSeconds(2))
             {
                 _lobbyCurtains.StartCurtainAnimation(false);
                 ESExpectedRoundEndTime = null;
@@ -223,15 +219,12 @@ namespace Content.Client.GameTicking.Managers
         {
             // Force an update in the event of this song being the same as the last.
             RestartSound = message.RestartSound;
-
-            // ES START
-            // if you are testing this you need to use restartround not endround. endround doesnt start the countdown Lol
-            // emisse said its possible to delay this
-            // but i think its only possible to delay the shuttle timer going off?
-            // not the round restart timer.
-            ESExpectedRoundEndTime = _timing.CurTime + TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.RoundRestartTime));
-            // ES END
             _userInterfaceManager.GetUIController<RoundEndSummaryUIController>().OpenRoundEndSummaryWindow(message);
+        }
+
+        private void OnQueuedRoundRestartTime(QueuedRoundRestartTimeEvent ev)
+        {
+            ESExpectedRoundEndTime = ev.RestartTime;
         }
     }
 }

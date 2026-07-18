@@ -11,11 +11,11 @@ namespace Content.Shared._ES.Core.Timer;
 /// <summary>
 /// Used for creating generic timers which serialize to the world.
 /// </summary>
-public sealed class ESEntityTimerSystem : EntitySystem
+public sealed partial class ESEntityTimerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IComponentFactory _factory = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -25,6 +25,18 @@ public sealed class ESEntityTimerSystem : EntitySystem
     private void MethodTimerEventHandler(MethodTimerEvent ev)
     {
         ev.Method();
+    }
+
+    /// <summary>
+    /// Returns the timer's progress on the interval of [0, 1)
+    /// </summary>
+    public float GetTimerProgress(Entity<ESEntityTimerComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return 0;
+
+        var timeRemaining = ent.Comp.TimerEnd - _timing.CurTime;
+        return 1f - (float) (timeRemaining / ent.Comp.Duration);
     }
 
     /// <summary>
@@ -94,6 +106,7 @@ public sealed class ESEntityTimerSystem : EntitySystem
         var comp = _factory.GetComponent<ESEntityTimerComponent>();
 
         comp.TimerEndEvent = endEvent;
+        comp.Duration = duration;
         comp.TimerEnd = _timing.CurTime + duration;
 
         // This is essentially only checking that the type is net serializable, nothing more.
@@ -137,8 +150,8 @@ public sealed class ESEntityTimerSystem : EntitySystem
         {
             var target = xform.ParentUid;
 
-            // broadcast
-            if (xform.MapID == MapId.Nullspace)
+            // broadcast if we have no real parent, i.e. we're in nullspace ourselves.
+            if (target == EntityUid.Invalid)
             {
                 RaiseLocalEvent((object) timer.TimerEndEvent);
             }
@@ -147,7 +160,8 @@ public sealed class ESEntityTimerSystem : EntitySystem
                 RaiseLocalEvent(target, (object) timer.TimerEndEvent);
             }
 
-            PredictedQueueDel(uid);
+            if (!TerminatingOrDeleted(uid))
+                PredictedQueueDel(uid);
         }
     }
 }

@@ -1,0 +1,54 @@
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltMedical
+  name: medical belt
+  description: Can hold various medical equipment.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/medical.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/medical.rsi
+  - type: Storage
+    whitelist:
+      tags:
+      - Bottle
+      - Spray
+      - Brutepack
+      - Bloodpack
+      - Gauze
+      - Ointment
+      - Tourniquet
+      - PillCanister
+      - DiscreteHealthAnalyzer
+      - SurgeryTool
+      - Dropper
+      - ESTourniquetOffbrand
+      - ESSplints
+      - EmergencyPouch
+      components:
+      - Injector
+      - Pill
+      - HandLabeler
+      - Tending
+  - type: ItemMapper
+    sprite: &BeltOverlay Clothing/Belt/belt_overlay.rsi
+    mapLayers:
+      bottle:
+        whitelist:
+          tags:
+          - Bottle
+      hypo:
+        whitelist:
+          tags:
+          - Hypospray
+      pill:
+        whitelist:
+          components:
+          - Pill
+          tags:
+          - PillCanister
+      bottle_spray:
+        whitelist:
+          tags:
+          - Spray
+  - type: Appearance

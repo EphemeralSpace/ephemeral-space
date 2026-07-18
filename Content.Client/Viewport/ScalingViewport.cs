@@ -1,29 +1,25 @@
-using System;
-using System.Collections.Generic;
 using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Graphics;
-using Robust.Shared.IoC;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Robust.Shared.ViewVariables;
 using SixLabors.ImageSharp.PixelFormats;
+
+// ES MODIFIED: a lot
 
 namespace Content.Client.Viewport
 {
     /// <summary>
     ///     Viewport control that has a fixed viewport size and scales it appropriately.
     /// </summary>
-    public sealed class ScalingViewport : Control, IViewportControl
+    public sealed partial class ScalingViewport : Control, IViewportControl
     {
-        [Dependency] private readonly IClyde _clyde = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly IInputManager _inputManager = default!;
+        [Dependency] private IClyde _clyde = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        [Dependency] private IInputManager _inputManager = default!;
 
         // Internal viewport creation is deferred.
         private IClydeViewport? _viewport;
@@ -65,6 +61,8 @@ namespace Content.Client.Viewport
             get => _viewportSize;
             set
             {
+                if (_viewportSize == value)
+                    return;
                 _viewportSize = value;
                 InvalidateViewport();
             }
@@ -80,6 +78,8 @@ namespace Content.Client.Viewport
             get => _stretchMode;
             set
             {
+                if (_stretchMode == value)
+                    return;
                 _stretchMode = value;
                 InvalidateViewport();
             }
@@ -91,6 +91,8 @@ namespace Content.Client.Viewport
             get => _renderScaleMode;
             set
             {
+                if (_renderScaleMode == value)
+                    return;
                 _renderScaleMode = value;
                 InvalidateViewport();
             }
@@ -102,6 +104,8 @@ namespace Content.Client.Viewport
             get => _fixedRenderScale;
             set
             {
+                if (_fixedRenderScale == value)
+                    return;
                 _fixedRenderScale = value;
                 InvalidateViewport();
             }
@@ -113,6 +117,8 @@ namespace Content.Client.Viewport
             get => _ignoreDimension;
             set
             {
+                if (_ignoreDimension == value)
+                    return;
                 _ignoreDimension = value;
                 InvalidateViewport();
             }
@@ -122,6 +128,12 @@ namespace Content.Client.Viewport
         {
             IoCManager.InjectDependencies(this);
             RectClipContent = true;
+        }
+
+        protected override Vector2 MeasureOverride(Vector2 availableSize)
+        {
+            EnsureViewportCreated();
+            return GetViewportBox(availableSize * UIScale).Size / UIScale;
         }
 
         protected override void KeyBindDown(GUIBoundKeyEventArgs args)
@@ -167,10 +179,10 @@ namespace Content.Client.Viewport
                 _queuedScreenshots.Clear();
             }
 
-            var drawBox = GetDrawBox();
+            var drawBox = GetViewportBox(PixelSize);
             var drawBoxGlobal = drawBox.Translated(GlobalPixelPosition);
             _viewport.RenderScreenOverlaysBelow(handle, this, drawBoxGlobal);
-            handle.DrawingHandleScreen.DrawTextureRect(_viewport.RenderTarget.Texture, drawBox);
+            handle.DrawingHandleScreen.DrawTextureRect(_viewport.RenderTarget.Texture, drawBoxGlobal);
             _viewport.RenderScreenOverlaysAbove(handle, this, drawBoxGlobal);
         }
 
@@ -180,16 +192,15 @@ namespace Content.Client.Viewport
         }
 
         // Draw box in pixel coords to draw the viewport at.
-        private UIBox2i GetDrawBox()
+        private UIBox2i GetViewportBox(Vector2 availableSize)
         {
             DebugTools.AssertNotNull(_viewport);
 
             var vpSize = _viewport!.Size;
-            var ourSize = (Vector2) PixelSize;
 
             if (FixedStretchSize == null)
             {
-                var (ratioX, ratioY) = ourSize / vpSize;
+                var (ratioX, ratioY) = availableSize / vpSize;
                 var ratio = 1f;
                 switch (_ignoreDimension)
                 {
@@ -205,16 +216,13 @@ namespace Content.Client.Viewport
                 }
 
                 var size = vpSize * ratio;
-                // Size
-                var pos = (ourSize - size) / 2;
-
-                return (UIBox2i) UIBox2.FromDimensions(pos, size);
+                //var pos = new Vector2(0, (ourSize.Y - size.Y) / 2);
+                return (UIBox2i) UIBox2.FromDimensions(Vector2.Zero, size);
             }
             else
             {
-                // Center only, no scaling.
-                var pos = (ourSize - FixedStretchSize.Value) / 2;
-                return (UIBox2i) UIBox2.FromDimensions(pos, FixedStretchSize.Value);
+                //var pos = new Vector2(0, (ourSize.Y - FixedStretchSize.Value.Y) / 2);
+                return (UIBox2i) UIBox2.FromDimensions(Vector2.Zero, FixedStretchSize.Value);
             }
         }
 
@@ -253,8 +261,8 @@ namespace Content.Client.Viewport
                 });
 
             _viewport.RenderScale = new Vector2(renderScale, renderScale);
-
             _viewport.Eye = _eye;
+            InvalidateMeasure();
         }
 
         protected override void Resized()
@@ -324,7 +332,7 @@ namespace Content.Client.Viewport
         {
             EnsureViewportCreated();
 
-            var drawBox = GetDrawBox();
+            var drawBox = GetViewportBox(PixelSize);
             var scaleFactor = drawBox.Size / (Vector2) _viewport!.Size;
 
             if (scaleFactor.X == 0 || scaleFactor.Y == 0)

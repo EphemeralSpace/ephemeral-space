@@ -1,5 +1,5 @@
 using Content.Client._ES.Core;
-using Content.Client._ES.Masks;
+using Content.Client._ES.SecretIdentity;
 using Content.Client.Roles;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Mind;
@@ -12,12 +12,12 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._ES.Stagehand.Ui;
 
 [GenerateTypedNameReferences]
-public sealed partial class ESObservablePlayerButton : Button
+public sealed partial class ESObservablePlayerButton : ContainerButton
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
     private readonly JobSystem _job;
-    private readonly ESMaskSystem _mask;
+    private readonly ESSecretIdentitySystem _secretIdentity;
     private readonly SpriteSystem _sprite;
 
     public ESObservablePlayerButton()
@@ -26,10 +26,11 @@ public sealed partial class ESObservablePlayerButton : Button
         IoCManager.InjectDependencies(this);
 
         _job = _entityManager.System<JobSystem>();
-        _mask = _entityManager.System<ESMaskSystem>();
+        _secretIdentity = _entityManager.System<ESSecretIdentitySystem>();
         _sprite = _entityManager.System<SpriteSystem>();
 
         ToggleMode = true;
+        AddStyleClass(StyleClassButton);
     }
 
     public void SetEntity(EntityUid uid)
@@ -44,8 +45,8 @@ public sealed partial class ESObservablePlayerButton : Button
     {
         var (uid, mind, character) = ent;
 
-        var mask = _mask.GetMaskOrNull((uid, mind));
-        var troupe = _mask.GetTroupeOrNull((uid, mind));
+        var secretIdentity = _secretIdentity.GetSecretIdentityOrNull((uid, mind));
+        var organization = _secretIdentity.GetOrganizationOrNull((uid, mind));
 
         NameLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-fmt", ("text", character.Name)));
 
@@ -55,11 +56,15 @@ public sealed partial class ESObservablePlayerButton : Button
             JobIcon.ToolTip = job.LocalizedName;
         }
 
-        if (_prototype.TryIndex(mask, out var maskPrototype))
-            MaskLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(maskPrototype.Name))), maskPrototype.Color);
+        if (_prototype.TryIndex(secretIdentity, out var secretIdentityPrototype))
+            SecretIdentityLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(secretIdentityPrototype.Name))), secretIdentityPrototype.Color);
 
-        if (_prototype.TryIndex(troupe, out var troupePrototype))
-            TroupeLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(troupePrototype.Name))), troupePrototype.Color);
+        if (_prototype.TryIndex(organization, out var organizationPrototype)
+            && _prototype.TryIndex(organizationPrototype.MetaIcon, out var organizationIcon))
+        {
+            OrganizationIcon.Texture = _sprite.Frame0(organizationIcon.Icon);
+            OrganizationIcon.ToolTip = Loc.GetString(organizationPrototype.Name);
+        }
     }
 }
 

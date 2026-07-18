@@ -1,11 +1,11 @@
 - type: entity
-  parent: ESBaseMaskObjective
-  id: ESObjectiveResearchTelescience
-  name: Research telescience
-  description: Work with the science team to teleport the station out of the way of the coming radiation storm.
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectiveWarpDrive
+  name: Outrun the radstorm and charge the warp drive
+  description: Keep the station functional, ensure the thrusters and navigation terminal stay powered, and make sure the warp drive charges successfully so you can escape.
   components:
   - type: ESObjective
     icon:
-      sprite: _ES/Structures/Machines/Telesci/portalgen.rsi
-      state: cube
-  - type: ESTelesciObjective
+      sprite: Structures/Power/Generation/Singularity/singularity_1.rsi
+      state: singularity_1
+  - type: ESWarpDriveObjective

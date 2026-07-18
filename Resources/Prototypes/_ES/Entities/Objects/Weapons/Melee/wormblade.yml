@@ -1,0 +1,20 @@
+- type: entity
+  parent: BaseItem
+  id: ESWeaponParasiteWorm
+  name: wormlipch
+  description: It's a part of you now.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Melee/wormblade.rsi
+    state: icon
+  - type: ESParasiteConverter
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 0
+    attackRate: 1.5
+    wideAnimationRotation: -135
+  - type: StaminaDamageOnHit
+    damage: 35
+    sound: "/Audio/Weapons/slash.ogg"
+  - type: Unremoveable

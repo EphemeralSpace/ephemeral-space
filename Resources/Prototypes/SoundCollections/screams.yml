@@ -18,13 +18,6 @@
     - /Audio/Voice/Human/femalescream_5.ogg
 
 - type: soundCollection
-  id: ZombieScreams
-  files:
-    - /Audio/Voice/Zombie/zombie-1.ogg
-    - /Audio/Voice/Zombie/zombie-2.ogg
-    - /Audio/Voice/Zombie/zombie-3.ogg
-
-- type: soundCollection
   id: CluwneScreams
   files:
     - /Audio/Voice/Cluwne/cluwnelaugh1.ogg

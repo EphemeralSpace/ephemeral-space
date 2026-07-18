@@ -2,7 +2,7 @@
   name: handcuffs
   description: Used to detain criminals and other assholes.
   id: Handcuffs
-  parent: [BaseItem, BaseSecurityCommandContraband]
+  parent: BaseItem
   components:
   - type: Item
     size: Small
@@ -23,10 +23,6 @@
     damage:
       types:
         Blunt: 0
-  - type: GuideHelp
-    guides:
-    - Security
-    - Antagonists
   - type: UseDelay
     delay: 3
 
@@ -37,7 +33,7 @@
   parent: Handcuffs
   components:
   - type: Handcuff
-    breakoutTime: 3
+    breakoutTime: 2
     cuffedRSI: Objects/Misc/cablecuffs.rsi
     bodyIconState: body-overlay
     color: forestgreen
@@ -151,7 +147,7 @@
     size: Normal
   - type: Handcuff
     cuffedRSI: Clothing/OuterClothing/Misc/straight_jacket.rsi
-    breakoutTime: 100
+    breakoutTime: 20
     cuffTime: 10
     uncuffTime: 10
     stunBonus: 4

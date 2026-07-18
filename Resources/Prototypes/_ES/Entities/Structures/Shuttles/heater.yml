@@ -7,3 +7,55 @@
   - type: Sprite
     sprite: _ES/Structures/Shuttles/heater.rsi
     state: heater
+
+- type: entity
+  id: ESShuttleHeaterStationLeft
+  parent: BaseStructure
+  name: station engine heater
+  description: Wide...
+  suffix: Left
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Shuttles/heater.rsi
+    state: station_l
+  - type: InteractionOutline
+
+- type: entity
+  id: ESShuttleHeaterStationRight
+  parent: BaseStructure
+  name: station engine heater
+  description: Wide...
+  suffix: Right
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Shuttles/heater.rsi
+    state: station_r
+  - type: InteractionOutline
+
+- type: entity
+  id: ESShuttleHeaterStation
+  parent: BaseStructure
+  name: station engine heater
+  description: Supplies fuel to the main station propulsion thrusters. Just make sure that fancy bar doesn't run out.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Shuttles/heater.rsi
+    drawdepth: SmallObjects
+    layers:
+    - state: station
+    - state: fill-8
+      sprite: _ES/Structures/Shuttles/heater_overlay.rsi
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Appearance
+  - type: InteractionOutline
+  - type: ESRadstormThrusterEngine
+  - type: SolutionContainerManager
+    solutions:
+      fuel-tank:
+        maxVol: 1500
+  - type: RefillableSolution
+    solution: fuel-tank
+  - type: SolutionContainerVisuals
+    changeColor: false
+    maxFillLevels: 8
+    fillBaseName: fill-

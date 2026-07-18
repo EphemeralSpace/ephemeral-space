@@ -76,8 +76,8 @@
   components:
   - type: Sprite
     layers:
-    - state: body_red
-    - state: joe
+    - state: body_white
+    - state: clown
     - state: alert
       shader: unshaded
   - type: UserInterface
@@ -94,25 +94,3 @@
   values:
     prefix: es-ephemera-line-casting-director-
     count: 6
-
-- type: entity
-  parent: ESBaseMobTheaterStaff
-  id: ESMobTheaterStaffGhostRoles
-  name: extras director
-  description: "Not everyone is the lead: someone has to play the extras!"
-  components:
-  - type: Sprite
-    layers:
-    - state: body_red
-    - state: clown
-    - state: alert
-      shader: unshaded
-  # TODO: needs unique implementation
-  - type: ESEphemeraRandomDialogue
-    dialogue: ESEphemeraDialogueExtrasDirector
-
-- type: localizedDataset
-  id: ESEphemeraDialogueExtrasDirector
-  values:
-    prefix: es-ephemera-line-extras-director-
-    count: 5

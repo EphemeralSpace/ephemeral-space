@@ -6,11 +6,11 @@ namespace Content.Shared._Offbrand.Wounds;
 
 public sealed partial class HealthRankingSystem : EntitySystem
 {
-    [Dependency] private readonly BrainDamageSystem _brainDamage = default!;
-    [Dependency] private readonly HeartSystem _heart = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly PainSystem _pain = default!;
-    [Dependency] private readonly ShockThresholdsSystem _shockThresholds = default!;
+    [Dependency] private BrainDamageSystem _brainDamage = default!;
+    [Dependency] private HeartSystem _heart = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private PainSystem _pain = default!;
+    [Dependency] private ShockThresholdsSystem _shockThresholds = default!;
 
     private const float PainDeathRatio = 0.5f;
     private const float BrainDeathRatio = 0.3f;

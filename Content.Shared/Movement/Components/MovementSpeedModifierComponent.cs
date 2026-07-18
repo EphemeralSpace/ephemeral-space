@@ -14,20 +14,21 @@ namespace Content.Shared.Movement.Components
         #region defaults
 
         // weightless
-        public const float DefaultWeightlessFriction = 1f;
-        public const float DefaultWeightlessModifier = 0.7f;
-        public const float DefaultWeightlessAcceleration = 1f;
+        public const float DefaultWeightlessFriction = 0.7f;
+        public const float DefaultWeightlessFrictionNoInput = 4.5f;
+        public const float DefaultWeightlessModifier = 2.4f;
+        public const float DefaultWeightlessAcceleration = 0.25f;
 
         // friction
-        public const float DefaultAcceleration = 20f;
-        public const float DefaultFriction = 2.5f;
-        public const float DefaultFrictionNoInput = 2.5f;
+        public const float DefaultAcceleration = 7f;
+        public const float DefaultFriction = 1f;
+        public const float DefaultFrictionNoInput = 1f;
         public const float DefaultMinimumFrictionSpeed = 0.005f;
 
         // movement
         // ES START
-        public const float DefaultBaseWalkSpeed = 2.25f;
-        public const float DefaultBaseSprintSpeed = 4.05f;
+        public const float DefaultBaseWalkSpeed = 2.5f;
+        public const float DefaultBaseSprintSpeed = 4.25f;
         // ES END
 
         // ES START
@@ -116,6 +117,9 @@ namespace Content.Shared.Movement.Components
         /// </summary>
         [AutoNetworkedField, DataField]
         public float BaseWeightlessFriction = DefaultWeightlessFriction;
+
+        [AutoNetworkedField, DataField]
+        public float BaseWeightlessFrictionNoInput = DefaultWeightlessFrictionNoInput;
 
         [AutoNetworkedField, DataField]
         public float BaseWeightlessModifier = DefaultWeightlessModifier;

@@ -1,0 +1,27 @@
+<Document>
+  # Welcome to Ephemeral Space!
+
+  [color=red][bold]Please read, even if you've played ES before!! Very important information here I promise[/color][/bold]
+
+  Things might seem a little strange right now if you're used to regular Space Station 14 gameplay.
+
+  In Ephemeral Space, [bold]you start the game in the lobby[/bold], which is an entire world unto itself. Here, you are a theatergoer attending the performance of an immersive play themed around a chaotic space station environment. In the theater (the lobby), you can explore the area, chat with other theatergoers about the upcoming performance, and interact with various objects.
+
+  [bold]In order to ready up, or join the performance if it's already started, head down past the curtains separating the main theater area and the lobby, and walk onto the stage.[/bold] If you'd prefer to observe as a Stagehand instead, wait for the play to start while not on the stage, then speak to the Stagehand Director behind the curtains.
+
+  Beyond that, let's talk about some very important differences between Ephemeral Space and regular servers that you should know before playing.
+
+  - Our ruleset is [bold]very[/bold] different. You should give it a read, and note what [italic]isn't[/italic] there--this server is intended to be much more of an open playground for roleplay and player expression, and our goal is to just design around bad gameplay rather than using rules.
+  - When the round starts, you'll be given a [textlink="mask" link="OrganizationsAndSecretIdentities"]--a hidden role which gives you unique objectives, abilities, or items, and defines your round. You are also part of a [textlink="organization" link="OrganizationsAndSecretIdentities"], or a collection of players with shared central objectives.
+  - The character menu is very important here, and you should check it to see your mask objectives and organization objectives. You can [color=cyan]toggle the character menu[/color] by pressing [bold][color=yellow][keybind="OpenCharacterMenu"][/color][/bold].
+  - Rather than ending with the emergency shuttle, rounds on Ephemeral Space can end in one of three ways at the moment: a [bold]crew win[/bold], where they charge the warp drive and move the station to safety; an [bold]evil win[/bold], where a organization other than the crew completes their objectives; and a [bold]round fail[/bold], where all organizations take too much time and the radstorm kills everybody on the station.
+  - Once dead, [bold]you cannot return to the round[/bold] and do not immediately become a ghost. Instead, you're sent to the lobby, and can become a [bold]stagehand[/bold] by interacting with an NPC below the lobby's stage. This allows you to observe as normal, vote on station events, and see all character's masks and objectives using an action.
+
+  Furthermore, we have some new controls that you should be aware of:
+  - Hold [bold][color=yellow][keybind="ESHoldToFace"][/color][/bold] to [color=cyan]point your character[/color] in the direction of your cursor, without having to enable combat mode.
+  - [color=cyan]Toggle your flashlight[/color] with [bold][color=yellow][keybind="ESToggleFlashlight"][/color][/bold].
+  - [color=cyan]Toggle any worn internals[/color] by pressing [bold][color=yellow][keybind="ESToggleInternals"][/color][/bold]. You can also do this by clicking the alert.
+  - Hold [bold][color=yellow][keybind="Walk"][/color][/bold] in order to walk around slowly.
+
+  [color=lavender]Enjoy the show![/color]
+</Document>

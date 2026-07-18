@@ -3,9 +3,9 @@ using Robust.Client.Graphics;
 
 namespace Content.Client._ES.Power.Antimatter;
 
-public sealed class ESAntimatterSystem : ESSharedAntimatterSystem
+public sealed partial class ESAntimatterSystem : ESSharedAntimatterSystem
 {
-    [Dependency] private readonly IOverlayManager _overlay = default!;
+    [Dependency] private IOverlayManager _overlay = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -7,8 +7,6 @@
   description: A fuel tank. It's used to store high amounts of fuel.
   suffix: Empty
   components:
-  - type: StaticPrice
-    price: 750
   - type: Sprite
     sprite: Structures/Storage/tanks.rsi
     layers:
@@ -33,8 +31,10 @@
         Heat: 10
   - type: PacifismDangerousAttack
   - type: Explosive
-    explosionType: Default
-    totalIntensity: 60 # Mediocre explosion. Not enough to do any meaningful structural damage to anything other then windows, provided you're only using one tank.
+# ES START
+    explosionType: ESWelderBomb
+# ES END
+    totalIntensity: 20 # Mediocre explosion. Not enough to do any meaningful structural damage to anything other then windows, provided you're only using one tank.
 
 - type: entity
   id: WeldingFuelTankFull
@@ -55,8 +55,6 @@
   description: A highly pressurized fuel tank made to hold gargantuan amounts of welding fuel.
   suffix: Full
   components:
-  - type: StaticPrice
-    price: 2500
   - type: Sprite
     sprite: Structures/Storage/tanks.rsi
     layers:
@@ -89,8 +87,6 @@
   description: A water tank. It's used to store high amounts of water.
   suffix: Empty
   components:
-  - type: StaticPrice
-    price: 500
   - type: Sprite
     sprite: Structures/Storage/tanks.rsi
     layers:
@@ -167,8 +163,6 @@
       - Trash
   - type: ExaminableSolution
     solution: tank
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   parent: [StorageTankBig, WaterTank]
@@ -177,8 +171,6 @@
   description: A highly pressurized water tank made to hold gargantuan amounts of water.
   suffix: Full
   components:
-  - type: StaticPrice
-    price: 2500
   - type: Sprite
     sprite: Structures/Storage/tanks.rsi
     layers:
@@ -211,8 +203,6 @@
   parent: [StorageTank, StructureWheeled]
   suffix: Empty
   components:
-    - type: StaticPrice
-      price: 500
     - type: Sprite
       sprite: Structures/Storage/tanks.rsi
       layers:

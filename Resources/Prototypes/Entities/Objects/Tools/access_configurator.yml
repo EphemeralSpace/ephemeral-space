@@ -37,7 +37,7 @@
       - Command
       - Engineering
       - External
-      - HeadOfPersonnel
+      - StationAdmin
       - HeadOfSecurity
       - Hydroponics
       - Janitor
@@ -103,8 +103,6 @@
     - Armory
     - Atmospherics
     - Bar
-    - BasicSilicon
-    - Borg
     - Brig
     - Detective
     - Captain
@@ -118,7 +116,7 @@
     - EmergencyShuttleRepealAll
     - Engineering
     - External
-    - HeadOfPersonnel
+    - StationAdmin
     - HeadOfSecurity
     - Hydroponics
     - Janitor
@@ -132,13 +130,8 @@
     - Salvage
     - Security
     - Service
-    - StationAi
     - Theatre
     - CentralCommand
-    - NuclearOperative
-    - SyndicateAgent
-    - Wizard
-    - Xenoborg
     - GenpopEnter
     - GenpopLeave
     privilegedIdSlot:
@@ -147,35 +140,6 @@
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
       ejectOnBreak: true
-      swap: false
-      whitelist:
-        components:
-        - IdCard
-    denialSound:
-      path: /Audio/Machines/custom_deny.ogg
-    doAfter: 0.5
-
-- type: entity
-  parent: AccessConfigurator
-  id: AccessConfiguratorXenoborg
-  name: xenoborg access configurator
-  description: A modified access configurator used by the xenoborgs.
-  components:
-  - type: Sprite
-    sprite: Objects/Tools/access_configurator.rsi
-  - type: Clothing
-    sprite: Objects/Tools/access_configurator.rsi
-  - type: AccessOverrider
-    showPrivilegedId: false
-    accessLevels:
-    - Xenoborg
-    privilegedIdSlot:
-      name: id-card-console-privileged-id
-      startingItem: XenoborgIDCard
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-      ejectOnBreak: true
-      disableEject: true
       swap: false
       whitelist:
         components:

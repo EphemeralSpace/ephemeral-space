@@ -25,9 +25,9 @@ namespace Content.Client.Damage;
 ///     of the sprite layer, and then passing in a bool value
 ///     (true to enable, false to disable).
 /// </summary>
-public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponent>
+public sealed partial class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {
@@ -137,6 +137,12 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
             || !TryComp<DamageableComponent>(entity, out var damageComponent)
             || !HasComp<AppearanceComponent>(entity))
             return;
+
+        // ES START
+        // LET ME FUCKING DISABLE YOU
+        if (damageVisComp.Disabled)
+            return;
+        // ES END
 
         damageVisComp.Thresholds.Add(FixedPoint2.Zero);
         damageVisComp.Thresholds.Sort();

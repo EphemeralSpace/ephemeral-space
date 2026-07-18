@@ -18,6 +18,7 @@ namespace Content.Server.Entry
             "ESTimedDespawnSpriteFade",
             "ESPoster",
             "ESGenericAmbienceVisualizer",
+            "ESLocalPlayerMarker",
             // ES END
             "ConstructionGhost",
             "IconSmooth",
@@ -35,7 +36,6 @@ namespace Content.Server.Entry
             "LightFade",
             "HolidayRsiSwap",
             "OptionsVisualizer",
-            "AnomalyScannerScreen",
             "MultipartMachineGhost",
         };
     }

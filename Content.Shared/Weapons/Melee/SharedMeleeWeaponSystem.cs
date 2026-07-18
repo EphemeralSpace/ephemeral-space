@@ -45,31 +45,34 @@ using ItemToggleMeleeWeaponComponent = Content.Shared.Item.ItemToggle.Components
 
 namespace Content.Shared.Weapons.Melee;
 
-public abstract class SharedMeleeWeaponSystem : EntitySystem
+public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] protected readonly IMapManager MapManager = default!;
-    [Dependency] private   readonly INetManager _netMan = default!;
-    [Dependency] private   readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private   readonly IRobustRandom _random = default!;
-    [Dependency] protected readonly ISharedAdminLogManager AdminLogger = default!;
-    [Dependency] protected readonly ActionBlockerSystem Blocker = default!;
-    [Dependency] protected readonly DamageableSystem Damageable = default!;
-    [Dependency] private   readonly SharedHandsSystem _hands = default!;
-    [Dependency] private   readonly InventorySystem _inventory = default!;
-    [Dependency] private   readonly MeleeSoundSystem _meleeSound = default!;
-    [Dependency] protected readonly MobStateSystem MobState = default!;
-    [Dependency] private   readonly SharedAudioSystem _audio = default!;
-    [Dependency] protected readonly SharedCombatModeSystem CombatMode = default!;
-    [Dependency] protected readonly SharedInteractionSystem Interaction = default!;
-    [Dependency] private   readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] protected readonly SharedPopupSystem PopupSystem = default!;
-    [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
-    [Dependency] private   readonly SharedStaminaSystem _stamina = default!;
-    [Dependency] private   readonly DamageExamineSystem _damageExamine = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] protected SharedMapSystem MapManager = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] protected ISharedAdminLogManager AdminLogger = default!;
+    [Dependency] protected ActionBlockerSystem Blocker = default!;
+    [Dependency] protected DamageableSystem Damageable = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private MeleeSoundSystem _meleeSound = default!;
+    [Dependency] protected MobStateSystem MobState = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] protected SharedCombatModeSystem CombatMode = default!;
+    [Dependency] protected SharedInteractionSystem Interaction = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] protected SharedPopupSystem PopupSystem = default!;
+    [Dependency] protected SharedTransformSystem TransformSystem = default!;
+    [Dependency] private SharedStaminaSystem _stamina = default!;
+    [Dependency] private DamageExamineSystem _damageExamine = default!;
     // ES START
-    [Dependency] private readonly ESScreenshakeSystem _shake = default!;
+    [Dependency] private ESScreenshakeSystem _shake = default!;
+    [Dependency] private StatusEffectNew.StatusEffectsSystem _status = default!;
     // ES END
+
+    private static readonly EntProtoId MeleeSlowStatusEffect = "ESMeleeTemporarySlowdown";
 
     private const int AttackMask = (int) (CollisionGroup.MobMask | CollisionGroup.Opaque);
 
@@ -460,7 +463,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         {
             if (ev.Message != null)
             {
-                PopupSystem.PopupClient(ev.Message, weaponUid, user);
+                PopupSystem.PopupEntity(ev.Message, weaponUid, user);
             }
 
             return false;
@@ -539,6 +542,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             var missEvent = new MeleeHitEvent(new List<EntityUid>(), user, meleeUid, damage, null);
             RaiseLocalEvent(meleeUid, missEvent);
             _meleeSound.PlaySwingSound(user, meleeUid, component);
+            _status.TrySetStatusEffectDuration(user, MeleeSlowStatusEffect, TimeSpan.FromSeconds(0.35));
             return;
         }
 
@@ -559,11 +563,13 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         var weapon = GetEntity(ev.Weapon);
 
         // We skip weapon -> target interaction, as forensics system applies DNA on hit
-        Interaction.DoContactInteraction(user, weapon, null, true); // Stellar - Interaction particles
+        Interaction.DoContactInteraction(user, weapon, null, true, interactionParticles: false); // Stellar - Interaction particles
 
         // If the user is using a long-range weapon, this probably shouldn't be happening? But I'll interpret melee as a
         // somewhat messy scuffle. See also, heavy attacks.
         Interaction.DoContactInteraction(user, target, weapon, true, interactionParticles: false); // Stellar/ES - Interaction particles
+
+        _status.TrySetStatusEffectDuration(user, MeleeSlowStatusEffect, TimeSpan.FromSeconds(0.35));
 
         // For stuff that cares about it being attacked.
         var attackedEvent = new AttackedEvent(meleeUid, user, targetXform.Coordinates);
@@ -601,11 +607,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         if (damageResult.GetTotal() > FixedPoint2.Zero)
         {
             DoDamageEffect(targets, user, targetXform);
+            _status.TrySetStatusEffectDuration(target.Value, MeleeSlowStatusEffect, TimeSpan.FromSeconds(0.35));
 
             // ES START
             // dog shit copy plaste but thats melee for you
             var userShakeRotation = new ESScreenshakeParameters()
-                { Trauma = 0.08f, DecayRate = 1.0f, Frequency = 0.009f };
+                { Trauma = 0.05f, DecayRate = 1.0f, Frequency = 0.009f };
             var otherShakeTranslation = new ESScreenshakeParameters() { Trauma = 0.45f, DecayRate = 1.1f, Frequency = 0.04f };
             _shake.Screenshake(user, null, userShakeRotation);
             foreach (var shakeTarget in targets)
@@ -655,6 +662,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             RaiseLocalEvent(meleeUid, missEvent);
 
             // immediate audio feedback
+            _status.TrySetStatusEffectDuration(user, MeleeSlowStatusEffect, TimeSpan.FromSeconds(0.35));
             _meleeSound.PlaySwingSound(user, meleeUid, component);
 
             return true;
@@ -708,7 +716,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         var weapon = GetEntity(ev.Weapon);
 
-        Interaction.DoContactInteraction(user, weapon, null, true); // Stellar - Interaction particles
+        Interaction.DoContactInteraction(user, weapon, null, true, interactionParticles: false); // Stellar - Interaction particles
+        _status.TrySetStatusEffectDuration(user, MeleeSlowStatusEffect, TimeSpan.FromSeconds(0.35));
 
         // For stuff that cares about it being attacked.
         foreach (var target in targets)
@@ -750,6 +759,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                 }
 
                 appliedDamage += damageResult;
+                _status.TrySetStatusEffectDuration(entity, MeleeSlowStatusEffect, TimeSpan.FromSeconds(0.35));
 
                 if (meleeUid == user)
                 {
@@ -915,7 +925,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             {
                 // Notify disarmable
                 if (HasComp<MobStateComponent>(target.Value))
-                    PopupSystem.PopupClient(Loc.GetString("disarm-action-disarmable", ("targetName", target.Value)), target.Value);
+                    PopupSystem.PopupCursor(Loc.GetString("disarm-action-disarmable", ("targetName", target.Value)), target.Value);
 
                 return false;
             }

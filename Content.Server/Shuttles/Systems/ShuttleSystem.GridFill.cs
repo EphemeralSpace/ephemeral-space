@@ -17,7 +17,6 @@ public sealed partial class ShuttleSystem
     private void InitializeGridFills()
     {
         SubscribeLocalEvent<GridSpawnComponent, StationPostInitEvent>(OnGridSpawnPostInit);
-        SubscribeLocalEvent<StationCargoShuttleComponent, StationPostInitEvent>(OnCargoSpawnPostInit);
 
         SubscribeLocalEvent<GridFillComponent, MapInitEvent>(OnGridFillMapInit);
 
@@ -35,83 +34,12 @@ public sealed partial class ShuttleSystem
             {
                 GridSpawns(uid, comp);
             }
-
-            var cargoQuery = AllEntityQuery<StationCargoShuttleComponent>();
-
-            while (cargoQuery.MoveNext(out var uid, out var comp))
-            {
-                CargoSpawn(uid, comp);
-            }
         }
     }
 
     private void OnGridSpawnPostInit(EntityUid uid, GridSpawnComponent component, ref StationPostInitEvent args)
     {
         GridSpawns(uid, component);
-    }
-
-    private void OnCargoSpawnPostInit(EntityUid uid, StationCargoShuttleComponent component, ref StationPostInitEvent args)
-    {
-        CargoSpawn(uid, component);
-    }
-
-    private void CargoSpawn(EntityUid uid, StationCargoShuttleComponent component)
-    {
-        if (!_cfg.GetCVar(CCVars.GridFill))
-            return;
-
-        var targetGrid = _station.GetLargestGrid(uid);
-
-        if (targetGrid == null)
-            return;
-
-        _mapSystem.CreateMap(out var mapId);
-
-        if (_loader.TryLoadGrid(mapId, component.Path, out var ent))
-        {
-            if (HasComp<ShuttleComponent>(ent))
-                TryFTLProximity(ent.Value, targetGrid.Value);
-
-            _station.AddGridToStation(uid, ent.Value);
-        }
-
-        _mapSystem.DeleteMap(mapId);
-    }
-
-    private bool TryDungeonSpawn(Entity<MapGridComponent?> targetGrid, DungeonSpawnGroup group, out EntityUid spawned)
-    {
-        spawned = EntityUid.Invalid;
-
-        if (!_gridQuery.Resolve(targetGrid.Owner, ref targetGrid.Comp))
-        {
-            return false;
-        }
-
-        var dungeonProtoId = _random.Pick(group.Protos);
-
-        if (!_protoManager.Resolve(dungeonProtoId, out var dungeonProto))
-        {
-            return false;
-        }
-
-        var targetPhysics = _physicsQuery.Comp(targetGrid);
-        var spawnCoords = new EntityCoordinates(targetGrid, targetPhysics.LocalCenter);
-
-        if (group.MinimumDistance > 0f)
-        {
-            var distancePadding = MathF.Max(targetGrid.Comp.LocalAABB.Width, targetGrid.Comp.LocalAABB.Height);
-            spawnCoords = spawnCoords.Offset(_random.NextVector2(distancePadding + group.MinimumDistance, distancePadding + group.MaximumDistance));
-        }
-
-        _mapSystem.CreateMap(out var mapId);
-
-        var spawnedGrid = _mapManager.CreateGridEntity(mapId);
-
-        _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
-        _dungeon.GenerateDungeon(dungeonProto, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords);
-
-        spawned = spawnedGrid.Owner;
-        return true;
     }
 
     private bool TryGridSpawn(EntityUid targetGrid, EntityUid stationUid, MapId mapId, GridSpawnGroup group, out EntityUid spawned)
@@ -178,11 +106,6 @@ public sealed partial class ShuttleSystem
 
                 switch (group)
                 {
-                    case DungeonSpawnGroup dungeon:
-                        if (!TryDungeonSpawn(targetGrid.Value, dungeon, out spawned))
-                            continue;
-
-                        break;
                     case GridSpawnGroup grid:
                         if (!TryGridSpawn(targetGrid.Value, uid, mapId, grid, out spawned))
                             continue;
@@ -190,11 +113,6 @@ public sealed partial class ShuttleSystem
                         break;
                     default:
                         throw new NotImplementedException();
-                }
-
-                if (_protoManager.Resolve(group.NameDataset, out var dataset))
-                {
-                    _metadata.SetEntityName(spawned, _salvage.GetFTLName(dataset, _random.Next()));
                 }
 
                 if (group.Hide)

@@ -11,6 +11,9 @@
       "name": "unlocked"
     },
     {
+      "name": "id-locked"
+    },
+    {
       "name": "locked"
     },
     {

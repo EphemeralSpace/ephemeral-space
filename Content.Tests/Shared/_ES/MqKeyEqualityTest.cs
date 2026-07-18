@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Content.Shared._ES.Masks.Masquerades;
+using Content.Shared._ES.SecretIdentity.Masquerades;
 using Content.Shared._ES.Utility;
 using NUnit.Framework;
 

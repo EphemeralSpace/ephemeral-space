@@ -1,11 +1,10 @@
+using Content.Server._ES.Announcements;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
-using Content.Server.Chat.Systems;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Screens.Components;
-using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -21,6 +20,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 // ES START
 using Content.Server._ES.Radio;
+using Content.Shared._DV.Screens;
 using Content.Shared._ES.Degradation;
 using Content.Shared.Dataset;
 using Content.Shared.Random.Helpers;
@@ -32,24 +32,23 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Communications
 {
-    public sealed class CommunicationsConsoleSystem : EntitySystem
+    public sealed partial class CommunicationsConsoleSystem : EntitySystem
     {
 // ES START
-        [Dependency] private readonly IPrototypeManager _prototype = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly ESDegradationSystem _degradation = default!;
+        [Dependency] private IPrototypeManager _prototype = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private ESDegradationSystem _degradation = default!;
 // ES END
-        [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
-        [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
-        [Dependency] private readonly ChatSystem _chatSystem = default!;
-        [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
-        [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
-        [Dependency] private readonly StationSystem _stationSystem = default!;
-        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private AccessReaderSystem _accessReaderSystem = default!;
+        [Dependency] private AlertLevelSystem _alertLevelSystem = default!;
+        [Dependency] private ESAnnouncementSystem _chatSystem = default!;
+        [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private RoundEndSystem _roundEndSystem = default!;
+        [Dependency] private StationSystem _stationSystem = default!;
+        [Dependency] private UserInterfaceSystem _uiSystem = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
 
         private const float UIUpdateInterval = 5.0f;
 
@@ -130,7 +129,7 @@ namespace Content.Server.Communications
 
             msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
 
-            _chatSystem.DispatchStationAnnouncement(ent, msg, title, announcementSound: DegradationSoundEffect, colorOverride: Color.DarkGray);
+            _chatSystem.DispatchRoundAnnouncement(msg, title, announcementSound: DegradationSoundEffect, colorOverride: Color.DarkGray, important: true);
 
             args.Handled = true;
         }
@@ -160,6 +159,17 @@ namespace Content.Server.Communications
                 var entStation = _stationSystem.GetOwningStation(uid);
                 if (args.Station == entStation)
                     UpdateCommsConsoleInterface(uid, comp);
+
+                if (!TryComp<DeviceNetworkComponent>(uid, out var net))
+                    return;
+
+                var payload = new NetworkPayload
+                {
+                    [DVScreenPackets.ShowBorders] = true,
+                    [DVScreenPackets.Content] = DVScreenContent.AlertLevel,
+                };
+
+                _deviceNetworkSystem.QueuePacket(uid, null, payload, net.TransmitFrequency);
             }
         }
 
@@ -237,28 +247,6 @@ namespace Content.Server.Communications
             // no calling/recalling here
             return false;
             // ES END
-
-            // Defer to what the round end system thinks we should be able to do.
-            if (_emergency.EmergencyShuttleArrived || !_roundEndSystem.CanCallOrRecall())
-                return false;
-
-            // Ensure that we can communicate with the shuttle (either call or recall)
-            if (!comp.CanShuttle)
-                return false;
-
-            // Calling shuttle checks
-            if (_roundEndSystem.ExpectedCountdownEnd is null)
-                return true;
-
-            // Recalling shuttle checks
-            var recallThreshold = _cfg.GetCVar(CCVars.EmergencyRecallTurningPoint);
-
-            // shouldn't really be happening if we got here
-            if (_roundEndSystem.ShuttleTimeLeft is not { } left
-                || _roundEndSystem.ExpectedShuttleLength is not { } expected)
-                return false;
-
-            return !(left.TotalSeconds / expected.TotalSeconds < recallThreshold);
         }
 
         private void OnSelectAlertLevelMessage(EntityUid uid, CommunicationsConsoleComponent comp, CommunicationsConsoleSelectAlertLevelMessage message)
@@ -322,16 +310,13 @@ namespace Content.Server.Communications
 
             if (comp.Global)
             {
-                _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
-
+                _chatSystem.DispatchRoundAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following global announcement: {msg}");
                 return;
             }
 
-            _chatSystem.DispatchStationAnnouncement(uid, msg, title, colorOverride: comp.Color);
-
+            _chatSystem.DispatchRoundAnnouncement(msg, title, colorOverride: comp.Color);
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
-
         }
 
         private void OnBroadcastMessage(EntityUid uid, CommunicationsConsoleComponent component, CommunicationsConsoleBroadcastMessage message)
@@ -339,14 +324,19 @@ namespace Content.Server.Communications
             if (!TryComp<DeviceNetworkComponent>(uid, out var net))
                 return;
 
+            var msg = message.Message;
+            if (msg.Length > 20)
+                msg = msg.Substring(0, 20);
+
             var payload = new NetworkPayload
             {
-                [ScreenMasks.Text] = message.Message
+                [DVScreenPackets.Text] = (Loc.GetString("comms-console-screen-status-line1"), msg),
+                [DVScreenPackets.Content] = DVScreenContent.Text,
             };
 
             _deviceNetworkSystem.QueuePacket(uid, null, payload, net.TransmitFrequency);
 
-            _adminLogger.Add(LogType.DeviceNetwork, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following broadcast: {message.Message:msg}");
+            _adminLogger.Add(LogType.DeviceNetwork, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following broadcast: {msg:msg}");
         }
 
         private void OnCallShuttleMessage(EntityUid uid, CommunicationsConsoleComponent comp, CommunicationsConsoleCallEmergencyShuttleMessage message)

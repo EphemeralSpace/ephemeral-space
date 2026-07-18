@@ -1,0 +1,73 @@
+﻿# Really you should write your own
+- type: htnCompound
+  id: ESLeepLeachCompound
+  branches:
+  - tasks:
+    - !type:HTNCompoundTask
+      task: ESLeapLeechBite
+  - tasks:
+    - !type:HTNCompoundTask
+      task: ESLeepLeachJump
+  - tasks:
+    - !type:HTNCompoundTask
+      task: MeleeCombatCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: IdleCompound
+
+- type: htnCompound
+  id: ESLeapLeechBite
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: ESNearbyHostileOrganizationTargets
+    - !type:HTNPrimitiveTask
+      operator: !type:MeleeOperator
+        targetKey: Target
+      preconditions:
+      - !type:KeyExistsPrecondition
+        key: Target
+      - !type:TargetInRangePrecondition
+        targetKey: Target
+        rangeKey: MeleeRange
+      services:
+      - !type:UtilityService
+        id: ESNearbyHostileOrganizationTargets
+        proto: ESNearbyHostileOrganizationTargets
+        key: Target
+
+- type: htnCompound
+  id: ESLeepLeachJump
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: ESNearbyHostileOrganizationTargets
+    - !type:HTNCompoundTask
+      task: ESBeforeJumpAttackCompound
+
+- type: htnCompound
+  id: ESBeforeJumpAttackCompound
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:SetFloatOperator
+        targetKey: IdleTime
+        amount: 1
+
+    - !type:HTNPrimitiveTask
+      operator: !type:WaitOperator
+        key: IdleTime
+      preconditions:
+      - !type:KeyExistsPrecondition
+        key: IdleTime
+
+    - !type:HTNPrimitiveTask
+      operator: !type:JumpToOperator
+        targetKey: TargetCoordinates
+      services:
+      - !type:UtilityService
+        id: MeleeService
+        proto: ESNearbyHostileOrganizationTargets
+        key: TargetCoordinates

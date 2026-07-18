@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Shared._ES.Viewcone;
+using Content.Shared._ES.Viewcone.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.ComponentTrees;
 using Robust.Shared.Physics;
@@ -9,9 +9,9 @@ namespace Content.Client._ES.Viewcone.ComponentTree;
 /// <summary>
 ///     Handles gathering sprites to modify alpha in the viewcone overlays
 /// </summary>
-public sealed class ESViewconeOccludableTreeSystem : ComponentTreeSystem<ESViewconeOccludableTreeComponent, ESViewconeOccludableComponent>
+public sealed partial class ESViewconeOccludableTreeSystem : ComponentTreeSystem<ESViewconeOccludableTreeComponent, ESViewconeOccludableComponent>
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     protected override bool DoFrameUpdate => true;
     protected override bool DoTickUpdate => false;

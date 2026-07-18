@@ -1,6 +1,47 @@
 # Base
 - type: entity
-  parent: [ BaseCartridge, BaseSecurityContraband ]
+  abstract: true
+  parent: BaseItem
+  id: BaseCartridge
+  components:
+  - type: Sprite
+    drawdepth: Items
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.05,0.10,0.05"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3  # fite me
+        friction: 0.2
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StrongMetallic # We only want explosions breaking them (for the most part)
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Tag
+    tags:
+    - Cartridge
+  - type: Item
+    size: Tiny
+  - type: SpaceGarbage
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Weapons/Guns/Casings/casing_fall_2.ogg
+      params:
+        volume: -1
+
+- type: entity
+  parent: BaseCartridge
   id: ESBaseRound
   name: round
   suffix: ES
@@ -95,7 +136,7 @@
 - type: entity
   id: ESShellShotgunBeanbag
   name: beanbag slug
-  parent: [ ESBaseShellShotgun, BaseSecurityBartenderContraband ]
+  parent: ESBaseShellShotgun
   description: A 12-gauge beanbag slug. Useful for subduing unruly bar assiliants.
   components:
   - type: Tag
@@ -112,17 +153,21 @@
   - type: SpentAmmoVisuals
     state: "beanbag"
 
+# toy
 - type: entity
-  id: ESShellShotgunSlug
-  name: shotgun slug
-  description: A 12-gauge lead slug. It can cleave through armor more effectively then the typical buckshot ammunition.
-  parent: [ ESBaseShellShotgun, BaseSecurityContraband]
+  parent: ESBaseRound
+  id: CartridgeCap
+  name: cartridge (cap)
   components:
-  - type: Sprite
-    layers:
-      - state: slug
-        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Tag
+    tags:
+    - CartridgeCap
   - type: CartridgeAmmo
-    proto: ESPelletShotgunSlug
+    proto: BulletCap
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/capgun_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
   - type: SpentAmmoVisuals
-    state: "slug"
+  - type: Appearance

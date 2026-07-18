@@ -33,19 +33,6 @@
   - type: PhysicalComposition
     materialComposition:
       Cloth: 100
-  - type: StaticPrice
-    price: 5
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound: *BasePlushieSound
-    delay: 2
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
   - type: Tag
     tags:
     - Payload
@@ -128,9 +115,6 @@
   - type: Item
     size: Normal
   - type: MultiHandedItem
-  - type: Construction
-    graph: PlushieGhostRevenant
-    node: plushie
   - type: FoodSequenceElement
     entries:
       CottonBurger: RevenantPlushie
@@ -147,21 +131,6 @@
   - type: Item
     size: Normal
     sprite: Objects/Fun/Plushies/bee.rsi
-  - type: Extractable
-    grindableSolutionName: bee
-  - type: SolutionContainerManager
-    solutions:
-      bee:
-        reagents:
-        - ReagentId: GroundBee
-          Quantity: 10
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: GroundBee
-          Quantity: 5
-        - ReagentId: Fiber
-          Quantity: 5
   - type: Clothing
     quickEquip: false
     sprite: Objects/Fun/Plushies/bee.rsi
@@ -191,8 +160,6 @@
     sound: *PlushieHampterSound
   - type: EmitSoundOnCollide
     sound: *PlushieHampterSound
-  - type: Edible
-    useSound: *PlushieHampterSound
   - type: MeleeWeapon
     soundHit: *PlushieHampterSound
   - type: Clothing
@@ -315,8 +282,6 @@
     sound: *PlushieArachnidSound
   - type: EmitSoundOnCollide
     sound: *PlushieArachnidSound
-  - type: Edible
-    useSound: *PlushieArachnidSound
   - type: MeleeWeapon
     soundHit: *PlushieArachnidSound
   - type: Clothing
@@ -352,25 +317,8 @@
     sound: *PlushieLizardSound
   - type: EmitSoundOnCollide
     sound: *PlushieLizardSound
-  - type: Edible
-    useSound: *PlushieLizardSound
-    transferAmount: 10
   - type: MeleeWeapon
     soundHit: *PlushieLizardSound
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: JuiceThatMakesYouWeh
-        Quantity: 30
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
-        - ReagentId: JuiceThatMakesYouWeh
-          Quantity: 10
   - type: Clothing
     quickEquip: false
     sprite: Objects/Fun/Plushies/lizard.rsi
@@ -418,8 +366,6 @@
     sound: *PlushieExperimentSound
   - type: EmitSoundOnCollide
     sound: *PlushieExperimentSound
-  - type: Edible
-    useSound: *PlushieExperimentSound
   - type: MeleeWeapon
     soundHit: *PlushieExperimentSound
   - type: Clothing
@@ -500,8 +446,6 @@
     sound: *PlushieSpaceLizardSound
   - type: EmitSoundOnCollide
     sound: *PlushieSpaceLizardSound
-  - type: Edible
-    useSound: *PlushieSpaceLizardSound
   - type: MeleeWeapon
     soundHit: *PlushieSpaceLizardSound
   - type: Clothing
@@ -540,24 +484,8 @@
     sound: *PlushieLizardInversedSound
   - type: EmitSoundOnTrigger
     sound: *PlushieLizardInversedSound
-  - type: Edible
-    useSound: *PlushieLizardInversedSound
   - type: MeleeWeapon
     soundHit: *PlushieLizardInversedSound
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: JuiceThatMakesYouHew
-        Quantity: 30
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
-        - ReagentId: JuiceThatMakesYouHew
-          Quantity: 10
   - type: Clothing
     quickEquip: false
     sprite: Objects/Fun/Plushies/lizard.rsi
@@ -597,8 +525,6 @@
     sound: *PlushieDionaSound
   - type: MeleeWeapon
     soundHit: *PlushieDionaSound
-  - type: Edible
-    useSound: *PlushieDionaSound
   - type: SolutionContainerManager
     solutions:
       food:
@@ -677,8 +603,6 @@
     wideAnimationRotation: 90
     soundHit: *PlushieSharkSound
     animation: WeaponArcBite
-  - type: Edible
-    useSound: *PlushieSharkSound
   - type: Item
     heldPrefix: blue
     storedRotation: -90
@@ -799,8 +723,6 @@
     sound: *PlushieCarpSound
   - type: EmitSoundOnCollide
     sound: *PlushieCarpSound
-  - type: Edible
-    useSound: *PlushieCarpSound
   - type: MeleeWeapon
     wideAnimationRotation: 90
     soundHit: *PlushieCarpSound
@@ -905,8 +827,6 @@
     sound: *PlushieSlimeSound
   - type: MeleeWeapon
     soundHit: *PlushieSlimeSound
-  - type: Edible
-    useSound: *PlushieSlimeSound
   - type: Clothing
     quickEquip: false
     sprite: Objects/Fun/Plushies/slime.rsi
@@ -938,8 +858,6 @@
     sound: *PlushieSnakeSound
   - type: EmitSoundOnCollide
     sound: *PlushieSnakeSound
-  - type: Edible
-    useSound: *PlushieSnakeSound
   - type: MeleeWeapon
     wideAnimationRotation: 90
     soundHit: *PlushieSnakeSound
@@ -974,8 +892,6 @@
     sound: *PlushieMouseSound
   - type: EmitSoundOnCollide
     sound: *PlushieMouseSound
-  - type: Edible
-    useSound: *PlushieMouseSound
   - type: MeleeWeapon
     wideAnimationRotation: -90
     soundHit: *PlushieMouseSound
@@ -1010,8 +926,6 @@
     sound: *PlushieVoxSound
   - type: EmitSoundOnCollide
     sound: *PlushieVoxSound
-  - type: Edible
-    useSound: *PlushieVoxSound
   - type: MeleeWeapon
     soundHit: *PlushieVoxSound
   - type: Clothing
@@ -1073,8 +987,6 @@
     sound: *PlushieXenoSound
   - type: EmitSoundOnCollide
     sound: *PlushieXenoSound
-  - type: Edible
-    useSound: *PlushieXenoSound
   - type: MeleeWeapon
     soundHit: *PlushieXenoSound
   - type: Clothing
@@ -1137,8 +1049,6 @@
       path: /Audio/Voice/Human/malescream_4.ogg
       params:
         volume: -8
-  - type: Edible
-    useSound: *PlushieHuman1
   - type: MeleeWeapon
     soundHit: *PlushieHuman4
   - type: EmitSoundOnTrigger
@@ -1177,8 +1087,6 @@
     sound: *PlushieMothSound
   - type: MeleeWeapon
     soundHit: *PlushieMothSound
-  - type: Edible
-    useSound: *PlushieMothSound
   - type: Clothing
     quickEquip: false
     sprite: Objects/Fun/Plushies/moth.rsi
@@ -1208,12 +1116,6 @@
     sound: *PlushieVulpSound
   - type: EmitSoundOnTrigger
     sound: *PlushieVulpSound
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/Voice/Vulpkanin/vulp_scream4.ogg
-      params:
-        volume: -5
   - type: MeleeWeapon
     soundHit: *PlushieVulpSound
   - type: Clothing
@@ -1261,8 +1163,6 @@
     sound: *SoundIan
   - type: MeleeWeapon
     soundHit: *SoundIan
-  - type: Edible
-    useSound: *SoundIan
   - type: FoodSequenceElement
     entries:
       CottonBurger: IanPlushie

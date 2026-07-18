@@ -13,12 +13,12 @@ using Direction = Robust.Shared.Maths.Direction;
 
 namespace Content.Client.Hands
 {
-    public sealed class ShowHandItemOverlay : Overlay
+    public sealed partial class ShowHandItemOverlay : Overlay
     {
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IInputManager _inputManager = default!;
-        [Dependency] private readonly IClyde _clyde = default!;
-        [Dependency] private readonly IEntityManager _entMan = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IInputManager _inputManager = default!;
+        [Dependency] private IClyde _clyde = default!;
+        [Dependency] private IEntityManager _entMan = default!;
 
         private HandsSystem? _hands;
         private readonly IRenderTexture _renderBackbuffer;
@@ -65,6 +65,7 @@ namespace Content.Client.Hands
                 return;
 
             var screen = args.ScreenHandle;
+            screen.SetTransform(Matrix3x2.Identity);
             var offset = _cfg.GetCVar(CCVars.HudHeldItemOffset);
             var offsetVec = new Vector2(offset, offset);
 

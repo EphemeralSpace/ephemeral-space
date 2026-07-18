@@ -8,7 +8,7 @@ public sealed partial class NoirOverlay : Overlay
 {
     private static readonly ProtoId<ShaderPrototype> Shader = "Noir";
 
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
     public override bool RequestScreenTexture => true;
@@ -28,6 +28,8 @@ public sealed partial class NoirOverlay : Overlay
 
         var handle = args.WorldHandle;
         _noirShader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
+        _noirShader.SetParameter("intensity", 1.0f);
+        _noirShader.SetParameter("noise_intensity", 0f);
         handle.UseShader(_noirShader);
         handle.DrawRect(args.WorldBounds, Color.White);
         handle.UseShader(null);

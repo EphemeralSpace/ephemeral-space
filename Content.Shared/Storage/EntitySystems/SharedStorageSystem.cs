@@ -8,6 +8,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
+using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Implants.Components;
@@ -47,31 +48,31 @@ using Robust.Shared.Map.Enumerators;
 
 namespace Content.Shared.Storage.EntitySystems;
 
-public abstract class SharedStorageSystem : EntitySystem
+public abstract partial class SharedStorageSystem : EntitySystem
 {
-    [Dependency] private   readonly IConfigurationManager _cfg = default!;
-    [Dependency] private   readonly IPrototypeManager _prototype = default!;
-    [Dependency] protected readonly IRobustRandom Random = default!;
-    [Dependency] private   readonly ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] protected IRobustRandom Random = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
 
-    [Dependency] protected readonly ActionBlockerSystem ActionBlocker = default!;
-    [Dependency] private   readonly EntityLookupSystem _entityLookupSystem = default!;
-    [Dependency] private   readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private   readonly InventorySystem _inventory = default!;
-    [Dependency] private   readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] protected readonly SharedContainerSystem ContainerSystem = default!;
-    [Dependency] private   readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] protected readonly SharedEntityStorageSystem EntityStorage = default!;
-    [Dependency] private   readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] protected readonly SharedItemSystem ItemSystem = default!;
-    [Dependency] private   readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private   readonly SharedHandsSystem _sharedHandsSystem = default!;
-    [Dependency] private   readonly SharedStackSystem _stack = default!;
-    [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
-    [Dependency] private   readonly TagSystem _tag = default!;
-    [Dependency] protected readonly UseDelaySystem UseDelay = default!;
+    [Dependency] protected ActionBlockerSystem ActionBlocker = default!;
+    [Dependency] private EntityLookupSystem _entityLookupSystem = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] protected SharedContainerSystem ContainerSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] protected SharedEntityStorageSystem EntityStorage = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] protected SharedItemSystem ItemSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedHandsSystem _sharedHandsSystem = default!;
+    [Dependency] private SharedStackSystem _stack = default!;
+    [Dependency] protected SharedTransformSystem TransformSystem = default!;
+    [Dependency] protected SharedUserInterfaceSystem UI = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] protected UseDelaySystem UseDelay = default!;
 
     private EntityQuery<ItemComponent> _itemQuery;
     private EntityQuery<StackComponent> _stackQuery;
@@ -142,6 +143,7 @@ public abstract class SharedStorageSystem : EntitySystem
         SubscribeLocalEvent<StorageComponent, GetVerbsEvent<ActivationVerb>>(AddUiVerb);
         SubscribeLocalEvent<StorageComponent, ComponentGetState>(OnStorageGetState);
         SubscribeLocalEvent<StorageComponent, ComponentInit>(OnComponentInit, before: new[] { typeof(SharedContainerSystem) });
+        SubscribeLocalEvent<StorageComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<StorageComponent, GetVerbsEvent<UtilityVerb>>(AddTransferVerbs);
         SubscribeLocalEvent<StorageComponent, InteractUsingEvent>(OnInteractUsing, after: new[] { typeof(ItemSlotsSystem) });
         SubscribeLocalEvent<StorageComponent, ActivateInWorldEvent>(OnActivate);
@@ -283,6 +285,27 @@ public abstract class SharedStorageSystem : EntitySystem
 
         // Make sure the initial starting grid is okay.
         UpdateOccupied((uid, storageComp));
+    }
+
+    private void OnExamined(Entity<StorageComponent> ent, ref ExaminedEvent args)
+    {
+        if (MathHelper.CloseTo(ent.Comp.ItemPickupTimeMultiplier, 1))
+            return;
+
+        if (ent.Comp.ItemPickupTimeMultiplier > 1)
+        {
+            args.PushMarkup(Loc.GetString("es-storage-examine-pickup-speed",
+                ("name", Name(ent)),
+                ("val", false),
+                ("mul", MathF.Round(ent.Comp.ItemPickupTimeMultiplier, 1))));
+        }
+        else
+        {
+            args.PushMarkup(Loc.GetString("es-storage-examine-pickup-speed",
+                ("name", Name(ent)),
+                ("val", true),
+                ("mul", MathF.Round(1f / ent.Comp.ItemPickupTimeMultiplier, 1))));
+        }
     }
 
     /// <summary>
@@ -740,7 +763,24 @@ public abstract class SharedStorageSystem : EntitySystem
                 LogImpact.Low,
                 $"{ToPrettyString(player):player} is attempting to take {ToPrettyString(item):item} out of {ToPrettyString(storage):storage}");
 
-            if (_sharedHandsSystem.TryPickupAnyHand(player, item, handsComp: player.Comp)
+            if (!ProtoMan.TryIndex(item.Comp.Size, out var size))
+                return;
+
+            var ev = new DoAfterArgs(EntityManager,
+                player,
+                size.BasePickupTime * storage.Comp.ItemPickupTimeMultiplier,
+                new ItemPickupDoAfterEvent(),
+                item.Owner,
+                item.Owner)
+            {
+                BlockDuplicate = false,
+                BreakOnHandChange = false,
+                BreakOnMove = false,
+                DistanceThreshold = 1.5f,
+                FaceTarget = false,
+            };
+
+            if (_doAfterSystem.TryStartDoAfter(ev)
                 && storage.Comp.StorageRemoveSound != null
                 && !_tag.HasTag(player, storage.Comp.SilentStorageUserTag))
             {
@@ -823,6 +863,7 @@ public abstract class SharedStorageSystem : EntitySystem
             return;
         }
 
+        // todo mirror probably suss this out later if this can bypass anything
         if (!TryComp(localPlayer, out HandsComponent? handsComp) || !_sharedHandsSystem.TryPickup(localPlayer.Value, itemEnt, handsComp: handsComp, animate: false))
             return;
 
@@ -1259,13 +1300,13 @@ public abstract class SharedStorageSystem : EntitySystem
 
         if (!CanInsert(ent, toInsert.Value, out var reason, ent.Comp))
         {
-            _popupSystem.PopupClient(Loc.GetString(reason ?? "comp-storage-cant-insert"), ent, player);
+            _popupSystem.PopupEntity(Loc.GetString(reason ?? "comp-storage-cant-insert"), ent, player);
             return false;
         }
 
         if (!_sharedHandsSystem.CanDrop(player, toInsert.Value))
         {
-            _popupSystem.PopupClient(Loc.GetString("comp-storage-cant-drop", ("entity", toInsert.Value)), ent, player);
+            _popupSystem.PopupEntity(Loc.GetString("comp-storage-cant-drop", ("entity", toInsert.Value)), ent, player);
             return false;
         }
 
@@ -1287,7 +1328,7 @@ public abstract class SharedStorageSystem : EntitySystem
 
         if (!Insert(uid, toInsert, out _, user: player, uid.Comp, playSound: playSound))
         {
-            _popupSystem.PopupClient(Loc.GetString("comp-storage-cant-insert"), uid, player);
+            _popupSystem.PopupEntity(Loc.GetString("comp-storage-cant-insert"), uid, player);
             return false;
         }
         return true;

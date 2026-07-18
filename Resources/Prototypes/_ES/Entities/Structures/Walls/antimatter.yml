@@ -1,0 +1,18 @@
+# AME containment
+- type: entity
+  parent: WallReinforced
+  id: ESWallAntimatter
+  name: antimatter containment wall
+  description: Keeps the darkness in and the matter out.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Walls/antimatter.rsi
+  - type: Icon
+    sprite: _ES/Structures/Walls/antimatter.rsi
+    state: full
+  - type: IconSmooth
+    key: amwalls
+    base: ame
+  - type: ReinforcedWallReplacementMarker
+    replace: false
+  - type: ESAmbientMusicMarkerEngineering

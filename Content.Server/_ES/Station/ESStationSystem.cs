@@ -1,12 +1,9 @@
-using System.Linq;
 using Content.Server._ES.Station.Components;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
-using Content.Server.Procedural;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Shared._ES.CCVar;
-using Content.Shared._ES.Light.Components;
 using Content.Shared._ES.Station;
 using Content.Shared.CCVar;
 using Content.Shared.Roles;
@@ -17,7 +14,6 @@ using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
-using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -27,21 +23,14 @@ namespace Content.Server._ES.Station;
 ///     Handles ES-specific station handling -- technically supports multistation, though we aren't using it initially
 ///     Better support for dungeons/debris/map components and what not than normal station configs
 /// </summary>
-public sealed class ESStationSystem : ESSharedStationSystem
+public sealed partial class ESStationSystem : ESSharedStationSystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IGameMapManager _gameMap = default!;
-    [Dependency] private readonly DungeonSystem _dungeon = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly ShuttleSystem _shuttle = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IGameMapManager _gameMap = default!;
+    [Dependency] private MapLoaderSystem _mapLoader = default!;
 
     private static readonly ProtoId<ESStationConfigPrototype> DefaultConfig = "ESDefault";
 
@@ -194,52 +183,6 @@ public sealed class ESStationSystem : ESSharedStationSystem
 
         if (!Resolve(map, ref map.Comp) || map.Comp.GridsLoaded)
             return;
-
-        var config = _prototype.Index(map.Comp.Config);
-
-        foreach (var dungeon in config.Dungeons)
-        {
-            var count = dungeon.Count.Get(_random.GetRandom());
-            for (var i = 0; i < count; i++)
-            {
-                _map.CreateMap(out var mapId);
-                var spawnedGrid = _mapManager.CreateGridEntity(mapId);
-
-                EntityManager.AddComponents(spawnedGrid, dungeon.Components);
-
-                var dungeonProto = _prototype.Index(_random.Pick(dungeon.Configs));
-                var distance = dungeon.Distance.Get(_random.GetRandom());
-                var pos = _random.NextAngle().ToVec() * distance;
-
-                await _dungeon.GenerateDungeonAsync(dungeonProto,
-                    spawnedGrid.Owner,
-                    spawnedGrid.Comp,
-                    Vector2i.Zero,
-                    _random.Next());
-
-                var coords = new EntityCoordinates(map, pos);
-                if (dungeon.ForcePos)
-                {
-                    var gridXform = Transform(spawnedGrid);
-
-                    var angle = _random.NextAngle();
-
-                    var transform = new Transform(_transform.ToWorldPosition(gridXform.Coordinates), angle);
-                    var adjustedOffset = Robust.Shared.Physics.Transform.Mul(transform, spawnedGrid.Comp.LocalAABB.Center);
-
-                    _transform.SetCoordinates(spawnedGrid, coords.Offset(adjustedOffset));
-                }
-                else
-                {
-                    _shuttle.TryFTLProximity(spawnedGrid.Owner, coords);
-                }
-
-                if (dungeon.Name is { } name)
-                {
-                    _meta.SetEntityName(spawnedGrid, Loc.GetString(_random.Pick(_prototype.Index(name).Values)));
-                }
-            }
-        }
 
         map.Comp.GridsLoaded = true;
     }

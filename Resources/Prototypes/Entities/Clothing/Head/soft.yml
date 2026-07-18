@@ -71,7 +71,6 @@
     - ClothMade
     - Recyclable
     - HamsterWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCargosoft]
@@ -83,55 +82,6 @@
     - ClothMade
     - Recyclable
     - HamsterWearable
-    - WhitelistChameleon
-
-- type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
-  id: ClothingHeadHatQMsoft
-  name: quartermaster's cap
-  description: A baseball cap colored to match the Quartermaster's uniform.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/qmsoft.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/qmsoft.rsi
-
-- type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatQMsoft]
-  id: ClothingHeadHatQMsoftFlipped
-  name: quartermaster's cap
-
-- type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
-  id: ClothingHeadHatCommandSoft
-  name: command cap
-  description: A baseball cap in command's distinctive shade of blue.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/commandsoft.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/commandsoft.rsi
-
-- type: entity
-  parent: [ ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCommandSoft ]
-  id: ClothingHeadHatCommandSoftFlipped
-  name: command cap
-
-- type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
-  id: ClothingHeadHatCorpsoft
-  name: corporate cap
-  description: A baseball cap in corporation colors.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/corpsoft.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/corpsoft.rsi
-
-- type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCorpsoft]
-  id: ClothingHeadHatCorpsoftFlipped
-  name: corporate cap
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -228,7 +178,6 @@
     - ClothMade
     - Recyclable
     - HamsterWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatPurplesoft]
@@ -240,7 +189,6 @@
     - ClothMade
     - Recyclable
     - HamsterWearable
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
@@ -260,22 +208,6 @@
 
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable
-  id: ClothingHeadHatSecsoft
-  name: security cap
-  description: A baseball cap colored to match security's uniforms.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/secsoft.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/secsoft.rsi
-
-- type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatSecsoft]
-  id: ClothingHeadHatSecsoftFlipped
-  name: security cap
-
-- type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatYellowsoft
   name: yellow cap
   description: A yellow baseball cap.
@@ -289,48 +221,3 @@
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatYellowsoft]
   id: ClothingHeadHatYellowsoftFlipped
   name: yellow cap
-
-- type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
-  id: ClothingHeadHatBizarreSoft
-  name: troublemaker's cap
-  description: A truly.. bizarre accessory.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/bizarresoft.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/bizarresoft.rsi
-
-- type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatBizarreSoft]
-  id: ClothingHeadHatBizarreSoftFlipped
-  name: troublemaker's cap
-
-- type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
-  id: ClothingHeadHatParamedicsoft
-  name: paramedic cap
-  description: A blue baseball cap with a cross on the front.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/paramedicsoft.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/paramedicsoft.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - HamsterWearable
-    - WhitelistChameleon
-
-- type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatParamedicsoft]
-  id: ClothingHeadHatParamedicsoftFlipped
-  name: paramedic cap
-  components:
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - HamsterWearable
-    - WhitelistChameleon

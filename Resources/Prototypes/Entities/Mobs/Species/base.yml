@@ -2,10 +2,7 @@
   save: false
   parent:
   - BaseMob
-  # ES START
-  - ESBaseMob
-  - ESBaseMobActions
-  # ES END
+  - ESBaseMob # ES START
   # - MobDamageable # Offbrand - we don't want thresholds
   - MobPolymorphable
   - MobCombat
@@ -39,9 +36,11 @@
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "outerClothing" ]
-    - map: [ "back" ]
+    # ES START
     - map: [ "neck" ]
+    - map: [ "outerClothing" ]
+    # ES END
+    - map: [ "back" ]
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
@@ -177,7 +176,6 @@
     interactSuccessString: hugging-success-generic
     interactSuccessSound: /Audio/Effects/thudswoosh.ogg
     messagePerceivedByOthers: hugging-success-generic-others
-  - type: CanHostGuardian
   - type: NpcFactionMember
     factions:
     - NanoTrasen
@@ -209,9 +207,6 @@
   - type: Grammar
     attributes:
       proper: true
-  - type: MobPrice
-    price: 1500 # Kidnapping a living person and selling them for cred is a good move.
-    deathPenalty: 0.01 # However they really ought to be living and intact, otherwise they're worth 100x less.
   - type: Tag
     tags:
     - CanPilot
@@ -242,15 +237,16 @@
       types:
         Blunt: 0.50 #per second, scales with pressure and other constants.
         Heat: 0.1
-  - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
-    allowedStates:
-    - Alive
-    damageCap: 20
-    damage:
-      types:
-        Heat: -0.07
-      groups:
-        Brute: -0.07
+    # Offbrand - wounds manage this
+    # - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
+    #   allowedStates:
+    #   - Alive
+    # damageCap:
+    # damage:
+    #   types:
+    #     Heat: -0.25 # Offbrand - more generous passive healing
+    #   groups:
+    #     Brute: -0.25 # Offbrand - more generous passive healing
   - type: Fingerprint
   - type: Blindable
   # Other
@@ -282,7 +278,7 @@
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 310.15
     thermalRegulationTemperatureThreshold: 2
-  - type: Perishable
+  - type: ESMiasmaSource
   - type: Butcherable
     butcheringType: Spike # TODO human.
     spawned:

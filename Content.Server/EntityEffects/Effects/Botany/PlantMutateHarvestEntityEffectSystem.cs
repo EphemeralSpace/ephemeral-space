@@ -5,7 +5,7 @@ using Content.Shared.EntityEffects.Effects.Botany;
 
 namespace Content.Server.EntityEffects.Effects.Botany;
 
-public sealed partial class PlantMutateHarvestEntityEffectSystem : EntityEffectSystem<PlantHolderComponent, PlantMutateHarvest>
+public sealed class PlantMutateHarvestEntityEffectSystem : EntityEffectSystem<PlantHolderComponent, PlantMutateHarvest>
 {
     protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEffectEvent<PlantMutateHarvest> args)
     {

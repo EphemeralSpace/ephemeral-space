@@ -6,12 +6,10 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Botany;
-using Content.Shared.Burial.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
-using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -23,7 +21,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.EntityEffects;
@@ -32,24 +29,24 @@ using Content.Shared.Labels.Components;
 
 namespace Content.Server.Botany.Systems;
 
-public sealed class PlantHolderSystem : EntitySystem
+public sealed partial class PlantHolderSystem : EntitySystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly BotanySystem _botany = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly MutationSystem _mutation = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private BotanySystem _botany = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private MutationSystem _mutation = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private RandomHelperSystem _randomHelper = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
 
     public const float HydroponicsSpeedMultiplier = 1f;
     public const float HydroponicsConsumptionMultiplier = 2f;
@@ -240,26 +237,6 @@ public sealed class PlantHolderSystem : EntitySystem
             else
             {
                 _popup.PopupCursor(Loc.GetString("plant-holder-component-no-weeds-message"), args.User);
-            }
-
-            return;
-        }
-
-        if (HasComp<ShovelComponent>(args.Used))
-        {
-            args.Handled = true;
-            if (component.Seed != null)
-            {
-                _popup.PopupCursor(Loc.GetString("plant-holder-component-remove-plant-message",
-                    ("name", Comp<MetaDataComponent>(uid).EntityName)), args.User, PopupType.Medium);
-                _popup.PopupEntity(Loc.GetString("plant-holder-component-remove-plant-others-message",
-                    ("name", Comp<MetaDataComponent>(args.User).EntityName)), uid, Filter.PvsExcept(args.User), true);
-                RemovePlant(uid, component);
-            }
-            else
-            {
-                _popup.PopupCursor(Loc.GetString("plant-holder-component-no-plant-message",
-                    ("name", Comp<MetaDataComponent>(uid).EntityName)), args.User);
             }
 
             return;

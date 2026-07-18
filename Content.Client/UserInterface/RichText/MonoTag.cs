@@ -1,8 +1,5 @@
-using System.Linq;
-using Robust.Client.ResourceManagement;
+using Content.Client.Stylesheets.Fonts;
 using Robust.Client.UserInterface.RichText;
-using Robust.Shared.IoC;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Client.UserInterface.RichText;
@@ -10,19 +7,17 @@ namespace Content.Client.UserInterface.RichText;
 /// <summary>
 /// Sets the font to a monospaced variant
 /// </summary>
-public sealed class MonoTag : IMarkupTagHandler
+public sealed partial class MonoTag : IMarkupTagHandler
 {
-    public static readonly ProtoId<FontPrototype> MonoFont = "Monospace";
-
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IFontSelectionManager _fontSelection = default!;
 
     public string Name => "mono";
 
     /// <inheritdoc/>
     public void PushDrawContext(MarkupNode node, MarkupDrawingContext context)
     {
-        var font = FontTag.CreateFont(context.Font, node, _resourceCache, _prototypeManager, MonoFont);
+        var fontSize = FontTag.GetSizeForFontTag(context.Font, node);
+        var font = _fontSelection.GetFont(StandardFontType.Monospace, fontSize);
         context.Font.Push(font);
     }
 

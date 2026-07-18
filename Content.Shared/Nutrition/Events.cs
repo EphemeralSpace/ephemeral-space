@@ -33,31 +33,6 @@ public sealed partial class ConsumeDoAfterEvent : DoAfterEvent
 }
 
 /// <summary>
-///     Do after event for vape.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed partial class VapeDoAfterEvent : DoAfterEvent
-{
-    [DataField("solution", required: true)]
-    public Solution Solution = default!;
-
-    [DataField("forced", required: true)]
-    public bool Forced = default!;
-
-    private VapeDoAfterEvent()
-    {
-    }
-
-    public VapeDoAfterEvent(Solution solution, bool forced)
-    {
-        Solution = solution;
-        Forced = forced;
-    }
-
-    public override DoAfterEvent Clone() => this;
-}
-
-/// <summary>
 /// Raised before food is sliced
 /// </summary>
 [ByRefEvent]

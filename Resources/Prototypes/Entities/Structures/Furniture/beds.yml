@@ -37,7 +37,6 @@
     placeCentered: true
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger: # Excess damage, don't spawn entities
@@ -48,7 +47,7 @@
         acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 100
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]

@@ -17,28 +17,32 @@ public sealed partial class ESPortalGeneratorConsoleWindow : FancyWindow
         RobustXamlLoader.Load(this);
 
         ChargeBar.ForegroundStyleBoxOverride = new StyleBoxFlat(Color.Yellow);
-        ResearchBar.ForegroundStyleBoxOverride = new StyleBoxFlat(Color.Magenta);
 
         ActivateButton.OnPressed += _ => OnActivatePressed?.Invoke();
     }
 
     public void Update(ESPortalGeneratorConsoleBuiState state)
     {
-        StatusLabel.UnsafeSetMarkup(state.Charge >= 1
-            ? Loc.GetString("es-ui-portalgen-console-label-status-ready")
-            : state.Charging
-                ? Loc.GetString("es-ui-portalgen-console-label-status-charging")
-                : Loc.GetString("es-ui-portalgen-console-label-status-nopower"));
+        if (state.FinalPhase)
+        {
+            StatusLabel.UnsafeSetMarkup(Loc.GetString("es-ui-portalgen-console-label-status-final-charging"));
+        }
+        else if (state.Interrupted)
+        {
+            StatusLabel.UnsafeSetMarkup(Loc.GetString("es-ui-portalgen-console-label-status-blocked"));
+        }
+        else
+        {
+            StatusLabel.UnsafeSetMarkup(state.Charge >= 1
+                ? Loc.GetString("es-ui-portalgen-console-label-status-ready")
+                : Loc.GetString("es-ui-portalgen-console-label-status-charging"));
+        }
 
-        ActivateButton.Disabled = state.Charge < 1 || state.ThreatsLeft > 0;
+        ActivateButton.Disabled = state.Charge < 1 || state.FinalPhase;
 
         ChargeLabel.UnsafeSetMarkup(Loc.GetString("es-ui-portalgen-console-label-charge-fmt",
             ("charge", (int) (state.Charge * 100))));
 
-        ThreatsLeftLabel.UnsafeSetMarkup(Loc.GetString("es-ui-portalgen-console-label-status-stillthreats",
-            ("threats", state.ThreatsLeft)));
-
         ChargeBar.Value = state.Charge;
-        ResearchBar.Value = (float) state.CurrentResearchStage / state.MaxResearchStage;
     }
 }

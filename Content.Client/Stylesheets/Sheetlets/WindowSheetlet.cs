@@ -60,11 +60,11 @@ public sealed class WindowSheetlet<T> : Sheetlet<T>
             E<Label>()
                 .Class(DefaultWindow.StyleClassWindowTitle)
                 .FontColor(sheet.HighlightPalette.Text)
-                .Font(sheet.BaseFont.GetFont(14, FontKind.Bold)),
+                .Font(sheet.Fonts.GetFont(StandardFontType.Title, 18, FontKind.Bold)),
             E<Label>()
                 .Class("windowTitleAlert")
                 .FontColor(Color.White)
-                .Font(sheet.BaseFont.GetFont(14, FontKind.Bold)),
+                .Font(sheet.Fonts.GetFont(StandardFontType.Title, 18, FontKind.Bold)),
             // TODO: maybe also change everything here to `NanoWindow` or something
             E()
                 .Class(DefaultWindow.StyleClassWindowPanel)
@@ -104,9 +104,7 @@ public sealed class WindowSheetlet<T> : Sheetlet<T>
             // Title
             E<Label>()
                 .Class("FancyWindowTitle") // TODO: hardcoding class name
-                // ES START
-                .Font(ResCache.GetFont("/Fonts/_ES/Geo/Geo-Regular.ttf", 18)) // TODO: hardcoding font
-                // ES END
+                .Font(sheet.Fonts.GetFont(StandardFontType.MachineTitle, 13))
                 .FontColor(sheet.HighlightPalette.Text),
 
             // Help Button
@@ -127,7 +125,7 @@ public sealed class WindowSheetlet<T> : Sheetlet<T>
             // Footer
             E<Label>()
                 .Class("WindowFooterText") // TODO: hardcoding font
-                .Prop(Label.StylePropertyFont, sheet.BaseFont.GetFont(8))
+                .Prop(Label.StylePropertyFont, sheet.Fonts.GetFont(StandardFontType.Main, 8))
                 .Prop(Label.StylePropertyFontColor, Color.FromHex("#757575")),
         ];
     }

@@ -196,6 +196,4 @@
         - SmallMobMask
         layer:
         - MachineLayer
-  - type: StaticPrice
-    price: 7500
   - type: ESAmbientMusicMarkerEngineering

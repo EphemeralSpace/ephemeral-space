@@ -10,9 +10,8 @@
     flavors:
       - food
   - type: Edible
+  - type: ESFood
   - type: Sprite
-  - type: StaticPrice
-    price: 0
 
 #
 # Base component for consumable food
@@ -24,20 +23,6 @@
   id: FoodBase
   components:
   - type: SpaceGarbage
-
-# This base type is used to cover all of the "obvious" things that should be doable to open-package food.
-# Practically this means injection.
-# But it might in future also mean drawing with a syringe, so this is a base prototype just in case.
-
-- type: entity
-  abstract: true
-  parent: FoodBase
-  id: FoodInjectableBase
-  components:
-  - type: InjectableSolution
-    solution: food
-  - type: RefillableSolution
-    solution: food
 
 # usable by any food that can be opened
 # handles appearance with states "icon" and "icon-open"

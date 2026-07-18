@@ -2353,33 +2353,12 @@ entities:
     - type: Transform
       pos: 7.5,10.5
       parent: 2
-- proto: ClothingHeadPyjamaSyndicateBlack
-  entities:
-  - uid: 450
-    components:
-    - type: Transform
-      pos: 11.5,-4.5
-      parent: 2
-- proto: ClothingNeckScarfStripedSyndieRed
-  entities:
-  - uid: 243
-    components:
-    - type: Transform
-      pos: 11.5,2.5
-      parent: 2
 - proto: ClothingNeckStethoscope
   entities:
   - uid: 441
     components:
     - type: Transform
       pos: -15.5,-0.5
-      parent: 2
-- proto: ClothingUniformJumpsuitPyjamaSyndicateBlack
-  entities:
-  - uid: 451
-    components:
-    - type: Transform
-      pos: 11.5,-4.5
       parent: 2
 - proto: Cobweb1
   entities:
@@ -3161,13 +3140,11 @@ entities:
   - uid: 751
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 4.5,-6.5
       parent: 2
   - uid: 764
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,5.5
       parent: 2
 - proto: Grille
@@ -3354,7 +3331,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -15.5,0.5
       parent: 2
-- proto: InterdyneFlippo
+- proto: FlippoLighter
   entities:
   - uid: 850
     components:
@@ -3389,7 +3366,7 @@ entities:
     - type: Transform
       pos: -13.5,-2.5
       parent: 2
-- proto: LockerBooze
+- proto: LockerCabinet
   entities:
   - uid: 150
     components:
@@ -4010,16 +3987,6 @@ entities:
     - type: Transform
       pos: 1.5,-4.5
       parent: 2
-- proto: SyndicateComputerComms
-  entities:
-  - uid: 415
-    components:
-    - type: Transform
-      pos: -16.5,-2.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - NuclearOperative
 - proto: Table
   entities:
   - uid: 426

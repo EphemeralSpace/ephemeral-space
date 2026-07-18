@@ -1,0 +1,24 @@
+- type: guideEntry
+  id: Jobs
+  hidden: false
+  name: Jobs
+  priority: 3
+  text: "/ServerInfo/_ES/Guidebook/Jobs.xml"
+  children:
+  - Assistant
+  - AtmosphericTechnician
+  - Bartender
+  - Captain
+  - Chef
+  - Clown
+  - Coroner
+  - Detective
+  - OffbrandPhysician
+  - StationAdmin
+  - Janitor
+  - OffbrandParamedic
+  - Quartermaster
+  - Reporter
+  - Scientist
+  - SecurityOfficer
+  - StationEngineer

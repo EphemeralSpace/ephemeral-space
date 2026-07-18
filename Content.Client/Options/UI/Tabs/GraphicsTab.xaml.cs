@@ -12,7 +12,7 @@ namespace Content.Client.Options.UI.Tabs;
 [GenerateTypedNameReferences]
 public sealed partial class GraphicsTab : Control
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     public GraphicsTab()
     {
@@ -60,12 +60,6 @@ public sealed partial class GraphicsTab : Control
         vpVertFit.ImmediateValueChanged += _ => UpdateViewportSettingsVisibility();
         IntegerScalingCheckBox.OnToggled += _ => UpdateViewportSettingsVisibility();
 
-        Control.AddOptionSlider(
-            CCVars.ViewportWidth,
-            ViewportWidthSlider,
-            (int)ViewportWidthSlider.Slider.MinValue,
-            (int)ViewportWidthSlider.Slider.MaxValue);
-
         Control.AddOption(new OptionIntegerScaling(Control, _cfg, IntegerScalingCheckBox));
         Control.AddOptionCheckBox(CCVars.ViewportScaleRender, ViewportLowResCheckBox, invert: true);
         Control.AddOptionCheckBox(CCVars.ParallaxLowQuality, ParallaxLowQualityCheckBox);
@@ -73,10 +67,6 @@ public sealed partial class GraphicsTab : Control
 
         Control.Initialize();
 
-        _cfg.OnValueChanged(CCVars.ViewportMinimumWidth, _ => UpdateViewportWidthRange());
-        _cfg.OnValueChanged(CCVars.ViewportMaximumWidth, _ => UpdateViewportWidthRange());
-
-        UpdateViewportWidthRange();
         UpdateViewportSettingsVisibility();
     }
 
@@ -85,17 +75,7 @@ public sealed partial class GraphicsTab : Control
         ViewportScaleSlider.Visible = !ViewportStretchCheckBox.Pressed;
         IntegerScalingCheckBox.Visible = ViewportStretchCheckBox.Pressed;
         ViewportVerticalFitCheckBox.Visible = ViewportStretchCheckBox.Pressed;
-        ViewportWidthSlider.Visible = !ViewportStretchCheckBox.Pressed || !ViewportVerticalFitCheckBox.Pressed;
         DropDownFilterMode.Visible = !IntegerScalingCheckBox.Pressed && ViewportStretchCheckBox.Pressed;
-    }
-
-    private void UpdateViewportWidthRange()
-    {
-        var min = _cfg.GetCVar(CCVars.ViewportMinimumWidth);
-        var max = _cfg.GetCVar(CCVars.ViewportMaximumWidth);
-
-        ViewportWidthSlider.Slider.MinValue = min;
-        ViewportWidthSlider.Slider.MaxValue = max;
     }
 
     private sealed class OptionLightingQuality : BaseOption

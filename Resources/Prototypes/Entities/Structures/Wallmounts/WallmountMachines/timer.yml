@@ -4,7 +4,6 @@
   name: signal timer
   description: It's a timer for sending timed signals to things.
   components:
-  - type: StationAiWhitelist
   - type: WallMount
     arc: 360
   - type: Sprite

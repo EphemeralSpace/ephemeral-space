@@ -1,11 +1,11 @@
 - type: job
   id: ESDetective
+  parent: ESBaseJobSecurityNaming
   name: ESjob-name-detective
   description: ESjob-description-detective
   playTimeTracker: ESJobDetective
   startingGear: ESDetectiveGear
   icon: "JobIconDetective"
-  supervisors: job-supervisors-hop
   canBeAntag: false
   access:
   - Security

@@ -63,9 +63,8 @@
     speedModifierThresholds:
       60: 0.7
       80: 0.5
-  - type: MobPrice
-    price: 1000 # Living critters are valuable in space.
-  - type: Perishable
+  - type: ESMiasmaSource
+    molPerSecond: 0.005 # 1/4 base rate
 
 - type: entity
   parent:
@@ -77,13 +76,6 @@
   abstract: true
   components:
   - type: Hunger
-    thresholds: # only animals and rats are derived from this prototype so let's override it here and in rats' proto
-      Overfed: 100
-      Okay: 50
-      Peckish: 25
-      Starving: 10
-      Dead: 0
-    baseDecayRate: 0.00925925925926 # it is okay for animals to eat and drink less than humans, but more frequently
   - type: Thirst
     thresholds:
       OverHydrated: 200
@@ -105,6 +97,4 @@
       reagents:
       - ReagentId: Blood
         Quantity: 150
-  - type: MobPrice
-    price: 150
   - type: FloatingVisuals

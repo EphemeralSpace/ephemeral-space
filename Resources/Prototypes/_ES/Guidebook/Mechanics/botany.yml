@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: Botany
+  hidden: false
+  name: Botany
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Botany.xml"

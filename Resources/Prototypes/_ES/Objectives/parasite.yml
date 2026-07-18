@@ -1,0 +1,41 @@
+- type: entity
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectiveParasiteInfect
+  name: Infect the station
+  description: Spread the parasites across the station. Once the infected make up the majority, it'll be time to swarm.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: _ES/Objects/Weapons/Melee/wormblade.rsi
+      state: icon
+  - type: ESOrganizationOutnumberObjective
+    organization: Parasite
+
+# Secret identity objectives, but used broadly for all parasites
+- type: entity
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectiveParasiteDie
+  name: Be killed
+  description: Once someone not of our kind kills us, the parasites in our body will respond to their brain hormones and launch into action.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
+  - type: ESCounterObjective
+  - type: ESBeKilledObjective
+
+- type: entity
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectiveParasiteDoNotKill
+  name: Don't harm others
+  description: The parasite in your head is extremely sensitive to hormonal changes caused by harming. A small amount would be fine, but too much will send it into a frenzy, killing you.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Species/Human/organs.rsi
+      state: brain
+    invertProgress: true
+  - type: ESCounterObjective
+    target: 200
+  - type: ESParasiteDamageObjective

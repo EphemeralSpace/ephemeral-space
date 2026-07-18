@@ -12,14 +12,12 @@ namespace Content.Shared.Maps;
 /// <summary>
 ///     This system provides various useful helper methods for turfs & tiles. Replacement for <see cref="TurfHelpers"/>
 /// </summary>
-public sealed class TurfSystem : EntitySystem
+public sealed partial class TurfSystem : EntitySystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefinitions = default!;
-
+    [Dependency] private SharedMapSystem _mapManager = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private ITileDefinitionManager _tileDefinitions = default!;
 
     /// <summary>
     /// Attempts to get the turf at or under some given coordinates or null if no such turf exists.
@@ -35,7 +33,7 @@ public sealed class TurfSystem : EntitySystem
         if (!_mapManager.TryFindGridAt(pos, out var gridUid, out var gridComp))
             return null;
 
-        if (!_mapSystem.TryGetTileRef(gridUid, gridComp, coordinates, out var tile))
+        if (!_mapManager.TryGetTileRef(gridUid, gridComp, coordinates, out var tile))
             return null;
 
         return tile;
@@ -201,7 +199,7 @@ public sealed class TurfSystem : EntitySystem
 /// <summary>
 ///     Extension methods for looking up entities with respect to given turfs.
 /// </summary>
-public static partial class TurfLookupExtensions
+public static class TurfLookupExtensions
 {
     /// <summary>
     ///     Collects all of the entities overlapping with a given turf into a provided <see cref="HashSet{EntityUid}"/>.
@@ -212,7 +210,7 @@ public static partial class TurfLookupExtensions
     public static void GetEntitiesInTile(this EntityLookupSystem lookupSystem, TileRef turf, HashSet<EntityUid> intersecting, LookupFlags flags = LookupFlags.Static)
     {
         var bounds = lookupSystem.GetWorldBounds(turf);
-        bounds.Box = bounds.Box.Scale(0.9f); // Otherwise the box can clip into neighboring tiles.
+        bounds.Box = bounds.Box.Scale(0.75f); // Otherwise the box can clip into neighboring tiles.
         lookupSystem.GetEntitiesIntersecting(turf.GridUid, bounds, intersecting, flags);
     }
 

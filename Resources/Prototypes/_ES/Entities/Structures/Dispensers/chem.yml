@@ -32,9 +32,6 @@
   - type: GuideHelp
     guides:
     - Chemicals
-    - OffbrandChemist
-  - type: StealTarget
-    stealGroup: ChemDispenser
   - type: Fixtures
     fixtures:
       fix1:

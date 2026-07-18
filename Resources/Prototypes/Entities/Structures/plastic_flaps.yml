@@ -42,8 +42,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: StaticPrice
-    price: 100
 
 - type: entity
   id: PlasticFlapsClear
@@ -96,8 +94,6 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Airtight
-  - type: StaticPrice
-    price: 100
 
 - type: entity
   id: PlasticFlapsAirtightOpaque
@@ -115,5 +111,3 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Airtight
-  - type: StaticPrice
-    price: 100

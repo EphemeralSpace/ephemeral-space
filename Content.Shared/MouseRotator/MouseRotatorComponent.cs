@@ -1,6 +1,8 @@
-﻿using System.Numerics;
-using Robust.Shared.GameStates;
+﻿using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+
+// ES CHANGES
+// Disable simple4DirMode by default and change the default angle tolerance to 1/16 of a circle.
 
 namespace Content.Shared.MouseRotator;
 
@@ -15,7 +17,7 @@ public sealed partial class MouseRotatorComponent : Component
     ///     How much the desired angle needs to change before a predictive event is sent
     /// </summary>
     [DataField, AutoNetworkedField]
-    public Angle AngleTolerance = Angle.FromDegrees(20.0);
+    public Angle AngleTolerance = Angle.FromDegrees(11.25);
 
     /// <summary>
     ///     The angle that will be lerped to
@@ -37,7 +39,7 @@ public sealed partial class MouseRotatorComponent : Component
     ///     like turrets or ship guns, which have finer range of movement.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool Simple4DirMode = true;
+    public bool Simple4DirMode;
 }
 
 /// <summary>

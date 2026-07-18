@@ -1,14 +1,13 @@
 ﻿using Content.Server.Ghost;
-using Content.Server.Revenant.EntitySystems;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
 namespace Content.Server.Administration.Commands
 {
     [AdminCommand(AdminFlags.Admin)]
-    public sealed class ShowGhostsCommand : IConsoleCommand
+    public sealed partial class ShowGhostsCommand : IConsoleCommand
     {
-        [Dependency] private readonly IEntityManager _entities = default!;
+        [Dependency] private IEntityManager _entities = default!;
 
         public string Command => "showghosts";
         public string Description => "makes all of the currently present ghosts visible. Cannot be reversed.";
@@ -29,10 +28,8 @@ namespace Content.Server.Administration.Commands
             }
 
             var ghostSys = _entities.EntitySysManager.GetEntitySystem<GhostSystem>();
-            var revSys = _entities.EntitySysManager.GetEntitySystem<RevenantSystem>();
 
             ghostSys.MakeVisible(visible);
-            revSys.MakeVisible(visible);
         }
     }
 }

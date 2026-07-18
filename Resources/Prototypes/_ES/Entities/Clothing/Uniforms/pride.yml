@@ -1,0 +1,120 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAromantic
+  name: aromantic jumpsuit
+  description: A swanky jumpsuit, endowed in the colors of the aromantic pride flag.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/aromantic.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/aromantic.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAsexual
+  name: asexual jumpsuit
+  description: A swanky jumpsuit, endowed in the colors of the asexual pride flag.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/asexual.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/asexual.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitBisexual
+  name: bisexual jumpsuit
+  description: A swanky jumpsuit, endowed in the colors of the bisexual pride flag.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/bisexual.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/bisexual.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitGay
+  name: gay jumpsuit
+  description: A swanky jumpsuit, endowed in the colors of the gay pride flag.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/gay.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/gay.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitGenderfluid
+  name: genderfluid jumpsuit
+  description: A swanky jumpsuit, endowed in the colors of the genderfluid pride flag.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/genderfluid.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/genderfluid.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitGenderqueer
+  name: genderqueer jumpsuit
+  description: A swanky jumpsuit, endowed in the colors of the genderqueer pride flag.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/genderqueer.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/genderqueer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitIntersex
+  name: intersex jumpsuit
+  description: A swanky jumpsuit, endowed in the colors of the intersex pride flag.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/intersex.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/intersex.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLesbian
+  name: lesbian jumpsuit
+  description: A swanky jumpsuit, endowed in the colors of the lesbian pride flag.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/lesbian.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/lesbian.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNonbinary
+  name: nonbinary jumpsuit
+  description: A swanky jumpsuit, endowed in the colors of the nonbinary pride flag.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/nonbinary.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/nonbinary.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPansexual
+  name: pansexual jumpsuit
+  description: A swanky jumpsuit, endowed in the colors of the pansexual pride flag.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/pansexual.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/pansexual.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitTransgender
+  name: transgender jumpsuit
+  description: A swanky jumpsuit, endowed in the colors of the transgender pride flag.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/transgender.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/Pride/transgender.rsi

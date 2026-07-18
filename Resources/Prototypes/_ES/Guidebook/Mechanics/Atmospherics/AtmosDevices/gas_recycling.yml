@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: GasRecycling
+  hidden: false
+  name: Gas Recycling
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/AtmosDevices/GasRecycling.xml"

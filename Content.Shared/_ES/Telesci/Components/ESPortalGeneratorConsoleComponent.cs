@@ -5,7 +5,6 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 namespace Content.Shared._ES.Telesci.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
-[Access(typeof(ESSharedTelesciSystem))]
 public sealed partial class ESPortalGeneratorConsoleComponent : Component
 {
     /// <summary>
@@ -31,10 +30,8 @@ public enum ESPortalGeneratorConsoleUiKey : byte
 public sealed class ESPortalGeneratorConsoleBuiState : BoundUserInterfaceState
 {
     public float Charge;
-    public bool Charging;
-    public int CurrentResearchStage;
-    public int MaxResearchStage;
-    public int ThreatsLeft;
+    public bool Interrupted;
+    public bool FinalPhase;
 }
 
 [Serializable, NetSerializable]

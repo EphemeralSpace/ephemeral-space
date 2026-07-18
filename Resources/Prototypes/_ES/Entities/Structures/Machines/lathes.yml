@@ -51,24 +51,16 @@
     staticPacks:
     - ESToolsStatic
     - ESPartsStatic
-    - ESPaperworkStatic
-    - ESCargoStatic
-    - MaterialsStatic
     - ESBasicChemistryStatic
-    - RollerBedsStatic
+    - ESMedicalToolsStatic
+    - ESRollerBedsStatic
     - ESLightsStatic
     - ESServiceStatic
     - ESElectronicsStatic
-    - ESAmmunition
-    - ESFluff
     - ESTopicalsStatic
-    - SurgeryStatic
+    - ESSurgeryStatic
     - OffbrandMedicalStatic
     - OffbrandSurgeryStatic
-  - type: BlueprintReceiver
-    whitelist:
-      tags:
-      - BlueprintAutolathe
   - type: ContainerContainer
     containers:
       machine_board: !type:Container

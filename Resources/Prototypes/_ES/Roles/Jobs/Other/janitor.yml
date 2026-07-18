@@ -1,0 +1,34 @@
+- type: job
+  id: ESJanitor
+  name: ESjob-name-janitor
+  description: ESjob-description-janitor
+  playTimeTracker: ESJobJanitor
+  startingGear: ESJanitorGear
+  icon: "JobIconJanitor"
+  access:
+  - Service
+  - Janitor
+  - Maintenance
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: GarbageDay
+    prototype: ESWeaponRevolver357
+
+- type: startingGear
+  id: ESJanitorGear
+  equipment:
+    shoes: ClothingShoesGaloshes
+    id: JanitorPDA
+    ears: ClothingHeadsetService
+    head: ClothingHeadHatPurplesoft
+    gloves: ESClothingHandsGlovesSanitation
+    jumpsuit: ClothingUniformJumpsuitJanitor
+    back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESJanitor
+  job: ESJanitor
+  hidden: false

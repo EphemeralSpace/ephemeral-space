@@ -1,0 +1,183 @@
+- type: esSecretIdentity
+  id: ArmsDealer
+  name: es-secret-identity-arms-dealer-name
+  organization: Crew
+  description: es-secret-identity-arms-dealer-desc
+  color: lime
+  weight: 0.75
+  objectives:
+    id: ESObjectiveHoldSummonedGuns
+  mindComponents:
+  - type: ESSecretIdentitySummoner
+    examineString: es-summonable-examine-arms-dealer
+  - type: ESSecretIdentityCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewArmsDealer
+      amount: 6
+
+- type: esSecretIdentity
+  id: Arsonist
+  name: es-secret-identity-arsonist-name
+  organization: Crew
+  description: es-secret-identity-arsonist-desc
+  color: red
+  weight: 0.25
+  objectives:
+    id: ESObjectiveArsonistLightFires
+
+- type: esSecretIdentity
+  id: Avenger
+  name: es-secret-identity-avenger-name
+  organization: Crew
+  description: es-secret-identity-avenger-desc
+  color: peachpuff
+  objectives:
+    id: ESObjectiveAvengerProtectRandom
+
+- type: esSecretIdentity
+  id: Crewmember
+  name: es-secret-identity-crewmember-name
+  organization: Crew
+  description: es-secret-identity-crewmember-desc
+  weight: 5
+  color: white
+
+- type: esSecretIdentity
+  id: Guzzler
+  name: es-secret-identity-guzzler-name
+  organization: Crew
+  description: es-secret-identity-guzzler-desc
+  color: cyan
+  weight: 0.15
+  objectives:
+    all:
+    - id: ESObjectiveGuzzle
+    - id: ESObjectiveGuzzleUniqueReagents
+    - id: ESObjectiveGuzzleSpecialInterest
+
+- type: esSecretIdentity
+  id: Hater
+  name: es-secret-identity-hater-name
+  organization: Crew
+  description: es-secret-identity-hater-desc
+  color: peru
+  assignmentOrder: 11 # Needs to be assigned after other identities
+  objectives:
+    all:
+    - id: ESObjectiveHaterHate
+    - id: ESObjectiveHaterDontKill
+
+- type: esSecretIdentity
+  id: Mercenary
+  name: es-secret-identity-mercenary-name
+  organization: Crew
+  description: es-secret-identity-mercenary-desc
+  color: ruber
+  objectives:
+    id: ESObjectiveKillNonCrew
+  mindComponents:
+  - type: ESSecretIdentityCacheSpawner
+    cacheProto:
+      id: ESCrateCacheCrewMercenary
+
+- type: esSecretIdentity
+  id: Nobleman
+  name: es-secret-identity-nobleman-name
+  organization: Crew
+  description: es-secret-identity-nobleman-desc
+  color: gold
+  weight: 0.25
+  objectives:
+    all:
+    - id: ESObjectiveNoblemanDontKill
+
+- type: esSecretIdentity
+  id: Phantom
+  name: es-secret-identity-phantom-name
+  organization: Crew
+  description: es-secret-identity-phantom-desc
+  color: plum
+  weight: 0.5
+  mindComponents:
+  - type: ESReincarnateMind
+  objectives:
+    all:
+    - id: ESObjectivePhantomDie
+
+- type: esSecretIdentity
+  id: Pickpocket
+  name: es-secret-identity-pickpocket-name
+  organization: Crew
+  description: es-secret-identity-pickpocket-desc
+  color: olivedrab
+  weight: 0.75
+  actions:
+    all:
+    - id: ActionSecretIdentityPickpocketSnatch
+  objectives:
+    all:
+    - id: ESObjectivePickpocketSteal
+
+- type: esSecretIdentity
+  id: Secretary
+  name: es-secret-identity-secretary-name
+  organization: Crew
+  description: es-secret-identity-secretary-desc
+  color: palegreen
+  assignmentOrder: 11 # Needs to be assigned after other identities
+  objectives:
+    all:
+    - id: ESObjectiveSecretaryAssist
+
+- type: esSecretIdentity
+  id: Tragedian
+  name: es-secret-identity-tragedian-name
+  organization: Crew
+  description: es-secret-identity-tragedian-desc
+  color: royalblue
+  objectives:
+    all:
+    - id: ESObjectiveTragedianDie
+    - id: ESObjectiveTragedianEmbodyTheme
+  actions:
+    all:
+    - id: ESActionSecretIdentityTragedianSummon
+  components:
+  - type: ESAlwaysHearStagehandEmote
+
+- type: esSecretIdentity
+  parent: ESBaseCommandRestricted
+  id: Vandal
+  name: es-secret-identity-vandal-name
+  organization: Crew
+  description: es-secret-identity-vandal-desc
+  color: tomato
+  weight: 0.75
+  objectives:
+    all:
+    - pick:
+        all:
+        - id: ESObjectiveVandalSabotageCommunications
+        - id: ESObjectiveVandalSabotageCrewMonitoring
+        - id: ESObjectiveVandalSabotageEmergencyAccessTerminal
+        - id: ESObjectiveVandalSabotageCriminalRecords
+        - id: ESObjectiveVandalSabotageTelecom
+          weight: 2
+      amount: 1, 2
+
+- type: esSecretIdentity
+  id: VIP
+  name: es-secret-identity-vip-name
+  organization: Crew
+  description: es-secret-identity-vip-desc
+  color: gold
+  tips:
+  - VIPFingerprintScanner
+  weight: 0.2
+  gear: ESSecretIdentityVIPGear
+
+- type: startingGear
+  id: ESSecretIdentityVIPGear
+  storage:
+    back:
+    - ESItemCardVIP

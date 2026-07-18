@@ -12,7 +12,7 @@ namespace Content.Client._ES.Keypad.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class ESKeypadControl : BoxContainer
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
     private readonly ISawmill _logger;
 
     private EntityUid? _uid;

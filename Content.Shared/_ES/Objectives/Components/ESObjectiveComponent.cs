@@ -19,10 +19,30 @@ public sealed partial class ESObjectiveComponent : Component
     public float Progress;
 
     /// <summary>
+    /// If true, <see cref="Progress"/> will be inverted from the actual calculated progress.
+    /// </summary>
+    /// <example>
+    /// 1.0 -> 0.0
+    /// 0.5 -> 0.5
+    /// 0.0 -> 1.0
+    /// </example>
+    [DataField]
+    public bool InvertProgress;
+
+    /// <summary>
     /// Icon displayed for this objective in the UI.
     /// </summary>
     [DataField]
     public SpriteSpecifier? Icon;
+
+    [DataField, AutoNetworkedField]
+    public bool ObjectiveInitialized;
+
+    /// <summary>
+    /// If true, this objective changing progress will announce the new progress to stagehands.
+    /// </summary>
+    [DataField]
+    public bool AnnounceProgress = true;
 }
 
 /// <summary>

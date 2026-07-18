@@ -70,12 +70,6 @@
   defaultLinks: [ MedicalScannerReceiver ]
 
 - type: sourcePort
-  id: ArtifactAnalyzerSender
-  name: signal-port-name-artifact-analyzer-sender
-  description: signal-port-description-artifact-analyzer-sender
-  defaultLinks: [ ArtifactAnalyzerReceiver ]
-
-- type: sourcePort
   id: Timer
   name: signal-port-name-timer-trigger
   description: signal-port-description-timer-trigger

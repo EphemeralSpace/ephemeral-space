@@ -9,9 +9,9 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._ES.Lobby;
 
 // see client/server
-public abstract class ESSharedDiegeticLobbySystem : EntitySystem
+public abstract partial class ESSharedDiegeticLobbySystem : EntitySystem
 {
-    [Dependency] protected readonly SharedActionsSystem Actions = default!;
+    [Dependency] protected SharedActionsSystem Actions = default!;
 
     public override void Initialize()
     {

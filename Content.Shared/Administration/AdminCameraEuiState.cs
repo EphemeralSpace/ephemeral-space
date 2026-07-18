@@ -5,7 +5,7 @@ using Robust.Shared.Timing;
 namespace Content.Shared.Administration;
 
 [Serializable, NetSerializable]
-public sealed partial class AdminCameraEuiState(NetEntity? camera, string name, GameTick tick) : EuiStateBase
+public sealed class AdminCameraEuiState(NetEntity? camera, string name, GameTick tick) : EuiStateBase
 {
     /// <summary>
     /// The camera entity we will use for the window.
@@ -24,4 +24,4 @@ public sealed partial class AdminCameraEuiState(NetEntity? camera, string name, 
 }
 
 [Serializable, NetSerializable]
-public sealed partial class AdminCameraFollowMessage : EuiMessageBase;
+public sealed class AdminCameraFollowMessage : EuiMessageBase;

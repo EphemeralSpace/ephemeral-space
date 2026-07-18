@@ -215,21 +215,6 @@
   description: flavor-complex-honey
 
 - type: flavor
-  id: nutriment
-  flavorType: Complex
-  description: flavor-complex-nutriment
-
-- type: flavor
-  id: vitamin
-  flavorType: Complex
-  description: flavor-complex-vitamin
-
-- type: flavor
-  id: protein
-  flavorType: Complex
-  description: flavor-complex-protein
-
-- type: flavor
   id: food
   flavorType: Complex
   description: flavor-complex-food
@@ -1470,11 +1455,6 @@
   description: flavor-complex-whiskeysour
 
 - type: flavor
-  id: zombiecocktail
-  flavorType: Complex
-  description: flavor-complex-zombiecocktail
-
-- type: flavor
   id: bacchusblessing
   flavorType: Complex
   description: flavor-complex-bacchus-blessing
@@ -1483,11 +1463,6 @@
   id: trashy
   flavorType: Base
   description: flavor-base-trashy
-
-- type: flavor
-  id: artifactglue
-  flavorType: Complex
-  description: flavor-complex-artifact-glue
 
 - type: flavor
   id: alkaline

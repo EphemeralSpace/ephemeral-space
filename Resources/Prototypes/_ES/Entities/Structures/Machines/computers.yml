@@ -5,6 +5,7 @@
   name: computer
   placement:
     mode: SnapgridCenter
+  suffix: Terminal
   abstract: true
   components:
   - type: Sprite
@@ -52,13 +53,9 @@
         - MachineLayer
   - type: LitOnPowered
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    offset: "0, 0.4" # shine from the top, not bottom of the computer
-    castShadows: false
+    radius: 1.4
+    energy: 40
+    curveFactor: 1.0
   - type: EmitSoundOnUIOpen
     sound:
       collection: Keyboard
@@ -74,7 +71,6 @@
   - type: Anchorable
     flags:
     - Anchorable
-  - type: Animateable
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -98,46 +94,6 @@
   - type: ContainerContainer
     containers:
       board: !type:Container
-
-# Computers
-- type: entity
-  parent: BaseComputerAiAccess
-  id: ESComputerEvacBeacon
-  name: emergency beacon console
-  description: A computer for broadcasting and coordinating emergency beacon signals. Used for hailing emergency shuttles.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: comm
-    - map: ["computerLayerKeys"]
-      state: generic_keys
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: AccessReader
-    access: [[ "Command" ]]
-  - type: ESEvacConsole
-  - type: ActivatableUI
-    key: enum.ESEvacUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.ESEvacUiKey.Key:
-        type: ESEvacBeaconBui
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Computer
-    board: ESComputerEvacBeaconCircuitBoard
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#3c5eb5"
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -169,9 +125,7 @@
   - type: Computer
     board: ESComputerWarehouseManifestCircuitBoard
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#b89f25"
+    color: "#f7a259"
 
 # Anomaly Console
 - type: entity
@@ -191,16 +145,17 @@
   - type: Computer
     board: ESComputerAnomalyCircuitBoard
   - type: PointLight
-    color: "#b53ca1"
+    color: "#aa4fc7"
 
 - type: entity
-  parent: [ ESBaseComputerAnomaly, BaseComputer ]
+  parent: [ ESBaseComputerAnomaly, ESBaseComputerTerminal ]
   id: ESComputerAnomaly
   components:
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
-      state: computer
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
     - map: ["computerLayerKeyboard"]
       state: tech_key_off
     - map: ["computerLayerScreen"]
@@ -229,7 +184,7 @@
   - type: Computer
     board: ESComputerSupplyRequestCircuitBoard
   - type: PointLight
-    color: "#b89f25"
+    color: "#d69c02"
 
 - type: entity
   parent: [ ESBaseComputerSupplyRequest, BaseComputerAiAccess ]
@@ -290,6 +245,7 @@
   components:
   - type: ESCargoRequestConsole
     defaultConsoleId: department-Security
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: ESComputerSupplyRequest
@@ -345,7 +301,10 @@
       state: generic_panel_open
   - type: ESCryptoNukeConsole
   - type: PointLight
-    color: "#ff0000"
+    color: "#ff6971"
+  - type: NavMapBeacon
+    defaultText: es-cryptonuke-beacon
+    color: "#a91409"
   - type: ActivatableUI
     key: enum.ESCryptoNukeConsoleUiKey.Key
   - type: UserInterface
@@ -354,12 +313,13 @@
         type: ESCryptoNukeConsoleBui
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+  - type: ESAmbientMusicMarkerCommand # it's not really a "command" object, but it makes sense to play command ambience near these
 
 - type: entity
   parent: ESBaseComputerTerminal
-  id: ESBaseComputerTerminalTelesci
-  name: telescience terminal
-  description: A hefty terminal that controls the advanced portal generator in the heart of science.
+  id: ESBaseComputerTerminalWarpDrive
+  name: warp drive terminal
+  description: A hefty terminal that controls the gravitational warp drive at the heart of the station.
   components:
   - type: Sprite
     layers:
@@ -367,16 +327,17 @@
       sprite: _ES/Structures/Machines/computer.rsi
       state: terminal
     - map: ["computerLayerKeyboard"]
-      state: teleport_key_off
+      state: tech_key_off
     - map: ["computerLayerScreen"]
-      state: teleport
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: warpdrive
     - map: ["computerLayerKeys"]
-      state: teleport_key
+      state: tech_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: ESPortalGeneratorConsole
   - type: PointLight
-    color: "#0099ff"
+    color: "#c471aa"
   - type: ActivatableUI
     key: enum.ESPortalGeneratorConsoleUiKey.Key
   - type: UserInterface
@@ -385,3 +346,76 @@
         type: ESPortalGeneratorConsoleBui
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+
+- type: entity
+  parent: ESBaseComputerTerminal
+  id: ESComputerTerminalEmergencyAccess
+  name: emergency access terminal
+  description: A hefty terminal that can remotely toggle access on airlocks using the printed access key on the door. You remembered what the key was, right?
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
+    - map: ["computerLayerKeyboard"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: emerg_key_off
+    - map: ["computerLayerScreen"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: emerg
+    - map: ["computerLayerKeys"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: emerg_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    color: "#ffff55"
+  - type: ESEmergencyAccessConsole
+  - type: ESSabotageTarget
+  - type: UseDelay
+    delay: 0.5
+  - type: ActivatableUI
+    key: enum.ESEmergencyAccessConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ESEmergencyAccessConsoleUiKey.Key:
+        type: ESEmergencyAccessConsoleBui
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
+  parent: ESBaseComputerTerminal
+  id: ESBaseComputerTerminalNavigation
+  name: navigation terminal
+  description: Keep going and take the next left.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: terminal
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: navigation
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ESRadstormModifierMachine
+    modifier: 0.5
+    disableAnnouncement: es-radstorm-power-on-navigation-console
+    enableAnnouncement: es-radstorm-power-off-navigation-console
+    announcementSoundDisabled: /Audio/_ES/Announcements/navigation_online.ogg
+    announcementSoundEnabled: /Audio/_ES/Announcements/navigation_offline.ogg
+  - type: PointLight
+    color: "#1bfff3"
+  - type: ApcPowerReceiverBattery
+    batteryRechargeRate: 25
+  - type: Battery
+    netsync: false
+    maxCharge: 600
+  - type: ExaminableBattery
+  - type: ESAmbientMusicMarkerCommand

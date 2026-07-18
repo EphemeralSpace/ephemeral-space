@@ -1,0 +1,21 @@
+# Armory control room door
+- type: entity
+  id: ESAirlockCommandArmoryControlRoom
+  parent: AirlockCommandGlassLocked
+  name: armory control room door
+  description: Your gateway to Heaven--if only you had two friends.
+  suffix: ES, Armory Control Room
+  components:
+  - type: ESArmoryControlRoomDoor
+
+# Armory blast doors
+- type: entity
+  id: ESArmoryBlastDoors
+  parent: BlastDoor
+  name: armory blast doors
+  description: These ones don't say "BLAST DONGER". They're more serious than that. Is this a joke to you?
+  suffix: ES, Indestructible
+  components:
+  - type: Destructible
+    thresholds: [ ]
+  - type: ESArmoryDoor

@@ -17,22 +17,6 @@
   objectType: Item
 
 - type: construction
-  id: TileBrassFilled
-  graph: TilesBrass
-  startNode: start
-  targetNode: filledPlate
-  category: construction-category-tiles
-  objectType: Item
-
-- type: construction
-  id: TileBrassReebe
-  graph: TilesBrass
-  startNode: start
-  targetNode: reebe
-  category: construction-category-tiles
-  objectType: Item
-
-- type: construction
   id: TileWhite
   graph: TileWhite
   startNode: start

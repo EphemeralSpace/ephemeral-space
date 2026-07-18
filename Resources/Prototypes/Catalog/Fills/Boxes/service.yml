@@ -39,7 +39,6 @@
       - state: agrichemkit
   - type: GuideHelp
     guides:
-    - Botanical
     - Chemicals
   # Begin Offbrand
   - type: Item

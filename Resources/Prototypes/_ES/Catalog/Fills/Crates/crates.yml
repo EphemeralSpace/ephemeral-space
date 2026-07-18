@@ -97,7 +97,7 @@
         all:
         - id: MedkitFilled
           amount: 2
-        - id: ESMedkitStabilizationFilled
+        - id: MedkitO2Filled
         - id: Gauze
           amount: 2
         - id: Bloodpack
@@ -118,19 +118,6 @@
         - id: MedkitBurnFilled
         - id: MedkitBruteFilled
         - id: MedkitRadiationFilled
-
-- type: entity
-  parent: CrateEmergencyAdvancedKit
-  id: ESCrateEmergencyAdvancedKits
-  name: advanced medical kit
-  description: Crate filled with two advanced medical kits.
-  suffix: ES
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-          id: MedkitAdvancedFilled
-          amount: 2
 
 #Security
 - type: entity
@@ -166,7 +153,7 @@
         - id: ESShotgunShellsBoxBuckshot
 
 - type: entity
-  parent: CrateSecNonlethalThrowables
+  parent: CrateSecgear
   id: ESCrateSecurityThrowables
   name: security throwables crate
   description: Contains four flashbangs, smoke grenades, and bolas. Requires Security access to open.
@@ -183,7 +170,7 @@
           amount: 4
 
 - type: entity
-  parent: CrateArmoryPistols
+  parent: CrateWeaponSecure
   id: ESCrateSecurityPistols
   name: pistol crate
   description: Contains two 9mm pistols and a spare mag for each. Requires Armory access to open.
@@ -199,7 +186,7 @@
           amount: 2
 
 - type: entity
-  parent: CrateArmoryShotgun
+  parent: CrateWeaponSecure
   id: ESCrateSecurityShotgun
   name: shotgun crate
   description: Contains one shotgun and two boxes of shells. Requires Armory access to open.
@@ -213,7 +200,7 @@
         - id: ESWeaponShotgun
 
 - type: entity
-  parent: CrateSecurityNonlethal
+  parent: CrateSecgear
   id: ESCrateSecurityNonlethals
   name: nonlethals crate
   description: Contains two tasers, two batons, and three flashes. Requires Security access to open.
@@ -231,7 +218,7 @@
           amount: 2
 
 - type: entity
-  parent: CrateArmoryLaser
+  parent: CrateWeaponSecure
   id: ESCrateSecurityEnergyRifles
   name: energy rifle crate
   description: Contains two energy rifles. Requires Armory access to open.
@@ -273,7 +260,35 @@
           amount: 2
 
 - type: entity
-  parent: CratePlastic
+  parent: CrateHydroponics
+  id: ESCrateHydroponicsSeeds
+  name: seeds crate
+  description: Big things have small beginnings. Contains many different seeds.
+  suffix: ES
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        pick:
+          all:
+          - id: ChiliSeeds
+          - id: CornSeeds
+          - id: TomatoSeeds
+          - id: WheatSeeds
+          - id: CarrotSeeds
+          - id: CabbageSeeds
+          - id: GarlicSeeds
+          - id: ChanterelleSeeds
+          - id: PotatoSeeds
+          - id: SugarcaneSeeds
+          - id: OnionSeeds
+          - id: RiceSeeds
+          - id: SoybeanSeeds
+          - id: WatermelonSeeds
+        amount: 6
+
+- type: entity
+  parent: CrateGenericSteel
   id: ESCrateServiceJanitorialSupplies
   name: janitorial supplies crate
   description: Fight back against dirt and grime with Nanotrasen's Janitorial Essentials(tm)!
@@ -388,22 +403,3 @@
     - tableId: ESCargoGeneralCratesTable
     - tableId: ESCargoMedicalCratesTable
       weight: 0.5
-
-- type: entityTable
-  id: ESMaintsTraitorLoot
-  table:
-    group:
-    - id: ESEmag
-      weight: 0.5
-    - id: ESSleepyPen
-      weight: 0.5
-    - id: C4
-    - id: ESWeaponRevolver357
-    - id: ESWeaponPistol9mm
-    - id: ESWeaponPistol9mmSilenced
-    - id: ESClothingOuterArmorSecurity
-    - id: ExGrenade
-    - id: ESSpeedLoader357
-      amount: 2
-    - id: ESMagazine9mm
-      amount: 2

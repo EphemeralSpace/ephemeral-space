@@ -44,41 +44,39 @@ using Content.Server._ES.Stagehand;
 
 namespace Content.Server.Ghost
 {
-    public sealed class GhostSystem : SharedGhostSystem
+    public sealed partial class GhostSystem : SharedGhostSystem
     {
-        [Dependency] private readonly SharedActionsSystem _actions = default!;
-        [Dependency] private readonly IAdminLogManager _adminLog = default!;
-        [Dependency] private readonly SharedEyeSystem _eye = default!;
-        [Dependency] private readonly FollowerSystem _followerSystem = default!;
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly JobSystem _jobs = default!;
-        [Dependency] private readonly EntityLookupSystem _lookup = default!;
-        [Dependency] private readonly MindSystem _minds = default!;
-        [Dependency] private readonly MobStateSystem _mobState = default!;
-        [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-        [Dependency] private readonly ISharedPlayerManager _player = default!;
-        [Dependency] private readonly TransformSystem _transformSystem = default!;
-        [Dependency] private readonly VisibilitySystem _visibilitySystem = default!;
-        [Dependency] private readonly MetaDataSystem _metaData = default!;
-        [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-        [Dependency] private readonly IChatManager _chatManager = default!;
-        [Dependency] private readonly SharedMindSystem _mind = default!;
-        [Dependency] private readonly GameTicker _gameTicker = default!;
-        [Dependency] private readonly DamageableSystem _damageable = default!;
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly TagSystem _tag = default!;
-        [Dependency] private readonly NameModifierSystem _nameMod = default!;
+        [Dependency] private SharedActionsSystem _actions = default!;
+        [Dependency] private IAdminLogManager _adminLog = default!;
+        [Dependency] private SharedEyeSystem _eye = default!;
+        [Dependency] private FollowerSystem _followerSystem = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
+        [Dependency] private JobSystem _jobs = default!;
+        [Dependency] private EntityLookupSystem _lookup = default!;
+        [Dependency] private MindSystem _minds = default!;
+        [Dependency] private MobStateSystem _mobState = default!;
+        [Dependency] private SharedPhysicsSystem _physics = default!;
+        [Dependency] private ISharedPlayerManager _player = default!;
+        [Dependency] private TransformSystem _transformSystem = default!;
+        [Dependency] private VisibilitySystem _visibilitySystem = default!;
+        [Dependency] private MetaDataSystem _metaData = default!;
+        [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IConfigurationManager _configurationManager = default!;
+        [Dependency] private IChatManager _chatManager = default!;
+        [Dependency] private SharedMindSystem _mind = default!;
+        [Dependency] private GameTicker _gameTicker = default!;
+        [Dependency] private DamageableSystem _damageable = default!;
+        [Dependency] private SharedPopupSystem _popup = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private NameModifierSystem _nameMod = default!;
 // ES START
-        [Dependency] private readonly ESStagehandSystem _stagehand = default!;
+        [Dependency] private ESStagehandSystem _stagehand = default!;
 // ES END
 
         private EntityQuery<GhostComponent> _ghostQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
 
-        private static readonly ProtoId<TagPrototype> AllowGhostShownByEventTag = "AllowGhostShownByEvent";
         private static readonly ProtoId<DamageTypePrototype> AsphyxiationDamageType = "Asphyxiation";
 
         public override void Initialize()
@@ -181,25 +179,6 @@ namespace Content.Server.Ghost
             // this is mostly  for offbrand bc offbrand lets u ghost on move out of crit and we dont really want that
             return;
             // ES END
-
-            // If they haven't actually moved then ignore it.
-            if ((args.Entity.Comp.HeldMoveButtons &
-                 (MoveButtons.Down | MoveButtons.Left | MoveButtons.Up | MoveButtons.Right)) == 0x0)
-            {
-                return;
-            }
-
-            // Let's not ghost if our mind is visiting...
-            if (HasComp<VisitingMindComponent>(uid))
-                return;
-
-            if (!_minds.TryGetMind(uid, out var mindId, out var mind) || mind.IsVisitingEntity)
-                return;
-
-            if (component.MustBeDead && _mobState.IsAlive(uid)) // Offbrand - exit on crit
-                return;
-
-            OnGhostAttempt(mindId, component.CanReturn, mind: mind);
         }
 
         private void OnGhostStartup(EntityUid uid, GhostComponent component, ComponentStartup args)
@@ -422,9 +401,10 @@ namespace Content.Server.Ghost
         public void MakeVisible(bool visible)
         {
             var entityQuery = EntityQueryEnumerator<GhostComponent, VisibilityComponent>();
-            while (entityQuery.MoveNext(out var uid, out var _, out var vis))
+
+            while (entityQuery.MoveNext(out var uid, out var ghost, out var vis))
             {
-                if (!_tag.HasTag(uid, AllowGhostShownByEventTag))
+                if (!ghost.MadeVisibleByEvents)
                     continue;
 
                 if (visible)
@@ -630,18 +610,11 @@ namespace Content.Server.Ghost
                 }
                 else
                 {
-                    _stagehand.SpawnStagehand(player);
+                    _stagehand.SpawnStagehand(player, position);
                 }
             }
             return true;
 // ES END
-
-            var ghost = SpawnGhost((mindId, mind), position, canReturn);
-
-            if (ghost == null)
-                return false;
-
-            return true;
         }
     }
 

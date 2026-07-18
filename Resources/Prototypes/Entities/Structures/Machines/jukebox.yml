@@ -4,9 +4,9 @@
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   description: A machine capable of playing a wide variety of tunes. Enjoyment not guaranteed.
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     sprite: Structures/Machines/jukebox.rsi
+    noRot: true
     layers:
     - state: "off"
       map: ["enum.JukeboxVisualLayers.Base"]

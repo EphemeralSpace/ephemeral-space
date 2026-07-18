@@ -1,0 +1,36 @@
+- type: entity
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectiveTragedianDie
+  name: Die
+  description: As a true star, end your performance with a fall into the sweet embrace of death.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
+  - type: ESTargetObjective
+  - type: ESTargetSelfObjective
+  - type: ESKillTargetObjective
+
+- type: entity
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectiveTragedianEmbodyTheme
+  name: Embody your theme
+  description: Life is performance, and performance is life. Ensure that when you die, the observers up above have comprehended your spectacular artistry.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Clothing/Mask/clown.rsi
+      state: icon
+  - type: ESCounterObjective
+  - type: ESEmbodyThemeObjective
+
+- type: entity
+  id: ESVoteTragedianSuccess
+  components:
+  - type: ESVote
+    queryString: es-embody-theme-vote-query
+    duration: 120
+    strategy: HighestValue
+    multiVote: false
+  - type: ESBooleanVote

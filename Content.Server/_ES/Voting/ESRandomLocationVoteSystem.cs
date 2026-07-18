@@ -8,12 +8,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Voting;
 
-public sealed class ESRandomLocationVoteSystem : EntitySystem
+public sealed partial class ESRandomLocationVoteSystem : EntitySystem
 {
-    [Dependency] private readonly NavMapSystem _navMap = default!;
-    [Dependency] private readonly ESSpawnRegionSystem _spawnRegion = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private ESSpawnRegionSystem _spawnRegion = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -13,29 +13,15 @@
         - id: ClothingShoesColorBrown
 
 - type: entity
-  id: ESDresserHeadOfPersonnelFilled
+  id: ESDresserStationAdminFilled
   parent: Dresser
-  suffix: Filled, Head Of Personnel
+  suffix: Filled, StationAdmin
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase:
         all:
-        - id: ClothingHeadHatHopcap
+        - id: ClothingHeadHatStationAdminCap
         - id: ClothingEyesHudSecurity
-        - id: ClothingUniformJumpsuitHoP
+        - id: ClothingUniformJumpsuitStationAdmin
         - id: ClothingShoesColorBrown
-
-- type: entity
-  id: ESDresserHeadOfSecurityFilled
-  parent: Dresser
-  suffix: Filled, Head Of Security
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase:
-        all:
-        - id: ClothingHeadHatBeretHoS
-        - id: ClothingHeadHatHoshat
-        - id: ClothingEyesHudSecurity
-        - id: ClothingUniformJumpsuitHoS

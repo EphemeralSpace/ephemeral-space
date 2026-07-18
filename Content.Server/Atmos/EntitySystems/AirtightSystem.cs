@@ -1,18 +1,18 @@
-using Content.Server.Atmos.Components;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Atmos.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class AirtightSystem : EntitySystem
+    public sealed partial class AirtightSystem : EntitySystem
     {
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-        [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
-        [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
+        [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+        [Dependency] private ExplosionSystem _explosionSystem = default!;
+        [Dependency] private SharedMapSystem _mapSystem = default!;
 
         public override void Initialize()
         {
@@ -108,6 +108,7 @@ namespace Content.Server.Atmos.EntitySystems
             UpdatePosition(airtight, xform);
             var airtightEv = new AirtightChanged(airtight, airtight, true, pos);
             RaiseLocalEvent(airtight, ref airtightEv, true);
+            Dirty(airtight);
         }
 
         public void UpdatePosition(Entity<AirtightComponent> ent, TransformComponent? xform = null)

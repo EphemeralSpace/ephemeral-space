@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Construction.Components;
 using Content.Shared.Construction.Components;
 using Robust.Shared.GameObjects;
@@ -7,22 +8,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests;
 
-public sealed class MachineBoardTest
+public sealed class MachineBoardTest : GameTest
 {
     /// <summary>
     /// A list of machine boards that can be ignored by this test.
     /// </summary>
     private readonly HashSet<string> _ignoredPrototypes = new()
     {
-        //These have their own construction thing going on here
-        "MachineParticleAcceleratorEndCapCircuitboard",
-        "MachineParticleAcceleratorFuelChamberCircuitboard",
-        "MachineParticleAcceleratorFuelChamberCircuitboard",
-        "MachineParticleAcceleratorPowerBoxCircuitboard",
-        "MachineParticleAcceleratorEmitterStarboardCircuitboard",
-        "MachineParticleAcceleratorEmitterForeCircuitboard",
-        "MachineParticleAcceleratorEmitterPortCircuitboard",
-        "ParticleAcceleratorComputerCircuitboard"
     };
 
     /// <summary>
@@ -32,7 +24,7 @@ public sealed class MachineBoardTest
     [Test]
     public async Task TestMachineBoardHasValidMachine()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var protoMan = server.ResolveDependency<IPrototypeManager>();
@@ -60,8 +52,6 @@ public sealed class MachineBoardTest
                 });
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 
     /// <summary>
@@ -71,7 +61,7 @@ public sealed class MachineBoardTest
     [Test]
     public async Task TestComputerBoardHasValidComputer()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var protoMan = server.ResolveDependency<IPrototypeManager>();
@@ -100,8 +90,6 @@ public sealed class MachineBoardTest
                 });
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 
     /// <summary>
@@ -111,7 +99,7 @@ public sealed class MachineBoardTest
     [Test]
     public async Task TestValidateBoardComponentRequirements()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var entMan = server.ResolveDependency<IEntityManager>();
@@ -136,7 +124,5 @@ public sealed class MachineBoardTest
                 });
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

@@ -3,8 +3,8 @@ using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Shared._ES.Auditions;
 using Content.Shared._ES.Coroner;
-using Content.Shared._ES.Masks;
-using Content.Shared._ES.Masks.Components;
+using Content.Shared._ES.SecretIdentity;
+using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Robust.Shared.ColorNaming;
@@ -15,14 +15,14 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Coroner;
 
-public sealed class ESCoronerSystem : ESSharedCoronerSystem
+public sealed partial class ESCoronerSystem : ESSharedCoronerSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ESCluesSystem _clues = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ESCluesSystem _clues = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private MindSystem _mind = default!;
 
     protected override FormattedMessage GetReport(EntityUid target)
     {
@@ -43,9 +43,9 @@ public sealed class ESCoronerSystem : ESSharedCoronerSystem
             timeOfDeath = mind.TimeOfDeath.Value;
         var time = (timeOfDeath - _gameTicker.RoundStartTimeSpan).ToString("hh\\:mm\\:ss");
 
-        var mask = TryComp<ESBodyLastMaskComponent>(target, out var bodyLastMask)
-            ? _prototype.Index(bodyLastMask.LastMask)
-            : _random.Pick(_prototype.EnumeratePrototypes<ESMaskPrototype>().Where(p => !p.Abstract).ToList());
+        var secretIdentity = TryComp<ESBodyLastSecretIdentityComponent>(target, out var bodyLastSecretIdentity)
+            ? _prototype.Index(bodyLastSecretIdentity.LastSecretIdentity)
+            : _random.Pick(_prototype.EnumeratePrototypes<ESSecretIdentityPrototype>().Where(p => !p.Abstract).ToList());
 
         msg.AddMarkupPermissive(Loc.GetString("es-coroner-report-paper",
             ("name", name),
@@ -54,7 +54,7 @@ public sealed class ESCoronerSystem : ESSharedCoronerSystem
             ("eye", eye),
             ("hair", hair),
             ("time", time),
-            ("mask1", Loc.GetString(mask.Name))));
+            ("secretIdentity1", Loc.GetString(secretIdentity.Name))));
         return msg;
     }
 }

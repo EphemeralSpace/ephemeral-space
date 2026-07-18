@@ -7,12 +7,12 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Doors;
 
-public sealed class DoorSystem : SharedDoorSystem
+public sealed partial class DoorSystem : SharedDoorSystem
 {
-    [Dependency] private readonly AnimationPlayerSystem _animationSystem = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private AnimationPlayerSystem _animationSystem = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -194,7 +194,8 @@ public sealed class DoorSystem : SharedDoorSystem
                 if (_animationSystem.HasRunningAnimation(entity, DoorComponent.DenyKey))
                     return;
 
-                _animationSystem.Play(entity, (Animation)entity.Comp.DenyingAnimation, DoorComponent.DenyKey);
+                if (entity.Comp.HasDenyingAnimation)
+                    _animationSystem.Play(entity, (Animation)entity.Comp.DenyingAnimation, DoorComponent.DenyKey);
                 // ES END
 
                 return;

@@ -7,13 +7,11 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Client.Light;
 
-public sealed class TileEmissionOverlay : Overlay
+public sealed partial class TileEmissionOverlay : Overlay
 {
     public override OverlaySpace Space => OverlaySpace.BeforeLighting;
 
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IOverlayManager _overlay = default!;
-
+    [Dependency] private IOverlayManager _overlay = default!;
     private SharedMapSystem _mapSystem;
     private SharedTransformSystem _xformSystem;
 
@@ -50,7 +48,7 @@ public sealed class TileEmissionOverlay : Overlay
         var target = lightoverlay.GetCachedForViewport(args.Viewport).EnlargedLightTarget;
         var viewport = args.Viewport;
         _grids.Clear();
-        _mapManager.FindGridsIntersecting(mapId, bounds, ref _grids, approx: true);
+        _mapSystem.FindGridsIntersecting(mapId, bounds, ref _grids, approx: true);
 
         if (_grids.Count == 0)
             return;
@@ -74,15 +72,14 @@ public sealed class TileEmissionOverlay : Overlay
                     continue;
 
                 var gridMatrix = _xformSystem.GetWorldMatrix(grid.Owner);
+                var matty = Matrix3x2.Multiply(gridMatrix, invMatrix);
+                worldHandle.SetTransform(matty);
 
                 foreach (var ent in _entities)
                 {
                     var xform = _xformQuery.Comp(ent);
 
                     var tile = _mapSystem.LocalToTile(grid.Owner, grid, xform.Coordinates);
-                    var matty = Matrix3x2.Multiply(gridMatrix, invMatrix);
-
-                    worldHandle.SetTransform(matty);
 
                     // Yes I am fully aware this leads to overlap. If you really want to have alpha then you'll need
                     // to turn the squares into polys.
@@ -90,6 +87,8 @@ public sealed class TileEmissionOverlay : Overlay
                     var local = _lookup.GetLocalBounds(tile, grid.Comp.TileSize).Enlarged(ent.Comp.Range);
                     worldHandle.DrawRect(local, ent.Comp.Color);
                 }
+
+                worldHandle.SetTransform(Matrix3x2.Identity);
             }
         }, null);
     }

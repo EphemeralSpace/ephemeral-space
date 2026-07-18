@@ -7,8 +7,6 @@
   - type: Sprite
     sprite: Objects/Misc/cd.rsi
     state: icon
-  - type: StaticPrice
-    price: 100
   - type: Tag
     tags:
     - CoordinatesDisk

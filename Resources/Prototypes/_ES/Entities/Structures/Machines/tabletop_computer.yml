@@ -37,10 +37,9 @@
           monitorMissing: { state: 3 }
           monitorUnsecured: { state: 4 }
   - type: PointLight
-    radius: 1.5
-    energy: 1.5
-    falloff: 40
-    curveFactor: 0.75
+    radius: 1.3
+    energy: 40
+    falloff: 6.8
     enabled: true
     color: "#00b000"
   - type: Construction
@@ -62,7 +61,6 @@
   id: ESBaseTabletopComputerAiAccess
   abstract: true
   components:
-  - type: StationAiWhitelist
   - type: Wires
     boardName: wires-board-name-computer
     layoutId: ComputerAi
@@ -137,9 +135,7 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#1f8c28"
+    color: "#85b6fe"
   - type: Computer
     board: MedicalRecordsComputerCircuitboard
   - type: ESAmbientMusicMarkerMedical
@@ -168,17 +164,13 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#1f8c28"
+    color: "#e9755e"
   - type: Computer
     board: CriminalRecordsComputerCircuitboard
   - type: AccessReader
     access: [["Security"]]
-  - type: GuideHelp
-    guides:
-    - CriminalRecords
   - type: ESSabotageTarget
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: ESBaseTabletopComputerAiAccess
@@ -196,9 +188,7 @@
   - type: ActivatableUI
     key: enum.GeneralStationRecordConsoleKey.Key
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#1f8c28"
+    color: "#70ff67"
   - type: Computer
     board: StationRecordsComputerCircuitboard
   - type: GuideHelp
@@ -220,9 +210,7 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#006400"
+    color: "#85b6fe"
   - type: Computer
     board: CrewMonitoringComputerCircuitboard
   - type: ActivatableUI
@@ -242,68 +230,9 @@
   - type: ESAmbientMusicMarkerMedical
 
 - type: entity
-  parent: ESBaseTabletopComputerAiAccess
+  parent: [ BaseComputerId, ESBaseTabletopComputerAiAccess ]
   id: ESComputerIdTabletop
-  name: ID card computer
-  description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
   components:
-  - type: IdCardConsole
-    privilegedIdSlot:
-      name: id-card-console-privileged-id
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-      ejectOnBreak: true
-      swap: false
-      whitelist:
-        components:
-        - IdCard
-    targetIdSlot:
-      name: id-card-console-target-id
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-      ejectOnBreak: true
-      swap: false
-      whitelist:
-        components:
-        - IdCard
-    accessLevels: # TODO: this dupe with the normal id card computer sucks ass
-    - Armory
-    - Atmospherics
-    - Bar
-    - Brig
-    - Detective
-    - Captain
-    - Cargo
-    - Chemistry
-    - Command
-    - Engineering
-    - External
-    - GenpopEnter
-    - GenpopLeave
-    - HeadOfPersonnel
-    - HeadOfSecurity
-    - Hydroponics
-    - Janitor
-    - Kitchen
-    - Maintenance
-    - Medical
-    - Research
-    - Security
-    - Service
-    - Theatre
-  - type: ActivatableUI
-    key: enum.IdCardConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.IdCardConsoleUiKey.Key:
-        type: IdCardConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: CrewManifestViewer
-    ownerKey: enum.IdCardConsoleUiKey.Key
-  - type: Speech
-    speechVerb: Robotic
-    speechSounds: Pai
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -312,22 +241,6 @@
       state: id
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: Computer
-    board: IDComputerCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#3c5eb5"
-  - type: Tag
-    tags:
-    - AccessBreakerImmune
-  - type: ItemSlots
-  - type: ContainerContainer
-    containers:
-      board: !type:Container
-      IdCardConsole-privilegedId: !type:ContainerSlot
-      IdCardConsole-targetId: !type:ContainerSlot
-  - type: ESSabotageTarget
 
 - type: entity
   parent: ESBaseTabletopComputer
@@ -355,6 +268,8 @@
   - type: ActivatableUI
     key: enum.SurveillanceCameraMonitorUiKey.Key
   - type: ActivatableUIRequiresVision
+  - type: PointLight
+    color: "#ed765d"
   - type: Transform
     anchored: true
   - type: UserInterface
@@ -363,6 +278,7 @@
           type: SurveillanceCameraMonitorBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: ESBaseTabletopComputer
@@ -394,12 +310,15 @@
   - type: ActivatableUI
     key: enum.SurveillanceCameraMonitorUiKey.Key
   - type: ActivatableUIRequiresVision
+  - type: PointLight
+    color: "#ed765d"
   - type: UserInterface
     interfaces:
         enum.SurveillanceCameraMonitorUiKey.Key:
           type: SurveillanceCameraMonitorBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: [ ESBaseComputerSupplyRequest, ESBaseTabletopComputer ]

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseItem, BaseSecurityContraband ]
+  parent: BaseItem
   id: ESBaseMagazine9mm
   name: 9mm magazine
   description: This ain't for reading; It's for loading a handgun. Holds 9mm rounds.

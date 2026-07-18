@@ -1,0 +1,14 @@
+- type: guideEntry
+  id: Power
+  hidden: false
+  name: Power
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Power.xml"
+  children:
+  - AME
+  - InspectingPower
+  - PortableGenerators
+  - PowerStorage
+  - Ramping
+  - SolarPanels
+  - VoltageNetworks
+

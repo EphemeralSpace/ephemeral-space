@@ -18,8 +18,6 @@
     containers:
       bodypart: !type:Container
         ents: []
-  - type: StaticPrice
-    price: 50
   - type: Tag
     tags:
       - Trash
@@ -92,29 +90,3 @@
         Quantity: 10
       - ReagentId: Blood
         Quantity: 20
-
-- type: entity
-  parent: PartAnimal
-  id: LeftHandSmartCorgi
-  name: corgi hand
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: l_hand
-  - type: BodyPart
-    partType: Hand
-    symmetry: Left
-
-- type: entity
-  parent: PartAnimal
-  id: RightHandSmartCorgi
-  name: corgi hand
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: r_hand
-  - type: BodyPart
-    partType: Hand
-    symmetry: Right

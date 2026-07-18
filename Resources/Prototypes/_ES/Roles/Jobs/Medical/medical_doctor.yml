@@ -1,18 +1,18 @@
 - type: job
-  id: ESPhysician
-  name: ESjob-name-physician
-  description: ESjob-description-physician
-  playTimeTracker: ESJobPhysician
-  startingGear: ESPhysicianGear
+  id: ESDoctor
+  parent: ESBaseJobProfessionalNaming
+  name: ESjob-name-doctor
+  description: ESjob-description-doctor
+  playTimeTracker: ESJobDoctor
+  startingGear: ESDoctorGear
   icon: "JobIconMedicalDoctor"
-  supervisors: job-supervisors-hop
   access:
   - Medical
   - Maintenance
   - Chemistry
 
 - type: startingGear
-  id: ESPhysicianGear
+  id: ESDoctorGear
   equipment:
     shoes: ClothingShoesColorWhite
     id: MedicalPDA
@@ -27,6 +27,6 @@
     - ESBoxSurvivalMedical
 
 - type: chameleonOutfit
-  id: ESPhysician
-  job: ESPhysician
+  id: ESDoctor
+  job: ESDoctor
   hidden: false

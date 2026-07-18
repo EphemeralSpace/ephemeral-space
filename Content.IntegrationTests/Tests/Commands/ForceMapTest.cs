@@ -1,3 +1,4 @@
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Maps;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
@@ -6,7 +7,7 @@ using Robust.Shared.Console;
 namespace Content.IntegrationTests.Tests.Commands;
 
 [TestFixture]
-public sealed class ForceMapTest
+public sealed class ForceMapTest : GameTest
 {
     private const string DefaultMapName = "Empty";
     private const string BadMapName = "asdf_asd-fa__sdfAsd_f"; // Hopefully no one ever names a map this...
@@ -23,7 +24,7 @@ public sealed class ForceMapTest
   maxPlayers: 80
   stations:
     Empty:
-      stationProto: StandardNanotrasenStation
+      stationProto: ESBaseStationNeutral
       components:
         - type: StationNameSetup
           mapNameTemplate: ""Empty""
@@ -35,7 +36,7 @@ public sealed class ForceMapTest
   minPlayers: 0
   stations:
     Empty:
-      stationProto: StandardNanotrasenStation
+      stationProto: ESBaseStationNeutral
       components:
         - type: StationNameSetup
           mapNameTemplate: ""Empty""
@@ -44,7 +45,7 @@ public sealed class ForceMapTest
     [Test]
     public async Task TestForceMapCommand()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var entMan = server.EntMan;
@@ -85,7 +86,5 @@ public sealed class ForceMapTest
 
         // Cleanup
         configManager.SetCVar(CCVars.GameMap, DefaultMapName);
-
-        await pair.CleanReturnAsync();
     }
 }

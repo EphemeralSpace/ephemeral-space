@@ -50,6 +50,6 @@ public sealed partial class ESSparksSystem
 
     private void OnTrigger(Entity<ESSparkOnTriggerComponent> ent, ref TriggerEvent args)
     {
-        DoSparks(ent);
+        DoSparks(ent, user: args.User);
     }
 }

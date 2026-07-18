@@ -4,9 +4,9 @@ using Content.Shared.StatusEffectNew;
 
 namespace Content.Shared._Offbrand.StatusEffects;
 
-public sealed class ModifyBrainOxygenDepletionChanceStatusEffectSystem : EntitySystem
+public sealed partial class ModifyBrainOxygenDepletionChanceStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly HeartSystem _heart = default!;
+    [Dependency] private HeartSystem _heart = default!;
 
     public override void Initialize()
     {

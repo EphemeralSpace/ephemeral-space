@@ -10,5 +10,6 @@
         ents: []
 # ES START
   - type: ESObjectiveHolder
+  - type: ESCharacterBlurb
   - type: ESStagehandAware
 # ES END

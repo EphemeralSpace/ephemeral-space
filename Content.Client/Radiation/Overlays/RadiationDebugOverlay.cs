@@ -1,22 +1,23 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Radiation.Systems;
+using Content.Client.Stylesheets.Fonts;
 using Robust.Client.Graphics;
-using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
 using Robust.Shared.Map.Components;
 
 namespace Content.Client.Radiation.Overlays;
 
-public sealed class RadiationDebugOverlay : Overlay
+public sealed partial class RadiationDebugOverlay : Overlay
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IResourceCache _cache = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IFontSelectionManager _fontSelection = default!;
 
     private readonly SharedMapSystem _mapSystem;
     private readonly RadiationSystem _radiation;
 
-    private readonly Font _font;
+    private Font _font;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace | OverlaySpace.ScreenSpace;
 
@@ -26,7 +27,27 @@ public sealed class RadiationDebugOverlay : Overlay
         _radiation = _entityManager.System<RadiationSystem>();
         _mapSystem = _entityManager.System<SharedMapSystem>();
 
-        _font = new VectorFont(_cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf"), 8);
+        UpdateFont();
+        _fontSelection.OnFontChanged += OnFontChanged;
+    }
+
+    protected override void DisposeBehavior()
+    {
+        base.DisposeBehavior();
+
+        _fontSelection.OnFontChanged -= OnFontChanged;
+    }
+
+    private void OnFontChanged(StandardFontType type)
+    {
+        if (type == StandardFontType.Main)
+            UpdateFont();
+    }
+
+    [MemberNotNull(nameof(_font))]
+    private void UpdateFont()
+    {
+        _font = _fontSelection.GetFont(StandardFontType.Main, 8);
     }
 
     protected override void Draw(in OverlayDrawArgs args)

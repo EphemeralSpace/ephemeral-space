@@ -179,7 +179,7 @@
 
 - type: entity
   id: CigPackSyndicate
-  parent: [CigPackBase, BaseSyndicateContraband]
+  parent: CigPackBase
   name: Interdyne herbals packet
   description: Elite cigarettes for elite syndicate agents. Infused with medicine for when you need to do more than calm your nerves.
   components:
@@ -217,8 +217,6 @@
   id: RandomSoakedSmokeTable
   table: !type:GroupSelector
     children:
-    - id: CigaretteLicoxide
-      weight: 1
     - id: CigaretteFrezon
       weight: 1
     - id: CigarettePhlogiston
@@ -245,14 +243,6 @@
       weight: 4
     - id: CigaretteDexalin
       weight: 4
-    - id: CigaretteHaloperidol
-      weight: 6
-    - id: CigaretteLaughter
-      weight: 6
-    - id: CigaretteLipolicide
-      weight: 6
-    - id: CigaretteSodiumPolyacrylate
-      weight: 6
     - id: CigaretteRobustHarvest
       weight: 6
     - id: CigaretteBanana
@@ -262,8 +252,6 @@
     - id: CigaretteCapsaicinOil
       weight: 7
     - id: CigaretteBbqSauce
-      weight: 7
-    - id: CigaretteNutriment
       weight: 7
     - id: CigaretteSaline
       weight: 7

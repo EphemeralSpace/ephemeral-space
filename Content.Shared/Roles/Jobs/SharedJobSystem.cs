@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.Mind;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles.Components;
@@ -12,11 +13,14 @@ namespace Content.Shared.Roles.Jobs;
 /// <summary>
 ///     Handles the job data on mind entities.
 /// </summary>
-public abstract class SharedJobSystem : EntitySystem
+public abstract partial class SharedJobSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPlayerSystem _playerSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
+// ES START
+    [Dependency] private SharedMindSystem _mind = default!;
+// ES END
+    [Dependency] private SharedPlayerSystem _playerSystem = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
 
     private readonly Dictionary<string, string> _inverseTrackerLookup = new();
 
@@ -206,6 +210,18 @@ public abstract class SharedJobSystem : EntitySystem
         MindTryGetJobName(mindId, out var name);
         return name;
     }
+// ES START
+    public string GetJobName(EntityUid uid)
+    {
+        if (_mind.TryGetMind(uid, out var mindId) &&
+            MindTryGetJobName(mindId, out var jobName))
+        {
+            return jobName;
+        }
+
+        return Loc.GetString("generic-unknown-title");
+    }
+// ES END
 
     public bool CanBeAntag(ICommonSession player)
     {

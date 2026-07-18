@@ -19,14 +19,14 @@ namespace Content.Shared.Fluids.EntitySystems;
 /// </remarks>
 /// <seealso cref="DumpableSolutionComponent" />
 /// <seealso cref="DrainableSolutionComponent" />
-public sealed class SolutionDumpingSystem : EntitySystem
+public sealed partial class SolutionDumpingSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly OpenableSystem _openable = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solContainer = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private OpenableSystem _openable = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedSolutionContainerSystem _solContainer = default!;
 
     private EntityQuery<DumpableSolutionComponent> _dumpQuery;
 
@@ -123,14 +123,14 @@ public sealed class SolutionDumpingSystem : EntitySystem
         sourceSolEnt = null;
         if (!_actionBlocker.CanComplexInteract(user))
         {
-            _popup.PopupClient(Loc.GetString("mopping-system-no-hands"), user, user);
+            _popup.PopupEntity(Loc.GetString("mopping-system-no-hands"), user, user);
             return false;
         }
 
         if (!_solContainer.TryGetSolution(sourceContainer, sourceSolutionName, out sourceSolEnt)
             || sourceSolEnt.Value.Comp.Solution.Volume == FixedPoint2.Zero)
         {
-            _popup.PopupClient(Loc.GetString("mopping-system-empty", ("used", sourceContainer)),
+            _popup.PopupEntity(Loc.GetString("mopping-system-empty", ("used", sourceContainer)),
                 sourceContainer,
                 user);
             return false;
@@ -138,7 +138,7 @@ public sealed class SolutionDumpingSystem : EntitySystem
 
         if (checkAvailableVolume && targetSol.AvailableVolume == FixedPoint2.Zero)
         {
-            _popup.PopupClient(Loc.GetString("mopping-system-full", ("used", targetContainer)), targetContainer, user);
+            _popup.PopupEntity(Loc.GetString("mopping-system-full", ("used", targetContainer)), targetContainer, user);
             return false;
         }
 

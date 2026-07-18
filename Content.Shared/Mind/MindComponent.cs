@@ -109,16 +109,4 @@ public sealed partial class MindComponent : Component
     /// </summary>
     [ViewVariables]
     public const string MindRoleContainerId = "mind_roles";
-
-    /// <summary>
-    ///     The mind's current antagonist/special role, or lack thereof;
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public ProtoId<RoleTypePrototype> RoleType = "Neutral";
-
-    /// <summary>
-    ///     The role's subtype, shown only to admins to help with antag categorization
-    /// </summary>
-    [DataField]
-    public LocId? Subtype;
 }

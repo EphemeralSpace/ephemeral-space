@@ -1,7 +1,7 @@
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectiveGuzzle
-  name: Guzzle
+  name: Guzzle a certain amount of fluids
   description: Consume as much liquid as you can, from anywhere you can get it!
   components:
   - type: ESObjective
@@ -16,9 +16,9 @@
     targetIncrement: 50
 
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectiveGuzzleSpecialInterest
-  name: Guzzle Special Interest
+  name: Guzzle your special interest
   description: Consume as much of your Special Interest as you can!
   components:
   - type: ESObjective
@@ -33,15 +33,12 @@
     - Beer
     - WeldingFuel # Excuse to really annoy engineering, AND medical.
     - Epinephrine # Excuses to really annoy medical.
-    - DexalinPlus
     - JuiceBanana
     - JuiceApple
     - Milk
     - Bicaridine
     - Sugar
     - Blood
-    - Fiber
-    - Fat
     - SoapReagent
     - SpaceCleaner
     - SpaceLube
@@ -51,9 +48,9 @@
     targetIncrement: 10
 
 - type: entity
-  parent: ESBaseMaskObjective
+  parent: ESBaseSecretIdentityObjective
   id: ESObjectiveGuzzleUniqueReagents
-  name: Guzzle
+  name: Guzzle unique flavors
   description: Consume as many unique liquids as you can, from anywhere you can get them!
   components:
   - type: ESObjective

@@ -5,13 +5,6 @@
   - type: ESStationArrivals
 
 - type: entity
-  id: ESBaseStationEvacuation
-  abstract: true
-  components:
-  - type: ESEvacStation
-  - type: StationEmergencyShuttle
-
-- type: entity
   id: ESBaseStationStoreroom
   abstract: true
   components:
@@ -19,65 +12,17 @@
   - type: ESCargoRequestStation
 
 - type: entity
-  id: ESBaseStationTelesci
-  abstract: true
-  components:
-  - type: ESTelesciStation
-    stages:
-    - announcement: es-telesci-announcement-stage-1
-      announcementSound:
-        path: /Audio/_ES/Announcements/attention_high.ogg
-        params:
-          volume: -4
-      events:
-        id: ESPortalEventAnomalies
-        amount: 3
-    - announcement: es-telesci-announcement-stage-2
-      announcementSound:
-        path: /Audio/_ES/Announcements/attention_high.ogg
-        params:
-          volume: -4
-      events:
-        id: ESPortalEventAnomalies
-        amount: 4
-    - announcement: es-telesci-announcement-stage-3
-      announcementSound:
-        path: /Audio/_ES/Announcements/attention_high.ogg
-        params:
-          volume: -4
-      events:
-        id: ESPortalEventAnomalies
-        amount: 5
-    - announcement: es-telesci-announcement-stage-4
-      announcementSound:
-        path: /Audio/_ES/Announcements/attention_high.ogg
-        params:
-          volume: -4
-
-- type: entity
   id: ESBaseStationNeutral
   parent:
   - BaseStation
   - BaseStationNews
-  - BaseStationCargo
   - BaseStationJobsSpawning
   - BaseStationRecords
   - BaseStationAlertLevels
   - BaseStationAllEventsEligible
-  - BaseStationNanotrasen
-  - BaseStationDeliveries
   - ESBaseStationArrivals
   - ESBaseStationStoreroom
-  - ESBaseStationTelesci
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
   - type: ESProducer
-  - type: GridSpawn
-    groups:
-      trade: !type:GridSpawnGroup
-        addComponents:
-        - type: ProtectedGrid
-        - type: TradeStation
-        paths:
-        - /Maps/Shuttles/trading_outpost.yml

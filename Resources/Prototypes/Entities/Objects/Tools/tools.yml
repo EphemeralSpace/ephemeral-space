@@ -41,8 +41,6 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
-  - type: StaticPrice
-    price: 30
 
 - type: entity
   name: screwdriver
@@ -85,8 +83,6 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
-  - type: StaticPrice
-    price: 30
 
 - type: entity
   name: wrench
@@ -124,11 +120,6 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
-  - type: StaticPrice
-    price: 22
-  - type: GuideHelp
-    guides:
-    - Construction
 
 - type: entity
   name: multitool
@@ -178,15 +169,9 @@
     materialComposition:
       Steel: 100
       Plastic: 100
-  - type: StaticPrice
-    price: 56
   - type: GuideHelp
     guides:
-    # ES START
-    #- Networking
-    # ES END
-    - WirePanels
-    - Airlocks
+    - Wires
     - InspectingPower
 
 - type: entity
@@ -234,11 +219,6 @@
           type: NetworkConfiguratorBoundUserInterface
         enum.NetworkConfiguratorUiKey.Link:
           type: NetworkConfiguratorBoundUserInterface
-    - type: StaticPrice
-      price: 56
-    - type: GuideHelp
-      guides:
-      - Networking
 
 #Power tools
 #Later on these should switch probably switch damage when changing the tool behavior.
@@ -285,8 +265,6 @@
     materialComposition:
       Steel: 300
       Plastic: 100
-  - type: StaticPrice
-    price: 100
   - type: MeleeWeapon
     wideAnimationRotation: -90
     attackRate: 1.5
@@ -298,31 +276,24 @@
 
 - type: entity
   id: RCD
-  parent: [ BaseItem, BaseEngineeringContraband ]
+  parent: BaseItem
   name: RCD
   description: The rapid construction device can be used to quickly place and remove various station structures and fixtures. Requires compressed matter to function.
   components:
   - type: RCD
     availablePrototypes:
-    - WallSolid
     - FloorSteel
     - Plating
     - Catwalk
     - Grille
     - Window
     - WindowDirectional
-    - WindowReinforcedDirectional
-    - ReinforcedWindow
-    - Airlock
-    - AirlockGlass
-    - Firelock
     - TubeLight
     - BulbLight
     - LVCable
     - MVCable
     - HVCable
     - CableTerminal
-    - Deconstruct
   - type: LimitedCharges
     maxCharges: 30
   - type: Sprite
@@ -339,8 +310,6 @@
     materialComposition:
       Steel: 600
       Plastic: 100
-  - type: StaticPrice
-    price: 110
   - type: UserInterface
     interfaces:
       enum.RcdUiKey.Key:
@@ -356,28 +325,6 @@
   components:
   - type: LimitedCharges
     lastCharges: -1
-
-- type: entity
-  id: RCDRecharging
-  parent: RCD
-  name: experimental RCD
-  description: Cyborg-mounted Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
-  suffix: AutoRecharge
-  components:
-  - type: LimitedCharges
-    maxCharges: 20
-  - type: AutoRecharge
-    rechargeDuration: 10
-
-- type: entity
-  id: RCDExperimental
-  parent: RCD
-  suffix: Admeme
-  name: experimental RCD
-  description: A bluespace-enhanced rapid construction device that passively generates its own compressed matter.
-  components:
-  - type: AutoRecharge
-    rechargeDuration: 1
 
 - type: entity
   name: compressed matter
@@ -396,8 +343,6 @@
     materialComposition:
       Steel: 100
       Plastic: 100
-  - type: StaticPrice
-    price: 60
 
 - type: entity
   name: omnitool
@@ -474,23 +419,21 @@
   - type: Sprite
     sprite: Objects/Tools/shovel.rsi
     state: icon
-  - type: MeleeWeapon
+  - type: MeleeWeapon # large, difficult to swing, will knock you out because its a damn shovel
     wideAnimationRotation: 45
+    attackRate: 0.50
     damage:
       types:
-        Blunt: 14
+        Blunt: 17
     soundHit:
       collection: MetalThud
   - type: Item
-    size: Normal
+    size: Ginormous
     sprite: Objects/Tools/shovel.rsi
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
       Wood: 50
-  - type: StaticPrice
-    price: 25
-  - type: Shovel
 
 - type: entity
   parent: BaseItem

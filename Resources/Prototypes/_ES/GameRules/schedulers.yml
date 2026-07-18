@@ -35,8 +35,6 @@
       tableId: ESDegradationEvents
     votePrototype: ESVoteDegradationEvent
     voteOptions: 2
-    minEventDelay: 5m
-    maxEventDelay: 15m
 
 - type: entity
   id: ESVoteDegradationEvent

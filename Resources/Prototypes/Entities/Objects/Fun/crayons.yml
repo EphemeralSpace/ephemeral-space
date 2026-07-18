@@ -27,8 +27,6 @@
     selectedState: like
   - type: LimitedCharges
     maxCharges: 25
-  - type: StaticPrice
-    price: 5
 
 - type: entity
   abstract: true
@@ -45,8 +43,6 @@
     solutions:
       food:
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
         - ReagentId: MindbreakerToxin
           Quantity: 2
 

@@ -16,12 +16,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.NPC.HTN;
 
-public sealed class HTNSystem : EntitySystem
+public sealed partial class HTNSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminManager _admin = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly NPCSystem _npc = default!;
-    [Dependency] private readonly NPCUtilitySystem _utility = default!;
+    [Dependency] private IAdminManager _admin = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private NPCSystem _npc = default!;
+    [Dependency] private NPCUtilitySystem _utility = default!;
 
     private readonly JobQueue _planQueue = new(0.004);
 
@@ -387,11 +387,18 @@ public sealed class HTNSystem : EntitySystem
                     break;
                 case HTNOperatorStatus.Failed:
                     ShutdownTask(currentOperator, blackboard, status);
-                    ShutdownPlan(component);
+// ES START
+                    if (component.Plan != null)
+                        ShutdownPlan(component);
+// ES END
                     break;
                 // Operator completed so go to the next one.
                 case HTNOperatorStatus.Finished:
                     ShutdownTask(currentOperator, blackboard, status);
+// ES START
+                    if (component.Plan == null)
+                        break;
+// ES END
                     component.Plan.Index++;
 
                     // Plan finished!

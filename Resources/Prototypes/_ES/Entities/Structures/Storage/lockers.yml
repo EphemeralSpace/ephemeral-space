@@ -1,29 +1,91 @@
+# Chef
+- type: entity
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
+  id: LockerChef
+  name: chef's locker
+  description: Where all the things that aren't dead bodies go.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/chef.rsi
+  - type: ESPersonalLocker
+    job: ESChef
+
+# Clown
+- type: entity
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
+  id: LockerClown
+  name: giggles von lockerton
+  description: "The newest model in humorous storage from Honk! Co."
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/clown.rsi
+  - type: ESPersonalLocker
+    job: ESClown
+
 # Coroner
 - type: entity
-  parent: LockerBaseSecure
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   id: ESLockerCoroner
   name: coroner's locker
   components:
   - type: Sprite
     sprite: _ES/Structures/Storage/Closets/coroner.rsi
-  - type: EntityStorageVisuals
-    stateBaseClosed: generic
-    stateDoorOpen: generic_open
-    stateDoorClosed: generic_door
-  - type: AccessReader
-    access: [ [ "Medical" ] ]
+  - type: ESPersonalLocker
+    job: ESCoroner
+
+# Janitor
+- type: entity
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
+  id: LockerJanitor
+  name: janitor's locker
+  description: Smells like cleaning supplies and contentedness.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/janitor.rsi
+  - type: ESPersonalLocker
+    job: ESJanitor
+
+# Ratman
+- type: entity
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
+  id: LockerRatman
+  name: ratty locker
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/ratman.rsi
+  - type: ESPersonalLocker
+    job: ESRatman
 
 # Paramed
 - type: entity
-  parent: LockerBaseSecure
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   id: ESLockerParamedic
   name: paramedic's locker
   components:
   - type: Sprite
     sprite: _ES/Structures/Storage/Closets/paramed.rsi
-  - type: EntityStorageVisuals
-    stateBaseClosed: generic
-    stateDoorOpen: generic_open
-    stateDoorClosed: generic_door
-  - type: AccessReader
-    access: [ [ "Medical" ] ]
+  - type: ESPersonalLocker
+    job: ESParamedic
+
+# Quartermaster
+- type: entity
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
+  id: LockerQuartermaster
+  name: quartermaster's locker
+  description: Maybe you'll be a command member again some day. Probably not, though.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/qm.rsi
+  - type: ESPersonalLocker
+    job: ESQuartermaster
+
+# Reporter
+- type: entity
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
+  id: LockerReporter
+  name: reporter's locker
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/reporter.rsi
+  - type: ESPersonalLocker
+    job: ESReporter

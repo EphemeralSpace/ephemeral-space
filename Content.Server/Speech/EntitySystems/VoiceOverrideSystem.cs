@@ -3,7 +3,7 @@ using Content.Server.Speech.Components;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed partial class VoiceOverrideSystem : EntitySystem
+public sealed class VoiceOverrideSystem : EntitySystem
 {
     public override void Initialize()
     {

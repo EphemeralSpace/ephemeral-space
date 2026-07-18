@@ -48,8 +48,8 @@ namespace Content.Client.Options.UI;
 [GenerateTypedNameReferences]
 public sealed partial class OptionsTabControlRow : Control
 {
-    [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private ValueList<BaseOption> _options;
 
@@ -173,6 +173,29 @@ public sealed partial class OptionsTabControlRow : Control
         where T : notnull
     {
         return AddOption(new OptionDropDownCVar<T>(this, _cfg, cVar, dropDown, options));
+    }
+
+    /// <summary>
+    /// Add a font scale option, backed by a CVar.
+    /// </summary>
+    /// <returns>The option instance backing the added option.</returns>
+    public OptionFontScaleCVar AddOptionFontScale(CVarDef<float> cVar, OptionFontSelector fontSelector)
+    {
+        return AddOption(new OptionFontScaleCVar(this, _cfg, cVar, fontSelector));
+    }
+
+    /// <summary>
+    /// Add a font family name option, backed by a CVar.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// Options are provided from the user's system fonts.
+    /// </para>
+    /// </remarks>
+    /// <returns>The option instance backing the added option.</returns>
+    public OptionFontFamilyNameCVar AddOptionFontFamilyName(CVarDef<string> cVar, OptionFontSelector fontSelector)
+    {
+        return AddOption(new OptionFontFamilyNameCVar(this, _cfg, cVar, fontSelector));
     }
 
     /// <summary>
@@ -745,5 +768,55 @@ public sealed class OptionDropDownCVar<T> : BaseOptionCVar<T> where T : notnull
     private struct ItemEntry
     {
         public T Key;
+    }
+}
+
+/// <summary>
+/// Implementation of a CVar font scale option for <see cref="OptionFontSelector"/>.
+/// </summary>
+public sealed class OptionFontScaleCVar : BaseOptionCVar<float>
+{
+    private readonly OptionFontSelector _selector;
+
+    protected override float Value
+    {
+        get => _selector.Scale;
+        set => _selector.Scale = value;
+    }
+
+    public OptionFontScaleCVar(
+        OptionsTabControlRow controller,
+        IConfigurationManager cfg,
+        CVarDef<float> cVar,
+        OptionFontSelector selector) : base(controller, cfg, cVar)
+    {
+        _selector = selector;
+
+        selector.OnScaleChanged += ValueChanged;
+    }
+}
+
+/// <summary>
+/// Implementation of a CVar font family option for <see cref="OptionFontSelector"/>.
+/// </summary>
+public sealed class OptionFontFamilyNameCVar : BaseOptionCVar<string>
+{
+    private readonly OptionFontSelector _selector;
+
+    protected override string Value
+    {
+        get => _selector.FamilyName ?? "";
+        set => _selector.FamilyName = value == "" ? null : value;
+    }
+
+    public OptionFontFamilyNameCVar(
+        OptionsTabControlRow controller,
+        IConfigurationManager cfg,
+        CVarDef<string> cVar,
+        OptionFontSelector selector) : base(controller, cfg, cVar)
+    {
+        _selector = selector;
+
+        selector.OnFamilyNameChanged += ValueChanged;
     }
 }

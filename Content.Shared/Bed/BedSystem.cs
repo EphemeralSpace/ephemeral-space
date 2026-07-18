@@ -5,7 +5,6 @@ using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
@@ -14,17 +13,16 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Bed;
 
-public sealed class BedSystem : EntitySystem
+public sealed partial class BedSystem : EntitySystem
 {
-    [Dependency] private readonly ActionContainerSystem _actConts = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly SharedMetabolizerSystem _metabolizer = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
-    [Dependency] private readonly SleepingSystem _sleepingSystem = default!;
+    [Dependency] private ActionContainerSystem _actConts = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedMetabolizerSystem _metabolizer = default!;
+    [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
+    [Dependency] private SleepingSystem _sleepingSystem = default!;
 
     private EntityQuery<SleepingComponent> _sleepingQuery;
 
@@ -38,7 +36,6 @@ public sealed class BedSystem : EntitySystem
 
         SubscribeLocalEvent<StasisBedComponent, StrappedEvent>(OnStasisStrapped);
         SubscribeLocalEvent<StasisBedComponent, UnstrappedEvent>(OnStasisUnstrapped);
-        SubscribeLocalEvent<StasisBedComponent, GotEmaggedEvent>(OnStasisEmagged);
         SubscribeLocalEvent<StasisBedComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<StasisBedBuckledComponent, GetMetabolicMultiplierEvent>(OnStasisGetMetabolicMultiplier);
 
@@ -84,21 +81,6 @@ public sealed class BedSystem : EntitySystem
     {
         RemComp<StasisBedBuckledComponent>(ent);
         _metabolizer.UpdateMetabolicMultiplier(args.Buckle);
-    }
-
-    private void OnStasisEmagged(Entity<StasisBedComponent> ent, ref GotEmaggedEvent args)
-    {
-        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-            return;
-
-        if (_emag.CheckFlag(ent, EmagType.Interaction))
-            return;
-
-        ent.Comp.Multiplier = 1f / ent.Comp.Multiplier;
-        UpdateMetabolisms(ent.Owner);
-        Dirty(ent);
-
-        args.Handled = true;
     }
 
     private void OnPowerChanged(Entity<StasisBedComponent> ent, ref PowerChangedEvent args)

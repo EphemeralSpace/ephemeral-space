@@ -6,12 +6,16 @@ using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Input;
 using Robust.Shared.Utility;
 using Content.Client.UserInterface.ControlExtensions;
+using Content.Shared.Guidebook;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Guidebook.RichText;
 
 [UsedImplicitly]
-public sealed class TextLinkTag : IMarkupTagHandler
+public sealed partial class TextLinkTag : IMarkupTagHandler
 {
+    [Dependency] private IPrototypeManager _proto = default!;
+
     public static Color LinkColor => Color.CornflowerBlue;
 
     public string Name => "textlink";
@@ -21,7 +25,8 @@ public sealed class TextLinkTag : IMarkupTagHandler
     {
         if (!node.Value.TryGetString(out var text)
             || !node.Attributes.TryGetValue("link", out var linkParameter)
-            || !linkParameter.TryGetString(out var link))
+            || !linkParameter.TryGetString(out var link)
+            || !_proto.HasIndex<GuideEntryPrototype>(link))
         {
             control = null;
             return false;

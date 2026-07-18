@@ -1,0 +1,102 @@
+- type: esSecretIdentity
+  parent: ESBaseTraitor
+  id: Assassin
+  name: es-secret-identity-assassin-name
+  description: es-secret-identity-assassin-desc
+  color: hotpink
+  mindComponents:
+  - type: ESSecretIdentityCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorAssassin
+
+- type: esSecretIdentity
+  parent: ESBaseTraitor
+  id: Infiltrator
+  name: es-secret-identity-infiltrator-name
+  description: es-secret-identity-infiltrator-desc
+  color: yellow
+  tips:
+  - InfiltratorC4Deniability
+  - InfiltratorRatmanDoors
+  - EmagAirlockDeniability
+  mindComponents:
+  - type: ESSecretIdentityCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorInfiltrator
+
+- type: esSecretIdentity
+  parent: ESBaseTraitor
+  id: Marauder
+  name: es-secret-identity-marauder-name
+  description: es-secret-identity-marauder-desc
+  color: coral
+  mindComponents:
+  - type: ESSecretIdentityCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorMarauder
+
+- type: esSecretIdentity
+  parent: ESBaseTraitor
+  id: Subverter
+  name: es-secret-identity-subverter-name
+  description: es-secret-identity-subverter-desc
+  color: gray
+  weight: 0.9
+  mindComponents:
+  - type: ESSecretIdentityCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorSubverter
+
+- type: esSecretIdentity
+  parent: ESBaseTraitor
+  id: Recruit
+  name: es-secret-identity-recruit-name
+  description: es-secret-identity-recruit-desc
+  color: pink
+  weight: 0
+
+- type: esSecretIdentity
+  parent: ESBaseTraitor
+  id: Demolitionist
+  name: es-secret-identity-demolitionist-name
+  description: es-secret-identity-demolitionist-desc
+  color: orangered
+  mindComponents:
+  - type: ESSecretIdentityCacheSpawner
+    cacheProto:
+      id: ESCrateCacheTraitorDemolitionist
+
+- type: esSecretIdentity
+  # doesnt parent from basetraitor because we dont want the icon
+  # and doesnt parent from commandrestricted because this is a command-available traitor role!
+  id: Sympathizer
+  name: es-secret-identity-sympathizer-name
+  organization: Traitor
+  description: es-secret-identity-sympathizer-desc
+  color: darkmagenta
+  tips:
+  - SympathizerCovertOperations
+  - SympathizerDeduction
+  - SympathizerPrisonbreak
+  - SympathizerPotentialTarget
+  weight: 0
+  mindComponents:
+  - type: ESOrganizationNoSharedObjectives
+    organizations: [Traitor]
+  - type: ESOrganizationIgnoreFactionIcons
+    organizations: [Traitor]
+  objectives:
+    all:
+    - id: ESObjectiveSympathizerDetonateNuke
+
+# Non-traitor identities that are dependent on traitors
+- type: esSecretIdentity
+  parent: ESBaseCommandRestricted # same restriction as traitors
+  id: SleeperAgent
+  name: es-secret-identity-sleeper-agent-name
+  organization: Crew
+  description: es-secret-identity-sleeper-agent-desc
+  color: darkturquoise
+  weight: 0 # otherwise it can roll in randomasquerades with no traitors. temp fix
+  mindComponents:
+  - type: ESSuperfan

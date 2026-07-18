@@ -12,12 +12,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Chat.UI
 {
-    public abstract class SpeechBubble : Control
+    public abstract partial class SpeechBubble : Control
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IEyeManager _eyeManager = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] protected readonly IConfigurationManager ConfigManager = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IEyeManager _eyeManager = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        [Dependency] protected IConfigurationManager ConfigManager = default!;
         private readonly SharedTransformSystem _transformSystem;
 
         public enum SpeechType : byte
@@ -155,7 +155,7 @@ namespace Content.Client.Chat.UI
             var offset = (-_eyeManager.CurrentEye.Rotation).ToWorldVec() * -(EntityVerticalOffset + baseOffset);
             var worldPos = _transformSystem.GetWorldPosition(xform) + offset;
 
-            var lowerCenter = _eyeManager.WorldToScreen(worldPos) / UIScale;
+            var lowerCenter = (_eyeManager.WorldToScreen(worldPos) - (Parent?.GlobalPixelPosition ?? Vector2.Zero)) / UIScale;
             var screenPos = lowerCenter - new Vector2(ContentSize.X / 2, ContentSize.Y + _verticalOffsetAchieved);
             // Round to nearest 0.5
             screenPos = (screenPos * 2).Rounded() / 2;

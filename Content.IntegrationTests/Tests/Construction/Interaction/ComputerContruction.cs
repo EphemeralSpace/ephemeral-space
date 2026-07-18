@@ -5,9 +5,14 @@ namespace Content.IntegrationTests.Tests.Construction.Interaction;
 public sealed class ComputerConstruction : InteractionTest
 {
     private const string Computer = "Computer";
-    private const string ComputerId = "ComputerId";
+    // ES START
+    // uhh we have to hardcode it to a diff erent computer cuz we changed this one Lol
+    private const string ComputerId = "ComputerAlert";
+    // ES END
     private const string ComputerFrame = "ComputerFrame";
-    private const string IdBoard = "IDComputerCircuitboard";
+    // ES START
+    private const string IdBoard = "AlertsComputerCircuitboard";
+    // ES END
 
     [Test]
     public async Task ConstructComputer()
@@ -84,14 +89,14 @@ public sealed class ComputerConstruction : InteractionTest
 
         // Begin re-constructing with a new circuit board
         await Interact(
-            "CargoRequestComputerCircuitboard",
+            "SolarControlComputerCircuitboard",
             Screw,
             (Cable, 5),
             (Glass, 2),
             Screw);
 
         // Construction finished, target entity was replaced with a new one:
-        AssertPrototype("ComputerCargoOrders");
+        AssertPrototype("ComputerSolarControl");
     }
 }
 

@@ -22,8 +22,8 @@ namespace Content.Client.Shuttles.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ShuttleMapControl : BaseShuttleControl
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IInputManager _inputs = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IInputManager _inputs = default!;
     private readonly SharedMapSystem _mapSystem;
     private readonly ShuttleSystem _shuttles;
     private readonly SharedTransformSystem _xformSystem;
@@ -80,6 +80,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
         _physicsQuery = EntManager.GetEntityQuery<PhysicsComponent>();
 
+        // TODO: Move fonts to stylesheets, respect user font preferences.
         _font = new VectorFont(cache.GetResource<FontResource>("/EngineFonts/NotoSans/NotoSans-Regular.ttf"), 10);
     }
 

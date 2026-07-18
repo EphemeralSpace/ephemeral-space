@@ -1,0 +1,49 @@
+- type: job
+  id: ESClown
+  name: ESjob-name-clown
+  description: ESjob-description-clown
+  playTimeTracker: ESJobClown
+  startingGear: ESClownGear
+  icon: "JobIconClown"
+  access:
+  - Theatre
+  - Maintenance
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: SleepEmitSound
+      snore: /Audio/Voice/Misc/silly_snore.ogg
+      interval: 10
+  - !type:AddImplantSpecial
+    implants: [ SadTromboneImplant ]
+  nameConfig:
+    doubleFirstNameChance: 0.1
+    quotedMiddleNameChance: 0.1
+    abbreviatedMiddleChance: 0.005
+    abbreviatedFirstMiddleChance: 0.005
+    hyphenatedLastNameChance: 0.08
+    lastNamelessChance: 0.15
+    adjectiveFirstNameChance: 0.4
+    adjectiveAlliterationTotalChances: 8
+    alliterationTotalChances: 10
+
+- type: startingGear
+  id: ESClownGear
+  equipment:
+    shoes: ClothingShoesClown
+    mask: ClothingMaskClown
+    id: ClownPDA
+    ears: ClothingHeadsetService
+    jumpsuit: ClothingUniformJumpsuitClown
+    back: ClothingBackpackClown
+    pocket1: BikeHorn
+  storage:
+    back:
+    - ESBoxHug
+    - RubberStampClown
+    - CrayonRainbow
+
+- type: chameleonOutfit
+  id: ESClown
+  job: ESClown
+  hidden: false

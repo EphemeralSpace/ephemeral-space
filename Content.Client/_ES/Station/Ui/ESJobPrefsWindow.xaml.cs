@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Client._ES.Station;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Roles;
@@ -12,9 +11,9 @@ namespace Content.Client._ES.Station.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class ESJobPrefsWindow : FancyWindow
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private JobRequirementsManager _jobRequirements = default!;
 
     private readonly ESStationSystem _station;
 

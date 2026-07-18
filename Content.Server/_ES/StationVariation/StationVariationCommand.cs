@@ -12,7 +12,6 @@ namespace Content.Server._ES.StationVariation;
 [ToolshedCommand, AdminCommand(AdminFlags.Debug)]
 public sealed class StationVariationCommand : ToolshedCommand
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     private GameTicker? _ticker;
 
     [CommandImplementation("runPass")]

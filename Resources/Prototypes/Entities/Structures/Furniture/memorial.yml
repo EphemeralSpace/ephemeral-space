@@ -67,8 +67,6 @@
         layer:
         - MachineLayer
   - type: Anchorable
-  - type: StaticPrice
-    price: 25000
   - type: Prayable
     sentMessage: prayer-popup-notify-monolith-sent
     notificationPrefix: prayer-chat-notify-monolith

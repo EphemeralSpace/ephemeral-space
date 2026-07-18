@@ -14,15 +14,15 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Station;
 
-public abstract class SharedStationSpawningSystem : EntitySystem
+public abstract partial class SharedStationSpawningSystem : EntitySystem
 {
-    [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] protected readonly InventorySystem InventorySystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly SharedStorageSystem _storage = default!;
-    [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
+    [Dependency] protected IPrototypeManager PrototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] protected InventorySystem InventorySystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] private SharedTransformSystem _xformSystem = default!;
 
     private EntityQuery<HandsComponent> _handsQuery;
     private EntityQuery<InventoryComponent> _inventoryQuery;
@@ -128,7 +128,9 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                 if (!string.IsNullOrEmpty(equipmentStr))
                 {
                     var equipmentEntity = Spawn(equipmentStr, xform.Coordinates);
-                    InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, silent: true, force: true);
+
+                    InventorySystem.TryUnequip(entity, slot.Name, true, true); // ES change - removes the item in the slot before adding the item
+                    InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, silent: true, force: true, checkDoafter: false);
                 }
             }
         }
@@ -141,10 +143,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
             {
                 var inhandEntity = Spawn(prototype, coords);
 
-                if (_handsSystem.TryGetEmptyHand((entity, handsComponent), out var emptyHand))
-                {
-                    _handsSystem.TryPickup(entity, inhandEntity, emptyHand, checkActionBlocker: false, handsComp: handsComponent);
-                }
+                _handsSystem.TryForcePickupAnyHand(entity, inhandEntity, checkActionBlocker: false, handsComp: handsComponent);
             }
         }
 

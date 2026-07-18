@@ -1,0 +1,79 @@
+- type: entity
+  parent: LockerChef
+  id: LockerChefFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: LockerFillChef
+
+- type: entity
+  parent: LockerClown
+  id: LockerClownFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: LockerFillClown
+
+- type: entity
+  parent: ESLockerCoroner
+  id: ESLockerCoronerFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESLockerFillCoroner
+
+- type: entity
+  parent: LockerJanitor
+  id: LockerJanitorFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: LockerFillJanitor
+
+- type: entity
+  parent: LockerRatman
+  id: LockerRatmanFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: LockerFillRatman
+
+- type: entity
+  parent: ESLockerParamedic
+  id: ESLockerParamedicFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: ESLockerFillParamedic
+
+- type: entity
+  parent: LockerQuartermaster
+  id: LockerQuartermasterFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: LockerFillQuartermaster
+
+- type: entity
+  parent: LockerReporter
+  id: LockerReporterFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: LockerFillReporter

@@ -2,7 +2,7 @@ using Content.Shared.MedicalScanner;
 
 namespace Content.Client.HealthAnalyzer.UI.Tooltips;
 
-public sealed partial class RespiratoryRateTooltip : UpdatableTooltip
+public sealed class RespiratoryRateTooltip : UpdatableTooltip
 {
     public override void Update(HealthAnalyzerScannedUserMessage msg)
     {

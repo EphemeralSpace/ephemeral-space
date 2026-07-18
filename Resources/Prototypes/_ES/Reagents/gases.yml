@@ -17,13 +17,59 @@
     Gas:
       effects:
       - !type:HealthChange
-        minScale: 0.25
+        minScale: 0.5
         ignoreResistances: true
         damage:
           types:
             Asphyxiation:
-              1.25
+              2
       - !type:ESAddWound
-        minScale: 0.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: Smoke
+          min: 0.75
         wound: ESWoundSmokeInhalation
         probability: 0.33
+      - !type:Emote
+        conditions:
+        - !type:ReagentCondition
+          reagent: Smoke
+          min: 0.25
+        emote: Cough
+        probability: 0.75
+
+- type: reagent
+  id: Miasma
+  name: es-reagent-name-miasma
+  desc: es-reagent-desc-miasma
+  physicalDesc: reagent-physical-desc-pungent
+  flavor: terrible
+  color: "#1a1a1a"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        ignoreResistances: true
+        damage:
+          types:
+            Poison: 1
+    Gas:
+      effects:
+      - !type:Vomit
+        probability: 0.12
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Rat, Animal ]
+          inverted: true
+        - !type:ReagentCondition
+          reagent: Miasma
+          min: 0.75
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "ammonia-smell" ]
+        probability: 0.1
+        conditions:
+        - !type:ReagentCondition
+          reagent: Miasma
+          min: 0.25

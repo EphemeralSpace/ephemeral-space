@@ -1,14 +1,15 @@
 using System.Linq;
-using System.Numerics;
+using Content.Server._ES.TileFires;
 using Content.Server.Administration.Logs;
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Decals;
 using Content.Server.Destructible;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NPC.Pathfinding;
+using Content.Shared._ES.Breakable;
+using Content.Shared._ES.Breakable.Components;
 using Content.Shared._ES.Camera;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Camera;
 using Content.Shared.CCVar;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -18,10 +19,10 @@ using Content.Shared.Explosion.Components;
 using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
+using Content.Shared.Maps;
 using Content.Shared.Projectiles;
 using Content.Shared.Throwing;
 using Robust.Server.GameStates;
-using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -36,30 +37,33 @@ namespace Content.Server.Explosion.EntitySystems;
 public sealed partial class ExplosionSystem : SharedExplosionSystem
 {
     // ES START
-    [Dependency] private readonly ESScreenshakeSystem _shake = default!;
+    [Dependency] private ESScreenshakeSystem _shake = default!;
+    [Dependency] private ESTileFireSystem _tileFire = default!;
+    [Dependency] private TileSystem _tile = default!;
+    [Dependency] private ESBreakableSystem _breakable = default!;
+    [Dependency] private DecalSystem _decal = default!;
+
+    [Dependency] private EntityQuery<ESBreakableWallComponent> _breakableWallQuery = default!;
     // ES END
 
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
 
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
-    [Dependency] private readonly PathfindingSystem _pathfindingSystem = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _recoilSystem = default!;
-    [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
-    [Dependency] private readonly PvsOverrideSystem _pvsSys = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly FlammableSystem _flammableSystem = default!;
-    [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private NodeGroupSystem _nodeGroupSystem = default!;
+    [Dependency] private PathfindingSystem _pathfindingSystem = default!;
+    [Dependency] private ThrowingSystem _throwingSystem = default!;
+    [Dependency] private PvsOverrideSystem _pvsSys = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private FlammableSystem _flammableSystem = default!;
+    [Dependency] private DestructibleSystem _destructibleSystem = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
 
     private EntityQuery<FlammableComponent> _flammableQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -250,7 +254,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         var posFound = _transformSystem.TryGetMapOrGridCoordinates(uid, out var gridPos, pos);
 
-        QueueExplosion(mapPos, typeId, totalIntensity, slope, maxTileIntensity, uid, tileBreakScale, maxTileBreak, canCreateVacuum, addLog: false);
+        QueueExplosion(mapPos, typeId, totalIntensity, slope, maxTileIntensity, uid, tileBreakScale, maxTileBreak, canCreateVacuum, addLog: false, origin: user);
 
         if (!addLog)
             return;
@@ -262,10 +266,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         }
         else
         {
-            var alertMinExplosionIntensity = _cfg.GetCVar(CCVars.AdminAlertExplosionMinIntensity);
-            var logImpact = (alertMinExplosionIntensity > -1 && totalIntensity >= alertMinExplosionIntensity)
-                ? LogImpact.Extreme
-                : LogImpact.High;
+            var logImpact = LogImpact.High;
             if (posFound)
                 _adminLogger.Add(LogType.Explosion, logImpact, $"{ToPrettyString(user.Value):user} caused {ToPrettyString(uid):entity} to explode ({typeId}) at Pos:{gridPos:coordinates} with intensity {totalIntensity} slope {slope}");
             else
@@ -286,7 +287,8 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         float tileBreakScale = 1f,
         int maxTileBreak = int.MaxValue,
         bool canCreateVacuum = true,
-        bool addLog = true)
+        bool addLog = true,
+        EntityUid? origin = null)
     {
         if (totalIntensity <= 0 || slope <= 0)
             return;
@@ -326,7 +328,8 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             TileBreakScale = tileBreakScale,
             MaxTileBreak = maxTileBreak,
             CanCreateVacuum = canCreateVacuum,
-            Cause = cause
+            Cause = cause,
+            Origin = origin,
         };
         _explosionQueue.Enqueue(boom);
         _queuedExplosions.Add(boom);
@@ -351,11 +354,6 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         var (area, iterationIntensity, spaceData, gridData, spaceMatrix) = results.Value;
 
         var visualEnt = CreateExplosionVisualEntity(pos, queued.Proto.ID, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
-
-        // camera shake
-        // ES START
-        // CameraShake(iterationIntensity.Count * 4f, pos, queued.TotalIntensity);
-        // ES END
 
         //For whatever bloody reason, sound system requires ENTITY coordinates.
         var mapEntityCoords = _transformSystem.ToCoordinates(_map.GetMap(pos.MapId), pos);
@@ -387,6 +385,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             : queued.Proto.SoundFar;
 
         // ES START
+        // camera shake
         var farTranslationShake = iterationIntensity.Count < queued.Proto.SmallSoundIterationThreshold
             ? new ESScreenshakeParameters() { Trauma = 0.4f, DecayRate = 0.2f, Frequency = 0.014f }
             : new ESScreenshakeParameters() { Trauma = 0.6f, DecayRate = 0.05f, Frequency = 0.014f };
@@ -410,30 +409,9 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             EntityManager,
             visualEnt,
             queued.Cause,
+            queued.Origin,
             _map,
-            _damageableSystem);
-    }
-
-    private void CameraShake(float range, MapCoordinates epicenter, float totalIntensity)
-    {
-        var players = Filter.Empty();
-        players.AddInRange(epicenter, range, _playerManager, EntityManager);
-
-        foreach (var player in players.Recipients)
-        {
-            if (player.AttachedEntity is not EntityUid uid)
-                continue;
-
-            var playerPos = _transformSystem.GetWorldPosition(player.AttachedEntity!.Value);
-            var delta = epicenter.Position - playerPos;
-
-            if (delta.EqualsApprox(Vector2.Zero))
-                delta = new(0.01f, 0);
-
-            var distance = delta.Length();
-            var effect = 5 * MathF.Pow(totalIntensity, 0.5f) * (1 - distance / range);
-            if (effect > 0.01f)
-                _recoilSystem.KickCamera(uid, -delta.Normalized() * effect);
-        }
+            _damageableSystem,
+            _decal);
     }
 }

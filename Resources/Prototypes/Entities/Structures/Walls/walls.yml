@@ -9,13 +9,7 @@
     snap:
     - Wall
   components:
-# ES START
-#  - type: Anchorable
-#    flags:
-#    - Anchorable
-#  - type: Rotatable
   - type: ESDestroyOnUnanchor
-# ES END
   - type: RangedDamageSound
     soundGroups:
       Brute:
@@ -37,7 +31,7 @@
     key: walls
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
+    damageModifierSet: ESWall
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -52,12 +46,12 @@
         - WallLayer
         density: 1000
   - type: Airtight
-  - type: StaticPrice
-    price: 75
   - type: RadiationBlocker
     resistance: 2
   - type: BlockWeather
   - type: SunShadowCast
+  - type: ESDamageDeflection
+    threshold: 45
 
 - type: entity
   abstract: true
@@ -100,6 +94,17 @@
         - WallLayer
 
 - type: entity
+  id: ESBaseWallBreakable
+  abstract: true
+  components:
+  - type: ESBreakable
+    threshold: 200
+    sound:
+      collection: MetalSlam
+  - type: ESChangeConstructionOnBreak
+    node: girder
+
+- type: entity
   parent: BaseWall
   id: WallBrick
   name: brick wall
@@ -128,35 +133,6 @@
   - type: IconSmooth
     key: walls
     base: brick
-
-- type: entity
-  parent: BaseWall
-  id: WallClock
-  name: clock wall
-  components:
-  - type: Sprite
-    sprite: Structures/Walls/clock.rsi
-  - type: Icon
-    sprite: Structures/Walls/clock.rsi
-  - type: Construction
-    graph: ClockworkGirder
-    node: clockworkWall
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          ClockworkGirder:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: IconSmooth
-    key: walls
-    base: clock
 
 - type: entity
   parent: BaseWall
@@ -587,52 +563,26 @@
             collection: MetalSlam
 
 - type: entity
-  parent: BaseWall
+  parent: [ ESBaseWallBreakable, BaseWall ]
   id: WallReinforced
   name: reinforced wall
   components:
   - type: Sprite
-    # ES START
     sprite: _ES/Structures/Walls/reinforced.rsi
-    # ES END
   - type: Icon
-    # ES START
     sprite: _ES/Structures/Walls/reinforced.rsi
     state: full
-    # ES END
+  - type: ESBreakable
+    threshold: 400
   - type: Construction
     graph: Girder
     node: reinforcedWall
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 600
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
+    damageModifierSet: ESWall
   - type: IconSmooth
     key: walls
-    # ES START
-    base: reinf
-    # ES END
+    base: solid
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -646,8 +596,6 @@
           4: { state: reinf_construct-4, visible: true}
           5: { state: reinf_construct-5, visible: true}
   - type: ReinforcedWallReplacementMarker
-  - type: StaticPrice
-    price: 250
   - type: RadiationBlocker
     resistance: 5
   - type: Fixtures
@@ -770,8 +718,6 @@
   - type: IconSmooth
     key: walls
     base: riveted
-  - type: StaticPrice
-    price: 150
 
 - type: entity
   parent: BaseWall
@@ -910,8 +856,6 @@
     node: diagonalshuttleWall
   - type: RadiationBlocker
     resistance: 5
-  - type: StaticPrice
-    price: 200
 
 - type: entity
   parent: BaseWall
@@ -943,8 +887,6 @@
         node: girder
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: StaticPrice
-    price: 250
   - type: RadiationBlocker
     resistance: 5
   - type: Sprite
@@ -985,48 +927,18 @@
         density: 2000
 
 - type: entity
-  parent: BaseWall
+  parent: [ ESBaseWallBreakable, BaseWall ]
   id: WallSolid
   name: solid wall
   components:
   - type: Sprite
-    # ES START
     sprite: _ES/Structures/Walls/solid.rsi
-    # ES END
   - type: WallReplacementMarker
   - type: Construction
     graph: Girder
     node: wall
   - type: Icon
-    # ES START
     sprite: _ES/Structures/Walls/solid.rsi
-    # ES END
-  - type: RCDDeconstructable
-    cost: 6
-    delay: 8
-    fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: IconSmooth
     key: walls
     base: solid
@@ -1197,8 +1109,6 @@
           3: { state: reinf_construct-3, visible: true}
           4: { state: reinf_construct-4, visible: true}
           5: { state: reinf_construct-5, visible: true}
-  - type: StaticPrice
-    price: 250
   - type: RadiationBlocker
     resistance: 5
   - type: IconSmooth
@@ -1207,33 +1117,6 @@
   - type: Construction
     graph: Girder
     node: reinforcedWallChitin
-
-- type: entity
-  parent: WallPlastitanium
-  id: WallXenoborg
-  name: xenoborg wall
-  components:
-  - type: Sprite
-    sprite: Structures/Walls/xenoborg.rsi
-  - type: Icon
-    sprite: Structures/Walls/xenoborg.rsi
-  - type: IconSmooth
-    key: walls
-    base: xenoborg
-
-- type: entity
-  parent: WallPlastitaniumDiagonal
-  id: WallXenoborgDiagonal
-  name: xenoborg wall
-  suffix: diagonal
-  components:
-  - type: Sprite
-    drawdepth: Walls
-    sprite: Structures/Walls/xenoborg_diagonal.rsi
-    state: state0
-  - type: Icon
-    sprite: Structures/Walls/xenoborg_diagonal.rsi
-    state: state0
 
 - type: entity
   parent: BaseWall
@@ -1296,9 +1179,6 @@
     sprite: Structures/Walls/wood.rsi
   - type: Icon
     sprite: Structures/Walls/wood.rsi
-  - type: Construction
-    graph: Barricade
-    node: woodWall
   - type: Destructible
     thresholds:
     - trigger:
@@ -1705,74 +1585,3 @@
           SteelOre1:
             min: 0
             max: 2
-
-# Cardboard
-
-- type: entity
-  id: Cardwall
-  parent: BaseStructure
-  name: cardboard wall
-  description: Budget cuts are hitting hard.
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Wall
-  components:
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        path:
-          "/Audio/Weapons/pierce.ogg"
-  - type: Tag
-    tags:
-    - Wall
-  - type: Sprite
-    drawdepth: SmallObjects #so bullets pass 'through'
-    sprite: Structures/Walls/card.rsi
-  - type: Icon
-    sprite: Structures/Walls/card.rsi
-    state: full
-  - type: Construction
-    graph: Cardwall
-    node: cardwall
-    deconstructionTarget: start
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Card
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,0.5"
-        mask:
-        - FullTileMask
-        layer:
-        - FlimsyLayer
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 80 #excess damage (nuke?). avoid computational cost of spawning entities.
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 40
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialCardboard:
-            min: 1
-            max: 2
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: IconSmooth
-    key: cards
-    base: card
-  - type: Occluder
-  - type: BlockWeather
-  - type: SunShadowCast

@@ -9,9 +9,9 @@ using Robust.Client.UserInterface.Controllers;
 namespace Content.Client.UserInterface.Systems.Ghost;
 
 // TODO hud refactor BEFORE MERGE fix ghost gui being too far up
-public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSystem>
+public sealed partial class GhostUIController : UIController, IOnSystemChanged<GhostSystem>
 {
-    [Dependency] private readonly IEntityNetworkManager _net = default!;
+    [Dependency] private IEntityNetworkManager _net = default!;
 
     [UISystemDependency] private readonly GhostSystem? _system = default;
 
@@ -63,13 +63,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
             Gui.Visible = false;
         return;
 // ES END
-        if (Gui == null)
-        {
-            return;
-        }
-
-        Gui.Visible = _system?.IsGhost ?? false;
-        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody);
     }
 
     private void OnPlayerRemoved(GhostComponent component)

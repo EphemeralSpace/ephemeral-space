@@ -1,0 +1,17 @@
+- type: guideEntry
+  id: AtmosDevices
+  hidden: false
+  name: Atmos Devices
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/AtmosDevices.xml"
+  children:
+  - AirAlarms
+  - AirScrubber
+  - AirVent
+  - AtmosphericAlertsComputer
+  - AtmosphericNetworkMonitor
+  - GasCanisters
+  - GasCondensing
+  - GasMiningAndStorage
+  - GasRecycling
+  - PortableScrubber
+  - Thermomachines

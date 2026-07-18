@@ -5,9 +5,9 @@ using Robust.Shared.Utility;
 namespace Content.Client._ES.Audio.Ambience;
 
 /// <see cref="ESGenericAmbienceVisualizerComponent"/>
-public sealed class ESGenericAmbienceVisualizerSystem : VisualizerSystem<ESGenericAmbienceVisualizerComponent>
+public sealed partial class ESGenericAmbienceVisualizerSystem : VisualizerSystem<ESGenericAmbienceVisualizerComponent>
 {
-    [Dependency] private readonly SharedAmbientSoundSystem _ambience = default!;
+    [Dependency] private SharedAmbientSoundSystem _ambience = default!;
 
     protected override void OnAppearanceChange(EntityUid uid, ESGenericAmbienceVisualizerComponent component, ref AppearanceChangeEvent args)
     {

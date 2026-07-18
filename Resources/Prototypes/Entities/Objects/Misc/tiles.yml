@@ -40,9 +40,6 @@
     damage:
       types:
         Blunt: 5
-  - type: GuideHelp
-    guides:
-    - ExpandingRepairingStation
 
 - type: entity
   name: steel dark checker tile
@@ -584,9 +581,6 @@
       - FloorBrassFilled
   - type: Stack
     stackType: FloorTileBrassFilled
-  - type: Construction
-    graph: TilesBrass
-    node: filledPlate
 
 - type: entity
   name: smooth brass plate
@@ -603,9 +597,6 @@
       - FloorBrassReebe
   - type: Stack
     stackType: FloorTileBrassReebe
-  - type: Construction
-    graph: TilesBrass
-    node: reebe
 
 - type: entity
   name: dirty tile
@@ -1481,23 +1472,6 @@
   - type: Stack
     stackType: FloorTileGratingMaint
 
-- type: entity
-  name: web tile
-  parent: FloorTileItemBase
-  id: FloorTileItemWeb
-  components:
-  - type: Sprite
-    sprite: Objects/Tiles/web.rsi
-    state: icon
-  - type: FloorTile
-    outputs:
-      - FloorWebTile
-  - type: Stack
-    stackType: FloorTileWeb
-  - type: Construction
-    graph: WebObjects
-    node: tile
-
 # Faux science tiles
 
 - type: entity
@@ -1870,20 +1844,6 @@
     - FloorXenoMaint
   - type: Stack
     stackType: FloorTileXenoMaint
-
-- type: entity
-  id: FloorTileItemXenoborg
-  parent: FloorTileItemBase
-  name: xenoborg floor
-  components:
-  - type: Sprite
-    state: xenoborg-floor
-  - type: FloorTile
-    outputs:
-    - Plating
-    - FloorXenoborg
-  - type: Stack
-    stackType: FloorTileXenoborg
 
 - type: entity
   parent: FloorTileItemDark

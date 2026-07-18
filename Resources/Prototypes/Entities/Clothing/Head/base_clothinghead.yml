@@ -11,19 +11,9 @@
   - type: Item
     size: Small
     storedRotation: -90
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
   - type: Tag
     tags:
     - ClothMade
-    - WhitelistChameleon
 
 - type: entity
   abstract: true
@@ -42,7 +32,6 @@
     tags:
     - ClothMade
     - Recyclable
-    - WhitelistChameleon
 
 - type: entity
   abstract: true
@@ -132,7 +121,6 @@
     unequipDelay: 2
   - type: Tag
     tags:
-    - WhitelistChameleon
     - HelmetEVA
   - type: IdentityBlocker
   - type: HideLayerClothing
@@ -180,9 +168,6 @@
         Radiation: 0.25
   - type: GroupExamine
   - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: IdentityBlocker
   - type: HideLayerClothing
     slots:
@@ -248,33 +233,3 @@
     startingCharge: 600
   - type: BatterySelfRecharger
     autoRechargeRate: 2 #recharge of 2 makes total drain 1w / s so max charge is 1:1 with time. Time to fully charge should be 5 minutes. Having recharge gives light an extended flicker period which gives you some warning to return to light area.
-
-- type: entity
-  abstract: true
-  id: ClothingHeadHatHoodWinterBase
-  name: base winter coat hood
-  description: A hood, made to keep your head warm.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    state: icon
-  - type: Clickable
-  - type: Clothing
-    equipSound: /Audio/Effects/rustle1.ogg
-    unequipSound: /Audio/Effects/rustle2.ogg
-    quickEquip: false
-    slots: [ HEAD ]
-  - type: TemperatureProtection
-    heatingCoefficient: 1.05
-    coolingCoefficient: 0.7
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.90
-  - type: Armor # so zombification resistance shows up
-    modifiers:
-      coefficients: { }
-  - type: GroupExamine
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - HeadTop
-    - HeadSide

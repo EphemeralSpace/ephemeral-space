@@ -20,8 +20,6 @@
       "Bubbles": {63: 0}
   - type: Sprite
     sprite: Objects/Fun/Instruments/h_synthesizer.rsi
-  - type: StaticPrice
-    price: 90
 
 - type: entity
   parent: BaseKeyedInstrument

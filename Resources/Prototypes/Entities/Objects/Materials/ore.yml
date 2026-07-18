@@ -305,16 +305,6 @@
     color: "#eef066"
   - type: Extractable
     grindableSolutionName: bananiumore
-  - type: SolutionContainerManager
-    solutions:
-      bananiumore:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 2
-        - ReagentId: Honk
-          Quantity: 5
   - type: Item
     heldPrefix: bananium
   - type: Tag

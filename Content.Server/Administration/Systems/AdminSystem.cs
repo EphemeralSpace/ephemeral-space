@@ -36,25 +36,24 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Administration.Systems;
 
-public sealed class AdminSystem : EntitySystem
+public sealed partial class AdminSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly SharedJobSystem _jobs = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly MindSystem _minds = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly PhysicsSystem _physics = default!;
-    [Dependency] private readonly PlayTimeTrackingManager _playTime = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private MindSystem _minds = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private PhysicsSystem _physics = default!;
+    [Dependency] private PlayTimeTrackingManager _playTime = default!;
+    [Dependency] private SharedRoleSystem _role = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private StationRecordsSystem _stationRecords = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 
@@ -231,20 +230,10 @@ public sealed class AdminSystem : EntitySystem
         var antag = false;
 
         // Starting role, antagonist status and role type
-        RoleTypePrototype? roleType = null;
         var startingRole = string.Empty;
-        LocId? subtype = null;
         if (_minds.TryGetMind(session, out var mindId, out var mindComp) && mindComp is not null)
         {
             sortWeight = _role.GetRoleCompByTime(mindComp)?.Comp.SortWeight ?? 0;
-
-            if (_proto.TryIndex(mindComp.RoleType, out var role))
-            {
-                roleType = role;
-                subtype = mindComp.Subtype;
-            }
-            else
-                Log.Error($"{ToPrettyString(mindId)} has invalid Role Type '{mindComp.RoleType}'. Displaying '{Loc.GetString(RoleTypePrototype.FallbackName)}' instead");
 
             antag = _role.MindIsAntagonist(mindId);
             startingRole = _jobs.MindTryGetJobName(mindId);
@@ -270,8 +259,8 @@ public sealed class AdminSystem : EntitySystem
             identityName,
             startingRole,
             antag,
-            roleType?.ID,
-            subtype,
+            null,
+            string.Empty,
             sortWeight,
             GetNetEntity(session?.AttachedEntity),
             data.UserId,

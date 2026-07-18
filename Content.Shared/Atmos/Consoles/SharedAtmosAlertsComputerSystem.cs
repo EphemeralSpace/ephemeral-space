@@ -2,7 +2,7 @@ using Content.Shared.Atmos.Components;
 
 namespace Content.Shared.Atmos.Consoles;
 
-public abstract partial class SharedAtmosAlertsComputerSystem : EntitySystem
+public abstract class SharedAtmosAlertsComputerSystem : EntitySystem
 {
     public override void Initialize()
     {

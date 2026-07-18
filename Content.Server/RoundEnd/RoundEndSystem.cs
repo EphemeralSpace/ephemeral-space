@@ -1,9 +1,9 @@
 using System.Threading;
+using Content.Server._ES.Announcements;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Shared.CCVar;
 using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Screens.Components;
@@ -28,19 +28,19 @@ namespace Content.Server.RoundEnd
     /// Handles ending rounds normally and also via requesting it (e.g. via comms console)
     /// If you request a round end then an escape shuttle will be used.
     /// </summary>
-    public sealed class RoundEndSystem : EntitySystem
+    public sealed partial class RoundEndSystem : EntitySystem
     {
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IChatManager _chatManager = default!;
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly IPrototypeManager _protoManager = default!;
-        [Dependency] private readonly ChatSystem _chatSystem = default!;
-        [Dependency] private readonly GameTicker _gameTicker = default!;
-        [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
-        [Dependency] private readonly EmergencyShuttleSystem _shuttle = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly StationSystem _stationSystem = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IChatManager _chatManager = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
+        [Dependency] private IPrototypeManager _protoManager = default!;
+        [Dependency] private ESAnnouncementSystem _chatSystem = default!;
+        [Dependency] private GameTicker _gameTicker = default!;
+        [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
+        [Dependency] private EmergencyShuttleSystem _shuttle = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private StationSystem _stationSystem = default!;
 
         public TimeSpan DefaultCooldownDuration { get; set; } = TimeSpan.FromSeconds(30);
 
@@ -172,76 +172,6 @@ namespace Content.Server.RoundEnd
             // no shuttles allowed
             return;
             // ES END
-
-            if (_gameTicker.RunLevel != GameRunLevel.InRound)
-                return;
-
-            if (checkCooldown && _cooldownTokenSource != null)
-                return;
-
-            if (_countdownTokenSource != null)
-                return;
-
-            _countdownTokenSource = new();
-            CantRecall = cantRecall;
-
-            if (requester != null)
-            {
-                _adminLogger.Add(LogType.ShuttleCalled, LogImpact.High, $"Shuttle called by {ToPrettyString(requester.Value):user}");
-            }
-            else
-            {
-                _adminLogger.Add(LogType.ShuttleCalled, LogImpact.High, $"Shuttle called");
-            }
-
-            // I originally had these set up here but somehow time gets passed as 0 to Loc so IDEK.
-            int time;
-            string units;
-
-            if (countdownTime.TotalSeconds < 60)
-            {
-                time = countdownTime.Seconds;
-                units = "eta-units-seconds";
-            }
-            else
-            {
-                time = countdownTime.Minutes;
-                units = "eta-units-minutes";
-            }
-
-            _chatSystem.DispatchGlobalAnnouncement(Loc.GetString(text,
-                ("time", time),
-                ("units", Loc.GetString(units))),
-                Loc.GetString(name),
-                false,
-                null,
-                Color.Gold);
-
-            _audio.PlayGlobal("/Audio/Announcements/shuttlecalled.ogg", Filter.Broadcast(), true);
-
-            LastCountdownStart = _gameTiming.CurTime;
-            ExpectedCountdownEnd = _gameTiming.CurTime + countdownTime;
-
-            // TODO full game saves
-            Timer.Spawn(countdownTime, _shuttle.DockEmergencyShuttle, _countdownTokenSource.Token);
-
-            ActivateCooldown();
-            RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
-
-            var shuttle = _shuttle.GetShuttle();
-            if (shuttle != null && TryComp<DeviceNetworkComponent>(shuttle, out var net))
-            {
-                var payload = new NetworkPayload
-                {
-                    [ShuttleTimerMasks.ShuttleMap] = shuttle,
-                    [ShuttleTimerMasks.SourceMap] = GetCentcomm(),
-                    [ShuttleTimerMasks.DestMap] = GetStation(),
-                    [ShuttleTimerMasks.ShuttleTime] = countdownTime,
-                    [ShuttleTimerMasks.SourceTime] = countdownTime + TimeSpan.FromSeconds(_shuttle.TransitTime + _cfg.GetCVar(CCVars.EmergencyShuttleDockTime)),
-                    [ShuttleTimerMasks.DestTime] = countdownTime,
-                };
-                _deviceNetworkSystem.QueuePacket(shuttle.Value, null, payload, net.TransmitFrequency);
-            }
         }
 
         public void CancelRoundEndCountdown(EntityUid? requester = null, bool forceRecall = false)
@@ -306,6 +236,7 @@ namespace Content.Server.RoundEnd
             _countdownTokenSource = new();
 
             countdownTime ??= TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.RoundRestartTime));
+            RaiseNetworkEvent(new QueuedRoundRestartTimeEvent(_gameTiming.CurTime + countdownTime.Value));
             int time;
             string unitsLocString;
             if (countdownTime.Value.TotalSeconds < 60)

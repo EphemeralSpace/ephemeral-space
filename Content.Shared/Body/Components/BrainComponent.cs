@@ -1,6 +1,4 @@
-﻿using Content.Shared.Body.Systems;
+﻿namespace Content.Shared.Body.Components;
 
-namespace Content.Shared.Body.Components;
-
-[RegisterComponent, Access(typeof(BrainSystem))]
+[RegisterComponent]
 public sealed partial class BrainComponent : Component;

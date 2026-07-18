@@ -8,10 +8,10 @@ using Robust.Shared.Random;
 
 namespace Content.Client.Light.Visualizers;
 
-public sealed class PoweredLightVisualizerSystem : VisualizerSystem<PoweredLightVisualsComponent>
+public sealed partial class PoweredLightVisualizerSystem : VisualizerSystem<PoweredLightVisualsComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -24,11 +24,6 @@ public sealed class PoweredLightVisualizerSystem : VisualizerSystem<PoweredLight
         if (args.Sprite == null)
             return;
 
-        // ES START
-        if (!TryComp<PoweredLightComponent>(uid, out var poweredLight))
-            return;
-        // ES END
-
         if (!AppearanceSystem.TryGetData<PoweredLightState>(uid, PoweredLightVisuals.BulbState, out var state, args.Component))
             return;
 
@@ -37,17 +32,10 @@ public sealed class PoweredLightVisualizerSystem : VisualizerSystem<PoweredLight
 
         if (SpriteSystem.LayerExists((uid, args.Sprite), PoweredLightLayers.Glow))
         {
-            // ES START
-            // use color from bulb instead of fixture
-            // allow color overriding from bulb
-            if (poweredLight.LightBulbContainer.ContainedEntity is { } bulb &&
-                TryComp<LightBulbComponent>(bulb, out var lightBulb))
+            if (AppearanceSystem.TryGetData<Color>(uid, PoweredLightVisuals.GlowColor, out var glowColor))
             {
-                var col = lightBulb.GlowColorOverride ?? lightBulb.Color;
-
-                SpriteSystem.LayerSetColor((uid, args.Sprite), PoweredLightLayers.Glow, col);
+                SpriteSystem.LayerSetColor((uid, args.Sprite), PoweredLightLayers.Glow, glowColor);
             }
-            // ES END
 
             SpriteSystem.LayerSetVisible((uid, args.Sprite), PoweredLightLayers.Glow, state == PoweredLightState.On);
         }

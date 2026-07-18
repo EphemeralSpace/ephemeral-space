@@ -25,14 +25,11 @@ petting-success-sloth = You pet {THE($target)} on {POSS-ADJ($target)} slow movin
 petting-success-space-cat = You pet {THE($target)} on {POSS-ADJ($target)} glass domed head.
 petting-success-tarantula = You pet {THE($target)} on {POSS-ADJ($target)} hairy little head.
 petting-success-holo = You pet {THE($target)} on {POSS-ADJ($target)} metallic spiky head.
-petting-success-dragon = Dodging teeth, claws, and flames, you pet {THE($target)} on {POSS-ADJ($target)} massive scaled head.
 petting-success-hamster = You pet {THE($target)} on {POSS-ADJ($target)} fluffy little head.
 petting-success-bear = You reluctantly pet {THE($target)} on {POSS-ADJ($target)} mystical head.
 petting-success-slimes = You pet {THE($target)} on {POSS-ADJ($target)} mucous surface.
 petting-success-snake = You pet {THE($target)} on {POSS-ADJ($target)} scaly large head.
 petting-success-monkey = You pet {THE($target)} on {POSS-ADJ($target)} mischevious little head.
-petting-success-nymph = You pet {THE($target)} on {POSS-ADJ($target)} wooden little head.
-petting-success-scurret = You pet {THE($target)} on {POSS-ADJ($target)} legally distinct head.
 
 petting-failure-generic = You reach out to pet {THE($target)}, but {SUBJECT($target)} {CONJUGATE-BE($target)} aloof towards you.
 
@@ -48,13 +45,10 @@ petting-failure-pig = You reach out to pet {THE($target)}, but are met with irri
 petting-failure-raccoon = You reach out to pet {THE($target)}, but {SUBJECT($target)} {CONJUGATE-BE($target)} busy raccooning around.
 petting-failure-sloth = You reach out to pet {THE($target)}, but {SUBJECT($target)} somehow { CONJUGATE-BASIC($target, "dodge", "dodges") } with ludicrous speed!
 petting-failure-holo = You reach out to pet {THE($target)}, but {POSS-ADJ($target)} spikes almost impale your hand!
-petting-failure-dragon = You raise your hand, but as {THE($target)} {CONJUGATE-BASIC($target, "roar", "roars")}, you decide you'd rather not be toasty carp food.
 petting-failure-hamster = You reach out to pet {THE($target)}, but {SUBJECT($target)} {CONJUGATE-BASIC($target, "attempt", "attempts")} to bite your finger and only your quick reflexes save you from an almost fatal injury.
 petting-failure-bear = You reach out to pet {THE($target)}, but {SUBJECT($target)} {CONJUGATE-BASIC($target, "growl", "growls")}, making you think twice.
 petting-failure-monkey = You reach out to pet {THE($target)}, but {SUBJECT($target)} almost {CONJUGATE-BASIC($target, "bite", "bites")} your fingers!
-petting-failure-nymph = You reach out to pet {THE($target)}, but {SUBJECT($target)} {CONJUGATE-BASIC($target, "move", "moves")} {POSS-ADJ($target)} branches away.
 petting-failure-shadow = You try to pet {THE($target)}, but your hand passes through the cold darkness of {POSS-ADJ($target)} body.
-petting-failure-scurret = You reach out to pet {THE($target)}, but {SUBJECT($target)} does a backflip!
 
 ## Petting silicons
 

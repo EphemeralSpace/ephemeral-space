@@ -12,7 +12,7 @@ using Robust.Shared.Utility;
 namespace Content.Client.RCD;
 
 [UsedImplicitly]
-public sealed class RCDMenuBoundUserInterface : BoundUserInterface
+public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
 {
     private const string TopLevelActionCategory = "Main";
 
@@ -26,8 +26,8 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
             ["Lighting"] = ("rcd-component-lighting", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/lighting.png"))),
         };
 
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
 
     private SimpleRadialMenu? _menu;
 
@@ -135,7 +135,7 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
 
         // Popup message
         var popup = EntMan.System<PopupSystem>();
-        popup.PopupClient(msg, Owner, _playerManager.LocalSession.AttachedEntity);
+        popup.PopupEntity(msg, Owner, _playerManager.LocalSession.AttachedEntity);
     }
 
     private string GetTooltip(RCDPrototype proto)

@@ -12,18 +12,11 @@ using System.Numerics;
 
 namespace Content.Server.Weapons.Melee;
 
-public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
+public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly LagCompensationSystem _lag = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<MeleeSpeechComponent, MeleeHitEvent>(OnSpeechHit);
-    }
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private LagCompensationSystem _lag = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
 
     protected override bool ArcRaySuccessful(EntityUid targetUid,
         Vector2 position,
@@ -88,20 +81,5 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
         }
 
         RaiseNetworkEvent(new MeleeLungeEvent(GetNetEntity(user), GetNetEntity(weapon), angle, localPos, animation), filter);
-    }
-
-    private void OnSpeechHit(EntityUid owner, MeleeSpeechComponent comp, MeleeHitEvent args)
-    {
-        if (!args.IsHit ||
-        !args.HitEntities.Any())
-        {
-            return;
-        }
-
-        if (comp.Battlecry != null)//If the battlecry is set to empty, doesn't speak
-        {
-            _chat.TrySendInGameICMessage(args.User, comp.Battlecry, InGameICChatType.Speak, true, true, checkRadioPrefix: false);  //Speech that isn't sent to chat or adminlogs
-        }
-
     }
 }

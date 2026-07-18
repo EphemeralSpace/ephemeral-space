@@ -423,12 +423,6 @@
   chatMessages: ["chat-emote-msg-deathgasp-monkey"]
 
 - type: emote
-  id: ScurretDeathgasp
-  name: chat-emote-name-deathgasp
-  icon: Interface/Emotes/deathgasp.png
-  chatMessages: ["chat-emote-msg-deathgasp-scurret"]
-
-- type: emote
   id: Buzz
   name: chat-emote-name-buzz
   category: Vocal
@@ -459,26 +453,6 @@
   category: Vocal
   icon: Interface/Emotes/hew.png
   chatMessages: ["chat-emote-msg-hew"]
-
-- type: emote
-  id: Chirp
-  name: chat-emote-name-chirp
-  category: Vocal
-  available: false
-  icon: Interface/Emotes/chirp.png
-  whitelist:
-    components:
-    - Nymph
-    - Vocal
-  blacklist:
-    tags:
-    - SiliconEmotes
-  chatMessages: ["chat-emote-msg-chirp"]
-  chatTriggers:
-    - chirp
-    - chirps
-    - chirped
-    - chirping
 
 # Machine Emotes
 - type: emote

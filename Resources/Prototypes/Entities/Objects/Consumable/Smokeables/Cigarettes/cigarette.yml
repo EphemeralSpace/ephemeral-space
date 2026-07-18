@@ -20,9 +20,6 @@
     size: Tiny
     sprite: Objects/Consumable/Smokeables/Cigarettes/cigarette.rsi
     heldPrefix: unlit
-  - type: Construction
-    graph: smokeableCigarette
-    node: cigarette
   - type: Extractable
     grindableSolutionName: smokable
 
@@ -47,9 +44,6 @@
     equippedPrefix: unlit
   - type: Item
     size: Tiny
-  - type: Construction
-    graph: smokeableCigarette
-    node: cigarette
 
 - type: entity
   id: CigaretteSpent
@@ -177,21 +171,6 @@
             Quantity: 10
 
 - type: entity
-  id: CigaretteNutriment
-  parent: SoakedCigarette
-  name: Grandma's Christmas Fruitcake
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-          - ReagentId: Nicotine
-            Quantity: 10
-          - ReagentId: Nutriment
-            Quantity: 10
-
-- type: entity
   id: CigaretteBicaridine
   parent: SoakedCigarette
   name: Wet Dog Enhanced Cigarette
@@ -310,52 +289,6 @@
             Quantity: 10
           - ReagentId: Haloperidol
             Quantity: 10
-
-- type: entity
-  id: CigaretteLaughter
-  parent: SoakedCigarette
-  name: Clown Adjacency Bonus
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-          - ReagentId: Nicotine
-            Quantity: 10
-          - ReagentId: Laughter
-            Quantity: 10
-
-- type: entity
-  id: CigaretteLipolicide
-  parent: SoakedCigarette
-  name: 80's Workout Routine
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-          - ReagentId: Nicotine
-            Quantity: 10
-          - ReagentId: Lipolicide
-            Quantity: 10
-
-- type: entity
-  id: CigaretteSodiumPolyacrylate
-  parent: SoakedCigarette
-  name: Unhealthy Habits
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-          - ReagentId: Nicotine
-            Quantity: 10
-          - ReagentId: SodiumPolyacrylate
-            Quantity: 10
-
 - type: entity
   id: CigaretteMold
   parent: SoakedCigarette
@@ -369,21 +302,6 @@
           - ReagentId: Nicotine
             Quantity: 10
           - ReagentId: Mold
-            Quantity: 10
-
-- type: entity
-  id: CigaretteLicoxide
-  parent: SoakedCigarette
-  name: Wake Up Call
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-          - ReagentId: Nicotine
-            Quantity: 10
-          - ReagentId: Licoxide
             Quantity: 10
 
 - type: entity

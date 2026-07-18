@@ -1,0 +1,33 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by Spessmann: https://github.com/Spessmann, thruster created by EmoGarbage404, warp edited by mirrorcult",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "ame"
+        },
+        {
+            "name": "armory"
+        },
+        {
+            "name": "control"
+        },
+        {
+            "name": "warp"
+        },
+        {
+            "name": "tech"
+        },
+        {
+            "name": "thruster"
+        },
+        {
+            "name": "thruster_dir",
+            "directions": 4
+        }
+    ]
+}

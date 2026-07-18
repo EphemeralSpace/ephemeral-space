@@ -18,15 +18,15 @@ namespace Content.Shared._ES.Emag;
 /// <summary>
 /// This handles <see cref="ESEmagComponent"/>
 /// </summary>
-public sealed class ESEmagSystem : EntitySystem
+public sealed partial class ESEmagSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Dependency] private readonly SharedChargesSystem _charges = default!;
-    [Dependency] private readonly SharedDoorSystem _door = default!;
-    [Dependency] private readonly LockSystem _lock = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ESSparksSystem _sparks = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
+    [Dependency] private SharedDoorSystem _door = default!;
+    [Dependency] private LockSystem _lock = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ESSparksSystem _sparks = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private static readonly ProtoId<TagPrototype> EmagImmuneTag = "EmagImmune";
 
@@ -63,7 +63,7 @@ public sealed class ESEmagSystem : EntitySystem
 
     private void OnDoorEmagged(Entity<DoorComponent> ent, ref ESEmaggedEvent args)
     {
-        if (!TryComp<AirlockComponent>(ent, out var airlock))
+        if (!TryComp<AirlockComponent>(ent, out var airlock) && !ent.Comp.AlwaysEmaggable)
             return;
 
         args.Handled = _door.TryOpenAndBolt(ent, ent, airlock);
@@ -80,7 +80,7 @@ public sealed class ESEmagSystem : EntitySystem
         if (_charges.IsEmpty(used.Owner))
         {
             if (user != null)
-                _popup.PopupClient(Loc.GetString("emag-no-charges"), user.Value, user.Value);
+                _popup.PopupEntity(Loc.GetString("emag-no-charges"), user.Value, user.Value);
             return false;
         }
 
@@ -93,10 +93,9 @@ public sealed class ESEmagSystem : EntitySystem
         _charges.TryUseCharge(used.Owner);
         if (user.HasValue)
         {
-            _popup.PopupPredicted(
+            _popup.PopupEntity(
                 Loc.GetString("emag-success", ("target", Identity.Entity(target, EntityManager))),
                 user.Value,
-                user,
                 PopupType.Medium);
         }
 

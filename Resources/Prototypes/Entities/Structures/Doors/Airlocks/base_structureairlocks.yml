@@ -1,6 +1,6 @@
 ﻿- type: entity
   id: Airlock
-  parent: BaseStructure
+  parent: [ DeflectionSturdyStructure, BaseStructure ]
   name: airlock
   description: It opens, it closes, and maybe crushes you.
   components:
@@ -11,7 +11,6 @@
 #  - type: Rotatable
   - type: ESDestroyOnUnanchor
 # ES END
-  - type: StationAiWhitelist
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -138,8 +137,6 @@
   - type: SpawnOnOverload
   - type: UserInterface
     interfaces:
-      enum.AiUi.Key:
-        type: StationAiBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: Airtight
@@ -149,7 +146,9 @@
   - type: Occluder
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StrongMetallic
+# ES Start
+    damageModifierSet: ESMachine
+# ES End
   - type: RCDDeconstructable
     cost: 6
     delay: 8
@@ -175,8 +174,6 @@
     key: walls
   - type: Paintable
     group: AirlockStandard
-  - type: StaticPrice
-    price: 150
   - type: LightningTarget
     priority: 1
   - type: Tag
@@ -187,10 +184,9 @@
   - type: BlockWeather
   - type: GuideHelp
     guides:
-    - Airlocks
-    - WirePanels
-    - Networking
+    - Wires
 # ES START
+  - type: ESEmergencyAccessDoor
   - type: ESGreyTideVirusTarget
   - type: ESSparkOnHit
     prob: 0.25

@@ -6,3 +6,13 @@ es-objective-summary-fmt = {$name}: {$success ->
     [100] {""}
     *[other] ([color=gray]{$percent}%[/color])
 }
+
+es-objective-text-organization = Team
+es-objective-tooltip-organization = This is a [bold]shared organization objective[/bold].
+
+    All members of your organization share this objective, and must work together. Objective completion is shared between everyone who has it assigned.
+
+es-objective-text-secret-identity = Solo
+es-objective-tooltip-secret-identity = This is a [bold]personal secret identity objective[/bold].
+
+    This is a unique objective based on the secret identity that you are assigned. Only you can view this objective. Other members of your organization may have different personal objectives.

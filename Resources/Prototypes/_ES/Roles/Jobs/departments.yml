@@ -4,31 +4,22 @@
   description: department-Cargo-description
   color: "#A46106"
   roles:
-  - ESCargoTechnician
+  - ESQuartermaster
 
 - type: department
-  id: ESService
-  name: department-Service
-  description: department-Service-description
-  color: "#639137"
-  weight: -5
-  roles:
-  - ESBartender
-  - ESBotanist
-  - ESChef
-  - ESJanitor
-
-- type: department
-  id: ESCivilian
-  name: department-Civilian
-  description: department-Civilian-description
+  id: ESOther
+  name: department-Other
+  description: department-Other-description
   color: "#6e6e6e"
   weight: -10
   roles:
   - ESClown
-  - ESHeadOfPersonnel
   - ESAssistant
   - ESReporter
+  - ESBartender
+  - ESChef
+  - ESJanitor
+  - ESRatman
 
 - type: department
   id: ESCommand
@@ -37,7 +28,7 @@
   color: "#334E6D"
   roles:
   - ESCaptain
-  - ESHeadOfPersonnel
+  - ESStationAdmin
   primary: false
   weight: 100
 
@@ -58,10 +49,9 @@
   color: "#57b8f0"
   weight: 5
   roles:
-  - ESChemist
+  - ESDoctor
   - ESCoroner
   - ESParamedic
-  - ESPhysician
 
 - type: department
   id: ESSecurity

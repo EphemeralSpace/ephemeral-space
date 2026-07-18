@@ -1,4 +1,37 @@
 - type: entity
+  id: BaseMeteor
+  name: meteor
+  description: You prefer them when they're burning up in the atmosphere.
+  abstract: true
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Misc/meteor.rsi
+  - type: Projectile
+    damage: {}
+    deleteOnCollide: false
+  - type: Meteor
+    damageTypes:
+      types:
+        Blunt: 1
+  - type: TimedDespawn
+    lifetime: 120
+  - type: Clickable
+  - type: Physics
+    bodyType: Dynamic
+    bodyStatus: InAir
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Explosive
+    explosionType: Default
+    intensitySlope: 2
+    maxIntensity: 100
+    maxTileBreak: 1
+    tileBreakScale: 2
+  - type: TileFrictionModifier
+    modifier: 0
+
+- type: entity
   parent: BaseMeteor
   id: ESMeteor
   suffix: ES

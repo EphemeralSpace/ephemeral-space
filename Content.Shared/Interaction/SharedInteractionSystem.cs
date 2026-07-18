@@ -31,6 +31,7 @@ using Content.Shared.Timing;
 using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Content.Shared.Wall;
+using Content.Shared.Inventory.VirtualItem; // Stellar - interaction particles
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Input;
@@ -55,28 +56,26 @@ namespace Content.Shared.Interaction
     [UsedImplicitly]
     public abstract partial class SharedInteractionSystem : EntitySystem
     {
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly IMapManager _mapManager = default!;
-        [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly ISharedChatManager _chat = default!;
-        [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-        [Dependency] private readonly EntityLookupSystem _lookup = default!;
-        [Dependency] private readonly SharedHandsSystem _hands = default!;
-        [Dependency] private readonly InventorySystem _inventory = default!;
-        [Dependency] private readonly PullingSystem _pullSystem = default!;
-        [Dependency] private readonly RotateToFaceSystem _rotateToFaceSystem = default!;
-        [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-        [Dependency] private readonly SharedMapSystem _map = default!;
-        [Dependency] private readonly SharedPhysicsSystem _broadphase = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly SharedVerbSystem _verbSystem = default!;
-        [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-        [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-        [Dependency] private readonly SharedStrippableSystem _strippable = default!;
-        [Dependency] private readonly SharedPlayerRateLimitManager _rateLimit = default!;
-        [Dependency] private readonly TagSystem _tagSystem = default!;
-        [Dependency] private readonly UseDelaySystem _useDelay = default!;
-        [Dependency] private readonly INetManager _net = default!; // Stellar - interaction particles
+        [Dependency] private IGameTiming _gameTiming = default!;
+        [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+        [Dependency] private ISharedChatManager _chat = default!;
+        [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+        [Dependency] private EntityLookupSystem _lookup = default!;
+        [Dependency] private SharedHandsSystem _hands = default!;
+        [Dependency] private InventorySystem _inventory = default!;
+        [Dependency] private PullingSystem _pullSystem = default!;
+        [Dependency] private RotateToFaceSystem _rotateToFaceSystem = default!;
+        [Dependency] private SharedContainerSystem _containerSystem = default!;
+        [Dependency] private SharedMapSystem _map = default!;
+        [Dependency] private SharedPhysicsSystem _broadphase = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
+        [Dependency] private SharedVerbSystem _verbSystem = default!;
+        [Dependency] private SharedPopupSystem _popupSystem = default!;
+        [Dependency] private SharedUserInterfaceSystem _ui = default!;
+        [Dependency] private SharedStrippableSystem _strippable = default!;
+        [Dependency] private SharedPlayerRateLimitManager _rateLimit = default!;
+        [Dependency] private UseDelaySystem _useDelay = default!;
+        [Dependency] private INetManager _net = default!; // Stellar - interaction particles
 
         private EntityQuery<IgnoreUIRangeComponent> _ignoreUiRangeQuery;
         private EntityQuery<FixturesComponent> _fixtureQuery;
@@ -106,8 +105,6 @@ namespace Content.Shared.Interaction
         // ES START
         public const float ESPullRange = 0.7f;
         // ES END
-
-        private static readonly ProtoId<TagPrototype> BypassInteractionRangeChecksTag = "BypassInteractionRangeChecks";
 
         public delegate bool Ignored(EntityUid entity);
 
@@ -381,7 +378,7 @@ namespace Content.Shared.Interaction
         {
             // This is for Admin/mapping convenience. If ever there are other ghosts that can still interact, this check
             // might need to be more selective.
-            return !_tagSystem.HasTag(user, BypassInteractionRangeChecksTag);
+            return !HasComp<ESBypassInteractionRangeChecksComponent>(user);
         }
 
         /// <summary>
@@ -564,7 +561,7 @@ namespace Content.Shared.Interaction
             RaiseLocalEvent(user, userMessage, true);
 
             _adminLogger.Add(LogType.InteractHand, LogImpact.Low, $"{user} interacted with {target}");
-            DoContactInteraction(user, target, null, true, message); // Stellar - interaction particles
+            DoContactInteraction(user, target, null, true, message, interactionParticles: message.InteractionParticle); // Stellar - interaction particles
             if (message.Handled || userMessage.Handled)
                 return;
 
@@ -874,7 +871,7 @@ namespace Content.Shared.Interaction
             if (!inRange && popup && _gameTiming.IsFirstTimePredicted)
             {
                 var message = Loc.GetString("interaction-system-user-interaction-cannot-reach");
-                _popupSystem.PopupClient(message, origin, origin);
+                _popupSystem.PopupEntity(message, origin, origin);
             }
 
             return inRange;
@@ -944,13 +941,13 @@ namespace Content.Shared.Interaction
                     ignoreAnchored = angleDelta < wallMount.Arc / 2 || Math.Tau - angleDelta < wallMount.Arc / 2;
                 }
 
-                if (ignoreAnchored && _mapManager.TryFindGridAt(targetCoords, out var gridUid, out var grid))
+                if (ignoreAnchored && _map.TryFindGridAt(targetCoords, out var gridUid, out var grid))
                     ignored.UnionWith(_map.GetAnchoredEntities((gridUid, grid), targetCoords));
             }
             // ES START
             else if (_esInteractQuery.HasComp(target))
             {
-                if (_mapManager.TryFindGridAt(targetCoords, out var gridUid, out var grid))
+                if (_map.TryFindGridAt(targetCoords, out var gridUid, out var grid))
                     ignored.UnionWith(_map.GetAnchoredEntities((gridUid, grid), targetCoords));
             }
             // ES END
@@ -1109,8 +1106,8 @@ namespace Content.Shared.Interaction
             var userInteractUsingEvent = new UserInteractUsingEvent(user, used, target, clickLocation);
             RaiseLocalEvent(user, userInteractUsingEvent, true);
 
-            DoContactInteraction(user, used, null, true, interactUsingEvent); // Stellar - interaction particles
-            DoContactInteraction(user, target, used, true, interactUsingEvent); // Stellar - interaction particles
+            DoContactInteraction(user, used, null, true, interactUsingEvent, interactionParticles: interactUsingEvent.InteractionParticle); // Stellar - interaction particles
+            DoContactInteraction(user, target, used, true, interactUsingEvent, interactionParticles: interactUsingEvent.InteractionParticle); // Stellar - interaction particles
             // Contact interactions are currently only used for forensics, so we don't raise used -> target
             if (interactUsingEvent.Handled || userInteractUsingEvent.Handled)
                 return true;
@@ -1225,7 +1222,7 @@ namespace Content.Shared.Interaction
             RaiseLocalEvent(used, activateMsg, true);
             if (activateMsg.Handled)
             {
-                DoContactInteraction(user, used, null, true); // Interaction particles
+                DoContactInteraction(user, used, null, true, interactionParticles: activateMsg.InteractionParticle); // Interaction particles
                 if (!activateMsg.WasLogged)
                     _adminLogger.Add(LogType.InteractActivate, LogImpact.Low, $"{ToPrettyString(user):user} activated {ToPrettyString(used):used}");
 
@@ -1281,7 +1278,7 @@ namespace Content.Shared.Interaction
             RaiseLocalEvent(used, useMsg, true);
             if (useMsg.Handled)
             {
-                DoContactInteraction(user, used, null, true, useMsg); // Interaction particles
+                DoContactInteraction(user, used, null, true, useMsg, interactionParticleType: StellarInteractionParticleType.InHand); // Interaction particles
                 if (delayComponent != null && useMsg.ApplyDelay)
                     _useDelay.TryResetDelay((used, delayComponent));
                 return true;
@@ -1467,7 +1464,14 @@ namespace Content.Shared.Interaction
         /// <summary>
         ///     Simple convenience function to raise contact events (disease, forensics, etc).
         /// </summary>
-        public void DoContactInteraction(EntityUid uidA, EntityUid? uidB, EntityUid? used, bool predicted, HandledEntityEventArgs? args = null, bool interactionParticles = true) // Stellar/ES - interaction particles
+        /// <param name="uidA">The entity doing the contacting.</param>
+        /// <param name="uidB">The entity being contacted.</param>
+        /// <param name="used">The entity used to contact <see cref="uidB"/>.</param>
+        /// <param name="predicted">Whether this interaction is predicted. <see cref="uidA"/> is assumed to be the client entity.</param>
+        /// <param name="args">Optional handleable entity event to check.</param>
+        /// <param name="interactionParticles">Whether to spawn interaction particles on this contact.</param>
+        /// <param name="interactionParticleType">The type of interaction particle to spawn for this event.</param>
+        public void DoContactInteraction(EntityUid uidA, EntityUid? uidB, EntityUid? used, bool predicted, HandledEntityEventArgs? args = null, bool interactionParticles = true, StellarInteractionParticleType interactionParticleType = StellarInteractionParticleType.Use) // Stellar/ES - interaction particles
         {
             if (uidB == null || args?.Handled == false)
                 return;
@@ -1489,7 +1493,7 @@ namespace Content.Shared.Interaction
             RaiseLocalEvent(uidB.Value, ev);
 
             // Begin Stellar/ES Additions - Interaction particles
-            if (!interactionParticles)
+            if (!interactionParticles || HasComp<VirtualItemComponent>(uidB))
                 return;
 
             if (_net.IsServer)
@@ -1498,11 +1502,11 @@ namespace Content.Shared.Interaction
                     ? Filter.PvsExcept(uidA, entityManager: EntityManager)
                     : Filter.Pvs(uidA, entityManager: EntityManager);
 
-                RaiseNetworkEvent(new StellarInteractionParticleEvent(GetNetEntity(uidA), GetNetEntity(used), GetNetEntity(uidB.Value), false), filter);
+                RaiseNetworkEvent(new StellarInteractionParticleEvent(GetNetEntity(uidA), GetNetEntity(used), GetNetEntity(uidB.Value), false, interactionParticleType), filter);
             }
             else if (_gameTiming.IsFirstTimePredicted)
             {
-                var evt = new StellarInteractionParticleEvent(GetNetEntity(uidA), GetNetEntity(used), GetNetEntity(uidB.Value), true);
+                var evt = new StellarInteractionParticleEvent(GetNetEntity(uidA), GetNetEntity(used), GetNetEntity(uidB.Value), true, interactionParticleType);
                 RaiseLocalEvent(evt);
             }
             // End Stellar/ES Additions - Interaction particles

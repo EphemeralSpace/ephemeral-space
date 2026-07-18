@@ -7,6 +7,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
 using Content.Shared.FixedPoint;
+using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -82,11 +83,17 @@ public sealed class ESKillTrackingSystem : EntitySystem
 
     private void OnMobStateChanged(Entity<ESKillTrackerComponent> ent, ref MobStateChangedEvent args)
     {
-        // Only report on dead.
-        if (args.NewMobState != MobState.Dead)
-            return;
-
-        RaiseKillEvent(ent);
+        switch (args.NewMobState)
+        {
+            case MobState.Alive:
+            case MobState.Critical:
+                // If they come back to life, reset this flag.
+                ent.Comp.Killed = false;
+                break;
+            case MobState.Dead:
+                RaiseKillEvent(ent);
+                break;
+        }
     }
 
     private void OnDestruction(Entity<ESKillTrackerComponent> ent, ref DestructionEventArgs args)
@@ -105,10 +112,17 @@ public sealed class ESKillTrackingSystem : EntitySystem
         var ev = new ESPlayerKilledEvent(ent, killer);
         RaiseLocalEvent(ent, ref ev, true);
 
-        if (killer.HasValue)
+        if (!killer.HasValue)
+            return;
+
+        var killerEv = new ESKilledPlayerEvent(ent, killer.Value);
+        RaiseLocalEvent(killer.Value, ref killerEv);
+
+        // Only increment the player kill tracker if it was like a real player
+        if (HasComp<HumanoidAppearanceComponent>(ent))
         {
-            var killerEv = new ESKilledPlayerEvent(ent, killer.Value);
-            RaiseLocalEvent(killer.Value, ref killerEv);
+            var comp = EnsureComp<ESKillerTrackerComponent>(killer.Value);
+            ++comp.KilledPlayerCount;
         }
     }
 
@@ -181,5 +195,13 @@ public sealed class ESKillTrackingSystem : EntitySystem
             .OrderBy(s => s.IsEnvironment) // Has non-environment first, then environment.
             .ThenByDescending(s => s.AccumulatedDamage) // Within those groups, go from most damage to least damage.
             .ToList();
+    }
+
+    public int GetPlayerKillCount(Entity<ESKillerTrackerComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return 0;
+
+        return ent.Comp.KilledPlayerCount;
     }
 }

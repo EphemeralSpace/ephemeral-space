@@ -1,0 +1,9 @@
+advertisement-gender-1 = Nonchalant Nonbinaries! We've got varities!
+advertisement-gender-2 = Hilarious Homosexuals! We're here and accessible!
+advertisement-gender-3 = Trombling Transgenders! I just got caught in a GenderBender!
+advertisement-gender-4 = Perfect for all Quippy Queers!
+advertisement-gender-5 = It's bold, it's brash... welcome to the Gender Bash!
+advertisement-gender-6 = More colorful than a colored jumpsuit, that's for sure!
+thankyou-gender-1 = Put your spectrum on and wear it with pride.
+thankyou-gender-2 = Get out there and get a fresh breath of gay air.
+thankyou-gender-3 = Show em' who you really are!

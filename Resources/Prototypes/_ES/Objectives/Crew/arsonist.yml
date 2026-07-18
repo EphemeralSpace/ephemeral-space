@@ -1,0 +1,16 @@
+- type: entity
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectiveArsonistLightFires
+  name: Lights fires around the station
+  description: Don't you love to watch the cinders dance? Set the station ablaze and don't even think about putting it out.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Tools/matches.rsi
+      state: match_lit
+  - type: ESCreateTileFireObjective
+  - type: ESCounterObjective
+    title: es-arsonist-light-fires-objective-title
+    target: 64
+    maxTarget: 112
+    targetIncrement: 8

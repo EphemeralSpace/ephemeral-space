@@ -1,6 +1,8 @@
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using Content.Client._ES.Chat;
+using Content.Client._ES.Screens;
 using Content.Client.Administration.Managers;
 using Content.Client.Chat;
 using Content.Client.Chat.Managers;
@@ -47,18 +49,18 @@ namespace Content.Client.UserInterface.Systems.Chat;
 
 public sealed partial class ChatUIController : UIController
 {
-    [Dependency] private readonly IClientAdminManager _admin = default!;
-    [Dependency] private readonly IChatManager _manager = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IEyeManager _eye = default!;
-    [Dependency] private readonly IEntityManager _ent = default!;
-    [Dependency] private readonly IInputManager _input = default!;
-    [Dependency] private readonly IClientNetManager _net = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IStateManager _state = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IReplayRecordingManager _replayRecording = default!;
+    [Dependency] private IClientAdminManager _admin = default!;
+    [Dependency] private IChatManager _manager = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IEyeManager _eye = default!;
+    [Dependency] private IEntityManager _ent = default!;
+    [Dependency] private IInputManager _input = default!;
+    [Dependency] private IClientNetManager _net = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IStateManager _state = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IReplayRecordingManager _replayRecording = default!;
 
     [UISystemDependency] private readonly ExamineSystem? _examine = default;
     [UISystemDependency] private readonly GhostSystem? _ghost = default;
@@ -69,7 +71,7 @@ public sealed partial class ChatUIController : UIController
     [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
 
     private static readonly ProtoId<ColorPalettePrototype> ChatNamePalette = "ChatNames";
-    private string[] _chatNameColors = default!;
+    private Color[] _chatNameColors = default!;
     private bool _chatNameColorsEnabled;
 
     private ISawmill _sawmill = default!;
@@ -233,15 +235,13 @@ public sealed partial class ChatUIController : UIController
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
 
         var nameColors = _prototypeManager.Index(ChatNamePalette).Colors.Values.ToArray();
-        _chatNameColors = new string[nameColors.Length];
+        _chatNameColors = new Color[nameColors.Length];
         for (var i = 0; i < nameColors.Length; i++)
         {
-            _chatNameColors[i] = nameColors[i].ToHex();
+            _chatNameColors[i] = nameColors[i];
         }
 
         _config.OnValueChanged(CCVars.ChatWindowOpacity, OnChatWindowOpacityChanged);
-
-        InitializeHighlights();
     }
 
     public void OnScreenLoad()
@@ -266,109 +266,54 @@ public sealed partial class ChatUIController : UIController
 
     private void SetChatWindowOpacity(float opacity)
     {
-        var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<ResizableChatBox>();
-
-        var panel = chatBox?.ChatWindowPanel;
-        if (panel is null)
-            return;
-
-        Color color;
-        if (panel.PanelOverride is StyleBoxFlat styleBoxFlat)
-            color = styleBoxFlat.BackgroundColor;
-        else if (panel.TryGetStyleProperty<StyleBox>(PanelContainer.StylePropertyPanel, out var style)
-                 && style is StyleBoxFlat propStyleBoxFlat)
-            color = propStyleBoxFlat.BackgroundColor;
-        else
-            color = Color.FromHex("#25252ADD");
-
-        panel.PanelOverride = new StyleBoxFlat
+        // dude what the fuck is this code doing man
+        var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>();
+        var stagehandChatBox = UIManager.ActiveScreen?.GetWidget<StagehandChatBox>();
+        if (chatBox != null)
         {
-            BackgroundColor = color.WithAlpha(opacity)
-        };
+            SetPanel(chatBox.ChatWindowPanel);
+        }
+        else if (stagehandChatBox != null)
+        {
+            SetPanel(stagehandChatBox.ChatWindowPanel);
+            SetPanel(stagehandChatBox.StagehandChatWindowPanel);
+        }
+
+        void SetPanel(PanelContainer panel)
+        {
+            Color color;
+            if (panel.PanelOverride is StyleBoxFlat styleBoxFlat)
+                color = styleBoxFlat.BackgroundColor;
+            else if (panel.TryGetStyleProperty<StyleBox>(PanelContainer.StylePropertyPanel, out var style)
+                     && style is StyleBoxFlat propStyleBoxFlat)
+                color = propStyleBoxFlat.BackgroundColor;
+            else
+                color = Color.FromHex("#25252ADD");
+
+            panel.PanelOverride = new StyleBoxFlat
+            {
+                BackgroundColor = color.WithAlpha(opacity)
+            };
+        }
     }
 
     public void SetMainChat(bool setting)
     {
-        if (UIManager.ActiveScreen == null)
+        if (UIManager.ActiveScreen is null)
         {
             return;
         }
 
-        ChatBox chatBox;
-        string? chatSizeRaw;
+        var chatBox = UIManager.GetActiveUIWidgetOrNull<ChatBox>() ??
+                      UIManager.GetActiveUIWidgetOrNull<StagehandChatBox>();
 
-        switch (UIManager.ActiveScreen)
+        if (chatBox == null)
         {
-            case DefaultGameScreen defaultScreen:
-                chatBox = defaultScreen.ChatBox;
-                chatSizeRaw = _config.GetCVar(CCVars.DefaultScreenChatSize);
-                SetChatSizing(chatSizeRaw, defaultScreen, setting);
-                break;
-            case SeparatedChatGameScreen separatedScreen:
-                chatBox = separatedScreen.ChatBox;
-                chatSizeRaw = _config.GetCVar(CCVars.SeparatedScreenChatSize);
-                SetChatSizing(chatSizeRaw, separatedScreen, setting);
-                break;
-            default:
-                // this could be better?
-                var maybeChat = UIManager.ActiveScreen.GetWidget<ChatBox>();
-
-                chatBox = maybeChat ?? throw new Exception("Cannot get chat box in screen!");
-
-                break;
+            Log.Error($"Could not find chatbox in ingame screen {UIManager.ActiveScreen.GetType().Name}!");
+            return;
         }
 
         chatBox.Main = setting;
-    }
-
-    private void SetChatSizing(string sizing, InGameScreen screen, bool setting)
-    {
-        if (!setting)
-        {
-            screen.OnChatResized -= StoreChatSize;
-            return;
-        }
-
-        screen.OnChatResized += StoreChatSize;
-
-        if (string.IsNullOrEmpty(sizing))
-        {
-            return;
-        }
-
-        var split = sizing.Split(",");
-
-        var chatSize = new Vector2(
-            float.Parse(split[0], CultureInfo.InvariantCulture),
-            float.Parse(split[1], CultureInfo.InvariantCulture));
-
-
-        screen.SetChatSize(chatSize);
-    }
-
-    private void StoreChatSize(Vector2 size)
-    {
-        if (UIManager.ActiveScreen == null)
-        {
-            throw new Exception("Cannot get active screen!");
-        }
-
-        var stringSize =
-            $"{size.X.ToString(CultureInfo.InvariantCulture)},{size.Y.ToString(CultureInfo.InvariantCulture)}";
-        switch (UIManager.ActiveScreen)
-        {
-            case DefaultGameScreen _:
-                _config.SetCVar(CCVars.DefaultScreenChatSize, stringSize);
-                break;
-            case SeparatedChatGameScreen _:
-                _config.SetCVar(CCVars.SeparatedScreenChatSize, stringSize);
-                break;
-            default:
-                // do nothing
-                return;
-        }
-
-        _config.SaveToFile();
     }
 
     private void FocusChat()
@@ -422,14 +367,14 @@ public sealed partial class ChatUIController : UIController
         _speechBubbleRoot.Orphan();
         root.AddChild(_speechBubbleRoot);
         LayoutContainer.SetAnchorPreset(_speechBubbleRoot, LayoutContainer.LayoutPreset.Wide);
-        _speechBubbleRoot.SetPositionLast();
+        // todo make the speech bubble container an actual uiwidget in the game screens instead of doing this dumb shit
+        _speechBubbleRoot.SetPositionInParent(root.ChildCount - 2);
+        _speechBubbleRoot.RectClipContent = true;
     }
 
     private void OnAttachedChanged(EntityUid uid)
     {
         UpdateChannelPermissions();
-
-        UpdateAutoFillHighlights();
     }
 
     private void AddSpeechBubble(ChatMessage msg, SpeechBubble.SpeechType speechType)
@@ -771,7 +716,7 @@ public sealed partial class ChatUIController : UIController
 
     private void OnDamageForceSay(DamageForceSayEvent ev, EntitySessionEventArgs _)
     {
-        var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<ResizableChatBox>();
+        var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<StagehandChatBox>();
         if (chatBox == null)
             return;
 
@@ -826,13 +771,7 @@ public sealed partial class ChatUIController : UIController
         {
             var grammar = _ent.GetComponentOrNull<GrammarComponent>(_ent.GetEntity(msg.SenderEntity));
             if (grammar != null && grammar.ProperNoun == true)
-                msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")));
-        }
-
-        // Color any words chosen by the client.
-        foreach (var highlight in _highlights)
-        {
-            msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, highlight, "color", _highlightsColor);
+                msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")).ToHex());
         }
 
         // Color any codewords for minds that have roles that use them
@@ -957,8 +896,8 @@ public sealed partial class ChatUIController : UIController
     /// Returns the chat name color for a mob
     /// </summary>
     /// <param name="name">Name of the mob</param>
-    /// <returns>Hex value of the color</returns>
-    public string GetNameColor(string name)
+    /// <returns>The name color</returns>
+    public Color GetNameColor(string name)
     {
         var colorIdx = Math.Abs(name.GetHashCode() % _chatNameColors.Length);
         return _chatNameColors[colorIdx];

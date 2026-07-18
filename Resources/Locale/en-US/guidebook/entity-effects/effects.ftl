@@ -138,19 +138,19 @@ entity-effect-guidebook-status-effect =
         [update]{ $chance ->
                     [1] Causes
                     *[other] cause
-                 } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
+                 } {$key} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
         [add]   { $chance ->
                     [1] Causes
                     *[other] cause
-                } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} with accumulation
+                } {$key} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} with accumulation
         [set]  { $chance ->
                     [1] Causes
                     *[other] cause
-                } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
+                } {$key} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
         *[remove]{ $chance ->
                     [1] Removes
                     *[other] remove
-                } {NATURALFIXED($time, 3)} {MANY("second", $time)} of {LOC($key)}
+                } {NATURALFIXED($time, 3)} {MANY("second", $time)} of {$key}
     } { $delay ->
         [0] immediately
         *[other] after a {NATURALFIXED($delay, 3)} second delay
@@ -161,19 +161,19 @@ entity-effect-guidebook-status-effect-indef =
         [update]{ $chance ->
                     [1] Causes
                     *[other] cause
-                 } permanent {LOC($key)}
+                 } permanent {$key}
         [add]   { $chance ->
                     [1] Causes
                     *[other] cause
-                } permanent {LOC($key)}
+                } permanent {$key}
         [set]  { $chance ->
                     [1] Causes
                     *[other] cause
-                } permanent {LOC($key)}
+                } permanent {$key}
         *[remove]{ $chance ->
                     [1] Removes
                     *[other] remove
-                } {LOC($key)}
+                } {$key}
     } { $delay ->
         [0] immediately
         *[other] after a {NATURALFIXED($delay, 3)} second delay
@@ -423,24 +423,6 @@ entity-effect-guidebook-wash-cream-pie-reaction =
         *[other] wash
     } off cream pie from one's face
 
-entity-effect-guidebook-cure-zombie-infection =
-    { $chance ->
-        [1] Cures
-        *[other] cure
-    } an ongoing zombie infection
-
-entity-effect-guidebook-cause-zombie-infection =
-    { $chance ->
-        [1] Gives
-        *[other] give
-    } an individual the zombie infection
-
-entity-effect-guidebook-innoculate-zombie-infection =
-    { $chance ->
-        [1] Cures
-        *[other] cure
-    } an ongoing zombie infection, and provides immunity to future infections
-
 entity-effect-guidebook-reduce-rotting =
     { $chance ->
         [1] Regenerates
@@ -458,15 +440,6 @@ entity-effect-guidebook-add-to-solution-reaction =
         [1] Causes
         *[other] cause
     } {$reagent} to be added to its internal solution container
-
-entity-effect-guidebook-artifact-unlock =
-    { $chance ->
-        [1] Helps
-        *[other] help
-        } unlock an alien artifact.
-
-entity-effect-guidebook-artifact-durability-restore =
-    Restores {$restored} durability in active alien artifact nodes.
 
 entity-effect-guidebook-plant-attribute =
     { $chance ->

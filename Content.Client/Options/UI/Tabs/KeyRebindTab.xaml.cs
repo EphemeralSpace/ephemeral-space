@@ -26,8 +26,8 @@ namespace Content.Client.Options.UI.Tabs
             EngineKeyFunctions.HideUI,
         };
 
-        [Dependency] private readonly IInputManager _inputManager = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private IInputManager _inputManager = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
 
         private BindButton? _currentlyRebinding;
 
@@ -197,11 +197,6 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.SaveItemLocation);
 
             AddHeader("ui-options-header-interaction-adv");
-            AddButton(ContentKeyFunctions.SmartEquipBackpack);
-            AddButton(ContentKeyFunctions.SmartEquipBelt);
-            AddButton(ContentKeyFunctions.SmartEquipPocket1);
-            AddButton(ContentKeyFunctions.SmartEquipPocket2);
-            AddButton(ContentKeyFunctions.SmartEquipSuitStorage);
             AddButton(ContentKeyFunctions.OpenBackpack);
             AddButton(ContentKeyFunctions.OpenBelt);
             AddButton(ContentKeyFunctions.ThrowItemInHand);

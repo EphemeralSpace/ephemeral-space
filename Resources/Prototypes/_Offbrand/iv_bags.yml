@@ -33,8 +33,6 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 5
     fillBaseName: fill-
-  - type: StaticPrice
-    price: 60
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -79,7 +77,6 @@
   name: iv stand
   description: Holds IV bags and allows their contents to be administered intravenously to patients.
   components:
-  - type: Animateable
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -218,7 +215,7 @@
       beaker:
         maxVol: 400
         reagents:
-        - ReagentId: AmmoniaBlood
+        - ReagentId: Blood
           Quantity: 400
 
 - type: entity
@@ -234,66 +231,6 @@
         maxVol: 400
         reagents:
         - ReagentId: Blood
-          Quantity: 400
-
-- type: entity
-  parent: IVBag
-  id: IVBagCopperBlood
-  suffix: blue blood
-  components:
-  - type: Label
-    currentLabel: reagent-name-hemocyanin-blood
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 400
-        reagents:
-        - ReagentId: CopperBlood
-          Quantity: 400
-
-- type: entity
-  parent: IVBag
-  id: IVBagInsectBlood
-  suffix: insect blood
-  components:
-  - type: Label
-    currentLabel: reagent-name-insect-blood
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 400
-        reagents:
-        - ReagentId: InsectBlood
-          Quantity: 400
-
-- type: entity
-  parent: IVBag
-  id: IVBagSap
-  suffix: sap
-  components:
-  - type: Label
-    currentLabel: reagent-name-sap
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 400
-        reagents:
-        - ReagentId: Sap
-          Quantity: 400
-
-- type: entity
-  parent: IVBag
-  id: IVBagSlime
-  suffix: slime
-  components:
-  - type: Label
-    currentLabel: reagent-name-slime
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 400
-        reagents:
-        - ReagentId: Slime
           Quantity: 400
 
 - type: entityTable

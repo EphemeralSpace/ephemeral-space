@@ -10,21 +10,25 @@
       smart_fridge_inventory:
         tableId: ESSmartFridgeMedicalFill
   - type: ESAmbientMusicMarkerMedical
+  - type: AccessReader
+    access: [[ "Medical" ]]
 
 - type: entityTable
   id: ESSmartFridgeMedicalFill
   table:
     all:
-    - id: ESLargeBeakerBicaridine
+    - id: ESLargeBeakerInaprovaline # Stabilisation chems
+    - id: ESLargeBeakerEpinephrine
+    - id: ESLargeBeakerTramadol
+    - id: ESLargeBeakerCryoxadone # Treatment chems
       amount: 2
-    - id: ESLargeBeakerCryoxadone
+    - id: ESLargeBeakerBicaridine
       amount: 2
     - id: ESLargeBeakerDermaline
       amount: 2
-    - id: ESLargeBeakerInaprovaline
+    - id: ESLargeBeakerDylovene
     - id: ESLargeBeakerTricordrazine
-    - id: ESLargeBeakerEpinephrine
+    - id: ESLargeBeakerArithrazine
     - id: ESLargeBeakerDexalin
-    - id: ESLargeBeakerTramadol
-    - id: ESLargeBeakerMannitol
+    - id: ESLargeBeakerMannitol # Organ chems
     - id: ESLargeBeakerPeridaxon

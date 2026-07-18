@@ -35,8 +35,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-  - type: StaticPrice
-    price: 75
 
 - type: entity
   abstract: true
@@ -150,8 +148,6 @@
           - PowerCage
   - type: Machine
     board: PowerCageRechargerCircuitboard
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   parent: BaseItemRecharger
@@ -175,6 +171,8 @@
         blacklist:
           tags:
           - PotatoBattery
+  - type: ESAmbientMusicMarkerCommand
+  - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
   parent: BaseItemRecharger
@@ -253,9 +251,6 @@
   - type: Charger
     chargeRate: 30
     slotId: entity_storage
-    whitelist:
-      components:
-      - BorgChassis
   - type: Construction
     containers:
     - machine_parts
@@ -296,20 +291,8 @@
             state: borgcharger1
   - type: EntityStorage
     capacity: 1
-    whitelist:
-      components:
-      - BorgChassis
   - type: ContainerContainer
     containers:
       entity_storage: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
-
-- type: entity
-  parent: BorgCharger
-  id: BorgChargerXenoborg
-  name: xenoborg recharging station
-  description: A stationary charger for xenoborgs. Feels claustrophobic.
-  components:
-  - type: Sprite
-    sprite: Structures/Power/xenoborg_charger.rsi

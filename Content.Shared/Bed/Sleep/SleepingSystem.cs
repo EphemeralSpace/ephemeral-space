@@ -1,7 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Damage.Systems;
@@ -22,9 +21,7 @@ using Content.Shared.Sound.Components;
 using Content.Shared.Speech;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
-using Content.Shared.Traits.Assorted;
 using Content.Shared.Verbs;
-using Content.Shared.Zombies;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -33,14 +30,14 @@ namespace Content.Shared.Bed.Sleep;
 
 public sealed partial class SleepingSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly BlindableSystem _blindableSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedEmitSoundSystem _emitSound = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private BlindableSystem _blindableSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedEmitSoundSystem _emitSound = default!;
+    [Dependency] private StatusEffectsSystem _statusEffect = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
 
     public static readonly EntProtoId SleepActionId = "ActionSleep";
     public static readonly EntProtoId WakeActionId = "ActionWake";
@@ -57,7 +54,6 @@ public sealed partial class SleepingSystem : EntitySystem
         SubscribeLocalEvent<MobStateComponent, SleepActionEvent>(OnSleepAction);
 
         SubscribeLocalEvent<SleepingComponent, DamageChangedEvent>(OnDamageChanged);
-        SubscribeLocalEvent<SleepingComponent, EntityZombifiedEvent>(OnZombified);
         SubscribeLocalEvent<SleepingComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<SleepingComponent, ComponentInit>(OnCompInit);
         SubscribeLocalEvent<SleepingComponent, ComponentRemove>(OnComponentRemoved);
@@ -76,11 +72,12 @@ public sealed partial class SleepingSystem : EntitySystem
         SubscribeLocalEvent<ForcedSleepingStatusEffectComponent, StatusEffectAppliedEvent>(OnStatusEffectApplied);
 // ES START
         SubscribeLocalEvent<ForcedSleepingStatusEffectComponent, StatusEffectEndTimeUpdatedEvent>(OnForcedSleepingEndTimeUpdated);
+        SubscribeLocalEvent<ForcedSleepingStatusEffectComponent, StatusEffectRemovedEvent>(OnStatusEffectRemoved);
 // ES END
         SubscribeLocalEvent<SleepingComponent, UnbuckleAttemptEvent>(OnUnbuckleAttempt);
         SubscribeLocalEvent<SleepingComponent, EmoteAttemptEvent>(OnEmoteAttempt);
 
-        SubscribeLocalEvent<SleepingComponent, BeforeForceSayEvent>(OnChangeForceSay, after: new []{typeof(PainNumbnessSystem)});
+        SubscribeLocalEvent<SleepingComponent, BeforeForceSayEvent>(OnChangeForceSay);
     }
 
     private void OnUnbuckleAttempt(Entity<SleepingComponent> ent, ref UnbuckleAttemptEvent args)
@@ -258,16 +255,6 @@ public sealed partial class SleepingSystem : EntitySystem
     }
 
     /// <summary>
-    /// Wake up on being zombified.
-    /// In some cases, zombification might theoretically occur without a mob state change or being damaged
-    /// </summary>
-    /// //TODO Perhaps a generic component should be introduced that guarantees that a mob will wake up immediately and can't go to sleep again
-    private void OnZombified(Entity<SleepingComponent> ent, ref EntityZombifiedEvent args)
-    {
-        TryWaking((ent, ent.Comp), true);
-    }
-
-    /// <summary>
     /// In crit, we wake up if we are not being forced to sleep.
     /// And, you can't sleep when dead...
     /// </summary>
@@ -311,6 +298,11 @@ public sealed partial class SleepingSystem : EntitySystem
             var cooldown = endTime.Value - _gameTiming.CurTime;
             _actionsSystem.SetCooldown(sleeping.WakeAction, cooldown);
         }
+    }
+
+    private void OnStatusEffectRemoved(Entity<ForcedSleepingStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
+    {
+        TryWaking(args.Target);
     }
 // ES END
 
@@ -362,7 +354,7 @@ public sealed partial class SleepingSystem : EntitySystem
             if (user != null)
             {
                 _audio.PlayPredicted(ent.Comp.WakeAttemptSound, ent, user);
-                _popupSystem.PopupClient(Loc.GetString("wake-other-failure", ("target", Identity.Entity(ent, EntityManager))), ent, user, PopupType.SmallCaution);
+                _popupSystem.PopupEntity(Loc.GetString("wake-other-failure", ("target", Identity.Entity(ent, EntityManager))), ent, user, PopupType.SmallCaution);
             }
             return false;
         }
@@ -370,7 +362,7 @@ public sealed partial class SleepingSystem : EntitySystem
         if (user != null)
         {
             _audio.PlayPredicted(ent.Comp.WakeAttemptSound, ent, user);
-            _popupSystem.PopupClient(Loc.GetString("wake-other-success", ("target", Identity.Entity(ent, EntityManager))), ent, user);
+            _popupSystem.PopupEntity(Loc.GetString("wake-other-success", ("target", Identity.Entity(ent, EntityManager))), ent, user);
         }
 
         return RemComp<SleepingComponent>(ent);

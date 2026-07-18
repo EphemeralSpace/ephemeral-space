@@ -55,12 +55,9 @@
   - type: Appearance
   - type: FloorTile
     outputs:
+    - ESLatticeDamaged
     - Lattice
     - FloorReinforced
-  - type: StaticPrice
-    price: 0
-  - type: StackPrice
-    price: 7.5
   - type: Extractable
     grindableSolutionName: rod
   - type: SolutionContainerManager
@@ -71,9 +68,6 @@
           Quantity: 4.5
         - ReagentId: Carbon
           Quantity: 0.5
-  - type: GuideHelp
-    guides:
-    - ExpandingRepairingStation
 
 - type: entity
   parent: PartRodMetal

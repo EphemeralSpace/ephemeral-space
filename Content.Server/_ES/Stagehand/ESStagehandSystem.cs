@@ -8,6 +8,9 @@ using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.Database;
 using Content.Shared.Follower;
 using Content.Shared.Mind;
+using Robust.Server.Player;
+using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -16,13 +19,16 @@ namespace Content.Server._ES.Stagehand;
 /// <summary>
 /// This handles logic for spawning in stagehands into the round.
 /// </summary>
-public sealed class ESStagehandSystem : EntitySystem
+public sealed partial class ESStagehandSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly FollowerSystem _follower = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly RoleSystem _role = default!;
+    [Dependency] private ESStagehandNotificationsSystem _notif = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private FollowerSystem _follower = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private RoleSystem _role = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     private static readonly EntProtoId StagehandPrototype = "ESMobStagehand";
     private static readonly EntProtoId ObserverRole = "MindRoleObserver";
@@ -74,21 +80,60 @@ public sealed class ESStagehandSystem : EntitySystem
         }
     }
 
-    public void SpawnStagehand(ICommonSession player)
+    public EntityUid? SpawnStagehand(ICommonSession player, EntityCoordinates? position = null)
     {
-        if (_gameTicker.GetObserverSpawnPoint() is not { EntityId.Id: > 0 } coords)
-            return;
+        return SpawnStagehand(player.UserId, position);
+    }
+
+    public EntityUid? SpawnStagehand(NetUserId player, EntityCoordinates? position = null)
+    {
+        if (!position.HasValue)
+        {
+            position = _gameTicker.GetObserverSpawnPoint();
+            if (!IsValidSpawnPosition(position))
+                return null;
+        }
+
+        var name = _player.GetPlayerData(player).UserName;
 
         // Always make a new mind
-        var mind = _mind.CreateMind(player.UserId, player.Name);
+        var mind = _mind.CreateMind(player, name);
         mind.Comp.PreventGhosting = true;
-        _mind.SetUserId(mind, player.UserId);
+        _mind.SetUserId(mind, player);
 
         _role.MindAddRole(mind, ObserverRole);
 
-        var stagehand = SpawnAtPosition(StagehandPrototype, coords);
+        var stagehand = SpawnAtPosition(StagehandPrototype, position.Value);
         _mind.TransferTo(mind, stagehand, mind: mind);
 
+        var ev = new ESStagehandSpawnedEvent(stagehand, mind);
+        RaiseLocalEvent(ref ev);
+        _notif.SendStagehandNotification(Loc.GetString("es-stagehand-notification-new-stagehand", ("username", name)));
         _adminLog.Add(LogType.Mind, $"{ToPrettyString(mind):player} became a stagehand.");
+
+        return stagehand;
+    }
+
+    private bool IsValidSpawnPosition(EntityCoordinates? spawnPosition)
+    {
+        if (spawnPosition?.IsValid(EntityManager) != true)
+            return false;
+
+        var mapUid = _transform.GetMap(spawnPosition.Value);
+        var gridUid = spawnPosition?.EntityId;
+        // Test if the map is being deleted
+        if (mapUid == null || TerminatingOrDeleted(mapUid.Value))
+            return false;
+        // Test if the grid is being deleted
+        if (gridUid != null && TerminatingOrDeleted(gridUid.Value))
+            return false;
+
+        return true;
     }
 }
+
+/// <summary>
+///     Raised broadcast when a new stagehand is spawned.
+/// </summary>
+[ByRefEvent]
+public record struct ESStagehandSpawnedEvent(EntityUid Stagehand, Entity<MindComponent> Mind);

@@ -237,5 +237,3 @@
     stateBaseClosed: generic
     stateDoorOpen: syndicate_open
     stateDoorClosed: syndicate_closed
-  - type: AccessReader
-    access: [["SyndicateAgent"]]

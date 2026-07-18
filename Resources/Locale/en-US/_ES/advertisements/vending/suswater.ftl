@@ -1,0 +1,9 @@
+advertisement-water-1 = Get a drink of water.
+advertisement-water-2 = Hydrate yourself.
+advertisement-water-3 = Stay refreshed.
+advertisement-water-4 = Everybody needs a bit of hydration.
+advertisement-water-5 = Remember to drink enough water to hydrate yourself.
+advertisement-water-6 = It's important to drink a lot of water.
+thankyou-water-1 = Thank you for your patronage.
+thankyou-water-2 = Refreshing.
+thankyou-water-3 = Stay hydrated.

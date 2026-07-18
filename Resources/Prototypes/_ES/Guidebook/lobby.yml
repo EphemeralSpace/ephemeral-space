@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: Lobby
+  name: Lobby
+  priority: 1
+  text: "/ServerInfo/_ES/Guidebook/Lobby.xml"

@@ -5,7 +5,6 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: Animateable
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -54,12 +53,10 @@
           False: { visible: true }
   - type: LitOnPowered
   - type: PointLight
-    radius: 1.5
-    energy: 3.0
+    radius: 1.26
+    energy: 50
+    curveFactor: 1.0
     enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    offset: "0, 0.4" # shine from the top, not bottom of the computer
     castShadows: false
   - type: EmitSoundOnUIOpen
     sound:
@@ -103,7 +100,6 @@
   parent: BaseComputer
   id: BaseComputerAiAccess
   components:
-  - type: StationAiWhitelist
   - type: Wires
     boardName: wires-board-name-computer
     layoutId: ComputerAi

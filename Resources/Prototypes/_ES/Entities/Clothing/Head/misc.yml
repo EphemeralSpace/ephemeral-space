@@ -1,0 +1,18 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ESClothingHeadParasiteSeed
+  name: seedbed
+  description: A bulbous mass of parasitic larvae. It's not coming off.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Head/Misc/parasite.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Head/Misc/parasite.rsi
+  - type: IdentityBlocker
+  - type: ESVoiceObfuscator
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+      HeadTop: HEAD
+      HeadSide: HEAD
+  - type: Unremoveable

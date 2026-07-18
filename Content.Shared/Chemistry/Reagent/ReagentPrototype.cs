@@ -2,9 +2,10 @@ using System.Collections.Frozen;
 using System.Linq;
 using Content.Shared.FixedPoint;
 using System.Text.Json.Serialization;
+using Content.Shared._ES.Fluids;
+using Content.Shared.Atmos;
 using Content.Shared.Body.Prototypes;
 using Content.Shared.Chemistry.Reaction;
-using Content.Shared.Contraband;
 using Content.Shared.EntityEffects;
 using Content.Shared.Localizations;
 using Content.Shared.Nutrition;
@@ -56,13 +57,6 @@ namespace Content.Shared.Chemistry.Reagent
         public string LocalizedPhysicalDescription => Loc.GetString(PhysicalDescription);
 
         /// <summary>
-        ///     The degree of contraband severity this reagent is considered to have.
-        ///     If AllowedDepartments or AllowedJobs are set, they take precedent and override this value.
-        /// </summary>
-        [DataField]
-        public ProtoId<ContrabandSeverityPrototype>? ContrabandSeverity = null;
-
-        /// <summary>
         ///     Which departments is this reagent restricted to, if any?
         /// </summary>
         [DataField]
@@ -110,6 +104,15 @@ namespace Content.Shared.Chemistry.Reagent
 
         [DataField]
         public float? MeltingPoint { get; private set; }
+
+        [DataField]
+        public ProtoId<ESPuddleSpriteSetPrototype> PuddleSpriteSet = "Default";
+
+        /// <summary>
+        /// Optional override for <see cref="SubstanceColor"/> for usage only in puddles.
+        /// </summary>
+        [DataField]
+        public Color? PuddleColor;
 
         [DataField]
         public SpriteSpecifier? MetamorphicSprite { get; private set; } = null;
@@ -167,6 +170,12 @@ namespace Content.Shared.Chemistry.Reagent
         /// </summary>
         [DataField]
         public bool WorksOnTheDead;
+
+        /// <summary>
+        /// Gases per unit per second released for exposed puddles.
+        /// </summary>
+        [DataField(serverOnly: true, customTypeSerializer: typeof(GasArraySerializer))]
+        public float[] PuddleGas = new float[Atmospherics.AdjustedNumberOfGases];
 
         [DataField]
         public FrozenDictionary<ProtoId<MetabolismGroupPrototype>, ReagentEffectsEntry>? Metabolisms;
@@ -289,7 +298,14 @@ namespace Content.Shared.Chemistry.Reagent
 
         public ReagentEffectsGuideEntry MakeGuideEntry(IPrototypeManager prototype, IEntitySystemManager entSys, ReagentPrototype proto)
         {
-            return new ReagentEffectsGuideEntry(MetabolismRate, proto.GuidebookReagentEffectsDescription(prototype, entSys, Effects, MetabolismRate).ToArray());
+            // Begin Offbrand - Status Effects
+            return new ReagentEffectsGuideEntry(MetabolismRate,
+                proto.GuidebookReagentEffectsDescription(prototype, entSys, Effects, MetabolismRate)
+                    .Concat(StatusEffects.Select(effect => effect.Describe(prototype, entSys))
+                        .Where(effect => effect is not null)
+                        .Select(x => x!))
+                    .ToArray());
+            // End Offbrand - Status Effects
         }
     }
 

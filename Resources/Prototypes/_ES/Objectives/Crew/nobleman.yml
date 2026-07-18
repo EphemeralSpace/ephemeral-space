@@ -1,0 +1,15 @@
+﻿- type: entity
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectiveNoblemanDontKill
+  name: Dont kill anyone
+  description: Someone as noble as yourself would never stoop to the level of murder. If you did... well you wouldn't be able to live with yourself.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Clothing/Head/Misc/fancycrown.rsi
+      state: icon
+  - type: ESTimedDemiseOnKillObjective
+    notificationTitle: es-secret-identity-nobleman-killer-quickdialog-title
+    notificationBody: es-secret-identity-nobleman-killer-quickdialog-msg
+  - type: ESCounterObjective
+    target: 1

@@ -10,13 +10,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Eye;
 
-public sealed class EyeLerpingSystem : EntitySystem
+public sealed partial class EyeLerpingSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedEyeSystem _eye = default!;
-    [Dependency] private readonly SharedMoverController _mover = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedEyeSystem _eye = default!;
+    [Dependency] private SharedMoverController _mover = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     // Convenience variable for for VV.
     [ViewVariables, UsedImplicitly]
@@ -70,6 +70,10 @@ public sealed class EyeLerpingSystem : EntitySystem
         if (component.Eye != null)
         {
             _eye.SetRotation(uid, lerpInfo.TargetRotation, component);
+            // ES START
+            if (TryComp<ContentEyeComponent>(uid, out var contentEye))
+                contentEye.BaseRotation = lerpInfo.TargetRotation;
+            // ES END
             _eye.SetZoom(uid, lerpInfo.TargetZoom, component);
         }
     }

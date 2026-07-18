@@ -4,7 +4,6 @@
   name: Unnamed Degradation Event
   abstract: true
   components:
-  - type: ESDegradationEvent
   - type: StationEvent
     earliestStart: 0
     reoccurrenceDelay: 0
@@ -16,11 +15,13 @@
   table:
     all:
     - id: ESDegradationEventAirlocks
+    - id: ESDegradationEventLights
+    - id: ESDegradationEventMouse
     - id: ESDegradationEventCommunicationsConsole
     - id: ESDegradationEventCriminalRecords
     - id: ESDegradationEventTelecoms
     - id: ESDegradationEventCrewMonitoring
-    - id: ESDegradationEventIDCardComputer
+    - id: ESDegradationEventEmergencyAccess
 
 # Event Prototypes
 
@@ -30,14 +31,35 @@
   name: Airlock Bolt Breakage
   description: Breaks airlocks, making them get stuck when opened.
   components:
-  - type: ESDegradationEvent
-    count: 1, 5
-    component: Airlock
-    blacklist:
-      components:
-      - Docking
+  - type: ESAirlockFailureEvent
   - type: StationEvent
     weight: 50
+
+- type: entity
+  parent: ESBaseDegradationEvent
+  id: ESDegradationEventLights
+  name: Light Failure # just breaking rn but ideally also causes flickering lights and etc. more varied effects
+  description: Breaks a few random lights around the station.
+  components:
+  - type: ESLightFailureEvent
+  - type: StationEvent
+    weight: 40
+
+- type: entity
+  parent: ESBaseDegradationEvent
+  id: ESDegradationEventMouse
+  name: Mouse Swarm
+  description: Sends mice into maintenance to nibble wires.
+  components:
+  - type: ESVentSpawnEvent
+    table:
+      group:
+      - id: MobMouse
+      - id: MobMouse1
+      - id: MobMouse2
+      rolls: 5, 8
+  - type: StationEvent
+    weight: 40
 
 - type: entity
   parent: ESBaseDegradationEvent
@@ -47,6 +69,7 @@
   components:
   - type: ESDegradationEvent
     component: CommunicationsConsole
+    degradeImmediately: true
 
 - type: entity
   parent: ESBaseDegradationEvent
@@ -81,9 +104,10 @@
 
 - type: entity
   parent: ESBaseDegradationEvent
-  id: ESDegradationEventIDCardComputer
-  name: ID Scramble
-  description: Messes up the icons on IDs all over the station.
+  id: ESDegradationEventEmergencyAccess
+  name: False Emergency Access
+  description: Randomly enables emergency access on various airlocks across the station.
   components:
   - type: ESDegradationEvent
-    component: IdCardConsole
+    component: ESEmergencyAccessConsole
+    degradeImmediately: true # Doesn't react to anything

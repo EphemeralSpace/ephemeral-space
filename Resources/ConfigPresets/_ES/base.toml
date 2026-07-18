@@ -14,9 +14,8 @@ range = 10 # APCs
 [game]
 map_pool = "ESMapPool"
 defaultpreset = "ESMasqueradeManaged"
-fallbackpreset = "ESTraitors,ESExtended"
+fallbackpreset = "ESMasqueradeManaged,ESExtended"
 role_timers = false
-contraband_examine = false
 
 # No mob crawling + mob push tweaks
 [movement]
@@ -42,14 +41,10 @@ maximum_width = 15
 [shuttle]
 grid_fill = false
 arrivals_planet = false
+camera_rotation_locked = true
 
-[procgen]
-preload = false
-
-# Tips
-[tips]
-dataset = "ESTips"
-login_dataset = "ESTips"
+[vote]
+preset_enabled = false
 
 [server]
-default_guide = "ESNewPlayerES"
+default_guide = "NewPlayer"

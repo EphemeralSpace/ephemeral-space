@@ -86,8 +86,6 @@
         acts: ["Destruction"]
   - type: Construction
     node: start
-  - type: StaticPrice
-    price: 5000 # these things are expensive, y'know?
 
 - type: entity
   parent: ESBaseStructurePiano

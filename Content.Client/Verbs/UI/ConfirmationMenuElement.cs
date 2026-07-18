@@ -5,7 +5,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Verbs.UI;
 
-public sealed partial class ConfirmationMenuElement : ContextMenuElement
+public sealed class ConfirmationMenuElement : ContextMenuElement
 {
     public const string StyleClassConfirmationContextMenuButton = "confirmationContextMenuButton";
 

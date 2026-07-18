@@ -5,12 +5,12 @@
   description: A finely crafted scalpel, usable by only a select few on station. Capable of discerning useful information from dead bodies. Pointy.
   components:
   - type: Sprite
-    sprite: _ES/Objects/Specific/Medical/cscalpel.rsi
+    sprite: _ES/Objects/Specific/Medical/Tools/cscalpel.rsi
     state: icon
   - type: Item
     storedRotation: 90
   - type: MeleeWeapon
-    wideAnimationRotation: 90
+    wideAnimationRotation: -90
     swingLeft: true
     attackRate: 1.5
     damage:

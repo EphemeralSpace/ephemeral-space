@@ -29,7 +29,7 @@ public abstract partial class SharedBuckleSystem
 {
     public static ProtoId<AlertCategoryPrototype> BuckledAlertCategory = "Buckled";
 
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
     private void InitializeBuckle()
     {
@@ -238,7 +238,7 @@ public abstract partial class SharedBuckleSystem
             _whitelistSystem.IsWhitelistPass(strapComp.Blacklist, buckleUid))
         {
             if (popup)
-                _popup.PopupClient(Loc.GetString("buckle-component-cannot-fit-message"), user, PopupType.Medium);
+                _popup.PopupCursor(Loc.GetString("buckle-component-cannot-fit-message"), user, PopupType.Medium);
 
             return false;
         }
@@ -258,7 +258,7 @@ public abstract partial class SharedBuckleSystem
         if (user != null && !HasComp<HandsComponent>(user))
         {
             if (popup)
-                _popup.PopupClient(Loc.GetString("buckle-component-no-hands-message"), user);
+                _popup.PopupCursor(Loc.GetString("buckle-component-no-hands-message"), user);
 
             return false;
         }
@@ -272,7 +272,7 @@ public abstract partial class SharedBuckleSystem
                     : "buckle-component-other-already-buckled-message",
                 ("owner", Identity.Entity(buckleUid, EntityManager)));
 
-                _popup.PopupClient(message, user);
+                _popup.PopupCursor(message, user);
             }
 
             return false;
@@ -295,7 +295,7 @@ public abstract partial class SharedBuckleSystem
                     : "buckle-component-other-cannot-buckle-message",
                 ("owner", Identity.Entity(buckleUid, EntityManager)));
 
-                _popup.PopupClient(message, user);
+                _popup.PopupCursor(message, user);
             }
 
             return false;
@@ -310,7 +310,7 @@ public abstract partial class SharedBuckleSystem
                     : "buckle-component-other-cannot-buckle-message",
                 ("owner", Identity.Entity(buckleUid, EntityManager)));
 
-                _popup.PopupClient(message, user);
+                _popup.PopupCursor(message, user);
             }
 
             return false;

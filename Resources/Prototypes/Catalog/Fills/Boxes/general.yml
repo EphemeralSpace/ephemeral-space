@@ -14,9 +14,6 @@
       Cardboard: 100
   - type: Sprite
     state: box
-  - type: Tag
-    tags:
-    - BoxCardboard
 
 - type: entity
   parent: BoxBaseSmall
@@ -34,9 +31,6 @@
       Cardboard: 50
   - type: Sprite
     state: box
-  - type: Tag
-    tags:
-    - BoxCardboard
 
 - type: entity
   name: mousetrap box
@@ -215,25 +209,6 @@
       - state: meson
 
 - type: entity
-  name: M.R.E.
-  parent: BoxCardboard
-  id: BoxMRE
-  description: A box of decades old military surplus rations. It is surprisingly not rotten.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: DrinkMREFlask
-        - id: FoodSnackNutribrick
-        - id: FoodSnackMREBrownie
-        - id: FoodCondimentPacketKetchup
-  - type: Sprite
-    layers:
-      - state: box
-      - state: writing
-
-- type: entity
   parent: BoxHug
   id: BoxHugHealing
   suffix: Medical
@@ -274,10 +249,7 @@
       storagebase: !type:AllSelector
         children:
         - id: ClothingShoesBootsPerformer
-        - id: ClothingUniformJumpskirtPerformer
         - id: ClothingHeadPerformerWig
-        - id: FoodMealMemoryleek
-          amount: 2
 
 - type: entity
   name: flare box
@@ -430,7 +402,7 @@
 
 - type: entity
   name: syndicate encryption key box
-  parent: [BoxEncryptionKeyPassenger, BaseSyndicateContraband]
+  parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeySyndie
   description: Two syndicate encryption keys for the price of one. Miniaturized for ease of use.
   components:

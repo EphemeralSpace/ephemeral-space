@@ -10,15 +10,15 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Keypad;
 
-public abstract class ESSharedKeypadSystem : EntitySystem
+public abstract partial class ESSharedKeypadSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
-    [Dependency] private readonly SharedToolSystem _tool = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
+    [Dependency] private SharedToolSystem _tool = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -173,7 +173,7 @@ public abstract class ESSharedKeypadSystem : EntitySystem
             ent.Comp.Passcode = ent.Comp.CodeInput;
             ent.Comp.CodeInput = string.Empty;
             _audio.PlayPredicted(ent.Comp.RightCodeSound, ent, user, ent.Comp.RightCodeSound.Params.WithPitchScale(1.15f));
-            _popup.PopupPredicted(Loc.GetString("es-keypad-popup-code-changed"), ent, user);
+            _popup.PopupEntity(Loc.GetString("es-keypad-popup-code-changed"), ent);
             Dirty(ent);
             return;
         }

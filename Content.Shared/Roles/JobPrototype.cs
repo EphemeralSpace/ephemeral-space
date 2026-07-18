@@ -1,9 +1,15 @@
+using Content.Shared._ES.Auditions;
+using Content.Shared._ES.Tips;
 using Content.Shared.Access;
 using Content.Shared.Guidebook;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
+
+// ES START
+// Add name configs to job prototypes
 
 namespace Content.Shared.Roles
 {
@@ -11,20 +17,21 @@ namespace Content.Shared.Roles
     ///     Describes information for a single job on the station.
     /// </summary>
     [Prototype]
-    public sealed partial class JobPrototype : IPrototype
+    public sealed partial class JobPrototype : IPrototype, IInheritingPrototype
     {
         [ViewVariables]
         [IdDataField]
         public string ID { get; private set; } = default!;
 
+        [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<JobPrototype>))]
+        public string[]? Parents { get; private set; }
+
+        [NeverPushInheritance]
+        [AbstractDataField]
+        public bool Abstract { get; private set; }
+
         [DataField(required: true, customTypeSerializer: typeof(PrototypeIdSerializer<PlayTimeTrackerPrototype>))]
         public string PlayTimeTracker { get; private set; } = string.Empty;
-
-        /// <summary>
-        ///     Who is the supervisor for this job.
-        /// </summary>
-        [DataField]
-        public LocId Supervisors = "job-supervisors-nobody";
 
         /// <summary>
         ///     The name of this job as displayed to players.
@@ -57,22 +64,10 @@ namespace Content.Shared.Roles
         public bool JoinNotifyCrew { get; private set; } = false;
 
         /// <summary>
-        ///     When true - the player will recieve a message about importancy of their job.
-        /// </summary>
-        [DataField]
-        public bool RequireAdminNotify { get; private set; } = false;
-
-        /// <summary>
         ///     Should this job appear in preferences menu?
         /// </summary>
         [DataField]
         public bool SetPreference { get; private set; } = true;
-
-        /// <summary>
-        ///     Should the selected traits be applied for this job?
-        /// </summary>
-        [DataField]
-        public bool ApplyTraits { get; private set; } = true;
 
         /// <summary>
         ///     Whether this job should show in the ID Card Console.
@@ -126,6 +121,18 @@ namespace Content.Shared.Roles
         [DataField]
         public EntProtoId? JobPreviewEntity = null;
 
+        /// <summary>
+        /// Configuration to be used in name generation.
+        /// </summary>
+        [DataField]
+        public ESNameConfig NameConfig = ESNameConfig.Default;
+
+        /// <summary>
+        ///     If false, arrivals will not attempt to spawn anyone with this job.
+        /// </summary>
+        [DataField]
+        public bool SpawnsOnArrivals = true;
+
         [DataField]
         public ProtoId<JobIconPrototype> Icon { get; private set; } = "JobIconUnknown";
 
@@ -153,6 +160,12 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public List<ProtoId<GuideEntryPrototype>>? Guides;
+
+        /// <summary>
+        /// Set of tips that apply to this job specifically.
+        /// </summary>
+        [DataField]
+        public HashSet<ProtoId<ESTipPrototype>> Tips = new();
     }
 
     /// <summary>

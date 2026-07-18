@@ -40,6 +40,3 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Wood
-  - type: GuideHelp
-    guides:
-    - Cargo

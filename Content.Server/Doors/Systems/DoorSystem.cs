@@ -1,6 +1,6 @@
 using Content.Server.Access;
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Power;
@@ -8,9 +8,9 @@ using Robust.Shared.Physics.Components;
 
 namespace Content.Server.Doors.Systems;
 
-public sealed class DoorSystem : SharedDoorSystem
+public sealed partial class DoorSystem : SharedDoorSystem
 {
-    [Dependency] private readonly AirtightSystem _airtightSystem = default!;
+    [Dependency] private AirtightSystem _airtightSystem = default!;
 
     public override void Initialize()
     {

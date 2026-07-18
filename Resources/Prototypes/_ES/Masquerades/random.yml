@@ -6,13 +6,54 @@
   minPlayers: 1
   gameRules: []
   masquerade:
-    defaultMask: "#AllCrew" # Everyone besides the traitors gets random crew masks.
+    defaultSecretIdentity: "#AllCrew" # Everyone besides the traitors gets random crew identities.
     superfanTarget: "#AllTraitors"
     roles:
       1: [] # Greenshift.
       4: ["#AllTraitors"]
-      6: ["#AllTraitors", "#AllJesters"]
+      6: ["#AllTraitors"]
+      9: ["#SemiTraitor"]
+      11: ["#AllTraitors"]
+      17: ["#AllTraitors"]
+      22: ["#SemiTraitor"]
+      25: ["#AllTraitors"]
+      32: ["#AllTraitors"]
+
+- type: esMasquerade
+  id: RandomParasites
+  name: Random (Parasites)
+  description: is a truly randomized worm-filled experience
+  weight: 1
+  minPlayers: 1
+  gameRules: []
+  masquerade:
+    defaultSecretIdentity: "#AllCrew" # Everyone besides the parasites gets random crew identities.
+    roles:
+      1: []
+      4: ["#AllParasites"]
+      8: ["#AllParasites"]
+      14: ["#AllParasites"]
+      20: ["#AllParasites"]
+      28: ["#AllParasites"]
+
+- type: esMasquerade
+  id: RandomTraitorsParasites
+  name: Random (Traitors + Parasites)
+  description: is a truly randomized worm-filled traitorous experience
+  weight: 1
+  minPlayers: 1
+  gameRules: []
+  masquerade:
+    defaultSecretIdentity: "#AllCrew" # Everyone besides the traitors+parasites gets random crew identities.
+    superfanTarget: "#AllTraitors"
+    roles:
+      1: []
+      4: ["#AllTraitors", "#AllParasites"]
+      6: ["#AllTraitors"]
+      9: ["#SemiTraitor"]
+      11: ["#AllParasites"]
       13: ["#AllTraitors"]
-      19: ["#AllTraitors", "#AllJesters"]
-      25: ["#AllTraitors", "#AllJesters"]
-      31: ["#AllTraitors"]
+      19: ["#AllTraitors"]
+      21: ["#AllParasites"]
+      25: ["#SemiTraitor"]
+      28: ["#AllTraitors"]

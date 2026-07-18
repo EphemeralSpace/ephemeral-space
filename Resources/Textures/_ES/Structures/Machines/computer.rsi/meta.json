@@ -61,7 +61,37 @@
       "name": "cryptonuke-icon"
     },
     {
+      "name": "emerg"
+    },
+    {
+      "name": "emerg_key"
+    },
+    {
+      "name": "emerg_key_off"
+    },
+    {
+      "name": "emerg-icon"
+    },
+    {
       "name": "id-icon"
+    },
+    {
+      "name": "navigation"
+    },
+    {
+      "name": "warpdrive",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
     },
     {
       "name": "request-0"

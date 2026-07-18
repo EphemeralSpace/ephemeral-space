@@ -26,3 +26,53 @@
       shader: unshaded
   - type: ESSpawnRegionMarker
     area: ESMaintenance
+
+- type: entity
+  parent: ESBaseMarkerSpawnRegion
+  id: ESMarkerSpawnRegionSingularityWorldOnStation
+  name: Singularity World Teleport Region
+  suffix: On Station
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#c13e4f"
+      shader: unshaded
+    - state: warp
+      shader: unshaded
+  - type: ESSpawnRegionMarker
+    area: ESSingularityWorldTeleportStation
+
+- type: entity
+  parent: ESBaseMarkerSpawnRegion
+  id: ESMarkerSpawnRegionSingularityWorldInWorld
+  name: Singularity World Teleport Region
+  suffix: In World
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#c13e4f"
+      shader: unshaded
+    - state: warp
+      shader: unshaded
+  - type: ESSpawnRegionMarker
+    area: ESSingularityWorldTeleportInWorld
+
+- type: entity
+  parent: ESBaseMarkerSpawnRegion
+  id: ESMarkerSpawnRegionRatmanDoor
+  name: Ratman Door Region
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#B69F3C"
+      shader: unshaded
+    - state: rat
+      shader: unshaded
+    - sprite: _ES/Markers/spawners.rsi
+      state: rat
+      shader: unshaded
+  - type: ESSpawnRegionMarker
+    area: ESRatmanDoor

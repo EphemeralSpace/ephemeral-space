@@ -8,24 +8,11 @@
           steps:
             - material: Steel
               amount: 2
-              doAfter: 1
+              doAfter: 5
 
     - node: girder
       entity: Girder
       edges:
-        - to: start
-          completed:
-            - !type:SpawnPrototype
-              prototype: SheetSteel1
-              amount: 2
-            - !type:DeleteEntity {}
-          conditions:
-            - !type:EntityAnchored
-              anchored: false
-          steps:
-            - tool: Screwing
-              doAfter: 2
-
         - to: wall
           completed:
             - !type:SnapToGrid
@@ -35,7 +22,7 @@
           steps:
             - material: Steel
               amount: 2
-              doAfter: 2
+              doAfter: 10
 
         - to: reinforcedGirder
           completed:
@@ -47,6 +34,15 @@
             - material: Plasteel
               amount: 2
               doAfter: 1
+
+        - to: secretDoor
+          steps:
+          - tag: ESSecretWallKit
+            name: es-construction-graph-tag-secret-door-kit
+            icon:
+              sprite: _ES/Objects/Materials/kits.rsi
+              state: secret
+            doAfter: 10
 
         - to: uraniumWall
           completed:
@@ -131,53 +127,6 @@
               amount: 2
               doAfter: 2
 
-# ES START
-        - to: ESWallTube
-          completed:
-          - !type:SnapToGrid
-            southRotation: true
-          conditions:
-          - !type:EntityAnchored {}
-          steps:
-          - material: MetalRod
-            amount: 4
-            doAfter: 2
-
-        - to: ESWallDiagonalTube
-          conditions:
-          - !type:EntityAnchored { }
-          steps:
-          - tool: Screwing
-            doAfter: 1
-          - material: MetalRod
-            amount: 4
-            doAfter: 2
-
-    - node: ESWallTube
-      entity: ESWallTube
-      edges:
-      - to: girder
-        completed:
-        - !type:GivePrototype
-          prototype: PartRodMetal1
-          amount: 4
-        steps:
-        - tool: Welding
-          doAfter: 10
-
-    - node: ESWallDiagonalTube
-      entity: ESWallTubeDiagonal
-      edges:
-      - to: girder
-        completed:
-        - !type:SpawnPrototype
-          prototype: PartRodMetal1
-          amount: 4
-        steps:
-        - tool: Welding
-          doAfter: 10
-# ES END
-
     - node: wall
       entity: WallSolid
       edges:
@@ -188,7 +137,19 @@
               amount: 2
           steps:
             - tool: Welding
-              doAfter: 10
+              doAfter: 8
+
+    - node: secretDoor
+      entity: SolidSecretDoor
+      edges:
+        - to: girder
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Welding
+              doAfter: 8
 
     - node: wallChitin
       entity: WallSolidChitin

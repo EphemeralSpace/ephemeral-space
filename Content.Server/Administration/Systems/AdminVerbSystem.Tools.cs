@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
-using Content.Server.Cargo.Components;
 using Content.Server.Doors.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Stack;
@@ -41,18 +40,18 @@ namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    [Dependency] private readonly DoorSystem _door = default!;
-    [Dependency] private readonly AirlockSystem _airlockSystem = default!;
-    [Dependency] private readonly StackSystem _stackSystem = default!;
-    [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
-    [Dependency] private readonly HandsSystem _handsSystem = default!;
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-    [Dependency] private readonly AdminTestArenaSystem _adminTestArenaSystem = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!;
-    [Dependency] private readonly JointSystem _jointSystem = default!;
-    [Dependency] private readonly SharedBatterySystem _batterySystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly GunSystem _gun = default!;
+    [Dependency] private DoorSystem _door = default!;
+    [Dependency] private AirlockSystem _airlockSystem = default!;
+    [Dependency] private StackSystem _stackSystem = default!;
+    [Dependency] private SharedAccessSystem _accessSystem = default!;
+    [Dependency] private HandsSystem _handsSystem = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private AdminTestArenaSystem _adminTestArenaSystem = default!;
+    [Dependency] private StationJobsSystem _stationJobsSystem = default!;
+    [Dependency] private JointSystem _jointSystem = default!;
+    [Dependency] private SharedBatterySystem _batterySystem = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private GunSystem _gun = default!;
 
     private void AddTricksVerbs(GetVerbsEvent<Verb> args)
     {
@@ -517,26 +516,6 @@ public sealed partial class AdminVerbSystem
                 };
                 args.Verbs.Add(barJobSlots);
             }
-
-            Verb locateCargoShuttle = new()
-            {
-                Text = Loc.GetString("admin-verbs-locate-cargo-shuttle"),
-                Category = VerbCategory.Tricks,
-                Icon = new SpriteSpecifier.Rsi(new("/Textures/Clothing/Head/Soft/cargosoft.rsi"), "icon"),
-                Act = () =>
-                {
-                    var shuttle = Comp<StationCargoOrderDatabaseComponent>(args.Target).Shuttle;
-
-                    if (shuttle is null)
-                        return;
-
-                    _transformSystem.SetCoordinates(args.User, new EntityCoordinates(shuttle.Value, Vector2.Zero));
-                },
-                Impact = LogImpact.Low,
-                Message = Loc.GetString("admin-trick-locate-cargo-shuttle-description"),
-                Priority = (int) TricksVerbPriorities.LocateCargoShuttle,
-            };
-            args.Verbs.Add(locateCargoShuttle);
         }
 
         if (TryGetGridChildren(args.Target, out var childEnum))

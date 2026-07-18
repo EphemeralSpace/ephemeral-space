@@ -4,19 +4,20 @@ using Content.Server.Station.Systems;
 using Content.Shared.Preferences;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+
+// ES CHANGE
+// Don't arbitrarily block non-humans from using container spawn points
 
 namespace Content.Server.Spawners.EntitySystems;
 
-public sealed class ContainerSpawnPointSystem : EntitySystem
+public sealed partial class ContainerSpawnPointSystem : EntitySystem
 {
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private StationSpawningSystem _stationSpawning = default!;
 
     public override void Initialize()
     {
@@ -30,8 +31,7 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
             return;
 
         // If it's just a spawn pref check if it's for cryo (silly).
-        if (args.HumanoidCharacterProfile?.SpawnPriority != SpawnPriorityPreference.Cryosleep &&
-            (!_proto.Resolve(args.Job, out var jobProto) || jobProto.JobEntity == null))
+        if (args.HumanoidCharacterProfile?.SpawnPriority != SpawnPriorityPreference.Cryosleep)
         {
             return;
         }

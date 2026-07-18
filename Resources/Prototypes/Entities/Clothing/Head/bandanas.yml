@@ -26,10 +26,8 @@
     slots: []
   - type: Tag
     tags:
-    - Bandana
     - ClothMade
     - Recyclable
-    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingHeadBandBase, ClothingMaskBandBlack]
@@ -70,11 +68,6 @@
   parent: [ClothingHeadBandBase, ClothingMaskBandSkull]
   id: ClothingHeadBandSkull
   name: skull bandana
-
-- type: entity
-  parent: [ClothingHeadBandBase, ClothingMaskBandMerc]
-  id: ClothingHeadBandMerc
-  name: mercenary bandana
 
 - type: entity
   parent: [ClothingHeadBandBase, ClothingMaskBandBrown]

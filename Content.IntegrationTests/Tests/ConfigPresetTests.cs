@@ -1,18 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Entry;
+using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 
 namespace Content.IntegrationTests.Tests;
 
 [TestFixture]
-public sealed class ConfigPresetTests
+public sealed class ConfigPresetTests : GameTest
 {
+    /// <summary>
+    ///     These cvars are random for us and not intended to be consistent across reloads.
+    /// </summary>
+    public static readonly HashSet<string> IgnoredCVars =
+        [
+            CVars.GameHostName.Name
+        ];
+
     [Test]
     public async Task TestLoadAll()
     {
-        var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var resources = server.ResolveDependency<IResourceManager>();
@@ -21,14 +32,15 @@ public sealed class ConfigPresetTests
         await server.WaitPost(() =>
         {
             var originalCVars = new List<(string, object)>();
-            foreach (var cvar in config.GetRegisteredCVars())
+            var registeredCVars = config.GetRegisteredCVars().Except(IgnoredCVars).ToArray();
+            foreach (var cvar in registeredCVars)
             {
                 var value = config.GetCVar<object>(cvar);
                 originalCVars.Add((cvar, value));
             }
 
             var originalCVarsStream = new MemoryStream();
-            config.SaveToTomlStream(originalCVarsStream, config.GetRegisteredCVars());
+            config.SaveToTomlStream(originalCVarsStream, registeredCVars);
             originalCVarsStream.Position = 0;
 
             var presets = resources.ContentFindFiles(EntryPoint.ConfigPresetsDir);
@@ -70,7 +82,5 @@ public sealed class ConfigPresetTests
                     Assert.Fail($"CVar {name} was not reset to its original value.");
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

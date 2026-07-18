@@ -1,0 +1,48 @@
+- type: entity
+  parent: BaseItem
+  id: ESDoorJammer
+  name: door jammer
+  description: A jury-rigged screwdriver capable of bolting any airlock it's thrown at.
+  suffix: ES
+  components:
+  - type: ESDoorJammer
+  - type: Tag
+    tags:
+      - Screwdriver
+  - type: Sprite
+    sprite: _ES/Objects/Tools/door_jammer.rsi
+    state: icon
+    noRot: false
+  - type: Item
+    size: Small
+    sprite: _ES/Objects/Tools/door_jammer.rsi
+    storedRotation: -90
+    storedSprite:
+      state: storage
+      sprite: _ES/Objects/Tools/door_jammer.rsi
+  - type: Tool
+    qualities:
+    - Screwing
+    useSound:
+      collection: Screwdriver
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+    offset: 0.05,0.0
+    removalTime: 4
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 12
+  - type: ThrowingAngle
+    angle: 315
+  - type: LandAtCursor
+  - type: MeleeWeapon
+    wideAnimationRotation: -45
+    wideAnimation: WeaponArcThrust
+    attackRate: 1
+    damage:
+      types:
+        Piercing: 6
+    soundHit:
+      path: "/Audio/Weapons/bladeslice.ogg"
+  - type: ESPickpocketPriorityItem

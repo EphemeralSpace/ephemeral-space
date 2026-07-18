@@ -3,7 +3,6 @@ using System.Linq;
 using System.Text;
 using Content.Shared.Access.Components;
 using Content.Shared.DeviceLinking.Events;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.EntitySystems;
@@ -23,17 +22,16 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Access.Systems;
 
-public sealed class AccessReaderSystem : EntitySystem
+public sealed partial class AccessReaderSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly SharedGameTicker _gameTicker = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedStationRecordsSystem _recordsSystem = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private SharedGameTicker _gameTicker = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private SharedStationRecordsSystem _recordsSystem = default!;
 
     private static readonly ProtoId<TagPrototype> PreventAccessLoggingTag = "PreventAccessLogging";
 
@@ -41,10 +39,9 @@ public sealed class AccessReaderSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<AccessReaderComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<AccessReaderComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<AccessReaderComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<AccessReaderComponent, LinkAttemptEvent>(OnLinkAttempt);
-        SubscribeLocalEvent<AccessReaderComponent, AccessReaderConfigurationAttemptEvent>(OnConfigurationAttempt);
         SubscribeLocalEvent<AccessReaderComponent, FindAvailableLocksEvent>(OnFindAvailableLocks);
         SubscribeLocalEvent<AccessReaderComponent, CheckUserHasLockAccessEvent>(OnCheckLockAccess);
 
@@ -52,12 +49,19 @@ public sealed class AccessReaderSystem : EntitySystem
         SubscribeLocalEvent<AccessReaderComponent, ComponentHandleState>(OnHandleState);
     }
 
+    private void OnMapInit(Entity<AccessReaderComponent> ent, ref MapInitEvent args)
+    {
+        ent.Comp.AccessListsOriginal = new(ent.Comp.AccessLists);
+        Dirty(ent);
+    }
+
     private void OnExamined(Entity<AccessReaderComponent> ent, ref ExaminedEvent args)
     {
         if (!GetMainAccessReader(ent, out var mainAccessReader))
             return;
 
-        mainAccessReader.Value.Comp.AccessListsOriginal ??= new(mainAccessReader.Value.Comp.AccessLists);
+        if (mainAccessReader.Value.Comp.AccessListsOriginal == null)
+            return;
 
         var accessHasBeenModified = mainAccessReader.Value.Comp.AccessLists.Count != mainAccessReader.Value.Comp.AccessListsOriginal.Count;
 
@@ -142,27 +146,6 @@ public sealed class AccessReaderSystem : EntitySystem
             return;
         if (!IsAllowed(args.User.Value, uid, component))
             args.Cancel();
-    }
-
-    private void OnEmagged(EntityUid uid, AccessReaderComponent reader, ref GotEmaggedEvent args)
-    {
-        if (!_emag.CompareFlag(args.Type, EmagType.Access))
-            return;
-
-        if (!reader.BreakOnAccessBreaker)
-            return;
-
-        if (!GetMainAccessReader(uid, out var accessReader))
-            return;
-
-        if (accessReader.Value.Comp.AccessLists.Count < 1)
-            return;
-
-        args.Repeatable = true;
-        args.Handled = true;
-        accessReader.Value.Comp.AccessLists.Clear();
-        accessReader.Value.Comp.AccessLog.Clear();
-        Dirty(uid, reader);
     }
 
     private void OnConfigurationAttempt(Entity<AccessReaderComponent> ent, ref AccessReaderConfigurationAttemptEvent args)
@@ -288,9 +271,18 @@ public sealed class AccessReaderSystem : EntitySystem
 
     private bool IsAllowedInternal(ICollection<ProtoId<AccessLevelPrototype>> access, ICollection<StationRecordKey> stationKeys, AccessReaderComponent reader)
     {
-        return !reader.Enabled
-               || AreAccessTagsAllowed(access, reader)
-               || AreStationRecordKeysAllowed(stationKeys, reader);
+// ES START
+        if (!reader.Enabled)
+            return true;
+
+        if ((reader.RequireKey || reader.AccessKeys.Any()) && !AreStationRecordKeysAllowed(stationKeys, reader))
+            return false;
+
+        if (!AreAccessTagsAllowed(access, reader))
+            return false;
+
+        return true;
+// ES END
     }
 
     /// <summary>

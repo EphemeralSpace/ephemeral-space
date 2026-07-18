@@ -9,8 +9,8 @@ public sealed partial class GuideEntryPrototype : GuideEntry, IPrototype
     public string ID => Id;
 }
 
-[Virtual]
-public class GuideEntry
+[Virtual, DataDefinition]
+public partial class GuideEntry
 {
     /// <summary>
     ///     The file containing the contents of this guide.
@@ -24,7 +24,7 @@ public class GuideEntry
     public string Id = default!;
 
     /// <summary>
-    ///     The name of this guide. This gets localized.
+    ///     The name of this guide. This does not get localized.
     /// </summary>
     [DataField(required: true)] public string Name = default!;
 
@@ -47,14 +47,10 @@ public class GuideEntry
     /// </summary>
     [DataField] public int Priority = 0;
 
-    // ES START
-    // all guidebook protos are hidden by default
-    // we deliberately unhide ones we want to show on ES
     /// <summary>
     ///     Defines whether a guidebook entry can be shown.
     ///     If true, will filter out of both a full guidebook open (like with the key) and an entry opened by GuideHelpComponent.
     /// </summary>
     [DataField]
-    public bool Hidden = true;
-    // ES END
+    public bool Hidden = false;
 }

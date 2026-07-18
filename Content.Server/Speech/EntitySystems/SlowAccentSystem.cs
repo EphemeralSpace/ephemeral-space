@@ -4,7 +4,7 @@ using Content.Shared.Speech;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed partial class SlowAccentSystem : EntitySystem
+public sealed class SlowAccentSystem : EntitySystem
 {
     /// <summary>
     /// Matches whitespace characters or commas (with or without a space after them).

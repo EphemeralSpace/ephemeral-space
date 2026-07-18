@@ -1,0 +1,11 @@
+- type: localizedDataset
+  id: ESHaterTargetDataset
+  values:
+    prefix: es-hater-target-format-
+    count: 19
+
+- type: localizedDataset
+  id: ESHaterContextDataset
+  values:
+    prefix: es-hater-context-situation-
+    count: 33

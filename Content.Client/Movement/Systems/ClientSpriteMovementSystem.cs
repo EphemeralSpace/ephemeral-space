@@ -1,5 +1,5 @@
 using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
+using Content.Shared.Movement.Events;
 using Robust.Client.GameObjects;
 
 namespace Content.Client.Movement.Systems;
@@ -7,39 +7,39 @@ namespace Content.Client.Movement.Systems;
 /// <summary>
 /// Controls the switching of motion and standing still animation
 /// </summary>
-public sealed class ClientSpriteMovementSystem : SharedSpriteMovementSystem
+public sealed class ClientSpriteMovementSystem : VisualizerSystem<SpriteMovementComponent>
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-
-    private EntityQuery<SpriteComponent> _spriteQuery;
-
-    public override void Initialize()
+    protected override void OnAppearanceChange(EntityUid uid, SpriteMovementComponent comp, ref AppearanceChangeEvent args)
     {
-        base.Initialize();
-
-        _spriteQuery = GetEntityQuery<SpriteComponent>();
-
-        SubscribeLocalEvent<SpriteMovementComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
-    }
-
-    private void OnAfterAutoHandleState(Entity<SpriteMovementComponent> ent, ref AfterAutoHandleStateEvent args)
-    {
-        if (!_spriteQuery.TryGetComponent(ent, out var sprite))
+        var sprite = args.Sprite;
+        if (!args.AppearanceData.TryGetValue(SpriteMovementVisuals.Moving, out var obj) || obj is not bool isMoving)
             return;
 
-        if (ent.Comp.IsMoving)
+        comp.WasMoving ??= !isMoving;
+        if (isMoving == comp.WasMoving)
+            return;
+
+        void SetLayers(Dictionary<string, PrototypeLayerData> layers)
         {
-            foreach (var (layer, state) in ent.Comp.MovementLayers)
+            foreach (var (layer, state) in layers)
             {
-                _sprite.LayerSetData((ent.Owner, sprite), layer, state);
+                if (!SpriteSystem.TryGetLayer((uid, sprite), layer, out var layerData, true))
+                    continue;
+
+                var oldTime = layerData.AnimationTime;
+                var oldStateWasAnim = layerData.AnimationTimeLeft > 0;
+                SpriteSystem.LayerSetAutoAnimated(layerData, true);
+                SpriteSystem.LayerSetData(layerData, state);
+                // if there was old anim time left from a previously playing anim, take that into account here
+                if (oldStateWasAnim)
+                {
+                    var setAnimTime = layerData.AnimationTimeLeft - oldTime;
+                    SpriteSystem.LayerSetAnimationTime(layerData, setAnimTime);
+                }
             }
         }
-        else
-        {
-            foreach (var (layer, state) in ent.Comp.NoMovementLayers)
-            {
-                _sprite.LayerSetData((ent.Owner, sprite), layer, state);
-            }
-        }
+
+        SetLayers(isMoving ? comp.MovementLayers : comp.NoMovementLayers);
+        comp.WasMoving = isMoving;
     }
 }

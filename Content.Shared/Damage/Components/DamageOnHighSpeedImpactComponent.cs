@@ -12,29 +12,26 @@ namespace Content.Shared.Damage.Components;
 public sealed partial class DamageOnHighSpeedImpactComponent : Component
 {
     [DataField("minimumSpeed"), ViewVariables(VVAccess.ReadWrite)]
-    public float MinimumSpeed = 20f;
+    public float MinimumSpeed = 5.5f;
 
     [DataField("speedDamageFactor"), ViewVariables(VVAccess.ReadWrite)]
     public float SpeedDamageFactor = 0.5f;
 
-    [DataField("soundHit", required: true), ViewVariables(VVAccess.ReadWrite)]
+    [DataField(required: true)]
     public SoundSpecifier SoundHit = default!;
 
-    [DataField("stunChance"), ViewVariables(VVAccess.ReadWrite)]
-    public float StunChance = 0.25f;
-
-    [DataField("stunMinimumDamage"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public int StunMinimumDamage = 10;
 
-    [DataField("stunSeconds"), ViewVariables(VVAccess.ReadWrite)]
-    public float StunSeconds = 1f;
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan StunTime = TimeSpan.FromSeconds(3f);
 
-    [DataField("damageCooldown"), ViewVariables(VVAccess.ReadWrite)]
-    public float DamageCooldown = 2f;
+    [DataField]
+    public TimeSpan DamageCooldown = TimeSpan.FromSeconds(3f);
 
-    [DataField("lastHit", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan? LastHit;
 
-    [DataField("damage", required: true), ViewVariables(VVAccess.ReadWrite)]
+    [DataField(required: true)]
     public DamageSpecifier Damage = default!;
 }

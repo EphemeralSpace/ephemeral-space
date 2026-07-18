@@ -18,3 +18,23 @@
     collection: AmbienceEngineering
   rules: ESNearEngineering
   priority: 3
+
+- type: ambientMusic
+  id: ESSecurity
+  disabled: false
+  sound:
+    params:
+      volume: -8
+    collection: AmbienceDanger
+  rules: ESNearSecurity
+  priority: 3
+
+- type: ambientMusic
+  id: ESCommand
+  disabled: false
+  sound:
+    params:
+      volume: -8
+    collection: AmbienceCommand
+  rules: ESNearCommand
+  priority: 4

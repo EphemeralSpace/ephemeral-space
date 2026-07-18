@@ -10,16 +10,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Light;
 
-public sealed class SunShadowOverlay : Overlay
+public sealed partial class SunShadowOverlay : Overlay
 {
     private static readonly ProtoId<ShaderPrototype> MixShader = "Mix";
 
     public override OverlaySpace Space => OverlaySpace.BeforeLighting;
 
-    [Dependency] private readonly IClyde _clyde = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private IClyde _clyde = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    private SharedMapSystem _mapManager;
     private readonly EntityLookupSystem _lookup;
     private readonly SharedTransformSystem _xformSys;
 
@@ -30,6 +30,7 @@ public sealed class SunShadowOverlay : Overlay
     public SunShadowOverlay()
     {
         IoCManager.InjectDependencies(this);
+        _mapManager = _entManager.System<SharedMapSystem>();
         _xformSys = _entManager.System<SharedTransformSystem>();
         _lookup = _entManager.System<EntityLookupSystem>();
         ZIndex = AfterLightTargetOverlay.ContentZIndex + 1;
@@ -159,6 +160,8 @@ public sealed class SunShadowOverlay : Overlay
 
                     worldHandle.DrawTextureRect(res.Target.Texture, worldBounds, Color.Black.WithAlpha(alpha));
                 }, null);
+
+            worldHandle.SetTransform(Matrix3x2.Identity);
         }
     }
 

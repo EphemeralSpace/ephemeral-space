@@ -14,15 +14,15 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Glue;
 
-public sealed class GlueSystem : EntitySystem
+public sealed partial class GlueSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly NameModifierSystem _nameMod = default!;
-    [Dependency] private readonly OpenableSystem _openable = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private NameModifierSystem _nameMod = default!;
+    [Dependency] private OpenableSystem _openable = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     public override void Initialize()
     {
@@ -74,7 +74,7 @@ public sealed class GlueSystem : EntitySystem
         // This effectively means any unremoveable item could be removed with a bottle of glue.
         if (HasComp<GluedComponent>(target) || !HasComp<ItemComponent>(target) || HasComp<UnremoveableComponent>(target))
         {
-            _popup.PopupClient(Loc.GetString("glue-failure", ("target", target)), actor, actor, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("glue-failure", ("target", target)), actor, actor, PopupType.Medium);
             return false;
         }
 
@@ -84,7 +84,7 @@ public sealed class GlueSystem : EntitySystem
             if (quantity > 0)
             {
                 _audio.PlayPredicted(entity.Comp.Squeeze, entity.Owner, actor);
-                _popup.PopupClient(Loc.GetString("glue-success", ("target", target)), actor, actor, PopupType.Medium);
+                _popup.PopupEntity(Loc.GetString("glue-success", ("target", target)), actor, actor, PopupType.Medium);
                 _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(actor):actor} glued {ToPrettyString(target):subject} with {ToPrettyString(entity.Owner):tool}");
                 var gluedComp = EnsureComp<GluedComponent>(target);
                 gluedComp.Duration = quantity.Double() * entity.Comp.DurationPerUnit;
@@ -93,7 +93,7 @@ public sealed class GlueSystem : EntitySystem
             }
         }
 
-        _popup.PopupClient(Loc.GetString("glue-failure", ("target", target)), actor, actor, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString("glue-failure", ("target", target)), actor, actor, PopupType.Medium);
         return false;
     }
 

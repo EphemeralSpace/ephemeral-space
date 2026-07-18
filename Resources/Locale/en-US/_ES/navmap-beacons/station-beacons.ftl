@@ -2,6 +2,8 @@ es-station-beacon-security-office = Security Office
 es-station-beacon-security-eva-storage = Security EVA Storage
 es-station-beacon-armory-access = Armory Access
 
-es-station-beacon-cargo-breakroom = Cargo Breakroom
+es-station-beacon-thruster-north = North Thruster
+es-station-beacon-thruster-west = West Thruster
+es-station-beacon-thruster-south = South Thruster
 
-es-station-beacon-hop-secure-room = HoP Secure Room
+es-station-beacon-cargo-breakroom = Cargo Breakroom

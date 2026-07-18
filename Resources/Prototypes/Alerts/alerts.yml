@@ -11,6 +11,7 @@
     - category: LungDamage # Offbrand
     - category: Stamina
     - alertType: SuitPower
+    - category: ESDisguise
     - category: Internals
     - alertType: Fire
     - alertType: Handcuffed
@@ -331,15 +332,6 @@
   description: alerts-piloting-desc
 
 - type: alert
-  id: Peckish
-  category: Hunger
-  icons:
-  - sprite: /Textures/Interface/Alerts/hunger.rsi
-    state: peckish
-  name: alerts-hunger-name
-  description: alerts-hunger-desc
-
-- type: alert
   id: Stamina
   category: Stamina
   icons:
@@ -361,15 +353,6 @@
   description: alerts-stamina-desc
   minSeverity: 0
   maxSeverity: 6
-
-- type: alert
-  id: Starving
-  category: Hunger
-  icons:
-  - sprite: /Textures/Interface/Alerts/hunger.rsi
-    state: starving
-  name: alerts-starving-name
-  description: alerts-starving-desc
 
 - type: alert
   id: Thirsty
@@ -394,20 +377,6 @@
   icons: [ /Textures/Interface/Alerts/Abilities/silenced.png ]
   name: alerts-muted-name
   description: alerts-muted-desc
-
-- type: alert
-  id: VowOfSilence
-  icons: [ /Textures/Interface/Alerts/Abilities/silenced.png ]
-  name: alerts-vow-silence-name
-  clickEvent: !type:BreakVowAlertEvent
-  description: alerts-vow-silence-desc
-
-- type: alert
-  id: VowBroken
-  icons: [ /Textures/Interface/Actions/scream.png ]
-  name: alerts-vow-broken-name
-  clickEvent: !type:RetakeVowAlertEvent
-  description: alerts-vow-broken-desc
 
 - type: alert
   id: Pulled
@@ -460,19 +429,6 @@
     state: icon
   name: alerts-pacified-name
   description: alerts-pacified-desc
-
-- type: alert
-  id: Stealthy
-  clickEvent: !type:ToggleThievingEvent
-  icons:
-  - sprite: /Textures/Interface/Alerts/stealthy.rsi
-    state: stealthy-off
-  - sprite: /Textures/Interface/Alerts/stealthy.rsi
-    state: stealthy-on
-  name: alerts-stealthy-name
-  description: alerts-stealthy-desc
-  minSeverity: 0
-  maxSeverity: 1
 
 - type: alert
   id: Adrenaline

@@ -1,0 +1,3 @@
+es-warp-drive-singularity-teleport-user = You feel temporarily disconnected from spacetime and a little dumber...
+
+es-warp-drive-interruption-picked-up-user = You sense that picking this item up helped clear the interruption slightly.

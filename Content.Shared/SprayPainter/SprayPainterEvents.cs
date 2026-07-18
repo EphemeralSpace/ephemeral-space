@@ -57,6 +57,12 @@ public sealed class SprayPainterSetPipeColorMessage(string? key) : BoundUserInte
 }
 
 [Serializable, NetSerializable]
+public sealed class SprayPainterSetDecalColorPickerMessage(bool toggle) : BoundUserInterfaceMessage
+{
+    public bool Toggle = toggle;
+}
+
+[Serializable, NetSerializable]
 public sealed partial class SprayPainterDoAfterEvent : DoAfterEvent
 {
     /// <summary>
@@ -112,7 +118,7 @@ public sealed partial class SprayPainterPipeDoAfterEvent : DoAfterEvent
 /// <param name="Prototype">The prototype used to generate the new painted appearance.</param>
 /// <param name="Group">The group of the entity being painted (e.g. airlocks with glass, canisters).</param>
 [ByRefEvent]
-public partial record struct EntityPaintedEvent(
+public record struct EntityPaintedEvent(
     EntityUid? User,
     EntityUid Tool,
     EntProtoId Prototype,

@@ -1,0 +1,69 @@
+- type: entity
+  parent: BaseSign
+  id: ESSignAme
+  name: ame sign
+  description: A sign, indicating the antimatter engine.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Wallmounts/signs.rsi
+    state: ame
+
+- type: entity
+  parent: BaseSign
+  id: ESSignArmory
+  name: armory sign
+  description: A sign indicating where the big guns are kept.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Wallmounts/signs.rsi
+    state: armory
+
+- type: entity
+  parent: BaseSign
+  id: ESSignTech
+  name: tech storage sign
+  description: A sign indicating the tech storage room.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Wallmounts/signs.rsi
+    state: tech
+
+- type: entity
+  parent: BaseSign
+  id: ESSignControl
+  name: control sign
+  description: A sign indicating the control room.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Wallmounts/signs.rsi
+    state: control
+
+- type: entity
+  parent: BaseSign
+  id: ESSignPortal
+  name: warp drive sign
+  description: A sign indicating the warp drive.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Wallmounts/signs.rsi
+    state: warp
+
+- type: entity
+  parent: BaseSign
+  id: ESSignThruster
+  name: thruster sign
+  description: A sign indicating a station propulsion thruster.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Wallmounts/signs.rsi
+    state: thruster
+
+- type: entity
+  parent: BaseSignDirectional
+  id: SignThrusterDirectional
+  name: thruster sign
+  description: A direction sign, pointing out which way the station propulsion thruster is.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Wallmounts/signs.rsi
+    state: thruster_dir

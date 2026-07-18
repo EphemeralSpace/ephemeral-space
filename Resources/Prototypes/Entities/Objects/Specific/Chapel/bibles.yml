@@ -6,18 +6,6 @@
   components:
   - type: UseDelay
     delay: 10.0
-  - type: Bible
-    damage:
-      groups:
-        Brute: -15
-        Burn: -15
-    damageOnFail:
-      groups:
-        Brute: 15
-        Airloss: 15
-    damageOnUntrainedUse: ## What a non-chaplain takes when attempting to heal someone
-      types:
-        Heat: 10
   - type: MeleeWeapon
     soundHit:
       collection: Punch
@@ -26,9 +14,6 @@
         Holy: 25
         Blunt: 1
   - type: Prayable
-    bibleUserOnly: true
-  - type: Summonable
-    specialItem: SpawnPointGhostRemilia
   - type: ReactionMixer
     mixMessage: "bible-mixing-success"
     reactionTypes:
@@ -52,48 +37,17 @@
   - type: Tag
     tags:
     - Book
-  - type: StealTarget
-    stealGroup: Bible
 
 - type: entity
-  parent: [Bible, BaseSyndicateContraband]
+  parent: Bible
   name: necronomicon
   description: "There's a note: Klatuu, Verata, Nikto -- Don't forget it again!"
   id: BibleNecronomicon
   components:
-  - type: Bible
-    damage:
-      types:
-        Caustic: 20 ## ~15 dps
-    damageOnFail:
-      groups:
-        Brute: 15
-        Airloss: 25
-    damageOnUntrainedUse:
-      types:
-        Caustic: 50
-    failChance: 0
-    locPrefix: "necro"
-    healSound: "/Audio/Effects/lightburn.ogg"
-  - type: Summonable
-    specialItem: SpawnPointGhostCerberus
-    respawnTime: 300
   - type: Sprite
     sprite: Objects/Specific/Chapel/necronomicon.rsi
   - type: Item
     sprite: Objects/Specific/Chapel/necronomicon.rsi
-
-- type: entity
-  parent: BaseAction
-  id: ActionBibleSummon
-  name: Summon familiar
-  description: Summon a familiar that will aid you and gain humanlike intelligence once inhabited by a soul.
-  components:
-  - type: Action
-    icon: { sprite: Clothing/Head/Hats/witch.rsi, state: icon }
-    useDelay: 1
-  - type: InstantAction
-    event: !type:SummonActionEvent
 
 - type: entity
   id: BibleDruid
@@ -149,14 +103,3 @@
     sprite: Objects/Specific/Chapel/honk.rsi
   - type: Item
     sprite: Objects/Specific/Chapel/honk.rsi
-
-- type: entity
-  id: BibleRatvar
-  name: tablet of ratvar
-  parent: Bible
-  description: "A holy relic of the Clockwork Cult, blessed by the Clockwork Justice, Ratvar."
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Chapel/ratvartablet.rsi
-  - type: Item
-    sprite: Objects/Specific/Chapel/ratvartablet.rsi

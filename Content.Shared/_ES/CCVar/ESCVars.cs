@@ -11,7 +11,7 @@ namespace Content.Shared._ES.CCVar;
 /// </remarks>
 [CVarDefs]
 // ReSharper disable once InconsistentNaming | shh, be quiet
-public sealed partial class ESCVars : CVars
+public sealed class ESCVars : CVars
 {
     /// <summary>
     /// What's the current year?
@@ -24,11 +24,6 @@ public sealed partial class ESCVars : CVars
 
     public static readonly CVarDef<bool> ESOpenCharacterMenuOnSpawn =
         CVarDef.Create("es_ic.open_character_menu_on_spawn", true, CVar.SERVER | CVar.REPLICATED);
-
-    // EVAC
-
-    public static readonly CVarDef<float> ESEvacVotePercentage =
-        CVarDef.Create("es_evac.beacon_percentage", 0.665f, CVar.SERVER | CVar.REPLICATED);
 
     // RESPAWNING
     public static readonly CVarDef<bool> ESRespawnEnabled =
@@ -51,11 +46,25 @@ public sealed partial class ESCVars : CVars
 
     // How long in seconds it takes from roundstart->the shuttle arriving at the station
     public static readonly CVarDef<float> ESArrivalsFTLTime =
-        CVarDef.Create("es_arrivals.ftl_time", 60 * 5f, CVar.SERVER);
+        CVarDef.Create("es_arrivals.ftl_time", 60 * 4.5f, CVar.SERVER);
 
     /// <summary>
     ///     Controls whether chat sanitization is enabled for individual users.
     /// </summary>
     public static readonly CVarDef<bool> UserChatSanitizationEnabled =
-    CVarDef.Create("es_chat.user_chat_sanitization_enabled", true, CVar.CLIENT | CVar.REPLICATED);
+    CVarDef.Create("es_chat.user_chat_sanitization_enabled", true, CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> FormattedHostName =
+        CVarDef.Create("es_status.formatted_host_name", "[{0}] [{1} RolePlay] MyServer", CVar.SERVERONLY);
+
+    public static readonly CVarDef<string> RoleplayLevels =
+        CVarDef.Create("es_status.roleplay_levels", "Default", CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Controls whether the lobby is "closed".
+    ///     While the lobby is closed, the main theater stage is blocked off, the welcome message indicates that the lobby is closed,
+    ///     and rounds cannot start.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyClosed =
+        CVarDef.Create("es_lobby.closed", false, CVar.SERVER | CVar.REPLICATED);
 }

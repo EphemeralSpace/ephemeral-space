@@ -8,8 +8,6 @@ using Content.Shared.Database;
 using Content.Shared.Labels.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Power;
-using Content.Shared.Silicons.StationAi;
-using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Content.Shared.Telephone;
@@ -24,18 +22,18 @@ using System.Linq;
 
 namespace Content.Server.Telephone;
 
-public sealed class TelephoneSystem : SharedTelephoneSystem
+public sealed partial class TelephoneSystem : SharedTelephoneSystem
 {
-    [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly InteractionSystem _interaction = default!;
-    [Dependency] private readonly IdCardSystem _idCardSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IReplayRecordingManager _replay = default!;
+    [Dependency] private AppearanceSystem _appearanceSystem = default!;
+    [Dependency] private InteractionSystem _interaction = default!;
+    [Dependency] private IdCardSystem _idCardSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IReplayRecordingManager _replay = default!;
 
     // Has set used to prevent telephone feedback loops
     private HashSet<(EntityUid, string, Entity<TelephoneComponent>)> _recentChatMessages = new();
@@ -423,12 +421,6 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
     {
         string? presumedName = null;
         string? presumedJob = null;
-
-        if (HasComp<StationAiHeldComponent>(uid) || HasComp<BorgChassisComponent>(uid))
-        {
-            presumedName = Name(uid);
-            return (presumedName, presumedJob);
-        }
 
         if (_idCardSystem.TryFindIdCard(uid, out var idCard))
         {

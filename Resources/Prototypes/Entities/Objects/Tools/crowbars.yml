@@ -27,8 +27,6 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
-  - type: StaticPrice
-    price: 22
   - type: Prying
   - type: Sprite
     sprite: Objects/Tools/crowbar.rsi
@@ -39,7 +37,9 @@
     - Belt
   - type: Item
     sprite: Objects/Tools/crowbar.rsi
-    size: Normal
+    # ES START
+    size: Small
+    # ES END
     shape:
     - 0,0,0,1
 

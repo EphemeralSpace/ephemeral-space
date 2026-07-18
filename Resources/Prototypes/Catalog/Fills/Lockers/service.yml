@@ -5,33 +5,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-# ES Start
+      entity_storage:
         tableId: ESFillLockerBooze
-# ES End
-
-- type: entityTable
-  id: FillLockerBooze
-  table: !type:AllSelector
-    children:
-    - id: ClothingOuterArmorBasicSlim
-    - id: WeaponShotgunDoubleBarreledRubber
-    - id: DrinkShaker
-    - id: ClothingEyesHudBeer
-    - id: HandLabeler
-    - id: DrinkBeerBottleFull
-      amount: !type:BinomialNumberSelector
-        trials: 3
-    - !type:AllSelector
-      rolls: 2
-      children:
-      - id: BoxBeanbag
-      - id: RagItem
-
-#- type: entity
-#  id: LockerFormalFilled
-#  suffix: Filled
-#  parent: LockerFormal
 
 - type: entity
   id: ClosetChefFilled
@@ -40,34 +15,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
-# ES START
+      entity_storage:
         tableId: ESFillClosetChef
-# ES END
-
-- type: entityTable
-  id: FillClosetChef
-  table: !type:AllSelector
-    children:
-    - id: VariantCubeBox
-    - id: SprayBottleWater
-    - id: FoodBoxCloth
-    - id: ReagentContainerSugar
-    - id: FoodCondimentBottleEnzyme
-    - id: DrinkSoyMilkCarton
-    - !type:AllSelector
-      rolls: 2
-      children:
-      - id: DrinkMilkCarton
-      # really, milk should go in the fridge. Unfortunately saltern only has freezers.
-      # yes, I'm using this as an excuse to not have to do extra work.
-      - id: ReagentContainerFlour
-      - id: BoxMousetrap
-    - !type:AllSelector
-      rolls: 3
-      children:
-      - id: FoodCondimentPacketSalt
-      - id: FoodCondimentPacketPepper
 
 - type: entity
   id: ClosetJanitorFilled
@@ -83,88 +32,17 @@
   id: FillClosetJanitor
   table: !type:AllSelector
     children:
-    - id: WetFloorSign
-      amount: 3
-    - id: LightReplacer
+    - id: MopItem
     - id: BoxLightMixed
-    - id: Holoprojector
-    - !type:AllSelector
-      rolls: 2
-      children:
-      - id: MopItem
-      - id: BoxMousetrap
-      - id: TrashBag
-      - id: SoapNT
-      - id: FlashlightLantern
-      - id: Plunger
-      - id: WireBrush
-
-- type: entity
-  id: ClosetLegalFilled
-  suffix: Filled
-  parent: ClosetLegal
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillClosetLegal
-
-- type: entityTable
-  id: FillClosetLegal
-  table: !type:AllSelector
-    children:
-    - id: BriefcaseBrownFilled
-      prob: 0.80
-    - id: ClothingOuterRobesJudge
-
-- type: entity
-  id: LockerBotanistFilled
-  suffix: Filled
-  parent: LockerBotanist
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillLockerBotanist
-
-- type: entityTable
-  id: FillLockerBotanist
-  table: !type:AllSelector
-    children:
-    - id: ClothingHandsGlovesLeather
-    - id: ClothingOuterApronBotanist
-    - id: ClothingHeadBandBotany
-    - id: ChemistryBottleRobustHarvest
-      prob: 0.3
-    - id: ClothingBeltPlant
-    - id: PlantBag ##Some maps don't have nutrivend
-    - id: BoxMouthSwab
-    - id: Dropper
-    - id: HandLabeler
-    - id: ClothingUniformOveralls
-    - id: ClothingHeadHatTrucker
-      prob: 0.1
-
-- type: entity
-  id: LockerBotanistLoot
-  suffix: Loot
-  parent: LockerBotanist
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillLockerBotanistLoot
-
-- type: entityTable
-  id: FillLockerBotanistLoot
-  table: !type:AllSelector
-    children:
-    - id: ClothingUniformOveralls
-    - id: ClothingHeadHatTrucker
-      prob: 0.3
-    - id: GatfruitSeeds
-      prob: 0.1
-    - id: FlyAmanitaSeeds
-      prob: 0.5
-    - id: NettleSeeds
-      prob: 0.7
+    - id: WetFloorSign
+      amount: 1, 3
+    - pick:
+        all:
+        - id: WetFloorSign
+        - id: Mousetrap
+        - id: TrashBag
+        - tableId: ESSoap
+        - id: FlashlightLantern
+        - id: Plunger
+        - id: Bucket
+      amount: 3

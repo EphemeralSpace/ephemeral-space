@@ -10,8 +10,6 @@
   - type: Tag
     tags:
       - AirAlarmElectronics
-  - type: StaticPrice
-    price: 61
 
 - type: entity
   id: FireAlarmElectronics
@@ -27,5 +25,3 @@
   - type: Tag
     tags:
       - FireAlarmElectronics
-  - type: StaticPrice
-    price: 61

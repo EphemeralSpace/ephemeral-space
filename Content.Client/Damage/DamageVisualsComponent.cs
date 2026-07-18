@@ -116,7 +116,11 @@ public sealed partial class DamageVisualsComponent : Component
     [DataField("damageOverlay")] public  DamageVisualizerSprite? DamageOverlay;
 
     public readonly List<Enum> TargetLayerMapKeys = new();
+    // ES START
+    // datafield
+    [DataField]
     public bool Disabled = false;
+    // ES END
     public bool Valid = true;
     public FixedPoint2 LastDamageThreshold = FixedPoint2.Zero;
     public readonly Dictionary<object, bool> DisabledLayers = new();

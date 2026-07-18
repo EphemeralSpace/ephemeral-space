@@ -1,0 +1,95 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Made by Flareguy for Ephemeral Space",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "basic"
+        },
+        {
+            "name": "basic_open"
+        },
+        {
+            "name": "basic-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "basic-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "brute"
+        },
+        {
+            "name": "brute_open"
+        },
+        {
+            "name": "brute-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "brute-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "burn"
+        },
+        {
+            "name": "burn_open"
+        },
+        {
+            "name": "burn-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "burn-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "o2"
+        },
+        {
+            "name": "o2_open"
+        },
+        {
+            "name": "o2-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "o2-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "rad"
+        },
+        {
+            "name": "rad_open"
+        },
+        {
+            "name": "rad-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "rad-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "tox"
+        },
+        {
+            "name": "tox_open"
+        },
+        {
+            "name": "tox-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "tox-inhand-right",
+            "directions": 4
+        }
+    ]
+}

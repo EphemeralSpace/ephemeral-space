@@ -3,7 +3,6 @@
 ## General stuff
 ui-info-title = Information
 ui-info-tab-rules = Server Rules
-ui-info-tab-tutorial = Tutorial
 
 ## Tutorial tab
 ui-info-text-controls = You can review and rebind SS14s controls in the

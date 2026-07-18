@@ -1,4 +1,5 @@
-﻿using Content.Shared.Interaction;
+﻿using Content.Shared._ES.Interaction.HoldToFace;
+using Content.Shared.Interaction;
 
 namespace Content.Shared.MouseRotator;
 
@@ -6,15 +7,16 @@ namespace Content.Shared.MouseRotator;
 /// This handles rotating an entity based on mouse location
 /// </summary>
 /// <see cref="MouseRotatorComponent"/>
-public abstract class SharedMouseRotatorSystem : EntitySystem
+public abstract partial class SharedMouseRotatorSystem : EntitySystem
 {
-    [Dependency] private readonly RotateToFaceSystem _rotate = default!;
+    [Dependency] private RotateToFaceSystem _rotate = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeAllEvent<RequestMouseRotatorRotationEvent>(OnRequestRotation);
+        SubscribeLocalEvent<MouseRotatorComponent, ESRefreshNoRotateOnMoveEvent>(OnRefreshNoRotateOnMove);
     }
 
     public override void Update(float frameTime)
@@ -27,7 +29,7 @@ public abstract class SharedMouseRotatorSystem : EntitySystem
         var query = EntityQueryEnumerator<MouseRotatorComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var rotator, out var xform))
         {
-            if (rotator.GoalRotation == null)
+            if (rotator.GoalRotation == null || HasComp<ESForcedFacingComponent>(uid))
                 continue;
 
             if (_rotate.TryRotateTo(
@@ -61,5 +63,10 @@ public abstract class SharedMouseRotatorSystem : EntitySystem
 
         rotator.GoalRotation = msg.Rotation;
         Dirty(ent, rotator);
+    }
+
+    private void OnRefreshNoRotateOnMove(Entity<MouseRotatorComponent> ent, ref ESRefreshNoRotateOnMoveEvent args)
+    {
+        args.Enabled = true;
     }
 }

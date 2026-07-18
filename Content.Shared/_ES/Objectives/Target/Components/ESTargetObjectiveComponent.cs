@@ -24,7 +24,7 @@ public sealed partial class ESTargetObjectiveComponent : Component
 public record struct ESGetObjectiveTargetCandidates(Entity<ESObjectiveHolderComponent> Holder, List<EntityUid> Candidates);
 
 /// <summary>
-/// Event raised on an objective entity to check if a given
+/// Event raised on an objective entity to check if a given target is valid for an objective target
 /// </summary>
 [ByRefEvent]
 public record struct ESValidateObjectiveTargetCandidates(Entity<ESObjectiveHolderComponent> Holder, EntityUid Candidate)

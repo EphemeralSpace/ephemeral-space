@@ -9,13 +9,6 @@
   name: tin
   description: A tin of something, sealed tight.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 15
   - type: Openable
     openableByHand: false
     sound:
@@ -48,8 +41,6 @@
         Blunt: 3
   - type: Damageable
     damageContainer: Inorganic
-  - type: StaticPrice
-    price: 50
 
 - type: entity
   abstract: true

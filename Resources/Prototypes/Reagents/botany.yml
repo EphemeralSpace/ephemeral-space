@@ -9,13 +9,6 @@
   plantMetabolism:
     - !type:PlantAdjustNutrition
       amount: 2
-  metabolisms:
-    Food:
-      effects:
-      - !type:SatiateHunger
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [Plant]
 
 - type: reagent
   id: Left4Zed
@@ -36,10 +29,6 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:SatiateHunger
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [Plant]
       - !type:HealthChange
         damage:
           types:
@@ -168,51 +157,6 @@
             min: 80
 
 - type: reagent
-  id: Sedin
-  name: reagent-name-sedin
-  group: Botanical
-  desc: reagent-desc-sedin
-  flavor: bitter
-  color: "#3CB371"
-  physicalDesc: reagent-physical-desc-sickly
-  plantMetabolism:
-    - !type:PlantAdjustHealth
-      amount: -2
-    - !type:PlantRestoreSeeds
-      probability: 0.20
-    - !type:PlantAdjustPotency
-      amount: -3 # Match this with current rate of Robust Harvest potency increase
-  # Begin Offbrand
-  metabolisms:
-    Poison:
-      metabolismRate: 1
-      statusEffects:
-      - statusEffect: StatusEffectHeartStrainSedin
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Poison: 2
-      - !type:SpawnEntity
-        entity: MobDionaNymph
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [Plant]
-        - !type:ReagentCondition
-          reagent: Sedin
-          min: 40
-      - !type:AdjustReagent
-        reagent: Sedin
-        amount: -20
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [Plant]
-        - !type:ReagentCondition
-          reagent: Sedin
-          min: 40
-  # End Offbrand
-
-- type: reagent
   id: WeedKiller
   name: reagent-name-weed-killer
   group: Botanical
@@ -263,72 +207,7 @@
         - !type:MetabolizerTypeCondition
           type: [Plant]
           inverted: true
-      - !type:SatiateHunger
-        factor: 1
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [Plant]
       # End Offbrand
-    Gas:
-      effects:
-      - !type:HealthChange
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Rat ]
-          inverted: true
-        - !type:ReagentCondition
-          reagent: Ammonia
-          min: 1
-        ignoreResistances: true
-        damage:
-          types:
-            Poison: 0.25
-      - !type:Vomit
-        probability: 0.12
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Rat, Vox ]
-          inverted: true
-        - !type:ReagentCondition
-          reagent: Ammonia
-          min: 0.8
-      - !type:PopupMessage
-        type: Local
-        visualType: Medium
-        messages: [ "ammonia-smell" ]
-        probability: 0.1
-        conditions:
-        - !type:ReagentCondition
-          reagent: Ammonia
-          min: 0.25
-      - !type:HealthChange
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Rat ]
-        - !type:ReagentCondition
-          reagent: Ammonia
-          min: 1
-        ignoreResistances: true
-        damage:
-          groups:
-            Brute: -2.5
-            Burn: -2.5
-          types:
-            Bloodloss: -5
-      - !type:ModifyBloodLevel
-        amount: 1
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Rat ]
-        - !type:ReagentCondition
-          reagent: Ammonia
-          min: 1
-      - !type:Oxygenate # ammonia displaces nitrogen in vox blood
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Vox ]
-        factor: -1 # Offbrand
-
 
 - type: reagent
   id: Diethylamine

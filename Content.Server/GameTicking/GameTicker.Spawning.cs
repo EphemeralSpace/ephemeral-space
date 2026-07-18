@@ -4,20 +4,14 @@ using System.Numerics;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
-using Content.Server.Ghost;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
-using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
-using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mind;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
-using Content.Shared.Random;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Map;
@@ -27,21 +21,17 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-// ES START
 using Content.Server._ES.Auditions;
 using Content.Shared._ES.Auditions.Components;
-// ES END
 
 namespace Content.Server.GameTicking
 {
     public sealed partial class GameTicker
     {
-        [Dependency] private readonly IAdminManager _adminManager = default!;
-        [Dependency] private readonly SharedJobSystem _jobs = default!;
-        [Dependency] private readonly AdminSystem _admin = default!;
-// ES START
-        [Dependency] private readonly ESAuditionsSystem _esAuditions = default!;
-// ES END
+        [Dependency] private IAdminManager _adminManager = default!;
+        [Dependency] private SharedJobSystem _jobs = default!;
+        [Dependency] private AdminSystem _admin = default!;
+        [Dependency] private ESAuditionsSystem _esAuditions = default!;
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
         public static readonly EntProtoId AdminObserverPrototypeName = "AdminObserver";
@@ -190,67 +180,10 @@ namespace Content.Server.GameTicking
                 return;
             }
 
-            // ES START
-            // You might be asking: what the fuck is this.
-            // Answer? We are manually converting all of our priorities to a binary system here.
-            // We can't really ensure that the data coming in is in a binary format, so we will simply make it so.
+            // Convert job bans into binary format for compatibility reasons.
             var jobPrefs = character.JobPriorities
                 .Select(p => (p.Key, p.Value == JobPriority.Never ? JobPriority.Never : JobPriority.Medium))
                 .ToDictionary();
-            // ES END
-
-            string speciesId;
-            if (_randomizeCharacters)
-            {
-                var weightId = _cfg.GetCVar(CCVars.ICRandomSpeciesWeights);
-
-                // If blank, choose a round start species.
-                if (string.IsNullOrEmpty(weightId))
-                {
-                    var roundStart = new List<ProtoId<SpeciesPrototype>>();
-
-                    var speciesPrototypes = _prototypeManager.EnumeratePrototypes<SpeciesPrototype>();
-                    foreach (var proto in speciesPrototypes)
-                    {
-                        if (proto.RoundStart)
-                            roundStart.Add(proto.ID);
-                    }
-
-                    speciesId = roundStart.Count == 0
-                        ? SharedHumanoidAppearanceSystem.DefaultSpecies
-                        : _robustRandom.Pick(roundStart);
-                }
-                else
-                {
-                    var weights = _prototypeManager.Index<WeightedRandomSpeciesPrototype>(weightId);
-                    speciesId = weights.Pick(_robustRandom);
-                }
-
-                character = HumanoidCharacterProfile.RandomWithSpecies(speciesId);
-            }
-// ES START
-            EntityUid newMind = default;
-            if (_esAuditions.RandomCharactersEnabled)
-            {
-                newMind = _esAuditions.GetRandomCharacterFromPool(station);
-                character = CompOrNull<ESCharacterComponent>(newMind)?.Profile ?? character;
-            }
-            foreach (var (job, pref) in jobPrefs)
-            {
-                character = character.WithJobPriority(job, pref);
-            }
-// ES END
-
-            // We raise this event to allow other systems to handle spawning this player themselves. (e.g. late-join wizard, etc)
-            var bev = new PlayerBeforeSpawnEvent(player, character, jobId, lateJoin, station);
-            RaiseLocalEvent(bev);
-
-            // Do nothing, something else has handled spawning this player for us!
-            if (bev.Handled)
-            {
-                PlayerJoinGame(player, silent);
-                return;
-            }
 
             // Figure out job restrictions
             var restrictedRoles = new HashSet<ProtoId<JobPrototype>>();
@@ -263,9 +196,10 @@ namespace Content.Server.GameTicking
 
             // Pick best job best on prefs.
             jobId ??= _stationJobs.PickBestAvailableJobWithPriority(station,
-                character.JobPriorities,
+                jobPrefs,
                 true,
                 restrictedRoles);
+
             // If no job available, stay in lobby, or if no lobby spawn as observer
             if (jobId is null)
             {
@@ -282,20 +216,32 @@ namespace Content.Server.GameTicking
                 return;
             }
 
+            EntityUid? newMind = null;
+            if (_esAuditions.RandomCharactersEnabled)
+            {
+                newMind = _esAuditions.GenerateCharacter(station, jobId);
+                character = CompOrNull<ESCharacterComponent>(newMind)?.Profile ?? character;
+            }
+
+            // We raise this event to allow other systems to handle spawning this player themselves. (e.g. late-join wizard, etc)
+            var bev = new PlayerBeforeSpawnEvent(player, character, jobId, lateJoin, station);
+            RaiseLocalEvent(bev);
+
+            // Do nothing, something else has handled spawning this player for us!
+            if (bev.Handled)
+            {
+                PlayerJoinGame(player, silent);
+                return;
+            }
+
             PlayerJoinGame(player, silent);
 
             var data = player.ContentData();
 
             DebugTools.AssertNotNull(data);
 
-// ES START
-// ES NOTE: during merge, this got replaced with DoSpawn below upstream
-// but we have special logic, so i didnt replace this with that function
-// so it might be unused rn
-            if (newMind == default)
-                newMind = _mind.CreateMind(data!.UserId, character.Name);
-            _mind.SetUserId(newMind, data!.UserId);
-// ES END
+            newMind ??= _mind.CreateMind(data!.UserId, character.Name);
+            _mind.SetUserId(newMind.Value, data!.UserId);
 
             var jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
 
@@ -305,9 +251,9 @@ namespace Content.Server.GameTicking
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
 
-            _mind.TransferTo(newMind, mob);
+            _mind.TransferTo(newMind.Value, mob);
 
-            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId);
+            _roles.MindAddJobRole(newMind.Value, silent: silent, jobPrototype: jobId);
             var jobName = _jobs.MindTryGetJobName(newMind);
             _admin.UpdatePlayerList(player);
 
@@ -315,24 +261,22 @@ namespace Content.Server.GameTicking
             {
                 if (jobPrototype.JoinNotifyCrew)
                 {
-                    _chatSystem.DispatchStationAnnouncement(station,
-                        Loc.GetString("latejoin-arrival-announcement-special",
+                    _chatSystem.DispatchRoundAnnouncement(Loc.GetString("latejoin-arrival-announcement-special",
                             ("character", MetaData(mob).EntityName),
                             ("entity", mob),
                             ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
                         Loc.GetString("latejoin-arrival-sender"),
-                        playDefaultSound: false,
+                        playSound: false,
                         colorOverride: Color.Gold);
                 }
                 else
                 {
-                    _chatSystem.DispatchStationAnnouncement(station,
-                        Loc.GetString("latejoin-arrival-announcement",
+                    _chatSystem.DispatchRoundAnnouncement(Loc.GetString("latejoin-arrival-announcement",
                             ("character", MetaData(mob).EntityName),
                             ("entity", mob),
                             ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
                         Loc.GetString("latejoin-arrival-sender"),
-                        playDefaultSound: false);
+                        playSound: false);
                 }
             }
 
@@ -382,50 +326,12 @@ namespace Content.Server.GameTicking
             RaiseLocalEvent(mob, aev, true);
         }
 
-        /// <summary>
-        /// Creates a mob on the specified station, creates the new mind, equips job-specific starting gear and loadout
-        /// </summary>
-        public void DoSpawn(
-            ICommonSession player,
-            HumanoidCharacterProfile character,
-            EntityUid station,
-            string jobId,
-            bool silent,
-            out EntityUid mob,
-            out JobPrototype jobPrototype,
-            out string jobName)
-        {
-            PlayerJoinGame(player, silent);
-
-            var data = player.ContentData();
-
-            DebugTools.AssertNotNull(data);
-
-            var newMind = _mind.CreateMind(data!.UserId, character.Name);
-            _mind.SetUserId(newMind, data.UserId);
-
-            jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
-
-            _playTimeTrackings.PlayerRolesChanged(player);
-
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobId, character);
-            DebugTools.AssertNotNull(mobMaybe);
-            mob = mobMaybe!.Value;
-
-            _mind.TransferTo(newMind, mob);
-
-            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId);
-            jobName = _jobs.MindTryGetJobName(newMind);
-            _admin.UpdatePlayerList(player);
-        }
-
         public void Respawn(ICommonSession player)
         {
-            _mind.WipeMind(player);
             _adminLogger.Add(LogType.Respawn, LogImpact.Medium, $"Player {player} was respawned.");
 
             if (LobbyEnabled)
-                PlayerJoinLobby(player);
+                PlayerJoinLobby(player, attachCharacter: true);
             else
                 SpawnPlayer(player, EntityUid.Invalid);
         }
@@ -541,7 +447,7 @@ namespace Content.Server.GameTicking
                 var spawn = _robustRandom.Pick(_possiblePositions);
                 var toMap = _transform.ToMapCoordinates(spawn);
 
-                if (_mapManager.TryFindGridAt(toMap, out var gridUid, out _))
+                if (_map.TryFindGridAt(toMap, out var gridUid, out _))
                 {
                     var gridXform = Transform(gridUid);
 

@@ -111,13 +111,6 @@
 # ES End
 
 - type: entity
-  id: MobBearSpaceSalvage
-  parent: MobBearSpace
-  suffix: "Salvage Ruleset"
-  components:
-  - type: SalvageMobRestrictions
-
-- type: entity
   name: space kangaroo
   id: MobKangarooSpace
   parent: [MobSpaceBasic, StripableInventoryBase]
@@ -173,13 +166,6 @@
       60: Dead
 
 - type: entity
-  id: MobKangarooSpaceSalvage
-  parent: MobKangarooSpace
-  suffix: "Salvage Ruleset"
-  components:
-  - type: SalvageMobRestrictions
-
-- type: entity
   name: space spider
   id: MobSpiderSpace
   parent: MobSpaceBasic
@@ -209,11 +195,8 @@
         Base: spacespider_dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatSpider
+    - id: FoodMeat
       amount: 2
-    - id: EggSpider
-      amount: 1
-      prob: 0.5
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -273,13 +256,6 @@
     proto: spider
 
 - type: entity
-  id: MobSpiderSpaceSalvage
-  parent: MobSpiderSpace
-  suffix: "Salvage Ruleset"
-  components:
-  - type: SalvageMobRestrictions
-
-- type: entity
   name: space cobra
   id: MobCobraSpace
   parent: MobSpaceBasic
@@ -312,13 +288,10 @@
           Base: dead_spacecobra
     - type: Butcherable
       spawned:
-        - id: FoodMeatSnake
+        - id: FoodMeat
           amount: 2
         - id: UraniumOre1
           amount: 1
-        - id: ClothingShoesSnakeskinBoots
-          amount: 1
-          prob: 0.3
     - type: Bloodstream
       bloodReferenceSolution:
         reagents:
@@ -372,13 +345,6 @@
       movementVisibilityRate: 0.25
 
 - type: entity
-  id: MobCobraSpaceSalvage
-  parent: MobCobraSpace
-  suffix: "Salvage Ruleset"
-  components:
-    - type: SalvageMobRestrictions
-
-- type: entity
   parent: SimpleSpaceMobBase
   id: MobSnail
   name: snail
@@ -386,16 +352,6 @@
   components:
   - type: Body
     prototype: Mouse
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: false
-    allowMovement: true
-    name: ghost-role-information-snail-name
-    description: ghost-role-information-snail-description
-    rules: ghost-role-information-freeagent-rules
-    mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
-  - type: GhostTakeoverAvailable
   - type: Emoting
   - type: Sprite
     drawdepth: SmallMobs
@@ -411,7 +367,9 @@
   - type: HTN
     constantlyReplan: false
     rootTask:
-      task: MouseCompound
+# ES START
+      task: RuminantCompound
+# ES END
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -458,6 +416,13 @@
       Dead:
         Base: dead
   - type: Edible
+  - type: ESFood
+    satietyMultiplier: -1
+  - type: FlavorProfile
+    flavors:
+    - horrible
+    - terrible
+    - chewy
   - type: Thirst
     startingThirst: 25  # spawn with Okay thirst state
     thresholds:
@@ -468,24 +433,11 @@
       Dead: 0
     baseDecayRate: 0.04
   - type: Hunger
-    thresholds:
-      Overfed: 35
-      Okay: 25
-      Peckish: 15
-      Starving: 10
-      Dead: 0
-    baseDecayRate: 0.1
   - type: Extractable
     grindableSolutionName: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 3
   - type: Butcherable
     spawned:
-    - id: FoodMeatSnail
+    - id: FoodMeat
       amount: 1
   - type: Tag
     tags:
@@ -501,10 +453,7 @@
       - ReagentId: Cryoxadone
         Quantity: 30
   - type: CanEscapeInventory
-  - type: MobPrice
-    price: 50
   - type: BadFood
-  - type: NonSpreaderZombie
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
@@ -526,25 +475,6 @@
         visualType: Large
         messages: [ "snail-hurt-by-salt-popup" ]
         probability: 0.66
-
-- type: entity
-  parent: MobSnail
-  id: MobSnailInstantDeath
-  suffix: Smite
-  components:
-  - type: GhostRole
-    mindRoles:
-    - MindRoleGhostRoleFreeAgent
-  - type: MobStateActions
-    actions:
-      Alive:
-      - ActionSmiteNoReq
-      Critical:
-      - ActionCritSuccumb
-      - ActionCritFakeDeath
-      - ActionCritLastWords
-  - type: Godmode
-  - type: MovementAlwaysTouching
 
 - type: entity
   parent: MobSnail
@@ -573,26 +503,3 @@
 #  - type: ActiveJetpack # I think this will need a custom component to not make tests angry.
   - type: MovementAlwaysTouching
 
-- type: entity
-  parent: MobSnail
-  id: MobSnailMoth
-  name: Snoth
-  components:
-  - type: Body
-    prototype: Mothroach
-  - type: GhostRole
-    name: ghost-role-information-snoth-name
-    description: ghost-role-information-snoth-description
-    rules: ghost-role-information-freeagent-rules
-  - type: Sprite
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: snoth
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: snoth
-      Critical:
-        Base: snothdead
-      Dead:
-        Base: snothdead

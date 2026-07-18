@@ -1,9 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Text;
-using Content.Client.Resources;
+using Content.Client.Stylesheets.Fonts;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
-using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -17,8 +17,9 @@ namespace Content.Client.NodeContainer
     {
         private readonly NodeGroupSystem _system;
         private readonly EntityLookupSystem _lookup;
-        private readonly IMapManager _mapManager;
+        private readonly SharedMapSystem _mapManager;
         private readonly IInputManager _inputManager;
+        private readonly IFontSelectionManager _fontSelection;
         private readonly IEntityManager _entityManager;
         private readonly SharedTransformSystem _transformSystem;
         private readonly SharedMapSystem _mapSystem;
@@ -27,7 +28,7 @@ namespace Content.Client.NodeContainer
         private readonly Dictionary<EntityUid, Dictionary<Vector2i, List<(GroupData, NodeDatum)>>> _gridIndex = new();
         private List<Entity<MapGridComponent>> _grids = new();
 
-        private readonly Font _font;
+        private Font _font;
 
         private Vector2 _mouseWorldPos = default;
         private (int group, int node)? _hovered;
@@ -38,20 +39,41 @@ namespace Content.Client.NodeContainer
         public NodeVisualizationOverlay(
             NodeGroupSystem system,
             EntityLookupSystem lookup,
-            IMapManager mapManager,
+            SharedMapSystem mapManager,
             IInputManager inputManager,
-            IResourceCache cache,
+            IFontSelectionManager fontSelection,
             IEntityManager entityManager)
         {
             _system = system;
             _lookup = lookup;
             _mapManager = mapManager;
             _inputManager = inputManager;
+            _fontSelection = fontSelection;
             _entityManager = entityManager;
             _transformSystem = _entityManager.System<SharedTransformSystem>();
             _mapSystem = _entityManager.System<SharedMapSystem>();
 
-            _font = cache.GetFont("/Fonts/NotoSans/NotoSans-Regular.ttf", 12);
+            UpdateFont();
+            _fontSelection.OnFontChanged += OnFontChanged;
+        }
+
+        protected override void DisposeBehavior()
+        {
+            base.DisposeBehavior();
+
+            _fontSelection.OnFontChanged -= OnFontChanged;
+        }
+
+        private void OnFontChanged(StandardFontType type)
+        {
+            if (type == StandardFontType.Main)
+                UpdateFont();
+        }
+
+        [MemberNotNull(nameof(_font))]
+        private void UpdateFont()
+        {
+            _font = _fontSelection.GetFont(StandardFontType.Main, 12);
         }
 
         protected override void Draw(in OverlayDrawArgs args)
@@ -96,6 +118,7 @@ namespace Content.Client.NodeContainer
             sb.Append($"grid pos: {gridTile}\n");
             sb.Append(group.DebugData);
 
+            args.ScreenHandle.SetTransform(Matrix3x2.Identity);
             args.ScreenHandle.DrawString(_font, mousePos + new Vector2(20, -20), sb.ToString());
         }
 

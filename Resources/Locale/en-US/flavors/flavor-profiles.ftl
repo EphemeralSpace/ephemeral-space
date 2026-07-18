@@ -70,11 +70,6 @@ flavor-complex-mustard = like mustard
 
 # Food-specific flavors.
 
-## Food chemicals. In case you get something that has this inside.
-flavor-complex-nutriment = like nutrition
-flavor-complex-vitamin = like vitamins
-flavor-complex-protein = like protein
-
 ## Generic food taste. This should be replaced with an actual flavor profile,
 ## if you have food that looks like this.
 flavor-complex-food = like food
@@ -289,7 +284,6 @@ flavor-complex-mimosa = like an early brunch
 flavor-complex-moscowmule = like vodka and ginger ale
 flavor-complex-thesunalsorises = like an absinthe daiquiri
 flavor-complex-whiskeysour = like whiskey and egg
-flavor-complex-zombiecocktail = like eating brains
 flavor-complex-absinthe = like bitter anise
 flavor-complex-blue-curacao = like orange flowers
 flavor-complex-acidspit = like French battery acid

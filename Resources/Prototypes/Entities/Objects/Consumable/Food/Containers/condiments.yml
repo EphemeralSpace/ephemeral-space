@@ -18,8 +18,6 @@
   - type: TrashOnSolutionEmpty
     solution: food
   - type: SpaceGarbage
-  - type: StaticPrice
-    price: 0
 
 # Packets
 
@@ -86,34 +84,6 @@
     edible: Drink # slurping sounds!
 
 - type: entity
-  parent: BaseFoodCondimentPacket
-  id: FoodCondimentPacketAstrotame
-  name: Astrotame
-  description: The sweetness of a thousand sugars but none of the calories.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Astrotame
-          Quantity: 10
-  - type: Sprite
-    layers:
-      - state: packet-trans-2
-        map: ["enum.SolutionContainerLayers.Fill"]
-        visible: true
-      - state: packet-layer
-        map: ["enum.OpenableVisuals.Layer"]
-      - state: packet-label-a
-  - type: Icon
-    state: packet-astrotame
-  - type: Appearance
-  - type: SolutionContainerVisuals
-    maxFillLevels: 2
-    fillBaseName: packet-trans-
-
-- type: entity
   parent: BaseFoodCondimentPacketDrink
   id: FoodCondimentPacketBbq
   name: BBQ sauce
@@ -132,66 +102,6 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 2
     fillBaseName: packet-trans-
-
-- type: entity
-  parent: BaseFoodCondimentPacketDrink
-  id: FoodCondimentPacketCornoil
-  name: corn oil
-  description: Corn oil. A delicious oil used in cooking. Made from corn.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Cornoil
-          Quantity: 10
-  - type: Icon
-    state: packet-cornoil
-  - type: Appearance
-  - type: SolutionContainerVisuals
-    maxFillLevels: 2
-    fillBaseName: packet-trans-
-
-- type: entity
-  parent: BaseFoodCondimentPacketDrink
-  id: FoodCondimentPacketColdsauce
-  name: coldsauce
-  description: Coldsauce. Leaves the tongue numb in its passage.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Coldsauce
-          Quantity: 10
-  - type: Icon
-    state: packet-frostoil
-  - type: Appearance
-  - type: SolutionContainerVisuals
-    maxFillLevels: 2
-    fillBaseName: packet-trans-
-
-- type: entity
-  parent: BaseFoodCondimentPacketDrink
-  id: FoodCondimentPacketHorseradish
-  name: horseradish sauce
-  description: A packet of smelly horseradish sauce.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: HorseradishSauce
-          Quantity: 10
-  - type: Icon
-    state: packet-greygoo
-  - type: Appearance
-  - type: SolutionContainerVisuals
-    maxFillLevels: 2
-    fillBaseName: packet-solid-
 
 - type: entity
   parent: BaseFoodCondimentPacketDrink
@@ -382,32 +292,6 @@
   - type: PhysicalComposition
     materialComposition:
       Glass: 50
-
-- type: entity
-  parent: BaseFoodCondimentBottle
-  id: FoodCondimentBottleColdsauce
-  name: coldsauce bottle
-  description: Leaves the tongue numb in its passage.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Coldsauce
-          Quantity: 30
-  - type: Sprite
-    layers:
-    - state: bottle-empty
-      map: ["enum.OpenableVisuals.Layer"]
-    - state: label-c
-    - state: bottle-alpha-6
-      map: ["enum.SolutionContainerLayers.Fill"]
-      visible: true
-  - type: Icon
-    state: bottle-coldsauce
-  - type: Tag
-    tags:
-      - Coldsauce
 
 - type: entity
   parent: BaseFoodCondimentBottle

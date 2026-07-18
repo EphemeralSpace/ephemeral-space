@@ -37,7 +37,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: ZombieImmune
   - type: ProtectedFromStepTriggers
   - type: StunVisuals
 
@@ -312,17 +311,9 @@
   name: reagent slime
   id: ReagentSlime
   suffix: Water
-  parent: [ MobAdultSlimes, MobCombat ]
+  parent: [ BaseMobAdultSlimes, MobCombat ]
   description: It consists of a liquid, and it wants to dissolve you in itself.
   components:
-  - type: GhostRole
-    prob: 0
-    description: ghost-role-information-angry-slimes-description
-    rules: ghost-role-information-angry-slimes-rules
-    mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-    raffle:
-      settings: short
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -375,11 +366,10 @@
   - type: Tag
     tags:
       - FootstepSound
-      - CannotSuicide
       - DoorBumpOpener
       - StunImmune
+  - type: ESCannotSuicide
   - type: NoSlip
-  - type: ZombieImmune
   - type: ExaminableSolution
     solution: bloodstream
   - type: InjectableSolution
@@ -402,7 +392,6 @@
       children:
       - id: ReagentSlime
       - id: ReagentSlimeBeer
-      - id: ReagentSlimePax
       - id: ReagentSlimeNocturine
       - id: ReagentSlimeTHC
       - id: ReagentSlimeBicaridine
@@ -433,29 +422,6 @@
       - map: [ "enum.DamageStateVisualLayers.Base" ]
         state: alive
         color: "#cfa85f"
-
-- type: entity
-  id: ReagentSlimePax
-  parent: ReagentSlime
-  suffix: Pax
-  components:
-  - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Pax
-        Quantity: 100
-  - type: PointLight
-    color: "#AAAAAA"
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: Mobs/Aliens/elemental.rsi
-    layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-        color: "#AAAAAA"
-  - type: MeleeChemicalInjector
-    solution: bloodstream
-    transferAmount: 1
 
 - type: entity
   id: ReagentSlimeNocturine

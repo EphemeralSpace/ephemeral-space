@@ -5,6 +5,8 @@ spray-painter-ammo-after-interact-refilled = You refill the spray painter.
 
 spray-painter-interact-no-charges = Not enough paint left.
 spray-painter-interact-nothing-to-remove = Nothing to remove!
+spray-painter-interact-no-color-pick = Can't find a color to pick!
+spray-painter-interact-color-picked = Picked color from '{$id}'.
 
 spray-painter-on-examined-painted-message = It seems to have been freshly painted.
 spray-painter-style-not-available = Cannot apply the selected style to this object.
@@ -53,7 +55,6 @@ spray-painter-tab-group-airlockstandard = Standard
 spray-painter-tab-group-airlockglass = Glass
 
 spray-painter-tab-group-cratesteel = Steel
-spray-painter-tab-group-crateplastic = Plastic
 spray-painter-tab-group-cratesecure = Secure
 
 spray-painter-tab-group-closet = Unlocked
@@ -95,25 +96,17 @@ spray-painter-style-airlockglass-virology = Virology
 spray-painter-style-locker-atmospherics = Atmospherics
 spray-painter-style-locker-basic = Basic
 spray-painter-style-locker-botanist = Botanist
-spray-painter-style-locker-brigmedic = Brigmedic
 spray-painter-style-locker-captain = Captain
-spray-painter-style-locker-ce = CE
 spray-painter-style-locker-chemical = Chemical
 spray-painter-style-locker-clown = Clown
-spray-painter-style-locker-cmo = CMO
 spray-painter-style-locker-doctor = Doctor
 spray-painter-style-locker-electrical = Electrical
 spray-painter-style-locker-engineer = Engineer
 spray-painter-style-locker-evac = Evac repair
-spray-painter-style-locker-hop = HOP
-spray-painter-style-locker-hos = HOS
+spray-painter-style-locker-station-admin = Station Admin
 spray-painter-style-locker-medicine = Medicine
-spray-painter-style-locker-mime = Mime
+spray-painter-style-locker-coroner = Coroner
 spray-painter-style-locker-paramedic = Paramedic
-spray-painter-style-locker-quartermaster = Quartermaster
-spray-painter-style-locker-rd = RD
-spray-painter-style-locker-representative = Representative
-spray-painter-style-locker-salvage = Salvage
 spray-painter-style-locker-scientist = Scientist
 spray-painter-style-locker-security = Security
 spray-painter-style-locker-welding = Welding
@@ -160,13 +153,11 @@ spray-painter-style-cratesteel-engineering = Engineering
 spray-painter-style-cratesteel-radiation = Radiation
 spray-painter-style-cratesteel-science = Science
 spray-painter-style-cratesteel-surgery = Surgery
-
-spray-painter-style-crateplastic-basic = Basic
-spray-painter-style-crateplastic-chemistry = Chemistry
-spray-painter-style-crateplastic-command = Command
-spray-painter-style-crateplastic-hydroponics = Hydroponics
-spray-painter-style-crateplastic-medical = Medical
-spray-painter-style-crateplastic-oxygen = Oxygen
+spray-painter-style-cratesteel-chemistry = Chemistry
+spray-painter-style-cratesteel-command = Command
+spray-painter-style-cratesteel-hydroponics = Hydroponics
+spray-painter-style-cratesteel-medical = Medical
+spray-painter-style-cratesteel-oxygen = Oxygen
 
 spray-painter-style-cratesecure-basic = Basic
 spray-painter-style-cratesecure-chemistry = Chemistry
@@ -182,7 +173,7 @@ spray-painter-style-cratesecure-weapon = Weapon
 
 # Canisters
 spray-painter-style-canisters-air = Air
-spray-painter-style-canisters-ammonia = Ammonia
+spray-painter-style-canisters-miasma = Miasma
 spray-painter-style-canisters-carbon-dioxide = Carbon dioxide
 spray-painter-style-canisters-frezon = Frezon
 spray-painter-style-canisters-nitrogen = Nitrogen

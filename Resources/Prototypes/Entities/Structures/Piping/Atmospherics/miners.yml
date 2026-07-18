@@ -35,6 +35,7 @@
     - type: GuideHelp
       guides:
       - GasMiningAndStorage
+    - type: ESAmbientMusicMarkerEngineering
 
 - type: entity
   name: O2 gas miner
@@ -133,12 +134,12 @@
       spawnGas: WaterVapor
 
 - type: entity
-  name: ammonia gas miner
+  name: miasma gas miner
   parent: GasMinerBase
-  id: GasMinerAmmonia
+  id: GasMinerMiasma
   components:
     - type: GasMiner
-      spawnGas: Ammonia
+      spawnGas: Miasma
 
 - type: entity
   name: nitrous oxide gas miner

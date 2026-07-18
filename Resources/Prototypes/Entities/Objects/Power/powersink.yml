@@ -1,6 +1,6 @@
 - type: entity
   id: PowerSink
-  parent: [BaseMachine, BaseSyndicateContraband]
+  parent: BaseMachine
   name: power sink
   description: Drains immense amounts of electricity from the grid.
   components:
@@ -62,5 +62,3 @@
       blacklist:
         tags:
         - GhostOnlyWarp
-    - type: StaticPrice
-      price: 3000

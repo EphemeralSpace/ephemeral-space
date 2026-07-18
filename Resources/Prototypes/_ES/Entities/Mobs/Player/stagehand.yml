@@ -7,11 +7,13 @@
   description: Every show needs a loyal crew in the back making it tick. Today, that person is you.
   components:
   - type: Sprite
-    sprite: _ES/Mobs/Ghosts/theatergoer.rsi
+    sprite: _ES/Mobs/Ghosts/theatergoer_body.rsi
     layers:
-    - state: stagehand
+    - state: body
+      map: [ "body" ]
       shader: unshaded
     - state: head-1
+      sprite: _ES/Mobs/Ghosts/theatergoer_head.rsi
       map: [ "face" ]
       shader: unshaded
   - type: RandomSprite
@@ -24,6 +26,22 @@
         head-5: ""
         head-6: ""
         head-7: ""
+        head-8: ""
+        head-9: ""
+        head-10: ""
+        head-11: ""
+        head-12: ""
+        head-13: ""
+        head-14: ""
+        head-15: ""
+        head-16: ""
+        head-17: ""
+        head-18: ""
+        head-19: ""
+        head-20: ""
+        head-21: ""
+        head-22: ""
+        head-23: ""
   - type: ContentEye
     maxZoom: 1.44,1.44
   - type: Eye
@@ -41,68 +59,56 @@
     toggleLightingAction: ESActionStagehandChangeLighting
     toggleFoVAction: ESActionStagehandToggleFOV
     deleteOnDetach: false
+  - type: ESStagehandWorldEmote
+  - type: ActionGrant # todo theres like three methods of giving them actions here. ghost stuff should just use this first of all
+    actions:
+    - ESActionStagehandCheer
+    - ESActionStagehandBoo
   - type: GhostHearing
   - type: ESStagehand
   - type: ESUsernameEntityName
+  - type: GenericVisualizer
+    visuals:
+      enum.ESUsernameEntityVisuals.Admin:
+        body:
+          True:
+            sprite: _ES/Mobs/Ghosts/theatergoer_body_admin.rsi
+            loop: false
+          False:
+            sprite: _ES/Mobs/Ghosts/theatergoer_body.rsi
+            loop: false
+  - type: FloatingVisuals
+    offset: 0,0.1
+    alwaysFloat: true
+  - type: InputMover
+    usesSpriteMovement: true
+  - type: SpriteMovement
+    movementLayers:
+      body:
+        state: body-floating
+        loop: false
+    noMovementLayers:
+      body:
+        state: body-floating-reversed
+        loop: false
   - type: ESMindVisuals
   - type: ESBlockInteraction
   - type: ShowElectrocutionHUD
-  - type: ShowAntagIcons
-  - type: UserInterface
-    interfaces:
-      enum.ESVoterUiKey.Key:
-        type: ESVoterBui
-      enum.ESStagehandUiKey.Observe:
-        type: ESStagehandObserveBui
-  - type: IntrinsicUI
-    uis:
-      enum.ESStagehandUiKey.Observe:
-        toggleAction: ESActionStagehandObserve
-      enum.ESVoterUiKey.Key:
-        toggleAction: ESActionStagehandVote
   - type: ESVoter
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
     receiveAllChannels: true
     globalReceive: true
-  - type: ESInherentLight
-    lightPrototype: ESMobObserverInherentLight
-    enabled: false
-  - type: Tag
-    tags:
-    - BypassInteractionRangeChecks
-
-- type: entity
-  parent: BaseMentalAction
-  id: ESActionStagehandVote
-  name: Vote
-  description: Control the flow of the round alongside other stagehands.
-  components:
-  - type: Action
-    icon:
-      sprite: _ES/Actions/stagehands.rsi
-      state: ballot
-    checkCanInteract: false
-    checkConsciousness: false
-  - type: InstantAction
-    event: !type:ToggleIntrinsicUIEvent
-      key: enum.ESVoterUiKey.Key
-
-- type: entity
-  parent: BaseMentalAction
-  id: ESActionStagehandObserve
-  name: Observe
-  description: Learn the behind-the-scenes about the actors on stage.
-  components:
-  - type: Action
-    icon:
-      sprite: _ES/Actions/stagehands.rsi
-      state: observe
-    checkCanInteract: false
-    checkConsciousness: false
-  - type: InstantAction
-    event: !type:ToggleIntrinsicUIEvent
-      key: enum.ESStagehandUiKey.Observe
+  - type: ESBypassInteractionRangeChecks
+  - type: NightVision
+    netsync: false
+    enabled: true
+    prioritized: false
+    relayOverlay: false # In case default values change
+    lightingColor: '#acb4c225'
+    overlayColor: '#FFFFFF00'
+    noiseAmount: 0 # In case default values change
+    noiseMultiplier: 0 # In case default values change
 
 - type: entity
   parent: BaseMentalAction
@@ -134,3 +140,33 @@
     clientExclusive: true
   - type: InstantAction
     event: !type:ToggleFoVActionEvent
+
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionStagehandCheer
+  name: Cheer
+  description: Show your love for a jolly good show. Has a chance to be heard by those on stage.
+  components:
+  - type: Action
+    useDelay: 120
+    icon:
+      sprite: _ES/Actions/stagehands.rsi
+      state: cheer
+  - type: InstantAction
+    event: !type:ESStagehandWorldEmoteEvent
+      emote: Cheer
+
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionStagehandBoo
+  name: Boo
+  description: Show your hatred for a bloody awful show. Has a chance to be heard by those on stage.
+  components:
+  - type: Action
+    useDelay: 300
+    icon:
+      sprite: _ES/Actions/stagehands.rsi
+      state: boo
+  - type: InstantAction
+    event: !type:ESStagehandWorldEmoteEvent
+      emote: Boo

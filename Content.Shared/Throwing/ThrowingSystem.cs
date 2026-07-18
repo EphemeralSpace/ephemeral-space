@@ -18,17 +18,15 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Throwing;
 
-public sealed class ThrowingSystem : EntitySystem
+public sealed partial class ThrowingSystem : EntitySystem
 {
     public const float ThrowAngularImpulse = 5f;
 
     // ES START
-    public const float ESThrowSpinStep = 4f;
-
     public const float ESThrowSpeedDefault = 8.5f;
     // ES END
 
-    public const float PushbackDefault = 2f;
+    public const float PushbackDefault = 5f;
 
     public const float FlyTimePercentage = 0.8f;
 
@@ -39,15 +37,16 @@ public sealed class ThrowingSystem : EntitySystem
     private float _frictionModifier;
     private float _airDamping;
 
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly ThrownItemSystem _thrownSystem = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private ThrownItemSystem _thrownSystem = default!;
+    [Dependency] private SharedCameraRecoilSystem _recoil = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
     // ES START
-    [Dependency] private readonly RotateToFaceSystem _rotate = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private RotateToFaceSystem _rotate = default!;
     // ES END
 
     private EntityQuery<AnchorableComponent> _anchorableQuery;
@@ -199,31 +198,20 @@ public sealed class ThrowingSystem : EntitySystem
         comp.PlayLandSound = playSound;
         AddComp(uid, comp, true);
 
+        _appearance.SetData(uid, ESThrowVisuals.InAir, true);
+
         ThrowingAngleComponent? throwingAngle = null;
 
-        // Give it a l'il spin.
+        // rotate thrown item to the correct angle
+        // if the sprite is norot, this won't visually do anything
+        // so for items like spears, they should be `noRot: false`
         if (doSpin)
         {
-            if (physics.InvI > 0f && (!TryComp(uid, out throwingAngle) || throwingAngle.AngularVelocity))
-            {
-                // ES START
-                // We step the amount of 'full spins' according to distance
-                // less than 4m we dont want to spin at all, then 1 more full spin each 4 more
-                // this is so we can normalize the rotation to 0 at the end of the throw without it looking weird
-                // (we want to avoid arbitrarily rotated items where possible for readability reasons)
-                var spins = MathF.Floor(direction.Length() / ESThrowSpinStep);
-                if (spins > 0)
-                    _physics.ApplyAngularImpulse(uid, spins * MathF.Tau / (flyTime * physics.InvI), body: physics);
-                // ES END
-            }
-            else
-            {
-                Resolve(uid, ref throwingAngle, false);
-                var gridRot = _transform.GetWorldRotation(transform.ParentUid);
-                var angle = direction.ToWorldAngle() - gridRot;
-                var offset = throwingAngle?.Angle ?? Angle.Zero;
-                _transform.SetLocalRotation(uid, angle + offset);
-            }
+            Resolve(uid, ref throwingAngle, false);
+            var gridRot = _transform.GetWorldRotation(transform.ParentUid);
+            var angle = direction.ToWorldAngle() - gridRot;
+            var offset = throwingAngle?.Angle ?? Angle.Zero;
+            _transform.SetLocalRotation(uid, angle + offset);
         }
 
         if (user != null)
@@ -306,4 +294,10 @@ public enum ThrowingUnanchorStrength : byte
     /// All entities will be unanchored.
     /// </summary>
     All,
+}
+
+[Serializable, NetSerializable]
+public enum ESThrowVisuals : byte
+{
+    InAir,
 }

@@ -1,0 +1,13 @@
+- type: entity
+  parent: BoxFolderYellowEmpty
+  id: ESBoxFolderFilledInsider
+  suffix: ES, Insider
+  components:
+  - type: ESOrganizationDossier
+
+- type: localizedDataset
+  id: ESInsiderCodenames
+  values:
+    prefix: es-dataset-insider-codename-
+    count: 80
+

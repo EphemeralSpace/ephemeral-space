@@ -183,7 +183,6 @@
     - group:
       - id: CarbonDioxideCanister
       - id: WaterVaporCanister
-      - id: NitrousOxideCanister
       - id: PlasmaCanister
         weight: 0.25
       weight: 10
@@ -267,6 +266,8 @@
       - id: ClosetL3Filled
         weight: 2
       - id: ClosetToolFilled
+        weight: 2
+      - id: ClosetJanitorFilled
         weight: 2
       - id: ClosetRadiationSuitFilled
         weight: 1

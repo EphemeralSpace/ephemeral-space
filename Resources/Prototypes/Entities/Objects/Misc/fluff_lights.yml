@@ -51,8 +51,6 @@
   - type: Appearance
   - type: Physics
     canCollide: false
-  - type: StealTarget
-    stealGroup: LAMP
 
 - type: entity
   name: lamp
@@ -133,7 +131,7 @@
 - type: entity
   name: interrogator lamp
   id: LampInterrogator
-  parent: [ BaseLamp, BaseSecurityContraband ]
+  parent: BaseLamp
   description: Ultra-bright lamp for the bad cop.
   components:
   - type: Sprite
@@ -150,8 +148,6 @@
         visible: false
   - type: Item
     sprite: Objects/Misc/Lights/lampint.rsi
-  - type: StaticPrice
-    price: 2500
   - type: PointLight
     netsync: false
     enabled: false

@@ -1,0 +1,33 @@
+<controls:PheemyZooWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._ES.UI"
+    SetSize="900 600"
+    Title="Pheemium Control Zoo">
+    <VFillStack>
+        <HStack Margin="3">
+            <RadioController Group="{EButtonGroup False}" FromRelatives="True"/>
+            <Button Text="ElementSets" Name="ElementSetsButton" StyleClasses="OpenRight"/>
+            <Button Text="Stacks" Name="StacksButton" StyleClasses="OpenLeft"/>
+        </HStack>
+        <LowDivider/>
+        <ElementSet Stack.ExpandAxis="Both">
+            <VStack ControlExt.Alignment="Center Center" ElementSet.SelectedBy="ElementSetsButton">
+                <Label
+                    Text="The zoo tabs are an element set! Click the buttons to switch tabs."
+                    HorizontalAlignment="Center"/>
+                <Label Text="The XAML for this Zoo is in PheemyWindowZoo.xaml" HorizontalAlignment="Center"/>
+            </VStack>
+            <HFillStack ElementSet.SelectedBy="StacksButton">
+                <VStack Stack.ExpandAxis="Both">
+                    <Label Text="Lefthand" Stack.ExpandAxis="Vertical" HorizontalAlignment="Center"/>
+                </VStack>
+                <LowDivider/>
+                <VStack Stack.ExpandAxis="Both" SizeFlagsStretchRatio="2">
+                    <Label Text="Upper Righthand" Stack.ExpandAxis="Vertical" HorizontalAlignment="Center"/>
+                    <LowDivider/>
+                    <Label Text="Lower Righthand" Stack.ExpandAxis="Vertical" HorizontalAlignment="Center"/>
+                </VStack>
+            </HFillStack>
+        </ElementSet>
+    </VFillStack>
+</controls:PheemyZooWindow>

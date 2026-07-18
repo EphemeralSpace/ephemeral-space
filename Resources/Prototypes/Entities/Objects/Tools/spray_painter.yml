@@ -30,8 +30,6 @@
       distro: '#0055cc'
       air: '#03fcd3'
       mix: '#947507'
-  - type: StaticPrice
-    price: 40
   - type: LimitedCharges
     maxCharges: 15
     lastCharges: 15
@@ -82,5 +80,3 @@
     materialComposition:
       Steel: 10
       Plastic: 10
-  - type: StaticPrice
-    price: 30

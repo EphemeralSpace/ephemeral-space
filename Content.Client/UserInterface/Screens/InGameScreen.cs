@@ -13,6 +13,4 @@ public abstract class InGameScreen : UIScreen
     public Action<Vector2>? OnChatResized;
 
     public abstract ChatBox ChatBox { get; }
-
-    public abstract void SetChatSize(Vector2 size);
 }

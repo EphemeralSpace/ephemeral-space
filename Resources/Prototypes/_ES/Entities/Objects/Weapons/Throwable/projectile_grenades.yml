@@ -1,0 +1,43 @@
+﻿- type: entity
+  abstract: true
+  parent: BaseItem
+  id: ProjectileGrenadeBase
+  components:
+  - type: Appearance
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:TriggerBehavior
+        keyOut: timer # explode immediately
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+  - type: AnimationPlayer
+  - type: GenericVisualizer
+    visuals:
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: primed }
+          Unprimed: { state: icon }
+  - type: Tag
+    tags:
+    - HandGrenade
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 20 # derived from base_item
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2

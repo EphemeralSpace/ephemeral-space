@@ -20,9 +20,9 @@ namespace Content.Client._ES.Spawning.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class ESJobDisplay : BoxContainer
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private readonly ESAuditionsSystem _auditions;
     private readonly HumanoidAppearanceSystem _humanoid;
@@ -55,7 +55,9 @@ public sealed partial class ESJobDisplay : BoxContainer
             : Loc.GetString(jobProto.Description));
 
         _entityManager.DeleteEntity(_doll);
-        _doll = _entityManager.Spawn(_prototypeManager.Index(SharedHumanoidAppearanceSystem.DefaultSpecies).DollPrototype);
+        _doll = jobProto.JobEntity is null
+            ? _entityManager.Spawn(_prototypeManager.Index(SharedHumanoidAppearanceSystem.DefaultSpecies).DollPrototype)
+            : _entityManager.Spawn(jobProto.JobEntity);
         var randomSeed = new RngSeed().SeedForStep(job.Id.GetHashCode() + _player.LocalEntity?.Id ?? 0);
         var defaultDude = _auditions.RandomProfile(randomSeed.IntoRandomizer());
         _humanoid.LoadProfile(_doll, defaultDude);

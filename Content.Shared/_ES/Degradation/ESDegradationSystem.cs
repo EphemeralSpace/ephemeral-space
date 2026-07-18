@@ -2,8 +2,6 @@ using Content.Shared._ES.Degradation.Components;
 using Content.Shared._ES.Sparks;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
-using Content.Shared.Doors;
-using Content.Shared.Doors.Components;
 
 namespace Content.Shared._ES.Degradation;
 
@@ -11,23 +9,10 @@ namespace Content.Shared._ES.Degradation;
 /// This handles equipment on the station slowly breaking and degrading over the course of the round.
 /// Note that this happens in response to player events, not simply happening at will.
 /// </summary>
-public sealed class ESDegradationSystem : EntitySystem
+public sealed partial class ESDegradationSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Dependency] private readonly ESSparksSystem _sparks = default!;
-
-    /// <inheritdoc/>
-    public override void Initialize()
-    {
-        SubscribeLocalEvent<ESQueuedDegradationComponent, DoorStateChangedEvent>(OnDoorStateChanged);
-    }
-
-    private void OnDoorStateChanged(Entity<ESQueuedDegradationComponent> ent, ref DoorStateChangedEvent args)
-    {
-        if (args.State != DoorState.Open)
-            return;
-        Degrade(ent.Owner, null);
-    }
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private ESSparksSystem _sparks = default!;
 
     public bool TryDegrade(Entity<ESQueuedDegradationComponent?> ent, EntityUid? user)
     {

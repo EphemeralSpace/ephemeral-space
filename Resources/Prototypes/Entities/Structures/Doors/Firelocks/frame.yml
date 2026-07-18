@@ -1,6 +1,6 @@
 ﻿- type: entity
   id: FirelockFrame
-  parent: BaseStructureDynamic
+  parent: [ DeflectionSturdyStructure, BaseStructureDynamic ]
   name: firelock frame
   description: That is a firelock frame.
   components:
@@ -24,7 +24,7 @@
   - type: InteractionOutline
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
+    damageModifierSet: ESMachine
   - type: RCDDeconstructable
     cost: 4
     delay: 6

@@ -1,4 +1,10 @@
 - type: entity
+  parent: WardrobeGrey
+  id: ESWardrobeAssistant
+  suffix: ES
+  name: assistant's wardrobe
+
+- type: entity
   parent: WardrobeBlack
   id: ESWardrobeBartender
   suffix: ES
@@ -35,22 +41,10 @@
   name: janitor's wardrobe
 
 - type: entity
-  parent: WardrobeWhite
-  id: ESWardrobeMime
-  suffix: ES
-  name: mime's wardrobe
-
-- type: entity
   parent: WardrobeBlack
   id: ESWardrobeReporter
   suffix: ES
   name: reporter's wardrobe
-
-- type: entity
-  parent: WardrobeMixed
-  id: ESWardrobeTheatre
-  suffix: ES
-  name: theatre wardrobe
 
 - type: entity
   id: ESWardrobeScience
@@ -59,22 +53,17 @@
   name: science wardrobe
 
 - type: entity
-  id: ESWardrobeBotanist
-  parent: WardrobeGreen
-  suffix: ES
-  name: botanist wardrobe
-
-- type: entity
   id: ESWardrobeParamedic
   parent: WardrobeBlue
   suffix: ES
   name: paramedic's wardrobe
 
 - type: entity
-  id: ESWardrobePhysician
+  id: ESWardrobeDoctor
   parent: WardrobeWhite
   suffix: ES
-  name: physician's wardrobe
+  name: doctor's wardrobe
+  description: "We've all played doctor before, now practice medicine."
 
 - type: entity
   id: ESWardrobeEngineering

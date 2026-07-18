@@ -36,18 +36,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ChairBrass
-  graph: Seat
-  startNode: start
-  targetNode: chairBrass
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   id: ChairOfficeLight
   graph: Seat
   startNode: start
@@ -120,84 +108,10 @@
   - !type:TileNotBlocked
 
 - type: construction
-  id: ChairRitual
-  graph: RitualSeat
-  startNode: start
-  targetNode: chairRitual
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   id: ChairFolding
   graph: Seat
   startNode: start
   targetNode: chairFolding
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: ChairSteelBench
-  graph: Seat
-  startNode: start
-  targetNode: chairSteelBench
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: StoolCard
-  graph: Seat
-  startNode: start
-  targetNode: stoolCard
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
-  id: ChairWoodBench
-  graph: Seat
-  startNode: start
-  targetNode: chairWoodBench
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: RedComfBench
-  name: construction-recipe-red-comf-bench
-  graph: Seat
-  startNode: start
-  targetNode: redComfBench
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: BlueComfBench
-  name: construction-recipe-blue-comf-bench
-  graph: Seat
-  startNode: start
-  targetNode: blueComfBench
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -243,18 +157,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: TableCard
-  graph: Table
-  startNode: start
-  targetNode: TableCard
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
   id: TableReinforcedGlass
   graph: Table
   startNode: start
@@ -271,18 +173,6 @@
   graph: Table
   startNode: start
   targetNode: TablePlasmaGlass
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: TableBrass
-  graph: Table
-  startNode: start
-  targetNode: TableBrass
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter

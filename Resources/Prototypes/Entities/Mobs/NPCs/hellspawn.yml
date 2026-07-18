@@ -7,20 +7,9 @@
   id: MobHellspawn
   description: An unstoppable force of carnage.
   components:
-  - type: GhostRole
-    allowMovement: true
-    makeSentient: true
-    name: ghost-role-information-hellspawn-name
-    description: ghost-role-information-hellspawn-description
-    rules: ghost-role-information-antagonist-rules
-    mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
-    raffle:
-      settings: default
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
-  - type: GhostTakeoverAvailable
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -53,9 +42,6 @@
     speedModifierThresholds:
       60: 0.7
       80: 0.5
-  - type: MobPrice
-    price: 1000 # Living critters are valuable in space.
-  - type: Perishable
   - type: Reflect
     reflectProb: 0.7
     reflects:
@@ -74,17 +60,13 @@
   - type: MobState
   - type: Tag
     tags:
-      - CannotSuicide
       - DoorBumpOpener
       - FootstepSound
+  - type: ESCannotSuicide
   - type: MobThresholds
     thresholds:
       0: Alive
       450: Dead
-  - type: Butcherable
-    spawned:
-      - id: ArtifactFragment
-        amount: 4
   - type: MeleeWeapon
     attackRate: 0.6
     hidden: true

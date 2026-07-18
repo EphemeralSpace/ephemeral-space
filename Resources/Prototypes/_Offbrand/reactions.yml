@@ -52,7 +52,7 @@
   reactants:
     Synthflesh:
       amount: 1
-    DexalinPlus:
+    Dexalin:
       amount: 1
     Iron:
       amount: 1
@@ -95,40 +95,6 @@
     Peridaxon: 2
 
 - type: reaction
-  id: RomerolCharcoalCancellation
-  reactants:
-    Romerol:
-      amount: 1
-    Charcoal:
-      amount: 1
-  products:
-    Romerol: 1
-
-- type: reaction
-  id: Coagulant
-  reactants:
-    TranexamicAcid:
-      amount: 1
-    Lead:
-      amount: 1
-      catalyst: true
-  products:
-    Coagulant: 1
-
-- type: reaction
-  id: Osseous
-  reactants:
-    Milk:
-      amount: 1
-    SodaWater:
-      amount: 1
-    Lead:
-      amount: 1
-      catalyst: true
-  products:
-    Osseous: 2
-
-- type: reaction
   id: Convermol
   reactants:
     Fluorine:
@@ -153,36 +119,6 @@
     SalicylicAcid: 3
 
 - type: reaction
-  id: SalicylicAcidBruizine
-  reactants:
-    SalicylicAcid:
-      amount: 1
-    Bruizine:
-      amount: 1
-  products:
-    Razorium: 1
-
-- type: reaction
-  id: SalicylicAcidLacerinol
-  reactants:
-    SalicylicAcid:
-      amount: 1
-    Lacerinol:
-      amount: 1
-  products:
-    Razorium: 1
-
-- type: reaction
-  id: SalicylicAcidPuncturase
-  reactants:
-    SalicylicAcid:
-      amount: 1
-    Puncturase:
-      amount: 1
-  products:
-    Razorium: 1
-
-- type: reaction
   id: Oxandrolone
   reactants:
     Phenol:
@@ -193,43 +129,3 @@
       amount: 1
   products:
     Oxandrolone: 3
-
-- type: reaction
-  id: OxandrolonePyrazine
-  reactants:
-    Oxandrolone:
-      amount: 1
-    Pyrazine:
-      amount: 1
-  products:
-    Razorium: 1
-
-- type: reaction
-  id: OxandroloneInsuzine
-  reactants:
-    Oxandrolone:
-      amount: 1
-    Insuzine:
-      amount: 1
-  products:
-    Razorium: 1
-
-- type: reaction
-  id: OxandroloneSigynate
-  reactants:
-    Oxandrolone:
-      amount: 1
-    Sigynate:
-      amount: 1
-  products:
-    Razorium: 1
-
-- type: reaction
-  id: OxandroloneLeporazine
-  reactants:
-    Oxandrolone:
-      amount: 1
-    Leporazine:
-      amount: 1
-  products:
-    Razorium: 1

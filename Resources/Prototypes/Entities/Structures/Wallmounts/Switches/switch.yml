@@ -6,7 +6,6 @@
   components:
   - type: WallMount
     arc: 360
-  - type: StationAiWhitelist
   - type: Sprite
     drawdepth: SmallObjects
     sprite: Structures/Wallmounts/switch.rsi
@@ -59,7 +58,6 @@
   components:
   - type: WallMount
     arc: 360
-  - type: StationAiWhitelist
   - type: Sprite
     drawdepth: SmallObjects
     sprite: Structures/Wallmounts/switch.rsi
@@ -200,11 +198,11 @@
 
 - type: entity
   parent: LockableButton
-  id: LockableButtonHeadOfPersonnel
-  suffix: HeadOfPersonnel
+  id: LockableButtonStationAdmin
+  suffix: StationAdmin
   components:
   - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+    access: [["StationAdmin"]]
 
 - type: entity
   parent: LockableButton

@@ -1,0 +1,82 @@
+# Used to animate the hitscan effects because effectsystem doesn't support it
+- type: entity
+  id: HitscanEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 2.0
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: AnimationPlayer
+
+- type: entity
+  id: BasicHitscan
+  name: basic laser ray
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanAmmo
+  - type: HitscanBasicRaycast
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_laser
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_laser
+  - type: HitscanReflect
+  - type: HitscanBasicEffects
+
+- type: entity
+  parent: BasicHitscan
+  id: RedLaser
+  name: red laser ray
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 14
+
+- type: entity
+  parent: BasicHitscan
+  id: DebugLaser
+  name: debug laser ray
+  suffix: DEBUG
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 1
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_debug
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: debug
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_debug
+
+- type: entity
+  parent: DebugLaser
+  id: DebugLaserGib
+  name: debug gibbing ray
+  suffix: DEBUG
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 20000

@@ -12,7 +12,7 @@ namespace Content.Client.Administration.UI.AdminCamera;
 /// Use the "Open Camera" admin verb or the "camera" command to open.
 /// </summary>
 [UsedImplicitly]
-public sealed partial class AdminCameraEui : BaseEui
+public sealed class AdminCameraEui : BaseEui
 {
     private readonly AdminCameraWindow _window;
     private readonly AdminCameraControl _control;

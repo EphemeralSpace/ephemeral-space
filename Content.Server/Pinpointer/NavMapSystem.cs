@@ -12,6 +12,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Warps;
 
 namespace Content.Server.Pinpointer;
@@ -21,13 +22,12 @@ namespace Content.Server.Pinpointer;
 /// </summary>
 public sealed partial class NavMapSystem : SharedNavMapSystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly TurfSystem _turfSystem = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private SharedMapSystem _mapManager = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private TurfSystem _turfSystem = default!;
 
     public const float CloseDistance = 15f;
     public const float FarDistance = 30f;
@@ -243,7 +243,7 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         }
 
         // Loop over all tiles
-        var tileRefs = _mapSystem.GetAllTiles(uid, mapGrid);
+        var tileRefs = _mapManager.GetAllTiles(uid, mapGrid);
 
         foreach (var tileRef in tileRefs)
         {
@@ -275,7 +275,7 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         else
             tileData &= FloorMask;
 
-        var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, mapGrid, tile);
+        var enumerator = _mapManager.GetAnchoredEntitiesEnumerator(uid, mapGrid, tile);
         while (enumerator.MoveNext(out var ent))
         {
             if (!_airtightQuery.TryComp(ent, out var airtight))

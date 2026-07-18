@@ -7,9 +7,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Charges.Systems;
 
-public abstract class SharedChargesSystem : EntitySystem
+public abstract partial class SharedChargesSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming _timing = default!;
+    [Dependency] protected IGameTiming _timing = default!;
 
     /*
      * Despite what a bunch of systems do you don't need to continuously tick linear number updates and can just derive it easily.
@@ -138,6 +138,11 @@ public abstract class SharedChargesSystem : EntitySystem
 
         action.Comp1.LastCharges = Math.Clamp(action.Comp1.LastCharges + addCharges, 0, action.Comp1.MaxCharges);
         Dirty(action.Owner, action.Comp1);
+
+        if (action.Comp1.LastCharges <= 0 && action.Comp1.DeleteOnEmpty)
+        {
+            PredictedQueueDel(action);
+        }
     }
 
     public bool TryUseCharge(Entity<LimitedChargesComponent?> entity)
@@ -208,6 +213,11 @@ public abstract class SharedChargesSystem : EntitySystem
         action.Comp.LastCharges = adjusted;
         action.Comp.LastUpdate = _timing.CurTime;
         Dirty(action);
+
+        if (action.Comp.LastCharges <= 0 && action.Comp.DeleteOnEmpty)
+        {
+            PredictedQueueDel(action);
+        }
     }
 
     /// <summary>

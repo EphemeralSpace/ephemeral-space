@@ -1,16 +1,23 @@
 using Content.Client.Actions;
-using Content.Shared.Actions;
+using Content.Client.Items;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 
 namespace Content.Client.Charges;
 
-public sealed class ChargesSystem : SharedChargesSystem
+public sealed partial class ChargesSystem : SharedChargesSystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private ActionsSystem _actions = default!;
 
     private Dictionary<EntityUid, int> _lastCharges = new();
     private Dictionary<EntityUid, int> _tempLastCharges = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        Subs.ItemStatus<LimitedChargesComponent>(ent => new ChargesStatusControl(ent));
+    }
 
     public override void Update(float frameTime)
     {

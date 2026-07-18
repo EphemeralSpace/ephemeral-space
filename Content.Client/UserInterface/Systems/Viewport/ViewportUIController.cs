@@ -1,32 +1,22 @@
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Gameplay;
-using Content.Shared.CCVar;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.UserInterface.Controllers;
-using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
 namespace Content.Client.UserInterface.Systems.Viewport;
 
-public sealed class ViewportUIController : UIController
+public sealed partial class ViewportUIController : UIController
 {
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IPlayerManager _playerMan = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    public static readonly Vector2i ViewportSize = (EyeManager.PixelsPerMeter * 21, EyeManager.PixelsPerMeter * 15);
-    public const int ViewportHeight = 15;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IPlayerManager _playerMan = default!;
+    [Dependency] private IEntityManager _entMan = default!;
     private MainViewport? Viewport => UIManager.ActiveScreen?.GetWidget<MainViewport>();
 
     public override void Initialize()
     {
-        _configurationManager.OnValueChanged(CCVars.ViewportMinimumWidth, _ => UpdateViewportRatio());
-        _configurationManager.OnValueChanged(CCVars.ViewportMaximumWidth, _ => UpdateViewportRatio());
-        _configurationManager.OnValueChanged(CCVars.ViewportWidth, _ => UpdateViewportRatio());
-        _configurationManager.OnValueChanged(CCVars.ViewportVerticalFit, _ => UpdateViewportRatio());
-
         var gameplayStateLoad = UIManager.GetUIController<GameplayStateLoadController>();
         gameplayStateLoad.OnScreenLoad += OnScreenLoad;
     }
@@ -36,31 +26,6 @@ public sealed class ViewportUIController : UIController
         ReloadViewport();
     }
 
-    private void UpdateViewportRatio()
-    {
-        if (Viewport == null)
-        {
-            return;
-        }
-
-        var min = _configurationManager.GetCVar(CCVars.ViewportMinimumWidth);
-        var max = _configurationManager.GetCVar(CCVars.ViewportMaximumWidth);
-        var width = _configurationManager.GetCVar(CCVars.ViewportWidth);
-        var verticalfit = _configurationManager.GetCVar(CCVars.ViewportVerticalFit) && _configurationManager.GetCVar(CCVars.ViewportStretch);
-
-        if (verticalfit)
-        {
-            width = max;
-        }
-        else if (width < min || width > max)
-        {
-            width = CCVars.ViewportWidth.DefaultValue;
-        }
-
-        Viewport.Viewport.ViewportSize = (EyeManager.PixelsPerMeter * width, EyeManager.PixelsPerMeter * ViewportHeight);
-        Viewport.UpdateCfg();
-    }
-
     public void ReloadViewport()
     {
         if (Viewport == null)
@@ -68,9 +33,6 @@ public sealed class ViewportUIController : UIController
             return;
         }
 
-        UpdateViewportRatio();
-        Viewport.Viewport.HorizontalExpand = true;
-        Viewport.Viewport.VerticalExpand = true;
         _eyeManager.MainViewport = Viewport.Viewport;
     }
 

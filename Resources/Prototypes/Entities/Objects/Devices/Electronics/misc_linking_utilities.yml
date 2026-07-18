@@ -7,8 +7,6 @@
   - type: Sprite
     sprite: Objects/Devices/voicesensor.rsi
     state: icon
-  - type: StaticPrice
-    price: 40
   - type: DeviceLinkSource
     ports:
       - Trigger

@@ -1,0 +1,86 @@
+- type: entity
+  parent: BaseStructure
+  id: BaseThrusterPropulsionLarge
+  name: station propulsion thruster
+  description: Stay on the friendly end.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Machines/big_thruster.rsi
+    layers:
+    - state: base
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ESRadstormModifierMachineVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          False: {visible: true}
+          True: {visible: false}
+  - type: ESGenericPointLightVisualizer
+    visuals:
+      enum.ESRadstormModifierMachineVisuals.Enabled:
+        True: { enabled: false }
+        False: { enabled: true }
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5,-1.5,1.5,1.5"
+        density: 50
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: ESRadstormModifierMachine
+    modifier: 1.00
+    announcementSoundDisabled: /Audio/_ES/Announcements/thruster_fuelled.ogg
+    announcementSoundEnabled: /Audio/_ES/Announcements/thruster_no_fuel.ogg
+  - type: AmbientSound
+    enabled: true
+    volume: -6
+    range: 7
+    sound:
+      path: /Audio/Effects/shuttle_thruster.ogg
+  - type: PointLight
+    netsync: false
+    offset: 0, -1.5
+    radius: 2.5
+    energy: 0.5
+    castShadows: false
+    color: "#92e5e8"
+
+- type: entity
+  parent: BaseThrusterPropulsionLarge
+  id: ThrusterPropulsionLargeNorth
+  suffix: North
+  components:
+  - type: ESRadstormModifierMachine
+    enableAnnouncement: es-radstorm-power-off-thruster-north
+    disableAnnouncement: es-radstorm-power-on-thruster-north
+
+- type: entity
+  parent: BaseThrusterPropulsionLarge
+  id: ThrusterPropulsionLargeWest
+  suffix: West
+  components:
+  - type: ESRadstormModifierMachine
+    enableAnnouncement: es-radstorm-power-off-thruster-west
+    disableAnnouncement: es-radstorm-power-on-thruster-west
+
+- type: entity
+  parent: BaseThrusterPropulsionLarge
+  id: ThrusterPropulsionLargeSouth
+  suffix: South
+  components:
+  - type: ESRadstormModifierMachine
+    enableAnnouncement: es-radstorm-power-off-thruster-south
+    disableAnnouncement: es-radstorm-power-on-thruster-south

@@ -115,10 +115,6 @@
               SheetSteel1:
                 min: 2
                 max: 4
-  - type: GuideHelp
-    guides:
-    - TeslaEngine
-    - SingularityTeslaEngine
 
 - type: entity
   id: TeslaGroundingRod
@@ -210,7 +206,3 @@
               SheetSteel1:
                 min: 2
                 max: 4
-  - type: GuideHelp
-    guides:
-    - TeslaEngine
-    - SingularityTeslaEngine

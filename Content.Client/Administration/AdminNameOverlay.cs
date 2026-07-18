@@ -37,11 +37,6 @@ internal sealed class AdminNameOverlay : Overlay
     private int _overlayStackMax;
     private float _overlayMergeDistance;
 
-    //TODO make this adjustable via GUI?
-    private static readonly FrozenSet<ProtoId<RoleTypePrototype>> Filter =
-        new ProtoId<RoleTypePrototype>[] {"SoloAntagonist", "TeamAntagonist", "SiliconAntagonist", "FreeAgent"}
-        .ToFrozenSet();
-
     private readonly string _antagLabelClassic = Loc.GetString("admin-overlay-antag-classic");
 
     public AdminNameOverlay(
@@ -277,6 +272,6 @@ internal sealed class AdminNameOverlay : Overlay
         if (roleProtoId == null)
             return false;
 
-        return Filter.Contains(roleProtoId.Value);
+        return true;
     }
 }
