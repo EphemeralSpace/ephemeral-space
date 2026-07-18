@@ -59,7 +59,7 @@ public sealed partial class StagehandChatBox : ChatBox
 
         var color = msg.MessageColorOverride ?? msg.Channel.TextColor();
 
-        if (msg.Channel == ChatChannel.Dead)
+        if (msg.Channel is ChatChannel.Dead or ChatChannel.Server)
             AddStagehandLine(msg.WrappedMessage, color);
         else
             AddLine(msg.WrappedMessage, color);
