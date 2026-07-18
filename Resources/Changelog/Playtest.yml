@@ -1097,3 +1097,9 @@ Entries:
         against with a bio suit.
   id: 120
   time: '2026-07-18T19:28:54.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Resprited puddles and added unique sprites for certain liquids.
+  id: 121
+  time: '2026-07-18T19:50:18.0000000+00:00'
