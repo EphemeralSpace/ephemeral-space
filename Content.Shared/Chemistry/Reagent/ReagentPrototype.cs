@@ -165,7 +165,7 @@ namespace Content.Shared.Chemistry.Reagent
         /// Gases per unit per second released for exposed puddles.
         /// </summary>
         [DataField(serverOnly: true, customTypeSerializer: typeof(GasArraySerializer))]
-        public float[] PuddleGas = [];
+        public float[] PuddleGas = new float[Atmospherics.AdjustedNumberOfGases];
 
         [DataField]
         public FrozenDictionary<ProtoId<MetabolismGroupPrototype>, ReagentEffectsEntry>? Metabolisms;
