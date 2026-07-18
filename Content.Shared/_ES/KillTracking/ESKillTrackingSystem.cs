@@ -14,11 +14,13 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.Collections;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.KillTracking;
 
 public sealed partial class ESKillTrackingSystem : EntitySystem
 {
+    [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedCuffableSystem _cuffs = default!;
 
     private const int SuicideSelfDamage = 200;
@@ -57,6 +59,11 @@ public sealed partial class ESKillTrackingSystem : EntitySystem
 
     private void OnDamageChanged(Entity<ESKillTrackerComponent> ent, ref DamageChangedEvent args)
     {
+        // like idk
+        // this really shouldnt be running on client at all probably
+        if (_timing.ApplyingState)
+            return;
+
         // I'm not really sure how we send a null delta.
         if (args.DamageDelta is not { } delta || delta.Empty)
             return;
