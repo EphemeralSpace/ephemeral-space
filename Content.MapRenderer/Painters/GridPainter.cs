@@ -37,7 +37,7 @@ namespace Content.MapRenderer.Painters
             _cEntityManager = client.ResolveDependency<IEntityManager>();
 
             _sEntityManager = server.ResolveDependency<IEntityManager>();
-            _sMapManager = server.ResolveDependency<SharedMapSystem>();
+            _sMapManager = server.System<SharedMapSystem>();
 
             _entities = GetEntities();
             _decals = GetDecals();
