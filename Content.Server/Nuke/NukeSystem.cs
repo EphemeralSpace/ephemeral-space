@@ -338,6 +338,13 @@ ES END */
             UpdateAppearance(uid, nuke);
         }
 
+        if (nuke.RemainingTime <= nuke.PreExplosionTime && !nuke.RaisedPreExplosion)
+        {
+            nuke.RaisedPreExplosion = true;
+            var ev = new ESNukePreExplosionEvent();
+            RaiseLocalEvent(ref ev);
+        }
+
         if (nuke.RemainingTime <= 0)
         {
             nuke.RemainingTime = 0;
@@ -612,7 +619,6 @@ ES END */
         RaiseLocalEvent(ref ev);
 
         _sound.StopStationEventMusic(uid, StationEventMusicType.Nuke);
-        Del(uid);
     }
 
     /// <summary>
@@ -682,6 +688,12 @@ public sealed class NukeExplodedEvent : EntityEventArgs
 {
     public EntityUid? OwningGrid;
 }
+
+/// <summary>
+/// Event raised a few seconds before the nuke explodes.
+/// </summary>
+[ByRefEvent]
+public readonly record struct ESNukePreExplosionEvent;
 
 /// <summary>
 /// Event raised after <see cref="NukeExplodedEvent"/> is broadcast but before the nuke is deleted.

@@ -27,8 +27,8 @@ public sealed partial class ESTraitorRuleSystem : EntitySystem
     [Dependency] private RoundEndSystem _roundEnd = default!;
     [Dependency] private MapLoaderSystem _mapLoader = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private AudioSystem _audio = default!;
     [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private ESEntityTimerSystem _timer = default!;
     [Dependency] private ESCinematicSystem _cinematic = default!;
 
@@ -42,6 +42,7 @@ public sealed partial class ESTraitorRuleSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<NukeArmedEvent>(OnNukeArmed);
+        SubscribeLocalEvent<ESNukePreExplosionEvent>(OnNukePreExplosion);
         SubscribeLocalEvent<ESNukeAfterExplodedEvent>(OnNukeExploded);
     }
 
@@ -68,31 +69,35 @@ public sealed partial class ESTraitorRuleSystem : EntitySystem
         ent.Comp1.BaseGrids = gridSet.Select( x => x.Owner).ToList();
     }
 
+    private void OnNukePreExplosion(ref ESNukePreExplosionEvent ev)
+    {
+        var query = EntityQueryEnumerator<ESTraitorRuleComponent, ESOrganizationRuleComponent>();
+        while (query.MoveNext(out var uid, out var traitor, out var organization))
+        {
+            OnNukePreExploded((uid, traitor, organization));
+        }
+    }
+
     private void OnNukeExploded(ref ESNukeAfterExplodedEvent args)
     {
         // We're just going to assume the nuke blew up in the right place.
         // That's a fair thing to assume, right? It probably won't matter
-        var query = EntityQueryEnumerator<ESTraitorRuleComponent, ESOrganizationRuleComponent>();
-        while (query.MoveNext(out var uid, out var traitor, out var organization))
-        {
-            OnNukeExploded((uid, traitor, organization));
 
-            // play cinematic for everyone on the station, just play audio for
-            // the traitors that got teleported out
-            var onMapFilter = Filter.Empty().AddInMap(_ticker.DefaultMap);
-            var onSyndieMapFilter = Filter.Empty().AddInMap(traitor.SyndieBaseMapId);
-            var cinematic = ProtoMan.Index(NukeCinematic);
-            _audio.PlayGlobal(cinematic.Sound, onSyndieMapFilter, false);
-            _cinematic.PlayCinematic(NukeCinematic, onMapFilter);
-            _timer.SpawnMethodTimer(cinematic.Length - EndRoundDuration,
-                () =>
-                {
-                    _roundEnd.EndRound(EndRoundDuration);
-                });
-        }
+        // play cinematic for everyone
+        var filter = Filter.Broadcast();
+        var cinematic = ProtoMan.Index(NukeCinematic);
+        _cinematic.PlayCinematic(NukeCinematic, filter);
+        _timer.SpawnMethodTimer(cinematic.Length - EndRoundDuration,
+            () =>
+            {
+                _roundEnd.EndRound(EndRoundDuration);
+            });
+
+        // pause station map
+        _map.SetPaused(_ticker.DefaultMap, true);
     }
 
-    private void OnNukeExploded(Entity<ESTraitorRuleComponent, ESOrganizationRuleComponent> ent)
+    private void OnNukePreExploded(Entity<ESTraitorRuleComponent, ESOrganizationRuleComponent> ent)
     {
         if (ent.Comp1.BaseGrids.Count <= 0)
             return;
