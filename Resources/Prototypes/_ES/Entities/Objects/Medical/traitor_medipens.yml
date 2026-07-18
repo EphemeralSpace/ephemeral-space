@@ -1,0 +1,52 @@
+- type: entity
+  id: SleepyPen
+  parent: EmergencyMedipen # Looks like a normal medipen.
+  suffix: Sleepy Pen
+  name: knockout medipen
+  description: A single-dose, non-refillable medipen containing a nasty mix of chems that'll knock out even the toughest of captains. After use, it's indistinguishable from a normal emergency medipen.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 10
+        - ReagentId: MuteToxin
+          Quantity: 5
+  - type: ESDisguiseOnSolutionEmpty
+    solution: pen
+    disguise: EmergencyMedipen
+
+- type: entity
+  id: StimulantPen
+  parent: PainkillerAutoInjector
+  suffix: Hyperzine
+  name: stimulant medipen
+  description: A single-dose, non-refillable medipen containing stimulants that briefly enhance motor function & suppress pain and drowsiness. Perfect for mid-combat use.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Stimulants
+          Quantity: 15
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#ffffff"
+      - state: base-colorB-inhand-left
+        color: "#e61212"
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#ffffff"
+      - state: base-colorB-inhand-right
+        color: "#e61212"
+  - type: Sprite # intentionally not stealthy like the sleepypen because i figure it would be interesting
+    layers:
+    - state: stimulant
+      map: ["enum.SolutionContainerLayers.Fill"]

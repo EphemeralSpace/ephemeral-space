@@ -10,7 +10,7 @@
     <Box>
         <GuideEntityEmbed Entity="ESWeaponPistol9mmSilenced"/>
         <GuideEntityEmbed Entity="ESMagazine9mm"/>
-        <GuideEntityEmbed Entity="ESSleepyPen"/>
+        <GuideEntityEmbed Entity="SleepyPen"/>
         <GuideEntityEmbed Entity="SmokeGrenade"/>
     </Box>
 
