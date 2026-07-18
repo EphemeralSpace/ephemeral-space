@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Soviet by K-Dynamic (github), reporter by EmoGarbage404 (github).",
+    "copyright": "Soviet by K-Dynamic (github), reporter & ratman by EmoGarbage404 (github).",
     "size": {
         "x": 8,
         "y": 8
@@ -18,6 +18,9 @@
         },
         {
             "name": "Soviet"
+        },
+        {
+            "name": "ratman"
         }
     ]
 }

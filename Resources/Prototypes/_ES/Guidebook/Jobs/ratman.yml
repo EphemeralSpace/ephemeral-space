@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: Ratman
+  hidden: false
+  name: Ratman
+  text: "/ServerInfo/_ES/Guidebook/Jobs/Ratman.xml"

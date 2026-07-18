@@ -1,5 +1,6 @@
 department-Cargo = Cargo
 department-Civilian = Civilian
+department-Other = Other
 department-Command = Command
 department-CentralCommand = Central Command
 department-Engineering = Engineering

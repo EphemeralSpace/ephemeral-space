@@ -1,0 +1,35 @@
+- type: esTip
+  id: CaptainEnergyGun
+  text: The captain's antique energy gun isn't the strongest weapon around, but its auto recharge makes it great at passive attrition. If someone drops it mid-combat, it's usually a good idea to pick it up and run!
+
+- type: esTip
+  id: CaptainNukeDisk
+  text: As the Captain, always take the nuclear disk with you every shift. Consider giving it to someone you can trust.
+
+- type: esTip
+  id: CaptainComdom
+  text: As the Captain, you have the most power and control over the station, but this does not mean that being a horrible person won't result in mutiny.
+
+- type: esTip
+  id: DoctorOverdose
+  text: As a Doctor, try to be wary of overdosing your patients, especially when working with someone else.
+
+- type: esTip
+  id: DoctorCryoPods
+  text: As a Doctor, don't underestimate your cryo pods! They heal almost every type of damage, making them very useful when you are overloaded or need to heal someone in a pinch.
+
+- type: esTip
+  id: JanitorHemophage
+  text: As a Janitor, you are the main line of defense against a Hemophage. If blood starts pooling up in large enough quantities, it could infect a significant portion of the station at once!
+
+- type: esTip
+  id: RatmanPrepTime
+  text: As the Ratman, you spawn on the station before everyone else. Use this time to scout the station to find your doors or to loot maintenance ahead of time.
+
+- type: esTip
+  id: RatmanNightvision
+  text: As the Ratman, your eyes have adjusted to the darkness and you can see a little bit in the dark. Use this to your advantage to help the crew get power back up--or to ambush people from the shadows.
+
+- type: esTip
+  id: ParamedicJawsOfLife
+  text: The Paramedic's jaws of life can be used to open powered doors.

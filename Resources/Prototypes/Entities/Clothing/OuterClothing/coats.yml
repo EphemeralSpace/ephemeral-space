@@ -10,17 +10,6 @@
     sprite: Clothing/OuterClothing/Coats/bomber.rsi
 
 - type: entity
-  parent: ClothingOuterBase
-  id: ClothingOuterCoatJensen
-  name: trench coat
-  description: Tumbling rapidly out of style since 1999.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Coats/jensencoat.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Coats/jensencoat.rsi
-
-- type: entity
   parent: ClothingOuterFoldableBase
   id: ClothingOuterCoatLab
   name: lab coat

@@ -39,6 +39,16 @@
         tableId: LockerFillJanitor
 
 - type: entity
+  parent: LockerRatman
+  id: LockerRatmanFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: LockerFillRatman
+
+- type: entity
   parent: ESLockerParamedic
   id: ESLockerParamedicFilled
   suffix: Filled
