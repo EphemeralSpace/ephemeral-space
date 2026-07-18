@@ -1036,3 +1036,23 @@ Entries:
         more dynamic based on room size in the future
   id: 115
   time: '2026-07-16T16:25:55.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: >-
+        The marauder secret identity has been reworked. They now start with an
+        energy sword, stimulant medipens, and armor.
+    - type: Tweak
+      message: The syndicate bomb is no longer defusable.
+    - type: Tweak
+      message: >-
+        Subverters can have a chance for their pistol to be replaced with a
+        revolver or double-barrel shotgun.
+    - type: Tweak
+      message: Subverter and Demolitionist are now much more common.
+    - type: Tweak
+      message: >-
+        Machines can no longer repeatedly be sabotaged after the objective has
+        been completed.
+  id: 116
+  time: '2026-07-18T05:33:21.0000000+00:00'
