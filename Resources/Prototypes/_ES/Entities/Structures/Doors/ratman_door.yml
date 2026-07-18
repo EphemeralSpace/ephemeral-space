@@ -1,7 +1,7 @@
 - type: entity
   id: SolidSecretDoorRatman
   name: ratman's gate
-  description: Strange wiring and a biometric scanner are affixed on this seemingly solid slab of metal.
+  description: Strange wiring and a biometric scanner are affixed to this seemingly solid slab of metal.
   parent: BaseStructure
   components:
   - type: ESDestroyOnUnanchor
