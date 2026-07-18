@@ -8,7 +8,7 @@
   - type: KnockdownStatusEffect
   - type: ESAddStatusEffectOnRemovedStatusEffect
     statusEffect: ESStatusEffectHangover
-    duration: 130s
+    duration: 160s
 
 - type: entity
   parent: StatusEffectSlowdown
