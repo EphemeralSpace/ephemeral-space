@@ -1,4 +1,5 @@
 using Content.Shared._Offbrand.Wounds;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization;
@@ -19,6 +20,19 @@ public sealed partial class VitalsMonitorComponent : Component
     [DataField]
     public float? MaxScanRange = 2.5f;
 
+    // Audio stuff
+    [DataField, AutoNetworkedField]
+    public EntityUid? LoopingAudio;
+
+    [DataField, AutoNetworkedField]
+    public SoundSpecifier? CurrentAudio;
+
+    [DataField]
+    public SortedDictionary<float, SoundSpecifier> PulseAudioThresholds;
+
+    [DataField]
+    public SoundSpecifier AsystoleAudio;
+
     // Update data
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
     public TimeSpan NextUpdate = TimeSpan.Zero;
@@ -27,22 +41,22 @@ public sealed partial class VitalsMonitorComponent : Component
     public TimeSpan UpdateInterval = TimeSpan.FromSeconds(1);
 
     // Thresholds for sprites
-    [DataField(required: true)]
+    [DataField]
     public SortedDictionary<float, VitalsMonitorBrainActivity> BrainActivityThresholds;
 
-    [DataField(required: true)]
+    [DataField]
     public SortedDictionary<float, bool> BrainActivityWarningThresholds;
 
-    [DataField(required: true)]
+    [DataField]
     public SortedDictionary<float, VitalsMonitorBreathing> BreathingThresholds;
 
-    [DataField(required: true)]
+    [DataField]
     public SortedDictionary<float, bool> BreathingWarningThresholds;
 
-    [DataField(required: true)]
+    [DataField]
     public SortedDictionary<float, VitalsMonitorPulse> PulseThresholds;
 
-    [DataField(required: true)]
+    [DataField]
     public SortedDictionary<float, bool> PulseWarningThresholds;
 
     // Messages
