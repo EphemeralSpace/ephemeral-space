@@ -17,9 +17,9 @@ using Robust.Shared.Collections;
 
 namespace Content.Shared._ES.KillTracking;
 
-public sealed class ESKillTrackingSystem : EntitySystem
+public sealed partial class ESKillTrackingSystem : EntitySystem
 {
-    [Dependency] private readonly SharedCuffableSystem _cuffs = default!;
+    [Dependency] private SharedCuffableSystem _cuffs = default!;
 
     private const int SuicideSelfDamage = 200;
 
