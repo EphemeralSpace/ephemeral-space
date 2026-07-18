@@ -4,7 +4,7 @@ meta:
   engineVersion: 283.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/18/2026 03:29:40
+  time: 07/18/2026 04:23:18
   entityCount: 14813
 maps:
 - 3
@@ -1307,6 +1307,14 @@ entities:
             930: 17,-50
             931: 18,-50
             932: 19,-50
+        - node:
+            id: heart
+            color: '#FF0000FF'
+          decals:
+            1198: -14,-36
+            1199: -12,-41
+            1201: -15,-42
+            1202: -15,-39
         - node:
             id: heart
             color: '#FF0000FF'
