@@ -6,3 +6,6 @@
 
 - type: esSpawnRegion
   id: ESSingularityWorldTeleportInWorld
+
+- type: esSpawnRegion
+  id: ESRatmanDoor

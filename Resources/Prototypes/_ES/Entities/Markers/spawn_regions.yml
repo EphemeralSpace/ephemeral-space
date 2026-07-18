@@ -58,3 +58,21 @@
       shader: unshaded
   - type: ESSpawnRegionMarker
     area: ESSingularityWorldTeleportInWorld
+
+- type: entity
+  parent: ESBaseMarkerSpawnRegion
+  id: ESMarkerSpawnRegionRatmanDoor
+  name: Ratman Door Region
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#B69F3C"
+      shader: unshaded
+    - state: rat
+      shader: unshaded
+    - sprite: _ES/Markers/spawners.rsi
+      state: rat
+      shader: unshaded
+  - type: ESSpawnRegionMarker
+    area: ESRatmanDoor
