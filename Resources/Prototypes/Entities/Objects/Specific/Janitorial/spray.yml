@@ -6,7 +6,7 @@
   - type: Edible
     edible: Drink
     solution: drink
-    transferAmount: 10
+    transferAmount: 2
     useSound:
       path: /Audio/Effects/spray3.ogg
       params:
@@ -27,7 +27,7 @@
   - type: UseDelay
   - type: Spray
     solution: drink
-    transferAmount: 10
+    transferAmount: 2
     sprayVelocity: 2
     spraySound:
       path: /Audio/Effects/spray2.ogg
@@ -74,7 +74,7 @@
       drink:
         maxVol: 250
   - type: Spray
-    transferAmount: 15
+    transferAmount: 4
     sprayedPrototype: BigVapor
     sprayVelocity: 3
     sprayDistance: 4.5
