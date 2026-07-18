@@ -1,0 +1,7 @@
+- type: esTip
+  id: TraitorNukeTerminalPower
+  text: As a Traitor, don't forget that the nuclear authentication terminals require power! Things can quickly go from good to unwinnable if you aren't in a situation that allows you to easily retrieve portable generators to power them.
+
+- type: esTip
+  id: TraitorSabotagePower
+  text: As a Traitor, your ability to sabotage works on machines without power. This can be used to great effect during a power outage.

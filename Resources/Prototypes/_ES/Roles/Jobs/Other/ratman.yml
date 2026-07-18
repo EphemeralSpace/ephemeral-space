@@ -7,6 +7,9 @@
   icon: "ESJobIconRatman"
   spawnsOnArrivals: false
   overrideConsoleVisibility: false
+  tips:
+  - RatmanPrepTime
+  - RatmanNightvision
   access:
   - Maintenance
   special:
