@@ -1109,3 +1109,13 @@ Entries:
       message: temporarily removed vitals monitors
   id: 122
   time: '2026-07-18T21:30:05.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Adjusted wording on mercenary objective to be more clear.
+    - type: Tweak
+      message: Adjusted boards inside of tech storage.
+    - type: Fix
+      message: Fixed rapidly spinning when removing projectiles embedded into yourself.
+  id: 123
+  time: '2026-07-18T21:36:17.0000000+00:00'
