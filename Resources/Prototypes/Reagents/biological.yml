@@ -73,6 +73,7 @@
   desc: reagent-desc-vomit
   flavor: terrible
   color: "#87ab08"
+  puddleSpriteSet: Vomit
   physicalDesc: reagent-physical-desc-pungent
   slipData:
     requiredSlipSpeed: 4.0 #It's not as slippery as water

@@ -78,3 +78,44 @@
     state: blood-large-6
   - sprite: _ES/Effects/puddle.rsi
     state: blood-large-7
+
+- type: esPuddleSpriteSet
+  id: Vomit
+  recolor: false
+  smallSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-small-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-small-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-small-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-small-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-small-5
+  mediumSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-medium-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-medium-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-medium-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-medium-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-medium-5
+  largeSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-5
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-6
+  - sprite: _ES/Effects/puddle.rsi
+    state: vomit-large-7

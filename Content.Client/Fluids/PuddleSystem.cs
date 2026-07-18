@@ -52,14 +52,14 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         var baseColor = spriteSet.BaseColor;
 
-        if (args.AppearanceData.TryGetValue(PuddleVisuals.SolutionColor, out var colorObj))
+        if (spriteSet.Recolor && args.AppearanceData.TryGetValue(PuddleVisuals.SolutionColor, out var colorObj))
         {
             var color = (Color)colorObj;
             _sprite.SetColor((uid, args.Sprite), color * baseColor);
         }
         else
         {
-            _sprite.SetColor((uid, args.Sprite), args.Sprite.Color * baseColor);
+            _sprite.SetColor((uid, args.Sprite), baseColor);
         }
     }
 
