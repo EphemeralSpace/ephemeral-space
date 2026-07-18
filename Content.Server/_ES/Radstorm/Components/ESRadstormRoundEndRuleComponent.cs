@@ -100,7 +100,7 @@ public sealed partial class ESRadstormPhaseConfig
     public Color? MapLight;
 
     [DataField]
-    public Color? ForceStationLightColor;
+    public bool RemoveGridRoof;
 
     [DataField]
     public bool SpaceDangerous;
