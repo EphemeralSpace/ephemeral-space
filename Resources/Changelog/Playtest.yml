@@ -1119,3 +1119,33 @@ Entries:
       message: Fixed rapidly spinning when removing projectiles embedded into yourself.
   id: 123
   time: '2026-07-18T21:36:17.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: >-
+        You can no longer click tables to place items on them, use drop keybind
+        instead (accidentally doing this was really annoying with pickup time)
+    - type: Tweak
+      message: Being on fire is now much more dangerous
+    - type: Tweak
+      message: >-
+        Speed modifiers from damage / clothing / status effects etc across the
+        board have been made less oppressive
+    - type: Fix
+      message: Nuke is no longer unanchorable
+    - type: Tweak
+      message: Traitors now teleport away from the nuke 3 seconds before detonation
+    - type: Tweak
+      message: >-
+        Everyone now sees the nuke cinematic, not just people on the station
+        when it detonates
+    - type: Tweak
+      message: Vent clog event now targets every vent. Have fun
+    - type: Tweak
+      message: >-
+        Radstorm end phase now covers the entire station in green rather than
+        just changing light colors
+    - type: Tweak
+      message: Spray particles no longer spin
+  id: 124
+  time: '2026-07-18T21:56:34.0000000+00:00'
