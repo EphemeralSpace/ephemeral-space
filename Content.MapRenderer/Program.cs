@@ -245,7 +245,7 @@ namespace Content.MapRenderer
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Painting map {map} failed due to an internal exception:");
+                    Console.WriteLine($"::error::Painting map {map} failed due to an internal exception:");
                     Console.WriteLine(ex);
                     continue;
                 }
@@ -263,6 +263,7 @@ namespace Content.MapRenderer
                 catch (Exception e)
                 {
                     Console.WriteLine($"Exception while shutting down painter: {e}");
+                    Console.WriteLine("::error::Exception while shutting down painter");
                 }
             }
 
