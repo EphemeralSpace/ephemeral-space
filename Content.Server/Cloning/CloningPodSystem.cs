@@ -274,7 +274,7 @@ public sealed partial class CloningPodSystem : EntitySystem
         var i = 0;
         while (i < 1)
         {
-            tileMix?.AdjustMoles(Gas.Ammonia, 6f);
+            tileMix?.AdjustMoles(Gas.Miasma, 6f);
             bloodSolution.AddReagent(BloodId, 50);
             if (_robustRandom.Prob(0.2f))
                 i++;

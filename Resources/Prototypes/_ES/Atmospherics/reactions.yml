@@ -1,0 +1,7 @@
+- type: gasReaction
+  id: ESMiasmaDirt
+  priority: -3
+  minimumRequirements:
+    Miasma: 1.00
+  effects:
+  - !type:ESMiasmaDirtReaction {}

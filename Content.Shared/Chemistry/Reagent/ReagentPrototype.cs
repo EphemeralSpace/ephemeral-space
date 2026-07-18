@@ -2,6 +2,7 @@ using System.Collections.Frozen;
 using System.Linq;
 using Content.Shared.FixedPoint;
 using System.Text.Json.Serialization;
+using Content.Shared.Atmos;
 using Content.Shared.Body.Prototypes;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.EntityEffects;
@@ -159,6 +160,12 @@ namespace Content.Shared.Chemistry.Reagent
         /// </summary>
         [DataField]
         public bool WorksOnTheDead;
+
+        /// <summary>
+        /// Gases per unit per second released for exposed puddles.
+        /// </summary>
+        [DataField(serverOnly: true, customTypeSerializer: typeof(GasArraySerializer))]
+        public float[] PuddleGas = new float[Atmospherics.AdjustedNumberOfGases];
 
         [DataField]
         public FrozenDictionary<ProtoId<MetabolismGroupPrototype>, ReagentEffectsEntry>? Metabolisms;

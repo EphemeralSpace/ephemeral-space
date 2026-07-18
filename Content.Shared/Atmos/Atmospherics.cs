@@ -192,7 +192,7 @@ namespace Content.Shared.Atmos
             // todo why the fuck does it work like this and why is it not just on the prototype dude
             [Gas.Smoke] = Loc.GetString("gas-smoke-abbreviation"),
             // ES END
-            [Gas.Ammonia] = Loc.GetString("gas-ammonia-abbreviation"),
+            [Gas.Miasma] = Loc.GetString("gas-miasma-abbreviation"),
             [Gas.CarbonDioxide] = Loc.GetString("gas-carbon-dioxide-abbreviation"),
             [Gas.Frezon] = Loc.GetString("gas-frezon-abbreviation"),
             [Gas.Nitrogen] = Loc.GetString("gas-nitrogen-abbreviation"),
@@ -401,7 +401,7 @@ namespace Content.Shared.Atmos
         Plasma = 3,
         Tritium = 4,
         WaterVapor = 5,
-        Ammonia = 6,
+        Miasma = 6,
         NitrousOxide = 7,
         Frezon = 8
     }

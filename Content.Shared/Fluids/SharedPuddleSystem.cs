@@ -98,6 +98,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         _deletionQueue.Clear();
 
         TickEvaporation();
+        TickGas();
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)

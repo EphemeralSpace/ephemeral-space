@@ -68,19 +68,17 @@
   pricePerMole: 0
 
 - type: gas
-  id: Ammonia
-  name: gases-ammonia
+  id: Miasma
+  name: gases-miasma
   specificHeat: 20
   heatCapacityRatio: 1.4
   molarMass: 44
-  gasOverlaySprite: /Textures/Effects/atmospherics.rsi
+  gasOverlaySprite: /Textures/_ES/Effects/atmospherics.rsi
   gasOverlayState: miasma
-  # ES START
-  gasMolesVisible: 1
-  gasMolesVisibleMax: 5
-  # ES END
+  gasMolesVisible: 0.75
+  gasMolesVisibleMax: 3
   color: 56941E
-  reagent: Ammonia
+  reagent: Miasma
   pricePerMole: 0.15
 
 - type: gas

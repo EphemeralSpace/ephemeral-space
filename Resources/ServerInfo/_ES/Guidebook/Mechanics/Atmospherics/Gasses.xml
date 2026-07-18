@@ -69,9 +69,9 @@
 
   Burning it generates a lot of heat, as well as gas byproducts such as carbon dioxide and water vapor, depending on the efficiency of the burn.
 
-  ## Ammonia
+  ## Miasma
   <Box>
-    <GuideEntityEmbed Entity="AmmoniaCanister" Caption=""/>
+    <GuideEntityEmbed Entity="MiasmaCanister" Caption=""/>
   </Box>
   A gas produced by the decomposition of bodies.
 
