@@ -22,19 +22,6 @@
       0.85: VentricularTachycardia
     pulseWarningThresholds:
       0.6: true
-    pulseAudioThresholds:
-      0:
-        collection: VitalsPulseNormal
-        params:
-          volume: -7
-      0.4:
-        collection: VitalsPulseDouble
-        params:
-          volume: -7
-    asystoleAudio:
-      collection: VitalsAsystole
-      params:
-        volume: -7
   - type: Fixtures
     fixtures:
       fix1:

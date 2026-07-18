@@ -14,9 +14,7 @@ namespace Content.Shared._Offbrand.VitalsMonitor;
 public sealed partial class VitalsMonitorSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private INetManager _net = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedChatSystem _chat = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedWoundableHealthAnalyzerSystem _woundableHealthAnalyzer = default!;
@@ -104,17 +102,6 @@ public sealed partial class VitalsMonitorSystem : EntitySystem
         }
     }
 
-    // TODO: this should be defined in RT
-    private bool AudioEquals(SoundSpecifier? a, SoundSpecifier? b)
-    {
-        return (a, b) switch {
-            (SoundPathSpecifier pa, SoundPathSpecifier pb) => pa.Path == pb.Path,
-            (SoundCollectionSpecifier ca, SoundCollectionSpecifier cb) => ca.Collection == cb.Collection,
-            (null, null) => true,
-            _ => false,
-        };
-    }
-
     private void UpdateScanData(Entity<VitalsMonitorComponent> ent, EntityUid target)
     {
         WoundableHealthAnalyzerData? data = null;
@@ -168,14 +155,11 @@ public sealed partial class VitalsMonitorSystem : EntitySystem
         // Pulse
         if (scanned.HeartRate == 0)
         {
-            SetAudio(ent, ent.Comp.AsystoleAudio);
             _appearance.SetData(ent, VitalsMonitorVisuals.Pulse, VitalsMonitorPulse.Asystole);
             _appearance.SetData(ent, VitalsMonitorVisuals.PulseWarning, true);
         }
         else
         {
-            SetAudio(ent, ent.Comp.PulseAudioThresholds.HighestMatchClass(scanned.HeartStrain));
-
             if (ent.Comp.PulseThresholds.HighestMatch(scanned.HeartStrain) is { } pulse)
                 _appearance.SetData(ent, VitalsMonitorVisuals.Pulse, pulse);
 
@@ -194,7 +178,6 @@ public sealed partial class VitalsMonitorSystem : EntitySystem
         _appearance.SetData(ent, VitalsMonitorVisuals.BreathingWarning, false);
         _appearance.SetData(ent, VitalsMonitorVisuals.Pulse, VitalsMonitorPulse.Blank);
         _appearance.SetData(ent, VitalsMonitorVisuals.PulseWarning, false);
-        SetAudio(ent, null);
     }
 
     private void StopScanning(Entity<VitalsMonitorComponent> ent)
@@ -203,29 +186,5 @@ public sealed partial class VitalsMonitorSystem : EntitySystem
         Dirty(ent);
 
         ClearAppearance(ent);
-    }
-
-    private void SetAudio(Entity<VitalsMonitorComponent> ent, SoundSpecifier? audio)
-    {
-        if (_net.IsClient)
-            return;
-
-        if (AudioEquals(ent.Comp.CurrentAudio, audio))
-            return;
-
-        if (ent.Comp.LoopingAudio is { } looping)
-        {
-            ent.Comp.LoopingAudio = _audio.Stop(looping);
-            Dirty(ent);
-        }
-
-        ent.Comp.CurrentAudio = audio;
-        Dirty(ent);
-
-        if (audio is not { } incomingSound)
-            return;
-
-        ent.Comp.LoopingAudio = _audio.PlayPvs(audio, ent, audio.Params.WithLoop(true))?.Entity;
-        Dirty(ent);
     }
 }
