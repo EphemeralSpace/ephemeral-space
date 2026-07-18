@@ -11,7 +11,7 @@
         <GuideEntityEmbed Entity="ESWeaponPistol9mm"/>
         <GuideEntityEmbed Entity="ESMagazine9mm"/>
         <GuideEntityEmbed Entity="ESSubverterChip"/>
-        <GuideEntityEmbed Entity="ESSleepyPen"/>
+        <GuideEntityEmbed Entity="SleepyPen"/>
     </Box>
 
 ### Firearms
