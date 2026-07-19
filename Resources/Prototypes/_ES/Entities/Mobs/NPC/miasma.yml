@@ -69,3 +69,4 @@
     falloff: 40
     color: "#eec7ff"
     castShadows: false
+  - type: ESViewconeOccludable
