@@ -1175,3 +1175,9 @@ Entries:
       message: Removed some Tragedian themes
   id: 127
   time: '2026-07-19T22:05:18.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Crewmember identity much less common
+  id: 128
+  time: '2026-07-19T22:09:41.0000000+00:00'
