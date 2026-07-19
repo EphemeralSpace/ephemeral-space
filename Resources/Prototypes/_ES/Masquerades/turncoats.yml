@@ -2,7 +2,7 @@
   id: Turncoats
   name: Turncoats
   description: is a all about making sure your allies are actually your allies. You know what they say, keep your friends close...
-  weight: 0.5
+  weight: 0.2
   minPlayers: 8
   gameRules: []
   masquerade:
