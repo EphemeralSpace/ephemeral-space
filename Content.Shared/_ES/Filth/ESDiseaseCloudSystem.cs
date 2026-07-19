@@ -4,6 +4,7 @@ using Content.Shared.Examine;
 using Content.Shared.Inventory;
 using Content.Shared.Medical;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
@@ -17,11 +18,12 @@ public sealed partial class ESDiseaseCloudSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private VomitSystem _vomit = default!;
 
     // TODO: make this the disease susceptible component once we support that
-    [Dependency] private EntityQuery<MobStateComponent> _mobState;
+    [Dependency] private EntityQuery<MobStateComponent> _mobStateQuery;
 
     private readonly List<string> _protectionSlots = new() { "head", "outerClothing" };
 
@@ -37,7 +39,7 @@ public sealed partial class ESDiseaseCloudSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        if (!args.OtherFixture.Hard || !_mobState.HasComp(args.OtherEntity))
+        if (!args.OtherFixture.Hard || !_mobStateQuery.TryComp(args.OtherEntity, out var mob) || !_mobState.IsAlive(args.OtherEntity, mob))
             return;
 
         if (TerminatingOrDeleted(ent) || EntityManager.IsQueuedForDeletion(ent))
@@ -46,7 +48,7 @@ public sealed partial class ESDiseaseCloudSystem : EntitySystem
         if (!HasProtection(args.OtherEntity))
         {
             _damageable.TryChangeDamage(args.OtherEntity, ent.Comp.DiseaseDamage, true);
-            _vomit.Vomit(args.OtherEntity, hungerAdded: -2);
+            _vomit.Vomit(args.OtherEntity);
             _popup.PopupEntity(Loc.GetString("es-disease-cloud-hit", ("entity", args.OtherEntity)), args.OtherEntity, PopupType.MediumCaution);
         }
         else

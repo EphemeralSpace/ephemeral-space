@@ -3,7 +3,6 @@ using Content.Server._ES.SpawnRegion;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Station.Systems;
-using Content.Shared._ES.Core.Timer;
 using Content.Shared.Atmos;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking.Components;
@@ -21,28 +20,9 @@ public sealed partial class ESMiasmaGeneratorRule : GameRuleSystem<ESMiasmaGener
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private EntityTableSystem _entityTable = default!;
-    [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private MapSystem _map = default!;
     [Dependency] private ESSpawnRegionSystem _spawnRegion = default!;
     [Dependency] private StationSystem _station = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<ESMiasmaGeneratorRuleComponent, ESMiasmaSpawnTimerEvent>(OnSpawnTimer);
-    }
-
-    private void OnSpawnTimer(Entity<ESMiasmaGeneratorRuleComponent> ent, ref ESMiasmaSpawnTimerEvent args)
-    {
-        if (!args.Coordinates.IsValid(EntityManager))
-            return;
-
-        foreach (var spawn in _entityTable.GetSpawns(ent.Comp.SpawnTable))
-        {
-            SpawnAtPosition(spawn, args.Coordinates);
-        }
-    }
 
     protected override void Added(EntityUid uid,
         ESMiasmaGeneratorRuleComponent component,
@@ -67,13 +47,14 @@ public sealed partial class ESMiasmaGeneratorRule : GameRuleSystem<ESMiasmaGener
                 if (!_spawnRegion.TryGetRandomCoords(
                         validCoords,
                         out var coords,
+                        minPlayerDistance: 4f,
                         checkPlayerLOS: false))
                     break;
 
-                _entityTimer.SpawnTimer(
-                    uid,
-                    _random.Next(TimeSpan.Zero, component.UpdateRate),
-                    new ESMiasmaSpawnTimerEvent(coords.Value));
+                foreach (var spawn in _entityTable.GetSpawns(component.SpawnTable))
+                {
+                    SpawnAtPosition(spawn, coords.Value);
+                }
             }
         }
     }
