@@ -16,7 +16,7 @@
       11: ["#Firmsafes"]
       12: ["#SemiTraitor"] # 2* traitors, 1 parasite.
       14: ["#AllParasites"] # 2* traitors, 2 parasites.
-      15: ["#Targeters"]
+      15: ["Secretary"]
       16: ["#AllCrew", "-#SemiTraitor", "Subverter"] # 3* traitors, 2 parasites.
       17: ["VIP"]
       19: ["#SemiTraitor"] # 3* traitors, 2 parasites.
