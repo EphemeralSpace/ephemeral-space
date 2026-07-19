@@ -13,15 +13,15 @@
       7: ["#AllCrew"]
       8: ["#AllCrew"]
       10: ["#SemiTraitor"]
+      11: ["#AllCrew"]
       13: ["#Traitors"]  # 3 traitors.
-      14: ["#AllCrew"]
-      15: ["#AllCrew"]
-      16: ["Avenger"] # 3 traitors.
+      15: ["#Targeters"]
+      16: ["#Antagonistic"] # 3 traitors.
       17: ["#SemiTraitor"]
-      18: ["ArmsDealer"]
+      18: ["#Gunners"] # 3 traitors.
       19: ["Marauder"] # 4 traitors.
       20: ["#AllCrew"]
-      21: ["#AllCrew", "-Marauder", "#PowerTraitors"] # 4 traitors.
+      21: ["#AllCrew", "-#Traitors", "#PowerTraitors"] # 4 traitors.
       22: ["#AllCrew"]
       24: ["#Gunners"] # 4 traitors.
       25: ["Marauder"] # 5 traitors.
