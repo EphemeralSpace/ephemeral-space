@@ -1165,3 +1165,13 @@ Entries:
       message: surgery beds can be powered once again.
   id: 126
   time: '2026-07-19T22:04:31.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Oculine has a new recipe and starts in the smartfridge
+    - type: Tweak
+      message: Baseball bat is now 2x4
+    - type: Remove
+      message: Removed some Tragedian themes
+  id: 127
+  time: '2026-07-19T22:05:18.0000000+00:00'
