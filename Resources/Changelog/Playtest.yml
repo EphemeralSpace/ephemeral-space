@@ -1159,3 +1159,9 @@ Entries:
       message: Resisting out of cuffs now has a much longer delay between attempts
   id: 125
   time: '2026-07-18T22:07:22.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Fix
+      message: surgery beds can be powered once again.
+  id: 126
+  time: '2026-07-19T22:04:31.0000000+00:00'
