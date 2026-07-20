@@ -70,7 +70,6 @@ namespace Content.Server.Communications
 
         /// <summary>
         /// Hides the sender identity (If they even have one).
-        /// In practise this removes the "Sent by ScugMcWawa (Slugcat Captain)" at the bottom of the announcement.
         /// </summary>
         [DataField]
         public bool AnnounceSentBy = true;
