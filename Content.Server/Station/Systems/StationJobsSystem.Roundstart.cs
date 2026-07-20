@@ -309,7 +309,18 @@ public sealed partial class StationJobsSystem
             foreach (var station in givenStations)
             {
                 if (stationJobs[station].Count == 0)
-                    continue;
+                {
+                    var overflows = GetOverflowJobs(station).ToList();
+
+                    // Stations with no overflow slots should simply get skipped over.
+                    if (overflows.Count == 0)
+                        continue;
+
+                    // If the overflow exists, put them in as it.
+                    assignedJobs.Add(player, (_random.Pick(overflows), station));
+                    break;
+                }
+
                 var job = _random.PickAndTake(stationJobs[station]);
 
                 // If the overflow exists, put them in as it.
