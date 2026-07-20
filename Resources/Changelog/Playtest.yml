@@ -1181,3 +1181,9 @@ Entries:
       message: Crewmember identity much less common
   id: 128
   time: '2026-07-19T22:09:41.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Add
+      message: New Subverter-themed masquarade
+  id: 129
+  time: '2026-07-20T06:54:08.0000000+00:00'
