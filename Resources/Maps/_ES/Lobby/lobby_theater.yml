@@ -6842,7 +6842,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,9.5
       parent: 2
-- proto: ESInstrumentPiano
+- proto: ESInstrumentPianoLobby
   entities:
   - uid: 495
     components:
