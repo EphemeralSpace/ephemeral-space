@@ -1187,3 +1187,21 @@ Entries:
       message: New Subverter-themed masquarade
   id: 129
   time: '2026-07-20T06:54:08.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: The piano in the lobby now has DAW capabilities
+    - type: Tweak
+      message: >-
+        Fully-random masquerades no longer roll (the current ones are already
+        plenty random)
+    - type: Fix
+      message: Syndiebomb can now be armed again
+    - type: Fix
+      message: Buttons are no longer breakable
+    - type: Fix
+      message: >-
+        Avenger objective now counts as complete (but still 50% progress) even
+        if the target is in crit
+  id: 130
+  time: '2026-07-20T22:23:03.0000000+00:00'
