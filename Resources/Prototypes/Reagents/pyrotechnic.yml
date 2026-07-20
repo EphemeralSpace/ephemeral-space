@@ -20,9 +20,10 @@
   desc: reagent-desc-thermite
   physicalDesc: reagent-physical-desc-grainy
   flavor: bitter
-  color: "#757245"
+  color: "#75724580"
   boilingPoint: 2977.0 # Aluminum oxide
   meltingPoint: 2030.0
+  puddleSpriteSet: Acid
   tileReactions:
   - !type:FlammableTileReaction
     temperatureMultiplier: 2
@@ -43,6 +44,7 @@
   physicalDesc: reagent-physical-desc-soapy
   flavor: bitter
   color: "#FA00AF"
+  puddleSpriteSet: Acid
   tileReactions:
   - !type:FlammableTileReaction
     temperatureMultiplier: 5
@@ -71,7 +73,8 @@
   desc: reagent-desc-phlogiston
   physicalDesc: reagent-physical-desc-burning
   flavor: bitter
-  color: "#D4872A"
+  color: "#D4872A80"
+  puddleSpriteSet: Acid
   metabolisms:
     Poison:
       effects:
@@ -101,6 +104,7 @@
   physicalDesc: reagent-physical-desc-blazing
   flavor: bitter
   color: "#FFC8C8"
+  puddleSpriteSet: Acid
   tileReactions:
   - !type:PryTileReaction
   metabolisms:
@@ -153,6 +157,7 @@
     requiredSlipSpeed: 3.5
   flavor: bitter
   flavorMinimum: 0.01
+  puddleSpriteSet: Shiny
   color: "#a76b1c"
   recognizable: true
   boilingPoint: -84.7 # Acetylene. Close enough.
@@ -189,5 +194,6 @@
   physicalDesc: reagent-physical-desc-opaque
   flavor: bitter
   color: "#9e6b38"
+  puddleSpriteSet: Shiny
   boilingPoint: 190.0 # Perfluorooctanoic Acid.
   meltingPoint: 45.0

@@ -6,6 +6,7 @@
   desc: reagent-desc-sugar
   physicalDesc: reagent-physical-desc-sweet
   flavor: sweet
+  puddleSpriteSet: Splotchy
   color: white
   meltingPoint: 146.0
   plantMetabolism:
@@ -21,3 +22,13 @@
   metamorphicMaxFillLevels: 7
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+
+- type: reagent
+  id: SmashedPie
+  name: reagent-name-smashed-pie
+  group: Foods
+  desc: reagent-desc-smashed-pie
+  physicalDesc: reagent-physical-desc-funny
+  flavor: sweet
+  puddleSpriteSet: Pie
+  recognizable: true

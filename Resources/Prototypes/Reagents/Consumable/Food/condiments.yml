@@ -5,6 +5,7 @@
   desc: reagent-desc-astrotame
   physicalDesc: reagent-physical-desc-sugary
   flavor: sweet
+  puddleSpriteSet: Blood
   color: aquamarine
   recognizable: true
 
@@ -15,6 +16,7 @@
   desc: reagent-desc-bbq-sauce
   physicalDesc: reagent-physical-desc-gloopy
   flavor: sweet
+  puddleSpriteSet: Blood
   color: darkred
   recognizable: true
 
@@ -34,6 +36,7 @@
   desc: reagent-desc-cornoil
   physicalDesc: reagent-physical-desc-oily
   flavor: oily
+  puddleSpriteSet: Shiny
   color: yellow
   recognizable: true
 
@@ -44,6 +47,7 @@
   desc: reagent-desc-horseradish-sauce
   physicalDesc: reagent-physical-desc-overpowering
   flavor: spicy
+  puddleSpriteSet: Splotchy
   color: gray
   recognizable: true
 
@@ -54,6 +58,7 @@
   desc: reagent-desc-hotsauce
   physicalDesc: reagent-physical-desc-spicy
   flavor: spicy
+  puddleSpriteSet: Blood
   color: red
   recognizable: true
 
@@ -64,6 +69,7 @@
   desc: reagent-desc-ketchup
   physicalDesc: reagent-physical-desc-tangy
   flavor: tomato
+  puddleSpriteSet: Blood
   color: red
   recognizable: true
 
@@ -74,6 +80,7 @@
   desc: reagent-desc-ketchunaise
   physicalDesc: reagent-physical-desc-saucey
   flavor: ketchunaise
+  puddleSpriteSet: Blood
   color: "#fba399"
   recognizable: true
 
@@ -94,6 +101,7 @@
   desc: reagent-desc-mayo
   physicalDesc: reagent-physical-desc-thick
   flavor: mayonnaise
+  puddleSpriteSet: Splotchy
   color: "#f9f5e5"
   recognizable: true
 
@@ -104,6 +112,7 @@
   desc: reagent-desc-mustard
   physicalDesc: reagent-physical-desc-thick
   flavor: mustard
+  puddleSpriteSet: Splotchy
   color: "#ffdb58"
   recognizable: true
 
@@ -114,6 +123,7 @@
   desc: reagent-desc-vinaigrette
   physicalDesc: reagent-physical-desc-sour
   flavor: sour
+  puddleSpriteSet: Shiny
   color: "#efdaae"
   recognizable: true
 
@@ -124,6 +134,7 @@
   desc: reagent-desc-soysauce
   physicalDesc: reagent-physical-desc-salty
   flavor: salty
+  puddleSpriteSet: Shiny
   color: saddlebrown
   recognizable: true
   metabolisms:
@@ -139,6 +150,7 @@
   desc: reagent-desc-table-salt
   physicalDesc: reagent-physical-desc-grainy
   flavor: salty
+  puddleSpriteSet: Splotchy
   color: "#cfd1d0"
   recognizable: true
   boilingPoint: 1465.0
@@ -169,6 +181,7 @@
   group: Foods
   desc: reagent-desc-syrup
   flavor: sweet
+  puddleSpriteSet: Shiny
   color: "#fb7125"
   recognizable: true
   physicalDesc: reagent-physical-desc-sticky

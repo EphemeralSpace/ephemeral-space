@@ -7,6 +7,7 @@
   desc: reagent-desc-absinthe
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: absinthe
+  puddleSpriteSet: Shiny
   color: "#33EE00"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/absintheglass.rsi
@@ -52,6 +53,7 @@
   desc: reagent-desc-ale
   physicalDesc: reagent-physical-desc-bubbly
   flavor: ale
+  puddleSpriteSet: Shiny
   color: "#663100"
   recognizable: true
   metamorphicSprite:
@@ -86,6 +88,7 @@
   desc: reagent-desc-blue-curacao
   physicalDesc: reagent-physical-desc-aromatic
   flavor: bluecuracao
+  puddleSpriteSet: Shiny
   color: "#0099FF"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/curacaoglass.rsi
@@ -109,6 +112,7 @@
   desc: reagent-desc-cognac
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: cognac
+  puddleSpriteSet: Shiny
   color: "#AB3C05"
   recognizable: true
   metamorphicSprite:
@@ -133,6 +137,7 @@
   desc: reagent-desc-dead-rum
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: rum
+  puddleSpriteSet: Shiny
   color: "#664300"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/rumglass.rsi
@@ -156,6 +161,7 @@
   desc: reagent-desc-ethanol
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: alcohol
+  puddleSpriteSet: Shiny
   color: "#b05b3c"
   boilingPoint: 78.2
   meltingPoint: -114.1
@@ -232,6 +238,7 @@
   desc: reagent-desc-gin
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: gin
+  puddleSpriteSet: Shiny
   color: "#664300"
   recognizable: true
   metamorphicSprite:
@@ -271,6 +278,7 @@
   desc: reagent-desc-melon-liquor
   physicalDesc: reagent-physical-desc-sweet
   flavor: watermelon
+  puddleSpriteSet: Shiny
   color: "#00FF33"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/emeraldglass.rsi
@@ -286,6 +294,7 @@
   desc: reagent-desc-n-t-cahors
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: bitter
+  puddleSpriteSet: Shiny
   color: "#7E4043"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/wineglass.rsi
@@ -301,6 +310,7 @@
   desc: reagent-desc-poison-wine
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: bitter
+  puddleSpriteSet: Shiny
   color: "#990066"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/pwineglass.rsi
@@ -330,6 +340,7 @@
   desc: reagent-desc-rum
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: rum
+  puddleSpriteSet: Shiny
   color: "#f09f42"
   recognizable: true
   metamorphicSprite:
@@ -354,6 +365,7 @@
   desc: reagent-desc-sake
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: sake
+  puddleSpriteSet: Shiny
   color: "#DDDDDD"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/sakeglass.rsi
@@ -377,6 +389,7 @@
   desc: reagent-desc-tequila
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: tequila
+  puddleSpriteSet: Shiny
   color: "#d7d1d155"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/tequillaglass.rsi
@@ -400,6 +413,7 @@
   desc: reagent-desc-vermouth
   physicalDesc: reagent-physical-desc-aromatic
   flavor: vermouth
+  puddleSpriteSet: Shiny
   color: "#91FF91"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/vermouthglass.rsi
@@ -415,6 +429,7 @@
   desc: reagent-desc-vodka
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: vodka
+  puddleSpriteSet: Shiny
   color: "#d1d1d155"
   recognizable: true
   metamorphicSprite:
@@ -439,6 +454,7 @@
   desc: reagent-desc-whiskey
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: whiskey
+  puddleSpriteSet: Shiny
   color: "#ee7732"
   recognizable: true
   metamorphicSprite:
@@ -463,6 +479,7 @@
   desc: reagent-desc-wine
   physicalDesc: reagent-physical-desc-translucent
   flavor: shittywine
+  puddleSpriteSet: Shiny
   color: "#7E4043"
   recognizable: true
   metamorphicSprite:
@@ -479,6 +496,7 @@
   desc: reagent-desc-champagne
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: champagne
+  puddleSpriteSet: Shiny
   color: "#FCFCEE"
   recognizable: true
   metamorphicSprite:
@@ -506,6 +524,7 @@
   desc: reagent-desc-acid-spit
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: acidspit
+  puddleSpriteSet: Shiny
   color: "#365000"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/acidspitglass.rsi
@@ -536,6 +555,7 @@
   desc: reagent-desc-allies-cocktail
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: alliescocktail
+  puddleSpriteSet: Shiny
   color: "#00664d"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/alliescocktail.rsi
@@ -551,6 +571,7 @@
   desc: reagent-desc-aloe
   physicalDesc: reagent-physical-desc-aromatic
   flavor: aloe
+  puddleSpriteSet: Shiny
   color: "#192c00"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/aloe.rsi
@@ -566,6 +587,7 @@
   desc: reagent-desc-amasec
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: amasec
+  puddleSpriteSet: Shiny
   color: "#124da7"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/amasecglass.rsi
@@ -581,6 +603,7 @@
   desc: reagent-desc-andalusia
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: andalusia
+  puddleSpriteSet: Shiny
   color: "#665700"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/andalusia.rsi
@@ -599,6 +622,7 @@
   desc: reagent-desc-antifreeze
   physicalDesc: reagent-physical-desc-translucent
   flavor: antifreeze
+  puddleSpriteSet: Shiny
   color: "#ff7d63"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/antifreeze.rsi
@@ -622,6 +646,7 @@
   desc: reagent-desc-atomic-bomb
   physicalDesc: reagent-physical-desc-cloudy
   flavor: atomicbomb
+  puddleSpriteSet: Shiny
   color: "#666300"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/atomicbombglass.rsi
@@ -648,6 +673,7 @@
   desc: reagent-desc-b52
   physicalDesc: reagent-physical-desc-bubbly
   flavor: b52
+  puddleSpriteSet: Shiny
   color: "#664300"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/b52glass.rsi
@@ -716,6 +742,7 @@
   desc: reagent-desc-beepsky-smash
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: beepsky
+  puddleSpriteSet: Shiny
   color: "#664300"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/beepskysmashglass.rsi
@@ -740,6 +767,7 @@
   desc: reagent-desc-black-russian
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: blackrussian
+  puddleSpriteSet: Shiny
   color: "#360000"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/blackrussianglass.rsi
@@ -763,6 +791,7 @@
   desc: reagent-desc-bloody-mary
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: bloodymary
+  puddleSpriteSet: Shiny
   color: "#df6a50"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/bloodymaryglass.rsi
@@ -778,6 +807,7 @@
   desc: reagent-desc-booger
   physicalDesc: reagent-physical-desc-slimy
   flavor: booger
+  puddleSpriteSet: Shiny
   color: "#99ff00"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/booger.rsi
@@ -793,6 +823,7 @@
   desc: reagent-desc-brave-bull
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: bravebull
+  puddleSpriteSet: Shiny
   color: "#664300"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/bravebullglass.rsi
@@ -816,6 +847,7 @@
   desc: reagent-desc-bronx
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: bronx
+  puddleSpriteSet: Shiny
   color: "#d68829"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/bronx.rsi
@@ -831,6 +863,7 @@
   desc: reagent-desc-coconut-rum
   physicalDesc: reagent-physical-desc-milky
   flavor: coconutrum
+  puddleSpriteSet: Shiny
   color: "#cccbc8"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/coconutrum.rsi
@@ -854,6 +887,7 @@
   desc: reagent-desc-cosmopolitan
   physicalDesc: reagent-physical-desc-citric
   flavor: cosmopolitan
+  puddleSpriteSet: Shiny
   color: "#f73030"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/cosmopolitan.rsi
@@ -892,6 +926,7 @@
   desc: reagent-desc-cuba-libre
   physicalDesc: reagent-physical-desc-bubbly
   flavor: cubalibre
+  puddleSpriteSet: Shiny
   color: "#3E1B00"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/cubalibreglass.rsi
@@ -931,6 +966,7 @@
   desc: reagent-desc-demons-blood
   physicalDesc: reagent-physical-desc-ferrous
   flavor: demonsblood
+  puddleSpriteSet: Blood
   color: "#a70000"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/demonsblood.rsi
@@ -947,6 +983,7 @@
   desc: reagent-desc-devils-kiss
   physicalDesc: reagent-physical-desc-ferrous
   flavor: devilskiss
+  puddleSpriteSet: Blood
   color: "#ff0033"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/devilskiss.rsi
@@ -962,6 +999,7 @@
   desc: reagent-desc-doctors-delight
   physicalDesc: reagent-physical-desc-soothing
   flavor: medicine
+  puddleSpriteSet: Shiny
   color: "#FF8CFF"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/doctorsdelightglass.rsi
@@ -992,6 +1030,7 @@
   desc: reagent-desc-driest-martini
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: driestmartini
+  puddleSpriteSet: Shiny
   color: "#2E6671"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/driestmartiniglass.rsi
@@ -1061,6 +1100,7 @@
   desc: reagent-desc-gargle-blaster
   physicalDesc: reagent-physical-desc-volatile
   flavor: gargleblaster
+  puddleSpriteSet: Shiny
   color: "#9cc8b4"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/gargleblasterglass.rsi
@@ -1132,6 +1172,7 @@
   desc: reagent-desc-gildlager
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: gildlager
+  puddleSpriteSet: Shiny
   color: "#FFFF91"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/gildlagerglass.rsi
@@ -1155,6 +1196,7 @@
   desc: reagent-desc-grog
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: grog
+  puddleSpriteSet: Shiny
   color: "#e3e77b"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/beerstein.rsi
@@ -1170,6 +1212,7 @@
   desc: reagent-desc-hippies-delight
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: hippiesdelight
+  puddleSpriteSet: Shiny
   color: "#6eaa0c"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/hippiesdelightglass.rsi
@@ -1194,6 +1237,7 @@
   desc: reagent-desc-iced-beer
   physicalDesc: reagent-physical-desc-bubbly
   flavor: icedbeer
+  puddleSpriteSet: Shiny
   color: "#664300"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/iced_beerglass.rsi
@@ -1210,6 +1254,7 @@
   desc: reagent-desc-irish-slammer
   physicalDesc: reagent-physical-desc-bubbly
   flavor: irishslammer
+  puddleSpriteSet: Shiny
   color: "#2E6671"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/irishslammer.rsi
@@ -1309,6 +1354,7 @@
   desc: reagent-desc-kalimotxo
   physicalDesc: reagent-physical-desc-bubbly
   flavor: kalimotxo
+  puddleSpriteSet: Shiny
   color: "#360606"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/kalimotxo.rsi
@@ -1324,6 +1370,7 @@
   desc: reagent-desc-long-island-iced-tea
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: longisland
+  puddleSpriteSet: Shiny
   color: "#664300"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/longislandicedteaglass.rsi
@@ -1393,6 +1440,7 @@
   desc: reagent-desc-margarita
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: margarita
+  puddleSpriteSet: Shiny
   color: "#8CFF8C"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/margaritaglass.rsi
@@ -1408,6 +1456,7 @@
   desc: reagent-desc-martini
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: martini
+  puddleSpriteSet: Shiny
   color: "#664300"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/martiniglass.rsi
@@ -1431,6 +1480,7 @@
   desc: reagent-desc-mead
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: mead
+  puddleSpriteSet: Shiny
   color: "#664300"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/beerstein.rsi
@@ -1447,6 +1497,7 @@
   desc: reagent-desc-mojito
   physicalDesc: reagent-physical-desc-refreshing
   flavor: mojito
+  puddleSpriteSet: Shiny
   color: "#3ea99888"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/mojito.rsi
@@ -1478,6 +1529,7 @@
   desc: reagent-desc-moonshine
   physicalDesc: reagent-physical-desc-pungent
   flavor: moonshine
+  puddleSpriteSet: Shiny
   color: "#d1d7d155"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/moonshineglass.rsi
@@ -1501,6 +1553,7 @@
   desc: reagent-desc-neurotoxin
   physicalDesc: reagent-physical-desc-pungent
   flavor: neurotoxin
+  puddleSpriteSet: Shiny
   color: "#2E2E61"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/neurotoxinglass.rsi
@@ -1530,6 +1583,7 @@
   desc: reagent-desc-painkiller
   physicalDesc: reagent-physical-desc-refreshing
   flavor: painkiller
+  puddleSpriteSet: Shiny
   color: "#e6cb47"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/painkiller.rsi
@@ -1553,6 +1607,7 @@
   desc: reagent-desc-patron
   physicalDesc: reagent-physical-desc-metallic
   flavor: patron
+  puddleSpriteSet: Shiny
   color: "#585840"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/patronglass.rsi
@@ -1576,6 +1631,7 @@
   desc: reagent-desc-red-mead
   physicalDesc: reagent-physical-desc-ferrous
   flavor: redmead
+  puddleSpriteSet: Blood
   color: "#bc5550"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/red_meadglass.rsi
@@ -1637,6 +1693,7 @@
   desc: reagent-desc-sbiten
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: sbiten
+  puddleSpriteSet: Shiny
   color: "#004166"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/sbitenglass.rsi
@@ -1701,6 +1758,7 @@
   desc: reagent-desc-silencer
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: nothing
+  puddleSpriteSet: Shiny
   color: "#878787"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/silencerglass.rsi
@@ -1882,6 +1940,7 @@
   desc: reagent-desc-vodka-martini
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: vodkamartini
+  puddleSpriteSet: Shiny
   color: "#004666"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/martiniglass.rsi
@@ -1905,6 +1964,7 @@
   desc: reagent-desc-vodka-tonic
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: vodkatonic
+  puddleSpriteSet: Shiny
   color: "#0064C8"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/vodkatonicglass.rsi
@@ -1929,6 +1989,7 @@
   desc: reagent-desc-whiskey-cola
   physicalDesc: reagent-physical-desc-bubbly
   flavor: whiskeycola
+  puddleSpriteSet: Shiny
   color: "#3E1B00"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/whiskeycolaglass.rsi
@@ -1995,6 +2056,7 @@
   desc: reagent-desc-white-russian
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: whiterussian
+  puddleSpriteSet: Shiny
   color: "#A68340"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/whiterussianglass.rsi
@@ -2018,6 +2080,7 @@
   desc: reagent-desc-vodka-red-bool
   physicalDesc: reagent-physical-desc-bubbly
   flavor: vodkaredbool
+  puddleSpriteSet: Shiny
   color: "#c4c27655"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/ginvodkaglass.rsi
@@ -2080,6 +2143,7 @@
   desc: reagent-desc-irish-bool
   physicalDesc: reagent-physical-desc-bubbly
   flavor: irishbool
+  puddleSpriteSet: Shiny
   color: "#71672e99"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/beerglass.rsi
@@ -2142,6 +2206,7 @@
   desc: reagent-desc-watermelon-wakeup
   physicalDesc: reagent-physical-desc-sweet
   flavor: watermelonwakeup
+  puddleSpriteSet: Shiny
   color: "#d49dca"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/champagneglass.rsi
@@ -2173,6 +2238,7 @@
   desc: reagent-desc-rubberneck
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: rubberneck
+  puddleSpriteSet: Shiny
   color: "#f0d74a"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/rubberneck.rsi
@@ -2227,6 +2293,7 @@
   desc: reagent-desc-caipirinha
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: caipirinha
+  puddleSpriteSet: Shiny
   color: "#E6EE9C"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/caipirinha.rsi
@@ -2250,6 +2317,7 @@
   desc: reagent-desc-moscow-mule
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: moscowmule
+  puddleSpriteSet: Shiny
   color: "#CECBAD"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/moscowmule.rsi
@@ -2276,6 +2344,7 @@
   desc: reagent-desc-mimeosa
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: mimeosa
+  puddleSpriteSet: Shiny
   color: "#939393"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/mimeosa.rsi
@@ -2302,6 +2371,7 @@
   desc: reagent-desc-mimosa
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: mimosa
+  puddleSpriteSet: Shiny
   color: "#FFCA48"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/mimosa.rsi
@@ -2325,6 +2395,7 @@
   desc: reagent-desc-mayojito
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: mayojito
+  puddleSpriteSet: Shiny
   color: "#6FBE44"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/mayojito.rsi
@@ -2381,6 +2452,7 @@
   desc: reagent-desc-empress-75
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: empress75
+  puddleSpriteSet: Shiny
   color: "#900296"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/empress75.rsi
@@ -2404,6 +2476,7 @@
   desc: reagent-desc-espresso-martini
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: espressomartini
+  puddleSpriteSet: Shiny
   color: "#170a0c"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/espressomartini.rsi
@@ -2427,6 +2500,7 @@
   desc: reagent-desc-daiquiri
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: daiquiri
+  puddleSpriteSet: Shiny
   color: "#DAC865"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/daiquiri.rsi
@@ -2450,6 +2524,7 @@
   desc: reagent-desc-the-sun-also-rises
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: thesunalsorises
+  puddleSpriteSet: Shiny
   color: "#DCE2DE"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/thesunalsorises.rsi
@@ -2473,6 +2548,7 @@
   desc: reagent-desc-whiskey-sour
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: whiskeysour
+  puddleSpriteSet: Shiny
   color: "#8B7941"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/whiskeysour.rsi

@@ -1,6 +1,7 @@
+# Common
 - type: esPuddleSpriteSet
   id: Default # Generic sprite set for 99% of fluids
-  baseColor: "#FFFFFF80"
+  baseColor: "#FFFFFF"
   smallSprites:
   - sprite: _ES/Effects/puddle.rsi
     state: small-1
@@ -52,6 +53,46 @@
     state: blood-small-4
   - sprite: _ES/Effects/puddle.rsi
     state: blood-small-5
+  mediumSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-medium-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-medium-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-medium-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-medium-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-medium-5
+  largeSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-5
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-6
+  - sprite: _ES/Effects/puddle.rsi
+    state: blood-large-7
+
+- type: esPuddleSpriteSet
+  id: Splotchy # for powdery stuff like ash, salt, etc. or things that are kinda messy
+  smallSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: splotchy-small-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: splotchy-small-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: splotchy-small-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: splotchy-small-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: splotchy-small-5
   mediumSprites:
   - sprite: _ES/Effects/puddle.rsi
     state: blood-medium-1
@@ -159,3 +200,143 @@
     state: water-large-6
   - sprite: _ES/Effects/puddle.rsi
     state: water-large-7
+
+- type: esPuddleSpriteSet
+  id: Shiny # like a less transparent version of water
+  smallSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-small-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-small-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-small-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-small-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-small-5
+  mediumSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-medium-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-medium-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-medium-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-medium-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-medium-5
+  largeSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-large-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-large-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-large-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-large-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-large-5
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-large-6
+  - sprite: _ES/Effects/puddle.rsi
+    state: shiny-large-7
+
+- type: esPuddleSpriteSet
+  id: Acid # corrosive and irritating-looking
+  smallSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-small-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-small-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-small-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-small-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-small-5
+  mediumSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-medium-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-medium-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-medium-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-medium-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-medium-5
+  largeSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-large-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-large-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-large-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-large-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-large-5
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-large-6
+  - sprite: _ES/Effects/puddle.rsi
+    state: acid-large-7
+
+# More special-case stuff
+
+- type: esPuddleSpriteSet
+  id: Pie
+  recolor: false
+  smallSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: pie-small
+  mediumSprites: #pies dont have enough units in them to really ever show the large state, so why not vary it up a bit
+  - sprite: _ES/Effects/puddle.rsi
+    state: pie-medium
+  - sprite: _ES/Effects/puddle.rsi
+    state: pie-large
+  largeSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: pie-large
+
+- type: esPuddleSpriteSet
+  id: Flour
+  smallSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: flour
+  mediumSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: flour
+  largeSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: flour
+
+- type: esPuddleSpriteSet
+  id: Egg
+  recolor: false
+  smallSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: egg-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: egg-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: egg-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: egg-4
+  mediumSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: egg-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: egg-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: egg-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: egg-4
+  largeSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: egg-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: egg-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: egg-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: egg-4

@@ -65,6 +65,7 @@
   desc: reagent-desc-coconut-water
   physicalDesc: reagent-physical-desc-milky
   flavor: nutty
+  puddleSpriteSet: Shiny
   color: "#f4eadb"
   metabolisms:
     Drink:
@@ -318,6 +319,7 @@
   desc: reagent-desc-nothing
   group: Drinks
   physicalDesc: reagent-physical-desc-nothing
+  puddleSpriteSet: Water
   metabolisms:
     Drink:
       effects:
@@ -422,6 +424,7 @@
   desc: reagent-desc-tonic-water
   physicalDesc: reagent-physical-desc-fizzy
   flavor: tonicwater
+  puddleSpriteSet: Shiny
   color: "#0064C8"
   fizziness: 0.4
   metamorphicSprite:
@@ -472,6 +475,7 @@
   evaporationSpeed: 0.15 # TODO: Ideally Ice should just turn into Water if the room is warm enough (and vis versa), rather than Ice directly evaporating
   physicalDesc: reagent-physical-desc-frosty
   flavor: cold
+  puddleSpriteSet: Splotchy
   color: "#bed8e6"
   recognizable: true
   meltingPoint: 0.0
@@ -499,6 +503,7 @@
   desc: reagent-desc-dry-ramen
   physicalDesc: reagent-physical-desc-wormy
   flavor: cheapnoodles
+  puddleSpriteSet: Shiny
   color: "#664300"
 
 - type: reagent
@@ -508,6 +513,7 @@
   desc: reagent-desc-hot-ramen
   physicalDesc: reagent-physical-desc-wormy
   flavor: cheapnoodles
+  puddleSpriteSet: Shiny
   color: "#664300"
 
 - type: reagent
@@ -517,6 +523,7 @@
   desc: reagent-desc-arnold-palmer
   physicalDesc: reagent-physical-desc-sweet
   flavor: arnoldpalmer
+  puddleSpriteSet: Shiny
   color: "#d8cc5d"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/arnoldpalmer.rsi
