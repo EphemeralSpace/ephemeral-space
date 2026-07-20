@@ -25,9 +25,9 @@
 
 - type: reagent
   id: SmashedPie
-  name: reagent-name-smashed-pie
+  name: es-reagent-name-smashed-pie
   group: Foods
-  desc: reagent-desc-smashed-pie
+  desc: es-reagent-desc-smashed-pie
   physicalDesc: reagent-physical-desc-funny
   flavor: sweet
   puddleSpriteSet: Pie
