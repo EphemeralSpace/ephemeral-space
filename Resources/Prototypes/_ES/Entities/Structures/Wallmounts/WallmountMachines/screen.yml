@@ -1,8 +1,32 @@
 - type: entity
-  parent: BaseWallmountMachine
+  # todo actual dedupe with proper structure parenting instead of this cluster fuck
+  # structure yaml is not in a good place
   id: ESStatusDisplay
   abstract: true
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
   components:
+  - type: Clickable
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmash
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: ExtensionCableReceiver
+  - type: ESSparkOnHit
+    prob: 0.25
+    count: 2
+  - type: WallMount
+  - type: Physics
+    canCollide: false
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - Structure
   - type: Rotatable
   - type: DVTextVisuals
     rows:
@@ -71,8 +95,6 @@
         True: { enabled: false }
         False: { enabled: true }
   - type: Appearance
-  - type: ApcPowerReceiver
-  - type: ExtensionCableReceiver
   - type: GenericVisualizer
     visuals:
       enum.ESBreakableVisuals.Broken:

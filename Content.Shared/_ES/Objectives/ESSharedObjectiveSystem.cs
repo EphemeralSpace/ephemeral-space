@@ -147,7 +147,7 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     {
         if (!Resolve(ent, ref ent.Comp))
             return false;
-        return GetProgress(ent) >= 1 || MathHelper.CloseTo(GetProgress(ent), 1);
+        return GetProgress(ent) >= ent.Comp.CompletionPercentage || MathHelper.CloseTo(GetProgress(ent), ent.Comp.CompletionPercentage);
     }
 
     /// <summary>

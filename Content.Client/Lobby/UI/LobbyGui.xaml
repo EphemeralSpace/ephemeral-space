@@ -14,6 +14,7 @@ significantly modified from old lobbygui, basically everything diff-->
     xmlns:alerts="clr-namespace:Content.Client.UserInterface.Systems.Alerts.Widgets"
     xmlns:actions="clr-namespace:Content.Client.UserInterface.Systems.Actions.Widgets"
     xmlns:screens="clr-namespace:Content.Client._ES.Screens"
+    xmlns:cinematic="clr-namespace:Content.Client._ES.Cinematic"
     VerticalExpand="False"
     VerticalAlignment="Bottom"
     HorizontalAlignment="Center">
@@ -39,6 +40,7 @@ significantly modified from old lobbygui, basically everything diff-->
                 <BoxContainer Name="VoteMenu" Access="Public" Orientation="Vertical" />
             </BoxContainer>
             <alerts:AlertsUI Name="Alerts" Access="Protected" />
+            <cinematic:CinematicContainer Name="Cinematic"/>
         </LayoutContainer>
 
         <PanelContainer Name="SeparatedChatPanel">

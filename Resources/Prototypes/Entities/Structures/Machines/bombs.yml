@@ -20,6 +20,7 @@
       delay: 60
       initialBeepDelay: 0
       beepSound: /Audio/Machines/timer.ogg
+    - type: TriggerOnActivate
     - type: Anchorable
       delay: 5
     - type: Fixtures
