@@ -299,18 +299,6 @@
     state: pie-large
 
 - type: esPuddleSpriteSet
-  id: Flour
-  smallSprites:
-  - sprite: _ES/Effects/puddle.rsi
-    state: flour
-  mediumSprites:
-  - sprite: _ES/Effects/puddle.rsi
-    state: flour
-  largeSprites:
-  - sprite: _ES/Effects/puddle.rsi
-    state: flour
-
-- type: esPuddleSpriteSet
   id: Egg
   recolor: false
   smallSprites:

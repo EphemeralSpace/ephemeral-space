@@ -5,7 +5,7 @@
   desc: reagent-desc-flour
   physicalDesc: reagent-physical-desc-powdery
   flavor: chalky
-  puddleSpriteSet: Flour
+  puddleSpriteSet: Splotchy
   color: white
   recognizable: true
   metabolisms:
