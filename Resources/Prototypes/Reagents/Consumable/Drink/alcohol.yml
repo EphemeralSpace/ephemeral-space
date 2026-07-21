@@ -1913,7 +1913,7 @@
   desc: reagent-desc-toxins-special
   physicalDesc: reagent-physical-desc-pungent
   flavor: toxinsspecial
-  color: "#665c00"
+  color: "#665c0055"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/toxinsspecialglass.rsi
     state: icon_empty

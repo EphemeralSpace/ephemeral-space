@@ -388,7 +388,7 @@
   group: Toxins
   desc: reagent-desc-amatoxin
   physicalDesc: reagent-physical-desc-nondescript
-  color: "#D6CE7B"
+  color: "#D6CE7BCC"
   puddleSpriteSet: Acid
   metabolisms:
     Poison:
@@ -406,8 +406,8 @@
   desc: reagent-desc-allicin
   physicalDesc: reagent-physical-desc-pungent
   flavor: bitter
-  color: "#F2E9D2"
   puddleSpriteSet: Splotchy
+  color: "#F2E9D2"
   metabolisms:
     Poison:
       metabolismRate: 0.05

@@ -568,6 +568,7 @@
   desc: reagent-desc-synaptizine
   physicalDesc: reagent-physical-desc-pungent
   flavor: medicine
+  puddleSpriteSet: Splotchy
   color: "#d49a2f"
   metabolisms:
     Poison:

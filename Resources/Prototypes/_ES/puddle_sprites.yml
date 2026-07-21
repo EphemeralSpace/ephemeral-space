@@ -1,6 +1,6 @@
 # Common
 - type: esPuddleSpriteSet
-  id: Default # Generic sprite set. Opaque and dull
+  id: Default # Generic sprite set. Opaque and dull; useful for medicines or other viscous things
   baseColor: "#FFFFFF"
   smallSprites:
   - sprite: _ES/Effects/puddle.rsi
@@ -41,7 +41,7 @@
     state: large-7
 
 - type: esPuddleSpriteSet
-  id: Blood
+  id: Blood # Messy and natural, small puddles are droplets.
   smallSprites:
   - sprite: _ES/Effects/puddle.rsi
     state: blood-small-1
@@ -81,7 +81,7 @@
     state: blood-large-7
 
 - type: esPuddleSpriteSet
-  id: Splotchy # for things that are kinda messy but not warranting of bloods droplet sprites
+  id: Splotchy # For things that are still kind of messy but don't really warrant blood's droplet sprites
   smallSprites:
   - sprite: _ES/Effects/puddle.rsi
     state: splotchy-small-1
@@ -202,7 +202,7 @@
     state: water-large-7
 
 - type: esPuddleSpriteSet
-  id: Shiny # like a less transparent, more recolorable version of water
+  id: Shiny # Like a less transparent, more recolorable version of water. Useful for most things
   smallSprites:
   - sprite: _ES/Effects/puddle.rsi
     state: shiny-small-1
@@ -242,7 +242,7 @@
     state: shiny-large-7
 
 - type: esPuddleSpriteSet
-  id: Acid # corrosive and irritating-looking
+  id: Acid # Messy and irritating-looking. Useful for acidic and dangerous things
   smallSprites:
   - sprite: _ES/Effects/puddle.rsi
     state: acid-small-1
