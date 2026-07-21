@@ -1221,3 +1221,11 @@ Entries:
         vomit.
   id: 131
   time: '2026-07-21T00:28:58.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: >-
+        Added more unique reagent puddle sprites. Things will now more properly
+        reflect their shiny/powdery/etc. nature.
+  id: 132
+  time: '2026-07-21T05:43:15.0000000+00:00'
