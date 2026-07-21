@@ -10,7 +10,7 @@
   color: "#c4f5ff"
   boilingPoint: -183.0
   meltingPoint: -218.4
-  puddleSpriteSet: Shiny
+  puddleSpriteSet: Acid
   metabolisms:
     Poison:
       effects:
