@@ -1239,3 +1239,11 @@ Entries:
       message: Removed the Red Carpet masquerade (the one with all the VIPs)
   id: 133
   time: '2026-07-21T05:49:43.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Failing to roll one of your preferred jobs will now assign you to a
+        random job instead of always defaulting to assistant.
+  id: 134
+  time: '2026-07-21T05:53:52.0000000+00:00'
