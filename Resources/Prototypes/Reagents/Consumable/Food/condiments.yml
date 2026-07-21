@@ -102,7 +102,7 @@
   desc: reagent-desc-mayo
   physicalDesc: reagent-physical-desc-thick
   flavor: mayonnaise
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Blood
   color: "#f9f5e5"
   recognizable: true
 
@@ -113,7 +113,7 @@
   desc: reagent-desc-mustard
   physicalDesc: reagent-physical-desc-thick
   flavor: mustard
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Blood
   color: "#ffdb58"
   recognizable: true
 
