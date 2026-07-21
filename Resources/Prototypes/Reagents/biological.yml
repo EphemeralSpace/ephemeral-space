@@ -61,6 +61,7 @@
   group: Biological
   desc: reagent-desc-fat
   flavor: terrible
+  puddleSpriteSet: Blood
   color: "#d8d8b0"
   physicalDesc: reagent-physical-desc-exotic-smelling
   footstepSound:
@@ -99,6 +100,7 @@
   desc: reagent-desc-grey-matter
   physicalDesc: reagent-physical-desc-neural
   flavor: mindful
+  puddleSpriteSet: Blood
   color: "#C584B8"
   metabolisms:
     Poison:

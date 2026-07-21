@@ -4,4 +4,5 @@
   desc: reagent-desc-fiber
   physicalDesc: reagent-physical-desc-fibrous
   flavor: fiber
+  puddleSpriteSet: Powder
   color: "#808080"
