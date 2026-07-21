@@ -213,9 +213,6 @@ public sealed partial class ESStationSystem : ESSharedStationSystem
                 {
                     var count = counts[0];
 
-                    if (count == 0)
-                        continue;
-
                     if (!_availableRoundstartJobs.TryGetValue(job, out var value))
                         value = 0;
                     _availableRoundstartJobs[job] = value + count;
