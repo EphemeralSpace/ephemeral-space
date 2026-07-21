@@ -624,7 +624,7 @@
   physicalDesc: reagent-physical-desc-translucent
   flavor: antifreeze
   puddleSpriteSet: Shiny
-  color: "#ff7d638"
+  color: "#ff7d63"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/antifreeze.rsi
     state: icon_empty

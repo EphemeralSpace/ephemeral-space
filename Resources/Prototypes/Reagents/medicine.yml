@@ -785,7 +785,7 @@
   desc: reagent-desc-potassium-iodide
   physicalDesc: reagent-physical-desc-grainy
   flavor: medicine
-  puddleSpriteSet: Powders
+  puddleSpriteSet: Powder
   color: "#baa15d"
   metabolisms:
     Medicine:
