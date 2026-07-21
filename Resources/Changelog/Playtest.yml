@@ -1205,3 +1205,19 @@ Entries:
         if the target is in crit
   id: 130
   time: '2026-07-20T22:23:03.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Adjusted miasma clouds and pests to spawn less frequently.
+    - type: Tweak
+      message: Made miasma clouds easier to dodge and circle around.
+    - type: Fix
+      message: >-
+        Fixed issues where miasma clouds would go through walls, chase down
+        random animals, and beat on dead pests.
+    - type: Tweak
+      message: >-
+        Greatly increased the amount of miasma created from bodies, blood, and
+        vomit.
+  id: 131
+  time: '2026-07-21T00:28:58.0000000+00:00'
