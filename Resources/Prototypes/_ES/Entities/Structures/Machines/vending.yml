@@ -212,6 +212,8 @@
         amount: 10
       # guaranteed plants you kinda need some of
       - all:
+        - id: AppleSeeds
+          amount: 3
         - id: WheatSeeds
           amount: 3
         - id: TomatoSeeds
