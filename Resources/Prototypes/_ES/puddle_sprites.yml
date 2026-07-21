@@ -1,6 +1,6 @@
 # Common
 - type: esPuddleSpriteSet
-  id: Default # Generic sprite set for 99% of fluids
+  id: Default # Generic sprite set. Opaque and dull
   baseColor: "#FFFFFF"
   smallSprites:
   - sprite: _ES/Effects/puddle.rsi
@@ -81,7 +81,7 @@
     state: blood-large-7
 
 - type: esPuddleSpriteSet
-  id: Splotchy # for powdery stuff like ash, salt, etc. or things that are kinda messy
+  id: Splotchy # for things that are kinda messy but not warranting of bloods droplet sprites
   smallSprites:
   - sprite: _ES/Effects/puddle.rsi
     state: splotchy-small-1
@@ -202,7 +202,7 @@
     state: water-large-7
 
 - type: esPuddleSpriteSet
-  id: Shiny # like a less transparent version of water
+  id: Shiny # like a less transparent, more recolorable version of water
   smallSprites:
   - sprite: _ES/Effects/puddle.rsi
     state: shiny-small-1
@@ -280,6 +280,46 @@
     state: acid-large-6
   - sprite: _ES/Effects/puddle.rsi
     state: acid-large-7
+
+- type: esPuddleSpriteSet
+  id: Powder
+  smallSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-small-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-small-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-small-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-small-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-small-5
+  mediumSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-medium-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-medium-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-medium-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-medium-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-medium-5
+  largeSprites:
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-large-1
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-large-2
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-large-3
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-large-4
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-large-5
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-large-6
+  - sprite: _ES/Effects/puddle.rsi
+    state: powdery-large-7
 
 # More special-case stuff
 

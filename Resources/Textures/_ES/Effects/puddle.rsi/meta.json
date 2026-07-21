@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Default and water made by Flareguy for Ephemeral Space, blood taken from tgstation at https://github.com/tgstation/tgstation/blob/b4061f1800152a832ea62feca841350412ad1617/icons/effects/blood.dmi, vomit, pie, and acid taken from tgstation at https://github.com/tgstation/tgstation/blob/b4061f1800152a832ea62feca841350412ad1617 and modified by Flareguy, egg taken from tgstation at https://github.com/tgstation/tgstation/blob/b4061f1800152a832ea62feca841350412ad1617/icons/effects/tomatodecal.dmi ",
+  "copyright": "Default, water, and powdery made by Flareguy for Ephemeral Space, blood taken from tgstation at https://github.com/tgstation/tgstation/blob/b4061f1800152a832ea62feca841350412ad1617/icons/effects/blood.dmi, vomit, pie, and acid taken from tgstation at https://github.com/tgstation/tgstation/blob/b4061f1800152a832ea62feca841350412ad1617 and modified by Flareguy, egg taken from tgstation at https://github.com/tgstation/tgstation/blob/b4061f1800152a832ea62feca841350412ad1617/icons/effects/tomatodecal.dmi ",
   "size": {
     "x": 32,
     "y": 32
@@ -327,6 +327,57 @@
     },
     {
       "name": "shiny-large-7"
+    },
+    {
+      "name": "powdery-small-1"
+    },
+    {
+      "name": "powdery-small-2"
+    },
+    {
+      "name": "powdery-small-3"
+    },
+    {
+      "name": "powdery-small-4"
+    },
+    {
+      "name": "powdery-small-5"
+    },
+    {
+      "name": "powdery-medium-1"
+    },
+    {
+      "name": "powdery-medium-2"
+    },
+    {
+      "name": "powdery-medium-3"
+    },
+    {
+      "name": "powdery-medium-4"
+    },
+    {
+      "name": "powdery-medium-5"
+    },
+    {
+      "name": "powdery-large-1"
+    },
+    {
+      "name": "powdery-large-2"
+    },
+    {
+      "name": "powdery-large-3"
+    },
+    {
+      "name": "powdery-large-4"
+    },
+    {
+      "name": "powdery-large-5"
+    },
+    {
+      "name": "powdery-large-6"
+    },
+    {
+      "name": "powdery-large-7"
     },
     {
       "name": "pie-small"

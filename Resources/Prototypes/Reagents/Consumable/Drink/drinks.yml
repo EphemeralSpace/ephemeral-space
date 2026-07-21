@@ -51,7 +51,7 @@
   desc: reagent-desc-cream
   physicalDesc: reagent-physical-desc-creamy
   flavor: creamy
-  color: "#DFD7AF"
+  color: "#DFD7AFCC"
   metabolisms:
     Drink:
       effects:
@@ -66,7 +66,7 @@
   physicalDesc: reagent-physical-desc-milky
   flavor: nutty
   puddleSpriteSet: Shiny
-  color: "#f4eadb"
+  color: "#f4eadbCC"
   metabolisms:
     Drink:
       effects:
@@ -80,7 +80,7 @@
   desc: reagent-desc-cream-of-coconut
   physicalDesc: reagent-physical-desc-syrupy
   flavor: creamy
-  color: "#FFEABF"
+  color: "#FFEABFCC"
   metabolisms:
     Drink:
       effects:
@@ -118,7 +118,7 @@
   desc: reagent-desc-green-tea
   physicalDesc: reagent-physical-desc-aromatic
   flavor: tea
-  color: "#7EB626"
+  color: "#7EB62680"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/greenteaglass.rsi
     state: icon_empty
@@ -335,6 +335,7 @@
   desc: reagent-desc-nuclear-cola
   physicalDesc: reagent-physical-desc-fizzy
   flavor: atomiccola
+  puddleSpriteSet: Shiny
   color: "#100800"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/nuclear_colaglass.rsi
@@ -366,6 +367,7 @@
   desc: reagent-desc-soda-water
   physicalDesc: reagent-physical-desc-fizzy
   flavor: fizzy
+  puddleSpriteSet: Shiny
   color: "#619494"
   fizziness: 0.8
 

@@ -6,7 +6,7 @@
   physicalDesc: reagent-physical-desc-crisp
   flavor: apple
   puddleSpriteSet: Shiny
-  color: "#FDAD01"
+  color: "#FDAD0180"
   recognizable: true
 
 - type: reagent
@@ -16,7 +16,7 @@
   desc: reagent-desc-juice-banana
   physicalDesc: reagent-physical-desc-crisp
   flavor: banana
-  color: "#FFE777"
+  color: "#FFE77780"
 
 - type: reagent
   id: JuiceBerry
@@ -26,7 +26,7 @@
   physicalDesc: reagent-physical-desc-sweet
   flavor: berry
   puddleSpriteSet: Shiny
-  color: "#660099"
+  color: "#66009980"
 
 - type: reagent
   id: JuiceBluePumpkin
@@ -35,7 +35,7 @@
   desc: reagent-desc-juice-blue-pumpkin
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: bluepumpkin
-  color: "#00BFFF"
+  color: "#00BFFF80"
 
 - type: reagent
   id: JuiceCarrot
@@ -44,7 +44,7 @@
   desc: reagent-desc-juice-carrot
   physicalDesc: reagent-physical-desc-crisp
   flavor: carrot
-  color: "#FF8820"
+  color: "#FF882080"
   metabolisms:
     Drink:
       effects:
@@ -62,7 +62,7 @@
   physicalDesc: reagent-physical-desc-crisp
   flavor: juice
   puddleSpriteSet: Shiny
-  color: "#512284"
+  color: "#51228480"
 
 - type: reagent
   id: JuiceLemon
@@ -71,7 +71,7 @@
   desc: reagent-desc-juice-lemon
   physicalDesc: reagent-physical-desc-citric
   flavor: sour
-  color: "#fff690"
+  color: "#fff69080"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/lemonjuiceglass.rsi
     state: icon_empty
@@ -86,7 +86,7 @@
   desc: reagent-desc-juice-lime
   physicalDesc: reagent-physical-desc-citric
   flavor: sour
-  color: "#99bb43"
+  color: "#99bb4380"
 
 # /datum/reagent/drink/orangejuice/on_mob_life(var/mob/living/M)
 
@@ -103,7 +103,7 @@
   desc: reagent-desc-juice-orange
   physicalDesc: reagent-physical-desc-citric
   flavor: orange
-  color: "#E78108"
+  color: "#E7810880"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/orangejuiceglass.rsi
     state: icon_empty
@@ -118,7 +118,7 @@
   desc: reagent-desc-juice-pineapple
   physicalDesc: reagent-physical-desc-tropical
   flavor: pineapple
-  color: yellow
+  color: "#ffff5540"
 
 - type: reagent
   id: JuicePotato
@@ -127,7 +127,7 @@
   desc: reagent-desc-juice-potato
   physicalDesc: reagent-physical-desc-starchy
   flavor: potatoes
-  color: "#302000"
+  color: "#30200080"
 
 - type: reagent
   id: JuiceTomato
@@ -137,7 +137,7 @@
   physicalDesc: reagent-physical-desc-saucey
   flavor: tomato
   puddleSpriteSet: Splotchy
-  color: "#731008"
+  color: "#73100880"
 
 - type: reagent
   id: JuiceWatermelon
@@ -146,7 +146,7 @@
   desc: reagent-desc-juice-watermelon
   physicalDesc: reagent-physical-desc-sweet
   flavor: watermelon
-  color: "#EF3520"
+  color: "#EF352080"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/watermelonglass.rsi
     state: icon_empty
@@ -162,4 +162,4 @@
   physicalDesc: reagent-physical-desc-sweet
   flavor: cherry
   puddleSpriteSet: Shiny
-  color: "#84031a"
+  color: "#84031a80"

@@ -83,6 +83,7 @@
 # ES END
   physicalDesc: reagent-physical-desc-chalky
   flavor: medicine
+  puddleSpriteSet: Splotchy
   color: "#64ffe6"
   metabolisms:
     Medicine:
@@ -784,7 +785,7 @@
   desc: reagent-desc-potassium-iodide
   physicalDesc: reagent-physical-desc-grainy
   flavor: medicine
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powders
   color: "#baa15d"
   metabolisms:
     Medicine:
@@ -810,7 +811,7 @@
   desc: reagent-desc-haloperidol
   physicalDesc: reagent-physical-desc-crystalline
   flavor: medicine
-  puddleSpriteSet: Shiny
+  puddleSpriteSet: Powder
   color: "#27870a50"
   metabolisms:
     Medicine:

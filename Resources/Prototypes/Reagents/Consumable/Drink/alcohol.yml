@@ -71,7 +71,8 @@
   desc: reagent-desc-beer
   physicalDesc: reagent-physical-desc-bubbly
   flavor: beer
-  color: "#e3e77b"
+  puddleSpriteSet: Shiny
+  color: "#e3e77b7C"
   recognizable: true
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/beerglass.rsi
@@ -239,7 +240,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: gin
   puddleSpriteSet: Shiny
-  color: "#664300"
+  color: "#664300CC"
   recognizable: true
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/ginvodkaglass.rsi
@@ -414,7 +415,7 @@
   physicalDesc: reagent-physical-desc-aromatic
   flavor: vermouth
   puddleSpriteSet: Shiny
-  color: "#91FF91"
+  color: "#91FF9140"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/vermouthglass.rsi
     state: icon_empty
@@ -455,7 +456,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: whiskey
   puddleSpriteSet: Shiny
-  color: "#ee7732"
+  color: "#ee7732CC"
   recognizable: true
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/whiskeyglass.rsi
@@ -623,7 +624,7 @@
   physicalDesc: reagent-physical-desc-translucent
   flavor: antifreeze
   puddleSpriteSet: Shiny
-  color: "#ff7d63"
+  color: "#ff7d638"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/antifreeze.rsi
     state: icon_empty
@@ -1124,6 +1125,7 @@
   desc: reagent-desc-gin-fizz
   physicalDesc: reagent-physical-desc-fizzy
   flavor: ginfizz
+  puddleSpriteSet: Shiny
   color: "#664300"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/ginfizzglass.rsi
@@ -1148,6 +1150,7 @@
   desc: reagent-desc-gin-tonic
   physicalDesc: reagent-physical-desc-fizzy
   flavor: gintonic
+  puddleSpriteSet: Shiny
   color: "#004166"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/gintonicglass.rsi
@@ -1481,7 +1484,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: mead
   puddleSpriteSet: Shiny
-  color: "#664300"
+  color: "#664300CC"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/beerstein.rsi
     state: icon_empty
@@ -2014,6 +2017,7 @@
   desc: reagent-desc-whiskey-soda
   physicalDesc: reagent-physical-desc-fizzy
   flavor: whiskeycola
+  puddleSpriteSet: Shiny
   color: "#533600"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/whiskeysodaglass.rsi

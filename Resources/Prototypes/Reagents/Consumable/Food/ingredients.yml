@@ -5,7 +5,7 @@
   desc: reagent-desc-flour
   physicalDesc: reagent-physical-desc-powdery
   flavor: chalky
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   color: white
   recognizable: true
   metabolisms:
@@ -24,7 +24,7 @@
   desc: reagent-desc-cornmeal
   physicalDesc: reagent-physical-desc-powdery
   flavor: corn #so corn doesnt taste chalky
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   color: tan
   metabolisms:
     Food:
@@ -39,7 +39,7 @@
   desc: reagent-desc-oats
   physicalDesc: reagent-physical-desc-coarse
   flavor: oats
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   color: tan
   metabolisms:
     Food:
@@ -87,7 +87,7 @@
   desc: reagent-desc-blackpepper
   physicalDesc: reagent-physical-desc-grainy
   flavor: peppery
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   color: black
   recognizable: true
   metabolisms:
@@ -140,7 +140,7 @@
   desc: reagent-desc-rice
   physicalDesc: reagent-physical-desc-chewy
   flavor: rice
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   color: white
   recognizable: true
   metabolisms:
@@ -171,7 +171,7 @@
   flavor: oily
   flavorMinimum: 0.05
   recognizable: true
-  puddleSpriteSet: Blood # hitting borgs with crowbars and whatnot
+  puddleSpriteSet: Shiny
   color: "#b67823"
   boilingPoint: 300.0
   meltingPoint: -16.0
@@ -216,7 +216,7 @@
   desc: reagent-desc-cocoapowder
   physicalDesc: reagent-physical-desc-powdery
   flavor: chocolate
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   color: "#800000"
   meltingPoint: 146.0
   plantMetabolism:
@@ -246,7 +246,7 @@
   desc: reagent-desc-tea-powder
   physicalDesc: reagent-physical-desc-powdery
   flavor: tea
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   color: "#7F8400"
   group: Foods
   metabolisms:
@@ -262,7 +262,7 @@
   desc: reagent-desc-frost-oil
   physicalDesc: reagent-physical-desc-oily
   flavor: cold
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Shiny
   color: skyblue
   metabolisms:
     Poison:

@@ -6,7 +6,7 @@
   desc: reagent-desc-sugar
   physicalDesc: reagent-physical-desc-sweet
   flavor: sweet
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   color: white
   meltingPoint: 146.0
   plantMetabolism:

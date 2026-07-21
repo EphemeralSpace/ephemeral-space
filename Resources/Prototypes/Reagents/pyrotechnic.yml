@@ -20,10 +20,10 @@
   desc: reagent-desc-thermite
   physicalDesc: reagent-physical-desc-grainy
   flavor: bitter
+  puddleSpriteSet: Powder
   color: "#75724580"
   boilingPoint: 2977.0 # Aluminum oxide
   meltingPoint: 2030.0
-  puddleSpriteSet: Acid
   tileReactions:
   - !type:FlammableTileReaction
     temperatureMultiplier: 2
@@ -143,6 +143,7 @@
   desc: reagent-desc-foaming-agent
   physicalDesc: reagent-physical-desc-foamy
   flavor: bitter
+  puddleSpriteSet: Acid
   color: "#215263"
   boilingPoint: 418.0 # I went with ammonium lauryl sulfate as the basis for this
   meltingPoint: 7.4 # I made this up

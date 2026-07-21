@@ -16,7 +16,7 @@
   group: Elements
   desc: reagent-desc-carbon
   physicalDesc: reagent-physical-desc-crystalline
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   flavor: bitter
   color: "#22282b"
   boilingPoint: 4200.0
@@ -245,7 +245,7 @@
   desc: reagent-desc-phosphorus
   physicalDesc: reagent-physical-desc-powdery
   flavor: metallic
-  puddleSpriteSet: Shiny
+  puddleSpriteSet: Powder
   color: "#f5da9a"
   meltingPoint: 44.2
   boilingPoint: 280.5
@@ -277,7 +277,7 @@
   desc: reagent-desc-silicon
   physicalDesc: reagent-physical-desc-crystalline
   flavor: metallic
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   color: "#364266"
   boilingPoint: 3265.0
   meltingPoint: 1414.0
@@ -308,7 +308,7 @@
   desc: reagent-desc-sulfur
   physicalDesc: reagent-physical-desc-powdery
   flavor: bitter
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   color: "#fff385"
   boilingPoint: 445.0
   meltingPoint: 120.0

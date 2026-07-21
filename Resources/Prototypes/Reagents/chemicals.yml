@@ -4,6 +4,7 @@
   desc: reagent-desc-acetone
   physicalDesc: reagent-physical-desc-acidic
   flavor: bitter
+  puddleSpriteSet: Acid
   color: "#AF14B7"
   boilingPoint: 55.5
   meltingPoint: -50.0
@@ -14,6 +15,7 @@
   desc: reagent-desc-phenol
   physicalDesc: reagent-physical-desc-acidic
   flavor: bitter
+  puddleSpriteSet: Acid
   color: "#E7EA91"
   boilingPoint: 55.5
   meltingPoint: -50.0
@@ -31,7 +33,7 @@
   name: reagent-name-charcoal
   desc: reagent-desc-charcoal
   physicalDesc: reagent-physical-desc-porous
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   color: "#22282b"
   boilingPoint: 4200.0
   meltingPoint: 3550.0
@@ -51,7 +53,7 @@
   name: reagent-name-ash
   desc: reagent-desc-ash
   physicalDesc: reagent-physical-desc-powdery
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   color: white
 
 - type: reagent
@@ -60,6 +62,7 @@
   desc: reagent-desc-lye
   flavor: alkaline
   physicalDesc: reagent-physical-desc-alkaline
+  puddleSpriteSet: Shiny
   color: "#e5420b"
   metabolisms:
     Poison:
@@ -74,7 +77,7 @@
   name: reagent-name-sodium-carbonate
   desc: reagent-desc-sodium-carbonate
   physicalDesc: reagent-physical-desc-powdery
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
   color: white
 
 - type: reagent
@@ -82,6 +85,7 @@
   name: reagent-name-benzene
   desc: reagent-desc-benzene
   physicalDesc: reagent-physical-desc-acidic
+  puddleSpriteSet: Acid
   color: "#E7EA91"
   boilingPoint: 353.2
   meltingPoint: 278.7
@@ -98,6 +102,7 @@
   name: reagent-name-hydroxide
   desc: reagent-desc-hydroxide
   physicalDesc: reagent-physical-desc-alkaline
+  puddleSpriteSet: Shiny
   color: "white"
   boilingPoint: 1661.0
   meltingPoint: 596.0
@@ -107,6 +112,7 @@
   name: reagent-name-sodium-hydroxide
   desc: reagent-desc-sodium-hydroxide
   physicalDesc: reagent-physical-desc-alkaline
+  puddleSpriteSet: Shiny
   color: "white"
   boilingPoint: 1661.0
   meltingPoint: 596.0
@@ -134,4 +140,4 @@
   flavor: bitter
   color: "#E6E6DA"
   physicalDesc: reagent-physical-desc-crystalline
-  puddleSpriteSet: Splotchy
+  puddleSpriteSet: Powder
