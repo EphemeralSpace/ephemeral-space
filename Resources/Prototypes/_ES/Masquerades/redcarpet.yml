@@ -1,0 +1,31 @@
+- type: esMasquerade
+  id: RedCarpet
+  name: Red Carpet
+  description: strands a party of VIPs with our harrowing crew
+  weight: 0.1
+  minPlayers: 6
+  gameRules: []
+  masquerade:
+    defaultSecretIdentity: "VIP"
+    superfanTarget: "#Traitors"
+    roles:
+      6: ["#Traitors(2)", "#AllCrew(2)", "Vandal", "#Targeters"] # 2 traitors
+      7: ["#AllCrew"]
+      8: ["#AllCrew"]
+      10: ["#SemiTraitor"]
+      13: ["#Traitors"]  # 3 traitors.
+      14: ["#AllCrew"]
+      15: [ "Tragedian" ]
+      16: ["Avenger"] # 3 traitors.
+      17: ["#SemiTraitor"]
+      18: ["ArmsDealer"]
+      19: ["Marauder"] # 4 traitors.
+      20: ["#AllCrew"]
+      21: ["#AllCrew", "-Marauder", "#PowerTraitors"] # 4 traitors.
+      22: ["#AllCrew"]
+      24: ["#Gunners"] # 4 traitors.
+      25: ["Marauder"] # 5 traitors.
+      26: ["#AllCrew"]
+      28: ["#Gunners"] # 5 traitors.
+      30: ["#AllCrew"]
+      31: ["#Traitors", "#AllCrew"] # 6 traitors.
