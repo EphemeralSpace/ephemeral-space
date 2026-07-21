@@ -1229,3 +1229,13 @@ Entries:
         reflect their shiny/powdery/etc. nature.
   id: 132
   time: '2026-07-21T05:43:15.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Add
+      message: New Tragedian-themed masquerade
+    - type: Tweak
+      message: Apple seeds are now in the botany seed vendor
+    - type: Remove
+      message: Removed the Red Carpet masquerade (the one with all the VIPs)
+  id: 133
+  time: '2026-07-21T05:49:43.0000000+00:00'
