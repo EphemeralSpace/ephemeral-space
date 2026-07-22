@@ -208,11 +208,6 @@
             - material: FloorCarpetBlue
               amount: 1
 
-        - to: TableFancySkyBlue
-          steps:
-            - material: FloorCarpetSkyBlue
-              amount: 1
-
         - to: TableFancyCyan
           steps:
             - material: FloorCarpetCyan
@@ -233,19 +228,9 @@
             - material: FloorCarpetPurple
               amount: 1
 
-        - to: TableFancyPink
-          steps:
-            - material: FloorCarpetPink
-              amount: 1
-
         - to: TableFancyRed
           steps:
             - material: FloorCarpetRed
-              amount: 1
-
-        - to: TableFancyWhite
-          steps:
-            - material: FloorCarpetWhite
               amount: 1
 
     - node: TableCarpet
@@ -283,18 +268,6 @@
           steps:
             - tool: Prying
               doAfter: 1
-
-    - node: TableFancySkyBlue
-      entity: TableFancySkyBlue
-      edges:
-        - to: TableWood
-          completed:
-          - !type:SpawnPrototype
-            prototype: FloorCarpetItemRed
-            amount: 1
-          steps:
-          - tool: Prying
-            doAfter: 1
 
     - node: TableFancyCyan
       entity: TableFancyCyan
@@ -344,32 +317,8 @@
             - tool: Prying
               doAfter: 1
 
-    - node: TableFancyPink
-      entity: TableFancyPink
-      edges:
-        - to: TableWood
-          completed:
-            - !type:SpawnPrototype
-              prototype: FloorCarpetItemRed
-              amount: 1
-          steps:
-            - tool: Prying
-              doAfter: 1
-
     - node: TableFancyRed
       entity: TableFancyRed
-      edges:
-        - to: TableWood
-          completed:
-            - !type:SpawnPrototype
-              prototype: FloorCarpetItemRed
-              amount: 1
-          steps:
-            - tool: Prying
-              doAfter: 1
-
-    - node: TableFancyWhite
-      entity: TableFancyWhite
       edges:
         - to: TableWood
           completed:

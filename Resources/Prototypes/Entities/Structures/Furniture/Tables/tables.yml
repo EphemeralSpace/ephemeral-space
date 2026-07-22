@@ -637,21 +637,6 @@
     key: fancytableblue
 
 - type: entity
-  id: TableFancySkyBlue
-  parent: TableFancyBase
-  suffix: SkyBlue
-  components:
-  - type: Sprite
-    sprite: Structures/Furniture/Tables/Fancy/skyblue.rsi
-  - type: Icon
-    sprite: Structures/Furniture/Tables/Fancy/skyblue.rsi
-  - type: Construction
-    graph: Table
-    node: TableFancySkyBlue
-  - type: IconSmooth
-    key: fancytableskyblue
-
-- type: entity
   id: TableFancyCyan
   parent: TableFancyBase
   suffix: Cyan
@@ -712,21 +697,6 @@
     key: fancytablepurple
 
 - type: entity
-  id: TableFancyPink
-  parent: TableFancyBase
-  suffix: Pink
-  components:
-  - type: Sprite
-    sprite: Structures/Furniture/Tables/Fancy/pink.rsi
-  - type: Icon
-    sprite: Structures/Furniture/Tables/Fancy/pink.rsi
-  - type: Construction
-    graph: Table
-    node: TableFancyPink
-  - type: IconSmooth
-    key: fancytablepink
-
-- type: entity
   id: TableFancyGreen
   parent: TableFancyBase
   suffix: Green
@@ -755,21 +725,6 @@
     node: TableFancyOrange
   - type: IconSmooth
     key: fancytableorange
-
-- type: entity
-  id: TableFancyWhite
-  parent: TableFancyBase
-  suffix: White
-  components:
-  - type: Sprite
-    sprite: Structures/Furniture/Tables/Fancy/white.rsi
-  - type: Icon
-    sprite: Structures/Furniture/Tables/Fancy/white.rsi
-  - type: Construction
-    graph: Table
-    node: TableFancyWhite
-  - type: IconSmooth
-    key: fancytablewhite
 
 #Debug
 

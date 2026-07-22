@@ -27,13 +27,6 @@
             - material: FloorCarpetBlue
               amount: 1
               doAfter: 1
-        - to: CurtainsSkyBlue
-          completed:
-            - !type:SnapToGrid { }
-          steps:
-          - material: FloorCarpetSkyBlue
-            amount: 1
-            doAfter: 1
         - to: CurtainsCyan
           completed:
             - !type:SnapToGrid { }
@@ -55,13 +48,6 @@
             - material: FloorCarpetOrange
               amount: 1
               doAfter: 1
-        - to: CurtainsPink
-          completed:
-            - !type:SnapToGrid { }
-          steps:
-            - material: FloorCarpetPink
-              amount: 1
-              doAfter: 1
         - to: CurtainsPurple
           completed:
             - !type:SnapToGrid { }
@@ -78,11 +64,11 @@
               doAfter: 1
         - to: CurtainsWhite
           completed:
-            - !type:SnapToGrid { }
+          - !type:SnapToGrid { }
           steps:
-            - material: FloorCarpetWhite
-              amount: 1
-              doAfter: 1
+          - material: FloorCarpetRed
+            amount: 1
+            doAfter: 1
 
     - node: Curtains
       entity: HospitalCurtains
@@ -267,3 +253,26 @@
           steps:
             - tool: Cutting
               doAfter: 1
+
+    - node: CurtainsWhite
+      entity: CurtainsWhite
+      edges:
+      - to: start
+        completed:
+        - !type:GivePrototype
+          prototype: FloorCarpetItemRed
+          amount: 1
+        steps:
+        - tool: Cutting
+          doAfter: 1
+    - node: CurtainsWhiteOpen
+      entity: CurtainsWhiteTOpen
+      edges:
+      - to: start
+        completed:
+        - !type:GivePrototype
+          prototype: FloorCarpetItemRed
+          amount: 1
+        steps:
+        - tool: Cutting
+          doAfter: 1
