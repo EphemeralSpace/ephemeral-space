@@ -66,7 +66,7 @@
           completed:
           - !type:SnapToGrid { }
           steps:
-          - material: Cloth
+          - material: MaterialCloth1
             amount: 2
             doAfter: 1
 
@@ -260,7 +260,7 @@
       - to: start
         completed:
         - !type:GivePrototype
-          prototype: Cloth
+          prototype: MaterialCloth1
           amount: 2
         steps:
         - tool: Cutting
@@ -271,7 +271,7 @@
       - to: start
         completed:
         - !type:GivePrototype
-          prototype: Cloth
+          prototype: MaterialCloth1
           amount: 2
         steps:
         - tool: Cutting
