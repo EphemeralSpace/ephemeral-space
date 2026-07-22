@@ -66,9 +66,8 @@
     all:
     - id: ESWeaponRevolver357
     - id: ESSpeedLoader357
-    - id: ESDoorJammer
-      amount: 2
-    - id: ESClothingOuterArmorSecurity
+    - id: ESWeaponKnife
+    - id: StimulantPen
 
 # Subverter
 - type: entity
