@@ -2,7 +2,7 @@
 # Infiltrator
     <ESGuideSecretIdentityEmbed SecretIdentity="Infiltrator"/>
 
-    Infiltrators are a critical member of the team with a kit meant for breaking and entering, usually to steal valuable items or sabotage machines.
+    Infiltrators are a critical member of the team with a kit meant to facilitate easy breaking-and-entering, perfect for reaching difficult-to-get items or machines that need to be sabotaged.
 
 
 ## Tools of the Trade
@@ -15,13 +15,14 @@
     </Box>
 
 ### EMAG
-    Can be used to open any airlock or locker, damaging them in the process and bolting open airlocks.
+    Can be used to open any airlock or locker, damaging them in the process and bolting open airlocks. It only has a few uses, so make sure to make them count!
 
 ### C4
     Blows up whatever is on the tile it's on, and not much else. Great for breaching, but not that good at damaging players. Must be planted to arm; cannot be manually activated like other explosives.
 
 ### Chameleon Kit
-    Special clothing that can change its appearance to look like almost any other piece of clothing. Don't forget that the bag is also a part of the kit, too.
+    Special clothing that can change its appearance to look like almost any other piece of clothing. Useful for losing heat after taking suspicious actions.
+	Don't forget that the bag is also a part of the kit, too!
 
     <ESGuideTipsEmbed SecretIdentity="Infiltrator"/>
 </Document>
