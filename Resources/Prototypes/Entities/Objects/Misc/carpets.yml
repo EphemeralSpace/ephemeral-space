@@ -89,25 +89,6 @@
 
 - type: entity
   parent: FloorCarpetItemRed
-  id: FloorCarpetItemSkyBlue
-# ES START
-  suffix: Sky Blue, DO NOT MAP
-  categories: [ HideSpawnMenu ]
-# ES END
-  components:
-  - type: Sprite
-    state: carpet-skyblue
-  - type: Item
-    heldPrefix: carpet-skyblue
-  - type: Stack
-    stackType: FloorCarpetSkyBlue
-  - type: SpawnAfterInteract #Nuke after convert to FloorTile
-    prototype: CarpetSBlue
-    doAfter: 0.5
-    removeOnInteract: true
-
-- type: entity
-  parent: FloorCarpetItemRed
   id: FloorCarpetItemPurple
   suffix: Purple
   components:
@@ -119,25 +100,6 @@
     stackType: FloorCarpetPurple
   - type: SpawnAfterInteract #Nuke after convert to FloorTile
     prototype: CarpetPurple
-    doAfter: 0.5
-    removeOnInteract: true
-
-- type: entity
-  parent: FloorCarpetItemRed
-  id: FloorCarpetItemPink
-# ES START
-  suffix: Pink, DO NOT MAP
-  categories: [ HideSpawnMenu ]
-# ES END
-  components:
-  - type: Sprite
-    state: carpet-pink
-  - type: Item
-    heldPrefix: carpet-pink
-  - type: Stack
-    stackType: FloorCarpetPink
-  - type: SpawnAfterInteract #Nuke after convert to FloorTile
-    prototype: CarpetPink
     doAfter: 0.5
     removeOnInteract: true
 
@@ -158,24 +120,5 @@
     stackType: FloorCarpetCyan
   - type: SpawnAfterInteract #Nuke after convert to FloorTile
     prototype: CarpetCyan
-    doAfter: 0.5
-    removeOnInteract: true
-
-- type: entity
-  parent: FloorCarpetItemRed
-  id: FloorCarpetItemWhite
-# ES START
-  suffix: White, DO NOT MAP
-  categories: [ HideSpawnMenu ]
-# ES END
-  components:
-  - type: Sprite
-    state: carpet-white
-  - type: Item
-    heldPrefix: carpet-white
-  - type: Stack
-    stackType: FloorCarpetWhite
-  - type: SpawnAfterInteract #Nuke after convert to FloorTile
-    prototype: CarpetWhite
     doAfter: 0.5
     removeOnInteract: true

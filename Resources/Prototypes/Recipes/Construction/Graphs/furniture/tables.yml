@@ -290,7 +290,7 @@
         - to: TableWood
           completed:
           - !type:SpawnPrototype
-            prototype: FloorCarpetItemSkyBlue
+            prototype: FloorCarpetItemRed
             amount: 1
           steps:
           - tool: Prying
@@ -350,7 +350,7 @@
         - to: TableWood
           completed:
             - !type:SpawnPrototype
-              prototype: FloorCarpetItemPink
+              prototype: FloorCarpetItemRed
               amount: 1
           steps:
             - tool: Prying
@@ -374,7 +374,7 @@
         - to: TableWood
           completed:
             - !type:SpawnPrototype
-              prototype: FloorCarpetItemWhite
+              prototype: FloorCarpetItemRed
               amount: 1
           steps:
             - tool: Prying
