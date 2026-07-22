@@ -266,7 +266,7 @@
         - tool: Cutting
           doAfter: 1
     - node: CurtainsWhiteOpen
-      entity: CurtainsWhiteTOpen
+      entity: CurtainsWhiteOpen
       edges:
       - to: start
         completed:
