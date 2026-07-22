@@ -66,8 +66,8 @@
           completed:
           - !type:SnapToGrid { }
           steps:
-          - material: FloorCarpetRed
-            amount: 1
+          - material: Cloth
+            amount: 2
             doAfter: 1
 
     - node: Curtains
@@ -260,8 +260,8 @@
       - to: start
         completed:
         - !type:GivePrototype
-          prototype: FloorCarpetItemRed
-          amount: 1
+          prototype: Cloth
+          amount: 2
         steps:
         - tool: Cutting
           doAfter: 1
@@ -271,8 +271,8 @@
       - to: start
         completed:
         - !type:GivePrototype
-          prototype: FloorCarpetItemRed
-          amount: 1
+          prototype: Cloth
+          amount: 2
         steps:
         - tool: Cutting
           doAfter: 1
