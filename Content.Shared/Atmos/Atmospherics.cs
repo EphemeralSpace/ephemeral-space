@@ -272,7 +272,7 @@ namespace Content.Shared.Atmos
         public const float TritiumBurnTritFactor = 10f;
         public const float TritiumBurnFuelRatio = 2f;
 
-        public const float FrezonCoolLowerTemperature = 23.15f;
+        public const float FrezonCoolLowerTemperature = 203.15f;
 
         /// <summary>
         ///     Frezon cools better at higher temperatures.

@@ -360,9 +360,9 @@
   id: Cryogas
   name: reagent-name-cryogas
   desc: reagent-desc-cryogas
-  physicalDesc: reagent-physical-desc-gaseous
-  flavor: bitter
-  color: "#3a758c"
+  physicalDesc: reagent-physical-desc-crystalline
+  flavor: cold
+  color: "#b3eaff"
   boilingPoint: -195.8
   meltingPoint: -210.0
   metabolisms:
@@ -372,25 +372,7 @@
         ignoreResistances: true
         damage:
           types:
-            Cellular: 0.5
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectSeeingRainbow
-        type: Add
-        time: 15
-      - !type:Drunk
-        boozePower: 15
-      - !type:PopupMessage
-        type: Local
-        messages: [ "frezon-lungs-cold" ]
-        probability: 0.1
-        minScale: 1
-      - !type:PopupMessage
-        type: Local
-        visualType: Medium
-        messages: [ "frezon-euphoric" ]
-        probability: 0.1
-        conditions:
-        minScale: 2
+            Cold: 0.5
     Gas:
       effects:
       - !type:HealthChange
@@ -398,23 +380,9 @@
         ignoreResistances: true
         damage:
           types:
-            Cellular: 0.05
-      - !type:ModifyStatusEffect
-        minScale: 1
-        effectProto: StatusEffectSeeingRainbow
-        type: Add
-        time: 500
-      - !type:Drunk
-        boozePower: 500
-        minScale: 1
+            Cold: 0.05
       - !type:PopupMessage
         type: Local
         messages: [ "frezon-lungs-cold" ]
         probability: 0.1
-        minScale: 1
-      - !type:PopupMessage
-        type: Local
-        visualType: Medium
-        messages: [ "frezon-euphoric" ]
-        probability: 0.1
-        minScale: 1
+        minScale: 0.5
