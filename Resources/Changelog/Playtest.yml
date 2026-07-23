@@ -1247,3 +1247,11 @@ Entries:
         random job instead of always defaulting to assistant.
   id: 134
   time: '2026-07-21T05:53:52.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Occluded sounds are now quieter and more consistent
+    - type: Tweak
+      message: Removed standing state down sound (no more roundstart thunk spam)
+  id: 135
+  time: '2026-07-23T13:14:08.0000000+00:00'
