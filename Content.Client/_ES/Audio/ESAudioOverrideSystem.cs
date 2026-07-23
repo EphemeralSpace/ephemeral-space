@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._ES.Audio;
 using Robust.Client;
 using Robust.Client.Audio;
 using Robust.Shared;
@@ -27,6 +28,10 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
     [Dependency] private IBaseClient _baseClient = default!;
 
     private ProtoId<AudioPresetPrototype> _reverbPreset = "Room";
+
+    private const float OccludedSoundAmount = 1f;
+    private const float OcclusionVolumeAdjust = -6.5f;
+    private const float MinOcclusionPenetration = 0.8f;
 
     // ReSharper disable once InconsistentNaming
     // for vv testing purposes
@@ -87,6 +92,8 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
             component.Started = true;
             component.StartPlaying();
         }
+
+        component.Velocity = Vector2.Zero;
 
         // If it's global but on another map (that isn't nullspace) then stop playing it.
         if (component.Global)
@@ -158,6 +165,11 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         {
             var occlusion = GetOcclusion(listener, delta, distance, parentUid);
             component.Occlusion = occlusion;
+            if (component.Occlusion > 0f)
+            {
+                component.Volume = component.Params.Volume + OcclusionVolumeAdjust;
+                Log.Info($"occlusion set vol to {component.Volume}");
+            }
         }
 
         // Update audio positions.
@@ -169,15 +181,13 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
     /// </summary>
     public float GetOcclusion(MapCoordinates listener, Vector2 delta, float distance, EntityUid? ignoredEnt = null)
     {
-        float occlusion = 0;
+        if (distance <= 0.1)
+            return 0f;
 
-        if (distance > 0.1)
-        {
-            var rayLength = MathF.Min(distance, _maxRayLength);
-            var ray = new CollisionRay(listener.Position, delta / distance, _originalAudio.OcclusionCollisionMask);
-            occlusion = _physics.IntersectRayPenetration(listener.MapId, ray, rayLength, ignoredEnt);
-        }
+        var rayLength = MathF.Min(distance, _maxRayLength);
+        var ray = new CollisionRay(listener.Position, delta / distance, _originalAudio.OcclusionCollisionMask);
+        var penetration = _physics.IntersectRayPenetration(listener.MapId, ray, rayLength, ignoredEnt);
 
-        return occlusion;
+        return penetration < MinOcclusionPenetration ? 0f : OccludedSoundAmount;
     }
 }

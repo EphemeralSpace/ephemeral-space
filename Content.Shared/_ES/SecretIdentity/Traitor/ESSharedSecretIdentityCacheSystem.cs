@@ -138,7 +138,7 @@ public abstract partial class ESSharedSecretIdentityCacheSystem : EntitySystem
         var cache = PredictedSpawnAtPosition(ent.Comp.CacheLoot, pos);
         PredictedQueueDel(ent);
         _popup.PopupEntity(Loc.GetString("es-ceiling-cache-popup"), ent);
-        _audio.PlayPredicted(ent.Comp.RevealSound, pos, user);
+        _audio.PlayPredicted(ent.Comp.RevealSound, pos, user, ent.Comp.RevealSound?.Params.WithMaxDistance(1.5f).WithVolume(-3f));
 
         if (ent.Comp.MindId.HasValue)
         {
