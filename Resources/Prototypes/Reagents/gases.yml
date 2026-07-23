@@ -357,9 +357,9 @@
             Poison: 0.25
 
 - type: reagent
-  id: Frezon
-  name: reagent-name-frezon
-  desc: reagent-desc-frezon
+  id: Cryogas
+  name: reagent-name-cryogas
+  desc: reagent-desc-cryogas
   physicalDesc: reagent-physical-desc-gaseous
   flavor: bitter
   color: "#3a758c"

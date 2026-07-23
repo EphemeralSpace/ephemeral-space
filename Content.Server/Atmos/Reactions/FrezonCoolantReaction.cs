@@ -31,7 +31,7 @@ public sealed partial class FrezonCoolantReaction : IGasReactionEffect
             return ReactionResult.NoReaction;
 
         var initialNit = mixture.GetMoles(Gas.Nitrogen);
-        var initialFrezon = mixture.GetMoles(Gas.Frezon);
+        var initialFrezon = mixture.GetMoles(Gas.Cryogas);
 
         var burnRate = initialFrezon * scale / Atmospherics.FrezonCoolRateModifier;
 
@@ -41,7 +41,7 @@ public sealed partial class FrezonCoolantReaction : IGasReactionEffect
             var nitAmt = Math.Min(burnRate * Atmospherics.FrezonNitrogenCoolRatio, initialNit);
             var frezonAmt = Math.Min(burnRate, initialFrezon);
             mixture.AdjustMoles(Gas.Nitrogen, -nitAmt);
-            mixture.AdjustMoles(Gas.Frezon, -frezonAmt);
+            mixture.AdjustMoles(Gas.Cryogas, -frezonAmt);
             mixture.AdjustMoles(Gas.Oxygen, nitAmt + frezonAmt);
             energyReleased = burnRate * Atmospherics.FrezonCoolEnergyReleased * energyModifier;
         }
