@@ -1255,3 +1255,11 @@ Entries:
       message: Removed standing state down sound (no more roundstart thunk spam)
   id: 135
   time: '2026-07-23T13:14:08.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        The marauder kit has been reverted to the previous version. They now
+        also get two door jammers instead of a knife and grenade, now.
+  id: 136
+  time: '2026-07-23T13:14:54.0000000+00:00'
