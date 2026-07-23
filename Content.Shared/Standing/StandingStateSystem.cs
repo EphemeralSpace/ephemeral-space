@@ -1,3 +1,4 @@
+using Content.Shared._ES.Audio;
 using Content.Shared.Climbing.Events;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
@@ -6,6 +7,7 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Rotation;
+using Robust.Shared.Audio.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
@@ -126,24 +128,7 @@ public sealed partial class StandingStateSystem : EntitySystem
         // Change collision masks to allow going under certain entities like flaps and tables
         ChangeLayers((uid, standingState));
 
-        // check if component was just added or streamed to client
-        // if true, no need to play sound - mob was down before player could seen that
-        if (standingState.LifeStage <= ComponentLifeStage.Starting)
-            return true;
-
-        if (playSound)
-        {
-            // ES START
-            // yeah sorry. i dont really think theres any better way to do this without kind of making the flow of events unparsable
-            // and opening us up to weird ordering issues eventually
-            // at least this is easy to understand (this is to make it not THUD after sleeping everyone roundstart)
-            if (_timing.CurTime < (_ticker.RoundStartTimeSpan + TimeSpan.FromSeconds(5)))
-                return true;
-            // ES END
-
-            _audio.PlayPredicted(standingState.DownSound, uid, uid);
-        }
-
+        // Fuck this stupid ass sound
         return true;
     }
 
