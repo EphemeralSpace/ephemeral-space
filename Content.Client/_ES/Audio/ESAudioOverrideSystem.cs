@@ -168,7 +168,6 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
             if (component.Occlusion > 0f)
             {
                 component.Volume = component.Params.Volume + OcclusionVolumeAdjust;
-                Log.Info($"occlusion set vol to {component.Volume}");
             }
         }
 
