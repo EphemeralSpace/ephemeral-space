@@ -64,10 +64,10 @@
   id: ESTraitorCacheMarauder
   table:
     all:
-    - id: EnergySword
+    - id: ESWeaponRevolver357
+    - id: ESSpeedLoader357
+    - id: ESWeaponKnife
     - id: StimulantPen
-      amount: 2
-    - id: ESClothingOuterArmorSecurity
 
 # Subverter
 - type: entity
