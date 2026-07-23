@@ -1263,3 +1263,13 @@ Entries:
         also get two door jammers instead of a knife and grenade, now.
   id: 136
   time: '2026-07-23T13:14:54.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Toast now has more biosuit lockers and portable scrubbers
+    - type: Tweak
+      message: >-
+        Removed some of the more annoying warpdrive warp locations that would
+        frequently cause people to get confused /stuck
+  id: 137
+  time: '2026-07-23T13:31:49.0000000+00:00'
