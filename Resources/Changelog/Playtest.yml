@@ -1273,3 +1273,11 @@ Entries:
         frequently cause people to get confused /stuck
   id: 137
   time: '2026-07-23T13:31:49.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Fixed a bug where duplicates of certain jobs would be assigned as
+        overflow.
+  id: 138
+  time: '2026-07-24T11:06:01.0000000+00:00'
