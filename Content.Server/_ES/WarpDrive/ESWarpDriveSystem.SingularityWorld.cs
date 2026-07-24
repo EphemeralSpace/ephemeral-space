@@ -40,7 +40,16 @@ public sealed partial class ESWarpDriveSystem
 
     private void OnWarpDriveTeleport(Entity<ESWarpDriveComponent> ent, ref PortalTeleportedEvent args)
     {
-        TryTeleportToWarp(ent.Comp.SingularityWorldTeleportOutTime, args.Entity);
+        if (HasComp<GhostComponent>(args.Entity))
+            return;
+
+        var teleport = EnsureComp<ESSingularityWorldTeleportedEntityComponent>(args.Entity);
+        teleport.TeleportOutTime = _timing.CurTime + ent.Comp.SingularityWorldTeleportOutTime;
+
+        SpawnAtPosition(TeleportEffect, Transform(args.Entity).Coordinates);
+        _popup.PopupEntity(Loc.GetString("es-warp-drive-singularity-teleport-user"), args.Entity, args.Entity);
+        IncrementTeleportedEntitiesCount();
+        _brainDamage.TryChangeBrainDamage(args.Entity, 20);
     }
 
     private void ActiveTickSingularityWorld()
@@ -110,25 +119,5 @@ public sealed partial class ESWarpDriveSystem
             // Set up link
             _linked.TryLink(driveEntity, teleportLocation.Value);
         }
-    }
-
-    public void TryTeleportToWarp(TimeSpan teleportOutTime, EntityUid ent)
-    {
-        if (HasComp<GhostComponent>(ent))
-            return;
-
-        var teleport = EnsureComp<ESSingularityWorldTeleportedEntityComponent>(ent);
-        teleport.TeleportOutTime = _timing.CurTime + teleportOutTime;
-
-        SpawnAtPosition(TeleportEffect, Transform(ent).Coordinates);
-        _popup.PopupEntity(Loc.GetString("es-warp-drive-singularity-teleport-user"), ent, ent);
-        IncrementTeleportedEntitiesCount();
-        _brainDamage.TryChangeBrainDamage(ent, 20);
-    }
-
-    public HashSet<EntityUid>? GetSingularityWorldGrids()
-    {
-
-        return SingularityWorldGrids;
     }
 }

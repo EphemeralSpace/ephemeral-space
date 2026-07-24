@@ -41,9 +41,6 @@ es-secret-identity-vandal-desc = As a Vandal, sabotage machines around the stati
 es-secret-identity-vip-name = VIP
 es-secret-identity-vip-desc = As a VIP, use your fancy VIP card to help confirm your innocence in times of peril.
 
-es-secret-identity-warp-disciple-name = Warp Disciple
-es-secret-identity-warp-disciple-desc = As a Warp Disciple, clear the Warp Drive of any interruptions personally and recall to it in times of peril.
-
 # Traitor Secret Identities
 es-secret-identity-organization-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete your group objectives.
 
