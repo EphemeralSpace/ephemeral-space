@@ -8,3 +8,4 @@
     revertOnCrit: false
     revertOnDeath: false
     revertOnDelete: false
+    polymorphPopup: es-cryohusk-convert-popup
