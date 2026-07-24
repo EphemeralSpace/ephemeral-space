@@ -124,6 +124,12 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
 
     [DataField]
     public ProtoId<EntityTablePrototype> InterruptionTrashTable = "ESMaintLootExposed";
+
+    /// <summary>
+    ///     last person that picked up clogged item
+    /// </summary>
+    [DataField]
+    public EntityUid? LastClearer;
 }
 
 [DataDefinition]
