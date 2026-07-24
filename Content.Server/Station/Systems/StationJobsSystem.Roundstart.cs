@@ -296,6 +296,16 @@ public sealed partial class StationJobsSystem
             })
             .ToDictionary();
 
+        // Remove any jobs we've assigned in the prior stage.
+        // Note we have to do this manually since we don't actually update JobList
+        // until minds are spawned and the roles are assigned.
+        foreach (var (job, station) in assignedJobs.Values)
+        {
+            if (!station.Valid || !job.HasValue)
+                continue;
+            stationJobs[station].Remove(job.Value);
+        }
+
         // For players without jobs, give them the overflow job if they have that set...
         foreach (var player in allPlayersToAssign)
         {
