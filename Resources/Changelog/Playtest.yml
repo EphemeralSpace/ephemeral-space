@@ -1345,3 +1345,11 @@ Entries:
         good sorry I am not visual arts gifted
   id: 144
   time: '2026-07-25T21:05:28.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Cannibal, a new secret identity that can copy a mask from dead
+        bodies.
+  id: 145
+  time: '2026-07-25T21:08:42.0000000+00:00'
