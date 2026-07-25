@@ -9,7 +9,6 @@ using Content.Client.Roles;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.Objectives.Components;
-using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.Mind;
 using Content.Shared.Warps;
@@ -32,27 +31,16 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
     public void OnStateEntered(GameplayState state)
     {
         _secretIdentity?.OnSecretIdentityChanged += OnSecretIdentityChanged;
-        _secretIdentity?.OnCharacterBlurbChanged += OnCharacterBlurbChanged;
         _objective?.OnObjectivesChanged += OnObjectivesChanged;
     }
 
     public void OnStateExited(GameplayState state)
     {
         _secretIdentity?.OnSecretIdentityChanged -= OnSecretIdentityChanged;
-        _secretIdentity?.OnCharacterBlurbChanged -= OnCharacterBlurbChanged;
         _objective?.OnObjectivesChanged -= OnObjectivesChanged;
     }
 
     private void OnSecretIdentityChanged(EntityUid mind, ProtoId<ESSecretIdentityPrototype>? secretIdentity)
-    {
-        if (UIManager.GetActiveUIWidgetOrNull<ESStagehandObserveControl>() is not { } observe)
-            return;
-
-        Update(observe);
-        UpdateInfoPanel(observe);
-    }
-
-    private void OnCharacterBlurbChanged(Entity<ESCharacterBlurbComponent> obj)
     {
         if (UIManager.GetActiveUIWidgetOrNull<ESStagehandObserveControl>() is not { } observe)
             return;
@@ -98,6 +86,9 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
         {
             warps.Add(uid);
         }
+
+        if (minds.Count == 0)
+            return;
 
         var orderedMinds = minds
             .OrderBy(m => _secretIdentity?.GetOrganizationOrNull((m, m.Comp1)))
