@@ -15,6 +15,7 @@
   - Pickpocket
   - Secretary
   - SleeperAgent
+  - Stalker
   - Tragedian
   - Vandal
   - VIP
@@ -80,6 +81,11 @@
   id: SleeperAgent
   name: Sleeper Agent
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/SleeperAgent.xml"
+
+- type: guideEntry
+  id: Stalker
+  name: Stalker
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Stalker.xml"
 
 - type: guideEntry
   id: Tragedian
