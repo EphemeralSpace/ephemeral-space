@@ -6,6 +6,7 @@
   - ArmsDealer
   - Arsonist
   - Avenger
+  - Cannibal
   - Crewmember
   - Guzzler
   - Hater
@@ -35,6 +36,11 @@
   id: Avenger
   name: Avenger
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Avenger.xml"
+
+- type: guideEntry
+  id: Cannibal
+  name: Cannibal
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Cannibal.xml"
 
 - type: guideEntry
   id: Crewmember
