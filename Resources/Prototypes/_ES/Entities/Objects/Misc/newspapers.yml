@@ -16,9 +16,21 @@
 
 - type: entity
   parent: BaseNewspaper
-  id: NewspaperSingularity
+  id: NewspaperBigPumpkin
+  name: Galaxy NOW - October 1st, 2065
+  description: "A paperback newspaper. The headline reads: 'World's First 30ft Watermelon Grown In Mars Fleet, Botanist Community In Shock'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperSpores
+  name: Galaxy NOW - October 8th, 2065
+  description: "A paperback newspaper. The headline reads: 'Experts Warn Against Dangers of Spore Gas; Leak Aboard Botanist Ship Leaves 3 Hospitalized'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperGasLeaks
   name: Galaxy NOW - October 15th, 2065
-  description: "A paperback newspaper. The headline reads: 'Singularity Generator Safety Controversies Spark Reserach Into Alternatives'"
+  description: "A paperback newspaper. The headline reads: 'New Space Travel Technology Potentially Linked to Dangerous Gas Leaks, Experts Say'"
 
 - type: entity
   parent: BaseNewspaper

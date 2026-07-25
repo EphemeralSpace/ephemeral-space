@@ -29,7 +29,9 @@
   table:
     group:
     - group:
-      - id: NewspaperSingularity
+      - id: NewspaperBigPumpkin
+      - id: NewspaperSpores
+      - id: NewspaperGasLeaks
       - id: NewspaperMaintenanceTar
       - id: NewspaperWater
       - id: NewspaperWeldingFuel
@@ -154,6 +156,12 @@
     - group:
       - id: MagazineRevolutionary
       - id: MagazineRevolutionary2
+      - id: MagazineRevolutionary3
+      - id: MagazineRevolutionary4
+      - id: MagazineRevolutionary5
+      - id: MagazineRevolutionary6
+      - id: MagazineRevolutionary7
+      - id: MagazineRevolutionary8
 
 - type: entityTable
   id: MagazinesConspiracy

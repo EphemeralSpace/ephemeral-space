@@ -132,7 +132,44 @@
   parent: MagazineRevolutionary
   id: MagazineRevolutionary2
   name: "REVOLUTION! #3"
-  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Spears, Nailed Planks, Bolas, and other homemade weapons'"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Spears, Nailed Planks, Bolas, and Other Homemade Weapons'"
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary3
+  name: "REVOLUTION! #4"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Emergency Weaponry in Industrial Environments: Toolboxes, Oxygen Tanks, and More'"
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary4
+  name: "REVOLUTION! #5"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Safe Telecomms Sabotage: How to Protest & Not Fuck Over the Masses'"
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary5
+  name: "REVOLUTION! #6"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Gamma Sector Police Blockade Falls - A Huge Win for Freedom'"
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary6
+  name: "REVOLUTION! #7"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Station Bots & Their Vunerabilities'"
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary7
+  name: "REVOLUTION! #8"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Protecting Your Identity Against Space Surveillance: Gas Masks, Chameleon Clothing, and Other Solutions'"
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary8
+  name: "REVOLUTION! #10"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Non-Governmental Threats: Stay Vigiliant Against Syndicate Agents'"
+
 
 # Conspiracy
 - type: entity
