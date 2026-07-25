@@ -228,7 +228,7 @@
   parent: BaseMagazine
   id: MagazineEngineerNews
   name: "ShuttleTech #2"
-  description: "A magazine containing the latest news on engineering & tech advancements. The headline reads: 'Nanotrasen-competitior leaks information from FTL drive schematics'"
+  description: "A magazine containing the latest news on engineering & tech advancements. The headline reads: 'Nanotrasen-competitior leaks information from rumored megathruster schematics'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
