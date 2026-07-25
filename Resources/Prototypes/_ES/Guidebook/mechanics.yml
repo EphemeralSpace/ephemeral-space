@@ -5,6 +5,7 @@
   priority: 1
   text: "/ServerInfo/_ES/Guidebook/Mechanics.xml"
   children:
+  - WarpDrive
   - OffbrandMedical
   - Power
   - Hunger
