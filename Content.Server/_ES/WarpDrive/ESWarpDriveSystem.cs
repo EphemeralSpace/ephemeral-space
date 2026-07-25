@@ -2,10 +2,12 @@ using Content.Server._ES.Announcements;
 using Content.Server._ES.Objectives;
 using Content.Server._ES.WarpDrive.Components;
 using Content.Server.Administration;
+using Content.Server.AlertLevel;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.RoundEnd;
+using Content.Server.Station.Systems;
 using Content.Shared._DV.Screens;
 using Content.Shared._ES.Cinematic;
 using Content.Shared._ES.Core.Timer;
@@ -33,6 +35,7 @@ namespace Content.Server._ES.WarpDrive;
 /// <see cref="ESWarpDriveGameRuleComponent"/>
 public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRuleComponent>
 {
+    [Dependency] private AlertLevelSystem _alert = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ESAnnouncementSystem _announcement = default!;
     [Dependency] private GameTicker _ticker = default!;
@@ -48,6 +51,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
 
     private static readonly TimeSpan EndRoundDuration = TimeSpan.FromSeconds(10);
     private static readonly ProtoId<ESCinematicPrototype> Cinematic = "WarpCinematic";
+    private static readonly string AlertLevel = "epsilon";
 
     public override void Initialize()
     {
@@ -93,6 +97,10 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
                     announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg"),
                     colorOverride: Color.MediumVioletRed,
                     important: true);
+
+                var station = _station.GetStationInMap(_ticker.DefaultMap);
+                if (station != null)
+                    _alert.SetLevel(station.Value, AlertLevel, false, false, true, true);
             }
             else
             {
