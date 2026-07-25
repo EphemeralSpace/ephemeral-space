@@ -547,6 +547,9 @@ namespace Content.Server.GameTicking
             // Log end of round
             _adminLogger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Round ended, showing summary");
 
+            var beforeEv = new ESBeforeRoundEndEvent();
+            RaiseLocalEvent(ref beforeEv);
+
             //Tell every client the round has ended.
             var gamemodeTitle = CurrentPreset != null ? Loc.GetString(CurrentPreset.ModeTitle) : string.Empty;
 
@@ -1042,6 +1045,12 @@ namespace Content.Server.GameTicking
             Forced = forced;
         }
     }
+
+    /// <summary>
+    /// Raised before all other round-end logic
+    /// </summary>
+    [ByRefEvent]
+    public readonly record struct ESBeforeRoundEndEvent;
 
     /// <summary>
     ///     Event raised to allow subscribers to add text to the round end summary screen.
