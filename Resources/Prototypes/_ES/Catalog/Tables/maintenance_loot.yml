@@ -263,6 +263,7 @@
     - id: d20Dice
     - id: Wristwatch
     - id: Binoculars
+    - tableId: PeridocalsSuspicious
 
 - type: entityTable
   id: ESMaintLootRare

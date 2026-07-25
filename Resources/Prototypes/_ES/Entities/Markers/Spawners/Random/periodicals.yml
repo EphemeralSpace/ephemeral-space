@@ -22,7 +22,7 @@
   parent: ESSpawnerBase
   id: ESSpawnerRandomPeriodicalsLegit
   name: Periodical Spawner
-  suffix: Magazines / Newspapers
+  suffix: Magazines / Newspapers, Legit
   components:
   - type: Sprite
     layers:
@@ -41,7 +41,7 @@
   parent: ESSpawnerBase
   id: ESSpawnerRandomPeriodicalsSuspicious
   name: Periodical Spawner
-  suffix: Suspicious Magazines / Newspapers
+  suffix: Magazines / Newspapers, Suspicious
   components:
   - type: Sprite
     layers:
@@ -88,7 +88,7 @@
   - type: EntityTableSpawner
     offset: 0.2
     table:
-      tableId: AllMagazines
+      tableId: MagazinesAll
 
 - type: entity
   parent: ESSpawnerBase
@@ -98,7 +98,7 @@
   components:
   - type: Sprite
     layers:
-    - state: newspaper
+    - state: magazine
     - state: random
     - state: legit
     - state: es
@@ -115,7 +115,7 @@
   components:
   - type: Sprite
     layers:
-    - state: newspaper
+    - state: magazine
     - state: random
     - state: maint
     - state: es

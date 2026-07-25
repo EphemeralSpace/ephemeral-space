@@ -3,20 +3,20 @@
   id: PeriodicalsAll
   table:
     group:
-    - tableId: AllMagazines
+    - tableId: MagazinesAll
     - tableId: Newspapers
     - id: BaseNewspaper
       weight: 0.05
 
 - type: entityTable
-  id: PeriodcalsLegit
+  id: PeriodicalsLegit
   table:
     group:
     - tableId: MagazinesLegit
     - tableId: Newspapers
 
 - type: entityTable
-  id: PeridocalsSuspicious
+  id: PeriodicalsSuspicious
   table:
     group:
     - tableId: MagazinesZines

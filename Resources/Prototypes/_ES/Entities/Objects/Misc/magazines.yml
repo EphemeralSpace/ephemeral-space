@@ -19,8 +19,8 @@
 - type: entity
   parent: BaseMagazine
   id: MagazineCognitoWood
-  name: "CognitoWood #1: Perservence, Lethragy, and Branches, Super-Nymphs"
-  description: CognitoWood, the mind-bending diona superhero, makes their appearance - all 3 nymphs spring in to action to save the day against Red Marauder!
+  name: "CognitoWood #1"
+  description: "A comic book about CognitoWood, the mind-bending diona superhero. The headline reads: 'Perservence, Lethragy, and Branches, Super-Nymphs United!'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
@@ -30,8 +30,8 @@
 - type: entity
   parent: BaseMagazine
   id: MagazineCookingAndBotany
-  name: "Chell's Cooking & Botany: Best of 2065"
-  description: A magazine containing various cooking recipes & botanical tips for aspiring chefs onboard space stations.
+  name: Chell's Cooking & Botany
+  description: "A magazine containing various cooking recipes & botanical tips for aspiring chefs onboard space stations. The headline reads: 'Best Recipes of 2065'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
@@ -63,8 +63,8 @@
 - type: entity
   parent: BaseMagazine
   id: MagazineEarthNews
-  name: Oxygenated Wonders, Earth News Highlights
-  description: A magazine containing a positive spin on global earth news. Extremely popular amongst people who have never been to earth.
+  name: "Oxygenated Wonders, Earth News Highlights #6"
+  description: "A magazine containing a positive spin on global earth news. The headline reads: 'New species discovered, atmosphere-based mobility innovations, and more!'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
@@ -74,8 +74,8 @@
 - type: entity
   parent: BaseMagazine
   id: MagazineFirearms
-  name: "Mel's Classified Firearms: New Laser Pistol Unveiled from 8&P"
-  description: A magazine containing the latest & greatest innovations from firearms manufactuers.
+  name: "Mel's Classified Firearms #20"
+  description: "A magazine containing the latest & greatest innovations from firearms manufactuers. The headline reads: 'NEW Laser Pistol Unveiled from 8&P'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
@@ -85,8 +85,8 @@
 - type: entity
   parent: BaseMagazine
   id: MagazineMedicalScience
-  name: "Galactic Reagents: Burstworm Cure Found?"
-  description: A magazine containing news relating to medical science advancements.
+  name: "Galactic Reagents #52"
+  description: "A magazine containing news relating to medical science advancements. The headline reads: 'Burstworm Cure Found?'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
@@ -96,30 +96,33 @@
 - type: entity
   parent: BaseMagazine
   id: MagazinePopularSpacepeople
-  name: "Popular Spacepeople TODAY: Ostro Napalm unveils their gender affirming surgery"
-  description: A magazine containing the latest celebrity gossip & news.
+  name: "Popular Spacepeople TODAY #120"
+  description: "A magazine containing the latest celebrity gossip & news. The headline reads: 'Ostro Napalm unveils their gender affirming surgery'"
 
 - type: entity
   parent: MagazinePopularSpacepeople
   id: MagazinePopularSpacepeople2
-  name: "Popular Spacepeople TODAY: Sunshine Sprite's new controversial outfit choice"
+  name: "Popular Spacepeople TODAY #131"
+  description: "A magazine containing the latest celebrity gossip & news. The headline reads: 'Sunshine Sprite's new controversial outfit choice floors fans'"
 
 - type: entity
   parent: MagazinePopularSpacepeople
   id: MagazinePopularSpacepeople3
-  name: "Popular Spacepeople TODAY: Maksym Millions's new dietary supplement sparks controversy"
+  name: "Popular Spacepeople TODAY #145"
+  description: "A magazine containing the latest celebrity gossip & news. The headline reads: 'Maksym Millions's new dietary supplement sparks controversy'"
   
 - type: entity
   parent: MagazinePopularSpacepeople
   id: MagazinePopularSpacepeople4
-  name: "Popular Spacepeople TODAY: Bubble Brown found dead at 39, foul play from Syndicate suspected"
+  name: "Popular Spacepeople TODAY #150"
+  description: "A magazine containing the latest celebrity gossip & news. The headline reads: 'Bubble Brown found dead at 39 - natural causes or syndicate intervention?'"
 
 # Revolutionary
 - type: entity
   parent: BaseMagazine
   id: MagazineRevolutionary
-  name: "REVOLUTION!: Firebombs & You"
-  description: A zine containing guides & updates for revolutionaries.
+  name: "REVOLUTION! #1"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Firebombs & You'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
@@ -128,14 +131,15 @@
 - type: entity
   parent: MagazineRevolutionary
   id: MagazineRevolutionary2
-  name: "REVOLUTION!: Homemade Weapons - Spears, Nailed Planks, & Bolas"
+  name: "REVOLUTION! #3"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Spears, Nailed Planks, Bolas, and other homemade weapons'"
 
 # Conspiracy
 - type: entity
   parent: BaseMagazine
   id: MagazineConspiracy
-  name: "True History: Mr. Nanotrasen's link to Glass Society"
-  description: A zine containing various crazed ramblings & conspiracy theories.
+  name: True History
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Mr. Nanotrasen's link to Glass Society'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
@@ -144,34 +148,34 @@
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy2
-  name: "True History: Woodgrain Wonders behind water shortages"
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Woodgrain Wonders behind water shortages'"
 
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy3
-  name: "True History: Rising barricade usage orchastrated by Big Wood"
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Rising barricade usage orchastrated by Big Wood'"
 
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy4   
-  name: "True History: RATMEN ARE REAL AND IN YOUR STATION"
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'RATMEN ARE REAL AND IN YOUR STATION'"
 
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy5
-  name: "True History: The plan to forge people in to a large sphere & why you should be worried"
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'The plan to forge people in to a large sphere & why you should be worried'"
 
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy6
-  name: "True History: Nanotrasen Pies secretly laced with red beans"
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Nanotrasen chefs caught secretly lacing food with floor tile dirt'"
 
 # Fashion
 - type: entity
   parent: BaseMagazine
   id: MagazineFashion
-  name: "Fashion Fanatics: Outfits for scientific research"
-  description: A magazine containing various fashion ideas & news.
+  name: "Fashion Fanatics #4"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Outfits for scientific research'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
@@ -180,44 +184,51 @@
 - type: entity
   parent: MagazineFashion
   id: MagazineFashion2
-  name: "Fashion Fanatics: Androgynous performer outfits for budding enbies"
+  name: "Fashion Fanatics #14"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Androgynous performer outfits for budding enbies'"
 
 - type: entity
   parent: MagazineFashion
   id: MagazineFashion3
-  name: "Fashion Fanatics: Aquatic-themed outfits"
+  name: "Fashion Fanatics #15"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Aquatic-themed outfit ideas'"
   
 - type: entity
   parent: MagazineFashion
   id: MagazineFashion4
-  name: "Fashion Fanatics: Rough-and-tumble outfits for space bikers"
+  name: "Fashion Fanatics #17"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Rough-and-tumble outfits for space bikers'"
 
 - type: entity
   parent: MagazineFashion
   id: MagazineFashion5
-  name: "Fashion Fanatics: Swirly glass outfits for swirly glass girls"
+  name: "Fashion Fanatics #20"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Swirly-glass outfits for swirly glasses girls'"
 
 - type: entity
   parent: MagazineFashion
   id: MagazineFashion6
-  name: "Fashion Fanatics: Oodles of fun with color-coordinated outfits"
+  name: "Fashion Fanatics #22"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Color-coordinated outfit ideas for teams and groups'"
 
 - type: entity
   parent: MagazineFashion
   id: MagazineFashion7
-  name: "Fashion Fanatics: Space outfits with a chrome finish"
+  name: "Fashion Fanatics #23"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Space outfits with a chrome finish'"
 
 - type: entity
   parent: MagazineFashion
   id: MagazineFashion8
-  name: "Fashion Fanatics: Work uniforms to maximize diona gesalt comfort"
+  name: "Fashion Fanatics #24"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Diona work uniform styles to maximize gesalt comfort'"
 
 # Engineering Progress News
 - type: entity
   parent: BaseMagazine
   id: MagazineEngineerNews
-  name: "ShuttleTech: Nanotrasen-competitior leaks information from FTL drive schematics"
-  description: A magazine containing the latest news on engineering & tech advancements.
+  name: "ShuttleTech #2"
+  description: "A magazine containing the latest news on engineering & tech advancements. The headline reads: 'Nanotrasen-competitior leaks information from FTL drive schematics'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
@@ -226,4 +237,5 @@
 - type: entity
   parent: MagazineEngineerNews
   id: MagazineEngineerNews2
-  name: "ShuttleTech: Experimental cryogenic power source research begins"
+  name: "ShuttleTech #5"
+  description: "A magazine containing the latest news on engineering & tech advancements. The headline reads: 'Experimental cryogenic power source research begins'"
