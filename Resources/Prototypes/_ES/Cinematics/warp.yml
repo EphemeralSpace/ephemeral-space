@@ -3,5 +3,5 @@
   animation:
     sprite: _ES/Cinematics/warp_cutscene.rsi
     state: station_warp_out
-  sound: /Audio/_ES/Cinematics/explosion_nuke.ogg
+  sound: /Audio/_ES/Cinematics/warp_out.ogg
   length: 15s

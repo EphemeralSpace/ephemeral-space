@@ -1,0 +1,7 @@
+- type: esCinematic
+  id: RadstormCinematic
+  animation:
+    sprite: _ES/Cinematics/radstorm_cutscene.rsi
+    state: station_lights_out
+  sound: /Audio/_ES/Cinematics/radstorm_dirge.ogg
+  length: 20s
