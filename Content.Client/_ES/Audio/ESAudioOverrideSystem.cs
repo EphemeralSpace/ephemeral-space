@@ -30,7 +30,7 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
     private ProtoId<AudioPresetPrototype> _reverbPreset = "Room";
 
     private const float OccludedSoundAmount = 1f;
-    private const float OcclusionVolumeAdjust = -6.5f;
+    private const float OcclusionVolumeAdjust = -7f;
     private const float MinOcclusionPenetration = 0.8f;
 
     // ReSharper disable once InconsistentNaming
