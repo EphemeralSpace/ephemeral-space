@@ -1,3 +1,5 @@
+using Content.Server._ES.Objectives;
+using Content.Server._ES.SecretIdentity.Cyrojunkie.Components;
 using Content.Server.Administration;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Mind;
@@ -31,6 +33,7 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
     [Dependency] private ContainerSystem _container = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private ESObjectiveSystem _objective = default!;
     [Dependency] private PolymorphSystem _polymorph = default!;
     [Dependency] private ESSharedStagehandNotificationsSystem _stagehandNotifications = default!;
 
@@ -52,6 +55,14 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
     {
         if (!Resolve(target, ref target.Comp))
             return;
+
+        if (_mind.TryGetMind(target, out var mind))
+        {
+            foreach (var objective in _objective.GetObjectives<ESCryohuskObjectiveComponent>(mind.Value.Owner))
+            {
+                _objective.AdjustObjectiveCounter(objective.Owner);
+            }
+        }
 
         if (_polymorph.PolymorphEntity(target, target.Comp.CryohuskPolymorph) is not { } husk)
             return;

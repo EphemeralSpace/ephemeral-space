@@ -64,6 +64,9 @@
   weight: 0.5
   mindComponents:
   - type: ESCryoJunkieMind
+  objectives:
+    all:
+    - id: ESObjectiveCryohusk
 
 - type: esSecretIdentity
   id: Guzzler
