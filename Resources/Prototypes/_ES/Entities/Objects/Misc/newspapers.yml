@@ -1,0 +1,62 @@
+# Base Prototypes
+- type: entity
+  id: BaseNewspaper
+  parent: BaseItem
+  name: newspaper
+  description: A paperback newspaper. This one is several years out of date and contains no new information that you can learn.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: newspaper
+  - type: Item
+    size: Small
+    storedRotation: -90
+
+# Newspapers
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperSingularity
+  name: Galaxy NOW - October 15th, 2065
+  description: "A paperback newspaper. The headline reads: 'Singularity Generator Safety Controversies Spark Reserach Into Alternatives'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperMaintenanceTar
+  name: Galaxy NOW - October 22nd, 2065
+  description: "A paperback newspaper. The headline reads: 'Doctors Concerned About Rising Maintenance Tar Usage Amongst Teens'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperWater
+  name: Galaxy NOW - October 30st, 2065
+  description: "A paperback newspaper. The headline reads: 'Water Shortage Creates Concern For Halloween Plans in Woodson Fleet'"
+  
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperWeldingFuel
+  name: Galaxy NOW - December 5th, 2065
+  description: "A paperback newspaper. The headline reads: 'Citizens Concerned About Rising Welding Fuel Prices'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperParasite
+  name: Galaxy NOW - December 12th, 2065
+  description: "A paperback newspaper. The headline reads: 'Parasite Military Suffers Yet Another Crushing Loss'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperMining
+  name: Galaxy NOW - December 17th, 2065
+  description: "A paperback newspaper. The headline reads: 'Mining Companies Goes To War Over Asteroid Ownership Dispute'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperMining2
+  name: Galaxy NOW - January 2nd, 2066
+  description: "A paperback newspaper. The headline reads: 'Mining Company Cold War Ended, Jensen Mining Co. Claims Ownership Of Valuable Asteroid'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperMining3
+  name: Galaxy NOW - January 9th, 2066
+  description: "A paperback newspaper. The headline reads: 'New Miracle Material Discovered on Asteroid-XLR-2781'"

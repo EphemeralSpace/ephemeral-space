@@ -1,0 +1,125 @@
+# Combined
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomPeriodicals
+  name: Periodical Spawner
+  suffix: Magazines / Newspapers
+  components:
+  - type: Sprite
+    layers:
+    - state: newspaper
+    - state: random
+    - state: combo
+    - state: all
+      offset: 0, -0.1875
+    - state: es
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: PeriodicalsAll
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomPeriodicalsLegit
+  name: Periodical Spawner
+  suffix: Magazines / Newspapers
+  components:
+  - type: Sprite
+    layers:
+    - state: newspaper
+    - state: random
+    - state: combo
+    - state: legit
+      offset: 0, -0.1875
+    - state: es
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: PeriodicalsAll
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomPeriodicalsSuspicious
+  name: Periodical Spawner
+  suffix: Suspicious Magazines / Newspapers
+  components:
+  - type: Sprite
+    layers:
+    - state: newspaper
+    - state: random
+    - state: combo
+    - state: maint
+      offset: 0, -0.1875
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: PeriodicalsSuspicious
+
+# Newspapers
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomNewspapers
+  name: Newspaper Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: newspaper
+    - state: random
+    - state: all
+    - state: es
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: Newspapers
+
+# Magazines
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMagazines
+  name: Magazine Spawner
+  suffix: All
+  components:
+  - type: Sprite
+    layers:
+    - state: magazine
+    - state: random
+    - state: all
+    - state: es
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: AllMagazines
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMagazinesLegit
+  name: Magazine Spawner
+  suffix: Legit Only
+  components:
+  - type: Sprite
+    layers:
+    - state: newspaper
+    - state: random
+    - state: legit
+    - state: es
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: MagazinesLegit
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMagazinesZines
+  name: Magazine Spawner
+  suffix: Zines
+  components:
+  - type: Sprite
+    layers:
+    - state: newspaper
+    - state: random
+    - state: maint
+    - state: es
+  - type: EntityTableSpawner
+    offset: 0.2
+    table:
+      tableId: MagazinesZines

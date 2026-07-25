@@ -1,0 +1,229 @@
+# Base prototypes
+- type: entity
+  parent: BaseItem
+  id: BaseMagazine
+  name: magazine
+  description: A finely-printed magazine. Even in space, hard-boiled forms of media distribution like this can never fail you.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: popular_spacepeople
+  - type: Item
+    size: Small
+
+# Magazines
+# When adding new issues, DON'T FORGET TO ADD THEM AS SPAWNERS / TO EXISTING SPAWNERS!
+#
+# CognitoWood
+- type: entity
+  parent: BaseMagazine
+  id: MagazineCognitoWood
+  name: "CognitoWood #1: Perservence, Lethragy, and Branches, Super-Nymphs"
+  description: CognitoWood, the mind-bending diona superhero, makes their appearance - all 3 nymphs spring in to action to save the day against Red Marauder!
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: cognitowood
+
+# Cooking and Botany
+- type: entity
+  parent: BaseMagazine
+  id: MagazineCookingAndBotany
+  name: "Chell's Cooking & Botany: Best of 2065"
+  description: A magazine containing various cooking recipes & botanical tips for aspiring chefs onboard space stations.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: cooking
+
+# Crossword
+- type: entity
+  parent: BaseMagazine
+  id: MagazineCrossword
+  name: crossword magazine
+  description: A magazine containing various crossword puzzles. Popular amongst detectives.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: crossword
+
+# Wordsearch
+- type: entity
+  parent: BaseMagazine
+  id: MagazineWordsearch
+  name: wordsearch magazine
+  description: A magazine containing various wordsearch puzzles. Who even cares about these, anyways?
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: wordsearch
+
+# Earth News
+- type: entity
+  parent: BaseMagazine
+  id: MagazineEarthNews
+  name: Oxygenated Wonders, Earth News Highlights
+  description: A magazine containing a positive spin on global earth news. Extremely popular amongst people who have never been to earth.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: earth_news
+
+# Gun News
+- type: entity
+  parent: BaseMagazine
+  id: MagazineFirearms
+  name: "Mel's Classified Firearms: New Laser Pistol Unveiled from 8&P"
+  description: A magazine containing the latest & greatest innovations from firearms manufactuers.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: guns
+
+# Medical News
+- type: entity
+  parent: BaseMagazine
+  id: MagazineMedicalScience
+  name: "Galactic Reagents: Burstworm Cure Found?"
+  description: A magazine containing news relating to medical science advancements.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: medical
+
+# Popular Spacepeople TODAY
+- type: entity
+  parent: BaseMagazine
+  id: MagazinePopularSpacepeople
+  name: "Popular Spacepeople TODAY: Ostro Napalm unveils their gender affirming surgery"
+  description: A magazine containing the latest celebrity gossip & news.
+
+- type: entity
+  parent: MagazinePopularSpacepeople
+  id: MagazinePopularSpacepeople2
+  name: "Popular Spacepeople TODAY: Sunshine Sprite's new controversial outfit choice"
+
+- type: entity
+  parent: MagazinePopularSpacepeople
+  id: MagazinePopularSpacepeople3
+  name: "Popular Spacepeople TODAY: Maksym Millions's new dietary supplement sparks controversy"
+  
+- type: entity
+  parent: MagazinePopularSpacepeople
+  id: MagazinePopularSpacepeople4
+  name: "Popular Spacepeople TODAY: Bubble Brown found dead at 39, foul play from Syndicate suspected"
+
+# Revolutionary
+- type: entity
+  parent: BaseMagazine
+  id: MagazineRevolutionary
+  name: "REVOLUTION!: Firebombs & You"
+  description: A zine containing guides & updates for revolutionaries.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: zine_revolutionary
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary2
+  name: "REVOLUTION!: Homemade Weapons - Spears, Nailed Planks, & Bolas"
+
+# Conspiracy
+- type: entity
+  parent: BaseMagazine
+  id: MagazineConspiracy
+  name: "True History: Mr. Nanotrasen's link to Glass Society"
+  description: A zine containing various crazed ramblings & conspiracy theories.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: zine_conspiracy
+
+- type: entity
+  parent: MagazineConspiracy
+  id: MagazineConspiracy2
+  name: "True History: Woodgrain Wonders behind water shortages"
+
+- type: entity
+  parent: MagazineConspiracy
+  id: MagazineConspiracy3
+  name: "True History: Rising barricade usage orchastrated by Big Wood"
+
+- type: entity
+  parent: MagazineConspiracy
+  id: MagazineConspiracy4   
+  name: "True History: RATMEN ARE REAL AND IN YOUR STATION"
+
+- type: entity
+  parent: MagazineConspiracy
+  id: MagazineConspiracy5
+  name: "True History: The plan to forge people in to a large sphere & why you should be worried"
+
+- type: entity
+  parent: MagazineConspiracy
+  id: MagazineConspiracy6
+  name: "True History: Nanotrasen Pies secretly laced with red beans"
+
+# Fashion
+- type: entity
+  parent: BaseMagazine
+  id: MagazineFashion
+  name: "Fashion Fanatics: Outfits for scientific research"
+  description: A magazine containing various fashion ideas & news.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: fashion
+
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion2
+  name: "Fashion Fanatics: Androgynous performer outfits for budding enbies"
+
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion3
+  name: "Fashion Fanatics: Aquatic-themed outfits"
+  
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion4
+  name: "Fashion Fanatics: Rough-and-tumble outfits for space bikers"
+
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion5
+  name: "Fashion Fanatics: Swirly glass outfits for swirly glass girls"
+
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion6
+  name: "Fashion Fanatics: Oodles of fun with color-coordinated outfits"
+
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion7
+  name: "Fashion Fanatics: Space outfits with a chrome finish"
+
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion8
+  name: "Fashion Fanatics: Work uniforms to maximize diona gesalt comfort"
+
+# Engineering Progress News
+- type: entity
+  parent: BaseMagazine
+  id: MagazineEngineerNews
+  name: "ShuttleTech: Nanotrasen-competitior leaks information from FTL drive schematics"
+  description: A magazine containing the latest news on engineering & tech advancements.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: space
+
+- type: entity
+  parent: MagazineEngineerNews
+  id: MagazineEngineerNews2
+  name: "ShuttleTech: Experimental cryogenic power source research begins"

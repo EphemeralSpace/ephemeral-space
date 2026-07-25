@@ -172,6 +172,15 @@
         },
         {
             "name": "rat"
+        },
+        {
+            "name": "magazine"
+        },
+        {
+            "name": "newspaper"
+        },
+        {
+            "name": "legit"
         }
     ]
 }
