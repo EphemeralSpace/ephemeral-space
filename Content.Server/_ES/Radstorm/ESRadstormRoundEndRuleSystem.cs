@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server._ES.Announcements;
+using Content.Server._ES.Mind;
 using Content.Server._ES.Radio;
 using Content.Server._ES.Radstorm.Components;
 using Content.Server.AlertLevel;
@@ -56,9 +57,29 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedRoofSystem _roof = default!;
 
-    private static readonly TimeSpan EndRoundDuration = TimeSpan.FromSeconds(15);
+    private static readonly TimeSpan EndRoundDuration = TimeSpan.FromSeconds(13);
     private static readonly ProtoId<ESCinematicPrototype> Cinematic = "RadstormCinematic";
     private static readonly string AlertLevel = "gamma"; // why are these not. like. whatever
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<AutoGhostAttemptEvent>(OnAutoGhost);
+    }
+
+    private void OnAutoGhost(ref AutoGhostAttemptEvent ev)
+    {
+        // cancel autoghost if radstorm has started since we dont want people dying and going back to the lobby if they died from
+        // radstorm
+        // the round will restart anyway
+        var query = EntityQueryEnumerator<ESRadstormRoundEndRuleComponent>();
+        while (query.MoveNext(out var uid, out var radstorm))
+        {
+            if (RadstormStarted((uid, radstorm)))
+                ev.Cancelled = true;
+        }
+    }
 
     protected override void Started(EntityUid uid,
         ESRadstormRoundEndRuleComponent component,
