@@ -32,5 +32,5 @@ alert-level-delta-announcement = The station is currently under threat of immine
 alert-level-delta-instructions = Crewmembers are advised to listen to heads of staff for more information.
 
 alert-level-epsilon = Epsilon
-alert-level-epsilon-announcement = Experimental warp drive security overrides activated. Brace for spatial displacement at any time.
+alert-level-epsilon-announcement = Experimental warp drive security overrides activated. Follow guidance from Overseer-Soul to continue.
 alert-level-epsilon-instructions = Immediately follow any further orders from the Overseer-Soul.

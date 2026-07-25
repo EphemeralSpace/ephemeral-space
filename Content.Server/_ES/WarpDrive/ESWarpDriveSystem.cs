@@ -92,15 +92,16 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             if (warp.TerminalsOverridden >= 3)
             {
                 warp.AllTerminalsOverridden = true;
+
+                var station = _station.GetStationInMap(_ticker.DefaultMap);
+                if (station != null)
+                    _alert.SetLevel(station.Value, AlertLevel, true, true, true, true);
+
                 _announcement.DispatchRoundAnnouncement(Loc.GetString("es-warp-drive-announcement-can-activate"),
                     Loc.GetString("es-warpdrive-announcer"),
                     announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg"),
                     colorOverride: Color.MediumVioletRed,
-                    important: true);
-
-                var station = _station.GetStationInMap(_ticker.DefaultMap);
-                if (station != null)
-                    _alert.SetLevel(station.Value, AlertLevel, false, false, true, true);
+                    important: false); // plays alert level announcement thne this after queue
             }
             else
             {
