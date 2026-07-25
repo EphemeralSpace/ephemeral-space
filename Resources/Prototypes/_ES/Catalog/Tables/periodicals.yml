@@ -29,7 +29,7 @@
   table:
     group:
     - group:
-      - id: NewspaperBigPumpkin
+      - id: NewspaperBigWatermelon
       - id: NewspaperSpores
       - id: NewspaperGasLeaks
       - id: NewspaperMaintenanceTar

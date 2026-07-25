@@ -16,7 +16,7 @@
 
 - type: entity
   parent: BaseNewspaper
-  id: NewspaperBigPumpkin
+  id: NewspaperBigWatermelon
   name: Galaxy NOW - October 1st, 2065
   description: "A paperback newspaper. The headline reads: 'World's Biggest "SuperHuge" Watermelon Ever Grown In Mars Fleet, Botanist Community In Shock'"
 
