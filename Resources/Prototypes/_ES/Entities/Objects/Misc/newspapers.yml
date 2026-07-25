@@ -13,6 +13,7 @@
     storedRotation: -90
 
 # Newspapers
+
 - type: entity
   parent: BaseNewspaper
   id: NewspaperSingularity
@@ -60,3 +61,9 @@
   id: NewspaperMining3
   name: Galaxy NOW - January 9th, 2066
   description: "A paperback newspaper. The headline reads: 'New Miracle Material Discovered on Asteroid XLR-2781'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperForeshadowing
+  name: Galaxy NOW - January 15th, 2066
+  description: "A paperback newspaper. The headline reads: 'Reports of Worsening Cosmic Radiation Storms in Delta Sector Confirmed by DSHD'"
