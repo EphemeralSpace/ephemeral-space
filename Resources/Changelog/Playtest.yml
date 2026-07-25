@@ -1309,3 +1309,9 @@ Entries:
       message: Removed Frezon.
   id: 141
   time: '2026-07-25T11:07:35.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Stagehands are now notified when a subverter chip is used.
+  id: 142
+  time: '2026-07-25T11:12:09.0000000+00:00'
