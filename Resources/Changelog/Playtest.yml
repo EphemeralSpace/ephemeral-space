@@ -1247,3 +1247,37 @@ Entries:
         random job instead of always defaulting to assistant.
   id: 134
   time: '2026-07-21T05:53:52.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Occluded sounds are now quieter and more consistent
+    - type: Tweak
+      message: Removed standing state down sound (no more roundstart thunk spam)
+  id: 135
+  time: '2026-07-23T13:14:08.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        The marauder kit has been reverted to the previous version. They now
+        also get two door jammers instead of a knife and grenade, now.
+  id: 136
+  time: '2026-07-23T13:14:54.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Toast now has more biosuit lockers and portable scrubbers
+    - type: Tweak
+      message: >-
+        Removed some of the more annoying warpdrive warp locations that would
+        frequently cause people to get confused /stuck
+  id: 137
+  time: '2026-07-23T13:31:49.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Fixed a bug where duplicates of certain jobs would be assigned as
+        overflow.
+  id: 138
+  time: '2026-07-24T11:06:01.0000000+00:00'
