@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseAction
+  id: ActionSecretIdentityCannibalEat
+  name: Cannibalize
+  description: Consume a dead body and steal its secret identity.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/SecretIdentity/cannibal.rsi
+      state: icon
+    iconOn:
+      sprite: _ES/Actions/SecretIdentity/cannibal.rsi
+      state: icon-on
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:ESCannibalizeTargetActionEvent

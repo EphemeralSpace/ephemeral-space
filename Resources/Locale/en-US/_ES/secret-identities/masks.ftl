@@ -8,6 +8,9 @@ es-secret-identity-arsonist-desc = As an Arsonist, light fires around the statio
 es-secret-identity-avenger-name = Avenger
 es-secret-identity-avenger-desc = As an Avenger, protect your target from being killed at all costs. If that fails, kill their murderer.
 
+es-secret-identity-cannibal-name = Cannibal
+es-secret-identity-cannibal-desc = As a Cannibal, consume a dead body to steal their mask and complete their objectives as your own.
+
 es-secret-identity-crewmember-name = Crewmember
 es-secret-identity-crewmember-desc = As a Crewmember, use your unclouded judgment to help make sure the crew completes their objective and gets out safely.
 

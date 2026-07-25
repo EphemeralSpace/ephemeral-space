@@ -35,6 +35,19 @@
     id: ESObjectiveAvengerProtectRandom
 
 - type: esSecretIdentity
+  id: Cannibal
+  name: es-secret-identity-cannibal-name
+  organization: Crew
+  description: es-secret-identity-cannibal-desc
+  color: darkorange
+  actions:
+    all:
+    - id: ActionSecretIdentityCannibalEat
+  objectives:
+    all:
+    - id: ESObjectiveCannibal
+
+- type: esSecretIdentity
   id: Crewmember
   name: es-secret-identity-crewmember-name
   organization: Crew
