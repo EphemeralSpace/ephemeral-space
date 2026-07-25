@@ -1281,3 +1281,11 @@ Entries:
         overflow.
   id: 138
   time: '2026-07-24T11:06:01.0000000+00:00'
+- author: FyeStance
+  changes:
+    - type: Add
+      message: >-
+        Added the Warp Disciple, a new crew mask that shows devotion to the warp
+        drive by cleaning it.
+  id: 139
+  time: '2026-07-25T02:37:24.0000000+00:00'
