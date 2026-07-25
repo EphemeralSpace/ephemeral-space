@@ -104,7 +104,16 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         var totalTime = _timing.CurTime - _ticker.RoundStartTimeSpan - component.AccumulatedInterruptionTime;
         if (component.Interrupted && component.LastInterruptionTime is { } lastInterruption)
             totalTime -= _timing.CurTime - lastInterruption;
-        return Math.Clamp((float) (totalTime / component.BaseChargeTime), 0, 1);
+        return Math.Clamp((float) (totalTime / component.BaseChargeTime), 0f, 1f);
+    }
+
+    public float? GetFinalPhasePercentage(ESWarpDriveGameRuleComponent component)
+    {
+        if (!component.InFinalPhase || component.FinalPhaseAt is not { } startTime)
+            return null;
+
+        var elapsed = _timing.CurTime - startTime;
+        return Math.Clamp((float)(elapsed / component.FinalPhaseTime), 0f, 1f);
     }
 
     public bool WarpDriveSuccess(ESWarpDriveGameRuleComponent component)
@@ -112,6 +121,11 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         return component.InFinalPhase
                && component.FinalPhaseAt is { } startTime
                && _timing.CurTime > (startTime + component.FinalPhaseTime);
+    }
+
+    public bool CanInterrupt(ESWarpDriveGameRuleComponent component)
+    {
+        return !component.InFinalPhase && GetChargePercentage(component) < 1f;
     }
 
     protected override void Started(EntityUid uid,
@@ -153,8 +167,15 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
             if (announcement.Completed)
                 continue;
 
-            if (currentCharge < announcement.AfterChargePercentage)
+            if (announcement.AfterChargePercentage is { } after && currentCharge < after)
                 continue;
+
+            if (announcement.AfterFinalPhasePercentage is { } afterFinal
+                && (GetFinalPhasePercentage(component) is not { } percentage
+                || percentage < afterFinal))
+            {
+                continue;
+            }
 
             _chat.DispatchRoundAnnouncement(Loc.GetString(announcement.Text),
                 Loc.GetString("es-warpdrive-announcer"),
@@ -162,12 +183,15 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
                 colorOverride: Color.MediumVioletRed,
                 important: true);
 
-            UpdateScreens((uid, component), announcement.AfterChargePercentage);
             announcement.Completed = true;
         }
 
+        // early out of interruption logic if we're in final phase or charged
+        if (!CanInterrupt(component))
+            return;
+
         // check if we should make a new random interruption
-        if (!component.InFinalPhase && _timing.CurTime > component.NextInterruptionTime)
+        if (_timing.CurTime > component.NextInterruptionTime)
         {
             if (!component.Interrupted)
             {
@@ -271,23 +295,15 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         var query = EntityQueryEnumerator<ESWarpDriveGameRuleComponent>();
         while (query.MoveNext(out _, out var warpDrive))
         {
+            if (!CanInterrupt(warpDrive))
+                continue;
+
             warpDrive.ItemsTeleportedSinceLastInterruption += 1;
             if (warpDrive.ItemsTeleportedSinceLastInterruption > warpDrive.ManualInterruptionItems
                 && warpDrive is { Interrupted: false, InFinalPhase: false })
             {
                 warpDrive.ItemsTeleportedSinceLastInterruption = 0;
                 SpawnInterruptionObjects(warpDrive);
-            }
-            else if (warpDrive.ItemsTeleportedSinceLastInterruption > warpDrive.FinalPhaseForceEndItems
-                     && warpDrive.InFinalPhase)
-            {
-                warpDrive.ItemsTeleportedSinceLastInterruption = 0;
-                warpDrive.InFinalPhase = false;
-                _chat.DispatchRoundAnnouncement(Loc.GetString("es-warp-drive-announcement-final-phase-force-ended"),
-                    Loc.GetString("es-warpdrive-announcer"),
-                    announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg"),
-                    colorOverride: Color.MediumVioletRed,
-                    important: true);
             }
         }
     }
