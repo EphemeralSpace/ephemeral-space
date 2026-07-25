@@ -80,6 +80,12 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
 
     private void OnInterruptionPickedUp(Entity<ESSingularityWorldInterruptionComponent> ent, ref GotEquippedHandEvent args)
     {
+        var query = EntityQueryEnumerator<ESWarpDriveGameRuleComponent>();
+        while (query.MoveNext(out _, out var warp))
+        {
+            warp.LastClearer = args.User;
+        }
+
         RemCompDeferred<ESSingularityWorldInterruptionComponent>(ent.Owner);
         _popup.PopupEntity(Loc.GetString("es-warp-drive-interruption-picked-up-user"), args.User, args.User);
     }
@@ -182,6 +188,15 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
 
         if (interruptions <= 0 && component.Interrupted && component.LastInterruptionTime is { } time)
         {
+
+            if (component.LastClearer is { } clearer)
+            {
+                var clearEv = new WarpDriveInterruptionClearedEvent(clearer);
+                RaiseLocalEvent(clearer, ref clearEv);
+            }
+
+            component.LastClearer = null;
+
             component.Interrupted = false;
             component.AccumulatedInterruptionTime += _timing.CurTime - time;
             UpdateAppearance(true);
@@ -317,3 +332,10 @@ public sealed class CauseWarpDriveInterruptionCommand : ToolshedCommand
         }
     }
 }
+
+/// <summary>
+///     raised when the warp drive is cleared
+/// </summary>
+[ByRefEvent]
+public record struct WarpDriveInterruptionClearedEvent(EntityUid Entity);
+

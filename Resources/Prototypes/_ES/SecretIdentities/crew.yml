@@ -181,3 +181,18 @@
   storage:
     back:
     - ESItemCardVIP
+
+- type: esSecretIdentity
+  id: WarpDisciple
+  name: es-secret-identity-warp-disciple-name
+  organization: Crew
+  description: es-secret-identity-warp-disciple-desc
+  color: blueviolet
+  tips:
+  - WarpDriveRecall
+  objectives:
+    all:
+    - id: ESObjectiveWarpUnclog
+  actions:
+    all:
+    - id: ESActionSecretIdentityWarpDiscipleTeleport
