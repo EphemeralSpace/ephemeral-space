@@ -8,6 +8,7 @@ using Content.Server.Station.Systems;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.SecretIdentity.Components;
+using Content.Shared._ES.Stagehand;
 using Content.Shared.Chat;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking;
@@ -335,7 +336,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         }
         ApplySecretIdentity(mind, secretIdentityId, organization);
 
-        if (mind.Comp.OwnedEntity is { } owned)
+        if (!eraseHistory && mind.Comp.OwnedEntity is { } owned)
         {
             var msg = Loc.GetString("es-stagehand-notification-secret-identity-change",
                 ("player", _stagehandNotifications.WrapEntityName(owned)),

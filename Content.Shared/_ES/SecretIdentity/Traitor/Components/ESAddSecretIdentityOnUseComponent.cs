@@ -41,6 +41,9 @@ public sealed partial class ESAddSecretIdentityOnUseComponent : Component
     public ProtoId<ESSecretIdentityPrototype> SecretIdentityToAdd;
 
     [DataField]
+    public LocId StagehandNotification = "es-subverter-chip-announcement";
+
+    [DataField]
     public LocId UsedMessage = "es-subverter-chip-used";
 
     [DataField]
