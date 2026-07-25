@@ -14,7 +14,6 @@
       offset: 0, -0.1875
     - state: es
   - type: EntityTableSpawner
-    offset: 0.2
     table:
       tableId: PeriodicalsAll
 
@@ -33,7 +32,6 @@
       offset: 0, -0.1875
     - state: es
   - type: EntityTableSpawner
-    offset: 0.2
     table:
       tableId: PeriodicalsAll
 
@@ -51,7 +49,6 @@
     - state: maint
       offset: 0, -0.1875
   - type: EntityTableSpawner
-    offset: 0.2
     table:
       tableId: PeriodicalsSuspicious
 
@@ -68,7 +65,6 @@
     - state: all
     - state: es
   - type: EntityTableSpawner
-    offset: 0.2
     table:
       tableId: Newspapers
 
@@ -86,7 +82,6 @@
     - state: all
     - state: es
   - type: EntityTableSpawner
-    offset: 0.2
     table:
       tableId: MagazinesAll
 
@@ -103,7 +98,6 @@
     - state: legit
     - state: es
   - type: EntityTableSpawner
-    offset: 0.2
     table:
       tableId: MagazinesLegit
 
@@ -120,6 +114,5 @@
     - state: maint
     - state: es
   - type: EntityTableSpawner
-    offset: 0.2
     table:
       tableId: MagazinesZines

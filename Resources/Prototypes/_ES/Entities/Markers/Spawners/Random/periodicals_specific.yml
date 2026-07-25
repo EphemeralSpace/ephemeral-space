@@ -24,7 +24,6 @@
       state: popular_spacepeople
     - state: random
   - type: EntityTableSpawner
-    offset: 0.2
     table:
       tableId: MagazinesCelebrity
 
@@ -39,7 +38,6 @@
       state: space
     - state: random
   - type: EntityTableSpawner
-    offset: 0.2
     table:
       tableId: MagazinesEngineerNews
 
@@ -54,7 +52,6 @@
       state: crossword
     - state: random
   - type: EntityTableSpawner
-    offset: 0.2
     table:
       tableId: MagazinesPuzzle
 
@@ -69,7 +66,6 @@
       state: zine_revolutionary
     - state: random
   - type: EntityTableSpawner
-    offset: 0.2
     table:
       tableId: MagazinesRevolutionary
 
@@ -84,6 +80,5 @@
       state: zine_conspiracy
     - state: random
   - type: EntityTableSpawner
-    offset: 0.2
     table:
       tableId: MagazinesConspiracy
