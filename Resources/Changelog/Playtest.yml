@@ -1381,3 +1381,9 @@ Entries:
       message: Added Cryojunkie, a new crew mask that revives as a cryohusk upon death.
   id: 149
   time: '2026-07-25T22:46:26.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Remove
+      message: Baseball bats are no longer obtainable
+  id: 150
+  time: '2026-07-25T23:34:59.0000000+00:00'
