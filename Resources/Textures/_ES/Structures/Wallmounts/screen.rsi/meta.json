@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Baystation12 at https://github.com/Baystation12/Baystation12/blob/926c09fe7fe69d647e530d03dce356737af82a3a/icons/misc/security_state.dmi and https://github.com/Baystation12/Baystation12/blob/926c09fe7fe69d647e530d03dce356737af82a3a/icons/obj/machines/status_display.dmi. white, yellow made by sowelipililimute based on prior sprites",
+    "copyright": "Taken from Baystation12 at https://github.com/Baystation12/Baystation12/blob/926c09fe7fe69d647e530d03dce356737af82a3a/icons/misc/security_state.dmi and https://github.com/Baystation12/Baystation12/blob/926c09fe7fe69d647e530d03dce356737af82a3a/icons/obj/machines/status_display.dmi. white, yellow, epsilon made by sowelipililimute based on prior sprites, epsilon and gamma edited by mirrorcult",
     "size": {
         "x": 32,
         "y": 32
@@ -116,15 +116,6 @@
             "name": "mask"
         },
         {
-            "name": "radiation",
-            "delays": [
-                [
-                    0.5,
-                    0.5
-                ]
-            ]
-        },
-        {
             "name": "status_display_violet",
             "delays": [
                 [
@@ -170,6 +161,42 @@
         },
         {
             "name": "alert_border_yellow",
+            "delays": [
+                [
+                    0.5,
+                    0.5
+                ]
+            ]
+        },
+        {
+            "name": "alert_border_gamma",
+            "delays": [
+                [
+                    0.5,
+                    0.5
+                ]
+            ]
+        },
+        {
+            "name": "status_display_gamma",
+            "delays": [
+                [
+                    0.5,
+                    0.5
+                ]
+            ]
+        },
+        {
+            "name": "alert_border_epsilon",
+            "delays": [
+                [
+                    0.5,
+                    0.5
+                ]
+            ]
+        },
+        {
+            "name": "status_display_epsilon",
             "delays": [
                 [
                     0.5,

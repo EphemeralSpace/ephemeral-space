@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "created by mirrorcult modified using sprites from tgstation at https://github.com/tgstation/tgstation/commit/af34882816dec80b208be5c6a046ffcc7007f3a6",
+  "metaAtlas": false,
+  "size": {
+    "x": 512,
+    "y": 512
+  },
+  "states": [
+    {
+      "name": "station_warp_out",
+      "delays": [
+        [
+          3.5,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          15.0
+        ]
+      ]
+    }
+  ]
+}

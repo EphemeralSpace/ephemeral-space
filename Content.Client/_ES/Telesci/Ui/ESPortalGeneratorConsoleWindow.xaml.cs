@@ -34,11 +34,13 @@ public sealed partial class ESPortalGeneratorConsoleWindow : FancyWindow
         else
         {
             StatusLabel.UnsafeSetMarkup(state.Charge >= 1
-                ? Loc.GetString("es-ui-portalgen-console-label-status-ready")
+                ? state.AllTerminals
+                    ? Loc.GetString("es-ui-portalgen-console-label-status-ready")
+                    : Loc.GetString("es-ui-portalgen-console-label-status-terminals")
                 : Loc.GetString("es-ui-portalgen-console-label-status-charging"));
         }
 
-        ActivateButton.Disabled = state.Charge < 1 || state.FinalPhase;
+        ActivateButton.Disabled = !state.AllTerminals || state.FinalPhase;
 
         ChargeLabel.UnsafeSetMarkup(Loc.GetString("es-ui-portalgen-console-label-charge-fmt",
             ("charge", (int) (state.Charge * 100))));
