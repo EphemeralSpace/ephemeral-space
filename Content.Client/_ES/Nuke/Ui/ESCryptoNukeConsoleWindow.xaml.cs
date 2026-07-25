@@ -18,6 +18,7 @@ public sealed partial class ESCryptoNukeConsoleWindow : FancyWindow
     private readonly TransformSystem _transform;
 
     public event Action? OnHackButtonPressed;
+    public event Action? OnOverrideButtonPressed;
 
     public ESCryptoNukeConsoleWindow()
     {
@@ -28,6 +29,7 @@ public sealed partial class ESCryptoNukeConsoleWindow : FancyWindow
         _transform = _entityManager.System<TransformSystem>();
 
         HackButton.OnPressed += _ => OnHackButtonPressed?.Invoke();
+        OverrideButton.OnPressed += _ => OnOverrideButtonPressed?.Invoke();
 
         HeaderLabel.UnsafeSetMarkup(Loc.GetString("es-cryptonuke-ui-label-disk-header"));
         FlavorLabel.UnsafeSetMarkup(Loc.GetString("es-cryptonuke-ui-label-flavor"));
