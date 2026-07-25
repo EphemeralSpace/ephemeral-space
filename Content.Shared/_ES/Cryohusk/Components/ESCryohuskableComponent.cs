@@ -1,15 +1,16 @@
 using Content.Shared.Polymorph;
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server._ES.Cryohusk.Components;
+namespace Content.Shared._ES.Cryohusk.Components;
 
 /// <summary>
 /// Marks an entity as able to be converted into a cryohusk
 /// </summary>
-[RegisterComponent, AutoGenerateComponentPause]
-[Access(typeof(ESCryohuskSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
+[Access(typeof(ESSharedCryohuskSystem))]
 public sealed partial class ESCryohuskableComponent : Component
 {
     [DataField]

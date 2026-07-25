@@ -40,6 +40,12 @@
   organization: Crew
   description: es-secret-identity-cannibal-desc
   color: darkorange
+  actions:
+    all:
+    - id: ActionSecretIdentityCannibalEat
+  objectives:
+    all:
+    - id: ESObjectiveCannibal
 
 - type: esSecretIdentity
   id: Crewmember
