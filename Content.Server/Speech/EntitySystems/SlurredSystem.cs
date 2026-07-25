@@ -49,7 +49,7 @@ public sealed partial class SlurredSystem : SharedSlurredSystem
 
     private void OnAccent(Entity<SlurredAccentComponent> entity, ref AccentGetEvent args)
     {
-        GetAccent(entity, ref args);
+        args.Message = Accentuate(args.Message, entity.Comp.Probability);
     }
 
     private void OnAccentRelayed(Entity<SlurredAccentComponent> entity, ref StatusEffectRelayedEvent<AccentGetEvent> args)

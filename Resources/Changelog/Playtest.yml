@@ -1119,3 +1119,199 @@ Entries:
       message: Fixed rapidly spinning when removing projectiles embedded into yourself.
   id: 123
   time: '2026-07-18T21:36:17.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: >-
+        You can no longer click tables to place items on them, use drop keybind
+        instead (accidentally doing this was really annoying with pickup time)
+    - type: Tweak
+      message: Being on fire is now much more dangerous
+    - type: Tweak
+      message: >-
+        Speed modifiers from damage / clothing / status effects etc across the
+        board have been made less oppressive
+    - type: Fix
+      message: Nuke is no longer unanchorable
+    - type: Tweak
+      message: Traitors now teleport away from the nuke 3 seconds before detonation
+    - type: Tweak
+      message: >-
+        Everyone now sees the nuke cinematic, not just people on the station
+        when it detonates
+    - type: Tweak
+      message: Vent clog event now targets every vent. Have fun
+    - type: Tweak
+      message: >-
+        Radstorm end phase now covers the entire station in green rather than
+        just changing light colors
+    - type: Tweak
+      message: Spray particles no longer spin
+  id: 124
+  time: '2026-07-18T21:56:34.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Being cuffed and taking environmental damage now counts as taking damage
+        from whoever cuffed you
+    - type: Tweak
+      message: Resisting out of cuffs now has a much longer delay between attempts
+  id: 125
+  time: '2026-07-18T22:07:22.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Fix
+      message: surgery beds can be powered once again.
+  id: 126
+  time: '2026-07-19T22:04:31.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Oculine has a new recipe and starts in the smartfridge
+    - type: Tweak
+      message: Baseball bat is now 2x4
+    - type: Remove
+      message: Removed some Tragedian themes
+  id: 127
+  time: '2026-07-19T22:05:18.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Crewmember identity much less common
+  id: 128
+  time: '2026-07-19T22:09:41.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Add
+      message: New Subverter-themed masquarade
+  id: 129
+  time: '2026-07-20T06:54:08.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: The piano in the lobby now has DAW capabilities
+    - type: Tweak
+      message: >-
+        Fully-random masquerades no longer roll (the current ones are already
+        plenty random)
+    - type: Fix
+      message: Syndiebomb can now be armed again
+    - type: Fix
+      message: Buttons are no longer breakable
+    - type: Fix
+      message: >-
+        Avenger objective now counts as complete (but still 50% progress) even
+        if the target is in crit
+  id: 130
+  time: '2026-07-20T22:23:03.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Adjusted miasma clouds and pests to spawn less frequently.
+    - type: Tweak
+      message: Made miasma clouds easier to dodge and circle around.
+    - type: Fix
+      message: >-
+        Fixed issues where miasma clouds would go through walls, chase down
+        random animals, and beat on dead pests.
+    - type: Tweak
+      message: >-
+        Greatly increased the amount of miasma created from bodies, blood, and
+        vomit.
+  id: 131
+  time: '2026-07-21T00:28:58.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: >-
+        Added more unique reagent puddle sprites. Things will now more properly
+        reflect their shiny/powdery/etc. nature.
+  id: 132
+  time: '2026-07-21T05:43:15.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Add
+      message: New Tragedian-themed masquerade
+    - type: Tweak
+      message: Apple seeds are now in the botany seed vendor
+    - type: Remove
+      message: Removed the Red Carpet masquerade (the one with all the VIPs)
+  id: 133
+  time: '2026-07-21T05:49:43.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Failing to roll one of your preferred jobs will now assign you to a
+        random job instead of always defaulting to assistant.
+  id: 134
+  time: '2026-07-21T05:53:52.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Occluded sounds are now quieter and more consistent
+    - type: Tweak
+      message: Removed standing state down sound (no more roundstart thunk spam)
+  id: 135
+  time: '2026-07-23T13:14:08.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        The marauder kit has been reverted to the previous version. They now
+        also get two door jammers instead of a knife and grenade, now.
+  id: 136
+  time: '2026-07-23T13:14:54.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Toast now has more biosuit lockers and portable scrubbers
+    - type: Tweak
+      message: >-
+        Removed some of the more annoying warpdrive warp locations that would
+        frequently cause people to get confused /stuck
+  id: 137
+  time: '2026-07-23T13:31:49.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Fixed a bug where duplicates of certain jobs would be assigned as
+        overflow.
+  id: 138
+  time: '2026-07-24T11:06:01.0000000+00:00'
+- author: FyeStance
+  changes:
+    - type: Add
+      message: >-
+        Added the Warp Disciple, a new crew mask that shows devotion to the warp
+        drive by cleaning it.
+  id: 139
+  time: '2026-07-25T02:37:24.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: The world is now populated with decorative magazines and newspapers.
+  id: 140
+  time: '2026-07-25T10:59:27.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added Cryogas, a chilly gas that can convert exposed bodies into
+        Cryohusks.
+    - type: Fix
+      message: >-
+        Swapping jumpsuits and outerclothing will no longer drop PDAs, pocket
+        items, or suit storage tanks onto the ground.
+    - type: Remove
+      message: Removed Frezon.
+  id: 141
+  time: '2026-07-25T11:07:35.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Stagehands are now notified when a subverter chip is used.
+  id: 142
+  time: '2026-07-25T11:12:09.0000000+00:00'

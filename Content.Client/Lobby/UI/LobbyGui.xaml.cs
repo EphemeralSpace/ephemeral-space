@@ -25,6 +25,7 @@ namespace Content.Client.Lobby.UI
             SetAnchorAndMarginPreset(TopLeftContainer, LayoutPreset.TopLeft, margin: 10);
             SetAnchorAndMarginPreset(Hotbar, LayoutPreset.BottomWide, margin: 5);
             SetAnchorAndMarginPreset(Alerts, LayoutPreset.CenterRight, margin: 10);
+            SetAnchorPreset(Cinematic, LayoutPreset.Wide);
 
             GuidebookButton.OnPressed += _ =>
                 UserInterfaceManager.GetUIController<GuidebookUIController>().ToggleGuidebook();

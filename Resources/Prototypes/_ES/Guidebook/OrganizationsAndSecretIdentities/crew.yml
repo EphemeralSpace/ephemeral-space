@@ -18,6 +18,7 @@
   - Tragedian
   - Vandal
   - VIP
+  - WarpDisciple
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew.xml"
 
 - type: guideEntry
@@ -94,3 +95,8 @@
   id: VIP
   name: VIP
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/VIP.xml"
+
+- type: guideEntry
+  id: WarpDisciple
+  name: Warp Disciple
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/WarpDisciple.xml"

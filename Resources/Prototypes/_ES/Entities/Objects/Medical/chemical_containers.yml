@@ -126,6 +126,20 @@
 
 - type: entity
   parent: LargeBeaker
+  id: ESLargeBeakerOculine
+  suffix: ES, Oculine
+  components:
+  - type: Label
+    currentLabel: reagent-name-oculine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Oculine
+          Quantity: 100
+
+- type: entity
+  parent: LargeBeaker
   id: ESLargeBeakerPeridaxon
   suffix: ES, Peridaxon
   components:

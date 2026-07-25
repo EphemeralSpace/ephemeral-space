@@ -6,4 +6,4 @@ gases-tritium = Tritium
 gases-water-vapor = Water Vapor
 gases-miasma = Miasma
 gases-n2o = Nitrous Oxide
-gases-frezon = Frezon
+gases-cryogas = Cryogas

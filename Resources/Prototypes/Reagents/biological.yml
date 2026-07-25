@@ -16,7 +16,7 @@
   standsout: true
   physicalDesc: reagent-physical-desc-ferrous
   puddleGas:
-    Miasma: 0.00001
+    Miasma: 0.0002
   metabolisms:
     Drink:
       effects:
@@ -61,6 +61,7 @@
   group: Biological
   desc: reagent-desc-fat
   flavor: terrible
+  puddleSpriteSet: Blood
   color: "#d8d8b0"
   physicalDesc: reagent-physical-desc-exotic-smelling
   footstepSound:
@@ -78,7 +79,7 @@
   puddleSpriteSet: Vomit
   physicalDesc: reagent-physical-desc-pungent
   puddleGas:
-    Miasma: 0.00005
+    Miasma: 0.001
   slipData:
     requiredSlipSpeed: 4.0 #It's not as slippery as water
   friction: 0.4
@@ -99,6 +100,7 @@
   desc: reagent-desc-grey-matter
   physicalDesc: reagent-physical-desc-neural
   flavor: mindful
+  puddleSpriteSet: Blood
   color: "#C584B8"
   metabolisms:
     Poison:

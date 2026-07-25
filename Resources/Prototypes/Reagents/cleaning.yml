@@ -7,6 +7,7 @@
   color: "#a1000b"
   boilingPoint: 111.0
   meltingPoint: -5.0
+  puddleSpriteSet: Shiny
   metabolisms:
     Poison:
       effects:
@@ -35,7 +36,8 @@
   desc: reagent-desc-space-cleaner
   physicalDesc: reagent-physical-desc-lemony-fresh
   flavor: bitter
-  color: "#c8ff69"
+  puddleSpriteSet: Shiny
+  color: "#c8ff6980"
   recognizable: true
   boilingPoint: 147.0 # Made this up, loosely based on bleach
   meltingPoint: -11.0
@@ -49,6 +51,7 @@
   desc: reagent-desc-soap
   physicalDesc: reagent-physical-desc-soapy
   flavor: clean
+  puddleSpriteSet: Splotchy
   color: "#c8dfc9"
   recognizable: true
   boilingPoint: 100.0
@@ -84,7 +87,8 @@
     superSlippery: true
   physicalDesc: reagent-physical-desc-shiny
   flavor: funny
-  color: "#77b58e"
+  puddleSpriteSet: Shiny
+  color: "#77b58e80"
   recognizable: true
   boilingPoint: 290.0 # Glycerin
   meltingPoint: 18.2

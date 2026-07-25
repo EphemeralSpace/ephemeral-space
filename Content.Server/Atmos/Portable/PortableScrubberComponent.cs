@@ -32,7 +32,7 @@ namespace Content.Server.Atmos.Portable
             Gas.WaterVapor,
             Gas.Miasma,
             Gas.NitrousOxide,
-            Gas.Frezon
+            Gas.Cryogas
         };
 
         [ViewVariables(VVAccess.ReadWrite)]

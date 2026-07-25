@@ -35,7 +35,7 @@
           #other (2+)
           ESClown: [ 1, 1 ]
           ESReporter: [ 1, 1 ]
-          ESAssistant: [ -1, -1 ]
           ESBartender: [ 1, 1 ]
           ESChef: [ 1, 1 ]
           ESRatman: [ 1, 0 ] # not latejoinable
+          ESAssistant: [ 0, -1 ] # not rollable round start

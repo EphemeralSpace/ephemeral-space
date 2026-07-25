@@ -62,7 +62,6 @@
     - id: PosterLegitSafetyMothSSD
     - id: PosterLegitOppenhopper
     - id: PosterLegitTyrone
-    - id: PosterLegitHelio
     - id: PosterLegitBotanyFear
 
 - type: entityTable

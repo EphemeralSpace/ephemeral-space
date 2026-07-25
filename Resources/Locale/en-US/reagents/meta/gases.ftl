@@ -16,5 +16,5 @@ reagent-desc-nitrogen = A colorless, odorless unreactive gas. Highly stable.
 reagent-name-nitrous-oxide = nitrous oxide
 reagent-desc-nitrous-oxide = You know how everything seems funnier when you're tired? Well...
 
-reagent-name-frezon = frezon
-reagent-desc-frezon = A highly effective coolant.. and hallucinogenic.
+reagent-name-cryogas = cryogas
+reagent-desc-cryogas = A highly effective gaseous coolant. Direct exposure can have catastrophic effects on the human body.

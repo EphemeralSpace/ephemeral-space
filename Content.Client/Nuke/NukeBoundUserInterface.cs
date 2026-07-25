@@ -39,10 +39,6 @@ namespace Content.Client.Nuke
             {
                 SendMessage(new ItemSlotButtonPressedEvent(SharedNukeComponent.NukeDiskSlotId));
             };
-            _menu.AnchorButton.OnPressed += _ =>
-            {
-                SendMessage(new NukeAnchorMessage());
-            };
             _menu.ArmButton.OnPressed += _ =>
             {
                 SendMessage(new NukeArmedMessage());

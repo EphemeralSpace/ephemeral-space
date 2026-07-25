@@ -6,7 +6,6 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
 using Content.Shared.Strip.Components;
-using Robust.Shared.GameStates;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
@@ -61,12 +60,17 @@ public abstract partial class ClothingSystem : EntitySystem
                 if (TryComp(slotEntity, out ClothingComponent? item) && !item.QuickEquip)
                     continue;
 
-                if (!_invSystem.TryUnequip(userEnt, slotDef.Name, true, inventory: userEnt, checkDoafter: true))
+                if (!_invSystem.TryUnequip(userEnt, slotDef.Name, true, inventory: userEnt, checkDoafter: true, updateSlotDependency: false))
                     continue;
 
-                if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))
-                    continue;
-
+                _invSystem.TryEquip(userEnt,
+                        toEquipEnt,
+                        slotDef.Name,
+                        inventory: userEnt,
+                        clothing: toEquipEnt,
+                        checkDoafter: true,
+                        triggerHandContact: true);
+                _invSystem.UpdateDependentSlots((userEnt, userEnt), userEnt);
                 _handsSystem.PickupOrDrop(userEnt, slotEntity.Value, handsComp: userEnt);
             }
             else

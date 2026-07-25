@@ -46,7 +46,7 @@ public sealed partial class StationJobsSystem : EntitySystem
             .Sum();
 
         ent.Comp.OverflowJobs = ent.Comp.SetupAvailableJobs
-            .Where(x => x.Value[0] < 0)
+            .Where(x => x.Value[0] < 0 || x.Value[1] < 0)
             .Select(x => x.Key)
             .ToHashSet();
     }

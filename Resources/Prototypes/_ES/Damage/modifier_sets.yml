@@ -38,3 +38,8 @@
   flatReductions:
     Blunt: 2
     Slash: 6
+
+- type: damageModifierSet
+  id: ESCryohusk
+  coefficients:
+    Heat: 1.25

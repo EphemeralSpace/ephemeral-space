@@ -578,34 +578,6 @@
     footstepSoundCollection:
       collection: FootstepCarpet
 
-- type: entity
-  parent: TableBase
-  id: TableXeno
-  name: xeno table
-  description: I wouldn't put the silverware on it.
-  components:
-  - type: Sprite
-    sprite: Structures/Furniture/Tables/xeno.rsi
-  - type: Icon
-    sprite: Structures/Furniture/Tables/xeno.rsi
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: gib
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepFloor
-  - type: Construction
-    graph: Table
-    node: TableXeno
-
 # Fancy tables
 
 - type: entity
@@ -663,21 +635,6 @@
     node: TableFancyBlue
   - type: IconSmooth
     key: fancytableblue
-
-- type: entity
-  id: TableFancySkyBlue
-  parent: TableFancyBase
-  suffix: SkyBlue
-  components:
-  - type: Sprite
-    sprite: Structures/Furniture/Tables/Fancy/skyblue.rsi
-  - type: Icon
-    sprite: Structures/Furniture/Tables/Fancy/skyblue.rsi
-  - type: Construction
-    graph: Table
-    node: TableFancySkyBlue
-  - type: IconSmooth
-    key: fancytableskyblue
 
 - type: entity
   id: TableFancyCyan
@@ -740,21 +697,6 @@
     key: fancytablepurple
 
 - type: entity
-  id: TableFancyPink
-  parent: TableFancyBase
-  suffix: Pink
-  components:
-  - type: Sprite
-    sprite: Structures/Furniture/Tables/Fancy/pink.rsi
-  - type: Icon
-    sprite: Structures/Furniture/Tables/Fancy/pink.rsi
-  - type: Construction
-    graph: Table
-    node: TableFancyPink
-  - type: IconSmooth
-    key: fancytablepink
-
-- type: entity
   id: TableFancyGreen
   parent: TableFancyBase
   suffix: Green
@@ -783,21 +725,6 @@
     node: TableFancyOrange
   - type: IconSmooth
     key: fancytableorange
-
-- type: entity
-  id: TableFancyWhite
-  parent: TableFancyBase
-  suffix: White
-  components:
-  - type: Sprite
-    sprite: Structures/Furniture/Tables/Fancy/white.rsi
-  - type: Icon
-    sprite: Structures/Furniture/Tables/Fancy/white.rsi
-  - type: Construction
-    graph: Table
-    node: TableFancyWhite
-  - type: IconSmooth
-    key: fancytablewhite
 
 #Debug
 

@@ -176,6 +176,8 @@
       - id: ESShellShotgunBuckshot
       weight: 2
 
+    - tableId: PeriodicalsSuspicious
+
 - type: entityTable
   id: ESMaintLootUncommon
   table:

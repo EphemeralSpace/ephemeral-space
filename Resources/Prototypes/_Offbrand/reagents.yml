@@ -143,6 +143,7 @@
   desc: reagent-desc-synthflesh
   flavor: meaty
   flavorMinimum: 0.01
+  puddleSpriteSet: Blood
   color: "#FFEBEB"
   physicalDesc: reagent-physical-desc-oily
 
@@ -153,6 +154,7 @@
   desc: reagent-desc-sanguine
   flavor: bitter
   flavorMinimum: 0.01
+  puddleSpriteSet: Blood
   color: "#770101"
   physicalDesc: reagent-physical-desc-oily
   metabolisms:
@@ -174,6 +176,7 @@
   physicalDesc: reagent-physical-desc-shiny
   flavor: bitter
   flavorMinimum: 0.02
+  puddleSpriteSet: Shiny
   color: "#561ec3"
   metabolisms:
     Medicine:
@@ -216,6 +219,7 @@
   desc: reagent-desc-cloneoxadone
   physicalDesc: reagent-physical-desc-fizzy
   flavor: medicine
+  puddleSpriteSet: Acid
   color: "#4053b0"
   metabolisms:
     Medicine:
@@ -257,6 +261,7 @@
   physicalDesc: reagent-physical-desc-salty
   flavor: salty
   flavorMinimum: 0.01
+  puddleSpriteSet: Water
   color: "#f7d896"
   metabolisms:
     Medicine:
@@ -313,6 +318,7 @@
   desc: reagent-desc-osseous
   physicalDesc: reagent-physical-desc-putrid
   flavor: meaty
+  puddleSpriteSet: Blood
   color: "#c9abab"
   metabolisms:
     Medicine:
@@ -338,6 +344,7 @@
   desc: reagent-desc-convermol
   physicalDesc: reagent-physical-desc-abrasive
   flavor: chalky
+  puddleSpriteSet: Splotchy
   color: "#afe1ed"
   metabolisms:
     Medicine:
@@ -373,6 +380,7 @@
   desc: reagent-desc-salicylic-acid
   physicalDesc: reagent-physical-desc-putrid
   flavor: bitter
+  puddleSpriteSet: Acid
   color: "#f7d9c0"
   metabolisms:
     Medicine:
@@ -430,6 +438,7 @@
   desc: reagent-desc-oxandrolone
   physicalDesc: reagent-physical-desc-frosty
   flavor: bitter
+  puddleSpriteSet: Shiny
   color: "#b8e3cb"
   metabolisms:
     Medicine:

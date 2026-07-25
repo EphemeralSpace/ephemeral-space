@@ -282,6 +282,30 @@ public sealed partial class StationJobsSystem
         var givenStations = stations.ToList();
         if (givenStations.Count == 0)
             return; // Don't attempt to assign them if there are no stations.
+
+        // nasty linq statement but i just want a list for every pickable job on station.
+        var stationJobs = stations
+            .Select(s =>
+            {
+                var comp = Comp<StationJobsComponent>(s);
+                var jobs = comp.JobList.Where(p => p.Value.HasValue)
+                    .SelectMany(pair => Enumerable.Repeat(pair.Key, pair.Value!.Value))
+                    .ToList();
+
+                return (s, jobs);
+            })
+            .ToDictionary();
+
+        // Remove any jobs we've assigned in the prior stage.
+        // Note we have to do this manually since we don't actually update JobList
+        // until minds are spawned and the roles are assigned.
+        foreach (var (job, station) in assignedJobs.Values)
+        {
+            if (!station.Valid || !job.HasValue)
+                continue;
+            stationJobs[station].Remove(job.Value);
+        }
+
         // For players without jobs, give them the overflow job if they have that set...
         foreach (var player in allPlayersToAssign)
         {
@@ -290,27 +314,27 @@ public sealed partial class StationJobsSystem
                 continue;
             }
 
-            var profile = profiles[player];
-            if (profile.PreferenceUnavailable != PreferenceUnavailableMode.SpawnAsOverflow)
-            {
-                assignedJobs.Add(player, (null, EntityUid.Invalid));
-                continue;
-            }
-
             _random.Shuffle(givenStations);
 
             foreach (var station in givenStations)
             {
-                // Pick a random overflow job from that station
-                var overflows = GetOverflowJobs(station).ToList();
-                _random.Shuffle(overflows);
+                if (stationJobs[station].Count == 0)
+                {
+                    var overflows = GetOverflowJobs(station).ToList();
 
-                // Stations with no overflow slots should simply get skipped over.
-                if (overflows.Count == 0)
-                    continue;
+                    // Stations with no overflow slots should simply get skipped over.
+                    if (overflows.Count == 0)
+                        continue;
+
+                    // If the overflow exists, put them in as it.
+                    assignedJobs.Add(player, (_random.Pick(overflows), station));
+                    break;
+                }
+
+                var job = _random.PickAndTake(stationJobs[station]);
 
                 // If the overflow exists, put them in as it.
-                assignedJobs.Add(player, (overflows[0], givenStations[0]));
+                assignedJobs.Add(player, (job, station));
                 break;
             }
         }

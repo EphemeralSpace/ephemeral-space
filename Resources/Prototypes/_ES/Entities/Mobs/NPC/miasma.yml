@@ -14,17 +14,24 @@
   - type: Input
     context: "human"
   - type: Physics
-    bodyType: Kinematic
+    bodyType: KinematicController
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
+          radius: 0.45
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+      smacker:
+        shape:
+          !type:PhysShapeCircle
           radius: 0.35
         density: 50
         hard: false
-        mask:
-        - Impassable
         layer:
         - Impassable
   - type: InputMover
@@ -38,19 +45,20 @@
         0.1
   - type: NpcFactionMember
     factions:
-    - AllHostile
+    - SimpleHostile
   - type: ESDiseaseCloud
     diseaseDamage:
       types:
-        Poison: 10
+        Poison: 7.5
   - type: MovementSpeedModifier
     baseAcceleration: 3.5
-    baseSprintSpeed : 5
+    friction: 0.75
+    baseSprintSpeed : 4
   - type: NoSlip
   - type: MovementAlwaysTouching
   - type: CanMoveInAir
-  #- type: ESTimedDespawn
-  #  lifetime: 15.0
+  - type: ESTimedDespawn
+    lifetime: 10.0
   - type: ESTimedDespawnSpriteFade
     fadeTime: 1.0
   - type: ESTimedDespawnLightFade
@@ -61,3 +69,4 @@
     falloff: 40
     color: "#eec7ff"
     castShadows: false
+  - type: ESViewconeOccludable

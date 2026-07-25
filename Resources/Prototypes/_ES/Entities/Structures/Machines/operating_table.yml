@@ -18,7 +18,6 @@
   - type: VitalsMonitorStrap
   - type: ApcPowerReceiver
     powerLoad: 1000
-    powerDisabled: true
   - type: ExtensionCableReceiver
   - type: Construction
     graph: Machine

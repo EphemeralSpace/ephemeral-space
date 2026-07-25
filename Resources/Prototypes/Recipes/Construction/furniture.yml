@@ -231,19 +231,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: TableFancySkyBlue
-  name: construction-recipe-table-fancy-sky-blue
-  graph: Table
-  startNode: start
-  targetNode: TableFancySkyBlue
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
   id: TableFancyCyan
   name: construction-recipe-table-fancy-cyan
   graph: Table
@@ -296,37 +283,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: TableFancyPink
-  name: construction-recipe-table-fancy-pink
-  graph: Table
-  startNode: start
-  targetNode: TableFancyPink
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   id: TableFancyRed
   name: construction-recipe-table-fancy-red
   graph: Table
   startNode: start
   targetNode: TableFancyRed
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: TableFancyWhite
-  name: construction-recipe-table-fancy-white
-  graph: Table
-  startNode: start
-  targetNode: TableFancyWhite
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -480,17 +441,6 @@
   canBuildInImpassable: true
 
 - type: construction
-  id: CurtainsSkyBlue
-  name: construction-recipe-curtains-sky-blue
-  graph: Curtains
-  startNode: start
-  targetNode: CurtainsSkyBlue
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: true
-
-- type: construction
   id: CurtainsCyan
   name: construction-recipe-curtains-cyan
   graph: Curtains
@@ -518,17 +468,6 @@
   graph: Curtains
   startNode: start
   targetNode: CurtainsOrange
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: true
-
-- type: construction
-  id: CurtainsPink
-  name: construction-recipe-curtains-pink
-  graph: Curtains
-  startNode: start
-  targetNode: CurtainsPink
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter

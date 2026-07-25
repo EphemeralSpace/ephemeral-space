@@ -2,7 +2,7 @@
   id: RandomTraitors
   name: Random (Traitors)
   description: is a truly randomized traitorous experience
-  weight: 1
+  weight: 0
   minPlayers: 1
   gameRules: []
   masquerade:
@@ -23,7 +23,7 @@
   id: RandomParasites
   name: Random (Parasites)
   description: is a truly randomized worm-filled experience
-  weight: 1
+  weight: 0
   minPlayers: 1
   gameRules: []
   masquerade:
@@ -40,7 +40,7 @@
   id: RandomTraitorsParasites
   name: Random (Traitors + Parasites)
   description: is a truly randomized worm-filled traitorous experience
-  weight: 1
+  weight: 0
   minPlayers: 1
   gameRules: []
   masquerade:

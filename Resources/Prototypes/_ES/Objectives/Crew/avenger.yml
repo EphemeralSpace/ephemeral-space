@@ -5,6 +5,7 @@
   description: You must protect them with your life and shield them from harm.
   components:
   - type: ESObjective
+    completionPercentage: 0.5
     icon:
       sprite: Objects/Specific/Medical/firstaidkits.rsi
       state: firstaid

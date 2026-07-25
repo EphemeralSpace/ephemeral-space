@@ -26,6 +26,10 @@
     - id: ClothingMaskBreath
     - id: ClothingMaskSterile
       weight: 0.125
+    - id: BaseNewspaper
+      weight: 0.125
+    - tableId: MagazinesLegit
+      weight: 0.125
     - id: ShardGlass
 
 - type: entityTable

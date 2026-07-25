@@ -11,5 +11,5 @@ public sealed partial class ESDiseaseCloudComponent : Component
     public DamageSpecifier DiseaseDamage = new();
 
     [DataField]
-    public SoundSpecifier? DiseaseSound = new SoundCollectionSpecifier("BoxingHit");
+    public SoundSpecifier? DiseaseSound = new SoundCollectionSpecifier("GenericHit");
 }

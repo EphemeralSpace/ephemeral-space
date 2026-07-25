@@ -5,9 +5,6 @@ using JetBrains.Annotations;
 
 namespace Content.Server.Atmos.Reactions;
 
-/// <summary>
-///     Takes in nitrogen and frezon and cools down the surrounding area.
-/// </summary>
 [UsedImplicitly]
 public sealed partial class FrezonCoolantReaction : IGasReactionEffect
 {
@@ -30,19 +27,13 @@ public sealed partial class FrezonCoolantReaction : IGasReactionEffect
         if (scale <= 0)
             return ReactionResult.NoReaction;
 
-        var initialNit = mixture.GetMoles(Gas.Nitrogen);
-        var initialFrezon = mixture.GetMoles(Gas.Frezon);
+        var initialFrezon = mixture.GetMoles(Gas.Cryogas);
 
         var burnRate = initialFrezon * scale / Atmospherics.FrezonCoolRateModifier;
 
         var energyReleased = 0f;
         if (burnRate > Atmospherics.MinimumHeatCapacity)
         {
-            var nitAmt = Math.Min(burnRate * Atmospherics.FrezonNitrogenCoolRatio, initialNit);
-            var frezonAmt = Math.Min(burnRate, initialFrezon);
-            mixture.AdjustMoles(Gas.Nitrogen, -nitAmt);
-            mixture.AdjustMoles(Gas.Frezon, -frezonAmt);
-            mixture.AdjustMoles(Gas.Oxygen, nitAmt + frezonAmt);
             energyReleased = burnRate * Atmospherics.FrezonCoolEnergyReleased * energyModifier;
         }
 

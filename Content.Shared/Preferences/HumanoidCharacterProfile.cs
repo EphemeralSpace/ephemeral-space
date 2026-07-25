@@ -185,11 +185,16 @@ namespace Content.Shared.Preferences
         /// <returns>Humanoid character profile with default settings.</returns>
         public static HumanoidCharacterProfile DefaultWithSpecies(string? species = null)
         {
+            var protoMan = IoCManager.Resolve<IPrototypeManager>();
+
             species ??= SharedHumanoidAppearanceSystem.DefaultSpecies;
+            var speciesPrototype = protoMan.Index<SpeciesPrototype>(species);
 
             return new()
             {
                 Species = species,
+                Sex = speciesPrototype.Sexes.First(),
+                Gender = speciesPrototype.Genders.First(),
                 Appearance = HumanoidCharacterAppearance.DefaultWithSpecies(species),
             };
         }
