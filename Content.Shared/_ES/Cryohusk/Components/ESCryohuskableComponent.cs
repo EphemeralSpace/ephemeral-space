@@ -14,7 +14,7 @@ namespace Content.Shared._ES.Cryohusk.Components;
 public sealed partial class ESCryohuskableComponent : Component
 {
     [DataField]
-    public float MinConversionMols = 2.5f;
+    public float MinConversionMols = 2.0f;
 
     [DataField]
     public float ConversionChance = 0.5f;

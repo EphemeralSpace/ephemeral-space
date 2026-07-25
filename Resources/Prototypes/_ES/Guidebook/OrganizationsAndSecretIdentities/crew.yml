@@ -8,6 +8,7 @@
   - Avenger
   - Cannibal
   - Crewmember
+  - Cryojunkie
   - Guzzler
   - Hater
   - Mercenary
@@ -47,6 +48,11 @@
   id: Crewmember
   name: Crewmember
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Crewmember.xml"
+
+- type: guideEntry
+  id: Cryojunkie
+  name: Cryojunkie
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Cryojunkie.xml"
 
 - type: guideEntry
   id: Guzzler
