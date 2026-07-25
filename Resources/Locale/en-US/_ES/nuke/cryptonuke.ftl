@@ -1,4 +1,4 @@
-es-cryptonuke-ui-window-title = Nuclear Cryptographic Terminal
+es-cryptonuke-ui-window-title = Security Override Terminal
 es-cryptonuke-ui-label-compromised = [color=red][font="Monospace"]STATUS: {$state ->
     [true] [color=white]COMPROMISED[/color]
     *[false] NOMINAL

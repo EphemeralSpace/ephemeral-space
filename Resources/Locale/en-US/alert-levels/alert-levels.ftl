@@ -24,13 +24,13 @@ alert-level-yellow-announcement = There is a structural or atmospheric threat wi
 alert-level-yellow-instructions = Crewmembers are advised to stay away from the threat, and stay in their workplaces if necessary.
 
 alert-level-gamma = Gamma
-alert-level-gamma-announcement = Central Command has ordered the Gamma security level on the station. Security is to have weapons equipped at all times, and all civilians are to immediately seek their nearest head for transportation to a secure location.
-alert-level-gamma-instructions = All civilians are to immediately seek their nearest head for transportation to a secure location.
+alert-level-gamma-announcement = The station is being bombarded by immense gamma radiation. Survival of any organic lifeform is not expected. Goodbye.
+alert-level-gamma-instructions = Crewmembers are advised to immediately attempt to hasten death by less painful means than radiation poisoning.
 
 alert-level-delta = Delta
 alert-level-delta-announcement = The station is currently under threat of imminent destruction. Crewmembers are advised to listen to heads of staff for more information.
 alert-level-delta-instructions = Crewmembers are advised to listen to heads of staff for more information.
 
 alert-level-epsilon = Epsilon
-alert-level-epsilon-announcement = Central Command has ordered the Epsilon security level on the station. Consider all contracts terminated.
-alert-level-epsilon-instructions = Consider all contracts terminated.
+alert-level-epsilon-announcement = Experimental warp drive security overrides activated. Brace for spatial displacement at any time.
+alert-level-epsilon-instructions = Immediately follow any further orders from the Overseer-Soul.
