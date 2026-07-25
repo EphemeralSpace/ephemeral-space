@@ -16,7 +16,7 @@ public sealed partial class ESCryohuskableComponent : Component
     public float MinConversionMols = 2.5f;
 
     [DataField]
-    public float ConversionChance = 0.33f;
+    public float ConversionChance = 0.5f;
 
     [DataField]
     public TimeSpan UpdateRate = TimeSpan.FromSeconds(10f);
