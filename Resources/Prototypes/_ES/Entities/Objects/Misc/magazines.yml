@@ -20,7 +20,7 @@
   parent: BaseMagazine
   id: MagazineCognitoWood
   name: "CognitoWood #1"
-  description: "A comic book about CognitoWood, the mind-bending diona superhero. The headline reads: 'Perservence, Lethragy, and Branches, Super-Nymphs United!'"
+  description: "A comic book about CognitoWood, the mind-bending diona superhero. The headline reads: 'Perservence, Lethargy, and Branches, Super-Nymphs United!'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
@@ -75,7 +75,7 @@
   parent: BaseMagazine
   id: MagazineFirearms
   name: "Mel's Classified Firearms #20"
-  description: "A magazine containing the latest & greatest innovations from firearms manufactuers. The headline reads: 'NEW Laser Pistol Unveiled from 8&P'"
+  description: "A magazine containing the latest & greatest innovations from firearms manufacturers. The headline reads: 'NEW Laser Pistol Unveiled from 8&P'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
@@ -163,7 +163,7 @@
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy5
-  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'The plan to forge people in to a large sphere & why you should be worried'"
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'The plan to forge people into a large sphere & why you should be worried'"
 
 - type: entity
   parent: MagazineConspiracy
@@ -221,7 +221,7 @@
   parent: MagazineFashion
   id: MagazineFashion8
   name: "Fashion Fanatics #24"
-  description: "A magazine containing various fashion ideas & news. The headline reads: 'Diona work uniform styles to maximize gesalt comfort'"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Diona work uniform styles to maximize gestalt comfort'"
 
 # Engineering Progress News
 - type: entity

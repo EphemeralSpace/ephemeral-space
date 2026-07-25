@@ -28,7 +28,7 @@
 - type: entity
   parent: BaseNewspaper
   id: NewspaperWater
-  name: Galaxy NOW - October 30st, 2065
+  name: Galaxy NOW - October 30th, 2065
   description: "A paperback newspaper. The headline reads: 'Water Shortage Creates Concern For Halloween Plans in Woodson Fleet'"
   
 - type: entity
@@ -41,13 +41,13 @@
   parent: BaseNewspaper
   id: NewspaperParasite
   name: Galaxy NOW - December 12th, 2065
-  description: "A paperback newspaper. The headline reads: 'Parasite Military Suffers Yet Another Crushing Loss'"
+  description: "A paperback newspaper. The headline reads: 'Parasite-Infested Fleet Suffers Yet Another Suspiciously Crushing Loss'"
 
 - type: entity
   parent: BaseNewspaper
   id: NewspaperMining
   name: Galaxy NOW - December 17th, 2065
-  description: "A paperback newspaper. The headline reads: 'Mining Companies Goes To War Over Asteroid Ownership Dispute'"
+  description: "A paperback newspaper. The headline reads: 'Mining Company Goes To War Over Asteroid Ownership Dispute'"
 
 - type: entity
   parent: BaseNewspaper
@@ -59,4 +59,4 @@
   parent: BaseNewspaper
   id: NewspaperMining3
   name: Galaxy NOW - January 9th, 2066
-  description: "A paperback newspaper. The headline reads: 'New Miracle Material Discovered on Asteroid-XLR-2781'"
+  description: "A paperback newspaper. The headline reads: 'New Miracle Material Discovered on Asteroid XLR-2781'"
