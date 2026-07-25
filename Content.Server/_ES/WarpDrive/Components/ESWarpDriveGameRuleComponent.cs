@@ -175,4 +175,7 @@ public sealed partial class ESWarpDriveAnnouncementConfig
 
     [DataField(required: true)]
     public SoundSpecifier Sound;
+
+    [DataField]
+    public bool UpdateTerminals = false;
 }

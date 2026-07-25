@@ -240,11 +240,24 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
                 continue;
             }
 
+            if (announcement.AfterChargePercentage == null && announcement.AfterFinalPhasePercentage == null)
+                continue;
+
             _announcement.DispatchRoundAnnouncement(Loc.GetString(announcement.Text),
                 Loc.GetString("es-warpdrive-announcer"),
                 announcementSound: announcement.Sound,
                 colorOverride: Color.MediumVioletRed,
                 important: true);
+
+            if (announcement.UpdateTerminals)
+            {
+                var terminalQuery = EntityQueryEnumerator<ESCryptoNukeConsoleComponent>();
+                while (terminalQuery.MoveNext(out var consoleUid, out var console))
+                {
+                    console.CanOverrideWarpDriveSecurity = true;
+                    Dirty(consoleUid, console);
+                }
+            }
 
             announcement.Completed = true;
         }
@@ -299,7 +312,6 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
 
         if (interruptions <= 0 && component.Interrupted && component.LastInterruptionTime is { } time)
         {
-
             if (component.LastClearer is { } clearer)
             {
                 var clearEv = new WarpDriveInterruptionClearedEvent(clearer);
