@@ -33,12 +33,12 @@ public sealed partial class ESTeleportToWarpActionSystem : EntitySystem
             return;
         }
 
+        _warp.TryTeleportToWarp(TimeSpan.FromSeconds(40), args.Performer);
+
         var targetGrid = grids.First();
         var coords = Transform(targetGrid).Coordinates;
         _transform.SetCoordinates(args.Performer, coords);
         _transform.AttachToGridOrMap(args.Performer);
-
-        _warp.TryTeleportToWarp(TimeSpan.FromSeconds(40), args.Performer);
 
         args.Handled = true;
     }
