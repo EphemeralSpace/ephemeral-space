@@ -1315,3 +1315,11 @@ Entries:
       message: Stagehands are now notified when a subverter chip is used.
   id: 142
   time: '2026-07-25T11:12:09.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Arrivals has colder lighting now. Idk im just seein
+    - type: Tweak
+      message: Inflatables can now appear in O2 lockers randomly
+  id: 143
+  time: '2026-07-25T19:42:04.0000000+00:00'
