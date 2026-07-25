@@ -776,7 +776,7 @@
 
 - type: entity
   parent: GasCanisterBrokenBase
-  id: CryoGasCanisterBroken
+  id: CryogasCanisterBroken
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
