@@ -143,6 +143,20 @@
     - id: ESObjectiveSecretaryAssist
 
 - type: esSecretIdentity
+  id: Stalker
+  name: es-secret-identity-stalker-name
+  organization: Crew
+  description: es-secret-identity-stalker-desc
+  color: lightsteelblue
+  actions:
+    all:
+    - id: ActionSecretIdentityStalkerPick
+  objectives:
+    all:
+    - id: ESObjectiveStalkerKill
+    - id: ESObjectiveStalkerSave
+
+- type: esSecretIdentity
   id: Tragedian
   name: es-secret-identity-tragedian-name
   organization: Crew

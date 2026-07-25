@@ -35,6 +35,9 @@ es-secret-identity-pickpocket-desc = As a Pickpocket, sneak behind peoples' back
 es-secret-identity-secretary-name = Secretary
 es-secret-identity-secretary-desc = As a Secretary, do whatever you can to help your target complete their objectives.
 
+es-secret-identity-stalker-name = Stalker
+es-secret-identity-stalker-desc = As a Stalker, pick unsuspecting people to stalk, then ensure that enough of them live or die.
+
 es-secret-identity-tragedian-name = Tragedian
 es-secret-identity-tragedian-desc = As a Tragedian, perform your theme to the bitter end in order to please the watching stagehands.
 

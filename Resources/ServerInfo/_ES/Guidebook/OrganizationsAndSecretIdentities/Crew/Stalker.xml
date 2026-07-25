@@ -1,0 +1,14 @@
+<Document>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Stalker"/>
+
+    The Stalker is a member of the crew who must stalk and track certain players.
+    However, the Stalker themselves picks who they stalk, rather than it being randomly chosen.
+
+    <ESGuideObjectiveEmbed Objective="ESObjectiveStalkerKill"/>
+    <ESGuideObjectiveEmbed Objective="ESObjectiveStalkerSave"/>
+
+    Out of the targets that the Stalker has chosen, they must ensure that some number of them live and some number of them die.
+    The specific ones that live or die doesn't have to be chosen ahead of time, so the Stalker is free to observe and hedge bets on who they think is most likely to survive.
+
+    <ESGuideTipsEmbed SecretIdentity="Stalker"/>
+</Document>

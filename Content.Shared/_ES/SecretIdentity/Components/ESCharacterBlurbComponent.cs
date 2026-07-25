@@ -6,7 +6,7 @@ namespace Content.Shared._ES.SecretIdentity.Components;
 /// <summary>
 /// Holds a character blurb/summary for the mind
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class ESCharacterBlurbComponent : Component
 {
     [DataField, AutoNetworkedField]
