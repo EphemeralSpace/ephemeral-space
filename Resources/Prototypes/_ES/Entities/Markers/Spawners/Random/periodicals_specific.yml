@@ -1,0 +1,84 @@
+# Combined
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMagazineFashion
+  name: Random Fashion Magazine Spawner
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _ES/Objects/Misc/magazines.rsi
+      state: fashion
+    - state: random
+  - type: EntityTableSpawner
+    table:
+      tableId: MagazinesFashion
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMagazineCelebrity
+  name: Random Celebrity Magazine Spawner
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _ES/Objects/Misc/magazines.rsi
+      state: popular_spacepeople
+    - state: random
+  - type: EntityTableSpawner
+    table:
+      tableId: MagazinesCelebrity
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMagazineEngineeringNews
+  name: Random Engineering News Magazine Spawner
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _ES/Objects/Misc/magazines.rsi
+      state: space
+    - state: random
+  - type: EntityTableSpawner
+    table:
+      tableId: MagazinesEngineerNews
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMagazinePuzzle
+  name: Random Puzzle Magazine Spawner
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _ES/Objects/Misc/magazines.rsi
+      state: crossword
+    - state: random
+  - type: EntityTableSpawner
+    table:
+      tableId: MagazinesPuzzle
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMagazineRevolutionary
+  name: Random Revolutionary Zine Spawner
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _ES/Objects/Misc/magazines.rsi
+      state: zine_revolutionary
+    - state: random
+  - type: EntityTableSpawner
+    table:
+      tableId: MagazinesRevolutionary
+
+- type: entity
+  parent: ESSpawnerBase
+  id: ESSpawnerRandomMagazineConspiracy
+  name: Random Conspiracy Zine Spawner
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _ES/Objects/Misc/magazines.rsi
+      state: zine_conspiracy
+    - state: random
+  - type: EntityTableSpawner
+    table:
+      tableId: MagazinesConspiracy
