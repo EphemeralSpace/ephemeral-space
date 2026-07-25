@@ -4,10 +4,10 @@ es-warp-drive-announcement-interruptions-cleared = Thank You for clearing the De
 es-warp-drive-announcement-percentage-one-tenth = This is Your warp Drive Over Seer Speaking. It Is Charged at Ten Percent. Please continue to be Diligent about Dealing with Various Issues and tending to Me and You Will All Live. Please do not Throw Objects into me as it will Disrupt the Process.
 es-warp-drive-announcement-percentage-one-third = The charge Gauge for the Drive is now at One Third Charge of the Maximum Charge. The Charge is Sickening to me but Everyone will survive.
 es-warp-drive-announcement-percentage-two-thirds = The Warp drive is Charged at Two Thirds. Continue to deal with any Interruptions and Malfeasance by Wrongdoers including Such acts As Feeding me Any Items to cause an Interference.
-es-warp-drive-announcement-percentage-fully-charged = The Warp Drive is fully Charged. Those-Who-Captured-Me Contain Myself with A Triumvirate of "Terminals" in your Various Most Secure Chambers. Before our journey May continue all Override Terminals must be bypassed manually. I Recommend Splitting up all Body-Subjects and doing this quickly.
+es-warp-drive-announcement-percentage-fully-charged = The Warp Drive is fully Charged. Those-Who-Captured-Me Contain Myself by means of A Triumvirate of "Terminals" in your Various Most Secure Chambers. Before our journey May continue all Override Terminals must be bypassed manually. I Recommend Splitting up all Body-Subjects and doing this quickly.
 
-es-warp-drive-security-override-announcement-1 = 1/3 Security Override Terminals Activated. For Increased Security Please Activate All Other Terminals Within: <2 MINUTES>
-es-warp-drive-security-override-announcement-2 = 2/3 Security Override Terminals Activated. For Increased Security Please Activate All Other Terminals Within: <{$seconds} SECONDS>
+es-warp-drive-security-override-announcement-1 = 1/3 Security Override Terminals Activated. To Comply With Our Security Policy Please Activate All Other Terminals Within: <2 MINUTES>
+es-warp-drive-security-override-announcement-2 = 2/3 Security Override Terminals Activated. Please Activate Last Terminal Within: <{$seconds} SECONDS>
 es-warp-drive-announcement-can-activate = You have done Wonderful Excellently. Make the Final Grasp and Activate your Warp Drive at my Heart Shell.
 es-warp-drive-security-override-announcement-fail = Security Check Failed. Terminals Not Overridden In Allotted Timeframe. Please Try Again If You May.
 
