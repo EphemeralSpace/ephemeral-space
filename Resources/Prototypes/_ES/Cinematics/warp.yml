@@ -1,0 +1,7 @@
+- type: esCinematic
+  id: WarpCinematic
+  animation:
+    sprite: _ES/Cinematics/warp_cutscene.rsi
+    state: station_warp_out
+  sound: /Audio/_ES/Cinematics/explosion_nuke.ogg
+  length: 15s
