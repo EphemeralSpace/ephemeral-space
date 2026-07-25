@@ -2,24 +2,32 @@ using Content.Server._ES.Cryohusk.Components;
 using Content.Server.Administration;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Polymorph.Systems;
+using Content.Shared._ES.Cryohusk;
+using Content.Shared._ES.Cryohusk.Components;
+using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.Atmos;
 using Robust.Server.Audio;
+using Robust.Server.Containers;
+using Robust.Shared.Containers;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Toolshed;
 
 namespace Content.Server._ES.Cryohusk;
 
-public sealed partial class ESCryohuskSystem : EntitySystem
+public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ContainerSystem _container = default!;
     [Dependency] private PolymorphSystem _polymorph = default!;
+
+    [Dependency] private EntityQuery<IdCardComponent> _idCardQuery;
 
     public override void Initialize()
     {
@@ -41,7 +49,36 @@ public sealed partial class ESCryohuskSystem : EntitySystem
         if (_polymorph.PolymorphEntity(target, target.Comp.CryohuskPolymorph) is not { } husk)
             return;
 
+        foreach (var uid in GetRecursiveContainedEntities(husk))
+        {
+            if (_idCardQuery.HasComp(uid))
+                EnsureComp<ESCryohuskIdCardComponent>(uid);
+        }
+
         _audio.PlayPvs(target.Comp.FreezeSound, husk);
+    }
+
+    // TODO: needs to live not here.
+    private IEnumerable<EntityUid> GetRecursiveContainedEntities(Entity<ContainerManagerComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            yield break;
+
+        foreach (var container in _container.GetAllContainers(ent, ent))
+        {
+            if (container.ContainedEntities.Count == 0)
+                continue;
+
+            foreach (var contained in container.ContainedEntities)
+            {
+                yield return contained;
+
+                foreach (var subContents in GetRecursiveContainedEntities(contained))
+                {
+                    yield return subContents;
+                }
+            }
+        }
     }
 
     public override void Update(float frameTime)
