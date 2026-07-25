@@ -28,7 +28,7 @@
       weight: 0.125
     - id: BaseNewspaper
       weight: 0.125
-    - id: MagazinesLegit
+    - tableId: MagazinesLegit
       weight: 0.125
     - id: ShardGlass
 
