@@ -1,12 +1,20 @@
 ﻿<Document>
-  <ESGuideSecretIdentityEmbed SecretIdentity="CryoJunkie"/>
+  <ESGuideSecretIdentityEmbed SecretIdentity="Cryojunkie"/>
+
+  The Cryojunkie is a fairly standard crew member with the additional ability to revive as a cryohusk upon death.
+  In order to win, they must become a cryohusk during the round.
+
+  <Box>
+    <ESGuideObjectiveEmbed Objective="ESObjectiveCryohusk"/>
+  </Box>
+
+  Once they die, they'll turn into a cryohusk with a burst of cryogas after a 30-second delay.
 
   <Box>
     <GuideEntityEmbed Entity="ESMobCryohusk" Caption="cryohusk"/>
   </Box>
 
-  The CryoHusk gains a one time revive into a Cryohusk soon after they die.
+  Be careful at this point, since another death will not lead to another revival.
 
-
-  <ESGuideTipsEmbed SecretIdentity="CryoJunkie"/>
+  <ESGuideTipsEmbed SecretIdentity="Cryojunkie"/>
 </Document>
