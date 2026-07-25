@@ -1,5 +1,4 @@
 ﻿using Content.Shared._ES.Core.Timer.Components;
-using Content.Shared.Atmos;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.SecretIdentity.Cyrojunkie.Components;

@@ -43,7 +43,7 @@
   color: white
 
 - type: esSecretIdentity
-  id: CryoJunkie
+  id: Cryojunkie
   name: es-secret-identity-cryojunkie-name
   organization: Crew
   description: es-secret-identity-cryojunkie-desc
