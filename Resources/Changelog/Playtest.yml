@@ -1361,3 +1361,9 @@ Entries:
         targets and making sure they live (or potentially die).
   id: 146
   time: '2026-07-25T21:23:04.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: Traitor-related degradation events are now much rarer
+  id: 147
+  time: '2026-07-25T21:39:11.0000000+00:00'
