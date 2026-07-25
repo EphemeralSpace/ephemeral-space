@@ -1,0 +1,12 @@
+﻿<Document>
+  <ESGuideSecretIdentityEmbed SecretIdentity="CryoJunkie"/>
+
+  <Box>
+    <GuideEntityEmbed Entity="ESMobCryohusk" Caption="cryohusk"/>
+  </Box>
+
+  The CryoHusk gains a one time revive into a Cryohusk soon after they die.
+
+
+  <ESGuideTipsEmbed SecretIdentity="CryoJunkie"/>
+</Document>

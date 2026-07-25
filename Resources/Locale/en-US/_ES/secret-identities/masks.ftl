@@ -11,6 +11,9 @@ es-secret-identity-avenger-desc = As an Avenger, protect your target from being 
 es-secret-identity-crewmember-name = Crewmember
 es-secret-identity-crewmember-desc = As a Crewmember, use your unclouded judgment to help make sure the crew completes their objective and gets out safely.
 
+es-secret-identity-cryojunkie-name = Cryojunkie
+es-secret-identity-cryojunkie-desc = As a Cryojunkie, you revive into a cryohusk a little bit after you die, use this to your advantage.
+
 es-secret-identity-guzzler-name = Guzzler
 es-secret-identity-guzzler-desc = As a Guzzler, you have nothing but an endless desire to Consume Liquid. Guzzle everything you can get your hands on.
 

@@ -43,6 +43,16 @@
   color: white
 
 - type: esSecretIdentity
+  id: CryoJunkie
+  name: es-secret-identity-cryojunkie-name
+  organization: Crew
+  description: es-secret-identity-cryojunkie-desc
+  color: lightblue
+  weight: 0.5
+  mindComponents:
+  - type: ESCryoJunkieMind
+
+- type: esSecretIdentity
   id: Guzzler
   name: es-secret-identity-guzzler-name
   organization: Crew
