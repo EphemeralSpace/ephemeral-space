@@ -209,7 +209,7 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
             comp.SpaceDangerous = true;
 
         if (phase.SetAlertLevel && _station.GetStationInMap(_ticker.DefaultMap) is { } station)
-            _alert.SetLevel(station, AlertLevel, false, false, true);
+            _alert.SetLevel(station, AlertLevel, false, false, true, true);
 
         phase.Completed = true;
     }
