@@ -1295,3 +1295,17 @@ Entries:
       message: The world is now populated with decorative magazines and newspapers.
   id: 140
   time: '2026-07-25T10:59:27.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added Cryogas, a chilly gas that can convert exposed bodies into
+        Cryohusks.
+    - type: Fix
+      message: >-
+        Swapping jumpsuits and outerclothing will no longer drop PDAs, pocket
+        items, or suit storage tanks onto the ground.
+    - type: Remove
+      message: Removed Frezon.
+  id: 141
+  time: '2026-07-25T11:07:35.0000000+00:00'
