@@ -11,5 +11,5 @@
   - type: ESWarpUnclogObjective
   - type: ESCounterObjective
     title: es-warp-disciple-objective-title
-    target: 6
-    maxTarget: 7
+    target: 4
+    maxTarget: 6

@@ -128,7 +128,6 @@ public sealed partial class ESWarpDriveSystem
 
     public HashSet<EntityUid>? GetSingularityWorldGrids()
     {
-
         return SingularityWorldGrids;
     }
 }

@@ -14,7 +14,6 @@ public sealed partial class ESWarpUnclogRelaySystem : ESBaseMindRelay
         SubscribeLocalEvent<ESWarpUnclogRelayComponent, WarpDriveInterruptionClearedEvent>(OnInterruptionCleared);
     }
 
-
     private void OnInterruptionCleared(Entity<ESWarpUnclogRelayComponent> ent, ref WarpDriveInterruptionClearedEvent args)
     {
         if (!_mind.TryGetMind(ent, out var mindId, out var mindComp))
@@ -26,6 +25,4 @@ public sealed partial class ESWarpUnclogRelaySystem : ESBaseMindRelay
 }
 
 [ByRefEvent]
-public readonly record struct ESWarpDriveInterruptionClearedEvent();
-
-
+public readonly record struct ESWarpDriveInterruptionClearedEvent;
