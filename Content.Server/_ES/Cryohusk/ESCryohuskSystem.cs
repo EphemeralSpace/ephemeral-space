@@ -51,7 +51,7 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
         ent.Comp.NextUpdate = _timing.CurTime;
     }
 
-    public override void Cryohusk(Entity<ESCryohuskableComponent?> target)
+    public override void Cryohusk(Entity<ESCryohuskableComponent?> target, bool transferDeath = true)
     {
         if (!Resolve(target, ref target.Comp))
             return;
@@ -73,7 +73,7 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
                 EnsureComp<ESCryohuskIdCardComponent>(uid);
         }
 
-        if (_mobState.IsDead(target))
+        if (_mobState.IsDead(target) && transferDeath)
         {
             _brainDamage.KillBrain(husk);
         }

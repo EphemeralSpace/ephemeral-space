@@ -3,7 +3,6 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Ghost;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.SecretIdentity.Cyrojunkie.Components;
-using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Mind.Components;
 
@@ -14,7 +13,6 @@ public sealed partial class ESCryoJunkieSystem : EntitySystem
     [Dependency] private ESCryohuskSystem _cryo = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
-    [Dependency] private RejuvenateSystem _rejuvenate = default!;
 
     public override void Initialize()
     {
@@ -27,8 +25,7 @@ public sealed partial class ESCryoJunkieSystem : EntitySystem
         var mixture = _atmosphere.GetTileMixture(ent.Owner);
         mixture?.AdjustMoles(Gas.Cryogas, 200);
 
-        _rejuvenate.PerformRejuvenate(ent.Owner);
-        _cryo.Cryohusk(ent.Owner);
+        _cryo.Cryohusk(ent.Owner, transferDeath: false);
     }
 
     private void OnGhostAttempt(Entity<ESCryoJunkieMindComponent> ent, ref GhostAttemptHandleEvent args)
