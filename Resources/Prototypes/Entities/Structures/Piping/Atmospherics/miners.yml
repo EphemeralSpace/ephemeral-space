@@ -118,12 +118,12 @@
       spawnGas: Tritium
 
 - type: entity
-  name: frezon gas miner
+  name: cryogas gas miner
   parent: GasMinerBase
-  id: GasMinerFrezon
+  id: GasMinerCryogas
   components:
     - type: GasMiner
-      spawnGas: Frezon
+      spawnGas: Cryogas
 
 - type: entity
   name: water vapor gas miner

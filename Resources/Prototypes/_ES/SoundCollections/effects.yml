@@ -1,0 +1,5 @@
+- type: soundCollection
+  id: ESFreeze
+  files:
+  - /Audio/_ES/Effects/freeze1.ogg
+  - /Audio/_ES/Effects/freeze2.ogg

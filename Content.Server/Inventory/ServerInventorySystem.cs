@@ -31,9 +31,11 @@ namespace Content.Server.Inventory
             var enumerator = new InventorySlotEnumerator(source.Comp);
             while (enumerator.NextItem(out var item, out var slot))
             {
-                if (TryUnequip(source, slot.Name, true, true, inventory: source.Comp, triggerHandContact: true))
+                if (TryUnequip(source, slot.Name, true, true, inventory: source.Comp, triggerHandContact: true, updateSlotDependency: false))
                     TryEquip(target, item, slot.Name , true, true, inventory: target.Comp, triggerHandContact: true);
             }
+
+            UpdateDependentSlots(source, source);
         }
     }
 }

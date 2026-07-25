@@ -23,7 +23,7 @@ public sealed partial class IdExaminableSystem : EntitySystem
         var detailsRange = _examineSystem.IsInDetailsRange(args.User, uid);
         var info = GetMessage(uid);
 
-        var verb = new ExamineVerb()
+        var verb = new ExamineVerb
         {
             Act = () =>
             {
@@ -52,30 +52,16 @@ public sealed partial class IdExaminableSystem : EntitySystem
         {
             // PDA
             if (TryComp(idUid, out PdaComponent? pda) &&
-                TryComp<IdCardComponent>(pda.ContainedId, out var id))
+                HasComp<IdCardComponent>(pda.ContainedId))
             {
-                return GetNameAndJob(id);
+                return Name(pda.ContainedId.Value);
             }
             // ID Card
-            if (TryComp(idUid, out id))
+            if (HasComp<IdCardComponent>(idUid))
             {
-                return GetNameAndJob(id);
+                return Name(idUid.Value);
             }
         }
         return null;
-    }
-
-    private string GetNameAndJob(IdCardComponent id)
-    {
-        var jobSuffix = string.IsNullOrWhiteSpace(id.LocalizedJobTitle) ? string.Empty : $" ({id.LocalizedJobTitle})";
-
-        var val = string.IsNullOrWhiteSpace(id.FullName)
-            ? Loc.GetString(id.NameLocId,
-                ("jobSuffix", jobSuffix))
-            : Loc.GetString(id.FullNameLocId,
-                ("fullName", id.FullName),
-                ("jobSuffix", jobSuffix));
-
-        return val;
     }
 }

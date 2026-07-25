@@ -90,7 +90,7 @@ public class GasReactionBenchmark
         {
             Temperature = Atmospherics.T20C + 50f // ~343K
         };
-        _frezonCoolantMixture.AdjustMoles(Gas.Frezon, 30f);
+        _frezonCoolantMixture.AdjustMoles(Gas.Cryogas, 30f);
         _frezonCoolantMixture.AdjustMoles(Gas.Nitrogen, 100f);
     }
 

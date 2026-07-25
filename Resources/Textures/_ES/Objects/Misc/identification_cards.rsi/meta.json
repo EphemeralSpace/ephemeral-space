@@ -20,6 +20,9 @@
             "name": "base_prisoner"
         },
         {
+            "name": "frozen"
+        },
+        {
             "name": "icon_1"
         },
         {
