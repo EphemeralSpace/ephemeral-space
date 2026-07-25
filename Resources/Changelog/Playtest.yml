@@ -1375,3 +1375,9 @@ Entries:
         of the round.
   id: 148
   time: '2026-07-25T22:23:46.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: Added Cryojunkie, a new crew mask that revives as a cryohusk upon death.
+  id: 149
+  time: '2026-07-25T22:46:26.0000000+00:00'
