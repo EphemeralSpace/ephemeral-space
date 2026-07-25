@@ -595,9 +595,9 @@
 
 - type: entity
   parent: GasCanister
-  id: FrezonCanister
-  name: frezon canister
-  description: A canister that can contain any type of gas. This one is supposed to contain frezon. It can be attached to connector ports using a wrench.
+  id: CryogasCanister
+  name: cryogas canister
+  description: A canister that can contain any type of gas. This one is supposed to contain cryogas. It can be attached to connector ports using a wrench.
   components:
   - type: Sprite
     layers:
@@ -606,7 +606,7 @@
     gasMixture:
       volume: 1500
       moles:
-        Frezon: 2769.36 # Frezon
+        Cryogas: 2769.36 # Frezon
       temperature: 293.15
   - type: Destructible
     thresholds:
@@ -625,7 +625,7 @@
           collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
-          FrezonCanisterBroken:
+          CryogasCanisterBroken:
             min: 1
             max: 1
       - !type:DoActsBehavior
@@ -776,7 +776,7 @@
 
 - type: entity
   parent: GasCanisterBrokenBase
-  id: FrezonCanisterBroken
+  id: CryogasCanisterBroken
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite

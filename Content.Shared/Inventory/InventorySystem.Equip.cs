@@ -240,24 +240,8 @@ public abstract partial class InventorySystem
             return false;
 
         DebugTools.Assert(slotDefinition.Name == slot);
-        if (slotDefinition.DependsOn != null)
-        {
-            if (!TryGetSlotEntity(target, slotDefinition.DependsOn, out EntityUid? slotEntity, inventory))
-                return false;
-
-            if (slotDefinition.DependsOnComponents is { } componentRegistry)
-            {
-                foreach (var (_, entry) in componentRegistry)
-                {
-                    if (!HasComp(slotEntity, entry.Component.GetType()))
-                        return false;
-
-                    if (TryComp<AllowSuitStorageComponent>(slotEntity, out var comp) &&
-                        _whitelistSystem.IsWhitelistFailOrNull(comp.Whitelist, itemUid))
-                        return false;
-                }
-            }
-        }
+        if (!IsSlotDependencyFulfilled((target, inventory), slotDefinition))
+            return false;
 
         var fittingInPocket = slotDefinition.SlotFlags.HasFlag(SlotFlags.POCKET) &&
                               item != null &&
@@ -320,9 +304,10 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        bool updateSlotDependency = true)
     {
-        return TryUnequip(uid, uid, slot, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact);
+        return TryUnequip(uid, uid, slot, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact, updateSlotDependency);
     }
 
     public bool TryUnequip(
@@ -336,9 +321,10 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        bool updateSlotDependency = true)
     {
-        return TryUnequip(actor, target, slot, out _, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact);
+        return TryUnequip(actor, target, slot, out _, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact, updateSlotDependency);
     }
 
     public bool TryUnequip(
@@ -352,9 +338,10 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        bool updateSlotDependency = true)
     {
-        return TryUnequip(uid, uid, slot, out removedItem, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact);
+        return TryUnequip(uid, uid, slot, out removedItem, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact, updateSlotDependency);
     }
 
     public bool TryUnequip(
@@ -369,11 +356,12 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        bool updateSlotDependency = true)
     {
         var itemsDropped = 0;
         return TryUnequip(actor, target, slot, out removedItem, ref itemsDropped,
-            silent, force, predicted, inventory, clothing, reparent, checkDoafter);
+            silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact, updateSlotDependency);
     }
 
     private bool TryUnequip(
@@ -389,7 +377,8 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        bool updateSlotDependency = true)
     {
         removedItem = null;
 
@@ -456,12 +445,24 @@ public abstract partial class InventorySystem
         var firstRun = itemsDropped == 0;
         ++itemsDropped;
 
-        foreach (var slotDef in inventory.Slots)
+        if (updateSlotDependency)
         {
-            if (slotDef != slotDefinition && slotDef.DependsOn == slotDefinition.Name)
+            foreach (var slotDef in inventory.Slots)
             {
-                //this recursive call might be risky
-                TryUnequip(actor, target, slotDef.Name, out _, ref itemsDropped, true, true, predicted, inventory, reparent: reparent);
+                if (slotDef != slotDefinition && slotDef.DependsOn == slotDefinition.Name)
+                {
+                    //this recursive call might be risky
+                    TryUnequip(actor,
+                        target,
+                        slotDef.Name,
+                        out _,
+                        ref itemsDropped,
+                        true,
+                        true,
+                        predicted,
+                        inventory,
+                        reparent: reparent);
+                }
             }
         }
 
@@ -568,5 +569,57 @@ public abstract partial class InventorySystem
         {
             _interactionSystem.DoContactInteraction(uid, item, null, true); // Stellar - Interaction particles
         }
+    }
+
+    /// <summary>
+    /// Checks all slots on an entity, unequipping items if their dependencies aren't fulfilled.
+    /// </summary>
+    public void UpdateDependentSlots(Entity<InventoryComponent?> ent, EntityUid actor, bool predicted = false, bool reparent = true)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
+        var itemsDropped = 0;
+        foreach (var slotDef in ent.Comp.Slots)
+        {
+            if (IsSlotDependencyFulfilled(ent, slotDef))
+                continue;
+
+            TryUnequip(actor, ent, slotDef.Name, out _, ref itemsDropped, true, true, predicted, ent, reparent: reparent);
+        }
+    }
+
+    /// <summary>
+    /// Checks if a given slot definition for a given entity has their slot dependency fulfilled
+    /// </summary>
+    public bool IsSlotDependencyFulfilled(Entity<InventoryComponent?> ent, SlotDefinition slotDefinition)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+
+        // No dependency means its always fulfilled
+        if (string.IsNullOrWhiteSpace(slotDefinition.DependsOn))
+            return true;
+
+        // Must have something in the slot at a baseline
+        if (!TryGetSlotEntity(ent, slotDefinition.DependsOn, out var slotEntity, ent))
+            return false;
+
+        // If we have extra components, check those too
+        if (slotDefinition.DependsOnComponents is { } componentRegistry)
+        {
+            foreach (var (_, entry) in componentRegistry)
+            {
+                if (!HasComp(slotEntity, entry.Component.GetType()))
+                    return false;
+
+                if (TryComp<AllowSuitStorageComponent>(slotEntity, out var comp) &&
+                    _whitelistSystem.IsWhitelistFailOrNull(comp.Whitelist, slotEntity.Value))
+                    return false;
+            }
+        }
+
+        // true otherwise
+        return true;
     }
 }

@@ -12,7 +12,7 @@
 # Basic
 - type: entity
   id: LockerSteel
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: secure closet
   components:
   - type: EntityStorageVisuals
@@ -29,7 +29,7 @@
 # Command
 - type: entity
   id: LockerCaptain
-  parent: [ LockerBaseSecurePersonal, LockerBaseSecure ]
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: captain's locker
   components:
   - type: EntityStorageVisuals
@@ -41,7 +41,7 @@
 
 - type: entity
   id: LockerStationAdmin
-  parent: [ LockerBaseSecurePersonal, LockerBaseSecure ]
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: station administrator's locker
   components:
   - type: EntityStorageVisuals
@@ -195,7 +195,7 @@
 # Security Officer
 - type: entity
   id: LockerSecurity
-  parent: [ LockerBaseSecurePersonal, LockerBaseSecure ]
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
   name: security officer's locker
   components:
   - type: EntityStorageVisuals
@@ -257,7 +257,7 @@
     isPlaceable: True
 
 - type: entity
-  parent: [ GenpopBase , LockerBaseSecure ]
+  parent: [ GenpopBase , LockerBase ]
   id: LockerPrisoner
   name: prisoner closet
   description: It's a secure locker for an inmate's personal belongings during their time in prison.

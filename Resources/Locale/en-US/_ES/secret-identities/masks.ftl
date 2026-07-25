@@ -8,6 +8,9 @@ es-secret-identity-arsonist-desc = As an Arsonist, light fires around the statio
 es-secret-identity-avenger-name = Avenger
 es-secret-identity-avenger-desc = As an Avenger, protect your target from being killed at all costs. If that fails, kill their murderer.
 
+es-secret-identity-cannibal-name = Cannibal
+es-secret-identity-cannibal-desc = As a Cannibal, consume a dead body to steal their mask and complete their objectives as your own.
+
 es-secret-identity-crewmember-name = Crewmember
 es-secret-identity-crewmember-desc = As a Crewmember, use your unclouded judgment to help make sure the crew completes their objective and gets out safely.
 
@@ -32,6 +35,9 @@ es-secret-identity-pickpocket-desc = As a Pickpocket, sneak behind peoples' back
 es-secret-identity-secretary-name = Secretary
 es-secret-identity-secretary-desc = As a Secretary, do whatever you can to help your target complete their objectives.
 
+es-secret-identity-stalker-name = Stalker
+es-secret-identity-stalker-desc = As a Stalker, pick unsuspecting people to stalk, then ensure that enough of them live or die.
+
 es-secret-identity-tragedian-name = Tragedian
 es-secret-identity-tragedian-desc = As a Tragedian, perform your theme to the bitter end in order to please the watching stagehands.
 
@@ -40,6 +46,9 @@ es-secret-identity-vandal-desc = As a Vandal, sabotage machines around the stati
 
 es-secret-identity-vip-name = VIP
 es-secret-identity-vip-desc = As a VIP, use your fancy VIP card to help confirm your innocence in times of peril.
+
+es-secret-identity-warp-disciple-name = Warp Disciple
+es-secret-identity-warp-disciple-desc = As a Warp Disciple, personally clear the Warp Drive of any interruptions and recall to it in times of peril.
 
 # Traitor Secret Identities
 es-secret-identity-organization-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete your group objectives.

@@ -1,0 +1,15 @@
+﻿- type: entity
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectiveWarpUnclog
+  name: Unclog the Warp Drive
+  description: Show dedication by cleansing the warp drive when it is interrupted by a clog, make sure you are the one that finishes it.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Structures/Power/Generation/Singularity/singularity_1.rsi
+      state: singularity_1
+  - type: ESWarpUnclogObjective
+  - type: ESCounterObjective
+    title: es-warp-disciple-objective-title
+    target: 4
+    maxTarget: 6

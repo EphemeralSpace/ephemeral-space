@@ -6,6 +6,7 @@
   - ArmsDealer
   - Arsonist
   - Avenger
+  - Cannibal
   - Crewmember
   - Guzzler
   - Hater
@@ -15,9 +16,11 @@
   - Pickpocket
   - Secretary
   - SleeperAgent
+  - Stalker
   - Tragedian
   - Vandal
   - VIP
+  - WarpDisciple
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew.xml"
 
 - type: guideEntry
@@ -34,6 +37,11 @@
   id: Avenger
   name: Avenger
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Avenger.xml"
+
+- type: guideEntry
+  id: Cannibal
+  name: Cannibal
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Cannibal.xml"
 
 - type: guideEntry
   id: Crewmember
@@ -81,6 +89,11 @@
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/SleeperAgent.xml"
 
 - type: guideEntry
+  id: Stalker
+  name: Stalker
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Stalker.xml"
+
+- type: guideEntry
   id: Tragedian
   name: Tragedian
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Tragedian.xml"
@@ -94,3 +107,8 @@
   id: VIP
   name: VIP
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/VIP.xml"
+
+- type: guideEntry
+  id: WarpDisciple
+  name: Warp Disciple
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/WarpDisciple.xml"

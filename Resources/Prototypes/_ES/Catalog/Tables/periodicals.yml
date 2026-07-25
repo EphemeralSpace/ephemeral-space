@@ -1,0 +1,176 @@
+# Combined
+- type: entityTable
+  id: PeriodicalsAll
+  table:
+    group:
+    - tableId: MagazinesAll
+    - tableId: Newspapers
+    - id: BaseNewspaper
+      weight: 0.05
+
+- type: entityTable
+  id: PeriodicalsLegit
+  table:
+    group:
+    - tableId: MagazinesLegit
+    - tableId: Newspapers
+
+- type: entityTable
+  id: PeriodicalsSuspicious
+  table:
+    group:
+    - tableId: MagazinesZines
+    - id: BaseNewspaper
+      weight: 0.33
+
+# Newspapers
+- type: entityTable
+  id: Newspapers
+  table:
+    group:
+    - group:
+      - id: NewspaperBigWatermelon
+      - id: NewspaperSpores
+      - id: NewspaperGasLeaks
+      - id: NewspaperMaintenanceTar
+      - id: NewspaperWater
+      - id: NewspaperWeldingFuel
+      - id: NewspaperParasite
+      - id: NewspaperMining
+      - id: NewspaperMining2
+      - id: NewspaperMining3
+      - id: NewspaperForeshadowing
+
+# Magazines
+# Big Tables
+- type: entityTable
+  id: MagazinesAll
+  table:
+    group:
+    - tableId: MagazinesLegit
+    - tableId: MagazinesZines
+      weight: 0.1
+
+- type: entityTable
+  id: MagazinesLegit
+  table:
+    group:
+    - tableId: MagazinesComicBook
+    - tableId: MagazinesCelebrity
+    - tableId: MagazinesCooking
+    - tableId: MagazinesPuzzle
+    - tableId: MagazinesEarthNews
+    - tableId: MagazinesMedicalNews
+    - tableId: MagazinesFirearms
+    - tableId: MagazinesEngineerNews
+
+- type: entityTable
+  id: MagazinesZines
+  table:
+    group:
+    - tableId: MagazinesRevolutionary
+    - tableId: MagazinesConspiracy
+      weight: 0.1
+
+# Specific Tables
+# Some of these only have 1 prototype right now, but still exist to make future additions easier
+- type: entityTable
+  id: MagazinesComicBook
+  table:
+    group:
+    - group:
+      - id: MagazineCognitoWood
+
+- type: entityTable
+  id: MagazinesCooking
+  table:
+    group:
+    - group:
+      - id: MagazineCookingAndBotany
+
+- type: entityTable
+  id: MagazinesPuzzle
+  table:
+    group:
+    - group:
+      - id: MagazineWordsearch
+      - id: MagazineCrossword
+      
+- type: entityTable
+  id: MagazinesEarthNews
+  table:
+    group:
+    - group:
+      - id: MagazineEarthNews
+
+- type: entityTable
+  id: MagazinesMedicalNews
+  table:
+    group:
+    - group:
+      - id: MagazineMedicalScience
+
+- type: entityTable
+  id: MagazinesFirearms
+  table:
+    group:
+    - group:
+      - id: MagazineFirearms
+
+- type: entityTable
+  id: MagazinesCelebrity
+  table:
+    group:
+    - group:
+      - id: MagazinePopularSpacepeople
+      - id: MagazinePopularSpacepeople2
+      - id: MagazinePopularSpacepeople3
+      - id: MagazinePopularSpacepeople4
+
+- type: entityTable
+  id: MagazinesFashion
+  table:
+    group:
+    - group:
+      - id: MagazineFashion
+      - id: MagazineFashion2
+      - id: MagazineFashion3
+      - id: MagazineFashion4
+      - id: MagazineFashion5
+      - id: MagazineFashion6
+      - id: MagazineFashion7
+      - id: MagazineFashion8
+
+- type: entityTable
+  id: MagazinesEngineerNews
+  table:
+    group:
+    - group:
+      - id: MagazineEngineerNews
+      - id: MagazineEngineerNews2
+
+- type: entityTable
+  id: MagazinesRevolutionary
+  table:
+    group:
+    - group:
+      - id: MagazineRevolutionary
+      - id: MagazineRevolutionary2
+      - id: MagazineRevolutionary3
+      - id: MagazineRevolutionary4
+      - id: MagazineRevolutionary5
+      - id: MagazineRevolutionary6
+      - id: MagazineRevolutionary7
+      - id: MagazineRevolutionary8
+
+- type: entityTable
+  id: MagazinesConspiracy
+  table:
+    group:
+    - group:
+      - id: MagazineConspiracy
+      - id: MagazineConspiracy2
+      - id: MagazineConspiracy3
+      - id: MagazineConspiracy4
+      - id: MagazineConspiracy5
+      - id: MagazineConspiracy6

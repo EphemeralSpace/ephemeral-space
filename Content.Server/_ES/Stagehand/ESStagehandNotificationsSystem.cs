@@ -1,15 +1,12 @@
 using Content.Server.Chat.Managers;
-using Content.Server.Mind;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
+using Content.Shared._ES.Stagehand;
 using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.Chat;
 using Content.Shared.Mind;
-using Content.Shared.Mind.Components;
 using JetBrains.Annotations;
-using Robust.Server.Player;
-using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 
@@ -18,12 +15,10 @@ namespace Content.Server._ES.Stagehand;
 /// <summary>
 ///     Handles sending stagehand notifications for various non-stagehand events ingame: objective completions, deaths, etc.
 /// </summary>
-public sealed partial class ESStagehandNotificationsSystem : EntitySystem
+public sealed partial class ESStagehandNotificationsSystem : ESSharedStagehandNotificationsSystem
 {
     [Dependency] private ESSharedObjectiveSystem _objectives = default!;
     [Dependency] private IChatManager _chat = default!;
-    [Dependency] private IPlayerManager _player = default!;
-    [Dependency] private MindSystem _mind = default!;
 
     public override void Initialize()
     {
@@ -35,7 +30,7 @@ public sealed partial class ESStagehandNotificationsSystem : EntitySystem
 
     private void OnKillReported(ref ESPlayerKilledEvent ev)
     {
-        if (!_mind.TryGetMind(ev.Killed, out _))
+        if (!Mind.TryGetMind(ev.Killed, out _))
             return;
 
         string? msg = null;
@@ -102,79 +97,12 @@ public sealed partial class ESStagehandNotificationsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Version of <see cref="WrapEntityNameWithUsername"/> that formats relevant IC info into a name without giving a username.
-    /// </summary>
-    /// <remarks>
-    /// Use when displaying an entity name but without the context of the username.
-    /// </remarks>
-    public string WrapEntityName(Entity<MindContainerComponent?> entity)
-    {
-        // Default case: basic entities display their entity name
-        if (!Resolve(entity, ref entity.Comp, false) ||
-            !_mind.TryGetMind(entity, out var mind, entity))
-        {
-            return Name(entity);
-        }
-
-        var entityName = Name(entity);
-        var characterName = mind.Value.Comp.CharacterName ?? string.Empty;
-
-        // If our name matches our body, just display the simple name.
-        if (entityName.Equals(characterName, StringComparison.InvariantCulture))
-        {
-            return entityName;
-        }
-
-        if (TryComp<GrammarComponent>(entity, out var grammar) && grammar.ProperNoun == true)
-        {
-            return Loc.GetString("es-stagehand-notification-wrap-entity-body-player-swap",
-                ("character", characterName),
-                ("body", entityName));
-        }
-
-        return Loc.GetString("es-stagehand-notification-wrap-entity-body-mob-swap",
-            ("character", characterName),
-            ("body", entityName));
-    }
-
-    /// <summary>
-    ///     Returns a string formatted like "entity name (players username)", for use in passing to <see cref="SendStagehandNotification"/>.
-    /// </summary>
-    /// <remarks>
-    ///     You should **not** use this for all instances where an entity is mentioned.
-    ///     Only reveal player usernames when they are dead, or about to die.
-    /// </remarks>
-    public string WrapEntityNameWithUsername(Entity<ActorComponent?> entity)
-    {
-        string? username;
-        if (Resolve(entity, ref entity.Comp, false))
-        {
-            username = entity.Comp.PlayerSession.Name;
-        }
-        // try to get session from their mind
-        else if (_mind.TryGetMind(entity, out var mind)
-            && mind.Value.Comp.UserId is { } id
-            && _player.TryGetPlayerData(id, out var sess))
-        {
-            username = sess.UserName;
-        }
-        else
-        {
-            return WrapEntityName(entity.Owner);
-        }
-
-        return Loc.GetString("es-stagehand-notification-wrap-entity-username",
-            ("entity", WrapEntityName(entity.Owner)),
-            ("username", username));
-    }
-
-    /// <summary>
     ///     Sends a notification message to all currently active stagehands, formatted correctly.
     /// </summary>
     /// <param name="msg">An already-resolved string to use as the message.</param>
     /// <param name="severity">The severity of this notification, defaulting to medium (regular size)</param>
     [PublicAPI]
-    public void SendStagehandNotification(string msg, ESStagehandNotificationSeverity severity = ESStagehandNotificationSeverity.Medium)
+    public override void SendStagehandNotification(string msg, ESStagehandNotificationSeverity severity = ESStagehandNotificationSeverity.Medium)
     {
         var stagehands = new List<INetChannel>();
         var query = EntityQueryEnumerator<ESStagehandComponent, ActorComponent>();
@@ -193,14 +121,4 @@ public sealed partial class ESStagehandNotificationsSystem : EntitySystem
         var wrappedMsg = Loc.GetString(locId, ("message", msg));
         _chat.ChatMessageToMany(ChatChannel.Server, msg, wrappedMsg, default, false, true, stagehands, Color.Plum);
     }
-}
-
-/// <summary>
-///     Determines the font size and styling of the message sent to stagehands.
-/// </summary>
-public enum ESStagehandNotificationSeverity : byte
-{
-    Low,
-    Medium,
-    High
 }

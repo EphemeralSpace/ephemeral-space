@@ -1,0 +1,11 @@
+- type: polymorph
+  id: ESCryohuskPolymorph
+  configuration:
+    entity: ESMobCryohusk
+    forced: true
+    inventory: transfer
+    allowRepeatedMorphs: true
+    revertOnCrit: false
+    revertOnDeath: false
+    revertOnDelete: false
+    polymorphPopup: es-cryohusk-convert-popup

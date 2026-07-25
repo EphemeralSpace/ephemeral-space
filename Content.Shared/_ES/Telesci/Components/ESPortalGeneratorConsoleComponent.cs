@@ -32,6 +32,7 @@ public sealed class ESPortalGeneratorConsoleBuiState : BoundUserInterfaceState
     public float Charge;
     public bool Interrupted;
     public bool FinalPhase;
+    public bool AllTerminals;
 }
 
 [Serializable, NetSerializable]

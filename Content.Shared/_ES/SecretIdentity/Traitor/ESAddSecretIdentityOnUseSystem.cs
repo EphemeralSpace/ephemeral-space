@@ -1,5 +1,6 @@
 ﻿using Content.Shared._ES.SecretIdentity.Traitor.Components;
 using Content.Shared._ES.SecretIdentity.Traitor.Events;
+using Content.Shared._ES.Stagehand;
 using Content.Shared._Offbrand.Wounds;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Systems;
@@ -23,6 +24,7 @@ public sealed partial class ESAddSecretIdentityOnUseSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private RejuvenateSystem _rejuv = default!;
     [Dependency] private HealthRankingSystem _health = default!;
+    [Dependency] private ESSharedStagehandNotificationsSystem _stagehandNotifications = default!;
 
     public override void Initialize()
     {
@@ -98,8 +100,13 @@ public sealed partial class ESAddSecretIdentityOnUseSystem : EntitySystem
         if (_secretIdentity.GetOrganizationOrNull((mind, mindComponent)) == toAddOrganization)
             return;
 
-        _secretIdentity.RemoveSecretIdentity((mind, mindComponent));
-        _secretIdentity.ApplySecretIdentity((mind, mindComponent), ent.Comp.SecretIdentityToAdd);
+        var msg = Loc.GetString(ent.Comp.StagehandNotification,
+            ("player", _stagehandNotifications.WrapEntityName(args.User)),
+            ("item", ent.Owner),
+            ("target", _stagehandNotifications.WrapEntityName(target)));
+
+        _stagehandNotifications.SendStagehandNotification(msg);
+        _secretIdentity.ChangeSecretIdentity((mind, mindComponent), ent.Comp.SecretIdentityToAdd);
 
         ent.Comp.Used = true;
         Dirty(ent);

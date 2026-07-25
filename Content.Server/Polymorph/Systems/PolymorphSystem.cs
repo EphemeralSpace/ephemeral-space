@@ -37,6 +37,7 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private IdentitySystem _identity = default!;
     [Dependency] private ServerInventorySystem _inventory = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
@@ -204,12 +205,6 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         var child = Spawn(configuration.Entity, _transform.GetMapCoordinates(uid, targetTransformComp), rotation: _transform.GetWorldRotation(uid));
 
-        if (configuration.PolymorphPopup != null)
-            _popup.PopupEntity(Loc.GetString(configuration.PolymorphPopup,
-                ("parent", Identity.Entity(uid, EntityManager)),
-                ("child", Identity.Entity(child, EntityManager))),
-                child);
-
         _mindSystem.MakeSentient(child);
 
         var polymorphedComp = Factory.GetComponent<PolymorphedEntityComponent>();
@@ -267,6 +262,16 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             _mindSystem.TransferTo(mindId, child, mind: mind);
+
+        _identity.QueueIdentityUpdate(child, doNow: true);
+
+        if (configuration.PolymorphPopup != null)
+        {
+            _popup.PopupEntity(Loc.GetString(configuration.PolymorphPopup,
+                    ("parent", Identity.Entity(uid, EntityManager)),
+                    ("child", Identity.Entity(child, EntityManager))),
+                child);
+        }
 
         //Ensures a map to banish the entity to
         EnsurePausedMap();

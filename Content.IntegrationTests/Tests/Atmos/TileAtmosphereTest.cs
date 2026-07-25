@@ -35,7 +35,7 @@ public abstract class TileAtmosphereTest : AtmosTest
 
         var sourceMix = SAtmos.GetTileMixture(source, true);
         Assert.That(sourceMix, Is.Not.EqualTo(null));
-        sourceMix.AdjustMoles(Gas.Frezon, Moles);
+        sourceMix.AdjustMoles(Gas.Cryogas, Moles);
 
         await Pair.Server.WaitPost(() =>
         {

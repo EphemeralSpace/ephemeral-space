@@ -29,6 +29,10 @@ public abstract partial class ESSharedObjectiveSystem
             var target = Math.Clamp(ent.Comp.Target + blend * ent.Comp.TargetIncrement, ent.Comp.Target, maxTarget);
             SetObjectiveCounterTarget(ent.AsNullable(), target);
         }
+        else
+        {
+            SetObjectiveCounterTarget(ent.AsType(), ent.Comp.Target);
+        }
     }
 
     private void OnCounterGetProgress(Entity<ESCounterObjectiveComponent> ent, ref ESGetObjectiveProgressEvent args)

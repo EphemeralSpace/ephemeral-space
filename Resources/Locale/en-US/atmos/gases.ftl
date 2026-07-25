@@ -1,6 +1,6 @@
 gas-miasma-abbreviation = MIAS
 gas-carbon-dioxide-abbreviation = CO₂
-gas-frezon-abbreviation = F
+gas-cryogas-abbreviation = CRYO
 gas-nitrogen-abbreviation = N₂
 gas-nitrous-oxide-abbreviation = N₂O
 gas-oxygen-abbreviation = O₂

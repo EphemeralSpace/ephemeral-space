@@ -6,6 +6,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Robust.Client.GameObjects;
+using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -115,7 +116,11 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             return;
 
         if (sexMorph)
-            protoId = HumanoidVisualLayersExtension.GetSexMorph(key, component.Sex, protoId);
+        {
+            var maybeProtoId = HumanoidVisualLayersExtension.GetSexMorph(key, component.Sex, protoId);
+            if (_prototypeManager.HasIndex<HumanoidSpeciesSpriteLayer>(maybeProtoId))
+                protoId = maybeProtoId;
+        }
 
         var proto = _prototypeManager.Index<HumanoidSpeciesSpriteLayer>(protoId);
         component.BaseLayers[key] = proto;

@@ -258,7 +258,7 @@
     coldDamageThreshold: 260
     coldDamage:
       types:
-        Cold: 0.1 #per second, scales with temperature & other constants
+        Cold: 0.2 #per second, scales with temperature & other constants
     heatDamage:
       types:
         # ES START
