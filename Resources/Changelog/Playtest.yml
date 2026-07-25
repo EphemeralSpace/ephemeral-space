@@ -1353,3 +1353,11 @@ Entries:
         bodies.
   id: 145
   time: '2026-07-25T21:08:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Stalker, a new crew secret identity based around choosing
+        targets and making sure they live (or potentially die).
+  id: 146
+  time: '2026-07-25T21:23:04.0000000+00:00'
