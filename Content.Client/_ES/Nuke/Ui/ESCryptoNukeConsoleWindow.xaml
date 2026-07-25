@@ -22,6 +22,7 @@
                     <RichTextLabel Name="FlavorLabel" Text="{Loc 'es-cryptonuke-ui-label-flavor'}"/>
                     <Control VerticalExpand="True"/>
                     <Button Visible="False" Name="HackButton" Text="{Loc 'es-cryptonuke-ui-button-hack'}" VerticalAlignment="Bottom" StyleClasses="negative"/>
+                    <Button Visible="True" Name="OverrideButton" Text="{Loc 'es-cryptonuke-ui-button-override'}" VerticalAlignment="Bottom" />
                 </VStack>
                 <Spacer HorizontalExpand="True"/>
             </HStack>

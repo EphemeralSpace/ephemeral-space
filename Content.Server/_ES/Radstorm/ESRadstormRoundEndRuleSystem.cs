@@ -56,9 +56,9 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedRoofSystem _roof = default!;
 
-    private static readonly TimeSpan EndRoundDuration = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan EndRoundDuration = TimeSpan.FromSeconds(15);
     private static readonly ProtoId<ESCinematicPrototype> Cinematic = "RadstormCinematic";
-    private static string AlertLevel = "gamma"; // why are these not. like. whatever
+    private static readonly string AlertLevel = "gamma"; // why are these not. like. whatever
 
     protected override void Started(EntityUid uid,
         ESRadstormRoundEndRuleComponent component,

@@ -50,6 +50,30 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     public TimeSpan? FinalPhaseAt;
 
     /// <summary>
+    ///     Number of terminals currently overridden, if drive is charged.
+    /// </summary>
+    [DataField]
+    public int TerminalsOverridden = 0;
+
+    /// <summary>
+    ///     If any terminals have been overridden, the time the first one was overridden at
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    public TimeSpan? FirstTerminalOverriddenAt;
+
+    /// <summary>
+    ///     Amount of time after first terminal overridden that crew has to override the others.
+    /// </summary>
+    [DataField]
+    public TimeSpan TerminalOverrideTime = TimeSpan.FromMinutes(2);
+
+    /// <summary>
+    ///     Set whenever all 3 terminals have been overridden successfully.
+    /// </summary>
+    [DataField]
+    public bool AllTerminalsOverridden = false;
+
+    /// <summary>
     ///     Used to calculate if an interruption should occur from manual sabotage.
     /// </summary>
     [DataField]
@@ -124,6 +148,8 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     /// </summary>
     [DataField]
     public EntityUid? LastClearer;
+
+    public bool CinematicPlayed = false;
 }
 
 [DataDefinition]

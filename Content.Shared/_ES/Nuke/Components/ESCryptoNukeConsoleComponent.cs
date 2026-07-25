@@ -9,7 +9,6 @@ namespace Content.Shared._ES.Nuke.Components;
 /// Console that tracks the nuke disk and can be hacked in order to reveal the nuke codes
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
-[Access(typeof(ESSharedCryptoNukeSystem))]
 public sealed partial class ESCryptoNukeConsoleComponent : Component
 {
     /// <summary>
@@ -29,6 +28,25 @@ public sealed partial class ESCryptoNukeConsoleComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Compromised;
+
+    /// <summary>
+    ///     Controls whether the button to override warp drive security is disabled or not,
+    ///     and whether the event will go through.
+    ///     Set by warp drive whenever it gets fully charged.
+    /// </summary>
+    // this could maybe just use objective stuff in the same way traitor does
+    // but thatd require atomizing the current warp drive obj into multiple and using prereqs also and idk.
+    [DataField, AutoNetworkedField]
+    public bool CanOverrideWarpDriveSecurity = false;
+
+    /// <summary>
+    /// Whether this terminal has been used to override warp drive security.
+    /// </summary>
+    /// <remarks>
+    /// Can only be done when drive is fully charged + resets if not all terminals are overridden in some timeframe.
+    /// </remarks>
+    [DataField, AutoNetworkedField]
+    public bool WarpDriveSecurityOverridden;
 }
 
 [Serializable, NetSerializable]
@@ -40,6 +58,9 @@ public sealed class ESCryptoNukeConsoleBuiState : BoundUserInterfaceState
 }
 
 [Serializable, NetSerializable]
+public sealed class ESSecurityOverrideCryptoNukeConsoleBuiMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
 public sealed class ESHackCryptoNukeConsoleBuiMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
@@ -47,3 +68,9 @@ public enum ESCryptoNukeConsoleUiKey : byte
 {
     Key,
 }
+
+/// <summary>
+///     Raised broadcast when a terminal overrides warp drive security.
+/// </summary>
+[ByRefEvent]
+public record struct ESCryptoNukeSecurityOverridenEvent(EntityUid Terminal, EntityUid User);

@@ -4,6 +4,7 @@ using Content.Shared._ES.Nuke.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Sparks;
+using Content.Shared._ES.WarpDrive;
 using Content.Shared.Examine;
 using Content.Shared.Mind;
 using Content.Shared.Station;
@@ -34,6 +35,7 @@ public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
             subs =>
             {
                 subs.Event<ESHackCryptoNukeConsoleBuiMessage>(OnHackMessage);
+                subs.Event<ESSecurityOverrideCryptoNukeConsoleBuiMessage>(OnOverrideMessage);
             });
     }
 
@@ -68,6 +70,23 @@ public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
         Dirty(ent);
         UpdateUiState((ent, ent, Comp<UserInterfaceComponent>(ent)));
         _objective.RefreshObjectiveProgress<ESCryptoNukeHackObjectiveComponent>();
+    }
+
+    private void OnOverrideMessage(Entity<ESCryptoNukeConsoleComponent> ent, ref ESSecurityOverrideCryptoNukeConsoleBuiMessage args)
+    {
+        if (!CanPotentiallyOverride(args.Actor))
+            return;
+
+        if (ent.Comp.WarpDriveSecurityOverridden || !ent.Comp.CanOverrideWarpDriveSecurity)
+            return;
+
+        _sparks.DoSparks(ent, user: args.Actor, cooldown: false);
+        ent.Comp.WarpDriveSecurityOverridden = true;
+        Dirty(ent);
+        UpdateUiState((ent, ent, Comp<UserInterfaceComponent>(ent)));
+
+        var ev = new ESCryptoNukeSecurityOverridenEvent(ent.Owner, args.Actor);
+        RaiseLocalEvent(ref ev);
     }
 
     protected virtual void UpdateUiState(Entity<ESCryptoNukeConsoleComponent, UserInterfaceComponent> ent)
@@ -134,5 +153,13 @@ public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
 
         return _objective.GetObjectives<ESNukePrereqObjectiveComponent>(mind.Value.Owner)
             .All(e => _objective.IsCompleted(e.Owner));
+    }
+
+    public bool CanPotentiallyOverride(EntityUid uid)
+    {
+        if (!_mind.TryGetMind(uid, out var mind))
+            return false;
+
+        return _objective.HasObjectiveOfType<ESWarpDriveObjectiveComponent>(mind);
     }
 }
