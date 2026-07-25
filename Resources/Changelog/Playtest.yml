@@ -1367,3 +1367,11 @@ Entries:
       message: Traitor-related degradation events are now much rarer
   id: 147
   time: '2026-07-25T21:39:11.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Tragedian votes now end early if they would otherwise end after the end
+        of the round.
+  id: 148
+  time: '2026-07-25T22:23:46.0000000+00:00'
