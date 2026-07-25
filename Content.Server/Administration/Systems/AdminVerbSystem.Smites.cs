@@ -275,7 +275,7 @@ public sealed partial class AdminVerbSystem
             {
                 Text = bloodRemovalName,
                 Category = VerbCategory.Smite,
-                Icon = new SpriteSpecifier.Rsi(new("/Textures/Fluids/tomato_splat.rsi"), "puddle-1"),
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/_ES/Effects/puddle.rsi"), "blood-large-1"),
                 Act = () =>
                 {
                     _bloodstreamSystem.SpillAllSolutions((args.Target, bloodstream));
@@ -299,7 +299,7 @@ public sealed partial class AdminVerbSystem
             {
                 Text = vomitOrgansName,
                 Category = VerbCategory.Smite,
-                Icon = new SpriteSpecifier.Rsi(new("/Textures/Fluids/vomit_toxin.rsi"), "vomit_toxin-1"),
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/_ES/Effects/puddle.rsi"), "vomit-large-1"),
                 Act = () =>
                 {
                     _vomitSystem.Vomit(args.Target, -1000, -5); // You feel hollow!
