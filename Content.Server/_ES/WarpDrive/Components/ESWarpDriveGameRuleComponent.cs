@@ -50,6 +50,30 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     public TimeSpan? FinalPhaseAt;
 
     /// <summary>
+    ///     Number of terminals currently overridden, if drive is charged.
+    /// </summary>
+    [DataField]
+    public int TerminalsOverridden = 0;
+
+    /// <summary>
+    ///     If any terminals have been overridden, the time the first one was overridden at
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    public TimeSpan? FirstTerminalOverriddenAt;
+
+    /// <summary>
+    ///     Amount of time after first terminal overridden that crew has to override the others.
+    /// </summary>
+    [DataField]
+    public TimeSpan TerminalOverrideTime = TimeSpan.FromMinutes(2);
+
+    /// <summary>
+    ///     Set whenever all 3 terminals have been overridden successfully.
+    /// </summary>
+    [DataField]
+    public bool AllTerminalsOverridden = false;
+
+    /// <summary>
     ///     Used to calculate if an interruption should occur from manual sabotage.
     /// </summary>
     [DataField]
@@ -60,14 +84,14 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     ///     ~Essentially a lower bound on crew win time
     /// </summary>
     [DataField]
-    public TimeSpan BaseChargeTime = TimeSpan.FromMinutes(45);
+    public TimeSpan BaseChargeTime = TimeSpan.FromMinutes(48);
 
     /// <summary>
     ///     Like nuke defense but for crew. After the drive is fully charged, this timer starts and the win only
     ///     occurs after
     /// </summary>
     [DataField]
-    public TimeSpan FinalPhaseTime = TimeSpan.FromMinutes(3);
+    public TimeSpan FinalPhaseTime = TimeSpan.FromMinutes(1);
 
     /// <summary>
     ///     Min amount of time between random interruptions.
@@ -100,12 +124,6 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     public int ManualInterruptionItems = 5;
 
     /// <summary>
-    ///     # of entities to be thrown into the warp drive during final phase to cancel it and require it to be restarted.
-    /// </summary>
-    [DataField]
-    public int FinalPhaseForceEndItems = 5;
-
-    /// <summary>
     ///     The percentage the warp drive was charged at the last time a screen packet was sent out.
     ///     Saved and checked to ensure we don't send too many screen updates, and instead only do it if the
     ///     percentage changes by enough (5% atm)
@@ -114,7 +132,7 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     ///     Int to avoid getting float precision fucked
     /// </remarks>
     [DataField]
-    public int LastScreenUpdatedChargePercentage = 0;
+    public int LastScreenUpdatedChargePercentage;
 
     /// <summary>
     ///     where it all goes
@@ -130,6 +148,8 @@ public sealed partial class ESWarpDriveGameRuleComponent : Component
     /// </summary>
     [DataField]
     public EntityUid? LastClearer;
+
+    public bool CinematicPlayed = false;
 }
 
 [DataDefinition]
@@ -140,12 +160,22 @@ public sealed partial class ESWarpDriveAnnouncementConfig
     /// <summary>
     ///     What % of charge should this play at? (mostly correlated with time)
     /// </summary>
-    [DataField(required: true)]
-    public float AfterChargePercentage;
+    [DataField]
+    public float? AfterChargePercentage;
+
+    /// <summary>
+    ///     If non-null, this announcement will play only in final phase and after a certain amount of
+    ///     the final phase has completed.
+    /// </summary>
+    [DataField]
+    public float? AfterFinalPhasePercentage;
 
     [DataField(required: true)]
     public LocId Text;
 
     [DataField(required: true)]
     public SoundSpecifier Sound;
+
+    [DataField]
+    public bool UpdateTerminals = false;
 }

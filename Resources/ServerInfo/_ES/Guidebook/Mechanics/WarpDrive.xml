@@ -1,0 +1,44 @@
+<Document>
+  # Warp Drive
+
+  <ESGuideObjectiveEmbed Objective="ESObjectiveWarpDrive"/>
+
+  The Gravitational Warp Drive is a fixture on the station that the [textlink="Crew's" link="Crew"] objective centers around.
+
+  It is inhabited--or commandeered?--by a strange entity that makes itself known over announcements frequently.
+
+  The warp drive's holding area is public access, and the warp drive itself can be entered freely. Entering it will send you to a strange pocket dimension, which you will be teleported out of into a [bold]curated random spot on the station[/bold] after a delay.
+
+  <Box>
+    <GuideEntityEmbed Entity="ESMachineScienceWarpDrive" Caption="It."/>
+  </Box>
+
+  The Warp Drive charges continuously over time, and will reach a full charge after [bold]~45-50[/bold] minutes of charging.
+
+  ## Interruptions
+
+  The Warp Drive can be interrupted, which causes its charging to stop for a duration until the interruption is fixed. At present, this arrives in the form of random clogs. Clogs can also be intentionally caused by repeatedly throwing objects into the warp drive. This is quite useful for traitors.
+
+  To clear an interruption, enter the Warp Drive and pick up any items that might have gotten stuck. These random items can sometimes be quite valuable--so it's worth clearing the drive, even if only for personal gain.
+
+  Once the warp drive is fully charged, the Crew can attempt to win the game.
+
+  ## Final Phase
+
+  After being fully charged, the Warp Drive's experimental nature requires some safety checks to be overridden.
+
+  To do so, the crew must navigate to the three safety override terminals (also used by the [textlink="Traitors" link="Traitors"] to get the nuke codes and activate them within a time period of [bold]two minutes[/bold].
+
+  <Box>
+    <GuideEntityEmbed Entity="ESBaseComputerTerminalCryptoNuke" Caption="One"/>
+    <GuideEntityEmbed Entity="ESBaseComputerTerminalCryptoNuke" Caption="two"/>
+    <GuideEntityEmbed Entity="ESBaseComputerTerminalCryptoNuke" Caption="and 3!"/>
+  </Box>
+
+  If the crew fails to coordinate properly and activate all the terminals in time, or a terminal is too hard to reach or is unpowered, the crew must retry the final phase.
+
+  Traitors can easily attempt to sabotage this final phase by ensuring the terminals are inaccessible to the crew--but be careful, because Traitors need those terminals to get the nuke codes too.
+
+  Once the safety terminals are overridden, and the computer in the Warp Drive's room is activated, the Crew begins a countdown to a guaranteed win--unless a radstorm or nuke sneaks in.
+
+</Document>

@@ -1,13 +1,18 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server._ES.Announcements;
+using Content.Server._ES.Mind;
 using Content.Server._ES.Radio;
 using Content.Server._ES.Radstorm.Components;
+using Content.Server.AlertLevel;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.RoundEnd;
+using Content.Server.Station.Systems;
 using Content.Shared._DV.Screens;
 using Content.Shared._ES.CCVar;
+using Content.Shared._ES.Cinematic;
+using Content.Shared._ES.Core.Timer;
 using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -34,10 +39,14 @@ namespace Content.Server._ES.Radstorm;
 /// </summary>
 public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoundEndRuleComponent>
 {
+    [Dependency] private AlertLevelSystem _alert = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private BrainDamageSystem _brainDamage = default!;
     [Dependency] private DeviceNetworkSystem _devicenet = default!;
     [Dependency] private ESAnnouncementSystem _chat = default!;
+    [Dependency] private ESCinematicSystem _cinematic = default!;
+    [Dependency] private ESEntityTimerSystem _timer = default!;
+    [Dependency] private StationSystem _station = default!;
     [Dependency] private DamageableSystem _damage = default!;
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private SharedMapSystem _map = default!;
@@ -47,6 +56,30 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedRoofSystem _roof = default!;
+
+    private static readonly TimeSpan EndRoundDuration = TimeSpan.FromSeconds(13);
+    private static readonly ProtoId<ESCinematicPrototype> Cinematic = "RadstormCinematic";
+    private static readonly string AlertLevel = "gamma"; // why are these not. like. whatever
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<AutoGhostAttemptEvent>(OnAutoGhost);
+    }
+
+    private void OnAutoGhost(ref AutoGhostAttemptEvent ev)
+    {
+        // cancel autoghost if radstorm has started since we dont want people dying and going back to the lobby if they died from
+        // radstorm
+        // the round will restart anyway
+        var query = EntityQueryEnumerator<ESRadstormRoundEndRuleComponent>();
+        while (query.MoveNext(out var uid, out var radstorm))
+        {
+            if (RadstormStarted((uid, radstorm)))
+                ev.Cancelled = true;
+        }
+    }
 
     protected override void Started(EntityUid uid,
         ESRadstormRoundEndRuleComponent component,
@@ -79,7 +112,7 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
         base.ActiveTick(uid, component, gameRule, frameTime);
 
         // can this even happen? idr (this is mostly so it doesnt try to end round twice)
-        if (_ticker.RunLevel != GameRunLevel.InRound)
+        if (_ticker.RunLevel != GameRunLevel.InRound || component.CinematicPlayed)
             return;
 
         if (_timing.CurTime >= component.NextUpdateTime)
@@ -128,7 +161,17 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
 
         if (allDead)
         {
-            _roundEnd.EndRound();
+            var filter = Filter.Broadcast();
+            var cinematic = ProtoMan.Index(Cinematic);
+            _cinematic.PlayCinematic(Cinematic, filter);
+            _timer.SpawnMethodTimer(cinematic.Length - EndRoundDuration,
+                () =>
+                {
+                    _roundEnd.EndRound(EndRoundDuration);
+                });
+
+            component.CinematicPlayed = true;
+            _map.SetPaused(mapUid, true);
             return;
         }
 
@@ -170,7 +213,6 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
             Dirty(map, mapLight);
         }
 
-        // todo this is silly jank do it better like with postprocess etc
         if (phase.RemoveGridRoof)
         {
             foreach (var grid in _map.GetAllGrids(_ticker.DefaultMap))
@@ -186,6 +228,9 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
 
         if (phase.SpaceDangerous)
             comp.SpaceDangerous = true;
+
+        if (phase.SetAlertLevel && _station.GetStationInMap(_ticker.DefaultMap) is { } station)
+            _alert.SetLevel(station, AlertLevel, false, false, true, true);
 
         phase.Completed = true;
     }

@@ -17,6 +17,7 @@ public sealed class ESCryptoNukeConsoleBui(EntityUid owner, Enum uiKey) : BoundU
         _window.Update(Owner);
 
         _window.OnHackButtonPressed += () => SendPredictedMessage(new ESHackCryptoNukeConsoleBuiMessage());
+        _window.OnOverrideButtonPressed += () => SendPredictedMessage(new ESSecurityOverrideCryptoNukeConsoleBuiMessage());
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

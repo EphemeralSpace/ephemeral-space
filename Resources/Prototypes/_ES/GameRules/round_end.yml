@@ -33,6 +33,7 @@
       announcementSound: /Audio/_ES/Announcements/radstorm_5mins.ogg
       mapLight: "#689a64ff"
       spaceDangerous: true
+      setAlertLevel: true
     - timeBeforeEnd: 4m
       announcementSound:
         collection: ESAmbienceRadstorm

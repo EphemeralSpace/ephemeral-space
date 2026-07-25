@@ -138,12 +138,19 @@ public sealed partial class IdentitySystem : EntitySystem
     /// <summary>
     /// Queues an identity update to the start of the next tick.
     /// </summary>
-    public void QueueIdentityUpdate(EntityUid uid)
+    public void QueueIdentityUpdate(EntityUid uid, bool doNow = false)
     {
         if (_timing.ApplyingState)
             return;
 
-        _queuedIdentityUpdates.Add(uid);
+        if (!doNow)
+        {
+            _queuedIdentityUpdates.Add(uid);
+        }
+        else if (TryComp<IdentityComponent>(uid, out var comp))
+        {
+            UpdateIdentityInfo((uid, comp));
+        }
     }
     #region Private API
 

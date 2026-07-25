@@ -184,6 +184,14 @@
           color: Orange
           energy: 6
           radius: 5
+        epsilon:
+          color: MediumVioletRed
+          energy: 6
+          radius: 5
+        gamma:
+          color: YellowGreen
+          energy: 6
+          radius: 5
   - type: GenericVisualizer
     visuals:
       enum.ESBreakableVisuals.Broken:
@@ -212,6 +220,8 @@
           yellow: { state: alert_border_yellow }
           violet: { state: alert_border_violet }
           delta: { state: alert_border_delta }
+          epsilon: { state: status_display_epsilon }
+          gamma: { state: status_display_gamma }
         alert_status:
           green: { state: status_display_green }
           blue: { state: status_display_green } #intentional
@@ -220,6 +230,8 @@
           yellow: { state: status_display_yellow }
           violet: { state: status_display_violet }
           delta: { state: status_display_delta }
+          epsilon: { state: status_display_epsilon }
+          gamma: { state: status_display_gamma }
       enum.DVScreenVisuals.Content:
         enum.DVTextScreenVisualLayers.Line1:
           Text: { visible: true }

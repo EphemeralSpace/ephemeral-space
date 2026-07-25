@@ -2,3 +2,13 @@
   license: "CC-BY-SA-3.0"
   copyright: "tgstation explosionfar.ogg at 9d3be3199d0a9fe717bf29ced5cac013e067e59f, modified for timing by mirrorcult"
   source: https://github.com/tgstation/tgstation/tree/9d3be3199d0a9fe717bf29ced5cac013e067e59f
+
+- files: ["warp_out.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "created by mirrorcult with bg noise from freesound"
+  source: https://freesound.org/people/leonelmail/sounds/328381/
+
+- files: ["radstorm_dirge.ogg"]
+  license: "CC0-1.0"
+  copyright: "created by younoise on freesound why is this so goated. then edited and eq'd by mirrorcult"
+  source: https://freesound.org/people/younoise/sounds/711782/

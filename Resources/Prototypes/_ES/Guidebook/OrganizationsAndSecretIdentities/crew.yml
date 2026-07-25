@@ -6,6 +6,7 @@
   - ArmsDealer
   - Arsonist
   - Avenger
+  - Cannibal
   - Crewmember
   - Cryojunkie
   - Guzzler
@@ -16,6 +17,7 @@
   - Pickpocket
   - Secretary
   - SleeperAgent
+  - Stalker
   - Tragedian
   - Vandal
   - VIP
@@ -36,6 +38,11 @@
   id: Avenger
   name: Avenger
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Avenger.xml"
+
+- type: guideEntry
+  id: Cannibal
+  name: Cannibal
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Cannibal.xml"
 
 - type: guideEntry
   id: Crewmember
@@ -86,6 +93,11 @@
   id: SleeperAgent
   name: Sleeper Agent
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/SleeperAgent.xml"
+
+- type: guideEntry
+  id: Stalker
+  name: Stalker
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Stalker.xml"
 
 - type: guideEntry
   id: Tragedian

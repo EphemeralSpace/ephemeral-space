@@ -70,6 +70,11 @@ public sealed partial class ESRadstormRoundEndRuleComponent : Component
     ///     even if it hasn't fully started yet.
     /// </summary>
     public bool SpaceDangerous = false;
+
+    /// <summary>
+    ///     So we avoid doing the ending bit twice
+    /// </summary>
+    public bool CinematicPlayed = false;
 }
 
 // no this cant be a fucking record because apparently you cant have datarecords that also have properties.
@@ -104,4 +109,7 @@ public sealed partial class ESRadstormPhaseConfig
 
     [DataField]
     public bool SpaceDangerous;
+
+    [DataField]
+    public bool SetAlertLevel;
 }

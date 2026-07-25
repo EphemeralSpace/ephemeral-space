@@ -1315,3 +1315,55 @@ Entries:
       message: Stagehands are now notified when a subverter chip is used.
   id: 142
   time: '2026-07-25T11:12:09.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Arrivals has colder lighting now. Idk im just seein
+    - type: Tweak
+      message: Inflatables can now appear in O2 lockers randomly
+  id: 143
+  time: '2026-07-25T19:42:04.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        The warp drive now has a guidebook. Sorry I may be stupid for not
+        writing this earlier
+    - type: Add
+      message: >-
+        The crew objective now has a final phase, rather than it simply ending
+        when the warp drive is fully charged. Now, the crew must activate all
+        cryptographic nuke terminals (renamed safety override terminals) within
+        a certain timeframe in order to fully activate the warp drive.
+    - type: Add
+      message: >-
+        The radstorm & warp final phase now have associated alert levels and
+        thus status screens.
+    - type: Add
+      message: >-
+        The radstorm & warp drive endings now have cinematics. They are not that
+        good sorry I am not visual arts gifted
+  id: 144
+  time: '2026-07-25T21:05:28.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Cannibal, a new secret identity that can copy a mask from dead
+        bodies.
+  id: 145
+  time: '2026-07-25T21:08:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Stalker, a new crew secret identity based around choosing
+        targets and making sure they live (or potentially die).
+  id: 146
+  time: '2026-07-25T21:23:04.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: Traitor-related degradation events are now much rarer
+  id: 147
+  time: '2026-07-25T21:39:11.0000000+00:00'
