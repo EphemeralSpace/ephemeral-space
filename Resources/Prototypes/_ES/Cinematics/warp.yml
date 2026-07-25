@@ -4,4 +4,4 @@
     sprite: _ES/Cinematics/warp_cutscene.rsi
     state: station_warp_out
   sound: /Audio/_ES/Cinematics/warp_out.ogg
-  length: 10s
+  length: 12s
