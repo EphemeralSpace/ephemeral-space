@@ -2,6 +2,7 @@ using Content.Server.Actions;
 using Content.Server.Humanoid;
 using Content.Server.Inventory;
 using Content.Server.Polymorph.Components;
+using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Buckle;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage.Components;
@@ -31,6 +32,7 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private BrainDamageSystem _brainDamage = default!;
     [Dependency] private SharedBuckleSystem _buckle = default!;
     [Dependency] private ContainerSystem _container = default!;
     [Dependency] private DamageableSystem _damageable = default!;
@@ -167,10 +169,11 @@ public sealed partial class PolymorphSystem : EntitySystem
     /// </summary>
     /// <param name="uid">The entity that will be transformed</param>
     /// <param name="protoId">The id of the polymorph prototype</param>
-    public EntityUid? PolymorphEntity(EntityUid uid, ProtoId<PolymorphPrototype> protoId)
+    /// <param name="transferDamageOverride">Overrides damage transfer on the config</param>
+    public EntityUid? PolymorphEntity(EntityUid uid, ProtoId<PolymorphPrototype> protoId, bool? transferDamageOverride = null)
     {
         var config = _proto.Index(protoId).Configuration;
-        return PolymorphEntity(uid, config);
+        return PolymorphEntity(uid, config, transferDamageOverride);
     }
 
     /// <summary>
@@ -178,8 +181,9 @@ public sealed partial class PolymorphSystem : EntitySystem
     /// </summary>
     /// <param name="uid">The entity that will be transformed</param>
     /// <param name="configuration">The new polymorph configuration</param>
+    /// <param name="transferDamageOverride">Overrides damage transfer on the config</param>
     /// <returns>The new entity, or null if the polymorph failed.</returns>
-    public EntityUid? PolymorphEntity(EntityUid uid, PolymorphConfiguration configuration)
+    public EntityUid? PolymorphEntity(EntityUid uid, PolymorphConfiguration configuration, bool? transferDamageOverride = null)
     {
         // If they're morphed, check their current config to see if they can be
         // morphed again
@@ -218,15 +222,6 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (_container.TryGetContainingContainer((uid, targetTransformComp, null), out var cont))
             _container.Insert(child, cont);
 
-        //Transfers all damage from the original to the new one
-        if (configuration.TransferDamage &&
-            TryComp<DamageableComponent>(child, out var damageParent) &&
-            _mobThreshold.GetScaledDamage(uid, child, out var damage) &&
-            damage != null)
-        {
-            _damageable.SetDamage((child, damageParent), damage);
-        }
-
         if (configuration.Inventory == PolymorphInventoryChange.Transfer)
         {
             _inventory.TransferEntityInventories(uid, child);
@@ -260,10 +255,26 @@ public sealed partial class PolymorphSystem : EntitySystem
             _humanoid.CloneAppearance(uid, child);
         }
 
+        _identity.QueueIdentityUpdate(child, doNow: true);
+
+        //Transfers all damage from the original to the new one
+        if (transferDamageOverride ?? configuration.TransferDamage)
+        {
+            if (TryComp<DamageableComponent>(child, out var damageParent) &&
+                _mobThreshold.GetScaledDamage(uid, child, out var damage) &&
+                damage != null)
+            {
+                _damageable.SetDamage((child, damageParent), damage);
+            }
+
+            if (_mobState.IsDead(uid))
+            {
+                _brainDamage.KillBrain(child);
+            }
+        }
+
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             _mindSystem.TransferTo(mindId, child, mind: mind);
-
-        _identity.QueueIdentityUpdate(child, doNow: true);
 
         if (configuration.PolymorphPopup != null)
         {
