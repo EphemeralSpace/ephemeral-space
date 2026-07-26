@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingBackpackChameleon
+  parent: ClothingBackpack
   id: ESClothingBackpackChameleonFill
   suffix: ES, Fill, Chameleon
   components:
@@ -7,7 +7,6 @@
     containers:
       storagebase:
         all:
-        - id: ChameleonPDA
         - id: ClothingUniformJumpsuitChameleon
         - id: ClothingOuterChameleon
         - id: ClothingHeadHatChameleon
