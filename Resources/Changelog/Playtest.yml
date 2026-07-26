@@ -1393,3 +1393,17 @@ Entries:
       message: Crewmember identity gone
   id: 151
   time: '2026-07-26T03:54:53.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Living bodies and cryojunkies now create stagehand announcements.
+    - type: Fix
+      message: >-
+        Dead bodies getting cryohusked no longer plays death announcements to
+        stagehands.
+    - type: Fix
+      message: >-
+        Phantoms and Cryojunkies no longer play the death animation before doing
+        their behavior.
+  id: 152
+  time: '2026-07-26T14:18:35.0000000+00:00'
