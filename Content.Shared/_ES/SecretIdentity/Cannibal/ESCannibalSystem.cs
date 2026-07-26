@@ -45,7 +45,7 @@ public sealed partial class ESCannibalSystem : EntitySystem
             return;
 
         if (!_mind.TryGetMind(args.Performer, out _) ||
-            !_mind.TryGetMind(args.Target, out _) ||
+            _mind.GetMind(args.Target) is null || // We use this check since getting the mind fails on client due to infosec.
             !HasComp<ESCryohuskableComponent> (args.Target))
         {
             _popup.PopupEntity(Loc.GetString("es-cannibal-popup-invalid"), args.Performer, args.Performer);
@@ -90,8 +90,7 @@ public sealed partial class ESCannibalSystem : EntitySystem
         }
 
         if (!_mind.TryGetMind(args.User, out var mind) ||
-            !_mind.TryGetMind(target, out var targetMind) ||
-            !_secretIdentity.TryGetSecretIdentity(targetMind.Value.AsNullable(), out var secretIdentity) ||
+            _mind.GetMind(target) is null ||
             !HasComp<ESCryohuskableComponent> (target))
         {
             return;
@@ -102,7 +101,13 @@ public sealed partial class ESCannibalSystem : EntitySystem
             ("other", _stagehandNotifications.WrapEntityName(target)));
         _stagehandNotifications.SendStagehandNotification(msg);
 
-        _secretIdentity.ChangeSecretIdentity(mind.Value, secretIdentity.Value);
+        // This happens separately with tolerance due to this check failing
+        // on the client due to the S.I. not being networked.
+        if (_secretIdentity.TryGetLastSecretIdentity(target, out var secretIdentity))
+        {
+            _secretIdentity.ChangeSecretIdentity(mind.Value, secretIdentity.Value);
+        }
+
         _hunger.ModifySatiety(args.User, 4); // feeling full :-)
         _cryohusk.Cryohusk(target);
     }
