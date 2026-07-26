@@ -21,7 +21,7 @@
     ears: ClothingHeadsetMedical
     jumpsuit: ClothingUniformJumpsuitMedicalDoctor
     outerClothing: ClothingOuterCoatLabOpened
-    back: ClothingBackpackMedical
+    back: ClothingBackpack
   storage:
     back:
     - ESBoxSurvivalMedical
