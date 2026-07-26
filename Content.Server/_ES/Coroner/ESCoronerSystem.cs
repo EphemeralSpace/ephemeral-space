@@ -1,10 +1,10 @@
 using System.Linq;
+using Content.Server._ES.SecretIdentity;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Shared._ES.Auditions;
 using Content.Shared._ES.Coroner;
 using Content.Shared._ES.SecretIdentity;
-using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Robust.Shared.ColorNaming;
@@ -23,6 +23,7 @@ public sealed partial class ESCoronerSystem : ESSharedCoronerSystem
     [Dependency] private ESCluesSystem _clues = default!;
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private MindSystem _mind = default!;
+    [Dependency] private ESSecretIdentitySystem _secretIdentity = default!;
 
     protected override FormattedMessage GetReport(EntityUid target)
     {
@@ -43,9 +44,11 @@ public sealed partial class ESCoronerSystem : ESSharedCoronerSystem
             timeOfDeath = mind.TimeOfDeath.Value;
         var time = (timeOfDeath - _gameTicker.RoundStartTimeSpan).ToString("hh\\:mm\\:ss");
 
-        var secretIdentity = TryComp<ESBodyLastSecretIdentityComponent>(target, out var bodyLastSecretIdentity)
-            ? _prototype.Index(bodyLastSecretIdentity.LastSecretIdentity)
-            : _random.Pick(_prototype.EnumeratePrototypes<ESSecretIdentityPrototype>().Where(p => !p.Abstract).ToList());
+        var secretIdentity = _random.Pick(_prototype.EnumeratePrototypes<ESSecretIdentityPrototype>()
+            .Where(p => !p.Abstract)
+            .ToList());
+        if (_secretIdentity.TryGetLastSecretIdentity(target, out var bodyLastSecretIDentity))
+            secretIdentity = _prototype.Index(bodyLastSecretIDentity.Value);
 
         msg.AddMarkupPermissive(Loc.GetString("es-coroner-report-paper",
             ("name", name),

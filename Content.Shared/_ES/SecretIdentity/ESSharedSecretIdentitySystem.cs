@@ -218,6 +218,23 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
     }
 
     /// <summary>
+    /// Variant of <see cref="TryGetSecretIdentity(EntityUid, out ProtoId{ESSecretIdentityPrototype}?)"/> that does not involve the mind.
+    /// So in situations like a phantom where the mind has left the body, this will still return the correct result.
+    /// </summary>
+    /// <remarks>
+    /// Will never return a secret identity for the client.
+    /// </remarks>
+    public bool TryGetLastSecretIdentity(Entity<ESBodyLastSecretIdentityComponent?> ent, [NotNullWhen(true)] out ProtoId<ESSecretIdentityPrototype>? prototype)
+    {
+        prototype = null;
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        prototype = ent.Comp.LastSecretIdentity;
+        return prototype is not null;
+    }
+
+    /// <summary>
     /// Helper version of <see cref="TryGetSecretIdentity(Robust.Shared.GameObjects.EntityUid,out Robust.Shared.Prototypes.ProtoId{Content.Shared._ES.SecretIdentity.ESSecretIdentityPrototype}?)"/> that returns the organization.
     /// </summary>
     public bool TryGetOrganization(EntityUid uid, [NotNullWhen(true)] out ProtoId<ESOrganizationPrototype>? organization)
@@ -364,7 +381,10 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
 
         foreach (var entity in _lookup.GetEntitiesInRange<ESBodyLastSecretIdentityComponent>(_xform.GetMapCoordinates(ent, xform), range))
         {
-            var secretIdentity = PrototypeManager.Index(entity.Comp.LastSecretIdentity);
+            if (!TryGetLastSecretIdentity(entity.AsNullable(), out var secretIdentityId))
+                continue;
+
+            var secretIdentity = PrototypeManager.Index(secretIdentityId);
             var organization = secretIdentity.Organization;
 
             if (ent.Comp.NonHostileOrganizations != null && ent.Comp.NonHostileOrganizations.Contains(organization))
