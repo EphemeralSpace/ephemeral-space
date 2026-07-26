@@ -1,6 +1,7 @@
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
+using Content.Server.GameTicking;
 using Content.Shared._ES.Voting;
 using Content.Shared._ES.Voting.Components;
 using Content.Shared.Administration;
@@ -26,6 +27,7 @@ public sealed partial class ESVoteSystem : ESSharedVoteSystem
         base.Initialize();
 
         SubscribeLocalEvent<GameRuleComponent, ESSynchronizedVotesPostCompletedEvent>(OnPostCompleted);
+        SubscribeLocalEvent<ESBeforeRoundEndEvent>(OnBeforeRoundEnd);
     }
 
     private void OnPostCompleted(Entity<GameRuleComponent> ent, ref ESSynchronizedVotesPostCompletedEvent args)
@@ -35,6 +37,20 @@ public sealed partial class ESVoteSystem : ESSharedVoteSystem
         Comp<GameRuleComponent>(ent).Added = true;
         var ev = new GameRuleAddedEvent(ent, Prototype(ent)!.ID);
         RaiseLocalEvent(ent, ref ev, true);
+    }
+
+    private void OnBeforeRoundEnd(ref ESBeforeRoundEndEvent ev)
+    {
+        var votes = new List<Entity<ESVoteComponent>>();
+        foreach (var ent in EntityQueryEnumerator<ESEndBeforeRoundEndVoteComponent, ESVoteComponent>())
+        {
+            votes.Add((ent, ent.Comp2));
+        }
+
+        foreach (var vote in votes)
+        {
+            EndVote(vote);
+        }
     }
 
     protected override void SendVoteStartAnnouncement(Entity<ESVoteComponent> ent)

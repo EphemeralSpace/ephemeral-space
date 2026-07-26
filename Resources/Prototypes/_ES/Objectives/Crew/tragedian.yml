@@ -34,3 +34,4 @@
     strategy: HighestValue
     multiVote: false
   - type: ESBooleanVote
+  - type: ESEndBeforeRoundEndVote

@@ -1,0 +1,31 @@
+- type: entity
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectiveStalkerKill
+  name: Ensure your obsessions die
+  description: They're yours... And they'll stay that way forever. Make sure some of them don't leave your clutches ever again.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Weapons/Melee/kitchen_knife.rsi
+      state: icon
+  - type: ESStalkerKillObjective
+  - type: ESCounterObjective
+    title: es-stalker-objective-kill-title
+    target: 1
+    maxTarget: 3
+
+- type: entity
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectiveStalkerSave
+  name: Protect your obsessions from harm
+  description: They're yours... And you never want anything bad to happen to them. Make sure that death never befalls them.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Objects/Specific/Medical/firstaidkits.rsi
+      state: firstaid
+  - type: ESStalkerKillObjective
+    invert: true
+  - type: ESCounterObjective
+    title: es-stalker-objective-save-title
+    target: 2

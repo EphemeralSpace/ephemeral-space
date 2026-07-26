@@ -34,9 +34,6 @@
     quickEquip: false
     slots:
     - back
-  - type: Construction
-    graph: WoodenBat
-    node: bat
   - type: UseDelay
     delay: 1
   - type: PhysicalComposition
@@ -60,6 +57,3 @@
       state: storage
       sprite: Objects/Weapons/Melee/incomplete_bat.rsi
     sprite: Objects/Weapons/Melee/incomplete_bat.rsi
-  - type: Construction
-    graph: WoodenBat
-    node: incompleteBat

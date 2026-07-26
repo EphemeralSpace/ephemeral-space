@@ -1,13 +1,18 @@
-using Content.Server._ES.Cryohusk.Components;
+using Content.Server._ES.Objectives;
+using Content.Server._ES.SecretIdentity.Cyrojunkie.Components;
 using Content.Server.Administration;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Mind;
 using Content.Server.Polymorph.Systems;
 using Content.Shared._ES.Cryohusk;
 using Content.Shared._ES.Cryohusk.Components;
+using Content.Shared._ES.Stagehand;
+using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.Atmos;
+using Content.Shared.Mobs.Systems;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
@@ -24,8 +29,13 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private BrainDamageSystem _brainDamage = default!;
     [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private ESObjectiveSystem _objective = default!;
     [Dependency] private PolymorphSystem _polymorph = default!;
+    [Dependency] private ESSharedStagehandNotificationsSystem _stagehandNotifications = default!;
 
     [Dependency] private EntityQuery<IdCardComponent> _idCardQuery;
 
@@ -41,10 +51,18 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
         ent.Comp.NextUpdate = _timing.CurTime;
     }
 
-    public void Cryohusk(Entity<ESCryohuskableComponent?> target)
+    public override void Cryohusk(Entity<ESCryohuskableComponent?> target, bool transferDeath = true)
     {
         if (!Resolve(target, ref target.Comp))
             return;
+
+        if (_mind.TryGetMind(target, out var mind))
+        {
+            foreach (var objective in _objective.GetObjectives<ESCryohuskObjectiveComponent>(mind.Value.Owner))
+            {
+                _objective.AdjustObjectiveCounter(objective.Owner);
+            }
+        }
 
         if (_polymorph.PolymorphEntity(target, target.Comp.CryohuskPolymorph) is not { } husk)
             return;
@@ -53,6 +71,18 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
         {
             if (_idCardQuery.HasComp(uid))
                 EnsureComp<ESCryohuskIdCardComponent>(uid);
+        }
+
+        if (_mobState.IsDead(target) && transferDeath)
+        {
+            _brainDamage.KillBrain(husk);
+        }
+
+        if (_mind.TryGetMind(target, out _) && !_mobState.IsDead(target))
+        {
+            var msg = Loc.GetString("es-cryohusk-convert-stagehand-notif",
+                ("player", _stagehandNotifications.WrapEntityName(target.Owner)));
+            _stagehandNotifications.SendStagehandNotification(msg);
         }
 
         _audio.PlayPvs(target.Comp.FreezeSound, husk);

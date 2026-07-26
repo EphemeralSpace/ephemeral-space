@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: WarpDrive
+  hidden: false
+  name: Warp Drive
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/WarpDrive.xml"

@@ -86,6 +86,11 @@ public sealed partial class ESAutoGhostSystem : EntitySystem
         if (!_mind.TryGetMind(uid, out _, out _))
             return;
 
+        var ev = new AutoGhostAttemptEvent(uid);
+        RaiseLocalEvent(uid, ref ev, true);
+        if (ev.Cancelled)
+            return;
+
         _entityTimer.SpawnTimer(uid, AutoGhostDelay, new ESAutoGhostEvent());
 
         if (!TryComp<ActorComponent>(uid, out var actor))
@@ -96,3 +101,9 @@ public sealed partial class ESAutoGhostSystem : EntitySystem
         RaiseNetworkEvent(new ESPlayDeathCutsceneNetworkEvent(), actor.PlayerSession);
     }
 }
+
+/// <summary>
+///     Raised directed and broadcast to check if autoghost + the death cutscene should happen.
+/// </summary>
+[ByRefEvent]
+public record struct AutoGhostAttemptEvent(EntityUid User, bool Cancelled = false);

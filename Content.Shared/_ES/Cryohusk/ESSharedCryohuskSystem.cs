@@ -25,4 +25,9 @@ public abstract partial class ESSharedCryohuskSystem : EntitySystem
         _metaData.SetEntityName(ent, Loc.GetString("es-cryohusk-id-name"));
         _metaData.SetEntityDescription(ent, Loc.GetString("es-cryohusk-id-desc"));
     }
+
+    public virtual void Cryohusk(Entity<ESCryohuskableComponent?> target, bool transferDeath = true)
+    {
+        // No op
+    }
 }
