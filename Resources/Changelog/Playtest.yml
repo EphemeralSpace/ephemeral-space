@@ -1407,3 +1407,13 @@ Entries:
         their behavior.
   id: 152
   time: '2026-07-26T14:18:35.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed mispredicting popup when cannibals would try and eat a body.
+    - type: Tweak
+      message: >-
+        Cannibals can now eat the dead bodies of Phantoms in order to copy their
+        secret identity.
+  id: 153
+  time: '2026-07-26T16:29:39.0000000+00:00'
