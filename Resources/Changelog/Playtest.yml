@@ -1387,3 +1387,9 @@ Entries:
       message: Baseball bats are no longer obtainable
   id: 150
   time: '2026-07-25T23:34:59.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Remove
+      message: Crewmember identity gone
+  id: 151
+  time: '2026-07-26T03:54:53.0000000+00:00'
