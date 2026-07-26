@@ -1,7 +1,7 @@
 using System.Linq;
+using Content.Server._ES.Mind;
 using Content.Server._ES.Objectives;
 using Content.Server.GameTicking;
-using Content.Server.Ghost;
 using Content.Server.Mind;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.SecretIdentity.Phantom.Components;
@@ -21,10 +21,10 @@ public sealed partial class ESReincarnateSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<ESReincarnateMindComponent, GhostAttemptHandleEvent>(OnGhostAttempt);
+        SubscribeLocalEvent<ESReincarnateMindComponent, AutoGhostAttemptEvent>(OnGhostAttempt);
     }
 
-    private void OnGhostAttempt(Entity<ESReincarnateMindComponent> ent, ref GhostAttemptHandleEvent args)
+    private void OnGhostAttempt(Entity<ESReincarnateMindComponent> ent, ref AutoGhostAttemptEvent args)
     {
         if (!TryComp<MindComponent>(ent, out var mindComp) ||
             !TryComp<ESCharacterComponent>(ent, out var character))
@@ -48,9 +48,8 @@ public sealed partial class ESReincarnateSystem : EntitySystem
         var ghost = SpawnAtPosition(ent.Comp.ReincarnateEntity, coords);
         _metaData.SetEntityName(ghost, Loc.GetString(ent.Comp.Name, ("name", character.Name)));
         _mind.TransferTo(ent, ghost, createGhost: false, mind: mindComp);
-        args.Result = true;
-        args.Handled = true;
 
+        args.Cancelled = true;
         RemCompDeferred(ent, ent.Comp);
     }
 }
