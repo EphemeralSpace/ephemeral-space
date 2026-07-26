@@ -36,6 +36,9 @@
         {
             "name": "pda-captain"
         },
+		{
+			"name": "pda-centcom"
+		},
         {
             "name": "pda-clear"
         },
