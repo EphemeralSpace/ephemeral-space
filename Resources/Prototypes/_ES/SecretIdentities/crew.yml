@@ -48,14 +48,6 @@
     - id: ESObjectiveCannibal
 
 - type: esSecretIdentity
-  id: Crewmember
-  name: es-secret-identity-crewmember-name
-  organization: Crew
-  description: es-secret-identity-crewmember-desc
-  weight: 2
-  color: white
-
-- type: esSecretIdentity
   id: Cryojunkie
   name: es-secret-identity-cryojunkie-name
   organization: Crew

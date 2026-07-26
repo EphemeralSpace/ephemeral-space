@@ -11,9 +11,6 @@ es-secret-identity-avenger-desc = As an Avenger, protect your target from being 
 es-secret-identity-cannibal-name = Cannibal
 es-secret-identity-cannibal-desc = As a Cannibal, consume a dead body to steal their mask and complete their objectives as your own.
 
-es-secret-identity-crewmember-name = Crewmember
-es-secret-identity-crewmember-desc = As a Crewmember, use your unclouded judgment to help make sure the crew completes their objective and gets out safely.
-
 es-secret-identity-cryojunkie-name = Cryojunkie
 es-secret-identity-cryojunkie-desc = As a Cryojunkie, you revive into a cryohusk a little bit after you die, use this to your advantage.
 

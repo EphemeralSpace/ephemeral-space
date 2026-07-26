@@ -7,7 +7,6 @@
   - Arsonist
   - Avenger
   - Cannibal
-  - Crewmember
   - Cryojunkie
   - Guzzler
   - Hater
@@ -43,11 +42,6 @@
   id: Cannibal
   name: Cannibal
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Cannibal.xml"
-
-- type: guideEntry
-  id: Crewmember
-  name: Crewmember
-  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Crewmember.xml"
 
 - type: guideEntry
   id: Cryojunkie
