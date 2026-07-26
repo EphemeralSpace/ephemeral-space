@@ -41,11 +41,15 @@ public sealed partial class ESCannibalSystem : EntitySystem
 
     private void OnCannibalizeTargetAction(ESCannibalizeTargetActionEvent args)
     {
+        // Can't predict due to needing to check for secret identities and whatnot
+        if (_net.IsClient)
+            return;
+
         if (args.Performer == args.Target)
             return;
 
         if (!_mind.TryGetMind(args.Performer, out _) ||
-            _mind.GetMind(args.Target) is null || // We use this check since getting the mind fails on client due to infosec.
+            !_secretIdentity.TryGetLastSecretIdentity(args.Target, out _) ||
             !HasComp<ESCryohuskableComponent> (args.Target))
         {
             _popup.PopupEntity(Loc.GetString("es-cannibal-popup-invalid"), args.Performer, args.Performer);
@@ -58,10 +62,7 @@ public sealed partial class ESCannibalSystem : EntitySystem
             return;
         }
 
-        EntityUid? sound = null;
-
-        if (_net.IsServer)
-            sound = _audio.PlayPvs(EatSound, args.Performer)?.Entity;
+        var sound = _audio.PlayPvs(EatSound, args.Performer)?.Entity;
 
         args.Handled = _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager,
             args.Performer,
@@ -90,7 +91,6 @@ public sealed partial class ESCannibalSystem : EntitySystem
         }
 
         if (!_mind.TryGetMind(args.User, out var mind) ||
-            _mind.GetMind(target) is null ||
             !HasComp<ESCryohuskableComponent> (target))
         {
             return;
