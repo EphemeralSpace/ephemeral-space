@@ -4,8 +4,8 @@ meta:
   engineVersion: 283.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/18/2026 04:23:18
-  entityCount: 14813
+  time: 07/26/2026 15:03:06
+  entityCount: 14811
 maps:
 - 3
 grids:
@@ -4693,6 +4693,12 @@ entities:
     - type: Transform
       parent: 2
       pos: 12.5,13.5
+    - type: Door
+      state: Opening
+      secondsUntilStateChange: -21.839714
+    - type: DeviceLinkSource
+      lastSignals:
+        DoorStatus: True
   - uid: 8910
     components:
     - type: Transform
@@ -5022,6 +5028,15 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 8.5,-9.5
+    - type: Fixtures
+      fixtures: {}
+  - uid: 570
+    components:
+    - type: MetaData
+      name: Tech Storage APC
+    - type: Transform
+      parent: 2
+      pos: -19.5,-40.5
     - type: Fixtures
       fixtures: {}
   - uid: 658
@@ -5459,16 +5474,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -25.5,-35.5
-    - type: Fixtures
-      fixtures: {}
-  - uid: 5274
-    components:
-    - type: MetaData
-      name: Tech Storage APC
-    - type: Transform
-      parent: 2
-      rot: 3.141592653589793 rad
-      pos: -19.5,-40.5
     - type: Fixtures
       fixtures: {}
   - uid: 5292
@@ -7474,6 +7479,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 14.5,-2.5
+  - uid: 1173
+    components:
+    - type: Transform
+      parent: 2
+      pos: -2.5,9.5
   - uid: 1200
     components:
     - type: Transform
@@ -9869,6 +9879,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -20.5,-20.5
+  - uid: 5274
+    components:
+    - type: Transform
+      parent: 2
+      pos: -4.5,12.5
   - uid: 5293
     components:
     - type: Transform
@@ -10184,6 +10199,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -16.5,-21.5
+  - uid: 6823
+    components:
+    - type: Transform
+      parent: 2
+      pos: -3.5,12.5
   - uid: 6903
     components:
     - type: Transform
@@ -12648,17 +12668,17 @@ entities:
     components:
     - type: Transform
       parent: 2
-      pos: -3.5,11.5
+      pos: -2.5,12.5
   - uid: 8743
     components:
     - type: Transform
       parent: 2
-      pos: -2.5,11.5
+      pos: -1.5,12.5
   - uid: 8744
     components:
     - type: Transform
       parent: 2
-      pos: -1.5,11.5
+      pos: -0.5,12.5
   - uid: 8745
     components:
     - type: Transform
@@ -76538,33 +76558,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -46.5,-47.5
-- proto: VitalsMonitor
-  entities:
-  - uid: 570
-    components:
-    - type: Transform
-      parent: 2
-      pos: 18.5,1.5
-  - uid: 1173
-    components:
-    - type: Transform
-      parent: 2
-      pos: 2.5,-15.5
-  - uid: 6823
-    components:
-    - type: Transform
-      parent: 2
-      pos: 14.5,8.5
-  - uid: 9293
-    components:
-    - type: Transform
-      parent: 2
-      pos: 14.5,7.5
-  - uid: 11521
-    components:
-    - type: Transform
-      parent: 2
-      pos: 17.5,8.5
 - proto: WallReinforced
   entities:
   - uid: 28
