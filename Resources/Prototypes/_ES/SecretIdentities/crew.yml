@@ -52,7 +52,7 @@
   name: es-secret-identity-crewmember-name
   organization: Crew
   description: es-secret-identity-crewmember-desc
-  weight: 2
+  weight: -9999999
   color: white
 
 - type: esSecretIdentity
