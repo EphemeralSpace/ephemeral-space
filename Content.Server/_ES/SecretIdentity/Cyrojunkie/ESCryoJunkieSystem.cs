@@ -1,6 +1,6 @@
 ﻿using Content.Server._ES.Cryohusk;
+using Content.Server._ES.Mind;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Ghost;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.SecretIdentity.Cyrojunkie.Components;
 using Content.Shared.Atmos;
@@ -16,7 +16,7 @@ public sealed partial class ESCryoJunkieSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<ESCryoJunkieMindComponent, GhostAttemptHandleEvent>(OnGhostAttempt);
+        SubscribeLocalEvent<ESCryoJunkieMindComponent, AutoGhostAttemptEvent>(OnGhostAttempt);
         SubscribeLocalEvent<MindContainerComponent, ESCyroJunkieTimerEvent>(OnCyroJunkieTimer);
     }
 
@@ -28,16 +28,14 @@ public sealed partial class ESCryoJunkieSystem : EntitySystem
         _cryo.Cryohusk(ent.Owner, transferDeath: false);
     }
 
-    private void OnGhostAttempt(Entity<ESCryoJunkieMindComponent> ent, ref GhostAttemptHandleEvent args)
+    private void OnGhostAttempt(Entity<ESCryoJunkieMindComponent> ent, ref AutoGhostAttemptEvent args)
     {
         if (args.Mind.Comp.CurrentEntity == null)
             return;
 
         _entityTimer.SpawnTimer((EntityUid)args.Mind.Comp.CurrentEntity, ent.Comp.HuskDelay, new ESCyroJunkieTimerEvent());
 
-        args.Result = true;
-        args.Handled = true;
-
+        args.Cancelled = true;
         RemComp(ent, ent.Comp);
     }
 }

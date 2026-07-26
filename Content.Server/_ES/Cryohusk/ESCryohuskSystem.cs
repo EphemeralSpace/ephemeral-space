@@ -7,7 +7,6 @@ using Content.Server.Polymorph.Systems;
 using Content.Shared._ES.Cryohusk;
 using Content.Shared._ES.Cryohusk.Components;
 using Content.Shared._ES.Stagehand;
-using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
@@ -29,7 +28,6 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private AudioSystem _audio = default!;
-    [Dependency] private BrainDamageSystem _brainDamage = default!;
     [Dependency] private ContainerSystem _container = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private MobStateSystem _mobState = default!;
@@ -56,15 +54,7 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
         if (!Resolve(target, ref target.Comp))
             return;
 
-        if (_mind.TryGetMind(target, out var mind))
-        {
-            foreach (var objective in _objective.GetObjectives<ESCryohuskObjectiveComponent>(mind.Value.Owner))
-            {
-                _objective.AdjustObjectiveCounter(objective.Owner);
-            }
-        }
-
-        if (_polymorph.PolymorphEntity(target, target.Comp.CryohuskPolymorph) is not { } husk)
+        if (_polymorph.PolymorphEntity(target, target.Comp.CryohuskPolymorph, transferDamageOverride: transferDeath) is not { } husk)
             return;
 
         foreach (var uid in GetRecursiveContainedEntities(husk))
@@ -73,16 +63,19 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
                 EnsureComp<ESCryohuskIdCardComponent>(uid);
         }
 
-        if (_mobState.IsDead(target) && transferDeath)
+        if (_mind.TryGetMind(husk, out var mind))
         {
-            _brainDamage.KillBrain(husk);
-        }
+            if (!_mobState.IsDead(target) || !transferDeath)
+            {
+                var msg = Loc.GetString("es-cryohusk-convert-stagehand-notif",
+                    ("player", _stagehandNotifications.WrapEntityName(target.Owner)));
+                _stagehandNotifications.SendStagehandNotification(msg);
+            }
 
-        if (_mind.TryGetMind(target, out _) && !_mobState.IsDead(target))
-        {
-            var msg = Loc.GetString("es-cryohusk-convert-stagehand-notif",
-                ("player", _stagehandNotifications.WrapEntityName(target.Owner)));
-            _stagehandNotifications.SendStagehandNotification(msg);
+            foreach (var objective in _objective.GetObjectives<ESCryohuskObjectiveComponent>(mind.Value.Owner))
+            {
+                _objective.AdjustObjectiveCounter(objective.Owner);
+            }
         }
 
         _audio.PlayPvs(target.Comp.FreezeSound, husk);

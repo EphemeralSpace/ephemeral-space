@@ -8,13 +8,13 @@
     <ESGuideObjectiveEmbed Objective="ESObjectiveCryohusk"/>
   </Box>
 
-  Once they die, they'll turn into a cryohusk with a burst of cryogas after a 30-second delay.
+  30 seconds after they die, they'll transform into a cryohusk accompanied by a large burst of cryogas (potentially creating even more cryohusks).
 
   <Box>
     <GuideEntityEmbed Entity="ESMobCryohusk" Caption="cryohusk"/>
   </Box>
 
-  Be careful at this point, since another death will not lead to another revival.
+  After this, another death will be final and they will not revive again.
 
   <ESGuideTipsEmbed SecretIdentity="Cryojunkie"/>
 </Document>
