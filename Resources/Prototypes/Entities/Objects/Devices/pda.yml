@@ -365,11 +365,6 @@
   components:
   - type: Pda
     id: AtmosIDCard
-  - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#447987"
-  - type: Icon
-    state: pda-atmos
 
 - type: entity
   parent: BasePDA
@@ -386,17 +381,6 @@
        pda-clear
   - type: PdaBorderColor
     borderColor: "#288e4d"
-  - type: Icon
-    state: pda-clear
-
-- type: entity
-  parent: BasePDA
-  id: SyndiPDA
-  name: PDA
-  description: Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people!
-  components:
-  - type: Pda
-    id: null
 
 - type: entity
   parent: BasePDA
