@@ -11,6 +11,19 @@
     state: popular_spacepeople
   - type: Item
     size: Small
+    inhandVisuals: # reuses the colors of the magazine sprite itself for the outline and inner part
+      left:
+      - state: magazine-outline-inhand-left
+        color: "#8a3104"
+      - state: magazine-inner-inhand-left
+        color: "#ff5555"
+      - state: magazine-over-inhand-left
+      right:
+      - state: magazine-outline-inhand-right
+        color: "#8a3104"
+      - state: magazine-inner-inhand-right
+        color: "#ff5555"
+      - state: magazine-over-inhand-right
 
 # Magazines
 # When adding new issues, DON'T FORGET TO ADD THEM AS SPAWNERS / TO EXISTING SPAWNERS!
@@ -25,6 +38,20 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: cognitowood
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: magazine-outline-inhand-left
+        color: "#40423f"
+      - state: magazine-inner-inhand-left
+        color: "#abdede"
+      - state: magazine-over-inhand-left
+      right:
+      - state: magazine-outline-inhand-right
+        color: "#40423f"
+      - state: magazine-inner-inhand-right
+        color: "#abdede"
+      - state: magazine-over-inhand-right
 
 - type: entity
   parent: MagazineCognitoWood
@@ -121,6 +148,20 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: cooking
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: magazine-outline-inhand-left
+        color: "#1a701e"
+      - state: magazine-inner-inhand-left
+        color: "#55ff55"
+      - state: magazine-over-inhand-left
+      right:
+      - state: magazine-outline-inhand-right
+        color: "#1a701e"
+      - state: magazine-inner-inhand-right
+        color: "#55ff55"
+      - state: magazine-over-inhand-right
 
 - type: entity
   parent: MagazineCookingAndBotany
@@ -162,6 +203,20 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: crossword
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: magazine-outline-inhand-left
+        color: "#40423f"
+      - state: magazine-inner-inhand-left
+        color: "#de8d3c"
+      - state: magazine-over-inhand-left
+      right:
+      - state: magazine-outline-inhand-right
+        color: "#40423f"
+      - state: magazine-inner-inhand-right
+        color: "#de8d3c"
+      - state: magazine-over-inhand-right
 
 # Wordsearch
 - type: entity
@@ -173,6 +228,20 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: wordsearch
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: magazine-outline-inhand-left
+        color: "#40423f"
+      - state: magazine-inner-inhand-right
+        color: "#fa0000"
+      - state: magazine-over-inhand-left
+      right:
+      - state: magazine-outline-inhand-right
+        color: "#40423f"
+      - state: magazine-inner-inhand-right
+        color: "#fa0000"
+      - state: magazine-over-inhand-right
 
 # Earth News
 - type: entity
@@ -184,6 +253,20 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: earth_news
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: magazine-outline-inhand-left
+        color: "#000000"
+      - state: magazine-inner-inhand-left
+        color: "#1e1e1e"
+      - state: magazine-over-inhand-left
+      right:
+      - state: magazine-outline-inhand-right
+        color: "#000000"
+      - state: magazine-inner-inhand-right
+        color: "#1e1e1e"
+      - state: magazine-over-inhand-right
 
 - type: entity
   parent: MagazineEarthNews
@@ -201,6 +284,21 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: guns
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: magazine-outline-inhand-left
+        color: "#757575"
+      - state: magazine-inner-inhand-left
+        color: "#00aa00"
+      - state: magazine-over-inhand-left
+      right:
+      - state: magazine-outline-inhand-right
+        color: "#757575"
+      - state: magazine-inner-inhand-right
+        color: "#00aa00"
+      - state: magazine-over-inhand-right
+
 
 - type: entity
   parent: MagazineFirearms
@@ -230,6 +328,20 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: medical
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: magazine-outline-inhand-left
+        color: "#757575"
+      - state: magazine-inner-inhand-left
+        color: "#55ff55"
+      - state: magazine-over-inhand-left
+      right:
+      - state: magazine-outline-inhand-right
+        color: "#757575"
+      - state: magazine-inner-inhand-right
+        color: "#55ff55"
+      - state: magazine-over-inhand-right
 
 - type: entity
   parent: MagazineMedicalScience
@@ -296,6 +408,18 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: zine_revolutionary
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: magazine-outline-inhand-left
+        color: "#757575"
+      - state: magazine-inner-inhand-left
+      - state: magazine-over-inhand-left #kind of innacurrate, it is intended to be monochrome... it is admittedly semi-trivially fixable if the inner sprite is expanded, but idc much it looks mostly fine
+      right:
+      - state: magazine-outline-inhand-right
+        color: "#757575"
+      - state: magazine-inner-inhand-right
+      - state: magazine-over-inhand-right
 
 - type: entity
   parent: MagazineRevolutionary
@@ -350,6 +474,23 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: zine_conspiracy
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: magazine-outline-inhand-left
+        color: "#8a3104"
+      - state: magazine-inner-inhand-left
+        color: "#ff5555"
+      - state: magazine-over-inhand-left
+        color: "#dd5150" # since its colored its much easier to actually make this monochrome
+      right:
+      - state: magazine-outline-inhand-right
+        color: "#8a3104"
+      - state: magazine-inner-inhand-right
+        color: "#ff5555"
+      - state: magazine-over-inhand-right
+        color: "#dd5150"
+
 
 - type: entity
   parent: MagazineConspiracy
@@ -416,6 +557,20 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: fashion
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: magazine-outline-inhand-left
+        color: "#8a3104"
+      - state: magazine-inner-inhand-left
+        color: "#ffde4d"
+      - state: magazine-over-inhand-left
+      right:
+      - state: magazine-outline-inhand-right
+        color: "#8a3104"
+      - state: magazine-inner-inhand-right
+        color: "#ffde4d"
+      - state: magazine-over-inhand-right
 
 - type: entity
   parent: MagazineFashion
@@ -517,6 +672,20 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: space
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: magazine-outline-inhand-left
+        color: "#000000"
+      - state: magazine-inner-inhand-left
+        color: "#1e1e1e"
+      - state: magazine-over-inhand-left
+      right:
+      - state: magazine-outline-inhand-right
+        color: "#000000"
+      - state: magazine-inner-inhand-right
+        color: "#1e1e1e"
+      - state: magazine-over-inhand-right
 
 - type: entity
   parent: MagazineEngineerNews

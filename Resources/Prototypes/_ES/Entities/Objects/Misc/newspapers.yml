@@ -11,6 +11,18 @@
   - type: Item
     size: Small
     storedRotation: -90
+    inhandVisuals:
+      left:
+      - state: newspaper-inhand-left
+      right:
+      - state: newspaper-inhand-right
+  - type: MeleeWeapon
+    wideAnimationRotation: 75
+    damage:
+      types:
+        Blunt: 2
+  - type: StaminaDamageOnHit
+    damage: 10
 
 # Newspapers
 - type: entity
