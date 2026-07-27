@@ -467,7 +467,7 @@
   parent: MagazineRevolutionary
   id: MagazineRevolutionary9
   name: "REVOLUTION! #11"
-  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'A Set of Tools to Open Up The World: Hacking & Deconstruction of Sturctures'"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'A Set of Tools to Open Up The World: Hacking & Deconstruction of Structures'"
 
 - type: entity
   parent: MagazineRevolutionary
