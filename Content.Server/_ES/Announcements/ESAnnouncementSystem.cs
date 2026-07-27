@@ -35,6 +35,9 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
     // regular announcements which respect the min time
     private readonly Queue<QueuedAnnouncement> _queuedAnnouncements = new();
 
+    // upper cap on our announcement queues for sanity
+    private const int MaxAnnouncementQueueSize = 10;
+
     private TimeSpan? _lastAnnouncementTime;
     private (EntityUid, AudioComponent)? _currentlyPlayingAnnouncementSound;
 
@@ -98,6 +101,11 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
     {
         var queue = important ? _immediateAnnouncements : _queuedAnnouncements;
         var announcement = new QueuedAnnouncement(global, message, wrappedMessage, source, sound, color);
+
+        // If we queue beyond our max, then toss the oldest announcement
+        if (queue.Count > MaxAnnouncementQueueSize)
+            queue.TryDequeue(out _);
+
         queue.Enqueue(announcement);
     }
 
