@@ -3,6 +3,7 @@ using Content.Server._ES.Mind;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Managers;
 using Content.Shared._ES.Core.Timer;
+using Content.Shared._ES.Cryohusk.Components;
 using Content.Shared._ES.SecretIdentity.Cyrojunkie.Components;
 using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos;
@@ -39,6 +40,9 @@ public sealed partial class ESCryoJunkieSystem : EntitySystem
     private void OnGhostAttempt(Entity<ESCryoJunkieMindComponent> ent, ref AutoGhostAttemptEvent args)
     {
         if (args.Mind.Comp.CurrentEntity is not { } owned)
+            return;
+
+        if (!HasComp<ESCryohuskableComponent>(owned))
             return;
 
         var msg = Loc.GetString("es-cryojunkie-implant-notif");
