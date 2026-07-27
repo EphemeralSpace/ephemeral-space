@@ -6,6 +6,7 @@
 using System.Numerics;
 using Content.Client.Animations;
 using Content.Client.Weapons.Melee.Components;
+using Content.Shared.Movement.Components;
 using Content.Shared.Weapons.Melee;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
@@ -27,6 +28,9 @@ public sealed partial class MeleeWeaponSystem
     {
         if (!Timing.IsFirstTimePredicted)
             return;
+
+        if (TryComp<InputMoverComponent>(user, out var inputMover))
+            localPos = (localPos.ToAngle() + inputMover.RelativeRotation).ToVec();
 
         var lunge = GetLungeAnimation(localPos);
 
