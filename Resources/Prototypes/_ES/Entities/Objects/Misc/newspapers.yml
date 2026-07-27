@@ -13,6 +13,35 @@
     storedRotation: -90
 
 # Newspapers
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperSteelAlloy
+  name: Galaxy NOW - August 27th, 2065
+  description: "A paperback newspaper. The headline reads: 'New Efficient Steel Alloy Discovered, Shuttle Engineers Relieved'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperBurstEngine
+  name: Galaxy NOW - September 3rd, 2065
+  description: "A paperback newspaper. The headline reads: 'SHUTLGIR Technologies Burst Engine Recall Creates Skepticism Around Other Products'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperBurstEngine2
+  name: Galaxy NOW - September 10th, 2065
+  description: "A paperback newspaper. The headline reads: 'SHUTLGIR Technologies Settles 3.1 Million Speso Lawsuit in Record Time: A Turning Point for Shuttle Reliability?'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperIonStorms
+  name: Galaxy NOW - September 17th, 2065
+  description: "A paperback newspaper. The headline reads: 'Heavy Ion Storms in Alpha Sector Continue'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperLipolicide
+  name: Galaxy NOW - September 24th, 2065
+  description: "A paperback newspaper. The headline reads: 'Non-Medical Lipolicide Use Linked to Weakened Immune System'"
 
 - type: entity
   parent: BaseNewspaper
@@ -52,7 +81,7 @@
 
 - type: entity
   parent: BaseNewspaper
-  id: NewspaperParasite
+  id: NewspaperParasiteFleet
   name: Galaxy NOW - December 12th, 2065
   description: "A paperback newspaper. The headline reads: 'Parasite-Infested Fleet Suffers Yet Another Suspiciously Crushing Loss'"
 
