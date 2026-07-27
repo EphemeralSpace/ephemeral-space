@@ -1,5 +1,8 @@
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._ES.Cryohusk.Components;
@@ -22,6 +25,12 @@ public sealed partial class ESCryohuskableComponent : Component
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextUpdate;
+
+    [DataField]
+    public ProtoId<SpeciesPrototype> CryohuskSpecies = "ESCryohusk";
+
+    [DataField]
+    public ProtoId<DamageModifierSetPrototype> DamageModifierSet = "ESCryohusl";
 
     [DataField]
     public SoundSpecifier? FreezeSound = new SoundCollectionSpecifier("ESFreeze")

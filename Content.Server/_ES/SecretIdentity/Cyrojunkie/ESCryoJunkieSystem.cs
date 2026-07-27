@@ -3,6 +3,7 @@ using Content.Server._ES.Mind;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.SecretIdentity.Cyrojunkie.Components;
+using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Mind.Components;
 
@@ -13,6 +14,7 @@ public sealed partial class ESCryoJunkieSystem : EntitySystem
     [Dependency] private ESCryohuskSystem _cryo = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private RejuvenateSystem _rejuvenate = default!;
 
     public override void Initialize()
     {
@@ -25,7 +27,8 @@ public sealed partial class ESCryoJunkieSystem : EntitySystem
         var mixture = _atmosphere.GetTileMixture(ent.Owner);
         mixture?.AdjustMoles(Gas.Cryogas, 200);
 
-        _cryo.Cryohusk(ent.Owner, transferDeath: false);
+        _rejuvenate.PerformRejuvenate(ent);
+        _cryo.Cryohusk(ent.Owner);
     }
 
     private void OnGhostAttempt(Entity<ESCryoJunkieMindComponent> ent, ref AutoGhostAttemptEvent args)
@@ -33,7 +36,7 @@ public sealed partial class ESCryoJunkieSystem : EntitySystem
         if (args.Mind.Comp.CurrentEntity == null)
             return;
 
-        _entityTimer.SpawnTimer((EntityUid)args.Mind.Comp.CurrentEntity, ent.Comp.HuskDelay, new ESCyroJunkieTimerEvent());
+        _entityTimer.SpawnTimer(args.Mind.Comp.CurrentEntity.Value, ent.Comp.HuskDelay, new ESCyroJunkieTimerEvent());
 
         args.Cancelled = true;
         RemComp(ent, ent.Comp);

@@ -4,6 +4,7 @@ using Content.Server.Administration;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Humanoid;
 using Content.Server.Mind;
+using Content.Server.Speech.Components;
 using Content.Shared._ES.Cryohusk;
 using Content.Shared._ES.Cryohusk.Components;
 using Content.Shared._ES.Stagehand;
@@ -11,6 +12,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.Atmos;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.Audio;
@@ -31,8 +33,10 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private HumanoidAppearanceSystem _humanoidAppearance = default!;
     [Dependency] private MindSystem _mind = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private ESObjectiveSystem _objective = default!;
     [Dependency] private ESSharedStagehandNotificationsSystem _stagehandNotifications = default!;
@@ -56,13 +60,12 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
         if (!Resolve(target, ref target.Comp, false))
             return;
 
-        _humanoidAppearance.SetSpecies(target, "ESCryohusk");
+        _metaData.SetEntityName(target, Loc.GetString("es-cryohusk-name"));
+
+        _humanoidAppearance.SetSpecies(target, target.Comp.CryohuskSpecies);
         _humanoidAppearance.SetSkinColor(target, Color.White);
         _humanoidAppearance.SetSex(target, Sex.Unsexed);
         _humanoidAppearance.SetGender(target.Owner, Gender.Neuter);
-
-        //if (_polymorph.PolymorphEntity(target, target.Comp.CryohuskPolymorph, transferDamageOverride: transferDeath) is not { } husk)
-        //    return;
 
         foreach (var uid in GetRecursiveContainedEntities(target.Owner))
         {
@@ -72,7 +75,7 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
 
         if (_mind.TryGetMind(target, out var mind))
         {
-            if (!_mobState.IsDead(target) || !transferDeath)
+            if (!_mobState.IsDead(target))
             {
                 var msg = Loc.GetString("es-cryohusk-convert-stagehand-notif",
                     ("player", _stagehandNotifications.WrapEntityName(target.Owner)));
@@ -87,6 +90,13 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
 
         _audio.PlayPvs(target.Comp.FreezeSound, target);
 
+        EnsureComp<SlurredAccentComponent>(target);
+
+        _damageable.SetDamageModifierSetId(target.Owner, target.Comp.DamageModifierSet);
+
+        // No double husking
+        EnsureComp<ESCryohuskComponent>(target);
+        RemComp<ESCryohuskableComponent>(target);
     }
 
     // TODO: needs to live not here.
