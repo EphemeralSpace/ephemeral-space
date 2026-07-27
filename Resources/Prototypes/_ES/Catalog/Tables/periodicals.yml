@@ -206,6 +206,8 @@
       - id: MagazineRevolutionary6
       - id: MagazineRevolutionary7
       - id: MagazineRevolutionary8
+      - id: MagazineRevolutionary9
+      - id: MagazineRevolutionary10
 
 - type: entityTable
   id: MagazinesConspiracy

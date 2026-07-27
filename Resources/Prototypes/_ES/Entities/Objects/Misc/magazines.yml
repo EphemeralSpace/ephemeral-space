@@ -63,7 +63,7 @@
   parent: MagazineCognitoWood
   id: MagazineCognitoWood3
   name: "CognitoWood #3"
-  description: "A comic book about CognitoWood, the mind-bending diona superhero. The headline reads: 'Red Marauder caught Red Handed'"
+  description: "A comic book about CognitoWood, the mind-bending diona superhero. The headline reads: 'Red Marauder caught Red-Handed'"
 
 - type: entity
   parent: MagazineCognitoWood
@@ -111,7 +111,7 @@
   parent: MagazineCognitoWood
   id: MagazineCognitoWood11
   name: "CognitoWood #11"
-  description: "A comic book about CognitoWood, the mind-bending diona superhero. The headline reads: 'Lethragy's Leverage'"
+  description: "A comic book about CognitoWood, the mind-bending diona superhero. The headline reads: 'Lethargy's Leverage'"
 
 - type: entity
   parent: MagazineCognitoWood
@@ -123,7 +123,7 @@
   parent: MagazineCognitoWood
   id: MagazineCognitoWood13
   name: "CognitoWood #13"
-  description: "A comic book about CognitoWood, the mind-bending diona superhero. The headline reads: 'Perseverence against the Public'"
+  description: "A comic book about CognitoWood, the mind-bending diona superhero. The headline reads: 'Perseverance against the Public'"
 
 - type: entity
   parent: MagazineCognitoWood
@@ -191,7 +191,7 @@
   parent: MagazineCookingAndBotany
   id: MagazineCookingAndBotany6
   name: "Chell's Cooking & Botany #22"
-  description: "A magazine containing various cooking recipes & botanical tips for aspiring chefs onboard space stations. The headline reads: 'Season Your Donk Pockets! And Other Ways To Enhance Frozen Meals'"
+  description: "A magazine containing various cooking recipes & botanical tips for aspiring chefs onboard space stations. The headline reads: 'Season Your Donk Pockets! And Other Ways to Enhance Frozen Meals'"
 
 # Crossword
 - type: entity
@@ -304,7 +304,7 @@
   parent: MagazineFirearms
   id: MagazineFirearms2
   name: "Mel's Classified Firearms #22"
-  description: "A magazine containing the latest & greatest news and discussion around firearms & self defense. The headline reads: 'Hyrbid Shotgun-Laser: The Solution to the Longarms Debate?'"
+  description: "A magazine containing the latest & greatest news and discussion around firearms & self defense. The headline reads: 'Hybrid Shotgun-Laser: The Solution to the Longarms Debate?'"
 
 - type: entity
   parent: MagazineFirearms
@@ -463,6 +463,18 @@
   name: "REVOLUTION! #10"
   description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Non-Governmental Threats: Stay Vigiliant Against Syndicate Agents'"
 
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary9
+  name: "REVOLUTION! #11"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'A Set of Tools to Open Up The World: Hacking & Deconstruction of Sturctures'"
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary10
+  name: "REVOLUTION! #12"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Screwdriver, Wirecutter, Snip! A Guide to Dismantling Cameras and Other Surveillance Systems'"
+
 
 # Conspiracy
 - type: entity
@@ -552,7 +564,7 @@
   parent: BaseMagazine
   id: MagazineFashion
   name: "Fashion Fanatics #4"
-  description: "A magazine containing various fashion ideas & news. The headline reads: 'Outfits for scientific research'"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Outfits for Scientific Research'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
@@ -709,7 +721,7 @@
   parent: MagazineEngineerNews
   id: MagazineEngineerNews5
   name: "ShuttleTech #8"
-  description: "A magazine containing the latest news on engineering & industrial tech fields. The headline reads: 'Research In To Shuttle Burst Engine Alternatives Begins Admist SHUTLGIR lawsuit'"
+  description: "A magazine containing the latest news on engineering & industrial tech fields. The headline reads: 'Research Into Shuttle Burst Engine Alternatives Begins Amidst SHUTLGIR lawsuit'"
 
 - type: entity
   parent: MagazineEngineerNews
