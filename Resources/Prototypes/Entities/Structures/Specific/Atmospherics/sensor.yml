@@ -24,7 +24,7 @@
       WaterVapor: stationWaterVapor
       Miasma: stationMiasma
       NitrousOxide: stationNO
-      Frezon: danger
+      Cryogas: danger
       # ES START
       Smoke: ESStationSmoke
       # ES END

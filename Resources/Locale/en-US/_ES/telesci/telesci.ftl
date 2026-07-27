@@ -12,6 +12,7 @@ es-ui-portalgen-console-label-status-charging = [font size=18][color=yellow][bol
 es-ui-portalgen-console-label-status-final-charging = [font size=18][color=magenta][bold]Final Phase Charging[/bold][/color][/font]
 es-ui-portalgen-console-label-status-stillthreats = [font size=14][color=lavender][bold]{$threats} Anomalies Left[/bold][/color][/font]
 es-ui-portalgen-console-label-status-ready = [font size=18][color=lime][bold]Ready[/bold][/color][/font]
+es-ui-portalgen-console-label-status-terminals = [font size=18][color=yellow][bold]Terminal Override Required[/bold][/color][/font]
 es-ui-portalgen-console-label-charge-header = [bold]Charge:[/bold]
 es-ui-portalgen-console-label-charge-fmt = [color=yellow]{$charge}%[/color]
 es-ui-portalgen-console-label-research-header = [bold]Research[/bold]

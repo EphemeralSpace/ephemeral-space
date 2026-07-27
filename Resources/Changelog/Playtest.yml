@@ -1247,3 +1247,173 @@ Entries:
         random job instead of always defaulting to assistant.
   id: 134
   time: '2026-07-21T05:53:52.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Occluded sounds are now quieter and more consistent
+    - type: Tweak
+      message: Removed standing state down sound (no more roundstart thunk spam)
+  id: 135
+  time: '2026-07-23T13:14:08.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        The marauder kit has been reverted to the previous version. They now
+        also get two door jammers instead of a knife and grenade, now.
+  id: 136
+  time: '2026-07-23T13:14:54.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Toast now has more biosuit lockers and portable scrubbers
+    - type: Tweak
+      message: >-
+        Removed some of the more annoying warpdrive warp locations that would
+        frequently cause people to get confused /stuck
+  id: 137
+  time: '2026-07-23T13:31:49.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Fixed a bug where duplicates of certain jobs would be assigned as
+        overflow.
+  id: 138
+  time: '2026-07-24T11:06:01.0000000+00:00'
+- author: FyeStance
+  changes:
+    - type: Add
+      message: >-
+        Added the Warp Disciple, a new crew mask that shows devotion to the warp
+        drive by cleaning it.
+  id: 139
+  time: '2026-07-25T02:37:24.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: The world is now populated with decorative magazines and newspapers.
+  id: 140
+  time: '2026-07-25T10:59:27.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added Cryogas, a chilly gas that can convert exposed bodies into
+        Cryohusks.
+    - type: Fix
+      message: >-
+        Swapping jumpsuits and outerclothing will no longer drop PDAs, pocket
+        items, or suit storage tanks onto the ground.
+    - type: Remove
+      message: Removed Frezon.
+  id: 141
+  time: '2026-07-25T11:07:35.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Stagehands are now notified when a subverter chip is used.
+  id: 142
+  time: '2026-07-25T11:12:09.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Arrivals has colder lighting now. Idk im just seein
+    - type: Tweak
+      message: Inflatables can now appear in O2 lockers randomly
+  id: 143
+  time: '2026-07-25T19:42:04.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        The warp drive now has a guidebook. Sorry I may be stupid for not
+        writing this earlier
+    - type: Add
+      message: >-
+        The crew objective now has a final phase, rather than it simply ending
+        when the warp drive is fully charged. Now, the crew must activate all
+        cryptographic nuke terminals (renamed safety override terminals) within
+        a certain timeframe in order to fully activate the warp drive.
+    - type: Add
+      message: >-
+        The radstorm & warp final phase now have associated alert levels and
+        thus status screens.
+    - type: Add
+      message: >-
+        The radstorm & warp drive endings now have cinematics. They are not that
+        good sorry I am not visual arts gifted
+  id: 144
+  time: '2026-07-25T21:05:28.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Cannibal, a new secret identity that can copy a mask from dead
+        bodies.
+  id: 145
+  time: '2026-07-25T21:08:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Stalker, a new crew secret identity based around choosing
+        targets and making sure they live (or potentially die).
+  id: 146
+  time: '2026-07-25T21:23:04.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: Traitor-related degradation events are now much rarer
+  id: 147
+  time: '2026-07-25T21:39:11.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Tragedian votes now end early if they would otherwise end after the end
+        of the round.
+  id: 148
+  time: '2026-07-25T22:23:46.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: Added Cryojunkie, a new crew mask that revives as a cryohusk upon death.
+  id: 149
+  time: '2026-07-25T22:46:26.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Remove
+      message: Baseball bats are no longer obtainable
+  id: 150
+  time: '2026-07-25T23:34:59.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Remove
+      message: Crewmember identity gone
+  id: 151
+  time: '2026-07-26T03:54:53.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Living bodies and cryojunkies now create stagehand announcements.
+    - type: Fix
+      message: >-
+        Dead bodies getting cryohusked no longer plays death announcements to
+        stagehands.
+    - type: Fix
+      message: >-
+        Phantoms and Cryojunkies no longer play the death animation before doing
+        their behavior.
+  id: 152
+  time: '2026-07-26T14:18:35.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed mispredicting popup when cannibals would try and eat a body.
+    - type: Tweak
+      message: >-
+        Cannibals can now eat the dead bodies of Phantoms in order to copy their
+        secret identity.
+  id: 153
+  time: '2026-07-26T16:29:39.0000000+00:00'

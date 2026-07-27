@@ -282,8 +282,8 @@
 - type: entity
   parent: ESBaseComputerTerminal
   id: ESBaseComputerTerminalCryptoNuke
-  name: nuclear cryptographic terminal
-  description: Part of a triad of terminals that interface with the station's nuclear defenses. Capable of tracking the nuclear disk and, if compromised, providing the nuclear codes.
+  name: security override terminal
+  description: Part of a triad of terminals that interface with the station's high security systems. Capable of tracking the nuclear disk and, if compromised, providing the nuclear codes.
   components:
   - type: Sprite
     layers:

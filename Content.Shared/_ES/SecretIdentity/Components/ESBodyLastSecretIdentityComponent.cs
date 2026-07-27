@@ -7,12 +7,12 @@ namespace Content.Shared._ES.SecretIdentity.Components;
 /// If a mind with a secret identity inhabits a body, this component will be updated to store that information.
 /// </summary>
 [RegisterComponent]
-[Access(typeof(ESSharedSecretIdentitySystem))]
+[Access(typeof(ESSharedSecretIdentitySystem), Other = AccessPermissions.None)]
 public sealed partial class ESBodyLastSecretIdentityComponent : Component
 {
     /// <summary>
     /// The last secret identity that this body had.
     /// </summary>
     [DataField]
-    public ProtoId<ESSecretIdentityPrototype> LastSecretIdentity;
+    public ProtoId<ESSecretIdentityPrototype>? LastSecretIdentity;
 }

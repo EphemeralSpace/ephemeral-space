@@ -24,8 +24,7 @@ public sealed partial class ESActionChangeSecretIdentitySystem : EntitySystem
         if (!_mind.TryGetMind(args.Performer, out var mind, out var mindComp))
             return;
 
-        _secretIdentity.RemoveSecretIdentity((mind, mindComp));
-        _secretIdentity.ApplySecretIdentity((mind, mindComp), args.SecretIdentity);
+        _secretIdentity.ChangeSecretIdentity((mind, mindComp), args.SecretIdentity);
 
         args.Handled = true;
     }

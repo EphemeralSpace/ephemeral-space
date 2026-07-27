@@ -22,7 +22,7 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
             Gas.Tritium,
             Gas.WaterVapor,
             Gas.NitrousOxide,
-            Gas.Frezon
+            Gas.Cryogas
         };
 
         // Presets for 'dumb' air alarm modes

@@ -139,21 +139,6 @@
     node: CurtainsBlue
 
 - type: entity
-  id: CurtainsSkyBlue
-  parent: BaseCurtains
-  suffix: Fancy sky blue
-  components:
-  - type: Sprite
-    snapCardinals: true
-    sprite: Structures/Decoration/Curtains/skyblue.rsi
-    layers:
-    - state: closed
-      map: ["enum.DoorVisualLayers.Base"]
-  - type: Construction
-    graph: Curtains
-    node: CurtainsSkyBlue
-
-- type: entity
   id: CurtainsBlueOpen
   parent: CurtainsBlue
   suffix: Open, Fancy blue
@@ -165,21 +150,6 @@
   - type: Construction
     graph: Curtains
     node: CurtainsBlueOpen
-  - type: Physics
-    canCollide: false
-
-- type: entity
-  id: CurtainsSkyBlueOpen
-  parent: CurtainsSkyBlue
-  suffix: Open, Fancy sky blue
-  components:
-  - type: Door
-    state: Open
-  - type: Occluder
-    enabled: false
-  - type: Construction
-    graph: Curtains
-    node: CurtainsSkyBlueOpen
   - type: Physics
     canCollide: false
 
@@ -274,36 +244,6 @@
     canCollide: false
 
 - type: entity
-  id: CurtainsPink
-  parent: BaseCurtains
-  suffix: Fancy pink
-  components:
-  - type: Sprite
-    snapCardinals: true
-    sprite: Structures/Decoration/Curtains/pink.rsi
-    layers:
-    - state: closed
-      map: ["enum.DoorVisualLayers.Base"]
-  - type: Construction
-    graph: Curtains
-    node: CurtainsPink
-
-- type: entity
-  id: CurtainsPinkOpen
-  parent: CurtainsPink
-  suffix: Open, Fancy pink
-  components:
-  - type: Door
-    state: Open
-  - type: Occluder
-    enabled: false
-  - type: Construction
-    graph: Curtains
-    node: CurtainsPinkOpen
-  - type: Physics
-    canCollide: false
-
-- type: entity
   id: CurtainsPurple
   parent: BaseCurtains
   suffix: Fancy purple
@@ -376,11 +316,11 @@
       map: ["enum.DoorVisualLayers.Base"]
   - type: Construction
     graph: Curtains
-    node: CurtainsWhite
+    node: CurtainsRed
 
 - type: entity
   id: CurtainsWhiteOpen
-  parent: CurtainsWhite
+  parent: CurtainsRed
   suffix: Open, Fancy white
   components:
   - type: Door

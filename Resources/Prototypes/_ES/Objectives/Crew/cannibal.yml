@@ -1,0 +1,12 @@
+- type: entity
+  parent: ESBaseSecretIdentityObjective
+  id: ESObjectiveCannibal
+  name: Cannibalize someone
+  description: Eat someone whole in order to gain a new secret identity.
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Mobs/Species/Human/organs.rsi
+      state: stomach
+# Hey, emo! Where's the code? Funny you should ask: being a cannibal is basically a failure state,
+# so there's no need to code anything. if someone succeeds, they'll lose this objective anyways.

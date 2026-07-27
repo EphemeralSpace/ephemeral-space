@@ -30,3 +30,5 @@ command-description-rerollhostname =
     Rerolls the server's hostname to feature a new roleplay level.
 command-description-cinematic-playAll =
     Plays the given cinematic for all clients.
+command-description-escryohusk-cryohusk =
+    Converts the target into a cryohusk.

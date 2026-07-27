@@ -6,7 +6,7 @@
     air: AirCanister
     miasma: MiasmaCanister
     carbon-dioxide: CarbonDioxideCanister
-    frezon: FrezonCanister
+    cryogas: CryogasCanister
     nitrogen: NitrogenCanister
     nitrous-oxide: NitrousOxideCanister
     oxygen: OxygenCanister

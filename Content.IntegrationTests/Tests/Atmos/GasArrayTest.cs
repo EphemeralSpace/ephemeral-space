@@ -24,7 +24,7 @@ public sealed class GasArrayTest : GameTest
     air:
       volume: 5
       moles:
-        Frezon: 20
+        Cryogas: 20
         Oxygen: 10
 
 - type: entity
@@ -57,8 +57,8 @@ public sealed class GasArrayTest : GameTest
                 Assert.That(gasTank.TryGetComponent<GasTankComponent>(out var gasTankComponent, compFactory));
 
                 Assert.That(gasTankComponent!.Air.GetMoles(Gas.Oxygen), Is.EqualTo(10));
-                Assert.That(gasTankComponent!.Air.GetMoles(Gas.Frezon), Is.EqualTo(20));
-                foreach (var gas in Enum.GetValues<Gas>().Where(p => p != Gas.Oxygen && p != Gas.Frezon))
+                Assert.That(gasTankComponent!.Air.GetMoles(Gas.Cryogas), Is.EqualTo(20));
+                foreach (var gas in Enum.GetValues<Gas>().Where(p => p != Gas.Oxygen && p != Gas.Cryogas))
                 {
                     Assert.That(gasTankComponent!.Air.GetMoles(gas), Is.EqualTo(0));
                 }

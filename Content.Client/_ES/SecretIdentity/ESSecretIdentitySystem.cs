@@ -15,12 +15,15 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
     [Dependency] private ContainerSystem _container = default!;
 
     public event Action<EntityUid, ProtoId<ESSecretIdentityPrototype>?>? OnSecretIdentityChanged;
+    public event Action<Entity<ESCharacterBlurbComponent>>? OnCharacterBlurbChanged;
+
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<ESSecretIdentityRoleComponent, AfterAutoHandleStateEvent>(OnRoleAfterHandleState);
+        SubscribeLocalEvent<ESCharacterBlurbComponent, AfterAutoHandleStateEvent>(OnBlurbAfterHandleState);
 
         SubscribeLocalEvent<MindContainerComponent, GetStatusIconsEvent>(OnGetStagehandStatusIcons);
         SubscribeLocalEvent<ESOrganizationFactionIconComponent, GetStatusIconsEvent>(OnGetStatusIcons);
@@ -32,6 +35,11 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
             return;
         var mind = roleContainer.Owner;
         OnSecretIdentityChanged?.Invoke(mind, ent.Comp.SecretIdentity);
+    }
+
+    private void OnBlurbAfterHandleState(Entity<ESCharacterBlurbComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        OnCharacterBlurbChanged?.Invoke(ent);
     }
 
     private void OnGetStagehandStatusIcons(Entity<MindContainerComponent> ent, ref GetStatusIconsEvent args)

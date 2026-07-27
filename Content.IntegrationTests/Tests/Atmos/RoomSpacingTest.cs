@@ -36,7 +36,7 @@ public sealed class RoomSpacingTest : AtmosTest
 
         var sourceMix = SAtmos.GetTileMixture(source, true);
         Assert.That(sourceMix, Is.Not.EqualTo(null));
-        sourceMix.AdjustMoles(Gas.Frezon, Moles);
+        sourceMix.AdjustMoles(Gas.Cryogas, Moles);
 
         await Server.WaitRunTicks(500);
 
@@ -92,7 +92,7 @@ public sealed class RoomSpacingTest : AtmosTest
 
         var sourceMix = SAtmos.GetTileMixture(source, true);
         Assert.That(sourceMix, Is.Not.EqualTo(null));
-        sourceMix.AdjustMoles(Gas.Frezon, Moles);
+        sourceMix.AdjustMoles(Gas.Cryogas, Moles);
 
         await Server.WaitPost(() =>
         {

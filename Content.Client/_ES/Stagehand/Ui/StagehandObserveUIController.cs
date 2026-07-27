@@ -87,6 +87,9 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
             warps.Add(uid);
         }
 
+        if (minds.Count == 0)
+            return;
+
         var orderedMinds = minds
             .OrderBy(m => _secretIdentity?.GetOrganizationOrNull((m, m.Comp1)))
             .ThenBy(m => m.Comp2.Name);

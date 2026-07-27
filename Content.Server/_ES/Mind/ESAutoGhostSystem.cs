@@ -7,6 +7,7 @@ using Content.Shared._ES.Mind;
 using Content.Shared._ES.Viewcone.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Gibbing;
+using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -83,7 +84,12 @@ public sealed partial class ESAutoGhostSystem : EntitySystem
     private void AutoGhost(EntityUid uid)
     {
         // Don't ghost the brainless.
-        if (!_mind.TryGetMind(uid, out _, out _))
+        if (!_mind.TryGetMind(uid, out var mind))
+            return;
+
+        var ev = new AutoGhostAttemptEvent(uid, mind.Value);
+        RaiseLocalEvent(mind.Value, ref ev, true);
+        if (ev.Cancelled)
             return;
 
         _entityTimer.SpawnTimer(uid, AutoGhostDelay, new ESAutoGhostEvent());
@@ -96,3 +102,9 @@ public sealed partial class ESAutoGhostSystem : EntitySystem
         RaiseNetworkEvent(new ESPlayDeathCutsceneNetworkEvent(), actor.PlayerSession);
     }
 }
+
+/// <summary>
+///     Raised directed and broadcast to check if autoghost + the death cutscene should happen.
+/// </summary>
+[ByRefEvent]
+public record struct AutoGhostAttemptEvent(EntityUid User, Entity<MindComponent> Mind, bool Cancelled = false);

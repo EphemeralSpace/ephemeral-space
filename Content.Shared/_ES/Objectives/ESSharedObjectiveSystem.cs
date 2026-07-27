@@ -121,6 +121,18 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     /// Refreshes objective progress for all objectives with component <see cref="T"/>
     /// </summary>
     [PublicAPI]
+    public void RefreshObjectiveProgress<T>(Entity<ESObjectiveHolderComponent?> holder) where T : Component
+    {
+        foreach (var objective in GetObjectives<T>(holder))
+        {
+            RefreshObjectiveProgress(objective.Owner);
+        }
+    }
+
+    /// <summary>
+    /// Refreshes objective progress for all objectives with component <see cref="T"/>
+    /// </summary>
+    [PublicAPI]
     public void RefreshObjectiveProgress<T>() where T : Component
     {
         foreach (var objective in GetObjectives<T>())

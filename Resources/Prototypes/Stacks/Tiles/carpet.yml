@@ -50,24 +50,10 @@
 
 - type: stack
   parent: BaseTileStack
-  id: FloorCarpetSkyBlue
-  name: stack-skyblue-carpet-tile
-  icon: { sprite: /Textures/Objects/Tiles/tile.rsi, state: carpet-skyblue }
-  spawn: FloorCarpetItemSkyBlue
-
-- type: stack
-  parent: BaseTileStack
   id: FloorCarpetPurple
   name: stack-purple-carpet-tile
   icon: { sprite: /Textures/Objects/Tiles/tile.rsi, state: carpet-purple }
   spawn: FloorCarpetItemPurple
-
-- type: stack
-  parent: BaseTileStack
-  id: FloorCarpetPink
-  name: stack-pink-carpet-tile
-  icon: { sprite: /Textures/Objects/Tiles/tile.rsi, state: carpet-pink }
-  spawn: FloorCarpetItemPink
 
 - type: stack
   parent: BaseTileStack
@@ -76,9 +62,3 @@
   icon: { sprite: /Textures/Objects/Tiles/tile.rsi, state: carpet-cyan }
   spawn: FloorCarpetItemCyan
 
-- type: stack
-  parent: BaseTileStack
-  id: FloorCarpetWhite
-  name: stack-white-carpet-tile
-  icon: { sprite: /Textures/Objects/Tiles/tile.rsi, state: carpet-white }
-  spawn: FloorCarpetItemWhite

@@ -35,12 +35,30 @@
     id: ESObjectiveAvengerProtectRandom
 
 - type: esSecretIdentity
-  id: Crewmember
-  name: es-secret-identity-crewmember-name
+  id: Cannibal
+  name: es-secret-identity-cannibal-name
   organization: Crew
-  description: es-secret-identity-crewmember-desc
-  weight: 2
-  color: white
+  description: es-secret-identity-cannibal-desc
+  color: darkorange
+  actions:
+    all:
+    - id: ActionSecretIdentityCannibalEat
+  objectives:
+    all:
+    - id: ESObjectiveCannibal
+
+- type: esSecretIdentity
+  id: Cryojunkie
+  name: es-secret-identity-cryojunkie-name
+  organization: Crew
+  description: es-secret-identity-cryojunkie-desc
+  color: lightblue
+  weight: 0.5
+  mindComponents:
+  - type: ESCryoJunkieMind
+  objectives:
+    all:
+    - id: ESObjectiveCryohusk
 
 - type: esSecretIdentity
   id: Guzzler
@@ -130,6 +148,20 @@
     - id: ESObjectiveSecretaryAssist
 
 - type: esSecretIdentity
+  id: Stalker
+  name: es-secret-identity-stalker-name
+  organization: Crew
+  description: es-secret-identity-stalker-desc
+  color: lightsteelblue
+  actions:
+    all:
+    - id: ActionSecretIdentityStalkerPick
+  objectives:
+    all:
+    - id: ESObjectiveStalkerKill
+    - id: ESObjectiveStalkerSave
+
+- type: esSecretIdentity
   id: Tragedian
   name: es-secret-identity-tragedian-name
   organization: Crew
@@ -181,3 +213,18 @@
   storage:
     back:
     - ESItemCardVIP
+
+- type: esSecretIdentity
+  id: WarpDisciple
+  name: es-secret-identity-warp-disciple-name
+  organization: Crew
+  description: es-secret-identity-warp-disciple-desc
+  color: blueviolet
+  tips:
+  - WarpDriveRecall
+  objectives:
+    all:
+    - id: ESObjectiveWarpUnclog
+  actions:
+    all:
+    - id: ESActionSecretIdentityWarpDiscipleTeleport

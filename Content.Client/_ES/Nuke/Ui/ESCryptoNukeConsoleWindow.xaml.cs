@@ -18,6 +18,7 @@ public sealed partial class ESCryptoNukeConsoleWindow : FancyWindow
     private readonly TransformSystem _transform;
 
     public event Action? OnHackButtonPressed;
+    public event Action? OnOverrideButtonPressed;
 
     public ESCryptoNukeConsoleWindow()
     {
@@ -28,6 +29,7 @@ public sealed partial class ESCryptoNukeConsoleWindow : FancyWindow
         _transform = _entityManager.System<TransformSystem>();
 
         HackButton.OnPressed += _ => OnHackButtonPressed?.Invoke();
+        OverrideButton.OnPressed += _ => OnOverrideButtonPressed?.Invoke();
 
         HeaderLabel.UnsafeSetMarkup(Loc.GetString("es-cryptonuke-ui-label-disk-header"));
         FlavorLabel.UnsafeSetMarkup(Loc.GetString("es-cryptonuke-ui-label-flavor"));
@@ -64,6 +66,7 @@ public sealed partial class ESCryptoNukeConsoleWindow : FancyWindow
                     .Select(c => Loc.GetString("es-cryptonuke-ui-label-disk-fmt", ("x", c.X), ("y", c.Y)))));
 
             HackButton.Disabled = !_cryptoNuke.CanHack(player) || comp.Compromised;
+            OverrideButton.Disabled = !comp.CanOverrideWarpDriveSecurity || comp.WarpDriveSecurityOverridden;
         }
 
         if (!HackButton.Disabled)
@@ -75,6 +78,21 @@ public sealed partial class ESCryptoNukeConsoleWindow : FancyWindow
             HackButton.ToolTip = comp.Compromised
                 ? Loc.GetString("es-cryptonuke-ui-button-already-hacked-tooltip")
                 : Loc.GetString("es-cryptonuke-ui-button-hack-tooltip");
+        }
+
+        if (!OverrideButton.Disabled)
+        {
+            OverrideButton.ToolTip = Loc.GetString("es-cryptonuke-ui-button-override-tooltip");
+        }
+        else if (!_cryptoNuke.CanPotentiallyOverride(player))
+        {
+            OverrideButton.ToolTip = Loc.GetString("es-cryptonuke-ui-button-override-cant-override-tooltip");
+        }
+        else
+        {
+            OverrideButton.ToolTip = comp.WarpDriveSecurityOverridden
+                ? Loc.GetString("es-cryptonuke-ui-button-override-already-overriden-tooltip")
+                : Loc.GetString("es-cryptonuke-ui-button-override-disabled-tooltip");
         }
 
         CompromisedLabel.UnsafeSetMarkup(Loc.GetString("es-cryptonuke-ui-label-compromised", ("state", comp.Compromised)));

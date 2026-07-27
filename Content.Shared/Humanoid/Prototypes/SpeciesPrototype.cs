@@ -1,5 +1,6 @@
 using Content.Shared.Dataset;
 using Content.Shared.Humanoid.Markings;
+using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -108,6 +109,9 @@ public sealed partial class SpeciesPrototype : IPrototype
     // YEAH. We're Woke Now.
     public List<Sex> Sexes { get; private set; } = new() { Sex.Male, Sex.Female, Sex.Unsexed };
 // ES END
+
+    [DataField]
+    public List<Gender> Genders { get; private set; } = new() { Gender.Male, Gender.Female, Gender.Epicene };
 
     /// <summary>
     ///     Characters younger than this are too young to be hired by Nanotrasen.

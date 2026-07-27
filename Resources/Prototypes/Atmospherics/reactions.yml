@@ -24,6 +24,6 @@
   minimumTemperature: 23.15
   minimumRequirements:
     Nitrogen: 0.01
-    Frezon: 0.01
+    Cryogas: 0.01
   effects:
   - !type:FrezonCoolantReaction {}

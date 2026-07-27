@@ -1,7 +1,6 @@
 - type: entity
   parent: IDCardStandard
   id: ESCoronerCard
-  name: coroner ID card
   suffix: ES
   components:
   - type: Sprite

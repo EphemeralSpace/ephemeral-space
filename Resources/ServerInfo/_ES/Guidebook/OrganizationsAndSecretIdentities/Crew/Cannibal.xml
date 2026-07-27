@@ -1,0 +1,18 @@
+<Document>
+    <ESGuideSecretIdentityEmbed SecretIdentity="Cannibal"/>
+
+    The Cannibal is a crew role that is capable of changing their secret identity.
+    When in front of a dead body, they can eat the dead body.
+
+    <ESGuideObjectiveEmbed Objective="ESObjectiveCannibal"/>
+
+    Consuming the dead body gives them its secret identity and turns it into a cryohusk.
+
+    <Box>
+      <GuideEntityEmbed Entity="ESMobCryohusk" Caption="cryohusk"/>
+    </Box>
+
+    The Cannibal must then complete their newly acquired objectives.
+
+    <ESGuideTipsEmbed SecretIdentity="Cannibal"/>
+</Document>

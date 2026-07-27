@@ -1,4 +1,4 @@
-es-cryptonuke-ui-window-title = Nuclear Cryptographic Terminal
+es-cryptonuke-ui-window-title = Security Override Terminal
 es-cryptonuke-ui-label-compromised = [color=red][font="Monospace"]STATUS: {$state ->
     [true] [color=white]COMPROMISED[/color]
     *[false] NOMINAL
@@ -33,6 +33,12 @@ es-cryptonuke-ui-button-hack = Hack
 es-cryptonuke-ui-button-go-tooltip = Hack terminal!
 es-cryptonuke-ui-button-hack-tooltip = The syndicate's tasks aren't finished! Unable to hack.
 es-cryptonuke-ui-button-already-hacked-tooltip = Terminal is already hacked!
+
+es-cryptonuke-ui-button-override = Override Warp Drive Security
+es-cryptonuke-ui-button-override-cant-override-tooltip = You shouldn't be trying to do that!!!
+es-cryptonuke-ui-button-override-disabled-tooltip = Warp drive is not charged.
+es-cryptonuke-ui-button-override-already-overriden-tooltip = This terminal is already overridden!
+es-cryptonuke-ui-button-override-tooltip = Be ready to head to the next terminals or cooperate with others for efficiency.
 
 es-cryptonuke-examine-compromised = This terminal has been [color=red][bold]hacked[/color][/bold]!
 
