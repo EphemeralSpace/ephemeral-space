@@ -115,7 +115,7 @@
 - type: entity
   parent: BaseMagazine
   id: MagazineCookingAndBotany
-  name: Chell's Cooking & Botany #14
+  name: "Chell's Cooking & Botany #14"
   description: "A magazine containing various cooking recipes & botanical tips for aspiring chefs onboard space stations. The headline reads: 'Best Recipes of 2065'"
   components:
   - type: Sprite
@@ -125,31 +125,31 @@
 - type: entity
   parent: MagazineCookingAndBotany
   id: MagazineCookingAndBotany2
-  name: Chell's Cooking & Botany #15
+  name: "Chell's Cooking & Botany #15"
   description: "A magazine containing various cooking recipes & botanical tips for aspiring chefs onboard space stations. The headline reads: 'Astrotame Goes on Everything?! New Alpha Sector Trend Analyzed'"
 
 - type: entity
   parent: MagazineCookingAndBotany
   id: MagazineCookingAndBotany3
-  name: Chell's Cooking & Botany #17
+  name: "Chell's Cooking & Botany #17"
   description: "A magazine containing various cooking recipes & botanical tips for aspiring chefs onboard space stations. The headline reads: 'Coldsauce Pizza, a Chilling Delight'"
 
 - type: entity
   parent: MagazineCookingAndBotany
   id: MagazineCookingAndBotany4
-  name: Chell's Cooking & Botany #18
+  name: "Chell's Cooking & Botany #19"
   description: "A magazine containing various cooking recipes & botanical tips for aspiring chefs onboard space stations. The headline reads: 'Peanut Butter Jelly & Astrotame, a Delightfully Effective Combination'"
 
 - type: entity
   parent: MagazineCookingAndBotany
   id: MagazineCookingAndBotany5
-  name: Chell's Cooking & Botany #18
+  name: "Chell's Cooking & Botany #20"
   description: "A magazine containing various cooking recipes & botanical tips for aspiring chefs onboard space stations. The headline reads: 'Birthday Surprises: Pepperoni Pizza, Electric Cake, and More'"
 
 - type: entity
   parent: MagazineCookingAndBotany
   id: MagazineCookingAndBotany6
-  name: Chell's Cooking & Botany #18
+  name: "Chell's Cooking & Botany #22"
   description: "A magazine containing various cooking recipes & botanical tips for aspiring chefs onboard space stations. The headline reads: 'Season Your Donk Pockets! And Other Ways To Enhance Frozen Meals'"
 
 # Crossword
@@ -274,11 +274,13 @@
   name: "Popular Spacepeople TODAY #150"
   description: "A magazine containing the latest celebrity gossip & news. The headline reads: 'Bubble Brown Found Dead at 39 - Natural Causes or Syndicate Intervention?'"
 
+- type: entity
   parent: MagazinePopularSpacepeople
   id: MagazinePopularSpacepeople5
   name: "Popular Spacepeople TODAY #152"
-  description: "A magazine containing the latest celebrity gossip & news. The headline reads: 'New "Janitor Harem" Project From Millions Brothers Sparks Controversy'"
+  description: "A magazine containing the latest celebrity gossip & news. The headline reads: 'New 'Janitor Harem' Project From Millions Brothers Sparks Controversy'"
 
+- type: entity
   parent: MagazinePopularSpacepeople
   id: MagazinePopularSpacepeople6
   name: "Popular Spacepeople TODAY #152"
@@ -342,7 +344,7 @@
 - type: entity
   parent: BaseMagazine
   id: MagazineConspiracy
-  name: True History
+  name: "True History #4"
   description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Mr. Nanotrasen's link to Glass Society'"
   components:
   - type: Sprite
@@ -352,47 +354,56 @@
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy2
+  name: "True History #10"
   description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Woodgrain Wonders behind water shortages'"
 
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy3
+  name: "True History #11"
   description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Rising barricade usage orchastrated by Big Wood'"
 
 - type: entity
   parent: MagazineConspiracy
-  id: MagazineConspiracy4   
+  id: MagazineConspiracy4
+  name: "True History #12"
   description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'RATMEN ARE REAL AND IN YOUR STATION'"
 
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy5
+  name: "True History #17"
   description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'The plan to forge people into a large sphere & why you should be worried'"
 
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy6
+  name: "True History #20"
   description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Dangerous 'electrobugs' found infesting powernet'"
 
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy7
-  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Emergency toolbox presence reportedly linked to electrobugs''"
+  name: "True History #21"
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Emergency toolbox presence reportedly linked to electrobugs'"
 
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy8
-  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Nanotrasen reportedly caught secretly replacing chocolate in chocolate bars with poop''"
+  name: "True History #22"
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Nanotrasen reportedly caught secretly replacing chocolate in chocolate bars with poop'"
 
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy9
-  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'The disturbing truth behind colored crowbars''"
+  name: "True History #23"
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'The disturbing truth behind colored crowbars'"
 
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy10
-  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Mr. Nanotrasen openly admits to doing Bicardine''"
+  name: "True History #26"
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Mr. Nanotrasen openly admits to doing Bicardine'"
 
 
 # Fashion
