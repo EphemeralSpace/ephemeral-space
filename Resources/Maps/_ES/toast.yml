@@ -4,8 +4,8 @@ meta:
   engineVersion: 283.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/25/2026 04:07:57
-  entityCount: 14850
+  time: 07/27/2026 20:46:14
+  entityCount: 14852
 maps:
 - 3
 grids:
@@ -5439,7 +5439,6 @@ entities:
       name: Tech Storage APC
     - type: Transform
       parent: 2
-      rot: 3.141592653589793 rad
       pos: -19.5,-40.5
     - type: Fixtures
       fixtures: {}
@@ -12615,17 +12614,17 @@ entities:
     components:
     - type: Transform
       parent: 2
-      pos: -3.5,11.5
+      pos: -2.5,12.5
   - uid: 8743
     components:
     - type: Transform
       parent: 2
-      pos: -2.5,11.5
+      pos: -3.5,12.5
   - uid: 8744
     components:
     - type: Transform
       parent: 2
-      pos: -1.5,11.5
+      pos: -4.5,12.5
   - uid: 8745
     components:
     - type: Transform
@@ -16406,6 +16405,16 @@ entities:
     - type: Transform
       parent: 2
       pos: -50.5,26.5
+  - uid: 14848
+    components:
+    - type: Transform
+      parent: 2
+      pos: -1.5,12.5
+  - uid: 14849
+    components:
+    - type: Transform
+      parent: 2
+      pos: -0.5,12.5
 - proto: CableApcStack
   entities:
   - uid: 7945
