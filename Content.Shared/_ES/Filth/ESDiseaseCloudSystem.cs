@@ -2,7 +2,6 @@ using Content.Shared._ES.Filth.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
-using Content.Shared.Medical;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -20,7 +19,6 @@ public sealed partial class ESDiseaseCloudSystem : EntitySystem
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private VomitSystem _vomit = default!;
 
     // TODO: make this the disease susceptible component once we support that
     [Dependency] private EntityQuery<MobStateComponent> _mobStateQuery;
@@ -48,7 +46,6 @@ public sealed partial class ESDiseaseCloudSystem : EntitySystem
         if (!HasProtection(args.OtherEntity))
         {
             _damageable.TryChangeDamage(args.OtherEntity, ent.Comp.DiseaseDamage, true);
-            _vomit.Vomit(args.OtherEntity);
             _popup.PopupEntity(Loc.GetString("es-disease-cloud-hit", ("entity", args.OtherEntity)), args.OtherEntity, PopupType.MediumCaution);
         }
         else
