@@ -11,6 +11,7 @@ using Content.Shared._ES.Stagehand;
 using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
+using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
@@ -39,6 +40,7 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private ESObjectiveSystem _objective = default!;
+    [Dependency] private RejuvenateSystem _rejuvenate = default!;
     [Dependency] private ESSharedStagehandNotificationsSystem _stagehandNotifications = default!;
 
     [Dependency] private EntityQuery<IdCardComponent> _idCardQuery;
@@ -141,6 +143,9 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
             if (!_random.Prob(comp.ConversionChance))
                 continue;
 
+            // cryohusking a non-dead target is a full heal...
+            if (!_mobState.IsDead(uid))
+                _rejuvenate.PerformRejuvenate(uid);
             Cryohusk(uid);
         }
     }

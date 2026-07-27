@@ -30,7 +30,7 @@ public sealed partial class ESCryohuskableComponent : Component
     public ProtoId<SpeciesPrototype> CryohuskSpecies = "ESCryohusk";
 
     [DataField]
-    public ProtoId<DamageModifierSetPrototype> DamageModifierSet = "ESCryohusl";
+    public ProtoId<DamageModifierSetPrototype> DamageModifierSet = "ESCryohusk";
 
     [DataField]
     public SoundSpecifier? FreezeSound = new SoundCollectionSpecifier("ESFreeze")
