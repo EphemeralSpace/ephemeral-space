@@ -15,9 +15,6 @@
   sprites:
     Special: MobHumanoidAnyMarking
     Head: ESMobCryohuskHead
-    Hair: MobHumanoidAnyMarking
-    FacialHair: MobHumanoidAnyMarking
-    Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
     Chest: ESMobCryohuskTorso

@@ -1,7 +1,5 @@
-using Content.Shared.Polymorph;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._ES.Cryohusk.Components;
@@ -24,9 +22,6 @@ public sealed partial class ESCryohuskableComponent : Component
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextUpdate;
-
-    [DataField]
-    public ProtoId<PolymorphPrototype> CryohuskPolymorph = "ESCryohuskPolymorph";
 
     [DataField]
     public SoundSpecifier? FreezeSound = new SoundCollectionSpecifier("ESFreeze")
