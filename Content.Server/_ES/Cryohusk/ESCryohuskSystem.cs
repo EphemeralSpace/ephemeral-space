@@ -1,5 +1,3 @@
-using Content.Server._ES.Objectives;
-using Content.Server._ES.SecretIdentity.Cyrojunkie.Components;
 using Content.Server.Administration;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Humanoid;
@@ -39,7 +37,6 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private MobStateSystem _mobState = default!;
-    [Dependency] private ESObjectiveSystem _objective = default!;
     [Dependency] private RejuvenateSystem _rejuvenate = default!;
     [Dependency] private ESSharedStagehandNotificationsSystem _stagehandNotifications = default!;
 
@@ -75,19 +72,11 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
                 EnsureComp<ESCryohuskIdCardComponent>(uid);
         }
 
-        if (_mind.TryGetMind(target, out var mind))
+        if (_mind.TryGetMind(target, out _) && !_mobState.IsDead(target))
         {
-            if (!_mobState.IsDead(target))
-            {
-                var msg = Loc.GetString("es-cryohusk-convert-stagehand-notif",
-                    ("player", _stagehandNotifications.WrapEntityName(target.Owner)));
-                _stagehandNotifications.SendStagehandNotification(msg);
-            }
-
-            foreach (var objective in _objective.GetObjectives<ESCryohuskObjectiveComponent>(mind.Value.Owner))
-            {
-                _objective.AdjustObjectiveCounter(objective.Owner);
-            }
+            var msg = Loc.GetString("es-cryohusk-convert-stagehand-notif",
+                ("player", _stagehandNotifications.WrapEntityName(target.Owner)));
+            _stagehandNotifications.SendStagehandNotification(msg);
         }
 
         _audio.PlayPvs(target.Comp.FreezeSound, target);
