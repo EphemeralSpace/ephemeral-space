@@ -1,7 +1,6 @@
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Trigger.Systems;
 using Content.Shared.StepTrigger.Systems;
-using Robust.Shared.Physics.Components;
 
 namespace Content.Shared.Mousetrap;
 
@@ -26,17 +25,11 @@ public sealed class MousetrapSystem : EntitySystem
         args.Continue |= toggle.Activated;
     }
 
-    // scale the damage according to mass
     private void BeforeDamageOnTrigger(Entity<MousetrapComponent> ent, ref BeforeDamageOnTriggerEvent args)
     {
-        if (TryComp(args.Tripper, out PhysicsComponent? physics) && physics.Mass != 0)
+        if (HasComp<ESMousetrapPestComponent>(args.Tripper))
         {
-            // The idea here is inverse,
-            // Small - big damage,
-            // Large - small damage
-            // yes i punched numbers into a calculator until the graph looked right
-            var scaledDamage = -50 * Math.Atan(physics.Mass - ent.Comp.MassBalance) + 25 * Math.PI;
-            args.Damage *= scaledDamage;
+            args.Damage += ent.Comp.MouseDamage;
         }
     }
 }

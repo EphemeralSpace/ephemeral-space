@@ -324,6 +324,7 @@
 # ES START
       task: RuminantCompound
 # ES END
+  - type: ESMousetrapPest
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -1074,6 +1075,7 @@
     thresholds:
       0: Alive
       5: Dead
+  - type: ESMousetrapPest
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
     baseSprintSpeed : 5
