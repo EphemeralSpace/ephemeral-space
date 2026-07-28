@@ -18,6 +18,7 @@
         Blunt: 8
     soundHit:
       collection: MetalThud
+    bluntStaminaDamageFactor: 1.10
   - type: Tool
     qualities:
       - Prying

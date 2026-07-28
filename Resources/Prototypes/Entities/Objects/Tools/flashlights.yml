@@ -111,7 +111,6 @@
         Blunt: 10
     soundHit:
       collection: MetalThud
-    bluntToStaminaDamageFactor: 0.80
   - type: Item
     sprite: Objects/Tools/seclite.rsi
   - type: PointLight

@@ -69,8 +69,6 @@
     damage:
       types:
         Piercing: 5
-  - type: StaminaDamageOnHit
-    damage: 4
     soundHit:
       path: "/Audio/Weapons/bladeslice.ogg"
   - type: Tool
@@ -112,8 +110,7 @@
     damage:
       types:
         Blunt: 6
-  - type: StaminaDamageOnHit
-    damage: 2
+    bluntToStaminaFactor: 0.75
     soundHit:
       collection: MetalThud
   - type: Tool

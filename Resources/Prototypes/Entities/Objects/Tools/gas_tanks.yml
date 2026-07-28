@@ -46,8 +46,8 @@
     swingLeft: false
     damage:
       types:
-        Blunt: 12
-    bluntToStaminaDamageFactor: 0.33
+        Blunt: 13
+    bluntStaminaDamageFactor: 1.33
   - type: PhysicalComposition
     materialComposition:
       Steel: 185
