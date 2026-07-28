@@ -65,8 +65,9 @@
   - type: MeleeWeapon
     damage:
       types:
-        Piercing: 10
+        Piercing: 4
     angle: 0
+    attackRate: 3
     wideAnimationRotation: -90
     soundHit:
       path: /Audio/Items/drill_hit.ogg
@@ -162,7 +163,7 @@
   name: circular saw
   id: SawElectric
   parent: BaseToolSurgery
-  description: For heavy duty cutting.
+  description: An electric saw used for cutting bone. It looks dangerous.
   components:
   - type: Sprite
     sprite: _ES/Objects/Specific/Medical/Tools/csaw.rsi
@@ -177,6 +178,7 @@
       groups:
         Brute: 2.5
     autoAttack: true
+    resistanceBypass: true
     angle: 0
     wideAnimationRotation: -90
     attackRate: 6
