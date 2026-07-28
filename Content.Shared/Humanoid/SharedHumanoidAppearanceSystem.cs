@@ -129,7 +129,9 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
 
             if (!component.HiddenLayers.ContainsKey(HumanoidVisualLayers.Hair))
             {
-                if (!component.MarkingSet.TryGetCategory(MarkingCategories.Hair, out var markings) || markings.Count == 0)
+                if (!component.MarkingSet.TryGetCategory(MarkingCategories.Hair, out var markings) ||
+                    markings.Count == 0 ||
+                    !SupportsHumanoidVisualLayer((uid, component), HumanoidVisualLayers.Hair))
                 {
                     args.PushMarkup(Loc.GetString("es-appearance-examine-hair-bald",
                         ("user", identity)));
@@ -153,11 +155,19 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
 
             if (!_identity.HasIdentityBlockerCoverage(uid, IdentityBlockerCoverage.EYES))
             {
-                var eyeColor = ColorNaming.Describe(component.EyeColor, Loc);
-                args.PushMarkup(Loc.GetString("es-appearance-examine-eyes",
-                    ("user", identity),
-                    ("colorStr", eyeColor),
-                    ("color", component.EyeColor)));
+                if (SupportsHumanoidVisualLayer((uid, component), HumanoidVisualLayers.Eyes))
+                {
+                    var eyeColor = ColorNaming.Describe(component.EyeColor, Loc);
+                    args.PushMarkup(Loc.GetString("es-appearance-examine-eyes",
+                        ("user", identity),
+                        ("colorStr", eyeColor),
+                        ("color", component.EyeColor)));
+                }
+                else
+                {
+                    args.PushMarkup(Loc.GetString("es-appearance-examine-eyes-none",
+                        ("user", identity)));
+                }
             }
             else
             {
@@ -617,5 +627,14 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
         }
 
         return Loc.GetString("identity-age-old");
+    }
+
+    public bool SupportsHumanoidVisualLayer(Entity<HumanoidAppearanceComponent?> ent, HumanoidVisualLayers layer)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        var spriteSet = _proto.Index(_proto.Index(ent.Comp.Species).SpriteSet);
+        return spriteSet.Sprites.ContainsKey(layer);
     }
 }

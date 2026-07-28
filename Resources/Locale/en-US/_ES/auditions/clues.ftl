@@ -2,6 +2,7 @@ es-appearance-examine-hair = { CAPITALIZE(SUBJECT($user)) } { CONJUGATE-HAVE($us
 es-appearance-examine-hair-bald = { CAPITALIZE(SUBJECT($user)) } { CONJUGATE-BE($user) } [bold]bald[/bold].
 es-appearance-examine-hair-hidden = { CAPITALIZE(POSS-ADJ($user)) } hair is [bold]hidden[/bold].
 es-appearance-examine-eyes = { CAPITALIZE(SUBJECT($user)) } { CONJUGATE-HAVE($user) } [bold]{$colorStr}[/bold] [font="Monospace"][color={$color}]█[/color][/font] eyes.
+es-appearance-examine-eyes-none = { CAPITALIZE(SUBJECT($user)) } { CONJUGATE-HAVE($user) } [bold]no eyes[/bold].
 es-appearance-examine-eyes-hidden = { CAPITALIZE(POSS-ADJ($user)) } eyes are [bold]hidden[/bold].
 
 es-clue-initial-fmt = known as "{$initial}"

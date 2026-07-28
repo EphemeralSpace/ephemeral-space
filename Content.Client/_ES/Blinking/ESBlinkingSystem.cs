@@ -12,6 +12,7 @@ public sealed partial class ESBlinkingSystem : ESSharedBlinkingSystem
 {
     [Dependency] private AnimationPlayerSystem _animationPlayer = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
 
     private const string AnimationKey = "anim-blink";
 
@@ -27,6 +28,9 @@ public sealed partial class ESBlinkingSystem : ESSharedBlinkingSystem
         if (!Appearance.TryGetData<bool>(ent.Owner, ESBlinkVisuals.EyesClosed, out var closed))
             return;
 
+        if (!_humanoidAppearance.SupportsHumanoidVisualLayer(ent.Owner, HumanoidVisualLayers.Eyes))
+            return;
+
         if (!_sprite.LayerMapTryGet(ent.Owner, HumanoidVisualLayers.Eyes, out var idx, false))
             return;
 
@@ -38,6 +42,9 @@ public sealed partial class ESBlinkingSystem : ESSharedBlinkingSystem
         base.Blink(ent);
 
         if (_animationPlayer.HasRunningAnimation(ent.Owner, AnimationKey))
+            return;
+
+        if (!_humanoidAppearance.SupportsHumanoidVisualLayer(ent.Owner, HumanoidVisualLayers.Eyes))
             return;
 
         if (!_sprite.TryGetLayer(ent.Owner, HumanoidVisualLayers.Eyes, out var layer, false))
