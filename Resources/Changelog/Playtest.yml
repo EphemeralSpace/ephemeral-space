@@ -1417,3 +1417,11 @@ Entries:
         secret identity.
   id: 153
   time: '2026-07-26T16:29:39.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Added many more newspaper & magazine articles.
+    - type: Add
+      message: You can now beat the shit out of people with a newspaper.
+  id: 154
+  time: '2026-07-27T21:59:46.0000000+00:00'

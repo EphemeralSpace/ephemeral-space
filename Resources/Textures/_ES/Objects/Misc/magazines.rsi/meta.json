@@ -45,6 +45,38 @@
     },
     {
       "name": "zine_revolutionary"
+    },
+    {
+        "name": "newspaper-inhand-left",
+        "directions": 4
+    },
+    {
+        "name": "newspaper-inhand-right",
+        "directions": 4
+    },
+    {
+        "name": "magazine-over-inhand-left",
+        "directions": 4
+    },
+    {
+        "name": "magazine-over-inhand-right",
+        "directions": 4
+    },
+    {
+        "name": "magazine-inner-inhand-left",
+        "directions": 4
+    },
+    {
+        "name": "magazine-inner-inhand-right",
+        "directions": 4
+    },
+    {
+        "name": "magazine-outline-inhand-left",
+        "directions": 4
+    },
+    {
+        "name": "magazine-outline-inhand-right",
+        "directions": 4
     }
   ]
 }
