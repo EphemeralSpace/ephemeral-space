@@ -39,12 +39,15 @@
   - type: Explosive
     explosionType: MicroBomb
     maxIntensity: 20
-  - type: MeleeWeapon
+  - type: MeleeWeapon # difficult to swing, but painful
     wideAnimationRotation: 45
-    attackRate: 0.8
+    attackRate: 0.5
+    angle: 40
+    swingLeft: false
     damage:
       types:
-        Blunt: 10
+        Blunt: 12
+    bluntToStaminaDamageFactor: 0.33
   - type: PhysicalComposition
     materialComposition:
       Steel: 185
@@ -130,10 +133,15 @@
     - Pocket
     - Belt
     - suitStorage
-  - type: MeleeWeapon
+  - type: MeleeWeapon # this thing sucks ass! you are going to lose points.
+    wideAnimationRotation: 45
+    attackRate: 0.75 # worse then fists
+    angle: 40
+    swingLeft: true
     damage:
       types:
         Blunt: 5
+    bluntToStaminaDamageFactor: 1 # doesnt even hurt really
   - type: PhysicalComposition
     materialComposition:
       Steel: 100

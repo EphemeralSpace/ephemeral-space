@@ -42,8 +42,10 @@
         Piercing: 6
     angle: 0
     wideAnimation: WeaponArcThrust
+    attackRate: 0.75
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+    range: 1.75
   - type: DamageOtherOnHit
     damage:
       types:

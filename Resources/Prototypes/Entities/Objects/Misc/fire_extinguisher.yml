@@ -57,11 +57,15 @@
     verbToggleOn: fire-extinguisher-component-verb-remove
     verbToggleOff: fire-extinguisher-component-verb-engage
   - type: SpraySafety
-  - type: MeleeWeapon
+  - type: MeleeWeapon # like a more ergonomic version of the oxygen tank
     wideAnimationRotation: 180
+    attackRate: 0.75
+    angle: 60
+    swingLeft: false
     damage:
       types:
         Blunt: 10
+    bluntToStaminaDamageFactor: 0.66
     soundHit:
       path: /Audio/Weapons/smash.ogg
   - type: Tool
@@ -138,11 +142,15 @@
         reagents:
         - ReagentId: Water
           Quantity: 30
-  - type: MeleeWeapon
+  - type: MeleeWeapon # really awful. your fists are better
     wideAnimationRotation: 180
+    attackRate: 1
+    angle: 45
+    swingLeft: true
     damage:
       types:
-        Blunt: 3 #completely ineffective; your fists are better
+        Blunt: 3
+    bluntToStaminaDamageFactor: 1
     soundHit:
       path: /Audio/Effects/weak_hit1.ogg
   - type: PhysicalComposition
