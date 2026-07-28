@@ -17,6 +17,10 @@
     objectiveBlacklist:
       components: # this will probably infinitely loop if it targets itself?
       - ESTargetCompleteOwnedObjective
+  - type: ESTargetSecretIdentityBlacklist
+    secretIdentityBlacklist:
+    - Hater
+    - Nobleman
 
 - type: entity
   parent: ESBaseSecretIdentityObjective
