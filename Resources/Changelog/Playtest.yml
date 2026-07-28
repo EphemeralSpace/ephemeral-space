@@ -1425,3 +1425,19 @@ Entries:
       message: You can now beat the shit out of people with a newspaper.
   id: 154
   time: '2026-07-27T21:59:46.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Miasma clouds no longer cause vomiting.
+    - type: Fix
+      message: >-
+        Fixed an issue where the navigation terminal could rapidly spam
+        announcements.
+    - type: Tweak
+      message: Blocked hater from targeting certain secret identities.
+    - type: Fix
+      message: Fixed melee swings being rotated during mirror mode.
+    - type: Tweak
+      message: Reduced chance of mirror mode.
+  id: 155
+  time: '2026-07-28T10:32:17.0000000+00:00'
