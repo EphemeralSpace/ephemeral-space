@@ -150,7 +150,7 @@
     damage:
       types:
         Blunt: 3
-    bluntToStaminaDamageFactor: 1
+    bluntStaminaDamageFactor: 0
     soundHit:
       path: /Audio/Effects/weak_hit1.ogg
   - type: PhysicalComposition

@@ -110,7 +110,6 @@
     damage:
       types:
         Blunt: 6
-    bluntToStaminaFactor: 0.75
     soundHit:
       collection: MetalThud
   - type: Tool
