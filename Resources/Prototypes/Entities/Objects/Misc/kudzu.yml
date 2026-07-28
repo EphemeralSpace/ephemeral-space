@@ -45,9 +45,8 @@
             bounds: "-0.5,-0.5,0.5,0.5"
           layer:
           - MidImpassable
-    - type: Damageable
-      damageModifierSet: Wood
     - type: Destructible
+      damageModifierSet: ESWeakBiological
       thresholds:
       - trigger:
           !type:DamageTrigger

@@ -16,7 +16,7 @@
     maxFillLevels: 21
     fillBaseName: book
   - type: Damageable
-    damageModifierSet: Wood
+    damageModifierSet: ESWood
     damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:

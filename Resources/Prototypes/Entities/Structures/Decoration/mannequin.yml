@@ -39,7 +39,7 @@
     node: mannequin
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Wood
+    damageModifierSet: ESWood
   - type: Destructible
     thresholds:
     - trigger:

@@ -237,7 +237,7 @@
     graph: DoorGraph
     node: woodDoor
   - type: Damageable
-    damageModifierSet: Wood
+    damageModifierSet: ESWood
   - type: Destructible
     thresholds:
     - trigger: *DamageTrigger150
@@ -273,7 +273,7 @@
     graph: DoorGraph
     node: paperDoor
   - type: Damageable
-    damageModifierSet: Wood
+    damageModifierSet: ESWeakBiological
   - type: Destructible
     thresholds:
     - trigger: *DamageTrigger150

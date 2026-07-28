@@ -183,7 +183,9 @@
     wideAnimationRotation: -90
     attackRate: 6
     soundHit:
-      path: /Audio/Items/drill_hit.ogg
+      collection: CircularSawHit
+    soundSwing:
+      collection: CircularSawSwing
   - type: Tool
     speedModifier: 1 # its basically persistent
     qualities:

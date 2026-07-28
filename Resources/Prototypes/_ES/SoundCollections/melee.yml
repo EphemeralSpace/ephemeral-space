@@ -1,0 +1,10 @@
+- type: soundCollection
+  id: CircularSawSwing
+  files:
+  - "/Audio/_ES/Weapons/Melee/csaw_swing_1.ogg"
+  - "/Audio/_ES/Weapons/Melee/csaw_swing_2.ogg"
+
+- type: soundCollection
+  id: CircularSawHit
+  files:
+  - "/Audio/_ES/Weapons/Melee/csaw_hit.ogg"

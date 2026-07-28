@@ -21,12 +21,12 @@
   - type: Tag
     tags:
     - Medkit
-  - type: MeleeWeapon # kind of like a shitty toolbox. its plsatic so it doesn't deal much serious damage, but it *does* hurt
+  - type: MeleeWeapon # kind of like a toolbox that does mostly stamina (its made out of plastic. it wont deal much serious damage, but it hurts!)
     damage:
       types:
-        Blunt: 6
+        Blunt: 5 # important threshold, unable to deal damage to items with base structural deflection
   - type: StaminaDamageOnHit
-    damage: 6
+    damage: 7
 
 - type: entity
   name: burn treatment kit

@@ -35,19 +35,27 @@
     Slash: 8
 
 - type: damageModifierSet
-  id: ESMachine # we don't usually want people easily breaking machines. so they have a bit of resistance against the most common weapon types
+  id: ESMachine # we don't usually want people easily breaking machines / structures. so they have a bit of resistance against the most common weapon types
+  # TODO rename this because its incredibly versatile and should exist on like almost every structure
   flatReductions:
     Blunt: 2
     Slash: 6
 
 - type: damageModifierSet
-  id: ESWood # burnt down easily, also handily taken down by things that deal structural. resists slash for obvious reasons
+  id: ESWood # burnt down easily, also handily taken down by things that deal structural. difficult to slashed or pierce
   coefficients:
     Heat: 2
   flatReductions:
     Slash: 8
-    Piercing: 8
-    Heat: -2
+    Piercing: 3
+
+- type: damageModifierSet
+  id: ESWeakBiological # for stuff like plants or cobwebs. can be burnt or slashed really easily
+  coefficients:
+    Heat: 4
+    Slash: 4
+  flatReductions:
+    Heat: -2 # increases the effectiveness of weak flammable weapons like lighters
 
 # Mobs
 - type: damageModifierSet

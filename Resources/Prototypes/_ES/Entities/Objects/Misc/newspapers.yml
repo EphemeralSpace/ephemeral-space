@@ -1,7 +1,7 @@
 # Base Prototypes
 - type: entity
+  parent: BasePaper
   id: BaseNewspaper
-  parent: BaseItem
   name: newspaper
   description: A paperback newspaper. This one is several years out of date and doesn't seem to contain any information you don't already know.
   components:
@@ -20,9 +20,9 @@
     wideAnimationRotation: 75
     damage:
       types:
-        Blunt: 2
+        Blunt: 2 # splats cockroaches in 1 hit
   - type: StaminaDamageOnHit
-    damage: 10
+    damage: 8
 
 # Newspapers
 - type: entity

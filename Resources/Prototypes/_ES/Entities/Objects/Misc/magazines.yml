@@ -1,6 +1,6 @@
 # Base prototypes
 - type: entity
-  parent: BaseItem
+  parent: BasePaper
   id: BaseMagazine
   name: magazine
   description: A finely-printed magazine. Even in space, hard-boiled forms of media distribution like this can never fail you.

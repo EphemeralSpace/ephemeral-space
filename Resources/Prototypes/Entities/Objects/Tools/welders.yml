@@ -36,29 +36,9 @@
       params:
         variation: 0.125
         volume: -5
-  - type: ItemToggleMeleeWeapon
-    activatedSoundOnHit:
-      path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
-      params:
-        variation: 0.250
-        volume: -10
-    activatedSoundOnHitNoDamage:
-      path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
-      params:
-        variation: 0.250
-        volume: -12
-    deactivatedSoundOnHitNoDamage:
-      collection: MetalThud
-    activatedDamage:
-        types:
-            Heat: 8
   - type: ItemToggleSize
     activatedSize: Large
   - type: ItemToggleHot
-  - type: ComponentToggler
-    components:
-    - type: DisarmMalus
-      malus: 0.6
   - type: ToggleableVisuals
     spriteLayer: flame
     inhandVisuals:
@@ -69,13 +49,35 @@
       - state: inhand-right-flame
         shader: unshaded
   - type: UseDelay
-  - type: MeleeWeapon
+  - type: MeleeWeapon # like a pocket csaw. does a lot of dps and has a larger range then usual but you need to have fuel / land your hits
     wideAnimationRotation: -90
     damage:
       types:
-        Blunt: 5 #i mean... i GUESS you could use it like that
+        Blunt: 0 # kinda jank solution but, uh, it works...
+    autoAttack: true
+    angle: 0
+    range: 1.75
+    attackRate: 6
     soundHit:
       collection: MetalThud
+    soundSwing:
+      collection: lighterOffSounds
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedSoundOnHitNoDamage:
+      collection: lighterOnSounds
+      params:
+        variation: 0.250
+        volume: -12
+    deactivatedSoundOnHitNoDamage:
+      collection: lighterOffSounds
+    activatedDamage:
+        types:
+            Heat: 2
   - type: RefillableSolution
     solution: Welder
   - type: SolutionContainerManager
