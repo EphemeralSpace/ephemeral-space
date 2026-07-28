@@ -1441,3 +1441,15 @@ Entries:
       message: Reduced chance of mirror mode.
   id: 155
   time: '2026-07-28T10:32:17.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Cryojunkies no longer have an objective to transform into a cryohusk.
+    - type: Add
+      message: >-
+        Cryojunkies now get an announcement upon death informing them that their
+        revive is coming soon. 
+    - type: Tweak
+      message: Cryohusks no longer have examine text for nonexistent eyes.
+  id: 156
+  time: '2026-07-28T15:48:18.0000000+00:00'
