@@ -1,0 +1,136 @@
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: ESBaseMobMonkey
+  description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
+  abstract: true
+  components:
+# Basic Stuff
+  - type: Hunger
+  - type: Icon
+    sprite: _ES/Mobs/Species/Monkey/parts.rsi
+    state: full
+  - type: Thirst
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeat
+      amount: 5
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2
+    baseSprintSpeed : 3.75
+# Monkey Quirks
+  - type: NameIdentifier
+    group: Monkey
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Monkey_burning
+  - type: Speech
+    speechSounds: Monkey
+    speechVerb: Monkey
+  - type: MonkeyAccent
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 30
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 3
+        Piercing: 3
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+# Body / sprite comp
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: monkey
+      sprite: Mobs/Animals/monkey.rsi
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+  - type: HumanoidAppearance
+    species: ESMonkey
+    markingsDisplacement:
+      Hair:
+        sizeMaps:
+          32:
+            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
+            state: hair
+  - type: Inventory
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
+            state: gloves
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
+            state: outer
+      neck:
+        sizeMaps:
+          32:
+            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
+            state: neck
+      back:
+        sizeMaps:
+          32:
+            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
+            state: shoes
+  - type: Hands
+    leftHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _ES/Mobs/Species/Monkey/displacement.rsi
+          state: inhand-left
+    rightHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _ES/Mobs/Species/Monkey/displacement.rsi
+          state: inhand-right
+
+- type: entity
+  save: false
+  parent: ESBaseMobMonkey
+  id: ESMobMonkey
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: ESMobMonkeyDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: ESMonkey

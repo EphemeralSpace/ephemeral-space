@@ -1,0 +1,104 @@
+- type: species
+  id: ESMonkey
+  name: es-species-name-monkey
+  roundStart: false
+  prototype: ESMobMonkey
+  sprites: ESMobMonkeySprites
+  markingLimits: MobHumanMarkingLimits
+  dollPrototype: ESMobMonkeyDummy
+  skinColoration: Hues
+
+- type: speciesBaseSprites
+  id: ESMobMonkeySprites
+  sprites:
+    Special: MobHumanoidAnyMarking
+    Head: ESMobMonkeyHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: ESMobMonkeyTorso
+    HeadTop: MobHumanoidAnyMarking
+    Eyes: ESMobMonkeyEyes
+    LArm: ESMobMonkeyLArm
+    RArm: ESMobMonkeyRArm
+    LHand: ESMobMonkeyLHand
+    RHand: ESMobMonkeyRHand
+    LLeg: ESMobMonkeyLLeg
+    RLeg: ESMobMonkeyRLeg
+    LFoot: ESMobMonkeyLFoot
+    RFoot: ESMobMonkeyRFoot
+    Tail: MobHumanoidAnyMarking
+
+- type: humanoidBaseSprite
+  id: ESMobMonkeyHead
+  baseSprite:
+    sprite: _ES/Mobs/Species/Monkey/parts.rsi
+    state: head
+
+- type: humanoidBaseSprite
+  id: ESMobMonkeyEyes
+  baseSprite:
+    sprite: _ES/Mobs/Species/Monkey/parts.rsi
+    state: eyes
+
+- type: humanoidBaseSprite
+  id: ESMobMonkeyTorso
+  baseSprite:
+    sprite: _ES/Mobs/Species/Monkey/parts.rsi
+    state: torso
+
+- type: humanoidBaseSprite
+  id: ESMobMonkeyLLeg
+  baseSprite:
+    sprite: _ES/Mobs/Species/Monkey/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: ESMobMonkeyLArm
+  baseSprite:
+    sprite: _ES/Mobs/Species/Monkey/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: ESMobMonkeyLHand
+  baseSprite:
+    sprite: _ES/Mobs/Species/Monkey/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: ESMobMonkeyLFoot
+  baseSprite:
+    sprite: _ES/Mobs/Species/Monkey/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: ESMobMonkeyRLeg
+  baseSprite:
+    sprite: _ES/Mobs/Species/Monkey/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: ESMobMonkeyRArm
+  baseSprite:
+    sprite: _ES/Mobs/Species/Monkey/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: ESMobMonkeyRHand
+  baseSprite:
+    sprite: _ES/Mobs/Species/Monkey/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: ESMobMonkeyRFoot
+  baseSprite:
+    sprite: _ES/Mobs/Species/Monkey/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: ESMobMonkeyTail
+  baseSprite:
+    sprite: _ES/Mobs/Species/Monkey/parts.rsi
+    state: tail
