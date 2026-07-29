@@ -90,6 +90,11 @@
           32:
             sprite: _ES/Mobs/Species/Monkey/displacement.rsi
             state: outer
+      belt:
+        sizeMaps:
+          32:
+            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
+            state: belt
       neck:
         sizeMaps:
           32:
