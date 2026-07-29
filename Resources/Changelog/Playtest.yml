@@ -1459,3 +1459,9 @@ Entries:
       message: Getting hit by melee slows you down less
   id: 157
   time: '2026-07-29T15:07:10.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Mouse traps no longer do damage to non-pests.
+  id: 158
+  time: '2026-07-29T15:14:01.0000000+00:00'
