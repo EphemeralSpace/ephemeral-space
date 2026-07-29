@@ -194,7 +194,7 @@
     graph: Seat
     node: chairWood
   - type: Damageable
-    damageModifierSet: Wood
+    damageModifierSet: ESWood
   - type: Destructible
     thresholds:
     - trigger: # Excess damage, don't spawn entities

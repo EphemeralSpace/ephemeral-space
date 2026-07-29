@@ -14,7 +14,6 @@
       Extinguish: [ Touch ]
   - type: ExtinguishableSetCollisionWake
   - type: Flammable
-    fireSpread: true
     alwaysCombustible: true
     canExtinguish: true
     damage:
@@ -24,7 +23,6 @@
     sprite: Effects/fire.rsi
     normalState: fire
   - type: Damageable
-    damageModifierSet: Wood
   - type: Destructible
     thresholds:
     - trigger: # Excess damage, don't spawn entities
@@ -327,8 +325,6 @@
   - type: FireVisuals
     sprite: Effects/fire.rsi
     normalState: fire
-  - type: Damageable
-    damageModifierSet: Wood
   - type: Destructible
     thresholds:
     - trigger:

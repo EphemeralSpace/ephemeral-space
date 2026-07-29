@@ -104,7 +104,7 @@
         shader: unshaded
         visible: false
         map: [ "light" ]
-  - type: MeleeWeapon
+  - type: MeleeWeapon # genuinely good pocket blunt weapon
     wideAnimationRotation: 90
     damage:
       types:

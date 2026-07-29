@@ -39,4 +39,4 @@
         - LowImpassable
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Wood
+    damageModifierSet: ESWood

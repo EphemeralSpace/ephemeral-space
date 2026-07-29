@@ -11,7 +11,7 @@
     sprite: Structures/Storage/Shelfs/wood.rsi
     state: base
   - type: Damageable
-    damageModifierSet: Wood
+    damageModifierSet: ESWood
     damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:

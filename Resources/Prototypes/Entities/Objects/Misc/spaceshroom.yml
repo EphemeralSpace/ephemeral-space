@@ -29,7 +29,7 @@
           - id: FoodSpaceshroom
     - type: Damageable
       damageContainer: StructuralInorganic
-      damageModifierSet: Wood
+      damageModifierSet: ESWeakBiological
     - type: Destructible
       thresholds:
         - trigger:

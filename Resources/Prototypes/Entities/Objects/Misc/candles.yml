@@ -50,16 +50,6 @@
         right:
         - state: inhand-right-flame
           shader: unshaded
-    - type: Damageable
-      damageModifierSet: Wood
-    - type: Destructible
-      thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 100
-        behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
 
 - type: entity
   name: red candle

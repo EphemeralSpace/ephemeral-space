@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseStorageItem
+  parent: [BaseStorageItem, BaseMeleeBluntContainer]
   id: BriefcaseBase
   description: Useful for carrying items in your hands.
   abstract: true
@@ -9,10 +9,6 @@
   - type: Storage
     grid:
     - 0,0,5,3
-  - type: MeleeWeapon
-    damage:
-      types:
-        Blunt: 8
 
 - type: entity
   parent: BriefcaseBase

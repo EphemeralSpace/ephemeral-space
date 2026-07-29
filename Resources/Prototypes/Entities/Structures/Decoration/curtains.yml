@@ -36,7 +36,6 @@
   - type: Appearance
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: Wood
   - type: Destructible
     thresholds:
     - trigger: # Excess damage, don't spawn entities

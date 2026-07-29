@@ -1,0 +1,14 @@
+﻿- files: ["csaw_swing_1.ogg", "csaw_swing_2.ogg", "csaw_hit.ogg"]
+  license: "CC0-1.0"
+  copyright: "Made by derjuli on freesound. Modified by Flareguy for Ephemeral Space"
+  source: "https://freesound.org/people/derjuli/sounds/448133/"
+
+- files: ["drill_swing_1.ogg", "drill_swing_2.ogg"]
+  license: "CC0-1.0"
+  copyright: "Made by jedg on freesound. Modified by Flareguy for Ephemeral Space"
+  source: "https://freesound.org/people/jedg/sounds/505825/"
+
+- files: ["drill_hit.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Made by DWOBoyle on freesound. Modified by Flareguy for Ephemeral Space"
+  source: "https://freesound.org/people/DWOBoyle/sounds/449329/"
