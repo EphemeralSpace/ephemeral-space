@@ -144,7 +144,7 @@
     - id: SheetSteel
     - id: SheetGlass
     - id: SheetPlastic
-      group: # testing: idk how these will play out or which one will be a better fit. so lets just try both
+    - group: # testing: idk how these will play out or which one will be a better fit. so lets just try both
       - id: WeaponGrapplingGun
       - id: WeaponForceGun
 
