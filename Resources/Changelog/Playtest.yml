@@ -1479,3 +1479,11 @@ Entries:
       message: Gas masks no longer connect to gas tanks for internals.
   id: 160
   time: '2026-07-29T16:56:44.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Leapleechs are now slightly smarter with targeting and pathing to
+        players
+  id: 161
+  time: '2026-07-29T17:41:02.0000000+00:00'
