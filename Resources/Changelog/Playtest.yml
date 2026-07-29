@@ -1453,3 +1453,9 @@ Entries:
       message: Cryohusks no longer have examine text for nonexistent eyes.
   id: 156
   time: '2026-07-28T15:48:18.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Getting hit by melee slows you down less
+  id: 157
+  time: '2026-07-29T15:07:10.0000000+00:00'
