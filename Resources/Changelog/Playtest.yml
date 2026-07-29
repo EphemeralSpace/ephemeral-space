@@ -1471,3 +1471,11 @@ Entries:
       message: Almost every role now spawns with a generic PDA and backpack
   id: 159
   time: '2026-07-29T15:50:19.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Gas masks now passively block various harmful gases when worn.
+    - type: Remove
+      message: Gas masks no longer connect to gas tanks for internals.
+  id: 160
+  time: '2026-07-29T16:56:44.0000000+00:00'
