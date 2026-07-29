@@ -4,7 +4,7 @@ action-name-internals-toggle-off = Toggle Internals Off
 action-description-internals-toggle-off = Breathe from the environment.
 
 # ES START
-internals-self-no-breath-tool = No breathing tool!
+internals-self-no-breath-tool = No breath mask!
 internals-other-no-breath-tool = {CAPITALIZE(SUBJECT($ent))} {CONJUGATE-BASIC($ent, "don't", "doesn't")} have a breathing tool!
 internals-self-no-tank = No gas tank!
 internals-other-no-tank = {CAPITALIZE(SUBJECT($ent))} {CONJUGATE-BASIC($ent, "don't", "doesn't")} have a gas tank!
