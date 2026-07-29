@@ -7,9 +7,9 @@
   components:
   - type: Appearance
     appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda
   - type: Sprite
     sprite: Objects/Devices/pda.rsi
     layers:
@@ -27,11 +27,6 @@
     sprite: Objects/Devices/pda.rsi
     state: pda
   - type: Pda
-    paiSlot:
-      priority: -2
-      whitelist:
-        components:
-        - PAI
     penSlot:
       startingItem: Pen
       priority: -1
@@ -125,25 +120,8 @@
     proto: robot
   - type: Speech
     speechVerb: Robotic
-
-- type: entity
-  parent: BasePDA
-  id: BaseWidePDA
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-      state: "pda"
-    - state: "light_overlay_wide"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay_wide"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
+  - type: PdaBorderColor
+    borderColor: "#717059"
 
 - type: entity
   parent: BasePDA
@@ -177,39 +155,23 @@
 - type: entity
   parent: BasePDA
   id: PassengerPDA
-  name: assistant PDA
-  description: Why isn't it gray?
+  name: PDA
   components:
   - type: Pda
     id: PassengerIDCard
-  - type: PdaBorderColor
-    borderColor: "#717059"
 
 - type: entity
   parent: BasePDA
   id: ChefPDA
-  name: chef PDA
-  description: Covered in grease and flour.
+  name: PDA
   components:
   - type: Pda
     id: ChefIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-cook
-  - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-  - type: Icon
-    state: pda-cook
-  - type: ReplacementAccent # for random sentience event
-    accent: italian
 
 - type: entity
   parent: BasePDA
   id: ClownPDA
-  name: clown PDA
-  description: Looks can be deceiving.
+  name: Clown PDA
   components:
   - type: Pda
     id: ClownIDCard
@@ -257,143 +219,58 @@
 - type: entity
   parent: BasePDA
   id: CargoPDA
-  name: cargo PDA
-  description: PDA for the guys that order the pizzas.
+  name: PDA
   components:
   - type: Pda
     id: CargoIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-cargo
-  - type: PdaBorderColor
-    borderColor: "#e39751"
-  - type: Icon
-    state: pda-cargo
 
 - type: entity
   parent: BasePDA
   id: BartenderPDA
-  name: bartender PDA
-  description: Smells like beer.
+  name: PDA
   components:
   - type: Pda
     id: BartenderIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-bartender
-  - type: PdaBorderColor
-    borderColor: "#333333"
-  - type: Icon
-    state: pda-bartender
 
 - type: entity
   parent: BasePDA
   id: JanitorPDA
-  name: janitor PDA
-  description: Smells like bleach.
+  name: PDA
   components:
   - type: Pda
     id: JanitorIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-janitor
-  - type: PdaBorderColor
-    borderColor: "#5D2D56"
-  - type: Icon
-    state: pda-janitor
 
 - type: entity
   parent: BasePDA
   id: CaptainPDA
-  name: captain PDA
-  description: Surprisingly no different from your PDA.
+  name: PDA
   components:
   - type: Pda
     id: CaptainIDCard
-    penSlot:
-      startingItem: Pen
-      priority: -1
-      whitelist:
-        tags:
-        - Write
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-captain
-  - type: PdaBorderColor
-    borderColor: "#7C5D00"
-  - type: Icon
-    state: pda-captain
 
 - type: entity
   parent: BasePDA
   id: StationAdminPDA
-  name: station administrator PDA
-  description: Looks like it's been chewed on.
+  name: PDA
   components:
   - type: Pda
     id: StationAdminIDCard
-    penSlot:
-      startingItem: LuxuryPen
-      priority: -1
-      whitelist:
-        tags:
-        - Write
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-hop
-  - type: PdaBorderColor
-    borderColor: "#789876"
-    accentHColor: "#447987"
-  - type: Icon
-    state: pda-hop
 
 - type: entity
   parent: BasePDA
   id: EngineerPDA
-  name: engineer PDA
-  description: Rugged and well-worn.
+  name: PDA
   components:
   - type: Pda
     id: EngineeringIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-engineer
-  - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#A32D26"
-  - type: Icon
-    state: pda-engineer
 
 - type: entity
   parent: BaseMedicalPDA
   id: MedicalPDA
-  name: medical PDA
-  description: Shiny and sterile.
+  name: PDA
   components:
   - type: Pda
     id: MedicalIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-medical
-  - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#447987"
-  - type: Icon
-    state: pda-medical
   - type: GuideHelp
     guides:
     - OffbrandPhysician # Offbrand
@@ -401,58 +278,26 @@
 - type: entity
   parent: BaseMedicalPDA
   id: ParamedicPDA
-  name: paramedic PDA
-  description: Shiny and sterile.
+  name: PDA
   components:
   - type: Pda
     id: ParamedicIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-paramedic
-  - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#2a4b5b"
-  - type: Icon
-    state: pda-paramedic
 
 - type: entity
   parent: BasePDA
   id: SciencePDA
-  name: science PDA
-  description: It's covered with an unknown gooey substance.
+  name: PDA
   components:
   - type: Pda
     id: ResearchIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-science
-  - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#8900c9"
-  - type: Icon
-    state: pda-science
 
 - type: entity
   parent: BaseSecurityPDA
   id: SecurityPDA
-  name: security PDA
-  description: Red to hide the stains of assistant blood.
+  name: PDA
   components:
   - type: Pda
     id: SecurityIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-security
-  - type: PdaBorderColor
-    borderColor: "#A32D26"
-  - type: Icon
-    state: pda-security
 
 - type: entity
   parent: BaseSecurityPDA
@@ -460,13 +305,6 @@
   name: CentComm PDA
   description: Light green sign of walking bureaucracy.
   components:
-  - type: Pda
-    penSlot:
-      startingItem: Pen
-      priority: -1
-      whitelist:
-        tags:
-        - Write
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -521,33 +359,12 @@
     - DoorBumpOpener
 
 - type: entity
-  parent: CentcomPDA
-  id: DeathsquadPDA
-  suffix: Death Squad
-  components:
-  - type: Pda
-  - type: Tag #  Ignore Chameleon tags
-    tags:
-    - DoorBumpOpener
-
-- type: entity
   parent: BasePDA
   id: AtmosPDA
-  name: atmos PDA
-  description: Still smells like plasma.
+  name: PDA
   components:
   - type: Pda
     id: AtmosIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-atmos
-  - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#447987"
-  - type: Icon
-    state: pda-atmos
 
 - type: entity
   parent: BasePDA
@@ -564,74 +381,22 @@
        pda-clear
   - type: PdaBorderColor
     borderColor: "#288e4d"
-  - type: Icon
-    state: pda-clear
-
-- type: entity
-  parent: BasePDA
-  id: SyndiPDA
-  name: syndicate PDA
-  description: Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people!
-  components:
-  - type: Pda
-    id: null
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-syndi
-  - type: PdaBorderColor
-    borderColor: "#891417"
-  - type: Icon
-    state: pda-syndi
-  - type: EntityTableContainerFill
-    containers:
-      preinstalled-program-container:
-        all:
-        - id: NotekeeperCartridge
-        - id: NanoTaskCartridge
 
 - type: entity
   parent: BasePDA
   id: ReporterPDA
-  name: reporter PDA
-  description: Smells like freshly printed press.
+  name: PDA
   components:
   - type: Pda
     id: ReporterIDCard
-    penSlot:
-      startingItem: LuxuryPen
-      priority: -1
-      whitelist:
-        tags:
-        - Write
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-reporter
-  - type: PdaBorderColor
-    borderColor: "#3f3f74"
-  - type: Icon
-    state: pda-reporter
 
 - type: entity
   parent: BaseSecurityPDA
   id: DetectivePDA
-  name: detective PDA
-  description: Smells like rain... pouring down the rooftops...
+  name: PDA
   components:
   - type: Pda
     id: DetectiveIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-detective
-  - type: PdaBorderColor
-    borderColor: "#774705"
-  - type: Icon
-    state: pda-detective
   - type: EntityTableContainerFill
     containers:
       preinstalled-program-container:
@@ -646,8 +411,7 @@
 - type: entity
   parent: [BasePDA, SelectableLock]
   id: ChameleonPDA
-  name: assistant PDA
-  description: Why isn't it gray?
+  name: PDA
   suffix: Chameleon
   components:
   - type: PdaBorderColor
