@@ -1,6 +1,6 @@
 - type: entity
-  parent: BaseItem
-  id: [BaseKnife, BaseMeleeKnife]
+  parent: [ BaseItem, BaseMeleeKnife ]
+  id: BaseKnife
   abstract: true
   components:
   - type: Tag
@@ -40,7 +40,7 @@
 
 - type: entity
   name: butcher's cleaver
-  parent: [BaseKnife, BaseMeleeKnifeImproved]
+  parent: [ BaseKnife, BaseMeleeKnifeImproved ]
   id: ButchCleaver
   description: A huge blade used for chopping and chopping up meat. This includes clowns and clown-by-products.
   components:
@@ -100,7 +100,7 @@
 
 - type: entity
   name: plasma shiv
-  parent: [Shiv, BaseMeleeKnife]
+  parent: [ Shiv, BaseMeleeKnife ]
   id: PlasmaShiv
   description: A crude weapon fashioned from a piece of cloth and a plasma glass shard.
   components:
