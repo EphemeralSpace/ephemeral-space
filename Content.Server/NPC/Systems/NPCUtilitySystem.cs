@@ -54,6 +54,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
     [Dependency] private HandsSystem _hands = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private IngestionSystem _ingestion = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private NpcFactionSystem _npcFaction = default!;
     [Dependency] private PuddleSystem _puddle = default!;
@@ -199,6 +200,10 @@ public sealed partial class NPCUtilitySystem : EntitySystem
             case ESCanInteractCon:
             {
                 return _actionBlocker.CanInteract(owner, targetUid) ? 1 : 0;
+            }
+            case ESTargetInUnobstructedPathCon:
+            {
+                return _interaction.InRangeUnobstructed(owner, targetUid, -1) ? 1 : 0;
             }
 // ES END
             case FoodValueCon:
