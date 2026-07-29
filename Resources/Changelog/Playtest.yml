@@ -1487,3 +1487,36 @@ Entries:
         players
   id: 161
   time: '2026-07-29T17:41:02.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: >-
+        Certain similar archetypes of weapons now share identical properties.
+        For example, the coroner's scalpel and butcher knife now function
+        identically
+    - type: Add
+      message: The circular saw now penetrates all armor and has snazzy new sounds
+    - type: Add
+      message: >-
+        Welding tools and the electric drill now attack continuously, but have a
+        lower range
+    - type: Add
+      message: The spear now has a longer range but attacks slower
+    - type: Add
+      message: >-
+        The wrench and screwdriver are slightly less awful as weapons (not by
+        much)
+    - type: Add
+      message: Oxygen tanks and fire extinguishers deal a bit more damage
+    - type: Add
+      message: Medkits are now usable as weapons
+    - type: Add
+      message: You can now ignite wooden barricades
+    - type: Tweak
+      message: >-
+        Wooden barricades (and most wooden structures) are now harder to break
+        with most weaponry
+    - type: Tweak
+      message: Lockers and crates are now slightly harder to break with most weaponry
+  id: 162
+  time: '2026-07-29T22:28:09.0000000+00:00'
