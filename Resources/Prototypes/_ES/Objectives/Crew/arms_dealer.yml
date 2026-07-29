@@ -12,5 +12,5 @@
   - type: ESHoldSummonableObjective
   - type: ESCounterObjective
     title: es-arms-dealer-objective-title
-    target: 5
-    maxTarget: 8
+    target: 2
+    maxTarget: 4
