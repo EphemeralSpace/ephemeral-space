@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseItem, BaseWeaponKnifeImproved]
+  parent: [BaseItem, BaseMeleeKnifeImproved]
   id: ESScalpelAutopsy
   name: autopsy scalpel
   description: A finely crafted scalpel, usable by only a select few on station. Capable of discerning useful information from dead bodies. Pointy.

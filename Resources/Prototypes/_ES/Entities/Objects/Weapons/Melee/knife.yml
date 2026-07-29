@@ -100,18 +100,13 @@
 
 - type: entity
   name: plasma shiv
-  parent: Shiv
+  parent: [Shiv, BaseMeleeKnife]
   id: PlasmaShiv
   description: A crude weapon fashioned from a piece of cloth and a plasma glass shard.
   components:
   - type: Construction
     graph: PlasmaShiv
     node: icon
-  - type: MeleeWeapon
-    attackRate: 1.5
-    damage:
-      types:
-        Slash: 9
   - type: Item
     sprite: Objects/Weapons/Melee/plasma_shiv.rsi
   - type: Sprite
