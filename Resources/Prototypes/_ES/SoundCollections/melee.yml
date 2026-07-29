@@ -8,3 +8,14 @@
   id: CircularSawHit
   files:
   - "/Audio/_ES/Weapons/Melee/csaw_hit.ogg"
+
+- type: soundCollection
+  id: SurgicalDrillSwing
+  files:
+  - "/Audio/_ES/Weapons/Melee/drill_swing_1.ogg"
+  - "/Audio/_ES/Weapons/Melee/drill_swing_2.ogg"
+
+- type: soundCollection
+  id: SurgicalDrillHit
+  files:
+  - "/Audio/_ES/Weapons/Melee/drill_hit.ogg"

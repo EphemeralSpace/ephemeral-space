@@ -1,6 +1,6 @@
 - type: entity
   name: welding tool
-  parent: BaseItem
+  parent: [ BaseItem, MeleeSwingSpeedContinuous, MeleeShortRange ]
   id: Welder
   description: "Melts anything as long as it's fueled, don't forget your eye protection!"
   components:
@@ -49,15 +49,11 @@
       - state: inhand-right-flame
         shader: unshaded
   - type: UseDelay
-  - type: MeleeWeapon # like a pocket csaw. does a lot of dps and has a larger range then usual but you need to have fuel / land your hits
+  - type: MeleeWeapon # like a pocket csaw. does a lot of dps but you need to have fuel / land your hits
     wideAnimationRotation: -90
     damage:
       types:
         Blunt: 0 # kinda jank solution but, uh, it works...
-    autoAttack: true
-    angle: 0
-    range: 1.75
-    attackRate: 6
     soundHit:
       collection: MetalThud
     soundSwing:

@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: [ BaseItem, BaseMeleeCylindrical ]
   id: GasTankBase
   components:
   - type: Sprite
@@ -39,31 +39,12 @@
   - type: Explosive
     explosionType: MicroBomb
     maxIntensity: 20
-  - type: MeleeWeapon # difficult to swing, but painful
-    wideAnimationRotation: 45
-    attackRate: 0.5
-    angle: 40
-    swingLeft: false
-    damage:
-      types:
-        Blunt: 13
-    bluntStaminaDamageFactor: 1.33
   - type: PhysicalComposition
     materialComposition:
       Steel: 185
 
 - type: entity
-  abstract: true
   parent: GasTankBase
-  id: GasTankRoundBase
-  components:
-  - type: Tool
-    qualities:
-    - Rolling
-    speedModifier: 0.6 # fairly unwieldly but nice round surface
-
-- type: entity
-  parent: GasTankRoundBase
   id: OxygenTank
   name: oxygen tank
   description: A standard cylindrical gas tank for oxygen. It can hold 5 L of gas.
@@ -82,7 +63,7 @@
 # ES END
 
 - type: entity
-  parent: GasTankRoundBase
+  parent: GasTankBase
   id: NitrogenTank
   name: nitrogen tank
   description: A standard cylindrical gas tank for nitrogen. It can hold 5 L of gas.
@@ -101,7 +82,7 @@
 # ES END
 
 - type: entity
-  parent: GasTankRoundBase
+  parent: [ BaseMeleeAwfulBlunt, GasTankBase ]
   id: EmergencyOxygenTank
   name: emergency oxygen tank
   description: An easily portable tank for emergencies. Contains very little oxygen, rated for survival use only. It can hold 0.66 L of gas.
@@ -134,14 +115,9 @@
     - Belt
     - suitStorage
   - type: MeleeWeapon # this thing sucks ass! you are going to lose points.
-    wideAnimationRotation: 45
-    attackRate: 0.75 # worse then fists
-    angle: 40
-    swingLeft: true
     damage:
       types:
         Blunt: 5
-    bluntStaminaDamageFactor: 0 # doesnt even hurt really
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
@@ -272,7 +248,7 @@
 # ES END
 
 - type: entity
-  parent: GasTankRoundBase
+  parent: GasTankBase
   id: AirTank
   name: air tank
   description: Mixed anyone? It can hold 5 L of gas.
@@ -281,7 +257,7 @@
     outputPressure: 101.3
 
 - type: entity
-  parent: GasTankRoundBase
+  parent: GasTankBase
   id: NitrousOxideTank
   name: nitrous oxide tank
   description: Contains a mixture of air and nitrous oxide. Make sure you don't refill it with pure N2O. It can hold 5 L of gas.

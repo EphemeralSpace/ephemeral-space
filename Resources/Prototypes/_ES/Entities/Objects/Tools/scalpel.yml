@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, BaseWeaponKnifeImproved]
   id: ESScalpelAutopsy
   name: autopsy scalpel
   description: A finely crafted scalpel, usable by only a select few on station. Capable of discerning useful information from dead bodies. Pointy.
@@ -12,10 +12,6 @@
   - type: MeleeWeapon
     wideAnimationRotation: -90
     swingLeft: true
-    attackRate: 1.5
-    damage:
-      types:
-        Slash: 14 # Pointy!
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: ESAutopsyTool

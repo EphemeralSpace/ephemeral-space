@@ -1,6 +1,6 @@
 - type: entity
   name: spear
-  parent: BaseItem
+  parent: [ BaseItem, MeleeLongRange, MeleeSwingSpeedSlow]
   id: Spear
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
@@ -42,10 +42,8 @@
         Piercing: 6
     angle: 0
     wideAnimation: WeaponArcThrust
-    attackRate: 0.75
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
-    range: 1.75
   - type: DamageOtherOnHit
     damage:
       types:
