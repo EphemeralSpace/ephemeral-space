@@ -71,7 +71,7 @@
   id: ESMobMonkeyLFoot
   baseSprite:
     sprite: _ES/Mobs/Species/Monkey/parts.rsi
-    state: l_leg
+    state: l_leg # there is no universe in which the foot sprite is actually used for anything. might as well just duplicate it
 
 - type: humanoidBaseSprite
   id: ESMobMonkeyRLeg
