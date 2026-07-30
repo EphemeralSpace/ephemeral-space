@@ -13,7 +13,7 @@
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
       id: ESCrateCacheCrewArmsDealer
-      amount: 6
+      amount: 3
 
 - type: esSecretIdentity
   id: Arsonist
