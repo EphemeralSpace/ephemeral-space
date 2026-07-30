@@ -1520,3 +1520,9 @@ Entries:
       message: Lockers and crates are now slightly harder to break with most weaponry
   id: 162
   time: '2026-07-29T22:28:09.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Arms Dealer has less caches and by extension, half as many guns
+  id: 163
+  time: '2026-07-30T08:53:24.0000000+00:00'
