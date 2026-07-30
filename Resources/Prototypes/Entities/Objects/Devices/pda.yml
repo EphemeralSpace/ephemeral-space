@@ -50,7 +50,6 @@
     containers:
       PDA-id: !type:ContainerSlot {}
       PDA-pen: !type:ContainerSlot {}
-      PDA-pai: !type:ContainerSlot {}
       Cartridge-Slot: !type:ContainerSlot {}
       preinstalled-program-container: !type:Container
       removable-program-container: !type:Container
