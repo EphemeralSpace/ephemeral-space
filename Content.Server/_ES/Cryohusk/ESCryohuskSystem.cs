@@ -59,7 +59,14 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
         if (!Resolve(target, ref target.Comp, false))
             return;
 
-        _metaData.SetEntityName(target, Loc.GetString("es-cryohusk-name"));
+        if (_mind.TryGetMind(target, out _) && !_mobState.IsDead(target))
+        {
+            var msg = Loc.GetString("es-cryohusk-convert-stagehand-notif",
+                ("player", _stagehandNotifications.WrapEntityName(target.Owner)));
+            _stagehandNotifications.SendStagehandNotification(msg);
+        }
+
+        _metaData.SetEntityName(target, Loc.GetString("es-cryohusk-name"), raiseEvents: false);
 
         _humanoidAppearance.SetSpecies(target, target.Comp.CryohuskSpecies);
         _humanoidAppearance.SetSkinColor(target, Color.White);
@@ -70,13 +77,6 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
         {
             if (_idCardQuery.HasComp(uid))
                 EnsureComp<ESCryohuskIdCardComponent>(uid);
-        }
-
-        if (_mind.TryGetMind(target, out _) && !_mobState.IsDead(target))
-        {
-            var msg = Loc.GetString("es-cryohusk-convert-stagehand-notif",
-                ("player", _stagehandNotifications.WrapEntityName(target.Owner)));
-            _stagehandNotifications.SendStagehandNotification(msg);
         }
 
         _audio.PlayPvs(target.Comp.FreezeSound, target);
