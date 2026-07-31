@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseSecretIdentityObjective
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveHoldSummonedGuns
   name: Hand out guns
   description: Use your ability to summon firearms and make sure crew members hold onto them until the end of the shift.
