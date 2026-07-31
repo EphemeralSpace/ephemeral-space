@@ -39,6 +39,7 @@ public abstract partial class ESSharedAuditionsSystem
         Color.DarkKhaki,
     ];
 
+    public const float BaldChance = 0.01f;
     public const float CrazyHairChance = 0.10f;
 
     public const float ShavenChance = 0.55f;
@@ -147,6 +148,8 @@ public abstract partial class ESSharedAuditionsSystem
         }
 
         profile.Appearance.HairStyleId = random.Pick(hairOptions);
+        if (random.Prob(BaldChance))
+            profile.Appearance.HairStyleId = string.Empty; // This is awful but w/e
 
         if (random.Prob(ShavenChance))
         {
