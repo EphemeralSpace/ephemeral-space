@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseSecretIdentityObjective
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveKillNonCrew
   name: Kill a member of another organization
   description: You've been hired to dispatch any potential threats trying to disguise themselves as crew. Make sure they go out on your terms.

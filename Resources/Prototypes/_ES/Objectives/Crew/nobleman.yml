@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: ESBaseSecretIdentityObjective
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveNoblemanDontKill
   name: Dont kill anyone
   description: Someone as noble as yourself would never stoop to the level of murder. If you did... well you wouldn't be able to live with yourself.

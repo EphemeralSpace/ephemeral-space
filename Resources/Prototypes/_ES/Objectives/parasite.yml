@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseSecretIdentityObjective
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveParasiteInfect
   name: Infect the station
   description: Spread the parasites across the station. Once the infected make up the majority, it'll be time to swarm.
@@ -14,7 +14,7 @@
 
 # Secret identity objectives, but used broadly for all parasites
 - type: entity
-  parent: ESBaseSecretIdentityObjective
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveParasiteDie
   name: Be killed
   description: Once someone not of our kind kills us, the parasites in our body will respond to their brain hormones and launch into action.

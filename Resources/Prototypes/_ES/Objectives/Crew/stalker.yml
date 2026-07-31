@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseSecretIdentityObjective
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveStalkerKill
   name: Ensure your obsessions die
   description: They're yours... And they'll stay that way forever. Make sure some of them don't leave your clutches ever again.
@@ -15,7 +15,7 @@
     maxTarget: 3
 
 - type: entity
-  parent: ESBaseSecretIdentityObjective
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveStalkerSave
   name: Protect your obsessions from harm
   description: They're yours... And you never want anything bad to happen to them. Make sure that death never befalls them.
