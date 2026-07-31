@@ -111,12 +111,11 @@ public abstract partial class ESSharedAuditionsSystem
 
         var profile = HumanoidCharacterProfile.DefaultWithSpecies(speciesId).WithSex(sex).WithGender(gender);
 
-        var strategy = _prototypeManager.Index(species.SkinColoration).Strategy;
-        profile.Appearance.SkinColor = strategy.InputType switch
-        {
-            SkinColorationStrategyInput.Unary => strategy.FromUnary(random.NextFloat(0f, 100f)),
-            _ => strategy.ClosestSkinColor(random.NextColor()),
-        };
+        var skinColors = species.SkinColors.Select(_prototypeManager.Index).ToList();
+        var weightedSkinColors = skinColors.Select(prototype => (prototype, prototype.Weight)).ToDictionary();
+
+        var skinColor = _random.Pick(weightedSkinColors);
+        profile.Appearance.SkinColor = _random.Pick(skinColor.Colors);
 
         profile.Age = random.Pick(new Dictionary<int, float>
         {

@@ -1,3 +1,4 @@
+using Content.Shared._ES.Auditions;
 using Content.Shared.Dataset;
 using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Enums;
@@ -81,8 +82,11 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// <summary>
     /// Method of skin coloration used by the species.
     /// </summary>
-    [DataField(required: true)]
-    public ProtoId<SkinColorationPrototype> SkinColoration { get; private set; }
+    [DataField]
+    public ProtoId<SkinColorationPrototype> SkinColoration = "Hues";
+
+    [DataField]
+    public List<ProtoId<ESSkinColorPrototype>> SkinColors = new();
 
     // ES START
     // changed to default to ES lists

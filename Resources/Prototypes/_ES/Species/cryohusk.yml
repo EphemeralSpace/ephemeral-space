@@ -6,7 +6,8 @@
   sprites: ESMobCryohuskSprites
   markingLimits: MobHumanMarkingLimits
   dollPrototype: ESMobCryohuskDummy
-  skinColoration: Hues
+  skinColors:
+  - CryohuskFrostbitten
   sexes: [ Unsexed ] # they don't do that
   genders: [ Neuter ]
 
