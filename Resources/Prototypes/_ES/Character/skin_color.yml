@@ -54,13 +54,6 @@
   - "#301e11" # Choca
 
 - type: esSkinColor
-  id: Sunburnt
-  name: es-skin-tone-sunburnt
-  weight: 5
-  colors:
-  - "#d6ffb5"
-
-- type: esSkinColor
   id: Frostbitten
   name: es-skin-tone-frostbitten
   weight: 5
@@ -77,6 +70,13 @@
   - "#ebd985" # Deep Jaundice
 
 - type: esSkinColor
+  id: Starburnt
+  name: es-skin-tone-starburnt
+  weight: 5
+  colors:
+  - "#ffe0ff"
+
+- type: esSkinColor
   id: Sickly
   name: es-skin-tone-sickly
   weight: 2.5
@@ -84,11 +84,11 @@
   - "#dcedbb"
 
 - type: esSkinColor
-  id: Starburnt
-  name: es-skin-tone-starburnt
+  id: Sunburnt
+  name: es-skin-tone-sunburnt
   weight: 2.5
   colors:
-  - "#ffe0ff"
+  - "#ff9191"
 
 # Disabled until simpsoncode
 #- type: esSkinColor
