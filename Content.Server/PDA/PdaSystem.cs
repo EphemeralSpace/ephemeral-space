@@ -109,7 +109,7 @@ namespace Content.Server.PDA
 
         protected override void OnItemRemoved(EntityUid uid, PdaComponent pda, EntRemovedFromContainerMessage args)
         {
-            if (args.Container.ID != pda.IdSlot.ID && args.Container.ID != pda.PenSlot.ID && args.Container.ID != pda.PaiSlot.ID)
+            if (args.Container.ID != pda.IdSlot.ID && args.Container.ID != pda.PenSlot.ID)
                 return;
 
             // TODO: This is super cursed just use compstates please.
@@ -204,7 +204,7 @@ namespace Content.Server.PDA
                 GetNetEntity(loader.ActiveProgram),
                 pda.FlashlightOn,
                 pda.PenSlot.HasItem,
-                pda.PaiSlot.HasItem,
+                false,
                 new PdaIdInfoText
                 {
                     ActualOwnerName = pda.OwnerName,
