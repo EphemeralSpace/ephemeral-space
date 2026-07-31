@@ -129,7 +129,13 @@ public abstract partial class ESSharedAuditionsSystem
         profile.Appearance.HairColor = hairColor;
         profile.Appearance.FacialHairColor = hairColor;
 
-        profile.Appearance.EyeColor = random.Pick(EyeColors);
+        var eyeColors = EyeColors.Where(c =>
+        {
+            var l = Color.ToLab(c).X;
+            var otherL = Color.ToLab(profile.Appearance.SkinColor).X;
+            return MathF.Abs(l - otherL) > 0.1f;
+        });
+        profile.Appearance.EyeColor = random.Pick(eyeColors.ToList());
 
         List<ProtoId<MarkingPrototype>> hairOptions;
         if (random.Prob(CrazyHairChance))
