@@ -29,15 +29,6 @@
           map: [ "unshaded" ]
           shader: unshaded
           visible: false
-        - type: ToggleableLightVisuals
-          spriteLayer: unshaded
-          inhandVisuals:
-            left:
-              - state: inhand-left-unshaded
-                shader: unshaded
-            right:
-              - state: inhand-right-unshaded
-                shader: unshaded
         - type: Appearance
         - type: GenericVisualizer
           visuals:
