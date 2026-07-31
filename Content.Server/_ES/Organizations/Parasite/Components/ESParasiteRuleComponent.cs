@@ -22,10 +22,10 @@ public sealed partial class ESParasiteRuleComponent : Component
     public bool WinStarted;
 
     [DataField]
-    public TimeSpan SwarmDelay = TimeSpan.FromMinutes(1);
+    public TimeSpan SwarmDelay = TimeSpan.FromSeconds(30f);
 
     [DataField]
-    public TimeSpan WinDelay = TimeSpan.FromMinutes(2.5);
+    public TimeSpan WinDelay = TimeSpan.FromMinutes(1.5f);
 
     [DataField]
     public SoundSpecifier BurstSound = new SoundCollectionSpecifier("desecration");
@@ -33,3 +33,9 @@ public sealed partial class ESParasiteRuleComponent : Component
     [DataField]
     public ProtoId<StartingGearPrototype> SwarmGear = "ESParasiteSwarmGear";
 }
+
+/// <summary>
+/// Used for marking objectives which should be frozen when the parasite end of round condition comes.
+/// </summary>
+[RegisterComponent]
+public sealed partial class ESParasiteWinFreezeObjectiveComponent : Component;

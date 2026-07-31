@@ -95,6 +95,10 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return;
 
+        // Frozen objectives never change their progress
+        if (ent.Comp.Frozen)
+            return;
+
         var ev = new ESGetObjectiveProgressEvent();
         RaiseLocalEvent(ent, ref ev);
 
@@ -150,6 +154,37 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return 0;
         return ent.Comp.Progress;
+    }
+
+    /// <summary>
+    /// Marks all objectives as frozen
+    /// </summary>
+    [PublicAPI]
+    public void FreezeObjectives(bool frozen = true)
+    {
+        FreezeObjectives<ESObjectiveComponent>(frozen);
+    }
+
+    /// <summary>
+    /// Marks all objectives with the specified type as frozen
+    /// </summary>
+    public void FreezeObjectives<T>(bool frozen = true) where T : Component
+    {
+        foreach (var objective in GetObjectives<T>())
+        {
+            FreezeObjective((objective, objective.Comp2), frozen);
+        }
+    }
+
+    /// <summary>
+    /// Sets an objective's frozen state.
+    /// </summary>
+    public void FreezeObjective(Entity<ESObjectiveComponent?> ent, bool frozen = true)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+        ent.Comp.Frozen = frozen;
+        Dirty(ent);
     }
 
     /// <summary>

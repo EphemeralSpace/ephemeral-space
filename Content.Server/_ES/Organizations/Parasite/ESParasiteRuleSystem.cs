@@ -8,7 +8,6 @@ using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Core.Timer.Components;
-using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Systems;
@@ -19,7 +18,6 @@ using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.Audio;
 using Robust.Server.Player;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.Organizations.Parasite;
 
@@ -78,7 +76,16 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
 
     private void OnWinCheckTimer(Entity<ESParasiteRuleComponent> ent, ref ESParasiteWinCheckTimerEvent args)
     {
+        EndRound(ent);
+    }
+
+    private void EndRound(Entity<ESParasiteRuleComponent> ent)
+    {
+        if (ent.Comp.WinStarted)
+            return;
+
         ent.Comp.WinStarted = true;
+        _roundEnd.EndRound(TimeSpan.FromSeconds(30f));
     }
 
     private void OnHit(Entity<ESParasiteConverterComponent> ent, ref MeleeHitEvent args)
@@ -105,6 +112,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
     private void StartEndPhase(Entity<ESParasiteRuleComponent> ent)
     {
         ent.Comp.ObjectivesCompleted = true;
+        _objective.FreezeObjectives<ESParasiteWinFreezeObjectiveComponent>();
 
         var msg = Loc.GetString("es-parasite-swarm-notif");
         var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
@@ -162,17 +170,9 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
             if (!comp.SwarmStarted)
                 continue;
 
-            if (AllPlayersConverted(uid))
-            {
-                _roundEnd.EndRound(TimeSpan.FromMinutes(1));
+            if (!AllPlayersConverted(uid))
                 continue;
-            }
-
-            if (!comp.WinStarted)
-                continue;
-
-            if (_objective.AllCompleted(uid))
-                _roundEnd.EndRound(TimeSpan.FromMinutes(1));
+            EndRound((uid, comp));
         }
     }
 }
