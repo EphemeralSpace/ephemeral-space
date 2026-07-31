@@ -28,15 +28,15 @@ public abstract partial class ESSharedAuditionsSystem
     public static readonly IReadOnlyList<Color> EyeColors =
     [
         Color.Black,
-        Color.Gray,
         Color.MediumPurple,
-        Color.FromHex("#f29bdf"), // Light Pink
         Color.White,
         Color.ForestGreen,
         Color.LimeGreen,
         Color.DarkOrange,
         Color.IndianRed,
         Color.DarkKhaki,
+        Color.Azure,
+        Color.SteelBlue,
     ];
 
     public const float BaldChance = 0.01f;
@@ -131,9 +131,9 @@ public abstract partial class ESSharedAuditionsSystem
 
         var eyeColors = EyeColors.Where(c =>
         {
-            var l = Color.ToLab(c).X;
-            var otherL = Color.ToLab(profile.Appearance.SkinColor).X;
-            return MathF.Abs(l - otherL) > 0.1f;
+            var l = Color.ToHsl(c).Z;
+            var otherL = Color.ToHsl(profile.Appearance.SkinColor).Z;
+            return MathF.Abs(l - otherL) >= 0.25f;
         });
         profile.Appearance.EyeColor = random.Pick(eyeColors.ToList());
 
