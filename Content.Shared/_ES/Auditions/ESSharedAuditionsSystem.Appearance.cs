@@ -133,7 +133,7 @@ public abstract partial class ESSharedAuditionsSystem
         {
             var l = Color.ToHsl(c).Z;
             var otherL = Color.ToHsl(profile.Appearance.SkinColor).Z;
-            return MathF.Abs(l - otherL) >= 0.25f;
+            return MathF.Abs(l - otherL) >= 0.20f;
         });
         profile.Appearance.EyeColor = random.Pick(eyeColors.ToList());
 
