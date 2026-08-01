@@ -127,53 +127,64 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
                 ("age", age),
                 ("species", species)));
 
+            var skinColor = component.SkinColor;
+            var skinString = _clues.GetSkinColorString(component.SkinColor, component.Species);
+            args.PushMarkup(Loc.GetString("es-appearance-examine-skin",
+                ("user", identity),
+                ("color", skinColor),
+                ("colorStr", skinString)));
+
+            string hairString;
             if (!component.HiddenLayers.ContainsKey(HumanoidVisualLayers.Hair))
             {
                 if (!component.MarkingSet.TryGetCategory(MarkingCategories.Hair, out var markings) ||
                     markings.Count == 0 ||
                     !SupportsHumanoidVisualLayer((uid, component), HumanoidVisualLayers.Hair))
                 {
-                    args.PushMarkup(Loc.GetString("es-appearance-examine-hair-bald",
-                        ("user", identity)));
+                    hairString = Loc.GetString("es-appearance-examine-hair-bald",
+                        ("user", identity));
                 }
                 else
                 {
                     var color = markings.First().MarkingColors.First();
                     var hairColor = _clues.GetHairColorString(color);
 
-                    args.PushMarkup(Loc.GetString("es-appearance-examine-hair",
+                    hairString = Loc.GetString("es-appearance-examine-hair",
                         ("user", identity),
                         ("color", color),
-                        ("colorStr", hairColor)));
+                        ("colorStr", hairColor));
                 }
             }
             else
             {
-                args.PushMarkup(Loc.GetString("es-appearance-examine-hair-hidden",
-                    ("user", identity)));
+                hairString = Loc.GetString("es-appearance-examine-hair-hidden",
+                    ("user", identity));
             }
 
+            string eyeString;
             if (!_identity.HasIdentityBlockerCoverage(uid, IdentityBlockerCoverage.EYES))
             {
                 if (SupportsHumanoidVisualLayer((uid, component), HumanoidVisualLayers.Eyes))
                 {
                     var eyeColor = ColorNaming.Describe(component.EyeColor, Loc);
-                    args.PushMarkup(Loc.GetString("es-appearance-examine-eyes",
+                    eyeString = Loc.GetString("es-appearance-examine-eyes",
                         ("user", identity),
                         ("colorStr", eyeColor),
-                        ("color", component.EyeColor)));
+                        ("color", component.EyeColor));
                 }
                 else
                 {
-                    args.PushMarkup(Loc.GetString("es-appearance-examine-eyes-none",
-                        ("user", identity)));
+                    eyeString = Loc.GetString("es-appearance-examine-eyes-none",
+                        ("user", identity));
                 }
             }
             else
             {
-                args.PushMarkup(Loc.GetString("es-appearance-examine-eyes-hidden",
-                    ("user", identity)));
+                eyeString = Loc.GetString("es-appearance-examine-eyes-hidden",
+                    ("user", identity));
             }
+
+            args.PushMarkup(Loc.GetString("es-appearance-examine-splice", ("hair", hairString), ("eye", eyeString)));
         }
 // ES END
     }
