@@ -305,6 +305,12 @@ public abstract partial class ESSharedAuditionsSystem
             firstName = Loc.GetString("es-name-normal-fmt", ("first", firstName), ("second", FirstName(config, dataset, true)));
         }
 
+        if (_random.Prob(config.QuotedFirstNameChance))
+        {
+            firstName = firstName.Replace("\"", "");
+            firstName = Loc.GetString("es-name-quoted-first-fmt", ("first", firstName));
+        }
+
         return firstName;
     }
 

@@ -29,6 +29,16 @@
         tableId: ESLockerFillCoroner
 
 - type: entity
+  parent: LockerExperiment
+  id: LockerExperimentFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: LockerFillExperiment
+
+- type: entity
   parent: LockerJanitor
   id: LockerJanitorFilled
   suffix: Filled

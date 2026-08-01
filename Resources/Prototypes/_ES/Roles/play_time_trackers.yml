@@ -30,6 +30,9 @@
   id: ESJobDoctor
 
 - type: playTimeTracker
+  id: ESJobExperiment
+
+- type: playTimeTracker
   id: ESJobStationAdmin
 
 - type: playTimeTracker

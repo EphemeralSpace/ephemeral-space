@@ -24,8 +24,8 @@
           ESDoctor: [ 2, 2 ]
           ESParamedic: [ 1, 1 ]
           ESCoroner: [ 1, 1 ]
-          #science (3), temporarily disabled
-          # ESScientist: [ 3, 3 ]
+          #science (1)
+          ESExperiment: [ 1, 1 ]
           #security (3)
           ESSecurityOfficer: [ 2, 2 ]
           ESDetective: [ 1, 1 ]

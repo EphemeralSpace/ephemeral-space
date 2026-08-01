@@ -12,6 +12,15 @@
 
 - type: entity
   parent: PassengerPDA
+  id: ExperimentPDA
+  name: PDA
+  suffix: ES
+  components:
+  - type: Pda
+    id: ExperimentCard
+
+- type: entity
+  parent: PassengerPDA
   id: RatmanPDA
   name: PDA
   suffix: ES
