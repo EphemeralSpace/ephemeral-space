@@ -15,6 +15,9 @@ public sealed partial class CrawlableNodeComponent : Component
     [ViewVariables, AutoNetworkedField]
     public HashSet<EntityUid> ReachableNodes = new();
 
+    [DataField, AutoNetworkedField]
+    public bool CanHaveDeadEnds = true;
+
     /// <summary>
     /// Whether this node has an unconnected node and should be exited from on movement
     /// </summary>

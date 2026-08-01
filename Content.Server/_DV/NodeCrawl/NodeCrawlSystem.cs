@@ -88,7 +88,8 @@ public sealed class NodeCrawlSystem : SharedNodeCrawlSystem
                 set.Add(reachable.Owner);
             }
 
-            if (node is PipeNode pipeNode &&
+            if (ent.Comp.CanHaveDeadEnds &&
+                node is PipeNode pipeNode &&
                 node.ReachableNodes.Count != BitOperations.PopCount((uint)pipeNode.CurrentPipeDirection))
             {
                 ent.Comp.DeadEnd = true;

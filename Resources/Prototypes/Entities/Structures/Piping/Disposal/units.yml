@@ -120,6 +120,7 @@
   - type: PowerSwitch
   - type: NodeCrawlVentAccess
   - type: CrawlableNode
+    canHaveDeadEnds: false
   - type: NodeContainer
     nodes:
       tube:

@@ -23,6 +23,9 @@ public record ESViewconeGetAngleModifierEvent : IInventoryRelayEvent
 {
     public SlotFlags TargetSlots => SlotFlags.HEAD | SlotFlags.EYES | SlotFlags.MASK;
 
+    public float LowerBoundClamp = 20f;
+    public float UpperBoundClamp = 360f;
+
     private float _angleModifier;
 
     public float GetAngleModifier()

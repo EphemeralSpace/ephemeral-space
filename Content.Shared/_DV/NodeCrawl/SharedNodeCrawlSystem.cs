@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Climbing.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Eye;
 using Content.Shared.Movement.Components;
@@ -25,6 +26,7 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
     [Dependency] private SharedEyeSystem _eye = default!;
     [Dependency] private SharedActionsSystem _action = default!;
     [Dependency] private NodeCrawlerMovementSystem _nodeCrawler = default!;
+    [Dependency] private ClimbSystem _climb = default!;
 
     private const string MoverContainer = "mover-container";
     private static readonly EntProtoId MoverProto = "NodeCrawlMoverEntity";
@@ -148,6 +150,7 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
             return;
 
         ExitNodeCrawl(ent);
+        _climb.Climb(ent.Owner, ent.Owner, args.Node, true);
     }
 
     private void OnGetVisMask(Entity<NodeCrawlerComponent> ent, ref GetVisMaskEvent args)
@@ -200,6 +203,9 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
     private void OnCrawlableAnchorChanged(Entity<CrawlableNodeComponent> ent, ref AnchorStateChangedEvent args)
     {
         if (args.Anchored)
+            return;
+
+        if (TerminatingOrDeleted(ent.Owner))
             return;
 
         foreach (var crawler in ent.Comp.Crawlers)

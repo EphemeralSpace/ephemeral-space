@@ -80,6 +80,17 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
 
         var revealed = !covered || ShowAll || scannerRevealed;
 
+        // Begin DeltaV - node crawling
+        foreach (var type in _types)
+        {
+            if (!HasComp(uid, type))
+                continue;
+
+            revealed = true;
+            break;
+        }
+        // End DeltaV - node crawling
+
         // set visibility & color of each layer
         foreach (var layer in args.Sprite.AllLayers)
         {

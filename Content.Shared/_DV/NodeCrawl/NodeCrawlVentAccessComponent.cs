@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._DV.NodeCrawl;
 
 /// <summary>
-/// Marker component to use on atmos-related devices that node crawlers can enter/exit out of.
+/// Marker component to use on specific nodes that node crawlers can enter/exit out of.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class NodeCrawlVentAccessComponent : Component;
