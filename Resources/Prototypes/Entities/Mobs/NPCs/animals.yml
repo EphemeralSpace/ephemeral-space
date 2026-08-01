@@ -857,8 +857,8 @@
 
 - type: entity
   name: monkey
+  parent: ESBaseMobMonkey
   id: MobMonkey
-  parent: MobBaseAncestor
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   components:
   - type: NameIdentifier
@@ -867,20 +867,6 @@
     speechSounds: Monkey
     speechVerb: Monkey
   - type: MonkeyAccent
-  - type: GhostRole
-    prob: 0.05
-    makeSentient: true
-    name: ghost-role-information-monkey-name
-    description: ghost-role-information-monkey-description
-    rules: ghost-role-information-nonantagonist-rules
-  - type: GhostTakeoverAvailable
-# ES START
-  - type: Grammar # adding this in so that a named monkey like Pun-Pun always displays the same as a normal monkey
-    attributes:
-      proper: true
-  - type: ESGenericVoice
-    voice: es-voice-obfuscator-name-replace-monkey
-# ES END
 
 - type: entity
   name: kobold
