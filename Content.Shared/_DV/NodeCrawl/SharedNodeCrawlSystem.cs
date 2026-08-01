@@ -5,8 +5,10 @@ using Content.Shared.Disposal.Holder;
 using Content.Shared.Disposal.Unit;
 using Content.Shared.DoAfter;
 using Content.Shared.Eye;
+using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -33,6 +35,8 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
     [Dependency] private ClimbSystem _climb = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedDisposalHolderSystem _disposal = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     private const string MoverContainer = "mover-container";
 
@@ -66,7 +70,22 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
         if (!_entityWhitelist.IsWhitelistPass(nodeCrawler.ExitNodes, target))
             return;
 
+        if (_inventory.TryGetContainerSlotEnumerator(args.Performer,
+                out var enumerator,
+                nodeCrawler.RequiredEmptySlots))
+        {
+            while (enumerator.MoveNext(out var slot))
+            {
+                if (slot.Count == 0)
+                    continue;
+
+                _popup.PopupEntity(Loc.GetString(nodeCrawler.EmptySlotsPopupMessage), user, user);
+                return;
+            }
+        }
+
         StartEntryDoAfter((user, nodeCrawler), target);
+        args.Handled = true;
     }
 
     private void StartEntryDoAfter(Entity<NodeCrawlerComponent> ent, EntityUid target)

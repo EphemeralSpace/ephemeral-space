@@ -1,6 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.DoAfter;
+using Content.Shared.Inventory;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -52,6 +53,18 @@ public sealed partial class NodeCrawlerComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan EnterDelay = TimeSpan.FromSeconds(2);
+
+    /// <summary>
+    /// If an entity has an inventory, these slots must be empty in order to start crawling.
+    /// </summary>
+    [DataField]
+    public SlotFlags RequiredEmptySlots = SlotFlags.INNERCLOTHING | SlotFlags.BACK;
+
+    /// <summary>
+    /// The popup message to show to an entity that's wearing something in <see cref="RequiredEmptySlots"/>.
+    /// </summary>
+    [DataField]
+    public LocId EmptySlotsPopupMessage = "es-nodecrawl-popup-no-jumpsuit-backpack";
 
     /// <summary>
     /// Sound played when starting a nodecrawl.
