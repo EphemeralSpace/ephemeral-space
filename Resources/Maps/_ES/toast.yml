@@ -4,8 +4,8 @@ meta:
   engineVersion: 283.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/01/2026 22:23:57
-  entityCount: 14884
+  time: 08/01/2026 22:31:16
+  entityCount: 14886
 maps:
 - 3
 grids:
@@ -4875,7 +4875,9 @@ entities:
     - type: Transform
       parent: 2
       pos: 12.5,-14.5
-  - uid: 655
+- proto: AirlockScienceGlassLocked
+  entities:
+  - uid: 568
     components:
     - type: Transform
       parent: 2
@@ -6604,6 +6606,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -10.531975,-18.365225
+  - uid: 14882
+    components:
+    - type: Transform
+      parent: 2
+      pos: 6.8844085,-17.919775
 - proto: ButtonFrameCaution
   entities:
   - uid: 1085
@@ -43651,6 +43658,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -71.5,-32.5
+  - uid: 14883
+    components:
+    - type: Transform
+      parent: 2
+      pos: 2.5,-23.5
 - proto: ESSpawnerRandomNewspapers
   entities:
   - uid: 14845
@@ -66160,6 +66172,11 @@ entities:
       pos: -6.5,-22.5
 - proto: MopItem
   entities:
+  - uid: 655
+    components:
+    - type: Transform
+      parent: 2
+      pos: 3.6798797,-20.977331
   - uid: 5919
     components:
     - type: Transform
@@ -88069,11 +88086,6 @@ entities:
       pos: -38.5,-39.5
 - proto: WeldingFuelTankFull
   entities:
-  - uid: 568
-    components:
-    - type: Transform
-      parent: 2
-      pos: 2.5,-23.5
   - uid: 3996
     components:
     - type: Transform
