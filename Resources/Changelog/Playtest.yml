@@ -1568,3 +1568,22 @@ Entries:
       message: Fires now spread slower and produce slightly less smoke.
   id: 167
   time: '2026-08-01T22:44:19.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        A new job has been added: the Experiment. This tragic ape is the
+        successful result of the 4th iteration of simian intelligence
+        enhancement experiments, and now they take a spot aboard this station to
+        practice socialization and to learn if primate crewmates can perform
+        tasks like the best of them.
+    - type: Add
+      message: >-
+        The Experiment gets a locker containing either an engineering ID card,
+        med ID card, or security ID card (and corresponding gear).
+    - type: Add
+      message: >-
+        As a monkey, the Experiment can crawl through disposals--as long as they
+        forgo their jumpsuit and backpack temporarily.
+  id: 168
+  time: '2026-08-01T22:46:35.0000000+00:00'
