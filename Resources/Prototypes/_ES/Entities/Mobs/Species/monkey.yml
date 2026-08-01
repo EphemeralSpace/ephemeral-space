@@ -160,7 +160,7 @@
 
 - type: entity
   save: false
-  parent: ESBaseMobMonkey
+  parent: [ ESBaseMobMonkey, BaseMobMonkeyDisposalsCrawler]
   id: ESMobMonkey
   suffix: Species
 
