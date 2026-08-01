@@ -1526,3 +1526,18 @@ Entries:
       message: Arms Dealer has less caches and by extension, half as many guns
   id: 163
   time: '2026-07-30T08:53:24.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Added a new cinematic for Parasite victory.
+    - type: Tweak
+      message: >-
+        Parasites can no longer fail their objectives after they have
+        successfully infected the station.
+    - type: Tweak
+      message: >-
+        Certain objectives will no longer have their progress change after the
+        Radstorm starts. If you protected someone all round, you don't suddenly
+        fail just because the Radstorm came.
+  id: 164
+  time: '2026-08-01T14:30:04.0000000+00:00'
