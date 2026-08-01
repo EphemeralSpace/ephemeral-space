@@ -1,10 +1,14 @@
+using System.Linq;
 using Content.Shared.Actions;
 using Content.Shared.Climbing.Systems;
+using Content.Shared.Disposal.Holder;
+using Content.Shared.Disposal.Unit;
 using Content.Shared.DoAfter;
 using Content.Shared.Eye;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Whitelist;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Systems;
@@ -27,9 +31,10 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
     [Dependency] private SharedActionsSystem _action = default!;
     [Dependency] private NodeCrawlerMovementSystem _nodeCrawler = default!;
     [Dependency] private ClimbSystem _climb = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDisposalHolderSystem _disposal = default!;
 
     private const string MoverContainer = "mover-container";
-    private static readonly EntProtoId MoverProto = "NodeCrawlMoverEntity";
 
     public override void Initialize()
     {
@@ -46,6 +51,8 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
         SubscribeLocalEvent<NodeCrawlerComponent, ComponentShutdown>(OnCrawlerShutdown);
 
         SubscribeLocalEvent<CrawlableNodeComponent, AnchorStateChangedEvent>(OnCrawlableAnchorChanged);
+
+        SubscribeLocalEvent<CrawlableNodeComponent, DisposalTubeHolderEntered>(OnCrawlableDisposalHolderEntered);
     }
 
     private void OnStartNodeCrawlAction(StartNodeCrawlActionEvent args)
@@ -215,6 +222,28 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
                 continue;
 
             ExitNodeCrawl((held, Comp<NodeCrawlerComponent>(held)));
+        }
+    }
+
+    private void OnCrawlableDisposalHolderEntered(Entity<CrawlableNodeComponent> ent, ref DisposalTubeHolderEntered args)
+    {
+        // if a disposal holder enters the tube that a crawler is in,
+        // the crawler will be force-exited from the crawl and placed inside the disposal holder
+        if (ent.Comp.Crawlers.Count == 0 || args.Holder.Comp.Container is not { } container)
+            return;
+
+        foreach (var movementEntity in ent.Comp.Crawlers)
+        {
+            if (!TryComp<NodeCrawlerMovementComponent>(movementEntity, out var movement))
+                continue;
+
+            if (movement.HeldCrawler is not { } crawler || !TryComp<NodeCrawlerComponent>(movement.HeldCrawler, out var crawlerComp))
+                continue;
+
+            _audio.PlayPvs(crawlerComp.ForceStopSound, crawler);
+            ExitNodeCrawl((crawler, crawlerComp));
+            _container.Insert(crawler, container);
+            _disposal.AttachEntity(args.Holder, crawler);
         }
     }
 }

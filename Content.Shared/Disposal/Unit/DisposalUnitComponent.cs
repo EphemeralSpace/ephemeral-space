@@ -130,7 +130,7 @@ public sealed partial class DisposalUnitComponent : Component
     /// Delay for automatic flushing of the disposal unit.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public TimeSpan AutomaticEngageTime = TimeSpan.FromSeconds(30);
+    public TimeSpan AutomaticEngageTime = TimeSpan.FromSeconds(5);
 
     /// <summary>
     /// Delay for entities trying to enter disposals themselves.

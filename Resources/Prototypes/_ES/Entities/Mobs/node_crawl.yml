@@ -27,6 +27,7 @@
     context: "human"
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   id: NodeCrawlMoverEntityMonkey
   parent: NodeCrawlMoverEntity
   components:

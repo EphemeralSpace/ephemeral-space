@@ -51,7 +51,7 @@ public sealed partial class NodeCrawlerMovementSystem : EntitySystem
         }
 
         if (mover.Comp4.MovementSound is { } sound)
-            _audio.PlayPredicted(sound, mover.Owner, mover.Comp4.HeldCrawler, sound.Params.AddVolume(-7f));
+            _audio.PlayPredicted(sound, mover.Owner, mover.Comp4.HeldCrawler, sound.Params.AddVolume(-9f));
 
         mover.Comp4.TargetNode = target;
         Dirty(mover, mover.Comp4);
