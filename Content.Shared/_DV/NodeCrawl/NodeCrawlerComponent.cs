@@ -3,6 +3,7 @@ using Content.Shared.Actions.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._DV.NodeCrawl;
@@ -10,6 +11,7 @@ namespace Content.Shared._DV.NodeCrawl;
 /// <summary>
 /// Handles entities that can enter and exit node-constrained movement.
 /// </summary>
+// todo this should probably support scoping based on nodegroup id once we get pipecrawlers.
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 [Access(typeof(SharedNodeCrawlSystem))]
 public sealed partial class NodeCrawlerComponent : Component
@@ -19,6 +21,12 @@ public sealed partial class NodeCrawlerComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? Mover;
+
+    /// <summary>
+    /// The crawl action to add to this entity on startup.
+    /// </summary>
+    [DataField(required: true)]
+    public EntProtoId<ActionComponent> Action;
 
     /// <summary>
     /// Components of entities to reveal while inside a mover
@@ -39,7 +47,6 @@ public sealed partial class NodeCrawlerComponent : Component
     public TimeSpan EnterDelay = TimeSpan.FromSeconds(1);
 }
 
-[Serializable, NetSerializable]
 public sealed partial class StartNodeCrawlActionEvent : EntityTargetActionEvent;
 
 [Serializable, NetSerializable]

@@ -1,8 +1,8 @@
+using Content.Shared.Actions;
 using Content.Shared.DoAfter;
 using Content.Shared.Eye;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
@@ -23,6 +23,7 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedEyeSystem _eye = default!;
+    [Dependency] private SharedActionsSystem _action = default!;
     [Dependency] private NodeCrawlerMovementSystem _nodeCrawler = default!;
 
     private const string MoverContainer = "mover-container";
@@ -32,7 +33,8 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<CrawlableNodeComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<StartNodeCrawlActionEvent>(OnStartNodeCrawlAction);
+        SubscribeLocalEvent<NodeCrawlerComponent, ComponentStartup>(OnCrawlerStartup);
         SubscribeLocalEvent<NodeCrawlerComponent, NodeCrawlEnterDoAfterEvent>(OnNodeCrawlEntryDoAfter);
         SubscribeLocalEvent<NodeCrawlerComponent, NodeCrawlerArrivedAtNodeEvent>(OnArrivedAtNode);
         SubscribeLocalEvent<NodeCrawlerComponent, GetVisMaskEvent>(OnGetVisMask);
@@ -44,24 +46,18 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
         SubscribeLocalEvent<CrawlableNodeComponent, AnchorStateChangedEvent>(OnCrawlableAnchorChanged);
     }
 
-    private void OnGetVerbs(Entity<CrawlableNodeComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    private void OnStartNodeCrawlAction(StartNodeCrawlActionEvent args)
     {
-        var user = args.User;
+        var user = args.Performer;
         var target = args.Target;
+
         if (!TryComp<NodeCrawlerComponent>(user, out var nodeCrawler))
             return;
 
         if (!_entityWhitelist.IsWhitelistPass(nodeCrawler.ExitNodes, target))
             return;
 
-        if (!args.CanAccess)
-            return;
-
-        args.Verbs.Add(new AlternativeVerb
-        {
-            Act = () => StartEntryDoAfter((user, nodeCrawler), target),
-            Text = Loc.GetString("node-crawl-enter", ("target", target)),
-        });
+        StartEntryDoAfter((user, nodeCrawler), target);
     }
 
     private void StartEntryDoAfter(Entity<NodeCrawlerComponent> ent, EntityUid target)
@@ -81,6 +77,11 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
             return;
 
         NodeCrawl(ent, target);
+    }
+
+    private void OnCrawlerStartup(Entity<NodeCrawlerComponent> ent, ref ComponentStartup args)
+    {
+        _action.AddAction(ent.Owner, ent.Comp.Action);
     }
 
     private void NodeCrawl(Entity<NodeCrawlerComponent> ent, EntityUid target)

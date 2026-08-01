@@ -1,15 +1,4 @@
 - type: entity
-  abstract: true
-  id: BaseMobDisposalsCrawler
-  components:
-  - type: NodeCrawler
-    revealedComponents:
-    - Content.Shared.Disposal.Tube.DisposalTubeComponent
-    exitNodes:
-      components:
-      - NodeCrawlVentAccess
-
-- type: entity
   categories: [ HideSpawnMenu ]
   id: NodeCrawlMoverEntity
   components:
@@ -34,3 +23,37 @@
         - GhostImpassable
   - type: Input
     context: "human"
+
+- type: entity
+  abstract: true
+  id: BaseMobMonkeyDisposalsCrawler
+  components:
+  - type: NodeCrawler
+    action: ActionMobDisposalsCrawl
+    revealedComponents:
+    - Content.Shared.Disposal.Tube.DisposalTubeComponent
+    exitNodes:
+      components:
+      - NodeCrawlVentAccess
+
+- type: entity
+  parent: BaseAction
+  id: ActionMobDisposalsCrawl
+  name: Disposals Crawl
+  description: Hop into a disposals unit and deftly crawl through it, pneumatics be damned.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/SecretIdentity/cannibal.rsi
+      state: icon
+    iconOn:
+      sprite: _ES/Actions/SecretIdentity/cannibal.rsi
+      state: icon-on
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:StartNodeCrawlActionEvent
+    whitelist:
+      components:
+      - NodeCrawlVentAccess
+      - DisposalUnit
+      requireAll: true
