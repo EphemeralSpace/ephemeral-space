@@ -32,6 +32,21 @@ public sealed partial class SubFloorHideSystem : SharedSubFloorHideSystem
         }
     }
 
+    // Begin DeltaV - node crawling
+    private Type[] _types = new Type[] { };
+
+    [ViewVariables]
+    public Type[] Types
+    {
+        get => _types;
+        set
+        {
+            _types = value;
+            UpdateAll();
+        }
+    }
+    // End DeltaV - node crawling
+
     public override void Initialize()
     {
         base.Initialize();

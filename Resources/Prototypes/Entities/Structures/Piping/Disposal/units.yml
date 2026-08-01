@@ -118,6 +118,14 @@
     containers:
       DisposalUnitComponent: !type:Container
   - type: PowerSwitch
+  - type: NodeCrawlVentAccess
+  - type: CrawlableNode
+  - type: NodeContainer
+    nodes:
+      tube:
+        !type:DisposalsTubeNode
+        nodeGroupID: Disposals
+        pipeDirection: Fourway
 
 - type: entity
   id: DisposalUnit

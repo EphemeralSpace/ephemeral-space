@@ -58,6 +58,7 @@
   - type: Pullable
   - type: CollideOnAnchor
   - type: DisposalTube
+  - type: CrawlableNode
 
 - type: entity
   id: DisposalHolder
@@ -123,6 +124,12 @@
   - type: Construction
     graph: DisposalPipe
     node: pipe
+  - type: NodeContainer
+    nodes:
+      tube:
+        !type:DisposalsTubeNode
+        nodeGroupID: Disposals
+        pipeDirection: Longitudinal
 
 - type: entity
   id: DisposalTagger
@@ -154,6 +161,12 @@
   - type: Construction
     graph: DisposalPipe
     node: tagger
+  - type: NodeContainer
+    nodes:
+      tube:
+        !type:DisposalsTubeNode
+        nodeGroupID: Disposals
+        pipeDirection: Longitudinal
 
 - type: entity
   id: DisposalSignaller
@@ -187,6 +200,12 @@
   - type: Construction
     graph: DisposalPipe
     node: pipe
+  - type: NodeContainer
+    nodes:
+      tube:
+        !type:DisposalsTubeNode
+        nodeGroupID: Disposals
+        pipeDirection: Longitudinal
 
 - type: entity
   id: DisposalTrunk
@@ -217,6 +236,7 @@
   - type: Construction
     graph: DisposalPipe
     node: trunk
+  # intentionally no node/crawl access
 
 - type: entity
   id: DisposalRouter
@@ -259,6 +279,12 @@
   - type: Construction
     graph: DisposalPipe
     node: router
+  - type: NodeContainer
+    nodes:
+      tube:
+        !type:DisposalsTubeNode
+        nodeGroupID: Disposals
+        pipeDirection: TWest
 
 - type: entity
   id: DisposalRouterFlipped
@@ -293,6 +319,12 @@
         - SubfloorMask
   - type: Construction
     node: routerflipped
+  - type: NodeContainer
+    nodes:
+      tube:
+        !type:DisposalsTubeNode
+        nodeGroupID: Disposals
+        pipeDirection: TEast
 
 - type: entity
   id: DisposalJunction
@@ -329,6 +361,12 @@
   - type: Construction
     graph: DisposalPipe
     node: junction
+  - type: NodeContainer
+    nodes:
+      tube:
+        !type:DisposalsTubeNode
+        nodeGroupID: Disposals
+        pipeDirection: TWest
 
 - type: entity
   id: DisposalJunctionFlipped
@@ -364,6 +402,12 @@
   - type: Construction
     graph: DisposalPipe
     node: junctionflipped
+  - type: NodeContainer
+    nodes:
+      tube:
+        !type:DisposalsTubeNode
+        nodeGroupID: Disposals
+        pipeDirection: TEast
 
 - type: entity
   id: DisposalYJunction
@@ -397,6 +441,12 @@
   - type: Construction
     graph: DisposalPipe
     node: yJunction
+  - type: NodeContainer
+    nodes:
+      tube:
+        !type:DisposalsTubeNode
+        nodeGroupID: Disposals
+        pipeDirection: TSouth
 
 - type: entity
   id: DisposalXJunction
@@ -432,6 +482,12 @@
   - type: Construction
     graph: DisposalPipe
     node: xJunction
+  - type: NodeContainer
+    nodes:
+      tube:
+        !type:DisposalsTubeNode
+        nodeGroupID: Disposals
+        pipeDirection: Fourway
 
 - type: entity
   id: DisposalBend
@@ -464,6 +520,12 @@
   - type: Construction
     graph: DisposalPipe
     node: bend
+  - type: NodeContainer
+    nodes:
+      tube:
+        !type:DisposalsTubeNode
+        nodeGroupID: Disposals
+        pipeDirection: SWBend
 
 - type: entity
   parent: DisposalJunction
@@ -502,6 +564,12 @@
   - type: Construction
     graph: DisposalPipe
     node: signal_router
+  - type: NodeContainer
+    nodes:
+      tube:
+        !type:DisposalsTubeNode
+        nodeGroupID: Disposals
+        pipeDirection: TWest
 
 - type: entity
   parent: DisposalSignalRouter
@@ -525,3 +593,9 @@
           True: { state: signal-router-flipped }
   - type: Construction
     node: signal_router_flipped
+  - type: NodeContainer
+    nodes:
+      tube:
+        !type:DisposalsTubeNode
+        nodeGroupID: Disposals
+        pipeDirection: TEast
