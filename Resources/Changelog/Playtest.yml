@@ -1587,3 +1587,9 @@ Entries:
         forgo their jumpsuit and backpack temporarily.
   id: 168
   time: '2026-08-01T22:46:35.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Removed Demolitionist secret identity.
+  id: 169
+  time: '2026-08-01T22:47:30.0000000+00:00'
