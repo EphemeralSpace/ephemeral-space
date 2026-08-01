@@ -8,7 +8,6 @@
   - Marauder
   - Subverter
   - Recruit
-  - Demolitionist
   - Sympathizer
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Traitors.xml"
 
@@ -41,12 +40,6 @@
   hidden: false
   name: Recruit
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Traitors/Recruit.xml"
-
-- type: guideEntry
-  id: Demolitionist
-  hidden: false
-  name: Demolitionist
-  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Traitors/Demolitionist.xml"
 
 - type: guideEntry
   id: Sympathizer
