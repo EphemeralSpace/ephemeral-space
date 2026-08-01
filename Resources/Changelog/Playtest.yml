@@ -1562,3 +1562,9 @@ Entries:
         disposals.
   id: 166
   time: '2026-08-01T21:07:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Fires now spread slower and produce slightly less smoke.
+  id: 167
+  time: '2026-08-01T22:44:19.0000000+00:00'
