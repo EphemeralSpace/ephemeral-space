@@ -237,6 +237,20 @@
       - state: green
       - state: scientist
 
+- type: entity
+  id: ESSpawnPointExperiment
+  parent: SpawnPointJobBase
+  name: experiment
+  suffix: ES
+  components:
+  - type: SpawnPoint
+    job_id: ESExperiment
+  - type: Sprite
+    layers:
+    - state: green
+    - state: monkey
+      sprite: Mobs/Animals/monkey.rsi
+
 # Security
 
 - type: entity
