@@ -59,7 +59,7 @@ public sealed partial class ESJobDisplay : BoxContainer
             ? _entityManager.Spawn(_prototypeManager.Index(SharedHumanoidAppearanceSystem.DefaultSpecies).DollPrototype)
             : _entityManager.Spawn(jobProto.JobEntity);
         var randomSeed = new RngSeed().SeedForStep(job.Id.GetHashCode() + _player.LocalEntity?.Id ?? 0);
-        var defaultDude = _auditions.RandomProfile(randomSeed.IntoRandomizer());
+        var defaultDude = _auditions.RandomProfile(randomSeed.IntoRandomizer(), jobProto.SpeciesOverride);
         _humanoid.LoadProfile(_doll, defaultDude);
         JobView.SetEntity(_doll);
 

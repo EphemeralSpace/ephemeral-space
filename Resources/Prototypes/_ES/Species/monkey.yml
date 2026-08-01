@@ -6,15 +6,14 @@
   sprites: ESMobMonkeySprites
   markingLimits: MobHumanMarkingLimits
   dollPrototype: ESMobMonkeyDummy
-  skinColoration: Hues
+  skinColors:
+  - MonkeyFurred
 
 - type: speciesBaseSprites
   id: ESMobMonkeySprites
   sprites:
     Special: MobHumanoidAnyMarking
     Head: ESMobMonkeyHead
-    Hair: MobHumanoidAnyMarking
-    FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
@@ -29,7 +28,7 @@
     RLeg: ESMobMonkeyRLeg
     LFoot: ESMobMonkeyLFoot
     RFoot: ESMobMonkeyRFoot
-    Tail: MobHumanoidAnyMarking
+    Tail: ESMobMonkeyTail
 
 - type: humanoidBaseSprite
   id: ESMobMonkeyHead

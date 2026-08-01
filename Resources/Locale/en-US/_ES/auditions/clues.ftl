@@ -26,6 +26,7 @@ es-skin-tone-sickly = sickly
 es-skin-tone-starburnt = starburnt
 es-skin-tone-simpson = simpson
 es-skin-tone-egared = hotdog
+es-skin-tone-furred = furry
 
 es-clue-sex-male = male
 es-clue-sex-female = female

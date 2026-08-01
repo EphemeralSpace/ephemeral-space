@@ -1,6 +1,7 @@
 - type: entity
   parent: BaseMobSpeciesOrganic
   id: ESBaseMobMonkey
+  name: monkey
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   abstract: true
   components:
@@ -66,9 +67,6 @@
     - map: [ "enum.HumanoidVisualLayers.RFoot" ]
     - map: [ "enum.HumanoidVisualLayers.LHand" ]
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: monkey
-      sprite: Mobs/Animals/monkey.rsi
     - map: [ "jumpsuit" ]
     - map: [ "shoes" ]
     - map: [ "gloves" ]
@@ -85,6 +83,7 @@
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
     - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
     - map: [ "mask" ]
     - map: [ "head" ]
     - map: [ "pocket1" ]
