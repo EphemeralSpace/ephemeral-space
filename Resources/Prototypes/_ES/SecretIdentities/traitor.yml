@@ -55,16 +55,6 @@
   color: pink
   weight: 0
 
-- type: esSecretIdentity
-  parent: ESBaseTraitor
-  id: Demolitionist
-  name: es-secret-identity-demolitionist-name
-  description: es-secret-identity-demolitionist-desc
-  color: orangered
-  mindComponents:
-  - type: ESSecretIdentityCacheSpawner
-    cacheProto:
-      id: ESCrateCacheTraitorDemolitionist
 
 - type: esSecretIdentity
   # doesnt parent from basetraitor because we dont want the icon

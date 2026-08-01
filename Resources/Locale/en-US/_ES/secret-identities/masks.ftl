@@ -68,9 +68,6 @@ es-secret-identity-recruit-desc = As a Recruit, you've been newly recruited to t
 es-secret-identity-subverter-name = Subverter
 es-secret-identity-subverter-desc = As a Subverter, you have received two brain-altering chips which you can use to convert non-mindshielded crew into fresh Syndicate recruits.
 
-es-secret-identity-demolitionist-name = Demolitionist
-es-secret-identity-demolitionist-desc = As a Demolitionist, you have been trained by the Syndicate for both controlled and uncontrolled "demolitions"--including in the use of explosive implants, should things turn out that way.
-
 es-secret-identity-sympathizer-name = Sympathizer
 es-secret-identity-sympathizer-desc = As a Sympathizer, you are an adherent to Syndicate philosophy, win with the traitors, and count as a traitor--but you are unaware of who the traitors are and what their objectives are.
 
