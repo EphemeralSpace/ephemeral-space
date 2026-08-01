@@ -2,6 +2,7 @@ using Content.Shared._ES.Auditions;
 using Content.Shared._ES.Tips;
 using Content.Shared.Access;
 using Content.Shared.Guidebook;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
@@ -160,6 +161,9 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public List<ProtoId<GuideEntryPrototype>>? Guides;
+
+        [DataField]
+        public ProtoId<SpeciesPrototype>? SpeciesOverride;
 
         /// <summary>
         /// Set of tips that apply to this job specifically.

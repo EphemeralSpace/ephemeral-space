@@ -61,8 +61,9 @@ public abstract partial class ESSharedAuditionsSystem
             return _mind.CreateMind(null);
 
         var nameConfig = _prototypeManager.TryIndex(job, out var jobPrototype) ? jobPrototype.NameConfig : ESNameConfig.Default;
+        var species = jobPrototype?.SpeciesOverride;
 
-        var profile = RandomProfile(_random);
+        var profile = RandomProfile(_random, species);
 
         profile.Name = GenerateName(nameConfig, profile.Gender, out var baseName);
 
@@ -153,7 +154,8 @@ public abstract partial class ESSharedAuditionsSystem
             .ToList();
         }
 
-        profile.Appearance.HairStyleId = random.Pick(hairOptions);
+        if (hairOptions.Any())
+            profile.Appearance.HairStyleId = random.Pick(hairOptions);
         if (random.Prob(BaldChance))
             profile.Appearance.HairStyleId = string.Empty; // This is awful but w/e
 

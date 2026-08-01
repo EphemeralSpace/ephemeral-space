@@ -109,6 +109,13 @@
 - type: esSkinColor
   id: CryohuskFrostbitten
   name: es-skin-tone-frostbitten
-  weight: 1
   colors:
   - "#ffffff"
+
+# Monkey skin
+- type: esSkinColor
+  id: MonkeyFurred
+  name: es-skin-tone-furred
+  colors:
+  - "#ffffff"
+
