@@ -117,6 +117,6 @@ public sealed partial class ESSparksSystem : EntitySystem
         }
 
         if (_random.Prob(tileFireChance))
-            _tileFire.TryDoTileFire(coordinates, user, _random.Next(1, 4));
+            _tileFire.TryDoTileFire(coordinates, user, _random.Next(1, 2));
     }
 }
