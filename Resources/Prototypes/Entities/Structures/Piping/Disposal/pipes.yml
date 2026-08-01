@@ -59,6 +59,7 @@
   - type: CollideOnAnchor
   - type: DisposalTube
   - type: CrawlableNode
+    reachableNodeTypes: [ Content.Server.NodeContainer.Nodes.DisposalsTubeNode ]
 
 - type: entity
   id: DisposalHolder

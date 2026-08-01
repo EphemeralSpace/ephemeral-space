@@ -93,6 +93,14 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
         _action.AddAction(ent.Owner, ent.Comp.Action);
     }
 
+    protected virtual void SetupAir(Entity<NodeCrawlerMovementComponent> movement)
+    {
+    }
+
+    protected virtual void EjectAir(Entity<NodeCrawlerMovementComponent> movement)
+    {
+    }
+
     private void NodeCrawl(Entity<NodeCrawlerComponent> ent, EntityUid target)
     {
         if (!_net.IsServer)
@@ -112,6 +120,8 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
 
         _nodeCrawler.SetNode((mover, crawler), target);
         _nodeCrawler.SetHeldCrawler((mover, crawler), ent);
+
+        SetupAir((mover, crawler));
 
         _mover.SetRelay(ent, mover);
         _physics.SetCanCollide(ent.Owner, false);
@@ -145,7 +155,12 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
 
         RemComp<RelayInputMoverComponent>(ent);
         if (_net.IsServer && !TerminatingOrDeleted(mover))
+        {
+            if (TryComp<NodeCrawlerMovementComponent>(mover, out var movement))
+                EjectAir((mover, movement));
+
             QueueDel(mover); // deletion isn't predicted because client queued deletion doesn't interact well with container stuff
+        }
 
         _physics.SetCanCollide(ent.Owner, true);
         _eye.RefreshVisibilityMask(ent.Owner);
@@ -193,9 +208,9 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
             Dirty(node, nodeComp);
         }
 
-        if (ent.Comp.HeldCrawler is { } crawler && !TerminatingOrDeleted(crawler))
+        if (ent.Comp.HeldCrawler is { } crawler && !TerminatingOrDeleted(crawler) && TryComp<NodeCrawlerComponent>(crawler, out var nodeCrawler))
         {
-            ExitNodeCrawl((crawler, Comp<NodeCrawlerComponent>(crawler)));
+            ExitNodeCrawl((crawler, nodeCrawler));
         }
     }
 
