@@ -51,7 +51,13 @@ public sealed partial class NodeCrawlerComponent : Component
     /// How long it takes to enter a node.
     /// </summary>
     [DataField]
-    public TimeSpan EnterDelay = TimeSpan.FromSeconds(1);
+    public TimeSpan EnterDelay = TimeSpan.FromSeconds(2);
+
+    /// <summary>
+    /// Sound played when starting a nodecrawl.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? StartSound = new SoundCollectionSpecifier("trashBagRustle");
 
     /// <summary>
     /// Played when this crawler is forcibly pulled out of their crawl for whatever reason

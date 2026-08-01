@@ -106,6 +106,8 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
         if (!_net.IsServer)
             return;
 
+        _audio.PlayPvs(ent.Comp.StartSound, target);
+
         var mover = Spawn(ent.Comp.MoverEntity, Transform(target).Coordinates);
         var crawler = Comp<NodeCrawlerMovementComponent>(mover);
 
