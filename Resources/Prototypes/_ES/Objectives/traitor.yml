@@ -11,7 +11,7 @@
   - type: ESNukePrereqObjective
 
 - type: entity
-  parent: ESBaseTraitorObjectiveMinor
+  parent: [ ESBaseTraitorObjectiveMinor, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveTraitorKillRandom
   name: Kill a specific member of the crew
   description: The syndicate needs to make sure they don't interfere with our plans.

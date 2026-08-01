@@ -23,7 +23,7 @@
     - Nobleman
 
 - type: entity
-  parent: ESBaseSecretIdentityObjective
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveHaterDontKill
   name: Don't kill your target
   description: You hate 'em, but you wouldn't want them dead. At least, not by your hands.
