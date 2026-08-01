@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 
@@ -8,6 +9,7 @@ namespace Content.Shared._DV.NodeCrawl;
 
 public sealed partial class NodeCrawlerMovementSystem : EntitySystem
 {
+    [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedMoverController _mover = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
@@ -47,6 +49,9 @@ public sealed partial class NodeCrawlerMovementSystem : EntitySystem
             _nodeCrawl.ExitNodeCrawl((crawler, Comp<NodeCrawlerComponent>(crawler)));
             return;
         }
+
+        if (mover.Comp4.MovementSound is { } sound)
+            _audio.PlayPredicted(sound, mover.Owner, mover.Comp4.HeldCrawler, sound.Params.AddVolume(-7f));
 
         mover.Comp4.TargetNode = target;
         Dirty(mover, mover.Comp4);

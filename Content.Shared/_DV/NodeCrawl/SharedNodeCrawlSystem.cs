@@ -91,7 +91,7 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
         if (!_net.IsServer)
             return;
 
-        var mover = Spawn(MoverProto, Transform(target).Coordinates);
+        var mover = Spawn(ent.Comp.MoverEntity, Transform(target).Coordinates);
         var crawler = Comp<NodeCrawlerMovementComponent>(mover);
 
         var container = _container.GetContainer(mover, MoverContainer);

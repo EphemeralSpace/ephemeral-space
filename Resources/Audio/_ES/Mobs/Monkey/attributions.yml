@@ -1,0 +1,9 @@
+﻿- files: ["monkey_screech_1.ogg", "monkey_screech_2.ogg", "monkey_screech_3.ogg", "monkey_screech_4.ogg", "monkey_screech_5.ogg", "monkey_screech_6.ogg", "monkey_screech_7.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "Taken from tgstation"
+  source: "https://github.com/tgstation/tgstation/commit/436ba869ebcd0b60b63973fb7562f447ee655205/"
+
+- files: ["monkey_hoo_disposals_1.ogg", "monkey_hoo_disposals_2.ogg", "monkey_hoo_disposals_3.ogg", "monkey_hoo_disposals_4.ogg", "monkey_hoo_disposals_5.ogg"]
+  license: "CC0-1.0"
+  copyright: "Taken from Antumdeluge on freesound.org, chopped and postprocessed by mirrorcult"
+  source: "https://freesound.org/people/AntumDeluge/packs/23608/"

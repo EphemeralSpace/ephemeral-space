@@ -2,6 +2,7 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Whitelist;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -41,10 +42,23 @@ public sealed partial class NodeCrawlerComponent : Component
     public EntityWhitelist? ExitNodes;
 
     /// <summary>
+    /// The entity to spawn and use as a node mover.
+    /// </summary>
+    [DataField]
+    public EntProtoId MoverEntity = "NodeCrawlMoverEntity";
+
+    /// <summary>
     /// How long it takes to enter a node.
     /// </summary>
     [DataField]
     public TimeSpan EnterDelay = TimeSpan.FromSeconds(1);
+
+    /// <summary>
+    /// Played when this crawler is forcibly pulled out of their crawl for whatever reason
+    /// e.g. being hit by an object in transit while disposals crawling.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? ForceStopSound;
 }
 
 public sealed partial class StartNodeCrawlActionEvent : EntityTargetActionEvent;

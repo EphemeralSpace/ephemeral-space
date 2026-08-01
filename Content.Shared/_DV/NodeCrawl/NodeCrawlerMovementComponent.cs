@@ -1,3 +1,4 @@
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._DV.NodeCrawl;
@@ -32,6 +33,12 @@ public sealed partial class NodeCrawlerMovementComponent : Component
     /// </summary>
     [DataField]
     public double RequiredAngle = Math.PI / 4f;
+
+    /// <summary>
+    ///     Sound to play on each tile of movement during a nodecrawl.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? MovementSound;
 }
 
 /// <summary>
