@@ -57,7 +57,7 @@
   description: Hop into a disposals unit and deftly crawl through it, pneumatics be damned.
   components:
   - type: Action
-    useDelay: 15
+    useDelay: 60
     icon:
       sprite: _ES/Actions/Mob/monkey_disposals.rsi
       state: icon

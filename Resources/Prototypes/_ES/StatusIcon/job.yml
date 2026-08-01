@@ -8,6 +8,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: ESJobIconExperiment
+  icon:
+    sprite: /Textures/_ES/Interface/Misc/ES_job_icons.rsi
+    state: experiment
+  jobName: ESjob-name-ratman
+
+- type: jobIcon
+  parent: JobIcon
   id: ESJobIconRatman
   icon:
     sprite: /Textures/_ES/Interface/Misc/ES_job_icons.rsi

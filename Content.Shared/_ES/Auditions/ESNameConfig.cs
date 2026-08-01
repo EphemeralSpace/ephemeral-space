@@ -50,6 +50,15 @@ public partial struct ESNameConfig
     public float HyphenatedFirstMiddleNameChance = 0.01f;
 
     /// <summary>
+    /// Chance that the first name will be quoted
+    /// </summary>
+    /// <example>
+    /// "Jeremy"
+    /// </example>
+    [DataField]
+    public float QuotedFirstNameChance = 0f;
+
+    /// <summary>
     /// Chance that the first name will have a quoted nickname appended to it
     /// </summary>
     /// <example>

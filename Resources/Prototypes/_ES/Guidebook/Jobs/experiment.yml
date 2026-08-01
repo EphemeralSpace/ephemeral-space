@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: Experiment
+  hidden: false
+  name: Experiment
+  text: "/ServerInfo/_ES/Guidebook/Jobs/Experiment.xml"
