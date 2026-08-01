@@ -1547,3 +1547,18 @@ Entries:
       message: Skin colors now have more variation.
   id: 165
   time: '2026-08-01T15:07:29.0000000+00:00'
+- author: sowelipililimute,mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Certain entities can now crawl through node networks. Right now this
+        includes disposals for monkeys. Crawling through requires you to not be
+        wearing a jumpsuit or backpack, and it makes a bit of noise. If an
+        object is flushed through disposals while a mob is crawling through a
+        pipe, it will slam into them and take the mob with it.
+    - type: Tweak
+      message: >-
+        Your viewcone now fully occludes your surroundings while going through
+        disposals.
+  id: 166
+  time: '2026-08-01T21:07:15.0000000+00:00'
