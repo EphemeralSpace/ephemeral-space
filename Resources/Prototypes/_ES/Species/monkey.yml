@@ -6,6 +6,10 @@
   sprites: ESMobMonkeySprites
   markingLimits: MobHumanMarkingLimits
   dollPrototype: ESMobMonkeyDummy
+  minAge: 5
+  youngAge: 10
+  oldAge: 25
+  maxAge: 50
   skinColors:
   - MonkeyFurred
 

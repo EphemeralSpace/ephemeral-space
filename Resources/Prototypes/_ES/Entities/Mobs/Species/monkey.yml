@@ -16,19 +16,12 @@
     spawned:
     - id: FoodMeat
       amount: 5
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 2
-    baseSprintSpeed : 3.75
 # Monkey Quirks
-  - type: NameIdentifier
-    group: Monkey
+  - type: Deathgasp
+    prototype: MonkeyDeathgasp
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Monkey_burning
-  - type: Speech
-    speechSounds: Monkey
-    speechVerb: Monkey
-  - type: MonkeyAccent
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
@@ -170,6 +163,7 @@
   save: false
   parent: ESBaseMobMonkey
   id: ESMobMonkey
+  suffix: Species
 
 - type: entity
   parent: BaseSpeciesDummy
