@@ -145,7 +145,7 @@ namespace Content.Shared.Atmos.Components
         ///     How much smoke will be created through this entity burning.
         /// </summary>
         [DataField]
-        public float SmokeMolsReleasedPerStack = 0.01f;
+        public float SmokeMolsReleasedPerStack = 0.006f;
 
         /// <summary>
         ///     Multiplier on fire energy released into the atmosphere.
