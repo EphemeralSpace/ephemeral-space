@@ -54,6 +54,8 @@
   description: es-secret-identity-cryojunkie-desc
   color: lightblue
   weight: 0.5
+  prohibitedJobs:
+  - ESExperiment
   mindComponents:
   - type: ESCryoJunkieMind
 
