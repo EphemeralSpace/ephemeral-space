@@ -1593,3 +1593,17 @@ Entries:
       message: Removed Demolitionist secret identity.
   id: 169
   time: '2026-08-01T22:47:30.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed broken Cryojunkie guidebook.
+    - type: Fix
+      message: NPC monkeys once again move around and attack people.
+    - type: Fix
+      message: Burstworms no longer convert dead people.
+    - type: Tweak
+      message: Increased cooldown on Stalker's target action.
+    - type: Add
+      message: Added an announcement for when sleeper agents activate.
+  id: 170
+  time: '2026-08-02T18:45:16.0000000+00:00'
