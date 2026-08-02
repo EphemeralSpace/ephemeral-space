@@ -11,7 +11,7 @@
     iconOn:
       sprite: _ES/Actions/SecretIdentity/stalker.rsi
       state: icon-on
-    useDelay: 10
+    useDelay: 150
   - type: TargetAction
   - type: EntityTargetAction
     event: !type:ESSelectStalkerTargetActionEvent
