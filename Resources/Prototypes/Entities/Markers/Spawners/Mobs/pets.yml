@@ -147,21 +147,6 @@
 
 - type: entity
   parent: MarkerBase
-  id: SpawnMobMonkeyPunpun
-  name: Pun Pun Spawner
-  suffix: Bartender Pet
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: monkey
-      sprite: Mobs/Animals/monkey.rsi
-  - type: ConditionalSpawner
-    prototypes:
-    - MobMonkeyPunpun
-
-- type: entity
-  parent: MarkerBase
   id: SpawnMobPollyParrot
   name: Polly the parrot Spawner
   suffix: CE Pet

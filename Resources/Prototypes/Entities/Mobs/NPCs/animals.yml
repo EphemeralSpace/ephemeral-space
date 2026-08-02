@@ -867,6 +867,18 @@
     speechSounds: Monkey
     speechVerb: Monkey
   - type: MonkeyAccent
+  - type: NPCRetaliation
+    attackMemoryLength: 10
+  - type: FactionException
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: MonkeyCompound
+    blackboard:
+      NavInteract: !type:Bool
+        true
 
 - type: entity
   name: kobold
