@@ -55,7 +55,7 @@
     isPlaceable: false
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
+    damageModifierSet: ESMachine
   - type: Destructible
     thresholds:
     - trigger:
@@ -113,6 +113,9 @@
     - entity_storage
   - type: Paintable
     group: Closet
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: ESMachine
 
 #Wall Closet
 - type: entity
@@ -268,7 +271,7 @@
     isPlaceable: false
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
+    damageModifierSet: ESMachine
   - type: Destructible
     thresholds:
     - trigger:

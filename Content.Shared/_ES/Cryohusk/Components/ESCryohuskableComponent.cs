@@ -1,4 +1,5 @@
-using Content.Shared.Polymorph;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -26,7 +27,10 @@ public sealed partial class ESCryohuskableComponent : Component
     public TimeSpan NextUpdate;
 
     [DataField]
-    public ProtoId<PolymorphPrototype> CryohuskPolymorph = "ESCryohuskPolymorph";
+    public ProtoId<SpeciesPrototype> CryohuskSpecies = "ESCryohusk";
+
+    [DataField]
+    public ProtoId<DamageModifierSetPrototype> DamageModifierSet = "ESCryohusk";
 
     [DataField]
     public SoundSpecifier? FreezeSound = new SoundCollectionSpecifier("ESFreeze")

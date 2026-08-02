@@ -1,3 +1,4 @@
+using Content.Server.Body.Systems;
 using Content.Shared.Explosion;
 using Content.Shared.Inventory;
 
@@ -10,6 +11,7 @@ namespace Content.Server.Inventory
             base.Initialize();
 
             SubscribeLocalEvent<InventoryComponent, BeforeExplodeEvent>(OnExploded);
+            SubscribeLocalEvent<InventoryComponent, ESModifyInhaledGasEvent>(RefRelayInventoryEvent);
         }
 
         private void OnExploded(Entity<InventoryComponent> ent, ref BeforeExplodeEvent args)

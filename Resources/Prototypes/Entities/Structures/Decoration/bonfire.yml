@@ -23,7 +23,7 @@
     color: "#FFC90C"
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Wood
+    damageModifierSet: ESWood
   - type: Destructible
     thresholds:
       - trigger:

@@ -1,5 +1,7 @@
 using System.Numerics;
+using Content.Shared._DV.NodeCrawl;
 using Content.Shared._ES.Viewcone.Components;
+using Content.Shared.Disposal.Unit;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
 using Content.Shared.StatusEffectNew;
@@ -23,6 +25,9 @@ public sealed partial class ESViewconeAngleSystem : EntitySystem
         SubscribeLocalEvent<ESViewconeModifierComponent, ESViewconeGetAngleModifierEvent>(OnAngleModify);
         SubscribeLocalEvent<ESViewconeModifierComponent, InventoryRelayedEvent<ESViewconeGetAngleModifierEvent>>(OnAngleInventoryModify);
         SubscribeLocalEvent<ESViewconeModifierComponent, StatusEffectRelayedEvent<ESViewconeGetAngleModifierEvent>>(OnAngleStatusEffectModify);
+
+        SubscribeLocalEvent<NodeCrawlerComponent, ESViewconeGetAngleModifierEvent>(OnNodeCrawlerAngle);
+        SubscribeLocalEvent<BeingDisposedComponent, ESViewconeGetAngleModifierEvent>(OnBeingDisposedAngle);
     }
 
     private void OnExamined(Entity<ESViewconeModifierComponent> ent, ref ExaminedEvent args)
@@ -50,6 +55,21 @@ public sealed partial class ESViewconeAngleSystem : EntitySystem
         args.Args.ModifyAngle(ent.Comp.AngleModifier);
     }
 
+    private void OnNodeCrawlerAngle(Entity<NodeCrawlerComponent> ent, ref ESViewconeGetAngleModifierEvent args)
+    {
+        if (ent.Comp.Mover is null)
+            return;
+
+        args.ModifyAngle(-360f);
+        args.LowerBoundClamp = 0f;
+    }
+
+    private void OnBeingDisposedAngle(Entity<BeingDisposedComponent> ent, ref ESViewconeGetAngleModifierEvent args)
+    {
+        args.ModifyAngle(-360f);
+        args.LowerBoundClamp = 0f;
+    }
+
     /// <summary>
     ///     Returns the modified viewcone angle for an entity, calculated from the base, taking into account
     ///     equipment & status effects & whatnot
@@ -62,8 +82,8 @@ public sealed partial class ESViewconeAngleSystem : EntitySystem
         var ev = new ESViewconeGetAngleModifierEvent();
         RaiseLocalEvent(ent, ref ev, true);
 
-        // clamps to 15, 360 since this is additive and could easily go over/too low with stacking equipment items and shit
-        return Math.Clamp(ent.Comp.BaseConeAngle + ev.GetAngleModifier(), 15f, 360f);
+        // clamps to 20, 360 by default since this is additive and could easily go over/too low with stacking equipment items and shit
+        return Math.Clamp(ent.Comp.BaseConeAngle + ev.GetAngleModifier(), ev.LowerBoundClamp, ev.UpperBoundClamp);
     }
 
     /// <summary>

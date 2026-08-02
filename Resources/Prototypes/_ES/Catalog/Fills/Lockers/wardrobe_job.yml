@@ -38,7 +38,7 @@
   table:
     all:
     - id: ClothingUniformJumpsuitAtmos
-    - id: ClothingBackpackEngineering
+    - id: ClothingBackpack
     - id: ClothingShoesColorWhite
 
 - type: entity
@@ -113,7 +113,7 @@
   id: ESFillWardrobeCoroner
   table:
     all:
-    - id: ClothingBackpackMedical
+    - id: ClothingBackpack
     - id: ClothingShoesColorBlack
     - id: ESClothingHeadHatCoroner
     - id: ESClothingOuterCoatDetectiveGrey
@@ -157,7 +157,7 @@
     all:
     - id: ClothingHeadHatFedoraBrown
     - id: ESClothingOuterCoatDetective
-    - id: ClothingBackpackSecurity
+    - id: ClothingBackpack
     - id: ClothingShoesColorBrown
     - id: ClothingUniformJumpsuitDetective
     - id: ClothingNeckTieDet
@@ -178,7 +178,7 @@
   table:
     all:
     - id: ClothingUniformJumpsuitMedicalDoctor
-    - id: ClothingBackpackMedical
+    - id: ClothingBackpack
     - id: ClothingShoesColorWhite
     - id: ClothingOuterCoatLabOpened
     - id: ClothingHandsGlovesColorBlue
@@ -202,7 +202,7 @@
     all:
     - id: ClothingHeadHatHardhatYellow
     - id: ClothingUniformJumpsuitEngineering
-    - id: ClothingBackpackEngineering
+    - id: ClothingBackpack
     - id: ClothingShoesColorOrange
     - id: ClothingOuterVestHazard
 
@@ -250,7 +250,7 @@
   table:
     all:
     - id: ClothingUniformJumpsuitSec
-    - id: ClothingBackpackSecurity
+    - id: ClothingBackpack
     - id: ClothingShoesBootsBlack
 
 - type: entity
@@ -279,7 +279,7 @@
   table:
     all:
     - id: ClothingUniformJumpsuitScientist
-    - id: ClothingBackpackScience
+    - id: ClothingBackpack
     - id: ClothingShoesChef
     - id: ClothingOuterCoatLabOpened
     - id: ClothingEyesGlasses
@@ -305,7 +305,7 @@
     - id: ClothingShoesColorBlue
     - id: ESClothingHeadHatParamedicsoft
     - id: ESClothingUniformJumpsuitParamedic
-    - id: ClothingBackpackMedical
+    - id: ClothingBackpack
 
 - type: entity
   id: ESWardrobePrisonFilled

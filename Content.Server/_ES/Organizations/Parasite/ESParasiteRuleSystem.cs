@@ -6,9 +6,9 @@ using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
+using Content.Shared._ES.Cinematic;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Core.Timer.Components;
-using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Systems;
@@ -19,6 +19,7 @@ using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.Audio;
 using Robust.Server.Player;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.Organizations.Parasite;
@@ -29,15 +30,23 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ESCinematicSystem _cinematic = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private ESSecretIdentitySystem _secretIdentity = default!;
+    [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private ESObjectiveSystem _objective = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private RejuvenateSystem _rejuvenate = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;
     [Dependency] private StationSpawningSystem _stationSpawning = default!;
+
+    /// <summary>
+    ///     Round will actually end (screen pops up music plays etc) this amount of time before the cinematic finishes.
+    /// </summary>
+    private static readonly TimeSpan EndRoundDuration = TimeSpan.FromSeconds(10);
+    private static readonly ProtoId<ESCinematicPrototype> Cinematic = "ParasiteCinematic";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -78,7 +87,26 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
 
     private void OnWinCheckTimer(Entity<ESParasiteRuleComponent> ent, ref ESParasiteWinCheckTimerEvent args)
     {
+        EndRound(ent);
+    }
+
+    private void EndRound(Entity<ESParasiteRuleComponent> ent)
+    {
+        if (ent.Comp.WinStarted)
+            return;
         ent.Comp.WinStarted = true;
+
+        var filter = Filter.Broadcast();
+        var cinematic = ProtoMan.Index(Cinematic);
+        _cinematic.PlayCinematic(Cinematic, filter);
+        _entityTimer.SpawnMethodTimer(cinematic.Length - EndRoundDuration,
+            () =>
+            {
+                _roundEnd.EndRound(EndRoundDuration);
+            });
+
+        // pause station map
+        _map.SetPaused(_gameTicker.DefaultMap, true);
     }
 
     private void OnHit(Entity<ESParasiteConverterComponent> ent, ref MeleeHitEvent args)
@@ -105,6 +133,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
     private void StartEndPhase(Entity<ESParasiteRuleComponent> ent)
     {
         ent.Comp.ObjectivesCompleted = true;
+        _objective.FreezeObjectives<ESParasiteWinFreezeObjectiveComponent>();
 
         var msg = Loc.GetString("es-parasite-swarm-notif");
         var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
@@ -162,17 +191,9 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
             if (!comp.SwarmStarted)
                 continue;
 
-            if (AllPlayersConverted(uid))
-            {
-                _roundEnd.EndRound(TimeSpan.FromMinutes(1));
+            if (!AllPlayersConverted(uid))
                 continue;
-            }
-
-            if (!comp.WinStarted)
-                continue;
-
-            if (_objective.AllCompleted(uid))
-                _roundEnd.EndRound(TimeSpan.FromMinutes(1));
+            EndRound((uid, comp));
         }
     }
 }

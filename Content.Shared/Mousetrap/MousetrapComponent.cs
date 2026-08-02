@@ -1,3 +1,4 @@
+using Content.Shared.Damage;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Mousetrap;
@@ -8,14 +9,15 @@ namespace Content.Shared.Mousetrap;
 /// and will scale damage taken from <see cref="Trigger.Components.Effects.DamageOnTriggerComponent"/>
 /// depending on mass.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class MousetrapComponent : Component
 {
     /// <summary>
-    /// Set this to change where the
-    /// inflection point in the damage scaling
-    /// equation will occur.
+    /// Additional damage applied to entities with <see cref="ESMousetrapPestComponent"/>
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public int MassBalance = 10;
+    [DataField]
+    public DamageSpecifier MouseDamage = new();
 }
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class ESMousetrapPestComponent : Component;

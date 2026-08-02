@@ -1,0 +1,7 @@
+- type: esCinematic
+  id: ParasiteCinematic
+  animation:
+    sprite: _ES/Cinematics/parasite_cutscene.rsi
+    state: station_parasite_news
+  sound: /Audio/_ES/Cinematics/parasite.ogg
+  length: 22.5

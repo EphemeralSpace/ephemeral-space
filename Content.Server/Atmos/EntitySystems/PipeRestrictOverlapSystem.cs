@@ -7,6 +7,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.NodeContainer;
+using Content.Shared.NodeContainer.NodeGroups;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
@@ -101,24 +102,24 @@ public sealed partial class PipeRestrictOverlapSystem : EntitySystem
         var entDirsAndLayers = GetAllDirectionsAndLayers(ent).ToList();
         var otherDirsAndLayers = GetAllDirectionsAndLayers(other).ToList();
 
-        foreach (var (dir, layer) in entDirsAndLayers)
+        foreach (var (dir, nodeGroupId, layer) in entDirsAndLayers)
         {
-            foreach (var (otherDir, otherLayer) in otherDirsAndLayers)
+            foreach (var (otherDir, otherNodeGroupId, otherLayer) in otherDirsAndLayers)
             {
-                if ((dir & otherDir) != 0 && layer == otherLayer)
+                if ((dir & otherDir) != 0 && layer == otherLayer && nodeGroupId == otherNodeGroupId)
                     return true;
             }
         }
 
         return false;
 
-        IEnumerable<(PipeDirection, AtmosPipeLayer)> GetAllDirectionsAndLayers(Entity<NodeContainerComponent, TransformComponent> pipe)
+        IEnumerable<(PipeDirection, NodeGroupID, AtmosPipeLayer)> GetAllDirectionsAndLayers(Entity<NodeContainerComponent, TransformComponent> pipe)
         {
             foreach (var node in pipe.Comp1.Nodes.Values)
             {
                 // we need to rotate the pipe manually like this because the rotation doesn't update for pipes that are unanchored.
                 if (node is PipeNode pipeNode)
-                    yield return (pipeNode.OriginalPipeDirection.RotatePipeDirection(pipe.Comp2.LocalRotation), pipeNode.CurrentPipeLayer);
+                    yield return (pipeNode.OriginalPipeDirection.RotatePipeDirection(pipe.Comp2.LocalRotation), pipeNode.NodeGroupID, pipeNode.CurrentPipeLayer);
             }
         }
     }

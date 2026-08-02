@@ -1393,3 +1393,217 @@ Entries:
       message: Crewmember identity gone
   id: 151
   time: '2026-07-26T03:54:53.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Living bodies and cryojunkies now create stagehand announcements.
+    - type: Fix
+      message: >-
+        Dead bodies getting cryohusked no longer plays death announcements to
+        stagehands.
+    - type: Fix
+      message: >-
+        Phantoms and Cryojunkies no longer play the death animation before doing
+        their behavior.
+  id: 152
+  time: '2026-07-26T14:18:35.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed mispredicting popup when cannibals would try and eat a body.
+    - type: Tweak
+      message: >-
+        Cannibals can now eat the dead bodies of Phantoms in order to copy their
+        secret identity.
+  id: 153
+  time: '2026-07-26T16:29:39.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Added many more newspaper & magazine articles.
+    - type: Add
+      message: You can now beat the shit out of people with a newspaper.
+  id: 154
+  time: '2026-07-27T21:59:46.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Miasma clouds no longer cause vomiting.
+    - type: Fix
+      message: >-
+        Fixed an issue where the navigation terminal could rapidly spam
+        announcements.
+    - type: Tweak
+      message: Blocked hater from targeting certain secret identities.
+    - type: Fix
+      message: Fixed melee swings being rotated during mirror mode.
+    - type: Tweak
+      message: Reduced chance of mirror mode.
+  id: 155
+  time: '2026-07-28T10:32:17.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Cryojunkies no longer have an objective to transform into a cryohusk.
+    - type: Add
+      message: >-
+        Cryojunkies now get an announcement upon death informing them that their
+        revive is coming soon. 
+    - type: Tweak
+      message: Cryohusks no longer have examine text for nonexistent eyes.
+  id: 156
+  time: '2026-07-28T15:48:18.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Getting hit by melee slows you down less
+  id: 157
+  time: '2026-07-29T15:07:10.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Mouse traps no longer do damage to non-pests.
+  id: 158
+  time: '2026-07-29T15:14:01.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Almost every role now spawns with a generic PDA and backpack
+  id: 159
+  time: '2026-07-29T15:50:19.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Gas masks now passively block various harmful gases when worn.
+    - type: Remove
+      message: Gas masks no longer connect to gas tanks for internals.
+  id: 160
+  time: '2026-07-29T16:56:44.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Leapleechs are now slightly smarter with targeting and pathing to
+        players
+  id: 161
+  time: '2026-07-29T17:41:02.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: >-
+        Certain similar archetypes of weapons now share identical properties.
+        For example, the coroner's scalpel and butcher knife now function
+        identically
+    - type: Add
+      message: The circular saw now penetrates all armor and has snazzy new sounds
+    - type: Add
+      message: >-
+        Welding tools and the electric drill now attack continuously, but have a
+        lower range
+    - type: Add
+      message: The spear now has a longer range but attacks slower
+    - type: Add
+      message: >-
+        The wrench and screwdriver are slightly less awful as weapons (not by
+        much)
+    - type: Add
+      message: Oxygen tanks and fire extinguishers deal a bit more damage
+    - type: Add
+      message: Medkits are now usable as weapons
+    - type: Add
+      message: You can now ignite wooden barricades
+    - type: Tweak
+      message: >-
+        Wooden barricades (and most wooden structures) are now harder to break
+        with most weaponry
+    - type: Tweak
+      message: Lockers and crates are now slightly harder to break with most weaponry
+  id: 162
+  time: '2026-07-29T22:28:09.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Arms Dealer has less caches and by extension, half as many guns
+  id: 163
+  time: '2026-07-30T08:53:24.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Added a new cinematic for Parasite victory.
+    - type: Tweak
+      message: >-
+        Parasites can no longer fail their objectives after they have
+        successfully infected the station.
+    - type: Tweak
+      message: >-
+        Certain objectives will no longer have their progress change after the
+        Radstorm starts. If you protected someone all round, you don't suddenly
+        fail just because the Radstorm came.
+  id: 164
+  time: '2026-08-01T14:30:04.0000000+00:00'
+- author: EmoGarbage404, Flareguy
+  changes:
+    - type: Add
+      message: Skin colors now have more variation.
+  id: 165
+  time: '2026-08-01T15:07:29.0000000+00:00'
+- author: sowelipililimute,mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Certain entities can now crawl through node networks. Right now this
+        includes disposals for monkeys. Crawling through requires you to not be
+        wearing a jumpsuit or backpack, and it makes a bit of noise. If an
+        object is flushed through disposals while a mob is crawling through a
+        pipe, it will slam into them and take the mob with it.
+    - type: Tweak
+      message: >-
+        Your viewcone now fully occludes your surroundings while going through
+        disposals.
+  id: 166
+  time: '2026-08-01T21:07:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Fires now spread slower and produce slightly less smoke.
+  id: 167
+  time: '2026-08-01T22:44:19.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        A new job has been added: the Experiment. This tragic ape is the
+        successful result of the 4th iteration of simian intelligence
+        enhancement experiments, and now they take a spot aboard this station to
+        practice socialization and to learn if primate crewmates can perform
+        tasks like the best of them.
+    - type: Add
+      message: >-
+        The Experiment gets a locker containing either an engineering ID card,
+        med ID card, or security ID card (and corresponding gear).
+    - type: Add
+      message: >-
+        As a monkey, the Experiment can crawl through disposals--as long as they
+        forgo their jumpsuit and backpack temporarily.
+  id: 168
+  time: '2026-08-01T22:46:35.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Removed Demolitionist secret identity.
+  id: 169
+  time: '2026-08-01T22:47:30.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed broken Cryojunkie guidebook.
+    - type: Fix
+      message: NPC monkeys once again move around and attack people.
+    - type: Fix
+      message: Burstworms no longer convert dead people.
+    - type: Tweak
+      message: Increased cooldown on Stalker's target action.
+    - type: Add
+      message: Added an announcement for when sleeper agents activate.
+  id: 170
+  time: '2026-08-02T18:45:16.0000000+00:00'

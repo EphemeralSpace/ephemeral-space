@@ -17,3 +17,7 @@
     sprite: _ES/Objects/Storage/Briefcases/briefcase_aluminum.rsi
   - type: Item
     sprite: _ES/Objects/Storage/Briefcases/briefcase_aluminum.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 7 # its made out of aluminum so it hurts a bit more

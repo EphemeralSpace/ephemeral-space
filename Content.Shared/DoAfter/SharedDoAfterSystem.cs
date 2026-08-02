@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
@@ -38,6 +37,8 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         SubscribeLocalEvent<DoAfterComponent, ComponentGetState>(OnDoAfterGetState);
         SubscribeLocalEvent<DoAfterComponent, ComponentHandleState>(OnDoAfterHandleState);
         SubscribeLocalEvent<GetInteractingEntitiesEvent>(OnGetInteractingEntities);
+
+        SubscribeLocalEvent<DoAfterComponent, ESRefreshForcedFacingEvent>(OnRefreshForcedFacing);
     }
 
     private void OnUnpaused(EntityUid uid, DoAfterComponent component, ref EntityUnpausedEvent args)
@@ -93,10 +94,8 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         if (component.AwaitedDoAfters.Remove(doAfter.Index, out var tcs))
             tcs.SetResult(doAfter.Cancelled ? DoAfterStatus.Cancelled : DoAfterStatus.Finished);
 
-        if (Exists(doAfter.Args.User) && Exists(doAfter.Args.Target))
-        {
-            _rotateToFace.StopFacing(doAfter.Args.User, doAfter.Args.Target.Value);
-        }
+        if (doAfter.Args.FaceTarget)
+            _rotateToFace.RefreshForcedFacing(doAfter.Args.User);
     }
 
     private void OnDoAfterGetState(EntityUid uid, DoAfterComponent comp, ref ComponentGetState args)
@@ -155,6 +154,27 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
                 if (doAfter.Args.Target == args.Target)
                     args.InteractingEntities.Add(doAfter.Args.User);
             }
+        }
+    }
+
+    private void OnRefreshForcedFacing(Entity<DoAfterComponent> ent, ref ESRefreshForcedFacingEvent args)
+    {
+        foreach (var doAfter in ent.Comp.DoAfters.Values)
+        {
+            // we only want in-progress doAfters
+            if (doAfter.Completed || doAfter.Cancelled)
+                continue;
+
+            if (!doAfter.Args.FaceTarget)
+                continue;
+
+            // Never force facing ourselves.
+            if (doAfter.Args.Target == doAfter.Args.User)
+                continue;
+
+            if (!Exists(doAfter.Args.Target) || TerminatingOrDeleted(doAfter.Args.Target))
+                continue;
+            args.Targets.Add(doAfter.Args.Target.Value);
         }
     }
 
@@ -272,15 +292,14 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             return true;
         }
 
-        if (args.FaceTarget && args.Target.HasValue && args.Target != args.User)
-        {
-            _rotateToFace.StartFacing(args.User, args.Target.Value);
-        }
-
         comp.DoAfters.Add(doAfter.Index, doAfter);
         EnsureComp<ActiveDoAfterComponent>(args.User);
         Dirty(args.User, comp);
         args.Event.DoAfter = doAfter;
+
+        if (args.FaceTarget)
+            _rotateToFace.RefreshForcedFacing(args.User);
+
         return true;
     }
 

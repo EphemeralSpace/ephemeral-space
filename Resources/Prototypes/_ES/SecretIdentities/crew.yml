@@ -13,7 +13,7 @@
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
       id: ESCrateCacheCrewArmsDealer
-      amount: 6
+      amount: 3
 
 - type: esSecretIdentity
   id: Arsonist
@@ -54,11 +54,10 @@
   description: es-secret-identity-cryojunkie-desc
   color: lightblue
   weight: 0.5
+  prohibitedJobs:
+  - ESExperiment
   mindComponents:
   - type: ESCryoJunkieMind
-  objectives:
-    all:
-    - id: ESObjectiveCryohusk
 
 - type: esSecretIdentity
   id: Guzzler

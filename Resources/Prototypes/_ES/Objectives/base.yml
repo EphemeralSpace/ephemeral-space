@@ -12,3 +12,10 @@
   - type: ESObjective
   - type: ESSecretIdentityObjective
   - type: ESStagehandAware
+
+# Objectives which should be frozen once the radstorm comes
+- type: entity
+  id: ESBaseObjectiveRadstormFreeze
+  abstract: true
+  components:
+  - type: ESRadstormFreezeObjective

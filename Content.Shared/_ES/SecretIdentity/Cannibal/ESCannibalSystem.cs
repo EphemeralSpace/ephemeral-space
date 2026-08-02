@@ -41,11 +41,15 @@ public sealed partial class ESCannibalSystem : EntitySystem
 
     private void OnCannibalizeTargetAction(ESCannibalizeTargetActionEvent args)
     {
+        // Can't predict due to needing to check for secret identities and whatnot
+        if (_net.IsClient)
+            return;
+
         if (args.Performer == args.Target)
             return;
 
         if (!_mind.TryGetMind(args.Performer, out _) ||
-            !_mind.TryGetMind(args.Target, out _) ||
+            !_secretIdentity.TryGetLastSecretIdentity(args.Target, out _) ||
             !HasComp<ESCryohuskableComponent> (args.Target))
         {
             _popup.PopupEntity(Loc.GetString("es-cannibal-popup-invalid"), args.Performer, args.Performer);
@@ -58,10 +62,7 @@ public sealed partial class ESCannibalSystem : EntitySystem
             return;
         }
 
-        EntityUid? sound = null;
-
-        if (_net.IsServer)
-            sound = _audio.PlayPvs(EatSound, args.Performer)?.Entity;
+        var sound = _audio.PlayPvs(EatSound, args.Performer)?.Entity;
 
         args.Handled = _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager,
             args.Performer,
@@ -90,8 +91,6 @@ public sealed partial class ESCannibalSystem : EntitySystem
         }
 
         if (!_mind.TryGetMind(args.User, out var mind) ||
-            !_mind.TryGetMind(target, out var targetMind) ||
-            !_secretIdentity.TryGetSecretIdentity(targetMind.Value.AsNullable(), out var secretIdentity) ||
             !HasComp<ESCryohuskableComponent> (target))
         {
             return;
@@ -102,7 +101,13 @@ public sealed partial class ESCannibalSystem : EntitySystem
             ("other", _stagehandNotifications.WrapEntityName(target)));
         _stagehandNotifications.SendStagehandNotification(msg);
 
-        _secretIdentity.ChangeSecretIdentity(mind.Value, secretIdentity.Value);
+        // This happens separately with tolerance due to this check failing
+        // on the client due to the S.I. not being networked.
+        if (_secretIdentity.TryGetLastSecretIdentity(target, out var secretIdentity))
+        {
+            _secretIdentity.ChangeSecretIdentity(mind.Value, secretIdentity.Value);
+        }
+
         _hunger.ModifySatiety(args.User, 4); // feeling full :-)
         _cryohusk.Cryohusk(target);
     }

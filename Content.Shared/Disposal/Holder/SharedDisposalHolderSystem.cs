@@ -137,7 +137,7 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
                 _audio.PlayPvs(ent.Comp.ClangSound, xform.Coordinates);
             }
 
-            // If the disposed entity re-entered a suspect pipe, 
+            // If the disposed entity re-entered a suspect pipe,
             // it is likely caught in a loop and should try to escape
             if (ent.Comp.SuspectPipes.Contains(tube))
             {
@@ -149,7 +149,7 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
             var delta = 2 * Angle.ShortestDistance(ent.Comp.CurrentDirection.ToAngle(), ev.Next.ToAngle()).Theta / Math.PI;
             ent.Comp.DirectionBias += (float)Math.Clamp(delta, -1, 1);
 
-            // If the updated travel direction bias exceeds the allowed threshold, 
+            // If the updated travel direction bias exceeds the allowed threshold,
             // the pipe is marked as suspect.
             if (Math.Abs(ent.Comp.DirectionBias) >= ent.Comp.DirectionBiasThreshold)
             {
@@ -171,6 +171,9 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
 
         // Update rotation
         xform.LocalRotation = ent.Comp.CurrentDirection.ToAngle();
+
+        var tubeEv = new DisposalTubeHolderEntered(ent);
+        RaiseLocalEvent(tube.Owner, ref tubeEv);
 
         Dirty(ent);
         return true;

@@ -19,7 +19,7 @@
     ears: ClothingHeadsetScience
     jumpsuit: ClothingUniformJumpsuitScientist
     outerClothing: ClothingOuterCoatLabOpened
-    back: ClothingBackpackScience
+    back: ClothingBackpack
   storage:
     back:
     - ESBoxSurvival

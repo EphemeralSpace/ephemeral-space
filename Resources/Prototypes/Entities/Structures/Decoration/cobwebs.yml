@@ -19,7 +19,7 @@
     anchored: true
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: Wood
+    damageModifierSet: ESWeakBiological
   - type: Destructible
     thresholds:
     - trigger:

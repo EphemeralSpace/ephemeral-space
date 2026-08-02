@@ -1,0 +1,58 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by Flareguy for Ephemeral Space",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "load": {
+        "srgb": false
+    },
+    "states": [
+        {
+            "name": "jumpsuit",
+            "directions": 4
+        },
+        {
+            "name": "outer",
+            "directions": 4
+        },
+        {
+            "name": "back",
+            "directions": 4
+        },
+        {
+            "name": "belt",
+            "directions": 4
+        },
+        {
+            "name": "gloves",
+            "directions": 4
+        },
+        {
+            "name": "neck",
+            "directions": 4
+        },
+        {
+            "name": "ears",
+            "directions": 4
+        },
+        {
+            "name": "eyes",
+            "directions": 4
+        },
+        {
+            "name": "shoes",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4
+        }
+    ]
+}

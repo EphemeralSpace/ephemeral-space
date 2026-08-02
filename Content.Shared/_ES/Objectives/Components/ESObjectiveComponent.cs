@@ -19,6 +19,12 @@ public sealed partial class ESObjectiveComponent : Component
     public float Progress;
 
     /// <summary>
+    /// Frozen objectives do not modify their progress
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Frozen;
+
+    /// <summary>
     /// Amount of progress required to count as 'completed'.
     /// </summary>
     /// <returns></returns>

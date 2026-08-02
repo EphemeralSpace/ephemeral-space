@@ -41,9 +41,6 @@
   - type: ResistLocker
   - type: PlaceableSurface
     isPlaceable: false
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Wood
   - type: Destructible
     thresholds:
       - trigger:

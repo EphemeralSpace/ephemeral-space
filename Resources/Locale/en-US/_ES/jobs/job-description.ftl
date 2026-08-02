@@ -1,5 +1,5 @@
 ESjob-description-assistant = Enjoy your stay aboard the station with no obligations!
-ESjob-description-atmostech = Optimize the station's atmospherics setup, and synthesize rare gases to use or sell.
+ESjob-description-atmostech = Keep the station's air supply functional, and put out any fires that start.
 ESjob-description-bartender = Manage the bar and keep it lively, give out drinks, and listen to the crew's stories.
 ESjob-description-captain = Keep the station running, delegate work to the other heads of staff, and exert your will.
 ESjob-description-chef = Keep the station fed with a variety of food items, butcher dead animals to ensure miasma doesn't leak, and help keep the bar lively.
@@ -7,6 +7,7 @@ ESjob-description-clown = Entertain the crew through elaborate slapstick routine
 ESjob-description-coroner = Perform autopsies to find information about dead bodies. Help manage bodies for the doctors. Make sure the dead don't rot, and that cadavers are in the morgue.
 ESjob-description-detective = Investigate crime scenes using forensic tools, ensure that the guilty party is found, and have a couple smokes.
 ESjob-description-engineer = Keep the station's main engine & solars active, optimize the power network, and make emergency repairs using your hardsuit in spaced areas.
+ESjob-description-experiment = Help the department that the gear in your locker assigns you to. Don't get killed just for monkeying around. Prove that the 4th iteration of simian intelligence enhancement has borne fruit.
 ESjob-description-janitor = Keep the station clean of any trash or slipping hazards, and help deal with rat infestations.
 ESjob-description-paramedic = Save patients in critical condition & bring them back to medical for treatment.
 ESjob-description-doctor = Diagnose and heal crewmembers through medicinal chemicals, advanced medicine, and defibrillators.

@@ -9,7 +9,7 @@
   - type: InteractionOutline
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: Wood
+    damageModifierSet: ESWood
   - type: Destructible
     thresholds:
     - trigger:

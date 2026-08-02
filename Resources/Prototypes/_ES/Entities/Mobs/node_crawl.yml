@@ -1,0 +1,74 @@
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NodeCrawlMoverEntity
+  components:
+  - type: InputMover
+  - type: NodeCrawlerMovement
+  - type: Physics
+    bodyType: KinematicController
+    canCollide: false
+  - type: ContainerContainer
+    containers:
+      mover-container: !type:Container
+  - type: LagCompensation
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        layer:
+        - GhostImpassable
+  - type: Input
+    context: "human"
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NodeCrawlMoverEntityMonkey
+  parent: NodeCrawlMoverEntity
+  components:
+  - type: NodeCrawlerMovement
+    movementSound:
+      collection: MonkeyHooDisposals
+
+- type: entity
+  abstract: true
+  id: BaseMobMonkeyDisposalsCrawler
+  components:
+  - type: NodeCrawler
+    action: ActionMobDisposalsCrawl
+    moverEntity: NodeCrawlMoverEntityMonkey
+    forceStopSound:
+      collection: MonkeyScreech
+    revealedComponents:
+    - Content.Shared.Disposal.Tube.DisposalTubeComponent
+    exitNodes:
+      components:
+      - NodeCrawlVentAccess
+
+- type: entity
+  parent: BaseAction
+  id: ActionMobDisposalsCrawl
+  name: Disposals Crawl
+  description: Hop into a disposals unit and deftly crawl through it, pneumatics be damned.
+  components:
+  - type: Action
+    useDelay: 60
+    icon:
+      sprite: _ES/Actions/Mob/monkey_disposals.rsi
+      state: icon
+    iconOn:
+      sprite: _ES/Actions/Mob/monkey_disposals.rsi
+      state: icon-on
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:StartNodeCrawlActionEvent
+    whitelist:
+      components:
+      - NodeCrawlVentAccess
+      - DisposalUnit
+      requireAll: true

@@ -26,7 +26,7 @@
     mask: ClothingMaskSterile
     jumpsuit: ESClothingUniformJumpsuitCoroner
     outerClothing: ESClothingOuterCoatDetectiveGrey
-    back: ClothingBackpackMedical
+    back: ClothingBackpack
   storage:
     back:
     - ESBoxSurvivalMedical

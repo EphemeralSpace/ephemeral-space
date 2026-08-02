@@ -92,6 +92,41 @@
     - id: RagItem
 
 - type: entityTable
+  id: LockerFillExperiment
+  table:
+    all:
+    - group:
+      # engi roll
+      - all:
+        - id: ExperimentCardEngineering
+        - id: ClothingUniformJumpsuitExperimentEngi
+        - id: ClothingHandsGlovesColorYellow
+        - id: ClothingBeltUtilityEngineering
+        - id: trayScanner
+        - id: ClothingMaskGas
+        - id: ClothingEyesGlassesMeson
+        - id: FireExtinguisherMini
+      # med roll
+      - all:
+        - id: ExperimentCardMedical
+        - id: ClothingUniformJumpsuitExperimentMedical
+        - id: ClothingBeltMedicalFilled
+        - id: ClothingEyesHudMedical
+        - id: ClothingHandsGlovesColorBlue
+        - id: ClothingHeadsetMedical
+        - id: ClothingMaskSterile
+      # sec roll
+      - all:
+        - id: ExperimentCardSecurity
+        - id: ClothingUniformJumpsuitExperimentSecurity
+        - id: ESClothingHeadHelmetSecurity
+        - id: ClothingBeltSecurityFilled
+        - id: Flash
+          prob: 0.5
+        - id: ClothingEyesGlassesSecurity
+        - id: ClothingHeadsetSecurity
+
+- type: entityTable
   id: LockerFillRatman
   table:
     all:

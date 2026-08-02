@@ -55,7 +55,7 @@ public sealed partial class DisposalUnitComponent : Component
     /// Sound played when an object is inserted into the disposal unit.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("soundInsert")]
-    public SoundSpecifier? InsertSound = new SoundPathSpecifier("/Audio/Effects/trashbag1.ogg");
+    public SoundSpecifier? InsertSound = new SoundCollectionSpecifier("trashBagRustle");
 
     /// <summary>
     /// The next time that the insertion sound is allowed to be played.

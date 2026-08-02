@@ -1,0 +1,19 @@
+- type: soundCollection
+  id: MonkeyScreech
+  files:
+  - "/Audio/_ES/Mobs/Monkey/monkey_screech_1.ogg"
+  - "/Audio/_ES/Mobs/Monkey/monkey_screech_2.ogg"
+  - "/Audio/_ES/Mobs/Monkey/monkey_screech_3.ogg"
+  - "/Audio/_ES/Mobs/Monkey/monkey_screech_4.ogg"
+  - "/Audio/_ES/Mobs/Monkey/monkey_screech_5.ogg"
+  - "/Audio/_ES/Mobs/Monkey/monkey_screech_6.ogg"
+  - "/Audio/_ES/Mobs/Monkey/monkey_screech_7.ogg"
+
+- type: soundCollection
+  id: MonkeyHooDisposals
+  files:
+  - "/Audio/_ES/Mobs/Monkey/monkey_hoo_disposals_1.ogg"
+  - "/Audio/_ES/Mobs/Monkey/monkey_hoo_disposals_2.ogg"
+  - "/Audio/_ES/Mobs/Monkey/monkey_hoo_disposals_3.ogg"
+  - "/Audio/_ES/Mobs/Monkey/monkey_hoo_disposals_4.ogg"
+  - "/Audio/_ES/Mobs/Monkey/monkey_hoo_disposals_5.ogg"

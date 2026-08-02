@@ -23,7 +23,8 @@ using Content.Shared.Mobs.Systems;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared._Offbrand.Wounds; // Offbrand
+using Content.Shared._Offbrand.Wounds;
+using Content.Shared.Inventory; // Offbrand
 
 namespace Content.Server.Body.Systems;
 
@@ -146,12 +147,16 @@ public sealed partial class RespiratorSystem : EntitySystem
             return;
 
         // Begin Offbrand
-        var breathEv = new Content.Shared._Offbrand.Wounds.BeforeBreathEvent(entity.Comp.AdjustedBreathVolume); // Offbrand - modify breath volume
+        var breathEv = new BeforeBreathEvent(entity.Comp.AdjustedBreathVolume); // Offbrand - modify breath volume
         RaiseLocalEvent(entity, ref breathEv);
 
         var gas = ev.Gas.RemoveVolume(breathEv.BreathVolume);
 
-        var beforeEv = new Content.Shared._Offbrand.Wounds.BeforeInhaledGasEvent(gas);
+        var modifyEv = new ESModifyInhaledGasEvent(gas, (entity, entity.Comp));
+        RaiseLocalEvent(entity, ref modifyEv);
+        gas = modifyEv.Gas;
+
+        var beforeEv = new BeforeInhaledGasEvent(gas);
         RaiseLocalEvent(entity, ref beforeEv);
         // End Offbrand
 
@@ -474,6 +479,12 @@ public sealed partial class RespiratorSystem : EntitySystem
 /// <param name="Respirator">The Respirator component of the entity attempting to inhale</param>
 [ByRefEvent]
 public record struct InhaleLocationEvent(GasMixture? Gas, RespiratorComponent Respirator);
+
+[ByRefEvent]
+public record struct ESModifyInhaledGasEvent(GasMixture Gas, Entity<RespiratorComponent> Entity) : IInventoryRelayEvent
+{
+    public SlotFlags TargetSlots { get; } = SlotFlags.MASK;
+}
 
 /// <summary>
 /// Event raised when an entity first tries to exhale a gas, determines where the gas they're exhaling will be sent.

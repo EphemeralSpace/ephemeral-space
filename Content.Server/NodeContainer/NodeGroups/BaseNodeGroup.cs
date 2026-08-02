@@ -7,7 +7,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.NodeContainer.NodeGroups
 {
-    [NodeGroup(NodeGroupID.Default, NodeGroupID.WireNet)]
+    [NodeGroup(NodeGroupID.Default, NodeGroupID.WireNet, NodeGroupID.Disposals)]
     [Virtual]
     public class BaseNodeGroup : INodeGroup
     {

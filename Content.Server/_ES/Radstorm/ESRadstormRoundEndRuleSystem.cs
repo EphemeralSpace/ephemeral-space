@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server._ES.Announcements;
 using Content.Server._ES.Mind;
+using Content.Server._ES.Objectives;
 using Content.Server._ES.Radio;
 using Content.Server._ES.Radstorm.Components;
 using Content.Server.AlertLevel;
@@ -56,6 +57,7 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedRoofSystem _roof = default!;
+    [Dependency] private ESObjectiveSystem _objective = default!;
 
     private static readonly TimeSpan EndRoundDuration = TimeSpan.FromSeconds(13);
     private static readonly ProtoId<ESCinematicPrototype> Cinematic = "RadstormCinematic";
@@ -127,6 +129,9 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
             && _timing.CurTime >= component.RadstormNextDamageTickTime)
         {
             component.RadstormNextDamageTickTime = _timing.CurTime + TimeSpan.FromSeconds(1);
+
+            // Freeze all objectives
+            _objective.FreezeObjectives<ESRadstormFreezeObjectiveComponent>();
 
             // this should probably not be bounded to mobstate and instead be its own thing but whatever
             var killQuery = EntityQueryEnumerator<MobStateComponent, DamageableComponent, TransformComponent>();

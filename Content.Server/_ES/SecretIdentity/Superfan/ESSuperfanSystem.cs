@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server._ES.SecretIdentity.Masquerades;
+using Content.Server._ES.Stagehand;
 using Content.Server.Mind;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.SecretIdentity;
@@ -17,6 +18,7 @@ public sealed partial class ESSuperfanSystem : EntitySystem
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ESStagehandNotificationsSystem _stagehandNotifications = default!;
 
     private static readonly ProtoId<ESOrganizationPrototype> TraitorsOrganization = "Traitor";
 
@@ -64,6 +66,13 @@ public sealed partial class ESSuperfanSystem : EntitySystem
 
             if (_mind.IsCharacterDeadIc(mind))
                 continue; // Don't assign the dead to tot identities.
+
+            if (mind.OwnedEntity.HasValue)
+            {
+                var msg = Loc.GetString("es-sleeper-agent-activate-stagehand-notif",
+                    ("name", _stagehandNotifications.WrapEntityName(mind.OwnedEntity.Value)));
+                _stagehandNotifications.SendStagehandNotification(msg);
+            }
 
             _secretIdentity.ChangeSecretIdentity((ent, mind), entry.PickSecretIdentities(_random, _proto).Single());
         }

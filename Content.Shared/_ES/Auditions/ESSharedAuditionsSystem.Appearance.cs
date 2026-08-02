@@ -28,17 +28,18 @@ public abstract partial class ESSharedAuditionsSystem
     public static readonly IReadOnlyList<Color> EyeColors =
     [
         Color.Black,
-        Color.Gray,
         Color.MediumPurple,
-        Color.FromHex("#f29bdf"), // Light Pink
         Color.White,
         Color.ForestGreen,
         Color.LimeGreen,
         Color.DarkOrange,
         Color.IndianRed,
         Color.DarkKhaki,
+        Color.Azure,
+        Color.SteelBlue,
     ];
 
+    public const float BaldChance = 0.01f;
     public const float CrazyHairChance = 0.10f;
 
     public const float ShavenChance = 0.55f;
@@ -60,8 +61,9 @@ public abstract partial class ESSharedAuditionsSystem
             return _mind.CreateMind(null);
 
         var nameConfig = _prototypeManager.TryIndex(job, out var jobPrototype) ? jobPrototype.NameConfig : ESNameConfig.Default;
+        var species = jobPrototype?.SpeciesOverride;
 
-        var profile = RandomProfile(_random);
+        var profile = RandomProfile(_random, species);
 
         profile.Name = GenerateName(nameConfig, profile.Gender, out var baseName);
 
@@ -111,12 +113,11 @@ public abstract partial class ESSharedAuditionsSystem
 
         var profile = HumanoidCharacterProfile.DefaultWithSpecies(speciesId).WithSex(sex).WithGender(gender);
 
-        var strategy = _prototypeManager.Index(species.SkinColoration).Strategy;
-        profile.Appearance.SkinColor = strategy.InputType switch
-        {
-            SkinColorationStrategyInput.Unary => strategy.FromUnary(random.NextFloat(0f, 100f)),
-            _ => strategy.ClosestSkinColor(random.NextColor()),
-        };
+        var skinColors = species.SkinColors.Select(_prototypeManager.Index).ToList();
+        var weightedSkinColors = skinColors.Select(prototype => (prototype, prototype.Weight)).ToDictionary();
+
+        var skinColor = random.Pick(weightedSkinColors);
+        profile.Appearance.SkinColor = random.Pick(skinColor.Colors);
 
         profile.Age = random.Pick(new Dictionary<int, float>
         {
@@ -129,7 +130,13 @@ public abstract partial class ESSharedAuditionsSystem
         profile.Appearance.HairColor = hairColor;
         profile.Appearance.FacialHairColor = hairColor;
 
-        profile.Appearance.EyeColor = random.Pick(EyeColors);
+        var eyeColors = EyeColors.Where(c =>
+        {
+            var l = Color.ToHsl(c).Z;
+            var otherL = Color.ToHsl(profile.Appearance.SkinColor).Z;
+            return MathF.Abs(l - otherL) >= 0.20f;
+        });
+        profile.Appearance.EyeColor = random.Pick(eyeColors.ToList());
 
         List<ProtoId<MarkingPrototype>> hairOptions;
         if (random.Prob(CrazyHairChance))
@@ -147,7 +154,10 @@ public abstract partial class ESSharedAuditionsSystem
             .ToList();
         }
 
-        profile.Appearance.HairStyleId = random.Pick(hairOptions);
+        if (hairOptions.Any())
+            profile.Appearance.HairStyleId = random.Pick(hairOptions);
+        if (random.Prob(BaldChance))
+            profile.Appearance.HairStyleId = string.Empty; // This is awful but w/e
 
         if (random.Prob(ShavenChance))
         {
@@ -293,6 +303,12 @@ public abstract partial class ESSharedAuditionsSystem
         if (_random.Prob(config.DoubleFirstNameChance))
         {
             firstName = Loc.GetString("es-name-normal-fmt", ("first", firstName), ("second", FirstName(config, dataset, true)));
+        }
+
+        if (_random.Prob(config.QuotedFirstNameChance))
+        {
+            firstName = firstName.Replace("\"", "");
+            firstName = Loc.GetString("es-name-quoted-first-fmt", ("first", firstName));
         }
 
         return firstName;

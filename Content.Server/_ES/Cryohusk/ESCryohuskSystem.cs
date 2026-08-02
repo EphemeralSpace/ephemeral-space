@@ -1,21 +1,23 @@
-using Content.Server._ES.Objectives;
-using Content.Server._ES.SecretIdentity.Cyrojunkie.Components;
 using Content.Server.Administration;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Humanoid;
 using Content.Server.Mind;
-using Content.Server.Polymorph.Systems;
+using Content.Server.Speech.Components;
 using Content.Shared._ES.Cryohusk;
 using Content.Shared._ES.Cryohusk.Components;
 using Content.Shared._ES.Stagehand;
-using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
+using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
+using Robust.Shared.Enums;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Toolshed;
@@ -29,12 +31,13 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private AudioSystem _audio = default!;
-    [Dependency] private BrainDamageSystem _brainDamage = default!;
     [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidAppearance = default!;
     [Dependency] private MindSystem _mind = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private MobStateSystem _mobState = default!;
-    [Dependency] private ESObjectiveSystem _objective = default!;
-    [Dependency] private PolymorphSystem _polymorph = default!;
+    [Dependency] private RejuvenateSystem _rejuvenate = default!;
     [Dependency] private ESSharedStagehandNotificationsSystem _stagehandNotifications = default!;
 
     [Dependency] private EntityQuery<IdCardComponent> _idCardQuery;
@@ -53,30 +56,8 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
 
     public override void Cryohusk(Entity<ESCryohuskableComponent?> target, bool transferDeath = true)
     {
-        if (!Resolve(target, ref target.Comp))
+        if (!Resolve(target, ref target.Comp, false))
             return;
-
-        if (_mind.TryGetMind(target, out var mind))
-        {
-            foreach (var objective in _objective.GetObjectives<ESCryohuskObjectiveComponent>(mind.Value.Owner))
-            {
-                _objective.AdjustObjectiveCounter(objective.Owner);
-            }
-        }
-
-        if (_polymorph.PolymorphEntity(target, target.Comp.CryohuskPolymorph) is not { } husk)
-            return;
-
-        foreach (var uid in GetRecursiveContainedEntities(husk))
-        {
-            if (_idCardQuery.HasComp(uid))
-                EnsureComp<ESCryohuskIdCardComponent>(uid);
-        }
-
-        if (_mobState.IsDead(target) && transferDeath)
-        {
-            _brainDamage.KillBrain(husk);
-        }
 
         if (_mind.TryGetMind(target, out _) && !_mobState.IsDead(target))
         {
@@ -85,7 +66,28 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
             _stagehandNotifications.SendStagehandNotification(msg);
         }
 
-        _audio.PlayPvs(target.Comp.FreezeSound, husk);
+        _metaData.SetEntityName(target, Loc.GetString("es-cryohusk-name"), raiseEvents: false);
+
+        _humanoidAppearance.SetSpecies(target, target.Comp.CryohuskSpecies);
+        _humanoidAppearance.SetSkinColor(target, Color.White);
+        _humanoidAppearance.SetSex(target, Sex.Unsexed);
+        _humanoidAppearance.SetGender(target.Owner, Gender.Neuter);
+
+        foreach (var uid in GetRecursiveContainedEntities(target.Owner))
+        {
+            if (_idCardQuery.HasComp(uid))
+                EnsureComp<ESCryohuskIdCardComponent>(uid);
+        }
+
+        _audio.PlayPvs(target.Comp.FreezeSound, target);
+
+        EnsureComp<SlurredAccentComponent>(target);
+
+        _damageable.SetDamageModifierSetId(target.Owner, target.Comp.DamageModifierSet);
+
+        // No double husking
+        EnsureComp<ESCryohuskComponent>(target);
+        RemComp<ESCryohuskableComponent>(target);
     }
 
     // TODO: needs to live not here.
@@ -130,6 +132,9 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
             if (!_random.Prob(comp.ConversionChance))
                 continue;
 
+            // cryohusking a non-dead target is a full heal...
+            if (!_mobState.IsDead(uid))
+                _rejuvenate.PerformRejuvenate(uid);
             Cryohusk(uid);
         }
     }
