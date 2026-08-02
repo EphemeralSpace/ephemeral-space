@@ -295,18 +295,6 @@
     job: ESBartender
 
 - type: entity
-  parent: BartenderIDCard
-  id: PunPunIDCard
-  name: pun pun ID card
-  components:
-  - type: PresetIdCard
-    job: ESBartender
-    name: Pun Pun
-  - type: Tag #  Ignore Chameleon tags
-    tags:
-    - DoorBumpOpener
-
-- type: entity
   parent: IDCardStandard
   id: ChefIDCard
   components:
