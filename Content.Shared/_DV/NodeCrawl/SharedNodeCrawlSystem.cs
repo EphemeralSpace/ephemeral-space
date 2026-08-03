@@ -5,6 +5,7 @@ using Content.Shared.Disposal.Holder;
 using Content.Shared.Disposal.Unit;
 using Content.Shared.DoAfter;
 using Content.Shared.Eye;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
@@ -14,7 +15,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared._DV.NodeCrawl;
 
@@ -28,6 +28,7 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
     [Dependency] private SharedMoverController _mover = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedEyeSystem _eye = default!;
     [Dependency] private SharedActionsSystem _action = default!;
@@ -70,22 +71,35 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
         if (!_entityWhitelist.IsWhitelistPass(nodeCrawler.ExitNodes, target))
             return;
 
-        if (_inventory.TryGetContainerSlotEnumerator(args.Performer,
+        if (!CanCrawl((user, nodeCrawler)))
+            return;
+
+        StartEntryDoAfter((user, nodeCrawler), target);
+    }
+
+    private bool CanCrawl(Entity<NodeCrawlerComponent> ent)
+    {
+        if (ent.Comp.RequireEmptyHands && _hands.EnumerateHeld(ent.Owner).Count() != 0)
+        {
+            _popup.PopupEntity(Loc.GetString(ent.Comp.RequireEmptyHandsPopupMessage), ent, ent);
+            return false;
+        }
+
+        if (_inventory.TryGetContainerSlotEnumerator(ent.Owner,
                 out var enumerator,
-                nodeCrawler.RequiredEmptySlots))
+                ent.Comp.RequiredEmptySlots))
         {
             while (enumerator.MoveNext(out var slot))
             {
                 if (slot.Count == 0)
                     continue;
 
-                _popup.PopupEntity(Loc.GetString(nodeCrawler.EmptySlotsPopupMessage), user, user);
-                return;
+                _popup.PopupEntity(Loc.GetString(ent.Comp.EmptySlotsPopupMessage), ent, ent);
+                return false;
             }
         }
 
-        StartEntryDoAfter((user, nodeCrawler), target);
-        args.Handled = true;
+        return true;
     }
 
     private void StartEntryDoAfter(Entity<NodeCrawlerComponent> ent, EntityUid target)
@@ -104,12 +118,16 @@ public abstract partial class SharedNodeCrawlSystem : EntitySystem
         if (args.Cancelled || args.Target is not { } target)
             return;
 
+        if (!CanCrawl(ent))
+            return;
+
+        _action.StartUseDelay(ent.Comp.ActionEntity);
         NodeCrawl(ent, target);
     }
 
     private void OnCrawlerStartup(Entity<NodeCrawlerComponent> ent, ref ComponentStartup args)
     {
-        _action.AddAction(ent.Owner, ent.Comp.Action);
+        ent.Comp.ActionEntity = _action.AddAction(ent.Owner, ent.Comp.Action);
     }
 
     protected virtual void SetupAir(Entity<NodeCrawlerMovementComponent> movement)

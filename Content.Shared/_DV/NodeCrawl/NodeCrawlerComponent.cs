@@ -30,6 +30,9 @@ public sealed partial class NodeCrawlerComponent : Component
     [DataField(required: true)]
     public EntProtoId<ActionComponent> Action;
 
+    [DataField, AutoNetworkedField]
+    public EntityUid? ActionEntity;
+
     /// <summary>
     /// Components of entities to reveal while inside a mover
     /// </summary>
@@ -58,7 +61,19 @@ public sealed partial class NodeCrawlerComponent : Component
     /// If an entity has an inventory, these slots must be empty in order to start crawling.
     /// </summary>
     [DataField]
-    public SlotFlags RequiredEmptySlots = SlotFlags.INNERCLOTHING | SlotFlags.BACK;
+    public SlotFlags RequiredEmptySlots = SlotFlags.BACK;
+
+    /// <summary>
+    /// If an entity has hands, do these hands need to be empty
+    /// </summary>
+    [DataField]
+    public bool RequireEmptyHands = true;
+
+    /// <summary>
+    /// The popup message to show to an entity with <see cref="RequireEmptyHands"/> when they are holding something
+    /// </summary>
+    [DataField]
+    public LocId RequireEmptyHandsPopupMessage = "es-nodecrawl-popup-no-held";
 
     /// <summary>
     /// The popup message to show to an entity that's wearing something in <see cref="RequiredEmptySlots"/>.
