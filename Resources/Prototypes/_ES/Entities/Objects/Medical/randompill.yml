@@ -33,7 +33,6 @@
     reagents:
     - Uranium
     - Potassium
-    - Phlogiston
   - quantity: 5
     weight: 5
     reagents:
