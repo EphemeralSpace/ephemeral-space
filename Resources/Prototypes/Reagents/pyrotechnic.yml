@@ -37,6 +37,36 @@
             Poison: 1
 
 - type: reagent
+  id: Napalm
+  name: reagent-name-napalm
+  parent: BasePyrotechnic
+  desc: reagent-desc-napalm
+  physicalDesc: reagent-physical-desc-soapy
+  flavor: bitter
+  color: "#FA00AF"
+  puddleSpriteSet: Acid
+  tileReactions:
+  - !type:FlammableTileReaction
+    temperatureMultiplier: 5
+  reactiveEffects:
+    Flammable:
+      methods: [ Touch ]
+      effects:
+      - !type:Flammable
+        multiplier: 0.4
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: 2
+            Poison: 1
+            Caustic: 0.5 # based off napalm being an irritant
+      - !type:Flammable
+        multiplier: 0.4
+
+- type: reagent
   id: FoamingAgent
   name: reagent-name-foaming-agent
   parent: BasePyrotechnic
