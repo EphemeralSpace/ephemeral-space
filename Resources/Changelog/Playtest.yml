@@ -1607,3 +1607,11 @@ Entries:
       message: Added an announcement for when sleeper agents activate.
   id: 170
   time: '2026-08-02T18:45:16.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Parasites can now do 300 damage before failing their objective
+    - type: Remove
+      message: clf3 and phlog are no more
+  id: 171
+  time: '2026-08-04T21:39:25.0000000+00:00'
