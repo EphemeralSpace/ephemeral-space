@@ -320,21 +320,6 @@
             Quantity: 10
 
 - type: entity
-  id: CigarettePhlogiston
-  parent: SoakedCigarette
-  name: Dragon Dating Sim
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-        - ReagentId: Nicotine
-          Quantity: 10
-        - ReagentId: Phlogiston
-          Quantity: 10
-
-- type: entity
   id: CigaretteBanana
   parent: SoakedCigarette
   name: Pun Pun's Tropical Getaway

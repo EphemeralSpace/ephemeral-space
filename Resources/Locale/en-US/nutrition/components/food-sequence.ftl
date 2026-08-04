@@ -121,7 +121,6 @@ food-sequence-burger-content-world-pea = peace
 food-sequence-cotton-burger-gen = {$content}burger
 
 food-sequence-cotton-burger-content-cotton-bol = cotton
-food-sequence-cotton-burger-content-pyrotton-bol = pyro
 food-sequence-cotton-burger-content-plushie-throngler = throngle
 food-sequence-cotton-burger-content-plushie-ghost = spooky
 food-sequence-cotton-burger-content-plushie-revenant = spookier

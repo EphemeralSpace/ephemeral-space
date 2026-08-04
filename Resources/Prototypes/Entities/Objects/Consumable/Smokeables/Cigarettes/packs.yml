@@ -217,8 +217,6 @@
   id: RandomSoakedSmokeTable
   table: !type:GroupSelector
     children:
-    - id: CigarettePhlogiston
-      weight: 1
     - id: CigaretteWeldingFuel
       weight: 3
     - id: CigaretteMold
