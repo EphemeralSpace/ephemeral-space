@@ -115,10 +115,6 @@
     guides:
     - Chef
     - Food
-  - type: Item
-    sprite: Structures/Machines/microwave.rsi
-    size: Ginormous
-  - type: MultiHandedItem
   - type: DamageOnHit
     damage:
       types:
