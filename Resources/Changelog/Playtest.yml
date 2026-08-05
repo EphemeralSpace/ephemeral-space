@@ -1629,3 +1629,21 @@ Entries:
       message: Microwaves are no longer a melee weapon
   id: 173
   time: '2026-08-04T22:34:33.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Cryogas now only cools the air above a certain mol threshold
+        (corresponds to when its visible)
+    - type: Tweak
+      message: Portable scrubbers are ~7x more powerful
+    - type: Tweak
+      message: Space heaters are ~5-12x more powerful
+    - type: Tweak
+      message: Pulling speed debuff is much lower
+    - type: Tweak
+      message: >-
+        Scrubbers, space heaters, and JR pacmans are 4x faster to
+        anchor/unanchor
+  id: 174
+  time: '2026-08-05T22:12:57.0000000+00:00'
