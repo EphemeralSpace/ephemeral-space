@@ -18,7 +18,7 @@ public sealed partial class SpaceHeaterComponent : Component
     ///     The power level the space heater is currently set to. Possible values : Low, Medium, High
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public SpaceHeaterPowerLevel PowerLevel = SpaceHeaterPowerLevel.Medium;
+    public SpaceHeaterPowerLevel PowerLevel = SpaceHeaterPowerLevel.High;
 
     /// <summary>
     ///     Maximum target temperature the device can be set to
@@ -43,11 +43,11 @@ public sealed partial class SpaceHeaterComponent : Component
     [DataField("heatingCoefficientOfPerformance")]
     [ViewVariables(VVAccess.ReadWrite)]
     // ES START
-    public float HeatingCp = 10f;
+    public float HeatingCp = 60f;
 
     [DataField("coolingCoefficientOfPerformance")]
     [ViewVariables(VVAccess.ReadWrite)]
-    public float CoolingCp = -14.9f;
+    public float CoolingCp = -40f;
     // ES END
 
     /// <summary>
