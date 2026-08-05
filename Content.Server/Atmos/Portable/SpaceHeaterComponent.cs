@@ -43,11 +43,11 @@ public sealed partial class SpaceHeaterComponent : Component
     [DataField("heatingCoefficientOfPerformance")]
     [ViewVariables(VVAccess.ReadWrite)]
     // ES START
-    public float HeatingCp = 60f;
+    public float HeatingCp = 120f;
 
     [DataField("coolingCoefficientOfPerformance")]
     [ViewVariables(VVAccess.ReadWrite)]
-    public float CoolingCp = -40f;
+    public float CoolingCp = -50f;
     // ES END
 
     /// <summary>
