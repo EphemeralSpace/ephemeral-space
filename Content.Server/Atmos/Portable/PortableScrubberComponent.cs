@@ -46,7 +46,7 @@ namespace Content.Server.Atmos.Portable
         /// The speed at which gas is scrubbed from the environment.
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public float TransferRate = 4000;
+        public float TransferRate = 5600;
 
         #region GuidebookData
 
