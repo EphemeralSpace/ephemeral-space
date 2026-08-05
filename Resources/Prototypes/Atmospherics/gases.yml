@@ -99,7 +99,7 @@
   molarMass: 50
   gasOverlaySprite: /Textures/_ES/Effects/atmospherics.rsi
   gasOverlayState: cryogas
-  gasMolesVisible: 0.6
+  gasMolesVisible: 0.5
   color: 3a758c
   reagent: Cryogas
   pricePerMole: 1

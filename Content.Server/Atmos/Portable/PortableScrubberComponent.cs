@@ -23,9 +23,7 @@ namespace Content.Server.Atmos.Portable
         [DataField("filterGases")]
         public HashSet<Gas> FilterGases = new()
         {
-// ES START
             Gas.Smoke,
-// ES END
             Gas.CarbonDioxide,
             Gas.Plasma,
             Gas.Tritium,
@@ -42,13 +40,13 @@ namespace Content.Server.Atmos.Portable
         /// Maximum internal pressure before it refuses to take more.
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public float MaxPressure = 2500;
+        public float MaxPressure = 10000;
 
         /// <summary>
         /// The speed at which gas is scrubbed from the environment.
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public float TransferRate = 800;
+        public float TransferRate = 5600;
 
         #region GuidebookData
 
