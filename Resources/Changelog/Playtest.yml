@@ -1659,3 +1659,13 @@ Entries:
         as long
   id: 175
   time: '2026-08-06T14:11:35.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Revolver and pistol shots do a little less damage now
+    - type: Tweak
+      message: Pistols have less max firerate
+    - type: Tweak
+      message: Outer armor has 1 less DT
+  id: 176
+  time: '2026-08-06T14:11:51.0000000+00:00'
