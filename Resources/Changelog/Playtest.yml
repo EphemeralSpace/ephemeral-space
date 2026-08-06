@@ -1669,3 +1669,9 @@ Entries:
       message: Outer armor has 1 less DT
   id: 176
   time: '2026-08-06T14:11:51.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Humans can no longer be put on meat spikes.
+  id: 177
+  time: '2026-08-06T14:31:19.0000000+00:00'
