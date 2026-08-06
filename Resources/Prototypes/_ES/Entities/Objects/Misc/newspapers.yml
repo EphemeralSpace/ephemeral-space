@@ -21,8 +21,6 @@
     damage:
       types:
         Blunt: 2 # splats cockroaches in 1 hit
-  - type: StaminaDamageOnHit
-    damage: 8
 
 # Newspapers
 - type: entity
@@ -84,7 +82,7 @@
   id: NewspaperWater
   name: Galaxy NOW - October 30th, 2065
   description: "A paperback newspaper. The headline reads: 'Water Shortage Creates Concern For Halloween Plans in Woodson Fleet'"
-  
+
 - type: entity
   parent: BaseNewspaper
   id: NewspaperWeldingFuel

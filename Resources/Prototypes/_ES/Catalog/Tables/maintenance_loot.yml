@@ -273,6 +273,7 @@
       weight: 8
     - id: ESWeaponKnife
       weight: 2
+    - id: ESWeaponBlackjack
     - id: WelderIndustrialAdvanced
     - id: PinpointerUniversal
     - id: PinpointerNuclear
