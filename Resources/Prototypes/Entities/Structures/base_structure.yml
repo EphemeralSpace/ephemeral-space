@@ -72,6 +72,7 @@
 - type: entity
   id: StructureQuickAnchor # es
   abstract: true
-  components: # just fast to anchor rn but eventually have like a click-to-anchor thing probably.
+  components:
   - type: Anchorable
     delay: 0.5
+  - type: ESVerbAnchorable

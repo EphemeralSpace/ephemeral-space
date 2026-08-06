@@ -41,7 +41,7 @@ public sealed partial class ESVerbAnchorableSystem : EntitySystem
             Text = Transform(ent).Anchored
                 ? Loc.GetString("es-verb-anchorable-title-unanchor")
                 : Loc.GetString("es-verb-anchorable-title-anchor"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/anchor.svg.192dpi.png")),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/Changelog/wrench.svg.192dpi.png")),
             Disabled = !canUse,
             Act = () =>
             {
