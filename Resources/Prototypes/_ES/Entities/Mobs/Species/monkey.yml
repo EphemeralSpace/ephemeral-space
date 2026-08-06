@@ -22,6 +22,8 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Monkey_burning
+  - type: DamageVisuals # no sprites for this atm
+    disabled: true
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
