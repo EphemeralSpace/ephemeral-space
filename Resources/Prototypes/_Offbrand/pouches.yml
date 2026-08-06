@@ -56,7 +56,7 @@
     containers:
       storagebase:
         all:
-        - id: BruteAutoInjector
+        - id: PillBicaridine
         - id: Brutepack
         - id: PainkillerAutoInjector
   - type: GenericVisualizer
@@ -83,7 +83,7 @@
     containers:
       storagebase:
         all:
-        - id: BurnAutoInjector
+        - id: PillDermaline
         - id: Ointment
         - id: PainkillerAutoInjector
   - type: GenericVisualizer

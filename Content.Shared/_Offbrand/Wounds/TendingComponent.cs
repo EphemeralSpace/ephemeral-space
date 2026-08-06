@@ -39,7 +39,7 @@ public sealed partial class TendingComponent : Component
     /// The time penalty for self-tending wounds
     /// </summary>
     [DataField]
-    public float SelfTendPenaltyModifier = 5f;
+    public float SelfTendPenaltyModifier = 10f;
 
     [DataField]
     public SoundSpecifier? TendingBeginSound;
