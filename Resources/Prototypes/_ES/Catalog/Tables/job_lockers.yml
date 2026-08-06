@@ -12,7 +12,7 @@
     - id: NukeDisk
     - id: PinpointerNuclear
     - id: RubberStampCaptain
-    - id: Stunbaton
+    - id: ESWeaponBlackjack
     - id: ForensicScanner
     - id: ClothingEyesGlassesSecurity
 
@@ -27,7 +27,7 @@
     - id: ClothingHeadsetAltCommand
     - id: ClothingNeckGoldmedal
     - id: StationAdminIDCard
-    - id: Stunbaton
+    - id: ESWeaponBlackjack
     - id: LuxuryPen
     - id: ClothingEyesHudSecurity
 

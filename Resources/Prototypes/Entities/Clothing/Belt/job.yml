@@ -246,6 +246,7 @@
       - MagazinePistol
       - Truncheon
       - HandGrenade
+      - ESBlackjack
       components:
       - Stunbaton
       - FlashOnTrigger
@@ -265,8 +266,8 @@
           - FlashOnTrigger
       stunbaton:
         whitelist:
-          components:
-          - Stunbaton
+          tags:
+          - ESBlackjack
       tear_gas_grenade:
         whitelist:
           components:
