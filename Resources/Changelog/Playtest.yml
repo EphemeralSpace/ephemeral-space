@@ -1647,3 +1647,15 @@ Entries:
         anchor/unanchor
   id: 174
   time: '2026-08-05T22:12:57.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Brute/burn pouches now contain a bic pill / derma pill instead of an
+        injector
+    - type: Tweak
+      message: >-
+        Self-tending using topicals now takes 10x as long as usual instead of 5x
+        as long
+  id: 175
+  time: '2026-08-06T14:11:35.0000000+00:00'
