@@ -37,7 +37,7 @@
 - type: entity
   id: ESStatueDancingMan
   parent: BaseStructure
-  name: Dancing Man
+  name: dancing man
   description: Holy fucking shit
   components:
     - type: Sprite
@@ -49,8 +49,8 @@
 - type: entity
   id: ESStatueDancingMan2
   parent: BaseStructure
-  name: Dancing Man 2
-  description: Holy fucking shit
+  name: dancing man 2
+  description: No fucking way
   components:
     - type: Sprite
       noRot: true

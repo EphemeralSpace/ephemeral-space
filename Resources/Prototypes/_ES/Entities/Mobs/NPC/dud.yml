@@ -1,0 +1,14 @@
+﻿- type: entity
+  id: MobLilDut
+  parent: MobGoliath
+  name: lil dud
+  description: A small beast who is gay, and loves hanging pride flags and showing who he is.
+  
+- type: entity
+  id: MobHugeDud
+  parent: MobGoliath
+  name: huge dud
+  description: A large beast who is everyone's favorite lesbian. You go, girl.
+  components:
+    - type: Sprite
+      scale: 1.7, 1.5
