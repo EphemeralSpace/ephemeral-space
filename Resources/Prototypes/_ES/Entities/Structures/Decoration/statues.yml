@@ -33,3 +33,27 @@
     sprite: _ES/Structures/Decoration/statues.rsi
     state: fungus
     drawdepth: Mobs
+    
+- type: entity
+  id: ESStatueDancingMan
+  parent: BaseStructure
+  name: Dancing Man
+  description: Holy fucking shit
+  components:
+    - type: Sprite
+      noRot: true
+      sprite: _ES/Structures/Decoration/dancingman.rsi
+      state: dancingman
+      drawdepth: Mobs
+      
+- type: entity
+  id: ESStatueDancingMan2
+  parent: BaseStructure
+  name: Dancing Man 2
+  description: Holy fucking shit
+  components:
+    - type: Sprite
+      noRot: true
+      sprite: _ES/Structures/Decoration/dancingman.rsi
+      state: dance2
+      drawdepth: Mobs
