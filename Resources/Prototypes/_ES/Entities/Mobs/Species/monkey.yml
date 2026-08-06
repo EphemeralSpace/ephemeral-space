@@ -15,7 +15,7 @@
     butcheringType: Spike
     spawned:
     - id: FoodMeat
-      amount: 5
+      amount: 3
 # Monkey Quirks
   - type: Deathgasp
     prototype: MonkeyDeathgasp
