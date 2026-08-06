@@ -179,11 +179,9 @@
     - id: SheetSteel
     - id: SheetGlass
     - id: SheetPlastic
-    - id: BoxFolderClipboardEmpty
-    - id: Pen
-    - id: BoxFolderYellow
-    - id: Paper
-      amount: 1, 5
+    - group: # testing: idk how these will play out or which one will be a better fit. so lets just try both
+      - id: WeaponGrapplingGun
+      - id: WeaponForceGun
 
 # Science
 - type: entityTable
