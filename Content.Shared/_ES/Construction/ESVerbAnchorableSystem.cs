@@ -3,6 +3,7 @@ using Content.Shared.Construction.Components;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.DoAfter;
 using Content.Shared.Verbs;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Construction;
@@ -10,6 +11,7 @@ namespace Content.Shared._ES.Construction;
 public sealed partial class ESVerbAnchorableSystem : EntitySystem
 {
     [Dependency] private AnchorableSystem _anchorable = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private EntityQuery<AnchorableComponent> _anchorableQuery;
 
@@ -62,9 +64,19 @@ public sealed partial class ESVerbAnchorableSystem : EntitySystem
 
     private void OnToggleAnchorDoAfter(Entity<ESVerbAnchorableComponent> ent, ref ESToggleAnchorDoAfterEvent args)
     {
-        if (args.Cancelled)
+        if (args.Cancelled || !_anchorableQuery.TryComp(ent, out var anchorable))
             return;
 
-        // TODO: anchor.
+        _audio.PlayPredicted(ent.Comp.AnchorSound, ent, args.User);
+
+        var xform = Transform(ent);
+        if (xform.Anchored)
+        {
+            _anchorable.UnanchorEntity((ent, anchorable), args.User, args.User);
+        }
+        else
+        {
+            _anchorable.AnchorEntity((ent, anchorable), args.User, args.User);
+        }
     }
 }
