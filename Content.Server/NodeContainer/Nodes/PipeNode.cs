@@ -94,7 +94,7 @@ namespace Content.Server.NodeContainer.Nodes
         ///     The gases in this pipe.
         /// </summary>
         [ViewVariables]
-        public GasMixture Air
+        public virtual GasMixture Air
         {
             get => PipeNet?.Air ?? GasMixture.SpaceGas;
             set

@@ -1,3 +1,4 @@
+using Content.Shared._ES.Core.Timer.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization;
 
@@ -34,11 +35,17 @@ public sealed partial class ESRadstormModifierMachineComponent : Component
     public LocId DisableAnnouncement;
 
     [DataField]
+    public EntityUid? TimerEntity;
+
+    [DataField]
     public SoundSpecifier AnnouncementSoundEnabled = new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg");
 
     [DataField]
     public SoundSpecifier AnnouncementSoundDisabled = new SoundPathSpecifier("/Audio/_ES/Announcements/attention_high.ogg");
 }
+
+[Serializable, NetSerializable]
+public sealed partial class ESRadstormModifierMachinePowerTimerEvent : ESEntityTimerEvent;
 
 [Serializable, NetSerializable]
 public enum ESRadstormModifierMachineVisuals : byte

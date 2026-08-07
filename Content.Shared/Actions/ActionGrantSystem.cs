@@ -19,7 +19,6 @@ public sealed partial class ActionGrantSystem : EntitySystem
 
     private void OnItemGet(Entity<ItemActionGrantComponent> ent, ref GetItemActionsEvent args)
     {
-
         if (!TryComp(ent.Owner, out ActionGrantComponent? grant))
             return;
 

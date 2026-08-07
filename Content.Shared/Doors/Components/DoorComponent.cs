@@ -34,25 +34,25 @@ public sealed partial class DoorComponent : Component
     /// Closing time until impassable. Total time is this plus <see cref="CloseTimeTwo"/>.
     /// </summary>
     [DataField]
-    public TimeSpan CloseTimeOne = TimeSpan.FromSeconds(0.4f);
+    public TimeSpan CloseTimeOne = TimeSpan.FromSeconds(0.2f);
 
     /// <summary>
     /// Closing time until fully closed. Total time is this plus <see cref="CloseTimeOne"/>.
     /// </summary>
     [DataField]
-    public TimeSpan CloseTimeTwo = TimeSpan.FromSeconds(0.2f);
+    public TimeSpan CloseTimeTwo = TimeSpan.FromSeconds(0.4f);
 
     /// <summary>
     /// Opening time until passable. Total time is this plus <see cref="OpenTimeTwo"/>.
     /// </summary>
     [DataField]
-    public TimeSpan OpenTimeOne = TimeSpan.FromSeconds(0.4f);
+    public TimeSpan OpenTimeOne = TimeSpan.FromSeconds(0.2f);
 
     /// <summary>
     /// Opening time until fully open. Total time is this plus <see cref="OpenTimeOne"/>.
     /// </summary>
     [DataField]
-    public TimeSpan OpenTimeTwo = TimeSpan.FromSeconds(0.2f);
+    public TimeSpan OpenTimeTwo = TimeSpan.FromSeconds(0.4f);
 
     /// <summary>
     ///     Interval between deny sounds & visuals;
@@ -237,6 +237,9 @@ public sealed partial class DoorComponent : Component
     /// </summary>
     public object EmaggingAnimation = default!;
 
+    [DataField]
+    public bool HasDenyingAnimation = true;
+
     #endregion Graphics
 
     #region Serialization
@@ -286,23 +289,32 @@ public sealed partial class DoorComponent : Component
     /// <summary>
     /// Whether the door blocks light.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public bool Occludes = true;
 
     /// <summary>
     /// Whether the door will open when it is bumped into.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public bool BumpOpen = true;
 
     /// <summary>
     /// Whether the door will open when it is activated or clicked.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public bool ClickOpen = true;
+
+    /// <summary>
+    ///     If true, closing the door will be allowed even with no access.
+    /// </summary>
+    [DataField]
+    public bool AllowCloseWithNoAccess = false;
+
+    /// <summary>
+    ///     If true, this door will be emaggable even without having to be an airlock.
+    /// </summary>
+    [DataField]
+    public bool AlwaysEmaggable = false;
 
     [DataField(customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
     public int OpenDrawDepth = (int) DrawDepth.DrawDepth.Doors;

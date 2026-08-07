@@ -79,4 +79,5 @@
       HeadTop: HEAD
       HeadSide: HEAD
   - type: ESVoiceObfuscator
+  - type: ESDiseaseCloudProtection
   - type: ESChameleonClothingWhitelist

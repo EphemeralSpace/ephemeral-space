@@ -4,25 +4,58 @@
   branches:
   - tasks:
     - !type:HTNCompoundTask
-      task: ESLeepLeachMelee
+      task: ESLeapLeechBite
+  - tasks:
+    - !type:HTNCompoundTask
+      task: ESLeepLeachJump
+  - tasks:
+    - !type:HTNCompoundTask
+      task: ESLeapLeechChase
   - tasks:
     - !type:HTNCompoundTask
       task: IdleCompound
 
 - type: htnCompound
-  id: ESLeepLeachMelee
+  id: ESLeapLeechBite
   branches:
   - tasks:
     - !type:HTNPrimitiveTask
       operator: !type:UtilityOperator
         proto: ESNearbyHostileOrganizationTargets
+    - !type:HTNPrimitiveTask
+      operator: !type:MeleeOperator
+        targetKey: Target
+      preconditions:
+      - !type:KeyExistsPrecondition
+        key: Target
+      - !type:TargetInRangePrecondition
+        targetKey: Target
+        rangeKey: MeleeRange
+      services:
+      - !type:UtilityService
+        id: ESNearbyHostileOrganizationTargets
+        proto: ESNearbyHostileOrganizationTargets
+        key: Target
+
+- type: htnCompound
+  id: ESLeepLeachJump
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: ESNearbyHostileOrganizationTargetsInPath
+        key: JumpTarget
+        keyCoordinates: JumpTargetCoordinates
     - !type:HTNCompoundTask
       task: ESBeforeJumpAttackCompound
 
 - type: htnCompound
   id: ESBeforeJumpAttackCompound
   branches:
-  - tasks:
+  - preconditions:
+    - !type:KeyExistsPrecondition
+      key: JumpTarget
+    tasks:
     - !type:HTNPrimitiveTask
       operator: !type:SetFloatOperator
         targetKey: IdleTime
@@ -37,11 +70,47 @@
 
     - !type:HTNPrimitiveTask
       operator: !type:JumpToOperator
+        targetKey: JumpTargetCoordinates
+
+- type: htnCompound
+  id: ESLeapLeechChase
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: ESNearbyHostileOrganizationTargets
+    - !type:HTNCompoundTask
+      task: ESLeapLeechMeleeAttackTargetCompound
+
+- type: htnCompound
+  id: ESLeapLeechMeleeAttackTargetCompound
+  branches:
+  - preconditions:
+    - !type:KeyExistsPrecondition
+      key: Target
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:MoveToOperator
+        shutdownState: PlanFinished
+        pathfindInPlanning: true
+        removeKeyOnFinish: false
         targetKey: TargetCoordinates
+        pathfindKey: TargetPathfind
+        rangeKey: MeleeRange
+    - !type:HTNPrimitiveTask
+      operator: !type:JukeOperator
+        jukeType: Away
+    - !type:HTNPrimitiveTask
+      operator: !type:MeleeOperator
+        targetKey: Target
+      preconditions:
+      - !type:KeyExistsPrecondition
+        key: Target
+      - !type:TargetInRangePrecondition
+        targetKey: Target
+        rangeKey: MeleeRange
       services:
       - !type:UtilityService
         id: MeleeService
-        proto: NearbyMeleeTargets
-        key: TargetCoordinates
-    - !type:HTNCompoundTask
-      task: MeleeAttackTargetCompound
+        proto: ESNearbyHostileOrganizationTargets
+        key: Target

@@ -10,6 +10,8 @@
     # ES START
     lifetime: 1.1
     # ES END
+  - type: Transform
+    noRot: true
   - type: Sprite
     sprite: _ST/Effects/interaction.rsi
     state: hand

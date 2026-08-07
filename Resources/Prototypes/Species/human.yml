@@ -6,7 +6,19 @@
   sprites: MobHumanSprites
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobHumanDummy
-  skinColoration: HumanToned
+  skinColors:
+  - Pale
+  - Beige
+  - Tan
+  - Brown
+  - Dark
+  - Black
+  - Sunburnt
+  - Starburnt
+  - Frostbitten
+  - Sickly
+  - Jaundice
+  - EGARed
 # ES START
   maleHair:
   - HumanHairBalding

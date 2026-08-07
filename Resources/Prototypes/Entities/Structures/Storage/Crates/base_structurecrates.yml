@@ -42,7 +42,7 @@
     isPlaceable: false # defaults to closed.
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
+    damageModifierSet: ESMachine
   - type: Destructible
     thresholds:
     - trigger:
@@ -67,6 +67,7 @@
     containers:
       - entity_storage
   - type: RequireProjectileTarget
+
 
 - type: entity
   parent: CrateGeneric
@@ -105,9 +106,6 @@
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "-0.5,0"
       map: ["enum.PaperLabelVisuals.Layer"]
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
   - type: Destructible
     thresholds:
     - trigger:

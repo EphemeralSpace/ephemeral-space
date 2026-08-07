@@ -1,0 +1,32 @@
+using Robust.Client.UserInterface.Controls;
+
+namespace Content.Client._ES.Cinematic;
+
+/// <summary>
+///     Contains the texture rect for a given cinematic, if one is playing.
+/// </summary>
+public sealed class CinematicContainer : UIWidget
+{
+    public FunctionalAnimatedTextureRect CinematicTexture { get; private set; }
+
+    public CinematicContainer()
+    {
+        CinematicTexture = new FunctionalAnimatedTextureRect();
+        CinematicTexture.DisplayRect.Stretch = TextureRect.StretchMode.Scale;
+        CinematicTexture.HorizontalExpand = true;
+        CinematicTexture.VerticalExpand = true;
+        AddChild(CinematicTexture);
+    }
+
+    public void ResetCinematicTexture()
+    {
+        if (ChildCount != 0)
+            RemoveAllChildren();
+
+        CinematicTexture = new FunctionalAnimatedTextureRect();
+        CinematicTexture.DisplayRect.Stretch = TextureRect.StretchMode.Scale;
+        CinematicTexture.HorizontalExpand = true;
+        CinematicTexture.VerticalExpand = true;
+        AddChild(CinematicTexture);
+    }
+}

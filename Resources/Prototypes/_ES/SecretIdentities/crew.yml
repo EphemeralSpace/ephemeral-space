@@ -13,7 +13,7 @@
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
       id: ESCrateCacheCrewArmsDealer
-      amount: 6
+      amount: 3
 
 - type: esSecretIdentity
   id: Arsonist
@@ -35,12 +35,29 @@
     id: ESObjectiveAvengerProtectRandom
 
 - type: esSecretIdentity
-  id: Crewmember
-  name: es-secret-identity-crewmember-name
+  id: Cannibal
+  name: es-secret-identity-cannibal-name
   organization: Crew
-  description: es-secret-identity-crewmember-desc
-  weight: 5
-  color: white
+  description: es-secret-identity-cannibal-desc
+  color: darkorange
+  actions:
+    all:
+    - id: ActionSecretIdentityCannibalEat
+  objectives:
+    all:
+    - id: ESObjectiveCannibal
+
+- type: esSecretIdentity
+  id: Cryojunkie
+  name: es-secret-identity-cryojunkie-name
+  organization: Crew
+  description: es-secret-identity-cryojunkie-desc
+  color: lightblue
+  weight: 0.5
+  prohibitedJobs:
+  - ESExperiment
+  mindComponents:
+  - type: ESCryoJunkieMind
 
 - type: esSecretIdentity
   id: Guzzler
@@ -119,30 +136,6 @@
     - id: ESObjectivePickpocketSteal
 
 - type: esSecretIdentity
-  parent: ESBaseCommandRestricted
-  id: Rebel
-  name: es-secret-identity-rebel-name
-  organization: Crew
-  description: es-secret-identity-rebel-desc
-  color: tomato
-  weight: 0.75
-  mindComponents:
-  - type: ESSecretIdentityCacheSpawner
-    cacheProto:
-      id: ESSpawnerRandomTraitorCache
-  objectives:
-    all:
-    - pick:
-        all:
-        - id: ESObjectiveRebelSabotageCommunications
-        - id: ESObjectiveRebelSabotageCrewMonitoring
-        - id: ESObjectiveRebelSabotageEmergencyAccessTerminal
-        - id: ESObjectiveRebelSabotageCriminalRecords
-        - id: ESObjectiveRebelSabotageTelecom
-          weight: 2
-      amount: 1, 2
-
-- type: esSecretIdentity
   id: Secretary
   name: es-secret-identity-secretary-name
   organization: Crew
@@ -152,6 +145,20 @@
   objectives:
     all:
     - id: ESObjectiveSecretaryAssist
+
+- type: esSecretIdentity
+  id: Stalker
+  name: es-secret-identity-stalker-name
+  organization: Crew
+  description: es-secret-identity-stalker-desc
+  color: lightsteelblue
+  actions:
+    all:
+    - id: ActionSecretIdentityStalkerPick
+  objectives:
+    all:
+    - id: ESObjectiveStalkerKill
+    - id: ESObjectiveStalkerSave
 
 - type: esSecretIdentity
   id: Tragedian
@@ -170,13 +177,24 @@
   - type: ESAlwaysHearStagehandEmote
 
 - type: esSecretIdentity
-  id: Vigilante
-  name: es-secret-identity-vigilante-name
+  parent: ESBaseCommandRestricted
+  id: Vandal
+  name: es-secret-identity-vandal-name
   organization: Crew
-  description: es-secret-identity-vigilante-desc
-  color: orchid
+  description: es-secret-identity-vandal-desc
+  color: tomato
+  weight: 0.75
   objectives:
-    id: ESObjectiveVigilanteKillKiller
+    all:
+    - pick:
+        all:
+        - id: ESObjectiveVandalSabotageCommunications
+        - id: ESObjectiveVandalSabotageCrewMonitoring
+        - id: ESObjectiveVandalSabotageEmergencyAccessTerminal
+        - id: ESObjectiveVandalSabotageCriminalRecords
+        - id: ESObjectiveVandalSabotageTelecom
+          weight: 2
+      amount: 1, 2
 
 - type: esSecretIdentity
   id: VIP
@@ -188,3 +206,24 @@
   - VIPFingerprintScanner
   weight: 0.2
   gear: ESSecretIdentityVIPGear
+
+- type: startingGear
+  id: ESSecretIdentityVIPGear
+  storage:
+    back:
+    - ESItemCardVIP
+
+- type: esSecretIdentity
+  id: WarpDisciple
+  name: es-secret-identity-warp-disciple-name
+  organization: Crew
+  description: es-secret-identity-warp-disciple-desc
+  color: blueviolet
+  tips:
+  - WarpDriveRecall
+  objectives:
+    all:
+    - id: ESObjectiveWarpUnclog
+  actions:
+    all:
+    - id: ESActionSecretIdentityWarpDiscipleTeleport

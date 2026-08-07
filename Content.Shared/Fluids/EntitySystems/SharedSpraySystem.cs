@@ -1,7 +1,6 @@
 using System.Numerics;
 using Content.Shared._ES.Chemistry;
 using Content.Shared._ES.Chemistry.Components;
-using Content.Shared.Actions;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
@@ -11,7 +10,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Timing;
 using Content.Shared.Vapor;
-using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
@@ -49,47 +47,7 @@ public abstract partial class SharedSpraySystem : EntitySystem
 
         SubscribeLocalEvent<SprayComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<SprayComponent, UserActivateInWorldEvent>(OnActivateInWorld);
-        SubscribeLocalEvent<EquipSprayComponent, GetVerbsEvent<EquipmentVerb>>(OnGetVerb);
-        SubscribeLocalEvent<SprayLiquidEvent>(SprayLiquid);
         Subs.CVar(_cfg, CCVars.GridImpulseMultiplier, UpdateGridMassMultiplier, true);
-    }
-
-    private void SprayLiquid(SprayLiquidEvent ev)
-    {
-        var equipSprayEnt = ev.Action.Comp.Container;
-
-        if (equipSprayEnt == null)
-        {
-            Log.Warning($"{ev.Action.Comp.AttachedEntity} tried to use the SprayLiquidEvent but the entity was null.");
-            return;
-        }
-
-        if (!TryComp<SprayComponent>(equipSprayEnt, out var sprayComponent))
-        {
-            Log.Warning($"{ev.Action.Comp.AttachedEntity} tried to use the SprayLiquidEvent on {equipSprayEnt} but the SprayComponent did not exist.");
-            return;
-        }
-
-        Spray((equipSprayEnt.Value, sprayComponent), ev.Performer);
-    }
-
-    private void OnGetVerb(Entity<EquipSprayComponent> entity, ref GetVerbsEvent<EquipmentVerb> args)
-    {
-        if (entity.Comp.VerbLocId == null || !args.CanAccess || !args.CanInteract)
-            return;
-
-        var sprayComponent = Comp<SprayComponent>(entity);
-        var user = args.User;
-
-        var verb = new EquipmentVerb
-        {
-            Act = () =>
-            {
-                Spray((entity, sprayComponent), user);
-            },
-            Text = Loc.GetString(entity.Comp.VerbLocId),
-        };
-        args.Verbs.Add(verb);
     }
 
     private void OnActivateInWorld(Entity<SprayComponent> entity, ref UserActivateInWorldEvent args)
@@ -114,6 +72,7 @@ public abstract partial class SharedSpraySystem : EntitySystem
         if (args.Handled)
             return;
 
+        args.SpawnInteractionParticles = false;
         args.Handled = true;
 
         var clickPos = _transform.ToMapCoordinates(args.ClickLocation);
@@ -280,6 +239,3 @@ public abstract partial class SharedSpraySystem : EntitySystem
         Spray(entity, _transform.ToMapCoordinates(direction), user);
     }
 }
-
-public sealed partial class SprayLiquidEvent : InstantActionEvent;
-

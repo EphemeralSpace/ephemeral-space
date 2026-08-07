@@ -22,7 +22,7 @@
     ears: ClothingHeadsetSecurity
     jumpsuit: ClothingUniformJumpsuitSec
     outerClothing: ESClothingOuterArmorSecurity
-    back: ClothingBackpackSecurity
+    back: ClothingBackpack
   storage:
     back:
     - ESBoxSurvival

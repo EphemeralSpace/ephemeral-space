@@ -40,6 +40,7 @@
   footstepSound:
     collection: FootstepSlime
   fizziness: 0.5
+  puddleSpriteSet: Shiny
 
 - type: reagent
   id: BaseAlcohol

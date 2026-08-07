@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Soviet by K-Dynamic (github), reporter by EmoGarbage404 (github).",
+    "copyright": "Soviet by K-Dynamic (github), reporter & ratman by EmoGarbage404 (github), experiment by cheese_wizard (discord)",
     "size": {
         "x": 8,
         "y": 8
@@ -14,10 +14,19 @@
             "name": "coroner"
         },
         {
+            "name": "cryohusk"
+        },
+        {
+            "name": "experiment"
+        },
+        {
             "name": "reporter"
         },
         {
             "name": "Soviet"
+        },
+        {
+            "name": "ratman"
         }
     ]
 }

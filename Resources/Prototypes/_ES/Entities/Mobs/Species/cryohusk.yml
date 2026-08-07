@@ -1,0 +1,32 @@
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: ESBaseMobCryohusk
+  name: ???
+  abstract: true
+  components:
+  - type: Hunger
+  - type: Icon
+    sprite: _ES/Mobs/Species/cryohusk.rsi
+    state: full
+  - type: Thirst
+  - type: HumanoidAppearance
+    species: ESCryohusk
+  - type: SlurredAccent
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2
+    baseSprintSpeed : 3.75
+  - type: Damageable
+    damageModifierSet: ESCryohusk
+
+- type: entity
+  save: false
+  parent: ESBaseMobCryohusk
+  id: ESMobCryohusk
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: ESMobCryohuskDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: ESCryohusk

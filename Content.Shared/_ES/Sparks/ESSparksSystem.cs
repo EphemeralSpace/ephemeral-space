@@ -112,11 +112,11 @@ public sealed partial class ESSparksSystem : EntitySystem
         {
             var sparks = Spawn(sparksPrototype, _transform.ToMapCoordinates(coordinates), rotation: angle);
             angle += angleDelta;
-            _throwing.TryThrow(sparks, angle.ToVec(), 2f, animated: false);
+            _throwing.TryThrow(sparks, angle.ToVec(), 2f, animated: false, doSpin: false);
             _preventCollide.PreventCollide(sparks, ignored);
         }
 
         if (_random.Prob(tileFireChance))
-            _tileFire.TryDoTileFire(coordinates, user, _random.Next(1, 4));
+            _tileFire.TryDoTileFire(coordinates, user, _random.Next(1, 3));
     }
 }

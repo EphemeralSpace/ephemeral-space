@@ -17,6 +17,7 @@
   color: yellow
   tips:
   - InfiltratorC4Deniability
+  - InfiltratorRatmanDoors
   - EmagAirlockDeniability
   mindComponents:
   - type: ESSecretIdentityCacheSpawner
@@ -40,7 +41,7 @@
   name: es-secret-identity-subverter-name
   description: es-secret-identity-subverter-desc
   color: gray
-  weight: 0.75
+  weight: 0.9
   mindComponents:
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
@@ -54,17 +55,6 @@
   color: pink
   weight: 0
 
-- type: esSecretIdentity
-  parent: ESBaseTraitor
-  id: Demolitionist
-  name: es-secret-identity-demolitionist-name
-  description: es-secret-identity-demolitionist-desc
-  color: orangered
-  weight: 0.3
-  mindComponents:
-  - type: ESSecretIdentityCacheSpawner
-    cacheProto:
-      id: ESCrateCacheTraitorDemolitionist
 
 - type: esSecretIdentity
   # doesnt parent from basetraitor because we dont want the icon

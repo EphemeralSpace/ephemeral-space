@@ -17,6 +17,7 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private AnimationPlayerSystem _animation = default!;
+    [Dependency] private TransformSystem _xform = default!;
 
     private const string AnimateKey = "particle-animation";
 
@@ -24,6 +25,7 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
     {
         { StellarInteractionParticleType.Use, "StellarInteractionParticleUse" },
         { StellarInteractionParticleType.Pull, "StellarInteractionParticlePull" },
+        { StellarInteractionParticleType.InHand, "StellarInteractionParticleUse" },
     };
 
     public override void Initialize()
@@ -42,7 +44,8 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
         if (!Exists(performer) || !Exists(target))
             return;
 
-        if (ev.Type == StellarInteractionParticleType.Pull)
+        var type = ev.Type;
+        if (type == StellarInteractionParticleType.Pull)
         {
             (performer, target) = (target, performer);
         }
@@ -52,31 +55,47 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
         if (performerXform.MapID == MapId.Nullspace || targetXform.MapID == MapId.Nullspace)
             return;
 
+        // if the interaction is happening across parent boundaries (ie inhand or in a bag or something)
+        // override it with an inhand particle effect
         if (performerXform.ParentUid != targetXform.ParentUid)
-            return;
+        {
+            if (type == StellarInteractionParticleType.Pull)
+                return;
+
+            type = StellarInteractionParticleType.InHand;
+        }
 
         var performerTargetDelta = targetXform.LocalPosition - performerXform.LocalPosition;
-        var particle = Spawn(InteractionParticleIds[ev.Type], performerXform.Coordinates);
+        var inHandDelta = new Vector2(0, 0.85f);
+        var particle = Spawn(InteractionParticleIds[type], performerXform.Coordinates);
+
+        if (type == StellarInteractionParticleType.InHand)
+        {
+            used = target;
+            _xform.SetParent(particle, performer);
+        }
 
         if (used is { } usedEntity && Exists(usedEntity) && TryComp<SpriteComponent>(usedEntity, out var usedSprite))
         {
             _sprite.CopySprite((usedEntity, usedSprite), particle);
-            // ES START
             _sprite.SetDrawDepth(particle, (int) Shared.DrawDepth.DrawDepth.Effects);
-            // ES END
         }
 
-        var spriteColor = Comp<SpriteComponent>(particle).Color;
-        var animation = ev.Type switch
+        var sprite = Comp<SpriteComponent>(particle);
+        sprite.NoRotation = true;
+        var spriteColor = sprite.Color;
+        var startPos = performerXform.LocalPosition;
+        var animation = type switch
         {
-            StellarInteractionParticleType.Use => GetUseAnimation(performerTargetDelta, spriteColor),
-            StellarInteractionParticleType.Pull => GetPullAnimation(performerTargetDelta, spriteColor),
-            _ => throw new ArgumentOutOfRangeException(nameof(ev), $"Interaction particle event has unknown particle type {ev.Type}"),
+            StellarInteractionParticleType.Use => GetUseAnimation(startPos, startPos + performerTargetDelta, spriteColor),
+            StellarInteractionParticleType.Pull => GetPullAnimation(startPos, startPos + performerTargetDelta, spriteColor),
+            StellarInteractionParticleType.InHand => GetUseAnimation(Vector2.Zero, inHandDelta, spriteColor, true),
+            _ => throw new ArgumentOutOfRangeException(nameof(ev), $"Interaction particle event has unknown particle type {type}"),
         };
         _animation.Play(particle, animation, AnimateKey);
     }
 
-    private Animation GetUseAnimation(Vector2 endOffset, Color color)
+    private Animation GetUseAnimation(Vector2 startPosition, Vector2 endPosition, Color color, bool spriteOffset = false)
     {
         var startRotation = _random.NextAngle(Angle.FromDegrees(-40), Angle.FromDegrees(40));
         var endRotation = Angle.Zero;
@@ -84,12 +103,35 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
         var endScale = new Vector2(1f, 1f);
         var rotationLength = TimeSpan.FromMilliseconds(600);
 
-        var startOffset = new Vector2();
         var offsetLength = TimeSpan.FromMilliseconds(250);
 
         var startColor = color.WithAlpha(color.A * 0.7f);
         var endColor = color.WithAlpha(0f);
         var colorLength = rotationLength + offsetLength;
+
+        // use anim lerps transform local position
+        // but inhand just lerps sprite offset (since it gets parented to the performer)
+        var posTrack = spriteOffset
+            ? new AnimationTrackComponentProperty()
+            {
+                ComponentType = typeof(SpriteComponent),
+                Property = nameof(SpriteComponent.Offset),
+                KeyFrames =
+                {
+                    new AnimationTrackProperty.KeyFrame(startPosition, 0f),
+                    new AnimationTrackProperty.KeyFrame(endPosition, (float)offsetLength.TotalSeconds, Easings.OutBack),
+                },
+            }
+            : new AnimationTrackComponentProperty()
+            {
+                ComponentType = typeof(TransformComponent),
+                Property = nameof(TransformComponent.LocalPosition),
+                KeyFrames =
+                {
+                    new AnimationTrackProperty.KeyFrame(startPosition, 0f),
+                    new AnimationTrackProperty.KeyFrame(endPosition, (float)offsetLength.TotalSeconds, Easings.OutBack),
+                },
+            };
 
         return new Animation()
         {
@@ -120,16 +162,6 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
                 new AnimationTrackComponentProperty()
                 {
                     ComponentType = typeof(SpriteComponent),
-                    Property = nameof(SpriteComponent.Offset),
-                    KeyFrames =
-                    {
-                        new AnimationTrackProperty.KeyFrame(startOffset, 0f),
-                        new AnimationTrackProperty.KeyFrame(endOffset, (float)offsetLength.TotalSeconds, Easings.OutBack),
-                    },
-                },
-                new AnimationTrackComponentProperty()
-                {
-                    ComponentType = typeof(SpriteComponent),
                     Property = nameof(SpriteComponent.Color),
                     KeyFrames =
                     {
@@ -138,15 +170,15 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
                         new AnimationTrackProperty.KeyFrame(endColor, (float)offsetLength.TotalSeconds, Easings.InOutCirc),
                     },
                 },
+                posTrack
             },
         };
     }
 
-    private Animation GetPullAnimation(Vector2 endOffset, Color color)
+    private Animation GetPullAnimation(Vector2 startPosition, Vector2 endPosition, Color color)
     {
         var rotationLength = TimeSpan.FromMilliseconds(8f * (1000f / 12f));
 
-        var startOffset = new Vector2();
         var offsetLength = TimeSpan.FromMilliseconds(4f * (1000f / 12f));
 
         var endColor = color.WithAlpha(0f);
@@ -159,12 +191,12 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
             {
                 new AnimationTrackComponentProperty()
                 {
-                    ComponentType = typeof(SpriteComponent),
-                    Property = nameof(SpriteComponent.Offset),
+                    ComponentType = typeof(TransformComponent),
+                    Property = nameof(TransformComponent.LocalPosition),
                     KeyFrames =
                     {
-                        new AnimationTrackProperty.KeyFrame(startOffset, 0f),
-                        new AnimationTrackProperty.KeyFrame(endOffset, (float)rotationLength.TotalSeconds, Easings.InOutCirc),
+                        new AnimationTrackProperty.KeyFrame(startPosition, 0f),
+                        new AnimationTrackProperty.KeyFrame(endPosition, (float)rotationLength.TotalSeconds, Easings.InOutCirc),
                     },
                 },
                 new AnimationTrackComponentProperty()

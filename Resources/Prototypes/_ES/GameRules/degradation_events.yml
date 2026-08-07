@@ -8,7 +8,7 @@
     earliestStart: 0
     reoccurrenceDelay: 0
     occursDuringRoundEnd: false
-    weight: 10
+    weight: 3
 
 - type: entityTable
   id: ESDegradationEvents
@@ -89,8 +89,6 @@
   - type: ESDegradationEvent
     component: ESRadioScrambler
     degradeImmediately: true # Doesn't react to anything
-  - type: StationEvent
-    weight: 20
 
 - type: entity
   parent: ESBaseDegradationEvent

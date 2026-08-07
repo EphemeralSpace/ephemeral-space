@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._Offbrand.Wounds;
+using Content.Shared.Cuffs;
+using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
@@ -12,11 +14,15 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.Collections;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._ES.KillTracking;
 
-public sealed class ESKillTrackingSystem : EntitySystem
+public sealed partial class ESKillTrackingSystem : EntitySystem
 {
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedCuffableSystem _cuffs = default!;
+
     private const int SuicideSelfDamage = 200;
 
     /// <inheritdoc/>
@@ -53,12 +59,23 @@ public sealed class ESKillTrackingSystem : EntitySystem
 
     private void OnDamageChanged(Entity<ESKillTrackerComponent> ent, ref DamageChangedEvent args)
     {
-        // I'm not really sure how we send a null delta.
-        if (args.DamageDelta is not { } delta)
+        // like idk
+        // this really shouldnt be running on client at all probably
+        if (_timing.ApplyingState)
             return;
 
+        // I'm not really sure how we send a null delta.
+        if (args.DamageDelta is not { } delta || delta.Empty)
+            return;
+
+        // Cuffing -- if someone is cuffed and takes environmental damage (origin-less)
+        // treat the damage they take as being caused by the person that cuffed them
+        var origin = args.Origin;
+        if (origin == null)
+            origin = _cuffs.GetLastCuffingEntity(ent.Owner);
+
         ReduceDamage(ent, DamageSpecifier.GetNegative(delta).GetTotal());
-        AddDamage(ent, args.Origin, DamageSpecifier.GetPositive(delta).GetTotal());
+        AddDamage(ent, origin, DamageSpecifier.GetPositive(delta).GetTotal());
     }
 
     private void OnRejuvenate(Entity<ESKillTrackerComponent> ent, ref RejuvenateEvent args)

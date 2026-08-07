@@ -17,18 +17,13 @@ public sealed class ESCVars : CVars
     /// What's the current year?
     /// </summary>
     public static readonly CVarDef<int> ESInGameYear =
-        CVarDef.Create("es_ic.year", 2186, CVar.SERVER);
+        CVarDef.Create("es_ic.year", 2066, CVar.SERVER);
 
     public static readonly CVarDef<bool> ESRandomCharacters =
         CVarDef.Create("es_ic.random_characters", true, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<bool> ESOpenCharacterMenuOnSpawn =
         CVarDef.Create("es_ic.open_character_menu_on_spawn", true, CVar.SERVER | CVar.REPLICATED);
-
-    // EVAC
-
-    public static readonly CVarDef<float> ESEvacVotePercentage =
-        CVarDef.Create("es_evac.beacon_percentage", 0.665f, CVar.SERVER | CVar.REPLICATED);
 
     // RESPAWNING
     public static readonly CVarDef<bool> ESRespawnEnabled =
@@ -51,7 +46,7 @@ public sealed class ESCVars : CVars
 
     // How long in seconds it takes from roundstart->the shuttle arriving at the station
     public static readonly CVarDef<float> ESArrivalsFTLTime =
-        CVarDef.Create("es_arrivals.ftl_time", 60 * 5f, CVar.SERVER);
+        CVarDef.Create("es_arrivals.ftl_time", 60 * 4.5f, CVar.SERVER);
 
     /// <summary>
     ///     Controls whether chat sanitization is enabled for individual users.

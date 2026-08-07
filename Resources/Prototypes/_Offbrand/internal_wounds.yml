@@ -19,8 +19,8 @@
         Blunt: 10
     maximumDamage: 10
   - type: MovementModStatusEffect
-    sprintSpeedModifier: 0.8
-    walkSpeedModifier: 0.8
+    sprintSpeedModifier: 0.9
+    walkSpeedModifier: 0.9
   - type: AnalyzableWound
     descriptions:
       0: wound-internal-fracture

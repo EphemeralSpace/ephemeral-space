@@ -1,5 +1,7 @@
+using Content.Shared._ES.Auditions;
 using Content.Shared.Dataset;
 using Content.Shared.Humanoid.Markings;
+using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -80,8 +82,11 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// <summary>
     /// Method of skin coloration used by the species.
     /// </summary>
-    [DataField(required: true)]
-    public ProtoId<SkinColorationPrototype> SkinColoration { get; private set; }
+    [DataField]
+    public ProtoId<SkinColorationPrototype> SkinColoration = "Hues";
+
+    [DataField]
+    public List<ProtoId<ESSkinColorPrototype>> SkinColors = new();
 
     // ES START
     // changed to default to ES lists
@@ -108,6 +113,9 @@ public sealed partial class SpeciesPrototype : IPrototype
     // YEAH. We're Woke Now.
     public List<Sex> Sexes { get; private set; } = new() { Sex.Male, Sex.Female, Sex.Unsexed };
 // ES END
+
+    [DataField]
+    public List<Gender> Genders { get; private set; } = new() { Gender.Male, Gender.Female, Gender.Epicene };
 
     /// <summary>
     ///     Characters younger than this are too young to be hired by Nanotrasen.

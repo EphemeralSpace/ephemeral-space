@@ -138,6 +138,11 @@ public abstract partial class SharedChargesSystem : EntitySystem
 
         action.Comp1.LastCharges = Math.Clamp(action.Comp1.LastCharges + addCharges, 0, action.Comp1.MaxCharges);
         Dirty(action.Owner, action.Comp1);
+
+        if (action.Comp1.LastCharges <= 0 && action.Comp1.DeleteOnEmpty)
+        {
+            PredictedQueueDel(action);
+        }
     }
 
     public bool TryUseCharge(Entity<LimitedChargesComponent?> entity)
@@ -208,6 +213,11 @@ public abstract partial class SharedChargesSystem : EntitySystem
         action.Comp.LastCharges = adjusted;
         action.Comp.LastUpdate = _timing.CurTime;
         Dirty(action);
+
+        if (action.Comp.LastCharges <= 0 && action.Comp.DeleteOnEmpty)
+        {
+            PredictedQueueDel(action);
+        }
     }
 
     /// <summary>

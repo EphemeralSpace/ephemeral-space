@@ -1,0 +1,90 @@
+- type: species
+  id: ESCryohusk
+  name: es-species-name-cryohusk
+  roundStart: false
+  prototype: ESMobCryohusk
+  sprites: ESMobCryohuskSprites
+  markingLimits: MobHumanMarkingLimits
+  dollPrototype: ESMobCryohuskDummy
+  skinColors:
+  - CryohuskFrostbitten
+  sexes: [ Unsexed ] # they don't do that
+  genders: [ Neuter ]
+
+- type: speciesBaseSprites
+  id: ESMobCryohuskSprites
+  sprites:
+    Special: MobHumanoidAnyMarking
+    Head: ESMobCryohuskHead
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: ESMobCryohuskTorso
+    HeadTop: MobHumanoidAnyMarking
+    LArm: ESMobCryohuskLArm
+    RArm: ESMobCryohuskRArm
+    LHand: ESMobCryohuskLHand
+    RHand: ESMobCryohuskRHand
+    LLeg: ESMobCryohuskLLeg
+    RLeg: ESMobCryohuskRLeg
+    LFoot: ESMobCryohuskLFoot
+    RFoot: ESMobCryohuskRFoot
+
+- type: humanoidBaseSprite
+  id: ESMobCryohuskHead
+  baseSprite:
+    sprite: _ES/Mobs/Species/cryohusk.rsi
+    state: head
+
+- type: humanoidBaseSprite
+  id: ESMobCryohuskTorso
+  baseSprite:
+    sprite: _ES/Mobs/Species/cryohusk.rsi
+    state: torso
+
+- type: humanoidBaseSprite
+  id: ESMobCryohuskLLeg
+  baseSprite:
+    sprite: _ES/Mobs/Species/cryohusk.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: ESMobCryohuskLArm
+  baseSprite:
+    sprite: _ES/Mobs/Species/cryohusk.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: ESMobCryohuskLHand
+  baseSprite:
+    sprite: _ES/Mobs/Species/cryohusk.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: ESMobCryohuskLFoot
+  baseSprite:
+    sprite: _ES/Mobs/Species/cryohusk.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: ESMobCryohuskRLeg
+  baseSprite:
+    sprite: _ES/Mobs/Species/cryohusk.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: ESMobCryohuskRArm
+  baseSprite:
+    sprite: _ES/Mobs/Species/cryohusk.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: ESMobCryohuskRHand
+  baseSprite:
+    sprite: _ES/Mobs/Species/cryohusk.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: ESMobCryohuskRFoot
+  baseSprite:
+    sprite: _ES/Mobs/Species/cryohusk.rsi
+    state: r_foot

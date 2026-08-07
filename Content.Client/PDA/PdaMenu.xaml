@@ -20,7 +20,6 @@
         <pda:PdaNavigationButton Name="FlashLightToggleButton" Access="Public" ToggleMode="True" ActiveFgColor="#EAEFBB" SetWidth="32"/>
         <pda:PdaNavigationButton Name="EjectPenButton" Access="Public" SetWidth="32"/>
         <pda:PdaNavigationButton Name="EjectIdButton" Access="Public" SetWidth="32"/>
-        <pda:PdaNavigationButton Name="EjectPaiButton" Access="Public" SetWidth="32"/>
     </BoxContainer>
     <BoxContainer Name="ViewContainer" HorizontalExpand="True" VerticalExpand="True" Access="Public">
         <BoxContainer Orientation="Vertical"
@@ -48,12 +47,12 @@
             </ContainerButton>
         </BoxContainer>
         <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="True">
-            <BoxContainer Orientation="Vertical"
-                          VerticalExpand="True"
-                          HorizontalExpand="True"
-                          MinSize="50 50"
-                          Name="ProgramList"
-                          Margin="4"/>
+            <GridContainer VerticalExpand="True"
+                           HorizontalExpand="True"
+                           MinSize="50 50"
+                           Name="ProgramList"
+                           Margin="4"
+                           Columns="2" />
         </ScrollContainer>
         <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="True">
             <BoxContainer Orientation="Vertical"

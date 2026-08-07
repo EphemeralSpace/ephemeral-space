@@ -17,7 +17,7 @@ namespace Content.Client.NodeContainer
     {
         private readonly NodeGroupSystem _system;
         private readonly EntityLookupSystem _lookup;
-        private readonly IMapManager _mapManager;
+        private readonly SharedMapSystem _mapManager;
         private readonly IInputManager _inputManager;
         private readonly IFontSelectionManager _fontSelection;
         private readonly IEntityManager _entityManager;
@@ -39,7 +39,7 @@ namespace Content.Client.NodeContainer
         public NodeVisualizationOverlay(
             NodeGroupSystem system,
             EntityLookupSystem lookup,
-            IMapManager mapManager,
+            SharedMapSystem mapManager,
             IInputManager inputManager,
             IFontSelectionManager fontSelection,
             IEntityManager entityManager)

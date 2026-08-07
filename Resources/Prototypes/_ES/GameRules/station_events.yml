@@ -93,10 +93,10 @@
     duration: 30
   - type: ESGasVote
     gases:
-    - Ammonia
+    - Miasma
     - Plasma
     - Smoke
-    - Frezon
+    - Cryogas
     - WaterVapor # The Fog...
     count: 2
 

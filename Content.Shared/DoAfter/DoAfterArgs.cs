@@ -131,6 +131,12 @@ public sealed partial class DoAfterArgs
     public bool BreakOnDamage;
 
     /// <summary>
+    /// If true, will force the user to face the target while the doafter is active.
+    /// </summary>
+    [DataField]
+    public bool FaceTarget = true;
+
+    /// <summary>
     ///     Threshold for user damage. This damage has to be dealt in a single event, not over time.
     /// </summary>
     [DataField]
@@ -264,6 +270,7 @@ public sealed partial class DoAfterArgs
         BlockDuplicate = other.BlockDuplicate;
         CancelDuplicate = other.CancelDuplicate;
         DuplicateCondition = other.DuplicateCondition;
+        FaceTarget = other.FaceTarget;
 
         // Networked
         NetUser = other.NetUser;

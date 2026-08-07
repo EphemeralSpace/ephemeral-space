@@ -1,0 +1,16 @@
+- type: htnCompound
+  id: ESMiasmaCompound
+  branches:
+  - tasks:
+    - !type:HTNCompoundTask
+      task: ESChaseCompound
+
+- type: htnCompound
+  id: ESChaseCompound
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: NearbyMeleeTargets
+    - !type:HTNPrimitiveTask
+      operator: !type:MoveToOperator

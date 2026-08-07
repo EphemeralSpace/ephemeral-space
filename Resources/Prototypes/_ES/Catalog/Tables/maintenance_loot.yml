@@ -9,7 +9,7 @@
     - tableId: ESMaintLootUncommon
       weight: 26
     - tableId: ESMaintLootRare
-      weight: 4
+      weight: 3
 
 - type: entityTable
   id: ESMaintLootExposed # for placing on racks or tables
@@ -39,7 +39,7 @@
     - tableId: ESMaintLootUncommon
       weight: 15
     - tableId: ESMaintLootRare
-      weight: 2
+      weight: 4
 
 - type: entityTable
   id: ESMaintLootWorthless
@@ -68,13 +68,6 @@
     - id: Matchstick
     - id: DrinkGlass
 
-    - group:
-      - id: ESRound9mm
-      - id: ESRound357
-      - id: ESShellShotgunBuckshot
-      - id: ESShellShotgunBeanbag
-      weight: 0.125
-
 - type: entityTable
   id: ESMaintLootCommon
   table:
@@ -93,9 +86,9 @@
       - id: Wrench
       - id: Crowbar
     - id: ESNet
-      weight: 3 # temp increase since its new
+      weight: 1.5
     - id: ESDoorJammer
-      weight: 3 # temp increase since its new
+      weight: 1.5
 
     - tableId: ESMixedBasicGloves
     - id: ClothingEyesGlassesMeson
@@ -176,10 +169,21 @@
       weight: 2
     - id: Flare # dode
 
+    - group: # single ammunition rounds because it's very aura
+      - id: ESRound9mm
+        weight: 2
+      - id: ESRound357
+      - id: ESShellShotgunBuckshot
+      weight: 2
+
+    - tableId: PeriodicalsSuspicious
+
 - type: entityTable
   id: ESMaintLootUncommon
   table:
     group:
+    - id: ESKitBarricade
+      weight: 2 # common for now?
     - id: FireBombEmpty
     - id: HydroponicsToolHatchet
     - id: Multitool
@@ -189,7 +193,6 @@
     - id: EmergencyRollerBedSpawnFolded
     - id: Spear
     - id: SprayPainter
-    - id: BaseBallBat
     - id: WelderIndustrial
     - id: Plunger
     - id: Shovel
@@ -250,7 +253,7 @@
       weight: 0.5
     - id: ClothingOuterCoatBomber
       weight: 0.5
-    - id: ClothingOuterCoatJensen
+    - id: ClothingOuterCoatRatman
       weight: 0.5
     - group:
       - id: ClothingShoesLeather
@@ -266,15 +269,18 @@
   id: ESMaintLootRare
   table:
     group:
-    - tableId: ESMaintsTraitorLoot
+    - tableId: MaintsTraitorLoot
       weight: 8
     - id: ESWeaponKnife
       weight: 2
+    - id: ESWeaponBlackjack
     - id: WelderIndustrialAdvanced
     - id: PinpointerUniversal
     - id: PinpointerNuclear
     - id: CameraBug
     - id: MedkitFilled
+
+    - id: ESKitSecretDoor
 
     - id: ClothingEyesHudSecurity
     - id: ClothingEyesGlassesSunglasses

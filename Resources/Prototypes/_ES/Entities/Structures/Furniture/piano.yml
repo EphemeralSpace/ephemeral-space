@@ -9,7 +9,7 @@
   - type: InteractionOutline
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: Wood
+    damageModifierSet: ESWood
   - type: Destructible
     thresholds:
     - trigger:
@@ -97,3 +97,14 @@
     state: piano-broken
   - type: Construction
     node: broken
+
+- type: entity
+  parent: ESInstrumentPiano
+  id: ESInstrumentPianoLobby
+  name: theatergoer's clavier
+  suffix: Lobby Only
+  description: The keys are capable of producing resplendent harmonies that imitate a motley of mortal instruments--and some immortal ones.
+  components:
+  - type: Instrument
+    allowPercussion: true
+    allowProgramChange: true

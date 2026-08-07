@@ -169,6 +169,18 @@
         },
         {
             "name": "cables"
+        },
+        {
+            "name": "rat"
+        },
+        {
+            "name": "magazine"
+        },
+        {
+            "name": "newspaper"
+        },
+        {
+            "name": "legit"
         }
     ]
 }

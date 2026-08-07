@@ -107,39 +107,6 @@
                 max: 1
 
 - type: entity
-  id: CarpetPink
-  parent: CarpetBase
-# ES START
-  suffix: Pink, DO NOT MAP
-  categories: [ HideSpawnMenu ]
-# ES END
-  components:
-  - type: Clickable
-  - type: Sprite
-    sprite: Structures/Furniture/Carpets/pink_carpet.rsi
-  - type: Icon
-    sprite: Structures/Furniture/Carpets/pink_carpet.rsi
-  - type: Destructible
-    thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 100
-        behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-      - trigger:
-          !type:DamageTrigger
-          damage: 10
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-          - !type:SpawnEntitiesBehavior
-            spawn:
-              FloorCarpetItemPink:
-                min: 1
-                max: 1
-
-- type: entity
   id: CarpetBlue
   parent: CarpetBase
   suffix: Blue
@@ -230,39 +197,6 @@
                 max: 1
 
 - type: entity
-  id: CarpetSBlue
-  parent: CarpetBase
-# ES START
-  suffix: Sky Blue, DO NOT MAP
-  categories: [ HideSpawnMenu ]
-# ES END
-  components:
-  - type: Clickable
-  - type: Sprite
-    sprite: Structures/Furniture/Carpets/skyblue_carpet.rsi
-  - type: Icon
-    sprite: Structures/Furniture/Carpets/skyblue_carpet.rsi
-  - type: Destructible
-    thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 100
-        behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-      - trigger:
-          !type:DamageTrigger
-          damage: 10
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-          - !type:SpawnEntitiesBehavior
-            spawn:
-              FloorCarpetItemSkyBlue:
-                min: 1
-                max: 1
-
-- type: entity
   id: CarpetPurple
   parent: CarpetBase
   suffix: Purple
@@ -319,39 +253,6 @@
           - !type:SpawnEntitiesBehavior
             spawn:
               FloorCarpetItemCyan:
-                min: 1
-                max: 1
-
-- type: entity
-  id: CarpetWhite
-  parent: CarpetBase
-# ES Start
-  suffix: White, DO NOT MAP
-  categories: [ HideSpawnMenu ]
-# ES End
-  components:
-  - type: Clickable
-  - type: Sprite
-    sprite: Structures/Furniture/Carpets/white_carpet.rsi
-  - type: Icon
-    sprite: Structures/Furniture/Carpets/white_carpet.rsi
-  - type: Destructible
-    thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 100
-        behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-      - trigger:
-          !type:DamageTrigger
-          damage: 10
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-          - !type:SpawnEntitiesBehavior
-            spawn:
-              FloorCarpetItemWhite:
                 min: 1
                 max: 1
 

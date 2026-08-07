@@ -33,6 +33,18 @@
   - type: ESPersonalLocker
     job: ESCoroner
 
+# Experiment
+- type: entity
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
+  id: LockerExperiment
+  name: experiment's locker
+  description: The fourth ape. The fourth victim.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/experiment.rsi
+  - type: ESPersonalLocker
+    job: ESExperiment
+
 # Janitor
 - type: entity
   parent: [ LockerBaseSecurePersonal, LockerBase ]
@@ -44,6 +56,17 @@
     sprite: _ES/Structures/Storage/Closets/janitor.rsi
   - type: ESPersonalLocker
     job: ESJanitor
+
+# Ratman
+- type: entity
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
+  id: LockerRatman
+  name: ratty locker
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/ratman.rsi
+  - type: ESPersonalLocker
+    job: ESRatman
 
 # Paramed
 - type: entity

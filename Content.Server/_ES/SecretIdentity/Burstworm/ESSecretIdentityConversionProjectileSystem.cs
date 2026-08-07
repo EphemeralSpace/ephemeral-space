@@ -3,6 +3,7 @@ using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Robust.Shared.Random;
@@ -15,6 +16,7 @@ public sealed partial class ESSecretIdentityConversionProjectileSystem : EntityS
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private ESSecretIdentitySystem _secretIdentity = default!;
     [Dependency] private MindSystem _mind = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private PopupSystem _popup = default!;
 
     /// <inheritdoc/>
@@ -35,6 +37,7 @@ public sealed partial class ESSecretIdentityConversionProjectileSystem : EntityS
             return;
 
         if (embeddable.EmbeddedIntoUid is { } embedded &&
+            !_mobState.IsDead(embedded) &&
             _mind.TryGetMind(embedded, out var mind) &&
             _secretIdentity.GetOrganizationOrNull(mind.Value.AsNullable()) != ent.Comp.IgnoreOrganization)
         {

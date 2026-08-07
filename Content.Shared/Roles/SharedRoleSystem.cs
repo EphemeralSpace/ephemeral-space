@@ -32,16 +32,6 @@ public abstract partial class SharedRoleSystem : EntitySystem
     public override void Initialize()
     {
         Subs.CVar(_cfg, CCVars.GameRoleTimerOverride, SetRequirementOverride, true);
-
-        SubscribeLocalEvent<StartingMindRoleComponent, PlayerSpawnCompleteEvent>(OnSpawn);
-    }
-
-    private void OnSpawn(EntityUid uid, StartingMindRoleComponent component, PlayerSpawnCompleteEvent args)
-    {
-        if (!_minds.TryGetMind(uid, out var mindId, out var mindComp))
-            return;
-
-        MindAddRole(mindId, component.MindRole, mind: mindComp, silent: component.Silent);
     }
 
     private void SetRequirementOverride(string value)

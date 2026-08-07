@@ -19,6 +19,19 @@ public sealed partial class ESObjectiveComponent : Component
     public float Progress;
 
     /// <summary>
+    /// Frozen objectives do not modify their progress
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Frozen;
+
+    /// <summary>
+    /// Amount of progress required to count as 'completed'.
+    /// </summary>
+    /// <returns></returns>
+    [DataField, AutoNetworkedField]
+    public float CompletionPercentage = 1f;
+
+    /// <summary>
     /// If true, <see cref="Progress"/> will be inverted from the actual calculated progress.
     /// </summary>
     /// <example>

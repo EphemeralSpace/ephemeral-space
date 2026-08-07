@@ -1,6 +1,6 @@
 - type: entity
   name: fire extinguisher
-  parent: BaseItem
+  parent: [ BaseItem, BaseMeleeCylindrical ]
   id: FireExtinguisher
   description: It extinguishes fires.
   components:
@@ -57,17 +57,6 @@
     verbToggleOn: fire-extinguisher-component-verb-remove
     verbToggleOff: fire-extinguisher-component-verb-engage
   - type: SpraySafety
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    damage:
-      types:
-        Blunt: 10
-    soundHit:
-      path: /Audio/Weapons/smash.ogg
-  - type: Tool
-    qualities:
-    - Rolling
-    speedModifier: 0.5 # its very big, awkward to use
   - type: Appearance
   - type: Tag
     tags:
@@ -116,7 +105,7 @@
 
 - type: entity
   name: pocket fire extinguisher
-  parent: FireExtinguisher
+  parent: [BaseMeleeAwfulBlunt, FireExtinguisher]
   id: FireExtinguisherMini
   description: A light and compact fibreglass-framed model fire extinguisher. It holds less water than its bigger brother.
   components:
@@ -138,13 +127,6 @@
         reagents:
         - ReagentId: Water
           Quantity: 30
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    damage:
-      types:
-        Blunt: 3 #completely ineffective; your fists are better
-    soundHit:
-      path: /Audio/Effects/weak_hit1.ogg
   - type: PhysicalComposition
     materialComposition:
       Steel: 50

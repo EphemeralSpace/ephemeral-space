@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Made for Ephemeral Space by Flareguy",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "cognitowood"
+    },
+    {
+      "name": "cooking"
+    },
+    {
+      "name": "crossword"
+    },
+    {
+      "name": "earth_news"
+    },
+    {
+      "name": "guns"
+    },
+    {
+      "name": "medical"
+    },
+    {
+      "name": "newspaper"
+    },
+    {
+      "name": "popular_spacepeople"
+    },
+    {
+      "name": "fashion"
+    },
+    {
+      "name": "space"
+    },
+    {
+      "name": "wordsearch"
+    },
+    {
+      "name": "zine_conspiracy"
+    },
+    {
+      "name": "zine_revolutionary"
+    },
+    {
+        "name": "newspaper-inhand-left",
+        "directions": 4
+    },
+    {
+        "name": "newspaper-inhand-right",
+        "directions": 4
+    },
+    {
+        "name": "magazine-over-inhand-left",
+        "directions": 4
+    },
+    {
+        "name": "magazine-over-inhand-right",
+        "directions": 4
+    },
+    {
+        "name": "magazine-inner-inhand-left",
+        "directions": 4
+    },
+    {
+        "name": "magazine-inner-inhand-right",
+        "directions": 4
+    },
+    {
+        "name": "magazine-outline-inhand-left",
+        "directions": 4
+    },
+    {
+        "name": "magazine-outline-inhand-right",
+        "directions": 4
+    }
+  ]
+}

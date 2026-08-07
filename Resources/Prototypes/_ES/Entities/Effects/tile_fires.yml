@@ -38,7 +38,7 @@
     sprintSpeedModifier: 0.8
   - type: Flammable
     firestacksOnIgnite: 0.0
-    firestackFade: 0.32
+    firestackFade: 0.24
     onFire: true
     fireStacks: 3
     minimumFireStacks: 0

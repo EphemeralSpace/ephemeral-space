@@ -61,6 +61,8 @@ namespace Content.Client.Viewport
             get => _viewportSize;
             set
             {
+                if (_viewportSize == value)
+                    return;
                 _viewportSize = value;
                 InvalidateViewport();
             }
@@ -76,6 +78,8 @@ namespace Content.Client.Viewport
             get => _stretchMode;
             set
             {
+                if (_stretchMode == value)
+                    return;
                 _stretchMode = value;
                 InvalidateViewport();
             }
@@ -87,6 +91,8 @@ namespace Content.Client.Viewport
             get => _renderScaleMode;
             set
             {
+                if (_renderScaleMode == value)
+                    return;
                 _renderScaleMode = value;
                 InvalidateViewport();
             }
@@ -98,6 +104,8 @@ namespace Content.Client.Viewport
             get => _fixedRenderScale;
             set
             {
+                if (_fixedRenderScale == value)
+                    return;
                 _fixedRenderScale = value;
                 InvalidateViewport();
             }
@@ -109,6 +117,8 @@ namespace Content.Client.Viewport
             get => _ignoreDimension;
             set
             {
+                if (_ignoreDimension == value)
+                    return;
                 _ignoreDimension = value;
                 InvalidateViewport();
             }
@@ -122,7 +132,8 @@ namespace Content.Client.Viewport
 
         protected override Vector2 MeasureOverride(Vector2 availableSize)
         {
-            return _viewport is null ? Vector2.Zero : (GetViewportBox(availableSize).Size / UIScale);
+            EnsureViewportCreated();
+            return GetViewportBox(availableSize * UIScale).Size / UIScale;
         }
 
         protected override void KeyBindDown(GUIBoundKeyEventArgs args)
@@ -171,7 +182,7 @@ namespace Content.Client.Viewport
             var drawBox = GetViewportBox(PixelSize);
             var drawBoxGlobal = drawBox.Translated(GlobalPixelPosition);
             _viewport.RenderScreenOverlaysBelow(handle, this, drawBoxGlobal);
-            handle.DrawingHandleScreen.DrawTextureRect(_viewport.RenderTarget.Texture, drawBox);
+            handle.DrawingHandleScreen.DrawTextureRect(_viewport.RenderTarget.Texture, drawBoxGlobal);
             _viewport.RenderScreenOverlaysAbove(handle, this, drawBoxGlobal);
         }
 

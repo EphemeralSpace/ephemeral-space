@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.ColorNaming;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -191,6 +192,21 @@ public sealed partial class ESCluesSystem : EntitySystem
                 frequency++;
         }
         return frequency;
+    }
+
+    public string GetSkinColorString(Color color, ProtoId<SpeciesPrototype>? species)
+    {
+        species ??= SharedHumanoidAppearanceSystem.DefaultSpecies;
+
+        var speciesPrototype = _prototype.Index(species);
+        foreach (var skinColorId in speciesPrototype.SkinColors)
+        {
+            var skinColor = _prototype.Index(skinColorId);
+            if (skinColor.Colors.Contains(color))
+                return Loc.GetString(skinColor.Name);
+        }
+
+        return ColorNaming.Describe(color, Loc);
     }
 }
 

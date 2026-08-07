@@ -6,7 +6,6 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
-using Content.Shared.Traits;
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -44,12 +43,6 @@ namespace Content.Shared.Preferences
         /// </summary>
         [DataField]
         private HashSet<ProtoId<AntagPrototype>> _antagPreferences = new();
-
-        /// <summary>
-        /// Enabled traits.
-        /// </summary>
-        [DataField]
-        private HashSet<ProtoId<TraitPrototype>> _traitPreferences = new();
 
         /// <summary>
         /// <see cref="_loadouts"/>
@@ -111,11 +104,6 @@ namespace Content.Shared.Preferences
         public IReadOnlySet<ProtoId<AntagPrototype>> AntagPreferences => _antagPreferences;
 
         /// <summary>
-        /// <see cref="_traitPreferences"/>
-        /// </summary>
-        public IReadOnlySet<ProtoId<TraitPrototype>> TraitPreferences => _traitPreferences;
-
-        /// <summary>
         /// If we're unable to get one of our preferred jobs do we spawn as a fallback job or do we stay in lobby.
         /// </summary>
         [DataField]
@@ -134,7 +122,6 @@ namespace Content.Shared.Preferences
             Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities,
             PreferenceUnavailableMode preferenceUnavailable,
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
-            HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts)
         {
             Name = name;
@@ -148,7 +135,6 @@ namespace Content.Shared.Preferences
             _jobPriorities = jobPriorities;
             PreferenceUnavailable = preferenceUnavailable;
             _antagPreferences = antagPreferences;
-            _traitPreferences = traitPreferences;
             _loadouts = loadouts;
 
             var hasHighPrority = false;
@@ -179,7 +165,6 @@ namespace Content.Shared.Preferences
                 new Dictionary<ProtoId<JobPrototype>, JobPriority>(other.JobPriorities),
                 other.PreferenceUnavailable,
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
-                new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts))
         {
         }
@@ -200,11 +185,16 @@ namespace Content.Shared.Preferences
         /// <returns>Humanoid character profile with default settings.</returns>
         public static HumanoidCharacterProfile DefaultWithSpecies(string? species = null)
         {
+            var protoMan = IoCManager.Resolve<IPrototypeManager>();
+
             species ??= SharedHumanoidAppearanceSystem.DefaultSpecies;
+            var speciesPrototype = protoMan.Index<SpeciesPrototype>(species);
 
             return new()
             {
                 Species = species,
+                Sex = speciesPrototype.Sexes.First(),
+                Gender = speciesPrototype.Genders.First(),
                 Appearance = HumanoidCharacterAppearance.DefaultWithSpecies(species),
             };
         }
@@ -389,65 +379,6 @@ namespace Content.Shared.Preferences
             };
         }
 
-        public HumanoidCharacterProfile WithTraitPreference(ProtoId<TraitPrototype> traitId, IPrototypeManager protoManager)
-        {
-            // null category is assumed to be default.
-            if (!protoManager.TryIndex(traitId, out var traitProto))
-                return new(this);
-
-            var category = traitProto.Category;
-
-            // Category not found so dump it.
-            TraitCategoryPrototype? traitCategory = null;
-
-            if (category != null && !protoManager.Resolve(category, out traitCategory))
-                return new(this);
-
-            var list = new HashSet<ProtoId<TraitPrototype>>(_traitPreferences) { traitId };
-
-            if (traitCategory == null || traitCategory.MaxTraitPoints < 0)
-            {
-                return new(this)
-                {
-                    _traitPreferences = list,
-                };
-            }
-
-            var count = 0;
-            foreach (var trait in list)
-            {
-                // If trait not found or another category don't count its points.
-                if (!protoManager.TryIndex<TraitPrototype>(trait, out var otherProto) ||
-                    otherProto.Category != traitCategory)
-                {
-                    continue;
-                }
-
-                count += otherProto.Cost;
-            }
-
-            if (count > traitCategory.MaxTraitPoints && traitProto.Cost != 0)
-            {
-                return new(this);
-            }
-
-            return new(this)
-            {
-                _traitPreferences = list,
-            };
-        }
-
-        public HumanoidCharacterProfile WithoutTraitPreference(ProtoId<TraitPrototype> traitId, IPrototypeManager protoManager)
-        {
-            var list = new HashSet<ProtoId<TraitPrototype>>(_traitPreferences);
-            list.Remove(traitId);
-
-            return new(this)
-            {
-                _traitPreferences = list,
-            };
-        }
-
         public string Summary =>
             Loc.GetString(
                 "humanoid-character-profile-summary",
@@ -468,7 +399,6 @@ namespace Content.Shared.Preferences
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) return false;
-            if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
             return Appearance.MemberwiseEquals(other.Appearance);
@@ -594,10 +524,6 @@ namespace Content.Shared.Preferences
                 .Where(id => prototypeManager.TryIndex(id, out var antag) && antag.SetPreference)
                 .ToList();
 
-            var traits = TraitPreferences
-                         .Where(prototypeManager.HasIndex)
-                         .ToList();
-
             Name = name;
             FlavorText = flavortext;
             Age = age;
@@ -617,9 +543,6 @@ namespace Content.Shared.Preferences
 
             _antagPreferences.Clear();
             _antagPreferences.UnionWith(antags);
-
-            _traitPreferences.Clear();
-            _traitPreferences.UnionWith(GetValidTraits(traits, prototypeManager));
 
             // Checks prototypes exist for all loadouts and dump / set to default if not.
             var toRemove = new ValueList<string>();
@@ -642,45 +565,6 @@ namespace Content.Shared.Preferences
             {
                 _loadouts.Remove(value);
             }
-        }
-
-        /// <summary>
-        /// Takes in an IEnumerable of traits and returns a List of the valid traits.
-        /// </summary>
-        public List<ProtoId<TraitPrototype>> GetValidTraits(IEnumerable<ProtoId<TraitPrototype>> traits, IPrototypeManager protoManager)
-        {
-            // Track points count for each group.
-            var groups = new Dictionary<string, int>();
-            var result = new List<ProtoId<TraitPrototype>>();
-
-            foreach (var trait in traits)
-            {
-                if (!protoManager.TryIndex(trait, out var traitProto))
-                    continue;
-
-                // Always valid.
-                if (traitProto.Category == null)
-                {
-                    result.Add(trait);
-                    continue;
-                }
-
-                // No category so dump it.
-                if (!protoManager.Resolve(traitProto.Category, out var category))
-                    continue;
-
-                var existing = groups.GetOrNew(category.ID);
-                existing += traitProto.Cost;
-
-                // Too expensive.
-                if (existing > category.MaxTraitPoints)
-                    continue;
-
-                groups[category.ID] = existing;
-                result.Add(trait);
-            }
-
-            return result;
         }
 
         public ICharacterProfile Validated(ICommonSession session, IDependencyCollection collection)
@@ -715,7 +599,6 @@ namespace Content.Shared.Preferences
             var hashCode = new HashCode();
             hashCode.Add(_jobPriorities);
             hashCode.Add(_antagPreferences);
-            hashCode.Add(_traitPreferences);
             hashCode.Add(_loadouts);
             hashCode.Add(Name);
             hashCode.Add(FlavorText);

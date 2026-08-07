@@ -19,7 +19,7 @@
     head: ESClothingHeadHatParamedicsoft
     ears: ClothingHeadsetMedical
     jumpsuit: ESClothingUniformJumpsuitParamedic
-    back: ClothingBackpackMedical
+    back: ClothingBackpack
   storage:
     back:
     - ESBoxSurvivalMedical

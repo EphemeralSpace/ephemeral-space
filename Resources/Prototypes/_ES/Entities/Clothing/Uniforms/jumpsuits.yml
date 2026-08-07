@@ -24,6 +24,18 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRatman
+  name: ratty jumpsuit
+  suffix: ES
+  description: A tattered jumpsuit falling to pieces before your very eyes. How did it sustain this damage in a few mere weeks?
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/ratman.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/ratman.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ESClothingUniformJumpsuitParamedic
   name: paramedic jumpsuit
   suffix: ES
@@ -33,6 +45,188 @@
     sprite: _ES/Clothing/Uniforms/Jumpsuit/paramedic.rsi
   - type: Clothing
     sprite: _ES/Clothing/Uniforms/Jumpsuit/paramedic.rsi
+
+# Experiment Jumpsuits
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitExperimentBase
+  name: experiment's jumpsuit
+  suffix: ES
+  abstract: true
+  description: A white jumpsuit with a purple collar and departmentally-colored rank markings. Smells like welding fuel, for some reason.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/experiment.rsi
+  - type: Clothing
+    sprite: _ES/Clothing/Uniforms/Jumpsuit/experiment.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitExperimentBase
+  id: ClothingUniformJumpsuitExperimentEngi
+  suffix: ES, Engineering
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: icon-stripes
+      color: "#f39f27"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripes
+        color: "#f39f27"
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripes
+        color: "#f39f27"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: equipped-INNERCLOTHING-stripes
+        color: "#f39f27"
+  - type: ESChameleonClothingWhitelist
+
+- type: entity
+  parent: ClothingUniformJumpsuitExperimentBase
+  id: ClothingUniformJumpsuitExperimentSecurity
+  suffix: ES, Security
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: icon-stripes
+      color: "#ff5555"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripes
+        color: "#ff5555"
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripes
+        color: "#ff5555"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: equipped-INNERCLOTHING-stripes
+        color: "#ff5555"
+  - type: ESChameleonClothingWhitelist
+
+- type: entity
+  parent: ClothingUniformJumpsuitExperimentBase
+  id: ClothingUniformJumpsuitExperimentMedical
+  suffix: ES, Medical
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: icon-stripes
+      color: "#84a7bd"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripes
+        color: "#84a7bd"
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripes
+        color: "#84a7bd"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: equipped-INNERCLOTHING-stripes
+        color: "#84a7bd"
+  - type: ESChameleonClothingWhitelist
+
+- type: entity
+  parent: ClothingUniformJumpsuitExperimentBase
+  id: ClothingUniformJumpsuitExperimentService
+  suffix: ES, Service
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: icon-stripes
+      color: "#87c74c"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripes
+        color: "#87c74c"
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripes
+        color: "#87c74c"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: equipped-INNERCLOTHING-stripes
+        color: "#87c74c"
+  - type: ESChameleonClothingWhitelist
+
+- type: entity
+  parent: ClothingUniformJumpsuitExperimentBase
+  id: ClothingUniformJumpsuitExperimentCommand
+  suffix: ES, Command
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: icon-stripes
+      color: "#656ea6"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripes
+        color: "#656ea6"
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripes
+        color: "#656ea6"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: equipped-INNERCLOTHING-stripes
+        color: "#656ea6"
+  - type: ESChameleonClothingWhitelist
+
+- type: entity
+  parent: ClothingUniformJumpsuitExperimentBase
+  id: ClothingUniformJumpsuitExperimentScience
+  suffix: ES, Default
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: icon-stripes
+      color: "#c983c1"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripes
+        color: "#c983c1"
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripes
+        color: "#c983c1"
+  - type: Clothing
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: equipped-INNERCLOTHING-stripes
+        color: "#c983c1"
+  - type: ESChameleonClothingWhitelist
 
 # Russian Jumpsuits
 

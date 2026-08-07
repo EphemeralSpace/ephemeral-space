@@ -1,0 +1,15 @@
+﻿<Document>
+  <ESGuideSecretIdentityEmbed SecretIdentity="Cryojunkie"/>
+
+  The Cryojunkie is a fairly standard crew member with the additional ability to revive as a cryohusk upon death.
+  Besides this latent ability, they have no other objectives or special gear.
+
+  <Box>
+    <GuideEntityEmbed Entity="ESMobCryohusk" Caption="cryohusk"/>
+  </Box>
+
+  30 seconds after they die, they'll transform into a cryohusk accompanied by a large burst of cryogas (potentially creating even more cryohusks).
+  After this, another death will be final and they will not revive again.
+
+  <ESGuideTipsEmbed SecretIdentity="Cryojunkie"/>
+</Document>

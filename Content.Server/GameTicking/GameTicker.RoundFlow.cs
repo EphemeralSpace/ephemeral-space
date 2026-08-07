@@ -547,6 +547,9 @@ namespace Content.Server.GameTicking
             // Log end of round
             _adminLogger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Round ended, showing summary");
 
+            var beforeEv = new ESBeforeRoundEndEvent();
+            RaiseLocalEvent(ref beforeEv);
+
             //Tell every client the round has ended.
             var gamemodeTitle = CurrentPreset != null ? Loc.GetString(CurrentPreset.ModeTitle) : string.Empty;
 
@@ -782,8 +785,6 @@ namespace Content.Server.GameTicking
 
             EntityManager.FlushEntities();
 
-            _mapManager.Restart();
-
             _banManager.Restart();
 
             if (DummyTicker)
@@ -822,6 +823,12 @@ namespace Content.Server.GameTicking
             _chatManager.DispatchServerAnnouncement(Loc.GetString("game-ticker-delay-start", ("seconds", time.TotalSeconds)));
 
             return true;
+        }
+
+        public void ResetStartTime()
+        {
+            _roundStartTime = _gameTiming.CurTime + LobbyDuration;
+            RaiseNetworkEvent(new TickerLobbyCountdownEvent(_roundStartTime, Paused));
         }
 
         private void UpdateRoundFlow(float frameTime)
@@ -1038,6 +1045,12 @@ namespace Content.Server.GameTicking
             Forced = forced;
         }
     }
+
+    /// <summary>
+    /// Raised before all other round-end logic
+    /// </summary>
+    [ByRefEvent]
+    public readonly record struct ESBeforeRoundEndEvent;
 
     /// <summary>
     ///     Event raised to allow subscribers to add text to the round end summary screen.

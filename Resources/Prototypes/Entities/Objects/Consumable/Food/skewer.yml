@@ -13,7 +13,7 @@
     storedOffset: 0,-2
   - type: Sprite
     sprite: Objects/Consumable/Food/skewer.rsi
-    state:
+    noRot: false
     layers:
     - state: skewer
     - map: ["foodSequenceLayers"]

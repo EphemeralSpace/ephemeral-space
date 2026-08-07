@@ -15,6 +15,10 @@
       - id: EmergencyPouchOxygenDeprivation
       - id: EmergencyPouchBrute
       prob: 0.25
+    - group:
+      - id: InflatableWallStack3
+      - id: InflatableDoorStack1
+      prob: 0.15
 # ES End
 
 - type: entity

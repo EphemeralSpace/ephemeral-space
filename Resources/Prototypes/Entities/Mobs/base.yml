@@ -197,8 +197,7 @@
     damage: #per second, scales with number of fire 'stacks'
       types:
         # ES START
-        # lower damage it was kinda crazy
-        Heat: 0.5
+        Heat: 1.5
         # ES END
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
@@ -235,3 +234,14 @@
     bloodlossHealDamage:
       types:
         Bloodloss: -1
+
+# Used for mobs that should slightly see in the dark
+- type: entity
+  save: false
+  id: MobNightVision
+  abstract: true
+  components:
+  - type: NightVision
+    prioritized: false
+    relayOverlay: false # In case default value ever changes
+    lightingColor: '#FFFFFF15' # Basically makes it impossible for things to be "Pitch black" but can still be dark.

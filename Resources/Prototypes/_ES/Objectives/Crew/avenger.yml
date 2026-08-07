@@ -1,10 +1,11 @@
 - type: entity
-  parent: ESBaseSecretIdentityObjective
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveAvengerProtectRandom
   name: Protect your target
   description: You must protect them with your life and shield them from harm.
   components:
   - type: ESObjective
+    completionPercentage: 0.5
     icon:
       sprite: Objects/Specific/Medical/firstaidkits.rsi
       state: firstaid
@@ -15,7 +16,7 @@
   - type: ESAvengeOnKillObjective
 
 - type: entity
-  parent: ESBaseSecretIdentityObjective
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveAvengerKill
   name: Avenge your protectee
   description: Someone has slain your protectee. Use your special sense and hunt them down and kill them yourself. You must be the one to get revenge.

@@ -1,0 +1,31 @@
+- type: esMasquerade
+  id: DramaClub
+  name: Drama Club
+  description: is a meetup of many actors to put a good show on versus the traitors
+  weight: 0.1
+  minPlayers: 6
+  gameRules: []
+  masquerade:
+    defaultSecretIdentity: "Tragedian"
+    superfanTarget: "#Traitors"
+    roles:
+      6: ["#Traitors(2)", "#AllCrew", "Tragedian", "Vandal", "#Targeters"] # 2 traitors
+      7: ["#AllCrew"]
+      8: ["#AllCrew"]
+      10: ["#SemiTraitor"]
+      11: ["#AllCrew"]
+      13: ["#Traitors"]  # 3 traitors.
+      15: ["#Targeters"]
+      16: ["Avenger"] # 3 traitors.
+      17: ["#SemiTraitor"]
+      18: ["#Gunners"] # 3 traitors.
+      19: ["Marauder"] # 4 traitors.
+      20: ["#AllCrew"]
+      21: ["#AllCrew", "-Marauder", "#PowerTraitors"] # 4 traitors.
+      22: ["#AllCrew"]
+      24: ["#Gunners"] # 4 traitors.
+      25: ["Marauder"] # 5 traitors.
+      26: ["#AllCrew"]
+      28: ["#Gunners"] # 5 traitors.
+      30: ["#AllCrew"]
+      31: ["#Traitors", "#AllCrew"] # 6 traitors.

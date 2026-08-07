@@ -1,6 +1,3 @@
-#None of these besides the full barricade are constructible yet since I can't understand code, and they need to do stuff like go over airlocks / windows.
-#Consider porting the barricade kit from /vg/ if you do make them constructible, along with their HP values. Or don't.
-
 #Base barricade
 #A lot of components here are intentionally ommitted in case someone wants to make barricades that are made out of things other than wood.
 - type: entity
@@ -27,25 +24,21 @@
         layer:
         - WallLayer
   - type: Damageable
-    damageModifierSet: Wood
     damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
-        damage: 60
+        damage: 80
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
           MaterialWoodPlank1:
             min: 1
             max: 1
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: AtmosExposed
@@ -63,13 +56,17 @@
     - Wooden
   - type: Flammable
     fireSpread: true
+    alwaysCombustible: true
+    canExtinguish: true
     damage:
       types:
-        Heat: 3 #per second, scales with number of fire 'stacks'
+        Heat: 2
   - type: Appearance
   - type: FireVisuals
     sprite: Effects/fire.rsi
-    normalState: 1
+    normalState: fire
+  - type: Damageable
+    damageModifierSet: ESWood
 
 #Structure-Mounted Barricade
 - type: entity
@@ -82,11 +79,14 @@
   - type: Construction
     graph: BarricadeCovering
     node: barricadecover
+  - type: ESAirlockBlockOpen
+  - type: WallMount
+    arc: 360
 
 #Directional Barricade
 - type: entity
   id: BarricadeDirectional
-  parent: BaseBarricade
+  parent: Barricade
   placement:
     mode: SnapgridCenter
 #A bunch of this is taken straight from dirwindows and there is a chance that I may have fucked something up. Probably not though
@@ -94,7 +94,6 @@
   - type: Sprite
     sprite: Structures/barricades.rsi
     state: barricade_directional
-    noRot: false #Results in smoother rotation when turning the camera, the sprite's dirs are just it rotated anyways so there's no reason to not set this.
   - type: Construction
     graph: BarricadeDirectional
     node: barricadefull
@@ -109,15 +108,3 @@
         - FullTileMask
         layer:
         - WallLayer
-  - type: Tag
-    tags:
-    - Wooden
-  - type: Flammable
-    fireSpread: true
-    damage:
-      types:
-        Heat: 3 #per second, scales with number of fire 'stacks'
-  - type: Appearance
-  - type: FireVisuals
-    sprite: Effects/fire.rsi
-    normalState: 1

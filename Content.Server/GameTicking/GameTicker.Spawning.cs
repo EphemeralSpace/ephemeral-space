@@ -326,14 +326,14 @@ namespace Content.Server.GameTicking
             RaiseLocalEvent(mob, aev, true);
         }
 
-        public void Respawn(ICommonSession player)
+        public void Respawn(ICommonSession player, string? jobId = null)
         {
             _adminLogger.Add(LogType.Respawn, LogImpact.Medium, $"Player {player} was respawned.");
 
             if (LobbyEnabled)
                 PlayerJoinLobby(player, attachCharacter: true);
             else
-                SpawnPlayer(player, EntityUid.Invalid);
+                SpawnPlayer(player, EntityUid.Invalid, jobId: jobId);
         }
 
         /// <summary>
@@ -447,7 +447,7 @@ namespace Content.Server.GameTicking
                 var spawn = _robustRandom.Pick(_possiblePositions);
                 var toMap = _transform.ToMapCoordinates(spawn);
 
-                if (_mapManager.TryFindGridAt(toMap, out var gridUid, out _))
+                if (_map.TryFindGridAt(toMap, out var gridUid, out _))
                 {
                     var gridXform = Transform(gridUid);
 

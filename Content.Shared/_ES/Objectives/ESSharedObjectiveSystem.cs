@@ -95,6 +95,10 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return;
 
+        // Frozen objectives never change their progress
+        if (ent.Comp.Frozen)
+            return;
+
         var ev = new ESGetObjectiveProgressEvent();
         RaiseLocalEvent(ent, ref ev);
 
@@ -121,6 +125,18 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     /// Refreshes objective progress for all objectives with component <see cref="T"/>
     /// </summary>
     [PublicAPI]
+    public void RefreshObjectiveProgress<T>(Entity<ESObjectiveHolderComponent?> holder) where T : Component
+    {
+        foreach (var objective in GetObjectives<T>(holder))
+        {
+            RefreshObjectiveProgress(objective.Owner);
+        }
+    }
+
+    /// <summary>
+    /// Refreshes objective progress for all objectives with component <see cref="T"/>
+    /// </summary>
+    [PublicAPI]
     public void RefreshObjectiveProgress<T>() where T : Component
     {
         foreach (var objective in GetObjectives<T>())
@@ -141,13 +157,44 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
     }
 
     /// <summary>
+    /// Marks all objectives as frozen
+    /// </summary>
+    [PublicAPI]
+    public void FreezeObjectives(bool frozen = true)
+    {
+        FreezeObjectives<ESObjectiveComponent>(frozen);
+    }
+
+    /// <summary>
+    /// Marks all objectives with the specified type as frozen
+    /// </summary>
+    public void FreezeObjectives<T>(bool frozen = true) where T : Component
+    {
+        foreach (var objective in GetObjectives<T>())
+        {
+            FreezeObjective((objective, objective.Comp2), frozen);
+        }
+    }
+
+    /// <summary>
+    /// Sets an objective's frozen state.
+    /// </summary>
+    public void FreezeObjective(Entity<ESObjectiveComponent?> ent, bool frozen = true)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+        ent.Comp.Frozen = frozen;
+        Dirty(ent);
+    }
+
+    /// <summary>
     /// Checks if a given objective is completed.
     /// </summary>
     public bool IsCompleted(Entity<ESObjectiveComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp))
             return false;
-        return GetProgress(ent) >= 1 || MathHelper.CloseTo(GetProgress(ent), 1);
+        return GetProgress(ent) >= ent.Comp.CompletionPercentage || MathHelper.CloseTo(GetProgress(ent), ent.Comp.CompletionPercentage);
     }
 
     /// <summary>
@@ -447,6 +494,17 @@ public abstract partial class ESSharedObjectiveSystem : EntitySystem
             return false;
 
         return GetObjectives<T>(potentialHolder.Value).Any();
+    }
+
+    /// <summary>
+    /// Checks if a given entity has a completed objective of a specific type.
+    /// </summary>
+    public bool HasCompletedObjectiveOfType<T>([NotNullWhen(true)] EntityUid? potentialHolder) where T : Component
+    {
+        if (potentialHolder == null)
+            return false;
+
+        return GetObjectives<T>(potentialHolder.Value).Any(o => IsCompleted(o.Owner));
     }
 
     /// <summary>

@@ -206,7 +206,6 @@ namespace Content.Server.Database
         {
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
-            var traits = profile.Traits.Select(t => new ProtoId<TraitPrototype>(t.TraitName));
 
             var sex = Sex.Male;
             if (Enum.TryParse<Sex>(profile.Sex, true, out var sexVal))
@@ -279,7 +278,6 @@ namespace Content.Server.Database
                 jobs,
                 (PreferenceUnavailableMode) profile.PreferenceUnavailable,
                 antags.ToHashSet(),
-                traits.ToHashSet(),
                 loadouts
             );
         }
@@ -326,11 +324,6 @@ namespace Content.Server.Database
             );
 
             profile.Traits.Clear();
-            profile.Traits.AddRange(
-                humanoid.TraitPreferences
-                        .Select(t => new Trait {TraitName = t})
-            );
-
             profile.Loadouts.Clear();
 
             foreach (var (role, loadouts) in humanoid.Loadouts)

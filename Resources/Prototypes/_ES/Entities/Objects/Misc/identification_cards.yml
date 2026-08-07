@@ -1,7 +1,6 @@
 - type: entity
   parent: IDCardStandard
   id: ESCoronerCard
-  name: coroner ID card
   suffix: ES
   components:
   - type: Sprite
@@ -17,3 +16,110 @@
       color: "#000000" # coroner is a dark guy
   - type: PresetIdCard
     job: ESCoroner
+
+# Experiment cards (base one + engi/med/sec ones)
+
+- type: entity
+  parent: IDCardStandard
+  id: ExperimentCard
+  name: experiment's ID card
+  description: One shackle binding the unfortunate ape.
+  suffix: ES
+  components:
+  - type: Sprite
+    layers:
+    - state: base_normal
+    - state: icon_1
+      color:  "#D5B985"
+    - state: icon_2
+      color: "#756131"
+    - state: icon_3
+      color: "#756131"
+    - state: strip
+      color: "#8b308f"
+  - type: PresetIdCard
+    job: ESExperiment
+
+- type: entity
+  parent: IDCardStandard
+  id: ExperimentCardEngineering
+  name: temporary engineering ID card
+  description: Granted to one lucky ape! Automatically voided on incineration of the ape.
+  suffix: ES
+  components:
+  - type: Sprite
+    layers:
+    - state: base_normal
+    - state: icon_1
+      color:  "#D5B985"
+    - state: icon_2
+      color: "#756131"
+    - state: icon_3
+      color: "#756131"
+    - state: strip
+      color: "#b35600"
+  - type: PresetIdCard
+    job: ESStationEngineer
+
+- type: entity
+  parent: IDCardStandard
+  id: ExperimentCardMedical
+  name: temporary medical ID card
+  description: Granted to one lucky ape! Automatically voided on incineration of the ape.
+  suffix: ES
+  components:
+  - type: Sprite
+    layers:
+    - state: base_normal
+    - state: icon_1
+      color:  "#D5B985"
+    - state: icon_2
+      color: "#756131"
+    - state: icon_3
+      color: "#756131"
+    - state: strip
+      color: "#36769e"
+  - type: PresetIdCard
+    job: ESDoctor
+
+- type: entity
+  parent: IDCardStandard
+  id: ExperimentCardSecurity
+  name: temporary security ID card
+  description: Granted to one very, very, lucky ape! Automatically voided on incineration of the ape. Part of the "Stamfort Experiment".
+  suffix: ES
+  components:
+  - type: Sprite
+    layers:
+    - state: base_normal
+    - state: icon_1
+      color:  "#D5B985"
+    - state: icon_2
+      color: "#756131"
+    - state: icon_3
+      color: "#756131"
+    - state: strip
+      color: "#830000" # sec strip
+  - type: PresetIdCard
+    job: ESSecurityOfficer
+
+- type: entity
+  parent: IDCardStandard
+  id: RatmanCard
+  name: ratty ID card
+  description: The original was lost through a crack in the floorboards. At least theres.. a backup.
+  suffix: ES
+  components:
+  - type: Sprite
+    layers:
+    - state: base_normal
+    - state: icon_1
+      color: &color-assistant-1 "#999875"
+    - state: icon_2
+      color: &color-assistant-2 "#78775a"
+    - state: icon_3
+      color: &color-assistant-3 "#40402f"
+    - state: strip
+      color: "#A59584"
+  - type: PresetIdCard
+    job: ESRatman

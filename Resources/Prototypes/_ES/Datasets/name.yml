@@ -90,3 +90,9 @@
   values:
     prefix: es-name-prefix-dataset-nonbinary-
     count: 1
+
+- type: localizedDataset
+  id: ESNamePrefixExperiment
+  values:
+    prefix: es-name-prefix-dataset-experiment-
+    count: 5

@@ -25,7 +25,7 @@
     neck: ClothingNeckTieDet
     jumpsuit: ClothingUniformJumpsuitDetective
     outerClothing: ESClothingOuterCoatDetectiveLoadout
-    back: ClothingBackpackSecurity
+    back: ClothingBackpack
   storage:
     back:
     - ESBoxSurvival

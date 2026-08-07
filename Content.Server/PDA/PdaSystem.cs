@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Server.Access.Systems;
 using Content.Server.AlertLevel;
 using Content.Server.CartridgeLoader;
@@ -107,7 +109,7 @@ namespace Content.Server.PDA
 
         protected override void OnItemRemoved(EntityUid uid, PdaComponent pda, EntRemovedFromContainerMessage args)
         {
-            if (args.Container.ID != pda.IdSlot.ID && args.Container.ID != pda.PenSlot.ID && args.Container.ID != pda.PaiSlot.ID)
+            if (args.Container.ID != pda.IdSlot.ID && args.Container.ID != pda.PenSlot.ID)
                 return;
 
             // TODO: This is super cursed just use compstates please.
@@ -195,14 +197,14 @@ namespace Content.Server.PDA
             if (!TryComp(uid, out CartridgeLoaderComponent? loader))
                 return;
 
-            var programs = _cartridgeLoader.GetAvailablePrograms(uid, loader);
+            var programs = GetNetEntityList(_cartridgeLoader.GetAllPrograms(uid).ToList());
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
             var state = new PdaUpdateState(
                 programs,
                 GetNetEntity(loader.ActiveProgram),
                 pda.FlashlightOn,
                 pda.PenSlot.HasItem,
-                pda.PaiSlot.HasItem,
+                false,
                 new PdaIdInfoText
                 {
                     ActualOwnerName = pda.OwnerName,

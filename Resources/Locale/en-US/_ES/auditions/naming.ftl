@@ -1,6 +1,7 @@
 es-name-hyphenation-fmt = {$first}-{$second}
 es-name-normal-fmt = {$first} {$second}
 es-name-quoted-fmt = {$first} "{$second}"
+es-name-quoted-first-fmt = "{$first}"
 es-name-middle-abbr-fmt = {$first} {$letter}.
 es-name-first-middle-abbr-fmt = {$letter1}.{$letter2}.
 es-name-first-middle-abbr-fmt-alt = {$letter1}{$letter2}
@@ -38,6 +39,12 @@ es-name-prefix-dataset-female-royal-5 = Queen
 es-name-prefix-dataset-female-royal-6 = Baroness
 
 es-name-prefix-dataset-nonbinary-1 = Mx.
+
+es-name-prefix-dataset-experiment-1 = Subject
+es-name-prefix-dataset-experiment-2 = Specimen
+es-name-prefix-dataset-experiment-3 = Test Subject
+es-name-prefix-dataset-experiment-4 = Experiment
+es-name-prefix-dataset-experiment-5 = No. 4
 
 es-name-suffix-dataset-1 = Jr.
 es-name-suffix-dataset-2 = Sr.

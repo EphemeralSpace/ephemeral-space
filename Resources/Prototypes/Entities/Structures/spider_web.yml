@@ -22,7 +22,7 @@
     anchored: true
   - type: Physics
   - type: Damageable
-    damageModifierSet: Wood
+    damageModifierSet: ESWeakBiological
   - type: Temperature
   - type: TemperatureDamage
     heatDamage:

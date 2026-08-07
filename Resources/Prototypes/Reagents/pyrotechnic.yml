@@ -20,7 +20,8 @@
   desc: reagent-desc-thermite
   physicalDesc: reagent-physical-desc-grainy
   flavor: bitter
-  color: "#757245"
+  puddleSpriteSet: Powder
+  color: "#75724580"
   boilingPoint: 2977.0 # Aluminum oxide
   meltingPoint: 2030.0
   tileReactions:
@@ -43,6 +44,7 @@
   physicalDesc: reagent-physical-desc-soapy
   flavor: bitter
   color: "#FA00AF"
+  puddleSpriteSet: Acid
   tileReactions:
   - !type:FlammableTileReaction
     temperatureMultiplier: 5
@@ -65,80 +67,13 @@
         multiplier: 0.4
 
 - type: reagent
-  id: Phlogiston
-  name: reagent-name-phlogiston
-  parent: BasePyrotechnic
-  desc: reagent-desc-phlogiston
-  physicalDesc: reagent-physical-desc-burning
-  flavor: bitter
-  color: "#D4872A"
-  metabolisms:
-    Poison:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Heat: 3
-            Poison: 1
-      - !type:Flammable
-        multiplier: 0.1
-      - !type:AdjustTemperature
-        amount: 6000
-      - !type:Ignite
-  reactiveEffects:
-    Flammable:
-      methods: [ Touch ]
-      effects:
-      - !type:Flammable
-        multiplier: 0.2
-      - !type:Ignite
-
-- type: reagent
-  id: ChlorineTrifluoride
-  name: reagent-name-chlorine-trifluoride
-  parent: BasePyrotechnic
-  desc: reagent-desc-chlorine-trifluoride
-  physicalDesc: reagent-physical-desc-blazing
-  flavor: bitter
-  color: "#FFC8C8"
-  tileReactions:
-  - !type:PryTileReaction
-  metabolisms:
-    Poison:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Heat: 2
-            Poison: 1
-            Caustic: 0.5 # CLF3 is corrosive
-      - !type:Flammable
-        multiplier: 0.2
-      - !type:AdjustTemperature
-        amount: 6000
-  reactiveEffects:
-    Flammable:
-      methods: [ Touch ]
-      effects:
-      - !type:Flammable
-        multiplier: 0.3
-      - !type:Ignite
-      - !type:Emote
-        emote: Scream
-        probability: 0.2
-      - !type:PopupMessage
-        messages: [ "clf3-it-burns", "clf3-get-away" ]
-        visualType: MediumCaution
-        probability: 0.3
-        type: Local
-
-- type: reagent
   id: FoamingAgent
   name: reagent-name-foaming-agent
   parent: BasePyrotechnic
   desc: reagent-desc-foaming-agent
   physicalDesc: reagent-physical-desc-foamy
   flavor: bitter
+  puddleSpriteSet: Acid
   color: "#215263"
   boilingPoint: 418.0 # I went with ammonium lauryl sulfate as the basis for this
   meltingPoint: 7.4 # I made this up
@@ -153,6 +88,7 @@
     requiredSlipSpeed: 3.5
   flavor: bitter
   flavorMinimum: 0.01
+  puddleSpriteSet: Shiny
   color: "#a76b1c"
   recognizable: true
   boilingPoint: -84.7 # Acetylene. Close enough.
@@ -189,5 +125,6 @@
   physicalDesc: reagent-physical-desc-opaque
   flavor: bitter
   color: "#9e6b38"
+  puddleSpriteSet: Shiny
   boilingPoint: 190.0 # Perfluorooctanoic Acid.
   meltingPoint: 45.0

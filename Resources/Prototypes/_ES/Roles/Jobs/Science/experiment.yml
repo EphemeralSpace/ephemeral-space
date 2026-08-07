@@ -1,0 +1,41 @@
+- type: job
+  id: ESExperiment
+  name: ESjob-name-experiment
+  description: ESjob-description-experiment
+  playTimeTracker: ESJobExperiment
+  startingGear: ESExperimentGear
+  icon: "ESJobIconExperiment"
+  speciesOverride: ESMonkey
+  access:
+  - Research
+  - Maintenance
+  nameConfig:
+    genderlessFirstNameChance: 0.2 # theyre fucking gendering my ape!!!
+    doubleFirstNameChance: 0.05
+    quotedFirstNameChance: 0.9
+    prefixChance: 0.4
+    prefixFirstNameless: 0
+    quotedMiddleNameChance: 0
+    abbreviatedMiddleChance: 0
+    abbreviatedFirstMiddleChance: 0
+    particleChance: 0
+    lastNamelessChance: 1
+    firstNamelessChance: 0
+    adjectiveFirstNameChance: 0.1
+    adjectiveAlliterationTotalChances: 3
+    prefixMaleDataset: ESNamePrefixExperiment
+    prefixFemaleDataset: ESNamePrefixExperiment
+    prefixNonbinaryDataset: ESNamePrefixExperiment
+
+- type: startingGear
+  id: ESExperimentGear
+  equipment:
+    shoes: ClothingShoesColorBrown
+    id: ExperimentPDA
+    eyes: ClothingEyesGlasses
+    ears: ClothingHeadsetGrey
+    jumpsuit: ClothingUniformJumpsuitExperimentScience
+    back: ClothingBackpack
+  storage:
+    back:
+    - ESBoxSurvival

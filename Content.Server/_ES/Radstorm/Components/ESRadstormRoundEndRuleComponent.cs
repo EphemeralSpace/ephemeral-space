@@ -17,7 +17,7 @@ public sealed partial class ESRadstormRoundEndRuleComponent : Component
     ///     Average time that the radstorm can start at. Used when randomly picking <see cref="RadstormTimeRemaining"/>.
     /// </summary>
     [DataField]
-    public TimeSpan RadstormStartTimeAvg = TimeSpan.FromMinutes(65f);
+    public TimeSpan RadstormStartTimeAvg = TimeSpan.FromMinutes(72f);
 
     /// <summary>
     ///     Standard deviation for time that the radstorm can start at. Used when randomly picking <see cref="RadstormTimeRemaining"/>.
@@ -70,6 +70,11 @@ public sealed partial class ESRadstormRoundEndRuleComponent : Component
     ///     even if it hasn't fully started yet.
     /// </summary>
     public bool SpaceDangerous = false;
+
+    /// <summary>
+    ///     So we avoid doing the ending bit twice
+    /// </summary>
+    public bool CinematicPlayed = false;
 }
 
 // no this cant be a fucking record because apparently you cant have datarecords that also have properties.
@@ -100,8 +105,11 @@ public sealed partial class ESRadstormPhaseConfig
     public Color? MapLight;
 
     [DataField]
-    public Color? ForceStationLightColor;
+    public bool RemoveGridRoof;
 
     [DataField]
     public bool SpaceDangerous;
+
+    [DataField]
+    public bool SetAlertLevel;
 }

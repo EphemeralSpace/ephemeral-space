@@ -46,7 +46,8 @@
           layer:
           - MidImpassable
     - type: Damageable
-      damageModifierSet: Wood
+      damageContainer: StructuralInorganic
+      damageModifierSet: ESWeakBiological
     - type: Destructible
       thresholds:
       - trigger:

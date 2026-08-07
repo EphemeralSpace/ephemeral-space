@@ -86,10 +86,6 @@
         {
             "name": "cursed",
             "directions": 4
-        },
-        {
-            "name": "xeno-chair",
-            "directions": 4
         }
     ]
 }

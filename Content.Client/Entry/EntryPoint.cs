@@ -56,7 +56,6 @@ namespace Content.Client.Entry
         [Dependency] private IScreenshotHook _screenshotHook = default!;
         [Dependency] private FullscreenHook _fullscreenHook = default!;
         [Dependency] private ChangelogManager _changelogManager = default!;
-        [Dependency] private ViewportManager _viewportManager = default!;
         [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
         [Dependency] private IInputManager _inputManager = default!;
         [Dependency] private IOverlayManager _overlayManager = default!;
@@ -137,7 +136,6 @@ namespace Content.Client.Entry
             _screenshotHook.Initialize();
             _fullscreenHook.Initialize();
             _changelogManager.Initialize();
-            _viewportManager.Initialize();
             _ghostKick.Initialize();
             _extendedDisconnectInformation.Initialize();
             _jobRequirements.Initialize();

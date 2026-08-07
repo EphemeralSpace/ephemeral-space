@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseAction
+  id: ActionSecretIdentityStalkerPick
+  name: Stalk
+  description: Choose someone who you are going to stalk.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/SecretIdentity/stalker.rsi
+      state: icon
+    iconOn:
+      sprite: _ES/Actions/SecretIdentity/stalker.rsi
+      state: icon-on
+    useDelay: 150
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:ESSelectStalkerTargetActionEvent
+  - type: LimitedCharges
+    maxCharges: 5

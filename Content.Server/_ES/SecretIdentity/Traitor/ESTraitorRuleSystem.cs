@@ -1,13 +1,19 @@
 using System.Linq;
 using Content.Server._ES.SecretIdentity.Traitor.Components;
+using Content.Server.GameTicking;
 using Content.Server.Nuke;
 using Content.Server.RoundEnd;
 using Content.Server.Spawners.Components;
+using Content.Shared._ES.Cinematic;
+using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared.Mind;
+using Robust.Server.Audio;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._ES.SecretIdentity.Traitor;
@@ -21,12 +27,23 @@ public sealed partial class ESTraitorRuleSystem : EntitySystem
     [Dependency] private RoundEndSystem _roundEnd = default!;
     [Dependency] private MapLoaderSystem _mapLoader = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private ESEntityTimerSystem _timer = default!;
+    [Dependency] private ESCinematicSystem _cinematic = default!;
+
+    /// <summary>
+    ///     Round will actually end (screen pops up music plays etc) this amount of time before the cinematic finishes.
+    /// </summary>
+    private static readonly TimeSpan EndRoundDuration = TimeSpan.FromSeconds(13);
+    private static readonly ProtoId<ESCinematicPrototype> NukeCinematic = "NukeCinematic";
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<NukeArmedEvent>(OnNukeArmed);
-        SubscribeLocalEvent<NukeExplodedEvent>(OnNukeExploded);
+        SubscribeLocalEvent<ESNukePreExplosionEvent>(OnNukePreExplosion);
+        SubscribeLocalEvent<ESNukeAfterExplodedEvent>(OnNukeExploded);
     }
 
     private void OnNukeArmed(NukeArmedEvent ev)
@@ -42,29 +59,45 @@ public sealed partial class ESTraitorRuleSystem : EntitySystem
     {
         // load syndie base when nuke is armed
         var opts = DeserializationOptions.Default with {InitializeMaps = true};
-        if (!_mapLoader.TryLoadMap(ent.Comp1.SyndieBaseMapPath, out _, out var gridSet, opts))
+        if (!_mapLoader.TryLoadMap(ent.Comp1.SyndieBaseMapPath, out var map, out var gridSet, opts))
         {
             Log.Error($"Failed to load map from {ent.Comp1.SyndieBaseMapPath}!");
             return;
         }
 
+        ent.Comp1.SyndieBaseMapId = map.Value.Comp.MapId;
         ent.Comp1.BaseGrids = gridSet.Select( x => x.Owner).ToList();
     }
 
-    private void OnNukeExploded(NukeExplodedEvent args)
+    private void OnNukePreExplosion(ref ESNukePreExplosionEvent ev)
     {
-        // We're just going to assume the nuke blew up in the right place.
-        // That's a fair thing to assume, right? It probably won't matter
         var query = EntityQueryEnumerator<ESTraitorRuleComponent, ESOrganizationRuleComponent>();
         while (query.MoveNext(out var uid, out var traitor, out var organization))
         {
-            OnNukeExploded((uid, traitor, organization));
+            OnNukePreExploded((uid, traitor, organization));
         }
-
-        _roundEnd.EndRound(TimeSpan.FromMinutes(1));
     }
 
-    private void OnNukeExploded(Entity<ESTraitorRuleComponent, ESOrganizationRuleComponent> ent)
+    private void OnNukeExploded(ref ESNukeAfterExplodedEvent args)
+    {
+        // We're just going to assume the nuke blew up in the right place.
+        // That's a fair thing to assume, right? It probably won't matter
+
+        // play cinematic for everyone
+        var filter = Filter.Broadcast();
+        var cinematic = ProtoMan.Index(NukeCinematic);
+        _cinematic.PlayCinematic(NukeCinematic, filter);
+        _timer.SpawnMethodTimer(cinematic.Length - EndRoundDuration,
+            () =>
+            {
+                _roundEnd.EndRound(EndRoundDuration);
+            });
+
+        // pause station map
+        _map.SetPaused(_ticker.DefaultMap, true);
+    }
+
+    private void OnNukePreExploded(Entity<ESTraitorRuleComponent, ESOrganizationRuleComponent> ent)
     {
         if (ent.Comp1.BaseGrids.Count <= 0)
             return;

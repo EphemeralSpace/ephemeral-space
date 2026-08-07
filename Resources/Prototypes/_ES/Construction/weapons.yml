@@ -59,15 +59,6 @@
   objectType: Item
 
 - type: construction
-  id: ESBat
-  hide: false
-  graph: WoodenBat
-  startNode: start
-  targetNode: bat
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
   id: ESMakeshiftHandcuffs
   hide: false
   graph: makeshifthandcuffs

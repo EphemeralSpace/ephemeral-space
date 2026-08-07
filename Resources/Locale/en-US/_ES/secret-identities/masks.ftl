@@ -8,8 +8,11 @@ es-secret-identity-arsonist-desc = As an Arsonist, light fires around the statio
 es-secret-identity-avenger-name = Avenger
 es-secret-identity-avenger-desc = As an Avenger, protect your target from being killed at all costs. If that fails, kill their murderer.
 
-es-secret-identity-crewmember-name = Crewmember
-es-secret-identity-crewmember-desc = As a Crewmember, use your unclouded judgment to help make sure the crew completes their objective and gets out safely.
+es-secret-identity-cannibal-name = Cannibal
+es-secret-identity-cannibal-desc = As a Cannibal, consume a dead body to steal their mask and complete their objectives as your own.
+
+es-secret-identity-cryojunkie-name = Cryojunkie
+es-secret-identity-cryojunkie-desc = As a Cryojunkie, you revive into a cryohusk a little bit after you die, use this to your advantage.
 
 es-secret-identity-guzzler-name = Guzzler
 es-secret-identity-guzzler-desc = As a Guzzler, you have nothing but an endless desire to Consume Liquid. Guzzle everything you can get your hands on.
@@ -29,20 +32,23 @@ es-secret-identity-phantom-desc = As a Phantom, reincarnate as a vengeful spirit
 es-secret-identity-pickpocket-name = Pickpocket
 es-secret-identity-pickpocket-desc = As a Pickpocket, sneak behind peoples' backs to snatch their belongings and grow your collection.
 
-es-secret-identity-rebel-name = Rebel
-es-secret-identity-rebel-desc = As a Rebel, sabotage machines around the station in fervent protest. Try not to get pinned as a Traitor.
-
 es-secret-identity-secretary-name = Secretary
 es-secret-identity-secretary-desc = As a Secretary, do whatever you can to help your target complete their objectives.
+
+es-secret-identity-stalker-name = Stalker
+es-secret-identity-stalker-desc = As a Stalker, pick unsuspecting people to stalk, then ensure that enough of them live or die.
 
 es-secret-identity-tragedian-name = Tragedian
 es-secret-identity-tragedian-desc = As a Tragedian, perform your theme to the bitter end in order to please the watching stagehands.
 
-es-secret-identity-vigilante-name = Vigilante
-es-secret-identity-vigilante-desc = As a Vigilante, seek out those who have killed others and bring them to justice by killing them yourself.
+es-secret-identity-vandal-name = Vandal
+es-secret-identity-vandal-desc = As a Vandal, sabotage machines around the station in opposition of common morals. Try not to get pinned as a Traitor.
 
 es-secret-identity-vip-name = VIP
 es-secret-identity-vip-desc = As a VIP, use your fancy VIP card to help confirm your innocence in times of peril.
+
+es-secret-identity-warp-disciple-name = Warp Disciple
+es-secret-identity-warp-disciple-desc = As a Warp Disciple, personally clear the Warp Drive of any interruptions and recall to it in times of peril.
 
 # Traitor Secret Identities
 es-secret-identity-organization-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete your group objectives.
@@ -61,9 +67,6 @@ es-secret-identity-recruit-desc = As a Recruit, you've been newly recruited to t
 
 es-secret-identity-subverter-name = Subverter
 es-secret-identity-subverter-desc = As a Subverter, you have received two brain-altering chips which you can use to convert non-mindshielded crew into fresh Syndicate recruits.
-
-es-secret-identity-demolitionist-name = Demolitionist
-es-secret-identity-demolitionist-desc = As a Demolitionist, you have been trained by the Syndicate for both controlled and uncontrolled "demolitions"--including in the use of explosive implants, should things turn out that way.
 
 es-secret-identity-sympathizer-name = Sympathizer
 es-secret-identity-sympathizer-desc = As a Sympathizer, you are an adherent to Syndicate philosophy, win with the traitors, and count as a traitor--but you are unaware of who the traitors are and what their objectives are.

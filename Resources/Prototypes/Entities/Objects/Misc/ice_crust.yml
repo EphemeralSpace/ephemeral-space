@@ -35,7 +35,7 @@
           layer:
           - MidImpassable
     - type: Damageable
-      damageModifierSet: Wood
+      damageModifierSet: ESWood
     - type: Destructible
       thresholds:
       - trigger:

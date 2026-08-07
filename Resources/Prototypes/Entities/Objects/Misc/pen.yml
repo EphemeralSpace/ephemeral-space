@@ -6,6 +6,7 @@
   components:
   - type: Sprite
     sprite: Objects/Misc/pens.rsi
+    noRot: false
     state: pen
   - type: Item
     sprite: Objects/Misc/pens.rsi

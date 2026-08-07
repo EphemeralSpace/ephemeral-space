@@ -118,12 +118,12 @@
       spawnGas: Tritium
 
 - type: entity
-  name: frezon gas miner
+  name: cryogas gas miner
   parent: GasMinerBase
-  id: GasMinerFrezon
+  id: GasMinerCryogas
   components:
     - type: GasMiner
-      spawnGas: Frezon
+      spawnGas: Cryogas
 
 - type: entity
   name: water vapor gas miner
@@ -134,12 +134,12 @@
       spawnGas: WaterVapor
 
 - type: entity
-  name: ammonia gas miner
+  name: miasma gas miner
   parent: GasMinerBase
-  id: GasMinerAmmonia
+  id: GasMinerMiasma
   components:
     - type: GasMiner
-      spawnGas: Ammonia
+      spawnGas: Miasma
 
 - type: entity
   name: nitrous oxide gas miner

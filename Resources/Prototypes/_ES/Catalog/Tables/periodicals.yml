@@ -1,0 +1,226 @@
+# Combined
+- type: entityTable
+  id: PeriodicalsAll
+  table:
+    group:
+    - tableId: MagazinesAll
+    - tableId: Newspapers
+    - id: BaseNewspaper
+      weight: 0.05
+
+- type: entityTable
+  id: PeriodicalsLegit
+  table:
+    group:
+    - tableId: MagazinesLegit
+    - tableId: Newspapers
+
+- type: entityTable
+  id: PeriodicalsSuspicious
+  table:
+    group:
+    - tableId: MagazinesZines
+    - id: BaseNewspaper
+      weight: 0.33
+
+# Newspapers
+- type: entityTable
+  id: Newspapers
+  table:
+    group:
+    - group:
+      - id: NewspaperSteelAlloy
+      - id: NewspaperBurstEngine
+      - id: NewspaperBurstEngine2
+      - id: NewspaperIonStorms
+      - id: NewspaperLipolicide
+      - id: NewspaperBigWatermelon
+      - id: NewspaperSpores
+      - id: NewspaperGasLeaks
+      - id: NewspaperMaintenanceTar
+      - id: NewspaperWater
+      - id: NewspaperWeldingFuel
+      - id: NewspaperParasiteFleet
+      - id: NewspaperMining
+      - id: NewspaperMining2
+      - id: NewspaperMining3
+      - id: NewspaperForeshadowing
+
+# Magazines
+# Big Tables
+- type: entityTable
+  id: MagazinesAll
+  table:
+    group:
+    - tableId: MagazinesLegit
+    - tableId: MagazinesZines
+      weight: 0.1
+
+- type: entityTable
+  id: MagazinesLegit
+  table:
+    group:
+    - tableId: MagazinesComicBook
+    - tableId: MagazinesCelebrity
+    - tableId: MagazinesCooking
+    - tableId: MagazinesPuzzle
+    - tableId: MagazinesEarthNews
+    - tableId: MagazinesMedicalNews
+    - tableId: MagazinesFirearms
+    - tableId: MagazinesEngineerNews
+
+- type: entityTable
+  id: MagazinesZines
+  table:
+    group:
+    - tableId: MagazinesRevolutionary
+    - tableId: MagazinesConspiracy
+      weight: 0.1
+
+# Specific Tables
+- type: entityTable
+  id: MagazinesComicBook
+  table:
+    group:
+    - group:
+      - id: MagazineCognitoWood
+      - id: MagazineCognitoWood2
+      - id: MagazineCognitoWood3
+      - id: MagazineCognitoWood4
+      - id: MagazineCognitoWood5
+      - id: MagazineCognitoWood6
+      - id: MagazineCognitoWood7
+      - id: MagazineCognitoWood8
+      - id: MagazineCognitoWood9
+      - id: MagazineCognitoWood10
+      - id: MagazineCognitoWood11
+      - id: MagazineCognitoWood12
+      - id: MagazineCognitoWood13
+      - id: MagazineCognitoWood14
+      - id: MagazineCognitoWood15
+
+- type: entityTable
+  id: MagazinesCooking
+  table:
+    group:
+    - group:
+      - id: MagazineCookingAndBotany
+      - id: MagazineCookingAndBotany2
+      - id: MagazineCookingAndBotany3
+      - id: MagazineCookingAndBotany4
+      - id: MagazineCookingAndBotany5
+      - id: MagazineCookingAndBotany6
+
+- type: entityTable
+  id: MagazinesPuzzle
+  table:
+    group:
+    - group:
+      - id: MagazineWordsearch
+      - id: MagazineCrossword
+      
+- type: entityTable
+  id: MagazinesEarthNews
+  table:
+    group:
+    - group:
+      - id: MagazineEarthNews
+      - id: MagazineEarthNews2
+
+- type: entityTable
+  id: MagazinesMedicalNews
+  table:
+    group:
+    - group:
+      - id: MagazineMedicalScience
+      - id: MagazineMedicalScience2
+      - id: MagazineMedicalScience3
+      - id: MagazineMedicalScience4
+
+- type: entityTable
+  id: MagazinesFirearms
+  table:
+    group:
+    - group:
+      - id: MagazineFirearms
+      - id: MagazineFirearms2
+      - id: MagazineFirearms3
+      - id: MagazineFirearms4
+
+- type: entityTable
+  id: MagazinesCelebrity
+  table:
+    group:
+    - group:
+      - id: MagazinePopularSpacepeople
+      - id: MagazinePopularSpacepeople2
+      - id: MagazinePopularSpacepeople3
+      - id: MagazinePopularSpacepeople4
+      - id: MagazinePopularSpacepeople5
+      - id: MagazinePopularSpacepeople6
+
+- type: entityTable
+  id: MagazinesFashion
+  table:
+    group:
+    - group:
+      - id: MagazineFashion
+      - id: MagazineFashion2
+      - id: MagazineFashion3
+      - id: MagazineFashion4
+      - id: MagazineFashion5
+      - id: MagazineFashion6
+      - id: MagazineFashion7
+      - id: MagazineFashion8
+      - id: MagazineFashion9
+      - id: MagazineFashion10
+      - id: MagazineFashion11
+      - id: MagazineFashion12
+      - id: MagazineFashion13
+      - id: MagazineFashion14
+      - id: MagazineFashion15
+      - id: MagazineFashion16
+
+- type: entityTable
+  id: MagazinesEngineerNews
+  table:
+    group:
+    - group:
+      - id: MagazineEngineerNews
+      - id: MagazineEngineerNews2
+      - id: MagazineEngineerNews3
+      - id: MagazineEngineerNews4
+      - id: MagazineEngineerNews5
+      - id: MagazineEngineerNews6
+
+- type: entityTable
+  id: MagazinesRevolutionary
+  table:
+    group:
+    - group:
+      - id: MagazineRevolutionary
+      - id: MagazineRevolutionary2
+      - id: MagazineRevolutionary3
+      - id: MagazineRevolutionary4
+      - id: MagazineRevolutionary5
+      - id: MagazineRevolutionary6
+      - id: MagazineRevolutionary7
+      - id: MagazineRevolutionary8
+      - id: MagazineRevolutionary9
+      - id: MagazineRevolutionary10
+
+- type: entityTable
+  id: MagazinesConspiracy
+  table:
+    group:
+    - group:
+      - id: MagazineConspiracy
+      - id: MagazineConspiracy2
+      - id: MagazineConspiracy3
+      - id: MagazineConspiracy4
+      - id: MagazineConspiracy5
+      - id: MagazineConspiracy6
+      - id: MagazineConspiracy7
+      - id: MagazineConspiracy8
+      - id: MagazineConspiracy9
+      - id: MagazineConspiracy10

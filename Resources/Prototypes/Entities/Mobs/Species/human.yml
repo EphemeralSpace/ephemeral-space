@@ -10,11 +10,6 @@
     sprite: Mobs/Species/Human/parts.rsi
     state: full
   - type: Thirst
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
-    - id: FoodMeat
-      amount: 5
   - type: HumanoidAppearance
     species: Human
     hideLayersOnEquip:
@@ -27,6 +22,7 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: ESCryohuskable
 
 
 - type: entity

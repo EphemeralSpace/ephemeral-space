@@ -24,7 +24,7 @@
     all:
     - id: ESWeaponPistol9mmSilenced
     - id: ESMagazine9mm
-    - id: ESSleepyPen
+    - id: SleepyPen
       amount: 2
     - id: SmokeGrenade
       amount: 2
@@ -67,9 +67,7 @@
     - id: ESWeaponRevolver357
     - id: ESSpeedLoader357
     - id: ESWeaponKnife
-    - id: ESClothingOuterArmorSecurity
-    - id: ExGrenade
-      amount: 2
+    - id: StimulantPen
 
 # Subverter
 - type: entity
@@ -87,33 +85,9 @@
   table:
     all:
     - id: ESSubverterChip
-    - id: ESSleepyPen
-    - id: ESWeaponPistol9mm
-      amount: 2
-    - id: ESMagazine9mm
-      amount: 2
-
-# Demolitionist
-- type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheTraitorDemolitionist
-  suffix: ES, Demolitionist Cache
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId:  ESTraitorCacheTraitorDemolitionist
-
-- type: entityTable
-  id: ESTraitorCacheTraitorDemolitionist
-  table:
-    all:
-    - id: C4
-      amount: 3
-    - id: ExGrenade
-      amount: 2
-    - id: ESMicroBombImplanter
-    - id: ESSyndicateBombFlatpack
+    - id: SleepyPen
+    - tableId: SubverterWeapons
+      rolls: 2
 
 # Mercenary
 - type: entity

@@ -192,9 +192,9 @@ namespace Content.Shared.Atmos
             // todo why the fuck does it work like this and why is it not just on the prototype dude
             [Gas.Smoke] = Loc.GetString("gas-smoke-abbreviation"),
             // ES END
-            [Gas.Ammonia] = Loc.GetString("gas-ammonia-abbreviation"),
+            [Gas.Miasma] = Loc.GetString("gas-miasma-abbreviation"),
             [Gas.CarbonDioxide] = Loc.GetString("gas-carbon-dioxide-abbreviation"),
-            [Gas.Frezon] = Loc.GetString("gas-frezon-abbreviation"),
+            [Gas.Cryogas] = Loc.GetString("gas-cryogas-abbreviation"),
             [Gas.Nitrogen] = Loc.GetString("gas-nitrogen-abbreviation"),
             [Gas.NitrousOxide] = Loc.GetString("gas-nitrous-oxide-abbreviation"),
             [Gas.Oxygen] = Loc.GetString("gas-oxygen-abbreviation"),
@@ -272,7 +272,7 @@ namespace Content.Shared.Atmos
         public const float TritiumBurnTritFactor = 10f;
         public const float TritiumBurnFuelRatio = 2f;
 
-        public const float FrezonCoolLowerTemperature = 23.15f;
+        public const float FrezonCoolLowerTemperature = 203.15f;
 
         /// <summary>
         ///     Frezon cools better at higher temperatures.
@@ -401,8 +401,8 @@ namespace Content.Shared.Atmos
         Plasma = 3,
         Tritium = 4,
         WaterVapor = 5,
-        Ammonia = 6,
+        Miasma = 6,
         NitrousOxide = 7,
-        Frezon = 8
+        Cryogas = 8
     }
 }

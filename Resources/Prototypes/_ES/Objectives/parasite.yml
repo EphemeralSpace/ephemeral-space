@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseSecretIdentityObjective
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveParasiteInfect
   name: Infect the station
   description: Spread the parasites across the station. Once the infected make up the majority, it'll be time to swarm.
@@ -10,13 +10,14 @@
       state: icon
   - type: ESOrganizationOutnumberObjective
     organization: Parasite
+  - type: ESParasiteWinFreezeObjective
 
 # Secret identity objectives, but used broadly for all parasites
 - type: entity
-  parent: ESBaseSecretIdentityObjective
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveParasiteDie
   name: Be killed
-  description: Once someone kills you, the parasites in your body will respond to their brain hormones and launch into action.
+  description: Once someone not of our kind kills us, the parasites in our body will respond to their brain hormones and launch into action.
   components:
   - type: ESObjective
     icon:
@@ -36,6 +37,8 @@
       sprite: Mobs/Species/Human/organs.rsi
       state: brain
     invertProgress: true
+    completionPercentage: 0.001 # you win so long as you don't hit 0.
   - type: ESCounterObjective
-    target: 200
+    target: 300
   - type: ESParasiteDamageObjective
+  - type: ESParasiteWinFreezeObjective

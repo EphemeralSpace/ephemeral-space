@@ -5,7 +5,8 @@
   desc: reagent-desc-cryptobiolin
   physicalDesc: reagent-physical-desc-fizzy
   flavor: medicine
-  color: "#081a80"
+  puddleSpriteSet: Acid
+  color: "#081a8080"
   metabolisms:
     Medicine:
       effects:
@@ -23,6 +24,7 @@
   desc: reagent-desc-dylovene
   physicalDesc: reagent-physical-desc-translucent
   flavor: medicine
+  puddleSpriteSet: Shiny
   color: "#3a1d8a"
   metabolisms:
     Medicine:
@@ -81,6 +83,7 @@
 # ES END
   physicalDesc: reagent-physical-desc-chalky
   flavor: medicine
+  puddleSpriteSet: Splotchy
   color: "#64ffe6"
   metabolisms:
     Medicine:
@@ -186,7 +189,8 @@
   desc: reagent-desc-cryoxadone
   physicalDesc: reagent-physical-desc-fizzy
   flavor: medicine
-  color: "#0091ff"
+  puddleSpriteSet: Acid
+  color: "#0091ffCC"
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: -5
@@ -245,7 +249,8 @@
   desc: reagent-desc-dermaline
   physicalDesc: reagent-physical-desc-translucent
   flavor: medicine
-  color: "#215263"
+  puddleSpriteSet: Shiny
+  color: "#21526370"
   metabolisms:
     Medicine:
       # Begin Offbrand
@@ -316,6 +321,7 @@
   desc: reagent-desc-epinephrine
   physicalDesc: reagent-physical-desc-odorless
   flavor: medicine
+  puddleSpriteSet: Shiny
   color: "#d2fffa"
   metabolisms:
     Medicine:
@@ -476,6 +482,7 @@
   desc: reagent-desc-kelotane
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: medicine
+  puddleSpriteSet: Splotchy
   color: "#bf3d19"
   metabolisms:
     Medicine:
@@ -512,6 +519,7 @@
   desc: reagent-desc-leporazine
   physicalDesc: reagent-physical-desc-pungent
   flavor: medicine
+  puddleSpriteSet: Splotchy
   color: "#ff7db5"
   metabolisms:
     Medicine:
@@ -543,6 +551,7 @@
   desc: reagent-desc-saline
   physicalDesc: reagent-physical-desc-salty
   flavor: salty
+  puddleSpriteSet: Water
   color: "#0064C8"
   metabolisms:
     Drink:
@@ -559,6 +568,7 @@
   desc: reagent-desc-synaptizine
   physicalDesc: reagent-physical-desc-pungent
   flavor: medicine
+  puddleSpriteSet: Splotchy
   color: "#d49a2f"
   metabolisms:
     Poison:
@@ -586,6 +596,7 @@
   desc: reagent-desc-tranexamic-acid
   physicalDesc: reagent-physical-desc-viscous
   flavor: medicine
+  puddleSpriteSet: Acid
   color: "#ba7d7d"
   metabolisms:
     Medicine:
@@ -641,6 +652,7 @@
   desc: reagent-desc-omnizine
   physicalDesc: reagent-physical-desc-soothing
   flavor: medicine
+  puddleSpriteSet: Shiny
   color: "#fcf7f9"
   metabolisms:
     Medicine:
@@ -659,7 +671,8 @@
   group: Medicine
   physicalDesc: reagent-physical-desc-translucent
   flavor: medicine
-  color: "#404040"
+  puddleSpriteSet: Shiny
+  color: "#40404050"
   metabolisms:
     Medicine:
       effects:
@@ -673,6 +686,7 @@
   evaporationSpeed: 0.3
   physicalDesc: reagent-physical-desc-holy
   flavor: holy
+  puddleSpriteSet: Water
   color: "#91C3F7"
   metabolisms:
     Drink:
@@ -772,6 +786,7 @@
   desc: reagent-desc-potassium-iodide
   physicalDesc: reagent-physical-desc-grainy
   flavor: medicine
+  puddleSpriteSet: Powder
   color: "#baa15d"
   metabolisms:
     Medicine:
@@ -797,7 +812,8 @@
   desc: reagent-desc-haloperidol
   physicalDesc: reagent-physical-desc-crystalline
   flavor: medicine
-  color: "#27870a"
+  puddleSpriteSet: Powder
+  color: "#27870a50"
   metabolisms:
     Medicine:
       effects:

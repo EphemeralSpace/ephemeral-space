@@ -90,7 +90,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 18
+        Piercing: 16
   - type: Tag
     tags:
     - ES9mmProjectile
@@ -104,7 +104,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 30
+        Piercing: 24
   - type: Tag
     tags:
     - ES357Projectile
@@ -139,20 +139,6 @@
   - type: Tag
     tags:
     - ESShotgunPellet
-
-- type: entity
-  id: ESPelletShotgunSlug
-  name: slug pellet
-  categories: [ HideSpawnMenu ]
-  parent: ESBaseBullet
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: slug
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 40
 
 - type: entity
   id: ESPelletShotgunBeanbag

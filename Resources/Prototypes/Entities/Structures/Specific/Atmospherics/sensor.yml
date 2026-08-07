@@ -22,12 +22,10 @@
       Plasma: stationPlasma
       Tritium: stationTritium
       WaterVapor: stationWaterVapor
-      Ammonia: stationAmmonia
+      Miasma: stationMiasma
       NitrousOxide: stationNO
-      Frezon: danger
-      # ES START
+      Cryogas: ESStationCryogas
       Smoke: ESStationSmoke
-      # ES END
 
 - type: entity
   id: AirSensor

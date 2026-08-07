@@ -91,8 +91,8 @@
   - type: TypingIndicator
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      80: 0.5
+      60: 0.85
+      80: 0.75
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:
@@ -176,7 +176,6 @@
     interactSuccessString: hugging-success-generic
     interactSuccessSound: /Audio/Effects/thudswoosh.ogg
     messagePerceivedByOthers: hugging-success-generic-others
-  - type: CanHostGuardian
   - type: NpcFactionMember
     factions:
     - NanoTrasen
@@ -259,7 +258,7 @@
     coldDamageThreshold: 260
     coldDamage:
       types:
-        Cold: 0.1 #per second, scales with temperature & other constants
+        Cold: 0.2 #per second, scales with temperature & other constants
     heatDamage:
       types:
         # ES START
@@ -279,12 +278,7 @@
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 310.15
     thermalRegulationTemperatureThreshold: 2
-  - type: Perishable
-  - type: Butcherable
-    butcheringType: Spike # TODO human.
-    spawned:
-      - id: FoodMeat
-        amount: 5
+  - type: ESMiasmaSource
   - type: Respirator
     damage:
       types:

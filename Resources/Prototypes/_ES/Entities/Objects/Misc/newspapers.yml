@@ -1,0 +1,120 @@
+# Base Prototypes
+- type: entity
+  parent: BasePaper
+  id: BaseNewspaper
+  name: newspaper
+  description: A paperback newspaper. This one is several years out of date and doesn't seem to contain any information you don't already know.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: newspaper
+  - type: Item
+    size: Small
+    storedRotation: -90
+    inhandVisuals:
+      left:
+      - state: newspaper-inhand-left
+      right:
+      - state: newspaper-inhand-right
+  - type: MeleeWeapon
+    wideAnimationRotation: 75
+    damage:
+      types:
+        Blunt: 2 # splats cockroaches in 1 hit
+
+# Newspapers
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperSteelAlloy
+  name: Galaxy NOW - August 27th, 2065
+  description: "A paperback newspaper. The headline reads: 'New Efficient Steel Alloy Discovered, Shuttle Engineers Relieved'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperBurstEngine
+  name: Galaxy NOW - September 3rd, 2065
+  description: "A paperback newspaper. The headline reads: 'SHUTLGIR Technologies Burst Engine Recall Creates Skepticism Around Other Products'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperBurstEngine2
+  name: Galaxy NOW - September 10th, 2065
+  description: "A paperback newspaper. The headline reads: 'SHUTLGIR Technologies Settles 3.1 Million Speso Lawsuit in Record Time: A Turning Point for Shuttle Reliability?'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperIonStorms
+  name: Galaxy NOW - September 17th, 2065
+  description: "A paperback newspaper. The headline reads: 'Heavy Ion Storms in Alpha Sector Continue'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperLipolicide
+  name: Galaxy NOW - September 24th, 2065
+  description: "A paperback newspaper. The headline reads: 'Non-Medical Lipolicide Use Linked to Weakened Immune System'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperBigWatermelon
+  name: Galaxy NOW - October 1st, 2065
+  description: "A paperback newspaper. The headline reads: 'World's Biggest 'SuperHuge' Watermelon Ever Grown In Mars Fleet, Botanist Community In Shock'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperSpores
+  name: Galaxy NOW - October 8th, 2065
+  description: "A paperback newspaper. The headline reads: 'Experts Warn Against Dangers of Spore Gas; Leak Aboard Botanist Ship Leaves 3 Hospitalized'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperGasLeaks
+  name: Galaxy NOW - October 15th, 2065
+  description: "A paperback newspaper. The headline reads: 'New Space Travel Technology Potentially Linked to Dangerous Gas Leaks, Experts Say'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperMaintenanceTar
+  name: Galaxy NOW - October 22nd, 2065
+  description: "A paperback newspaper. The headline reads: 'Doctors Concerned About Rising Maintenance Tar Usage Amongst Teens'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperWater
+  name: Galaxy NOW - October 30th, 2065
+  description: "A paperback newspaper. The headline reads: 'Water Shortage Creates Concern For Halloween Plans in Woodson Fleet'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperWeldingFuel
+  name: Galaxy NOW - December 5th, 2065
+  description: "A paperback newspaper. The headline reads: 'Citizens Concerned About Rising Welding Fuel Prices'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperParasiteFleet
+  name: Galaxy NOW - December 12th, 2065
+  description: "A paperback newspaper. The headline reads: 'Parasite-Infested Fleet Suffers Yet Another Suspiciously Crushing Loss'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperMining
+  name: Galaxy NOW - December 17th, 2065
+  description: "A paperback newspaper. The headline reads: 'Mining Company Goes To War Over Asteroid Ownership Dispute'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperMining2
+  name: Galaxy NOW - January 2nd, 2066
+  description: "A paperback newspaper. The headline reads: 'Mining Company Cold War Ended, Jensen Mining Co. Claims Ownership Of Valuable Asteroid'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperMining3
+  name: Galaxy NOW - January 9th, 2066
+  description: "A paperback newspaper. The headline reads: 'New Miracle Material Discovered on Asteroid XLR-2781'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperForeshadowing
+  name: Galaxy NOW - January 15th, 2066
+  description: "A paperback newspaper. The headline reads: 'Reports of Worsening Cosmic Radiation Storms in Delta Sector Confirmed by DSHD'"

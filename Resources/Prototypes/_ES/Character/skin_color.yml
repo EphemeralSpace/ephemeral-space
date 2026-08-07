@@ -1,0 +1,121 @@
+# Human skin tones
+- type: esSkinColor
+  id: Pale
+  name: es-skin-tone-pale
+  weight: 15
+  colors:
+  - "#FFFFFF" # Pale
+  - "#FFE1CC" # Porcelain
+  - "#f0b673" # Beige
+
+- type: esSkinColor
+  id: Beige
+  name: es-skin-tone-beige
+  weight: 25
+  colors:
+  - "#e6bca1" # Tan
+  - "#edb08a" # Band
+  - "#f0bd99" # Limestone
+  - "#ffcf8c" # Amber
+
+- type: esSkinColor
+  id: Tan
+  name: es-skin-tone-tan
+  weight: 30
+  colors:
+  - "#ffad91" # Saturated Tan
+  - "#ffbf75" # Honey
+
+- type: esSkinColor
+  id: Brown
+  name: es-skin-tone-brown
+  weight: 30
+  colors:
+  - "#cf997e" # Deep Tan
+  - "#bb6536" # Deep Amber
+  - "#de8454" # Almond
+
+- type: esSkinColor
+  id: Dark
+  name: es-skin-tone-dark
+  weight: 25
+  colors:
+  - "#935f37" # Chestnut
+  - "#8D5832" # Walnut
+  - "#85501c" # Golden
+  - "#7f4422" # Espresso
+
+- type: esSkinColor
+  id: Black
+  name: es-skin-tone-black
+  weight: 20
+  colors:
+  - "#3F1B02" # Earth
+  - "#301e11" # Choca
+
+- type: esSkinColor
+  id: Frostbitten
+  name: es-skin-tone-frostbitten
+  weight: 5
+  colors:
+  - "#ededff"
+  - "#d4d4ff"
+
+- type: esSkinColor
+  id: Jaundice
+  name: es-skin-tone-jaundice
+  weight: 5
+  colors:
+  - "#ffff9c"
+  - "#ebd985" # Deep Jaundice
+
+- type: esSkinColor
+  id: Starburnt
+  name: es-skin-tone-starburnt
+  weight: 5
+  colors:
+  - "#ffe0ff"
+
+- type: esSkinColor
+  id: Sickly
+  name: es-skin-tone-sickly
+  weight: 2.5
+  colors:
+  - "#dcedbb"
+
+- type: esSkinColor
+  id: Sunburnt
+  name: es-skin-tone-sunburnt
+  weight: 2.5
+  colors:
+  - "#ff9191"
+
+# Disabled until simpsoncode
+#- type: esSkinColor
+#  id: Simpson
+#  name: es-skin-tone-simpson
+#  weight: 1
+#  colors:
+#  - "#ffff55"
+
+- type: esSkinColor
+  id: EGARed
+  name: es-skin-tone-egared
+  weight: 0.5
+  colors:
+  - "#ff5555"
+
+# Cryohusk skin
+- type: esSkinColor
+  id: CryohuskFrostbitten
+  name: es-skin-tone-frostbitten
+  colors:
+  - "#ffffff"
+
+# Monkey skin
+- type: esSkinColor
+  id: MonkeyFurred
+  name: es-skin-tone-furred
+  colors:
+  - "#ffffff"
+

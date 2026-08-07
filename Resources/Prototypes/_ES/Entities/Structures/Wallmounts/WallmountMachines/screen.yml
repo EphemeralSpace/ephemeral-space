@@ -1,35 +1,390 @@
-# dup of arrivals screens to be indestructible + no power
 - type: entity
-  parent: BaseWallmountMachine
-  id: ESArrivalsShuttleTimer
-  name: arrivals screen
-  description: Displays the time until the shuttle reaches the station.
+  # todo actual dedupe with proper structure parenting instead of this cluster fuck
+  # structure yaml is not in a good place
+  id: ESStatusDisplay
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
   components:
+  - type: Clickable
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmash
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: ExtensionCableReceiver
+  - type: ESSparkOnHit
+    prob: 0.25
+    count: 2
+  - type: WallMount
+  - type: Physics
+    canCollide: false
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - Structure
   - type: Rotatable
-  - type: TextScreenVisuals
-    textOffset: 0,3
-    timerOffset: 0,-4
-    rows: 2
+  - type: DVTextVisuals
+    rows:
+    - text: ""
+      layer: enum.DVTextScreenVisualLayers.Line1
+      offset: 0.03125,0.15625 # 1/32, 5/32
+    - text: ""
+      layer: enum.DVTextScreenVisualLayers.Line2
+      offset: 0.03125,-0.0625 # 1/32, 0/32
+  - type: DVScreen
   - type: Sprite
     drawdepth: WallMountedItems
-    sprite: Structures/Wallmounts/screen.rsi
-    state: screen
+    sprite: _ES/Structures/Wallmounts/screen.rsi
     noRot: true
+    layers:
+    - state: frame
+      map: ["base"]
+    - shader: StencilClear
+      state: mask
+    - shader: StencilMask
+      state: mask
+    - map: ["enum.DVTextScreenVisualLayers.Line1"]
+      shader: StencilDraw
+      color: "#22ccff"
+      visible: false
+    - map: ["enum.DVTextScreenVisualLayers.Line2"]
+      shader: StencilDraw
+      color: "#22ccff"
+      visible: false
+    - map: ["alert_status"]
+      visible: false
+      state: status_display_green
+    - map: ["alert_border"]
+      state: alert_border_blue
+      visible: false
+    - state: directional
+      sprite: _ES/Markers/spawners.rsi
+      map: [ "directional" ]
+      visible: false
+  - type: Marker
+    layers: [ "directional" ]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Glass
+  - type: ESBreakableDeviceNetwork
+  - type: ESBreakable
+    threshold: 30
+    sound:
+      collection: GlassBreak
+  - type: Repairable
+    fuelCost: 15
+  - type: PointLight
+    radius: 1.8
+    energy: 6
+    color: "#22ccff"
+    castShadows: false
+    netsync: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    offset: 0,-0.2
+    falloff: 20
+    curveFactor: 1.0
+    autoRot: true
+  - type: ESGenericPointLightVisualizer
+    visuals:
+      enum.ESBreakableVisuals.Broken:
+        True: { enabled: false }
+        False: { enabled: true }
   - type: Appearance
-  - type: Screen
+  - type: GenericVisualizer
+    visuals:
+      enum.ESBreakableVisuals.Broken:
+        base:
+          True: { state: "frame_broken" }
+          False: { state: "frame" }
+        enum.DVTextScreenVisualLayers.Line1:
+          True: { visible: false }
+        enum.DVTextScreenVisualLayers.Line2:
+          True: { visible: false }
+        alert_status:
+          True: { visible: false }
+        alert_border:
+          True: { loop: false }
+          False: { loop: true }
+      enum.DVScreenVisuals.Content:
+        enum.DVTextScreenVisualLayers.Line1:
+          Text: { visible: true }
+          CurrentTime: { visible: true }
+          GenericTargetTime: { visible: true }
+          EstimatedTimeOfArrival: { visible: true }
+          AlertLevel: { visible: false }
+        enum.DVTextScreenVisualLayers.Line2:
+          Text: { visible: true }
+          CurrentTime: { visible: true }
+          GenericTargetTime: { visible: true }
+          EstimatedTimeOfArrival: { visible: true }
+          AlertLevel: { visible: false }
+        alert_status:
+          Text: { visible: false }
+          CurrentTime: { visible: false }
+          GenericTargetTime: { visible: false }
+          EstimatedTimeOfArrival: { visible: false }
+          AlertLevel: { visible: true }
+
+- type: entity
+  parent: ESStatusDisplay
+  id: ESStatusDisplayStation
+  name: station status display
+  description: Notifies you of the various goings on and happenings of whoever decides to set the text to something.
+  components:
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: ShuttleTimer
+  - type: DVTextVisuals
+    marqueeRate: 0.12s
+  - type: Sprite
+    layers:
+    - state: frame
+      map: [ "base" ]
+    - shader: StencilClear
+      state: mask
+    - shader: StencilMask
+      state: mask
+    - map: [ "enum.DVTextScreenVisualLayers.Line1" ]
+      shader: StencilDraw
+      color: "#FF0000"
+      visible: false
+    - map: [ "enum.DVTextScreenVisualLayers.Line2" ]
+      shader: StencilDraw
+      color: "#FF0000"
+      visible: false
+    - map: [ "alert_status" ]
+      visible: true
+      state: status_display_green
+    - map: [ "alert_border" ]
+      visible: true
+      state: alert_border_blue
+    - state: directional
+      sprite: _ES/Markers/spawners.rsi
+      map: [ "directional" ]
+      visible: false
+  - type: PointLight
+    color: DodgerBlue
+  - type: ESGenericPointLightVisualizer
+    visuals:
+      enum.ESBreakableVisuals.Broken:
+        True: { enabled: false }
+        False: { enabled: true }
+      enum.DVScreenVisuals.AlertLevel:
+        green: { color: LawnGreen }
+        blue: { color: DodgerBlue }
+        red: { color: Red }
+        yellow: { color: Goldenrod }
+        violet: { color: Violet }
+        delta:
+          color: Orange
+          energy: 6
+          radius: 5
+        epsilon:
+          color: MediumVioletRed
+          energy: 6
+          radius: 5
+        gamma:
+          color: YellowGreen
+          energy: 6
+          radius: 5
+  - type: GenericVisualizer
+    visuals:
+      enum.ESBreakableVisuals.Broken:
+        base:
+          True: { state: "frame_broken" }
+          False: { state: "frame" }
+        enum.DVTextScreenVisualLayers.Line1:
+          True: { visible: false }
+        enum.DVTextScreenVisualLayers.Line2:
+          True: { visible: false }
+        alert_status:
+          True: { visible: false }
+        alert_border:
+          True: { loop: false }
+          False: { loop: true }
+      enum.DVScreenVisuals.ShowAlertBorder:
+        alert_border:
+          True: { visible: true }
+          False: { visible: false }
+      enum.DVScreenVisuals.AlertLevel:
+        alert_border:
+          green: { state: alert_border_green }
+          blue: { state: alert_border_blue }
+          red: { state: alert_border_red }
+          white: { state: alert_border_white }
+          yellow: { state: alert_border_yellow }
+          violet: { state: alert_border_violet }
+          delta: { state: alert_border_delta }
+          epsilon: { state: status_display_epsilon }
+          gamma: { state: status_display_gamma }
+        alert_status:
+          green: { state: status_display_green }
+          blue: { state: status_display_green } #intentional
+          red: { state: status_display_red }
+          white: { state: status_display_white }
+          yellow: { state: status_display_yellow }
+          violet: { state: status_display_violet }
+          delta: { state: status_display_delta }
+          epsilon: { state: status_display_epsilon }
+          gamma: { state: status_display_gamma }
+      enum.DVScreenVisuals.Content:
+        enum.DVTextScreenVisualLayers.Line1:
+          Text: { visible: true }
+          CurrentTime: { visible: true }
+          GenericTargetTime: { visible: true }
+          EstimatedTimeOfArrival: { visible: true }
+          AlertLevel: { visible: false }
+        enum.DVTextScreenVisualLayers.Line2:
+          Text: { visible: true }
+          CurrentTime: { visible: true }
+          GenericTargetTime: { visible: true }
+          EstimatedTimeOfArrival: { visible: true }
+          AlertLevel: { visible: false }
+        alert_status:
+          Text: { visible: false }
+          CurrentTime: { visible: false }
+          GenericTargetTime: { visible: false }
+          EstimatedTimeOfArrival: { visible: false }
+          AlertLevel: { visible: true }
+
+- type: entity
+  parent: ESStatusDisplay
+  id: ESStatusDisplayArrivals
+  name: arrivals status display
+  description: Displays the time until the shuttle reaches the station.
+  components:
   - type: DeviceNetwork
     deviceNetId: Private
     receiveFrequencyId: ArrivalsShuttleTimer
-  - type: WallMount
-    arc: 360
 
 # armory
 - type: entity
-  id: ESArmoryTimer
-  parent: Screen
-  name: armory screen
+  id: ESStatusDisplayArmory
+  parent: ESStatusDisplay
+  name: armory status display
   description: Displays the armory's opening cooldown timer.
   components:
+  # mildly annoying duplication bc of how sprite layers works
+  # but this + others is just to change the border to always visible and diff color
+  # and change the text color
+  - type: Sprite
+    layers:
+    - state: frame
+      map: ["base"]
+    - shader: StencilClear
+      state: mask
+    - shader: StencilMask
+      state: mask
+    - map: [ "enum.DVTextScreenVisualLayers.Line1" ]
+      shader: StencilDraw
+      color: "#FF0000"
+      visible: false
+    - map: [ "enum.DVTextScreenVisualLayers.Line2" ]
+      shader: StencilDraw
+      color: "#FF0000"
+      visible: false
+    - map: [ "alert_status" ]
+      visible: false
+      state: status_display_green
+    - map: [ "alert_border" ]
+      visible: true
+      state: alert_border_red
+    - state: directional
+      sprite: _ES/Markers/spawners.rsi
+      map: [ "directional" ]
+      visible: false
+  - type: PointLight
+    color: "#FF0000"
   - type: DeviceNetwork
     deviceNetId: Private
     receiveFrequencyId: ESArmoryTimer
+
+# radstorm
+- type: entity
+  id: ESStatusDisplayRadstorm
+  parent: ESStatusDisplay
+  name: station calamity status display
+  suffix: Radstorm
+  description: The color indicates what kind of calamity it is. This one is green, so it's a green calamity.
+  components:
+  - type: Sprite
+    layers:
+    - state: frame
+      map: ["base"]
+    - shader: StencilClear
+      state: mask
+    - shader: StencilMask
+      state: mask
+    - map: [ "enum.DVTextScreenVisualLayers.Line1" ]
+      shader: StencilDraw
+      color: "#66FF00"
+      visible: false
+    - map: [ "enum.DVTextScreenVisualLayers.Line2" ]
+      shader: StencilDraw
+      color: "#66FF00"
+      visible: false
+    - map: [ "alert_status" ]
+      visible: false
+      state: status_display_green
+    - map: [ "alert_border" ]
+      visible: true
+      state: alert_border_green
+    - state: directional
+      sprite: _ES/Markers/spawners.rsi
+      map: [ "directional" ]
+      visible: false
+  - type: PointLight
+    color: "#66FF00"
+  - type: DVTextVisuals
+    marqueeWidth: 30
+  - type: DeviceNetwork
+    deviceNetId: Private
+    receiveFrequencyId: ESRadstormTimer
+
+# warp drive
+- type: entity
+  id: ESStatusDisplayWarpDrive
+  parent: ESStatusDisplay
+  name: warp drive status display
+  description: Communicates the happiness & satiety level of the "Warp Drive".
+  components:
+  - type: Sprite
+    layers:
+    - state: frame
+      map: ["base"]
+    - shader: StencilClear
+      state: mask
+    - shader: StencilMask
+      state: mask
+    - map: [ "enum.DVTextScreenVisualLayers.Line1" ]
+      shader: StencilDraw
+      color: "#FD7AF2"
+      visible: false
+    - map: [ "enum.DVTextScreenVisualLayers.Line2" ]
+      shader: StencilDraw
+      color: "#FD7AF2"
+      visible: false
+    - map: [ "alert_status" ]
+      visible: false
+      state: status_display_green
+    - map: [ "alert_border" ]
+      visible: true
+      state: alert_border_violet
+    - state: directional
+      sprite: _ES/Markers/spawners.rsi
+      map: [ "directional" ]
+      visible: false
+  - type: PointLight
+    color: "#FD7AF2"
+  - type: DVTextVisuals
+    marqueePadding: 2
+    marqueeWidth: 24
+    marqueeRate: 0.035s
+  - type: DeviceNetwork
+    deviceNetId: Private
+    receiveFrequencyId: ESWarpDriveTimer

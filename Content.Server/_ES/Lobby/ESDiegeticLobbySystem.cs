@@ -82,6 +82,7 @@ public sealed partial class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
     private void UpdateLobbyClosedStatus(bool closing)
     {
         _ticker.PauseStart(closing);
+        _ticker.ResetStartTime();
 
         // Close/open doors
         var barrierSpawnQuery = EntityQueryEnumerator<ESLobbyClosingDoorComponent, DoorComponent>();

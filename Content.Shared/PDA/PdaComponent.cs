@@ -1,6 +1,5 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.GameStates;
-using Content.Shared.Access.Components;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -11,15 +10,12 @@ namespace Content.Shared.PDA
     {
         public const string PdaIdSlotId = "PDA-id";
         public const string PdaPenSlotId = "PDA-pen";
-        public const string PdaPaiSlotId = "PDA-pai";
 
         [DataField("idSlot")]
         public ItemSlot IdSlot = new();
 
         [DataField("penSlot")]
         public ItemSlot PenSlot = new();
-        [DataField("paiSlot")]
-        public ItemSlot PaiSlot = new();
 
         // Really this should just be using ItemSlot.StartingItem. However, seeing as we have so many different starting
         // PDA's and no nice way to inherit the other fields from the ItemSlot data definition, this makes the yaml much

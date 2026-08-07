@@ -82,7 +82,8 @@ public partial class StatusIconData : IComparable<StatusIconData>
 /// <summary>
 /// <see cref="StatusIconData"/> but in new convenient prototype form!
 /// </summary>
-public abstract class StatusIconPrototype : StatusIconData, IPrototype
+[DataDefinition]
+public abstract partial class StatusIconPrototype : StatusIconData, IPrototype
 {
     /// <inheritdoc/>
     [IdDataField]

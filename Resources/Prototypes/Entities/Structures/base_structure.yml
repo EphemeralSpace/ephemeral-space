@@ -68,3 +68,11 @@
   components:
     - type: TileFrictionModifier
       modifier: 0.4
+
+- type: entity
+  id: StructureQuickAnchor # es
+  abstract: true
+  components:
+  - type: Anchorable
+    delay: 0.5
+  - type: ESVerbAnchorable

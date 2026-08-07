@@ -6,19 +6,21 @@
   - ArmsDealer
   - Arsonist
   - Avenger
-  - Crewmember
+  - Cannibal
+  - Cryojunkie
   - Guzzler
   - Hater
   - Mercenary
   - Nobleman
   - Phantom
   - Pickpocket
-  - Rebel
   - Secretary
   - SleeperAgent
+  - Stalker
   - Tragedian
-  - Vigilante
+  - Vandal
   - VIP
+  - WarpDisciple
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew.xml"
 
 - type: guideEntry
@@ -37,9 +39,14 @@
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Avenger.xml"
 
 - type: guideEntry
-  id: Crewmember
-  name: Crewmember
-  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Crewmember.xml"
+  id: Cannibal
+  name: Cannibal
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Cannibal.xml"
+
+- type: guideEntry
+  id: Cryojunkie
+  name: Cryojunkie
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Cryojunkie.xml"
 
 - type: guideEntry
   id: Guzzler
@@ -72,11 +79,6 @@
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Pickpocket.xml"
 
 - type: guideEntry
-  id: Rebel
-  name: Rebel
-  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Rebel.xml"
-
-- type: guideEntry
   id: Secretary
   name: Secretary
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Secretary.xml"
@@ -87,16 +89,26 @@
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/SleeperAgent.xml"
 
 - type: guideEntry
+  id: Stalker
+  name: Stalker
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Stalker.xml"
+
+- type: guideEntry
   id: Tragedian
   name: Tragedian
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Tragedian.xml"
 
 - type: guideEntry
-  id: Vigilante
-  name: Vigilante
-  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Vigilante.xml"
+  id: Vandal
+  name: Vandal
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/Vandal.xml"
 
 - type: guideEntry
   id: VIP
   name: VIP
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/VIP.xml"
+
+- type: guideEntry
+  id: WarpDisciple
+  name: Warp Disciple
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Crew/WarpDisciple.xml"

@@ -1,3 +1,4 @@
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -15,6 +16,8 @@ public sealed partial class ESTraitorRuleComponent : Component
     /// </summary>
     [DataField]
     public List<EntityUid> BaseGrids = new();
+
+    public MapId SyndieBaseMapId;
 
     /// <summary>
     ///     Map to be loaded when the nuke is armed

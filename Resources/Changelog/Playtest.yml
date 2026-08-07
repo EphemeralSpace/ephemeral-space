@@ -833,3 +833,845 @@ Entries:
         is obscured.
   id: 94
   time: '2026-07-02T16:24:28.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Ammo can no longer be printed from the autolathe.
+  id: 95
+  time: '2026-07-04T13:01:10.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed the nuke objective not being counted.
+  id: 96
+  time: '2026-07-04T18:59:45.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Removed Rebel and Vigilante identities.
+    - type: Add
+      message: Added back Vandal identity.
+  id: 97
+  time: '2026-07-04T22:44:56.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Doors now have collision immediately upon being closed rather than
+        partway through their animation
+  id: 98
+  time: '2026-07-06T05:08:48.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Getting electrocuted by walking into stuff should happen much less often
+        if you're just walking by it rather than directly into it
+    - type: Tweak
+      message: >-
+        Chained electrocutions (from pulling) now ignore insulation past a depth
+        of 1
+  id: 99
+  time: '2026-07-07T09:13:37.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: announcement sounds.... They sound.. announcey
+  id: 100
+  time: '2026-07-07T09:13:50.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Storage items now have examine text to indicate if they are slower or
+        faster to take items out of.
+  id: 101
+  time: '2026-07-09T23:22:20.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Walls now become "broken walls" when damaged, which can be passed
+        through and repaired back into full walls.
+    - type: Remove
+      message: Removed the ability to craft walls directly.
+    - type: Add
+      message: >-
+        Added secret door kits, single-use kits that transform walls into secret
+        doors.
+    - type: Add
+      message: Added barrier kits, which can barricade airlocks.
+    - type: Fix
+      message: Fixed barricaded airlocks being openable.
+  id: 102
+  time: '2026-07-11T14:13:06.0000000+00:00'
+- author: mirrorcult,sowelipililimute
+  changes:
+    - type: Add
+      message: >-
+        Screens around the station now have proper borders, lights, actual text
+        rendering, and a marquee if text is too long
+    - type: Add
+      message: >-
+        New screens showing warp drive charge percentage & radstorm timer have
+        been added around the station
+    - type: Add
+      message: >-
+        Comms console can now broadcast up to 20 characters of text to status
+        screens rather than like. four or whatever
+  id: 103
+  time: '2026-07-11T14:19:37.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Stagehand chat window now has a separate panel for the stagehand chat
+        specifically to make following game stuff/stagehand stuff separately
+        easier
+  id: 104
+  time: '2026-07-11T16:46:37.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Tweaked drawdepth for melee animation effects & redid clickattack effect
+    - type: Tweak
+      message: >-
+        Generic combat mode cursor indicator now has a sprite in the same style
+        as the gun crosshair
+  id: 105
+  time: '2026-07-11T19:26:05.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Using items in hand or interacting with things in your
+        pockets/bag/storage etc now has interaction particles
+  id: 106
+  time: '2026-07-11T19:26:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Barricade kits can also barricade windows and create tile barricades
+        when used in hand
+    - type: Tweak
+      message: >-
+        Items that use charges (RCD barricade kit etc) now have itemstatus
+        showing the charge count 
+    - type: Remove
+      message: Barricades are no longer deconstructible by prying
+  id: 107
+  time: '2026-07-11T21:49:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Rather than instantly being transported to the lobby, a short little
+        post-death sequence will play out when you die
+    - type: Tweak
+      message: >-
+        Use of the ghost command is now only allowed if you are dead (and want
+        to expedite the death cutscene for some reason)
+    - type: Add
+      message: A cinematic will now play when the nuke is detonated.
+  id: 108
+  time: '2026-07-11T21:52:17.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: You now face entities while performing doafters on them.
+  id: 109
+  time: '2026-07-11T22:30:58.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Walls once again become girders while broken.
+    - type: Add
+      message: >-
+        Girders cannot be deconstructed and now become broken girders when
+        destroyed.
+    - type: Tweak
+      message: Secret door kits now must be used on girders rather than walls.
+  id: 110
+  time: '2026-07-13T17:55:45.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: Fixed buckling/melee showing interaction particles
+    - type: Tweak
+      message: Increased nuke cinematic end time a bit
+    - type: Fix
+      message: Guidebook now defaults to the proper new player page whoops
+  id: 111
+  time: '2026-07-14T19:51:55.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        A very very very very very scary flipped mirrored reality may enter this
+        world with a 10% chance.
+    - type: Tweak
+      message: Camera rotation binds no longer rotate the camera
+  id: 112
+  time: '2026-07-15T21:33:20.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Doafters now have a smooth fadein and fadeout anim
+  id: 113
+  time: '2026-07-15T23:36:34.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Stagehand vote container will now be invisible if there are no active
+        votes
+  id: 114
+  time: '2026-07-16T14:26:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        A base level of reverb has been applied to positional sounds, will be
+        more dynamic based on room size in the future
+  id: 115
+  time: '2026-07-16T16:25:55.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: >-
+        The marauder secret identity has been reworked. They now start with an
+        energy sword, stimulant medipens, and armor.
+    - type: Tweak
+      message: The syndicate bomb is no longer defusable.
+    - type: Tweak
+      message: >-
+        Subverters can have a chance for their pistol to be replaced with a
+        revolver or double-barrel shotgun.
+    - type: Tweak
+      message: Subverter and Demolitionist are now much more common.
+    - type: Tweak
+      message: >-
+        Machines can no longer repeatedly be sabotaged after the objective has
+        been completed.
+  id: 116
+  time: '2026-07-18T05:33:21.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Removed useless viewport width slider.
+  id: 117
+  time: '2026-07-18T13:37:18.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Joining into a round as a stagehand now plays the curtain animation.
+  id: 118
+  time: '2026-07-18T13:37:21.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: 'A new job has arrived on the station: the Ratman.'
+    - type: Add
+      message: >-
+        The Ratman spawns on the station, has a random set of doors that lead
+        into areas around the station, a locker full of valuables, and a small
+        amount of nightvision.
+    - type: Add
+      message: Yes girls can be ratmen too. And nonbineys
+    - type: Tweak
+      message: Arrivals time is 30sec shorter
+  id: 119
+  time: '2026-07-18T14:12:20.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Bodies now produce miasma immediately after dying.
+    - type: Add
+      message: Blood puddles now produce small amounts of miasma.
+    - type: Add
+      message: Miasma buildup now creates dirt decals and pests.
+    - type: Add
+      message: >-
+        Miasma buildup can now create miasma clouds, which can be protected
+        against with a bio suit.
+  id: 120
+  time: '2026-07-18T19:28:54.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Resprited puddles and added unique sprites for certain liquids.
+  id: 121
+  time: '2026-07-18T19:50:18.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Remove
+      message: temporarily removed vitals monitors
+  id: 122
+  time: '2026-07-18T21:30:05.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Adjusted wording on mercenary objective to be more clear.
+    - type: Tweak
+      message: Adjusted boards inside of tech storage.
+    - type: Fix
+      message: Fixed rapidly spinning when removing projectiles embedded into yourself.
+  id: 123
+  time: '2026-07-18T21:36:17.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Remove
+      message: >-
+        You can no longer click tables to place items on them, use drop keybind
+        instead (accidentally doing this was really annoying with pickup time)
+    - type: Tweak
+      message: Being on fire is now much more dangerous
+    - type: Tweak
+      message: >-
+        Speed modifiers from damage / clothing / status effects etc across the
+        board have been made less oppressive
+    - type: Fix
+      message: Nuke is no longer unanchorable
+    - type: Tweak
+      message: Traitors now teleport away from the nuke 3 seconds before detonation
+    - type: Tweak
+      message: >-
+        Everyone now sees the nuke cinematic, not just people on the station
+        when it detonates
+    - type: Tweak
+      message: Vent clog event now targets every vent. Have fun
+    - type: Tweak
+      message: >-
+        Radstorm end phase now covers the entire station in green rather than
+        just changing light colors
+    - type: Tweak
+      message: Spray particles no longer spin
+  id: 124
+  time: '2026-07-18T21:56:34.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Being cuffed and taking environmental damage now counts as taking damage
+        from whoever cuffed you
+    - type: Tweak
+      message: Resisting out of cuffs now has a much longer delay between attempts
+  id: 125
+  time: '2026-07-18T22:07:22.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Fix
+      message: surgery beds can be powered once again.
+  id: 126
+  time: '2026-07-19T22:04:31.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Oculine has a new recipe and starts in the smartfridge
+    - type: Tweak
+      message: Baseball bat is now 2x4
+    - type: Remove
+      message: Removed some Tragedian themes
+  id: 127
+  time: '2026-07-19T22:05:18.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Crewmember identity much less common
+  id: 128
+  time: '2026-07-19T22:09:41.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Add
+      message: New Subverter-themed masquarade
+  id: 129
+  time: '2026-07-20T06:54:08.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: The piano in the lobby now has DAW capabilities
+    - type: Tweak
+      message: >-
+        Fully-random masquerades no longer roll (the current ones are already
+        plenty random)
+    - type: Fix
+      message: Syndiebomb can now be armed again
+    - type: Fix
+      message: Buttons are no longer breakable
+    - type: Fix
+      message: >-
+        Avenger objective now counts as complete (but still 50% progress) even
+        if the target is in crit
+  id: 130
+  time: '2026-07-20T22:23:03.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Adjusted miasma clouds and pests to spawn less frequently.
+    - type: Tweak
+      message: Made miasma clouds easier to dodge and circle around.
+    - type: Fix
+      message: >-
+        Fixed issues where miasma clouds would go through walls, chase down
+        random animals, and beat on dead pests.
+    - type: Tweak
+      message: >-
+        Greatly increased the amount of miasma created from bodies, blood, and
+        vomit.
+  id: 131
+  time: '2026-07-21T00:28:58.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: >-
+        Added more unique reagent puddle sprites. Things will now more properly
+        reflect their shiny/powdery/etc. nature.
+  id: 132
+  time: '2026-07-21T05:43:15.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Add
+      message: New Tragedian-themed masquerade
+    - type: Tweak
+      message: Apple seeds are now in the botany seed vendor
+    - type: Remove
+      message: Removed the Red Carpet masquerade (the one with all the VIPs)
+  id: 133
+  time: '2026-07-21T05:49:43.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Failing to roll one of your preferred jobs will now assign you to a
+        random job instead of always defaulting to assistant.
+  id: 134
+  time: '2026-07-21T05:53:52.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Occluded sounds are now quieter and more consistent
+    - type: Tweak
+      message: Removed standing state down sound (no more roundstart thunk spam)
+  id: 135
+  time: '2026-07-23T13:14:08.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        The marauder kit has been reverted to the previous version. They now
+        also get two door jammers instead of a knife and grenade, now.
+  id: 136
+  time: '2026-07-23T13:14:54.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Toast now has more biosuit lockers and portable scrubbers
+    - type: Tweak
+      message: >-
+        Removed some of the more annoying warpdrive warp locations that would
+        frequently cause people to get confused /stuck
+  id: 137
+  time: '2026-07-23T13:31:49.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Fixed a bug where duplicates of certain jobs would be assigned as
+        overflow.
+  id: 138
+  time: '2026-07-24T11:06:01.0000000+00:00'
+- author: FyeStance
+  changes:
+    - type: Add
+      message: >-
+        Added the Warp Disciple, a new crew mask that shows devotion to the warp
+        drive by cleaning it.
+  id: 139
+  time: '2026-07-25T02:37:24.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: The world is now populated with decorative magazines and newspapers.
+  id: 140
+  time: '2026-07-25T10:59:27.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added Cryogas, a chilly gas that can convert exposed bodies into
+        Cryohusks.
+    - type: Fix
+      message: >-
+        Swapping jumpsuits and outerclothing will no longer drop PDAs, pocket
+        items, or suit storage tanks onto the ground.
+    - type: Remove
+      message: Removed Frezon.
+  id: 141
+  time: '2026-07-25T11:07:35.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Stagehands are now notified when a subverter chip is used.
+  id: 142
+  time: '2026-07-25T11:12:09.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Arrivals has colder lighting now. Idk im just seein
+    - type: Tweak
+      message: Inflatables can now appear in O2 lockers randomly
+  id: 143
+  time: '2026-07-25T19:42:04.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        The warp drive now has a guidebook. Sorry I may be stupid for not
+        writing this earlier
+    - type: Add
+      message: >-
+        The crew objective now has a final phase, rather than it simply ending
+        when the warp drive is fully charged. Now, the crew must activate all
+        cryptographic nuke terminals (renamed safety override terminals) within
+        a certain timeframe in order to fully activate the warp drive.
+    - type: Add
+      message: >-
+        The radstorm & warp final phase now have associated alert levels and
+        thus status screens.
+    - type: Add
+      message: >-
+        The radstorm & warp drive endings now have cinematics. They are not that
+        good sorry I am not visual arts gifted
+  id: 144
+  time: '2026-07-25T21:05:28.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Cannibal, a new secret identity that can copy a mask from dead
+        bodies.
+  id: 145
+  time: '2026-07-25T21:08:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the Stalker, a new crew secret identity based around choosing
+        targets and making sure they live (or potentially die).
+  id: 146
+  time: '2026-07-25T21:23:04.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: Traitor-related degradation events are now much rarer
+  id: 147
+  time: '2026-07-25T21:39:11.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Tragedian votes now end early if they would otherwise end after the end
+        of the round.
+  id: 148
+  time: '2026-07-25T22:23:46.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: Added Cryojunkie, a new crew mask that revives as a cryohusk upon death.
+  id: 149
+  time: '2026-07-25T22:46:26.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Remove
+      message: Baseball bats are no longer obtainable
+  id: 150
+  time: '2026-07-25T23:34:59.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Remove
+      message: Crewmember identity gone
+  id: 151
+  time: '2026-07-26T03:54:53.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Living bodies and cryojunkies now create stagehand announcements.
+    - type: Fix
+      message: >-
+        Dead bodies getting cryohusked no longer plays death announcements to
+        stagehands.
+    - type: Fix
+      message: >-
+        Phantoms and Cryojunkies no longer play the death animation before doing
+        their behavior.
+  id: 152
+  time: '2026-07-26T14:18:35.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed mispredicting popup when cannibals would try and eat a body.
+    - type: Tweak
+      message: >-
+        Cannibals can now eat the dead bodies of Phantoms in order to copy their
+        secret identity.
+  id: 153
+  time: '2026-07-26T16:29:39.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: Added many more newspaper & magazine articles.
+    - type: Add
+      message: You can now beat the shit out of people with a newspaper.
+  id: 154
+  time: '2026-07-27T21:59:46.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Miasma clouds no longer cause vomiting.
+    - type: Fix
+      message: >-
+        Fixed an issue where the navigation terminal could rapidly spam
+        announcements.
+    - type: Tweak
+      message: Blocked hater from targeting certain secret identities.
+    - type: Fix
+      message: Fixed melee swings being rotated during mirror mode.
+    - type: Tweak
+      message: Reduced chance of mirror mode.
+  id: 155
+  time: '2026-07-28T10:32:17.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Cryojunkies no longer have an objective to transform into a cryohusk.
+    - type: Add
+      message: >-
+        Cryojunkies now get an announcement upon death informing them that their
+        revive is coming soon. 
+    - type: Tweak
+      message: Cryohusks no longer have examine text for nonexistent eyes.
+  id: 156
+  time: '2026-07-28T15:48:18.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Getting hit by melee slows you down less
+  id: 157
+  time: '2026-07-29T15:07:10.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Mouse traps no longer do damage to non-pests.
+  id: 158
+  time: '2026-07-29T15:14:01.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Almost every role now spawns with a generic PDA and backpack
+  id: 159
+  time: '2026-07-29T15:50:19.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Gas masks now passively block various harmful gases when worn.
+    - type: Remove
+      message: Gas masks no longer connect to gas tanks for internals.
+  id: 160
+  time: '2026-07-29T16:56:44.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Leapleechs are now slightly smarter with targeting and pathing to
+        players
+  id: 161
+  time: '2026-07-29T17:41:02.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Add
+      message: >-
+        Certain similar archetypes of weapons now share identical properties.
+        For example, the coroner's scalpel and butcher knife now function
+        identically
+    - type: Add
+      message: The circular saw now penetrates all armor and has snazzy new sounds
+    - type: Add
+      message: >-
+        Welding tools and the electric drill now attack continuously, but have a
+        lower range
+    - type: Add
+      message: The spear now has a longer range but attacks slower
+    - type: Add
+      message: >-
+        The wrench and screwdriver are slightly less awful as weapons (not by
+        much)
+    - type: Add
+      message: Oxygen tanks and fire extinguishers deal a bit more damage
+    - type: Add
+      message: Medkits are now usable as weapons
+    - type: Add
+      message: You can now ignite wooden barricades
+    - type: Tweak
+      message: >-
+        Wooden barricades (and most wooden structures) are now harder to break
+        with most weaponry
+    - type: Tweak
+      message: Lockers and crates are now slightly harder to break with most weaponry
+  id: 162
+  time: '2026-07-29T22:28:09.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Arms Dealer has less caches and by extension, half as many guns
+  id: 163
+  time: '2026-07-30T08:53:24.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Added a new cinematic for Parasite victory.
+    - type: Tweak
+      message: >-
+        Parasites can no longer fail their objectives after they have
+        successfully infected the station.
+    - type: Tweak
+      message: >-
+        Certain objectives will no longer have their progress change after the
+        Radstorm starts. If you protected someone all round, you don't suddenly
+        fail just because the Radstorm came.
+  id: 164
+  time: '2026-08-01T14:30:04.0000000+00:00'
+- author: EmoGarbage404, Flareguy
+  changes:
+    - type: Add
+      message: Skin colors now have more variation.
+  id: 165
+  time: '2026-08-01T15:07:29.0000000+00:00'
+- author: sowelipililimute,mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Certain entities can now crawl through node networks. Right now this
+        includes disposals for monkeys. Crawling through requires you to not be
+        wearing a jumpsuit or backpack, and it makes a bit of noise. If an
+        object is flushed through disposals while a mob is crawling through a
+        pipe, it will slam into them and take the mob with it.
+    - type: Tweak
+      message: >-
+        Your viewcone now fully occludes your surroundings while going through
+        disposals.
+  id: 166
+  time: '2026-08-01T21:07:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Fires now spread slower and produce slightly less smoke.
+  id: 167
+  time: '2026-08-01T22:44:19.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        A new job has been added: the Experiment. This tragic ape is the
+        successful result of the 4th iteration of simian intelligence
+        enhancement experiments, and now they take a spot aboard this station to
+        practice socialization and to learn if primate crewmates can perform
+        tasks like the best of them.
+    - type: Add
+      message: >-
+        The Experiment gets a locker containing either an engineering ID card,
+        med ID card, or security ID card (and corresponding gear).
+    - type: Add
+      message: >-
+        As a monkey, the Experiment can crawl through disposals--as long as they
+        forgo their jumpsuit and backpack temporarily.
+  id: 168
+  time: '2026-08-01T22:46:35.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Removed Demolitionist secret identity.
+  id: 169
+  time: '2026-08-01T22:47:30.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed broken Cryojunkie guidebook.
+    - type: Fix
+      message: NPC monkeys once again move around and attack people.
+    - type: Fix
+      message: Burstworms no longer convert dead people.
+    - type: Tweak
+      message: Increased cooldown on Stalker's target action.
+    - type: Add
+      message: Added an announcement for when sleeper agents activate.
+  id: 170
+  time: '2026-08-02T18:45:16.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Parasites can now do 300 damage before failing their objective
+    - type: Remove
+      message: clf3 and phlog are no more
+  id: 171
+  time: '2026-08-04T21:39:25.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Experiment's disposals crawl now requires them to not have any held
+        items instead of being prohibited from wearing a jumpsuit.
+  id: 172
+  time: '2026-08-04T21:51:50.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Microwaves are no longer a melee weapon
+  id: 173
+  time: '2026-08-04T22:34:33.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Cryogas now only cools the air above a certain mol threshold
+        (corresponds to when its visible)
+    - type: Tweak
+      message: Portable scrubbers are ~7x more powerful
+    - type: Tweak
+      message: Space heaters are ~5-12x more powerful
+    - type: Tweak
+      message: Pulling speed debuff is much lower
+    - type: Tweak
+      message: >-
+        Scrubbers, space heaters, and JR pacmans are 4x faster to
+        anchor/unanchor
+  id: 174
+  time: '2026-08-05T22:12:57.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Brute/burn pouches now contain a bic pill / derma pill instead of an
+        injector
+    - type: Tweak
+      message: >-
+        Self-tending using topicals now takes 10x as long as usual instead of 5x
+        as long
+  id: 175
+  time: '2026-08-06T14:11:35.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Revolver and pistol shots do a little less damage now
+    - type: Tweak
+      message: Pistols have less max firerate
+    - type: Tweak
+      message: Outer armor has 1 less DT
+  id: 176
+  time: '2026-08-06T14:11:51.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Humans can no longer be put on meat spikes.
+  id: 177
+  time: '2026-08-06T14:31:19.0000000+00:00'

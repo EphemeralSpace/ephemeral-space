@@ -2,7 +2,7 @@
     <ESGuideSecretIdentityEmbed SecretIdentity="Mercenary"/>
 
     The Mercenary is a member of the crew who's dead-set on hunting down all masks who are members of other organizations.
-    Unlike the moral [textlink="Vigilante" link="Vigilante"], the Mercenary doesn't care about the actions of who they kill, just who they belong to.
+    They don't care about the actions of who they kill, just what organization they belong to.
 
     <Box>
       <ESGuideObjectiveEmbed Objective="ESObjectiveKillNonCrew"/>

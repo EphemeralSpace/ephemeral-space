@@ -18,10 +18,3 @@
   name: stack-cotton
   icon: { sprite: /Textures/Objects/Materials/materials.rsi, state: cotton }
   spawn: MaterialCotton1
-
-- type: stack
-  parent: BaseMediumStack
-  id: Pyrotton
-  name: stack-pyrotton
-  icon: { sprite: /Textures/Objects/Materials/materials.rsi, state: pyrotton }
-  spawn: MaterialPyrotton1

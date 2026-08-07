@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESBaseSecretIdentityObjective
+  parent: ESBaseSecretIdentityObjective # it's fine if they die in the radstorm... i dont care...
   id: ESObjectiveTragedianDie
   name: Die
   description: As a true star, end your performance with a fall into the sweet embrace of death.
@@ -34,3 +34,4 @@
     strategy: HighestValue
     multiVote: false
   - type: ESBooleanVote
+  - type: ESEndBeforeRoundEndVote

@@ -31,12 +31,11 @@ public sealed partial class EventHorizonSystem : SharedEventHorizonSystem
     #region Dependencies
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private IMapManager _mapMan = default!;
+    [Dependency] private SharedMapSystem _mapMan = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private SharedContainerSystem _containerSystem = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedTransformSystem _xformSystem = default!;
-    [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private TagSystem _tagSystem = default!;
     // ES START
     [Dependency] private MobStateSystem _mobState = default!;
@@ -269,7 +268,7 @@ public sealed partial class EventHorizonSystem : SharedEventHorizonSystem
 
         var ev = new TilesConsumedByEventHorizonEvent(tiles, gridId, grid, hungry, eventHorizon);
         RaiseLocalEvent(hungry, ref ev);
-        _mapSystem.SetTiles(gridId, grid, tiles);
+        _mapMan.SetTiles(gridId, grid, tiles);
     }
 
     /// <summary>
@@ -296,7 +295,7 @@ public sealed partial class EventHorizonSystem : SharedEventHorizonSystem
     /// </summary>
     public bool CanConsumeTile(Entity<EventHorizonComponent> hungry, TileRef tile, Entity<MapGridComponent> grid)
     {
-        foreach (var blockingEntity in _mapSystem.GetAnchoredEntities(grid, tile.GridIndices))
+        foreach (var blockingEntity in _mapMan.GetAnchoredEntities(grid, tile.GridIndices))
         {
             if (!CanConsumeEntity(hungry, blockingEntity, hungry.Comp))
                 return false;
@@ -329,7 +328,7 @@ public sealed partial class EventHorizonSystem : SharedEventHorizonSystem
         foreach (var grid in grids)
         {
             // TODO: Remover grid.Owner when this iterator returns entityuids as well.
-            AttemptConsumeTiles(uid, _mapSystem.GetTilesIntersecting(grid.Owner, grid.Comp, circle), grid, grid, eventHorizon);
+            AttemptConsumeTiles(uid, _mapMan.GetTilesIntersecting(grid.Owner, grid.Comp, circle), grid, grid, eventHorizon);
         }
     }
 

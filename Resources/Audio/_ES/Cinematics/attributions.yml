@@ -1,0 +1,19 @@
+- files: ["explosion_nuke.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "tgstation explosionfar.ogg at 9d3be3199d0a9fe717bf29ced5cac013e067e59f, modified for timing by mirrorcult"
+  source: https://github.com/tgstation/tgstation/tree/9d3be3199d0a9fe717bf29ced5cac013e067e59f
+
+- files: ["warp_out.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "created by mirrorcult with bg noise from freesound"
+  source: https://freesound.org/people/leonelmail/sounds/328381/
+
+- files: ["radstorm_dirge.ogg"]
+  license: "CC0-1.0"
+  copyright: "created by younoise on freesound why is this so goated. then edited and eq'd by mirrorcult"
+  source: https://freesound.org/people/younoise/sounds/711782/
+
+- files: ["parasite.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "created by EmoGarbage, assembled from samples maggoty 2.wav by thatjeffcarter on freesound.org, Four_Voices_Whispering_6_wEcho.wav by geoneo0 on freesound.org, Alien is crawling-002.wav by tosha73 on freesound.org, and Organ Sting by nomiqbomi on freesound.org."
+  source: https://freesound.org/people/thatjeffcarter/sounds/177563/

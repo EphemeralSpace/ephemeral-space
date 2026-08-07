@@ -6,6 +6,7 @@ using Content.Shared.Database;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
+using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.PDA;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
@@ -23,7 +24,7 @@ public abstract partial class SharedIdCardSystem : EntitySystem
     [Dependency] private SharedAccessSystem _access = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private InventorySystem _inventorySystem = default!;
-    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private NameModifierSystem _nameModifier = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     // CCVar.
@@ -35,6 +36,7 @@ public abstract partial class SharedIdCardSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<IdCardComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<IdCardComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
         SubscribeLocalEvent<TryGetIdentityShortInfoEvent>(OnTryGetIdentityShortInfo);
         SubscribeLocalEvent<EntityRenamedEvent>(OnRename);
 
@@ -57,7 +59,16 @@ public abstract partial class SharedIdCardSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, IdCardComponent id, MapInitEvent args)
     {
-        UpdateEntityName(uid, id);
+        _nameModifier.RefreshNameModifiers(uid);
+    }
+
+    private void OnRefreshNameModifiers(Entity<IdCardComponent> ent, ref RefreshNameModifiersEvent args)
+    {
+        if (!string.IsNullOrWhiteSpace(ent.Comp.FullName))
+            args.AddModifier("access-id-card-component-owner-full-name", extraArgs: ("fullName", ent.Comp.FullName));
+
+        if (!string.IsNullOrWhiteSpace(ent.Comp.LocalizedJobTitle))
+            args.AddModifier("access-id-card-component-owner-job-title", extraArgs: ("job", ent.Comp.LocalizedJobTitle));
     }
 
     private void OnTryGetIdentityShortInfo(TryGetIdentityShortInfoEvent ev)
@@ -153,7 +164,7 @@ public abstract partial class SharedIdCardSystem : EntitySystem
             return true;
         id.LocalizedJobTitle = jobTitle;
         Dirty(uid, id);
-        UpdateEntityName(uid, id);
+        _nameModifier.RefreshNameModifiers(uid);
 
         if (player != null)
         {
@@ -247,7 +258,7 @@ public abstract partial class SharedIdCardSystem : EntitySystem
             return true;
         id.FullName = fullName;
         Dirty(uid, id);
-        UpdateEntityName(uid, id);
+        _nameModifier.RefreshNameModifiers(uid);
 
         if (player != null)
         {
@@ -255,29 +266,6 @@ public abstract partial class SharedIdCardSystem : EntitySystem
                 $"{ToPrettyString(player.Value):player} has changed the name of {ToPrettyString(uid):entity} to {fullName} ");
         }
         return true;
-    }
-
-    /// <summary>
-    /// Changes the name of the id's owner.
-    /// </summary>
-    /// <remarks>
-    /// If either <see cref="FullName"/> or <see cref="JobTitle"/> is empty, it's replaced by placeholders.
-    /// If both are empty, the original entity's name is restored.
-    /// </remarks>
-    private void UpdateEntityName(EntityUid uid, IdCardComponent? id = null)
-    {
-        if (!Resolve(uid, ref id))
-            return;
-
-        var jobSuffix = string.IsNullOrWhiteSpace(id.LocalizedJobTitle) ? string.Empty : $" ({id.LocalizedJobTitle})";
-
-        var val = string.IsNullOrWhiteSpace(id.FullName)
-            ? Loc.GetString(id.NameLocId,
-                ("jobSuffix", jobSuffix))
-            : Loc.GetString(id.FullNameLocId,
-                ("fullName", id.FullName),
-                ("jobSuffix", jobSuffix));
-        _metaSystem.SetEntityName(uid, val);
     }
 
     private static string ExtractFullTitle(IdCardComponent idCardComponent)

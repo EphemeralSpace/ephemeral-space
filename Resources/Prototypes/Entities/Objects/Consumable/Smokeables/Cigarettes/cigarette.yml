@@ -231,21 +231,6 @@
             Quantity: 10
 
 - type: entity
-  id: CigaretteFrezon
-  parent: SoakedCigarette
-  name: Atmospheric Adventure
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-          - ReagentId: Nicotine
-            Quantity: 10
-          - ReagentId: Frezon
-            Quantity: 10
-
-- type: entity
   id: CigaretteCapsaicinOil
   parent: SoakedCigarette
   name: Chilly P
@@ -333,21 +318,6 @@
             Quantity: 10
           - ReagentId: RobustHarvest
             Quantity: 10
-
-- type: entity
-  id: CigarettePhlogiston
-  parent: SoakedCigarette
-  name: Dragon Dating Sim
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      smokable:
-        maxVol: 40
-        reagents:
-        - ReagentId: Nicotine
-          Quantity: 10
-        - ReagentId: Phlogiston
-          Quantity: 10
 
 - type: entity
   id: CigaretteBanana

@@ -1,19 +1,28 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server._ES.Announcements;
+using Content.Server._ES.Mind;
+using Content.Server._ES.Objectives;
 using Content.Server._ES.Radio;
 using Content.Server._ES.Radstorm.Components;
+using Content.Server.AlertLevel;
+using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.RoundEnd;
+using Content.Server.Station.Systems;
+using Content.Shared._DV.Screens;
 using Content.Shared._ES.CCVar;
+using Content.Shared._ES.Cinematic;
+using Content.Shared._ES.Core.Timer;
 using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Light.Components;
+using Content.Shared.Light.EntitySystems;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
@@ -31,18 +40,48 @@ namespace Content.Server._ES.Radstorm;
 /// </summary>
 public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRadstormRoundEndRuleComponent>
 {
+    [Dependency] private AlertLevelSystem _alert = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private BrainDamageSystem _brainDamage = default!;
+    [Dependency] private DeviceNetworkSystem _devicenet = default!;
     [Dependency] private ESAnnouncementSystem _chat = default!;
+    [Dependency] private ESCinematicSystem _cinematic = default!;
+    [Dependency] private ESEntityTimerSystem _timer = default!;
+    [Dependency] private StationSystem _station = default!;
     [Dependency] private DamageableSystem _damage = default!;
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;
-    [Dependency] private PointLightSystem _pointlight = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedRoofSystem _roof = default!;
+    [Dependency] private ESObjectiveSystem _objective = default!;
+
+    private static readonly TimeSpan EndRoundDuration = TimeSpan.FromSeconds(13);
+    private static readonly ProtoId<ESCinematicPrototype> Cinematic = "RadstormCinematic";
+    private static readonly string AlertLevel = "gamma"; // why are these not. like. whatever
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<AutoGhostAttemptEvent>(OnAutoGhost);
+    }
+
+    private void OnAutoGhost(ref AutoGhostAttemptEvent ev)
+    {
+        // cancel autoghost if radstorm has started since we dont want people dying and going back to the lobby if they died from
+        // radstorm
+        // the round will restart anyway
+        var query = EntityQueryEnumerator<ESRadstormRoundEndRuleComponent>();
+        while (query.MoveNext(out var uid, out var radstorm))
+        {
+            if (RadstormStarted((uid, radstorm)))
+                ev.Cancelled = true;
+        }
+    }
 
     protected override void Started(EntityUid uid,
         ESRadstormRoundEndRuleComponent component,
@@ -66,6 +105,8 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
         component.RadstormTimeRemaining = TimeSpan.FromMinutes(randomMins);
         component.RadstormDuration = TimeSpan.FromMinutes(randomMins);
         Log.Info($"Picked {randomMins} minutes into the round as the start time for the radstorm.");
+
+        UpdateScreenTimers((uid, component), component.RadstormTimeRemaining);
     }
 
     protected override void ActiveTick(EntityUid uid, ESRadstormRoundEndRuleComponent component, GameRuleComponent gameRule, float frameTime)
@@ -73,7 +114,7 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
         base.ActiveTick(uid, component, gameRule, frameTime);
 
         // can this even happen? idr (this is mostly so it doesnt try to end round twice)
-        if (_ticker.RunLevel != GameRunLevel.InRound)
+        if (_ticker.RunLevel != GameRunLevel.InRound || component.CinematicPlayed)
             return;
 
         if (_timing.CurTime >= component.NextUpdateTime)
@@ -88,6 +129,9 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
             && _timing.CurTime >= component.RadstormNextDamageTickTime)
         {
             component.RadstormNextDamageTickTime = _timing.CurTime + TimeSpan.FromSeconds(1);
+
+            // Freeze all objectives
+            _objective.FreezeObjectives<ESRadstormFreezeObjectiveComponent>();
 
             // this should probably not be bounded to mobstate and instead be its own thing but whatever
             var killQuery = EntityQueryEnumerator<MobStateComponent, DamageableComponent, TransformComponent>();
@@ -122,7 +166,17 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
 
         if (allDead)
         {
-            _roundEnd.EndRound();
+            var filter = Filter.Broadcast();
+            var cinematic = ProtoMan.Index(Cinematic);
+            _cinematic.PlayCinematic(Cinematic, filter);
+            _timer.SpawnMethodTimer(cinematic.Length - EndRoundDuration,
+                () =>
+                {
+                    _roundEnd.EndRound(EndRoundDuration);
+                });
+
+            component.CinematicPlayed = true;
+            _map.SetPaused(mapUid, true);
             return;
         }
 
@@ -164,22 +218,24 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
             Dirty(map, mapLight);
         }
 
-        // todo this is silly jank do it better like with postprocess etc
-        // but i just want some minor juice for now
-        if (phase.ForceStationLightColor != null)
+        if (phase.RemoveGridRoof)
         {
-            var query = EntityQueryEnumerator<PoweredLightComponent, TransformComponent>();
-            while (query.MoveNext(out var uid, out _, out var xform))
+            foreach (var grid in _map.GetAllGrids(_ticker.DefaultMap))
             {
-                if (xform.MapID != _ticker.DefaultMap)
-                    continue;
-
-                _pointlight.SetColor(uid, phase.ForceStationLightColor.Value);
+                // this is kinda inefficient but like idk
+                var enumerator = _map.GetAllTilesEnumerator(grid.Owner, grid.Comp, ignoreEmpty: true);
+                while (enumerator.MoveNext(out var tile))
+                {
+                    _roof.SetRoof((grid.Owner, grid.Comp), tile.Value.GridIndices, false);
+                }
             }
         }
 
         if (phase.SpaceDangerous)
             comp.SpaceDangerous = true;
+
+        if (phase.SetAlertLevel && _station.GetStationInMap(_ticker.DefaultMap) is { } station)
+            _alert.SetLevel(station, AlertLevel, false, false, true, true);
 
         phase.Completed = true;
     }
@@ -206,6 +262,23 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
         }
 
         throw new Exception("Phase has no valid start condition!");
+    }
+
+    public void UpdateScreenTimers(Entity<ESRadstormRoundEndRuleComponent> ent, TimeSpan newTime)
+    {
+        // Show timer on screen
+        if (!TryComp<DeviceNetworkComponent>(ent, out var netComp))
+            return;
+
+        (string?, string?) text = (Loc.GetString("es-radstorm-screen-line-1"), null);
+        var payload = new NetworkPayload
+        {
+            [DVScreenPackets.Text] = text,
+            [DVScreenPackets.Content] = DVScreenContent.GenericTargetTime,
+            [DVScreenPackets.Time] = newTime,
+        };
+
+        _devicenet.QueuePacket(ent, null, payload, netComp.TransmitFrequency, device: netComp);
     }
 
     private float GetRadstormSpeedMultiplier()

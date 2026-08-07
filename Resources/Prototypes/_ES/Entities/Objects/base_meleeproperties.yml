@@ -1,0 +1,125 @@
+# Melee Properties
+# Swing Speed
+- type: entity
+  id: MeleeSwingSpeedContinuous
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    attackRate: 6
+    autoAttack: true
+    angle: 0
+    wideAnimationRotation: -90
+
+- type: entity
+  id: MeleeSwingSpeedVeryFast
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    attackRate: 1.5
+
+- type: entity
+  id: MeleeSwingSpeedFast
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    attackRate: 1.25
+
+- type: entity
+  id: MeleeSwingSpeedSlow
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    attackRate: 0.75
+
+- type: entity
+  id: MeleeSwingSpeedVerySlow
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    attackRate: 0.5
+
+# Range
+- type: entity
+  id: MeleeLongRange
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    range: 1.75
+
+- type: entity
+  id: MeleeShortRange
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    range: 1
+
+# Weapon Types
+# Blunt
+- type: entity
+  parent: MeleeSwingSpeedSlow
+  id: BaseMeleeAwfulBlunt # mini extinguisher, small oxygen tanks. your fists are better then this
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: 45
+    angle: 45
+    swingLeft: false
+    soundHit:
+      path: /Audio/Effects/weak_hit1.ogg
+    damage:
+      types:
+        Blunt: 3
+
+- type: entity
+  parent: MeleeSwingSpeedVerySlow
+  id: BaseMeleeCylindrical # fire extinguisher, large oxygen tanks
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: 45
+    angle: 40
+    swingLeft: false
+    soundHit:
+      path: /Audio/Weapons/smash.ogg
+    damage:
+      types:
+        Blunt: 13
+  - type: Tool
+    qualities:
+    - Rolling
+    speedModifier: 0.6 # fairly unwieldy but nice round surface
+
+- type: entity
+  id: BaseMeleeBluntContainer # briefcases and medkits
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5 # important threshold, unable to deal damage to items with base structural deflection
+  - type: StaminaDamageOnHit
+    damage: 7
+
+# Slash
+- type: entity
+  parent: MeleeSwingSpeedVeryFast
+  id: BaseMeleeKnife
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: 135
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    damage:
+      types:
+        Slash: 10 # 15 slash dps
+
+- type: entity
+  parent: BaseMeleeKnife
+  id: BaseMeleeKnifeImproved # coroners scalpel, butcher knife
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 13

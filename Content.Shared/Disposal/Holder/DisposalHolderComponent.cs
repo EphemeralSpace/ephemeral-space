@@ -170,3 +170,10 @@ public record struct GetDisposalsNextDirectionEvent(Entity<DisposalHolderCompone
     /// </summary>
     public bool Handled;
 }
+
+/// <summary>
+/// Raised directed on a disposals tube when a holder enters it.
+/// </summary>
+/// <param name="Holder">The disposal holder.</param>
+[ByRefEvent]
+public record struct DisposalTubeHolderEntered(Entity<DisposalHolderComponent> Holder);

@@ -1,0 +1,4 @@
+- type: accessLevel
+  id: Ratman
+  name: id-card-access-level-ratman
+  canAddToIdCard: false

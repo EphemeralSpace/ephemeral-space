@@ -10,6 +10,7 @@
   color: "#c4f5ff"
   boilingPoint: -183.0
   meltingPoint: -218.4
+  puddleSpriteSet: Acid
   metabolisms:
     Poison:
       effects:
@@ -94,6 +95,7 @@
   desc: reagent-desc-plasma
   physicalDesc: reagent-physical-desc-gaseous
   flavor: bitter
+  puddleSpriteSet: Acid
   color: "#7e009e"
   recognizable: true
   boilingPoint: -127.3 # Random values picked between the actual values for CO2 and O2
@@ -175,6 +177,7 @@
   desc: reagent-desc-carbon-dioxide
   physicalDesc: reagent-physical-desc-odorless
   flavor: bitter
+  puddleSpriteSet: Acid
   color: "#66ff33"
   metabolisms:
     Poison:
@@ -233,6 +236,7 @@
   name: reagent-name-nitrogen
   desc: reagent-desc-nitrogen
   physicalDesc: reagent-physical-desc-gaseous
+  puddleSpriteSet: Acid
   flavor: bitter
   color: "#a1e1ff"
   boilingPoint: -195.8
@@ -256,7 +260,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
         ratios:
-          Ammonia: 1.0
+          Miasma: 1.0
           Nitrogen: -1.0
       - !type:ModifyLungGas
         conditions:
@@ -272,6 +276,7 @@
   desc: reagent-desc-nitrous-oxide
   physicalDesc: reagent-physical-desc-gaseous
   flavor: bitter
+  puddleSpriteSet: Acid
   color: "#5d88c9"
   boilingPoint: -88
   meltingPoint: -90
@@ -352,12 +357,12 @@
             Poison: 0.25
 
 - type: reagent
-  id: Frezon
-  name: reagent-name-frezon
-  desc: reagent-desc-frezon
-  physicalDesc: reagent-physical-desc-gaseous
-  flavor: bitter
-  color: "#3a758c"
+  id: Cryogas
+  name: reagent-name-cryogas
+  desc: reagent-desc-cryogas
+  physicalDesc: reagent-physical-desc-crystalline
+  flavor: cold
+  color: "#b3eaff"
   boilingPoint: -195.8
   meltingPoint: -210.0
   metabolisms:
@@ -367,25 +372,7 @@
         ignoreResistances: true
         damage:
           types:
-            Cellular: 0.5
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectSeeingRainbow
-        type: Add
-        time: 15
-      - !type:Drunk
-        boozePower: 15
-      - !type:PopupMessage
-        type: Local
-        messages: [ "frezon-lungs-cold" ]
-        probability: 0.1
-        minScale: 1
-      - !type:PopupMessage
-        type: Local
-        visualType: Medium
-        messages: [ "frezon-euphoric" ]
-        probability: 0.1
-        conditions:
-        minScale: 2
+            Cold: 0.5
     Gas:
       effects:
       - !type:HealthChange
@@ -393,23 +380,9 @@
         ignoreResistances: true
         damage:
           types:
-            Cellular: 0.05
-      - !type:ModifyStatusEffect
-        minScale: 1
-        effectProto: StatusEffectSeeingRainbow
-        type: Add
-        time: 500
-      - !type:Drunk
-        boozePower: 500
-        minScale: 1
+            Cold: 0.05
       - !type:PopupMessage
         type: Local
         messages: [ "frezon-lungs-cold" ]
         probability: 0.1
-        minScale: 1
-      - !type:PopupMessage
-        type: Local
-        visualType: Medium
-        messages: [ "frezon-euphoric" ]
-        probability: 0.1
-        minScale: 1
+        minScale: 0.5

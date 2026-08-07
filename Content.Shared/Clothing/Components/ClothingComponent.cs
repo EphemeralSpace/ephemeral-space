@@ -90,11 +90,9 @@ public sealed partial class ClothingComponent : Component
     /// <summary>
     /// Only works when EquipDelay or UnequipDelay > 0.
     /// Prevents clothing from being put on or taken off while moving.
-    /// Some clothing can logically be put on while running (hats),
-    /// while other types of clothing may require stopping (shoes, hard suits).
     /// </summary>
     [DataField]
-    public bool EquipWhileMoving = false;
+    public bool EquipWhileMoving = true;
 
     /// <summary>
     /// Offset for the strip time for an entity with this component.

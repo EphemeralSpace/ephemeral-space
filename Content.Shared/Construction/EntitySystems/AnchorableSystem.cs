@@ -24,7 +24,6 @@ namespace Content.Shared.Construction.EntitySystems;
 
 public sealed partial class AnchorableSystem : EntitySystem
 {
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private PullingSystem _pulling = default!;
@@ -119,18 +118,23 @@ public sealed partial class AnchorableSystem : EntitySystem
         if (args.Cancelled || args.Used is not { } used)
             return;
 
-        var xform = Transform(uid);
+        UnanchorEntity((uid, component), args.User, used);
+    }
 
-        RaiseLocalEvent(uid, new BeforeUnanchoredEvent(args.User, used));
-        _transformSystem.Unanchor(uid, xform);
-        RaiseLocalEvent(uid, new UserUnanchoredEvent(args.User, used));
+    public void UnanchorEntity(Entity<AnchorableComponent> ent, EntityUid user, EntityUid used)
+    {
+        var xform = Transform(ent);
 
-        _popup.PopupEntity(Loc.GetString("anchorable-unanchored"), uid, args.User);
+        RaiseLocalEvent(ent, new BeforeUnanchoredEvent(user, used));
+        _transformSystem.Unanchor(ent, xform);
+        RaiseLocalEvent(ent, new UserUnanchoredEvent(user, used));
+
+        _popup.PopupEntity(Loc.GetString("anchorable-unanchored"), ent, user);
 
         _adminLogger.Add(
             LogType.Unanchor,
             LogImpact.Low,
-            $"{ToPrettyString(args.User):user} unanchored {ToPrettyString(uid):anchored} using {ToPrettyString(used):using}"
+            $"{ToPrettyString(user):user} unanchored {ToPrettyString(ent):anchored} using {ToPrettyString(used):using}"
         );
     }
 
@@ -139,11 +143,16 @@ public sealed partial class AnchorableSystem : EntitySystem
         if (args.Cancelled || args.Used is not { } used)
             return;
 
-        var xform = Transform(uid);
-        if (TryComp<PhysicsComponent>(uid, out var anchorBody) &&
+        AnchorEntity((uid, component), args.User, used);
+    }
+
+    public void AnchorEntity(Entity<AnchorableComponent> ent, EntityUid user, EntityUid used)
+    {
+        var xform = Transform(ent);
+        if (TryComp<PhysicsComponent>(ent, out var anchorBody) &&
             !TileFree(xform.Coordinates, anchorBody))
         {
-            _popup.PopupEntity(Loc.GetString("anchorable-occupied"), uid, args.User);
+            _popup.PopupEntity(Loc.GetString("anchorable-occupied"), ent, user);
             return;
         }
 
@@ -151,38 +160,38 @@ public sealed partial class AnchorableSystem : EntitySystem
         var rot = xform.LocalRotation;
         xform.LocalRotation = Math.Round(rot / (Math.PI / 2)) * (Math.PI / 2);
 
-        if (TryComp<PullableComponent>(uid, out var pullable) && pullable.Puller != null)
+        if (TryComp<PullableComponent>(ent, out var pullable) && pullable.Puller != null)
         {
-            _pulling.TryStopPull(uid, pullable);
+            _pulling.TryStopPull(ent, pullable);
         }
 
         // TODO: Anchoring snaps rn anyway!
-        if (component.Snap)
+        if (ent.Comp.Snap)
         {
-            var coordinates = xform.Coordinates.SnapToGrid(EntityManager, _mapManager);
+            var coordinates = xform.Coordinates.SnapToGrid(EntityManager);
 
-            if (AnyUnstackable(uid, coordinates))
+            if (AnyUnstackable(ent, coordinates))
             {
-                _popup.PopupEntity(Loc.GetString("construction-step-condition-no-unstackable-in-tile"), uid, args.User);
+                _popup.PopupEntity(Loc.GetString("construction-step-condition-no-unstackable-in-tile"), ent, user);
                 return;
             }
 
-            _transformSystem.SetCoordinates(uid, coordinates);
+            _transformSystem.SetCoordinates(ent, coordinates);
         }
 
-        RaiseLocalEvent(uid, new BeforeAnchoredEvent(args.User, used));
+        RaiseLocalEvent(ent, new BeforeAnchoredEvent(user, used));
 
         if (!xform.Anchored)
-            _transformSystem.AnchorEntity(uid, xform);
+            _transformSystem.AnchorEntity(ent, xform);
 
-        RaiseLocalEvent(uid, new UserAnchoredEvent(args.User, used));
+        RaiseLocalEvent(ent, new UserAnchoredEvent(user, used));
 
-        _popup.PopupEntity(Loc.GetString("anchorable-anchored"), uid, args.User);
+        _popup.PopupEntity(Loc.GetString("anchorable-anchored"), ent, user);
 
         _adminLogger.Add(
             LogType.Anchor,
             LogImpact.Low,
-            $"{ToPrettyString(args.User):user} anchored {ToPrettyString(uid):anchored} using {ToPrettyString(used):using}"
+            $"{ToPrettyString(user):user} anchored {ToPrettyString(ent):anchored} using {ToPrettyString(used):using}"
         );
     }
 

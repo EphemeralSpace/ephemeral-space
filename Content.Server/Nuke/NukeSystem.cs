@@ -27,7 +27,6 @@ public sealed partial class NukeSystem : EntitySystem
 {
     [Dependency] private AlertLevelSystem _alertLevel = default!;
     [Dependency] private ESAnnouncementSystem _chatSystem = default!;
-    [Dependency] private ExplosionSystem _explosions = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] private NavMapSystem _navMap = default!;
@@ -68,7 +67,6 @@ public sealed partial class NukeSystem : EntitySystem
         SubscribeLocalEvent<NukeComponent, AnchorStateChangedEvent>(OnAnchorChanged);
 
         // ui events
-        SubscribeLocalEvent<NukeComponent, NukeAnchorMessage>(OnAnchorButtonPressed);
         SubscribeLocalEvent<NukeComponent, NukeArmedMessage>(OnArmButtonPressed);
         SubscribeLocalEvent<NukeComponent, NukeKeypadMessage>(OnKeypadButtonPressed);
         SubscribeLocalEvent<NukeComponent, NukeKeypadClearMessage>(OnClearButtonPressed);
@@ -174,57 +172,6 @@ public sealed partial class NukeSystem : EntitySystem
     #endregion
 
     #region UI Events
-
-    private async void OnAnchorButtonPressed(EntityUid uid, NukeComponent component, NukeAnchorMessage args)
-    {
-        // malicious client sanity check
-        if (component.Status == NukeStatus.ARMED)
-            return;
-
-        // Nuke has to have the disk in it to be moved
-        if (!component.DiskSlot.HasItem)
-        {
-            var msg = Loc.GetString("nuke-component-cant-anchor-toggle");
-            _popups.PopupEntity(msg, uid, args.Actor, PopupType.MediumCaution);
-            return;
-        }
-
-        // manually set transform anchor (bypassing anchorable)
-        // todo: it will break pullable system
-        var xform = Transform(uid);
-        if (xform.Anchored)
-        {
-            _transform.Unanchor(uid, xform);
-            _itemSlots.SetLock(uid, component.DiskSlot, true);
-        }
-        else
-        {
-/* ES START
-            // Disable the anchoring check for nukes
-            if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
-                return;
-
-            var worldPos = _transform.GetWorldPosition(xform);
-
-            foreach (var tile in _map.GetTilesIntersecting(xform.GridUid.Value, grid, new Circle(worldPos, component.RequiredFloorRadius), false))
-            {
-                if (!_turf.IsSpace(tile))
-                    continue;
-
-                var msg = Loc.GetString("nuke-component-cant-anchor-floor");
-                _popups.PopupEntity(msg, uid, args.Actor, PopupType.MediumCaution);
-
-                return;
-            }
-ES END */
-
-            _transform.SetCoordinates(uid, xform, xform.Coordinates.SnapToGrid());
-            _transform.AnchorEntity(uid, xform);
-            _itemSlots.SetLock(uid, component.DiskSlot, false);
-        }
-
-        UpdateUserInterface(uid, component);
-    }
 
     private void OnEnterButtonPressed(EntityUid uid, NukeComponent component, NukeKeypadEnterMessage args)
     {
@@ -337,6 +284,13 @@ ES END */
             _sound.StopStationEventMusic(uid, StationEventMusicType.Nuke);
             nuke.PlayedAlertSound = true;
             UpdateAppearance(uid, nuke);
+        }
+
+        if (nuke.RemainingTime <= nuke.PreExplosionTime && !nuke.RaisedPreExplosion)
+        {
+            nuke.RaisedPreExplosion = true;
+            var ev = new ESNukePreExplosionEvent();
+            RaiseLocalEvent(ref ev);
         }
 
         if (nuke.RemainingTime <= 0)
@@ -604,19 +558,15 @@ ES END */
 
         component.Exploded = true;
 
-        _explosions.QueueExplosion(uid,
-            component.ExplosionType,
-            component.TotalIntensity,
-            component.IntensitySlope,
-            component.MaxIntensity);
-
         RaiseLocalEvent(new NukeExplodedEvent()
         {
             OwningGrid = transform.GridUid,
         });
 
+        var ev = new ESNukeAfterExplodedEvent(transform.GridUid);
+        RaiseLocalEvent(ref ev);
+
         _sound.StopStationEventMusic(uid, StationEventMusicType.Nuke);
-        Del(uid);
     }
 
     /// <summary>
@@ -686,6 +636,18 @@ public sealed class NukeExplodedEvent : EntityEventArgs
 {
     public EntityUid? OwningGrid;
 }
+
+/// <summary>
+/// Event raised a few seconds before the nuke explodes.
+/// </summary>
+[ByRefEvent]
+public readonly record struct ESNukePreExplosionEvent;
+
+/// <summary>
+/// Event raised after <see cref="NukeExplodedEvent"/> is broadcast but before the nuke is deleted.
+/// </summary>
+[ByRefEvent]
+public readonly record struct ESNukeAfterExplodedEvent(EntityUid? OwningGrid);
 
 public sealed class NukeArmedEvent : EntityEventArgs
 {

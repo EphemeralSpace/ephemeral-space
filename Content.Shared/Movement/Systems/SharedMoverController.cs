@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using Content.Shared._DV.NodeCrawl;
 using Content.Shared.ActionBlocker;
 using Content.Shared.CCVar;
 using Content.Shared.Friction;
@@ -51,6 +52,7 @@ public abstract partial class SharedMoverController : VirtualController
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TagSystem _tags = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private NodeCrawlerMovementSystem _nodeCrawlerMovement = default!; // DeltaV - node crawling
 
     protected EntityQuery<CanMoveInAirComponent> CanMoveInAirQuery;
     protected EntityQuery<FootstepModifierComponent> FootstepModifierQuery;
@@ -268,6 +270,11 @@ public abstract partial class SharedMoverController : VirtualController
         // Get current tile def for things like speed/friction mods
         ContentTileDefinition? tileDef = null;
 
+        // Begin DeltaV Additions - node crawling
+        if (_nodeCrawlerMovement.TryTick((uid, mover, physicsComponent, xform)))
+            return;
+        // End DeltaV Additions
+
         var touching = false;
         // Whether we use tilefriction or not
         if (weightless || inAirHelpless)
@@ -389,13 +396,9 @@ public abstract partial class SharedMoverController : VirtualController
                 _transform.SetLocalRotation(uid, xform.LocalRotation + wishDir.ToWorldAngle() - worldRot, xform);
             }
 
-            // ES START
-            // no footsteps on walk
             if (!weightless && MobMoverQuery.TryGetComponent(uid, out var mobMover) &&
-                mover.Sprinting && !forceWalk &&
                 TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, tileDef: tileDef))
             {
-                // ES END
                 var soundModifier = mover.Sprinting ? InputMoverComponent.SprintingSoundModifier
                     : InputMoverComponent.WalkingSoundModifier;
 

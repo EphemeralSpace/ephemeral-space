@@ -17,9 +17,6 @@
           #command (2)
           ESCaptain: [ 1, 1 ]
           ESStationAdmin: [ 1, 1 ]
-          #service (2)
-          ESBartender: [ 1, 1 ]
-          ESChef: [ 1, 1 ]
           #engineering (4)
           ESAtmosphericTechnician: [ 2, 2 ]
           ESStationEngineer: [ 2, 2 ]
@@ -27,15 +24,18 @@
           ESDoctor: [ 2, 2 ]
           ESParamedic: [ 1, 1 ]
           ESCoroner: [ 1, 1 ]
-          #science (3), temporarily disabled
-          # ESScientist: [ 3, 3 ]
-          #security (4)
-          ESSecurityOfficer: [ 3, 3 ]
+          #science (1)
+          ESExperiment: [ 1, 1 ]
+          #security (3)
+          ESSecurityOfficer: [ 2, 2 ]
           ESDetective: [ 1, 1 ]
           #cargo (2)
           ESQuartermaster: [ 1, 1 ]
           ESJanitor: [ 1, 1 ]
-          #civilian (2+)
+          #other (2+)
           ESClown: [ 1, 1 ]
           ESReporter: [ 1, 1 ]
-          ESAssistant: [ -1, -1 ]
+          ESBartender: [ 1, 1 ]
+          ESChef: [ 1, 1 ]
+          ESRatman: [ 1, 0 ] # not latejoinable
+          ESAssistant: [ 0, -1 ] # not rollable round start

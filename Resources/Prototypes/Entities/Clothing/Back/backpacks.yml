@@ -49,48 +49,12 @@
 
 - type: entity
   parent: ClothingBackpack
-  id: ClothingBackpackSecurity
-  name: security backpack
-  description: It's a very robust backpack.
-  components:
-  - type: Sprite
-    sprite: Clothing/Back/Backpacks/security.rsi
-
-- type: entity
-  parent: ClothingBackpack
-  id: ClothingBackpackEngineering
-  name: engineering backpack
-  description: It's a tough backpack for the daily grind of station life.
-  components:
-  - type: Sprite
-    sprite: Clothing/Back/Backpacks/engineering.rsi
-
-- type: entity
-  parent: ClothingBackpack
-  id: ClothingBackpackMedical
-  name: medical backpack
-  description: It's a backpack especially designed for use in a sterile environment.
-  components:
-  - type: Sprite
-    sprite: Clothing/Back/Backpacks/medical.rsi
-
-- type: entity
-  parent: ClothingBackpack
   id: ClothingBackpackCaptain
   name: captain's backpack
   description: It's a special backpack made exclusively for Nanotrasen officers.
   components:
   - type: Sprite
     sprite: Clothing/Back/Backpacks/captain.rsi
-
-- type: entity
-  parent: ClothingBackpack
-  id: ClothingBackpackScience
-  name: science backpack
-  description: A backpack specially designed to repel stains and hazardous liquids.
-  components:
-  - type: Sprite
-    sprite: Clothing/Back/Backpacks/science.rsi
 
 #Special
 - type: entity

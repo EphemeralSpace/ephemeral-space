@@ -151,7 +151,7 @@ public partial class AtmosphereSystem
     /// <param name="tile">The indices of the tile.</param>
     private void PryTile(Entity<MapGridComponent> mapGrid, Vector2i tile)
     {
-        if (!_mapSystem.TryGetTileRef(mapGrid.Owner, mapGrid.Comp, tile, out var tileRef))
+        if (!_map.TryGetTileRef(mapGrid.Owner, mapGrid.Comp, tile, out var tileRef))
             return;
 
         _tile.PryTile(tileRef);
@@ -166,7 +166,7 @@ public partial class AtmosphereSystem
     /// <param name="tile">The tile to check for devices on.</param>
     private void NotifyDeviceTileChanged(Entity<GridAtmosphereComponent, MapGridComponent> ent, Vector2i tile)
     {
-        var inTile = _mapSystem.GetAnchoredEntities(ent.Owner, ent.Comp2, tile);
+        var inTile = _map.GetAnchoredEntities(ent.Owner, ent.Comp2, tile);
         var ev = new AtmosDeviceTileChangedEvent();
         foreach (var uid in inTile)
         {

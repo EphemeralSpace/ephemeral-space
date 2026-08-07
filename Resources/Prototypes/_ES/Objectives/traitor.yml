@@ -11,7 +11,7 @@
   - type: ESNukePrereqObjective
 
 - type: entity
-  parent: ESBaseTraitorObjectiveMinor
+  parent: [ ESBaseTraitorObjectiveMinor, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveTraitorKillRandom
   name: Kill a specific member of the crew
   description: The syndicate needs to make sure they don't interfere with our plans.
@@ -46,7 +46,7 @@
   - type: ESTraitorBugObjective
 
 ### Sabotage objectives
-# These are split into base so we can have traitor/rebel variants, since rebel wants a separate description, and no nuke prereq
+# These are split into base so we can have traitor/vandal variants, since vandal wants a separate description, and no nuke prereq
 
 # Communications
 - type: entity
@@ -157,7 +157,7 @@
 - type: entity
   parent: ESBaseTraitorObjective
   id: ESObjectiveTraitorHackCryptoNukeConsoles
-  name: Hack the nuclear cryptographic terminals
+  name: Hack the security override terminals
   description: Once the objectives above are completed, hack the terminals to unlock the code for the nuke. The terminals are located in the HoP's secure room, the captain's office, and secure tech storage.
   components:
   - type: ESObjective

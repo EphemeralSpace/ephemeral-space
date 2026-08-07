@@ -1,0 +1,72 @@
+- type: entity
+  id: ESMobMiasmaCloud
+  name: miasma cloud
+  description: A thick cloud of miasma. Doesn't look safe to touch.
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    sprite: _ES/Effects/miasma.rsi
+    layers:
+    - state: cloud
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Input
+    context: "human"
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+      smacker:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        hard: false
+        layer:
+        - Impassable
+  - type: InputMover
+  - type: MobMover
+  - type: LagCompensation
+  - type: HTN
+    rootTask:
+      task: ESMiasmaCompound
+    blackboard:
+      MovementRange: !type:Single
+        0.1
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: ESDiseaseCloud
+    diseaseDamage:
+      types:
+        Poison: 7.5
+  - type: MovementSpeedModifier
+    baseAcceleration: 3.5
+    friction: 0.75
+    baseSprintSpeed : 4
+  - type: NoSlip
+  - type: MovementAlwaysTouching
+  - type: CanMoveInAir
+  - type: ESTimedDespawn
+    lifetime: 10.0
+  - type: ESTimedDespawnSpriteFade
+    fadeTime: 1.0
+  - type: ESTimedDespawnLightFade
+    fadeTime: 0.7
+  - type: PointLight
+    energy: 2
+    radius: 1.5
+    falloff: 40
+    color: "#eec7ff"
+    castShadows: false
+  - type: ESViewconeOccludable

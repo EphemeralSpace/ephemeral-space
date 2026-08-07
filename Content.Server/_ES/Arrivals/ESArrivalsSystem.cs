@@ -10,6 +10,7 @@ using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
+using Content.Shared._DV.Screens;
 using Content.Shared._ES.CCVar;
 using Content.Shared._ES.Light.Components;
 using Content.Shared._ES.SpawnRegion.Components;
@@ -118,6 +119,7 @@ public sealed partial class ESArrivalsSystem : EntitySystem
 
         var payload = new NetworkPayload
         {
+            [DVScreenPackets.Content] = DVScreenContent.EstimatedTimeOfArrival,
             [ShuttleTimerMasks.ShuttleMap] = Transform(ent).MapUid,
             [ShuttleTimerMasks.SourceMap] = args.FromMapUid,
             [ShuttleTimerMasks.ShuttleTime] = TimeSpan.FromSeconds(_flightTime),
@@ -137,6 +139,10 @@ public sealed partial class ESArrivalsSystem : EntitySystem
             return;
 
         if (!TryComp<ESStationArrivalsComponent>(ev.Station, out var arrivals) || arrivals.ShuttleUid is not { } grid)
+            return;
+
+        // is this a job that actually spawns on arrivals?
+        if (!ProtoMan.TryIndex(ev.Job, out var job) || !job.SpawnsOnArrivals)
             return;
 
         var points = EntityQueryEnumerator<ContainerSpawnPointComponent, TransformComponent>();

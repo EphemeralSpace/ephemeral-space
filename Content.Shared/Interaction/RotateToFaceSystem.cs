@@ -1,6 +1,10 @@
+using System.Linq;
 using System.Numerics;
+using Content.Shared._ES.Interaction.HoldToFace;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Interaction.Components;
+using Content.Shared.Movement.Components;
 using Content.Shared.Rotatable;
 using JetBrains.Annotations;
 
@@ -17,6 +21,46 @@ namespace Content.Shared.Interaction
     {
         [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] private SharedTransformSystem _transform = default!;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            SubscribeLocalEvent<ESForcedFacingComponent, ESRefreshNoRotateOnMoveEvent>(OnRefreshNoRotateOnMove);
+            SubscribeLocalEvent<ESForcedFacingComponent, ESRefreshNoRotateOnInteractEvent>(OnRefreshNoRotateOnInteract);
+
+            SubscribeLocalEvent<ESForcedFacingComponent, ComponentShutdown>(OnForcedFacingShutdown);
+            SubscribeLocalEvent<ESForcedFacingTargetComponent, ComponentShutdown>(OnForcedFacingTargetShutdown);
+        }
+
+        private void OnRefreshNoRotateOnMove(Entity<ESForcedFacingComponent> ent, ref ESRefreshNoRotateOnMoveEvent args)
+        {
+            args.Enabled = true;
+        }
+
+        private void OnRefreshNoRotateOnInteract(Entity<ESForcedFacingComponent> ent, ref ESRefreshNoRotateOnInteractEvent args)
+        {
+            args.Enabled = true;
+        }
+
+        private void OnForcedFacingShutdown(Entity<ESForcedFacingComponent> ent, ref ComponentShutdown args)
+        {
+            var targets = new HashSet<EntityUid>(ent.Comp.Targets);
+            foreach (var target in targets)
+            {
+                StopFacing(ent.Owner, target);
+            }
+        }
+
+        private void OnForcedFacingTargetShutdown(Entity<ESForcedFacingTargetComponent> ent, ref ComponentShutdown args)
+        {
+            var facings = new HashSet<EntityUid>(ent.Comp.Facing);
+            foreach (var facing in facings)
+            {
+                if (!TerminatingOrDeleted(facing) && Exists(facing))
+                    RefreshForcedFacing(facing);
+            }
+        }
 
         /// <summary>
         /// Tries to rotate the entity towards the target rotation. Returns false if it needs to keep rotating.
@@ -106,5 +150,133 @@ namespace Content.Shared.Interaction
             _transform.SetWorldRotation(xform, diffAngle);
             return true;
         }
+
+        public void RefreshNoRotateOnMove(EntityUid uid)
+        {
+            var ev = new ESRefreshNoRotateOnMoveEvent();
+            RaiseLocalEvent(uid, ref ev);
+
+            if (ev.Enabled)
+            {
+                EnsureComp<NoRotateOnMoveComponent>(uid);
+            }
+            else
+            {
+                RemComp<NoRotateOnMoveComponent>(uid);
+            }
+        }
+
+        public void RefreshNoRotateOnInteract(EntityUid uid)
+        {
+            var ev = new ESRefreshNoRotateOnInteractEvent();
+            RaiseLocalEvent(uid, ref ev);
+
+            if (ev.Enabled)
+            {
+                EnsureComp<NoRotateOnInteractComponent>(uid);
+            }
+            else
+            {
+                RemComp<NoRotateOnInteractComponent>(uid);
+            }
+        }
+
+        public void RefreshForcedFacing(EntityUid uid)
+        {
+            var ev = new ESRefreshForcedFacingEvent();
+            RaiseLocalEvent(uid, ref ev);
+
+            // We are already facing things, so we have to update targets we've since stopped facing.
+            if (TryComp<ESForcedFacingComponent>(uid, out var comp))
+            {
+                // Remove everything that we are targeting that wasn't in the event
+                var targets = new List<EntityUid>(comp.Targets.Except(ev.Targets));
+                foreach (var target in targets)
+                {
+                    StopFacing((uid, comp), target);
+                }
+                Dirty(uid, comp);
+            }
+
+            // If we're no longer force facing, then we can remove the component
+            if (ev.Targets.Count == 0)
+            {
+                RemComp<ESForcedFacingComponent>(uid);
+
+                RefreshNoRotateOnMove(uid);
+                RefreshNoRotateOnInteract(uid);
+                return;
+            }
+
+            // Start facing everything that was specified in the event
+            comp ??= EnsureComp<ESForcedFacingComponent>(uid);
+            foreach (var target in ev.Targets)
+            {
+                StartFacing((uid, comp), target);
+            }
+            Dirty(uid, comp);
+
+            RefreshNoRotateOnMove(uid);
+            RefreshNoRotateOnInteract(uid);
+        }
+
+        private void StartFacing(Entity<ESForcedFacingComponent?> ent, EntityUid target)
+        {
+            if (Resolve(ent, ref ent.Comp, false) && ent.Comp.Targets.Contains(target))
+                return;
+
+            var facing = EnsureComp<ESForcedFacingComponent>(ent);
+            facing.Targets.Add(target);
+
+            var facingTarget = EnsureComp<ESForcedFacingTargetComponent>(target);
+            facingTarget.Facing.Add(ent);
+            Dirty(target, facingTarget);
+        }
+
+        private void StopFacing(Entity<ESForcedFacingComponent?> ent, Entity<ESForcedFacingTargetComponent?> target)
+        {
+            if (!Resolve(ent, ref ent.Comp, false) || !ent.Comp.Targets.Contains(target))
+                return;
+
+            ent.Comp.Targets.Remove(target);
+
+            if (!TerminatingOrDeleted(target) && Resolve(target, ref target.Comp, false))
+            {
+                target.Comp.Facing.Remove(ent);
+                Dirty(target, target.Comp);
+
+                if (target.Comp.Facing.Count == 0)
+                    RemComp(target, target.Comp);
+            }
+        }
+
+        public override void Update(float frameTime)
+        {
+            base.Update(frameTime);
+
+            foreach (var (uid, comp) in EntityQueryEnumerator<ESForcedFacingComponent>())
+            {
+                if (comp.PrimaryTarget is not { } target)
+                    continue;
+
+                if (!Exists(target))
+                    continue;
+
+                var targetCoords = _transform.GetMapCoordinates(target).Position;
+                TryFaceCoordinates(uid, targetCoords);
+            }
+        }
+    }
+
+    [ByRefEvent]
+    public record struct ESRefreshNoRotateOnMoveEvent(bool Enabled = false);
+
+    [ByRefEvent]
+    public record struct ESRefreshNoRotateOnInteractEvent(bool Enabled = false);
+
+    [ByRefEvent]
+    public record struct ESRefreshForcedFacingEvent()
+    {
+        public HashSet<EntityUid> Targets = new();
     }
 }

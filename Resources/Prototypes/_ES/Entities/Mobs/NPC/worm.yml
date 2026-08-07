@@ -46,10 +46,10 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      10: Dead
+      25: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.5
-    baseSprintSpeed: 3.5
+    baseWalkSpeed: 2.25
+    baseSprintSpeed: 3.25
   - type: DamageStateVisuals
     states:
       Alive:
@@ -59,6 +59,7 @@
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
+    range: 1.0
     animation: WeaponArcBite
     soundHit:
       path: /Audio/Effects/bite.ogg
@@ -68,8 +69,4 @@
   - type: EmitSoundOnLand
     sound:
       collection: FootstepSnake
-  - type: TriggerOnMeleeHit
-    targetIsUser: true
-  - type: DeleteOnTrigger
-  - type: ESChangeSecretIdentityOnTrigger
-    secretIdentity: Leapleech
+  - type: ESLeapleechWorm

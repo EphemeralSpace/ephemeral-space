@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._ES.Filth;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Server.Fluids.EntitySystems;
@@ -27,7 +28,6 @@ namespace Content.Server.Atmos.EntitySystems;
 [UsedImplicitly]
 public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 {
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private IAdminLogManager _adminLog = default!;
     [Dependency] private IParallelManager _parallel = default!;
@@ -36,11 +36,12 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private GasTileOverlaySystem _gasTileOverlaySystem = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private TileSystem _tile = default!;
     [Dependency] private MapSystem _map = default!;
     [Dependency] public PuddleSystem Puddle = default!;
     [Dependency] private DamageableSystem _damage = default!;
+
+    [Dependency] public ESMiasmaSystem Miasma = default!;
 
     private const float ExposedUpdateDelay = 1f;
     private float _exposedTimer = 0f;

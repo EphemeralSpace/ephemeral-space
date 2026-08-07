@@ -54,7 +54,6 @@ namespace Content.Client.IoC
             collection.Register<EuiManager, EuiManager>();
             collection.Register<IVoteManager, VoteManager>();
             collection.Register<ChangelogManager, ChangelogManager>();
-            collection.Register<ViewportManager, ViewportManager>();
             collection.Register<ISharedAdminLogManager, SharedAdminLogManager>();
             collection.Register<GhostKickManager>();
             collection.Register<ExtendedDisconnectInformationManager>();

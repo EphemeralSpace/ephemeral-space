@@ -1,18 +1,19 @@
 # IMPORTANT: always prefer using damage deflection over making these, as it is less work and more intuitive.
 # avoid making bespoke resistance values unless your're trying to fill a niche that your object seriously needs / there's some kind of new property you want to add
 
+# Structures
 - type: damageModifierSet
   id: ESWall # regular weapons should never work on walls, you need some insane firepower or explosives to do anything to them
   flatReductions:
     Blunt: 10
     Slash: 30
     Piercing: 30
-    Structural: 20 # fireaxe is not effective without this
+    Structural: 20 # without this, fireaxe becomes effective against walls
 
 - type: damageModifierSet
-  id: ESWindow # gets instantly broken by 9mm, also you can't really cut windows very well
+  id: ESWindow # gets instantly broken by bullets and the fireaxe. as per usual slashing weapons are also insanely ineffective (especially because this is glass we're talking about)
   coefficients:
-    Piercing: 6
+    Piercing: 8
     Structural: 4
   flatReductions:
     Slash: 8
@@ -26,7 +27,7 @@
     Slash: 16
 
 - type: damageModifierSet
-  id: ESComputer # like glass except it can be cut & doesn't get owned by bullets as hard. fireaxe also insta-breaks them with these values.
+  id: ESComputer # like glass except it doesn't get owned by bullets as hard. fireaxe also insta-breaks them with these values.
   coefficients:
     Piercing: 3
     Structural: 2
@@ -34,7 +35,30 @@
     Slash: 8
 
 - type: damageModifierSet
-  id: ESMachine # we don't usually want people easily breaking machines. so they have a bit of resistance against the most common weapon types
+  id: ESMachine # we don't usually want people easily breaking machines / structures. so they have a bit of resistance against the most common weapon types
+  # TODO rename this because its incredibly versatile and should exist on like almost every structure
   flatReductions:
     Blunt: 2
     Slash: 6
+
+- type: damageModifierSet
+  id: ESWood # burnt down easily, also handily taken down by things that deal structural. difficult to slashed or pierce
+  coefficients:
+    Heat: 2
+  flatReductions:
+    Slash: 8
+    Piercing: 3
+
+- type: damageModifierSet
+  id: ESWeakBiological # for stuff like plants or cobwebs. can be burnt or slashed really easily
+  coefficients:
+    Heat: 4
+    Slash: 4
+  flatReductions:
+    Heat: -2 # increases the effectiveness of weak flammable weapons like lighters
+
+# Mobs
+- type: damageModifierSet
+  id: ESCryohusk
+  coefficients:
+    Heat: 1.25

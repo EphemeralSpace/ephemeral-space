@@ -13,7 +13,7 @@ namespace Content.IntegrationTests.Tests
     [TestOf(typeof(EntityUid))]
     public sealed class EntityTest : GameTest
     {
-        [SidedDependency(Side.Server)] private readonly IMapManager _mapManager = default!;
+        [SidedDependency(Side.Server)] private readonly SharedMapSystem _mapManager = default!;
         [SidedDependency(Side.Server)] private readonly MapSystem _mapSys = default!;
 
         public override PoolSettings PoolSettings => new()

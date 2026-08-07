@@ -12,6 +12,7 @@ using Content.Server.ServerUpdates;
 using Content.Server.Station.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Chat;
+using Content.Shared.EntityTable;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
@@ -41,7 +42,6 @@ namespace Content.Server.GameTicking
         [Dependency] private IGameMapManager _gameMapManager = default!;
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private ILogManager _logManager = default!;
-        [Dependency] private IMapManager _mapManager = default!;
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private IRobustRandom _robustRandom = default!;
 #if EXCEPTION_TOLERANCE
@@ -66,6 +66,7 @@ namespace Content.Server.GameTicking
         [Dependency] private SharedRoleSystem _roles = default!;
         [Dependency] private ServerDbEntryManager _dbEntryManager = default!;
         [Dependency] private AlertsSystem _alerts = default!;
+        [Dependency] private EntityTableSystem _entityTable = default!;
 
         [ViewVariables] private bool _initialized;
         [ViewVariables] private bool _postInitialized;

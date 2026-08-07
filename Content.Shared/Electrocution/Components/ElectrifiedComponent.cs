@@ -6,7 +6,7 @@ namespace Content.Shared.Electrocution;
 /// <summary>
 ///     Component for things that shock users on touch.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class ElectrifiedComponent : Component
 {
     [DataField, AutoNetworkedField]
@@ -128,4 +128,15 @@ public sealed partial class ElectrifiedComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool IsWireCut = false;
+
+    /// <summary>
+    ///     Specifically for avoiding doing many collision electrocutions too fast esp if one fails for some reason
+    ///     (eg it doesnt meet the dot product threshold)
+    /// </summary>
+    // todo remove/network later when electrified stuff is predicted better?
+    [DataField, AutoPausedField]
+    public TimeSpan? LastAttemptedCollisionElectrocutionTime;
+
+    [DataField]
+    public TimeSpan MinTimeBetweenCollisionElectrocutions = TimeSpan.FromSeconds(0.5f);
 }

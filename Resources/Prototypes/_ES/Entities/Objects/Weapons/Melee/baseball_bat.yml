@@ -22,7 +22,7 @@
   - type: Item
     size: Normal
     shape:
-    - 0,0,0,3
+    - 0,0,1,3
     storedSprite:
       state: storage
       sprite: Objects/Weapons/Melee/baseball_bat.rsi
@@ -34,9 +34,6 @@
     quickEquip: false
     slots:
     - back
-  - type: Construction
-    graph: WoodenBat
-    node: bat
   - type: UseDelay
     delay: 1
   - type: PhysicalComposition
@@ -60,6 +57,3 @@
       state: storage
       sprite: Objects/Weapons/Melee/incomplete_bat.rsi
     sprite: Objects/Weapons/Melee/incomplete_bat.rsi
-  - type: Construction
-    graph: WoodenBat
-    node: incompleteBat
