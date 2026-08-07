@@ -174,7 +174,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
             if (!TryComp<MindComponent>(mind, out var mindComp))
                 continue;
 
-            if (!_mind.IsCharacterDeadIc(mindComp))
+            if (!_mind.IsCharacterDeadIc(mindComp) && HasComp<ActorComponent>(mindComp.CurrentEntity))
                 ++nonOrganizationCount;
         }
 
