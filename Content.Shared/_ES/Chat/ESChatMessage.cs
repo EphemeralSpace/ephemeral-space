@@ -1,5 +1,4 @@
 using System.IO;
-using Content.Shared.Chat;
 using JetBrains.Annotations;
 using Lidgren.Network;
 using Robust.Shared.Audio;
@@ -14,7 +13,7 @@ namespace Content.Shared._ES.Chat;
 [Serializable, NetSerializable]
 public sealed class ESChatMessage
 {
-    public string FormattedMessage => string.Format(Format, Content, Name ?? string.Empty);
+    public string FormattedMessage => string.Format(Format, Content, Name);
 
     /// <summary>
     /// Content of the message
