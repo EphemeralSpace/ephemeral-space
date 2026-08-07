@@ -17,5 +17,5 @@ es-stagehand-notification-secret-identity-change = {$player} donned a new secret
 
 es-stagehand-notification-new-stagehand = {$username} has joined the backstage crew.
 
-es-stagehand-notification-apc-bugged = {$buggable} was bugged by {$player}!
-es-stagehand-notification-apc-debugged = {$buggable} was debugged by {$player}!
+es-stagehand-notification-apc-bugged = {$player} bugged {$buggable}!
+es-stagehand-notification-apc-bug-removed = {$player} removed the bug from {$buggable}!

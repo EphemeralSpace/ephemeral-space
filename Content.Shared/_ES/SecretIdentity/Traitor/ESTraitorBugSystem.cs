@@ -158,7 +158,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
         if (args.Cancelled)
             return;
 
-        _notification.SendStagehandNotification(Loc.GetString("es-stagehand-notification-apc-debugged",
+        _notification.SendStagehandNotification(Loc.GetString("es-stagehand-notification-apc-bug-removed",
             ("buggable", _notification.WrapEntityName(ent.Owner)),
             ("player", _notification.WrapEntityName(args.User))));
 
