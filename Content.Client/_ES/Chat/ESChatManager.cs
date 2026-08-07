@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
+using Content.Shared.Radio;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
@@ -19,9 +20,12 @@ public sealed partial class ESChatManager : IESChatManager
 
     public event Action<ESChatMessage>? OnChatMessageSent;
 
+    public event Action<EntityUid, ESRequestSendChatMessage>? OnRequestSendChatMessage;
+
     public void Initialize()
     {
         _net.RegisterNetMessage<ESChatNetMessage>(OnChatNetMessage);
+        _net.RegisterNetMessage<ESRequestSendChatNetMessage>();
     }
 
     private void OnChatNetMessage(ESChatNetMessage message)
@@ -51,6 +55,13 @@ public sealed partial class ESChatManager : IESChatManager
     {
         // TODO: prediction
         // No functionality on client.
+    }
+
+    public void RequestSendChatMessage(string message, ProtoId<ESChatChannelPrototype> channel, ProtoId<RadioChannelPrototype>? radio)
+    {
+        var msg = new ESRequestSendChatMessage(message, channel, radio);
+
+        _net.ClientSendMessage(new ESRequestSendChatNetMessage(msg));
     }
 
     // TODO: i dont like this being duped across client and server but i cant be fucked to figure out the jank interface inheritance

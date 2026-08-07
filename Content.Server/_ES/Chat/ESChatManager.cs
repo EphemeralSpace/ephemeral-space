@@ -14,12 +14,27 @@ public sealed partial class ESChatManager : IESSharedChatManager
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _netManager = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IReplayRecordingManager _replayRecording = default!;
+
+    public event Action<EntityUid, ESRequestSendChatMessage>? OnRequestSendChatMessage;
 
     public void Initialize()
     {
         _netManager.RegisterNetMessage<ESChatNetMessage>();
+        _netManager.RegisterNetMessage<ESRequestSendChatNetMessage>(OnRequestSendChatNetMessage);
+    }
+
+    private void OnRequestSendChatNetMessage(ESRequestSendChatNetMessage message)
+    {
+        var session = _player.GetSessionByChannel(message.MsgChannel);
+
+        // Should always have something attached
+        if (session.AttachedEntity is not { } attachedEntity)
+            return;
+
+        OnRequestSendChatMessage?.Invoke(attachedEntity, message.Message);
     }
 
     public void SendChatMessage(

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Client._ES.Chat;
 using Content.Client.Administration.Managers;
@@ -186,32 +187,14 @@ public sealed partial class ChatUIController : UIController
         _input.SetInputCommand(ContentKeyFunctions.FocusChat,
             InputCmdHandler.FromDelegate(_ => FocusChat()));
 
-        _input.SetInputCommand(ContentKeyFunctions.FocusLocalChat,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Local)));
+        // TODO: doesn't support prototype reloading. TOO BAD!
+        foreach (var chatChannel in _prototypeManager.EnumeratePrototypes<ESChatChannelPrototype>())
+        {
+            if (chatChannel.FocusKey is not { } focusKey)
+                return;
 
-        _input.SetInputCommand(ContentKeyFunctions.FocusEmote,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Emotes)));
-
-        _input.SetInputCommand(ContentKeyFunctions.FocusWhisperChat,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Whisper)));
-
-        _input.SetInputCommand(ContentKeyFunctions.FocusLOOC,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.LOOC)));
-
-        _input.SetInputCommand(ContentKeyFunctions.FocusOOC,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.OOC)));
-
-        _input.SetInputCommand(ContentKeyFunctions.FocusAdminChat,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Admin)));
-
-        _input.SetInputCommand(ContentKeyFunctions.FocusRadio,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Radio)));
-
-        _input.SetInputCommand(ContentKeyFunctions.FocusDeadChat,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Dead)));
-
-        _input.SetInputCommand(ContentKeyFunctions.FocusConsoleChat,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Console)));
+            _input.SetInputCommand(focusKey, InputCmdHandler.FromDelegate(_ => FocusChannel(chatChannel)));
+        }
 
         _input.SetInputCommand(ContentKeyFunctions.CycleChatChannelForward,
             InputCmdHandler.FromDelegate(_ => CycleChatChannel(true)));
@@ -298,6 +281,20 @@ public sealed partial class ChatUIController : UIController
         chatBox.Main = setting;
     }
 
+    public bool TryGetMainChat([NotNullWhen(true)] out ChatBox? chat)
+    {
+        foreach (var c in _chats)
+        {
+            if (!c.Main)
+                continue;
+            chat = c;
+            return true;
+        }
+
+        chat = null;
+        return false;
+    }
+
     private void FocusChat()
     {
         foreach (var chat in _chats)
@@ -310,16 +307,10 @@ public sealed partial class ChatUIController : UIController
         }
     }
 
-    private void FocusChannel(ChatSelectChannel channel)
+    private void FocusChannel(ProtoId<ESChatChannelPrototype> channel)
     {
-        foreach (var chat in _chats)
-        {
-            if (!chat.Main)
-                continue;
-
+        if (TryGetMainChat(out var chat))
             chat.Focus(channel);
-            break;
-        }
     }
 
     private void CycleChatChannel(bool forward)
@@ -624,45 +615,38 @@ public sealed partial class ChatUIController : UIController
     {
         var (prefixChannel, _, radioChannel) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
 
-        if (prefixChannel == ChatSelectChannel.None)
-            box.ChatInput.ChannelSelector.UpdateChannelSelectButton(box.SelectedChannel, null);
+        if (prefixChannel == null)
+            box.ChatInput.ChannelSelector.UpdateChannelSelectButton(_prototypeManager.Index(box.SelectedChannel), null);
         else
             box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, radioChannel);
     }
 
-    public (ChatSelectChannel chatChannel, string text, RadioChannelPrototype? radioChannel) SplitInputContents(string text)
+    public (ESChatChannelPrototype? chatChannel, string text, RadioChannelPrototype? radioChannel) SplitInputContents(string text)
     {
         text = text.Trim();
         if (text.Length == 0)
-            return (ChatSelectChannel.None, text, null);
+            return (null, text, null);
 
-        // We only cut off prefix only if it is not a radio or local channel, which both map to the same /say command
-        // because ????????
+        if (!_esChat.TryGetChannelFromMessage(text, out var chatChannel))
+            return (null, text, null);
 
-        ChatSelectChannel chatChannel;
+        // TODO: radio is its own can of worms
+        /*
         if (TryGetRadioChannel(text, out var radioChannel))
             chatChannel = ChatSelectChannel.Radio;
-        else
-            chatChannel = PrefixToChannel.GetValueOrDefault(text[0]);
+        */
 
-        if ((CanSendChannels & chatChannel) == 0)
-            return (ChatSelectChannel.None, text, null);
+        // TODO: re-evaluate after coding "can send message" stuff
+        //if ((CanSendChannels & chatChannel) == 0)
+        //    return (ChatSelectChannel.None, text, null);
 
-        if (chatChannel == ChatSelectChannel.Radio)
-            return (chatChannel, text, radioChannel);
-
-        if (chatChannel == ChatSelectChannel.Local)
-        {
-            if (_ghost?.IsGhost != true)
-                return (chatChannel, text, null);
-            else
-                chatChannel = ChatSelectChannel.Dead;
-        }
+        //if (chatChannel == ChatSelectChannel.Radio)
+        //    return (chatChannel, text, radioChannel);
 
         return (chatChannel, text[1..].TrimStart(), null);
     }
 
-    public void SendMessage(ChatBox box, ChatSelectChannel channel)
+    public void SendMessage(ChatBox box, ProtoId<ESChatChannelPrototype> channel)
     {
         _typingIndicator?.ClientSubmittedChatText();
 
@@ -674,7 +658,7 @@ public sealed partial class ChatUIController : UIController
         if (string.IsNullOrWhiteSpace(text))
             return;
 
-        (var prefixChannel, text, var _) = SplitInputContents(text);
+        (var prefixChannel, text, var radio) = SplitInputContents(text);
 
         // Check if message is longer than the character limit
         if (text.Length > MaxMessageLength)
@@ -685,15 +669,10 @@ public sealed partial class ChatUIController : UIController
             return;
         }
 
-        if (prefixChannel != ChatSelectChannel.None)
+        if (prefixChannel != null)
             channel = prefixChannel;
-        else if (channel == ChatSelectChannel.Radio)
-        {
-            // radio must have prefix as it goes through the say command.
-            text = $";{text}";
-        }
 
-        _manager.SendMessage(text, prefixChannel == 0 ? channel : prefixChannel);
+        _esChat.RequestSendChatMessage(text, channel, radio?.ID);
     }
 
     private void OnDamageForceSay(DamageForceSayEvent ev, EntitySessionEventArgs _)
@@ -705,17 +684,18 @@ public sealed partial class ChatUIController : UIController
         var msg = chatBox.ChatInput.Input.Text.TrimEnd();
         // Don't send on OOC/LOOC obviously!
 
+        // TODO: GLORFCODE: Figure out which channels we send glorfmessages on
         // we need to handle selected channel
         // and prefix-channel separately..
-        var allowedChannels = ChatSelectChannel.Local | ChatSelectChannel.Whisper;
-        if ((chatBox.SelectedChannel & allowedChannels) == ChatSelectChannel.None)
-            return;
-
-        // none can be returned from this if theres no prefix,
-        // so we allow it in that case (assuming the previous check will have exited already if its an invalid channel)
-        var prefixChannel = SplitInputContents(msg).chatChannel;
-        if (prefixChannel != ChatSelectChannel.None && (prefixChannel & allowedChannels) == ChatSelectChannel.None)
-            return;
+        // var allowedChannels = ChatSelectChannel.Local | ChatSelectChannel.Whisper;
+        // if ((chatBox.SelectedChannel & allowedChannels) == ChatSelectChannel.None)
+        //     return;
+        //
+        // // none can be returned from this if theres no prefix,
+        // // so we allow it in that case (assuming the previous check will have exited already if its an invalid channel)
+        // var prefixChannel = SplitInputContents(msg).chatChannel;
+        // if (prefixChannel != ChatSelectChannel.None && (prefixChannel & allowedChannels) == ChatSelectChannel.None)
+        //     return;
 
         if (_player.LocalSession?.AttachedEntity is not { } ent
             || !EntityManager.TryGetComponent<DamageForceSayComponent>(ent, out var forceSay))
@@ -737,18 +717,6 @@ public sealed partial class ChatUIController : UIController
     private void OnChatMessage(MsgChatMessage message)
     {
         // no op
-    }
-
-    private void OnChatMessage(ESChatNetMessage message)
-    {
-        var msg = message.Message;
-        ProcessChatMessage(msg);
-
-        if (_prototypeManager.Index(msg.Channel).SaveReplay &&
-            _config.GetCVar(CCVars.ReplayRecordAdminChat))
-        {
-            _replayRecording.RecordClientMessage(msg);
-        }
     }
 
     private void OnChatMessageSent(ESChatMessage msg)

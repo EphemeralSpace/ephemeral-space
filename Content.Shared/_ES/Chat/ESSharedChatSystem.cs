@@ -21,6 +21,8 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         SubscribeLocalEvent<ESSimpleFormatChatChannelComponent, ESGetChatMessageFormatEvent>(OnSimpleGetFormat);
 
         InitializeChatNameColors();
+
+        _chat.OnRequestSendChatMessage += OnRequestSendChatMessage;
     }
 
     private void InitializeChatNameColors()
@@ -31,6 +33,11 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         {
             _chatNameColors[i] = nameColors[i];
         }
+    }
+
+    private void OnRequestSendChatMessage(EntityUid source, ESRequestSendChatMessage msg)
+    {
+        TrySendMessage(msg.Text, msg.ChatChannel, source);
     }
 
     private void OnSimpleGetFormat(Entity<ESSimpleFormatChatChannelComponent> ent, ref ESGetChatMessageFormatEvent args)

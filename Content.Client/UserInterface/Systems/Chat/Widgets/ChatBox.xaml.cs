@@ -11,6 +11,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Audio;
 using Robust.Shared.Input;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.LineEdit;
 
@@ -28,7 +29,7 @@ public partial class ChatBox : UIWidget
 
     public bool Main { get; set; }
 
-    public ChatSelectChannel SelectedChannel => ChatInput.ChannelSelector.SelectedChannel;
+    public ProtoId<ESChatChannelPrototype> SelectedChannel => ChatInput.ChannelSelector.SelectedChannel;
 
     public ChatBox()
     {
@@ -80,7 +81,7 @@ public partial class ChatBox : UIWidget
         ChatInput.FilterButton.Popup.UpdateHighlights(highlights);
     }
 
-    private void OnChannelSelect(ChatSelectChannel channel)
+    private void OnChannelSelect(ProtoId<ESChatChannelPrototype> channel)
     {
         Controller.UpdateSelectedChannel(this);
     }
@@ -119,7 +120,7 @@ public partial class ChatBox : UIWidget
         Contents.AddMessage(formatted, tagsAllowed: null);
     }
 
-    public void Focus(ChatSelectChannel? channel = null)
+    public void Focus(ProtoId<ESChatChannelPrototype>? channel = null)
     {
         var input = ChatInput.Input;
         var selectStart = Index.End;
@@ -136,15 +137,16 @@ public partial class ChatBox : UIWidget
 
     public void CycleChatChannel(bool forward)
     {
-        var idx = Array.IndexOf(ChannelSelectorPopup.ChannelSelectorOrder, SelectedChannel);
-        do
-        {
-            // go over every channel until we find one we can actually select.
-            idx += forward ? 1 : -1;
-            idx = MathHelper.Mod(idx, ChannelSelectorPopup.ChannelSelectorOrder.Length);
-        } while ((Controller.SelectableChannels & ChannelSelectorPopup.ChannelSelectorOrder[idx]) == 0);
-
-        SafelySelectChannel(ChannelSelectorPopup.ChannelSelectorOrder[idx]);
+        // TODO: Chat cycling is FUCKED UP
+        // var idx = Array.IndexOf(ChannelSelectorPopup.Ch, SelectedChannel);
+        // do
+        // {
+        //     // go over every channel until we find one we can actually select.
+        //     idx += forward ? 1 : -1;
+        //     idx = MathHelper.Mod(idx, ChannelSelectorPopup.ChannelSelectorOrder.Length);
+        // } while ((Controller.SelectableChannels & ChannelSelectorPopup.ChannelSelectorOrder[idx]) == 0);
+        //
+        // SafelySelectChannel(ChannelSelectorPopup.ChannelSelectorOrder[idx]);
     }
 
     public void SafelySelectChannel(ChatSelectChannel toSelect)
@@ -153,7 +155,8 @@ public partial class ChatBox : UIWidget
         if ((Controller.SelectableChannels & toSelect) == 0)
             return;
 
-        ChatInput.ChannelSelector.Select(toSelect);
+        // TODO: this should just be some default selection when chat channels update.
+        // ChatInput.ChannelSelector.Select(toSelect);
     }
 
     private void OnInputKeyBindDown(GUIBoundKeyEventArgs args)

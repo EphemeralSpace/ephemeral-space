@@ -1,4 +1,5 @@
 using System.IO;
+using Content.Shared.Radio;
 using JetBrains.Annotations;
 using Lidgren.Network;
 using Robust.Shared.Audio;
@@ -132,6 +133,56 @@ public sealed class ESChatNetMessage : NetMessage
     }
 
     public ESChatNetMessage(ESChatMessage message)
+    {
+        Message = message;
+    }
+
+    public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
+    {
+        var length = buffer.ReadVariableInt32();
+        using var stream = new MemoryStream(length);
+        buffer.ReadAlignedMemory(stream, length);
+        serializer.DeserializeDirect(stream, out Message);
+    }
+
+    public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
+    {
+        var stream = new MemoryStream();
+        serializer.SerializeDirect(stream, Message);
+        buffer.WriteVariableInt32((int) stream.Length);
+        buffer.Write(stream.AsSpan());
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed partial class ESRequestSendChatMessage
+{
+    public string Text;
+
+    public ProtoId<ESChatChannelPrototype> ChatChannel;
+
+    public ProtoId<RadioChannelPrototype>? RadioChannel;
+
+    public ESRequestSendChatMessage(string text, ProtoId<ESChatChannelPrototype> chatChannel, ProtoId<RadioChannelPrototype>? radioChannel = null)
+    {
+        Text = text;
+        ChatChannel = chatChannel;
+        RadioChannel = radioChannel;
+    }
+}
+
+public sealed class ESRequestSendChatNetMessage : NetMessage
+{
+    public override MsgGroups MsgGroup => MsgGroups.Command;
+
+    public ESRequestSendChatMessage Message = default!;
+
+    public ESRequestSendChatNetMessage()
+    {
+
+    }
+
+    public ESRequestSendChatNetMessage(ESRequestSendChatMessage message)
     {
         Message = message;
     }

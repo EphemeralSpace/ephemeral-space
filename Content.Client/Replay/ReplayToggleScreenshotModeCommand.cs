@@ -28,8 +28,9 @@ public sealed partial class ReplayToggleScreenshotModeCommand : BaseReplayComman
         foreach (var chatBox in _userInterfaceManager.GetUIController<ChatUIController>().Chats)
         {
             chatBox.ChatInput.Visible = !showReplayWidget;
-            if (!showReplayWidget)
-                chatBox.ChatInput.ChannelSelector.Select(ChatSelectChannel.Local);
+            // TODO: idk what this is even for.
+            //if (!showReplayWidget)
+            //    chatBox.ChatInput.ChannelSelector.Select(ChatSelectChannel.Local);
         }
     }
 }

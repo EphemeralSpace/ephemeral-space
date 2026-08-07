@@ -1,13 +1,16 @@
 using System.Numerics;
+using Content.Shared._ES.Chat;
 using Content.Shared.Chat;
+using Content.Shared.Radio;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
 public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup>
 {
-    public event Action<ChatSelectChannel>? OnChannelSelect;
+    public event Action<ProtoId<ESChatChannelPrototype>>? OnChannelSelect;
 
-    public ChatSelectChannel SelectedChannel { get; private set; }
+    public ProtoId<ESChatChannelPrototype> SelectedChannel { get; private set; }
 
     private const int SelectorDropdownOffset = 38;
 
@@ -32,12 +35,12 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
             new Vector2(SizeBox.Width, SelectorDropdownOffset));
     }
 
-    private void OnChannelSelected(ChatSelectChannel channel)
+    private void OnChannelSelected(ProtoId<ESChatChannelPrototype> channel)
     {
         Select(channel);
     }
 
-    public void Select(ChatSelectChannel channel)
+    public void Select(ProtoId<ESChatChannelPrototype> channel)
     {
         if (Popup.Visible)
         {
@@ -70,9 +73,9 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
         };
     }
 
-    public void UpdateChannelSelectButton(ChatSelectChannel channel, Shared.Radio.RadioChannelPrototype? radio)
+    public void UpdateChannelSelectButton(ESChatChannelPrototype channel, RadioChannelPrototype? radio)
     {
-        Text = radio != null ? Loc.GetString(radio.Name) : ChannelSelectorName(channel);
-        Modulate = radio?.Color ?? ChannelSelectColor(channel);
+        Text = radio != null ? Loc.GetString(radio.Name) : Loc.GetString(channel.Name);
+        Modulate = radio?.Color ?? channel.Color;
     }
 }

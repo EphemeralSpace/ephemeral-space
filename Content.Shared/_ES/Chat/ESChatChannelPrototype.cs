@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Chat;
@@ -11,10 +12,19 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
+    public LocId Name;
+
+    [DataField]
+    public Color Color = Color.DarkGray;
+
+    [DataField(required: true)]
     public EntProtoId ChatProcessor;
 
     [DataField]
     public List<char> Prefixes = new();
+
+    [DataField]
+    public BoundKeyFunction? FocusKey;
 
     /// <summary>
     /// Determines whether any message sent on this channel will be saved to replay.

@@ -1,7 +1,9 @@
 - type: esChatChannel
   id: Speak
+  name: es-chat-channel-name-speak
   chatProcessor: SpeakChatProcessor
   prefixes: [ '>' ]
+  focusKey: FocusLocalChatWindow
 
 - type: entity
   id: SpeakChatProcessor
@@ -20,9 +22,11 @@
 
 - type: esChatChannel
   id: Whisper
+  name: es-chat-channel-name-whisper
   chatProcessor: WhisperChatProcessor
   prefixes: [ ',' ]
   speechBubbleType: whisper
+  focusKey: FocusWhisperChatWindow
 
 - type: entity
   id: WhisperChatProcessor
@@ -42,9 +46,11 @@
 
 - type: esChatChannel
   id: Emote
+  name: es-chat-channel-name-emote
   chatProcessor: EmoteChatProcessor
   prefixes: [ '@', '*' ]
   speechBubbleType: emote
+  focusKey: FocusEmote
 
 - type: entity
   id: EmoteChatProcessor

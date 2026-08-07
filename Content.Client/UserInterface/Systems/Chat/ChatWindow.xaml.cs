@@ -28,7 +28,8 @@ public sealed partial class ChatWindow : FancyWindow
     /// </summary>
     public void ConfigureForAdminChat()
     {
-        Chatbox.ChatInput.ChannelSelector.Select(ChatSelectChannel.Admin);
+        // TODO: what the fuck does this even do, man
+        //Chatbox.ChatInput.ChannelSelector.Select(ChatSelectChannel.Admin);
 
         var filter = Chatbox.ChatInput.FilterButton.Popup;
         foreach (var c in Enum.GetValues(typeof(ChatChannel)))
