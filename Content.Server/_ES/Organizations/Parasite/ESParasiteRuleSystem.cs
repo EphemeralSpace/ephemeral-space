@@ -2,6 +2,7 @@ using Content.Server._ES.SecretIdentity;
 using Content.Server._ES.Objectives;
 using Content.Server._ES.Organizations.Parasite.Components;
 using Content.Server.Chat.Managers;
+using Content.Server.Damage.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
@@ -12,7 +13,6 @@ using Content.Shared._ES.Core.Timer.Components;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Chat;
-using Content.Shared.Damage.Components;
 using Content.Shared.Gibbing;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
@@ -35,6 +35,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private GibbingSystem _gibbing = default!;
+    [Dependency] private GodmodeSystem _godmode = default!;
     [Dependency] private HealthRankingSystem _healthRanking = default!;
     [Dependency] private ESSecretIdentitySystem _secretIdentity = default!;
     [Dependency] private SharedMapSystem _map = default!;
@@ -164,7 +165,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("es-parasite-burst-popup", ("ent", Identity.Entity(owned, EntityManager))), owned, PopupType.LargeCaution);
             _audio.PlayPvs(ent.Comp.BurstSound, owned);
 
-            EnsureComp<GodmodeComponent>(ent);
+            _godmode.EnableGodmode(owned);
             _stationSpawning.EquipStartingGear(owned, ent.Comp.SwarmGear);
         }
     }
