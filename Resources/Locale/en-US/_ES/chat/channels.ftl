@@ -5,3 +5,4 @@ es-chat-channel-whisper-fmt = [font size=11][italic]{"{1}"} whispers, "{"{0}"}"[
 es-chat-channel-emote-fmt = [italic]{"{1}"} {"{0}"}[/italic]
 
 es-chat-identity-name-fmt = {CAPITALIZE(THE($name))}
+es-chat-color-name-fmt = [color={$color}]{$name}[/color]

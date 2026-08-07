@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared._ES.Chat.Components;
+using Content.Shared.Decals;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -11,10 +12,25 @@ public abstract partial class ESSharedChatSystem : EntitySystem
     [Dependency] private ISharedPlayerManager _player = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
 
+    private static readonly ProtoId<ColorPalettePrototype> ChatNamePalette = "ChatNames";
+    private Color[] _chatNameColors = default!;
+
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<ESSimpleFormatChatChannelComponent, ESGetChatMessageFormatEvent>(OnSimpleGetFormat);
+
+        InitializeChatNameColors();
+    }
+
+    private void InitializeChatNameColors()
+    {
+        var nameColors = _prototype.Index(ChatNamePalette).Colors.Values.OrderBy(c => c.ToHex()).ToArray();
+        _chatNameColors = new Color[nameColors.Length];
+        for (var i = 0; i < nameColors.Length; i++)
+        {
+            _chatNameColors[i] = nameColors[i];
+        }
     }
 
     private void OnSimpleGetFormat(Entity<ESSimpleFormatChatChannelComponent> ent, ref ESGetChatMessageFormatEvent args)
@@ -87,6 +103,11 @@ public abstract partial class ESSharedChatSystem : EntitySystem
 
         var transformedContent = ev.Content;
 
+        // BUG: If an event zeroes out this content and sends their own message (emote sanitization), this will register as a failure.
+        // do not send empty messages
+        if (string.IsNullOrWhiteSpace(transformedContent))
+            return false;
+
         // Get the message format
         var formatEv = new ESGetChatMessageFormatEvent(transformedContent, source);
         RaiseLocalEvent(processor, ref formatEv);
@@ -99,18 +120,29 @@ public abstract partial class ESSharedChatSystem : EntitySystem
             var nameEv = new ESTransformMessageSourceNameEvent(Name(source), source, recipient);
             RaiseLocalEvent(processor, ref nameEv);
 
+            var postNameEv = new ESPostTransformMessageSourceNameEvent(nameEv.Name, source, recipient);
+            RaiseLocalEvent(processor, ref postNameEv);
+
+            var name = postNameEv.Name;
+
             var recipientEv = new ESRecipientTransformChatMessageEvent(transformedContent, source, recipient);
             RaiseLocalEvent(processor, ref recipientEv);
+
+            var recipientContent = recipientEv.Content;
+
+            // do not send empty messages
+            if (string.IsNullOrWhiteSpace(recipientContent))
+                continue;
 
             // TODO: Don't record messages for replays here. Otherwise, we'll log the same message multiple times.
             // Instead, record the "canonical" message after this loop.
             _chat.SendChatMessage(
-                recipientEv.Content,
+                recipientContent,
                 session,
                 processor.Comp.Channel,
                 source,
                 formatEv.Format,
-                name: nameEv.Name);
+                name: name);
         }
 
         // TODO: Entity spoke event
@@ -170,6 +202,29 @@ public abstract partial class ESSharedChatSystem : EntitySystem
                 continue;
 
             yield return recipient;
+        }
+    }
+
+    /// <summary>
+    /// Returns a name color based on a string.
+    /// Not unique per entity, but rather per name. Two entities named "monkey" will have identical colors.
+    /// </summary>
+    public Color GetChatColor(string name)
+    {
+        var colorIdx = Math.Abs(Adler32(name) % _chatNameColors.Length);
+        return _chatNameColors[colorIdx];
+
+        // From https://gist.github.com/i-e-b/c37cc2d728fe5e5a56205cd7e62d682c
+        static uint Adler32(string str)
+        {
+            const int mod = 65521;
+            uint a = 1, b = 0;
+            foreach (var c in str)
+            {
+                a = (a + c) % mod;
+                b = (b + a) % mod;
+            }
+            return (b << 16) | a;
         }
     }
 }
@@ -304,6 +359,16 @@ public record struct ESGetChatMessageFormatEvent(string Content, EntityUid Sourc
 
 [ByRefEvent]
 public record struct ESTransformMessageSourceNameEvent(string Name, EntityUid Source, EntityUid Recipient)
+{
+    public readonly EntityUid Source = Source;
+
+    public readonly EntityUid Recipient = Recipient;
+
+    public string Name = Name;
+}
+
+[ByRefEvent]
+public record struct ESPostTransformMessageSourceNameEvent(string Name, EntityUid Source, EntityUid Recipient)
 {
     public readonly EntityUid Source = Source;
 

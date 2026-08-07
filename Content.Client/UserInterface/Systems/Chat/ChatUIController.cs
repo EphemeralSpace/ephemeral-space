@@ -64,10 +64,6 @@ public sealed partial class ChatUIController : UIController
     [UISystemDependency] private readonly MindSystem? _mindSystem = default!;
     [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
 
-    private static readonly ProtoId<ColorPalettePrototype> ChatNamePalette = "ChatNames";
-    private Color[] _chatNameColors = default!;
-    private bool _chatNameColorsEnabled;
-
     private ISawmill _sawmill = default!;
 
     public static readonly Dictionary<char, ChatSelectChannel> PrefixToChannel = new()
@@ -182,8 +178,6 @@ public sealed partial class ChatUIController : UIController
         _esChat.OnChatMessageSent += OnChatMessageSent;
         _net.RegisterNetMessage<MsgDeleteChatMessagesBy>(OnDeleteChatMessagesBy);
         SubscribeNetworkEvent<DamageForceSayEvent>(OnDamageForceSay);
-        _config.OnValueChanged(CCVars.ChatEnableColorName, (value) => { _chatNameColorsEnabled = value; });
-        _chatNameColorsEnabled = _config.GetCVar(CCVars.ChatEnableColorName);
 
         _speechBubbleRoot = new LayoutContainer();
 
@@ -228,13 +222,6 @@ public sealed partial class ChatUIController : UIController
         var gameplayStateLoad = UIManager.GetUIController<GameplayStateLoadController>();
         gameplayStateLoad.OnScreenLoad += OnScreenLoad;
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
-
-        var nameColors = _prototypeManager.Index(ChatNamePalette).Colors.Values.ToArray();
-        _chatNameColors = new Color[nameColors.Length];
-        for (var i = 0; i < nameColors.Length; i++)
-        {
-            _chatNameColors[i] = nameColors[i];
-        }
 
         _config.OnValueChanged(CCVars.ChatWindowOpacity, OnChatWindowOpacityChanged);
     }
@@ -912,17 +899,6 @@ public sealed partial class ChatUIController : UIController
         {
             chat.Repopulate();
         }
-    }
-
-    /// <summary>
-    /// Returns the chat name color for a mob
-    /// </summary>
-    /// <param name="name">Name of the mob</param>
-    /// <returns>The name color</returns>
-    public Color GetNameColor(string name)
-    {
-        var colorIdx = Math.Abs(name.GetHashCode() % _chatNameColors.Length);
-        return _chatNameColors[colorIdx];
     }
 
     private readonly record struct SpeechBubbleData(ESChatMessage Message, SpeechType Type);

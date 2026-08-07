@@ -1,4 +1,6 @@
 using System.Numerics;
+using Content.Client._ES.Chat;
+using Content.Client.Chat;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Shared._ES.Crosshair;
 using Content.Shared._ES.Viewcone;
@@ -22,7 +24,7 @@ public sealed partial class ESClientCrosshairSystem : EntitySystem
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IEyeManager _eye = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private ESChatSystem _chat = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private ExamineSystemShared _occluder = default!;
     [Dependency] private ESViewconeAngleSystem _viewcone = default!;
@@ -42,8 +44,7 @@ public sealed partial class ESClientCrosshairSystem : EntitySystem
         if (args.Sprite is null || !args.AppearanceData.TryGetValue(ESCrosshairVisuals.Name, out var obj) || obj is not string name)
             return;
 
-        var controller = _ui.GetUIController<ChatUIController>();
-        _sprite.SetColor((ent.Owner, args.Sprite), controller.GetNameColor(name));
+        _sprite.SetColor((ent.Owner, args.Sprite), _chat.GetChatColor(name));
     }
 
     public override void FrameUpdate(float frameTime)

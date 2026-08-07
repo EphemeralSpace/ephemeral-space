@@ -49,6 +49,7 @@ public sealed partial class ESChatManager : IESChatManager
         string? font = null,
         int? fontSize = null)
     {
+        // TODO: prediction
         // No functionality on client.
     }
 

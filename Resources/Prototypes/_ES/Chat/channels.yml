@@ -13,6 +13,7 @@
   - type: ESSpeechVerbChatChannel
     format: es-chat-channel-speak-fmt-verb
     boldFormat: es-chat-channel-speak-bold-fmt-verb
+  - type: ESColorNameChatChannel
   - type: ESSpeechChatChannel
   - type: ESRequireCanSpeakChatChannel
   - type: ESSanitizationChatChannel
@@ -33,6 +34,7 @@
     range: 5
   - type: ESSimpleFormatChatChannel
     format: es-chat-channel-whisper-fmt
+  - type: ESColorNameChatChannel
   - type: ESSpeechChatChannel
   - type: ESRequireCanSpeakChatChannel
   - type: ESWhisperChatChannel
