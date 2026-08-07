@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Chat;
 
-public sealed partial class ESSharedChatSystem : EntitySystem
+public abstract partial class ESSharedChatSystem : EntitySystem
 {
     [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private ISharedPlayerManager _player = default!;

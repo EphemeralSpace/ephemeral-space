@@ -9,7 +9,7 @@
   - type: ESChatProcessor
     channel: Speak
   - type: ESGhostListenableChatChannel
-  - type: ESRangedChatChannel
+  - type: ESRangedChatChannel # TODO: should probably go through occluders? Seems logical.
   - type: ESSpeechVerbChatChannel
     format: es-chat-channel-speak-fmt-verb
     boldFormat: es-chat-channel-speak-bold-fmt-verb
