@@ -80,9 +80,6 @@ es-secret-identity-burstworm-desc = As a Burstworm, explode in a burst of devili
 es-secret-identity-hemophage-name = Hemophage
 es-secret-identity-hemophage-desc = As a Hemophage, spread your infected blood all across the station. When you are killed, anyone in contact with it will be swarmed with parasites.
 
-es-secret-identity-host-name = Host
-es-secret-identity-host-desc = As a Host, partake in the festivites and swarm with your fellow parasites!
-
 es-secret-identity-leapleech-name = Leapleech
 es-secret-identity-leapleech-desc = As a Leapleech, take damage from multiple crew members to increase your power. Upon death, spawn a horde of leaping parasitic leeches based on how many people wronged you.
 

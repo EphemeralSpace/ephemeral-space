@@ -156,11 +156,11 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
         }
 
         // If everyone's dead, end the round
-        var actorQuery = EntityQueryEnumerator<ActorComponent>();
+        var actorQuery = AllEntityQuery<MobStateComponent, ActorComponent>();
         var allDead = true;
         while (actorQuery.MoveNext(out var mob, out _))
         {
-            if (TryComp<MobStateComponent>(mob, out var state) && state.CurrentState != MobState.Dead)
+            if (mob.CurrentState != MobState.Dead)
                 allDead = false;
         }
 
