@@ -1,0 +1,16 @@
+- type: esChatChannel
+  id: Lobby
+  name: es-chat-channel-name-lobby
+  color: Plum
+  chatProcessor: LobbyChatProcessor
+  prefixes: [ "[" ]
+  filterCategory: Local
+  speechBubbleType: say
+  focusKey: FocusOOCWindow
+
+- type: entity
+  id: LobbyChatProcessor
+  components:
+  - type: ESTheatergoerChatChannel
+  - type: ESSimpleFormatChatChannel
+    format: es-chat-channel-lobby-fmt

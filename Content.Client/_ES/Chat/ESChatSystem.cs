@@ -39,7 +39,7 @@ public sealed class ESChatSystem : ESSharedChatSystem
     {
         base.RefreshChatPermissions(ent);
 
-        if (!Resolve(ent, ref ent.Comp))
+        if (!Resolve(ent, ref ent.Comp, false))
             return;
 
         if (PlayerManager.LocalEntity != ent)
