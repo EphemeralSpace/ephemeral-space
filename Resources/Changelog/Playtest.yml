@@ -1675,3 +1675,9 @@ Entries:
       message: Humans can no longer be put on meat spikes.
   id: 177
   time: '2026-08-06T14:31:19.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Tweak
+      message: stagehands will now be notified upon apc bugging/debugging
+  id: 178
+  time: '2026-08-08T19:47:56.0000000+00:00'
