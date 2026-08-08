@@ -1,3 +1,4 @@
+using Content.Shared._ES.Chat;
 using Content.Shared.Chat;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -12,5 +13,5 @@ namespace Content.Shared.Radio.Components;
 public sealed partial class IntrinsicRadioTransmitterComponent : Component
 {
     [DataField]
-    public HashSet<ProtoId<RadioChannelPrototype>> Channels = new() { SharedChatSystem.CommonChannel };
+    public HashSet<ProtoId<ESChatChannelPrototype>> Channels = [];
 }

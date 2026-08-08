@@ -1,3 +1,4 @@
+using Content.Shared._ES.Chat;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -13,7 +14,7 @@ public sealed partial class ActiveRadioComponent : Component
     ///     The channels that this radio is listening on.
     /// </summary>
     [DataField]
-    public HashSet<ProtoId<RadioChannelPrototype>> Channels = new();
+    public HashSet<ProtoId<ESChatChannelPrototype>> Channels = new();
 
     /// <summary>
     /// A toggle for globally receiving all radio channels.

@@ -43,10 +43,11 @@ public abstract partial class SharedRadioDeviceSystem : EntitySystem
         }
 
         _appearance.SetData(uid, RadioDeviceVisuals.Speaker, component.Enabled);
-        if (component.Enabled)
-            EnsureComp<ActiveRadioComponent>(uid).Channels.UnionWith(component.Channels);
-        else
-            RemCompDeferred<ActiveRadioComponent>(uid);
+        // TODO: OK WE'LL GET THERE
+        // if (component.Enabled)
+        //     EnsureComp<ActiveRadioComponent>(uid).Channels.UnionWith(component.Channels);
+        // else
+        //     RemCompDeferred<ActiveRadioComponent>(uid);
     }
     #endregion
 }

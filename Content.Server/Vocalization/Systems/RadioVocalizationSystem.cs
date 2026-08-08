@@ -44,6 +44,11 @@ public sealed partial class RadioVocalizationSystem : EntitySystem
     /// </summary>
     private bool TryPickRandomRadioChannel(EntityUid entity, out ProtoId<RadioChannelPrototype> channel)
     {
+        channel = default;
+        return false;
+
+        // TODO: RADIO ok we'll deal with it
+        /*
         HashSet<ProtoId<RadioChannelPrototype>> potentialChannels = [];
 
         // we don't have to check if this entity has an inventory. GetHandOrInventoryEntities will not yield anything
@@ -65,6 +70,7 @@ public sealed partial class RadioVocalizationSystem : EntitySystem
         channel = _random.Pick(potentialChannels);
 
         return true;
+        */
     }
 
     /// <summary>

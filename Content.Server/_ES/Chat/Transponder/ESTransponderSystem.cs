@@ -28,6 +28,8 @@ public sealed partial class ESTransponderSystem : EntitySystem
 
     private void OnUseTransponder(Entity<IntrinsicRadioReceiverComponent> ent, ref ESTransponderActionEvent args)
     {
+        // TODO: reimplement with a custom chat channel
+        /*
         if (!TryComp<ActiveRadioComponent>(ent, out var radio) ||
             (!radio.Channels.Contains(args.Channel) && !radio.ReceiveAllChannels))
             return;
@@ -41,6 +43,7 @@ public sealed partial class ESTransponderSystem : EntitySystem
             (msg => SendMessage(ent, channel, msg, _timing.CurTime)));
 
         args.Handled = true;
+        */
     }
 
     private void SendMessage(EntityUid ent, ProtoId<RadioChannelPrototype> channel, string message, TimeSpan sendTime)

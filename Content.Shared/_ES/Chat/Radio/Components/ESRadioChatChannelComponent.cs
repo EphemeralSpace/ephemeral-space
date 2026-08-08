@@ -1,4 +1,4 @@
-namespace Content.Server._ES.Chat.Radio.Components;
+namespace Content.Shared._ES.Chat.Radio.Components;
 
 [RegisterComponent]
 public sealed partial class ESRadioChatChannelComponent : Component

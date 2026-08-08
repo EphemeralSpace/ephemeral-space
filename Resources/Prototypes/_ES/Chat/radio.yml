@@ -1,5 +1,5 @@
 - type: esChatChannel
-  id: RadioCommon
+  id: Common
   name: es-chat-channel-name-radio-common
   color: LimeGreen
   chatProcessor: RadioChatProcessor

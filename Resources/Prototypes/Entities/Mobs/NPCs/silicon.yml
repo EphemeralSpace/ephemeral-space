@@ -420,6 +420,6 @@
   - type: ActiveRadio
     channels:
     - Common
-    - Supply
+    #- Supply
   - type: Puller
     needsHands: false

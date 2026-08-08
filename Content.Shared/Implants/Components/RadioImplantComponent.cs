@@ -1,4 +1,5 @@
-﻿using Content.Shared.Radio;
+﻿using Content.Shared._ES.Chat;
+using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Implants.Components;
@@ -13,7 +14,7 @@ public sealed partial class RadioImplantComponent : Component
     /// The radio channel(s) to grant access to.
     /// </summary>
     [DataField(required: true)]
-    public HashSet<ProtoId<RadioChannelPrototype>> RadioChannels = new();
+    public HashSet<ProtoId<ESChatChannelPrototype>> RadioChannels = new();
 
     /// <summary>
     /// The radio channels that have been added by the implant to a user's ActiveRadioComponent.
@@ -23,7 +24,7 @@ public sealed partial class RadioImplantComponent : Component
     /// Should not be modified outside RadioImplantSystem.cs
     /// </remarks>
     [DataField]
-    public HashSet<ProtoId<RadioChannelPrototype>> ActiveAddedChannels = new();
+    public HashSet<ProtoId<ESChatChannelPrototype>> ActiveAddedChannels = new();
 
     /// <summary>
     /// The radio channels that have been added by the implant to a user's IntrinsicRadioTransmitterComponent.
@@ -33,5 +34,5 @@ public sealed partial class RadioImplantComponent : Component
     /// Should not be modified outside RadioImplantSystem.cs
     /// </remarks>
     [DataField]
-    public HashSet<ProtoId<RadioChannelPrototype>> TransmitterAddedChannels = new();
+    public HashSet<ProtoId<ESChatChannelPrototype>> TransmitterAddedChannels = new();
 }

@@ -69,10 +69,13 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnSpeakerInit(EntityUid uid, RadioSpeakerComponent component, ComponentInit args)
     {
+        // TODO: RADIO we're getting there!!!
+        /*
         if (component.Enabled)
             EnsureComp<ActiveRadioComponent>(uid).Channels.UnionWith(component.Channels);
         else
             RemCompDeferred<ActiveRadioComponent>(uid);
+        */
     }
     #endregion
 
