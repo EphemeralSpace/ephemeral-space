@@ -22,7 +22,7 @@
       18: ["#Gunners"] # 3 traitors.
       19: ["Marauder"] # 4 traitors.
       21: ["#AllCrew", "-#Traitors", "#PowerTraitors"] # 4 traitors.
-      22: ["Guzzler"]
+      22: ["#AllCrew"]
       24: ["Avenger"] # 4 traitors.
       25: ["#Traitors"] # 5 traitors.
       26: ["#AllCrew"]
