@@ -18,9 +18,7 @@ using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Damage.ForceSay;
-using Content.Shared.Decals;
 using Content.Shared.Input;
-using Content.Shared.Radio;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -66,33 +64,6 @@ public sealed partial class ChatUIController : UIController
     [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
 
     private ISawmill _sawmill = default!;
-
-    public static readonly Dictionary<char, ChatSelectChannel> PrefixToChannel = new()
-    {
-        {SharedChatSystem.LocalPrefix, ChatSelectChannel.Local},
-        {SharedChatSystem.WhisperPrefix, ChatSelectChannel.Whisper},
-        {SharedChatSystem.ConsolePrefix, ChatSelectChannel.Console},
-        {SharedChatSystem.LOOCPrefix, ChatSelectChannel.LOOC},
-        {SharedChatSystem.OOCPrefix, ChatSelectChannel.OOC},
-        {SharedChatSystem.EmotesPrefix, ChatSelectChannel.Emotes},
-        {SharedChatSystem.EmotesAltPrefix, ChatSelectChannel.Emotes},
-        {SharedChatSystem.AdminPrefix, ChatSelectChannel.Admin},
-        {SharedChatSystem.RadioCommonPrefix, ChatSelectChannel.Radio},
-        {SharedChatSystem.DeadPrefix, ChatSelectChannel.Dead}
-    };
-
-    public static readonly Dictionary<ChatSelectChannel, char> ChannelPrefixes = new()
-    {
-        {ChatSelectChannel.Local, SharedChatSystem.LocalPrefix},
-        {ChatSelectChannel.Whisper, SharedChatSystem.WhisperPrefix},
-        {ChatSelectChannel.Console, SharedChatSystem.ConsolePrefix},
-        {ChatSelectChannel.LOOC, SharedChatSystem.LOOCPrefix},
-        {ChatSelectChannel.OOC, SharedChatSystem.OOCPrefix},
-        {ChatSelectChannel.Emotes, SharedChatSystem.EmotesPrefix},
-        {ChatSelectChannel.Admin, SharedChatSystem.AdminPrefix},
-        {ChatSelectChannel.Radio, SharedChatSystem.RadioCommonPrefix},
-        {ChatSelectChannel.Dead, SharedChatSystem.DeadPrefix}
-    };
 
     /// <summary>
     ///     The max amount of chars allowed to fit in a single speech bubble.
@@ -595,25 +566,9 @@ public sealed partial class ChatUIController : UIController
         }
     }
 
-    public ChatSelectChannel MapLocalIfGhost(ChatSelectChannel channel)
-    {
-        if (channel == ChatSelectChannel.Local && _ghost is {IsGhost: true})
-            return ChatSelectChannel.Dead;
-
-        return channel;
-    }
-
-    private bool TryGetRadioChannel(string text, out RadioChannelPrototype? radioChannel)
-    {
-        radioChannel = null;
-        return _player.LocalEntity is EntityUid { Valid: true } uid
-           && _chatSys != null
-           && _chatSys.TryProcessRadioMessage(uid, text, out _, out radioChannel, quiet: true);
-    }
-
     public void UpdateSelectedChannel(ChatBox box)
     {
-        var (prefixChannel, _, _) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
+        var (prefixChannel, _) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
 
         if (prefixChannel == null)
             box.ChatInput.ChannelSelector.UpdateChannelSelectButton(_prototypeManager.Index(box.SelectedChannel));
@@ -621,14 +576,14 @@ public sealed partial class ChatUIController : UIController
             box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel);
     }
 
-    public (ESChatChannelPrototype? chatChannel, string text, RadioChannelPrototype? radioChannel) SplitInputContents(string text)
+    public (ESChatChannelPrototype? chatChannel, string text) SplitInputContents(string text)
     {
         text = text.Trim();
         if (text.Length == 0)
-            return (null, text, null);
+            return (null, text);
 
         if (!_esChat.TryGetChannelFromMessage(text, out var chatChannel, out var trimmedText))
-            return (null, text, null);
+            return (null, text);
 
         // TODO: radio is its own can of worms
         /*
@@ -643,7 +598,7 @@ public sealed partial class ChatUIController : UIController
         //if (chatChannel == ChatSelectChannel.Radio)
         //    return (chatChannel, text, radioChannel);
 
-        return (chatChannel, trimmedText, null);
+        return (chatChannel, trimmedText);
     }
 
     public void SendMessage(ChatBox box, ProtoId<ESChatChannelPrototype> channel)
@@ -658,7 +613,7 @@ public sealed partial class ChatUIController : UIController
         if (string.IsNullOrWhiteSpace(text))
             return;
 
-        (var prefixChannel, text, var radio) = SplitInputContents(text);
+        (var prefixChannel, text) = SplitInputContents(text);
 
         // Check if message is longer than the character limit
         if (text.Length > MaxMessageLength)
@@ -844,11 +799,6 @@ public sealed partial class ChatUIController : UIController
     public void UnregisterChat(ChatBox chat)
     {
         _chats.Remove(chat);
-    }
-
-    public ChatSelectChannel GetPreferredChannel()
-    {
-        return MapLocalIfGhost(PreferredChannel);
     }
 
     public void NotifyChatTextChange()
