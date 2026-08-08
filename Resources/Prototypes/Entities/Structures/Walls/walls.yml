@@ -58,7 +58,7 @@
   parent: BaseStructureWall
   id: BaseWall
   components:
-  - type: Occluder # Breaks on diagonal walls
+  - type: Occluder
 
 - type: entity
   abstract: true
