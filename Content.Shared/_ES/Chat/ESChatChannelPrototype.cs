@@ -26,6 +26,8 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     [DataField]
     public BoundKeyFunction? FocusKey;
 
+    // TODO: add datafield for groups for filtering chat channels by.
+
     /// <summary>
     /// Determines whether any message sent on this channel will be saved to replay.
     /// </summary>
