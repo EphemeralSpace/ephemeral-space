@@ -39,7 +39,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.UserInterface.Systems.Chat;
 
-public sealed partial class ChatUIController : UIController
+public sealed partial class ChatUIController : UIController, IOnSystemChanged<ESChatSystem>
 {
     [Dependency] private IESChatManager _esChat = default!;
     [Dependency] private IClientAdminManager _admin = default!;
@@ -58,7 +58,7 @@ public sealed partial class ChatUIController : UIController
     [UISystemDependency] private readonly ExamineSystem? _examine = default;
     [UISystemDependency] private readonly GhostSystem? _ghost = default;
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
-    [UISystemDependency] private readonly ChatSystem? _chatSys = default;
+    [UISystemDependency] private readonly ESChatSystem? _chatSys = default;
     [UISystemDependency] private readonly TransformSystem? _transform = default;
     [UISystemDependency] private readonly MindSystem? _mindSystem = default!;
     [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
@@ -117,24 +117,7 @@ public sealed partial class ChatUIController : UIController
     // TODO add a cap for this for non-replays
     public readonly List<(GameTick Tick, ESChatMessage Msg)> History = new();
 
-    // Maintains which channels a client should be able to filter (for showing in the chatbox)
-    // and select (for attempting to send on).
-    // This may not always actually match with what the server will actually allow them to
-    // send / receive on, it is only what the user can select in the UI. For example,
-    // if a user is silenced from speaking for some reason this may still contain ChatChannel.Local, it is left up
-    // to the server to handle invalid attempts to use particular channels and not send messages for
-    // channels the user shouldn't be able to hear.
-    //
-    // Note that Command is an available selection in the chatbox channel selector,
-    // which is not actually a chat channel but is always available.
-    public ChatSelectChannel CanSendChannels { get; private set; }
-    public ChatChannel FilterableChannels { get; private set; }
-    public ChatSelectChannel SelectableChannels { get; private set; }
-    private ChatSelectChannel PreferredChannel { get; set; } = ChatSelectChannel.OOC;
-
-    public event Action<ChatSelectChannel>? CanSendChannelsChanged;
-    public event Action<ChatChannel>? FilterableChannelsChanged;
-    public event Action<ChatSelectChannel>? SelectableChannelsChanged;
+    public event Action<EntityUid, HashSet<ProtoId<ESChatChannelPrototype>>>? LocalChatPermissionsUpdated;
     public event Action<ProtoId<ESChatChannelFilterPrototype>, int?>? UnreadMessageCountsUpdated;
     public event Action<ESChatMessage>? MessageAdded;
 
@@ -142,18 +125,12 @@ public sealed partial class ChatUIController : UIController
     {
         _sawmill = Logger.GetSawmill("chat");
         _sawmill.Level = LogLevel.Info;
-        _admin.AdminStatusUpdated += UpdateChannelPermissions;
-        _player.LocalPlayerAttached += OnAttachedChanged;
-        _player.LocalPlayerDetached += OnAttachedChanged;
-        _state.OnStateChanged += StateChanged;
         _net.RegisterNetMessage<MsgChatMessage>(OnChatMessage);
         _esChat.OnChatMessageSent += OnChatMessageSent;
         _net.RegisterNetMessage<MsgDeleteChatMessagesBy>(OnDeleteChatMessagesBy);
         SubscribeNetworkEvent<DamageForceSayEvent>(OnDamageForceSay);
 
         _speechBubbleRoot = new LayoutContainer();
-
-        UpdateChannelPermissions();
 
         _input.SetInputCommand(ContentKeyFunctions.FocusChat,
             InputCmdHandler.FromDelegate(_ => FocusChat()));
@@ -296,16 +273,6 @@ public sealed partial class ChatUIController : UIController
         }
     }
 
-    private void StateChanged(StateChangedEventArgs args)
-    {
-        if (args.NewState is GameplayState)
-        {
-            PreferredChannel = ChatSelectChannel.Local;
-        }
-
-        UpdateChannelPermissions();
-    }
-
     public void SetSpeechBubbleRoot(LayoutContainer root)
     {
         _speechBubbleRoot.Orphan();
@@ -314,11 +281,6 @@ public sealed partial class ChatUIController : UIController
         // todo make the speech bubble container an actual uiwidget in the game screens instead of doing this dumb shit
         _speechBubbleRoot.SetPositionInParent(root.ChildCount - 2);
         _speechBubbleRoot.RectClipContent = true;
-    }
-
-    private void OnAttachedChanged(EntityUid uid)
-    {
-        UpdateChannelPermissions();
     }
 
     private void AddSpeechBubble(ESChatMessage msg, SpeechType speechType)
@@ -398,72 +360,6 @@ public sealed partial class ChatUIController : UIController
         {
             _activeSpeechBubbles.Remove(entityUid);
         }
-    }
-
-    private void UpdateChannelPermissions()
-    {
-        CanSendChannels = default;
-        FilterableChannels = default;
-
-        // Can always send console stuff.
-        CanSendChannels |= ChatSelectChannel.Console;
-
-        // can always send/recieve OOC
-        CanSendChannels |= ChatSelectChannel.OOC;
-        CanSendChannels |= ChatSelectChannel.LOOC;
-        FilterableChannels |= ChatChannel.OOC;
-        FilterableChannels |= ChatChannel.LOOC;
-
-        // can always hear server (nobody can actually send server messages).
-        FilterableChannels |= ChatChannel.Server;
-
-        if (_state.CurrentState is GameplayStateBase)
-        {
-            // can always hear local / radio / emote / notifications when in the game
-            FilterableChannels |= ChatChannel.Local;
-            FilterableChannels |= ChatChannel.Whisper;
-            FilterableChannels |= ChatChannel.Radio;
-            FilterableChannels |= ChatChannel.Emotes;
-            FilterableChannels |= ChatChannel.Notifications;
-
-            // Can only send local / radio / emote when attached to a non-ghost entity.
-            // TODO: this logic is iffy (checking if controlling something that's NOT a ghost), is there a better way to check this?
-            if (_ghost is not {IsGhost: true})
-            {
-                CanSendChannels |= ChatSelectChannel.Local;
-                CanSendChannels |= ChatSelectChannel.Whisper;
-                CanSendChannels |= ChatSelectChannel.Radio;
-                CanSendChannels |= ChatSelectChannel.Emotes;
-            }
-        }
-
-        // Only ghosts and admins can send / see deadchat.
-        if (_admin.HasFlag(AdminFlags.Admin) || _ghost is {IsGhost: true})
-        {
-            FilterableChannels |= ChatChannel.Dead;
-            CanSendChannels |= ChatSelectChannel.Dead;
-        }
-
-        // only admins can see / filter asay
-        if (_admin.HasFlag(AdminFlags.Adminchat))
-        {
-            FilterableChannels |= ChatChannel.Admin;
-            FilterableChannels |= ChatChannel.AdminAlert;
-            FilterableChannels |= ChatChannel.AdminChat;
-            CanSendChannels |= ChatSelectChannel.Admin;
-        }
-
-        SelectableChannels = CanSendChannels;
-
-        // Necessary so that we always have a channel to fall back to.
-        DebugTools.Assert((CanSendChannels & ChatSelectChannel.OOC) != 0, "OOC must always be available");
-        DebugTools.Assert((FilterableChannels & ChatChannel.OOC) != 0, "OOC must always be available");
-        DebugTools.Assert((SelectableChannels & ChatSelectChannel.OOC) != 0, "OOC must always be available");
-
-        // let our chatbox know all the new settings
-        CanSendChannelsChanged?.Invoke(CanSendChannels);
-        FilterableChannelsChanged?.Invoke(FilterableChannels);
-        SelectableChannelsChanged?.Invoke(SelectableChannels);
     }
 
     public void ClearUnfilteredUnreads(ProtoId<ESChatChannelFilterPrototype> filterChannel)
@@ -585,18 +481,8 @@ public sealed partial class ChatUIController : UIController
         if (!_esChat.TryGetChannelFromMessage(text, out var chatChannel, out var trimmedText))
             return (null, text);
 
-        // TODO: radio is its own can of worms
-        /*
-        if (TryGetRadioChannel(text, out var radioChannel))
-            chatChannel = ChatSelectChannel.Radio;
-        */
-
-        // TODO: re-evaluate after coding "can send message" stuff
-        //if ((CanSendChannels & chatChannel) == 0)
-        //    return (ChatSelectChannel.None, text, null);
-
-        //if (chatChannel == ChatSelectChannel.Radio)
-        //    return (chatChannel, text, radioChannel);
+        if (!GetPermittedChannels().Contains(chatChannel))
+            return (null, text);
 
         return (chatChannel, trimmedText);
     }
@@ -814,5 +700,27 @@ public sealed partial class ChatUIController : UIController
         public float TimeLeft { get; set; }
 
         public Queue<SpeechBubbleData> MessageQueue { get; } = new();
+    }
+
+    public void OnSystemLoaded(ESChatSystem system)
+    {
+        system.LocalChatPermissionsUpdated += OnLocalPermissionsUpdated;
+    }
+
+    public void OnSystemUnloaded(ESChatSystem system)
+    {
+        system.LocalChatPermissionsUpdated -= OnLocalPermissionsUpdated;
+    }
+
+    private void OnLocalPermissionsUpdated(EntityUid uid, HashSet<ProtoId<ESChatChannelPrototype>> channels)
+    {
+        LocalChatPermissionsUpdated?.Invoke(uid, channels);
+    }
+
+    public HashSet<ProtoId<ESChatChannelPrototype>> GetPermittedChannels()
+    {
+        if (_player.LocalEntity == null || _chatSys == null)
+            return [ ESSharedChatSystem.DefaultChannel ];
+        return _chatSys.GetPermittedChannels(_player.LocalEntity.Value);
     }
 }

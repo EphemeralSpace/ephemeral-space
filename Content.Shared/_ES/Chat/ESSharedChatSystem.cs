@@ -9,8 +9,11 @@ namespace Content.Shared._ES.Chat;
 public abstract partial class ESSharedChatSystem : EntitySystem
 {
     [Dependency] private IESSharedChatManager _chat = default!;
-    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] protected ISharedPlayerManager PlayerManager = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
+
+    // Default channel for situations where UI *needs* a channel
+    public static readonly ProtoId<ESChatChannelPrototype> DefaultChannel = "Speak";
 
     private static readonly ProtoId<ColorPalettePrototype> ChatNamePalette = "ChatNames";
     private Color[] _chatNameColors = default!;
@@ -18,11 +21,27 @@ public abstract partial class ESSharedChatSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
+        SubscribeLocalEvent<ESChatPermissionsComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<ESChatPermissionsComponent, ESGetChatPermissionsEvent>(OnGetChatPermissions);
+
         SubscribeLocalEvent<ESSimpleFormatChatChannelComponent, ESGetChatMessageFormatEvent>(OnSimpleGetFormat);
 
         InitializeChatNameColors();
 
         _chat.OnRequestSendChatMessage += OnRequestSendChatMessage;
+    }
+
+    private void OnStartup(Entity<ESChatPermissionsComponent> ent, ref ComponentStartup args)
+    {
+        RefreshChatPermissions(ent.AsNullable());
+    }
+
+    private void OnGetChatPermissions(Entity<ESChatPermissionsComponent> ent, ref ESGetChatPermissionsEvent args)
+    {
+        foreach (var channel in ent.Comp.InherentChannels)
+        {
+            args.Channels.Add(channel);
+        }
     }
 
     private void InitializeChatNameColors()
@@ -37,6 +56,9 @@ public abstract partial class ESSharedChatSystem : EntitySystem
 
     private void OnRequestSendChatMessage(EntityUid source, ESRequestSendChatMessage msg)
     {
+        if (!GetPermittedChannels(source).Contains(msg.ChatChannel))
+            return;
+
         TrySendMessage(msg.Text, msg.ChatChannel, source);
     }
 
@@ -80,8 +102,6 @@ public abstract partial class ESSharedChatSystem : EntitySystem
 
         return (processorUid, processorComp);
     }
-
-    // TODO: separate method for deriving channel out of prefixes, etc.
 
     public bool TrySendMessage(
         string content,
@@ -131,7 +151,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
 
         foreach (var recipient in GetMessageRecipients(source, processor))
         {
-            if (!_player.TryGetSessionByEntity(recipient, out var session))
+            if (!PlayerManager.TryGetSessionByEntity(recipient, out var session))
                 continue;
 
             var nameEv = new ESTransformMessageSourceNameEvent(Name(source), source, recipient);
@@ -220,6 +240,26 @@ public abstract partial class ESSharedChatSystem : EntitySystem
 
             yield return recipient;
         }
+    }
+
+    public virtual void RefreshChatPermissions(Entity<ESChatPermissionsComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        var ev = new ESGetChatPermissionsEvent(ent);
+        RaiseLocalEvent(ent, ref ev, true);
+
+        ent.Comp.PermittedChannels = ev.Channels;
+        Dirty(ent);
+    }
+
+    public HashSet<ProtoId<ESChatChannelPrototype>> GetPermittedChannels(Entity<ESChatPermissionsComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return [ DefaultChannel ];
+
+        return ent.Comp.PermittedChannels;
     }
 
     /// <summary>
@@ -441,4 +481,15 @@ public record struct ESReceiveChatMessageAttemptEvent(EntityUid Source)
     {
         Canceled = true;
     }
+}
+
+/// <summary>
+/// Event broadcast and raised on an entity to determine what chat channels they can send from.
+/// </summary>
+[ByRefEvent]
+public record struct ESGetChatPermissionsEvent(EntityUid Source)
+{
+    public readonly EntityUid Source = Source;
+
+    public readonly HashSet<ProtoId<ESChatChannelPrototype>> Channels = [];
 }

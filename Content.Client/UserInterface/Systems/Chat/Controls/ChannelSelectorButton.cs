@@ -1,13 +1,13 @@
 using System.Numerics;
 using Content.Shared._ES.Chat;
-using Content.Shared.Chat;
-using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
 public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup>
 {
+    private readonly ChatUIController _chatUIController;
+
     public event Action<ProtoId<ESChatChannelPrototype>>? OnChannelSelect;
 
     public ProtoId<ESChatChannelPrototype> SelectedChannel { get; private set; }
@@ -20,10 +20,19 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
 
         Popup.Selected += OnChannelSelected;
 
+        _chatUIController = UserInterfaceManager.GetUIController<ChatUIController>();
+        _chatUIController.LocalChatPermissionsUpdated += OnChatPermissionsUpdated;
+
+        Popup.UpdateChannels(_chatUIController.GetPermittedChannels());
         if (Popup.FirstChannel is { } firstSelector)
         {
             Select(firstSelector);
         }
+    }
+
+    private void OnChatPermissionsUpdated(EntityUid arg1, HashSet<ProtoId<ESChatChannelPrototype>> arg2)
+    {
+        Popup.UpdateChannels(_chatUIController.GetPermittedChannels());
     }
 
     protected override UIBox2 GetPopupPosition()
