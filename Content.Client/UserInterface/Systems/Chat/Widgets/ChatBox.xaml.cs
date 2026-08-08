@@ -137,26 +137,13 @@ public partial class ChatBox : UIWidget
 
     public void CycleChatChannel(bool forward)
     {
-        // TODO: Chat cycling is FUCKED UP
-        // var idx = Array.IndexOf(ChannelSelectorPopup.Ch, SelectedChannel);
-        // do
-        // {
-        //     // go over every channel until we find one we can actually select.
-        //     idx += forward ? 1 : -1;
-        //     idx = MathHelper.Mod(idx, ChannelSelectorPopup.ChannelSelectorOrder.Length);
-        // } while ((Controller.SelectableChannels & ChannelSelectorPopup.ChannelSelectorOrder[idx]) == 0);
-        //
-        // SafelySelectChannel(ChannelSelectorPopup.ChannelSelectorOrder[idx]);
-    }
+        var channels = ChatInput.ChannelSelector.Popup.Channels;
 
-    public void SafelySelectChannel(ChatSelectChannel toSelect)
-    {
-        toSelect = Controller.MapLocalIfGhost(toSelect);
-        if ((Controller.SelectableChannels & toSelect) == 0)
-            return;
+        var idx = channels.IndexOf(SelectedChannel);
+        idx += forward ? 1 : -1;
+        idx = MathHelper.Mod(idx, channels.Count);
 
-        // TODO: this should just be some default selection when chat channels update.
-        // ChatInput.ChannelSelector.Select(toSelect);
+        ChatInput.ChannelSelector.Select(channels[idx]);
     }
 
     private void OnInputKeyBindDown(GUIBoundKeyEventArgs args)
