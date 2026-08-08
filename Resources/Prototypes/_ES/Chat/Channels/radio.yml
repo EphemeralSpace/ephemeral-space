@@ -4,6 +4,7 @@
   color: LimeGreen
   chatProcessor: RadioChatProcessor
   prefixes: [ ";" ]
+  filterCategory: Radio
   focusKey: FocusRadioWindow
 
 - type: entity

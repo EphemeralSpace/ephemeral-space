@@ -31,15 +31,15 @@ public sealed partial class ChatWindow : FancyWindow
         // TODO: what the fuck does this even do, man
         //Chatbox.ChatInput.ChannelSelector.Select(ChatSelectChannel.Admin);
 
-        var filter = Chatbox.ChatInput.FilterButton.Popup;
-        foreach (var c in Enum.GetValues(typeof(ChatChannel)))
-        {
-            var channel = (ChatChannel)c;
-            var isAdminInterest = channel == ChatChannel.Admin
-                                  || channel == ChatChannel.AdminChat
-                                  || channel == ChatChannel.AdminAlert
-                                  || channel == ChatChannel.AdminRelated;
-            filter.SetActive(channel, isAdminInterest);
-        }
+        // var filter = Chatbox.ChatInput.FilterButton.Popup;
+        // foreach (var c in Enum.GetValues(typeof(ChatChannel)))
+        // {
+        //     var channel = (ChatChannel)c;
+        //     var isAdminInterest = channel == ChatChannel.Admin
+        //                           || channel == ChatChannel.AdminChat
+        //                           || channel == ChatChannel.AdminAlert
+        //                           || channel == ChatChannel.AdminRelated;
+        //     filter.SetActive(channel, isAdminInterest);
+        // }
     }
 }

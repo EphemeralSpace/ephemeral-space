@@ -23,6 +23,9 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     [DataField]
     public List<string> Prefixes = new();
 
+    [DataField(required: true)]
+    public ProtoId<ESChatChannelFilterPrototype> FilterCategory;
+
     [DataField]
     public BoundKeyFunction? FocusKey;
 
@@ -35,7 +38,7 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     public bool SaveReplay = true;
 
     [DataField]
-    public SpeechType SpeechBubbleType = SpeechType.Say;
+    public SpeechType? SpeechBubbleType;
 
     public bool TryGetDefaultPrefix([NotNullWhen(true)] out string? prefix)
     {

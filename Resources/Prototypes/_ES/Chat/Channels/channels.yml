@@ -3,6 +3,8 @@
   name: es-chat-channel-name-speak
   chatProcessor: SpeakChatProcessor
   prefixes: [ ">" ]
+  filterCategory: Local
+  speechBubbleType: say
   focusKey: FocusLocalChatWindow
 
 - type: entity
@@ -23,6 +25,7 @@
   name: es-chat-channel-name-whisper
   chatProcessor: WhisperChatProcessor
   prefixes: [ "," ]
+  filterCategory: Whisper
   speechBubbleType: whisper
   focusKey: FocusWhisperChatWindow
 
@@ -45,6 +48,7 @@
   name: es-chat-channel-name-emote
   chatProcessor: EmoteChatProcessor
   prefixes: [ "@", "*" ]
+  filterCategory: Emote
   speechBubbleType: emote
   focusKey: FocusEmote
 

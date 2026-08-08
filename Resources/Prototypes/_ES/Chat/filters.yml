@@ -1,0 +1,15 @@
+- type: esChatChannelFilter
+  id: Local
+  name: es-chat-channel-name-speak
+
+- type: esChatChannelFilter
+  id: Whisper
+  name: es-chat-channel-name-whisper
+
+- type: esChatChannelFilter
+  id: Emote
+  name: es-chat-channel-name-emote
+
+- type: esChatChannelFilter
+  id: Radio
+  name: es-chat-filter-name-radio

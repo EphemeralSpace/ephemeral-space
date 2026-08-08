@@ -112,7 +112,7 @@ public sealed partial class ChatUIController : UIController
     /// For currently disabled chat filters,
     /// unread messages (messages received since the channel has been filtered out).
     /// </summary>
-    private readonly Dictionary<ChatChannel, int> _unreadMessages = new();
+    private readonly Dictionary<ProtoId<ESChatChannelFilterPrototype>, int> _unreadMessages = new();
 
     // TODO add a cap for this for non-replays
     public readonly List<(GameTick Tick, ESChatMessage Msg)> History = new();
@@ -135,7 +135,7 @@ public sealed partial class ChatUIController : UIController
     public event Action<ChatSelectChannel>? CanSendChannelsChanged;
     public event Action<ChatChannel>? FilterableChannelsChanged;
     public event Action<ChatSelectChannel>? SelectableChannelsChanged;
-    public event Action<ChatChannel, int?>? UnreadMessageCountsUpdated;
+    public event Action<ProtoId<ESChatChannelFilterPrototype>, int?>? UnreadMessageCountsUpdated;
     public event Action<ESChatMessage>? MessageAdded;
 
     public override void Initialize()
@@ -466,11 +466,11 @@ public sealed partial class ChatUIController : UIController
         SelectableChannelsChanged?.Invoke(SelectableChannels);
     }
 
-    public void ClearUnfilteredUnreads(ChatChannel channels)
+    public void ClearUnfilteredUnreads(ProtoId<ESChatChannelFilterPrototype> filterChannel)
     {
         foreach (var channel in _unreadMessages.Keys.ToArray())
         {
-            if ((channels & channel) == 0)
+            if (channel != filterChannel)
                 continue;
 
             _unreadMessages[channel] = 0;
@@ -683,17 +683,6 @@ public sealed partial class ChatUIController : UIController
     {
         var channel = _prototypeManager.Index(msg.Channel);
 
-        // color the name unless it's something like "the old man"
-        // TODO: what the fuck.
-        /*
-        if ((msg.Channel == ChatChannel.Local || msg.Channel == ChatChannel.Whisper) && _chatNameColorsEnabled)
-        {
-            var grammar = _ent.GetComponentOrNull<GrammarComponent>(_ent.GetEntity(msg.SenderEntity));
-            if (grammar != null && grammar.ProperNoun == true)
-                msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")).ToHex());
-        }
-        */
-
         // TODO: what the FUCK is this code. Do this shit serverside goddamn.
         /*
         // Color any codewords for minds that have roles that use them
@@ -720,24 +709,20 @@ public sealed partial class ChatUIController : UIController
 
             if (!msg.Read)
             {
-                // TODO restore
-                /*
                 _sawmill.Debug($"Message filtered: {msg.Channel}: {msg.FormattedMessage}");
-                if (!_unreadMessages.TryGetValue(msg.Channel, out var count))
-                    count = 0;
+                var count = _unreadMessages.GetValueOrDefault(channel.FilterCategory, 0);
 
                 count += 1;
-                _unreadMessages[msg.Channel] = count;
-                UnreadMessageCountsUpdated?.Invoke(msg.Channel, count);
-                */
+                _unreadMessages[channel.FilterCategory] = count;
+                UnreadMessageCountsUpdated?.Invoke(channel.FilterCategory, count);
             }
         }
 
         // Local messages that have an entity attached get a speech bubble.
-        if (!speechBubble || msg.Source == default || channel.SpeechBubbleType == SpeechType.None)
+        if (!speechBubble || msg.Source == default || !channel.SpeechBubbleType.HasValue)
             return;
 
-        AddSpeechBubble(msg, channel.SpeechBubbleType);
+        AddSpeechBubble(msg, channel.SpeechBubbleType.Value);
 
         /*
         switch (msg.Channel)

@@ -56,16 +56,15 @@ public partial class ChatBox : UIWidget
     protected virtual void OnMessageAdded(ESChatMessage msg)
     {
         Sawmill.Debug($"{msg.Channel}: {msg.Content}");
+        if (!VisibleInTree)
+            return;
 
-        // TODO: chat filters
-        /*
         if (!ChatInput.FilterButton.Popup.IsActive(msg.Channel))
         {
             return;
         }
-        */
 
-        // TODO:
+        // TODO: Audio for messages
         /*
         if (msg is { Read: false, AudioPath: { } })
             EntManager.System<AudioSystem>().PlayGlobal(msg.AudioPath, Filter.Local(), false, AudioParams.Default.WithVolume(msg.AudioVolume));
@@ -96,7 +95,7 @@ public partial class ChatBox : UIWidget
         }
     }
 
-    protected virtual void OnChannelFilter(ChatChannel channel, bool active)
+    protected virtual void OnChannelFilter(ProtoId<ESChatChannelFilterPrototype> channel, bool active)
     {
         Contents.Clear();
 
