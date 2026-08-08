@@ -146,7 +146,8 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
 
         _notification.SendStagehandNotification(Loc.GetString("es-stagehand-notification-apc-bugged",
             ("buggable", _notification.WrapEntityName(ent.Owner)),
-            ("player", _notification.WrapEntityName(args.User))));
+            ("player", _notification.WrapEntityName(args.User))),
+            ESStagehandNotificationSeverity.Low);
 
         Dirty(ent);
 
@@ -160,7 +161,8 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
 
         _notification.SendStagehandNotification(Loc.GetString("es-stagehand-notification-apc-bug-removed",
             ("buggable", _notification.WrapEntityName(ent.Owner)),
-            ("player", _notification.WrapEntityName(args.User))));
+            ("player", _notification.WrapEntityName(args.User))),
+            ESStagehandNotificationSeverity.Low);
 
         CancelBug(ent.AsNullable());
         args.Handled = true;
