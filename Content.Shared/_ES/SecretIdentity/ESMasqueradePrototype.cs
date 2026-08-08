@@ -7,7 +7,7 @@ namespace Content.Shared._ES.SecretIdentity;
 /// <summary>
 /// This is a prototype for a Masquerade, a set of roles to give for given player counts.
 /// </summary>
-[Prototype("esMasquerade")]
+[Prototype("esMasquerade", loadPriority: 2)] // loads after secret identities and secret identity sets
 public sealed partial class ESMasqueradePrototype : IPrototype, ISerializationHooks
 {
     /// <inheritdoc/>

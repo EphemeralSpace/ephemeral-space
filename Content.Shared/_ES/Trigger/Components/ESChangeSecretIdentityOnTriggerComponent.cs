@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components.Effects;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._ES.Trigger.Component;
+namespace Content.Shared._ES.Trigger.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ESChangeSecretIdentityOnTriggerComponent : BaseXOnTriggerComponent

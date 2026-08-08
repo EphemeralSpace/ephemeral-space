@@ -1,5 +1,5 @@
 ﻿using Content.Shared._ES.SecretIdentity;
-using Content.Shared._ES.Trigger.Component;
+using Content.Shared._ES.Trigger.Components;
 using Content.Shared.Mind;
 using Content.Shared.Trigger;
 
