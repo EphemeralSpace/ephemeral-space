@@ -68,21 +68,6 @@ public sealed class MechGrabberEjectMessage : MechEquipmentUiMessage
 }
 
 /// <summary>
-/// Event raised for the soundboard equipment to play a sound from its component
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class MechSoundboardPlayMessage : MechEquipmentUiMessage
-{
-    public int Sound;
-
-    public MechSoundboardPlayMessage(NetEntity equipment, int sound)
-    {
-        Equipment = equipment;
-        Sound = sound;
-    }
-}
-
-/// <summary>
 /// BUI state for mechs that also contains all equipment ui states.
 /// </summary>
 /// <remarks>
@@ -114,13 +99,4 @@ public sealed class MechGrabberUiState : BoundUserInterfaceState
 {
     public List<NetEntity> Contents = new();
     public int MaxContents;
-}
-
-/// <summary>
-/// List of sound collection ids to be localized and displayed.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class MechSoundboardUiState : BoundUserInterfaceState
-{
-    public List<string> Sounds = new();
 }

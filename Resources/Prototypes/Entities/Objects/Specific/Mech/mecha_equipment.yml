@@ -76,15 +76,6 @@
       right:
       - state: inhand-right-honk
   - type: MultiHandedItem
-  - type: MechSoundboard
-    sounds:
-    - collection: BikeHorn
-    - collection: CluwneHorn
-    - collection: TrollAnimals
-    - collection: TrollBeeping
-    - collection: TrollEsword
-  - type: UIFragment
-    ui: !type:MechSoundboardUi
   - type: UseDelay
     delay: 0.5
   # TODO: tag as being for H.O.N.K. only!!!
