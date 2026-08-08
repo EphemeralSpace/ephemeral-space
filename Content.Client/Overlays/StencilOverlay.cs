@@ -19,7 +19,6 @@ namespace Content.Client.Overlays;
 /// </summary>
 public sealed partial class StencilOverlay : Overlay
 {
-    private static readonly ProtoId<ShaderPrototype> CircleShader = "WorldGradientCircle";
     private static readonly ProtoId<ShaderPrototype> StencilMask = "StencilMask";
     private static readonly ProtoId<ShaderPrototype> StencilDraw = "StencilDraw";
 
@@ -27,40 +26,32 @@ public sealed partial class StencilOverlay : Overlay
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;
-    private readonly SharedMapSystem _mapManager = default!;
     private readonly ParallaxSystem _parallax;
-    private readonly SharedTransformSystem _transform;
     private readonly SharedMapSystem _map;
     private readonly SpriteSystem _sprite;
     private readonly WeatherSystem _weather;
     private readonly StatusEffectsSystem _statusEffects;
-    private GridStencilSystem _gridStencil = default!;
+    private readonly GridStencilSystem _gridStencil;
     private HashSet<Entity<WeatherStatusEffectComponent, StatusEffectComponent>>? _weatherSet = new();
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
-
     private readonly OverlayResourceCache<CachedResources> _resources = new();
 
-    private readonly ShaderInstance _shader;
-
-    public StencilOverlay(ParallaxSystem parallax, SharedTransformSystem transform, SharedMapSystem map, SpriteSystem sprite, WeatherSystem weather, StatusEffectsSystem statusEffects)
+    public StencilOverlay(ParallaxSystem parallax, SharedMapSystem map, SpriteSystem sprite, WeatherSystem weather, StatusEffectsSystem statusEffects)
     {
         ZIndex = ParallaxSystem.ParallaxZIndex + 1;
         _parallax = parallax;
-        _transform = transform;
         _map = map;
         _sprite = sprite;
         _weather = weather;
         _statusEffects = statusEffects;
         IoCManager.InjectDependencies(this);
         _gridStencil = _entManager.System<GridStencilSystem>();
-        _shader = _protoManager.Index(CircleShader).InstanceUnique();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
     {
         var mapUid = _map.GetMapOrInvalid(args.MapId);
-        var invMatrix = args.Viewport.GetWorldToLocalMatrix();
 
         var res = _resources.GetForViewport(args.Viewport, static _ => new CachedResources());
 

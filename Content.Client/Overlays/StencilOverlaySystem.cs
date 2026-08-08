@@ -10,7 +10,6 @@ public sealed partial class StencilOverlaySystem : EntitySystem
 {
     [Dependency] private IOverlayManager _overlay = default!;
     [Dependency] private ParallaxSystem _parallax = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private WeatherSystem _weather = default!;
@@ -19,7 +18,7 @@ public sealed partial class StencilOverlaySystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        _overlay.AddOverlay(new StencilOverlay(_parallax, _transform, _map, _sprite, _weather, _status));
+        _overlay.AddOverlay(new StencilOverlay(_parallax, _map, _sprite, _weather, _status));
     }
 
     public override void Shutdown()
