@@ -10,7 +10,7 @@ namespace Content.Shared._ES.SecretIdentity;
 /// Denotes a set of objectives, name, desc.
 /// Essentially a mini antag thing
 /// </summary>
-[Prototype("esSecretIdentity")]
+[Prototype("esSecretIdentity", loadPriority: 4)] // loads before secret identity sets and masquerades
 public sealed partial class ESSecretIdentityPrototype : IPrototype, IInheritingPrototype
 {
     /// <inheritdoc/>
