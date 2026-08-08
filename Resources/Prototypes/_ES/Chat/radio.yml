@@ -11,8 +11,8 @@
   components:
   - type: ESGhostListenableChatChannel
   - type: ESSpeechVerbChatChannel
-    format: es-chat-channel-speak-fmt-verb
-    boldFormat: es-chat-channel-speak-bold-fmt-verb
+    format: es-chat-channel-radio-common-fmt-verb
+    boldFormat: es-chat-channel-radio-common-bold-fmt-verb
   - type: ESRadioChatChannel
   - type: ESSpeechChatChannel
   - type: ESRequireCanSpeakChatChannel
