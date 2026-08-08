@@ -21,7 +21,7 @@ public sealed partial class AmbientOcclusionOverlay : Overlay
     private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
     private static readonly ProtoId<ShaderPrototype> StencilMaskShader = "StencilMask";
     private static readonly ProtoId<ShaderPrototype> StencilEqualDrawShader = "StencilEqualDraw";
-    private const float BlurMultiplier = 7f;
+    private const float BlurMultiplier = 14f;
 
     [Dependency] private IClyde _clyde = default!;
     [Dependency] private IConfigurationManager _cfgManager = default!;
