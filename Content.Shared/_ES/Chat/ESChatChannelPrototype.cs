@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Chat;
 
@@ -29,7 +30,8 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     [DataField]
     public BoundKeyFunction? FocusKey;
 
-    // TODO: add datafield for groups for filtering chat channels by.
+    [DataField]
+    public ESChatBoxLocation ChatBoxLocation = ESChatBoxLocation.Primary;
 
     /// <summary>
     /// Determines whether any message sent on this channel will be saved to replay.
@@ -49,4 +51,11 @@ public sealed partial class ESChatChannelPrototype : IPrototype
         prefix = Prefixes[0];
         return true;
     }
+}
+
+[Serializable, NetSerializable]
+public enum ESChatBoxLocation : byte
+{
+    Primary, // Main chat box
+    Stagehand, // Upper chatbox used for stagehand text and notifs
 }

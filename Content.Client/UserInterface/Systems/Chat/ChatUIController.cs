@@ -19,6 +19,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Input;
+using Robust.Client.Audio;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -31,6 +32,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
@@ -55,6 +57,7 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IReplayRecordingManager _replayRecording = default!;
 
+    [UISystemDependency] private readonly AudioSystem? _audio = default!;
     [UISystemDependency] private readonly ExamineSystem? _examine = default;
     [UISystemDependency] private readonly GhostSystem? _ghost = default;
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
@@ -601,6 +604,11 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
                 count += 1;
                 _unreadMessages[channel.FilterCategory] = count;
                 UnreadMessageCountsUpdated?.Invoke(channel.FilterCategory, count);
+            }
+            else
+            {
+                // Only play audio if the message was actively read.
+                _audio?.PlayGlobal(msg.Sound, Filter.Local(), false);
             }
         }
 

@@ -64,12 +64,6 @@ public partial class ChatBox : UIWidget
             return;
         }
 
-        // TODO: Audio for messages
-        /*
-        if (msg is { Read: false, AudioPath: { } })
-            EntManager.System<AudioSystem>().PlayGlobal(msg.AudioPath, Filter.Local(), false, AudioParams.Default.WithVolume(msg.AudioVolume));
-        */
-
         msg.Read = true;
 
         AddLine(msg.FormattedMessage, msg.Color);
