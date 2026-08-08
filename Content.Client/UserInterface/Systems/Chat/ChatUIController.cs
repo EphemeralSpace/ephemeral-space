@@ -627,7 +627,7 @@ public sealed partial class ChatUIController : UIController
         if (text.Length == 0)
             return (null, text, null);
 
-        if (!_esChat.TryGetChannelFromMessage(text, out var chatChannel))
+        if (!_esChat.TryGetChannelFromMessage(text, out var chatChannel, out var trimmedText))
             return (null, text, null);
 
         // TODO: radio is its own can of worms
@@ -643,7 +643,7 @@ public sealed partial class ChatUIController : UIController
         //if (chatChannel == ChatSelectChannel.Radio)
         //    return (chatChannel, text, radioChannel);
 
-        return (chatChannel, text[1..].TrimStart(), null);
+        return (chatChannel, trimmedText, null);
     }
 
     public void SendMessage(ChatBox box, ProtoId<ESChatChannelPrototype> channel)
@@ -672,7 +672,7 @@ public sealed partial class ChatUIController : UIController
         if (prefixChannel != null)
             channel = prefixChannel;
 
-        _esChat.RequestSendChatMessage(text, channel, radio?.ID);
+        _esChat.RequestSendChatMessage(text, channel);
     }
 
     private void OnDamageForceSay(DamageForceSayEvent ev, EntitySessionEventArgs _)

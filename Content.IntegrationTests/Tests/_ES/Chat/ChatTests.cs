@@ -17,7 +17,8 @@ public sealed class ChatTests : GameTest
         var server = pair.Server;
         var protoMan = server.ProtoMan;
 
-        var usedPrefixes = new Dictionary<char, List<ProtoId<ESChatChannelPrototype>>>();
+        // TODO: this doesn't cover multi-character overlap
+        var usedPrefixes = new Dictionary<string, List<ProtoId<ESChatChannelPrototype>>>();
         foreach (var channel in protoMan.EnumeratePrototypes<ESChatChannelPrototype>())
         {
             foreach (var prefix in channel.Prefixes)

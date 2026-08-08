@@ -1,5 +1,4 @@
 using System.IO;
-using Content.Shared.Radio;
 using JetBrains.Annotations;
 using Lidgren.Network;
 using Robust.Shared.Audio;
@@ -161,13 +160,10 @@ public sealed partial class ESRequestSendChatMessage
 
     public ProtoId<ESChatChannelPrototype> ChatChannel;
 
-    public ProtoId<RadioChannelPrototype>? RadioChannel;
-
-    public ESRequestSendChatMessage(string text, ProtoId<ESChatChannelPrototype> chatChannel, ProtoId<RadioChannelPrototype>? radioChannel = null)
+    public ESRequestSendChatMessage(string text, ProtoId<ESChatChannelPrototype> chatChannel)
     {
         Text = text;
         ChatChannel = chatChannel;
-        RadioChannel = radioChannel;
     }
 }
 

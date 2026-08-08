@@ -9,7 +9,6 @@ public interface IESChatManager : IESSharedChatManager
     event Action<ESChatMessage>? OnChatMessageSent;
 
     void RequestSendChatMessage(string message,
-        ProtoId<ESChatChannelPrototype> channel,
-        ProtoId<RadioChannelPrototype>? radio);
+        ProtoId<ESChatChannelPrototype> channel);
 }
 

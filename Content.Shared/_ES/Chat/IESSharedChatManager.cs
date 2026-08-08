@@ -29,5 +29,6 @@ public interface IESSharedChatManager
 
     bool TryGetChannelFromMessage(
         string content,
-        [NotNullWhen(true)] out ESChatChannelPrototype? channel);
+        [NotNullWhen(true)] out ESChatChannelPrototype? channel,
+        [NotNullWhen(true)] out string? trimmedContent);
 }

@@ -54,9 +54,9 @@ public sealed partial class ESChatManager : ESSharedChatManager, IESChatManager
         // No functionality on client.
     }
 
-    public void RequestSendChatMessage(string message, ProtoId<ESChatChannelPrototype> channel, ProtoId<RadioChannelPrototype>? radio)
+    public void RequestSendChatMessage(string message, ProtoId<ESChatChannelPrototype> channel)
     {
-        var msg = new ESRequestSendChatMessage(message, channel, radio);
+        var msg = new ESRequestSendChatMessage(message, channel);
 
         _net.ClientSendMessage(new ESRequestSendChatNetMessage(msg));
         // TODO: prediction

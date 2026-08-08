@@ -21,7 +21,7 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     public EntProtoId ChatProcessor;
 
     [DataField]
-    public List<char> Prefixes = new();
+    public List<string> Prefixes = new();
 
     [DataField]
     public BoundKeyFunction? FocusKey;
@@ -35,7 +35,7 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     [DataField]
     public SpeechType SpeechBubbleType = SpeechType.Say;
 
-    public bool TryGetDefaultPrefix([NotNullWhen(true)] out char? prefix)
+    public bool TryGetDefaultPrefix([NotNullWhen(true)] out string? prefix)
     {
         prefix = null;
         if (Prefixes.Count == 0)

@@ -34,21 +34,27 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
         string? font = null,
         int? fontSize = null);
 
-    public bool TryGetChannelFromMessage(string content, [NotNullWhen(true)] out ESChatChannelPrototype? channel)
+    public bool TryGetChannelFromMessage(string content,
+        [NotNullWhen(true)] out ESChatChannelPrototype? channel,
+        [NotNullWhen(true)] out string? trimmedContent)
     {
         channel = null;
+        trimmedContent = null;
 
         content = content.Trim();
         if (content.Length == 0)
             return false;
 
-        var c = content[0];
         foreach (var channelPrototype in PrototypeManager.EnumeratePrototypes<ESChatChannelPrototype>())
         {
-            if (channelPrototype.Prefixes.Contains(c))
+            foreach (var prefix in channelPrototype.Prefixes)
             {
-                channel = channelPrototype;
-                return true;
+                if (content.StartsWith(prefix))
+                {
+                    trimmedContent = content.Substring(prefix.Length);
+                    channel = channelPrototype;
+                    return true;
+                }
             }
         }
 
