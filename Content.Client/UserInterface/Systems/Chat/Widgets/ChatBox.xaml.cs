@@ -124,7 +124,7 @@ public partial class ChatBox : UIWidget
         var input = ChatInput.Input;
         var selectStart = Index.End;
 
-        if (channel != null)
+        if (channel != null && Controller.GetPermittedChannels().Contains(channel.Value))
             ChatInput.ChannelSelector.Select(channel.Value);
 
         input.IgnoreNext = true;

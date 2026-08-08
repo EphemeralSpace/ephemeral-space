@@ -28,6 +28,10 @@ public sealed partial class ESChatManager : ESSharedChatManager
     {
         var session = _player.GetSessionByChannel(message.MsgChannel);
 
+        // Protect against bad messages
+        if (!PrototypeManager.HasIndex(message.Message.ChatChannel))
+            return;
+
         // Should always have something attached
         if (session.AttachedEntity is not { } attachedEntity)
             return;
