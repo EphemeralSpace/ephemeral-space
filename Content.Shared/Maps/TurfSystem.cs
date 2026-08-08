@@ -1,7 +1,5 @@
-using System.Buffers;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
-using System.Linq;
 using System.Numerics;
 using Content.Shared.Physics;
 using Robust.Shared.Map;
@@ -24,7 +22,7 @@ public sealed partial class TurfSystem : EntitySystem
 
     [Dependency] private EntityQuery<FixturesComponent> _fixtureQuery = default!;
 
-    private bool[] _tileHasMapAtmosphere = ArrayPool<bool>.Shared.Rent(0);
+    private bool[] _tileHasMapAtmosphere = [];
 
     public override void Initialize()
     {
@@ -53,9 +51,7 @@ public sealed partial class TurfSystem : EntitySystem
             maxTileId = Math.Max(maxTileId, tileDef.TileId);
         }
 
-        ArrayPool<bool>.Shared.Return(_tileHasMapAtmosphere);
-        var cache = ArrayPool<bool>.Shared.Rent(maxTileId + 1);
-        Array.Clear(cache);
+        var cache = new bool[maxTileId + 1];
 
         foreach (var tileDef in _tileDefinitions)
         {
@@ -72,7 +68,6 @@ public sealed partial class TurfSystem : EntitySystem
     {
         base.Shutdown();
 
-        ArrayPool<bool>.Shared.Return(_tileHasMapAtmosphere);
         _tileHasMapAtmosphere = [];
     }
 
