@@ -53,29 +53,9 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
         OnChannelSelect?.Invoke(channel);
     }
 
-    public static string ChannelSelectorName(ChatSelectChannel channel)
+    public void UpdateChannelSelectButton(ESChatChannelPrototype channel)
     {
-        return Loc.GetString($"hud-chatbox-select-channel-{channel}");
-    }
-
-    public Color ChannelSelectColor(ChatSelectChannel channel)
-    {
-        return channel switch
-        {
-            ChatSelectChannel.Radio => Color.LimeGreen,
-            ChatSelectChannel.LOOC => Color.MediumTurquoise,
-            // ES START
-            ChatSelectChannel.OOC => Color.Plum,
-            ChatSelectChannel.Dead => Color.FromHex("#b9b9f8"),
-            // ES END
-            ChatSelectChannel.Admin => Color.HotPink,
-            _ => Color.DarkGray
-        };
-    }
-
-    public void UpdateChannelSelectButton(ESChatChannelPrototype channel, RadioChannelPrototype? radio)
-    {
-        Text = radio != null ? Loc.GetString(radio.Name) : Loc.GetString(channel.Name);
-        Modulate = radio?.Color ?? channel.Color;
+        Text = Loc.GetString(channel.Name);
+        Modulate = channel.Color;
     }
 }

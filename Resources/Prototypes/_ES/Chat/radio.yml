@@ -1,0 +1,19 @@
+- type: esChatChannel
+  id: RadioCommon
+  name: es-chat-channel-name-radio-common
+  color: LimeGreen
+  chatProcessor: RadioChatProcessor
+  prefixes: [ ";" ]
+  focusKey: FocusRadioWindow
+
+- type: entity
+  id: RadioChatProcessor
+  components:
+  - type: ESGhostListenableChatChannel
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-speak-fmt-verb
+    boldFormat: es-chat-channel-speak-bold-fmt-verb
+  - type: ESRadioChatChannel
+  - type: ESSpeechChatChannel
+  - type: ESRequireCanSpeakChatChannel
+  - type: ESSanitizationChatChannel

@@ -8,8 +8,6 @@
 - type: entity
   id: SpeakChatProcessor
   components:
-  - type: ESChatProcessor
-    channel: Speak
   - type: ESGhostListenableChatChannel
   - type: ESRangedChatChannel # TODO: should probably go through occluders? Seems logical.
   - type: ESSpeechVerbChatChannel
@@ -31,8 +29,6 @@
 - type: entity
   id: WhisperChatProcessor
   components:
-  - type: ESChatProcessor
-    channel: Whisper
   - type: ESGhostListenableChatChannel
   - type: ESRangedChatChannel
     range: 5
@@ -55,8 +51,6 @@
 - type: entity
   id: EmoteChatProcessor
   components:
-  - type: ESChatProcessor
-    channel: Emote
   - type: ESGhostListenableChatChannel
   - type: ESRangedChatChannel
   - type: ESSimpleFormatChatChannel

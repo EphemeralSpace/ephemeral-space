@@ -613,12 +613,12 @@ public sealed partial class ChatUIController : UIController
 
     public void UpdateSelectedChannel(ChatBox box)
     {
-        var (prefixChannel, _, radioChannel) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
+        var (prefixChannel, _, _) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
 
         if (prefixChannel == null)
-            box.ChatInput.ChannelSelector.UpdateChannelSelectButton(_prototypeManager.Index(box.SelectedChannel), null);
+            box.ChatInput.ChannelSelector.UpdateChannelSelectButton(_prototypeManager.Index(box.SelectedChannel));
         else
-            box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, radioChannel);
+            box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel);
     }
 
     public (ESChatChannelPrototype? chatChannel, string text, RadioChannelPrototype? radioChannel) SplitInputContents(string text)

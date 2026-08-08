@@ -45,6 +45,14 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         args.Format = Loc.GetString(ent.Comp.Format);
     }
 
+    public ProtoId<ESChatChannelPrototype> GetChannel(Entity<ESChatProcessorComponent?> uid)
+    {
+        if (!Resolve(uid, ref uid.Comp))
+            return default;
+
+        return uid.Comp.Channel;
+    }
+
     /// <summary>
     /// Retrieves the corresponding processor entity for a given chat channel
     /// </summary>
@@ -67,6 +75,8 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         var prototype = _prototype.Index(channel);
         var processorUid = Spawn(prototype.ChatProcessor);
         var processorComp = EnsureComp<ESChatProcessorComponent>(processorUid);
+        processorComp.Channel = channel;
+        Dirty(processorUid, processorComp);
 
         return (processorUid, processorComp);
     }

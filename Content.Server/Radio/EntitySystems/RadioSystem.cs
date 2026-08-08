@@ -121,7 +121,6 @@ public sealed partial class RadioSystem : EntitySystem
             NetEntity.Invalid,
             null);
         var chatMsg = new MsgChatMessage { Message = chat };
-        var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg);
 
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
         RaiseLocalEvent(ref sendAttemptEv);
@@ -179,7 +178,7 @@ public sealed partial class RadioSystem : EntitySystem
                 NetEntity.Invalid,
                 null);
             chatMsg = new MsgChatMessage { Message = chat };
-            ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg);
+            var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg);
 // ES END
 
             // send the message
