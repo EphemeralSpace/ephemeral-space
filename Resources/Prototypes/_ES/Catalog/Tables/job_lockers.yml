@@ -119,8 +119,6 @@
         - id: ClothingUniformJumpsuitExperimentSecurity
         - id: ESClothingHeadHelmetSecurity
         - id: ClothingBeltSecurityFilled
-        - id: Flash
-          prob: 0.5
         - id: ClothingEyesGlassesSecurity
         - id: ClothingHeadsetSecurity
 
