@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Shared._ES.Chat.Components;
-using Content.Shared.Decals;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -17,9 +16,6 @@ public abstract partial class ESSharedChatSystem : EntitySystem
     // Default channel for situations where UI *needs* a channel
     public static readonly ProtoId<ESChatChannelPrototype> DefaultChannel = "Speak";
 
-    private static readonly ProtoId<ColorPalettePrototype> ChatNamePalette = "ChatNames";
-    private Color[] _chatNameColors = default!;
-
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -28,7 +24,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
 
         SubscribeLocalEvent<ESSimpleFormatChatChannelComponent, ESGetChatMessageFormatEvent>(OnSimpleGetFormat);
 
-        InitializeChatNameColors();
+        InitializeNameColor();
 
         _chat.OnRequestSendChatMessage += OnRequestSendChatMessage;
     }
@@ -43,16 +39,6 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         foreach (var channel in ent.Comp.InherentChannels)
         {
             args.Channels.Add(channel);
-        }
-    }
-
-    private void InitializeChatNameColors()
-    {
-        var nameColors = _prototype.Index(ChatNamePalette).Colors.Values.OrderBy(c => c.ToHex()).ToArray();
-        _chatNameColors = new Color[nameColors.Length];
-        for (var i = 0; i < nameColors.Length; i++)
-        {
-            _chatNameColors[i] = nameColors[i];
         }
     }
 
@@ -266,29 +252,6 @@ public abstract partial class ESSharedChatSystem : EntitySystem
             return [ DefaultChannel ];
 
         return ent.Comp.PermittedChannels;
-    }
-
-    /// <summary>
-    /// Returns a name color based on a string.
-    /// Not unique per entity, but rather per name. Two entities named "monkey" will have identical colors.
-    /// </summary>
-    public Color GetChatColor(string name)
-    {
-        var colorIdx = Math.Abs(Adler32(name) % _chatNameColors.Length);
-        return _chatNameColors[colorIdx];
-
-        // From https://gist.github.com/i-e-b/c37cc2d728fe5e5a56205cd7e62d682c
-        static uint Adler32(string str)
-        {
-            const int mod = 65521;
-            uint a = 1, b = 0;
-            foreach (var c in str)
-            {
-                a = (a + c) % mod;
-                b = (b + a) % mod;
-            }
-            return (b << 16) | a;
-        }
     }
 }
 
