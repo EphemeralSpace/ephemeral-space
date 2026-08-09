@@ -51,9 +51,6 @@
   id: RatvarianLanguage #Praise him
 
 - type: statusEffect
-  id: Flashed
-
-- type: statusEffect
   id: RadiationProtection
 
 - type: statusEffect

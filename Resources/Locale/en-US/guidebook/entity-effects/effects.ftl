@@ -49,12 +49,6 @@ entity-effect-guidebook-emp =
         *[other] cause
     } an electromagnetic pulse
 
-entity-effect-guidebook-flash =
-    { $chance ->
-        [1] Causes
-        *[other] cause
-    } a blinding flash
-
 entity-effect-guidebook-foam-area =
     { $chance ->
         [1] Creates

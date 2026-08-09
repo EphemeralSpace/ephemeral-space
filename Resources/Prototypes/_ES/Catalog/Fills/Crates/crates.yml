@@ -204,7 +204,7 @@
   parent: CrateSecgear
   id: ESCrateSecurityNonlethals
   name: nonlethals crate
-  description: Contains two tasers, two batons, and three flashes. Requires Security access to open.
+  description: Contains two smoke grenades and blackjacks. Requires Security access to open.
   suffix: ES
   components:
   - type: EntityTableContainerFill
@@ -213,8 +213,6 @@
         all:
         - id: SmokeGrenade
           amount: 2
-        - id: Flash
-          amount: 3
         - id: ESWeaponBlackjack
           amount: 2
 

@@ -23,7 +23,6 @@
     - Electrocution
     - TemporaryBlindness
     - Pacified
-    - Flashed
     - RadiationProtection
     - Adrenaline
   - type: Buckle
@@ -89,7 +88,6 @@
     - Electrocution
     - TemporaryBlindness
     - Pacified
-    - Flashed
     - RadiationProtection
     - Adrenaline
   - type: Bloodstream
