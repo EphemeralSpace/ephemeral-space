@@ -16,7 +16,7 @@
   standsout: true
   physicalDesc: reagent-physical-desc-ferrous
   puddleGas:
-    Miasma: 0.0002
+    Miasma: 0.0001
   metabolisms:
     Drink:
       effects:
@@ -79,7 +79,7 @@
   puddleSpriteSet: Vomit
   physicalDesc: reagent-physical-desc-pungent
   puddleGas:
-    Miasma: 0.001
+    Miasma: 0.0005
   slipData:
     requiredSlipSpeed: 4.0 #It's not as slippery as water
   friction: 0.4

@@ -1128,15 +1128,6 @@
   - sprite: Objects/Specific/Hydroponics/cotton.rsi
     state: produce
 
-# Pyrotton Bol
-
-- type: foodSequenceElement
-  id: PyrottonBol
-  name: food-sequence-cotton-burger-content-pyrotton-bol
-  sprites:
-  - sprite: Objects/Specific/Hydroponics/pyrotton.rsi
-    state: produce
-
 # Throngler Plushie
 
 - type: foodSequenceElement

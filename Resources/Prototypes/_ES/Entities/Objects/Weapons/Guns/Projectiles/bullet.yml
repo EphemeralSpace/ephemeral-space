@@ -90,7 +90,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 18
+        Piercing: 16
   - type: Tag
     tags:
     - ES9mmProjectile
@@ -104,7 +104,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 30
+        Piercing: 24
   - type: Tag
     tags:
     - ES357Projectile

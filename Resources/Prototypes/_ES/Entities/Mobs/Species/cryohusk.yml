@@ -9,11 +9,6 @@
     sprite: _ES/Mobs/Species/cryohusk.rsi
     state: full
   - type: Thirst
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
-    - id: FoodMeat
-      amount: 5
   - type: HumanoidAppearance
     species: ESCryohusk
   - type: SlurredAccent

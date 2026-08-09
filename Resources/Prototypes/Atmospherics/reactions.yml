@@ -21,9 +21,8 @@
 - type: gasReaction
   id: FrezonCoolant
   priority: 1
-  minimumTemperature: 23.15
+  minimumTemperature: 213.15
   minimumRequirements:
-    Nitrogen: 0.01
-    Cryogas: 0.01
+    Cryogas: 0.5
   effects:
   - !type:FrezonCoolantReaction {}

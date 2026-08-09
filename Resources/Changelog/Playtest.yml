@@ -1607,3 +1607,93 @@ Entries:
       message: Added an announcement for when sleeper agents activate.
   id: 170
   time: '2026-08-02T18:45:16.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Parasites can now do 300 damage before failing their objective
+    - type: Remove
+      message: clf3 and phlog are no more
+  id: 171
+  time: '2026-08-04T21:39:25.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Experiment's disposals crawl now requires them to not have any held
+        items instead of being prohibited from wearing a jumpsuit.
+  id: 172
+  time: '2026-08-04T21:51:50.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Microwaves are no longer a melee weapon
+  id: 173
+  time: '2026-08-04T22:34:33.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Cryogas now only cools the air above a certain mol threshold
+        (corresponds to when its visible)
+    - type: Tweak
+      message: Portable scrubbers are ~7x more powerful
+    - type: Tweak
+      message: Space heaters are ~5-12x more powerful
+    - type: Tweak
+      message: Pulling speed debuff is much lower
+    - type: Tweak
+      message: >-
+        Scrubbers, space heaters, and JR pacmans are 4x faster to
+        anchor/unanchor
+  id: 174
+  time: '2026-08-05T22:12:57.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Brute/burn pouches now contain a bic pill / derma pill instead of an
+        injector
+    - type: Tweak
+      message: >-
+        Self-tending using topicals now takes 10x as long as usual instead of 5x
+        as long
+  id: 175
+  time: '2026-08-06T14:11:35.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Revolver and pistol shots do a little less damage now
+    - type: Tweak
+      message: Pistols have less max firerate
+    - type: Tweak
+      message: Outer armor has 1 less DT
+  id: 176
+  time: '2026-08-06T14:11:51.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Humans can no longer be put on meat spikes.
+  id: 177
+  time: '2026-08-06T14:31:19.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Tweak
+      message: stagehands will now be notified upon apc bugging/debugging
+  id: 178
+  time: '2026-08-08T19:47:56.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed the radstorm cutscene playing on top of other round-end cutscenes.
+    - type: Tweak
+      message: >-
+        When parasites win, they now obliterate non-parasites and turn them into
+        nests instead of simply converting them.
+  id: 179
+  time: '2026-08-08T19:48:21.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Add
+      message: Terrifying beasts
+  id: 180
+  time: '2026-08-08T22:32:34.0000000+00:00'

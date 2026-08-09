@@ -326,14 +326,14 @@ namespace Content.Server.GameTicking
             RaiseLocalEvent(mob, aev, true);
         }
 
-        public void Respawn(ICommonSession player)
+        public void Respawn(ICommonSession player, string? jobId = null)
         {
             _adminLogger.Add(LogType.Respawn, LogImpact.Medium, $"Player {player} was respawned.");
 
             if (LobbyEnabled)
                 PlayerJoinLobby(player, attachCharacter: true);
             else
-                SpawnPlayer(player, EntityUid.Invalid);
+                SpawnPlayer(player, EntityUid.Invalid, jobId: jobId);
         }
 
         /// <summary>

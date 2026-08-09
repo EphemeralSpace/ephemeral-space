@@ -261,7 +261,7 @@
     Runs off welding fuel and is rated for up to 8 kW.
     Rated ages 3 and up.
 # ES Start
-  parent: [PortableGeneratorBase, StructureWheeled]
+  parent: [StructureQuickAnchor, PortableGeneratorBase, StructureWheeled]
 # ES End
   id: PortableGeneratorJrPacman
   suffix: Welding Fuel, 8 kW

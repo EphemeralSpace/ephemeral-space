@@ -2,9 +2,11 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Mind;
 using Content.Shared.Players;
+using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Commands
 {
@@ -12,6 +14,7 @@ namespace Content.Server.GameTicking.Commands
     {
         [Dependency] private IPlayerManager _player = default!;
         [Dependency] private IPlayerLocator _locator = default!;
+        [Dependency] private IPrototypeManager _prototype = default!;
         [Dependency] private GameTicker _gameTicker = default!;
         [Dependency] private MindSystem _mind = default!;
 
@@ -20,7 +23,7 @@ namespace Content.Server.GameTicking.Commands
         public override async void Execute(IConsoleShell shell, string argStr, string[] args)
         {
             var player = shell.Player;
-            if (args.Length > 1)
+            if (args.Length > 2)
             {
                 shell.WriteError(Loc.GetString("cmd-respawn-invalid-args"));
                 return;
@@ -63,17 +66,39 @@ namespace Content.Server.GameTicking.Commands
                 return;
             }
 
-            _gameTicker.Respawn(targetPlayer);
+            string? job = null;
+            if (args.Length == 2)
+            {
+                if (!_prototype.TryIndex<JobPrototype>(args[1], out var jobPrototype))
+                {
+                    shell.WriteError(Loc.GetString("cmd-respawn-invalid-job"));
+                    return;
+                }
+
+                job = jobPrototype.ID;
+            }
+
+            _gameTicker.Respawn(targetPlayer, job);
         }
 
       public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
         {
-            if (args.Length != 1)
+            if (args.Length != 1 && args.Length != 2)
                 return CompletionResult.Empty;
 
-            var options = _player.Sessions.OrderBy(c => c.Name).Select(c => c.Name).ToArray();
+            if (args.Length == 1)
+            {
+                var options = _player.Sessions.OrderBy(c => c.Name).Select(c => c.Name).ToArray();
 
-            return CompletionResult.FromHintOptions(options, Loc.GetString("cmd-respawn-player-completion"));
+                return CompletionResult.FromHintOptions(options, Loc.GetString("cmd-respawn-player-completion"));
+            }
+            else
+            {
+                var options = _prototype.EnumeratePrototypes<JobPrototype>()
+                    .Where(p => !p.Abstract)
+                    .Select(p => p.ID);
+                return CompletionResult.FromHintOptions(options, Loc.GetString("cmd-respawn-job-completion"));
+            }
         }
     }
 }
