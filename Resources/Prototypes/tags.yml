@@ -559,7 +559,7 @@
   id: HamtrRLeg # PartAssembly: HamtrHarness. ItemMapper: HamtrHarness
 
 - type: Tag
-  id: Handcuffs # It's handcuffs. ConstructionGraph: makeshiftstunprod, Bola, PneumaticCannon
+  id: Handcuffs # It's handcuffs. ConstructionGraph: Bola, PneumaticCannon
 
 - type: Tag
   id: HandGrenade # Storage whitelist: ClothingBeltSecurity
@@ -652,7 +652,7 @@
   id: Ice # CreateEntityTileReaction whitelist on Fresium
 
 - type: Tag
-  id: Igniter # ConstructionGraph: makeshiftstunprod, FireBomb. Common ingredient in machines (HyperConvection)
+  id: Igniter # ConstructionGraph: FireBomb. Common ingredient in machines (HyperConvection)
 
 - type: Tag
   id: Inflatable # Storage whitelist: BorgModuleInflatable
@@ -964,7 +964,7 @@
 
 - type: Tag
   id: PowerCellSmall # Storage whitelist: BaseWeaponPowerCell, PowerCellRecharger, ShuttleGunSvalinnMachineGun.
-                     # ConstructionGraph: WallmountSubstation, makeshiftstunprod
+                     # ConstructionGraph: WallmountSubstation
 
 - type: Tag
   id: Powerdrill # Storage whitelist: BaseClothingBeltEngineering. ItemMapper: BaseClothingBeltEngineering

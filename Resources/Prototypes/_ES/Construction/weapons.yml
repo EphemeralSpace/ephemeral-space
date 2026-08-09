@@ -68,15 +68,6 @@
   objectType: Item
 
 - type: construction
-  id: ESMakeshiftStunprod
-  hide: false
-  graph: makeshiftstunprod
-  startNode: start
-  targetNode: msstunprod
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
   id: ESMuzzle
   hide: false
   graph: Muzzle
