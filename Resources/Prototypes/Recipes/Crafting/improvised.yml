@@ -15,14 +15,6 @@
   objectType: Item
 
 - type: construction
-  id: makeshiftstunprod
-  graph: makeshiftstunprod
-  startNode: start
-  targetNode: msstunprod
-  category: construction-category-weapons
-  objectType: Item
-
-- type: construction
   id: muzzle
   graph: Muzzle
   startNode: start
