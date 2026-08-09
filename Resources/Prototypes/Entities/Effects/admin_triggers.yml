@@ -30,16 +30,6 @@
 
 - type: entity
   parent: AdminInstantEffectBase
-  id: AdminInstantEffectFlash
-  suffix: Flash
-  components:
-  - type: FlashOnTrigger
-    range: 7
-  - type: SpawnOnTrigger
-    proto: GrenadeFlashEffect
-
-- type: entity
-  parent: AdminInstantEffectBase
   id: AdminInstantEffectSmoke3
   suffix: Smoke (03 sec)
   components:

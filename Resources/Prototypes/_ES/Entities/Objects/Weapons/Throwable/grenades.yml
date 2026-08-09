@@ -22,20 +22,6 @@
     beepInterval: 2 # 2 beeps total (at 0 and 2)
 
 - type: entity
-  id: GrenadeFlashEffect
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: PointLight
-      enabled: true
-      radius: 5
-      energy: 8
-      netsync: false
-    - type: LightFade
-      duration: 0.5
-    - type: TimedDespawn
-      lifetime: 0.5
-
-- type: entity
   name: self destruct
   description: Go out on your own terms!
   parent: GrenadeBase
