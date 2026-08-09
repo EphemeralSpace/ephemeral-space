@@ -22,41 +22,6 @@
     beepInterval: 2 # 2 beeps total (at 0 and 2)
 
 - type: entity
-  name: flashbang
-  description: Eeeeeeeeeeeeeeeeeeeeee.
-  parent: [ FragileGrenadeBase, GrenadeBase ]
-  id: GrenadeFlashBang
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Grenades/flashbang.rsi
-  - type: FlashOnTrigger
-    keysIn:
-    - timer
-    range: 7
-  - type: EmitSoundOnTrigger
-    keysIn:
-    - timer
-    sound:
-      path: "/Audio/Effects/flash_bang.ogg"
-    positional: true
-  - type: DeleteOnTrigger
-    keysIn:
-    - timer
-  - type: SpawnOnTrigger
-    keysIn:
-    - timer
-    proto: GrenadeFlashEffect
-    predicted: true
-  - type: Appearance
-  - type: TimerTriggerVisuals
-    primingSound:
-      path: /Audio/Effects/countdown.ogg
-  - type: Tag
-    tags:
-    - HandGrenade
-    - GrenadeFlashBang
-
-- type: entity
   id: GrenadeFlashEffect
   categories: [ HideSpawnMenu ]
   components:

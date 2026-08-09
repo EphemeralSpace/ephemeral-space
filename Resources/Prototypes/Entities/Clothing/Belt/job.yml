@@ -260,10 +260,6 @@
   - type: ItemMapper
     sprite: *BeltOverlay
     mapLayers:
-      flashbang:
-        whitelist:
-          components:
-          - FlashOnTrigger
       stunbaton:
         whitelist:
           tags:
