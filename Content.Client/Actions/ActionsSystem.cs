@@ -1,25 +1,14 @@
-using System.IO;
 using System.Linq;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Charges.Systems;
-using Content.Shared.Mapping;
-using Content.Shared.Maps;
 using JetBrains.Annotations;
 using Robust.Client.Player;
-using Robust.Shared.ContentPack;
 using Robust.Shared.GameStates;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.Manager;
-using Robust.Shared.Serialization.Markdown;
-using Robust.Shared.Serialization.Markdown.Mapping;
-using Robust.Shared.Serialization.Markdown.Sequence;
-using Robust.Shared.Serialization.Markdown.Value;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using YamlDotNet.RepresentationModel;
 
 namespace Content.Client.Actions
 {
@@ -30,18 +19,12 @@ namespace Content.Client.Actions
 
         [Dependency] private SharedChargesSystem _sharedCharges = default!;
         [Dependency] private IPlayerManager _playerManager = default!;
-        [Dependency] private IPrototypeManager _proto = default!;
-        [Dependency] private IResourceManager _resources = default!;
-        [Dependency] private MetaDataSystem _metaData = default!;
-        [Dependency] private ISerializationManager _serialization = default!;
 
         public event Action<EntityUid>? OnActionAdded;
         public event Action<EntityUid>? OnActionRemoved;
         public event Action? ActionsUpdated;
         public event Action<ActionsComponent>? LinkActions;
         public event Action? UnlinkActions;
-        public event Action? ClearAssignments;
-        public event Action<List<SlotAssignment>>? AssignSlot;
 
         private readonly List<EntityUid> _removed = new();
         private readonly List<Entity<ActionComponent>> _added = new();
