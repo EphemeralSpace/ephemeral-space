@@ -753,44 +753,16 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         _container.ActionUnpressed += OnActionUnpressed;
     }
 
-    private void ClearActions()
-    {
-        _container?.ClearActionData();
-    }
-
-    private void AssignSlots(List<SlotAssignment> assignments)
-    {
-        if (_actionsSystem == null)
-            return;
-
-        _actions.Clear();
-        foreach (var assign in assignments)
-        {
-            _actions.Add(assign.ActionId);
-        }
-
-        _container?.SetActionData(_actionsSystem, _actions.ToArray());
-    }
-
-    public void RemoveActionContainer()
-    {
-        _container = null;
-    }
-
     public void OnSystemLoaded(ActionsSystem system)
     {
         system.LinkActions += OnComponentLinked;
         system.UnlinkActions += OnComponentUnlinked;
-        system.ClearAssignments += ClearActions;
-        system.AssignSlot += AssignSlots;
     }
 
     public void OnSystemUnloaded(ActionsSystem system)
     {
         system.LinkActions -= OnComponentLinked;
         system.UnlinkActions -= OnComponentUnlinked;
-        system.ClearAssignments -= ClearActions;
-        system.AssignSlot -= AssignSlots;
     }
 
     public override void FrameUpdate(FrameEventArgs args)
