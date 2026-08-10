@@ -58,4 +58,4 @@ es-names-adjective-dataset-54 = Moldy
 es-names-adjective-dataset-55 = Pheemy
 es-names-adjective-dataset-56 = Classic
 # 2026-08
-Ghastly
+es-names-adjective-dataset-57 = Ghastly

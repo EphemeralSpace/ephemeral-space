@@ -610,11 +610,11 @@ es-names-last-dataset-592 = Hypertext
 es-names-last-dataset-593 = Botnet
 es-names-last-dataset-594 = Greasebean
 # 2026-08
-Farkleberry
-Website
-Bruisepack
-Wave
-Borscht
-Otmeal
-Snartly
-Higgs-Boson
+es-names-last-dataset-595 = Farkleberry
+es-names-last-dataset-596 = Website
+es-names-last-dataset-597 = Bruisepack
+es-names-last-dataset-598 = Wave
+es-names-last-dataset-599 = Borscht
+es-names-last-dataset-600 = Otmeal
+es-names-last-dataset-601 = Snartly
+es-names-last-dataset-602 = Higgs-Boson
