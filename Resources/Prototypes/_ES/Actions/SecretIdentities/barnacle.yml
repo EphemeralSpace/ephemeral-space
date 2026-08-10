@@ -1,0 +1,16 @@
+﻿- type: entity
+  parent: BaseAction
+  id: ActionSecretIdentityBarnacle
+  name: Barnacle
+  description: From behind someone's back, reach into their bag and steal from them. Only works once per person.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/SecretIdentity/pickpocket.rsi
+      state: pickpocket
+    iconOn:
+      sprite: _ES/Actions/SecretIdentity/pickpocket.rsi
+      state: pickpocket-on
+  - type: TargetAction
+  - type: WorldTargetAction
+    event: !type:ESBarnacleActionEvent

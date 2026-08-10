@@ -35,3 +35,15 @@
   color: darkgoldenrod
   mindComponents:
   - type: ESLeapleech
+
+- type: esSecretIdentity
+  parent: ESBaseParasite
+  id: Barnacle
+  name: es-secret-identity-barnacle-name
+  description: es-secret-identity-barnacle-desc
+  color: orange
+  actions:
+    all:
+    - id: ActionSecretIdentityBarnacle
+  mindComponents:
+  - type: ESBarnacle
