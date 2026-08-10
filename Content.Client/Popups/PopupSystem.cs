@@ -42,9 +42,9 @@ namespace Content.Client.Popups
         private readonly List<IPopupPredictionInstance> _predictionInstances = new();
 
         public const float MaximumPopupRandomOffsetMagnitude = 20f;
-        public const float MinimumPopupLifetime = 0.7f;
-        public const float MaximumPopupLifetime = 5f;
-        public const float PopupLifetimePerCharacter = 0.04f;
+        public const float MinimumPopupLifetime = 1f;
+        public const float MaximumPopupLifetime = 4f;
+        public const float PopupLifetimePerCharacter = 0.1f;
 
         public override void Initialize()
         {
