@@ -618,3 +618,8 @@ es-names-last-dataset-599 = Borscht
 es-names-last-dataset-600 = Otmeal
 es-names-last-dataset-601 = Snartly
 es-names-last-dataset-602 = Higgs-Boson
+Dvorak
+Speedrun
+Hardball
+Macduff
+Ohdove

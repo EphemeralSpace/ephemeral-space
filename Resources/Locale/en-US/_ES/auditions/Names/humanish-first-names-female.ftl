@@ -303,3 +303,7 @@ es-names-first-dataset-female-289 = Bee
 # 2026-08
 es-names-first-dataset-female-290 = Sine
 es-names-first-dataset-female-291 = Cosine
+Solana
+Nora
+Agnes
+Petra
