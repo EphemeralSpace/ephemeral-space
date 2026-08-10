@@ -1,4 +1,8 @@
 - type: esTip
+  id: MysteriousWays
+  text: The world works in mysterious ways. The machinations of others may not always be obvious in the moment.
+
+- type: esTip
   id: FireStopDropRoll
   text: If you're on fire, you can click the alert on the right of your screen to stop, drop, and roll.
 
