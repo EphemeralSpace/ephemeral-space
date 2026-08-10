@@ -11,6 +11,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Radio.EntitySystems;
 
+// TODO needs to use relays so that we can stop adding components during state application b/c of container event jank.
 public sealed partial class HeadsetSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
@@ -96,7 +97,9 @@ public sealed partial class HeadsetSystem : EntitySystem
         {
             if (!_timing.ApplyingState)
             {
-                EnsureComp<WearingHeadsetComponent>(args.Equipee).Headset = uid;
+                var comp = EnsureComp<WearingHeadsetComponent>(args.Equipee);
+                comp.Headset = uid;
+                Dirty(args.Equipee, comp);
                 _radio.RefreshRadioChannels(args.Equipee);
             }
             _chat.RefreshChatPermissions(args.Equipee);

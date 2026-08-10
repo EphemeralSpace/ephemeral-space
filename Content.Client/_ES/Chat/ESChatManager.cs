@@ -1,6 +1,5 @@
 using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
-using Content.Shared.Radio;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;

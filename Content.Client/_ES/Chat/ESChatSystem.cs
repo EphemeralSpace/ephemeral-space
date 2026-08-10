@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._ES.Chat;
 
 /// <inheritdoc/>
-public sealed class ESChatSystem : ESSharedChatSystem
+public sealed partial class ESChatSystem : ESSharedChatSystem
 {
     public event Action<EntityUid, HashSet<ProtoId<ESChatChannelPrototype>>>? LocalChatPermissionsUpdated;
 
@@ -16,7 +16,8 @@ public sealed class ESChatSystem : ESSharedChatSystem
         base.Initialize();
 
         SubscribeLocalEvent<ESChatPermissionsComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
-        SubscribeLocalEvent<ESChatPermissionsComponent, PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<ESChatPermissionsComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<ESChatPermissionsComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
     }
 
     private void OnAfterAutoHandleState(Entity<ESChatPermissionsComponent> ent, ref AfterAutoHandleStateEvent args)
@@ -27,7 +28,7 @@ public sealed class ESChatSystem : ESSharedChatSystem
         LocalChatPermissionsUpdated?.Invoke(ent, ent.Comp.PermittedChannels);
     }
 
-    private void OnPlayerAttached(Entity<ESChatPermissionsComponent> ent, ref PlayerAttachedEvent args)
+    private void OnPlayerAttached(Entity<ESChatPermissionsComponent> ent, ref LocalPlayerAttachedEvent args)
     {
         if (PlayerManager.LocalEntity != ent)
             return;
@@ -35,13 +36,8 @@ public sealed class ESChatSystem : ESSharedChatSystem
         LocalChatPermissionsUpdated?.Invoke(ent, ent.Comp.PermittedChannels);
     }
 
-    public override void RefreshChatPermissions(Entity<ESChatPermissionsComponent?> ent)
+    private void OnPlayerDetached(Entity<ESChatPermissionsComponent> ent, ref LocalPlayerDetachedEvent args)
     {
-        base.RefreshChatPermissions(ent);
-
-        if (!Resolve(ent, ref ent.Comp, false))
-            return;
-
         if (PlayerManager.LocalEntity != ent)
             return;
 

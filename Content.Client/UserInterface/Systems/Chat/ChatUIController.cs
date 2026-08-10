@@ -168,6 +168,9 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
         SetSpeechBubbleRoot(viewportContainer);
 
         SetChatWindowOpacity(_config.GetCVar(CCVars.ChatWindowOpacity));
+
+        if (_player.LocalEntity is { } local)
+            OnLocalPermissionsUpdated(local, GetPermittedChannels());
     }
 
     public void OnScreenUnload()

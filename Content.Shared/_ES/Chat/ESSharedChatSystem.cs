@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Shared._ES.Chat.Components;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -8,7 +7,6 @@ namespace Content.Shared._ES.Chat;
 
 public abstract partial class ESSharedChatSystem : EntitySystem
 {
-    [Dependency] private INetManager _net = default!;
     [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] protected ISharedPlayerManager PlayerManager = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
@@ -230,13 +228,9 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         }
     }
 
-    public virtual void RefreshChatPermissions(Entity<ESChatPermissionsComponent?> ent)
+    public void RefreshChatPermissions(Entity<ESChatPermissionsComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp, false))
-            return;
-
-        // BUG: Temporarily breaks prediction but is necessary
-        if (_net.IsClient)
             return;
 
         var ev = new ESGetChatPermissionsEvent(ent);
