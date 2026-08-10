@@ -114,7 +114,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         if (_turfSystem.IsTileBlocked(tileref, CollisionGroup.MobMask))
             return;
 
-        action.Handled = _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, action.Performer, TimeSpan.FromSeconds(1), new ESBarnacleDoafterEvent{TargetCoord = action.Target, Preformer = (mind.Value.Owner, mind, barnacle)}, null)
+        action.Handled = _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, action.Performer, TimeSpan.FromSeconds(10), new ESBarnacleDoafterEvent{TargetCoord = action.Target, Preformer = (mind.Value.Owner, mind, barnacle)}, null)
         {Broadcast = true, BreakOnMove = true, BreakOnDamage = true,});
     }
 
