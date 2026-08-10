@@ -23,16 +23,12 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
         _chatUIController = UserInterfaceManager.GetUIController<ChatUIController>();
         _chatUIController.LocalChatPermissionsUpdated += OnChatPermissionsUpdated;
 
-        Popup.UpdateChannels(_chatUIController.GetPermittedChannels());
-        if (Popup.FirstChannel is { } firstSelector)
-        {
-            Select(firstSelector);
-        }
+        UpdateChannels();
     }
 
     private void OnChatPermissionsUpdated(EntityUid arg1, HashSet<ProtoId<ESChatChannelPrototype>> arg2)
     {
-        Popup.UpdateChannels(_chatUIController.GetPermittedChannels());
+        UpdateChannels();
     }
 
     protected override UIBox2 GetPopupPosition()
@@ -47,6 +43,16 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
     private void OnChannelSelected(ProtoId<ESChatChannelPrototype> channel)
     {
         Select(channel);
+    }
+
+    public void UpdateChannels()
+    {
+        Popup.UpdateChannels(_chatUIController.GetPermittedChannels());
+        if (Popup.FirstChannel is { } firstSelector &&
+            !Popup.Channels.Contains(SelectedChannel))
+        {
+            Select(firstSelector);
+        }
     }
 
     public void Select(ProtoId<ESChatChannelPrototype> channel)

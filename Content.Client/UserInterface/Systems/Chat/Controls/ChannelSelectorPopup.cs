@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared._ES.Chat;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
@@ -60,20 +59,6 @@ public sealed partial class ChannelSelectorPopup : Popup
                 _channelSelectorHBox.AddChild(selector);
             }
         }
-
-        if (Channels.FirstOrDefault() is { } first)
-            Select(first);
-
-        // TODO: figure out preferred channel logic
-        // var isPreferredAvailable = IsPreferredAvailable();
-        // if (!wasPreferredAvailable && isPreferredAvailable)
-        // {
-        //     Select(_chatUIController.GetPreferredChannel());
-        // }
-        // else if (wasPreferredAvailable && !isPreferredAvailable)
-        // {
-        //     Select(ChatSelectChannel.OOC);
-        // }
     }
 
     private void OnSelectorPressed(ButtonEventArgs args)

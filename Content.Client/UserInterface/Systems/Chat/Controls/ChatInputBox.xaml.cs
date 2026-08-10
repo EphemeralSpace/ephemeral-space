@@ -1,8 +1,5 @@
-﻿using Content.Shared._ES.Chat;
-using Content.Shared.Chat;
-using Content.Shared.Input;
+﻿using Content.Shared.Input;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Prototypes;
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
@@ -17,7 +14,6 @@ public class ChatInputBox : PanelContainer
     public readonly HistoryLineEdit Input;
     public readonly ChannelFilterButton FilterButton;
     protected readonly BoxContainer Container;
-    protected ProtoId<ESChatChannelPrototype> ActiveChannel { get; private set; } = "Speak";
 
     public ChatInputBox()
     {
@@ -51,12 +47,6 @@ public class ChatInputBox : PanelContainer
         };
         Container.AddChild(FilterButton);
         AddStyleClass(StyleClassChatPanel);
-        ChannelSelector.OnChannelSelect += UpdateActiveChannel;
-    }
-
-    private void UpdateActiveChannel(ProtoId<ESChatChannelPrototype> selectedChannel)
-    {
-        ActiveChannel = selectedChannel;
     }
 
     private static string GetChatboxInfoPlaceholder()
