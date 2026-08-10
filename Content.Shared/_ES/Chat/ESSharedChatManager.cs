@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.CCVar;
 using Robust.Shared.Audio;
+using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -7,13 +9,16 @@ namespace Content.Shared._ES.Chat;
 
 public abstract partial class ESSharedChatManager : IESSharedChatManager
 {
+    [Dependency] private IConfigurationManager _configuration = default!;
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
 
     public event Action<EntityUid, ESRequestSendChatMessage>? OnRequestSendChatMessage;
 
+    public int MaxMessageLength { get; private set; }
+
     public virtual void Initialize()
     {
-
+        _configuration.OnValueChanged(CCVars.ChatMaxMessageLength, v => { MaxMessageLength = v; }, true);
     }
 
     protected void InvokeRequestSendChatMessage(EntityUid uid, ESRequestSendChatMessage msg)

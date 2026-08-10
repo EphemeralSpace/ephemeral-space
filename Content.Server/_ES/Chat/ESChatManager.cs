@@ -36,6 +36,9 @@ public sealed partial class ESChatManager : ESSharedChatManager
         if (session.AttachedEntity is not { } attachedEntity)
             return;
 
+        if (message.Message.Text.Length > MaxMessageLength)
+            return;
+
         InvokeRequestSendChatMessage(attachedEntity, message.Message);
     }
 
