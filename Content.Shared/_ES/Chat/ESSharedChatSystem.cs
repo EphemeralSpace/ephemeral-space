@@ -1,5 +1,7 @@
 using System.Linq;
 using Content.Shared._ES.Chat.Components;
+using Content.Shared.GameTicking;
+using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -10,6 +12,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
     [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] protected ISharedPlayerManager PlayerManager = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvsOverride = default!;
 
     // Default channel for situations where UI *needs* a channel
     public static readonly ProtoId<ESChatChannelPrototype> DefaultChannel = "Speak";
@@ -17,6 +20,8 @@ public abstract partial class ESSharedChatSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
+        SubscribeLocalEvent<ESAfterRoundRestartCleanupEvent>(OnAfterRoundRestartCleanup);
+
         SubscribeLocalEvent<ESChatPermissionsComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ESChatPermissionsComponent, ESGetChatPermissionsEvent>(OnGetChatPermissions);
 
@@ -25,6 +30,15 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         InitializeNameColor();
 
         _chat.OnRequestSendChatMessage += OnRequestSendChatMessage;
+    }
+
+    private void OnAfterRoundRestartCleanup(ESAfterRoundRestartCleanupEvent ev)
+    {
+        // TODO: support prototype reloading
+        foreach (var channel in _prototype.EnumeratePrototypes<ESChatChannelPrototype>())
+        {
+            GetProcessor(channel);
+        }
     }
 
     private void OnStartup(Entity<ESChatPermissionsComponent> ent, ref ComponentStartup args)
@@ -85,6 +99,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         var processorComp = EnsureComp<ESChatProcessorComponent>(processorUid);
         processorComp.Channel = channel;
         Dirty(processorUid, processorComp);
+        _pvsOverride.AddGlobalOverride(processorUid);
 
         return (processorUid, processorComp);
     }
@@ -245,7 +260,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return [ DefaultChannel ];
 
-        return ent.Comp.PermittedChannels;
+        return new HashSet<ProtoId<ESChatChannelPrototype>>(ent.Comp.PermittedChannels);
     }
 }
 

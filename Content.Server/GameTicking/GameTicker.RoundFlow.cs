@@ -807,6 +807,9 @@ namespace Content.Server.GameTicking
             {
                 _playerGameStatuses[session.UserId] = LobbyEnabled ? PlayerGameStatus.NotReadyToPlay : PlayerGameStatus.ReadyToPlay;
             }
+
+            var afterEv = new ESAfterRoundRestartCleanupEvent();
+            RaiseLocalEvent(afterEv);
         }
 
         public bool DelayStart(TimeSpan time)

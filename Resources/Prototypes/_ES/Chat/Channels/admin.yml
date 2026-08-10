@@ -1,0 +1,18 @@
+- type: esChatChannel
+  id: Admin
+  name: es-chat-channel-name-admin
+  order: 99
+  color: HotPink
+  chatProcessor: AdminChatProcessor
+  prefixes: [ "]" ]
+  filterCategory: Admin
+  focusKey: FocusAdminChatWindow
+
+- type: entity
+  id: AdminChatProcessor
+  components:
+  - type: ESUsernameChatChannel
+  - type: ESAdminChatChannel
+    adminSendable: true
+  - type: ESSimpleFormatChatChannel
+    format: es-chat-channel-admin-fmt

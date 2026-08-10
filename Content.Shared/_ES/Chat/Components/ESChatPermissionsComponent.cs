@@ -20,7 +20,7 @@ public sealed partial class ESChatPermissionsComponent : Component
     /// <summary>
     /// All the chat channels that the person has access to.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]
     public HashSet<ProtoId<ESChatChannelPrototype>> PermittedChannels = new();
 }

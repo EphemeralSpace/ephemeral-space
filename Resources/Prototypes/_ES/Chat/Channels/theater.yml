@@ -12,6 +12,7 @@
 - type: entity
   id: LobbyChatProcessor
   components:
+  - type: ESUsernameChatChannel
   - type: ESTheatergoerChatChannel
   - type: ESSimpleFormatChatChannel
     format: es-chat-channel-lobby-fmt
