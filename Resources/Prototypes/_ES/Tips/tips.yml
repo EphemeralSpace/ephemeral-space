@@ -289,3 +289,11 @@
 - type: esTip
   id: FakeSympathizer
   text: A traitor might think twice about magdumping you if you lie about being a Sympathizer first. Or, you know, if you're actually telling the truth, too.
+
+- type: esTip
+  id: LieALot
+  text: Lying is extremely powerful. If you've successfully built your credibility up earlier in the round, people tend to trust whatever tales you spin. Even when you might not hae much to immediately gain, lying can help protect you from unseen consequences.
+
+- type: esTip
+  id: OffmedUseItemsWhileDowned
+  text: You can generally still use items while incapacitated, assuming you aren't too deep into crit. Set off a smoke grenade and inject yourself with painkillers to try and make a hasty escape.
