@@ -386,3 +386,7 @@ es-names-first-dataset-male-370 = Prime
 es-names-first-dataset-male-371 = Truk
 es-names-first-dataset-male-372 = Cixin
 es-names-first-dataset-male-373 = Rich
+# 2026-08
+es-names-first-dataset-male-374 = Buzz
+es-names-first-dataset-male-375 = Rab
+es-names-first-dataset-male-376 = Dunkin

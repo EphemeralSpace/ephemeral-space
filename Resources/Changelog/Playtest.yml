@@ -1675,3 +1675,39 @@ Entries:
       message: Humans can no longer be put on meat spikes.
   id: 177
   time: '2026-08-06T14:31:19.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Tweak
+      message: stagehands will now be notified upon apc bugging/debugging
+  id: 178
+  time: '2026-08-08T19:47:56.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed the radstorm cutscene playing on top of other round-end cutscenes.
+    - type: Tweak
+      message: >-
+        When parasites win, they now obliterate non-parasites and turn them into
+        nests instead of simply converting them.
+  id: 179
+  time: '2026-08-08T19:48:21.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Add
+      message: Terrifying beasts
+  id: 180
+  time: '2026-08-08T22:32:34.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: New namegen names, server RP levels, and tips
+  id: 181
+  time: '2026-08-10T05:39:53.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: >-
+        Transponder action will now only go on cooldown when a message is
+        actually sent
+  id: 182
+  time: '2026-08-10T06:35:36.0000000+00:00'

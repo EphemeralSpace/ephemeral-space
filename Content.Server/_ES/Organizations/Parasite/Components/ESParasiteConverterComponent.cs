@@ -9,10 +9,10 @@ namespace Content.Server._ES.Organizations.Parasite.Components;
 public sealed partial class ESParasiteConverterComponent : Component
 {
     [DataField]
-    public ProtoId<ESOrganizationPrototype> IgnoreOrganization = "Parasite";
+    public EntProtoId NestSpawn = "ESWormNest";
 
     [DataField]
-    public ProtoId<ESSecretIdentityPrototype> SecretIdentity = "Host";
+    public ProtoId<ESOrganizationPrototype> IgnoreOrganization = "Parasite";
 
     [DataField]
     public SoundSpecifier Sound = new SoundCollectionSpecifier("desecration");

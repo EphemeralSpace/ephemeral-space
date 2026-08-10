@@ -1,11 +1,12 @@
+using Content.Server.Actions;
 using Content.Server.Administration;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared._ES.Chat;
+using Content.Shared.Actions.Components;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Server._ES.Chat.Transponder;
 
@@ -16,7 +17,7 @@ public sealed partial class ESTransponderSystem : EntitySystem
 {
     [Dependency] private RadioSystem _radio = default!;
     [Dependency] private QuickDialogSystem _dialog = default!;
-    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ActionsSystem _action = default!;
 
     public override void Initialize()
     {
@@ -38,20 +39,22 @@ public sealed partial class ESTransponderSystem : EntitySystem
             return;
 
         var channel = args.Channel;
+        var action = args.Action;
         _dialog.OpenDialog<string>(actor.PlayerSession,
-            Loc.GetString("es-transponder-dialog-title"), Loc.GetString("es-transponder-dialog-prompt"),
-            (msg => SendMessage(ent, channel, msg, _timing.CurTime)));
+            Loc.GetString("es-transponder-dialog-title"),
+            Loc.GetString("es-transponder-dialog-prompt"),
+            (msg => SendMessage(ent, channel, msg, action)));
 
-        args.Handled = true;
+        // we deliberately do not set handled, because we activate the usedelay when a message is actually sent
         */
     }
 
-    private void SendMessage(EntityUid ent, ProtoId<RadioChannelPrototype> channel, string message, TimeSpan sendTime)
+    private void SendMessage(EntityUid ent, ProtoId<RadioChannelPrototype> channel, string message, Entity<ActionComponent> action)
     {
-        // no potential cheese with dialog stuff
-        if (_timing.CurTime > (sendTime + TimeSpan.FromMinutes(1)))
+        if (_action.IsCooldownActive(action))
             return;
 
         _radio.SendRadioMessage(ent, message, channel, ent, force: true);
+        _action.StartUseDelay(action.AsNullable());
     }
 }

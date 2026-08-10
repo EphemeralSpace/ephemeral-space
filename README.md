@@ -24,7 +24,9 @@ Space Station 14 is a remake of SS13 that runs on [Robust Toolbox](https://githu
 
 ## Documentation/Wiki
 
-Our [docs site](https://docs.spacestation14.com/) has documentation on SS14's content, engine, game design, and more.
+Ephemeral Space has documentation pertaining to code conventions, game design, feature documentation, and spriter/mapper guidelines [here](https://ephemeralspace.github.io/docs/).
+
+Upstream's [docs site](https://docs.spacestation14.com/) has documentation on SS14's content codebase, engine code, and more.
 Additionally, see these resources for license and attribution information:
 - [Robust Generic Attribution](https://docs.spacestation14.com/en/specifications/robust-generic-attribution.html)
 - [Robust Station Image](https://docs.spacestation14.com/en/specifications/robust-station-image.html)
@@ -33,8 +35,7 @@ We also have lots of resources for new contributors to the project.
 
 ## Contributing
 
-We are happy to accept contributions from anybody. Get in Discord if you want to help. We've got a [list of issues](https://github.com/space-wizards/space-station-14-content/issues) that need to be done and anybody can pick them up. Don't be afraid to ask for help either!
-Just make sure your changes and pull requests are in accordance with the [contribution guidelines](https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html) and our own unique [coding conventions](https://ephemeralspace.github.io/docs/coding/code-conventions.html).
+We are happy to accept contributions from anybody. We've got a [list of issues](https://github.com/EphemeralSpace/ephemeral-space/issues) that need to be addressed, and you should join our [Discord](https://discord.gg/jNFV9ap2nX) if you want to try tackling something. Make sure any changes and pull requests are in accordance with our [coding conventions](https://ephemeralspace.github.io/docs/coding/code-conventions.html).
 
 We are not currently accepting translations of the game on our main repository. If you would like to translate the game into another language, consider creating a fork or contributing to a fork.
 

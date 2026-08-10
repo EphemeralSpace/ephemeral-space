@@ -13,7 +13,7 @@ namespace Content.Shared._ES.SecretIdentity.Masquerades;
 ///     A weighted collection of secret identities for use by Masquerades.
 /// </summary>
 /// <seealso cref="MasqueradeEntry"/>
-[Prototype("esSecretIdentitySet")]
+[Prototype("esSecretIdentitySet", loadPriority: 3)] // loads after secret identities but before masquerades
 public sealed partial class ESSecretIdentitySetPrototype : IPrototype, IInheritingPrototype, ISerializationHooks
 {
     /// <inheritdoc/>
