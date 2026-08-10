@@ -1703,3 +1703,11 @@ Entries:
       message: New namegen names, server RP levels, and tips
   id: 181
   time: '2026-08-10T05:39:53.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: >-
+        Transponder action will now only go on cooldown when a message is
+        actually sent
+  id: 182
+  time: '2026-08-10T06:35:36.0000000+00:00'
