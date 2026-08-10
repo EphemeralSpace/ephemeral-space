@@ -1711,3 +1711,9 @@ Entries:
         actually sent
   id: 182
   time: '2026-08-10T06:35:36.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Fix
+      message: Cargo weapon crates can be opened with a sec ID again
+  id: 183
+  time: '2026-08-10T23:20:39.0000000+00:00'
