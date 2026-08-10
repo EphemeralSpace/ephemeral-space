@@ -243,7 +243,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         }
     }
 
-    public void RefreshChatPermissions(Entity<ESChatPermissionsComponent?> ent)
+    public virtual void RefreshChatPermissions(Entity<ESChatPermissionsComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return;
@@ -260,7 +260,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return [ DefaultChannel ];
 
-        return new HashSet<ProtoId<ESChatChannelPrototype>>(ent.Comp.PermittedChannels);
+        return ent.Comp.PermittedChannels;
     }
 }
 

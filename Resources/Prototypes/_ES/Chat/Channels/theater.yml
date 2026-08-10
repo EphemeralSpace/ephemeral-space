@@ -13,6 +13,8 @@
   id: LobbyChatProcessor
   components:
   - type: ESUsernameChatChannel
+  - type: ESAdminChatChannel # Admins can always see and send messages in lobby chat
+    adminSendable: true
   - type: ESTheatergoerChatChannel
   - type: ESSimpleFormatChatChannel
     format: es-chat-channel-lobby-fmt

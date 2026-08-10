@@ -1,5 +1,6 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Chat.Components;
 
@@ -24,3 +25,9 @@ public sealed partial class ESChatPermissionsComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public HashSet<ProtoId<ESChatChannelPrototype>> PermittedChannels = new();
 }
+
+/// <summary>
+/// Event raised from client to inform the server that the chat permissions need to be refreshed and to send a new state.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class ESClientRefreshChatPermissions : EntityEventArgs;

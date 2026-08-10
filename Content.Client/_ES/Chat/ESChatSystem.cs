@@ -1,5 +1,6 @@
 using Content.Shared._ES.Chat;
 using Content.Shared._ES.Chat.Components;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -8,6 +9,8 @@ namespace Content.Client._ES.Chat;
 /// <inheritdoc/>
 public sealed partial class ESChatSystem : ESSharedChatSystem
 {
+    [Dependency] private INetManager _net = default!;
+
     public event Action<EntityUid, HashSet<ProtoId<ESChatChannelPrototype>>>? LocalChatPermissionsUpdated;
 
     /// <inheritdoc/>
@@ -20,6 +23,14 @@ public sealed partial class ESChatSystem : ESSharedChatSystem
         SubscribeLocalEvent<ESChatPermissionsComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
     }
 
+    public override void RefreshChatPermissions(Entity<ESChatPermissionsComponent?> ent)
+    {
+        base.RefreshChatPermissions(ent);
+
+        if (_net.IsConnected)
+            RaiseNetworkEvent(new ESClientRefreshChatPermissions());
+    }
+
     private void OnAfterAutoHandleState(Entity<ESChatPermissionsComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         if (PlayerManager.LocalEntity != ent)
@@ -30,17 +41,11 @@ public sealed partial class ESChatSystem : ESSharedChatSystem
 
     private void OnPlayerAttached(Entity<ESChatPermissionsComponent> ent, ref LocalPlayerAttachedEvent args)
     {
-        if (PlayerManager.LocalEntity != ent)
-            return;
-
         LocalChatPermissionsUpdated?.Invoke(ent, ent.Comp.PermittedChannels);
     }
 
     private void OnPlayerDetached(Entity<ESChatPermissionsComponent> ent, ref LocalPlayerDetachedEvent args)
     {
-        if (PlayerManager.LocalEntity != ent)
-            return;
-
         LocalChatPermissionsUpdated?.Invoke(ent, ent.Comp.PermittedChannels);
     }
 }
