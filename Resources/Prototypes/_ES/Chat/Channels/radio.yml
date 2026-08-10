@@ -1,6 +1,7 @@
 - type: esChatChannel
   id: Common
   name: es-chat-channel-name-radio-common
+  order: 4
   color: LimeGreen
   chatProcessor: RadioChatProcessor
   prefixes: [ ";" ]

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._ES.Chat;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
@@ -37,7 +38,7 @@ public sealed partial class ChannelSelectorPopup : Popup
         Channels.Clear();
         _channelSelectorHBox.RemoveAllChildren();
 
-        foreach (var channel in _prototype.EnumeratePrototypes<ESChatChannelPrototype>())
+        foreach (var channel in _prototype.EnumeratePrototypes<ESChatChannelPrototype>().OrderBy(p => p.Order))
         {
             if (!_selectorStates.TryGetValue(channel, out var selector))
             {

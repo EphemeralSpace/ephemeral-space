@@ -1,6 +1,7 @@
 - type: esChatChannel
   id: Speak
   name: es-chat-channel-name-speak
+  order: 1
   chatProcessor: SpeakChatProcessor
   prefixes: [ ">" ]
   filterCategory: Local
@@ -23,6 +24,7 @@
 - type: esChatChannel
   id: Whisper
   name: es-chat-channel-name-whisper
+  order: 2
   chatProcessor: WhisperChatProcessor
   prefixes: [ "," ]
   filterCategory: Whisper
@@ -46,6 +48,7 @@
 - type: esChatChannel
   id: Emote
   name: es-chat-channel-name-emote
+  order: 3
   chatProcessor: EmoteChatProcessor
   prefixes: [ "@", "*" ]
   filterCategory: Emote

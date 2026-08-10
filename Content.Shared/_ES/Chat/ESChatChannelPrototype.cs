@@ -16,6 +16,9 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     public LocId Name;
 
     [DataField]
+    public int Order = int.MaxValue;
+
+    [DataField]
     public Color Color = Color.DarkGray;
 
     [DataField(required: true)]
