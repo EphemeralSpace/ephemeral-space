@@ -300,3 +300,6 @@ es-names-first-dataset-female-286 = Egg
 es-names-first-dataset-female-287 = Womp
 es-names-first-dataset-female-288 = Rust
 es-names-first-dataset-female-289 = Bee
+# 2026-08
+Sine
+Cosine

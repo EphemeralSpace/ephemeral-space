@@ -343,3 +343,6 @@ es-names-first-dataset-genderless-327 = Donk
 es-names-first-dataset-genderless-328 = Juice
 es-names-first-dataset-genderless-329 = Ducky
 es-names-first-dataset-genderless-330 = Kamille
+# 2026-08
+Tangent
+Bomfy

@@ -609,3 +609,12 @@ es-names-last-dataset-591 = Yalknowbouttheapple
 es-names-last-dataset-592 = Hypertext
 es-names-last-dataset-593 = Botnet
 es-names-last-dataset-594 = Greasebean
+# 2026-08
+Farkleberry
+Website
+Bruisepack
+Wave
+Borscht
+Otmeal
+Snartly
+Higgs-Boson
