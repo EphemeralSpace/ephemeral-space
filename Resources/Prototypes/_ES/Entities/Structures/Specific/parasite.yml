@@ -114,7 +114,7 @@
         - Impassable
         - HighImpassable
         - LowImpassable
-        layer:d
+        layer:
         - Impassable
         - HighImpassable
         - LowImpassable

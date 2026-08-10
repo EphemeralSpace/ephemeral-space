@@ -11,6 +11,7 @@
     iconOn:
       sprite: _ES/Actions/SecretIdentity/pickpocket.rsi
       state: pickpocket-on
+    useDelay: 1m
   - type: TargetAction
   - type: WorldTargetAction
     event: !type:ESBarnacleActionEvent

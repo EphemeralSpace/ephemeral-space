@@ -81,6 +81,8 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         if (ev.Cancelled)
             return;
 
+
+
         var BarnacleMob = SpawnAtPosition("ESBarnacle", ev.TargetCoord.SnapToGrid(EntityManager));
         var Comp = EnsureComp<ESBarnacleMobComponent>(BarnacleMob);
         Comp.Owner = (ev.Preformer.Owner, ev.Preformer.Comp2, ev.Preformer.Comp1);
