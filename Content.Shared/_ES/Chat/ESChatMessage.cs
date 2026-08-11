@@ -75,7 +75,6 @@ public sealed class ESChatMessage
     public string Format;
     #endregion
 
-    // TODO: fuuucccckkkkk this is gonna mess up prediction resolving
     /// <summary>
     /// Client-only: Whether this message has been read and processed
     /// </summary>

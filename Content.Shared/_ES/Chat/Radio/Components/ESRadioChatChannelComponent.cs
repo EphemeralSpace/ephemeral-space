@@ -4,5 +4,5 @@ namespace Content.Shared._ES.Chat.Radio.Components;
 public sealed partial class ESRadioChatChannelComponent : Component
 {
     [DataField]
-    public bool RequireServer;
+    public bool RequireServer = true;
 }

@@ -7,7 +7,7 @@ using Content.Shared.Verbs;
 
 namespace Content.Shared._ES.Radio;
 
-public sealed partial class ESSharedRadioSystem : EntitySystem
+public sealed partial class ESRadioScramblerSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;

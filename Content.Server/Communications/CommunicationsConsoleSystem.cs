@@ -19,8 +19,8 @@ using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 // ES START
-using Content.Server._ES.Radio;
 using Content.Shared._DV.Screens;
+using Content.Shared._ES.Chat.Radio;
 using Content.Shared._ES.Degradation;
 using Content.Shared.Dataset;
 using Content.Shared.Random.Helpers;

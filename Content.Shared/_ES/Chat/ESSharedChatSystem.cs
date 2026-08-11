@@ -59,6 +59,10 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         if (!GetPermittedChannels(source).Contains(msg.ChatChannel))
             return;
 
+        // TODO: Generic ratelimiting
+
+        // TODO: Chat filtering occurs here
+
         TrySendMessage(msg.Text, msg.ChatChannel, source);
     }
 
@@ -121,17 +125,13 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         Entity<ESChatProcessorComponent> processor,
         EntityUid source)
     {
-        // TODO: Generic ratelimiting
-
-        if (!CanSendMessage(source, processor))
+        if (!AttemptSendMessage(source, processor))
         {
             // TODO: Attempt to coerce channel into a sendable type.
             // If someone talks but is only able to whisper, attempt to resend
             // the message as a whisper automatically.
             return false;
         }
-
-        // TODO: Chat filtering occurs here
 
         var preEv = new ESPreTransformChatMessageEvent(content, source);
         RaiseLocalEvent(processor, ref preEv);
@@ -190,15 +190,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         return true;
     }
 
-    public bool CanSendMessage(
-        EntityUid source,
-        ProtoId<ESChatChannelPrototype> channel)
-    {
-        var processor = GetProcessor(channel);
-        return CanSendMessage(source, processor);
-    }
-
-    public bool CanSendMessage(
+    private bool AttemptSendMessage(
         EntityUid source,
         Entity<ESChatProcessorComponent> processor)
     {

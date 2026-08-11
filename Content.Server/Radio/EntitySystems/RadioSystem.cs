@@ -1,21 +1,16 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
-using Content.Server.Power.Components;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech;
-using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-// ES START
-using Content.Server._ES.Radio;
-// ES END
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -30,22 +25,16 @@ public sealed partial class RadioSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ChatSystem _chat = default!;
-// ES START
-    [Dependency] private ESRadioSystem _esRadio = default!;
-// ES END
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
 
-    private EntityQuery<TelecomExemptComponent> _exemptQuery;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<IntrinsicRadioReceiverComponent, RadioReceiveEvent>(OnIntrinsicReceive);
         SubscribeLocalEvent<IntrinsicRadioTransmitterComponent, EntitySpokeEvent>(OnIntrinsicSpeak);
-
-        _exemptQuery = GetEntityQuery<TelecomExemptComponent>();
     }
 
     private void OnIntrinsicSpeak(EntityUid uid, IntrinsicRadioTransmitterComponent component, EntitySpokeEvent args)
@@ -120,22 +109,21 @@ public sealed partial class RadioSystem : EntitySystem
             wrappedMessage,
             NetEntity.Invalid,
             null);
-        var chatMsg = new MsgChatMessage { Message = chat };
 
-        var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
-        RaiseLocalEvent(ref sendAttemptEv);
-        RaiseLocalEvent(radioSource, ref sendAttemptEv);
+        //var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
+        //RaiseLocalEvent(ref sendAttemptEv);
+        //RaiseLocalEvent(radioSource, ref sendAttemptEv);
         // ES START
         // forcing
-        var canSend = !sendAttemptEv.Cancelled || force;
+        //var canSend = !sendAttemptEv.Cancelled || force;
         // ES END
 
         var sourceMapId = Transform(radioSource).MapID;
-        var hasActiveServer = HasActiveServer(sourceMapId, channel.ID);
-        var sourceServerExempt = _exemptQuery.HasComp(radioSource);
+        var hasActiveServer = true; // HasActiveServer(sourceMapId, channel.ID);
+        var sourceServerExempt = false; // _exemptQuery.HasComp(radioSource);
 
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
-        while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
+        while (radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
             if (!radio.ReceiveAllChannels)
             {
@@ -153,15 +141,15 @@ public sealed partial class RadioSystem : EntitySystem
                 continue;
 
             // check if message can be sent to specific receiver
-            var attemptEv = new RadioReceiveAttemptEvent(channel, radioSource, receiver);
-            RaiseLocalEvent(ref attemptEv);
-            RaiseLocalEvent(receiver, ref attemptEv);
-            if (attemptEv.Cancelled)
-                continue;
+            // var attemptEv = new RadioReceiveAttemptEvent(channel, radioSource, receiver);
+            // RaiseLocalEvent(ref attemptEv);
+            // RaiseLocalEvent(receiver, ref attemptEv);
+            // if (attemptEv.Cancelled)
+            //     continue;
 // ES START
             var escapedMsg = FormattedMessage.EscapeText(message);
             // HACK HACK HACK remove later dont care right now
-            var distortedMessage = channel.ID == "Syndicate" ? escapedMsg : _esRadio.DistortMessage(radioSource, receiver, escapedMsg);
+            var distortedMessage = escapedMsg;
             var distortedWrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
                 ("color", channel.Color),
                 ("fontType", speech.FontId),
@@ -177,7 +165,7 @@ public sealed partial class RadioSystem : EntitySystem
                 distortedWrappedMessage,
                 NetEntity.Invalid,
                 null);
-            chatMsg = new MsgChatMessage { Message = chat };
+            var chatMsg = new MsgChatMessage { Message = chat };
             var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg);
 // ES END
 
@@ -192,21 +180,5 @@ public sealed partial class RadioSystem : EntitySystem
 
         _replay.RecordServerMessage(chat);
         _messages.Remove(message);
-    }
-
-    /// <inheritdoc cref="TelecomServerComponent"/>
-    private bool HasActiveServer(MapId mapId, string channelId)
-    {
-        var servers = EntityQuery<TelecomServerComponent, EncryptionKeyHolderComponent, ApcPowerReceiverComponent, TransformComponent>();
-        foreach (var (_, keys, power, transform) in servers)
-        {
-            if (transform.MapID == mapId &&
-                power.Powered &&
-                keys.Channels.Contains(channelId))
-            {
-                return true;
-            }
-        }
-        return false;
     }
 }
