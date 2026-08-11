@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Content.Server.Chat.Managers;
+namespace Content.Shared._ES.Chat.Sanitization;
 
 public interface IChatSanitizationManager
 {

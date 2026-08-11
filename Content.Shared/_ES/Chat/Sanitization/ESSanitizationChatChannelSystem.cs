@@ -10,8 +10,9 @@ namespace Content.Shared._ES.Chat.Sanitization;
 
 public sealed partial class ESSanitizationChatChannelSystem : EntitySystem
 {
-    // [Dependency] private IChatSanitizationManager _sanitizer = default!;
+    [Dependency] private IChatSanitizationManager _sanitizer = default!;
     [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private ESSharedChatSystem _chat = default!;
     [Dependency] private ReplacementAccentSystem _replacementAccent = default!;
 
     private bool _punctuate;
@@ -35,9 +36,9 @@ public sealed partial class ESSanitizationChatChannelSystem : EntitySystem
     {
         var newMessage = SanitizeMessageReplaceWords(message.Trim());
 
-        // TODO: radio prefix stuff needs to happen way earlier.
         // Sanitize it first as it might change the word order
-        // _sanitizer.TrySanitizeEmoteShorthands(newMessage, source, out newMessage, out emoteStr);
+        if (_sanitizer.TrySanitizeEmoteShorthands(newMessage, source, out newMessage, out var emoteStr))
+            _chat.TrySendMessage(emoteStr, ent.Comp.EmoteChannel, source);
 
         // Capitalizing the word I only happens in English, so we check language here
         var capitalizeTheWordI = !CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en"

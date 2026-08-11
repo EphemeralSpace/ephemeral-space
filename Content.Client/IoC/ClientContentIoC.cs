@@ -25,6 +25,7 @@ using Content.Client.Lobby;
 using Content.Client.Players.RateLimiting;
 using Content.Client.Stylesheets.Fonts;
 using Content.Shared._ES.Chat;
+using Content.Shared._ES.Chat.Sanitization;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
 using Content.Shared.IoC;
@@ -45,6 +46,7 @@ namespace Content.Client.IoC
             collection.Register<GeneratedParallaxCache>();
             collection.Register<IChatManager, ChatManager>();
             collection.Register<ISharedChatManager, ChatManager>();
+            collection.Register<IChatSanitizationManager, ChatSanitizationManager>();
             collection.Register<IClientPreferencesManager, ClientPreferencesManager>();
             collection.Register<IStylesheetManager, StylesheetManager>();
             collection.Register<IScreenshotHook, ScreenshotHook>();
