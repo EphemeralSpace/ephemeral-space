@@ -1717,3 +1717,9 @@ Entries:
       message: Cargo weapon crates can be opened with a sec ID again
   id: 183
   time: '2026-08-10T23:20:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: Lights that are meant to be directional are directional again
+  id: 184
+  time: '2026-08-11T21:45:03.0000000+00:00'
