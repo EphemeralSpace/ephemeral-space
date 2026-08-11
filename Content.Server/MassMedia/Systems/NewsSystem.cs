@@ -22,12 +22,12 @@ using Robust.Server.GameObjects;
 using Robust.Server;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
-using Robust.Shared.Maths;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Content.Shared._ES.Chat;
 
 namespace Content.Server.MassMedia.Systems;
 
@@ -42,7 +42,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private GameTicker _ticker = default!;
-    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IESSharedChatManager _chatManager = default!;
     [Dependency] private DiscordWebhook _discord = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IBaseServer _baseServer = default!;
@@ -181,7 +181,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
         {
             _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
 
-            _chatManager.SendAdminAnnouncement(Loc.GetString("news-publish-admin-announcement",
+            _chatManager.SendAdminMessage(Loc.GetString("news-publish-admin-announcement",
                                                              ("actor", msg.Actor),
                                                              ("title", article.Value.Title),
                                                              ("author", article.Value.Author ?? Loc.GetString("news-read-ui-no-author"))

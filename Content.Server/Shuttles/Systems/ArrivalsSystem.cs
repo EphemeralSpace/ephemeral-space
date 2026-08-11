@@ -1,11 +1,9 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration;
-using Content.Server.Chat.Managers;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
-using Content.Server.Parallax;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
@@ -13,6 +11,7 @@ using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Damage.Components;
@@ -29,7 +28,6 @@ using Robust.Shared.Console;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
@@ -42,7 +40,7 @@ namespace Content.Server.Shuttles.Systems;
 /// </summary>
 public sealed partial class ArrivalsSystem : EntitySystem
 {
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private IConfigurationManager _cfgManager = default!;
     [Dependency] private IConsoleHost _console = default!;
     [Dependency] private IGameTiming _timing = default!;
@@ -294,7 +292,7 @@ public sealed partial class ArrivalsSystem : EntitySystem
             _transform.SetWorldRotation(ent, args.FromRotation + rotation);
             if (_actor.TryGetSession(ent, out var session))
             {
-                _chat.DispatchServerMessage(session!, Loc.GetString("latejoin-arrivals-dumped-from-shuttle"));
+                _chat.SendServerMessage(Loc.GetString("latejoin-arrivals-dumped-from-shuttle"), session!);
             }
         }
     }
@@ -379,7 +377,7 @@ public sealed partial class ArrivalsSystem : EntitySystem
             ? Loc.GetString("latejoin-arrivals-direction-time", ("time", $"{arrival:mm\\:ss}"))
             : Loc.GetString("latejoin-arrivals-direction");
 
-        _chat.DispatchServerMessage(ev.Player, message);
+        _chat.SendServerMessage(message, ev.Player);
     }
 
     private bool TryTeleportToMapSpawn(EntityUid player, EntityUid stationId, TransformComponent? transform = null)
@@ -407,7 +405,7 @@ public sealed partial class ArrivalsSystem : EntitySystem
             _transform.SetCoordinates(player, transform, _random.Pick(possiblePositions));
             if (_actor.TryGetSession(player, out var session))
             {
-                _chat.DispatchServerMessage(session!, Loc.GetString("latejoin-arrivals-teleport-to-spawn"));
+                _chat.SendServerMessage(Loc.GetString("latejoin-arrivals-teleport-to-spawn"), session!);
             }
             return true;
         }

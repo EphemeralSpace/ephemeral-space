@@ -44,7 +44,11 @@ public sealed partial class ESChatManager : ESSharedChatManager
             return;
 
         if (message.Message.Text.Length > MaxMessageLength)
+        {
+            var feedback = Loc.GetString("chat-manager-max-message-length-exceeded-message", ("limit", MaxMessageLength));
+            SendServerMessage(feedback, session);
             return;
+        }
 
         var content = FormattedMessage.EscapeText(message.Message.Text.Trim());
         InvokeRequestSendChatMessage(attachedEntity, content, message.Message.ChatChannel);
