@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._ES.Chat.Components;
 using Content.Shared.GameTicking;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Chat;
 
@@ -37,7 +39,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         // TODO: support prototype reloading
         foreach (var channel in _prototype.EnumeratePrototypes<ESChatChannelPrototype>())
         {
-            GetProcessor(channel);
+            TryGetProcessor(channel, out _);
         }
     }
 
@@ -84,26 +86,34 @@ public abstract partial class ESSharedChatSystem : EntitySystem
     /// If the processor already exists, it'll use the existing one.
     /// Otherwise, it'll initialize a new one and then reuse it for further calls.
     /// </remarks>
-    private Entity<ESChatProcessorComponent> GetProcessor(ProtoId<ESChatChannelPrototype> channel)
+    private bool TryGetProcessor(ProtoId<ESChatChannelPrototype> channel, [NotNullWhen(true)] out Entity<ESChatProcessorComponent>? processor)
     {
+        processor = null;
+
+        var prototype = _prototype.Index(channel);
+        if (!prototype.ChatProcessor.HasValue)
+            return false;
+
         // TODO: Consider directly mapping these for performance.
         // Currently this is just an O(n) linear lookup.
         // Directly caching in a dict would be O(1) but has the added complexity of needing to dump refs.
         var query = EntityQueryEnumerator<ESChatProcessorComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (comp.Channel == channel)
-                return (uid, comp);
+            if (comp.Channel != channel)
+                continue;
+            processor= (uid, comp);
+            return true;
         }
 
-        var prototype = _prototype.Index(channel);
         var processorUid = Spawn(prototype.ChatProcessor);
         var processorComp = EnsureComp<ESChatProcessorComponent>(processorUid);
         processorComp.Channel = channel;
         Dirty(processorUid, processorComp);
         _pvsOverride.AddGlobalOverride(processorUid);
 
-        return (processorUid, processorComp);
+        processor = (processorUid, processorComp);
+        return true;
     }
 
     public bool TrySendMessage(
@@ -111,10 +121,15 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         ProtoId<ESChatChannelPrototype> channel,
         EntityUid source)
     {
-        var processer = GetProcessor(channel);
+        if (!TryGetProcessor(channel, out var processer))
+        {
+            Log.Warning($"Tried to send message {content} from {source} on channel without processor entity {channel}");
+            return false;
+        }
+
         return TrySendMessage(
             content,
-            processer,
+            processer.Value,
             source);
     }
 

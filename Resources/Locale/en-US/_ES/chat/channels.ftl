@@ -11,6 +11,7 @@ es-chat-channel-radio-common-fmt-verb = \[Common\] [bold]{"{1}"}[/bold] {$verb},
 es-chat-channel-radio-common-bold-fmt-verb = \[Common\] [bold]{"{1}"}[/bold] {$verb}, "[bold]{"{0}"}[/bold]"
 
 es-chat-filter-name-radio = Radio
+es-chat-filter-name-server = Server
 
 es-chat-channel-speak-fmt-verb = [bold]{"{1}"}[/bold] {$verb}, "{"{0}"}"
 es-chat-channel-speak-bold-fmt-verb = [bold]{"{1}"}[/bold] {$verb}, "[bold]{"{0}"}[/bold]"

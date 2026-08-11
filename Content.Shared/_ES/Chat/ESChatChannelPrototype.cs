@@ -12,11 +12,11 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     [IdDataField]
     public string ID { get; private set; } = default!;
 
-    [DataField(required: true)]
-    public LocId Name;
+    [DataField]
+    public LocId Name = "generic-unknown-title";
 
     [DataField]
-    public int Order = int.MaxValue;
+    public int Order = -1;
 
     [DataField]
     public Color Color = Color.DarkGray;
@@ -24,8 +24,8 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     [DataField]
     public Color TextColor = Color.White;
 
-    [DataField(required: true)]
-    public EntProtoId ChatProcessor;
+    [DataField]
+    public EntProtoId? ChatProcessor;
 
     [DataField]
     public List<string> Prefixes = new();

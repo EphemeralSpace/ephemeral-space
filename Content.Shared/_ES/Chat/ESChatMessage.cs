@@ -28,7 +28,7 @@ public sealed class ESChatMessage
     /// <summary>
     /// Entity which sent the chat message
     /// </summary>
-    public NetEntity Source;
+    public NetEntity? Source;
 
     /// <summary>
     /// Identifier sent when <see cref="Source"/> is <see cref="NetEntity.Invalid"/>
@@ -89,7 +89,7 @@ public sealed class ESChatMessage
     public ESChatMessage(
         string content,
         ProtoId<ESChatChannelPrototype> channel,
-        NetEntity source,
+        NetEntity? source,
         int? sourceKey,
         bool ephemeral,
         SoundSpecifier? sound,

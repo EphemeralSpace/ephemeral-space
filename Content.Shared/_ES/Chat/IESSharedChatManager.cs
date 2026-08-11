@@ -8,10 +8,17 @@ namespace Content.Shared._ES.Chat;
 public interface IESSharedChatManager
 {
     const string DefaultFormat = "{0}";
+    static readonly ProtoId<ESChatChannelPrototype> ServerChannel = "Server";
 
     event Action<EntityUid, string, ProtoId<ESChatChannelPrototype>>? OnRequestSendChatMessage;
 
     void Initialize();
+
+    void SendServerMessage(string content, Color? color = null);
+
+    void SendServerMessage(string content, ICommonSession session, Color? color = null);
+
+    void SendServerMessage(string content, IEnumerable<ICommonSession> session, Color? color = null);
 
     void SendChatMessage(
         string content,

@@ -123,10 +123,10 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
         // TODO: doesn't support prototype reloading. TOO BAD!
         foreach (var chatChannel in _prototypeManager.EnumeratePrototypes<ESChatChannelPrototype>())
         {
-            if (chatChannel.FocusKey is not { } focusKey)
+            if (chatChannel.FocusKey == null)
                 return;
 
-            _input.SetInputCommand(focusKey, InputCmdHandler.FromDelegate(_ => FocusChannel(chatChannel)));
+            _input.SetInputCommand(chatChannel.FocusKey.Value, InputCmdHandler.FromDelegate(_ => FocusChannel(chatChannel)));
         }
 
         _input.SetInputCommand(ContentKeyFunctions.CycleChatChannelForward,
@@ -273,13 +273,10 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
 
     private void AddSpeechBubble(ESChatMessage msg, SpeechType speechType)
     {
-        var ent = EntityManager.GetEntity(msg.Source);
-
-        if (!EntityManager.EntityExists(ent))
-        {
-            _sawmill.Debug("Got local chat message with invalid sender entity: {0}", msg.Source);
+        if (msg.Source == null)
             return;
-        }
+
+        var ent = EntityManager.GetEntity(msg.Source.Value);
 
         EnqueueSpeechBubble(ent, msg, speechType);
     }
@@ -592,7 +589,7 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
         // Usages of the erase admin verb should be rare enough that this does not matter.
         // Otherwise the client would need to know that one entity has multiple author players,
         // or the server would need to track when and which entities a player sent messages as.
-        History.RemoveAll(h => h.Msg.SourceKey == msg.Key || msg.Entities.Contains(h.Msg.Source));
+        History.RemoveAll(h => h.Msg.SourceKey == msg.Key || h.Msg.Source.HasValue && msg.Entities.Contains(h.Msg.Source.Value));
         Repopulate();
     }
 

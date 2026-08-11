@@ -27,7 +27,7 @@
   color: "#b9b9f8"
   textColor: "#b9b9f8"
   chatProcessor: StagehandChatProcessor
-  prefixes: [ "[" ]
+  prefixes: [ "]" ]
   filterCategory: Stagehand
   chatBoxLocation: Stagehand
   speechBubbleType: say

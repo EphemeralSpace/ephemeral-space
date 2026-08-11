@@ -72,7 +72,7 @@ public sealed partial class ESChatManager : ESSharedChatManager
             null,
             ephemeral,
             sound,
-            color ?? channelPrototype.Color,
+            color ?? channelPrototype.TextColor,
             name,
             font,
             fontSize,

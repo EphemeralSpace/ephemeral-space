@@ -4,6 +4,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Chat;
 
@@ -19,6 +20,22 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
     public virtual void Initialize()
     {
         _configuration.OnValueChanged(CCVars.ChatMaxMessageLength, v => { MaxMessageLength = v; }, true);
+    }
+
+    public void SendServerMessage(string content, Color? color = null)
+    {
+        SendServerMessage(content, Filter.GetAllPlayers(), color);
+    }
+
+    public void SendServerMessage(string content, ICommonSession session, Color? color = null)
+    {
+        SendServerMessage(content, [session], color);
+    }
+
+    public void SendServerMessage(string content, IEnumerable<ICommonSession> session, Color? color = null)
+    {
+        var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", FormattedMessage.EscapeText(content)));
+        SendChatMessage(wrappedMessage, session, IESSharedChatManager.ServerChannel, EntityUid.Invalid, color: color);
     }
 
     protected void InvokeRequestSendChatMessage(EntityUid uid, string content, ProtoId<ESChatChannelPrototype> channel)
