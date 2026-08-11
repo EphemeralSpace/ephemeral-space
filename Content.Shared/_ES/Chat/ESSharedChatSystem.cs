@@ -5,7 +5,6 @@ using Content.Shared.GameTicking;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Chat;
 
@@ -24,12 +23,10 @@ public abstract partial class ESSharedChatSystem : EntitySystem
     {
         SubscribeLocalEvent<ESAfterRoundRestartCleanupEvent>(OnAfterRoundRestartCleanup);
 
-        SubscribeLocalEvent<ESChatPermissionsComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<ESChatPermissionsComponent, ESGetChatPermissionsEvent>(OnGetChatPermissions);
-
         SubscribeLocalEvent<ESSimpleFormatChatChannelComponent, ESGetChatMessageFormatEvent>(OnSimpleGetFormat);
 
         InitializeNameColor();
+        InitializePermissions();
 
         _chat.OnRequestSendChatMessage += OnRequestSendChatMessage;
     }
@@ -40,19 +37,6 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         foreach (var channel in _prototype.EnumeratePrototypes<ESChatChannelPrototype>())
         {
             TryGetProcessor(channel, out _);
-        }
-    }
-
-    private void OnStartup(Entity<ESChatPermissionsComponent> ent, ref ComponentStartup args)
-    {
-        RefreshChatPermissions(ent.AsNullable());
-    }
-
-    private void OnGetChatPermissions(Entity<ESChatPermissionsComponent> ent, ref ESGetChatPermissionsEvent args)
-    {
-        foreach (var channel in ent.Comp.InherentChannels)
-        {
-            args.Channels.Add(channel);
         }
     }
 
@@ -248,26 +232,6 @@ public abstract partial class ESSharedChatSystem : EntitySystem
 
             yield return recipient;
         }
-    }
-
-    public virtual void RefreshChatPermissions(Entity<ESChatPermissionsComponent?> ent)
-    {
-        if (!Resolve(ent, ref ent.Comp, false))
-            return;
-
-        var ev = new ESGetChatPermissionsEvent(ent);
-        RaiseLocalEvent(ent, ref ev, true);
-
-        ent.Comp.PermittedChannels = ev.Channels;
-        Dirty(ent);
-    }
-
-    public HashSet<ProtoId<ESChatChannelPrototype>> GetPermittedChannels(Entity<ESChatPermissionsComponent?> ent)
-    {
-        if (!Resolve(ent, ref ent.Comp, false))
-            return [ DefaultChannel ];
-
-        return ent.Comp.PermittedChannels;
     }
 }
 
