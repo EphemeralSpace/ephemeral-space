@@ -1,7 +1,10 @@
 using System.Globalization;
 using Content.Shared._ES.Chat.Sanitization.Components;
 using Content.Shared.CCVar;
+using Content.Shared.Speech.EntitySystems;
+using Content.Shared.Speech.Prototypes;
 using Robust.Shared.Configuration;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Chat.Sanitization;
 
@@ -9,6 +12,7 @@ public sealed partial class ESSanitizationChatChannelSystem : EntitySystem
 {
     // [Dependency] private IChatSanitizationManager _sanitizer = default!;
     [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private ReplacementAccentSystem _replacementAccent = default!;
 
     private bool _punctuate;
 
@@ -32,8 +36,6 @@ public sealed partial class ESSanitizationChatChannelSystem : EntitySystem
         var newMessage = SanitizeMessageReplaceWords(message.Trim());
 
         // TODO: radio prefix stuff needs to happen way earlier.
-        // GetRadioKeycodePrefix(source, newMessage, out newMessage, out var prefix);
-
         // Sanitize it first as it might change the word order
         // _sanitizer.TrySanitizeEmoteShorthands(newMessage, source, out newMessage, out emoteStr);
 
@@ -51,8 +53,7 @@ public sealed partial class ESSanitizationChatChannelSystem : EntitySystem
         return newMessage;
     }
 
-    // TODO: move all this word replacement accent code into shared
-    // public static readonly ProtoId<ReplacementAccentPrototype> ChatSanitize_Accent = "chatsanitize";
+    public static readonly ProtoId<ReplacementAccentPrototype> ChatSanitizeAccent = "chatsanitize";
 
     public string SanitizeMessageReplaceWords(string message)
     {
@@ -61,7 +62,7 @@ public sealed partial class ESSanitizationChatChannelSystem : EntitySystem
 
         var msg = message;
 
-        // msg = _wordreplacement.ApplyReplacements(msg, ChatSanitize_Accent);
+        msg = _replacementAccent.ApplyReplacements(msg, ChatSanitizeAccent);
 
         return msg;
     }

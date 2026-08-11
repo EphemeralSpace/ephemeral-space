@@ -4,6 +4,7 @@ using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
+using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Speech.EntitySystems;

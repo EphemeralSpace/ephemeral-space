@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Speech.Prototypes;
+namespace Content.Shared.Speech.Prototypes;
 
 [Prototype("accent")]
 public sealed partial class ReplacementAccentPrototype : IPrototype
