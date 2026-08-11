@@ -39,11 +39,12 @@ public sealed partial class RadioSystem : EntitySystem
 
     private void OnIntrinsicSpeak(EntityUid uid, IntrinsicRadioTransmitterComponent component, EntitySpokeEvent args)
     {
-        if (args.Channel != null && component.Channels.Contains(args.Channel.ID))
-        {
-            SendRadioMessage(uid, args.Message, args.Channel, uid);
-            args.Channel = null; // prevent duplicate messages from other listeners.
-        }
+        // TODO: I dont even know what to do with this
+        // if (args.Channel != null && component.Channels.Contains(args.Channel.ID))
+        // {
+        //     SendRadioMessage(uid, args.Message, args.Channel, uid);
+        //     args.Channel = null; // prevent duplicate messages from other listeners.
+        // }
     }
 
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)

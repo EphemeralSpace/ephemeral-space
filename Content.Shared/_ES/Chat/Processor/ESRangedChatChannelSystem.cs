@@ -20,7 +20,7 @@ public sealed partial class ESRangedChatChannelSystem : EntitySystem
         var xform = Transform(args.Source);
         foreach (var actor in _entityLookup.GetEntitiesInRange<ActorComponent>(xform.Coordinates, ent.Comp.Range))
         {
-            if (!_examine.InRangeUnOccluded(args.Source, actor, ent.Comp.Range))
+            if (ent.Comp.RequireLOS && !_examine.InRangeUnOccluded(args.Source, actor, ent.Comp.Range))
                 continue;
 
             args.AddRecipient(actor);

@@ -11,4 +11,7 @@ public sealed partial class ESRangedChatChannelComponent : Component
     /// </summary>
     [DataField]
     public float Range = 10;
+
+    [DataField]
+    public bool RequireLOS = true;
 }

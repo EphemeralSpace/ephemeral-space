@@ -12,7 +12,8 @@
   id: SpeakChatProcessor
   components:
   - type: ESGhostListenableChatChannel
-  - type: ESRangedChatChannel # TODO: should probably go through occluders? Seems logical.
+  - type: ESRangedChatChannel
+    requireLOS: false
   - type: ESSpeechVerbChatChannel
     format: es-chat-channel-speak-fmt-verb
     boldFormat: es-chat-channel-speak-bold-fmt-verb

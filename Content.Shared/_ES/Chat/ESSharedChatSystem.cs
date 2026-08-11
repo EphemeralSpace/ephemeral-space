@@ -182,7 +182,8 @@ public abstract partial class ESSharedChatSystem : EntitySystem
                 color: formatEv.Color);
         }
 
-        // TODO: Entity spoke event
+        var sentEv = new ESChatMessageSentEvent(source, transformedContent, processor.Comp.Channel);
+        RaiseLocalEvent(processor, ref sentEv);
 
         // TODO: Logging
 
@@ -469,13 +470,12 @@ public record struct ESReceiveChatMessageAttemptEvent(EntityUid Source)
     }
 }
 
-/// <summary>
-/// Event broadcast and raised on an entity to determine what chat channels they can send from.
-/// </summary>
 [ByRefEvent]
-public record struct ESGetChatPermissionsEvent(EntityUid Source)
+public record struct ESChatMessageSentEvent(EntityUid Source, string Content, ProtoId<ESChatChannelPrototype> Channel)
 {
     public readonly EntityUid Source = Source;
 
-    public readonly HashSet<ProtoId<ESChatChannelPrototype>> Channels = [];
+    public readonly string Content = Content;
+
+    public readonly ProtoId<ESChatChannelPrototype> Channel = Channel;
 }

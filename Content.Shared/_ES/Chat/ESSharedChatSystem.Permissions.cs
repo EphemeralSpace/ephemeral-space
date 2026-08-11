@@ -44,3 +44,15 @@ public abstract partial class ESSharedChatSystem
         return ent.Comp.PermittedChannels;
     }
 }
+
+/// <summary>
+/// Event broadcast and raised on an entity to determine what chat channels they can send from.
+/// </summary>
+[ByRefEvent]
+public record struct ESGetChatPermissionsEvent(EntityUid Source)
+{
+    public readonly EntityUid Source = Source;
+
+    public readonly HashSet<ProtoId<ESChatChannelPrototype>> Channels = [];
+}
+

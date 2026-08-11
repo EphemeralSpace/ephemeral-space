@@ -36,7 +36,7 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
 
     public void SendServerMessage(string content, IEnumerable<ICommonSession> session, Color? color = null)
     {
-        var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", FormattedMessage.EscapeText(content)));
+        var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", content));
         SendChatMessage(wrappedMessage, session, IESSharedChatManager.ServerChannel, null, color: color);
     }
 
