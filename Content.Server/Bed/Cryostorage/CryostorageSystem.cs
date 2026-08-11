@@ -1,6 +1,5 @@
 using System.Globalization;
 using Content.Server._ES.Announcements;
-using Content.Server.Chat.Managers;
 using Content.Server.Ghost;
 using Content.Server.Hands.Systems;
 using Content.Server.Inventory;
@@ -8,9 +7,9 @@ using Content.Server.Popups;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared.Access.Systems;
 using Content.Shared.Bed.Cryostorage;
-using Content.Shared.Chat;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -32,7 +31,7 @@ namespace Content.Server.Bed.Cryostorage;
 /// <inheritdoc/>
 public sealed partial class CryostorageSystem : SharedCryostorageSystem
 {
-    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IESSharedChatManager _chatManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private AccessReaderSystem _accessReader = default!;
@@ -287,7 +286,7 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
 
         var msg = Loc.GetString(locKey, ("time", comp.GracePeriod.TotalMinutes));
         if (TryComp<ActorComponent>(args.Entity, out var actor))
-            _chatManager.ChatMessageToOne(ChatChannel.Server, msg, msg, uid, false, actor.PlayerSession.Channel);
+            _chatManager.SendServerMessage(msg, actor.PlayerSession);
     }
 
     private List<CryostorageContainedPlayerData> GetAllContainedData(Entity<CryostorageComponent> ent)

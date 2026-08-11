@@ -109,7 +109,7 @@ public sealed partial class DiscordChatLink : IPostInjectInit
 
         try
         {
-            await _discordLink.SendMessageAsync(channelId.Value, $"**{channel.ToString()}**: `{author}`: {message}");
+            await _discordLink.SendMessageAsync(channelId.Value, $"**{GetString(channel)}**: `{author}`: {message}");
         }
         catch (Exception e)
         {
@@ -120,5 +120,19 @@ public sealed partial class DiscordChatLink : IPostInjectInit
     void IPostInjectInit.PostInject()
     {
         _sawmill = _logManager.GetSawmill("discord.chat");
+    }
+
+    /// <summary>
+    /// Gets a string representation of a chat channel.
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when this channel does not have a string representation set.</exception>
+    public static string GetString(ESDiscordChannel channel)
+    {
+        return channel switch
+        {
+            ESDiscordChannel.OOC => Loc.GetString("chat-channel-humanized-ooc"),
+            ESDiscordChannel.AdminChat => Loc.GetString("chat-channel-humanized-admin"),
+            _ => throw new ArgumentOutOfRangeException(nameof(channel), channel, null)
+        };
     }
 }

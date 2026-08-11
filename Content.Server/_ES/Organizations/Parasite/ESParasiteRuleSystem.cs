@@ -1,18 +1,17 @@
 using Content.Server._ES.SecretIdentity;
 using Content.Server._ES.Objectives;
 using Content.Server._ES.Organizations.Parasite.Components;
-using Content.Server.Chat.Managers;
 using Content.Server.Damage.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.Cinematic;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Core.Timer.Components;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._Offbrand.Wounds;
-using Content.Shared.Chat;
 using Content.Shared.Gibbing;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
@@ -28,7 +27,7 @@ namespace Content.Server._ES.Organizations.Parasite;
 
 public sealed partial class ESParasiteRuleSystem : EntitySystem
 {
-    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IESSharedChatManager _chatManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private ESCinematicSystem _cinematic = default!;
@@ -140,15 +139,18 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
         _objective.FreezeObjectives<ESParasiteWinFreezeObjectiveComponent>();
 
         var msg = Loc.GetString("es-parasite-swarm-notif");
-        var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
+
+        var sessions = new List<ICommonSession>();
         foreach (var mind in _secretIdentity.GetOrganizationMembers(ent.Owner))
         {
             if (!TryComp<MindComponent>(mind, out var mindComp) ||
                 !_playerManager.TryGetSessionById(mindComp.UserId, out var session))
                 continue;
 
-            _chatManager.ChatMessageToOne(ChatChannel.Server, msg, wrappedMsg, default, false, session.Channel, Color.YellowGreen);
+            sessions.Add(session);
+
         }
+        _chatManager.SendServerMessage(msg, sessions, color: Color.YellowGreen);
 
         _entityTimer.SpawnTimer(ent, ent.Comp.SwarmDelay, new ESParasiteSwarmTimerEvent());
         _entityTimer.SpawnTimer(ent, ent.Comp.SwarmDelay + ent.Comp.WinDelay, new ESParasiteWinCheckTimerEvent());

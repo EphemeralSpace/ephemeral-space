@@ -8,6 +8,7 @@ using Content.Server.Instruments;
 using Content.Server.PDA.Ringer;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Chat;
@@ -32,7 +33,7 @@ namespace Content.Server.PDA
         [Dependency] private InstrumentSystem _instrument = default!;
         [Dependency] private RingerSystem _ringer = default!;
         [Dependency] private StationSystem _station = default!;
-        [Dependency] private IChatManager _chatManager = default!;
+        [Dependency] private IESSharedChatManager _chatManager = default!;
         [Dependency] private UserInterfaceSystem _ui = default!;
         [Dependency] private UnpoweredFlashlightSystem _unpoweredFlashlight = default!;
         [Dependency] private ContainerSystem _containerSystem = default!;
@@ -165,13 +166,11 @@ namespace Content.Server.PDA
                 ("header", args.Header),
                 ("message", message));
 
-            _chatManager.ChatMessageToOne(
-                ChatChannel.Notifications,
-                message,
+            _chatManager.SendChatMessage(
                 wrappedMessage,
-                EntityUid.Invalid,
-                false,
-                actor.PlayerSession.Channel);
+                actor.PlayerSession,
+                "Announcement",
+                null);
         }
 
         /// <summary>
