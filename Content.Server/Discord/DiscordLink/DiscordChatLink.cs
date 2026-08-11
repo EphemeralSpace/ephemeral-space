@@ -1,4 +1,5 @@
 ﻿using Content.Server.Chat.Managers;
+using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using NetCord;
@@ -88,12 +89,12 @@ public sealed partial class DiscordChatLink : IPostInjectInit
         }
     }
 
-    public async void SendMessage(string message, string author, ChatChannel channel)
+    public async void SendMessage(string message, string author, ESDiscordChannel channel)
     {
         var channelId = channel switch
         {
-            ChatChannel.OOC => _oocChannelId,
-            ChatChannel.AdminChat => _adminChannelId,
+            ESDiscordChannel.OOC => _oocChannelId,
+            ESDiscordChannel.AdminChat => _adminChannelId,
             _ => throw new InvalidOperationException("Channel not linked to Discord."),
         };
 
@@ -108,7 +109,7 @@ public sealed partial class DiscordChatLink : IPostInjectInit
 
         try
         {
-            await _discordLink.SendMessageAsync(channelId.Value, $"**{channel.GetString()}**: `{author}`: {message}");
+            await _discordLink.SendMessageAsync(channelId.Value, $"**{channel.ToString()}**: `{author}`: {message}");
         }
         catch (Exception e)
         {

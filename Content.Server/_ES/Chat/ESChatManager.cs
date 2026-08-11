@@ -2,6 +2,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat;
+using Content.Server.Discord.DiscordLink;
 using Content.Shared._ES.Chat;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
@@ -19,6 +20,7 @@ namespace Content.Server._ES.Chat;
 public sealed partial class ESChatManager : ESSharedChatManager
 {
     [Dependency] private IAdminManager _admin = default!;
+    [Dependency] private DiscordChatLink _discordLink = default!;
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _netManager = default!;
@@ -128,7 +130,8 @@ public sealed partial class ESChatManager : ESSharedChatManager
             _replayRecording.RecordServerMessage(msg);
         }
 
-        // DISCORD LINK
+        if (channelPrototype.DiscordRelayChannel is { } discordRelayChannel)
+            _discordLink.SendMessage(content, name ?? string.Empty, discordRelayChannel);
     }
 
     private readonly Dictionary<NetUserId, ChatUser> _players = new();

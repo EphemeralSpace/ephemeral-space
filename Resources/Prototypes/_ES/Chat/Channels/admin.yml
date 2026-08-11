@@ -8,6 +8,7 @@
   prefixes: [ "]" ]
   filterCategory: Admin
   focusKey: FocusAdminChatWindow
+  discordRelayChannel: AdminChat
 
 - type: entity
   id: AdminChatProcessor

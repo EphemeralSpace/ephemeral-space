@@ -9,6 +9,7 @@
   filterCategory: Lobby
   speechBubbleType: say
   focusKey: FocusOOCWindow
+  discordRelayChannel: OOC
 
 - type: entity
   id: LobbyChatProcessor

@@ -48,6 +48,9 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     [DataField]
     public SpeechType? SpeechBubbleType;
 
+    [DataField]
+    public ESDiscordChannel? DiscordRelayChannel;
+
     public bool TryGetDefaultPrefix([NotNullWhen(true)] out string? prefix)
     {
         prefix = null;
@@ -64,4 +67,11 @@ public enum ESChatBoxLocation : byte
 {
     Primary, // Main chat box
     Stagehand, // Upper chatbox used for stagehand text and notifs
+}
+
+[Serializable, NetSerializable]
+public enum ESDiscordChannel : byte
+{
+    OOC,
+    AdminChat,
 }
