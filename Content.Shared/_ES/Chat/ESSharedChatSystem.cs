@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._ES.Chat.Components;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
@@ -10,6 +12,7 @@ namespace Content.Shared._ES.Chat;
 
 public abstract partial class ESSharedChatSystem : EntitySystem
 {
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
     [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] protected ISharedPlayerManager PlayerManager = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
@@ -122,6 +125,8 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         Entity<ESChatProcessorComponent> processor,
         EntityUid source)
     {
+        var originalContent = content;
+
         if (!AttemptSendMessage(source, processor))
         {
             // TODO: Attempt to coerce channel into a sendable type.
@@ -194,7 +199,13 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         var sentEv = new ESChatMessageSentEvent(source, transformedContent, processor.Comp.Channel);
         RaiseLocalEvent(processor, ref sentEv);
 
-        // TODO: Logging
+        if (PlayerManager.TryGetSessionByEntity(source, out _))
+        {
+            _adminLog.Add(
+                LogType.Chat,
+                LogImpact.Low,
+                $"{ToPrettyString(source)} sent message on {processor.Comp.Channel}. Original: {originalContent}, Transformed: {transformedContent}");
+        }
 
         return true;
     }
