@@ -5,6 +5,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server._ES.Chat;
 
@@ -41,7 +42,8 @@ public sealed partial class ESChatManager : ESSharedChatManager
         if (message.Message.Text.Length > MaxMessageLength)
             return;
 
-        InvokeRequestSendChatMessage(attachedEntity, message.Message);
+        var content = FormattedMessage.EscapeText(message.Message.Text);
+        InvokeRequestSendChatMessage(attachedEntity, content, message.Message.ChatChannel);
     }
 
     public override void SendChatMessage(

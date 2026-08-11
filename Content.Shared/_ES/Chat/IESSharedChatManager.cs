@@ -9,7 +9,7 @@ public interface IESSharedChatManager
 {
     const string DefaultFormat = "{0}";
 
-    event Action<EntityUid, ESRequestSendChatMessage>? OnRequestSendChatMessage;
+    event Action<EntityUid, string, ProtoId<ESChatChannelPrototype>>? OnRequestSendChatMessage;
 
     void Initialize();
 

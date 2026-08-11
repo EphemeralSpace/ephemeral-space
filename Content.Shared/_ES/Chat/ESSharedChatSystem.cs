@@ -54,14 +54,14 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         }
     }
 
-    private void OnRequestSendChatMessage(EntityUid source, ESRequestSendChatMessage msg)
+    private void OnRequestSendChatMessage(EntityUid source, string content, ProtoId<ESChatChannelPrototype> channel)
     {
-        if (!GetPermittedChannels(source).Contains(msg.ChatChannel))
+        if (!GetPermittedChannels(source).Contains(channel))
             return;
 
         // TODO: Chat filtering occurs here
 
-        TrySendMessage(msg.Text, msg.ChatChannel, source);
+        TrySendMessage(content, channel, source);
     }
 
     private void OnSimpleGetFormat(Entity<ESSimpleFormatChatChannelComponent> ent, ref ESGetChatMessageFormatEvent args)

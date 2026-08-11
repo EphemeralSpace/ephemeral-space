@@ -12,7 +12,7 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
     [Dependency] private IConfigurationManager _configuration = default!;
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
 
-    public event Action<EntityUid, ESRequestSendChatMessage>? OnRequestSendChatMessage;
+    public event Action<EntityUid, string, ProtoId<ESChatChannelPrototype>>? OnRequestSendChatMessage;
 
     public int MaxMessageLength { get; private set; }
 
@@ -21,9 +21,9 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
         _configuration.OnValueChanged(CCVars.ChatMaxMessageLength, v => { MaxMessageLength = v; }, true);
     }
 
-    protected void InvokeRequestSendChatMessage(EntityUid uid, ESRequestSendChatMessage msg)
+    protected void InvokeRequestSendChatMessage(EntityUid uid, string content, ProtoId<ESChatChannelPrototype> channel)
     {
-        OnRequestSendChatMessage?.Invoke(uid, msg);
+        OnRequestSendChatMessage?.Invoke(uid, content, channel);
     }
 
     public void SendChatMessage(string content,
