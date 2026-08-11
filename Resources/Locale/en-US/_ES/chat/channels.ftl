@@ -19,6 +19,7 @@ es-chat-channel-whisper-fmt = [font size=11][italic]{"{1}"} whispers, "{"{0}"}"[
 es-chat-channel-emote-fmt = [italic]{"{1}"} {"{0}"}[/italic]
 
 es-chat-channel-lobby-fmt = [color=plum]Lobby: [bold]{"{1}"}[/bold]: {"{0}"}[/color]
+es-chat-channel-stagehand-fmt = [color=#b9b9f8][bold]{"{1}"}[/bold]: {"{0}"}[/color]
 
 es-chat-channel-admin-fmt = [color=HotPink]Admin: [bold]{"{1}"}[/bold]: {"{0}"}[/color]
 

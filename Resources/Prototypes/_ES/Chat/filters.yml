@@ -17,3 +17,11 @@
 - type: esChatChannelFilter
   id: Admin
   name: es-chat-channel-name-admin
+
+- type: esChatChannelFilter
+  id: Lobby
+  name: es-chat-channel-name-lobby
+
+- type: esChatChannelFilter
+  id: Stagehand
+  name: es-chat-channel-name-stagehand

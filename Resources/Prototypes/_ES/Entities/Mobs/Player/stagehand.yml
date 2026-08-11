@@ -49,6 +49,9 @@
     visMask:
     - Normal
     - Ghost
+  - type: ESChatPermissions
+    inherentChannels:
+    - Stagehand
   - type: Input
     context: "ghost"
   - type: Visibility

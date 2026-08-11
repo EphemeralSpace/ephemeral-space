@@ -5,7 +5,7 @@
   color: Plum
   chatProcessor: LobbyChatProcessor
   prefixes: [ "[" ]
-  filterCategory: Local
+  filterCategory: Lobby
   speechBubbleType: say
   focusKey: FocusOOCWindow
 
@@ -18,3 +18,25 @@
   - type: ESTheatergoerChatChannel
   - type: ESSimpleFormatChatChannel
     format: es-chat-channel-lobby-fmt
+
+- type: esChatChannel
+  id: Stagehand
+  name: es-chat-channel-name-stagehand
+  order: 11
+  color: "#b9b9f8"
+  chatProcessor: StagehandChatProcessor
+  prefixes: [ "[" ]
+  filterCategory: Stagehand
+  chatBoxLocation: Stagehand
+  speechBubbleType: say
+  focusKey: FocusDeadChatWindow
+
+- type: entity
+  id: StagehandChatProcessor
+  components:
+  - type: ESUsernameChatChannel
+  - type: ESAdminChatChannel
+    adminSendable: true
+  - type: ESStagehandChatChannel
+  - type: ESSimpleFormatChatChannel
+    format: es-chat-channel-stagehand-fmt
