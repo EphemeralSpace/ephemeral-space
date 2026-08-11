@@ -3,3 +3,7 @@
   textColor: orange
   filterCategory: Server
   chatBoxLocation: Stagehand
+
+- type: esChatChannel
+  id: Announcement
+  filterCategory: Announcement

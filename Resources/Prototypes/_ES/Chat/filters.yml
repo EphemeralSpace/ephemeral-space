@@ -26,6 +26,10 @@
   id: Stagehand
   name: es-chat-channel-name-stagehand
 
+- type: esChatChannelFilter
+  id: Announcement
+  name: es-chat-filter-name-announcement
+
 # Non-Player Facing
 - type: esChatChannelFilter
   id: Server

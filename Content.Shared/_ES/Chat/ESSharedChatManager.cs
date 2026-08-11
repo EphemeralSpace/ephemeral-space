@@ -59,9 +59,30 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
         SendChatMessage(wrappedMessage, sessions, IESSharedChatManager.AdminChannel, null);
     }
 
-    protected void InvokeRequestSendChatMessage(EntityUid uid, string content, ProtoId<ESChatChannelPrototype> channel)
+    public void SendChatMessage(string content,
+        ProtoId<ESChatChannelPrototype> channel,
+        EntityUid? source,
+        string format = IESSharedChatManager.DefaultFormat,
+        bool ephemeral = false,
+        bool recordReplay = true,
+        SoundSpecifier? sound = null,
+        Color? color = null,
+        string? name = null,
+        string? font = null,
+        int? fontSize = null)
     {
-        OnRequestSendChatMessage?.Invoke(uid, content, channel);
+        SendChatMessage(content,
+            Filter.GetAllPlayers(),
+            channel,
+            source,
+            format,
+            ephemeral,
+            recordReplay,
+            sound,
+            color,
+            name,
+            font,
+            fontSize);
     }
 
     public void SendChatMessage(string content,
@@ -130,6 +151,10 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
         }
 
         return false;
+    }
 
+    protected void InvokeRequestSendChatMessage(EntityUid uid, string content, ProtoId<ESChatChannelPrototype> channel)
+    {
+        OnRequestSendChatMessage?.Invoke(uid, content, channel);
     }
 }

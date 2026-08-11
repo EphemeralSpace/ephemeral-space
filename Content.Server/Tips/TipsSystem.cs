@@ -1,9 +1,7 @@
-using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.Tips;
 using Content.Shared.CCVar;
-using Content.Shared.Chat;
-using Content.Shared.Dataset;
 using Content.Shared.Tips;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -15,7 +13,7 @@ namespace Content.Server.Tips;
 
 public sealed partial class TipsSystem : SharedTipsSystem
 {
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -122,15 +120,11 @@ public sealed partial class TipsSystem : SharedTipsSystem
         }
         else
         {
-            _chat.ChatMessageToManyFiltered(
-                Filter.Broadcast(),
-                ChatChannel.OOC,
-                tip,
+            _chat.SendChatMessage(IESSharedChatManager.ServerChannel,
                 msg,
-                EntityUid.Invalid,
-                false,
-                false,
-                Color.MediumPurple);
+                null,
+                recordReplay: false,
+                color: Color.MediumPurple);
         }
     }
 }

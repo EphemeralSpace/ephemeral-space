@@ -26,6 +26,19 @@ public interface IESSharedChatManager
 
     void SendChatMessage(
         string content,
+        ProtoId<ESChatChannelPrototype> channel,
+        EntityUid? source,
+        string format = DefaultFormat,
+        bool ephemeral = false,
+        bool recordReplay = true,
+        SoundSpecifier? sound = null,
+        Color? color = null,
+        string? name = null,
+        string? font = null,
+        int? fontSize = null);
+
+    void SendChatMessage(
+        string content,
         ICommonSession recipient,
         ProtoId<ESChatChannelPrototype> channel,
         EntityUid? source,
