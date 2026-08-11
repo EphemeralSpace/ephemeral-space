@@ -46,8 +46,6 @@ internal sealed partial class ChatManager : IChatManager
     /// </summary>
     public int MaxMessageLength => _configurationManager.GetCVar(CCVars.ChatMaxMessageLength);
 
-    private bool _oocEnabled = true;
-    private bool _adminOocEnabled = true;
 
     private readonly Dictionary<NetUserId, ChatUser> _players = new();
 
@@ -56,34 +54,15 @@ internal sealed partial class ChatManager : IChatManager
         _netManager.RegisterNetMessage<MsgChatMessage>();
         _netManager.RegisterNetMessage<MsgDeleteChatMessagesBy>();
 
-        _configurationManager.OnValueChanged(CCVars.OocEnabled, OnOocEnabledChanged, true);
-        _configurationManager.OnValueChanged(CCVars.AdminOocEnabled, OnAdminOocEnabledChanged, true);
-
         _sawmill = _logManager.GetSawmill("SERVER");
 
         RegisterRateLimits();
     }
 
-    private void OnOocEnabledChanged(bool val)
+    public void DeleteMessagesBy(NetUserId uid)
     {
-        if (_oocEnabled == val) return;
-
-        _oocEnabled = val;
-        DispatchServerAnnouncement(Loc.GetString(val ? "chat-manager-ooc-chat-enabled-message" : "chat-manager-ooc-chat-disabled-message"));
-    }
-
-    private void OnAdminOocEnabledChanged(bool val)
-    {
-        if (_adminOocEnabled == val) return;
-
-        _adminOocEnabled = val;
-        DispatchServerAnnouncement(Loc.GetString(val ? "chat-manager-admin-ooc-chat-enabled-message" : "chat-manager-admin-ooc-chat-disabled-message"));
-    }
-
-        public void DeleteMessagesBy(NetUserId uid)
-        {
-            if (!_players.TryGetValue(uid, out var user))
-                return;
+        if (!_players.TryGetValue(uid, out var user))
+            return;
 
         var msg = new MsgDeleteChatMessagesBy { Key = user.Key, Entities = user.Entities };
         _netManager.ServerSendToAll(msg);
@@ -193,7 +172,7 @@ internal sealed partial class ChatManager : IChatManager
 
     public void SendHookOOC(string sender, string message)
     {
-        if (!_oocEnabled && _configurationManager.GetCVar(CCVars.DisablingOOCDisablesRelay))
+        if (_configurationManager.GetCVar(CCVars.DisablingOOCDisablesRelay))
         {
             return;
         }

@@ -1,8 +1,6 @@
 using Content.Server._ES.Announcements;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
-using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
 using Content.Server.Database;
 using Content.Server.Ghost;
 using Content.Server.Maps;
@@ -10,8 +8,8 @@ using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Server.ServerUpdates;
 using Content.Server.Station.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared.Alert;
-using Content.Shared.Chat;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
@@ -37,7 +35,7 @@ namespace Content.Server.GameTicking
         [Dependency] private IAdminLogManager _adminLogger = default!;
         [Dependency] private IBanManager _banManager = default!;
         [Dependency] private IBaseServer _baseServer = default!;
-        [Dependency] private IChatManager _chatManager = default!;
+        [Dependency] private IESSharedChatManager _chatManager = default!;
         [Dependency] private IConsoleHost _consoleHost = default!;
         [Dependency] private IGameMapManager _gameMapManager = default!;
         [Dependency] private IGameTiming _gameTiming = default!;
@@ -117,8 +115,7 @@ namespace Content.Server.GameTicking
 
         private void SendServerMessage(string message)
         {
-            var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", message));
-            _chatManager.ChatMessageToAll(ChatChannel.Server, message, wrappedMessage, default, false, true);
+            _chatManager.SendServerMessage(message);
         }
 
         public override void Update(float frameTime)

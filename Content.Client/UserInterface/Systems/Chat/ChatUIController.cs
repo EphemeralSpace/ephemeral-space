@@ -153,6 +153,8 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
 
         if (_player.LocalEntity is { } local)
             OnLocalPermissionsUpdated(local, GetPermittedChannels());
+
+        Repopulate();
     }
 
     public void OnScreenUnload()

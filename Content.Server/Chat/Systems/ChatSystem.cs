@@ -54,29 +54,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private ExamineSystemShared _examineSystem = default!;
     [Dependency] private Content.Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!; // Offbrand
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameChange);
-    }
-
-    private void OnGameChange(GameRunLevelChangedEvent ev)
-    {
-        switch (ev.New)
-        {
-            case GameRunLevel.InRound:
-                if (!_configurationManager.GetCVar(CCVars.OocEnableDuringRound))
-                    _configurationManager.SetCVar(CCVars.OocEnabled, false);
-                break;
-            case GameRunLevel.PostRound:
-            case GameRunLevel.PreRoundLobby:
-                if (!_configurationManager.GetCVar(CCVars.OocEnableDuringRound))
-                    _configurationManager.SetCVar(CCVars.OocEnabled, true);
-                break;
-        }
-    }
-
     /// <inheritdoc />
     public override void TrySendInGameICMessage(
         EntityUid source,
