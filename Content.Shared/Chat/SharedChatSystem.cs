@@ -90,6 +90,12 @@ public abstract partial class SharedChatSystem : EntitySystem
         if (!Resolve(source, ref speech, false))
             return _prototypeManager.Index(DefaultSpeechVerb);
 
+        // TODO: this is a legacy compatibility hack
+        var nameEv = new TransformSpeakerNameEvent(source, Name(source));
+        RaiseLocalEvent(source, nameEv);
+        if (nameEv.SpeechVerb.HasValue)
+            return _prototypeManager.Index(nameEv.SpeechVerb);
+
         // check for a suffix-applicable speech verb
         SpeechVerbPrototype? current = null;
         foreach (var (str, id) in speech.SuffixSpeechVerbs)
