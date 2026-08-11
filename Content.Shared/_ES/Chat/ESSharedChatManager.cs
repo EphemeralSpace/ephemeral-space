@@ -26,8 +26,36 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
         OnRequestSendChatMessage?.Invoke(uid, msg);
     }
 
-    public abstract void SendChatMessage(string content,
+    public void SendChatMessage(string content,
         ICommonSession recipient,
+        ProtoId<ESChatChannelPrototype> channel,
+        EntityUid source,
+        string format = IESSharedChatManager.DefaultFormat,
+        bool ephemeral = false,
+        bool recordReplay = true,
+        SoundSpecifier? sound = null,
+        Color? color = null,
+        string? name = null,
+        string? font = null,
+        int? fontSize = null)
+    {
+        SendChatMessage(
+            content,
+            [recipient],
+            channel,
+            source,
+            format,
+            ephemeral,
+            recordReplay,
+            sound,
+            color,
+            name,
+            font,
+            fontSize);
+    }
+
+    public abstract void SendChatMessage(string content,
+        IEnumerable<ICommonSession> recipient,
         ProtoId<ESChatChannelPrototype> channel,
         EntityUid source,
         string format = IESSharedChatManager.DefaultFormat,

@@ -38,7 +38,7 @@ public sealed partial class ESChatManager : ESSharedChatManager, IESChatManager
     }
 
     public override void SendChatMessage(string content,
-        ICommonSession recipient,
+        IEnumerable<ICommonSession> recipients,
         ProtoId<ESChatChannelPrototype> channel,
         EntityUid source,
         string format = IESSharedChatManager.DefaultFormat,

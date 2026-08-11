@@ -44,7 +44,7 @@ public sealed partial class ESChatManager : ESSharedChatManager
 
     public override void SendChatMessage(
         string content,
-        ICommonSession recipient,
+        IEnumerable<ICommonSession> recipients,
         ProtoId<ESChatChannelPrototype> channel,
         EntityUid source,
         string format = IESSharedChatManager.DefaultFormat,
@@ -76,7 +76,10 @@ public sealed partial class ESChatManager : ESSharedChatManager
             _timing.CurTick
         );
 
-        _netManager.ServerSendMessage(new ESChatNetMessage(msg), recipient.Channel);
+        foreach (var recipient in recipients)
+        {
+            _netManager.ServerSendMessage(new ESChatNetMessage(msg), recipient.Channel);
+        }
 
         if (recordReplay && channelPrototype.SaveReplay)
         {
