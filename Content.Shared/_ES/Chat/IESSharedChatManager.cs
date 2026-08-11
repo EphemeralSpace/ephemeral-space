@@ -66,6 +66,18 @@ public interface IESSharedChatManager
         string? font = null,
         int? fontSize = null);
 
+    void RecordReplayChatMessage(
+        string content,
+        ProtoId<ESChatChannelPrototype> channel,
+        EntityUid? source,
+        string format = DefaultFormat,
+        bool ephemeral = false,
+        SoundSpecifier? sound = null,
+        Color? color = null,
+        string? name = null,
+        string? font = null,
+        int? fontSize = null);
+
     bool TryGetChannelFromMessage(
         string content,
         [NotNullWhen(true)] out ESChatChannelPrototype? channel,

@@ -21,7 +21,7 @@ public sealed partial class ESRadioSystem : EntitySystem
 
         SubscribeLocalEvent<ESRadioChatChannelComponent, ESSendChatMessageAttemptEvent>(OnSendChatMessageAttempt);
         SubscribeLocalEvent<ESRadioChatChannelComponent, ESGetChatMessageRecipientsEvent>(OnGetRecipients);
-        SubscribeLocalEvent<ESRadioChatChannelComponent, ESRecipientTransformChatMessageEvent>(OnRecipientTransformChatMessage);
+        SubscribeLocalEvent<ESRadioChatChannelComponent, ESTransformChatMessageEvent>(OnRecipientTransformChatMessage);
     }
 
     private void OnGetRadioChannels(Entity<ESRadioReceiverComponent> ent, ref ESGetRadioChannelsEvent args)
@@ -73,7 +73,7 @@ public sealed partial class ESRadioSystem : EntitySystem
         }
     }
 
-    private void OnRecipientTransformChatMessage(Entity<ESRadioChatChannelComponent> ent, ref ESRecipientTransformChatMessageEvent args)
+    private void OnRecipientTransformChatMessage(Entity<ESRadioChatChannelComponent> ent, ref ESTransformChatMessageEvent args)
     {
         if (IsGlobalDistortActive())
             args.Content = DistortRadioMessage(args.Content, 0.6f, _prototype, _random, Loc);

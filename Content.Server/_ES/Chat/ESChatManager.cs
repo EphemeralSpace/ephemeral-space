@@ -125,13 +125,53 @@ public sealed partial class ESChatManager : ESSharedChatManager
             _netManager.ServerSendMessage(new ESChatNetMessage(msg), recipient.Channel);
         }
 
-        if (recordReplay && channelPrototype.SaveReplay)
+        if (recordReplay)
         {
-            _replayRecording.RecordServerMessage(msg);
+            RecordReplayChatMessage(content, channel, source, format, ephemeral, sound, color, name, font, fontSize);
         }
 
         if (channelPrototype.DiscordRelayChannel is { } discordRelayChannel)
             _discordLink.SendMessage(content, name ?? string.Empty, discordRelayChannel);
+    }
+
+    public override void RecordReplayChatMessage(string content,
+        ProtoId<ESChatChannelPrototype> channel,
+        EntityUid? source,
+        string format = IESSharedChatManager.DefaultFormat,
+        bool ephemeral = false,
+        SoundSpecifier? sound = null,
+        Color? color = null,
+        string? name = null,
+        string? font = null,
+        int? fontSize = null)
+    {
+        var channelPrototype = PrototypeManager.Index(channel);
+
+        if (!channelPrototype.SaveReplay)
+            return;
+
+        // Get a per-user key for tracking messages
+        var user = EnsurePlayer(source);
+        var netSource = _entityManager.GetNetEntity(source);
+        if (netSource.HasValue)
+            user?.AddEntity(netSource.Value);
+
+        var msg = new ESChatMessage(
+            content,
+            channel,
+            netSource,
+            user?.Key,
+            ephemeral,
+            sound,
+            color ?? channelPrototype.TextColor,
+            name,
+            font,
+            fontSize,
+            format,
+            _timing.CurTick
+        );
+
+        _replayRecording.RecordServerMessage(msg);
     }
 
     private readonly Dictionary<NetUserId, ChatUser> _players = new();

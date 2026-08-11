@@ -127,6 +127,20 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
         string? font = null,
         int? fontSize = null);
 
+    public virtual void RecordReplayChatMessage(string content,
+        ProtoId<ESChatChannelPrototype> channel,
+        EntityUid? source,
+        string format = IESSharedChatManager.DefaultFormat,
+        bool ephemeral = false,
+        SoundSpecifier? sound = null,
+        Color? color = null,
+        string? name = null,
+        string? font = null,
+        int? fontSize = null)
+    {
+
+    }
+
     public bool TryGetChannelFromMessage(string content,
         [NotNullWhen(true)] out ESChatChannelPrototype? channel,
         [NotNullWhen(true)] out string? trimmedContent)

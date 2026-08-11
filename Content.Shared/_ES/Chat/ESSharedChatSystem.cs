@@ -45,7 +45,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         if (!GetPermittedChannels(source).Contains(channel))
             return;
 
-        // TODO: Chat filtering occurs here
+        // TODO: Slur filters happen here
 
         TrySendMessage(content, channel, source);
     }
@@ -146,18 +146,18 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         var formatEv = new ESGetChatMessageFormatEvent(transformedContent, source);
         RaiseLocalEvent(processor, ref formatEv);
 
+        var nameEv = new ESTransformMessageSourceNameEvent(Name(source), source);
+        RaiseLocalEvent(processor, ref nameEv);
+
+        var postNameEv = new ESPostTransformMessageSourceNameEvent(nameEv.Name, source);
+        RaiseLocalEvent(processor, ref postNameEv);
+
+        var name = postNameEv.Name;
+
         foreach (var recipient in GetMessageRecipients(source, processor))
         {
             if (!PlayerManager.TryGetSessionByEntity(recipient, out var session))
                 continue;
-
-            var nameEv = new ESTransformMessageSourceNameEvent(Name(source), source, recipient);
-            RaiseLocalEvent(processor, ref nameEv);
-
-            var postNameEv = new ESPostTransformMessageSourceNameEvent(nameEv.Name, source, recipient);
-            RaiseLocalEvent(processor, ref postNameEv);
-
-            var name = postNameEv.Name;
 
             var recipientEv = new ESRecipientTransformChatMessageEvent(transformedContent, source, recipient);
             RaiseLocalEvent(processor, ref recipientEv);
@@ -168,8 +168,6 @@ public abstract partial class ESSharedChatSystem : EntitySystem
             if (string.IsNullOrWhiteSpace(recipientContent))
                 continue;
 
-            // TODO: Don't record messages for replays here. Otherwise, we'll log the same message multiple times.
-            // Instead, record the "canonical" message after this loop.
             _chat.SendChatMessage(
                 recipientContent,
                 session,
@@ -179,8 +177,19 @@ public abstract partial class ESSharedChatSystem : EntitySystem
                 name: name,
                 font: formatEv.Font,
                 fontSize: formatEv.FontSize,
-                color: formatEv.Color);
+                color: formatEv.Color,
+                recordReplay: false); // Don't record replays for each individual message, record the "canon" message afterwards
         }
+
+        _chat.RecordReplayChatMessage(
+            transformedContent,
+            processor.Comp.Channel,
+            source,
+            formatEv.Format,
+            name: name,
+            font: formatEv.Font,
+            fontSize: formatEv.FontSize,
+            color: formatEv.Color);
 
         var sentEv = new ESChatMessageSentEvent(source, transformedContent, processor.Comp.Channel);
         RaiseLocalEvent(processor, ref sentEv);
@@ -402,21 +411,17 @@ public record struct ESGetPostChatMessageFormatEvent(string Content, EntityUid S
 }
 
 [ByRefEvent]
-public record struct ESTransformMessageSourceNameEvent(string Name, EntityUid Source, EntityUid Recipient)
+public record struct ESTransformMessageSourceNameEvent(string Name, EntityUid Source)
 {
     public readonly EntityUid Source = Source;
-
-    public readonly EntityUid Recipient = Recipient;
 
     public string Name = Name;
 }
 
 [ByRefEvent]
-public record struct ESPostTransformMessageSourceNameEvent(string Name, EntityUid Source, EntityUid Recipient)
+public record struct ESPostTransformMessageSourceNameEvent(string Name, EntityUid Source)
 {
     public readonly EntityUid Source = Source;
-
-    public readonly EntityUid Recipient = Recipient;
 
     public string Name = Name;
 }
