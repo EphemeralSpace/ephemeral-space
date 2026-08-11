@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Server.Administration.Commands;
-using Content.Server.Chat.Managers;
 using Content.Server.EUI;
+using Content.Shared._ES.Chat;
 using Content.Shared.Database;
 using Content.Shared.Verbs;
 using Robust.Server.Player;
@@ -17,7 +17,7 @@ public sealed partial class AdminNotesSystem : EntitySystem
     [Dependency] private IConsoleHost _console = default!;
     [Dependency] private IAdminNotesManager _notes = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private EuiManager _euis = default!;
 
     public override void Initialize()
@@ -67,7 +67,7 @@ public sealed partial class AdminNotesSystem : EntitySystem
         var username = playerData?.UserName ?? e.Session.UserId.ToString();
         foreach (var watchlist in watchlists)
         {
-            _chat.SendAdminAlert(Loc.GetString("admin-notes-watchlist", ("player", username), ("message", watchlist.Message)));
+            _chat.SendAdminMessage(Loc.GetString("admin-notes-watchlist", ("player", username), ("message", watchlist.Message)));
         }
 
         var messagesToShow = messages.OrderBy(x => x.CreatedAt).Where(x => !x.Dismissed).ToArray();

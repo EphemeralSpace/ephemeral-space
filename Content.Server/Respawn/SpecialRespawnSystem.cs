@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Shared._ES.Chat;
 using Content.Shared.Database;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
@@ -22,7 +23,7 @@ public sealed partial class SpecialRespawnSystem : SharedSpecialRespawnSystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private TurfSystem _turf = default!;
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private IPrototypeManager _proto = default!;
 
     public override void Initialize()
@@ -136,7 +137,7 @@ public sealed partial class SpecialRespawnSystem : SharedSpecialRespawnSystem
     {
         var entity = Spawn(prototype, coords);
         _adminLog.Add(LogType.Respawn, LogImpact.Extreme, $"{ToPrettyString(oldEntity)} was deleted and was respawned at {_transform.ToMapCoordinates(coords)} as {ToPrettyString(entity)}");
-        _chat.SendAdminAlert($"{MetaData(oldEntity).EntityName} was deleted and was respawned as {ToPrettyString(entity)}");
+        _chat.SendAdminMessage($"{MetaData(oldEntity).EntityName} was deleted and was respawned as {ToPrettyString(entity)}");
     }
 
     /// <summary>
