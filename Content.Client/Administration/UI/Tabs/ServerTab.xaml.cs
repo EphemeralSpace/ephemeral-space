@@ -19,7 +19,6 @@ namespace Content.Client.Administration.UI.Tabs
             IoCManager.InjectDependencies(this);
 
             _config.OnValueChanged(CCVars.OocEnabled, OocEnabledChanged, true);
-            _config.OnValueChanged(CCVars.LoocEnabled, LoocEnabledChanged, true);
 
             ServerShutdownButton.OnPressed += _ => _console.ExecuteCommand("shutdown");
         }
@@ -41,7 +40,6 @@ namespace Content.Client.Administration.UI.Tabs
             if (disposing)
             {
                 _config.UnsubValueChanged(CCVars.OocEnabled, OocEnabledChanged);
-                _config.UnsubValueChanged(CCVars.LoocEnabled, LoocEnabledChanged);
             }
         }
     }

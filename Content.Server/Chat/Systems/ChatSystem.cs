@@ -54,51 +54,11 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private ExamineSystemShared _examineSystem = default!;
     [Dependency] private Content.Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!; // Offbrand
 
-    private bool _loocEnabled = true;
-    private bool _deadLoocEnabled;
-    private bool _critLoocEnabled;
-    private readonly bool _adminLoocEnabled = true;
-
     public override void Initialize()
     {
         base.Initialize();
 
-        Subs.CVar(_configurationManager, CCVars.LoocEnabled, OnLoocEnabledChanged, true);
-        Subs.CVar(_configurationManager, CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged, true);
-        Subs.CVar(_configurationManager, CCVars.CritLoocEnabled, OnCritLoocEnabledChanged, true);
-
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameChange);
-    }
-
-    private void OnLoocEnabledChanged(bool val)
-    {
-        if (_loocEnabled == val) return;
-
-        _loocEnabled = val;
-// ES START
-        // This crashes if you change it on the server config so fuck this ig.
-        //_chatManager.DispatchServerAnnouncement(
-        //    Loc.GetString(val ? "chat-manager-looc-chat-enabled-message" : "chat-manager-looc-chat-disabled-message"));
-// ES END
-    }
-
-    private void OnDeadLoocEnabledChanged(bool val)
-    {
-        if (_deadLoocEnabled == val) return;
-
-        _deadLoocEnabled = val;
-        _chatManager.DispatchServerAnnouncement(
-            Loc.GetString(val ? "chat-manager-dead-looc-chat-enabled-message" : "chat-manager-dead-looc-chat-disabled-message"));
-    }
-
-    private void OnCritLoocEnabledChanged(bool val)
-    {
-        if (_critLoocEnabled == val)
-            return;
-
-        _critLoocEnabled = val;
-        _chatManager.DispatchServerAnnouncement(
-            Loc.GetString(val ? "chat-manager-crit-looc-chat-enabled-message" : "chat-manager-crit-looc-chat-disabled-message"));
     }
 
     private void OnGameChange(GameRunLevelChangedEvent ev)

@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.Holiday;
 using Robust.Shared.Configuration;
@@ -12,7 +13,7 @@ namespace Content.Server.Holiday
     {
         [Dependency] private IConfigurationManager _configManager = default!;
         [Dependency] private IPrototypeManager _prototypeManager = default!;
-        [Dependency] private IChatManager _chatManager = default!;
+        [Dependency] private IESSharedChatManager _chatManager = default!;
         [Dependency] private SharedAppearanceSystem _appearance = default!;
 
         [ViewVariables]
@@ -55,7 +56,7 @@ namespace Content.Server.Holiday
         {
             foreach (var holiday in _currentHolidays)
             {
-                _chatManager.DispatchServerAnnouncement(holiday.Greet());
+                _chatManager.SendServerMessage(holiday.Greet());
             }
         }
 
