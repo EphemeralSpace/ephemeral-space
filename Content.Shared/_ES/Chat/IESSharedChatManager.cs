@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Administration;
 using Robust.Shared.Audio;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -69,4 +70,6 @@ public interface IESSharedChatManager
         string content,
         [NotNullWhen(true)] out ESChatChannelPrototype? channel,
         [NotNullWhen(true)] out string? trimmedContent);
+
+    void DeleteMessagesBy(NetUserId uid);
 }

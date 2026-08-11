@@ -3,6 +3,7 @@ using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -151,6 +152,11 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
         }
 
         return false;
+    }
+
+    public virtual void DeleteMessagesBy(NetUserId uid)
+    {
+
     }
 
     protected void InvokeRequestSendChatMessage(EntityUid uid, string content, ProtoId<ESChatChannelPrototype> channel)

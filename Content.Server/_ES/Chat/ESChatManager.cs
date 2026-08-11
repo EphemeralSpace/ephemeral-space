@@ -1,7 +1,11 @@
 using System.Linq;
+using System.Runtime.InteropServices;
 using Content.Server.Administration.Managers;
+using Content.Server.Chat;
 using Content.Shared._ES.Chat;
 using Content.Shared.Administration;
+using Content.Shared.Chat;
+using Content.Shared.Players.RateLimiting;
 using Robust.Shared.Audio;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -27,13 +31,16 @@ public sealed partial class ESChatManager : ESSharedChatManager
 
         _netManager.RegisterNetMessage<ESChatNetMessage>();
         _netManager.RegisterNetMessage<ESRequestSendChatNetMessage>(OnRequestSendChatNetMessage);
+
+        RegisterRateLimits();
     }
 
     private void OnRequestSendChatNetMessage(ESRequestSendChatNetMessage message)
     {
         var session = _player.GetSessionByChannel(message.MsgChannel);
 
-        // TODO: Generic ratelimiting
+        if (HandleRateLimit(session) == RateLimitStatus.Blocked)
+            return;
 
         // Protect against bad messages
         if (!PrototypeManager.HasIndex(message.Message.ChatChannel))
@@ -90,14 +97,17 @@ public sealed partial class ESChatManager : ESSharedChatManager
     {
         var channelPrototype = PrototypeManager.Index(channel);
 
+        // Get a per-user key for tracking messages
+        var user = EnsurePlayer(source);
         var netSource = _entityManager.GetNetEntity(source);
-        // TODO: derive sender key, reference ChatManager for impl
+        if (netSource.HasValue)
+            user?.AddEntity(netSource.Value);
 
         var msg = new ESChatMessage(
             content,
             channel,
             netSource,
-            null,
+            user?.Key,
             ephemeral,
             sound,
             color ?? channelPrototype.TextColor,
@@ -119,5 +129,33 @@ public sealed partial class ESChatManager : ESSharedChatManager
         }
 
         // DISCORD LINK
+    }
+
+    private readonly Dictionary<NetUserId, ChatUser> _players = new();
+
+    public override void DeleteMessagesBy(NetUserId uid)
+    {
+        if (!_players.TryGetValue(uid, out var user))
+            return;
+
+        var msg = new MsgDeleteChatMessagesBy { Key = user.Key, Entities = user.Entities };
+        _netManager.ServerSendToAll(msg);
+    }
+
+    public ChatUser? EnsurePlayer(EntityUid? source)
+    {
+        if (source == null)
+            return null;
+
+        if (!_player.TryGetSessionByEntity(source.Value, out var session))
+            return null;
+
+        var author = session.UserId;
+
+        ref var user = ref CollectionsMarshal.GetValueRefOrAddDefault(_players, author, out var exists);
+        if (!exists || user == null)
+            user = new ChatUser(_players.Count);
+
+        return user;
     }
 }

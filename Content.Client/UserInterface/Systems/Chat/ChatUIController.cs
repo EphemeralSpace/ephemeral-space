@@ -591,7 +591,17 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
         // Usages of the erase admin verb should be rare enough that this does not matter.
         // Otherwise the client would need to know that one entity has multiple author players,
         // or the server would need to track when and which entities a player sent messages as.
-        History.RemoveAll(h => h.Msg.SourceKey == msg.Key || h.Msg.Source.HasValue && msg.Entities.Contains(h.Msg.Source.Value));
+        History.RemoveAll(h =>
+        {
+            if (h.Msg.SourceKey == msg.Key)
+                return true;
+
+            if (h.Msg.Source is { } source &&
+                msg.Entities.Contains(source))
+                return true;
+
+            return false;
+        });
         Repopulate();
     }
 

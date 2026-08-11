@@ -55,17 +55,6 @@ internal sealed partial class ChatManager : IChatManager
         _netManager.RegisterNetMessage<MsgDeleteChatMessagesBy>();
 
         _sawmill = _logManager.GetSawmill("SERVER");
-
-        RegisterRateLimits();
-    }
-
-    public void DeleteMessagesBy(NetUserId uid)
-    {
-        if (!_players.TryGetValue(uid, out var user))
-            return;
-
-        var msg = new MsgDeleteChatMessagesBy { Key = user.Key, Entities = user.Entities };
-        _netManager.ServerSendToAll(msg);
     }
 
     [return: NotNullIfNotNull(nameof(author))]

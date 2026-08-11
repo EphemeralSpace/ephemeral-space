@@ -89,9 +89,6 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
         }
 
-        if (player != null && _chatManager.HandleRateLimit(player) != RateLimitStatus.Allowed)
-            return;
-
         // Sus
         if (player?.AttachedEntity is { Valid: true } entity && source != entity)
         {

@@ -35,17 +35,7 @@ namespace Content.Server.Chat.Managers
 
         bool MessageCharacterLimit(ICommonSession player, string message);
 
-        void DeleteMessagesBy(NetUserId uid);
-
         [return: NotNullIfNotNull(nameof(author))]
         ChatUser? EnsurePlayer(NetUserId? author);
-
-        /// <summary>
-        /// Called when a player sends a chat message to handle rate limits.
-        /// Will update counts and do necessary actions if breached.
-        /// </summary>
-        /// <param name="player">The player sending a chat message.</param>
-        /// <returns>False if the player has violated rate limits and should be blocked from sending further messages.</returns>
-        RateLimitStatus HandleRateLimit(ICommonSession player);
     }
 }

@@ -6,4 +6,5 @@
 
 - type: esChatChannel
   id: Announcement
+  textColor: limeGreen
   filterCategory: Announcement
