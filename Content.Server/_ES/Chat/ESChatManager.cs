@@ -42,7 +42,7 @@ public sealed partial class ESChatManager : ESSharedChatManager
         if (message.Message.Text.Length > MaxMessageLength)
             return;
 
-        var content = FormattedMessage.EscapeText(message.Message.Text);
+        var content = FormattedMessage.EscapeText(message.Message.Text.Trim());
         InvokeRequestSendChatMessage(attachedEntity, content, message.Message.ChatChannel);
     }
 
