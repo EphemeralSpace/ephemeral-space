@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
@@ -15,7 +16,7 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
 
     public event Action<EntityUid, string, ProtoId<ESChatChannelPrototype>>? OnRequestSendChatMessage;
 
-    public int MaxMessageLength { get; private set; }
+    protected int MaxMessageLength;
 
     public virtual void Initialize()
     {
@@ -35,7 +36,27 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
     public void SendServerMessage(string content, IEnumerable<ICommonSession> session, Color? color = null)
     {
         var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", FormattedMessage.EscapeText(content)));
-        SendChatMessage(wrappedMessage, session, IESSharedChatManager.ServerChannel, EntityUid.Invalid, color: color);
+        SendChatMessage(wrappedMessage, session, IESSharedChatManager.ServerChannel, null, color: color);
+    }
+
+    public virtual void SendAdminMessage(string content,
+        AdminFlags? flagBlacklist = null,
+        AdminFlags? flagWhitelist = null)
+    {
+
+    }
+
+    public void SendAdminMessage(string content, ICommonSession session)
+    {
+        SendAdminMessage(content, [session]);
+    }
+
+    public void SendAdminMessage(string content, IEnumerable<ICommonSession> sessions)
+    {
+        var wrappedMessage = Loc.GetString("chat-manager-send-admin-announcement-wrap-message",
+            ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
+            ("message", FormattedMessage.EscapeText(content)));
+        SendChatMessage(wrappedMessage, sessions, IESSharedChatManager.AdminChannel, null);
     }
 
     protected void InvokeRequestSendChatMessage(EntityUid uid, string content, ProtoId<ESChatChannelPrototype> channel)
@@ -46,7 +67,7 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
     public void SendChatMessage(string content,
         ICommonSession recipient,
         ProtoId<ESChatChannelPrototype> channel,
-        EntityUid source,
+        EntityUid? source,
         string format = IESSharedChatManager.DefaultFormat,
         bool ephemeral = false,
         bool recordReplay = true,
@@ -74,7 +95,7 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
     public abstract void SendChatMessage(string content,
         IEnumerable<ICommonSession> recipient,
         ProtoId<ESChatChannelPrototype> channel,
-        EntityUid source,
+        EntityUid? source,
         string format = IESSharedChatManager.DefaultFormat,
         bool ephemeral = false,
         bool recordReplay = true,

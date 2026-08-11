@@ -25,6 +25,7 @@
   id: Whisper
   name: es-chat-channel-name-whisper
   order: 2
+  textColor: darkGray
   chatProcessor: WhisperChatProcessor
   prefixes: [ "," ]
   filterCategory: Whisper

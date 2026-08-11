@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Administration;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -9,22 +10,25 @@ public interface IESSharedChatManager
 {
     const string DefaultFormat = "{0}";
     static readonly ProtoId<ESChatChannelPrototype> ServerChannel = "Server";
+    static readonly ProtoId<ESChatChannelPrototype> AdminChannel = "Admin";
 
     event Action<EntityUid, string, ProtoId<ESChatChannelPrototype>>? OnRequestSendChatMessage;
 
     void Initialize();
 
     void SendServerMessage(string content, Color? color = null);
-
     void SendServerMessage(string content, ICommonSession session, Color? color = null);
-
     void SendServerMessage(string content, IEnumerable<ICommonSession> session, Color? color = null);
+
+    void SendAdminMessage(string content, AdminFlags? flagBlacklist = null, AdminFlags? flagWhitelist = null);
+    void SendAdminMessage(string content, ICommonSession session);
+    void SendAdminMessage(string content, IEnumerable<ICommonSession> sessions);
 
     void SendChatMessage(
         string content,
         ICommonSession recipient,
         ProtoId<ESChatChannelPrototype> channel,
-        EntityUid source,
+        EntityUid? source,
         string format = DefaultFormat,
         bool ephemeral = false,
         bool recordReplay = true,
@@ -38,7 +42,7 @@ public interface IESSharedChatManager
         string content,
         IEnumerable<ICommonSession> recipients,
         ProtoId<ESChatChannelPrototype> channel,
-        EntityUid source,
+        EntityUid? source,
         string format = DefaultFormat,
         bool ephemeral = false,
         bool recordReplay = true,

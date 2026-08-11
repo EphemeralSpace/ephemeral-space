@@ -124,7 +124,7 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
         foreach (var chatChannel in _prototypeManager.EnumeratePrototypes<ESChatChannelPrototype>())
         {
             if (chatChannel.FocusKey == null)
-                return;
+                continue;
 
             _input.SetInputCommand(chatChannel.FocusKey.Value, InputCmdHandler.FromDelegate(_ => FocusChannel(chatChannel)));
         }

@@ -40,7 +40,7 @@ public sealed partial class ESChatManager : ESSharedChatManager, IESChatManager
     public override void SendChatMessage(string content,
         IEnumerable<ICommonSession> recipients,
         ProtoId<ESChatChannelPrototype> channel,
-        EntityUid source,
+        EntityUid? source,
         string format = IESSharedChatManager.DefaultFormat,
         bool ephemeral = false,
         bool recordReplay = true,

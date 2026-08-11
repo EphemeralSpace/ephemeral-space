@@ -28,11 +28,6 @@ namespace Content.Client.Administration.UI.Tabs
             SetOocButton.Pressed = value;
         }
 
-        private void LoocEnabledChanged(bool value)
-        {
-            SetLoocButton.Pressed = value;
-        }
-
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
