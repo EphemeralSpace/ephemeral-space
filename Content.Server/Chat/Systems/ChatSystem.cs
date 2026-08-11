@@ -153,8 +153,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     {
         if (HasComp<GhostComponent>(source))
         {
-            // Ghosts can only send dead chat messages, so we'll forward it to InGame OOC.
-            TrySendInGameOOCMessage(source, message, InGameOOCChatType.Dead, range == ChatTransmitRange.HideChat, shell, player);
             return;
         }
 
@@ -238,60 +236,6 @@ public sealed partial class ChatSystem : SharedChatSystem
                 break;
             case InGameICChatType.Emote:
                 SendEntityEmote(source, message, range, nameOverride, hideLog: hideLog, ignoreActionBlocker: ignoreActionBlocker);
-                break;
-        }
-    }
-
-    /// <inheritdoc />
-    public override void TrySendInGameOOCMessage(
-        EntityUid source,
-        string message,
-        InGameOOCChatType type,
-        bool hideChat,
-        IConsoleShell? shell = null,
-        ICommonSession? player = null
-        )
-    {
-        if (!CanSendInGame(message, shell, player))
-            return;
-
-        if (player != null && _chatManager.HandleRateLimit(player) != RateLimitStatus.Allowed)
-            return;
-
-        // It doesn't make any sense for a non-player to send in-game OOC messages, whereas non-players may be sending
-        // in-game IC messages.
-        if (player?.AttachedEntity is not { Valid: true } entity || source != entity)
-            return;
-
-        message = SanitizeInGameOOCMessage(message);
-
-        var sendType = type;
-        // If dead player LOOC is disabled, unless you are an admin with Moderator perms, send dead messages to dead chat
-        if ((_adminManager.IsAdmin(player) && _adminManager.HasAdminFlag(player, AdminFlags.Moderator)) // Override if admin
-            || _deadLoocEnabled
-            || (!HasComp<GhostComponent>(source) && !_mobStateSystem.IsDead(source))) // Check that player is not dead
-        {
-        }
-        else
-            sendType = InGameOOCChatType.Dead;
-
-        // If crit player LOOC is disabled, don't send the message at all.
-        if (!_critLoocEnabled && _mobStateSystem.IsCritical(source))
-            return;
-
-        // Systems can differentiate Looc and DeadChat by type, and cancel the speak attempt if necessary.
-        var ev = new InGameOocMessageAttemptEvent(player, sendType);
-        RaiseLocalEvent(source, ref ev, true);
-        if (ev.Cancelled)
-            return;
-
-        switch (sendType)
-        {
-            case InGameOOCChatType.Dead:
-                SendDeadChat(source, player, message, hideChat);
-                break;
-            case InGameOOCChatType.Looc:
-                SendLOOC(source, player, message, hideChat);
                 break;
         }
     }
@@ -493,54 +437,6 @@ public sealed partial class ChatSystem : SharedChatSystem
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {source} as {name}: {action}");
             else
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {source}: {action}");
-    }
-
-    // ReSharper disable once InconsistentNaming
-    private void SendLOOC(EntityUid source, ICommonSession player, string message, bool hideChat)
-    {
-        var name = FormattedMessage.EscapeText(Identity.Name(source, EntityManager));
-
-        if (_adminManager.IsAdmin(player))
-        {
-            if (!_adminLoocEnabled) return;
-        }
-        else if (!_loocEnabled) return;
-
-        // If crit player LOOC is disabled, don't send the message at all.
-        if (!_critLoocEnabled && _mobStateSystem.IsCritical(source))
-            return;
-
-        var wrappedMessage = Loc.GetString("chat-manager-entity-looc-wrap-message",
-            ("entityName", name),
-            ("message", FormattedMessage.EscapeText(message)));
-
-        SendInVoiceRange(ChatChannel.LOOC, message, wrappedMessage, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, player.UserId);
-        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"LOOC from {source}: {message}");
-    }
-
-    private void SendDeadChat(EntityUid source, ICommonSession player, string message, bool hideChat)
-    {
-        var clients = GetDeadChatClients();
-        var playerName = Name(source);
-        string wrappedMessage;
-        if (_adminManager.IsAdmin(player))
-        {
-            wrappedMessage = Loc.GetString("chat-manager-send-admin-dead-chat-wrap-message",
-                ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
-                ("userName", player.Channel.UserName),
-                ("message", FormattedMessage.EscapeText(message)));
-            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Admin dead chat from {source}: {message}");
-        }
-        else
-        {
-            wrappedMessage = Loc.GetString("chat-manager-send-dead-chat-wrap-message",
-                ("deadChannelName", Loc.GetString("chat-manager-dead-channel-name")),
-                ("playerName", (playerName)),
-                ("message", FormattedMessage.EscapeText(message)));
-            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Dead chat from {source}: {message}");
-        }
-
-        _chatManager.ChatMessageToMany(ChatChannel.Dead, message, wrappedMessage, source, hideChat, true, clients.ToList(), author: player.UserId);
     }
     #endregion
 
