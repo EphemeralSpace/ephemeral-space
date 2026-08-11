@@ -141,7 +141,6 @@ public abstract partial class ESSharedChatSystem : EntitySystem
 
         var transformedContent = ev.Content;
 
-        // BUG: If an event zeroes out this content and sends their own message (emote sanitization), this will register as a failure.
         // do not send empty messages
         if (string.IsNullOrWhiteSpace(transformedContent))
             return false;
