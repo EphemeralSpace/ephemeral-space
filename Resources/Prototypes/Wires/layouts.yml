@@ -175,12 +175,6 @@
   - !type:PowerWireAction
 
 - type: wireLayout
-  id: Holopad
-  dummyWires: 2
-  wires:
-  - !type:PowerWireAction
-
-- type: wireLayout
   id: BarSign
   dummyWires: 2
   wires:
