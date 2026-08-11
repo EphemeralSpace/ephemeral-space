@@ -1,20 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Client._ES.Chat;
-using Content.Client.Administration.Managers;
-using Content.Client.Chat;
-using Content.Client.Chat.Managers;
 using Content.Client.Chat.TypingIndicator;
 using Content.Client.Chat.UI;
 using Content.Client.Examine;
-using Content.Client.Gameplay;
-using Content.Client.Ghost;
-using Content.Client.Mind;
-using Content.Client.Roles;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Shared._ES.Chat;
-using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Damage.ForceSay;
@@ -24,7 +16,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
-using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
@@ -34,7 +25,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -44,27 +34,19 @@ namespace Content.Client.UserInterface.Systems.Chat;
 public sealed partial class ChatUIController : UIController, IOnSystemChanged<ESChatSystem>
 {
     [Dependency] private IESChatManager _esChat = default!;
-    [Dependency] private IClientAdminManager _admin = default!;
-    [Dependency] private IChatManager _manager = default!;
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private IEyeManager _eye = default!;
-    [Dependency] private IEntityManager _ent = default!;
     [Dependency] private IInputManager _input = default!;
     [Dependency] private IClientNetManager _net = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private IStateManager _state = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private IReplayRecordingManager _replayRecording = default!;
 
     [UISystemDependency] private readonly AudioSystem? _audio = default!;
     [UISystemDependency] private readonly ExamineSystem? _examine = default;
-    [UISystemDependency] private readonly GhostSystem? _ghost = default;
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
     [UISystemDependency] private readonly ESChatSystem? _chatSys = default;
     [UISystemDependency] private readonly TransformSystem? _transform = default;
-    [UISystemDependency] private readonly MindSystem? _mindSystem = default!;
-    [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -575,24 +557,6 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
     {
         var channel = _prototypeManager.Index(msg.Channel);
 
-        // TODO: what the FUCK is this code. Do this shit serverside goddamn.
-        /*
-        // Color any codewords for minds that have roles that use them
-        if (_player.LocalUser != null && _mindSystem != null && _roleCodewordSystem != null)
-        {
-            if (_mindSystem.TryGetMind(_player.LocalUser.Value, out var mindId) && _ent.TryGetComponent(mindId, out RoleCodewordComponent? codewordComp))
-            {
-                foreach (var (_, codewordData) in codewordComp.RoleCodewords)
-                {
-                    foreach (var codeword in codewordData.Codewords)
-                    {
-                        msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, codeword, "color", codewordData.Color.ToHex());
-                    }
-                }
-            }
-        }
-        */
-
         // Log all incoming chat to repopulate when filter is un-toggled
         if (!msg.Ephemeral)
         {
@@ -620,47 +584,6 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
             return;
 
         AddSpeechBubble(msg, channel.SpeechBubbleType.Value);
-
-        /*
-        switch (msg.Channel)
-        {
-            case ChatChannel.Local:
-                AddSpeechBubble(msg, SpeechBubble.SpeechType.Say);
-                break;
-
-            case ChatChannel.Whisper:
-                AddSpeechBubble(msg, SpeechBubble.SpeechType.Whisper);
-                break;
-
-            case ChatChannel.Dead:
-                if (_ghost is not {IsGhost: true})
-                    break;
-
-                AddSpeechBubble(msg, SpeechBubble.SpeechType.Say);
-                break;
-
-            case ChatChannel.Emotes:
-                AddSpeechBubble(msg, SpeechBubble.SpeechType.Emote);
-                break;
-
-            case ChatChannel.LOOC:
-                if (_config.GetCVar(CCVars.LoocAboveHeadShow))
-                    AddSpeechBubble(msg, SpeechBubble.SpeechType.Looc);
-                break;
-
-            // ES START
-            case ChatChannel.OOC:
-                // runlevel is uhh, not networked, otherwise i'd probably jsut check for
-                // runlevel != ingame?
-                // this is so chatbubbles show in the diegetic lobby, by the way
-                if (UIManager.ActiveScreen is LobbyGui)
-                    // could probably use a different styled speechbubble but I didn't have any great ideas with the
-                    // current limitations of styling them.
-                    AddSpeechBubble(msg, SpeechType.Say);
-                break;
-            // ES END
-        }
-        */
     }
 
     public void OnDeleteChatMessagesBy(MsgDeleteChatMessagesBy msg)
