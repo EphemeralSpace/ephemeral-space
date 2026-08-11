@@ -18,8 +18,6 @@ namespace Content.Server.Chat.Managers
 
         void DispatchServerMessage(ICommonSession player, string message, bool suppressLog = false);
 
-        void TrySendOOCMessage(ICommonSession player, string message, OOCChatType type);
-
         void SendHookOOC(string sender, string message);
         void SendHookAdmin(string sender, string message);
         void SendAdminAnnouncement(string message, AdminFlags? flagBlacklist = null, AdminFlags? flagWhitelist = null);

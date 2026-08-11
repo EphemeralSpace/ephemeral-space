@@ -3,6 +3,7 @@
   name: es-chat-channel-name-radio-common
   order: 4
   color: LimeGreen
+  textColor: "#2cdb2c"
   chatProcessor: RadioChatProcessor
   prefixes: [ ";" ]
   filterCategory: Radio

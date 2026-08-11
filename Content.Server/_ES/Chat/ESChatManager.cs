@@ -28,6 +28,8 @@ public sealed partial class ESChatManager : ESSharedChatManager
     {
         var session = _player.GetSessionByChannel(message.MsgChannel);
 
+        // TODO: Generic ratelimiting
+
         // Protect against bad messages
         if (!PrototypeManager.HasIndex(message.Message.ChatChannel))
             return;
@@ -68,7 +70,7 @@ public sealed partial class ESChatManager : ESSharedChatManager
             null,
             ephemeral,
             sound,
-            color ?? Color.White,
+            color ?? channelPrototype.Color,
             name,
             font,
             fontSize,
@@ -85,5 +87,7 @@ public sealed partial class ESChatManager : ESSharedChatManager
         {
             _replayRecording.RecordServerMessage(msg);
         }
+
+        // DISCORD LINK
     }
 }

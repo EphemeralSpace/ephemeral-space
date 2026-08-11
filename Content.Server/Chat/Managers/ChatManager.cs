@@ -26,14 +26,6 @@ namespace Content.Server.Chat.Managers;
 /// </summary>
 internal sealed partial class ChatManager : IChatManager
 {
-    private static readonly Dictionary<string, string> PatronOocColors = new()
-    {
-        // I had plans for multiple colors and those went nowhere so...
-        { "nuclear_operative", "#aa00ff" },
-        { "syndicate_agent", "#aa00ff" },
-        { "revolutionary", "#aa00ff" }
-    };
-
     [Dependency] private IReplayRecordingManager _replay = default!;
     [Dependency] private IServerNetManager _netManager = default!;
     [Dependency] private IAdminManager _adminManager = default!;
@@ -230,106 +222,6 @@ internal sealed partial class ChatManager : IChatManager
         }
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Hook admin from {sender}: {message}");
-    }
-
-    #endregion
-
-    #region Public OOC Chat API
-
-    /// <summary>
-    ///     Called for a player to attempt sending an OOC, out-of-game. message.
-    /// </summary>
-    /// <param name="player">The player sending the message.</param>
-    /// <param name="message">The message.</param>
-    /// <param name="type">The type of message.</param>
-    public void TrySendOOCMessage(ICommonSession player, string message, OOCChatType type)
-    {
-        if (HandleRateLimit(player) != RateLimitStatus.Allowed)
-            return;
-
-        // Check if message exceeds the character limit
-        if (message.Length > MaxMessageLength)
-        {
-            DispatchServerMessage(player, Loc.GetString("chat-manager-max-message-length-exceeded-message", ("limit", MaxMessageLength)));
-            return;
-        }
-
-        switch (type)
-        {
-            case OOCChatType.OOC:
-                SendOOC(player, message);
-                break;
-            case OOCChatType.Admin:
-                SendAdminChat(player, message);
-                break;
-        }
-    }
-
-    #endregion
-
-    #region Private API
-
-    private void SendOOC(ICommonSession player, string message)
-    {
-        if (_adminManager.IsAdmin(player))
-        {
-            if (!_adminOocEnabled)
-            {
-                return;
-            }
-        }
-        else if (!_oocEnabled)
-        {
-            return;
-        }
-
-        Color? colorOverride = null;
-        var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName",player.Name), ("message", FormattedMessage.EscapeText(message)));
-        if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
-        {
-            var prefs = _preferencesManager.GetPreferences(player.UserId);
-            colorOverride = prefs.AdminOOCColor;
-        }
-        if (  _netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) && player.Channel.UserData.PatronTier is { } patron && PatronOocColors.TryGetValue(patron, out var patronColor))
-        {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", patronColor),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
-        }
-
-        //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
-
-        // ES START
-        // OOC messages generally won't have an attached entity in upstream,
-        // but here they probably will (and so we'll include them if they exist)
-        ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, player.AttachedEntity ?? EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);
-        // ES END
-        _discordLink.SendMessage(message, player.Name, ChatChannel.OOC);
-        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"OOC from {player:Player}: {message}");
-    }
-
-    private void SendAdminChat(ICommonSession player, string message)
-    {
-
-        var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
-        var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message",
-                                        ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
-                                        ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
-
-        foreach (var client in clients)
-        {
-            var isSource = client != player.Channel;
-            ChatMessageToOne(ChatChannel.AdminChat,
-                message,
-                wrappedMessage,
-                default,
-                false,
-                client,
-                audioPath: isSource ? _netConfigManager.GetClientCVar(client, CCVars.AdminChatSoundPath) : default,
-                audioVolume: isSource ? _netConfigManager.GetClientCVar(client, CCVars.AdminChatSoundVolume) : default,
-                author: player.UserId);
-        }
-
-        _discordLink.SendMessage(message, player.Name, ChatChannel.AdminChat);
-        _adminLogger.Add(LogType.Chat, $"Admin chat from {player:Player}: {message}");
     }
 
     #endregion

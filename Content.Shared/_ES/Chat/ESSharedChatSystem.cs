@@ -59,8 +59,6 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         if (!GetPermittedChannels(source).Contains(msg.ChatChannel))
             return;
 
-        // TODO: Generic ratelimiting
-
         // TODO: Chat filtering occurs here
 
         TrySendMessage(msg.Text, msg.ChatChannel, source);
@@ -179,7 +177,10 @@ public abstract partial class ESSharedChatSystem : EntitySystem
                 processor.Comp.Channel,
                 source,
                 formatEv.Format,
-                name: name);
+                name: name,
+                font: formatEv.Font,
+                fontSize: formatEv.FontSize,
+                color: formatEv.Color);
         }
 
         // TODO: Entity spoke event
@@ -381,6 +382,43 @@ public record struct ESGetChatMessageFormatEvent(string Content, EntityUid Sourc
     /// Override message font
     /// </summary>
     public string? Font = null;
+
+    /// <summary>
+    /// Override message color
+    /// </summary>
+    public Color? Color = null;
+}
+
+/// <summary>
+/// Event raised on a chat processor to determine how the message's content and name will be formatted.
+/// </summary>
+[ByRefEvent]
+public record struct ESGetPostChatMessageFormatEvent(string Content, EntityUid Source, string Format, int? FontSize, string? Font)
+{
+    /// <summary>
+    /// The original message sent
+    /// </summary>
+    public readonly string Content = Content;
+
+    /// <summary>
+    /// The message's source
+    /// </summary>
+    public readonly EntityUid Source = Source;
+
+    /// <summary>
+    /// Formatting string that will be used to
+    /// </summary>
+    public string Format = Format;
+
+    /// <summary>
+    /// Override message font size
+    /// </summary>
+    public int? FontSize = FontSize;
+
+    /// <summary>
+    /// Override message font
+    /// </summary>
+    public string? Font = Font;
 }
 
 [ByRefEvent]

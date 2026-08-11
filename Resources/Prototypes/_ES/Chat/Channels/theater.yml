@@ -3,6 +3,7 @@
   name: es-chat-channel-name-lobby
   order: 10
   color: Plum
+  textColor: plum
   chatProcessor: LobbyChatProcessor
   prefixes: [ "[" ]
   filterCategory: Lobby
@@ -24,6 +25,7 @@
   name: es-chat-channel-name-stagehand
   order: 11
   color: "#b9b9f8"
+  textColor: "#b9b9f8"
   chatProcessor: StagehandChatProcessor
   prefixes: [ "[" ]
   filterCategory: Stagehand

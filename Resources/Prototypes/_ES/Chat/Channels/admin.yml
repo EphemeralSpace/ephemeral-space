@@ -3,6 +3,7 @@
   name: es-chat-channel-name-admin
   order: 99
   color: HotPink
+  textColor: HotPink
   chatProcessor: AdminChatProcessor
   prefixes: [ "]" ]
   filterCategory: Admin
