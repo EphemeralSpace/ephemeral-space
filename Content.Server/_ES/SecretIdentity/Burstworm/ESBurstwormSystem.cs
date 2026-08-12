@@ -72,12 +72,13 @@ public sealed partial class ESBurstwormSystem : ESBaseParasiteSystem<ESBurstworm
 
         var angleSegment = MathF.Tau / ent.Comp.ProjectileCount;
         var angle = Angle.Zero;
+        var coords = Transform(owned).Coordinates;
 
         for (var i = 0; i < ent.Comp.ProjectileCount; ++i)
         {
             angle += angleSegment;
 
-            var projectile = SpawnNextToOrDrop(ent.Comp.Projectile, owned);
+            var projectile = SpawnAtPosition(ent.Comp.Projectile, coords);
             _gun.ShootProjectile(projectile, angle.ToVec(), Vector2.Zero, owned, owned);
         }
     }
