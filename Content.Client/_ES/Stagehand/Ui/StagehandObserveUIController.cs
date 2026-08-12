@@ -60,6 +60,7 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
 
     public void Reset(ESStagehandObserveControl observe)
     {
+        observe.PlayerScroll.SetScrollValue(Vector2.Zero);
         observe.MindsContainer.Children.Clear();
         observe.ObjectiveContainer.Children.Clear();
         observe.PlayerInfoContainer.Visible = false;
