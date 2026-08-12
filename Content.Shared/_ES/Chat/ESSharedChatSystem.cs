@@ -123,11 +123,12 @@ public abstract partial class ESSharedChatSystem : EntitySystem
     public bool TrySendMessage(
         string content,
         Entity<ESChatProcessorComponent> processor,
-        EntityUid source)
+        EntityUid source,
+        bool force = false)
     {
         var originalContent = content;
 
-        if (!AttemptSendMessage(source, processor))
+        if (!force && !AttemptSendMessage(source, processor))
         {
             // TODO: Attempt to coerce channel into a sendable type.
             // If someone talks but is only able to whisper, attempt to resend
@@ -161,9 +162,6 @@ public abstract partial class ESSharedChatSystem : EntitySystem
 
         foreach (var recipient in GetMessageRecipients(source, processor))
         {
-            if (!PlayerManager.TryGetSessionByEntity(recipient, out var session))
-                continue;
-
             var recipientEv = new ESRecipientTransformChatMessageEvent(transformedContent, source, recipient);
             RaiseLocalEvent(processor, ref recipientEv);
 
@@ -173,17 +171,24 @@ public abstract partial class ESSharedChatSystem : EntitySystem
             if (string.IsNullOrWhiteSpace(recipientContent))
                 continue;
 
-            _chat.SendChatMessage(
-                recipientContent,
-                session,
-                processor.Comp.Channel,
-                source,
-                formatEv.Format,
-                name: name,
-                font: formatEv.Font,
-                fontSize: formatEv.FontSize,
-                color: formatEv.Color,
-                recordReplay: false); // Don't record replays for each individual message, record the "canon" message afterwards
+            if (PlayerManager.TryGetSessionByEntity(recipient, out var session))
+            {
+                _chat.SendChatMessage(
+                    recipientContent,
+                    session,
+                    processor.Comp.Channel,
+                    source,
+                    formatEv.Format,
+                    name: name,
+                    font: formatEv.Font,
+                    fontSize: formatEv.FontSize,
+                    color: formatEv.Color,
+                    recordReplay: false); // Don't record replays for each individual message, record the "canon" message afterwards
+            }
+
+            var receivedEvent = new ESChatMessageReceivedEvent(source, recipientContent, processor.Comp.Channel);
+            RaiseLocalEvent(recipient, ref receivedEvent);
+            RaiseLocalEvent(processor, ref receivedEvent);
         }
 
         _chat.RecordReplayChatMessage(
@@ -484,6 +489,16 @@ public record struct ESReceiveChatMessageAttemptEvent(EntityUid Source)
     {
         Canceled = true;
     }
+}
+
+[ByRefEvent]
+public record struct ESChatMessageReceivedEvent(EntityUid Source, string Content, ProtoId<ESChatChannelPrototype> Channel)
+{
+    public readonly EntityUid Source = Source;
+
+    public readonly string Content = Content;
+
+    public readonly ProtoId<ESChatChannelPrototype> Channel = Channel;
 }
 
 [ByRefEvent]
