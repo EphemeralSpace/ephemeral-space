@@ -1723,3 +1723,9 @@ Entries:
       message: Lights that are meant to be directional are directional again
   id: 184
   time: '2026-08-11T21:45:03.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Popups are niceys now
+  id: 185
+  time: '2026-08-12T06:36:48.0000000+00:00'
