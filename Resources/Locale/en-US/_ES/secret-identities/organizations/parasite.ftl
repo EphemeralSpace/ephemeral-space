@@ -9,6 +9,7 @@ es-parasite-worm-convert = The worm burrows into the base of {POSS-ADJ($ent)} sk
 es-parasite-burstworm-warning = {CAPITALIZE($name)} starts to writhe!
 
 es-parasite-objective-do-no-harm = Do less than {$damage} damage to others
+es-parasite-objective-do-no-harm-desc = The parasite in your head is extremely sensitive to hormonal changes caused by harming. You can deal [color=red]{$damage}[/color] more damage to others before losing your mind.
 es-parasite-objective-die-leapleech-desc = Once someone not of our kind kills us, the parasites in our body will respond to their brain hormones and launch into action. {$leeches ->
         [1] [color=darkgoldenrod]{$leeches}[/color] leech is currently stored.
         *[other] [color=darkgoldenrod]{$leeches}[/color] leeches are currently stored.

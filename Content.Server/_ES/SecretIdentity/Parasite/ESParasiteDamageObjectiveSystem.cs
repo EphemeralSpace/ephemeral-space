@@ -43,8 +43,12 @@ public sealed partial class ESParasiteDamageObjectiveSystem : ESBaseObjectiveSys
         if (args.Entity.Owner == args.Origin)
             return;
 
-        var damageDealt = DamageSpecifier.GetPositive(args.DamageDelta).GetTotal();
-        ObjectivesSys.AdjustObjectiveCounter(ent.Owner, damageDealt.Float());
+        var damageDealt = DamageSpecifier.GetPositive(args.DamageDelta).GetTotal().Float();
+        ObjectivesSys.AdjustObjectiveCounter(ent.Owner, damageDealt);
+
+        var damageCap = ObjectivesSys.GetObjectiveCounterTarget(ent.Owner);
+        var delta = (int) Math.Max(0, damageCap - damageDealt);
+        _metadata.SetEntityDescription(ent.Owner, Loc.GetString("es-parasite-objective-do-no-harm-desc", ("damage", delta)));
 
         if (!ent.Comp.Failed && ObjectivesSys.GetProgress(ent.Owner) <= 0)
         {
