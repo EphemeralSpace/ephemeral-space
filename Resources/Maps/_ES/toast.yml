@@ -4,8 +4,8 @@ meta:
   engineVersion: 288.0.1
   forkId: ""
   forkVersion: ""
-  time: 08/12/2026 03:58:28
-  entityCount: 14885
+  time: 08/12/2026 04:41:54
+  entityCount: 14886
 maps:
 - 3
 grids:
@@ -2789,6 +2789,8 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ExplosionAirtightGrid
+    - type: ChunkContainer
+      chunkEntities: []
   - uid: 3
     components:
     - type: MetaData
@@ -2799,6 +2801,8 @@ entities:
     - type: GridTree
     - type: Broadphase
     - type: OccluderTree
+    - type: ChunkContainer
+      chunkEntities: []
 - proto: ActionToggleLight
   entities:
   - uid: 7345
@@ -32892,6 +32896,13 @@ entities:
     - type: Transform
       parent: 2
       pos: -40.5,-18.5
+- proto: DefaultStationBeaconExperimentPen
+  entities:
+  - uid: 4821
+    components:
+    - type: Transform
+      parent: 2
+      pos: 4.5,-19.5
 - proto: DefaultStationBeaconGravGen
   entities:
   - uid: 4802
@@ -32956,13 +32967,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 4.5,-6.5
-- proto: DefaultStationBeaconExperimentPen
-  entities:
-  - uid: 4821
-    components:
-    - type: Transform
-      parent: 2
-      pos: 4.5,-19.5
 - proto: DefaultStationBeaconScience
   entities:
   - uid: 618
@@ -41334,6 +41338,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -31.5,-47.5
+  - uid: 9521
+    components:
+    - type: Transform
+      parent: 2
+      pos: -24.5,-25.5
   - uid: 14840
     components:
     - type: Transform
@@ -65866,11 +65875,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -22.5,-25.5
-  - uid: 9521
-    components:
-    - type: Transform
-      parent: 2
-      pos: -24.5,-25.5
 - proto: LockerStationAdminFilled
   entities:
   - uid: 358
@@ -75490,6 +75494,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -58.5,19.5
+  - uid: 7743
+    components:
+    - type: Transform
+      parent: 2
+      pos: -24.5,-25.5
   - uid: 7821
     components:
     - type: Transform
