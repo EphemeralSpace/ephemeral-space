@@ -47,7 +47,6 @@
     slots:
     - Back
   - type: GasTank
-    outputPressure: 21.3
     air:
       volume: 5
       temperature: 293.15
