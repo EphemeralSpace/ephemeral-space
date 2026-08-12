@@ -137,7 +137,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
     private void StartEndPhase(Entity<ESParasiteRuleComponent> ent)
     {
         ent.Comp.ObjectivesCompleted = true;
-        //_objective.FreezeObjectives<ESParasiteWinFreezeObjectiveComponent>();
+        _objective.FreezeObjectives<ESParasiteWinFreezeObjectiveComponent>();
 
         var msg = Loc.GetString("es-parasite-swarm-notif");
         var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
