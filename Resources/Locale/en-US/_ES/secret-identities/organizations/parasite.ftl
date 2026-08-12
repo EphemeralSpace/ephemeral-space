@@ -7,3 +7,5 @@ es-parasite-swarm-notif =  A wormy voice booms through your head...
 
 es-parasite-worm-convert = The worm burrows into the base of {POSS-ADJ($ent)} skull!
 es-parasite-burstworm-warning = {CAPITALIZE($name)} starts to writhe!
+
+es-parasite-objective-do-no-harm = Do less than {$damage} damage to others

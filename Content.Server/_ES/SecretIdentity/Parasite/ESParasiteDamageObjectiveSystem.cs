@@ -4,6 +4,7 @@ using Content.Server._ES.SecretIdentity.Parasite.Components;
 using Content.Server.Administration;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Objectives;
+using Content.Shared._ES.Objectives.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Player;
@@ -14,6 +15,7 @@ public sealed partial class ESParasiteDamageObjectiveSystem : ESBaseObjectiveSys
 {
     [Dependency] private ESEntityTimerSystem _timer = default!;
     [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
 
     public override Type[] RelayComponents { get; } = [typeof(ESDamageDealerRelayComponent)];
 
@@ -23,6 +25,13 @@ public sealed partial class ESParasiteDamageObjectiveSystem : ESBaseObjectiveSys
         base.Initialize();
 
         SubscribeLocalEvent<ESParasiteDamageObjectiveComponent, ESCausedDamageChanged>(OnCausedDamageChanged);
+    }
+
+    protected override void InitializeObjective(Entity<ESParasiteDamageObjectiveComponent> ent, ref ESInitializeObjectiveEvent args)
+    {
+        base.InitializeObjective(ent, ref args);
+
+        _metadata.SetEntityName(ent.Owner, Loc.GetString(ent.Comp.Title, ("damage", ObjectivesSys.GetObjectiveCounterTarget(ent.Owner))));
     }
 
     private void OnCausedDamageChanged(Entity<ESParasiteDamageObjectiveComponent> ent, ref ESCausedDamageChanged args)

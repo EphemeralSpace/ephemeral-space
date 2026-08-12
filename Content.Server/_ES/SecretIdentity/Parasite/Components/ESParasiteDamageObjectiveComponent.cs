@@ -9,4 +9,7 @@ public sealed partial class ESParasiteDamageObjectiveComponent : Component
 
     [DataField]
     public TimeSpan KillDelay = TimeSpan.FromMinutes(1);
+
+    [DataField]
+    public LocId Title = "es-parasite-objective-do-no-harm";
 }
