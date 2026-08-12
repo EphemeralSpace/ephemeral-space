@@ -1,5 +1,6 @@
 using System.Text;
 using Content.Shared._ES.Chat.Processor.Components;
+using Content.Shared.Ghost;
 using Robust.Shared.Random;
 
 namespace Content.Shared._ES.Chat.Processor;
@@ -19,6 +20,10 @@ public sealed partial class ESWhisperChatChannelSystem : EntitySystem
     {
         var xform = Transform(args.Source);
         var otherXform = Transform(args.Recipient);
+
+        // Ghost hearing never gets obfuscated
+        if (HasComp<GhostHearingComponent>(args.Recipient))
+            return;
 
         var obfuscate = !xform.Coordinates.TryDistance(EntityManager, _transform, otherXform.Coordinates, out var distance)
                         || distance > ent.Comp.ClearHearingRange;

@@ -64,6 +64,7 @@
   components:
   - type: ESGhostListenableChatChannel
   - type: ESRangedChatChannel
+  - type: ESEmoteChatChannel
   - type: ESSimpleFormatChatChannel
     format: es-chat-channel-emote-fmt
   - type: ESIdentityChatChannel
