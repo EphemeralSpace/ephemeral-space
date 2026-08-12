@@ -1,5 +1,5 @@
 ﻿using Content.Client.UserInterface.Systems.Chat;
-using Content.Shared.Chat;
+using Content.Shared._ES.Chat;
 using Robust.Client.Replays.Commands;
 using Robust.Client.Replays.UI;
 using Robust.Client.UserInterface;
@@ -28,9 +28,8 @@ public sealed partial class ReplayToggleScreenshotModeCommand : BaseReplayComman
         foreach (var chatBox in _userInterfaceManager.GetUIController<ChatUIController>().Chats)
         {
             chatBox.ChatInput.Visible = !showReplayWidget;
-            // TODO: idk what this is even for.
-            //if (!showReplayWidget)
-            //    chatBox.ChatInput.ChannelSelector.Select(ChatSelectChannel.Local);
+            if (!showReplayWidget)
+                chatBox.ChatInput.ChannelSelector.Select(ESSharedChatSystem.LocalChannel);
         }
     }
 }

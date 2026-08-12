@@ -510,20 +510,11 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
             return;
 
         var msg = chatBox.ChatInput.Input.Text.TrimEnd();
-        // Don't send on OOC/LOOC obviously!
+        var prefixChannel = SplitInputContents(msg).chatChannel;
+        prefixChannel ??= _prototypeManager.Index(chatBox.SelectedChannel);
 
-        // TODO: GLORFCODE: Figure out which channels we send glorfmessages on
-        // we need to handle selected channel
-        // and prefix-channel separately..
-        // var allowedChannels = ChatSelectChannel.Local | ChatSelectChannel.Whisper;
-        // if ((chatBox.SelectedChannel & allowedChannels) == ChatSelectChannel.None)
-        //     return;
-        //
-        // // none can be returned from this if theres no prefix,
-        // // so we allow it in that case (assuming the previous check will have exited already if its an invalid channel)
-        // var prefixChannel = SplitInputContents(msg).chatChannel;
-        // if (prefixChannel != ChatSelectChannel.None && (prefixChannel & allowedChannels) == ChatSelectChannel.None)
-        //     return;
+        if (!prefixChannel.GlorfAffected)
+            return;
 
         if (_player.LocalSession?.AttachedEntity is not { } ent
             || !EntityManager.TryGetComponent<DamageForceSayComponent>(ent, out var forceSay))
@@ -663,7 +654,7 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
     public HashSet<ProtoId<ESChatChannelPrototype>> GetPermittedChannels()
     {
         if (_player.LocalEntity == null || _chatSys == null)
-            return [ ESSharedChatSystem.DefaultChannel ];
+            return [ ESSharedChatSystem.LocalChannel ];
         return _chatSys.GetPermittedChannels(_player.LocalEntity.Value);
     }
 }

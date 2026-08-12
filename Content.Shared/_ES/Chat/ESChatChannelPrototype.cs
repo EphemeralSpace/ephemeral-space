@@ -40,6 +40,12 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     public ESChatBoxLocation ChatBoxLocation = ESChatBoxLocation.Primary;
 
     /// <summary>
+    /// Channel is used for Forced Damage Say code (GLORF).
+    /// </summary>
+    [DataField]
+    public bool GlorfAffected;
+
+    /// <summary>
     /// Determines whether any message sent on this channel will be saved to replay.
     /// </summary>
     [DataField]

@@ -74,7 +74,7 @@ public sealed partial class PrayerSystem : EntitySystem
         var message = popupMessage == "" ? "" : popupMessage + (messageString == "" ? "" : $" \"{messageString}\"");
 
         _popupSystem.PopupEntity(popupMessage, target.AttachedEntity.Value, target, PopupType.Large);
-        _chatManager.SendChatMessage(ESSharedChatSystem.DefaultChannel, target, messageString, null);
+        _chatManager.SendChatMessage(ESSharedChatSystem.LocalChannel, target, messageString, null);
         _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(target.AttachedEntity.Value):player} received subtle message from {source?.Name ?? "unknown source"}: {message}");
     }
 

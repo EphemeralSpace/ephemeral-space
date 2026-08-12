@@ -39,7 +39,7 @@ public abstract partial class ESSharedChatSystem
     public HashSet<ProtoId<ESChatChannelPrototype>> GetPermittedChannels(Entity<ESChatPermissionsComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp, false))
-            return [ DefaultChannel ];
+            return [ LocalChannel ];
 
         return ent.Comp.PermittedChannels;
     }

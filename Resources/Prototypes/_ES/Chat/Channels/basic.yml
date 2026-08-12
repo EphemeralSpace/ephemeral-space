@@ -6,6 +6,7 @@
   prefixes: [ ">" ]
   filterCategory: Local
   speechBubbleType: say
+  glorfAffected: true
   focusKey: FocusLocalChatWindow
 
 - type: entity
@@ -31,6 +32,7 @@
   prefixes: [ "," ]
   filterCategory: Whisper
   speechBubbleType: whisper
+  glorfAffected: true
   focusKey: FocusWhisperChatWindow
 
 - type: entity

@@ -236,7 +236,6 @@ namespace Content.Client.Chat.UI
                 return unfanciedPanel;
             }
 
-            // TODO: add header formatting back. I dont personally enable this option but uh some people do.
             var bubbleHeader = new RichTextLabel
             {
                 ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.SpeechBubbleSpeakerOpacity)),
@@ -251,7 +250,7 @@ namespace Content.Client.Chat.UI
                 StyleClasses = { "bubbleContent" },
             };
 
-            bubbleHeader.UnsafeSetMarkup(message.Name, fontColor);
+            bubbleHeader.UnsafeSetMarkup($"[bold]{message.Name}[/bold]", fontColor);
             bubbleContent.UnsafeSetMarkup(message.Content, fontColor);
 
             //As for below: Some day this could probably be converted to xaml. But that is not today. -Myr

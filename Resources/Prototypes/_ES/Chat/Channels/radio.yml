@@ -7,6 +7,7 @@
   chatProcessor: RadioChatProcessor
   prefixes: [ ";" ]
   filterCategory: Radio
+  glorfAffected: true
   focusKey: FocusRadioWindow
 
 - type: entity

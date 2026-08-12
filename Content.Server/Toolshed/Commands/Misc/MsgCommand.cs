@@ -44,7 +44,7 @@ public sealed partial class MsgCommand : ToolshedCommand
             if (!TryComp<ActorComponent>(ent, out var actor))
                 continue;
 
-            _chatManager.SendChatMessage(message, actor.PlayerSession, ESSharedChatSystem.DefaultChannel, null);
+            _chatManager.SendChatMessage(message, actor.PlayerSession, ESSharedChatSystem.LocalChannel, null);
             yield return ent;
         }
     }

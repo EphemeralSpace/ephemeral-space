@@ -19,7 +19,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
     [Dependency] private SharedPvsOverrideSystem _pvsOverride = default!;
 
     // Default channel for situations where UI *needs* a channel
-    public static readonly ProtoId<ESChatChannelPrototype> DefaultChannel = "Speak";
+    public static readonly ProtoId<ESChatChannelPrototype> LocalChannel = "Speak";
 
     /// <inheritdoc/>
     public override void Initialize()
