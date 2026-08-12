@@ -326,7 +326,7 @@
 - type: entity
   parent: ESBaseComputerTerminalCryptoNuke
   id: ESBaseComputerTerminalCryptoNukeCaptainsOffice
-  name: captain's office security override terminal
+  name: captain's office terminal
   components:
   - type: WarpPoint
     location: captain's office terminal
@@ -334,7 +334,7 @@
 - type: entity
   parent: ESBaseComputerTerminalCryptoNuke
   id: ESBaseComputerTerminalCryptoNukeStationAdministrator
-  name: station administrator security override terminal
+  name: station administrator terminal
   components:
   - type: WarpPoint
     location: station administrator terminal
@@ -342,7 +342,7 @@
 - type: entity
   parent: ESBaseComputerTerminalCryptoNuke
   id: ESBaseComputerTerminalCryptoNukeSecureTechStorage
-  name: secure tech storage security override terminal
+  name: secure tech storage terminal
   components:
   - type: WarpPoint
     location: secure tech storage terminal
