@@ -14,6 +14,9 @@ es-chat-filter-name-radio = Radio
 es-chat-filter-name-announcement = Announcements
 es-chat-filter-name-server = Server
 
+es-chat-channel-syndie-transponder-fmt-verb = \[Traitor\] [bold]{"{1}"}[/bold] {$verb}, "{"{0}"}"
+es-chat-channel-syndie-transponder-bold-fmt-verb = \[Traitor\] [bold]{"{1}"}[/bold] {$verb}, "[bold]{"{0}"}[/bold]"
+
 es-chat-channel-speak-fmt-verb = [bold]{"{1}"}[/bold] {$verb}, "{"{0}"}"
 es-chat-channel-speak-bold-fmt-verb = [bold]{"{1}"}[/bold] {$verb}, "[bold]{"{0}"}[/bold]"
 

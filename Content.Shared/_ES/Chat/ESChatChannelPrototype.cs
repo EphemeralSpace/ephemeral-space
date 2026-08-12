@@ -22,7 +22,7 @@ public sealed partial class ESChatChannelPrototype : IPrototype
     public Color Color = Color.DarkGray;
 
     [DataField]
-    public Color TextColor = Color.White;
+    public Color TextColor = Color.LightGray;
 
     [DataField]
     public EntProtoId? ChatProcessor;

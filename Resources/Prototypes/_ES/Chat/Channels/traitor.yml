@@ -1,0 +1,18 @@
+- type: esChatChannel
+  id: SyndicateTransponder
+  textColor: "#c16a7b"
+  chatProcessor: SyndicateTransponderChatProcessor
+  filterCategory: Radio
+
+- type: entity
+  id: SyndicateTransponderChatProcessor
+  components:
+  - type: ESGhostListenableChatChannel
+  - type: ESOrganizationChatChannel
+    organization: Traitor
+    ignoredIdentities:
+    - Sympathizer
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-syndie-transponder-fmt-verb
+    boldFormat: es-chat-channel-syndie-transponder-bold-fmt-verb
+  - type: ESSanitizationChatChannel
