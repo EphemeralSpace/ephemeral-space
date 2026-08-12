@@ -47446,7 +47446,7 @@ entities:
       parent: 2
       pos: -59.5,-11.5
     - type: GasFilter
-      filteredGas: WaterVapor
+      filteredGas: Steam
   - uid: 9292
     components:
     - type: Transform
@@ -47466,7 +47466,7 @@ entities:
     - type: Transform
       parent: 2
       pos: -64.5,-8.5
-- proto: GasMinerWaterVapor
+- proto: GasMinerSteam
   entities:
   - uid: 4463
     components:
