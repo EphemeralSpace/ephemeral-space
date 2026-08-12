@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 283.0.0
+  engineVersion: 288.0.1
   forkId: ""
   forkVersion: ""
-  time: 08/01/2026 22:31:16
-  entityCount: 14886
+  time: 08/12/2026 03:58:28
+  entityCount: 14885
 maps:
 - 3
 grids:
@@ -36515,23 +36515,27 @@ entities:
     - type: Transform
       parent: 2
       pos: 2.5,-35.5
-- proto: ESBaseComputerTerminalCryptoNuke
+- proto: ESBaseComputerTerminalCryptoNukeCaptainsOffice
   entities:
   - uid: 3834
     components:
     - type: Transform
       parent: 2
       pos: 30.5,-21.5
+- proto: ESBaseComputerTerminalCryptoNukeSecureTechStorage
+  entities:
   - uid: 5795
     components:
     - type: Transform
       parent: 2
-      pos: -9.5,8.5
-  - uid: 7743
+      pos: -19.5,-42.5
+- proto: ESBaseComputerTerminalCryptoNukeStationAdministrator
+  entities:
+  - uid: 151
     components:
     - type: Transform
       parent: 2
-      pos: -19.5,-42.5
+      pos: -9.5,8.5
 - proto: ESBaseComputerTerminalNavigation
   entities:
   - uid: 2094
@@ -73663,13 +73667,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -23.5,-17.5
-- proto: SpawnMobMonkeyPunpun
-  entities:
-  - uid: 151
-    components:
-    - type: Transform
-      parent: 2
-      pos: -11.5,-4.5
 - proto: SpawnMobPollyParrot
   entities:
   - uid: 4232

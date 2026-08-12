@@ -284,6 +284,7 @@
   id: ESBaseComputerTerminalCryptoNuke
   name: security override terminal
   description: Part of a triad of terminals that interface with the station's high security systems. Capable of tracking the nuclear disk and, if compromised, providing the nuclear codes.
+  abstract: true # map the 3 actual terminals
   components:
   - type: Sprite
     layers:
@@ -314,6 +315,37 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: ESAmbientMusicMarkerCommand # it's not really a "command" object, but it makes sense to play command ambience near these
+  - type: WarpPoint
+    follow: true
+    location: security override terminal
+    blacklist:
+      tags:
+        - GhostOnlyWarp
+  - type: ESStagehandAware
+
+- type: entity
+  parent: ESBaseComputerTerminalCryptoNuke
+  id: ESBaseComputerTerminalCryptoNukeCaptainsOffice
+  name: captain's office security override terminal
+  components:
+  - type: WarpPoint
+    location: captain's office terminal
+
+- type: entity
+  parent: ESBaseComputerTerminalCryptoNuke
+  id: ESBaseComputerTerminalCryptoNukeStationAdministrator
+  name: station administrator security override terminal
+  components:
+  - type: WarpPoint
+    location: station administrator terminal
+
+- type: entity
+  parent: ESBaseComputerTerminalCryptoNuke
+  id: ESBaseComputerTerminalCryptoNukeSecureTechStorage
+  name: secure tech storage security override terminal
+  components:
+  - type: WarpPoint
+    location: secure tech storage terminal
 
 - type: entity
   parent: ESBaseComputerTerminal
