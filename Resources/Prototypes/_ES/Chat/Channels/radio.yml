@@ -28,3 +28,136 @@
   - type: ESSpeechVerbChatChannel
     format: es-chat-channel-radio-common-fmt-verb
     boldFormat: es-chat-channel-radio-common-bold-fmt-verb
+
+- type: esChatChannel
+  id: Command
+  name: es-chat-channel-name-radio-command
+  order: 5
+  color: "#fcdf03"
+  textColor: "#fcdf03"
+  chatProcessor: CommandRadioChatProcessor
+  prefixes: [ ":c", ".c" ]
+  filterCategory: Radio
+  glorfAffected: true
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: CommandRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-command-fmt-verb
+    boldFormat: es-chat-channel-radio-command-bold-fmt-verb
+
+- type: esChatChannel
+  id: Engineering
+  name: es-chat-channel-name-radio-engineering
+  order: 6
+  color: "#ff733c"
+  textColor: "#ff733c"
+  chatProcessor: EngineeringRadioChatProcessor
+  prefixes: [ ":e", ".e" ]
+  filterCategory: Radio
+  glorfAffected: true
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: EngineeringRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-engineering-fmt-verb
+    boldFormat: es-chat-channel-radio-engineering-bold-fmt-verb
+
+- type: esChatChannel
+  id: Medical
+  name: es-chat-channel-name-radio-medical
+  order: 7
+  color: "#57b8f0"
+  textColor: "#57b8f0"
+  chatProcessor: MedicalRadioChatProcessor
+  prefixes: [ ":m", ".m" ]
+  filterCategory: Radio
+  glorfAffected: true
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: MedicalRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-medical-fmt-verb
+    boldFormat: es-chat-channel-radio-medical-bold-fmt-verb
+
+- type: esChatChannel
+  id: Science
+  name: es-chat-channel-name-radio-science
+  order: 8
+  color: "#cd7ccd"
+  textColor: "#cd7ccd"
+  chatProcessor: ScienceRadioChatProcessor
+  prefixes: [ ":n", ".n" ]
+  filterCategory: Radio
+  glorfAffected: true
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: ScienceRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-science-fmt-verb
+    boldFormat: es-chat-channel-radio-science-bold-fmt-verb
+
+- type: esChatChannel
+  id: Security
+  name: es-chat-channel-name-radio-security
+  order: 9
+  color: "#ff4242"
+  textColor: "#ff4242"
+  chatProcessor: SecurityRadioChatProcessor
+  prefixes: [ ":s", ".s" ]
+  filterCategory: Radio
+  glorfAffected: true
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: SecurityRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-security-fmt-verb
+    boldFormat: es-chat-channel-radio-security-bold-fmt-verb
+
+- type: esChatChannel
+  id: Service
+  name: es-chat-channel-name-radio-service
+  order: 10
+  color: "#539c00"
+  textColor: "#539c00"
+  chatProcessor: ServiceRadioChatProcessor
+  prefixes: [ ":v", ".v" ]
+  filterCategory: Radio
+  glorfAffected: true
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: ServiceRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-service-fmt-verb
+    boldFormat: es-chat-channel-radio-service-bold-fmt-verb
+
+- type: esChatChannel
+  id: Supply
+  name: es-chat-channel-name-radio-supply
+  order: 11
+  color: "#b48b57"
+  textColor: "#b48b57"
+  chatProcessor: SupplyRadioChatProcessor
+  prefixes: [ ":u", ".u" ]
+  filterCategory: Radio
+  glorfAffected: true
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: SupplyRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-supply-fmt-verb
+    boldFormat: es-chat-channel-radio-supply-bold-fmt-verb

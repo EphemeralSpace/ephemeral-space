@@ -21,5 +21,7 @@ public sealed class ChannelSelectorItemButton : Button
 
         if (selector.TryGetDefaultPrefix(out var prefix))
             Text = Loc.GetString("hud-chatbox-select-name-prefixed", ("name", Text), ("prefix", prefix));
+
+        Modulate = Channel.Color;
     }
 }

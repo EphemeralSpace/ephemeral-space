@@ -1,7 +1,7 @@
 - type: esChatChannel
   id: Lobby
   name: es-chat-channel-name-lobby
-  order: 10
+  order: 20
   color: Plum
   textColor: plum
   chatProcessor: LobbyChatProcessor
@@ -24,7 +24,7 @@
 - type: esChatChannel
   id: Stagehand
   name: es-chat-channel-name-stagehand
-  order: 11
+  order: 21
   color: "#b9b9f8"
   textColor: "#b9b9f8"
   chatProcessor: StagehandChatProcessor
