@@ -277,7 +277,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         RefreshCharacterInfoBlurb(mind.AsNullable());
 
-        var ev = new ESSecretIdentityChangedEvent(mind, secretIdentity);
+        var ev = new ESSecretIdentityChangedEvent(mind, secretIdentity, null);
         RaiseLocalEvent(organization.Value, ref ev, true);
     }
 
@@ -317,7 +317,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         if (organizationEntity.HasValue)
         {
-            var ev = new ESSecretIdentityChangedEvent(mind, secretIdentity);
+            var ev = new ESSecretIdentityChangedEvent(mind, null, secretIdentity);
             RaiseLocalEvent(organizationEntity.Value, ref ev, true);
         }
     }
@@ -349,8 +349,14 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 /// <summary>
 /// Raised on a organization entity and broadcast when an entity's secret identity changes.
 /// </summary>
+/// <remarks>
+/// This is raised both when an identity is removed, and when a new one is applied.
+/// So, it will be raised twice if something fully changes an entity's secret identity (e.g. conversion)
+/// When being removed, <see cref="NewSecretIdentity"/> will be null, and <see cref="OldSecretIdentity"/> will have the old identity,
+/// and vice versa for being applied.
+/// </remarks>
 [ByRefEvent]
-public record struct ESSecretIdentityChangedEvent(Entity<MindComponent> Mind, ESSecretIdentityPrototype? SecretIdentity);
+public record struct ESSecretIdentityChangedEvent(Entity<MindComponent> Mind, ESSecretIdentityPrototype? NewSecretIdentity, ESSecretIdentityPrototype? OldSecretIdentity);
 
 /// <summary>
 ///     Fired when players are being assigned to a organization. Old random assignment algorithm kicks in
