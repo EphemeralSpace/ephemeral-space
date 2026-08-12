@@ -1729,3 +1729,12 @@ Entries:
       message: Popups are niceys now
   id: 185
   time: '2026-08-12T06:36:48.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Use delay cooldown circle (like extinguishers or tools or whatever) now
+        shows around the cursor also. assuming you have the 'show hand item'
+        option enabled
+  id: 186
+  time: '2026-08-12T06:37:01.0000000+00:00'
