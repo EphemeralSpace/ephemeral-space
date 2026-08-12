@@ -39,6 +39,6 @@
     invertProgress: true
     completionPercentage: 0.001 # you win so long as you don't hit 0.
   - type: ESCounterObjective
-    target: 300
+    target: 200
   - type: ESParasiteDamageObjective
   - type: ESParasiteWinFreezeObjective
