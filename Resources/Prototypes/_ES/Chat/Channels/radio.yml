@@ -1,3 +1,14 @@
+- type: entity
+  id: ESBaseRadioChatProcessor
+  abstract: true
+  components:
+  - type: ESGhostListenableChatChannel
+  - type: ESRadioChatChannel
+  - type: ESSpeechChatChannel
+  - type: ESRequireCanSpeakChatChannel
+  - type: ESSanitizationChatChannel
+
+# Channels
 - type: esChatChannel
   id: Common
   name: es-chat-channel-name-radio-common
@@ -11,13 +22,9 @@
   focusKey: FocusRadioWindow
 
 - type: entity
+  parent: ESBaseRadioChatProcessor
   id: RadioChatProcessor
   components:
-  - type: ESGhostListenableChatChannel
   - type: ESSpeechVerbChatChannel
     format: es-chat-channel-radio-common-fmt-verb
     boldFormat: es-chat-channel-radio-common-bold-fmt-verb
-  - type: ESRadioChatChannel
-  - type: ESSpeechChatChannel
-  - type: ESRequireCanSpeakChatChannel
-  - type: ESSanitizationChatChannel

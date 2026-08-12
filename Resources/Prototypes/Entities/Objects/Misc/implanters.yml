@@ -39,7 +39,6 @@
     - MicroBombImplant
     - MacroBombImplant
     - DeathAcidifierImplant
-    - DeathRattleImplant
     - MindShieldImplant
     - FakeMindShieldImplant
     - RadioImplant
@@ -273,14 +272,6 @@
     implant: MacroBombImplant
 
 - type: entity
-  id: DeathRattleImplanter
-  name: death rattle implanter
-  parent: BaseImplantOnlyImplanterSyndi
-  components:
-  - type: Implanter
-    implant: DeathRattleImplant
-
-- type: entity
   id: DeathAcidifierImplanter
   name: death acidifier implanter
   parent: BaseImplantOnlyImplanterSyndi
@@ -305,21 +296,3 @@
   components:
   - type: Implanter
     implant: MindShieldImplant
-
-# Centcomm implanters
-
-- type: entity
-  id: RadioImplanterCentcomm
-  name: centcomm radio implanter
-  parent: BaseImplantOnlyImplanter
-  components:
-  - type: Implanter
-    implant: RadioImplantCentcomm
-
-- type: entity
-  id: DeathRattleImplanterCentcomm
-  name: centcomm death rattle implanter
-  parent: BaseImplantOnlyImplanter
-  components:
-  - type: Implanter
-    implant: DeathRattleImplantCentcomm

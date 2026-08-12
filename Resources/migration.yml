@@ -541,6 +541,18 @@ IntercomService: null
 IntercomSupply: null
 IntercomAll: null
 IntercomFreelance: null
+# Misc. Radio Channels i dont fw
+EncryptionKeyBinary: null
+EncryptionKeyBinarySyndicate: null
+EncryptionKeyFreelance: null
+EncryptionKeySyndie: null
+EncryptionKeyCentCom: null
+RadioImplantCentcomm: null
+DeathRattleImplantCentcomm: null
+DeathRattleImplant: null
+RadioImplanterCentcomm: null
+DeathRattleImplanterCentcomm: null
+DeathRattleImplanter: null
 
 # ES END
 
