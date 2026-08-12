@@ -24,7 +24,6 @@ wires-board-name-chemdispenser = ChemDispenser
 wires-board-name-chemmaster = ChemMaster
 wires-board-name-generator = Generator
 wires-board-name-vendingmachine = Vending Machine
-wires-board-name-intercom = Intercom
 wires-board-name-hydroponicstray = HydroponicsTray
 wires-board-name-telecomserver = TelecomServer
 wires-board-name-medicalscanner = MedicalScanner

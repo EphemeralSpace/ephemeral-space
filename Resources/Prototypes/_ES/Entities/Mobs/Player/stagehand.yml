@@ -98,10 +98,6 @@
   - type: ESBlockInteraction
   - type: ShowElectrocutionHUD
   - type: ESVoter
-  - type: IntrinsicRadioReceiver
-  - type: ActiveRadio
-    receiveAllChannels: true
-    globalReceive: true
   - type: ESBypassInteractionRangeChecks
   - type: NightVision
     netsync: false

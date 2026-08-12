@@ -33,24 +33,6 @@ public sealed partial class RadioSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<IntrinsicRadioReceiverComponent, RadioReceiveEvent>(OnIntrinsicReceive);
-        SubscribeLocalEvent<IntrinsicRadioTransmitterComponent, EntitySpokeEvent>(OnIntrinsicSpeak);
-    }
-
-    private void OnIntrinsicSpeak(EntityUid uid, IntrinsicRadioTransmitterComponent component, EntitySpokeEvent args)
-    {
-        // TODO: I dont even know what to do with this
-        // if (args.Channel != null && component.Channels.Contains(args.Channel.ID))
-        // {
-        //     SendRadioMessage(uid, args.Message, args.Channel, uid);
-        //     args.Channel = null; // prevent duplicate messages from other listeners.
-        // }
-    }
-
-    private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
-    {
-        if (TryComp(uid, out ActorComponent? actor))
-            _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
     }
 
     /// <summary>
@@ -74,112 +56,6 @@ public sealed partial class RadioSystem : EntitySystem
     public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, bool escapeMarkup = true, bool force = false)
     // ES END
     {
-        // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
-        if (!_messages.Add(message))
-            return;
 
-        var evt = new TransformSpeakerNameEvent(messageSource, MetaData(messageSource).EntityName);
-        RaiseLocalEvent(messageSource, evt);
-
-        var name = evt.VoiceName;
-        name = FormattedMessage.EscapeText(name);
-
-        SpeechVerbPrototype speech;
-        if (evt.SpeechVerb != null && _prototype.Resolve(evt.SpeechVerb, out var evntProto))
-            speech = evntProto;
-        else
-            speech = _chat.GetSpeechVerb(messageSource, message);
-
-        var content = escapeMarkup
-            ? FormattedMessage.EscapeText(message)
-            : message;
-
-        var wrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
-            ("color", channel.Color),
-            ("fontType", speech.FontId),
-            ("fontSize", speech.FontSize),
-            ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
-            ("channel", $"\\[{channel.LocalizedName}\\]"),
-            ("name", name),
-            ("message", content));
-
-        // most radios are relayed to chat, so lets parse the chat message beforehand
-        var chat = new ChatMessage(
-            ChatChannel.Radio,
-            message,
-            wrappedMessage,
-            NetEntity.Invalid,
-            null);
-
-        //var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
-        //RaiseLocalEvent(ref sendAttemptEv);
-        //RaiseLocalEvent(radioSource, ref sendAttemptEv);
-        // ES START
-        // forcing
-        //var canSend = !sendAttemptEv.Cancelled || force;
-        // ES END
-
-        var sourceMapId = Transform(radioSource).MapID;
-        var hasActiveServer = true; // HasActiveServer(sourceMapId, channel.ID);
-        var sourceServerExempt = false; // _exemptQuery.HasComp(radioSource);
-
-        var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
-        while (radioQuery.MoveNext(out var receiver, out var radio, out var transform))
-        {
-            if (!radio.ReceiveAllChannels)
-            {
-                if (!radio.Channels.Contains(channel.ID) || (TryComp<IntercomComponent>(receiver, out var intercom) &&
-                                                             !intercom.SupportedChannels.Contains(channel.ID)))
-                    continue;
-            }
-
-            if (!channel.LongRange && transform.MapID != sourceMapId && !radio.GlobalReceive)
-                continue;
-
-            // don't need telecom server for long range channels or handheld radios and intercoms
-            var needServer = !channel.LongRange && !sourceServerExempt;
-            if (needServer && !hasActiveServer)
-                continue;
-
-            // check if message can be sent to specific receiver
-            // var attemptEv = new RadioReceiveAttemptEvent(channel, radioSource, receiver);
-            // RaiseLocalEvent(ref attemptEv);
-            // RaiseLocalEvent(receiver, ref attemptEv);
-            // if (attemptEv.Cancelled)
-            //     continue;
-// ES START
-            var escapedMsg = FormattedMessage.EscapeText(message);
-            // HACK HACK HACK remove later dont care right now
-            var distortedMessage = escapedMsg;
-            var distortedWrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
-                ("color", channel.Color),
-                ("fontType", speech.FontId),
-                ("fontSize", speech.FontSize),
-                ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
-                ("channel", $"\\[{channel.LocalizedName}\\]"),
-                ("name", name),
-                ("message", distortedMessage));
-
-            chat = new ChatMessage(
-                ChatChannel.Radio,
-                distortedMessage,
-                distortedWrappedMessage,
-                NetEntity.Invalid,
-                null);
-            var chatMsg = new MsgChatMessage { Message = chat };
-            var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg);
-// ES END
-
-            // send the message
-            RaiseLocalEvent(receiver, ref ev);
-        }
-
-        if (name != Name(messageSource))
-            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
-        else
-            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} on {channel.LocalizedName}: {message}");
-
-        _replay.RecordServerMessage(chat);
-        _messages.Remove(message);
     }
 }

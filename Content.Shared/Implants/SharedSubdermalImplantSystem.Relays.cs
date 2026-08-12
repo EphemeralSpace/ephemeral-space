@@ -1,3 +1,5 @@
+using Content.Shared._ES.Chat;
+using Content.Shared._ES.Chat.Radio;
 using Content.Shared.Chat;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Implants.Components;
@@ -17,6 +19,8 @@ public abstract partial class SharedSubdermalImplantSystem
         SubscribeLocalEvent<ImplantedComponent, TransformSpeakerNameEvent>(RelayToImplantEvent);
         SubscribeLocalEvent<ImplantedComponent, TransformSpeechEvent>(RelayToImplantEvent);
         SubscribeLocalEvent<ImplantedComponent, SeeIdentityAttemptEvent>(RelayToImplantEvent);
+        SubscribeLocalEvent<ImplantedComponent, ESGetRadioChannelsEvent>(RelayToImplantEvent);
+        SubscribeLocalEvent<ImplantedComponent, ESGetChatPermissionsEvent>(RelayToImplantEvent);
     }
 
     /// <summary>

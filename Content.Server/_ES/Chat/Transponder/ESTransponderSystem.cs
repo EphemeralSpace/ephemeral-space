@@ -24,9 +24,10 @@ public sealed partial class ESTransponderSystem : EntitySystem
         base.Initialize();
 
         // only works on entities that can intrinsically receive radio (hack) (i will replcae later this is prototyping hours)
-        SubscribeLocalEvent<IntrinsicRadioReceiverComponent, ESTransponderActionEvent>(OnUseTransponder);
+        //SubscribeLocalEvent<IntrinsicRadioReceiverComponent, ESTransponderActionEvent>(OnUseTransponder);
     }
 
+    /*
     private void OnUseTransponder(Entity<IntrinsicRadioReceiverComponent> ent, ref ESTransponderActionEvent args)
     {
         // TODO: reimplement with a custom chat channel
@@ -46,8 +47,8 @@ public sealed partial class ESTransponderSystem : EntitySystem
             (msg => SendMessage(ent, channel, msg, action)));
 
         // we deliberately do not set handled, because we activate the usedelay when a message is actually sent
-        */
     }
+    */
 
     private void SendMessage(EntityUid ent, ProtoId<RadioChannelPrototype> channel, string message, Entity<ActionComponent> action)
     {

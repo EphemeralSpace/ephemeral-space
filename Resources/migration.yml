@@ -424,6 +424,7 @@ PunPunIDCard: null
 SpawnMobMonkeyPunpun: null
 
 # 2026-8-11
+# Holopads
 Holopad: null
 HolopadLongRange: null
 HolopadUnlimitedRange: null
@@ -523,6 +524,23 @@ HolopadCentCommEvacShuttle: null
 HolopadServiceClownMime: null
 ESHolopadSecurityOffice: null
 ESHolopadCommandStationAdmin: null
+# Handheld radios
+RadioHandheld: null
+RadioHandheldSecurity: null
+# Intercoms
+IntercomElectronics: null
+IntercomAssembly: null
+IntercomConstructed: null
+IntercomCommon: null
+IntercomCommand: null
+IntercomEngineering: null
+IntercomMedical: null
+IntercomScience: null
+IntercomSecurity: null
+IntercomService: null
+IntercomSupply: null
+IntercomAll: null
+IntercomFreelance: null
 
 # ES END
 
