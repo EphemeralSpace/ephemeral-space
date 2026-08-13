@@ -6,7 +6,7 @@
   - type: ESRadioChatChannel
   - type: ESSpeechChatChannel
   - type: ESRequireCanSpeakChatChannel
-  - type: ESSanitizationChatChannel
+  - type: ESSanitizationChatChannel # TODO Send whispers as well
 
 # Channels
 - type: esChatChannel

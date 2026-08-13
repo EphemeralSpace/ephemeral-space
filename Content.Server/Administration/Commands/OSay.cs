@@ -1,10 +1,8 @@
 using System.Linq;
 using Content.Server._ES.Chat;
 using Content.Server.Administration.Logs;
-using Content.Server.Chat.Systems;
 using Content.Shared._ES.Chat;
 using Content.Shared.Administration;
-using Content.Shared.Chat;
 using Content.Shared.Database;
 using Robust.Shared.Console;
 using Robust.Shared.Prototypes;
@@ -29,7 +27,7 @@ public sealed partial class OSay : LocalizedCommands
 
         if (args.Length == 2)
         {
-            return CompletionResult.FromHintOptions( Enum.GetNames(typeof(InGameICChatType)),
+            return CompletionResult.FromHintOptions(CompletionHelper.PrototypeIDs<ESChatChannelPrototype>(),
                 Loc.GetString("osay-command-arg-type"));
         }
 

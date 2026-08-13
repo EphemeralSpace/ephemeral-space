@@ -83,8 +83,8 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         if (!prototype.ChatProcessor.HasValue)
             return false;
 
-        // TODO: Consider directly mapping these for performance.
-        // Currently this is just an O(n) linear lookup.
+        // Consider directly mapping these for performance.
+        // Currently, this is just an O(n) linear lookup.
         // Directly caching in a dict would be O(1) but has the added complexity of needing to dump refs.
         var query = EntityQueryEnumerator<ESChatProcessorComponent>();
         while (query.MoveNext(out var uid, out var comp))
