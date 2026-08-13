@@ -20,6 +20,8 @@ public abstract partial class ESSharedChatSystem : EntitySystem
 
     // Default channel for situations where UI *needs* a channel
     public static readonly ProtoId<ESChatChannelPrototype> LocalChannel = "Speak";
+    public static readonly ProtoId<ESChatChannelPrototype> WhisperChannel = "Whisper";
+    public static readonly ProtoId<ESChatChannelPrototype> EmoteChannel = "Emote";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -106,7 +108,11 @@ public abstract partial class ESSharedChatSystem : EntitySystem
     public bool TrySendMessage(
         string content,
         ProtoId<ESChatChannelPrototype> channel,
-        EntityUid source)
+        EntityUid source,
+        string? nameOverride = null,
+        bool force = false,
+        bool hideChat = false,
+        bool? logOverride = null)
     {
         if (!TryGetProcessor(channel, out var processer))
         {
@@ -117,14 +123,21 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         return TrySendMessage(
             content,
             processer.Value,
-            source);
+            source,
+            nameOverride: nameOverride,
+            force: force,
+            hideChat: hideChat,
+            logOverride: logOverride);
     }
 
     public bool TrySendMessage(
         string content,
         Entity<ESChatProcessorComponent> processor,
         EntityUid source,
-        bool force = false)
+        string? nameOverride = null,
+        bool force = false,
+        bool hideChat = false,
+        bool? logOverride = null)
     {
         var originalContent = content;
 
@@ -179,7 +192,8 @@ public abstract partial class ESSharedChatSystem : EntitySystem
                     processor.Comp.Channel,
                     source,
                     formatEv.Format,
-                    name: name,
+                    ephemeral: hideChat,
+                    name: nameOverride ?? name,
                     font: formatEv.Font,
                     fontSize: formatEv.FontSize,
                     color: formatEv.Color,
@@ -196,7 +210,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
             processor.Comp.Channel,
             source,
             formatEv.Format,
-            name: name,
+            name: nameOverride ?? name,
             font: formatEv.Font,
             fontSize: formatEv.FontSize,
             color: formatEv.Color);
@@ -204,7 +218,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         var sentEv = new ESChatMessageSentEvent(source, transformedContent, processor.Comp.Channel);
         RaiseLocalEvent(processor, ref sentEv);
 
-        if (PlayerManager.TryGetSessionByEntity(source, out _))
+        if (logOverride != false && PlayerManager.TryGetSessionByEntity(source, out _))
         {
             _adminLog.Add(
                 LogType.Chat,

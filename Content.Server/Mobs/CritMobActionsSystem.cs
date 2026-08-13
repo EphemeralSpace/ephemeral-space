@@ -1,12 +1,11 @@
-﻿using Content.Server.Administration;
-using Content.Server.Chat.Systems;
+﻿using Content.Server._ES.Chat;
+using Content.Server.Administration;
 using Content.Server.Popups;
+using Content.Shared._ES.Chat;
 using Content.Shared._Offbrand.Wounds;
-using Content.Shared.Chat;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Robust.Server.Console;
 using Robust.Shared.Player;
 using Content.Shared.Speech.Muting;
 
@@ -17,7 +16,7 @@ namespace Content.Server.Mobs;
 /// </summary>
 public sealed partial class CritMobActionsSystem : EntitySystem
 {
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESChatSystem _chat = default!;
     [Dependency] private DeathgaspSystem _deathgasp = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
@@ -80,7 +79,7 @@ public sealed partial class CritMobActionsSystem : EntitySystem
                 }
                 lastWords += "...";
 
-                _chat.TrySendInGameICMessage(uid, lastWords, InGameICChatType.Whisper, ChatTransmitRange.Normal, checkRadioPrefix: false, ignoreActionBlocker: true);
+                _chat.TrySendMessage(lastWords, ESSharedChatSystem.WhisperChannel, uid, force: true);
                 _brainDamage.KillBrain(uid);
             });
 

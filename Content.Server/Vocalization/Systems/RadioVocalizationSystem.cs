@@ -1,9 +1,7 @@
-using Content.Server.Chat.Systems;
+using System.Linq;
+using Content.Server._ES.Chat;
 using Content.Server.Vocalization.Components;
-using Content.Shared.Chat;
-using Content.Shared.Inventory;
-using Content.Shared.Radio;
-using Content.Shared.Radio.Components;
+using Content.Shared._ES.Chat;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -14,10 +12,11 @@ namespace Content.Server.Vocalization.Systems;
 /// </summary>
 public sealed partial class RadioVocalizationSystem : EntitySystem
 {
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESChatSystem _chat = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private InventorySystem _inventory = default!;
+
+    private static readonly ProtoId<ESChatChannelFilterPrototype> RadioFilter = "Radio";
 
     public override void Initialize()
     {
@@ -42,35 +41,20 @@ public sealed partial class RadioVocalizationSystem : EntitySystem
     /// Selects a random radio channel from all ActiveRadio entities in a given entity's inventory
     /// If no channels are found, this returns false and sets channel to an empty string
     /// </summary>
-    private bool TryPickRandomRadioChannel(EntityUid entity, out ProtoId<RadioChannelPrototype> channel)
+    private bool TryPickRandomRadioChannel(EntityUid entity, out ProtoId<ESChatChannelPrototype> channel)
     {
         channel = default;
-        return false;
 
-        // TODO: RADIO ok we'll deal with it
-        /*
-        HashSet<ProtoId<RadioChannelPrototype>> potentialChannels = [];
+        var channels = _chat.GetPermittedChannels(entity)
+            .Select(_proto.Index)
+            .Where(p => p.FilterCategory == RadioFilter)
+            .ToList();
 
-        // we don't have to check if this entity has an inventory. GetHandOrInventoryEntities will not yield anything
-        // if an entity has no inventory or inventory slots
-        foreach (var item in _inventory.GetHandOrInventoryEntities(entity))
-        {
-            if (!TryComp<ActiveRadioComponent>(item, out var radio))
-                continue;
-
-            potentialChannels.UnionWith(radio.Channels);
-        }
-
-        if (potentialChannels.Count == 0)
-        {
-            channel = string.Empty;
+        if (channels.Count == 0)
             return false;
-        }
 
-        channel = _random.Pick(potentialChannels);
-
+        channel = _random.Pick(channels);
         return true;
-        */
     }
 
     /// <summary>
@@ -89,15 +73,10 @@ public sealed partial class RadioVocalizationSystem : EntitySystem
         if (!TryPickRandomRadioChannel(entity, out var channel))
             return false;
 
-        var channelPrefix = _proto.Index<RadioChannelPrototype>(channel).KeyCode;
-
-        // send a whisper using the radio channel prefix and whatever relevant radio channel character
-        // along with the message. This is analogous to how radio messages are sent by players
-        _chat.TrySendInGameICMessage(
-            entity,
-            $"{SharedChatSystem.RadioChannelPrefix}{channelPrefix} {message}",
-            InGameICChatType.Whisper,
-            ChatTransmitRange.Normal);
+        _chat.TrySendMessage(
+            message,
+            channel,
+            entity);
 
         return true;
     }
