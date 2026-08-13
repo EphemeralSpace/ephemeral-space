@@ -51,7 +51,7 @@
 
 # Emote
 - type: esChatChannel
-  id: EmoteNoEffect
+  id: EmoteNoEffect # Used internally for system-sided emotes
   name: es-chat-channel-name-emote
   chatProcessor: EmoteNoEffectChatProcessor
   filterCategory: Emote

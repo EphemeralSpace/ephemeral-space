@@ -51,15 +51,6 @@ public abstract partial class SharedChatSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
-        CacheEmotes();
-    }
-
-    protected virtual void OnPrototypeReload(PrototypesReloadedEventArgs obj)
-    {
-        if (obj.WasModified<EmotePrototype>())
-            CacheEmotes();
     }
 
     public static string SanitizeAnnouncement(string message, int maxLength = 0, int maxNewlines = 2)
