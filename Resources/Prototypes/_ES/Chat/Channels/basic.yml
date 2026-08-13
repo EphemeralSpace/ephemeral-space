@@ -21,7 +21,7 @@
   - type: ESColorNameChatChannel
   - type: ESSpeechChatChannel
   - type: ESRequireCanSpeakChatChannel
-  - type: ESSanitizationChatChannel # TODO: offmed SilencedStatusEffectComponent status effect
+  - type: ESSanitizationChatChannel
 
 - type: esChatChannel
   id: Whisper

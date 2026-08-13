@@ -141,11 +141,18 @@ public abstract partial class ESSharedChatSystem : EntitySystem
     {
         var originalContent = content;
 
-        if (!force && !AttemptSendMessage(source, processor))
+        if (!force && !AttemptSendMessage(source, processor, out var fallback))
         {
-            // TODO: Attempt to coerce channel into a sendable type.
-            // If someone talks but is only able to whisper, attempt to resend
-            // the message as a whisper automatically.
+            if (fallback.HasValue)
+            {
+                return TrySendMessage(content,
+                    fallback.Value,
+                    source,
+                    nameOverride: nameOverride,
+                    force: force,
+                    hideChat: hideChat,
+                    logOverride: logOverride);
+            }
             return false;
         }
 
@@ -231,17 +238,20 @@ public abstract partial class ESSharedChatSystem : EntitySystem
 
     private bool AttemptSendMessage(
         EntityUid source,
-        Entity<ESChatProcessorComponent> processor)
+        Entity<ESChatProcessorComponent> processor,
+        out ProtoId<ESChatChannelPrototype>? fallback)
     {
-        var sourceEv = new ESSendChatMessageAttemptEvent(source);
+        var sourceEv = new ESSendChatMessageAttemptEvent(source, processor.Comp.Channel);
         RaiseLocalEvent(source, ref sourceEv);
 
+        fallback = sourceEv.FallbackChannel;
         if (sourceEv.Canceled)
             return false;
 
-        var processorEv = new ESSendChatMessageAttemptEvent(source);
+        var processorEv = new ESSendChatMessageAttemptEvent(source, processor.Comp.Channel);
         RaiseLocalEvent(processor, ref processorEv);
 
+        fallback = processorEv.FallbackChannel;
         if (processorEv.Canceled)
             return false;
 
@@ -279,12 +289,19 @@ public abstract partial class ESSharedChatSystem : EntitySystem
 /// Event raised on a chat message source and processor when a message is attempted to be sent over a channel.
 /// </summary>
 [ByRefEvent]
-public record struct ESSendChatMessageAttemptEvent(EntityUid Source)
+public record struct ESSendChatMessageAttemptEvent(EntityUid Source, ProtoId<ESChatChannelPrototype> Channel)
 {
     /// <summary>
     /// The message's source
     /// </summary>
     public readonly EntityUid Source = Source;
+
+    public readonly ProtoId<ESChatChannelPrototype> Channel = Channel;
+
+    /// <summary>
+    /// Optional channel that will be used as fallback if this is canceled.
+    /// </summary>
+    public ProtoId<ESChatChannelPrototype>? FallbackChannel;
 
     public bool Canceled { get; private set; } = false;
 
