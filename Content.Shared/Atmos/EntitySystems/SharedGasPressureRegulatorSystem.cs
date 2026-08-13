@@ -30,7 +30,7 @@ public abstract partial class SharedGasPressureRegulatorSystem : EntitySystem
     /// <param name="args">Event arguments for examination</param>
     private void OnExamined(Entity<GasPressureRegulatorComponent> ent, ref ExaminedEvent args)
     {
-        if (!Transform(ent).Anchored || !args.IsInDetailsRange)
+        if (!Transform(ent).Anchored)
             return;
 
         using (args.PushGroup(nameof(GasPressureRegulatorComponent)))

@@ -115,9 +115,6 @@ public sealed partial class ESAddSecretIdentityOnUseSystem : EntitySystem
 
     private void OnExamine(Entity<ESAddSecretIdentityOnUseComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         if (ent.Comp.Used)
             args.PushMarkup(Loc.GetString(ent.Comp.UsedExamineMessage));
         else

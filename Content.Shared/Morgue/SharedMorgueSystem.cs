@@ -24,9 +24,6 @@ public abstract partial class SharedMorgueSystem : EntitySystem
     /// </summary>
     private void OnExamine(Entity<MorgueComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         _appearance.TryGetData<MorgueContents>(ent.Owner, MorgueVisuals.Contents, out var contents);
 
         var text = contents switch

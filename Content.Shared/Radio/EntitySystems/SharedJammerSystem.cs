@@ -58,17 +58,14 @@ public abstract partial class SharedJammerSystem : EntitySystem
 
     private void OnExamine(Entity<RadioJammerComponent> ent, ref ExaminedEvent args)
     {
-        if (args.IsInDetailsRange)
-        {
-            var powerIndicator = HasComp<ActiveRadioJammerComponent>(ent)
-                ? Loc.GetString("radio-jammer-component-examine-on-state")
-                : Loc.GetString("radio-jammer-component-examine-off-state");
-            args.PushMarkup(powerIndicator);
+        var powerIndicator = HasComp<ActiveRadioJammerComponent>(ent)
+            ? Loc.GetString("radio-jammer-component-examine-on-state")
+            : Loc.GetString("radio-jammer-component-examine-off-state");
+        args.PushMarkup(powerIndicator);
 
-            var powerLevel = Loc.GetString(ent.Comp.Settings[ent.Comp.SelectedPowerLevel].Name);
-            var switchIndicator = Loc.GetString("radio-jammer-component-switch-setting", ("powerLevel", powerLevel));
-            args.PushMarkup(switchIndicator);
-        }
+        var powerLevel = Loc.GetString(ent.Comp.Settings[ent.Comp.SelectedPowerLevel].Name);
+        var switchIndicator = Loc.GetString("radio-jammer-component-switch-setting", ("powerLevel", powerLevel));
+        args.PushMarkup(switchIndicator);
     }
 
     public float GetCurrentWattage(Entity<RadioJammerComponent> jammer)

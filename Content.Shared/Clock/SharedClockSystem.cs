@@ -16,9 +16,6 @@ public abstract partial class SharedClockSystem : EntitySystem
 
     private void OnExamined(Entity<ClockComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         args.PushMarkup(Loc.GetString("clock-examine", ("time", GetClockTimeText(ent))));
     }
 

@@ -17,9 +17,6 @@ public sealed partial class SealableSystem : EntitySystem
 
     private void OnExamined(EntityUid uid, SealableComponent comp, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         var sealedText = comp.Sealed ? Loc.GetString(comp.ExamineTextSealed) : Loc.GetString(comp.ExamineTextUnsealed);
 
         args.PushMarkup(sealedText);
