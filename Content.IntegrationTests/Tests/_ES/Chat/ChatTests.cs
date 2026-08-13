@@ -21,6 +21,9 @@ public sealed class ChatTests : GameTest
         var usedPrefixes = new Dictionary<string, List<ProtoId<ESChatChannelPrototype>>>();
         foreach (var channel in protoMan.EnumeratePrototypes<ESChatChannelPrototype>())
         {
+            if (channel.Abstract)
+                continue;
+
             foreach (var prefix in channel.Prefixes)
             {
                 usedPrefixes.GetOrNew(prefix);

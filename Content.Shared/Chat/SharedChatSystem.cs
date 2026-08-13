@@ -48,7 +48,6 @@ public abstract partial class SharedChatSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private INetManager _net = default!;
 
-
     public override void Initialize()
     {
         base.Initialize();
@@ -92,18 +91,6 @@ public abstract partial class SharedChatSystem : EntitySystem
 
         return trimmed;
     }
-
-    protected virtual void SendEntityEmote(
-        EntityUid source,
-        string action,
-        ChatTransmitRange range,
-        string? nameOverride,
-        bool hideLog = false,
-        bool checkEmote = true,
-        bool ignoreActionBlocker = false,
-        NetUserId? author = null
-        )
-    { }
 }
 
 /// <summary>

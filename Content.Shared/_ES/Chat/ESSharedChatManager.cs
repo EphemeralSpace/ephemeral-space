@@ -160,6 +160,9 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
 
         foreach (var channelPrototype in PrototypeManager.EnumeratePrototypes<ESChatChannelPrototype>())
         {
+            if (channelPrototype.Abstract)
+                continue;
+
             foreach (var prefix in channelPrototype.Prefixes)
             {
                 if (content.StartsWith(prefix))

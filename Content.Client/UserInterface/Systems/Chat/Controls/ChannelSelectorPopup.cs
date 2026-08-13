@@ -40,6 +40,9 @@ public sealed partial class ChannelSelectorPopup : Popup
 
         foreach (var channel in _prototype.EnumeratePrototypes<ESChatChannelPrototype>().OrderBy(p => p.Order))
         {
+            if (channel.Abstract)
+                continue;
+
             if (!_selectorStates.TryGetValue(channel, out var selector))
             {
                 selector = new ChannelSelectorItemButton(channel);

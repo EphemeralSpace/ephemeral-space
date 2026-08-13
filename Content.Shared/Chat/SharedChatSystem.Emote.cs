@@ -1,13 +1,19 @@
 using System.Collections.Frozen;
+using Content.Shared._ES.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Speech;
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Shared.Chat;
 
 public abstract partial class SharedChatSystem
 {
+    [Dependency] private ESSharedChatSystem _chat = default!;
+
+    private static readonly ProtoId<ESChatChannelPrototype> EmoteNoEffectChannel = "EmoteNoEffect";
+
     private FrozenDictionary<string, EmotePrototype> _wordEmoteDict = FrozenDictionary<string, EmotePrototype>.Empty;
 
     private void CacheEmotes()
@@ -97,7 +103,12 @@ public abstract partial class SharedChatSystem
         {
             // not all emotes are loc'd, but for the ones that are we pass in entity
             var action = Loc.GetString(_random.Pick(emote.ChatMessages), ("entity", source));
-            SendEntityEmote(source, action, range, nameOverride, hideLog: hideLog, checkEmote: false, ignoreActionBlocker: ignoreActionBlocker);
+            _chat.TrySendMessage(action,
+                EmoteNoEffectChannel,
+                source,
+                nameOverride: nameOverride,
+                force: ignoreActionBlocker,
+                logOverride: !hideLog);
         }
 
         return didEmote;

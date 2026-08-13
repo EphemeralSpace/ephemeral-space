@@ -15,6 +15,7 @@ public sealed partial class ESEmoteSystem : EntitySystem
 
     private void OnChatMessageSent(Entity<ESEmoteChatChannelComponent> ent, ref ESChatMessageSentEvent args)
     {
-        _chat.TryEmoteChatInput(args.Source, args.Content);
+        if (ent.Comp.EmoteFromChat)
+            _chat.TryEmoteChatInput(args.Source, args.Content);
     }
 }

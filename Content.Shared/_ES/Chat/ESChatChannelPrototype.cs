@@ -1,16 +1,24 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._ES.SecretIdentity;
 using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
 namespace Content.Shared._ES.Chat;
 
 [Prototype("esChatChannel")]
-public sealed partial class ESChatChannelPrototype : IPrototype
+public sealed partial class ESChatChannelPrototype : IPrototype, IInheritingPrototype
 {
     /// <inheritdoc/>
     [IdDataField]
     public string ID { get; private set; } = default!;
+
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ESOrganizationPrototype>))]
+    public string[]? Parents { get; private set; }
+
+    [AbstractDataField]
+    public bool Abstract { get; private set; }
 
     [DataField]
     public LocId Name = "generic-unknown-title";

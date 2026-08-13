@@ -44,6 +44,9 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         // TODO: support prototype reloading
         foreach (var channel in _prototype.EnumeratePrototypes<ESChatChannelPrototype>())
         {
+            if (channel.Abstract)
+                continue;
+
             TryGetProcessor(channel, out _);
         }
     }

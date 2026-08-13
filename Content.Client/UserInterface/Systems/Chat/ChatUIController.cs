@@ -123,6 +123,9 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
         // TODO: doesn't support prototype reloading. TOO BAD!
         foreach (var chatChannel in _prototypeManager.EnumeratePrototypes<ESChatChannelPrototype>())
         {
+            if (chatChannel.Abstract)
+                continue;
+
             if (chatChannel.FocusKey == null)
                 continue;
 

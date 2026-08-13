@@ -49,25 +49,39 @@
   - type: ESWhisperChatChannel
   - type: ESSanitizationChatChannel
 
+# Emote
 - type: esChatChannel
-  id: Emote
+  id: EmoteNoEffect
   name: es-chat-channel-name-emote
-  order: 3
-  chatProcessor: EmoteChatProcessor
-  prefixes: [ "@", "*" ]
+  chatProcessor: EmoteNoEffectChatProcessor
   filterCategory: Emote
   speechBubbleType: emote
-  focusKey: FocusEmote
 
 - type: entity
-  id: EmoteChatProcessor
+  id: EmoteNoEffectChatProcessor
   components:
   - type: ESGhostListenableChatChannel
   - type: ESRangedChatChannel
   - type: ESEmoteChatChannel
+    emoteFromChat: false
   - type: ESSimpleFormatChatChannel
     format: es-chat-channel-emote-fmt
   - type: ESIdentityChatChannel
   - type: ESRequireCanEmoteChatChannel
   - type: ESSanitizationChatChannel
     shouldCapitalize: false
+
+- type: esChatChannel
+  parent: EmoteNoEffect
+  id: Emote
+  order: 3
+  chatProcessor: EmoteChatProcessor
+  prefixes: [ "@", "*" ]
+  focusKey: FocusEmote
+
+- type: entity
+  parent: EmoteNoEffectChatProcessor
+  id: EmoteChatProcessor
+  components:
+  - type: ESEmoteChatChannel
+    emoteFromChat: true
