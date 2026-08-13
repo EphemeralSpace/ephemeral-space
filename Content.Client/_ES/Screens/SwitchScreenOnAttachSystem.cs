@@ -1,4 +1,5 @@
 using Content.Client.Gameplay;
+using Content.Shared._ES.Mapping;
 using Content.Shared._ES.Stagehand.Components;
 using Robust.Client.State;
 using Robust.Client.UserInterface;
@@ -26,10 +27,11 @@ public sealed partial class SwitchScreenOnAttachSystem : EntitySystem
         if (_state.CurrentState is not GameplayState state)
             return;
 
-        if (_ui.ActiveScreen is PerformerGameScreen && HasComp<ESStagehandComponent>(ev.Entity))
+        if (_ui.ActiveScreen is not MappingGameScreen && HasComp<ESMapperComponent>(ev.Entity))
+            state.SetScreenType(GameplayStateScreenType.Mapper);
+        else if (_ui.ActiveScreen is not StagehandGameScreen && HasComp<ESStagehandComponent>(ev.Entity))
             state.SetScreenType(GameplayStateScreenType.Stagehand);
-
-        if (_ui.ActiveScreen is StagehandGameScreen && !HasComp<ESStagehandComponent>(ev.Entity))
+        else if (_ui.ActiveScreen is not PerformerGameScreen && !HasComp<ESStagehandComponent>(ev.Entity))
             state.SetScreenType(GameplayStateScreenType.Performer);
     }
 }

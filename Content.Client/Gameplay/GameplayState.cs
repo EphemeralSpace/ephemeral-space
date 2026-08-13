@@ -6,6 +6,7 @@ using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.Viewport;
+using Content.Shared._ES.Mapping;
 using Content.Shared._ES.Stagehand.Components;
 using Content.Shared.CCVar;
 using Robust.Client.Graphics;
@@ -52,7 +53,9 @@ namespace Content.Client.Gameplay
         {
             base.Startup();
 
-            if (_player.LocalEntity is { } entity && _ent.HasComponent<ESStagehandComponent>(entity))
+            if (_player.LocalEntity is not null && _ent.HasComponent<ESMapperComponent>(_player.LocalEntity.Value))
+                _screenType = GameplayStateScreenType.Mapper;
+            else if (_player.LocalEntity is { } entity && _ent.HasComponent<ESStagehandComponent>(entity))
                 _screenType = GameplayStateScreenType.Stagehand;
 
             LoadMainScreen();
@@ -138,6 +141,9 @@ namespace Content.Client.Gameplay
                 case GameplayStateScreenType.Stagehand:
                     UserInterfaceManager.LoadScreen<StagehandGameScreen>();
                     break;
+                case GameplayStateScreenType.Mapper:
+                    UserInterfaceManager.LoadScreen<MappingGameScreen>();
+                    break;
             }
 
             _loadController.LoadScreen();
@@ -166,5 +172,10 @@ public enum GameplayStateScreenType
     /// <summary>
     ///     Screen used for stagehands
     /// </summary>
-    Stagehand
+    Stagehand,
+
+    /// <summary>
+    ///     Screen used for mapping
+    /// </summary>
+    Mapper,
 }

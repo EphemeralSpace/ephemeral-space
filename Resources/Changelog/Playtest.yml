@@ -1711,3 +1711,30 @@ Entries:
         actually sent
   id: 182
   time: '2026-08-10T06:35:36.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Fix
+      message: Cargo weapon crates can be opened with a sec ID again
+  id: 183
+  time: '2026-08-10T23:20:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: Lights that are meant to be directional are directional again
+  id: 184
+  time: '2026-08-11T21:45:03.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Popups are niceys now
+  id: 185
+  time: '2026-08-12T06:36:48.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Use delay cooldown circle (like extinguishers or tools or whatever) now
+        shows around the cursor also. assuming you have the 'show hand item'
+        option enabled
+  id: 186
+  time: '2026-08-12T06:37:01.0000000+00:00'
