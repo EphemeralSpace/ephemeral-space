@@ -6,7 +6,6 @@ using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Afk;
-using Content.Server.Chat.Managers;
 using Content.Server.Connection;
 using Content.Server.Database;
 using Content.Server.Discord.DiscordLink;
@@ -29,13 +28,11 @@ using Content.Shared._ES.Chat.Sanitization;
 using Content.Shared.CCVar;
 using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
-using Robust.Server;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Entry
 {
@@ -56,7 +53,6 @@ namespace Content.Server.Entry
         [Dependency] private IAdminLogManager _adminLog = default!;
         [Dependency] private IAfkManager _afk = default!;
         [Dependency] private IBanManager _ban = default!;
-        [Dependency] private IChatManager _chatSan = default!;
         [Dependency] private IChatSanitizationManager _chat = default!;
         [Dependency] private IComponentFactory _factory = default!;
         [Dependency] private IConfigurationManager _cfg = default!;
@@ -140,7 +136,6 @@ namespace Content.Server.Entry
             base.PostInit();
 
             _esChat.Initialize();
-            _chatSan.Initialize();
             _chat.Initialize();
 
             _recipe.Initialize();

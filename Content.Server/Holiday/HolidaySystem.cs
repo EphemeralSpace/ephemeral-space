@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;

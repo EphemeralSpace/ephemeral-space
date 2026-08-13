@@ -4,12 +4,10 @@ using Content.Server.AlertLevel;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
-using Content.Server.Screens.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
-using Content.Shared.Chat;
 using Content.Shared.Communications;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
@@ -20,6 +18,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 // ES START
 using Content.Shared._DV.Screens;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.Chat.Radio;
 using Content.Shared._ES.Degradation;
 using Content.Shared.Dataset;
@@ -275,7 +274,7 @@ namespace Content.Server.Communications
                 return;
 // ES END
             var maxLength = _cfg.GetCVar(CCVars.ChatMaxAnnouncementLength);
-            var msg = SharedChatSystem.SanitizeAnnouncement(message.Message, maxLength);
+            var msg = ESSharedChatSystem.SanitizeAnnouncement(message.Message, maxLength);
             var author = Loc.GetString("comms-console-announcement-unknown-sender");
             if (message.Actor is { Valid: true } mob)
             {

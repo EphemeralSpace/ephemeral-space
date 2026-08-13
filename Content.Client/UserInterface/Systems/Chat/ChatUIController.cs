@@ -110,7 +110,6 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
     {
         _sawmill = Logger.GetSawmill("chat");
         _sawmill.Level = LogLevel.Info;
-        _net.RegisterNetMessage<MsgChatMessage>(OnChatMessage);
         _esChat.OnChatMessageSent += OnChatMessageSent;
         _net.RegisterNetMessage<MsgDeleteChatMessagesBy>(OnDeleteChatMessagesBy);
         SubscribeNetworkEvent<DamageForceSayEvent>(OnDamageForceSay);
@@ -534,11 +533,6 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
 
         chatBox.ChatInput.Input.SetText(modifiedText);
         chatBox.ChatInput.Input.ForceSubmitText();
-    }
-
-    private void OnChatMessage(MsgChatMessage message)
-    {
-        // no op
     }
 
     private void OnChatMessageSent(ESChatMessage msg)

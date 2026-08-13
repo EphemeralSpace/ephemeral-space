@@ -13,5 +13,5 @@ public sealed partial class ActiveListenerComponent : Component
     /// The range in which to listen to speech.
     /// </summary>
     [DataField]
-    public float Range = SharedChatSystem.VoiceRange;
+    public float Range = 10;
 }

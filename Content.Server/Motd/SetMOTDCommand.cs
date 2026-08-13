@@ -3,7 +3,6 @@ using Content.Server.Administration.Logs;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.CCVar;
-using Content.Server.Chat.Managers;
 using Content.Shared._ES.Chat;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;

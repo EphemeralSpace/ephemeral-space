@@ -182,7 +182,6 @@ public sealed partial class EncryptionKeySystem : EntitySystem
             {
                 args.PushMarkup(Loc.GetString("examine-encryption-channels-prefix"));
                 AddChannelsExamine(component.Channels,
-                    component.DefaultChannel,
                     args,
                     _protoManager,
                     "examine-encryption-channel");
@@ -198,7 +197,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         if (component.Channels.Count > 0)
         {
             args.PushMarkup(Loc.GetString("examine-encryption-channels-prefix"));
-            AddChannelsExamine(component.Channels, component.DefaultChannel, args, _protoManager, "examine-encryption-channel");
+            AddChannelsExamine(component.Channels, args, _protoManager, "examine-encryption-channel");
         }
     }
 
@@ -208,7 +207,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
     /// <param name="channels">HashSet of channels in headset, encryptionkey or etc.</param>
     /// <param name="protoManager">IPrototypeManager for getting prototypes of channels with their variables.</param>
     /// <param name="channelFTLPattern">String that provide id of pattern in .ftl files to format channel with variables of it.</param>
-    public void AddChannelsExamine(HashSet<ProtoId<ESChatChannelPrototype>> channels, string? defaultChannel, ExaminedEvent examineEvent, IPrototypeManager protoManager, string channelFTLPattern)
+    public void AddChannelsExamine(HashSet<ProtoId<ESChatChannelPrototype>> channels, ExaminedEvent examineEvent, IPrototypeManager protoManager, string channelFTLPattern)
     {
         ESChatChannelPrototype? proto;
         foreach (var id in channels)
@@ -222,25 +221,6 @@ public sealed partial class EncryptionKeySystem : EntitySystem
                 ("color", proto.Color),
                 ("key", key),
                 ("id", Loc.GetString(proto.Name))));
-        }
-
-        if (defaultChannel != null && _protoManager.TryIndex(defaultChannel, out proto))
-        {
-            if (HasComp<HeadsetComponent>(examineEvent.Examined))
-            {
-                var msg = Loc.GetString("examine-headset-default-channel",
-                ("prefix", SharedChatSystem.DefaultChannelPrefix),
-                ("channel", Loc.GetString(proto.Name)),
-                ("color", proto.Color));
-                examineEvent.PushMarkup(msg);
-            }
-            if (HasComp<EncryptionKeyComponent>(examineEvent.Examined))
-            {
-                var msg = Loc.GetString("examine-encryption-default-channel",
-                ("channel", Loc.GetString(proto.Name)),
-                ("color", proto.Color));
-                examineEvent.PushMarkup(msg);
-            }
         }
     }
 

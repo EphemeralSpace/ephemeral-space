@@ -1,7 +1,6 @@
 using Content.Client._ES.Chat;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
-using Content.Client.Chat.Managers;
 using Content.Client.DebugMon;
 using Content.Client.Eui;
 using Content.Client.Fullscreen;
@@ -59,7 +58,6 @@ namespace Content.Client.Entry
         [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
         [Dependency] private IInputManager _inputManager = default!;
         [Dependency] private IOverlayManager _overlayManager = default!;
-        [Dependency] private IChatManager _chatManager = default!;
         [Dependency] private IClientPreferencesManager _clientPreferencesManager = default!;
         [Dependency] private EuiManager _euiManager = default!;
         [Dependency] private IVoteManager _voteManager = default!;
@@ -170,7 +168,6 @@ namespace Content.Client.Entry
             _overlayManager.AddOverlay(new SingularityOverlay());
             _overlayManager.AddOverlay(new RadiationPulseOverlay());
             _esChat.Initialize();
-            _chatManager.Initialize();
             _clientPreferencesManager.Initialize();
             _euiManager.Initialize();
             _voteManager.Initialize();

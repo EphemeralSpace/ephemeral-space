@@ -1,16 +1,13 @@
 using System.Numerics;
 using Content.Client._ES.Core;
-using Content.Client.Chat.Managers;
 using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
-using Content.Shared.Chat;
 using Content.Shared.Speech;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Client.Chat.UI
 {

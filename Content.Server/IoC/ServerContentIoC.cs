@@ -7,7 +7,6 @@ using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Notes;
 using Content.Server.Afk;
-using Content.Server.Chat.Managers;
 using Content.Server.Connection;
 using Content.Server.Database;
 using Content.Server.Discord;
@@ -30,7 +29,6 @@ using Content.Shared._ES.Chat;
 using Content.Shared._ES.Chat.Sanitization;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
-using Content.Shared.Chat;
 using Content.Shared.IoC;
 using Content.Shared.Kitchen;
 using Content.Shared.Players.PlayTimeTracking;
@@ -45,8 +43,6 @@ internal static class ServerContentIoC
         SharedContentIoC.Register(deps);
         deps.Register<IESSharedChatManager, ESChatManager>();
 
-        deps.Register<IChatManager, ChatManager>();
-        deps.Register<ISharedChatManager, ChatManager>();
         deps.Register<IChatSanitizationManager, ChatSanitizationManager>();
         deps.Register<IServerPreferencesManager, ServerPreferencesManager>();
         deps.Register<IServerDbManager, ServerDbManager>();
