@@ -24,6 +24,14 @@ public abstract partial class ESSharedChatSystem
         }
     }
 
+    public void RefreshChatPermissions()
+    {
+        foreach (var ent in AllEntityQuery<ESChatPermissionsComponent>())
+        {
+            RefreshChatPermissions(ent.AsNullable());
+        }
+    }
+
     public virtual void RefreshChatPermissions(Entity<ESChatPermissionsComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp, false))
