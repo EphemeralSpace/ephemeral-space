@@ -4,12 +4,6 @@ namespace Content.Shared.CCVar;
 
 public sealed partial class CCVars
 {
-    /// <summary>
-    ///     If true, whenever OOC is disabled the Discord OOC relay will also be disabled.
-    /// </summary>
-    public static readonly CVarDef<bool> DisablingOOCDisablesRelay =
-        CVarDef.Create("ooc.disabling_ooc_disables_relay", true, CVar.SERVERONLY);
-
     public static readonly CVarDef<bool> ShowOocPatronColor =
         CVarDef.Create("ooc.show_ooc_patron_color", true, CVar.ARCHIVE | CVar.REPLICATED | CVar.CLIENT);
 

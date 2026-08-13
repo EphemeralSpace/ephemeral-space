@@ -22,6 +22,8 @@ public abstract partial class ESSharedChatSystem : EntitySystem
     public static readonly ProtoId<ESChatChannelPrototype> LocalChannel = "Speak";
     public static readonly ProtoId<ESChatChannelPrototype> WhisperChannel = "Whisper";
     public static readonly ProtoId<ESChatChannelPrototype> EmoteChannel = "Emote";
+    public static readonly ProtoId<ESChatChannelPrototype> LobbyChannel = "Lobby";
+    public static readonly ProtoId<ESChatChannelPrototype> AdminChatChannel = "AdminChat";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -34,6 +36,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         InitializePermissions();
 
         _chat.OnRequestSendChatMessage += OnRequestSendChatMessage;
+        _chat.OnDiscordHook += OnDiscordHook;
     }
 
     private void OnAfterRoundRestartCleanup(ESAfterRoundRestartCleanupEvent ev)
@@ -43,6 +46,11 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         {
             TryGetProcessor(channel, out _);
         }
+    }
+
+    private void OnSimpleGetFormat(Entity<ESSimpleFormatChatChannelComponent> ent, ref ESGetChatMessageFormatEvent args)
+    {
+        args.Format = Loc.GetString(ent.Comp.Format);
     }
 
     private void OnRequestSendChatMessage(EntityUid source, string content, ProtoId<ESChatChannelPrototype> channel)
@@ -55,9 +63,17 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         TrySendMessage(content, channel, source);
     }
 
-    private void OnSimpleGetFormat(Entity<ESSimpleFormatChatChannelComponent> ent, ref ESGetChatMessageFormatEvent args)
+    private void OnDiscordHook(ESDiscordChannel discordChannel, string name, string content)
     {
-        args.Format = Loc.GetString(ent.Comp.Format);
+        var channel = discordChannel switch
+        {
+            ESDiscordChannel.OOC => LobbyChannel,
+            ESDiscordChannel.AdminChat => AdminChatChannel,
+            _ => IESSharedChatManager.ServerChannel,
+        };
+
+        // Hopes and prayers
+        TrySendMessage(content, channel, default, nameOverride: name);
     }
 
     public ProtoId<ESChatChannelPrototype> GetChannel(Entity<ESChatProcessorComponent?> uid)

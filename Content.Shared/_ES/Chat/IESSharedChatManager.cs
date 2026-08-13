@@ -16,6 +16,7 @@ public interface IESSharedChatManager
     int MaxMessageLength { get; protected set; }
 
     event Action<EntityUid, string, ProtoId<ESChatChannelPrototype>>? OnRequestSendChatMessage;
+    event Action<ESDiscordChannel, string, string>? OnDiscordHook;
 
     void Initialize();
 
@@ -79,6 +80,11 @@ public interface IESSharedChatManager
         string? name = null,
         string? font = null,
         int? fontSize = null);
+
+    void SendDiscordHookMessage(
+        ESDiscordChannel channel,
+        string name,
+        string message);
 
     bool TryGetChannelFromMessage(
         string content,

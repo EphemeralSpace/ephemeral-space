@@ -13,7 +13,7 @@ public sealed partial class DiscordChatLink : IPostInjectInit
 {
     [Dependency] private DiscordLink _discordLink = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
-    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IESSharedChatManager _chatManager = default!;
     [Dependency] private ITaskManager _taskManager = default!;
     [Dependency] private ILogManager _logManager = default!;
 
@@ -81,11 +81,11 @@ public sealed partial class DiscordChatLink : IPostInjectInit
 
         if (message.ChannelId == _oocChannelId)
         {
-            _taskManager.RunOnMainThread(() => _chatManager.SendHookOOC(message.Author.Username, contents));
+            _taskManager.RunOnMainThread(() => _chatManager.SendDiscordHookMessage(ESDiscordChannel.OOC, message.Author.Username, contents));
         }
         else if (message.ChannelId == _adminChannelId)
         {
-            _taskManager.RunOnMainThread(() => _chatManager.SendHookAdmin(message.Author.Username, contents));
+            _taskManager.RunOnMainThread(() => _chatManager.SendDiscordHookMessage(ESDiscordChannel.AdminChat, message.Author.Username, contents));
         }
     }
 

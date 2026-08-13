@@ -161,10 +161,6 @@ internal sealed partial class ChatManager : IChatManager
 
     public void SendHookOOC(string sender, string message)
     {
-        if (_configurationManager.GetCVar(CCVars.DisablingOOCDisablesRelay))
-        {
-            return;
-        }
         var wrappedMessage = Loc.GetString("chat-manager-send-hook-ooc-wrap-message", ("senderName", sender), ("message", FormattedMessage.EscapeText(message)));
         ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, source: EntityUid.Invalid, hideChat: false, recordReplay: true);
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Hook OOC from {sender}: {message}");

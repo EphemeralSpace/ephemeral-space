@@ -16,6 +16,7 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
 
     public event Action<EntityUid, string, ProtoId<ESChatChannelPrototype>>? OnRequestSendChatMessage;
+    public event Action<ESDiscordChannel, string, string>? OnDiscordHook;
 
     public int MaxMessageLength { get; set; }
 
@@ -139,6 +140,11 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
         int? fontSize = null)
     {
 
+    }
+
+    public void SendDiscordHookMessage(ESDiscordChannel channel, string name, string message)
+    {
+        OnDiscordHook?.Invoke(channel, name, message);
     }
 
     public bool TryGetChannelFromMessage(string content,
