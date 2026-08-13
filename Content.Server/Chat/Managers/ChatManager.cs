@@ -294,9 +294,3 @@ internal sealed partial class ChatManager : IChatManager
 
     #endregion
 }
-
-public enum OOCChatType : byte
-{
-    OOC,
-    Admin
-}

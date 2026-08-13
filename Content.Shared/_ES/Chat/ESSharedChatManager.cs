@@ -17,7 +17,7 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
 
     public event Action<EntityUid, string, ProtoId<ESChatChannelPrototype>>? OnRequestSendChatMessage;
 
-    protected int MaxMessageLength;
+    public int MaxMessageLength { get; set; }
 
     public virtual void Initialize()
     {
