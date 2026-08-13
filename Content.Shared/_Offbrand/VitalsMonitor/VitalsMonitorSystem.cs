@@ -1,3 +1,4 @@
+using Content.Shared._ES.Chat;
 using Content.Shared._Offbrand.Wounds;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Buckle;
@@ -17,7 +18,7 @@ public sealed partial class VitalsMonitorSystem : EntitySystem
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private SharedChatSystem _chat = default!;
+    [Dependency] private ESSharedChatSystem _chat = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedWoundableHealthAnalyzerSystem _woundableHealthAnalyzer = default!;
 
@@ -87,9 +88,9 @@ public sealed partial class VitalsMonitorSystem : EntitySystem
             var identity = Identity.Entity(args.Target, EntityManager);
 
             if (HasComp<HeartrateComponent>(args.Target))
-                _chat.TrySendInGameICMessage(ent, Loc.GetString(ent.Comp.ScanningPatient, ("patient", identity)), InGameICChatType.Speak, true);
+                _chat.TrySendMessage(Loc.GetString(ent.Comp.ScanningPatient, ("patient", identity)), ESSharedChatSystem.LocalChannel, ent);
             else
-                _chat.TrySendInGameICMessage(ent, Loc.GetString(ent.Comp.ScanningStrap, ("strap", identity)), InGameICChatType.Speak, true);
+                _chat.TrySendMessage(Loc.GetString(ent.Comp.ScanningStrap, ("strap", identity)), ESSharedChatSystem.LocalChannel, ent);
         }
 
         Dirty(ent);

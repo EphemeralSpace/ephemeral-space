@@ -1,5 +1,5 @@
-﻿using Content.Server.Chat.Systems;
-using Content.Shared.Chat;
+﻿using Content.Server._ES.Chat;
+using Content.Shared._ES.Chat;
 
 namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators;
 
@@ -7,7 +7,7 @@ public sealed partial class SayKeyOperator : HTNOperator
 {
     [Dependency] private IEntityManager _entManager = default!;
 
-    private ChatSystem _chat = default!;
+    private ESChatSystem _chat = default!;
 
     [DataField(required: true)]
     public string Key = string.Empty;
@@ -22,7 +22,7 @@ public sealed partial class SayKeyOperator : HTNOperator
     {
         base.Initialize(sysManager);
 
-        _chat = sysManager.GetEntitySystem<ChatSystem>();
+        _chat = sysManager.GetEntitySystem<ESChatSystem>();
     }
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
@@ -35,7 +35,7 @@ public sealed partial class SayKeyOperator : HTNOperator
             return HTNOperatorStatus.Failed;
 
         var speaker = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
-        _chat.TrySendInGameICMessage(speaker, @string, InGameICChatType.Speak, hideChat: Hidden, hideLog: Hidden);
+        _chat.TrySendMessage(@string, ESSharedChatSystem.LocalChannel, speaker, hideChat: Hidden, logOverride: Hidden);
 
         return base.Update(blackboard, frameTime);
     }
