@@ -120,8 +120,9 @@ public sealed partial class TipsSystem : SharedTipsSystem
         }
         else
         {
-            _chat.SendChatMessage(IESSharedChatManager.ServerChannel,
+            _chat.SendChatMessage(
                 msg,
+                IESSharedChatManager.ServerChannel,
                 null,
                 recordReplay: false,
                 color: Color.MediumPurple);
