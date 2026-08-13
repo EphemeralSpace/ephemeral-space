@@ -155,7 +155,7 @@
   - type: SubdermalImplant
   - type: RadioImplant
     radioChannels:
-    - Syndicate
+    - Common
 
 - type: entity
   parent: BaseSubdermalImplant

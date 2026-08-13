@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared._ES.SecretIdentity;
 using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -14,7 +13,7 @@ public sealed partial class ESChatChannelPrototype : IPrototype, IInheritingProt
     [IdDataField]
     public string ID { get; private set; } = default!;
 
-    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ESOrganizationPrototype>))]
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ESChatChannelPrototype>))]
     public string[]? Parents { get; private set; }
 
     [AbstractDataField]
