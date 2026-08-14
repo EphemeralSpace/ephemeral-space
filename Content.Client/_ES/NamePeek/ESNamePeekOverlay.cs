@@ -158,23 +158,25 @@ public sealed partial class NamePeekOverlay : Overlay
             if (eye.DrawFov && !_examineSystem.InRangeUnOccluded(playerEnt, ent))
                 continue;
 
-            var pos = Vector2.Transform(mapPos.Position, matrix);
-
             var text = Identity.Name(ent, _entityManager, playerEnt);
 
             //Text dimensions for centering
             var dimensions = handle.GetDimensions(_font, text, scale);
-
-            //Get sprite bounding box so we can draw at the bottom.
-            //Probably a better way to do this but I want it drawing at the bottom of entity sprites if possible.
-            //Seems to work with every mob I've tried.
+            //
+            // //Get sprite bounding box so we can draw at the bottom.
+            // //Probably a better way to do this but I want it drawing at the bottom of entity sprites if possible.
+            // //Seems to work with every mob I've tried.
             var (worldPos, worldRot) = _transform.GetWorldPositionRotation(xform);
             var bounds = _sprite.CalculateBounds((ent, sprite),
-                worldPos,
-                worldRot,
-                args.Viewport.Eye?.Rotation ?? default);
+                 worldPos,
+                 worldRot,
+                 eye.Rotation);
 
-            var drawPosition = (pos - dimensions / 2f) - new Vector2(0, bounds.Box.Extents.Y * matrix.M11);
+            var offset = (-eye.Rotation).ToWorldVec() * (-bounds.Box.Extents.Y);
+            var offsetWorldPos = worldPos - offset;
+
+            var pos = Vector2.Transform(offsetWorldPos, matrix);
+            var drawPosition = (pos - dimensions / 2f);
 
             handle.DrawString(_font, drawPosition, text, scale, Color.LightGray.WithAlpha(200), _outline);
         }
