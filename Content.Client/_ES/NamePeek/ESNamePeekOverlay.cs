@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Client.Examine;
+using Content.Shared._ES.Viewcone;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs;
@@ -33,13 +34,14 @@ public sealed partial class NamePeekOverlay : Overlay
     [Dependency] private IUserInterfaceManager _uiManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 
-    private readonly EntityLookupSystem _lookup;
-    private readonly LightLevelSystem _lightLevel;
-    private readonly ESNamePeekSystem _namePeekSystem;
     private readonly ExamineSystem _examineSystem;
-    private readonly SpriteSystem _sprite;
-    private readonly SharedTransformSystem _transform;
+    private readonly EntityLookupSystem _lookup;
+    private readonly ESNamePeekSystem _namePeekSystem;
+    private readonly ESViewconeAngleSystem _viewCone;
+    private readonly LightLevelSystem _lightLevel;
     private readonly ShaderInstance _shader;
+    private readonly SharedTransformSystem _transform;
+    private readonly SpriteSystem _sprite;
 
     private EntityQuery<SpriteComponent> _spriteQuery;
     private EntityQuery<TransformComponent> _transformQuery;
@@ -55,22 +57,24 @@ public sealed partial class NamePeekOverlay : Overlay
     public override OverlaySpace Space => OverlaySpace.ScreenSpace;
 
     public NamePeekOverlay(
-        EntityLookupSystem lookup,
-        SpriteSystem sprite,
-        SharedTransformSystem transform,
-        LightLevelSystem lightLevel,
-        ESNamePeekSystem namePeek,
         ExamineSystem examine,
+        EntityLookupSystem lookup,
+        ESNamePeekSystem namePeek,
+        ESViewconeAngleSystem viewCone,
+        LightLevelSystem lightLevel,
+        SharedTransformSystem transform,
+        SpriteSystem sprite,
         EntityQuery<SpriteComponent> spriteQuery,
         EntityQuery<TransformComponent> transformQuery,
         EntityQuery<MobStateComponent> mobStateQuery)
     {
-        _lookup = lookup;
-        _sprite = sprite;
-        _transform = transform;
-        _lightLevel = lightLevel;
-        _namePeekSystem = namePeek;
         _examineSystem = examine;
+        _lookup = lookup;
+        _namePeekSystem = namePeek;
+        _viewCone = viewCone;
+        _lightLevel = lightLevel;
+        _transform = transform;
+        _sprite = sprite;
 
         _spriteQuery = spriteQuery;
         _transformQuery = transformQuery;
@@ -141,6 +145,9 @@ public sealed partial class NamePeekOverlay : Overlay
             if (!_transformQuery.TryComp(ent, out var xform))
                 continue;
 
+            if (!_viewCone.InViewcone(playerEnt, ent))
+                continue;
+
             var mapPos = _transform.GetMapCoordinates((ent, xform));
 
             var lightLevel = 1f;
@@ -164,7 +171,7 @@ public sealed partial class NamePeekOverlay : Overlay
             var dimensions = handle.GetDimensions(_font, text, scale);
 
             //Get sprite bounding box so we can draw at the bottom.
-            //Probably a better way to do this but I want it drawing at the bottom of entity sprites if possible.
+            //Probably a better way to do this, but I want it drawing at the bottom of entity sprites if possible.
             var (worldPos, worldRot) = _transform.GetWorldPositionRotation(xform);
             var bounds = _sprite.CalculateBounds((ent, sprite),
                  worldPos,

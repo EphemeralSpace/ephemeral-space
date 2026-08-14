@@ -1,4 +1,5 @@
 using Content.Client.Examine;
+using Content.Shared._ES.Viewcone;
 using Content.Shared.Input;
 using Content.Shared.Mobs.Components;
 using Robust.Client.GameObjects;
@@ -13,15 +14,16 @@ namespace Content.Client._ES.NamePeek;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class ESNamePeekSystem : EntitySystem
+public sealed partial class ESNamePeekSystem : EntitySystem
 {
-    [Dependency] private IPlayerManager _player = default!;
-    [Dependency] private IOverlayManager _overlay = default!;
-    [Dependency] private ExamineSystem _examine = default!;
-    [Dependency] private SpriteSystem _sprite = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private LightLevelSystem _lightLevel = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private ExamineSystem _examine = default!;
+    [Dependency] private IOverlayManager _overlay = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private LightLevelSystem _lightLevel = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private ESViewconeAngleSystem _viewconeAngle = default!;
 
     [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
     [Dependency] private EntityQuery<TransformComponent> _transformQuery = default!;
@@ -37,12 +39,13 @@ public sealed class ESNamePeekSystem : EntitySystem
         UpdatesOutsidePrediction = true;
 
         _overlay.AddOverlay(new NamePeekOverlay(
-            _lookup,
-            _sprite,
-            _transform,
-            _lightLevel,
-            this,
             _examine,
+            _lookup,
+            this,
+            _viewconeAngle,
+            _lightLevel,
+            _transform,
+            _sprite,
             _spriteQuery,
             _transformQuery,
             _mobstateQuery));
@@ -73,6 +76,7 @@ public sealed class ESNamePeekSystem : EntitySystem
                 break;
         }
 
-        return true;
+        //Return false so it doesn't take priority over other stuff
+        return false;
     }
 }
