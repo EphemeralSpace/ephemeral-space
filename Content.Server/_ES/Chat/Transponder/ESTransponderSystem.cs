@@ -2,7 +2,7 @@ using Content.Server.Actions;
 using Content.Server.Administration;
 using Content.Shared._ES.Chat;
 using Content.Shared.Actions.Components;
-using Robust.Shared.Player;
+using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.Chat.Transponder;
@@ -12,6 +12,7 @@ namespace Content.Server._ES.Chat.Transponder;
 /// </summary>
 public sealed partial class ESTransponderSystem : EntitySystem
 {
+    [Dependency] private IPlayerManager _player = default!;
     [Dependency] private ESSharedChatSystem _chat = default!;
     [Dependency] private QuickDialogSystem _dialog = default!;
     [Dependency] private ActionsSystem _action = default!;
@@ -20,17 +21,21 @@ public sealed partial class ESTransponderSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ActorComponent, ESTransponderActionEvent>(OnUseTransponder);
+        SubscribeLocalEvent<ESTransponderActionEvent>(OnUseTransponder);
     }
 
-    private void OnUseTransponder(Entity<ActorComponent> ent, ref ESTransponderActionEvent args)
+    private void OnUseTransponder(ESTransponderActionEvent args)
     {
+        if (!_player.TryGetSessionByEntity(args.Performer, out var session))
+            return;
+
+        var uid = args.Performer;
         var channel = args.Channel;
         var action = args.Action;
-        _dialog.OpenDialog<string>(ent.Comp.PlayerSession,
+        _dialog.OpenDialog<string>(session,
             Loc.GetString("es-transponder-dialog-title"),
             Loc.GetString("es-transponder-dialog-prompt"),
-            (msg => SendMessage(ent, channel, msg, action)));
+            (msg => SendMessage(uid, channel, msg, action)));
 
         // we deliberately do not set handled, because we activate the usedelay when a message is actually sent
     }
