@@ -45,15 +45,26 @@
 
 ## Command
 - type: esChatChannel
-  id: Command
+  parent: BaseWhisper
+  id: RadioWhisperCommand
   name: es-chat-channel-name-radio-command
   order: 5
   color: "#fcdf03"
+  chatProcessor: RadioWhisperCommandChatProcessor
+  prefixes: [ ":c", ".c" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperCommandChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Command
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Command
   textColor: "#fcdf03"
   chatProcessor: CommandRadioChatProcessor
-  prefixes: [ ":c", ".c" ]
-  filterCategory: Radio
-  glorfAffected: true
 
 - type: entity
   parent: ESBaseRadioChatProcessor
@@ -65,15 +76,26 @@
 
 ## Engineering
 - type: esChatChannel
-  id: Engineering
+  parent: BaseWhisper
+  id: RadioWhisperEngineering
   name: es-chat-channel-name-radio-engineering
   order: 6
   color: "#ff733c"
+  chatProcessor: RadioWhisperEngineeringChatProcessor
+  prefixes: [ ":e", ".e" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperEngineeringChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Engineering
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Engineering
   textColor: "#ff733c"
   chatProcessor: EngineeringRadioChatProcessor
-  prefixes: [ ":e", ".e" ]
-  filterCategory: Radio
-  glorfAffected: true
 
 - type: entity
   parent: ESBaseRadioChatProcessor
@@ -85,15 +107,26 @@
 
 ## Medical
 - type: esChatChannel
-  id: Medical
+  parent: BaseWhisper
+  id: RadioWhisperMedical
   name: es-chat-channel-name-radio-medical
   order: 7
   color: "#57b8f0"
+  chatProcessor: RadioWhisperMedicalChatProcessor
+  prefixes: [ ":m", ".m" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperMedicalChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Medical
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Medical
   textColor: "#57b8f0"
   chatProcessor: MedicalRadioChatProcessor
-  prefixes: [ ":m", ".m" ]
-  filterCategory: Radio
-  glorfAffected: true
 
 - type: entity
   parent: ESBaseRadioChatProcessor
@@ -105,15 +138,26 @@
 
 ## Science
 - type: esChatChannel
-  id: Science
+  parent: BaseWhisper
+  id: RadioWhisperScience
   name: es-chat-channel-name-radio-science
   order: 8
   color: "#cd7ccd"
+  chatProcessor: RadioWhisperScienceChatProcessor
+  prefixes: [ ":n", ".n" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperScienceChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Science
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Science
   textColor: "#cd7ccd"
   chatProcessor: ScienceRadioChatProcessor
-  prefixes: [ ":n", ".n" ]
-  filterCategory: Radio
-  glorfAffected: true
 
 - type: entity
   parent: ESBaseRadioChatProcessor
@@ -125,15 +169,26 @@
 
 ## Security
 - type: esChatChannel
-  id: Security
+  parent: BaseWhisper
+  id: RadioWhisperSecurity
   name: es-chat-channel-name-radio-security
   order: 9
   color: "#ff4242"
+  chatProcessor: RadioWhisperSecurityChatProcessor
+  prefixes: [ ":s", ".s" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperSecurityChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Security
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Security
   textColor: "#ff4242"
   chatProcessor: SecurityRadioChatProcessor
-  prefixes: [ ":s", ".s" ]
-  filterCategory: Radio
-  glorfAffected: true
 
 - type: entity
   parent: ESBaseRadioChatProcessor
@@ -145,15 +200,26 @@
 
 ## Service
 - type: esChatChannel
-  id: Service
+  parent: BaseWhisper
+  id: RadioWhisperService
   name: es-chat-channel-name-radio-service
   order: 10
   color: "#539c00"
+  chatProcessor: RadioWhisperServiceChatProcessor
+  prefixes: [ ":v", ".v" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperServiceChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Service
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Service
   textColor: "#539c00"
   chatProcessor: ServiceRadioChatProcessor
-  prefixes: [ ":v", ".v" ]
-  filterCategory: Radio
-  glorfAffected: true
 
 - type: entity
   parent: ESBaseRadioChatProcessor
@@ -165,15 +231,26 @@
 
 ## Supply
 - type: esChatChannel
-  id: Supply
+  parent: BaseWhisper
+  id: RadioWhisperSupply
   name: es-chat-channel-name-radio-supply
   order: 11
   color: "#b48b57"
+  chatProcessor: RadioWhisperSupplyChatProcessor
+  prefixes: [ ":u", ".u" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperSupplyChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Supply
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Supply
   textColor: "#b48b57"
   chatProcessor: SupplyRadioChatProcessor
-  prefixes: [ ":u", ".u" ]
-  filterCategory: Radio
-  glorfAffected: true
 
 - type: entity
   parent: ESBaseRadioChatProcessor

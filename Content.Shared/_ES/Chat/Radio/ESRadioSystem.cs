@@ -37,7 +37,7 @@ public sealed partial class ESRadioSystem : EntitySystem
 
     private void OnChatMessageSent(Entity<ESWhisperRadioChatChannelComponent> ent, ref ESChatMessageSentEvent args)
     {
-        //TODO: maybe dont do name override and instead split the name derrivation out from the message transforming for speach
+        //TODO: maybe dont do name override and instead split the name derivation out from the message transforming for speach
         _chat.TrySendMessage(args.Content, ent.Comp.RadioChannel, args.Source, nameOverride: FormattedMessage.RemoveMarkupPermissive(args.Name));
     }
 
