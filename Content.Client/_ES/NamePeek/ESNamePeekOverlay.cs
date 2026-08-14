@@ -162,10 +162,9 @@ public sealed partial class NamePeekOverlay : Overlay
 
             //Text dimensions for centering
             var dimensions = handle.GetDimensions(_font, text, scale);
-            //
-            // //Get sprite bounding box so we can draw at the bottom.
-            // //Probably a better way to do this but I want it drawing at the bottom of entity sprites if possible.
-            // //Seems to work with every mob I've tried.
+
+            //Get sprite bounding box so we can draw at the bottom.
+            //Probably a better way to do this but I want it drawing at the bottom of entity sprites if possible.
             var (worldPos, worldRot) = _transform.GetWorldPositionRotation(xform);
             var bounds = _sprite.CalculateBounds((ent, sprite),
                  worldPos,
