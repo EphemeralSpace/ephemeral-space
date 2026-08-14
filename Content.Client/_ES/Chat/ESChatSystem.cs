@@ -27,6 +27,11 @@ public sealed partial class ESChatSystem : ESSharedChatSystem
     {
         base.RefreshChatPermissions(ent);
 
+        // Due to certain events (containers) which are raised on the client but not the server,
+        // it's possible for chat permissions to refresh only on the client and result in a state
+        // that is desynced from the server. To compensate, we just always ask the server to refresh
+        // the values when we update the client. This sometimes duplicates the state handling but
+        // if there are no changes it shouldn't have an effect.
         if (_net.IsConnected)
             RaiseNetworkEvent(new ESClientRefreshChatPermissions());
     }
