@@ -55,6 +55,7 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.ESHoldToFace);
             common.AddFunction(ContentKeyFunctions.ESToggleInternals);
             common.AddFunction(ContentKeyFunctions.ESToggleFlashlight);
+            common.AddFunction(ContentKeyFunctions.ESNamePeek);
             // ES END
 
             var human = contexts.GetContext("human");
