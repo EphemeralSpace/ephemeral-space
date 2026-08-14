@@ -1758,3 +1758,9 @@ Entries:
       message: Removed intercoms, hand radios, and holopads.
   id: 188
   time: '2026-08-14T14:41:09.0000000+00:00'
+- author: sowelipililimute
+  changes:
+    - type: Add
+      message: Chat now uses Wormtown9k, a pixel font.
+  id: 189
+  time: '2026-08-14T20:31:49.0000000+00:00'
