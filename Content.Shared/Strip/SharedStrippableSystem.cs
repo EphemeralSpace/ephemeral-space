@@ -325,8 +325,7 @@ public abstract partial class SharedStrippableSystem : EntitySystem
             BreakOnDamage = true,
             BreakOnMove = true,
             NeedHand = true,
-            BreakOnHandChange = false, // Allow simultaneously removing multiple items.
-            DuplicateCondition = DuplicateConditions.SameTool
+            DuplicateCondition = DuplicateConditions.SameTarget
         };
 
         _doAfterSystem.TryStartDoAfter(doAfterArgs);
@@ -539,8 +538,7 @@ public abstract partial class SharedStrippableSystem : EntitySystem
             BreakOnDamage = true,
             BreakOnMove = true,
             NeedHand = true,
-            BreakOnHandChange = false, // Allow simultaneously removing multiple items.
-            DuplicateCondition = DuplicateConditions.SameTool
+            DuplicateCondition = DuplicateConditions.SameTarget
         };
 
         _doAfterSystem.TryStartDoAfter(doAfterArgs);

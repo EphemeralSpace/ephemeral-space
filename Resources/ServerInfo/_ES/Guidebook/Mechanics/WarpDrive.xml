@@ -30,9 +30,9 @@
   To do so, the crew must navigate to the three safety override terminals (also used by the [textlink="Traitors" link="Traitors"] to get the nuke codes and activate them within a time period of [bold]two minutes[/bold].
 
   <Box>
-    <GuideEntityEmbed Entity="ESBaseComputerTerminalCryptoNuke" Caption="One"/>
-    <GuideEntityEmbed Entity="ESBaseComputerTerminalCryptoNuke" Caption="two"/>
-    <GuideEntityEmbed Entity="ESBaseComputerTerminalCryptoNuke" Caption="and 3!"/>
+    <GuideEntityEmbed Entity="ESBaseComputerTerminalCryptoNukeCaptainsOffice" Caption="One"/>
+    <GuideEntityEmbed Entity="ESBaseComputerTerminalCryptoNukeStationAdministrator" Caption="two"/>
+    <GuideEntityEmbed Entity="ESBaseComputerTerminalCryptoNukeSecureTechStorage" Caption="and 3!"/>
   </Box>
 
   If the crew fails to coordinate properly and activate all the terminals in time, or a terminal is too hard to reach or is unpowered, the crew must retry the final phase.

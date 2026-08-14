@@ -126,12 +126,12 @@
       spawnGas: Cryogas
 
 - type: entity
-  name: water vapor gas miner
+  name: steam gas miner
   parent: GasMinerBase
-  id: GasMinerWaterVapor
+  id: GasMinerSteam
   components:
     - type: GasMiner
-      spawnGas: WaterVapor
+      spawnGas: Steam
 
 - type: entity
   name: miasma gas miner
