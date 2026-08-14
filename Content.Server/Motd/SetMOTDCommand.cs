@@ -3,7 +3,7 @@ using Content.Server.Administration.Logs;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.CCVar;
-using Content.Server.Chat.Managers;
+using Content.Shared._ES.Chat;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 
@@ -16,7 +16,7 @@ namespace Content.Server.Motd;
 public sealed partial class SetMotdCommand : LocalizedCommands
 {
     [Dependency] private IAdminLogManager _adminLogManager = default!;
-    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IESSharedChatManager _chatManager = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
 
     public override string Command => "set-motd";
@@ -28,8 +28,8 @@ public sealed partial class SetMotdCommand : LocalizedCommands
         if (args.Length > 0)
         {
             motd = string.Join(" ", args).Trim();
-            if (player != null && _chatManager.MessageCharacterLimit(player, motd))
-                return; // check function prints its own error response
+            if (player != null && motd.Length > _chatManager.MaxMessageLength)
+                return;
         }
 
         _configurationManager.SetCVar(CCVars.MOTD, motd); // A hook in MOTDSystem broadcasts changes to the MOTD to everyone so we don't need to do it here.

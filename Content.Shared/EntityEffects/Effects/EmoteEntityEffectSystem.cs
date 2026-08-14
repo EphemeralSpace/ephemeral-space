@@ -1,4 +1,4 @@
-﻿using Content.Shared.Chat;
+﻿using Content.Shared._ES.Chat;
 using Content.Shared.Chat.Prototypes;
 using Robust.Shared.Prototypes;
 
@@ -10,14 +10,14 @@ namespace Content.Shared.EntityEffects.Effects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class EmoteEntityEffectSystem : EntityEffectSystem<MetaDataComponent, Emote>
 {
-    [Dependency] private SharedChatSystem _chat = default!;
+    [Dependency] private ESEmoteSystem _emote = default!;
 
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<Emote> args)
     {
         if (args.Effect.ShowInChat)
-            _chat.TryEmoteWithChat(entity, args.Effect.EmoteId, ChatTransmitRange.GhostRangeLimit, forceEmote: args.Effect.Force);
+            _emote.TryEmoteWithChat(entity, args.Effect.EmoteId, forceEmote: args.Effect.Force);
         else
-            _chat.TryEmoteWithoutChat(entity, args.Effect.EmoteId);
+            _emote.TryEmoteWithoutChat(entity, args.Effect.EmoteId);
     }
 }
 

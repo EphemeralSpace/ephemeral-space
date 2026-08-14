@@ -1,5 +1,5 @@
-using Content.Server.Chat.Systems;
-using Content.Shared.Chat;
+using Content.Server._ES.Chat;
+using Content.Shared._ES.Chat;
 using Content.Shared.Dataset;
 using Content.Shared.Random.Helpers;
 using JetBrains.Annotations;
@@ -11,7 +11,7 @@ namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators;
 
 public sealed partial class SpeakOperator : HTNOperator
 {
-    private ChatSystem _chat = default!;
+    private ESChatSystem _chat = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IRobustRandom _random = default!;
 
@@ -27,7 +27,7 @@ public sealed partial class SpeakOperator : HTNOperator
     public override void Initialize(IEntitySystemManager sysManager)
     {
         base.Initialize(sysManager);
-        _chat = sysManager.GetEntitySystem<ChatSystem>();
+        _chat = sysManager.GetEntitySystem<ESChatSystem>();
     }
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
@@ -48,12 +48,12 @@ public sealed partial class SpeakOperator : HTNOperator
         }
 
         var speaker = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
-        _chat.TrySendInGameICMessage(
-            speaker,
+        _chat.TrySendMessage(
             Loc.GetString(speechLocId),
-            InGameICChatType.Speak,
+            ESSharedChatSystem.LocalChannel,
+            speaker,
             hideChat: Hidden,
-            hideLog: Hidden
+            logOverride: Hidden
         );
 
         return base.Update(blackboard, frameTime);

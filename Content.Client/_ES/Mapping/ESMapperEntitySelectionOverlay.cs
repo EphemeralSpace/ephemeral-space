@@ -1,9 +1,8 @@
-using Content.Client.UserInterface.Systems.Chat;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.Mapping;
 using Robust.Client.ComponentTrees;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Client.UserInterface;
 using Robust.Shared.Enums;
 
 namespace Content.Client._ES.Mapping;
@@ -11,26 +10,21 @@ namespace Content.Client._ES.Mapping;
 public sealed partial class ESMapperEntitySelectionPreOverlay : Overlay
 {
     [Dependency] private IEntityManager _entManager = default!;
-    [Dependency] private IUserInterfaceManager _ui = default!;
 
-    private readonly ChatUIController _chat;
+    private readonly ESSharedChatSystem _chat;
     private readonly SpriteTreeSystem _spriteTree;
     private readonly SpriteSystem _sprite;
     private readonly ESSelectionSystem _selection;
-    private readonly SharedTransformSystem _xform;
-    private readonly EntityLookupSystem _lookup;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowEntities;
 
     public ESMapperEntitySelectionPreOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _chat = _ui.GetUIController<ChatUIController>();
+        _chat = _entManager.System<ESSharedChatSystem>();
         _spriteTree = _entManager.System<SpriteTreeSystem>();
         _sprite = _entManager.System<SpriteSystem>();
         _selection = _entManager.System<ESSelectionSystem>();
-        _xform = _entManager.System<SharedTransformSystem>();
-        _lookup = _entManager.System<EntityLookupSystem>();
     }
 
     private readonly Dictionary<EntityUid, Color> _tints = new();
@@ -59,7 +53,7 @@ public sealed partial class ESMapperEntitySelectionPreOverlay : Overlay
             }
 
             var name = _entManager.GetComponent<MetaDataComponent>(uid).EntityName;
-            var color = _chat.GetNameColor(name);
+            var color = _chat.GetChatColor(name);
 
             foreach (var entity in entities)
             {

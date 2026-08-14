@@ -1,5 +1,6 @@
-using Content.Server.Chat.Systems;
+using Content.Server._ES.Chat;
 using Content.Server.Speech;
+using Content.Shared._ES.Chat;
 using Content.Shared.Speech;
 using Content.Shared.Chat;
 using Robust.Shared.Audio.Systems;
@@ -14,7 +15,7 @@ public sealed partial class SurveillanceCameraSpeakerSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audioSystem = default!;
     [Dependency] private SpeechSoundSystem _speechSound = default!;
-    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private ESChatSystem _chatSystem = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
 
     /// <inheritdoc/>
@@ -23,8 +24,7 @@ public sealed partial class SurveillanceCameraSpeakerSystem : EntitySystem
         SubscribeLocalEvent<SurveillanceCameraSpeakerComponent, SurveillanceCameraSpeechSendEvent>(OnSpeechSent);
     }
 
-    private void OnSpeechSent(EntityUid uid, SurveillanceCameraSpeakerComponent component,
-        SurveillanceCameraSpeechSendEvent args)
+    private void OnSpeechSent(EntityUid uid, SurveillanceCameraSpeakerComponent component, SurveillanceCameraSpeechSendEvent args)
     {
         if (!component.SpeechEnabled)
         {
@@ -48,10 +48,11 @@ public sealed partial class SurveillanceCameraSpeakerSystem : EntitySystem
         var nameEv = new TransformSpeakerNameEvent(args.Speaker, Name(args.Speaker));
         RaiseLocalEvent(args.Speaker, nameEv);
 
-        var name = Loc.GetString("speech-name-relay", ("speaker", Name(uid)),
+        var name = Loc.GetString("speech-name-relay",
+            ("speaker", Name(uid)),
             ("originalName", nameEv.VoiceName));
 
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
-        _chatSystem.TrySendInGameICMessage(uid, args.Message, InGameICChatType.Speak, ChatTransmitRange.GhostRangeLimit, nameOverride: name);
+        _chatSystem.TrySendMessage(args.Message, ESSharedChatSystem.LocalChannel, uid, nameOverride: name);
     }
 }

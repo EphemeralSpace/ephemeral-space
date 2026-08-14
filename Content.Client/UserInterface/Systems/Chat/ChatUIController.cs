@@ -1,107 +1,54 @@
-using System.Globalization;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Numerics;
 using Content.Client._ES.Chat;
-using Content.Client._ES.Screens;
-using Content.Client.Administration.Managers;
-using Content.Client.Chat;
-using Content.Client.Chat.Managers;
 using Content.Client.Chat.TypingIndicator;
 using Content.Client.Chat.UI;
 using Content.Client.Examine;
-using Content.Client.Gameplay;
-using Content.Client.Ghost;
-using Content.Client.Lobby.UI;
-using Content.Client.Mind;
-using Content.Client.Roles;
-using Content.Client.Stylesheets;
-using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
 using Content.Client.UserInterface.Systems.Gameplay;
-using Content.Shared.Administration;
+using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Damage.ForceSay;
-using Content.Shared.Decals;
 using Content.Shared.Input;
-using Content.Shared.Radio;
-using Content.Shared.Roles.RoleCodeword;
+using Robust.Client.Audio;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
-using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
-using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 
 namespace Content.Client.UserInterface.Systems.Chat;
 
-public sealed partial class ChatUIController : UIController
+public sealed partial class ChatUIController : UIController, IOnSystemChanged<ESChatSystem>
 {
-    [Dependency] private IClientAdminManager _admin = default!;
-    [Dependency] private IChatManager _manager = default!;
+    [Dependency] private IESChatManager _esChat = default!;
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private IEyeManager _eye = default!;
-    [Dependency] private IEntityManager _ent = default!;
     [Dependency] private IInputManager _input = default!;
     [Dependency] private IClientNetManager _net = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private IStateManager _state = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private IReplayRecordingManager _replayRecording = default!;
 
+    [UISystemDependency] private readonly AudioSystem? _audio = default!;
     [UISystemDependency] private readonly ExamineSystem? _examine = default;
-    [UISystemDependency] private readonly GhostSystem? _ghost = default;
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
-    [UISystemDependency] private readonly ChatSystem? _chatSys = default;
+    [UISystemDependency] private readonly ESChatSystem? _chatSys = default;
     [UISystemDependency] private readonly TransformSystem? _transform = default;
-    [UISystemDependency] private readonly MindSystem? _mindSystem = default!;
-    [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
-
-    private static readonly ProtoId<ColorPalettePrototype> ChatNamePalette = "ChatNames";
-    private Color[] _chatNameColors = default!;
-    private bool _chatNameColorsEnabled;
 
     private ISawmill _sawmill = default!;
-
-    public static readonly Dictionary<char, ChatSelectChannel> PrefixToChannel = new()
-    {
-        {SharedChatSystem.LocalPrefix, ChatSelectChannel.Local},
-        {SharedChatSystem.WhisperPrefix, ChatSelectChannel.Whisper},
-        {SharedChatSystem.ConsolePrefix, ChatSelectChannel.Console},
-        {SharedChatSystem.LOOCPrefix, ChatSelectChannel.LOOC},
-        {SharedChatSystem.OOCPrefix, ChatSelectChannel.OOC},
-        {SharedChatSystem.EmotesPrefix, ChatSelectChannel.Emotes},
-        {SharedChatSystem.EmotesAltPrefix, ChatSelectChannel.Emotes},
-        {SharedChatSystem.AdminPrefix, ChatSelectChannel.Admin},
-        {SharedChatSystem.RadioCommonPrefix, ChatSelectChannel.Radio},
-        {SharedChatSystem.DeadPrefix, ChatSelectChannel.Dead}
-    };
-
-    public static readonly Dictionary<ChatSelectChannel, char> ChannelPrefixes = new()
-    {
-        {ChatSelectChannel.Local, SharedChatSystem.LocalPrefix},
-        {ChatSelectChannel.Whisper, SharedChatSystem.WhisperPrefix},
-        {ChatSelectChannel.Console, SharedChatSystem.ConsolePrefix},
-        {ChatSelectChannel.LOOC, SharedChatSystem.LOOCPrefix},
-        {ChatSelectChannel.OOC, SharedChatSystem.OOCPrefix},
-        {ChatSelectChannel.Emotes, SharedChatSystem.EmotesPrefix},
-        {ChatSelectChannel.Admin, SharedChatSystem.AdminPrefix},
-        {ChatSelectChannel.Radio, SharedChatSystem.RadioCommonPrefix},
-        {ChatSelectChannel.Dead, SharedChatSystem.DeadPrefix}
-    };
 
     /// <summary>
     ///     The max amount of chars allowed to fit in a single speech bubble.
@@ -150,79 +97,39 @@ public sealed partial class ChatUIController : UIController
     /// For currently disabled chat filters,
     /// unread messages (messages received since the channel has been filtered out).
     /// </summary>
-    private readonly Dictionary<ChatChannel, int> _unreadMessages = new();
+    private readonly Dictionary<ProtoId<ESChatChannelFilterPrototype>, int> _unreadMessages = new();
 
     // TODO add a cap for this for non-replays
-    public readonly List<(GameTick Tick, ChatMessage Msg)> History = new();
+    public readonly List<(GameTick Tick, ESChatMessage Msg)> History = new();
 
-    // Maintains which channels a client should be able to filter (for showing in the chatbox)
-    // and select (for attempting to send on).
-    // This may not always actually match with what the server will actually allow them to
-    // send / receive on, it is only what the user can select in the UI. For example,
-    // if a user is silenced from speaking for some reason this may still contain ChatChannel.Local, it is left up
-    // to the server to handle invalid attempts to use particular channels and not send messages for
-    // channels the user shouldn't be able to hear.
-    //
-    // Note that Command is an available selection in the chatbox channel selector,
-    // which is not actually a chat channel but is always available.
-    public ChatSelectChannel CanSendChannels { get; private set; }
-    public ChatChannel FilterableChannels { get; private set; }
-    public ChatSelectChannel SelectableChannels { get; private set; }
-    private ChatSelectChannel PreferredChannel { get; set; } = ChatSelectChannel.OOC;
-
-    public event Action<ChatSelectChannel>? CanSendChannelsChanged;
-    public event Action<ChatChannel>? FilterableChannelsChanged;
-    public event Action<ChatSelectChannel>? SelectableChannelsChanged;
-    public event Action<ChatChannel, int?>? UnreadMessageCountsUpdated;
-    public event Action<ChatMessage>? MessageAdded;
+    public event Action<EntityUid, HashSet<ProtoId<ESChatChannelPrototype>>>? LocalChatPermissionsUpdated;
+    public event Action<ProtoId<ESChatChannelFilterPrototype>, int?>? UnreadMessageCountsUpdated;
+    public event Action<ESChatMessage>? MessageAdded;
 
     public override void Initialize()
     {
         _sawmill = Logger.GetSawmill("chat");
         _sawmill.Level = LogLevel.Info;
-        _admin.AdminStatusUpdated += UpdateChannelPermissions;
-        _player.LocalPlayerAttached += OnAttachedChanged;
-        _player.LocalPlayerDetached += OnAttachedChanged;
-        _state.OnStateChanged += StateChanged;
-        _net.RegisterNetMessage<MsgChatMessage>(OnChatMessage);
+        _esChat.OnChatMessageSent += OnChatMessageSent;
         _net.RegisterNetMessage<MsgDeleteChatMessagesBy>(OnDeleteChatMessagesBy);
         SubscribeNetworkEvent<DamageForceSayEvent>(OnDamageForceSay);
-        _config.OnValueChanged(CCVars.ChatEnableColorName, (value) => { _chatNameColorsEnabled = value; });
-        _chatNameColorsEnabled = _config.GetCVar(CCVars.ChatEnableColorName);
 
         _speechBubbleRoot = new LayoutContainer();
-
-        UpdateChannelPermissions();
 
         _input.SetInputCommand(ContentKeyFunctions.FocusChat,
             InputCmdHandler.FromDelegate(_ => FocusChat()));
 
-        _input.SetInputCommand(ContentKeyFunctions.FocusLocalChat,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Local)));
+        // TODO: doesn't support prototype reloading. TOO BAD!
+        foreach (var chatChannel in _prototypeManager.EnumeratePrototypes<ESChatChannelPrototype>())
+        {
+            if (chatChannel.Abstract)
+                continue;
 
-        _input.SetInputCommand(ContentKeyFunctions.FocusEmote,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Emotes)));
+            if (chatChannel.FocusKey == null)
+                continue;
 
-        _input.SetInputCommand(ContentKeyFunctions.FocusWhisperChat,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Whisper)));
-
-        _input.SetInputCommand(ContentKeyFunctions.FocusLOOC,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.LOOC)));
-
-        _input.SetInputCommand(ContentKeyFunctions.FocusOOC,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.OOC)));
-
-        _input.SetInputCommand(ContentKeyFunctions.FocusAdminChat,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Admin)));
-
-        _input.SetInputCommand(ContentKeyFunctions.FocusRadio,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Radio)));
-
-        _input.SetInputCommand(ContentKeyFunctions.FocusDeadChat,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Dead)));
-
-        _input.SetInputCommand(ContentKeyFunctions.FocusConsoleChat,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Console)));
+            _input.SetInputCommand(chatChannel.FocusKey.Value, InputCmdHandler.FromDelegate(_ => FocusChannel(chatChannel)));
+        }
 
         _input.SetInputCommand(ContentKeyFunctions.CycleChatChannelForward,
             InputCmdHandler.FromDelegate(_ => CycleChatChannel(true)));
@@ -233,13 +140,6 @@ public sealed partial class ChatUIController : UIController
         var gameplayStateLoad = UIManager.GetUIController<GameplayStateLoadController>();
         gameplayStateLoad.OnScreenLoad += OnScreenLoad;
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
-
-        var nameColors = _prototypeManager.Index(ChatNamePalette).Colors.Values.ToArray();
-        _chatNameColors = new Color[nameColors.Length];
-        for (var i = 0; i < nameColors.Length; i++)
-        {
-            _chatNameColors[i] = nameColors[i];
-        }
 
         _config.OnValueChanged(CCVars.ChatWindowOpacity, OnChatWindowOpacityChanged);
     }
@@ -252,6 +152,11 @@ public sealed partial class ChatUIController : UIController
         SetSpeechBubbleRoot(viewportContainer);
 
         SetChatWindowOpacity(_config.GetCVar(CCVars.ChatWindowOpacity));
+
+        if (_player.LocalEntity is { } local)
+            OnLocalPermissionsUpdated(local, GetPermittedChannels());
+
+        Repopulate();
     }
 
     public void OnScreenUnload()
@@ -316,6 +221,20 @@ public sealed partial class ChatUIController : UIController
         chatBox.Main = setting;
     }
 
+    public bool TryGetMainChat([NotNullWhen(true)] out ChatBox? chat)
+    {
+        foreach (var c in _chats)
+        {
+            if (!c.Main)
+                continue;
+            chat = c;
+            return true;
+        }
+
+        chat = null;
+        return false;
+    }
+
     private void FocusChat()
     {
         foreach (var chat in _chats)
@@ -328,16 +247,10 @@ public sealed partial class ChatUIController : UIController
         }
     }
 
-    private void FocusChannel(ChatSelectChannel channel)
+    private void FocusChannel(ProtoId<ESChatChannelPrototype> channel)
     {
-        foreach (var chat in _chats)
-        {
-            if (!chat.Main)
-                continue;
-
+        if (TryGetMainChat(out var chat))
             chat.Focus(channel);
-            break;
-        }
     }
 
     private void CycleChatChannel(bool forward)
@@ -352,16 +265,6 @@ public sealed partial class ChatUIController : UIController
         }
     }
 
-    private void StateChanged(StateChangedEventArgs args)
-    {
-        if (args.NewState is GameplayState)
-        {
-            PreferredChannel = ChatSelectChannel.Local;
-        }
-
-        UpdateChannelPermissions();
-    }
-
     public void SetSpeechBubbleRoot(LayoutContainer root)
     {
         _speechBubbleRoot.Orphan();
@@ -372,20 +275,12 @@ public sealed partial class ChatUIController : UIController
         _speechBubbleRoot.RectClipContent = true;
     }
 
-    private void OnAttachedChanged(EntityUid uid)
+    private void AddSpeechBubble(ESChatMessage msg, SpeechType speechType)
     {
-        UpdateChannelPermissions();
-    }
-
-    private void AddSpeechBubble(ChatMessage msg, SpeechBubble.SpeechType speechType)
-    {
-        var ent = EntityManager.GetEntity(msg.SenderEntity);
-
-        if (!EntityManager.EntityExists(ent))
-        {
-            _sawmill.Debug("Got local chat message with invalid sender entity: {0}", msg.SenderEntity);
+        if (msg.Source == null)
             return;
-        }
+
+        var ent = EntityManager.GetEntity(msg.Source.Value);
 
         EnqueueSpeechBubble(ent, msg, speechType);
     }
@@ -428,7 +323,7 @@ public sealed partial class ChatUIController : UIController
         RemoveSpeechBubble(entity, bubble);
     }
 
-    private void EnqueueSpeechBubble(EntityUid entity, ChatMessage message, SpeechBubble.SpeechType speechType)
+    private void EnqueueSpeechBubble(EntityUid entity, ESChatMessage message, SpeechType speechType)
     {
         // Don't enqueue speech bubbles for other maps. TODO: Support multiple viewports/maps?
         if (EntityManager.GetComponent<TransformComponent>(entity).MapID != _eye.CurrentEye.Position.MapId)
@@ -456,77 +351,11 @@ public sealed partial class ChatUIController : UIController
         }
     }
 
-    private void UpdateChannelPermissions()
-    {
-        CanSendChannels = default;
-        FilterableChannels = default;
-
-        // Can always send console stuff.
-        CanSendChannels |= ChatSelectChannel.Console;
-
-        // can always send/recieve OOC
-        CanSendChannels |= ChatSelectChannel.OOC;
-        CanSendChannels |= ChatSelectChannel.LOOC;
-        FilterableChannels |= ChatChannel.OOC;
-        FilterableChannels |= ChatChannel.LOOC;
-
-        // can always hear server (nobody can actually send server messages).
-        FilterableChannels |= ChatChannel.Server;
-
-        if (_state.CurrentState is GameplayStateBase)
-        {
-            // can always hear local / radio / emote / notifications when in the game
-            FilterableChannels |= ChatChannel.Local;
-            FilterableChannels |= ChatChannel.Whisper;
-            FilterableChannels |= ChatChannel.Radio;
-            FilterableChannels |= ChatChannel.Emotes;
-            FilterableChannels |= ChatChannel.Notifications;
-
-            // Can only send local / radio / emote when attached to a non-ghost entity.
-            // TODO: this logic is iffy (checking if controlling something that's NOT a ghost), is there a better way to check this?
-            if (_ghost is not {IsGhost: true})
-            {
-                CanSendChannels |= ChatSelectChannel.Local;
-                CanSendChannels |= ChatSelectChannel.Whisper;
-                CanSendChannels |= ChatSelectChannel.Radio;
-                CanSendChannels |= ChatSelectChannel.Emotes;
-            }
-        }
-
-        // Only ghosts and admins can send / see deadchat.
-        if (_admin.HasFlag(AdminFlags.Admin) || _ghost is {IsGhost: true})
-        {
-            FilterableChannels |= ChatChannel.Dead;
-            CanSendChannels |= ChatSelectChannel.Dead;
-        }
-
-        // only admins can see / filter asay
-        if (_admin.HasFlag(AdminFlags.Adminchat))
-        {
-            FilterableChannels |= ChatChannel.Admin;
-            FilterableChannels |= ChatChannel.AdminAlert;
-            FilterableChannels |= ChatChannel.AdminChat;
-            CanSendChannels |= ChatSelectChannel.Admin;
-        }
-
-        SelectableChannels = CanSendChannels;
-
-        // Necessary so that we always have a channel to fall back to.
-        DebugTools.Assert((CanSendChannels & ChatSelectChannel.OOC) != 0, "OOC must always be available");
-        DebugTools.Assert((FilterableChannels & ChatChannel.OOC) != 0, "OOC must always be available");
-        DebugTools.Assert((SelectableChannels & ChatSelectChannel.OOC) != 0, "OOC must always be available");
-
-        // let our chatbox know all the new settings
-        CanSendChannelsChanged?.Invoke(CanSendChannels);
-        FilterableChannelsChanged?.Invoke(FilterableChannels);
-        SelectableChannelsChanged?.Invoke(SelectableChannels);
-    }
-
-    public void ClearUnfilteredUnreads(ChatChannel channels)
+    public void ClearUnfilteredUnreads(ProtoId<ESChatChannelFilterPrototype> filterChannel)
     {
         foreach (var channel in _unreadMessages.Keys.ToArray())
         {
-            if ((channels & channel) == 0)
+            if (channel != filterChannel)
                 continue;
 
             _unreadMessages[channel] = 0;
@@ -569,7 +398,7 @@ public sealed partial class ChatUIController : UIController
 
             var msg = queueData.MessageQueue.Dequeue();
 
-            queueData.TimeLeft += BubbleDelayBase + msg.Message.Message.Length * BubbleDelayFactor;
+            queueData.TimeLeft += BubbleDelayBase + msg.Message.Content.Length * BubbleDelayFactor;
 
             // We keep the queue around while it has 0 items. This allows us to keep the timer.
             // When the timer hits 0 and there's no messages left, THEN we can clear it up.
@@ -622,65 +451,32 @@ public sealed partial class ChatUIController : UIController
         }
     }
 
-    public ChatSelectChannel MapLocalIfGhost(ChatSelectChannel channel)
-    {
-        if (channel == ChatSelectChannel.Local && _ghost is {IsGhost: true})
-            return ChatSelectChannel.Dead;
-
-        return channel;
-    }
-
-    private bool TryGetRadioChannel(string text, out RadioChannelPrototype? radioChannel)
-    {
-        radioChannel = null;
-        return _player.LocalEntity is EntityUid { Valid: true } uid
-           && _chatSys != null
-           && _chatSys.TryProcessRadioMessage(uid, text, out _, out radioChannel, quiet: true);
-    }
-
     public void UpdateSelectedChannel(ChatBox box)
     {
-        var (prefixChannel, _, radioChannel) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
+        var (prefixChannel, _) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
 
-        if (prefixChannel == ChatSelectChannel.None)
-            box.ChatInput.ChannelSelector.UpdateChannelSelectButton(box.SelectedChannel, null);
+        if (prefixChannel == null)
+            box.ChatInput.ChannelSelector.UpdateChannelSelectButton(_prototypeManager.Index(box.SelectedChannel));
         else
-            box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, radioChannel);
+            box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel);
     }
 
-    public (ChatSelectChannel chatChannel, string text, RadioChannelPrototype? radioChannel) SplitInputContents(string text)
+    public (ESChatChannelPrototype? chatChannel, string text) SplitInputContents(string text)
     {
         text = text.Trim();
         if (text.Length == 0)
-            return (ChatSelectChannel.None, text, null);
+            return (null, text);
 
-        // We only cut off prefix only if it is not a radio or local channel, which both map to the same /say command
-        // because ????????
+        if (!_esChat.TryGetChannelFromMessage(text, out var chatChannel, out var trimmedText))
+            return (null, text);
 
-        ChatSelectChannel chatChannel;
-        if (TryGetRadioChannel(text, out var radioChannel))
-            chatChannel = ChatSelectChannel.Radio;
-        else
-            chatChannel = PrefixToChannel.GetValueOrDefault(text[0]);
+        if (!GetPermittedChannels().Contains(chatChannel))
+            return (null, text);
 
-        if ((CanSendChannels & chatChannel) == 0)
-            return (ChatSelectChannel.None, text, null);
-
-        if (chatChannel == ChatSelectChannel.Radio)
-            return (chatChannel, text, radioChannel);
-
-        if (chatChannel == ChatSelectChannel.Local)
-        {
-            if (_ghost?.IsGhost != true)
-                return (chatChannel, text, null);
-            else
-                chatChannel = ChatSelectChannel.Dead;
-        }
-
-        return (chatChannel, text[1..].TrimStart(), null);
+        return (chatChannel, trimmedText);
     }
 
-    public void SendMessage(ChatBox box, ChatSelectChannel channel)
+    public void SendMessage(ChatBox box, ProtoId<ESChatChannelPrototype> channel)
     {
         _typingIndicator?.ClientSubmittedChatText();
 
@@ -692,7 +488,7 @@ public sealed partial class ChatUIController : UIController
         if (string.IsNullOrWhiteSpace(text))
             return;
 
-        (var prefixChannel, text, var _) = SplitInputContents(text);
+        (var prefixChannel, text) = SplitInputContents(text);
 
         // Check if message is longer than the character limit
         if (text.Length > MaxMessageLength)
@@ -703,15 +499,10 @@ public sealed partial class ChatUIController : UIController
             return;
         }
 
-        if (prefixChannel != ChatSelectChannel.None)
+        if (prefixChannel != null)
             channel = prefixChannel;
-        else if (channel == ChatSelectChannel.Radio)
-        {
-            // radio must have prefix as it goes through the say command.
-            text = $";{text}";
-        }
 
-        _manager.SendMessage(text, prefixChannel == 0 ? channel : prefixChannel);
+        _esChat.RequestSendChatMessage(text, channel);
     }
 
     private void OnDamageForceSay(DamageForceSayEvent ev, EntitySessionEventArgs _)
@@ -721,18 +512,10 @@ public sealed partial class ChatUIController : UIController
             return;
 
         var msg = chatBox.ChatInput.Input.Text.TrimEnd();
-        // Don't send on OOC/LOOC obviously!
-
-        // we need to handle selected channel
-        // and prefix-channel separately..
-        var allowedChannels = ChatSelectChannel.Local | ChatSelectChannel.Whisper;
-        if ((chatBox.SelectedChannel & allowedChannels) == ChatSelectChannel.None)
-            return;
-
-        // none can be returned from this if theres no prefix,
-        // so we allow it in that case (assuming the previous check will have exited already if its an invalid channel)
         var prefixChannel = SplitInputContents(msg).chatChannel;
-        if (prefixChannel != ChatSelectChannel.None && (prefixChannel & allowedChannels) == ChatSelectChannel.None)
+        prefixChannel ??= _prototypeManager.Index(chatBox.SelectedChannel);
+
+        if (!prefixChannel.GlorfAffected)
             return;
 
         if (_player.LocalSession?.AttachedEntity is not { } ent
@@ -752,101 +535,42 @@ public sealed partial class ChatUIController : UIController
         chatBox.ChatInput.Input.ForceSubmitText();
     }
 
-    private void OnChatMessage(MsgChatMessage message)
+    private void OnChatMessageSent(ESChatMessage msg)
     {
-        var msg = message.Message;
         ProcessChatMessage(msg);
-
-        if ((msg.Channel & ChatChannel.AdminRelated) == 0 ||
-            _config.GetCVar(CCVars.ReplayRecordAdminChat))
-        {
-            _replayRecording.RecordClientMessage(msg);
-        }
     }
 
-    public void ProcessChatMessage(ChatMessage msg, bool speechBubble = true)
+    public void ProcessChatMessage(ESChatMessage msg, bool speechBubble = true)
     {
-        // color the name unless it's something like "the old man"
-        if ((msg.Channel == ChatChannel.Local || msg.Channel == ChatChannel.Whisper) && _chatNameColorsEnabled)
-        {
-            var grammar = _ent.GetComponentOrNull<GrammarComponent>(_ent.GetEntity(msg.SenderEntity));
-            if (grammar != null && grammar.ProperNoun == true)
-                msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")).ToHex());
-        }
-
-        // Color any codewords for minds that have roles that use them
-        if (_player.LocalUser != null && _mindSystem != null && _roleCodewordSystem != null)
-        {
-            if (_mindSystem.TryGetMind(_player.LocalUser.Value, out var mindId) && _ent.TryGetComponent(mindId, out RoleCodewordComponent? codewordComp))
-            {
-                foreach (var (_, codewordData) in codewordComp.RoleCodewords)
-                {
-                    foreach (string codeword in codewordData.Codewords)
-                        msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, codeword, "color", codewordData.Color.ToHex());
-                }
-            }
-        }
+        var channel = _prototypeManager.Index(msg.Channel);
 
         // Log all incoming chat to repopulate when filter is un-toggled
-        if (!msg.HideChat)
+        if (!msg.Ephemeral)
         {
             History.Add((_timing.CurTick, msg));
             MessageAdded?.Invoke(msg);
 
             if (!msg.Read)
             {
-                _sawmill.Debug($"Message filtered: {msg.Channel}: {msg.Message}");
-                if (!_unreadMessages.TryGetValue(msg.Channel, out var count))
-                    count = 0;
+                _sawmill.Debug($"Message filtered: {msg.Channel}: {msg.FormattedMessage}");
+                var count = _unreadMessages.GetValueOrDefault(channel.FilterCategory, 0);
 
                 count += 1;
-                _unreadMessages[msg.Channel] = count;
-                UnreadMessageCountsUpdated?.Invoke(msg.Channel, count);
+                _unreadMessages[channel.FilterCategory] = count;
+                UnreadMessageCountsUpdated?.Invoke(channel.FilterCategory, count);
+            }
+            else
+            {
+                // Only play audio if the message was actively read.
+                _audio?.PlayGlobal(msg.Sound, Filter.Local(), false);
             }
         }
 
         // Local messages that have an entity attached get a speech bubble.
-        if (!speechBubble || msg.SenderEntity == default)
+        if (!speechBubble || msg.Source == default || !channel.SpeechBubbleType.HasValue)
             return;
 
-        switch (msg.Channel)
-        {
-            case ChatChannel.Local:
-                AddSpeechBubble(msg, SpeechBubble.SpeechType.Say);
-                break;
-
-            case ChatChannel.Whisper:
-                AddSpeechBubble(msg, SpeechBubble.SpeechType.Whisper);
-                break;
-
-            case ChatChannel.Dead:
-                if (_ghost is not {IsGhost: true})
-                    break;
-
-                AddSpeechBubble(msg, SpeechBubble.SpeechType.Say);
-                break;
-
-            case ChatChannel.Emotes:
-                AddSpeechBubble(msg, SpeechBubble.SpeechType.Emote);
-                break;
-
-            case ChatChannel.LOOC:
-                if (_config.GetCVar(CCVars.LoocAboveHeadShow))
-                    AddSpeechBubble(msg, SpeechBubble.SpeechType.Looc);
-                break;
-
-            // ES START
-            case ChatChannel.OOC:
-                // runlevel is uhh, not networked, otherwise i'd probably jsut check for
-                // runlevel != ingame?
-                // this is so chatbubbles show in the diegetic lobby, by the way
-                if (UIManager.ActiveScreen is LobbyGui)
-                    // could probably use a different styled speechbubble but I didn't have any great ideas with the
-                    // current limitations of styling them.
-                    AddSpeechBubble(msg, SpeechBubble.SpeechType.Say);
-                break;
-            // ES END
-        }
+        AddSpeechBubble(msg, channel.SpeechBubbleType.Value);
     }
 
     public void OnDeleteChatMessagesBy(MsgDeleteChatMessagesBy msg)
@@ -855,7 +579,17 @@ public sealed partial class ChatUIController : UIController
         // Usages of the erase admin verb should be rare enough that this does not matter.
         // Otherwise the client would need to know that one entity has multiple author players,
         // or the server would need to track when and which entities a player sent messages as.
-        History.RemoveAll(h => h.Msg.SenderKey == msg.Key || msg.Entities.Contains(h.Msg.SenderEntity));
+        History.RemoveAll(h =>
+        {
+            if (h.Msg.SourceKey == msg.Key)
+                return true;
+
+            if (h.Msg.Source is { } source &&
+                msg.Entities.Contains(source))
+                return true;
+
+            return false;
+        });
         Repopulate();
     }
 
@@ -867,11 +601,6 @@ public sealed partial class ChatUIController : UIController
     public void UnregisterChat(ChatBox chat)
     {
         _chats.Remove(chat);
-    }
-
-    public ChatSelectChannel GetPreferredChannel()
-    {
-        return MapLocalIfGhost(PreferredChannel);
     }
 
     public void NotifyChatTextChange()
@@ -892,18 +621,7 @@ public sealed partial class ChatUIController : UIController
         }
     }
 
-    /// <summary>
-    /// Returns the chat name color for a mob
-    /// </summary>
-    /// <param name="name">Name of the mob</param>
-    /// <returns>The name color</returns>
-    public Color GetNameColor(string name)
-    {
-        var colorIdx = Math.Abs(name.GetHashCode() % _chatNameColors.Length);
-        return _chatNameColors[colorIdx];
-    }
-
-    private readonly record struct SpeechBubbleData(ChatMessage Message, SpeechBubble.SpeechType Type);
+    private readonly record struct SpeechBubbleData(ESChatMessage Message, SpeechType Type);
 
     private sealed class SpeechBubbleQueueData
     {
@@ -913,5 +631,27 @@ public sealed partial class ChatUIController : UIController
         public float TimeLeft { get; set; }
 
         public Queue<SpeechBubbleData> MessageQueue { get; } = new();
+    }
+
+    public void OnSystemLoaded(ESChatSystem system)
+    {
+        system.LocalChatPermissionsUpdated += OnLocalPermissionsUpdated;
+    }
+
+    public void OnSystemUnloaded(ESChatSystem system)
+    {
+        system.LocalChatPermissionsUpdated -= OnLocalPermissionsUpdated;
+    }
+
+    private void OnLocalPermissionsUpdated(EntityUid uid, HashSet<ProtoId<ESChatChannelPrototype>> channels)
+    {
+        LocalChatPermissionsUpdated?.Invoke(uid, channels);
+    }
+
+    public HashSet<ProtoId<ESChatChannelPrototype>> GetPermittedChannels()
+    {
+        if (_player.LocalEntity == null || _chatSys == null)
+            return [ ESSharedChatSystem.LocalChannel ];
+        return _chatSys.GetPermittedChannels(_player.LocalEntity.Value);
     }
 }

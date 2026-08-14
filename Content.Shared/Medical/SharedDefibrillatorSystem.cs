@@ -1,5 +1,5 @@
+using Content.Shared._ES.Chat;
 using Content.Shared.Atmos.Rotting;
-using Content.Shared.Chat;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
@@ -23,7 +23,7 @@ namespace Content.Shared.Medical;
 /// </summary>
 public abstract partial class SharedDefibrillatorSystem : EntitySystem
 {
-    [Dependency] private SharedChatSystem _chat = default!;
+    [Dependency] private ESSharedChatSystem _chat = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedElectrocutionSystem _electrocution = default!;
@@ -194,8 +194,9 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
         var failedRevive = true;
         if (_rotting.IsRotten(target))
         {
-            _chat.TrySendInGameICMessage(ent.Owner, Loc.GetString("defibrillator-rotten"),
-                InGameICChatType.Speak, true);
+            _chat.TrySendMessage(Loc.GetString("defibrillator-rotten"),
+                ESSharedChatSystem.LocalChannel,
+                ent.Owner);
         }
         else
         {
@@ -220,8 +221,9 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
             }
             else
             {
-                _chat.TrySendInGameICMessage(ent.Owner, Loc.GetString("defibrillator-no-mind"),
-                    InGameICChatType.Speak, true);
+                _chat.TrySendMessage(Loc.GetString("defibrillator-no-mind"),
+                    ESSharedChatSystem.LocalChannel,
+                    ent.Owner);
             }
         }
 

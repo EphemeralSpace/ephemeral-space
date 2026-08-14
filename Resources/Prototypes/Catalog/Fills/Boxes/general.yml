@@ -401,21 +401,6 @@
         amount: 4
 
 - type: entity
-  name: syndicate encryption key box
-  parent: BoxEncryptionKeyPassenger
-  id: BoxEncryptionKeySyndie
-  description: Two syndicate encryption keys for the price of one. Miniaturized for ease of use.
-  components:
-  - type: Item
-    size: Normal
-  - type: EntityTableContainerFill
-    containers:
-      storagebase:
-        id: EncryptionKeySyndie
-        amount: 2
-  - type: Storage
-
-- type: entity
   name: lead-lined box
   parent: BoxCardboard
   suffix: DEBUG

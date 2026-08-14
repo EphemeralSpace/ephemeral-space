@@ -1,7 +1,9 @@
 using System.Linq;
+using Content.Server._ES.Chat;
 using Content.Server.Chat.Systems;
 using Content.Server.Containers;
 using Content.Server.StationRecords.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -38,7 +40,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private ThrowingSystem _throwing = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESChatSystem _chat = default!;
 
     public override void Initialize()
     {
@@ -199,7 +201,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
     private void OnDamageChanged(Entity<IdCardConsoleComponent> entity, ref DamageChangedEvent args)
     {
         if (TryDropAndThrowIds(entity.AsNullable()))
-            _chat.TrySendInGameICMessage(entity, Loc.GetString("id-card-console-damaged"), InGameICChatType.Speak, true);
+            _chat.TrySendMessage(Loc.GetString("id-card-console-damaged"), ESSharedChatSystem.LocalChannel, entity, hideChat: true);
     }
 
     #region PublicAPI

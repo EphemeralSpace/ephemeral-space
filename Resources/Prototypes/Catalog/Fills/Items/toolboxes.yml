@@ -9,7 +9,6 @@
       storagebase: !type:AllSelector
         children:
         - id: CrowbarRed
-        - id: RadioHandheld
         - id: WelderMini
         - id: FireExtinguisherMini
         # Random lighting item GroupSelector

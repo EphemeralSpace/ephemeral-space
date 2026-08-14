@@ -1,11 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
-using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Rules;
 using Content.Server.MassMedia.Systems;
 using Content.Server.Mind;
 using Content.Shared._Citadel.Utilities;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.SecretIdentity.Components;
@@ -26,7 +26,7 @@ namespace Content.Server._ES.SecretIdentity.Masquerades;
 /// </summary>
 public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRuleComponent>
 {
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ESEntityTimerSystem _timer = default!;
@@ -37,7 +37,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
     // Icky global state.
     private ProtoId<ESMasqueradePrototype>? _forcedMasquerade;
 
-    public override Type[]? RoundEndTextBefore => [typeof(ESSecretIdentitySystem)];
+    public override Type[] RoundEndTextBefore => [typeof(ESSecretIdentitySystem)];
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -220,7 +220,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         if (component.Masquerade is not {} masquerade)
             return;
 
-        _chat.SendAdminAlert($"Upcoming masquerade is {masquerade.ID}.");
+        _chat.SendAdminMessage($"Upcoming masquerade is {masquerade.ID}.");
 
         foreach (var rule in masquerade.GameRules)
         {

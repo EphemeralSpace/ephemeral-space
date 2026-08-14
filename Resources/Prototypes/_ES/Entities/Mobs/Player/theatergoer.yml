@@ -42,6 +42,9 @@
   - type: Input
     context: "human"
   - type: Examiner
+  - type: ESChatPermissions
+    inherentChannels:
+    - Lobby
   - type: ESTheatergoerMarker
   - type: ESUsernameEntityName
   - type: GenericVisualizer

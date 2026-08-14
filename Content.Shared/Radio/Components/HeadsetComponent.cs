@@ -13,7 +13,7 @@ public sealed partial class HeadsetComponent : Component
     public bool Enabled = true;
 
     [DataField, AutoNetworkedField]
-    public bool IsEquipped = false;
+    public bool IsEquipped;
 
     [DataField, AutoNetworkedField]
     public SlotFlags RequiredSlot = SlotFlags.EARS;

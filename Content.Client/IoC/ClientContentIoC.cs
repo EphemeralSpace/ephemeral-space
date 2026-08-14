@@ -1,7 +1,7 @@
+using Content.Client._ES.Chat;
 using Content.Client.Administration.Managers;
 using Content.Client.Audio.Midi;
 using Content.Client.Changelog;
-using Content.Client.Chat.Managers;
 using Content.Client.Clickable;
 using Content.Client.DebugMon;
 using Content.Client.Eui;
@@ -17,14 +17,14 @@ using Content.Client.Playtime;
 using Content.Client.Replay;
 using Content.Client.Screenshot;
 using Content.Client.Stylesheets;
-using Content.Client.Viewport;
 using Content.Client.Voting;
 using Content.Shared.Administration.Logs;
 using Content.Client.Lobby;
 using Content.Client.Players.RateLimiting;
 using Content.Client.Stylesheets.Fonts;
+using Content.Shared._ES.Chat;
+using Content.Shared._ES.Chat.Sanitization;
 using Content.Shared.Administration.Managers;
-using Content.Shared.Chat;
 using Content.Shared.IoC;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
@@ -36,10 +36,12 @@ namespace Content.Client.IoC
         public static void Register(IDependencyCollection collection)
         {
             SharedContentIoC.Register(collection);
+            collection.Register<IESSharedChatManager, ESChatManager>();
+            collection.Register<IESChatManager, ESChatManager>();
+
             collection.Register<IParallaxManager, ParallaxManager>();
             collection.Register<GeneratedParallaxCache>();
-            collection.Register<IChatManager, ChatManager>();
-            collection.Register<ISharedChatManager, ChatManager>();
+            collection.Register<IChatSanitizationManager, ChatSanitizationManager>();
             collection.Register<IClientPreferencesManager, ClientPreferencesManager>();
             collection.Register<IStylesheetManager, StylesheetManager>();
             collection.Register<IScreenshotHook, ScreenshotHook>();

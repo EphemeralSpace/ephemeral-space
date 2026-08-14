@@ -1,14 +1,13 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
-using Content.Server.Chat.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared.Body.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Prototypes;
-using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
@@ -37,7 +36,7 @@ public sealed partial class RespiratorSystem : EntitySystem
     [Dependency] private AlertsSystem _alertsSystem = default!;
     [Dependency] private AtmosphereSystem _atmosSys = default!;
     [Dependency] private BodySystem _bodySystem = default!;
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESEmoteSystem _emote = default!;
     [Dependency] private DamageableSystem _damageableSys = default!;
     [Dependency] private LungSystem _lungSystem = default!;
     [Dependency] private MobStateSystem _mobState = default!;
@@ -109,9 +108,9 @@ public sealed partial class RespiratorSystem : EntitySystem
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
                 {
                     respirator.LastGaspEmoteTime = _gameTiming.CurTime;
-                    _chat.TryEmoteWithChat(uid,
+                    _emote.TryEmoteWithChat(uid,
                         respirator.GaspEmote,
-                        ChatTransmitRange.HideChat,
+                        hideChat: true,
                         ignoreActionBlocker: true);
                 }
 

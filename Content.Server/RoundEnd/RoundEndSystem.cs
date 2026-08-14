@@ -3,13 +3,13 @@ using Content.Server._ES.Announcements;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Shared.CCVar;
-using Content.Server.Chat.Managers;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.GameTicking;
@@ -32,7 +32,7 @@ namespace Content.Server.RoundEnd
     {
         [Dependency] private IAdminLogManager _adminLogger = default!;
         [Dependency] private IConfigurationManager _cfg = default!;
-        [Dependency] private IChatManager _chatManager = default!;
+        [Dependency] private IESSharedChatManager _chatManager = default!;
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private IPrototypeManager _protoManager = default!;
         [Dependency] private ESAnnouncementSystem _chatSystem = default!;
@@ -249,7 +249,7 @@ namespace Content.Server.RoundEnd
                 time = countdownTime.Value.Minutes;
                 unitsLocString = "eta-units-minutes";
             }
-            _chatManager.DispatchServerAnnouncement(
+            _chatManager.SendServerMessage(
                 Loc.GetString(
                     "round-end-system-round-restart-eta-announcement",
                     ("time", time),

@@ -14,6 +14,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Security.Components;
 using System.Linq;
+using Content.Server._ES.Chat;
 using Content.Shared.Roles.Jobs;
 // ES START
 using Content.Shared._ES.Degradation;
@@ -29,13 +30,11 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
     [Dependency] private AccessReaderSystem _access = default!;
     [Dependency] private CriminalRecordsSystem _criminalRecords = default!;
     [Dependency] private PopupSystem _popup = default!;
-    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private ESChatSystem _chat = default!;
     [Dependency] private StationRecordsSystem _records = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
-// ES START
     [Dependency] private ESDegradationSystem _esDegradation = default!;
-// ES END
 
     public override void Initialize()
     {
@@ -179,9 +178,9 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             // this is impossible
             _ => "not-wanted"
         };
-        _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-{statusString}", args),
-            ent.Comp.SecurityChannel, ent);
-
+        _chat.TrySendMessage(Loc.GetString($"criminal-records-console-{statusString}", args),
+            ent.Comp.SecurityChannel,
+            ent);
         UpdateUserInterface(ent);
     }
 

@@ -1,0 +1,36 @@
+- type: esChatChannelFilter
+  id: Local
+  name: es-chat-channel-name-speak
+
+- type: esChatChannelFilter
+  id: Whisper
+  name: es-chat-channel-name-whisper
+
+- type: esChatChannelFilter
+  id: Emote
+  name: es-chat-channel-name-emote
+
+- type: esChatChannelFilter
+  id: Radio
+  name: es-chat-filter-name-radio
+
+- type: esChatChannelFilter
+  id: Admin
+  name: es-chat-channel-name-admin
+
+- type: esChatChannelFilter
+  id: Lobby
+  name: es-chat-channel-name-lobby
+
+- type: esChatChannelFilter
+  id: Stagehand
+  name: es-chat-channel-name-stagehand
+
+- type: esChatChannelFilter
+  id: Announcement
+  name: es-chat-filter-name-announcement
+
+# Non-Player Facing
+- type: esChatChannelFilter
+  id: Server
+  name: es-chat-filter-name-server

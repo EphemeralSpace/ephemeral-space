@@ -1,7 +1,6 @@
-using Content.Client.UserInterface.Systems.Chat;
+using Content.Client._ES.Chat;
 using Content.Shared._ES.Mapping;
 using Robust.Client.Graphics;
-using Robust.Client.UserInterface;
 using Robust.Shared.Enums;
 
 namespace Content.Client._ES.Mapping;
@@ -9,9 +8,8 @@ namespace Content.Client._ES.Mapping;
 public sealed partial class ESMapperSelectionOverlays : Overlay
 {
     [Dependency] private IEntityManager _entManager = default!;
-    [Dependency] private IUserInterfaceManager _ui = default!;
 
-    private readonly ChatUIController _chat;
+    private readonly ESChatSystem _chat;
     private readonly ESSelectionSystem _selection;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
@@ -19,7 +17,7 @@ public sealed partial class ESMapperSelectionOverlays : Overlay
     public ESMapperSelectionOverlays()
     {
         IoCManager.InjectDependencies(this);
-        _chat = _ui.GetUIController<ChatUIController>();
+        _chat = _entManager.System<ESChatSystem>();
         _selection = _entManager.System<ESSelectionSystem>();
     }
 
@@ -38,7 +36,7 @@ public sealed partial class ESMapperSelectionOverlays : Overlay
                 continue;
 
             var name = _entManager.GetComponent<MetaDataComponent>(uid).EntityName;
-            var color = _chat.GetNameColor(name);
+            var color = _chat.GetChatColor(name);
             var (x, y) = box.Item2.Box.Size;
             if (x <= 0.1f || y <= 0.1f)
                 continue;

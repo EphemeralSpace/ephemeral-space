@@ -1,14 +1,14 @@
 using Content.Server.Administration.Logs;
-using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Shared._ES.Announcements;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.Core.Timer;
-using Content.Shared.Chat;
 using Content.Shared.Database;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -21,8 +21,10 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
     [Dependency] private ESEntityTimerSystem _timer = default!;
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;
-    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IESSharedChatManager _chatManager = default!;
     [Dependency] private IGameTiming _timing = default!;
+
+    private static readonly ProtoId<ESChatChannelPrototype> AnnouncementChannel = "Announcement";
 
     private static readonly TimeSpan MinTimeBetweenAnnouncements = TimeSpan.FromSeconds(15);
     private static readonly TimeSpan ImmediateAnnouncementCutoffDelay = TimeSpan.FromSeconds(1);
@@ -78,14 +80,12 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
     {
         var filter = announcement.Global ? Filter.Broadcast() : Filter.Empty().AddWhere(_ticker.UserHasJoinedGame);
 
-        _chatManager.ChatMessageToManyFiltered(filter,
-            ChatChannel.Radio,
-            announcement.Message,
+        _chatManager.SendChatMessage(
             announcement.WrappedMessage,
+            filter.Recipients,
+            AnnouncementChannel,
             announcement.Source,
-            false,
-            true,
-            announcement.Color);
+            color: announcement.Color);
 
         if (announcement.Sound != null)
             _currentlyPlayingAnnouncementSound = _audio.PlayGlobal(announcement.Sound, filter, true, AudioParams.Default.WithVolume(-4f));
