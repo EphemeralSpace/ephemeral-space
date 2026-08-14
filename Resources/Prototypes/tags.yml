@@ -670,9 +670,6 @@
   id: InstantDoAfters # Used by SharedDoAfterSystem for tagged entities to skip DoAfters (aghost). TODO remove
 
 - type: Tag
-  id: IntercomElectronics # ConstructionGraph: Intercom
-
-- type: Tag
   id: InvalidForGlobalSpawnSpell # Used by SharedMagicSystem to skip tagged entity for an all living humans spawn spell.
                                  # Implemented only in server ZombieSystem.
 

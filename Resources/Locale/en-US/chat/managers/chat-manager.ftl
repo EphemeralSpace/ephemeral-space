@@ -5,12 +5,6 @@ chat-manager-max-message-length = Your message exceeds {$maxMessageLength} chara
 chat-manager-ooc-chat-enabled-message = Lobby chat has been enabled.
 chat-manager-ooc-chat-disabled-message = Lobby chat has been disabled.
 # ES END
-chat-manager-looc-chat-enabled-message = LOOC chat has been enabled.
-chat-manager-looc-chat-disabled-message = LOOC chat has been disabled.
-chat-manager-dead-looc-chat-enabled-message = Dead players can now use LOOC.
-chat-manager-dead-looc-chat-disabled-message = Dead players can no longer use LOOC.
-chat-manager-crit-looc-chat-enabled-message = Crit players can now use LOOC.
-chat-manager-crit-looc-chat-disabled-message = Crit players can no longer use LOOC.
 chat-manager-admin-ooc-chat-enabled-message = Admin OOC chat has been enabled.
 chat-manager-admin-ooc-chat-disabled-message = Admin OOC chat has been disabled.
 

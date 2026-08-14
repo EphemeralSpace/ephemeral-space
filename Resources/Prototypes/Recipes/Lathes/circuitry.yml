@@ -40,10 +40,5 @@
 
 - type: latheRecipe
   parent: [ BaseElectronicsRecipe, BaseCircuitryRecipeCategory ]
-  id: IntercomElectronics
-  result: IntercomElectronics
-
-- type: latheRecipe
-  parent: [ BaseElectronicsRecipe, BaseCircuitryRecipeCategory ]
   id: FireAlarmElectronics
   result: FireAlarmElectronics

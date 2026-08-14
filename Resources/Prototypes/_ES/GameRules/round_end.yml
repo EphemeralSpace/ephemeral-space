@@ -12,14 +12,14 @@
       announcementSound: /Audio/_ES/Announcements/attention_high.ogg
     - timeBeforeEnd: 30m
       announcementText: es-radstorm-30min-announcement
-      announcementSound: /Audio/_ES/Announcements/radstorm_30mins.ogg
+      announcementSound: /Audio/_ES/Announcements/radstorm_ann1.ogg
     - timeBeforeEnd: 22m
       announcementSound:
         collection: ESAmbienceRadstorm
     - timeBeforeEnd: 15m
       announcementText: es-radstorm-15min-announcement
       announcementDistortion: 0.1
-      announcementSound: /Audio/_ES/Announcements/radstorm_15mins.ogg
+      announcementSound: /Audio/_ES/Announcements/radstorm_ann2.ogg
       mapLight: "#003805ff"
     - timeBeforeEnd: 12m
       announcementSound:
@@ -30,7 +30,7 @@
     - timeBeforeEnd: 5m
       announcementText: es-radstorm-5min-announcement
       announcementDistortion: 0.4
-      announcementSound: /Audio/_ES/Announcements/radstorm_5mins.ogg
+      announcementSound: /Audio/_ES/Announcements/radstorm_ann3.ogg
       mapLight: "#689a64ff"
       spaceDangerous: true
       setAlertLevel: true

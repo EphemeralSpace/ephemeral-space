@@ -96,6 +96,9 @@
   - type: BypassInteractionChecks
   - type: ExplosionResistance
     damageCoefficient: 0
+  # ES START
+  - type: ESMapper
+  # ES END
 
 - type: startingGear
   id: MobAghostGear

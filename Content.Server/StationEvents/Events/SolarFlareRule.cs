@@ -1,10 +1,7 @@
-using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Radio;
 using Robust.Shared.Random;
 using Content.Server.Light.EntitySystems;
-using Content.Server.Light.Components;
 using Content.Server.StationEvents.Components;
-using Content.Shared.Radio.Components;
+using Content.Shared._ES.Chat.Radio;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.GameTicking.Components;
@@ -17,7 +14,7 @@ public sealed partial class SolarFlareRule : StationEventSystem<SolarFlareRuleCo
     [Dependency] private PoweredLightSystem _poweredLight = default!;
     [Dependency] private SharedDoorSystem _door = default!;
 
-    private float _effectTimer = 0;
+    private float _effectTimer;
 
     public override void Initialize()
     {
@@ -67,11 +64,10 @@ public sealed partial class SolarFlareRule : StationEventSystem<SolarFlareRuleCo
             if (!GameTicker.IsGameRuleActive(uid, gameRule))
                 continue;
 
-            if (!flare.AffectedChannels.Contains(args.Channel.ID))
+            if (!flare.AffectedChannels.Contains(args.Channel))
                 continue;
 
-            if (!flare.OnlyJamHeadsets || (HasComp<HeadsetComponent>(args.RadioReceiver) || HasComp<HeadsetComponent>(args.RadioSource)))
-                args.Cancelled = true;
+            args.Cancelled = true;
         }
     }
 }

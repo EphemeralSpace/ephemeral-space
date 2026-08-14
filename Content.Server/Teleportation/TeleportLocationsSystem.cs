@@ -1,5 +1,5 @@
-﻿using Content.Server.Chat.Systems;
-using Content.Shared.Chat;
+﻿using Content.Server._ES.Chat;
+using Content.Shared._ES.Chat;
 using Content.Shared.Teleportation;
 using Content.Shared.Teleportation.Components;
 using Content.Shared.Teleportation.Systems;
@@ -14,7 +14,7 @@ namespace Content.Server.Teleportation;
 /// </summary>
 public sealed partial class TeleportLocationsSystem : SharedTeleportLocationsSystem
 {
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESChatSystem _chat = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
 
     public override void Initialize()
@@ -43,7 +43,7 @@ public sealed partial class TeleportLocationsSystem : SharedTeleportLocationsSys
         if (!string.IsNullOrWhiteSpace(ent.Comp.Speech))
         {
             var msg = Loc.GetString(ent.Comp.Speech, ("location", args.PointName));
-            _chat.TrySendInGameICMessage(args.Actor, msg, InGameICChatType.Speak, ChatTransmitRange.Normal);
+            _chat.TrySendMessage(msg, ESSharedChatSystem.LocalChannel, args.Actor);
         }
 
         base.OnTeleportToLocationRequest(ent, ref args);

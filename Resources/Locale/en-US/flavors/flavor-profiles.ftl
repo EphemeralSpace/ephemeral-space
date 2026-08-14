@@ -169,7 +169,6 @@ flavor-complex-profits = like profits
 flavor-complex-fishops = like the dreaded fishops
 flavor-complex-blue-pumpkin = like a mouthful of pool water
 flavor-complex-violets = like violets
-flavor-complex-pyrotton = like a burning mouth
 flavor-complex-mothballs = like mothballs
 flavor-complex-paint-thinner = like paint thinner
 flavor-complex-numbing-tranquility = like numbing tranquility

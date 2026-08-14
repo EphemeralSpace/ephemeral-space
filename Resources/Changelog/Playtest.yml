@@ -1607,3 +1607,160 @@ Entries:
       message: Added an announcement for when sleeper agents activate.
   id: 170
   time: '2026-08-02T18:45:16.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Parasites can now do 300 damage before failing their objective
+    - type: Remove
+      message: clf3 and phlog are no more
+  id: 171
+  time: '2026-08-04T21:39:25.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Experiment's disposals crawl now requires them to not have any held
+        items instead of being prohibited from wearing a jumpsuit.
+  id: 172
+  time: '2026-08-04T21:51:50.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Tweak
+      message: Microwaves are no longer a melee weapon
+  id: 173
+  time: '2026-08-04T22:34:33.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Cryogas now only cools the air above a certain mol threshold
+        (corresponds to when its visible)
+    - type: Tweak
+      message: Portable scrubbers are ~7x more powerful
+    - type: Tweak
+      message: Space heaters are ~5-12x more powerful
+    - type: Tweak
+      message: Pulling speed debuff is much lower
+    - type: Tweak
+      message: >-
+        Scrubbers, space heaters, and JR pacmans are 4x faster to
+        anchor/unanchor
+  id: 174
+  time: '2026-08-05T22:12:57.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: >-
+        Brute/burn pouches now contain a bic pill / derma pill instead of an
+        injector
+    - type: Tweak
+      message: >-
+        Self-tending using topicals now takes 10x as long as usual instead of 5x
+        as long
+  id: 175
+  time: '2026-08-06T14:11:35.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Revolver and pistol shots do a little less damage now
+    - type: Tweak
+      message: Pistols have less max firerate
+    - type: Tweak
+      message: Outer armor has 1 less DT
+  id: 176
+  time: '2026-08-06T14:11:51.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: Humans can no longer be put on meat spikes.
+  id: 177
+  time: '2026-08-06T14:31:19.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Tweak
+      message: stagehands will now be notified upon apc bugging/debugging
+  id: 178
+  time: '2026-08-08T19:47:56.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed the radstorm cutscene playing on top of other round-end cutscenes.
+    - type: Tweak
+      message: >-
+        When parasites win, they now obliterate non-parasites and turn them into
+        nests instead of simply converting them.
+  id: 179
+  time: '2026-08-08T19:48:21.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Add
+      message: Terrifying beasts
+  id: 180
+  time: '2026-08-08T22:32:34.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: New namegen names, server RP levels, and tips
+  id: 181
+  time: '2026-08-10T05:39:53.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: >-
+        Transponder action will now only go on cooldown when a message is
+        actually sent
+  id: 182
+  time: '2026-08-10T06:35:36.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Fix
+      message: Cargo weapon crates can be opened with a sec ID again
+  id: 183
+  time: '2026-08-10T23:20:39.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: Lights that are meant to be directional are directional again
+  id: 184
+  time: '2026-08-11T21:45:03.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Popups are niceys now
+  id: 185
+  time: '2026-08-12T06:36:48.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Use delay cooldown circle (like extinguishers or tools or whatever) now
+        shows around the cursor also. assuming you have the 'show hand item'
+        option enabled
+  id: 186
+  time: '2026-08-12T06:37:01.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Add
+      message: 'New Cannibal themed masquerade '
+  id: 187
+  time: '2026-08-14T04:33:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Lobby chat is now available to people in the theater after the round
+        starts.
+    - type: Tweak
+      message: >-
+        The entire chat backend has been overhauled. Report bugs if you see
+        message strangeness.
+    - type: Remove
+      message: Removed intercoms, hand radios, and holopads.
+  id: 188
+  time: '2026-08-14T14:41:09.0000000+00:00'
+- author: sowelipililimute
+  changes:
+    - type: Add
+      message: Chat now uses Wormtown9k, a pixel font.
+  id: 189
+  time: '2026-08-14T20:31:49.0000000+00:00'

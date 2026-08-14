@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Server._ES.Announcements;
 using Content.Server._ES.Mind;
 using Content.Server._ES.Objectives;
-using Content.Server._ES.Radio;
 using Content.Server._ES.Radstorm.Components;
 using Content.Server.AlertLevel;
 using Content.Server.DeviceNetwork.Systems;
@@ -12,6 +11,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared._DV.Screens;
 using Content.Shared._ES.CCVar;
+using Content.Shared._ES.Chat.Radio;
 using Content.Shared._ES.Cinematic;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._Offbrand.Wounds;
@@ -156,11 +156,11 @@ public sealed partial class ESRadstormRoundEndRuleSystem : GameRuleSystem<ESRads
         }
 
         // If everyone's dead, end the round
-        var actorQuery = EntityQueryEnumerator<ActorComponent>();
+        var actorQuery = AllEntityQuery<MobStateComponent, ActorComponent>();
         var allDead = true;
         while (actorQuery.MoveNext(out var mob, out _))
         {
-            if (TryComp<MobStateComponent>(mob, out var state) && state.CurrentState != MobState.Dead)
+            if (mob.CurrentState != MobState.Dead)
                 allDead = false;
         }
 

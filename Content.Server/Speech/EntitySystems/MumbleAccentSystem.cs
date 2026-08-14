@@ -1,16 +1,17 @@
-using Content.Server.Chat.Systems;
 using Content.Server.Speech.Components;
+using Content.Shared._ES.Chat;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
+using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Speech.EntitySystems;
 
 public sealed partial class MumbleAccentSystem : EntitySystem
 {
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESEmoteSystem _emote = default!;
     [Dependency] private ReplacementAccentSystem _replacement = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
 
@@ -30,7 +31,7 @@ public sealed partial class MumbleAccentSystem : EntitySystem
         if (TryComp<VocalComponent>(ent.Owner, out var vocalComp) && vocalComp.EmoteSounds is { } sounds)
         {
             // play a muffled version of the vocal emote
-            args.Handled = _chat.TryPlayEmoteSound(
+            args.Handled = _emote.TryPlayEmoteSound(
                 ent.Owner,
                 _prototype.Index(sounds),
                 args.Emote,

@@ -16,3 +16,6 @@ es-stagehand-notification-objective-failed = {$entity} failed their objective "{
 es-stagehand-notification-secret-identity-change = {$player} donned a new secret identity, becoming {INDEFINITE($secretIdentity)} [bold]{$secretIdentity}![/bold]
 
 es-stagehand-notification-new-stagehand = {$username} has joined the backstage crew.
+
+es-stagehand-notification-apc-bugged = {$player} bugged {$buggable}!
+es-stagehand-notification-apc-bug-removed = {$player} removed the bug from {$buggable}!

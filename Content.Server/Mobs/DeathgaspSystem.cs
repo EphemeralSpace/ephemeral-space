@@ -1,15 +1,13 @@
-﻿using Content.Server.Chat.Systems;
-using Content.Server.Speech.Muting;
+﻿using Content.Shared._ES.Chat;
 using Content.Shared.Mobs;
 using Content.Shared.Speech.Muting;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Mobs;
 
 /// <see cref="DeathgaspComponent"/>
 public sealed partial class DeathgaspSystem: EntitySystem
 {
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESEmoteSystem _emote = default!;
 
     public override void Initialize()
     {
@@ -38,7 +36,7 @@ public sealed partial class DeathgaspSystem: EntitySystem
         if (HasComp<MutedComponent>(uid))
             return false;
 
-        _chat.TryEmoteWithChat(uid, component.Prototype, ignoreActionBlocker: true);
+        _emote.TryEmoteWithChat(uid, component.Prototype, ignoreActionBlocker: true);
 
         return true;
     }

@@ -1,0 +1,31 @@
+﻿- type: esMasquerade
+  id: Banquet
+  name: The Banquet
+  description: is a collection of the station’s hungriest fellows along with those curating the “menu”.
+  weight: 0.2
+  minPlayers: 6
+  gameRules: []
+  masquerade:
+    defaultSecretIdentity: "Cannibal"
+    superfanTarget: "#Traitors"
+    roles:
+      6: ["#Traitors(2)", "#AllCrew", "Cannibal", "Vandal", "#Targeters"] # 2 traitors
+      7: ["#AllCrew"]
+      8: ["#AllCrew"]
+      10: ["#SemiTraitor"]
+      11: ["#Targeters"]
+      12: ["#AllCrew"]
+      13: ["#Traitors"]  # 3 traitors.
+      15: ["#Targeters"]
+      16: ["Avenger"] # 3 traitors.
+      17: ["#AllCrew"]
+      18: ["#Gunners"] # 3 traitors.
+      19: ["Marauder"] # 4 traitors.
+      21: ["#AllCrew", "-#Traitors", "#PowerTraitors"] # 4 traitors.
+      22: ["#AllCrew"]
+      24: ["Avenger"] # 4 traitors.
+      25: ["#Traitors"] # 5 traitors.
+      26: ["#AllCrew"]
+      28: ["#Targeters"]
+      30: ["#AllCrew"]
+      31: ["#Traitors", "#AllCrew"] # 6 traitors.

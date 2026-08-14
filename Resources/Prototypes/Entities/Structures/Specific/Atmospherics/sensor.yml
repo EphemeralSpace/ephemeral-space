@@ -24,10 +24,8 @@
       WaterVapor: stationWaterVapor
       Miasma: stationMiasma
       NitrousOxide: stationNO
-      Cryogas: danger
-      # ES START
+      Cryogas: ESStationCryogas
       Smoke: ESStationSmoke
-      # ES END
 
 - type: entity
   id: AirSensor

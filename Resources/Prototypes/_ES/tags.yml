@@ -21,6 +21,9 @@
   id: ES9mmMagazine
 
 - type: Tag
+  id: ESBlackjack
+
+- type: Tag
   id: ESComputerTabletop
 
 # Items that can be stored in the display case

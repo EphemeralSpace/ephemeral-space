@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Content.Server.Administration.Systems;
 using Content.Server.Database;
 using Content.Server.GameTicking;
+using Content.Shared._ES.Chat;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
-using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Mind;
 using Content.Shared.Players.PlayTimeTracking;
@@ -36,7 +36,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
     [Dependency] private IDependencyCollection _dependencies = default!;
     [Dependency] private ISharedPlayerManager _player = default!;
     [Dependency] private ISharedPlaytimeManager _playtime = default!;
-    [Dependency] private ISharedChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private IPrototypeManager _proto = default!;
 
     public const string SawmillId = "admin.logs";
@@ -462,15 +462,15 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
         if (adminLog)
         {
-            _chat.SendAdminAlert(logMessage);
+            _chat.SendAdminMessage(logMessage);
 
             if (CreateTpLinks(playerNetEnts, out var tpLinks))
-                _chat.SendAdminAlertNoFormatOrEscape(tpLinks);
+                _chat.SendAdminMessage(tpLinks);
 
             var coords = GetCoordinates(handler.Values);
 
             if (CreateCordLinks(coords, out var cordLinks))
-                _chat.SendAdminAlertNoFormatOrEscape(cordLinks);
+                _chat.SendAdminMessage(cordLinks);
         }
     }
 

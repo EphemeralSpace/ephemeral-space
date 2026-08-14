@@ -15,13 +15,15 @@
     butcheringType: Spike
     spawned:
     - id: FoodMeat
-      amount: 5
+      amount: 3
 # Monkey Quirks
   - type: Deathgasp
     prototype: MonkeyDeathgasp
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Monkey_burning
+  - type: DamageVisuals # no sprites for this atm
+    disabled: true
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg

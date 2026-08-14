@@ -1,13 +1,11 @@
-using Content.Server.Chat.Managers;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Stagehand;
 using Content.Shared._ES.Stagehand.Components;
-using Content.Shared.Chat;
 using Content.Shared.Mind;
 using JetBrains.Annotations;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
 
 namespace Content.Server._ES.Stagehand;
@@ -17,8 +15,8 @@ namespace Content.Server._ES.Stagehand;
 /// </summary>
 public sealed partial class ESStagehandNotificationsSystem : ESSharedStagehandNotificationsSystem
 {
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private ESSharedObjectiveSystem _objectives = default!;
-    [Dependency] private IChatManager _chat = default!;
 
     public override void Initialize()
     {
@@ -104,11 +102,11 @@ public sealed partial class ESStagehandNotificationsSystem : ESSharedStagehandNo
     [PublicAPI]
     public override void SendStagehandNotification(string msg, ESStagehandNotificationSeverity severity = ESStagehandNotificationSeverity.Medium)
     {
-        var stagehands = new List<INetChannel>();
+        var stagehands = new List<ICommonSession>();
         var query = EntityQueryEnumerator<ESStagehandComponent, ActorComponent>();
         while (query.MoveNext(out _, out _, out var actor))
         {
-            stagehands.Add(actor.PlayerSession.Channel);
+            stagehands.Add(actor.PlayerSession);
         }
 
         var locId = severity switch
@@ -119,6 +117,6 @@ public sealed partial class ESStagehandNotificationsSystem : ESSharedStagehandNo
         };
 
         var wrappedMsg = Loc.GetString(locId, ("message", msg));
-        _chat.ChatMessageToMany(ChatChannel.Server, msg, wrappedMsg, default, false, true, stagehands, Color.Plum);
+        _chat.SendChatMessage(wrappedMsg, stagehands, IESSharedChatManager.ServerChannel, null, color: Color.Plum);
     }
 }

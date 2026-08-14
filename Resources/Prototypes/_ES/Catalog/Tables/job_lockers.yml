@@ -12,7 +12,7 @@
     - id: NukeDisk
     - id: PinpointerNuclear
     - id: RubberStampCaptain
-    - id: Stunbaton
+    - id: ESWeaponBlackjack
     - id: ForensicScanner
     - id: ClothingEyesGlassesSecurity
 
@@ -27,7 +27,7 @@
     - id: ClothingHeadsetAltCommand
     - id: ClothingNeckGoldmedal
     - id: StationAdminIDCard
-    - id: Stunbaton
+    - id: ESWeaponBlackjack
     - id: LuxuryPen
     - id: ClothingEyesHudSecurity
 
@@ -179,11 +179,9 @@
     - id: SheetSteel
     - id: SheetGlass
     - id: SheetPlastic
-    - id: BoxFolderClipboardEmpty
-    - id: Pen
-    - id: BoxFolderYellow
-    - id: Paper
-      amount: 1, 5
+    - group: # testing: idk how these will play out or which one will be a better fit. so lets just try both
+      - id: WeaponGrapplingGun
+      - id: WeaponForceGun
 
 # Science
 - type: entityTable

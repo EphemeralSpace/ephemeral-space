@@ -1,15 +1,14 @@
 using Content.Server._ES.SecretIdentity.Avenger.Components;
-using Content.Server.Chat.Managers;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Objectives.Target;
-using Content.Shared.Chat;
 using Robust.Server.Player;
 
 namespace Content.Server._ES.SecretIdentity.Avenger;
 
 public sealed partial class ESDirectKillTargetObjectiveSystem : ESBaseTargetObjectiveSystem<ESDirectKillTargetObjectiveComponent>
 {
-    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IESSharedChatManager _chatManager = default!;
     [Dependency] private IPlayerManager _player = default!;
 
     public override Type[] TargetRelayComponents { get; } = [typeof(ESDirectKillTargetObjectiveMarkerComponent)];
@@ -46,8 +45,7 @@ public sealed partial class ESDirectKillTargetObjectiveSystem : ESBaseTargetObje
             if (objective.Comp.SuccessMessage.HasValue && _player.TryGetSessionById(killerMind.Value.Comp.UserId, out var session))
             {
                 var msg = Loc.GetString(objective.Comp.SuccessMessage, ("name", Name(args.Killed)));
-                var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
-                _chatManager.ChatMessageToOne(ChatChannel.Server, msg, wrappedMsg, default, false, session.Channel, Color.Pink);
+                _chatManager.SendServerMessage(msg, session, Color.Pink);
             }
         }
     }

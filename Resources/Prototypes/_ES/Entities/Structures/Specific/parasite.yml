@@ -34,3 +34,20 @@
   - type: EmitSoundOnSpawn
     sound:
       collection: desecration
+
+- type: entity
+  parent: BaseStructure
+  id: ESWormNest
+  name: parasite nest
+  description: A clump of parasite, feeding off a dead body. Yummy...
+  components:
+  - type: Sprite
+    drawdepth: OverMobs
+    layers:
+    - sprite: _ES/Structures/Specific/worm.rsi
+      state: nest
+  - type: InteractionOutline
+  - type: Physics
+    canCollide: false
+  - type: Transform
+    anchored: false
