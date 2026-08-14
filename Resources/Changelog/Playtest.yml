@@ -1738,3 +1738,9 @@ Entries:
         option enabled
   id: 186
   time: '2026-08-12T06:37:01.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Add
+      message: 'New Cannibal themed masquerade '
+  id: 187
+  time: '2026-08-14T04:33:42.0000000+00:00'
