@@ -28,9 +28,9 @@ public sealed partial class PopupUIController : UIController, IOnStateEntered<Ga
 
         // ES START
         // TODO: Move fonts to stylesheets, respect user font preferences.
-        _smallFont = new VectorFont(_cache.GetResource<FontResource>("/Fonts/_ES/Grand9KPixelRegular.ttf"), 10);
-        _mediumFont = new VectorFont(_cache.GetResource<FontResource>("/Fonts/_ES/Grand9KPixelRegular.ttf"), 12);
-        _largeFont = new VectorFont(_cache.GetResource<FontResource>("/Fonts/_ES/Grand9KPixelRegular.ttf"), 14);
+        _smallFont = new VectorFont(_cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Regular.ttf"), 10);
+        _mediumFont = new VectorFont(_cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Regular.ttf"), 12);
+        _largeFont = new VectorFont(_cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Regular.ttf"), 14);
         // ES END
     }
 

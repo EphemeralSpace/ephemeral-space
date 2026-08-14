@@ -25,6 +25,7 @@ public static class StyleClass
 
     public const string FontLarge = "font-large";
     public const string FontSmall = "font-small";
+    public const string FontChat = "font-chatl";
     public const string Italic = "italic";
     public const string Monospace = "monospace";
 
