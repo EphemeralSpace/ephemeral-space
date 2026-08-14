@@ -3,9 +3,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
+using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Players;
@@ -27,7 +27,7 @@ namespace Content.Server.Administration.Managers;
 public sealed partial class BanManager : IBanManager, IPostInjectInit
 {
     [Dependency] private IConfigurationManager _cfg = default!;
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private IServerDbManager _db = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private ILocalizationManager _localizationManager = default!;
@@ -166,7 +166,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             ("reason", banInfo.Reason));
 
         _sawmill.Info(logMessage);
-        _chat.SendAdminAlert(logMessage);
+        _chat.SendAdminMessage(logMessage);
 
         KickMatchingConnectedPlayers(banDef, "newly placed ban");
     }
@@ -245,7 +245,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             ? "null"
             : string.Join(", ", banInfo.Users.Select(u => $"{u.UserName} ({u.UserId})"));
 
-        _chat.SendAdminAlert(Loc.GetString(
+        _chat.SendAdminMessage(Loc.GetString(
             "cmd-roleban-success",
             ("target", targetName),
             ("role", string.Join(", ", roleDefs)),

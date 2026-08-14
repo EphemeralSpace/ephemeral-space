@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Logs;
-using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Server.Roles.Jobs;
@@ -23,11 +22,9 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
-using Content.Shared.Movement.Systems;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
-using Content.Shared.Tag;
 using Content.Shared.Warps;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
@@ -38,9 +35,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-// ES START
 using Content.Server._ES.Stagehand;
-// ES END
+using Content.Shared._ES.Chat;
 
 namespace Content.Server.Ghost
 {
@@ -63,7 +59,7 @@ namespace Content.Server.Ghost
         [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private IConfigurationManager _configurationManager = default!;
-        [Dependency] private IChatManager _chatManager = default!;
+        [Dependency] private IESSharedChatManager _chatManager = default!;
         [Dependency] private SharedMindSystem _mind = default!;
         [Dependency] private GameTicker _gameTicker = default!;
         [Dependency] private DamageableSystem _damageable = default!;
@@ -534,8 +530,7 @@ namespace Content.Server.Ghost
             {
                 if (_player.TryGetSessionById(mind.UserId, out var session)) // Logging is suppressed to prevent spam from ghost attempts caused by movement attempts
                 {
-                    _chatManager.DispatchServerMessage(session, Loc.GetString("comp-mind-ghosting-prevented"),
-                        true);
+                    _chatManager.SendServerMessage(Loc.GetString("comp-mind-ghosting-prevented"), session);
                 }
 
                 return false;

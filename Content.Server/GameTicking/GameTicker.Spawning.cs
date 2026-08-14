@@ -101,7 +101,7 @@ namespace Content.Server.GameTicking
                     var evNoJobs = new NoJobsAvailableSpawningEvent(playerSession); // Used by gamerules to wipe their antag slot, if they got one
                     RaiseLocalEvent(evNoJobs);
 
-                    _chatManager.DispatchServerMessage(playerSession, Loc.GetString("job-not-available-wait-in-lobby"));
+                    _chatManager.SendServerMessage(Loc.GetString("job-not-available-wait-in-lobby"), playerSession);
                 }
                 else
                 {
@@ -211,8 +211,7 @@ namespace Content.Server.GameTicking
                 var evNoJobs = new NoJobsAvailableSpawningEvent(player); // Used by gamerules to wipe their antag slot, if they got one
                 RaiseLocalEvent(evNoJobs);
 
-                _chatManager.DispatchServerMessage(player,
-                    Loc.GetString("game-ticker-player-no-jobs-available-when-joining"));
+                _chatManager.SendServerMessage(Loc.GetString("game-ticker-player-no-jobs-available-when-joining"), player);
                 return;
             }
 
@@ -304,13 +303,12 @@ namespace Content.Server.GameTicking
             if (Comp<StationJobsComponent>(station).ExtendedAccess
                 && (jobPrototype.ExtendedAccess.Count > 0 || jobPrototype.ExtendedAccessGroups.Count > 0))
             {
-                _chatManager.DispatchServerMessage(player, Loc.GetString("job-greet-crew-shortages"));
+                _chatManager.SendServerMessage(Loc.GetString("job-greet-crew-shortages"), player);
             }
 
             if (!silent && TryComp(station, out MetaDataComponent? metaData))
             {
-                _chatManager.DispatchServerMessage(player,
-                    Loc.GetString("job-greet-station-name", ("stationName", metaData.EntityName)));
+                _chatManager.SendServerMessage(Loc.GetString("job-greet-station-name", ("stationName", metaData.EntityName)), player);
             }
 
             // We raise this event directed to the mob, but also broadcast it so game rules can do something now.

@@ -1,9 +1,8 @@
-﻿using Content.Shared.CCVar;
-using Content.Shared.Chat;
+﻿using Content.Shared._ES.Chat;
+using Content.Shared.CCVar;
 using Content.Shared.Communications;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
-using Robust.Shared.Timing;
 
 namespace Content.Client.Communications.UI
 {
@@ -49,7 +48,7 @@ namespace Content.Client.Communications.UI
         public void AnnounceButtonPressed(string message)
         {
             var maxLength = _cfg.GetCVar(CCVars.ChatMaxAnnouncementLength);
-            var msg = SharedChatSystem.SanitizeAnnouncement(message, maxLength);
+            var msg = ESSharedChatSystem.SanitizeAnnouncement(message, maxLength);
             SendMessage(new CommunicationsConsoleAnnounceMessage(msg));
         }
 

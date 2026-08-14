@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using Content.Server.Chat.Managers;
+using Content.Shared._ES.Chat;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
@@ -12,7 +12,7 @@ namespace Content.Server.Roles.Jobs;
 /// </summary>
 public sealed partial class JobSystem : SharedJobSystem
 {
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private ISharedPlayerManager _player = default!;
     [Dependency] private RoleSystem _roles = default!;
 
@@ -38,8 +38,9 @@ public sealed partial class JobSystem : SharedJobSystem
         if (!MindTryGetJob(mindId, out var prototype))
             return;
 
-        _chat.DispatchServerMessage(session, Loc.GetString("job-greet-introduce-job-name",
-            ("jobName", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(prototype.LocalizedName))));
+        _chat.SendServerMessage(Loc.GetString("job-greet-introduce-job-name",
+            ("jobName", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(prototype.LocalizedName))),
+            session);
     }
 
     public void MindAddJob(EntityUid mindId, string jobPrototypeId)

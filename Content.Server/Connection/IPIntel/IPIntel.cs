@@ -2,8 +2,8 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using Content.Server.Chat.Managers;
 using Content.Server.Database;
+using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.Players.PlayTimeTracking;
 using Robust.Shared.Configuration;
@@ -18,7 +18,7 @@ public sealed class IPIntel
 {
     private readonly IIPIntelApi _api;
     private readonly IServerDbManager _db;
-    private readonly IChatManager _chatManager;
+    private readonly IESSharedChatManager _chatManager;
     private readonly IGameTiming _gameTiming;
 
     private readonly ISawmill _sawmill;
@@ -27,7 +27,7 @@ public sealed class IPIntel
         IServerDbManager db,
         IConfigurationManager cfg,
         ILogManager logManager,
-        IChatManager chatManager,
+        IESSharedChatManager chatManager,
         IGameTiming gameTiming)
     {
         _api = api;
@@ -257,7 +257,7 @@ public sealed class IPIntel
 
         if (_alertAdminWarn != 0f && _alertAdminWarn < score && !decisionIsReject)
         {
-            _chatManager.SendAdminAlert(Loc.GetString("admin-alert-ipintel-warning",
+            _chatManager.SendAdminMessage(Loc.GetString("admin-alert-ipintel-warning",
                 ("player", username),
                 ("percent", score)));
         }
@@ -267,7 +267,7 @@ public sealed class IPIntel
 
         if (_alertAdminReject)
         {
-            _chatManager.SendAdminAlert(Loc.GetString("admin-alert-ipintel-blocked",
+            _chatManager.SendAdminMessage(Loc.GetString("admin-alert-ipintel-blocked",
                 ("player", username),
                 ("percent", score)));
         }

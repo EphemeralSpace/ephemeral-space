@@ -1,5 +1,5 @@
-using Content.Server.Chat.Systems;
-using Content.Shared.Chat;
+using Content.Server._ES.Chat;
+using Content.Shared._ES.Chat;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Components.Effects;
 using Robust.Shared.Prototypes;
@@ -11,7 +11,7 @@ public sealed partial class SpeakOnTriggerSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESChatSystem _chat = default!;
 
     public override void Initialize()
     {
@@ -39,11 +39,7 @@ public sealed partial class SpeakOnTriggerSystem : EntitySystem
                 return;
             message = Loc.GetString(_random.Pick(messagePack.Values));
         }
-        // Chatcode moment: messages starting with "." are considered radio messages.
-        // Prepending ">" forces the message to be spoken instead.
-        // TODO chat refactor: remove this
-        message = '>' + message;
-        _chat.TrySendInGameICMessage(target.Value, message, InGameICChatType.Speak, true);
+        _chat.TrySendMessage(message, ESSharedChatSystem.LocalChannel, target.Value);
         args.Handled = true;
     }
 }

@@ -1,5 +1,7 @@
+using Content.Shared._ES.Chat;
 using Robust.Shared.Serialization;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Radio.Components;
 
@@ -50,7 +52,7 @@ public sealed partial class RadioJammerComponent : Component
     /// Frequencies that are NOT jammed by this jammer.
     /// </summary>
     [DataField]
-    public HashSet<int> FrequenciesExcluded = [];
+    public HashSet<ProtoId<ESChatChannelPrototype>> FrequenciesExcluded = [];
 
     /// <summary>
     /// Index of the currently selected setting.

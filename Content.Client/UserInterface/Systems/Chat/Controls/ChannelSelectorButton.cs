@@ -1,13 +1,16 @@
 using System.Numerics;
-using Content.Shared.Chat;
+using Content.Shared._ES.Chat;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
 public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup>
 {
-    public event Action<ChatSelectChannel>? OnChannelSelect;
+    private readonly ChatUIController _chatUIController;
 
-    public ChatSelectChannel SelectedChannel { get; private set; }
+    public event Action<ProtoId<ESChatChannelPrototype>>? OnChannelSelect;
+
+    public ProtoId<ESChatChannelPrototype> SelectedChannel { get; private set; }
 
     private const int SelectorDropdownOffset = 38;
 
@@ -17,10 +20,15 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
 
         Popup.Selected += OnChannelSelected;
 
-        if (Popup.FirstChannel is { } firstSelector)
-        {
-            Select(firstSelector);
-        }
+        _chatUIController = UserInterfaceManager.GetUIController<ChatUIController>();
+        _chatUIController.LocalChatPermissionsUpdated += OnChatPermissionsUpdated;
+
+        UpdateChannels();
+    }
+
+    private void OnChatPermissionsUpdated(EntityUid arg1, HashSet<ProtoId<ESChatChannelPrototype>> arg2)
+    {
+        UpdateChannels();
     }
 
     protected override UIBox2 GetPopupPosition()
@@ -32,12 +40,22 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
             new Vector2(SizeBox.Width, SelectorDropdownOffset));
     }
 
-    private void OnChannelSelected(ChatSelectChannel channel)
+    private void OnChannelSelected(ProtoId<ESChatChannelPrototype> channel)
     {
         Select(channel);
     }
 
-    public void Select(ChatSelectChannel channel)
+    public void UpdateChannels()
+    {
+        Popup.UpdateChannels(_chatUIController.GetPermittedChannels());
+        if (Popup.FirstChannel is { } firstSelector &&
+            !Popup.Channels.Contains(SelectedChannel))
+        {
+            Select(firstSelector);
+        }
+    }
+
+    public void Select(ProtoId<ESChatChannelPrototype> channel)
     {
         if (Popup.Visible)
         {
@@ -50,29 +68,9 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
         OnChannelSelect?.Invoke(channel);
     }
 
-    public static string ChannelSelectorName(ChatSelectChannel channel)
+    public void UpdateChannelSelectButton(ESChatChannelPrototype channel)
     {
-        return Loc.GetString($"hud-chatbox-select-channel-{channel}");
-    }
-
-    public Color ChannelSelectColor(ChatSelectChannel channel)
-    {
-        return channel switch
-        {
-            ChatSelectChannel.Radio => Color.LimeGreen,
-            ChatSelectChannel.LOOC => Color.MediumTurquoise,
-            // ES START
-            ChatSelectChannel.OOC => Color.Plum,
-            ChatSelectChannel.Dead => Color.FromHex("#b9b9f8"),
-            // ES END
-            ChatSelectChannel.Admin => Color.HotPink,
-            _ => Color.DarkGray
-        };
-    }
-
-    public void UpdateChannelSelectButton(ChatSelectChannel channel, Shared.Radio.RadioChannelPrototype? radio)
-    {
-        Text = radio != null ? Loc.GetString(radio.Name) : ChannelSelectorName(channel);
-        Modulate = radio?.Color ?? ChannelSelectColor(channel);
+        Text = Loc.GetString(channel.Name);
+        Modulate = channel.Color;
     }
 }

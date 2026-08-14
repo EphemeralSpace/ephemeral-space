@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Client.UserInterface.Systems.Chat;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.Mapping;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
@@ -12,7 +13,7 @@ public sealed partial class ESMapperSelectionTileOverlay : GridOverlay
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private IUserInterfaceManager _ui = default!;
 
-    private readonly ChatUIController _chat;
+    private readonly ESSharedChatSystem _chat;
     private readonly ESSelectionSystem _selection;
     private readonly SharedTransformSystem _xform;
     private readonly SharedMapSystem _map;
@@ -20,7 +21,7 @@ public sealed partial class ESMapperSelectionTileOverlay : GridOverlay
     public ESMapperSelectionTileOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _chat = _ui.GetUIController<ChatUIController>();
+        _chat = _entManager.System<ESSharedChatSystem>();
         _selection = _entManager.System<ESSelectionSystem>();
         _xform = _entManager.System<SharedTransformSystem>();
         _map = _entManager.System<SharedMapSystem>();
@@ -72,7 +73,7 @@ public sealed partial class ESMapperSelectionTileOverlay : GridOverlay
             var localBox = invWorldMatrix.TransformBox(worldBox);
 
             var name = _entManager.GetComponent<MetaDataComponent>(uid).EntityName;
-            var color = _chat.GetNameColor(name);
+            var color = _chat.GetChatColor(name);
 
             handle.SetTransform(worldMatrix);
 

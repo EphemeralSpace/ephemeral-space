@@ -4,7 +4,6 @@ using Content.Shared.Speech.Components;
 using Content.Shared.SurveillanceCamera.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Player;
-using static Content.Server.Chat.Systems.ChatSystem;
 
 namespace Content.Server.SurveillanceCamera;
 
@@ -18,9 +17,11 @@ public sealed partial class SurveillanceCameraMicrophoneSystem : EntitySystem
         SubscribeLocalEvent<SurveillanceCameraMicrophoneComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<SurveillanceCameraMicrophoneComponent, ListenEvent>(RelayEntityMessage);
         SubscribeLocalEvent<SurveillanceCameraMicrophoneComponent, ListenAttemptEvent>(CanListen);
-        SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandRecipients);
+        //SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandRecipients);
     }
 
+    // TODO: not implementing this bullshit right now but OH MY GOD this should just be part of getrecipients for chat messages.
+    /*
     private void OnExpandRecipients(ExpandICChatRecipientsEvent ev)
     {
         var xformQuery = GetEntityQuery<TransformComponent>();
@@ -50,6 +51,7 @@ public sealed partial class SurveillanceCameraMicrophoneSystem : EntitySystem
             }
         }
     }
+    */
 
     private void OnInit(EntityUid uid, SurveillanceCameraMicrophoneComponent component, ComponentInit args)
     {

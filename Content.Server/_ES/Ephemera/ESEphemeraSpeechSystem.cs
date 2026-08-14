@@ -1,8 +1,7 @@
 using System.Diagnostics;
 using System.Linq;
+using Content.Server._ES.Chat;
 using Content.Server._ES.Ephemera.Components;
-using Content.Server.Chat.Systems;
-using Content.Shared.Chat;
 using Content.Shared.Interaction;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
@@ -19,7 +18,7 @@ public sealed partial class ESEphemeraSpeechSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private AudioSystem _audio = default!;
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESChatSystem _chat = default!;
     [Dependency] private RotateToFaceSystem _rotateToFace = default!;
     [Dependency] private TransformSystem _transform = default!;
 
@@ -108,7 +107,7 @@ public sealed partial class ESEphemeraSpeechSystem : EntitySystem
 
         // Send the current dialogue line into chat.
         var message = ev.Line!;
-        _chat.TrySendInGameICMessage(ent, message, InGameICChatType.Speak, ChatTransmitRange.GhostRangeLimit, hideLog: true, ignoreActionBlocker: true);
+        _chat.TrySendMessage(message, ent.Comp.SpeakChannel, ent, hideChat: true);
 
         // Play talk sound effect
         // TODO: associate this with message length

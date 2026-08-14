@@ -1,0 +1,45 @@
+- type: esChatChannel
+  id: Lobby
+  name: es-chat-channel-name-lobby
+  order: 20
+  color: Plum
+  textColor: plum
+  chatProcessor: LobbyChatProcessor
+  prefixes: [ "[" ]
+  filterCategory: Lobby
+  speechBubbleType: say
+  focusKey: FocusOOCWindow
+  discordRelayChannel: OOC
+
+- type: entity
+  id: LobbyChatProcessor
+  components:
+  - type: ESUsernameChatChannel
+  - type: ESAdminChatChannel # Admins can always see and send messages in lobby chat
+    adminSendable: true
+  - type: ESTheatergoerChatChannel
+  - type: ESSimpleFormatChatChannel
+    format: es-chat-channel-lobby-fmt
+
+- type: esChatChannel
+  id: Stagehand
+  name: es-chat-channel-name-stagehand
+  order: 21
+  color: "#b9b9f8"
+  textColor: "#b9b9f8"
+  chatProcessor: StagehandChatProcessor
+  prefixes: [ "\\" ]
+  filterCategory: Stagehand
+  chatBoxLocation: Stagehand
+  speechBubbleType: say
+  focusKey: FocusDeadChatWindow
+
+- type: entity
+  id: StagehandChatProcessor
+  components:
+  - type: ESUsernameChatChannel
+  - type: ESAdminChatChannel
+    adminSendable: true
+  - type: ESStagehandChatChannel
+  - type: ESSimpleFormatChatChannel
+    format: es-chat-channel-stagehand-fmt

@@ -1,7 +1,6 @@
-using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
-using Content.Shared.Chat;
 using Robust.Shared.Console;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -13,7 +12,7 @@ namespace Content.Server.Motd;
 /// </summary>
 public sealed partial class MOTDSystem : EntitySystem
 {
-    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IESSharedChatManager _chatManager = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
 
     /// <summary>
@@ -37,7 +36,7 @@ public sealed partial class MOTDSystem : EntitySystem
             return;
 
         var wrappedMessage = Loc.GetString("motd-wrap-message", ("motd", _messageOfTheDay));
-        _chatManager.ChatMessageToAll(ChatChannel.Server, _messageOfTheDay, wrappedMessage, source: EntityUid.Invalid, hideChat: false, recordReplay: true);
+        _chatManager.SendChatMessage(wrappedMessage, IESSharedChatManager.ServerChannel);
     }
 
     /// <summary>
@@ -49,7 +48,7 @@ public sealed partial class MOTDSystem : EntitySystem
             return;
 
         var wrappedMessage = Loc.GetString("motd-wrap-message", ("motd", _messageOfTheDay));
-        _chatManager.ChatMessageToOne(ChatChannel.Server, _messageOfTheDay, wrappedMessage, source: EntityUid.Invalid, hideChat: false, client: player.Channel);
+        _chatManager.SendChatMessage(wrappedMessage, player, IESSharedChatManager.ServerChannel);
     }
 
     /// <summary>
@@ -66,7 +65,7 @@ public sealed partial class MOTDSystem : EntitySystem
         var wrappedMessage = Loc.GetString("motd-wrap-message", ("motd", _messageOfTheDay));
         shell.WriteLine(wrappedMessage);
         if (shell.Player is { } player)
-            _chatManager.ChatMessageToOne(ChatChannel.Server, _messageOfTheDay, wrappedMessage, source: EntityUid.Invalid, hideChat: false, client: player.Channel);
+            _chatManager.SendChatMessage(wrappedMessage, player, IESSharedChatManager.ServerChannel);
     }
 
     #region Event Handlers

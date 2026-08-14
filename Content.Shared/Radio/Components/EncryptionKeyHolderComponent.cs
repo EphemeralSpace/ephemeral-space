@@ -1,3 +1,4 @@
+using Content.Shared._ES.Chat;
 using Content.Shared.Chat;
 using Content.Shared.Tools;
 using Robust.Shared.Audio;
@@ -42,7 +43,7 @@ public sealed partial class EncryptionKeyHolderComponent : Component
     ///     Combined set of radio channels provided by all contained keys.
     /// </summary>
     [ViewVariables]
-    public HashSet<ProtoId<RadioChannelPrototype>> Channels = new();
+    public HashSet<ProtoId<ESChatChannelPrototype>> Channels = new();
 
     /// <summary>
     ///     This is the channel that will be used when using the default/department prefix (<see cref="SharedChatSystem.DefaultChannelKey"/>).

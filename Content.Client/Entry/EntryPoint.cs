@@ -1,6 +1,6 @@
+using Content.Client._ES.Chat;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
-using Content.Client.Chat.Managers;
 using Content.Client.DebugMon;
 using Content.Client.Eui;
 using Content.Client.Fullscreen;
@@ -42,6 +42,7 @@ namespace Content.Client.Entry
 {
     public sealed partial class EntryPoint : GameClient
     {
+        [Dependency] private IESChatManager _esChat = default!;
         [Dependency] private IBaseClient _baseClient = default!;
         [Dependency] private IGameController _gameController = default!;
         [Dependency] private IStateManager _stateManager = default!;
@@ -57,7 +58,6 @@ namespace Content.Client.Entry
         [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
         [Dependency] private IInputManager _inputManager = default!;
         [Dependency] private IOverlayManager _overlayManager = default!;
-        [Dependency] private IChatManager _chatManager = default!;
         [Dependency] private IClientPreferencesManager _clientPreferencesManager = default!;
         [Dependency] private EuiManager _euiManager = default!;
         [Dependency] private IVoteManager _voteManager = default!;
@@ -98,7 +98,6 @@ namespace Content.Client.Entry
 
             _prototypeManager.RegisterIgnore("utilityQuery");
             _prototypeManager.RegisterIgnore("utilityCurvePreset");
-            _prototypeManager.RegisterIgnore("accent");
             _prototypeManager.RegisterIgnore("gasReaction");
             _prototypeManager.RegisterIgnore("seed"); // Seeds prototypes are server-only.
             _prototypeManager.RegisterIgnore("objective");
@@ -168,7 +167,7 @@ namespace Content.Client.Entry
 
             _overlayManager.AddOverlay(new SingularityOverlay());
             _overlayManager.AddOverlay(new RadiationPulseOverlay());
-            _chatManager.Initialize();
+            _esChat.Initialize();
             _clientPreferencesManager.Initialize();
             _euiManager.Initialize();
             _voteManager.Initialize();

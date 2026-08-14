@@ -1,15 +1,14 @@
 using System.Linq;
 using Content.Server._ES.Stagehand;
 using Content.Server.Actions;
-using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Roles.Jobs;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.Auditions.Components;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared._ES.Stagehand;
-using Content.Shared.Chat;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
@@ -24,7 +23,7 @@ namespace Content.Server._ES.SecretIdentity;
 
 public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySystem
 {
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private EntityTableSystem _entityTable = default!;
@@ -246,7 +245,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         if (_player.TryGetSessionById(mind.Comp.UserId, out var session))
         {
-            _chat.ChatMessageToOne(ChatChannel.Server, msg, msg, default, false, session.Channel, Color.Plum);
+            _chat.SendServerMessage(msg, session, Color.Plum);
         }
 
         if (mind.Comp.OwnedEntity is { } ownedEntity)

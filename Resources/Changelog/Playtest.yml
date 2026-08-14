@@ -1738,3 +1738,29 @@ Entries:
         option enabled
   id: 186
   time: '2026-08-12T06:37:01.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Add
+      message: 'New Cannibal themed masquerade '
+  id: 187
+  time: '2026-08-14T04:33:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Lobby chat is now available to people in the theater after the round
+        starts.
+    - type: Tweak
+      message: >-
+        The entire chat backend has been overhauled. Report bugs if you see
+        message strangeness.
+    - type: Remove
+      message: Removed intercoms, hand radios, and holopads.
+  id: 188
+  time: '2026-08-14T14:41:09.0000000+00:00'
+- author: sowelipililimute
+  changes:
+    - type: Add
+      message: Chat now uses Wormtown9k, a pixel font.
+  id: 189
+  time: '2026-08-14T20:31:49.0000000+00:00'

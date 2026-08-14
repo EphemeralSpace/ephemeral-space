@@ -1,5 +1,5 @@
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Chat.Managers;
+using Content.Shared._ES.Chat;
 using Content.Shared.GameTicking.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
@@ -10,7 +10,7 @@ namespace Content.Server.GameTicking.Rules;
 public abstract partial class GameRuleSystem<T> : EntitySystem where T : IComponent
 {
     [Dependency] protected IRobustRandom RobustRandom = default!;
-    [Dependency] protected IChatManager ChatManager = default!;
+    [Dependency] protected IESSharedChatManager ChatManager = default!;
     [Dependency] protected GameTicker GameTicker = default!;
     [Dependency] protected IGameTiming Timing = default!;
 
@@ -52,7 +52,7 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
 
             if (gameRule.CancelPresetOnTooFewPlayers)
             {
-                ChatManager.SendAdminAnnouncement(Loc.GetString("preset-not-enough-ready-players",
+                ChatManager.SendAdminMessage(Loc.GetString("preset-not-enough-ready-players",
                     ("readyPlayersCount", args.Players.Length),
                     ("minimumPlayers", minPlayers),
                     ("presetName", name)));

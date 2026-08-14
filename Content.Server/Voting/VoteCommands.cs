@@ -1,9 +1,9 @@
 using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
-using Content.Server.Chat.Managers;
 using Content.Server.Discord.WebhookMessages;
 using Content.Server.Voting.Managers;
+using Content.Shared._ES.Chat;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -68,7 +68,7 @@ namespace Content.Server.Voting
     {
         [Dependency] private IVoteManager _voteManager = default!;
         [Dependency] private IAdminLogManager _adminLogger = default!;
-        [Dependency] private IChatManager _chatManager = default!;
+        [Dependency] private IESSharedChatManager _chatManager = default!;
         [Dependency] private VoteWebhooks _voteWebhooks = default!;
         [Dependency] private IConfigurationManager _cfg = default!;
 
@@ -114,12 +114,12 @@ namespace Content.Server.Voting
                 {
                     var ties = string.Join(", ", eventArgs.Winners.Select(c => args[(int) c]));
                     _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Custom vote {options.Title} finished as tie: {ties}");
-                    _chatManager.DispatchServerAnnouncement(Loc.GetString("cmd-customvote-on-finished-tie", ("title", options.Title), ("ties", ties)));
+                    _chatManager.SendServerMessage(Loc.GetString("cmd-customvote-on-finished-tie", ("title", options.Title), ("ties", ties)));
                 }
                 else
                 {
                     _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Custom vote {options.Title} finished: {args[(int) eventArgs.Winner]}");
-                    _chatManager.DispatchServerAnnouncement(Loc.GetString("cmd-customvote-on-finished-win", ("title", options.Title), ("winner", args[(int) eventArgs.Winner])));
+                    _chatManager.SendServerMessage(Loc.GetString("cmd-customvote-on-finished-win", ("title", options.Title), ("winner", args[(int) eventArgs.Winner])));
                 }
 
                 _voteWebhooks.UpdateWebhookIfConfigured(webhookState, eventArgs);

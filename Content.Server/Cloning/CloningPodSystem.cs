@@ -1,17 +1,16 @@
+using Content.Server._ES.Chat;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Chat.Systems;
 using Content.Server.Cloning.Components;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.EUI;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Materials;
-using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
+using Content.Shared._ES.Chat;
 using Content.Shared.Atmos;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cloning;
-using Content.Shared.Chat;
 using Content.Shared.Damage.Components;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Examine;
@@ -45,7 +44,7 @@ public sealed partial class CloningPodSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private PuddleSystem _puddleSystem = default!;
-    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private ESChatSystem _chatSystem = default!;
     [Dependency] private IConfigurationManager _configManager = default!;
     [Dependency] private MaterialStorageSystem _material = default!;
     [Dependency] private SharedMindSystem _mindSystem = default!;
@@ -167,7 +166,7 @@ public sealed partial class CloningPodSystem : EntitySystem
         if (biomassAmount < cloningCost)
         {
             if (clonePod.ConnectedConsole != null)
-                _chatSystem.TrySendInGameICMessage(clonePod.ConnectedConsole.Value, Loc.GetString("cloning-console-chat-error", ("units", cloningCost)), InGameICChatType.Speak, false);
+                _chatSystem.TrySendMessage(Loc.GetString("cloning-console-chat-error", ("units", cloningCost)), ESSharedChatSystem.LocalChannel, clonePod.ConnectedConsole.Value);
             return false;
         }
 
@@ -181,7 +180,7 @@ public sealed partial class CloningPodSystem : EntitySystem
             chance *= failChanceModifier;
 
             if (cellularDmg > 0 && clonePod.ConnectedConsole != null)
-                _chatSystem.TrySendInGameICMessage(clonePod.ConnectedConsole.Value, Loc.GetString("cloning-console-cellular-warning", ("percent", Math.Round(100 - chance * 100))), InGameICChatType.Speak, false);
+                _chatSystem.TrySendMessage(Loc.GetString("cloning-console-cellular-warning", ("percent", Math.Round(100 - chance * 100))), ESSharedChatSystem.LocalChannel, clonePod.ConnectedConsole.Value);
 
             if (_robustRandom.Prob(chance))
             {
@@ -198,7 +197,7 @@ public sealed partial class CloningPodSystem : EntitySystem
         if (!_cloning.TryCloning(bodyToClone, _transformSystem.GetMapCoordinates(bodyToClone), SettingsId, out var mob)) // spawn a new body
         {
             if (clonePod.ConnectedConsole != null)
-                _chatSystem.TrySendInGameICMessage(clonePod.ConnectedConsole.Value, Loc.GetString("cloning-console-uncloneable-trait-error"), InGameICChatType.Speak, false);
+                _chatSystem.TrySendMessage(Loc.GetString("cloning-console-uncloneable-trait-error"), ESSharedChatSystem.LocalChannel, clonePod.ConnectedConsole.Value);
             return false;
         }
 

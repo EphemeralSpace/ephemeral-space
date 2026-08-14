@@ -1,3 +1,4 @@
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.Viewcone.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Damage.Events;
@@ -71,6 +72,7 @@ public sealed partial class StatusEffectsSystem
         // ES START
         SubscribeLocalEvent<StatusEffectContainerComponent, GetMeleeDamageEvent>(RefRelayStatusEffectEvent);
         SubscribeLocalEvent<StatusEffectContainerComponent, ESViewconeGetAngleModifierEvent>(RelayStatusEffectEvent);
+        SubscribeLocalEvent<StatusEffectContainerComponent, ESSendChatMessageAttemptEvent>(RefRelayStatusEffectEvent);
         // ES END
     }
 

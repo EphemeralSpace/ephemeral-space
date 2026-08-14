@@ -1,12 +1,12 @@
 // ES CHANGES: Registering our IoCs.
 
+using Content.Server._ES.Chat;
 using Content.Server._ES.ServerStatus;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Notes;
 using Content.Server.Afk;
-using Content.Server.Chat.Managers;
 using Content.Server.Connection;
 using Content.Server.Database;
 using Content.Server.Discord;
@@ -25,9 +25,10 @@ using Content.Server.Preferences.Managers;
 using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
 using Content.Server.Voting.Managers;
+using Content.Shared._ES.Chat;
+using Content.Shared._ES.Chat.Sanitization;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
-using Content.Shared.Chat;
 using Content.Shared.IoC;
 using Content.Shared.Kitchen;
 using Content.Shared.Players.PlayTimeTracking;
@@ -40,8 +41,8 @@ internal static class ServerContentIoC
     public static void Register(IDependencyCollection deps)
     {
         SharedContentIoC.Register(deps);
-        deps.Register<IChatManager, ChatManager>();
-        deps.Register<ISharedChatManager, ChatManager>();
+        deps.Register<IESSharedChatManager, ESChatManager>();
+
         deps.Register<IChatSanitizationManager, ChatSanitizationManager>();
         deps.Register<IServerPreferencesManager, ServerPreferencesManager>();
         deps.Register<IServerDbManager, ServerDbManager>();
