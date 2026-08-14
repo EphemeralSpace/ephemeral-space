@@ -1,5 +1,6 @@
 using Content.Shared._ES.Chat;
 using Content.Shared._ES.Chat.Radio;
+using Content.Shared._ES.Chat.Radio.Components;
 using Content.Shared._Offbrand.StatusEffects;
 using Content.Shared.Emp;
 using Content.Shared.Inventory;
@@ -155,10 +156,11 @@ public sealed partial class HeadsetSystem : EntitySystem
         if (!headset.Enabled)
             return;
 
-        // Headsets are presumed to give listen AND speak privileges
-        foreach (var channel in holder.Channels)
+        foreach (var channlEnt in AllEntityQuery<ESWhisperRadioChatChannelComponent>())
         {
-            args.Channels.Add(channel);
+            if (!holder.Channels.Contains(channlEnt.Comp.RadioChannel))
+                continue;
+            args.Channels.Add(_chat.GetChannel(channlEnt.Owner));
         }
     }
 }

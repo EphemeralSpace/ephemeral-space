@@ -23,16 +23,22 @@
   - type: ESRequireCanSpeakChatChannel
   - type: ESSanitizationChatChannel
 
+# Whispering
 - type: esChatChannel
-  id: Whisper
+  id: BaseWhisper
+  abstract: true
   name: es-chat-channel-name-whisper
-  order: 2
   textColor: darkGray
-  chatProcessor: WhisperChatProcessor
-  prefixes: [ "," ]
   filterCategory: Whisper
   speechBubbleType: whisper
   glorfAffected: true
+
+- type: esChatChannel
+  parent: BaseWhisper
+  id: Whisper
+  order: 2
+  chatProcessor: WhisperChatProcessor
+  prefixes: [ "," ]
   focusKey: FocusWhisperChatWindow
 
 - type: entity

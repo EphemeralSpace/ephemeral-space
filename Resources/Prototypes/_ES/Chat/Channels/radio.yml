@@ -1,34 +1,49 @@
+- type: esChatChannel
+  id: BaseRadio
+  filterCategory: Radio
+  glorfAffected: true
+
 - type: entity
   id: ESBaseRadioChatProcessor
   abstract: true
   components:
   - type: ESGhostListenableChatChannel
   - type: ESRadioChatChannel
-  - type: ESSpeechChatChannel
-  - type: ESRequireCanSpeakChatChannel
-  - type: ESSanitizationChatChannel # TODO Send whispers as well
 
 # Channels
+## Common
 - type: esChatChannel
-  id: Common
+  parent: BaseWhisper
+  id: RadioWhisperCommon
   name: es-chat-channel-name-radio-common
   order: 4
   color: LimeGreen
-  textColor: "#2cdb2c"
-  chatProcessor: RadioChatProcessor
+  chatProcessor: RadioWhisperCommonChatProcessor
   prefixes: [ ";" ]
-  filterCategory: Radio
-  glorfAffected: true
   focusKey: FocusRadioWindow
 
 - type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperCommonChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Common
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Common
+  textColor: "#2cdb2c"
+  chatProcessor: CommonRadioChatProcessor
+
+- type: entity
   parent: ESBaseRadioChatProcessor
-  id: RadioChatProcessor
+  id: CommonRadioChatProcessor
   components:
   - type: ESSpeechVerbChatChannel
     format: es-chat-channel-radio-common-fmt-verb
     boldFormat: es-chat-channel-radio-common-bold-fmt-verb
 
+## Command
 - type: esChatChannel
   id: Command
   name: es-chat-channel-name-radio-command
@@ -48,6 +63,7 @@
     format: es-chat-channel-radio-command-fmt-verb
     boldFormat: es-chat-channel-radio-command-bold-fmt-verb
 
+## Engineering
 - type: esChatChannel
   id: Engineering
   name: es-chat-channel-name-radio-engineering
@@ -67,6 +83,7 @@
     format: es-chat-channel-radio-engineering-fmt-verb
     boldFormat: es-chat-channel-radio-engineering-bold-fmt-verb
 
+## Medical
 - type: esChatChannel
   id: Medical
   name: es-chat-channel-name-radio-medical
@@ -86,6 +103,7 @@
     format: es-chat-channel-radio-medical-fmt-verb
     boldFormat: es-chat-channel-radio-medical-bold-fmt-verb
 
+## Science
 - type: esChatChannel
   id: Science
   name: es-chat-channel-name-radio-science
@@ -105,6 +123,7 @@
     format: es-chat-channel-radio-science-fmt-verb
     boldFormat: es-chat-channel-radio-science-bold-fmt-verb
 
+## Security
 - type: esChatChannel
   id: Security
   name: es-chat-channel-name-radio-security
@@ -124,6 +143,7 @@
     format: es-chat-channel-radio-security-fmt-verb
     boldFormat: es-chat-channel-radio-security-bold-fmt-verb
 
+## Service
 - type: esChatChannel
   id: Service
   name: es-chat-channel-name-radio-service
@@ -143,6 +163,7 @@
     format: es-chat-channel-radio-service-fmt-verb
     boldFormat: es-chat-channel-radio-service-bold-fmt-verb
 
+## Supply
 - type: esChatChannel
   id: Supply
   name: es-chat-channel-name-radio-supply

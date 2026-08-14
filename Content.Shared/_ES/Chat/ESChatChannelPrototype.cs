@@ -17,6 +17,7 @@ public sealed partial class ESChatChannelPrototype : IPrototype, IInheritingProt
     public string[]? Parents { get; private set; }
 
     [AbstractDataField]
+    [NeverPushInheritance]
     public bool Abstract { get; private set; }
 
     [DataField]

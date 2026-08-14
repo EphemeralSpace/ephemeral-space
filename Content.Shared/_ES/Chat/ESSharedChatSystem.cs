@@ -94,7 +94,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
     /// If the processor already exists, it'll use the existing one.
     /// Otherwise, it'll initialize a new one and then reuse it for further calls.
     /// </remarks>
-    private bool TryGetProcessor(ProtoId<ESChatChannelPrototype> channel, [NotNullWhen(true)] out Entity<ESChatProcessorComponent>? processor)
+    public bool TryGetProcessor(ProtoId<ESChatChannelPrototype> channel, [NotNullWhen(true)] out Entity<ESChatProcessorComponent>? processor)
     {
         processor = null;
 
@@ -197,7 +197,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
         var postNameEv = new ESPostTransformMessageSourceNameEvent(nameEv.Name, source);
         RaiseLocalEvent(processor, ref postNameEv);
 
-        var name = postNameEv.Name;
+        var name = nameOverride ?? postNameEv.Name;
 
         foreach (var recipient in GetMessageRecipients(source, processor))
         {
@@ -219,7 +219,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
                     source,
                     formatEv.Format,
                     ephemeral: hideChat,
-                    name: nameOverride ?? name,
+                    name: name,
                     font: formatEv.Font,
                     fontSize: formatEv.FontSize,
                     color: formatEv.Color,
@@ -236,12 +236,12 @@ public abstract partial class ESSharedChatSystem : EntitySystem
             processor.Comp.Channel,
             source,
             formatEv.Format,
-            name: nameOverride ?? name,
+            name: name,
             font: formatEv.Font,
             fontSize: formatEv.FontSize,
             color: formatEv.Color);
 
-        var sentEv = new ESChatMessageSentEvent(source, transformedContent, processor.Comp.Channel);
+        var sentEv = new ESChatMessageSentEvent(source, transformedContent, processor.Comp.Channel, name);
         RaiseLocalEvent(processor, ref sentEv);
 
         if (logOverride != false && PlayerManager.TryGetSessionByEntity(source, out _))
@@ -582,11 +582,13 @@ public record struct ESChatMessageReceivedEvent(EntityUid Source, string Content
 }
 
 [ByRefEvent]
-public record struct ESChatMessageSentEvent(EntityUid Source, string Content, ProtoId<ESChatChannelPrototype> Channel)
+public record struct ESChatMessageSentEvent(EntityUid Source, string Content, ProtoId<ESChatChannelPrototype> Channel, string Name)
 {
     public readonly EntityUid Source = Source;
 
     public readonly string Content = Content;
 
     public readonly ProtoId<ESChatChannelPrototype> Channel = Channel;
+
+    public readonly string Name = Name;
 }

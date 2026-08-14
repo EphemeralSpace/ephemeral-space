@@ -1,7 +1,7 @@
-using System.Linq;
 using Content.Server._ES.Chat;
 using Content.Server.Vocalization.Components;
 using Content.Shared._ES.Chat;
+using Content.Shared._ES.Chat.Radio.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -13,10 +13,7 @@ namespace Content.Server.Vocalization.Systems;
 public sealed partial class RadioVocalizationSystem : EntitySystem
 {
     [Dependency] private ESChatSystem _chat = default!;
-    [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IRobustRandom _random = default!;
-
-    private static readonly ProtoId<ESChatChannelFilterPrototype> RadioFilter = "Radio";
 
     public override void Initialize()
     {
@@ -45,10 +42,15 @@ public sealed partial class RadioVocalizationSystem : EntitySystem
     {
         channel = default;
 
-        var channels = _chat.GetPermittedChannels(entity)
-            .Select(_proto.Index)
-            .Where(p => p.FilterCategory == RadioFilter)
-            .ToList();
+        var channels = new List<ProtoId<ESChatChannelPrototype>>();
+        foreach (var c in _chat.GetPermittedChannels(entity))
+        {
+            if (!_chat.TryGetProcessor(c, out var processor))
+                continue;
+
+            if (HasComp<ESWhisperRadioChatChannelComponent>(processor))
+                channels.Add(c);
+        }
 
         if (channels.Count == 0)
             return false;

@@ -3,6 +3,7 @@ using Content.Shared.Power.EntitySystems;
 using Content.Shared.Radio.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Chat.Radio;
 
@@ -19,6 +20,8 @@ public sealed partial class ESRadioSystem : EntitySystem
     {
         SubscribeLocalEvent<ESRadioReceiverComponent, ESGetRadioChannelsEvent>(OnGetRadioChannels);
 
+        SubscribeLocalEvent<ESWhisperRadioChatChannelComponent, ESChatMessageSentEvent>(OnChatMessageSent);
+
         SubscribeLocalEvent<ESRadioChatChannelComponent, ESSendChatMessageAttemptEvent>(OnSendChatMessageAttempt);
         SubscribeLocalEvent<ESRadioChatChannelComponent, ESGetChatMessageRecipientsEvent>(OnGetRecipients);
         SubscribeLocalEvent<ESRadioChatChannelComponent, ESTransformChatMessageEvent>(OnRecipientTransformChatMessage);
@@ -30,6 +33,12 @@ public sealed partial class ESRadioSystem : EntitySystem
         {
             args.Channels.Add(channel);
         }
+    }
+
+    private void OnChatMessageSent(Entity<ESWhisperRadioChatChannelComponent> ent, ref ESChatMessageSentEvent args)
+    {
+        //TODO: maybe dont do name override and instead split the name derrivation out from the message transforming for speach
+        _chat.TrySendMessage(args.Content, ent.Comp.RadioChannel, args.Source, nameOverride: FormattedMessage.RemoveMarkupPermissive(args.Name));
     }
 
     private void OnSendChatMessageAttempt(Entity<ESRadioChatChannelComponent> ent, ref ESSendChatMessageAttemptEvent args)
@@ -59,7 +68,6 @@ public sealed partial class ESRadioSystem : EntitySystem
         var query = EntityQueryEnumerator<ESRadioReceiverComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            // TODO: marker component for receive all channels
             if (!comp.Channels.Contains(channel))
                 continue;
 
