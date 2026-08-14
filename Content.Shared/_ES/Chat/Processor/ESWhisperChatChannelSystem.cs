@@ -46,7 +46,7 @@ public sealed partial class ESWhisperChatChannelSystem : EntitySystem
             }
 
             // TODO: don't use random for prediction reasons.
-            if (_random.Prob(1 - chance))
+            if (_random.Prob(chance))
             {
                 modifiedMessage[i] = '~';
             }

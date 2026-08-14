@@ -1,7 +1,9 @@
+using Content.Shared._ES.Chat.Components;
+
 namespace Content.Server._ES.Chat.Admin.Components;
 
 /// <summary>
-/// Used for chat channels which are only relayed to admins.
+/// <see cref="ESChatProcessorComponent"/> for chat channels which are only relayed to admins.
 /// </summary>
 [RegisterComponent]
 [Access(typeof(ESAdminChatChannelSystem))]

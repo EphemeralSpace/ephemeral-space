@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._ES.Chat.Components;
 
 /// <summary>
-/// Provides a formatting to a chat message based on a fixed fluent string.
+/// <see cref="ESChatProcessorComponent"/> that provides a formatting to a chat message based on a fixed fluent string.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 [Access(typeof(ESSharedChatSystem))]
