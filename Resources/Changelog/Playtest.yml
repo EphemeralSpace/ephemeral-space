@@ -1744,3 +1744,17 @@ Entries:
       message: 'New Cannibal themed masquerade '
   id: 187
   time: '2026-08-14T04:33:42.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Lobby chat is now available to people in the theater after the round
+        starts.
+    - type: Tweak
+      message: >-
+        The entire chat backend has been overhauled. Report bugs if you see
+        message strangeness.
+    - type: Remove
+      message: Removed intercoms, hand radios, and holopads.
+  id: 188
+  time: '2026-08-14T14:41:09.0000000+00:00'
