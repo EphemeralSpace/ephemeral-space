@@ -17,7 +17,6 @@ public sealed class ChatTests : GameTest
         var server = pair.Server;
         var protoMan = server.ProtoMan;
 
-        // TODO: this doesn't cover multi-character overlap
         var usedPrefixes = new Dictionary<string, List<ProtoId<ESChatChannelPrototype>>>();
         foreach (var channel in protoMan.EnumeratePrototypes<ESChatChannelPrototype>())
         {
@@ -37,6 +36,22 @@ public sealed class ChatTests : GameTest
             {
                 Assert.That(channels.Count <= 1,
                     $"Chat channel prefix \'{prefix}\' is used multiple times (in channels {string.Join(", ", channels)})");
+            }
+        });
+
+        // check for overlap
+        Assert.Multiple(() =>
+        {
+            foreach (var (prefix, channels) in usedPrefixes)
+            {
+                foreach (var (otherPrefix, otherChannels) in usedPrefixes)
+                {
+                    // ignore self
+                    if (otherPrefix == prefix)
+                        continue;
+
+                    Assert.That(!otherPrefix.StartsWith(prefix), $"Chat prefix \'{prefix}\' for channel {channels[0]} collides with prefix \'{otherPrefix}\' for channel {otherChannels[0]}");
+                }
             }
         });
     }
