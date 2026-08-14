@@ -28,4 +28,10 @@ internal sealed partial class FontSelectionManager
         .AddKind(FontKind.Bold, new ResPath("/Fonts/RobotoMono/RobotoMono-Bold.ttf"))
         .AddKind(FontKind.Italic, new ResPath("/Fonts/RobotoMono/RobotoMono-Italic.ttf"))
         .Build();
+
+    private static readonly FontFamilyStack DefaultFontChat = FontFamilyStack.New()
+        .AddKind(FontKind.Regular, new ResPath("/Fonts/_ES/Wormtown9k-Regular.ttf"))
+        .AddExtra(new ResPath("/Fonts/NotoSans/NotoSansSymbols2-Regular.ttf"))
+        .AddExtra(new ResPath("/Fonts/NotoEmoji.ttf"))
+        .Build();
 }

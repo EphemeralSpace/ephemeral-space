@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Client._ES.Core;
+using Content.Client.Stylesheets;
 using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.Speech;
@@ -8,6 +9,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Chat.UI
 {
@@ -60,7 +62,7 @@ namespace Content.Client.Chat.UI
             switch (type)
             {
                 case SpeechType.Emote:
-                    return new TextSpeechBubble(message, senderEntity, "emoteBox");
+                    return new TextSpeechBubble(message, senderEntity, "emoteBox", prefix: "* ");
 
                 case SpeechType.Say:
                     return new FancyTextSpeechBubble(message, senderEntity, "sayBox");
@@ -76,7 +78,7 @@ namespace Content.Client.Chat.UI
             }
         }
 
-        public SpeechBubble(ESChatMessage message, EntityUid senderEntity, string speechStyleClass, Color? fontColor = null)
+        public SpeechBubble(ESChatMessage message, EntityUid senderEntity, string speechStyleClass, Color? fontColor = null, string prefix = "")
         {
             IoCManager.InjectDependencies(this);
             _senderEntity = senderEntity;
@@ -85,7 +87,7 @@ namespace Content.Client.Chat.UI
             // Use text clipping so new messages don't overlap old ones being pushed up.
             RectClipContent = true;
 
-            var bubble = BuildBubble(message, speechStyleClass, fontColor);
+            var bubble = BuildBubble(message, speechStyleClass, fontColor, prefix);
 
             AddChild(bubble);
 
@@ -97,7 +99,7 @@ namespace Content.Client.Chat.UI
             _deathTime = _timing.RealTime + TotalTime;
         }
 
-        protected abstract Control BuildBubble(ESChatMessage message, string speechStyleClass, Color? fontColor = null);
+        protected abstract Control BuildBubble(ESChatMessage message, string speechStyleClass, Color? fontColor = null, string? prefix = "");
 
         protected override void FrameUpdate(FrameEventArgs args)
         {
@@ -180,19 +182,20 @@ namespace Content.Client.Chat.UI
 
     public sealed class TextSpeechBubble : SpeechBubble
     {
-        public TextSpeechBubble(ESChatMessage message, EntityUid senderEntity, string speechStyleClass, Color? fontColor = null)
-            : base(message, senderEntity, speechStyleClass, fontColor)
+        public TextSpeechBubble(ESChatMessage message, EntityUid senderEntity, string speechStyleClass, Color? fontColor = null, string prefix = "")
+            : base(message, senderEntity, speechStyleClass, fontColor, prefix)
         {
         }
 
-        protected override Control BuildBubble(ESChatMessage message, string speechStyleClass, Color? fontColor = null)
+        protected override Control BuildBubble(ESChatMessage message, string speechStyleClass, Color? fontColor = null, string? prefix = "")
         {
             var label = new RichTextLabel
             {
                 MaxWidth = SpeechMaxWidth,
+                StyleClasses = { StyleClass.FontChat },
             };
 
-            label.UnsafeSetMarkup(message.Content, fontColor);
+            label.UnsafeSetMarkup($"{prefix}{message.Content}", fontColor);
 
             var panel = new PanelContainer
             {
@@ -208,12 +211,12 @@ namespace Content.Client.Chat.UI
     public sealed class FancyTextSpeechBubble : SpeechBubble
     {
 
-        public FancyTextSpeechBubble(ESChatMessage message, EntityUid senderEntity, string speechStyleClass, Color? fontColor = null)
-            : base(message, senderEntity, speechStyleClass, fontColor)
+        public FancyTextSpeechBubble(ESChatMessage message, EntityUid senderEntity, string speechStyleClass, Color? fontColor = null, string prefix = "")
+            : base(message, senderEntity, speechStyleClass, fontColor, prefix)
         {
         }
 
-        protected override Control BuildBubble(ESChatMessage message, string speechStyleClass, Color? fontColor = null)
+        protected override Control BuildBubble(ESChatMessage message, string speechStyleClass, Color? fontColor = null, string? prefix = "")
         {
             if (!ConfigManager.GetCVar(CCVars.ChatEnableFancyBubbles))
             {
@@ -237,6 +240,7 @@ namespace Content.Client.Chat.UI
             {
                 ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.SpeechBubbleSpeakerOpacity)),
                 Margin = new Thickness(1, 1, 1, 1),
+                StyleClasses = { "bubbleHeader", StyleClass.FontChat },
             };
 
             var bubbleContent = new RichTextLabel
@@ -244,11 +248,22 @@ namespace Content.Client.Chat.UI
                 ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.SpeechBubbleTextOpacity)),
                 MaxWidth = SpeechMaxWidth,
                 Margin = new Thickness(2, 6, 2, 2),
-                StyleClasses = { "bubbleContent" },
+                StyleClasses = { "bubbleContent", StyleClass.FontChat },
             };
 
-            bubbleHeader.UnsafeSetMarkup($"[bold]{message.Name}[/bold]", fontColor);
-            bubbleContent.UnsafeSetMarkup(message.Content, fontColor);
+            foreach (var node in FormattedMessage.FromMarkupPermissive(message.Name).Nodes)
+            {
+                if (!node.Value.TryGetColor(out var color))
+                    continue;
+
+                var (l, c, h, a) = Color.ToLch(Color.ToLab(color.Value));
+                l = MathF.Max(l - 0.4f, 0.2f);
+                bubbleHeader.OutlineColorOverride = Color.FromLab(Color.FromLch(new (l, c, h, a)));
+                break;
+            }
+
+            bubbleHeader.UnsafeSetMarkup(message.Name, fontColor);
+            bubbleContent.UnsafeSetMarkup($"{prefix}{message.Content}", fontColor);
 
             //As for below: Some day this could probably be converted to xaml. But that is not today. -Myr
             var mainPanel = new PanelContainer
