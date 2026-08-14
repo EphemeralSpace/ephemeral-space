@@ -1,3 +1,9 @@
+# Radios are generally split into two different channels, the "radio whisper" and the "transmission"
+# The transmission is what is added to players via headsets and contains all the user facing configurations
+# like keybindings and names. However, they are simply reskinned whispers with an extra component. When spoken on,
+# these radio whisper channels send a secondary message on the corresponding transmission channel. This channel
+# doesn't do normal speech transformations like accents, so this ensures the two channels have the same text.
+
 - type: esChatChannel
   id: BaseRadio
   filterCategory: Radio
