@@ -9,7 +9,6 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction ESHoldToFace = "ESHoldToFace";
         public static readonly BoundKeyFunction ESToggleInternals = "ESToggleInternals";
         public static readonly BoundKeyFunction ESToggleFlashlight = "ESToggleFlashlight";
-        public static readonly BoundKeyFunction ESNamePeek = "ESNamePeek";
         // ES END
         public static readonly BoundKeyFunction ToggleKnockdown = "ToggleKnockdown";
         public static readonly BoundKeyFunction UseItemInHand = "ActivateItemInHand";

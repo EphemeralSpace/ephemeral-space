@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Client.Examine;
-using Content.Shared._ES.Viewcone;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs;
@@ -37,7 +36,6 @@ public sealed partial class NamePeekOverlay : Overlay
     private readonly ExamineSystem _examineSystem;
     private readonly EntityLookupSystem _lookup;
     private readonly ESNamePeekSystem _namePeekSystem;
-    private readonly ESViewconeAngleSystem _viewCone;
     private readonly LightLevelSystem _lightLevel;
     private readonly ShaderInstance _shader;
     private readonly SharedTransformSystem _transform;
@@ -47,7 +45,7 @@ public sealed partial class NamePeekOverlay : Overlay
     private EntityQuery<TransformComponent> _transformQuery;
     private EntityQuery<MobStateComponent> _mobStateQuery;
 
-    private TextOutline _outline = new (2.5f, Color.Black);
+    private TextOutline _outline = new (2f, Color.Black);
 
     private readonly HashSet<Entity<MobStateComponent>> _nearbyEntities = new();
 
@@ -60,7 +58,6 @@ public sealed partial class NamePeekOverlay : Overlay
         ExamineSystem examine,
         EntityLookupSystem lookup,
         ESNamePeekSystem namePeek,
-        ESViewconeAngleSystem viewCone,
         LightLevelSystem lightLevel,
         SharedTransformSystem transform,
         SpriteSystem sprite,
@@ -71,7 +68,6 @@ public sealed partial class NamePeekOverlay : Overlay
         _examineSystem = examine;
         _lookup = lookup;
         _namePeekSystem = namePeek;
-        _viewCone = viewCone;
         _lightLevel = lightLevel;
         _transform = transform;
         _sprite = sprite;
@@ -145,7 +141,7 @@ public sealed partial class NamePeekOverlay : Overlay
             if (!_transformQuery.TryComp(ent, out var xform))
                 continue;
 
-            if (!_viewCone.InViewcone(playerEnt, ent))
+            if (!_spriteQuery.TryComp(ent, out var sprite) || !sprite.Visible)
                 continue;
 
             var mapPos = _transform.GetMapCoordinates((ent, xform));
@@ -157,9 +153,6 @@ public sealed partial class NamePeekOverlay : Overlay
             //Don't show nametag if it's too dark
             //Most maintenance tunnels on toast seem to be below 0.9, main halls are usually 1
             if (lightLevel < 0.89)
-                continue;
-
-            if (!_spriteQuery.TryComp(ent, out var sprite))
                 continue;
 
             if (eye.DrawFov && !_examineSystem.InRangeUnOccluded(playerEnt, ent))
@@ -184,7 +177,7 @@ public sealed partial class NamePeekOverlay : Overlay
             var pos = Vector2.Transform(offsetWorldPos, matrix);
             var drawPosition = (pos - dimensions / 2f);
 
-            handle.DrawString(_font, drawPosition, text, scale, Color.LightGray.WithAlpha(200), _outline);
+            handle.DrawString(_font, drawPosition, text, scale, Color.LightGray.WithAlpha(sprite.Color.A), _outline);
         }
 
         args.DrawingHandle.UseShader(null);

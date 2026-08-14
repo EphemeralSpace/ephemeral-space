@@ -10,9 +10,6 @@ binds:
 - function: ESToggleFlashlight
   type: State
   key: F
-- function: ESNamePeek
-  type: State
-  key: Shift
 # ES END
 - function: UIClick
   type: State

@@ -1,5 +1,4 @@
 using Content.Client.Examine;
-using Content.Shared._ES.Viewcone;
 using Content.Shared.Input;
 using Content.Shared.Mobs.Components;
 using Robust.Client.GameObjects;
@@ -23,7 +22,6 @@ public sealed partial class ESNamePeekSystem : EntitySystem
     [Dependency] private LightLevelSystem _lightLevel = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SpriteSystem _sprite = default!;
-    [Dependency] private ESViewconeAngleSystem _viewconeAngle = default!;
 
     [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
     [Dependency] private EntityQuery<TransformComponent> _transformQuery = default!;
@@ -42,7 +40,6 @@ public sealed partial class ESNamePeekSystem : EntitySystem
             _examine,
             _lookup,
             this,
-            _viewconeAngle,
             _lightLevel,
             _transform,
             _sprite,
@@ -51,7 +48,7 @@ public sealed partial class ESNamePeekSystem : EntitySystem
             _mobstateQuery));
 
         CommandBinds.Builder
-            .Bind(ContentKeyFunctions.ESNamePeek, new PointerInputCmdHandler(OnExamineNames, ignoreUp: false, outsidePrediction: true))
+            .Bind(ContentKeyFunctions.ESHoldToFace, new PointerInputCmdHandler(OnExamineNames, ignoreUp: false, outsidePrediction: true))
             .Register<ESNamePeekSystem>();
     }
 
