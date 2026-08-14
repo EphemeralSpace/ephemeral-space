@@ -55,6 +55,13 @@ public sealed partial class ChannelFilterPopup : Popup
             OnChannelFilter?.Invoke(checkbox.Channel, checkbox.Pressed);
         }
     }
+    public void SetAllActive(bool isActive)
+    {
+        foreach (var filter in _filterStates.Keys)
+        {
+            SetActive(filter, isActive);
+        }
+    }
 
     public List<ProtoId<ESChatChannelFilterPrototype>> GetFilteredChannels()
     {
