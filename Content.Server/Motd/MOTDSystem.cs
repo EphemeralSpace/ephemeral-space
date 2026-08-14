@@ -36,7 +36,7 @@ public sealed partial class MOTDSystem : EntitySystem
             return;
 
         var wrappedMessage = Loc.GetString("motd-wrap-message", ("motd", _messageOfTheDay));
-        _chatManager.SendChatMessage(IESSharedChatManager.ServerChannel, wrappedMessage, null);
+        _chatManager.SendChatMessage(wrappedMessage, IESSharedChatManager.ServerChannel);
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ public sealed partial class MOTDSystem : EntitySystem
             return;
 
         var wrappedMessage = Loc.GetString("motd-wrap-message", ("motd", _messageOfTheDay));
-        _chatManager.SendChatMessage(IESSharedChatManager.ServerChannel, player, wrappedMessage, null);
+        _chatManager.SendChatMessage(wrappedMessage, player, IESSharedChatManager.ServerChannel);
     }
 
     /// <summary>
@@ -65,7 +65,7 @@ public sealed partial class MOTDSystem : EntitySystem
         var wrappedMessage = Loc.GetString("motd-wrap-message", ("motd", _messageOfTheDay));
         shell.WriteLine(wrappedMessage);
         if (shell.Player is { } player)
-            _chatManager.SendChatMessage(IESSharedChatManager.ServerChannel, player, wrappedMessage, null);
+            _chatManager.SendChatMessage(wrappedMessage, player, IESSharedChatManager.ServerChannel);
     }
 
     #region Event Handlers

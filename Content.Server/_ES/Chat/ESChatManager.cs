@@ -87,7 +87,7 @@ public sealed partial class ESChatManager : ESSharedChatManager
         string content,
         IEnumerable<ICommonSession> recipients,
         ProtoId<ESChatChannelPrototype> channel,
-        EntityUid? source,
+        EntityUid? source = null,
         string format = IESSharedChatManager.DefaultFormat,
         bool ephemeral = false,
         bool recordReplay = true,
@@ -136,7 +136,7 @@ public sealed partial class ESChatManager : ESSharedChatManager
 
     public override void RecordReplayChatMessage(string content,
         ProtoId<ESChatChannelPrototype> channel,
-        EntityUid? source,
+        EntityUid? source = null,
         string format = IESSharedChatManager.DefaultFormat,
         bool ephemeral = false,
         SoundSpecifier? sound = null,

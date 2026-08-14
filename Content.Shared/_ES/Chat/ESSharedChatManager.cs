@@ -38,7 +38,7 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
     public void SendServerMessage(string content, IEnumerable<ICommonSession> session, Color? color = null)
     {
         var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", content));
-        SendChatMessage(wrappedMessage, session, IESSharedChatManager.ServerChannel, null, color: color);
+        SendChatMessage(wrappedMessage, session, IESSharedChatManager.ServerChannel, color: color);
     }
 
     public virtual void SendAdminMessage(string content,
@@ -58,12 +58,12 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
         var wrappedMessage = Loc.GetString("chat-manager-send-admin-announcement-wrap-message",
             ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
             ("message", FormattedMessage.EscapeText(content)));
-        SendChatMessage(wrappedMessage, sessions, IESSharedChatManager.AdminChannel, null);
+        SendChatMessage(wrappedMessage, sessions, IESSharedChatManager.AdminChannel);
     }
 
     public void SendChatMessage(string content,
         ProtoId<ESChatChannelPrototype> channel,
-        EntityUid? source,
+        EntityUid? source = null,
         string format = IESSharedChatManager.DefaultFormat,
         bool ephemeral = false,
         bool recordReplay = true,
@@ -90,7 +90,7 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
     public void SendChatMessage(string content,
         ICommonSession recipient,
         ProtoId<ESChatChannelPrototype> channel,
-        EntityUid? source,
+        EntityUid? source = null,
         string format = IESSharedChatManager.DefaultFormat,
         bool ephemeral = false,
         bool recordReplay = true,
@@ -118,7 +118,7 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
     public abstract void SendChatMessage(string content,
         IEnumerable<ICommonSession> recipient,
         ProtoId<ESChatChannelPrototype> channel,
-        EntityUid? source,
+        EntityUid? source = null,
         string format = IESSharedChatManager.DefaultFormat,
         bool ephemeral = false,
         bool recordReplay = true,
@@ -130,7 +130,7 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
 
     public virtual void RecordReplayChatMessage(string content,
         ProtoId<ESChatChannelPrototype> channel,
-        EntityUid? source,
+        EntityUid? source = null,
         string format = IESSharedChatManager.DefaultFormat,
         bool ephemeral = false,
         SoundSpecifier? sound = null,
