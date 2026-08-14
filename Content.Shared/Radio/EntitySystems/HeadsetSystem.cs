@@ -1,4 +1,5 @@
 using Content.Shared._ES.Chat;
+using Content.Shared._ES.Chat.Components;
 using Content.Shared._ES.Chat.Radio;
 using Content.Shared._ES.Chat.Radio.Components;
 using Content.Shared._Offbrand.StatusEffects;
@@ -156,11 +157,16 @@ public sealed partial class HeadsetSystem : EntitySystem
         if (!headset.Enabled)
             return;
 
-        foreach (var channlEnt in AllEntityQuery<ESWhisperRadioChatChannelComponent>())
+        foreach (var channelEnt in AllEntityQuery<ESWhisperRadioChatChannelComponent, ESChatProcessorComponent>())
         {
-            if (!holder.Channels.Contains(channlEnt.Comp.RadioChannel))
+            if (!holder.Channels.Contains(channelEnt.Comp1.RadioChannel))
                 continue;
-            args.Channels.Add(_chat.GetChannel(channlEnt.Owner));
+
+            // evil container networking issues
+            if (channelEnt.Comp2.Channel == default)
+                continue;
+
+            args.Channels.Add(_chat.GetChannel(channelEnt.Owner));
         }
     }
 }
