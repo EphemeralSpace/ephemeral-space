@@ -653,9 +653,10 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
 
     public void NotifyChatTextChange(ChatBox box)
     {
-        _typingIndicator?.ClientChangedValidChannel(GetCurrentChatChannel(box));
+        var channel = GetCurrentChatChannel(box);
+        _typingIndicator?.ClientChangedValidChannel(channel);
         _typingIndicator?.ClientChangedChatText();
-        TryUpdateTypingSpeechBubble(box., channel);
+        TryUpdateTypingSpeechBubble(box.ChatInput.Input.Text, channel);
     }
 
     public void NotifyChatFocus(ChatBox box, bool isFocused)
