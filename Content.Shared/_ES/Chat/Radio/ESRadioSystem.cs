@@ -49,7 +49,7 @@ public sealed partial class ESRadioSystem : EntitySystem
 
     private void OnRadioChatMessageSent(Entity<ESRadioChatChannelComponent> ent, ref ESChatMessageSentEvent args)
     {
-        _audio.PlayPvs(RadioClick, args.Source);
+        _audio.PlayPvs(RadioClick, args.Source, AudioParams.Default.WithVolume(-5f).WithMaxDistance(5f));
     }
 
     private void OnSendChatMessageAttempt(Entity<ESRadioChatChannelComponent> ent, ref ESSendChatMessageAttemptEvent args)
