@@ -14,6 +14,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Preferences;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
@@ -33,7 +34,7 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private ContainerSystem _container = default!;
     [Dependency] private DamageableSystem _damageable = default!;
-    [Dependency] private HumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private MobStateSystem _mobState = default!;
@@ -68,10 +69,13 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
 
         _metaData.SetEntityName(target, Loc.GetString("es-cryohusk-name"), raiseEvents: false);
 
-        _humanoidAppearance.SetSpecies(target, target.Comp.CryohuskSpecies);
-        _humanoidAppearance.SetSkinColor(target, Color.White);
-        _humanoidAppearance.SetSex(target, Sex.Unsexed);
-        _humanoidAppearance.SetGender(target.Owner, Gender.Neuter);
+        throw new NotImplementedException();
+        // _humanoidAppearance.SetSpecies(target, target.Comp.CryohuskSpecies);
+        _humanoidProfile.ApplyProfileTo(target.Owner,
+            new HumanoidCharacterProfile()
+                .WithGender(Gender.Neuter)
+                .WithSex(Sex.Unsexed)
+                .WithSpecies(target.Comp.CryohuskSpecies));
 
         foreach (var uid in GetRecursiveContainedEntities(target.Owner))
         {

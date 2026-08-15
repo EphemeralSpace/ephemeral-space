@@ -194,15 +194,15 @@ namespace Content.Shared.Preferences
         {
             var protoMan = IoCManager.Resolve<IPrototypeManager>();
 
-            species ??= SharedHumanoidAppearanceSystem.DefaultSpecies;
+            species ??= DefaultSpecies;
             var speciesPrototype = protoMan.Index<SpeciesPrototype>(species);
 
             return new()
             {
-                Species = species,
+                Species = species.Value,
                 Sex = speciesPrototype.Sexes.First(),
                 Gender = speciesPrototype.Genders.First(),
-                Appearance = HumanoidCharacterAppearance.DefaultWithSpecies(species),
+                Appearance = HumanoidCharacterAppearance.DefaultWithSpecies(species.Value, sex ?? speciesPrototype.Sexes.First()),
             };
         }
 

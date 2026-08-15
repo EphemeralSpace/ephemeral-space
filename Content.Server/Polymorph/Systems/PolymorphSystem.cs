@@ -37,7 +37,6 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private SharedBuckleSystem _buckle = default!;
     [Dependency] private ContainerSystem _container = default!;
     [Dependency] private DamageableSystem _damageable = default!;
-    [Dependency] private HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private MobThresholdSystem _mobThreshold = default!;
     [Dependency] private IdentitySystem _identity = default!;

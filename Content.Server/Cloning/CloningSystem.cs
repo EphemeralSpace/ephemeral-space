@@ -28,7 +28,6 @@ namespace Content.Server.Cloning;
 /// </summary>
 public sealed partial class CloningSystem : SharedCloningSystem
 {
-    [Dependency] private HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private IPrototypeManager _prototype = default!;

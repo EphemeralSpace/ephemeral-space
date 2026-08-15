@@ -126,7 +126,7 @@ public sealed partial class ESKillTrackingSystem : EntitySystem
         RaiseLocalEvent(killer.Value, ref killerEv);
 
         // Only increment the player kill tracker if it was like a real player
-        if (HasComp<HumanoidAppearanceComponent>(ent))
+        if (HasComp<HumanoidProfileComponent>(ent))
         {
             var comp = EnsureComp<ESKillerTrackerComponent>(killer.Value);
             ++comp.KilledPlayerCount;

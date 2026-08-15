@@ -13,7 +13,7 @@ namespace Content.Shared.Trigger.Systems;
 public sealed partial class DnaScrambleOnTriggerSystem : XOnTriggerSystem<DnaScrambleOnTriggerComponent>
 {
     [Dependency] private MetaDataSystem _metaData = default!;
-    [Dependency] private SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
     [Dependency] private SharedVisualBodySystem _visualBody = default!;
     [Dependency] private IdentitySystem _identity = default!;
     [Dependency] private SharedForensicsSystem _forensics = default!;

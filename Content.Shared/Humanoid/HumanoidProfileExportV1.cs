@@ -46,9 +46,6 @@ public sealed partial class HumanoidCharacterProfileV1
     [DataField("_antagPreferences")]
     public HashSet<ProtoId<AntagPrototype>> AntagPreferences = new();
 
-    [DataField("_traitPreferences")]
-    public HashSet<ProtoId<TraitPrototype>> TraitPreferences = new();
-
     [DataField("_loadouts")]
     public Dictionary<string, RoleLoadout> Loadouts = new();
 
@@ -81,7 +78,7 @@ public sealed partial class HumanoidCharacterProfileV1
 
     public HumanoidCharacterProfile ToV2()
     {
-        return new(Name, FlavorText, Species, Age, Sex, Gender, Appearance.ToV2(Species), SpawnPriority, JobPriorities, PreferenceUnavailable, AntagPreferences, TraitPreferences, Loadouts);
+        return new(Name, FlavorText, Species, Age, Sex, Gender, Appearance.ToV2(Species), SpawnPriority, JobPriorities, PreferenceUnavailable, AntagPreferences, Loadouts);
     }
 }
 

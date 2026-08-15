@@ -21,7 +21,7 @@ public sealed partial class ESAirlockFailureEventSystem : StationEventSystem<ESA
 
         var validTargets = new List<EntityUid>();
 
-        var players = EntityQueryEnumerator<ActorComponent, HumanoidAppearanceComponent>();
+        var players = EntityQueryEnumerator<ActorComponent, HumanoidProfileComponent>();
         while (players.MoveNext(out var player, out _, out _))
         {
             validTargets.Add(player);
