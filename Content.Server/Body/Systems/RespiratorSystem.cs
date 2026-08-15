@@ -36,7 +36,7 @@ public sealed partial class RespiratorSystem : EntitySystem
     [Dependency] private IPrototypeManager _protoMan = default!;
     [Dependency] private AlertsSystem _alertsSystem = default!;
     [Dependency] private AtmosphereSystem _atmosSys = default!;
-    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private BodySystem _body = default!;
     [Dependency] private ESEmoteSystem _emote = default!;
     [Dependency] private DamageableSystem _damageableSys = default!;
     [Dependency] private LungSystem _lungSystem = default!;
@@ -397,7 +397,7 @@ public sealed partial class RespiratorSystem : EntitySystem
     }
     // End Offbrand
 
-    private void OnGasInhaled(Entity<BodyComponent> entity, ref InhaledGasEvent args)
+    private void OnGasInhaled(Entity<LungComponent> ent, ref BodyRelayedEvent<InhaledGasEvent> args)
     {
         if (args.Args.Handled)
             return;

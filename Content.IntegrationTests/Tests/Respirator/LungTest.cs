@@ -1,4 +1,3 @@
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Shared.Body.Systems;
@@ -7,6 +6,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using System.Numerics;
+using Content.Shared.Atmos.Components;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
 
@@ -133,7 +133,6 @@ public sealed class LungTest
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
 
-        var mapManager = server.ResolveDependency<IMapManager>();
         var entityManager = server.ResolveDependency<IEntityManager>();
         var cfg = server.ResolveDependency<IConfigurationManager>();
         var mapLoader = entityManager.System<MapLoaderSystem>();

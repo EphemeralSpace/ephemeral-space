@@ -35,6 +35,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Stacks;
 using Content.Server.Construction.Components;
+using Content.Shared.Body;
 using Content.Shared.Chat;
 using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
@@ -43,7 +44,6 @@ namespace Content.Server.Kitchen.EntitySystems
 {
     public sealed partial class MicrowaveSystem : EntitySystem
     {
-        [Dependency] private BodySystem _bodySystem = default!;
         [Dependency] private DeviceLinkSystem _deviceLink = default!;
         [Dependency] private SharedPopupSystem _popupSystem = default!;
         [Dependency] private PowerReceiverSystem _power = default!;

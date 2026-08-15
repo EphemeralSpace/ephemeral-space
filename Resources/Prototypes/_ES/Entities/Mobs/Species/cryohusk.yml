@@ -1,32 +1,45 @@
 - type: entity
-  parent: BaseMobSpeciesOrganic
-  id: ESBaseMobCryohusk
-  name: ???
-  abstract: true
-  components:
-  - type: Hunger
-  - type: Icon
-    sprite: _ES/Mobs/Species/cryohusk.rsi
-    state: full
-  - type: Thirst
-  - type: HumanoidAppearance
-    species: ESCryohusk
-  - type: SlurredAccent
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 2
-    baseSprintSpeed : 3.75
-  - type: Damageable
-    damageModifierSet: ESCryohusk
-
-- type: entity
-  save: false
-  parent: ESBaseMobCryohusk
-  id: ESMobCryohusk
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: ESMobCryohuskDummy
+  parent: BaseSpeciesAppearance
+  id: ESAppearanceCryohusk
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
     species: ESCryohusk
+  - type: EntityTableContainerFill
+    containers:
+      body_organs: !type:AllSelector
+        children:
+        - id: OrganHumanTorso
+        - id: OrganHumanHead
+        - id: OrganHumanArmLeft
+        - id: OrganHumanArmRight
+        - id: OrganHumanHandRight
+        - id: OrganHumanHandLeft
+        - id: OrganHumanLegLeft
+        - id: OrganHumanLegRight
+        - id: OrganHumanFootLeft
+        - id: OrganHumanFootRight
+        - id: OrganHumanBrain
+        - id: OrganHumanEyes
+        - id: OrganHumanTongue
+        - id: OrganHumanAppendix
+        - id: OrganHumanEars
+        - id: OrganHumanLungs
+        - id: OrganHumanHeart
+        - id: OrganHumanStomach
+        - id: OrganHumanLiver
+        - id: OrganHumanKidneys
+
+- type: entity
+  parent:
+  - ESAppearanceCryohusk
+  - BaseSpeciesMobOrganic
+  id: ESMobCryohusk
+  name: ???
+  components:
+  - type: SlurredAccent
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3.75
+  - type: Damageable
+    damageModifierSet: ESCryohusk

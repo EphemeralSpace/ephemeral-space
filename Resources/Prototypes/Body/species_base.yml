@@ -11,7 +11,6 @@
   - BaseMobPain # Offbrand
   - BaseMobSurgery # Offbrand
   id: BaseSpeciesMob
-  abstract: true
   components:
   - type: Sprite
     layers:
@@ -224,7 +223,6 @@
   - BaseMobCryostasis # Offbrand
   - BaseMobLungDamage # Offbrand
   id: BaseSpeciesMobOrganic
-  abstract: true
   components:
   - type: Hunger
   - type: Thirst

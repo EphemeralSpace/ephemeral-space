@@ -5,7 +5,7 @@
   prototype: ESMobMonkey
   sprites: ESMobMonkeySprites
   markingLimits: MobHumanMarkingLimits
-  dollPrototype: ESMobMonkeyDummy
+  dollPrototype: ESAppearanceMonkey
   minAge: 5
   youngAge: 10
   oldAge: 25
