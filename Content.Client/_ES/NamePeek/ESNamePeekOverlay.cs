@@ -43,8 +43,6 @@ public sealed partial class NamePeekOverlay : Overlay
     private EntityQuery<TransformComponent> _transformQuery;
     private EntityQuery<MobStateComponent> _mobStateQuery;
 
-    private TextOutline _outline = new (2f, Color.Black.WithAlpha(0.85f));
-
     private readonly HashSet<Entity<MobStateComponent>> _nearbyEntities = new();
 
     private readonly Font _font;
@@ -176,8 +174,10 @@ public sealed partial class NamePeekOverlay : Overlay
             var pos = Vector2.Transform(offsetWorldPos, matrix);
             var drawPosition = (pos - dimensions / 2f);
             var color = _chat.GetChatColor(text);
+            var outlineColor = _chat.GetChatOutlineColor(color);
+            var outline = new TextOutline(2f, outlineColor);
 
-            handle.DrawString(_font, drawPosition, text, scale, color.WithAlpha(0.85f), _outline);
+            handle.DrawString(_font, drawPosition, text, scale, color, outline);
         }
 
         args.DrawingHandle.UseShader(null);

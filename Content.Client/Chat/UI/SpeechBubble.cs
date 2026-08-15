@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._ES.Chat;
 using Content.Client._ES.Core;
 using Content.Client.Stylesheets;
 using Content.Shared._ES.Chat;
@@ -19,6 +20,7 @@ namespace Content.Client.Chat.UI
         [Dependency] private IEyeManager _eyeManager = default!;
         [Dependency] private IEntityManager _entityManager = default!;
         [Dependency] protected IConfigurationManager ConfigManager = default!;
+        protected readonly ESChatSystem Chat;
         private readonly SharedTransformSystem _transformSystem;
 
         /// <summary>
@@ -83,6 +85,7 @@ namespace Content.Client.Chat.UI
             IoCManager.InjectDependencies(this);
             _senderEntity = senderEntity;
             _transformSystem = _entityManager.System<SharedTransformSystem>();
+            Chat = _entityManager.System<ESChatSystem>();
 
             // Use text clipping so new messages don't overlap old ones being pushed up.
             RectClipContent = true;
@@ -193,6 +196,7 @@ namespace Content.Client.Chat.UI
             {
                 MaxWidth = SpeechMaxWidth,
                 StyleClasses = { StyleClass.FontChat },
+                ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.SpeechBubbleTextOpacity))
             };
 
             label.UnsafeSetMarkup($"{prefix}{message.Content}", fontColor);
@@ -201,7 +205,6 @@ namespace Content.Client.Chat.UI
             {
                 StyleClasses = { "speechBox", speechStyleClass },
                 Children = { label },
-                ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.SpeechBubbleBackgroundOpacity))
             };
 
             return panel;
@@ -218,76 +221,34 @@ namespace Content.Client.Chat.UI
 
         protected override Control BuildBubble(ESChatMessage message, string speechStyleClass, Color? fontColor = null, string? prefix = "")
         {
-            if (!ConfigManager.GetCVar(CCVars.ChatEnableFancyBubbles))
-            {
-                var label = new RichTextLabel
-                {
-                    MaxWidth = SpeechMaxWidth
-                };
-
-                label.UnsafeSetMarkup(message.Content, fontColor);
-
-                var unfanciedPanel = new PanelContainer
-                {
-                    StyleClasses = { "speechBox", speechStyleClass },
-                    Children = { label },
-                    ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.SpeechBubbleBackgroundOpacity)),
-                };
-                return unfanciedPanel;
-            }
-
-            var bubbleHeader = new RichTextLabel
-            {
-                ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.SpeechBubbleSpeakerOpacity)),
-                Margin = new Thickness(1, 1, 1, 1),
-                StyleClasses = { "bubbleHeader", StyleClass.FontChat },
-            };
-
             var bubbleContent = new RichTextLabel
             {
-                ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.SpeechBubbleTextOpacity)),
                 MaxWidth = SpeechMaxWidth,
-                Margin = new Thickness(2, 6, 2, 2),
+                Margin = new Thickness(2, 2, 2, 2),
+                ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.SpeechBubbleTextOpacity)),
                 StyleClasses = { "bubbleContent", StyleClass.FontChat },
             };
 
-            foreach (var node in FormattedMessage.FromMarkupPermissive(message.Name).Nodes)
-            {
-                if (!node.Value.TryGetColor(out var color))
-                    continue;
-
-                var (l, c, h, a) = Color.ToLch(Color.ToLab(color.Value));
-                l = MathF.Max(l - 0.4f, 0.2f);
-                bubbleHeader.OutlineColorOverride = Color.FromLab(Color.FromLch(new (l, c, h, a)));
-                break;
-            }
-
-            bubbleHeader.UnsafeSetMarkup(message.Name, fontColor);
-            bubbleContent.UnsafeSetMarkup($"{prefix}{message.Content}", fontColor);
+            // this is to remove color tags etc. so we just color it normal style
+            var name = FormattedMessage.RemoveMarkupPermissive(message.Name);
+            var content = FormattedMessage.RemoveMarkupPermissive(message.Content);
+            var color = fontColor ?? Chat.GetChatColor(name);
+            var outlineColor = Chat.GetChatOutlineColor(color);
+            bubbleContent.OutlineColorOverride = outlineColor;
+            bubbleContent.UnsafeSetMarkup($"{prefix}{content}", color);
 
             //As for below: Some day this could probably be converted to xaml. But that is not today. -Myr
             var mainPanel = new PanelContainer
             {
                 StyleClasses = { "speechBox", speechStyleClass },
                 Children = { bubbleContent },
-                ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.SpeechBubbleBackgroundOpacity)),
                 HorizontalAlignment = HAlignment.Center,
                 VerticalAlignment = VAlignment.Bottom,
-                Margin = new Thickness(4, 14, 4, 2)
-            };
-
-            var headerPanel = new PanelContainer
-            {
-                StyleClasses = { "speechBox", speechStyleClass },
-                Children = { bubbleHeader },
-                ModulateSelfOverride = Color.White.WithAlpha(ConfigManager.GetCVar(CCVars.ChatFancyNameBackground) ? ConfigManager.GetCVar(CCVars.SpeechBubbleBackgroundOpacity) : 0f),
-                HorizontalAlignment = HAlignment.Center,
-                VerticalAlignment = VAlignment.Top
             };
 
             var panel = new PanelContainer
             {
-                Children = { mainPanel, headerPanel }
+                Children = { mainPanel }
             };
 
             return panel;
