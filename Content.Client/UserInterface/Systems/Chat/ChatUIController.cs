@@ -680,7 +680,8 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
     public void NotifyChatSelectorChanged(ChatBox box)
     {
         UpdateSelectedChannel(box);
-        TryUpdateTypingSpeechBubble(box.ChatInput.Input.Text, box.SelectedChannel, true);
+        if (box.ChatInput.Input.Text != string.Empty)
+            TryUpdateTypingSpeechBubble(box.ChatInput.Input.Text, box.SelectedChannel, true);
     }
 
     public void Repopulate()
